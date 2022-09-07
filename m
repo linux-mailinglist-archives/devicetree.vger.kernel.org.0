@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FEA45B0E8C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D63D5B0E8D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:50:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230176AbiIGUuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 16:50:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56502 "EHLO
+        id S230167AbiIGUuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 16:50:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230165AbiIGUty (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:49:54 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0814431207
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 13:49:52 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id q3so15692468pjg.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 13:49:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=B6Ko3OJsi3My3U394LKzG8EklGxMOFfBOJITDS0awiM=;
-        b=Ze1KQOlEPe5reaj0Lf1bTPtHUU6TxiunzPeQO68W1hBBrmEpH4g2XDpQ3IB71q7BQT
-         m61B2fWIFP3c0wecBvPmyR9ZJY9Si/4Tsa9bbIy3kZNSe7eaQahqPo42KVLiRpIJk8ds
-         3xldO47w4gk1+0/X/lpwjJ/0eqRmZGjrr6RJ5JuUzUeZfuKbFIIYsmMjnTtRXKF4CLSO
-         OCDubPZ9KK+xEfO0vL20Wwp5lqnf/k0rBD+sf1EdKp+hzN6EEmdIjfirosSNsPZn0HW3
-         bsEN3F5L+sOPt+qkrmuwieiOc3pH7pH4nu4peCYxgrR/7SuC46W/rZ4FRhENStB6/B9U
-         uiWg==
+        with ESMTP id S230211AbiIGUt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:49:58 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 288A8402FA
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 13:49:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1662583795;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=L9MgklvzpOudjdiKZlpMkkXwau8zREX7ev+fmxYPY5o=;
+        b=C8nITB6ijffkOpAgi1jorte7R8teR8F44EfFH+p9gb9fIDYHDQaO/s4yNtDDGY6gIOJ/2q
+        yyOZ35ODb6FJK5iNTb3QkTYD5IttL+2FS/UHlZpGMTA/bPa650ZPkwZocYy7j6Qmch1LJN
+        ZMPh0rILGx7ge/EOiA/PUZSekE+3zDs=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-402-96bKnsf1NXyiCJYhh3usGQ-1; Wed, 07 Sep 2022 16:49:54 -0400
+X-MC-Unique: 96bKnsf1NXyiCJYhh3usGQ-1
+Received: by mail-qt1-f200.google.com with SMTP id ci6-20020a05622a260600b0034370b6f5d6so12862366qtb.14
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 13:49:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=B6Ko3OJsi3My3U394LKzG8EklGxMOFfBOJITDS0awiM=;
-        b=6sUfDebO2/ZkNt9jE2cP4euucyhxXXD0p/noFC1IFJYGlzsFL8S0jUXyINj94bQK8H
-         ++0y3XDiKdgecwh8bCjhYU3k/Xs9mesInJWmGO8idomlC6ajdi+rrU6vbDkiPYS8DGW5
-         HrOX9UEcVLgwi06GMsJvtdG80PJblC0Sdf8Ys59fvWWHPvnt3ll81HgsMWn1xzj5yiQ4
-         erT8aS4wrCbivi80FWsaX1HAVRjDXc2gDcECuJ7MTuW/jlg+4KQv1sHcmXiIY9JxGiYh
-         14zFxcE/5kinYAm/PYPcQ5gWVo26pM3wg4Amd/pUGFThXToowMdor0hEk5lJSz1EqUAI
-         RoLA==
-X-Gm-Message-State: ACgBeo3KFrqMiaTdW9GoYSezDUUT+bqzcvd06ojdL6q48051HVr4Lm2R
-        tQgdooomyPfT2C5TelPqPqTDTfELvH4bQw==
-X-Google-Smtp-Source: AA6agR6fZmpd7SsPnR7Tq4yoruwuUPK94V6y3bPbEVACKI8POKGjIhcHfPpg2pvJPBPD5GKN9aSDow==
-X-Received: by 2002:a17:90b:4f81:b0:1fe:591a:3c04 with SMTP id qe1-20020a17090b4f8100b001fe591a3c04mr386150pjb.66.1662583791270;
-        Wed, 07 Sep 2022 13:49:51 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:1c60:5362:9d7f:2354:1d0a:78e3])
-        by smtp.gmail.com with ESMTPSA id e6-20020a17090301c600b001712c008f99sm12795140plh.11.2022.09.07.13.49.46
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=L9MgklvzpOudjdiKZlpMkkXwau8zREX7ev+fmxYPY5o=;
+        b=M/u4GCxMzKG5WRS/wsrWeH5T46SkKhTxLUOavDzgtcAV/z1u5RXJbdSqUCEYSZGCie
+         4wwX5r/Iza2LLRqf7zNLxCbgEXlTz4mbOHdHxGE5gydKzzhicUgAI4pGVdjiZktyk8JL
+         O/NyhfWNyoK++AdeHBnDMy2vkpIgs38SmiLAeekLSyhGVQXXpWLTkJ7Aq5jAln1J6QIZ
+         D1FtWXhqxTsh519PEb3qWOf3KUKIfFOAbF9JT8umyi/KwxB4mDBDDHAlVhsTHj9AX2nH
+         2c2zz/Q3NoTrgJ6DCSJlPUTmRS2zGWczFITUCDSD5vz5v6Kvd5LHesso6N35FP/6b/GZ
+         1d1A==
+X-Gm-Message-State: ACgBeo31ouPbWGUTHgdePV8wu0Z214FDdgLwQH4pXtQhQuADXpz+9OKP
+        geFEkn2MaWOwhH7eCXHkUUw1WDDzw4lZ9XsmLayssLEpBQwG2CfY3SP+IqCTFMWrhIHQpUk2f2U
+        VOpHWG8QbXLcWJX0eCwmeFA==
+X-Received: by 2002:a05:620a:e15:b0:6bc:980:dbaf with SMTP id y21-20020a05620a0e1500b006bc0980dbafmr4067244qkm.315.1662583786942;
+        Wed, 07 Sep 2022 13:49:46 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR6Uvw6ERXn2n408EEsRhz6gdjgairFOEkZj2t3LD9zz3Z5jzRjbPNP12PjV8iIutge5yVDzbA==
+X-Received: by 2002:a05:620a:e15:b0:6bc:980:dbaf with SMTP id y21-20020a05620a0e1500b006bc0980dbafmr4067227qkm.315.1662583786664;
+        Wed, 07 Sep 2022 13:49:46 -0700 (PDT)
+Received: from halaneylaptop.redhat.com ([2600:1700:1ff0:d0e0::a])
+        by smtp.gmail.com with ESMTPSA id k18-20020ac81412000000b003445b83de67sm12599790qtj.3.2022.09.07.13.49.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 13:49:50 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org, netdev@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        David Miller <davem@davemloft.net>
-Subject: [PATCH 3/4] dt-bindings: net: snps,dwmac: Update reg maxitems
-Date:   Thu,  8 Sep 2022 02:19:23 +0530
-Message-Id: <20220907204924.2040384-4-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220907204924.2040384-1-bhupesh.sharma@linaro.org>
-References: <20220907204924.2040384-1-bhupesh.sharma@linaro.org>
+        Wed, 07 Sep 2022 13:49:46 -0700 (PDT)
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        johan@kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        Johan Hovold <johan+kernel@kernel.org>
+Subject: [PATCH v3] regulator: dt-bindings: qcom,rpmh: Indicate regulator-allow-set-load dependencies
+Date:   Wed,  7 Sep 2022 15:49:24 -0500
+Message-Id: <20220907204924.173030-1-ahalaney@redhat.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
+Content-type: text/plain
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,32 +79,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the Qualcomm dwmac based ETHQOS ethernet block
-supports 64-bit register addresses, update the
-reg maxitems inside snps,dwmac YAML bindings.
+For RPMH regulators it doesn't make sense to indicate
+regulator-allow-set-load without saying what modes you can switch to,
+so be sure to indicate a dependency on regulator-allowed-modes.
 
-Cc: Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>
-Cc: David Miller <davem@davemloft.net>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In general this is true for any regulators that are setting modes
+instead of setting a load directly, for example RPMH regulators. A
+counter example would be RPM based regulators, which set a load
+change directly instead of a mode change. In the RPM case
+regulator-allow-set-load alone is sufficient to describe the regulator
+(the regulator can change its output current, here's the new load),
+but in the RPMH case what valid operating modes exist must also be
+stated to properly describe the regulator (the new load is this, what
+is the optimum mode for this regulator with that load, let's change to
+that mode now).
+
+With this in place devicetree validation can catch issues like this:
+
+    /mnt/extrassd/git/linux-next/arch/arm64/boot/dts/qcom/sm8350-hdk.dtb: pm8350-rpmh-regulators: ldo5: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
+            From schema: /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+
+Where the RPMH regulator hardware is described as being settable, but
+there are no modes described to set it to!
+
+Suggested-by: Johan Hovold <johan+kernel@kernel.org>
+Reviewed-by: Johan Hovold <johan+kernel@kernel.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 ---
- Documentation/devicetree/bindings/net/snps,dwmac.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 2b6023ce3ac1..f89ca308d55f 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -94,7 +94,7 @@ properties:
+v2: https://lore.kernel.org/linux-arm-msm/20220906201959.69920-1-ahalaney@redhat.com/
+Changes since v2:
+  - Updated commit message to explain how this is a property of the
+    hardware, and why it only applies to certain regulators like RPMH
+    (Johan + Krzysztof recommendation)
+  - Added Johan + Douglas' R-B tags
+
+v1: https://lore.kernel.org/linux-arm-msm/20220902185148.635292-1-ahalaney@redhat.com/
+Changes since v1:
+  - Dropped first two patches in the series as they were user error
+    (thanks Krzysztof for highlighting this!)
+  - No change in the remaining patch
+
+ .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml    | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+index 9a36bee750af..92ff4d59ba20 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+@@ -99,12 +99,16 @@ properties:
+     type: object
+     $ref: "regulator.yaml#"
+     description: BOB regulator node.
++    dependencies:
++      regulator-allow-set-load: ["regulator-allowed-modes"]
  
-   reg:
-     minItems: 1
--    maxItems: 2
-+    maxItems: 4
+ patternProperties:
+   "^(smps|ldo|lvs)[0-9]+$":
+     type: object
+     $ref: "regulator.yaml#"
+     description: smps/ldo regulator nodes(s).
++    dependencies:
++      regulator-allow-set-load: ["regulator-allowed-modes"]
  
-   interrupts:
-     minItems: 1
+ required:
+   - compatible
 -- 
-2.37.1
+2.37.2
 
