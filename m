@@ -2,170 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 002D85B0764
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 16:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A5585B0774
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 16:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbiIGOqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 10:46:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49692 "EHLO
+        id S229557AbiIGOty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 10:49:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229708AbiIGOqj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 10:46:39 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2466C816A1;
-        Wed,  7 Sep 2022 07:46:37 -0700 (PDT)
+        with ESMTP id S229604AbiIGOtv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 10:49:51 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E49152088
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 07:49:50 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id fy31so30947591ejc.6
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 07:49:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1662561998; x=1694097998;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nyTN5S1v23pl4QdaIwaYRFWiOie50KxUbC25YQEF+qE=;
-  b=Dd0r10oWAaSjIQPsDbWRvnMe/aPeDOavQN0uD26PnVljwWT/fwPYPWZh
-   /x7BSsciL9n3grlPviDDWfbIKXgNGyD0hrrxT+nLrfgiLR4UczgQlQkZb
-   QYglTewG6NlZ2kxMXhasEbQFGbwJqeS6V5oTQMx/V/91sODRsp0QbT0mu
-   BzZlj3Ds3genUkOHPttlvRT+A2/b8LTK8cUe2vNAaM3OXJgzkFe42Vv6j
-   6rgdtzGe5QtgsHJTudRpXkhOasmiCllXAb4Fz+4LOVhug1oVE9nVXWJ6P
-   RjkJxGerrewkBZ3tCTSJlw4kA3PDBJMxnMR0AI/X1C5MV/jBK0nyYz0lb
-   w==;
-X-IronPort-AV: E=Sophos;i="5.93,297,1654552800"; 
-   d="scan'208";a="26047490"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 07 Sep 2022 16:46:31 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 07 Sep 2022 16:46:31 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 07 Sep 2022 16:46:31 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1662561991; x=1694097991;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nyTN5S1v23pl4QdaIwaYRFWiOie50KxUbC25YQEF+qE=;
-  b=H/+ss8aiTVjn6nEFkYtz8MJ555sVCCVi3URoeZtWObVZIva0so/g0ax/
-   xs71b9Zahss8j0Z8Yf0FzpIJ8fhrTiCW/RsTriQJn/sO13oNSVwQKB3NH
-   iKmIvxUv2PU1nQFwDXjE2ljIjoaPotDJCq5G4iOLtG8SNVnmdAlYE/tSJ
-   mxypT+/P/C3rBA7pLvMJcOB4ITd8Z5BYfPV4+NThIkxdafQz6OEGgZZDf
-   IjvLyH7aKHb4d4kpDV0Ktv+tPtkyqV4U6ju9Hr8YyFsQDEMQLICOi60Ma
-   VbNASU7e5AtLbzSH3Wn96nURc6rzSKhaMrcJk1xFfXvX4PEdaqa4YGse7
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,297,1654552800"; 
-   d="scan'208";a="26047489"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 07 Sep 2022 16:46:31 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.11])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 33601280056;
-        Wed,  7 Sep 2022 16:46:31 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>, Li Jun <jun.li@nxp.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: tqma8mpql: add support for 2nd USB (host) interface
-Date:   Wed,  7 Sep 2022 16:46:24 +0200
-Message-Id: <20220907144624.2810117-5-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220907144624.2810117-1-alexander.stein@ew.tq-group.com>
-References: <20220907144624.2810117-1-alexander.stein@ew.tq-group.com>
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=9Egso+F9oAqpmnjS5DTHauVPwDLq9mb6P2D6VOioG74=;
+        b=GJH3rh/Lggajl8hpTEBX35JHXSivg85bmb3IntirQOIXPUYhecuXuFTAKNkeGZKElr
+         1zTyVTl0dikamJeacrK4dDipNLeX7crqRfTO8j5DILmwXbMmL0L6KzfdoYlgxfQncEAA
+         naE3Kl4csXUkopC68eMXzq+655Nj2N3VmW7Eo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=9Egso+F9oAqpmnjS5DTHauVPwDLq9mb6P2D6VOioG74=;
+        b=1mGWC2gyk77C0z8hiIzHMGR6M6trOVtULECTRhUEsUo6vNDE0MuO/IL0S/MRvRjSl5
+         EPVqpM/yQy99IuJalLn4n2dUAg9xFsqAXjrR9ft0tR7oeX6Bd6cbGqst7UR7w45T6k+6
+         AYotJWCW1ZoHXNqaqTKzNN5YqxItjL3kkynrgPkbeSY6UGb6gI4ZS+PZustCLdUyml7c
+         mG/a8G5hs7bhTB5KV0hs6pKt7aRw6d80PrJ7fiThvvckBgkZ0ljVTYptjRZeeHeKbxFl
+         rQos65xKnObLmeAvBm4bRDmmMTBlxjLs1n3ZpDmacot3FC/Mkz5MA873mjR9gpjR1Vlv
+         REjA==
+X-Gm-Message-State: ACgBeo05wcWYxbucIACgQH5AzgpBIEo0wHxuoiTJFmX/7UoYydIK8p1T
+        uG/8Hfe+f/RMjRRP1BT65O5Ri2dULwbhOqDv
+X-Google-Smtp-Source: AA6agR4l+icr8Ri715BQI5Ih4DUoYnfqjCSlgm+yvHYuEJ/EgrQI2TMzHqE4fwBmZQNneenO/T8JgA==
+X-Received: by 2002:a17:907:2c4f:b0:741:5b68:e2d9 with SMTP id hf15-20020a1709072c4f00b007415b68e2d9mr2547651ejc.314.1662562188468;
+        Wed, 07 Sep 2022 07:49:48 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
+        by smtp.gmail.com with ESMTPSA id oz13-20020a170906cd0d00b0073d81b0882asm8348945ejb.7.2022.09.07.07.49.46
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Sep 2022 07:49:47 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id k9so20805120wri.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 07:49:46 -0700 (PDT)
+X-Received: by 2002:a5d:4d0c:0:b0:228:cd9f:5a4c with SMTP id
+ z12-20020a5d4d0c000000b00228cd9f5a4cmr2462176wrt.138.1662562186396; Wed, 07
+ Sep 2022 07:49:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220907054805.v2.1.I1168feec10de16e0f130dfe72ce7976762597dba@changeid>
+In-Reply-To: <20220907054805.v2.1.I1168feec10de16e0f130dfe72ce7976762597dba@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 7 Sep 2022 07:49:34 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XEkPfU9wjwGrp59QJDAspUbWwmOTSZfE1Y5PWt1w309w@mail.gmail.com>
+Message-ID: <CAD=FV=XEkPfU9wjwGrp59QJDAspUbWwmOTSZfE1Y5PWt1w309w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: elants_i2c: Add
+ eth3915n touchscreen chip
+To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Bob Moragues <moragues@chromium.org>,
+        Yunlong Jia <yunlong.jia@ecs.com.tw>,
+        Henry Sun <henrysun@google.com>,
+        David Heidelberg <david@ixit.cz>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The on-board USB hub has a single reset line which needs to be enabled.
+Hi,
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
+On Tue, Sep 6, 2022 at 10:52 PM Yunlong Jia
+<yunlong.jia@ecs.corp-partner.google.com> wrote:
+>
+> Add an elan touch screen chip eth3915n.
+> This chip requires more delay time than the eth3500.
+>
+> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.com.tw>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> ---
+>
+> (no changes since v1)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-index 0091430f6154..09c80ffae4b6 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-@@ -459,11 +459,23 @@ &usb3_0 {
- 	status = "okay";
- };
- 
-+&usb3_1 {
-+	fsl,disable-port-power-control;
-+	fsl,permanently-attached;
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
- &usb3_phy0 {
- 	vbus-supply = <&reg_vcc_5v0>;
- 	status = "okay";
- };
- 
-+&usb3_phy1 {
-+	vbus-supply = <&reg_vcc_5v0>;
-+	status = "okay";
-+};
-+
- &usb_dwc3_0 {
- 	/* dual role is implemented, but not a full featured OTG */
- 	hnp-disable;
-@@ -484,6 +496,32 @@ connector {
- 	};
- };
- 
-+&usb_dwc3_1 {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbhub>;
-+	snps,dis_u3_susphy_quirk;
-+	status = "okay";
-+
-+	hub_2_0: hub@1 {
-+		compatible = "usb451,8142";
-+		reg = <1>;
-+		peer-hub = <&hub_3_0>;
-+		reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&reg_vcc_3v3>;
-+	};
-+
-+	hub_3_0: hub@2 {
-+		compatible = "usb451,8140";
-+		reg = <2>;
-+		peer-hub = <&hub_2_0>;
-+		reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&reg_vcc_3v3>;
-+	};
-+};
-+
- &usdhc2 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
- 	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-@@ -714,6 +752,10 @@ pinctrl_usbcon0: usb0congrp {
- 		fsl,pins = <MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10		0x1c0>;
- 	};
- 
-+	pinctrl_usbhub: usbhubgrp {
-+		fsl,pins = <MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11		0x10>;
-+	};
-+
- 	pinctrl_usdhc2: usdhc2grp {
- 		fsl,pins = <MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x192>,
- 			   <MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d2>,
--- 
-2.25.1
+Technically that's not true. You changed your Signed-off-by between v1
+and v2. That would be something to mention in the changelog.
 
+Also: I suspect that when a maintainer lands your patch that they'll
+get into trouble. That's because your email was sent from
+"yunlong.jia@ecs.corp-partner.google.com" but your "Signed-off-by" was
+"yunlong.jia@ecs.com.tw". If I try grabbing your patch from the
+mailing lists, applying it, and then running it through "checkpatch":
+
+ ./scripts/checkpatch.pl
+0001-input-touchscreen-elants_i2c-Add-eth3915n-touchscree.patch
+WARNING: From:/Signed-off-by: email address mismatch: 'From: Yunlong
+Jia <yunlong.jia@ecs.corp-partner.google.com>' != 'Signed-off-by:
+Yunlong Jia <yunlong.jia@ecs.com.tw>'
+
+
+If I had to guess, the problem is with Google's SMTP servers. If you
+logged into the SMTP server with your "corp-partner" address then
+Google's SMTP server will automatically re-write your "From" address
+to be whatever address you logged in with. I'd guess your options are:
+
+1. Use an official SMTP server for "ecs.com.tw"
+
+...or...
+
+2. I _suspect_ that it will work to set the git config
+"sendemail.envelopeSender" to
+"yunlong.jia@ecs.corp-partner.google.com". I haven't tested this but I
+think it'll work.
+
+Note that when you send a v3, make sure to carry David Heidelberg's Ack.
+
+-Doug
