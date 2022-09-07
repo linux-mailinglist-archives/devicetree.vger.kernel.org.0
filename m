@@ -2,191 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5069A5B0224
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B380F5B0235
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:58:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229478AbiIGKy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 06:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
+        id S229695AbiIGK6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 06:58:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiIGKy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:54:28 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2084.outbound.protection.outlook.com [40.107.20.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81DECFD0;
-        Wed,  7 Sep 2022 03:54:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GxASkJFT0w9ue1ll+F4fKKKFS0NH7G7sUp+ku/7XWjPTO3kRtCSWlim6+Y5Opxcvm4KnZyNMkjIhHXKVt3d0QDIra5qImNqeqaC/w9VL7T8bup3io01LbOYsVqNGxsDGIBL/hwK9j84u9sxvhRHhJYD07SiATrRXcHoQZaWeGc4MDvzHrzsvl2H2D41VbVLNVq2O79AI3YhK4lZJTVJZAJfZSfd706btdGTa9pE45ZI4kuIRL7uJIAjsIZy66NaxdO9ckCrYrJ4+1IHnP67VJAr096IX84ygfg31VWxp2w/4Tu6hTLY9u/ovTV+Pq1ogIFMFlyCwTRJ5gqhDZCDI0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Efa2v/thrSNPQ4GuQ/TOhJm865GukRZwgqjy/AorQww=;
- b=ASC46X+YNCu2u6BG/1lvH7FC03a7YJwlIPWq6KDeH1avpt7zO65OTzx2vWvC519ZFbDkrnMElLHrk/Z5KOKYZwEowiV5k0Xu54KoLhWpwvqFqcYvSYLxaKj3eyC3QKmSJnMgPazx4qzP6n4h91/5kstJuJP7hpQBSSbawCrtwAOY2gbuofrYmBpNH2FkEVq44uvvHL0MO40L1cWNmfs5x6j7e72G5ozQSSedG9KAAayca4KGl0nVMMb1ZUVweBtaJ+uQVTOSid+7WVsMhgpVAhIZUPkY5rH31C1qSraNwDnnU80u4nXndDEQmhXcUZqVLIrlCvqfACrok8Itb/fMLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Efa2v/thrSNPQ4GuQ/TOhJm865GukRZwgqjy/AorQww=;
- b=ecfU/xe8ytQp4pjXWM63XDkdKOawXgN/BMf6lz7VnZ+nnYsFBm9o2pdG7PqJ8YBb40bB8Y/667tZLVC7GK8EqGgX1PSdKdO2MCS01uerbM2R4/FAnrm4wMbimUhExS+JS6m0Gd/ykLjNxMr/9iEbicRJ64l6uVW2v4tmh/h+Y+Y=
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
- by VI1PR04MB3214.eurprd04.prod.outlook.com (2603:10a6:802:6::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.18; Wed, 7 Sep
- 2022 10:54:22 +0000
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::25b6:d7f1:c25e:24d2]) by PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::25b6:d7f1:c25e:24d2%9]) with mapi id 15.20.5588.012; Wed, 7 Sep 2022
- 10:54:22 +0000
-From:   Jun Li <jun.li@nxp.com>
-To:     Abel Vesa <abel.vesa@linaro.org>
-CC:     "abelvesa@kernel.org" <abelvesa@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 1/2] dt-bindings: clocks: imx8mp: Add ID for usb suspend
- clock
-Thread-Topic: [PATCH 1/2] dt-bindings: clocks: imx8mp: Add ID for usb suspend
- clock
-Thread-Index: AQHYt5KR1XsmOlw21Eq3j+uA3frdca3Mgq0AgAdYj4CAAALlkA==
-Date:   Wed, 7 Sep 2022 10:54:22 +0000
-Message-ID: <PA4PR04MB96400DDECD242E858809AFA389419@PA4PR04MB9640.eurprd04.prod.outlook.com>
-References: <1661328262-3867-1-git-send-email-jun.li@nxp.com>
- <YxJJ0IQ1Gu1lp02p@linaro.org> <YxhzV5pG6/ZMHZR7@linaro.org>
-In-Reply-To: <YxhzV5pG6/ZMHZR7@linaro.org>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d3e93465-5076-4a89-9232-08da90bf52be
-x-ms-traffictypediagnostic: VI1PR04MB3214:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sKCmndhaT3n/TfGoERMLDUD6tQnUdThEZ+eARAZD5geUNCucpmuBS35Chc+sXg/wvo62D4I9pfnFyet4dPUM2+SaJ2cha0Y2mwYJKG2qBkvKnQgL5RzqWObvYM9EWZ2lrMvQTGzJlQq0dPBap27WgzI1O32i7hQmuXgfDf7L/HtkOtjZi+Im+Nec+wiiJHz1/gCpp3xq+QfxKSnM/EF+zovMKMv2E8olpLUG23To16f1jBk9pCZTIHfMJqoh1TYIGKVYT+dsJbFw1l8KfTuGZ697QA/Dszrz/GJGXl2OewpqJwSIE70SkqNVsmRlDYG8ZY2ieQj7/N/PeVfD12r5YULLhGp8BERdqXx5S5E59lrR9mVU+CTGVVrRas4+8duMEjh4Uk+b68G4G2iXh06axF5Z/wQ+/F4mRmdENln/oq8tecp+Gffmqqem37hFSuiP8JXUBBzP7GXGcwcY/tg3EwZh+q6KUKiOPHWvvgvkoh1XV/sc1sCW+azl/xtsgaMXDlnZDsp3pN7raiu5QshooJqI3optagLGYA6XXSSQMJ3Y8Jlr1wyM9eb2YuNe7/RZbJrJeux3aog3abA4aD1TabqUsVujcdSCpJjYoawYNwz4HQVai6XmnyuHJyW5WEUv9yIZa+0z8kv20+eCi68B71r14Rhr86moKYm2McBN2jmOeyWkqR0LDMu1IVYJ+IbLQBE+FRQYKqpLoOUdhTYAFniia5tWjFnEzMq9ozPVsrqxi7zZzlh+oD3z03f2lj9d2CVzG/o26Ux2J4pYGv0pziLdCviehPRXOGfptX28UZKcliWad+hHAsmBpju5xKTQ
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(366004)(39860400002)(396003)(136003)(376002)(316002)(122000001)(66556008)(76116006)(8676002)(64756008)(66476007)(4326008)(66946007)(38100700002)(186003)(66446008)(71200400001)(966005)(41300700001)(6506007)(7696005)(54906003)(53546011)(9686003)(6916009)(55016003)(83380400001)(45080400002)(26005)(44832011)(8936002)(478600001)(33656002)(86362001)(2906002)(5660300002)(7416002)(15650500001)(38070700005)(52536014)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?TkYjTmIKVqN1Q7krQhhE0u6pKfAw8GXQGH+54pt2F9G6LgGByuK1rBVSg4JJ?=
- =?us-ascii?Q?SkF0p4XqQmABQ30BHu8l+XjJ/ws1pHPHMK/BXNw1VX0PnsoDhYPhk5ezisO5?=
- =?us-ascii?Q?54p2yi3Z9uX1Dxa67TW2k2q07g8c5nK0Dks+32lK80yfbveocZ7KA7pYG0Z3?=
- =?us-ascii?Q?79tPX6V9+cHfkqXheOlxibpAi5C4iZPTdwK4rnmOFxhbnM/ST2TbfIlIRONN?=
- =?us-ascii?Q?pcPNYWKUUKwbzachtmKqn/ltQQinEL3LvROzkNIihyIFDoOmt0A7taz+eUJ2?=
- =?us-ascii?Q?BPDbefZVlLcsoKQLbTSEv5ObXbNedM8nA1cDXeJVP4UoU8wLqL2GBdL+KgHs?=
- =?us-ascii?Q?xAI6vok5iUu6aEJyZDemav4TymjmPqxR152NFsYPa5eAclqvKwJ8fpbLRK8w?=
- =?us-ascii?Q?zN2/wTAFx+1ntdC2YDQ3+cLS/JlZIVRpwT664mlEoyfB0hfrg45Qh8MLBhhf?=
- =?us-ascii?Q?ZCgZJK2Gdvf+s0wR1XcXFXil172Ayed744/quAZYpMamzdpC7t6FS7CGQ2Xd?=
- =?us-ascii?Q?Bh3a8GRIU1wFtXOtU5q34i2qsOahhhEFuGZ0X4nEMijPOriqWFPMIl6tkOzK?=
- =?us-ascii?Q?mbegInJ7VWJYJI5QnY8KRi+Q/H1jIZAIEYUbeJOo1WMp7lj03WdDEIoO3I6y?=
- =?us-ascii?Q?unkVMuuTZyGg0DZ7VU7RyVIAeKBQT/4F3DxgAArExLh3YRk32eCUDaiow1DD?=
- =?us-ascii?Q?CGXcCzy0NZf/HRKJdg1+fwlm7c8culz5m9oB5k1knxGeM6+2kItX+ZYCI1Jb?=
- =?us-ascii?Q?BIrhLg8Xs7Ql1/lpF1YhhnIzetK7HvzR/pVYofZkKZ8NqXoVdIHBPFFoXpix?=
- =?us-ascii?Q?esTl0rDZadNi1jbyFoybmV/efugJTMVhLFLGV7nwmvOKSnmjYf606tJREyAj?=
- =?us-ascii?Q?t2GoO7KKMObkpgkiHtWLB3ME3YEmfTg26GH3+jgSad0C0F+QciQB0zm9CL4P?=
- =?us-ascii?Q?4t7CtstwbBHmWaF1VsLxKEUIyWlSYHNUxPRSHU0c+9TNS01LSm1umSKDL39p?=
- =?us-ascii?Q?VqgClNqTr2WCr7z+12ciXtUwx2ZMGiEYPNgYJjHmiWxkzlCXFKVH7J9vWjq4?=
- =?us-ascii?Q?gMyBIAUXbVGM4qKdrrHvvVvidFmm/JTEQdy825jmafctNQ+lpDfvETkcEOOx?=
- =?us-ascii?Q?tazpXKoNEAqu8ciwM8VrgDuFgWGz2ezlMDecBr9ROsE5E0hUWKrMOwO36DWA?=
- =?us-ascii?Q?x2MXaXMpAeOjNoK/nkheP2x8ACtSg+KKH9jMdRg+naq5GEzYXJZe8C2iGDNw?=
- =?us-ascii?Q?m72cZcFCBwISxTBsvBASD8Uczs+ay+Ni/uRR2ginkI18HwoI3qEAVOxTINgt?=
- =?us-ascii?Q?sFRR+VlNYGGkLRmGsSbaYs+bWQ7x3knfZSK1kDdvTNHGwUZaGMCKOvgZLnZx?=
- =?us-ascii?Q?fdeIY5JTS8QBSNpw0WoVtCXVLrsOJGjNzyw/EcTf25dMEBo9t7NJKMKUoJn3?=
- =?us-ascii?Q?2Ytvii9arIvdhEDymKh3Qh4VrcmhR+z2EJNbVJ1lvvKtZwjOSjh9df5uKc8D?=
- =?us-ascii?Q?Q48h9eJwo0eDjDP59iRQtzlIoIMIgSjm8LTn7Um4dfNEaxULGZk3P+e4AaPO?=
- =?us-ascii?Q?zWGVxmesykfNVSdLIpc=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229461AbiIGK6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:58:14 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E0288DEE
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 03:58:12 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id p5so2462227ljc.13
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 03:58:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=IKM8Q7h7DhmkZcNT/ovGbRUjTQGFQvPY8l9yVR39E2Y=;
+        b=VN4CTK1wTSHhO/JQHt4YeD14+4Bex9SURm9ys2I9Y9E1VK321hgUU3Vg+BrhRsoJyH
+         ZylejopAIlyxFTa2No8cof4nkKLZ5qwshND72RxfCBRPRs/TdR7XFigsAXXNt4o+NhkY
+         8ygZol/PORK29rql4KzTPO7+oWoY/X1F2WPrKm9Oo4KYe6bHGB6/6FfawTwwZ6ykWo5t
+         wEHIjKwWOUAXOSIWvSnszCDfyA+38LKjRxCaexpuENogUHm/YFnZ3FjiXScJ5yFQAhs8
+         bY6R7v9DAv8JC/9qsJA/BceRVEQu7ON8HXX6yJ6IPHbEsIIvBVj2NJ0173M1V69yi50q
+         yi4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=IKM8Q7h7DhmkZcNT/ovGbRUjTQGFQvPY8l9yVR39E2Y=;
+        b=yM0Me5IAGUA38bTSScoJwhER+8leA71OiXxnDFnUsSqWFwQ7SLgeGe3jo4jBruZmF/
+         x5QBPvv7j6RuzvhkW1MLmKyX9DTRSsyCfHgXWtujyVc4vrL4zlgM6oHvwDRpq/yQqL67
+         BGBDofF58BQzV/6Op2YbNEVdgvJAz8tbdYm09vjG3mg63fKsJcoDbs3C9FmyTZcaRWYK
+         7PZ1Iq1CjR3iSN13cJJqA3PfjT2S2ejaJA74oWfdozqpF3v8uSMXpPie6H7DXIySF75J
+         wO6hydS8qJwrVl08Tuemqs+rf9fa0W52rLtfOTlWyl/ipBTyFDLSWIghBTwlHx5GnDvq
+         iaCw==
+X-Gm-Message-State: ACgBeo3qCsFkOk/tWxWfWgXTXede6zPtc2btsPlrtv98KLq5HdsqURF2
+        2VgD2gtkGB1BoLfyISUgT3gLuYSOn2F9cw==
+X-Google-Smtp-Source: AA6agR5oDFn7ilykcXLvWcVzwobc5wxgalg0pbv8etU2MwU03o/ikyPHsbImXPqq3CXmJF/7zRaurQ==
+X-Received: by 2002:a2e:2d09:0:b0:25a:816a:2e62 with SMTP id t9-20020a2e2d09000000b0025a816a2e62mr759769ljt.147.1662548290798;
+        Wed, 07 Sep 2022 03:58:10 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id t12-20020a195f0c000000b0048aa9d67483sm2399815lfb.160.2022.09.07.03.58.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Sep 2022 03:58:10 -0700 (PDT)
+Message-ID: <e1145bd8-e477-9a20-00cc-3d5f5e4f7977@linaro.org>
+Date:   Wed, 7 Sep 2022 12:58:08 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3e93465-5076-4a89-9232-08da90bf52be
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2022 10:54:22.7564
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RU58k5wGu96COGojg9QqnkEx3Qql3EIsw3EG+BaaR4YsIDRAls+kuxYkuCNE6HqK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3214
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 0/8] Support for NVDEC on Tegra234
+Content-Language: en-US
+To:     Mikko Perttunen <cyndis@kapsi.fi>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220906132823.2390953-1-cyndis@kapsi.fi>
+ <68ff1b7e-51e1-f1e5-dac7-5419472e396a@linaro.org>
+ <1dabfcbe-7729-1a96-816c-68ae524ed4aa@kapsi.fi>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1dabfcbe-7729-1a96-816c-68ae524ed4aa@kapsi.fi>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Abel,
+On 07/09/2022 07:27, Mikko Perttunen wrote:
+> On 9/6/22 20:50, Krzysztof Kozlowski wrote:
+>> On 06/09/2022 15:28, Mikko Perttunen wrote:
+>>> From: Mikko Perttunen <mperttunen@nvidia.com>
+>>>
+>>> Hi all,
+>>>
+>>> this series adds support for the HW video decoder, NVDEC,
+>>> on Tegra234 (Orin). The main change is a switch from Falcon
+>>> to RISC-V for the internal microcontroller, which brings along
+>>> a change in how the engine is booted. Otherwise it is backwards
+>>> compatible with earlier versions.
+>>
+>> You need to describe the dependencies, otherwise I would be free to go
+>> with applying memory controllers part.
+> 
+> Hi Krzysztof,
+> 
+> the memory controller patch can be applied independently.
 
-> -----Original Message-----
-> From: Abel Vesa <abel.vesa@linaro.org>
-> Sent: Wednesday, September 7, 2022 6:33 PM
-> To: Jun Li <jun.li@nxp.com>
-> Cc: abelvesa@kernel.org; mturquette@baylibre.com; sboyd@kernel.org;
-> shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
-> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; linux-clk@vger.kernel.org;
-> linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org
-> Subject: Re: [PATCH 1/2] dt-bindings: clocks: imx8mp: Add ID for usb susp=
-end
-> clock
->=20
-> On 22-09-02 21:22:08, Abel Vesa wrote:
-> > On 22-08-24 16:04:21, Li Jun wrote:
-> > > usb suspend clock has a gate shared with usb_root_clk.
-> > >
-> > > Signed-off-by: Li Jun <jun.li@nxp.com>
-> >
-> > Applied both, thanks!
->=20
-> As discussed in the thread [1], I dropped this patch from my tree for now=
-.
-> You need to send a new version wil Fixes tag.
+OK then... but looking at the code it does not seem to. Anyway kbuild
+robot complained so I expect v2.
 
-Thanks, I will resend those 2 patches with fix tag.
-
-Li Jun
->=20
-> [1]
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flore.
-> kernel.org%2Fall%2FYxhxSdDGXfO%252F%252Fbgc%40linaro.org%2F&amp;data=3D05
-> %7C01%7Cjun.li%40nxp.com%7Cf62126a63a4442644c9308da90bc54ed%7C686ea1d3b
-> c2b4c6fa92cd99c5c301635%7C0%7C0%7C637981435790610771%7CUnknown%7CTWFpbG
-> Zsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3
-> D%7C3000%7C%7C%7C&amp;sdata=3DDRZzC7rKqNexnGN%2F%2FW5LXvhnhRwIN7CLC4KCu9z
-> fTFA%3D&amp;reserved=3D0
-> >
-> > >
-> > > diff --git a/include/dt-bindings/clock/imx8mp-clock.h
-> > > b/include/dt-bindings/clock/imx8mp-clock.h
-> > > index 9d5cc2ddde89..1417b7b1b7df 100644
-> > > --- a/include/dt-bindings/clock/imx8mp-clock.h
-> > > +++ b/include/dt-bindings/clock/imx8mp-clock.h
-> > > @@ -324,8 +324,9 @@
-> > >  #define IMX8MP_CLK_CLKOUT2_SEL			317
-> > >  #define IMX8MP_CLK_CLKOUT2_DIV			318
-> > >  #define IMX8MP_CLK_CLKOUT2			319
-> > > +#define IMX8MP_CLK_USB_SUSP			320
-> > >
-> > > -#define IMX8MP_CLK_END				320
-> > > +#define IMX8MP_CLK_END				321
-> > >
-> > >  #define IMX8MP_CLK_AUDIOMIX_SAI1_IPG		0
-> > >  #define IMX8MP_CLK_AUDIOMIX_SAI1_MCLK1		1
-> > > --
-> > > 2.34.1
-> > >
+Best regards,
+Krzysztof
