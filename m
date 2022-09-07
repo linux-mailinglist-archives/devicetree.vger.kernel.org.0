@@ -2,63 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F795B0F31
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 23:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82A5A5B0F47
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 23:39:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbiIGVdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 17:33:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37888 "EHLO
+        id S229603AbiIGVjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 17:39:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbiIGVdj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 17:33:39 -0400
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A9A5C0E53
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 14:33:38 -0700 (PDT)
-Received: by mail-ot1-x32d.google.com with SMTP id h9-20020a9d5549000000b0063727299bb4so11121500oti.9
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 14:33:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date;
-        bh=QscqM0nV84svG7WCGc8n2xoost3b0ICJjoMuYYPkgIg=;
-        b=l97wHQLTtkoC2yyIythJfrgytAdirbzW+UXcePOcQqT8dD1nyb2Orof9p/7oMQ9ElD
-         tGJZ8qoD+j4jh3drrCMeXTNRJZggeV2RWHeaZ0hG0dFTTMuK9JY6Tk3/+LD16B+21Pye
-         TxaXPNmWr68NJFbOPfTIhJATk5usDAC2SYpEE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=QscqM0nV84svG7WCGc8n2xoost3b0ICJjoMuYYPkgIg=;
-        b=lr/btDFjNWeYvbtnWWqUmF97j6l57TAMYiypqP01RwrTjptLMKHdsCZJz+pQF8lNiI
-         4c8yniK4j6PAJ3agZ2e7WCwheXb8wuTDhCycBClatkHUdMUc12snGd5d5E0dzg0K90Ia
-         iG6zO8T7zL757GHrcR3zQZecEzIwXTQclz2d5Hd/AdWJBv53fz8vvvxbCLDLaOLHJgMm
-         3HIkuofTp+uE2fR6Te/BLjtgc3UfdtgEYpc+rU5Fjk4tC4NQw+0wmt3vT8O/mCf5jBXu
-         rPi6kRdMnbBlhbWGED6xk4kAPYv9FZyuswdFkkhzm40h35Xr/eJ1QPWfsmvo/L8zc+cm
-         139w==
-X-Gm-Message-State: ACgBeo0NAm5xVqYd8rTcQrV7EYBXQx2OPe2aKSVJ2IPm2pBWH1n1oSp+
-        ewG1PaiZu5I6FGwhXoOI86NwYuyMJRMgefbJfjn8tQ==
-X-Google-Smtp-Source: AA6agR6xMl6s69LJEe9/ANEpj86tS5Mf5dVXH93JXMx7uTBSPGstJb9qa0FXVFjAjOE1JVl+mNneubqBOO5h7W4c6Lw=
-X-Received: by 2002:a9d:53cb:0:b0:637:1ddc:615c with SMTP id
- i11-20020a9d53cb000000b006371ddc615cmr2302282oth.3.1662586417672; Wed, 07 Sep
- 2022 14:33:37 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 7 Sep 2022 16:33:36 -0500
+        with ESMTP id S229477AbiIGVjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 17:39:12 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5825B7EFB;
+        Wed,  7 Sep 2022 14:39:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 73359B81C29;
+        Wed,  7 Sep 2022 21:39:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 465CBC433C1;
+        Wed,  7 Sep 2022 21:39:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662586749;
+        bh=8uHQGDfxSLYm/60NjBvHAd+7XrDLJ+qJfz2ZdEAirGQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Il29iMYTECrRQaHgpSyJOm8jinwXy+u9hJTL8BOS1Jyk30yzNFqvbJxx1B23KERem
+         WgcA2Lj7rs845Stcf9CTaUl26lDeuTuDFkvqUwJvHM/u3hqHmTEVTlOpIlg68Lh/j4
+         VdsA0BBUIjGcT5aeQOxQFQBVfFKh2bm41a3YykSytCdivcUvBowbWUprTYakoKdPzA
+         KM+4Bl5vXLZW4btBR8bYhgNDJ2B2hnI6MlMRHpyUmsPCnr1IPxkvx2Els/5Zk4gpdw
+         i7LCdpXIz13WEb5wvINLL93sED2cgUwabNM/iCBzHo35mW+g2Wv4jTtn+8MwKpsb3v
+         fM16ZPC5yAKJQ==
+Date:   Wed, 7 Sep 2022 23:39:05 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Li Yang <leoyang.li@nxp.com>
+Cc:     Oleksij Rempel <linux@rempel-privat.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-binding: i2c-imx: add SoC specific compatible strings
+ for layerscape
+Message-ID: <YxkPeRX46OgKU8au@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220817205623.22104-1-leoyang.li@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <20220902043511.17130-5-quic_rjendra@quicinc.com>
-References: <20220902043511.17130-1-quic_rjendra@quicinc.com> <20220902043511.17130-5-quic_rjendra@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 7 Sep 2022 16:33:36 -0500
-Message-ID: <CAE-0n50x=h_rBaWAcTk_BBCMLpD=XQ6=BKLGp5+m8i4Lvn4fyg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sc7280: Add cpu and llcc BWMON
-To:     Rajendra Nayak <quic_rjendra@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="JxpBrjT+WlDYsSu/"
+Content-Disposition: inline
+In-Reply-To: <20220817205623.22104-1-leoyang.li@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,28 +74,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajendra Nayak (2022-09-01 21:35:11)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 13d7f267b289..a839ba968d13 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3275,6 +3275,82 @@
->                         };
->                 };
->
-> +               pmu@9091000 {
-> +                       compatible = "qcom,sc7280-llcc-bwmon";
-> +                       reg = <0 0x9091000 0 0x1000>;
-> +
-[...]
-> +                       };
-> +               };
-> +
-> +               pmu@90b6000 {
 
-This unit address
+--JxpBrjT+WlDYsSu/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +                       compatible = "qcom,sc7280-cpu-bwmon", "qcom,msm8998-bwmon";
-> +                       reg = <0 0x090b6400 0 0x600>;
+On Wed, Aug 17, 2022 at 03:56:22PM -0500, Li Yang wrote:
+> Add chip specific compatible strings for layerscape platforms to make it
+> possible to do SoC specific fix-ups in the driver.
+>=20
+> Signed-off-by: Li Yang <leoyang.li@nxp.com>
 
-doesn't match this one. Please fix.
+Applied to for-next, thanks!
+
+
+--JxpBrjT+WlDYsSu/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMZD3gACgkQFA3kzBSg
+Kbb0Cg//bbaXGHWi6VQZZ/UaFUgRTBKK/kWOq5vTdOph75zUdUu+ZbFAdXxGTl43
+0LW66FJ3iAUqfbSBc0gWLO65+wh4MUV007voIeJVT+cK66KgEsOhjFxWd14ejGWL
+lCeFJZ/EjxRMoqSwr2xJCAT1LK7xIIXvT8oxvKZgOgabRdq5irA1YLYcEr7fzTPf
+kHThXh+BGK4mXGJvRQqxwE56ob9gQs3zwQYn+B20wfPiq4hiBG9GHDsZQ2jhVmm3
+mVxiGDpal28GoeWWGnU4k6qr4T5YGdr5QEWAKH3S7BSfZKp4ibd/qyQdCEvkh3wk
+KBqBeLVZdtid/6F6QgJb3pqhZmd9nLgciTDToWkMqOPwKKaC7fBtdB/l6YCS5mX8
+ovWZrk8CSsMpITPf5bpndKdK0PZqZZXxs0Mf34lkFOK1Aw5Ghp444fD6D1z8kEkZ
+L81yfznCNI7kE/IA579Rg/cBBAyIqtjDvJ9q2tFV+LigRD+4MXjlKx5VOCDhClcU
+e0/xdZ4+qxMZQO4wEgZK7WaFkxjPwbeOLVgNoqGKqmaDoz/dyPIdAf2fZoE6YEIy
+Qg+VSlmHQjLGi0xCEFUvsnPVndgvd9ysFmx3hiDLczDRfA76PnPfSCqvGbKIvjyh
+mZKabpx5X9QpfZ9cvUXDrmns9BpqRN2QC1RohpSvkHWFPCRmmX4=
+=XCki
+-----END PGP SIGNATURE-----
+
+--JxpBrjT+WlDYsSu/--
