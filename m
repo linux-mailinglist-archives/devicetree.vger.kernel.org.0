@@ -2,245 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFAAD5AFDD0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 09:46:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 921EA5AFDE2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 09:47:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbiIGHqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 03:46:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38876 "EHLO
+        id S229878AbiIGHq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 03:46:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230017AbiIGHp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 03:45:58 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10B983BFA;
-        Wed,  7 Sep 2022 00:45:54 -0700 (PDT)
-Received: from [10.28.39.72] (10.28.39.72) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server id 15.1.2507.6; Wed, 7 Sep 2022 15:45:51 +0800
-Message-ID: <aa99e72c-41c8-02d5-c47b-05277b988eb0@amlogic.com>
-Date:   Wed, 7 Sep 2022 15:45:51 +0800
+        with ESMTP id S230055AbiIGHqw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 03:46:52 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6048A61EC;
+        Wed,  7 Sep 2022 00:46:48 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 701A96601EAA;
+        Wed,  7 Sep 2022 08:46:45 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1662536806;
+        bh=5rRhUwtbnHMHj8qHNYZSNdWbtK8TwaDTS8b/kqMqOvs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=O5rA2NWcpnn9r/mL9r9xUO7jPxnXRDkPINVEd2L3Xe1Tg6yX183Dh939CKd+oPm20
+         vYwEVwc7QakrpFTonHl5AGB7FqpyMEu1HMALnDUuMUoOcFpPPqeiIJLkU4swguvkYX
+         DDTqf2W5IY0SmY9NFsB8Xd/8bRdJag02T6dUWJsQ2/ZbWvcWZLihB8/ANzDo1K+DyN
+         h60g2X+7BXuT6xwU+ZUHt1GC2spl2whKv/P4N1/pSZ0CZeQE/w+ZxD3PG6tIw3lcmd
+         57EiFNO3jl5MSiU9A21Q6zH9o5hiOj927wrKac+LsJH1LqFiyAmtgLzGloXq2JTqBj
+         lJPnA1YvGlAkQ==
+Message-ID: <ab8a13a1-c25f-6b24-2825-c481d4715b27@collabora.com>
+Date:   Wed, 7 Sep 2022 09:46:42 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH RESEND v8 4/5] dt-bindings: nand: meson: convert txt to
- yaml
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH 08/10] clk: mediatek: clk-mt8195-topckgen: Drop univplls
+ from mfg mux parents
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     matthias.bgg@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+        miles.chen@mediatek.com, rex-bc.chen@mediatek.com,
+        nfraprado@collabora.com, chun-jie.chen@mediatek.com,
+        jose.exposito89@gmail.com, drinkcat@chromium.org,
+        weiyi.lu@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20220905100416.42421-1-angelogioacchino.delregno@collabora.com>
+ <20220905100416.42421-9-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5G52--wF=e=nd3ezDPoQcOdsqMd_1WdzGEWxjjZaJsRLg@mail.gmail.com>
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        <linux-mtd@lists.infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20220906060034.2528-1-liang.yang@amlogic.com>
- <20220906060034.2528-5-liang.yang@amlogic.com>
- <20220906143021.GA439874-robh@kernel.org>
-From:   Liang Yang <liang.yang@amlogic.com>
-In-Reply-To: <20220906143021.GA439874-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5G52--wF=e=nd3ezDPoQcOdsqMd_1WdzGEWxjjZaJsRLg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.28.39.72]
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 2022/9/6 22:30, Rob Herring wrote:
-> [ EXTERNAL EMAIL ]
+Il 07/09/22 05:49, Chen-Yu Tsai ha scritto:
+> Hi,
 > 
-> On Tue, Sep 06, 2022 at 02:00:32PM +0800, Liang Yang wrote:
->> convert the amlogic,meson-name.txt to amlogic,meson-nand.yaml
+> On Mon, Sep 5, 2022 at 6:04 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
 >>
->> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+>> These PLLs are conflicting with GPU rates that can be generated by
+>> the GPU-dedicated MFGPLL and would require a special clock handler
+>> to be used, for very little and ignorable power consumption benefits.
+>> Also, we're in any case unable to set the rate of these PLLs to
+>> something else that is sensible for this task, so simply drop them:
+>> this will make the GPU to be clocked exclusively from MFGPLL for
+>> "fast" rates, while still achieving the right "safe" rate during
+>> PLL frequency locking.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 >> ---
->>   .../bindings/mtd/amlogic,meson-nand.txt       | 55 ------------
->>   .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
->>   2 files changed, 88 insertions(+), 55 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
->>   create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>>   drivers/clk/mediatek/clk-mt8195-topckgen.c | 2 --
+>>   1 file changed, 2 deletions(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
->> deleted file mode 100644
->> index 5d5cdfef417f..000000000000
->> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
->> +++ /dev/null
->> @@ -1,55 +0,0 @@
->> -Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
->> -
->> -This file documents the properties in addition to those available in
->> -the MTD NAND bindings.
->> -
->> -Required properties:
->> -- compatible : contains one of:
->> -  - "amlogic,meson-gxl-nfc"
->> -  - "amlogic,meson-axg-nfc"
->> -
->> -- reg        : Offset and length of the register set
->> -
->> -- reg-names  : "nfc" is the register set for NFC controller and "emmc"
->> -		is the register set for MCI controller.
->> -
->> -- clocks     :
->> -	A list of phandle + clock-specifier pairs for the clocks listed
->> -	in clock-names.
->> -
->> -- clock-names: Should contain the following:
->> -	"core" - NFC module gate clock
->> -	"device" - parent clock for internal NFC
->> -
->> -Optional children nodes:
->> -Children nodes represent the available nand chips.
->> -
->> -Other properties:
->> -see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
->> -
->> -Example demonstrate on AXG SoC:
->> -
->> -	nand-controller@7800 {
->> -		compatible = "amlogic,meson-axg-nfc";
->> -		reg = <0x0 0x7800 0x0 0x100>,
->> -		      <0x0 0x7000 0x0 0x800>;
->> -		reg-names = "nfc", "emmc";
->> -		#address-cells = <1>;
->> -		#size-cells = <0>;
->> -		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
->> -
->> -		clocks = <&clkc CLKID_SD_EMMC_C>,
->> -			 <&clkc CLKID_FCLK_DIV2>;
->> -		clock-names = "core", "device";
->> -
->> -		pinctrl-names = "default";
->> -		pinctrl-0 = <&nand_pins>;
->> -
->> -		nand@0 {
->> -			reg = <0>;
->> -			#address-cells = <1>;
->> -			#size-cells = <1>;
->> -
->> -			nand-on-flash-bbt;
->> -		};
->> -	};
->> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->> new file mode 100644
->> index 000000000000..42634e9c0d3c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
->> @@ -0,0 +1,88 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mtd/amlogic,meson-nand.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
->> +
->> +allOf:
->> +  - $ref: "nand-controller.yaml"
+>> diff --git a/drivers/clk/mediatek/clk-mt8195-topckgen.c b/drivers/clk/mediatek/clk-mt8195-topckgen.c
+>> index 4dde23bece66..6ff610c101ae 100644
+>> --- a/drivers/clk/mediatek/clk-mt8195-topckgen.c
+>> +++ b/drivers/clk/mediatek/clk-mt8195-topckgen.c
+>> @@ -301,8 +301,6 @@ static const char * const ipu_if_parents[] = {
+>>   static const char * const mfg_parents[] = {
+>>          "clk26m",
+>>          "mainpll_d5_d2",
+>> -       "univpll_d6",
+>> -       "univpll_d7"
 > 
-> Don't need quotes
-I will fix it
+> I'd just comment them out and leave a note about it. Or remove them but
+> leave a note. Removed code will not be obvious to others. And given this
+> is probably the only public documentation of the hardware, it'd be a shame
+> to lose evidence of it.
 > 
->> +
->> +maintainers:
->> +  - liang.yang@amlogic.com
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - "amlogic,meson-gxl-nfc"
->> +      - "amlogic,meson-axg-nfc"
-> 
-> Don't need quotes
-i will fix it
-> 
->> +
->> +  reg:
->> +    maxItems: 2
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    minItems: 2
->> +
->> +  clock-names:
->> +    items:
->> +      - const: core
->> +      - const: device
->> +
->> +patternProperties:
->> +  "^nand@[0-7]$":
->> +    type: object
->> +    properties:
->> +      reg:
->> +        minimum: 0
->> +        maximum: 1
->> +
->> +      nand-ecc-mode:
->> +        const: hw
->> +
->> +      nand-ecc-step-size:
->> +        const: 1024
->> +
->> +      nand-ecc-strength:
->> +        enum: [8, 16, 24, 30, 40, 50, 60]
->> +        description: |
->> +          The ECC configurations that can be supported are as follows.
->> +            meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
->> +            meson-axg-nfc 8
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/axg-clkc.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    nand-controller@ffe07800 {
->> +      compatible = "amlogic,meson-axg-nfc";
->> +      reg = <0xffe07800 0x100>, <0xffe07000 0x800>;
->> +      reg-names = "nfc", "emmc";
->> +      interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
->> +      clocks = <&clkc CLKID_SD_EMMC_C>,  <&clkc CLKID_FCLK_DIV2>;
->> +      clock-names = "core", "device";
->> +
->> +      pinctrl-0 = <&nand_pins>;
->> +      pinctrl-names = "default";
->> +
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +
->> +      nand@0 {
->> +        reg = <0>;
->> +      };
->> +    };
->> +
->> +...
->> -- 
->> 2.34.1
->>
->>
-> 
-> .
+
+That's fair, I totally agree with you.
+I'll send a v2 that adds a comment on top of mfg_parents explaining the
+possible parents and why d6/d7 were left out.
+
+Thanks,
+Angelo
+
