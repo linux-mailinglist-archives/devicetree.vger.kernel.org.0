@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C68DE5B0182
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 230C85B0186
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230439AbiIGKRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230205AbiIGKRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 7 Sep 2022 06:17:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42340 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230364AbiIGKQ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:16:58 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A28B8F14
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 03:16:07 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id i26so5932901lfp.11
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 03:16:07 -0700 (PDT)
+        with ESMTP id S230252AbiIGKRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:17:00 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9060AB8F21
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 03:16:09 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id bt10so21696234lfb.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 03:16:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=I+Cj5rW1qPBHDkQI4vuAbqESvVL5430WmrKXOMhCHDY=;
-        b=zw7LF+v/GSLMvrb4j4VoXsv5Ndiyq17UrNjLf6ZHflRLbgAEm7sK3GcwD0JMS/OElJ
-         3/OYfsGF/OiEcF9c/1CN/H8hvQnGdzhmF6geF/7yqi71PP9SF/ukFEZP3f1dfEwTo98z
-         gpYpl1l+vr3g3k1s79HybNOQtaDKMUhUrmmZV9AH9IY65XFQ9Xgyz127hmEW1VK2DO4W
-         f4zw/5dR/IzUII0RjLirDuBLqHxWty2WAEWM9fD4Yqb23BBqgtIXqCVDmZzexmB8CoCj
-         q2APQ0q1LHNAt9nn8l/Q1w9BmlWVz0jRgWpiqIEjIbZ4LEkzUx2HzUqvN/n5rJcK0ewQ
-         h3xA==
+        bh=8QkNF8EHcAEMbV0p0CldmJdisF79bfeyCTRVHy2ZadQ=;
+        b=AT/9rjiALq4axC819gsn6/Nazj3lemyc6pePeYxp9VIO3dQ1aKy3xqyPEDqQ2H7f/s
+         cCSZpsW0k423aaXO5jGpNJISvDZ5I1W0tRBAExb8rL8ve7rbkhtVBlDsvVtX1IHG5Cfw
+         LZzzDiDKKAuigd3xi9QPQhZiplGFJWrXQ1OI3AlqRsO8+ATDcsSLgKoHtMcl8ZO9U1A6
+         G7v3VBX4GpFfjRITnCl+G6MtFxN49OCkP3xkNEpJQT7CUb+1BII8KxPRQBMVT9pSVlrm
+         J4zq476YmHyKaw45OFFbzwts/1/am8SRwcsBva1+BO+60JCtke30J+imMVbCG/TUMqWi
+         1wVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=I+Cj5rW1qPBHDkQI4vuAbqESvVL5430WmrKXOMhCHDY=;
-        b=AeFFhUEwirnPcVxI+nU+yRuBy9j3JQ7zQzlY/wpFPt/V1Ni48TJhfBIA/bBHi1YbP5
-         dfvdpTFFhobmVVOuXONoSPZN6raD22ueVUWbmyN87whirLubOokvNy5wwKaB01MYbqmM
-         OG6SU2IyyjsUvtCfBWkjqQ0VkAaUCINacblOM6WDZYqQQm4v71ezJmiuJONnVncJnBL7
-         offDyJr/ZiF2NwtLWPYltu6TC2Gj0qul5HOC8QhooxvfJTAI4J/3nFRETLWu+ADzjBHC
-         /qj7FXmvcz94Svyz4TDe/yVXlSWmoX3qcy+kKwWN7SrGh770z+7QofLdhrXhigmvegGY
-         Dh/w==
-X-Gm-Message-State: ACgBeo1UnsM5WGmJftb/y5mf16tb08xQrz7aEjcoRwXnZsWTXNntxo/p
-        vbpENk8Sq5m4rS72COdW5RmS5A==
-X-Google-Smtp-Source: AA6agR6awmhGQ57KqfVEWjXn9QT2nqWu9hWZ169t7LkCnwnlpe3HEgAaREW54MCDCv35aCRH3s/VmQ==
-X-Received: by 2002:a05:6512:3f14:b0:47d:e011:f19b with SMTP id y20-20020a0565123f1400b0047de011f19bmr826474lfa.427.1662545765991;
-        Wed, 07 Sep 2022 03:16:05 -0700 (PDT)
+        bh=8QkNF8EHcAEMbV0p0CldmJdisF79bfeyCTRVHy2ZadQ=;
+        b=J4JO2kT6ox2zVri11FRu59uRu7bFcseJHBoqz7NbtuVdy5dtq3YNWt1yjV0k9g9s6K
+         zjjeD7SZfuq0y3Ohu2Q4yybWZk7TBEI039g5D5FB7YxA4TmYDAgBFju+p+zjYe69pYQw
+         fbN2Doj1Fqma22X0dyt/XD2Z37XdIl6DdMcRrg9F1fxfRiamIlGihGgSSkFmB6K5/m1b
+         mEsZQnpL/lwPXDL0+yIhxiqx9wUE9cvbKA6lCFlc4f+ECI1Di1HEiPzVGyAIGU5rYv6T
+         GIT2Yox2i9Q7+j/apU+wkwJJxQoh8eP7taxQA3hyT8N3TT6Mq9IcT8GrrOgV/sUksm50
+         PO0g==
+X-Gm-Message-State: ACgBeo0yfkP4T+lnZT+/ujLwLYeyl9OpTXgVim8CbvkY0u457ZLgRcaV
+        P+Oq1LWjUg8q+a9OBpSZY4tn0uFeoflsIw==
+X-Google-Smtp-Source: AA6agR5LmZKga4iWytzN3ERlPtDAjjyhJOYh+OiKqcsYZw1SEjnzH86sfehXmLXrTJKzwSHQUhf2lQ==
+X-Received: by 2002:a05:6512:3f19:b0:492:fdaa:b535 with SMTP id y25-20020a0565123f1900b00492fdaab535mr796161lfa.267.1662545767357;
+        Wed, 07 Sep 2022 03:16:07 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u9-20020a2ea169000000b0026ab0e480bcsm960734ljl.39.2022.09.07.03.16.04
+        by smtp.gmail.com with ESMTPSA id u9-20020a2ea169000000b0026ab0e480bcsm960734ljl.39.2022.09.07.03.16.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 03:16:05 -0700 (PDT)
+        Wed, 07 Sep 2022 03:16:06 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,10 +59,11 @@ To:     Andy Gross <agross@kernel.org>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 01/14] arm64: dts: qcom: sdm630: align APR services node names with dtschema
-Date:   Wed,  7 Sep 2022 12:15:43 +0200
-Message-Id: <20220907101556.37394-2-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>
+Subject: [PATCH v2 02/14] arm64: dts: qcom: sdm845: align APR services node names with dtschema
+Date:   Wed,  7 Sep 2022 12:15:44 +0200
+Message-Id: <20220907101556.37394-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220907101556.37394-1-krzysztof.kozlowski@linaro.org>
 References: <20220907101556.37394-1-krzysztof.kozlowski@linaro.org>
@@ -80,51 +81,53 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 DT schema expects APR services node names to be "service":
 
-  qcom/sdm850-lenovo-yoga-c630.dtb: remoteproc-adsp: glink-edge:apr: 'apr-service@3', 'apr-service@4', 'apr-service@7', 'apr-service@8', 'qcom,glink-channels', 'qcom,intents' do not match any of the regexes: '^service@[1-9a-d]$', 'pinctrl-[0-9]+'
+  qcom/sdm630-sony-xperia-nile-voyager.dtb: remoteproc@15700000: glink-edge:apr:service@4: 'dais' does not match any of the regexes: '^.*@[0-9a-f]+$', 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Tested-by: Steev Klimaszewski <steev@kali.org>
 ---
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 8 ++++----
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 9ae6610af93a..3cd1f40b44fb 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -2224,12 +2224,12 @@ apr {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 347c3abc117b..627e32515d29 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -767,13 +767,13 @@ apr {
+ 				#size-cells = <0>;
+ 				qcom,intents = <512 20>;
  
--					q6core {
-+					service@3 {
- 						reg = <APR_SVC_ADSP_CORE>;
- 						compatible = "qcom,q6core";
+-				apr-service@3 {
++				service@3 {
+ 					reg = <APR_SVC_ADSP_CORE>;
+ 					compatible = "qcom,q6core";
+ 					qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+ 				};
+ 
+-				q6afe: apr-service@4 {
++				q6afe: service@4 {
+ 					compatible = "qcom,q6afe";
+ 					reg = <APR_SVC_AFE>;
+ 					qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+@@ -785,7 +785,7 @@ q6afedai: dais {
  					};
+ 				};
  
--					q6afe: apr-service@4 {
-+					q6afe: service@4 {
- 						compatible = "qcom,q6afe";
- 						reg = <APR_SVC_AFE>;
- 						q6afedai: dais {
-@@ -2240,7 +2240,7 @@ q6afedai: dais {
- 						};
+-				q6asm: apr-service@7 {
++				q6asm: service@7 {
+ 					compatible = "qcom,q6asm";
+ 					reg = <APR_SVC_ASM>;
+ 					qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+@@ -798,7 +798,7 @@ q6asmdai: dais {
  					};
+ 				};
  
--					q6asm: apr-service@7 {
-+					q6asm: service@7 {
- 						compatible = "qcom,q6asm";
- 						reg = <APR_SVC_ASM>;
- 						q6asmdai: dais {
-@@ -2252,7 +2252,7 @@ q6asmdai: dais {
- 						};
- 					};
- 
--					q6adm: apr-service@8 {
-+					q6adm: service@8 {
- 						compatible = "qcom,q6adm";
- 						reg = <APR_SVC_ADM>;
- 						q6routing: routing {
+-				q6adm: apr-service@8 {
++				q6adm: service@8 {
+ 					compatible = "qcom,q6adm";
+ 					reg = <APR_SVC_ADM>;
+ 					qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
 -- 
 2.34.1
 
