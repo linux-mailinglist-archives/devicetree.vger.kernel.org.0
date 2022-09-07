@@ -2,237 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D073F5B0504
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 15:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3987F5B0545
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 15:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbiIGNS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 09:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55418 "EHLO
+        id S229801AbiIGNhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 09:37:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbiIGNS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 09:18:56 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2081.outbound.protection.outlook.com [40.107.93.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF7B9786C5;
-        Wed,  7 Sep 2022 06:18:54 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iS13yijLhK+g0aKemc5ZVmXkoxK72NhxncMUT8QiKiYCdyHPVDze3AIsKDzJTqPz0oVAmKYMqtVAq2ks3vM7CZxaS/DLbWBaoPU4wDEzFOArvvep7yYr5WEooPL7mcjMh1rvOervcRqLMJDk5eBymeddRAqEyvW+wl+lJgZBIdR46lBzFMOk3CTPzPNmwlunql6Sw/delXyBS/vdg67sBePhGf/CLhkdK23ttYjGc9qwxwLGdJ0qqH4BG0C1I1NnCaAKVnpngfJpHPNItH+hjoiOrUOAm++dinPDK3bMrscgEevHsiF4tDfruO0myzBKr4strdsbAX6NJSEgFPyfeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+AtMuImqSw8WpCFh4Dgxqr36LOvtP9/i9i8V6YG5Gs0=;
- b=T24WsEGWvA8+kfIRkTciDvh33P07hSEh+tuWzutRMiLeYPRFdtapV5PO9HfoOYW446HIHhElBXrdDE4d9LyATiPy/09XxIyFMzHbodRuXTaFViaamFUyJqHnJ/+gg7IGTCyvtCHYcjpNsdH+cqNIFmwxoFm18dbSDYCSut1JRR2c9SkqELYVizUXuQT9+TwYi56LArH/7ZxfLG/SaOFl+4m+TGwdgorRkmp30CG+i7sAuLfCeTNx5+UiuyhFrpV2/yK/WrmQa081IQWu/mhP6ngPUXVy9X8vZTeudNE2u2e10mShSkpkw7a/k5Z7HWqM3/ZdkbDuXnFFqmDOfmoCog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+AtMuImqSw8WpCFh4Dgxqr36LOvtP9/i9i8V6YG5Gs0=;
- b=ypa/nLmfMUTg20Rb5M+K/Pj1VCQgpI1AEYuwvWAKP82Vibejm08VoS2JlhBwK0ekOt7auOFDsB3aE1NrajD4LfUMX4T92H19Er3qpKtIlmcQgNnUi/r3kwNPlIu4dv9FVR9WRR6A+sz1vaT0bzN7BJZobeVfaa2o8rbvMwyZgJU=
-Received: from MN2PR12MB4358.namprd12.prod.outlook.com (2603:10b6:208:24f::12)
- by DM4PR12MB6326.namprd12.prod.outlook.com (2603:10b6:8:a3::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.17; Wed, 7 Sep
- 2022 13:18:52 +0000
-Received: from MN2PR12MB4358.namprd12.prod.outlook.com
- ([fe80::e166:fa63:f50:5634]) by MN2PR12MB4358.namprd12.prod.outlook.com
- ([fe80::e166:fa63:f50:5634%9]) with mapi id 15.20.5588.018; Wed, 7 Sep 2022
- 13:18:52 +0000
-From:   "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     Jason Gunthorpe <jgg@nvidia.com>,
-        "Gupta, Nipun" <Nipun.Gupta@amd.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
-        "cohuck@redhat.com" <cohuck@redhat.com>,
-        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
-        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
-        "saravanak@google.com" <saravanak@google.com>,
-        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "yishaih@nvidia.com" <yishaih@nvidia.com>,
-        "robin.murphy@arm.com" <robin.murphy@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "masahiroy@kernel.org" <masahiroy@kernel.org>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-        "okaya@kernel.org" <okaya@kernel.org>,
-        "Anand, Harpreet" <harpreet.anand@amd.com>,
-        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: RE: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
- domain as parent
-Thread-Topic: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
- domain as parent
-Thread-Index: AQHYwfdzMPgE56itm0GRwc9i4G18eq3SpZoAgAEtSgCAAADFEIAAFD2AgAAHh6A=
-Date:   Wed, 7 Sep 2022 13:18:52 +0000
-Message-ID: <MN2PR12MB43581495197F603E901BBACA89419@MN2PR12MB4358.namprd12.prod.outlook.com>
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
-        <20220906134801.4079497-1-nipun.gupta@amd.com>
-        <20220906134801.4079497-5-nipun.gupta@amd.com>  <YxeBCsA32jnwMjSj@nvidia.com>
-        <87leqvv3g7.wl-maz@kernel.org>
-        <MN2PR12MB4358E3CFD2E3ECECC14471F489419@MN2PR12MB4358.namprd12.prod.outlook.com>
- <87illzuzyw.wl-maz@kernel.org>
-In-Reply-To: <87illzuzyw.wl-maz@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-09-07T13:18:50Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=f7863230-3444-4841-91b7-4ecbd6d2e29e;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2a489df9-6fdc-45c5-ae37-08da90d3821b
-x-ms-traffictypediagnostic: DM4PR12MB6326:EE_
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nlp7sQDP1JJIDaNxsDUYuT/it/lEZ6E0tpXDNBvWNdmuYUuNJhMILdm/lWP8hkIgMuQr42IZKQ8plSSab31KlTPqWfvgnxHKfMzgIHxyqee2OocvTSpGfs+XwTGiVX1M/CXQZS/JGMSQmBerCRWRGOG4To1NtP4K/7y3iIRIdk9FBJsNZnWHpUbFQgr1q57IbjLPGKNfAuiNE+jn0c6xyOMngCAc8HH8i9lyFUOhVplq2PF11InYfbwvLJNIQ5ueFIdRGkss4EaPs1rGYpIt9X0rewqhKY4B0c4QRpXBI/HWwVhRAAEMVOEtlxQk6X/zKLC41wEjxX0rSh89ymFvT/vt+Vi99ekvDyZZfpj8SM+wj+Dxpb2/YBBoVcMIwTlQwRU6cCHxfhXsr0IjiCcYJqjL5f8To1fBT/phpilTeYLNKxj6AnNERZ/3cVz2ZgrtmPNI4X4Ra1rd6WvTatSNwbqlIICJCfnLLoBKdp+ce2jA/mYdSSdVu1e4/IbmN+NiRsXfCz6XGDLhLxFme2B5Le87CcI80tlMoQcaRH43VOWX9uXeNBaoyjpI/vplxGhlbd0zGC7CB9nmJ9uoU825dq3q/4W1uu8PqZeDNsjBeRGpW3LhGW7DQs/xPAGHu2yoWHkA+9sMK/Mx2RNxMTThQyHaE2mYLY6RiNbP7T3CqXZWxYpp9hihx3Nhn27rIfAKVXS9DTOJAPZ/3crxW2ylUwfKaoiqwxrJyl5bK0lCNO1b78/T39kKVOYqS7w9ICGHyCkstbszc9Y0TulhWW6IbQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB4358.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(376002)(136003)(39860400002)(366004)(396003)(4326008)(478600001)(7696005)(122000001)(53546011)(86362001)(6506007)(9686003)(2906002)(66946007)(76116006)(38100700002)(66556008)(7416002)(66446008)(64756008)(66476007)(55016003)(8676002)(5660300002)(38070700005)(6916009)(41300700001)(52536014)(71200400001)(83380400001)(54906003)(33656002)(8936002)(316002)(186003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dxiRD95yXKJ6BY6THlHMdoiFaZmAaZkMV66cydP9uo4p8bd/242817RmqAUh?=
- =?us-ascii?Q?jaVTLwZtIymjZ3fwGOjiTjk61s93KvG41hsqjfDeAPHQmg4ttDXxFnev3omh?=
- =?us-ascii?Q?sSkdkn0UMG04U+3qt1/G02cb4w36B5uj5qm/rTOXKgpKXnlK1WdK6V41LLx5?=
- =?us-ascii?Q?sbQH6qibRwKLTblvfQ6If3xMb7FoRbPdpA6RLLBm+y5c8Mjs81OO9SBM+kXR?=
- =?us-ascii?Q?wc6vnY4w1VAq0N/eGp0Tb7JyxLOrsouuJj9XVpMzjUNBy9yTnL6ZCdB7gxXl?=
- =?us-ascii?Q?3QavMXHgq0liNV1U9cSXVgMblT3S3h7yiR0qfrK+JpiGkdVXZwx+eOP+KRtP?=
- =?us-ascii?Q?RPC6yLZa+1p1kpVF/wNXhRLysqB3AyUgyDNfE6NYockvgXRFCzSVqJaS52oJ?=
- =?us-ascii?Q?n0AUcLa6nc7VIaMZ4m0voSZSusmtaaiXJ2GqNmvV2ZLkbToCKQfS/lWNkABw?=
- =?us-ascii?Q?JoW2Mwq2RuV2yPXTSq+HkY+VaWzGz/O84UH6hiKPC7DOPg9Ya+f4Swyk4u6/?=
- =?us-ascii?Q?YNOvz3/pfvg9f4CFBVXIur3zooCU+a5J5/3b4Gpo2Fe/mVabvW1m1dYLZwsQ?=
- =?us-ascii?Q?zNRz6WiY/tmZXNZSVjxyJnpXmnYZd1YE7AZ28x++7DJxW6/RPIOAYnf7Fp8N?=
- =?us-ascii?Q?rtNmwpymn9krUHppdaNx8JODd0CU8okplAgegeOznsQXlIDdY57YD5A4lbKV?=
- =?us-ascii?Q?spH3J/pr189c0DELjreuKDwZlhdeDhdMqJXFNgOem1FWUp0cxb/cI5hJaBhI?=
- =?us-ascii?Q?OwdyKHdusITxjwBf21FXo5tOhaRLjVFpIUArU7Qpmsc1Kfa6TVe9mOVLl8ni?=
- =?us-ascii?Q?3Zh/Q3e6D6ye4gyGxi3lEQqA0FgVAyn5j/hWQOYNYk0SuRcjmxSf7Taeu0CJ?=
- =?us-ascii?Q?dRjGedaax48BwDW8xkWEpNnq0jMp0/KTua/dUH9mGYM3KZ3zfYGexvXf/X4d?=
- =?us-ascii?Q?jUbeAvCRxpAjMXJ7sjzjL3UdjWgR9zBJDYiord6L/5Hqd+aoak5mD1jLCph2?=
- =?us-ascii?Q?fcRzfmGGw6pnQ5DUMTXZRXrdGdOKoaPtF/wWN2FjrZv9JJ0DhogYKJ0unQ1s?=
- =?us-ascii?Q?VISLTy5MwpOqQqGHD3mwxIYRND43JqYyU4FGKYD9IPwQAcIFp+JeBrHB28Ws?=
- =?us-ascii?Q?XL3tx/dqnJofpEoaXcB+i7zo5YSqvWoef4O6v1KEz+byuxm30OFfE7hnja1s?=
- =?us-ascii?Q?pPTj+GyVfNpwVGn34aJYhkShTRMAzfqKIxlU3dNx9IWD/aNje3wjNIvGbZq2?=
- =?us-ascii?Q?6h13UTEvT1FbGVqp5IyHMwmp1/BbeDhiUdqWnsYPeAYPK9CL/bswYzT0OnD2?=
- =?us-ascii?Q?OTZy/XjE2o/1EvRQ0Ob1u9nWXvy/mF4y/Kb7RDdF3WyA0Kt8JO2gAFBRpiT0?=
- =?us-ascii?Q?nq4QgL/pWpi8Z1XBwQnQ8eRnYooeFaMWFsCIigbaOejmtgAfsjKgj4vABg2Q?=
- =?us-ascii?Q?h0sEjCs57F5DPr2QAwJkq4lbQ6cik2KxL4ZYc/ZgKbwm2X3Wx51tBKYC94C7?=
- =?us-ascii?Q?06GGYFNK+krAorTQ63B7mCiL/9ZqSx+bRYcCnMEHTcNRx75rW66m2f34H7t1?=
- =?us-ascii?Q?g5X2UZoXGMGYYOhJg8dlK21OiiAsuhoFiM5N9K7glzd6gDVITESsEGZakud0?=
- =?us-ascii?Q?2CA+If7dlWvLIURjV69sCu8=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229808AbiIGNhh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 09:37:37 -0400
+Received: from es400ra02.iit.it (mx.iit.it [90.147.26.161])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E43889CD6;
+        Wed,  7 Sep 2022 06:37:31 -0700 (PDT)
+Received: from es400ra02.iit.it (127.0.0.1) id h32f9i0171sv; Wed, 7 Sep 2022 15:22:18 +0200 (envelope-from <prvs=1249fcc2cf=Andrea.Merello@iit.it>)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iit.it;
+        s=mx; i=@iit.it; h=Received:Received:From:To:CC:Subject:Date:
+        Message-ID:MIME-Version:Content-Transfer-Encoding:Content-Type;
+        bh=gDh3lp6yC0I2SraIj3VbafTtbE9Q34FWInm46CYBs0g=; b=GMMSCIEmuKfp0
+        RUpzcN5HI6hvyqGL9w6hn5DJKg7JEcx7DyLGp2VLGMuKiZtV7HqHlCjpiyedqpWE
+        K3R6V5MQfOAwEy6IamUsVKFrQwP1uIkFORibQB703jP9bFKaPj/S2gGlSt7bBbPo
+        3T9M0PSbD8dLr2/Fkqums2uXvZBs0c=
+Received: from mail.iit.it ([10.255.8.186])
+        by es400ra02.iit.it ([172.31.0.242]) (SonicWall 10.0.16.7295)
+        with ESMTPS (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256)
+        id o202209071322180212542-8; Wed, 07 Sep 2022 15:22:18 +0200
+Received: from poker.iit.local (10.10.20.64) by iitmxwge020.iit.local
+ (10.255.8.186) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2375.31; Wed, 7 Sep
+ 2022 15:22:16 +0200
+From:   <andrea.merello@iit.it>
+To:     <jic23@kernel.org>, <mchehab+huawei@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <lars@metafoo.de>, <robh+dt@kernel.org>,
+        <andy.shevchenko@gmail.com>, <matt.ranostay@konsulko.com>,
+        <ardeleanalex@gmail.com>, <jacopo@jmondi.org>,
+        <andrea.merello@gmail.com>, <bagasdotme@gmail.com>,
+        Andrea Merello <andrea.merello@iit.it>
+Subject: [v7 00/14] Add support for Bosch BNO055 IMU
+Date:   Wed, 7 Sep 2022 15:21:51 +0200
+Message-ID: <20220907132205.28021-1-andrea.merello@iit.it>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4358.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a489df9-6fdc-45c5-ae37-08da90d3821b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2022 13:18:52.1385
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zKGWiy3kLvyjtmKhfHyzUdfgIA9i/g8yl24QB8eAaSaaYo8KTa5m8FdaD9ILGMHsyBNhEqNQv4EQm1SHzjDRmg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6326
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.10.20.64]
+X-ClientProxiedBy: IITMXWGE021.iit.local (10.255.8.187) To
+ iitmxwge020.iit.local (10.255.8.186)
+X-Mlf-DSE-Version: 6948
+X-Mlf-Rules-Version: s20220810181453; ds20200715013501;
+        di20220831211829; ri20160318003319; fs20220901203539
+X-Mlf-Smartnet-Version: 20210917223710
+X-Mlf-Envelope-From: Andrea.Merello@iit.it
+X-Mlf-Version: 10.0.16.7295
+X-Mlf-License: BSV_C_AP_T_R
+X-Mlf-UniqueId: o202209071322180212542
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[AMD Official Use Only - General]
+From: Andrea Merello <andrea.merello@iit.it>
+
+This series (tries to) add support for Bosch BNO055 IMU to Linux IIO
+subsystem. It is made up several patches:
+
+  1/14 to 6/14: add some IIO modifiers, and their documentation, to the IIO
+                core layer, in order to being able to expose the linear
+                acceleration and Euler angles among standard attributes.
+                Also update the IIO event monitor tool
+
+  7/14: fix binary attributes didn't work with IIO
+
+  8/14 to 11/14: add the core IIO BNO055 driver and documentation for sysfs
+                 attributes and DT bindings
+
+  12/14: adds serdev BNO055 driver to actually use the IMU via serial line
+
+  13/14: adds I2C BNO055 driver to actually use the IMU via I2C wiring
+
+  14/14: add a documentation file that describe the bno055 driver and
+         specifically the calibration
+
+In this series this [1] patch has been also squashed.
+
+Differences wrt v6:
+
+- fix some typos.
+- fix some style issues.
+- get rid of ifdefs for CONFIG_DEBUG_FS.
+- avoid pushing data to the IIO layer if we actually failed reading it.
+- rework debugfs file creating failure path.
+- fix errors and warning found by kernel test robot <lkp@intel.com>
+- rebase
+
+Differences wrt other BNO055 drivers:
+
+  Previously at least another driver for the very same chip has been posted
+  to the Linux ML [0], but it has been never merged, and it seems no one
+  cared of it since quite a long time.
+
+  This driver differs from the above driver on the following aspects:
+
+  - This driver supports also serial access (to be reliable, reset pin is
+    required to be wired)
+
+  - The above driver tried to support all IMU HW modes by allowing to
+    choose one in the DT, and adapting IIO attributes accordingly. This
+    driver does not rely on DT for this, instead settings are done via
+    sysfs attributes.  All IIO attributes are always exposed; more on this
+    later on. This driver however supports only a subset of the
+    HW-supported modes.
+
+  - This driver has some support for managing the IMU calibration
+
+Supported operation modes:
+
+  - AMG (accelerometer, magnetometer and gyroscope) mode, which provides
+    raw (uncalibrated) measurements from the said sensors, and allows for
+    setting some parameters about them (e.g. filter cut-off frequency, max
+    sensor ranges, etc).
+
+  - Fusion mode, which still provides AMG measures, while it also provides
+    other data calculated by the IMU (e.g. rotation angles, linear
+    acceleration, etc). In this mode user has no freedom to set any sensor
+    parameter, since the HW locks them. Autocalibration and correction is
+    performed by the IMU.
+
+  IIO attributes exposing sensors parameters are always present, but in
+  fusion modes the available values are constrained to just the one used by
+  the HW. This is reflected in the '*_available' IIO attributes.
+
+  Trying to set a not-supported value always falls back to the closest
+  supported one, which in this case is just the one in use by the HW.
+
+  IIO attributes for unavailable measurements (e.g. Euler angles in AMG
+  mode) can't be read (return -EBUSY, or refuse to enable buffer).
+
+IMU calibration:
+
+  The IMU supports for two sets of calibration parameters:
+
+  - SIC matrix. user-provided; this driver doesn't currently support it
+
+  - Offset and radius parameters. The IMU automatically finds out them when
+    it is running in fusion mode; supported by this driver.
+
+  The driver provides access to autocalibration flags (i.e. you can known
+  if the IMU has successfully autocalibrated) and to calibration data blob.
+  The user can save this blob in a "firmware" file (i.e. in /lib/firmware)
+  that the driver looks for at probe time. If found, then the IMU is
+  initialized with this calibration data. This saves the user from
+  performing the calibration procedure every time (which consist of moving
+  the IMU in various way).
+
+  The driver looks for calibration data file using two different names:
+  first a file whose name is suffixed with the IMU unique ID is searched
+  for; this is useful when there is more than one IMU instance. If this
+  file is not found, then a "generic" calibration file is searched for
+  (which can be used when only one IMU is present, without struggling with
+  fancy names, that changes on each device).
+
+  In AMG mode the IIO 'offset' attributes provide access to the offsets
+  from calibration data (if any), so that the user can apply them to the
+  accel, angvel and magn IIO attributes. In fusion mode they are not needed
+  and read as zero.
 
 
+Access protocols and serdev module:
 
-> -----Original Message-----
-> From: Marc Zyngier <maz@kernel.org>
-> Sent: 07 September 2022 13:33
-> To: Radovanovic, Aleksandar <aleksandar.radovanovic@amd.com>
-> Cc: Jason Gunthorpe <jgg@nvidia.com>; Gupta, Nipun
-> <Nipun.Gupta@amd.com>; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; gregkh@linuxfoundation.org;
-> rafael@kernel.org; eric.auger@redhat.com; alex.williamson@redhat.com;
-> cohuck@redhat.com; Gupta, Puneet (DCG-ENG)
-> <puneet.gupta@amd.com>; song.bao.hua@hisilicon.com;
-> mchehab+huawei@kernel.org; f.fainelli@gmail.com;
-> jeffrey.l.hugo@gmail.com; saravanak@google.com;
-> Michael.Srba@seznam.cz; mani@kernel.org; yishaih@nvidia.com;
-> robin.murphy@arm.com; will@kernel.org; joro@8bytes.org;
-> masahiroy@kernel.org; ndesaulniers@google.com; linux-arm-
-> kernel@lists.infradead.org; linux-kbuild@vger.kernel.org; linux-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org; kvm@vger.kernel.org;
-> okaya@kernel.org; Anand, Harpreet <harpreet.anand@amd.com>; Agarwal,
-> Nikhil <nikhil.agarwal@amd.com>; Simek, Michal <michal.simek@amd.com>;
-> git (AMD-Xilinx) <git@amd.com>
-> Subject: Re: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
-> domain as parent
->=20
-> [CAUTION: External Email]
->=20
-> > As Marc mentions, CDX
-> > MSI writes are downstream of the SMMU and, if SMMU does not provide
-> > identity mapping for GITS_TRANSLATER, then we have a problem and may
-> > need to allow the OS to write the address part. However, even if we
-> > did, the CDX hardware is limited in that it can only take one
-> > GITS_TRANSLATER register target address per system, not per CDX
-> > device, nor per MSI vector.
->=20
-> If the MSI generation is downstream of the SMMU, why should the SMMU
-> provide a 1:1 mapping for GITS_TRANSLATER? I don't think it should provid=
-e a
-> mapping at all in this case. But it looks like I don't really understand =
-how
-> these things are placed relative to each other... :-/
->=20
+  The serial protocol is quite simple, but there are tricks to make it
+  really works. Those tricks and workarounds are documented in the driver
+  source file.
 
-Apologies, I got my streams confused. It is _upstream_ of the SMMU, it does=
- go through SMMU mapping.
+  The core BNO055 driver tries to group readings in burst when appropriate,
+  in order to optimize triggered buffer operation. The threshold for
+  splitting a burst (i.e. max number of unused bytes in the middle of a
+  burst that will be throw away) is provided to the core driver by the
+  lowlevel access driver (either serdev or I2C) at probe time.
 
-> >
-> > As for the data part (EventID in GIC parlance), this is always going
-> > to be the CDX device-relative vector number - I believe this can't be
-> > changed, it is a hardware limitation (but I need to double-check).
-> > That should be OK, though, as I believe this is exactly what Linux
-> > would write anyway, as each CDX device should be in its own IRQ domain
-> > (i.e. have its own ITS device table).
->=20
-> But that's really the worse part. You have hardcoded what is the
-> *current* Linux behaviour. Things change. And baking SW behaviour into a
-> piece of HW looks incredibly shortsighted...
+[0] https://www.spinics.net/lists/linux-iio/msg25508.html
+[1] https://lore.kernel.org/lkml/20220704034041.15448-1-bagasdotme@gmail.com/
 
-For posterity, I'm not an RTL designer/architect, so share your sentiment t=
-o a certain extent. That said, I expect the decision was not based on Linux=
- or any other SW behaviour, but because it is the most straightforward and =
-least expensive way to do it. Having an EventID register for each and every=
- MSI source just so you can program it in any random order costs flops and =
-all the associated complexity of extra RTL logic (think timing closure, etc=
-.), so trade-offs are made. The fact that it matches current Linux behaviou=
-r means we just got lucky...=20
+Andrea Merello (14):
+  iio: add modifiers for linear acceleration
+  iio: document linear acceleration modifiers
+  iio: event_monitor: add linear acceleration modifiers
+  iio: add modifers for pitch, yaw, roll
+  iio: document pitch, yaw, roll modifiers
+  iio: event_monitor: add pitch, yaw and roll modifiers
+  iio: add support for binary attributes
+  iio: imu: add Bosch Sensortec BNO055 core driver
+  iio: document bno055 private sysfs attributes
+  iio: document "serialnumber" sysfs attribute
+  dt-bindings: iio/imu: Add Bosch BNO055
+  iio: imu: add BNO055 serdev driver
+  iio: imu: add BNO055 I2C driver
+  docs: iio: add documentation for BNO055 driver
 
-Anyway, I'm straying off topic here, I'll check with the system architects =
-if there's anything that can be done here. But I'm not feeling hopeful.
+ Documentation/ABI/testing/sysfs-bus-iio       |   25 +
+ .../ABI/testing/sysfs-bus-iio-bno055          |   81 +
+ .../bindings/iio/imu/bosch,bno055.yaml        |   59 +
+ Documentation/iio/bno055.rst                  |   51 +
+ Documentation/iio/index.rst                   |    2 +
+ drivers/iio/imu/Kconfig                       |    1 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/bno055/Kconfig                |   25 +
+ drivers/iio/imu/bno055/Makefile               |   10 +
+ drivers/iio/imu/bno055/bno055.c               | 1698 +++++++++++++++++
+ drivers/iio/imu/bno055/bno055.h               |   13 +
+ drivers/iio/imu/bno055/bno055_i2c.c           |   57 +
+ drivers/iio/imu/bno055/bno055_ser_core.c      |  560 ++++++
+ drivers/iio/imu/bno055/bno055_ser_trace.c     |   14 +
+ drivers/iio/imu/bno055/bno055_ser_trace.h     |  104 +
+ drivers/iio/industrialio-core.c               |   10 +-
+ include/uapi/linux/iio/types.h                |    7 +-
+ tools/iio/iio_event_monitor.c                 |    6 +
+ 18 files changed, 2722 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-bno055
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,bno055.yaml
+ create mode 100644 Documentation/iio/bno055.rst
+ create mode 100644 drivers/iio/imu/bno055/Kconfig
+ create mode 100644 drivers/iio/imu/bno055/Makefile
+ create mode 100644 drivers/iio/imu/bno055/bno055.c
+ create mode 100644 drivers/iio/imu/bno055/bno055.h
+ create mode 100644 drivers/iio/imu/bno055/bno055_i2c.c
+ create mode 100644 drivers/iio/imu/bno055/bno055_ser_core.c
+ create mode 100644 drivers/iio/imu/bno055/bno055_ser_trace.c
+ create mode 100644 drivers/iio/imu/bno055/bno055_ser_trace.h
 
-Aleksandar
+--
+2.17.1
