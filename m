@@ -2,83 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DC245B0ECE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 23:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D45C5B0ED8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 23:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbiIGVEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 17:04:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52698 "EHLO
+        id S229854AbiIGVHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 17:07:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbiIGVEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 17:04:07 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8021B07C1;
-        Wed,  7 Sep 2022 14:04:06 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-127ba06d03fso15562771fac.3;
-        Wed, 07 Sep 2022 14:04:06 -0700 (PDT)
+        with ESMTP id S229526AbiIGVHF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 17:07:05 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5771BBAD95
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 14:07:03 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id c198so5964969pfc.13
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 14:07:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=tm5/tm/bOKGw+ZnlX8h2AbJd7n/3kcmAPIwiCqemhIM=;
+        b=x7ypNYi2j2uvb8XQ9craSoAh2QNE3532j+e+pZG6ZhxotdgrQgsztR4QwOhk5485Yg
+         ZYQ439NwiR04A/2DWciEI4MqLu+Ay2Jt2Izj4I/uzLYqz77oMWjcZZxlr9e+u1dHV96n
+         z3Svs0OdnJkfwBaMcdAq8+qT3PqaXmAP1GSOflxkFcsP678j3vlrUN8qMCLVuOugw4rF
+         y8z7P1Czucmb1QSWC2a/hb5v0Q5lP3SvANK8TSpbKTw5ao9H68v4Z77W9jI71uqsIUs9
+         maT5vsRIJ7F/eDxUr9k0eGGr4msmgmamcpae7Jy3tUE2RViDRHov5J1aVFmsRk3Zwehz
+         kMZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=aQSKe2CH6b9g5mXBEzOcX3asnf3UcbDFBQH+uLWaqLQ=;
-        b=YyZXFKRa7nvRKYfaBoAVGulwiap6Zo5Z0JDmGagkza9ubWtzKZ+NBwKK2OilWZfURL
-         byUlamCUnWWdsTx9QOk6Y54CV/Xsj+cR1rpRMxvDjdkXZXX2DsxWpFRDf43gK+4svllr
-         3VAzrq9IgWubTNGdKJezrkUMe1h//PbY/jlOiuc2FmeAVCED9kaTHPsO29KT2Ng1jfyB
-         FtqWee6UBL2NjI2EZfoBjQEzY7Z29oklgNuzDapZuW9adxe8AQ3rUgO8mIzfk6EoDz4U
-         1CaLr7aWeJR98XGX2AkmAAgXALDzoeWAO50th1r69w0C/1qHPkP9orLiMd2vQV+SgvOa
-         /znw==
-X-Gm-Message-State: ACgBeo0v9E7YyzkZUzeFZOTNKRmul1xAcDksO9G4VeQYyomnbgNy1K+f
-        N8URAfT6UpvG8ZXniVxAyw==
-X-Google-Smtp-Source: AA6agR532XhH323tj7DaASBATDK/KgBu30H+uIFV8zPVW0kuu7V5FaKTfxRVXm0TEjBc7Q3+xeDuQw==
-X-Received: by 2002:aca:b01:0:b0:345:4295:e9b2 with SMTP id 1-20020aca0b01000000b003454295e9b2mr158556oil.28.1662584646172;
-        Wed, 07 Sep 2022 14:04:06 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l3-20020a056870f14300b0012752d3212fsm5165992oac.53.2022.09.07.14.04.04
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=tm5/tm/bOKGw+ZnlX8h2AbJd7n/3kcmAPIwiCqemhIM=;
+        b=rw+t1bkRqYD+mXBtMufPunpJQXvG2yBtr4XT4Hq1XHpg0mOp4yJyYWju/3Uc8Itre0
+         EtCz7OBf7Fte+m8dX0CHhOSCRl2lS8wF0mBpQBAviTQ0GJ5KVlwPoGO1DczQL9oqraJC
+         Rto8QfpX0JzFM0ZEaqw7aP7D1jXvlyo5bkcTf6933yS29aPNUS9CqeiyiqKOcRq0EfL0
+         Hm8T39RkGNpYsotjLGyjHb0RfVTZ3O5QjORjL/P/BD2658fcba9koLHTHDc5DlPv0RdE
+         S9eyfaWI2ke1oTTIAxqWRYfHvc0j/63tiUXQJqQU60QzxAfE6x42abfQ6Nuq7h4tzBg0
+         1hbg==
+X-Gm-Message-State: ACgBeo1NvffZIzDDaeQyDuQEzCra7GoQvXtwOQ7IqPJhBsG6J9JvGqCd
+        Fh43L6hxUqCuZYeiRnPxVFSN8w==
+X-Google-Smtp-Source: AA6agR6KR05rx/q/yr2bK+5wDAzujpFCnEW70ybxCculrOSDfSrMK2grU+8l7dxRUgRSY5z/y1pe5g==
+X-Received: by 2002:a63:1c2:0:b0:430:710d:4c85 with SMTP id 185-20020a6301c2000000b00430710d4c85mr4980472pgb.12.1662584822610;
+        Wed, 07 Sep 2022 14:07:02 -0700 (PDT)
+Received: from archl-hc1b.. ([103.51.75.56])
+        by smtp.gmail.com with ESMTPSA id c23-20020a63d517000000b0042ba1a95235sm10999198pgg.86.2022.09.07.14.06.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 14:04:05 -0700 (PDT)
-Received: (nullmailer pid 342769 invoked by uid 1000);
-        Wed, 07 Sep 2022 21:04:03 -0000
-Date:   Wed, 7 Sep 2022 16:04:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH 2/2] dt-bindings: phy: qcom,qmp-usb3-dp: add missing
- power-domains property
-Message-ID: <20220907210403.GA342688-robh@kernel.org>
-References: <20220902080705.12050-1-johan+linaro@kernel.org>
- <20220902080705.12050-3-johan+linaro@kernel.org>
+        Wed, 07 Sep 2022 14:07:02 -0700 (PDT)
+From:   Anand Moon <anand@edgeble.ai>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        David Wu <david.wu@rock-chips.com>
+Cc:     Anand Moon <anand@edgeble.ai>, Jagan Teki <jagan@edgeble.ai>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [v2 1/2] dt-bindings: net: rockchip-dwmac: add rv1126 compatible
+Date:   Wed,  7 Sep 2022 21:06:45 +0000
+Message-Id: <20220907210649.12447-1-anand@edgeble.ai>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220902080705.12050-3-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 02 Sep 2022 10:07:05 +0200, Johan Hovold wrote:
-> At least the "qcom,sc8280xp-qmp-usb43dp-phy" binding requires a power
-> domain to be specified.
-> 
-> Fixes: aa27597e594c ("dt-bindings: phy: qcom,qmp: Add compatible for SC8280XP USB phys")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  .../bindings/phy/qcom,qmp-usb3-dp-phy.yaml         | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
+Add compatible string for RV1126 gmac, and constrain it to
+be compatible with Synopsys dwmac 4.20a.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+Signed-off-by: Anand Moon <anand@edgeble.ai>
+---
+v2: add missing compatible string to property
+    added reviewed by Heiko Stuebner.
+---
+ Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+index 083623c8d718..b28bc6774bf0 100644
+--- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+@@ -26,6 +26,7 @@ select:
+           - rockchip,rk3399-gmac
+           - rockchip,rk3568-gmac
+           - rockchip,rv1108-gmac
++          - rockchip,rv1126-gmac
+   required:
+     - compatible
+ 
+@@ -47,6 +48,7 @@ properties:
+               - rockchip,rk3368-gmac
+               - rockchip,rk3399-gmac
+               - rockchip,rv1108-gmac
++              - rockchip,rv1126-gmac
+       - items:
+           - enum:
+               - rockchip,rk3568-gmac
+-- 
+2.37.3
+
