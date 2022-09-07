@@ -2,64 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E59F25B083B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 17:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA1C5B0890
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 17:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230380AbiIGPNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 11:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
+        id S229538AbiIGPah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 11:30:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230437AbiIGPNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 11:13:30 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6DC057E05;
-        Wed,  7 Sep 2022 08:13:28 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-127d10b4f19so11002054fac.9;
-        Wed, 07 Sep 2022 08:13:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=dgmGxDNFvXOm4yqWSsGec1/H6R6opGE/962d6kVCRow=;
-        b=tEU5wsa6dXCkrQCj0yC/8LcfEPqrOwOa8FpHSXKuwHIUEbLzhRF2ZBvP2eKTFsqYc9
-         w35a+7PLoaz148QCzxvsqdOjlop88p/OpaQvZigfQBzDWmYLcCv3TDpoyXtzd1I6uMS+
-         krYkZqUIKFEJZl8URpbqRGq08KocrGiGKotw2faidhiM3WgGZfU5iXmSANbRTaBjrnaR
-         46eRETU1UO/xmt/ObyjKLkiKheh8uB+bDdRtksmAUyaMSE1wsba26dqAuOg1kLMCJRsk
-         Nj5zPH+ccotNL+UDk7fFNyuLDcNW02SQJJQTHRT1s2Z5pvEeKCPLcBOzmowqjLcfHpzK
-         T3Mg==
-X-Gm-Message-State: ACgBeo3xMynkH0KPE60mb6adpK3vJONep3aqKLqOEwF6kdYKpggIgOac
-        Vnu+x2PK2yDi+dq9NbR/lQ==
-X-Google-Smtp-Source: AA6agR7x9v7wP2nBGNjRo3wjG7lFeYRzAJmOxl1KTPvxbC/LQ9wJFFOFFpzdFX8XGRS3VTiScqNXEQ==
-X-Received: by 2002:a05:6808:1487:b0:344:8cb8:da49 with SMTP id e7-20020a056808148700b003448cb8da49mr12198907oiw.90.1662563608187;
-        Wed, 07 Sep 2022 08:13:28 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q6-20020a0568080ec600b00342ece494ffsm6606976oiv.46.2022.09.07.08.13.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 08:13:27 -0700 (PDT)
-Received: (nullmailer pid 3457341 invoked by uid 1000);
-        Wed, 07 Sep 2022 15:13:26 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Smitha T Murthy <smitha.t@samsung.com>
-Cc:     linux-kernel@vger.kernel.org, aakarsh.jain@samsung.com,
-        andi@etezian.org, david.plowman@raspberrypi.com,
-        dillon.minfei@gmail.com, stanimir.varbanov@linaro.org,
-        jernej.skrabec@gmail.com, andrzej.hajda@intel.com,
-        hverkuil-cisco@xs4all.nl, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        aswani.reddy@samsung.com, benjamin.gaignard@collabora.com,
-        m.szyprowski@samsung.com, ezequiel@vanguardiasur.com.ar,
-        pankaj.dubey@samsung.com, krzk+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        mchehab@kernel.org, linux-fsd@tesla.com, alim.akhtar@samsung.com
-In-Reply-To: <20220907064715.55778-2-smitha.t@samsung.com>
-References: <20220907064715.55778-1-smitha.t@samsung.com>        <CGME20220907063313epcas5p114f793010fd0f2797e93bd83ed18a1d7@epcas5p1.samsung.com> <20220907064715.55778-2-smitha.t@samsung.com>
-Subject: Re: [Patch v2 01/15] dt-bindings: media: s5p-mfc: Add new DT schema for MFC
-Date:   Wed, 07 Sep 2022 10:13:26 -0500
-Message-Id: <1662563606.630951.3457340.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        with ESMTP id S229563AbiIGPag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 11:30:36 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5486EF12;
+        Wed,  7 Sep 2022 08:30:34 -0700 (PDT)
+Received: from g550jk.localnet (31-151-115-246.dynamic.upc.nl [31.151.115.246])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id BEC95C7023;
+        Wed,  7 Sep 2022 15:30:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1662564630; bh=PBuavX/FI8zoNi4Yjs2NUwse88XH7Qen5TwuTvKTMFM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=uWv8uKGVTh/KDAzcw1siELCkpqZlURBcIALCy5h1bT5+OZOgnYR/yS5OzAKU/IT8W
+         DWrrGtwYeKh9WpiMUXWtH0F7EUaHUsp2namiCQUuC6x74PX7JfQwhj6ZIIRzXzzFhz
+         NZg+zJODwITdaZ9Hw9uzds8bYYNDEcRbNaSbX3MI=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: msm8953: add MDSS
+Date:   Wed, 07 Sep 2022 17:30:30 +0200
+Message-ID: <12049260.O9o76ZdvQC@g550jk>
+In-Reply-To: <CAA8EJpqjnafKyUrd1ntYFeGTDtRxgEUSu0Mg9wNGxObJ3wF0Kw@mail.gmail.com>
+References: <20220906183334.203787-1-luca@z3ntu.xyz> <20220906183334.203787-4-luca@z3ntu.xyz> <CAA8EJpqjnafKyUrd1ntYFeGTDtRxgEUSu0Mg9wNGxObJ3wF0Kw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,42 +52,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 07 Sep 2022 12:17:01 +0530, Smitha T Murthy wrote:
-> Adds DT schema for s5p-mfc in yaml format
+Hi Dmitry,
+
+On Dienstag, 6. September 2022 21:41:11 CEST Dmitry Baryshkov wrote:
+> On Tue, 6 Sept 2022 at 21:36, Luca Weiss <luca@z3ntu.xyz> wrote:
+> > From: Vladimir Lypak <vladimir.lypak@gmail.com>
+> > 
+> > Add the MDSS, MDP and DSI nodes that are found on msm8953 SoC.
+> > 
+> > Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+> > Changes since v2:
+> > - add "core" clock for mdss as suggested by Dmitry Baryshkov
+> > 
+> >  arch/arm64/boot/dts/qcom/msm8953.dtsi | 210 ++++++++++++++++++++++++++
+> >  1 file changed, 210 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> > b/arch/arm64/boot/dts/qcom/msm8953.dtsi index 3d11331e78d2..580333141a66
+> > 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> > @@ -726,6 +726,216 @@ tcsr_phy_clk_scheme_sel: syscon@193f044 {
+> > 
+> >                         reg = <0x193f044 0x4>;
+> >                 
+> >                 };
+> > 
+> > +               mdss: mdss@1a00000 {
+> > +                       compatible = "qcom,mdss";
+> > +
+> > +                       reg = <0x1a00000 0x1000>,
+> > +                             <0x1ab0000 0x1040>;
+> > +                       reg-names = "mdss_phys",
+> > +                                   "vbif_phys";
+> > +
+> > +                       power-domains = <&gcc MDSS_GDSC>;
+> > +                       interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +                       interrupt-controller;
+> > +                       #interrupt-cells = <1>;
+> > +
+> > +                       clocks = <&gcc GCC_MDSS_AHB_CLK>,
+> > +                                <&gcc GCC_MDSS_AXI_CLK>,
+> > +                                <&gcc GCC_MDSS_VSYNC_CLK>,
+> > +                                <&gcc GCC_MDSS_MDP_CLK>;
+> > +                       clock-names = "iface",
+> > +                                     "bus",
+> > +                                     "vsync",
+> > +                                     "core";
+> > +
+> > +                       #address-cells = <1>;
+> > +                       #size-cells = <1>;
+> > +                       ranges;
+> > +
+> > +                       status = "disabled";
+> > +
+> > +                       mdp: mdp@1a01000 {
+> > +                               compatible = "qcom,mdp5";
 > 
-> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
-> ---
->  .../devicetree/bindings/media/s5p-mfc.txt     |  77 +------------
->  .../bindings/media/samsung,s5p-mfc.yaml       | 109 ++++++++++++++++++
->  2 files changed, 110 insertions(+), 76 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
+> Could you please change this to "qcom,msm8953-mdp5", "qcom,mdp5".
+
+This would be the first dtsi using the two compatibles then, correct? Are there 
+any plans to adjust other SoCs?
+
 > 
+> > +                               reg = <0x1a01000 0x89000>;
+> > +                               reg-names = "mdp_phys";
+> > +
+> 
+> [skipped]
+> 
+> > +
+> > +                       dsi0_phy: dsi-phy@1a94400 {
+> 
+> Let's probably use a generic name 'phy' here and for dsi1_phy.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Here also, the bindings examples all use dsi-phy@, are there any plans to 
+change that and adjust other dtsi files?
 
-yamllint warnings/errors:
+> 
+> The rest looks good to me.
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/media/samsung,s5p-mfc.example.dts:21.11-12 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/media/samsung,s5p-mfc.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1420: dt_binding_check] Error 2
+Thanks!
 
-doc reference errors (make refcheckdocs):
+Regards
+Luca
 
-See https://patchwork.ozlabs.org/patch/
+> 
+> > +                               compatible = "qcom,dsi-phy-14nm-8953";
+> > +                               reg = <0x1a94400 0x100>,
+> > +                                     <0x1a94500 0x300>,
+> > +                                     <0x1a94800 0x188>;
+> > +                               reg-names = "dsi_phy",
+> > +                                           "dsi_phy_lane",
+> > +                                           "dsi_pll";
+> > +
+> > +                               #clock-cells = <1>;
+> > +                               #phy-cells = <0>;
+> > +
+> > +                               clocks = <&gcc GCC_MDSS_AHB_CLK>,
+> > <&xo_board>; +                               clock-names = "iface",
+> > "ref";
+> > +
+> > +                               status = "disabled";
+> > +                       };
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
 
