@@ -2,97 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 901925B0415
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 14:38:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 261955B043A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 14:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbiIGMir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 08:38:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36352 "EHLO
+        id S229587AbiIGMuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 08:50:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbiIGMiq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 08:38:46 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE48B9401
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 05:38:45 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id v6so2403841ljj.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 05:38:45 -0700 (PDT)
+        with ESMTP id S229609AbiIGMun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 08:50:43 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40780753B6;
+        Wed,  7 Sep 2022 05:50:42 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id r17so1034242pgr.7;
+        Wed, 07 Sep 2022 05:50:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=fTdshIA9MMec3X7VmTjTGU3N0nJnI/vT2jNDEM51ia4=;
-        b=ha6lPE8aJRyBobeNew4fXWFWJn2CY/KIYJStuGf1/A6h0imBRBkv0jCKRj/oWruLDg
-         SF3VcAjOhpLH331xm6Ph7t8BHIeA7WBAhawMWs0FC1a82pAjs3s6nvRCuW8ye5RFfVid
-         PeY7+iNNYXzySvSNWkVNJmb9rEGOvjO8dyuOVEhSC53rs2agbzdXeSne2904GvwgoAJF
-         NRMwM9maF2zN4+LuH6dovVpaPxpM62vpjdchW0hdG+klTJrlekBOz+8DBO0IX35kb5Il
-         UKemvTtxecDcxLdq2sgCkgfU9g13gE7LbrS0oybQumWW4ri9neovZPRbWyCm1QzcCSYK
-         BVDw==
+        d=gmail.com; s=20210112;
+        h=user-agent:content-disposition:mime-version:message-id:subject:to
+         :from:date:from:to:cc:subject:date;
+        bh=jPyKiHK9Z1f/mDgcNl32AxqjgUc4Ptqqz+HyhxKfYq4=;
+        b=ZAMD8mItqJ7YqDQ3bHcwDY/4B6fkAILhnL2e+pz66KKPOOfXtKhThy+IvJrsL+fV0D
+         8Iffyu6DNtCG9aFafbX7HOsZnYXYDY2W2B2A/5eBzzKxZNJXa1kK73Uv1GLSiTb8SLn3
+         gn3PIIYfJd5/ubD7E3EGesaQaCBk9EJbqpgwnK2VqaCRzFNWB0U0A0YttBLYdUIf475C
+         DsVWovp/Gv+xDYy9R86dagC4WH8FBlBg86mYLdLJYaUU52bzC90dN3sCSyesAL+toXYN
+         sJaSz7l+Kz0N5yOiLI/5a6JzydcSFLzclETpmVHhjDMkvYj1UNNsRJKbOMWAATqjAji5
+         Oxyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=fTdshIA9MMec3X7VmTjTGU3N0nJnI/vT2jNDEM51ia4=;
-        b=fOeYkPYKIexvlALqrLM3iAmqN9cLzhIu0LqvpkeaKQZJgbmWDJzluTvOQXPZMRMxSD
-         VXBo5d6zVbE8a/l8lGf5+wr9VCIqSgJTVazySdYPkyHnTLiS698ERmGfu9NwhWY9YasB
-         l4aZHLAF6nj4C1A/vznsP09AmAe6yv8TzRP9apoJpsDLLIMrSitbCtSLKoDWED8eX73g
-         r1GI1zR6URgd/d32xsD4Jf5dO5dSHVTZR3MdMTqgoqUa5e4llYThTqPCgh2JOrUuPvBC
-         dasSjM8RJIc269Ll85/XbRgvrzdlids1JSeZg6I9rbyUsyc1vR0b3y4KQ3Ep/GUnbyGC
-         bcog==
-X-Gm-Message-State: ACgBeo12Xfh18DxHOlRYfCcP3J/QknIr/hU7lLNl6rZD499uUFO+wHPm
-        3wfx0Sp3afmcjij4EsNtNGJLag==
-X-Google-Smtp-Source: AA6agR5TFphhTKCAVf1SKVI7yMO7YM7140eM6H+ulhYTKCVmuZLA8uBrv8H5ERRV1tJSbWo8sax0DQ==
-X-Received: by 2002:a05:651c:1a11:b0:264:1e72:9d30 with SMTP id by17-20020a05651c1a1100b002641e729d30mr1051641ljb.160.1662554323787;
-        Wed, 07 Sep 2022 05:38:43 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o2-20020a2e90c2000000b0026ac8c94022sm659772ljg.119.2022.09.07.05.38.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Sep 2022 05:38:43 -0700 (PDT)
-Message-ID: <9a71a2f3-97f6-f3ac-8852-1d3da1a50370@linaro.org>
-Date:   Wed, 7 Sep 2022 14:38:42 +0200
+        h=user-agent:content-disposition:mime-version:message-id:subject:to
+         :from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=jPyKiHK9Z1f/mDgcNl32AxqjgUc4Ptqqz+HyhxKfYq4=;
+        b=7Lfnztm5s5E6kBgyH+Cuy31pIzgKrrKZRlEzRi+9GE+eBrco7cT0RHZ1eLVkC4Z/ie
+         AjLwTO/82IZFLg/oLEx5PAWM3Nl5sdbuduXntkM8LcTZ8Swn/0LAx+i8haqYTbgPwEeu
+         C1io9/GSopUWGz4ASxYt/d/fYvEkjgYmZ0eDVvA3H0G8lIyTd6wi+LyhqNNMlwrgTeT2
+         t4Jcp+CPcSdwELRZOmYMLKMuVzwLUe0bwDViP+78D4vD4qsFZT/ikXFUBU0nRHYaeJyC
+         MDNWP+o3Tn5T/54gaxS3Z2GsfEdJOFvcn+17tVZmYu93Qa4S6SC1XcU8fHU5UvXVES0S
+         +s6w==
+X-Gm-Message-State: ACgBeo0T7f4Ng3gxvY1rjqYNz8dAzQKMczifCRbImKUCvX5JMRqfMUXH
+        IrK+Er0iQlZyPubIozOer9E=
+X-Google-Smtp-Source: AA6agR6wqTSiC4quRaCw4iH7eVY9qz1KHmrlAlH7dE8ysQ1Msha5l8j12ZXgbQ5wEWXPGl9od6MaGg==
+X-Received: by 2002:a05:6a00:e85:b0:52b:5db8:f3df with SMTP id bo5-20020a056a000e8500b0052b5db8f3dfmr3966989pfb.14.1662555041806;
+        Wed, 07 Sep 2022 05:50:41 -0700 (PDT)
+Received: from hcl-ThinkPad-T495 ([2401:4900:1ce1:13f0:48c4:2ac5:ccad:657d])
+        by smtp.gmail.com with ESMTPSA id bj9-20020a056a02018900b0041bcd8f3958sm10450967pgb.44.2022.09.07.05.50.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 07 Sep 2022 05:50:41 -0700 (PDT)
+Date:   Wed, 7 Sep 2022 18:20:35 +0530
+From:   Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: [PATCH v2] ARM: dts: aspeed: yosemit V2: Update for Facebook
+ Yosemite V2 BMC
+Message-ID: <20220907125035.GA28461@hcl-ThinkPad-T495>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: reset: syscon-reboot: Add priority
- property
-Content-Language: en-US
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Ellerman <mpe@ellerman.id.au>
-Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
-References: <20220820102925.29476-1-pali@kernel.org>
- <20220831081715.14673-1-pali@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220831081715.14673-1-pali@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 10:17, Pali Rohár wrote:
-> This new optional priority property allows to specify custom priority level
-> of reset device. Prior this change priority level was hardcoded to 192 and
-> not possible to specify or change. Specifying other value is needed for
-> some boards. Default level when not specified stays at 192 as before.
-> 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
+Removed NIC EEPROM driver IPMB-12 channel and keeping it as
+"status ok".
 
-Thanks for the changes. Explanation looks good.
+---
+--- v2- Updated the title
+---
 
-I sent a patch adding the common schema with priority. If it gets
-ack/review from Rob and Sebastian, please kindly rebase on top of it and
-use same way as I did for gpio-restart.yaml
+---
+--- v1- Initial draft
+---
 
-Best regards,
-Krzysztof
+Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+---
+ arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+index 8864e9c312a8..2293f10e94d6 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+@@ -207,12 +207,6 @@
+ 
+ &i2c12 {
+ 	status = "okay";
+-	//MEZZ_FRU
+-	eeprom@51 {
+-		compatible = "atmel,24c64";
+-		reg = <0x51>;
+-		pagesize = <32>;
+-	};
+ };
+ 
+ &pwm_tacho {
+-- 
+2.17.1
+
