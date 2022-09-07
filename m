@@ -2,166 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 299345B0E6F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:46:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75E545B0E72
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:48:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiIGUqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 16:46:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51694 "EHLO
+        id S229437AbiIGUsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 16:48:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229876AbiIGUqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:46:00 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1E05B07D7;
-        Wed,  7 Sep 2022 13:45:58 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id z22-20020a056830129600b0063711f456ceso11052308otp.7;
-        Wed, 07 Sep 2022 13:45:58 -0700 (PDT)
+        with ESMTP id S229469AbiIGUsO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:48:14 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B702C22B0;
+        Wed,  7 Sep 2022 13:48:12 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-11eab59db71so38942932fac.11;
+        Wed, 07 Sep 2022 13:48:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=upXcPuQ+AymjlAP813ikt1+Dlj+izCoKBqGmw9TwiEA=;
-        b=ioGn23m1vUF13Ijm00z0vCu0kZlQlab0TClekr1AlKsHeHmPSPBJBRr2DIXR7nGvJS
-         SoukVpgX9MgrQ0DadbHLy4B98LODLMO1v3BIOcElrT+Nl94OCrtpokeeIy3Qc1gHTklr
-         rXxE8vFXyeRpenjwV8VmOiVZuJejoaaa37fUkq6UQO3U8QFMt/DRnL6nJ+UPkRZcRzNw
-         b98lUT1iQeGKNF8Lcj9q2490S4Qfd3VHwyBgcqDE7f86qpQFPNNFSuT/jcQwXDfRQ0Mg
-         aikdcYF7dudpDXhcbiglHtJfmd+a2T+LVtiy8ZONppt+S8NMIzfXxjoIO15ftM2yvlc5
-         1VQQ==
-X-Gm-Message-State: ACgBeo35aXJG4uNzrfsc6lBH5Fkcf1YBEslUhnhesfOriKYWO9sOGwqq
-        1UcVtPfX2z5QCXgzlqgGf5hs5zPIag==
-X-Google-Smtp-Source: AA6agR7XOBU/6/O2TwW9lBjbS8h05cyYcmFka/myRzOWQ4uhgMLB77hg5WkWiwvPbKFR5xw241HTpg==
-X-Received: by 2002:a05:6830:4386:b0:637:3636:e29f with SMTP id s6-20020a056830438600b006373636e29fmr2072794otv.294.1662583558179;
-        Wed, 07 Sep 2022 13:45:58 -0700 (PDT)
+        bh=OgZSfbLdmWOALRRb7JBf/hZJkZ02I3rXxvpAaPJjtss=;
+        b=oM0ttpfDJOpVyNtrbPIsvZrt6pVSyzM2a9KeeBkz/T8NNRyp8dun+zYUtmcEOvkKhw
+         aZQ1OmTFdkxuHYypCF62TF0rNyJLJ3KnLOEmsnmHDiMz3+4jGkmug3WgZPA+1GV/wQAK
+         5k/xh6LosdATqcGsZU5Ots60x+RveKTUNY5Upm5CzbZ/kSRTZoOH7ochlXs50SEBn0J4
+         4e/qqo9soXyUjZiAFm/6jV7V63g2j6BvHNVBOVnPRhvUxGt8gI67uY0Ge+3GQ1LdqVIv
+         sVitX9A4GtZAHl4lOM6wRAqEHUlRFaQ8XodnMADL+OOZrc/ieIO65Erpbc8DLvh6l1ZM
+         0W+w==
+X-Gm-Message-State: ACgBeo0oTzfWpqklRuKDS55sQXPjZnkGqebgZ6vHb7zuJMG1Ca2yPyCq
+        rDvOEWBDNlHR4gR4YivfGg==
+X-Google-Smtp-Source: AA6agR6NS6tXDzOLHfWF+BuC8XbobxkJmCcNwfL3/mQLtSgFA6uV0lRUjSxT5Zi+7Jar40NgasRRDg==
+X-Received: by 2002:a05:6870:a791:b0:10d:8606:c68b with SMTP id x17-20020a056870a79100b0010d8606c68bmr165876oao.234.1662583691370;
+        Wed, 07 Sep 2022 13:48:11 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y2-20020a4ae7c2000000b0042859bebfebsm5410539oov.45.2022.09.07.13.45.57
+        by smtp.gmail.com with ESMTPSA id w8-20020a9d5388000000b00616d3ec6734sm7400219otg.53.2022.09.07.13.48.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 13:45:57 -0700 (PDT)
-Received: (nullmailer pid 312607 invoked by uid 1000);
-        Wed, 07 Sep 2022 20:45:56 -0000
-Date:   Wed, 7 Sep 2022 15:45:56 -0500
+        Wed, 07 Sep 2022 13:48:11 -0700 (PDT)
+Received: (nullmailer pid 316597 invoked by uid 1000);
+        Wed, 07 Sep 2022 20:48:10 -0000
+Date:   Wed, 7 Sep 2022 15:48:10 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Peter Chiu <chui-hao.chiu@mediatek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Ryder Lee <ryder.Lee@mediatek.com>,
-        Evelyn Tsai <evelyn.tsai@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: update bindings for MT7986 SoC
-Message-ID: <20220907204556.GA307930-robh@kernel.org>
-References: <20220902024719.31943-1-chui-hao.chiu@mediatek.com>
+To:     Neal Liu <neal_liu@aspeedtech.com>
+Cc:     Dhananjay Phadke <dphadke@linux.microsoft.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Chia-Wei Wang --cc=linux-kernel @ vger . kernel . org" 
+        <chiawei_wang@aspeedtech.com>, linux-crypto@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
+Subject: Re: [PATCH v1 3/4] dt-bindings: crypto: add documentation for Aspeed
+ ACRY
+Message-ID: <20220907204810.GA312863-robh@kernel.org>
+References: <20220902060012.3758637-1-neal_liu@aspeedtech.com>
+ <20220902060012.3758637-4-neal_liu@aspeedtech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220902024719.31943-1-chui-hao.chiu@mediatek.com>
+In-Reply-To: <20220902060012.3758637-4-neal_liu@aspeedtech.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 02, 2022 at 10:47:19AM +0800, Peter Chiu wrote:
-> Add wifi pins in the description and set groups to string-array to support
-> multiple groups in a node.
+On Fri, Sep 02, 2022 at 02:00:11PM +0800, Neal Liu wrote:
+> Add device tree binding documentation for the Aspeed
+> ECDSA/RSA ACRY Engines Controller.
 > 
-> Reviewed-by: Sam Shih <sam.shih@mediatek.com>
-> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
 > ---
->  .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 48 +++++++++++--------
->  1 file changed, 28 insertions(+), 20 deletions(-)
+>  .../bindings/crypto/aspeed,ast2600-acry.yaml  | 49 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  2 files changed, 50 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/aspeed,ast2600-acry.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-> index 4eadea55df10..b08a0a8076e0 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-> @@ -117,6 +117,10 @@ patternProperties:
->            "i2s"             "audio"     62, 63, 64, 65
->            "switch_int"      "eth"       66
->            "mdc_mdio"        "eth"       67
-> +          "wf_2g"           "wifi"      74, 75, 76, 77, 78, 79, 80, 81, 82, 83
-> +          "wf_5g"           "wifi"      91, 92, 93, 94, 95, 96, 97, 98, 99, 100
-> +          "wf_dbdc"         "wifi"      74, 75, 76, 77, 78, 79, 80, 81, 82, 83,
-> +                                        84, 85
+> diff --git a/Documentation/devicetree/bindings/crypto/aspeed,ast2600-acry.yaml b/Documentation/devicetree/bindings/crypto/aspeed,ast2600-acry.yaml
+> new file mode 100644
+> index 000000000000..192b40cd0a39
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/aspeed,ast2600-acry.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ASPEED ACRY ECDSA/RSA Hardware Accelerator Engines Device Tree Bindings
+
+Drop ' Device Tree Bindings'
+
+> +
+> +maintainers:
+> +  - Neal Liu <neal_liu@aspeedtech.com>
+> +
+> +description: |
+
+Don't need '|' if no formatting.
+
+> +  The ACRY ECDSA/RSA engines is designed to accelerate the throughput
+> +  of ECDSA/RSA signature and verification. Basically, ACRY can be
+> +  divided into two independently engines - ECC Engine and RSA Engine.
+
+independent
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2600-acry
+> +
+> +  reg:
+> +    items:
+> +      - description: acry base address & size
+> +      - description: acry sram base address & size
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/ast2600-clock.h>
+> +    acry: crypto@1e6fa000 {
+> +        compatible = "aspeed,ast2600-acry";
+> +        reg = <0x1e6fa000 0x400>, <0x1e710000 0x1800>;
+> +        interrupts = <160>;
+> +        clocks = <&syscon ASPEED_CLK_GATE_RSACLK>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 832da6d77374..09ab1c3adbb7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3214,7 +3214,7 @@ ASPEED CRYPTO DRIVER
+>  M:	Neal Liu <neal_liu@aspeedtech.com>
+>  L:	linux-aspeed@lists.ozlabs.org (moderated for non-subscribers)
+>  S:	Maintained
+> -F:	Documentation/devicetree/bindings/crypto/aspeed,ast2500-hace.yaml
+> +F:	Documentation/devicetree/bindings/crypto/aspeed,*
+>  F:	drivers/crypto/aspeed/
 >  
->          $ref: "/schemas/pinctrl/pinmux-node.yaml"
->          properties:
-> @@ -234,7 +238,9 @@ patternProperties:
->              then:
->                properties:
->                  groups:
-> -                  enum: [wf_2g, wf_5g, wf_dbdc]
-> +                  $ref: /schemas/types.yaml#/definitions/string-array
-
-'groups' already has a type. You can redefine it here.
-
-> +                  items:
-> +                    enum: [wf_2g, wf_5g, wf_dbdc]
->        '.*conf.*':
->          type: object
->          additionalProperties: false
-> @@ -248,25 +254,27 @@ patternProperties:
->                An array of strings. Each string contains the name of a pin.
->                There is no PIN 41 to PIN 65 above on mt7686b, you can only use
->                those pins on mt7986a.
-> -            enum: [SYS_WATCHDOG, WF2G_LED, WF5G_LED, I2C_SCL, I2C_SDA, GPIO_0,
-> -                   GPIO_1, GPIO_2, GPIO_3, GPIO_4, GPIO_5, GPIO_6, GPIO_7,
-> -                   GPIO_8, GPIO_9, GPIO_10, GPIO_11, GPIO_12, GPIO_13, GPIO_14,
-> -                   GPIO_15, PWM0, PWM1, SPI0_CLK, SPI0_MOSI, SPI0_MISO, SPI0_CS,
-> -                   SPI0_HOLD, SPI0_WP, SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS,
-> -                   SPI2_CLK, SPI2_MOSI, SPI2_MISO, SPI2_CS, SPI2_HOLD, SPI2_WP,
-> -                   UART0_RXD, UART0_TXD, PCIE_PERESET_N, UART1_RXD, UART1_TXD,
-> -                   UART1_CTS, UART1_RTS, UART2_RXD, UART2_TXD, UART2_CTS,
-> -                   UART2_RTS, EMMC_DATA_0, EMMC_DATA_1, EMMC_DATA_2,
-> -                   EMMC_DATA_3, EMMC_DATA_4, EMMC_DATA_5, EMMC_DATA_6,
-> -                   EMMC_DATA_7, EMMC_CMD, EMMC_CK, EMMC_DSL, EMMC_RSTB, PCM_DTX,
-> -                   PCM_DRX, PCM_CLK, PCM_FS, MT7531_INT, SMI_MDC, SMI_MDIO,
-> -                   WF0_DIG_RESETB, WF0_CBA_RESETB, WF0_XO_REQ, WF0_TOP_CLK,
-> -                   WF0_TOP_DATA, WF0_HB1, WF0_HB2, WF0_HB3, WF0_HB4, WF0_HB0,
-> -                   WF0_HB0_B, WF0_HB5, WF0_HB6, WF0_HB7, WF0_HB8, WF0_HB9,
-> -                   WF0_HB10, WF1_DIG_RESETB, WF1_CBA_RESETB, WF1_XO_REQ,
-> -                   WF1_TOP_CLK, WF1_TOP_DATA, WF1_HB1, WF1_HB2, WF1_HB3,
-> -                   WF1_HB4, WF1_HB0, WF1_HB0_B, WF1_HB5, WF1_HB6, WF1_HB7,
-> -                   WF1_HB8]
-> +            $ref: /schemas/types.yaml#/definitions/string-array
-> +            items:
-
-Same for 'pins'.
-
-> +              enum: [SYS_WATCHDOG, WF2G_LED, WF5G_LED, I2C_SCL, I2C_SDA, GPIO_0,
-> +                     GPIO_1, GPIO_2, GPIO_3, GPIO_4, GPIO_5, GPIO_6, GPIO_7,
-> +                     GPIO_8, GPIO_9, GPIO_10, GPIO_11, GPIO_12, GPIO_13, GPIO_14,
-> +                     GPIO_15, PWM0, PWM1, SPI0_CLK, SPI0_MOSI, SPI0_MISO, SPI0_CS,
-> +                     SPI0_HOLD, SPI0_WP, SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS,
-> +                     SPI2_CLK, SPI2_MOSI, SPI2_MISO, SPI2_CS, SPI2_HOLD, SPI2_WP,
-> +                     UART0_RXD, UART0_TXD, PCIE_PERESET_N, UART1_RXD, UART1_TXD,
-> +                     UART1_CTS, UART1_RTS, UART2_RXD, UART2_TXD, UART2_CTS,
-> +                     UART2_RTS, EMMC_DATA_0, EMMC_DATA_1, EMMC_DATA_2,
-> +                     EMMC_DATA_3, EMMC_DATA_4, EMMC_DATA_5, EMMC_DATA_6,
-> +                     EMMC_DATA_7, EMMC_CMD, EMMC_CK, EMMC_DSL, EMMC_RSTB, PCM_DTX,
-> +                     PCM_DRX, PCM_CLK, PCM_FS, MT7531_INT, SMI_MDC, SMI_MDIO,
-> +                     WF0_DIG_RESETB, WF0_CBA_RESETB, WF0_XO_REQ, WF0_TOP_CLK,
-> +                     WF0_TOP_DATA, WF0_HB1, WF0_HB2, WF0_HB3, WF0_HB4, WF0_HB0,
-> +                     WF0_HB0_B, WF0_HB5, WF0_HB6, WF0_HB7, WF0_HB8, WF0_HB9,
-> +                     WF0_HB10, WF1_DIG_RESETB, WF1_CBA_RESETB, WF1_XO_REQ,
-> +                     WF1_TOP_CLK, WF1_TOP_DATA, WF1_HB1, WF1_HB2, WF1_HB3,
-> +                     WF1_HB4, WF1_HB0, WF1_HB0_B, WF1_HB5, WF1_HB6, WF1_HB7,
-> +                     WF1_HB8]
->  
->            bias-disable: true
->  
+>  ASUS NOTEBOOKS AND EEEPC ACPI/WMI EXTRAS DRIVERS
 > -- 
-> 2.18.0
+> 2.25.1
 > 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 > 
