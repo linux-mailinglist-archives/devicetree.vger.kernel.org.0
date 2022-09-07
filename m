@@ -2,133 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 987505AFBE3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 07:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AFBF5AFBF8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 07:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbiIGFpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 01:45:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49414 "EHLO
+        id S229547AbiIGFw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 01:52:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbiIGFpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 01:45:13 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76AAC371BB;
-        Tue,  6 Sep 2022 22:45:05 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id z187so13528318pfb.12;
-        Tue, 06 Sep 2022 22:45:05 -0700 (PDT)
+        with ESMTP id S229812AbiIGFw1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 01:52:27 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728BF5E656
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 22:52:26 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id z9-20020a17090a468900b001ffff693b27so12258013pjf.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 22:52:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=MxUjkhck3ThCup5JU1rYOQtyKBWOrj1qhayfFTMHy24=;
-        b=n294xEYj18Ngb737eeY0NWR2FiB5hbvUei2t+J5yesyN4dPpRgCcQI5xcIi4MC/r/h
-         6+jt4NOnvd3xqc+iQiy/4rDKGUgcvcmOEZP/ukuUUzrQX2hr7ku5EJBu6RXANfcTBX3v
-         Hm1auCTam2QnlOGmN//E2ZN2f3Kr66eZQ55KRHqkH8eAuNJOTPE7SMDFGF5z4ba2PX9j
-         7wwCLpIbO+HRSLCOLVeHMLgPipKfQDZm75lqTBK0ZFnMsKsvIqkwZgASvLhe+ReAIsSF
-         PNy9j4zmR33ajjcv0h5ZntfKQARz1NDjXaZq+A0VJ7QxSRz3c2Ecv9RVBIKU6oBpcw3Z
-         cdlA==
+        d=ecs-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=bvTlivoQ5nSfF+84cpi2CPQhnbe+HsBBNxx0q5XLX00=;
+        b=Q/KLNCRA2xa8jICb0syTNT70zAyV4GYgAbKjXw7aOOASeUAPJL8QSxe5J1J1TUSuZM
+         HOjQUg1WsftqprdKQllNd5uXqA0TqOWuoGvayz0wEEmthXDOaqkX+R8VzQlt424NI+1f
+         58ZawkQe6GGxrJlT/Ur5OYYBM9cAj4OUyb/m0fiQxCjTm/CCWoqyEtoIEwnzrgWq/VDe
+         ikuP/jg/zv5yY42iejBh82tp+eP5tURoXL4RRLKriglpZfNNOE/5HtCb2WmP22tDajre
+         YWUsotGlWrj4u2vdxPqCGWjkScrZHYn+WLG2tyqfH+NgDTz69eCGGJA+QuaFQMNIPdIy
+         hc5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=MxUjkhck3ThCup5JU1rYOQtyKBWOrj1qhayfFTMHy24=;
-        b=qde9e1f6BRCoQaF633bkFWJ8faLe8ahxzfPthSHYYepqHXwV9+CHsNJjz7V4wq4oiF
-         9idtDE0CzmzuP3VJFjnRcPD/obG4jsl1S7yK5XygNhjt7GxJpBN8fhot2a6pQG0NAcuP
-         N1li8oCmMSLvX9+rmk83l80WsPgatHNVfBNH+6PAgCaUk/NJKaiy/1HWMK3TP32EYphe
-         Yc1Dkhr07BpelP1Rokl8oNW18xATtEyqw5B+NosAkjamfnxjeqwtV5SyG5bWVNkqEON8
-         bX89TMaPPqFnpsBqk+5hQnlCrYpkJq9lINk0VhEYXqkmGXEukkF0HqI8kFVZMSsSTihb
-         yNaQ==
-X-Gm-Message-State: ACgBeo3iBp96oC4sU4pCb/n7vx7/gNll0O3Y3DiE3tw8sEisz/sArAQS
-        2AwaR7DFIvsCXR2HVhS3TUU=
-X-Google-Smtp-Source: AA6agR7kbaoNt6zjIBweSiPmfp6LIaSt/m1OzJ7rtVUYJf/gIBW1VZ07ewfRKxRgezbUZstg0VLgJg==
-X-Received: by 2002:a05:6a00:4c85:b0:538:5500:4873 with SMTP id eb5-20020a056a004c8500b0053855004873mr2265813pfb.81.1662529504723;
-        Tue, 06 Sep 2022 22:45:04 -0700 (PDT)
-Received: from localhost.localdomain ([76.132.249.1])
-        by smtp.gmail.com with ESMTPSA id b2-20020a170902d50200b0016c0c82e85csm11222798plg.75.2022.09.06.22.45.02
+        bh=bvTlivoQ5nSfF+84cpi2CPQhnbe+HsBBNxx0q5XLX00=;
+        b=CuZLM/G7tmnH1kzeTa0t1xcujttP0E/tzv1ZJ4JglTH12ppJ/j6FX8IKu36o38E7sS
+         jUXe/eLsiF17hChcCKttONDqoVor93+QVX1LmEvTi1WrILnQfHr/M1QYIHxmLm1Cje3V
+         0iqcIjjQi34PyDLKZ97tU6ry/+k4JyN17W67Mx0YCcBT8c7odLfh11OeKgCfptBBoIsO
+         gW1Tilk9bqasJwV47bwrEnW7H10AvHNi8WILTt6ZwRDZ305wgu+7Tp3DX1kEcZgxn7O6
+         FsnuMYB81mtuk7lEYk9e4yF1tC0eMl3Uxyw0YlVJFMXvatgFRJnem4vAQ32O2VbQVYoi
+         IUuQ==
+X-Gm-Message-State: ACgBeo3o+AgyYOlZG6HLAgabPzqvsR6skX0Tr6ZAzA3uvx3/Z/FY1CB5
+        iPNSD+3Q6yNWH54uWXxd8Aqk5A==
+X-Google-Smtp-Source: AA6agR6Fq1L+4wbXgW5BJVytbMb2uao4jrmnWUce3Pk6gF//IFaE2wNpEeaS8T6JZcR/lQBK8ti6jg==
+X-Received: by 2002:a17:90a:5d88:b0:1fa:b5c4:608b with SMTP id t8-20020a17090a5d8800b001fab5c4608bmr28508282pji.22.1662529945944;
+        Tue, 06 Sep 2022 22:52:25 -0700 (PDT)
+Received: from localhost.localdomain ([103.104.171.43])
+        by smtp.gmail.com with ESMTPSA id d6-20020a170902654600b00172dc6e1916sm6168094pln.220.2022.09.06.22.52.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 22:45:04 -0700 (PDT)
-From:   rentao.bupt@gmail.com
-To:     Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heyi Guo <guoheyi@linux.alibaba.com>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Guangbin Huang <huangguangbin2@huawei.com>,
-        Liang He <windhl@126.com>, Hao Chen <chenhao288@hisilicon.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     Tao Ren <rentao.bupt@gmail.com>
-Subject: [PATCH net-next v3 2/2] ARM: dts: aspeed: elbert: Enable mac3 controller
-Date:   Tue,  6 Sep 2022 22:44:53 -0700
-Message-Id: <20220907054453.20016-3-rentao.bupt@gmail.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220907054453.20016-1-rentao.bupt@gmail.com>
-References: <20220907054453.20016-1-rentao.bupt@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Tue, 06 Sep 2022 22:52:25 -0700 (PDT)
+From:   Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Bob Moragues <moragues@chromium.org>,
+        Yunlong Jia <yunlong.jia@ecs.com.tw>,
+        Henry Sun <henrysun@google.com>,
+        Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        David Heidelberg <david@ixit.cz>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: input: touchscreen: elants_i2c: Add eth3915n touchscreen chip
+Date:   Wed,  7 Sep 2022 05:52:03 +0000
+Message-Id: <20220907054805.v2.1.I1168feec10de16e0f130dfe72ce7976762597dba@changeid>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tao Ren <rentao.bupt@gmail.com>
+Add an elan touch screen chip eth3915n.
+This chip requires more delay time than the eth3500.
 
-Enable mac3 controller in Elbert dts: Elbert MAC3 is connected to the
-BCM53134P onboard switch's IMP_RGMII port directly (fixed link, no PHY
-between BMC MAC and BCM53134P).
-
-Note: BMC's mdio0 controller is connected to BCM53134P's MDIO interface,
-and the MDIO channel will be enabled later, when BCM53134 is added to
-"bcm53xx" DSA driver.
-
-Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
+Signed-off-by: Yunlong Jia <yunlong.jia@ecs.com.tw>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 ---
- Changes in v3:
-  - updated comments and patch description.
- Changes in v2:
-  - updated comments and patch description.
- .../boot/dts/aspeed-bmc-facebook-elbert.dts    | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-index 27b43fe099f1..8e1a1d1b282d 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-@@ -183,3 +183,21 @@ imux31: i2c@7 {
- &i2c11 {
- 	status = "okay";
- };
-+
-+/*
-+ * BMC's "mac3" controller is connected to BCM53134P's IMP_RGMII port
-+ * directly (fixed link, no PHY in between).
-+ * Note: BMC's "mdio0" controller is connected to BCM53134P's MDIO
-+ * interface, and the MDIO channel will be enabled in dts later, when
-+ * BCM53134 is added to "bcm53xx" DSA driver.
-+ */
-+&mac3 {
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii4_default>;
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+};
+(no changes since v1)
+
+ .../devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml   | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml b/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
+index a9b53c2e6f0ab..d28625372f5ac 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/elan,elants_i2c.yaml
+@@ -17,6 +17,7 @@ properties:
+     enum:
+       - elan,ektf3624
+       - elan,ekth3500
++      - elan,ekth3915
+ 
+   reg:
+     maxItems: 1
 -- 
-2.37.3
+2.17.1
 
