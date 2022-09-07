@@ -2,129 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A5585B0774
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 16:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E59F25B083B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 17:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiIGOty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 10:49:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55130 "EHLO
+        id S230380AbiIGPNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 11:13:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiIGOtv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 10:49:51 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E49152088
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 07:49:50 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id fy31so30947591ejc.6
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 07:49:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=9Egso+F9oAqpmnjS5DTHauVPwDLq9mb6P2D6VOioG74=;
-        b=GJH3rh/Lggajl8hpTEBX35JHXSivg85bmb3IntirQOIXPUYhecuXuFTAKNkeGZKElr
-         1zTyVTl0dikamJeacrK4dDipNLeX7crqRfTO8j5DILmwXbMmL0L6KzfdoYlgxfQncEAA
-         naE3Kl4csXUkopC68eMXzq+655Nj2N3VmW7Eo=
+        with ESMTP id S230437AbiIGPNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 11:13:30 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6DC057E05;
+        Wed,  7 Sep 2022 08:13:28 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-127d10b4f19so11002054fac.9;
+        Wed, 07 Sep 2022 08:13:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=9Egso+F9oAqpmnjS5DTHauVPwDLq9mb6P2D6VOioG74=;
-        b=1mGWC2gyk77C0z8hiIzHMGR6M6trOVtULECTRhUEsUo6vNDE0MuO/IL0S/MRvRjSl5
-         EPVqpM/yQy99IuJalLn4n2dUAg9xFsqAXjrR9ft0tR7oeX6Bd6cbGqst7UR7w45T6k+6
-         AYotJWCW1ZoHXNqaqTKzNN5YqxItjL3kkynrgPkbeSY6UGb6gI4ZS+PZustCLdUyml7c
-         mG/a8G5hs7bhTB5KV0hs6pKt7aRw6d80PrJ7fiThvvckBgkZ0ljVTYptjRZeeHeKbxFl
-         rQos65xKnObLmeAvBm4bRDmmMTBlxjLs1n3ZpDmacot3FC/Mkz5MA873mjR9gpjR1Vlv
-         REjA==
-X-Gm-Message-State: ACgBeo05wcWYxbucIACgQH5AzgpBIEo0wHxuoiTJFmX/7UoYydIK8p1T
-        uG/8Hfe+f/RMjRRP1BT65O5Ri2dULwbhOqDv
-X-Google-Smtp-Source: AA6agR4l+icr8Ri715BQI5Ih4DUoYnfqjCSlgm+yvHYuEJ/EgrQI2TMzHqE4fwBmZQNneenO/T8JgA==
-X-Received: by 2002:a17:907:2c4f:b0:741:5b68:e2d9 with SMTP id hf15-20020a1709072c4f00b007415b68e2d9mr2547651ejc.314.1662562188468;
-        Wed, 07 Sep 2022 07:49:48 -0700 (PDT)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id oz13-20020a170906cd0d00b0073d81b0882asm8348945ejb.7.2022.09.07.07.49.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Sep 2022 07:49:47 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id k9so20805120wri.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 07:49:46 -0700 (PDT)
-X-Received: by 2002:a5d:4d0c:0:b0:228:cd9f:5a4c with SMTP id
- z12-20020a5d4d0c000000b00228cd9f5a4cmr2462176wrt.138.1662562186396; Wed, 07
- Sep 2022 07:49:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220907054805.v2.1.I1168feec10de16e0f130dfe72ce7976762597dba@changeid>
-In-Reply-To: <20220907054805.v2.1.I1168feec10de16e0f130dfe72ce7976762597dba@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 7 Sep 2022 07:49:34 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XEkPfU9wjwGrp59QJDAspUbWwmOTSZfE1Y5PWt1w309w@mail.gmail.com>
-Message-ID: <CAD=FV=XEkPfU9wjwGrp59QJDAspUbWwmOTSZfE1Y5PWt1w309w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: elants_i2c: Add
- eth3915n touchscreen chip
-To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Bob Moragues <moragues@chromium.org>,
-        Yunlong Jia <yunlong.jia@ecs.com.tw>,
-        Henry Sun <henrysun@google.com>,
-        David Heidelberg <david@ixit.cz>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=dgmGxDNFvXOm4yqWSsGec1/H6R6opGE/962d6kVCRow=;
+        b=tEU5wsa6dXCkrQCj0yC/8LcfEPqrOwOa8FpHSXKuwHIUEbLzhRF2ZBvP2eKTFsqYc9
+         w35a+7PLoaz148QCzxvsqdOjlop88p/OpaQvZigfQBzDWmYLcCv3TDpoyXtzd1I6uMS+
+         krYkZqUIKFEJZl8URpbqRGq08KocrGiGKotw2faidhiM3WgGZfU5iXmSANbRTaBjrnaR
+         46eRETU1UO/xmt/ObyjKLkiKheh8uB+bDdRtksmAUyaMSE1wsba26dqAuOg1kLMCJRsk
+         Nj5zPH+ccotNL+UDk7fFNyuLDcNW02SQJJQTHRT1s2Z5pvEeKCPLcBOzmowqjLcfHpzK
+         T3Mg==
+X-Gm-Message-State: ACgBeo3xMynkH0KPE60mb6adpK3vJONep3aqKLqOEwF6kdYKpggIgOac
+        Vnu+x2PK2yDi+dq9NbR/lQ==
+X-Google-Smtp-Source: AA6agR7x9v7wP2nBGNjRo3wjG7lFeYRzAJmOxl1KTPvxbC/LQ9wJFFOFFpzdFX8XGRS3VTiScqNXEQ==
+X-Received: by 2002:a05:6808:1487:b0:344:8cb8:da49 with SMTP id e7-20020a056808148700b003448cb8da49mr12198907oiw.90.1662563608187;
+        Wed, 07 Sep 2022 08:13:28 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q6-20020a0568080ec600b00342ece494ffsm6606976oiv.46.2022.09.07.08.13.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 08:13:27 -0700 (PDT)
+Received: (nullmailer pid 3457341 invoked by uid 1000);
+        Wed, 07 Sep 2022 15:13:26 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Smitha T Murthy <smitha.t@samsung.com>
+Cc:     linux-kernel@vger.kernel.org, aakarsh.jain@samsung.com,
+        andi@etezian.org, david.plowman@raspberrypi.com,
+        dillon.minfei@gmail.com, stanimir.varbanov@linaro.org,
+        jernej.skrabec@gmail.com, andrzej.hajda@intel.com,
+        hverkuil-cisco@xs4all.nl, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        aswani.reddy@samsung.com, benjamin.gaignard@collabora.com,
+        m.szyprowski@samsung.com, ezequiel@vanguardiasur.com.ar,
+        pankaj.dubey@samsung.com, krzk+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        mchehab@kernel.org, linux-fsd@tesla.com, alim.akhtar@samsung.com
+In-Reply-To: <20220907064715.55778-2-smitha.t@samsung.com>
+References: <20220907064715.55778-1-smitha.t@samsung.com>        <CGME20220907063313epcas5p114f793010fd0f2797e93bd83ed18a1d7@epcas5p1.samsung.com> <20220907064715.55778-2-smitha.t@samsung.com>
+Subject: Re: [Patch v2 01/15] dt-bindings: media: s5p-mfc: Add new DT schema for MFC
+Date:   Wed, 07 Sep 2022 10:13:26 -0500
+Message-Id: <1662563606.630951.3457340.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, Sep 6, 2022 at 10:52 PM Yunlong Jia
-<yunlong.jia@ecs.corp-partner.google.com> wrote:
->
-> Add an elan touch screen chip eth3915n.
-> This chip requires more delay time than the eth3500.
->
-> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.com.tw>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+On Wed, 07 Sep 2022 12:17:01 +0530, Smitha T Murthy wrote:
+> Adds DT schema for s5p-mfc in yaml format
+> 
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
 > ---
->
-> (no changes since v1)
+>  .../devicetree/bindings/media/s5p-mfc.txt     |  77 +------------
+>  .../bindings/media/samsung,s5p-mfc.yaml       | 109 ++++++++++++++++++
+>  2 files changed, 110 insertions(+), 76 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
+> 
 
-Technically that's not true. You changed your Signed-off-by between v1
-and v2. That would be something to mention in the changelog.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Also: I suspect that when a maintainer lands your patch that they'll
-get into trouble. That's because your email was sent from
-"yunlong.jia@ecs.corp-partner.google.com" but your "Signed-off-by" was
-"yunlong.jia@ecs.com.tw". If I try grabbing your patch from the
-mailing lists, applying it, and then running it through "checkpatch":
+yamllint warnings/errors:
 
- ./scripts/checkpatch.pl
-0001-input-touchscreen-elants_i2c-Add-eth3915n-touchscree.patch
-WARNING: From:/Signed-off-by: email address mismatch: 'From: Yunlong
-Jia <yunlong.jia@ecs.corp-partner.google.com>' != 'Signed-off-by:
-Yunlong Jia <yunlong.jia@ecs.com.tw>'
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/media/samsung,s5p-mfc.example.dts:21.11-12 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/media/samsung,s5p-mfc.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1420: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-If I had to guess, the problem is with Google's SMTP servers. If you
-logged into the SMTP server with your "corp-partner" address then
-Google's SMTP server will automatically re-write your "From" address
-to be whatever address you logged in with. I'd guess your options are:
+See https://patchwork.ozlabs.org/patch/
 
-1. Use an official SMTP server for "ecs.com.tw"
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-...or...
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-2. I _suspect_ that it will work to set the git config
-"sendemail.envelopeSender" to
-"yunlong.jia@ecs.corp-partner.google.com". I haven't tested this but I
-think it'll work.
+pip3 install dtschema --upgrade
 
-Note that when you send a v3, make sure to carry David Heidelberg's Ack.
+Please check and re-submit.
 
--Doug
