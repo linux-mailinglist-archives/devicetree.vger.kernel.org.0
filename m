@@ -2,282 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 753075B1060
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 01:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F5E05B10AB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 01:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229974AbiIGX3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 19:29:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38928 "EHLO
+        id S229630AbiIGXyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 19:54:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbiIGX33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 19:29:29 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70FA0DF2
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 16:29:24 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id e68so3087841pfe.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 16:29:24 -0700 (PDT)
+        with ESMTP id S229437AbiIGXyG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 19:54:06 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256DDCEB3F;
+        Wed,  7 Sep 2022 16:54:05 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id a22so11690293qtw.10;
+        Wed, 07 Sep 2022 16:54:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=26wB+6oXeV+aXPEoFQTjCmUsxTTyO/pi90w6t818OkM=;
-        b=U1fDmxOvdHdgBxeIILx9x2+dLBCv/pMqLs1GzGsq7/ItBQYLs6cDgF2gqlrN930pFn
-         RV8JxEr8o2vnEHMVTkb7x243vJB45shDFUNxmTHMJbKpcnotqzMCVVen6KVaibOdDx1G
-         dIu9pgcVDFluuZikhsozAcGVXt7AfBTaupFHI=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=UDapgCqCrioyyjd1HYg2i4dYX+eXGdOastwXguzpfCQ=;
+        b=TioULE1BzouWQROPIFZtfg3wNszdfL/HSty7GvGw7IhAVcVu6sFjodz/HSOvHz+Upz
+         b/aTQXvIWrSBxB6BJpIePmoBvx6uURHcuVUpB1NIAQFT8qzlM5v1ev/R909VnvjH97s9
+         XiUqqD9CDEF6Gi0983EZDOPNphWJWhDZ0ZVMX2KJj4e6/2XjDl2QSWWghWFE7bhHnpdY
+         GxEZ42VDYECeRM1oPy4aKxjZu84dqNZzZp9y7UyXJw4Doxj5dIQT1sEcz69Eq/ABgIC+
+         +ZFTqwW8pmvAIKqKrzH5ASBxBO2qy+pHBKY/ZXt0jzK4QXkPlU+gDKyewA9TtDFw0zYj
+         AD0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=26wB+6oXeV+aXPEoFQTjCmUsxTTyO/pi90w6t818OkM=;
-        b=G3t4PlIE1kKWprWb9DL+285fWL0zDZ057cSO7bUdY2Fqs+ZPNn1rBM/2uBi/0YV46E
-         1PcxKjuMJktbjQeLozIrY/Ne6uXiwZePsFNA4Ukb4XJ2su4nJgwjFjj00FT437uD9JDw
-         AaszjV/Vbc1HRfWPRs+dtTKbzT2YiUpr4HXRMJcanQLQNnlfDspieW3M4FUBDtXMzsXH
-         DWpHq1GF4oXr5F+KK/j53PIqlQ7ViKOhkkLNHreJst2nzDhzfOrwqb4KJWsE1R/S/PXb
-         tVRIOEt/h67Bo4VX4kXxDh+gi58RvopR1LGRytxMF2hcv8AZIYKiPx7mhxdyaTOOli2V
-         NZDA==
-X-Gm-Message-State: ACgBeo2hnpJuHlJFlBH2MSVjw2mMCLjm6bHM+0ZYeQudf9jbeVMvg9h+
-        WEauqoY3wrUB8OAfjfYghi07kQ==
-X-Google-Smtp-Source: AA6agR5b7K8tACMSsGn6UNcBaEz94v2BcGAn53I1UyCfWlngqmdPNuJdvAeaDzei0kkefy6JhblGJw==
-X-Received: by 2002:aa7:9193:0:b0:536:62e6:1a84 with SMTP id x19-20020aa79193000000b0053662e61a84mr6150333pfa.20.1662593363930;
-        Wed, 07 Sep 2022 16:29:23 -0700 (PDT)
-Received: from jwerner-p920.mtv.corp.google.com ([2620:15c:202:201:1cee:f8f:cc9f:568f])
-        by smtp.gmail.com with ESMTPSA id g6-20020a17090a708600b002000dabc356sm201521pjk.45.2022.09.07.16.29.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 16:29:23 -0700 (PDT)
-From:   Julius Werner <jwerner@chromium.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Julius Werner <jwerner@chromium.org>
-Subject: [PATCH 4/4 v2] dt-bindings: memory: Add jedec,lpddrX-channel binding
-Date:   Wed,  7 Sep 2022 16:29:14 -0700
-Message-Id: <20220907232914.243502-4-jwerner@chromium.org>
-X-Mailer: git-send-email 2.37.2.789.g6183377224-goog
-In-Reply-To: <20220907232914.243502-1-jwerner@chromium.org>
-References: <20220907232914.243502-1-jwerner@chromium.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=UDapgCqCrioyyjd1HYg2i4dYX+eXGdOastwXguzpfCQ=;
+        b=k1tqfViebmLdLC9dXilTJ26nMS+UPMKuKo2iUYmjeLsKgOn3mUPiQCRUSyQYayPnem
+         5aysmgZVndABgbrTMf3tV16SXMAUb55sM8ubHBJ/a2fev/qxY/Y3vVhhq4wwpZS6fJ+b
+         dMjBQysXXZCPiPWYSmJqVz5jzSWV9eJWyZ7em+HfWU4WFgrEOdFmBQa3KJBvjOZ38PTx
+         SYKZDC2ukkNTD+8JCkAQE4PQ6ICKsorYtkQ2oQ2ToOKfOWRGDzaedRbhd4UBAA2BJNRp
+         K6xrB+2usHid6mpO/u+Kz3PYsQ+bSgdkeiN/a45FBDoTxx26L4iJWdZ94HSvb2/Stxbu
+         Zr7w==
+X-Gm-Message-State: ACgBeo39T7UIhFX0axbdsz3+vDTYeFg3pOCHkYJG+qpVm6rgPQxI0re3
+        SQjZqmvRn8okcMQC8JXMTN2zgvlHOk4=
+X-Google-Smtp-Source: AA6agR63pXwIsoyMhnZfuZhGar6/IWAVYl+yIoMDQefOhI+Zh0Cq6uASRaSZwNWx3XJwOn7FQTd67g==
+X-Received: by 2002:a05:622a:1196:b0:342:f7a9:a138 with SMTP id m22-20020a05622a119600b00342f7a9a138mr5720972qtk.344.1662594844305;
+        Wed, 07 Sep 2022 16:54:04 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:e04f:ce6d:5ddb:39bc? ([2600:1700:2442:6db0:e04f:ce6d:5ddb:39bc])
+        by smtp.gmail.com with ESMTPSA id d6-20020a05620a240600b006c91ca45b1bsm8344027qkn.55.2022.09.07.16.54.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Sep 2022 16:54:02 -0700 (PDT)
+Message-ID: <973f7127-8165-45f6-071f-04360046b7d7@gmail.com>
+Date:   Wed, 7 Sep 2022 18:54:02 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] driver: of: overlay: demote message to warning
+Content-Language: en-US
+To:     Daniel Walker <danielwa@cisco.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     xe-linux-external@cisco.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220907230709.271889-1-danielwa@cisco.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20220907230709.271889-1-danielwa@cisco.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a new device tree binding for an LPDDR channel to serve
-as a top-level organizing node for LPDDR part nodes nested below it. An
-LPDDR channel needs to have an "io-width" property to describe its width
-(this is important because this width does not always match the io-width
-of the part number, indicating that multiple parts are wired in parallel
-on the same channel), as well as one or more nested "rank@X" nodes.
-Those represent information about the individual ranks of each LPDDR
-part connected on that channel and should match the existing
-"jedec,lpddrX" bindings for individual LPDDR parts.
+On 9/7/22 18:07, Daniel Walker wrote:
+> This warning message shows by default on the vast majority of overlays
+> applied. Despite the text identifying this as a warning it is marked
+> with the loglevel for error. At Cisco we filter the loglevels to only
+> show error messages. We end up seeing this message but it's not really
+> an error.
+> 
+> For this reason it makes sense to demote the message to the warning
+> loglevel.
+> 
+> Cc: xe-linux-external@cisco.com
+> Signed-off-by: Daniel Walker <danielwa@cisco.com>
+> ---
+>  drivers/of/overlay.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index bd8ff4df723d..4ae276ed9a65 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -358,7 +358,7 @@ static int add_changeset_property(struct overlay_changeset *ovcs,
+>  	}
+>  
+>  	if (!of_node_check_flag(target->np, OF_OVERLAY))
+> -		pr_err("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
+> +		pr_warn("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
+>  		       target->np, new_prop->name);
+>  
+>  	if (ret) {
 
-New platforms should be using this node -- the existing practice of
-providing a raw, toplevel "jedec,lpddrX" node without indication of how
-many identical parts are in the system should be considered deprecated.
+NACK
 
-Signed-off-by: Julius Werner <jwerner@chromium.org>
----
- .../ddr/jedec,lpddr-channel.yaml              | 146 ++++++++++++++++++
- .../ddr/jedec,lpddr-props.yaml                |  10 +-
- 2 files changed, 155 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
+This is showing a real problem with the overlay.
 
-Changelog:
-
-- v2:
-  - changed $ref for rank subnode to specifically match LPDDR type in
-    compatible string
-  - moved `reg` up to be listed right below `compatible`
-
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
-new file mode 100644
-index 00000000000000..34b5bd153f63e0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
-@@ -0,0 +1,146 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr-channel.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LPDDR channel with chip/rank topology description
-+
-+description:
-+  An LPDDR channel is a completely independent set of LPDDR pins (DQ, CA, CS,
-+  CK, etc.) that connect one or more LPDDR chips to a host system. The main
-+  purpose of this node is to overall LPDDR topology of the system, including the
-+  amount of individual LPDDR chips and the ranks per chip.
-+
-+maintainers:
-+  - Julius Werner <jwerner@chromium.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - jedec,lpddr2-channel
-+      - jedec,lpddr3-channel
-+      - jedec,lpddr4-channel
-+      - jedec,lpddr5-channel
-+
-+  io-width:
-+    description:
-+      The number of DQ pins in the channel. If this number is different
-+      from (a multiple of) the io-width of the LPDDR chip, that means that
-+      multiple instances of that type of chip are wired in parallel on this
-+      channel (with the channel's DQ pins split up between the different
-+      chips, and the CA, CS, etc. pins of the different chips all shorted
-+      together).  This means that the total physical memory controlled by a
-+      channel is equal to the sum of the densities of each rank on the
-+      connected LPDDR chip, times the io-width of the channel divided by
-+      the io-width of the LPDDR chip.
-+    enum:
-+      - 8
-+      - 16
-+      - 32
-+      - 64
-+      - 128
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^rank@[0-9]+$":
-+    type: object
-+    description:
-+      Each physical LPDDR chip may have one or more ranks. Ranks are
-+      internal but fully independent sub-units of the chip. Each LPDDR bus
-+      transaction on the channel targets exactly one rank, based on the
-+      state of the CS pins. Different ranks may have different densities and
-+      timing requirements.
-+    required:
-+      - reg
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: jedec,lpddr2-channel
-+    then:
-+      patternProperties:
-+        "^rank@[0-9]+$":
-+          $ref: /schemas/memory-controllers/ddr/jedec,lpddr2.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: jedec,lpddr3-channel
-+    then:
-+      patternProperties:
-+        "^rank@[0-9]+$":
-+          $ref: /schemas/memory-controllers/ddr/jedec,lpddr3.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: jedec,lpddr4-channel
-+    then:
-+      patternProperties:
-+        "^rank@[0-9]+$":
-+          $ref: /schemas/memory-controllers/ddr/jedec,lpddr4.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: jedec,lpddr5-channel
-+    then:
-+      patternProperties:
-+        "^rank@[0-9]+$":
-+          $ref: /schemas/memory-controllers/ddr/jedec,lpddr5.yaml#
-+
-+required:
-+  - compatible
-+  - io-width
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    lpddr-channel0 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      compatible = "jedec,lpddr3-channel";
-+      io-width = <32>;
-+
-+      rank@0 {
-+        compatible = "lpddr3-ff,0100", "jedec,lpddr3";
-+        reg = <0>;
-+        density = <8192>;
-+        io-width = <16>;
-+        revision-id = <1 0>;
-+      };
-+    };
-+
-+    lpddr-channel1 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      compatible = "jedec,lpddr4-channel";
-+      io-width = <32>;
-+
-+      rank@0 {
-+        compatible = "lpddr4-05,0301", "jedec,lpddr4";
-+        reg = <0>;
-+        density = <4096>;
-+        io-width = <32>;
-+        revision-id = <3 1>;
-+      };
-+
-+      rank@1 {
-+        compatible = "lpddr4-05,0301", "jedec,lpddr4";
-+        reg = <1>;
-+        density = <2048>;
-+        io-width = <32>;
-+        revision-id = <3 1>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-index 92ef660888f318..30267ce701249a 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-@@ -9,7 +9,8 @@ title: Common properties for LPDDR types
- description:
-   Different LPDDR types generally use the same properties and only differ in the
-   range of legal values for each. This file defines the common parts that can be
--  reused for each type.
-+  reused for each type. Nodes using this schema should generally be nested under
-+  an LPDDR channel node.
- 
- maintainers:
-   - Krzysztof Kozlowski <krzk@kernel.org>
-@@ -25,6 +26,13 @@ properties:
-       The latter form can be useful when LPDDR nodes are created at runtime by
-       boot firmware that doesn't have access to static part number information.
- 
-+  reg:
-+    description:
-+      The rank number of this LPDDR rank when used as a subnode to an LPDDR
-+      channel.
-+    minimum: 0
-+    maximum: 3
-+
-   revision-id:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
-     description:
--- 
-2.31.0
-
+-Frank
