@@ -2,168 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5F6B5B090B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 17:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 779CA5B0920
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 17:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbiIGPqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 11:46:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49170 "EHLO
+        id S229517AbiIGPsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 11:48:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbiIGPqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 11:46:12 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F9C71BCC
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 08:46:11 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id l10so1745669plb.10
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 08:46:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=o4ouWFzrxI306Mkvi1g00iFUOC1Xlx6br+pck/+37ak=;
-        b=bQjsydOBwSpAY7GCFbmwkmz20KF84ENWHERlpNxAfBYZ7FGRTHIX45ObOZNpcvPfPq
-         WtebGvv117RbX8FoXmqUjbanzwFJA3BbGbQeW8knzSeBolzxdgrijwlFahBY6yE/cdeB
-         SPSXmE39pQbfdfoS4ISYszBIYoSxFpx2tgt4Q=
+        with ESMTP id S229786AbiIGPsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 11:48:01 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A11DAB9F90;
+        Wed,  7 Sep 2022 08:47:58 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-127dca21a7dso9740590fac.12;
+        Wed, 07 Sep 2022 08:47:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=o4ouWFzrxI306Mkvi1g00iFUOC1Xlx6br+pck/+37ak=;
-        b=Wf6svdJSq+Spt/7ObpnPfX3x5se+bC03CQOTrjG6LuUSzY35U+boaO+GcH5nIwylKI
-         5VmJOzqBKVVVrx6yXYhA5OOWza7wGBFP2Gj/YiudTDjWyPdTk8+paL60WABCjEIbsbtM
-         NNUmfO7QFFTNQ0GumePaMrfCHhie1or43AuIbzJ6Ynu2YljXjjjpZ8aUlVBUTYBeOV6V
-         w+YA0NXVWlYCkFWNLpmz/doOcDEr7TyRTv1IfGt0tNYWyALzMXDpYKlieHLionyaZiIH
-         XYO6QACEU84aZy7SkODLO6rJZn2GctbqBv29k1MLmv7Fh3gZWCEk4OnLf42VjRLbOL6R
-         DYyA==
-X-Gm-Message-State: ACgBeo3PYJJ1G6lh3OODvn/eStSzH8SkgAuOU6M7JCL6DxlLnIqEPd2i
-        HRv3XPmsjY2AyFOaJq/bBXEpcQ==
-X-Google-Smtp-Source: AA6agR4AMLfYmQ/6XnBmEodJgHE0lJ47tpNnT7FEi3eCWWn3qhk3bqkquCUtVFw17urR6r8Qm/afPg==
-X-Received: by 2002:a17:903:204b:b0:176:a6c5:4277 with SMTP id q11-20020a170903204b00b00176a6c54277mr4415234pla.24.1662565571171;
-        Wed, 07 Sep 2022 08:46:11 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:7731:4d19:a7d1:20d])
-        by smtp.gmail.com with UTF8SMTPSA id be7-20020a656e47000000b0041a716cec9esm10595529pgb.62.2022.09.07.08.46.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Sep 2022 08:46:09 -0700 (PDT)
-Date:   Wed, 7 Sep 2022 08:46:06 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Judy Hsiao <judyhsiao@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
-        Judy Hsiao <judyhsiao@google.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Fix Dmic no sound on
- villager-r1
-Message-ID: <Yxi8vnmtowA83WLm@google.com>
-References: <20220826065621.2255795-1-judyhsiao@chromium.org>
- <CAD=FV=VrgrvJb_sJ8AO6pN8dRNXzzOJ9WvngeJrtVYw_wD1Akg@mail.gmail.com>
- <Yw07xSlVpQcXDqe7@google.com>
+        bh=P9M7/bzZ0ZMw/d0qpnlcd3bSu1NtUDhgwC52m6jfjak=;
+        b=ay3OgbdOmmRKaP7uBF4xjWNyjko0xdBI/R4BTiAJ+bGYc5lyszUgyVAaMzpbM/tI2s
+         8u415YkLMaaAQmXhPWnVGQHdVLQOfkZEp+osXK/HoQ/uskwBczh1e96ZdBackJ+Oe3H+
+         UHiyChPYq+zTzLms++uTXAFPQ7OejVuBJ9hJEopOiar/MWMZb/JLv+2haJ5F4b5S1kiD
+         Mrlpcqu7yDU1ero7nFL9y3oiytMgNBvtqMxb5ikxKR9EqADxxxrvEKpGGLrMu0bx8T2K
+         xrycjTbM3reI45VbNP+9w7eE/xFY36Ivf30Ok2Wa40IzX1LnThxuHrbR+1DAE/bomJu1
+         jiTQ==
+X-Gm-Message-State: ACgBeo3LkQGy8lLT51Fgs74wK6ooEB7ZIaLRXA4gFv+G2RhFaGjbYoPD
+        jb+TDdPGQ3Y0tdiHqDR+qg==
+X-Google-Smtp-Source: AA6agR7V8XXJWCZA66/vmCNdtFQHBPBeY7vIpPYKBM+iV7v+1t93G419nZX9b4Lu3VamSExZLcbo0Q==
+X-Received: by 2002:a05:6808:1489:b0:344:7ff8:54e8 with SMTP id e9-20020a056808148900b003447ff854e8mr12233447oiw.195.1662565677655;
+        Wed, 07 Sep 2022 08:47:57 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bm23-20020a0568081a9700b0034480f7eec4sm6558187oib.12.2022.09.07.08.47.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 08:47:57 -0700 (PDT)
+Received: (nullmailer pid 3514416 invoked by uid 1000);
+        Wed, 07 Sep 2022 15:47:56 -0000
+Date:   Wed, 7 Sep 2022 10:47:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Hector Martin <marcan@marcan.st>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rafa__ Mi__ecki <zajec5@gmail.com>,
+        SHA-cyfmac-dev-list@infineon.com, Sven Peter <sven@svenpeter.dev>,
+        van Spriel <arend@broadcom.com>
+Subject: Re: [PATCH net-next 01/12] dt-bindings: net: bcm4329-fmac: Add Apple
+ properties & chips
+Message-ID: <20220907154756.GA3505310-robh@kernel.org>
+References: <YxhMaYOfnM+7FG+W@shell.armlinux.org.uk>
+ <E1oVpmk-005LBL-5U@rmk-PC.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Yw07xSlVpQcXDqe7@google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <E1oVpmk-005LBL-5U@rmk-PC.armlinux.org.uk>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 29, 2022 at 03:20:53PM -0700, Matthias Kaehlcke wrote:
-> On Fri, Aug 26, 2022 at 10:14:58AM -0700, Doug Anderson wrote:
-> > Hi,
-> > 
-> > On Thu, Aug 25, 2022 at 11:56 PM Judy Hsiao <judyhsiao@chromium.org> wrote:
-> > >
-> > > Fix the DMIC no sound issue of villager-r1 by using "PP1800_L2C" as the
-> > > DMIC power source to match the hardware schematic.
-> > >
-> > > This patch:
-> > >    1. set vdd-micb-supply to PP1800_L2C as the MIC Bias voltage regulator.
-> > >    2. In audio-routing, set VA DMIC01~VA DMIC03 to use the vdd-micb-supply
-> > >       setting.
-> > >
-> > > Co-developed-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> > > Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-> > > ---
-> > > Changes since V3:
-> > >   -- Update the commit message and fix extra blank line.
-> > > Changes since V2:
-> > >   -- Update the commit message.
-> > > Changes since V1:
-> > >   -- Update the commit message.
-> > >
-> > > This patch depends on:
-> > > arm64: dts: qcom: sc7280: Add herobrine-villager-r1. [1]
-> > >
-> > > [1] https://patchwork.kernel.org/patch/12929106
-> > 
-> > After applying your [1] then your patch applies without merge
-> > conflicts. However, it still doesn't compile. You also depend on
-> > whatever patch adds the nodes "lpass_va_macro" and "sound" since
-> > you're referencing them in your patch. I haven't been keeping track of
-> > the latest status of all the audio patches, so I myself can't point to
-> > exactly what patches you depend on and whether those patches are ready
-> > to land.
-> > 
-> > In any case, the contents of this patch seem OK assuming the dependent
-> > patches cause something that looks like the current (downstream)
-> > chromeos-5.15 tree.
-> > 
-> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+On Wed, Sep 07, 2022 at 08:47:46AM +0100, Russell King wrote:
+> From: Hector Martin <marcan@marcan.st>
 > 
-> To my best knowledge the dependencies of the audio mess are (roughly in
-> order):
+> This binding is currently used for SDIO devices, but these chips are
+> also used as PCIe devices on DT platforms and may be represented in the
+> DT. Re-use the existing binding and add chip compatibles used by Apple
+> T2 and M1 platforms (the T2 ones are not known to be used in DT
+> platforms, but we might as well document them).
 > 
-> Add support for audio clock gating resets for SC7280 (v8)
-> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=671887
->   ready to land? (patch 2 has a minor comment about SoB tag)
+> Then, add properties required for firmware selection and calibration on
+> M1 machines.
+> 
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> ---
+>  .../net/wireless/brcm,bcm4329-fmac.yaml       | 37 +++++++++++++++++--
+>  1 file changed, 34 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> index 53b4153d9bfc..53ded82b273a 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Broadcom BCM4329 family fullmac wireless SDIO devices
+> +title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
+>  
+>  maintainers:
+>    - Arend van Spriel <arend@broadcom.com>
+> @@ -42,10 +42,16 @@ title: Broadcom BCM4329 family fullmac wireless SDIO devices
+>                - cypress,cyw43012-fmac
+>            - const: brcm,bcm4329-fmac
+>        - const: brcm,bcm4329-fmac
 
-The comment has been addressed in v9:
+If you respin, this compatible can be combined with the enum below.
 
-https://patchwork.kernel.org/project/linux-arm-msm/list/?series=673055
+> +      - enum:
+> +          - pci14e4,43dc  # BCM4355
+> +          - pci14e4,4464  # BCM4364
+> +          - pci14e4,4488  # BCM4377
+> +          - pci14e4,4425  # BCM4378
+> +          - pci14e4,4433  # BCM4387
 
-So it seems all the audio bits should be ready to land.
 
-Satya: please make sure to include change logs in all future patches to
-help reviewers understand what changed in each version.
-
-> Add DT support for audio clock gating resets for SC7280 (v4)
-> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=666480
->   ready to land after dependencies land
-> 
-> Add soundcard support for sc7280 based platforms (v14)
-> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=657417
->   ready to land after dependencies land
-> 
-> Add dtsi for sc7280 herobrine boards that using rt5682 codec (v3)
-> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=644812
->   ready to land after dependencies land
-> 
-> Add new board revision and LTE SKUs for sc7280-villager family (v8)
-> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=663014
->   ready to land after dependencies land
-> 
-> arm64: dts: qcom: sc7280: Fix Dmic no sound on villager-r1 (v4)
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/20220826065621.2255795-1-judyhsiao@chromium.org/
->   ready to land after dependencies land
-> 
-> So it looks like things are generally ready to land, unless [1] needs a
-> re-spin to fix the SoB tag.
-> 
-> m.
-> 
-> [1] https://patchwork.kernel.org/project/linux-arm-msm/patch/1661754153-14813-3-git-send-email-quic_c_skakit@quicinc.com/
+Reviewed-by: Rob Herring <robh@kernel.org>
