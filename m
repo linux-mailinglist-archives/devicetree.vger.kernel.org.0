@@ -2,112 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 551085AFEFE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 10:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F14CE5AFF5D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 10:41:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbiIGIbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 04:31:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49704 "EHLO
+        id S229719AbiIGIlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 04:41:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229806AbiIGIa7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 04:30:59 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA808B995
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 01:30:57 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id z20so15099533ljq.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 01:30:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=HoBu5pVRP0QlH9IyjF/UfBIe/8xVli1mPMeUsv8Z2sM=;
-        b=wHxxXgOaPb0hNl/IJP0P+lOmntLkVF5Yp02OoLnxprSjola21wH2Sl47pU32q2dEho
-         v3+4xYTvBKFcabjwfshFDu0V4rOeDzT3vKP9BSN8wBi2n9N6o3VUuZfJk/9aOwCYHmYS
-         5eRenIKcxScpXLtxpeCdsc/9q4pQJpl15dd9hAKleqeKpx4MORzmNLoMRNLVAhNC1QwY
-         qZicXyBsxF0+0bya/Y9S+aegK5DaKN8X4Qdys0tu7Xhud+l8RuNJUr6xbMxR2ORhwojl
-         mHh8GyIqGcK2PxlP+L3WZR89c+Ov+L4rmZVitja4c5prSHhoLVBW/wi40zB+JmsxLgFd
-         155Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=HoBu5pVRP0QlH9IyjF/UfBIe/8xVli1mPMeUsv8Z2sM=;
-        b=Ipe/6E7HjzrEjbDJ5FMdhQBt51l38XwlSqmvmCQFo8UhsrX27tEbkfNFQrkclYJtqh
-         lvgCgFEBGqh2CnOf5l9fjhCmZcdfm0k4X4vqxuIwCqSw/9HpGiOP1GwF/7fSpkSSGiTR
-         +gXvxbZYnipE/4EwsMU5+dlsALZ/q23qI7IhhRO+vEzZw5lbSrOL25VNVf+fk1MNZZzw
-         +OnkwptPolxU+Tb/PSgchbZxmcS1hkv4qUlPFh+P4aGtwXiGZ7Ize5p0l8jFZTHs6XYi
-         mQ6oLPG93/bBcPPt0x8CDSfIoWiO6EZUaDFclF0MFxWcEJ58eENK0M1lYV8mL6Ahi6th
-         OUDg==
-X-Gm-Message-State: ACgBeo1WLdGzqFahSIiWCXTJnNd5tgCISDAlq8tFN62K5//DnsOA35qJ
-        KzafEVFRYWqMWWBSwEuiY7mWzg==
-X-Google-Smtp-Source: AA6agR7IEanWZYdcRnIeSyrGPg0ZoBPFDp/3VMgyRg9nCW7WCbetSuOiEUA1I1IqmDBXvZBOXapokw==
-X-Received: by 2002:a05:651c:12cb:b0:25b:fa3f:c3f with SMTP id 11-20020a05651c12cb00b0025bfa3f0c3fmr681462lje.364.1662539455364;
-        Wed, 07 Sep 2022 01:30:55 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p15-20020a2eb98f000000b00268d84f8db1sm2467364ljp.92.2022.09.07.01.30.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Sep 2022 01:30:54 -0700 (PDT)
-Message-ID: <7f91afa5-b5bf-4f26-c540-a04e52825248@linaro.org>
-Date:   Wed, 7 Sep 2022 10:30:53 +0200
+        with ESMTP id S229965AbiIGIlV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 04:41:21 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D354A025B;
+        Wed,  7 Sep 2022 01:40:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+        s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=sYUosvy/IXI+Pq5tayhQwK/KikVpP+HTm3sv+P7XxOo=; b=fmQHaJaqQm6xZdrS0B+IAKKJau
+        pK3HLWEH2vdT1KMd7n86LQoxnjFm57zzCBT+OJpNdNWT2xkd0U/je5TozMsurNC9LjZTpGHC5L4kJ
+        yuji36t679In32T/22zTnVGOqMxghF2ZghiSjnjHGVr4PqIx0ceTg0DJznAz7HnX3rDae2fVGgDL1
+        Mr6hQ3MqY55VMj7kAWmLHXS17MjgoQ2fsfxTPCRaAiWFAr/hrotbMHY0bEafpbWdi2qmNfIey6fdO
+        NpJVgT/V8mRuQ+D3oIF4mRwpohyZsZw0w0MIEv/lOxsAr9rbhiqdrgccKEqHXivf7PJpfp9A+YUwY
+        5DUv+JSw==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1oVqaE-00DbXj-GT; Wed, 07 Sep 2022 11:38:54 +0300
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/3] Host1x context isolation on Tegra234
+Date:   Wed,  7 Sep 2022 11:38:41 +0300
+Message-Id: <20220907083844.2486805-1-cyndis@kapsi.fi>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 09/12] dt-bindings: soc: qcom: apr: correct service
- children
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Andy Gross <agross@kernel.org>, alsa-devel@alsa-project.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-References: <20220906121655.303693-1-krzysztof.kozlowski@linaro.org>
- <20220906121655.303693-10-krzysztof.kozlowski@linaro.org>
- <1662486402.667876.780014.nullmailer@robh.at.kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1662486402.667876.780014.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 19:46, Rob Herring wrote:
-> On Tue, 06 Sep 2022 14:16:52 +0200, Krzysztof Kozlowski wrote:
->> The APR bindings were not describing properly children nodes for DAIs.
->> None of the DTSes use unit addresses for the children, so correct the
->> nodes and reference their schema: clock-controller, dais and routing.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../bindings/soc/qcom/qcom,apr.yaml           | 38 +++++++++++++------
->>  .../sound/qcom,q6dsp-lpass-clocks.yaml        | 16 ++------
->>  .../sound/qcom,q6dsp-lpass-ports.yaml         | 16 ++------
->>  3 files changed, 35 insertions(+), 35 deletions(-)
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.example.dtb: gpr: service@1: '#address-cells', '#size-cells', 'apm-dai@1' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
+From: Mikko Perttunen <mperttunen@nvidia.com>
 
-I missed one more place with example to fix.
+Hi all,
 
-Best regards,
-Krzysztof
+this series adds support for Host1x context isolation
+on Tegra234 (Orin). The difference from previous generations
+is that there are two IOMMUs to which engines can be attached
+to, resulting in having to have a set of contexts for each one.
+
+Patches should be applied in order. The first patch is needed
+so that the kernel doesn't attempt to use a context device
+attached to the wrong IOMMU when context stream IDs are present
+in the device tree. The other two patches have a compile time
+dependency.
+
+Thanks,
+Mikko
+
+Mikko Perttunen (3):
+  gpu: host1x: Select context device based on attached IOMMU
+  dt-bindings: Add Host1x context stream IDs on Tegra234
+  arm64: tegra: Add context isolation domains on Tegra234
+
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 19 +++++++++++++++++++
+ drivers/gpu/drm/tegra/uapi.c             |  2 +-
+ drivers/gpu/host1x/context.c             |  5 +++++
+ include/dt-bindings/memory/tegra234-mc.h | 10 ++++++++++
+ include/linux/host1x.h                   |  1 +
+ 5 files changed, 36 insertions(+), 1 deletion(-)
+
+-- 
+2.37.0
+
