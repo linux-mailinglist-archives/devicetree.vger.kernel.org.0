@@ -2,123 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FF745AFBA8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 07:21:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D555AFBB7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 07:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229594AbiIGFVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 01:21:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42292 "EHLO
+        id S229547AbiIGF2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 01:28:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbiIGFVv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 01:21:51 -0400
-Received: from smtp-fw-2101.amazon.com (smtp-fw-2101.amazon.com [72.21.196.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 664127AC3A;
-        Tue,  6 Sep 2022 22:21:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1662528111; x=1694064111;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=bPqlJ+GjeaPi4Ygdk7T8Mj9Y8iSsKAp13cLkUSv1BbA=;
-  b=PAnboWnz2Jlw8xn5/3tacAhPnHOfqduZ3/QD9f7F59No/fTHkrD/vYOm
-   nHyjAIAtFfSqdT9a7QPdJJkjb5BHmKXBjlld3tKKlkIb20RQUvch3dItS
-   rN9gqON4B65ue2KlQheykxXGm8lV165arFdCyQ7H84IYiWVDHUUF56GCt
-   E=;
-X-IronPort-AV: E=Sophos;i="5.93,295,1654560000"; 
-   d="scan'208";a="238396350"
-Subject: Re: [PATCH v4 12/21] dt-bindings: hwmon: (mr75203) add "moortec,
- vm-active-channels" property
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-c92fe759.us-east-1.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-2101.iad2.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 05:21:40 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
-        by email-inbound-relay-iad-1a-c92fe759.us-east-1.amazon.com (Postfix) with ESMTPS id 50798C08A7;
-        Wed,  7 Sep 2022 05:21:37 +0000 (UTC)
-Received: from EX19D013UWA003.ant.amazon.com (10.13.138.202) by
- EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Wed, 7 Sep 2022 05:21:34 +0000
-Received: from EX13MTAUEE002.ant.amazon.com (10.43.62.24) by
- EX19D013UWA003.ant.amazon.com (10.13.138.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
- Wed, 7 Sep 2022 05:21:34 +0000
-Received: from [192.168.96.145] (10.85.143.173) by mail-relay.amazon.com
- (10.43.62.224) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Wed, 7 Sep 2022 05:21:30 +0000
-Message-ID: <1d12aae1-63d9-0b51-a97f-6af9557084ad@amazon.com>
-Date:   Wed, 7 Sep 2022 08:21:30 +0300
+        with ESMTP id S229594AbiIGF2N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 01:28:13 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821388000F;
+        Tue,  6 Sep 2022 22:28:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+        s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Ag5A/RmCropcVrgEGeSl2EI9o9geRtdOi57vqqT+CvE=; b=kQ2pBUusDPefhBlg4MGjWwa8ty
+        +/GdLiFN+gF8drvcCy7WMoe4LgkhG8JbtbwxG79U6GI3M9xRam/Y7NOjUzSv5dFoNWnjwAYzAjy4p
+        HVUbxizz4LyAksmsZCBTh4b/sjr9dbvOhdLXGYPzOmjaM1LfEVY1l0HyQCouemgcXGSWFaiGrx9TO
+        MO3tkQhmX3tebsgXDWXjVOWEe6WYMUUV4jOWswYcYMVbxUt9GkhzSuF0JLalzUVsr2uc1/T02Vtyu
+        QGrANyvBhdh991kfEx3d1v7swBspa7ftTgtWbEpoRk98smXz+uyR0OHH5aYnwFEkhTUSzOkLFpO3A
+        pKKoHL3A==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=[192.168.1.10])
+        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1oVnbR-00Chdy-OB; Wed, 07 Sep 2022 08:27:57 +0300
+Message-ID: <1dabfcbe-7729-1a96-816c-68ae524ed4aa@kapsi.fi>
+Date:   Wed, 7 Sep 2022 08:27:56 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH 0/8] Support for NVDEC on Tegra234
 Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>,
-        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <hhhawa@amazon.com>,
-        <jonnyc@amazon.com>, <andriy.shevchenko@intel.com>,
-        "Farber, Eliav" <farbere@amazon.com>
-References: <20220906083356.21067-1-farbere@amazon.com>
- <20220906083356.21067-13-farbere@amazon.com>
- <20220906170851.GA900242@roeck-us.net>
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <20220906170851.GA900242@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-13.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220906132823.2390953-1-cyndis@kapsi.fi>
+ <68ff1b7e-51e1-f1e5-dac7-5419472e396a@linaro.org>
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+In-Reply-To: <68ff1b7e-51e1-f1e5-dac7-5419472e396a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/6/2022 8:08 PM, Guenter Roeck wrote:
-> On Tue, Sep 06, 2022 at 08:33:47AM +0000, Eliav Farber wrote:
->> Add optional "moortec,vm-active-channels" property to define the number
->> of active channels per VM.
+On 9/6/22 20:50, Krzysztof Kozlowski wrote:
+> On 06/09/2022 15:28, Mikko Perttunen wrote:
+>> From: Mikko Perttunen <mperttunen@nvidia.com>
 >>
->> This shall be useful to avoid exposing sysfs for reading inputs that are
->> not connected to any voltage source.
+>> Hi all,
 >>
->> Signed-off-by: Eliav Farber <farbere@amazon.com>
->> ---
->> V4 -> V3:
->> - Fix DT checker errors.
->>
->> V3 -> V2:
->> - Add "moortec" prefix to property name.
->> - Add explanation why this change is needed.
->>
->>  .../devicetree/bindings/hwmon/moortec,mr75203.yaml     | 10 ++++++++++
->>  1 file changed, 10 insertions(+)
->>
->> diff --git 
->> a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml 
->> b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
->> index 9454576ebb73..2aa4c3618596 100644
->> --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
->> +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
->> @@ -70,6 +70,15 @@ properties:
->>    "#thermal-sensor-cells":
->>      const: 1
->>
->> +  moortec,vm-active-channels:
->> +    description:
->> +      Defines the number of channels per VM that are actually used 
->> and are
->> +      connected to some input source.
->> +      Maximum number of items - number of VMs.
->> +      Maximum value of each item - number of channels.
->> +      Minimum value of each item - 0 (which means entire VM sensor 
->> is nou used).
->
-> s/nou/not/
+>> this series adds support for the HW video decoder, NVDEC,
+>> on Tegra234 (Orin). The main change is a switch from Falcon
+>> to RISC-V for the internal microcontroller, which brings along
+>> a change in how the engine is booted. Otherwise it is backwards
+>> compatible with earlier versions.
+> 
+> You need to describe the dependencies, otherwise I would be free to go
+> with applying memory controllers part.
 
+Hi Krzysztof,
 
-Typo fixed in v5.
+the memory controller patch can be applied independently.
 
---
-Thanks, Eliav
+Thanks,
+Mikko
+
+> 
+> Best regards,
+> Krzysztof
 
