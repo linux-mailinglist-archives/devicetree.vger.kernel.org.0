@@ -2,177 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B365AF870
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 01:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 425435AF8B4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 02:01:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbiIFXfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 19:35:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42474 "EHLO
+        id S229631AbiIGABN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 20:01:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbiIFXfi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 19:35:38 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F649A9D7;
-        Tue,  6 Sep 2022 16:35:37 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id f24so12822773plr.1;
-        Tue, 06 Sep 2022 16:35:37 -0700 (PDT)
+        with ESMTP id S229495AbiIGABM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 20:01:12 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4539780513
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 17:01:09 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id k9so17800239wri.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 17:01:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=s9NrkLOFOiwrxvze0+OqZxOZTWHYdwih/R/5uPMxaAw=;
-        b=FAeJ7s1wkDLpMEkPWuRTPcBGK1/vALFcAOB61wkEQh56wtSc8vhQ9MWN6F23DHZixk
-         M1wqH4oqwEod0oALJYgPH5gXav2ngT3zE8worFcV7Wp048QXN+KYhe73jX/IxxOB9FSB
-         Ohzgcw/B7FP3JjN8x2GroeWrZAKKMxThFsfFdVTq5mhTJaKPxtFQVg6oMj/sr+65JOu1
-         r77VJgXjSIff7LuS7ClV1k1AYNsYgxy4hsix7TssbUHTvhVjv+UaY7LjMxClz0tetwjG
-         PwsiVoQ1m6FwmiZ+ldhNJqkqi0KDHutsCu9E2+Yv80GBRMs5k6Xsi/49DCjI1CW6u21f
-         TekA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=88hXmKXc1thUjeX+tf74vW/rmtLSitNf5zRyTTR2X/k=;
+        b=eXwtNAg/f1lVgmp/xSQDkzlJ/4YWCIlgejhg7VgyBU5ySJjXp3fRoqBT4fdj9kMcqq
+         ZUgTj/9xBxL/srBhbdmiZP3AFNDOQQiWs7UsDcd5IAIk/28uCBWC9ZZAcVC/JVb+EwaY
+         VYKcQTSjnwX3mHaeEvFvT5SgDW4H0JV63y4J6djyoC2XQqk8d+S926gKxdiFzNl8FTk6
+         jQqBQxJPc7b05WJEbc5qTm5LhDYiiSmUvemCJECWuppHfRZrcCLBc1e9QWXwsU22oiQX
+         a5ujYXJnuImgx+Y72jC7eWoCUpapZpE7IHoCK2Zci40QJ1S8He9OtxN7lQ6LQ8XQYpLb
+         2dew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=s9NrkLOFOiwrxvze0+OqZxOZTWHYdwih/R/5uPMxaAw=;
-        b=eAlGbuPbMjyzbehMwpwguPw98jknpe9fKOmOqqDx494G1iH8FHki9yrCyoV6+4Yay/
-         WMCkqNR9MC273LXqrI6qQSuaq6eFvHBrN4+A6N9svWmg0d2BzFCev3JIsCTPiTP3er5X
-         Z4/z8ALRoiASnRrFPtRSccL3Ip78DWT4MbdnyMq9a9b33lsYRKGQvDpuZMYpOrPrCqvu
-         iTHL5cWQe2DzOTWfufHXR4+LFnWUJK1RjsWOoEuIFA8vtjqannMsSzuLoMCMSFXNpbPV
-         c3YhCNdLyx10V1XoRFqTvOXaDeHqZ5Yv5yV7bPabrfmyPZ7iZq6MsAn8XEjRHn4rFmvk
-         b+Nw==
-X-Gm-Message-State: ACgBeo05WcImDK8BNvW+aCBSF72aENfkoFROrmAazWZX6OqP4StUCNRI
-        ZiZUGt/wNFQ4DvNQR1W1Xag=
-X-Google-Smtp-Source: AA6agR5bx+RGHwghUKLTUPZtlXt3CabXU9pnjDXrhBTe2q28V77q+4irJgU5R4ZrRV1jNLaXWraUUA==
-X-Received: by 2002:a17:902:e88d:b0:172:b898:5656 with SMTP id w13-20020a170902e88d00b00172b8985656mr912481plg.63.1662507336732;
-        Tue, 06 Sep 2022 16:35:36 -0700 (PDT)
-Received: from taoren-fedora-PC23YAB4 ([76.132.249.1])
-        by smtp.gmail.com with ESMTPSA id w69-20020a628248000000b00537f16e25d3sm10731530pfd.75.2022.09.06.16.35.29
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=88hXmKXc1thUjeX+tf74vW/rmtLSitNf5zRyTTR2X/k=;
+        b=IA4nRMT5XbnAMVlfxRfyakTNcAjWhHgBT036rpH+meIdq1fKgTfsHc4yQZMQW0Rcx2
+         u16M9nHjDM0ssNWInY0elC+xarDbl1LHPSoHxtLWMRrn88c+WFM8id3q90eJr+TI7wc2
+         CMEsuvhIXMW2FQnnzVah8Sd9kdhko9LIHNLhd6VbhlLLuZ2q3/JKQxjHhCctgxr7+2nH
+         CnPIt+lMFtc4cXtLIc4wujiNeUQxRyJEXwzGHZRopXb+OqMMozELo2dAmOqB/R+9cJ8U
+         XMJveZ9BjmYugwOWMemMYQ5Mew9RykgilRTfb962/5J4nZ7hlRAhGq97voRSRq/o+pNU
+         nSbA==
+X-Gm-Message-State: ACgBeo07eL+0RjDtcXlsWDGhwUheD4FNU9Sbhvgbww8ITpHtoEaKBxDh
+        ElzfxNBV9CA0E62UJ3QtHbmeHQ==
+X-Google-Smtp-Source: AA6agR5KMHp2Gk4iYo0cjhxNJGCk1LA10bMi2+KKdP4BaQDGId3SR9xpUvy5pvUm/EE+Q+8KTflehA==
+X-Received: by 2002:a5d:4150:0:b0:228:dbc4:d26b with SMTP id c16-20020a5d4150000000b00228dbc4d26bmr443503wrq.254.1662508867735;
+        Tue, 06 Sep 2022 17:01:07 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id g13-20020a05600c4ecd00b003a4c6e67f01sm26848613wmq.6.2022.09.06.17.01.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 16:35:35 -0700 (PDT)
-Date:   Tue, 6 Sep 2022 16:35:20 -0700
-From:   Tao Ren <rentao.bupt@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heyi Guo <guoheyi@linux.alibaba.com>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Guangbin Huang <huangguangbin2@huawei.com>,
-        Liang He <windhl@126.com>, Hao Chen <chenhao288@hisilicon.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] ARM: dts: aspeed: elbert: Enable mac3
- controller
-Message-ID: <YxfZOPz/iWVm0G5F@taoren-fedora-PC23YAB4>
-References: <20220905235634.20957-1-rentao.bupt@gmail.com>
- <20220905235634.20957-3-rentao.bupt@gmail.com>
- <YxaS2mS5vwW4HuqL@lunn.ch>
- <YxalTToannPyLQpI@taoren-fedora-PC23YAB4>
- <Yxc1N1auY5jk3yJI@lunn.ch>
- <45cdae58-632a-7cbb-c9d5-74c126ba6a3e@gmail.com>
+        Tue, 06 Sep 2022 17:01:07 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, quic_mkrishn@quicinc.com,
+        agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bryan.odonoghue@linaro.org
+Subject: [PATCH 00/11] qcom,mdss-dsi-ctrl: Remove redundant phy-names from yaml and dtsi
+Date:   Wed,  7 Sep 2022 01:00:54 +0100
+Message-Id: <20220907000105.786265-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <45cdae58-632a-7cbb-c9d5-74c126ba6a3e@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Florian and Andrew,
+phy-names is both inconsistently used and not actually required by the driver.
 
-On Tue, Sep 06, 2022 at 10:05:46AM -0700, Florian Fainelli wrote:
-> 
-> 
-> On 9/6/2022 4:55 AM, Andrew Lunn wrote:
-> > On Mon, Sep 05, 2022 at 06:41:33PM -0700, Tao Ren wrote:
-> > > Hi Andrew,
-> > > 
-> > > On Tue, Sep 06, 2022 at 02:22:50AM +0200, Andrew Lunn wrote:
-> > > > On Mon, Sep 05, 2022 at 04:56:34PM -0700, rentao.bupt@gmail.com wrote:
-> > > > > From: Tao Ren <rentao.bupt@gmail.com>
-> > > > > 
-> > > > > Enable mac3 controller in Elbert dts: Elbert MAC3 is connected to the
-> > > > > onboard switch directly (fixed link).
-> > > > 
-> > > > What is the switch? Could you also add a DT node for it?
-> > > > 
-> > > > > 
-> > > > > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
-> > > > > ---
-> > > > >   arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts | 11 +++++++++++
-> > > > >   1 file changed, 11 insertions(+)
-> > > > > 
-> > > > > diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-> > > > > index 27b43fe099f1..52cb617783ac 100644
-> > > > > --- a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-> > > > > +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-> > > > > @@ -183,3 +183,14 @@ imux31: i2c@7 {
-> > > > >   &i2c11 {
-> > > > >   	status = "okay";
-> > > > >   };
-> > > > > +
-> > > > > +&mac3 {
-> > > > > +	status = "okay";
-> > > > > +	phy-mode = "rgmii";
-> > > > 
-> > > > 'rgmii' is suspicious, though not necessarily wrong. This value is
-> > > > normally passed to the PHY, so the PHY inserts the RGMII delay. You
-> > > > however don't have a PHY. So i assume the switch is inserting the
-> > > > delay? Again, being able to see the DT properties for the switch would
-> > > > be useful.
-> > > > 
-> > > >     Andrew
-> > > 
-> > > Thank you for the quick review!
-> > > 
-> > > The BMC mac3 is connected to BCM53134P's IMP_RGMII port, and there is no
-> > > PHY between BMC MAC and BCM53134P. BCM53134P loads configurations from
-> > > its EEPROM when the chip is powered.
-> > 
-> > So i assume you have the switch RGMII port doing the delays. That is
-> > fine.
-> > 
-> > > Could you please point me an example showing how to describe the switch in
-> > > dts? Anyhow I will need to improve the patch description and comments in
-> > > v2.
-> > 
-> > It looks like drivers/net/dsa/b53 does not support this particular
-> > switch. You could consider extending the driver. See
-> > 
-> > Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-> > 
-> > for documentation of the binding.
-> 
-> Correct the 53134 is not supported at the moment by the b53 driver, however
-> it should not be too hard to support it, if you would be willing to add it,
-> I would be glad to review patches.
-> -- 
-> Florian
+Previous discussion with Krzysztof and Rob suggested to remove the property.
 
-Thank you for the inputs, and I do have plan to dig into dsa drivers and
-work out patches when I get chance, because most FBOSS switches have
-onboard switch chips connecting BMC and Host to the front-panel
-management port.
+https://www.spinics.net/lists/linux-arm-msm/msg116525.html
 
-Specific to this Elbert platform, we don't have plan to configure
-BCM53134 via OpenBMC MDIO (dts), because we expect the switch always
-loads configurations from its EEPROM.
+- Mark as deprecated and not required in yaml
+- Drop from associated dtsi files => grep -r mdss-dsi arch/arm* | grep qcom
 
-I've sent out v2 with more comments in the dts file; could you please
-check and let me know if it's reasonable/acceptable? Thank you.
+Bryan O'Donoghue (11):
+  dt-bindings: msm: dsi-controller-main: Drop redundant phy-names
+  ARM: dts: qcom: apq8064: Drop redundant phy-names from DSI controller
+  ARM: dts: qcom: msm8974: Drop redundant phy-names from DSI controller
+  arm64: dts: qcom: msm8916: Drop redundant phy-names from DSI
+    controller
+  arm64: dts: qcom: msm8996: Drop redundant phy-names from DSI
+    controller
+  arm64: dts: qcom: sc7180: Drop redundant phy-names from DSI controller
+  arm64: dts: qcom: sc7280: Drop redundant phy-names from DSI controller
+  arm64: dts: qcom: sdm660: Drop redundant phy-names from DSI controller
+  arm64: dts: qcom: sdm630: Drop redundant phy-names from DSI controller
+  arm64: dts: qcom: sdm845: Drop redundant phy-names from DSI controller
+  arm64: dts: qcom: sm8250: Drop redundant phy-names from DSI controller
 
+ .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
+ arch/arm/boot/dts/qcom-apq8064.dtsi                             | 1 -
+ arch/arm/boot/dts/qcom-msm8974.dtsi                             | 1 -
+ arch/arm64/boot/dts/qcom/msm8916.dtsi                           | 1 -
+ arch/arm64/boot/dts/qcom/msm8996.dtsi                           | 2 --
+ arch/arm64/boot/dts/qcom/sc7180.dtsi                            | 1 -
+ arch/arm64/boot/dts/qcom/sc7280.dtsi                            | 1 -
+ arch/arm64/boot/dts/qcom/sdm630.dtsi                            | 1 -
+ arch/arm64/boot/dts/qcom/sdm660.dtsi                            | 1 -
+ arch/arm64/boot/dts/qcom/sdm845.dtsi                            | 2 --
+ arch/arm64/boot/dts/qcom/sm8250.dtsi                            | 2 --
+ 11 files changed, 1 insertion(+), 14 deletions(-)
 
-Thanks,
+-- 
+2.37.3
 
-Tao
