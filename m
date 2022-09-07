@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0FD95AFDC0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 09:43:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFAAD5AFDD0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 09:46:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiIGHnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 03:43:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60672 "EHLO
+        id S229971AbiIGHqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 03:46:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbiIGHnS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 03:43:18 -0400
+        with ESMTP id S230017AbiIGHp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 03:45:58 -0400
 Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 503019E0FF;
-        Wed,  7 Sep 2022 00:43:17 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10B983BFA;
+        Wed,  7 Sep 2022 00:45:54 -0700 (PDT)
 Received: from [10.28.39.72] (10.28.39.72) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server id 15.1.2507.6; Wed, 7 Sep 2022 15:43:14 +0800
-Message-ID: <ea0dda97-2f53-0a3f-6168-18b20a4095c0@amlogic.com>
-Date:   Wed, 7 Sep 2022 15:43:14 +0800
+ with Microsoft SMTP Server id 15.1.2507.6; Wed, 7 Sep 2022 15:45:51 +0800
+Message-ID: <aa99e72c-41c8-02d5-c47b-05277b988eb0@amlogic.com>
+Date:   Wed, 7 Sep 2022 15:45:51 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
@@ -25,29 +25,28 @@ Subject: Re: [PATCH RESEND v8 4/5] dt-bindings: nand: meson: convert txt to
  yaml
 Content-Language: en-US
 To:     Rob Herring <robh@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        <linux-kernel@vger.kernel.org>,
-        Victor Wan <victor.wan@amlogic.com>,
+CC:     Miquel Raynal <miquel.raynal@bootlin.com>,
         <linux-mtd@lists.infradead.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        <devicetree@vger.kernel.org>, YongHui Yu <yonghui.yu@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
 References: <20220906060034.2528-1-liang.yang@amlogic.com>
  <20220906060034.2528-5-liang.yang@amlogic.com>
- <1662471645.297810.360952.nullmailer@robh.at.kernel.org>
+ <20220906143021.GA439874-robh@kernel.org>
 From:   Liang Yang <liang.yang@amlogic.com>
-In-Reply-To: <1662471645.297810.360952.nullmailer@robh.at.kernel.org>
+In-Reply-To: <20220906143021.GA439874-robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.28.39.72]
@@ -62,14 +61,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Rob,
 
-I reproduce this error and will fix it next version.
-
-Thanks.
-
-On 2022/9/6 21:40, Rob Herring wrote:
+On 2022/9/6 22:30, Rob Herring wrote:
 > [ EXTERNAL EMAIL ]
 > 
-> On Tue, 06 Sep 2022 14:00:32 +0800, Liang Yang wrote:
+> On Tue, Sep 06, 2022 at 02:00:32PM +0800, Liang Yang wrote:
 >> convert the amlogic,meson-name.txt to amlogic,meson-nand.yaml
 >>
 >> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
@@ -80,30 +75,172 @@ On 2022/9/6 21:40, Rob Herring wrote:
 >>   delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
 >>   create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
 >>
+>> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>> deleted file mode 100644
+>> index 5d5cdfef417f..000000000000
+>> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>> +++ /dev/null
+>> @@ -1,55 +0,0 @@
+>> -Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
+>> -
+>> -This file documents the properties in addition to those available in
+>> -the MTD NAND bindings.
+>> -
+>> -Required properties:
+>> -- compatible : contains one of:
+>> -  - "amlogic,meson-gxl-nfc"
+>> -  - "amlogic,meson-axg-nfc"
+>> -
+>> -- reg        : Offset and length of the register set
+>> -
+>> -- reg-names  : "nfc" is the register set for NFC controller and "emmc"
+>> -		is the register set for MCI controller.
+>> -
+>> -- clocks     :
+>> -	A list of phandle + clock-specifier pairs for the clocks listed
+>> -	in clock-names.
+>> -
+>> -- clock-names: Should contain the following:
+>> -	"core" - NFC module gate clock
+>> -	"device" - parent clock for internal NFC
+>> -
+>> -Optional children nodes:
+>> -Children nodes represent the available nand chips.
+>> -
+>> -Other properties:
+>> -see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
+>> -
+>> -Example demonstrate on AXG SoC:
+>> -
+>> -	nand-controller@7800 {
+>> -		compatible = "amlogic,meson-axg-nfc";
+>> -		reg = <0x0 0x7800 0x0 0x100>,
+>> -		      <0x0 0x7000 0x0 0x800>;
+>> -		reg-names = "nfc", "emmc";
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> -		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+>> -
+>> -		clocks = <&clkc CLKID_SD_EMMC_C>,
+>> -			 <&clkc CLKID_FCLK_DIV2>;
+>> -		clock-names = "core", "device";
+>> -
+>> -		pinctrl-names = "default";
+>> -		pinctrl-0 = <&nand_pins>;
+>> -
+>> -		nand@0 {
+>> -			reg = <0>;
+>> -			#address-cells = <1>;
+>> -			#size-cells = <1>;
+>> -
+>> -			nand-on-flash-bbt;
+>> -		};
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> new file mode 100644
+>> index 000000000000..42634e9c0d3c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> @@ -0,0 +1,88 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mtd/amlogic,meson-nand.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
+>> +
+>> +allOf:
+>> +  - $ref: "nand-controller.yaml"
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> Don't need quotes
+I will fix it
 > 
-> yamllint warnings/errors:
+>> +
+>> +maintainers:
+>> +  - liang.yang@amlogic.com
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - "amlogic,meson-gxl-nfc"
+>> +      - "amlogic,meson-axg-nfc"
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.example.dtb: nand-controller@ffe07800: Unevaluated properties are not allowed ('reg-names' was unexpected)
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> Don't need quotes
+i will fix it
 > 
-> doc reference errors (make refcheckdocs):
-> MAINTAINERS: Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+>> +
+>> +  reg:
+>> +    maxItems: 2
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    minItems: 2
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: core
+>> +      - const: device
+>> +
+>> +patternProperties:
+>> +  "^nand@[0-7]$":
+>> +    type: object
+>> +    properties:
+>> +      reg:
+>> +        minimum: 0
+>> +        maximum: 1
+>> +
+>> +      nand-ecc-mode:
+>> +        const: hw
+>> +
+>> +      nand-ecc-step-size:
+>> +        const: 1024
+>> +
+>> +      nand-ecc-strength:
+>> +        enum: [8, 16, 24, 30, 40, 50, 60]
+>> +        description: |
+>> +          The ECC configurations that can be supported are as follows.
+>> +            meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
+>> +            meson-axg-nfc 8
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/axg-clkc.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    nand-controller@ffe07800 {
+>> +      compatible = "amlogic,meson-axg-nfc";
+>> +      reg = <0xffe07800 0x100>, <0xffe07000 0x800>;
+>> +      reg-names = "nfc", "emmc";
+>> +      interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+>> +      clocks = <&clkc CLKID_SD_EMMC_C>,  <&clkc CLKID_FCLK_DIV2>;
+>> +      clock-names = "core", "device";
+>> +
+>> +      pinctrl-0 = <&nand_pins>;
+>> +      pinctrl-names = "default";
+>> +
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      nand@0 {
+>> +        reg = <0>;
+>> +      };
+>> +    };
+>> +
+>> +...
+>> -- 
+>> 2.34.1
+>>
+>>
 > 
 > .
