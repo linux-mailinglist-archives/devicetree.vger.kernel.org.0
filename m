@@ -2,58 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A058B5AFC58
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 08:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71FF25AFC5C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 08:28:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbiIGG2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 02:28:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56758 "EHLO
+        id S229495AbiIGG2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 02:28:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiIGG2L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 02:28:11 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B24078C00E;
-        Tue,  6 Sep 2022 23:28:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5E3CEB81B6E;
-        Wed,  7 Sep 2022 06:28:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C147C433C1;
-        Wed,  7 Sep 2022 06:28:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662532088;
-        bh=KWq6t8sirh/Dx0hC8hVA1xMEpvcF9InY07/Sx6GZjVo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Dk+troH/mm8ytfmLXVq5/BK3riMgMYefZY+iPzzRvWAiOMuH6Mnumq3C+YFVDi/CN
-         buYa8yU5PV7Ucx4sYMd9eE1KA/s8CEVqxWB+3DH1OtBHXn5uI/DFbDI46pvIK32+DW
-         sdVV4JussUV6VrdQgwLzO7mDSxuTh0pSW+O0VBUbfsgC7RU7rSd3QEKfiWc78bkdwE
-         CvBG7ICYq9+eIqZf2S5LQjSNH0/fsw7SWyy3dAgEmjUXul3NIXS+Lo3eRGrr6qqX3y
-         bChq43AknonEka1tGQ6Jvi5G+q2FokK9HmVVhDu6So/hrsXkKoJCTg6jw5QgmkhFzx
-         TPFFo8m3oBuyg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oVoXj-00074e-B3; Wed, 07 Sep 2022 08:28:11 +0200
-Date:   Wed, 7 Sep 2022 08:28:11 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Andrew Halaney <ahalaney@redhat.com>
-Cc:     agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dianders@chromium.org
-Subject: Re: [PATCH v2] regulator: dt-bindings: qcom,rpmh: Indicate
- regulator-allow-set-load dependencies
-Message-ID: <Yxg5+9lkHnNsI30j@hovoldconsulting.com>
-References: <20220906201959.69920-1-ahalaney@redhat.com>
+        with ESMTP id S229541AbiIGG2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 02:28:43 -0400
+Received: from smtp-fw-9102.amazon.com (smtp-fw-9102.amazon.com [207.171.184.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1195A8E4E0;
+        Tue,  6 Sep 2022 23:28:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1662532124; x=1694068124;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=4cDYIE/7ld7yTLHdxOZK80QRgY+Riw5EdEOFHWUOWjw=;
+  b=WAuIWTzRbbuehMVMHbBDPmnqcbGOErJKagx5NP8ZoNXKMyq4MDLA70ci
+   g6hT9o0UgJv+ly56v1QI7mVnpnMWcWg5DhZKyo4j2rOuQ0AqOxQ3uTCAo
+   kmicjsQA2Dy5GYoVUu/LH/dSUx9cbJ7kmFNANyzKtxXx/CSJXirIeGX1u
+   E=;
+X-IronPort-AV: E=Sophos;i="5.93,295,1654560000"; 
+   d="scan'208";a="256931908"
+Subject: Re: [PATCH v4 02/21] dt-bindings: hwmon: (mr75203) fix "intel,
+ vm-map" property to be optional
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-pdx-2a-5bed4ba5.us-west-2.amazon.com) ([10.25.36.210])
+  by smtp-border-fw-9102.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 06:28:28 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
+        by email-inbound-relay-pdx-2a-5bed4ba5.us-west-2.amazon.com (Postfix) with ESMTPS id D87F181896;
+        Wed,  7 Sep 2022 06:28:25 +0000 (UTC)
+Received: from EX19D013UWB002.ant.amazon.com (10.13.138.21) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.207) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Wed, 7 Sep 2022 06:28:24 +0000
+Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
+ EX19D013UWB002.ant.amazon.com (10.13.138.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Wed, 7 Sep 2022 06:28:24 +0000
+Received: from [192.168.97.69] (10.85.143.172) by mail-relay.amazon.com
+ (10.43.60.234) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Wed, 7 Sep 2022 06:28:21 +0000
+Message-ID: <f638f9bc-b757-c352-7be0-4f9ab6607378@amazon.com>
+Date:   Wed, 7 Sep 2022 09:28:20 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220906201959.69920-1-ahalaney@redhat.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+Content-Language: en-US
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <hhhawa@amazon.com>,
+        <jonnyc@amazon.com>, <andriy.shevchenko@intel.com>,
+        "Farber, Eliav" <farbere@amazon.com>
+References: <20220906083356.21067-1-farbere@amazon.com>
+ <20220906083356.21067-3-farbere@amazon.com>
+ <20220906165359.GA817639@roeck-us.net>
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <20220906165359.GA817639@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-16.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,42 +74,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 06, 2022 at 03:19:59PM -0500, Andrew Halaney wrote:
-> For RPMH regulators it doesn't make sense to indicate
-> regulator-allow-set-load without saying what modes you can switch to,
-> so be sure to indicate a dependency on regulator-allowed-modes.
-> 
-> With this in place devicetree validation can catch issues like this:
-> 
->     /mnt/extrassd/git/linux-next/arch/arm64/boot/dts/qcom/sm8350-hdk.dtb: pm8350-rpmh-regulators: ldo5: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
->             From schema: /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-> 
-> Suggested-by: Johan Hovold <johan@kernel.org>
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+On 9/6/2022 7:53 PM, Guenter Roeck wrote:
+> On Tue, Sep 06, 2022 at 08:33:37AM +0000, Eliav Farber wrote:
+>> Change "intel,vm-map" property to be optional instead of required.
+>>
+>> The driver implementation indicates it is not mandatory to have
+>> "intel,vm-map" in the device tree:
+>>  - probe doesn't fail in case it is absent.
+>>  - explicit comment in code - "Incase intel,vm-map property is not
+>>    defined, we assume incremental channel numbers".
+>>
+>> Fixes: 748022ef093f ("hwmon: Add DT bindings schema for PVT controller")
+>> Signed-off-by: Eliav Farber <farbere@amazon.com>
+>> ---
+>> V3 -> V2:
+>> - Change this patch to be first in the series.
+>> - Add explanation why "intel,vm-map" is not required.
+>>
+>
+> I don't see how this change warrants dropping Rob's Acked-by tag.
+> Am I missing something ? 
 
-Looks good to me.
+My apology. I wasn’t aware I had to keep the Acked-by tag.
+I'll add it in v5.
 
-Reviewed-by: Johan Hovold <johan+kernel@kernel.org>
+--
+Regards, Eliav
 
-> ---
-> 
-> v1: https://lore.kernel.org/linux-arm-msm/20220902185148.635292-1-ahalaney@redhat.com/
-> Changes since v1:
->   - Dropped first two patches in the series as they were user error
->     (thanks Krzysztof for highlighting this!)
->   - No change in the remaining patch
-> 
-> Krzysztof also asked if this patch in particular should apply to other
-> regulators, which I think it should for those regulator's who implement
-> set_mode(). Unfortunately I don't know of a good way to get that
-> information in order to apply it at a broader scope for devicetree
-> regulator validation. At least with this in place RPMH users can get
-> better coverage... if someone has suggestions for how to broaden the
-> scope I'm all ears!
 
-I guess the commit message could have tried to capture that is feature
-of the hardware (as Linux implementation details shouldn't impact the
-binding). And apparently there are regulators that do not need this
-(e.g. RPM).
-
-Johan
