@@ -2,88 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 831B85B1032
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 01:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C70E5B105D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 01:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbiIGXIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 19:08:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40432 "EHLO
+        id S229973AbiIGX3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 19:29:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbiIGXIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 19:08:16 -0400
-X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 07 Sep 2022 16:08:15 PDT
-Received: from alln-iport-2.cisco.com (alln-iport-2.cisco.com [173.37.142.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDA17C3F69
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 16:08:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=1094; q=dns/txt; s=iport;
-  t=1662592095; x=1663801695;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=WIMedRdp/vCdubl76WnqCfmpNc51ZNpLrONKBIeSt70=;
-  b=dWAk3UBS0yBscJyBBtkRMDGLIxhurofad44XoZ/h4UNhATfvNyaBe46B
-   R/r1gPawi5nE7JQfEbvM32W2pWQJfCQMOeIr8WNBhHG/zexkGt69Qr9bq
-   Ma/qgAeqC4ENZz0VKXF+LDpPWGrQLV8eGvl4ea74ZeEeH6Ojsis3mzcxr
-   4=;
-X-IPAS-Result: =?us-ascii?q?A0ATAACkIxljmJBdJa1aHQEBAQEJARIBBQUBgXsIAQsBg?=
- =?us-ascii?q?3k+RYxtiHGdCBSBEQNUCwEBAQ9CBAEBhQaEZwIlNAkOAQIEAQEBAQMCAwEBA?=
- =?us-ascii?q?QEBAQMBAQUBAQECAQcEFAEBAQEBAQEBHRkFDhAnhXWGcAsBRoE+ARKCfYMhA?=
- =?us-ascii?q?6YXgXkygQGIHYFlFIEpAYpshVkcgUlEhAh1hAsfhlUEmBYDCQQHBUpCAwsfD?=
- =?us-ascii?q?hY2AxUDFAMFJAcDGQ8jDQ0EHQwDAwUlAwICGwcCAgMCBhUFAgIXHhg4CAQIB?=
- =?us-ascii?q?CskDwUCBy8FBC8CHgQFBhEIAhYCBgQEBAQVAhAIAggmFwcTMxkBBVkQCSEWB?=
- =?us-ascii?q?igNBQYTAyBHJgUHPg8oMjU5Kx0bCoEOKgkfFQMEBAMCBhMDAyACECwxFAQpE?=
- =?us-ascii?q?xItBytzCQIDImwDAwQoLAMJIR8HKCY8B1kSKAUDAxAiPQYDCQMCJFp9DjEUF?=
- =?us-ascii?q?wUDEBmZB3sTo3WCFZ5Ug1yBRohGlgIaMpZykgMBlwcgoj00hFCBYTqBWzMaC?=
- =?us-ascii?q?BsVgyJRGQ+OOY5XJDE7AgYLAQEDCYgKgkgBAQ?=
-IronPort-Data: A9a23:n+88O6k1cOwF1MnQJ5P0FVLo5gxqJkRdPkR7XQ2eYbSJt1+Wr1Gzt
- xIWX2HSPveMZGKjedB0a4yz9h8G7JfRm4diTlRtqS8xEVtH+JHPbTi7wugcHM8zwunrFh8PA
- xA2M4GYRCwMZiaA4E/raNANlFEkvU2ybuKU5NXsZ2YgHmeIdA970Ug5w79h3dY16TSEK1rlV
- e3a8pW31GCNg1aYAkpMg05UgEoy1BhakGpwUm0WPZinjneH/5UmJM53yZWKEpfNatI88thW6
- Ar05OrREmvxp3/BAz4++1rxWhVirrX6ZWBihpfKMkSvqkAqm8A87ko0HPhbbGUKog6IpNFg1
- s5E6bK8FBgVO6KZzYzxUzEAe81/FbdN9LmCKn+lvInDiUbHaHDrhf5pCSnaP6VBpb0xWj4Ip
- KdecWxRBvyAr7reLLaTRuBqh8knM8DDN4IEsXYmxjbcZRojacGYH/qQu4EJhl/cgOhlEPLUO
- eEAeQFfNiTvIDYeF1QIV64xybLAan7XKm0E9w39SbAMy2zSyhFhlbvgKtzYfvSUSshP2EWVv
- GTL+yL+GB5yHNCS1zuO/262i+Lngyz2QsQRGae++/osh0ecrkQJDxcWFlenifq0kEizX5RYM
- UN80iQ0qrc78kDtStjmQzW3pXeFulgXXN84O/Uz7h2AzqvPpQ+fGm8CTzlcQN8hstQrQT8tk
- FSOmrvU6SdHqraZTzeW8a2Z6GP0MikOJmhEbigBJecY3zX9iIN0izCSZ+1iK6+kkMb8RR/8n
- i+2qSdr0t3/kvU3/6m8+FnGhRelqZ7IUhM5623rsoSNs1gRiGmNOtHA1LTL0RpTBN3DHwXe5
- hDoj+Dbvb5RVcvS/MCYaL9VdIxF8cppJ9E1bbRHJZgq9z2392Wke+i8CxkheR85a67oldIVC
- XI/VCtL75NVeXCtd6IyM8S6Ct8hyu7rEtGNuhHogjhmP8kZmOyvpXEGiausM4bFyxBEfUYXY
- szzTCpUJSxGYZmLNRLvLwvn7Zclxzol2UTYTo3hwhKs3NK2PSDLE+pabQfVNb5os8toRTk5F
- f4CZ6NmLD0CAIXDjtX/reb/0HhTdyFgXMCqwyCpXrfffloO9J4d5w/5mON9JNMNc1V9nebT9
- Xb1QV5D1Ff6nhX6xfaiNBhehEfUdc8n9xoTZHV0VX7xgiRLSdj0ts83KcBoFYTLAcQ+l5aYu
- dFfJZXZahmOIxyakwkggW7V9dQ9LE/x21LWZEJIolEXJvZdeuAAwfe8FiOHycXEJnPfWRcWy
- 1F46j7mfA==
-IronPort-HdrOrdr: A9a23:n6M7jqj4w6xa9IYvsi/vQTRHLnBQXtUji2hC6mlwRA09TyVXra
- yTdZMgpH3JYVkqNk3I9errBEDiewK+yXcK2+gs1N6ZNWGMhILCFu5fBOXZrgEIMheOk9K1rZ
- 0BT0C7Y+eAamSTSq3BkW2FL+o=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.93,298,1654560000"; 
-   d="scan'208";a="934726692"
-Received: from rcdn-core-8.cisco.com ([173.37.93.144])
-  by alln-iport-2.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 07 Sep 2022 23:07:11 +0000
-Received: from localhost.localdomain ([10.25.130.54])
-        by rcdn-core-8.cisco.com (8.15.2/8.15.2) with ESMTP id 287N79Cx032254;
-        Wed, 7 Sep 2022 23:07:09 GMT
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     xe-linux-external@cisco.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] driver: of: overlay: demote message to warning
-Date:   Wed,  7 Sep 2022 16:07:08 -0700
-Message-Id: <20220907230709.271889-1-danielwa@cisco.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229459AbiIGX33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 19:29:29 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF5B2B7E9
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 16:29:21 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id t70so9213321pgc.5
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 16:29:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=nAzRb5IG40N9kD80lZ5f/eFJ3lUDj53vPPmtb3g2dNA=;
+        b=ehzYxHgobx7obM5HHdDeMRSpB773IBQaabyUfdYTjMa+y945g0J9mPBOGR+LNF8RON
+         kfz0/JBcMnTaDtjoQVaFkl6ad1O8zOSnIA/wAJBRDV7JHiLBCz11ms9/gK0LKThoSkw2
+         1/Jk05Bgn/su1PLyKkPwnjsyEAswVGF5HejoQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=nAzRb5IG40N9kD80lZ5f/eFJ3lUDj53vPPmtb3g2dNA=;
+        b=FHL/9HM+03xSJwBOnDKsj5ZCZb2wxKlB3Q8r12W4/SWkNCFwnEgpF2Eq7z4weaKz3T
+         tadcJ6Mbzv5+5aI7D7R5utz9UdiS2GFPxLrXIdO4gvS0198pFyINwDwNkCgMPf6NNUF8
+         IwcjBU7pti7UOd0iSgtmIoybzF3EI5+l15WmagWRT+ZBN9G6IIvJrObjkVBTg9Pb5TwZ
+         vkYno0IbD1jtUFiDxSypxgPHA02yZexF+c9fbDvspaTS/gOS4hLRNSAGb7hKXX2STQ6V
+         LX8LvuSUNIPJxVmVoMluTQjkt3wOuJpXgT+gwh0d7kGltvzNnkrFmGcgdZE2ZpV9E87/
+         CnNw==
+X-Gm-Message-State: ACgBeo0kci26/87JvKnUo3qfLtVnDFhozFpsgQkvHk1v/U+EhF44zle7
+        1ZYctoOR6YfdQ8dBlhJqFiDuwA==
+X-Google-Smtp-Source: AA6agR4hRE71BSSsnmKj9liCm/uZXU6+UW0r4qW60BKhrPdWz9/EkOJlUWuePemEvBGQ+ixkNBPUAw==
+X-Received: by 2002:a05:6a00:1d1a:b0:537:d750:65b5 with SMTP id a26-20020a056a001d1a00b00537d75065b5mr6318852pfx.85.1662593361201;
+        Wed, 07 Sep 2022 16:29:21 -0700 (PDT)
+Received: from jwerner-p920.mtv.corp.google.com ([2620:15c:202:201:1cee:f8f:cc9f:568f])
+        by smtp.gmail.com with ESMTPSA id g6-20020a17090a708600b002000dabc356sm201521pjk.45.2022.09.07.16.29.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 16:29:20 -0700 (PDT)
+From:   Julius Werner <jwerner@chromium.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Julius Werner <jwerner@chromium.org>
+Subject: [PATCH 1/4 v2] dt-bindings: memory: Factor out common properties of LPDDR bindings
+Date:   Wed,  7 Sep 2022 16:29:11 -0700
+Message-Id: <20220907232914.243502-1-jwerner@chromium.org>
+X-Mailer: git-send-email 2.37.2.789.g6183377224-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.25.130.54, [10.25.130.54]
-X-Outbound-Node: rcdn-core-8.cisco.com
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL autolearn=unavailable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,34 +67,216 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This warning message shows by default on the vast majority of overlays
-applied. Despite the text identifying this as a warning it is marked
-with the loglevel for error. At Cisco we filter the loglevels to only
-show error messages. We end up seeing this message but it's not really
-an error.
+The bindings for different LPDDR versions mostly use the same kinds of
+properties, so in order to reduce duplication when we're adding support
+for more versions, this patch creates a new lpddr-props subschema that
+can be referenced by the others to define these common parts. (This will
+consider a few smaller I/O width and density numbers "legal" for LPDDR3
+that are usually not used there, but this should be harmless.)
 
-For this reason it makes sense to demote the message to the warning
-loglevel.
-
-Cc: xe-linux-external@cisco.com
-Signed-off-by: Daniel Walker <danielwa@cisco.com>
+Signed-off-by: Julius Werner <jwerner@chromium.org>
 ---
- drivers/of/overlay.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../ddr/jedec,lpddr-props.yaml                | 52 +++++++++++++++++++
+ .../memory-controllers/ddr/jedec,lpddr2.yaml  | 40 ++------------
+ .../memory-controllers/ddr/jedec,lpddr3.yaml  | 32 ++----------
+ 3 files changed, 60 insertions(+), 64 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
 
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index bd8ff4df723d..4ae276ed9a65 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -358,7 +358,7 @@ static int add_changeset_property(struct overlay_changeset *ovcs,
- 	}
+Changelog:
+
+- v2:
+  - removed minItems
+  - reordered io-width enum from lowest to highest
+  - moved `$ref` below `mainainers`
+  - removed part about undeprecating manufacturer-id
+
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
+new file mode 100644
+index 00000000000000..02700ac3c387ec
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr-props.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common properties for LPDDR types
++
++description:
++  Different LPDDR types generally use the same properties and only differ in the
++  range of legal values for each. This file defines the common parts that can be
++  reused for each type.
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++properties:
++  revision-id:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      Revision IDs read from Mode Register 6 and 7. One byte per uint32 cell (i.e. <MR6 MR7>).
++    maxItems: 2
++    items:
++      minimum: 0
++      maximum: 255
++
++  density:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Density in megabits of SDRAM chip. Decoded from Mode Register 8.
++    enum:
++      - 64
++      - 128
++      - 256
++      - 512
++      - 1024
++      - 2048
++      - 4096
++      - 8192
++      - 16384
++      - 32768
++
++  io-width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      IO bus width in bits of SDRAM chip. Decoded from Mode Register 8.
++    enum:
++      - 8
++      - 16
++      - 32
++
++additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+index 9d78f140609b6c..65f4926d39c254 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+@@ -9,6 +9,9 @@ title: LPDDR2 SDRAM compliant to JEDEC JESD209-2
+ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
  
- 	if (!of_node_check_flag(target->np, OF_OVERLAY))
--		pr_err("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
-+		pr_warn("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
- 		       target->np, new_prop->name);
++allOf:
++  - $ref: "jedec,lpddr-props.yaml#"
++
+ properties:
+   compatible:
+     oneOf:
+@@ -41,41 +44,6 @@ properties:
+       Property is deprecated, use revision-id instead.
+     deprecated: true
  
- 	if (ret) {
+-  revision-id:
+-    $ref: /schemas/types.yaml#/definitions/uint32-array
+-    description: |
+-      Revision IDs read from Mode Register 6 and 7. One byte per uint32 cell (i.e. <MR6 MR7>).
+-    minItems: 2
+-    maxItems: 2
+-    items:
+-      minimum: 0
+-      maximum: 255
+-
+-  density:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description: |
+-      Density in megabits of SDRAM chip. Obtained from device datasheet.
+-    enum:
+-      - 64
+-      - 128
+-      - 256
+-      - 512
+-      - 1024
+-      - 2048
+-      - 4096
+-      - 8192
+-      - 16384
+-      - 32768
+-
+-  io-width:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description: |
+-      IO bus width in bits of SDRAM chip. Obtained from device datasheet.
+-    enum:
+-      - 32
+-      - 16
+-      - 8
+-
+   tRRD-min-tck:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     maximum: 16
+@@ -168,7 +136,7 @@ required:
+   - density
+   - io-width
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
+index 48908a19473c3f..91b64943062472 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
+@@ -9,6 +9,9 @@ title: LPDDR3 SDRAM compliant to JEDEC JESD209-3
+ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
+ 
++allOf:
++  - $ref: "jedec,lpddr-props.yaml#"
++
+ properties:
+   compatible:
+     items:
+@@ -20,24 +23,6 @@ properties:
+     const: 1
+     deprecated: true
+ 
+-  density:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description: |
+-      Density in megabits of SDRAM chip.
+-    enum:
+-      - 4096
+-      - 8192
+-      - 16384
+-      - 32768
+-
+-  io-width:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description: |
+-      IO bus width in bits of SDRAM chip.
+-    enum:
+-      - 32
+-      - 16
+-
+   manufacturer-id:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: |
+@@ -45,15 +30,6 @@ properties:
+       deprecated, manufacturer should be derived from the compatible.
+     deprecated: true
+ 
+-  revision-id:
+-    $ref: /schemas/types.yaml#/definitions/uint32-array
+-    minItems: 2
+-    maxItems: 2
+-    items:
+-      maximum: 255
+-    description: |
+-      Revision value of SDRAM chip read from Mode Registers 6 and 7.
+-
+   '#size-cells':
+     const: 0
+     deprecated: true
+@@ -206,7 +182,7 @@ required:
+   - density
+   - io-width
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
 -- 
-2.25.1
+2.31.0
 
