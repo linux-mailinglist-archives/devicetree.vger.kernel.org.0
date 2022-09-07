@@ -2,147 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 695625B012E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:03:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7D225B0181
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiIGKDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 06:03:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38840 "EHLO
+        id S230150AbiIGKRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 06:17:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230148AbiIGKCv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:02:51 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5159179604
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 03:02:35 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 29so13836684edv.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 03:02:35 -0700 (PDT)
+        with ESMTP id S230347AbiIGKQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:16:58 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49F5AB8A7E
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 03:16:06 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id c10so5902861ljj.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 03:16:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=MFgYf5i+p8HnoiZj78ub5+J+EdkgxQwFyuduhPa5CXE=;
-        b=NWBRDSGoTo4Kh/kDLYYCBfh6kBK3XcY3jeUptXhD2LeP8OUt5DLBoUbsVn3lDiqR2m
-         cdcuCZnbH5JeYs3XuEyVXUkn1VDoQh+LYblo47u4orckEDjn9PN41LoOV/VdI7RU+vN/
-         3XZMrdlpAIIuKLBJP+YS3w7HKlEfZ0xLzy9gq2To4keduXXlu6MT/X5mBUL49sf6bomb
-         h70GZSIINXBeRVa46OBD6raACPOY/fiS69JRUhS5B48t5N8HSROwe5qqeC2w07PUaGav
-         KBZApMS2ed8wZDt2ts/eOlAiWVd5jdLO/dBXObZA4AAjPrYeeFjUR36exEobQaVEWDuU
-         vPrA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=3cA7dqgK29hXFF6uJvQ4BHeA+tHJfj6koNcu22+1Hr8=;
+        b=Hy6HBAQezdf60tWZN7LIjziTj7M5/9xzdLhTneso24T91epLE3nPn9M8nxyWLbW3il
+         Q19WX3z+2P+rJzT7gZ7RysB5pIGPedgOjzYPe1GNmlgSIW4IhKgsGWvaF0uKalQLJmNC
+         sIKZY0M9eXiTUWMoH8SQ+sbPS+PjyFd7bwoxV1Vx6uD7kFv3tZAHuPWcCc93bFlVqqgz
+         ffvw96bh2JvBb8zkJ07L+PpwTfVW309r0MSM6cioLCDhaFaVj8tfzN+8w05a4x3BwnbB
+         LLbicUcFjmSf3QtHvhInoZ4q3uuC1hRUFVAT2BbW2w454cw8bNypO+Hm/AeVTZj3Tn/D
+         vuzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=MFgYf5i+p8HnoiZj78ub5+J+EdkgxQwFyuduhPa5CXE=;
-        b=YhM5FAxngRvLbrEi6H806ee1T7GbNsEc3xntOVr5JSWLLEkP0mQwGHLOKbiozgz6L8
-         Mq/gvH8i27sZoXv+RcxOgYqx2GYUYkKK3+lDbnVL6IHRg58todiyB6aqiR+UIJ6GPKlD
-         TButogJSIyDF5LIj6PNHFYAbJAx+eJiJP4nGkPSPh9jYun6IvSKMXZGJQJBnj0AtqWhJ
-         KHCp+dmVGVy+iDP7bC07gQ1pHudDX+7bYZQhnrMwYj4XPbqbJJVS73htomNah16mH/UW
-         80SpG5NrvoR/DaZz5c5/PJuNez1AzddrMt3JVPebZRI2EPJmqD2pHQnXtGnLLPMtptGR
-         BI4A==
-X-Gm-Message-State: ACgBeo3NLfMJVkaTbo4bJxTH5JP4EVp4vAZDU2Bgl2m5W+6RpbBYw085
-        xCrpMEj29MpdKjt9sN8untkTR6rIPN7GO4AwWG0zVw==
-X-Google-Smtp-Source: AA6agR6ZLTZLfrhufuCQPkbnhVtzEViucDISa1L3We20Da0CSRHp4PvYtWUKlWfhrloyJvPt30RjLqJ6qOK2oWprULo=
-X-Received: by 2002:a05:6402:354d:b0:448:1f80:e737 with SMTP id
- f13-20020a056402354d00b004481f80e737mr2509997edd.69.1662544953645; Wed, 07
- Sep 2022 03:02:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <YxdInl2qzQWM+3bs@shell.armlinux.org.uk>
-In-Reply-To: <YxdInl2qzQWM+3bs@shell.armlinux.org.uk>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 7 Sep 2022 12:02:22 +0200
-Message-ID: <CAMRc=Mc7dgctBMKukH1FS2MA1qMbhN=GxEACorwJAv9Mmzjh7A@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] Add Apple Mac System Management Controller GPIOs
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, devicetree <devicetree@vger.kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-doc <linux-doc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Petr Mladek <pmladek@suse.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=3cA7dqgK29hXFF6uJvQ4BHeA+tHJfj6koNcu22+1Hr8=;
+        b=E6VlwnHTQMzynK6rCjBXjHNegSmfN0qQPZn5at0eS4MADZDzg6Widx548uhZBug5WS
+         TIyDH4xdR19qmiRDjMiiff+IoJzXoV23uLc43ccR/JWhAPPXbIX0popKO16HvE/WEOr5
+         Kzqfb+khbJ6c6wh4YvN+0nPs1CdTcBtuPuNyAWWeXrCJSPnlgWEsHOvybgdz7tdUzjnK
+         0ijp3Zsc8WW/cj7AR5dIx7CXmieslZYwryPY/KIFEMWVjGcyw9z+WtwXN+gbVCP7H8zD
+         DlGjfFPJhmGLmR/pNrYUnS19AfhvgVOauBP7uYV6bxF8k6ndCM8HbY0Wo6y9mE2sTSoB
+         GqOA==
+X-Gm-Message-State: ACgBeo2d/oXnszuAtKaIAxKpLIblJCYrRnX1OThOG0UMPpVRtCq86UBK
+        uH0YtokPsG5+N4F0Af01re0KLQ==
+X-Google-Smtp-Source: AA6agR5kMxBjpX/4YyjspCvud2EcoThLtvD9lUV+btA0OeIkvy3ClJ+phX0euGGDKW9B8lVVVSNYJw==
+X-Received: by 2002:a2e:a309:0:b0:26a:c623:264 with SMTP id l9-20020a2ea309000000b0026ac6230264mr717373lje.267.1662545764599;
+        Wed, 07 Sep 2022 03:16:04 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u9-20020a2ea169000000b0026ab0e480bcsm960734ljl.39.2022.09.07.03.16.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 03:16:04 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 00/14] ASoC/qcom/arm64: Qualcomm ADSP DTS and binding fixes
+Date:   Wed,  7 Sep 2022 12:15:42 +0200
+Message-Id: <20220907101556.37394-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 6, 2022 at 3:18 PM Russell King (Oracle)
-<linux@armlinux.org.uk> wrote:
->
-> Hi,
->
-> [Andy dropped from the Cc lists; he's taking a break.]
->
-> This series adds support for the Apple Mac GPIO driver. These GPIOs
-> are hadled via the System Management Controller.
->
-> The first two patches add the DT binding documentation for the new
-> drivers. No changes from the first posting (I think there's still
-> some discussion going on about how best to handle these.)
->
-> Patch 3 adds apple_rtkit_poll() and has had no changes since v1.
->
-> Patch 4 is new, extending the existing FourCC format code to be able
-> to print other endian FourCC codes.
->
-> Patch 5 adds the SMC core and rtkit driver. Changes in v2 include
-> properly limiting the data size (since it is limited to the width of
-> the size fields in the mailbox messages, not the shmem size) and also
-> to properly cleanup after failure to send the initialisation message.
->
-> Patch 6 adds the SMC GPIO support. Changes in v2 include some of the
-> issues Andy pointed out,
->
-> Patch 7 is new, adding the SMC nodes to the dtsi.
->
-> Patches taken from the Asahi project.
->
->  Documentation/core-api/printk-formats.rst          |  32 ++
->  .../devicetree/bindings/gpio/gpio-macsmc.yaml      |  28 ++
->  .../devicetree/bindings/mfd/apple,smc.yaml         |  65 +++
->  arch/arm64/boot/dts/apple/t8103.dtsi               |  26 ++
->  drivers/gpio/Kconfig                               |  11 +
->  drivers/gpio/Makefile                              |   1 +
->  drivers/gpio/gpio-macsmc.c                         | 242 +++++++++++
->  drivers/platform/Kconfig                           |   2 +
->  drivers/platform/Makefile                          |   1 +
->  drivers/platform/apple/Kconfig                     |  49 +++
->  drivers/platform/apple/Makefile                    |  11 +
->  drivers/platform/apple/smc.h                       |  28 ++
->  drivers/platform/apple/smc_core.c                  | 249 +++++++++++
->  drivers/platform/apple/smc_rtkit.c                 | 453 +++++++++++++++++++++
->  drivers/soc/apple/rtkit.c                          |   6 +
->  include/linux/mfd/macsmc.h                         |  86 ++++
->  include/linux/soc/apple/rtkit.h                    |  12 +
->  lib/vsprintf.c                                     |  35 +-
->  18 files changed, 1331 insertions(+), 6 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
->  create mode 100644 drivers/gpio/gpio-macsmc.c
->  create mode 100644 drivers/platform/apple/Kconfig
->  create mode 100644 drivers/platform/apple/Makefile
->  create mode 100644 drivers/platform/apple/smc.h
->  create mode 100644 drivers/platform/apple/smc_core.c
->  create mode 100644 drivers/platform/apple/smc_rtkit.c
->  create mode 100644 include/linux/mfd/macsmc.h
->
-> --
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Hi,
 
-For GPIO:
+Dependencies/merging
+====================
+1. The DTS patches are independent.
+2. The binding patches should come together, because of context changes. Could
+   be one of: Qualcomm SoC, ASoC or DT tree.
 
-Reviewed-by: Bartosz Golaszewski <brgl@bgdev.pl>
+Changes since v1
+================
+1. Patch 9: New patch.
+2. Patch 10: Correct also sound/qcom,q6apm-dai.yaml (Rob).
+2. Patch 13: New patch.
+3. Add Rb/Tb tags.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (14):
+  arm64: dts: qcom: sdm630: align APR services node names with dtschema
+  arm64: dts: qcom: sdm845: align APR services node names with dtschema
+  arm64: dts: qcom: sm8250: align APR services node names with dtschema
+  arm64: dts: qcom: msm8996: fix APR services nodes
+  arm64: dts: qcom: sdm845: align dai node names with dtschema
+  arm64: dts: qcom: msm8996: align dai node names with dtschema
+  arm64: dts: qcom: qrb5165-rb5: align dai node names with dtschema
+  arm64: dts: qcom: sm8250: use generic name for LPASS clock controller
+  ASoC: dt-bindings:: qcom,q6asm: convert to dtschema
+  dt-bindings: soc: qcom: apr: correct service children
+  ASoC: dt-bindings: qcom,q6dsp-lpass-ports: cleanup example
+  ASoC: dt-bindings: qcom,q6dsp-lpass-clocks: cleanup example
+  ASoC: dt-bindings: qcom,q6apm-dai: adjust indentation in example
+  dt-bindings: soc: qcom: apr: add missing properties
+
+ .../bindings/soc/qcom/qcom,apr.yaml           | 111 +++++++++++++++--
+ .../bindings/sound/qcom,q6apm-dai.yaml        |  21 ++--
+ .../devicetree/bindings/sound/qcom,q6asm.txt  |  70 -----------
+ .../devicetree/bindings/sound/qcom,q6asm.yaml | 112 ++++++++++++++++++
+ .../sound/qcom,q6dsp-lpass-clocks.yaml        |  36 +++---
+ .../sound/qcom,q6dsp-lpass-ports.yaml         |  64 +++++-----
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  10 +-
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |   4 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          |   8 +-
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |   2 +-
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |   2 +-
+ .../boot/dts/qcom/sdm845-xiaomi-polaris.dts   |   4 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   8 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  10 +-
+ 14 files changed, 293 insertions(+), 169 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/qcom,q6asm.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6asm.yaml
+
+-- 
+2.34.1
+
