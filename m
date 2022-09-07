@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 235065B099D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 18:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 447875B099E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 18:05:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230370AbiIGQFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 12:05:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51998 "EHLO
+        id S230360AbiIGQFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 12:05:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230349AbiIGQEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 12:04:53 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 937FBBCC12
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 09:03:11 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id v4so13996611pgi.10
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 09:03:11 -0700 (PDT)
+        with ESMTP id S230126AbiIGQE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 12:04:57 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC65BCCEF
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 09:03:15 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id e68so2043400pfe.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 09:03:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=a9wa5InO2XyMLOr2Gn4u1KSNjpfJAhNzw+XNa7giGrU=;
-        b=LqeEBWqX6eEpYfjMzwdXNtpu6YP/ty9uua31s62LfozPU9T5xQT36NOG+ebFVMdtxs
-         Z5yfbivP9r/WvP0qnscbq0pmEak1Bfm1Gpr9FLUWBqpFjwhUZfml5i0CKXjLSHdJyl1z
-         YNsN15mrEShNP2M442YzOvtrGQIXf6t1VzwadyJ6gLu3O3oEcpC5RCPwe85fgN1u8H0a
-         i0kERRe8pkfG0Hj6XEZ4Oe02wy2du5UoEYRw6v5YVJMDWUJVJgGGm6M4xyn3520YJ+Cw
-         9D5IwqD2S3YkPsAYDi0hEINCbrj3csJ90zBzJZ+DH/XuEufGlKhexXqfIEJo6xZqLUnR
-         jnqg==
+        bh=10hU+FWY9QXTirOrTAxAp9Ez2CZEN3B5Cws47AST3uc=;
+        b=6nTTO0NAgS3AYyhSQeVhc+C2LFonJ/jC8bw6cjF0GF0fWpvvGT/d5SnnMJjiH/6Fjt
+         MNfL7hSILb9qJBjRohyD3i1Zwkeank/BMsF0yekO8iWOttKDwJNSyLkBmYPJw4rK/Rmv
+         Yk7o2mytSulyjf0vFEAuZfTrdRwV2utXWTivblbwUBkP1ERjke+Ck+xpDpuba19V4Cx5
+         RAtJccG/vo+jf+qW44/wLxaizDHk67pYryhUFJgBZaoNfdOmteOyx/eUebEOpl2XSzp9
+         lR1Nfz0dcNpz83euNfDtARWMq1W2vLn7UiqadMhGbAbeur7e2RHgGmN9ADw6CQN1nkzf
+         SG/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=a9wa5InO2XyMLOr2Gn4u1KSNjpfJAhNzw+XNa7giGrU=;
-        b=qJ44Sl3VEUWgwWmcP6v5UNz2bXauP9MG4hdlLqBowOVtREProEK8io8sn97p8E92HY
-         7OADgbynTvFilKRT9ejuSMYxNqcMUhqfPHjkLjE7mq6J0CXVVosGO31RWqzZ2sDE1cES
-         6hiIekUKQRPG4NHa7eFcdM7aEUFv5peLiyCDVsZAg0l2y4QpcaZ56ggivizuPXpmlIsG
-         RDGrrVCmrCqk6aEfSyhRj1UfxTVr4S82KPdcv1gCMG7mIDJ6usCIxJ+9BefGr6Y+GLR8
-         Bx1IEJqhT0xt1Vyeo3zSmcVbdV91o/WhqBBOonAAIkrOt+eSHfgayxFhS9YboDr77cRt
-         rlhw==
-X-Gm-Message-State: ACgBeo3zATsqz7VPpTG1jhBMCZNa9AfVlvYckwHqHdZs+sTCh8qylKRB
-        pFJZY5pPMkdeMX8Oyxi/g1wlag==
-X-Google-Smtp-Source: AA6agR5KCpOA+blmjARcnQjwXjqRJ/gneDTLOp95lR1XCSFiYiXGmuQoTx4L+tgdpdlypsIqzFfxuA==
-X-Received: by 2002:a62:b519:0:b0:537:9723:5cf2 with SMTP id y25-20020a62b519000000b0053797235cf2mr4713129pfe.15.1662566590434;
-        Wed, 07 Sep 2022 09:03:10 -0700 (PDT)
+        bh=10hU+FWY9QXTirOrTAxAp9Ez2CZEN3B5Cws47AST3uc=;
+        b=5zvwmT0h713x9mCZTshGxYW4iLf6uolqgWwfHYKxJ++lk2jvpwi0BNJ647J0CAwD0U
+         oL+VhImplNfsUkHV2KRnDO8W+u/KoTkSu7MhZ1nv2oFg6zJZn0jTtfyQHfQYjXsSKqZV
+         B1CDdcuANvxuM9+dnTiU6aRqdoBpBeQCm9AoFwDQPWnlkM4of4ZDuHUeaxLtGeM4Gx4M
+         kf4YQsQzL7B2mXjyaH3O0K5/XDg8v+cmiaJJwbX/fva/N12UwJe/fKHGo19rM0sk0Z8P
+         gwzsV3V4SqZSGG2OplPI2Octcj+edDx6yOeGPbnf6BUsumWBMbbYCJr/JcHksuE+smZ5
+         G8lg==
+X-Gm-Message-State: ACgBeo05uiHpnxfFyHWOSV1pJ0+fBHIted9yuNmYyWfV7x2nYXeyeIAB
+        XcuV8O021vOJDedqyB5+/zBhcA==
+X-Google-Smtp-Source: AA6agR7U8Uc785YI9VUpIkKhPK4q0qv7j//86WL4+Neys/bEgjsw+KPgg61Ac60JO88a4ldDCofcxA==
+X-Received: by 2002:a62:1b12:0:b0:536:715c:4d96 with SMTP id b18-20020a621b12000000b00536715c4d96mr4499354pfb.77.1662566594540;
+        Wed, 07 Sep 2022 09:03:14 -0700 (PDT)
 Received: from localhost.localdomain ([23.27.44.184])
-        by smtp.gmail.com with ESMTPSA id x13-20020a17090a1f8d00b001f510175984sm14919719pja.41.2022.09.07.09.03.06
+        by smtp.gmail.com with ESMTPSA id x13-20020a17090a1f8d00b001f510175984sm14919719pja.41.2022.09.07.09.03.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 09:03:10 -0700 (PDT)
+        Wed, 07 Sep 2022 09:03:14 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -55,9 +55,9 @@ To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
 Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 10/13] dt-bindings: vendor-prefixes: Add Edgeble AI Technologies Pvt. Ltd.
-Date:   Wed,  7 Sep 2022 21:32:04 +0530
-Message-Id: <20220907160207.3845791-11-jagan@edgeble.ai>
+Subject: [PATCH v4 11/13] dt-bindings: arm: rockchip: Add Edgeble AI Edge Compute Module 0 Carrier
+Date:   Wed,  7 Sep 2022 21:32:05 +0530
+Message-Id: <20220907160207.3845791-12-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220907160207.3845791-1-jagan@edgeble.ai>
 References: <20220907160207.3845791-1-jagan@edgeble.ai>
@@ -72,37 +72,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Edgeble AI is an Artificial Intelligence company with a focus
-on deploying Neural Acceleration principles at the Edge.
+Edge Compute Module 0 is a 96boards SoM-CB compute module based
+on Rockchip RV1126 from Edgeble AI.
 
-Add vendor prefix for it.
+Edge Compute Module 0 Carrier board is an industrial form factor
+evaluation board from Edgeble AI.
+
+Edge Compute Module 0 needs to mount on top of this evaluation board
+for creating complete Edge Compute Module 0 Carrier board.
+
+Add dt-bindings for it.
 
 Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
 Changes for v4:
-- rebase on -next
+- rebase on -next 
 Changes for v3:
 - none
 Changes for v2:
 - collect Ron ack
 
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index dfaff2487b04..f3c1bc0fd4bb 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -364,6 +364,8 @@ patternProperties:
-     description: EBV Elektronik
-   "^eckelmann,.*":
-     description: Eckelmann AG
-+  "^edgeble,.*":
-+    description: Edgeble AI Technologies Pvt. Ltd.
-   "^edimax,.*":
-     description: EDIMAX Technology Co., Ltd
-   "^edt,.*":
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 5c1b9f0e4cc1..7f1abbef8408 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -65,6 +65,12 @@ properties:
+           - const: chipspark,rayeager-px2
+           - const: rockchip,rk3066a
+ 
++      - description: Edgeble AI Edge Compute Module 0 SoM based boards
++        items:
++          - const: edgeble,edge-compute-module-0-carrier  # Edgeble AI Edge Compute Module 0 Carrier
++          - const: edgeble,edge-compute-module-0          # Edgeble AI Edge Compute Module 0 SoM
++          - const: rockchip,rv1126
++
+       - description: Elgin RV1108 R1
+         items:
+           - const: elgin,rv1108-r1
 -- 
 2.25.1
 
