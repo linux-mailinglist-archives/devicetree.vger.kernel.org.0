@@ -2,100 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A9BE5B074D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 16:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 528055B075D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 16:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbiIGOoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 10:44:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42042 "EHLO
+        id S229541AbiIGOqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 10:46:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbiIGOnt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 10:43:49 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5C494125;
-        Wed,  7 Sep 2022 07:43:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1662561828; x=1694097828;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=SWhK9pxbsTouDvkXfe9bAxd00KsUs9iqZtP8MgSCS5s=;
-  b=BFg+Z3jB+WMGu45M4vYy78q6Um5M6FoHjrS9PlVe+wRXApvXU3/iC0vY
-   VvdDAAl17ppLmy4XqiWgleB0MvcGJCGiTdO2NrtrKz2HpSTi1atrone8H
-   9X9pa12e0yMSxA61oqmBJ9JskXsnOCkayhdaPvB67d5C2ObUsdkEWY2WV
-   Rg00Y3HxgeWk/BetLbVv3K3ZS16fkBzpNydlau9KvZz+MjPl6y/5Zr5IN
-   fEn8ZAGT+04FpNdbTTmxaLbw9vzBu9TT+y7DdSYuMkVvuPi94bs6bGf8z
-   wT8sFUZvRUp12x7ko+rebY6L1nQB0uYTOeBTakUbnAGrasQw02YnRtUsv
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="294476073"
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; 
-   d="scan'208";a="294476073"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 07:42:40 -0700
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; 
-   d="scan'208";a="617105435"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 07:42:36 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1oVwG9-009gfE-2C;
-        Wed, 07 Sep 2022 17:42:33 +0300
-Date:   Wed, 7 Sep 2022 17:42:33 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     "Farber, Eliav" <farbere@amazon.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>, jdelvare@suse.com,
-        robh+dt@kernel.org, p.zabel@pengutronix.de, rtanwar@maxlinear.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com
-Subject: Re: [PATCH v4 01/21] hwmon: (mr75203) fix coding style space errors
-Message-ID: <Yxit2fq1kwzIN9x0@smile.fi.intel.com>
-References: <20220906083356.21067-1-farbere@amazon.com>
- <20220906083356.21067-2-farbere@amazon.com>
- <20220906165229.GA594012@roeck-us.net>
- <9323b609-cb9d-8b3d-2894-65296487cdb1@amazon.com>
+        with ESMTP id S229603AbiIGOqe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 10:46:34 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C8CE8002D;
+        Wed,  7 Sep 2022 07:46:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662561992; x=1694097992;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=oY821EVhwGzBAfuH2/kNtAGnG2qoILrZ7TWoDhAD9PI=;
+  b=KHzY+CqiNixadWcqwnQz+aG5M9ffTZORwITgXMRFE3JFKqGkO8bni6D2
+   zAk1vzgngMiR3rXdYcfaaF+v7Cfh0wdMX1Mc5QpL8avpc8fhW0eX4e1MO
+   dYmYN8Tw+iNYALByfO+TepzyY00eL1m0m3MjBoTimvuYaQVILrnnjauzV
+   9HlX6pE1HcVUVcaBqS/myhkpPag9DiNtmS7kTtBDJuKxe22OCDKxfF6fj
+   Gs3yM1ruWYJI/nGs0HrJNKEL8UspmK9rWMImWzfROsgwuVnXmKADVmRjo
+   boR4JKwl69iFXIjXCiq7umBZyuZnk5zyXijLuTFBo1D1mRWovU3nH/Pz1
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,297,1654552800"; 
+   d="scan'208";a="26047482"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 07 Sep 2022 16:46:30 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 07 Sep 2022 16:46:30 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 07 Sep 2022 16:46:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662561990; x=1694097990;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=oY821EVhwGzBAfuH2/kNtAGnG2qoILrZ7TWoDhAD9PI=;
+  b=R5QBc4ENTHa3HF9+oYnBjSoYaaRjzloQ7n78XVgsSVwQnRBKJkwg9qQK
+   0WV/Qt0pxMMnZ75O1XCGbscRpaGF+04O+AEU0wCpge7oWKoWy4ypQ/JNM
+   KcihscBAo/8WbeAK4S55jt6pAAklC0v3NHgBh6t6AnDXKvfLawbrTm3oa
+   6lCUQhJvNpgKXaYE9X+8B1TvjyAzLdmM397Y7kOHTafvXJQ1XJiTtCsML
+   XMZhPwOni6i3N9Le447wwbMeZQJswql/RceoN71ztrSFM5OuVoc27nftl
+   o3vK0mkaQnIYDWqsO6hxNMUrqEz5QlfVc/R3ky9aqJu1zZ8bmkmADh21z
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,297,1654552800"; 
+   d="scan'208";a="26047481"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Sep 2022 16:46:30 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 30AB8280056;
+        Wed,  7 Sep 2022 16:46:30 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>, Li Jun <jun.li@nxp.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] USB host support for TQMa8MPxL + MBa8MPxL
+Date:   Wed,  7 Sep 2022 16:46:20 +0200
+Message-Id: <20220907144624.2810117-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9323b609-cb9d-8b3d-2894-65296487cdb1@amazon.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 07, 2022 at 09:50:00AM +0300, Farber, Eliav wrote:
-> On 9/6/2022 7:52 PM, Guenter Roeck wrote:
-> > On Tue, Sep 06, 2022 at 08:33:36AM +0000, Eliav Farber wrote:
-> > > Fix: "ERROR: space required before the open parenthesis '('"
-> > > 
-> > > Fixes: 9d823351a337 ("hwmon: Add hardware monitoring driver for
-> > > Moortec MR75203 PVT controller")
-> > 
-> > Coding style "fixes" do not fix the code. I consider using the Fixes: tag
-> > for those to close to an abuse of that tag (and it would be great if that
-> > was spelled out somewhere). As it is, I can not with good conscience
-> > apply
-> > this patch to the mainline kernel (especially not for -rc5), meaning the
-> > entire series will have to wait for the next release window unless there
-> > are no conflicts.
-> Because as you mentioned  it is not a functional fix in the code I’ll
-> remove the Fixes tag in v5.
-> I checked older kernel versions and patch applies without conflicts.
-> That’s also why I moved it to be first in the series, so it will be
-> before any of my other changes that night cause merge problems for
-> other branches.
+Hi everybody,
 
-If it's not a fix, it should go _after_ real fixes.
-And by nature this kind of patch is usually at the end of the series.
+this is a series based on the RFC at [1] for USB host support on TQMa8MPxL +
+MBa8MPxL. The main difference is that USB DR support has already been added and
+has been removed from this series.
+
+The DT configuration itself (patch 4) is rather straight forward, but leads to
+the following dmesg errors regarding superspeed ports:
+> [    8.549243] hub 2-1:1.0: hub_ext_port_status failed (err = -110)
+> [   22.885263] usb 2-1: Failed to suspend device, error -110
+
+This hardware works fine using the downstream kernel, because for imx8mp this
+ITP sync feature is enabled conditionally [2] & [3].
+Hacking this into mainline resulted in a working superspeed setup as well. I
+also noticed that on some android kernel [4] depending in IP core version either
+GCTL.SOFTITPSYNC or GFLADJ.GFLADJ_REFCLK_LPM_SEL is enabled unconditionally.
+So I opted for the latter one using some quirk (patch 1-3).
+
+I have to admit I do not know what this is actually about, nor why my setup
+does not work without this change or why this fixed my problem. So maybe
+someone with more knowledge can say if this is the way to go or what this is
+about.
+
+I also added snps,dis_u3_susphy_quirk to the board level as for some reason
+USB Superspeed U3 does not work. Detecting the onboard hub takes much longer
+and once all devices are diconnected from the hub it is put into runtime
+suspend (U3) and new attached devices are not detected at all. Until the cause
+is known and fixed runtime suspend has to be disabled.
+
+Thanks and best regards,
+Alexander
+
+[1] https://lore.kernel.org/all/20220622130440.955465-1-alexander.stein@ew.tq-group.com/
+[2] https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/usb/dwc3/dwc3-imx8mp.c?h=lf-5.10.y#n134
+[3] https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/usb/dwc3/core.c?h=lf-5.10.y#n333
+[4] https://android.googlesource.com/kernel/msm/+/87a6b154766907020cc74c7726e8a68aaa9d7f6b%5E%21/#F0
+
+Alexander Stein (4):
+  dt-bindings: usb: dwc3: Add gfladj-refclk-lpm-sel-quirk
+  usb: dwc3: core: add gfladj_refclk_lpm_sel quirk
+  arm64: dts: imx8mp: Add snps,gfladj-refclk-lpm-sel quirk to USB nodes
+  arm64: dts: tqma8mpql: add support for 2nd USB (host) interface
+
+ .../devicetree/bindings/usb/snps,dwc3.yaml    |  5 +++
+ .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 42 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  2 +
+ drivers/usb/dwc3/core.c                       |  8 +++-
+ drivers/usb/dwc3/core.h                       |  2 +
+ 5 files changed, 58 insertions(+), 1 deletion(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.25.1
 
