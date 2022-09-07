@@ -2,181 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C38EF5B0E68
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 299345B0E6F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:46:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230108AbiIGUoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 16:44:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46506 "EHLO
+        id S229777AbiIGUqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 16:46:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230000AbiIGUoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:44:38 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3BC1F614;
-        Wed,  7 Sep 2022 13:44:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1662583475; x=1694119475;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AxE5PxZfcCUCqW1k3Km5XnS3tRDAQpDyRdVe5GhqX40=;
-  b=Eis8AgHo7RN56XDKXupNsNfp7tgV1bNqJXrnl/D8w21+xXBA3kynGJIB
-   SmvxiELu3VxSnsU94nZ1Kt/ez8j6boMPmrFbFmq0qEndzuWYyJcGiWY2M
-   xk933tMxeWj9y95DI4UX0LZNf6+WVfmS2GR45eb/P+O3HfU5KCuqCqQDo
-   Yrzepgpozr6pQaSdu//vVDSt/JaXeDKuyXn4F07gIBZaGuq6S2Ht4KETY
-   l5yKU2BPxDrx6tQlvgANGo/zFhzSCGqfc3njLrqGnNCxPfEKJJj+qrT4/
-   XcFEdzxy1y8Xz10m9x0KBa3+Wn3uB4qnuXIw70SRYtkGI9e0Qunbndr8y
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="360956002"
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; 
-   d="scan'208";a="360956002"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 13:44:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; 
-   d="scan'208";a="617228280"
-Received: from lkp-server02.sh.intel.com (HELO 95dfd251caa2) ([10.239.97.151])
-  by fmsmga007.fm.intel.com with ESMTP; 07 Sep 2022 13:44:29 -0700
-Received: from kbuild by 95dfd251caa2 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oW1uO-0006w5-1r;
-        Wed, 07 Sep 2022 20:44:28 +0000
-Date:   Thu, 8 Sep 2022 04:43:48 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Frank Li <Frank.Li@nxp.com>, maz@kernel.org, tglx@linutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com,
-        bhelgaas@google.com
-Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S229876AbiIGUqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:46:00 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1E05B07D7;
+        Wed,  7 Sep 2022 13:45:58 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id z22-20020a056830129600b0063711f456ceso11052308otp.7;
+        Wed, 07 Sep 2022 13:45:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=upXcPuQ+AymjlAP813ikt1+Dlj+izCoKBqGmw9TwiEA=;
+        b=ioGn23m1vUF13Ijm00z0vCu0kZlQlab0TClekr1AlKsHeHmPSPBJBRr2DIXR7nGvJS
+         SoukVpgX9MgrQ0DadbHLy4B98LODLMO1v3BIOcElrT+Nl94OCrtpokeeIy3Qc1gHTklr
+         rXxE8vFXyeRpenjwV8VmOiVZuJejoaaa37fUkq6UQO3U8QFMt/DRnL6nJ+UPkRZcRzNw
+         b98lUT1iQeGKNF8Lcj9q2490S4Qfd3VHwyBgcqDE7f86qpQFPNNFSuT/jcQwXDfRQ0Mg
+         aikdcYF7dudpDXhcbiglHtJfmd+a2T+LVtiy8ZONppt+S8NMIzfXxjoIO15ftM2yvlc5
+         1VQQ==
+X-Gm-Message-State: ACgBeo35aXJG4uNzrfsc6lBH5Fkcf1YBEslUhnhesfOriKYWO9sOGwqq
+        1UcVtPfX2z5QCXgzlqgGf5hs5zPIag==
+X-Google-Smtp-Source: AA6agR7XOBU/6/O2TwW9lBjbS8h05cyYcmFka/myRzOWQ4uhgMLB77hg5WkWiwvPbKFR5xw241HTpg==
+X-Received: by 2002:a05:6830:4386:b0:637:3636:e29f with SMTP id s6-20020a056830438600b006373636e29fmr2072794otv.294.1662583558179;
+        Wed, 07 Sep 2022 13:45:58 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y2-20020a4ae7c2000000b0042859bebfebsm5410539oov.45.2022.09.07.13.45.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 13:45:57 -0700 (PDT)
+Received: (nullmailer pid 312607 invoked by uid 1000);
+        Wed, 07 Sep 2022 20:45:56 -0000
+Date:   Wed, 7 Sep 2022 15:45:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Chiu <chui-hao.chiu@mediatek.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com,
-        jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
-        ntb@lists.linux.dev, lznuaa@gmail.com, imx@lists.linux.dev,
-        manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v9 4/4] PCI: endpoint: Add vNTB MSI support
-Message-ID: <202209080437.cNpaoZXx-lkp@intel.com>
-References: <20220907034856.3101570-5-Frank.Li@nxp.com>
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Ryder Lee <ryder.Lee@mediatek.com>,
+        Evelyn Tsai <evelyn.tsai@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: update bindings for MT7986 SoC
+Message-ID: <20220907204556.GA307930-robh@kernel.org>
+References: <20220902024719.31943-1-chui-hao.chiu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220907034856.3101570-5-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220902024719.31943-1-chui-hao.chiu@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+On Fri, Sep 02, 2022 at 10:47:19AM +0800, Peter Chiu wrote:
+> Add wifi pins in the description and set groups to string-array to support
+> multiple groups in a node.
+> 
+> Reviewed-by: Sam Shih <sam.shih@mediatek.com>
+> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+> ---
+>  .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 48 +++++++++++--------
+>  1 file changed, 28 insertions(+), 20 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
+> index 4eadea55df10..b08a0a8076e0 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
+> @@ -117,6 +117,10 @@ patternProperties:
+>            "i2s"             "audio"     62, 63, 64, 65
+>            "switch_int"      "eth"       66
+>            "mdc_mdio"        "eth"       67
+> +          "wf_2g"           "wifi"      74, 75, 76, 77, 78, 79, 80, 81, 82, 83
+> +          "wf_5g"           "wifi"      91, 92, 93, 94, 95, 96, 97, 98, 99, 100
+> +          "wf_dbdc"         "wifi"      74, 75, 76, 77, 78, 79, 80, 81, 82, 83,
+> +                                        84, 85
+>  
+>          $ref: "/schemas/pinctrl/pinmux-node.yaml"
+>          properties:
+> @@ -234,7 +238,9 @@ patternProperties:
+>              then:
+>                properties:
+>                  groups:
+> -                  enum: [wf_2g, wf_5g, wf_dbdc]
+> +                  $ref: /schemas/types.yaml#/definitions/string-array
 
-I love your patch! Perhaps something to improve:
+'groups' already has a type. You can redefine it here.
 
-[auto build test WARNING on jonmason-ntb/ntb-next]
-[also build test WARNING on robh/for-next linus/master v6.0-rc4 next-20220907]
-[cannot apply to tip/irq/core]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +                  items:
+> +                    enum: [wf_2g, wf_5g, wf_dbdc]
+>        '.*conf.*':
+>          type: object
+>          additionalProperties: false
+> @@ -248,25 +254,27 @@ patternProperties:
+>                An array of strings. Each string contains the name of a pin.
+>                There is no PIN 41 to PIN 65 above on mt7686b, you can only use
+>                those pins on mt7986a.
+> -            enum: [SYS_WATCHDOG, WF2G_LED, WF5G_LED, I2C_SCL, I2C_SDA, GPIO_0,
+> -                   GPIO_1, GPIO_2, GPIO_3, GPIO_4, GPIO_5, GPIO_6, GPIO_7,
+> -                   GPIO_8, GPIO_9, GPIO_10, GPIO_11, GPIO_12, GPIO_13, GPIO_14,
+> -                   GPIO_15, PWM0, PWM1, SPI0_CLK, SPI0_MOSI, SPI0_MISO, SPI0_CS,
+> -                   SPI0_HOLD, SPI0_WP, SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS,
+> -                   SPI2_CLK, SPI2_MOSI, SPI2_MISO, SPI2_CS, SPI2_HOLD, SPI2_WP,
+> -                   UART0_RXD, UART0_TXD, PCIE_PERESET_N, UART1_RXD, UART1_TXD,
+> -                   UART1_CTS, UART1_RTS, UART2_RXD, UART2_TXD, UART2_CTS,
+> -                   UART2_RTS, EMMC_DATA_0, EMMC_DATA_1, EMMC_DATA_2,
+> -                   EMMC_DATA_3, EMMC_DATA_4, EMMC_DATA_5, EMMC_DATA_6,
+> -                   EMMC_DATA_7, EMMC_CMD, EMMC_CK, EMMC_DSL, EMMC_RSTB, PCM_DTX,
+> -                   PCM_DRX, PCM_CLK, PCM_FS, MT7531_INT, SMI_MDC, SMI_MDIO,
+> -                   WF0_DIG_RESETB, WF0_CBA_RESETB, WF0_XO_REQ, WF0_TOP_CLK,
+> -                   WF0_TOP_DATA, WF0_HB1, WF0_HB2, WF0_HB3, WF0_HB4, WF0_HB0,
+> -                   WF0_HB0_B, WF0_HB5, WF0_HB6, WF0_HB7, WF0_HB8, WF0_HB9,
+> -                   WF0_HB10, WF1_DIG_RESETB, WF1_CBA_RESETB, WF1_XO_REQ,
+> -                   WF1_TOP_CLK, WF1_TOP_DATA, WF1_HB1, WF1_HB2, WF1_HB3,
+> -                   WF1_HB4, WF1_HB0, WF1_HB0_B, WF1_HB5, WF1_HB6, WF1_HB7,
+> -                   WF1_HB8]
+> +            $ref: /schemas/types.yaml#/definitions/string-array
+> +            items:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220907-115114
-base:   https://github.com/jonmason/ntb ntb-next
-config: loongarch-randconfig-s052-20220906 (https://download.01.org/0day-ci/archive/20220908/202209080437.cNpaoZXx-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 12.1.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-39-gce1a6720-dirty
-        # https://github.com/intel-lab-lkp/linux/commit/0fe017b7ce1e4748acce80d9ddb81b3cd456adbb
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220907-115114
-        git checkout 0fe017b7ce1e4748acce80d9ddb81b3cd456adbb
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=loongarch SHELL=/bin/bash
+Same for 'pins'.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/pci/endpoint/functions/pci-epf-vntb.c:567:25: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected void [noderef] __iomem *[assigned] mw_addr @@     got void * @@
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:567:25: sparse:     expected void [noderef] __iomem *[assigned] mw_addr
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:567:25: sparse:     got void *
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:600:41: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void *addr @@     got void [noderef] __iomem *epf_db @@
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:600:41: sparse:     expected void *addr
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:600:41: sparse:     got void [noderef] __iomem *epf_db
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1206:33: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void [noderef] __iomem *base @@     got struct epf_ntb_ctrl *reg @@
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1206:33: sparse:     expected void [noderef] __iomem *base
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1206:33: sparse:     got struct epf_ntb_ctrl *reg
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1217:33: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void [noderef] __iomem *base @@     got struct epf_ntb_ctrl *reg @@
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1217:33: sparse:     expected void [noderef] __iomem *base
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1217:33: sparse:     got struct epf_ntb_ctrl *reg
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1228:33: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void [noderef] __iomem *base @@     got struct epf_ntb_ctrl *reg @@
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1228:33: sparse:     expected void [noderef] __iomem *base
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1228:33: sparse:     got struct epf_ntb_ctrl *reg
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1240:33: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void [noderef] __iomem *base @@     got struct epf_ntb_ctrl *reg @@
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1240:33: sparse:     expected void [noderef] __iomem *base
-   drivers/pci/endpoint/functions/pci-epf-vntb.c:1240:33: sparse:     got struct epf_ntb_ctrl *reg
-
-vim +567 drivers/pci/endpoint/functions/pci-epf-vntb.c
-
-0fe017b7ce1e47 Frank Li 2022-09-06  536  
-e35f56bb03304a Frank Li 2022-02-22  537  /**
-e35f56bb03304a Frank Li 2022-02-22  538   * epf_ntb_db_bar_init() - Configure Doorbell window BARs
-e35f56bb03304a Frank Li 2022-02-22  539   * @ntb: NTB device that facilitates communication between HOST and vHOST
-e35f56bb03304a Frank Li 2022-02-22  540   */
-e35f56bb03304a Frank Li 2022-02-22  541  static int epf_ntb_db_bar_init(struct epf_ntb *ntb)
-e35f56bb03304a Frank Li 2022-02-22  542  {
-e35f56bb03304a Frank Li 2022-02-22  543  	const struct pci_epc_features *epc_features;
-e35f56bb03304a Frank Li 2022-02-22  544  	u32 align;
-e35f56bb03304a Frank Li 2022-02-22  545  	struct device *dev = &ntb->epf->dev;
-e35f56bb03304a Frank Li 2022-02-22  546  	int ret;
-e35f56bb03304a Frank Li 2022-02-22  547  	struct pci_epf_bar *epf_bar;
-e35f56bb03304a Frank Li 2022-02-22  548  	void __iomem *mw_addr;
-e35f56bb03304a Frank Li 2022-02-22  549  	enum pci_barno barno;
-0fe017b7ce1e47 Frank Li 2022-09-06  550  	size_t size;
-e35f56bb03304a Frank Li 2022-02-22  551  
-e35f56bb03304a Frank Li 2022-02-22  552  	epc_features = pci_epc_get_features(ntb->epf->epc,
-e35f56bb03304a Frank Li 2022-02-22  553  					    ntb->epf->func_no,
-e35f56bb03304a Frank Li 2022-02-22  554  					    ntb->epf->vfunc_no);
-e35f56bb03304a Frank Li 2022-02-22  555  	align = epc_features->align;
-0fe017b7ce1e47 Frank Li 2022-09-06  556  	size = epf_ntb_db_size(ntb);
-e35f56bb03304a Frank Li 2022-02-22  557  
-e35f56bb03304a Frank Li 2022-02-22  558  	barno = ntb->epf_ntb_bar[BAR_DB];
-0fe017b7ce1e47 Frank Li 2022-09-06  559  	epf_bar = &ntb->epf->bar[barno];
-e35f56bb03304a Frank Li 2022-02-22  560  
-0fe017b7ce1e47 Frank Li 2022-09-06  561  	if (ntb->epf_db_phys) {
-0fe017b7ce1e47 Frank Li 2022-09-06  562  		mw_addr = NULL;
-0fe017b7ce1e47 Frank Li 2022-09-06  563  		epf_bar->phys_addr = ntb->epf_db_phys;
-0fe017b7ce1e47 Frank Li 2022-09-06  564  		epf_bar->barno = barno;
-0fe017b7ce1e47 Frank Li 2022-09-06  565  		epf_bar->size = size;
-0fe017b7ce1e47 Frank Li 2022-09-06  566  	} else {
-e35f56bb03304a Frank Li 2022-02-22 @567  		mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
-e35f56bb03304a Frank Li 2022-02-22  568  		if (!mw_addr) {
-0fe017b7ce1e47 Frank Li 2022-09-06  569  			dev_err(dev, "Failed to allocate door bell address\n");
-e35f56bb03304a Frank Li 2022-02-22  570  			return -ENOMEM;
-e35f56bb03304a Frank Li 2022-02-22  571  		}
-0fe017b7ce1e47 Frank Li 2022-09-06  572  	}
-e35f56bb03304a Frank Li 2022-02-22  573  
-e35f56bb03304a Frank Li 2022-02-22  574  	ntb->epf_db = mw_addr;
-e35f56bb03304a Frank Li 2022-02-22  575  
-e35f56bb03304a Frank Li 2022-02-22  576  	ret = pci_epc_set_bar(ntb->epf->epc, ntb->epf->func_no, ntb->epf->vfunc_no, epf_bar);
-e35f56bb03304a Frank Li 2022-02-22  577  	if (ret) {
-e35f56bb03304a Frank Li 2022-02-22  578  		dev_err(dev, "Doorbell BAR set failed\n");
-e35f56bb03304a Frank Li 2022-02-22  579  			goto err_alloc_peer_mem;
-e35f56bb03304a Frank Li 2022-02-22  580  	}
-e35f56bb03304a Frank Li 2022-02-22  581  	return ret;
-e35f56bb03304a Frank Li 2022-02-22  582  
-e35f56bb03304a Frank Li 2022-02-22  583  err_alloc_peer_mem:
-e35f56bb03304a Frank Li 2022-02-22  584  	pci_epc_mem_free_addr(ntb->epf->epc, epf_bar->phys_addr, mw_addr, epf_bar->size);
-e35f56bb03304a Frank Li 2022-02-22  585  	return -1;
-e35f56bb03304a Frank Li 2022-02-22  586  }
-e35f56bb03304a Frank Li 2022-02-22  587  
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+> +              enum: [SYS_WATCHDOG, WF2G_LED, WF5G_LED, I2C_SCL, I2C_SDA, GPIO_0,
+> +                     GPIO_1, GPIO_2, GPIO_3, GPIO_4, GPIO_5, GPIO_6, GPIO_7,
+> +                     GPIO_8, GPIO_9, GPIO_10, GPIO_11, GPIO_12, GPIO_13, GPIO_14,
+> +                     GPIO_15, PWM0, PWM1, SPI0_CLK, SPI0_MOSI, SPI0_MISO, SPI0_CS,
+> +                     SPI0_HOLD, SPI0_WP, SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS,
+> +                     SPI2_CLK, SPI2_MOSI, SPI2_MISO, SPI2_CS, SPI2_HOLD, SPI2_WP,
+> +                     UART0_RXD, UART0_TXD, PCIE_PERESET_N, UART1_RXD, UART1_TXD,
+> +                     UART1_CTS, UART1_RTS, UART2_RXD, UART2_TXD, UART2_CTS,
+> +                     UART2_RTS, EMMC_DATA_0, EMMC_DATA_1, EMMC_DATA_2,
+> +                     EMMC_DATA_3, EMMC_DATA_4, EMMC_DATA_5, EMMC_DATA_6,
+> +                     EMMC_DATA_7, EMMC_CMD, EMMC_CK, EMMC_DSL, EMMC_RSTB, PCM_DTX,
+> +                     PCM_DRX, PCM_CLK, PCM_FS, MT7531_INT, SMI_MDC, SMI_MDIO,
+> +                     WF0_DIG_RESETB, WF0_CBA_RESETB, WF0_XO_REQ, WF0_TOP_CLK,
+> +                     WF0_TOP_DATA, WF0_HB1, WF0_HB2, WF0_HB3, WF0_HB4, WF0_HB0,
+> +                     WF0_HB0_B, WF0_HB5, WF0_HB6, WF0_HB7, WF0_HB8, WF0_HB9,
+> +                     WF0_HB10, WF1_DIG_RESETB, WF1_CBA_RESETB, WF1_XO_REQ,
+> +                     WF1_TOP_CLK, WF1_TOP_DATA, WF1_HB1, WF1_HB2, WF1_HB3,
+> +                     WF1_HB4, WF1_HB0, WF1_HB0_B, WF1_HB5, WF1_HB6, WF1_HB7,
+> +                     WF1_HB8]
+>  
+>            bias-disable: true
+>  
+> -- 
+> 2.18.0
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
