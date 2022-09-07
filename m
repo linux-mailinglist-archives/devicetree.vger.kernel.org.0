@@ -2,60 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23D5C5B03F4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 14:33:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 327285B040B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 14:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbiIGMdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 08:33:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52764 "EHLO
+        id S229682AbiIGMgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 08:36:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiIGMdA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 08:33:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A29A7ABF;
-        Wed,  7 Sep 2022 05:33:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D5AD618D6;
-        Wed,  7 Sep 2022 12:32:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CB53C433D7;
-        Wed,  7 Sep 2022 12:32:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1662553979;
-        bh=+oPcnp8Ehqf+5v9MwAdEHVeVY7vbOQ3ajdywYWvVyKE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PbGVjNGQFIBeQlyORikeOGZ023BSRIg/LCmLoOXl+RupSx7yVXJLKwNpNNghwaQx+
-         2c9cCoL8ZSLzwG0PPsta9NsFSI7VhSRiZUKu/xlOutzwnV+Ah2Y8wgQ5qbq+KtKClF
-         zbh1++1nCbXnBG+42FRlhocM2eMzPFB2yI/vtpfk=
-Date:   Wed, 7 Sep 2022 14:32:56 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Nipun Gupta <nipun.gupta@amd.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        puneet.gupta@amd.com, song.bao.hua@hisilicon.com,
-        mchehab+huawei@kernel.org, maz@kernel.org, f.fainelli@gmail.com,
-        jeffrey.l.hugo@gmail.com, saravanak@google.com,
-        Michael.Srba@seznam.cz, mani@kernel.org, yishaih@nvidia.com,
-        jgg@ziepe.ca, jgg@nvidia.com, robin.murphy@arm.com,
-        will@kernel.org, joro@8bytes.org, masahiroy@kernel.org,
-        ndesaulniers@google.com, linux-arm-kernel@lists.infradead.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kvm@vger.kernel.org, okaya@kernel.org,
-        harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        michal.simek@amd.com, aleksandar.radovanovic@amd.com, git@amd.com
-Subject: Re: [RFC PATCH v3 2/7] bus/cdx: add the cdx bus driver
-Message-ID: <YxiPeOwo5tWrQuSE@kroah.com>
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20220906134801.4079497-1-nipun.gupta@amd.com>
- <20220906134801.4079497-3-nipun.gupta@amd.com>
+        with ESMTP id S229750AbiIGMgm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 08:36:42 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A285B8A78
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 05:36:40 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id p7so22215380lfu.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 05:36:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Ozxna7OXRQ1OVszMUY0d4yr30/luJFmuNl59JFfJkG8=;
+        b=QCukGyHBPM9jdduoCbZKDn+hzV/Qcsh4gYl+qhJDpzhYaTsmS83u1eLps741qFH6co
+         f4nW98pdQ7PoYlb1rFfRQVxLW0jz0ZudXoJNNfglGUTIacLM+lAesgbKCN68N38/NuhJ
+         k4rm4G/h9n8TXqEd9LFifaq4SQDi/beubCM0BYZQGCrQWqjbtkJEIY7qd6l6lik/tt14
+         Z3/xYJV3NQMjrTIOiX754fzZ2EhGWSXhgM1ZrCgv7MnOf9XmtBTWDNdgwNR/FjiYhqFq
+         EZ7AWpPN/R70PgPgWHvLPi4WJRBtX74IUR/nghjWARqnbrx4yrDrxdqYqeOsDWAROcpH
+         u2Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Ozxna7OXRQ1OVszMUY0d4yr30/luJFmuNl59JFfJkG8=;
+        b=zu+s6J6aWWbmPgTVg8SHPq8/GmAJ3YghbGogZ8UVf/hwafEj6zOrmiH0bOScrRIp5t
+         QK6PDSxP+o5SxFSmo5ACLjfZuzjJDGbyR2WaK4IwJzPKkhlV/JkG+IGWofPSLS5geepW
+         QDhWzV85Vi6oE2TylBRLlOF6Zkbb2piVK3zPl4Ih8e5a/1anO1aBC9V5PTmbAPz2pCmk
+         S5cp9eRvUaXYqXuLrjgwTpsrP+hfBlpI4qh8wUmddf3zmWtytd9SjMglTxaaNTSGwGPA
+         wOXGtxHD9Oh5UX9pIUYTTlyaHeQnlCgP5p9lpWTLxzIqcCaXTauDoUBgmqeFxOglsZ+j
+         k6rg==
+X-Gm-Message-State: ACgBeo0R6AIKfBpACIetEXoctwFDNZVDZ8qorLIn1A095+f6tGM015dV
+        i0ZwVkL3bxpq0szvZViShlyw7g==
+X-Google-Smtp-Source: AA6agR60oHI50O7D0hm2wWlJ1d8nquDuYmiJAAN55kaQZ5nyA9gJumDYI+sz1nutVOKJdWQcVpF8kQ==
+X-Received: by 2002:a05:6512:239e:b0:497:a36a:9ae with SMTP id c30-20020a056512239e00b00497a36a09aemr1084228lfv.378.1662554198185;
+        Wed, 07 Sep 2022 05:36:38 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id b7-20020a2eb907000000b00261b4df9ec4sm2624062ljb.138.2022.09.07.05.36.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 05:36:37 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: power: reset: restart-handler: add common schema
+Date:   Wed,  7 Sep 2022 14:36:30 +0200
+Message-Id: <20220907123630.57383-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220906134801.4079497-3-nipun.gupta@amd.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,38 +71,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 06, 2022 at 07:17:56PM +0530, Nipun Gupta wrote:
-> CDX bus supports the scanning and probing of FPGA based
-> devices. These devices are registers as CDX devices.
-> 
-> The bus driver sets up the basic infrastructure and fetches
-> the device related information from the firmware.
-> 
-> CDX bus is capable of scanning devices dynamically,
-> supporting rescanning of dynamically added, removed or
-> updated devices.
+Add common schema for restart and shutdown handlers, so they all use
+same meaning of "priority" field.  The Linux drivers already have this
+property and some systems want to customize it per-board in DTS.
 
-Really?  Then why is the platform driver mess still in here?
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+---
 
-> --- /dev/null
-> +++ b/drivers/bus/cdx/cdx.c
-> @@ -0,0 +1,437 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Platform driver for CDX bus.
+See also:
+https://lore.kernel.org/all/8fe93da3-f768-16ae-7025-1cfa97a42b27@linaro.org/
+https://lore.kernel.org/all/20220831081715.14673-1-pali@kernel.org/
+---
+ .../bindings/power/reset/gpio-restart.yaml    | 13 ++------
+ .../bindings/power/reset/restart-handler.yaml | 30 +++++++++++++++++++
+ 2 files changed, 33 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/restart-handler.yaml
 
-Again, this should not be a platform driver.
+diff --git a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+index a72d5c721516..d3d18e0f5db3 100644
+--- a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
++++ b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+@@ -25,6 +25,9 @@ description: >
+   inactive-delay, the GPIO is driven active again.  After a delay specified by wait-delay, the
+   restart handler completes allowing other restart handlers to be attempted.
+ 
++allOf:
++  - $ref: restart-handler.yaml#
++
+ properties:
+   compatible:
+     const: gpio-restart
+@@ -41,16 +44,6 @@ properties:
+       in its inactive state.
+ 
+   priority:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description: |
+-      A priority ranging from 0 to 255 (default 129) according to the following guidelines:
+-
+-        0:   Restart handler of last resort, with limited restart capabilities.
+-        128: Default restart handler; use if no other restart handler is expected to be available,
+-             and/or if restart functionality is sufficient to restart the entire system.
+-        255: Highest priority restart handler, will preempt all other restart handlers.
+-    minimum: 0
+-    maximum: 255
+     default: 129
+ 
+   active-delay:
+diff --git a/Documentation/devicetree/bindings/power/reset/restart-handler.yaml b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
+new file mode 100644
+index 000000000000..f5d22ca0cd45
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
+@@ -0,0 +1,30 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/reset/restart-handler.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Restart and shutdown handler generic binding
++
++maintainers:
++  - Sebastian Reichel <sre@kernel.org>
++
++description:
++  Restart and shutdown handler device is responsible for powering off the
++  system, e.g. my cutting off the power.  System might have several restart
++  handlers, which usually are tried from most precise to last resort.
++
++properties:
++  priority:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      A priority ranging from 0 to 255 according to the following guidelines::
++        0:   Restart handler of last resort, with limited restart capabilities.
++        128: Typical, default restart handler; use if no other restart handler
++             is expected to be available, and/or if restart functionality is
++             sufficient to restart the entire system.
++        255: Highest priority restart handler, will preempt all other restart handlers.
++    minimum: 0
++    maximum: 255
++
++additionalProperties: true
+-- 
+2.34.1
 
-Now you can have a CDX "bus" driver, that is a platform driver, but that
-needs to be in a separate file and as a separate module and totally
-independant of the CDX bus code entirely.
-
-Otherwise this is a mess to try to sift through and determine what is,
-and is not, going on.  Please split that up and get rid of all of the
-platform driver stuff here and put it in a separate patch that happens
-after the CDX bus logic is added.
-
-thanks,
-
-greg k-h
