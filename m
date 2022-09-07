@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2B2C5AF8B8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 02:01:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A6875AF8C2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 02:01:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbiIGABP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 20:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46240 "EHLO
+        id S229544AbiIGABR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 20:01:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiIGABM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 20:01:12 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66D6180F61
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 17:01:11 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id bp20so17286320wrb.9
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 17:01:11 -0700 (PDT)
+        with ESMTP id S229485AbiIGABP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 20:01:15 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E90F80504
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 17:01:13 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id e20so17732021wri.13
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 17:01:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=snCS1UV5t8KHvI66KtaEZoGLKqYHV4piyers8Lw21cA=;
-        b=X/teVI9J/0dRe6ty/m6rBjGDQinO7Kut4D6ngtBj6LYFZGM9op+Kccna2jAqOoS3Pa
-         MVUun8T5juuIjQCE7xtq/REDr0B67mOsKiXT6gHEB63c9R6DcYFHruFVsumim+QVt6fL
-         +og77brjOOWYKopaVumA/nAxsuYCs1vWQhe81xEDh6c9fGE/RbquiSwIT2+ERWJJp6qN
-         /qFXhALwi4kqBLk2lo36G4Cj4dqW4CVvZijxVb2+wckFZcsRZU8EQ079hZJV7rF/8E5Y
-         ToI/IK+b67SHAs95MD//7Va+fT3qg71qkQn3UdFixJOjUdoB4rCaVLe42B9HohqXUXp7
-         dygw==
+        bh=+tH0+5cmMinJY7FmmCFIkbSwQc1QUXigmKybnusy4h0=;
+        b=J9gJsJkwX15Py548spAV7VOgBvygZ0QxUCWUn0tstC/hSHymj15HzcfxHZDaN9GfUu
+         BDqMG92ZBliz8DAZpYtiOP+z1xQ7bvjlJiZ7vpgmiP6se73RU84bGmL79sKLbPg/y1s8
+         GiGLhzsXxzrVIH423CIBU1QgWozMsdmd7jBkkceENSU4hz9Ubv9lA3InH7YPaL1HVKEA
+         cD4J9mSnUtZPvRddwH282ukW6OYdyA3lf9vCCsgZLmw3QurWDTWCZbqyTUGvkBsECgTp
+         uc3GHARrQWdDo9+C4Vjhd5Y87M7JGH3zrU94Xh7rFXm4ZALiOcxWIHc5WFe9AnDPNnV5
+         mfoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=snCS1UV5t8KHvI66KtaEZoGLKqYHV4piyers8Lw21cA=;
-        b=m2aDOxV9/0V+1LmZXBkcJulOsqHD1l5iCTXSSFHOkF7TgWcfwDM53l1LmuKJmiGBTe
-         SzrUF1ugq0nmKzGmnsws7+ewlWQk4ubLt3UR8F0+sv7py0/6htaZ1+k4idm2k4nH1sz4
-         rlixGGwHw+sDJW3xUt4oF56UG5T9MAAdFgf8qn5JMmZNE/SozNF1H08QIKY2Ed6mQcYr
-         XRV+xg3L0qR8soCsaE9Pekhan+iiiUQIdQU9tslpSLWESJDhYoIVYq8/4B8YC3HgbfkG
-         A+KSFUo8syBoXav8RCdNb/colR3r+REvkFT+U49nxuEV+SrBQuh2lT+mcmjwWIHL2gSw
-         PlNg==
-X-Gm-Message-State: ACgBeo33pr9unFulMN5BkwcLEuSNTXhjateeismCYzSgQKTIPIe/jnjs
-        9NqjTG4U1aDroJoott43+9wzmA==
-X-Google-Smtp-Source: AA6agR6T31+W2j9XQm++QVPXiVH/0ekG0C7NSRE9nT2qJrmN/gl3Ggwrh9lJSul41NZbQSKpLF+m0A==
-X-Received: by 2002:adf:e7c2:0:b0:228:8733:3a6d with SMTP id e2-20020adfe7c2000000b0022887333a6dmr411132wrn.215.1662508871046;
+        bh=+tH0+5cmMinJY7FmmCFIkbSwQc1QUXigmKybnusy4h0=;
+        b=tpmenWmdn0pnlQTNcJfGjnFoY+/iVe+xSJaDMguUZLt/Mm57Upcg4wTFCPGJ2Fy6ot
+         4A3YlsYLYZP3gGEQbOCzBhhySFQtWRovBhI/Cfn/oX/KnIQqrmdE5YoXmO7H8CzO0+/2
+         RQdsiUhBfHmPEKTgD9hYjdPCsDySC0aEAeFJ9tWGZ+yjuLBUvtFOkTNTgY0Gs3B3GOXE
+         k/0zc32rUWaRBLDDv85Tz4Mb1cwtOtkFmEDb/TsKPG42hIt+Dojz3QEjHhLomQPkkcni
+         kseyNSFsNOOnIhKMLyzDrE9vkWNQscgnw3HYtgiI+XO5ww5MSaHTsejXaq4o4lYPDaNP
+         QHjg==
+X-Gm-Message-State: ACgBeo37IF6QFQJaQSWEq8NTOm8nZ/CfR1tclXwDDHr/fz1UHAPVYgIp
+        mE9+TCH7srPueGayL4vixTUBPA==
+X-Google-Smtp-Source: AA6agR6+CusdbfsZHpK84uR2/lNh/n5YV88mExLn4rFS28dPtNx1yz8zrvVoHxlM1DhdPBFQqmBVNg==
+X-Received: by 2002:adf:ea4a:0:b0:228:635a:d491 with SMTP id j10-20020adfea4a000000b00228635ad491mr434902wrn.137.1662508871967;
         Tue, 06 Sep 2022 17:01:11 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id g13-20020a05600c4ecd00b003a4c6e67f01sm26848613wmq.6.2022.09.06.17.01.10
+        by smtp.gmail.com with ESMTPSA id g13-20020a05600c4ecd00b003a4c6e67f01sm26848613wmq.6.2022.09.06.17.01.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 17:01:10 -0700 (PDT)
+        Tue, 06 Sep 2022 17:01:11 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         dmitry.baryshkov@linaro.org, sean@poorly.run, robh+dt@kernel.org,
@@ -56,9 +56,9 @@ To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org
 Cc:     bryan.odonoghue@linaro.org
-Subject: [PATCH 03/11] ARM: dts: qcom: msm8974: Drop redundant phy-names from DSI controller
-Date:   Wed,  7 Sep 2022 01:00:57 +0100
-Message-Id: <20220907000105.786265-4-bryan.odonoghue@linaro.org>
+Subject: [PATCH 04/11] arm64: dts: qcom: msm8916: Drop redundant phy-names from DSI controller
+Date:   Wed,  7 Sep 2022 01:00:58 +0100
+Message-Id: <20220907000105.786265-5-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220907000105.786265-1-bryan.odonoghue@linaro.org>
 References: <20220907000105.786265-1-bryan.odonoghue@linaro.org>
@@ -74,26 +74,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-phy-names has been marked deprecated. Remove it from the msm8974 DSI
+phy-names has been marked deprecated. Remove it from the msm8916 DSI
 controller block.
 
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm/boot/dts/qcom-msm8974.dtsi | 1 -
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-index 8baca2a777176..979e88a064cca 100644
---- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-@@ -1566,7 +1566,6 @@ dsi0: dsi@fd922800 {
- 					      "core_mmss";
- 
- 				phys = <&dsi0_phy>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 7a9882e39e905..f0f457688f3a4 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -1032,7 +1032,6 @@ dsi0: dsi@1a98000 {
+ 					      "pixel",
+ 					      "core";
+ 				phys = <&dsi_phy0>;
 -				phy-names = "dsi-phy";
  
- 				status = "disabled";
- 
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
 -- 
 2.37.3
 
