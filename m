@@ -2,108 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 066685B005F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 11:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F23B95B0061
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 11:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230424AbiIGJZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 05:25:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
+        id S229850AbiIGJZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 05:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230380AbiIGJZB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 05:25:01 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7693D474EA;
-        Wed,  7 Sep 2022 02:24:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1662542693; x=1694078693;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=i3OpScyz4S2GYqXWJMQAAeU2Xn1hLYk5DlrfzSFJe4U=;
-  b=mCTNY3jaSG9T9InzdPEJ39nkbJ4wvnUyBlf6McNpSY4Wpq8Suw0lrouS
-   LHolE/RP/5/LbHN+UW1OuxGFscp+B2/vr7A2NcFOtB8vtBjyUcky3geQU
-   rmTZ7bcQNJFBx6LT2wasQKI6E4eAWTjxm7E3od4doZ9HV9m+/tQzIUpA6
-   Ryr/0uXFLYmjEvKAWpnZGBxOzuAIvP3ZLCV6NvDsqkjggr4hjqnbGeLWE
-   EAzO08dglkeG28FHLHg6MvI/B5zZAmuYzkmJQMegVL1GwNwpdVR7HwjJy
-   ITS5vbNi+KphY2Nh9omgasDylune65i0+e1NNGtx/sIzonMr99wRJEQu0
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="276564957"
-X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; 
-   d="scan'208";a="276564957"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 02:24:52 -0700
-X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; 
-   d="scan'208";a="676097466"
-Received: from dmatouse-mobl.ger.corp.intel.com ([10.251.223.53])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 02:24:47 -0700
-Date:   Wed, 7 Sep 2022 12:24:45 +0300 (EEST)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Sergiu Moga <sergiu.moga@microchip.com>
-cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        richard.genoud@gmail.com, radu_nicolae.pirea@upb.ro,
-        gregkh@linuxfoundation.org, broonie@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, jirislaby@kernel.org,
-        admin@hifiphile.com, kavyasree.kotagiri@microchip.com,
-        tudor.ambarus@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 09/13] tty: serial: atmel: Define BRSRCCK bitmask of
- UART IP's Mode Register
-In-Reply-To: <20220906135511.144725-10-sergiu.moga@microchip.com>
-Message-ID: <b36cb6fb-6e11-3e93-fad-e5d6375e741@linux.intel.com>
-References: <20220906135511.144725-1-sergiu.moga@microchip.com> <20220906135511.144725-10-sergiu.moga@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229552AbiIGJZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 05:25:55 -0400
+Received: from sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5493533E35
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 02:25:52 -0700 (PDT)
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 009b8c43;
+        Wed, 7 Sep 2022 11:25:48 +0200 (CEST)
+Date:   Wed, 7 Sep 2022 11:25:48 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Cc:     aspriel@gmail.com, franky.lin@broadcom.com,
+        hante.meuleman@broadcom.com, alyssa@rosenzweig.io,
+        asahi@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
+        davem@davemloft.net, devicetree@vger.kernel.org,
+        edumazet@google.com, marcan@marcan.st, kuba@kernel.org,
+        kvalo@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        pabeni@redhat.com, zajec5@gmail.com, robh+dt@kernel.org,
+        SHA-cyfmac-dev-list@infineon.com, sven@svenpeter.dev,
+        arend@broadcom.com
+In-Reply-To: <E1oVpmk-005LBL-5U@rmk-PC.armlinux.org.uk>
+        (rmk+kernel@armlinux.org.uk)
+Subject: Re: [PATCH net-next 01/12] dt-bindings: net: bcm4329-fmac: Add Apple
+ properties & chips
+References: <YxhMaYOfnM+7FG+W@shell.armlinux.org.uk> <E1oVpmk-005LBL-5U@rmk-PC.armlinux.org.uk>
+Message-ID: <d3ced5135ffd65d8@bloch.sibelius.xs4all.nl>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
+        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Sep 2022, Sergiu Moga wrote:
-
-> Add definitions for the Baud Rate Source Clock bitmask of the
-> Mode Register of UART IP's and its bitfields.
+> From: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Date: Wed, 07 Sep 2022 08:47:46 +0100
 > 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> From: Hector Martin <marcan@marcan.st>
+> 
+> This binding is currently used for SDIO devices, but these chips are
+> also used as PCIe devices on DT platforms and may be represented in the
+> DT. Re-use the existing binding and add chip compatibles used by Apple
+> T2 and M1 platforms (the T2 ones are not known to be used in DT
+> platforms, but we might as well document them).
+> 
+> Then, add properties required for firmware selection and calibration on
+> M1 machines.
+> 
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+
 > ---
+>  .../net/wireless/brcm,bcm4329-fmac.yaml       | 37 +++++++++++++++++--
+>  1 file changed, 34 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> index 53b4153d9bfc..53ded82b273a 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Broadcom BCM4329 family fullmac wireless SDIO devices
+> +title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
+>  
+>  maintainers:
+>    - Arend van Spriel <arend@broadcom.com>
+> @@ -42,10 +42,16 @@ title: Broadcom BCM4329 family fullmac wireless SDIO devices
+>                - cypress,cyw43012-fmac
+>            - const: brcm,bcm4329-fmac
+>        - const: brcm,bcm4329-fmac
+> +      - enum:
+> +          - pci14e4,43dc  # BCM4355
+> +          - pci14e4,4464  # BCM4364
+> +          - pci14e4,4488  # BCM4377
+> +          - pci14e4,4425  # BCM4378
+> +          - pci14e4,4433  # BCM4387
+>  
+>    reg:
+> -    description: SDIO function number for the device, for most cases
+> -      this will be 1.
+> +    description: SDIO function number for the device (for most cases
+> +      this will be 1) or PCI device identifier.
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -85,6 +91,31 @@ title: Broadcom BCM4329 family fullmac wireless SDIO devices
+>        takes precedence.
+>      type: boolean
+>  
+> +  brcm,cal-blob:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: A per-device calibration blob for the Wi-Fi radio. This
+> +      should be filled in by the bootloader from platform configuration
+> +      data, if necessary, and will be uploaded to the device if present.
+> +
+> +  brcm,board-type:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: Overrides the board type, which is normally the compatible of
+> +      the root node. This can be used to decouple the overall system board or
+> +      device name from the board type for WiFi purposes, which is used to
+> +      construct firmware and NVRAM configuration filenames, allowing for
+> +      multiple devices that share the same module or characteristics for the
+> +      WiFi subsystem to share the same firmware/NVRAM files. On Apple platforms,
+> +      this should be the Apple module-instance codename prefixed by "apple,",
+> +      e.g. "apple,honshu".
+> +
+> +  apple,antenna-sku:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: Antenna SKU used to identify a specific antenna configuration
+> +      on Apple platforms. This is use to build firmware filenames, to allow
+> +      platforms with different antenna configs to have different firmware and/or
+> +      NVRAM. This would normally be filled in by the bootloader from platform
+> +      configuration data.
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.30.2
 > 
 > 
 > 
-> v1 -> v2:
-> - Nothing, this patch was not here before
-> 
-> 
-> 
->  drivers/tty/serial/atmel_serial.h | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/tty/serial/atmel_serial.h b/drivers/tty/serial/atmel_serial.h
-> index 70d0611e56fd..ed64035ba6c3 100644
-> --- a/drivers/tty/serial/atmel_serial.h
-> +++ b/drivers/tty/serial/atmel_serial.h
-> @@ -68,6 +68,9 @@
->  #define		ATMEL_US_NBSTOP_1		(0 << 12)
->  #define		ATMEL_US_NBSTOP_1_5		(1 << 12)
->  #define		ATMEL_US_NBSTOP_2		(2 << 12)
-> +#define	ATMEL_UA_BRSRCCK	GENMASK(13, 12)	/* Clock Selection for UART */
-> +#define		ATMEL_UA_BRSRCCK_PERIPH_CLK	(0 << 12)
-> +#define		ATMEL_UA_BRSRCCK_GCLK		(1 << 12)
-
-FIELD_PREP(ATMEL_UA_BRSRCCK, ...)
-
->  #define	ATMEL_US_CHMODE		GENMASK(15, 14)	/* Channel Mode */
->  #define		ATMEL_US_CHMODE_NORMAL		(0 << 14)
->  #define		ATMEL_US_CHMODE_ECHO		(1 << 14)
-> 
-
--- 
- i.
-
