@@ -2,81 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AE5D5B03EC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 14:31:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23D5C5B03F4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 14:33:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbiIGMbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 08:31:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50980 "EHLO
+        id S229657AbiIGMdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 08:33:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiIGMbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 08:31:16 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A7B88A1F7;
-        Wed,  7 Sep 2022 05:31:15 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229461AbiIGMdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 08:33:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A29A7ABF;
+        Wed,  7 Sep 2022 05:33:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 102C711C;
-        Wed,  7 Sep 2022 14:31:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1662553873;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=kN857gTumoZn8Gb2kgshbbS+axSnJL0KMWhLpEISQRg=;
-        b=eDJBA+01/tWF6T6Z2G/KVG87d5jG/MYtuzd03CFy4WLb3v5gd68EbnYEzede+ddjVz9Y0z
-        XpZONl52PTG1qMJPBGIc2YYW3Fi/jGFvcSBG8Ihnweod8lyZXE1S1i2M3Q1au0Fu0Q8YSC
-        PaHJV1fcHj2KPZ7gAn+/5Bhw4BUIzYYV62P90Qznf3YXLgYZaMFjojNL1pZtlrREphyjLo
-        QrFC30QwEjt8aykM7R2FirMIopICWriYYJea+lsaPlSajzZDyRG163nqNAKCET08oTfXC5
-        MO6WN+1i3i5nvaN8yjmjlg+HSCXoDozDdL6e1UmF+IWDmF26uvQNZBiM4TJQXA==
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D5AD618D6;
+        Wed,  7 Sep 2022 12:32:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CB53C433D7;
+        Wed,  7 Sep 2022 12:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1662553979;
+        bh=+oPcnp8Ehqf+5v9MwAdEHVeVY7vbOQ3ajdywYWvVyKE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PbGVjNGQFIBeQlyORikeOGZ023BSRIg/LCmLoOXl+RupSx7yVXJLKwNpNNghwaQx+
+         2c9cCoL8ZSLzwG0PPsta9NsFSI7VhSRiZUKu/xlOutzwnV+Ah2Y8wgQ5qbq+KtKClF
+         zbh1++1nCbXnBG+42FRlhocM2eMzPFB2yI/vtpfk=
+Date:   Wed, 7 Sep 2022 14:32:56 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Nipun Gupta <nipun.gupta@amd.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rafael@kernel.org, eric.auger@redhat.com,
+        alex.williamson@redhat.com, cohuck@redhat.com,
+        puneet.gupta@amd.com, song.bao.hua@hisilicon.com,
+        mchehab+huawei@kernel.org, maz@kernel.org, f.fainelli@gmail.com,
+        jeffrey.l.hugo@gmail.com, saravanak@google.com,
+        Michael.Srba@seznam.cz, mani@kernel.org, yishaih@nvidia.com,
+        jgg@ziepe.ca, jgg@nvidia.com, robin.murphy@arm.com,
+        will@kernel.org, joro@8bytes.org, masahiroy@kernel.org,
+        ndesaulniers@google.com, linux-arm-kernel@lists.infradead.org,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kvm@vger.kernel.org, okaya@kernel.org,
+        harpreet.anand@amd.com, nikhil.agarwal@amd.com,
+        michal.simek@amd.com, aleksandar.radovanovic@amd.com, git@amd.com
+Subject: Re: [RFC PATCH v3 2/7] bus/cdx: add the cdx bus driver
+Message-ID: <YxiPeOwo5tWrQuSE@kroah.com>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-3-nipun.gupta@amd.com>
 MIME-Version: 1.0
-Date:   Wed, 07 Sep 2022 14:31:12 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH v2 11/20] nvmem: imx-ocotp: replace global post processing
- with layouts
-In-Reply-To: <20220901221857.2600340-12-michael@walle.cc>
-References: <20220901221857.2600340-1-michael@walle.cc>
- <20220901221857.2600340-12-michael@walle.cc>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <42a72fc508b8f3896092a2b1d56305b1@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220906134801.4079497-3-nipun.gupta@amd.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-09-02 00:18, schrieb Michael Walle:
-> In preparation of retiring the global post processing hook change this
-> driver to use layouts. The layout will be supplied during registration
-> and will be used to add the post processing hook to all added cells.
+On Tue, Sep 06, 2022 at 07:17:56PM +0530, Nipun Gupta wrote:
+> CDX bus supports the scanning and probing of FPGA based
+> devices. These devices are registers as CDX devices.
 > 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
-> Complile-time tested only! Please test.
+> The bus driver sets up the basic infrastructure and fetches
+> the device related information from the firmware.
+> 
+> CDX bus is capable of scanning devices dynamically,
+> supporting rescanning of dynamically added, removed or
+> updated devices.
 
-Tested-by: Michael Walle <michael@walle.cc> # on kontron-pitx-imx8m
+Really?  Then why is the platform driver mess still in here?
 
--michael
+
+> --- /dev/null
+> +++ b/drivers/bus/cdx/cdx.c
+> @@ -0,0 +1,437 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Platform driver for CDX bus.
+
+Again, this should not be a platform driver.
+
+Now you can have a CDX "bus" driver, that is a platform driver, but that
+needs to be in a separate file and as a separate module and totally
+independant of the CDX bus code entirely.
+
+Otherwise this is a mess to try to sift through and determine what is,
+and is not, going on.  Please split that up and get rid of all of the
+platform driver stuff here and put it in a separate patch that happens
+after the CDX bus logic is added.
+
+thanks,
+
+greg k-h
