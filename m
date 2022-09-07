@@ -2,618 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88D2A5AFA47
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 04:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F9265AFA77
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 05:13:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230014AbiIGCvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 22:51:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58170 "EHLO
+        id S230042AbiIGDNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 23:13:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229979AbiIGCu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 22:50:56 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12997AC1E;
-        Tue,  6 Sep 2022 19:50:51 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id h14so6930832ilh.10;
-        Tue, 06 Sep 2022 19:50:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=UQ4U+yM1MSsmr1i1ICt9xFovD39GWOODikk5096FlFE=;
-        b=EfLX4lGX1Y2DPXAtzQcBysdl0O6oXsbsriKytfAJq984U+zsxmZFyewXNKuv5YUA7m
-         EEaTjvo2PmWEG7rBOV1HM1sCA3awmaIUZYJJsbUTgU5mSkjvXIWgTYCONXDHvuBy2Mqi
-         0pgjzI45UmJsL4BDVdTkvRZEgsb/TmfhAOUeU7xrMPxKU4JB2kz2rExHHe5ovHWEGElM
-         uUyb+RPsVWoSLGlMqvgkPI2yPNRHcKuQYOjAOP5exFYd7znAzw1XEtONGIeaHeswlTnK
-         aG2j+955PhNX3QEaZuIQU/i0FPxgFAxGO14/AGJvVGULi9eVTaHv+UI5vfJFjNmu5ecu
-         uIBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=UQ4U+yM1MSsmr1i1ICt9xFovD39GWOODikk5096FlFE=;
-        b=QXP/VdGgnvVNtMWcJWE2LIfEkefd8VXYMtw6EAFb/0es4N1VcyES0DJrsz1QfU0c0B
-         Enx693dkabnCV6pYFNPqvPoLr5hkqIjzAbi6CgqQSxfOBhr6b91Vosh0TA5bRdEaQf1H
-         Jxa8IiCMDbXGdO5u7uDl1V8ibRrY3szM/eqM+xf9LodoA1pll5X/rUZlly0FsKwtrATp
-         iZ1c5QQla+uvGxM7BmOhdt1MjUcSN0ZYQjGqooO7YxucTrgbK3Bke/jY6AdKT6HpSb7g
-         MeWn6w3mrogPa7H1sylto9ElKG5MgBTRUsL+EZsAjMRVp5CmH1YcYOnxplCZOJsxz1QE
-         i28g==
-X-Gm-Message-State: ACgBeo3SSoPWNTUvPaYAzwA4Oa7wiP4JBAXd9bDs3Kfl825Lct2Y9vf4
-        7H0iQ8GgtXhdF+2bp2o+t8g=
-X-Google-Smtp-Source: AA6agR4Cux6hmzaV/S2ttYOAR1GjEWXpZia54iGg4sLC4RGDTzgWaQmicK65m3cFe874YywJQ5ROvg==
-X-Received: by 2002:a92:d64f:0:b0:2ea:f9d6:e446 with SMTP id x15-20020a92d64f000000b002eaf9d6e446mr857378ilp.194.1662519050765;
-        Tue, 06 Sep 2022 19:50:50 -0700 (PDT)
-Received: from localhost ([2607:fea8:a2e2:2d00::4aff])
-        by smtp.gmail.com with UTF8SMTPSA id a12-20020a02734c000000b0034c10bd52f5sm6465037jae.125.2022.09.06.19.50.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Sep 2022 19:50:50 -0700 (PDT)
-From:   Richard Acayan <mailingradian@gmail.com>
-To:     bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, konrad.dybcio@somainline.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, tdas@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, caleb@connolly.tech,
-        jo@jsfamily.in, Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 3/3] clk: qcom: gcc-sdm845: add sdm670 global clock data
-Date:   Tue,  6 Sep 2022 22:50:35 -0400
-Message-Id: <20220907025035.15609-4-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220907025035.15609-1-mailingradian@gmail.com>
-References: <20220907025035.15609-1-mailingradian@gmail.com>
+        with ESMTP id S229695AbiIGDNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 23:13:19 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2062d.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e8a::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BDF897B00;
+        Tue,  6 Sep 2022 20:13:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EJiUZ7O4BfJHfCvPeW+AILzMzM1nrVEtV7l/ZTOY2Q+EL6T+bsZADjLKZmbu5G4H5StYkEAmo94kx34b2rQw56fbeqyTGxoQSrtfAfwfD12N3TL4ZDNYZ04V5sa3XN59o00qeHolyW8NraXGPbZ8ytHY18H4b1Pm4ebZMXB9ynUPW5cPCGcP3/PrE65v+rvC2LvToF/hSK+VpBHr3s+h9ip53iRF6E90WtkEDzJBxQ5RUvYsgXr8C4NsRbMSwIjtpcfF2L8hnaelXZwfkhv2Fdq1jb+OiKh7SBlf8NKPi4+8tGqgFU3kYK4BHvM8RGhDLQrY/CEAegvuMo5IIOAtnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bbU29ondGo5t8B1Bgn25HOsvlGlgwcciQmnXTlVItko=;
+ b=gmzz+xsRdRfOb1zXd2i8U68M9wFUkALbNZuG/FuCN3bWDj/OH9/J+XRSIEON2wbMQ2p/8OLpJChHS4gX3tUBQnsIfD94lXjgjDQoaXdloWdhWUeQ4ClMNzm7FE4V9gzplFQiH71AgUGJIWS7FdObKb0xWUYgnCARcBcOHLYs8mzihV30q0Hmnz3FgLArPHQ89kasinjzMk36Br+JBd1umgFq6ystjt0KsdktBzTWtUww830x/kGtBieiRDY1DRaOVARJaNeVR668B6jwPm4DHUktnF/cp1DRxy1CkdPXfxJv2+b2bmwgVEjcSH5bsx0pF+79Nr/ZAFIp3ipMuEyAqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bbU29ondGo5t8B1Bgn25HOsvlGlgwcciQmnXTlVItko=;
+ b=HCiTfOm9f8+K/u0YWkbAaSBGujRNGoDXp1LwNRqM7QarEH7/UB2oCpEK5q0fqUR8TX8Inpt+1dShMsG7Yyp5fmjiSFdjpW8l3IDe6l0Eq+TF8K2/sQfcSVqURXxhsolGRuH0K4mXj9OV3h2OHGwRUmUqdBsqhvdPFwvYf+CBW08=
+Received: from DM6PR12MB3082.namprd12.prod.outlook.com (2603:10b6:5:11b::12)
+ by CY8PR12MB7540.namprd12.prod.outlook.com (2603:10b6:930:97::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.18; Wed, 7 Sep
+ 2022 03:13:13 +0000
+Received: from DM6PR12MB3082.namprd12.prod.outlook.com
+ ([fe80::4c82:abe6:13a6:ac74]) by DM6PR12MB3082.namprd12.prod.outlook.com
+ ([fe80::4c82:abe6:13a6:ac74%3]) with mapi id 15.20.5588.014; Wed, 7 Sep 2022
+ 03:13:13 +0000
+From:   "Gupta, Nipun" <Nipun.Gupta@amd.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "masahiroy@kernel.org" <masahiroy@kernel.org>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "jgg@nvidia.com" <jgg@nvidia.com>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jgg@ziepe.ca" <jgg@ziepe.ca>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>
+Subject: RE: [RFC PATCH v3 1/7] dt-bindings: bus: add CDX bus device tree
+ bindings
+Thread-Topic: [RFC PATCH v3 1/7] dt-bindings: bus: add CDX bus device tree
+ bindings
+Thread-Index: AQHYwfdggyJkuQrhpUeHNGqW5h+6Mq3SrVAAgACd+QA=
+Date:   Wed, 7 Sep 2022 03:13:12 +0000
+Message-ID: <DM6PR12MB3082B9C670B5F58215259A76E8419@DM6PR12MB3082.namprd12.prod.outlook.com>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-2-nipun.gupta@amd.com>
+ <1662486402.681939.780022.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1662486402.681939.780022.nullmailer@robh.at.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-09-07T03:13:11Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=e19e0cd7-69fd-4d28-ad3b-57d7b537e70e;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f2abbe31-6aec-49f9-cb1b-08da907ee646
+x-ms-traffictypediagnostic: CY8PR12MB7540:EE_
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: i6rsYvdUPmcbWpWio2rXxQy5eiRXt1pW890oy0bqJAyyHtyNRO5cLdfJJXBMV4Y7eYc3OSl7KldAdhwVCJd32i7XAqIGkDk2rSd/SQc/CfGqEpzHs689jid8JLHAeIVEa+7P5Insq1i+94YDkPTPjvz4uIefX2QUts3FJgtW/OQfthN0cKSdw8Ben1WC9cEkXMve7vyzPf6zdmKxL6+b6NpLB5P2qbTARvcmiSDAk6cNqz+IiNb0wBUJ5gFQ5MvRvDk7ELq7fCatKR4BkSzJc37Ttnmb4thM8YaxTjdhdLrHaDNOyURvgRWkw+lkFkio0nifh1fZKxcU85JK+RtvM1cElC4g7YIZ7TNCozqCbqzjatUSS6/4Th79TNpyuBXxdMsZ7DmJEKq012Q7ChdUxE+qAVQWsfYsZNdWGDiYbY8936iqWhrCcmhGMav9Xo2ptAohwlaK1mciymVvCH5U9e72dQK+ZUAB6XkmCtF093rdYHk1UZ8YsO6Xom7LAMft8459uJ0uaVyZlcU77L4v5S86hJOdRukxUq9NTWn8PTe6iIQ/IsodZ7mUewva76LrTehCRsrPZ0u9wtjoUjIUFFWyZ5uqpfmz+roItP7/hjcYTKvpHqa+GrMOGYWZp2nzwXbRdZNpfFAcMx/vSuhfGtDSZGVayUj0EMzCKiBncJqL75qaBrLK9mFXVTeFq97qF4GyatyTN70IcXSsnBCAMPPcZHaCqdhWYstqfLrRbEDhZ2MDD1oUS4N3ZoTriIcfoFcbMbVjftSSDU5fl4ptykzuROhHJSK8VN1n9aqEvlw=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3082.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(376002)(39860400002)(136003)(346002)(396003)(33656002)(186003)(2906002)(7406005)(5660300002)(4326008)(8936002)(66946007)(52536014)(8676002)(66446008)(66476007)(66556008)(64756008)(45080400002)(316002)(7416002)(6916009)(54906003)(76116006)(6506007)(41300700001)(26005)(7696005)(55016003)(55236004)(53546011)(9686003)(86362001)(71200400001)(966005)(38100700002)(38070700005)(83380400001)(478600001)(122000001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?f4VY5RpoY81ke5bFIf27FHn6GDdhloTydKZ4lSrIQMuuW8GDsNiVkig68Y0t?=
+ =?us-ascii?Q?NbuJJ2fhp55tNUcP3xN+ATRS0xUzajT0JOD27xU4nGPPD14UcnXAUWXNRm7H?=
+ =?us-ascii?Q?Q429nV/tUMWFlTkO/T8/lT7pKm6TxdMLQOrORPNOleV6HcQRZN3DHkJRBZKb?=
+ =?us-ascii?Q?bdorL71W8K+b5WwJ2TwdSotZ1VhqxcaCsvL9P/ns/dJ4ituXyKThIwKP8fTm?=
+ =?us-ascii?Q?rmepB1vwkly9PPm25p7e/uaLOSjSPka0MG6fbzzfx7wpRcrjFnWnWN15iRRP?=
+ =?us-ascii?Q?srE0H+EE9eejNI0xT68bbFhw8Y3bwNukf0aBcy/K8qDblu+qTi2deQSV+CHt?=
+ =?us-ascii?Q?4TsPAci0L8WwlFupcQf7+e4jD1Lb/+vuzR0YpYKziP0hGZYU9gFG5bpbVnLc?=
+ =?us-ascii?Q?DXRgYQ4FHAe45HCDHPiSMa20T3MYCVHlWg0YyJ6/XSB4dIz92oZSjXIaOqgl?=
+ =?us-ascii?Q?YRNrvD0JF4SgxHPXBwZhsR2guolN8UtjGvbXVWld4ncPgbzAX8NgBVStkuTO?=
+ =?us-ascii?Q?iJkO2I83SK7FaM8R9DEAM9C2hjmFnpOgqXiWC6N+4Lig5OArMtR1xv90u15D?=
+ =?us-ascii?Q?uHGMJq6ZYnRlm1f7IcC+WQk2bcHR9agcsA4DKejVfbg1euPGkqLn40untDuz?=
+ =?us-ascii?Q?lAQc8L8nLoPV/aQp2RXIlaUWKIHymNZu7SyWeDtHROJj8/iFZ79bzBVFjFmv?=
+ =?us-ascii?Q?rmHAAd3+qfsiWniO827ezzc5O5QtGGY/A2GDgMCiTlamp8JztflRs8zowYYr?=
+ =?us-ascii?Q?a6ZfMQXh0uCaROBnvs15fugog676kGuNJsSQnrFclu3+wnyWmhgs+N8np12Y?=
+ =?us-ascii?Q?PA16yZ6eVHldLu81IYMckYn97uimTTaup0TUhTzITLr65uebOOBjIbFp0mbi?=
+ =?us-ascii?Q?smrtSZDEPy/Z1ni2xtyrGqzi5Bl84ETwYAJmWyDrcxoU2vGEufMEJuR1oNsx?=
+ =?us-ascii?Q?me5MXvGwE3Pu2++EHOtZ1Pnn2bI1suF4cRZkbvnfrqcG1RysCGZbHr///Bzj?=
+ =?us-ascii?Q?pyU4hgUfhJ+6D4r0Su/MjVoctNXXgBH5fumCKN4VcJU9E2vlzg20zkw1FE10?=
+ =?us-ascii?Q?JWaZlNWuyC7qa9LaKqdiT4847pjtqItrgMmFBlNGEMoHcSYPSVg2grG8jJ1m?=
+ =?us-ascii?Q?5XCWHwXrKDdrefZWqZogEheiD9AcKxoKeVXAj9kwbE5VxHyNsVeTbbXlJD93?=
+ =?us-ascii?Q?cRfOvsMJ45tt5vf+jfI2wSxNSfURofxLB4BI5HgqAj/DwcSY7blZHBfcKLBJ?=
+ =?us-ascii?Q?t3iBvewB6nn7F6J2+AyPb/5qxuBgVQ/WSm9iovnPBDp9UzbAtBbqcD8cOaxY?=
+ =?us-ascii?Q?knuNCNkIL37/ufk0/T6gRHJFXV/7PldE4lzqK1u8y46qyPNSndXTwmvIXKb7?=
+ =?us-ascii?Q?HEI1Qwq0ZFy5QtwF16mYXA2SkUd6TyyZinotsGH9XaLL+2M2VO6d2Pk9M6ZT?=
+ =?us-ascii?Q?Et3fnvRkRvKBu27TRf852ADxosmhAvo253wDQVTGMyR9j9V5IV5poUJVVR79?=
+ =?us-ascii?Q?1YvPxdoFwDdXVr7IsBGbjEyDHMxWhx1bQH0eKD9Jv1drLqqsY37RZ2kvjG/U?=
+ =?us-ascii?Q?62Cjvx43coRwFwMiDxw=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3082.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2abbe31-6aec-49f9-cb1b-08da907ee646
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2022 03:13:12.9399
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wwGpmh/ie0NdcJDqamp6R8jhhadvJ02hAgUMDF8IPjcsvh7kZ5ntGrPOg7+ZRcBK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7540
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Snapdragon 670 adds and removes some clocks, adds new frequencies, and
-adds a new GPLL (Global Phase-Locked Loop) in reference to SDM845, while
-also removing some GDSCs. Despite these differences, there are many
-similarities with SDM670. Add data for SDM670 in the driver for SDM845 to
-reuse the most of the clock data.
+[AMD Official Use Only - General]
 
-Advantages and disadvantages of this approach:
- + maintenance applies to both sdm670 and sdm845 by default
- + less duplicate code (clocks) means smaller distro/pre-built kernels
-   with all drivers enabled
- - clocks for both SoC's must be compiled if the user wants clocks for one
-   specific SoC (both or none)
- - additional testing needed for sdm845 devices
 
-Link: https://android.googlesource.com/kernel/msm/+/443bd8d6e2cf54698234c752e6de97b4b8a528bd^!/#F10
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- drivers/clk/qcom/Kconfig      |   4 +-
- drivers/clk/qcom/gcc-sdm845.c | 399 ++++++++++++++++++++++++++++++++++
- 2 files changed, 401 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index 1cf1ef70e347..17951088b1db 100644
---- a/drivers/clk/qcom/Kconfig
-+++ b/drivers/clk/qcom/Kconfig
-@@ -545,10 +545,10 @@ config QCS_Q6SSTOP_404
- 	  controller to reset the Q6SSTOP subsystem.
- 
- config SDM_GCC_845
--	tristate "SDM845 Global Clock Controller"
-+	tristate "SDM845/SDM670 Global Clock Controller"
- 	select QCOM_GDSC
- 	help
--	  Support for the global clock controller on SDM845 devices.
-+	  Support for the global clock controller on SDM845 and SDM670 devices.
- 	  Say Y if you want to use peripheral devices such as UART, SPI,
- 	  i2C, USB, UFS, SDDC, PCIe, etc.
- 
-diff --git a/drivers/clk/qcom/gcc-sdm845.c b/drivers/clk/qcom/gcc-sdm845.c
-index cd6e4e41dc9b..57d58c7221a5 100644
---- a/drivers/clk/qcom/gcc-sdm845.c
-+++ b/drivers/clk/qcom/gcc-sdm845.c
-@@ -31,6 +31,7 @@ enum {
- 	P_GPLL0_OUT_EVEN,
- 	P_GPLL0_OUT_MAIN,
- 	P_GPLL4_OUT_MAIN,
-+	P_GPLL6_OUT_MAIN,
- 	P_SLEEP_CLK,
- };
- 
-@@ -68,6 +69,23 @@ static struct clk_alpha_pll gpll4 = {
- 	},
- };
- 
-+static struct clk_alpha_pll gpll6 = {
-+	.offset = 0x13000,
-+	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_FABIA],
-+	.clkr = {
-+		.enable_reg = 0x52000,
-+		.enable_mask = BIT(6),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "gpll6",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "bi_tcxo", .name = "bi_tcxo",
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_alpha_pll_fixed_fabia_ops,
-+		},
-+	},
-+};
-+
- static const struct clk_div_table post_div_table_fabia_even[] = {
- 	{ 0x0, 1 },
- 	{ 0x1, 2 },
-@@ -194,6 +212,20 @@ static const struct clk_parent_data gcc_parent_data_10[] = {
- 	{ .hw = &gpll0_out_even.clkr.hw },
- };
- 
-+static const struct parent_map gcc_parent_map_11[] = {
-+	{ P_BI_TCXO, 0 },
-+	{ P_GPLL0_OUT_MAIN, 1 },
-+	{ P_GPLL6_OUT_MAIN, 2 },
-+	{ P_GPLL0_OUT_EVEN, 6 },
-+};
-+
-+static const struct clk_parent_data gcc_parent_data_11[] = {
-+	{ .fw_name = "bi_tcxo", .name = "bi_tcxo" },
-+	{ .hw = &gpll0.clkr.hw },
-+	{ .hw = &gpll6.clkr.hw },
-+	{ .hw = &gpll0_out_even.clkr.hw },
-+	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+};
- 
- static const struct freq_tbl ftbl_gcc_cpuss_ahb_clk_src[] = {
- 	F(19200000, P_BI_TCXO, 1, 0, 0),
-@@ -233,6 +265,26 @@ static struct clk_rcg2 gcc_cpuss_rbcpr_clk_src = {
- 	},
- };
- 
-+static const struct freq_tbl ftbl_gcc_sdm670_cpuss_rbcpr_clk_src[] = {
-+	F(19200000, P_BI_TCXO, 1, 0, 0),
-+	F(50000000, P_GPLL0_OUT_MAIN, 12, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 gcc_sdm670_cpuss_rbcpr_clk_src = {
-+	.cmd_rcgr = 0x4815c,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = gcc_parent_map_3,
-+	.freq_tbl = ftbl_gcc_cpuss_rbcpr_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "gcc_cpuss_rbcpr_clk_src",
-+		.parent_data = gcc_parent_data_8_ao,
-+		.num_parents = ARRAY_SIZE(gcc_parent_data_8_ao),
-+		.ops = &clk_rcg2_ops,
-+	},
-+};
-+
- static const struct freq_tbl ftbl_gcc_gp1_clk_src[] = {
- 	F(19200000, P_BI_TCXO, 1, 0, 0),
- 	F(25000000, P_GPLL0_OUT_EVEN, 12, 0, 0),
-@@ -656,6 +708,54 @@ static struct clk_rcg2 gcc_qupv3_wrap1_s7_clk_src = {
- 	.clkr.hw.init = &gcc_qupv3_wrap1_s7_clk_src_init,
- };
- 
-+static const struct freq_tbl ftbl_gcc_sdcc1_apps_clk_src[] = {
-+	F(144000, P_BI_TCXO, 16, 3, 25),
-+	F(400000, P_BI_TCXO, 12, 1, 4),
-+	F(20000000, P_GPLL0_OUT_EVEN, 5, 1, 3),
-+	F(25000000, P_GPLL0_OUT_EVEN, 6, 1, 2),
-+	F(50000000, P_GPLL0_OUT_EVEN, 6, 0, 0),
-+	F(100000000, P_GPLL0_OUT_MAIN, 6, 0, 0),
-+	F(192000000, P_GPLL6_OUT_MAIN, 2, 0, 0),
-+	F(384000000, P_GPLL6_OUT_MAIN, 1, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 gcc_sdcc1_apps_clk_src = {
-+	.cmd_rcgr = 0x26028,
-+	.mnd_width = 8,
-+	.hid_width = 5,
-+	.parent_map = gcc_parent_map_11,
-+	.freq_tbl = ftbl_gcc_sdcc1_apps_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "gcc_sdcc1_apps_clk_src",
-+		.parent_data = gcc_parent_data_11,
-+		.num_parents = ARRAY_SIZE(gcc_parent_data_11),
-+		.ops = &clk_rcg2_floor_ops,
-+	},
-+};
-+
-+static const struct freq_tbl ftbl_gcc_sdcc1_ice_core_clk_src[] = {
-+	F(75000000, P_GPLL0_OUT_EVEN, 4, 0, 0),
-+	F(150000000, P_GPLL0_OUT_MAIN, 4, 0, 0),
-+	F(200000000, P_GPLL0_OUT_MAIN, 3, 0, 0),
-+	F(300000000, P_GPLL0_OUT_MAIN, 2, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 gcc_sdcc1_ice_core_clk_src = {
-+	.cmd_rcgr = 0x26010,
-+	.mnd_width = 8,
-+	.hid_width = 5,
-+	.parent_map = gcc_parent_map_0,
-+	.freq_tbl = ftbl_gcc_sdcc1_ice_core_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "gcc_sdcc1_ice_core_clk_src",
-+		.parent_data = gcc_parent_data_0,
-+		.num_parents = ARRAY_SIZE(gcc_parent_data_0),
-+		.ops = &clk_rcg2_ops,
-+	},
-+};
-+
- static const struct freq_tbl ftbl_gcc_sdcc2_apps_clk_src[] = {
- 	F(400000, P_BI_TCXO, 12, 1, 4),
- 	F(9600000, P_BI_TCXO, 2, 0, 0),
-@@ -705,6 +805,31 @@ static struct clk_rcg2 gcc_sdcc4_apps_clk_src = {
- 	},
- };
- 
-+static const struct freq_tbl ftbl_gcc_sdm670_sdcc4_apps_clk_src[] = {
-+	F(400000, P_BI_TCXO, 12, 1, 4),
-+	F(9600000, P_BI_TCXO, 2, 0, 0),
-+	F(19200000, P_BI_TCXO, 1, 0, 0),
-+	F(25000000, P_GPLL0_OUT_EVEN, 12, 0, 0),
-+	F(33333333, P_GPLL0_OUT_EVEN, 9, 0, 0),
-+	F(50000000, P_GPLL0_OUT_MAIN, 12, 0, 0),
-+	F(100000000, P_GPLL0_OUT_MAIN, 6, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 gcc_sdm670_sdcc4_apps_clk_src = {
-+	.cmd_rcgr = 0x1600c,
-+	.mnd_width = 8,
-+	.hid_width = 5,
-+	.parent_map = gcc_parent_map_0,
-+	.freq_tbl = ftbl_gcc_sdm670_sdcc4_apps_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "gcc_sdcc4_apps_clk_src",
-+		.parent_data = gcc_parent_data_0,
-+		.num_parents = ARRAY_SIZE(gcc_parent_data_0),
-+		.ops = &clk_rcg2_floor_ops,
-+	},
-+};
-+
- static const struct freq_tbl ftbl_gcc_tsif_ref_clk_src[] = {
- 	F(105495, P_BI_TCXO, 2, 1, 91),
- 	{ }
-@@ -1283,6 +1408,28 @@ static struct clk_branch gcc_cpuss_rbcpr_clk = {
- 	},
- };
- 
-+/*
-+ * The source clock frequencies are different for SDM670; define a child clock
-+ * pointing to the source clock that uses SDM670 frequencies.
-+ */
-+static struct clk_branch gcc_sdm670_cpuss_rbcpr_clk = {
-+	.halt_reg = 0x48008,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x48008,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "gcc_cpuss_rbcpr_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&gcc_sdm670_cpuss_rbcpr_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
- static struct clk_branch gcc_ddrss_gpu_axi_clk = {
- 	.halt_reg = 0x44038,
- 	.halt_check = BRANCH_VOTED,
-@@ -2353,6 +2500,55 @@ static struct clk_branch gcc_qupv3_wrap_1_s_ahb_clk = {
- 	},
- };
- 
-+static struct clk_branch gcc_sdcc1_ahb_clk = {
-+	.halt_reg = 0x26008,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x26008,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "gcc_sdcc1_ahb_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch gcc_sdcc1_apps_clk = {
-+	.halt_reg = 0x26004,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x26004,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "gcc_sdcc1_apps_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&gcc_sdcc1_apps_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch gcc_sdcc1_ice_core_clk = {
-+	.halt_reg = 0x2600c,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x2600c,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "gcc_sdcc1_ice_core_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&gcc_sdcc1_ice_core_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
- static struct clk_branch gcc_sdcc2_ahb_clk = {
- 	.halt_reg = 0x14008,
- 	.halt_check = BRANCH_HALT,
-@@ -2415,6 +2611,28 @@ static struct clk_branch gcc_sdcc4_apps_clk = {
- 	},
- };
- 
-+/*
-+ * The source clock frequencies are different for SDM670; define a child clock
-+ * pointing to the source clock that uses SDM670 frequencies.
-+ */
-+static struct clk_branch gcc_sdm670_sdcc4_apps_clk = {
-+	.halt_reg = 0x16004,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x16004,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "gcc_sdcc4_apps_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&gcc_sdm670_sdcc4_apps_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
- static struct clk_branch gcc_sys_noc_cpuss_ahb_clk = {
- 	.halt_reg = 0x414c,
- 	.halt_check = BRANCH_HALT_VOTED,
-@@ -3308,6 +3526,155 @@ static struct gdsc hlos1_vote_mmnoc_mmu_tbu_sf_gdsc = {
- 	.flags = VOTABLE,
- };
- 
-+static struct clk_regmap *gcc_sdm670_clocks[] = {
-+	[GCC_AGGRE_UFS_PHY_AXI_CLK] = &gcc_aggre_ufs_phy_axi_clk.clkr,
-+	[GCC_AGGRE_USB3_PRIM_AXI_CLK] = &gcc_aggre_usb3_prim_axi_clk.clkr,
-+	[GCC_APC_VS_CLK] = &gcc_apc_vs_clk.clkr,
-+	[GCC_BOOT_ROM_AHB_CLK] = &gcc_boot_rom_ahb_clk.clkr,
-+	[GCC_CAMERA_AHB_CLK] = &gcc_camera_ahb_clk.clkr,
-+	[GCC_CAMERA_AXI_CLK] = &gcc_camera_axi_clk.clkr,
-+	[GCC_CAMERA_XO_CLK] = &gcc_camera_xo_clk.clkr,
-+	[GCC_CE1_AHB_CLK] = &gcc_ce1_ahb_clk.clkr,
-+	[GCC_CE1_AXI_CLK] = &gcc_ce1_axi_clk.clkr,
-+	[GCC_CE1_CLK] = &gcc_ce1_clk.clkr,
-+	[GCC_CFG_NOC_USB3_PRIM_AXI_CLK] = &gcc_cfg_noc_usb3_prim_axi_clk.clkr,
-+	[GCC_CPUSS_AHB_CLK] = &gcc_cpuss_ahb_clk.clkr,
-+	[GCC_CPUSS_AHB_CLK_SRC] = &gcc_cpuss_ahb_clk_src.clkr,
-+	[GCC_CPUSS_RBCPR_CLK] = &gcc_sdm670_cpuss_rbcpr_clk.clkr,
-+	[GCC_CPUSS_RBCPR_CLK_SRC] = &gcc_sdm670_cpuss_rbcpr_clk_src.clkr,
-+	[GCC_DDRSS_GPU_AXI_CLK] = &gcc_ddrss_gpu_axi_clk.clkr,
-+	[GCC_DISP_AHB_CLK] = &gcc_disp_ahb_clk.clkr,
-+	[GCC_DISP_AXI_CLK] = &gcc_disp_axi_clk.clkr,
-+	[GCC_DISP_GPLL0_CLK_SRC] = &gcc_disp_gpll0_clk_src.clkr,
-+	[GCC_DISP_GPLL0_DIV_CLK_SRC] = &gcc_disp_gpll0_div_clk_src.clkr,
-+	[GCC_DISP_XO_CLK] = &gcc_disp_xo_clk.clkr,
-+	[GCC_GP1_CLK] = &gcc_gp1_clk.clkr,
-+	[GCC_GP1_CLK_SRC] = &gcc_gp1_clk_src.clkr,
-+	[GCC_GP2_CLK] = &gcc_gp2_clk.clkr,
-+	[GCC_GP2_CLK_SRC] = &gcc_gp2_clk_src.clkr,
-+	[GCC_GP3_CLK] = &gcc_gp3_clk.clkr,
-+	[GCC_GP3_CLK_SRC] = &gcc_gp3_clk_src.clkr,
-+	[GCC_GPU_CFG_AHB_CLK] = &gcc_gpu_cfg_ahb_clk.clkr,
-+	[GCC_GPU_GPLL0_CLK_SRC] = &gcc_gpu_gpll0_clk_src.clkr,
-+	[GCC_GPU_GPLL0_DIV_CLK_SRC] = &gcc_gpu_gpll0_div_clk_src.clkr,
-+	[GCC_GPU_IREF_CLK] = &gcc_gpu_iref_clk.clkr,
-+	[GCC_GPU_MEMNOC_GFX_CLK] = &gcc_gpu_memnoc_gfx_clk.clkr,
-+	[GCC_GPU_SNOC_DVM_GFX_CLK] = &gcc_gpu_snoc_dvm_gfx_clk.clkr,
-+	[GCC_GPU_VS_CLK] = &gcc_gpu_vs_clk.clkr,
-+	[GCC_MSS_AXIS2_CLK] = &gcc_mss_axis2_clk.clkr,
-+	[GCC_MSS_CFG_AHB_CLK] = &gcc_mss_cfg_ahb_clk.clkr,
-+	[GCC_MSS_GPLL0_DIV_CLK_SRC] = &gcc_mss_gpll0_div_clk_src.clkr,
-+	[GCC_MSS_MFAB_AXIS_CLK] = &gcc_mss_mfab_axis_clk.clkr,
-+	[GCC_MSS_Q6_MEMNOC_AXI_CLK] = &gcc_mss_q6_memnoc_axi_clk.clkr,
-+	[GCC_MSS_SNOC_AXI_CLK] = &gcc_mss_snoc_axi_clk.clkr,
-+	[GCC_MSS_VS_CLK] = &gcc_mss_vs_clk.clkr,
-+	[GCC_PDM2_CLK] = &gcc_pdm2_clk.clkr,
-+	[GCC_PDM2_CLK_SRC] = &gcc_pdm2_clk_src.clkr,
-+	[GCC_PDM_AHB_CLK] = &gcc_pdm_ahb_clk.clkr,
-+	[GCC_PDM_XO4_CLK] = &gcc_pdm_xo4_clk.clkr,
-+	[GCC_PRNG_AHB_CLK] = &gcc_prng_ahb_clk.clkr,
-+	[GCC_QMIP_CAMERA_AHB_CLK] = &gcc_qmip_camera_ahb_clk.clkr,
-+	[GCC_QMIP_DISP_AHB_CLK] = &gcc_qmip_disp_ahb_clk.clkr,
-+	[GCC_QMIP_VIDEO_AHB_CLK] = &gcc_qmip_video_ahb_clk.clkr,
-+	[GCC_QUPV3_WRAP0_S0_CLK] = &gcc_qupv3_wrap0_s0_clk.clkr,
-+	[GCC_QUPV3_WRAP0_S0_CLK_SRC] = &gcc_qupv3_wrap0_s0_clk_src.clkr,
-+	[GCC_QUPV3_WRAP0_S1_CLK] = &gcc_qupv3_wrap0_s1_clk.clkr,
-+	[GCC_QUPV3_WRAP0_S1_CLK_SRC] = &gcc_qupv3_wrap0_s1_clk_src.clkr,
-+	[GCC_QUPV3_WRAP0_S2_CLK] = &gcc_qupv3_wrap0_s2_clk.clkr,
-+	[GCC_QUPV3_WRAP0_S2_CLK_SRC] = &gcc_qupv3_wrap0_s2_clk_src.clkr,
-+	[GCC_QUPV3_WRAP0_S3_CLK] = &gcc_qupv3_wrap0_s3_clk.clkr,
-+	[GCC_QUPV3_WRAP0_S3_CLK_SRC] = &gcc_qupv3_wrap0_s3_clk_src.clkr,
-+	[GCC_QUPV3_WRAP0_S4_CLK] = &gcc_qupv3_wrap0_s4_clk.clkr,
-+	[GCC_QUPV3_WRAP0_S4_CLK_SRC] = &gcc_qupv3_wrap0_s4_clk_src.clkr,
-+	[GCC_QUPV3_WRAP0_S5_CLK] = &gcc_qupv3_wrap0_s5_clk.clkr,
-+	[GCC_QUPV3_WRAP0_S5_CLK_SRC] = &gcc_qupv3_wrap0_s5_clk_src.clkr,
-+	[GCC_QUPV3_WRAP0_S6_CLK] = &gcc_qupv3_wrap0_s6_clk.clkr,
-+	[GCC_QUPV3_WRAP0_S6_CLK_SRC] = &gcc_qupv3_wrap0_s6_clk_src.clkr,
-+	[GCC_QUPV3_WRAP0_S7_CLK] = &gcc_qupv3_wrap0_s7_clk.clkr,
-+	[GCC_QUPV3_WRAP0_S7_CLK_SRC] = &gcc_qupv3_wrap0_s7_clk_src.clkr,
-+	[GCC_QUPV3_WRAP1_S0_CLK] = &gcc_qupv3_wrap1_s0_clk.clkr,
-+	[GCC_QUPV3_WRAP1_S0_CLK_SRC] = &gcc_qupv3_wrap1_s0_clk_src.clkr,
-+	[GCC_QUPV3_WRAP1_S1_CLK] = &gcc_qupv3_wrap1_s1_clk.clkr,
-+	[GCC_QUPV3_WRAP1_S1_CLK_SRC] = &gcc_qupv3_wrap1_s1_clk_src.clkr,
-+	[GCC_QUPV3_WRAP1_S2_CLK] = &gcc_qupv3_wrap1_s2_clk.clkr,
-+	[GCC_QUPV3_WRAP1_S2_CLK_SRC] = &gcc_qupv3_wrap1_s2_clk_src.clkr,
-+	[GCC_QUPV3_WRAP1_S3_CLK] = &gcc_qupv3_wrap1_s3_clk.clkr,
-+	[GCC_QUPV3_WRAP1_S3_CLK_SRC] = &gcc_qupv3_wrap1_s3_clk_src.clkr,
-+	[GCC_QUPV3_WRAP1_S4_CLK] = &gcc_qupv3_wrap1_s4_clk.clkr,
-+	[GCC_QUPV3_WRAP1_S4_CLK_SRC] = &gcc_qupv3_wrap1_s4_clk_src.clkr,
-+	[GCC_QUPV3_WRAP1_S5_CLK] = &gcc_qupv3_wrap1_s5_clk.clkr,
-+	[GCC_QUPV3_WRAP1_S5_CLK_SRC] = &gcc_qupv3_wrap1_s5_clk_src.clkr,
-+	[GCC_QUPV3_WRAP1_S6_CLK] = &gcc_qupv3_wrap1_s6_clk.clkr,
-+	[GCC_QUPV3_WRAP1_S6_CLK_SRC] = &gcc_qupv3_wrap1_s6_clk_src.clkr,
-+	[GCC_QUPV3_WRAP1_S7_CLK] = &gcc_qupv3_wrap1_s7_clk.clkr,
-+	[GCC_QUPV3_WRAP1_S7_CLK_SRC] = &gcc_qupv3_wrap1_s7_clk_src.clkr,
-+	[GCC_QUPV3_WRAP_0_M_AHB_CLK] = &gcc_qupv3_wrap_0_m_ahb_clk.clkr,
-+	[GCC_QUPV3_WRAP_0_S_AHB_CLK] = &gcc_qupv3_wrap_0_s_ahb_clk.clkr,
-+	[GCC_QUPV3_WRAP_1_M_AHB_CLK] = &gcc_qupv3_wrap_1_m_ahb_clk.clkr,
-+	[GCC_QUPV3_WRAP_1_S_AHB_CLK] = &gcc_qupv3_wrap_1_s_ahb_clk.clkr,
-+	[GCC_SDCC1_AHB_CLK] = &gcc_sdcc1_ahb_clk.clkr,
-+	[GCC_SDCC1_APPS_CLK] = &gcc_sdcc1_apps_clk.clkr,
-+	[GCC_SDCC1_APPS_CLK_SRC] = &gcc_sdcc1_apps_clk_src.clkr,
-+	[GCC_SDCC1_ICE_CORE_CLK] = &gcc_sdcc1_ice_core_clk.clkr,
-+	[GCC_SDCC1_ICE_CORE_CLK] = &gcc_sdcc1_ice_core_clk_src.clkr,
-+	[GCC_SDCC2_AHB_CLK] = &gcc_sdcc2_ahb_clk.clkr,
-+	[GCC_SDCC2_APPS_CLK] = &gcc_sdcc2_apps_clk.clkr,
-+	[GCC_SDCC2_APPS_CLK_SRC] = &gcc_sdcc2_apps_clk_src.clkr,
-+	[GCC_SDCC4_AHB_CLK] = &gcc_sdcc4_ahb_clk.clkr,
-+	[GCC_SDCC4_APPS_CLK] = &gcc_sdm670_sdcc4_apps_clk.clkr,
-+	[GCC_SDCC4_APPS_CLK_SRC] = &gcc_sdm670_sdcc4_apps_clk_src.clkr,
-+	[GCC_SYS_NOC_CPUSS_AHB_CLK] = &gcc_sys_noc_cpuss_ahb_clk.clkr,
-+	[GCC_TSIF_AHB_CLK] = &gcc_tsif_ahb_clk.clkr,
-+	[GCC_TSIF_INACTIVITY_TIMERS_CLK] =
-+					&gcc_tsif_inactivity_timers_clk.clkr,
-+	[GCC_TSIF_REF_CLK] = &gcc_tsif_ref_clk.clkr,
-+	[GCC_TSIF_REF_CLK_SRC] = &gcc_tsif_ref_clk_src.clkr,
-+	[GCC_UFS_MEM_CLKREF_CLK] = &gcc_ufs_mem_clkref_clk.clkr,
-+	[GCC_UFS_PHY_AHB_CLK] = &gcc_ufs_phy_ahb_clk.clkr,
-+	[GCC_UFS_PHY_AXI_CLK] = &gcc_ufs_phy_axi_clk.clkr,
-+	[GCC_UFS_PHY_AXI_CLK_SRC] = &gcc_ufs_phy_axi_clk_src.clkr,
-+	[GCC_UFS_PHY_ICE_CORE_CLK] = &gcc_ufs_phy_ice_core_clk.clkr,
-+	[GCC_UFS_PHY_ICE_CORE_CLK_SRC] = &gcc_ufs_phy_ice_core_clk_src.clkr,
-+	[GCC_UFS_PHY_PHY_AUX_CLK] = &gcc_ufs_phy_phy_aux_clk.clkr,
-+	[GCC_UFS_PHY_PHY_AUX_CLK_SRC] = &gcc_ufs_phy_phy_aux_clk_src.clkr,
-+	[GCC_UFS_PHY_RX_SYMBOL_0_CLK] = &gcc_ufs_phy_rx_symbol_0_clk.clkr,
-+	[GCC_UFS_PHY_TX_SYMBOL_0_CLK] = &gcc_ufs_phy_tx_symbol_0_clk.clkr,
-+	[GCC_UFS_PHY_UNIPRO_CORE_CLK] = &gcc_ufs_phy_unipro_core_clk.clkr,
-+	[GCC_UFS_PHY_UNIPRO_CORE_CLK_SRC] =
-+					&gcc_ufs_phy_unipro_core_clk_src.clkr,
-+	[GCC_USB30_PRIM_MASTER_CLK] = &gcc_usb30_prim_master_clk.clkr,
-+	[GCC_USB30_PRIM_MASTER_CLK_SRC] = &gcc_usb30_prim_master_clk_src.clkr,
-+	[GCC_USB30_PRIM_MOCK_UTMI_CLK] = &gcc_usb30_prim_mock_utmi_clk.clkr,
-+	[GCC_USB30_PRIM_MOCK_UTMI_CLK_SRC] =
-+					&gcc_usb30_prim_mock_utmi_clk_src.clkr,
-+	[GCC_USB30_PRIM_SLEEP_CLK] = &gcc_usb30_prim_sleep_clk.clkr,
-+	[GCC_USB3_PRIM_CLKREF_CLK] = &gcc_usb3_prim_clkref_clk.clkr,
-+	[GCC_USB3_PRIM_PHY_AUX_CLK] = &gcc_usb3_prim_phy_aux_clk.clkr,
-+	[GCC_USB3_PRIM_PHY_AUX_CLK_SRC] = &gcc_usb3_prim_phy_aux_clk_src.clkr,
-+	[GCC_USB3_PRIM_PHY_COM_AUX_CLK] = &gcc_usb3_prim_phy_com_aux_clk.clkr,
-+	[GCC_USB3_PRIM_PHY_PIPE_CLK] = &gcc_usb3_prim_phy_pipe_clk.clkr,
-+	[GCC_USB_PHY_CFG_AHB2PHY_CLK] = &gcc_usb_phy_cfg_ahb2phy_clk.clkr,
-+	[GCC_VDDA_VS_CLK] = &gcc_vdda_vs_clk.clkr,
-+	[GCC_VDDCX_VS_CLK] = &gcc_vddcx_vs_clk.clkr,
-+	[GCC_VDDMX_VS_CLK] = &gcc_vddmx_vs_clk.clkr,
-+	[GCC_VIDEO_AHB_CLK] = &gcc_video_ahb_clk.clkr,
-+	[GCC_VIDEO_AXI_CLK] = &gcc_video_axi_clk.clkr,
-+	[GCC_VIDEO_XO_CLK] = &gcc_video_xo_clk.clkr,
-+	[GCC_VS_CTRL_AHB_CLK] = &gcc_vs_ctrl_ahb_clk.clkr,
-+	[GCC_VS_CTRL_CLK] = &gcc_vs_ctrl_clk.clkr,
-+	[GCC_VS_CTRL_CLK_SRC] = &gcc_vs_ctrl_clk_src.clkr,
-+	[GCC_VSENSOR_CLK_SRC] = &gcc_vsensor_clk_src.clkr,
-+	[GPLL0] = &gpll0.clkr,
-+	[GPLL0_OUT_EVEN] = &gpll0_out_even.clkr,
-+	[GPLL4] = &gpll4.clkr,
-+	[GPLL6] = &gpll6.clkr,
-+	[GCC_CPUSS_DVM_BUS_CLK] = &gcc_cpuss_dvm_bus_clk.clkr,
-+	[GCC_CPUSS_GNOC_CLK] = &gcc_cpuss_gnoc_clk.clkr,
-+	[GCC_QSPI_CORE_CLK_SRC] = &gcc_qspi_core_clk_src.clkr,
-+	[GCC_QSPI_CORE_CLK] = &gcc_qspi_core_clk.clkr,
-+	[GCC_QSPI_CNOC_PERIPH_AHB_CLK] = &gcc_qspi_cnoc_periph_ahb_clk.clkr,
-+};
-+
- static struct clk_regmap *gcc_sdm845_clocks[] = {
- 	[GCC_AGGRE_NOC_PCIE_TBU_CLK] = &gcc_aggre_noc_pcie_tbu_clk.clkr,
- 	[GCC_AGGRE_UFS_CARD_AXI_CLK] = &gcc_aggre_ufs_card_axi_clk.clkr,
-@@ -3515,6 +3882,7 @@ static const struct qcom_reset_map gcc_sdm845_resets[] = {
- 	[GCC_QUPV3_WRAPPER_1_BCR] = { 0x18000 },
- 	[GCC_QUSB2PHY_PRIM_BCR] = { 0x12000 },
- 	[GCC_QUSB2PHY_SEC_BCR] = { 0x12004 },
-+	[GCC_SDCC1_BCR] = { 0x26000 },
- 	[GCC_SDCC2_BCR] = { 0x14000 },
- 	[GCC_SDCC4_BCR] = { 0x16000 },
- 	[GCC_TSIF_BCR] = { 0x36000 },
-@@ -3533,6 +3901,22 @@ static const struct qcom_reset_map gcc_sdm845_resets[] = {
- 	[GCC_PCIE_1_PHY_BCR] = { 0x8e01c },
- };
- 
-+static struct gdsc *gcc_sdm670_gdscs[] = {
-+	[UFS_PHY_GDSC] = &ufs_phy_gdsc,
-+	[USB30_PRIM_GDSC] = &usb30_prim_gdsc,
-+	[HLOS1_VOTE_AGGRE_NOC_MMU_AUDIO_TBU_GDSC] =
-+			&hlos1_vote_aggre_noc_mmu_audio_tbu_gdsc,
-+	[HLOS1_VOTE_AGGRE_NOC_MMU_TBU1_GDSC] =
-+			&hlos1_vote_aggre_noc_mmu_tbu1_gdsc,
-+	[HLOS1_VOTE_AGGRE_NOC_MMU_TBU2_GDSC] =
-+			&hlos1_vote_aggre_noc_mmu_tbu2_gdsc,
-+	[HLOS1_VOTE_MMNOC_MMU_TBU_HF0_GDSC] =
-+			&hlos1_vote_mmnoc_mmu_tbu_hf0_gdsc,
-+	[HLOS1_VOTE_MMNOC_MMU_TBU_HF1_GDSC] =
-+			&hlos1_vote_mmnoc_mmu_tbu_hf1_gdsc,
-+	[HLOS1_VOTE_MMNOC_MMU_TBU_SF_GDSC] = &hlos1_vote_mmnoc_mmu_tbu_sf_gdsc,
-+};
-+
- static struct gdsc *gcc_sdm845_gdscs[] = {
- 	[PCIE_0_GDSC] = &pcie_0_gdsc,
- 	[PCIE_1_GDSC] = &pcie_1_gdsc,
-@@ -3563,6 +3947,20 @@ static const struct regmap_config gcc_sdm845_regmap_config = {
- 	.fast_io	= true,
- };
- 
-+static const struct qcom_cc_desc gcc_sdm670_desc = {
-+	.config = &gcc_sdm845_regmap_config,
-+	.clks = gcc_sdm670_clocks,
-+	.num_clks = ARRAY_SIZE(gcc_sdm670_clocks),
-+	/*
-+	 * Assuming no configuration will trigger all resets, all
-+	 * SDM670-specific resets can live in the SDM845 resets array.
-+	 */
-+	.resets = gcc_sdm845_resets,
-+	.num_resets = ARRAY_SIZE(gcc_sdm845_resets),
-+	.gdscs = gcc_sdm670_gdscs,
-+	.num_gdscs = ARRAY_SIZE(gcc_sdm670_gdscs),
-+};
-+
- static const struct qcom_cc_desc gcc_sdm845_desc = {
- 	.config = &gcc_sdm845_regmap_config,
- 	.clks = gcc_sdm845_clocks,
-@@ -3574,6 +3972,7 @@ static const struct qcom_cc_desc gcc_sdm845_desc = {
- };
- 
- static const struct of_device_id gcc_sdm845_match_table[] = {
-+	{ .compatible = "qcom,gcc-sdm670", .data = &gcc_sdm670_desc },
- 	{ .compatible = "qcom,gcc-sdm845", .data = &gcc_sdm845_desc },
- 	{ }
- };
--- 
-2.37.3
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Tuesday, September 6, 2022 11:17 PM
+> To: Gupta, Nipun <Nipun.Gupta@amd.com>
+> Cc: gregkh@linuxfoundation.org; eric.auger@redhat.com;
+> devicetree@vger.kernel.org; linux-kbuild@vger.kernel.org;
+> jeffrey.l.hugo@gmail.com; maz@kernel.org; Gupta, Puneet (DCG-ENG)
+> <puneet.gupta@amd.com>; Michael.Srba@seznam.cz; cohuck@redhat.com;
+> will@kernel.org; masahiroy@kernel.org; mchehab+huawei@kernel.org;
+> joro@8bytes.org; okaya@kernel.org; alex.williamson@redhat.com;
+> song.bao.hua@hisilicon.com; jgg@nvidia.com; mani@kernel.org; linux-
+> kernel@vger.kernel.org; robin.murphy@arm.com; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; rafael@kernel.org; f.fainelli@gmail.co=
+m;
+> jgg@ziepe.ca; kvm@vger.kernel.org; Agarwal, Nikhil
+> <nikhil.agarwal@amd.com>; Anand, Harpreet <harpreet.anand@amd.com>;
+> yishaih@nvidia.com; linux-arm-kernel@lists.infradead.org; git (AMD-Xilinx=
+)
+> <git@amd.com>; saravanak@google.com; Radovanovic, Aleksandar
+> <aleksandar.radovanovic@amd.com>; Simek, Michal
+> <michal.simek@amd.com>; ndesaulniers@google.com
+> Subject: Re: [RFC PATCH v3 1/7] dt-bindings: bus: add CDX bus device tree
+> bindings
+>=20
+> [CAUTION: External Email]
+>=20
+> On Tue, 06 Sep 2022 19:17:55 +0530, Nipun Gupta wrote:
+> > This patch adds a devicetree binding documentation for CDX
+> > bus.
+> >
+> > CDX bus controller dynamically detects CDX bus and the
+> > devices on these bus using CDX firmware.
+> >
+> > Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
+> > ---
+> >  .../devicetree/bindings/bus/xlnx,cdx.yaml     | 75 +++++++++++++++++++
+> >  MAINTAINERS                                   |  6 ++
+> >  2 files changed, 81 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
+> >
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/bus/xlnx,cdx.example.dts:18.23-21.11:
+> Warning (unit_address_vs_reg): /example-0/smmu@ec000000: node has a unit
+> name, but no reg or ranges property
+> Documentation/devicetree/bindings/bus/xlnx,cdx.example.dts:23.22-30.11:
+> Warning (unit_address_vs_reg): /example-0/gic@e2000000: node has a unit
+> name, but no reg or ranges property
+> Documentation/devicetree/bindings/bus/xlnx,cdx.example.dts:26.35-29.15:
+> Warning (unit_address_vs_reg): /example-0/gic@e2000000/gic-its@e2040000:
+> node has a unit name, but no reg or ranges property
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> smmu@ec000000: $nodename:0: 'smmu@ec000000' does not match
+> '^iommu@[0-9a-f]*'
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> smmu@ec000000: 'reg' is a required property
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> gic@e2000000: $nodename:0: 'gic@e2000000' does not match '^interrupt-
+> controller(@[0-9a-f,]+)*$'
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-
+> v3.yaml
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> gic@e2000000: '#interrupt-cells' is a dependency of 'interrupt-controller=
+'
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-
+> v3.yaml
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> gic@e2000000: 'reg' is a required property
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-
+> v3.yaml
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> gic@e2000000: gic-its@e2040000: False schema does not allow {'compatible'=
+:
+> ['arm,gic-v3-its'], 'msi-controller': True, 'phandle': [[1]]}
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-
+> v3.yaml
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> gic@e2000000: gic-its@e2040000: '#msi-cells' is a required property
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-
+> v3.yaml
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> gic@e2000000: gic-its@e2040000: 'reg' is a required property
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-
+> v3.yaml
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> gic@e2000000: 'oneOf' conditional failed, one must be fixed:
+>         'interrupts' is a required property
+>         'interrupts-extended' is a required property
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-
+> v3.yaml
+> /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb:
+> cdx@4000000: reg: [[0, 67108864], [0, 4096]] is too long
+>         From schema: /builds/robherring/linux-dt-
+> review/Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
+>=20
+> doc reference errors (make refcheckdocs):
+>=20
+> See
+> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
+w
+> ork.ozlabs.org%2Fpatch%2F&amp;data=3D05%7C01%7Cnipun.gupta%40amd.com
+> %7C47f53d11f4024ba765f408da902fc525%7C3dd8961fe4884e608e11a82d994e
+> 183d%7C0%7C0%7C637980832144301226%7CUnknown%7CTWFpbGZsb3d8eyJ
+> WIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C
+> 3000%7C%7C%7C&amp;sdata=3DBXO1d2OWdCQ1lb%2BEDNiUvmfSPPfxfzJET%2B
+> uuAL9EdEY%3D&amp;reserved=3D0
+>=20
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>=20
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>=20
+> pip3 install dtschema --upgrade
+>=20
+> Please check and re-submit.
 
+I did run make dt_binding_check, but did not see the issue.
+Will update the dtschema and fix this.
+
+Thanks,
+Nipun
