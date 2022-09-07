@@ -2,71 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 779CA5B0920
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 17:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15FD95B0927
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 17:48:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiIGPsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 11:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50414 "EHLO
+        id S229741AbiIGPsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 11:48:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbiIGPsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 11:48:01 -0400
+        with ESMTP id S229889AbiIGPsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 11:48:37 -0400
 Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A11DAB9F90;
-        Wed,  7 Sep 2022 08:47:58 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-127dca21a7dso9740590fac.12;
-        Wed, 07 Sep 2022 08:47:58 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0B2BB00B;
+        Wed,  7 Sep 2022 08:48:33 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1280590722dso3558437fac.1;
+        Wed, 07 Sep 2022 08:48:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=P9M7/bzZ0ZMw/d0qpnlcd3bSu1NtUDhgwC52m6jfjak=;
-        b=ay3OgbdOmmRKaP7uBF4xjWNyjko0xdBI/R4BTiAJ+bGYc5lyszUgyVAaMzpbM/tI2s
-         8u415YkLMaaAQmXhPWnVGQHdVLQOfkZEp+osXK/HoQ/uskwBczh1e96ZdBackJ+Oe3H+
-         UHiyChPYq+zTzLms++uTXAFPQ7OejVuBJ9hJEopOiar/MWMZb/JLv+2haJ5F4b5S1kiD
-         Mrlpcqu7yDU1ero7nFL9y3oiytMgNBvtqMxb5ikxKR9EqADxxxrvEKpGGLrMu0bx8T2K
-         xrycjTbM3reI45VbNP+9w7eE/xFY36Ivf30Ok2Wa40IzX1LnThxuHrbR+1DAE/bomJu1
-         jiTQ==
-X-Gm-Message-State: ACgBeo3LkQGy8lLT51Fgs74wK6ooEB7ZIaLRXA4gFv+G2RhFaGjbYoPD
-        jb+TDdPGQ3Y0tdiHqDR+qg==
-X-Google-Smtp-Source: AA6agR7V8XXJWCZA66/vmCNdtFQHBPBeY7vIpPYKBM+iV7v+1t93G419nZX9b4Lu3VamSExZLcbo0Q==
-X-Received: by 2002:a05:6808:1489:b0:344:7ff8:54e8 with SMTP id e9-20020a056808148900b003447ff854e8mr12233447oiw.195.1662565677655;
-        Wed, 07 Sep 2022 08:47:57 -0700 (PDT)
+        bh=CxhmrY80LncaSEn1EseeN0fy0N0jYIOVE/tTa7fzMNI=;
+        b=ATdhzi4St7EhYVQEYbImlKHcBvHOK429YmeN7T1+UOAotdqHA6bv+0x9SjLiM7isDX
+         P7PFT0Ab2SnfTyYgnH4Syj3HvtLP/ClrWDL5FhhowIfmBrwZaPzn/SSlO6tK32g+hsKP
+         3nLLHrdopWCAxbLt5V8lqGkwl4nG5ysht6RMR+BMNoIhIBwzCea3h1bxBWqsBtjdZHUe
+         8dMOkHwi8qJvYFjcr6FIJlRimZcs44YiRjwJLF8pZXodhayfRHC5v017nTwhn/0xv37D
+         aK4SOGTJV1ewXg9E148vpL8+8glyHXbSrZBhkal32zmrcQiZXpoxBMzaFjAUNdvSOjrz
+         eI9g==
+X-Gm-Message-State: ACgBeo1YPaWJSP1k2dtMvMNRuX1gKvzsKFryPN4tHgAdVNQ37HGB1Ldj
+        YFkH8aVEG1ocxuHIZj84mA==
+X-Google-Smtp-Source: AA6agR5VT35lZ6gh3xyi3vhkqFTWcr8X9GgGQ+1WGG/fYM0i48irlZ8x/DTl4QwUjjnqHYchMKky3A==
+X-Received: by 2002:a05:6808:2017:b0:345:c5b4:49c3 with SMTP id q23-20020a056808201700b00345c5b449c3mr12079334oiw.212.1662565712412;
+        Wed, 07 Sep 2022 08:48:32 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bm23-20020a0568081a9700b0034480f7eec4sm6558187oib.12.2022.09.07.08.47.56
+        by smtp.gmail.com with ESMTPSA id k14-20020a056870148e00b00127d2005ea1sm2130916oab.18.2022.09.07.08.48.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 08:47:57 -0700 (PDT)
-Received: (nullmailer pid 3514416 invoked by uid 1000);
-        Wed, 07 Sep 2022 15:47:56 -0000
-Date:   Wed, 7 Sep 2022 10:47:56 -0500
+        Wed, 07 Sep 2022 08:48:32 -0700 (PDT)
+Received: (nullmailer pid 3515562 invoked by uid 1000);
+        Wed, 07 Sep 2022 15:48:31 -0000
+Date:   Wed, 7 Sep 2022 10:48:31 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Hector Martin <marcan@marcan.st>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Kalle Valo <kvalo@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
         linux-arm-kernel@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rafa__ Mi__ecki <zajec5@gmail.com>,
-        SHA-cyfmac-dev-list@infineon.com, Sven Peter <sven@svenpeter.dev>,
-        van Spriel <arend@broadcom.com>
-Subject: Re: [PATCH net-next 01/12] dt-bindings: net: bcm4329-fmac: Add Apple
- properties & chips
-Message-ID: <20220907154756.GA3505310-robh@kernel.org>
-References: <YxhMaYOfnM+7FG+W@shell.armlinux.org.uk>
- <E1oVpmk-005LBL-5U@rmk-PC.armlinux.org.uk>
+        Georgi Djakov <djakov@kernel.org>, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [RESEND PATCH] dt-bindings: interconnect: fsl,imx8m-noc: drop
+ Leonard Crestez
+Message-ID: <20220907154831.GA3515480-robh@kernel.org>
+References: <20220907120452.52161-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <E1oVpmk-005LBL-5U@rmk-PC.armlinux.org.uk>
+In-Reply-To: <20220907120452.52161-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -78,51 +70,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 07, 2022 at 08:47:46AM +0100, Russell King wrote:
-> From: Hector Martin <marcan@marcan.st>
+On Wed, 07 Sep 2022 14:04:52 +0200, Krzysztof Kozlowski wrote:
+> Emails to Leonard Crestez bounce ("550 5.4.1 Recipient address rejected:
+> Access denied:), so change maintainer to Peng Fan from NXP.
 > 
-> This binding is currently used for SDIO devices, but these chips are
-> also used as PCIe devices on DT platforms and may be represented in the
-> DT. Re-use the existing binding and add chip compatibles used by Apple
-> T2 and M1 platforms (the T2 ones are not known to be used in DT
-> platforms, but we might as well document them).
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Peng Fan <peng.fan@nxp.com>
 > 
-> Then, add properties required for firmware selection and calibration on
-> M1 machines.
-> 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 > ---
->  .../net/wireless/brcm,bcm4329-fmac.yaml       | 37 +++++++++++++++++--
->  1 file changed, 34 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> index 53b4153d9bfc..53ded82b273a 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Broadcom BCM4329 family fullmac wireless SDIO devices
-> +title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
->  
->  maintainers:
->    - Arend van Spriel <arend@broadcom.com>
-> @@ -42,10 +42,16 @@ title: Broadcom BCM4329 family fullmac wireless SDIO devices
->                - cypress,cyw43012-fmac
->            - const: brcm,bcm4329-fmac
->        - const: brcm,bcm4329-fmac
+> Resend with ack.
+> ---
+>  .../devicetree/bindings/interconnect/fsl,imx8m-noc.yaml         | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-If you respin, this compatible can be combined with the enum below.
-
-> +      - enum:
-> +          - pci14e4,43dc  # BCM4355
-> +          - pci14e4,4464  # BCM4364
-> +          - pci14e4,4488  # BCM4377
-> +          - pci14e4,4425  # BCM4378
-> +          - pci14e4,4433  # BCM4387
-
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
