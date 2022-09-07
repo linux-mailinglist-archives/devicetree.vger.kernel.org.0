@@ -2,148 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CAB15B0228
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 936695B0215
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:50:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbiIGKz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 06:55:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49542 "EHLO
+        id S229494AbiIGKu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 06:50:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbiIGKz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:55:27 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60082.outbound.protection.outlook.com [40.107.6.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70060474C2;
-        Wed,  7 Sep 2022 03:55:25 -0700 (PDT)
+        with ESMTP id S229834AbiIGKuW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:50:22 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C87E1255B6;
+        Wed,  7 Sep 2022 03:50:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1662547820; x=1694083820;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=3lBAKPT59/N2vdrvnO1NmtGMUW3wxAlrHb2/1RHEV7c=;
+  b=P6dsfMzXWmYnaZqx0FpYVEBK4kWLP2Ob+FyqP9GgteIAg8ePHXSbqVDJ
+   Af9+a+fUOKrbg25hOQ7vZOHn4G/tN/PkdIch8pL1tYRfC8JqthXBOUQjV
+   OMohHdXYVx1nsv9qRgQIDm4pCDRp3Xe409Cjac6TTss222aiRsjjzkFMS
+   QXW+0vdckzLJlN6MaBO0fJfnHfjbA18hNqLOCzq8fjNey2m37vbY66awb
+   cyrn/XJtf6mZz81gWbD6wLH4fk/knx1gZw6JMUjnecH4x/3+qfyR8Owdo
+   E1yfJF9jDbKA/qRGJmygJColoXpQ6GPtrf/LKthZfktnGh/WY0r2+3qe+
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,296,1654585200"; 
+   d="scan'208";a="179503674"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Sep 2022 03:50:19 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 7 Sep 2022 03:50:19 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12 via Frontend Transport; Wed, 7 Sep 2022 03:50:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ILN/lx229bXw1XlKSLpico1+/MlQWuoiwHXx47v2wIAtjcdyygonRyfFbRnaEcDQ6yVqxn1yTZW4N2a9VNiB2e8fIn3mSUC0Bk60A8rVpwg513QDIzEebMFhgFaFucdygip8GmIJrIHaSi6SAuJVWB+NSMEvM6h9ijhKqlG+73L73xBN5ye1rM+GFhl5axtUytSrqdXkFDeiYcUFgwkAPhruGxVi4YABQ4JdlYYnhT0cE9u05K1aFD2JslS+hNE1AzxJqivQMnlyc4cAI8turzgO3H+jrFX3fX+zJYtPvWRuw4ux5wQSIVZl4p2tb7aqsBvPOPxEA6ZL5cYu/HwtlQ==
+ b=K5LTIIH1ePaDDcwlRHUdUljLzoAeduWAIYEGDmP6XsblAZq+aUNdZ1SSKR33vUOBF92NhesZMbkWXunEf+ebuaO8U0U8X+/RN9BB19SeamHcSdykVQv/4vBnq3ZijIo1U+T4Plq/e2RBiFs4N+3RKs+l47QjBdP/oVMmG52nrR1goca31UqKBUD71oSNjXKsCA06gQ0JU8rRLUjDhJPbxVUj3FeJ4KPcTMrsUFbGhq//tl55RRtK9sVeSlFL8J3VIRArqVlstC1fe7U+wgcNMO7lXsy5aYMVeX0z0yH6gElIWM4ZK302a2CbTw19IoxggEV/6FyVm5nEVsDvNPFYuw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Aul11TeaUBackpG1HfxFbtsSgUHl/00U+qWw5OrXgVI=;
- b=UptxdziukgFMzkfj6x4q6Q3WA+nkzonG1E9xfCNXIuE7/2f0/O+6S0XSPHqAawyYFR7NsGMszTMLceGNEyYiES756GJSJX7Xjr64Dk/j984mmo9txQGA7TZVXA8RZJoWI7FtU5vysncosqNeU0LRFJAQuaE6gk753+bxnbO7dHn+pqQ3m0/7kN/ptvKI0rPXcNlkpqEpWoSI6C4yvPiTMEV3r369yDZ8TmjLc0dgHOBnmEVyzsfCTVl12Ob1p8M6Z0Y4TtaYeyrSvooQAF3L+aJ30wfndStMVGeKf5yn9r4pRAV3nExiZkUsit+lqNzz2NnSOEWgNI5r60aiuL1OPQ==
+ bh=n/Y7Tsoi0P3krWpkF2XzutMdA286QOIKLW31pZ12lmc=;
+ b=WUh1V1lOydS8MZjQm7Wcs/nb4QguTlIRvqoO3qveDOFFUQ/HGNRkWrW27HNnPoMPEKf2rK1QBfPKP3RdjqEwVi7vvcW/m8g45zZ26T8LlIsh/grAZ5Ef2MvD0CymqZdg4dTUmvexiDPw+I8HzeR1wf1ZSvz/MKRNxmiuNEJLrj7ptPRwW6DR6BCKpiU+yp+YBrQ5zcc+rH44hMCCYhft7xKx06e3Busru+tkzlHYrnnvdUVoiq6/uD+rncFp/5kVNrXKdgkS1Q3/LTWUS0NP1L4VNVUsF6UVTUvKzW2HJH32sZ+lWQuQfxgLB8kgcn1YJN3yHgTZxYuqqwMtKIzMBg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Aul11TeaUBackpG1HfxFbtsSgUHl/00U+qWw5OrXgVI=;
- b=Zp7bgZnn4gjlnzdoe2ZqUNJKUfzn7bQtnnFefqMyJ6Vt4GIq0QfPe20kNGP9rmC3mzS3rpDERWG3gedxel3TveEtrzNsX6nHPW8POnhRbJNU2ruSUlv2cNccqboHcIj7XxpyN6oVtTPpFEzKnEaOWQMt7y6lk6J4f/EQ8TC/eCE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
- by DB8PR04MB5628.eurprd04.prod.outlook.com (2603:10a6:10:a7::23) with
+ bh=n/Y7Tsoi0P3krWpkF2XzutMdA286QOIKLW31pZ12lmc=;
+ b=d+oD897/TvgwUV+dCEdO1FgYNEAR38qmB/PLN6Iqk5cvPJzqN0x/F0MzSgWMGNB8E/hLHCZ5zR/c/whr+NJ+TatDQVh1NMe2wSO3D8FXtpAcyNYV+g85MF33a9NXj2mLfeX1zu87TRc5x9rBiWsxaUayXqCRzqGvnSULuje8lAo=
+Received: from CO1PR11MB4865.namprd11.prod.outlook.com (2603:10b6:303:9c::9)
+ by IA0PR11MB7257.namprd11.prod.outlook.com (2603:10b6:208:43e::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Wed, 7 Sep
- 2022 10:55:24 +0000
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::25b6:d7f1:c25e:24d2]) by PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::25b6:d7f1:c25e:24d2%9]) with mapi id 15.20.5588.012; Wed, 7 Sep 2022
- 10:55:24 +0000
-From:   Li Jun <jun.li@nxp.com>
-To:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com
-Cc:     linux-imx@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] clk: imx: imx8mp: add shared clk gate for usb suspend clk
-Date:   Wed,  7 Sep 2022 18:37:08 +0800
-Message-Id: <1662547028-22279-2-git-send-email-jun.li@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1662547028-22279-1-git-send-email-jun.li@nxp.com>
-References: <1662547028-22279-1-git-send-email-jun.li@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG3P274CA0008.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::20)
- To PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.12; Wed, 7 Sep
+ 2022 10:50:12 +0000
+Received: from CO1PR11MB4865.namprd11.prod.outlook.com
+ ([fe80::f851:80cd:172b:4b1c]) by CO1PR11MB4865.namprd11.prod.outlook.com
+ ([fe80::f851:80cd:172b:4b1c%5]) with mapi id 15.20.5612.012; Wed, 7 Sep 2022
+ 10:50:11 +0000
+From:   <Kavyasree.Kotagiri@microchip.com>
+To:     <lee@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <Nicolas.Ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <UNGLinuxDriver@microchip.com>,
+        <lee@kernel.org>
+Subject: RE: [PATCH v8 0/3] Add support for lan966x flexcom chip-select
+ configuration
+Thread-Topic: [PATCH v8 0/3] Add support for lan966x flexcom chip-select
+ configuration
+Thread-Index: AQHYksHtcVb2nMUrrUee0+iQGAJuu63Q0lnggAB3TQCAAt2jUA==
+Date:   Wed, 7 Sep 2022 10:50:11 +0000
+Message-ID: <CO1PR11MB4865D594CABE612A0FA93CEF92419@CO1PR11MB4865.namprd11.prod.outlook.com>
+References: <20220708115619.254073-1-kavyasree.kotagiri@microchip.com>
+ <SA2PR11MB4874435AC1CAEE6DAFC3F239927F9@SA2PR11MB4874.namprd11.prod.outlook.com>
+ <YxYN9CacFm47R/e2@google.com>
+In-Reply-To: <YxYN9CacFm47R/e2@google.com>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CO1PR11MB4865:EE_|IA0PR11MB7257:EE_
+x-ms-office365-filtering-correlation-id: eccef8a7-927b-4c25-1fe0-08da90bebd2f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0uI//msJjIwQCBgW5M4oOcwQIQcW/98cXCDxCTgGu3UD7ElE0FQ2d6HtL3DuIOYZIWtvbW7Kp7KTUQq+RR6FrpEz5YmXLtY9xXrKhhCxQO6e1QkFtgOu+9kml7H1jyK3iot9apgpMTJbVFJMj/pa28dZOWkNRtWZtE5Pm+Qoj94geuw41/UPGvLEzPUmDGWmRxEmr77m/Fbb7DYwWVfFdhcoJ0gRseBK/g/oFFp4+ULXHelKoIAe93t6t8x9gy0MvRj2NVBJ7cEzHyQDH+ZFWo5u7FolTGeRFcFzfg57fhceA0wSRMZljGu7u4DDGZqRvaPnyHvRVazmFEvqGYEP5MTDvRWLnTjx1sQgl9pU9zdIzxoB8I+RYAHklp0ffMlwa2zM7Qd5y4bppDKdYLJ5AsVguu6DoUHwoItz9xxjP192Ap4CwkgJyzSBhnWgkBqFU8Yj+vdgMhCo3ENJmoZM4HptbvEe2wFrW9t6BYgUex2A5oOmRtd8U9aDDA/Z9BuV0+U2h+YjndZ17Xibe3o/7Nk9Nah/ReeCsuapXIFJFLisGd5NqtX8dCTnZbdo8AamRU7JPeHkbj4tkGo31QWZXBbc28GPrZEt8qeQvjxmED6FT+zeexbrSlPvQLHp+nl5mDW5v5OshS9ko8vOK34BobkMB5PGh2/UKBdGOPwn93FfH+KYmaRFR8F1xI6hvOJ1zfutHJLS72bQRENFGREpHkI0FDH0q5NQZnPvMBqxWdPcHFGTPmJItSM9nnxZQ0Fb5C2UgcTOBPiLuXzR/z2fQBXVBAUlSod+wfVY9HQSS76Ka4r1wxzFPvbklHsHo3rAptfZh84zRVcRDxRM72gFcw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4865.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(376002)(366004)(396003)(39860400002)(136003)(346002)(33656002)(83380400001)(54906003)(966005)(6916009)(8936002)(478600001)(8676002)(64756008)(76116006)(66556008)(4326008)(55016003)(66446008)(38100700002)(66476007)(122000001)(66946007)(52536014)(86362001)(316002)(53546011)(9686003)(2906002)(71200400001)(26005)(7696005)(38070700005)(6506007)(41300700001)(186003)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zdzrRBb5apdMYZRWfa0kkABP8viaDtU3QLwsdqXJil/K3T60U+BiwbRttEzJ?=
+ =?us-ascii?Q?7iY0NAZ/85uFA0qjf/y/TLRL4EkQ4rnpkCo8Q2xmTxCdxx9XQ4soCryb63UO?=
+ =?us-ascii?Q?wRoyX0y/ILbjRKQIuYQNw/BTKEHTc394JD8zAqaYsw67pYlpvogDnrOSYWuA?=
+ =?us-ascii?Q?lyR+ETI3LDZdKSY8yWC+dBuYae4diI2MYwYjg2AGo1osMoEGgvAKw12NyWMp?=
+ =?us-ascii?Q?No0Twtoc0Gv6we5kDCE/FjPAK1s+LEyFWiuz767MpHZsxOSjBGqAz3DXwXab?=
+ =?us-ascii?Q?dyz2fPEFpRCgyLPtIdojrieLvAzsq3vyR8xVmlXaV7NjvpWIAsKqnCA9OqvS?=
+ =?us-ascii?Q?iJoJaMV7bacXB/Sq3gMXYAEcssNIQ5Qwy5OOVlqlgMAQSYtbzvMPd77HDe/m?=
+ =?us-ascii?Q?PoGiDSJ5P7gTKFfSSFr0QSdwRHb3lR3JMnxylFtIbraxy7Y3J/xJa4n2ML1z?=
+ =?us-ascii?Q?rRvDLVX/4wziPuqvgo/k6TQyLfEq45Y4mCeELRHhy0JygbQ7o9AM/I+9YSqU?=
+ =?us-ascii?Q?oNcFpAxDTMvUxkojpFv5//fQYFCJ8+oHebabOyG6RD0G5FsvqI8Nx5yswdZU?=
+ =?us-ascii?Q?QBS8bm95N2/apDXVA0QK0Yqf6ygX6Ewc6GJoTLfafRCXpBEc+k8cjEnO4Bda?=
+ =?us-ascii?Q?hGktYpvHl3l2IGzyR1/v6c+72CC2tevU7QeolTipGPuV3MzKdbnXjASSUb2s?=
+ =?us-ascii?Q?pJ0PCvn8Nd2RyDR3ckpiRtrW6DtXeMryueHwwyuCniWl4dsBzEqf/kUiwpdT?=
+ =?us-ascii?Q?YxRztqEd8CwYXdK7gTqPEjWTmvKxl/FlEXU8ykNVqG73GybNfbNbyTVpbdTX?=
+ =?us-ascii?Q?AwsqgcWa0yy/O2LuJmoBJjxMDDptxSenigGqYDlfrf3fkHvaeP5owhOgOWXz?=
+ =?us-ascii?Q?w4/hKmoQr20ff+h3W2GNvx/a2I0llk0GbAHISMptzwPhPoe1Az+vE5oduvrF?=
+ =?us-ascii?Q?qo4P7jornl658JMuTmHvqwIXElwKcOtrTmJoq4aoiWRbdcdobDI+y/tHEg9p?=
+ =?us-ascii?Q?IyRKdBw3I+M3M32gIoCZHHh9mT5368/TIR6SUp+pt/k8nXSl0kjlq1hawDMq?=
+ =?us-ascii?Q?UZmrkA7JJjZRPLz/Os01UB91FSDvKt+mDKf6qyDN+8gOOaqYPgTqeOctcm2n?=
+ =?us-ascii?Q?/bcoP6y22UM16ek71ZzX8SYA4RxNeLcqvRDVzKNAoOmfirq5F7JBIdM3tND3?=
+ =?us-ascii?Q?ceI/qzLZ6z8fTB/dIbFmi3nGK+mkjKBwcNBLFuSDQWodtbF5piF8uvE7ps5p?=
+ =?us-ascii?Q?FlIAQIJqS+86LjopFBs8E/WoKpBoYUs40tHdbH072J8VIMzVCZSnJsjrc+Px?=
+ =?us-ascii?Q?vsaIybQ5V99V/VQit/1ZwvHqodvI0ZdR8hKo0uaEOOjWshaebSpxzAqxrgWf?=
+ =?us-ascii?Q?31B9XIgxnITvjaOz9fY8B1SmGBlNfYZxRJtd+1JpfSVyho0CXYS3IrIzEPYQ?=
+ =?us-ascii?Q?DCHTvU7x80qzV+SCIWgJ+T65fB6iDda0kXxVlW7sWtBntNm4dP5pJXdh2pet?=
+ =?us-ascii?Q?dhKFp3U5xsP2w2ETuEkZxzYuezrfC1LfyiygbbcGWAPsL1ov0Rjhp6elEk86?=
+ =?us-ascii?Q?aYSCSYdaCs1PB05z7hwz3pSXGFNQCwOzb64cxwT5UjjkprzqtUUe1uuaAxms?=
+ =?us-ascii?Q?IA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e5066c80-12d2-47de-e7ed-08da90bf7739
-X-MS-TrafficTypeDiagnostic: DB8PR04MB5628:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: novBcre8xBFKt0RpH6hIVbdmMgGx7o856o33SBaDr+pvQxf4nrGAfBFJSsIffMQ0780USZS+SvsUzu5qUxbu64RcPprSFNra094rpf5igFv2Cge5BiAageRmVXa/0RiAxfHuCXErtduVZP5ouYMOFE1kHLoAwKvVGa8G+P9cqUXsPZVu40f8kaTGT+JjtZzgc1F6GLYEYb4jYCGsGmoKhLzAPfPJo8vONbnjzMTTJNF9UmfSEzcRATW1vjozuch0F3jaDhElH6WSCCNvZ9hRJCvpCT6rtTQ337UsvM55cJNVLB/tsj0K8jP5puX+8COCUExoFNyxlgjIv7ut6gYb+ymNkeDnwVFrmZMOeb4tsSQX7WKlVeYG2FD58ZOQr3zurFXSJhcCY8xfTp8GRu1AXcIJEXy9aDPrhFHOttHsvP/sDkK37AGMWvqsokS/ymiaCZ2ZTJAXZm7KpWGTuN1jxNevCRtMRFbhW/p61sh6RqQsC02jJKb78WB4J4kZaXi4U3j581Iaylg3S9zWj5SwGBEwLt2brODMxS8wrmi5+5iB1VKOMKx+LOE4kO2OzhXX+td8/QRDItBlKA5EEZQdouopUSLuBk0fh2Dpx6YPDLtwgUeddTHiaFH8n4upfCjucTdRVwvMdYEm27nH8SvyhTx2yMDkPsEU3nYH8mmuR2tM2+4E8g0+94oqsD7cO5KFul3LR44piwhXVxCtZh998r+Fro9idbWu9JrlM6L6rrPQ0kkFnBZAAa0wSfOdaJV1jnUhpurEocTwl+8feqv2CJmG/42E3w0mzLabd7cHLqs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(346002)(39860400002)(366004)(396003)(376002)(5660300002)(8936002)(41300700001)(26005)(6512007)(15650500001)(52116002)(2906002)(6666004)(7416002)(86362001)(6506007)(2616005)(38350700002)(38100700002)(186003)(6486002)(66476007)(66556008)(4326008)(83380400001)(8676002)(66946007)(316002)(478600001)(36756003)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0JCSthQoxgheVscJTAxzmXv2UM4zMxXKHn0pHm6ayXTrTkTN/OkBhb2rSDxO?=
- =?us-ascii?Q?uJauEx4bO6/sZTQP7WsxcAki5XVsIwfM5tEzih30i1IBsxWHtO+Qy9ijOinO?=
- =?us-ascii?Q?sBrp+joT+3uWksT0yOEx0gJemuoUNcN9MkTmJSjxcDIhelf6yBWI1c7MfTow?=
- =?us-ascii?Q?TlDId1l1I06dc7xLnVRkP5ZS3zUFpAR//m1BxtIBfHP56VEXsax2Lzm1w7OZ?=
- =?us-ascii?Q?kysDa9Nzj5d/edEmFzcRQKO/us3y7sjsbIBV9ctBtQOnWTHtEgIa0e4uWjVq?=
- =?us-ascii?Q?3HKoOU08ka+5HmgraMNTS/H8lOLUHFJgrPm7yhMtsvVA2DUN2HuhaMNYQ0Nc?=
- =?us-ascii?Q?dCcYmJbm/uyM7dhiuBQRcgt/NucMt+PlVzFesu6EEJK+VrFFBT2ovRLDCBZ+?=
- =?us-ascii?Q?N0JOTPxqMPetJ8khV5FSpWvtrzLxHVvMZN/Ry7RKpnTYJ7bvFLnqHASI9ieR?=
- =?us-ascii?Q?fuWvIaFryzbxn7afCgGQIULpCvqiLJm1PV0KiBDQOUYLEqih5WjmNFM4Jui0?=
- =?us-ascii?Q?YY9uy6Ab1G8081deFh25odneNJn0GRjqsiFPSoe5wDWN1/A2Mx0RHVzsOwSX?=
- =?us-ascii?Q?yYypoygVe/P1hPEXp340oNW6A/7EZE5Be84PoFcvLteKXlyf/U6FoEujf4h/?=
- =?us-ascii?Q?KPPlqhZ6FppVT3aEgK3OIct2tu+GW3BheDh/7eRGcLcPxcuNqQ7VzcgLazOu?=
- =?us-ascii?Q?ukNlErxd/0N110JhkMhGh4VqK9FWXR6iBKTO82UKVCKMYgi669IPUFdxZRxu?=
- =?us-ascii?Q?HKoVSo1NCrJopXB9Kaa4CgYhpQ6hzuqUiveOUcTgAo+Me30WOQ+AMOZXEafc?=
- =?us-ascii?Q?iGK2FYn+y6HZFfO3C3DiSM1enhuD0Xn/GufHvH13r1WAvG52nCJ+HbLap//j?=
- =?us-ascii?Q?ZSqQVWMZJcdXOmXtK69xGv6IdNIeBLhurbpJe8DCzkSkOF1IaNP0W9yM3InV?=
- =?us-ascii?Q?w7SsVH18wGnPc4r2l/yay2CXl7N6S1+ZqiCPDXz8hcDmKEvderQHptt/n0QH?=
- =?us-ascii?Q?Fve9AT8VKAR/c7U9h1brWb9Qx3/ZghYun68cSSynU3JFRtaIeBfhLO4pjTzR?=
- =?us-ascii?Q?7R6XUcglfCgw/6xoyTlPTGHH4NyR3srgs+pLatKokedr0h+5mLHxyKgTBUpo?=
- =?us-ascii?Q?+PHG6UYkMeN7P2SlJwWfOv9/TnfBvFNG0HbYg4Y+EPozPK2HPOE3bOS8rQpU?=
- =?us-ascii?Q?WmVjmGPIYNjlNSsHsXmMtyS78bTarozQk0nViK6QRUImSDEKPGDfYU16O43u?=
- =?us-ascii?Q?hxeM5CPdID+vTom8ODac+FO6fo0rB4ojCd5J2WoWjkdV2mm3QaAHgKkjeuRk?=
- =?us-ascii?Q?MWNe++U0TkgxHx0BLDFnIty+cZNCVrLDGU13f90TYLkgvowlb5JU9jLK5Tvh?=
- =?us-ascii?Q?sWDjaubBlDTtMC9S8id6eE3Gjs0lmSEmBLat9B5mhfYGrYP8vnW7zL4jb8jW?=
- =?us-ascii?Q?DpEOyXN/RHPahNqFZ0nT2URTbq8YI+Eupwlndt0uYc3WQmVaDOPIMWiRpldo?=
- =?us-ascii?Q?lUuIytXh7sjQc9CMGgOrpYG9ZuwjU3O5sjmmt4Wd7k81kl86WAiSfBlDvQ3u?=
- =?us-ascii?Q?Dg0ppWjXSuHRKvYA16I=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e5066c80-12d2-47de-e7ed-08da90bf7739
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 10:55:24.1658
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4865.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eccef8a7-927b-4c25-1fe0-08da90bebd2f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2022 10:50:11.8046
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dJc7SJS0a/oa94pQEDgPDsVyS/Ff99ZcEfqiy4SUWEyC68m8UMPCMGVUfm+r1ppV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5628
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5VK9lI9ek70YahL6wIIv+aMlG3g11onSs7SWqQd3CXJVscRRWf/b4Rd9s0imiXRsoEBZot0AF+sKAiPiiIW/6EUKyNRgsts2Qx9UgY5HfsiwtWtWPewlKkfMZxmUmuD+
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7257
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-32K usb suspend clock gate is shared with usb_root_clk.
+>=20
+> > Hi Lee,
+> >
+> > Are you planning to take this patch series for 6.1 or Can we include th=
+em
+> through arm-soc pull-request?
+>=20
+> I don't seem to have visibility.
+>=20
+Please find the patches below:
+https://lore.kernel.org/lkml/20220708115619.254073-1-kavyasree.kotagiri@mic=
+rochip.com/T/
 
-Fixes: 9c140d9926761 ("clk: imx: Add support for i.MX8MP clock driver")
-Cc: stable@vger.kernel.org # v5.19+
-Signed-off-by: Li Jun <jun.li@nxp.com>
----
- drivers/clk/imx/clk-imx8mp.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+> Have I Acked it already?
+>=20
+No.=20
 
-diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-index e89db568f5a8..5b66514bdd0c 100644
---- a/drivers/clk/imx/clk-imx8mp.c
-+++ b/drivers/clk/imx/clk-imx8mp.c
-@@ -17,6 +17,7 @@
- 
- static u32 share_count_nand;
- static u32 share_count_media;
-+static u32 share_count_usb;
- 
- static const char * const pll_ref_sels[] = { "osc_24m", "dummy", "dummy", "dummy", };
- static const char * const audio_pll1_bypass_sels[] = {"audio_pll1", "audio_pll1_ref_sel", };
-@@ -673,7 +674,8 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
- 	hws[IMX8MP_CLK_UART2_ROOT] = imx_clk_hw_gate4("uart2_root_clk", "uart2", ccm_base + 0x44a0, 0);
- 	hws[IMX8MP_CLK_UART3_ROOT] = imx_clk_hw_gate4("uart3_root_clk", "uart3", ccm_base + 0x44b0, 0);
- 	hws[IMX8MP_CLK_UART4_ROOT] = imx_clk_hw_gate4("uart4_root_clk", "uart4", ccm_base + 0x44c0, 0);
--	hws[IMX8MP_CLK_USB_ROOT] = imx_clk_hw_gate4("usb_root_clk", "hsio_axi", ccm_base + 0x44d0, 0);
-+	hws[IMX8MP_CLK_USB_ROOT] = imx_clk_hw_gate2_shared2("usb_root_clk", "hsio_axi", ccm_base + 0x44d0, 0, &share_count_usb);
-+	hws[IMX8MP_CLK_USB_SUSP] = imx_clk_hw_gate2_shared2("usb_suspend_clk", "osc_32k", ccm_base + 0x44d0, 0, &share_count_usb);
- 	hws[IMX8MP_CLK_USB_PHY_ROOT] = imx_clk_hw_gate4("usb_phy_root_clk", "usb_phy_ref", ccm_base + 0x44f0, 0);
- 	hws[IMX8MP_CLK_USDHC1_ROOT] = imx_clk_hw_gate4("usdhc1_root_clk", "usdhc1", ccm_base + 0x4510, 0);
- 	hws[IMX8MP_CLK_USDHC2_ROOT] = imx_clk_hw_gate4("usdhc2_root_clk", "usdhc2", ccm_base + 0x4520, 0);
--- 
-2.34.1
-
+> BTW, this is my old email address.
+>=20
+> Please use the one in my signature instead.
+>=20
+> > > -----Original Message-----
+> > > From: Kavyasree Kotagiri [mailto:kavyasree.kotagiri@microchip.com]
+> > > Sent: Friday, July 8, 2022 5:26 PM
+> > > To: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; Nicolas
+> Ferre -
+> > > M43238 <Nicolas.Ferre@microchip.com>;
+> alexandre.belloni@bootlin.com;
+> > > Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>;
+> > > UNGLinuxDriver <UNGLinuxDriver@microchip.com>
+> > > Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> linux-
+> > > kernel@vger.kernel.org; Kavyasree Kotagiri - I30978
+> > > <Kavyasree.Kotagiri@microchip.com>
+> > > Subject: [PATCH v8 0/3] Add support for lan966x flexcom chip-select
+> > > configuration
+> > >
+> > > This patch series converts atmel-flexcom bindings into json-schema
+> format.
+> > > Adds support for lan966x flexcom chip-select configurations and its
+> > > DT bindings.
+> > >
+> > > v7 -> v8:
+> > >  - Added back patternProperties for child nodes.
+> > >  - Changed compatible string to microchip,lan9668-flexcom.
+> > >
+> > > v6 -> v7:
+> > >  - Change filename to atmel,sama5d2-flexcom.yaml
+> > >  - Add #address-cells, #size-cells to flexcom node - Fixed warnings.
+> > >
+> > > v5 -> v6:
+> > >  - Removed spi node from example as suggested by Rob and
+> > >    also pattern properties(spi dt-bindings conversion to yaml patch i=
+s
+> under
+> > > review).
+> > >    https://patchwork.kernel.org/project/linux-arm-
+> > > kernel/patch/20220629125804.137099-1-sergiu.moga@microchip.com/
+> > >    Once this is accepted, I will add back spi example through new pat=
+ch.
+> > >
+> > > v4 -> v5:
+> > >  - Fix indentations of DT example.
+> > >  - Fix dt-schema errors - removed minItems, maxItems for allOf:if:the=
+n
+> > >    "reg" property as it is not required.
+> > >
+> > > v3 -> v4:
+> > >  - Fix dtschema errors.
+> > >  - Add a condition to flexcom chip-selects configuration as chip-sele=
+ct
+> > >    lines are optional.
+> > >
+> > > v2 -> v3:
+> > >  - changed IRQ flag in dt-bindings example.
+> > >  - added reg property specific to lan66x which is missed in v2.
+> > >  - used goto label for clk_disable in error cases.
+> > >
+> > > v1 -> v2:
+> > >  - minor fix in title of dt-bindings.
+> > >  - Modified new dt properties usage in atmel,flexcom.yaml.
+> > >  - Used GENMASK and macros for maximum allowed values.
+> > >  - Use u32 values for flexcom chipselects instead of strings.
+> > >  - disable clock in case of errors.
+> > >
+> > > Kavyasree Kotagiri (3):
+> > >   dt-bindings: mfd: Convert atmel-flexcom to json-schema
+> > >   dt-bindings: mfd: atmel,sama5d2-flexcom: Add new compatible string
+> for
+> > >     lan966x
+> > >   mfd: atmel-flexcom: Add support for lan966x flexcom chip-select
+> > >     configuration
+> > >
+> > >  .../bindings/mfd/atmel,sama5d2-flexcom.yaml   | 155
+> ++++++++++++++++++
+> > >  .../devicetree/bindings/mfd/atmel-flexcom.txt |  63 -------
+> > >  drivers/mfd/atmel-flexcom.c                   |  94 ++++++++++-
+> > >  3 files changed, 248 insertions(+), 64 deletions(-)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-
+> > > flexcom.txt
+> > >
+> >
+>=20
+> --
+> DEPRECATED: Please use lee@kernel.org
