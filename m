@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D44C5B105E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 01:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0738D5B105F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 01:29:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbiIGX3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 19:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38920 "EHLO
+        id S229674AbiIGX3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 19:29:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbiIGX33 (ORCPT
+        with ESMTP id S229720AbiIGX33 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 19:29:29 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9567A282
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 16:29:22 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id n65-20020a17090a5ac700b001fbb4fad865so511065pji.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 16:29:22 -0700 (PDT)
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A474B9A
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 16:29:23 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id e68so3087800pfe.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 16:29:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=MlOPb3XVR5IRK5ZxofjuXduHPChlNop48psfgzBKHJY=;
-        b=cFl1N51OzpkSw672IG23QrfmzPwt6ldguaFZCyZ6J+llhFGn59+uKUlQ0uJfSj52L1
-         xguYNDk/9DeEQvUZFIM19LZZU+ccBPtOgp1jryTOrWoLWEN0fiVuvOH/dkcyLsRRxucb
-         T6hCUvn3dgkQNTLK+IgjG5eftL3hevGdXGpFM=
+        bh=yQkwNtni2gxxdATORPGlV1fDV03YMJzpHvkUqtYbFaw=;
+        b=dvSWdYIkn2Efto6iM0rwgEjCNE/o1OhsX46iIUwrKcEFYP8cKlumrQs65UR5i89595
+         NbDPrdVhP6/Esw01d0gQ47EDPPXHZmn4+eKT7EL1OtSNuCD8yfownW/vhU8IVXdYFArs
+         walXYWOAwWMANNnebV83/GfapsY1r/uFEudkM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=MlOPb3XVR5IRK5ZxofjuXduHPChlNop48psfgzBKHJY=;
-        b=pA9+YdtrggtFF1/5UDRtCn0Jsr6lMZOAkMfUY31eGIrMbxms7H51Qn6e0VjSdQL/+Y
-         uRi/YdsDVQonKoXwsDtiFn6bOJuzInnF7np1r3hvG6UcDlAODKbjFoZLg0e1e3fMpSW8
-         sTIwk25fm6S2iDEryCePFxxkF6momIrVj3oLM2St0/hlXub7PTopluX2jqHflc7b4ey+
-         JW9kJhOfsLInkQiOysi2M9hTK3dKoLRHR3yY7M7c70GdDZxSLb57k6pf5jG2BBcklK6R
-         9Mcfrfzc3tUYx/PCWNJIB3cQMgZM7ZhfMTPZBz+aW4vZth06OE56a8rT5BDjT3EU/WHv
-         cdMw==
-X-Gm-Message-State: ACgBeo3oUjIb2br4gaM+6Hdz0qGy6BESW3W75cpUBQ0Hu1Qv3UixXSfw
-        TroVcRiriIXjlZ+IFgUs4qnCL5ZQaPoawg==
-X-Google-Smtp-Source: AA6agR7IVvnjzmzvq2V+gjstnEg8GqnDvhY7EPQ3GnO+vSbTS/7DGOdfgN1+4tBXu5YiwDdOgImsqQ==
-X-Received: by 2002:a17:90b:1b12:b0:200:5dbd:adff with SMTP id nu18-20020a17090b1b1200b002005dbdadffmr966621pjb.43.1662593362141;
-        Wed, 07 Sep 2022 16:29:22 -0700 (PDT)
+        bh=yQkwNtni2gxxdATORPGlV1fDV03YMJzpHvkUqtYbFaw=;
+        b=c3wOTZpqzQ2rv+E9SsZFW7lWssb4W77CuxyyuatWpDPbqag5/PngHKpUobNnx5nC5y
+         PNsBwu0p3V99TRgufXsRTulSbQtLxMRxnx5wy8EED5uguxmqA+u3RU9tc7e0dGg8EUgo
+         pVcnDw6/C5j+hK/7mNs0jA3leWnblTNaifclNnthy76P0xlL/MchIEupjH8sZQEJr/fI
+         oC9Lmlz02pfMhv6bFPaVklnIfh9zwZcCrjVfj8hUeuxpYFSnbppznUCaiCev0yg35tJe
+         3jOaRmmjUMkbjpjlRftkKZ6mIi2ATELtPl02+2s/H+H2wIeFm+QabBUtNErJh859qfBK
+         nubw==
+X-Gm-Message-State: ACgBeo0WCpUgJRnRXPNQqudc3XMiB3qSsglP+euNAX6rFTKeTyjqqBA/
+        q9x+3H7miv9BsKG0KQHxN+7L0g==
+X-Google-Smtp-Source: AA6agR73gLQF4pgbpUaEj6zw3YArSWJPDjhe+CF3Nnx0UEHo/lIbzNJnb34ZIaiLak2PG4NYZIzHrw==
+X-Received: by 2002:a05:6a00:a04:b0:534:d8a6:40ce with SMTP id p4-20020a056a000a0400b00534d8a640cemr6184297pfh.15.1662593363022;
+        Wed, 07 Sep 2022 16:29:23 -0700 (PDT)
 Received: from jwerner-p920.mtv.corp.google.com ([2620:15c:202:201:1cee:f8f:cc9f:568f])
-        by smtp.gmail.com with ESMTPSA id g6-20020a17090a708600b002000dabc356sm201521pjk.45.2022.09.07.16.29.21
+        by smtp.gmail.com with ESMTPSA id g6-20020a17090a708600b002000dabc356sm201521pjk.45.2022.09.07.16.29.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 16:29:21 -0700 (PDT)
+        Wed, 07 Sep 2022 16:29:22 -0700 (PDT)
 From:   Julius Werner <jwerner@chromium.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -52,9 +52,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Doug Anderson <dianders@chromium.org>,
         Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Julius Werner <jwerner@chromium.org>
-Subject: [PATCH 2/4 v2] dt-bindings: memory: Add numeric LPDDR compatible string variant
-Date:   Wed,  7 Sep 2022 16:29:12 -0700
-Message-Id: <20220907232914.243502-2-jwerner@chromium.org>
+Subject: [PATCH 3/4 v2] dt-bindings: memory: Add jedec,lpddr4 and jedec,lpddr5 bindings
+Date:   Wed,  7 Sep 2022 16:29:13 -0700
+Message-Id: <20220907232914.243502-3-jwerner@chromium.org>
 X-Mailer: git-send-email 2.37.2.789.g6183377224-goog
 In-Reply-To: <20220907232914.243502-1-jwerner@chromium.org>
 References: <20220907232914.243502-1-jwerner@chromium.org>
@@ -62,7 +62,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,97 +70,140 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch allows a new kind of compatible string for LPDDR parts in the
-device tree bindings, in addition to the existing hardcoded
-<vendor>,<part-number> strings. The new format contains manufacturer and
-part (revision) information in numerical form, such as lpddr3-ff,0201
-for an LPDDR3 part with manufacturer ID ff and revision ID 0201. This
-helps cases where LPDDR parts are probed at runtime by boot firmware and
-cannot be matched to hardcoded part numbers, such as the firmware on the
-qcom/sc7280-herobrine boards does (which supports 4 different memory
-configurations at the moment, and more are expected to be added later at
-a point where the boot firmware can no longer be updated to specifically
-accomodate them).
+This patch adds bindings for LPDDR4 and LPDDR5 memory analogous to the
+existing bindings for LPDDR2 and LPDDR3. For now, the new types are only
+needed for topology description, so other properties like timing
+parameters are omitted. They can be added later if needed.
 
 Signed-off-by: Julius Werner <jwerner@chromium.org>
 ---
- .../memory-controllers/ddr/jedec,lpddr-props.yaml    | 10 ++++++++++
- .../memory-controllers/ddr/jedec,lpddr2.yaml         |  8 +++++---
- .../memory-controllers/ddr/jedec,lpddr3.yaml         | 12 ++++++++----
- 3 files changed, 23 insertions(+), 7 deletions(-)
+ .../ddr/jedec,lpddr-props.yaml                |  4 ++
+ .../memory-controllers/ddr/jedec,lpddr4.yaml  | 36 ++++++++++++++
+ .../memory-controllers/ddr/jedec,lpddr5.yaml  | 47 +++++++++++++++++++
+ 3 files changed, 87 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml
 
 Changelog:
 
 - v2
-  - Updated commit message to describe intended use case as an example
+  - removed minItems
+  - moved `$ref` below `maintainers`
+  - renamed example node from `lpddr4` to `lpddr`
 
 diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-index 02700ac3c387ec..4114cfa8de67f1 100644
+index 4114cfa8de67f1..92ef660888f318 100644
 --- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
 +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-@@ -15,6 +15,16 @@ maintainers:
-   - Krzysztof Kozlowski <krzk@kernel.org>
+@@ -45,9 +45,13 @@ properties:
+       - 512
+       - 1024
+       - 2048
++      - 3072
+       - 4096
++      - 6144
+       - 8192
++      - 12288
+       - 16384
++      - 24576
+       - 32768
  
- properties:
-+  compatible:
-+    description:
-+      Compatible strings can be either explicit vendor names and part numbers
-+      (e.g. elpida,ECB240ABACN), or generated strings of the form
-+      lpddrX-YY,ZZZZ where X is the LPDDR version, YY is the manufacturer ID
-+      (from MR5) and ZZZZ is the revision ID (from MR6 and MR7). Both IDs are
-+      formatted in lower case hexadecimal representation with leading zeroes.
-+      The latter form can be useful when LPDDR nodes are created at runtime by
-+      boot firmware that doesn't have access to static part number information.
+   io-width:
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml
+new file mode 100644
+index 00000000000000..0b2394c032797f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr4.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-   revision-id:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
-     description:
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-index 65f4926d39c254..400d8025f7f204 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-@@ -20,13 +20,15 @@ properties:
-               - elpida,ECB240ABACN
-               - elpida,B8132B2PB-6D-F
-           - enum:
--              - jedec,lpddr2-s4
--      - items:
--          - enum:
-+              - jedec,lpddr2-nvm
-               - jedec,lpddr2-s2
-+              - jedec,lpddr2-s4
-       - items:
-+          - pattern: "^lpddr2-[0-9a-f]{2},[0-9a-f]{4}$"
-           - enum:
-               - jedec,lpddr2-nvm
-+              - jedec,lpddr2-s2
-+              - jedec,lpddr2-s4
- 
-   revision-id1:
-     $ref: /schemas/types.yaml#/definitions/uint32
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
-index 91b64943062472..153066a352cd67 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
-@@ -14,10 +14,14 @@ allOf:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - samsung,K3QF2F20DB
--      - const: jedec,lpddr3
-+    oneOf:
-+      - items:
-+          - enum:
-+              - samsung,K3QF2F20DB
-+          - const: jedec,lpddr3
-+      - items:
-+          - pattern: "^lpddr3-[0-9a-f]{2},[0-9a-f]{4}$"
-+          - const: jedec,lpddr3
- 
-   '#address-cells':
-     const: 1
++title: LPDDR4 SDRAM compliant to JEDEC JESD209-4
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++allOf:
++  - $ref: "jedec,lpddr-props.yaml#"
++
++properties:
++  compatible:
++    items:
++      - pattern: "^lpddr4-[0-9a-f]{2},[0-9a-f]{4}$"
++      - const: jedec,lpddr4
++
++required:
++  - compatible
++  - density
++  - io-width
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    lpddr {
++        compatible = "lpddr4-ff,0100", "jedec,lpddr4";
++        density = <8192>;
++        io-width = <16>;
++        manufacturer-id = <255>;
++        revision-id = <1 0>;
++    };
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml
+new file mode 100644
+index 00000000000000..d86e1e30380e47
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr5.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LPDDR5 SDRAM compliant to JEDEC JESD209-5
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++allOf:
++  - $ref: "jedec,lpddr-props.yaml#"
++
++properties:
++  compatible:
++    items:
++      - pattern: "^lpddr5-[0-9a-f]{2},[0-9a-f]{4}$"
++      - const: jedec,lpddr5
++
++  serial-id:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      Serial IDs read from Mode Registers 47 through 54. One byte per uint32
++      cell (i.e. <MR47 MR48 MR49 MR50 MR51 MR52 MR53 MR54>).
++    maxItems: 8
++    items:
++      minimum: 0
++      maximum: 255
++
++required:
++  - compatible
++  - density
++  - io-width
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    lpddr {
++        compatible = "lpddr5-01,0200", "jedec,lpddr5";
++        density = <8192>;
++        io-width = <8>;
++        manufacturer-id = <1>;
++        revision-id = <2 0>;
++        serial-id = <3 1 0 0 0 0 0 0>;
++    };
 -- 
 2.31.0
 
