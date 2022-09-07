@@ -2,93 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A97455B0556
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 15:38:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE8625B055A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 15:39:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230112AbiIGNiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 09:38:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59066 "EHLO
+        id S230001AbiIGNi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 09:38:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbiIGNiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 09:38:09 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4266D9C518;
-        Wed,  7 Sep 2022 06:37:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4A969B81CE0;
-        Wed,  7 Sep 2022 13:37:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE208C433D6;
-        Wed,  7 Sep 2022 13:37:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662557870;
-        bh=JKL1A4uDw3eUkWb1gxMvwAzQoLvUzjVP5BQQd7t5e+A=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=HOzquzxAh7+m2PKERBU0uXXOm8FN9n98uxekjmgI7YoSKdeQSrmLU/em089H9QMfD
-         VB6nZzWIrMRmpkdAcQXlr8gATjISg7fSPzl9ilRAMdtbrBc8pkouKwONq/eIplfNDw
-         SoAM3jk9Pg4Hhu5qmvzoyCisIqN7mej0jMn81LD5U3TVTirHRg2AdbkywbQvkAgbiR
-         /Vp9NT3ESVfUmmYocoEfmTR8AluwbnbJvIxA9+WKvjRCsCTz5rIp3abQG5OK63730j
-         /fNC/fAy4QuOnYv8ktoapbDbmLbllzHU9FRfUAcpofoP4h3iT4/VXD5RRhmf1D6N/X
-         sVRtGsbC0Ln0A==
-From:   Mark Brown <broonie@kernel.org>
-To:     alsa-devel@alsa-project.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>
-In-Reply-To: <20220906121110.301900-1-krzysztof.kozlowski@linaro.org>
-References: <20220906121110.301900-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: qcom,q6core: remove binding
-Message-Id: <166255786763.130875.2656165891607180417.b4-ty@kernel.org>
-Date:   Wed, 07 Sep 2022 14:37:47 +0100
+        with ESMTP id S230076AbiIGNi2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 09:38:28 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10olkn2031.outbound.protection.outlook.com [40.92.40.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85929A00C3
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 06:38:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JzvHn1sHlfPimYJDPpqlPoG8O0Dq5UEYPvAPvJVFYzLdUSohkfdZHPLaPgbVUM+YaeT5E8CDf73JI/Aw+yZRHTRKYzSmKCnBKET+Ad6MfhKZ9xI9J9THnrFJATnXr3TW0QgBuCsalTiLmb/EYYRd5DLofhFqU6+aGlMcPpFo67tywQBH9frIavWFqSbHwrm8mSHJjLZ7W/PvISLhYg3jIoq1E7qAwhmHLO9pejzBJXwWm0U1zh7I8XlfwpDwLAQkKcVIkFxSD3O52KV94MOFdYCjG9QWS2kDli/48njcKMs0MG4UHjmKCraZV8hJ2NjaM8tBvdkdzrV21/GH3P8cHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r/2I2Nrmjufg0iOLei7niKnwhN8HAkKESbL1xz4qHgo=;
+ b=NOV1dPGFknpYCQT9Rtyc6yzuO9xXnEAEQqdNzdvQt82RYG9c73S3reNoqxFdIeFGbnx3aTvMxPBT+ZKVF4XWngzQFKL7UvILxUaDVWfOUVDYd/721CkZmMYOJ4iv0mvSBzM+bTRIyCSCbh35boOzOwatHokBf+K1w4mw8Y99DtN0AWI/2ZgNkruVN1V1Z5PmJFxYyH6Pr6oTNusutnoMhVxJdnMrGr9X8yQ+W75veEusFiSBv/YQC4G++WZd680l77ZXKSx1/Rn5YrWtcD1uVhnikRsSHecWXNZ2drqFWCKNUZu9LluTLqG3FLBAf7stay7B5kj0AKArEUByHhhdfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r/2I2Nrmjufg0iOLei7niKnwhN8HAkKESbL1xz4qHgo=;
+ b=JiCuk/OSwxI7n4Fexbu067TN/qyOBSVZ+m1sxtY4XQi45U40p/tldfR70aGxDVsxu2aYlCxlT3XyAUgfMRcv3vK7Z+laG4GrVKP6HeWH8QdKXj2J3jF/Y7R8E5plsbSH1DaMZNYekz0kNdnMGQXJLoRHbBmNZNvLxCQrsM1mnDd10mA4BWksanOwilLpnJMLDmjJ393f7iPEPBy1B+4EFQL7Mg14Ly5ACTk3X3q0LW6r5I0fD5JucwB+bA1zSShxC2XAcpW/f8550/cVwLVrRvaBrCtqDJIlELsUf3mwN4JSaxDyvN1Rs5/Eqmo+CS1srvbFzOIzjEI0iTW/OBZfzA==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by MW4PR06MB8299.namprd06.prod.outlook.com (2603:10b6:303:127::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Wed, 7 Sep
+ 2022 13:37:59 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::9999:3123:e227:5259]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::9999:3123:e227:5259%6]) with mapi id 15.20.5588.016; Wed, 7 Sep 2022
+ 13:37:59 +0000
+Date:   Wed, 7 Sep 2022 08:37:55 -0500
+From:   Chris Morgan <macromorgan@hotmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
+        sam@ravnborg.org, krzysztof.kozlowski+dt@linaro.org,
+        airlied@linux.ie, thierry.reding@gmail.com
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Samsung AMS495QA01
+ panel bindings
+Message-ID: <SN6PR06MB5342EA35B891D01575B275D0A5419@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20220906183642.12505-1-macroalpha82@gmail.com>
+ <20220906183642.12505-2-macroalpha82@gmail.com>
+ <1662500460.105772.1224955.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1662500460.105772.1224955.nullmailer@robh.at.kernel.org>
+X-TMN:  [5JVweMJkp17nOuBgzxd6BJjQVpGoZJns]
+X-ClientProxiedBy: DM6PR02CA0118.namprd02.prod.outlook.com
+ (2603:10b6:5:1b4::20) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <20220907133755.GA29551@wintermute.localdomain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5c742f89-f026-4bcd-d5c9-08da90d62dbf
+X-MS-TrafficTypeDiagnostic: MW4PR06MB8299:EE_
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8GXq6HRmGvjtEJxZiaUK2XzuP747+md6wFR3H37Y3KEbIXZf0WD9GW0h4QCXXmbo7VOCObfTs+vSmMgX3AppBzdSwQLF5Ep+/QF/Ztrh1Ixj3Tc4ahkpNy1QdUNDsmiMre3g1f5tMF2qxa02cUN+AJdZDK61wQc4XcjGSukFupomJy95/bcaHj7BkxVF1+yOHw2kGk5SS2XRse1ly4RP50lZQARt5Yr0erElfqPDmVVnJhAK8ghuSQd/TqUSEsXbSchjZMvbVSWB8E/QCYhZeDSapznIwWJe1hF3npy6IxpbfImQ73FpiJq70z/zPBd+j9K8I/rbSWObyDDtvsvks6DbwZWZWgONpTMfzYn00dVYQQC9ROeyVhI0e6S4l2C8SvlasWwtvpt0maflZkiG0ZiffHBBFMbdcCy2X2KKvVCESY2QZPl/tuQ5kOdTsQx3xPVLBG9Y/nx81cD5HQqvb1MdoCj4+EhxnweaxOW1X1LCc6qvO+e1mtcegJNDNQkQlR6zvrXcZnsmjmlHbkVr2YF+Q4NPCAoj2zdKP5HJ7d2NRcjUWrsygGrowKSTbNxKjZ3sarvoo7OwfWl6sURgUaW4G5qESMpOtLITbDK3SyQVd+s8xukRst2gyYjbu2Z92Ui2+dTb+otG90Xoy2Tg13Rib66948cw06kQVppmFB7FyeaoFGM3M+YRg/TnHqnl
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?S+az45j6SDPW0UOGE3VSc51DmrrPVGokbsuGGOJpUkX4htIeklpsMulbRKoV?=
+ =?us-ascii?Q?1rJksS9bxq4gck6iquyw2hteQHlc60qH/0+efDq+evtYmwRzdy7dqsgbby6n?=
+ =?us-ascii?Q?rUwUF0XWyrI8EeX+5I6QOf9X9RwdjhR6DaxGNiw2iAx7z75Og8Qiz9WRRyRs?=
+ =?us-ascii?Q?zWjZHexi0K1vqOcqPTPoSGjfLQh6/hWebQ33mwn0DbFQa4nZwLa4ZD1tetM5?=
+ =?us-ascii?Q?g73d3wSyZsQqYC5ZY5HiOwSeqQa7UOvQUcbwE4GoJvGiJCwuEIhQR6Re33iL?=
+ =?us-ascii?Q?BtcLi1UwhS/8nDOQXJ6L3/9X/WQM3lzgxus2CokFAZHIqWaR2zUyzk9xfGU0?=
+ =?us-ascii?Q?DIZ+uU6tBc/IUsN8PwqiPdf/PhH4YI0AFqnPdhrjG/hlxHp/1iVZQ8krX+02?=
+ =?us-ascii?Q?Qz91ZD8Zi6yNgkYRxLCifOpds8HOe7vc2UupMYoznZ/gn+n1y2p0SZET4iDr?=
+ =?us-ascii?Q?+t/zihJFHi5uQl8+0z7VPIySebt9njnFZ41Lw7L21vc4nqPJlF8mgpG4XkPb?=
+ =?us-ascii?Q?o9QWlJHqVZYwFsocke9pLxMEBN/0XGDw+RVSyc6AuHeH3SpbftubbpkhnRPY?=
+ =?us-ascii?Q?aimZA4epOfY5bDB9qjEBUfXAKBe6nEO+6S+XTwtbJWTlIOnm5vBOt1H/V5fA?=
+ =?us-ascii?Q?MINORovMe82XYlJZaUdbzsJlSYya+GTb7TId2K1IOfidqOFuhtD7grkT7FnY?=
+ =?us-ascii?Q?EwuzHNap89Zs0QasStYSt5IWOYuQWgx/jKPCE/2h+Uf0f4PDETIjLUdgwWif?=
+ =?us-ascii?Q?44IiDLBQ6WlpGpjbe6WqcSnb2WwMQgjjiecK6CtW9pmnyCVuDXaLs/1sXhsH?=
+ =?us-ascii?Q?DPDQ0v8yJ7yz5XcUePqdqZjtj0qrdKavLQlMADlcj2IwFoN5P5I50UdjWcWu?=
+ =?us-ascii?Q?+vmf8Nn+5Sb9+IjXnbM0ZNV1M6IKcp2sWMQOjDHnRT9Ft67a6SIEKhPQCeac?=
+ =?us-ascii?Q?JbCqTi262DXai7y64F0wvy+dUr4UkQNTNlRJZiTWdKALJ51n51OPofQPCCU5?=
+ =?us-ascii?Q?Zzi+3DTYckDEFnf1ImrlYWRHH2NZ3ppp99caFgXOOdZfPWMl1Nj5r75e99nJ?=
+ =?us-ascii?Q?mefSSFs6+U60m0BM1vuNtSyiTWTeb3X7auaeDMCCsYdyzVa7gDJ9Azb+a7Tt?=
+ =?us-ascii?Q?ab8LAaUNckRYkv9AV6IMHdjnG80vGZ+B1xQyWjulUe9iBKGRVDMk/68+sNnD?=
+ =?us-ascii?Q?+W844swGgR3lWYVUJjZ6BhCJYRNyqMV4b87+FSCAJVJhg5nJSo5wwak1dzf8?=
+ =?us-ascii?Q?RFCUQie74EhpV/fwJ+pSektnujd1gpUNqE0rT8PEtQ=3D=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c742f89-f026-4bcd-d5c9-08da90d62dbf
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 13:37:59.5043
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR06MB8299
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Sep 2022 14:11:10 +0200, Krzysztof Kozlowski wrote:
-> qcom,q6core is already described in soc/qcom/qcom,apr.yaml.
+On Tue, Sep 06, 2022 at 04:41:00PM -0500, Rob Herring wrote:
+> On Tue, 06 Sep 2022 13:36:41 -0500, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Add documentation for the Samsung AMS495QA01 panel.
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  .../display/panel/samsung,ams495qa01.yaml     | 49 +++++++++++++++++++
+> >  1 file changed, 49 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+> > 
 > 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.example.dtb: panel@0: 'backlight' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
 > 
 
-Applied to
+A dumb mistake on my part that I will fix for v2. OLED panels don't have
+backlights and I forgot to remove this from the example I copied.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: dt-bindings: qcom,q6core: remove binding
-      commit: e9d967679e803e7472f06642156f0bb029e26655
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Thank you.
