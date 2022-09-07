@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A95BC5B0997
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 18:05:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA24D5B0992
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 18:04:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbiIGQFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 12:05:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50700 "EHLO
+        id S229994AbiIGQEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 12:04:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230012AbiIGQEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 12:04:32 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66E31CB16
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 09:02:42 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id x1so10686326plv.5
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 09:02:42 -0700 (PDT)
+        with ESMTP id S230044AbiIGQEQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 12:04:16 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3339E72FF7
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 09:02:45 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id u9-20020a17090a1f0900b001fde6477464so18768282pja.4
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 09:02:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=afSHfpUxnx3q9ntKQjr5xt/kVuSAfsXr+C9GfFVRDd4=;
-        b=sseBowAH5ISZmkxAYb24ceYU3uCJmbJT+Fk6bT8rILtssfyoK9sUWy46GJR0Scyl70
-         ojH3VejTvM81sbYXTiXGfxT9Z6qbzK/Z41l9gnZuwm6RmWsnDg6tUIgLXHUc4CjY9Fov
-         BGxojsGeaNTzBZYDBAfY4S4ElY2Eimf1YztfHgNEs1qdelfX0/JK1uq5kCXWSoBZYHYO
-         ZcWvGq17DeS1nmU1SYd3U04WTIsHjYSj4tYMIruH7RdfG3dv/2xiBkZORgZ8mRvpmKTG
-         p++sAb/6EYe78tMkhtlMJIh9MoBRGOwC/aeY4r3WJbOnsZICNMGm3rWY2nAL8mR5uE7g
-         gmdQ==
+        bh=jLaf/5NHXDrr37rXgj5J2aSIlPrAjSKXcBsh3e3FWQY=;
+        b=cxeyf2uX1X91oEvejkorId5aX0Ks8DCIid8AsOPLsYCNNS8EbPNM5gGli9xi5jMraO
+         SijHN0T7lmu5vvyuZuv7yEM7udHqhVHfBkoh4s/nzEI7gjuhdRe8cSsGb4gvBvlFM+2G
+         LtL7+T/PYVHiczqBIWJHJ8TczkZZHSVKNBMsj8VhIfuq6CmZZgqKWhQlNgYYw1suNfEQ
+         jri5+ywwBS79zgNP5SpuZQAkIO1PyRayiY9o/uGW7qJdvtpltbTHbervqmXgL/z0Ip9K
+         rmq+bS8VO/nlPbIo0/YcF46F0qWy3M864toopfrSlNVCKKwFs0axmeaRkE6Wity9AOoE
+         WgPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=afSHfpUxnx3q9ntKQjr5xt/kVuSAfsXr+C9GfFVRDd4=;
-        b=mO95dxvH0j0/HMPczYgoIdoboTuRG1jsbNpXUqfy1oGdgHRcss2WvO1+tzz3jo/bag
-         driWRjBXZ3/Z7c8hvnog5kxOQCeCI4Bz3Jlg3HE9w8xb2+vUZqCFhN225YVYYKHL1BK2
-         EE3W6p97MCph+F8uPvwKL81ZPb0o6BtEtYHb/Rbc5eEXQ2pXRkQ28jDxeco4eY5TRfj0
-         VS+fuTqhm8WeA7Dor6l1NnxeD979qHZTVRQeNJsWGDZF9Z/I1igSYP2AWEIItwYHbvJC
-         vkta9QAxV/H+lLglqUjD5NObWAfe6a3rUBZ6djeuWryrMnGdY0Te/kl49jF9SeM3zquC
-         p23g==
-X-Gm-Message-State: ACgBeo3nUNdH0wdXGswy8xSvUJ1U/fbVzRVZYkOP7BLqt1Rwxc+kMblw
-        d8HOrpJ+rowpmM4p3AMjBRt+Lg==
-X-Google-Smtp-Source: AA6agR4EQG/wNWPdbtT/ZZVcElmxLEu6XFTylREBCm9ZmDxny83+bS3kcd0dOR35qD7faC4NwOGf9Q==
-X-Received: by 2002:a17:903:2309:b0:176:de48:e940 with SMTP id d9-20020a170903230900b00176de48e940mr4528698plh.15.1662566548714;
-        Wed, 07 Sep 2022 09:02:28 -0700 (PDT)
+        bh=jLaf/5NHXDrr37rXgj5J2aSIlPrAjSKXcBsh3e3FWQY=;
+        b=sjDdNb8afEHaI5wVy75Xhp4hGEh1iWsr5lqGwvNGO5ZJTpa8mY51hTPu7dlxPbkjD/
+         NFm9ZjA6MT976KQ+feQr6igKhge8Xb9f3TasiAJTkSaXMMHB1196xoAhomgBk83govps
+         R5ZbcB7+Mhaplf5uzxzUwyhKxuCNPxgymDtIQVH3oi1TWfjaDlTNRzs2Hei+pRXXKrJx
+         BWQ6z/iSTQn1GG9fsNNqvBUv+8RoU30H1z3ESbrNRP2jsrvIvWYWbneUO4yCMDL8NIK2
+         8QzITIJnplrraByFDtDwu5UcdkBxj6hyr9itMxokpp4aoisIt5EZYLu9DQgtRRya5qy2
+         Qeog==
+X-Gm-Message-State: ACgBeo0MiuOWywybsWDUhcTqsORf07BQzSYwM/TW3/1FuzrhX9QAUdXu
+        uG5PCCNTCOCG516ICOMXEjPUjQ==
+X-Google-Smtp-Source: AA6agR5sApjijE2qHLIwWXNgROi9CG8KxBKXkSVjqjgG2rNO+vQBt9sQkV786oUWx5oAEt4bxD8gJg==
+X-Received: by 2002:a17:902:db08:b0:176:d40e:4b57 with SMTP id m8-20020a170902db0800b00176d40e4b57mr4489839plx.172.1662566553960;
+        Wed, 07 Sep 2022 09:02:33 -0700 (PDT)
 Received: from localhost.localdomain ([23.27.44.184])
-        by smtp.gmail.com with ESMTPSA id x13-20020a17090a1f8d00b001f510175984sm14919719pja.41.2022.09.07.09.02.24
+        by smtp.gmail.com with ESMTPSA id x13-20020a17090a1f8d00b001f510175984sm14919719pja.41.2022.09.07.09.02.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 09:02:28 -0700 (PDT)
+        Wed, 07 Sep 2022 09:02:33 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kever Yang <kever.yang@rock-chips.com>
 Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Jagan Teki <jagan@edgeble.ai>, linux-i2c@vger.kernel.org,
-        David Wu <david.wu@rock-chips.com>
-Subject: [PATCH v4 01/13] i2c: rk3x: Add rv1126 support
-Date:   Wed,  7 Sep 2022 21:31:55 +0530
-Message-Id: <20220907160207.3845791-2-jagan@edgeble.ai>
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Jagan Teki <jagan@edgeble.ai>
+Subject: [PATCH v4 02/13] clk: rockchip: Add MUXTBL variant
+Date:   Wed,  7 Sep 2022 21:31:56 +0530
+Message-Id: <20220907160207.3845791-3-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220907160207.3845791-1-jagan@edgeble.ai>
 References: <20220907160207.3845791-1-jagan@edgeble.ai>
@@ -66,53 +68,135 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add i2c support for Rockchip RV1126 SoC.
+From: Elaine Zhang <zhangqing@rock-chips.com>
 
-Cc: linux-i2c@vger.kernel.org
-Signed-off-by: David Wu <david.wu@rock-chips.com>
+A clock branch consisting of a mux with non-standard
+select values.
+The parent in Mux table is sorted by priority.
+
+Cc: linux-clk@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
 Changes for v4:
-- new patch
+- rebase on -next
+Changes for v3, v2:
+- none
 
- drivers/i2c/busses/i2c-rk3x.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/clk/rockchip/clk.c | 27 +++++++++++++++++++++------
+ drivers/clk/rockchip/clk.h | 17 +++++++++++++++++
+ 2 files changed, 38 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/i2c/busses/i2c-rk3x.c b/drivers/i2c/busses/i2c-rk3x.c
-index 2e98e7793bba..d1658ed76562 100644
---- a/drivers/i2c/busses/i2c-rk3x.c
-+++ b/drivers/i2c/busses/i2c-rk3x.c
-@@ -1165,6 +1165,11 @@ static const struct rk3x_i2c_soc_data rv1108_soc_data = {
- 	.calc_timings = rk3x_i2c_v1_calc_timings,
- };
+diff --git a/drivers/clk/rockchip/clk.c b/drivers/clk/rockchip/clk.c
+index bb8a844309bf..e63d4f20b479 100644
+--- a/drivers/clk/rockchip/clk.c
++++ b/drivers/clk/rockchip/clk.c
+@@ -40,6 +40,7 @@ static struct clk *rockchip_clk_register_branch(const char *name,
+ 		const char *const *parent_names, u8 num_parents,
+ 		void __iomem *base,
+ 		int muxdiv_offset, u8 mux_shift, u8 mux_width, u8 mux_flags,
++		u32 *mux_table,
+ 		int div_offset, u8 div_shift, u8 div_width, u8 div_flags,
+ 		struct clk_div_table *div_table, int gate_offset,
+ 		u8 gate_shift, u8 gate_flags, unsigned long flags,
+@@ -62,6 +63,7 @@ static struct clk *rockchip_clk_register_branch(const char *name,
+ 		mux->shift = mux_shift;
+ 		mux->mask = BIT(mux_width) - 1;
+ 		mux->flags = mux_flags;
++		mux->table = mux_table;
+ 		mux->lock = lock;
+ 		mux_ops = (mux_flags & CLK_MUX_READ_ONLY) ? &clk_mux_ro_ops
+ 							: &clk_mux_ops;
+@@ -270,6 +272,8 @@ static struct clk *rockchip_clk_register_frac_branch(
+ 		frac_mux->shift = child->mux_shift;
+ 		frac_mux->mask = BIT(child->mux_width) - 1;
+ 		frac_mux->flags = child->mux_flags;
++		if (child->mux_table)
++			frac_mux->table = child->mux_table;
+ 		frac_mux->lock = lock;
+ 		frac_mux->hw.init = &init;
  
-+static const struct rk3x_i2c_soc_data rv1126_soc_data = {
-+	.grf_offset = 0x118,
-+	.calc_timings = rk3x_i2c_v1_calc_timings,
-+};
+@@ -444,11 +448,21 @@ void rockchip_clk_register_branches(struct rockchip_clk_provider *ctx,
+ 		/* catch simple muxes */
+ 		switch (list->branch_type) {
+ 		case branch_mux:
+-			clk = clk_register_mux(NULL, list->name,
+-				list->parent_names, list->num_parents,
+-				flags, ctx->reg_base + list->muxdiv_offset,
+-				list->mux_shift, list->mux_width,
+-				list->mux_flags, &ctx->lock);
++			if (list->mux_table)
++				clk = clk_register_mux_table(NULL, list->name,
++					list->parent_names, list->num_parents,
++					flags,
++					ctx->reg_base + list->muxdiv_offset,
++					list->mux_shift, list->mux_width,
++					list->mux_flags, list->mux_table,
++					&ctx->lock);
++			else
++				clk = clk_register_mux(NULL, list->name,
++					list->parent_names, list->num_parents,
++					flags,
++					ctx->reg_base + list->muxdiv_offset,
++					list->mux_shift, list->mux_width,
++					list->mux_flags, &ctx->lock);
+ 			break;
+ 		case branch_muxgrf:
+ 			clk = rockchip_clk_register_muxgrf(list->name,
+@@ -506,7 +520,8 @@ void rockchip_clk_register_branches(struct rockchip_clk_provider *ctx,
+ 				ctx->reg_base, list->muxdiv_offset,
+ 				list->mux_shift,
+ 				list->mux_width, list->mux_flags,
+-				list->div_offset, list->div_shift, list->div_width,
++				list->mux_table, list->div_offset,
++				list->div_shift, list->div_width,
+ 				list->div_flags, list->div_table,
+ 				list->gate_offset, list->gate_shift,
+ 				list->gate_flags, flags, &ctx->lock);
+diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
+index 7aa45cc70287..93937fb1d368 100644
+--- a/drivers/clk/rockchip/clk.h
++++ b/drivers/clk/rockchip/clk.h
+@@ -448,6 +448,7 @@ struct rockchip_clk_branch {
+ 	u8				mux_shift;
+ 	u8				mux_width;
+ 	u8				mux_flags;
++	u32				*mux_table;
+ 	int				div_offset;
+ 	u8				div_shift;
+ 	u8				div_width;
+@@ -680,6 +681,22 @@ struct rockchip_clk_branch {
+ 		.gate_offset	= -1,				\
+ 	}
+ 
++#define MUXTBL(_id, cname, pnames, f, o, s, w, mf, mt)		\
++	{							\
++		.id		= _id,				\
++		.branch_type	= branch_mux,			\
++		.name		= cname,			\
++		.parent_names	= pnames,			\
++		.num_parents	= ARRAY_SIZE(pnames),		\
++		.flags		= f,				\
++		.muxdiv_offset	= o,				\
++		.mux_shift	= s,				\
++		.mux_width	= w,				\
++		.mux_flags	= mf,				\
++		.gate_offset	= -1,				\
++		.mux_table	= mt,				\
++	}
 +
- static const struct rk3x_i2c_soc_data rk3066_soc_data = {
- 	.grf_offset = 0x154,
- 	.calc_timings = rk3x_i2c_v0_calc_timings,
-@@ -1195,6 +1200,10 @@ static const struct of_device_id rk3x_i2c_match[] = {
- 		.compatible = "rockchip,rv1108-i2c",
- 		.data = &rv1108_soc_data
- 	},
-+	{
-+		.compatible = "rockchip,rv1126-i2c",
-+		.data = &rv1126_soc_data
-+	},
- 	{
- 		.compatible = "rockchip,rk3066-i2c",
- 		.data = &rk3066_soc_data
+ #define MUXGRF(_id, cname, pnames, f, o, s, w, mf)		\
+ 	{							\
+ 		.id		= _id,				\
 -- 
 2.25.1
 
