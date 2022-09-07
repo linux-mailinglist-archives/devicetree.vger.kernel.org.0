@@ -2,57 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C75D85B02F7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 13:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6D625B0334
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 13:37:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230030AbiIGLd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 07:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36866 "EHLO
+        id S230049AbiIGLhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 07:37:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230003AbiIGLd1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 07:33:27 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AF3DBB69F0;
-        Wed,  7 Sep 2022 04:33:25 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A8A4E1042;
-        Wed,  7 Sep 2022 04:33:31 -0700 (PDT)
-Received: from [10.57.15.197] (unknown [10.57.15.197])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 63EA73F7B4;
-        Wed,  7 Sep 2022 04:33:20 -0700 (PDT)
-Message-ID: <4ca6383e-bd21-59bf-cc4e-cf3313164957@arm.com>
-Date:   Wed, 7 Sep 2022 12:33:12 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Subject: Re: [RFC PATCH v3 4/7] bus/cdx: add cdx-MSI domain with gic-its
- domain as parent
-Content-Language: en-GB
-To:     Marc Zyngier <maz@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>
-Cc:     Nipun Gupta <nipun.gupta@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        puneet.gupta@amd.com, song.bao.hua@hisilicon.com,
-        mchehab+huawei@kernel.org, f.fainelli@gmail.com,
-        jeffrey.l.hugo@gmail.com, saravanak@google.com,
-        Michael.Srba@seznam.cz, mani@kernel.org, yishaih@nvidia.com,
-        will@kernel.org, joro@8bytes.org, masahiroy@kernel.org,
-        ndesaulniers@google.com, linux-arm-kernel@lists.infradead.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kvm@vger.kernel.org, okaya@kernel.org,
-        harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        michal.simek@amd.com, aleksandar.radovanovic@amd.com, git@amd.com
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20220906134801.4079497-1-nipun.gupta@amd.com>
- <20220906134801.4079497-5-nipun.gupta@amd.com> <YxeBCsA32jnwMjSj@nvidia.com>
- <87leqvv3g7.wl-maz@kernel.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <87leqvv3g7.wl-maz@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        with ESMTP id S229676AbiIGLgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 07:36:53 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777CC2C13D;
+        Wed,  7 Sep 2022 04:36:46 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2878lxlr002379;
+        Wed, 7 Sep 2022 11:36:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=+J2q28663HnekhnqpbxMxmUltK8XR8Y64XsYPBktWAE=;
+ b=nA0pS6lJmrE2J3C8/BuihqFFQhix+ZjthMpSdJJnRDg+BwK2ZeLANDJ8noi4eVG1TtBo
+ 5CkZDTbnNZ3VXTFd0+of5LUFAdL5m/TN+sqH4pvL0Mhhh2z42V1GA7Goi1Qb4DZQFXv1
+ woUkTkulyB/Rx1NvRy5ZibRG+9hX0FXNeYtiPo2M1Cecq5LU2uX+F7qKqaFjZFkPMtwi
+ vJJAT1oIqChK3L1o6VE0sy57eFfpiwSmSRfhdKU0XZmZcxKHi08mCIsJO0jBfbF9iHSC
+ /NojEfopuhjJG5S9Os6yd5XolEE6w2F1pO7AO7Mf13pt9NYt4k+EEeBBTOSTtM+9TMXR PQ== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jeqfwgjbj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 07 Sep 2022 11:36:37 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 287BaXbF032259;
+        Wed, 7 Sep 2022 11:36:33 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3jc00kxt4u-1;
+        Wed, 07 Sep 2022 11:36:33 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 287BaX6K032254;
+        Wed, 7 Sep 2022 11:36:33 GMT
+Received: from rajeevny-linux.qualcomm.com (RAJEEVNY-LINUX.qualcomm.com [10.204.66.121])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 287BaWLu032253;
+        Wed, 07 Sep 2022 11:36:33 +0000
+Received: by rajeevny-linux.qualcomm.com (Postfix, from userid 2363605)
+        id 1DAF020F8B; Wed,  7 Sep 2022 17:06:32 +0530 (IST)
+From:   Rajeev Nandan <quic_rajeevny@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Rajeev Nandan <quic_rajeevny@quicinc.com>,
+        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
+        robh+dt@kernel.org, dmitry.baryshkov@linaro.org,
+        andersson@kernel.org, agross@kernel.org,
+        konrad.dybcio@somainline.org, quic_abhinavk@quicinc.com,
+        quic_kalyant@quicinc.com
+Subject: [v1] arm64: dts: qcom: sc7280: assign DSI clock source parents
+Date:   Wed,  7 Sep 2022 17:05:53 +0530
+Message-Id: <1662550553-28933-1-git-send-email-quic_rajeevny@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: XZbuI_TuHvG35CCqqA2BUiBDCfv4OYN4
+X-Proofpoint-GUID: XZbuI_TuHvG35CCqqA2BUiBDCfv4OYN4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-07_06,2022-09-07_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=926
+ impostorscore=0 adultscore=0 phishscore=0 clxscore=1011 suspectscore=0
+ spamscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209070044
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,51 +80,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-09-07 12:17, Marc Zyngier wrote:
-> On Tue, 06 Sep 2022 18:19:06 +0100,
-> Jason Gunthorpe <jgg@nvidia.com> wrote:
->>
->> On Tue, Sep 06, 2022 at 07:17:58PM +0530, Nipun Gupta wrote:
->>
->>> +static void cdx_msi_write_msg(struct irq_data *irq_data,
->>> +			      struct msi_msg *msg)
->>> +{
->>> +	/*
->>> +	 * Do nothing as CDX devices have these pre-populated
->>> +	 * in the hardware itself.
->>> +	 */
->>> +}
->>
->> Huh?
->>
->> There is no way it can be pre-populated, the addr/data pair,
->> especially on ARM, is completely under SW control.
-> 
-> There is nothing in the GIC spec that says that.
-> 
->> There is some commonly used IOVA base in Linux for the ITS page, but
->> no HW should hardwire that.
-> 
-> That's not strictly true. It really depends on how this block is
-> integrated, and there is a number of existing blocks that know *in HW*
-> how to signal an LPI.
-> 
-> See, as the canonical example, how the mbigen driver doesn't need to
-> know about the address of GITS_TRANSLATER.
-> 
-> Yes, this messes with translation (the access is downstream of the
-> SMMU) if you relied on it to have some isolation, and it has a "black
-> hole" effect as nobody can have an IOVA that overlaps with the
-> physical address of the GITS_TRANSLATER register.
-> 
-> But is it illegal as per the architecture? No. It's just stupid.
+Assign DSI clock source parents to DSI PHY clocks.
 
-If that were the case, then we'd also need a platform quirk so the SMMU 
-driver knows about it. Yuck.
+Signed-off-by: Rajeev Nandan <quic_rajeevny@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
 
-But even then, are you suggesting there is some way to convince the ITS 
-driver to allocate a specific predetermined EventID when a driver 
-requests an MSI? Asking for a friend...
+This change is needed after the refactor done by the patch [2] 
+(drm/msm/dsi: stop setting clock parents manually) of series [1],
+to fix the DSI pixel clock set rate error:
+  dsi_link_clk_set_rate_6g: Failed to set rate pixel clk, -22
+  msm_dsi_host_power_on: failed to enable link clocks. ret=-22
 
-Cheers,
-Robin.
+[1] https://github.com/torvalds/linux/commit/9b077c1581cf57206f5f7788ea569e8fae0719a7
+[2] https://lore.kernel.org/all/20210709210729.953114-1-dmitry.baryshkov@linaro.org/
+
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 50c3d79..a80aa64 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -3650,6 +3650,9 @@
+ 					      "iface",
+ 					      "bus";
+ 
++				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
++				assigned-clock-parents = <&mdss_dsi_phy 0>, <&mdss_dsi_phy 1>;
++
+ 				operating-points-v2 = <&dsi_opp_table>;
+ 				power-domains = <&rpmhpd SC7280_CX>;
+ 
+-- 
+2.7.4
+
