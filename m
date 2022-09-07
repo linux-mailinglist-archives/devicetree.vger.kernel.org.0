@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71F715B0D84
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 21:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F7885B0D93
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 21:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbiIGTxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 15:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49796 "EHLO
+        id S229643AbiIGT5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 15:57:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbiIGTxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 15:53:33 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A736EA223B;
-        Wed,  7 Sep 2022 12:53:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1662580412; x=1694116412;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/MI/RJuZ0sD3riUI6YGQ3T4oFUBUNCRNrhNMnbIuoG0=;
-  b=iPAq+AeXSiQsdxyzZSHNRTlAhzo0D8XmeEmfgEirA+oGOqFDlt2aJNiM
-   xYdk9VvdIdrmRIw3M9y/TjKMZ5c4pGo947o0J3FKe+XmALACWXFTn815n
-   QsKlYOY6q3qtw0KXnRLsRG76qPx4KPZ1LP/3OVHYZex74kpWIr/nm2ckA
-   VJvBtnyN7hlbvUL876mtExxED5j/YUqnXG7M+KeZHUvKxL/vFAgNeJCKw
-   GIj6QSfAb6BN8gmK83qt+ecEH4YVaRefEidvNlRGzwyv59CyIT9PwEu9+
-   u1GHQPUrH8su9IumH0mBu/L0POUmEY8IftIufrfdlxERfEMOJiY2+vxok
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="358715374"
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; 
-   d="scan'208";a="358715374"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 12:53:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,297,1654585200"; 
-   d="scan'208";a="614618487"
-Received: from lkp-server02.sh.intel.com (HELO 95dfd251caa2) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 07 Sep 2022 12:53:27 -0700
-Received: from kbuild by 95dfd251caa2 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oW171-0006uL-06;
-        Wed, 07 Sep 2022 19:53:27 +0000
-Date:   Thu, 8 Sep 2022 03:53:02 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     luca.ceresoli@bootlin.com, alsa-devel@alsa-project.org,
-        linux-rockchip@lists.infradead.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229445AbiIGT5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 15:57:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F5DDA2204;
+        Wed,  7 Sep 2022 12:57:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1BE7B61A43;
+        Wed,  7 Sep 2022 19:57:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B27A9C433D6;
+        Wed,  7 Sep 2022 19:57:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662580660;
+        bh=TnY+Y3ebzbfWHSwTLQu3Yoal7MoTYcO8OjpkAcZ1PkU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XUUkJb9zVlddJ7b9OoYydbtWSahmi+hxl1X6/K0ymbsu1LPCCyBN2PtuQ3i1rGPWW
+         H9QF4Xsfwe56KjMs1k5cDcR1y0hCWbOWBC8GfT66unf7ZhVGvKk4D13F8DwNmFGFLV
+         l7H6szBuCqqewKB3pyzWUewGg1qJf4ok9QLI4EXHymp/8pWTQbu3SKBTIfxpTBm0FV
+         30m7cbKOuOsAt3g8UfgKweda/L7aO3R8PVkE25t4aLIqDaDYlUzUGEFkh5TtMqChau
+         2fMaeClwvVSV07Ohq0ljRGhRMup8Ye5glz3AWNlphsy+FTEPAXxTPr49VHC6nDDGIb
+         GFJwCzSl2R6wg==
+Date:   Wed, 7 Sep 2022 21:57:36 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 7/8] ASoC: codecs: Add RK3308 internal audio codec driver
-Message-ID: <202209080340.RFBeIVm2-lkp@intel.com>
-References: <20220907142124.2532620-8-luca.ceresoli@bootlin.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH] dt-bindings: i2c: qcom,i2c-cci: specify SM8450 CCI clocks
+Message-ID: <Yxj3sP6xi7RyCKvP@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20220901074218.21108-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="0/dDp7V2egPoGTKs"
 Content-Disposition: inline
-In-Reply-To: <20220907142124.2532620-8-luca.ceresoli@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220901074218.21108-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,63 +74,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-I love your patch! Perhaps something to improve:
+--0/dDp7V2egPoGTKs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on rockchip/for-next tiwai-sound/for-next linus/master v6.0-rc4 next-20220907]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Thu, Sep 01, 2022 at 10:42:18AM +0300, Krzysztof Kozlowski wrote:
+> Document clocks for SM8450 Camera Control Interface I2C controller.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
 
-url:    https://github.com/intel-lab-lkp/linux/commits/luca-ceresoli-bootlin-com/Add-support-for-the-internal-RK3308-audio-codec/20220907-222555
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-config: riscv-randconfig-r042-20220907 (https://download.01.org/0day-ci/archive/20220908/202209080340.RFBeIVm2-lkp@intel.com/config)
-compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project c55b41d5199d2394dd6cdb8f52180d8b81d809d4)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/786c160ad64ae5a6c5266184b12ecf2674db2fbe
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review luca-ceresoli-bootlin-com/Add-support-for-the-internal-RK3308-audio-codec/20220907-222555
-        git checkout 786c160ad64ae5a6c5266184b12ecf2674db2fbe
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash sound/soc/codecs/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> sound/soc/codecs/rk3308_codec.c:2007:6: warning: variable 'err' set but not used [-Wunused-but-set-variable]
-           int err;
-               ^
-   1 warning generated.
+Applied to for-next, thanks!
 
 
-vim +/err +2007 sound/soc/codecs/rk3308_codec.c
+--0/dDp7V2egPoGTKs
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  2003	
-  2004	static int rk3308_codec_parse_dt(struct rk3308_codec_priv *rk3308)
-  2005	{
-  2006		struct device_node *np = rk3308->dev->of_node;
-> 2007		int err;
-  2008	
-  2009		/* Default value is 0 */
-  2010		err = of_property_read_u32(np, "rockchip,micbias-avdd-multiplier",
-  2011					   &rk3308->micbias_avdd_mult);
-  2012		if (rk3308->micbias_avdd_mult >= RK3308_CODEC_MICBIAS_NUM)
-  2013			return dev_err_probe(rk3308->dev, -EINVAL,
-  2014					     "Invalid value for 'rockchip,micbias-avdd-multiplier'\n");
-  2015	
-  2016		return 0;
-  2017	}
-  2018	
+-----BEGIN PGP SIGNATURE-----
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMY96oACgkQFA3kzBSg
+KbYuGg//YX0JNOT1kilO+XDej6NJxgxJ/yjygJv+iFgDfJLgxVms8jf8WrJc75/B
+ckI3XOmV2fVXay0pzs+Kp4zuYGMkXOvHaHnfdhcjWN9DR7k2ZClc3aosh+fhh5qC
+bRELl7lRgzJnuYH4SkSWFhJZNMQaxqlq9AmxSqo1ajg7bkc9wMg0q/9KIv5ZXeAU
+atw6QDhv5+JJo1v3gWqhkrSqWGxZG0pdLc5Uddd5ENLYCDPQgfAb8ySWjc7TcohR
+s7X7tw5/jJARgcjZE99+a5zsFbZlaw/d9vXGV5HJLWTEtwSeVR33zhYAKoQFJlwQ
+A02yy86QY6pj8jiCBq6jpdX1puEKnKRjuEQe3Pdr23G+fE3KCSUvl8wCdDCtFTGa
+foKO4GHIE8yQBEyCzYdik8P13/8XeCfyw95dvVOQeJEZV79Q0lYX4aEppeaMYLUV
+0HNvWVUJ1VZ1Wn0ibzTDBcJVPbGxyTPNM8CK81xRENGvgU/eesZgoevJmCsFtd6K
+4vNL3Uz7S/NWnyQRtQeGszPKunqrgahZNl4kXSR9s3b/TfPOlcYYafn1d8vqTrwR
+IieGsX91cKv0xKplG6T4f26tltoG/w7m5SvUByv9/1V1xSmXlhaXdcF7fJmwOknn
+x6Uy7OxPhH7yHp/c/y0Zc23tPVzIh/Ks+GTFmHlULMJhaTk4/jI=
+=3pQC
+-----END PGP SIGNATURE-----
+
+--0/dDp7V2egPoGTKs--
