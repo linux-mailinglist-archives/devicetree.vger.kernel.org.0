@@ -2,88 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DEB85B01E1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:25:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C6EE5B01F5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 12:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230478AbiIGKZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 06:25:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36266 "EHLO
+        id S229716AbiIGKdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 06:33:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230213AbiIGKZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:25:08 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56F671838D
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 03:25:01 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id f11so7689795lfa.6
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 03:25:01 -0700 (PDT)
+        with ESMTP id S229636AbiIGKc7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 06:32:59 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBDF58307E
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 03:32:58 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id bj14so6397999wrb.12
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 03:32:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=fEUqt9+qxUMWX8ZXycy90WtW/syx1Y2If6HQeNXBw3M=;
-        b=oZxiH+wzBb4W/26mmXuGLuepWKl7gUHnD82V8shRrB/qT/iV2ygQGBcLaVcsSo2wkm
-         awmbgrNlcQNeYR4lucqKP/fbV1V9NiISnLfEnq1SjCyknOOFZ7lmtUZs8g2q2fif5FvP
-         gZcfe6luQ0aUSsjWgAs3UpHaDh5mabxY0VtP/sjnzyT3Pki0LQoZ6mGDITzy52MGUHOj
-         Ei+bT5XCT+UwDe/sZ5ag0VL+1zl7YQZEiw8FEjretfO3bSaUiV0tGbxM4L5VvFvaIgJH
-         qo4dgG0NleLhcRBC16OvZkXIgYjWKqemJYJWCQ/o5/sV/7+Jv/+I/eumGhjzGY/MfUSP
-         Xr3A==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=2ruloj/z3HDay2BKVOinqhlNi8ynnawFv8TyAHfi4aE=;
+        b=dZyKHcWPXPMjfQQVb82YQg0g8szO5nzUeoT7amZCpaUh53dl4c7uRXuhm0Rq1iMrjB
+         IuTII7EPndQipA8fXtUisPXVsvaKqv/GmO2BV+nppTZW7ShvKyY9YS0i7ozhF1DYZcSk
+         FwNnL2X42/NvVkiIZj/dREcbb4WBZ6C4kY30TFCsnVeBnDRPUCBk3IIduMdbnrhuxbje
+         sQBFkmtnhB+ZjRhmS8iUZxmRa3aRo3NdJ34J3AlJEt2o4QDtqOBMQ7qR6Ae/sbltCYF4
+         3FM50+A0mSmA9rRU8gGKYRh+rZPTvLz4fCyBcNwisI083CdHHtEDYS9MzFuv/2NCX/mF
+         OIEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=fEUqt9+qxUMWX8ZXycy90WtW/syx1Y2If6HQeNXBw3M=;
-        b=mQmBAulkUdM0sx7okRj7U3ZGEp5+x7mrh5/jQykWxfHgtN9aMLnZIIFNNjXT/eKVo6
-         VzMjCKcK/+wWk6TMsrZUCproQhfRvANScjR2JwHAKIWRL/L2pC/iWmX9WrMLn4ct+Hyi
-         tnLL4BRfjowoxX+sAge3I7eW32CgfaNOQ9mOCRgmCvb8pboqVP8oGCSmNdwTtIrIA7bZ
-         VJMG8zsbLCePdajUh5Fz1koxGP4/o9Jxcz5WBX6IOvofnB+HvnSYbTJYO2bfGBB0bGJ3
-         vnjdD/6f1z27SH1Y9RsNYW8VPow314uqJkbFHu2iSjhROQHci7gX7pBrNpRAMS0T2tuS
-         Vh2g==
-X-Gm-Message-State: ACgBeo1jFVdD5+GrwwzK/4Q4W53oY3quN0Cu7hCMuA7PqCC/GXZse64+
-        7ddjD3p69YFJZz+D8U4aS/838A==
-X-Google-Smtp-Source: AA6agR6LtW2cVXdK9UY9CfzEJFLOaWhbSandN3K2DvIbIOcseMAC1gjJtA0vqrQGUWJcce/Fs82BnQ==
-X-Received: by 2002:a05:6512:ac1:b0:491:571c:3ef7 with SMTP id n1-20020a0565120ac100b00491571c3ef7mr875597lfu.176.1662546300226;
-        Wed, 07 Sep 2022 03:25:00 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s26-20020a05651c201a00b0026a999966bbsm1112677ljo.24.2022.09.07.03.24.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Sep 2022 03:24:59 -0700 (PDT)
-Message-ID: <51d57c7d-18ea-78e0-cb6a-e84181e36ad3@linaro.org>
-Date:   Wed, 7 Sep 2022 12:24:58 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=2ruloj/z3HDay2BKVOinqhlNi8ynnawFv8TyAHfi4aE=;
+        b=csO597265t4rHrrp6jdwzh/z6MidOjnSvbq/x4HHFBZCpss/yy5AiJ50wWzSWgc+Mu
+         2F8nb4K38m0mHp2EJNTAg8QCGW7Uy1ACBc3YXYd7oFnCdTQuM1lVdVuCbI3mkiAbLdtz
+         FgifQY1j99VXqtyqhILkSij46Gkxkqj4uCSsxkRuymaEormt6q008ep2N9fxt1upnetH
+         d6AnSoIzD2TFfUj1O4pJ4q9ZzRLw+KMWKuuzGM4XwMY8tMyi0BafWFdKaX1bPpGfgXn4
+         JSJdlq9aFzki98rlw8WURC+YoH/BjQkc+oybF76Spws7Fj9NXt+teSBkU5yQcRgBgXs+
+         sjLg==
+X-Gm-Message-State: ACgBeo2f/kpRkcSsKjzJaggtWFJOrDxpbQnsRZ2oMAIqjFWW71RuLL+e
+        H3beRF630ZTEM2v7IIZ/0uMIQg==
+X-Google-Smtp-Source: AA6agR76EAW1iCZg1Y5GR+57LAFTMm7SP2jL98SG0N0sPj/FczolhY5MHi5c9sJ4SR8elSFOgFivuQ==
+X-Received: by 2002:a5d:58eb:0:b0:228:62cb:a615 with SMTP id f11-20020a5d58eb000000b0022862cba615mr1721578wrd.71.1662546777302;
+        Wed, 07 Sep 2022 03:32:57 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id m9-20020a05600c4f4900b003a84375d0d1sm27308382wmq.44.2022.09.07.03.32.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 03:32:56 -0700 (PDT)
+Date:   Wed, 7 Sep 2022 13:32:55 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clocks: imx8mp: Add ID for usb suspend
+ clock
+Message-ID: <YxhzV5pG6/ZMHZR7@linaro.org>
+References: <1661328262-3867-1-git-send-email-jun.li@nxp.com>
+ <YxJJ0IQ1Gu1lp02p@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nor: Add reset-gpios
- property
-Content-Language: en-US
-To:     "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-References: <20220901072914.30205-1-sai.krishna.potthuri@amd.com>
- <20220901072914.30205-2-sai.krishna.potthuri@amd.com>
- <6b06f88e-128d-7ce6-b97b-b5cacfc4834d@linaro.org>
- <BY5PR12MB4258128603AA297DD8FAB168DB7B9@BY5PR12MB4258.namprd12.prod.outlook.com>
- <83444851-14ef-b293-6581-1307331fb1c4@linaro.org>
- <BY5PR12MB425896652F8056EAD47E1042DB419@BY5PR12MB4258.namprd12.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <BY5PR12MB425896652F8056EAD47E1042DB419@BY5PR12MB4258.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YxJJ0IQ1Gu1lp02p@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,21 +74,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2022 11:49, Potthuri, Sai Krishna wrote:
->>>>>
->>>>> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
->>>>> ---
->>>>
->>>> You still miss the user (DTS) of this change...
->>> Do you mean to have this property in example DTS in this yaml?
->>
->> No, I want to see in-tree DTS using it.
-> As Michal Simek talked to you about this over IRC, as of now we don’t have
-> a DTS in the mainline tree for Xilinx Versal platform but we have a plan to do it.
-> For time being i will add this property in the example dts in this yaml file.
+On 22-09-02 21:22:08, Abel Vesa wrote:
+> On 22-08-24 16:04:21, Li Jun wrote:
+> > usb suspend clock has a gate shared with usb_root_clk.
+> > 
+> > Signed-off-by: Li Jun <jun.li@nxp.com>
+> 
+> Applied both, thanks!
 
-Sure, sounds good.
+As discussed in the thread [1], I dropped this patch from my tree for
+now. You need to send a new version wil Fixes tag.
 
-
-Best regards,
-Krzysztof
+[1] https://lore.kernel.org/all/YxhxSdDGXfO%2F%2Fbgc@linaro.org/
+> 
+> > 
+> > diff --git a/include/dt-bindings/clock/imx8mp-clock.h b/include/dt-bindings/clock/imx8mp-clock.h
+> > index 9d5cc2ddde89..1417b7b1b7df 100644
+> > --- a/include/dt-bindings/clock/imx8mp-clock.h
+> > +++ b/include/dt-bindings/clock/imx8mp-clock.h
+> > @@ -324,8 +324,9 @@
+> >  #define IMX8MP_CLK_CLKOUT2_SEL			317
+> >  #define IMX8MP_CLK_CLKOUT2_DIV			318
+> >  #define IMX8MP_CLK_CLKOUT2			319
+> > +#define IMX8MP_CLK_USB_SUSP			320
+> >  
+> > -#define IMX8MP_CLK_END				320
+> > +#define IMX8MP_CLK_END				321
+> >  
+> >  #define IMX8MP_CLK_AUDIOMIX_SAI1_IPG		0
+> >  #define IMX8MP_CLK_AUDIOMIX_SAI1_MCLK1		1
+> > -- 
+> > 2.34.1
+> > 
