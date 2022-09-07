@@ -2,81 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E19655B0249
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 13:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 250025B0254
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 13:05:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbiIGLCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 07:02:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33402 "EHLO
+        id S229517AbiIGLFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 07:05:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiIGLCG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 07:02:06 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D76A00C3
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 04:02:04 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id u18so9530742lfo.8
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 04:02:04 -0700 (PDT)
+        with ESMTP id S229674AbiIGLFf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 07:05:35 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9407C5FF7A
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 04:05:33 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id bq23so21855417lfb.7
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 04:05:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=2ZksrWzCxdsKB9eboZRhKTKOwecPVr614XThFnZuMQY=;
-        b=SIo4JRXgobwzKo6dx+BfhDNvQHYrI9/AYfht4q9L8F+4CaGLDRmnqEfj5BGNkFnJmm
-         OVJUB/LQj+KrH1zZNEWFcnYE/F3wNw1KodqzDT6pUOwn60hHNmFTqiBXxGxR0d3CPsKu
-         UY/aaqqExMFOlgK+bjMsFqrlCbCDBstxETcDpSmatuFLoHauewPR48ZZqiLbrvXoTWST
-         0T5Ox0yhRCyzsW1OMStINawkqE7I4n+jFBjqoqxIob5WDuusC9mctkIxOd7oH7YUnd7E
-         uMMR+HG4+C2sPvQHY6MQ+7au4+XP1ns3QKzTd20CSNhq4Y2CGU7sUtlsDIbsgq+lWL1+
-         +soA==
+        bh=RheaanQ74l39GOH9bp74P4jIE+z8WJigs9jBgeQ8Eoo=;
+        b=HddyWGbykN8wp+0Gqz262fZ3Wan2vzCB2w+w6joHVk04mjzyN2EiRqbG+nFlYcSbtf
+         L4Eecv8FUSw2E3rdqPFQQD9OhtVw3rO9NBlSL76ah2rHIBSpxiOqTIFvCx0Jf0fi2FVp
+         CuCVXI/mPgYlPXC5iyx5d7+1G1dFvFn6f6LtcajLeSEZIdEE7M92kztHxE3/Cw9zD8ah
+         AlSgAxOEXnBlk2QZVYTrVEyOQt80+TZXBzrMc7SmQLa8zkl7tNOGmdivNoxg3YuarTLs
+         h7VZ7EvNWQAtSVMy/THfAKMGjLxtwBTlyFgc6DH2qP4Gg2wlY5Tsw4wo6Pnoi63GzL2e
+         cOAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=2ZksrWzCxdsKB9eboZRhKTKOwecPVr614XThFnZuMQY=;
-        b=Oh1SRQjVnObYqAPVi2S58HU8iVlI+385cZjxoJPkPOg5937D0ecFqZ9y3rWmyDrfu5
-         x7qvz8QbfL9AGxrhyANJab960xKPsjm7nrH6LnKBwQ4hupaBDmvtPMAbq671KKT0wLfm
-         hGzV92oDxEv8/iiAoMa6w10XHfVHYLqlBaoTH3W5Jjj2YQi+EjlXuzefTnpCt+9DShnR
-         A9RYxslOrX/OwtZINvw/4a87MFk5EFAL0rNecWQaepHbsLOMCiSNIBjNtkwLYs3CK/MM
-         ks/hRFNxxXbEs3xxNZ7zOSBp9ISlYZbrU/y4RJOPR1ZgkhEDuX1Xudfvj8eLioCLsupv
-         5oMA==
-X-Gm-Message-State: ACgBeo3Rk9/XO9n3U/ng8MbM6FVu2jzn4S3gnGZKK09W9t/Q6/SejD2y
-        nfVED+4nit6nUj13potYKYm/4A==
-X-Google-Smtp-Source: AA6agR6pn15B0Te5FrvBxcTxQWV/My4R3Gt6Azp1JBIecWmKlQYgEcWkG2mc9R779tkRuU44NRWeJw==
-X-Received: by 2002:a05:6512:1329:b0:492:e050:b0dc with SMTP id x41-20020a056512132900b00492e050b0dcmr1024413lfu.136.1662548523015;
-        Wed, 07 Sep 2022 04:02:03 -0700 (PDT)
+        bh=RheaanQ74l39GOH9bp74P4jIE+z8WJigs9jBgeQ8Eoo=;
+        b=OI9YM6EJ2I6JKUIp3WU8EbfK5l2BpMBIuqfjTYA7qWX5gCiPH2Kv6b/ldCuTjTUixq
+         lEm82K0fldz2H7bp7Oq1AIeC2Y9/hAiNH+n5iBr60jNq16/958RGIMErPt8MfEqNbzuh
+         PmN2ovlTIe9JoKsOseE+gesxWdZsPy0jgcgxgSkIjtmT/XwSI9ZhY6oSLSVuMuJp826q
+         JzmCF2PpyJRn5yWegd7gUq72N5SZbuPM15UC42xFY17rvG0ICvd+YVMB7eDhhMAAY/po
+         X7j1284c7Wo9T89Kuvan8c5aqzzn+ldVa3MOblPzYsYE8a2Se3HMZA7T3NmjS4ci8w5O
+         gENw==
+X-Gm-Message-State: ACgBeo0W8b9CFoyg+kypPV8flftv5FRQPeTaMxQw1Gbg9gMnheyRCueh
+        wkrx1ewZi81btPXbu94X/tvo/w==
+X-Google-Smtp-Source: AA6agR47ozyDXYOvGdemifGei0IjwatizvoJ3SI5fAVVA7gbumkCSR4xKOvZ725fh8ZPqbMibgffkA==
+X-Received: by 2002:a05:6512:b01:b0:48b:a065:2a8b with SMTP id w1-20020a0565120b0100b0048ba0652a8bmr870185lfu.401.1662548731952;
+        Wed, 07 Sep 2022 04:05:31 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r7-20020ac25f87000000b00492c017de43sm2402693lfe.127.2022.09.07.04.02.01
+        by smtp.gmail.com with ESMTPSA id a18-20020a05651c031200b00263fd903b15sm2556838ljp.117.2022.09.07.04.05.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Sep 2022 04:02:02 -0700 (PDT)
-Message-ID: <d11b17d8-bc36-3a64-3de0-b188eeb5e9ba@linaro.org>
-Date:   Wed, 7 Sep 2022 13:02:00 +0200
+        Wed, 07 Sep 2022 04:05:31 -0700 (PDT)
+Message-ID: <9ad4bdc6-8daa-cfb5-cd6e-c522c5393f2c@linaro.org>
+Date:   Wed, 7 Sep 2022 13:05:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 3/8] dt-bindings: Add bindings for Tegra234 NVDEC
+Subject: Re: [PATCHv3 2/6] dt-bindings: add power-domain header for rk3588
 Content-Language: en-US
-To:     Mikko Perttunen <cyndis@kapsi.fi>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>, Lee Jones <lee@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220906132823.2390953-1-cyndis@kapsi.fi>
- <20220906132823.2390953-4-cyndis@kapsi.fi>
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
+References: <20220906143825.199089-1-sebastian.reichel@collabora.com>
+ <20220906143825.199089-3-sebastian.reichel@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220906132823.2390953-4-cyndis@kapsi.fi>
+In-Reply-To: <20220906143825.199089-3-sebastian.reichel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,168 +79,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 15:28, Mikko Perttunen wrote:
-> From: Mikko Perttunen <mperttunen@nvidia.com>
+On 06/09/2022 16:38, Sebastian Reichel wrote:
+> From: Finley Xiao <finley.xiao@rock-chips.com>
 > 
-> Update NVDEC bindings for Tegra234. This new engine version only has
-> two memory clients, but now requires three clocks, and as a bigger
-> change the engine loads firmware from a secure carveout configured by
-> the bootloader.
+> Add all the power domains listed in the RK3588 TRM.
 > 
-> For the latter, we need to add a phandle to the memory controller
-> to query the location of this carveout, and several other properties
-> containing offsets into the firmware inside the carveout. These
-> properties are intended to be populated through a device tree overlay
-> configured at flashing time, so that the values correspond to the
-> flashed NVDEC firmware.
-> 
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 118 +++++++++++++++---
->  1 file changed, 98 insertions(+), 20 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> index 3cf862976448..27128a195b66 100644
-> --- a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> @@ -24,17 +24,11 @@ properties:
->        - nvidia,tegra210-nvdec
->        - nvidia,tegra186-nvdec
->        - nvidia,tegra194-nvdec
-> +      - nvidia,tegra234-nvdec
->  
->    reg:
->      maxItems: 1
->  
-> -  clocks:
-> -    maxItems: 1
-> -
-> -  clock-names:
-> -    items:
-> -      - const: nvdec
+>  include/dt-bindings/power/rk3588-power.h | 69 ++++++++++++++++++++++++
 
-Please leave them here with wide constraints (min/maxItems).
 
-> -
->    resets:
->      maxItems: 1
->  
-> @@ -50,18 +44,6 @@ properties:
->  
->    dma-coherent: true
->  
-> -  interconnects:
-> -    items:
-> -      - description: DMA read memory client
-> -      - description: DMA read 2 memory client
-> -      - description: DMA write memory client
-> -
-> -  interconnect-names:
-> -    items:
-> -      - const: dma-mem
-> -      - const: read-1
-> -      - const: write
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Please leave them here with wide constraints (min/maxItems).
-
-> -
->    nvidia,host1x-class:
->      description: |
->        Host1x class of the engine, used to specify the targeted engine
-> @@ -79,7 +61,103 @@ required:
->    - reset-names
->    - power-domains
->  
-> -additionalProperties: false
-> +unevaluatedProperties: false
-
-This looks not needed/related.
-
-> +
-> +allOf:
-
-Put allOf before additionalProperties:false.
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra234-nvdec
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: NVDEC clock
-> +            - description: FUSE clock
-> +            - description: TSEC_PKA clock
-> +        clock-names:
-> +          items:
-> +            - const: nvdec
-> +            - const: fuse
-> +            - const: tsec_pka
-> +        interconnects:
-> +          items:
-> +            - description: DMA read memory client
-> +            - description: DMA write memory client
-> +        interconnect-names:
-> +          items:
-> +            - const: dma-mem
-> +            - const: write
-> +        nvidia,memory-controller:
-> +          $ref: /schemas/types.yaml#/definitions/phandle
-> +          description:
-> +            phandle to the memory controller for determining carveout information.
-
-All fields should be defined in top-level. You can disallow them for
-other variants, but if the allOf:if:then gets too big, it's a sign to
-split the binding.
-
-> +        nvidia,bl-manifest-offset:
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          description:
-> +            Offset to bootloader manifest from beginning of firmware. Typically set as
-> +            part of a device tree overlay corresponding to flashed firmware.
-> +        nvidia,bl-code-offset:
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          description:
-> +            Offset to bootloader code section from beginning of firmware. Typically set as
-> +            part of a device tree overlay corresponding to flashed firmware.
-> +        nvidia,bl-data-offset:
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          description:
-> +            Offset to bootloader data section from beginning of firmware. Typically set as
-> +            part of a device tree overlay corresponding to flashed firmware.
-> +        nvidia,os-manifest-offset:
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          description:
-> +            Offset to operating system manifest from beginning of firmware. Typically set as
-> +            part of a device tree overlay corresponding to flashed firmware.
-> +        nvidia,os-code-offset:
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          description:
-> +            Offset to operating system code section from beginning of firmware. Typically set as
-> +            part of a device tree overlay corresponding to flashed firmware.
-> +        nvidia,os-data-offset:
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          description:
-> +            Offset to operating system data section from beginning of firmware. Typically set as
-> +            part of a device tree overlay corresponding to flashed firmware.
-> +      required:
-> +        - nvidia,memory-controller
-> +        - nvidia,bl-manifest-offset
-> +        - nvidia,bl-code-offset
-> +        - nvidia,bl-data-offset
-> +        - nvidia,os-manifest-offset
-> +        - nvidia,os-code-offset
-> +        - nvidia,os-data-offset
-
-blank line
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
 
 Best regards,
 Krzysztof
