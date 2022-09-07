@@ -2,107 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 739955B0DA9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E1F5B0DAD
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbiIGUCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 16:02:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35336 "EHLO
+        id S229589AbiIGUDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 16:03:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbiIGUCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:02:36 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24614BB03A;
-        Wed,  7 Sep 2022 13:02:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CB60FB81E0C;
-        Wed,  7 Sep 2022 20:02:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B04AEC433C1;
-        Wed,  7 Sep 2022 20:02:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662580953;
-        bh=i5lNnyjtXWJmJn27Py5urxTe6IXY9j5ZKnDCFNTYG0k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PFGd/NSHw8YEaJJOR7tkFN5jlXwTzcU/x/ZeIawQPQHFHSLdLZmCnHP/UMjtqEbgt
-         QtApJ6eqm1OKNY6rlBmg/TyflH4h7pH25eAoNeBESxXxYEW63X3fFI1z8+7e7Ut2lr
-         8cROkL9XjSUD/W1jzTJUPaqmTcfsb6D1YM8+uA3Ag70mCk+cVuLFDFJRXmkbc9b8Xd
-         F6yi38B6QnZ7zE0y811tcH9vI1q/uyLElITta/GJ7Vm7iiGNS8Ic6eZW4JXyF9gIfh
-         6dhEjU5xzI1B141Ra+XtTsO3FD/JlMET9DUEyCqx7PosVZaaChKLGrIpPMNmHPM1Yq
-         UxY+aQVZq9JvA==
-Date:   Wed, 7 Sep 2022 22:02:28 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        with ESMTP id S229593AbiIGUDj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:03:39 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 546BFBD746;
+        Wed,  7 Sep 2022 13:03:37 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id d18-20020a9d72d2000000b0063934f06268so11024288otk.0;
+        Wed, 07 Sep 2022 13:03:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=HJtpL2X+zo8QGiAz4xLcd6dnwWmk0PxaqMgysL3AVC8=;
+        b=LXldZzcGQ5+sYKm/PH/BODP88fPa/+wnaoBdWrE37+VWvj0vTM4QRFtzu3UhtUQmfR
+         lLFnmnMnsf74b2pWC91x13Nq8HJMb5KcKfWO/msUJKVfGTPCKaAUgPkM1CaPm7v1EcSj
+         YyYcabU8WSQ4PHZ67VvJN7r/uP7SGlJSTSXfzTKBFvkyRBMvJp9h0XatybXp1xbozkzE
+         yd6h8zdjdL0KoQeMJJR52nrqf9eK+jG59UB1dH2jK1aM3cv14AMznjboPBvRvmOTXmpU
+         r9W5t/bsQFMoRk2D+6QwHAErl6iT+I01+Gxlnxz4gPa9jMq5RXdfdQ6i7VjSu7/LH5WQ
+         R4Ig==
+X-Gm-Message-State: ACgBeo2VlfI7cj/L9sGX3rWvzVRM2pf4i6t0+jXZwtE3BU9pne0tM3n4
+        PdA9Uo69y8ZPJ9zGIC13bw==
+X-Google-Smtp-Source: AA6agR7IyMO/AfcshwHGYC1fPOTTYCdaa/6reZ0Ew4AMdBfoMVEEfqKL5j7akmLaX8uKO+dYpP2hag==
+X-Received: by 2002:a9d:6b15:0:b0:636:deac:5288 with SMTP id g21-20020a9d6b15000000b00636deac5288mr2156093otp.236.1662581016595;
+        Wed, 07 Sep 2022 13:03:36 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z125-20020aca3383000000b00326cb6225f8sm6786337oiz.44.2022.09.07.13.03.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 13:03:36 -0700 (PDT)
+Received: (nullmailer pid 118890 invoked by uid 1000);
+        Wed, 07 Sep 2022 20:03:35 -0000
+Date:   Wed, 7 Sep 2022 15:03:35 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 1/3] dt-bindings: i2c: mv64xxx: Document DMA properties
-Message-ID: <Yxj41IrD/WzMSeac@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-References: <20220830020824.62288-1-samuel@sholland.org>
- <20220830020824.62288-2-samuel@sholland.org>
+        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
+        David Airlie <airlied@linux.ie>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        freedreno@lists.freedesktop.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v6 05/12] dt-bindings: display/msm: move common MDSS
+ properties to mdss-common.yaml
+Message-ID: <20220907200335.GA113284-robh@kernel.org>
+References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
+ <20220901102312.2005553-6-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rn7f98v4cUvWaQJs"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220830020824.62288-2-samuel@sholland.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220901102312.2005553-6-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 01, 2022 at 01:23:05PM +0300, Dmitry Baryshkov wrote:
+> Move properties common to all MDSS DT nodes to the mdss-common.yaml.
+> 
+> This extends qcom,msm8998-mdss schema to allow interconnect nodes, which
+> will be added later, once msm8998 gains interconnect support.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/display/msm/dpu-msm8998.yaml     | 42 ++--------
+>  .../bindings/display/msm/dpu-qcm2290.yaml     | 52 ++----------
+>  .../bindings/display/msm/dpu-sc7180.yaml      | 51 ++----------
+>  .../bindings/display/msm/dpu-sc7280.yaml      | 51 ++----------
+>  .../bindings/display/msm/dpu-sdm845.yaml      | 55 ++----------
+>  .../bindings/display/msm/mdss-common.yaml     | 83 +++++++++++++++++++
+>  6 files changed, 116 insertions(+), 218 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/mdss-common.yaml
 
---rn7f98v4cUvWaQJs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[...]
 
-On Mon, Aug 29, 2022 at 09:08:22PM -0500, Samuel Holland wrote:
-> Allwinner's I2C offload engine includes bidirectional DMA support. Add
-> the properties for describing this in the devicetree. "dmas" is optional
-> because not all instances of the controller have their DRQs hooked up.
-> For example, R_I2C0 and R_I2C1 on V536 have no DRQ number assigned.
->=20
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> diff --git a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+> new file mode 100644
+> index 000000000000..053c1e889552
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/msm/mdss-common.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Display MDSS dt properties (common properties)
 
-Applied to for-next, thanks!
+...MDSS common properties
 
+> +
+> +maintainers:
+> +  - Krishna Manikandan <quic_mkrishn@quicinc.com>
+> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> +  - Rob Clark <robdclark@gmail.com>
+> +
+> +description: |
 
---rn7f98v4cUvWaQJs
-Content-Type: application/pgp-signature; name="signature.asc"
+Don't need '|' if no formatting.
 
------BEGIN PGP SIGNATURE-----
+> +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
+> +  sub-blocks like DPU display controller, DSI and DP interfaces etc.
+> +
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-names:
+> +    const: mdss
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 3
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#address-cells": true
+> +
+> +  "#size-cells": true
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +
+> +  iommus:
+> +    minItems: 1
+> +    items:
+> +      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port0
+> +      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port1
+> +
+> +  ranges: true
+> +
+> +  interconnects:
+> +    minItems: 1
+> +    items:
+> +      - description: Interconnect path specifying the port ids for data bus
+> +      - description: Interconnect path specifying the port ids for data bus
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMY+NQACgkQFA3kzBSg
-KbZAiw/+J2yhbseTTo5AOFkGKns7ZfvwXDVCQmYWPmc5fD1S3OAn0VfUujMVKLSa
-RMHpMPT2ULliNHTDia4KniCKyRh6iLc/gK2tZ7QzJnyilFXzWzKUfFKXS/DpR1EB
-ASVeXMVTyle7NaAwGt7J1aNrKc6ODgnTMdk85uDcxOYArLmK8dYiWtw9ZlGycFZE
-gifRFlqjGG4HhXSok/fLyT2sLxLm0SWArs4cyX9wR5vOgS/L57DaUmF2A1e7S1c+
-J2DX9N7Y6ZUKUNCGfOF+kRMOmIJ/bgujpR7E7pGv0W3h2wkSBWAJWDH9naJrk32x
-/kZSrCEVDxm3kRrJMyaSTtNOrgSTCQKYEProJ0e/eZoU2RckLwUZEWY2xL689HNf
-Sp7VEZNockVyAw5DxdoqL2iteJQUWsauI4hGeaoeFam3LpSLT+78n8qSwfhbsMwk
-AR67wmCZwvU3SM2pYJQLUkMnbo86fPEjxA5qSpArebtjG8ePTa8bP+ies0kemj2s
-IfhWL/uRo7TCE1Gcx8ZwRvPa6JYZsNHP9hgXzkYneTduPbxEpdr8GdtoxW8tlYB0
-kj9h0SEamcaPfn4REhZo19zKPfJwibu0tAeHaqOSXU7B4ha/fENWpMv5JsVDo2UG
-crD5ByPZnKcSnhEKsGO0I9BiSdqWPI/ZosFMaj+rjxfkUFjXiRc=
-=c47z
------END PGP SIGNATURE-----
+Same description twice...
 
---rn7f98v4cUvWaQJs--
+> +
+> +  interconnect-names:
+> +    minItems: 1
+> +    items:
+> +      - const: mdp0-mem
+> +      - const: mdp1-mem
+> +
+> +  resets:
+> +    items:
+> +      - description: MDSS_CORE reset
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - power-domains
+> +  - clocks
+> +  - interrupts
+> +  - interrupt-controller
+> +  - iommus
+> +  - ranges
+> +
+> +additionalProperties: true
+> -- 
+> 2.35.1
+> 
+> 
