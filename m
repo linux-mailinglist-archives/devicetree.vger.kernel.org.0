@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10F995AFCD9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 08:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 858B35AFD30
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 09:12:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbiIGGuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 02:50:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
+        id S229707AbiIGHM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 03:12:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230136AbiIGGul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 02:50:41 -0400
-Received: from smtp-fw-80007.amazon.com (smtp-fw-80007.amazon.com [99.78.197.218])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC835A00DE;
-        Tue,  6 Sep 2022 23:50:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1662533425; x=1694069425;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=wnvnIuOeYP0xa1qg9Sm5/dopt+6QQVhvQYrBlszMVFo=;
-  b=aSkiOizjQJsjQ1BA0SpsTG9koBn0+C+VeAHNg8t0GTwI7HbuxPhlH87f
-   UE/KO2ncwafe4o9+5iz8hIDocXq9iyVt3oZ4RFByimCZMTtLF2VOA25nu
-   YsU4Ng9DrY+myUPZ1vdw6QN/D8aaCdwRpX94bWU4z1Lba6SFCba83uGvM
-   I=;
-X-IronPort-AV: E=Sophos;i="5.93,296,1654560000"; 
-   d="scan'208";a="127521217"
-Subject: Re: [PATCH v4 01/21] hwmon: (mr75203) fix coding style space errors
-Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-e823fbde.us-east-1.amazon.com) ([10.25.36.214])
-  by smtp-border-fw-80007.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 06:50:09 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
-        by email-inbound-relay-iad-1a-e823fbde.us-east-1.amazon.com (Postfix) with ESMTPS id ADC4BC0965;
-        Wed,  7 Sep 2022 06:50:05 +0000 (UTC)
-Received: from EX19D013UWA004.ant.amazon.com (10.13.138.207) by
- EX13MTAUWB001.ant.amazon.com (10.43.161.207) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Wed, 7 Sep 2022 06:50:04 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (10.43.160.58) by
- EX19D013UWA004.ant.amazon.com (10.13.138.207) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
- Wed, 7 Sep 2022 06:50:04 +0000
-Received: from [192.168.97.69] (10.85.143.172) by mail-relay.amazon.com
- (10.43.160.118) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Wed, 7 Sep 2022 06:50:01 +0000
-Message-ID: <9323b609-cb9d-8b3d-2894-65296487cdb1@amazon.com>
-Date:   Wed, 7 Sep 2022 09:50:00 +0300
+        with ESMTP id S230173AbiIGHMH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 03:12:07 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D84AA8285E;
+        Wed,  7 Sep 2022 00:12:03 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 85BBE200BC;
+        Wed,  7 Sep 2022 07:12:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1662534722; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=2HAYhk17/+K75QvuJRvHwKkGd6LMny/6Cmr5wiK+Bz0=;
+        b=rZccwBDN85RW8XyO0bmOoXZP65PvV6JjWNaHk0c1AWc2snrwirrs/cdkgp2gOR4vSj0V1j
+        ZjPxEs/sc7TuI7ELU299bHf7OFTP0axl16vMIzBOPUt1uFGAe07w8StZEdjV+nrTwH51zX
+        T800JDAuVNEbsJXsVEL7UkrPWa4FzFk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1662534722;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=2HAYhk17/+K75QvuJRvHwKkGd6LMny/6Cmr5wiK+Bz0=;
+        b=gvMaXCszgDptJjAkO2wpK+A5d3L0ZQUBl/F0mpBRbQIi1VIDT969z6xu/iRH9/rYB8P9mh
+        adR/LS6sjjmlP7AQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 52ABC13B2B;
+        Wed,  7 Sep 2022 07:12:02 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id 4vEIE0JEGGNLcwAAMHmgww
+        (envelope-from <tzimmermann@suse.de>); Wed, 07 Sep 2022 07:12:02 +0000
+Message-ID: <d63ab0e3-d726-8782-855b-d466f3b50907@suse.de>
+Date:   Wed, 7 Sep 2022 09:12:01 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>,
-        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <hhhawa@amazon.com>,
-        <jonnyc@amazon.com>, <andriy.shevchenko@intel.com>,
-        "Farber, Eliav" <farbere@amazon.com>
-References: <20220906083356.21067-1-farbere@amazon.com>
- <20220906083356.21067-2-farbere@amazon.com>
- <20220906165229.GA594012@roeck-us.net>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH 5/6] drm/simpledrm: Support the AB24 format
 Content-Language: en-US
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <20220906165229.GA594012@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-13.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Jon Hunter <jonathanh@nvidia.com>
+References: <20220905163300.391692-1-thierry.reding@gmail.com>
+ <20220905163300.391692-6-thierry.reding@gmail.com>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20220905163300.391692-6-thierry.reding@gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------YW4bpv6by8WWVaKSP6LngkP0"
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,26 +77,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/6/2022 7:52 PM, Guenter Roeck wrote:
-> On Tue, Sep 06, 2022 at 08:33:36AM +0000, Eliav Farber wrote:
->> Fix: "ERROR: space required before the open parenthesis '('"
->>
->> Fixes: 9d823351a337 ("hwmon: Add hardware monitoring driver for 
->> Moortec MR75203 PVT controller")
->
-> Coding style "fixes" do not fix the code. I consider using the Fixes: tag
-> for those to close to an abuse of that tag (and it would be great if that
-> was spelled out somewhere). As it is, I can not with good conscience 
-> apply
-> this patch to the mainline kernel (especially not for -rc5), meaning the
-> entire series will have to wait for the next release window unless there
-> are no conflicts. 
-Because as you mentioned  it is not a functional fix in the code I’ll
-remove the Fixes tag in v5.
-I checked older kernel versions and patch applies without conflicts.
-That’s also why I moved it to be first in the series, so it will be
-before any of my other changes that night cause merge problems for
-other branches.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------YW4bpv6by8WWVaKSP6LngkP0
+Content-Type: multipart/mixed; boundary="------------tEGBBsAAWe1Um02ddPSMYoDZ";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Thierry Reding <thierry.reding@gmail.com>, David Airlie
+ <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <d63ab0e3-d726-8782-855b-d466f3b50907@suse.de>
+Subject: Re: [PATCH 5/6] drm/simpledrm: Support the AB24 format
+References: <20220905163300.391692-1-thierry.reding@gmail.com>
+ <20220905163300.391692-6-thierry.reding@gmail.com>
+In-Reply-To: <20220905163300.391692-6-thierry.reding@gmail.com>
 
---
-Thanks, Eliav
+--------------tEGBBsAAWe1Um02ddPSMYoDZ
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
+
+SGkNCg0KQW0gMDUuMDkuMjIgdW0gMTg6MzIgc2NocmllYiBUaGllcnJ5IFJlZGluZzoNCj4g
+RnJvbTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4NCj4gDQo+IEFkZCBB
+QjI0IHRvIHRoZSBsaXN0IG9mIHN1cHBvcnRlZCBmb3JtYXRzLiBUaGUgZm9ybWF0IGhlbHBl
+cnMgc3VwcG9ydA0KPiBjb252ZXJzaW9uIHRvIHRoYXQgZm9ybWF0IGFuZCBpdCBpcyBkb2N1
+bWVudGVkIGluIHRoZSBzaW1wbGUtZnJhbWVidWZmZXINCj4gZGV2aWNlIHRyZWUgYmluZGlu
+Z3MuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBUaGllcnJ5IFJlZGluZyA8dHJlZGluZ0Budmlk
+aWEuY29tPg0KDQpSZXZpZXdlZC1ieTogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5u
+QHN1c2UuZGU+DQoNCj4gLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL3Rpbnkvc2ltcGxlZHJt
+LmMgfCAxICsNCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4gDQo+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdGlueS9zaW1wbGVkcm0uYyBiL2RyaXZlcnMv
+Z3B1L2RybS90aW55L3NpbXBsZWRybS5jDQo+IGluZGV4IDE2Mzc3YjM5ZjAxMi4uNzgyOWEx
+MmJhM2RkIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vdGlueS9zaW1wbGVkcm0u
+Yw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdGlueS9zaW1wbGVkcm0uYw0KPiBAQCAtNTYz
+LDYgKzU2Myw3IEBAIHN0YXRpYyBpbnQgc2ltcGxlZHJtX2RldmljZV9pbml0X21tKHN0cnVj
+dCBzaW1wbGVkcm1fZGV2aWNlICpzZGV2KQ0KPiAgIHN0YXRpYyBjb25zdCB1aW50MzJfdCBz
+aW1wbGVkcm1fcHJpbWFyeV9wbGFuZV9mb3JtYXRzW10gPSB7DQo+ICAgCURSTV9GT1JNQVRf
+WFJHQjg4ODgsDQo+ICAgCURSTV9GT1JNQVRfQVJHQjg4ODgsDQo+ICsJRFJNX0ZPUk1BVF9B
+QkdSODg4OCwNCj4gICAJRFJNX0ZPUk1BVF9SR0I1NjUsDQo+ICAgCS8vRFJNX0ZPUk1BVF9Y
+UkdCMTU1NSwNCj4gICAJLy9EUk1fRk9STUFUX0FSR0IxNTU1LA0KDQotLSANClRob21hcyBa
+aW1tZXJtYW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNv
+bHV0aW9ucyBHZXJtYW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywg
+R2VybWFueQ0KKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bDvGhyZXI6
+IEl2byBUb3Rldg0K
+
+--------------tEGBBsAAWe1Um02ddPSMYoDZ--
+
+--------------YW4bpv6by8WWVaKSP6LngkP0
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmMYREEFAwAAAAAACgkQlh/E3EQov+Ag
+ew/+NyKeM/FnATB4qvnowFnAZ8V8BUdVRzfSwJkVjGG3uSqnOrBScNtyj6EqQvyRtyhxmcCp4+S0
+csKj+3RaoBaKXSQxAHZVfPZA6xxcPKNI+FQNUeng/Bj8O0Sv1PHhtL4P2YEtAchu+3WRKFuTezsm
+9f0+5rinTnQvA6ILXZYji0XK9ubqxLiA3jbuGxVXFGNZhANSFXMHZgy8R0LHFfTSLZNbj35SV2jg
+xqq+JiCF1EItYWqOAIUSImsQ31N85PyGCct+JTwcm7K9Ft75wJwhrICk55MjyMeypjH6mkNPiRNU
+9qoD/Z7sVqb8if1q+c9fRyOlDBfnK4yX6R2CvEDJrwfHxOYSGklELx+Ng46QPEh/Imxd0diCJvaZ
+ugmvbbfZwl/UMSm+mpfmgtl2dXp2tS8eBpdPDluEnHbGaAnO9X96LHf7KBf3Ww5ndIH21+nR+PCI
+v53qjas04FMv4UvzpU//RY9An8JF7rCBpmdMkcGTbygIMBo2D8A8BYWX/ZgdNCtUqwY1oQRYl+mh
+fwDcTTuSLs/UxNzSawycu2Em7FGrMz8sKy9JWgMLpVM/zkAGganMubvlJU0bSfpYDKgq/YJ6VCqC
+wvG4Qj57D2eqZno/X68BhWmZQcwHCLjBrmh9yTPZ0cUJpDGQ7pG4kaGUnkmYVmLTyl3V62crDAyy
+86c=
+=bMvV
+-----END PGP SIGNATURE-----
+
+--------------YW4bpv6by8WWVaKSP6LngkP0--
