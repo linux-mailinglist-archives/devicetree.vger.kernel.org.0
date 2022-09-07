@@ -2,204 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C10D5AFEF1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 10:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 551085AFEFE
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 10:31:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbiIGI2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 04:28:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41074 "EHLO
+        id S229769AbiIGIbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 04:31:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbiIGI1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 04:27:32 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9B482ABD75;
-        Wed,  7 Sep 2022 01:27:28 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4BE24D6E;
-        Wed,  7 Sep 2022 01:27:34 -0700 (PDT)
-Received: from [10.57.15.197] (unknown [10.57.15.197])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A58783F534;
-        Wed,  7 Sep 2022 01:27:48 -0700 (PDT)
-Message-ID: <f5cf7bd7-4cd9-ef9c-7f25-f814b2f1e41f@arm.com>
-Date:   Wed, 7 Sep 2022 09:27:14 +0100
+        with ESMTP id S229806AbiIGIa7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 04:30:59 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA808B995
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 01:30:57 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id z20so15099533ljq.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 01:30:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=HoBu5pVRP0QlH9IyjF/UfBIe/8xVli1mPMeUsv8Z2sM=;
+        b=wHxxXgOaPb0hNl/IJP0P+lOmntLkVF5Yp02OoLnxprSjola21wH2Sl47pU32q2dEho
+         v3+4xYTvBKFcabjwfshFDu0V4rOeDzT3vKP9BSN8wBi2n9N6o3VUuZfJk/9aOwCYHmYS
+         5eRenIKcxScpXLtxpeCdsc/9q4pQJpl15dd9hAKleqeKpx4MORzmNLoMRNLVAhNC1QwY
+         qZicXyBsxF0+0bya/Y9S+aegK5DaKN8X4Qdys0tu7Xhud+l8RuNJUr6xbMxR2ORhwojl
+         mHh8GyIqGcK2PxlP+L3WZR89c+Ov+L4rmZVitja4c5prSHhoLVBW/wi40zB+JmsxLgFd
+         155Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=HoBu5pVRP0QlH9IyjF/UfBIe/8xVli1mPMeUsv8Z2sM=;
+        b=Ipe/6E7HjzrEjbDJ5FMdhQBt51l38XwlSqmvmCQFo8UhsrX27tEbkfNFQrkclYJtqh
+         lvgCgFEBGqh2CnOf5l9fjhCmZcdfm0k4X4vqxuIwCqSw/9HpGiOP1GwF/7fSpkSSGiTR
+         +gXvxbZYnipE/4EwsMU5+dlsALZ/q23qI7IhhRO+vEzZw5lbSrOL25VNVf+fk1MNZZzw
+         +OnkwptPolxU+Tb/PSgchbZxmcS1hkv4qUlPFh+P4aGtwXiGZ7Ize5p0l8jFZTHs6XYi
+         mQ6oLPG93/bBcPPt0x8CDSfIoWiO6EZUaDFclF0MFxWcEJ58eENK0M1lYV8mL6Ahi6th
+         OUDg==
+X-Gm-Message-State: ACgBeo1WLdGzqFahSIiWCXTJnNd5tgCISDAlq8tFN62K5//DnsOA35qJ
+        KzafEVFRYWqMWWBSwEuiY7mWzg==
+X-Google-Smtp-Source: AA6agR7IEanWZYdcRnIeSyrGPg0ZoBPFDp/3VMgyRg9nCW7WCbetSuOiEUA1I1IqmDBXvZBOXapokw==
+X-Received: by 2002:a05:651c:12cb:b0:25b:fa3f:c3f with SMTP id 11-20020a05651c12cb00b0025bfa3f0c3fmr681462lje.364.1662539455364;
+        Wed, 07 Sep 2022 01:30:55 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id p15-20020a2eb98f000000b00268d84f8db1sm2467364ljp.92.2022.09.07.01.30.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Sep 2022 01:30:54 -0700 (PDT)
+Message-ID: <7f91afa5-b5bf-4f26-c540-a04e52825248@linaro.org>
+Date:   Wed, 7 Sep 2022 10:30:53 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Subject: Re: [RFC PATCH v3 3/7] iommu/arm-smmu-v3: support ops registration
- for CDX bus
-Content-Language: en-GB
-To:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
-        "cohuck@redhat.com" <cohuck@redhat.com>,
-        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
-        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
-        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "yishaih@nvidia.com" <yishaih@nvidia.com>,
-        "jgg@ziepe.ca" <jgg@ziepe.ca>, "jgg@nvidia.com" <jgg@nvidia.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "masahiroy@kernel.org" <masahiroy@kernel.org>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-        "okaya@kernel.org" <okaya@kernel.org>,
-        "Anand, Harpreet" <harpreet.anand@amd.com>,
-        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20220906134801.4079497-1-nipun.gupta@amd.com>
- <20220906134801.4079497-4-nipun.gupta@amd.com>
- <CAGETcx_W8QVe+CdpocN2rHjp08TwsW22FaJgrYW=0JNge_N6KQ@mail.gmail.com>
- <DM6PR12MB30829DDDC62B36B17F87B204E8419@DM6PR12MB3082.namprd12.prod.outlook.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <DM6PR12MB30829DDDC62B36B17F87B204E8419@DM6PR12MB3082.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 09/12] dt-bindings: soc: qcom: apr: correct service
+ children
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andy Gross <agross@kernel.org>, alsa-devel@alsa-project.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+References: <20220906121655.303693-1-krzysztof.kozlowski@linaro.org>
+ <20220906121655.303693-10-krzysztof.kozlowski@linaro.org>
+ <1662486402.667876.780014.nullmailer@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1662486402.667876.780014.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-09-07 04:17, Gupta, Nipun wrote:
-> [AMD Official Use Only - General]
-> 
-> 
-> 
->> -----Original Message-----
->> From: Saravana Kannan <saravanak@google.com>
->> Sent: Wednesday, September 7, 2022 5:41 AM
->> To: Gupta, Nipun <Nipun.Gupta@amd.com>
->> Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
->> gregkh@linuxfoundation.org; rafael@kernel.org; eric.auger@redhat.com;
->> alex.williamson@redhat.com; cohuck@redhat.com; Gupta, Puneet (DCG-ENG)
->> <puneet.gupta@amd.com>; song.bao.hua@hisilicon.com;
->> mchehab+huawei@kernel.org; maz@kernel.org; f.fainelli@gmail.com;
->> jeffrey.l.hugo@gmail.com; Michael.Srba@seznam.cz; mani@kernel.org;
->> yishaih@nvidia.com; jgg@ziepe.ca; jgg@nvidia.com; robin.murphy@arm.com;
->> will@kernel.org; joro@8bytes.org; masahiroy@kernel.org;
->> ndesaulniers@google.com; linux-arm-kernel@lists.infradead.org; linux-
->> kbuild@vger.kernel.org; linux-kernel@vger.kernel.org;
->> devicetree@vger.kernel.org; kvm@vger.kernel.org; okaya@kernel.org; Anand,
->> Harpreet <harpreet.anand@amd.com>; Agarwal, Nikhil
->> <nikhil.agarwal@amd.com>; Simek, Michal <michal.simek@amd.com>;
->> Radovanovic, Aleksandar <aleksandar.radovanovic@amd.com>; git (AMD-Xilinx)
->> <git@amd.com>
->> Subject: Re: [RFC PATCH v3 3/7] iommu/arm-smmu-v3: support ops registration
->> for CDX bus
+On 06/09/2022 19:46, Rob Herring wrote:
+> On Tue, 06 Sep 2022 14:16:52 +0200, Krzysztof Kozlowski wrote:
+>> The APR bindings were not describing properly children nodes for DAIs.
+>> None of the DTSes use unit addresses for the children, so correct the
+>> nodes and reference their schema: clock-controller, dais and routing.
 >>
->> [CAUTION: External Email]
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../bindings/soc/qcom/qcom,apr.yaml           | 38 +++++++++++++------
+>>  .../sound/qcom,q6dsp-lpass-clocks.yaml        | 16 ++------
+>>  .../sound/qcom,q6dsp-lpass-ports.yaml         | 16 ++------
+>>  3 files changed, 35 insertions(+), 35 deletions(-)
 >>
->> On Tue, Sep 6, 2022 at 6:48 AM Nipun Gupta <nipun.gupta@amd.com> wrote:
->>>
->>> With new CDX bus supported for AMD FPGA devices on ARM
->>> platform, the bus requires registration for the SMMU v3
->>> driver.
->>>
->>> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
->>> ---
->>>   drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 16 ++++++++++++++--
->>>   1 file changed, 14 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
->> b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
->>> index d32b02336411..8ec9f2baf12d 100644
->>> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
->>> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
->>> @@ -29,6 +29,7 @@
->>>   #include <linux/platform_device.h>
->>>
->>>   #include <linux/amba/bus.h>
->>> +#include <linux/cdx/cdx_bus.h>
->>>
->>>   #include "arm-smmu-v3.h"
->>>   #include "../../iommu-sva-lib.h"
->>> @@ -3690,16 +3691,27 @@ static int arm_smmu_set_bus_ops(struct
->> iommu_ops *ops)
->>>                  if (err)
->>>                          goto err_reset_pci_ops;
->>>          }
->>> +#endif
->>> +#ifdef CONFIG_CDX_BUS
->>> +       if (cdx_bus_type.iommu_ops != ops) {
->>> +               err = bus_set_iommu(&cdx_bus_type, ops);
->>> +               if (err)
->>> +                       goto err_reset_amba_ops;
->>> +       }
->>
->> I'm not an expert on IOMMUs, so apologies if the question is stupid.
->>
->> Why does the CDX bus need special treatment here (like PCI) when there
->> are so many other busses (eg: I2C, SPI, etc) that don't need any
->> changes here?
 > 
-> AFAIU, the devices on I2C/SPI does not use SMMU. Apart from PCI/AMBA,
-> FSL-MC is another similar bus (on SMMUv2) which uses SMMU ops.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> The devices here are behind SMMU. Robin can kindly correct or add
-> more here from SMMU perspective.
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.example.dtb: gpr: service@1: '#address-cells', '#size-cells', 'apm-dai@1' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
 
-Indeed, there is no need to describe and handle how DMA may or may not 
-be translated for I2C/SPI/USB/etc. because they are not DMA-capable 
-buses (in those cases the relevant bus *controller* often does DMA, but 
-it does that for itself as the platform/PCI/etc. device it is).
+I missed one more place with example to fix.
 
-Note that I have a series pending[1] that will make this patch a whole 
-lot simpler.
-
-Thanks,
-Robin.
-
-[1] 
-https://lore.kernel.org/linux-iommu/cover.1660572783.git.robin.murphy@arm.com/T/#t
-
-> 
-> Thanks,
-> Nipun
-> 
->>
->> -Saravana
->>
->>>   #endif
->>>          if (platform_bus_type.iommu_ops != ops) {
->>>                  err = bus_set_iommu(&platform_bus_type, ops);
->>>                  if (err)
->>> -                       goto err_reset_amba_ops;
->>> +                       goto err_reset_cdx_ops;
->>>          }
->>>
->>>          return 0;
->>>
->>> -err_reset_amba_ops:
->>> +err_reset_cdx_ops:
->>> +#ifdef CONFIG_CDX_BUS
->>> +       bus_set_iommu(&cdx_bus_type, NULL);
->>> +#endif
->>> +err_reset_amba_ops: __maybe_unused;
->>>   #ifdef CONFIG_ARM_AMBA
->>>          bus_set_iommu(&amba_bustype, NULL);
->>>   #endif
->>> --
->>> 2.25.1
->>>
+Best regards,
+Krzysztof
