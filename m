@@ -2,49 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA1C5B0890
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 17:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 261BD5B08B3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 17:38:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbiIGPah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 11:30:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50788 "EHLO
+        id S229500AbiIGPi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 11:38:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbiIGPag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 11:30:36 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5486EF12;
-        Wed,  7 Sep 2022 08:30:34 -0700 (PDT)
-Received: from g550jk.localnet (31-151-115-246.dynamic.upc.nl [31.151.115.246])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id BEC95C7023;
-        Wed,  7 Sep 2022 15:30:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1662564630; bh=PBuavX/FI8zoNi4Yjs2NUwse88XH7Qen5TwuTvKTMFM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=uWv8uKGVTh/KDAzcw1siELCkpqZlURBcIALCy5h1bT5+OZOgnYR/yS5OzAKU/IT8W
-         DWrrGtwYeKh9WpiMUXWtH0F7EUaHUsp2namiCQUuC6x74PX7JfQwhj6ZIIRzXzzFhz
-         NZg+zJODwITdaZ9Hw9uzds8bYYNDEcRbNaSbX3MI=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229958AbiIGPi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 11:38:26 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 732B18A6CB;
+        Wed,  7 Sep 2022 08:38:25 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id t8-20020a9d5908000000b0063b41908168so10521554oth.8;
+        Wed, 07 Sep 2022 08:38:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=KSoB0G6pzRD9DIaWPNDedKDIgG6tTjWjaUw36ufPm4w=;
+        b=jLzB3um7Ct52eto1lBrsQO9dhG9K0S5ts6G2JgXiWzV95OU7MDuqD+czk0typ/4DrF
+         dRYwQi6NHaz19VlWongvg9C/nWjJTKiEVoexe6uL1vCkjqwMn601m2BjNdM7lO1SbEMh
+         JBedtChdnteNGGt5lnTFq2L/kTHdM4Aui3pzgARj1j/cp9CxLed/Zi7S55m2mLPmyHpK
+         Ti3S5glwqr90ioYThVspBYJVajAT8B+NxLsQlncwdt+nCG+HnahvvDxJvsgNF77kLJZ2
+         7sQYConqjA3ZC63L8ToVq+Kb3w67bUfYXLBiAZxlhgHDGLOJjaLvmKVeTLzU7PFzLlHB
+         +VQw==
+X-Gm-Message-State: ACgBeo25SIEwi/fYJEcX+0hscd8RN/6zHuYfKhy41L7JGuk5rKGdkbK0
+        3rcfp3r/9bxYOXlXoNoSRw==
+X-Google-Smtp-Source: AA6agR7cHntWzuv22mM6yjZi+6RNKL5IJKl5pY/iSsPF1rL/uA/vWpzkdCz2m1iQhfyCAPlQWPYbhw==
+X-Received: by 2002:a9d:5508:0:b0:636:ee02:ff7c with SMTP id l8-20020a9d5508000000b00636ee02ff7cmr1745217oth.249.1662565104411;
+        Wed, 07 Sep 2022 08:38:24 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bm23-20020a0568081a9700b0034480f7eec4sm6550747oib.12.2022.09.07.08.38.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 08:38:23 -0700 (PDT)
+Received: (nullmailer pid 3498322 invoked by uid 1000);
+        Wed, 07 Sep 2022 15:38:23 -0000
+Date:   Wed, 7 Sep 2022 10:38:22 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
+        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: msm8953: add MDSS
-Date:   Wed, 07 Sep 2022 17:30:30 +0200
-Message-ID: <12049260.O9o76ZdvQC@g550jk>
-In-Reply-To: <CAA8EJpqjnafKyUrd1ntYFeGTDtRxgEUSu0Mg9wNGxObJ3wF0Kw@mail.gmail.com>
-References: <20220906183334.203787-1-luca@z3ntu.xyz> <20220906183334.203787-4-luca@z3ntu.xyz> <CAA8EJpqjnafKyUrd1ntYFeGTDtRxgEUSu0Mg9wNGxObJ3wF0Kw@mail.gmail.com>
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [PATCH 2/7] dt-bindings: gpio: add binding for the GPIO block
+ for Apple Mac SMC
+Message-ID: <20220907153822.GA3492530-robh@kernel.org>
+References: <YxdInl2qzQWM+3bs@shell.armlinux.org.uk>
+ <E1oVYUI-005CmB-84@rmk-PC.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1oVYUI-005CmB-84@rmk-PC.armlinux.org.uk>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,113 +75,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
-
-On Dienstag, 6. September 2022 21:41:11 CEST Dmitry Baryshkov wrote:
-> On Tue, 6 Sept 2022 at 21:36, Luca Weiss <luca@z3ntu.xyz> wrote:
-> > From: Vladimir Lypak <vladimir.lypak@gmail.com>
-> > 
-> > Add the MDSS, MDP and DSI nodes that are found on msm8953 SoC.
-> > 
-> > Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > ---
-> > Changes since v2:
-> > - add "core" clock for mdss as suggested by Dmitry Baryshkov
-> > 
-> >  arch/arm64/boot/dts/qcom/msm8953.dtsi | 210 ++++++++++++++++++++++++++
-> >  1 file changed, 210 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> > b/arch/arm64/boot/dts/qcom/msm8953.dtsi index 3d11331e78d2..580333141a66
-> > 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> > @@ -726,6 +726,216 @@ tcsr_phy_clk_scheme_sel: syscon@193f044 {
-> > 
-> >                         reg = <0x193f044 0x4>;
-> >                 
-> >                 };
-> > 
-> > +               mdss: mdss@1a00000 {
-> > +                       compatible = "qcom,mdss";
-> > +
-> > +                       reg = <0x1a00000 0x1000>,
-> > +                             <0x1ab0000 0x1040>;
-> > +                       reg-names = "mdss_phys",
-> > +                                   "vbif_phys";
-> > +
-> > +                       power-domains = <&gcc MDSS_GDSC>;
-> > +                       interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +                       interrupt-controller;
-> > +                       #interrupt-cells = <1>;
-> > +
-> > +                       clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> > +                                <&gcc GCC_MDSS_AXI_CLK>,
-> > +                                <&gcc GCC_MDSS_VSYNC_CLK>,
-> > +                                <&gcc GCC_MDSS_MDP_CLK>;
-> > +                       clock-names = "iface",
-> > +                                     "bus",
-> > +                                     "vsync",
-> > +                                     "core";
-> > +
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <1>;
-> > +                       ranges;
-> > +
-> > +                       status = "disabled";
-> > +
-> > +                       mdp: mdp@1a01000 {
-> > +                               compatible = "qcom,mdp5";
+On Tue, Sep 06, 2022 at 02:19:34PM +0100, Russell King (Oracle) wrote:
+> Add the DT binding for the Apple Mac System Management Controller GPIOs.
 > 
-> Could you please change this to "qcom,msm8953-mdp5", "qcom,mdp5".
-
-This would be the first dtsi using the two compatibles then, correct? Are there 
-any plans to adjust other SoCs?
-
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> ---
+>  .../devicetree/bindings/gpio/gpio-macsmc.yaml | 28 +++++++++++++++++++
+>  .../devicetree/bindings/mfd/apple,smc.yaml    |  4 +++
+>  2 files changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
 > 
-> > +                               reg = <0x1a01000 0x89000>;
-> > +                               reg-names = "mdp_phys";
-> > +
-> 
-> [skipped]
-> 
-> > +
-> > +                       dsi0_phy: dsi-phy@1a94400 {
-> 
-> Let's probably use a generic name 'phy' here and for dsi1_phy.
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> new file mode 100644
+> index 000000000000..ee620fe50ca8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> @@ -0,0 +1,28 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple Mac System Management Controller GPIO
+> +
+> +maintainers:
+> +  - Hector Martin <marcan@marcan.st>
+> +
+> +description:
+> +  This describes the binding for the Apple Mac System Management Controller
+> +  GPIO block.
+> +
+> +properties:
+> +  gpio-controller: true
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    smc_gpio: gpio {
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +    };
 
-Here also, the bindings examples all use dsi-phy@, are there any plans to 
-change that and adjust other dtsi files?
+Please move the example to the mfd schema. One complete example rather 
+than piecemeal examples.
 
-> 
-> The rest looks good to me.
+> diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> index 168f237c2962..47e3cd58bf19 100644
+> --- a/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> @@ -37,6 +37,10 @@ title: Apple Mac System Management Controller
+>      description:
+>        A phandle to the mailbox channel
+>  
+> +patternProperties:
+> +  gpio:
+> +    $ref: /schemas/gpio/gpio-macsmc.yaml
+> +
 
-Thanks!
+Reorder the patches such that the MFD binding is last and this hunk can 
+be part of it.
 
-Regards
-Luca
-
-> 
-> > +                               compatible = "qcom,dsi-phy-14nm-8953";
-> > +                               reg = <0x1a94400 0x100>,
-> > +                                     <0x1a94500 0x300>,
-> > +                                     <0x1a94800 0x188>;
-> > +                               reg-names = "dsi_phy",
-> > +                                           "dsi_phy_lane",
-> > +                                           "dsi_pll";
-> > +
-> > +                               #clock-cells = <1>;
-> > +                               #phy-cells = <0>;
-> > +
-> > +                               clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> > <&xo_board>; +                               clock-names = "iface",
-> > "ref";
-> > +
-> > +                               status = "disabled";
-> > +                       };
-
-
-
-
+Rob
