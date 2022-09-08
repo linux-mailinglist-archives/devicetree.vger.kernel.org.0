@@ -2,135 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD1835B1D15
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 14:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79F9C5B1D26
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 14:35:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231533AbiIHMdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 08:33:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41552 "EHLO
+        id S230313AbiIHMfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 08:35:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231425AbiIHMdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 08:33:10 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92C31316DC
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 05:33:07 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id y29so7104842ljq.7
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 05:33:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=Qyru9SAfxdnNAoiz22FTxnAwNC5Cr+8SPNsc9ocSsIc=;
-        b=f7wa2z+PB3fEAcSD3njThDARidFNQguSSunU6swdNpXzExqTrXH4PJgNHVhFxxvqct
-         lYKOp2jWPUSJltKRlEsrvQexdKtaQT3i3dwr0iztMGW7jS+Jy927WOXT4DbmDQiFreKV
-         wAFzs2TPxXf+6O0lIn3hJ0uB9wzGMAhxGSyuJqAFow8FmDkHjGTyCz33v9pZRtLLU8Bp
-         iT+q+odD5f59VF/J/8iP35GYJflHIc0y0E8ANwCol0kCp0FhPGNJhjXrQdxmgI5UxSLS
-         qhUTBv86bbgKwFlQZW7ELbvbwQ+MCIt2FPQpkGroIuea5QJ8BX/ZhbN4GghfQdEw8UZ1
-         Qdjg==
+        with ESMTP id S229505AbiIHMfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 08:35:05 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39D634D146;
+        Thu,  8 Sep 2022 05:35:03 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-127f5411b9cso12561517fac.4;
+        Thu, 08 Sep 2022 05:35:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=Qyru9SAfxdnNAoiz22FTxnAwNC5Cr+8SPNsc9ocSsIc=;
-        b=Mgi1P8pcRVJnlS9iR/MEQLecubFQ9UH6uDs2hho/mw/SHEhL3+nQQ7Fof2r109oNKS
-         1FJ9oiqj3d9ukewqv7ocDsG+aEKn+NIs9NfeUNaEfodqG1z68I+Qdna8vupN0nhSX96s
-         D/9FJWI9eOvumDANa8vmNxSEKD3LZMwnrbhirVPnl+i7Z+y7wGSujCgqKzW53hr1gNEe
-         PkCYkCcr5EoaXgxx5h5fSnX7okx4gAtvIe5jNj0CMgk6HPI4YY8OxNbG9nqUOUmWnds3
-         iKN00dGhuxifsFhZ67Z04TQKvdno64MzDKwYvv4z9KsQnwbXHxc2z9JtyV8fULLBxmBa
-         iVDQ==
-X-Gm-Message-State: ACgBeo0gHwQ796HJyJxFktu++IM0+r89wp33HjbLrsd6IZa8mmliroga
-        g4Ft1mBo1GD3CRwWW2uKx+oKtQ==
-X-Google-Smtp-Source: AA6agR7V97zwiD9pYqVJ0dFEam4iMWv2WsE07yb8VQiXEY40nYMp8wnTZhtCr1GIsKgf9/LZQCcqVg==
-X-Received: by 2002:a2e:b16d:0:b0:26a:d1da:db8 with SMTP id a13-20020a2eb16d000000b0026ad1da0db8mr1709534ljm.217.1662640385823;
-        Thu, 08 Sep 2022 05:33:05 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s17-20020a056512215100b0048b17852938sm145414lfr.162.2022.09.08.05.33.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 05:33:05 -0700 (PDT)
-Message-ID: <633c8aa3-cc05-b855-24db-110a4863ff75@linaro.org>
-Date:   Thu, 8 Sep 2022 14:33:03 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 07/13] dt-bindings: mfd: atmel,sama5d2-flexcom: Add
- USART child node ref binding
-Content-Language: en-US
-To:     Sergiu Moga <sergiu.moga@microchip.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, richard.genoud@gmail.com,
-        radu_nicolae.pirea@upb.ro, gregkh@linuxfoundation.org,
-        broonie@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        jirislaby@kernel.org, admin@hifiphile.com,
-        kavyasree.kotagiri@microchip.com, tudor.ambarus@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20220906135511.144725-1-sergiu.moga@microchip.com>
- <20220906135511.144725-8-sergiu.moga@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220906135511.144725-8-sergiu.moga@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        bh=e5C7jtJ6NTss+adUkRAgRxPy8Hmrq7CnsR0YOjkHy3s=;
+        b=19EqMuCQIo6WgmVRo+SO+y6nHafUalNXl4E9NEOO/2QimIwUeGfZF0U4PC6SyG0H+j
+         JoOJc3NfS7FPAv2XQKZUk5lwy+PUwkMtPEArykFzBUJQiLeDscO158AJ7V0czA1OqmpX
+         AEl/RDXQy4cUosGjv72TnsFPiK6cASnvV8ioTS/5tXgFqLZTgj7arhqZNtrfYe0XQEYJ
+         Iib3LthWLcITpOlr29QeCUQ1GrOUG/uiyyIz9ntc8hOThV06/im1vqiFqjI4CdKyy9x8
+         Dv/0k9Egz52YnxBnJtHJTcQSbSBE9ZEEdwJWT5iq+ESsBjXx2cX28Og9LIgL0NqHKvOS
+         NDyw==
+X-Gm-Message-State: ACgBeo0BuWs2Eq7BYg1f+AfvkLEJVpRkgSYW/+opsIAAHpyTEDB+X8Pn
+        d+G7UlTtoV6XiCRKJ6LJ0OOd8TFA8A==
+X-Google-Smtp-Source: AA6agR6TDF1O7/bAlgHsru8fB4QnA/WpWyopfiDsnBoIOKPW0VBNKyKyXMzbD+fNLIJuXm64uTWpKA==
+X-Received: by 2002:a05:6870:b429:b0:127:8747:69fc with SMTP id x41-20020a056870b42900b00127874769fcmr1758108oap.171.1662640502392;
+        Thu, 08 Sep 2022 05:35:02 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k12-20020a056870818c00b00127a91041a9sm4442599oae.38.2022.09.08.05.35.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Sep 2022 05:35:02 -0700 (PDT)
+Received: (nullmailer pid 2262545 invoked by uid 1000);
+        Thu, 08 Sep 2022 12:35:00 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Weilong Chen <chenweilong@huawei.com>
+Cc:     xuwei5@huawei.com, robh+dt@kernel.org, wsa@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, yangyicong@hisilicon.com
+In-Reply-To: <20220908025701.330210-2-chenweilong@huawei.com>
+References: <20220908025701.330210-1-chenweilong@huawei.com> <20220908025701.330210-2-chenweilong@huawei.com>
+Subject: Re: [PATCH next v3 2/2] dt-bindings: i2c: add entry for hisilicon,hisi-i2c
+Date:   Thu, 08 Sep 2022 07:35:00 -0500
+Message-Id: <1662640500.384045.2262544.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 15:55, Sergiu Moga wrote:
-> FLEXCOM, among other functionalities, has the ability to offer the USART
-> serial communication protocol. To have the FLEXCOM binding properly
-> validate its USART children nodes, we must reference the correct binding.
-> To differentiate between the SPI of FLEXCOM and the SPI of USART in SPI
-> mode, use the clock-names property, since the latter's respective
-> property is supposed to contain the "usart" string.
+On Thu, 08 Sep 2022 10:57:01 +0800, Weilong Chen wrote:
+> Add the new compatible for HiSilicon common i2c.
 > 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
 > ---
+>  .../bindings/i2c/hisilicon,hisi-i2c.yaml      | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
 > 
-> 
-> v1 -> v2:
-> - Nothing
-> 
-> 
-> 
->  .../bindings/mfd/atmel,sama5d2-flexcom.yaml      | 16 ++++++++++++----
->  1 file changed, 12 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
-> index 0db0f2728b65..b5fb509f07ec 100644
-> --- a/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
-> @@ -72,13 +72,21 @@ properties:
->  
->  patternProperties:
->    "^serial@[0-9a-f]+$":
-> -    type: object
-> +    $ref: /schemas/serial/atmel,at91-usart.yaml
->      description:
-> -      Child node describing USART. See atmel-usart.txt for details
-> -      of USART bindings.
-> +      Child node describing USART.
->  
->    "^spi@[0-9a-f]+$":
-> -    $ref: /schemas/spi/atmel,at91rm9200-spi.yaml
-> +    allOf:
-> +      - if:
-> +          properties:
-> +            clock-names:
-> +              contains:
-> +                const: usart
 
-Devices are not different because they have or have not clock. Devices
-are different... because they are simply different models, so this
-should be different compatible.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.example.dtb: i2c@5038B0000: 'i2c-digital-filter' is a dependency of 'i2c-digital-filter-width-ns'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.example.dtb: i2c@5038B0000: reg: [[5, 59441152], [0, 65536]] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.example.dtb: i2c@5038B0000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'reg' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.example.dtb: i2c@5038B0000: 'i2c-digital-filter' is a dependency of 'i2c-digital-filter-width-ns'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/i2c/i2c-controller.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
