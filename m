@@ -2,77 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A65D5B16B2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B59E5B16D7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:24:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231428AbiIHIQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 04:16:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50612 "EHLO
+        id S231171AbiIHIYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 04:24:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231409AbiIHIQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:16:28 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96562AA4C2;
-        Thu,  8 Sep 2022 01:16:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 45F49B82050;
-        Thu,  8 Sep 2022 08:16:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3FAAC433C1;
-        Thu,  8 Sep 2022 08:16:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662624984;
-        bh=CZ+yncuAqJvVKnJLnhHlWLzhvVqLsLtlQMV5b4jIfSg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZS4dDaQ9d5+6NKxy1iB1bqWl+0NTbyRFI4lbD6rat9+aBjbqFWtydVfkHzA21xgRn
-         cX5kauvdGPssdIN6l+4ysc/Z7KHcN6h55Jh2voDz5p3UvjNNGW3IfOeUnp3tQJj2Tx
-         8AzhiWT8geQWgvqfvZnoH+6GufauTx05R3CS739BhHPh/wBCv3bPIKp6HXJVwkaWPq
-         yKQJAsU5OLkDAcPpCtqBY8tTHiKr6fPQ1BY2lh2xU7mlDggdjSZ4czc/OFoLtfY1aX
-         czCUATb26Vgh19PKxDhCUkyeIKzs0GxD6KRdcKXnGqgq7VQfD178DNJLiBp/O8mqfE
-         igrfc7+OFOnOw==
-Date:   Thu, 8 Sep 2022 09:16:18 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
-        lars@metafoo.de, sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH v8 2/5] mfd: qcom-spmi-pmic: add support for PMP8074
-Message-ID: <Yxmk0sdWOAjY65Nn@google.com>
-References: <20220818221815.346233-1-robimarko@gmail.com>
- <20220818221815.346233-2-robimarko@gmail.com>
+        with ESMTP id S231315AbiIHIYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:24:50 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9473B13CCC;
+        Thu,  8 Sep 2022 01:24:49 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2887Cx8U010133;
+        Thu, 8 Sep 2022 04:24:34 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3jc0s7c1s1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 08 Sep 2022 04:24:34 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 2888OXcH026120
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 8 Sep 2022 04:24:33 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Thu, 8 Sep 2022
+ 04:24:32 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 8 Sep 2022 04:24:32 -0400
+Received: from ibrahim-vm.ad.analog.com (IST-LT-39247.ad.analog.com [10.25.16.132])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2888OHW9032231;
+        Thu, 8 Sep 2022 04:24:22 -0400
+From:   Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>
+CC:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH RESEND v6 0/4] hwmon: Add max31760 fan speed controller
+Date:   Thu, 8 Sep 2022 11:23:54 +0300
+Message-ID: <20220908082358.186268-1-Ibrahim.Tilki@analog.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220818221815.346233-2-robimarko@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: wDxq7QPQEbcIhcsoPVZ9B5FIj3s2babf
+X-Proofpoint-ORIG-GUID: wDxq7QPQEbcIhcsoPVZ9B5FIj3s2babf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-08_06,2022-09-07_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 phishscore=0 clxscore=1011 impostorscore=0 mlxscore=0
+ spamscore=0 mlxlogscore=987 suspectscore=0 adultscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209080029
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Aug 2022, Robert Marko wrote:
+changes in v6:
+  - update description of hwmon documentation
+  - add hwmon documentation to index.rst
 
-> Add support for PMP8074 PMIC which is a companion PMIC for the Qualcomm
-> IPQ8074 SoC-s.
-> 
-> It shares the same subtype identifier as PM8901.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> Acked-by: Lee Jones <lee.jones@linaro.org>
-> ---
->  drivers/mfd/qcom-spmi-pmic.c | 1 +
->  1 file changed, 1 insertion(+)
+changes in v5:
+  - add dt-bindings documentation
+  - add maintainer
 
-Applied, thanks.
+changes in v4:
+  - use sysfs_emit instead of sprintf
+  - use kstrtou8 for pwm
+  - use closest match for pwm1_auto_point_temp_hyst
+
+changes in v3:
+  - add regmap cache
+  - remove pwm1_auto_point[1-48]_{temp,temp_hyst} attributes
+  - add pwm1_auto_point_temp_hyst attribute
+
+changes in v2:
+  - remove pulse_per_rev variable in tach_to_rpm
+  - remove temperature max_hyst and crit_hyst
+  - strict value checking for fan_enable and pwm_enable
+  - do not clamp pwm value for Look-up table
+  - add sysfs_attr_init call
+  - add documentation
+
+
+Ibrahim Tilki (4):
+  drivers: hwmon: Add max31760 fan speed controller driver
+  docs: hwmon: add max31760 documentation
+  dt-bindings: hwmon: Add bindings for max31760
+  MAINTAINERS: Add maintainer for hwmon/max31760
+
+ .../bindings/hwmon/adi,max31760.yaml          |  44 ++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/max31760.rst              |  77 +++
+ MAINTAINERS                                   |   9 +
+ drivers/hwmon/Kconfig                         |  12 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/max31760.c                      | 594 ++++++++++++++++++
+ 7 files changed, 738 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31760.yaml
+ create mode 100644 Documentation/hwmon/max31760.rst
+ create mode 100644 drivers/hwmon/max31760.c
 
 -- 
-Lee Jones [李琼斯]
+2.36.1
+
