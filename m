@@ -2,67 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 679E45B2104
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A1A45B2122
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232674AbiIHOpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 10:45:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44364 "EHLO
+        id S232395AbiIHOtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 10:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232666AbiIHOpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:45:02 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536701A389
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 07:44:50 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id u9-20020a17090a1f0900b001fde6477464so2554365pja.4
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 07:44:50 -0700 (PDT)
+        with ESMTP id S232083AbiIHOtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:49:03 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59209E0B0
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 07:49:02 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id y29so7591743ljq.7
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 07:49:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date;
-        bh=J1tHlju2+cXYieX/pEOr8qlvVRzsaNnqR5zd8sgRAW4=;
-        b=gmV61+9vUSmtpDQFopsJ2ku3wTMWgbaDlPMVRXv9AHl4iBvo7ocd62TOfwkJbaLlD3
-         sdT+g6nLvNMzHUhHmtJMNBASiEfsmw5xvFYEEpF5JM8o+Z95TepA0A+CNZRGuWl2+0Ib
-         FSOAE6spy6vcklkB7VHY1c58jGl7J+cTfUZGw3XEpdmxWADy8O7kPJ70CNnTLI4noPYb
-         3kDm38AsD9c3hqaGc0CFGnWsvAUdNYGezZtE2RgipI8yB0lzYIr45BNTI/FRQzPqNSq2
-         TPB8PMf0lwv6udO9FeRhJ7E/YjNbr2+Col9SKCnYpk4TdSc9Kyt66l7al4XJYsNNmdU9
-         rxHw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=PfSELVZI7eWUgnlVdrZZBJM8x1KhGoZtl9ybjhJG520=;
+        b=FMEreVe18gRsXa2sOJRkMJj3INTHssHJb5O6Iraqo6GO1rP4BxA4UpRR5FlZxPsT6B
+         dk9MP7cUybAR/PEi7HlHfv5VlBAScbSi6W9yCZqUHhjGNFEAUecunDD1vINrFWe3bqeh
+         HXPNZa/H+d2y1BgSE4/XcMnQMeVTe8NT/mGfTYW1tq2L8lwxdzrH0W4zO2qqAd7ZnrxV
+         eEjfQsynMZyl6TIhEO9hgsG2SZttGDvAoTE8Cg7vuZETQ2VGDBGx3MnG0ALzVkHJLt2B
+         cMgi6Wx6blDQA/kBj80YgPaWHMucD+Uzy8azxdDk0s/dpNrYfpMKutOCAaN7Hn10NPxi
+         MaFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=J1tHlju2+cXYieX/pEOr8qlvVRzsaNnqR5zd8sgRAW4=;
-        b=6Uqi98Me3xvc1BAIPTN/qgD7bcBTW6QWZBZ51QcfomaZJ2jk0IEoZ2+Gp0ntknGLfI
-         oQaDx6qkHEtR+h5drH67o82N+hb+yS7xOL7i2kX2tzk+97koWj4RL2gL+fhrV249ZGhn
-         5tFgSy5SK38eWLohSaHAPwQDLTuuIUKMbsBQhgZtdo8Jv6jfmWrLawOSaGArD1JI97Kq
-         lxWW8L1D2JX+LbbIKdQ8OFLjrTiQcKQqgJTq8jYtfzYJIWQc2gEVNFmnc6g0Sf4cKwCz
-         Xnh997uFUEARLn+NubdLnOaiVyhLx4AkhzRb91f7bIKos7xg/gavyv2PvIBkPKDmo7cf
-         0KXw==
-X-Gm-Message-State: ACgBeo1FrV/8FF7QDtVq7q9SCiQhukboJEF2CVn7A9Z/St45wGqOR3Yw
-        mk+ne5/nqmj37Jyz3+3ExLMOxA==
-X-Google-Smtp-Source: AA6agR40T8VGOwQPVPXwn0xDEJUAihdvvc+xd5Ba8Hk/nOFgbOdiZAU3choIZea4zpjK/11k8ZrXAg==
-X-Received: by 2002:a17:902:d2c7:b0:176:c8a4:2f2 with SMTP id n7-20020a170902d2c700b00176c8a402f2mr9425217plc.119.1662648289321;
-        Thu, 08 Sep 2022 07:44:49 -0700 (PDT)
-Received: from localhost.localdomain (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id b4-20020a170902d40400b001750361f430sm4484728ple.155.2022.09.08.07.44.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 07:44:48 -0700 (PDT)
-From:   Zong Li <zong.li@sifive.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, greentime.hu@sifive.com,
-        conor.dooley@microchip.com, ben.dooks@sifive.com, bp@alien8.de,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH v3 6/6] soc: sifive: ccache: define the macro for the register shifts
-Date:   Thu,  8 Sep 2022 14:44:24 +0000
-Message-Id: <20220908144424.4232-7-zong.li@sifive.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220908144424.4232-1-zong.li@sifive.com>
-References: <20220908144424.4232-1-zong.li@sifive.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        bh=PfSELVZI7eWUgnlVdrZZBJM8x1KhGoZtl9ybjhJG520=;
+        b=EG9nF5DTGOVdr6l7rkHi0XDgRZ6GpV6nI3NCp+65m0VjOf2jdkwMHwV1jmOFKM2Tsc
+         CZ8cRs3RNCU5B4y5JHVw/ZfcHKIreztNC0W4DozfEhI6kleU7OoWMFOOy3qQ7BQvkgus
+         tD/w3oQwX2y4YxfpnyF+EoTYdMQ28dpcIZzRu4GsaJCedN1n/gGmOTyvpw6Z2n9lMoD9
+         aVhusiAIYUXa4MC/TNeB80XyPx1yzy55/NAaBITnziU0edMwtDcQdHAt3xnVAnTk1E7C
+         +4019YSWC0ELi2tgvOl02Kmd3ilKL8OTp+mQsFHdWozDABJoZ1t387FY//MBdwe/RcgM
+         c4PA==
+X-Gm-Message-State: ACgBeo0NvTPPyLOe9qoiOJ/+lNU0NJSFW8s8Fv48cIp7mW8Qlf7GN0kU
+        UEROeZ4oW/YHAUHVUI93eADFsQ==
+X-Google-Smtp-Source: AA6agR5qPzFhsQC5cI+nNt7o4Yt3qT2K8dukdCCbI0GateP+zD2zZq5d2Lz+38dWB/0Wa685d6NEUA==
+X-Received: by 2002:a2e:9241:0:b0:26b:daf1:293b with SMTP id v1-20020a2e9241000000b0026bdaf1293bmr843569ljg.71.1662648540749;
+        Thu, 08 Sep 2022 07:49:00 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u14-20020a05651220ce00b004947fcf0c0bsm3055589lfr.281.2022.09.08.07.48.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Sep 2022 07:49:00 -0700 (PDT)
+Message-ID: <ee6b8de0-4293-aa1b-4b38-e9c834e0251b@linaro.org>
+Date:   Thu, 8 Sep 2022 16:48:59 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v3] regulator: dt-bindings: qcom,rpmh: Indicate
+ regulator-allow-set-load dependencies
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Johan Hovold <johan@kernel.org>,
+        Johan Hovold <johan+kernel@kernel.org>
+References: <20220907204924.173030-1-ahalaney@redhat.com>
+ <abad381a-dfe7-9337-ff35-f657bf373d44@linaro.org>
+ <CAD=FV=VmnKtx9smitqvNgmiCs-UCnLGFgbPnKd41QWeo1t3c9g@mail.gmail.com>
+ <168cde58-d061-97e7-54a5-5d3cccf3ce22@linaro.org>
+ <Yxn+eieg1Xr28rEk@sirena.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Yxn+eieg1Xr28rEk@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,55 +90,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define the macro for the register shifts, it could make the code be
-more readable
+On 08/09/2022 16:38, Mark Brown wrote:
+> On Thu, Sep 08, 2022 at 04:29:29PM +0200, Krzysztof Kozlowski wrote:
+> 
+>> Sorry, I don't find it related. Whether RPM has modes or not, does not
+>> matter to this discussion unless it sets as well allow-set-load without
+>> the mode... and then how does it work? In current implementation it
+>> shouldn't...
+> 
+> It works perfectly fine, if the driver has a set_load() operation then
+> we call that and don't do anything to do with modes.
 
-Signed-off-by: Zong Li <zong.li@sifive.com>
----
- drivers/soc/sifive/sifive_ccache.c | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+Ah, I see now set_load() in drms_uA_update() in first if-arm. Makes
+sense I guess.
 
-diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index b3929c4d6d5b..0ddcc657c694 100644
---- a/drivers/soc/sifive/sifive_ccache.c
-+++ b/drivers/soc/sifive/sifive_ccache.c
-@@ -13,6 +13,7 @@
- #include <linux/of_irq.h>
- #include <linux/of_address.h>
- #include <linux/device.h>
-+#include <linux/bitfield.h>
- #include <asm/cacheinfo.h>
- #include <soc/sifive/sifive_ccache.h>
- 
-@@ -33,6 +34,11 @@
- #define SIFIVE_CCACHE_DATECCFAIL_COUNT 0x168
- 
- #define SIFIVE_CCACHE_CONFIG 0x00
-+#define SIFIVE_CCACHE_CONFIG_BANK_MASK GENMASK_ULL(7, 0)
-+#define SIFIVE_CCACHE_CONFIG_WAYS_MASK GENMASK_ULL(15, 8)
-+#define SIFIVE_CCACHE_CONFIG_SETS_MASK GENMASK_ULL(23, 16)
-+#define SIFIVE_CCACHE_CONFIG_BLKS_MASK GENMASK_ULL(31, 24)
-+
- #define SIFIVE_CCACHE_WAYENABLE 0x08
- #define SIFIVE_CCACHE_ECCINJECTERR 0x40
- 
-@@ -87,11 +93,11 @@ static void ccache_config_read(void)
- 	u32 cfg;
- 
- 	cfg = readl(ccache_base + SIFIVE_CCACHE_CONFIG);
--
--	pr_info("%u banks, %u ways, sets/bank=%llu, bytes/block=%llu\n",
--		(cfg & 0xff), (cfg >> 8) & 0xff,
--		BIT_ULL((cfg >> 16) & 0xff),
--		BIT_ULL((cfg >> 24) & 0xff));
-+	pr_info("%llu banks, %llu ways, sets/bank=%llu, bytes/block=%llu\n",
-+		FIELD_GET(SIFIVE_CCACHE_CONFIG_BANK_MASK, cfg),
-+		FIELD_GET(SIFIVE_CCACHE_CONFIG_WAYS_MASK, cfg),
-+		BIT_ULL(FIELD_GET(SIFIVE_CCACHE_CONFIG_SETS_MASK, cfg)),
-+		BIT_ULL(FIELD_GET(SIFIVE_CCACHE_CONFIG_BLKS_MASK, cfg)));
- 
- 	cfg = readl(ccache_base + SIFIVE_CCACHE_WAYENABLE);
- 	pr_info("Index of the largest way enabled: %u\n", cfg);
--- 
-2.17.1
 
+Best regards,
+Krzysztof
