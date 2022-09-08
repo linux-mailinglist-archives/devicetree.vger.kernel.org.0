@@ -2,672 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 625E05B217A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 17:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E885B217C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 17:04:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232134AbiIHPDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 11:03:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55628 "EHLO
+        id S232769AbiIHPE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 11:04:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231149AbiIHPDx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 11:03:53 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1102311C7CC
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 08:03:50 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id u6so24760104eda.12
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 08:03:49 -0700 (PDT)
+        with ESMTP id S231149AbiIHPE2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 11:04:28 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2129.outbound.protection.outlook.com [40.107.94.129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E972F6;
+        Thu,  8 Sep 2022 08:04:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lj8+n/RMFi+/vH0vifTOIYhEz764nAIgWFLHZr47EozememKcL36sHOX7OYmox9euAEAAnF3nSVUEXy8XCB1lEqPl7GIwUOkHwR0YbIwqveOpD/p2HJPY6dxC11lhRh08oNc8YhegnMAHtoOeAeg+vuxHHsiYt7GtwX1JYL4UwFOeP7h+PiyXjRFvR2RA3B9krzhq+ceMGgzEMxqMJnGGx114HS0JWSC4b+AqUxQ5oA6OmdLVoRAsis4tRDjohfg2JF94aGCWkB0G9SqAcE9IgCvuhnsCV+0ITpVoQ5v06kzQDkZkWZG2ZDjF/1zynKo4W7CZGTKbrgG9ZDJ8xGsQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ItOH2Lz1bJTErRwdLkVe3O/p5AKP5HRD4vzYsMDL7J8=;
+ b=QT3hJHWxsxu6QG2CFG7H1jkVYC0qmMwWrZzmU2gc+8VSt4ROtD4wUlqlmh2Jw6cv/XilG8UNkEblJENKLlYt2PSQ/AvRiDwwmILHNAnlR5xKGEXagJLFoOxfopcWXoHs/UzES7yhl6g76Vc17vEKmTu4eb/QvTDLZRZpup9WmR1wDAJs/SxpZZvWkc7cr8nJcav/TpYwXvzxgq/DIMZmAh3At8p5nXXZE4c9k1NCqsNsg27l6vUlWfiW6qn17QUoZyeAR/lfVzNlvrJfNNiiR06eDDQwp5TSX4X0YvKg6eD14D1wUAaPS1VnCRKnhf37wrDrzmyPNCbBJl8NRUW1/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=pCNHRpUv93lTwMBteAFIgcG9bcBtppXrRMSGoWyJGvg=;
-        b=TA8quiHw6VQVIBQ21Ix/HSs5GDGe8FslxgqqGmz6H6MH8CAGZcYTxtIcKQtO84pDqs
-         bflJ5ioLnqNFNBWdGU9ZnptQKtfjKGHHxrd2Fr4KszqqWPshPPG2DxQGuQVoDFs9NZdQ
-         rAIlkP9hZSG1QYxY+QteQUsxJzWO43ywp/BFKx9DDuvXejTO+HoTEv6zsA1aaKkn+kdo
-         awZwIwM8Erd6ScMDmgCaVh50dcp+ZQtuHCzQcPPe25dFF6OkqMkFYqHBonOaQpxMrFxj
-         mXvh9dsM1r0dO1v8K8Uml8ZBd40SY7seOXr8nxhwpcgkoSqd7pZ7fkeVoXQvLKH9gjpa
-         QRVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=pCNHRpUv93lTwMBteAFIgcG9bcBtppXrRMSGoWyJGvg=;
-        b=JqYsfl35I2kNt0BOXgdrEoujlfSgpI+IRAD4up3srontjQOMD4ZKfhN0VpDTzzAeh1
-         wW/WwtBITeWcUZp0Fp4q/zZln5mAcQX+A9u28slnGiCVonAAyi1P8KVyGDCHdqCQX7+3
-         lYftwUd4LGoKO+4Z4li1kRhpQkqTNnGUJBuo9SaYfrLGi02prkQwEOd1m1LB36JrWFcE
-         kFLu6tYb9LFV2WEV3H/zN9xduaDkRdWu9rT1+iQm/jciH3Udpuu0i+lFX3+I+P1WNyxi
-         +xSlfZdLcwjsLf61iGATZZTlUaUyCZF8Wa5fhA2niGla/FpKfFYT6/jA3UWCOdVnsZBD
-         QRwg==
-X-Gm-Message-State: ACgBeo2pizjagSmWXZTTZSHgQm+lUnCYYihHZQsG5DjcbXDs9iKxZyT6
-        H0kQirGKvCtNI3Jy2ONTuKdg6TdHWqFs6Mg8+iYrmA==
-X-Google-Smtp-Source: AA6agR71BS9VLB7lTI+oTYBEWzS5kY8E0PI9lg+tt47yKGRNspXeR3iKDzzuRDnIyqFR+Z8YwtwpoTecNN/54iuycFU=
-X-Received: by 2002:aa7:df18:0:b0:44e:7790:c726 with SMTP id
- c24-20020aa7df18000000b0044e7790c726mr7450409edy.276.1662649428036; Thu, 08
- Sep 2022 08:03:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220908135940.299324-1-jagan@edgeble.ai> <20220908135940.299324-4-jagan@edgeble.ai>
-In-Reply-To: <20220908135940.299324-4-jagan@edgeble.ai>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Thu, 8 Sep 2022 16:03:32 +0100
-Message-ID: <CAPY8ntARtgRT_kYbS-zw9kAuc16Qy49UF+y2H1143s_2=cnmYg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] drm: panel: Add Jadard JD9365DA-H3 DSI panel
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ItOH2Lz1bJTErRwdLkVe3O/p5AKP5HRD4vzYsMDL7J8=;
+ b=IGcBX2aczbytWzK8XuVWVywwJAgqfD2AkFZN+2mvrryVCjgs+gw3BGkhdZeb5gzKjjkLMRt86Zwjdw9wRUmvTOW4CWYj4vEakhL/DMQJKrN0qzKB8O31bJPMD9mNxXJJios3UV1itICHIP4AhfGp0OfO6CDQ/iAV9WudzEcXwLo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by CH0PR10MB5114.namprd10.prod.outlook.com
+ (2603:10b6:610:dd::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.16; Thu, 8 Sep
+ 2022 15:04:20 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::38ee:4bfb:c7b8:72e1]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::38ee:4bfb:c7b8:72e1%7]) with mapi id 15.20.5588.020; Thu, 8 Sep 2022
+ 15:04:20 +0000
+Date:   Thu, 8 Sep 2022 08:04:13 -0700
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Lee Jones <lee@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
         Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Russell King <linux@armlinux.org.uk>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "katie.morris@in-advantage.com" <katie.morris@in-advantage.com>
+Subject: Re: [RESEND PATCH v16 mfd 1/8] mfd: ocelot: add helper to get regmap
+ from a resource
+Message-ID: <YxoEbfq6YKx/4Vko@colin-ia-desktop>
+References: <20220905162132.2943088-1-colin.foster@in-advantage.com>
+ <20220905162132.2943088-2-colin.foster@in-advantage.com>
+ <Yxm4oMq8dpsFg61b@google.com>
+ <20220908142256.7aad25k553sqfgbm@skbuf>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220908142256.7aad25k553sqfgbm@skbuf>
+X-ClientProxiedBy: BYAPR06CA0069.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::46) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 40459e03-0976-4a2a-81b6-08da91ab6831
+X-MS-TrafficTypeDiagnostic: CH0PR10MB5114:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OW+RTij8GHaFU20YKsaa4b4D4UvMPcty+Cgif8y8wPYlBHazntyLhACPLztaAkf5C177O0PFTKUtKEro+/F81Id+GmDhyejODL55sx9uQR6PiRkp4N9rmnQifgOz8jkoJJ3pBR5FoNsk8eDrc1B2YC73jUr1iDRweiCJeV9nB/cQoQAlQyf78X2pbd2HpS381la+1+QcLP/GEA7BBWYBq4/8t21fEy65vNjP6ACQf6kFy3UKC4f0kke3ilRrl2xl81QgcN5IYwI/O+KIAuA2GZ7y9KhDYkAmI8IzGhQyyTDlhT+AaRld6SZZosbN/7E8yzabeuA/SRnHsVQw80hCvjpjeTsnpMS86b554z20j60PkgZe3SvMp/l7MIH++5WmC8i+WWo4Iq8sfnAM2p6mkEhVmY/Gt/4phOZmpIpgyTFMcUYLrx8JjcS5+ZTHXF4YTKd7qsQToPV3FDT0LtC1lTN7I/f+ekDfObBhRyVxJGAFAE72MN6G0RPMQJhwlv3jGCpJMgLD6fVMCQNOqVqVGXIAKc0eA+EXHGKNf45zlarYncIIHT/IT1y0yFsa7rG9hNRbvDYCjgaKwOb+z9acpR6WEbEGczzNEVLLSNywAM1DdhdV7JfwKM0A5rb77ylJp+bqXP6b7o2GIW/JmjG+kTuSSi0hnkoBBEnUbEeJTQdMUcOIvpZe4X3eb/d5NHzqjC1J8wYNNiYmTmTdgcQPEQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(376002)(396003)(346002)(39840400004)(136003)(366004)(38100700002)(8676002)(4326008)(66476007)(66556008)(66946007)(86362001)(186003)(83380400001)(6512007)(26005)(107886003)(6666004)(6506007)(6486002)(41300700001)(478600001)(9686003)(6916009)(316002)(54906003)(33716001)(2906002)(44832011)(7416002)(8936002)(5660300002)(4744005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?w5Ygj1KAwvwSh5STiUWhpnPVFHVaLViRH+FDy40h3TU9HDnJ91ix/uhN+nOs?=
+ =?us-ascii?Q?yP2NKc6jA5D7wAs71Sztq9lLxb8mH9R5N7SKFCyRFbGxtp4Q9VODbskE99nn?=
+ =?us-ascii?Q?tTY/8iFqQfiQ1VFS+WaAW0D47XA+qz1XZZe7S5kV+gG4wic25em6SzrCLAAa?=
+ =?us-ascii?Q?txkU9XIh98eeRA4sxmyjpkGXmdOLpBDNNdIMQ2sWBvjrkDggDDIfjv1cumBL?=
+ =?us-ascii?Q?kcPrLJ1qtwtlhgJAnpvCk5WrxrlRmGOnZuOqgJi4TDIU4aPq32HiZ6zlcDKW?=
+ =?us-ascii?Q?uJHqBgg8r1MYChXVA81pku2ZRi/D6aYAv5Mjm8avQ6RfVrmNGQah3XA8rK0L?=
+ =?us-ascii?Q?LqqBU81mgzCOIiyLEUaRXw7jZYS6STbV4tVi5/dGBM/OYnYKQsarOdupFIgL?=
+ =?us-ascii?Q?dV0D7hWj50GvsYKLd3f1pm66V6YsMxJZd5YfNgqfjo0axurEEntjkctB2bSe?=
+ =?us-ascii?Q?Y2PhXUZ8T7sooUVzhnm3Z0yvd0llrznpg6tQD7ydRNx+sdvqtJ466DZ/ZiWQ?=
+ =?us-ascii?Q?CdNSMvvlbFRDpDCPe++Mpiaw1sKGMW6rqmgcIWNZGUGw+ape4QmCiGMRVxPY?=
+ =?us-ascii?Q?0K1c0YsFotfxaZW8buYYscJ23jvHERY+P39yEuldElwHow6W8C5qKiRTjm2j?=
+ =?us-ascii?Q?n1O5qZXKclDblJpsFBoGfmGnPJiTEzqWNvw/hAE1vWTIkcAHyrkQdkdh+sD3?=
+ =?us-ascii?Q?vTv1hz/FiNjB4sdaNlc1jrs1/lVIyvU5rMYrvEVZCowV6Y3xSnTtQRZM2Fij?=
+ =?us-ascii?Q?mmAMOMm3XURPmUWmmH1FPOWbPm+F7J3uDf7k1ejcwYi/1koMRdw1nKdF7kQe?=
+ =?us-ascii?Q?RjF9M1k1X7elx2pKn0xVrp2OCve5cFZ8mx+VP6LwsAoZMBa4RHKIfa1wVvH1?=
+ =?us-ascii?Q?tFPvXp0UwqNKGs5H2dVUbk10N0i61NgToTSSKATiPZS2cU5iYA7YZ42zLmMY?=
+ =?us-ascii?Q?1z2T1d3Z1NWGlPXPSOZB5NXUZXEldMMcs8YwWYHmO28lcNkdtaOS7iKUTo8s?=
+ =?us-ascii?Q?pD7mbL+JfaXm5x5ZtztgT0YJP1IW8OZLqViFIg+XB+t+ufD3k2fulYYsJ1W5?=
+ =?us-ascii?Q?a5GJhUp8BnOas1rfpKz1HbgSV1THIXo/LD4Rge22qtsolH5ylBiq2NRfF2Gt?=
+ =?us-ascii?Q?xQe5kV8cxao47qtS2J24+qOF8f2+ykPwKDm0izMxvif9Ym8kevnPHP2oe6f4?=
+ =?us-ascii?Q?J7B4nVBA1baB/br8kNF+jXS1IruS32Q6oBWwjow4EjJYO5pNO/uYZa7/7dxT?=
+ =?us-ascii?Q?DG5c0Z2Rbjp2/S5oPQAAOaGflPE6puxFhKmj4rbuTbKv8SgsGdv6KW/+/nTz?=
+ =?us-ascii?Q?vbljENut2d1JgxOwie9yBSSgfDPhrJBoXDXBaohALXim143iGXIsWYi0QpOH?=
+ =?us-ascii?Q?htfBLqZeDHsoQfsVmuOK1FCBURszqi+0YkrYXDeJHP3SQ/c6K/6qPKYb2QpF?=
+ =?us-ascii?Q?Vx7MpoEJaPNtYnZlEoS/wyivtNhnk7usJsHFHAYGKOo8QPtd7i437l+VKS8x?=
+ =?us-ascii?Q?Xrr1kJhnKH3rPV7A7NIVG65VnNzauDZ8AGsO5hgMYqHzTRjRjRNyA9BrLt8C?=
+ =?us-ascii?Q?vMWVtSGgjYtiw8OasnL6lkp66hFtuhXJ/g/EmFDNZmnB5vV+bh94K5+Ncgbb?=
+ =?us-ascii?Q?9A=3D=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40459e03-0976-4a2a-81b6-08da91ab6831
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2022 15:04:20.2356
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: g4F9isRFW37vcwmPG+SdZwEU2vswaHjrGHuNyyPHdhAFI7meei+CzKrEitCxj8iyjjqaN0J59srRcSCfUgfRg5nNgs7wmN+WeTwXHT+d6Bw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR10MB5114
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan
+On Thu, Sep 08, 2022 at 02:22:56PM +0000, Vladimir Oltean wrote:
+> On Thu, Sep 08, 2022 at 10:40:48AM +0100, Lee Jones wrote:
+> > Applied, thanks.
+> 
+> Hurray!
+> 
+> Colin, what plans do you have for the rest of VSC7512 upstreaming?
+> Do you need Lee to provide a stable branch for networking to pull, so
+> you can continue development in this kernel release cycle, or do you
+> expect that there won't be dependencies and you can therefore just test
+> on linux-next?
 
-On Thu, 8 Sept 2022 at 15:00, Jagan Teki <jagan@edgeble.ai> wrote:
->
-> Jadard JD9365DA-H3 is WUXGA MIPI DSI panel and it support TFT
-> dot matrix LCD with 800RGBx1280 dots at maximum.
+Yay!
 
-Sorry, I'm confused by this commit text.
+My plan was to start sending RFCs on the internal copper phys and get
+some feedback there. I assume there'll be a couple rounds and I don't
+expect to hit this next release (if I'm being honest).
 
-WUXGA is normally defined as 1920x1200.
-So the panel is 1920x1200, but it supports a max of 800x1280 pixels?
-What do the other pixels do then?
-
-Google implies that Jadard JD9365DA-H3 is a driver IC, not a panel. So
-is this driver for all JD9365DA-H3 based panels, not just one panel?
-Having a compatible of "chongzhou,cz101b4001" implies it.
-(Thinking about it, I have a JD9365Z based DSI panel on my desk, but
-the JD9365Z is made by Fitipower and it supports a max resolution of
-720x1280. Those trailing letters are obviously very significant on
-this range)
-
-Thanks.
-  Dave
-
-> Add support for it.
->
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> ---
-> Changes for v2:
-> - rebased on drm-misc-next
->
->  MAINTAINERS                                   |   1 +
->  drivers/gpu/drm/panel/Kconfig                 |  10 +
->  drivers/gpu/drm/panel/Makefile                |   1 +
->  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 509 ++++++++++++++++++
->  4 files changed, 521 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ef45fbac0ba0..4e8f4f82f866 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6392,6 +6392,7 @@ DRM DRIVER FOR JADARD JD9365DA-H3 MIPI-DSI LCD PANELS
->  M:     Jagan Teki <jagan@edgeble.ai>
->  S:     Maintained
->  F:     Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-> +F:     drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
->
->  DRM DRIVER FOR LOGICVC DISPLAY CONTROLLER
->  M:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index a582ddd583c2..e6e805e4a0ec 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -203,6 +203,16 @@ config DRM_PANEL_INNOLUX_P079ZCA
->           24 bit RGB per pixel. It provides a MIPI DSI interface to
->           the host and has a built-in LED backlight.
->
-> +config DRM_PANEL_JADARD_JD9365DA_H3
-> +       tristate "Jadard JD9365DA-H3 WUXGA DSI panel"
-> +       depends on OF
-> +       depends on DRM_MIPI_DSI
-> +       depends on BACKLIGHT_CLASS_DEVICE
-> +       help
-> +         Say Y here if you want to enable support for Jadard JD9365DA-H3
-> +         WUXGA MIPI DSI panel. The panel support TFT dot matrix LCD with
-> +         800RGBx1280 dots at maximum.
-> +
->  config DRM_PANEL_JDI_LT070ME05000
->         tristate "JDI LT070ME05000 WUXGA DSI panel"
->         depends on OF
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> index 34e717382dbb..af0b1ebdbac8 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -18,6 +18,7 @@ obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9341) += panel-ilitek-ili9341.o
->  obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9881C) += panel-ilitek-ili9881c.o
->  obj-$(CONFIG_DRM_PANEL_INNOLUX_EJ030NA) += panel-innolux-ej030na.o
->  obj-$(CONFIG_DRM_PANEL_INNOLUX_P079ZCA) += panel-innolux-p079zca.o
-> +obj-$(CONFIG_DRM_PANEL_JADARD_JD9365DA_H3) += panel-jadard-jd9365da-h3.o
->  obj-$(CONFIG_DRM_PANEL_JDI_LT070ME05000) += panel-jdi-lt070me05000.o
->  obj-$(CONFIG_DRM_PANEL_JDI_R63452) += panel-jdi-fhd-r63452.o
->  obj-$(CONFIG_DRM_PANEL_KHADAS_TS050) += panel-khadas-ts050.o
-> diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> new file mode 100644
-> index 000000000000..0e703c47b2dc
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> @@ -0,0 +1,509 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (c) 2019 Radxa Limited
-> + * Copyright (c) 2022 Edgeble AI Technologies Pvt. Ltd.
-> + *
-> + * Author:
-> + * - Jagan Teki <jagan@amarulasolutions.com>
-> + * - Stephen Chen <stephen@radxa.com>
-> + */
-> +
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_modes.h>
-> +#include <drm/drm_panel.h>
-> +#include <drm/drm_print.h>
-> +
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/delay.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +enum cmd_type {
-> +       CMD_TYPE_DCS,
-> +       CMD_TYPE_DELAY,
-> +};
-> +
-> +struct jadard_init_cmd {
-> +       enum cmd_type type;
-> +       const char *data;
-> +       size_t len;
-> +};
-> +
-> +#define _INIT_CMD_DCS(...)                                     \
-> +       {                                                       \
-> +               .type   = CMD_TYPE_DCS,                         \
-> +               .data   = (char[]){__VA_ARGS__},                \
-> +               .len    = sizeof((char[]){__VA_ARGS__})         \
-> +       }                                                       \
-> +
-> +#define _INIT_CMD_DELAY(...)                                   \
-> +       {                                                       \
-> +               .type   = CMD_TYPE_DELAY,                       \
-> +               .data   = (char[]){__VA_ARGS__},                \
-> +               .len    = sizeof((char[]){__VA_ARGS__})         \
-> +       }                                                       \
-> +
-> +struct jadard_panel_desc {
-> +       const struct drm_display_mode mode;
-> +       unsigned int lanes;
-> +       enum mipi_dsi_pixel_format format;
-> +       const struct jadard_init_cmd *init_cmds;
-> +       u32 num_init_cmds;
-> +};
-> +
-> +struct jadard {
-> +       struct drm_panel panel;
-> +       struct mipi_dsi_device *dsi;
-> +       const struct jadard_panel_desc *desc;
-> +
-> +       struct regulator *vdd;
-> +       struct regulator *vccio;
-> +       struct gpio_desc *reset;
-> +};
-> +
-> +static inline struct jadard *panel_to_jadard(struct drm_panel *panel)
-> +{
-> +       return container_of(panel, struct jadard, panel);
-> +}
-> +
-> +static int jadard_enable(struct drm_panel *panel)
-> +{
-> +       struct device *dev = panel->dev;
-> +       struct jadard *jadard = panel_to_jadard(panel);
-> +       const struct jadard_panel_desc *desc = jadard->desc;
-> +       struct mipi_dsi_device *dsi = jadard->dsi;
-> +       unsigned int i;
-> +       int err;
-> +
-> +       for (i = 0; i < desc->num_init_cmds; i++) {
-> +               const struct jadard_init_cmd *cmd = &desc->init_cmds[i];
-> +
-> +               switch (cmd->type) {
-> +               case CMD_TYPE_DELAY:
-> +                       msleep(cmd->data[0]);
-> +                       err = 0;
-> +                       break;
-> +               case CMD_TYPE_DCS:
-> +                       err = mipi_dsi_dcs_write(dsi, cmd->data[0],
-> +                                                cmd->len <= 1 ? NULL : &cmd->data[1],
-> +                                                cmd->len - 1);
-> +                       break;
-> +               default:
-> +                       err = -EINVAL;
-> +               }
-> +
-> +               if (err < 0) {
-> +                       DRM_DEV_ERROR(dev, "failed to write CMD#0x%x\n", cmd->data[0]);
-> +                       return err;
-> +               }
-> +       }
-> +
-> +       err = mipi_dsi_dcs_exit_sleep_mode(dsi);
-> +       if (err < 0)
-> +               DRM_DEV_ERROR(dev, "failed to exit sleep mode ret = %d\n", err);
-> +
-> +       err =  mipi_dsi_dcs_set_display_on(dsi);
-> +       if (err < 0)
-> +               DRM_DEV_ERROR(dev, "failed to set display on ret = %d\n", err);
-> +
-> +       return 0;
-> +}
-> +
-> +static int jadard_disable(struct drm_panel *panel)
-> +{
-> +       struct device *dev = panel->dev;
-> +       struct jadard *jadard = panel_to_jadard(panel);
-> +       int ret;
-> +
-> +       ret = mipi_dsi_dcs_set_display_off(jadard->dsi);
-> +       if (ret < 0)
-> +               DRM_DEV_ERROR(dev, "failed to set display off: %d\n", ret);
-> +
-> +       ret = mipi_dsi_dcs_enter_sleep_mode(jadard->dsi);
-> +       if (ret < 0)
-> +               DRM_DEV_ERROR(dev, "failed to enter sleep mode: %d\n", ret);
-> +
-> +       return 0;
-> +}
-> +
-> +static int jadard_prepare(struct drm_panel *panel)
-> +{
-> +       struct jadard *jadard = panel_to_jadard(panel);
-> +       int ret;
-> +
-> +       ret = regulator_enable(jadard->vccio);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = regulator_enable(jadard->vdd);
-> +       if (ret)
-> +               return ret;
-> +
-> +       gpiod_set_value(jadard->reset, 1);
-> +       msleep(5);
-> +
-> +       gpiod_set_value(jadard->reset, 0);
-> +       msleep(10);
-> +
-> +       gpiod_set_value(jadard->reset, 1);
-> +       msleep(120);
-> +
-> +       return 0;
-> +}
-> +
-> +static int jadard_unprepare(struct drm_panel *panel)
-> +{
-> +       struct jadard *jadard = panel_to_jadard(panel);
-> +
-> +       gpiod_set_value(jadard->reset, 1);
-> +       msleep(120);
-> +
-> +       regulator_disable(jadard->vdd);
-> +       regulator_disable(jadard->vccio);
-> +
-> +       return 0;
-> +}
-> +
-> +static int jadard_get_modes(struct drm_panel *panel,
-> +                           struct drm_connector *connector)
-> +{
-> +       struct jadard *jadard = panel_to_jadard(panel);
-> +       const struct drm_display_mode *desc_mode = &jadard->desc->mode;
-> +       struct drm_display_mode *mode;
-> +
-> +       mode = drm_mode_duplicate(connector->dev, desc_mode);
-> +       if (!mode) {
-> +               DRM_DEV_ERROR(&jadard->dsi->dev, "failed to add mode %ux%ux@%u\n",
-> +                             desc_mode->hdisplay, desc_mode->vdisplay,
-> +                             drm_mode_vrefresh(desc_mode));
-> +               return -ENOMEM;
-> +       }
-> +
-> +       drm_mode_set_name(mode);
-> +       drm_mode_probed_add(connector, mode);
-> +
-> +       connector->display_info.width_mm = mode->width_mm;
-> +       connector->display_info.height_mm = mode->height_mm;
-> +
-> +       return 1;
-> +}
-> +
-> +static const struct drm_panel_funcs jadard_funcs = {
-> +       .disable = jadard_disable,
-> +       .unprepare = jadard_unprepare,
-> +       .prepare = jadard_prepare,
-> +       .enable = jadard_enable,
-> +       .get_modes = jadard_get_modes,
-> +};
-> +
-> +static const struct jadard_init_cmd cz101b4001_init_cmds[] = {
-> +       _INIT_CMD_DELAY(10),
-> +
-> +       _INIT_CMD_DCS(0xE0, 0x00),
-> +       _INIT_CMD_DCS(0xE1, 0x93),
-> +       _INIT_CMD_DCS(0xE2, 0x65),
-> +       _INIT_CMD_DCS(0xE3, 0xF8),
-> +       _INIT_CMD_DCS(0x80, 0x03),
-> +       _INIT_CMD_DCS(0xE0, 0x01),
-> +       _INIT_CMD_DCS(0x00, 0x00),
-> +       _INIT_CMD_DCS(0x01, 0x3B),
-> +       _INIT_CMD_DCS(0x0C, 0x74),
-> +       _INIT_CMD_DCS(0x17, 0x00),
-> +       _INIT_CMD_DCS(0x18, 0xAF),
-> +       _INIT_CMD_DCS(0x19, 0x00),
-> +       _INIT_CMD_DCS(0x1A, 0x00),
-> +       _INIT_CMD_DCS(0x1B, 0xAF),
-> +       _INIT_CMD_DCS(0x1C, 0x00),
-> +       _INIT_CMD_DCS(0x35, 0x26),
-> +       _INIT_CMD_DCS(0x37, 0x09),
-> +       _INIT_CMD_DCS(0x38, 0x04),
-> +       _INIT_CMD_DCS(0x39, 0x00),
-> +       _INIT_CMD_DCS(0x3A, 0x01),
-> +       _INIT_CMD_DCS(0x3C, 0x78),
-> +       _INIT_CMD_DCS(0x3D, 0xFF),
-> +       _INIT_CMD_DCS(0x3E, 0xFF),
-> +       _INIT_CMD_DCS(0x3F, 0x7F),
-> +       _INIT_CMD_DCS(0x40, 0x06),
-> +       _INIT_CMD_DCS(0x41, 0xA0),
-> +       _INIT_CMD_DCS(0x42, 0x81),
-> +       _INIT_CMD_DCS(0x43, 0x14),
-> +       _INIT_CMD_DCS(0x44, 0x23),
-> +       _INIT_CMD_DCS(0x45, 0x28),
-> +       _INIT_CMD_DCS(0x55, 0x02),
-> +       _INIT_CMD_DCS(0x57, 0x69),
-> +       _INIT_CMD_DCS(0x59, 0x0A),
-> +       _INIT_CMD_DCS(0x5A, 0x2A),
-> +       _INIT_CMD_DCS(0x5B, 0x17),
-> +       _INIT_CMD_DCS(0x5D, 0x7F),
-> +       _INIT_CMD_DCS(0x5E, 0x6B),
-> +       _INIT_CMD_DCS(0x5F, 0x5C),
-> +       _INIT_CMD_DCS(0x60, 0x4F),
-> +       _INIT_CMD_DCS(0x61, 0x4D),
-> +       _INIT_CMD_DCS(0x62, 0x3F),
-> +       _INIT_CMD_DCS(0x63, 0x42),
-> +       _INIT_CMD_DCS(0x64, 0x2B),
-> +       _INIT_CMD_DCS(0x65, 0x44),
-> +       _INIT_CMD_DCS(0x66, 0x43),
-> +       _INIT_CMD_DCS(0x67, 0x43),
-> +       _INIT_CMD_DCS(0x68, 0x63),
-> +       _INIT_CMD_DCS(0x69, 0x52),
-> +       _INIT_CMD_DCS(0x6A, 0x5A),
-> +       _INIT_CMD_DCS(0x6B, 0x4F),
-> +       _INIT_CMD_DCS(0x6C, 0x4E),
-> +       _INIT_CMD_DCS(0x6D, 0x20),
-> +       _INIT_CMD_DCS(0x6E, 0x0F),
-> +       _INIT_CMD_DCS(0x6F, 0x00),
-> +       _INIT_CMD_DCS(0x70, 0x7F),
-> +       _INIT_CMD_DCS(0x71, 0x6B),
-> +       _INIT_CMD_DCS(0x72, 0x5C),
-> +       _INIT_CMD_DCS(0x73, 0x4F),
-> +       _INIT_CMD_DCS(0x74, 0x4D),
-> +       _INIT_CMD_DCS(0x75, 0x3F),
-> +       _INIT_CMD_DCS(0x76, 0x42),
-> +       _INIT_CMD_DCS(0x77, 0x2B),
-> +       _INIT_CMD_DCS(0x78, 0x44),
-> +       _INIT_CMD_DCS(0x79, 0x43),
-> +       _INIT_CMD_DCS(0x7A, 0x43),
-> +       _INIT_CMD_DCS(0x7B, 0x63),
-> +       _INIT_CMD_DCS(0x7C, 0x52),
-> +       _INIT_CMD_DCS(0x7D, 0x5A),
-> +       _INIT_CMD_DCS(0x7E, 0x4F),
-> +       _INIT_CMD_DCS(0x7F, 0x4E),
-> +       _INIT_CMD_DCS(0x80, 0x20),
-> +       _INIT_CMD_DCS(0x81, 0x0F),
-> +       _INIT_CMD_DCS(0x82, 0x00),
-> +       _INIT_CMD_DCS(0xE0, 0x02),
-> +       _INIT_CMD_DCS(0x00, 0x02),
-> +       _INIT_CMD_DCS(0x01, 0x02),
-> +       _INIT_CMD_DCS(0x02, 0x00),
-> +       _INIT_CMD_DCS(0x03, 0x00),
-> +       _INIT_CMD_DCS(0x04, 0x1E),
-> +       _INIT_CMD_DCS(0x05, 0x1E),
-> +       _INIT_CMD_DCS(0x06, 0x1F),
-> +       _INIT_CMD_DCS(0x07, 0x1F),
-> +       _INIT_CMD_DCS(0x08, 0x1F),
-> +       _INIT_CMD_DCS(0x09, 0x17),
-> +       _INIT_CMD_DCS(0x0A, 0x17),
-> +       _INIT_CMD_DCS(0x0B, 0x37),
-> +       _INIT_CMD_DCS(0x0C, 0x37),
-> +       _INIT_CMD_DCS(0x0D, 0x47),
-> +       _INIT_CMD_DCS(0x0E, 0x47),
-> +       _INIT_CMD_DCS(0x0F, 0x45),
-> +       _INIT_CMD_DCS(0x10, 0x45),
-> +       _INIT_CMD_DCS(0x11, 0x4B),
-> +       _INIT_CMD_DCS(0x12, 0x4B),
-> +       _INIT_CMD_DCS(0x13, 0x49),
-> +       _INIT_CMD_DCS(0x14, 0x49),
-> +       _INIT_CMD_DCS(0x15, 0x1F),
-> +       _INIT_CMD_DCS(0x16, 0x01),
-> +       _INIT_CMD_DCS(0x17, 0x01),
-> +       _INIT_CMD_DCS(0x18, 0x00),
-> +       _INIT_CMD_DCS(0x19, 0x00),
-> +       _INIT_CMD_DCS(0x1A, 0x1E),
-> +       _INIT_CMD_DCS(0x1B, 0x1E),
-> +       _INIT_CMD_DCS(0x1C, 0x1F),
-> +       _INIT_CMD_DCS(0x1D, 0x1F),
-> +       _INIT_CMD_DCS(0x1E, 0x1F),
-> +       _INIT_CMD_DCS(0x1F, 0x17),
-> +       _INIT_CMD_DCS(0x20, 0x17),
-> +       _INIT_CMD_DCS(0x21, 0x37),
-> +       _INIT_CMD_DCS(0x22, 0x37),
-> +       _INIT_CMD_DCS(0x23, 0x46),
-> +       _INIT_CMD_DCS(0x24, 0x46),
-> +       _INIT_CMD_DCS(0x25, 0x44),
-> +       _INIT_CMD_DCS(0x26, 0x44),
-> +       _INIT_CMD_DCS(0x27, 0x4A),
-> +       _INIT_CMD_DCS(0x28, 0x4A),
-> +       _INIT_CMD_DCS(0x29, 0x48),
-> +       _INIT_CMD_DCS(0x2A, 0x48),
-> +       _INIT_CMD_DCS(0x2B, 0x1F),
-> +       _INIT_CMD_DCS(0x2C, 0x01),
-> +       _INIT_CMD_DCS(0x2D, 0x01),
-> +       _INIT_CMD_DCS(0x2E, 0x00),
-> +       _INIT_CMD_DCS(0x2F, 0x00),
-> +       _INIT_CMD_DCS(0x30, 0x1F),
-> +       _INIT_CMD_DCS(0x31, 0x1F),
-> +       _INIT_CMD_DCS(0x32, 0x1E),
-> +       _INIT_CMD_DCS(0x33, 0x1E),
-> +       _INIT_CMD_DCS(0x34, 0x1F),
-> +       _INIT_CMD_DCS(0x35, 0x17),
-> +       _INIT_CMD_DCS(0x36, 0x17),
-> +       _INIT_CMD_DCS(0x37, 0x37),
-> +       _INIT_CMD_DCS(0x38, 0x37),
-> +       _INIT_CMD_DCS(0x39, 0x08),
-> +       _INIT_CMD_DCS(0x3A, 0x08),
-> +       _INIT_CMD_DCS(0x3B, 0x0A),
-> +       _INIT_CMD_DCS(0x3C, 0x0A),
-> +       _INIT_CMD_DCS(0x3D, 0x04),
-> +       _INIT_CMD_DCS(0x3E, 0x04),
-> +       _INIT_CMD_DCS(0x3F, 0x06),
-> +       _INIT_CMD_DCS(0x40, 0x06),
-> +       _INIT_CMD_DCS(0x41, 0x1F),
-> +       _INIT_CMD_DCS(0x42, 0x02),
-> +       _INIT_CMD_DCS(0x43, 0x02),
-> +       _INIT_CMD_DCS(0x44, 0x00),
-> +       _INIT_CMD_DCS(0x45, 0x00),
-> +       _INIT_CMD_DCS(0x46, 0x1F),
-> +       _INIT_CMD_DCS(0x47, 0x1F),
-> +       _INIT_CMD_DCS(0x48, 0x1E),
-> +       _INIT_CMD_DCS(0x49, 0x1E),
-> +       _INIT_CMD_DCS(0x4A, 0x1F),
-> +       _INIT_CMD_DCS(0x4B, 0x17),
-> +       _INIT_CMD_DCS(0x4C, 0x17),
-> +       _INIT_CMD_DCS(0x4D, 0x37),
-> +       _INIT_CMD_DCS(0x4E, 0x37),
-> +       _INIT_CMD_DCS(0x4F, 0x09),
-> +       _INIT_CMD_DCS(0x50, 0x09),
-> +       _INIT_CMD_DCS(0x51, 0x0B),
-> +       _INIT_CMD_DCS(0x52, 0x0B),
-> +       _INIT_CMD_DCS(0x53, 0x05),
-> +       _INIT_CMD_DCS(0x54, 0x05),
-> +       _INIT_CMD_DCS(0x55, 0x07),
-> +       _INIT_CMD_DCS(0x56, 0x07),
-> +       _INIT_CMD_DCS(0x57, 0x1F),
-> +       _INIT_CMD_DCS(0x58, 0x40),
-> +       _INIT_CMD_DCS(0x5B, 0x30),
-> +       _INIT_CMD_DCS(0x5C, 0x16),
-> +       _INIT_CMD_DCS(0x5D, 0x34),
-> +       _INIT_CMD_DCS(0x5E, 0x05),
-> +       _INIT_CMD_DCS(0x5F, 0x02),
-> +       _INIT_CMD_DCS(0x63, 0x00),
-> +       _INIT_CMD_DCS(0x64, 0x6A),
-> +       _INIT_CMD_DCS(0x67, 0x73),
-> +       _INIT_CMD_DCS(0x68, 0x1D),
-> +       _INIT_CMD_DCS(0x69, 0x08),
-> +       _INIT_CMD_DCS(0x6A, 0x6A),
-> +       _INIT_CMD_DCS(0x6B, 0x08),
-> +       _INIT_CMD_DCS(0x6C, 0x00),
-> +       _INIT_CMD_DCS(0x6D, 0x00),
-> +       _INIT_CMD_DCS(0x6E, 0x00),
-> +       _INIT_CMD_DCS(0x6F, 0x88),
-> +       _INIT_CMD_DCS(0x75, 0xFF),
-> +       _INIT_CMD_DCS(0x77, 0xDD),
-> +       _INIT_CMD_DCS(0x78, 0x3F),
-> +       _INIT_CMD_DCS(0x79, 0x15),
-> +       _INIT_CMD_DCS(0x7A, 0x17),
-> +       _INIT_CMD_DCS(0x7D, 0x14),
-> +       _INIT_CMD_DCS(0x7E, 0x82),
-> +       _INIT_CMD_DCS(0xE0, 0x04),
-> +       _INIT_CMD_DCS(0x00, 0x0E),
-> +       _INIT_CMD_DCS(0x02, 0xB3),
-> +       _INIT_CMD_DCS(0x09, 0x61),
-> +       _INIT_CMD_DCS(0x0E, 0x48),
-> +       _INIT_CMD_DCS(0xE0, 0x00),
-> +       _INIT_CMD_DCS(0xE6, 0x02),
-> +       _INIT_CMD_DCS(0xE7, 0x0C),
-> +
-> +       _INIT_CMD_DELAY(120),
-> +};
-> +
-> +static const struct jadard_panel_desc cz101b4001_desc = {
-> +       .mode = {
-> +               .clock          = 70000,
-> +
-> +               .hdisplay       = 800,
-> +               .hsync_start    = 800 + 40,
-> +               .hsync_end      = 800 + 40 + 18,
-> +               .htotal         = 800 + 40 + 18 + 20,
-> +
-> +               .vdisplay       = 1280,
-> +               .vsync_start    = 1280 + 20,
-> +               .vsync_end      = 1280 + 20 + 4,
-> +               .vtotal         = 1280 + 20 + 4 + 20,
-> +
-> +               .width_mm       = 62,
-> +               .height_mm      = 110,
-> +               .type           = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-> +       },
-> +       .lanes = 4,
-> +       .format = MIPI_DSI_FMT_RGB888,
-> +       .init_cmds = cz101b4001_init_cmds,
-> +       .num_init_cmds = ARRAY_SIZE(cz101b4001_init_cmds),
-> +};
-> +
-> +static int jadard_dsi_probe(struct mipi_dsi_device *dsi)
-> +{
-> +       struct device *dev = &dsi->dev;
-> +       const struct jadard_panel_desc *desc;
-> +       struct jadard *jadard;
-> +       int ret;
-> +
-> +       jadard = devm_kzalloc(&dsi->dev, sizeof(*jadard), GFP_KERNEL);
-> +       if (!jadard)
-> +               return -ENOMEM;
-> +
-> +       desc = of_device_get_match_data(dev);
-> +       dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> +                         MIPI_DSI_MODE_NO_EOT_PACKET;
-> +       dsi->format = desc->format;
-> +       dsi->lanes = desc->lanes;
-> +
-> +       jadard->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> +       if (IS_ERR(jadard->reset)) {
-> +               DRM_DEV_ERROR(&dsi->dev, "failed to get our reset GPIO\n");
-> +               return PTR_ERR(jadard->reset);
-> +       }
-> +
-> +       jadard->vdd = devm_regulator_get(dev, "vdd");
-> +       if (IS_ERR(jadard->vdd)) {
-> +               DRM_DEV_ERROR(&dsi->dev, "failed to get vdd regulator\n");
-> +               return PTR_ERR(jadard->vdd);
-> +       }
-> +
-> +       jadard->vccio = devm_regulator_get(dev, "vccio");
-> +       if (IS_ERR(jadard->vccio)) {
-> +               DRM_DEV_ERROR(&dsi->dev, "failed to get vccio regulator\n");
-> +               return PTR_ERR(jadard->vccio);
-> +       }
-> +
-> +       drm_panel_init(&jadard->panel, dev, &jadard_funcs,
-> +                      DRM_MODE_CONNECTOR_DSI);
-> +
-> +       ret = drm_panel_of_backlight(&jadard->panel);
-> +       if (ret)
-> +               return ret;
-> +
-> +       drm_panel_add(&jadard->panel);
-> +
-> +       mipi_dsi_set_drvdata(dsi, jadard);
-> +       jadard->dsi = dsi;
-> +       jadard->desc = desc;
-> +
-> +       ret = mipi_dsi_attach(dsi);
-> +       if (ret < 0) {
-> +               drm_panel_remove(&jadard->panel);
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static void jadard_dsi_remove(struct mipi_dsi_device *dsi)
-> +{
-> +       struct jadard *jadard = mipi_dsi_get_drvdata(dsi);
-> +
-> +       mipi_dsi_detach(dsi);
-> +       drm_panel_remove(&jadard->panel);
-> +}
-> +
-> +static const struct of_device_id jadard_of_match[] = {
-> +       { .compatible = "chongzhou,cz101b4001", .data = &cz101b4001_desc },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, jadard_of_match);
-> +
-> +static struct mipi_dsi_driver jadard_driver = {
-> +       .probe = jadard_dsi_probe,
-> +       .remove = jadard_dsi_remove,
-> +       .driver = {
-> +               .name = "jadard-jd9365da",
-> +               .of_match_table = jadard_of_match,
-> +       },
-> +};
-> +module_mipi_dsi_driver(jadard_driver);
-> +
-> +MODULE_AUTHOR("Jagan Teki <jagan@edgeble.ai>");
-> +MODULE_AUTHOR("Stephen Chen <stephen@radxa.com>");
-> +MODULE_DESCRIPTION("Jadard JD9365DA-H3 WUXGA DSI panel");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.25.1
->
+So I'll turn this question around to the net people: would a round or
+two of RFCs that don't cleanly apply to net-next be acceptable? Then I
+could submit a patch right after the next merge window? I've been
+dragging these patches around for quite some time, I can do it for
+another month :-)
