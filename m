@@ -2,176 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 902A25B1562
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 09:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E2BC5B1577
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 09:14:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbiIHHIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 03:08:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38282 "EHLO
+        id S229777AbiIHHOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 03:14:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231280AbiIHHH6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 03:07:58 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCED0A0320;
-        Thu,  8 Sep 2022 00:07:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1662620877; x=1694156877;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=g4W7H6QHrpz3Os21HlSEFI7Y9Z66W4/3/Zj9A4FqNyA=;
-  b=fhX7shF0vUh8WAMejRSVOI9FuvqDmxa38OuExBdEAz9uVY+oEU2pYrB5
-   6N76df/Ob/DnA0HOuudNpo+Hvj4HMKfqRT32X9ARRNWw5nk+UJLwye9iS
-   KVEwOKCdLD3fV9W1voFDxoKK6nnkAABFJnOq51FIHG4XMkhShYLN3qTkq
-   eWlyhXwoUjPUpcyjOYaMIo9XHUGHSBRfBB4TovytSDENlg2UJiUrUOhtU
-   OdKM+xHohdtMu2bgFEFoCpcb5bk/aH6VYQj6LLmgcgI3VketOaeAC155S
-   YmvYxU/ao8DtxVxSZIJ+upuyQbSRvv74PzrSIrNZxqTzjl9q/DbpuAmNp
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="383383404"
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; 
-   d="scan'208";a="383383404"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2022 00:07:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; 
-   d="scan'208";a="757085225"
-Received: from lkp-server02.sh.intel.com (HELO 95dfd251caa2) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 08 Sep 2022 00:07:55 -0700
-Received: from kbuild by 95dfd251caa2 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oWBdi-0007TP-22;
-        Thu, 08 Sep 2022 07:07:54 +0000
-Date:   Thu, 8 Sep 2022 15:06:55 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Weilong Chen <chenweilong@huawei.com>, yangyicong@hisilicon.com,
-        xuwei5@huawei.com, wsa@kernel.org, robh+dt@kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH next v3 1/2] i2c: hisi: Add initial device tree support
-Message-ID: <202209081409.fOmaxkP3-lkp@intel.com>
-References: <20220908025701.330210-1-chenweilong@huawei.com>
+        with ESMTP id S229508AbiIHHOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 03:14:38 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1438167DF;
+        Thu,  8 Sep 2022 00:14:35 -0700 (PDT)
+Received: by mail-qk1-f180.google.com with SMTP id b2so12211738qkh.12;
+        Thu, 08 Sep 2022 00:14:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=jg+AOV6SUgg5gcVqEx/sV2z5LMPmoCijPvtKxnVotmY=;
+        b=2LGcW2ZXZydqe+3CtUG460kn4JbI7f4a1frnIgFd0P1UQOkxAV6Re9PodUuHfAOka4
+         /1aKUfYzhtEqtyiay0/AENfBnlNMp+xBTyhnvtGpp2q9NdFZdDu26bXdVxoErSOBUdBX
+         wFBCjPpZlFDAJu3KxXX42nWxn0/0k49E1uhQ1kj3wO7aV1nrOmkc3YdFPyyPxL0BW2qQ
+         /NY1em4Rr3lPOIxXbF/mfyDSB9uOsWkzQN7DR4LHuPLnCBQC2oWaxixeoICrqFFa09PG
+         If1B9kt4s8LzTLjV6rTqMpQqoH2U8jJz6ks0FXb+d8bqZqaPQqDUa2sLiRmdR1brqEia
+         JPwg==
+X-Gm-Message-State: ACgBeo1Ujis8URhBQlc0+kpUC9nHhLC4XIuSlSsqpmmF2fvVLG2oojOu
+        EWhnf3Z2aWiak1sg1vf6dam7hov09kuyLg==
+X-Google-Smtp-Source: AA6agR6u9nhZOjkUpyjGezzriKUFeq0VrSXnT6Mu8UZKgt0GiiEgFSdfsUjkKsezWmAW0w1YSbjL3Q==
+X-Received: by 2002:a05:620a:57b:b0:6bb:f708:589f with SMTP id p27-20020a05620a057b00b006bbf708589fmr5664594qkp.112.1662621274785;
+        Thu, 08 Sep 2022 00:14:34 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id bq38-20020a05620a46a600b006b8f4ade2c9sm16464668qkb.19.2022.09.08.00.14.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Sep 2022 00:14:34 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id 130so19470460ybz.9;
+        Thu, 08 Sep 2022 00:14:34 -0700 (PDT)
+X-Received: by 2002:a25:3851:0:b0:6ad:9cba:9708 with SMTP id
+ f78-20020a253851000000b006ad9cba9708mr4254645yba.36.1662621274231; Thu, 08
+ Sep 2022 00:14:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220908025701.330210-1-chenweilong@huawei.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220902062752.56841-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220902062752.56841-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 8 Sep 2022 09:14:22 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVqq6hp=VmPs1O83gJObMYd-aF0s3KKPkkGrh7NOy0X1w@mail.gmail.com>
+Message-ID: <CAMuHMdVqq6hp=VmPs1O83gJObMYd-aF0s3KKPkkGrh7NOy0X1w@mail.gmail.com>
+Subject: Re: [PATCH v5] ARM: dts: r9a06g032-rzn1d400-db: Enable CAN1
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Weilong,
+On Fri, Sep 2, 2022 at 8:28 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> The CN10/CN11 on RZ/N1-EB board are headers to add jumpers to select which
+> CAN interface to route to the real CAN connector J16.
+>
+> For a normal use case either we need to wire CAN1 or CAN2, but not both.
+>
+> This patch enables CAN1 and disables CAN2 by default assuming CN10/CN11
+> is wired for CAN1.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Thank you for the patch! Yet something to improve:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.1.
 
-[auto build test ERROR on next-20220907]
+Gr{oetje,eeting}s,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Weilong-Chen/i2c-hisi-Add-initial-device-tree-support/20220908-105559
-base:    5957ac6635a1a12d4aa2661bbf04d3085a73372a
-config: hexagon-randconfig-r045-20220907 (https://download.01.org/0day-ci/archive/20220908/202209081409.fOmaxkP3-lkp@intel.com/config)
-compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project 1546df49f5a6d09df78f569e4137ddb365a3e827)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/679f6654e170ef08682e0b6f4ef3753b998e0193
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Weilong-Chen/i2c-hisi-Add-initial-device-tree-support/20220908-105559
-        git checkout 679f6654e170ef08682e0b6f4ef3753b998e0193
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash M=drivers/i2c/busses
+                        Geert
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/i2c/busses/i2c-hisi.c:12:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:9:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __raw_readb(PCI_IOBASE + addr);
-                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-                                                     ^
-   In file included from drivers/i2c/busses/i2c-hisi.c:12:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:9:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-                                                     ^
-   In file included from drivers/i2c/busses/i2c-hisi.c:12:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:9:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writeb(value, PCI_IOBASE + addr);
-                               ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
->> drivers/i2c/busses/i2c-hisi.c:503:25: error: use of undeclared identifier 'hisi_i2c_dts_ids'
-   MODULE_DEVICE_TABLE(of, hisi_i2c_dts_ids);
-                           ^
-   6 warnings and 1 error generated.
-
-
-vim +/hisi_i2c_dts_ids +503 drivers/i2c/busses/i2c-hisi.c
-
-   502	
- > 503	MODULE_DEVICE_TABLE(of, hisi_i2c_dts_ids);
-   504	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
