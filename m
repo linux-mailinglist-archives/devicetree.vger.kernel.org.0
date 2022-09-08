@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CA4E5B1BDD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:49:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD66A5B1BEC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:53:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231493AbiIHLto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 07:49:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37044 "EHLO
+        id S229535AbiIHLxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 07:53:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231497AbiIHLtl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:49:41 -0400
+        with ESMTP id S229620AbiIHLxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:53:47 -0400
 Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66D7621801
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:49:38 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id m15so7603421lfl.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:49:38 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E952E12756C
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:53:42 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id p7so27298081lfu.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:53:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=srioTK6KsCPJy0yU+c6+tCB1HEEi/KQ9lo+WsB/Dyi4=;
-        b=pe7ujTnMRAtFZJxkWsN5z/obj9g6VXrSDkMirgfCrTziYv9bw0qHLSdPjKnOaBZMu2
-         gFJHxrTrCEmPkpDpAoKuRyCfBfxIyeyONErIBJBGmNEtLdN1GrlbWPUHvZzUtw5CmJvO
-         CobR7oIhLc4ioRiIOpMh6Gf6ZVRwlpDxyn16h8IddatEBjNJsbEfifqrjI7tLDKNaksv
-         mmxNKAYOMD8xwq+7fIaDoF5ZejgFoHy9vmRUnZDu4sE6yk5aYm7ePzKx1oXcd4SsFI1A
-         +9IhMt7OczyNJ75DwKHYVHqgL9qNwbGI2NvA3czQldQWgNYoviTpLAlJBZN3mX/wEKQm
-         awoQ==
+        bh=iRuj9MmFc1SCJLCaHL8wU+6QRDALzTMmNIxwRLm5wlo=;
+        b=E1ebbQoHrW+/VfxPqYc0KjatYpsu58UrKW5S2ZZc8M4onNSkHDJ/19V6NhbIEWN/ZC
+         EW+bdOU0fygsFZa9BgSirhgqcjkhddyYn5cF2JeaGU9o31x/zMlvFjl1CgITkBjeIsiI
+         1YZB2rllshoEspWfpAnpe9GlwDYVawBxurs964wKLXuLGywagcM1vpngXdZkUo8kx2kt
+         GHi3NblhHSn3T781q9eYtTjEBMAZUhDftqT0xesHbPMzEMKdDX14l+9PNb5Zj7nK6eiP
+         jrYGTf1xvhdxJ51+ROO4/LYtMWk1pVdtp0Ks3+bp0+eaiJ35ht+AO0EJn6RUlO7bm5cm
+         WfnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=srioTK6KsCPJy0yU+c6+tCB1HEEi/KQ9lo+WsB/Dyi4=;
-        b=vS1fHg29dt4DymDeXP9r/IX7FaIQY+fut1uNMR4MgMr/4+/Uc3IKfSFYlTyIX+l2uT
-         tWq2E9anHwy9ajmfC+2MzPgvpI/BMl4fXWl96mdAjvQlYj4e5bqsI5q6oJgWCT0Q3WA8
-         hY9g3we9AeT9HEoqbV22hUvWmTKq/dITyDm8/F0OQ675EQeRDBTWQObFCWl7eIUzS/za
-         A33h83p19hk9oJc5cOOhr15dKjV5Jd1XtWssaaa6aSXMqIKvO/Ji8dGGSaJNasLTRcI/
-         47yG+WqM7dciXriLWkJpw/WS+ADAVTNjFsfAGVJCkSX7zcJpEL+m9kwInRhVDtTICaJp
-         Iz1Q==
-X-Gm-Message-State: ACgBeo24so3hpBybtcsuio5K3T3s0JEiOrgHgFikSAHPDdQFSeMo+pKv
-        bDojPgytTQwBCy0PpRkzrH5W7w==
-X-Google-Smtp-Source: AA6agR4oUsEtw6uTpZlyCNzA5SlmDM2bsf9JfE82EcGp2pWiO/h1kTgoyWh83rCQTlx51j+HQcNLnw==
-X-Received: by 2002:a05:6512:1520:b0:492:daab:8382 with SMTP id bq32-20020a056512152000b00492daab8382mr2830583lfb.151.1662637776115;
-        Thu, 08 Sep 2022 04:49:36 -0700 (PDT)
+        bh=iRuj9MmFc1SCJLCaHL8wU+6QRDALzTMmNIxwRLm5wlo=;
+        b=m+5JdsMBlwlEBi29Nn/PVxFn32ZiKG71MnGks7i5vQeyDYBc8WG/JqGieGiTpmzIoE
+         PtX74//+GxCR8o4gTNY+VFgQnWK+D09mLLGSBuhdmDO/nL59BUaYnZIeB33kUuDP36IE
+         K0h9fQx/sd4siq9PMnr55uwrCYndM9KEM0as97QDv2MPx96S531ft5mvjqMvikRrZelF
+         tVjSA31WAMLCypPI6egdBohaWvS1nomRNPeprZIZtpmj8vjKmO3qzIozqWeG/spwppgq
+         6KmsH59mV5qqYY5sK0Iy450MlN6AejyvCwjFR/Mv4YU8CpsXYTfWaGmfqiCypib+2vTg
+         Seug==
+X-Gm-Message-State: ACgBeo2d/pu5FSglwNrcFcb6BEYN8MZaXmLqQBpKmKcet7RBSCE1qQfx
+        DoTgguo15J9niazylGLbGT3IpA==
+X-Google-Smtp-Source: AA6agR4iAQdU6oLoT8Tvfczu2zMwGG5Qj5yA7hI8XaLTD00qADWEc75SRlKViM+IV/RWze1lIH5TOQ==
+X-Received: by 2002:a05:6512:259f:b0:494:65bd:7188 with SMTP id bf31-20020a056512259f00b0049465bd7188mr2489781lfb.501.1662638021279;
+        Thu, 08 Sep 2022 04:53:41 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o9-20020a05651205c900b004947e89ae4bsm202530lfo.294.2022.09.08.04.49.34
+        by smtp.gmail.com with ESMTPSA id t11-20020a05651c204b00b00261e50a2534sm3128127ljo.33.2022.09.08.04.53.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 04:49:35 -0700 (PDT)
-Message-ID: <aeabc681-9416-d25d-693a-30ba99f1796d@linaro.org>
-Date:   Thu, 8 Sep 2022 13:49:34 +0200
+        Thu, 08 Sep 2022 04:53:40 -0700 (PDT)
+Message-ID: <d447edf0-1726-d742-d932-d24707657691@linaro.org>
+Date:   Thu, 8 Sep 2022 13:53:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 2/8] ASoC: rockchip: rk3308: add audio card bindings
+Subject: Re: [PATCH 1/8] ASoC: rockchip: rk3308: add internal audio codec
+ bindings
 Content-Language: en-US
 To:     luca.ceresoli@bootlin.com, alsa-devel@alsa-project.org,
         linux-rockchip@lists.infradead.org
@@ -71,14 +72,14 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Johan Jonker <jbx6244@gmail.com>,
         Chris Morgan <macromorgan@hotmail.com>
 References: <20220907142124.2532620-1-luca.ceresoli@bootlin.com>
- <20220907142124.2532620-3-luca.ceresoli@bootlin.com>
+ <20220907142124.2532620-2-luca.ceresoli@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220907142124.2532620-3-luca.ceresoli@bootlin.com>
+In-Reply-To: <20220907142124.2532620-2-luca.ceresoli@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,104 +90,186 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 07/09/2022 16:21, luca.ceresoli@bootlin.com wrote:
 > From: Luca Ceresoli <luca.ceresoli@bootlin.com>
 > 
-> Add device tree bindings document for the audio card based on the internal
-> I2S of the Rockchip RK3308 SoC.
+> Add device tree bindings document for the internal audio codec of the
+> Rockchip RK3308 SoC.
+> 
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 Use subject prefixes matching the subsystem (git log --oneline -- ...).
 
-> 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 > ---
->  .../rockchip,rk3308-audio-graph-card.yaml     | 50 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  2 files changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/rockchip,rk3308-audio-graph-card.yaml
+>  .../bindings/sound/rockchip,rk3308-codec.yaml | 102 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 ++
+>  .../dt-bindings/sound/rockchip,rk3308-codec.h |  15 +++
+>  3 files changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/rockchip,rk3308-codec.yaml
+>  create mode 100644 include/dt-bindings/sound/rockchip,rk3308-codec.h
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/rockchip,rk3308-audio-graph-card.yaml b/Documentation/devicetree/bindings/sound/rockchip,rk3308-audio-graph-card.yaml
+> diff --git a/Documentation/devicetree/bindings/sound/rockchip,rk3308-codec.yaml b/Documentation/devicetree/bindings/sound/rockchip,rk3308-codec.yaml
 > new file mode 100644
-> index 000000000000..8445a69dcdbb
+> index 000000000000..f3458f86ef06
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/rockchip,rk3308-audio-graph-card.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/sound/rockchip,rk3308-codec.yaml
+> @@ -0,0 +1,102 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/rockchip,rk3308-audio-graph-card.yaml#
+> +$id: http://devicetree.org/schemas/sound/rockchip,rk3308-codec.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Rockchip RK3308 Audio card based on internal I2S
+> +title: Rockchip RK3308 Internal Codec
+> +
+> +description: |
+> +  This is the audio codec embedded in the Rockchip RK3308
+> +  SoC. It has 8 24-bit ADCs and 2 24-bit DACs. The maximum supported
+> +  sampling rate is 192 kHz.
+> +
+> +  It is connected internally to one out of a selection of the internal I2S
+> +  controllers.
+> +
+> +  The RK3308 audio codec has 8 independent capture channels, but some
+> +  features work on stereo pairs called groups:
+> +    * grp 0 -- MIC1 / MIC2
+> +    * grp 1 -- MIC3 / MIC4
+> +    * grp 2 -- MIC5 / MIC6
+> +    * grp 3 -- MIC7 / MIC8
 > +
 > +maintainers:
 > +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
 > +
-> +allOf:
-> +  - $ref: /schemas/sound/audio-graph.yaml#
-> +
 > +properties:
 > +  compatible:
-> +    const: rockchip,rk3308-audio-graph-card
+> +    const: rockchip,rk3308-codec
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the General Register Files (GRF)
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock for TX
+> +      - description: clock for RX
+> +      - description: AHB clock driving the interface
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mclk_tx
+> +      - const: mclk_rx
+> +      - const: hclk
+> +
+> +  resets: true
 
-Is "graph" part of device name or you just put it there because of other
-schema? The compatible should reflect the device name, not some other
-pieces in Linux or in bindings.
+maxItems: 1
 
+> +
+> +  reset-names:
+> +    items:
+> +      - const: "acodec"
+
+No quotes.
+
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  rockchip,micbias-avdd-multiplier:
+> +    description: |
+> +      Voltage setting for the MICBIAS pins expressed as a multiplier of
+> +      AVDD.
+> +
+> +      E.g. if rockchip,micbias-avdd-multiplier = 7 (x0.85) and AVDD = 3v3,
+> +      then MIC BIAS voltage will be 3.3 V * 0.85 = 2.805 V.
+> +
+> +      Value 0: multiplier = 0.50
+> +      Value N: multiplier = 0.50 + 0.05 * N
+> +      Value 7: multiplier = 0.85
+
+Use logical values/units. The units is 0.05, so "-percent" in node name.
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+Then drop ref and use enum.
+
+> +
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 7
 > +
 > +required:
 > +  - compatible
+> +  - reg
+> +  - rockchip,grf
+> +  - clocks
+> +  - resets
+> +  - "#sound-dai-cells"
 > +
-> +unevaluatedProperties: false
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    sound {
-> +        compatible = "rockchip,rk3308-audio-graph-card";
-> +        dais = <&i2s_8ch_2_port>;
+> +    #include <dt-bindings/clock/rk3308-cru.h>
+> +
+> +    acodec: acodec@ff560000 {
+
+codec
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +        compatible = "rockchip,rk3308-codec";
+> +        reg = <0xff560000 0x10000>;
+> +        rockchip,grf = <&grf>;
+> +        clock-names = "mclk_tx", "mclk_rx", "hclk";
+> +        clocks = <&cru SCLK_I2S2_8CH_TX_OUT>,
+> +                 <&cru SCLK_I2S2_8CH_RX_OUT>,
+> +                 <&cru PCLK_ACODEC>;
+> +        reset-names = "acodec";
+> +        resets = <&cru SRST_ACODEC_P>;
+> +        #sound-dai-cells = <0>;
 > +    };
 > +
-> +    i2s_8ch_2 {
-
-No underscores in node names. Generic node names. This does not look
-like related example...
-
-> +        i2s_8ch_2_port: port {
-> +            i2s_8ch_2_endpoint: endpoint {
-> +                remote-endpoint = <&acodec_endpoint>;
-> +                dai-format = "i2s";
-> +
-> +                /* The RK3308 acodec has no clock dividers, use the CPU */
-> +                bitclock-master = <&i2s_8ch_2_endpoint>;
-> +                frame-master = <&i2s_8ch_2_endpoint>;
-> +            };
-> +        };
-> +    };
-> +
-> +    acodec {
-
-codec or audio-codec
-
-> +        port {
-> +            acodec_endpoint: endpoint {
-> +                remote-endpoint = <&i2s_8ch_2_endpoint>;
-> +            };
-> +        };
-> +    };
+> +...
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index d53a8e74cb1e..079bdd95dc49 100644
+> index 895e8ace80dd..d53a8e74cb1e 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
-> @@ -17594,6 +17594,11 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/sound/rockchip,rk3308-codec.yaml
->  F:	include/dt-bindings/sound/rockchip,rk3308-codec.h
+> @@ -17588,6 +17588,12 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/media/rockchip-rga.yaml
+>  F:	drivers/media/platform/rockchip/rga/
 >  
-> +ROCKCHIP RK3308 SOUND CARD DRIVER
+> +ROCKCHIP RK3308 INTERNAL AUDIO CODEC
 > +M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
 > +S:	Maintained
-> +F:	Documentation/devicetree/bindings/sound/rockchip,rk3308-audio-graph-card.yaml
+> +F:	Documentation/devicetree/bindings/sound/rockchip,rk3308-codec.yaml
+> +F:	include/dt-bindings/sound/rockchip,rk3308-codec.h
 > +
 >  ROCKCHIP VIDEO DECODER DRIVER
 >  M:	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
 >  L:	linux-media@vger.kernel.org
+> diff --git a/include/dt-bindings/sound/rockchip,rk3308-codec.h b/include/dt-bindings/sound/rockchip,rk3308-codec.h
+> new file mode 100644
+> index 000000000000..9f1b210a048e
+> --- /dev/null
+> +++ b/include/dt-bindings/sound/rockchip,rk3308-codec.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
 
+Dual license.
+
+> +#ifndef __DT_BINDINGS_ROCKCHIP_RK3308_CODEC_H__
+> +#define __DT_BINDINGS_ROCKCHIP_RK3308_CODEC_H__
+> +
+> +#define RK3308_CODEC_MICBIAS_AVDD_x_0_50	0
+> +#define RK3308_CODEC_MICBIAS_AVDD_x_0_55	1
+> +#define RK3308_CODEC_MICBIAS_AVDD_x_0_60	2
+> +#define RK3308_CODEC_MICBIAS_AVDD_x_0_65	3
+> +#define RK3308_CODEC_MICBIAS_AVDD_x_0_70	4
+> +#define RK3308_CODEC_MICBIAS_AVDD_x_0_75	5
+> +#define RK3308_CODEC_MICBIAS_AVDD_x_0_80	6
+> +#define RK3308_CODEC_MICBIAS_AVDD_x_0_85	7
+
+You store register values in the bindings. Nope. Bindings are not for this.
 
 Best regards,
 Krzysztof
