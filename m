@@ -2,77 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5665B202E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEBBB5B202F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:12:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231812AbiIHOL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 10:11:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37382 "EHLO
+        id S231475AbiIHOMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 10:12:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231475AbiIHOL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:11:26 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C038A1D59
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 07:11:24 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id v6so6657134ljj.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 07:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=o3OotFGc4zQb4T1etN8tA5qJ2OKFzMyTl9qsFJ7tIeo=;
-        b=GMlEMT15K7e8wundvnjKKiFp+5WSTRSv9HE+qMfJkko93+KlsoM6ZAWvPUFyrvb3s3
-         kdGImWCvPd9JMSqYz91qX6yrBCJKYTu7FhZTaeGVQEz20VCOqzzpJBGBQiyRZIZkAGrF
-         G77e13UzyXEjotfPjWpFQLP3Fleab5TwfsF0QZNGxXhl/WJY7Yay0NMH8b7NDi1CzG7O
-         IdYKXbdn5uD4f5VcFONhu7RzYG/bhvKODttGt5z89L1LdKw+tkWAyQzZxqrNmpaN8ntu
-         yA/bBYASlJRxyXI4XmMKLRlkrxMNgUrzL8J8ysrbrpdS+c5cF3j2JllaP1lFwpjTrB7B
-         Cydg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=o3OotFGc4zQb4T1etN8tA5qJ2OKFzMyTl9qsFJ7tIeo=;
-        b=wcFR8wIQ7UwT3WYR/UwND+vK5yMSzykjGSi2cZ2oMSdxDNah+9TsMVo4t0cPygSJzK
-         OrEAIYnIPjydY+HN1CfBnQ0ldXDPYGCKOvXVDc1xdC1o1UOxxnPULdbP4YeB+ti+Z/Jd
-         yhEDRNgsfpVWeGISeT9ZmfE1/7JcqMvYteKRIfj4Qn1EoQNFpZEn5B9AtKv4ncHagdmL
-         GRaEq7cuMhUtZ1bzBYshnahasP4IlExaY7PlKNo5rwA/sR5paLcL7ypC/NtDUjqHuH4J
-         /qNkuV4CH7q8sECY2bksEJogUrVaLN8Ep3siv+UMSD4zVKRyj2zpQ7NO4Mm8COWI56bM
-         wbwA==
-X-Gm-Message-State: ACgBeo2CJr05Wj/aEFM7u9o8/epfzqF0doTCYMRljZg4xPXv+9+l2nq2
-        RI6E9RJFEHorVdBYcpH/gKzfzQ==
-X-Google-Smtp-Source: AA6agR6aTA4lP/gd7HEc42s9ZZ6P5V/ewmsp1xku/A5U67jnYBHwWQsUuQ4IXsdHJvmcTqOITzRJjA==
-X-Received: by 2002:a2e:be89:0:b0:25f:e95a:7c6e with SMTP id a9-20020a2ebe89000000b0025fe95a7c6emr2423281ljr.468.1662646282632;
-        Thu, 08 Sep 2022 07:11:22 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t3-20020a056512208300b00498f51af149sm19257lfr.308.2022.09.08.07.11.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 07:11:22 -0700 (PDT)
-Message-ID: <e09e3dc0-1abe-d7c5-e05c-a4d5e1f2911b@linaro.org>
-Date:   Thu, 8 Sep 2022 16:11:20 +0200
+        with ESMTP id S230083AbiIHOMT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:12:19 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B0EA4B06;
+        Thu,  8 Sep 2022 07:12:12 -0700 (PDT)
+X-UUID: 05293283b0fa4fe497789c69c83cda95-20220908
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=0UoEd5b55tCizD086zkm12TKFfpaeGwDnJSOjTxJDLI=;
+        b=VYFvXij/ELxMrPdDtafm0fyQczUnjapkfwMJne5LulYQxF60B1mEOBsnvFFLrOvoApwnQIz6t1jCtrAN9NvZ7CrWL6QALTsQuoscIEZgqEUH7rR/wn4q6mzZo7rM93j5jmYcI/OFefPP9H1VcCckvqQT50ZuOxDGHspbSIG73aI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:022636c4-be03-4ea5-be6e-46a664c176f9,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:0
+X-CID-META: VersionHash:84eae18,CLOUDID:de9c0d5d-5ed4-4e28-8b00-66ed9f042fbd,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 05293283b0fa4fe497789c69c83cda95-20220908
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 915343096; Thu, 08 Sep 2022 22:12:08 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 8 Sep 2022 22:12:07 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 8 Sep 2022 22:12:07 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH] drm/mediatek: Fix wrong dither settings
+Date:   Thu, 8 Sep 2022 22:12:05 +0800
+Message-ID: <20220908141205.18256-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 01/11] dt-bindings: msm: dsi-controller-main: Drop
- redundant phy-names
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
-        sean@poorly.run, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, quic_mkrishn@quicinc.com,
-        agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220907000105.786265-1-bryan.odonoghue@linaro.org>
- <20220907000105.786265-2-bryan.odonoghue@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220907000105.786265-2-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,27 +67,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2022 02:00, Bryan O'Donoghue wrote:
-> Adding in msm8939 which is based msm8916 dtsi I stumbled across a binding
-> check complaining about the phy name for msm8916 which we were reusing for
-> msm8939.
-> 
-> The currently inconsistent upstream dtsi naming of "dsi" and "dsi-phy" is
-> not captured in the yaml for this driver.
-> 
-> The driver however doesn't care about the name of DSI phy, hence the yaml
-> check is redundant.
-> 
-> Both Krzysztof and Rob suggested we could drop the phy-names entirely if it
-> really isn't a dependency.
-> 
-> So, drop the inconsistent and unnecessary phy-names field from the yaml.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+The width and height arguments in the cmdq packet for mtk_dither_config()
+are inverted. We fix the incorrect width and height for dither settings
+in mtk_dither_config().
 
+Fixes: 73d3724745db ("drm/mediatek: Adjust to the alphabetic order for mediatek-drm")
+Co-developed-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+---
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+index 2d72cc5ddaba..6b6d5335c834 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+@@ -157,7 +157,7 @@ static void mtk_dither_config(struct device *dev, unsigned int w,
+ {
+ 	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
+ 
+-	mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs, DISP_REG_DITHER_SIZE);
++	mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv->regs, DISP_REG_DITHER_SIZE);
+ 	mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv->regs,
+ 		      DISP_REG_DITHER_CFG);
+ 	mtk_dither_set_common(priv->regs, &priv->cmdq_reg, bpc, DISP_REG_DITHER_CFG,
+-- 
+2.18.0
 
-
-Best regards,
-Krzysztof
