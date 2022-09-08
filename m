@@ -2,293 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF5945B2800
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 22:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C06145B2803
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 22:57:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbiIHU5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 16:57:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59482 "EHLO
+        id S229560AbiIHU5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 16:57:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbiIHU5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 16:57:46 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8965D9E8A
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 13:57:44 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id x14so14436268lfu.10
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 13:57:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=bDtEAaGq2iBf5yKh0rc6ZMk1xs6MJoWbJS5M17VY8fw=;
-        b=jFPUTiNrslkoB59czkZHmJSjd9yqM0gJjjcm9VYqufpAO/kryAbRwLXSL4wmhVYlPZ
-         ClefxYIZIpXiDf0gu+A6dmkWnZaOofmD8eTA/Vc2B4t0ZUTIcAIuhU5Hj9jyyZBiSOzw
-         sOM8k7EKTuEixJaV74b5KefVR4RE+CNkubT8ZcWd/93/HjfMBtE5ps8BdWYb57wdqwPm
-         JUh12NSTzqhXbpc0TCAkRphfW7/VJ9Et4R7cHpGJSxFcRBDEl0rD0CuFj9m3w/132+Nh
-         /src0chM5S+pGEl1U00YspjuYiwntH7x1sQxt1E67COGM+gAH0A1H7qMjSxsdfkq6m4X
-         c9HQ==
+        with ESMTP id S229494AbiIHU5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 16:57:51 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00111F10CF;
+        Thu,  8 Sep 2022 13:57:50 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-12803ac8113so14426622fac.8;
+        Thu, 08 Sep 2022 13:57:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=bDtEAaGq2iBf5yKh0rc6ZMk1xs6MJoWbJS5M17VY8fw=;
-        b=kQAEvpblqE52FqUsdzbyZYO6cCoXFmpzff6Tao3dpeCfcSRcr1WKVxs2yYKQjSpe6t
-         zCzjjC1kswXH+U8nsUKho7YNOqBS2xTZBBuW6zhP2Rp39FuFig88wpbaIXZqtDyy2tjL
-         ukiPXnh/o26Nvwh18R5HgalegBf9wVR/ZHyvmcbgq6yd5jq4u5my5/8dtN+kCfPhxiCy
-         joMdUFMj4GK70QGhMfaVzafakAUAn9b5mcWnxBdPk7HlBZEsPUWF4TSPvUU91wcf98Pt
-         1WEzi7mndegYooNW84OKJd0+XOolO0hXwvJKZPmgJrfjLT1eQgFEaLcmx3uBSJp7YJsi
-         BCfg==
-X-Gm-Message-State: ACgBeo1xPaTWqLkYq+l8fU1fBnxVsV0wlV6sjWFgWcL/PBjd5aT+j5aI
-        NdzaEbyCvIlJyUs/DmNk8iNy2g==
-X-Google-Smtp-Source: AA6agR50bDBRTSgXh4T107H5OSWdITXKPounRYbBEgy7WIzNFf4UxwY04eX35+hwN7hnXQQK5CdMTg==
-X-Received: by 2002:ac2:5a09:0:b0:495:79c7:f2f9 with SMTP id q9-20020ac25a09000000b0049579c7f2f9mr3121980lfn.422.1662670663103;
-        Thu, 08 Sep 2022 13:57:43 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id u29-20020ac25bdd000000b00492c549f845sm3176383lfn.1.2022.09.08.13.57.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 13:57:42 -0700 (PDT)
-Message-ID: <e5c7b34e-2a1a-840a-7f3f-652d8027fa4d@linaro.org>
-Date:   Thu, 8 Sep 2022 23:57:41 +0300
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=AkYb42H6PAnMFryGXinv8S02AN5zWvsr2AuuaVfXjQs=;
+        b=fuc8rIYleXKiEGVfvlediUn/nvbNz62Zw86k1yboZlb6J1NEyiKFxym3qQI1dUS+4T
+         tVyziKqskPfnd4B5NjjxZAdIkNWdwowh9eN/YPM2sZO6lOPQABbZ+wi2zTFRb99eq8Cy
+         uhosGWWEgNhiA99akoqoL7Jjhkvhqpv8bYFTkI7AE4jyDYSkZ5ufoDI9c/uF7XD8rGRi
+         NT++VtX+VvGN+/iKmuDFEfNX9LODaPYY0Y031MCsGRpM9i6FWhXUzbILqH5zu0KS34S3
+         g18UgAoUXrI3KgIl0eK7alOKJU2RENL6FeGz4+bQiC2f9C7DTxeMH2SzL6IzWot/+ux7
+         R48Q==
+X-Gm-Message-State: ACgBeo131EEXIgtzUK9dhmvBMQT67GVJgXVrNcKLQajOuFrekfrdQHLF
+        DDb45paOKeceIFM9xnuQNg==
+X-Google-Smtp-Source: AA6agR4yS3IFwNYkq3dWRIdhs/oC9/Z9BNOXONwiLcb2gK5t2VzNYKd0HFd+svNy5YDQYIAS3f0tZg==
+X-Received: by 2002:a05:6870:5b84:b0:10c:d1fa:2f52 with SMTP id em4-20020a0568705b8400b0010cd1fa2f52mr3064402oab.92.1662670670169;
+        Thu, 08 Sep 2022 13:57:50 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id fo7-20020a0568709a0700b001274845032dsm116555oab.13.2022.09.08.13.57.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Sep 2022 13:57:49 -0700 (PDT)
+Received: (nullmailer pid 3326711 invoked by uid 1000);
+        Thu, 08 Sep 2022 20:57:48 -0000
+Date:   Thu, 8 Sep 2022 15:57:48 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Daire.McNamara@microchip.com
+Cc:     Cyril.Jean@microchip.com, linux-riscv@lists.infradead.org,
+        kw@linux.com, Conor.Dooley@microchip.com,
+        david.abdurachmanov@gmail.com, devicetree@vger.kernel.org,
+        lpieralisi@kernel.org, aou@eecs.berkeley.edu, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, linux-pci@vger.kernel.org,
+        Padmarao.Begari@microchip.com, krzysztof.kozlowski+dt@linaro.org,
+        bhelgaas@google.com, heinrich.schuchardt@canonical.com
+Subject: Re: [PATCH v1 1/4] dt-bindings: PCI: microchip: add fabric address
+ translation properties
+Message-ID: <20220908205748.GA3240357-robh@kernel.org>
+References: <20220902142202.2437658-1-daire.mcnamara@microchip.com>
+ <20220902142202.2437658-2-daire.mcnamara@microchip.com>
+ <CAL_Jsq+5pKyOL8eu5YhQy9pLATd_gG_D71sR8bUp1GA6kif=nA@mail.gmail.com>
+ <173950d1b76e13c1476f196afc0e804e93d6e602.camel@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH 3/3] thermal: qcom: tsens: Add data for MSM8909
-Content-Language: en-GB
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20220627131415.2868938-1-stephan.gerhold@kernkonzept.com>
- <20220627131415.2868938-4-stephan.gerhold@kernkonzept.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220627131415.2868938-4-stephan.gerhold@kernkonzept.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <173950d1b76e13c1476f196afc0e804e93d6e602.camel@microchip.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2022 16:14, Stephan Gerhold wrote:
-> The MSM8909 SoC has 5 thermal sensors in a TSENS v0.1 block similar to
-> MSM8916, except that the bit offsets in the qfprom were changed.
-> Also, some fixed correction factors are needed as workaround because the
-> factory calibration apparently was not reliable enough.
+On Mon, Sep 05, 2022 at 02:54:07PM +0000, Daire.McNamara@microchip.com wrote:
+> On Fri, 2022-09-02 at 11:28 -0500, Rob Herring wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > On Fri, Sep 2, 2022 at 9:22 AM <daire.mcnamara@microchip.com> wrote:
+> > > From: Conor Dooley <conor.dooley@microchip.com>
+> > > 
+> > > On PolarFire SoC both in- & out-bound address translations occur in two
+> > > stages. The specific translations are tightly coupled to the FPGA
+> > > designs and supplement the {dma-,}ranges properties. The first stage of
+> > > the translation is done by the FPGA fabric & the second by the root
+> > > port.
+> > > Add two properties so that the translation tables in the root port's
+> > > bridge layer can be configured to account for the translation done by
+> > > the FPGA fabric.
+> > 
+> > I'm skeptical that ranges/dma-ranges can't handle what you need.
+> > Anything in this area is going to need justification 'ranges doesn't
+> > work because x, y, z...'.
+> > 
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> > > ---
+> > >  .../bindings/pci/microchip,pcie-host.yaml     | 107 ++++++++++++++++++
+> > >  1 file changed, 107 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> > > index 23d95c65acff..29bb1fe99a2e 100644
+> > > --- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> > > +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> > > @@ -71,6 +71,113 @@ properties:
+> > >      minItems: 1
+> > >      maxItems: 6
+> > > 
+> > > +  microchip,outbound-fabric-translation-ranges:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +    minItems: 1
+> > > +    maxItems: 32
+> > > +    description: |
+> > > +      The CPU-to-PCIe (outbound) address translation takes place in two stages.
+> > > +      Depending on the FPGA bitstream, the outbound address translation tables
+> > > +      in the PCIe root port's bridge layer will need to be configured to account
+> > > +      for only its part of the overall outbound address translation.
+> > > +
+> > > +      The first stage of outbound address translation occurs between the CPU address
+> > > +      and an intermediate "FPGA address". The second stage of outbound address
+> > > +      translation occurs between this FPGA address and the PCIe address. Use this
+> > > +      property, in conjunction with the ranges property, to divide the overall
+> > > +      address translation into these two stages so that the PCIe address
+> > > +      translation tables can be correctly configured.
+> > 
+> > Sounds like you need 2 levels of ranges/dma-ranges.
+> > 
+> > / {
+> >     fpga-bus {
+> >         ranges = ...
+> >         dma-ranges = ...
+> >         pcie@... {
+> >             ranges = ...
+> >             dma-ranges = ...
+> >         };
+> >     };
+> > };
+> Thanks a million for looking at this! Very much appreciated.
 > 
-> Add the defines and calibration function for MSM8909 in the existing
-> tsens-v0_1.c driver to make the thermal sensors work on MSM8909.
-> The changes are derived from the original msm-3.18 kernel [1] from
-> Qualcomm but cleaned up and adapted to the driver in mainline.
+> So, this is what I tried.  I've cut down the dts I used to what I think is the minimum
+> fragment to discuss the issue I'm facing.
 > 
-> [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.7.7.c26-08600-8x09.0/drivers/thermal/msm-tsens.c
+> So, I replaced this stanza:
 > 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> ---
->   drivers/thermal/qcom/tsens-v0_1.c | 119 +++++++++++++++++++++++++++++-
->   drivers/thermal/qcom/tsens.c      |   3 +
->   drivers/thermal/qcom/tsens.h      |   2 +-
->   3 files changed, 122 insertions(+), 2 deletions(-)
+> pcie: pcie@3000000000 {
+>     ...
+>     reg = <0x30 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
+>     reg-names = "cfg", "apb";
+>     ranges = <0x0000000 0x0 0x0000000 0x30 0x0000000 0x0 0x8000000>,
+>              <0x3000000 0x0 0x8000000 0x30 0x8000000 0x0 0x80000000>;
+>     ...
+> };
 > 
-> diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-> index f136cb350238..e17c4f9d9aa5 100644
-> --- a/drivers/thermal/qcom/tsens-v0_1.c
-> +++ b/drivers/thermal/qcom/tsens-v0_1.c
-> @@ -15,6 +15,48 @@
->   #define TM_Sn_STATUS_OFF			0x0030
->   #define TM_TRDY_OFF				0x005c
->   
-> +/* eeprom layout data for 8909 */
-> +#define MSM8909_CAL_SEL_MASK	0x00070000
-> +#define MSM8909_CAL_SEL_SHIFT	16
-> +
-> +#define MSM8909_BASE0_MASK	0x000000ff
-> +#define MSM8909_BASE1_MASK	0x0000ff00
-> +#define MSM8909_BASE0_SHIFT	0
-> +#define MSM8909_BASE1_SHIFT	8
-> +
-> +#define MSM8909_S0_P1_MASK	0x0000003f
-> +#define MSM8909_S1_P1_MASK	0x0003f000
-> +#define MSM8909_S2_P1_MASK	0x3f000000
-> +#define MSM8909_S3_P1_MASK	0x000003f0
-> +#define MSM8909_S4_P1_MASK	0x003f0000
-> +
-> +#define MSM8909_S0_P2_MASK	0x00000fc0
-> +#define MSM8909_S1_P2_MASK	0x00fc0000
-> +#define MSM8909_S2_P2_MASK_0_1	0xc0000000
-> +#define MSM8909_S2_P2_MASK_2_5	0x0000000f
-> +#define MSM8909_S3_P2_MASK	0x0000fc00
-> +#define MSM8909_S4_P2_MASK	0x0fc00000
-> +
-> +#define MSM8909_S0_P1_SHIFT	0
-> +#define MSM8909_S1_P1_SHIFT	12
-> +#define MSM8909_S2_P1_SHIFT	24
-> +#define MSM8909_S3_P1_SHIFT	4
-> +#define MSM8909_S4_P1_SHIFT	16
-> +
-> +#define MSM8909_S0_P2_SHIFT	6
-> +#define MSM8909_S1_P2_SHIFT	18
-> +#define MSM8909_S2_P2_SHIFT_0_1	30
-> +#define MSM8909_S2_P2_SHIFT_2_5	2
-> +#define MSM8909_S3_P2_SHIFT	10
-> +#define MSM8909_S4_P2_SHIFT	22
-> +
-> +#define MSM8909_D30_WA_S1	10
-> +#define MSM8909_D30_WA_S3	9
-> +#define MSM8909_D30_WA_S4	8
-> +#define MSM8909_D120_WA_S1	6
-> +#define MSM8909_D120_WA_S3	9
-> +#define MSM8909_D120_WA_S4	10
-> +
->   /* eeprom layout data for 8916 */
->   #define MSM8916_BASE0_MASK	0x0000007f
->   #define MSM8916_BASE1_MASK	0xfe000000
-> @@ -223,6 +265,68 @@
->   #define MDM9607_CAL_SEL_MASK	0x00700000
->   #define MDM9607_CAL_SEL_SHIFT	20
->   
-> +static int calibrate_8909(struct tsens_priv *priv)
-> +{
-> +	u32 *qfprom_cdata, *qfprom_csel;
-> +	int base0, base1, mode, i;
-> +	u32 p1[5], p2[5];
-> +
-> +	qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
-> +	if (IS_ERR(qfprom_cdata))
-> +		return PTR_ERR(qfprom_cdata);
-> +
-> +	qfprom_csel = (u32 *)qfprom_read(priv->dev, "calib_sel");
-> +	if (IS_ERR(qfprom_csel)) {
-> +		kfree(qfprom_cdata);
-> +		return PTR_ERR(qfprom_csel);
-> +	}
-> +
-> +	mode = (qfprom_csel[0] & MSM8909_CAL_SEL_MASK) >> MSM8909_CAL_SEL_SHIFT;
-> +	dev_dbg(priv->dev, "calibration mode is %d\n", mode);
-> +
-> +	switch (mode) {
-> +	case TWO_PT_CALIB:
-> +		base1 = (qfprom_csel[0] & MSM8909_BASE1_MASK) >> MSM8909_BASE1_SHIFT;
-> +		p2[0] = (qfprom_cdata[0] & MSM8909_S0_P2_MASK) >> MSM8909_S0_P2_SHIFT;
-> +		p2[1] = (qfprom_cdata[0] & MSM8909_S1_P2_MASK) >> MSM8909_S1_P2_SHIFT;
-> +		p2[2] = (qfprom_cdata[0] & MSM8909_S2_P2_MASK_0_1) >> MSM8909_S2_P2_SHIFT_0_1;
-> +		p2[2] |= (qfprom_cdata[1] & MSM8909_S2_P2_MASK_2_5) << MSM8909_S2_P2_SHIFT_2_5;
-> +		p2[3] = (qfprom_cdata[1] & MSM8909_S3_P2_MASK) >> MSM8909_S3_P2_SHIFT;
-> +		p2[4] = (qfprom_cdata[1] & MSM8909_S4_P2_MASK) >> MSM8909_S4_P2_SHIFT;
+> with this two-level stanza:
+> 
+> fpga_bus: fpga-bus {
+>     #address-cells = <2>;
+>     #size-cells = <2>;
+>     ranges = <0 0 0x30 0 0x40 0>;
+>     compatible = "simple-bus";
+>     ...
+> 
+>     pcie: pcie@0 {
+>         reg = <0x0 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
+>         reg-names = "cfg", "apb";
+>         ranges = <0x0000000 0x0 0x0000000 0 0x0000000 0x0 0x8000000>,
+>                  <0x3000000 0x0 0x8000000 0 0x8000000 0x0 0x80000000>;
+>         ...
+>     };
+> };
+> 
+> and I ran into two problems:
+> 1) the ranges presented to the driver via  resource_list_for_each_entry(entry, &bridge->windows) 
+>    were unchanged. The start and end of both resources were still in 0x30'0000'0000 space, 
+>    not 0x0000'0000 as I'd hoped. The two levels of range had been amalgamated before 
+>    presentation to the rootport driver, so my initial problem was unchanged ...
 
-Please use nvmem_cell_read_* to read these values. This would allow you 
-to push all the possible si_pi definitions into the DT and use mode to 
-switch between them. And mode can be read using the nvmem_cell_read_* too.
+Yes, that's expected as the translation will walk up parents to root 
+node. You will have to get the untranslated values out of 
+ranges yourself. If you use the range parsing functions on the parent 
+node ranges, you'll get the 0 from of_range.bus_addr.
 
-> +		for (i = 0; i < priv->num_sensors; i++)
-> +			p2[i] = ((base1 + p2[i]) << 2);
-> +		p2[1] -= MSM8909_D120_WA_S1;
-> +		p2[3] -= MSM8909_D120_WA_S3;
-> +		p2[4] -= MSM8909_D120_WA_S4;
-> +		fallthrough;
-> +	case ONE_PT_CALIB2:
-> +		base0 = (qfprom_csel[0] & MSM8909_BASE0_MASK) >> MSM8909_BASE0_SHIFT;
-> +		p1[0] = (qfprom_cdata[0] & MSM8909_S0_P1_MASK) >> MSM8909_S0_P1_SHIFT;
-> +		p1[1] = (qfprom_cdata[0] & MSM8909_S1_P1_MASK) >> MSM8909_S1_P1_SHIFT;
-> +		p1[2] = (qfprom_cdata[0] & MSM8909_S2_P1_MASK) >> MSM8909_S2_P1_SHIFT;
-> +		p1[3] = (qfprom_cdata[1] & MSM8909_S3_P1_MASK) >> MSM8909_S3_P1_SHIFT;
-> +		p1[4] = (qfprom_cdata[1] & MSM8909_S4_P1_MASK) >> MSM8909_S4_P1_SHIFT;
-> +		for (i = 0; i < priv->num_sensors; i++)
-> +			p1[i] = (((base0) + p1[i]) << 2);
-> +		p1[1] -= MSM8909_D30_WA_S1;
-> +		p1[3] -= MSM8909_D30_WA_S3;
-> +		p1[4] -= MSM8909_D30_WA_S4;
-> +		break;
-> +	default:
-> +		for (i = 0; i < priv->num_sensors; i++) {
-> +			p1[i] = 500;
-> +			p2[i] = 780;
-> +		}
-> +		break;
-> +	}
-> +
-> +	compute_intercept_slope(priv, p1, p2, mode);
-> +	kfree(qfprom_cdata);
-> +	kfree(qfprom_csel);
-> +
-> +	return 0;
-> +}
-> +
->   static int calibrate_8916(struct tsens_priv *priv)
->   {
->   	int base0 = 0, base1 = 0, i;
-> @@ -534,7 +638,7 @@ static int calibrate_9607(struct tsens_priv *priv)
->   	return 0;
->   }
->   
-> -/* v0.1: 8916, 8939, 8974, 9607 */
-> +/* v0.1: 8909, 8916, 8939, 8974, 9607 */
->   
->   static struct tsens_features tsens_v0_1_feat = {
->   	.ver_major	= VER_0_1,
-> @@ -580,6 +684,19 @@ static const struct reg_field tsens_v0_1_regfields[MAX_REGFIELDS] = {
->   	[TRDY] = REG_FIELD(TM_TRDY_OFF, 0, 0),
->   };
->   
-> +static const struct tsens_ops ops_8909 = {
-> +	.init		= init_common,
-> +	.calibrate	= calibrate_8909,
-> +	.get_temp	= get_temp_common,
-> +};
-> +
-> +struct tsens_plat_data data_8909 = {
-> +	.num_sensors	= 5,
-> +	.ops		= &ops_8909,
-> +	.feat		= &tsens_v0_1_feat,
-> +	.fields		= tsens_v0_1_regfields,
-> +};
-> +
->   static const struct tsens_ops ops_8916 = {
->   	.init		= init_common,
->   	.calibrate	= calibrate_8916,
-> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-> index 7963ee33bf75..cb7bbaa72d89 100644
-> --- a/drivers/thermal/qcom/tsens.c
-> +++ b/drivers/thermal/qcom/tsens.c
-> @@ -973,6 +973,9 @@ static const struct of_device_id tsens_table[] = {
->   	}, {
->   		.compatible = "qcom,mdm9607-tsens",
->   		.data = &data_9607,
-> +	}, {
-> +		.compatible = "qcom,msm8909-tsens",
-> +		.data = &data_8909,
->   	}, {
->   		.compatible = "qcom,msm8916-tsens",
->   		.data = &data_8916,
-> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
-> index 1471a2c00f15..752d4718f26e 100644
-> --- a/drivers/thermal/qcom/tsens.h
-> +++ b/drivers/thermal/qcom/tsens.h
-> @@ -587,7 +587,7 @@ int get_temp_common(const struct tsens_sensor *s, int *temp);
->   extern struct tsens_plat_data data_8960;
->   
->   /* TSENS v0.1 targets */
-> -extern struct tsens_plat_data data_8916, data_8939, data_8974, data_9607;
-> +extern struct tsens_plat_data data_8909, data_8916, data_8939, data_8974, data_9607;
->   
->   /* TSENS v1 targets */
->   extern struct tsens_plat_data data_tsens_v1, data_8976;
+> 
+> 2) a new issue cropped up. While the 'cfg' register property is in 0x30'0000'0000 space, 
+>    the 'abp' interface is actually delivered over a separate FIC and is in a 0x4000'0000 
+>    memory space. In the two-level stanza, it was now being provided to the rootport 
+>    driver at a base of 0x30'4000'0000 which is incorrect. This is very typical for 
+>    designers to route abp over a different FIC to axi. 
 
--- 
-With best wishes
-Dmitry
+If the fpga-bus ranges has a 1:1 entry for 0x43000000 child bus then it 
+should get translated correctly. Worst case, you may need to define a 
+child bus address outside of 0x30_00000000 range that translates back to 
+0x43000000.
 
+Rob
