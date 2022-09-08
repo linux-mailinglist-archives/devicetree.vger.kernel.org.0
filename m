@@ -2,88 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C3E5B1B99
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:35:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37EFD5B1BAA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:38:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231295AbiIHLfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 07:35:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38024 "EHLO
+        id S231476AbiIHLim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 07:38:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbiIHLfG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:35:06 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E893AE6A
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:35:02 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id b19so19509029ljf.8
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:35:02 -0700 (PDT)
+        with ESMTP id S231429AbiIHLih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:38:37 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04A2511979E
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:38:36 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id i26so11496685lfp.11
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:38:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=rGbehmmbFjGdP39Tva2lX3JsZ3RKZXRTihQXkTFVj0Y=;
-        b=u6D+fKJ2Lhfyp6EpZaftp621lBz6Wd859kwOBiqFQ3lUxvV9CWJbk8wOUpHBKAnWOJ
-         Ay19wrgdZbZWV7IS7+EwTdDnyzs1gQo+vI4ToLdDyGdhHkq1VlOwt7MAYkg9PE1lU6qo
-         F16V9/sqUWF0TWbcg/8py5MBiAGP+i7UlE06Zvuba3U2XsCSkq0BGs6XNK1XPEcmncx3
-         j5w4fQ2F/4zInUlUf2dTKh4Myma9gGm+JZNaFR8GdOtrtDQwJ1WGRKxb5AUbN+YFwZap
-         w16k9HfAxB5IseMpsnbuKf1KdTr3ZczXUc4GMFHag3eMo9Kbo/zinntSpaM1kmLh/0h9
-         UmPQ==
+        bh=grqX19KGO8eCpQz3LigCL9EjlFRHcaI3gD40UOrTb78=;
+        b=aq7Pf89eDR+03e/1BvAyg2jjoqYLAHFBBg6Jzpu+powYbJ3VkVxIalvphU7patc+AL
+         28woYXGvjt1KmUAHQAcf5IeParcnJvnbZItooWH/18XzKJ8E3DXaCYVmgx5fHqidhVXR
+         4Rt2POJc0bYdUyEcbA05kiI8YSew9OoiRuXatoiWStgki6FfqC1QafVC3ZLQSoiBl580
+         PKYNAPh2W02ywtxJ+vRnh+oO9660gC+ZoYxcmUyu2RXSVCRer1PSOAyc16KDopjGQFoj
+         Uth/jmyWrJRxyomiSsHA3JTylisEmBNH3jBl1iojO8EZjn1NkgDPKiOUHthoomm3EXSX
+         Kytg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=rGbehmmbFjGdP39Tva2lX3JsZ3RKZXRTihQXkTFVj0Y=;
-        b=OrD/LAa4lVxdMmDMEphzNQEG2pfPDoUaGAa+Z/rkzLocyzild/NGbEsEf0PnerIjcv
-         Oo2kf5pUlpUTjMSkzbJvOeC/bFUvZLHOhUIdZVHAcTz6rf6sw3vxCaketbtGqqHxgg4U
-         FkDH8gdbxXHaL+5rdndXnl/76TClkQAial43SWr/MvhlxalBDWx53Ess3lTPiOp7SKAl
-         tGQd+7GTX/bzKcoD/VeNyupx5WQGzV1bmz/lOO435dyu2WR5PZy5xLXXchsZHIaA6fpy
-         TJbAtcUO5DsEJZyE2+O1f0/aDslDRME4bvpgtWGPtgB2ooT9uwcs7M4tEecabJHsTmTU
-         +aBg==
-X-Gm-Message-State: ACgBeo08Y6llj6Fur+bMMtXSq8KMNr9U7Ha8Te4JSM17mbk1JXiJWRKL
-        Ww332Ie3O9XhP3CZ71WM6xskqwFhOJwUnQ==
-X-Google-Smtp-Source: AA6agR4ui+DsaI/rx9G71gnDc6YAJvWKPoB3zCyZaJ1nLjK+vVvOPNBMn6vOY0NTUCUZDxAiUFpecw==
-X-Received: by 2002:a05:651c:1a26:b0:269:15ee:809a with SMTP id by38-20020a05651c1a2600b0026915ee809amr2203010ljb.307.1662636900510;
-        Thu, 08 Sep 2022 04:35:00 -0700 (PDT)
+        bh=grqX19KGO8eCpQz3LigCL9EjlFRHcaI3gD40UOrTb78=;
+        b=ANFUTM7cGEkcS6maFle9fuLdi+7LVXWECv70JfTeNY41iyYg1CgUZK8FDQGwaB/uq8
+         KHCtH6gtXYmrtxRY6wTj91M6itYmv4xSnQqR+18zSJ/5ku7iyhQZLen0sHbmkx/azGgL
+         D7tKmz57ELTzmdeksIjgMq5guKpqdQyWNJerqDj43luwfIYtSIUtzjboNnMQmkzBvSFV
+         sRN9xRe9LY+O5EzbBpfHfiVXW6oqRIOs4VW+JObcyzYWoLifyPN0JvrMvh8v0zVRDpJx
+         lSqowDthgQRzvN+Llxpp4+Rwnt0viPjC0Bgc4kBd0M3f6CdvXzOvvjENsWYnPhAF+KoV
+         wsFg==
+X-Gm-Message-State: ACgBeo0vE0/tDXRI2cpTi/3faUTI/CVxIUsU+67JrEno2+N6HMszhLuC
+        fvpeDPHf4OG/WGQ4RJQ+vft8fw==
+X-Google-Smtp-Source: AA6agR7OdszDXca1mtiu9oJ1zsvD0Ie5SZlza967cSFAEmoFSH0tSdNxKFXyn0iKi2nrmxkRabnGvw==
+X-Received: by 2002:a05:6512:312d:b0:497:a3df:a08b with SMTP id p13-20020a056512312d00b00497a3dfa08bmr2406053lfd.462.1662637114396;
+        Thu, 08 Sep 2022 04:38:34 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v25-20020a05651203b900b00497aae401f8sm770409lfp.184.2022.09.08.04.34.58
+        by smtp.gmail.com with ESMTPSA id j18-20020a056512345200b004979ec19387sm1480626lfr.305.2022.09.08.04.38.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 04:34:59 -0700 (PDT)
-Message-ID: <d0dacbf4-3768-7bbf-77a5-957bb37cd2b7@linaro.org>
-Date:   Thu, 8 Sep 2022 13:34:58 +0200
+        Thu, 08 Sep 2022 04:38:33 -0700 (PDT)
+Message-ID: <43c63dce-60fc-f21e-4ca3-5ba2518b79b7@linaro.org>
+Date:   Thu, 8 Sep 2022 13:38:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/5] dt-bindings: net: Add Broadcom BCM4377 family PCIe
- Bluetooth
+Subject: Re: [PATCH v2 1/4] media: dt-bindings: Document Renesas RZ/G2L CSI-2
+ block
 Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik@cutebit.org>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220907170935.11757-1-sven@svenpeter.dev>
- <20220907170935.11757-3-sven@svenpeter.dev>
- <bcb799ea-d58e-70dc-c5c2-daaff1b19bf5@linaro.org>
- <E53D41D9-1675-42EB-BC76-3453043FCB6E@cutebit.org>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <E53D41D9-1675-42EB-BC76-3453043FCB6E@cutebit.org>
+In-Reply-To: <20220905230406.30801-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,23 +88,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2022 13:29, Martin Povišer wrote:
->>> + brcm,taurus-cal-blob:
->>> + $ref: /schemas/types.yaml#/definitions/uint8-array
->>> + description: A per-device calibration blob for the Bluetooth radio. This
->>> + should be filled in by the bootloader from platform configuration
->>> + data, if necessary, and will be uploaded to the device.
->>> + This blob is used if the chip stepping of the Bluetooth module does not
->>> + support beamforming.
->>
->> Isn't it:
->> s/beamforming/beam forming/
->> ?
+On 06/09/2022 01:04, Lad Prabhakar wrote:
+> Document the CSI-2 block which is part of CRU found in Renesas
+> RZ/G2L (and alike) SoCs.
 > 
-> Doesn’t seem like it:
-> https://www.google.com/search?hl=en&q=beam%20forming
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-OK, thanks :)
+Thank you for your patch. There is something to discuss/improve.
+
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    csi: csi2@10830400 {
+
+That's still not properly named. Node name just "csi".
+
+With that:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
