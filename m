@@ -2,111 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0A665B23B3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 18:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0477E5B23D6
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 18:47:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbiIHQiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 12:38:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53390 "EHLO
+        id S230457AbiIHQrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 12:47:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbiIHQiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 12:38:21 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3317114A47;
-        Thu,  8 Sep 2022 09:38:19 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1279948d93dso26013112fac.10;
-        Thu, 08 Sep 2022 09:38:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=lvfP/nhWsY8oBpBNFWb/Dc+zjx1n8PQQil/mT/n7D/U=;
-        b=Ugs0yxE4phL1W6ZpEIO2CGj4z/NOl+eSc8M4QWTgDnRuBiOCRLZi1dFUEpeViR5rSB
-         kJk9P7bp458LGicukOFIoiXU8OdvSaDkxkVApVSEjTXrNiOHf/gkC/0z9VorJ/UtulK6
-         c/jBUw8CCVBi+UKxpRf8mijM6+F2nA6HV0ZgxrhHUTxvUrUhGrtw/qBp5TXDvxpR2HoF
-         JCDCT5tODQrqJtFA7/A3o1Rwrqbv4kWppRo8pElh0rwGPJ/1Se+8ncR0rf2MBvKfQNAf
-         AMqbSqaR4ASzGSWWmso1hk7Ql3xd9WNRPKrYi+nSrv36EfOA5XJWJgBuzfEpwLwcFPqk
-         296g==
-X-Gm-Message-State: ACgBeo3HIwwfDe059vMrqJvSnq6OHNzf01o6As77QRou2R/Tu9yc48XD
-        kzkDCtZ+6MIdyK+n/+oE5A==
-X-Google-Smtp-Source: AA6agR5p1R0sxmWEs10gj8myVJPaGmhmAee+K/QcxXYrhsaI9dj8t3i+ioEBP5ARnjKC7yd8qecEsw==
-X-Received: by 2002:a05:6870:fb87:b0:126:2e4f:cf4d with SMTP id kv7-20020a056870fb8700b001262e4fcf4dmr2567506oab.240.1662655099196;
-        Thu, 08 Sep 2022 09:38:19 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o186-20020aca5ac3000000b0034564365bf2sm7752757oib.17.2022.09.08.09.38.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 09:38:18 -0700 (PDT)
-Received: (nullmailer pid 2863036 invoked by uid 1000);
-        Thu, 08 Sep 2022 16:38:17 -0000
-Date:   Thu, 8 Sep 2022 11:38:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Li Jun <jun.li@nxp.com>
-Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] clk: imx: imx8mp: add shared clk gate for usb
- suspend clk
-Message-ID: <20220908163817.GA2828563-robh@kernel.org>
-References: <1662547028-22279-1-git-send-email-jun.li@nxp.com>
- <1662547028-22279-2-git-send-email-jun.li@nxp.com>
+        with ESMTP id S229449AbiIHQrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 12:47:00 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 235A9B4E9B;
+        Thu,  8 Sep 2022 09:46:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=qtQp5tdiILv0tGhvoMFeR9PrV87mSTbmJDKlZd+2Xwo=; b=HtKhJIlDKAJ/7ZH7a225FlpstI
+        pLSoQwRGmhUTbEa9FpxQXUgJ8KKyQnjZSl2+gbWF163qf4Kp+/TBap7U+CpunKE/9z1RhKN+MJqCP
+        x7mNm5EUPwoLf9yh/ILb/bp9T7s6WCO74zW9J4enwNCDdQ2jM40ofiq0th8YG6v17yHYf0o+9MUcG
+        7rCkXOcIvvXmwIqTtz79cwHCarB8Qm8W7iDAATF/jy1o5tEWjXk0ugQ1fR9IJzlb0OjGDVqO07xU4
+        u1rr9gaYFjNALrBWMs3VOfLFYWGDRM3Tae/Hpg4BxdvZMjZrSmBotW/dGxOclBz0bYf5IacabWd9G
+        3XmNmVmQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34206)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oWKfv-0006nM-Gm; Thu, 08 Sep 2022 17:46:47 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oWKfq-0002DO-Ck; Thu, 08 Sep 2022 17:46:42 +0100
+Date:   Thu, 8 Sep 2022 17:46:42 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
+        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Petr Mladek <pmladek@suse.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>
+Subject: Re: [PATCH 7/7] arm64: dts: apple: Add SMC node to t8103/t6001
+ devicetrees
+Message-ID: <Yxoccowow9avoZ/i@shell.armlinux.org.uk>
+References: <YxdInl2qzQWM+3bs@shell.armlinux.org.uk>
+ <E1oVYUi-005Cmk-0R@rmk-PC.armlinux.org.uk>
+ <8a94f2e6-f537-4e29-8375-e79b84524582@www.fastmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1662547028-22279-2-git-send-email-jun.li@nxp.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <8a94f2e6-f537-4e29-8375-e79b84524582@www.fastmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 07, 2022 at 06:37:08PM +0800, Li Jun wrote:
-> 32K usb suspend clock gate is shared with usb_root_clk.
+On Tue, Sep 06, 2022 at 03:42:47PM +0200, Sven Peter wrote:
+> 
+> 
+> On Tue, Sep 6, 2022, at 15:20, Russell King wrote:
+> > From: Hector Martin <marcan@marcan.st>
+> >
+> > Signed-off-by: Hector Martin <marcan@marcan.st>
+> > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> > ---
+> >  arch/arm64/boot/dts/apple/t8103.dtsi | 26 ++++++++++++++++++++++++++
+> >  1 file changed, 26 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi 
+> > b/arch/arm64/boot/dts/apple/t8103.dtsi
+> > index 51a63b29d404..15c6023cf612 100644
+> > --- a/arch/arm64/boot/dts/apple/t8103.dtsi
+> > +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+> > @@ -336,6 +336,32 @@ wdt: watchdog@23d2b0000 {
+> >  			interrupts = <AIC_IRQ 338 IRQ_TYPE_LEVEL_HIGH>;
+> >  		};
+> > 
+> > +		smc_mbox: mbox@23e408000 {
+> > +			compatible = "apple,t8103-asc-mailbox", "apple,asc-mailbox-v4";
+> > +			reg = <0x2 0x3e408000 0x0 0x4000>;
+> > +			interrupt-parent = <&aic>;
+> > +			interrupts = <AIC_IRQ 400 IRQ_TYPE_LEVEL_HIGH>,
+> > +				<AIC_IRQ 401 IRQ_TYPE_LEVEL_HIGH>,
+> > +				<AIC_IRQ 402 IRQ_TYPE_LEVEL_HIGH>,
+> > +				<AIC_IRQ 403 IRQ_TYPE_LEVEL_HIGH>;
+> > +			interrupt-names = "send-empty", "send-not-empty",
+> > +				"recv-empty", "recv-not-empty";
+> > +			#mbox-cells = <0>;
+> > +		};
+> > +
+> > +		smc: smc@23e400000 {
+> 
+> Usually we sort these nodes by their address to prevent merge conflicts.
+> I guess it doesn't really matter here though since nothing will be between
+> these two nodes.
+> Either way,
 
-So? What is the impact of not having this change? Why is it stable 
-material? The commit message needs to answer those questions.
+If that's how the nodes should be sorted, let's do it now so we don't
+end up with another patch that re-ordering this - I've made the change.
 
-> 
-> Fixes: 9c140d9926761 ("clk: imx: Add support for i.MX8MP clock driver")
-> Cc: stable@vger.kernel.org # v5.19+
-> Signed-off-by: Li Jun <jun.li@nxp.com>
-> ---
->  drivers/clk/imx/clk-imx8mp.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-> index e89db568f5a8..5b66514bdd0c 100644
-> --- a/drivers/clk/imx/clk-imx8mp.c
-> +++ b/drivers/clk/imx/clk-imx8mp.c
-> @@ -17,6 +17,7 @@
->  
->  static u32 share_count_nand;
->  static u32 share_count_media;
-> +static u32 share_count_usb;
->  
->  static const char * const pll_ref_sels[] = { "osc_24m", "dummy", "dummy", "dummy", };
->  static const char * const audio_pll1_bypass_sels[] = {"audio_pll1", "audio_pll1_ref_sel", };
-> @@ -673,7 +674,8 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
->  	hws[IMX8MP_CLK_UART2_ROOT] = imx_clk_hw_gate4("uart2_root_clk", "uart2", ccm_base + 0x44a0, 0);
->  	hws[IMX8MP_CLK_UART3_ROOT] = imx_clk_hw_gate4("uart3_root_clk", "uart3", ccm_base + 0x44b0, 0);
->  	hws[IMX8MP_CLK_UART4_ROOT] = imx_clk_hw_gate4("uart4_root_clk", "uart4", ccm_base + 0x44c0, 0);
-> -	hws[IMX8MP_CLK_USB_ROOT] = imx_clk_hw_gate4("usb_root_clk", "hsio_axi", ccm_base + 0x44d0, 0);
-> +	hws[IMX8MP_CLK_USB_ROOT] = imx_clk_hw_gate2_shared2("usb_root_clk", "hsio_axi", ccm_base + 0x44d0, 0, &share_count_usb);
-> +	hws[IMX8MP_CLK_USB_SUSP] = imx_clk_hw_gate2_shared2("usb_suspend_clk", "osc_32k", ccm_base + 0x44d0, 0, &share_count_usb);
->  	hws[IMX8MP_CLK_USB_PHY_ROOT] = imx_clk_hw_gate4("usb_phy_root_clk", "usb_phy_ref", ccm_base + 0x44f0, 0);
->  	hws[IMX8MP_CLK_USDHC1_ROOT] = imx_clk_hw_gate4("usdhc1_root_clk", "usdhc1", ccm_base + 0x4510, 0);
->  	hws[IMX8MP_CLK_USDHC2_ROOT] = imx_clk_hw_gate4("usdhc2_root_clk", "usdhc2", ccm_base + 0x4520, 0);
-> -- 
-> 2.34.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+> Reviewed-by: Sven Peter <sven@svenpeter.dev>
+
+Thanks!
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
