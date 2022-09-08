@@ -2,111 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6F125B1D2F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 14:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FE205B1D46
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 14:40:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbiIHMfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 08:35:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46338 "EHLO
+        id S229704AbiIHMkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 08:40:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230370AbiIHMfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 08:35:14 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B746F22B36
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 05:35:12 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id m15so7792113lfl.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 05:35:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=MtvDPwj1xj98pXvIJlBDsjDT7GOeTmv6R4xmR0F7h50=;
-        b=ucFDlTPKrAXCjsKtyiEsczadOihwVme4pmfa92cwDRzdU5ydN1T+oxzE49b1O4MzYQ
-         /SDRABklxJrzY13pXcXVE6T43qjHK1tmp3ffLimBe+BEtPKsFhMhrvHhQFw10wQo4UMY
-         QH2g/KHlt6WK/anxVHDlCmparhH43DRUlHLxNjGTIaSwmh/lippSbERMFm5CY8GaiOMq
-         Yux3EwzYYbR7ml3R1QlCRwWDYc62eon4ZGTRPdHVjVV5eAC1gFLsLIx3pkwmhUsv7y19
-         EBkug2XFehtF7k2SscPy5nqKdkBk6AAIBCgJsLLwflySfa/J4IlNiBKJYMrGV5n3dQO6
-         wb0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=MtvDPwj1xj98pXvIJlBDsjDT7GOeTmv6R4xmR0F7h50=;
-        b=XjgUeRMizqCZlGFmFaGeIuDBP+G4OgwdEjkANOh+diE1vsDklml3qqRwEV3Y0YPs5F
-         QDlQ+NWmKIaabFz+eMiX1b75vsFup8nPcv8DGSJYGJ6JfIO2HO8NV8ZdFFPJrYBfYGhS
-         mIQHv1q5baifXC1QvmMI/d6IhILBMSQezOR8vtdXsEVFAvKWtszkRGa/0yR6HZjyohME
-         J12SBJHPvwBf9golUnZWhAUPOMWwcnmvl6la3lzMn9ikT6I+91Ba76LYNggQH8sVMrl0
-         1Fteb1xnqQQRgCBB7nGkf6oGLo4W/QN+/MeOai7YO12DkzzupO09kUkRG/bpAiVBMzqX
-         WpnQ==
-X-Gm-Message-State: ACgBeo2/yxWCQmfvyi3OJc77sxadt/4a1slJLlGYYXyiK3/B7rZ3PFlY
-        MRyL8lTWI6aol161ipceKhAlAA==
-X-Google-Smtp-Source: AA6agR6mbkVKvTFOT42qF/i7lu1Gz70hK93yc9UJvNcVj5Z6ed6r33DSj5rC/gPINepqjhD/JWdAfA==
-X-Received: by 2002:a05:6512:5c5:b0:497:f192:78ac with SMTP id o5-20020a05651205c500b00497f19278acmr1214013lfo.63.1662640511127;
-        Thu, 08 Sep 2022 05:35:11 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w9-20020a19c509000000b004947984b385sm635694lfe.87.2022.09.08.05.35.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 05:35:10 -0700 (PDT)
-Message-ID: <e93ef041-89d3-5718-4b1d-55bfd0c72797@linaro.org>
-Date:   Thu, 8 Sep 2022 14:35:09 +0200
+        with ESMTP id S229989AbiIHMkj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 08:40:39 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81C9BC59D3;
+        Thu,  8 Sep 2022 05:40:38 -0700 (PDT)
+Received: from fraeml737-chm.china.huawei.com (unknown [172.18.147.201])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MNdsT3ZPFz67n8d;
+        Thu,  8 Sep 2022 20:36:29 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ fraeml737-chm.china.huawei.com (10.206.15.218) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 8 Sep 2022 14:40:36 +0200
+Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 8 Sep
+ 2022 13:40:36 +0100
+Date:   Thu, 8 Sep 2022 13:40:35 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To:     Bagas Sanjaya <bagasdotme@gmail.com>
+CC:     <andrea.merello@gmail.com>, <andrea.merello@iit.it>,
+        <jic23@kernel.org>, <mchehab+huawei@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <lars@metafoo.de>,
+        <robh+dt@kernel.org>, <andy.shevchenko@gmail.com>,
+        <matt.ranostay@konsulko.com>, <ardeleanalex@gmail.com>,
+        <jacopo@jmondi.org>
+Subject: Re: [v7 00/14] Add support for Bosch BNO055 IMU
+Message-ID: <20220908134035.000027ca@huawei.com>
+In-Reply-To: <dda8346f-2cfb-4d85-607c-553625cc98d4@gmail.com>
+References: <20220907132205.28021-1-andrea.merello@iit.it>
+        <1b30d814-3570-1cb7-573b-9bca90d5d3fd@gmail.com>
+        <CAN8YU5P1qjKtmSskA_+vLMnC6wHFmhk4ZvP+a-9KLr0OsY0FdA@mail.gmail.com>
+        <dda8346f-2cfb-4d85-607c-553625cc98d4@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 13/13] dt-bindings: serial: atmel,at91-usart: Add gclk
- as a possible USART clock
-Content-Language: en-US
-To:     Sergiu Moga <sergiu.moga@microchip.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, richard.genoud@gmail.com,
-        radu_nicolae.pirea@upb.ro, gregkh@linuxfoundation.org,
-        broonie@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        jirislaby@kernel.org, admin@hifiphile.com,
-        kavyasree.kotagiri@microchip.com, tudor.ambarus@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20220906135511.144725-1-sergiu.moga@microchip.com>
- <20220906135511.144725-14-sergiu.moga@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220906135511.144725-14-sergiu.moga@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.202.226.42]
+X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 15:55, Sergiu Moga wrote:
-> The Devicetree nodes for FLEXCOM's USART can also have an alternative
-> clock source for the baudrate generator (other than the peripheral
-> clock), namely the Generick Clock. Thus make the binding aware of
-> this potential clock that someone may place in the clock related
-> properties of the USART node.
+On Thu, 8 Sep 2022 14:32:49 +0700
+Bagas Sanjaya <bagasdotme@gmail.com> wrote:
 
-Last sentence is confusing - what is the potential? Just skip it.
+> On 9/8/22 13:51, Andrea Merello wrote:
+> >> Rebased on what tree (and what commit)? I can't cleanly apply patch
+> >> [05/14].  
+> > 
+> > Sorry, it looks like I've raced against recent updates on iio-togreg
+> > branch (i.e. I've rebased, then I've got preemped by something else,
+> > then I've tested and sent the series some days later - I should have
+> > rebased again).
+> > 
+> > BTW patches can be applied on the top of this
+> > https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/?h=togreg&id=2bc9cd66eb25d0fefbb081421d6586495e25840e
+> > 
+> > I'll prepare a v8 anyway.
+For minor stuff like Doc updates, don't about rebase if everything else
+is fine. I can fix little merge conflicts whilst applying.
 
-> 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> ---
-> 
-> 
-> 
-> v1 -> v2:
-> - Nothing, this patch was not here before
+Thanks,
 
-You have confusing order of patches. Bindings mixed with DTS mixed with
-drivers. Keep things ordered.
-1. DTS changes needed for aligning to schema.
-2. all bindings
-3. rest
+Jonathan
 
-Best regards,
-Krzysztof
+> >   
+> 
+> OK.
+> 
+> Don't forget to pass --base to git-format-patch(1) when preparing v8.
+> 
+
