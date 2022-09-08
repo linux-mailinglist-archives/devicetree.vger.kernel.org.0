@@ -2,85 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 899CB5B1BB7
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABDD5B1BBF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:42:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230504AbiIHLkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 07:40:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52420 "EHLO
+        id S231386AbiIHLmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 07:42:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230101AbiIHLkq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:40:46 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E518111CD70
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:40:42 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id w8so27190428lft.12
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:40:42 -0700 (PDT)
+        with ESMTP id S230204AbiIHLmn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:42:43 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38853910B7
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:42:42 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id z14-20020a7bc7ce000000b003a5db0388a8so1919812wmk.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:42:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=qq/g+XZ2JG1ZYrx3xeBVADNTQBoVz4BOIGZJJbEw4f0=;
-        b=heg1JrEV84eY8Gs6IdvBMz1whgCoFw1U50y9XCCyoeV//ROtbYnmpDR47lPPduAt2C
-         gVYC1F9xXKQpIAA+odJPLIbbU6NVBUMthbo5CyvdQ7mpIyYhWfBCh2bBug2lXaYPDhz7
-         Crs216zxWWymg+rluvLHUVEOM1ZfpRD05Z95BjhMkEIabTZowvwYzPlFXCtdln4uhPtn
-         W2cGytNj3DxzUN9MRa30vvk0KawizOMwaWPbb1oI1oDCz+aqx/Ksiwt2iEc6rvq7GEBy
-         1QXm24jCzjQ3kYmNrd0Ky1Ys6JuZON4QZWN9LH6wBs3O0i9oAlBSHO2ewTyNlkpt1PnH
-         uirA==
+        bh=FwnGwBViBlBLM2m4hZkpIK1u+LRIojR8TOEYP0w8Jc8=;
+        b=RYWio6c2sO+Dq1mNriGCyO2ndkf4YSCekG699Z33vaSoBlO3JkqngObYnqj8HTeCyq
+         vvFgUwrBGwZVM6U30eMokmfaCFGSOGHjTnUY7cHgigBAC0SHe/GNu+myOHuNISS1f+Tp
+         U6fiAvfYzbLuKGytwMPWachqYLFL2YhW5fha5D72aXesEiQMOgOlNvRuKuc5wwxGasHG
+         luxYPEHYORl/uNCS23XwjFvqobXizGxnzxyYh5y2y5UGik9oVcbRiBXenckUnz8avG3m
+         ba4Q4rJJsFsnLf37EEi4lcfxrMEDaXEGm20lJ7br9HejJ8pvntHKjS51BBF8BscTfW6d
+         sVJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=qq/g+XZ2JG1ZYrx3xeBVADNTQBoVz4BOIGZJJbEw4f0=;
-        b=UboqZ0iwNtDZbGsSf+UQZo+2JlTPQ9DTI426Ll5ZqemSA7gU7ScwthPWgg0c7GR9ck
-         XGTLwhMIaLOOBgVPC6VSQlpTwBNI8HLe555ONtXg+bpFS2+yVbctH5NNaOkpcNZ1G6Pn
-         Cw8zY5f6/TDDGkHm5OeT7vic7s3jrtfbXgYSM9oTExOPT2MaJHzZV2UoZeIy1WPISAYt
-         dpzsIsi111gPaf2DM+RGpPHlWR6AvTkDEERMbWHmS08tFCfVgI9ObT33BMD3yIFTlVOG
-         gQWmRIUygq+ZMneFtB5DYP/QzhDhK0+xBaxA06bjtMHUiCZRkIeyKThCT9xdk55fpzhW
-         XKqA==
-X-Gm-Message-State: ACgBeo12xNsOdTXHbm5118aSZxl2Zg+sGniiryC+ZpABJtRQqpXvbCzr
-        Io5pw+mssQDFc0SnALpfOilkrA==
-X-Google-Smtp-Source: AA6agR4MHJFcXDkMHVXkwOkvsyyAjGenkME1tXoT11nKD0yOsg5Yi8PmifMypUg49w/SLQrIIDavvA==
-X-Received: by 2002:ac2:4429:0:b0:497:a5e9:d14a with SMTP id w9-20020ac24429000000b00497a5e9d14amr2894276lfl.372.1662637241277;
-        Thu, 08 Sep 2022 04:40:41 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 11-20020ac25f4b000000b00492ce573726sm3012704lfz.47.2022.09.08.04.40.39
+        bh=FwnGwBViBlBLM2m4hZkpIK1u+LRIojR8TOEYP0w8Jc8=;
+        b=U4OJlrIA0vSrhaIwjltrgiZVpeQ+r5DlX2dAs9pLywGkgb7kbyWJWebEryOqLS8ekL
+         DwkHnlwULNxRlkwCfM5JNBcbElAURpEcR8jIwZlsKoFbz3eFsxpyJAT2aL39IKdK1t/f
+         BD/TiI565YC1mnCTZwVGDoC2rd4+FiohK79ceDqQaqTNUC/XGb60D4Rhjs8BKLUbETh7
+         Ifp7NkPQXPduZC196yPVubrkVtwbj6TwhrND7esK4KUr3uc2x/CjBRuwx+63pQhQ4ZPV
+         sVGAwn65+ifHMX5s+TbIcvIH32UPwnv89PTTt8Xhfzjrf5GzDYC+nPOTmOqadAEw0k5f
+         +PpA==
+X-Gm-Message-State: ACgBeo0csR4zkzRaFJS3VjATAHwHvPchKkn/toAdP1rWA+gvuoCfecJS
+        ezH2RqDfoumibtMr2sg0QgTFbg==
+X-Google-Smtp-Source: AA6agR41sigTM1QplFEk7ilx2AToTWI+44RsnWXwm+KCPkN3Ke9VOJb9Rbo/3Ibge0ahTCwUr+pt2w==
+X-Received: by 2002:a05:600c:1d9b:b0:3a5:d66e:6370 with SMTP id p27-20020a05600c1d9b00b003a5d66e6370mr1954640wms.73.1662637360830;
+        Thu, 08 Sep 2022 04:42:40 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id n3-20020a05600c4f8300b003a54d610e5fsm3014169wmq.26.2022.09.08.04.42.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 04:40:40 -0700 (PDT)
-Message-ID: <29d456ed-620c-8dc9-01f0-54f96b670b94@linaro.org>
-Date:   Thu, 8 Sep 2022 13:40:39 +0200
+        Thu, 08 Sep 2022 04:42:40 -0700 (PDT)
+Message-ID: <24caa772-293b-3409-f8cf-23b3ad21f7b5@linaro.org>
+Date:   Thu, 8 Sep 2022 12:42:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/4] media: dt-bindings: Document Renesas RZ/G2L CRU
- block
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: Fix apq8016 compat string to match
+ yaml
 Content-Language: en-US
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund@ragnatech.se>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220905230406.30801-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220905230406.30801-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220908105720.857294-1-bryan.odonoghue@linaro.org>
+ <20220908105720.857294-2-bryan.odonoghue@linaro.org>
+ <bdc0c7f8-70ca-af57-1ed2-ad9d0fd6b9d3@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <bdc0c7f8-70ca-af57-1ed2-ad9d0fd6b9d3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,48 +78,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 01:04, Lad Prabhakar wrote:
-> Document the CRU block found on Renesas RZ/G2L (and alike) SoCs.
+On 08/09/2022 12:31, Krzysztof Kozlowski wrote:
+> It's not a fix and should not be backported because of breaking ABI.
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-Thank you for your patch. There is something to discuss/improve.
+Ah I didn't think of the ABI, you're right.
 
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a07g044-cru       # RZ/G2{L,LC}
-> +          - renesas,r9a07g054-cru       # RZ/V2L
-> +      - const: renesas,rzg2l-cru
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 3
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: image_conv
-> +      - const: image_conv_err
-> +      - const: axi_mst_err
-> +
-> +  clocks:
-> +    items:
-> +      - description: CRU Main clock
-> +      - description: CPU Register access clock
-> +      - description: CRU image transfer clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: pclk
-> +      - const: aclk
+> The other compatible was correct, just deprecated in June this year, I
+> think. Quite fast to replace the deprecated compatible. Maybe this
+> should be just documented in the bindings as deprecated.
 
-Drop the "clk" suffixes. Remaining names could be made a bit more readable.
-
-> +
-Best regards,
-Krzysztof
+Yes, I'll do that so.
