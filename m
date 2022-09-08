@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 357725B201E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5665B202E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231918AbiIHOGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 10:06:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
+        id S231812AbiIHOL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 10:11:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230309AbiIHOGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:06:41 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B4366F555
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 07:06:40 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id bn9so20024129ljb.6
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 07:06:40 -0700 (PDT)
+        with ESMTP id S231475AbiIHOL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:11:26 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C038A1D59
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 07:11:24 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id v6so6657134ljj.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 07:11:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=yyJq2F0UIbp+QN4RLKTqNQQiuOE3MJUDBVNBCzzbv0A=;
-        b=jN0L5qJ317FYKljRrrDKg+a+g5126FgqcjsqJcEV6qe4q4cnjglJnb/GMqroHSWfno
-         sZrYKtZEF//nog6SYx13NsBfirUJeskM5y8XqJLmkkKxMOgL+vokp5v5IdEQ5PBjF6BI
-         3bMeDZ5EnPRZvtVt/jZ9UJ6d6Hs9xlZyOSOJ+ia6/FI4cicFsS7uY6AfO1mrcljv/gSA
-         MjKhwAHGNcsVgaibKu0NjzI7wmD0ZNUyc527Pn+oqDEWpObkABHLyhwCCrLPUmiw3XgY
-         M/N0CQc1kLbMjwrmvxwJzYDzQ1CVgUU0JPF9dNG2KWSqBM7LJzkCFx2uDfjanv4q36HD
-         4Mjg==
+        bh=o3OotFGc4zQb4T1etN8tA5qJ2OKFzMyTl9qsFJ7tIeo=;
+        b=GMlEMT15K7e8wundvnjKKiFp+5WSTRSv9HE+qMfJkko93+KlsoM6ZAWvPUFyrvb3s3
+         kdGImWCvPd9JMSqYz91qX6yrBCJKYTu7FhZTaeGVQEz20VCOqzzpJBGBQiyRZIZkAGrF
+         G77e13UzyXEjotfPjWpFQLP3Fleab5TwfsF0QZNGxXhl/WJY7Yay0NMH8b7NDi1CzG7O
+         IdYKXbdn5uD4f5VcFONhu7RzYG/bhvKODttGt5z89L1LdKw+tkWAyQzZxqrNmpaN8ntu
+         yA/bBYASlJRxyXI4XmMKLRlkrxMNgUrzL8J8ysrbrpdS+c5cF3j2JllaP1lFwpjTrB7B
+         Cydg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=yyJq2F0UIbp+QN4RLKTqNQQiuOE3MJUDBVNBCzzbv0A=;
-        b=lcpMlxzxj3byl7PUh/OK8cZxqWc9BJdQJA5V/ENsduwCduo7pzze84VRoTJZvtcwLZ
-         FsDUM/Ezsqy+LJpR1T2AY34vRselB1DK78qRM6f+Y0ethc8sMSlBT2GD72BSAdu+fnjT
-         HSQo2xaopiKH0zxcVO9/O5zKDL1sAeAGCSFMRRuy3EtjrHL9uPv0lY1fQvykwDvU+Pk/
-         A4Q6mWSMO5PiJsdrmY0tx/wmCECnKNZWJxUikjCDBqijjY6WsipnE+K4Bc6fBDbZ8lU+
-         1kXVpf8SQDBka18d4BW+GXol621bh6fWQx5sxQtJA1QQ/Z7BQAs3c87ncTU8A0bbRZ9W
-         Ssxw==
-X-Gm-Message-State: ACgBeo3rtvdX6IS4S7vHwBTTZ0tWpcRUhxB7iRpyUELlUnyQMouOHaMo
-        c1p6cEHr9Izyy5bZqcWwxCd3/g==
-X-Google-Smtp-Source: AA6agR5LPl1a0KPnCaPB/QMCDGFCxhQnxUbgV0nlJe5WM/dkbNUMQCIkWHKyqliNnOG3IZKiDM47rA==
-X-Received: by 2002:a2e:888f:0:b0:268:d10e:8a2b with SMTP id k15-20020a2e888f000000b00268d10e8a2bmr2575455lji.114.1662645998508;
-        Thu, 08 Sep 2022 07:06:38 -0700 (PDT)
+        bh=o3OotFGc4zQb4T1etN8tA5qJ2OKFzMyTl9qsFJ7tIeo=;
+        b=wcFR8wIQ7UwT3WYR/UwND+vK5yMSzykjGSi2cZ2oMSdxDNah+9TsMVo4t0cPygSJzK
+         OrEAIYnIPjydY+HN1CfBnQ0ldXDPYGCKOvXVDc1xdC1o1UOxxnPULdbP4YeB+ti+Z/Jd
+         yhEDRNgsfpVWeGISeT9ZmfE1/7JcqMvYteKRIfj4Qn1EoQNFpZEn5B9AtKv4ncHagdmL
+         GRaEq7cuMhUtZ1bzBYshnahasP4IlExaY7PlKNo5rwA/sR5paLcL7ypC/NtDUjqHuH4J
+         /qNkuV4CH7q8sECY2bksEJogUrVaLN8Ep3siv+UMSD4zVKRyj2zpQ7NO4Mm8COWI56bM
+         wbwA==
+X-Gm-Message-State: ACgBeo2CJr05Wj/aEFM7u9o8/epfzqF0doTCYMRljZg4xPXv+9+l2nq2
+        RI6E9RJFEHorVdBYcpH/gKzfzQ==
+X-Google-Smtp-Source: AA6agR6aTA4lP/gd7HEc42s9ZZ6P5V/ewmsp1xku/A5U67jnYBHwWQsUuQ4IXsdHJvmcTqOITzRJjA==
+X-Received: by 2002:a2e:be89:0:b0:25f:e95a:7c6e with SMTP id a9-20020a2ebe89000000b0025fe95a7c6emr2423281ljr.468.1662646282632;
+        Thu, 08 Sep 2022 07:11:22 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v23-20020ac258f7000000b00497a5a91763sm1151817lfo.12.2022.09.08.07.06.36
+        by smtp.gmail.com with ESMTPSA id t3-20020a056512208300b00498f51af149sm19257lfr.308.2022.09.08.07.11.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 07:06:37 -0700 (PDT)
-Message-ID: <837b2df1-551b-3e34-4ef3-6a301278f10f@linaro.org>
-Date:   Thu, 8 Sep 2022 16:06:35 +0200
+        Thu, 08 Sep 2022 07:11:22 -0700 (PDT)
+Message-ID: <e09e3dc0-1abe-d7c5-e05c-a4d5e1f2911b@linaro.org>
+Date:   Thu, 8 Sep 2022 16:11:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 3/4] dt-bindings: display: Document Jadard JD9365DA-H3
- DSI panel
+Subject: Re: [PATCH 01/11] dt-bindings: msm: dsi-controller-main: Drop
+ redundant phy-names
 Content-Language: en-US
-To:     Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20220908135940.299324-1-jagan@edgeble.ai>
- <20220908135940.299324-3-jagan@edgeble.ai>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
+        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
+        sean@poorly.run, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, quic_mkrishn@quicinc.com,
+        agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220907000105.786265-1-bryan.odonoghue@linaro.org>
+ <20220907000105.786265-2-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220908135940.299324-3-jagan@edgeble.ai>
+In-Reply-To: <20220907000105.786265-2-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,27 +80,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2022 15:59, Jagan Teki wrote:
-> Jadard JD9365DA-H3 is WUXGA MIPI DSI panel and it support TFT
-> dot matrix LCD with 800RGBx1280 dots at maximum.
+On 07/09/2022 02:00, Bryan O'Donoghue wrote:
+> Adding in msm8939 which is based msm8916 dtsi I stumbled across a binding
+> check complaining about the phy name for msm8916 which we were reusing for
+> msm8939.
 > 
-> Document it.
+> The currently inconsistent upstream dtsi naming of "dsi" and "dsi-phy" is
+> not captured in the yaml for this driver.
 > 
-> Cc: dri-devel@lists.freedesktop.org
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The driver however doesn't care about the name of DSI phy, hence the yaml
+> check is redundant.
+> 
+> Both Krzysztof and Rob suggested we could drop the phy-names entirely if it
+> really isn't a dependency.
+> 
+> So, drop the inconsistent and unnecessary phy-names field from the yaml.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> ---
-> Changes for v2:
-> - collect Krzysztof ack
-
-There was no ack.
-
-https://lore.kernel.org/all/f492ded6-16a8-6c15-2826-6ce2f784dffe@linaro.org/
 
 Best regards,
 Krzysztof
