@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC83E5B252D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 19:52:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3F645B2534
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 19:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231569AbiIHRwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 13:52:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40254 "EHLO
+        id S229546AbiIHRzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 13:55:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbiIHRwM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 13:52:12 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2114D99DE;
-        Thu,  8 Sep 2022 10:52:11 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id t14so20139283wrx.8;
-        Thu, 08 Sep 2022 10:52:11 -0700 (PDT)
+        with ESMTP id S229826AbiIHRzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 13:55:47 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E46052469;
+        Thu,  8 Sep 2022 10:55:41 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id m9so11197674qvv.7;
+        Thu, 08 Sep 2022 10:55:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=kT+2AbTrH1Kh7uAi7sVUDrkL8YeDLjiGtQ85nst8gfU=;
-        b=eUcl9Y0xLe5I1Pus5u74csvo/LKTlohSmCxPX+tbDeSL8iGEViZmBkXiZ3VWD0Upb0
-         2mO2ePdJpdfgmdIkZJw2OWHce4Etar9/2uwx+eWAfsMk/xYvMG8kWDL9lFMTihWUF/fV
-         bAXfVAJZsThVpObTsyA9GhaBhbAj+Zfl0M6dIXAQ7k355UQZurA+m/tnDm2RVa0AoNol
-         Wat9+o0uEhzf4Q9TL65H97HxJUe/5OZwkpQI8m5RfZ4TRTxG20QARrA78afMW1s01a4I
-         791yhCMweJ6cS5t/6LhoghDmmbnsGX5CKYjtnGo3zWWH4MtUSJHkpauzP2CtE9z8EUqY
-         G4nA==
+        bh=Jc/8Lp023IQBBSQa2E724PJ0qO0q2fz2v7I9F5uTSBw=;
+        b=EfkANUpCcMUO1P/+tSFa4nOco6Wxf4pznC1d5Yn8dc8IQzR82MxG9tifUggMv2NywZ
+         fiB8O8A4mxg+Z5Tdw80tKhs2hm8o1QKBgMimlk2UM8Sf37ZIaxR9NbuBaKMfYTZt4soZ
+         Os6byjigbsTPqs2nzXdwG78ns7oesl4p6vnKWLcOucRl4m5ozvl6FNekx67Ur3rtV6qk
+         wn1PJ3uw8U0LG7tjusqN/HGK/s2qg5N5zTrMWS16P78gVo0Hx0XBeOoqjvPtXy0Ok+Fu
+         flISZA33CBF7SO7kZXoF0WVgirGi/0skf362aMPIml331dNTRlroD0wvvnS0wDMQZ4Bn
+         LYAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=kT+2AbTrH1Kh7uAi7sVUDrkL8YeDLjiGtQ85nst8gfU=;
-        b=Jwg4W/8o2wtxaa1fPDtdz2Be0skmBldtZm6urrbsJ41akfLrcTTU4Gs9iDcsW8Vbw8
-         SZ8vR3BPTvHGW7RA3//WHsdf1r2jiEiNoHkn5e0MUEGdL2vKXf7x0V3lkJJyORhiPxPa
-         QGDDIv7e1vOhlygT43gM2vGsk5HYRxFPyI+i2hTc0WEXkPFLHoGmwNh9OKq5v0fwgbqL
-         1ysi05TM4I8qUNmLDSwZGXaG4t9ODRA7uZWG14F/wwUCRSJl/XGBRenipgpQELoc8qJ+
-         k+ItbhA2XUOyLnU6DCmzV/pnslFO50ojEmBMAalIChTAn59oE7CrtZQ2/ngJD93nfCQ4
-         5PZw==
-X-Gm-Message-State: ACgBeo1qP4VJOJeRTc5RpevmLBCEmIGk14qWOwjoWvD3BhnqjxEuQLv4
-        /GiamulItUkFeH8UMEBPv1g=
-X-Google-Smtp-Source: AA6agR6ac9wu3/ypYFwz28EfERWFSyeR30QK/KsEUG2H6NdnyQUu/tU98reF2mS37pHqFLnbL2ZBhw==
-X-Received: by 2002:a5d:64cf:0:b0:220:6d8e:1db0 with SMTP id f15-20020a5d64cf000000b002206d8e1db0mr5580917wri.564.1662659529837;
-        Thu, 08 Sep 2022 10:52:09 -0700 (PDT)
-Received: from [192.168.74.101] ([77.78.20.135])
-        by smtp.gmail.com with ESMTPSA id v11-20020adfe4cb000000b00228a17f92fesm14705767wrm.51.2022.09.08.10.52.08
+        bh=Jc/8Lp023IQBBSQa2E724PJ0qO0q2fz2v7I9F5uTSBw=;
+        b=J5lVxxIpjRhEdWy94l87s+iiu6LS/VYaPr5BmLMNE8sOHDuNW15HPFzthH0b3F6sb2
+         1uhnaVgslL5e+amblooQinEKwtxU0aRmPeBWvD3uieXmlLZR4KNwFiu8xDjSTeB6eTiw
+         AILfhc0vpe2fScLh5dlu6LZEebV/ZwTQhvEmPdVwvzKo6R8UcTzxzOyVqq0I/8yoWXb8
+         Q0fgyb1v4z9V2qFsvO8Zq73ZbeNKpvFNOT5LgE5o8vrfThD2uwZQjED9w1vFq/j+fcCk
+         QqQT02y5sJoDUtdN2bs+cC8StFr2YJlkRZ5LNtiu00vxOKYyDjvSn1iTQkeUAa8BSos+
+         1RhQ==
+X-Gm-Message-State: ACgBeo2D91dfYhh6/TFV9oXVT3qApcjiyJZxwQnSF6W3LhA3u+gvkBuy
+        auTTMsXMqvZ0OA4h4eBieqjjhE8qkOs=
+X-Google-Smtp-Source: AA6agR6SZcGlEsAHpsKTCGUg2ePzkv6zzCj/ZzoKQy+UOvvKn8mKRGVkVHzZJoMqnpYLE+i0YX7Ljg==
+X-Received: by 2002:a05:6214:20e5:b0:4aa:b01f:471f with SMTP id 5-20020a05621420e500b004aab01f471fmr8494242qvk.38.1662659740566;
+        Thu, 08 Sep 2022 10:55:40 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:e04f:ce6d:5ddb:39bc? ([2600:1700:2442:6db0:e04f:ce6d:5ddb:39bc])
+        by smtp.gmail.com with ESMTPSA id c7-20020a05620a268700b006cbb8ca04f8sm3364199qkp.40.2022.09.08.10.55.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 10:52:09 -0700 (PDT)
-Message-ID: <843b8280-5e71-c008-0ca2-4d289ca6e7da@gmail.com>
-Date:   Thu, 8 Sep 2022 20:52:10 +0300
+        Thu, 08 Sep 2022 10:55:39 -0700 (PDT)
+Message-ID: <c0c66918-f55e-83e4-edea-b2d32fdb27a7@gmail.com>
+Date:   Thu, 8 Sep 2022 12:55:39 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 9/9] arm64: dts: qcom: sm4250: Add support for
- oneplus-billie2
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] driver: of: overlay: demote message to warning
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, linux-kernel@vger.kernel.org
-References: <20220903174150.3566935-1-iskren.chernev@gmail.com>
- <20220903174150.3566935-10-iskren.chernev@gmail.com>
- <e655cddd-677b-f277-667f-48107671db2a@linaro.org>
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-In-Reply-To: <e655cddd-677b-f277-667f-48107671db2a@linaro.org>
+To:     Daniel Walker <danielwa@cisco.com>
+Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>, xe-linux-external@cisco.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220907230709.271889-1-danielwa@cisco.com>
+ <973f7127-8165-45f6-071f-04360046b7d7@gmail.com>
+ <20220908003510.GE4320@zorba>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20220908003510.GE4320@zorba>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,20 +77,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 9/7/22 19:35, Daniel Walker wrote:
+> On Wed, Sep 07, 2022 at 06:54:02PM -0500, Frank Rowand wrote:
+>> On 9/7/22 18:07, Daniel Walker wrote:
+>>> This warning message shows by default on the vast majority of overlays
+>>> applied. Despite the text identifying this as a warning it is marked
+>>> with the loglevel for error. At Cisco we filter the loglevels to only
+>>> show error messages. We end up seeing this message but it's not really
+>>> an error.
+>>>
+>>> For this reason it makes sense to demote the message to the warning
+>>> loglevel.
+>>>
+>>> Cc: xe-linux-external@cisco.com
+>>> Signed-off-by: Daniel Walker <danielwa@cisco.com>
+>>> ---
+>>>  drivers/of/overlay.c | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+>>> index bd8ff4df723d..4ae276ed9a65 100644
+>>> --- a/drivers/of/overlay.c
+>>> +++ b/drivers/of/overlay.c
+>>> @@ -358,7 +358,7 @@ static int add_changeset_property(struct overlay_changeset *ovcs,
+>>>  	}
+>>>  
+>>>  	if (!of_node_check_flag(target->np, OF_OVERLAY))
+>>> -		pr_err("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
+>>> +		pr_warn("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
+>>>  		       target->np, new_prop->name);
+>>>  
+>>>  	if (ret) {
+>>
+>> NACK
+>>
+>> This is showing a real problem with the overlay.
+> 
+> What's the real problem ?
+> 
+> Daniel
 
+A memory leak when the overlay is removed.
 
-On 9/6/22 11:33, Krzysztof Kozlowski wrote:
-> On 03/09/2022 19:41, Iskren Chernev wrote:
->> Remaining issues from make dtbs_check:
->> - rpm-requests: it doesn't like the pm6125-regulators subnode. Every other
->>   DTS I checked is written in this way.
->
-> Yes, I sent patches for it, already merged, so please rebase on linux-next.
->
-> https://lore.kernel.org/all/20220828084341.112146-1-krzysztof.kozlowski@linaro.org/
->
-> Please rebase and test with
-> Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+I'll send a patch to update the overlay file in Documumentation/devicetree/ to provide
+more information about this.  If you don't see a patch by tomorrow, feel free to
+ping me.
 
-It looks like this patch covers SPMI regulators. In most devices RPM/H (i.e
-indirect) regulators are used, so this doesn't fix it for me.
+-Frank
