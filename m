@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1EFE5B2941
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 00:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2B3D5B295B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 00:30:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230044AbiIHW3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 18:29:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49486 "EHLO
+        id S229552AbiIHWap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 18:30:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbiIHW25 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 18:28:57 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2060DF342D
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 15:28:56 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id y29so9086425ljq.7
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 15:28:56 -0700 (PDT)
+        with ESMTP id S230115AbiIHWam (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 18:30:42 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21025A2844
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 15:30:41 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id p7so30161096lfu.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 15:30:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=ncF6xJEmvKoJZyCXKGKehRon/gM8MA4X4LW/slRHPU8=;
-        b=rMmEOnYLtDYlcvKq3iKgCXJGqTG6Hf/AtETuvpfXh3hkD6tG1OGpmkJAXyjuqnW6/s
-         aVi2UIthFEpPhStOVPf+gFNsh7n5PigTn+/TnKAq2Km2d1C7g5IDGi1HK35vXwKh6Le9
-         3o2R56e+skKzSEO0AF2UDVuQxGi1U41O/S8Wne96CoD3+9V3+U74OngM78ETIvhvA0ME
-         YMjQxQR8yaZuaDOvJMuUMxmI15QVoaCttgW0LAPkZazodKKBQEPm1+0PHQl/QzMW+9Ob
-         bikPQFk5TMsn+hN3lBzCY6CLb63U5KIaO0kcrQV/TJoFnuDuO4XGr4OQ279Ufiw0axMY
-         +sug==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=uti3bNXT+PHAstH618C2R3Rjnml8waJ+h4TTs4KwneA=;
+        b=yMVbgwlEwqy/sUUqQ0eBluwrQK09mSxukCuHALRPrGKcAAnPtlPac81c1OTRHle2t4
+         kKFI+tr3xNBGge7HpZxTZdgx1cYSeqBrLiIhU9S497Xj8irdKMLc+JqeXfy+RLLzosEm
+         qhYNUHNIc7rnlhCNoIW1A4v/5ugFwgp4DWPscGFNkRFZ+N+1F5AcbXUldQO+fbNRxMDt
+         ZRzJdZQ3ph+5/wXqaahfQZX+CESx1sPCrecR/JnawLEboyiGSBwUgEkYGSdVMU/N8CX4
+         jWZ2LU8HE2jznF7Q1xFtsnMIlSwDDtph0ihYWSR7X/Aq5Lcx91hwgKwmmnMZ0VP2Yfeo
+         RVKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=ncF6xJEmvKoJZyCXKGKehRon/gM8MA4X4LW/slRHPU8=;
-        b=MCu9Moe+93xeCi7/YYAgNcMVknRhqyQmB4l3BdItOBtvI7K/gJzk3iAq62DAf+6O6Y
-         t9fG9sLN6e1M75wA4P3klEcGdNSF9cUgxKRA4KtQuQFJIpKKpPBhrfdGWTZaMMVUJxKc
-         6IETc24DEGJBJj/UqHg0YcTFhbVHheUzGh0cwM1ju80dJVQTawLRQHtBC3kgD0hxANjL
-         dZi9da0alCho/fzK/d7iDN5RqJhkUR1+2kC+gUCsWRPSGwjUFOSnOEcv21MhslIGPoiT
-         ZvPwWyqx9Qeiv1l+y1g/7tkAYE0pUZThw4Z4Pcci1jjYJmCYmlVkbygZ7inLWL+LNseM
-         qcBQ==
-X-Gm-Message-State: ACgBeo0gJjHhT8Nzje5qIryrTE39PAEnDrh6Jtde5vWW4YyXVhXdaYOe
-        kB9nliFuzDvJc2C2jkjZzc+q9w==
-X-Google-Smtp-Source: AA6agR5dutiq+xyitDaWxqamQygqAyVtV62Xankfs7gZNFJpL0Ilgur66LBxo3eHpWBStFpBhC+4Gg==
-X-Received: by 2002:a2e:8711:0:b0:264:8da5:7a52 with SMTP id m17-20020a2e8711000000b002648da57a52mr2940577lji.173.1662676134499;
-        Thu, 08 Sep 2022 15:28:54 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id a25-20020ac25e79000000b00497a3e11608sm1389078lfr.303.2022.09.08.15.28.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 15:28:54 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sm8450: add display clock controller
-Date:   Fri,  9 Sep 2022 01:28:50 +0300
-Message-Id: <20220908222850.3552050-5-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220908222850.3552050-1-dmitry.baryshkov@linaro.org>
-References: <20220908222850.3552050-1-dmitry.baryshkov@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=uti3bNXT+PHAstH618C2R3Rjnml8waJ+h4TTs4KwneA=;
+        b=eh/9WCG1vV/D1s3RpVU1A25hJfj16gwF8xIFqff10pJzNH+AmC+jPwaLbVKr9v7E6D
+         OkyUmJLjR2GOYAhVsTkVRM1J0N03eWW3uXPUNnK5NFttTfrUJ8VaTIc2+i1ERo1Y3kNt
+         088je1+5XSqjm051b0Um5ZSEvYb6w5nWOj62CnQvLDBizsXswgH0APcay0hmswojBLbn
+         JOakjT5B8NpM9muuUvRv1Dpo5MfQrrbt9M4ZNYrbVkdM0PrgmHPOxanm18BZPopVjvW5
+         /TaG1bhncM94xlLYXIISbH2ZxjFGe5G1WKOhykJeBLv/dLD/fxZzPCMral/ic7nuqrD1
+         01lQ==
+X-Gm-Message-State: ACgBeo0Mxb+3OKAXn9muTyW5+D1hCYfDE+Bf7Qfq79avFU7KgaxPyt8M
+        GkeIW2UFK+Q2HkM/iztEfKrLwA==
+X-Google-Smtp-Source: AA6agR5wHJDeGSpvkhg3sY+PQY2J6mrzHBEHWd6t16O/1QG3m7Di4PC5PYA6U+sQPcrTCPqFLU7cYw==
+X-Received: by 2002:ac2:5208:0:b0:497:aadf:eac7 with SMTP id a8-20020ac25208000000b00497aadfeac7mr3001515lfl.315.1662676239438;
+        Thu, 08 Sep 2022 15:30:39 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id 25-20020ac25f59000000b00494a1e875a9sm4485lfz.191.2022.09.08.15.30.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Sep 2022 15:30:39 -0700 (PDT)
+Message-ID: <952912fe-5ee5-8742-de47-77c013d2c93a@linaro.org>
+Date:   Fri, 9 Sep 2022 01:30:38 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH 00/11] qcom,mdss-dsi-ctrl: Remove redundant phy-names from
+ yaml and dtsi
+Content-Language: en-GB
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
+        quic_abhinavk@quicinc.com, sean@poorly.run, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, quic_mkrishn@quicinc.com,
+        agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220907000105.786265-1-bryan.odonoghue@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220907000105.786265-1-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,59 +78,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device node for display clock controller on Qualcomm SM8450 platform
+On 07/09/2022 03:00, Bryan O'Donoghue wrote:
+> phy-names is both inconsistently used and not actually required by the driver.
+> 
+> Previous discussion with Krzysztof and Rob suggested to remove the property.
+> 
+> https://www.spinics.net/lists/linux-arm-msm/msg116525.html
+> 
+> - Mark as deprecated and not required in yaml
+> - Drop from associated dtsi files => grep -r mdss-dsi arch/arm* | grep qcom
+> 
+> Bryan O'Donoghue (11):
+>    dt-bindings: msm: dsi-controller-main: Drop redundant phy-names
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+I'm going to take this into msm-next, the rest can go via Bjorn.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 4978c5ba5dd0..9062ac4afbca 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/clock/qcom,gcc-sm8450.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,sm8450-camcc.h>
-+#include <dt-bindings/clock/qcom,sm8450-dispcc.h>
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
-@@ -2317,6 +2318,33 @@ camcc: clock-controller@ade0000 {
- 			status = "disabled";
- 		};
- 
-+		dispcc: clock-controller@af00000 {
-+			compatible = "qcom,sm8450-dispcc";
-+			reg = <0 0x0af00000 0 0x20000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&gcc GCC_DISP_AHB_CLK>,
-+				 <&sleep_clk>,
-+				 <0>, /* dsi0 */
-+				 <0>,
-+				 <0>, /* dsi1 */
-+				 <0>,
-+				 <0>, /* dp0 */
-+				 <0>,
-+				 <0>, /* dp1 */
-+				 <0>,
-+				 <0>, /* dp2 */
-+				 <0>,
-+				 <0>, /* dp3 */
-+				 <0>;
-+			power-domains = <&rpmhpd SM8450_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+			status = "disabled";
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sm8450-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
+>    ARM: dts: qcom: apq8064: Drop redundant phy-names from DSI controller
+>    ARM: dts: qcom: msm8974: Drop redundant phy-names from DSI controller
+>    arm64: dts: qcom: msm8916: Drop redundant phy-names from DSI
+>      controller
+>    arm64: dts: qcom: msm8996: Drop redundant phy-names from DSI
+>      controller
+>    arm64: dts: qcom: sc7180: Drop redundant phy-names from DSI controller
+>    arm64: dts: qcom: sc7280: Drop redundant phy-names from DSI controller
+>    arm64: dts: qcom: sdm660: Drop redundant phy-names from DSI controller
+>    arm64: dts: qcom: sdm630: Drop redundant phy-names from DSI controller
+>    arm64: dts: qcom: sdm845: Drop redundant phy-names from DSI controller
+>    arm64: dts: qcom: sm8250: Drop redundant phy-names from DSI controller
+> 
+>   .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
+>   arch/arm/boot/dts/qcom-apq8064.dtsi                             | 1 -
+>   arch/arm/boot/dts/qcom-msm8974.dtsi                             | 1 -
+>   arch/arm64/boot/dts/qcom/msm8916.dtsi                           | 1 -
+>   arch/arm64/boot/dts/qcom/msm8996.dtsi                           | 2 --
+>   arch/arm64/boot/dts/qcom/sc7180.dtsi                            | 1 -
+>   arch/arm64/boot/dts/qcom/sc7280.dtsi                            | 1 -
+>   arch/arm64/boot/dts/qcom/sdm630.dtsi                            | 1 -
+>   arch/arm64/boot/dts/qcom/sdm660.dtsi                            | 1 -
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi                            | 2 --
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi                            | 2 --
+>   11 files changed, 1 insertion(+), 14 deletions(-)
+> 
+
 -- 
-2.35.1
+With best wishes
+Dmitry
 
