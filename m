@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C115B1A80
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 12:52:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 532165B1A86
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 12:53:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230119AbiIHKwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 06:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43372 "EHLO
+        id S231140AbiIHKw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 06:52:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiIHKwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 06:52:42 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAC15F5C7B
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 03:52:40 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id c10so9917853ljj.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 03:52:40 -0700 (PDT)
+        with ESMTP id S230515AbiIHKw4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 06:52:56 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 098F5F754A
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 03:52:55 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id bq23so27069165lfb.7
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 03:52:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=vVTBzK9B05XGZ/xpSwgV5tjebiNQ+EY1RJ0k0CE1o6c=;
-        b=DzWFPekGUBniXrt3Ux6czjGmubm1EMzTGihec6QlyHO6VhNBHiJd9hXiiwGNC0aeki
-         9hEIeHr6P+C0KHmMnSJGh+L7xW0rX4xbEwSW1D3dAu09XUM+AQUR/TuM2sX+HN0Xui1r
-         BPcq7wDRrhpOkcW0Jj8RSoshsUYNo7cCCVyFkArctfxMod0iRChZ9443r/10V74RlPd1
-         Uf95UXyK7FuCr5eX/S5l+coQtGvO4NJveb/0VZ1mLC+1oCDIsDXSNcx2LASsY6UPvcib
-         +ZQWL/raksilwWS/GxYaXJ02KtcUcCke/iDjFhGQFqrKBIpLdM1F11JcPt5Hq510pKxc
-         pUGg==
+        bh=lLiZm3F7DHpwT1soBBOPDPPi1PUUeNiA/64S4ap2JL0=;
+        b=Wnhq67R04OunxdAsXcTFJ4FqT0EJs+BejDR4UgYcZnjWuXzdpwUvJLgQo8cT283Pkr
+         Sz6Q7PD4ZrrWk5WRtxxxr9y02HMEFX5D91KhYlGXXnjYinkQ+BFjfn4EswhS7jfMKUKV
+         DYE2p2jOtla/kZv2dXy7+UHSHSC5LEAI38R1xJCnTC/KvPBe9MDLwdAfdK7hK849WwUY
+         mKQLIVXHb6FmaY034nmqB6lmRYjNvRfMlWRouOdBv6UHbBC5JXkR0O+o9qPfvv7IL7jD
+         ETCJ2CqqlCDjwUnx2nli7dwedHORBlYm0uB0ZZUoIqcxJNikSTJqAPoWSCVOkLDGzquA
+         nhEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=vVTBzK9B05XGZ/xpSwgV5tjebiNQ+EY1RJ0k0CE1o6c=;
-        b=1K4Z3tkRADcOYaRNlJMVV0CsC8P7v5afU6VzWNKa+tAjAACRSUfbK7MKrnNm4+Hk0r
-         WUE4RPwHZL4uFF7HBywwUL9TnYLbuPk7wdxbyfO8DjkOr6pP4k89QSQGay8BYfIvomgr
-         Pu7+M2k90IRCusxeykqnYbECw9SjPdkp3UTChScLcHGmQVpTXp+skRlO6a7Vi4v4hL8y
-         2lTRmrfRTx12IjH0Bt8IrAhL3g1JfPt4qO7rvcnLl9IPGcNTgNenWShX65y/n91hPQeI
-         yrDKfNsqFJxpENQdpkSLLj4qIMxOi6HCn6K+hy57g4+yP/r6Q/UBdrpedlc4TOeSeuVm
-         rCPg==
-X-Gm-Message-State: ACgBeo3kCnKlkCQS2kb2kdfmHjwzjcZPeGRZM6wv/oDNfshmYb9/+SQd
-        jsfbV510W2RFVR2sxjxantkvhQ==
-X-Google-Smtp-Source: AA6agR4BKBhBADZe3TEbKzB0AHQ2b0+NvKfM32FRZkMwBfcJNEw/5gAzkz+kAcf2cJHwI7syEEl7UA==
-X-Received: by 2002:a2e:98ca:0:b0:26a:9856:6c92 with SMTP id s10-20020a2e98ca000000b0026a98566c92mr2189184ljj.146.1662634359206;
-        Thu, 08 Sep 2022 03:52:39 -0700 (PDT)
+        bh=lLiZm3F7DHpwT1soBBOPDPPi1PUUeNiA/64S4ap2JL0=;
+        b=Msy5hUXEp5S0sKLjkeNqVJiul8dUsDOs8PCB44XFsmNpm2930d2UNQD1P3mGvTEmX5
+         8J0l0iPxjzjfjtaXZ52lX/O6t80AYhHgRqfuZPjyuB/i0UviSAFcjq647GoGrhoLEOhL
+         YjchFz5dE0NZr0BfwyWOF9McE2l0vnuSDMbfMMzuTdel7qFGzWYuclp8pzmZ3SqYL08j
+         qq9nj5lYro6KONxSLi4p0/7fpA164tZe8AsUdZYy5FjGduGQcr+3qytXyPYxC9mi5IAP
+         9Y7WHvo4rx1wGru6w3gLEAB4q490L1F5x79kMiJPyOmfYz4NrstcEccAjSVqKr1jh7fe
+         D9Lw==
+X-Gm-Message-State: ACgBeo23FoJhesIuXlBVQ3RQXq8FAFwZLsHdcDbkbYGCSgO3adk/hCke
+        B3Hp2e48xN02vk4sn+/gGvy++w==
+X-Google-Smtp-Source: AA6agR4oC2P7OxbXsVkDCbos0XwdwBT5MRWn157kGrbH+fNz/QIGE0jcG2JnxEEyG/5Gti7OP6VMhQ==
+X-Received: by 2002:a05:6512:1515:b0:497:a102:3951 with SMTP id bq21-20020a056512151500b00497a1023951mr2833690lfb.290.1662634373423;
+        Thu, 08 Sep 2022 03:52:53 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id j10-20020ac2454a000000b0048b23c609c9sm2995196lfm.102.2022.09.08.03.52.37
+        by smtp.gmail.com with ESMTPSA id e2-20020a05651236c200b00492e5d31201sm1797304lfs.7.2022.09.08.03.52.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 03:52:38 -0700 (PDT)
-Message-ID: <01b4d522-ffd8-5a25-10f3-11bf6e0d08dd@linaro.org>
-Date:   Thu, 8 Sep 2022 12:52:37 +0200
+        Thu, 08 Sep 2022 03:52:52 -0700 (PDT)
+Message-ID: <9d19d32a-c1e4-2100-62ee-908616ea7a5a@linaro.org>
+Date:   Thu, 8 Sep 2022 12:52:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v4 2/2] dt-bindings: pci: QCOM Add missing sc7280 aggre0,
+Subject: Re: [PATCH v4 1/2] arm64: dts: qcom: sc7280: Add missing aggre0,
  aggre1 clocks
 Content-Language: en-US
 To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>,
@@ -68,16 +68,14 @@ Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>
 References: <1662626776-19636-1-git-send-email-quic_krichai@quicinc.com>
- <1662626776-19636-3-git-send-email-quic_krichai@quicinc.com>
+ <1662626776-19636-2-git-send-email-quic_krichai@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1662626776-19636-3-git-send-email-quic_krichai@quicinc.com>
+In-Reply-To: <1662626776-19636-2-git-send-email-quic_krichai@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,12 +89,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/09/2022 10:46, Krishna chaitanya chundru wrote:
-> Add missing aggre0 and aggre1 clocks.
+> Add missing aggre0, aggre1 clocks.
 > 
 > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 > ---
 > changes since v3:
-> 	- Changed the order of the clocks.
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
