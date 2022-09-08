@@ -2,82 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E5B5B1B88
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:33:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C3E5B1B99
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:35:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231425AbiIHLdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 07:33:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34910 "EHLO
+        id S231295AbiIHLfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 07:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231423AbiIHLdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:33:44 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AFA1ED39E
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:33:42 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id y18so4773211ljh.12
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:33:42 -0700 (PDT)
+        with ESMTP id S230435AbiIHLfG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:35:06 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E893AE6A
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:35:02 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id b19so19509029ljf.8
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:35:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=SHyR4FRu6T2HcLl5xmxY+V3df7MUMDZkcL9KsWa8P/M=;
-        b=ajrcOYDhY0MqBe/iaQtMLbZEPnCvrEafzbHJbHN8ZmpWM5+jlPx+THqBtLgXc4zyUP
-         XBzAEw0BSVPADegegOOELR0XtOjbnpjpvd2WTcJkY2i6WMBekK84YX8YtoTANf/qOfH/
-         nnGlsRwLMAh5/4yO8vTksgjLVWi+4+3OrJK6UlsnqWtOaol/hhcJ+B1I5Aw602UbbcbU
-         D74kae7ZKme3o3GkOam8vxKsKWfGjHtUqn5F6RVleihYURNJ4G6ICgBya2qykY+szOhn
-         LNH+iaEgv0u5mOu5ZN8qkuz69X7IOe1sv/eRaYyXoyrohrjNX8QXkZFk1p90QEfaRVJz
-         xdCQ==
+        bh=rGbehmmbFjGdP39Tva2lX3JsZ3RKZXRTihQXkTFVj0Y=;
+        b=u6D+fKJ2Lhfyp6EpZaftp621lBz6Wd859kwOBiqFQ3lUxvV9CWJbk8wOUpHBKAnWOJ
+         Ay19wrgdZbZWV7IS7+EwTdDnyzs1gQo+vI4ToLdDyGdhHkq1VlOwt7MAYkg9PE1lU6qo
+         F16V9/sqUWF0TWbcg/8py5MBiAGP+i7UlE06Zvuba3U2XsCSkq0BGs6XNK1XPEcmncx3
+         j5w4fQ2F/4zInUlUf2dTKh4Myma9gGm+JZNaFR8GdOtrtDQwJ1WGRKxb5AUbN+YFwZap
+         w16k9HfAxB5IseMpsnbuKf1KdTr3ZczXUc4GMFHag3eMo9Kbo/zinntSpaM1kmLh/0h9
+         UmPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=SHyR4FRu6T2HcLl5xmxY+V3df7MUMDZkcL9KsWa8P/M=;
-        b=K8DMYVTwgYNy2JwD1HldmwRDwp3Y/Sl5iaXW3ftJekHr0x0u3rBcUES9SiFeU9JmX9
-         tmlQUkzF56kJtc25fNoUCOv7ncgDRSiQSNSayQ2Ydem1JB7lZCh9Zb3NIhRQnIAh2hTU
-         A+2EvB6vDWID8TaQfGG0u28HeNRtZ3ekRURj4N++31q6yo5ct7uVSXG5zzvDVAI847I2
-         DjV/vXdGHTujX4dzfoNafg2E/fKbM1Zr8smBjzRwwxLUZ4cvChyfshMExIArYKmx9TIW
-         cFvL0WZJNyU/KZdCp7EnITlw+TLDR0xEYoh0enbUpey0CpLvzEK/WXUZSJw/z786E9Ls
-         njxw==
-X-Gm-Message-State: ACgBeo0bb3jZ4NO0/nB86EJqF5towmG6WLOlEmoYCkZn3dVk2wARsLr0
-        OGwhJezqddy8gmQflvnbD/dPQg==
-X-Google-Smtp-Source: AA6agR7YNjVF4CnQ3ndSgVJn98vT9qcDXD21WnxwPbPRgvbQ5LtOMNyq4DAjXdcJVDjXT/qdR4EpeA==
-X-Received: by 2002:a05:651c:245:b0:261:caa7:5be3 with SMTP id x5-20020a05651c024500b00261caa75be3mr2195487ljn.334.1662636820680;
-        Thu, 08 Sep 2022 04:33:40 -0700 (PDT)
+        bh=rGbehmmbFjGdP39Tva2lX3JsZ3RKZXRTihQXkTFVj0Y=;
+        b=OrD/LAa4lVxdMmDMEphzNQEG2pfPDoUaGAa+Z/rkzLocyzild/NGbEsEf0PnerIjcv
+         Oo2kf5pUlpUTjMSkzbJvOeC/bFUvZLHOhUIdZVHAcTz6rf6sw3vxCaketbtGqqHxgg4U
+         FkDH8gdbxXHaL+5rdndXnl/76TClkQAial43SWr/MvhlxalBDWx53Ess3lTPiOp7SKAl
+         tGQd+7GTX/bzKcoD/VeNyupx5WQGzV1bmz/lOO435dyu2WR5PZy5xLXXchsZHIaA6fpy
+         TJbAtcUO5DsEJZyE2+O1f0/aDslDRME4bvpgtWGPtgB2ooT9uwcs7M4tEecabJHsTmTU
+         +aBg==
+X-Gm-Message-State: ACgBeo08Y6llj6Fur+bMMtXSq8KMNr9U7Ha8Te4JSM17mbk1JXiJWRKL
+        Ww332Ie3O9XhP3CZ71WM6xskqwFhOJwUnQ==
+X-Google-Smtp-Source: AA6agR4ui+DsaI/rx9G71gnDc6YAJvWKPoB3zCyZaJ1nLjK+vVvOPNBMn6vOY0NTUCUZDxAiUFpecw==
+X-Received: by 2002:a05:651c:1a26:b0:269:15ee:809a with SMTP id by38-20020a05651c1a2600b0026915ee809amr2203010ljb.307.1662636900510;
+        Thu, 08 Sep 2022 04:35:00 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f18-20020a056512361200b00498ebd60c35sm247928lfs.165.2022.09.08.04.33.39
+        by smtp.gmail.com with ESMTPSA id v25-20020a05651203b900b00497aae401f8sm770409lfp.184.2022.09.08.04.34.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 04:33:40 -0700 (PDT)
-Message-ID: <8528d39e-c03a-7d83-d8e7-5191d3110015@linaro.org>
-Date:   Thu, 8 Sep 2022 13:33:39 +0200
+        Thu, 08 Sep 2022 04:34:59 -0700 (PDT)
+Message-ID: <d0dacbf4-3768-7bbf-77a5-957bb37cd2b7@linaro.org>
+Date:   Thu, 8 Sep 2022 13:34:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/3] riscv: dts: starfive: Add common DT for JH7100
- based boards
+Subject: Re: [PATCH v2 2/5] dt-bindings: net: Add Broadcom BCM4377 family PCIe
+ Bluetooth
 Content-Language: en-US
-To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik@cutebit.org>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20220902100806.2378543-1-cristian.ciocaltea@collabora.com>
- <20220902100806.2378543-3-cristian.ciocaltea@collabora.com>
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220907170935.11757-1-sven@svenpeter.dev>
+ <20220907170935.11757-3-sven@svenpeter.dev>
+ <bcb799ea-d58e-70dc-c5c2-daaff1b19bf5@linaro.org>
+ <E53D41D9-1675-42EB-BC76-3453043FCB6E@cutebit.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220902100806.2378543-3-cristian.ciocaltea@collabora.com>
+In-Reply-To: <E53D41D9-1675-42EB-BC76-3453043FCB6E@cutebit.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,17 +91,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/09/2022 12:08, Cristian Ciocaltea wrote:
-> In preparation for adding initial device tree support for the StarFive
-> VisionFive board, which is similar with BeagleV Starlight, move most
-> of the content from jh7100-beaglev-starlight.dts to a new file, to be
-> shared between the two boards.
+On 08/09/2022 13:29, Martin Povišer wrote:
+>>> + brcm,taurus-cal-blob:
+>>> + $ref: /schemas/types.yaml#/definitions/uint8-array
+>>> + description: A per-device calibration blob for the Bluetooth radio. This
+>>> + should be filled in by the bootloader from platform configuration
+>>> + data, if necessary, and will be uploaded to the device.
+>>> + This blob is used if the chip stepping of the Bluetooth module does not
+>>> + support beamforming.
+>>
+>> Isn't it:
+>> s/beamforming/beam forming/
+>> ?
 > 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Doesn’t seem like it:
+> https://www.google.com/search?hl=en&q=beam%20forming
 
-Use proper arguments to git format-patch, so that the copy is properly
-detected.
+OK, thanks :)
+
 
 Best regards,
 Krzysztof
