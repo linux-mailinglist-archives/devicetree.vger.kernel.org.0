@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A41A5B21AA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 17:10:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 188635B21AE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 17:11:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232553AbiIHPK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 11:10:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44056 "EHLO
+        id S232834AbiIHPLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 11:11:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbiIHPKZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 11:10:25 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 870FCC7B8C
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 08:10:21 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id f11so14228968lfa.6
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 08:10:21 -0700 (PDT)
+        with ESMTP id S232093AbiIHPLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 11:11:22 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E827111C7F3
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 08:11:19 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id q21so14018733lfo.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 08:11:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=5nfFIngu44pae0WCPcM9HQdcNod8T/OMsQbWWVXDqBo=;
-        b=LpM3YfC1fmIAQHVaXCX9t/gf9W/yDctvTi9sGXLM0KZtsTeRFtfSYa0I+lVOn77RZG
-         gfzpsFmshBRPGemal9JP8/hOz9uhDZK7PZbPVmfkyMH6ujA4/HPnp4dyVPodGiK17X7n
-         /OgBw/FsLG5qhSW7iffykKunHEEWz+owJsX6aT7Bu7a+g7DFx1K3mRGRJfSV+l8Vs4A3
-         MmWXafVDRzF/+E0ntAcuuaRVZ0BF4OPx032SZfLnno9qPKtWXjRHdda2FlHPyCRVqjxb
-         f/m+QK5eXftPOazJbg8mmMjnxKysa5jz7BNvgAjm/tkGj8LtMDWqOxZwUPUGMLMWQUa2
-         wpyw==
+        bh=SMFrljKQFeZ7mrqOcjMaMCN0KzVyzr1TIqUCiZr3+Uw=;
+        b=Lnc/G9vbOnnC/Qru0Or4jWF60lsTjQKep87b+7LhKWkNJwBpE/zHEKwLyB8razA8Sb
+         3dcqmKtWrUMpxvAuHNE3Dgte9t9H/BUJi56/4HORgVE7W/gZFTVyU0QeoLJm2RFcTZmK
+         +rWjWqW1ksYynTwITrm4JnRNpUAGuJhSlisEQGXrfyFt1mPA743lL6ZbnQZfqaN/6uqs
+         qtMY0CwDQDu911TAEC8BYYk9+1otIX9rnU8bavQvDMifgpw81pCQtiuoU/JEKbjV4EZV
+         7SoJ/TOvp9kZQ5EfR8MEbz0x+n76oftCogiqwvmMYmYebKbwToQTes+ebtWJ9vVKGvSD
+         mdOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=5nfFIngu44pae0WCPcM9HQdcNod8T/OMsQbWWVXDqBo=;
-        b=AKiMCBhLX5ISDwczsL0xARAw2J+3cbCJC6COtIdGuu9QfrRxblxuGcmye9mzgZNpEn
-         QhMPFP3xhlCBwf6Ow2RMNyFPHEgZbg6eVK+aqZbRmZk5l9ChctOQO3ZJthbKN6ypC7el
-         uHw7qfRwOVmr9/8ngZWfIpOLxyyi7nfq9aDHeSza0yNxMdCuqNi1OVciGX761zR2tCfq
-         R43OOMX+koveKk0im2LTIcEu6u+yTZajVqQqDFEY+sTvkeaJxThl4ClLOqv9Ef3tUhpX
-         cFb0ahB6IEi1Pb5wvvUH+Qm945lgh7pbroFjAmbzH0s5cLDn3KmmX1PoRZXRUmIwqqyy
-         PxjA==
-X-Gm-Message-State: ACgBeo0ENABAz8Yw4PLbBYBexNmnEAg2jGoSSthf+hiJ34FEs6UJf0Pr
-        XFNIUwjvCOoxVheBEIdIc0rZOBseDvnhdw==
-X-Google-Smtp-Source: AA6agR7mH7tBvCONHwd5zeSS7p8UBOMCrjw3/bIV+uQT7ic1vLgbCVloBrxwXFxi0Pxd+glXTXPrRg==
-X-Received: by 2002:a19:2d5c:0:b0:498:3e16:b3fc with SMTP id t28-20020a192d5c000000b004983e16b3fcmr1346131lft.498.1662649819860;
-        Thu, 08 Sep 2022 08:10:19 -0700 (PDT)
+        bh=SMFrljKQFeZ7mrqOcjMaMCN0KzVyzr1TIqUCiZr3+Uw=;
+        b=F15Tob4PmmUoFRVi256dYuoO77qiN7QA4XroHvvCPAS4iXUKmlKSrJov+/2su+1k8H
+         6rRcL5R/yLx0aoJ8R8OHG8M2N/KX+V/rvBlBGieHWLQNvasuK7ZKQO1B2gWHVuDMgjB1
+         JBFHnFfYxps3EkAvOhFe4Ra8PkxETU6XZul15vbQiDERCW7qNQrkjCTYvcoP45TBq5gS
+         dLB4KcpBduxK+TL/9bw2fQvZFQdsJ8QSYP78Obz8kFGY9oh6LeLLUWEDHG5plrfZF45Q
+         LbHSOkfM5bqX0MTiFplVGvHBWKkkV+9jgvWc42SYJk9gu8tIIO0VCsQDmY1DgU7T/Gop
+         AZVw==
+X-Gm-Message-State: ACgBeo2kFxKzuQ4x02Bc75vkRx5I/Kw0zWauQoEua+O91PMaa/cs/0QO
+        Q9hxh1hIqIGT65MW43J/aeEYFg==
+X-Google-Smtp-Source: AA6agR7TUL6V8bOu369x1uzTLuCM1E6iuOLs+tiwk3Gy4dJZbNcRutp/mgpQcRKf0XIq+nPUivPVpQ==
+X-Received: by 2002:a05:6512:32c8:b0:492:f891:8a3a with SMTP id f8-20020a05651232c800b00492f8918a3amr3233766lfg.477.1662649878271;
+        Thu, 08 Sep 2022 08:11:18 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f11-20020a056512092b00b00497b198987bsm546555lft.26.2022.09.08.08.10.18
+        by smtp.gmail.com with ESMTPSA id a3-20020a056512200300b004946a1e045fsm1804544lfb.197.2022.09.08.08.11.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 08:10:19 -0700 (PDT)
-Message-ID: <1d3904d9-7fec-2e61-f999-61b89c4becb6@linaro.org>
-Date:   Thu, 8 Sep 2022 17:10:17 +0200
+        Thu, 08 Sep 2022 08:11:17 -0700 (PDT)
+Message-ID: <7a164961-5b32-8d80-a6f6-8c9f64622085@linaro.org>
+Date:   Thu, 8 Sep 2022 17:11:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 05/13] dt-bindings: serial: atmel,at91-usart: convert
- to json-schema
+Subject: Re: [Patch v2 01/15] dt-bindings: media: s5p-mfc: Add new DT schema
+ for MFC
 Content-Language: en-US
-To:     Sergiu.Moga@microchip.com, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
-        richard.genoud@gmail.com, radu_nicolae.pirea@upb.ro,
-        gregkh@linuxfoundation.org, broonie@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, jirislaby@kernel.org,
-        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com,
-        Tudor.Ambarus@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20220906135511.144725-1-sergiu.moga@microchip.com>
- <20220906135511.144725-6-sergiu.moga@microchip.com>
- <e799ca9e-acb0-1bea-1c1a-b2ab79089381@linaro.org>
- <fde16d80-28b4-aae6-363f-ad9dcf87a5e1@microchip.com>
+To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski@linaro.org>,
+        'Smitha T Murthy' <smitha.t@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
+        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
+        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
+        andi@etezian.org, alim.akhtar@samsung.com,
+        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+        linux-fsd@tesla.com
+References: <20220907064715.55778-1-smitha.t@samsung.com>
+ <CGME20220907063313epcas5p114f793010fd0f2797e93bd83ed18a1d7@epcas5p1.samsung.com>
+ <20220907064715.55778-2-smitha.t@samsung.com>
+ <08168057-853c-5b17-7d88-dc6c30e82f14@linaro.org>
+ <000101d8c382$75750e00$605f2a00$@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fde16d80-28b4-aae6-363f-ad9dcf87a5e1@microchip.com>
+In-Reply-To: <000101d8c382$75750e00$605f2a00$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,119 +90,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2022 17:06, Sergiu.Moga@microchip.com wrote:
-> On 08.09.2022 15:29, Krzysztof Kozlowski wrote:
+On 08/09/2022 14:56, Aakarsh Jain wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+>> Sent: 07 September 2022 16:52
+>> To: Smitha T Murthy <smitha.t@samsung.com>; linux-arm-
+>> kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; devicetree@vger.kernel.org
+>> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
+>> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
+>> ezequiel@vanguardiasur.com.ar; jernej.skrabec@gmail.com;
+>> benjamin.gaignard@collabora.com; stanimir.varbanov@linaro.org;
+>> dillon.minfei@gmail.com; david.plowman@raspberrypi.com;
+>> mark.rutland@arm.com; robh+dt@kernel.org; krzk+dt@kernel.org;
+>> andi@etezian.org; alim.akhtar@samsung.com; aswani.reddy@samsung.com;
+>> pankaj.dubey@samsung.com; linux-fsd@tesla.com;
+>> aakarsh.jain@samsung.com
+>> Subject: Re: [Patch v2 01/15] dt-bindings: media: s5p-mfc: Add new DT
+>> schema for MFC
+>>
+>> On 07/09/2022 08:47, Smitha T Murthy wrote:
+>>> Adds DT schema for s5p-mfc in yaml format
+>>
+>> s/Adds/Convert/
+>> (as convert to DT schema)
+>>
+> ok, I will change.
+> 
+>> Please mention here changes to original binding (I see at least adding
+>> iommus and dropping some properties).
+>>
+> ok. I will make this changes. 
+>>>
+>>> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+>>> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+>>> ---
+>>>  .../devicetree/bindings/media/s5p-mfc.txt     |  77 +------------
+>>>  .../bindings/media/samsung,s5p-mfc.yaml       | 109
+>> ++++++++++++++++++
+>>>  2 files changed, 110 insertions(+), 76 deletions(-)  create mode
+>>> 100644 Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt
+>>> b/Documentation/devicetree/bindings/media/s5p-mfc.txt
+>>> index aa54c8159d9f..0b7c4dd40095 100644
+>>> --- a/Documentation/devicetree/bindings/media/s5p-mfc.txt
+>>> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.txt
+>>> @@ -1,76 +1 @@
+>>> -* Samsung Multi Format Codec (MFC)
+>>> -
+>>> -Multi Format Codec (MFC) is the IP present in Samsung SoCs which
+>>> -supports high resolution decoding and encoding functionalities.
+>>> -The MFC device driver is a v4l2 driver which can encode/decode -video
+>>> raw/elementary streams and has support for all popular -video codecs.
+>>> -
+>>> -Required properties:
+>>> -  - compatible : value should be either one among the following
+>>> -	(a) "samsung,mfc-v5" for MFC v5 present in Exynos4 SoCs
+>>> -	(b) "samsung,mfc-v6" for MFC v6 present in Exynos5 SoCs
+>>> -	(c) "samsung,mfc-v7" for MFC v7 present in Exynos5420 SoC
+>>> -	(d) "samsung,mfc-v8" for MFC v8 present in Exynos5800 SoC
+>>> -	(e) "samsung,exynos5433-mfc" for MFC v8 present in Exynos5433
+>> SoC
+>>> -	(f) "samsung,mfc-v10" for MFC v10 present in Exynos7880 SoC
+>>> -
+>>> -  - reg : Physical base address of the IP registers and length of memory
+>>> -	  mapped region.
+>>> -
+>>> -  - interrupts : MFC interrupt number to the CPU.
+>>> -  - clocks : from common clock binding: handle to mfc clock.
+>>> -  - clock-names : from common clock binding: must contain "mfc",
+>>> -		  corresponding to entry in the clocks property.
+>>> -
+>>> -Optional properties:
+>>> -  - power-domains : power-domain property defined with a phandle
+>>> -			   to respective power domain.
+>>> -  - memory-region : from reserved memory binding: phandles to two
+>> reserved
+>>> -	memory regions, first is for "left" mfc memory bus interfaces,
+>>> -	second if for the "right" mfc memory bus, used when no SYSMMU
+>>> -	support is available; used only by MFC v5 present in Exynos4 SoCs
+>>> -
+>>> -Obsolete properties:
+>>> -  - samsung,mfc-r, samsung,mfc-l : support removed, please use memory-
+>> region
+>>> -	property instead
+>>
+>> When did they become obsolete? Is it enough of time to remove them?
+> 
+> these properties were there earlier, we didn't added them in obsolete properties.
 
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - clock-names
->>> +  - clocks
->>> +
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        $nodename:
->>> +          pattern: "^serial@[0-9a-f]+$"
->>
->> You should rather check value of atmel,usart-mode, because now you won't
->> properly match device nodes called "foobar". Since usart-mode has only
->> two possible values, this will nicely simplify you if-else.
->>
->>
-> 
-> 
-> I did think of that but the previous binding specifies that 
-> atmel,usart-mode is required only for the SPI mode and it is optional 
-> for the USART mode. That is why I went for the node's regex since I 
-> thought it is something that both nodes would have.
+This is not the answer to my question. Is it enough of time to remove
+deprecated properties?
 
-I think it should be explicit - you configure node either to this or
-that, so the property should be always present. The node name should not
-be responsible for it, even though we want node names to match certain
-patterns.
 
-> 
-> 
->>> +    then:
->>> +      allOf:
->>> +        - $ref: /schemas/serial/serial.yaml#
->>> +        - $ref: /schemas/serial/rs485.yaml#
->>> +
->>> +      properties:
->>> +        atmel,use-dma-rx:
->>> +          type: boolean
->>> +          description: use of PDC or DMA for receiving data
->>> +
->>> +        atmel,use-dma-tx:
->>> +          type: boolean
->>> +          description: use of PDC or DMA for transmitting data
->>> +
->>> +        atmel,fifo-size:
->>> +          $ref: /schemas/types.yaml#/definitions/uint32
->>> +          description:
->>> +            Maximum number of data the RX and TX FIFOs can store for FIFO
->>> +            capable USARTS.
->>> +          enum: [ 16, 32 ]
->>
->> I did not mention it last time, but I think it should follow generic
->> practice, so define all properties top-level and disallow them for other
->> type. This allows you to simply use additionalProperties:false at the end.
->>
-> 
-> 
-> What would be a good example binding in this case?
-
-The example binding.
-
-https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L212
-
-> 
-> 
->>> +
->>> +    else:
->>> +      if:
->>> +        properties:
->>> +          $nodename:
->>> +            pattern: "^spi@[0-9a-f]+$"
->>> +      then:
->>> +        allOf:
->>> +          - $ref: /schemas/spi/spi-controller.yaml#
->>> +
->>> +        properties:
->>> +          atmel,usart-mode:
->>> +            const: 1
->>> +
->>> +          "#size-cells":
->>> +            const: 0
->>> +
->>> +          "#address-cells":
->>> +            const: 1
->>
->> The same - top level and disallow them for uart.
->>
-> 
-> 
-> These values of #size-cells and #address-cells are only meant for the 
-> SPI so I guess I would still have to specify their mandatory const 
-> values here.
-
-Sure, ok.
-
-> 
-> 
->>> +
->>> +        required:
->>> +          - atmel,usart-mode
->>> +          - "#size-cells"
->>> +          - "#address-cells"
->>
->> End else in this branch is what?
->>
-> 
-> 
-> You are right, I will remove the useless if: after else:
 
 Best regards,
 Krzysztof
