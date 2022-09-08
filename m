@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0172A5B1BB1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:40:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 899CB5B1BB7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231228AbiIHLkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 07:40:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49906 "EHLO
+        id S230504AbiIHLkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 07:40:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230101AbiIHLkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:40:02 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E436D9CF
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:39:58 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id i26so11501942lfp.11
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:39:58 -0700 (PDT)
+        with ESMTP id S230101AbiIHLkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:40:46 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E518111CD70
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:40:42 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id w8so27190428lft.12
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:40:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=VIMRu3DlnR1bsB5zLuZyfEMWhGcdT9QFRMPDPMKjXCI=;
-        b=EUN/eII6fAHStDiHP5M4+H2AZnUfJoda1Sv4cDqD+ji7NebxXFawVFe3nHmjf4Prai
-         nXsU+2T+GtYxm+SuzBObS+BG1F+XFuMd/RglD5GU7CN7HKOQxGyogX250NIAOCxS3UdT
-         fTQ4EKOyayztjv9V11TNKnXLqu0LZRuH42IEFipXFalZKACfj75glHGXpIc7KMriqp8j
-         Iv5IzHBx6X2cEFnUpJM/m6uCFTHCaNOfvb7USbV5NxsNfP6D4phf178lkBhsaeqR8uMt
-         nZilSPb5eJVN3GmO/W4VuOBLFUcsQtiY/NRlu9MguM1n7sfHfOJIeIFOUGaOvjfJ3If5
-         m0jQ==
+        bh=qq/g+XZ2JG1ZYrx3xeBVADNTQBoVz4BOIGZJJbEw4f0=;
+        b=heg1JrEV84eY8Gs6IdvBMz1whgCoFw1U50y9XCCyoeV//ROtbYnmpDR47lPPduAt2C
+         gVYC1F9xXKQpIAA+odJPLIbbU6NVBUMthbo5CyvdQ7mpIyYhWfBCh2bBug2lXaYPDhz7
+         Crs216zxWWymg+rluvLHUVEOM1ZfpRD05Z95BjhMkEIabTZowvwYzPlFXCtdln4uhPtn
+         W2cGytNj3DxzUN9MRa30vvk0KawizOMwaWPbb1oI1oDCz+aqx/Ksiwt2iEc6rvq7GEBy
+         1QXm24jCzjQ3kYmNrd0Ky1Ys6JuZON4QZWN9LH6wBs3O0i9oAlBSHO2ewTyNlkpt1PnH
+         uirA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=VIMRu3DlnR1bsB5zLuZyfEMWhGcdT9QFRMPDPMKjXCI=;
-        b=p6Q/+vJTLNu4srSK3OGP6Z7+acgP2VCfTwaG03E5mYEfVkd3jCEgrCBFWMF08p6tOo
-         zAz9phG68dX8t5YWMUYHf6UMYBoM328NR1wTDFFd8XNO5ad7Lxj5hFiYOHRciWqpzr2j
-         YHFv17GDNt9HGKIidct+qxmvk32ILU/QsLQ9IsZ4zE72vKtO8b//xJlHU7z9TnA51wrc
-         q0Bf2BHZmyJ1nIkpqb9iCFMFcH54mZH71fX7xEr2wxRYf/bhnYzwUPnue+rWOFzo4hWR
-         dguGAz7JZjD6vTftBlhwj6Gt2rwVXMCoN2bXv5Ukhfjygg/KRRcg8yO0GGnZjW7oGVpi
-         vnUg==
-X-Gm-Message-State: ACgBeo2opfJBMIIaL1fDB3sBbIGO+HxR3yPeZw98ooUOZSIKrbv0EFFs
-        G2nGvng5q78PiS+kDT7RCqpRsg==
-X-Google-Smtp-Source: AA6agR5sTBbNR2Xr0R2PxZyBP7qGDTxaJA/YR/L8EF9WX4+xtyxyVk7fYZFU0G2jo0dBbnMdcDRArg==
-X-Received: by 2002:a05:6512:1189:b0:494:b306:c16 with SMTP id g9-20020a056512118900b00494b3060c16mr2700311lfr.452.1662637197344;
-        Thu, 08 Sep 2022 04:39:57 -0700 (PDT)
+        bh=qq/g+XZ2JG1ZYrx3xeBVADNTQBoVz4BOIGZJJbEw4f0=;
+        b=UboqZ0iwNtDZbGsSf+UQZo+2JlTPQ9DTI426Ll5ZqemSA7gU7ScwthPWgg0c7GR9ck
+         XGTLwhMIaLOOBgVPC6VSQlpTwBNI8HLe555ONtXg+bpFS2+yVbctH5NNaOkpcNZ1G6Pn
+         Cw8zY5f6/TDDGkHm5OeT7vic7s3jrtfbXgYSM9oTExOPT2MaJHzZV2UoZeIy1WPISAYt
+         dpzsIsi111gPaf2DM+RGpPHlWR6AvTkDEERMbWHmS08tFCfVgI9ObT33BMD3yIFTlVOG
+         gQWmRIUygq+ZMneFtB5DYP/QzhDhK0+xBaxA06bjtMHUiCZRkIeyKThCT9xdk55fpzhW
+         XKqA==
+X-Gm-Message-State: ACgBeo12xNsOdTXHbm5118aSZxl2Zg+sGniiryC+ZpABJtRQqpXvbCzr
+        Io5pw+mssQDFc0SnALpfOilkrA==
+X-Google-Smtp-Source: AA6agR4MHJFcXDkMHVXkwOkvsyyAjGenkME1tXoT11nKD0yOsg5Yi8PmifMypUg49w/SLQrIIDavvA==
+X-Received: by 2002:ac2:4429:0:b0:497:a5e9:d14a with SMTP id w9-20020ac24429000000b00497a5e9d14amr2894276lfl.372.1662637241277;
+        Thu, 08 Sep 2022 04:40:41 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a18-20020ac25052000000b004979e231fafsm1495281lfm.38.2022.09.08.04.39.56
+        by smtp.gmail.com with ESMTPSA id 11-20020ac25f4b000000b00492ce573726sm3012704lfz.47.2022.09.08.04.40.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 04:39:56 -0700 (PDT)
-Message-ID: <961b4821-4111-b48e-1ae0-60da8c427fbb@linaro.org>
-Date:   Thu, 8 Sep 2022 13:39:55 +0200
+        Thu, 08 Sep 2022 04:40:40 -0700 (PDT)
+Message-ID: <29d456ed-620c-8dc9-01f0-54f96b670b94@linaro.org>
+Date:   Thu, 8 Sep 2022 13:40:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/4] media: dt-bindings: Document Renesas RZ/G2L CSI-2
+Subject: Re: [PATCH v2 2/4] media: dt-bindings: Document Renesas RZ/G2L CRU
  block
 Content-Language: en-US
 To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
@@ -73,9 +73,9 @@ Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
         Prabhakar <prabhakar.csengg@gmail.com>,
         Biju Das <biju.das.jz@bp.renesas.com>
 References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220905230406.30801-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220905230406.30801-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220905230406.30801-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,82 +89,47 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 06/09/2022 01:04, Lad Prabhakar wrote:
-> Document the CSI-2 block which is part of CRU found in Renesas
-> RZ/G2L (and alike) SoCs.
+> Document the CRU block found on Renesas RZ/G2L (and alike) SoCs.
 > 
 > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> ---
-> v1 -> v2
-> * Dropped media prefix from subject
-> * Renamed node name csi20 -> csi
-> * Used 4 spaces for indentation in example node
-> * Dropped reset-names and interrupt-names properties
-> * Dropped oneOf from compatible
-> * Included RB tag from Laurent
-> 
-> RFC v2 -> v1
-> * Fixed review comments pointed by Rob and Jacopo.
-> 
-> RFC v1 -> RFC v2
-> * New patch
-> ---
->  .../bindings/media/renesas,rzg2l-csi2.yaml    | 140 ++++++++++++++++++
->  1 file changed, 140 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> new file mode 100644
-> index 000000000000..79beace4dec2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> @@ -0,0 +1,140 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2022 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,rzg2l-csi2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L (and alike SoC's) MIPI CSI-2 receiver
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +description:
-> +  The CSI-2 receiver device provides MIPI CSI-2 capabilities for the Renesas RZ/G2L
-> +  (and alike SoCs). MIPI CSI-2 is part of the CRU block which is used in conjunction
-> +  with the Image Processing module, which provides the video capture capabilities.
-> +
+
+Thank you for your patch. There is something to discuss/improve.
+
 > +properties:
 > +  compatible:
 > +    items:
 > +      - enum:
-> +          - renesas,r9a07g044-csi2       # RZ/G2{L,LC}
-> +          - renesas,r9a07g054-csi2       # RZ/V2L
-> +      - const: renesas,rzg2l-csi2
+> +          - renesas,r9a07g044-cru       # RZ/G2{L,LC}
+> +          - renesas,r9a07g054-cru       # RZ/V2L
+> +      - const: renesas,rzg2l-cru
 > +
 > +  reg:
 > +    maxItems: 1
 > +
 > +  interrupts:
-> +    maxItems: 1
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: image_conv
+> +      - const: image_conv_err
+> +      - const: axi_mst_err
 > +
 > +  clocks:
 > +    items:
-> +      - description: Internal clock for connecting CRU and MIPI
 > +      - description: CRU Main clock
 > +      - description: CPU Register access clock
+> +      - description: CRU image transfer clock
 > +
 > +  clock-names:
 > +    items:
-> +      - const: sysclk
 > +      - const: vclk
 > +      - const: pclk
+> +      - const: aclk
 
-One more: drop the "clk" suffixes. Remaining names could be made a bit
-more readable.
+Drop the "clk" suffixes. Remaining names could be made a bit more readable.
 
-
+> +
 Best regards,
 Krzysztof
