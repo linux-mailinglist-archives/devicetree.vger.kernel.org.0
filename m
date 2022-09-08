@@ -2,70 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38B7E5B195C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:53:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 481805B197D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:59:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbiIHJxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 05:53:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50472 "EHLO
+        id S229517AbiIHJ7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 05:59:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231520AbiIHJxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:53:15 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723D99877C
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 02:52:52 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id p7so26822299lfu.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 02:52:52 -0700 (PDT)
+        with ESMTP id S229899AbiIHJ65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:58:57 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BC0FE4DD0
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 02:58:55 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id bq23so26853025lfb.7
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 02:58:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=MbAZZ7ImXCnAcX5j6c0OQ0QrifKC4P6NeZBSY/zCSx0=;
-        b=WB6zbmxVadcxx+HMpPhfMGJ27YOZ9tqaqpHpkNY2q/yJ3tdIjYxihvgxQ3UVOwQE6E
-         Th6aMRCdXhR8h+JQN/CE0zJ3kyoqqyrlLFH4OVVGE2XMkvJJPcPBptE6DiWa0CG7OIrt
-         5xgUrnGC/8IJbBK2p332HaMYn3wDK/RVm3ontNqr+CiWveggtsDeFtkBzQqGD8IGcYfa
-         1TF+eMa03ymKwcA45z3h0nuLSboJINw3u2GjU8pXXSYWYDVyTNYxls3QZ5Sertr7Gape
-         OA+0d+ldAFy4OiGWNKwZYCVV1m+Rf6TFBFrcg2I4uOUtegxhW6OO1EylDmW3b0jm5bDl
-         sZ9w==
+        bh=mGgTz1J985wOQ7/4ni4tOp0M5zo/7OMTnLwttaIHVEg=;
+        b=RA9r7H6NxX7Fb79kxbBp/QSXm3U0ZozJxWhRKZ/WJcTBSAvmuhOSPCrF9zBzvD2+ML
+         CjAGTEObRORY/YslobjTGOpkca7vEp8lZyfe/mQYUThCdJadkB6d0BJzoOY0Qs1ijZso
+         9AoTbXStFSttLbrvgyFpl0mdB/klKjYjRRUPdJ9Gz51RfU//ZE1jQyHSt7LwijQFKgz/
+         q8gmRld/z1JPnqMaNyfSKri1LHjAv7TaWBv6W/vGD+iZ81Q+3EasZBs5aVRxT45gY9A1
+         AGCzLW8mWovDaqM7YodpneA4AWDiYYju7ZOwjI5MsGLq+5qIJMd5Y2jBRZwdG4rVzyVu
+         IWWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=MbAZZ7ImXCnAcX5j6c0OQ0QrifKC4P6NeZBSY/zCSx0=;
-        b=FPWnfZ/t2fEJlYstRvifWH3c3IJ4seT1M2jaq0JXeFW1uX2i9suHmLG/JMlsEkAhD4
-         RmLJNXx0d4eJAQpd84UkNEmhLwtgMcny+hCkj+gMn7gt0JTeXW5BYvOrKoyCx9VCE+ih
-         Ezu+UZmZzFTJd89d5JzMo4uQgk/btold4Fv+zxW9i3S99KLP3AlGPER/eScvanStBwcW
-         ct9uoBjNCIQ6B5gMbjodgIWwuxum4+7LHvgh+4eifai0Bxtdb5T6g+Z5u9RMBzRbOW0n
-         Psc9K3nLyFhbAYr/cZcQHaf7cQJK8tIjzEICoGQwpNftsHp8ss45sRjSaSfEl8fgejwQ
-         K7tQ==
-X-Gm-Message-State: ACgBeo3JYpzRAogNtFvwU4ZqYh+ESACJV1+Z03phZJLowz36dmjsJEjR
-        NPLOqyt1DXm1i++XN76vgb7VFw==
-X-Google-Smtp-Source: AA6agR4uIUy5M7yq+F2/csoUmcip3so7/aFAX2d6wiRe2HX9qa7VrFl3Pf3YfRp26nUrJMxDAnBTcg==
-X-Received: by 2002:a05:6512:ad1:b0:498:f052:3a18 with SMTP id n17-20020a0565120ad100b00498f0523a18mr483600lfu.348.1662630770805;
-        Thu, 08 Sep 2022 02:52:50 -0700 (PDT)
+        bh=mGgTz1J985wOQ7/4ni4tOp0M5zo/7OMTnLwttaIHVEg=;
+        b=M92uIHOTRaB+u6SSMEGbKG5jk9NsO0tc67QohwOJ39ueiijNZgUoT9G/27KPe39dXy
+         4jSb0nURW/9mZgbchfVzwwCE4gNiqAkmoDBAkrpCNC083OB7KE4H7RvOqDlWv8Dlpi10
+         LT8BizbPlx6/kpNHiu3zRJXCjJk8EbeDa4jEd2tzr5YYxd82GmcBe7H/Ioftn2uY/NYm
+         MoJD48ivz7j6pp/lKN5cBiDUY9beHusnGZQCyxkZM8/qwZZlIrkORzXhvAlAuGiLdQ1C
+         nIC36aRgC+740PvYcKAKSCOmTXxO5jG5i/hDVTChmH/NdOeXksfnm19rte6koa8C7kxJ
+         QXzw==
+X-Gm-Message-State: ACgBeo1nh3wHpGadHnxBfKA4fMqrg8E+66KR47roZIYnJB9dAh4YKeDw
+        KHPE+7JSPMgV8REVq/KqwnMYcQ==
+X-Google-Smtp-Source: AA6agR6CgZaTajebPQUOH5iqAoFXqxgOKthGiYBrugccy2VIqNTSCiEmbsu99H6J9ZujybyOrvMjCw==
+X-Received: by 2002:a05:6512:131f:b0:494:5d2f:c34b with SMTP id x31-20020a056512131f00b004945d2fc34bmr2480212lfu.324.1662631133327;
+        Thu, 08 Sep 2022 02:58:53 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p7-20020a05651211e700b0049487818dd9sm2958665lfs.60.2022.09.08.02.52.49
+        by smtp.gmail.com with ESMTPSA id d10-20020a056512368a00b0049876c1bb24sm288753lfs.225.2022.09.08.02.58.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 02:52:50 -0700 (PDT)
-Message-ID: <8a593e0b-99e0-b1f4-20ab-ab2df2940518@linaro.org>
-Date:   Thu, 8 Sep 2022 11:52:48 +0200
+        Thu, 08 Sep 2022 02:58:52 -0700 (PDT)
+Message-ID: <d49dc1ca-af81-4c08-db80-35d994c6c3a2@linaro.org>
+Date:   Thu, 8 Sep 2022 11:58:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] dt-bindings: clock: add i.MX8M Anatop
+Subject: Re: [PATCH 02/13] dt-bindings: memory: snps: Add Baikal-T1 DDRC
+ support
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, abelvesa@kernel.org,
-        abel.vesa@linaro.org, sboyd@kernel.org
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-clk@vger.kernel.org,
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20220906090013.3724305-1-peng.fan@oss.nxp.com>
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220822191957.28546-1-Sergey.Semin@baikalelectronics.ru>
+ <20220822191957.28546-3-Sergey.Semin@baikalelectronics.ru>
+ <0bda4ff9-fc08-77f2-0e06-7469dcaec6d8@linaro.org>
+ <20220826095447.qxfvty6xq4tufe75@mobilestation>
+ <36b2b6d9-9ab4-a4bc-6476-bd5b5d3ef77e@linaro.org>
+ <20220908094307.civtqiwxadas3ys3@mobilestation>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220906090013.3724305-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20220908094307.civtqiwxadas3ys3@mobilestation>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,82 +96,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 11:00, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 08/09/2022 11:46, Serge Semin wrote:
+> On Mon, Sep 05, 2022 at 12:14:21PM +0200, Krzysztof Kozlowski wrote:
+>> On 26/08/2022 11:54, Serge Semin wrote:
+>>> On Tue, Aug 23, 2022 at 11:12:28AM +0300, Krzysztof Kozlowski wrote:
+>>>> On 22/08/2022 22:19, Serge Semin wrote:
+>>>>> Baikal-T1 DDR controller is based on the DW uMCTL2 DDRC IP-core v2.51a
+>>>>> with up to DDR3 protocol capability and 32-bit data bus + 8-bit ECC. There
+>>>>> are individual IRQs for each ECC and DFI events.The dedicated scrubber
+>>>>
+>>>
+>>>> Missing space before "The".
+>>>
+>>> Ok. Thanks.
+>>>
+>>>>
+>>>>> clock source is absent since it's fully synchronous to the core clock.
+>>>>
+>>>
+>>>> You need allOf:if-then restricting this per variant.
+>>>
+>>> I really don't like the allOf-if-if-etc pattern because it gets to be
+>>> very bulky if all the vendor-specific and generic platform
+>>> peculiarities are placed in there. I am more keen of having a
+>>> generic DT-schema which would be then allOf-ed by the vendor-specific
+>>> device bindings. What do you think I'd provide such design in this
+>>> case too?
+>>
+>> Sure, it would work.
+>>
+>>>
+>>> But I'll need to move the compatible property definition to the
+>>> "select" property. Like this:
+>>>
+>>> Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml:
+>>> +[...]
+>>> +# Please create a separate DT-schema for your DW uMCTL2 DDR controller
+>>> +# and make sure it's assigned with the vendor-specific compatible string.
+>>> +select:
+>>> +  properties:
+>>> +    compatible:
+>>> +      oneOf:
+>>> +        - deprecated: true
+>>> +          description: Synopsys DW uMCTL2 DDR controller v3.80a
+>>> +          const: snps,ddrc-3.80a
+>>> +        - description: Synopsys DW uMCTL2 DDR controller
+>>> +          const: snps,dw-umctl2-ddrc
+>>> +        - description: Xilinx ZynqMP DDR controller v2.40a
+>>> +          const: xlnx,zynqmp-ddrc-2.40a
+>>> +  required:
+>>> +    - compatible
+>>
 > 
-> i.MX8M Family features an anatop module the produces PLL to clock
-> control module(CCM) root clock. Add the missing yaml file.
+>> Not entirely. If you need select, then add it with compatibles, but all
+>> descriptions and deprecated are staying in properties.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../bindings/clock/imx8m-anatop.yaml          | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/imx8m-anatop.yaml
+> Ok. But note in such case the compatible string constraints will get
+> to be opened for any non-common string. Like this:
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/imx8m-anatop.yaml b/Documentation/devicetree/bindings/clock/imx8m-anatop.yaml
-> new file mode 100644
-> index 000000000000..e247a5774d17
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/imx8m-anatop.yaml
+> + properties:
+> +   compatible:
+> +     oneOf:
+> +       - const: snps,ddrc-3.80a
+> +       - {}
 
-Filename: fsl,imx8m-anatop.yaml
+Not really. If you define here specific device compatibles in select,
+they must be here as well.
 
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/imx8m-anatop.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX8M Family Anatop Module
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +description: |
-> +  NXP i.MX8M Family anatop PLL module which generates PLL to CCM root.
+> 
+> It's required for the DT-schemas referencing the common one, otherwise
+> they will fail DT-nodes evaluation due to the "compatible" property
+> missing the vendor-specific string.
 
-Description suggests it is a clock controller (you literally write it
-generates PLL), but bindings are for system registers (syscon). If it is
-PLL, you should make it a real clock provider.
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,imx8mm-anatop
-> +              - fsl,imx8mq-anatop
-> +          - const: syscon
-> +      - items:
-> +          - enum:
-> +              - fsl,imx8mn-anatop
-> +              - fsl,imx8mp-anatop
-> +          - const: fsl,imx8mm-anatop
-> +          - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    anatop: anatop@30360000 {
-
-Node name: syscon or clock-controller if it is a clock provider.
-
-> +        compatible = "fsl,imx8mn-anatop", "fsl,imx8mm-anatop", "syscon";
-> +        reg = <0x30360000 0x10000>;
-> +    };
-> +
-> +...
-
+o you probably mix here purposes. Either you define common schema or
+device specific one. If you define common, usually it does not enforce
+any compatibles. You do not need select, no need for compatibles either,
+although you can add above syntax if it is valid. If you write here
+specific device bindings, then compatibles should be listed. Judging
+from what you wrote it's neither this nor that...
 
 Best regards,
 Krzysztof
