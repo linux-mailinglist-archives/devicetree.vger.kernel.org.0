@@ -2,211 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80DA05B1211
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 03:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3DB55B1217
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 03:27:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230056AbiIHBVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 21:21:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46802 "EHLO
+        id S229500AbiIHB1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 21:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230225AbiIHBVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 21:21:35 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A91C6E86;
-        Wed,  7 Sep 2022 18:21:18 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2881LGoX103477;
-        Wed, 7 Sep 2022 20:21:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1662600076;
-        bh=vYcLkBvyaC9e+rA9RUX1vGs5//lou/07uu+hs0EWZ7Q=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=we+NATm8l+jUQjdLHdUalyKyx8h26s6Yzri25p31fkGT1uHbWNpBTGM2e+YASwiXj
-         SyQbAxmGU9WPvut75Osl6+d+7vDPEyZjBYMoM0iyJcPpgJytbSHlvQQLDMe3dBk3m0
-         9+ZLkqpNCDM7audNaUsGbjhAyHg24nfU0y2ztXj8=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2881LGEY050997
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 7 Sep 2022 20:21:16 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 7 Sep
- 2022 20:21:15 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 7 Sep 2022 20:21:15 -0500
-Received: from ubuntu.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2881KXFh009016;
-        Wed, 7 Sep 2022 20:21:10 -0500
-From:   Matt Ranostay <mranostay@ti.com>
-To:     <vigneshr@ti.com>, <nm@ti.com>
-CC:     <devicetree@vger.kernel.org>,
+        with ESMTP id S229490AbiIHB1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 21:27:14 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C68832EC;
+        Wed,  7 Sep 2022 18:27:08 -0700 (PDT)
+X-UUID: 199aebecb2ae4928a2b07bf8e63537e9-20220908
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Jxm4Q2hjq51exmAQAAZplPtyEj8SEXfXis2YBGKt1cc=;
+        b=cT8deU1OrEnLsdPHGk6Gwo9e0L2itARCNUwgnMnf80crObpD2K2MYnpNZUjQughHsrHSeWJwl/AG5eC5+/cIMrUT5HSqOc6JYpHLuJRLPudwZv76zKSufRVljfq+Fp51u4Hs29k3VhNyNii5oac13iacBqCcr72AVTus4dknm7M=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:d80803f6-70ab-45ef-b724-b24b7cbafe5c,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:0
+X-CID-META: VersionHash:84eae18,CLOUDID:6afd0757-e800-47dc-8adf-0c936acf4f1b,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
+        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 199aebecb2ae4928a2b07bf8e63537e9-20220908
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 84008891; Thu, 08 Sep 2022 09:27:04 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 8 Sep 2022 09:27:03 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 8 Sep 2022 09:27:00 +0800
+Message-ID: <696a84dbd54a5c591b78a6c7e043aedb2db85d9b.camel@mediatek.com>
+Subject: Re: [PATCH v2 7/7] phy: phy-mtk-tphy: fix the phy type setting issue
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Matt Ranostay <mranostay@ti.com>
-Subject: [PATCH v2 6/6] arm64: dts: ti: k3-j721s2: Add support for OSPI Flashes
-Date:   Wed, 7 Sep 2022 18:20:31 -0700
-Message-ID: <20220908012031.3354-6-mranostay@ti.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220908012031.3354-1-mranostay@ti.com>
-References: <20220908012031.3354-1-mranostay@ti.com>
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Date:   Thu, 8 Sep 2022 09:27:00 +0800
+In-Reply-To: <9a7abae0-e31e-6beb-74ce-96462d847a88@collabora.com>
+References: <20220829080830.5378-1-chunfeng.yun@mediatek.com>
+         <20220829080830.5378-7-chunfeng.yun@mediatek.com>
+         <9a7abae0-e31e-6beb-74ce-96462d847a88@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswath Govindraju <a-govindraju@ti.com>
+On Wed, 2022-08-31 at 10:31 +0200, AngeloGioacchino Del Regno wrote:
+> Il 29/08/22 10:08, Chunfeng Yun ha scritto:
+> > The PHY type is not set if the index is non zero, prepare type
+> > value according to the index, like as mask value.
+> > 
+> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> 
+> I agree with this change and I'd be happy to give you my R-b tag, but
+> this
+> commit clearly needs to be backported, so you need a Fixes tag, or a
+> Cc to stable.
+A good point, will add it in next version, thanks a lot
 
-J721S2 has an OSPI NOR flash on its SOM connected the OSPI0 instance and a
-QSPI NOR flash on the common processor board connected to the OSPI1
-instance. Add support for the same
-
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Nishanth Menon <nm@ti.com>
-Acked-by: Matt Ranostay <mranostay@ti.com>
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- .../dts/ti/k3-j721s2-common-proc-board.dts    | 34 +++++++++++++++
- .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  4 +-
- arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 42 +++++++++++++++++++
- 3 files changed, 78 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index aa75dc541842..cb99a97af426 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -206,6 +206,20 @@ mcu_mcan1_gpio_pins_default: mcu-mcan1-gpio-pins-default {
- 			J721S2_WKUP_IOPAD(0x0c8, PIN_INPUT, 7) /* (C28) WKUP_GPIO0_2 */
- 		>;
- 	};
-+
-+	mcu_fss0_ospi1_pins_default: mcu-fss0-ospi1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x040, PIN_OUTPUT, 0) /* (A19) MCU_OSPI1_CLK */
-+			J721S2_WKUP_IOPAD(0x05c, PIN_OUTPUT, 0) /* (D20) MCU_OSPI1_CSn0 */
-+			J721S2_WKUP_IOPAD(0x060, PIN_OUTPUT, 0) /* (C21) MCU_OSPI1_CSn1 */
-+			J721S2_WKUP_IOPAD(0x04c, PIN_INPUT, 0) /* (D21) MCU_OSPI1_D0 */
-+			J721S2_WKUP_IOPAD(0x050, PIN_INPUT, 0) /* (G20) MCU_OSPI1_D1 */
-+			J721S2_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (C20) MCU_OSPI1_D2 */
-+			J721S2_WKUP_IOPAD(0x058, PIN_INPUT, 0) /* (A20) MCU_OSPI1_D3 */
-+			J721S2_WKUP_IOPAD(0x048, PIN_INPUT, 0) /* (B19) MCU_OSPI1_DQS */
-+			J721S2_WKUP_IOPAD(0x044, PIN_INPUT, 0) /* (B20) MCU_OSPI1_LBCLKO */
-+		>;
-+	};
- };
- 
- &main_gpio2 {
-@@ -394,6 +408,26 @@ &usb0 {
- 	maximum-speed = "high-speed";
- };
- 
-+&ospi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
-+
-+	flash@0{
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <1>;
-+		spi-rx-bus-width = <4>;
-+		spi-max-frequency = <40000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <2>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+	};
-+};
-+
- &mcu_mcan0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_mcan0_pins_default>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 7bc268f27030..ab49f8266d10 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -301,8 +301,8 @@ cpts@3d000 {
- 	};
- 
- 	fss: syscon@47000000 {
--		compatible = "syscon", "simple-mfd";
--		reg = <0x0 0x47000000 0x0 0x100>;
-+		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-+		reg = <0x00 0x47000000 0x00 0x100>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-index 76f0ceacb6d4..a05c17dd69b6 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-@@ -39,6 +39,28 @@ transceiver0: can-phy0 {
- 	};
- };
- 
-+&wkup_pmx0 {
-+	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
-+			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
-+			J721S2_WKUP_IOPAD(0x030, PIN_OUTPUT, 0) /* (G17) MCU_OSPI0_CSn1 */
-+			J721S2_WKUP_IOPAD(0x038, PIN_OUTPUT, 0) /* (F14) MCU_OSPI0_CSn2 */
-+			J721S2_WKUP_IOPAD(0x03c, PIN_OUTPUT, 0) /* (F17) MCU_OSPI0_CSn3 */
-+			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
-+			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
-+			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
-+			J721S2_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (F18) MCU_OSPI0_D3 */
-+			J721S2_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (E19) MCU_OSPI0_D4 */
-+			J721S2_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (G19) MCU_OSPI0_D5 */
-+			J721S2_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (F19) MCU_OSPI0_D6 */
-+			J721S2_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (F20) MCU_OSPI0_D7 */
-+			J721S2_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (E18) MCU_OSPI0_DQS */
-+			J721S2_WKUP_IOPAD(0x004, PIN_INPUT, 0) /* (E20) MCU_OSPI0_LBCLKO */
-+		>;
-+	};
-+};
-+
- &main_pmx0 {
- 	main_i2c0_pins_default: main-i2c0-pins-default {
- 		pinctrl-single,pins = <
-@@ -78,6 +100,26 @@ &main_mcan16 {
- 	phys = <&transceiver0>;
- };
- 
-+&ospi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <8>;
-+		spi-rx-bus-width = <8>;
-+		spi-max-frequency = <25000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <4>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+	};
-+};
-+
- &mailbox0_cluster0 {
- 	status = "disabled";
- };
--- 
-2.30.2
+> 
+> Thanks,
+> Angelo
+> 
+> > ---
+> > v2: no changes
+> > ---
+> >   drivers/phy/mediatek/phy-mtk-tphy.c | 7 ++++---
+> >   1 file changed, 4 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c
+> > b/drivers/phy/mediatek/phy-mtk-tphy.c
+> > index e0f227a0d3cc..cc10298bc70d 100644
+> > --- a/drivers/phy/mediatek/phy-mtk-tphy.c
+> > +++ b/drivers/phy/mediatek/phy-mtk-tphy.c
+> > @@ -915,7 +915,7 @@ static int phy_type_syscon_get(struct
+> > mtk_phy_instance *instance,
+> >   static int phy_type_set(struct mtk_phy_instance *instance)
+> >   {
+> >   	int type;
+> > -	u32 mask;
+> > +	u32 offset;
+> >   
+> >   	if (!instance->type_sw)
+> >   		return 0;
+> > @@ -938,8 +938,9 @@ static int phy_type_set(struct mtk_phy_instance
+> > *instance)
+> >   		return 0;
+> >   	}
+> >   
+> > -	mask = RG_PHY_SW_TYPE << (instance->type_sw_index *
+> > BITS_PER_BYTE);
+> > -	regmap_update_bits(instance->type_sw, instance->type_sw_reg,
+> > mask, type);
+> > +	offset = instance->type_sw_index * BITS_PER_BYTE;
+> > +	regmap_update_bits(instance->type_sw, instance->type_sw_reg,
+> > +			   RG_PHY_SW_TYPE << offset, type << offset);
+> >   
+> >   	return 0;
+> >   }
+> > 
+> 
+> 
 
