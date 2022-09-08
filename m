@@ -2,55 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E6D15B16F0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DEAB5B16F2
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:27:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230488AbiIHI1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 04:27:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43376 "EHLO
+        id S229522AbiIHI1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 04:27:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231576AbiIHI04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:26:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A4C65261;
-        Thu,  8 Sep 2022 01:26:50 -0700 (PDT)
+        with ESMTP id S229546AbiIHI1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:27:40 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8BE48E99C;
+        Thu,  8 Sep 2022 01:27:39 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9FA3661BB6;
-        Thu,  8 Sep 2022 08:26:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE97DC433D6;
-        Thu,  8 Sep 2022 08:26:44 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8D9D3B8204B;
+        Thu,  8 Sep 2022 08:27:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAE0DC433C1;
+        Thu,  8 Sep 2022 08:27:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662625608;
-        bh=sUV1o+v0ToEvegmITvK2iEIUqmKV/m3rYGgJK8I5bXo=;
+        s=k20201202; t=1662625657;
+        bh=Eo2pRaNuO4sf2mE2unCxNUqWyvB0vbD8c+vHCwj8PuQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YDdQxLRaqSCeBvC9ZukfdGmSyufC9gKMA4ERIeJiAAxBp5luh/a0aasgsNRK6dzLR
-         Lu/hUuEwTQtBYiit/vU9uOp+DWrh25bcJEV4FU6eS4jh8XZxRPPxpAPVbZrf8e1GVt
-         a3/LjxtZ7AUwBimJg4mZf9s/8rtOZf+mrEe+rUrAjojgab55/cVLdESxb1GELdDiLc
-         UZ8KbXhziWLxwO1Wm7sm8DtZ5LV8H79gbgxnMHPYyrFtsFtlIN8+IXnfZXNCDktDeU
-         eC2fHj9AEf/oOL2FTdteclrfdLpdchacreX41feRZTfGujUutUoYVpORwD8vVp7A0Z
-         t4GaJL/nqq5Xw==
-Date:   Thu, 8 Sep 2022 09:26:41 +0100
+        b=H20Ss7G1aoBSqE0GW0IlPIamIz9NucjMyR98agJqhthW8pay9TT7E5qD4qhnVU4fS
+         iGAW6KBl7rbYkfYtDy6dswEftBe9UNhGInZsVta6lHoMONvaRQK9Tg7XSsb8ZT4Erl
+         KrlNV4D4jSm9XfXo17072eWGAHnj/8+cmMC29B+aBMGSe0uNnZJWZ4ygsafkK53MiK
+         UzCiCLoW3UKq5u7iMC+uG+toq4IQ1fH6/Dx7k30Tl3WxmC3crof35nOkI+acXZISlv
+         TYBt3EhPf3w9OmPthvcIQOCWeQayJNBmiWeUWbm9NfKBh0S+j7c4cx+1dReKa+fhek
+         CWxDwcxaVAX8Q==
+Date:   Thu, 8 Sep 2022 09:27:32 +0100
 From:   Lee Jones <lee@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, zhangqing@rock-chips.com,
-        zyw@rock-chips.com, jon.lin@rock-chips.com,
-        maccraft123mc@gmail.com, sre@kernel.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        philip@pscan.uk, mazziesaccount@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH V10 2/4] mfd: Add Rockchip rk817 battery charger support
-Message-ID: <YxmnQQWijnhlSGr4@google.com>
-References: <20220827021623.23829-1-macroalpha82@gmail.com>
- <20220827021623.23829-3-macroalpha82@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: drop ref from reg-io-width
+Message-ID: <YxmndCN66k/dw8Zk@google.com>
+References: <20220823101021.387034-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220827021623.23829-3-macroalpha82@gmail.com>
+In-Reply-To: <20220823101021.387034-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -61,21 +55,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Aug 2022, Chris Morgan wrote:
+On Tue, 23 Aug 2022, Krzysztof Kozlowski wrote:
 
-> From: Chris Morgan <macromorgan@hotmail.com>
+> reg-io-width is a standard property, so no need for defining its type
 > 
-> Add rk817 charger support cell to rk808 mfd driver.
-> 
-> Acked-for-mfd-by: Lee Jones <lee.jones@linaro.org>
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/mfd/rk808.c       | 16 ++++++-
->  include/linux/mfd/rk808.h | 91 +++++++++++++++++++++++++++++++++++++++
->  2 files changed, 106 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 
-Already applied.
+Applied, thanks.
 
 -- 
 Lee Jones [李琼斯]
