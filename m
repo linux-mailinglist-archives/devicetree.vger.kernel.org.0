@@ -2,77 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60F425B21D9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 17:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9C595B21E4
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 17:20:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231810AbiIHPSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 11:18:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60026 "EHLO
+        id S232267AbiIHPUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 11:20:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229789AbiIHPSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 11:18:07 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91EC0F3BF6
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 08:18:05 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id f11so14268518lfa.6
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 08:18:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=/61fN8wXe1cF6+hB8wQz2CoLOe7SQuQ25cXLhUv9yHo=;
-        b=WxbNZGYwJcgjuppu2mdBKFLaF7yFEGpMJkyrAK4IVoxV7XdVpSCe762tiSmhT06cMZ
-         h/mvpRnr0he9SWfxGVO7XO5CSbKbgNSGU+noU0ydpYXIiCLpE6kPJhifaoVd2irCNOLP
-         Wa5daRv94BmzwT53DT8D0uXrMkJ1PiYfwAjU09icRG+rTVRnE/1uS192w7mufW6MxrMd
-         HyWxrdnHzdigeqVE7NKb7FPJtf1gTXS2iajEw9VDHfq7camhjw2bTBn17uATFQvQZrL9
-         h7VLgMoQIvTgmdyS9HTwkqCLYuDyC2G3m7MdDCHZZCCO6TsQFgumoAF6B8ufiQUSOQDO
-         M7Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=/61fN8wXe1cF6+hB8wQz2CoLOe7SQuQ25cXLhUv9yHo=;
-        b=e+AqDguYBeoJbOdDwD7V6kBsviM/tDrRQJ3RCHmoGPawCKIwBHX596SsonP9GtXsEI
-         XC9R9UkLmE2auz4VxWBDjX2+Ddq/HmVBwuMYxdGZ1El3OUH/TyfuKn9XHep7vCldBup+
-         YQmv43dN7cCmHOkyuo6BUS4jD59oJ1rfTGqYyRTA0qtiZOYbtpHKFXMYAnlMxGEvHwu/
-         0WEKc3NZ+Rwz4hQLww9zNWiGaxNoKgt50emruQ0guanBKidwVN8Sj/KaLiu52qh38lHX
-         Y1bd/kPyYZ6z/LQvlfPOwNEh+NOqhQpHElJKJoAmajDTTg9dy+ZhicNB57eMlkmaC5nT
-         o3TA==
-X-Gm-Message-State: ACgBeo20ttEfA8vjMCdJKUFQ75CZtsGdov7+zDrD4JWQ+wDobVh3Nloc
-        fAsMqYIRfgk/X+twvS2VDWvI5A==
-X-Google-Smtp-Source: AA6agR4/vGtKteLhNWyXm/dlNO0bWhSZYQLjnjvT1mr61jpFMHUoxvmP2VPoyV4PQI2v8bwRqi42VA==
-X-Received: by 2002:ac2:4f03:0:b0:496:272:625d with SMTP id k3-20020ac24f03000000b004960272625dmr2782441lfr.303.1662650283838;
-        Thu, 08 Sep 2022 08:18:03 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k5-20020ac257c5000000b004946bb30469sm3069662lfo.82.2022.09.08.08.18.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 08:18:02 -0700 (PDT)
-Message-ID: <1da154da-6c37-7dc6-9cfe-87d38efc4f28@linaro.org>
-Date:   Thu, 8 Sep 2022 17:18:01 +0200
+        with ESMTP id S232113AbiIHPUa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 11:20:30 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44689564CD;
+        Thu,  8 Sep 2022 08:20:25 -0700 (PDT)
+Received: from booty (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 49192E0008;
+        Thu,  8 Sep 2022 15:20:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1662650422;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=OaycjTCUtVL0XC/TXiHrCS9tTq4CU4MjnzsvbA4dKO4=;
+        b=VIWvkQc2rLTZkRlB9Caja28dMM3gG2XlRofkwI6AWfSSz/kNwH9bBu5kYOe2dhlaUX6AUr
+        i0zh5Hupq8g2tAOoEIgXWAGNC6fNDVOpBHIsqHe3D+pNeF5DYgLbQjZ3fjb5OZKomKIwzH
+        o+LLDo2w8HoVJzR2NgTDT3/s7i2PbSm59OayUUbmD6V5YUkwefuyjr8Y0AVtfNDJ1H52il
+        2tao+VNyOicFrt3Ina7RBvn3rx62qM8sFk4gczmzLz8HOqDP6AMKVsnTzIJe+R7GCXTl1V
+        ckAUtcllF0oofsFKMSXc1eMv2fvadLHH9kzV26ap8xmDhgcd1YSQwdPb95B4tQ==
+Date:   Thu, 8 Sep 2022 17:20:16 +0200
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 2/8] ASoC: rockchip: rk3308: add audio card bindings
+Message-ID: <20220908172016.6e23df8c@booty>
+In-Reply-To: <aeabc681-9416-d25d-693a-30ba99f1796d@linaro.org>
+References: <20220907142124.2532620-1-luca.ceresoli@bootlin.com>
+        <20220907142124.2532620-3-luca.ceresoli@bootlin.com>
+        <aeabc681-9416-d25d-693a-30ba99f1796d@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add NewVision NV3051D
- panel bindings
-Content-Language: en-US
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@linux.ie, sam@ravnborg.org,
-        thierry.reding@gmail.com
-References: <20220906185208.13395-1-macroalpha82@gmail.com>
- <20220906185208.13395-2-macroalpha82@gmail.com>
- <cbdbc7d8-a3b9-d960-68c7-457c947e4285@linaro.org>
- <SN6PR06MB534207102C2E8AFCE63C3231A5419@SN6PR06MB5342.namprd06.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SN6PR06MB534207102C2E8AFCE63C3231A5419@SN6PR06MB5342.namprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,90 +67,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2022 15:35, Chris Morgan wrote:
-> On Wed, Sep 07, 2022 at 02:53:56PM +0200, Krzysztof Kozlowski wrote:
->> On 06/09/2022 20:52, Chris Morgan wrote:
->>> From: Chris Morgan <macromorgan@hotmail.com>
->>>
->>> Add documentation for the NewVision NV3051D panel bindings.
->>> Note that for the two expected consumers of this panel binding
->>> the underlying LCD model is unknown.
->>>
->>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->>> ---
->>>  .../display/panel/newvision,nv3051d.yaml      | 48 +++++++++++++++++++
->>>  1 file changed, 48 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
->>> new file mode 100644
->>> index 000000000000..016168d8d7b2
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
->>> @@ -0,0 +1,48 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: https://nam12.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fdisplay%2Fpanel%2Fnewvision%2Cnv3051d.yaml%23&amp;data=05%7C01%7C%7C69d30de15aea41517acb08da90d0079f%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C637981520397977782%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=qfuvbrQYP3rKnp%2ByPmPmn%2BCJJOQkNkTGT49FkJmIics%3D&amp;reserved=0
->>
->> You need to document vendor prefix... but the filename does not match
->> compatible.
+Hello Krzysztof,
+
+thank you for reviewing my patches.
+
+On Thu, 8 Sep 2022 13:49:34 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+> On 07/09/2022 16:21, luca.ceresoli@bootlin.com wrote:
+> > From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
+[...]
+
+> > +properties:
+> > +  compatible:
+> > +    const: rockchip,rk3308-audio-graph-card  
 > 
-> Okay, will do that. This is a tricky one because while I know the panel
-> controller IC (a NewVision NV3051D) I don't actually know the LCD panel
-> itself, the vendor is somewhat tight lipped. I do know the product it
-> goes into, so that's why I did what I did with the compatible strings.
-> If that's not correct I guess let me know. I did see for other drivers
-> (such as the NewVision NV3052C) the driver was written for the IC
-> and the panel name was listed differently, hence what I was going for
-> here.
+> Is "graph" part of device name or you just put it there because of other
+> schema?
 
-If by "driver" you mean by "Linux driver", then it does not really
-matter. You describe here the hardware. The example of NV3052C follows
-this approach - proper compatible and file name matching hardware. Here
-your file name does not match hardware.
+Indeed this comes from the "audio-graph-card" compatible string.
 
-> 
->>
->>> +$schema: https://nam12.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7C%7C69d30de15aea41517acb08da90d0079f%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C637981520397977782%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=AYwypW%2BA9xWCN6YYwC7oI5UDW6QmiP7%2FmAoKlm7x3jM%3D&amp;reserved=0
->>> +
->>> +title: NewVision NV3051D based DSI panel driver
->>
->> This is confusing - compatibles say something else.
->>
-> 
-> Right. Driver IC is the NV3051D, LCD panel itself is... well... not
-> sure...
+> The compatible should reflect the device name, not some other
+> pieces in Linux or in bindings.
 
-I guess similarly to ltk035c5444t this should be documentation of panel?
+Would it be OK to rename it to rockchip,rk3308-audio-card (i.e. drop
+the "graph-" infix)?
 
-> 
->>> +
->>> +maintainers:
->>> +  - Chris Morgan <macromorgan@hotmail.com>
->>> +
->>> +allOf:
->>> +  - $ref: panel-common.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - anbernic,rg353p-panel
->>> +      - anbernic,rg353v-panel
->>
->> Missing space, missing documentation for vendor prefix.
->>
->> Strip "panel" suffix unless device is multifunctional.
->>
-> 
-> The device name itself is Anbernic RG353P (and RG353V). The driver is
-> not multifunctional but again I don't really know what the LCD itself
-> is called so I'm trying to name it after the device. I only know the
-> driver IC.
-
-So skip panel.
-
-
+Fixes for the other comments you made to this and the other patches are
+already queued for v2.
 
 Best regards,
-Krzysztof
+Luca
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
