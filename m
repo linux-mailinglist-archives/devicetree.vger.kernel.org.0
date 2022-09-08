@@ -2,91 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21AB75B284A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 23:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 410CB5B2862
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 23:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbiIHVRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 17:17:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39392 "EHLO
+        id S229493AbiIHVTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 17:19:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230061AbiIHVR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 17:17:26 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11AA3F4135;
-        Thu,  8 Sep 2022 14:17:24 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id n65-20020a17090a5ac700b001fbb4fad865so3768579pji.1;
-        Thu, 08 Sep 2022 14:17:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=KhL6+SPjuBPiraisuhRvp206Zkt0sw2dGsFp96SeFIY=;
-        b=lmDkrINNZQK5NRqC3rkZon5niLRiuVo4lsAmm7jKJE6A1VVbAaMUTbxWZ3hfECTYhY
-         cMuG+gwnffzI4kidat4tdpCtJrhLXU/2PUtsNrz6uCzDtLdVpOtGfACg841U3GSF0udP
-         ibkzo1n8w10qXr55EM+/A9aT7oNtLlOYXclq8ayDgFtZhtBbqV6Ti/gWK7+G+vrV/CBI
-         vX7lwp6c/leFY1QJQcFavX88Sk2uxBbgFmjKh5jtfN0r/a8Lp2G/R4iPilGgXIbP4PZp
-         D/26OlHi0HH9J1lQ/8NUrgtS3lfJA2ZC7QQsoU2mNc0Qn+FWC4ZleUWBDLS9TmaNQ1Qa
-         ASJg==
+        with ESMTP id S230036AbiIHVTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 17:19:22 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79789114A54;
+        Thu,  8 Sep 2022 14:19:18 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-12ab0eaa366so8437883fac.13;
+        Thu, 08 Sep 2022 14:19:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=KhL6+SPjuBPiraisuhRvp206Zkt0sw2dGsFp96SeFIY=;
-        b=bzBWJHZ8/PVGNPqx1pS1YwrGX1dc0iNLM8tNy1J5WTyPWv59pPsLogXXWmHH7w5cCJ
-         Eam4ImH+4vZkbF4CMq5gRm3XUsIo0WHeOgLL0gAEpuejEmpvOoAH236oycKDEsEBP448
-         veBH8M90QH4IzLWShbydU7slfP+YVQqCzv7je8s9GIGgCcZzTpHW5/B+4tpBMgjYGoc/
-         XdsLYszQci5PJAqDtMBV5gCh9S/h+O3hKMahUeV4djsYoKywclS9AwzB7x1ZVfZUw1rN
-         yDSi+AhI/Vzew632ViKwPzW737LaMnyqIXt0hkZeEnKz6px+/5W49J2KZpW5ohA/CdPB
-         6+Ng==
-X-Gm-Message-State: ACgBeo34MNs8PXeYR2GiP78xI7VOwIqNdhw4gX0MoIzuS97gN57BCRtl
-        D1tsaIsvS4qYKgqRhFYlg6nVs0ETuOc=
-X-Google-Smtp-Source: AA6agR6UXWQyk0RfNsEgaaMuE3A2gl461+NfH3OlD+f2zUpZDhtqgpwEo1PKuywU7X/VundP36y1Ug==
-X-Received: by 2002:a17:903:41d0:b0:174:d8e0:b0f1 with SMTP id u16-20020a17090341d000b00174d8e0b0f1mr10486473ple.74.1662671843998;
-        Thu, 08 Sep 2022 14:17:23 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:7554:1f24:9d2b:37a0])
-        by smtp.gmail.com with ESMTPSA id q2-20020a170902eb8200b00176c9015633sm7385089plg.28.2022.09.08.14.17.23
+        bh=KMHsaGNDvslboYLAxw3EKuXtaLLoCBvjt3oIq+2C3AI=;
+        b=N6A/5jHb9pINSezlUayMPfNuu/of3L6lEuFgg/6HfMR7GUICUY7ZlKzKVZKNGknyMy
+         3D5+hm3SXUpba+QpSo8VAFUCfmfGRo+wSwH8K6NhTsksR7fj8XMyPlYNeMHOTnm8nAjt
+         iSC5niKAP77riumXmBZt3K9ssNLOjQIViq5p+u/+MvgOUsmXAErw4GIcaDR0T8pU5nTe
+         7KG9ZWApuvPpJcnyddY3cga5lbU5ucnU0uQvhEXta/4/OEmTPIIEtjWkN1lD6sXSmKEk
+         GbB2Bwauvxz3pXBM1Gn87nUXbkPonEq41j5KZW72dv5vQNGU2uK0FO0Ihn62yzSFFigX
+         U+Gg==
+X-Gm-Message-State: ACgBeo1puL9cMFrvBSmBMWIZ8ZLtI9YUdBo1656qHvvUk9qpTm+Qin2Y
+        u93vN6iN4CsplR59a+Bb0Q==
+X-Google-Smtp-Source: AA6agR6qv2N7WLFSotO1lYgem5+1/Wg2sBDJ7EN5QweFLaR/H/u0neTRujfbz8NSHxZIfTXmdrF5Hg==
+X-Received: by 2002:a05:6808:e90:b0:345:6ee0:9a68 with SMTP id k16-20020a0568080e9000b003456ee09a68mr2499120oil.173.1662671957745;
+        Thu, 08 Sep 2022 14:19:17 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h18-20020a9d6f92000000b006396521c804sm67750otq.55.2022.09.08.14.19.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 14:17:23 -0700 (PDT)
-Date:   Thu, 8 Sep 2022 14:17:21 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 01/11] Input: iqs7222 - drop unused device node references
-Message-ID: <Yxpb4QdZej4QnZlo@google.com>
-References: <20220908131548.48120-1-jeff@labundy.com>
- <20220908131548.48120-2-jeff@labundy.com>
+        Thu, 08 Sep 2022 14:19:17 -0700 (PDT)
+Received: (nullmailer pid 3359326 invoked by uid 1000);
+        Thu, 08 Sep 2022 21:19:16 -0000
+Date:   Thu, 8 Sep 2022 16:19:16 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Add i.MX8M Mini Gateworks GW7904
+ board
+Message-ID: <20220908211916.GA3348959-robh@kernel.org>
+References: <20220902230500.2624739-1-tharvey@gateworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220908131548.48120-2-jeff@labundy.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220902230500.2624739-1-tharvey@gateworks.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 08, 2022 at 08:15:38AM -0500, Jeff LaBundy wrote:
-> Each call to device/fwnode_get_named_child_node() must be matched
-> with a call to fwnode_handle_put() once the corresponding node is
-> no longer in use. This ensures a reference count remains balanced
-> in the case of dynamic device tree support.
+On Fri, Sep 02, 2022 at 04:04:59PM -0700, Tim Harvey wrote:
+> Add DT compatible string for i.MX8M Mini based Gateworks GW7904 board.
 > 
-> Currently, the driver never calls fwnode_handle_put(). This patch
-> adds the missing calls.
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 7431579ab0e8..ce89fac1898e 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -831,6 +831,7 @@ properties:
+>                - gw,imx8mm-gw7901          # i.MX8MM Gateworks Board
+>                - gw,imx8mm-gw7902          # i.MX8MM Gateworks Board
+>                - gw,imx8mm-gw7903          # i.MX8MM Gateworks Board
+> +              - gateworks,imx8mm-gw7904   # i.MX8MM Gateworks Board
 
-Hmm, dev_fwnode() however does not do that, which means that
-iqs7222_parse_props() has different refounting, depending on what is
-being fetched. I think we need to start there.
+A useful comment would be ones that distuiguish these boards. It's 
+obvious from the compatible it's a i.MX8MM board from Gateworks.
 
-Also, maybe we could avoid sprinkling gotos if we moved property reading
-code into helpers?
-
-Thanks.
-
--- 
-Dmitry
+>                - kontron,imx8mm-n801x-som  # i.MX8MM Kontron SL (N801X) SOM
+>                - menlo,mx8menlo            # i.MX8MM Menlo board with Verdin SoM
+>                - toradex,verdin-imx8mm     # Verdin iMX8M Mini Modules
+> -- 
+> 2.25.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
