@@ -2,75 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 482AC5B186E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:21:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2C9E5B1892
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbiIHJUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 05:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37084 "EHLO
+        id S231508AbiIHJYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 05:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231827AbiIHJUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:20:33 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF30540E2D
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 02:20:08 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id y18so4383747ljh.12
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 02:20:08 -0700 (PDT)
+        with ESMTP id S231265AbiIHJYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:24:25 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E6EFBF23
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 02:22:52 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id m15so7024696lfl.9
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 02:22:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=/9JIT1QugDrGf1OxGIQaaREkYREoMbYTQ7fht5bGWRo=;
-        b=YH94jeZaGjiAt7N+BveeNhCjiyHS8gGpaC7ynzdJIJSi79FbinYrvwnS9chRBNsRKy
-         e4hVRcwqpMWL6j3YXLpHBVA2IUVoo8onXqFgZfpN/v3E4JLZPb+TV/0+zd/vDyoBCPzt
-         cO3c1Y7GUSJCq5Eb6jD23btbrl9YzLOoRnuMlPLwI6A4aHAvY0/1oyWTQjxtQXBry4+2
-         xQb3kb9/quVSx8WaMQ7Nrp125M6wCbc5hV9UkxJRsCx/phtRVMlXD9LqmIT0ka+XQUyg
-         qKqJVsjeYHT/N6adkR5Cmxq1swbUHq62aYTmN1T4MSzk6sQu4UbquUvAOK/vUfIGJ9gO
-         Ff3w==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=dH3CbhVOQrBIzFdsMYEQAzEoE3B2m4SSznn5rAk+rYM=;
+        b=FHf5Ic/nwRoqqtgsFHSSGFDXZc98X2hpVH5Ttn0/VY/T+Rl1xxX8eAP+p5gs+pa44G
+         dqojHG/7TfSA3gOeWxAIl+UZh8PDFCPoea9kdGdQqDETSUMlihGsJQtxcvAzwkVOy9sT
+         3fDJ01OAxnONes0Gle2gdPEa0FKu6zFZ/j+W9iF0qpfbRbL6px2LC8vg21uN+B1a+F6d
+         U7OQShHt5p86KP5e2r9IZo+K/7ynXnUdLMF1xVA5svaLjFkS8ALinaYJ0yT0hTOm1z5y
+         5k/Ar9Kn+1s6rjhMYGbHk8a9pG3X93HkuWGNY4axTv/+yed/0Q6jeQnF9lV+pUJTF328
+         eDOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=/9JIT1QugDrGf1OxGIQaaREkYREoMbYTQ7fht5bGWRo=;
-        b=4m8pL/5JAur3CZfs5e65XEVad5pX0tBr9yTfu0aq05kT25nGdd24bZbAZ0P8vji/eQ
-         OS5koTnVMFB0vl81puSMwdRPheA6JHE1ahUMpHMNfWpYXIOYJzy3lMMuDd+IsdfzIWcz
-         n+2rytCYyHeNu5lTORIxaxjvFdPzi+ob3wwGJG3dUfCH6zhKMnFuXH9vyipvn03ICVJ3
-         2/d2W+6pSiCE/o1fUbwckHTSh4p0zvLUzRr1KoHDrbKj7hQvaUIZYc43w/sIwpsER5xC
-         jwj45S5Z3XYHF890NOkcMrSJ0GDbGOSGbX94nxctDakwnMHmse+i6Quy+TCHtuC2Q6O6
-         nZgA==
-X-Gm-Message-State: ACgBeo1KPKHBHztnwoQgghFyJGRBmGpEplRJSyxdp5XcutiFIFdhjLoi
-        HAC84IMs26GklwQVwXP/NHKp/w==
-X-Google-Smtp-Source: AA6agR5ZHgdochYVCe6yWvNjdCbg2QV60T6mhPC8fkxAHTK0UGiiIg6GTAhAHUqM+DMyuMBanE3Oug==
-X-Received: by 2002:a2e:b6d3:0:b0:26b:ddd7:919 with SMTP id m19-20020a2eb6d3000000b0026bddd70919mr26695ljo.491.1662628808264;
-        Thu, 08 Sep 2022 02:20:08 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q17-20020a056512211100b004946a758d21sm218219lfr.161.2022.09.08.02.20.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 02:20:07 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 14/14] dt-bindings: soc: qcom: apr: add missing properties
-Date:   Thu,  8 Sep 2022 11:19:46 +0200
-Message-Id: <20220908091946.44800-15-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220908091946.44800-1-krzysztof.kozlowski@linaro.org>
-References: <20220908091946.44800-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=dH3CbhVOQrBIzFdsMYEQAzEoE3B2m4SSznn5rAk+rYM=;
+        b=KvBARwZgJjlw/wZ4+gY3R3Fpf94h3VoSup75tz2Zxd/eCcYeoOyX8xeM2j67YtQ9/M
+         KoKrqSmgTjEYSQ/NJ8yEtiHwPuN8x8sq6wzGDo9pxVZ9t5pkDUUKaoy5W2Pm1Jw70Pe2
+         Jlyf9MNmr5ydVCENd0VEV/T7c/UuDpxVzsoXsWFZ6lIo6HOq1Umjw9mIRUOPt/rCkX6y
+         5HJoeZ9O0RGpn240RWuobyR6IqEaB6BG9RHm4XzKc2E9mRI+FmLRk/byzEhOETx2lC7C
+         /plxwymDXW+bUN0b/SSoNSnypKvGNxLlcrwVwnMjwtq4tPbu/4BbR4M6ZNcVfJ8k5duV
+         koEw==
+X-Gm-Message-State: ACgBeo3XDEfhfZ0jIwLH+Gwfgcpy0XhrxocK/MySJWrpOdRKSFtsBA+a
+        UxwodAgHVMAsTkZO0E+TXSldmA==
+X-Google-Smtp-Source: AA6agR4x1bQbWHYoUICIygFzuOYuWPgfmCbP5o72xJn3+fJ+P+x9kq1cdfCrhlbhILkhk07z1Y2DaA==
+X-Received: by 2002:a05:6512:1193:b0:492:7e33:870 with SMTP id g19-20020a056512119300b004927e330870mr2475777lfr.37.1662628970810;
+        Thu, 08 Sep 2022 02:22:50 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id bu13-20020a056512168d00b004947f8b6266sm175119lfb.203.2022.09.08.02.22.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Sep 2022 02:22:50 -0700 (PDT)
+Message-ID: <0b8b2e01-5209-6437-c79e-3cff9b29bfcb@linaro.org>
+Date:   Thu, 8 Sep 2022 11:22:48 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v9 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings
+ for DMIC controller
+Content-Language: en-US
+To:     =?UTF-8?B?54+t5rab?= <fengzheng923@gmail.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
+        jernej.skrabec@gmail.com, samuel@sholland.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+References: <1661872039-40174-1-git-send-email-fengzheng923@gmail.com>
+ <25072fba-64e2-df11-c8f0-a274037141f0@linaro.org>
+ <CAE=m619qeaDYkWiB5kh50gY1Kndyrvo4oZuZjFKRCKK=j99K2w@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAE=m619qeaDYkWiB5kh50gY1Kndyrvo4oZuZjFKRCKK=j99K2w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,89 +81,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The APR bindings were not describing all properties already used in DTS:
-1. Add qcom,glink-channels, qcom,smd-channels and qcom,intents (widely
-   used).
-2. Add power-domains for MSM8996.
+On 07/09/2022 15:03, 班涛 wrote:
+>>> +++
+>> b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+>>> @@ -0,0 +1,79 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/sound/allwinner,sun50i-h6-dmic.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Allwinner H6 DMIC Device Tree Bindings
+>>
+>> s/Device Tree Bindings//
+>>
+> 
+> So, modify it to 'Allwinner H6 DMIC Devices Tree Bindings', sure?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- .../bindings/soc/qcom/qcom,apr.yaml           | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+You pasted the same message, so what is the modification? I wrote you a
+ search&replace pattern.
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-index a1a8f77beef7..4060bac759e1 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-@@ -20,6 +20,9 @@ properties:
-       - qcom,apr-v2
-       - qcom,gpr
- 
-+  power-domains:
-+    maxItems: 1
-+
-   qcom,apr-domain:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     enum: [1, 2, 3, 4, 5, 6, 7]
-@@ -52,6 +55,26 @@ properties:
-         2 = Audio DSP Domain
-         3 = Application Processor Domain
- 
-+  qcom,glink-channels:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    description: Channel name used for the communication
-+    items:
-+      - const: apr_audio_svc
-+
-+  qcom,intents:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      List of (size, amount) pairs describing what intents should be
-+      preallocated for this virtual channel. This can be used to tweak the
-+      default intents available for the channel to meet expectations of the
-+      remote.
-+
-+  qcom,smd-channels:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    description: Channel name used for the communication
-+    items:
-+      - const: apr_audio_svc
-+
-   '#address-cells':
-     const: 1
- 
-@@ -171,6 +194,30 @@ required:
-   - compatible
-   - qcom,domain
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,gpr
-+    then:
-+      properties:
-+        power-domains: false
-+
-+  - if:
-+      required:
-+        - qcom,glink-channels
-+    then:
-+      properties:
-+        qcom,smd-channels: false
-+
-+  - if:
-+      required:
-+        - qcom,smd-channels
-+    then:
-+      properties:
-+        qcom,glink-channels: false
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
 
+
+Best regards,
+Krzysztof
