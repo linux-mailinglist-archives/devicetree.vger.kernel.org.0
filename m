@@ -2,90 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70F445B131B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 06:01:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C3225B1378
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 06:22:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbiIHEBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 00:01:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58650 "EHLO
+        id S229710AbiIHEWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 00:22:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbiIHEBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 00:01:17 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27303CAC60;
-        Wed,  7 Sep 2022 21:01:15 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2883oR2b014005;
-        Thu, 8 Sep 2022 04:01:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=kJBLT2+zrYtiO5ltSxXKAVs/CvkF+GrLAMeVdzzKsVs=;
- b=ZJXs6T5th/Vpr3rPgI/Nm+qOkhq2rpivMImGVLMR3M/aNxrizW/orDbnTQHfils4hOk3
- P6i5H9eq2QhbCC4MB/sBn39vqx/AsXoHxujS3Na7pIj92JzEVuoHarcpDIisaFEw6KwS
- SNI6LwpQwWdXvR+Lvi1H+5rj0189cOvyxxEugvSzDAGP0ewrhnHkoHcKi3WqXGh1MLmA
- IG6Xo/nxVmMul4P+B60BpfZa7cYPZql8jE7jLTbkoqjxelusYX5zEBM/859PpXEh24rq
- x5a8i5oKsbsNRakenwOeyA8TD2FK+SSm3n95Awzm79W1RW5GL3AZ48NQbb5DaGxgjTtA Eg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jeahhddby-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Sep 2022 04:01:00 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28840wwG020822
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 8 Sep 2022 04:00:58 GMT
-Received: from [10.50.32.28] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 7 Sep 2022
- 21:00:54 -0700
-Message-ID: <6afb53e1-0d1e-1665-d354-f3b270c8b62e@quicinc.com>
-Date:   Thu, 8 Sep 2022 09:30:51 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Fix Dmic no sound on
- villager-r1
-Content-Language: en-US
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        Doug Anderson <dianders@chromium.org>
-CC:     Judy Hsiao <judyhsiao@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S229819AbiIHEWT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 00:22:19 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6826C75;
+        Wed,  7 Sep 2022 21:21:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1662610915; x=1694146915;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=X09slTsSQ7VnMYNmF84pcS2pMwdZUlN6Ob95RIFK5K8=;
+  b=UiEOl0JLw3J9BYfK4gqh0nuE1xMlLYMhf3LJwl90tAQMdLLimaxTluDv
+   C23DG28qIsvxf5UBddNAuFnkfdZSaBNUmWPUNTDFZIwRtGQZqwnT9DRwp
+   NmSSvWkjluRgegKI7bK+sxJj8+68CPOsWWlbfEfsm3JGykNA7JyOVJTLg
+   JiTxzkCIRxQbRt9G+lkKmOz+njpaGi3HeJctDV9yZYDH2iZhUiZ1Zzgjn
+   dllis9CpQVdb4vX1faA5GQ1/mAgy+djXuuLySqHIffu2aNd5H2CmJHLBt
+   Kkq2hcsy4h+djsFsIaYCYMOEOj+bVjTerJoYBpfmRg0KfxeTEirduTdyr
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="277452796"
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; 
+   d="scan'208";a="277452796"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 21:21:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,299,1654585200"; 
+   d="scan'208";a="614739377"
+Received: from lkp-server02.sh.intel.com (HELO 95dfd251caa2) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 07 Sep 2022 21:21:51 -0700
+Received: from kbuild by 95dfd251caa2 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oW930-0007M9-1W;
+        Thu, 08 Sep 2022 04:21:50 +0000
+Date:   Thu, 8 Sep 2022 12:21:47 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
-        Judy Hsiao <judyhsiao@google.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-References: <20220826065621.2255795-1-judyhsiao@chromium.org>
- <CAD=FV=VrgrvJb_sJ8AO6pN8dRNXzzOJ9WvngeJrtVYw_wD1Akg@mail.gmail.com>
- <Yw07xSlVpQcXDqe7@google.com> <Yxi8vnmtowA83WLm@google.com>
-From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-In-Reply-To: <Yxi8vnmtowA83WLm@google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Y2EWZK7KAWWRpPrBSP4dmaOR73SgkuAR
-X-Proofpoint-ORIG-GUID: Y2EWZK7KAWWRpPrBSP4dmaOR73SgkuAR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-08_02,2022-09-07_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- suspectscore=0 clxscore=1011 spamscore=0 malwarescore=0 lowpriorityscore=0
- adultscore=0 priorityscore=1501 impostorscore=0 mlxscore=0 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2209080012
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michal Simek <monstr@monstr.eu>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>
+Cc:     kbuild-all@lists.01.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
+        saikrishna12468@gmail.com, git@amd.com,
+        Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Subject: Re: [PATCH v4 2/2] edac: zynqmp_ocm: Add EDAC support for ZynqMP OCM
+Message-ID: <202209081225.5YuFsgGp-lkp@intel.com>
+References: <20220907111531.703-3-sai.krishna.potthuri@amd.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220907111531.703-3-sai.krishna.potthuri@amd.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,29 +75,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Hi Sai,
 
+I love your patch! Perhaps something to improve:
 
-On 9/7/2022 9:16 PM, Matthias Kaehlcke wrote:
->
->> Add support for audio clock gating resets for SC7280 (v8)
->> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=671887
->>    ready to land? (patch 2 has a minor comment about SoB tag)
-> The comment has been addressed in v9:
->
-> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=673055
->
-> So it seems all the audio bits should be ready to land.
->
-> Satya: please make sure to include change logs in all future patches to
-> help reviewers understand what changed in each version.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on ras/edac-for-next krzk-dt/for-next linus/master v6.0-rc4 next-20220907]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Sai-Krishna-Potthuri/edac-Add-support-for-Xilinx-ZynqMP-OCM-EDAC/20220907-191854
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+reproduce:
+        # https://github.com/intel-lab-lkp/linux/commit/038e95811e4eddd23a098d0faf7a90bbccdb6e52
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Sai-Krishna-Potthuri/edac-Add-support-for-Xilinx-ZynqMP-OCM-EDAC/20220907-191854
+        git checkout 038e95811e4eddd23a098d0faf7a90bbccdb6e52
+        make menuconfig
+        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
+        make htmldocs
 
-I have added the change log in the cover letter, I'll add it to all the 
-patches of series from next time.
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
+All warnings (new ones prefixed by >>):
 
-Thanks,
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/edac/xlnx,zynqmp-ocmc.yaml
 
-Satya Priya
-
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
