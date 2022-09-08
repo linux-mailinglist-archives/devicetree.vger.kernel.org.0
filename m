@@ -2,126 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FAC85B2664
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 21:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEB675B2679
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 21:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231501AbiIHTCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 15:02:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58684 "EHLO
+        id S231977AbiIHTKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 15:10:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230500AbiIHTCT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 15:02:19 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEA8DB5A74;
-        Thu,  8 Sep 2022 12:02:18 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id s14so9230556plr.4;
-        Thu, 08 Sep 2022 12:02:18 -0700 (PDT)
+        with ESMTP id S229445AbiIHTKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 15:10:49 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 053EAEB2C8
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 12:10:47 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id f11so15351756lfa.6
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 12:10:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
-        bh=sU7cMJ7dEW4p6eZ8nVaOtEoExjoSERC3QqL4dAdAAlk=;
-        b=iSrtO1xBiWufKQIntzb2eZ6Dm/DVOzqMcpIj4uqYV2lNujobsxQqgX38s26UvsZpbk
-         eg/y8a/z90g7jPLxAB2e0/c+Y4VkuTvswuOXrVHTHdyNx1G/UTOydXp7hFPyF68brDhh
-         9NzMpJ8m3Ll7WZAajtTrLrSR8uapeDNHCgm8ar1b+SAiktkSBFU3LlGUwf/5rhAS/BSV
-         B4HfFxr6ar1m6uiRqQC0zzhbJbB/msDhJnmSjkwnHiyeT/hY7WjzXUSmKuIJDNT6fabS
-         Lyu6PtlLuBPYrw22n19VDH++0yLli0Vmyl5+KTnYLNDLKYXGuM9wfyPnpAv8IW5osAdA
-         7CEQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Z1/OP11GlLnDRJmthsHNyWrCSy9RTalgs4TnhcvtaBc=;
+        b=zHelYglSfbiBOl/MHigaMxHtV03GXhA+25+cn5kBD96M5f5O9JyCJbv9+sXejH0pCi
+         fqM7FQKP7m+WvigjHYPLve7N4juBdMFFeSysL7jJO1Lwma5BeB0M/SQnJeO2YkfeK/7D
+         XI0UN9KJA492tgn2UlSyCkw0QALrGpUkj/fjrs7qZ90WdclZfR75AgT3BjdUd9RHqVdX
+         vgiphnRGqFFyaRXFOZqQgb10zg04eg4swldr4NPYDxeqljEvA3n9quZ6NfMDC1AUb2aq
+         NcqvvfDpMwJ6iVBQLNYr/RAHCjzIR2jS1wYo5Ai1nXKKELG5SohYsZWOeGn/Bbz6Xich
+         GvDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=sU7cMJ7dEW4p6eZ8nVaOtEoExjoSERC3QqL4dAdAAlk=;
-        b=CVU1/RO7dN5N7U6CkB4fpHUuRJtRTKR7b5NX1h5W1pnvBuhiJH6ZiDeuo7Tz68qTmV
-         O5UUIVYo/qa0Ck+WpZzCHZZEsP04lGBbWluHZ8NWdoZSek9N4uanXufwS+4m3ueo+Wlt
-         gPUqpUU7Cj86+25EK4ealW/n8xKmNFnT6+W/I2XO/lngkFa0PrUUid7InoyspypCFFtn
-         oP3rgXdZsvXr5yF36spBCx4GDpJ8ZTXOQcm1XNfQIvCrx6/cX3J1OS5E/igWOuRPIYje
-         jektdUtgIg1cYiNB0MJm3LFI6ip/lrS4OT6zajkAO7SObJAbshvaMdf8Ro+GJWCsFUQ3
-         64iQ==
-X-Gm-Message-State: ACgBeo069Rxss+wLngdaweX1xWwSuz5S7mf7RApOBrdcMvZDDeYxDMXB
-        skghvzQUHymRU7/2XAJYM3g=
-X-Google-Smtp-Source: AA6agR5P4r3nHdXZ2frRrZxca4kyCCrPxwIqVS/B83xGC3lSxlzhrkWRthr/Ho/p6yjTN84bTSOieg==
-X-Received: by 2002:a17:903:291:b0:172:f018:cdce with SMTP id j17-20020a170903029100b00172f018cdcemr10065826plr.91.1662663738084;
-        Thu, 08 Sep 2022 12:02:18 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u23-20020a1709026e1700b00177ee563b6dsm2513514plk.33.2022.09.08.12.02.17
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Z1/OP11GlLnDRJmthsHNyWrCSy9RTalgs4TnhcvtaBc=;
+        b=uYeqzzdMPGFoEY7apqo8x5Dcv9nu1GW2SAaASLT6WX4F7nlObr93qP02YtgNtIw0jo
+         4vqurH68QGAvUlna1dzJbuXse433kAqX75nLPMARBgZpo9rrE9Gband/+UvfrB+CX+vP
+         JNSt1QtXaEOEopQ6oS/JrjCGVUuai1S/9GSdJzCNg51UYQIx6hrn2xGQoLbfBBIm/gaC
+         oVelsmAPfPa/BeIydkDVOjIGePSCmtiHckIWGWVoDSMll0vF/Aeu6JIzFS8XF0NbVv+P
+         wB36N2UljQubh8nUyYktypYNTOmYDSzbYJ1ysMityFqNETsGL1r79wCgfBg1krugSFhx
+         lw6Q==
+X-Gm-Message-State: ACgBeo3USIAl7vT+vZA9CmNFDIbd9jhiw8z5/L/zwYvcl6lX++LymhOp
+        J+h9RUd7longQ5Cd+ANGRFLTlA==
+X-Google-Smtp-Source: AA6agR62sFNq9FTxx9BBA64L192b2EXkbzrVmWXyATTRHjXuI1MJeVCylURlf81YIejbW3g+/P/ryw==
+X-Received: by 2002:ac2:4c35:0:b0:497:ae09:11b with SMTP id u21-20020ac24c35000000b00497ae09011bmr1942257lfq.507.1662664245344;
+        Thu, 08 Sep 2022 12:10:45 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id v17-20020a2e4811000000b0026ad316375esm634904lja.38.2022.09.08.12.10.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 12:02:17 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 8 Sep 2022 12:02:16 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Eliav Farber <farbere@amazon.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
-        rtanwar@maxlinear.com, andriy.shevchenko@intel.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com
-Subject: Re: [PATCH v5 16/21] dt-bindings: hwmon: (mr75203) add
- "moortec,ts-series" property
-Message-ID: <20220908190216.GA3423559@roeck-us.net>
-References: <20220908152449.35457-1-farbere@amazon.com>
- <20220908152449.35457-17-farbere@amazon.com>
+        Thu, 08 Sep 2022 12:10:44 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/4] clk: qcom: add SM8450 Display clock controller support
+Date:   Thu,  8 Sep 2022 22:10:40 +0300
+Message-Id: <20220908191044.3538823-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220908152449.35457-17-farbere@amazon.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 08, 2022 at 03:24:44PM +0000, Eliav Farber wrote:
-> Add optional "moortec,ts-series" property to define the temperature
-> equation and coefficients that shall be used to convert the digital
-> output to value in milli-Celsius.
-> Supported series: 5 (default) and 6.
-> 
-> Series 5:
->   T = G + H * (n / cal5 - 0.5) + J * F
-> Where: G = 60, H = 200, cal5 = 4094, J = -0.1, F = frequency clock in MHz
-> 
-> Series 6:
->    T = G + H * (n / cal5 - 0.5)
-> Where: G = 57.4, H = 249.4, cal5 = 4096
-> 
-> Signed-off-by: Eliav Farber <farbere@amazon.com>
-> ---
-> V4 -> V3:
-> - Remove constraints in free-form text descriptions.
-> 
-> V3 -> V2:
-> - New patch to introduce "moortec,ts-series" property.
-> 
->  .../devicetree/bindings/hwmon/moortec,mr75203.yaml       | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> index d6b03a6d7043..df849517464e 100644
-> --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> @@ -91,6 +91,15 @@ properties:
->        Each channel should not appear more than once.
->      $ref: /schemas/types.yaml#/definitions/uint8-array
->  
-> +  moortec,ts-series:
-> +    description:
-> +      Definition of the temperature equation and coefficients that shall be
-> +      used to convert the digital output to value in milli-Celsius.
-> +    minimum: 5
-> +    maximum: 6
-> +    default: 5
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
+Add support for the Display clock controller found on SM8450 platform.
 
-I am not a dt expert, but I wonder if this should be handled
-with different "compatible" properties. Sorry if this was already
-addressed and I missed it.
+Changes since v1:
+ - Rebased on top of 6.0-rc
+ - Dropped clk-names in favour of using parent indices (Bjorn)
+ - Added GCC_DISP_AHB_CLK to dispcc node (Bjorn)
+ - Changed bindings licence to dual GPL+BSD (Bjorn)
+ - Removed zero clocks in dt bindings
+ - Fixed syntax issues
 
-Thanks,
-Guenter
+Dmitry Baryshkov (4):
+  dt-bindings: clock: qcom: add bindings for dispcc on SM8450
+  clk: qcom: alpha-pll: add support for power off mode for lucid evo PLL
+  clk: qcom: Add support for Display Clock Controller on SM8450
+  arm64: dts: qcom: sm8450: add display clock controller
+
+ .../bindings/clock/qcom,sm8450-dispcc.yaml    |   97 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |   28 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-alpha-pll.c              |   40 +-
+ drivers/clk/qcom/clk-alpha-pll.h              |    1 +
+ drivers/clk/qcom/dispcc-sm8450.c              | 1829 +++++++++++++++++
+ .../dt-bindings/clock/qcom,sm8450-dispcc.h    |  103 +
+ 8 files changed, 2105 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml
+ create mode 100644 drivers/clk/qcom/dispcc-sm8450.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm8450-dispcc.h
+
+-- 
+2.35.1
+
