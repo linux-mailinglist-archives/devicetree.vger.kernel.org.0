@@ -2,129 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E3EA5B295E
+	by mail.lfdr.de (Postfix) with ESMTP id B02695B2960
 	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 00:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbiIHWba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 18:31:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56894 "EHLO
+        id S229547AbiIHWcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 18:32:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbiIHWb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 18:31:27 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51198F4103
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 15:31:07 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id m15so10479172lfl.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 15:31:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=8T4fKvOonid0j3E0r/ArsOfkeoikKqk38EUT6s5grdA=;
-        b=O7p2FnJF2IXwOXG9q90yWZqlOpP5Kg/nCQMh9N243NDTZCEeYYqFujSIBAjYUKM3ox
-         8dISPwjjoQSAjH+U4sAre1zysed/8u78DTFkO2oitTvZ9WZR8NOrOAgEURQPc7wnW4+S
-         g8bRvf+wvpICmmNwoLtWBhoeOX1GQRybnwTZK/Qt/efH842dy4/Vwlvvm8MSRVk749vQ
-         mipSpGXXvg6lYnkU82BFDC2WFB3uxTZP+N8TnHOSowftd+cX/jwdXzW/tVjvQEn9AXLO
-         PUn+bFL5j4Qmj05N9lJJC2Lo71WjZY6ZSbqg/vEPQgofaYMg+PxuQvn2aAn1SX7l/kar
-         Pa8g==
+        with ESMTP id S229464AbiIHWcu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 18:32:50 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2FA2FDBB5;
+        Thu,  8 Sep 2022 15:32:49 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1274ec87ad5so33380137fac.0;
+        Thu, 08 Sep 2022 15:32:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=8T4fKvOonid0j3E0r/ArsOfkeoikKqk38EUT6s5grdA=;
-        b=41FxCDdzoyg2ytoGoQ4Wqt+5hWZIanBi/5F8R6xAV1bwxzd3QNcN0+7XWr6Jl57Dui
-         zqsx2RxxeTMTGeJq5vPvVZN6sZwIISVhPLxok6x3nyqkEE3gFowccTU/P0DG+B3Yj/7M
-         pcTlgv1eHYkA3pk8mwJbRI9DHjhqPfTkV1w5fz39mXM85ryuzwELUQ+IJx54qWhQz+b1
-         QX4ntI40bvud6/b+ZS6zbhIQGSuDXssiSsgAIZlKcqVyPJFOuN//tH+kFW4ENBaUTKao
-         3LDRH2AVM0DIUx8iw32m9Ashx9Cv02vEfnMydKA2JhsrkA1lc6avbi2se7mOxdHkBtxa
-         dZEA==
-X-Gm-Message-State: ACgBeo3LkLsK6yOhU6CglxzcxctAxmCRP3LYbPIC/PW/8tGwAvst+RDP
-        HClq6OfBowVta8t9OsVLZB0PWQ==
-X-Google-Smtp-Source: AA6agR67YkpQrolzfl4/9Dr8NGHEb+7wdMV29e4tx+XpR4M1h3c+ReW8hy8FzAfuWKUudHKtQzAdwA==
-X-Received: by 2002:a05:6512:32c6:b0:494:99fe:49b9 with SMTP id f6-20020a05651232c600b0049499fe49b9mr3203063lfg.410.1662676265588;
-        Thu, 08 Sep 2022 15:31:05 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 6-20020a2eb946000000b0026ab0087ff3sm5890ljs.54.2022.09.08.15.31.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 15:31:05 -0700 (PDT)
-Message-ID: <78a086ce-4961-9144-9d81-a928ff0bc0ad@linaro.org>
-Date:   Fri, 9 Sep 2022 01:31:04 +0300
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=CxueroWKOCf1VlWz/nI3gMCK0OJff9cC2ODwmgYrqaM=;
+        b=AmvBZoVh/ONGKX4dodQ335UqTw+SlljNq3su5q/93xvuZ1SMuM/2MouQanUH2fL2TZ
+         0iwFjttlerjHBfXalUFoVvYJd21jlV1cpTDLiQyvrIxk10VbxSg1sd7QiemxKFDMLfJz
+         1HxD80Uu7XsfLU1xsj6nSJw2sw4u+uCPQoO6A5otI+zlMhIqTYY5NoTmbhYMzlB4hJAX
+         msbBX5SudfUHx8e/0wtmLvEqGpll+tBewu0bCFyzZ1hcbYeDztYhgVnHDyd9QxXxY2vl
+         f7eZ7d1HK9ZzxZT3nrUNI3SZNsbQZWNgZmzLIhwH51a9L+SRNWXlzh5RtQXcxsA4VLL6
+         Helg==
+X-Gm-Message-State: ACgBeo07gFA28KgW1i2dkoa0o/YojW5WAB79G/zK+DGqIXClk0c98Fs/
+        kjF7l9edQAhIACZfQiZQXw==
+X-Google-Smtp-Source: AA6agR5MC+RLWyuYmH/6MzXRA1Lyj+OMmMzdoCAZCKC3Rql+zmp3AUsEWYhhK37k+JRJFRvkiePTpw==
+X-Received: by 2002:a05:6870:6317:b0:10e:631c:5e63 with SMTP id s23-20020a056870631700b0010e631c5e63mr3459441oao.262.1662676369003;
+        Thu, 08 Sep 2022 15:32:49 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 3-20020a4a1b03000000b00441c26f8fadsm723780oop.12.2022.09.08.15.32.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Sep 2022 15:32:48 -0700 (PDT)
+Received: (nullmailer pid 3461521 invoked by uid 1000);
+        Thu, 08 Sep 2022 22:32:47 -0000
+Date:   Thu, 8 Sep 2022 17:32:47 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+Subject: Re: [PATCH v8 1/5] dt-bindings: reserved-memory: Document
+ iommu-addresses
+Message-ID: <20220908223247.GA3448766-robh@kernel.org>
+References: <20220905170833.396892-1-thierry.reding@gmail.com>
+ <20220905170833.396892-2-thierry.reding@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH 01/11] dt-bindings: msm: dsi-controller-main: Drop
- redundant phy-names
-Content-Language: en-GB
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, sean@poorly.run, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, quic_mkrishn@quicinc.com,
-        agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220907000105.786265-1-bryan.odonoghue@linaro.org>
- <20220907000105.786265-2-bryan.odonoghue@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220907000105.786265-2-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220905170833.396892-2-thierry.reding@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2022 03:00, Bryan O'Donoghue wrote:
-> Adding in msm8939 which is based msm8916 dtsi I stumbled across a binding
-> check complaining about the phy name for msm8916 which we were reusing for
-> msm8939.
+On Mon, Sep 05, 2022 at 07:08:29PM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> The currently inconsistent upstream dtsi naming of "dsi" and "dsi-phy" is
-> not captured in the yaml for this driver.
+> This adds the "iommu-addresses" property to reserved-memory nodes, which
+> allow describing the interaction of memory regions with IOMMUs. Two use-
+> cases are supported:
 > 
-> The driver however doesn't care about the name of DSI phy, hence the yaml
-> check is redundant.
+>   1. Static mappings can be described by pairing the "iommu-addresses"
+>      property with a "reg" property. This is mostly useful for adopting
+>      firmware-allocated buffers via identity mappings. One common use-
+>      case where this is required is if early firmware or bootloaders
+>      have set up a bootsplash framebuffer that a display controller is
+>      actively scanning out from during the operating system boot
+>      process.
 > 
-> Both Krzysztof and Rob suggested we could drop the phy-names entirely if it
-> really isn't a dependency.
+>   2. If an "iommu-addresses" property exists without a "reg" property,
+>      the reserved-memory node describes an IOVA reservation. Such memory
+>      regions are excluded from the IOVA space available to operating
+>      system drivers and can be used for regions that must not be used to
+>      map arbitrary buffers.
 > 
-> So, drop the inconsistent and unnecessary phy-names field from the yaml.
+> Each mapping or reservation is tied to a specific device via a phandle
+> to the device's device tree node. This allows a reserved-memory region
+> to be reused across multiple devices.
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->   .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> Changes in v8:
+> - include validation warning fixes that had crept into an unrelated patch
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 880bfe930830c..3742e2ab4fb1d 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -49,6 +49,7 @@ properties:
->       maxItems: 1
->   
->     phy-names:
-> +    deprecated: true
->       const: dsi
->   
->     "#address-cells": true
-> @@ -133,7 +134,6 @@ required:
->     - clocks
->     - clock-names
->     - phys
-> -  - phy-names
->     - assigned-clocks
->     - assigned-clock-parents
->     - power-domains
+> Changes in v7:
+> - keep reserved-memory.txt to avoid broken references
+> 
+> Changes in v6:
+> - add device phandle to iommu-addresses property in examples
+> - remove now unused dt-bindings/reserved-memory.h header
+> 
+>  .../reserved-memory/reserved-memory.yaml      | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
 
--- 
-With best wishes
-Dmitry
+Thanks for being persistent with this. It looks good to me.
 
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+I really don't like new common bindings with only 1 user, so I hope the 
+Asahi folks chime in here. Or really anyone else look at it.
+
+Rob
