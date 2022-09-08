@@ -2,81 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A5E45B17C5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E25985B17D0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:55:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230061AbiIHIxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 04:53:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42008 "EHLO
+        id S230437AbiIHIzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 04:55:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231821AbiIHIxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:53:46 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B018E6B8B
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 01:53:45 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id z25so26630377lfr.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 01:53:45 -0700 (PDT)
+        with ESMTP id S231392AbiIHIzc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:55:32 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB117CAC4A
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 01:55:27 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bq23so26608907lfb.7
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 01:55:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=9VquOKQ3hKK4VW69duKHqam2B9oML/lOcHv1HNPnEmA=;
-        b=DB7qj/3lifsH8Ly2TJe/zzZdOFOyFijp7RptdtdBcsW8wQUZtDpQESqx3Vnq7I0VXE
-         9SHdT6AtmEImEgTN2AiQGYkN5Nqf+RwhQfIBBULoFvCriWLOBp6rXnNzluUgnZri4hlc
-         NTCOAEfkS3c3s0/6qAe4gaDZBj00ohmpjXivIXBinMQSMoCE2P9p14MFl302C/XwplG8
-         rIYJlO8MPS9DPBOBkCzuG9QJbpWK8aOsQxUqwoYXLyxL0z7hIo2mp6fg4CBiaYZmv0rq
-         T9MVBMSlPYWnL/sHFpZkNsLPiEqhvm430q3lymG7+4bQ6Kzo5+UpXhf8hSYt3og+MWnh
-         nf/Q==
+        bh=C5KNVGsjWvUeDKSq3LjZlenEv9vb29toHV4Rmgebsro=;
+        b=qI6gupLwkGLXp4h61TVhWU/l08zkHVbj64MDbF8omA+94eQv3aL8aI2S6qWbEAVXsB
+         zqBZIVUkAJZIkg6AsjyNxPFRgh4YW5iHTR4mdzGmCB3k/fZ1M+ThVdBSzN6Vsw2TNylL
+         NK6xSYos3lrNGA9fdoAWEeHo/f1aJMOCcFFd5W83NmtYqbcLce9k5Y3GeYIWiLJlbP/6
+         DGnIF3mkMXjGhXsZKEP435xh84kWKPSdP1+aDPxx/3EoIYSfgd7I+KegGtPYqtq/pS7B
+         h2NVhreDcrHPlY/7Bt0hoXKyc+z7gGgVXS83TGoLHSrgOcxMUsJboBtV272XPRhMHZ9V
+         /9NA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=9VquOKQ3hKK4VW69duKHqam2B9oML/lOcHv1HNPnEmA=;
-        b=QE1Bw2eEiYBCB2sCTpyLdR1r7r/JVPDn37C5dn9MZk/UWKlejKVSkTG5o9h95Fx6y/
-         jzIW5L8iTEQCtEXltcNJmAiI3Js0HxWDm41+XRqN3AZ83o/rUN/9EvmwACvsf2+m+M4Y
-         SswzXC5WwXG+HuzOrCz3XgATFz0FybER3GtdRXU4caegpXCdowCLxns5rUTXhaYGY3yc
-         VPCE0oFkWNOMDfiWZc8cME41xxaw/JU/ZFK1vD39Mj7BQj0NLAqXs4sPIr0nrV7KbdWd
-         ynhrp4O8Polv2d4UG9JqBscm2OZtxzO6LEytjZi2AiaWQHq0aFMnZmONeb/Y3tfqKliO
-         j/hQ==
-X-Gm-Message-State: ACgBeo3hRxLjGFJDftzWYLqBM6F7dmcVmuVsthscHRTCLZZqIEu8ApQN
-        ZDXqSccIzWRgB/TzNg/6GfH9ZA==
-X-Google-Smtp-Source: AA6agR5d9Kr7OR2aZotVHTJ06sSnIQxXzgza6rDlRHbtVbyZcqSkboT1leot3yaDXuIbY10+N2GMQg==
-X-Received: by 2002:a05:6512:e97:b0:492:c677:f867 with SMTP id bi23-20020a0565120e9700b00492c677f867mr2476900lfb.190.1662627223427;
-        Thu, 08 Sep 2022 01:53:43 -0700 (PDT)
+        bh=C5KNVGsjWvUeDKSq3LjZlenEv9vb29toHV4Rmgebsro=;
+        b=o7d9es77juGwFbwORrcsb2zD510Tbf7zo2X8jjyxlH1smctNVfQQh/AD5Xu9A5pbtW
+         Dw4kpcmSBCB5d84VCMj60zF4TFN131FKNCIJN2WPjo+bbzPO9H8zMVEnFVbuJ9CpBwfN
+         +zXD0sSvTF6EFrLvfjRV3lVyA6ued4LqhUVmRLferSSEhHSx2sYe6anJKNuvmdqRYP+u
+         ZE5o9AR2kW9L3BSizU6WSPsRCa5g5bx1s4okhky2cb93g42b43o4M1kUFAj73RlfhfDZ
+         28gEHwnRR3Zt9rRIdm8IsLuBR6hOzem1qo2WusNpRFVAPn2z0dnbWnVufw//07f0+6PK
+         U5lQ==
+X-Gm-Message-State: ACgBeo1O4f8/28CBr86mH+HLgiZ9V9sGkbDNOauVmICfdzoguHdhWa+w
+        EXOrMUwqh8HDEer/gWXEx6/Weg==
+X-Google-Smtp-Source: AA6agR4YRFajrwiiGqsuxOEYNGDXHyymQaVlGyWoA0UE3adCCxSYJsz9ihBn42XerAKsW4kSjA7IVg==
+X-Received: by 2002:a05:6512:1694:b0:48a:9d45:763f with SMTP id bu20-20020a056512169400b0048a9d45763fmr2255149lfb.662.1662627325558;
+        Thu, 08 Sep 2022 01:55:25 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s26-20020a05651c201a00b0026a999966bbsm1661652ljo.24.2022.09.08.01.53.42
+        by smtp.gmail.com with ESMTPSA id w30-20020a197b1e000000b00497aa5852a9sm763306lfc.296.2022.09.08.01.55.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 01:53:43 -0700 (PDT)
-Message-ID: <456b1bd4-e3bd-1806-8af9-45c6ab9c289d@linaro.org>
-Date:   Thu, 8 Sep 2022 10:53:41 +0200
+        Thu, 08 Sep 2022 01:55:25 -0700 (PDT)
+Message-ID: <a9514c01-199d-80bc-46a1-f199f4f56196@linaro.org>
+Date:   Thu, 8 Sep 2022 10:55:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/4] dt-bindings: usb: dwc3: Add
- gfladj-refclk-lpm-sel-quirk
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sc7280: Add cpu and llcc BWMON
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>, Li Jun <jun.li@nxp.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220907144624.2810117-1-alexander.stein@ew.tq-group.com>
- <20220907144624.2810117-2-alexander.stein@ew.tq-group.com>
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220902043511.17130-1-quic_rjendra@quicinc.com>
+ <20220902043511.17130-5-quic_rjendra@quicinc.com>
+ <CAE-0n50x=h_rBaWAcTk_BBCMLpD=XQ6=BKLGp5+m8i4Lvn4fyg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220907144624.2810117-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <CAE-0n50x=h_rBaWAcTk_BBCMLpD=XQ6=BKLGp5+m8i4Lvn4fyg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,17 +79,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2022 16:46, Alexander Stein wrote:
-> This selects SOF/ITP to be running on ref_clk.
+On 07/09/2022 23:33, Stephen Boyd wrote:
+> Quoting Rajendra Nayak (2022-09-01 21:35:11)
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 13d7f267b289..a839ba968d13 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -3275,6 +3275,82 @@
+>>                         };
+>>                 };
+>>
+>> +               pmu@9091000 {
+>> +                       compatible = "qcom,sc7280-llcc-bwmon";
+>> +                       reg = <0 0x9091000 0 0x1000>;
+>> +
+> [...]
+>> +                       };
+>> +               };
+>> +
+>> +               pmu@90b6000 {
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> This unit address
 > 
+>> +                       compatible = "qcom,sc7280-cpu-bwmon", "qcom,msm8998-bwmon";
+>> +                       reg = <0 0x090b6400 0 0x600>;
+> 
+> doesn't match this one. Please fix.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for catching it. Patch was applied, so I will send a follow up.
 
 Best regards,
 Krzysztof
