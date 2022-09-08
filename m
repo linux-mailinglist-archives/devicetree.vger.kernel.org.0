@@ -2,218 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 412265B10B9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 02:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 234CC5B10D0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 02:15:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229977AbiIHADr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 20:03:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58892 "EHLO
+        id S230107AbiIHAPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 20:15:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbiIHADq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 20:03:46 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCDCB8A7FA;
-        Wed,  7 Sep 2022 17:03:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1662595424; x=1694131424;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=URLWQZsCNym3oVouZaO+x+X4zDWx8UYslRszx3tig5E=;
-  b=QQTIfaAMXYib49gGuNLaf9LWjbnzKATpmVSPWBVt72oA/dBibUF23bfk
-   Wm7IpjTmki0rhVcLKBtEzLOkbH6EDm0UD5IjA1kSVgIgZlMDIGmcpv2YG
-   KN/PBQL/epQlmsWaDhABDnmuHgR41hpJVRuBQFRc3VxngyT76v8uYIcrm
-   1ctjW9OlVL+NS2DihSESZLmk0uJcIdryS6IYElBvLBTT73CkUaHWTebJk
-   FD/kW2IkpVokUqvKOfgjYR2069QV5tDyGD/8QBhcQso0bXnsAVg8t8Qt/
-   /U329vW01fE1MH1ZSDLkWAKEAnBxNBUQw6505PPESZsxXXCzG7SLAa6AE
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="294609877"
-X-IronPort-AV: E=Sophos;i="5.93,298,1654585200"; 
-   d="scan'208";a="294609877"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 17:03:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,298,1654585200"; 
-   d="scan'208";a="683019230"
-Received: from lkp-server02.sh.intel.com (HELO 95dfd251caa2) ([10.239.97.151])
-  by fmsmga004.fm.intel.com with ESMTP; 07 Sep 2022 17:03:39 -0700
-Received: from kbuild by 95dfd251caa2 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oW518-00077D-1Z;
-        Thu, 08 Sep 2022 00:03:38 +0000
-Date:   Thu, 8 Sep 2022 08:03:27 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Frank Li <Frank.Li@nxp.com>, maz@kernel.org, tglx@linutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com,
-        bhelgaas@google.com
-Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com,
-        jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
-        ntb@lists.linux.dev, lznuaa@gmail.com, imx@lists.linux.dev,
-        manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v9 2/4] irqchip: Add IMX MU MSI controller driver
-Message-ID: <202209080757.hQMfrrfm-lkp@intel.com>
-References: <20220907034856.3101570-3-Frank.Li@nxp.com>
+        with ESMTP id S229771AbiIHAPD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 20:15:03 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F41E75757A
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 17:14:57 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id y82so15784705yby.6
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 17:14:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=GUHy3tTXYEVlHWPOZt/B5s9dwh1oEap8QDDRaqRD42s=;
+        b=EkFoA2DUckJoc39LOiNtYCaU9cFbXVmazyNV12a3KStazGUhhJR1U6XnXODK0TIRz4
+         +N76WdVdDqe2MYv/D4T4eFF42LX7csfZYrgd36cDl4ZF2OYpoYcAFEEFgAyx8F58tbal
+         P0WKobLZgcRhq24wI/kQMtsCJmAgIaCYCjQo4lYSmesUuH6LFbT1w/aGaw0ARdAlSFXd
+         J2GIhzFoViVMPvlNGlBbz2nzmN6QV9n01RRBkPte6KTFKKFHwsasefqsYFjEHKOZjYhz
+         aBKTtDKp2Rsg+pzX3OQRfEjjk6SnI7xmv7hIDzZp8hxzLZ5KYlmECPeru8AFaesdazSU
+         faJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=GUHy3tTXYEVlHWPOZt/B5s9dwh1oEap8QDDRaqRD42s=;
+        b=ZQBJdRSg3FgpU1BmOgFbwkwPcCqUWKgumdEkbOPvugRbB3rqdm+SRF+8W9MyvZoXTc
+         f1IR+LBUulvAreb2S/jlVy/OWN35M7e5CkjVxBUu/uba9YgOqWIbVuZnqwehe+2vjXxI
+         osBC6maIWaF6eGjmFC7PwBXSTg+oevtnJTndxVKMqafVyq/uLLVebiATB/D2dFNRvpVM
+         Oro3m0JKz97SkPXx/BjMPHNnFZ/cIkIbRCSP7OSaypnzmWqY++0/4Lkdt/HPCCCBM20k
+         y6hQO/64fk7Y0/6DbIa2GOpxjt7+hTR8J0JGP/JEcHBCSgyKIj9DOpb3hYLtgxi9jcDe
+         3WiA==
+X-Gm-Message-State: ACgBeo2ZibY8cm2B7LunZwtOr5Qom0NTKGL4XecFo4M9x2gc+sXOBZp4
+        VCceCKyxJA4wwROKrvFWgXVEMcc4USGlOg4kLS1Kbg==
+X-Google-Smtp-Source: AA6agR7IHk6cdCdDMOwQoLbNgYeM+zGxAHtlj9Ps+Z38Lyz7NBVqyyguZjbICAsIreBFAhf/MXWHt+Mk9Zkk8gYuoS4=
+X-Received: by 2002:a25:1486:0:b0:6a8:f3e1:58ba with SMTP id
+ 128-20020a251486000000b006a8f3e158bamr4883435ybu.80.1662596096986; Wed, 07
+ Sep 2022 17:14:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220907034856.3101570-3-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220803122655.100254-1-nipun.gupta@amd.com> <20220906134801.4079497-1-nipun.gupta@amd.com>
+ <20220906134801.4079497-4-nipun.gupta@amd.com> <CAGETcx_W8QVe+CdpocN2rHjp08TwsW22FaJgrYW=0JNge_N6KQ@mail.gmail.com>
+ <DM6PR12MB30829DDDC62B36B17F87B204E8419@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <f5cf7bd7-4cd9-ef9c-7f25-f814b2f1e41f@arm.com> <CAGETcx9LE=E2focmbEsdQV3s2NR4-9H35ODkgSxZY5_7SEJ1Qw@mail.gmail.com>
+ <9e537066-525f-4a8c-ffc1-926ac130c6e6@arm.com>
+In-Reply-To: <9e537066-525f-4a8c-ffc1-926ac130c6e6@arm.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 7 Sep 2022 17:14:20 -0700
+Message-ID: <CAGETcx8geH_DP4yHKxH=kXW=iJ3tchb5oRmqQ-Ugs6gmw1MwYg@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 3/7] iommu/arm-smmu-v3: support ops registration
+ for CDX bus
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "jgg@ziepe.ca" <jgg@ziepe.ca>, "jgg@nvidia.com" <jgg@nvidia.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "masahiroy@kernel.org" <masahiroy@kernel.org>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+On Wed, Sep 7, 2022 at 1:40 PM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> On 2022-09-07 19:24, Saravana Kannan wrote:
+> > On Wed, Sep 7, 2022 at 1:27 AM Robin Murphy <robin.murphy@arm.com> wrote:
+> >>
+> >> On 2022-09-07 04:17, Gupta, Nipun wrote:
+> >>> [AMD Official Use Only - General]
+> >>>
+> >>>
+> >>>
+> >>>> -----Original Message-----
+> >>>> From: Saravana Kannan <saravanak@google.com>
+> >>>> Sent: Wednesday, September 7, 2022 5:41 AM
+> >>>> To: Gupta, Nipun <Nipun.Gupta@amd.com>
+> >>>> Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> >>>> gregkh@linuxfoundation.org; rafael@kernel.org; eric.auger@redhat.com;
+> >>>> alex.williamson@redhat.com; cohuck@redhat.com; Gupta, Puneet (DCG-ENG)
+> >>>> <puneet.gupta@amd.com>; song.bao.hua@hisilicon.com;
+> >>>> mchehab+huawei@kernel.org; maz@kernel.org; f.fainelli@gmail.com;
+> >>>> jeffrey.l.hugo@gmail.com; Michael.Srba@seznam.cz; mani@kernel.org;
+> >>>> yishaih@nvidia.com; jgg@ziepe.ca; jgg@nvidia.com; robin.murphy@arm.com;
+> >>>> will@kernel.org; joro@8bytes.org; masahiroy@kernel.org;
+> >>>> ndesaulniers@google.com; linux-arm-kernel@lists.infradead.org; linux-
+> >>>> kbuild@vger.kernel.org; linux-kernel@vger.kernel.org;
+> >>>> devicetree@vger.kernel.org; kvm@vger.kernel.org; okaya@kernel.org; Anand,
+> >>>> Harpreet <harpreet.anand@amd.com>; Agarwal, Nikhil
+> >>>> <nikhil.agarwal@amd.com>; Simek, Michal <michal.simek@amd.com>;
+> >>>> Radovanovic, Aleksandar <aleksandar.radovanovic@amd.com>; git (AMD-Xilinx)
+> >>>> <git@amd.com>
+> >>>> Subject: Re: [RFC PATCH v3 3/7] iommu/arm-smmu-v3: support ops registration
+> >>>> for CDX bus
+> >>>>
+> >>>> [CAUTION: External Email]
+> >>>>
+> >>>> On Tue, Sep 6, 2022 at 6:48 AM Nipun Gupta <nipun.gupta@amd.com> wrote:
+> >>>>>
+> >>>>> With new CDX bus supported for AMD FPGA devices on ARM
+> >>>>> platform, the bus requires registration for the SMMU v3
+> >>>>> driver.
+> >>>>>
+> >>>>> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
+> >>>>> ---
+> >>>>>    drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 16 ++++++++++++++--
+> >>>>>    1 file changed, 14 insertions(+), 2 deletions(-)
+> >>>>>
+> >>>>> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> >>>> b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> >>>>> index d32b02336411..8ec9f2baf12d 100644
+> >>>>> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> >>>>> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> >>>>> @@ -29,6 +29,7 @@
+> >>>>>    #include <linux/platform_device.h>
+> >>>>>
+> >>>>>    #include <linux/amba/bus.h>
+> >>>>> +#include <linux/cdx/cdx_bus.h>
+> >>>>>
+> >>>>>    #include "arm-smmu-v3.h"
+> >>>>>    #include "../../iommu-sva-lib.h"
+> >>>>> @@ -3690,16 +3691,27 @@ static int arm_smmu_set_bus_ops(struct
+> >>>> iommu_ops *ops)
+> >>>>>                   if (err)
+> >>>>>                           goto err_reset_pci_ops;
+> >>>>>           }
+> >>>>> +#endif
+> >>>>> +#ifdef CONFIG_CDX_BUS
+> >>>>> +       if (cdx_bus_type.iommu_ops != ops) {
+> >>>>> +               err = bus_set_iommu(&cdx_bus_type, ops);
+> >>>>> +               if (err)
+> >>>>> +                       goto err_reset_amba_ops;
+> >>>>> +       }
+> >>>>
+> >>>> I'm not an expert on IOMMUs, so apologies if the question is stupid.
+> >>>>
+> >>>> Why does the CDX bus need special treatment here (like PCI) when there
+> >>>> are so many other busses (eg: I2C, SPI, etc) that don't need any
+> >>>> changes here?
+> >>>
+> >>> AFAIU, the devices on I2C/SPI does not use SMMU. Apart from PCI/AMBA,
+> >>> FSL-MC is another similar bus (on SMMUv2) which uses SMMU ops.
+> >>>
+> >>> The devices here are behind SMMU. Robin can kindly correct or add
+> >>> more here from SMMU perspective.
+> >>
+> >> Indeed, there is no need to describe and handle how DMA may or may not
+> >> be translated for I2C/SPI/USB/etc. because they are not DMA-capable
+> >> buses (in those cases the relevant bus *controller* often does DMA, but
+> >> it does that for itself as the platform/PCI/etc. device it is).
+> >
+> > Ok this is what I was guessing was the reason, but didn't want to make
+> > that assumption.
+> >
+> > So if there are other cases like AMBA, FSL-MC where the devices can do
+> > direct DMA, why do those buses not need a #ifdef section in this
+> > function like CDX? Or put another way, why does CDX need special treatment?
+>
+> Er, it doesn't? The only non-optional bus here is platform, since the
+> others *can* be configured out and *are* #ifdefed accordingly.
 
-I love your patch! Yet something to improve:
+Ah ok. Also I somehow missed the #ifdef AMBA there and thought there
+was only #ifdef PCI and the rest of the buses somehow got it working
+without having to muck around arm-smmu-v3.c.
 
-[auto build test ERROR on jonmason-ntb/ntb-next]
-[also build test ERROR on robh/for-next linus/master v6.0-rc4 next-20220907]
-[cannot apply to tip/irq/core]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thanks for the explanation. I'm done here :)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220907-115114
-base:   https://github.com/jonmason/ntb ntb-next
-config: s390-randconfig-s033-20220907 (https://download.01.org/0day-ci/archive/20220908/202209080757.hQMfrrfm-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 12.1.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-39-gce1a6720-dirty
-        # https://github.com/intel-lab-lkp/linux/commit/c1f079e633c10b4f2f1f3c8f52e447d13fda8ddb
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220907-115114
-        git checkout c1f079e633c10b4f2f1f3c8f52e447d13fda8ddb
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=s390 SHELL=/bin/bash
+-Saravana
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   s390-linux-ld: drivers/irqchip/irq-imx-mu-msi.o: in function `imx_mu_of_init':
->> drivers/irqchip/irq-imx-mu-msi.c:316: undefined reference to `devm_platform_ioremap_resource_byname'
-
-
-vim +316 drivers/irqchip/irq-imx-mu-msi.c
-
-   288	
-   289	static int __init imx_mu_of_init(struct device_node *dn,
-   290					 struct device_node *parent,
-   291					 const struct imx_mu_dcfg *cfg
-   292					)
-   293	{
-   294		struct platform_device *pdev = of_find_device_by_node(dn);
-   295		struct device_link *pd_link_a;
-   296		struct device_link *pd_link_b;
-   297		struct imx_mu_msi *msi_data;
-   298		struct resource *res;
-   299		struct device *pd_a;
-   300		struct device *pd_b;
-   301		struct device *dev;
-   302		int ret;
-   303		int irq;
-   304	
-   305		if (!pdev)
-   306			return -ENODEV;
-   307	
-   308		dev = &pdev->dev;
-   309	
-   310		msi_data = devm_kzalloc(&pdev->dev, sizeof(*msi_data), GFP_KERNEL);
-   311		if (!msi_data)
-   312			return -ENOMEM;
-   313	
-   314		msi_data->cfg = cfg;
-   315	
- > 316		msi_data->regs = devm_platform_ioremap_resource_byname(pdev, "processor-a-side");
-   317		if (IS_ERR(msi_data->regs)) {
-   318			dev_err(&pdev->dev, "failed to initialize 'regs'\n");
-   319			return PTR_ERR(msi_data->regs);
-   320		}
-   321	
-   322		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "processor-b-side");
-   323		if (!res)
-   324			return -EIO;
-   325	
-   326		msi_data->msiir_addr = res->start + msi_data->cfg->xTR;
-   327	
-   328		irq = platform_get_irq(pdev, 0);
-   329		if (irq <= 0)
-   330			return -ENODEV;
-   331	
-   332		platform_set_drvdata(pdev, msi_data);
-   333	
-   334		msi_data->clk = devm_clk_get(dev, NULL);
-   335		if (IS_ERR(msi_data->clk)) {
-   336			if (PTR_ERR(msi_data->clk) != -ENOENT)
-   337				return PTR_ERR(msi_data->clk);
-   338	
-   339			msi_data->clk = NULL;
-   340		}
-   341	
-   342		pd_a = dev_pm_domain_attach_by_name(dev, "processor-a-side");
-   343		if (IS_ERR(pd_a))
-   344			return PTR_ERR(pd_a);
-   345	
-   346		pd_b = dev_pm_domain_attach_by_name(dev, "processor-b-side");
-   347		if (IS_ERR(pd_b))
-   348			return PTR_ERR(pd_b);
-   349	
-   350		pd_link_a = device_link_add(dev, pd_a,
-   351				DL_FLAG_STATELESS |
-   352				DL_FLAG_PM_RUNTIME |
-   353				DL_FLAG_RPM_ACTIVE);
-   354	
-   355		if (!pd_link_a) {
-   356			dev_err(dev, "Failed to add device_link to mu a.\n");
-   357			goto err_pd_a;
-   358		}
-   359	
-   360		pd_link_b = device_link_add(dev, pd_b,
-   361				DL_FLAG_STATELESS |
-   362				DL_FLAG_PM_RUNTIME |
-   363				DL_FLAG_RPM_ACTIVE);
-   364	
-   365	
-   366		if (!pd_link_b) {
-   367			dev_err(dev, "Failed to add device_link to mu a.\n");
-   368			goto err_pd_b;
-   369		}
-   370	
-   371		ret = imx_mu_msi_domains_init(msi_data, dev);
-   372		if (ret)
-   373			goto err_dm_init;
-   374	
-   375		irq_set_chained_handler_and_data(irq,
-   376						 imx_mu_msi_irq_handler,
-   377						 msi_data);
-   378	
-   379		pm_runtime_enable(dev);
-   380	
-   381		return 0;
-   382	
-   383	err_dm_init:
-   384		device_link_remove(dev,	pd_b);
-   385	err_pd_b:
-   386		device_link_remove(dev, pd_a);
-   387	err_pd_a:
-   388		return -EINVAL;
-   389	}
-   390	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+> This
+> patch is fine for the kernel it was based on, it'll just want rewriting
+> now that I've cleaned all this horrible driver boilerplate up. And
+> according to the thread on patch #4 there might need to be additional
+> changes for CDX to express a reserved MSI region for SMMU support to
+> actually work properly.
+>
+> Robin.
