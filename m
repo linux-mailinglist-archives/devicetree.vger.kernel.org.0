@@ -2,98 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 444C35B2574
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 20:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A62705B259E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 20:25:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231579AbiIHSQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 14:16:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48546 "EHLO
+        id S229449AbiIHSZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 14:25:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229826AbiIHSQR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 14:16:17 -0400
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC869C6FF6;
-        Thu,  8 Sep 2022 11:16:13 -0700 (PDT)
-Received: by mail-ot1-f43.google.com with SMTP id t11-20020a05683014cb00b0063734a2a786so12861790otq.11;
-        Thu, 08 Sep 2022 11:16:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=eDGoGCLlcgFGg9hAmkw1n8adhCvK7wFgfBY6+eUsHWg=;
-        b=Xkf5CDZWww8/QzRwvhqL4ZMe/qWDxIOisy5xIwiBrIjkejdM+eOHqD+LYP5jnx/eF8
-         MyRhNg5xRk9g+kkVidQXDyPDg5v2K6NEbh8+BjFpja1BuVYMjGaO8u/QcdTL2axci4XJ
-         JnL7TPohF+fnuzhRBbNP5Yqa47mLURA0NyH6RZOB1WSu0/h5s0o/ajh3L7wwHsEytRPx
-         bjKWzht6azrH/i9BTWXVC6rZLRFQQl5IWg+u2SvsGzi1aD/Qku637C7FtDGIPnkkMJLX
-         bVojisxDU0PlBvYygaQVSLvZBW5+E4FtkuN3ctNE5PxgOU5rYP3azms2ssqJb6cBXD2N
-         LnAA==
-X-Gm-Message-State: ACgBeo0R/7E6QFfdfI7Qx1dH7GkSloqxi7fkkUI43KJV9ngj5Zpq0sS8
-        v87qwx2nj1TV+XsIxbQwDg==
-X-Google-Smtp-Source: AA6agR42S8+FgwPtXh3ZFOSPxpzL1Jh449dSw+4HdwAQ39gFsTEn0b/1gn71yDHQSy3W8UBgeYRQyw==
-X-Received: by 2002:a05:6830:3482:b0:638:92b7:f09b with SMTP id c2-20020a056830348200b0063892b7f09bmr3854213otu.140.1662660973077;
-        Thu, 08 Sep 2022 11:16:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n26-20020a4ac71a000000b0044528e04cdasm6514800ooq.23.2022.09.08.11.16.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 11:16:12 -0700 (PDT)
-Received: (nullmailer pid 3001911 invoked by uid 1000);
-        Thu, 08 Sep 2022 18:16:11 -0000
-Date:   Thu, 8 Sep 2022 13:16:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Olliver Schinagl <oliver@schinagl.nl>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Olliver Schinagl <oliver+list@schinagl.nl>,
-        Oleh Kravchenko <oleg@kaa.org.ua>,
+        with ESMTP id S230096AbiIHSZQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 14:25:16 -0400
+Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBEF22E9FE;
+        Thu,  8 Sep 2022 11:25:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:Message-Id
+        :Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=9ODbspby1RslFl3J6df8z9HACSEVUoiaYoSCoi5f2zQ=; b=id00mUcDOhTaDK1jKzBAV7fmox
+        6AkFW9lQOqc6gCl/q3ko8DN1JEeM11APdXmvUI2gq2TcvoagUzQykFwheDbNTINZacReojquzqxps
+        NAg4P2NCjM9C1LcfYjJnGvwqvd3uMGAL8daRugg04Y+qGYNjThje4xMD5JNxuIo8wZuWNTUc53peC
+        pc5XoENtmkyQ/KM0ueCoeHR8KNXjHrxjSsKuZ+Xmc7jH6VNPc1az2hIJWKHb7d9bEgasHu4WfBhwE
+        2nUIfWkNHWjhXTZ2zXxAZI2waLK5KWMYy6UmgX+gPaL1/4lMPQuKHKVbmAIxB1Bx+I2q5i62N2nGD
+        csx7/qPA==;
+Received: from [10.22.3.24] (helo=kernkonzept.com)
+        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
+        id 1oWMCw-004g9E-Ox; Thu, 08 Sep 2022 20:24:58 +0200
+From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Pavel Machek <pavel@ucw.cz>, Daniel Mack <daniel@zonque.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4] dt-bindings: leds: Expand LED_COLOR_ID definitions
-Message-ID: <20220908181611.GA3001858-robh@kernel.org>
-References: <20220830134613.1564059-1-oliver@schinagl.nl>
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Subject: [PATCH v4 0/7] remoteproc: qcom_q6v5_mss: Add MSM8909 and MSM8953
+Date:   Thu,  8 Sep 2022 20:24:26 +0200
+Message-Id: <20220908182433.466908-1-stephan.gerhold@kernkonzept.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220830134613.1564059-1-oliver@schinagl.nl>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Aug 2022 15:46:13 +0200, Olliver Schinagl wrote:
-> In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
-> Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
-> added. However, there's a little more very common LED colors.
-> 
-> While the documentation states 'add what is missing', engineers tend to
-> be lazy and will just use what currently exists. So this patch will take
-> (a) list from online retailers [0], [1], [2] and use the common LED colors from
-> there, this being reasonable as this is what is currently available to purchase.
-> 
-> Note, that LIME seems to be the modern take to 'Yellow-green' or
-> 'Yellowish-green' from some older datasheets.
-> 
-> [0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
-> [1]: https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
-> [2]: https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
-> 
-> Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Changes since v3: Fix typo in purple; Fix whitespacing
-> No changes since v2: Re-send with the proper e-mails.
-> Changes since v1: Unbreak existing definitions.
->  include/dt-bindings/leds/common.h | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
+Convert parts of the qcom,q6v5.txt binding documentation to a DT schema
+(together with some DT fixes) in preparation of adding new compatibles
+for MSM8909 and MSM8953. The schema can be easily shared between
+MSM8916, MSM8974, MSM8909 and MSM8953 because they have almost the same
+requirements. The other SoCs are quite different and are likely more
+clearly described in separate DT schema(s) to avoid a lot of complicated
+if statements.
 
-Applied, thanks!
+Since there were some concerns about overlap with the more generic
+(but also more complex) DT schema Sireesh made in [1], I've coordinated
+with Sireesh for v3 and include his adjusted changes for MSM8953 here.
+
+---
+Changes in v4:
+  - Address review comments from Krzysztof
+
+Changes in v3:
+  - Combine series with Sireesh's for MSM8953
+
+Changes in v2:
+  - Address review comments from Krzysztof
+  - Drop "ARM: dts: qcom: msm8974: Disable remoteprocs by default"
+    since Bjorn applied it already
+
+
+Sireesh Kodali (1):
+  remoteproc: qcom: q6v5-mss: Add modem support on MSM8953
+
+Stephan Gerhold (6):
+  arm64: dts: qcom: msm8916: Drop MSS fallback compatible
+  dt-bindings: remoteproc: qcom,q6v5: Move MSM8916 to schema
+  dt-bindings: remoteproc: qcom,msm8916-mss-pil: Add MSM8974
+  dt-bindings: remoteproc: qcom,msm8916-mss-pil: Add MSM8909
+  remoteproc: qcom: q6v5-mss: Add support for MSM8909
+  dt-bindings: remoteproc: qcom,msm8916-mss-pil: Add MSM8953
+
+ .../remoteproc/qcom,msm8916-mss-pil.yaml      | 289 ++++++++++++++++++
+ .../bindings/remoteproc/qcom,q6v5.txt         |  35 ---
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |   2 +-
+ drivers/remoteproc/qcom_q6v5_mss.c            | 174 +++++++++--
+ 4 files changed, 431 insertions(+), 69 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+
+-- 
+2.30.2
+
