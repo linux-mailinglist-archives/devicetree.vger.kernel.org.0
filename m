@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D75D5B1BC1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BF7E5B1BCA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbiIHLnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 07:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55414 "EHLO
+        id S231359AbiIHLpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 07:45:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiIHLnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:43:00 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C0C212951A
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:42:59 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id by6so19524637ljb.11
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:42:59 -0700 (PDT)
+        with ESMTP id S231249AbiIHLpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:45:16 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD8842AEA
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:45:14 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id f11so13262105lfa.6
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:45:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=WF6FZwu8DyCERLgytzSwDS5wT3+PZqQFtPxZIYWZZSI=;
-        b=Er+nRXg6JfhIKzneVd4TJ5DyvIE+0CcaYRnQLiihVdiBn+uRSeBISV6pB/ueFbfryC
-         Sci98ArpAHjsQLaNd92njfIe/9bILN6/zKiQz6FU7mtdnpkaHEmJw48GJZfWLUn6WdLZ
-         PQTgxGqbEZZWcZOE9+1Yj+ovCnJ+Q+upda2/TQFeF6GuTOySl60sdghHCBFfIEKuZx0N
-         Bv6Y+zeh4ZpHf6rd3P9mrRXzp/UJPseE9tYIjfku6OXRXr3XYd51BqUlASV3DAgitwfT
-         x+xPVslva4Xntmr641P4yNDJjoEUqkSRQ91UuYTzDVCRGqmoKI3oHpvBRYYrwGIbOZDD
-         040A==
+        bh=PUtAz8desguEl68/tce2iU0pKPCrbs6PkBvi143GG70=;
+        b=YhydizFsw7cEJmWpahaOj9cS4+Mi1J22/pZvVKZN6es+rvSLsmlGzC1EAzeCGpJBcD
+         CxS3hzf5OHMiX8vZPswF98/HFk0B1EPYTruLbkbrNli5Esn8b5LNlJ4inQKhqzIKpGsC
+         PYTfkI5IOowADtPFndpiYvm5ARRgvzmescL1rO86uQTrMopdf2WrI4YEU+lZFbRw+aPE
+         ruhk2v/O6E2QnJGVS0FWxQxXTw/tfxQLZnkwj0g9gB/QH2xOog53SZKoPJOpQT3DvATP
+         abRcnd8miZXtLC4K35CyEkhvRoyjzRIXXzMB99EhI6KC4B3/BsXPtbNS5OVOqe7O94W8
+         Ww6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=WF6FZwu8DyCERLgytzSwDS5wT3+PZqQFtPxZIYWZZSI=;
-        b=hfIV0Dus1wj+x856FRdFSZpbxzPd9pAQbZjyWdQ69dYMPvuyQMjTBexUNTUjB5s519
-         Pv56SzkhIEj5Fo9K+v9lK+CxhX+DGn60fYatMtF5VBbeEeUEwrzs7SJFuSm+SU3DE1HV
-         TZTN4fo7YV29YmwzNq+sXbo+c6mGthEwiO+W1zDCqRthzXdoSTjhkNN1T5n48FPjfNAM
-         5M7fK9gIuDmjh180hGxTZjCdqAGLr3FMGFPf7l8f0KqSF06/px8+dc4vhh3zDCJSjKUE
-         9bIDv7zxG4d/YbfkHYWZkq7G2tgoatCNkfCLkIp4BQwLcLvGgSlM4gE9QLpNFxi3/BNT
-         i9Ug==
-X-Gm-Message-State: ACgBeo1Y5wecfmnpUtEwxTKufTPERZTnTxQCchxibnXpBZajznZMXzaV
-        PXErYUwrsyxRr4JlrBgKgnJPew==
-X-Google-Smtp-Source: AA6agR4HDpuLPswIafbfbiEvr/0gvAUx6LJH5GAQyO/R4H3WeNUsO2c9IDANsAV3fOFK+30UYxqNNQ==
-X-Received: by 2002:a2e:a54a:0:b0:261:caa2:8d74 with SMTP id e10-20020a2ea54a000000b00261caa28d74mr2225335ljn.11.1662637377944;
-        Thu, 08 Sep 2022 04:42:57 -0700 (PDT)
+        bh=PUtAz8desguEl68/tce2iU0pKPCrbs6PkBvi143GG70=;
+        b=Gg4KC9IsgjmxGmid8iBZiIzWZq4PzjSls6M2Sq8ZCVhixqps+2wUoDH0dS2mdw5RM8
+         c8u5sWS0VxOXxQtIAFsr8g3e5NgCg8JZj8LEF/MRGFU8zmwmUMWz4/AZcbCzNHtD+4zi
+         +Prl0hVRBE07/OlJvhPXYwwnNsNYbh3wRrYRL0mV2hivni+y7yF44LMzp7E4P3Ih8sgM
+         yyfW6dExJ6vQbzJMCJLzrcs1Ejr/nuGFfnsBT8qvVtX8YXgiuuZapGnsTYcGm+uGiIZz
+         gGbbzeI3hT1MKSN+bdVE5OamsCPA7hXS9cMIlZ7kw3tmQgygkgpIBYbI+ga9GWdVHMiW
+         2c2A==
+X-Gm-Message-State: ACgBeo0XS6cYAMfNi4i5EPw4iMTYrO2Ek600QEmNuJ66nf9BijDRh+Bc
+        62FozIYUJGUvowo9cs6pJTWmww==
+X-Google-Smtp-Source: AA6agR4yFLlg0sc/a+7CfHprstIMk3AieUmLr2WL1tjMivUvWIUcHOv+rRcX5m5EW+ouucid19iGow==
+X-Received: by 2002:ac2:4e10:0:b0:498:f132:d5c1 with SMTP id e16-20020ac24e10000000b00498f132d5c1mr609014lfr.648.1662637512841;
+        Thu, 08 Sep 2022 04:45:12 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f13-20020a05651201cd00b004981dee8540sm377746lfp.260.2022.09.08.04.42.56
+        by smtp.gmail.com with ESMTPSA id n27-20020a05651203fb00b0048a757d1303sm2994356lfq.217.2022.09.08.04.45.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 04:42:57 -0700 (PDT)
-Message-ID: <13e94251-6155-df5f-040b-7f3226e9df26@linaro.org>
-Date:   Thu, 8 Sep 2022 13:42:56 +0200
+        Thu, 08 Sep 2022 04:45:12 -0700 (PDT)
+Message-ID: <bc6f19f3-0825-7c9c-c11d-92474bb12375@linaro.org>
+Date:   Thu, 8 Sep 2022 13:45:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v6 1/2] ARM: dts: at91: Adding documentation for
- SAMA5D3-EDS
+Subject: Re: [PATCH v6 2/2] ARM: dts: at91: Adding SAMA5D3-EDS board
 Content-Language: en-US
 To:     Jerry Ray <jerry.ray@microchip.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -66,8 +65,9 @@ To:     Jerry Ray <jerry.ray@microchip.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 References: <20220902192236.14862-1-jerry.ray@microchip.com>
+ <20220902192236.14862-2-jerry.ray@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220902192236.14862-1-jerry.ray@microchip.com>
+In-Reply-To: <20220902192236.14862-2-jerry.ray@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,43 +81,166 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 02/09/2022 21:22, Jerry Ray wrote:
-> Adding the SAMA5D3-EDS board from Microchip into the atmel AT91 board
-> description yaml file.
+> The SAMA5D3-EDS board is an Ethernet Development Platform allowing for
+> evaluating many Microchip ethernet switch and PHY products.  Various
+> daughter cards can connect up via an RGMII connector or an RMII connector.
+> 
+> The EDS board is not intended for stand-alone use and has no ethernet
+> capabilities when no daughter board is connected.  As such, this device
+> tree is intended to be used with a DT overlay defining the add-on board.
+> To better ensure consistency, some items are defined here as a form of
+> documentation so that all add-on overlays will use the same terms.
+> 
+> Google search keywords: "Microchip SAMA5D3-EDS"
 > 
 > Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
 > ---
 > v5->v6:
->  - No code change - patch prefix naming modified to match with others.
+>  - Replaced underscores in names where I can, improving naming.
 > v4->v5:
->  - No change
+>  - patch now applies to v6.0-rc2
 > v3->v4:
->  - No change
+>  - Fixed regulators as necessary to get the board to boot from SD Card.
 > v2->v3:
->  - No change
+>  - Alphabetized pinctrl entries.
+>  - cleaned up a warning in the regulators section.
+>  - License tweaked to 'OR MIT'
+>  - Included Makefile change
 > v1->v2:
->  - Added Device Tree documentation for Microchip SAMA5D3-EDS board
+>  - Modified the compatible field in the device tree to reflect Microchip
+>    Ethernet Development System Board.
 > ---
->  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  arch/arm/boot/dts/Makefile             |   1 +
+>  arch/arm/boot/dts/at91-sama5d3_eds.dts | 309 +++++++++++++++++++++++++
+>  2 files changed, 310 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/at91-sama5d3_eds.dts
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> index 2b7848bb7769..c7f067e13d20 100644
-> --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> +++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> @@ -139,6 +139,13 @@ properties:
->            - const: atmel,at91sam9g20
->            - const: atmel,at91sam9
->  
-> +      - description: Microchip SAMA5D3 Ethernet Development System Board
-> +        items:
-> +          - const: microchip,sama5d3-eds
-> +          - const: atmel,sama5d36
-> +          - const: atmel,sama5d3
-> +          - const: atmel,sama5
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 05d8aef6e5d2..e92e639a2dc3 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -61,6 +61,7 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
+>  	at91-sama5d2_icp.dtb \
+>  	at91-sama5d2_ptc_ek.dtb \
+>  	at91-sama5d2_xplained.dtb \
+> +	at91-sama5d3_eds.dtb \
+>  	at91-sama5d3_ksz9477_evb.dtb \
+>  	at91-sama5d3_xplained.dtb \
+>  	at91-dvk_som60.dtb \
+> diff --git a/arch/arm/boot/dts/at91-sama5d3_eds.dts b/arch/arm/boot/dts/at91-sama5d3_eds.dts
+> new file mode 100644
+> index 000000000000..b4fe1c5f2997
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/at91-sama5d3_eds.dts
+> @@ -0,0 +1,309 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * at91-sama5d3_eds.dts - Device Tree file for the SAMA5D3 Ethernet
+> + *    Development System board.
+> + *
+> + * Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries
+> + *
+> + * Author: Jerry Ray <jerry.ray@microchip.com>
+> + */
+> +/dts-v1/;
+> +#include "sama5d36.dtsi"
 > +
+> +/ {
+> +	model = "SAMA5D3 Ethernet Development System";
+> +	compatible = "microchip,sama5d3-eds", "atmel,sama5d36",
+> +		     "atmel,sama5d3", "atmel,sama5";
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	clocks {
+> +		slow_xtal {
 
-A bit weird order. I would expect this to be after atmel,sama5d3 boards
-but before atmel,at91sam9...
+No underscores in node names. Override by label.
+
+> +			clock-frequency = <32768>;
+> +		};
+> +
+> +		main_xtal {
+> +			clock-frequency = <12000000>;
+> +		};
+> +	};
+> +
+> +	gpio {
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_key_gpio>;
+> +
+> +		button-3 {
+> +			label = "PB_USER";
+> +			gpios = <&pioE 29 GPIO_ACTIVE_LOW>;
+> +			linux,code = <0x104>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	memory@20000000 {
+> +		reg = <0x20000000 0x10000000>;
+> +	};
+> +
+> +	vcc_3v3_reg: buck-regulator-1 {
+
+Keep consistent prefix or suffix, so:
+regulator-buck-1
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vcc_2v5_reg: ldo-regulator-2 {
+
+regulator-ldo-1
+(why numbering of LDO regulators starts from 2? keep some sense in this)
+
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_2V5";
+> +		regulator-min-microvolt = <2500000>;
+> +		regulator-max-microvolt = <2500000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vcc_3v3_reg>;
+> +	};
+> +
+> +	vcc_1v8_reg: ldo-regulator-3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vcc_3v3_reg>;
+> +	};
+> +
+> +	vcc_1v2_reg: buck-regulator-4 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_1V2";
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vcc_mmc0_reg: fixedregulator-mmc0 {
+
+Just regulator-mmc0
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "mmc0-card-supply";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_vcc_mmc0_reg_gpio>;
+> +		gpio = <&pioE 2 GPIO_ACTIVE_LOW>;
+> +	};
 
 
 Best regards,
