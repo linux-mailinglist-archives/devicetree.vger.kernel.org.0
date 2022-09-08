@@ -2,106 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C9E5B1892
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:24:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE075B18DE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:39:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231508AbiIHJYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 05:24:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36620 "EHLO
+        id S229710AbiIHJjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 05:39:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231265AbiIHJYZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:24:25 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E6EFBF23
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 02:22:52 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id m15so7024696lfl.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 02:22:52 -0700 (PDT)
+        with ESMTP id S229502AbiIHJjP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:39:15 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BABAAFBF21;
+        Thu,  8 Sep 2022 02:39:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=dH3CbhVOQrBIzFdsMYEQAzEoE3B2m4SSznn5rAk+rYM=;
-        b=FHf5Ic/nwRoqqtgsFHSSGFDXZc98X2hpVH5Ttn0/VY/T+Rl1xxX8eAP+p5gs+pa44G
-         dqojHG/7TfSA3gOeWxAIl+UZh8PDFCPoea9kdGdQqDETSUMlihGsJQtxcvAzwkVOy9sT
-         3fDJ01OAxnONes0Gle2gdPEa0FKu6zFZ/j+W9iF0qpfbRbL6px2LC8vg21uN+B1a+F6d
-         U7OQShHt5p86KP5e2r9IZo+K/7ynXnUdLMF1xVA5svaLjFkS8ALinaYJ0yT0hTOm1z5y
-         5k/Ar9Kn+1s6rjhMYGbHk8a9pG3X93HkuWGNY4axTv/+yed/0Q6jeQnF9lV+pUJTF328
-         eDOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=dH3CbhVOQrBIzFdsMYEQAzEoE3B2m4SSznn5rAk+rYM=;
-        b=KvBARwZgJjlw/wZ4+gY3R3Fpf94h3VoSup75tz2Zxd/eCcYeoOyX8xeM2j67YtQ9/M
-         KoKrqSmgTjEYSQ/NJ8yEtiHwPuN8x8sq6wzGDo9pxVZ9t5pkDUUKaoy5W2Pm1Jw70Pe2
-         Jlyf9MNmr5ydVCENd0VEV/T7c/UuDpxVzsoXsWFZ6lIo6HOq1Umjw9mIRUOPt/rCkX6y
-         5HJoeZ9O0RGpn240RWuobyR6IqEaB6BG9RHm4XzKc2E9mRI+FmLRk/byzEhOETx2lC7C
-         /plxwymDXW+bUN0b/SSoNSnypKvGNxLlcrwVwnMjwtq4tPbu/4BbR4M6ZNcVfJ8k5duV
-         koEw==
-X-Gm-Message-State: ACgBeo3XDEfhfZ0jIwLH+Gwfgcpy0XhrxocK/MySJWrpOdRKSFtsBA+a
-        UxwodAgHVMAsTkZO0E+TXSldmA==
-X-Google-Smtp-Source: AA6agR4x1bQbWHYoUICIygFzuOYuWPgfmCbP5o72xJn3+fJ+P+x9kq1cdfCrhlbhILkhk07z1Y2DaA==
-X-Received: by 2002:a05:6512:1193:b0:492:7e33:870 with SMTP id g19-20020a056512119300b004927e330870mr2475777lfr.37.1662628970810;
-        Thu, 08 Sep 2022 02:22:50 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id bu13-20020a056512168d00b004947f8b6266sm175119lfb.203.2022.09.08.02.22.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 02:22:50 -0700 (PDT)
-Message-ID: <0b8b2e01-5209-6437-c79e-3cff9b29bfcb@linaro.org>
-Date:   Thu, 8 Sep 2022 11:22:48 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662629954; x=1694165954;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Alxpd1HY785/O28PkM/JBtWCPSW1SE57zwuThatvaiY=;
+  b=myNgrW/A7lW0BfSZClNbnMelFH42lZ7//UJoxVgX6KPYiJeVj+ug6KbM
+   tR+4kRhU5CAZ/ZOL3D7XRDD9ky95HkCIU/PNr4ePvnO+LTgoFFZs2pTGW
+   9EsR2xobxgCpW8dCSpAQ2oB9ZLR5OJCBKQpFec4PclUpGvG/dZGDBpxcz
+   cDLZEKEJ3KXJ7PPQRDs6EA1fkzUgoNBZhQ6xylbuS0yA++CuBFOFadNR8
+   2kQPsYCwUnOHzkzz3HZwim/ZqcQniom5Hy0i+aYQyCbMAF/piGhMldF5r
+   DKed0l8FMImYzbR5fsO8oR1rIvkj8cBieMa1Qx9f435ZRx1oUHsZgN8iF
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,299,1654552800"; 
+   d="scan'208";a="26065096"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 08 Sep 2022 11:39:11 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 08 Sep 2022 11:39:11 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 08 Sep 2022 11:39:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662629951; x=1694165951;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Alxpd1HY785/O28PkM/JBtWCPSW1SE57zwuThatvaiY=;
+  b=J/nESCRd/wOz5y11btNFoD5/XkdrSS8iERoUm+zejHODoIinjOTjT23L
+   qh23lDHriLra6fx1/hYH3SCUNrlPBwHQm2K1W06xCvFmLd+D9PXMjdCPK
+   d+fNXeSEP8P1WC2l7L8EQ75FItZy7Q9MCPYUR4e+x60Iqw9SVpuJ1ZFb4
+   p9neLWp3tfYqL3xT+/tPpWh5CPG6Tj9QJ9hBXDXs4/2Kp1+I0LxzSbPWw
+   iS0fCZR7FuoCj+HJ2plLzN3W8QRptPFif5pM5xofLq2xNfhLhTUdsxtls
+   xXhXSPbvCyv3EZHfaOViCbLI6Dfi1Whl8r/pdLWwrI6bbxri5rvU7mxw+
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,299,1654552800"; 
+   d="scan'208";a="26065094"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 08 Sep 2022 11:39:11 +0200
+Received: from steina-w.localnet (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 6FCB3280056;
+        Thu,  8 Sep 2022 11:39:11 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Jun Li <jun.li@nxp.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 3/4] arm64: dts: imx8mp: Add snps, gfladj-refclk-lpm-sel quirk to USB nodes
+Date:   Thu, 08 Sep 2022 11:39:09 +0200
+Message-ID: <1836686.CQOukoFCf9@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <PA4PR04MB9640C21A8F2DC44DB58C5C9089409@PA4PR04MB9640.eurprd04.prod.outlook.com>
+References: <20220907144624.2810117-1-alexander.stein@ew.tq-group.com> <20220907144624.2810117-4-alexander.stein@ew.tq-group.com> <PA4PR04MB9640C21A8F2DC44DB58C5C9089409@PA4PR04MB9640.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v9 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings
- for DMIC controller
-Content-Language: en-US
-To:     =?UTF-8?B?54+t5rab?= <fengzheng923@gmail.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        jernej.skrabec@gmail.com, samuel@sholland.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-References: <1661872039-40174-1-git-send-email-fengzheng923@gmail.com>
- <25072fba-64e2-df11-c8f0-a274037141f0@linaro.org>
- <CAE=m619qeaDYkWiB5kh50gY1Kndyrvo4oZuZjFKRCKK=j99K2w@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAE=m619qeaDYkWiB5kh50gY1Kndyrvo4oZuZjFKRCKK=j99K2w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2022 15:03, 班涛 wrote:
->>> +++
->> b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
->>> @@ -0,0 +1,79 @@
->>> +# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/sound/allwinner,sun50i-h6-dmic.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Allwinner H6 DMIC Device Tree Bindings
->>
->> s/Device Tree Bindings//
->>
+Am Donnerstag, 8. September 2022, 11:12:23 CEST schrieb Jun Li:
+> > -----Original Message-----
+> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Sent: Wednesday, September 7, 2022 10:46 PM
+> > To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>; Rob Herring
+> > <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > <krzysztof.kozlowski+dt@linaro.org>; Shawn Guo <shawnguo@kernel.org>;
+> > Sascha Hauer <s.hauer@pengutronix.de>; Pengutronix Kernel Team
+> > <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; dl-linux-imx
+> > <linux-imx@nxp.com>; Jun Li <jun.li@nxp.com>
+> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>;
+> > linux-usb@vger.kernel.org; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org
+> > Subject: [PATCH 3/4] arm64: dts: imx8mp: Add snps,gfladj-refclk-lpm-sel
+> > quirk to USB nodes
+> > 
+> > With this set the SOF/ITP counter is based on ref_clk when 2.0 ports are
+> > suspended.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > 
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > index 53493dc7d976..0e7f5842a3e4 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -1300,6 +1300,7 @@ usb_dwc3_0: usb@38100000 {
+> > 
+> >  				phys = <&usb3_phy0>, <&usb3_phy0>;
+> >  				phy-names = "usb2-phy", "usb3-
+phy";
+> >  				snps,dis-u2-freeclk-exists-quirk;
 > 
-> So, modify it to 'Allwinner H6 DMIC Devices Tree Bindings', sure?
+> So this property can be removed?
 
-You pasted the same message, so what is the modification? I wrote you a
- search&replace pattern.
-
-
+I'm not so sure about this one, as the description is talking about USB2 PHY 
+providing a free-running PHY clock. I don't know the details if this is true 
+or not.
+But removing snps,dis-u2-freeclk-exists-quirk from both USB device nodes, USB 
+devices attachments are still detected when the USB hub is suspended, both 
+super-speed and high-speed ports.
 
 Best regards,
-Krzysztof
+Alexander
+
+> > +				snps,gfladj-refclk-lpm-sel-quirk;
+> > 
+> >  			};
+> >  		
+> >  		};
+> > 
+> > @@ -1342,6 +1343,7 @@ usb_dwc3_1: usb@38200000 {
+> > 
+> >  				phys = <&usb3_phy1>, <&usb3_phy1>;
+> >  				phy-names = "usb2-phy", "usb3-
+phy";
+> >  				snps,dis-u2-freeclk-exists-quirk;
+> 
+> Ditto.
+> 
+> Li Jun
+> 
+> > +				snps,gfladj-refclk-lpm-sel-quirk;
+> > 
+> >  			};
+> >  		
+> >  		};
+> > 
+> > --
+> > 2.25.1
+
+
+
+
