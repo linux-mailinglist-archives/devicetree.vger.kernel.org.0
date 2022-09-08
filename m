@@ -2,180 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5B755B2440
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 19:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC83E5B252D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 19:52:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231783AbiIHRMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 13:12:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34518 "EHLO
+        id S231569AbiIHRwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 13:52:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231799AbiIHRMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 13:12:06 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFE13C59FF;
-        Thu,  8 Sep 2022 10:12:04 -0700 (PDT)
-Received: from notapiano.myfiosgateway.com (unknown [70.107.189.129])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 515486601F99;
-        Thu,  8 Sep 2022 18:12:02 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662657123;
-        bh=O6Q6pQLSe215V4afYGc/Z7qOQ/faIT1gKwtDzzYCHdY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UuZXr7ryQqAQ8jwQdLPJnw8K+vSwFlAsJoPNZk4pVXjUB+7fpq2wUKQocv3BXVyTe
-         uiY96G6ooylMqN+c5PXIyU7q0t9Hh5WB46YqYnxGYNqBLP+F5SVtHZcAbvqUeRf2lM
-         RNjmwnLHdr2ITaPKaka7c5gykGqQSbxRjo/9+9EJMInEsUx1N82m7FHXV63hQhlJuw
-         Y6ZjCOLOsYRzK7kZPKZ9sNpoQ1Vc87WNvSUi4LwxYiJL50CHNZGfyhAjZVXBR21NqR
-         5Re6hH0nRa86G+wnbfwo4vHFOV6Of964YTn5THyAsov+wO4ta30RZxUubUTcZI9ZxB
-         2z1v8vHZmkdkw==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH 3/3] arm64: dts: mediatek: asurada: Enable internal display
-Date:   Thu,  8 Sep 2022 13:11:53 -0400
-Message-Id: <20220908171153.670762-4-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220908171153.670762-1-nfraprado@collabora.com>
-References: <20220908171153.670762-1-nfraprado@collabora.com>
+        with ESMTP id S229842AbiIHRwM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 13:52:12 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2114D99DE;
+        Thu,  8 Sep 2022 10:52:11 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id t14so20139283wrx.8;
+        Thu, 08 Sep 2022 10:52:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=kT+2AbTrH1Kh7uAi7sVUDrkL8YeDLjiGtQ85nst8gfU=;
+        b=eUcl9Y0xLe5I1Pus5u74csvo/LKTlohSmCxPX+tbDeSL8iGEViZmBkXiZ3VWD0Upb0
+         2mO2ePdJpdfgmdIkZJw2OWHce4Etar9/2uwx+eWAfsMk/xYvMG8kWDL9lFMTihWUF/fV
+         bAXfVAJZsThVpObTsyA9GhaBhbAj+Zfl0M6dIXAQ7k355UQZurA+m/tnDm2RVa0AoNol
+         Wat9+o0uEhzf4Q9TL65H97HxJUe/5OZwkpQI8m5RfZ4TRTxG20QARrA78afMW1s01a4I
+         791yhCMweJ6cS5t/6LhoghDmmbnsGX5CKYjtnGo3zWWH4MtUSJHkpauzP2CtE9z8EUqY
+         G4nA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=kT+2AbTrH1Kh7uAi7sVUDrkL8YeDLjiGtQ85nst8gfU=;
+        b=Jwg4W/8o2wtxaa1fPDtdz2Be0skmBldtZm6urrbsJ41akfLrcTTU4Gs9iDcsW8Vbw8
+         SZ8vR3BPTvHGW7RA3//WHsdf1r2jiEiNoHkn5e0MUEGdL2vKXf7x0V3lkJJyORhiPxPa
+         QGDDIv7e1vOhlygT43gM2vGsk5HYRxFPyI+i2hTc0WEXkPFLHoGmwNh9OKq5v0fwgbqL
+         1ysi05TM4I8qUNmLDSwZGXaG4t9ODRA7uZWG14F/wwUCRSJl/XGBRenipgpQELoc8qJ+
+         k+ItbhA2XUOyLnU6DCmzV/pnslFO50ojEmBMAalIChTAn59oE7CrtZQ2/ngJD93nfCQ4
+         5PZw==
+X-Gm-Message-State: ACgBeo1qP4VJOJeRTc5RpevmLBCEmIGk14qWOwjoWvD3BhnqjxEuQLv4
+        /GiamulItUkFeH8UMEBPv1g=
+X-Google-Smtp-Source: AA6agR6ac9wu3/ypYFwz28EfERWFSyeR30QK/KsEUG2H6NdnyQUu/tU98reF2mS37pHqFLnbL2ZBhw==
+X-Received: by 2002:a5d:64cf:0:b0:220:6d8e:1db0 with SMTP id f15-20020a5d64cf000000b002206d8e1db0mr5580917wri.564.1662659529837;
+        Thu, 08 Sep 2022 10:52:09 -0700 (PDT)
+Received: from [192.168.74.101] ([77.78.20.135])
+        by smtp.gmail.com with ESMTPSA id v11-20020adfe4cb000000b00228a17f92fesm14705767wrm.51.2022.09.08.10.52.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Sep 2022 10:52:09 -0700 (PDT)
+Message-ID: <843b8280-5e71-c008-0ca2-4d289ca6e7da@gmail.com>
+Date:   Thu, 8 Sep 2022 20:52:10 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 9/9] arm64: dts: qcom: sm4250: Add support for
+ oneplus-billie2
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>, linux-kernel@vger.kernel.org
+References: <20220903174150.3566935-1-iskren.chernev@gmail.com>
+ <20220903174150.3566935-10-iskren.chernev@gmail.com>
+ <e655cddd-677b-f277-667f-48107671db2a@linaro.org>
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+In-Reply-To: <e655cddd-677b-f277-667f-48107671db2a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The asurada platform has an ANX7625 bridge connecting the DSI's output
-to the internal eDP panel. Add and enable these devices in order to get
-a usable internal display.
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
 
- .../boot/dts/mediatek/mt8192-asurada.dtsi     | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
+On 9/6/22 11:33, Krzysztof Kozlowski wrote:
+> On 03/09/2022 19:41, Iskren Chernev wrote:
+>> Remaining issues from make dtbs_check:
+>> - rpm-requests: it doesn't like the pm6125-regulators subnode. Every other
+>>   DTS I checked is written in this way.
+>
+> Yes, I sent patches for it, already merged, so please rebase on linux-next.
+>
+> https://lore.kernel.org/all/20220828084341.112146-1-krzysztof.kozlowski@linaro.org/
+>
+> Please rebase and test with
+> Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-index 33ef55b6dbe1..fde8548f67ae 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-@@ -200,6 +200,14 @@ wifi_restricted_dma_region: wifi@c0000000 {
- 	};
- };
- 
-+&dsi0 {
-+	status = "okay";
-+};
-+
-+&dsi_out {
-+	remote-endpoint = <&anx7625_in>;
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
-@@ -248,6 +256,53 @@ &i2c3 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c3_pins>;
-+
-+	anx_bridge: anx7625@58 {
-+		compatible = "analogix,anx7625";
-+		reg = <0x58>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&anx7625_pins>;
-+		enable-gpios = <&pio 41 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&pio 42 GPIO_ACTIVE_HIGH>;
-+		vdd10-supply = <&pp1000_mipibrdg>;
-+		vdd18-supply = <&pp1800_mipibrdg>;
-+		vdd33-supply = <&pp3300_mipibrdg>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				anx7625_in: endpoint {
-+					remote-endpoint = <&dsi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				anx7625_out: endpoint {
-+					remote-endpoint = <&panel_in>;
-+				};
-+			};
-+		};
-+
-+		aux-bus {
-+			panel: panel {
-+				compatible = "edp-panel";
-+				power-supply = <&pp3300_mipibrdg>;
-+				backlight = <&backlight_lcd0>;
-+
-+				port {
-+					panel_in: endpoint {
-+						remote-endpoint = <&anx7625_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
- };
- 
- &i2c7 {
-@@ -258,6 +313,10 @@ &i2c7 {
- 	pinctrl-0 = <&i2c7_pins>;
- };
- 
-+&mipi_tx0 {
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	status = "okay";
- 
-@@ -589,6 +648,20 @@ &pio {
- 			  "AUD_DAT_MISO0",
- 			  "AUD_DAT_MISO1";
- 
-+	anx7625_pins: anx7625-default-pins {
-+		pins-out {
-+			pinmux = <PINMUX_GPIO41__FUNC_GPIO41>,
-+				 <PINMUX_GPIO42__FUNC_GPIO42>;
-+			output-low;
-+		};
-+
-+		pins-in {
-+			pinmux = <PINMUX_GPIO6__FUNC_GPIO6>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	cr50_int: cr50-irq-default-pins {
- 		pins-gsc-ap-int-odl {
- 			pinmux = <PINMUX_GPIO171__FUNC_GPIO171>;
--- 
-2.37.3
-
+It looks like this patch covers SPMI regulators. In most devices RPM/H (i.e
+indirect) regulators are used, so this doesn't fix it for me.
