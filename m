@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5650D5B1F47
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 15:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9E355B1F4A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 15:34:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232560AbiIHNeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 09:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37908 "EHLO
+        id S231783AbiIHNeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 09:34:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232723AbiIHNdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 09:33:45 -0400
+        with ESMTP id S231858AbiIHNd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 09:33:57 -0400
 Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21BBE1024
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 06:33:15 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id q21so13519751lfo.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 06:33:15 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7CCDA1BF
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 06:33:49 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bt10so27760529lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 06:33:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=v+nLP1GILkW9Gge3OsJBURWQxulylGJsueWr5G/FbUI=;
-        b=AXjs7SeC2bNajIGzzilmj1UnttUpGMFJQz6DbggMGB0LNjQZCA0BbydGpvdrTdWAtO
-         +ZVAdYTOBPktxw0J11Snj/uhPdKOeNMi15JJ+TdrRlHvsFrLnsd5OMSqGdDVUwj3xWsm
-         kIGolA7tv0C8LX41CUFiuJOA8hL6U+ka4Iifrqi9aFPuqL5yFLxviweWt95b/zat+aDr
-         Lplv8eQ6t4SmwOirtEWpeyUwAhrTKL/3mIdYhLlFtyjnbKmyopK2QGnqjDUWSK2fMgqe
-         BijBy+ZxJP+6v/+41QDiToMJveJTG//ORSv0aIoJCV3grVh6j1tm7XjKkLHiEe8kBUg+
-         zjFA==
+        bh=e8wSZ6/ARvfoxWmxi51W3Fwm24Kdxtc42HcCeMYjHNo=;
+        b=eovUKAtpE41UQW7qGW3eBcEEErnGOyTG65Qhl07fuirqov42GeV/tS7+eyubIuQ41D
+         9C8X5jIjRhUlA8dLUNTnUJRdm+Ww98oWWUrwe4WjSbF1BjqlPT2AsxQRhgSvYMYlVWFG
+         /iz6/heE0L2L3W7hVpOUGZLVcSopQHgXR71p9BCE8HlAaYMK8P2Dn2hl347pMQIBs0GM
+         k4hydZJaSqyzxwu5971dlm3YTqqSFpzhkCfC0d+y13Xv+OSjSp0046zhYQCXZ3ouEozI
+         1MCl4ABoP8vsvhb7OSY2AYjkRvg7DOttzZAye35pRA48tjCOb4nRNrxeWSCtucEAHT4z
+         Dilg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=v+nLP1GILkW9Gge3OsJBURWQxulylGJsueWr5G/FbUI=;
-        b=bcvZwLJ7pZBib5TEl+izHrYG/KquI0e1rZb+uo6xhiPLhZcszF2zBPuKjMhksFxYKF
-         KbFdlQMlkGztVqG4Cc5TY3NzlonXmDAHnvVJtcZWxYWo2LVPj5sRnVu8DsazuAGGXVee
-         Udru64viK8bMVjWQqr+BdbM4ThR6vcepdXQOc8hLXNS4TJHf9by2L1j9wGNkozhKNp+l
-         LkSxIYvuQ1SwP+in2knsqF3iOk0jlCCBVXF7JIHSBLrTzEQqGBUh/Mx9NzoWUNtr9vCt
-         24a5CbfVtA0/JLRdEr617HAnzsjrsdMw48tWjWo9VFuNNW0TEVMCkZY6K5xrIzZ+1K7j
-         uTAQ==
-X-Gm-Message-State: ACgBeo2OL/5bo6I+ew8RjVw1dn59yeI9/YDu15Hy3UlbBrtjiDvWGvPS
-        QjVJ7S9/I84+/iIlgPnVYd8lfQ==
-X-Google-Smtp-Source: AA6agR7qZb0s6jkFG3gvDIE1FIubqaemFVhdAPftP12eW2EqWqGyq59lZCqqpQY+uR4uy0zdZY9Qxw==
-X-Received: by 2002:ac2:43a1:0:b0:48a:fa18:60c4 with SMTP id t1-20020ac243a1000000b0048afa1860c4mr2586638lfl.27.1662643993108;
-        Thu, 08 Sep 2022 06:33:13 -0700 (PDT)
+        bh=e8wSZ6/ARvfoxWmxi51W3Fwm24Kdxtc42HcCeMYjHNo=;
+        b=uzQiLFNPoUgIcwrGAo25QD4zfNa1BvXopeRtVD1JGSi7aQDpe1vMb+X17M791kRaOH
+         k0Ir2c+A9Kizia6D+/PLQ+G9Tcrf6D4bKK+A60Y2KVk00jU4GHPXCn2mH7TpT70/Bxle
+         WDAC8HJ5OMGmEJGqLAjiXRGBQ4gOZQiFXIdPt7+jEbOE2Qx6/cL8qZqW+OqJTbPD8ewB
+         4AVHI2GYT5rn01OxklaNB0/ktGIfZP6UCk56d3si8TtYfVhRkgcmRJWy4SjcFoaTH2O2
+         hdknf5K/UGg1xwPVwlNCNwpgiFzS7uzML1ImyNqvMFftJoI8u91USWQuV1ciLR6FCg53
+         Q8UA==
+X-Gm-Message-State: ACgBeo23+1lluOScrCd4mWewRiAk/vlXCO5PXVu0KSxmt2kqpi/mSh0f
+        U5axkO53kDIgZ0vk3lWXlDK0KA==
+X-Google-Smtp-Source: AA6agR6/6BS21FEgKD1GoLv4nnZaenZ5VuuECe+4AmpJvmNHsdtsf2joiv/84fftEPb3wab40df7/w==
+X-Received: by 2002:a05:6512:2605:b0:492:dbb3:9b85 with SMTP id bt5-20020a056512260500b00492dbb39b85mr2544346lfb.669.1662644027956;
+        Thu, 08 Sep 2022 06:33:47 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d2-20020ac25ec2000000b00497a1f92a72sm1365662lfq.221.2022.09.08.06.33.11
+        by smtp.gmail.com with ESMTPSA id i22-20020a056512341600b00497a123d8b7sm1451870lfr.172.2022.09.08.06.33.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 06:33:12 -0700 (PDT)
-Message-ID: <db2080ab-7140-ae10-4655-fe4b4163d25a@linaro.org>
-Date:   Thu, 8 Sep 2022 15:33:11 +0200
+        Thu, 08 Sep 2022 06:33:47 -0700 (PDT)
+Message-ID: <b70236b8-acae-05b8-1344-47db082f60ba@linaro.org>
+Date:   Thu, 8 Sep 2022 15:33:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v3 4/4] ASoC: qcom: add machine driver for sc8280xp
+Subject: Re: [PATCH v3 3/4] ASoC: qcom: sm8250: move some code to common
 Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         broonie@kernel.org
 Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
@@ -64,9 +65,9 @@ Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220908063448.27102-1-srinivas.kandagatla@linaro.org>
- <20220908063448.27102-5-srinivas.kandagatla@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220908063448.27102-5-srinivas.kandagatla@linaro.org>
+ <20220908063448.27102-4-srinivas.kandagatla@linaro.org>
+ <6e6b12aa-f516-6ea1-58e5-f46033b84985@linaro.org>
+In-Reply-To: <6e6b12aa-f516-6ea1-58e5-f46033b84985@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,129 +80,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2022 08:34, Srinivas Kandagatla wrote:
-> Add machine driver for sc8280xp SoC.
+On 08/09/2022 15:31, Krzysztof Kozlowski wrote:
+> On 08/09/2022 08:34, Srinivas Kandagatla wrote:
+>> SM8450 machine driver code can be reused across multiple Qualcomm SoCs,
+>> Atleast another 2 of them for now (SM8450 and SM8250XP).
 > 
-> This intial supports only includes WSA883x Speakers and WCD938x based headset.
+> s/Atleast/At least/
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  sound/soc/qcom/Kconfig    |  11 +++
->  sound/soc/qcom/Makefile   |   2 +
->  sound/soc/qcom/sc8280xp.c | 157 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 170 insertions(+)
->  create mode 100644 sound/soc/qcom/sc8280xp.c
+>>
+>> Move some of the common SoundWire stream specific code to common file
+>> so that other drivers can use it instead of duplicating.
+>>
+>> This patch is to prepare the common driver to be able to add new SoCs support
+>> with less dupication.
 > 
-> diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-> index 750653404ba3..d0e59e07b1fc 100644
-> --- a/sound/soc/qcom/Kconfig
-> +++ b/sound/soc/qcom/Kconfig
-> @@ -173,6 +173,17 @@ config SND_SOC_SM8250
->  	  SM8250 SoC-based systems.
->  	  Say Y if you want to use audio device on this SoCs.
->  
-> +config SND_SOC_SC8280XP
-> +	tristate "SoC Machine driver for SC8280XP boards"
-> +	depends on QCOM_APR && SOUNDWIRE
+> s/dupication/duplication/
+> 
+> 
+>>
+> 
+> Assuming there were no changes against v2:
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Comments from my v2 - compile test for APR.
-
-> +	depends on COMMON_CLK
-> +	select SND_SOC_QDSP6
-> +	select SND_SOC_QCOM_COMMON
-> +	help
-> +	  To add support for audio on Qualcomm Technologies Inc.
-> +	  SC8280XP SoC-based systems.
-> +	  Say Y if you want to use audio device on this SoCs.
-> +
->  config SND_SOC_SC7180
->  	tristate "SoC Machine driver for SC7180 boards"
->  	depends on I2C && GPIOLIB
-> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
-> index 8b7b876899a8..8b97172cf990 100644
-> --- a/sound/soc/qcom/Makefile
-> +++ b/sound/soc/qcom/Makefile
-> @@ -26,6 +26,7 @@ snd-soc-sc7180-objs := sc7180.o
->  snd-soc-sc7280-objs := sc7280.o
->  snd-soc-sdm845-objs := sdm845.o
->  snd-soc-sm8250-objs := sm8250.o
-> +snd-soc-sc8280xp-objs := sc8280xp.o
->  snd-soc-qcom-common-objs := common.o
->  
->  obj-$(CONFIG_SND_SOC_STORM) += snd-soc-storm.o
-> @@ -33,6 +34,7 @@ obj-$(CONFIG_SND_SOC_APQ8016_SBC) += snd-soc-apq8016-sbc.o
->  obj-$(CONFIG_SND_SOC_MSM8996) += snd-soc-apq8096.o
->  obj-$(CONFIG_SND_SOC_SC7180) += snd-soc-sc7180.o
->  obj-$(CONFIG_SND_SOC_SC7280) += snd-soc-sc7280.o
-> +obj-$(CONFIG_SND_SOC_SC8280XP) += snd-soc-sc8280xp.o
->  obj-$(CONFIG_SND_SOC_SDM845) += snd-soc-sdm845.o
->  obj-$(CONFIG_SND_SOC_SM8250) += snd-soc-sm8250.o
->  obj-$(CONFIG_SND_SOC_QCOM_COMMON) += snd-soc-qcom-common.o
-> diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
-> new file mode 100644
-> index 000000000000..ade44ad7c585
-> --- /dev/null
-> +++ b/sound/soc/qcom/sc8280xp.c
-> @@ -0,0 +1,157 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +// Copyright (c) 2022, Linaro Limited
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of_device.h>
-> +#include <sound/soc.h>
-> +#include <sound/soc-dapm.h>
-> +#include <sound/pcm.h>
-> +#include <linux/soundwire/sdw.h>
-> +#include <sound/jack.h>
-> +#include <linux/input-event-codes.h>
-> +#include "qdsp6/q6afe.h"
-> +#include "common.h"
-> +
-> +#define DRIVER_NAME		"sc8280xp"
-> +
-> +struct sc8280xp_snd_data {
-> +	bool stream_prepared[AFE_PORT_MAX];
-> +	struct snd_soc_card *card;
-> +	struct sdw_stream_runtime *sruntime[AFE_PORT_MAX];
-> +	struct snd_soc_jack jack;
-> +	bool jack_setup;
-> +};
-> +
-> +static int sc8280xp_snd_init(struct snd_soc_pcm_runtime *rtd)
-> +{
-> +	struct sc8280xp_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
-> +
-> +	return qcom_snd_wcd_jack_setup(rtd, &data->jack, &data->jack_setup);
-> +}
-> +
-> +static int sc8280xp_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
-> +				     struct snd_pcm_hw_params *params)
-> +{
-> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-> +	struct snd_interval *rate = hw_param_interval(params,
-> +					SNDRV_PCM_HW_PARAM_RATE);
-> +	struct snd_interval *channels = hw_param_interval(params,
-> +					SNDRV_PCM_HW_PARAM_CHANNELS);
-> +
-> +	rate->min = rate->max = 48000;
-> +	channels->min = 2;
-> +	channels->max = 2;
-> +	switch (cpu_dai->id) {
-> +	case TX_CODEC_DMA_TX_0:
-> +	case TX_CODEC_DMA_TX_1:
-> +	case TX_CODEC_DMA_TX_2:
-> +	case TX_CODEC_DMA_TX_3:
-> +		channels->min = 1;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +
-
-Just one blank line.
-
+I see now ifdefs. Seems ok, so only the typos above.
 
 Best regards,
 Krzysztof
