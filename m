@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49ED15B2016
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 357725B201E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:06:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231819AbiIHOFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 10:05:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51096 "EHLO
+        id S231918AbiIHOGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 10:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232558AbiIHOE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:04:58 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80B13386
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 07:04:28 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id z25so27935710lfr.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 07:04:28 -0700 (PDT)
+        with ESMTP id S230309AbiIHOGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:06:41 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B4366F555
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 07:06:40 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id bn9so20024129ljb.6
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 07:06:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=wRXw5kLppF8YNiS3oFj6PnMX9c/uoE1GULsIw37dPHs=;
-        b=sjJm6DPT3ZK77GxlHCV86RVgUWOHZyUBKCAwKSpKah+aiXtkkCk29AH7tGUVKp50+H
-         9sBqlpiuSsePgUSCLhpONNkwTfRo1+6Lw1pY7L/rydYJf7x12reakU0f4FlOaeOInyo1
-         DWY17g4o9qVDR1+MqocvZJ2VM68goQ+EK1jmepQRjkLhQKutChdJ+svZoNIjHufC6B+9
-         3pCkwZpn8NKC8onE73NKR0+qj4LsTcdTylovGWPWiksLFvEWx8K+uF4f4PaDgmOeqcw6
-         opMjHPVA60uEWHGmb6IcUO3GsVDeCvZaZYc9W4KcOgcCeyT4Ek+zh5YPkTF/VhhDKJS+
-         qlJw==
+        bh=yyJq2F0UIbp+QN4RLKTqNQQiuOE3MJUDBVNBCzzbv0A=;
+        b=jN0L5qJ317FYKljRrrDKg+a+g5126FgqcjsqJcEV6qe4q4cnjglJnb/GMqroHSWfno
+         sZrYKtZEF//nog6SYx13NsBfirUJeskM5y8XqJLmkkKxMOgL+vokp5v5IdEQ5PBjF6BI
+         3bMeDZ5EnPRZvtVt/jZ9UJ6d6Hs9xlZyOSOJ+ia6/FI4cicFsS7uY6AfO1mrcljv/gSA
+         MjKhwAHGNcsVgaibKu0NjzI7wmD0ZNUyc527Pn+oqDEWpObkABHLyhwCCrLPUmiw3XgY
+         M/N0CQc1kLbMjwrmvxwJzYDzQ1CVgUU0JPF9dNG2KWSqBM7LJzkCFx2uDfjanv4q36HD
+         4Mjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=wRXw5kLppF8YNiS3oFj6PnMX9c/uoE1GULsIw37dPHs=;
-        b=klZAdfl07dCX+0oZB0oFp8v//rYHiJsGR9M2OuFsYHuhYMabRXT0g+SZQmtfn5p6sP
-         3ErmmZh+E3dSwRV59FAtPmxamJSQSV6//CIVkTcBC49vXRSAzcyMsgp4hsroO3fzsFOp
-         +RK9cpiy/8Sm70AyHkJbgPFLxYyLuyE+biqDcCL0UP3LSt9zB1gA0BK4zbl0i3VQqIj0
-         EWqWSg6eQ5OqdcVYCQ1ct8N6TZlrQpazFKo7yO5VJilNk+jCp83u/wd0kIKIvdjBZkK0
-         bDHI5CCMLgBs9IXa47wTl7vReC2TfHXGGyU7lac6bJeC/A7+ApqLq668suv6nqFVnhs9
-         PhQg==
-X-Gm-Message-State: ACgBeo1YFto0XPm9Va6ipbKiWoSqRw9/SzWltWwMMGyM7JZLSjRCmvOE
-        cK6Q5D+5Vwc/mmNcEEBdwZyVlA==
-X-Google-Smtp-Source: AA6agR6voBk4Dp9imhKd15kk/0Mdk6mTxQE9GoSnji3CbC8YVkAtyDbjVWLUmnBQyVfjzqHyjy9YGg==
-X-Received: by 2002:a05:6512:10cb:b0:48c:e0a6:221b with SMTP id k11-20020a05651210cb00b0048ce0a6221bmr3169041lfg.218.1662645866872;
-        Thu, 08 Sep 2022 07:04:26 -0700 (PDT)
+        bh=yyJq2F0UIbp+QN4RLKTqNQQiuOE3MJUDBVNBCzzbv0A=;
+        b=lcpMlxzxj3byl7PUh/OK8cZxqWc9BJdQJA5V/ENsduwCduo7pzze84VRoTJZvtcwLZ
+         FsDUM/Ezsqy+LJpR1T2AY34vRselB1DK78qRM6f+Y0ethc8sMSlBT2GD72BSAdu+fnjT
+         HSQo2xaopiKH0zxcVO9/O5zKDL1sAeAGCSFMRRuy3EtjrHL9uPv0lY1fQvykwDvU+Pk/
+         A4Q6mWSMO5PiJsdrmY0tx/wmCECnKNZWJxUikjCDBqijjY6WsipnE+K4Bc6fBDbZ8lU+
+         1kXVpf8SQDBka18d4BW+GXol621bh6fWQx5sxQtJA1QQ/Z7BQAs3c87ncTU8A0bbRZ9W
+         Ssxw==
+X-Gm-Message-State: ACgBeo3rtvdX6IS4S7vHwBTTZ0tWpcRUhxB7iRpyUELlUnyQMouOHaMo
+        c1p6cEHr9Izyy5bZqcWwxCd3/g==
+X-Google-Smtp-Source: AA6agR5LPl1a0KPnCaPB/QMCDGFCxhQnxUbgV0nlJe5WM/dkbNUMQCIkWHKyqliNnOG3IZKiDM47rA==
+X-Received: by 2002:a2e:888f:0:b0:268:d10e:8a2b with SMTP id k15-20020a2e888f000000b00268d10e8a2bmr2575455lji.114.1662645998508;
+        Thu, 08 Sep 2022 07:06:38 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 18-20020a2eb952000000b00268335eaa8asm3209129ljs.51.2022.09.08.07.04.25
+        by smtp.gmail.com with ESMTPSA id v23-20020ac258f7000000b00497a5a91763sm1151817lfo.12.2022.09.08.07.06.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 07:04:25 -0700 (PDT)
-Message-ID: <5b3014f9-d827-f1e7-c44c-162c4443f36d@linaro.org>
-Date:   Thu, 8 Sep 2022 16:04:24 +0200
+        Thu, 08 Sep 2022 07:06:37 -0700 (PDT)
+Message-ID: <837b2df1-551b-3e34-4ef3-6a301278f10f@linaro.org>
+Date:   Thu, 8 Sep 2022 16:06:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 3/4 v2] dt-bindings: memory: Add jedec,lpddr4 and
- jedec,lpddr5 bindings
+Subject: Re: [PATCH v2 3/4] dt-bindings: display: Document Jadard JD9365DA-H3
+ DSI panel
 Content-Language: en-US
-To:     Julius Werner <jwerner@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220907232914.243502-1-jwerner@chromium.org>
- <20220907232914.243502-3-jwerner@chromium.org>
+To:     Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20220908135940.299324-1-jagan@edgeble.ai>
+ <20220908135940.299324-3-jagan@edgeble.ai>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220907232914.243502-3-jwerner@chromium.org>
+In-Reply-To: <20220908135940.299324-3-jagan@edgeble.ai>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,153 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2022 01:29, Julius Werner wrote:
-> This patch adds bindings for LPDDR4 and LPDDR5 memory analogous to the
-> existing bindings for LPDDR2 and LPDDR3. For now, the new types are only
-> needed for topology description, so other properties like timing
-> parameters are omitted. They can be added later if needed.
+On 08/09/2022 15:59, Jagan Teki wrote:
+> Jadard JD9365DA-H3 is WUXGA MIPI DSI panel and it support TFT
+> dot matrix LCD with 800RGBx1280 dots at maximum.
 > 
-> Signed-off-by: Julius Werner <jwerner@chromium.org>
+> Document it.
+> 
+> Cc: dri-devel@lists.freedesktop.org
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 > ---
->  .../ddr/jedec,lpddr-props.yaml                |  4 ++
->  .../memory-controllers/ddr/jedec,lpddr4.yaml  | 36 ++++++++++++++
->  .../memory-controllers/ddr/jedec,lpddr5.yaml  | 47 +++++++++++++++++++
->  3 files changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml
-> 
-> Changelog:
-> 
-> - v2
->   - removed minItems
->   - moved `$ref` below `maintainers`
->   - renamed example node from `lpddr4` to `lpddr`
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-> index 4114cfa8de67f1..92ef660888f318 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-> @@ -45,9 +45,13 @@ properties:
->        - 512
->        - 1024
->        - 2048
-> +      - 3072
->        - 4096
-> +      - 6144
->        - 8192
-> +      - 12288
->        - 16384
-> +      - 24576
->        - 32768
->  
->    io-width:
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml
-> new file mode 100644
-> index 00000000000000..0b2394c032797f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr4.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr4.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LPDDR4 SDRAM compliant to JEDEC JESD209-4
-> +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzk@kernel.org>
-> +
-> +allOf:
-> +  - $ref: "jedec,lpddr-props.yaml#"
+> Changes for v2:
+> - collect Krzysztof ack
 
-No need for quotes.
+There was no ack.
 
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - pattern: "^lpddr4-[0-9a-f]{2},[0-9a-f]{4}$"
-> +      - const: jedec,lpddr4
-> +
-> +required:
-> +  - compatible
-> +  - density
-> +  - io-width
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    lpddr {
-> +        compatible = "lpddr4-ff,0100", "jedec,lpddr4";
-> +        density = <8192>;
-> +        io-width = <16>;
-> +        manufacturer-id = <255>;
-> +        revision-id = <1 0>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml
-> new file mode 100644
-> index 00000000000000..d86e1e30380e47
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr5.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr5.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LPDDR5 SDRAM compliant to JEDEC JESD209-5
-> +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzk@kernel.org>
-> +
-> +allOf:
-> +  - $ref: "jedec,lpddr-props.yaml#"
-
-No need for quotes.
-
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - pattern: "^lpddr5-[0-9a-f]{2},[0-9a-f]{4}$"
-> +      - const: jedec,lpddr5
-> +
-> +  serial-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description:
-> +      Serial IDs read from Mode Registers 47 through 54. One byte per uint32
-> +      cell (i.e. <MR47 MR48 MR49 MR50 MR51 MR52 MR53 MR54>).
-> +    maxItems: 8
-> +    items:
-> +      minimum: 0
-> +      maximum: 255
-> +
-> +required:
-> +  - compatible
-> +  - density
-> +  - io-width
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    lpddr {
-> +        compatible = "lpddr5-01,0200", "jedec,lpddr5";
-> +        density = <8192>;
-> +        io-width = <8>;
-> +        manufacturer-id = <1>;
-
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-
-> +        revision-id = <2 0>;
-> +        serial-id = <3 1 0 0 0 0 0 0>;
-> +    };
-
+https://lore.kernel.org/all/f492ded6-16a8-6c15-2826-6ce2f784dffe@linaro.org/
 
 Best regards,
 Krzysztof
