@@ -2,95 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E2BC5B1577
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 09:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C1845B1593
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 09:26:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiIHHOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 03:14:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49772 "EHLO
+        id S229911AbiIHH0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 03:26:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbiIHHOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 03:14:38 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1438167DF;
-        Thu,  8 Sep 2022 00:14:35 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id b2so12211738qkh.12;
-        Thu, 08 Sep 2022 00:14:35 -0700 (PDT)
+        with ESMTP id S231263AbiIHH0b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 03:26:31 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFBB686071
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 00:26:29 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bq23so26286231lfb.7
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 00:26:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=zV14ZrPb0sLe3LlJJhGfIpC1GJYkmJpmWMU/WGtehbI=;
+        b=gfOOKl14bPeQJmyQHPROYW1RZ6gTeG51WxCl8wVG5NKJ9qO4xuN/gfd0gCd4kxvBqU
+         DMWe+mlHCMvBDwxho76t33439XmBey5up5wN01r1TrCXG164S92RApQW/hXZ3NmmWjPo
+         uUgll2Q7BTWa3vnxZIQCOti65s+zn0sggUR8BChQF16uIDdjvysr3q2+LvQWIiIAqJwO
+         Gr8c/A5KQASdWuYHcUUrdeWZ4gZslrggA7I/uaENKqn6XQ4FcuAYoIChNLCaG8vMey/V
+         nb8SvxQn1hd4owrRQdZqwzQHKrAUGQ47veTnzEuliXrZ8Wbmo7W5bsErADh0XrWdawRv
+         Ohig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=jg+AOV6SUgg5gcVqEx/sV2z5LMPmoCijPvtKxnVotmY=;
-        b=2LGcW2ZXZydqe+3CtUG460kn4JbI7f4a1frnIgFd0P1UQOkxAV6Re9PodUuHfAOka4
-         /1aKUfYzhtEqtyiay0/AENfBnlNMp+xBTyhnvtGpp2q9NdFZdDu26bXdVxoErSOBUdBX
-         wFBCjPpZlFDAJu3KxXX42nWxn0/0k49E1uhQ1kj3wO7aV1nrOmkc3YdFPyyPxL0BW2qQ
-         /NY1em4Rr3lPOIxXbF/mfyDSB9uOsWkzQN7DR4LHuPLnCBQC2oWaxixeoICrqFFa09PG
-         If1B9kt4s8LzTLjV6rTqMpQqoH2U8jJz6ks0FXb+d8bqZqaPQqDUa2sLiRmdR1brqEia
-         JPwg==
-X-Gm-Message-State: ACgBeo1Ujis8URhBQlc0+kpUC9nHhLC4XIuSlSsqpmmF2fvVLG2oojOu
-        EWhnf3Z2aWiak1sg1vf6dam7hov09kuyLg==
-X-Google-Smtp-Source: AA6agR6u9nhZOjkUpyjGezzriKUFeq0VrSXnT6Mu8UZKgt0GiiEgFSdfsUjkKsezWmAW0w1YSbjL3Q==
-X-Received: by 2002:a05:620a:57b:b0:6bb:f708:589f with SMTP id p27-20020a05620a057b00b006bbf708589fmr5664594qkp.112.1662621274785;
-        Thu, 08 Sep 2022 00:14:34 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id bq38-20020a05620a46a600b006b8f4ade2c9sm16464668qkb.19.2022.09.08.00.14.34
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=zV14ZrPb0sLe3LlJJhGfIpC1GJYkmJpmWMU/WGtehbI=;
+        b=V9YBggX+uOuV7dCTEF90i0ejBfkTdRitrb+k69qH8Xsv/5bFbbeUSHrSYzOmeCGKoR
+         EwpTeFlr7DrzXVssj6I/x954gP6ZtIbvZnA2Pl1RTcZ7wUoQB0D21pi1TowEsHdJseVQ
+         YvXG+yoJDMIjfUPrNWLtMWkfVWfxEeVywGzvLygdhI8/I8yT2sthhT12PY872wor3I+z
+         EByGanr95WohEy8nH82RCRh9BzmAFnBOiKxFhyKFeLRs71Uz68Kdm9gnnlAciNIviO1j
+         hAHQWmAw2xSbgUITc9mrVH5ugXzArO8KhLlxZEBj4HXT0SW87CBJR4sJnfQBwIyjSQ2e
+         3XPw==
+X-Gm-Message-State: ACgBeo3dDrAOqHNcwLw21q/KC1IqD69ikI9IRs1rQzryK4eAfQJ53bA6
+        P7dV36JFj3S7Rds1ELKPBzb42A==
+X-Google-Smtp-Source: AA6agR6hfBQxU5tREXAYW7heBGTbG9JR2EcyRgYr5+8t111tVvCNN1TGQEysisztgbCCE4VCgUeb8Q==
+X-Received: by 2002:a05:6512:e99:b0:492:cf19:875 with SMTP id bi25-20020a0565120e9900b00492cf190875mr2349119lfb.690.1662621987999;
+        Thu, 08 Sep 2022 00:26:27 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id 18-20020a2eb952000000b00268335eaa8asm3072406ljs.51.2022.09.08.00.26.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 00:14:34 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id 130so19470460ybz.9;
-        Thu, 08 Sep 2022 00:14:34 -0700 (PDT)
-X-Received: by 2002:a25:3851:0:b0:6ad:9cba:9708 with SMTP id
- f78-20020a253851000000b006ad9cba9708mr4254645yba.36.1662621274231; Thu, 08
- Sep 2022 00:14:34 -0700 (PDT)
+        Thu, 08 Sep 2022 00:26:27 -0700 (PDT)
+Message-ID: <5bf2258e-9d98-8427-07eb-f2577e6f3b54@linaro.org>
+Date:   Thu, 8 Sep 2022 09:26:26 +0200
 MIME-Version: 1.0
-References: <20220902062752.56841-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220902062752.56841-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 8 Sep 2022 09:14:22 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVqq6hp=VmPs1O83gJObMYd-aF0s3KKPkkGrh7NOy0X1w@mail.gmail.com>
-Message-ID: <CAMuHMdVqq6hp=VmPs1O83gJObMYd-aF0s3KKPkkGrh7NOy0X1w@mail.gmail.com>
-Subject: Re: [PATCH v5] ARM: dts: r9a06g032-rzn1d400-db: Enable CAN1
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: Add PM6125 PMIC
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+References: <20220805135729.1037079-1-marijn.suijten@somainline.org>
+ <20220805135729.1037079-4-marijn.suijten@somainline.org>
+ <4cef00b4-c184-ae78-3709-5ed520ca3375@linaro.org>
+ <20220907212747.i2y6qi75avhavyr4@SoMainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220907212747.i2y6qi75avhavyr4@SoMainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 2, 2022 at 8:28 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> The CN10/CN11 on RZ/N1-EB board are headers to add jumpers to select which
-> CAN interface to route to the real CAN connector J16.
->
-> For a normal use case either we need to wire CAN1 or CAN2, but not both.
->
-> This patch enables CAN1 and disables CAN2 by default assuming CN10/CN11
-> is wired for CAN1.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On 07/09/2022 23:27, Marijn Suijten wrote:
+> On 2022-08-08 12:17:06, Krzysztof Kozlowski wrote:
+>> On 05/08/2022 16:57, Marijn Suijten wrote:
+>>> This PMIC is commonly used on boards with an SM6125 SoC and looks very
+>>> similar in layout to the PM6150.
+>>>
+>>> Downstream declares more nodes to be available, but these have been
+>>> omitted from this patch: the pwm/lpg block is unused on my reference
+>>> device making it impossible to test/validate, and the spmi-clkdiv does
+>>> not have a single device-tree binding using this driver yet, hence
+>>> inclusion is better postponed until ie. audio which uses these clocks is
+>>> brought up.
+>>>
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+> 
+> I can respin the series with the suggested changes (and the iio patch
+> removed as that has now been applied), but note that all other PMIC dtsi
+> files as of -next today still carry the "wrong" adc-tm or gpios node
+> names.  Are there plans to patch those up too (if not already in a
+> series that I missed)?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.1.
+See below
 
-Gr{oetje,eeting}s,
+> 
+> - Marijn
+> 
+>>> +
+>>> +			xo-therm@4c {
+>>> +				reg = <ADC5_XO_THERM_100K_PU>;
+>>> +				qcom,pre-scaling = <1 1>;
+>>> +				qcom,hw-settle-time = <200>;
+>>> +				qcom,ratiometric;
+>>> +			};
+>>> +		};
+>>> +
+>>> +		pm6125_adc_tm: adc-tm@3500 {
+>>
+>> Generic node names, so either this is adc or thermal-sensor. Looks like
+>> thermal-sensor.
 
-                        Geert
+My comment was here not correct. The schema indeed expects this to be
+adc-tm. I did not plan to change it, so let's keep adc-tm also here.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>>
+>>> +			compatible = "qcom,spmi-adc-tm5";
+>>> +			reg = <0x3500>;
+>>> +			interrupts = <0x0 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
+>>> +			#address-cells = <1>;
+>>> +			#size-cells = <0>;
+>>> +			#thermal-sensor-cells = <1>;
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +		pm6125_rtc: rtc@6000 {
+>>> +			compatible = "qcom,pm8941-rtc";
+>>> +			reg = <0x6000>, <0x6100>;
+>>> +			reg-names = "rtc", "alarm";
+>>> +			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +		pm6125_gpio: gpios@c000 {
+>>
+>> s/gpios/gpio/
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Both are allowed by schema, but convention in all other cases is "gpio",
+so let's change it. I'll send a patch for other files.
+
+Best regards,
+Krzysztof
