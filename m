@@ -2,260 +2,352 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D41975B1FDF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 15:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12DA35B1FE9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:00:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232391AbiIHN7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 09:59:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37220 "EHLO
+        id S232424AbiIHOA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 10:00:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232390AbiIHN7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 09:59:24 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8833C10C9B3;
-        Thu,  8 Sep 2022 06:58:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1662645523; x=1694181523;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=68ophpEsqtM38jmBb+9KtFtd0vdOu7KAtRfvvrGkGxo=;
-  b=M2biU6dCC+Rmn44m9HhyLKb/KaOSF46diuAXAs+YL5rjdG/HsmtKptsW
-   vTnSn6ndEqLxYu/kDILWzbYnhq6i9bL7vQIrent/16nf7peOXftbO8irJ
-   fWWRs8K5Lnig1j9WVH/lCYibWLHykGhNZIE0ZjUWQwZVE6/c+jVcaxr+y
-   9uTwH+1Ha031P7w358AiNHwfHB+i9vvg8x4TYIG2qN0eQJiP1lqyRN10t
-   6RBT8+B0CwGlv7uRDfaCidq6Xha+hclTllK45ggNEyWyN5vMkVhow2O5F
-   o0L8lzqlbHmtUO8d1lU0rbRZ5dmWZn3DL1skQz5TAq11XM1iAicmjzLj1
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,300,1654585200"; 
-   d="scan'208";a="112754929"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Sep 2022 06:58:41 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Thu, 8 Sep 2022 06:58:41 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Thu, 8 Sep 2022 06:58:41 -0700
+        with ESMTP id S232623AbiIHN74 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 09:59:56 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2124.outbound.protection.outlook.com [40.107.22.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB12A114A61;
+        Thu,  8 Sep 2022 06:59:15 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XXSuVgW5oAFeQP5fWYirSy7CFPmn+SsAAjBmB5K6EHD7+l/gEb2m3o3sVjmP5eMM5ZuAlBASS1Grx6XlTac8epPLVLXEsats3MyvKCDHbbmEUUc+iNd5gApP+g2gPramBOgf/6O5smKJAErK1TZErvpgCjN44PpO9pEzBEewOUXdNSerlBCbCLOoQlkqSoqhyKhNrcnXO7lj4++lT4PrSsYIGmFssf2XKUpnytdyI3Q/v4VEel+Seygwy3YqgvoqnS2ePk9P3Cg5DKoU1uQlq2H/jwL4X/hEYrVxWPjcW48/igPiibXRt4kdSiyPWTii1pnzTpl6m6q5OMidj//RwA==
+ b=mUAxGkV0QP4LPF4oAqtpCANzZXaTG2BNRyZHeawnCV6Oei6EM+2/MUFY5/XX1kFjveYc4gGH1USeLQU8DDoZoxi9wbrjBG8sYMI8DdAJpEInirgQ1Xv1UO5qTD+3eYzB5TXmfASVbBu9m6m7XRfM+8mYB2eJMfrSoGKG7EWAFuBFi3fZlwd9QPq8x4as7HrAufhQyJQAh0YtF0hP/DKQTIpibrqd+6Xg4jv9kSI5d/8kcDc2Z3WCragl4PQ7aZ07Q2j2UU43y6ll0FSjRRcigYXLSr/cBCogUdE8UN1K0B8+BJv73IUZ8DDM21RbCZ/Xy+cjND8AKaUsJ1wQiIVPaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=68ophpEsqtM38jmBb+9KtFtd0vdOu7KAtRfvvrGkGxo=;
- b=O5yNasgxVwet7heZZ5rQfp3LYD5ZLrdP1i+dhZ0bXc8wtVyzReZCctQzugGmQET7CUl6O9XhlggQKqU4qavy6XpBKuvXnGytBRklUy3gn70DBawkZDxQAFBS0cFnlu+ttgS+72+cLmPXaC74ehIgfh17jjbTcxlILzGddGA77f0OG4oZDcX5CWStRyu0tVnfHo9hi9xFt5eePsgjLoDaiOdYUmO1EO9oLmIcY87LHZ9yS0kT0WOPOo5dtg5sebut4t4Ml8XT69+KS8TTvwBbzb/brTjdAGdFlpIsM5TW1rBBM1rV4Qs36+6qKYDLq2y75DYt0hPfB7+2Jhj+hYWqKA==
+ bh=tStOBjTcpl5Hulh7e4gavb7/7SJYX8gp0jZFOo6D5sE=;
+ b=m5c/49DY9t2cyDonM4e2ApUzQdGjRuklNE8rQBtxnvDAJCyc6uJsgJFzb8WSuySuobww2D9xEPPaRIkIEFlsSjqIZFqBYzrh9E6uRqsExe2Mwgha89cWgC8Als50g2ntGQuTDCkztA6+/Mqx5eWpN7JAoYgM6b2yQvpnm42ExL/6q2H4Q8YZE3NIAE0t/dgxUbQzOX/qlPJ9LES8v+xAX0b/fcBmcJKs77+x5uTGFRtXSdrJUhmpRUdhJusIBG8bapQTb9/qRF8DPlA+0cPxF2svrTgY4p9rLQx4vdyttNnMK9a9g4WqR2tbL6dEzD40wQbxsPKAf2B/MNvVFGwxNQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=68ophpEsqtM38jmBb+9KtFtd0vdOu7KAtRfvvrGkGxo=;
- b=gPYi1VvIqqmc4V8PBOGmtxTJ2CgCoioDJtDLoxATpRDjni5eGKK6xK0mdhvnuOPq6BtNLUTf1V0Dt7GV6VK7nlXy9kqukZef/PWF5tBPQtmyn65stNTOT0Qq/BYhlm9O5tYbsAO6Z0SWawQj4K6S7yMK1oqLYBVgCFeQpK+SZXA=
-Received: from MWHPR11MB1693.namprd11.prod.outlook.com (2603:10b6:300:2b::21)
- by CY4PR1101MB2086.namprd11.prod.outlook.com (2603:10b6:910:1c::9) with
+ bh=tStOBjTcpl5Hulh7e4gavb7/7SJYX8gp0jZFOo6D5sE=;
+ b=Lbt+9d1THJqNGvPqb2/SZ4NO0ECImMn38ClzlLvcZJAWenpca87MQBh42H/CmVY2z6MKNxpMr84X2Geyt4fmHCoK0u6afLmPOWKSg4ImCM2FcAV+ZpLvrrnmRfgq869cpHOlzRml4zdniMK5b+SGtQlJwwj+Yb4GzH3d6/eG95A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axentia.se;
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
+ by DU0PR02MB9295.eurprd02.prod.outlook.com (2603:10a6:10:470::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.17; Thu, 8 Sep
- 2022 13:58:34 +0000
-Received: from MWHPR11MB1693.namprd11.prod.outlook.com
- ([fe80::ccae:ffc6:d9f5:8535]) by MWHPR11MB1693.namprd11.prod.outlook.com
- ([fe80::ccae:ffc6:d9f5:8535%9]) with mapi id 15.20.5612.019; Thu, 8 Sep 2022
- 13:58:34 +0000
-From:   <Jerry.Ray@microchip.com>
-To:     <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <Claudiu.Beznea@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v6 2/2] ARM: dts: at91: Adding SAMA5D3-EDS board
-Thread-Topic: [PATCH v6 2/2] ARM: dts: at91: Adding SAMA5D3-EDS board
-Thread-Index: AQHYvwFp8Od1EQWLAkC3vC8jcHRCTq3VcuSAgAAlItA=
-Date:   Thu, 8 Sep 2022 13:58:34 +0000
-Message-ID: <MWHPR11MB1693B3327E7061DB8DDB5577EF409@MWHPR11MB1693.namprd11.prod.outlook.com>
-References: <20220902192236.14862-1-jerry.ray@microchip.com>
- <20220902192236.14862-2-jerry.ray@microchip.com>
- <bc6f19f3-0825-7c9c-c11d-92474bb12375@linaro.org>
-In-Reply-To: <bc6f19f3-0825-7c9c-c11d-92474bb12375@linaro.org>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.15; Thu, 8 Sep
+ 2022 13:59:12 +0000
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::1d88:3306:c280:3179]) by AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::1d88:3306:c280:3179%6]) with mapi id 15.20.5588.018; Thu, 8 Sep 2022
+ 13:59:12 +0000
+Message-ID: <2fcfa811-ce5c-9fc8-9837-753299794560@axentia.se>
+Date:   Thu, 8 Sep 2022 15:59:10 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: Regression: at24 eeprom writing times out on sama5d3
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MWHPR11MB1693:EE_|CY4PR1101MB2086:EE_
-x-ms-office365-filtering-correlation-id: 08c1cbd1-b104-47da-7fce-08da91a23856
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jyqnF7k2r3dR8Zc47r+EMbdOtVpT5u9J4hFwgW5+UQobZ6uYHj7njpz/8Zt1YmQrhlBD8Cli77XauPgApNyhxJroeZrTME+Z+HpkUQqO6XlVvb2EhF12C0z/gQ6X5C311/pZ3Fhp/lVZ5CnWwo35asUyXwkKz3PP0EAySI+2sq2YwldD8uxRSRqtPgMuZRvL5RQDNraWBGihiqHKFYXyb34PZsarE5u7fm1v5ftBR+p60QrUsr5FMBEMeXH+Y7kVH8JZqt3mnmb1QD9fXLvri9jx637Zi6IMpxz9H7c7/ttKNU6N+3a367Rwn1nV4X9lWs7+YP6x9NZL8Zl73XaPqEFed46dzMgHGyo1gxd+2UgQr46IltJeJ4f9BAlAxGN10FU8unhsRKLInwAG7uNM8fgKbbmyz9EUXGVatlRC0quxV4Y3D838p80qPYsAGgEqTK5Junsk28xS+A2Q4FTdYb+W7idRnU7uI9gsNlYTh2km+b8rLtlckv1G9X115rH7eQwRSvpeCo8hoc8MH+rAMnlTYBIQy58VDF/0QfZBrsu4PrmdMR0K3pwkTP7gtTYEZNcgMv8vdR1tROttZ6aDVwrfoHFBBvHMGJ1k0vlVCnCY3A9k7qsr//ADjHt3aiTfbMj5LKn+lyGmHklEAjq9gvWSXFGEtTtTAjSwnpV6Lnrwe3ipGUJP/e2MOjIFjVLK9ad9Eg+L6CIHv5DQC9wB7oDjdzOMgpt8yWCMyXt2aMESBtPdu9VlfzZL6RQBuRCbZHhTK+KFdsHvFCpmpoKtCA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR11MB1693.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(136003)(376002)(39860400002)(346002)(366004)(396003)(186003)(122000001)(38100700002)(83380400001)(8936002)(8676002)(5660300002)(66446008)(66946007)(33656002)(64756008)(2906002)(71200400001)(55016003)(26005)(508600001)(52536014)(66556008)(7696005)(6506007)(66476007)(110136005)(9686003)(41300700001)(76116006)(38070700005)(316002)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NmVmcVgwL0J5WlpsZ3FMbmNWaVhZbVJtcUJ2LzRpMys1WWJJb0FHYnowRG4y?=
- =?utf-8?B?YWlqd0RRM3lpZ1lPU0NDay82OW9hengrMHc5TnM3eVppSDJsT2FKM2RSemVh?=
- =?utf-8?B?OXM3bnZoN0JBUDJETEpZMkhnNTNiY1h3RERtaHVSUndnajFqc2ZTNWJjY2sz?=
- =?utf-8?B?Qjh3cHRIVzZRMDE5dVpLZ1B5eHdYckFpMkMrTTVlNHIvbmJZbkRMSlIyeEdW?=
- =?utf-8?B?akh0cnBDK0RiTCtIYWUxVUhOYnRzQ1NCa0ZTaTRRRllpN1VTdmUydjhNcHNs?=
- =?utf-8?B?em1ka1ZLdVoxRk5LRnQvRkVMREF0d1YvdENtcTJrQnBUdFFna1dWN0ZRSTRt?=
- =?utf-8?B?WVdsbDVrNGdOdnF1dDU3QmZOMllyNFNIdzBFY1pkZUFSdmFLVU8rc0RISlFB?=
- =?utf-8?B?d2pCQzc2ZkJTVHZDbEhWR3FpYXA3cXV4OEdvNWthalBRdkpNUmxjQVhvMkps?=
- =?utf-8?B?SDdIL0ZzNGlxNG0vakNTNURKVmNHaFhBR2V6TC9weUg2K2ZhdXFhUUdzZTJj?=
- =?utf-8?B?YVZqdkFCM1ZSd3FZN3QvRnJGTzdiY2hNSjljamNGdm1GYzhDc1BMWEIybDhj?=
- =?utf-8?B?MTZqLzhRdDNNMkFBYXd3UkVZVzE0WkVFVDJ0SkYzb1dIdFNQY0RTcEhqRE1m?=
- =?utf-8?B?OFEzV2p5bndpSU5YYU1Hd0dlTDEwVGJaaEw5Njd4ZCs4M0cxdFZPMmMzeFJz?=
- =?utf-8?B?TU5jR05OakVNUmsyUzlyQVd0OXorVnFQTTVuZ0ZPTEdUNHRPNVdGSjcvR3By?=
- =?utf-8?B?SkNlRlc4MWZIeENvWGlpNWpmRFdIMkZZd1NIS3psM2hvOWNNaWtmUWpRR2Fa?=
- =?utf-8?B?RVJwcFNKcnJTaGFUVldqeVAvQkZ1dXhkZUpGaG9UQ1pXTVAwZ3hhZmY1RUtJ?=
- =?utf-8?B?NEdUTUVDTW5JUk0xTjgrcWZ0SjUvVUFiNlN6UExGcGs4Qi9EeTkveEhTVS9u?=
- =?utf-8?B?YmVGUmY3YThZRDVWRDloL240U0RQb2V0WjJyRTVHVms5YnFORGtZQlBqRXps?=
- =?utf-8?B?OUtBUVRrVC81QUpJamtqOW9kYU9HRHNvY0lqUFp1WnBCK0REMlRqbnllVW1D?=
- =?utf-8?B?VGFNZ0F0Y3BNV2tCOTIvTVdiVXc3dytVZlBUTk01TmJGMURsM3dKNEdvYVcx?=
- =?utf-8?B?azFXck1Rd0tEVDN5M2lWV3lJVVBJYkFRdzFEcVVxa3RaY3ZZcDBxaExuK0p2?=
- =?utf-8?B?N1JTMHAzWVcvbjNWLzVpWGdKNmFUakRYRUNjZzJEalVSaE1LM3ZyeFA5L0U5?=
- =?utf-8?B?MmRLL0pDb1RQVmVrK3ZCSHRiY0VSR1VaQWxTK2NPSXBKekl3VTNMVEpTMFhG?=
- =?utf-8?B?ZlVaY0wzTEpEaDFTdStxWU9aa1J3MmI1eWIwZWllOE5qVXBsT0VwWm9Oa1hQ?=
- =?utf-8?B?czh1OVl1bmhLN3dGWWFZWTZ0cU9kWUdsUmE2TXdib0U0K1F2VEVwVkxSbldB?=
- =?utf-8?B?MjZJNlJTVFpDL1A0UjBCMVhoZExtd2M4Nkx1NGgyejhvbWVGcElDbFlJL0xB?=
- =?utf-8?B?eWxoRHhpSk1yQmswTkd2K2FhTFljaGtidWo5R0NqUmhnVGdRSzk1NnFiYTdR?=
- =?utf-8?B?NWZmSWVaNE16VklaSnZudGVpcUtqQmUvY1Rsb3JXUjFaT1Z1cHRkQXpaR2pj?=
- =?utf-8?B?MlJudkRIbXIyaFFRVWFoSUZxL1dNU1U4dzhQaEp6cTBjQVBnby90K1ZRNHpU?=
- =?utf-8?B?VFRXZEo5R2hHeUlScytTSkFlRkxSOHdMN3plczBZYXhWOTBGc2dVUzRSSnBS?=
- =?utf-8?B?eHdpY0NFNzVUWjViUCszNTJLdEhLRU1BQ0JyUjZjT0tkVDJXaXRvakY3eTdC?=
- =?utf-8?B?WWdqd3ViZ2dIK0dwTjNFLzhSdXpWbndZUHE0UHhrNGVzSm9obG5pRlFycWVG?=
- =?utf-8?B?dGFUVUNqU0JoR0hwSmZOTjZYMW0zMjFJZFptN3dneGhQdm1sZHhTd0tZSGRM?=
- =?utf-8?B?NGpad2ZzL3dmRWRZZ2p4Q2p5cTdhQ3JxVXl4Mmd0N2hWU2MzZCt3QmJpK1du?=
- =?utf-8?B?WVk0bUdXQlkxYmlzSi9STzBnYUZJZVVNdUtpdXZrY04rOUxUTTBDbzc1ZFFS?=
- =?utf-8?B?YkJhZ0QzRUR4dys5R0w0TzZ3SFgraXRyWTl3OFB1WWN2UjYyWFgxQm03VDFC?=
- =?utf-8?Q?KU0ud/5zSAUO5e5aZX5BnD8vI?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+To:     Thorsten Leemhuis <regressions@leemhuis.info>,
+        Codrin.Ciubotariu@microchip.com, linux-i2c@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Ludovic.Desroches@microchip.com, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org, wsa@kernel.org,
+        kamel.bouhara@bootlin.com
+References: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
+ <2bb4868b-90ab-887e-bf13-9de8b79231bd@microchip.com>
+ <38dedc92-62a2-7365-6fda-95d6404be749@axentia.se>
+ <3503471d-2d5e-572b-39e7-d715a909749d@axentia.se>
+ <5800be99-3569-6edd-5c71-9e6f1498dc3b@leemhuis.info>
+From:   Peter Rosin <peda@axentia.se>
+In-Reply-To: <5800be99-3569-6edd-5c71-9e6f1498dc3b@leemhuis.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: GV3P280CA0103.SWEP280.PROD.OUTLOOK.COM (2603:10a6:150:8::8)
+ To AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cb19ef4f-5856-40cd-622c-08da91a24f46
+X-MS-TrafficTypeDiagnostic: DU0PR02MB9295:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ycFt3PlywY3nr5wRPvBewzWG6Wz72mmTv71FRzoV1T/wYfpzaeTsYa/HMrAxKf7LQXJR3ow3a+34oILo9OK/+QyBWB3y0e/zRP4ot0DbkAEA2siOhdRX54yr1wQ3aC8fZlBk24REavpu1gu4fV/jgh2abkmiAGJrYBO2PaW4Y8crMSJncIVxTC4TijPzHRZpH7QfhnUH+/5atSH0dnaQe4P6KQa3NcXwb75RM/K+9Cgxzp8dRLnmx0sMCvLVTogidoLTbUp6I1X+TGc6F06pOUQL6cC2XI8prJGBi/7YZjlJRRC9y/ZA8ubz3L0EUTxlT/SE+hHBgjR8nA5RquLGEY3CRUI3S8d6cyHnsnOpZtEkFQMpooJFCww65VnBBEBzvIxBHJ3aeMPV+1jplD2kFVxSfcd6QVA2/H85eaRamNFG/ruQfqeGM3TAQ5E+YFgu1oEKfbDYzAvA5DiUxwhX1dBx9cVf3oFLVA0brGTNMwFJm9A8dub/mom9sG6V5UFbaMj/IYUoTwFvMrx4wcT6wC3UGGKZEo3fCjTCD7U1pjXECokM7lp8GKqo+I74jVC8RfTFvHbfULmSg8u5Vb81rq6iBSKCXKVvf+EHR9okB9qno4Et8aEK4UQoH9fBdXrwnta6JjMMA6IX/aPgw/UniwaHkIi89q8UB6VvrSSzNCs/Swmu2fW9yPRc5SKV1M64T5WidEd0AyNvqDYKWQpqmjdapQGtStxmAVNtB/RgC+wx+qefTmV+5pwomoaurolDOnEq/BTSjCMnuANgSZLsdDJEEO3Z5BPi3L86NN6lqcArcvVqElsfgUmLsx2iuG0k4Itt1S1EAwAWFN586GfhyA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR02MB4436.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(376002)(346002)(396003)(39840400004)(136003)(186003)(966005)(478600001)(53546011)(83380400001)(6506007)(26005)(6512007)(41300700001)(38100700002)(6486002)(2616005)(8936002)(7416002)(30864003)(5660300002)(8676002)(316002)(86362001)(31686004)(4326008)(66476007)(66556008)(31696002)(66946007)(36756003)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MXlCRCtxa09JRlpoUTg1ODB6blRLdG8rWTYxMzEyMVRSYXRkN0NZQU5BSXQy?=
+ =?utf-8?B?SmZVQTk3NjczdkJ4cDJ0cG9XVFQ4UjRMQll0VUNha2tVcW5vQWRySzBuV3J2?=
+ =?utf-8?B?SFBwYnM1OGYraFp4YkdFRmpoMnFnWkV1aE15dHR1VjVseDBSN0ZwS3lEaEU1?=
+ =?utf-8?B?ZU5vSTBuZzRRYTFIVkNic0VUM1M3SXkvS0VkWTZ4TU15NTh6SjVkcG1XY2ZX?=
+ =?utf-8?B?RmZzektrVTREWEgyRHpwa3hGV3FPeDhVcVEzVVZhZ1RxZ1g2VnBuMnQwejRj?=
+ =?utf-8?B?cGV4L1JHYmhIcWZ1V280QXpVemFjbFAyTHBVanpvcUhIVDZwUzE2M3RSa1ZB?=
+ =?utf-8?B?VWZvVkNhdWZJQXN3SkV2dHExZkY0ZjhBQVJvdzU1c1ErdkNkRnFyYXo3eUsw?=
+ =?utf-8?B?S3Y5NFE3bXhiYzFPaFhrK1ZINzIwcm9hMzE3S2tVVm9FbjBzMVdlcFJmS3M2?=
+ =?utf-8?B?MjdHRUM4WEFJd3VvRFJPUWxtSnlGNHV0c1ErYlFvaHBnMW5jdzJyL3BLUDZS?=
+ =?utf-8?B?VGU3R24yK3RuNFd4cGJqZVB3Y2JURlRiTFJpZ2lZQ2NFMFB4VGRZc3B4S0kw?=
+ =?utf-8?B?WGVHWkZVb0JhRDkzRFVONzZLYXRpQVRPTzVvZERJR1EwNjRiYzYrVENyMVdU?=
+ =?utf-8?B?NVltdDlLY3ZWbkJ4ZFA4SktvU2EzK0Q5Q0FuT3ZTbEUzU081WkRtYTdoWVVN?=
+ =?utf-8?B?Nkc5enZFbWc4VGZVTVJLN1MzWGtnL0JNcUFlazJsQVpCd2tEQjJ3R2pSRlhq?=
+ =?utf-8?B?UFdIVXpDcHpQTG8wS1NHQjVaVHN2Vmw2YUlDSCtKNmRCdkQ4cklibVlxb1BC?=
+ =?utf-8?B?aWtjdmwvdE5uRGZ4V2lEYTAzdG91OHJzM0huWW1zazRGTUFHS2NxTlJtSDVt?=
+ =?utf-8?B?NXh2bThRN2k5eExBVDlrdjNPTHZ3cEdmUG92YWMvcVdLTHVIZXhPc2NEZzRJ?=
+ =?utf-8?B?UXpZcTZnbWhSQWJnellLakVoeWZtUVpDcUx5bVE4UXpnQ1RmUVB3NlJ4dGx6?=
+ =?utf-8?B?Q3UwS29WRWhSOFVkSFJVZk9Qby8rMloxOTM2ZmE0R2NaTHAvcHVjV0t4YWNE?=
+ =?utf-8?B?YWx4WjlNUXJXQ2p4NkFHM3d0VjBPcENab2lZKy9vaklDdGo3YlF6Qm1CcXJt?=
+ =?utf-8?B?dW5UTjdZZ2d1VjdZdDRiY2NGYmdzUTBlQjFZT2sxRzJrQmFzZnJKOWhCWFc3?=
+ =?utf-8?B?MTNGQ3Q4NEV3RnVyTytyTWFUdVhKajBCQlBpRXkxc2FXeTVRaDVlU2ljU2tu?=
+ =?utf-8?B?RkNFam1FOWwzOFh1Zmk3TjAzZUdkdDludnVrRE9icmJnTmZNNVJzMW92KzVy?=
+ =?utf-8?B?UDJheVgvdjBRMnZIVERuZ29oc1N2UmpuNjMvOXZQeEkySjlzd050TkdvUDlD?=
+ =?utf-8?B?Z283UGpEVnhvRDc1RjBwdnpHdkJxNTNkNXZnME95ZzFob2lOZzI1WStZL0dJ?=
+ =?utf-8?B?WklMeitXVDhxbVA3RCsyRFZrOVNxYk1NYThLZUtmSVpYQVdQQWVHbzZmSHpE?=
+ =?utf-8?B?Vm1SdU0zSUxqdFZRcWJrR0Q1UndhcDAzQnBuSWpEenE1MmpsTEpLc0tza0VT?=
+ =?utf-8?B?Vk11UVpwT2h6OVNMbTBPL0tWZ1Y1MmVmdVlTT1VyWHc0MU1Ibmh6UzYzNE12?=
+ =?utf-8?B?SUlWT3Q0TDNWb25QbjlXY3R1NHVJMXJ4QkoyaFBaUlRUVXJabGNBNFZENjl0?=
+ =?utf-8?B?eG5oZnZ1TmpsL2wwTHZoa0NsZXovN3pNcllUUHRpNXloYmk3SFVCeHdxNkdC?=
+ =?utf-8?B?eWY2VjUxc1ZBVGJncElnUmd5Q3BFL0lldXVnMWpFdHZpTkJBaWVyZ2oyS1Y2?=
+ =?utf-8?B?cFNoUHhvek1NWEVMYWUwVFR1V2d4aXE1U2lheW0zVjhnR3VlQ0tibFoxVDFP?=
+ =?utf-8?B?Qm9aQWNOdW9vK1pldlI5UmdIMERWNGNpM1FXcy9SNGNkWWsvMW1DRWFKWmdN?=
+ =?utf-8?B?SGVBenNuZGhRa1N5am5Kd1VsUmRWNkpMaTMrSitJU3Jlb0FBSEJDUFNXSVVU?=
+ =?utf-8?B?M3BMbkNRb3pyZDFHTlR0THBGMEVQK0dSQXlteFBzbExOTy9VVFFENldEVTdS?=
+ =?utf-8?B?YTBzV2VaeTg1djZPaDRNWTJoZTd1dXVucjMxcG9USXdRM21XbTJ0VHkrYWk4?=
+ =?utf-8?Q?OBpOk4aT8LKd5WSsla4pYCRi/?=
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb19ef4f-5856-40cd-622c-08da91a24f46
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR02MB4436.eurprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR11MB1693.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08c1cbd1-b104-47da-7fce-08da91a23856
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2022 13:58:34.2112
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2022 13:59:12.8338
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oEyA4otm3GMSWq8WwSV7pLsIvtDmqvbv0U1jgdkmryeLqUDp375PAd0zyTbxgbrr+nxQFRFDCR5m+HwuVMkN6A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1101MB2086
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: R8bsItRrKMHdYD9CLAIoff+PnSqAd6qY2XN/x7GMaNw5iShKcFzOiAZkASwUZKz4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR02MB9295
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pk9uIDAyLzA5LzIwMjIgMjE6MjIsIEplcnJ5IFJheSB3cm90ZToNCj4+IFRoZSBTQU1BNUQzLUVE
-UyBib2FyZCBpcyBhbiBFdGhlcm5ldCBEZXZlbG9wbWVudCBQbGF0Zm9ybSBhbGxvd2luZyBmb3Ig
-DQo+PiBldmFsdWF0aW5nIG1hbnkgTWljcm9jaGlwIGV0aGVybmV0IHN3aXRjaCBhbmQgUEhZIHBy
-b2R1Y3RzLiAgVmFyaW91cyANCj4+IGRhdWdodGVyIGNhcmRzIGNhbiBjb25uZWN0IHVwIHZpYSBh
-biBSR01JSSBjb25uZWN0b3Igb3IgYW4gUk1JSSBjb25uZWN0b3IuDQo+Pg0KPj4gVGhlIEVEUyBi
-b2FyZCBpcyBub3QgaW50ZW5kZWQgZm9yIHN0YW5kLWFsb25lIHVzZSBhbmQgaGFzIG5vIGV0aGVy
-bmV0IA0KPj4gY2FwYWJpbGl0aWVzIHdoZW4gbm8gZGF1Z2h0ZXIgYm9hcmQgaXMgY29ubmVjdGVk
-LiAgQXMgc3VjaCwgdGhpcyANCj4+IGRldmljZSB0cmVlIGlzIGludGVuZGVkIHRvIGJlIHVzZWQg
-d2l0aCBhIERUIG92ZXJsYXkgZGVmaW5pbmcgdGhlIGFkZC1vbiBib2FyZC4NCj4+IFRvIGJldHRl
-ciBlbnN1cmUgY29uc2lzdGVuY3ksIHNvbWUgaXRlbXMgYXJlIGRlZmluZWQgaGVyZSBhcyBhIGZv
-cm0gb2YgDQo+PiBkb2N1bWVudGF0aW9uIHNvIHRoYXQgYWxsIGFkZC1vbiBvdmVybGF5cyB3aWxs
-IHVzZSB0aGUgc2FtZSB0ZXJtcy4NCj4+DQo+PiBHb29nbGUgc2VhcmNoIGtleXdvcmRzOiAiTWlj
-cm9jaGlwIFNBTUE1RDMtRURTIg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IEplcnJ5IFJheSA8amVy
-cnkucmF5QG1pY3JvY2hpcC5jb20+DQo+PiAtLS0NCj4+IHY1LT52NjoNCj4+ICAtIFJlcGxhY2Vk
-IHVuZGVyc2NvcmVzIGluIG5hbWVzIHdoZXJlIEkgY2FuLCBpbXByb3ZpbmcgbmFtaW5nLg0KPj4g
-djQtPnY1Og0KPj4gIC0gcGF0Y2ggbm93IGFwcGxpZXMgdG8gdjYuMC1yYzINCj4+IHYzLT52NDoN
-Cj4+ICAtIEZpeGVkIHJlZ3VsYXRvcnMgYXMgbmVjZXNzYXJ5IHRvIGdldCB0aGUgYm9hcmQgdG8g
-Ym9vdCBmcm9tIFNEIENhcmQuDQo+PiB2Mi0+djM6DQo+PiAgLSBBbHBoYWJldGl6ZWQgcGluY3Ry
-bCBlbnRyaWVzLg0KPj4gIC0gY2xlYW5lZCB1cCBhIHdhcm5pbmcgaW4gdGhlIHJlZ3VsYXRvcnMg
-c2VjdGlvbi4NCj4+ICAtIExpY2Vuc2UgdHdlYWtlZCB0byAnT1IgTUlUJw0KPj4gIC0gSW5jbHVk
-ZWQgTWFrZWZpbGUgY2hhbmdlDQo+PiB2MS0+djI6DQo+PiAgLSBNb2RpZmllZCB0aGUgY29tcGF0
-aWJsZSBmaWVsZCBpbiB0aGUgZGV2aWNlIHRyZWUgdG8gcmVmbGVjdCBNaWNyb2NoaXANCj4+ICAg
-IEV0aGVybmV0IERldmVsb3BtZW50IFN5c3RlbSBCb2FyZC4NCj4+IC0tLQ0KPj4gIGFyY2gvYXJt
-L2Jvb3QvZHRzL01ha2VmaWxlICAgICAgICAgICAgIHwgICAxICsNCj4+ICBhcmNoL2FybS9ib290
-L2R0cy9hdDkxLXNhbWE1ZDNfZWRzLmR0cyB8IDMwOSANCj4+ICsrKysrKysrKysrKysrKysrKysr
-KysrKysNCj4+ICAyIGZpbGVzIGNoYW5nZWQsIDMxMCBpbnNlcnRpb25zKCspDQo+PiAgY3JlYXRl
-IG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL2F0OTEtc2FtYTVkM19lZHMuZHRzDQo+Pg0K
-Pj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlIGIvYXJjaC9hcm0vYm9v
-dC9kdHMvTWFrZWZpbGUgDQo+PiBpbmRleCAwNWQ4YWVmNmU1ZDIuLmU5MmU2MzlhMmRjMyAxMDA2
-NDQNCj4+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlDQo+PiArKysgYi9hcmNoL2Fy
-bS9ib290L2R0cy9NYWtlZmlsZQ0KPj4gQEAgLTYxLDYgKzYxLDcgQEAgZHRiLSQoQ09ORklHX1NP
-Q19TQU1fVjcpICs9IFwNCj4+ICAgICAgIGF0OTEtc2FtYTVkMl9pY3AuZHRiIFwNCj4+ICAgICAg
-IGF0OTEtc2FtYTVkMl9wdGNfZWsuZHRiIFwNCj4+ICAgICAgIGF0OTEtc2FtYTVkMl94cGxhaW5l
-ZC5kdGIgXA0KPj4gKyAgICAgYXQ5MS1zYW1hNWQzX2Vkcy5kdGIgXA0KPj4gICAgICAgYXQ5MS1z
-YW1hNWQzX2tzejk0NzdfZXZiLmR0YiBcDQo+PiAgICAgICBhdDkxLXNhbWE1ZDNfeHBsYWluZWQu
-ZHRiIFwNCj4+ICAgICAgIGF0OTEtZHZrX3NvbTYwLmR0YiBcDQo+PiBkaWZmIC0tZ2l0IGEvYXJj
-aC9hcm0vYm9vdC9kdHMvYXQ5MS1zYW1hNWQzX2Vkcy5kdHMgDQo+PiBiL2FyY2gvYXJtL2Jvb3Qv
-ZHRzL2F0OTEtc2FtYTVkM19lZHMuZHRzDQo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPj4gaW5k
-ZXggMDAwMDAwMDAwMDAwLi5iNGZlMWM1ZjI5OTcNCj4+IC0tLSAvZGV2L251bGwNCj4+ICsrKyBi
-L2FyY2gvYXJtL2Jvb3QvZHRzL2F0OTEtc2FtYTVkM19lZHMuZHRzDQo+PiBAQCAtMCwwICsxLDMw
-OSBAQA0KPj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wKyBPUiBNSVQNCj4+
-ICsvKg0KPj4gKyAqIGF0OTEtc2FtYTVkM19lZHMuZHRzIC0gRGV2aWNlIFRyZWUgZmlsZSBmb3Ig
-dGhlIFNBTUE1RDMgRXRoZXJuZXQNCj4+ICsgKiAgICBEZXZlbG9wbWVudCBTeXN0ZW0gYm9hcmQu
-DQo+PiArICoNCj4+ICsgKiBDb3B5cmlnaHQgKEMpIDIwMjIgTWljcm9jaGlwIFRlY2hub2xvZ3kg
-SW5jLiBhbmQgaXRzIHN1YnNpZGlhcmllcw0KPj4gKyAqDQo+PiArICogQXV0aG9yOiBKZXJyeSBS
-YXkgPGplcnJ5LnJheUBtaWNyb2NoaXAuY29tPiAgKi8gL2R0cy12MS87ICNpbmNsdWRlIA0KPj4g
-KyJzYW1hNWQzNi5kdHNpIg0KPj4gKw0KPj4gKy8gew0KPj4gKyAgICAgbW9kZWwgPSAiU0FNQTVE
-MyBFdGhlcm5ldCBEZXZlbG9wbWVudCBTeXN0ZW0iOw0KPj4gKyAgICAgY29tcGF0aWJsZSA9ICJt
-aWNyb2NoaXAsc2FtYTVkMy1lZHMiLCAiYXRtZWwsc2FtYTVkMzYiLA0KPj4gKyAgICAgICAgICAg
-ICAgICAgICJhdG1lbCxzYW1hNWQzIiwgImF0bWVsLHNhbWE1IjsNCj4+ICsNCj4+ICsgICAgIGNo
-b3NlbiB7DQo+PiArICAgICAgICAgICAgIHN0ZG91dC1wYXRoID0gInNlcmlhbDA6MTE1MjAwbjgi
-Ow0KPj4gKyAgICAgfTsNCj4+ICsNCj4+ICsgICAgIGNsb2NrcyB7DQo+PiArICAgICAgICAgICAg
-IHNsb3dfeHRhbCB7DQo+DQo+Tm8gdW5kZXJzY29yZXMgaW4gbm9kZSBuYW1lcy4gT3ZlcnJpZGUg
-YnkgbGFiZWwuDQo+DQo+PiArICAgICAgICAgICAgICAgICAgICAgY2xvY2stZnJlcXVlbmN5ID0g
-PDMyNzY4PjsNCj4+ICsgICAgICAgICAgICAgfTsNCj4+ICsNCj4+ICsgICAgICAgICAgICAgbWFp
-bl94dGFsIHsNCj4+ICsgICAgICAgICAgICAgICAgICAgICBjbG9jay1mcmVxdWVuY3kgPSA8MTIw
-MDAwMDA+Ow0KPj4gKyAgICAgICAgICAgICB9Ow0KPj4gKyAgICAgfTsNCj4+ICsNCj4+ICsgICAg
-IGdwaW8gew0KPj4gKyAgICAgICAgICAgICBjb21wYXRpYmxlID0gImdwaW8ta2V5cyI7DQo+PiAr
-DQo+PiArICAgICAgICAgICAgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+PiArICAgICAg
-ICAgICAgIHBpbmN0cmwtMCA9IDwmcGluY3RybF9rZXlfZ3Bpbz47DQo+PiArDQo+PiArICAgICAg
-ICAgICAgIGJ1dHRvbi0zIHsNCj4+ICsgICAgICAgICAgICAgICAgICAgICBsYWJlbCA9ICJQQl9V
-U0VSIjsNCj4+ICsgICAgICAgICAgICAgICAgICAgICBncGlvcyA9IDwmcGlvRSAyOSBHUElPX0FD
-VElWRV9MT1c+Ow0KPj4gKyAgICAgICAgICAgICAgICAgICAgIGxpbnV4LGNvZGUgPSA8MHgxMDQ+
-Ow0KPj4gKyAgICAgICAgICAgICAgICAgICAgIHdha2V1cC1zb3VyY2U7DQo+PiArICAgICAgICAg
-ICAgIH07DQo+PiArICAgICB9Ow0KPj4gKw0KPj4gKyAgICAgbWVtb3J5QDIwMDAwMDAwIHsNCj4+
-ICsgICAgICAgICAgICAgcmVnID0gPDB4MjAwMDAwMDAgMHgxMDAwMDAwMD47DQo+PiArICAgICB9
-Ow0KPj4gKw0KPj4gKyAgICAgdmNjXzN2M19yZWc6IGJ1Y2stcmVndWxhdG9yLTEgew0KPg0KPktl
-ZXAgY29uc2lzdGVudCBwcmVmaXggb3Igc3VmZml4LCBzbzoNCj5yZWd1bGF0b3ItYnVjay0xDQo+
-DQo+PiArICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAicmVndWxhdG9yLWZpeGVkIjsNCj4+ICsg
-ICAgICAgICAgICAgcmVndWxhdG9yLW5hbWUgPSAiVkNDXzNWMyI7DQo+PiArICAgICAgICAgICAg
-IHJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDMzMDAwMDA+Ow0KPj4gKyAgICAgICAgICAgICBy
-ZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwzMzAwMDAwPjsNCj4+ICsgICAgICAgICAgICAgcmVn
-dWxhdG9yLWFsd2F5cy1vbjsNCj4+ICsgICAgIH07DQo+PiArDQo+PiArICAgICB2Y2NfMnY1X3Jl
-ZzogbGRvLXJlZ3VsYXRvci0yIHsNCj4NCj5yZWd1bGF0b3ItbGRvLTENCj4od2h5IG51bWJlcmlu
-ZyBvZiBMRE8gcmVndWxhdG9ycyBzdGFydHMgZnJvbSAyPyBrZWVwIHNvbWUgc2Vuc2UgaW4gdGhp
-cykNCj4NCj4NCg0KVGhlcmUgYXJlIE4gcmVndWxhdG9ycyBvbiB0aGUgYm9hcmQsIHNvIHRoZXkg
-YXJlIG51bWJlcmVkIDEgdGhydSBOLg0KUmVndWxhdG9yIDIgaXMgcmVndWxhdG9yIDIgd2hldGhl
-ciBpdCdzIGEgYnVjayBvciBMRE8uDQoNCj4+ICsgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJy
-ZWd1bGF0b3ItZml4ZWQiOw0KPj4gKyAgICAgICAgICAgICByZWd1bGF0b3ItbmFtZSA9ICJWQ0Nf
-MlY1IjsNCj4+ICsgICAgICAgICAgICAgcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8MjUwMDAw
-MD47DQo+PiArICAgICAgICAgICAgIHJlZ3VsYXRvci1tYXgtbWljcm92b2x0ID0gPDI1MDAwMDA+
-Ow0KPj4gKyAgICAgICAgICAgICByZWd1bGF0b3ItYWx3YXlzLW9uOw0KPj4gKyAgICAgICAgICAg
-ICB2aW4tc3VwcGx5ID0gPCZ2Y2NfM3YzX3JlZz47DQo+PiArICAgICB9Ow0KPj4gKw0KPj4gKyAg
-ICAgdmNjXzF2OF9yZWc6IGxkby1yZWd1bGF0b3ItMyB7DQo+PiArICAgICAgICAgICAgIGNvbXBh
-dGlibGUgPSAicmVndWxhdG9yLWZpeGVkIjsNCj4+ICsgICAgICAgICAgICAgcmVndWxhdG9yLW5h
-bWUgPSAiVkNDXzFWOCI7DQo+PiArICAgICAgICAgICAgIHJlZ3VsYXRvci1taW4tbWljcm92b2x0
-ID0gPDE4MDAwMDA+Ow0KPj4gKyAgICAgICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9
-IDwxODAwMDAwPjsNCj4+ICsgICAgICAgICAgICAgcmVndWxhdG9yLWFsd2F5cy1vbjsNCj4+ICsg
-ICAgICAgICAgICAgdmluLXN1cHBseSA9IDwmdmNjXzN2M19yZWc+Ow0KPj4gKyAgICAgfTsNCj4+
-ICsNCj4+ICsgICAgIHZjY18xdjJfcmVnOiBidWNrLXJlZ3VsYXRvci00IHsNCj4+ICsgICAgICAg
-ICAgICAgY29tcGF0aWJsZSA9ICJyZWd1bGF0b3ItZml4ZWQiOw0KPj4gKyAgICAgICAgICAgICBy
-ZWd1bGF0b3ItbmFtZSA9ICJWQ0NfMVYyIjsNCj4+ICsgICAgICAgICAgICAgcmVndWxhdG9yLW1p
-bi1taWNyb3ZvbHQgPSA8MTIwMDAwMD47DQo+PiArICAgICAgICAgICAgIHJlZ3VsYXRvci1tYXgt
-bWljcm92b2x0ID0gPDEyMDAwMDA+Ow0KPj4gKyAgICAgICAgICAgICByZWd1bGF0b3ItYWx3YXlz
-LW9uOw0KPj4gKyAgICAgfTsNCj4+ICsNCj4+ICsgICAgIHZjY19tbWMwX3JlZzogZml4ZWRyZWd1
-bGF0b3ItbW1jMCB7DQo+DQo+SnVzdCByZWd1bGF0b3ItbW1jMA0KPg0KDQpPa2F5Lg0KDQo+PiAr
-ICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAicmVndWxhdG9yLWZpeGVkIjsNCj4+ICsgICAgICAg
-ICAgICAgcmVndWxhdG9yLW5hbWUgPSAibW1jMC1jYXJkLXN1cHBseSI7DQo+PiArICAgICAgICAg
-ICAgIHJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDMzMDAwMDA+Ow0KPj4gKyAgICAgICAgICAg
-ICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwzMzAwMDAwPjsNCj4+ICsgICAgICAgICAgICAg
-cmVndWxhdG9yLWFsd2F5cy1vbjsNCj4+ICsgICAgICAgICAgICAgcGluY3RybC1uYW1lcyA9ICJk
-ZWZhdWx0IjsNCj4+ICsgICAgICAgICAgICAgcGluY3RybC0wID0gPCZwaW5jdHJsX3ZjY19tbWMw
-X3JlZ19ncGlvPjsNCj4+ICsgICAgICAgICAgICAgZ3BpbyA9IDwmcGlvRSAyIEdQSU9fQUNUSVZF
-X0xPVz47DQo+PiArICAgICB9Ow0KPg0KPg0KPkJlc3QgcmVnYXJkcywNCj5Lcnp5c3p0b2YNCj4N
-Cg0KUmVnYXJkcywNCkplcnJ5Lg0K
+Hi!
+
+2022-09-08 at 14:06, Thorsten Leemhuis wrote:
+> Hi, this is your Linux kernel regression tracker. Top-posting for once,
+> to make this easily accessible to everyone.
+> 
+> Peter, Codrin, could you help me out here please: I still have the
+> regression report from Peter that started this thread in the list of
+> tracked issues. From Peter's last msg quoted below it seems the thread
+> just faded out without the regression being fixed. Or was it? If not:
+> what can we do to finally get this resolved?
+
+No, it is not resolved that I know of. We are only writing during
+production, but are working around it by verifying and looping back.
+Sometimes it takes surprisingly long for the loop to finish, but
+it's not a huge deal. But it is of course not completely satisfying
+either...
+
+Reading is never a problem, so post-production behavior is sane.
+
+Cheers,
+Peter
+
+> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+> 
+> P.S.: As the Linux kernel's regression tracker I deal with a lot of
+> reports and sometimes miss something important when writing mails like
+> this. If that's the case here, don't hesitate to tell me in a public
+> reply, it's in everyone's interest to set the public record straight.
+> 
+> On 30.06.22 09:44, Peter Rosin wrote:
+>> 2022-06-10 at 22:51, Peter Rosin wrote:
+>>> 2022-06-10 at 09:35, Codrin.Ciubotariu@microchip.com wrote:
+>>>> On 09.06.2022 17:28, Peter Rosin wrote:
+>>>>>
+>>>>> I have not actually bisected this issue but reverting the effects of
+>>>>> patch a4bd8da893a3 ("ARM: dts: at91: sama5d3: add i2c gpio pinctrl")
+>>>>> makes the problem go away.
+>>>>>
+>>>>> I.e. I need something like this in my dts
+>>>>>
+>>>>> &i2c2 {
+>>>>>          status = "okay";
+>>>>>
+>>>>>          pinctrl-names = "default";
+>>>>>          /delete-property/ pinctrl-1;
+>>>>>          /delete-property/ sda-gpios;
+>>>>>          /delete-property/ scl-gpios;
+>>>>>
+>>>>>          eeprom@50 {
+>>>>>                  compatible = "st,24c64", "atmel,24c64";
+>>>>>                  reg = <0x50>;
+>>>>>                  wp-gpios = <&filter_gpio 7 GPIO_ACTIVE_HIGH>;
+>>>>>          };
+>>>>> };
+>>>>>
+>>>>> for multi-page eeprom writes to not time out (a page is 32 bytes on this
+>>>>> eeprom).
+>>>>>
+>>>>> For reference, the current defaults for this SoC/I2C-bus, that I modify,
+>>>>> are:
+>>>>>
+>>>>>          pinctrl-names = "default", "gpio";
+>>>>>          pinctrl-0 = <&pinctrl_i2c2>;
+>>>>>          pinctrl-1 = <&pinctrl_i2c2_gpio>;
+>>>>>          sda-gpios = <&pioA 18 GPIO_ACTIVE_HIGH>;
+>>>>>          scl-gpios = <&pioA 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>>>>>
+>>>>> I suspect that the underlying reason is that the bus recovery takes
+>>>>> too long and that the at24 eeprom driver gives up prematurely. I doubt
+>>>>> that this is chip specific, but I don't know that.
+>>>>>
+>>>>> I can work around the issue in user space with by writing in 4 byte
+>>>>> chunks, like so
+>>>>>
+>>>>> dd if=source.file of=/sys/bus/i2c/devices/2-0050/eeprom obs=4
+>>>>>
+>>>>> but that is really ugly and gets slow too, about 20 seconds to program
+>>>>> the full 8kB eeprom. With the above in my dts it takes a second or
+>>>>> so (a bit more with dynamic debug active).
+>>>>>
+>>>>>
+>>>>> If I run
+>>>>>
+>>>>> dd if=source.file of=/sys/bus/i2c/devices/2-0050/eeprom
+>>>>>
+>>>>> with a source.file of 8kB and the upstream dts properties in place, I can
+>>>>> collect the following debug output from at24, i2c-core and i2c-at91:
+>>>>>
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@0 --> 0 (-23170)
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+>>>>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@32 --> -121 (-23169)
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@32 --> 0 (-23168)
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+>>>>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@64 --> -121 (-23168)
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@64 --> 0 (-23167)
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+>>>>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@96 --> -121 (-23167)
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: controller timed out
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+>>>>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@96 --> -110 (-23155)
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: controller timed out
+>>>>> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+>>>>> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@96 --> -110 (-23143)
+>>>>>
+>>>>> And then there is no more action. I.e. only a couple of 32 byte pages
+>>>>> are written.
+>>>>>
+>>>>> With the above mentioned dts override in place I instead get this, which is
+>>>>> a lot more sensible:
+>>>>>
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@0 --> 0 (753629)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@32 --> -121 (753629)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@32 --> 0 (753630)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@64 --> -121 (753630)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@64 --> 0 (753631)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@96 --> -121 (753631)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@96 --> 0 (753632)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@128 --> -121 (753632)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@128 --> 0 (753633)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@160 --> -121 (753633)
+>>>>> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@160 --> 0 (753634)
+>>>>> ... snip ...
+>>>>> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8128 --> -121 (753883)
+>>>>> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8128 --> 0 (753884)
+>>>>> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: received nack
+>>>>> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8160 --> -121 (753884)
+>>>>> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+>>>>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+>>>>> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+>>>>> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8160 --> 0 (753885)
+>>>>
+>>>> could you please apply this patch-set [1] and let us know if it 
+>>>> addresses your issue?
+>>>>
+>>>> Thanks and best regards,
+>>>> Codrin
+>>>>
+>>>> https://patchwork.ozlabs.org/project/linux-i2c/list/?series=255408
+>>>
+>>> That series does indeed help! I'll reply with a tested-by etc on the
+>>> first two patches, I can't test patch 3/3 with my sama5d3 board...
+>>>
+>>> Thank you very much!
+>>
+>> Since replying to the actual patches do not work for me, I'm writing here
+>> instead. Sorry about that. As stated above, it /seems/ to work much better
+>> with these patches. But I fooled myself and there is still some remaining
+>> trouble. It is not uncommon that the second (32-byte) page in the eeprom
+>> is not written correctly for whatever reason. I do not know why it's
+>> always the second page that gets corrupted, but this is a bad problem since
+>> the failure is completely silent.
+>>
+>> Cheers,
+>> Peter
+> 
+> #regzbot poke
