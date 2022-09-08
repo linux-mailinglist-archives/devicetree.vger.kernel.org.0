@@ -2,132 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 550D65B1773
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0A5D5B1771
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:45:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231579AbiIHIp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 04:45:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55440 "EHLO
+        id S231566AbiIHIpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 04:45:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231473AbiIHIp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:45:57 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5370BCCD54;
-        Thu,  8 Sep 2022 01:45:56 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28886TSc012827;
-        Thu, 8 Sep 2022 08:45:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=sbzlMQxRLXSHn2oAaJG/NLrqWWwmqEr0AuAYOa3DXjE=;
- b=JRX9FDF38q4YRNNht/27fZ1Sef8fDx9/1l7d2J+57swb4PWgt4ATMaP532J+y/KixLAn
- fHAJ09uY2UnguVKPzIBqBQQ24Rqm7CZE7ZrrrNRsYPZ5L128C5OPNhBAF8YM2OMqRH/S
- Fms4HG+tdrqyYq3uqDExqqvwN/2N8EssalUz7hppnbeCo2y3WXItGVC9E/5n2eVyh7Jv
- 9JzyCKHBaM+8SBDGowIogxJJwz8Y+OL2JSag5JnnWCkKzUWwLDfQgWMb0GkjKYiZpNVP
- Mpy9mjBwvBq/Uzp/8lrlw4vazGbEw3ZBx3NK5iebRBtBfQyeU83Pkvlcy82RgzNGatb8 Sw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jfbarr9wb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Sep 2022 08:45:31 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2888jVQr026585
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 8 Sep 2022 08:45:31 GMT
-Received: from taozha-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Thu, 8 Sep 2022 01:45:26 -0700
-From:   Tao Zhang <quic_taozha@quicinc.com>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Tao Zhang <quic_taozha@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <bjorn.andersson@linaro.org>
-Subject: [PATCH 1/9] dt-bindings: arm: Add support for DSB element
-Date:   Thu, 8 Sep 2022 16:44:57 +0800
-Message-ID: <1662626705-13097-2-git-send-email-quic_taozha@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1662626705-13097-1-git-send-email-quic_taozha@quicinc.com>
-References: <1662626705-13097-1-git-send-email-quic_taozha@quicinc.com>
+        with ESMTP id S231538AbiIHIpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:45:16 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B18CA77576;
+        Thu,  8 Sep 2022 01:45:15 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 64A1914BF;
+        Thu,  8 Sep 2022 01:45:21 -0700 (PDT)
+Received: from [10.57.15.197] (unknown [10.57.15.197])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 47F3F3F73D;
+        Thu,  8 Sep 2022 01:45:06 -0700 (PDT)
+Message-ID: <818a7891-b5c8-beb6-5ccd-e1c0d1c22a23@arm.com>
+Date:   Thu, 8 Sep 2022 09:45:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: xZBuRCDcWXS94oV7MPH29Ye2AkfOh1D2
-X-Proofpoint-ORIG-GUID: xZBuRCDcWXS94oV7MPH29Ye2AkfOh1D2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-08_06,2022-09-07_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- lowpriorityscore=0 bulkscore=0 phishscore=0 spamscore=0 clxscore=1011
- malwarescore=0 mlxscore=0 suspectscore=0 mlxlogscore=976
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2209080031
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+Subject: Re: [PATCHv2 02/13] mfd: rk808: use dev_err_probe
+Content-Language: en-GB
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20220908003107.220143-1-sebastian.reichel@collabora.com>
+ <20220908003107.220143-3-sebastian.reichel@collabora.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220908003107.220143-3-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-10.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add property "qcom,dsb-elem-size" to support DSB element for TPDA.
-Specifies the DSB element size supported by each monitor connected
-to the aggregator on each port. Should be specified in pairs (port,
-dsb element size).
+On 2022-09-08 01:30, Sebastian Reichel wrote:
+> Use dev_err_probe instead of dev_err in probe function,
+> which simplifies code a little bit and prints the error
+> code.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>   drivers/mfd/rk808.c | 50 ++++++++++++++++-----------------------------
+>   1 file changed, 18 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/mfd/rk808.c b/drivers/mfd/rk808.c
+> index c17fea1d48ca..e793de9146f7 100644
+> --- a/drivers/mfd/rk808.c
+> +++ b/drivers/mfd/rk808.c
+> @@ -650,18 +650,14 @@ static int rk808_probe(struct i2c_client *client,
+>   
+>   	/* Read chip variant */
+>   	msb = i2c_smbus_read_byte_data(client, pmic_id_msb);
+> -	if (msb < 0) {
+> -		dev_err(&client->dev, "failed to read the chip id at 0x%x\n",
+> -			RK808_ID_MSB);
+> -		return msb;
+> -	}
+> +	if (msb < 0)
+> +		return dev_err_probe(&client->dev, msb, "failed to read the chip id at 0x%x\n",
+> +				     RK808_ID_MSB);
+>   
+>   	lsb = i2c_smbus_read_byte_data(client, pmic_id_lsb);
+> -	if (lsb < 0) {
+> -		dev_err(&client->dev, "failed to read the chip id at 0x%x\n",
+> -			RK808_ID_LSB);
+> -		return lsb;
+> -	}
+> +	if (lsb < 0)
+> +		return dev_err_probe(&client->dev, lsb, "failed to read the chip id at 0x%x\n",
+> +				     RK808_ID_LSB);
 
-Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
----
- Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Hmm, refactoring these is probably a good opportunity to fix them as 
+well - I'm not sure printing the register offset is really all that 
+useful, but particularly not when it's hard-coded and may not correspond 
+to the actual access that failed.
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-index eb9bfc5..1bb3fdf 100644
---- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-@@ -40,6 +40,13 @@ properties:
-     minItems: 1
-     maxItems: 2
- 
-+  qcom,dsb-elem-size:
-+    description: |
-+      Specifies the DSB element size supported by each monitor
-+      connected to the aggregator on each port. Should be specified
-+      in pairs (port, dsb element size).
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-   clocks:
-     maxItems: 1
- 
-@@ -82,6 +89,8 @@ examples:
-        compatible = "qcom,coresight-tpda", "arm,primecell";
-        reg = <0x6004000 0x1000>;
- 
-+       qcom,dsb-elem-size = <0 32>;
-+
-        clocks = <&aoss_qmp>;
-        clock-names = "apb_pclk";
- 
--- 
-2.7.4
+Robin.
 
+>   
+>   	rk808->variant = ((msb << 8) | lsb) & RK8XX_ID_MSK;
+>   	dev_info(&client->dev, "chip id: 0x%x\n", (unsigned int)rk808->variant);
+> @@ -710,44 +706,34 @@ static int rk808_probe(struct i2c_client *client,
+>   	i2c_set_clientdata(client, rk808);
+>   
+>   	rk808->regmap = devm_regmap_init_i2c(client, rk808->regmap_cfg);
+> -	if (IS_ERR(rk808->regmap)) {
+> -		dev_err(&client->dev, "regmap initialization failed\n");
+> -		return PTR_ERR(rk808->regmap);
+> -	}
+> +	if (IS_ERR(rk808->regmap))
+> +		return dev_err_probe(&client->dev, PTR_ERR(rk808->regmap),
+> +				     "regmap initialization failed\n");
+>   
+> -	if (!client->irq) {
+> -		dev_err(&client->dev, "No interrupt support, no core IRQ\n");
+> -		return -EINVAL;
+> -	}
+> +	if (!client->irq)
+> +		return dev_err_probe(&client->dev, -EINVAL, "No interrupt support, no core IRQ\n");
+>   
+>   	ret = devm_regmap_add_irq_chip(&client->dev, rk808->regmap, client->irq,
+>   				       IRQF_ONESHOT, -1,
+>   				       rk808->regmap_irq_chip, &rk808->irq_data);
+> -	if (ret) {
+> -		dev_err(&client->dev, "Failed to add irq_chip %d\n", ret);
+> -		return ret;
+> -	}
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to add irq_chip\n");
+>   
+>   	for (i = 0; i < nr_pre_init_regs; i++) {
+>   		ret = regmap_update_bits(rk808->regmap,
+>   					pre_init_reg[i].addr,
+>   					pre_init_reg[i].mask,
+>   					pre_init_reg[i].value);
+> -		if (ret) {
+> -			dev_err(&client->dev,
+> -				"0x%x write err\n",
+> -				pre_init_reg[i].addr);
+> -			return ret;
+> -		}
+> +		if (ret)
+> +			return dev_err_probe(&client->dev, ret, "0x%x write err\n",
+> +					     pre_init_reg[i].addr);
+>   	}
+>   
+>   	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_NONE,
+>   			      cells, nr_cells, NULL, 0,
+>   			      regmap_irq_get_domain(rk808->irq_data));
+> -	if (ret) {
+> -		dev_err(&client->dev, "failed to add MFD devices %d\n", ret);
+> -		return ret;
+> -	}
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "failed to add MFD devices\n");
+>   
+>   	if (of_property_read_bool(np, "rockchip,system-power-controller")) {
+>   		ret = devm_register_sys_off_handler(&client->dev,
