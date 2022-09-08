@@ -2,45 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFB675B12B0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 04:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2732C5B12CA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 05:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbiIHCy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 22:54:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60878 "EHLO
+        id S229506AbiIHDGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 23:06:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbiIHCyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 22:54:55 -0400
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C9D8474E2;
-        Wed,  7 Sep 2022 19:54:53 -0700 (PDT)
-Received: from canpemm500004.china.huawei.com (unknown [172.30.72.54])
-        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4MNNsy0gmMz14QNY;
-        Thu,  8 Sep 2022 10:51:02 +0800 (CST)
-Received: from localhost (10.175.101.6) by canpemm500004.china.huawei.com
- (7.192.104.92) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 8 Sep
- 2022 10:54:51 +0800
-From:   Weilong Chen <chenweilong@huawei.com>
-To:     <chenweilong@huawei.com>, <yangyicong@hisilicon.com>,
-        <xuwei5@huawei.com>, <wsa@kernel.org>, <robh+dt@kernel.org>
-CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH next v3 2/2] dt-bindings: i2c: add entry for hisilicon,hisi-i2c
-Date:   Thu, 8 Sep 2022 10:57:01 +0800
-Message-ID: <20220908025701.330210-2-chenweilong@huawei.com>
-X-Mailer: git-send-email 2.31.GIT
-In-Reply-To: <20220908025701.330210-1-chenweilong@huawei.com>
-References: <20220908025701.330210-1-chenweilong@huawei.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.175.101.6]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- canpemm500004.china.huawei.com (7.192.104.92)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S229472AbiIHDGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 23:06:13 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0233710572;
+        Wed,  7 Sep 2022 20:06:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1662606373; x=1694142373;
+  h=from:to:cc:subject:date:message-id;
+  bh=zVh0oYIy9y1opOEwiMk1DNjymznwB43MlPe1XapXiDo=;
+  b=jxJEvHPqmkRZqooTgJjrn1GKKFX8gVyDk7ln/UYhaBrG7es4yWR5GooF
+   igeaDN/1iEe/Xhgxb4RkNFiV/quKNJ7pOlQximBqrJMScR3RgEGvg8HOD
+   2iLfpwzw3TLU5qC15NuiPE/ipwViYWQOedx4EOwuQZq+tKyoIv11QSOSs
+   Qw5FdNJpgLmY5GFMparuC6saSXkw2E6S3oVmdBGMRXkuHgmNzr6RSlBIh
+   b/xkqBvJYutGfs2eLIgCi2V9rH96mVy8xZwrFamJZTb2jNjbiXXQ3Y69K
+   NnNxYhLQWIAfOxe4UKWym0QgYh27A0In4mg3JZzl+xxdXLLHpJ1NYuYxZ
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10463"; a="276787824"
+X-IronPort-AV: E=Sophos;i="5.93,298,1654585200"; 
+   d="scan'208";a="276787824"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2022 20:06:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,298,1654585200"; 
+   d="scan'208";a="644888788"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.170])
+  by orsmga008.jf.intel.com with ESMTP; 07 Sep 2022 20:06:10 -0700
+From:   ji.sheng.teoh@intel.com
+To:     Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Teoh Ji Sheng <ji.sheng.teoh@intel.com>
+Subject: [PATCH] ARM: dts: socfpga: arria10: Increase boot partition size for NAND
+Date:   Thu,  8 Sep 2022 03:10:22 +0000
+Message-Id: <20220908031022.38080-1-ji.sheng.teoh@intel.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,88 +56,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the new compatible for HiSilicon common i2c.
+From: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
 
-Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+Content in NAND boot partition have exceeded 32MB defined in device
+tree node.
+Increase boot partition size to 37MB to support larger kernel Image
+and FPGA bitstream.
+
+Signed-off-by: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
 ---
- .../bindings/i2c/hisilicon,hisi-i2c.yaml      | 68 +++++++++++++++++++
- 1 file changed, 68 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+ arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
-new file mode 100644
-index 000000000000..19d535f4a79e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/i2c/hisilicon,hisi-i2c.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: HiSilicon common IIC controller Device Tree Bindings
-+
-+maintainers:
-+  - yangyicong@huawei.com
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: hisilicon,hisi-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clk_rate:
-+    default: 0xEE6B280
-+
-+  clock-frequency:
-+    default: 400000
-+
-+  i2c-sda-falling-time-ns:
-+    default: 343
-+
-+  i2c-scl-falling-time-ns:
-+    default: 203
-+
-+  i2c-sda-hold-time-ns:
-+    default: 0x33E
-+
-+  i2c-scl-rising-time-ns:
-+    default: 365
-+
-+  i2c-digital-filter-width-ns:
-+    default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c1: i2c@5038B0000{
-+      compatible = "hisilicon,hisi-i2c";
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      reg = <0x5 0x038B0000 0 0x10000>;
-+      interrupts = <0x0 120 0x4>;
-+      i2c-sda-falling-time-ns = <56>;
-+      i2c-scl-falling-time-ns = <56>;
-+      i2c-sda-hold-time-ns = <56>;
-+      i2c-scl-rising-time-ns = <56>;
-+      i2c-digital-filter-width-ns = <0x0>;
-+      clk_rate = <0x0 0xEE6B280>;
-+      clock-frequency = <400000>;
-+    };
+diff --git a/arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts b/arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts
+index 9aa897b79544..a662df319a84 100644
+--- a/arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts
++++ b/arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts
+@@ -16,11 +16,11 @@
+ 
+ 		partition@0 {
+ 			label = "Boot and fpga data";
+-			reg = <0x0 0x02000000>;
++			reg = <0x0 0x02500000>;
+ 		};
+ 		partition@1c00000 {
+ 			label = "Root Filesystem - JFFS2";
+-			reg = <0x02000000 0x06000000>;
++			reg = <0x02500000 0x05500000>;
+ 		};
+ 	};
+ };
 -- 
-2.31.GIT
+2.17.1
 
