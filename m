@@ -2,119 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B02695B2960
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 00:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A86AD5B2976
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 00:40:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbiIHWcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 18:32:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58668 "EHLO
+        id S229455AbiIHWkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 18:40:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbiIHWcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 18:32:50 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2FA2FDBB5;
-        Thu,  8 Sep 2022 15:32:49 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1274ec87ad5so33380137fac.0;
-        Thu, 08 Sep 2022 15:32:49 -0700 (PDT)
+        with ESMTP id S229491AbiIHWkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 18:40:14 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A7A782D2D;
+        Thu,  8 Sep 2022 15:40:12 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-127dca21a7dso21028707fac.12;
+        Thu, 08 Sep 2022 15:40:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=CxueroWKOCf1VlWz/nI3gMCK0OJff9cC2ODwmgYrqaM=;
-        b=AmvBZoVh/ONGKX4dodQ335UqTw+SlljNq3su5q/93xvuZ1SMuM/2MouQanUH2fL2TZ
-         0iwFjttlerjHBfXalUFoVvYJd21jlV1cpTDLiQyvrIxk10VbxSg1sd7QiemxKFDMLfJz
-         1HxD80Uu7XsfLU1xsj6nSJw2sw4u+uCPQoO6A5otI+zlMhIqTYY5NoTmbhYMzlB4hJAX
-         msbBX5SudfUHx8e/0wtmLvEqGpll+tBewu0bCFyzZ1hcbYeDztYhgVnHDyd9QxXxY2vl
-         f7eZ7d1HK9ZzxZT3nrUNI3SZNsbQZWNgZmzLIhwH51a9L+SRNWXlzh5RtQXcxsA4VLL6
-         Helg==
-X-Gm-Message-State: ACgBeo07gFA28KgW1i2dkoa0o/YojW5WAB79G/zK+DGqIXClk0c98Fs/
-        kjF7l9edQAhIACZfQiZQXw==
-X-Google-Smtp-Source: AA6agR5MC+RLWyuYmH/6MzXRA1Lyj+OMmMzdoCAZCKC3Rql+zmp3AUsEWYhhK37k+JRJFRvkiePTpw==
-X-Received: by 2002:a05:6870:6317:b0:10e:631c:5e63 with SMTP id s23-20020a056870631700b0010e631c5e63mr3459441oao.262.1662676369003;
-        Thu, 08 Sep 2022 15:32:49 -0700 (PDT)
+        bh=Q/93ntx0X7AK2yC4ktW4fNpwToT6s2GUldlVNQU7dGE=;
+        b=XyJOfzNhOs6RVo5qnWAlaUiXXzm4tg6pN/WAGGe+7fJV1oar/NjA9VlE5D5iow4TEA
+         qy2Opsflwok5bGixiSa17GTIWG2hPRsTvkSuf2FIkFqFHF6DVyHcP5svX5CKpwxgA0YK
+         noeL67Xh+P1El5lvS1NIeLmm2K0bX6RTdG1k0dtLp2qIbULAgeopXrt9CpE/NBuG8OKu
+         v7r2uwItvB49WgMSyxSE5GdBz4eWwaK3GT48DjXrP1lIJ01ilqxVT4HRyHQMU9oB9ZXG
+         Kt3fOqWI02t/q7D4IaUDaq2vX0ZDk0Zy8TcycBAKfYXOgNc0QjDvcMgWphW7Abuwhgl5
+         2iOQ==
+X-Gm-Message-State: ACgBeo0/azQWKJdU6UlA8+7suEXUq/QXxqIC3HrQ2SIlWoZEnHPc+y65
+        9e4ke04e9PA0HTaRRwZqKg==
+X-Google-Smtp-Source: AA6agR6Nx8mduApFnaQ6tdsjWr/59CX5qJEV3IsS9vGsz7CiJCX+tAzHbZs2RmAjjVZjE35Uhz3UWQ==
+X-Received: by 2002:a05:6870:d391:b0:11d:ca1b:dc49 with SMTP id k17-20020a056870d39100b0011dca1bdc49mr3072922oag.125.1662676811554;
+        Thu, 08 Sep 2022 15:40:11 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 3-20020a4a1b03000000b00441c26f8fadsm723780oop.12.2022.09.08.15.32.47
+        by smtp.gmail.com with ESMTPSA id e37-20020a9d2aa8000000b00638cea5947esm172643otb.25.2022.09.08.15.40.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 15:32:48 -0700 (PDT)
-Received: (nullmailer pid 3461521 invoked by uid 1000);
-        Thu, 08 Sep 2022 22:32:47 -0000
-Date:   Thu, 8 Sep 2022 17:32:47 -0500
+        Thu, 08 Sep 2022 15:40:11 -0700 (PDT)
+Received: (nullmailer pid 3472381 invoked by uid 1000);
+        Thu, 08 Sep 2022 22:40:10 -0000
+Date:   Thu, 8 Sep 2022 17:40:10 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
-Subject: Re: [PATCH v8 1/5] dt-bindings: reserved-memory: Document
- iommu-addresses
-Message-ID: <20220908223247.GA3448766-robh@kernel.org>
-References: <20220905170833.396892-1-thierry.reding@gmail.com>
- <20220905170833.396892-2-thierry.reding@gmail.com>
+To:     Eliav Farber <farbere@amazon.com>
+Cc:     linux-hwmon@vger.kernel.org, rtanwar@maxlinear.com,
+        andriy.shevchenko@intel.com, robh+dt@kernel.org, jdelvare@suse.com,
+        linux-kernel@vger.kernel.org, jonnyc@amazon.com,
+        p.zabel@pengutronix.de, devicetree@vger.kernel.org,
+        linux@roeck-us.net, hhhawa@amazon.com
+Subject: Re: [PATCH v4 08/21] dt-bindings: hwmon: (mr75203) add description
+ for Moortec's PVT controller
+Message-ID: <20220908224010.GA3472324-robh@kernel.org>
+References: <20220906083356.21067-1-farbere@amazon.com>
+ <20220906083356.21067-9-farbere@amazon.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220905170833.396892-2-thierry.reding@gmail.com>
+In-Reply-To: <20220906083356.21067-9-farbere@amazon.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 05, 2022 at 07:08:29PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Tue, 06 Sep 2022 08:33:43 +0000, Eliav Farber wrote:
+> This changes adds a detailed description for the mr75203 controller and
+> for some of the analog IPs controlled by it.
 > 
-> This adds the "iommu-addresses" property to reserved-memory nodes, which
-> allow describing the interaction of memory regions with IOMMUs. Two use-
-> cases are supported:
-> 
->   1. Static mappings can be described by pairing the "iommu-addresses"
->      property with a "reg" property. This is mostly useful for adopting
->      firmware-allocated buffers via identity mappings. One common use-
->      case where this is required is if early firmware or bootloaders
->      have set up a bootsplash framebuffer that a display controller is
->      actively scanning out from during the operating system boot
->      process.
-> 
->   2. If an "iommu-addresses" property exists without a "reg" property,
->      the reserved-memory node describes an IOVA reservation. Such memory
->      regions are excluded from the IOVA space available to operating
->      system drivers and can be used for regions that must not be used to
->      map arbitrary buffers.
-> 
-> Each mapping or reservation is tied to a specific device via a phandle
-> to the device's device tree node. This allows a reserved-memory region
-> to be reused across multiple devices.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Eliav Farber <farbere@amazon.com>
 > ---
-> Changes in v8:
-> - include validation warning fixes that had crept into an unrelated patch
+> V4 -> V3:
+> - New patch to add description.
 > 
-> Changes in v7:
-> - keep reserved-memory.txt to avoid broken references
+>  .../bindings/hwmon/moortec,mr75203.yaml       | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
 > 
-> Changes in v6:
-> - add device phandle to iommu-addresses property in examples
-> - remove now unused dt-bindings/reserved-memory.h header
-> 
->  .../reserved-memory/reserved-memory.yaml      | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
 
-Thanks for being persistent with this. It looks good to me.
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-I really don't like new common bindings with only 1 user, so I hope the 
-Asahi folks chime in here. Or really anyone else look at it.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
