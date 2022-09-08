@@ -2,80 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C95675B1802
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:07:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE3145B1815
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:10:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231690AbiIHJHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 05:07:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41150 "EHLO
+        id S231265AbiIHJKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 05:10:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231701AbiIHJH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:07:29 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0429CA896D
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 02:07:26 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id n23-20020a7bc5d7000000b003a62f19b453so1184991wmk.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 02:07:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=T2/9xebxzNWMrR2+6F0PLx9EMI9J8CEGmCncRuSsyL8=;
-        b=eO7It27k7B/0FNHemvQD+MMLVEn3cKOZgQC9kmQyiqoHCf6+wwQlVXpKES5hVLwTI5
-         s4i8Gwlmh6k1epjJ5OnNXpsvMPvbjcTyZZnooQcis2wC/kvWtpCOIn9qGCkCQYFn73mz
-         DA0ox9F/MgiiYRUnWyOVxLv4OwAVBdreWrj4RtdwYYadmAFfCcPElUKDmm5bf157mxwL
-         dOSXO7KknF7upphS4/Lgm7NDjUBfEKnWYuSiul7c1/Ke0xnOdA5y8xQlEg/wUQDyKJbB
-         0P4Dfy2KjKql4iUcjcwT6zL/m3YWhMhhgMl7Yy1t5B3WIeE2SKnGAL7vf7PL1PiyWZjo
-         yu4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=T2/9xebxzNWMrR2+6F0PLx9EMI9J8CEGmCncRuSsyL8=;
-        b=wDWyEMcS6GLndIpHpezI6HgPsWJ/AnK2vOYq1+bJeEuZXj80r7yblqiZk2JA8hHQ5F
-         ZrZlwmxR0cwTN0bjPelBzWclnDyNPqTovkO/SmeyrF6J9jyEjXWaE+TCE/WQttIWs8wS
-         tsb8EU/oqcycbBsEWbbnDKhHEhUNvNBW0TC8QUgkL+lhTq2AGVn3bIPWX0dP8QPf01X8
-         Ko+SCg5X7oz8gdouWJYQnkrEGYtgev/43cMV5IshfCigqjb2fH1C2kvBJ2BmFeiQwaiQ
-         /ZZ/wrmTPqJ1CGHNjRWat8B6RzbRjTmDvvp3VyBjTdU7Pq3pas0i533uTM+vVNkM27eE
-         hjuw==
-X-Gm-Message-State: ACgBeo1vji0j0f6b7DFbw/cM+bEyCAaajBDHrwIDG+AXdhyJygzGlyMe
-        e14eKmoIBISi4qTb7r8LzIC/pg==
-X-Google-Smtp-Source: AA6agR5gqEKVSm7XgipK5ek0XMItcGd6Kv+VsWlDrzmuKyixgBo9ogpjC0Vx0PWoSmd1owvmCI7cBQ==
-X-Received: by 2002:a7b:cd91:0:b0:3a8:5262:6aa9 with SMTP id y17-20020a7bcd91000000b003a852626aa9mr1466610wmj.143.1662628044375;
-        Thu, 08 Sep 2022 02:07:24 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id bz9-20020a056000090900b0022584c82c80sm21014654wrb.19.2022.09.08.02.07.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 02:07:23 -0700 (PDT)
-Message-ID: <a5fd6f3e-4795-5953-5fdf-8857051b5e87@linaro.org>
-Date:   Thu, 8 Sep 2022 11:07:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 4/4] thermal: mediatek: add another get_temp ops for
- thermal sensors
+        with ESMTP id S230523AbiIHJKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:10:09 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80073.outbound.protection.outlook.com [40.107.8.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B871A193C2;
+        Thu,  8 Sep 2022 02:10:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gtfcLO89oPG2he7EjV5WAohdtgZyO3skYETIKUMqUvZ5XpwxYtbUOtOGcmP13E7dIzV9ZMJTsBNd7g8KOIEMlTx5x5gjOGP1b2/pyXN6CmN9FwT4d8U/OmHY2ZDBujcu6hLggZcMl4/fcyUX7zSAg+UaUY9G17Bf2BmLFOJOOrNpfQzb0j3xfwRqhucVTyDzPfINzhrczOmgt4CjhbucaiVL02BTd5qdP8J0W+c3Ee9+5oFdRfVNNMcW8F8ylvT3sddz1mxNbbmdl4FufATdrounKE4FAXXEEfefLHNuWZAs1TjzM6M/10j/NwIQn4K5O5/gvdlNycTOYhEUbG0NKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dmIWa4XXeNc/0QWjLl/d8gbLFEsQ/Z9zrDxwLmlBomM=;
+ b=D/N441/2e3s0NTJSaneHc/P1mvuozVhbVRZcEcC9e/O7xPRaiIJXVWvlnp9oRkfTU+eGLXfdSEf73uRD3yr2HuIyKiQqWysd+RpRQr07euckWNjpDXY/yd43wKWW2RTOlsqJtNVAwhOj9+3FwEkd0E7BnWHYMiPSy4/fxiAnWnG7F7p6zynzWf8qqaSYRHGFZJIvJHD8r3RebFg61mnmmgQ9VljlZzJa0pEk3Hz4QYbMXbmymaI3A1e9VCZ/iNezLPr3xVNS5c7sAwD9tYMB76haJVQQ2FGNExwaOVQCVN1LjMWm5Bgbql6BiXhllXt74HjG33DNR+hiJ5ZIaKbAjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dmIWa4XXeNc/0QWjLl/d8gbLFEsQ/Z9zrDxwLmlBomM=;
+ b=mteB79iSCitnWy439BFzVLZsrnHEIHWXCZBqw3JDwDRY/c1Aky/BNX9P5lDmzYlVpkv3Vga+RgjPzaSPkCizfiIJByy8TQUSNMdIqMnrpGsh4dmuCaDw06IvN6szSjYdZPNbI7tm1+d/s2B1hpDhWHay3bbrfDki+UGf8/0gl64=
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
+ by AM6PR04MB5574.eurprd04.prod.outlook.com (2603:10a6:20b:28::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Thu, 8 Sep
+ 2022 09:10:04 +0000
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::25b6:d7f1:c25e:24d2]) by PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::25b6:d7f1:c25e:24d2%9]) with mapi id 15.20.5588.012; Thu, 8 Sep 2022
+ 09:10:03 +0000
+From:   Jun Li <jun.li@nxp.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>
+CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 2/4] usb: dwc3: core: add gfladj_refclk_lpm_sel quirk
+Thread-Topic: [PATCH 2/4] usb: dwc3: core: add gfladj_refclk_lpm_sel quirk
+Thread-Index: AQHYwsihSZs59KCGmka6WpnUnAKPLq3VP1lQ
+Date:   Thu, 8 Sep 2022 09:10:03 +0000
+Message-ID: <PA4PR04MB96408D56303E7F88D85FE3F089409@PA4PR04MB9640.eurprd04.prod.outlook.com>
+References: <20220907144624.2810117-1-alexander.stein@ew.tq-group.com>
+ <20220907144624.2810117-3-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20220907144624.2810117-3-alexander.stein@ew.tq-group.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        matthias.bgg@gmail.com
-Cc:     rafael@kernel.org, fparent@baylibre.com, amitk@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-        robh+dt@kernel.org, rui.zhang@intel.com,
-        Michael Kao <michael.kao@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-References: <20220901133950.115122-1-aouledameur@baylibre.com>
- <20220901133950.115122-5-aouledameur@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20220901133950.115122-5-aouledameur@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d1c1f8d2-98f4-4cf3-3659-08da9179ea98
+x-ms-traffictypediagnostic: AM6PR04MB5574:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ZbaPamu/r3yofFP0//tQx2be+4L8vdIVTZfPe+Iwa8TpfC4AgU074m9rKEhQMoIYRv/SUkMxlpGS2wutzyHsLPTi5zbkjZmFkZXJcPm9oZBknDI1so2cPrJeX06nQCSYUbC1RNQmfcYmykxC74VVPYVNfLe2fmD6x1ZeFy+9UQHnDn0fh/MObjoo83JTGlDYlwd0FdLl37iP7LE1bAPHAoP7zzAS4yk0Bfz/MC/csQBCrKfqnDDFwL6Tj445Ii9X90tCC1416OEQtkJl/buqC7C4zVSOl1gJFBKv12s6zbcASOPBoYTNkxB54S35gnWpevOiSxfInqlXfIfU4ISuoX0dKQ7MaVm6FFcNRY9eXDi/om75k2VI0YDgqhOjCTjrLOSOwrRtwz0pXEmhRTlh7vn51wqvwJlLDwV/mKKaisN0IAXRkJ+1Vk/kcSUwm8mXY+7kzp4tD/ZHtpLCnSP5FzyTWlomGxaoPPev8KVMQpe+yojbPZLqahX5HMANd5f/LbcJ3nr0U+yqCv6aCLH7E6EEtcqulS8RjTii7+mnq0udiUg4dto+OSmdw28+BzAO+TRsZ/q2vomlMmAMDVd7DL7ZHtoP2UV04LNuTPvdv5SGuKFaURFkXDlOigMtNhlR2wrNZ0GvQgC0a9AMENZGz+XENiHcZlk/UHMgpZXzwYXa1Zr7mUBbmZpYgO4m/ixx8AjXSZixR434FKLDuqNEMv67/of2M7HYTFq7kCNZ/cR3tO7x4itzTVqxGyerEFyrqiOdWljepfCrxNsX0zYFDw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(376002)(39860400002)(366004)(396003)(346002)(7696005)(38070700005)(83380400001)(71200400001)(54906003)(186003)(122000001)(110136005)(86362001)(6636002)(316002)(7416002)(52536014)(5660300002)(8936002)(76116006)(8676002)(66446008)(66556008)(26005)(478600001)(66946007)(66476007)(44832011)(4326008)(38100700002)(55016003)(64756008)(9686003)(33656002)(41300700001)(2906002)(53546011)(6506007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?X6tbgNLZBYsFDGseog/LiZ+ixwIE1hxx8Y+/rXMzmaHbsiTIuWQb0Fm8O7TY?=
+ =?us-ascii?Q?4XP0ZfvwhXbg/7eDjIuXlUZST+5X5uy4QSiP5xkC+h+i2j/g0y+v96KG1Otl?=
+ =?us-ascii?Q?xBpEMnOLmtZw1QRTidrMl/vryUKotzWQoajnV5c5O2P0IYQU6ro/1acMyS7a?=
+ =?us-ascii?Q?64G/ScE6CjGaT1M/n9iL6kKOpyi+pzU0HG6MX/pj5cFdexy1gRhpFUcspISI?=
+ =?us-ascii?Q?Ryl8gzfjhhyMs/mu7MO4RXb5sn1qINSkVuK3bDSNvdeYKJl4nwIYnzIxzbhU?=
+ =?us-ascii?Q?z7HHv1pXTc80gEkGPsZj8VaMDBQU/dzRNhnSyNfl6Yhpyh8elBymrsawvN33?=
+ =?us-ascii?Q?iij0p44paehP2KmW4cCAaLtu/4x1jy14K7trGXE74hwkEc8x229pfVfi13lL?=
+ =?us-ascii?Q?cDvlla9mH9YI4ngmr0PJJ1TE+cogVhHYAAY+6GJF3nMUbuSsbdFLlXIQS/31?=
+ =?us-ascii?Q?FuT9Q+vtKy4mBg14INr0u5ovhUZAX1Ei5967ENH1MEF0d+WdDOb797C7uTDn?=
+ =?us-ascii?Q?fes9/9DkbbgfTrCv+ccMO7bzt7QVh6w4uBLOZFEoP175ypeRyjuwQ2vBVjo3?=
+ =?us-ascii?Q?05ta4sABQvqkTjrpUUhxGp+fJ9E5hiYORMZ6h4MMrGmPkeaTb45RTGXdt5c1?=
+ =?us-ascii?Q?RYivVhUBOjM6dnntDin9f3TwjQGFBCDZYKfW3DDl2HbyuHkyiLl5xmIEws6i?=
+ =?us-ascii?Q?/V9KTNN74DFd0LXwEqbQP40GpuukMYq8Ef9iefBtPzlb8qMHnCNgUB+MR9Jp?=
+ =?us-ascii?Q?XezJ7YobkagTOserugKp19nqoV2eJNby4VC405VHrWJrN6K9H9BtLqz/8jNZ?=
+ =?us-ascii?Q?Ka6pmXzsy7BHGMK5pMY9iXd0FQzaGmEeAfOx+0Ghm3UJKbyGj2/i+vhFJ0qX?=
+ =?us-ascii?Q?F5pj5VaWh9ihb9xRp67edmArkoNagM6YizNC94uEXxx6pVXpyldp2EVV4wBu?=
+ =?us-ascii?Q?/BoyvlG0izxKrXH3OGFuejdYzN6258hxe2is4aMG8kUsup6SS7BUm4RqY8CV?=
+ =?us-ascii?Q?Mb52tJVU9keMeVypW6xOARHVpu4hnmuw1GRafufYaZaXPLqmW20jD08I2eXM?=
+ =?us-ascii?Q?BzM3sSW0VNhflgSJif3PTJWABFtjRyE6kj2ZFo0gqdYRfR5+ZRt0q1oYFX8o?=
+ =?us-ascii?Q?WCBTkgvHccT3Zb8k8e8rCnIBsvFongL0Tt5t0oiUzHor+FG9hypSFTh9hqCy?=
+ =?us-ascii?Q?BsBNYOn4usUz4wRrYP+P/SJT2fLiILseY5/3Xc67QHXdIdPjoRJRaomxLRSr?=
+ =?us-ascii?Q?c/gHKW5UECTDq96f5oRVtINxwfUiszzozmQapz7/s7efAbBS6T+01lULU74c?=
+ =?us-ascii?Q?S6w67qS73qTx2lu0O0+4M+VBkcBMZt8JL78GRrLMMGI1HtabnbIPBBGmofiN?=
+ =?us-ascii?Q?Ck1OdKZi+XrBxJzIgIgMtNTbLlRr8KWU5BaGkAC/l/HAIIHKhj27jnZIe5vG?=
+ =?us-ascii?Q?p1n2kpUbUJNq8K9LQP5jsy7Mn2MyIvdN9WzyU3Zrh7JUAncRidtdfUZLjNAw?=
+ =?us-ascii?Q?pnsV0vcjDO4q1DirGJGuMxnTCkvrvjUp6P4tj+y8USVrZcMjggFz91v6ve/a?=
+ =?us-ascii?Q?C/v4eHW0R6p0uGnNDkA=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1c1f8d2-98f4-4cf3-3659-08da9179ea98
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2022 09:10:03.9104
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: oH37ObJQ28MFg4EooeVBMAOsp4bVx63nnxFUw2nX2jP5jIR3OMx62wrc2Kj2qP3N
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5574
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,204 +125,85 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Hi Amjad,
 
-On 01/09/2022 15:39, Amjad Ouled-Ameur wrote:
-> Provide thermal zone to read thermal sensor in the SoC. We can read all the
-> thermal sensors value in the SoC by the node /sys/class/thermal/
-> 
-> In mtk_thermal_bank_temperature, return -EAGAIN instead of -EACCESS
-> on the first read of sensor that often are bogus values.
-> This can avoid following warning on boot:
-> 
->    thermal thermal_zone6: failed to read out thermal zone (-13)
-> 
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> -----Original Message-----
+> From: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Sent: Wednesday, September 7, 2022 10:46 PM
+> To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>; Rob Herring
+> <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Shawn Guo <shawnguo@kernel.org>;
+> Sascha Hauer <s.hauer@pengutronix.de>; Pengutronix Kernel Team
+> <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; dl-linux-imx
+> <linux-imx@nxp.com>; Jun Li <jun.li@nxp.com>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>;
+> linux-usb@vger.kernel.org; devicetree@vger.kernel.org;
+> linux-kernel@vger.kernel.org
+> Subject: [PATCH 2/4] usb: dwc3: core: add gfladj_refclk_lpm_sel quirk
+>=20
+> This selects the SOF/ITP counter be running on ref_clk. As documented
+> U2_FREECLK_EXISTS has to be set to 0 as well.
+>=20
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+Reviewed-by: Li Jun <jun.li@nxp.com>
+
 > ---
-> Changes in V3:
-> - Use proper types.
-> - Use devm_kmalloc() instead of kmalloc().
-> - Fix tabs and spaces.
-> 
->   drivers/thermal/mtk_thermal.c | 100 ++++++++++++++++++++++++++--------
->   1 file changed, 76 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
-> index 088c388da241..5901787c57f5 100644
-> --- a/drivers/thermal/mtk_thermal.c
-> +++ b/drivers/thermal/mtk_thermal.c
-> @@ -259,6 +259,11 @@ enum mtk_thermal_version {
->   
->   struct mtk_thermal;
->   
-> +struct mtk_thermal_zone {
-> +	struct mtk_thermal *mt;
-> +	int id;
-> +};
+>  drivers/usb/dwc3/core.c | 8 +++++++-
+>  drivers/usb/dwc3/core.h | 2 ++
+>  2 files changed, 9 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c index
+> 8c8e32651473..12e8e7d34cb8 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -408,6 +408,10 @@ static void dwc3_ref_clk_period(struct dwc3 *dwc)
+>  	reg |=3D FIELD_PREP(DWC3_GFLADJ_REFCLK_FLADJ_MASK, fladj)
+>  	    |  FIELD_PREP(DWC3_GFLADJ_240MHZDECR, decr >> 1)
+>  	    |  FIELD_PREP(DWC3_GFLADJ_240MHZDECR_PLS1, decr & 1);
 > +
->   struct thermal_bank_cfg {
->   	unsigned int num_sensors;
->   	const int *sensors;
-> @@ -709,6 +714,32 @@ static void mtk_thermal_put_bank(struct mtk_thermal_bank *bank)
->   		mutex_unlock(&mt->lock);
->   }
->   
-> +static int _get_sensor_temp(struct mtk_thermal *mt, int id)
-> +{
-> +	u32 raw;
-> +	int temp;
+> +	if (dwc->gfladj_refclk_lpm_sel)
+> +		reg |=3D  DWC3_GFLADJ_REFCLK_LPM_SEL;
 > +
-> +	const struct mtk_thermal_data *conf = mt->conf;
-> +
-> +	raw = readl(mt->thermal_base + conf->msr[id]);
-> +
-> +	if (mt->conf->version == MTK_THERMAL_V1)
-> +		temp = raw_to_mcelsius_v1(mt, id, raw);
-> +	else
-> +		temp = raw_to_mcelsius_v2(mt, id, raw);
+>  	dwc3_writel(dwc->regs, DWC3_GFLADJ, reg);  }
+>=20
+> @@ -789,7 +793,7 @@ static int dwc3_phy_setup(struct dwc3 *dwc)
+>  	else
+>  		reg |=3D DWC3_GUSB2PHYCFG_ENBLSLPM;
+>=20
+> -	if (dwc->dis_u2_freeclk_exists_quirk)
+> +	if (dwc->dis_u2_freeclk_exists_quirk || dwc->gfladj_refclk_lpm_sel)
+>  		reg &=3D ~DWC3_GUSB2PHYCFG_U2_FREECLK_EXISTS;
+>=20
+>  	dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(0), reg); @@ -1525,6 +1529,8
+> @@ static void dwc3_get_properties(struct dwc3 *dwc)
+>  				"snps,dis-tx-ipgap-linecheck-quirk");
+>  	dwc->parkmode_disable_ss_quirk =3D device_property_read_bool(dev,
+>  				"snps,parkmode-disable-ss-quirk");
+> +	dwc->gfladj_refclk_lpm_sel =3D device_property_read_bool(dev,
+> +				"snps,gfladj-refclk-lpm-sel-quirk");
+>=20
+>  	dwc->tx_de_emphasis_quirk =3D device_property_read_bool(dev,
+>  				"snps,tx_de_emphasis_quirk");
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h index
+> 4fe4287dc934..11975a03316f 100644
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+> @@ -391,6 +391,7 @@
+>  #define DWC3_GFLADJ_30MHZ_SDBND_SEL		BIT(7)
+>  #define DWC3_GFLADJ_30MHZ_MASK			0x3f
+>  #define DWC3_GFLADJ_REFCLK_FLADJ_MASK		GENMASK(21, 8)
+> +#define DWC3_GFLADJ_REFCLK_LPM_SEL		BIT(23)
+>  #define DWC3_GFLADJ_240MHZDECR			GENMASK(30, 24)
+>  #define DWC3_GFLADJ_240MHZDECR_PLS1		BIT(31)
+>=20
+> @@ -1312,6 +1313,7 @@ struct dwc3 {
+>  	unsigned		dis_del_phy_power_chg_quirk:1;
+>  	unsigned		dis_tx_ipgap_linecheck_quirk:1;
+>  	unsigned		parkmode_disable_ss_quirk:1;
+> +	unsigned		gfladj_refclk_lpm_sel:1;
+>=20
+>  	unsigned		tx_de_emphasis_quirk:1;
+>  	unsigned		tx_de_emphasis:2;
+> --
+> 2.25.1
 
-Can you set a callback at init time instead of checking the version at 
-each get_sensor_temp() ?
-
-> +	/*
-> +	 * The first read of a sensor often contains very high bogus
-> +	 * temperature value. Filter these out so that the system does
-> +	 * not immediately shut down.
-> +	 */
-> +
-> +	if (temp > 200000)
-> +		return -EAGAIN;
-> +	else
-> +		return temp;
-> +}
-> +
->   /**
->    * mtk_thermal_bank_temperature - get the temperature of a bank
->    * @bank:	The bank
-> @@ -721,26 +752,9 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
->   	struct mtk_thermal *mt = bank->mt;
->   	const struct mtk_thermal_data *conf = mt->conf;
->   	int i, temp = INT_MIN, max = INT_MIN;
-> -	u32 raw;
->   
->   	for (i = 0; i < conf->bank_data[bank->id].num_sensors; i++) {
-> -		raw = readl(mt->thermal_base + conf->msr[i]);
-> -
-> -		if (mt->conf->version == MTK_THERMAL_V1) {
-> -			temp = raw_to_mcelsius_v1(
-> -				mt, conf->bank_data[bank->id].sensors[i], raw);
-> -		} else {
-> -			temp = raw_to_mcelsius_v2(
-> -				mt, conf->bank_data[bank->id].sensors[i], raw);
-> -		}
-> -
-> -		/*
-> -		 * The first read of a sensor often contains very high bogus
-> -		 * temperature value. Filter these out so that the system does
-> -		 * not immediately shut down.
-> -		 */
-> -		if (temp > 200000)
-> -			temp = 0;
-> +		temp = _get_sensor_temp(mt, i);
->   
->   		if (temp > max)
->   			max = temp;
-> @@ -751,7 +765,8 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
->   
->   static int mtk_read_temp(void *data, int *temperature)
->   {
-> -	struct mtk_thermal *mt = data;
-> +	struct mtk_thermal_zone *tz = data;
-> +	struct mtk_thermal *mt = tz->mt;
->   	int i;
->   	int tempmax = INT_MIN;
->   
-> @@ -770,10 +785,28 @@ static int mtk_read_temp(void *data, int *temperature)
->   	return 0;
->   }
->   
-> +static int mtk_read_sensor_temp(void *data, int *temperature)
-> +{
-> +	struct mtk_thermal_zone *tz = data;
-> +	struct mtk_thermal *mt = tz->mt;
-> +	int id = tz->id - 1;
-> +
-> +	if (id < 0)
-> +		return -EACCES;
-> +
-> +	*temperature = _get_sensor_temp(mt, id);
-> +
-> +	return 0;
-> +}
-> +
->   static const struct thermal_zone_of_device_ops mtk_thermal_ops = {
->   	.get_temp = mtk_read_temp,
->   };
-> 
-> +static const struct thermal_zone_of_device_ops mtk_thermal_sensor_ops = {
-> +	.get_temp = mtk_read_sensor_temp,
-> +};
-
-Please respin against linux-next, the thermal_zone_of_device_ops 
-structure does no longer exist. The conversion is trivial, here is a 
-example:
-
-https://lore.kernel.org/all/20220804224349.1926752-21-daniel.lezcano@linexp.org/
-
-
->   static void mtk_thermal_init_bank(struct mtk_thermal *mt, int num,
->   				  u32 apmixed_phys_base, u32 auxadc_phys_base,
->   				  int ctrl_id)
-> @@ -1072,6 +1105,7 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->   	u64 auxadc_phys_base, apmixed_phys_base;
->   	struct thermal_zone_device *tzdev;
->   	void __iomem *apmixed_base, *auxadc_base;
-> +	struct mtk_thermal_zone *tz;
->   
->   	mt = devm_kzalloc(&pdev->dev, sizeof(*mt), GFP_KERNEL);
->   	if (!mt)
-> @@ -1161,11 +1195,29 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->   
->   	platform_set_drvdata(pdev, mt);
->   
-> -	tzdev = devm_thermal_zone_of_sensor_register(&pdev->dev, 0, mt,
-> -						     &mtk_thermal_ops);
-> -	if (IS_ERR(tzdev)) {
-> -		ret = PTR_ERR(tzdev);
-> -		goto err_disable_clk_peri_therm;
-> +	for (i = 0; i < mt->conf->num_sensors + 1; i++) {
-> +		tz = devm_kmalloc(&pdev->dev, sizeof(*tz), GFP_KERNEL);
-> +		if (!tz)
-> +			return -ENOMEM;
-> +
-> +		tz->mt = mt;
-> +		tz->id = i;
-> +
-> +		tzdev = devm_thermal_zone_of_sensor_register(&pdev->dev, i, tz, (i == 0) ?
-> +							     &mtk_thermal_ops :
-> +							     &mtk_thermal_sensor_ops);
-> +
-> +		if (IS_ERR(tzdev)) {
-> +			if (PTR_ERR(tzdev) == -ENODEV) {
-> +				dev_warn(&pdev->dev,
-> +					 "sensor %d not registered in thermal zone in dt\n", i);
-> +				continue;
-> +			}
-> +			if (PTR_ERR(tzdev) == -EACCES) {
-> +				ret = PTR_ERR(tzdev);
-> +				goto err_disable_clk_peri_therm;
-> +			}
-> +		}
->   	}
->   
->   	ret = devm_thermal_add_hwmon_sysfs(tzdev);
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
