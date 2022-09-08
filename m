@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D0175B1C97
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 14:18:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3DB35B1CA4
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 14:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231543AbiIHMSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 08:18:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35160 "EHLO
+        id S231590AbiIHMUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 08:20:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230223AbiIHMR6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 08:17:58 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D3C0BCC01
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 05:17:57 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id x14so12034897lfu.10
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 05:17:57 -0700 (PDT)
+        with ESMTP id S231589AbiIHMUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 08:20:46 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F3CACD505
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 05:20:45 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id i26so11670463lfp.11
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 05:20:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=ck7V+o7JPb3N5t8+G9G1surewJtHGKQZMAePo7SGqo0=;
-        b=tsj1pSYdiYyvTqNXt1FY72ZnSGTTMGm06Sjc41bCQjYjInVfeyel2iFXOt6E+H9emc
-         SU3kqTMCgQkdj6nNYUzlQIgw5WFWS6c3tCDG1L0b16AY9i7knwFTHrMazizbhgqmAjRi
-         N0NmnHNfoK0PqU1a1t5+wuj5uAJbDNqXGU2V6rO8dWDWKuMz43SLhEUpedh05irJ9/c6
-         8sWQC7U/KaVWxtmOV8Awy4AxC+n7HOCISDks/Yy6xpkb5MrTBBoHox2iaIwMuc508y1x
-         VG5N+/ivUVZ/qQZKn5X87Z2XPJCaKjWCZzu+CNb0YNWCrRpzuCOSzS6CdfXQvh+RjRZL
-         e1IQ==
+        bh=ZlfvZ8tQr5gNlUoouZ3I9uNRBlKistdcE0MDcCmrbq4=;
+        b=lYk5Cwl1ThhWYFUC/pQfIp7A8QMyj8x/zUm/1s/COaudKrgFe5IPBhLNuWG5Trg0Jn
+         MJOfvY8J+XqxwZDTDPF0gBV3hip+vFdnX32JaOD/turJT3vyHK5L5gC2XPudecHwH9P5
+         VyM6NaGK+XvOVmnuFVl8rJoWLYCfOYHdv6JwZb/TMZtcLGbiqV6stEmh+WLC9y7rysJr
+         +q8KF7RUh8epOBMfdNi+/Eb83XferTCf7HToUMIhHYuyVO6ANib62PhMfHJnzSEq1Qpf
+         t281+Bfhq80x511FOMO/LYUxSLLK7WJZOKKy3AumgJpIU/qtPmngdLN+NRnmddWrvAWL
+         Gk/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=ck7V+o7JPb3N5t8+G9G1surewJtHGKQZMAePo7SGqo0=;
-        b=Ma9bWwSIu5IvdgwA/UGffcAsKQPwwTxQJixS72L8pWEL78Kj3b1o/3AiwIRVYuG22D
-         sIeoh0D7RnGxUsqHAf6Eb25mYuURjjl5gPwd4wMjN495plZXQUlGpSsq2Pee36OH7AGG
-         eY5uUe046noWlow3Wxa9CHPajV8BTXOOVmgDZbo7xWWAN1y0Peh4egoJcf7vGeOQ/K6/
-         eh/FlwAsuhmD7Xn5iOxDmMsRH5xWmFna90CdmFp4yqbKUn3hCcqV9A5rZmF8Fyark8Gb
-         O5OiLFYt+FFOd8NdKUQOtn6XJ9o201lpyKz5hYDV+z0vNgZ1b0ga/9zIBWi/lLczD45q
-         HKrg==
-X-Gm-Message-State: ACgBeo0PGrCNDtEdvg92ma8qH52JSPVRAJHQjYKw3rrdlcK06bjB7T9k
-        2g4TNSBIR8ZpE3EA9O93JnSlAg==
-X-Google-Smtp-Source: AA6agR4Fg7IVq6RMZ+ReLSyWao9EV+xIdPoQuu5k0CpfePwRxeHRwu9dpM1o9cmvXOsvUpU4oYiO/w==
-X-Received: by 2002:a19:5e5e:0:b0:497:a26d:89ef with SMTP id z30-20020a195e5e000000b00497a26d89efmr2937764lfi.555.1662639475896;
-        Thu, 08 Sep 2022 05:17:55 -0700 (PDT)
+        bh=ZlfvZ8tQr5gNlUoouZ3I9uNRBlKistdcE0MDcCmrbq4=;
+        b=E45RlB+E/6pBN+3uK00vq9HSy0oEIIT+RTspDVO0DmGAdKdr09vrwkZURsnkIKsTkp
+         vd6mhdNqsdyJz/fdWGODVR9Kijlt8w/AhYKETSeRjp+kGKMSOn+odMxd80hVqhuYQYBH
+         PW1NiQodIR6QdG10n/9sErLLwnr02dmo090+Nbg5XNDldppOkEYI5hgBJbYHwJrDcdBu
+         z5BVATZDVBRSitdMW0P/L1KMMwW6ZttCkFcf7wZjG1JqjE7fRizSHsot1aZ0Rfg31sIR
+         IUKOlG6y7sJ/kLoLptpUMsY1qgH0+5B/RNxWgC8ojDbKkS+2PDi425LQEkq67jObQZR4
+         fS6w==
+X-Gm-Message-State: ACgBeo2FugvOUZ8ZbRbj/FbHwY2PFlBQFbkPEV2xJlKRbgdphsWTupTv
+        NmH4oeGS6DFVWXXFN69m4VLP9Q==
+X-Google-Smtp-Source: AA6agR7VMqh8oJ3l0AiaXQ9a3lUiXGzxnL5vBOUpqUUZWZrosS4vE1RT8abc3K2o+aleCTQ3rc4TPw==
+X-Received: by 2002:a05:6512:2252:b0:494:7a42:6ba9 with SMTP id i18-20020a056512225200b004947a426ba9mr2558006lfu.273.1662639643696;
+        Thu, 08 Sep 2022 05:20:43 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 12-20020ac25f0c000000b00497a41b3a39sm1179754lfq.93.2022.09.08.05.17.54
+        by smtp.gmail.com with ESMTPSA id u10-20020ac258ca000000b0048b0975ac7asm361973lfo.151.2022.09.08.05.20.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 05:17:55 -0700 (PDT)
-Message-ID: <39b08217-b939-d188-12ce-ce6006282e1e@linaro.org>
-Date:   Thu, 8 Sep 2022 14:17:54 +0200
+        Thu, 08 Sep 2022 05:20:43 -0700 (PDT)
+Message-ID: <2b81d814-f47a-e548-83dc-b1e38857e8ce@linaro.org>
+Date:   Thu, 8 Sep 2022 14:20:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 2/7] dt-bindings: gpio: add binding for the GPIO block for
- Apple Mac SMC
+Subject: Re: [PATCH] dt-bindings: sound: ts3a227e: add control of debounce
+ times
 Content-Language: en-US
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
-        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+To:     Astrid Rost <astrid.rost@axis.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-References: <YxdInl2qzQWM+3bs@shell.armlinux.org.uk>
- <E1oVYUI-005CmB-84@rmk-PC.armlinux.org.uk>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     kernel@axis.com,
+        alsa-devel-mejlinglistan <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220907135827.16209-1-astrid.rost@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <E1oVYUI-005CmB-84@rmk-PC.armlinux.org.uk>
+In-Reply-To: <20220907135827.16209-1-astrid.rost@axis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,66 +80,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 15:19, Russell King (Oracle) wrote:
-> Add the DT binding for the Apple Mac System Management Controller GPIOs.
+On 07/09/2022 15:58, Astrid Rost wrote:
+> Add devicetree parameters to control the insertion, release and press
+> debounce times.
 > 
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Signed-off-by: Astrid Rost <astrid.rost@axis.com>
 > ---
->  .../devicetree/bindings/gpio/gpio-macsmc.yaml | 28 +++++++++++++++++++
->  .../devicetree/bindings/mfd/apple,smc.yaml    |  4 +++
->  2 files changed, 32 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+>  Documentation/devicetree/bindings/sound/ts3a227e.txt | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
-> new file mode 100644
-> index 000000000000..ee620fe50ca8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
-> @@ -0,0 +1,28 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Apple Mac System Management Controller GPIO
-> +
-> +maintainers:
-> +  - Hector Martin <marcan@marcan.st>
-> +
-> +description:
-> +  This describes the binding for the Apple Mac System Management Controller
-> +  GPIO block.
-> +
-> +properties:
-> +  gpio-controller: true
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    smc_gpio: gpio {
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> index 168f237c2962..47e3cd58bf19 100644
-> --- a/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> @@ -37,6 +37,10 @@ title: Apple Mac System Management Controller
->      description:
->        A phandle to the mailbox channel
->  
-> +patternProperties:
-> +  gpio:
+> diff --git a/Documentation/devicetree/bindings/sound/ts3a227e.txt b/Documentation/devicetree/bindings/sound/ts3a227e.txt
+> index 21ab45bc7e8f..a4aa4154c54c 100644
+> --- a/Documentation/devicetree/bindings/sound/ts3a227e.txt
+> +++ b/Documentation/devicetree/bindings/sound/ts3a227e.txt
+> @@ -17,6 +17,15 @@ Optional properies:
+>        Select 0/1/2/3/4/5/6/7 to specify MICBIAS voltage
+>        2.1V/2.2V/2.3V/2.4V/2.5V/2.6V/2.7V/2.8V
+>        Default value is "1" (2.2V).
+> + - ti,debounce-release: key release debounce (datasheet section 9.6.7).
 
-This is not a pattern. Should be in properties.
+Use standard property units "-ms".
 
-Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-
+Anyway new properties cannot be accepted. This has to be converted to DT
+schema (YAML).
 
 Best regards,
 Krzysztof
