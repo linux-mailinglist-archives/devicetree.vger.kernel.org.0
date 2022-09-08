@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10B6F5B1B01
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19C3F5B1B0A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:14:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229445AbiIHLN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 07:13:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48738 "EHLO
+        id S229514AbiIHLOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 07:14:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbiIHLNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:13:22 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2816E42D2
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:13:16 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id p5so6425547ljc.13
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:13:16 -0700 (PDT)
+        with ESMTP id S229536AbiIHLOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:14:33 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DEB52E8
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:14:30 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id k10so12540214lfm.4
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:14:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=vReDt8yJoofW75TqPCK861NZU37LZm5B+5UoGHmyr4g=;
-        b=fkvsTa9O0LX4Dm+3T/VX/F7rPoLPQTF5CuDwqd6YAjxeDf0pbsAH4TSr4MRJIbUiMy
-         2BExz/DG7E087WStoAiGWcqYskhwHa1gkLnXjk3DP4C/dE4cbYTMEBdUSuoi4Vq8x6HY
-         L5BgBMF9Hw92mMUMl6YSfzCGPFBSsQPJ/0Vw8BPt0WmSoJsFfiwe7l2x12MiG8r1HP1e
-         X7uAzaXSF7mxLmBXrluMgmJSPfiv30DUlNCOjpqIRqoo5ePHvoi32/qWXMfRAbMIrnmP
-         Z3NkVcyvXMYAvv9v1V6sItdJtXMprjh5uL2ByKMHhR5prt5yIiJrcWAcpy3K5v+dov9x
-         ZMWw==
+        bh=lOTUL/dGX2qPnIqVnwqCm/JY0MdVEu1ffIFeANierVc=;
+        b=NX7So7RqwuHTuhro/7Y2amMeoTl8U7qDm58/rnMgnh0JXl2yypGWS7ZCmEiSoebmOM
+         xsmcTXEoSwGvPogukmTIO1NSa0d0Qc0UFbvjBCy/er+bBz/4GsqvJ5tkGLXlUZANpNku
+         Jtqnszc3V7nGQsxhaLeT8DB1MfcB3kBZq5JtmCxlQDU0Au3qhj3DaZJe41fy4e5HkjY/
+         HoV2MuTSJnBOfx4RYVLvnT361S9krAm2UQC8AGht8Hb2Ba6tkq9LMOPxyjOX813RW5E/
+         5w/16BXUeBpOMLjfpA0qjB1x62w7fQP0R1Jk46nDu1WmI5g5vX0ZYkDMr2NFiGt3qeqi
+         kmyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=vReDt8yJoofW75TqPCK861NZU37LZm5B+5UoGHmyr4g=;
-        b=p1oDIhS9ihoXJlh0b3Sedm12wdZiczurZIj4Kcky//bC2wxZTTFZaqKnpKZSKbQFrD
-         N51x8C5AC/U6jB+4SZUHDpdx8S3OsoOUp3TTKGgfk6yxAuSjhDLcv0KTDT2J+mBykJGd
-         oljB63KrB07mGHeSZOtWZrsChIf0GjCXOMwwl5MnRBcJM4rO2LRYUEuc2Pb5OczYX0gH
-         sQsTm5uKaR1HmgTXuloRMld83ZMauWdAUAQQEqGUq0DqtutQHejCax5puB7U/kcXpVXR
-         j+3/TTcnZ2iRYZ+3jB8XSCHhoPyNARSkl/UUbOV3O8xayNHkZ7IZHRRWSyUQF9IH6c89
-         GHCQ==
-X-Gm-Message-State: ACgBeo19TN4y5PTZS2UwtUvBI0B9XZW/9ZfKQ7YT+5LSbIKwul2S9+GG
-        c7OcTLRWbOGtCqaVCphpKPkIcwLb+27K4w==
-X-Google-Smtp-Source: AA6agR4JeCyW9VC1eBsiZRcqPlxlTw0tPz8/qgiwtefT6Tt8bH/qCp4SvFpRtmwO09qh/tCLow0SGg==
-X-Received: by 2002:a2e:9447:0:b0:261:e71e:e3d with SMTP id o7-20020a2e9447000000b00261e71e0e3dmr2318222ljh.227.1662635595364;
-        Thu, 08 Sep 2022 04:13:15 -0700 (PDT)
+        bh=lOTUL/dGX2qPnIqVnwqCm/JY0MdVEu1ffIFeANierVc=;
+        b=i1uFkSqE+WBx36wH9VctP8sAQXbsLdoxZjWMltHdfTO6nv3P+dAW2aJwSpaGcAlZlX
+         9nZZcfOJieF9/xHmaqtSJtLImL3qy7A3QrgtedScyBh1PuXGydX+vl/VatPlnMTWFOTH
+         vgQEEMUEEX6ov9b8YTP34xgSijc9Nt33OPNWKJk5Al2JDj5u2ZReZdxT1+smqVWvw2NK
+         NB8wdr+GHweskNzjGzKe/DVCl//6QePvvTa26OGvvmvVBFWcDQLEPm1SEqoF2HR1iXnu
+         8NF4acoYXD+Z1XupThHcTWWoMlJswIS8nz5xwoNt67FaoXUG4b5NwWqMEv+6NY5fUbTJ
+         YFsQ==
+X-Gm-Message-State: ACgBeo3WUzvFgLAghmy3LplMAjFR2ZkmLES4g+CzC2h9t9GwcF/UnoUs
+        AAOxcEh/3EnB0aPzXNDZPloLNw==
+X-Google-Smtp-Source: AA6agR6ebzXGdrPSFf63QuBPnJL4RLwLE7F1HkNbloP41rBlJpnREYtrcdAFYLV3eEsjjIT3cWEs9g==
+X-Received: by 2002:a05:6512:1585:b0:494:9fd0:2ca with SMTP id bp5-20020a056512158500b004949fd002camr2454869lfb.439.1662635668679;
+        Thu, 08 Sep 2022 04:14:28 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w12-20020a05651234cc00b00489d1896c06sm2981545lfr.125.2022.09.08.04.13.14
+        by smtp.gmail.com with ESMTPSA id v8-20020a056512348800b0048b256bb005sm3007314lfr.49.2022.09.08.04.14.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 04:13:14 -0700 (PDT)
-Message-ID: <70f262d5-8d78-1c9a-2491-106af668f81a@linaro.org>
-Date:   Thu, 8 Sep 2022 13:13:13 +0200
+        Thu, 08 Sep 2022 04:14:27 -0700 (PDT)
+Message-ID: <2b809e98-85ea-6ad9-e810-106563937ddc@linaro.org>
+Date:   Thu, 8 Sep 2022 13:14:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 4/4] dt-bindings: qcom-pmic-gpio: Add PM7250B and PM8450
- bindings
+Subject: Re: [PATCH 2/4] pinctrl: qcom: spmi-gpio: Fix the GPIO strength
+ mapping
 Content-Language: en-US
 To:     Anjelique Melendez <quic_amelende@quicinc.com>, agross@kernel.org,
         bjorn.andersson@linaro.org, linus.walleij@linaro.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
 Cc:     konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org,
         linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        linux-kernel@vger.kernel.org,
+        Anirudh Ghayal <quic_aghayal@quicinc.com>
 References: <20220907201528.9351-1-quic_amelende@quicinc.com>
- <20220907201528.9351-5-quic_amelende@quicinc.com>
+ <20220907201528.9351-3-quic_amelende@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220907201528.9351-5-quic_amelende@quicinc.com>
+In-Reply-To: <20220907201528.9351-3-quic_amelende@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,28 +81,77 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/09/2022 22:15, Anjelique Melendez wrote:
-> Update the Qualcomm Technologies, Inc. PMIC GPIO binding documentation
-> to include compatible strings for PM7250B and PM8450 PMICs.
+> From: Anirudh Ghayal <quic_aghayal@quicinc.com>
 > 
+> The SPMI based PMICs have the HIGH and LOW GPIO output
+> strength mappings interchanged, fix them.
+> 
+> Keep the mapping same for older SSBI based PMICs.
+> 
+> CRs-Fixed: 2246473
+
+What is this tag about?
+
+> Signed-off-by: Anirudh Ghayal <quic_aghayal@quicinc.com>
 > Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c     | 2 +-
+>  drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c     | 4 ++--
+>  include/dt-bindings/pinctrl/qcom,pmic-gpio.h | 9 +++++++--
+>  3 files changed, 10 insertions(+), 5 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> index 694898f382be..a548323e54f1 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> @@ -24,6 +24,7 @@ properties:
->            - qcom,pm6150-gpio
->            - qcom,pm6150l-gpio
->            - qcom,pm6350-gpio
-> +          - qcom,pm7250b-gpio
->            - qcom,pm7325-gpio
->            - qcom,pm8005-gpio
->            - qcom,pm8008-gpio
+> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> index cf6b6047de8d..fceccf1ec099 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> @@ -525,7 +525,7 @@ static int pmic_gpio_config_set(struct pinctrl_dev *pctldev, unsigned int pin,
+>  			pad->pullup = arg;
+>  			break;
+>  		case PMIC_GPIO_CONF_STRENGTH:
+> -			if (arg > PMIC_GPIO_STRENGTH_LOW)
+> +			if (arg > PMIC_GPIO_STRENGTH_HIGH)
+>  				return -EINVAL;
+>  			pad->strength = arg;
+>  			break;
+> diff --git a/drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c b/drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c
+> index 1b41adda8129..0f96d130813b 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c
+> @@ -1,7 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+>   * Copyright (c) 2015, Sony Mobile Communications AB.
+> - * Copyright (c) 2013, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2013, 2018 The Linux Foundation. All rights reserved.
+>   */
+>  
+>  #include <linux/module.h>
+> @@ -371,7 +371,7 @@ static int pm8xxx_pin_config_set(struct pinctrl_dev *pctldev,
+>  			banks |= BIT(0);
+>  			break;
+>  		case PM8XXX_QCOM_DRIVE_STRENGH:
+> -			if (arg > PMIC_GPIO_STRENGTH_LOW) {
+> +			if (arg > PM8921_GPIO_STRENGTH_LOW) {
+>  				dev_err(pctrl->dev, "invalid drive strength\n");
+>  				return -EINVAL;
+>  			}
+> diff --git a/include/dt-bindings/pinctrl/qcom,pmic-gpio.h b/include/dt-bindings/pinctrl/qcom,pmic-gpio.h
+> index e5df5ce45a0f..950be952ad3e 100644
+> --- a/include/dt-bindings/pinctrl/qcom,pmic-gpio.h
+> +++ b/include/dt-bindings/pinctrl/qcom,pmic-gpio.h
 
-This is incomplete. You need to update allOf.
+You cannot mix bindings with driver. This is an ABI break.
+> @@ -12,9 +12,14 @@
+>  #define PMIC_GPIO_PULL_UP_1P5_30	3
+>  
+>  #define PMIC_GPIO_STRENGTH_NO		0
+> -#define PMIC_GPIO_STRENGTH_HIGH		1
+> +#define PMIC_GPIO_STRENGTH_LOW		1
+>  #define PMIC_GPIO_STRENGTH_MED		2
+> -#define PMIC_GPIO_STRENGTH_LOW		3
+> +#define PMIC_GPIO_STRENGTH_HIGH		3
+
+Didn't you just break all DTSes in the world?
 
 Best regards,
 Krzysztof
