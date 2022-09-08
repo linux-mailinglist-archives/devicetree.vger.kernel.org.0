@@ -2,80 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 532165B1A86
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 12:53:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A69A05B1AAA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 12:54:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231140AbiIHKw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 06:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43662 "EHLO
+        id S231249AbiIHKyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 06:54:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230515AbiIHKw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 06:52:56 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 098F5F754A
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 03:52:55 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id bq23so27069165lfb.7
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 03:52:54 -0700 (PDT)
+        with ESMTP id S230147AbiIHKyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 06:54:41 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7D714086
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 03:54:39 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id bt10so27079761lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 03:54:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=lLiZm3F7DHpwT1soBBOPDPPi1PUUeNiA/64S4ap2JL0=;
-        b=Wnhq67R04OunxdAsXcTFJ4FqT0EJs+BejDR4UgYcZnjWuXzdpwUvJLgQo8cT283Pkr
-         Sz6Q7PD4ZrrWk5WRtxxxr9y02HMEFX5D91KhYlGXXnjYinkQ+BFjfn4EswhS7jfMKUKV
-         DYE2p2jOtla/kZv2dXy7+UHSHSC5LEAI38R1xJCnTC/KvPBe9MDLwdAfdK7hK849WwUY
-         mKQLIVXHb6FmaY034nmqB6lmRYjNvRfMlWRouOdBv6UHbBC5JXkR0O+o9qPfvv7IL7jD
-         ETCJ2CqqlCDjwUnx2nli7dwedHORBlYm0uB0ZZUoIqcxJNikSTJqAPoWSCVOkLDGzquA
-         nhEA==
+        bh=bCjsbMYZ00s3E9QUzikbHsFvxZCZ1zkIocwZxv7IphA=;
+        b=xnXcsywD7K3tfuoeLQmbTCrHSULkd9jjsAbbkODi36eIdKZYGf270bvN7pW4YmSTmE
+         ALtFZIG9C/QKdmeZq3XdKUdu3VyALOORD83WBndMnn5y72Mt356vngP/31C40Fqw9u6b
+         FD2n3GnjEFtyKsiVm8aKrxIXPczOl5pNud3qMSeQcaAwdv3pGPkeMCRkCfHrvz9ZxUE1
+         r93fKphlsx0vGf2/jjvm44xVxOsnWYgs1alRF2spfmV9PdE7G1f5rmVyyrNrIZCp3feE
+         bbq5cay3jd4RSY9XLGC4FcjET1ggS7BK3cR7MGQoGUNFR5qrreZTmtANE41RXbkn1tRn
+         H0jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=lLiZm3F7DHpwT1soBBOPDPPi1PUUeNiA/64S4ap2JL0=;
-        b=Msy5hUXEp5S0sKLjkeNqVJiul8dUsDOs8PCB44XFsmNpm2930d2UNQD1P3mGvTEmX5
-         8J0l0iPxjzjfjtaXZ52lX/O6t80AYhHgRqfuZPjyuB/i0UviSAFcjq647GoGrhoLEOhL
-         YjchFz5dE0NZr0BfwyWOF9McE2l0vnuSDMbfMMzuTdel7qFGzWYuclp8pzmZ3SqYL08j
-         qq9nj5lYro6KONxSLi4p0/7fpA164tZe8AsUdZYy5FjGduGQcr+3qytXyPYxC9mi5IAP
-         9Y7WHvo4rx1wGru6w3gLEAB4q490L1F5x79kMiJPyOmfYz4NrstcEccAjSVqKr1jh7fe
-         D9Lw==
-X-Gm-Message-State: ACgBeo23FoJhesIuXlBVQ3RQXq8FAFwZLsHdcDbkbYGCSgO3adk/hCke
-        B3Hp2e48xN02vk4sn+/gGvy++w==
-X-Google-Smtp-Source: AA6agR4oC2P7OxbXsVkDCbos0XwdwBT5MRWn157kGrbH+fNz/QIGE0jcG2JnxEEyG/5Gti7OP6VMhQ==
-X-Received: by 2002:a05:6512:1515:b0:497:a102:3951 with SMTP id bq21-20020a056512151500b00497a1023951mr2833690lfb.290.1662634373423;
-        Thu, 08 Sep 2022 03:52:53 -0700 (PDT)
+        bh=bCjsbMYZ00s3E9QUzikbHsFvxZCZ1zkIocwZxv7IphA=;
+        b=bL29YOxksxfyn+RWvzo0DR5Ws6X+5wcsKSVbbDbn/lCeTFoTFHEsF1N5tq+w1O6p0E
+         ZY56l2pY0wix+OvJ3lGdfMgtNF1nSCgeNQ0gVb5MN0sdM6P/Y0Jph0/Wd7p0bJ5p2M7n
+         +cd5nmJTAYvjov9p7KSESXWaOM+flpT0ZzjyLWW969W04jIYAZ9r6XEGLNH7HlOS5UrX
+         Xs1pQvEEurHFEBnlTViGyixdQ4eu2dNUoQNiiOo6UdcIakBWwaEFCABaRzKHshfzwfJ5
+         lyMlPQ1Rp2M5nm0WJi2XKjhNsaLfW5XAe5859CG5FjKqUBXTwSVsB9bvmvITh88BbXqK
+         G6fw==
+X-Gm-Message-State: ACgBeo3T0zqDWZZXlohv8wSyd+0d5ZbLqHOrssQo0i4zdH1QKeWe9CqQ
+        iju916rP5LjEe8mUjirN96H8HQ==
+X-Google-Smtp-Source: AA6agR5rfdSWsMUsiO6kMYy0JFg5VhOo46XNZ5k5GrnOkUDIdPzN4hKQ+17pXP0rav/iy2DwBCot9A==
+X-Received: by 2002:a05:6512:22d5:b0:494:7988:f591 with SMTP id g21-20020a05651222d500b004947988f591mr2458085lfu.548.1662634477415;
+        Thu, 08 Sep 2022 03:54:37 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id e2-20020a05651236c200b00492e5d31201sm1797304lfs.7.2022.09.08.03.52.52
+        by smtp.gmail.com with ESMTPSA id g11-20020a2eb5cb000000b002637c04b472sm3110010ljn.83.2022.09.08.03.54.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 03:52:52 -0700 (PDT)
-Message-ID: <9d19d32a-c1e4-2100-62ee-908616ea7a5a@linaro.org>
-Date:   Thu, 8 Sep 2022 12:52:51 +0200
+        Thu, 08 Sep 2022 03:54:36 -0700 (PDT)
+Message-ID: <e015754f-2f33-ab7d-4f18-e1bef39a8390@linaro.org>
+Date:   Thu, 8 Sep 2022 12:54:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v4 1/2] arm64: dts: qcom: sc7280: Add missing aggre0,
- aggre1 clocks
+Subject: Re: [PATCH 1/9] dt-bindings: arm: Add support for DSB element
 Content-Language: en-US
-To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        helgaas@kernel.org
-Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        quic_vbadigan@quicinc.com, quic_hemantk@quicinc.com,
-        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-        quic_ramkri@quicinc.com, manivannan.sadhasivam@linaro.org,
-        swboyd@chromium.org, dmitry.baryshkov@linaro.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1662626776-19636-1-git-send-email-quic_krichai@quicinc.com>
- <1662626776-19636-2-git-send-email-quic_krichai@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org
+References: <1662626705-13097-1-git-send-email-quic_taozha@quicinc.com>
+ <1662626705-13097-2-git-send-email-quic_taozha@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1662626776-19636-2-git-send-email-quic_krichai@quicinc.com>
+In-Reply-To: <1662626705-13097-2-git-send-email-quic_taozha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,16 +90,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2022 10:46, Krishna chaitanya chundru wrote:
-> Add missing aggre0, aggre1 clocks.
+On 08/09/2022 10:44, Tao Zhang wrote:
+> Add property "qcom,dsb-elem-size" to support DSB element for TPDA.
+> Specifies the DSB element size supported by each monitor connected
+> to the aggregator on each port. Should be specified in pairs (port,
+> dsb element size).
 > 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
 > ---
-> changes since v3:
+>  Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+> index eb9bfc5..1bb3fdf 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+> @@ -40,6 +40,13 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  qcom,dsb-elem-size:
+> +    description: |
+> +      Specifies the DSB element size supported by each monitor
+> +      connected to the aggregator on each port. Should be specified
+> +      in pairs (port, dsb element size).
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+So it is rather uint32-matrix (need to describe the items subschema).
+What about maxItems?
 
 Best regards,
 Krzysztof
