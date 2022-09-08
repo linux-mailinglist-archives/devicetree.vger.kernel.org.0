@@ -2,71 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 735DC5B1B5C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59FC55B1B60
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 13:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231216AbiIHL0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 07:26:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52040 "EHLO
+        id S230435AbiIHL1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 07:27:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231218AbiIHL0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:26:18 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 852ADD9EB0
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:26:02 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id t14so18239851wrx.8
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:26:02 -0700 (PDT)
+        with ESMTP id S230511AbiIHL1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 07:27:42 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8E66AF0F6
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 04:27:40 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id q7so27221736lfu.5
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 04:27:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=j2BR3h16Mhy5gM4KsP6TulbAM/2F99pvBCc7QlwzcZ4=;
-        b=uXljko84xfgZ+EbWTYKt+EYyPNAn2VCe1GJ+ETRhy7sJdtRxGnwvZOum0FJuZHL2VU
-         IoeKUEB1eJ7UfdasgqTG3JkOddRqmhCSxKk2QVh7KBD45mNSCRuWZS8sFHmJpV+0n3tP
-         vZlxfYJ6wg6cMZSgs6NtQD+gWvLmVptb7GZ9ydpNpiDnVg79gUUb6heLomAGq9+Rtc3n
-         hcr9zM8Gkba+NlaeHR/DVmijLFMlvGu9IaB5ZMqJp9CE6jyHMjiyAlpQYQqgeMvXbHoz
-         +UBnGjRjju/4Esqao3NKDjhL64Pk+eG4JESKsPA/vG6B5ByCTN1aH5SLEDnfYNlhafLM
-         Radw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=324YOR1PCE5dxnfUe+4PTVGnNqdGB/dqbwqSI126RKw=;
+        b=HIusbxjg7mCcRMNTgl0EfDiXnbFO00WdSVelUTAXDKbB9M5VKM2G7r/Y0jcCya2mGn
+         qqiEjhbH3WXJhKGAAdbGEDWQzqRT08EOT9Y6L/Q98mJUC15uAGWuS93vD8NOO6BvZMPJ
+         NDcp7XF6ja02fuZmDA8r18s6bQp4NvQ2Moy09fL74N9GmPrAyS75u8Yj8jOHP44KTswx
+         4OKI8yTCEMk0Vh+uXSFWyYvN/pY9OBkywbmf9lPGN0VPBzSyrOJeWDDbV3zf1om7k1tM
+         8gRb/kqno9r0qRbXNDnsgINZS7UvJ1mjIYK+eJ070Hb9ulejj2x0lahnZon/trepLJhT
+         YxKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=j2BR3h16Mhy5gM4KsP6TulbAM/2F99pvBCc7QlwzcZ4=;
-        b=kCUT9XIeNTs0dPZ6F4xxzzu+zpAJB7WVNjT/LJo9UkePsDr/dE1Jf+7tKVOHNA3sE8
-         yzvdc48maObonQy8baYHFn/mW5dQKodRlkZn05ZYexgZci7U2MEg1DYF5dHx/pHPuAwT
-         vSReENJIb3rd+Z4coCbh7waijJ/QfghQzRDQTf61ZTp4Mfeg0Vh+W6hvaFzvp+tx46Pt
-         4QdGdMpkuEWU4bByzc5F9dzLnn4nYd5j5VS2/Igm2tC1ATT4hLCKbq2yEkLkzxWtqtZ/
-         6sZkSz39UgmEsi7YbCCL0v58G1Ot3OStin/w9R9IbwbYRiEb12OdoXvv+hniEImuMjE1
-         XwvQ==
-X-Gm-Message-State: ACgBeo0mzPaQf++s5ajhifNMrumQabxzMsR9TQya7HmKYYtplPZgBEEE
-        z6T5jAT/gecW3iHsRdxqBtYM2g==
-X-Google-Smtp-Source: AA6agR57oyHKdotUmWefM1G8UI42vl/MzGn78mUd6ti+t+FghYyFCFPVXHGvm9GSes3OXkJLgot2zg==
-X-Received: by 2002:a05:6000:1146:b0:228:d61c:2c83 with SMTP id d6-20020a056000114600b00228d61c2c83mr4888181wrx.332.1662636361097;
-        Thu, 08 Sep 2022 04:26:01 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id w10-20020a05600c474a00b003a608d69a64sm2582382wmo.21.2022.09.08.04.26.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 04:26:00 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, myungjoo.ham@samsung.com,
-        cw00.choi@samsung.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gurus@codeaurora.org,
-        marijn.suijten@somainline.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     bryan.odonoghue@linaro.org
-Subject: [PATCH v4 2/2 RESEND] extcon: qcom-spmi: Switch to platform_get_irq_byname_optional
-Date:   Thu,  8 Sep 2022 12:25:56 +0100
-Message-Id: <20220908112556.860343-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220908112556.860343-1-bryan.odonoghue@linaro.org>
-References: <20220908112556.860343-1-bryan.odonoghue@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=324YOR1PCE5dxnfUe+4PTVGnNqdGB/dqbwqSI126RKw=;
+        b=0qICkZEKmisNbXI+hvG40DaMQyksSv0YHBYOF8HDpXbUEt4j99u/caJULcYz5+m5oR
+         kk/T6JAroRyqi6LEQ5CVUYbdHHQG+vq83TRvfrLoE4wSCkXOITsXC/TOfoqeHnvhxHpl
+         fwREUOPVoMI9xbLBE470V6wTdoTjvVsydJx6u/wSip07EN8572LcTqZZuQgzdirRqdJV
+         e44GxoMzBoYPgOTeCjkO0mDdfZB2PtLDh5ZyPpxZ+tn0KLSKTuPDm2/szkETTllOQ0yz
+         5jLhGVTife0JapMPrEflbJmdiNw4n26NM1lO6zomcNi4rK5QeebrwRxyi05qB2UZ7Nzd
+         q3Ew==
+X-Gm-Message-State: ACgBeo0CpO3u2adU32L5wJLmWss2+RlZdSkJXXhDIP6W3Hj7xh1aoIt6
+        In2ukMeYaDJ+Q4HgrHOmt8SG/Q==
+X-Google-Smtp-Source: AA6agR46Zf2WKBxWQRhQ7sD8FP2Zo1esjq2RpMjqXiPjsdcreHxsvLc6q0MI2ehXSwhtMy+lHbbb6Q==
+X-Received: by 2002:a05:6512:2307:b0:494:6afd:7b2 with SMTP id o7-20020a056512230700b004946afd07b2mr2713816lfu.559.1662636459128;
+        Thu, 08 Sep 2022 04:27:39 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c14-20020a056512324e00b00491734dcb89sm2989667lfr.196.2022.09.08.04.27.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Sep 2022 04:27:38 -0700 (PDT)
+Message-ID: <0852ffa5-9996-0f42-c5a8-d1fe9d39887e@linaro.org>
+Date:   Thu, 8 Sep 2022 13:27:36 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v6 06/17] dt-bindings: mfd: amd,pensando-elbasr: Add AMD
+ Pensando Elba System Resource chip
+Content-Language: en-US
+To:     "Larson, Bradley" <Bradley.Larson@amd.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "alcooperx@gmail.com" <alcooperx@gmail.com>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "brijeshkumar.singh@amd.com" <brijeshkumar.singh@amd.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "gsomlo@gmail.com" <gsomlo@gmail.com>,
+        "gerg@linux-m68k.org" <gerg@linux-m68k.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "piotrs@cadence.com" <piotrs@cadence.com>,
+        "p.yadav@ti.com" <p.yadav@ti.com>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "samuel@sholland.org" <samuel@sholland.org>,
+        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
+        "Suthikulpanit, Suravee" <Suravee.Suthikulpanit@amd.com>,
+        "Lendacky, Thomas" <Thomas.Lendacky@amd.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20220820195750.70861-1-brad@pensando.io>
+ <20220820195750.70861-7-brad@pensando.io>
+ <20220822142544.GA3770388-robh@kernel.org>
+ <554f33b4-d235-5516-e8ff-5bf80d63a9b9@amd.com>
+ <936c5623-07b9-c49d-e113-fc056a4eb9bc@linaro.org>
+ <b064ed4c-d5a7-614f-008e-61ff2ac27f88@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b064ed4c-d5a7-614f-008e-61ff2ac27f88@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,47 +107,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Valid configurations for the extcon interrupt declarations are
+On 01/09/2022 22:37, Larson, Bradley wrote:
+> On 9/1/22 12:20 AM, Krzysztof Kozlowski wrote:
+>> On 01/09/2022 02:01, Larson, Bradley wrote:
+>>>>> +  is implemented by a sub-device reset-controller which accesses
+>>>>> +  a CS0 control register.
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Brad Larson <blarson@amd.com>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - enum:
+>>>>> +          - amd,pensando-elbasr
+>>>>> +
+>>>>> +  spi-max-frequency:
+>>>>> +    description: Maximum SPI frequency of the device in Hz.
+>>>> No need for generic descriptions of common properties.
+>>> Changed to "spi-max-frequency: true" and moved to end of properties.
+>> Then you should rather reference spi-peripheral-props just like other
+>> SPI devices.
+> 
+> 
+> Will look at this dependent on the result of below
+> 
+> 
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  '#address-cells':
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  '#size-cells':
+>>>>> +    const: 0
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +  - spi-max-frequency
+>>>>> +
+>>>>> +patternProperties:
+>>>>> +  '^reset-controller@[a-f0-9]+$':
+>>>>> +    $ref: /schemas/reset/amd,pensando-elbasr-reset.yaml
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>>> +
+>>>>> +    spi {
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <0>;
+>>>>> +        num-cs = <4>;
+>>>>> +
+>>>>> +        sysc: system-controller@0 {
+>>>>> +            compatible = "amd,pensando-elbasr";
+>>>>> +            reg = <0>;
+>>>>> +            #address-cells = <1>;
+>>>>> +            #size-cells = <0>;
+>>>>> +            spi-max-frequency = <12000000>;
+>>>>> +
+>>>>> +            rstc: reset-controller@0 {
+>>>>> +                compatible = "amd,pensando-elbasr-reset";
+>>>>> +                reg = <0>;
+>>>> What does 0 represent here? A register address within 'elbasr' device?
+>>> Removed, I recall a check threw a warning or error without reg.
+>>>
+>>>> Why do you need a child node for this? Are there other sub-devices and
+>>>> your binding is incomplete? Just put '#reset-cells' in the parent.
+>>> Without a reset-controller node and booting the function
+>>> __of_reset_control_get(...) fails to find a match in the list here
+>> That's not actually the answer to the question. There was no concerns
+>> whether you need or not reset controller. The question was why do you
+>> need a child device instead of elbasr being the reset controller.
+>>
+>> Your answer does not cover this at all, so again - why do you need a
+>> child for this?
+>>
+> 
+> If the parent becomes a reset-controller compatible with
+> "amd,pensando-elbasr-reset" then the /dev node will not be created
 
-- usb_id
-- usb_vbus
-- (usb_id | usb_vbus)
+Why /dev node will not be created? How bindings affect having or not
+having something in /dev ?
 
-In the case of a standalone usb_id or usb_vbus failure to find one of the
-interrupts shouldn't generate a warning message. A warning is already in
-place if both IRQs are missing.
+> as there is no match to "amd,pensando-elbasr" for cs0.  For cs0 internal
+> to linux the reset-controller manages one register bit to hardware reset
+> the mmc device.  A userspace application opens the device node to manage
+> transceiver leds, system leds, reporting temps to host, other reset
+> controls, etc.  Looking at future requirements there likely will be other
+> child devices.
 
-Switch to using platform_get_irq_byname_optional() in order to facilitate
-this behaviour.
+You mean "amd,pensando-elbasr" will instantiate some more devices? Why
+you cannot add the binding for them now? This is actually important
+because earlier we agreed you remove unit address from children.
 
-Suggested-by: Marijn Suijten <marijn.suijten@somainline.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/extcon/extcon-qcom-spmi-misc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> Going down this path with one compatible should reset-elbasr.c just be
+> deleted and fold it into the parent driver pensando-elbasr.c? Then I
+> wonder if it even belongs in drivers/mfd and should just be modified
+> and put in drivers/spi.
 
-diff --git a/drivers/extcon/extcon-qcom-spmi-misc.c b/drivers/extcon/extcon-qcom-spmi-misc.c
-index eb02cb962b5e1..f72e90ceca53d 100644
---- a/drivers/extcon/extcon-qcom-spmi-misc.c
-+++ b/drivers/extcon/extcon-qcom-spmi-misc.c
-@@ -123,7 +123,7 @@ static int qcom_usb_extcon_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	info->id_irq = platform_get_irq_byname(pdev, "usb_id");
-+	info->id_irq = platform_get_irq_byname_optional(pdev, "usb_id");
- 	if (info->id_irq > 0) {
- 		ret = devm_request_threaded_irq(dev, info->id_irq, NULL,
- 					qcom_usb_irq_handler,
-@@ -136,7 +136,7 @@ static int qcom_usb_extcon_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	info->vbus_irq = platform_get_irq_byname(pdev, "usb_vbus");
-+	info->vbus_irq = platform_get_irq_byname_optional(pdev, "usb_vbus");
- 	if (info->vbus_irq > 0) {
- 		ret = devm_request_threaded_irq(dev, info->vbus_irq, NULL,
- 					qcom_usb_irq_handler,
--- 
-2.36.1
+How is it related to bindings?
 
+Best regards,
+Krzysztof
