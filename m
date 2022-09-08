@@ -2,121 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CDD95B198B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 12:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 199CA5B19D9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 12:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbiIHKDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 06:03:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41114 "EHLO
+        id S230181AbiIHKXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 06:23:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230325AbiIHKDc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 06:03:32 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7407CBAD83;
-        Thu,  8 Sep 2022 03:03:30 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 58C9114BF;
-        Thu,  8 Sep 2022 03:03:36 -0700 (PDT)
-Received: from [10.1.39.19] (e122027.cambridge.arm.com [10.1.39.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 936833F73D;
-        Thu,  8 Sep 2022 03:03:23 -0700 (PDT)
-Message-ID: <65948185-b017-3da5-fdce-e28887b01ff4@arm.com>
-Date:   Thu, 8 Sep 2022 11:03:21 +0100
+        with ESMTP id S229976AbiIHKXL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 06:23:11 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DD5D2740
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 03:23:10 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id x14so11575817lfu.10
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 03:23:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=71ULh6vj0eJOKdAumyIOV8TqB+wxiHSVYFR9puUSOIA=;
+        b=P//ALHVYYciXScMLp7+9vpKQ4XAN0wEETZyPFlT6E3f96d68C+LdDDb9Lk5d0pvkKZ
+         LJCbdaMyYDBXzyJK3qmY4lHSTj2cObcRrk8VyU+citDgi4Ni1uTUk+6t/GQSqAxK+3ij
+         bRP6dlUkdoYF+bQCwKSpZBlDm8TQDKvj4KBZLJtZiEt4r3IMtVDJQR83Bh/m/sjMP+w/
+         otK2YYqfBE1kKgSfHEFjTy6QpXJSUnzD5j512Y6msbAqHp8vLa43fXwh+gl4v+95vBiC
+         4TXEqU9O0NdbH0n6qbystDGRKh8oxTo5IZBIAFIEZfFFEL0gmaZkCrRKKrmBuftbrAL9
+         Bj3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=71ULh6vj0eJOKdAumyIOV8TqB+wxiHSVYFR9puUSOIA=;
+        b=Gipxx/Htge+g5pRE+FaMGG9giCBnDhroK9urXf9ykIGfIj+SWIJzM+T73fg1Vdmclc
+         R+8gb4gcIXzD6AUhp9pAqyl2QAeIiburKXCi8lMX01w4B6Uh2z0xO8dwOL17CXLZbxqc
+         v2RVzyHI+lkiBxEgWe43REQCuiZ5DlkffbZlGqDe3ulE5IRBSZwwE8t8L/qRcFr1gda8
+         eU8/ZuVAwX41zxcMIEUkbmZfhWKtLtBLPTfl/jYqWLh6yXsdY8hkPS/3xdlryUvOGNpr
+         gMFCa3gWut4Omy3Jt7SHpVdNaTyzdwfiK3v+zGIzLPYBOr3m+a57wtizW1BfHiNxhnDq
+         vAFw==
+X-Gm-Message-State: ACgBeo2YFg+q2GM126GYGUg+PM8Orq1cGhg/ZY1JwpM4VUC4jllfPXL5
+        nprIF01UNziHjjMRKzL95bbOWRSsUdwtiw==
+X-Google-Smtp-Source: AA6agR6z9LUNGwm1LnmkKQ/7/EjbPVHZgUIgnuJ6rrG2/NIpecHpPVO66VZ5CUbOGXH7j5Q96ZxxkA==
+X-Received: by 2002:a05:6512:159e:b0:498:f1eb:f7a with SMTP id bp30-20020a056512159e00b00498f1eb0f7amr358237lfb.425.1662632588959;
+        Thu, 08 Sep 2022 03:23:08 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id q3-20020a056512210300b004946aef1814sm2276848lfr.137.2022.09.08.03.23.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Sep 2022 03:23:08 -0700 (PDT)
+Message-ID: <51d77893-502d-9581-5d50-e99ff0a730e6@linaro.org>
+Date:   Thu, 8 Sep 2022 12:23:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4 4/5] drm/panfrost: devfreq: set opp to the recommended
- one to configure regulator
-Content-Language: en-GB
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh@kernel.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Qiang Yu <yuq825@gmail.com>
-References: <20220906153034.153321-1-peron.clem@gmail.com>
- <20220906153034.153321-5-peron.clem@gmail.com>
-From:   Steven Price <steven.price@arm.com>
-In-Reply-To: <20220906153034.153321-5-peron.clem@gmail.com>
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 3/3] regulator: dt-bindings: qcom,rpmh: Indicate
+ regulator-allow-set-load dependencies
+Content-Language: en-US
+To:     Andrew Halaney <ahalaney@redhat.com>
+Cc:     agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dianders@chromium.org, johan@kernel.org
+References: <20220902185148.635292-1-ahalaney@redhat.com>
+ <20220902185148.635292-4-ahalaney@redhat.com>
+ <de24bc67-f608-d9a0-31e7-ba291c469573@linaro.org>
+ <20220906144117.wyqulotg52aqru7u@halaneylaptop>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220906144117.wyqulotg52aqru7u@halaneylaptop>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-10.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 16:30, Clément Péron wrote:
-> Enabling panfrost GPU OPP with dynamic regulator will make OPP
-> responsible to enable and configure it.
+On 06/09/2022 16:41, Andrew Halaney wrote:
+> On Mon, Sep 05, 2022 at 06:50:02PM +0200, Krzysztof Kozlowski wrote:
+>> On 02/09/2022 20:51, Andrew Halaney wrote:
+>>> For RPMH regulators it doesn't make sense to indicate
+>>> regulator-allow-set-load without saying what modes you can switch to,
+>>> so be sure to indicate a dependency on regulator-allowed-modes.
+>>
+>> Hmmmm.... What about other regulators?
+>>
 > 
-> Unfortunatly OPP configure and enable the regulator when an OPP
-
-NIT: Unfortunately
-
-> is asked to be set, which is not the case during
-> panfrost_devfreq_init().
+> My understanding (which very well might be wrong) is that if your
+> regulator is allowed to change modes, and sets regulator-allow-set-load,
+> then you have to describe what modes you can switch to.
+>> But if you don't allow setting modes (for example qcom_rpm-regulator.c)
+> and just allow yourself to set_load() directly, then you don't need it.
 > 
-> This leave the regulator unconfigured and if no GPU load is
-> triggered, no OPP is asked to be set which make the regulator framework
-> switching it off during regulator_late_cleanup() without
-> noticing and therefore make the board hang as any access to GPU
-> memory space make bus locks up.
-> 
-> Call dev_pm_opp_set_opp() with the recommend OPP in
-> panfrost_devfreq_init() to enable the regulator, this will properly
-> configure and enable the regulator and will avoid any switch off
-> by regulator_late_cleanup().
-> 
-> Suggested-by: Viresh Kumar <viresh.kumar@linaro.org>
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> So there is a more general requirement that applies regulator wide, but
+> I'm not sure how you would apply that at a higher level. I don't see a
+> good way to figure out in dt-binding land what regulator ops each
+> binding supports.
 
-Reviewed-by: Steven Price <steven.price@arm.com>
+The bindings don't express it, but the regulator core explicitly asks
+for set_mode with set_load callbacks in drms_uA_update(), which depends
+on REGULATOR_CHANGE_DRMS (toggled with regulator-allow-set-load).
 
-Note this same sequence is used in the Lima driver, so it would be good
-to submit the fix there too as it presumably is affected by the same
-issue. I've CC'd Qiang for visibility.
+drms_uA_update() later calls regulator_mode_constrain() which checks if
+mode changing is allowed (REGULATOR_CHANGE_MODE).
 
-I'll push this patch to drm-misc-fixes (with the typo above fixed), the
-device tree patches can go through a different tree.
+Therefore based on current implementation and meaning of
+set-load/allowed-modes properties, I would say that this applies to all
+regulators. I don't think that RPMh is special here.
 
-Steve
-
-> ---
->  drivers/gpu/drm/panfrost/panfrost_devfreq.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_devfreq.c b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
-> index 5110cd9b2425..fe5f12f16a63 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_devfreq.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
-> @@ -131,6 +131,17 @@ int panfrost_devfreq_init(struct panfrost_device *pfdev)
->  		return PTR_ERR(opp);
->  
->  	panfrost_devfreq_profile.initial_freq = cur_freq;
-> +
-> +	/*
-> +	 * Set the recommend OPP this will enable and configure the regulator
-> +	 * if any and will avoid a switch off by regulator_late_cleanup()
-> +	 */
-> +	ret = dev_pm_opp_set_opp(dev, opp);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(dev, "Couldn't set recommended OPP\n");
-> +		return ret;
-> +	}
-> +
->  	dev_pm_opp_put(opp);
->  
->  	/*
-
+Best regards,
+Krzysztof
