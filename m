@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 147AB5B1FF5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 545F95B1FF8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:01:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232143AbiIHOA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 10:00:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60848 "EHLO
+        id S230186AbiIHOBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 10:01:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232125AbiIHOAM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:00:12 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B5E6326D5
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 06:59:53 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id fv3so11766670pjb.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 06:59:53 -0700 (PDT)
+        with ESMTP id S232178AbiIHOAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:00:13 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12F0943303
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 06:59:57 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id x1-20020a17090ab00100b001fda21bbc90so2435499pjq.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 06:59:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=8YzA9DGcWeqSd1lJDOz/mQW0gmpLOqtC0NrwIzSbD34=;
-        b=xefgUflbVMTJBhQZB5sZ6fOvhk/I8yl9Twht70cLvg54tFbeePZ59JNGQYOT4ubDRe
-         PiejAQOGgnSBY27EzKXC869YvaHDWzowz+eaKySTpYsXNC5e+9FPzhQwJ9Xxil5QrWd6
-         BO9EAlRcGGi93qiB4n3hi8iA15MLUePwZniY1QgwqU+5iA9AZ2BdOtvdEDC5MJnDQlYn
-         493s2mAvv5J+C2CYyMFs2RvAMX29lzzfWc8nKNOF+s5+EIseTH888jmjeXO4f3tg0GvQ
-         cZ+KAgoyNyoHUHk5Hk8b7W9FFN//kenXIEZdrBmfVGHkEowV41+0XEwY5ppBWQplhd3/
-         Kc2Q==
+        bh=uBX7AFPsGNpi09ZLgJTSk7omj1yoYlNTHSdXs9g/ZQE=;
+        b=vmi6Iu6rO9ZJTYd5xlE1Hl8I8lsDOBhqmqlH8MSqkLGYIm5Z4TYFisNM0zsxo7twIC
+         lG/W1dc6D+Hvr+o6o9vcCTxcFcPc8Hg1M21g4+S/8qI5KyKNQOtkdiOw8SXA+G9gMS5M
+         kP4Fq//G28Bk7C89BRXHsIkUYgKdO23dgzZz2e0F+XMm3bW5aXxV7MLe/YzJViw6BE7Y
+         UcaO2SzJuAT0zaVPM1o2s0MdJZTwLjkIINJwSeG23FDoYCvzTw/yra+Uj/1/Rg5CL+K4
+         nqI/LvYudVi8a3Vui1jy/Z/lV41zmZ/06Vs5xe0tnczzcPqWK1Da7jdwbmwhFFogF5Qg
+         z/KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=8YzA9DGcWeqSd1lJDOz/mQW0gmpLOqtC0NrwIzSbD34=;
-        b=obrwT3kP4gYjRqZjFCxboRoyzi0yI2G1UAISfclownX3XgDqHcXQXo3JVxOqXRpInR
-         71AII/IFch+LeOuer25ug02b4HdLKwA5GljqM0W3+EHeCvWKugbL9zZ/mSzDI3NlFOfj
-         ArIkQ1i+xdwycFvF0sgIw4LK0fK837OgrwWBLrkBLfQZsp6HlxReojyKmjMUe3ntN4sU
-         0alg3YffL8rfAr45MN+3blp+OMoFa5im3YBv1ebY1GYtWlcda/WnvJIVq0nSBiLrjHVm
-         fcpBTkLtP4eGVLCTtVwfP0nTxz6iETMoXxwHpMP7PNgvQg3ib2j/D4ipEUMieQXsnu2m
-         kI9w==
-X-Gm-Message-State: ACgBeo1E199RJ60yXwCCE0JZHDebJ3TmvAZKe+6o1pwRfrd7fis+3fmh
-        N58KxGmZUM+qmWIcLcwvwiQ+uQ==
-X-Google-Smtp-Source: AA6agR66yzwPXYh8FHsAsVB3PvAJomU05bSzs4P0324/xCFmqSpghmK9BpUeF83v3tBsAUrtrdtLYA==
-X-Received: by 2002:a17:90b:1d86:b0:1f7:31c6:1cce with SMTP id pf6-20020a17090b1d8600b001f731c61ccemr4436283pjb.192.1662645592556;
-        Thu, 08 Sep 2022 06:59:52 -0700 (PDT)
+        bh=uBX7AFPsGNpi09ZLgJTSk7omj1yoYlNTHSdXs9g/ZQE=;
+        b=vlPIk1IUDVWG0Ft2dufzyEPb/kzHC8uXRqR6MbN5apwqfke5TzoIV8eMGSK47lGHKe
+         VDKWgw1aV5ML7gfdfDG8/vvvAiLI+bijpX5tFN5NEYMEJ3xS+EqFGe5eTO9Gj7iGB9Da
+         DRW8cA9kpmveaoo9S0bHr8RPgSS108qSX0aVjx5ZjiM6w3/4Zc08am2EsqWRqx/6JuaS
+         L834at9pCdkT7Trtf5FaGIB/RVZeZnQ+IC5WFokjIygb0xfipd8bQY0bF26M0OyWAFtR
+         /7AMvAZM3QIXU97X6tGOI1e8Xoy99g1NqyjUnT7uDZpgN+nKDzflE+c4/sFSvmElpsLj
+         FE3g==
+X-Gm-Message-State: ACgBeo35YJCtIQcyPSZ58G6QD0rxwoH4l2AIUBj4eI185qx/rEx43ZEL
+        Ie634WDu43qbEla7B2otCqhsuLnIwvp8ynot1mc=
+X-Google-Smtp-Source: AA6agR5RIbCSuKlZztKCcBKDkegrRYP1SvT5Mf7jJoQF2DsnRKlyRpWZGxUeOK0WwlSUW/QIe15Caw==
+X-Received: by 2002:a17:90a:cc04:b0:200:b869:5ba4 with SMTP id b4-20020a17090acc0400b00200b8695ba4mr4489374pju.234.1662645596561;
+        Thu, 08 Sep 2022 06:59:56 -0700 (PDT)
 Received: from localhost.localdomain ([2405:201:c00a:a073:f525:b238:30b0:311e])
-        by smtp.gmail.com with ESMTPSA id n7-20020a170902d2c700b001709e3c755fsm7073200plc.230.2022.09.08.06.59.49
+        by smtp.gmail.com with ESMTPSA id n7-20020a170902d2c700b001709e3c755fsm7073200plc.230.2022.09.08.06.59.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 06:59:51 -0700 (PDT)
+        Thu, 08 Sep 2022 06:59:56 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -55,10 +55,11 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Sam Ravnborg <sam@ravnborg.org>,
         Linus Walleij <linus.walleij@linaro.org>
 Cc:     devicetree@vger.kernel.org, Jagan Teki <jagan@edgeble.ai>,
+        dri-devel@lists.freedesktop.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/4] dt-bindings: vendor-prefixes: Document Jadard
-Date:   Thu,  8 Sep 2022 19:29:38 +0530
-Message-Id: <20220908135940.299324-2-jagan@edgeble.ai>
+Subject: [PATCH v2 3/4] dt-bindings: display: Document Jadard JD9365DA-H3 DSI panel
+Date:   Thu,  8 Sep 2022 19:29:39 +0530
+Message-Id: <20220908135940.299324-3-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220908135940.299324-1-jagan@edgeble.ai>
 References: <20220908135940.299324-1-jagan@edgeble.ai>
@@ -73,11 +74,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jadard Technology Inc. manufactures and distributes chips
-from Shenzhen.
+Jadard JD9365DA-H3 is WUXGA MIPI DSI panel and it support TFT
+dot matrix LCD with 800RGBx1280 dots at maximum.
 
-Add vendor prefix for it.
+Document it.
 
+Cc: dri-devel@lists.freedesktop.org
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
@@ -85,22 +87,103 @@ Changes for v2:
 - collect Krzysztof ack
 - rebased on drm-misc-next
 
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../display/panel/jadard,jd9365da-h3.yaml     | 70 +++++++++++++++++++
+ MAINTAINERS                                   |  5 ++
+ 2 files changed, 75 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 8fdc9f0d5d60..d6714dcb5e4d 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -623,6 +623,8 @@ patternProperties:
-     description: ITian Corporation
-   "^iwave,.*":
-     description: iWave Systems Technologies Pvt. Ltd.
-+  "^jadard,.*":
-+    description: Jadard Technology Inc.
-   "^jdi,.*":
-     description: Japan Display Inc.
-   "^jedec,.*":
+diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+new file mode 100644
+index 000000000000..23dfd5b5496e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/jadard,jd9365da-h3.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Jadard JD9365DA-HE WUXGA DSI panel
++
++maintainers:
++  - Jagan Teki <jagan@edgeble.ai>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - chongzhou,cz101b4001
++      - const: jadard,jd9365da-h3
++
++  reg: true
++
++  vdd-supply:
++    description: supply regulator for VDD, usually 3.3V
++
++  vccio-supply:
++    description: supply regulator for VCCIO, usually 1.8V
++
++  reset-gpios: true
++
++  backlight: true
++
++  port: true
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++  - vccio-supply
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "chongzhou,cz101b4001", "jadard,jd9365da-h3";
++            reg = <0>;
++            vdd-supply = <&lcd_3v3>;
++            vccio-supply = <&vcca_1v8>;
++            reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
++            backlight = <&backlight>;
++
++            port {
++                mipi_in_panel: endpoint {
++                    remote-endpoint = <&mipi_out_panel>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index fc62434f693f..ef45fbac0ba0 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6388,6 +6388,11 @@ S:	Orphan / Obsolete
+ F:	drivers/gpu/drm/i810/
+ F:	include/uapi/drm/i810_drm.h
+ 
++DRM DRIVER FOR JADARD JD9365DA-H3 MIPI-DSI LCD PANELS
++M:	Jagan Teki <jagan@edgeble.ai>
++S:	Maintained
++F:	Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
++
+ DRM DRIVER FOR LOGICVC DISPLAY CONTROLLER
+ M:	Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+ S:	Supported
 -- 
 2.25.1
 
