@@ -2,130 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF8955B2777
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 22:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48A845B2792
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 22:19:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbiIHUMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 16:12:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43542 "EHLO
+        id S229602AbiIHUTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 16:19:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiIHUMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 16:12:35 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BA7FF093;
-        Thu,  8 Sep 2022 13:12:34 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id n12so4140919wru.6;
-        Thu, 08 Sep 2022 13:12:34 -0700 (PDT)
+        with ESMTP id S229546AbiIHUTS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 16:19:18 -0400
+Received: from smtp-fw-9102.amazon.com (smtp-fw-9102.amazon.com [207.171.184.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51765103043;
+        Thu,  8 Sep 2022 13:19:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=NZgMNXmwX6SnvwK87AGk7VHv1cRLy9ojL7C9GfQltcQ=;
-        b=YJ4s58i5EeQ/uWSSo5Qua0Tu9JxeF7gHHmv6fGDm9QWyiqerXu4Ilr2+q5WcCokQpd
-         s5ar2mQZ4qckmj8UstMJ1D5NmhDBLq/hZCLkj/1jV6CIx4Lotf4dIr8qxuN18hOdbaRK
-         I3q+IFxGDa4L94z8INS+n2AlUJaBDKJ5s6GbSvprWURXKAUiyetY4D5W6f4J+dmAwoN/
-         zFtoXWrNsEuFGpQTrpFvl9HvTgJTUPCPd4vSDKzcXyzL2ggoLchBpbC2TNy1CAh1tG2d
-         uVX/3Wui6ini3rsil9KvPp43yLaUjvrqRUe3OgNIpv/8dX41fBz3KD8yrbz4cYzcavBj
-         jOwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=NZgMNXmwX6SnvwK87AGk7VHv1cRLy9ojL7C9GfQltcQ=;
-        b=iljyor/V267lZRL+3zewqoFIN8A/0UapCc67dUYLsdMCQ+lBbQtGivdpZ/x7DrKgnV
-         0e3DlIKEfQNy5pdP+4No35QVhE3BC6HyyDHNffUyQDjrmzmkIOqVQq2JxoKq5eslT76z
-         ZWaWCEKOR7JQOQtytaM08Bhx9PQhGR2vKpksmkyRfF9GbPzZAD9MJwP0K0py1XbnyyBT
-         8V2i1cBt5tRpfw46ezm5YePZQ+mTwP1I6p+Dhu8koSxog9v9VEgh2rqOKxxYb3sgFdpz
-         +74wPnePk58DAtMAdO/0fn/muLBrgIX31SYdXcuCAHNi91V/VhjYcLuO1k+yfNp7Jp5U
-         bbLA==
-X-Gm-Message-State: ACgBeo1NBcqnPO/9S3DOpoh6ykmARxOqxWGki7n+7wu+d1Hb4NQRb36a
-        7vSRNhMxTQL/s/+CVEPc/IMM9rE3A7hRydXQ
-X-Google-Smtp-Source: AA6agR7zdskVsvESm8kGX7KqfMmGDv2c4HseHMS5FFGiG85C0bwgWAPGhSMfCb228haUWNp4WODYSw==
-X-Received: by 2002:a05:6000:1f9d:b0:228:6446:3d67 with SMTP id bw29-20020a0560001f9d00b0022864463d67mr6210529wrb.575.1662667952965;
-        Thu, 08 Sep 2022 13:12:32 -0700 (PDT)
-Received: from kista.localnet (82-149-1-172.dynamic.telemach.net. [82.149.1.172])
-        by smtp.gmail.com with ESMTPSA id o5-20020a05600c510500b003a3561d4f3fsm4852904wms.43.2022.09.08.13.12.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 13:12:32 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Subject: Re: [PATCH v4 0/5] Allwinner H6 GPU devfreq
-Date:   Thu, 08 Sep 2022 22:12:31 +0200
-Message-ID: <4086439.1IzOArtZ34@kista>
-In-Reply-To: <20220906153034.153321-1-peron.clem@gmail.com>
-References: <20220906153034.153321-1-peron.clem@gmail.com>
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1662668358; x=1694204358;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=ew1JSf+VMU1imqdWntc+SKpqCQ2xpoV/wfYgN33Kk6A=;
+  b=MTyl7WyuASAGGi0ULNXHo+x7u053W9lQBnrAVSOqXKLm7EtifZFDtq2V
+   tWPWa/8p1tgnMqXPUr1fA/SzB1jUhkFywfxf/aI+WyQGewoYoNoD5e/ym
+   awOJ2IXEH/BjkHpwFAN7VcQruNFHxV4p6A8fDl+KkFotUeEjXY0Z/gR6w
+   g=;
+X-IronPort-AV: E=Sophos;i="5.93,300,1654560000"; 
+   d="scan'208";a="257610989"
+Subject: Re: [PATCH v5 16/21] dt-bindings: hwmon: (mr75203) add "moortec,
+ ts-series" property
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-iad-1a-e823fbde.us-east-1.amazon.com) ([10.25.36.210])
+  by smtp-border-fw-9102.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2022 20:19:02 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
+        by email-inbound-relay-iad-1a-e823fbde.us-east-1.amazon.com (Postfix) with ESMTPS id ABEC6C0A08;
+        Thu,  8 Sep 2022 20:18:58 +0000 (UTC)
+Received: from EX19D013UWB002.ant.amazon.com (10.13.138.21) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.207) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Thu, 8 Sep 2022 20:18:47 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
+ EX19D013UWB002.ant.amazon.com (10.13.138.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Thu, 8 Sep 2022 20:18:47 +0000
+Received: from [192.168.150.48] (10.85.143.179) by mail-relay.amazon.com
+ (10.43.161.249) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Thu, 8 Sep 2022 20:18:43 +0000
+Message-ID: <40e210d8-2fad-b340-fdcb-6b2e4637bba1@amazon.com>
+Date:   Thu, 8 Sep 2022 23:18:42 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <andriy.shevchenko@intel.com>, <linux-hwmon@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <hhhawa@amazon.com>, <jonnyc@amazon.com>,
+        "Farber, Eliav" <farbere@amazon.com>
+References: <20220908152449.35457-1-farbere@amazon.com>
+ <20220908152449.35457-17-farbere@amazon.com>
+ <20220908190216.GA3423559@roeck-us.net>
+Content-Language: en-US
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <20220908190216.GA3423559@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-17.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne torek, 06. september 2022 ob 17:30:29 CEST je Cl=E9ment P=E9ron napisal=
-(a):
-> Hi,
->=20
-> This is a refresh of previous patches sent to enable GPU Devfreq on H6
-> Beelink GS1 but that wasn't stable at that time[0].
->=20
-> With the recent fix on GPU PLL from Roman Stratiienko I have retested
-> and everything seems stable and works as expected[1].
->=20
-> Regards,
-> Clement
+On 9/8/2022 10:02 PM, Guenter Roeck wrote:
+> On Thu, Sep 08, 2022 at 03:24:44PM +0000, Eliav Farber wrote:
+>> Add optional "moortec,ts-series" property to define the temperature
+>> equation and coefficients that shall be used to convert the digital
+>> output to value in milli-Celsius.
+>> Supported series: 5 (default) and 6.
+>>
+>> Series 5:
+>>   T = G + H * (n / cal5 - 0.5) + J * F
+>> Where: G = 60, H = 200, cal5 = 4094, J = -0.1, F = frequency clock in 
+>> MHz
+>>
+>> Series 6:
+>>    T = G + H * (n / cal5 - 0.5)
+>> Where: G = 57.4, H = 249.4, cal5 = 4096
+>>
+>> Signed-off-by: Eliav Farber <farbere@amazon.com>
+>> ---
+>> V4 -> V3:
+>> - Remove constraints in free-form text descriptions.
+>>
+>> V3 -> V2:
+>> - New patch to introduce "moortec,ts-series" property.
+>>
+>>  .../devicetree/bindings/hwmon/moortec,mr75203.yaml       | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml 
+>> b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+>> index d6b03a6d7043..df849517464e 100644
+>> --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+>> +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+>> @@ -91,6 +91,15 @@ properties:
+>>        Each channel should not appear more than once.
+>>      $ref: /schemas/types.yaml#/definitions/uint8-array
+>>
+>> +  moortec,ts-series:
+>> +    description:
+>> +      Definition of the temperature equation and coefficients that 
+>> shall be
+>> +      used to convert the digital output to value in milli-Celsius.
+>> +    minimum: 5
+>> +    maximum: 6
+>> +    default: 5
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>
+> I am not a dt expert, but I wonder if this should be handled
+> with different "compatible" properties. Sorry if this was already
+> addressed and I missed it.
 
-All patches except patch 4 pushed to sunxi tree. Thanks!
+It was already addressed in [PATCH v3 14/19] by Philipp.
+It is indeed confusing which is why I added a detailed description
+to moortec,mr75203.yaml in [PATCH v5 07/21].
+Shortly, the driver is for the controller unit (mr75203), while the
+"series" is a parameter of the temperature unit (mr74137).
+Therefore I added a new TS property and not a different compatible.
 
-Best regards,
-Jernej
-
->=20
-> 0:
-> https://lore.kernel.org/lkml/CAJiuCce58Gaxf_Qg2cnMwvOgUqYU__eKb3MDX1Fe_+4=
-7h
-> tg2bA@mail.gmail.com/ 1:
-> https://lore.kernel.org/linux-arm-kernel/2562485.k3LOHGUjKi@kista/T/
->=20
-> Changes since v3:
->  - Try to be more explicit for panfrost OPP patch
->  - Fix typo
->=20
-> Changes since v2:
->  - Fixes device-tree warnings
->  - Add panfrost fix to enable regulator
->  - Remove always-on regulator from device-tree
->  - Update cooling map from vendor kernel
->=20
->=20
-> Cl=E9ment P=E9ron (5):
->   arm64: defconfig: Enable devfreq cooling device
->   arm64: dts: allwinner: h6: Add cooling map for GPU
->   arm64: dts: allwinner: h6: Add GPU OPP table
->   drm/panfrost: devfreq: set opp to the recommended one to configure
->     regulator
->   arm64: dts: allwinner: beelink-gs1: Enable GPU OPP
->=20
->  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  1 +
->  .../boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi | 87 +++++++++++++++++++
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 51 ++++++++++-
->  arch/arm64/configs/defconfig                  |  1 +
->  drivers/gpu/drm/panfrost/panfrost_devfreq.c   | 11 +++
->  5 files changed, 149 insertions(+), 2 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
->=20
-> --
-> 2.34.1
-
-
+--
+Regards, Eliav
