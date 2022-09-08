@@ -2,142 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7C15B22C7
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 17:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B294A5B22CE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 17:51:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231506AbiIHPtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 11:49:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44292 "EHLO
+        id S231681AbiIHPvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 11:51:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbiIHPtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 11:49:12 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB35EAD99F;
-        Thu,  8 Sep 2022 08:49:11 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1oWJm5-00GV3a-J1; Thu, 08 Sep 2022 15:49:05 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8mp-venice-gw74xx: add PCIe support
-Date:   Thu,  8 Sep 2022 08:49:03 -0700
-Message-Id: <20220908154903.4100386-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231156AbiIHPu7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 11:50:59 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7C0F1F37;
+        Thu,  8 Sep 2022 08:50:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0542AB8211C;
+        Thu,  8 Sep 2022 15:50:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33B5AC433C1;
+        Thu,  8 Sep 2022 15:50:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662652255;
+        bh=5/+ZIXNie4VnekxYHQs89+aKR6HkS+PDbD6+ARuWepU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=t5wYePL63GetzwQFLIZa2kHBN+Rp6d6l9Lg8s3SQ8lfpGptLzdYeXmfocUnSq7Hzh
+         7EQLwKm2W7LySJQh4Qk4J2tfF00bEjv08opKP6oRz9dZgoRWyX4/cN9tdYbABdc4Eh
+         1xqPRJVm/moL4kWXSy8SjKfQfkiviwNysuJjBJc6grnJOd3SpEjc3shWh+kQskjdE0
+         D+U544D4FlqwUymi0UT+Zea9mGXOcTd6o8hOzVTeqSxF7VN0qXJBK0cKzeCOZ2nRde
+         hOInzGSdglm3wqO9S59xrhpgd26MkP254Fqjz6KcC5ZMOBO0QfyNIhF9iKtFUc4jEV
+         EUypIR/XMYnVw==
+From:   Mark Brown <broonie@kernel.org>
+To:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        agross@kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        robh+dt@kernel.org, lgirdwood@gmail.com,
+        konrad.dybcio@somainline.org
+Cc:     linux-arm-msm@vger.kernel.org, dianders@chromium.org,
+        johan@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+kernel@kernel.org>
+In-Reply-To: <20220907204924.173030-1-ahalaney@redhat.com>
+References: <20220907204924.173030-1-ahalaney@redhat.com>
+Subject: Re: [PATCH v3] regulator: dt-bindings: qcom,rpmh: Indicate regulator-allow-set-load dependencies
+Message-Id: <166265225292.288960.8055654025711906863.b4-ty@kernel.org>
+Date:   Thu, 08 Sep 2022 16:50:52 +0100
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Mailer: b4 0.10.0-dev-fc921
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIe support on the Gateworks GW74xx board. While at it,
-fix the related gpio line names from the previous incorrect values.
+On Wed, 7 Sep 2022 15:49:24 -0500, Andrew Halaney wrote:
+> For RPMH regulators it doesn't make sense to indicate
+> regulator-allow-set-load without saying what modes you can switch to,
+> so be sure to indicate a dependency on regulator-allowed-modes.
+> 
+> In general this is true for any regulators that are setting modes
+> instead of setting a load directly, for example RPMH regulators. A
+> counter example would be RPM based regulators, which set a load
+> change directly instead of a mode change. In the RPM case
+> regulator-allow-set-load alone is sufficient to describe the regulator
+> (the regulator can change its output current, here's the new load),
+> but in the RPMH case what valid operating modes exist must also be
+> stated to properly describe the regulator (the new load is this, what
+> is the optimum mode for this regulator with that load, let's change to
+> that mode now).
+> 
+> [...]
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- .../dts/freescale/imx8mp-venice-gw74xx.dts    | 40 +++++++++++++++++--
- 1 file changed, 37 insertions(+), 3 deletions(-)
+Applied to
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-index e0fe356b662d..7644db61d631 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-@@ -8,6 +8,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/leds/common.h>
-+#include <dt-bindings/phy/phy-imx8-pcie.h>
- 
- #include "imx8mp.dtsi"
- 
-@@ -100,6 +101,12 @@ led-1 {
- 		};
- 	};
- 
-+	pcie0_refclk: pcie0-refclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+	};
-+
- 	pps {
- 		compatible = "pps-gpio";
- 		pinctrl-names = "default";
-@@ -215,8 +222,8 @@ &gpio1 {
- &gpio2 {
- 	gpio-line-names =
- 		"", "", "", "", "", "", "", "",
--		"", "", "", "", "", "", "", "",
--		"pcie3_wdis#", "", "", "pcie1_wdis@", "pcie2_wdis#", "", "", "",
-+		"", "", "", "", "", "", "pcie3_wdis#", "",
-+		"", "", "pcie2_wdis#", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
- 
-@@ -562,6 +569,28 @@ &i2c4 {
- 	status = "okay";
- };
- 
-+&pcie_phy {
-+	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
-+	fsl,clkreq-unsupported;
-+	clocks = <&pcie0_refclk>;
-+	clock-names = "ref";
-+	status = "okay";
-+};
-+
-+&pcie {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie0>;
-+	reset-gpio = <&gpio2 17 GPIO_ACTIVE_LOW>;
-+	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
-+		 <&clk IMX8MP_CLK_PCIE_ROOT>,
-+		 <&clk IMX8MP_CLK_HSIO_AXI>;
-+	clock-names = "pcie", "pcie_aux", "pcie_bus";
-+	assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
-+	assigned-clock-rates = <10000000>;
-+	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
-+	status = "okay";
-+};
-+
- /* GPS / off-board header */
- &uart1 {
- 	pinctrl-names = "default";
-@@ -694,7 +723,6 @@ pinctrl_hog: hoggrp {
- 			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	0x40000040 /* DIO0 */
- 			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x40000040 /* DIO1 */
- 			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /* M2SKT_OFF# */
--			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x40000150 /* PCIE1_WDIS# */
- 			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
- 			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /* PCIE3_WDIS# */
- 			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x40000040 /* M2SKT_RST# */
-@@ -807,6 +835,12 @@ MX8MP_IOMUXC_SD2_DATA1__GPIO2_IO16	0x10
- 		>;
- 	};
- 
-+	pinctrl_pcie0: pciegrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	0x110
-+		>;
-+	};
-+
- 	pinctrl_pmic: pmicgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_NAND_DATA01__GPIO3_IO07	0x140
--- 
-2.25.1
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
+Thanks!
+
+[1/1] regulator: dt-bindings: qcom,rpmh: Indicate regulator-allow-set-load dependencies
+      commit: 08865c2150392f67769a9d6e0b02800be226a990
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
