@@ -2,56 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4AB5B1D24
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 14:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF8D75B1D29
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 14:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229989AbiIHMfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 08:35:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42798 "EHLO
+        id S231328AbiIHMfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 08:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231723AbiIHMfD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 08:35:03 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B415948EBB;
-        Thu,  8 Sep 2022 05:35:02 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1274ec87ad5so29014548fac.0;
-        Thu, 08 Sep 2022 05:35:02 -0700 (PDT)
+        with ESMTP id S230053AbiIHMfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 08:35:05 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A22D46DB4;
+        Thu,  8 Sep 2022 05:35:04 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1278a61bd57so25378501fac.7;
+        Thu, 08 Sep 2022 05:35:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=message-id:date:subject:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=oR89XIUSMxR/GNj2hiLhHDeN2pBkc9JmGP6t/dlgZIg=;
-        b=41uTD9c9Sb4teMRSgFlONiX+7ClJW7UxF9qg+UsanPwwDLjf/Re7XEPNAVNp9hlA9p
-         iRuF2TwqS0mtE8hw4ZHsGpDysopDLfWrsQvCv7FKYhrTSS9mASyBF/OKX+BwYjbz4nG3
-         5IsmdORqybJmkQRqgOIn/i7NoT544t4DaOspdimAoHRi8N/0F+1sJiIdSI50wRbIIPOW
-         38MlYpAImSR4PTiSWB8yoS2pFjeFFseHgCrg3SEVLUG72hNAPR+8M+W5iE2v2LQmHhoL
-         4RMLPpPfrfJOjWjBrlcgH7zAKlV3Pl5MXWhNgiuuKcgQ+SggpANiB394rYNPIke50MWk
-         E6iw==
-X-Gm-Message-State: ACgBeo1oOPRztiYpBKRDdIbYA04gaS6JfPh4zL/aabZ6oB1V54Tc0kd5
-        z+KAgHtKXFFtWkrJZGnzJV+LZeDMkg==
-X-Google-Smtp-Source: AA6agR46TYLmwq0cQXb1P70BXA1rNspo2AAAKrCxMS3RglYUz0YyWLcZEDAN6MN4PgzKQ7TcytH5lw==
-X-Received: by 2002:a05:6808:34d:b0:344:bb33:95bc with SMTP id j13-20020a056808034d00b00344bb3395bcmr1379118oie.202.1662640501330;
-        Thu, 08 Sep 2022 05:35:01 -0700 (PDT)
+        bh=Jtr3p5j/5DRL0YbjSC8bWCtn5/EBjL0frgBB2T6QJQs=;
+        b=UeH+BNC1pLe9+74rUfiqSt3FxTb8qGdR4JFk3KdubQm83oFjZnW823ygN0E7MinI7R
+         WkrG40f6FhYAlUYJ6cu0XS0HmgCLRjDvAVne3cRb6Wp9rmXPmcgsxZmckWVnwe7/IfPh
+         D9/VlQcxHlCQN9wKwJV8iVxKLf1w2v0Er6QaYDTUsDcLwsyHYE5x8H1/XlZEnZyKRGLx
+         TQVB5V+Xqn2dDPl3DbW0ejbDS+6pUp0sksL9OlyqnkJguDRbzh0zaBY6GEKwXnSDU1iB
+         RS2uQjY+wBzBayzMNvgpRhApegRowDk5qboevRaDqkEpJ/7Ok5yHcKlxNapvo7btcBSo
+         V/vA==
+X-Gm-Message-State: ACgBeo1Wgy21jSJL7QbJXDGjfTpJ0tdo11hFtj/gnnKt55cRloPNJYt9
+        fXDg1E4GTfeUk5i5Fowv2SVanMV69g==
+X-Google-Smtp-Source: AA6agR6Eir+ai1AypOeRyNPLX6bOtb5zKFX1YkGCr8hnsznL/Uw2peWhUP3YRVLOTVBWk77FhE3P/w==
+X-Received: by 2002:a05:6871:72a:b0:127:7b8e:feca with SMTP id f42-20020a056871072a00b001277b8efecamr1715936oap.193.1662640503661;
+        Thu, 08 Sep 2022 05:35:03 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v8-20020a05687105c800b001267a921ae5sm7166501oan.34.2022.09.08.05.35.00
+        by smtp.gmail.com with ESMTPSA id v18-20020a056870b51200b0011f22e74d5fsm5374067oap.20.2022.09.08.05.35.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 05:35:01 -0700 (PDT)
-Received: (nullmailer pid 2262533 invoked by uid 1000);
+        Thu, 08 Sep 2022 05:35:03 -0700 (PDT)
+Received: (nullmailer pid 2262543 invoked by uid 1000);
         Thu, 08 Sep 2022 12:35:00 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     agross@kernel.org, Vinod Koul <vkoul@kernel.org>,
-        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        netdev@vger.kernel.org, bhupesh.linux@gmail.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-In-Reply-To: <20220907204924.2040384-2-bhupesh.sharma@linaro.org>
-References: <20220907204924.2040384-1-bhupesh.sharma@linaro.org> <20220907204924.2040384-2-bhupesh.sharma@linaro.org>
-Subject: Re: [PATCH 1/4] dt-bindings: net: qcom,ethqos: Convert bindings to yaml
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Linus Walleij <linus.walleij@linaro.org>, kernel@collabora.com,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-rockchip@lists.infradead.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>
+In-Reply-To: <20220908003107.220143-9-sebastian.reichel@collabora.com>
+References: <20220908003107.220143-1-sebastian.reichel@collabora.com> <20220908003107.220143-9-sebastian.reichel@collabora.com>
+Subject: Re: [PATCHv2 08/13] dt-bindings: mfd: add rk806 binding
 Date:   Thu, 08 Sep 2022 07:35:00 -0500
-Message-Id: <1662640500.274487.2262529.nullmailer@robh.at.kernel.org>
+Message-Id: <1662640500.364305.2262542.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -63,20 +69,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 08 Sep 2022 02:19:21 +0530, Bhupesh Sharma wrote:
-> Convert Qualcomm ETHQOS Ethernet devicetree binding to YAML.
+On Thu, 08 Sep 2022 02:31:02 +0200, Sebastian Reichel wrote:
+> Add DT binding document for Rockchip's RK806 PMIC.
 > 
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: David Miller <davem@davemloft.net>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  .../devicetree/bindings/net/qcom,ethqos.txt   |  66 ---------
->  .../devicetree/bindings/net/qcom,ethqos.yaml  | 139 ++++++++++++++++++
->  2 files changed, 139 insertions(+), 66 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.txt
->  create mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>  .../bindings/mfd/rockchip,rk806.yaml          | 388 ++++++++++++++++++
+>  1 file changed, 388 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -85,19 +85,10 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ethqos.example.dtb: ethernet@20000: compatible: ['qcom,sm8150-ethqos'] does not contain items matching the given schema
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ethqos.example.dtb: ethernet@20000: reg: [[0, 131072], [0, 65536], [0, 221184], [0, 256]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ethqos.example.dtb: ethernet@20000: interrupt-names:1: 'eth_wake_irq' was expected
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ethqos.example.dtb: ethernet@20000: Unevaluated properties are not allowed ('max-speed', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,reset-active-low', 'snps,reset-delays-us' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ethqos.example.dtb: phy@7: '#phy-cells' is a required property
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/phy/phy-provider.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/rockchip,rk806.example.dtb: pmic@0: regulators: Unevaluated properties are not allowed ('nldo-reg1', 'nldo-reg2', 'nldo-reg3', 'nldo-reg4', 'nldo-reg5', 'pldo-reg1', 'pldo-reg2', 'pldo-reg3', 'pldo-reg4', 'pldo-reg5', 'pldo-reg6' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
 
 doc reference errors (make refcheckdocs):
-MAINTAINERS: Documentation/devicetree/bindings/net/qcom,ethqos.txt
 
 See https://patchwork.ozlabs.org/patch/
 
