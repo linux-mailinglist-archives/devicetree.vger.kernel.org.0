@@ -2,53 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0A5D5B1771
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DC305B178E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 10:47:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231566AbiIHIpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 04:45:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54296 "EHLO
+        id S231740AbiIHIrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 04:47:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231538AbiIHIpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:45:16 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B18CA77576;
-        Thu,  8 Sep 2022 01:45:15 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 64A1914BF;
-        Thu,  8 Sep 2022 01:45:21 -0700 (PDT)
-Received: from [10.57.15.197] (unknown [10.57.15.197])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 47F3F3F73D;
-        Thu,  8 Sep 2022 01:45:06 -0700 (PDT)
-Message-ID: <818a7891-b5c8-beb6-5ccd-e1c0d1c22a23@arm.com>
-Date:   Thu, 8 Sep 2022 09:45:01 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Subject: Re: [PATCHv2 02/13] mfd: rk808: use dev_err_probe
-Content-Language: en-GB
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+        with ESMTP id S231668AbiIHIq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 04:46:58 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A46B611CD7D;
+        Thu,  8 Sep 2022 01:46:32 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28887FZn027212;
+        Thu, 8 Sep 2022 08:46:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references; s=qcppdkim1;
+ bh=OQgOSeY0bwmQojKCP5hBVuycM88QfDaHASZwcrP+L3o=;
+ b=PzpFCyRygTH0mg93HZVNiwhbMGXt2zpShCeQI8MdA2JXx8AwPp1fKm6X/7DefscmGmZa
+ 8KJeUJBmD9XaZFxncvVNgtZQmPX8SgTwx2Hiv4l0ihb9ENXL7VnWIJjoEPSwPTXdj9uc
+ uftn6sL9cAfVIwflG33Jw7M+Grqnc4/0bb91ZzCbyAyLf+v0SWO5+b7p1pcMcg6XA25l
+ MQoHYO2tSOWd7IPxCPF3+LiMsFuUpzHUEIqwyFKEcVBlpYR/fYZ9R8HK1suFUXYpClHz
+ XXY2YWHcjWv1WWYU03fJM1GEUkCyoDfoWFesTEaa/WQIeP86+c6PtbJ7jcLEg4X2d+NX ig== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jfaa5gcv8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 08 Sep 2022 08:46:23 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 2888kJIL014067;
+        Thu, 8 Sep 2022 08:46:19 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3jc00m3e11-1;
+        Thu, 08 Sep 2022 08:46:19 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2888kJ6u014060;
+        Thu, 8 Sep 2022 08:46:19 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.37])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 2888kJmV014055;
+        Thu, 08 Sep 2022 08:46:19 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
+        id B08FF449F; Thu,  8 Sep 2022 14:16:18 +0530 (+0530)
+From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
+To:     helgaas@kernel.org
+Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mka@chromium.org,
+        quic_vbadigan@quicinc.com, quic_hemantk@quicinc.com,
+        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
+        quic_ramkri@quicinc.com, manivannan.sadhasivam@linaro.org,
+        swboyd@chromium.org, dmitry.baryshkov@linaro.org,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20220908003107.220143-1-sebastian.reichel@collabora.com>
- <20220908003107.220143-3-sebastian.reichel@collabora.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220908003107.220143-3-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-10.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v4 1/2] arm64: dts: qcom: sc7280: Add missing aggre0, aggre1 clocks
+Date:   Thu,  8 Sep 2022 14:16:15 +0530
+Message-Id: <1662626776-19636-2-git-send-email-quic_krichai@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1662626776-19636-1-git-send-email-quic_krichai@quicinc.com>
+References: <1662626776-19636-1-git-send-email-quic_krichai@quicinc.com>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UVkVqUQhMcBGj6WgROVbmeA_xtE7bD-5
+X-Proofpoint-ORIG-GUID: UVkVqUQhMcBGj6WgROVbmeA_xtE7bD-5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-08_06,2022-09-07_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ mlxlogscore=991 lowpriorityscore=0 phishscore=0 adultscore=0
+ suspectscore=0 priorityscore=1501 clxscore=1011 malwarescore=0 spamscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209080031
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,107 +89,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-09-08 01:30, Sebastian Reichel wrote:
-> Use dev_err_probe instead of dev_err in probe function,
-> which simplifies code a little bit and prints the error
-> code.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->   drivers/mfd/rk808.c | 50 ++++++++++++++++-----------------------------
->   1 file changed, 18 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/mfd/rk808.c b/drivers/mfd/rk808.c
-> index c17fea1d48ca..e793de9146f7 100644
-> --- a/drivers/mfd/rk808.c
-> +++ b/drivers/mfd/rk808.c
-> @@ -650,18 +650,14 @@ static int rk808_probe(struct i2c_client *client,
->   
->   	/* Read chip variant */
->   	msb = i2c_smbus_read_byte_data(client, pmic_id_msb);
-> -	if (msb < 0) {
-> -		dev_err(&client->dev, "failed to read the chip id at 0x%x\n",
-> -			RK808_ID_MSB);
-> -		return msb;
-> -	}
-> +	if (msb < 0)
-> +		return dev_err_probe(&client->dev, msb, "failed to read the chip id at 0x%x\n",
-> +				     RK808_ID_MSB);
->   
->   	lsb = i2c_smbus_read_byte_data(client, pmic_id_lsb);
-> -	if (lsb < 0) {
-> -		dev_err(&client->dev, "failed to read the chip id at 0x%x\n",
-> -			RK808_ID_LSB);
-> -		return lsb;
-> -	}
-> +	if (lsb < 0)
-> +		return dev_err_probe(&client->dev, lsb, "failed to read the chip id at 0x%x\n",
-> +				     RK808_ID_LSB);
+Add missing aggre0, aggre1 clocks.
 
-Hmm, refactoring these is probably a good opportunity to fix them as 
-well - I'm not sure printing the register offset is really all that 
-useful, but particularly not when it's hard-coded and may not correspond 
-to the actual access that failed.
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+---
+changes since v3:
+	- Changed the order of the clocks added.
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-Robin.
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index ad04025..357eae1 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2043,7 +2043,9 @@
+ 				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
+ 				 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
+ 				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
+-				 <&gcc GCC_DDRSS_PCIE_SF_CLK>;
++				 <&gcc GCC_DDRSS_PCIE_SF_CLK>,
++				 <&gcc GCC_AGGRE_NOC_PCIE_CENTER_SF_AXI_CLK>,
++				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>;
+ 
+ 			clock-names = "pipe",
+ 				      "pipe_mux",
+@@ -2055,7 +2057,9 @@
+ 				      "bus_slave",
+ 				      "slave_q2a",
+ 				      "tbu",
+-				      "ddrss_sf_tbu";
++				      "ddrss_sf_tbu",
++				      "aggre0",
++				      "aggre1";
+ 
+ 			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
+ 			assigned-clock-rates = <19200000>;
+-- 
+2.7.4
 
->   
->   	rk808->variant = ((msb << 8) | lsb) & RK8XX_ID_MSK;
->   	dev_info(&client->dev, "chip id: 0x%x\n", (unsigned int)rk808->variant);
-> @@ -710,44 +706,34 @@ static int rk808_probe(struct i2c_client *client,
->   	i2c_set_clientdata(client, rk808);
->   
->   	rk808->regmap = devm_regmap_init_i2c(client, rk808->regmap_cfg);
-> -	if (IS_ERR(rk808->regmap)) {
-> -		dev_err(&client->dev, "regmap initialization failed\n");
-> -		return PTR_ERR(rk808->regmap);
-> -	}
-> +	if (IS_ERR(rk808->regmap))
-> +		return dev_err_probe(&client->dev, PTR_ERR(rk808->regmap),
-> +				     "regmap initialization failed\n");
->   
-> -	if (!client->irq) {
-> -		dev_err(&client->dev, "No interrupt support, no core IRQ\n");
-> -		return -EINVAL;
-> -	}
-> +	if (!client->irq)
-> +		return dev_err_probe(&client->dev, -EINVAL, "No interrupt support, no core IRQ\n");
->   
->   	ret = devm_regmap_add_irq_chip(&client->dev, rk808->regmap, client->irq,
->   				       IRQF_ONESHOT, -1,
->   				       rk808->regmap_irq_chip, &rk808->irq_data);
-> -	if (ret) {
-> -		dev_err(&client->dev, "Failed to add irq_chip %d\n", ret);
-> -		return ret;
-> -	}
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret, "Failed to add irq_chip\n");
->   
->   	for (i = 0; i < nr_pre_init_regs; i++) {
->   		ret = regmap_update_bits(rk808->regmap,
->   					pre_init_reg[i].addr,
->   					pre_init_reg[i].mask,
->   					pre_init_reg[i].value);
-> -		if (ret) {
-> -			dev_err(&client->dev,
-> -				"0x%x write err\n",
-> -				pre_init_reg[i].addr);
-> -			return ret;
-> -		}
-> +		if (ret)
-> +			return dev_err_probe(&client->dev, ret, "0x%x write err\n",
-> +					     pre_init_reg[i].addr);
->   	}
->   
->   	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_NONE,
->   			      cells, nr_cells, NULL, 0,
->   			      regmap_irq_get_domain(rk808->irq_data));
-> -	if (ret) {
-> -		dev_err(&client->dev, "failed to add MFD devices %d\n", ret);
-> -		return ret;
-> -	}
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret, "failed to add MFD devices\n");
->   
->   	if (of_property_read_bool(np, "rockchip,system-power-controller")) {
->   		ret = devm_register_sys_off_handler(&client->dev,
