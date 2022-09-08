@@ -2,77 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46AF85B1930
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C048C5B1933
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 11:48:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230384AbiIHJsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 05:48:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42350 "EHLO
+        id S230407AbiIHJs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 05:48:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230307AbiIHJsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:48:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B87D8491C5;
-        Thu,  8 Sep 2022 02:48:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5488561C19;
-        Thu,  8 Sep 2022 09:48:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15870C433D6;
-        Thu,  8 Sep 2022 09:47:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662630480;
-        bh=twVKFDNBiJV5imqH0rJ1FX3tasybHNqPAbjuEtEEwBo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FTq/jmjllxhZf4zqdTbijiuwMtav33tMrjaok6lXSDwstIvkbH0YUMS4yDf20f60i
-         ZVdSXww5SMFHSElQwpEitJ9FoqjQZ/g4EkeyQPPUI4epDqcZs9o3EOIdfmhDAdMH6s
-         YEItpf+8/16v3s554D+vQ39R+LZgo0XQmgjJ3bnbJeI9DmBSt/4PIr9tbPQz7deN6T
-         krbmFeljz554fQy/FmUfKvuJxkUqcxkXN6f60A+LJy6KsdS90OIev6KZ6oW5cPDebA
-         gQqyywgAeG4xCdRFKRyTA4LgOblHtVFa2LL71xeynVJxwELW4CkSkO9t+VgKvREazq
-         m2yHENAGjSIgw==
-Date:   Thu, 8 Sep 2022 10:47:51 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Robert Jones <rjones@gateworks.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        - <patches@opensource.cirrus.com>,
-        Steve Twiss <stwiss.opensource@diasemi.com>,
-        Chris Zhong <zyw@rock-chips.com>,
-        Zhang Qing <zhangqing@rock-chips.com>,
-        Alistair Francis <alistair@alistair23.me>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Renner Berthing <kernel@esmil.dk>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH] dt-bindings: mfd: Add missing
- (unevaluated|additional)Properties on child nodes
-Message-ID: <Yxm6R21Uw0/ghRsn@google.com>
-References: <20220823145649.3118479-4-robh@kernel.org>
+        with ESMTP id S230115AbiIHJsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 05:48:55 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6735F129510
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 02:48:53 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id q7so26829168lfu.5
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 02:48:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=r7HxyAiuIo3swPN9fhXwT9h8PjnLxQoP4Y9NKAjnfBw=;
+        b=Hiee+iUQQZ1lwx+362bMLmcIHCFgOOiyzBVaL9U1NB8lVTOcbKTbBYRooTVwCzOxWZ
+         ajViLQxYJh9SFRnDism0VNUFhMDKEOy76ifgnIpG4+4Hz5M/Voi1xwxjL/YbA/MNOMS6
+         5CKY0tfZG55ZN3G5ngEN01QLUEGKjXVePYacbBhJE5HFYDltny3ly1eFcu1oRKQuySx5
+         fspsKU0qEoKPhhIGbfEReZwYHFhI8FOkH3/Zr5dXtEASuoeIM6RzrCU7fczbsmkGtajP
+         zAXORKHj+0boJPhbaW+wF7ilnESuz0mjv2sIdBlsxv1sjMlQKfGflcYX/m0nkQOTGmOG
+         TP3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=r7HxyAiuIo3swPN9fhXwT9h8PjnLxQoP4Y9NKAjnfBw=;
+        b=aZlkVpJYVto4Dia9asbF3eh+LLHMzg5t1NilgCMN5gMX+57OlgnnB7xHmUE0wit7i8
+         shN6rEC/dCqcOguxkXacRnYbDRpGlSb7SVelOI/YKYzi+FnBNRLM2PyNgtNYZhfmyOEJ
+         v73XDTxlyeLxAIWiB1oWE4SW6Q/Uk6HTu/HVdVhsmixMWy7TOosbuyvGq4ZnuPynOkTD
+         tNvemAJ7UH5WcmSr55XjKE5BpBEpV/BWZ3jg24MaVBBoEDOc/iJGZ/PQJGnR3Pl63nfZ
+         gRhU0RaG4jv2xK6myduJBqahv5Av+U4j4B5UzQaMHb03fQEZ1SIna9k3XD1dUs+j6wRY
+         tSkw==
+X-Gm-Message-State: ACgBeo3uEoc43MJ3mnB9tIknoZ4gpd98sHfwQH4kH73vTjKXmMzg28NO
+        DSc24UgvOGrHB1l2yJ++Ic/znQ==
+X-Google-Smtp-Source: AA6agR5w40X1JsBIjHh4n8PbgAUBbivVRyL9yb+ORTJqNZsseOcjJXYOkUJT2BMQ+QAGVnZnQtMMBg==
+X-Received: by 2002:a05:6512:6d5:b0:491:a52b:2a47 with SMTP id u21-20020a05651206d500b00491a52b2a47mr2413221lff.608.1662630531802;
+        Thu, 08 Sep 2022 02:48:51 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id g3-20020a056512118300b00494903a1f5dsm2966668lfr.187.2022.09.08.02.48.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Sep 2022 02:48:51 -0700 (PDT)
+Message-ID: <1c6abc2e-9ec8-1786-9e05-eb2dd7dd2cb9@linaro.org>
+Date:   Thu, 8 Sep 2022 11:48:49 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220823145649.3118479-4-robh@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v3 3/7] dt-bindings: remoteproc: qcom,msm8916-mss-pil: Add
+ MSM8974
+Content-Language: en-US
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220831134626.2803117-1-stephan.gerhold@kernkonzept.com>
+ <20220831134626.2803117-4-stephan.gerhold@kernkonzept.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220831134626.2803117-4-stephan.gerhold@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,32 +85,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Aug 2022, Rob Herring wrote:
-
-> In order to ensure only documented properties are present, node schemas
-> must have unevaluatedProperties or additionalProperties set to false
-> (typically).
+On 31/08/2022 15:46, Stephan Gerhold wrote:
+> The "qcom,msm8974-mss-pil" binding is still similar enough to MSM8916
+> to be covered by the same DT schema. The only difference is the
+> additional "mss-supply", which can be easily handled using a single
+> if statement.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
 > ---
->  .../mfd/allwinner,sun6i-a31-prcm.yaml         | 40 +++++++++++++++++++
->  .../mfd/allwinner,sun8i-a23-prcm.yaml         | 10 +++++
->  .../bindings/mfd/cirrus,lochnagar.yaml        |  5 +++
->  .../devicetree/bindings/mfd/dlg,da9063.yaml   |  7 ++--
->  .../bindings/mfd/gateworks-gsc.yaml           |  5 ++-
->  .../bindings/mfd/maxim,max14577.yaml          |  1 +
->  .../bindings/mfd/maxim,max77843.yaml          |  1 +
->  .../bindings/mfd/rockchip,rk817.yaml          |  2 +
->  .../bindings/mfd/silergy,sy7636a.yaml         |  1 +
->  .../bindings/mfd/st,stm32-lptimer.yaml        |  4 ++
->  .../bindings/mfd/st,stm32-timers.yaml         |  3 ++
->  .../devicetree/bindings/mfd/st,stmfx.yaml     |  1 +
->  .../bindings/mfd/stericsson,ab8500.yaml       | 22 ++++++++++
->  .../devicetree/bindings/mfd/ti,tps65086.yaml  |  1 +
->  .../bindings/mfd/x-powers,axp152.yaml         |  1 +
->  15 files changed, 100 insertions(+), 4 deletions(-)
+> Changes in v3: None
+> Changes in v2:
+>   - Add if to the "allOf" list (suggested by Krzysztof)
+> ---
+>  .../remoteproc/qcom,msm8916-mss-pil.yaml         | 16 ++++++++++++++++
+>  .../devicetree/bindings/remoteproc/qcom,q6v5.txt | 16 ----------------
+>  2 files changed, 16 insertions(+), 16 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+> index e4ac4889fc92..c7e594873648 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
+> @@ -18,6 +18,7 @@ properties:
+>      oneOf:
+>        - enum:
+>            - qcom,msm8916-mss-pil
+> +          - qcom,msm8974-mss-pil
+>  
+>        - const: qcom,q6v5-pil
+>          description: Deprecated, prefer using qcom,msm8916-mss-pil
+> @@ -76,6 +77,9 @@ properties:
+>    pll-supply:
+>      description: PLL proxy supply (control handed over after startup)
+>  
+> +  mss-supply:
+> +    description: MSS power domain supply (only valid for qcom,msm8974-mss-pil)
+> +
+>    resets:
+>      items:
+>        - description: MSS restart control
+> @@ -181,6 +185,18 @@ required:
+>    - smd-edge
+>  
+>  allOf:
+> +  # mss-supply is only valid (and required) for MSM8974
 
-Applied, thanks.
+Skip the comment, it's obvious from the schema below.
 
--- 
-Lee Jones [李琼斯]
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
