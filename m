@@ -2,77 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F435B20F2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D6115B20FA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Sep 2022 16:44:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231590AbiIHOnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 10:43:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38602 "EHLO
+        id S232395AbiIHOoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 10:44:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231741AbiIHOnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:43:17 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A444B7960F
-        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 07:43:15 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id m15so8417834lfl.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 07:43:15 -0700 (PDT)
+        with ESMTP id S232416AbiIHOog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 10:44:36 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78D5E63D9
+        for <devicetree@vger.kernel.org>; Thu,  8 Sep 2022 07:44:30 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id x1so13748633plv.5
+        for <devicetree@vger.kernel.org>; Thu, 08 Sep 2022 07:44:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=n8VGGC+7+I4IjFN0ib/PUjyurgUsEjooklHf6RmDYUg=;
-        b=ZxdGhDBFjbOpQmDm+bvokfEUhGG1h4jISBv5G5/iyMzHUYo7MnhY5DCOp8n4Is7E0Z
-         TQTTn9foxYpacFYzuB0/d1SJabnhH/mgJR82/CeiVTjvwgeQHI53w1FF2AL2D7UwIFGY
-         W2LUkr6K/RkMpBo8gNMhXcp4LiQSyz1W11dvTKUjs3+Ux4uh2UZTfG2vk7bkaCnY+eRm
-         jTT/Chbtx29UvPTz+OGPLt1w/xNbNEERAhEFW+5WAGTncArweLWKH/9D5pyl2efWhl3i
-         pIAhsH2AWnyEwLTYmujSexcgV4wPY/rtEZpEDVNeYcsz1uwAGG2Cc5lC2ROg/Z9A00TD
-         vFBA==
+        d=sifive.com; s=google;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=f1u38+lpP3uUpdpRuDgUoYZwjE7yjDfDzNqW/1OTveQ=;
+        b=ZNproLrsTmwfqHcFUDE41Pn3ppB+VvLZUt0OoQ/lZ8e72Q4YKxyaVCpMJUEyJDSnCa
+         eSvRWzccMzwJdj0YsjFjIxTL0dooM5nXCJQP1PHx6bQAleNplo75lHpEsF01QFXIRXG5
+         hWhwYer3PbDbVMh2Q+ageHD13Lg3lZ9UNYzjE6R3Kpgb6kr2VESZ2zW03pvIHxwhUhLQ
+         VM/VmGpj/f69qM5euFPl+/zTJxdrJzD15osyWfZUKyDS3KpIYPFOb2AJBH0xSX0/InSq
+         sbmzdRs2AAJLvnjkxQfmgN7ca08+AGeBoJY+Ywl58w7EF52lSkWP1Ztdmuv5l+ZSF/97
+         tFjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=n8VGGC+7+I4IjFN0ib/PUjyurgUsEjooklHf6RmDYUg=;
-        b=m8ivv/v+YBcAk1mYd3Lm/UuGsgGzaziAklYVDJksnOpcjw7+NRt7A/k9UK/WPfvm+B
-         acNOaehsD9E/CETF4au9HC2wv3N6PwMkJMI3INc8+Ai/ZbicCYe3yFx4o4ZZ+QmfDEtP
-         +uquZFpaaSgsxC+JEum0NDzz2yEtqpV0grIt3X10H+YPaxza2fV+8zTsEq8JVr8h31dA
-         X42YbFs/TakfOFACRAvy38FEOrH+wKYk7kwsCAXMtM657rHuUXZtriYevkV5zpbR3T8y
-         B3d/GrH0cB3TIH20yYH0tLl+uSjjyWydo89k6+DcbMaCNe6EiC27UnNx1NQ15fGVTNxF
-         GR4w==
-X-Gm-Message-State: ACgBeo1SRoqNfBqcxyvZGS5L/oD1+IAOqh8QZb6eETe89kVoNUS8jTQH
-        4+bP0d62JGuIzViRjiU2XN6c2Q==
-X-Google-Smtp-Source: AA6agR4vo2geJ+bD2HdOnszq/5/BOl1SbzOVNQ+QLutzfKR1QkYQv+a7YFX6i+H7RE1zgYN8hG1jsA==
-X-Received: by 2002:a05:6512:152a:b0:496:80f3:7fe0 with SMTP id bq42-20020a056512152a00b0049680f37fe0mr2823929lfb.579.1662648195222;
-        Thu, 08 Sep 2022 07:43:15 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a6-20020a05651c010600b002688cceee44sm3221569ljb.132.2022.09.08.07.43.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Sep 2022 07:43:14 -0700 (PDT)
-Message-ID: <71d970bc-fe6f-91e7-80c1-711af1af5530@linaro.org>
-Date:   Thu, 8 Sep 2022 16:43:13 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 4/4] dt-bindings: net: snps,dwmac: Update interrupt-names
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, netdev@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        David Miller <davem@davemloft.net>
-References: <20220907204924.2040384-1-bhupesh.sharma@linaro.org>
- <20220907204924.2040384-5-bhupesh.sharma@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220907204924.2040384-5-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=f1u38+lpP3uUpdpRuDgUoYZwjE7yjDfDzNqW/1OTveQ=;
+        b=ibm0ENJK7u2PIicPk6KRb6HldmmkBjo6hda4ZlMYRbyG/ctT2jyEFS2YzZZml8V/wj
+         o7mjlP3Saaty1LuH2Dzi8cJCODOWIYMhcrPYCBuZxS1KLEiwlmpmQd80zfAPz6GQSvtH
+         TSfZYp5oU6qwFo1fxVws+gE1CVjj13Qu+rVF4zLjNDlQd8WxbImmbgZOeDa6vuV01N6E
+         J35P6rB5rRkx3ghBu+Oj3j8LqftDArcyZjwf0+R74x1moHxynDAbwvqqHH9xNbw88IFE
+         /OD0zuQbw+qjyTDcs07og0WGbWJKH6CYEkLRNQ0emWQSJI2F8mSUdCy/wyI/Ji0r1Hsp
+         hKDA==
+X-Gm-Message-State: ACgBeo3qbCHnNC+VSRHZQWwCpeTZ/dHlox+Xx3v/VuhWU5qusWgpSDe6
+        qEi7molL3w55DDNiw1TnfVGpeQ==
+X-Google-Smtp-Source: AA6agR44jEvcjSHnfI5NxCT6ZhnkMwVUCWHJdZqCZKYRVa7ZlaxswBnb0759Edh4RKcLiWU9DD+ttw==
+X-Received: by 2002:a17:90a:e586:b0:1fa:d28b:ab9b with SMTP id g6-20020a17090ae58600b001fad28bab9bmr4692671pjz.47.1662648270190;
+        Thu, 08 Sep 2022 07:44:30 -0700 (PDT)
+Received: from localhost.localdomain (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id b4-20020a170902d40400b001750361f430sm4484728ple.155.2022.09.08.07.44.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Sep 2022 07:44:29 -0700 (PDT)
+From:   Zong Li <zong.li@sifive.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, greentime.hu@sifive.com,
+        conor.dooley@microchip.com, ben.dooks@sifive.com, bp@alien8.de,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Zong Li <zong.li@sifive.com>
+Subject: [PATCH v3 0/6] Use composable cache instead of L2 cache
+Date:   Thu,  8 Sep 2022 14:44:18 +0000
+Message-Id: <20220908144424.4232-1-zong.li@sifive.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,50 +68,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2022 22:49, Bhupesh Sharma wrote:
-> As commit fc191af1bb0d ("net: stmmac: platform: Fix misleading
-> interrupt error msg") noted, not every stmmac based platform
-> makes use of the 'eth_wake_irq' or 'eth_lpi' interrupts.
-> 
-> So, update the 'interrupt-names' inside 'snps,dwmac' YAML
-> bindings to reflect the same.
-> 
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: David Miller <davem@davemloft.net>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index f89ca308d55f..4d7fe4ee3d87 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -105,10 +105,12 @@ properties:
->  
->    interrupt-names:
->      minItems: 1
-> -    items:
-> -      - const: macirq
-> -      - const: eth_wake_irq
-> -      - const: eth_lpi
-> +    maxItems: 3
-> +    contains:
-> +      enum:
-> +        - macirq
-> +        - eth_wake_irq
-> +        - eth_lpi
->  
+Since composable cache may be L3 cache if private L2 cache exists, we
+should use its original name "composable cache" to prevent confusion.
 
-This gives quite a flexibility, e.g. missing macirq. Instead should be
-probably a list with enums:
-items:
-  - const: macirq
-  - enum: [eth_wake_irq, eth_lpi]
-  - enum: [eth_wake_irq, eth_lpi]
+This patchset contains the modification which is related to ccache, such
+as DT binding and EDAC driver.
 
+The DT binding is based on top of Conor's patch, it has got ready for
+merging, and it looks that it would be taken into the next few 6.0-rc
+version. If there is any change, the next version of this series will be
+posted as well.
+https://lore.kernel.org/linux-riscv/20220825180417.1259360-2-mail@conchuod.ie/
 
-Best regards,
-Krzysztof
+Ben Dooks (2):
+  soc: sifive: ccache: reduce printing on init
+  soc: sifive: ccache: use pr_fmt() to remove CCACHE: prefixes
+
+Zong Li (4):
+  dt-bindings: sifive-ccache: change Sifive L2 cache to Composable cache
+  soc: sifive: ccache: rename SiFive L2 cache to Composable cache.
+  soc: sifive: ccache: determine the cache level from dts
+  soc: sifive: ccache: define the macro for the register shifts
+
+ ...five-l2-cache.yaml => sifive,ccache0.yaml} |  28 ++-
+ drivers/edac/Kconfig                          |   2 +-
+ drivers/edac/sifive_edac.c                    |  12 +-
+ drivers/soc/sifive/Kconfig                    |   6 +-
+ drivers/soc/sifive/Makefile                   |   2 +-
+ .../{sifive_l2_cache.c => sifive_ccache.c}    | 200 ++++++++++--------
+ .../{sifive_l2_cache.h => sifive_ccache.h}    |  16 +-
+ 7 files changed, 151 insertions(+), 115 deletions(-)
+ rename Documentation/devicetree/bindings/riscv/{sifive-l2-cache.yaml => sifive,ccache0.yaml} (83%)
+ rename drivers/soc/sifive/{sifive_l2_cache.c => sifive_ccache.c} (31%)
+ rename include/soc/sifive/{sifive_l2_cache.h => sifive_ccache.h} (12%)
+
+-- 
+2.17.1
+
