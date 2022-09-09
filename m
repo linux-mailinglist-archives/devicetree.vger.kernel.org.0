@@ -2,117 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8D145B34B2
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 11:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A412F5B34FC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 12:17:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbiIIJ63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 05:58:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33104 "EHLO
+        id S229774AbiIIKQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 06:16:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiIIJ6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 05:58:16 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD79312D1A8;
-        Fri,  9 Sep 2022 02:58:15 -0700 (PDT)
-Received: by mail-qt1-f178.google.com with SMTP id z18so849168qts.7;
-        Fri, 09 Sep 2022 02:58:15 -0700 (PDT)
+        with ESMTP id S229980AbiIIKQj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 06:16:39 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45A9312B2BE;
+        Fri,  9 Sep 2022 03:16:37 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id a9so578760ilh.1;
+        Fri, 09 Sep 2022 03:16:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=Q8z7Zr48bJWSSWTTcUPuG0wa86xruExRF49z6BXyq4k=;
+        b=XeIyNie8rozFXvTXWLZRpsQiL9x57MO8ZSi2o08wWnyrrLQomtP392m9LW+0XBDmgY
+         SG4IRxpJNQtDPp0hznw4PLp72RRhk9dormEUfoDFU+ZAyNuYoTwvTjN9N5FUKkqDOQY1
+         YP0VSlRE5sIS91i+gVUaMJvmU8PAoop9n/ovdFEurSAm0AhBSnRHlqgdaa7HNkNxnXLA
+         DHJYqKx8pNdtG07oVv9MwapwhjdpLGVSVXQ5u/qVVkJGU1/jVJI4Tie5dlFj1Kp5qMyi
+         25bWjImvz1bMrGRwfmcvH25dnUHg2ex0gaVn4O14SbobrgYQu5ssEzNNoLuwOpx2tTUh
+         WfpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=hWCebKRgDhaHhUfpkk42XMQuZuZ9gpE4kq9orZDy92E=;
-        b=Q4BKoC4m4vBbtZwBDAjsxYTj/9n4dUPFJk3gsUo3d2bv+sb3Ff5s0ihRutTTh8W/MY
-         jSXXpbYfccx319z/bJc30LDZjtu85cKEVIN51Yqttk7KzfbMzHJ8/OZYwOTlkKuUDjoC
-         OfN/lF2lmvF+vfKyy2/7Uv9QZ8/V1FZYF2trhmm7271/23U5TTvqPYl6KqBGTlAi/rgt
-         JPKSR7KLjGoBeMwY68C5gAB8jCfZuaQzMNeg7CF6n313tubTTsRtJ4t8JEd0MvROWlJV
-         JxEmiTyf0QgQqYggU48/N73EoZDxZiZ9LCTHuSpIAJRUALCuaa6bXOyiYetYYW06wkMX
-         ieoA==
-X-Gm-Message-State: ACgBeo0z0zuONFAYLzklVRWJdFXEAtfXqjZU0S6sXGXbiyTVVb3rjGqf
-        UlHauU4DP6iNzDaARvi/6e3Oay02UTzLng==
-X-Google-Smtp-Source: AA6agR5hivwoGz4hivzSo3WanXgE8KkGNnmEKw59fsrl0JszPsDvN8KCAvql3HGAe2Hgq2Q9vmEDSQ==
-X-Received: by 2002:ac8:7f47:0:b0:344:8d2b:14a9 with SMTP id g7-20020ac87f47000000b003448d2b14a9mr11623752qtk.442.1662717494530;
-        Fri, 09 Sep 2022 02:58:14 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id m21-20020a05620a291500b006cbe10f2992sm34397qkp.135.2022.09.09.02.58.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 02:58:14 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id 130so1888590ybw.8;
-        Fri, 09 Sep 2022 02:58:13 -0700 (PDT)
-X-Received: by 2002:a25:8247:0:b0:6a9:443a:cc0b with SMTP id
- d7-20020a258247000000b006a9443acc0bmr11239427ybn.89.1662717493485; Fri, 09
- Sep 2022 02:58:13 -0700 (PDT)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=Q8z7Zr48bJWSSWTTcUPuG0wa86xruExRF49z6BXyq4k=;
+        b=YH6jE+2YjYuajZmkXKATB/MUnyGM1DxE/MATFrsb94M+t6SIx2pcbn2z55IQk6HW5Z
+         mZM9nyOpnV7GxCyUJvkXBkKnD/e2ZbpU+2ymrYH1u03vOKmAV0bqjfDmfiAwojS1Wxrs
+         jgphFWo2uufLxcSNJJlbrpjm2tHyKcuQkzJ9KkzY4RXyA7X5AZl9KM7PyXz6xo59I0vs
+         /6ndcTku9VCfUKe6J9kVHRQ28DH4bmjW49XE/8nnUffYXCuwVTP7GUMHuIta9QLQsr2W
+         lsf40YrD5lftZ0hVsnI7fLcjfhCbtBYR+ylEFDpuZOhWJqirrQcsGMdzyLH2ptpSzihn
+         KHwA==
+X-Gm-Message-State: ACgBeo3sG/pkB0KO5+QtlYq3cI6iQ4HyG4z/8BqD0bRumdu1T9Bv75BX
+        TXt3boqrWhfHcxae+eQiRioHkdBwfGZujwcv2zs=
+X-Google-Smtp-Source: AA6agR40iMfte830HQDjzHKsxh6lQf3hqItkapLHO0DZzzpCfbd3RvMUNGEIyKPxiXCQiEpyt32978gf8vBO0+1qIIo=
+X-Received: by 2002:a05:6e02:1789:b0:2ec:ab4f:4b0f with SMTP id
+ y9-20020a056e02178900b002ecab4f4b0fmr4096396ilu.34.1662718596631; Fri, 09 Sep
+ 2022 03:16:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1662714607.git.geert+renesas@glider.be> <5355709e0744680d792d1e57e43441cb0b7b7611.1662714607.git.geert+renesas@glider.be>
- <d670b3b1-8347-7131-6bed-4c946645c883@linaro.org>
-In-Reply-To: <d670b3b1-8347-7131-6bed-4c946645c883@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 9 Sep 2022 11:58:01 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW63AVJ1eoAiVCAiemjH4MG3=mLakU4+MUvA_jepsjyvg@mail.gmail.com>
-Message-ID: <CAMuHMdW63AVJ1eoAiVCAiemjH4MG3=mLakU4+MUvA_jepsjyvg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: renesas,etheravb: R-Car V3U is
- R-Car Gen4
+References: <20220909073456.239668-1-gengcixi@gmail.com> <20220909073456.239668-2-gengcixi@gmail.com>
+ <Yxr0+LJWWsF53dr2@google.com> <CAF12kFteDZLk-2PBufnuar43bgPzoxWsOjR0-zQ01ZqLyTCxQw@mail.gmail.com>
+ <dc63bd52-edbf-d13b-86b3-db83bfd8b7e1@linaro.org>
+In-Reply-To: <dc63bd52-edbf-d13b-86b3-db83bfd8b7e1@linaro.org>
+From:   Cixi Geng <gengcixi@gmail.com>
+Date:   Fri, 9 Sep 2022 18:16:00 +0800
+Message-ID: <CAF12kFt95PYcK249Zm8r+jZtEm3vGTd3AXn2DB_CG0Xf=3xeFQ@mail.gmail.com>
+Subject: Re: [PATCH V7 1/2] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Orson Zhai <orsonzhai@gmail.com>,
+        baolin.wang@linux.alibaba.com,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Fri, Sep 9, 2022 at 11:24 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 09/09/2022 11:13, Geert Uytterhoeven wrote:
-> > Despite the name, R-Car V3U is the first member of the R-Car Gen4
-> > family.  Hence move its compatible value to the R-Car Gen4 section.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> > --- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-> > +++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-> > @@ -40,9 +40,13 @@ properties:
-> >                - renesas,etheravb-r8a77980     # R-Car V3H
-> >                - renesas,etheravb-r8a77990     # R-Car E3
-> >                - renesas,etheravb-r8a77995     # R-Car D3
-> > -              - renesas,etheravb-r8a779a0     # R-Car V3U
-> >            - const: renesas,etheravb-rcar-gen3 # R-Car Gen3 and RZ/G2
-> >
-> > +      - items:
-> > +          - enum:
-> > +              - renesas,etheravb-r8a779a0     # R-Car V3U
-> > +          - const: renesas,etheravb-rcar-gen4 # R-Car Gen4
-> > +
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E4=BA=8E2022=E5=B9=B4=
+9=E6=9C=889=E6=97=A5=E5=91=A8=E4=BA=94 17:57=E5=86=99=E9=81=93=EF=BC=9A
 >
-> Don't you need changes in allOf:if:then section?
+> On 09/09/2022 11:50, Cixi Geng wrote:
+> > Lee Jones <lee@kernel.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=889=E6=97=A5=
+=E5=91=A8=E4=BA=94 16:10=E5=86=99=E9=81=93=EF=BC=9A
+> >>
+> >> On Fri, 09 Sep 2022, Cixi Geng wrote:
+> >>
+> >>> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> >>>
+> >>> Add bindings for Unisoc system global register which provide register=
+ map
+> >>> for clocks.
+> >>>
+> >>> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> >>> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+> >>> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>> ---
+> >>>  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++=
+++
+> >>>  1 file changed, 68 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512=
+-glbreg.yaml
+> >>
+> >> I'll take this when the clk driver changes are merged.
+> > this patch is depends on the clk dt-bingdings, which is already merged =
+[1]
+>
+> which is merged to different tree, so this one here cannot go via MFD
+> tree without cross-tree merges.
+Hi Krzysztof:
+I test on the latest kernel 506357871c18e06565840d71c2ef9f818e19f460
+(torvalds/master) version:6.0.0.rc4
+what you mean is I must warting your branch upgrade the cross-tree?
+>
+> Anyway please respond to my comment.
+it in different reply-letter, about the question "Hmm, why these are not co=
+nst?"
+do your mean I should write as follow? what the different,
+because I found both the two ways of writing are exist
+  "#address-cells":
+    const: 1
 
-No, as there is no logic involving renesas,etheravb-rcar-gen3.
+  "#size-cells":
+    const: 1
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+> > so the patch can be applied without wating the clk driver
+> > and the clk driver need merge this first
+> >
+> > commitID =EF=BC=886a3a6c7ae0ef235faebf66bac56384dbd5f944dc=EF=BC=89
+> > [1]. https://lore.kernel.org/all/20220711202740.198F4C34115@smtp.kernel=
+.org/
+>
+>
+>
+> Best regards,
+> Krzysztof
