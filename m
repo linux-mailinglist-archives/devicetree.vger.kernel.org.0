@@ -2,130 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D772A5B31C5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 10:33:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD1F55B31CF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 10:35:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229949AbiIIIdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 04:33:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38212 "EHLO
+        id S231189AbiIIIeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 04:34:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231365AbiIIId3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 04:33:29 -0400
-Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A044A129C70;
-        Fri,  9 Sep 2022 01:33:25 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id E708ADFAF7;
-        Fri,  9 Sep 2022 01:32:54 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id D_vdKZBvcM2E; Fri,  9 Sep 2022 01:32:54 -0700 (PDT)
-Message-ID: <01c155150429aac94123199333422cdd4759c060.camel@puri.sm>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
-        t=1662712373; bh=lmb/EpxzqNtBA17OoOMPewr6KWHKEYpB3HnERroAK9s=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=WesvIlzY0wDqEoD4Ml8bJFMdfWcRSXVZE9MChUNQ18Ua6HKy1Mbheh/O7noXdMoJm
-         pLoWKSyLoaUgTU39MHQn7XJxw8aUJwMAZafg28sAqAER7Gf7B2B2bcXLNovQayl3LG
-         KC96lwUP46MDfTBE/RV7dL0wJOVj8IWpXXUj5y++pVhAL8ezZzHEOsaPWGLtOZBi0t
-         00Mgg0n3Z2o6UGi6Hot4zsFdMzNj7DGuLhAjcscBefQjCl5dc6tHaXUgTtWjpXE6AS
-         lvL/K4vdiOEgrlXg0EMdjGCJY9im8JsTLiFEYN2gM6JfsRfC/vqkJLIwMBuOR2mx4u
-         owu6rKDjnKjGQ==
-Subject: Re: [PATCH v2 2/6] arm64: dts: imx8mq-librem5: add RGB pwm
- notification leds
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     festevam@gmail.com, shawnguo@kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de, kernel@puri.sm,
-        krzk@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, robh@kernel.org,
-        Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Date:   Fri, 09 Sep 2022 10:32:49 +0200
-In-Reply-To: <20220906084531.GA29911@duo.ucw.cz>
-References: <20220902084216.1259202-1-martin.kepplinger@puri.sm>
-         <20220902084216.1259202-3-martin.kepplinger@puri.sm>
-         <20220906084531.GA29911@duo.ucw.cz>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S231565AbiIIIeL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 04:34:11 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A6F312A329
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 01:34:10 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id p5so944315ljc.13
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 01:34:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=GhuZE0UNBi8kX4BsTrV5f7Dbqipm2ZQg6A6+Dv8U8ug=;
+        b=sFrdtPsbZ2J+0sOzysaj2EegZ/+pQlwhHsN9wUY/S4dJ5BRVYVIMmLeewBqCgHmcEt
+         L2I+sLQMqD1WIFHsI7oJs+UwYqtQ10j8KAvzf2wNuWp3wubkRG79DC2WQfIhextmZ1xV
+         QIewhRhNAj2zLXOYjAC3CbuPharTR+9IgXek7hSPj4KfRxxl/i6TiAkDW/b/jO/eVcvC
+         vvPwDjEjNd4i6cGA4FhUP92BtgHZo3TxQTZCGgZObZphvS7a/+3or3ta0ubeWHUgSjRM
+         x46FZCJg6WMjnpBhNVyJsgRgVbHrQg2QKccwyqpgQujCqG6vmRpMGeXtu29MKCVK2EYP
+         SpTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=GhuZE0UNBi8kX4BsTrV5f7Dbqipm2ZQg6A6+Dv8U8ug=;
+        b=worQkAXy9s6d5usoyKx2F3SEjPqumhDcRH8wI1GmOh35kv2dEsmBbU8s57y3D9pbVy
+         ykzY5/5CHY2qQbo/FFo9bF/q0nVnrdKZkIW57hGlEgdJUKVavElKsFOku4VQhpRT2P5v
+         vPJ5zDNzijU/qswllnGyP0hW/xb21TTDKZPRRTtUFVNq/Ky8qzqjVtpnZovbU8BzLWLB
+         FV8jMkRwfVcGZmtbPK98fPCMImNhd6sOqwso01USHXp13dtgrZ/19oi9WWuh3+0gSI4f
+         DNmtkWD/i1iR4IFgKdBbKVEDyvuA8If7PafIv/8lktHS56FJGxUYH0C1S9Hl+SH9yplT
+         CBAw==
+X-Gm-Message-State: ACgBeo1+naHL2+6U7chE/wyPtB1iKP0tNkBmeDfg7/T0xnAPZvWgrd9i
+        iIVr42RJ6Y5vQo0g/gkUCOSLaQ==
+X-Google-Smtp-Source: AA6agR66EW4UmxcTCGM+cVfjkM40+nz2dHEvq45jSqhRckZV7LTmoog5wolrJk+2MzbFOxwOumorYw==
+X-Received: by 2002:a2e:8711:0:b0:264:8da5:7a52 with SMTP id m17-20020a2e8711000000b002648da57a52mr3411127lji.173.1662712448818;
+        Fri, 09 Sep 2022 01:34:08 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id g15-20020a2eb0cf000000b0026af5e69177sm193847ljl.80.2022.09.09.01.34.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Sep 2022 01:34:08 -0700 (PDT)
+Message-ID: <ace096c1-65e2-35a8-8a13-cd6f9921cbaf@linaro.org>
+Date:   Fri, 9 Sep 2022 10:34:07 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v4 2/7] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916
+ to schema
+Content-Language: en-US
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220908182433.466908-1-stephan.gerhold@kernkonzept.com>
+ <20220908182433.466908-3-stephan.gerhold@kernkonzept.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220908182433.466908-3-stephan.gerhold@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 06.09.2022 um 10:45 +0200 schrieb Pavel Machek:
-> Hi!
+On 08/09/2022 20:24, Stephan Gerhold wrote:
+> qcom,q6v5.txt covers multiple SoCs with quite different binding
+> requirements. Converting this into one DT schema would require
+> several if statements, making the DT schema overall harder to
+> read and understand.
 > 
-> > From: Guido Günther <agx@sigxcpu.org>
-> > 
-> > Describe the RGB notification leds on the Librem 5 phone.
-> > Use the common defines so we're sure to adhere to the common
-> > patterns,
-> > use predefined led colors and functions so we're being warned in
-> > case
-> > of deprecations.
+> To avoid this, follow the example of SC7180/SC7280 and split
+> "qcom,msm8916-mss-pil" (and the equivalent deprecated "qcom,q6v5-pil"
+> compatible) into a separate DT schema. The schema is somewhat based
+> on the one for SC7180/SC7280 but adjusted for the old platforms.
 > 
-> I'd like LED lists to be cc-ed on patches like this, so that we can
-> keep userland API consistent.
+> Compared to the old plain text bindings, add missing documentation for
+> the "bam-dmux" subnode and recommend one particular approach to specify
+> the MBA/MPSS "memory-region" (the other one is marked as deprecated).
 > 
-> In particular, RGB LED is very common feature on the phones, and it
-> would be good to have it consistent accross them. Can you take a look
-> at Documentation/leds/well-known-leds.txt, decide if your current API
-> is suitable, and update the file so that we get the consistency?
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> ---
+> "dt-bindings: remoteproc: qcom,smd-edge: Add APR/FastRPC" [1] should be
+> applied additionally to avoid a dtbs_check warning related to fastrpc in
+> msm8916.dtsi.
 > 
-> Thanks,
->                                                                 Pavel
-
-thanks for the feedback Pavel, thanks for queueing up Shawn,
-
-that indeed says that phones should use the multicolor descriptions :)
-Later, I'll send changes to have a description like that:
-
-https://source.puri.sm/Librem5/linux/-/merge_requests/623#note_212773
-
-which should be close to what you meant, Pavel.
-
-thanks again,
-
-                              martin
-
-
+> Changes in v4: Add "unevaluatedProperties: false" to smd-edge
+> Changes in v3: None
+> Changes in v2:
+>   - Add blank lines between top-level properties
+>   - Drop "deprecated" in "oneOf" list, it is not clear if this is valid
+>     and it should be redundant since the properties itself are already
+>     marked as "deprecated"
 > 
-> > +       led-controller {
-> > +               compatible = "pwm-leds";
-> > +
-> > +               led-0 {
-> > +                       function = LED_FUNCTION_STATUS;
-> > +                       color = <LED_COLOR_ID_BLUE>;
-> > +                       max-brightness = <248>;
-> > +                       pwms = <&pwm2 0 50000 0>;
-> > +               };
-> > +
-> > +               led-1 {
-> > +                       function = LED_FUNCTION_STATUS;
-> > +                       color = <LED_COLOR_ID_GREEN>;
-> > +                       max-brightness = <248>;
-> > +                       pwms = <&pwm4 0 50000 0>;
-> > +               };
-> > +
-> > +               led-2 {
-> > +                       function = LED_FUNCTION_STATUS;
-> > +                       color = <LED_COLOR_ID_RED>;
-> > +                       max-brightness = <248>;
-> > +                       pwms = <&pwm3 0 50000 0>;
-> > +               };
-> > +       };
-> > +
-> >         reg_aud_1v8: regulator-audio-1v8 {
-> >                 compatible = "regulator-fixed";
-> >                 pinctrl-names = "default";
-> > -- 
-> > 2.30.2
-> 
+> [1]: https://lore.kernel.org/linux-arm-msm/20220908181432.458900-1-stephan.gerhold@kernkonzept.com/
 
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
