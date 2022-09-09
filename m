@@ -2,185 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6BFB5B351B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 12:24:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB85A5B352C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 12:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbiIIKYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 06:24:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56218 "EHLO
+        id S230013AbiIIK1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 06:27:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbiIIKYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 06:24:12 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 45303100429;
-        Fri,  9 Sep 2022 03:24:11 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 316C515DB;
-        Fri,  9 Sep 2022 03:24:17 -0700 (PDT)
-Received: from [10.57.15.197] (unknown [10.57.15.197])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 99AD33F73D;
-        Fri,  9 Sep 2022 03:24:08 -0700 (PDT)
-Message-ID: <136b5cd9-86d9-58c1-c7cd-7a02fdc9ecc4@arm.com>
-Date:   Fri, 9 Sep 2022 11:24:03 +0100
+        with ESMTP id S229971AbiIIK07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 06:26:59 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83FBDBCCE7
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 03:26:56 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id q21so1986405lfo.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 03:26:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=rjf3+l6MpExiUnh1Bd+nB5CMQur85rkGUg6VM0DVBw4=;
+        b=O8RB512Bn+Q7t0Atdu+5AkZtUaG86wv7F3nNgng05IDsMyqY5Bz/G+//df9K5DjIfo
+         +pGUgtti4Du/NP9GdWyt3m/Cj4KbfiJoWOGSkn9HidFk17UyQYRvw20V2kh92r3e7eCH
+         /tYfIxb2SuTby4WWGtM3503SJiQZ8Txxb+7M2LR0j/34xaOihT/2OlGo0W0Uhtlcx+BH
+         uKnEE97ZUeD03IB4psakfxgQ2tK4D2115JzvhxSuG4r708kAtGZ0Ztcp6uzETn2kPzb4
+         MIbDSOFRjnMFrSUNZY5J77oHx+UlFUlj3dhheG58S4fXvkCGHBrIuFMUSPYv3dZzZLSP
+         1yhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=rjf3+l6MpExiUnh1Bd+nB5CMQur85rkGUg6VM0DVBw4=;
+        b=W751WjxySzQP3+7GGNQuPgbfESf+U23QEmNivkcmPf2RbDFKus7OJeO+74eFnmXPZQ
+         L+BwBRIxkeuoiKqvZGaDtvdntgL8/CHrCQtYW1poHR+ERUAeui0L7Li6I9Otyi9vbwOo
+         Pndr+zNDBnKHvAHzVlibpm/9QmHPWrubIrhC/nVkqwhnLtzYkCaPFSAD2ERtJi7brs8q
+         UXRlo+fmAwp9+e9rQblD3KSksgtXz0fI/31Rve9KXEPN5XO55UN/DrvoxVImX8qeYl7c
+         Lj3kBpBX9QSpoWmBoXOEHZNoEJczsRfr8imw2b8Py68iRw6RU902aMCZ2PsivxJVjvSZ
+         tNWw==
+X-Gm-Message-State: ACgBeo0LQn52WSRdVu9hwo1j1L3hvVfPE412i48o0qpymw18LP/o+FSQ
+        AGYrl4DHr3w6/gc+q0UHf8eHXQ==
+X-Google-Smtp-Source: AA6agR6jd09WMg8R7tIo5zQ5wgKH7Sj3LUvV8fQn9ibb3/z+a656gZFZOUZ4xUWvFzpqlrAqx0VCOA==
+X-Received: by 2002:a19:ee0a:0:b0:497:a2e3:a9dc with SMTP id g10-20020a19ee0a000000b00497a2e3a9dcmr3941356lfb.96.1662719214910;
+        Fri, 09 Sep 2022 03:26:54 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id f17-20020a0565123b1100b0048b26d4bb64sm32492lfv.40.2022.09.09.03.26.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Sep 2022 03:26:53 -0700 (PDT)
+Message-ID: <fe1838eb-8ec5-62a9-3d90-bf2fe4070535@linaro.org>
+Date:   Fri, 9 Sep 2022 12:26:52 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v8 1/5] dt-bindings: reserved-memory: Document
- iommu-addresses
-Content-Language: en-GB
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
-References: <20220905170833.396892-1-thierry.reding@gmail.com>
- <20220905170833.396892-2-thierry.reding@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220905170833.396892-2-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH V7 1/2] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+Content-Language: en-US
+To:     Cixi Geng <gengcixi@gmail.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Orson Zhai <orsonzhai@gmail.com>,
+        baolin.wang@linux.alibaba.com,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org
+References: <20220909073456.239668-1-gengcixi@gmail.com>
+ <20220909073456.239668-2-gengcixi@gmail.com> <Yxr0+LJWWsF53dr2@google.com>
+ <CAF12kFteDZLk-2PBufnuar43bgPzoxWsOjR0-zQ01ZqLyTCxQw@mail.gmail.com>
+ <dc63bd52-edbf-d13b-86b3-db83bfd8b7e1@linaro.org>
+ <CAF12kFt95PYcK249Zm8r+jZtEm3vGTd3AXn2DB_CG0Xf=3xeFQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAF12kFt95PYcK249Zm8r+jZtEm3vGTd3AXn2DB_CG0Xf=3xeFQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-09-05 18:08, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> This adds the "iommu-addresses" property to reserved-memory nodes, which
-> allow describing the interaction of memory regions with IOMMUs. Two use-
-> cases are supported:
-> 
->    1. Static mappings can be described by pairing the "iommu-addresses"
->       property with a "reg" property. This is mostly useful for adopting
->       firmware-allocated buffers via identity mappings. One common use-
->       case where this is required is if early firmware or bootloaders
->       have set up a bootsplash framebuffer that a display controller is
->       actively scanning out from during the operating system boot
->       process.
-> 
->    2. If an "iommu-addresses" property exists without a "reg" property,
->       the reserved-memory node describes an IOVA reservation. Such memory
->       regions are excluded from the IOVA space available to operating
->       system drivers and can be used for regions that must not be used to
->       map arbitrary buffers.
-> 
-> Each mapping or reservation is tied to a specific device via a phandle
-> to the device's device tree node. This allows a reserved-memory region
-> to be reused across multiple devices.
+On 09/09/2022 12:16, Cixi Geng wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 于2022年9月9日周五 17:57写道：
+>>
+>> On 09/09/2022 11:50, Cixi Geng wrote:
+>>> Lee Jones <lee@kernel.org> 于2022年9月9日周五 16:10写道：
+>>>>
+>>>> On Fri, 09 Sep 2022, Cixi Geng wrote:
+>>>>
+>>>>> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+>>>>>
+>>>>> Add bindings for Unisoc system global register which provide register map
+>>>>> for clocks.
+>>>>>
+>>>>> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+>>>>> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>>>> ---
+>>>>>  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
+>>>>>  1 file changed, 68 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+>>>>
+>>>> I'll take this when the clk driver changes are merged.
+>>> this patch is depends on the clk dt-bingdings, which is already merged [1]
+>>
+>> which is merged to different tree, so this one here cannot go via MFD
+>> tree without cross-tree merges.
+> Hi Krzysztof:
+> I test on the latest kernel 506357871c18e06565840d71c2ef9f818e19f460
+> (torvalds/master) version:6.0.0.rc4
+> what you mean is I must warting your branch upgrade the cross-tree?
 
-This seems sufficiently robust to me, just one possibly-relevant point 
-which I'll get to in the following patch...
+Ah, you linked email message so that rather indicated applying to clk
+tree, but indeed it is already in the mainline.
 
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Changes in v8:
-> - include validation warning fixes that had crept into an unrelated patch
+>> Anyway please respond to my comment.
+> it in different reply-letter, about the question "Hmm, why these are not const?"
+> do your mean I should write as follow? what the different,
+> because I found both the two ways of writing are exist
+>   "#address-cells":
+>     const: 1
 > 
-> Changes in v7:
-> - keep reserved-memory.txt to avoid broken references
-> 
-> Changes in v6:
-> - add device phandle to iommu-addresses property in examples
-> - remove now unused dt-bindings/reserved-memory.h header
-> 
->   .../reserved-memory/reserved-memory.yaml      | 70 +++++++++++++++++++
->   1 file changed, 70 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> index 44f72bcf1782..fb48d016e368 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> @@ -52,6 +52,30 @@ properties:
->         Address and Length pairs. Specifies regions of memory that are
->         acceptable to allocate from.
->   
-> +  iommu-addresses:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: >
-> +      A list of phandle and specifier pairs that describe static IO virtual
-> +      address space mappings and carveouts associated with a given reserved
-> +      memory region. The phandle in the first cell refers to the device for
-> +      which the mapping or carveout is to be created.
-> +
-> +      The specifier consists of an address/size pair and denotes the IO
-> +      virtual address range of the region for the given device. The exact
-> +      format depends on the values of the "#address-cells" and "#size-cells"
-> +      properties of the device referenced via the phandle.
-> +
-> +      When used in combination with a "reg" property, an IOVA mapping is to
-> +      be established for this memory region. One example where this can be
-> +      useful is to create an identity mapping for physical memory that the
-> +      firmware has configured some hardware to access (such as a bootsplash
-> +      framebuffer).
-> +
-> +      If no "reg" property is specified, the "iommu-addresses" property
-> +      defines carveout regions in the IOVA space for the given device. This
-> +      can be useful if a certain memory region should not be mapped through
-> +      the IOMMU.
-> +
->     no-map:
->       type: boolean
->       description: >
-> @@ -97,4 +121,50 @@ oneOf:
->   
->   additionalProperties: true
->   
-> +examples:
-> +  - |
-> +    / {
-> +      compatible = "foo";
-> +      model = "foo";
-> +
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      reserved-memory {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        ranges;
-> +
-> +        adsp_resv: reservation-adsp {
-> +          /*
-> +           * Restrict IOVA mappings for ADSP buffers to the 512 MiB region
-> +           * from 0x40000000 - 0x5fffffff. Anything outside is reserved by
-> +           * the ADSP for I/O memory and private memory allocations.
-> +           */
-> +          iommu-addresses = <&adsp 0x0 0x00000000 0x00 0x40000000>,
-> +                            <&adsp 0x0 0x60000000 0xff 0xa0000000>;
-> +        };
-> +
-> +        fb: framebuffer@90000000 {
-> +          reg = <0x0 0x90000000 0x0 0x00800000>;
-> +          iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00800000>;
-> +        };
-> +      };
-> +
-> +      bus@0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0x0 0x0 0x0 0x40000000>;
-> +
-> +        adsp: adsp@2990000 {
-> +          reg = <0x2990000 0x2000>;
-> +          memory-region = <&adsp_resv>;
-> +        };
-> +
-> +        dc0: display@15200000 {
-> +          reg = <0x15200000 0x10000>;
-> +          memory-region = <&fb>;
-> +        };
-> +      };
-> +    };
->   ...
+>   "#size-cells":
+>     const: 1
+
+
+Yes.
+
+
+Best regards,
+Krzysztof
