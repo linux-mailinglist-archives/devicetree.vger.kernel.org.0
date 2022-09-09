@@ -2,87 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB07E5B3CC8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 18:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 597DD5B3CD4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 18:18:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiIIQQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 12:16:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57114 "EHLO
+        id S229596AbiIIQSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 12:18:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229566AbiIIQQX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 12:16:23 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF62425FD;
-        Fri,  9 Sep 2022 09:16:22 -0700 (PDT)
-Received: from pan.home (unknown [IPv6:2a00:23c6:c311:3401:d3c:a31c:505b:8c33])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: martyn)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 68C2C6601FCC;
-        Fri,  9 Sep 2022 17:16:20 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.co.uk;
-        s=mail; t=1662740180;
-        bh=Hm55QYd3o7JpTilmkeW0jrl7fsyX4VP54gZONEhFths=;
-        h=From:To:Cc:Subject:Date:From;
-        b=JPvSowkJNxrebAegvT18huox0SvsWkilvP5PF2H0q8vLL4PXfyXzyx9gZshlKGrKY
-         A0aZXA+Q+8HJMhHQOEYuWdvos1gBhF5M49I2yLmUxNPYPmgmFgJxMLP7pkE5p8aaZA
-         V7Fe6JP3fWe211M/sRqH0pUlW15qmRrJGztDtUb9vwvUAxwif+dw+wj+/TRULVq6fJ
-         buzhdy4ueiESDwcg0j5ag0ur/hFG+siAwqcCeMGX3HXfP2Pc99vYaLKFRQXB7Cuj6b
-         gLHW6JKqDjz5FzE4YW4beErxiEhdbKFigK0HzqyxS/0jfecBIKLsLBR7RVAu+HRbIX
-         lsKA3d1sMsqpQ==
-From:   Martyn Welch <martyn.welch@collabora.co.uk>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     kernel@collabora.com, Martyn Welch <martyn.welch@collabora.co.uk>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: iio: st,st-sensors add LPS22DF.
-Date:   Fri,  9 Sep 2022 17:16:09 +0100
-Message-Id: <20220909161611.780720-1-martyn.welch@collabora.co.uk>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S229494AbiIIQSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 12:18:16 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98E225FD;
+        Fri,  9 Sep 2022 09:18:15 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2895aPIn014512;
+        Fri, 9 Sep 2022 11:16:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=0LNLMREyF5kJJgwuJGbEQYx89rPhx/7FxKJ+y8sHgso=;
+ b=M74U+SR/xFOyjL5Yd8vaYN5nOMG05D2LuG2ZLLequWgbIJBMSLIFBIKks71n5joggxPt
+ DsYDofPEu/Tibf/3TlUnGfgrDm81ZycDq0UUIzo4ky4uXnh3Z7wLYPr+N0s7E/2/ifcl
+ iM8qcqz/dhihehviCf2CmvFR6pSxp9XLByzAEeQ+9C+qTdFquAJSA9g1A4j06QD8SENv
+ aFVSTgHqNkcDruyTrr0PFKNFdTtjugloZEgcCdx1wVI7lcw/LpvcZrOFD57wWPMAkeKZ
+ f4TLnuf9Qdb75KhlENf08rMpWMI7YY8iqHFnLc9C6uIq3JUb5dRJoJdSMbGm+lGwoHWu fw== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3jc4b2hu9x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Sep 2022 11:16:50 -0500
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.12; Fri, 9 Sep
+ 2022 11:16:48 -0500
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.12 via Frontend Transport; Fri, 9 Sep 2022 11:16:48 -0500
+Received: from [198.90.251.95] (edi-sw-dsktp-006.ad.cirrus.com [198.90.251.95])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 474012C5;
+        Fri,  9 Sep 2022 16:16:48 +0000 (UTC)
+Message-ID: <a7c2df88-766a-4657-8379-649a5ae93ac4@opensource.cirrus.com>
+Date:   Fri, 9 Sep 2022 17:16:48 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 00/10] Support for CS42L83 on Apple machines
+Content-Language: en-US
+To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
+        James Schulman <james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        "Lucas Tanure" <tanureal@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+CC:     Charles Keepax <ckeepax@opensource.cirrus.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Matt Flax <flatmax@flatmax.com>,
+        - <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <asahi@lists.linux.dev>
+References: <20220909135334.98220-1-povik+lin@cutebit.org>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+In-Reply-To: <20220909135334.98220-1-povik+lin@cutebit.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+X-Proofpoint-GUID: hV03cIsYarymZq2cwhZT7i_S0oaKwdrQ
+X-Proofpoint-ORIG-GUID: hV03cIsYarymZq2cwhZT7i_S0oaKwdrQ
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the ST LPS22DF, an I2C/SPI pressure sensor.
+On 09/09/2022 14:53, Martin Povišer wrote:
+> Hi all,
+> 
+> there's a CS42L83 headphone jack codec found in Apple computers (in the
+> recent 'Apple Silicon' ones as well as in earlier models, one example
+> [1]). The part isn't publicly documented, but it appears almost
+> identical to CS42L42, for which we have a driver in kernel. This series
+> adapts the CS42L42 driver to the new part, and makes one change in
+> anticipation of a machine driver for the Apple computers.
+> 
+> Patch 1 adds new compatible to the cs42l42 schema.
+> 
+> Patches 2 to 7 are taken from Richard's recent series [2] adding
+> soundwire support to cs42l42. They are useful refactorings to build on
+> in later patches, and also this way our work doesn't diverge. I made
+> one fix: I added a call of common_remove at the end of i2c_probe should
+> the cs42l42_init call fail (both before and after the split to
+> cs42l42-i2c.c). Also s/Soundwire/SoundWire/ in the changelogs.
+> 
 
-Signed-off-by: Martyn Welch <martyn.welch@collabora.co.uk>
----
- Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Mark: I've no objection to you taking my patches from this chain instead
+of waiting for me to re-send them myself. I can rebase my remaining
+patches onto this chain. But I do have comments on patches #4 and #7.
 
-diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-index fcb2902683c7..250439b13152 100644
---- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-+++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-@@ -73,6 +73,7 @@ properties:
-       - description: STMicroelectronics Pressure Sensors
-         enum:
-           - st,lps001wp-press
-+          - st,lps22df
-           - st,lps22hb-press
-           - st,lps22hh
-           - st,lps25h-press
-@@ -141,6 +142,7 @@ allOf:
-             - st,lis2mdl
-             - st,lis3l02dq
-             - st,lis3lv02dl-accel
-+            - st,lps22df
-             - st,lps22hb-press
-             - st,lps22hh
-             - st,lps25h-press
--- 
-2.35.1
-
+I've been very busy and don't have time right now to deal with
+re-sending my original patch chain.
