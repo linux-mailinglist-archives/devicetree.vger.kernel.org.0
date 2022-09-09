@@ -2,88 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3A265B3345
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 11:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A6FA5B336C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 11:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231663AbiIIJNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 05:13:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55032 "EHLO
+        id S231249AbiIIJUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 05:20:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232125AbiIIJNi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 05:13:38 -0400
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C1E0138833
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 02:13:34 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:91db:705e:cfbc:a001])
-        by michel.telenet-ops.be with bizsmtp
-        id HlDT2800j0sKggw06lDUP4; Fri, 09 Sep 2022 11:13:32 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oWa4l-004bak-9G; Fri, 09 Sep 2022 11:13:27 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oWa4k-004Oct-CC; Fri, 09 Sep 2022 11:13:26 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230213AbiIIJUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 05:20:44 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12E5B1B83
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 02:20:42 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id l12so1084878ljg.9
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 02:20:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=XnkhLW1ejx8tTO+Y2Pwl+ZHC58noV7Cx6HucpRux/vI=;
+        b=QQojFVc2k9PcGOvKHHr5y1k4LCqtHDtgix461+LEA/MpWC9FdGdDFNqg+lJ3TH2guI
+         6qIc/txqs0RA8Um0J4kMYH8vFwQ+knr9QJ2ynb2Zh+n+7eRdEIj/rNAEgcC2lnofGeGo
+         FI+7DjM4wQc6RcRWGiKaVrt85uQD7zygPWc0hcJ5rb/saMZPSvx2oK0IhPUIfTdMw1ju
+         Bk5I96ljFe99+T06ENoi6nLiYtbcn3TyBdVCBcBGYlOE6tXgSSHQ+2S8LdRhNNvIWHY9
+         M6+tug9yOui5mUn0EzbHBQAR3+trhCV+TR0ri886ivgMC55AXBDa6XeQrEbrK8yUL0pu
+         8UAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=XnkhLW1ejx8tTO+Y2Pwl+ZHC58noV7Cx6HucpRux/vI=;
+        b=LpQfSH7RVGGznyY5Lvqg7qGhPkf1tf3nTMShyBEdSSA/TyHTJyxmxWj9KYqGW9S/xN
+         AMm8sWBWLoc1J2kdkXGiOJex19Euy0sPmk/oY491s35W75bIgNWsyfhTzdIIhr3JKQRa
+         s71gWkdGpEFsQ64/yZlEmuIkkjfg15QHbW+Gx7U51EMC067vbIYUTqupkfO/IrqGbhSi
+         4syD/AqRTywZD8YoC7+Pt/tfphICqzGRHAN/r80q+/VWZsDCjGSwf4mE3QmdyJRTscUL
+         pQx4DYCZGyL7TmDq2vi8Ed5m16wDwu5zpMEakqQjrnMAhBcu/U7WfaG9alCyTyvB1vJh
+         KQQA==
+X-Gm-Message-State: ACgBeo1kSapD1BJOEimg0SxKLoM+BOwhlfNJqwH85kQUgOx/zD3Hp4Mn
+        8yOYE8Z6GlReBOwGXVNE7Qy+jw==
+X-Google-Smtp-Source: AA6agR4/MECLtPUrG3w1cE3tpTg0G0bj6Q2BTrm9q5W4QM1J3Sxu7sA6FekYdA5+1DR+QEB22UhYBw==
+X-Received: by 2002:a2e:8518:0:b0:26a:cfb4:5d47 with SMTP id j24-20020a2e8518000000b0026acfb45d47mr3163880lji.22.1662715240709;
+        Fri, 09 Sep 2022 02:20:40 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s6-20020a056512214600b00498fe38ea0fsm2170lfr.174.2022.09.09.02.20.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Sep 2022 02:20:40 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 2/2] dt-bindings: net: renesas,etheravb: Add r8a779g0 support
-Date:   Fri,  9 Sep 2022 11:13:23 +0200
-Message-Id: <cddb61cd9702ceefc702176bd8ff640c4ff59ffd.1662714607.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1662714607.git.geert+renesas@glider.be>
-References: <cover.1662714607.git.geert+renesas@glider.be>
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 00/15] ARM/hwlock: qcom: switch TCSR mutex to MMIO
+Date:   Fri,  9 Sep 2022 11:20:20 +0200
+Message-Id: <20220909092035.223915-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
-Renesas R-Car V4H (R8A779G0) SoC.
+Hi,
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Switch older Qualcomm SoCs to use MMIO-based method instead of syscon.
 
-diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-index cd5998e08e2195be..3f41294f5997722f 100644
---- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-+++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-@@ -45,6 +45,7 @@ properties:
-       - items:
-           - enum:
-               - renesas,etheravb-r8a779a0     # R-Car V3U
-+              - renesas,etheravb-r8a779g0     # R-Car V4H
-           - const: renesas,etheravb-rcar-gen4 # R-Car Gen4
- 
-       - items:
-@@ -211,7 +212,7 @@ allOf:
-               - renesas,etheravb-r8a77965
-               - renesas,etheravb-r8a77970
-               - renesas,etheravb-r8a77980
--              - renesas,etheravb-r8a779a0
-+              - renesas,etheravb-rcar-gen4
-     then:
-       required:
-         - tx-internal-delay-ps
+Not tested on hardware. Please kindly provide tests.
+
+Changes since v2
+================
+1. Rebase on current MFD changes.
+2. Add Rb tag.
+3. Split MFD patch to separate patchset:
+https://lore.kernel.org/linux-devicetree/20220909091056.128949-1-krzysztof.kozlowski@linaro.org/T/#u
+
+Changes since v1
+================
+1. Use existing qcom,tcsr-msm8974 compatible.
+2. Fix few other TCSR syscon compatibles (new patches: ipq6018, msm8953,
+   qcs404, msm8996).
+3. New patch: dt-bindings: mfd: qcom,tcsr: drop simple-mfd from IPQ6018
+4. New patch: dt-bindings: mfd: qcom,tcsr: add QCS404
+
+Dependencies
+============
+1. DT bindings and driver patches can go via hwlock. DTS via Bjorn/Qualcomm.
+
+2. The last five DTS commits (ARM and arm64) named "switch TCSR mutex to MMIO"
+   depend on driver support. The changes are not bisectable, just like
+   previously such changes were not bisectable:
+   https://lore.kernel.org/all/20200622075956.171058-5-bjorn.andersson@linaro.org/
+   Therefore these changes could wait for next release.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (15):
+  dt-bindings: hwlock: qcom-hwspinlock: add support for MMIO on older
+    SoCs
+  dt-bindings: hwlock: qcom-hwspinlock: correct example indentation
+  hwspinlock: qcom: correct MMIO max register for newer SoCs
+  hwspinlock: qcom: add support for MMIO on older SoCs
+  arm64: dts: qcom: ipq6018: add missing TCSR syscon compatible
+  arm64: dts: qcom: msm8953: add missing TCSR syscon compatible
+  arm64: dts: qcom: qcs404: add missing TCSR syscon compatible
+  arm64: dts: qcom: msm8996: add missing TCSR syscon compatible
+  ARM: dts: qcom: msm8974: add missing TCSR syscon compatible
+  ARM: dts: qcom: msm8974: split TCSR halt regs out of mutex
+  arm64: dts: qcom: ipq6018: switch TCSR mutex to MMIO
+  arm64: dts: qcom: msm8994: switch TCSR mutex to MMIO
+  ARM: dts: qcom: msm8974: switch TCSR mutex to MMIO
+  ARM: dts: qcom: apq8084: switch TCSR mutex to MMIO
+  ARM: dts: qcom: msm8226: switch TCSR mutex to MMIO
+
+ .../bindings/hwlock/qcom-hwspinlock.yaml      | 25 +++++++----
+ .../arm/boot/dts/qcom-apq8074-dragonboard.dts |  2 +-
+ arch/arm/boot/dts/qcom-apq8084.dtsi           | 11 ++---
+ arch/arm/boot/dts/qcom-msm8226.dtsi           | 14 ++-----
+ .../qcom-msm8974-lge-nexus5-hammerhead.dts    |  2 +-
+ .../dts/qcom-msm8974-sony-xperia-rhine.dtsi   |  2 +-
+ arch/arm/boot/dts/qcom-msm8974.dtsi           | 25 ++++++-----
+ .../dts/qcom-msm8974pro-fairphone-fp2.dts     |  2 +-
+ .../boot/dts/qcom-msm8974pro-samsung-klte.dts |  2 +-
+ ...-msm8974pro-sony-xperia-shinano-castor.dts |  2 +-
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi         | 15 +++----
+ arch/arm64/boot/dts/qcom/msm8953.dtsi         |  2 +-
+ arch/arm64/boot/dts/qcom/msm8994.dtsi         | 13 ++----
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  2 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |  2 +-
+ drivers/hwspinlock/qcom_hwspinlock.c          | 42 ++++++++++++++-----
+ 16 files changed, 86 insertions(+), 77 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
