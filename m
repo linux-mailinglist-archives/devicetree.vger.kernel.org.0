@@ -2,138 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA675B3B61
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 17:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 079EC5B3B69
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 17:04:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbiIIPDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 11:03:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60354 "EHLO
+        id S229698AbiIIPE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 11:04:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbiIIPDS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 11:03:18 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D730913A06F
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 08:03:16 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id z25so3189646lfr.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 08:03:16 -0700 (PDT)
+        with ESMTP id S230494AbiIIPEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 11:04:21 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7881B13A079;
+        Fri,  9 Sep 2022 08:04:20 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id m3so1791985pjo.1;
+        Fri, 09 Sep 2022 08:04:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=Vmqll87fgXtVSsw5dDmsHLc4RXFQEKzpyOW1jQCzE+c=;
-        b=iY411gwIt+9peHpUPGegqHIUg+1PiWLZb0HyXiE3QEUMW9/803x2Mbhk9yy8ZFhu10
-         mKjIUfR+HlAozp5T5YDJiYOLP6sQJR+ttRnyMfnkDZ1vTKicPpvn8mUWEGlOGwel1GmR
-         tl6fVjCrieqdr+ZkbBD42sS/QfU8xY5eZr5IuS7AAJa5mQ+h832L3bOMnKp0Asoz8NI7
-         AFVQObumPfNuTOm8IygKx+w+v/9rCOQEqTnEY0HJaipW28ByI82IlHa8K+IY0ck8ezqS
-         YqMHGuIJ4loLZpji7Oz2mj9+V/c1ypk+CxEojY3HTAhiJLDGgweOpqwq76YcmLXyHlKO
-         IMvQ==
+         :sender:from:to:cc:subject:date;
+        bh=hL2cx70YG7RrNd5UJ8t17Ow01zpeAQX1aXJ6HHL43VU=;
+        b=MVTXFFiN01myXOcvZRWQOavuunxR1LDgIMoIoTgtq8MhcbPSmRb1WnVe/JoFoOPszO
+         +fwLp3vbRKlWd4Fp6I5V/5pF9OAQ5GFVQh90xkwumUkcXLg1S5hwZr89Z8jEf6E0AaH3
+         /73V+AK6AcIcR2cgRWXKiIHvogWet4PRgWC5HuI/4d5eyaJX75Svp2F0CZEQLnhK6bHr
+         J4Z1mHRnRfSAc20wOtSdjwGCrNtbn/+MqqS+RqZR0us9YAaeMiHWliAGkvI6Rtk3mkYd
+         p/RzPRYprscRh5XtN5Ys2Egx49GuTS62ApxWBWXoAzgWC0tDc0JdrgndedtYHiajB3Op
+         nfZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=Vmqll87fgXtVSsw5dDmsHLc4RXFQEKzpyOW1jQCzE+c=;
-        b=03plw7S290BpxqCQWBxXwUItd+F42UWraiz2b3RvrTknOObAMHktY28Vov0o9p4C19
-         9jdeQWTBobzdkMxOLgwwTLXhnnJPxOx3V3XlNCp950k3xrSq7NGOQQ1Wg8JaO0MrVeOK
-         hfc/ZLZYpL6c4e6yxK3Fv0YaUuJdLjlnjeyGtQB9uV/QgMUyTllPRYYmHkuCgVPsdK+G
-         5U1O59j9e1bIDvg95leFl93L55+R4M5y0M1aWYVEHrUXG/U7VfDLwoQWJ3+As3Xyh5XA
-         R9tEYLcgS4wp22yRf5XI0gbH8bw7aOuKGuDfKUaOF4TihLVEV2U3+JMZTV9B8SW48UkB
-         ciRw==
-X-Gm-Message-State: ACgBeo05DlY9+Y8/YZhIRvPwKtM+7QaimtYIeFNDcau2CF8aST09Ltu2
-        QAftSgbh9WzdfxzTPH5AulecXg==
-X-Google-Smtp-Source: AA6agR4bGw6VYraARGB5bgxJrO2WZfHyY5MJ9ZBdMbJR+yrevj/QUf63tb6GKqtB1BYu2TF2jkgEPw==
-X-Received: by 2002:a05:6512:1686:b0:491:3199:d407 with SMTP id bu6-20020a056512168600b004913199d407mr4648076lfb.476.1662735795141;
-        Fri, 09 Sep 2022 08:03:15 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 22-20020ac25f56000000b0048a891e4d88sm109926lfz.193.2022.09.09.08.03.14
+         :sender:x-gm-message-state:from:to:cc:subject:date;
+        bh=hL2cx70YG7RrNd5UJ8t17Ow01zpeAQX1aXJ6HHL43VU=;
+        b=Rj4TdniAO5igEvzal3c6n6cQl2fdOMMCLZ5dEHYWCsBI0xogkRwDNJsEyT/CVrgHt0
+         +gTNlUgkVgvuOiifJ8uq17gG9LKhfTDroITETYJ8azKo5G1DOLGNlydcermj4D94o2D/
+         NCgnsnOEjFkgCla1frxSfnH5NSIX0eDO4tYcUjC+HaPv/bgndHAv0KOryfp4CdF2WHJS
+         8PrirB2sWY1GLmy/Ie+3jCiBmNtXgjTxBGCDz71ZUyuLRPnAXz0b0yocgyyyIn+gD7Wg
+         5eNmny7q1bvP9Eg1PqPyC5RfupHiPaC1vGkp7KPB1rMbSSUnjR/IhDNp8/zzro1ZLVSi
+         aZLA==
+X-Gm-Message-State: ACgBeo2BxSPE14JCKWOjyqNH+iwXJkEe0j6X3jZm8cUligsYDyyNvL5R
+        tpMW2L/t/R8kEJyb6G2LPAg=
+X-Google-Smtp-Source: AA6agR50U/n1AVhoAp7HplEc5VUgXT2sSAw3o2gbK2pzDWAaC/1vFPh0ZEqNEeMbzvp1JarBYH7Fgg==
+X-Received: by 2002:a17:90a:e60d:b0:201:6b28:5406 with SMTP id j13-20020a17090ae60d00b002016b285406mr9917776pjy.228.1662735859939;
+        Fri, 09 Sep 2022 08:04:19 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x8-20020a170902ec8800b00172dd10f64fsm553052plg.263.2022.09.09.08.04.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 08:03:14 -0700 (PDT)
-Message-ID: <59242592-4e3d-b7c2-e0bb-b39df780c26b@linaro.org>
-Date:   Fri, 9 Sep 2022 18:03:14 +0300
+        Fri, 09 Sep 2022 08:04:19 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <ba55b70f-b1b1-c31a-e1ef-a079f0f02782@roeck-us.net>
+Date:   Fri, 9 Sep 2022 08:04:17 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH 1/6] dt-bindings: phy: qcom,hdmi-phy-other: use pxo clock
-Content-Language: en-GB
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v8 3/4] dt-bindings: hwmon: Add bindings for max31760
+Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20220909132010.3814817-1-dmitry.baryshkov@linaro.org>
- <20220909132010.3814817-2-dmitry.baryshkov@linaro.org>
- <d72fc00c-85ba-8b48-1fcf-42fe9e8daeee@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <d72fc00c-85ba-8b48-1fcf-42fe9e8daeee@linaro.org>
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>, jdelvare@suse.com
+Cc:     linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220909133718.388213-1-Ibrahim.Tilki@analog.com>
+ <20220909133718.388213-4-Ibrahim.Tilki@analog.com>
+ <9d5e8a41-8e0a-c67a-1b68-f743b4680510@linaro.org>
+ <339d3857-2deb-b5d9-332d-cc65cc90ca19@roeck-us.net>
+ <96766080-dee3-1c06-031e-331a8702cf37@linaro.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <96766080-dee3-1c06-031e-331a8702cf37@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 16:30, Krzysztof Kozlowski wrote:
-> On 09/09/2022 15:20, Dmitry Baryshkov wrote:
->> Add pxo clock to the 8960 bindings (used by the HDMI PLL)
+On 9/9/22 07:56, Krzysztof Kozlowski wrote:
+> On 09/09/2022 16:52, Guenter Roeck wrote:
+>> Hi Krzysztof,
 >>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../bindings/phy/qcom,hdmi-phy-other.yaml     | 23 ++++++++++++++++---
->>   1 file changed, 20 insertions(+), 3 deletions(-)
+>> On 9/9/22 07:49, Krzysztof Kozlowski wrote:
+>>> On 09/09/2022 15:37, Ibrahim Tilki wrote:
+>>>> Adding bindings for Analog Devices MAX31760 Fan-Speed Controller
+>>>>
+>>>> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+>>>> ---
+>>>
+>>>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>> Please wait with applying for Rob's bot to check it.
+>>>
 >>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-other.yaml b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-other.yaml
->> index fdb277edebeb..2c21e120ff8d 100644
->> --- a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-other.yaml
->> +++ b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-other.yaml
->> @@ -53,7 +53,6 @@ allOf:
->>             contains:
->>               enum:
->>                 - qcom,hdmi-phy-8660
->> -              - qcom,hdmi-phy-8960
->>       then:
->>         properties:
->>           clocks:
->> @@ -63,6 +62,24 @@ allOf:
->>               - const: slave_iface
->>           vddio-supply: false
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,hdmi-phy-8960
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 1
->> +          maxItems: 2
->> +        clock-names:
->> +          minItems: 1
->> +          items:
->> +            - const: slave_iface
->> +            - const: pxo
+>> I don't think I see those results unless there is a failure.
 > 
-> Why pxo is optional? Commit msg does not say much here.
+> That's correct.
+> 
+>> Is there a link where I can look up the results ?
+> 
+> It will pop-up on Patchwork:
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220909133718.388213-4-Ibrahim.Tilki@analog.com/
+> 
+> Like for example here:
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220908184925.2714098-3-sireeshkodali1@gmail.com/
+> 
+Thanks!
 
-It's optional as it is not present in current DT files. The driver will 
-fallback to 'pxo_board' if the clock is not present.
-
-> It seems you also miss the DTS change adding the clock.
-
-Oh, I'll add it to v2.
-
--- 
-With best wishes
-Dmitry
+Guenter
 
