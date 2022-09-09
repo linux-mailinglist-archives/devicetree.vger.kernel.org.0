@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76B2C5B30E2
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 09:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 611775B3111
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 09:58:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230360AbiIIHy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 03:54:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56606 "EHLO
+        id S231193AbiIIHzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 03:55:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230038AbiIIHyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 03:54:09 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B261216A0
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 00:51:46 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id a8so1290366lff.13
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 00:51:46 -0700 (PDT)
+        with ESMTP id S229971AbiIIHym (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 03:54:42 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 860A88A1C7
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 00:52:20 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id f9so600142lfr.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 00:52:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=ygzgjfyjBg7Clr0C0/hvEem9VU5MhWDZEtuQgO95Dqc=;
-        b=JJOyZppM2dF9iD2mrjF0mK2AeXPh4IMzalwQP3saFldlVO0bHw+xTzPhpo2TTwe3Dv
-         Zr8hf4ucu0A2l+VKWxpCIBDP+AEQdWdmx0MmdGWDcm9SAsIMsrwdfr1yJ1pI5O+Zg0+c
-         hX7La09cORywi0VAzAinGex5d3Mo93rYVpmkrTpmXdvSPpX4wpP/rqnR5uSBtRnXFogR
-         Ytnv2xfn0KTnpFjRmefWpwwHOUzK50uVsHejiKWG/9JC5hgz3GjV3NIOr4C5HoIpx71u
-         fbeTClvddNceBArKP4/rG+8nc31Ig1YhYw0ulZ0vFwrx/ChhNHRhe/3E+9VtCtjxS5yR
-         6Wdw==
+        bh=H3jTggW39q8fm3aTawxMJXs7n4OJhbpJ8Eu66JkV7sg=;
+        b=tMiTZ9kBcLTSnBwxlM7qRCkLS5VEX+ikMY+6KNcBfL/K1eFfkjtQAty6zI8yFAQeBK
+         TAueo4EMTGNT+zU0YXpVMemtroM9uG8/2ID80+XP36PH5+9LjKk1jUFkbHwq2/LV8q6C
+         O49XhMhMEx+wD04J3FHH97UlihP8butM4wfGqA2FeV1up4K3Dqa5dFSMGztrlHPdncDI
+         BcwTyewKT2NvCvU1zufk/N62V22lmfRI2FqjsXhar/sHkh3ggw4R6lcjT+TZR31IevJh
+         7Sjk1AVZZW0w3BTx9a9k6t2jS8TEwIMuBwSp5f/c4XDaH2+LERqNbOLSYo4P17KCcS80
+         7I4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=ygzgjfyjBg7Clr0C0/hvEem9VU5MhWDZEtuQgO95Dqc=;
-        b=kGzXWgvV3Agme8qR9crVDGbLiW5Ycj2m1A7stbD0nQUd/Ac0DqyvNHjfYndFP+5vKW
-         BpujkzRJRtKi5Uqgg3uLFlxUhI0aznVqU9jP9t3ZV7rvZ+0kwJOZBtxMowGODB3Rcemz
-         EMeUym0uFPXqFO8GfY1uuZMkjM1o1P0EMUzd/YPeBEUiTSPp4HtGKr+Nr1gi7JYusbqu
-         FL7uYMoNNUEbzqp0ZI3/wKvj5ekE3TzJWUIqjXxdwkgTQTzp9+0No/vnAcojMROksdw9
-         A39LFEudjkQPfDQMyTQ/6W0elsB+tSn5BTVpJBiFrGd0gUbBHDrkJ0q94kY+VqyupN17
-         gmtA==
-X-Gm-Message-State: ACgBeo15Ctx7hhGbMu8CHABv6XLzH4e8uvQeEhrzYogk9NHflL2L3DKV
-        GOk/pCEeCCK7ohUKk+pDyqKZOg==
-X-Google-Smtp-Source: AA6agR5hbacADbxwVDJCWoFcJTqmA/zt/dH6rfE6jrL04ZeNbuSaNE0c/tLl+nkU3UJedss9Sma4Ig==
-X-Received: by 2002:a05:6512:3409:b0:48a:ef04:4ec2 with SMTP id i9-20020a056512340900b0048aef044ec2mr4311008lfr.230.1662709904599;
-        Fri, 09 Sep 2022 00:51:44 -0700 (PDT)
+        bh=H3jTggW39q8fm3aTawxMJXs7n4OJhbpJ8Eu66JkV7sg=;
+        b=7IiOC4DCdHWiFSYcIia9n0p1u/K/K2yVzgnlzf1/qm4OUDE4aGt/t0ixxmGHu2Ak10
+         lv06n3VdGPtJIlUGb1OTYsJ1QJ5eh03Ipwl8KmLs4Kk7/yKC/c34SozN0UPXnURVi+1s
+         s+keIj/0jCOGdNzf22Yh+shzhkiha5zQY5BbzKEhBYp4ov6DmCp9l6Ju3RkboNjtu2c1
+         +7yiLmtMiFWjyD9E5W1DFKzNxjAR8nxUVfwiL2rzIzItd9yrfinmwE+yEHShYHxOzT5L
+         e+an/qlDZJKEceMrlvcSylRd7zO57YQrW9ACOU4qEFuQZ4/ZcPUTRJ8K1HNyT7B4PxCZ
+         vnww==
+X-Gm-Message-State: ACgBeo0kp5Qv7QFr8mE9tdyy9vyERge8cpmzYZPpvXT2miCgEJGT43Uj
+        gTll6JyplFBNkM1OlhSJ9RBYSA==
+X-Google-Smtp-Source: AA6agR6RMZ+XZIiPmcU2JjIgbPC9jWYTi5BjrlN4ZEWRoIILkP5u1HCl1iJMJF5UN1Aj2o/Ag6dYWg==
+X-Received: by 2002:ac2:41c1:0:b0:494:65a7:43ef with SMTP id d1-20020ac241c1000000b0049465a743efmr4265291lfi.592.1662709938774;
+        Fri, 09 Sep 2022 00:52:18 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v8-20020a056512348800b0049707888a61sm157964lfr.293.2022.09.09.00.51.43
+        by smtp.gmail.com with ESMTPSA id h14-20020ac25d6e000000b00496d254bbd9sm159806lft.271.2022.09.09.00.52.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 00:51:44 -0700 (PDT)
-Message-ID: <df2f3529-cb9b-1b45-14f0-61d8a60943c3@linaro.org>
-Date:   Fri, 9 Sep 2022 09:51:42 +0200
+        Fri, 09 Sep 2022 00:52:18 -0700 (PDT)
+Message-ID: <02b932b9-a100-3e35-ae57-575ed3dc5f69@linaro.org>
+Date:   Fri, 9 Sep 2022 09:52:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: qcom: add bindings for dispcc
- on SM8450
+Subject: Re: [linux][PATCH v8 1/2] dt-bindings: arm: at91: Add info on
+ SAMA5D3-EDS
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Jerry Ray <jerry.ray@microchip.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220908222850.3552050-1-dmitry.baryshkov@linaro.org>
- <20220908222850.3552050-2-dmitry.baryshkov@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220908222125.19059-1-jerry.ray@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220908222850.3552050-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220908222125.19059-1-jerry.ray@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,56 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 00:28, Dmitry Baryshkov wrote:
-> Add device tree bindings for the display clock controller on Qualcomm
-> SM8450 platform.
+On 09/09/2022 00:21, Jerry Ray wrote:
+> Adding the SAMA5D3-EDS board from Microchip into the atmel AT91 board
+> description yaml file.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-I think I reviewed it...
-
+> Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
 > ---
->  .../bindings/clock/qcom,sm8450-dispcc.yaml    |  98 +++++++++++++++++
->  .../dt-bindings/clock/qcom,sm8450-dispcc.h    | 103 ++++++++++++++++++
->  2 files changed, 201 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sm8450-dispcc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml
-> new file mode 100644
-> index 000000000000..467544eea1ac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm8450-dispcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display Clock & Reset Controller Binding for SM8450
+> v7->v8:
+>  - correcting patch subject line.
+> v6->v7:
 
-Drop "Binding"
-
-> +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> +
-> +description: |
-> +  Qualcomm display clock control module which supports the clocks, resets and
-> +  power domains on SM8450.
-> +
-> +  See also:
-> +    dt-bindings/clock/qcom,sm8450-dispcc.h
-
-This is not fixed (Bjorn's comment - full path).
-
-> +
-> +properties:
-
-With both above fixed:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
