@@ -2,183 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDD065B2FF0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 09:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 323745B2FEB
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 09:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231355AbiIIHed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 03:34:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32974 "EHLO
+        id S231337AbiIIHee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 03:34:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231337AbiIIHeb (ORCPT
+        with ESMTP id S231343AbiIIHeb (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 03:34:31 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4301065B6
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 00:34:27 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id u18so1253130lfo.8
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 00:34:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=RIxvHEegtZCxPOPw7EphVjzvn7r49/9vRL8dVi9xWMs=;
-        b=NOp54X4f6ury83PRxp2qqhdBmIM7mv360+YQrIn5bGU7s3CQkJFG+5brMbXLsUT49d
-         mqHyf0qNhAkYbaz9qSHaEQaA8y+i0wXJKjIdliolEo1Ygjat3XHmlc05/oNKHaSOQfIp
-         gVvlZakjCK5x3P1hjBwt2q8hmWqn+8V9ovKr2U8IKi2PMR5jSsRCc4yMF/Efhj3ECEfl
-         gUr5Ph1QJY3FPWRgdvNCnFCwzNyV89QqCrCMPyDPTpJ/IFWC7tR3rDocgdcvu5blbIgX
-         m0fKyadbcY6KgmjJ6CQobtbCT3Q0qIXXhT5AOh3XyzmzxUSYl6w3Yix/bIfqcJ4GwF4h
-         UmwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=RIxvHEegtZCxPOPw7EphVjzvn7r49/9vRL8dVi9xWMs=;
-        b=hPzX21xkJH5HUNUaLGke/FG+Yobvmje8jyR8aEGygysnUOInEe7Hnyq3aGiI1b8GYT
-         ya255FqwqzK8Z+wmqv/HOrIWN6m5GwUMZRyVUYVpu54bmF08NAEsIkZ1UxKstKket72E
-         RhTJ6sqRuDINY4GcgxAUb0Cb2lZtHm3EOg8FMiFIgE950t0vs8Oh8ib80OXqg4i5l5SF
-         1TM4eYkkHI5NtjUz/xj/TZWP3ipaqtrHQpW+sqZM1SJg/bU8hN0k+6v19SNBuVFjwHY1
-         XC+ViXbYQGP/cvzXz+ZpebsvXT3sdbYqwdMGdCiKXXFaWe2R6RAj6STaveozmMmydilZ
-         JEMw==
-X-Gm-Message-State: ACgBeo09s+CiOFYl+zELT+DpasVuIe0MSTIT4TKr0gv5EHD2+NA4t6U5
-        Xl5E9Zwtiz+WxRuJDoSzE4bihA==
-X-Google-Smtp-Source: AA6agR7MFPe/65GpvTSwXGO9jKrS/KFNzQt7E0cl1aUwzOgn5MmUyTpsYJzjIROa0DwMp7uB3Yuu1A==
-X-Received: by 2002:a05:6512:3183:b0:498:fa29:35fe with SMTP id i3-20020a056512318300b00498fa2935femr454877lfe.523.1662708865316;
-        Fri, 09 Sep 2022 00:34:25 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f25-20020ac25cd9000000b004948378080csm152093lfq.290.2022.09.09.00.34.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 00:34:24 -0700 (PDT)
-Message-ID: <c447b51d-339e-2bd9-2dbd-5198d4eeaa11@linaro.org>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C58E69FDD;
+        Fri,  9 Sep 2022 00:34:27 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 994E76601F9D;
+        Fri,  9 Sep 2022 08:34:25 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1662708866;
+        bh=bjppm3Xg5rRyAVAP2JUIBpEpmHiyGYMZzbFmLSD8Ufs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=CPiWIK33O8O4yRN2/S2bnLMQwjs3pzfpMtc5te8+VNoKgb936foJfRzXE66ASdEq7
+         WxJ1wrQmnizKwBah12QL+vv6cWibzo1x7UbFVT5ktmDc7kwUlRb8abDJyh8oiD6VRp
+         rSOfjUQ+LPP8kio5fRcshnyVR/y9Sm1oWEQUcc3apf7lwEhyzuoSUp3qHgj0ajuBhD
+         CrrkEiyIXMAnxFQsdDsf6x7LQvxvEquiwp+c9vY/pBhoevwlny8hcSn8Uub/oIYzu7
+         zfTzhfata86iha9Eltwqxc9xALp3y0tW/UyxSll/iwhG21WOAjQH/IqIxZnnmaaZQE
+         0hdtk7b956hKg==
+Message-ID: <38db9b6a-2d78-6fd0-81ac-605724ad5f5a@collabora.com>
 Date:   Fri, 9 Sep 2022 09:34:23 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 2/4] pinctrl: qcom: spmi-gpio: Fix the GPIO strength
- mapping
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH 07/10] arm64: dts: mediatek: kukui: Remove i2s-share
+ properties
 Content-Language: en-US
-To:     David Collins <quic_collinsd@quicinc.com>,
-        Anjelique Melendez <quic_amelende@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     konrad.dybcio@somainline.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Anirudh Ghayal <quic_aghayal@quicinc.com>
-References: <20220907201528.9351-1-quic_amelende@quicinc.com>
- <20220907201528.9351-3-quic_amelende@quicinc.com>
- <2b809e98-85ea-6ad9-e810-106563937ddc@linaro.org>
- <4c017ad4-558b-a8d4-bc8a-eebd2d5a35ba@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4c017ad4-558b-a8d4-bc8a-eebd2d5a35ba@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     kernel@collabora.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20220908161154.648557-1-nfraprado@collabora.com>
+ <20220908161154.648557-8-nfraprado@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220908161154.648557-8-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 02:25, David Collins wrote:
->>> diff --git a/include/dt-bindings/pinctrl/qcom,pmic-gpio.h b/include/dt-bindings/pinctrl/qcom,pmic-gpio.h
->>> index e5df5ce45a0f..950be952ad3e 100644
->>> --- a/include/dt-bindings/pinctrl/qcom,pmic-gpio.h
->>> +++ b/include/dt-bindings/pinctrl/qcom,pmic-gpio.h
->>
->> You cannot mix bindings with driver. This is an ABI break.
+Il 08/09/22 18:11, Nícolas F. R. A. Prado ha scritto:
+> The i2sN-share properties were never documented in the dt-binding and
+> thus shouldn't be used. Now that the ASoC machine drivers are setting
+> the I2S clock sharing internally, these properties are no longer needed,
+> so remove them.
 > 
-> This could be split into two patches.  However, both would need to make
-> it into any given build to avoid runtime regressions when
-> pinctrl-spmi-gpio.c rejects GPIO strength configurations larger than 1.
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-Which proves this is an ABI break. You need to gracefully handle in the
-driver.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> 
-> I suppose that this kind of bi-directional dependency could be avoided
-> by using one of these checks instead in the driver:
-> 
-> if (arg > 3) {
-> 
-> or
-> 
-> if (arg > max(PMIC_GPIO_STRENGTH_LOW, PMIC_GPIO_STRENGTH_HIGH))
-> 
-> Going this route would only require that the driver patch is picked up
-> before the DT header patch.
-
-You cannot change constants in the DT bindings header. Regardless
-whether now or in the future - the constants are frozen. Otherwise it is
-an ABI break. It would be acceptable only if existing feature was
-completely broken and never worked.
-
-> 
-> 
-> 
->>> @@ -12,9 +12,14 @@
->>>  #define PMIC_GPIO_PULL_UP_1P5_30	3
->>>  
->>>  #define PMIC_GPIO_STRENGTH_NO		0
->>> -#define PMIC_GPIO_STRENGTH_HIGH		1
->>> +#define PMIC_GPIO_STRENGTH_LOW		1
->>>  #define PMIC_GPIO_STRENGTH_MED		2
->>> -#define PMIC_GPIO_STRENGTH_LOW		3
->>> +#define PMIC_GPIO_STRENGTH_HIGH		3
->>
->> Didn't you just break all DTSes in the world?
-> 
-> Currently, all PMIC GPIO peripherals managed by the pinctrl-spmi-gpio
-> driver are having their drive strength control register programmed
-> incorrectly at runtime for the constant name used in DT (i.e.
-> PMIC_GPIO_STRENGTH_LOW vs PMIC_GPIO_STRENGTH_HIGH).  Changing the values
-> of those constants as done in this patch fixes that incorrect behavior.
-
-Wait. The values in the bindings should be only, *only* abstract ID
-numbers. Not register values. How is it related to the value being
-programmed in the driver? This is just an enum. If you have DTS with
-PMIC_GPIO_STRENGTH_LOW you program 0xwhatever-you-wish. Not exactly
-current value of "PMIC_GPIO_STRENGTH_LOW".
-
-You need to fix the driver, not the bindings.
-
-> 
-> The qcom,drive-strength DT property is taking a raw drive strength
-> control register value instead of some logical strength abstraction.
-> I'm not sure of a better way to handle the situation than fixing the
-> incorrect drive strength constant to register value mapping as defined
-> in qcom,pmic-gpio.h.
-
-Bindings are not for defining register values, but to define the DTS.
-Feel free to use binding constants for register values if they fit
-you... but if they don't fit, fix the driver. Not the bindings.
-
-> 
-> Changing the mapping in qcom,pmic-gpio.h without updating any dtsi files
-> could cause a problem for very old targets that use SSBI instead of SPMI
-> for PMIC communication.  However, for there to actually be a problem,
-> PMIC_GPIO_STRENGTH_LOW or PMIC_GPIO_STRENGTH_HIGH would need to be
-> specified for the SSBI PMIC.  That would be GPIO devices with compatible
-> strings: "qcom,pm8018-gpio", "qcom,pm8038-gpio", "qcom,pm8058-gpio",
-> "qcom,pm8917-gpio", or "qcom,pm8921-gpio".  I could find no instances of
-> this situation in the kernel source tree.
-> 
-> The PMIC_GPIO_STRENGTH_LOW or PMIC_GPIO_STRENGTH_HIGH usage in dtsi
-> files for SPMI PMICs does not need to be modified.  The DT header patch
-> fixes configurations that are currently broken for them.
-> 
-> Note that the drive strength misconfiguration issue doesn't present a
-> problem for commercial products as this patch has been cherry-picked
-> downstream for several years.
-
-It will affect several other out-of-tree users and other projects. Don't
-think only about Qualcomm tree, but about entire Qualcomm ecosystem and
-its users.
-
-
-Best regards,
-Krzysztof
