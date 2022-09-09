@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E5355B311D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 09:58:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D32065B3118
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 09:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230285AbiIIH4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 03:56:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58434 "EHLO
+        id S229622AbiIIH4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 03:56:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiIIH4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 03:56:04 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8BD09CCD3
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 00:53:43 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id f11so1330358lfa.6
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 00:53:43 -0700 (PDT)
+        with ESMTP id S229785AbiIIH4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 03:56:36 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C84A11A05
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 00:54:39 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id z23so892295ljk.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 00:54:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=SjYG2PFaNt0xECOYddkqlrk70qFfhobeiXgcTEQwROc=;
-        b=GN9JSxri6PHjWcOv6NDc4cgT9TtEg02B7jt8LGyIcXEH1kBi+ibdKX1EzAn9yPswHU
-         Hm1DEOsq0VzKp9FCTV/v75soeA+Z+2rI0rwa/LwEjdNilREutomUc8QUfIEkbgxnU7Oi
-         xt2UyDw+kfGQ/V/+cve9rN1tgOcuz2PdTjn6rX3uhnKBLnQzZQbxed8vR2FdUx/Z0KRV
-         UhTqmr47QUCSWp91btZP9JTH0k4fonUJOVL5uJen+clO5AH30WcVtDdnes2NJI6U7UBE
-         U2fnydaQrzDJdjM76C5iS4ghtRqYIQHLYhWs5OjrPEVamj6BvfN+V37H4Ha999gjRL/J
-         vPDg==
+        bh=awBA0E2ogM2ajE8k1bTdqwTL4e3LIH+ZvAf6BsRqjE0=;
+        b=e1qSnFEh+XDMkIp1/Fvzqz9XEKXEYXxS5gNTe8UEoYHZCEgpgbBrw24tArbzFr9Vvz
+         xrzX1UkUmHg/RL8NY0tPbKbCa6POX7/y+JyPPWeejfg0cUiZkV8yt62nDMjAtfohgYHd
+         8QZU2X7FabQQiiR8PGvxO+B+y01LORCcNs3QqmgBLQ2E80TQ2+4lMjsX1KVP3tQDqpiZ
+         uaqe9AlkInKwJRk/0uvvMBqfCpFmry+nWl0MgNNDGVIh4hUxujIWnbrTMyJ3J0y6Whw6
+         SZB7yqLYDLGowIusE3ccaD9hEQzscwpx23w3gF3fkKlBw8ruYZFQ2XD9eSwKQt1fRH1Q
+         fDLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=SjYG2PFaNt0xECOYddkqlrk70qFfhobeiXgcTEQwROc=;
-        b=nrvlXHTdbUC39wi+yh+65NUL1Ss7LstlYtcDuCwwaZhM6MaVXgqwHtbLfpnZxQvaZ3
-         FFnpnxvodF2J4qJDRNPFWtFIT+zX2wYkQHlvRwyjNwL7BUvhzF4sFFFYBcpTQYZzqhND
-         M2WQcvywmW+WBftrnSY6Z+kpTZZDY4xkZkkxlYwnCTYJIUvsrzopUuHZwCdqTcqhSmJo
-         bZZgbQEV4vpd+njPH284AYZW63gB3e1cdv5znv26Re3QGo9IV2SDHtas9hUoTi3C8Sfs
-         DnNHmsWgWahWGfFJqntOoaBhi0GvucudIbVDiWxjVcoyso6m/kRNeUFXfJKzk04SApvx
-         z+1A==
-X-Gm-Message-State: ACgBeo2fxe0fy5hlaEh3ayG+6pyhj1wGr0Kdkkh9pnCzTZFym78wIYlX
-        /+f/IgxMWVqe9Lr3oBASck3Uxg==
-X-Google-Smtp-Source: AA6agR69XlB0N1Y4F2sFDuVhLxBpAU4/bu1X383HDNAMMYLF35HPUz+ANBnwZBoPsRmWeNG8cOctXw==
-X-Received: by 2002:a05:6512:2828:b0:498:f87f:465e with SMTP id cf40-20020a056512282800b00498f87f465emr612449lfb.522.1662710017837;
-        Fri, 09 Sep 2022 00:53:37 -0700 (PDT)
+        bh=awBA0E2ogM2ajE8k1bTdqwTL4e3LIH+ZvAf6BsRqjE0=;
+        b=MyxDsu02ZJ5AXZsGWpMbh3W5yf5ODtJSpvtZQKpN7EDCv9s2JgSyv1tbGDF5ma/3Po
+         1/3larSf4Cm0OSci4K2czuruX7J7W7uGJ6NyIAwrvBp4KKXHhvTEwdKLFRQopbHGpa8o
+         VjKuj/+6hmhFA9PADyEWWH+5yc0l0H/wfGUfYIEsyJJqQ/tZd+hPPAb7PdnwIkySqjjn
+         0PylSr7zjVZoaNJfwb4AewHKja7U+Jq0hBIwDEpiQRIjD09caAndSCs463JpFfOGg8gt
+         egJszXQFtehk7baasBB2CMn1fH1mbQoJf+zoqxJoKLJiPDzhH343qjSCXf9TiEMeTtN+
+         CPtA==
+X-Gm-Message-State: ACgBeo1z9YeAL3lCWXnDARwjzwCq5QrKB+EKQFasQOopSbdAz/eky1i5
+        P0OiNEy8JQv1pBsfmO0D7GgJPQ==
+X-Google-Smtp-Source: AA6agR5qURN+aVof+MSVvttkLwY142Jq1QX7lcs5z+dRe+eN1q5YS+dBKkeop1namqdzabPPe5BnzA==
+X-Received: by 2002:a2e:bd0e:0:b0:267:fad4:7f72 with SMTP id n14-20020a2ebd0e000000b00267fad47f72mr3803067ljq.130.1662710077865;
+        Fri, 09 Sep 2022 00:54:37 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a3-20020a056512390300b00494942bec60sm180227lfu.17.2022.09.09.00.53.36
+        by smtp.gmail.com with ESMTPSA id v11-20020ac258eb000000b0048afd0c496fsm169951lfo.156.2022.09.09.00.54.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 00:53:37 -0700 (PDT)
-Message-ID: <c162f4b5-9af3-a62b-aa2c-ce16662d30bb@linaro.org>
-Date:   Fri, 9 Sep 2022 09:53:36 +0200
+        Fri, 09 Sep 2022 00:54:37 -0700 (PDT)
+Message-ID: <79fe437e-b67c-21e3-e748-83223b8d4c15@linaro.org>
+Date:   Fri, 9 Sep 2022 09:54:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [linux][PATCH v8 2/2] dts: arm: at91: Add SAMA5D3-EDS Board
+Subject: Re: [PATCH v6 1/2] ARM: dts: at91: Adding documentation for
+ SAMA5D3-EDS
 Content-Language: en-US
-To:     Jerry Ray <jerry.ray@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
+To:     Jerry.Ray@microchip.com, robh@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20220908222125.19059-1-jerry.ray@microchip.com>
- <20220908222125.19059-2-jerry.ray@microchip.com>
+References: <20220902192236.14862-1-jerry.ray@microchip.com>
+ <20220908211048.GA3344136-robh@kernel.org>
+ <MWHPR11MB16936F4F2FE278CAFAC6E7AFEF409@MWHPR11MB1693.namprd11.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220908222125.19059-2-jerry.ray@microchip.com>
+In-Reply-To: <MWHPR11MB16936F4F2FE278CAFAC6E7AFEF409@MWHPR11MB1693.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,90 +79,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 00:21, Jerry Ray wrote:
-> The SAMA5D3-EDS board is an Ethernet Development Platform allowing for
-> evaluating many Microchip ethernet switch and PHY products.  Various
-> daughter cards can connect via an RGMII connector or an RMII connector.
+On 08/09/2022 23:38, Jerry.Ray@microchip.com wrote:
+>>> Adding the SAMA5D3-EDS board from Microchip into the atmel AT91 board 
+>>> description yaml file.
+>>>
+>>> Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
+>>> ---
+>>> v5->v6:
+>>>  - No code change - patch prefix naming modified to match with others.
+>>
+>> You did 'git log --oneline Documentation/devicetree/bindings/arm/' for inspiration?
+>>
+>> 'ARM: dts' would be an arm32 .dts file which this is not.
+>>
+>> Rob
 > 
-> The EDS board is not intended for stand-alone use and has no ethernet
-> capabilities when no daughter board is connected.  As such, this device
-> tree is intended to be used with a DT overlay defining the add-on board.
-> To better ensure consistency, some items are defined here as a form of
-> documentation so that all add-on overlays will use the same terms.
-> 
-> Link: https://www.microchip.com/en-us/development-tool/SAMA5D3-ETHERNET-DEVELOPMENT-SYSTEM
-> 
-> Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
-> ---
-> v7->v8:
->  - correcting patch subject line.
-> v6->v7:
->  - Renamed regulators, making things more consistent.
->  - Made slow_xtal and main_xtal entries direct overrides.
-> v5->v6:
->  - Replaced underscores in names where I can, improving naming.
-> v4->v5:
->  - patch now applies to v6.0-rc2
-> v3->v4:
->  - Fixed regulators as necessary to get the board to boot from SD Card.
-> v2->v3:
->  - Alphabetized pinctrl entries.
->  - cleaned up a warning in the regulators section.
->  - License tweaked to 'OR MIT'
->  - Included Makefile change
-> v1->v2:
->  - Modified the compatible field in the device tree to reflect Microchip
->    Ethernet Development System Board.
-> ---
->  arch/arm/boot/dts/Makefile             |   1 +
->  arch/arm/boot/dts/at91-sama5d3_eds.dts | 307 +++++++++++++++++++++++++
->  2 files changed, 308 insertions(+)
->  create mode 100644 arch/arm/boot/dts/at91-sama5d3_eds.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 05d8aef6e5d2..e92e639a2dc3 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -61,6 +61,7 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
->  	at91-sama5d2_icp.dtb \
->  	at91-sama5d2_ptc_ek.dtb \
->  	at91-sama5d2_xplained.dtb \
-> +	at91-sama5d3_eds.dtb \
->  	at91-sama5d3_ksz9477_evb.dtb \
->  	at91-sama5d3_xplained.dtb \
->  	at91-dvk_som60.dtb \
-> diff --git a/arch/arm/boot/dts/at91-sama5d3_eds.dts b/arch/arm/boot/dts/at91-sama5d3_eds.dts
-> new file mode 100644
-> index 000000000000..c7fbf7aa7826
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/at91-sama5d3_eds.dts
-> @@ -0,0 +1,307 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +/*
-> + * at91-sama5d3_eds.dts - Device Tree file for the SAMA5D3 Ethernet
-> + *    Development System board.
-> + *
-> + * Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries
-> + *
-> + * Author: Jerry Ray <jerry.ray@microchip.com>
-> + */
-> +/dts-v1/;
-> +#include "sama5d36.dtsi"
-> +
-> +/ {
-> +	model = "SAMA5D3 Ethernet Development System";
-> +	compatible = "microchip,sama5d3-eds", "atmel,sama5d36",
-> +		     "atmel,sama5d3", "atmel,sama5";
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	gpio {
+> Yes.  I'm trying to get it into the right bucket, but I guess I'm clueless as to how things get broken down.
+> I tried "dts: arm: at91:" but was asked to change it.  I can keep guessing, but would prefer if someone could
+> help me understand and get it right.
 
-gpio is for GPIO controller. These are keys/buttons and usually it is
-'gpio-keys' as node name.
-
+git log --oneline -- Documentation/devicetree/bindings/arm/
 
 Best regards,
 Krzysztof
