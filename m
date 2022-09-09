@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4E1B5B3C28
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 17:39:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 178295B3C31
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 17:40:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231844AbiIIPis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 11:38:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56094 "EHLO
+        id S232410AbiIIPka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 11:40:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232446AbiIIPiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 11:38:15 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CB9BF0A95
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 08:37:03 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id f14so2371460lfg.5
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 08:37:03 -0700 (PDT)
+        with ESMTP id S231833AbiIIPj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 11:39:58 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63259F0E
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 08:39:25 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id s10so1674239ljp.5
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 08:39:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=VoZzh6+McgoHrR9WlHSy7ZyYvs03BD9luhicUduQeYI=;
-        b=fa8xcnnrlb/OUGc0uUaLIGzjkqk/MICCRSJuI7kQS1uQkN6xDk9SU3VXRBpPF4xdi8
-         fzORqv/MF7MheAQxJ9UVipb2YBOZ6AUyjCqYyQWRezq5PdU9pmipSjCAnxa0fOHK4Sj2
-         bEA3zXlc2aJ6fONdhWP3vStLRCsIJS+6E5A9iehK6H5kxHabMDT/LjXKQJoEFk9fGe7i
-         iLWYJCuGqRfZkBPQ2UIfJGupU2LoipdZg78ZUBt6yXHyXUejnWQyp1QCz9pjQU5EKyRo
-         qYl631m0O4cKoRZkf6W1fs4F4iuPjSs8+ynFPPqOVUftPqhe4WgtaOjizOF9c4TKczEH
-         qdqw==
+        bh=qFZsms0Dv3NVUxeThUQNo8sDEg3tK+2lEhh1M4gisys=;
+        b=Rhr1KEKR4olPmjGIeJmMGyYsDXJcxp3jNLIhCSM7xHdBhNXB4mIXvShHqa33o/4qR8
+         1Rn4/Geet2RBhVvQJnSHsfXXeWyEoTuzuCXI8Yd6x7QUCLLWTHGONsuPnpWjqOHYJejV
+         cBTDsQGSTnTQaPx0pzA6XUJ8pwu7esj23I9qtAWeytzbmypDzbiEKAY0zG934AbnanB9
+         j0S7fdpvWOgB8dgsciiSJT7/l4AB8dL66GRBNNqGxEiXU0ZogdSvrsuEYJ8BgslBRP/f
+         q075CvrYoAdCx62Ougj89O4GIwz0xIHZJ98gBg4f+M989kD2EaKVyY3TdhpOkRTOueIR
+         GglA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=VoZzh6+McgoHrR9WlHSy7ZyYvs03BD9luhicUduQeYI=;
-        b=5uQOeDM//tgyydHqm1UVz6n8YJmQGxMb3vQHKjnrGrRUoRoipUYVX3BmPekmR1FOv0
-         zlfEvHJw7vXMDCpuBufK8+RtatZDLsoe3G6xMFEjx0JEKIJ2X50ryID5WnF/Cf9BEkFd
-         KeQceNgxZhKUy7jXu9F55Kza2H7BVFHKETJuAWZSIIhlxOtsCDn3K+6BMg0EuvHgyQTr
-         pE17TQanxOgqNyM35AfFt3Xb6pgFclxN3i1WTm+e/onK0xOxj5wV+rXkdktbJppp2CFV
-         AqvMB+dOwE/OMYH9QBh2cU55tKjWt0X3Xq753lpqNnsZwXX77JnZXoBfMbId5Z7GcWPb
-         jT6g==
-X-Gm-Message-State: ACgBeo2T0nJ0kYHRHd1/W1fgJOkoeHZs1EmA2W0fpXanklJdJVYhxDE1
-        BCFXnwVRkMLNayx+MJFDzznZtQ==
-X-Google-Smtp-Source: AA6agR7mMPp8s/Sn9BVO1OaUyAMNzkR5ybFeQm28JQpriCYcArQOkyLF3ZbKL0uWEZH/HDxNamc9/g==
-X-Received: by 2002:a05:6512:1044:b0:48b:49b1:cc85 with SMTP id c4-20020a056512104400b0048b49b1cc85mr4719743lfb.57.1662737807755;
-        Fri, 09 Sep 2022 08:36:47 -0700 (PDT)
+        bh=qFZsms0Dv3NVUxeThUQNo8sDEg3tK+2lEhh1M4gisys=;
+        b=6/3ZVTiSYckpjpr9fOhnVsP6kbN7DYXixFlarSH3NU+a5OWDPYSL7Y0JEfsZbx5uJF
+         WqjuoW6Mwj8p9TLxNvvbL02zKNNbCHUwposWY4HyM4i0Pn9uCsiKGvNmYgtLa0x9WDYx
+         beLOr488/EueUNp/1XMz/Pc80F2TTG+XN+moqUxak5vWXo+6bw4UBcrLr3MrqPvePra1
+         HyQIfrer/Ntf3nbxUtuiUnz0t/1e3PAlwGZdUpb2Hdmy0fcoj9W0+Uxlh9uTp/88ke+y
+         Uw9AhamFcA8C1nuXocnx/vqIIM0jRUlZcyrpsnRiJPqf59siXs5bvZ6oZ1b/RATYDFL2
+         Hp/w==
+X-Gm-Message-State: ACgBeo1irb7ShETo7HsQgNZ+De/D0LZtpes2HehI7LG3JB6VToCj/Qk/
+        vQa7e4GC0mWg+kpKFNrQb6uBCQ==
+X-Google-Smtp-Source: AA6agR4dq1PWRdB6Tn+4D7OYv2QLunn/rmVg46gVFQ4jkUpLnkZo6JRcx9ECqIkBGuZ7RUMmNfcF+w==
+X-Received: by 2002:a2e:96cc:0:b0:26b:d950:1f70 with SMTP id d12-20020a2e96cc000000b0026bd9501f70mr2881788ljj.232.1662737963861;
+        Fri, 09 Sep 2022 08:39:23 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id n27-20020a05651203fb00b00497a99e7b73sm115011lfq.246.2022.09.09.08.36.46
+        by smtp.gmail.com with ESMTPSA id s7-20020a056512214700b00497a6fe85b8sm116555lfr.250.2022.09.09.08.39.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 08:36:47 -0700 (PDT)
-Message-ID: <22a68bfa-c465-98bb-d199-707aaead870a@linaro.org>
-Date:   Fri, 9 Sep 2022 17:36:46 +0200
+        Fri, 09 Sep 2022 08:39:23 -0700 (PDT)
+Message-ID: <c6d71abe-51d9-945e-bf70-c84b7c5e71bf@linaro.org>
+Date:   Fri, 9 Sep 2022 17:39:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH net-next v4 5/5] ARM: dts: qcom: ipq4019: Add description
- for the IPQESS Ethernet controller
+Subject: Re: [PATCH net-next v4 1/5] net: ipqess: introduce the Qualcomm
+ IPQESS driver
 Content-Language: en-US
 To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
         davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
@@ -70,14 +70,14 @@ Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
         Luka Perkov <luka.perkov@sartura.hr>,
         Robert Marko <robert.marko@sartura.hr>
 References: <20220909152454.7462-1-maxime.chevallier@bootlin.com>
- <20220909152454.7462-6-maxime.chevallier@bootlin.com>
+ <20220909152454.7462-2-maxime.chevallier@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220909152454.7462-6-maxime.chevallier@bootlin.com>
+In-Reply-To: <20220909152454.7462-2-maxime.chevallier@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,23 +86,92 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 09/09/2022 17:24, Maxime Chevallier wrote:
-> The Qualcomm IPQ4019 includes an internal 5 ports switch, which is
-> connected to the CPU through the internal IPQESS Ethernet controller.
+> The Qualcomm IPQESS controller is a simple 1G Ethernet controller found
+> on the IPQ4019 chip. This controller has some specificities, in that the
+> IPQ4019 platform that includes that controller also has an internal
+> switch, based on the QCA8K IP.
 > 
-> This commit adds support for this internal interface, which is
-> internally connected to a modified version of the QCA8K Ethernet switch.
-
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
+> It is connected to that switch through an internal link, and doesn't
+> expose directly any external interface, hence it only supports the
+> PHY_INTERFACE_MODE_INTERNAL for now.
 > 
-> This Ethernet controller only support a specific internal interface mode
-> for connection to the switch.
-> 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> It has 16 RX and TX queues, with a very basic RSS fanout configured at
 
+Thank you for your patch. There is something to discuss/improve.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +}
+> +
+> +static int ipqess_axi_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct net_device *netdev;
+> +	phy_interface_t phy_mode;
+> +	struct resource *res;
+> +	struct ipqess *ess;
+> +	int i, err = 0;
+> +
+> +	netdev = devm_alloc_etherdev_mqs(&pdev->dev, sizeof(struct ipqess),
+
+sizeof(*)
+
+> +					 IPQESS_NETDEV_QUEUES,
+> +					 IPQESS_NETDEV_QUEUES);
+> +	if (!netdev)
+> +		return -ENOMEM;
+> +
+> +	ess = netdev_priv(netdev);
+> +	ess->netdev = netdev;
+> +	ess->pdev = pdev;
+> +	spin_lock_init(&ess->stats_lock);
+> +	SET_NETDEV_DEV(netdev, &pdev->dev);
+> +	platform_set_drvdata(pdev, netdev);
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	ess->hw_addr = devm_ioremap_resource(&pdev->dev, res);
+
+Use a helper for this.
+
+> +	if (IS_ERR(ess->hw_addr))
+> +		return PTR_ERR(ess->hw_addr);
+> +
+> +	err = of_get_phy_mode(np, &phy_mode);
+> +	if (err) {
+> +		dev_err(&pdev->dev, "incorrect phy-mode\n");
+> +		return err;
+> +	}
+> +
+> +	ess->ess_clk = devm_clk_get(&pdev->dev, "ess");
+
+There is no such clock "ess"...
+
+> +	if (!IS_ERR(ess->ess_clk))
+> +		clk_prepare_enable(ess->ess_clk);
+> +
+> +	ess->ess_rst = devm_reset_control_get(&pdev->dev, "ess");
+
+Same problem.
+
+> +	if (IS_ERR(ess->ess_rst))
+> +		goto err_clk;
+> +
+> +	ipqess_reset(ess);
+> +
+> +	ess->phylink_config.dev = &netdev->dev;
+> +	ess->phylink_config.type = PHYLINK_NETDEV;
+> +	ess->phylink_config.mac_capabilities = MAC_SYM_PAUSE | MAC_10 |
+> +					       MAC_100 | MAC_1000FD;
+> +
+> +	__set_bit(PHY_INTERFACE_MODE_INTERNAL,
+> +		  ess->phylink_config.supported_interfaces);
+> +
+> +	ess->phylink = phylink_create(&ess->phylink_config,
+> +				      of_fwnode_handle(np), phy_mode,
+> +				      &ipqess_phylink_mac_ops);
+> +	if (IS_ERR(ess->phylink)) {
+> +		err = PTR_ERR(ess->phylink);
+> +		goto err_clk;
+> +	}
+> +
 
 Best regards,
 Krzysztof
