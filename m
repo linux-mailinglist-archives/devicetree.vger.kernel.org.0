@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D4255B38CD
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53BD45B38CB
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:20:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbiIINUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230490AbiIINUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 9 Sep 2022 09:20:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47196 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230209AbiIINUR (ORCPT
+        with ESMTP id S230238AbiIINUR (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:20:17 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C34D858DCA
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 06:20:14 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id bn9so1790754ljb.6
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 06:20:14 -0700 (PDT)
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB64A5281D
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 06:20:15 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id x10so1801116ljq.4
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 06:20:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=RBsLYtteN8YU4lRGMzw9zqgxcOvhZwcGeFN7EX29dmw=;
-        b=wjD10bS6c1+eAs2rS7Oi009sgk7M6D6qO3BmkJEeZOXe6yCa3P8KGXMVTg3CY1hWEZ
-         o0ASTMt+T0dpZpDZi/pmdcICHLxac7fJkml1yjn55rfpABPxbE+r6AWjih+iLyIFr4mu
-         YDbE//j+5K0nZBdRJ1mcckq68GqwYGE3zjbQyA+rw58f9R8vc/6j9F4aiybpBjXZNOMh
-         gPqoXIQNA8wg7ooKLsE8pwRhzCjwd+KPbQRFgMIGFKdjxvDzE91JAnY8MFXh9fCVjsKL
-         DRQXiAtJUhZ+fGSxTuLo21R7HKuhAKowVFbcvYV7tYe8kL/xQcaW2evu+L4G3BSeSIpd
-         z+iw==
+        bh=Wd0dLX4RoIQz4F553heILe9/hGLsfSdsBsSpc437liA=;
+        b=o61kjP3KIBTm0M3eAdFlAoiGyJBMm5g72Syq4C1anFkLNdLpCuBwguA+kMm1SnFqjd
+         0eteJIq+IUxAqS8lBGfNPCjMp9K3r3MC6oHF8ycFsPcJCUliQbHKADQhn2b4ER7FVXUI
+         rpjU2UcBdo2Mds6ezQijKdbxojMVwwm0CN0SnRewO5FWb9/fw99glpuvr9QMCCEO12I9
+         qCPQg9aRyr0A1U0H7E9qTDPvol6Nwnl5rnz3iQtR5V20DOhrEOTcThxAKmSa1O3cHVu1
+         J3HpCwdlae92sYet3G+Fb17tt3dEnYwTuWmCNi0ok9O/RFuTAP8VCsXi2+ZRPSAUQVjV
+         X7kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=RBsLYtteN8YU4lRGMzw9zqgxcOvhZwcGeFN7EX29dmw=;
-        b=5PBZKNxhhZGvSgxyryANGcuimC1nhbJyMHy05WePwj6jSLXhSGa5J3l877raimRORe
-         32mq/KC2E6wOqqbVvYtY0wt0cC3yWce8L7zf/q2D7vT1WN8JunIkrXnvJ87zNohS+9Yx
-         zqO+gIPi8Mv9ZN5Dw2NSYuAdREVrLg+hvPWWMhtCP6FFzVoSx8Ptpr8CShtWEmibf6QQ
-         eRZn33UyxQlQz8ZPTqamjmal2ZtCdbCZHc+fJs4Es9dyNv0ebsvf94h1J3UKcLPJO68L
-         6O7tsMp+y9DOyaGAeTC30RS8x7/aH7bARv+dU2cxAADM2n3CqjOsmhbveJaxq4x7HU6+
-         WVoA==
-X-Gm-Message-State: ACgBeo2n+e7F8ZNsFVTXXy4Xp8uQgFKHeIkNMiTLwSkdDrqIfgCShZ0b
-        Xo6vx5M9wYEHq5D/Neikt3NfoA==
-X-Google-Smtp-Source: AA6agR4jApsSfxkznGesCO5yTuFeo+/mhq+cWUwayQBJ/EfN63EAwZdoGuXFfoDy9tZQIaC4RTteRQ==
-X-Received: by 2002:a2e:a911:0:b0:26a:ca0c:68c6 with SMTP id j17-20020a2ea911000000b0026aca0c68c6mr4122331ljq.396.1662729613173;
+        bh=Wd0dLX4RoIQz4F553heILe9/hGLsfSdsBsSpc437liA=;
+        b=xUTsZbPb+tt3WYAv5NmbfLP5IHfBejuofmu+E0PmdL5eEbs/yjw67owFs/iOKVRezF
+         zh+IUBr2deDbFuI0gDlpVZCOiB0JTPFuwgvknRyX3pwli/ZIh7a7dARLwSxHLYsmvGdb
+         1HMJw1De0Mcw2CNB74pArrpIUxK+WSoEUAp9UkTvH7+pLLmQuSKjsjTDwtTeVUBssLL7
+         LaxSboxv12iVbDOKT9pu34u4feSrmJC/hARlNDFfIorqSoXG7O7fscl4hth3OuSImLCi
+         +cA5R9OHZMbO3Zd209sZ15bPJd6/wQ9k79/2tNhwh8wxcay5IHf76VvDX+5TwRVdxPXS
+         Dj9g==
+X-Gm-Message-State: ACgBeo2+S/X/oIM3x/I0PoNtV6b9lSIebwhnZGTMr2wGU+nSjfdk2pVl
+        4xOfocF/8RlkfxaPZxN2kgW/KQ==
+X-Google-Smtp-Source: AA6agR4IN0U9QlG9nGkTzwgl9TIcf7+DA9SPXWjc9Rx6V3Wt3cYbPH63oqkMVR31jHDWSuRwlESccA==
+X-Received: by 2002:a2e:b04a:0:b0:26b:da87:8a72 with SMTP id d10-20020a2eb04a000000b0026bda878a72mr2446280ljl.233.1662729613945;
         Fri, 09 Sep 2022 06:20:13 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id v10-20020a056512348a00b00498ff4ae746sm71729lfr.294.2022.09.09.06.20.12
+        by smtp.gmail.com with ESMTPSA id v10-20020a056512348a00b00498ff4ae746sm71729lfr.294.2022.09.09.06.20.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Sep 2022 06:20:12 -0700 (PDT)
+        Fri, 09 Sep 2022 06:20:13 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
         Kishon Vijay Abraham I <kishon@ti.com>
-Subject: [PATCH 2/6] dt-bindings: phy: qcom,hdmi-phy-other: mark it as clock provider
-Date:   Fri,  9 Sep 2022 16:20:06 +0300
-Message-Id: <20220909132010.3814817-3-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 3/6] drm/msm/hdmi: switch hdmi_pll_8960 to use parent_data
+Date:   Fri,  9 Sep 2022 16:20:07 +0300
+Message-Id: <20220909132010.3814817-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220909132010.3814817-1-dmitry.baryshkov@linaro.org>
 References: <20220909132010.3814817-1-dmitry.baryshkov@linaro.org>
@@ -75,37 +75,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Eventually all HDMI PHYs are going to provide the HDMI PLL clock to the
-MMCC. Add #clock-cells property required to provide the HDMI PLL clock to
-other devices.
+Replace parent_names usage with parent_data. Note, that this makes the
+PLL default to board's `pxo_board' clock rather than just `pxo' clock,
+as we are on a way to deprecate the global cxo/pxo clocks.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../devicetree/bindings/phy/qcom,hdmi-phy-other.yaml          | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-other.yaml b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-other.yaml
-index 2c21e120ff8d..0c8f03b78608 100644
---- a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-other.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-other.yaml
-@@ -43,6 +43,9 @@ properties:
-   vddio-supply:
-     description: phandle to VDD I/O supply regulator
+diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c b/drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c
+index be4b0b67e797..c3e7ff45e52a 100644
+--- a/drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c
++++ b/drivers/gpu/drm/msm/hdmi/hdmi_pll_8960.c
+@@ -406,14 +406,14 @@ static const struct clk_ops hdmi_pll_ops = {
+ 	.set_rate = hdmi_pll_set_rate,
+ };
  
-+  '#clock-cells':
-+    const: 0
-+
-   '#phy-cells':
-     const: 0
+-static const char * const hdmi_pll_parents[] = {
+-	"pxo",
++static const struct clk_parent_data hdmi_pll_parents[] = {
++	{ .fw_name = "pxo", .name = "pxo_board" },
+ };
  
-@@ -113,6 +116,7 @@ examples:
-                   "hdmi_pll";
-       reg = <0x4a00400 0x60>,
-             <0x4a00500 0x100>;
-+      #clock-cells = <0>;
-       #phy-cells = <0>;
-       power-domains = <&mmcc 1>;
-       clock-names = "slave_iface", "pxo";
+ static struct clk_init_data pll_init = {
+ 	.name = "hdmi_pll",
+ 	.ops = &hdmi_pll_ops,
+-	.parent_names = hdmi_pll_parents,
++	.parent_data = hdmi_pll_parents,
+ 	.num_parents = ARRAY_SIZE(hdmi_pll_parents),
+ 	.flags = CLK_IGNORE_UNUSED,
+ };
 -- 
 2.35.1
 
