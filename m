@@ -2,99 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D134D5B2EB1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 08:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A450E5B2ED8
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 08:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230445AbiIIGUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 02:20:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56648 "EHLO
+        id S230439AbiIIG0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 02:26:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbiIIGTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 02:19:53 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9011D29C88;
-        Thu,  8 Sep 2022 23:19:40 -0700 (PDT)
+        with ESMTP id S230327AbiIIG0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 02:26:51 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716D51269F0;
+        Thu,  8 Sep 2022 23:26:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1662704810; x=1694240810;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=1hn1D2HPSU04J2s3SBFxthbhVcbIsfoEiFeBjpgXeVw=;
+  b=iY9aeJuvXPZnvmrH2WVhYMcyWenUFdyrhZBwkM10Op12mkLSdem3UkmM
+   vGECC2IHdZXwq6knGIbvT3t2mkMupv0KW1RuvN3ctEZFuopqUiMHTkuBx
+   HxRwNXuug/5wxYvuutVdwtFFVhm7zrJeUd+aA61hnH/0eAbEnXyQAOPjy
+   Tb2J1cLB8EcWeN8h4SF57bGq4OJXogJ6++G69jNKO6NvDmgOPMNc/p6ci
+   feq5GE2liortWv/yDCsLBpN7MRVuT/xY1h34o6fccs5mai6jM0YjOiY0/
+   YdB/fy5FHbykRGQX6NKqDdkytbA8EHBQrsmecnbJZeKlBGovXnzbL3fij
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; 
+   d="scan'208";a="179804884"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Sep 2022 23:26:49 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Thu, 8 Sep 2022 23:26:49 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Thu, 8 Sep 2022 23:26:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UgWFfjvlVNGo4pfU2RmgIvWP2nskppkLa3tfSJnsfEzzqaIYVB234eIsHEn9Q/cyBujnfU2ksL+0IkZQ6FvdaBzwcERlQEqE+hmgZj33KNEvHf9f26NFx/Xqzs6OfRCAJ3VsE76VfZXZjKJShaVEhztiZgvZ0wmfyCfr5vBAHsMAGR2TocI/aude22xBwd9I6eumO1Xmd2IqFXKRJ/fGwjeUgtU6TzA73NgYC8YZQBSNw5D21mZrCBvfUDFNG5LdhZ/fveGpWZ0A10XGhfqBUmD/29WpY1Yku8LxtOt5FJhO3BcV06GIdSzbot0abCDi/f6WWWIOdBZeIR5VOFuTKw==
+ b=DyfVMCVC+GEHISMLM7uD44Zh/0vy1nI4Qcf8OJmGock6enx5N87tC0SGXAyK+Tu9Y7KWpNIgzU3hR8dsJ3nMpsJNwi+QuWWcPRkUHS0EIRGtu7u7ApoqAfXczdjiM2FrD9E7jopk0y0ev2V2/PXCcTYFoH0OUbO6m01+iJHW8z47lG8t4zmR8T/thnxPaq7t3hjqvkq+LxXj6m1N0ytt57w2zvT5s56NnUQQrkZnt4VTQhLjdRk2ry3nXFsvRKrkAbCSReG2PVDvYKiLMShcY0ZLSzUahgbrxmYB7sEXYRghH9WRzflJCWdEqFZ3XAtFpQbi3ExsKKcxVfePsJuLKA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vRLDPzk/IXtkUOCPF6fxJxZ9+6NnXheVbiEM2Oup570=;
- b=ntyb3F9QrkxRfEDmYHbIYH/+CSd8C1gI5Q6Y/zw41oxxk7iiyTK47ZDec/Tj4TBYfQggS1vLVq3yGsSeDwjSJzNcttfJh9xvQXChlSFg4+66wV/a1TH888omyPM4qs/obpG0OIrqFwDl0trDYYa003RERDc9youoIaUQVeqlm6wlDdyLfqJy2gWjAEURxk+3Eod89P63cktd/5eG+9gWqZTXCxE8jCmhmHT+Tt8YWGXDSlLX3YrhniYm9l8hLGP7ja8hGz4yN73WL5q8Ej7RKc4RdHnQMOeh4GeI51HXAJlZSM73OQQJz8DiyUkTvn/z7vYwwayaBCskz6lpR73tqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=1hn1D2HPSU04J2s3SBFxthbhVcbIsfoEiFeBjpgXeVw=;
+ b=byDl8wEMPOyEwCw1P8lBJwC1F7cKL5RbClDE6P3Kc38ytbQZbJ9MJn7LZ/N5/e/mPvYNuS7gAWKrM3zax58LR5yaY7oan9R4jGPohFVkGre1VnxBrlPAmItPgyXYjyCdbs1XcmuvYQnPnjMfO/GEK++RlK5UE9uxViRkhkRcVQdunQVHXzhy4qyTvcoF3ymQtPk4e7qDLWNWFO5BI1fTCwp7c1ZDx8/4xXmp6DDB7jbA2gakKLoArGkP2ulVGiqeOaphJFOpuEBgclEJS2Bdd/Jq5Vllvhudvabz12f2SLrYHB4cXhUkhgshZ3z6EPTCzGjSeVJDE79BTVjd5gBI5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vRLDPzk/IXtkUOCPF6fxJxZ9+6NnXheVbiEM2Oup570=;
- b=AcfcbObrUDWF2PvJeCVcptRl7CPqkRgOKzXGnUSRV6XFklJk2Y3cHULsRmmydn5don0tKbATF3xgmxoYUrqFs6f8FiDHEgfJ/Bqb+KpNSRRmCLyOz/guB4YdpkdFKkxtfwbDO2uGXf/hjMoJ2yR+zcPizf/O0saVt2uJbAmdqIk=
-Received: from DM6PR03CA0091.namprd03.prod.outlook.com (2603:10b6:5:333::24)
- by LV2PR12MB5800.namprd12.prod.outlook.com (2603:10b6:408:178::12) with
+ bh=1hn1D2HPSU04J2s3SBFxthbhVcbIsfoEiFeBjpgXeVw=;
+ b=UqH4cV+pOCFa/iMZiSTe/ohSE1E+rYMPzXrO9zpQjWQz5BQrfxLp3QNUJzXBTWb67/pWVjpGl7PLf61lHryfGQuFQWA0JhuV77+VtnE/te43+Buv7hUPwuN4rlxikpWs6PYvU75U2FTk7y6IgWflRpuDLctM1ZhQMt2FM2pnveU=
+Received: from SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
+ by CY8PR11MB6819.namprd11.prod.outlook.com (2603:10b6:930:61::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Fri, 9 Sep
- 2022 06:19:37 +0000
-Received: from DM6NAM11FT082.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:333:cafe::4f) by DM6PR03CA0091.outlook.office365.com
- (2603:10b6:5:333::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12 via Frontend
- Transport; Fri, 9 Sep 2022 06:19:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT082.mail.protection.outlook.com (10.13.173.107) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5612.13 via Frontend Transport; Fri, 9 Sep 2022 06:19:37 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 9 Sep
- 2022 01:19:35 -0500
-From:   Appana Durga Kedareswara rao 
-        <appana.durga.kedareswara.rao@amd.com>
-To:     <appanad@amd.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <michal.simek@xilinx.com>,
-        <derek.kiernan@xilinx.com>, <dragan.cvetic@xilinx.com>,
-        <arnd@arndb.de>, <gregkh@linuxfoundation.org>
-CC:     <linux-arm-kernel@lists.infradead.org>, <git@amd.com>
-Subject: [PATCH v4 4/4] drivers: misc: Add Support for TMR Inject IP
-Date:   Fri, 9 Sep 2022 11:49:16 +0530
-Message-ID: <20220909061916.2935431-5-appana.durga.kedareswara.rao@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220909061916.2935431-1-appana.durga.kedareswara.rao@amd.com>
-References: <20220909061916.2935431-1-appana.durga.kedareswara.rao@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19; Fri, 9 Sep
+ 2022 06:26:44 +0000
+Received: from SA2PR11MB4874.namprd11.prod.outlook.com
+ ([fe80::6982:4db0:989c:c097]) by SA2PR11MB4874.namprd11.prod.outlook.com
+ ([fe80::6982:4db0:989c:c097%9]) with mapi id 15.20.5612.014; Fri, 9 Sep 2022
+ 06:26:44 +0000
+From:   <Kavyasree.Kotagiri@microchip.com>
+To:     <krzysztof.kozlowski@linaro.org>
+CC:     <Nicolas.Ferre@microchip.com>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <UNGLinuxDriver@microchip.com>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <Claudiu.Beznea@microchip.com>, <lee@kernel.org>
+Subject: RE: [RESEND PATCH v9 2/3] dt-bindings: mfd: atmel,sama5d2-flexcom:
+ Add new compatible string for lan966x
+Thread-Topic: [RESEND PATCH v9 2/3] dt-bindings: mfd: atmel,sama5d2-flexcom:
+ Add new compatible string for lan966x
+Thread-Index: AQHYw5TAHdmOZjEVAECEGWY8pIg/Va3VpCSAgAD80WA=
+Date:   Fri, 9 Sep 2022 06:26:44 +0000
+Message-ID: <SA2PR11MB48747201C297AD41A0798DA392439@SA2PR11MB4874.namprd11.prod.outlook.com>
+References: <20220908150658.1839520-1-kavyasree.kotagiri@microchip.com>
+ <20220908150658.1839520-3-kavyasree.kotagiri@microchip.com>
+ <b25cc1d4-a2a4-efc1-eee8-70459d28311b@linaro.org>
+In-Reply-To: <b25cc1d4-a2a4-efc1-eee8-70459d28311b@linaro.org>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA2PR11MB4874:EE_|CY8PR11MB6819:EE_
+x-ms-office365-filtering-correlation-id: 6aae474a-e207-4d64-00a5-08da922c442d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: h+sK0Z57dnBXVr/Y+RemhR2fuX1g0h8snidMr/COJ5uFHfo57U5gwKjXWhS9IlmEE6nIX+kGV2EUn5nTkTeRQ6kaCEq/o9vB331mMQj7c2qJ6avz52vlW+laZ5Gt1f4ZFCwo5Wjsqjuposh5KG7nDYNGddKTTbc1LUwWXzrHAFGQ7po1spKa56Xw5M4lGpDhH4nZUT5RDWTOe4CS9OEOy+GE14FvdkofFc8AM9iHJbbceqZelTzfl3TZK3tDJ0PlKSBYGsB+mYPz0wtar2pW4c3M/p2j6dSaMbDNYR11jIZTxf4qYOX63xJpkQUSjDZFJqg6QtmDrCUs5lz0S0F4EbFmshfEB5a4GTRN22W+rN3sFexO+FXv9kyOWL4gldcG/UVV2An7eoGAZBZCKKHvFr6Tv6tLP01hN4CqWLllvkOnD3mQ+NMep8zwvk83caQHknnTEdmOq/5nEORNgeqV2C7e3B3kbTrRDZOEVa0HYiCkxinckzJpBelxDq6H/Ek46+0yxPdq/HosVRPqOvd6u6v+sE+0+M9djVkSFcfE9MRXZSf3PDAl9w46inBUTN3Qng+vPGoVpWAHDP47rM5YyXn00YQxGAVFqvz1amJdxaa5VpUN9aVNkUuZq1WhaYZtKcUDTaBfRgF9A3OlA62txquuottYFCOsHLbnzDPPoy2HKkH3NjHAEgOJaHGvtWdZl1KUaK8HOlvH3MXH1dKCgt3D8ovuP3DKqdQrFsiQjQKWmMRKswBzDDW4ytVIZskIPjuaMLCRXkjKLvlUdMHDAoCEFRv5HmuzMVcGtUPXn78=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB4874.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(346002)(376002)(366004)(136003)(39860400002)(55016003)(8676002)(38070700005)(54906003)(6916009)(316002)(4326008)(71200400001)(66476007)(41300700001)(66556008)(64756008)(66446008)(966005)(76116006)(66946007)(478600001)(7696005)(33656002)(26005)(9686003)(5660300002)(6506007)(52536014)(86362001)(2906002)(53546011)(8936002)(38100700002)(122000001)(186003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VVVwekd5SEJUL24wUkxVWXVPMWpDcjQzQ3JnVVRPeDFWeW9hUUM1TDcwUGdW?=
+ =?utf-8?B?OUUxYUVKN0xvMEhOZm1JOWVvdHZXV1BRQWp0M0t0aEdSR0UxMENNRThlZVpk?=
+ =?utf-8?B?SVdKRmxlcmN1OHdwTjNQUnRlNDVTRi9TWUJzK0FzTElRRlNhLzBHNlJjVDc0?=
+ =?utf-8?B?YzZJMFd4MTJ2bGFjWlJzb1dLRXRhcFVwUU5vYml4OG5HN3pCNlZFQWFTeTA0?=
+ =?utf-8?B?NUQzM2VuTktVcmZneGJKVjdCYy9vMmVwdUh1Q1NLMVduWXNoWVpGZFNmSFZk?=
+ =?utf-8?B?ZXRORjVFd2kvWGRSMmh2eEFOZlBZLzdSa2drbjJicmlPMmRwU1R6TkZtNnRX?=
+ =?utf-8?B?NWdycFl2ZWw3NWV4aEppaytid3lQcS9rRjVhU1JTRXFmR0pHaUovRzh3ZFpX?=
+ =?utf-8?B?ODRMS0FLV3JDVjYzV0p3NjE4Yjllb3l2ck10RnVYUU9scHF6UkZxZXpGVWtv?=
+ =?utf-8?B?dDIxRDRKaXdIMVF4blRGZS8vUTM3UThIK2U5NlE3bXEzNkRvdk8yWlRlUkph?=
+ =?utf-8?B?b1lOQnlwdnpCRkZMR0ZHTDZ4Q1dFa2VTWUJmOUcxdnJDQnozWVUzeEtIT2lY?=
+ =?utf-8?B?YUc2NUU2dWQxbkRrU3RaQ1dvdzZ2eWtJMU9YbmNIL0ZmaFVBTCtBTUNIVkRU?=
+ =?utf-8?B?UGlBZzBIVWo5VHVSNFlkN3lQNm02cDk5SmJQSHlYUGhMUVR2clJWMElzUGJC?=
+ =?utf-8?B?S2tyZ2xHek1Qb3l1MTVIZWF0TkxUR2ZSTXE5dXFCK1pweklnb294WUJwMFNi?=
+ =?utf-8?B?YmZweDNRTFZlZEF6ZWs3bzNnSGxMa2Y1TlRpNTA0RWExdjduays4OERxR1ps?=
+ =?utf-8?B?b2dsaW1aWmw1bDRpZFY3bUV1S0E3OCsxWGZDMkVOdWZvbEt0eWRDSnhuYWxF?=
+ =?utf-8?B?OGVFT0xGNTZwRzdmektzWHQwQzdqQ2lFNHVBSG5JYjIrSW8rejhmbXZRMkR2?=
+ =?utf-8?B?a2FuM3B2OUthQnV6UEtVUWdqNU1jcE5XSzNaaEtKUGYrRFpaNWJ4bVRPZ1FY?=
+ =?utf-8?B?enV2azhJSzhaVzI2T2xUY0tFcTRBNzc0dTErbnpFVWx6allaZkJUYU9hTDE2?=
+ =?utf-8?B?ejlZOW5qWHJWMFNPSFJoRXZjNUszOWd0ZmxkZEhrVzdOUFR2dTB0djhzOHJU?=
+ =?utf-8?B?TEhKWng1Wi95Yk85cy8vWlh2TER1NGdZSnE1ZGtERXVjSnB3MGZyeVY3S3ZK?=
+ =?utf-8?B?bTJTSkdGRFdpUmc4Q3F4VWNFS3BDaDVwM0gxZW1jempUUGk5c2U5L3RkU3FC?=
+ =?utf-8?B?RFRNbzBIT0hFNUVvR1lNYVlBQ2FvYVJuMndjVVRBTXFLdUlFRXRXYzBLK1Ry?=
+ =?utf-8?B?WEFDbjZuWTdzdFdJRy9tdndnZTFJelZWUFV4RXl5UU01S1VjMlpKSnZXdk93?=
+ =?utf-8?B?WTEyTnNQTnpDUmZaR1E3T2ZxTGJDN25VdnZ5WHNhNzFiNWN5UkY3QzZsd0RR?=
+ =?utf-8?B?aFAvRnlLd09YQ0tXT3U4VFNmOGNnRUtIOGNpckxSYTMzQTJzZlExVFhOVkJw?=
+ =?utf-8?B?YkIwYzN1K3UzY1ZlNHFvbWc2NmZlRktlUzUyVjFMU0JsRVdUMkZyUTQ1THJT?=
+ =?utf-8?B?eC9jS0YxMmtGMFhoWWNXYXJnZVhRaHFpekUzeDhlVDhLeXZTYWZhTXdYZE9M?=
+ =?utf-8?B?YWNNTkZVTWpjMDRsMG9IMGJaWUFrS1RYWFRLcEhoN2V5WWluQVgyQ0hWbkg1?=
+ =?utf-8?B?bXZpUVg5U2VWVHlBWHN4Y3NSK1k4aG5UZEJ1dGIvdURrclpuNm4rNDFYMDRR?=
+ =?utf-8?B?eEx4Y25IUWxFaFZRRXBHUU1hYzlqdGNBYUpRSjBiL0JKMnJ2L3hWSFBZMmN2?=
+ =?utf-8?B?QnZlYWdoenpxeHVIOHh4bU1RcEJlTk5xU2dkcncvMU16Wk81SXdmOTFIeWpE?=
+ =?utf-8?B?ZUtHWDBuTUw5dHhLcXNSRnpURnR5WUNmNVF4cnlGOU5lc2NtUzJHUTBjRDMr?=
+ =?utf-8?B?MDZxWFlERW10SDhEZ1MvV3R2QUk0RGxKMUM2c2M1YW9qV3BLTFZKSmdjc2Zi?=
+ =?utf-8?B?Zyt5em9nMWxvQjhiNEtNbm1LNTlvdmh5MFIzMXZ5SFVldUVxQjhjMXJRWmZE?=
+ =?utf-8?B?MGlPbDBubUFtdGhDMTZ0a3hZWlRTWStrWXUrRGxScTFsYThJSDUyYnVkTnht?=
+ =?utf-8?B?Y2RraFBvSCtNdHRHcEpRMG5aS2laK0FUZlhSdnROZ0grYnprYjJISFpiQk9w?=
+ =?utf-8?B?TUE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT082:EE_|LV2PR12MB5800:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd72e09a-e148-4a42-3f38-08da922b4597
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9LAb4UAwEavabKpAtDJ2wAnlEHOJZUY4OiFNMH0E0XgTDfkML58cFw2k7NfoXHys0oIkDe/p2ugVoD7+T0v8gozGcBmsfj8JkdF/Tj67Rr+ZA8yWMXxfBaHaL18JyA8jKngLO3Q53Rae+i2UeDfHmkFNq+WKwhN4n9DemhWyRyYBgLi3lTJ+165IwMfgmWYHGcNMX7aU188/qMStFBdgclFZ0yqQpwYrpHAi08IbvQTl0fqOdtPD/cUkYtvrpxHU+oN303BIk2QnaSutUVnp96T/YnHBK3q27ruaVnNxsL0ICjRT72twur6ssBSWl6PQCBCZXBO08CRuQ4+iwK9FnJugHRm02iHCKebpVBrHMu3JAUXM7pbDWEss2AiB0RbYdRHY7B6GA2h3qOJKzp3njCBi0h+uTi5lOfyvnEzfj5mCvAOU0MsWVHOAAQOWce6ABPyT0K+4UcW7ywPEaddGCi0JvKo/2waysD1NHc++0aA6mqWsrB7+h9z1r8o1IBF8fjUQW4nGifg+Y0/VMbYnw6hM9TcgzRXscNA5bhTBosp5/T/PTV8K7zicHcZX04oIDo/5AZL9ZDBj5eYZX+qgJZ0kvfjvUaXu3LhcUuEDo+KUL7QxwvGQ7llvJWzD/WAi3huR8igzs1TrR5WSpAFGo5HhFkmCWVSY//XucSABeRISRm89C+p9jWevUc0RL3JL0j923XQvo5E/NP1Xn+86JlzWKx3pHIMS7V6UhGlojj52ZigNAAQMZ8zUYCw3cejn1i6PMElT8vGtAPR9ukQZ7tXH33mn5RKn8w9UvNKQWjfPd71OzilLHxPGKCwM/v0V
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(376002)(136003)(39860400002)(396003)(346002)(36840700001)(46966006)(40470700004)(5660300002)(426003)(83380400001)(103116003)(40480700001)(186003)(47076005)(2906002)(16526019)(2616005)(4326008)(8936002)(1076003)(70586007)(70206006)(8676002)(82310400005)(36756003)(86362001)(316002)(110136005)(336012)(6666004)(54906003)(40460700003)(26005)(82740400003)(41300700001)(921005)(36860700001)(478600001)(356005)(81166007)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2022 06:19:37.4041
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4874.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6aae474a-e207-4d64-00a5-08da922c442d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2022 06:26:44.6050
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd72e09a-e148-4a42-3f38-08da922b4597
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT082.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5800
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JclS4sAWlgPSBabRYRc2eSg3v9d9rbfwx621U0a7ORNapHFGV1+Kzm273Bf6v3PlTHItNhHlpSqtiFzUSuD2tfSrs8Gxc1Vuajx/z97KcC23Yhdh0JCh1Ok0dhvsXD3A
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6819
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SCC_BODY_URI_ONLY,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -102,262 +158,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Triple Modular Redundancy(TMR) provides functional fault injection by
-changing selected MicroBlaze instructions, which provides the possibility
-to verify that the TMR subsystem error detection and fault recovery logic
-is working properly, provided sysfs entries which allow the user to inject
-a fault.
-
-Usage:
-echo 1 > /sys/kernel/debug/xtmr_inject/inject_fault/inject_fault
-
-Signed-off-by: Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
----
-Changes for v4:
---> Update depends on with FAULT_INJECTION_DEBUG_FS instead of
-FAULT_INJECTION.
-Changes for v3:
---> Updated the driver to use fault-injection api as suggested by Greg.
---> Updated the Kconfig to compile the driver as a module.
-Changes for v2:
---> Fixed Month in the sysfs description.
---> Fixed line over 80 char in driver.
---> Replaced kstrtol with kstrtoul as suggested by Michal.
---> Added error check for xlnx,magic value.
-
- MAINTAINERS                      |   6 ++
- drivers/misc/Kconfig             |  10 ++
- drivers/misc/Makefile            |   1 +
- drivers/misc/xilinx_tmr_inject.c | 173 +++++++++++++++++++++++++++++++
- 4 files changed, 190 insertions(+)
- create mode 100644 drivers/misc/xilinx_tmr_inject.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5fc5ec13985e..1207effa8e15 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13284,6 +13284,12 @@ F:	Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
- F:	Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
- F:	drivers/misc/xilinx_tmr_manager.c
- 
-+MICROBLAZE TMR INJECT
-+M:	Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/misc/xlnx,tmr-inject.yaml
-+F:	drivers/misc/xilinx_tmr_inject.c
-+
- MICROCHIP AT91 DMA DRIVERS
- M:	Ludovic Desroches <ludovic.desroches@microchip.com>
- M:	Tudor Ambarus <tudor.ambarus@microchip.com>
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 1508cc29b05a..9f8372497ad8 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -506,6 +506,16 @@ config TMR_MANAGER
- 
- 	  Say N here unless you know what you are doing.
- 
-+config TMR_INJECT
-+	tristate "Select TMR Inject"
-+	depends on TMR_MANAGER && FAULT_INJECTION_DEBUG_FS
-+	help
-+	  This option enables the driver developed for TMR Inject.
-+	  The Triple Modular Redundancy(TMR) Inject provides
-+	  fault injection.
-+
-+	  Say N here unless you know what you are doing.
-+
- source "drivers/misc/c2port/Kconfig"
- source "drivers/misc/eeprom/Kconfig"
- source "drivers/misc/cb710/Kconfig"
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 4918f6632531..fff8606d505c 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -62,3 +62,4 @@ obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
- obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
- obj-$(CONFIG_VCPU_STALL_DETECTOR)	+= vcpu_stall_detector.o
- obj-$(CONFIG_TMR_MANAGER)      += xilinx_tmr_manager.o
-+obj-$(CONFIG_TMR_INJECT)	+= xilinx_tmr_inject.o
-diff --git a/drivers/misc/xilinx_tmr_inject.c b/drivers/misc/xilinx_tmr_inject.c
-new file mode 100644
-index 000000000000..da42cb1a0ee0
---- /dev/null
-+++ b/drivers/misc/xilinx_tmr_inject.c
-@@ -0,0 +1,173 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for Xilinx TMR Inject IP.
-+ *
-+ * Copyright (C) 2022 Xilinx, Inc.
-+ *
-+ * Description:
-+ * This driver is developed for TMR Inject IP,The Triple Modular Redundancy(TMR)
-+ * Inject provides fault injection.
-+ * Fault injection and detection features are provided through sysfs entries
-+ * which allow the user to generate a fault.
-+ */
-+
-+#include <asm/xilinx_mb_manager.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/fault-inject.h>
-+
-+/* TMR Inject Register offsets */
-+#define XTMR_INJECT_CR_OFFSET		0x0
-+#define XTMR_INJECT_AIR_OFFSET		0x4
-+#define XTMR_INJECT_IIR_OFFSET		0xC
-+#define XTMR_INJECT_EAIR_OFFSET		0x10
-+#define XTMR_INJECT_ERR_OFFSET		0x204
-+
-+/* Register Bitmasks/shifts */
-+#define XTMR_INJECT_CR_CPUID_SHIFT	8
-+#define XTMR_INJECT_CR_IE_SHIFT		10
-+#define XTMR_INJECT_IIR_ADDR_MASK	GENMASK(31, 16)
-+
-+#define XTMR_INJECT_MAGIC_MAX_VAL	255
-+
-+/**
-+ * struct xtmr_inject_dev - Driver data for TMR Inject
-+ * @regs: device physical base address
-+ * @magic: Magic hardware configuration value
-+ */
-+struct xtmr_inject_dev {
-+	void __iomem *regs;
-+	u32 magic;
-+};
-+
-+static DECLARE_FAULT_ATTR(inject_fault);
-+static char *inject_request;
-+module_param(inject_request, charp, 0);
-+MODULE_PARM_DESC(inject_request, "default fault injection attributes");
-+static struct dentry *dbgfs_root;
-+
-+/* IO accessors */
-+static inline void xtmr_inject_write(struct xtmr_inject_dev *xtmr_inject,
-+				     u32 addr, u32 value)
-+{
-+	iowrite32(value, xtmr_inject->regs + addr);
-+}
-+
-+static inline u32 xtmr_inject_read(struct xtmr_inject_dev *xtmr_inject,
-+				   u32 addr)
-+{
-+	return ioread32(xtmr_inject->regs + addr);
-+}
-+
-+static int xtmr_inject_set(void *data, u64 val)
-+{
-+	if (val != 1)
-+		return -EINVAL;
-+
-+	xmb_inject_err();
-+	return 0;
-+}
-+DEFINE_DEBUGFS_ATTRIBUTE(xtmr_inject_fops, NULL, xtmr_inject_set, "%llu\n");
-+
-+void xtmr_init_debugfs(struct xtmr_inject_dev *xtmr_inject)
-+{
-+	struct dentry *dir;
-+
-+	dbgfs_root = debugfs_create_dir("xtmr_inject", NULL);
-+	dir = fault_create_debugfs_attr("inject_fault", dbgfs_root,
-+					&inject_fault);
-+	debugfs_create_file("inject_fault", 0200, dir, NULL,
-+			    &xtmr_inject_fops);
-+}
-+
-+static void xtmr_inject_init(struct xtmr_inject_dev *xtmr_inject)
-+{
-+	u32 cr_val;
-+
-+	if (inject_request)
-+		setup_fault_attr(&inject_fault, inject_request);
-+	/* Allow fault injection */
-+	cr_val = xtmr_inject->magic |
-+		 (1 << XTMR_INJECT_CR_IE_SHIFT) |
-+		 (1 << XTMR_INJECT_CR_CPUID_SHIFT);
-+	xtmr_inject_write(xtmr_inject, XTMR_INJECT_CR_OFFSET,
-+			  cr_val);
-+	/* Initialize the address inject and instruction inject registers */
-+	xtmr_inject_write(xtmr_inject, XTMR_INJECT_AIR_OFFSET,
-+			  XMB_INJECT_ERR_OFFSET);
-+	xtmr_inject_write(xtmr_inject, XTMR_INJECT_IIR_OFFSET,
-+			  XMB_INJECT_ERR_OFFSET & XTMR_INJECT_IIR_ADDR_MASK);
-+}
-+
-+/**
-+ * xtmr_inject_probe - Driver probe function
-+ * @pdev: Pointer to the platform_device structure
-+ *
-+ * This is the driver probe routine. It does all the memory
-+ * allocation and creates sysfs entries for the device.
-+ *
-+ * Return: 0 on success and failure value on error
-+ */
-+static int xtmr_inject_probe(struct platform_device *pdev)
-+{
-+	struct xtmr_inject_dev *xtmr_inject;
-+	int err;
-+
-+	xtmr_inject = devm_kzalloc(&pdev->dev, sizeof(*xtmr_inject),
-+				   GFP_KERNEL);
-+	if (!xtmr_inject)
-+		return -ENOMEM;
-+
-+	xtmr_inject->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(xtmr_inject->regs))
-+		return PTR_ERR(xtmr_inject->regs);
-+
-+	err = of_property_read_u32(pdev->dev.of_node, "xlnx,magic",
-+				   &xtmr_inject->magic);
-+	if (err < 0) {
-+		dev_err(&pdev->dev, "unable to read xlnx,magic property");
-+		return err;
-+	}
-+
-+	if (xtmr_inject->magic > XTMR_INJECT_MAGIC_MAX_VAL) {
-+		dev_err(&pdev->dev, "invalid xlnx,magic property value");
-+		return -EINVAL;
-+	}
-+
-+	/* Initialize TMR Inject */
-+	xtmr_inject_init(xtmr_inject);
-+
-+	xtmr_init_debugfs(xtmr_inject);
-+
-+	platform_set_drvdata(pdev, xtmr_inject);
-+
-+	return 0;
-+}
-+
-+static int xtmr_inject_remove(struct platform_device *pdev)
-+{
-+	debugfs_remove_recursive(dbgfs_root);
-+	dbgfs_root = NULL;
-+	return 0;
-+}
-+
-+static const struct of_device_id xtmr_inject_of_match[] = {
-+	{
-+		.compatible = "xlnx,tmr-inject-1.0",
-+	},
-+	{ /* end of table */ }
-+};
-+MODULE_DEVICE_TABLE(of, xtmr_inject_of_match);
-+
-+static struct platform_driver xtmr_inject_driver = {
-+	.driver = {
-+		.name = "xilinx-tmr_inject",
-+		.of_match_table = xtmr_inject_of_match,
-+	},
-+	.probe = xtmr_inject_probe,
-+	.remove = xtmr_inject_remove,
-+};
-+module_platform_driver(xtmr_inject_driver);
-+MODULE_AUTHOR("Xilinx, Inc");
-+MODULE_DESCRIPTION("Xilinx TMR Inject Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
-
+DQoNCj4gDQo+IE9uIDA4LzA5LzIwMjIgMTc6MDYsIEthdnlhc3JlZSBLb3RhZ2lyaSB3cm90ZToN
+Cj4gPiBMQU45NjZ4IFNvQyBmbGV4Y29tcyBoYXMgdHdvIG9wdGlvbmFsIEkvTyBsaW5lcy4gTmFt
+ZWx5LCBDUzAgYW5kIENTMQ0KPiA+IGluIGZsZXhjb20gU1BJIG1vZGUuIENUUyBhbmQgUlRTIGlu
+IGZsZXhjb20gVVNBUlQgbW9kZS4gVGhlc2UgcGlucw0KPiA+IGNhbiBiZSBtYXBwZWQgdG8gbGFu
+OTY2eCBGTEVYQ09NX1NIQVJFRFswLTIwXSBwaW5zIGFuZCB1c2FnZQ0KPiBkZXBlbmRzIG9uDQo+
+ID4gZnVuY3Rpb25zIGJlaW5nIGNvbmZpZ3VyZWQuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBL
+YXZ5YXNyZWUgS290YWdpcmkgPGthdnlhc3JlZS5rb3RhZ2lyaUBtaWNyb2NoaXAuY29tPg0KPiAN
+Cj4gUGxlYXNlIGFkZCBBY2tlZC1ieS9SZXZpZXdlZC1ieSB0YWdzIHdoZW4gcG9zdGluZyBuZXcg
+dmVyc2lvbnMuDQo+IEhvd2V2ZXIsDQo+IHRoZXJlJ3Mgbm8gbmVlZCB0byByZXBvc3QgcGF0Y2hl
+cyAqb25seSogdG8gYWRkIHRoZSB0YWdzLiBUaGUgdXBzdHJlYW0NCj4gbWFpbnRhaW5lciB3aWxs
+IGRvIHRoYXQgZm9yIGFja3MgcmVjZWl2ZWQgb24gdGhlIHZlcnNpb24gdGhleSBhcHBseS4NCj4g
+DQo+IGh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y1LjE3L3NvdXJjZS9Eb2N1bWVu
+dGF0aW9uL3Byb2Nlc3Mvc3VibQ0KPiBpdHRpbmctcGF0Y2hlcy5yc3QjTDU0MA0KPiANCj4gSWYg
+YSB0YWcgd2FzIG5vdCBhZGRlZCBvbiBwdXJwb3NlLCBwbGVhc2Ugc3RhdGUgd2h5IGFuZCB3aGF0
+IGNoYW5nZWQuDQo+IA0KWWVzLCBZb3UgYXJlIHJpZ2h0Lg0KSSBtaXNzZWQgYWRkaW5nIHJldmll
+d2VkLWJ5IHRhZyBmb3IgMi8zIGFuZCAzLzMgcGF0Y2hlcyh3aGljaCBkb2Vzbid0IGhhdmUgYW55
+IGlzc3Vlcw0Kd2hpbGUgYXBwbHlpbmcgb24gbGF0ZXN0IHZlcnNpb24pDQpJIGhhdmVuJ3QgYWRk
+ZWQgdGFnIGZvciBwYXRjaC0xLzMgYXMgdGhlcmUgaXMgc21hbGwgY2hhbmdlDQooaS5lLiwgQ2hh
+bmdlZCByZWZlcmVuY2UgcHJvdmlkZWQgZm9yIHNwaSBiaW5kaW5ncyB0byBhdG1lbCxhdDkxcm05
+MjAwLXNwaS55YW1sKQ0Kd2hpbGUgYXBwbHlpbmcgY2hhbmdlcyBvbiBsYXRlc3QgdmVyc2lvbi4N
+Cj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo=
