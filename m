@@ -2,118 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75DF65B3DDF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 19:22:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E01C85B3DEA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 19:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229809AbiIIRWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 13:22:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51776 "EHLO
+        id S230226AbiIIR0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 13:26:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230226AbiIIRWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 13:22:40 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57BA7B2CEA
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 10:22:39 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id bq9so3952620wrb.4
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 10:22:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=lzt24UxQb1Bbr5dR1P76QxyXayl6F2odB0xnXgtqQU4=;
-        b=a3YFdDgRnb8wT3DLp+r2MHmxJjh43HrFTbENXjBIref//D4ozP1Rl0bIrMkXWYNf6Q
-         VaN9OlXLHx4TApWlYwZjBoBxLC7sA9lzwNVUz1L1oaaM192ZEWSf5oS+qs3TnykxPBgK
-         oXYCjTZGz5Scp97RvguCmN/9nlJkox/Zuv2BBLqSNy4LEHTafgL+3F4hzBH/kXipHnw6
-         KKwRz4DVZFjqQtS60g1ogc92pwbH/agL/RuvVlHoWn5vCiCf2ttjBXKUpZYfKRQJ17tA
-         8hTjFMNDfAsPkiNP3y+5ttR+cJu3SENQ/GV0csju3ODPVS9pmp0ZzpNamsV4SRJRUrU9
-         d++w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=lzt24UxQb1Bbr5dR1P76QxyXayl6F2odB0xnXgtqQU4=;
-        b=B6Xg6xDdkxLk3A21pe/Gsthqmdp5JUOoNgs5p6aCVGg6V6WnPdqEWyyCDeGH3G7M34
-         mhHhsHyWtdOZovveHmLgnDqET5oT8aBLA6nK9TLClWgpbRxr+eDuJW2nu4KiZ9Yee3n0
-         MlrBwfpBr/1w7qlaq7ly3sGUqtxQ8xSG6zo0YpzWo0FSzfXIWuX6DbfQnYrXpdEf/BWz
-         rHzS5GBekRXvG1ResP8DxQN7YQbfrs+CPrNDq8g+Sr9hu0D8z8Jb1AZ+mR6kCLu+p07L
-         yqFdzZOnq3/ZjoN0sCboRvAOrNwb6MIpr8PUDbaqoyKW5OgvLx6Wi5hGoeLdWv2L3aLx
-         1KKQ==
-X-Gm-Message-State: ACgBeo25lCgmhXdonau/VMDCCu/Bt/mZLSNkNnshxls9SjhGY5ek/w/3
-        xNW504jpyfuIvQadDgQrRImbcg==
-X-Google-Smtp-Source: AA6agR45ZrMWfOgeaqCAPNSh6Qo9OI2+s1tWNEsa+qLYe/6mE4S7XzePyc8Pj25pgbDd0ppt1SFssw==
-X-Received: by 2002:a5d:69ca:0:b0:228:dd17:9534 with SMTP id s10-20020a5d69ca000000b00228dd179534mr9168577wrw.652.1662744157878;
-        Fri, 09 Sep 2022 10:22:37 -0700 (PDT)
-Received: from [192.168.0.159] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id p6-20020a05600c1d8600b003a5c064717csm1237141wms.22.2022.09.09.10.22.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 10:22:37 -0700 (PDT)
-Message-ID: <539b395b-0c20-27ec-6390-0d1bd4bfbad3@linaro.org>
-Date:   Fri, 9 Sep 2022 18:22:31 +0100
+        with ESMTP id S229517AbiIIR0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 13:26:52 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7118211B00E;
+        Fri,  9 Sep 2022 10:26:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1662744411; x=1694280411;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2XgdYbkWHU5wpwgtFuAdOr2mJB8qz3+43GTBZWw+MgY=;
+  b=D64wy3a2WPMCW3Kuxj26EWmPLxhrfH03wo3GFb9YqqPXecMEb8QO1EBf
+   UAaBNduKFdJilCa/5oNOJTjcMidnX4g8Q8iGHDG6QtmPpYxMZCkqPxMD+
+   8rykCNQUgPszNo8yS7IWVlIj+JqTMfzXk/8vvqKhbYTaz9r47fjSqAimY
+   qteioV57oqc++lMa5az8+wNLca7uO4u17FMLcEnrqIGm2b3mVDwUPHZds
+   HvnkGUjkilm4uTRKqeNiOhf+AaJSEG4ZFguUE0d1L86MtJUujb1669Z58
+   1jur8dFLo9Bz1cpnBqXKhuhcvyhs0HXfQ+izY6n+w5MP+AE64FJlaQ0/R
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10465"; a="298330945"
+X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; 
+   d="scan'208";a="298330945"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2022 10:26:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,303,1654585200"; 
+   d="scan'208";a="566441041"
+Received: from lkp-server02.sh.intel.com (HELO b2938d2e5c5a) ([10.239.97.151])
+  by orsmga003.jf.intel.com with ESMTP; 09 Sep 2022 10:26:47 -0700
+Received: from kbuild by b2938d2e5c5a with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oWhmB-0001WX-07;
+        Fri, 09 Sep 2022 17:26:47 +0000
+Date:   Sat, 10 Sep 2022 01:26:01 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be
+Cc:     kbuild-all@lists.01.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: Re: [PATCH 3/5] net: ethernet: renesas: Add Ethernet Switch driver
+Message-ID: <202209100156.WIC248Uh-lkp@intel.com>
+References: <20220909132614.1967276-4-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/1] ASoC: dt-bindings: Mark old binding
- qcom,cpu-lpass-apq8016 as deprecated
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220909163416.1021551-1-bryan.odonoghue@linaro.org>
- <20220909163416.1021551-2-bryan.odonoghue@linaro.org>
- <e67e888c-ba40-7e72-39d1-98d02416d8b8@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <e67e888c-ba40-7e72-39d1-98d02416d8b8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220909132614.1967276-4-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 17:36, Krzysztof Kozlowski wrote:
-> On 09/09/2022 18:34, Bryan O'Donoghue wrote:
->> We've had some discongruity in the compatible string of the lpass for 8916
->> for a while.
->>
->> Mark the old compat as deprecated. New SoC additions such as msm8936 and
->> msm8939 should use the compat string "qcom,apq8016-lpass-cpu".
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>   .../devicetree/bindings/sound/qcom,lpass-cpu.yaml    | 12 +++++++-----
->>   1 file changed, 7 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> index ef18a572a1ff3..bb6f0c5dd4e8b 100644
->> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> @@ -18,11 +18,13 @@ description: |
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - qcom,lpass-cpu
->> -      - qcom,apq8016-lpass-cpu
->> -      - qcom,sc7180-lpass-cpu
->> -      - qcom,sc7280-lpass-cpu
->> +    oneOf:
->> +      - const: qcom,lpass-cpu
->> +      - const: qcom,apq8016-lpass-cpu
->> +      - const: qcom,sc7180-lpass-cpu
->> +      - const: qcom,sc7280-lpass-cpu
-> 
-> We talked and I gave you the expected code with enum. I also explained
-> why other schema (Odroid sound) is done differently. The code here is
-> correct, but I find more readable and common to use enum. Please make
-> these entries as enum.
+Hi Yoshihiro,
 
-Ah you did say enum, I copy/pasted the wrong fragment.
+I love your patch! Perhaps something to improve:
 
+[auto build test WARNING on next-20220909]
+[also build test WARNING on v6.0-rc4]
+[cannot apply to geert-renesas-devel/next net-next/master net/master linus/master v6.0-rc4 v6.0-rc3 v6.0-rc2]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Yoshihiro-Shimoda/treewide-Add-R-Car-S4-8-Ethernet-Switch-support/20220909-212759
+base:    9a82ccda91ed2b40619cb3c10d446ae1f97bab6e
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20220910/202209100156.WIC248Uh-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/9c5c4dd0ca6beb269dd0a6ef12c386198e193c68
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yoshihiro-Shimoda/treewide-Add-R-Car-S4-8-Ethernet-Switch-support/20220909-212759
+        git checkout 9c5c4dd0ca6beb269dd0a6ef12c386198e193c68
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh SHELL=/bin/bash M=drivers/net/ethernet/renesas
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/net/ethernet/renesas/rswitch_serdes.c:16:6: warning: no previous prototype for 'rswitch_serdes_write32' [-Wmissing-prototypes]
+      16 | void rswitch_serdes_write32(void __iomem *addr, u32 offs,  u32 bank, u32 data)
+         |      ^~~~~~~~~~~~~~~~~~~~~~
+>> drivers/net/ethernet/renesas/rswitch_serdes.c:22:5: warning: no previous prototype for 'rswitch_serdes_read32' [-Wmissing-prototypes]
+      22 | u32 rswitch_serdes_read32(void __iomem *addr, u32 offs,  u32 bank)
+         |     ^~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/rswitch_serdes_write32 +16 drivers/net/ethernet/renesas/rswitch_serdes.c
+
+    15	
+  > 16	void rswitch_serdes_write32(void __iomem *addr, u32 offs,  u32 bank, u32 data)
+    17	{
+    18		iowrite32(bank, addr + RSWITCH_SERDES_BANK_SELECT);
+    19		iowrite32(data, addr + offs);
+    20	}
+    21	
+  > 22	u32 rswitch_serdes_read32(void __iomem *addr, u32 offs,  u32 bank)
+    23	{
+    24		iowrite32(bank, addr + RSWITCH_SERDES_BANK_SELECT);
+    25	
+    26		return ioread32(addr + offs);
+    27	}
+    28	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
