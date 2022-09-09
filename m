@@ -2,75 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 285EA5B40BC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 22:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C6A5B40C1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 22:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231807AbiIIUbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 16:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54838 "EHLO
+        id S229594AbiIIUeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 16:34:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231699AbiIIUaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 16:30:07 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36622A435
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 13:29:30 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id x10so3239948ljq.4
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 13:29:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date;
-        bh=7mncvRGcLH9K5FkmOMOVFO3Rj69zLNEP9S2+OC8gmCI=;
-        b=lvWyWcld2sfU8O05DsaycEYPSkOZRrbgTbt8RyraZCg91Re7sQO0u1I+IK4HMZFDZe
-         l8v3boa5CHlaq4/rLeN2PTKOR9SQP91vCxNf7XoI9tPyCN+u+OZoUSeKyf3UwF1ucM73
-         7CEPwpYalfNr4x6BF2Krzfa/xd+EnW4kfFYqugywqSN3/KR0wkZve4qY7EmLZE4SB/Ys
-         Ty/qcPU3CdWLlOLxDuEig9712dvYYHJtEAjz/ofnE29zImBVG49ItSFUF6SlMiaKnCmd
-         TZXyt126NMqmAlqHR1e7Nh08mkgqSg79M1DF5MOhL1//LkBTNTV4j+lHAqy7PsrWfU90
-         TWXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date;
-        bh=7mncvRGcLH9K5FkmOMOVFO3Rj69zLNEP9S2+OC8gmCI=;
-        b=wVFTj/i0zg8YhCZI7uHnA/cyz6gPW2jPrXWdZuWFHFResT1gLPrxkG6BXcAZiYkEwo
-         bqT3YcStv6u1f+p9t0FVtmjSOfvMAqZ6lDW5bPNP0QxDNDEy9DVIKqnP0zcP6CYPy54n
-         UuU/gzH+rKX+sk08pqhwxJuiY1xzKcbbPTezXvzGVTKDWdo/NpOa/z++7Ex0nbemd7QR
-         p5NPZdMHz0mEEyWIKbUtrH3okoZyDwn51oaziWLmjYol0F1SsgO2j4+MYpPm1+Xo+Gdp
-         4bwv+BxiMI2iOUvgXONafhcQMj6ifeANvIstsgw8/Lt/EwSlXP91Vq2ur79z59gVZuXa
-         PNbA==
-X-Gm-Message-State: ACgBeo09Zb64Hte7+udKNtUygwjB+/ygrzHQ1qw/cBE5mBt2rW+Ic43G
-        LaaG6v6P9jkrujUHB8ROwrl0kA==
-X-Google-Smtp-Source: AA6agR7TVv6GZXR+h2N3omk/bgR55Lo5AYg+W/daJdEVtBkQ4148w0NpRInKLrdUFHL+8asR/zNYwA==
-X-Received: by 2002:a05:651c:1110:b0:268:982a:8805 with SMTP id e16-20020a05651c111000b00268982a8805mr4758864ljo.394.1662755369281;
-        Fri, 09 Sep 2022 13:29:29 -0700 (PDT)
-Received: from [127.0.0.1] ([188.162.64.228])
-        by smtp.gmail.com with ESMTPSA id p11-20020ac24ecb000000b00498f1eddad0sm48339lfr.122.2022.09.09.13.29.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Sep 2022 13:29:28 -0700 (PDT)
-Date:   Fri, 09 Sep 2022 23:29:23 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S231205AbiIIUeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 16:34:03 -0400
+Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E32E290825;
+        Fri,  9 Sep 2022 13:34:01 -0700 (PDT)
+Received: from [192.168.1.103] (178.176.72.240) by msexch01.omp.ru
+ (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Fri, 9 Sep 2022
+ 23:33:53 +0300
+Subject: Re: [PATCH 2/2] dt-bindings: net: renesas,etheravb: Add r8a779g0
+ support
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH 1/6] dt-bindings: phy: qcom,hdmi-phy-other: use pxo clock
-User-Agent: K-9 Mail for Android
-In-Reply-To: <c3b4638e-05f7-cc73-b893-422f92909f6e@linaro.org>
-References: <20220909132010.3814817-1-dmitry.baryshkov@linaro.org> <20220909132010.3814817-2-dmitry.baryshkov@linaro.org> <d72fc00c-85ba-8b48-1fcf-42fe9e8daeee@linaro.org> <59242592-4e3d-b7c2-e0bb-b39df780c26b@linaro.org> <c3b4638e-05f7-cc73-b893-422f92909f6e@linaro.org>
-Message-ID: <3ED996B7-F1BE-4AF0-AD95-500DA0B202FB@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>
+CC:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>
+References: <cover.1662714607.git.geert+renesas@glider.be>
+ <cddb61cd9702ceefc702176bd8ff640c4ff59ffd.1662714607.git.geert+renesas@glider.be>
+From:   Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <c85c253d-512e-4396-b35b-077b08ab35fd@omp.ru>
+Date:   Fri, 9 Sep 2022 23:33:54 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <cddb61cd9702ceefc702176bd8ff640c4ff59ffd.1662714607.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [178.176.72.240]
+X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
+ (10.188.4.12)
+X-KSE-ServerInfo: msexch01.omp.ru, 9
+X-KSE-AntiSpam-Interceptor-Info: scan successful
+X-KSE-AntiSpam-Version: 5.9.20, Database issued on: 09/09/2022 20:08:50
+X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
+X-KSE-AntiSpam-Method: none
+X-KSE-AntiSpam-Rate: 59
+X-KSE-AntiSpam-Info: Lua profiles 172660 [Sep 09 2022]
+X-KSE-AntiSpam-Info: Version: 5.9.20.0
+X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
+X-KSE-AntiSpam-Info: LuaCore: 498 498 840112829f78e8dd3e3ddbbff8b15d552f4973a3
+X-KSE-AntiSpam-Info: {rep_avail}
+X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
+X-KSE-AntiSpam-Info: {relay has no DNS name}
+X-KSE-AntiSpam-Info: {SMTP from is not routable}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.72.240 in (user)
+ b.barracudacentral.org}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.72.240 in (user)
+ dbl.spamhaus.org}
+X-KSE-AntiSpam-Info: 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;omp.ru:7.1.1
+X-KSE-AntiSpam-Info: ApMailHostAddress: 178.176.72.240
+X-KSE-AntiSpam-Info: {DNS response errors}
+X-KSE-AntiSpam-Info: Rate: 59
+X-KSE-AntiSpam-Info: Status: not_detected
+X-KSE-AntiSpam-Info: Method: none
+X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
+ smtp.mailfrom=omp.ru;dkim=none
+X-KSE-Antiphishing-Info: Clean
+X-KSE-Antiphishing-ScanningType: Heuristic
+X-KSE-Antiphishing-Method: None
+X-KSE-Antiphishing-Bases: 09/09/2022 20:13:00
+X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean, bases: 9/9/2022 6:08:00 PM
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,42 +90,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 9/9/22 12:13 PM, Geert Uytterhoeven wrote:
 
+> Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
+> Renesas R-Car V4H (R8A779G0) SoC.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-On 9 September 2022 19:44:11 GMT+03:00, Krzysztof Kozlowski <krzysztof=2Ek=
-ozlowski@linaro=2Eorg> wrote:
->On 09/09/2022 17:03, Dmitry Baryshkov wrote:
->>>> +    then:
->>>> +      properties:
->>>> +        clocks:
->>>> +          minItems: 1
->>>> +          maxItems: 2
->>>> +        clock-names:
->>>> +          minItems: 1
->>>> +          items:
->>>> +            - const: slave_iface
->>>> +            - const: pxo
->>>
->>> Why pxo is optional? Commit msg does not say much here=2E
->>=20
->> It's optional as it is not present in current DT files=2E The driver wi=
-ll=20
->> fallback to 'pxo_board' if the clock is not present=2E
->>=20
->>> It seems you also miss the DTS change adding the clock=2E
->>=20
->> Oh, I'll add it to v2=2E
->
->How about adding it to DTS and making it required in the bindings? I did
->not check the driver, but isn't the driver fail if clock is missing thus
->the clock is really required?
+Reviewed-by: Sergey Shtylyov <s.shtylyov@omp.ru>
 
-I had the impression that we cannot make a clock mandatory of it wasn't pr=
-esent before=2E Please correct me if I'm wrong=2E
+[...]
 
-No, the driver will not fail=2E It will fallback to the lookup of the `pxo=
-_board' clock from the system clock list=2E
-
---=20
-With best wishes
-Dmitry
+MBR, Sergey
