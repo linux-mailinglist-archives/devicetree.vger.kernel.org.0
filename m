@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 881DA5B3D2F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 18:40:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C55F55B3D35
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 18:42:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231450AbiIIQk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 12:40:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47946 "EHLO
+        id S230058AbiIIQm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 12:42:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230249AbiIIQj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 12:39:59 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF2D3A4BF
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 09:39:58 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id v6so2564563ljj.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 09:39:58 -0700 (PDT)
+        with ESMTP id S229673AbiIIQm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 12:42:28 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED6C91440AD
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 09:42:26 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id f14so2691902lfg.5
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 09:42:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=b8J4shTOmqLPuMlpjI5MHMpXbnGy1VN3lwK2r3/fCWg=;
-        b=cgZ+zfdQnVuRSEXnVgynZG2z/35sBfEiO6VSkFZ4R8EzKB+Rhnw/YTmgg/DmiXIOov
-         LFG/YxMMSvMn6zvbY6w6qTcQqkE0Pm65bYDOM2met78tvoWdTgLBmCsiNoMCoFZS1nJX
-         nwOR2cf6HNi9fCgOG6iMhdjWpzLOosMK7M8Z6vUc9EFL9Lqe1jI1rREL9MhEG2+xg7G1
-         mLgPSPjpovUlEcvMBob63hS+dGx1KMDNast9v/OF43FEjzdpykC4ciR3ThJ1q6TVdnoF
-         sGxfDtZaaFnVxpYABV0SH6+DPIpMsrm/kGR+2uG3I8yPCywpA9tGtzhzBSg17QG5X6WF
-         xnGQ==
+        bh=AhS1mhLSPdTYHS3sCWcsfuKlT4/D61hxxGGDcI1RHwY=;
+        b=EzoTQ92kcupNMBHuKMSK11U3VhWVT+KmYj4JSactNf2qPFZflLB3+nwBMbwTFd6t+U
+         XWjuUU1tZ40oZH6WMD/GwnB5K6T57FqOIe12D9Q1q1+KdtMIXj9o8bPMZJFQBpZxYEGD
+         /V7MTqAceSh9bl8AjdQcBGFdvZHK330DO6ABeSt+sOgpEVekUlethgy4Y4xmW0FYGZIa
+         aou1wwq/77UDnSf/aDPNiUfc8TpewzRatwx1OxV/tNg0g1MaNMO7brIgghAzS8jHAC/p
+         IZVNClOB3clDLICjW6a4atiYeEPbF3OUS+kHSZn99yeAyrunJ0tqFdGjHkVlu3XEPum5
+         Zsfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=b8J4shTOmqLPuMlpjI5MHMpXbnGy1VN3lwK2r3/fCWg=;
-        b=Fuea5eQr5OWqF1M5mQpiDHsHK8SpSXNreenLy2lGAqFxrCgLiZsdj+JCkdry4fhr0b
-         X8k2m8fpHmE0vsNH1kj2U1nmOamuD4F5k0WkPygXrV/Lsv0zb7iRJ1VoHOXyAU7WJlIZ
-         aNn2jpRw/+YXYjDaRHovfKnfbXdUNQq/EAOx5UtgPx195oM9J2839sityYG8pDgWUSzt
-         08PFebQpWv8emLNgAjPy6q+pw72WKVWhJnG3Su2lPm871NgBqcWMIOdVg0brwG81fxrM
-         PLcw5wKBQFb7pKyDwsqG87795DBz56QMcTIHPAqTBo+XUjIgMKnRciKmQoderr3tsIeA
-         F2xQ==
-X-Gm-Message-State: ACgBeo2y/2g1127GSJI8Du/4mWb77YRkLTSbxoswyU6wChVBnIDTGXaV
-        iA7wF3Foemc+05g3XvDNpa19rg==
-X-Google-Smtp-Source: AA6agR4ECH9oOvbRv+1hUCn81T4aJTMXl75LUW5azwm7hSatVTuDaZm8V/Dz7cl7mDb1v0kdqZRBjA==
-X-Received: by 2002:a2e:940f:0:b0:261:b9ca:6207 with SMTP id i15-20020a2e940f000000b00261b9ca6207mr4408339ljh.192.1662741596747;
-        Fri, 09 Sep 2022 09:39:56 -0700 (PDT)
+        bh=AhS1mhLSPdTYHS3sCWcsfuKlT4/D61hxxGGDcI1RHwY=;
+        b=lUyYsA1U3z9m9Dbhd/xHUJ41N6KqYc0gug+OIivkh2cJRfNAAPYZcEc0dxsGjEB5LF
+         Nk9JdWkdxJz+8tlOJCll0eN6aXL5gkpTf76zA2QO/XWVU/pNdYA/gikFV6XDCiPODOHC
+         qu+3hAjjbtuqSaynLAFCH0yjfQCL76SHVfOz5DjWPG8+CDMD96VvijgTvuVr7pMJinZp
+         MahMcT9x5ylegxoMPBwU6ul/5pyYuCuYamfsWLwSnbSq9ODNodNgOXMyeynDbcoh+FqA
+         WUCpd+hsYksQ2A5oo0Gm5Cffhw+eNFjo6bF2JO7j6fjUn2hdF/lDUKmBUpR9//FrcAh6
+         O6/A==
+X-Gm-Message-State: ACgBeo1xpzDdkpEHMwf4J3gIzw2oWJ0/qY2yebrXIsOdni8edOppS9Sl
+        qPvHtWhFm2w3cmkMAUM3ceuGTg==
+X-Google-Smtp-Source: AA6agR62MO5VH+iTJ0jkLL7/fd5B2DVPyCGmMoEV8SdYJxJ4BdyZeXPp/Bur+wIj3bL9jXGhlUjc7Q==
+X-Received: by 2002:a05:6512:c1:b0:497:a63d:563a with SMTP id c1-20020a05651200c100b00497a63d563amr4617909lfp.366.1662741745342;
+        Fri, 09 Sep 2022 09:42:25 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v9-20020a05651203a900b0049476261c30sm143591lfp.113.2022.09.09.09.39.55
+        by smtp.gmail.com with ESMTPSA id bi24-20020a05651c231800b00261c6c80b38sm140789ljb.75.2022.09.09.09.42.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 09:39:56 -0700 (PDT)
-Message-ID: <36649eca-d6f5-aa48-347c-ebd2bea5096e@linaro.org>
-Date:   Fri, 9 Sep 2022 18:39:55 +0200
+        Fri, 09 Sep 2022 09:42:24 -0700 (PDT)
+Message-ID: <1f2738ce-9901-35c9-eed8-52c02bfc65d3@linaro.org>
+Date:   Fri, 9 Sep 2022 18:42:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 2/3] arm64: tegra: Add PWM controllers on Tegra234
+Subject: Re: [PATCH v8 3/4] dt-bindings: hwmon: Add bindings for max31760
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sandipan Patra <spatra@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, robh+dt@kernel.org,
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>, jdelvare@suse.com
+Cc:     linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     bbasu@nvidia.com, kyarlagadda@nvidia.com
-References: <20220909155258.17908-1-spatra@nvidia.com>
- <20220909155258.17908-2-spatra@nvidia.com>
- <3882e496-3082-8db3-c730-1e14554bbcf8@linaro.org>
-In-Reply-To: <3882e496-3082-8db3-c730-1e14554bbcf8@linaro.org>
+        linux-kernel@vger.kernel.org
+References: <20220909133718.388213-1-Ibrahim.Tilki@analog.com>
+ <20220909133718.388213-4-Ibrahim.Tilki@analog.com>
+ <9d5e8a41-8e0a-c67a-1b68-f743b4680510@linaro.org>
+ <339d3857-2deb-b5d9-332d-cc65cc90ca19@roeck-us.net>
+ <96766080-dee3-1c06-031e-331a8702cf37@linaro.org>
+ <ba55b70f-b1b1-c31a-e1ef-a079f0f02782@roeck-us.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ba55b70f-b1b1-c31a-e1ef-a079f0f02782@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,34 +81,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 18:39, Krzysztof Kozlowski wrote:
-> On 09/09/2022 17:52, Sandipan Patra wrote:
->> Tegra234 has eight single-channel PWM controllers, one of them in the
->> AON block.
+On 09/09/2022 17:04, Guenter Roeck wrote:
+> On 9/9/22 07:56, Krzysztof Kozlowski wrote:
+>> On 09/09/2022 16:52, Guenter Roeck wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 9/9/22 07:49, Krzysztof Kozlowski wrote:
+>>>> On 09/09/2022 15:37, Ibrahim Tilki wrote:
+>>>>> Adding bindings for Analog Devices MAX31760 Fan-Speed Controller
+>>>>>
+>>>>> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+>>>>> ---
+>>>>
+>>>>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>
+>>>> Please wait with applying for Rob's bot to check it.
+>>>>
+>>>
+>>> I don't think I see those results unless there is a failure.
 >>
->> Signed-off-by: Sandipan Patra <spatra@nvidia.com>
->> ---
->> V3: Update binding doc and fix compatible property.
+>> That's correct.
 >>
->>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 80 +++++++++++++++++++++++-
->>  1 file changed, 78 insertions(+), 2 deletions(-)
+>>> Is there a link where I can look up the results ?
 >>
->> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
->> index 81a0f599685f..d77ee9d81fb2 100644
->> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
->> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
->> @@ -829,8 +829,7 @@
->>  		};
->>  
->>  		pwm1: pwm@3280000 {
->> -			compatible = "nvidia,tegra194-pwm",
->> -				     "nvidia,tegra186-pwm";
->> +			compatible = "nvidia,tegra194-pwm";
-> 
-> Where is the fallback?
+>> It will pop-up on Patchwork:
+>> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220909133718.388213-4-Ibrahim.Tilki@analog.com/
 
-Wait, other way around. Fallback is here, but where is the Tegra234
-compatible?
+And there is a failure - the bindings were not tested before sending. :(
+
+The error is visible when testing locally, although syntax in general
+looks fine.
+
+Un-reviewed.
 
 Best regards,
 Krzysztof
