@@ -2,199 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E99215B3999
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:51:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D8035B39FE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:01:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231759AbiIINqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 09:46:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49946 "EHLO
+        id S230354AbiIIN66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 09:58:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231574AbiIINqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:46:45 -0400
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7400813A07C;
-        Fri,  9 Sep 2022 06:46:28 -0700 (PDT)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 34A74100018;
-        Fri,  9 Sep 2022 13:45:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1662731127;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=gyLP9CmLkcl1bGVvXClRy+vUMLTzbqd++Vuh487Ocsk=;
-        b=oMQznvKITh0Ti9IbYYaYWltTgRzj0erZ3nEh9JkMg6qA15h7sYxX2EF65aX3mmzXRk293A
-        +HG/yTf4Ni6GyAQhiTSga94vVXPypRU6YO2dhOEmwKHjvW4e2RgJ3KykvbG5+Bq6X6jEyI
-        ETn2U854M/fwiHLSqxO073gW3IDHfUl91R5HlwCyyDUkoWQXj3QTvpo/f4V2OkdEO1k/10
-        bne2wy20JT4FwGDoRvu6Hgc908GM9EdRIGphOPZSOQg72KwYQSDcZjHKR+y2bA3lG1EXtq
-        0qI8UeLQNX17RDT/fOShMmUi6fowMDBGKoJpGYSEechAQ5GW/WD2J94Mm+AYNg==
-Date:   Fri, 9 Sep 2022 15:45:19 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 5/6] ARM: dts: sun8i: a83t: Add MIPI CSI-2 controller
- node
-Message-ID: <YxtDb/jrR7uMabs5@aptenodytes>
-References: <20220826182803.604563-1-paul.kocialkowski@bootlin.com>
- <20220826182803.604563-6-paul.kocialkowski@bootlin.com>
- <YwkYKcffdRGnq+pK@pendragon.ideasonboard.com>
- <YxC7+Pi4v3Bc1oXc@aptenodytes>
- <YxC/3KLfJHpld+jx@pendragon.ideasonboard.com>
+        with ESMTP id S232118AbiIIN6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:58:51 -0400
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4BAD50710;
+        Fri,  9 Sep 2022 06:58:38 -0700 (PDT)
+Received: from robin.home.jannau.net (p54acc2ba.dip0.t-ipconnect.de [84.172.194.186])
+        by soltyk.jannau.net (Postfix) with ESMTPSA id 8E74A26EFE9;
+        Fri,  9 Sep 2022 15:51:03 +0200 (CEST)
+From:   Janne Grunau <j@jannau.net>
+To:     asahi@lists.linux.dev
+Cc:     Mark Kettenis <kettenis@openbsd.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, er <povik+lin@cutebit.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 00/10] Apple M1 Pro/Max/Ultra device trees
+Date:   Fri,  9 Sep 2022 15:50:53 +0200
+Message-Id: <20220909135103.98179-1-j@jannau.net>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="0g1R3vKr/uSZfMdm"
-Content-Disposition: inline
-In-Reply-To: <YxC/3KLfJHpld+jx@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hej,
 
---0g1R3vKr/uSZfMdm
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+this series contains device trees for Apple's M1 Pro, Max and Ultra SoCs
+and devices based on these SoCs.
 
-Hi Laurent,
+Quoting from the main commit:
 
-On Thu 01 Sep 22, 17:21, Laurent Pinchart wrote:
-> On Thu, Sep 01, 2022 at 04:04:40PM +0200, Paul Kocialkowski wrote:
-> > Hi Laurent,
-> >=20
-> > On Fri 26 Aug 22, 21:59, Laurent Pinchart wrote:
-> > > Hi Paul,
-> > >=20
-> > > Thank you for the patch.
-> > >=20
-> > > On Fri, Aug 26, 2022 at 08:28:02PM +0200, Paul Kocialkowski wrote:
-> > > > MIPI CSI-2 is supported on the A83T with a dedicated controller that
-> > > > covers both the protocol and D-PHY. It can be connected to the CSI
-> > > > interface as a V4L2 subdev through the fwnode graph.
-> > > >=20
-> > > > This is not done by default since connecting the bridge without a
-> > > > subdev attached to it will cause a failure on the CSI driver.
-> > >=20
-> > > No urgency, but would it be possible to fix this so that the CSI-2
-> > > receiver can be connected to the CSI unconditionally in DT ? The
-> > > connection exists at the hardware level in the SoC, and should thus
-> > > exist here too, regardless of whether or not a sensor is connected.
-> >=20
-> > Yes it's true that having the link always would be legitimate.
-> >=20
-> > For the context, this CSI controller can be switched between the MIPI C=
-SI-2
-> > controller and a parallel sensor input (i.e. it's not dedicated to one =
-or the
-> > other like on the V3).
-> >=20
-> > Last time I tried, having the connection between the two always there r=
-esulted
-> > in the unability to use a parallel sensor when no sensor is attached to=
- the
-> > mipi csi-2 receiver. Probably because the async notifier never complete=
-s since
-> > the mipi csi-2's subdev is never registered without a sensor subdev att=
-ached.
-> >=20
-> > Do you see a way to handle this case properly?
->=20
-> It sounds like an issue in the CSI-2 receiver driver. If there's no
-> input device attached to it, it should register its subdev directly,
-> without its own async notifier.
+These SoCs are found in Apple devices with M1 Pro (t6000), M1 Max
+(t6001) and M1 Ultra (t6002).
 
-Yes it turns out there was an error on that side, thanks for bringing it up!
-I have sent a fixup series which takes care of it.
+t6000 is a cut-down version of t6001, so the former just includes the
+latter and disables the missing bits (This is currently just one PMGR
+node and all of its domains.
 
-Now it becomes possible to always describe the links without downsides.
-Well, the CSI driver will still wait for the MIPI CSI-2 bridge's subdev
-when its node is enabled in device-tree, but I think that is expected.
+t6002 is two connected t6001 dies. The implementation seems to use
+t6001 with blocks disabled (mostly on the second die). MMIO addresses on
+the second die have a constant offset. The interrupt controller is
+multi-die aware. This setup can be represented in the device tree with
+two top level "soc" nodes. The MMIO offset is applied via "ranges" and
+devices are included with preproceesor macros to make the node labels
+unique and to specify the die number for the interrupt definition.
 
-Cheers,
+Device nodes are distributed over dtsi files based on whether they are
+present on both dies or just on the first die. The only execption is the
+NVMe controller which resides on the second die. Its nodes are in a
+separate file.
 
-Paul
+I'm open for ideas how to improve the preprocessor handling but I'm
+convinced that it should be avoided to duplicate the device nodes
+manually.
 
-> > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > ---
-> > > >  arch/arm/boot/dts/sun8i-a83t.dtsi | 26 ++++++++++++++++++++++++++
-> > > >  1 file changed, 26 insertions(+)
-> > > >=20
-> > > > diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/=
-sun8i-a83t.dtsi
-> > > > index 82fdb04122ca..ecf9f3b2c0c0 100644
-> > > > --- a/arch/arm/boot/dts/sun8i-a83t.dtsi
-> > > > +++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
-> > > > @@ -1064,6 +1064,32 @@ csi: camera@1cb0000 {
-> > > >  			status =3D "disabled";
-> > > >  		};
-> > > > =20
-> > > > +		mipi_csi2: csi@1cb1000 {
-> > > > +			compatible =3D "allwinner,sun8i-a83t-mipi-csi2";
-> > > > +			reg =3D <0x01cb1000 0x1000>;
-> > > > +			interrupts =3D <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +			clocks =3D <&ccu CLK_BUS_CSI>,
-> > > > +				 <&ccu CLK_CSI_SCLK>,
-> > > > +				 <&ccu CLK_MIPI_CSI>,
-> > > > +				 <&ccu CLK_CSI_MISC>;
-> > > > +			clock-names =3D "bus", "mod", "mipi", "misc";
-> > > > +			resets =3D <&ccu RST_BUS_CSI>;
-> > > > +			status =3D "disabled";
-> > > > +
-> > > > +			ports {
-> > > > +				#address-cells =3D <1>;
-> > > > +				#size-cells =3D <0>;
-> > > > +
-> > > > +				mipi_csi2_in: port@0 {
-> > > > +					reg =3D <0>;
-> > > > +				};
-> > > > +
-> > > > +				mipi_csi2_out: port@1 {
-> > > > +					reg =3D <1>;
-> > > > +				};
-> > > > +			};
-> > > > +		};
-> > > > +
-> > > >  		hdmi: hdmi@1ee0000 {
-> > > >  			compatible =3D "allwinner,sun8i-a83t-dw-hdmi";
-> > > >  			reg =3D <0x01ee0000 0x10000>;
->=20
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
+For dts verification this series depends on t6000-dart support
+(https://lore.kernel.org/linux-iommu/20220901012519.7167-1-j@jannau.net/T/#t)
+expected to be queued for v6.1.
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Even with the t6000-dart support t600x devices are not terribly useful
+in upstream. There is no input device support. The laptop's keyboard
+and touchpad are missing SPI and HID over SPI drivers. The dwc3
+USB-C ports are not yet added since they require special handling
+after disconnect. The PCIe based USB xhci controller in the Mac Studio
+requires firmware downloaded in a similar way as USB_XHCI_PCI_RENESAS.
 
---0g1R3vKr/uSZfMdm
-Content-Type: application/pgp-signature; name="signature.asc"
+For dependency handling this series contains a fix for the aic
+dt-bindings and carries mostly identical device tree additions for M1
+and M1 Pro/Max/Ultra as part of audio support.
 
------BEGIN PGP SIGNATURE-----
+The series passes dtbs_check with 2 additional bindings already
+submitted elsewhere:
+- "ASoC: Add Apple MCA I2S transceiver bindings" (6ed462d1c11675)
+  in sound/for-next
+- "dt-bindings: iommu: dart: add t6000 compatible"
+  https://lore.kernel.org/linux-iommu/20220901012519.7167-2-j@jannau.net/
 
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmMbQ28ACgkQ3cLmz3+f
-v9HuxQf/URHJvX9hyDkHJd/fZD6Tl0GkdanL5dUdysUgnQe+i1ceqqoOGzF+ZJpW
-mv+Rbum00q/RE6nm+lGpFT2ig1SYGuOCxnZrbsXZiSvSzZ8+YY/cB6sRm+ywP7Go
-QbVk+I+bEky7qtcKIWa3guNbtFBLm3rixBZ6CmjKnxdTXh6vN9lJlTMbbui0pffQ
-k1QuoQ1Ea9AK7Rxyc4tWIIGK9Ljn96j7cHKqW1/Bi5FQyqDtFWgvwQGA4eiOxWOj
-RrkwZH7D28Z1mHgUO6Mc8O+z/t2AzE3VvD7hcxt1RtNh1Un6t3YS4I9d6LSNCDyH
-ylFJhr0z42NWy3mkaxagW6QSEaVn1A==
-=jCke
------END PGP SIGNATURE-----
+New bindings passes dt_binding_check
 
---0g1R3vKr/uSZfMdm--
+
+Hector Martin (3):
+  arm64: dts: apple: Fix j45x model years
+  arm64: dts: apple: Add initial t6000/t6001/t6002 DTs
+  arm64: dts: apple: Add J314 and J316 devicetrees
+
+Janne Grunau (6):
+  dt-bindings: apple,aic: Fix required item "apple,fiq-index" in
+    affinity description
+  dt-bindings: dma: apple,admac: Add iommus and power-domains properties
+  dt-bindings: apple,aic2: Add CPU PMU per-cpu pseudo-interrupts
+  dt-bindings: arm: apple: Add t6001/t6002 Mac Studio compatibles
+  arm64: dts: apple: Add J375 devicetrees
+  arm64: dts: apple: t600x: Add MCA and its support
+
+Martin Povišer (1):
+  arm64: dts: apple: t8103: Add MCA and its support
+
+ .../devicetree/bindings/arm/apple.yaml        |   11 +-
+ .../devicetree/bindings/dma/apple,admac.yaml  |    7 +
+ .../interrupt-controller/apple,aic.yaml       |    2 +-
+ .../interrupt-controller/apple,aic2.yaml      |   29 +
+ arch/arm64/boot/dts/apple/Makefile            |    6 +
+ arch/arm64/boot/dts/apple/multi-die-cpp.h     |   23 +
+ arch/arm64/boot/dts/apple/t6000-j314s.dts     |   18 +
+ arch/arm64/boot/dts/apple/t6000-j316s.dts     |   18 +
+ arch/arm64/boot/dts/apple/t6000.dtsi          |   18 +
+ arch/arm64/boot/dts/apple/t6001-j314c.dts     |   18 +
+ arch/arm64/boot/dts/apple/t6001-j316c.dts     |   18 +
+ arch/arm64/boot/dts/apple/t6001-j375c.dts     |   18 +
+ arch/arm64/boot/dts/apple/t6001.dtsi          |   63 +
+ arch/arm64/boot/dts/apple/t6002-j375d.dts     |   50 +
+ arch/arm64/boot/dts/apple/t6002.dtsi          |  173 ++
+ arch/arm64/boot/dts/apple/t600x-common.dtsi   |  137 ++
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi     |  360 +++
+ arch/arm64/boot/dts/apple/t600x-dieX.dtsi     |  103 +
+ .../arm64/boot/dts/apple/t600x-gpio-pins.dtsi |   45 +
+ .../arm64/boot/dts/apple/t600x-j314-j316.dtsi |  114 +
+ arch/arm64/boot/dts/apple/t600x-j375.dtsi     |  119 +
+ arch/arm64/boot/dts/apple/t600x-nvme.dtsi     |   42 +
+ arch/arm64/boot/dts/apple/t600x-pmgr.dtsi     | 2012 +++++++++++++++++
+ arch/arm64/boot/dts/apple/t8103-j456.dts      |    2 +-
+ arch/arm64/boot/dts/apple/t8103-j457.dts      |    2 +-
+ arch/arm64/boot/dts/apple/t8103-jxxx.dtsi     |    4 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          |   73 +
+ 27 files changed, 3481 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/apple/multi-die-cpp.h
+ create mode 100644 arch/arm64/boot/dts/apple/t6000-j314s.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t6000-j316s.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t6000.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t6001-j314c.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t6001-j316c.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t6001-j375c.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t6001.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t6002-j375d.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t6002.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t600x-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t600x-die0.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t600x-dieX.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t600x-gpio-pins.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t600x-j375.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t600x-nvme.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t600x-pmgr.dtsi
+
+-- 
+2.35.1
+
