@@ -2,162 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 960435B2D03
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 05:42:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6B9F5B2D20
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 05:55:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiIIDmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 23:42:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50580 "EHLO
+        id S230379AbiIIDzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 23:55:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbiIIDmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 23:42:09 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949D7165BB;
-        Thu,  8 Sep 2022 20:42:08 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id F3A575C0087;
-        Thu,  8 Sep 2022 23:42:07 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Thu, 08 Sep 2022 23:42:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm3; t=1662694927; x=
-        1662781327; bh=hHcRVaJDud/Kkwj96NHPi6sduLW48zHvi95z05DrcZM=; b=R
-        yzDn6bSgQ9fyqJoqSbrYu/CpkvLBdEPqdFYHDGTVbGmED49rI51HW9+pJ4J/0C8n
-        2AIuXjp4KvGDAEpuAhFEqKJZUrvl2V/iWoaRL6EReOfkmcVaGFZ86fnRjnOMNnsn
-        GVYgBwdiOO2yzy6pfKoVlTaghkZ7bWMthnZWahTzmoHitrOEZPF2h2HjFP10HUTa
-        zEebWXQArm+TXyOFsWxOa2p121mlrl2lTuwBI3C3nIlmL+/Z1Va8hshgg/im3nwt
-        o+DqGuFbXpdT6VOUuHvk/bHJ67zCp0rXPP7SgdSlDE+IEPmzipGWRoZJBM+xbVLP
-        +HxYQvxAXCJGgr66gz94w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1662694927; x=
-        1662781327; bh=hHcRVaJDud/Kkwj96NHPi6sduLW48zHvi95z05DrcZM=; b=f
-        rV/SjL4XvIfnU4Dzej6LrZmJJMuw/hFjTcei3tVYxch/RbPsjItXbRFO4y+xNFYz
-        Qr4NMxj902kv76XLcvXXo/CBJZbxcc4DoMv+rPP1KZaHcPL4QUVEkLd7V6wvdLSh
-        SaVJIoTAVwkDo/VV8/oY7f9b0gg3Y2gsqAd34DzyA0koZDvhmpzeZMgyNWEyWv1N
-        lHNtlehWE8uw045FigZCYudf51G3NANIVkg5zDknxsYc1777YYocNBL9OZjOLCm4
-        KV8qr9ALacd3xgej3Q3yQnuLPMYt3Di94+pLfMDLCy9TaIOBHgydAlbD1dYjU5fv
-        LPQGIO/7QK7NmJWlMo/xg==
-X-ME-Sender: <xms:D7YaY9LYwZ3ckTY5KkEq3d2eF7SQOJkzifwqeDRSkXn5msoDRrQIIA>
-    <xme:D7YaY5IZ5JmeCsWYe6COcwqhKTSB1ms6gUm59tdBTyJax_LODBa7Q6tQpvyFLWgJK
-    PDMEYD7bI3elMMUXg>
-X-ME-Received: <xmr:D7YaY1tnEJseTRlxT0hJ4zdX_QDf3UlOgrUSklA5cGXJIXEIngqDn3JPp4pf7harkenpSVl9QTtyI2RkE2Q0yuK1Yaory8Aipmk6wC6ojoKFtzJpwXVyJTJ_GA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedtgedgjeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpedtvefhheehgfdvkeetffeludeuudehudeuvddtveelleekvedv
-    uedviefhkeeuheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:D7YaY-Yvnzk6zVR-NXRj6mzK98B9YiRu2pRq7_logQEU-yrIwa__uw>
-    <xmx:D7YaY0bNG2buxhBr6ZBqCdIvb3Ta1rnHfoAtq74qoydD2o3v08eV9w>
-    <xmx:D7YaYyDnseUnCj0dWMLyBT0z9zNTBxXGwvuD3_6QxepPX6NA5o-0QA>
-    <xmx:D7YaY6wdmXnEKB-Zwp3yftpPOhXQUT05jscMzhvCoheKxfZ4xlthuw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 8 Sep 2022 23:42:06 -0400 (EDT)
-Subject: Re: [PATCH 06/12] riscv: dts: allwinner: Add the D1 SoC base
- devicetree
-To:     Conor Dooley <conor.dooley@microchip.com>, andre.przywara@arm.com
-Cc:     Jessica Clarke <jrtc27@jrtc27.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        jernej.skrabec@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
-        wens@csie.org, robh+dt@kernel.org, palmer@dabbelt.com,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20220815050815.22340-1-samuel@sholland.org>
- <20220815050815.22340-7-samuel@sholland.org>
- <20220815141159.10edeba5@donnerap.cambridge.arm.com>
- <3cd9ed5b-8348-38ac-feb1-9a7da858cebc@microchip.com>
- <932aaefd-e2ca-ef26-bf30-e315fb271ec5@sholland.org>
- <ff9e8bd3-c5f7-6319-060e-250151087a8e@microchip.com>
- <c6cba83ea9eea7fc41a9e78d0e45487b21f0f560.camel@icenowy.me>
- <c7599abd-c4cf-9ddd-1e74-e47dec9366d4@microchip.com>
- <CAMuHMdUHVpj9ikE2NxpBSBtTG8K6v92vGdbw3GLmEYUoVzatvg@mail.gmail.com>
- <538ae41e-664f-2efb-f941-9a063b727b6a@microchip.com>
- <CAMuHMdWWbR+Y=bJ7gdqV3d+ffHE1-hwQf-Owb8FAvZAaScdOgA@mail.gmail.com>
- <44b6f601-1a11-aacf-5592-5b61550afb9f@microchip.com>
- <C0B4F750-1C99-408A-A2DA-B72BBF7361B4@jrtc27.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <b3fdb3cc-a8fc-b980-c8f4-f96d4733ce56@sholland.org>
-Date:   Thu, 8 Sep 2022 22:42:06 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S230305AbiIIDzA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 23:55:00 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E876031EE4;
+        Thu,  8 Sep 2022 20:54:55 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id g1so486277iob.13;
+        Thu, 08 Sep 2022 20:54:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=/uyBRMEikTz9wOSLj9AqlzoRT8lcwegTukvkQYz070M=;
+        b=UF7EFMgSF3EZbwpizFW6LxxpW6lyHMx/lFvLXfS5EgunOz3sek01LZARwdcL3SrYAP
+         /l+DnruPC8qyl/x6SElf61TslAanahES/SsbA+S96RKRHLkXr0m7WDjh35bqutpkr5sB
+         v4+fLqWRQocQf/LVJN7WCv/TxMHuMXPWNn7Tjf4MJvnuJsmzuJZThX4Zgb7pduxgZTiC
+         ZlqJ6BO6YIA19HjG8BwyJcSnLC665pdsQeaVpwezIGJE2+6tVEwLdTJQkPtu/qwtR4DX
+         KuqUsczl7Soi2PBoFw2hshz+uhC+gZy4KDCihAIprFzt34Dx7P8tTH7Oas7uI8i/AjeV
+         yXrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=/uyBRMEikTz9wOSLj9AqlzoRT8lcwegTukvkQYz070M=;
+        b=oEsboOzmUwpT0rdsmIMuXk56r82Bwicqv9h4/TzVlmpEXHBhIheNXorqWmWB8lTQF7
+         /cLWELFzDPFNT8VuQOhEDguBsXlaD26jiHqYrweWjZW8HU0WVlWpc3e0EYT75n9+s88I
+         oa494ZoAtsPmxj/uvOV27G6f0xgDptlA5nXZa261LXi0i7LoskPAsg2uGRQp6N+gqqSS
+         7oG6m6aJAHRHaeP1VxtsHtr/JKojKH3Ihq5+7SV1wIcXNrxWiaexeLo0T4BZwETromXF
+         WHULfjUg2AkbkVqjYMzlfrhkS8+jWJWwOrvPqPX/nfI3FJy5VOeEqC3csQq+3oUAVAs+
+         55Vw==
+X-Gm-Message-State: ACgBeo3unhdPszoDX61PMlGZXqfzbBXvCn6PDV++bG6XTW58apcH1LOF
+        R9ytXOZkm3Lbzy6LogBd9eXYyRdJj18iVw==
+X-Google-Smtp-Source: AA6agR4Etjyn7EXO3SjC8lxkd9nZprz/ppU4lcYhVYWK+QHiTosVVqJIQGsviPy9XViLFydItd6j4w==
+X-Received: by 2002:a02:c909:0:b0:346:a951:9cfd with SMTP id t9-20020a02c909000000b00346a9519cfdmr6243487jao.138.1662695695291;
+        Thu, 08 Sep 2022 20:54:55 -0700 (PDT)
+Received: from fedora.. ([2604:2d80:4d8e:a000:6063:7cd5:2f24:16a6])
+        by smtp.gmail.com with ESMTPSA id n28-20020a02715c000000b00346b4b25252sm330579jaf.13.2022.09.08.20.54.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Sep 2022 20:54:54 -0700 (PDT)
+From:   Joel Selvaraj <joelselvaraj.oss@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Subject: [PATCH v5 0/3] Add support for Xiaomi Poco F1 EBBG variant
+Date:   Thu,  8 Sep 2022 22:54:44 -0500
+Message-Id: <20220909035447.36674-1-joelselvaraj.oss@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-In-Reply-To: <C0B4F750-1C99-408A-A2DA-B72BBF7361B4@jrtc27.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/22/22 10:29 AM, Jessica Clarke wrote:
-> On 22 Aug 2022, at 14:56, conor.dooley@microchip.com wrote:
->>
->> On 22/08/2022 13:31, Geert Uytterhoeven wrote:
->>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>
->>
->>
->>>> Do you think this is worth doing? Or are you just providing an
->>>> example of what could be done?
->>>
->>> Just some brainstorming...
->>>
->>>> Where would you envisage putting these macros? I forget the order
->>>> of the CPP operations that are done, can they be put in the dts?
->>>
->>> The SOC_PERIPHERAL_IRQ() macro should be defined in the
->>> ARM-based SoC.dtsi file and the RISC-V-based SoC.dtsi file.
->>
->> Right, one level up but ~the same result.
->>
->>
->>>>> Nice! But it's gonna be a very large interrupt-map.
->>>>
->>>> I quite like the idea of not duplicating files across the archs
->>>> if it can be helped, but not at the expense of making them hard to
->>>> understand & I feel like unfortunately the large interrupt map is
->>>> in that territory.
->>>
->>> I feel the same.
->>> Even listing both interrupt numbers in SOC_PERIPHERAL_IRQ(na, nr)
->>> is a risk for making mistakes.
->>>
->>> So personally, I'm in favor of teaching dtc arithmetic, so we can
->>> handle the offset in SOC_PERIPHERAL_IRQ().
->>
->> Yup, in the same boat here. mayb I'll get bored enough to bite..
-> 
-> Note that GPL’ed dtc isn’t the only implementation. FreeBSD uses a
-> BSD-licensed implementation[1] and so adding new features like this to
-> GPL dtc that actually get used would require us to reimplement it too.
-> I don’t know how much effort it would be but please keep this in mind.
+Changes in v5:
+--------------
+- Do not rename the compatible property of the existing variant (Tianma)
+to avoid any further conflict with other projects/users.
+(Suggested by Krzysztof Kozlowski)
 
-I plan to go with the "SOC_PERIPHERAL_IRQ(na, nr)" implementation for v2. I like
-that it only affects the DT source, and does not leak into the DTB. We still
-have the freedom to switch to using arithmetic later when all of the tools
-support it.
+Changes in v4:
+--------------
+- Update board's compatible and model property to distinguish between the
+two variants. (Suggested by Krzysztof Kozlowski and Marijn Suijten)
+- Update the dt-bindings as per the new compatible values.
+(Fix checkpatch.pl script warnings)
 
-My other concern is that the big interrupt-map property would make DT overlays
-even more painful to deal with. I don't think overlays can append to a property,
-only replace it.
+Changes in v3:
+--------------
+- Approach suggested by Marijn Suijten and Krzysztof Kozlowski to make
+git handle renames more appropriately and to avoid moving large chunks of
+code. Helps with reviewing the patch.
+ 
+Changes in v2:
+--------------
+- Fix issue with builds breaking across multiple commits making git bisect
+harder to find where the rename has happened.
 
-Regards,
-Samuel
+There are two variants of Xiaomi Poco F1.
+- Tianma variant with NOVATEK NT36672A panel + touchscreen manufactured
+  by Tianma
+- EBBG variant with Focaltech FT8719 panel + touchscreen manufactured
+  by EBBG
+
+The current sdm845-xiaomi-beryllium.dts represents Tianma panel variant.
+
+To add support for the EBBG variant:
+------------------------------------
+- Rename sdm845-xiaomi-beryllium.dts to sdm845-xiaomi-beryllium-common.dtsi
+- Generalize the display panel node by assigning label, removing
+compatible property and renaming the panel endpoints to be generic.
+- Create a dts for the Tianma variant called
+sdm845-xiaomi-beryllium-tianma.dts which will inherit the common dtsi and
+keep the existing compatible property to avoid any conflicts with other
+projects.
+- Adjust the Makefile since the sdm845-xiaomi-beryllium.dts is now called
+sdm845-xiaomi-beryllium-tianma.dts for the tianma variant.
+- Create sdm845-xiaomi-beryllium-ebbg.dts for the EBBG variant which will
+inherit the common dtsi and set a different compatible property to
+distinguish between the Tianma and EBBG variant.
+
+Note:
+-----
+Both the panels are already upstreamed and the split is based on them.
+There were patches earlier for both the touchscreens, but they are not
+accepted in upstream yet. Once they are accepted, we will add them to
+respective variants.
+
+Joel Selvaraj (3):
+  arm64: dts: qcom: split beryllium dts into common dtsi and tianma dts
+  dt-bindings: arm: qcom: Add Xiaomi Poco F1 EBBG variant bindings
+  arm64: dts: qcom: sdm845-xiaomi-beryllium-ebbg: introduce Xiaomi Poco
+    F1 EBBG variant
+
+ Documentation/devicetree/bindings/arm/qcom.yaml   |  1 +
+ arch/arm64/boot/dts/qcom/Makefile                 |  3 ++-
+ ...um.dts => sdm845-xiaomi-beryllium-common.dtsi} | 11 +++++------
+ .../dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts     | 15 +++++++++++++++
+ .../dts/qcom/sdm845-xiaomi-beryllium-tianma.dts   | 15 +++++++++++++++
+ 5 files changed, 38 insertions(+), 7 deletions(-)
+ rename arch/arm64/boot/dts/qcom/{sdm845-xiaomi-beryllium.dts => sdm845-xiaomi-beryllium-common.dtsi} (98%)
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts
+
+-- 
+2.37.3
+
