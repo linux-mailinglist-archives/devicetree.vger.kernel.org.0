@@ -2,98 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E355B38A6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F9D5B38B0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:13:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbiIINK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 09:10:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59270 "EHLO
+        id S230107AbiIINM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 09:12:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230021AbiIINKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:10:55 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2511282F8A
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 06:10:49 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id t5so2412655edc.11
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 06:10:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=bsMm0nu+g7i1NmtcNEyPla/T7DHXogikmWezyYUdeVI=;
-        b=FiGmnfg3S7AUDv0OIYfaTQy6w0Q7WCv9N8nh/rLbH5hgJbl7qBEJh5N6E/DVggPzAe
-         ioqFKl6gBXxg3+E5ZHJVVhyA6HGAL9k9Ga/PbE8SUFBWDk7fj+PWXEHPF07dwVaTlsJZ
-         RWM3PoSL+25CQO1duTdOXdi55dQeUrBuhBA+ed0gnz4frq/0A+iCtYgH8F9ohVggXWwe
-         KwEkfB83U23h5m3unO71YqZfHKmXY4rlX3LVvhsJrXz6cV+KSqeTazniGqJDtkDfY2Xv
-         mvxyonYHPbr4a/mw0bOTfv1ewbtl3EY4R/iGiM8yo4CjDtjVx3niAHCfsqQ8Ocrc1J1a
-         3dKQ==
+        with ESMTP id S229536AbiIINM1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:12:27 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E124196FF3;
+        Fri,  9 Sep 2022 06:12:25 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1279948d93dso3698009fac.10;
+        Fri, 09 Sep 2022 06:12:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=bsMm0nu+g7i1NmtcNEyPla/T7DHXogikmWezyYUdeVI=;
-        b=V2kjcOqTrTyBexTWUxPACwzpawS1rWFN0Iob5KaMJ5Rv+b3+Cn5T7V0HzruQmbxj/R
-         6G/hhde5we8SAs906dMSI3D/Y5Y/OKAdyY9N+HVLPFjT1nxjjDaZ/7nOKJ8UX957HKdZ
-         wyZYramND5koD+tC6wek+Bt1s16kionKJ5O2+VYCmNmbgskEthx1Kixh4x9Zydp07o2Q
-         0i8Pg+nxRreg+FqFlo8P03dUYbyiM7ftoMezQGzxNL16FOiKnXvIMyPEmzDoCVGlHH9D
-         /vbqtiEmm3Mo3G8B43YbdcMW3EtiK5SaaiYhHjjle4wamwKrsWSw+VpxJh1XZx/eRLGL
-         OqXg==
-X-Gm-Message-State: ACgBeo3j2bZEC/09nNkY6n3LJHvWOErRrUN6/Om/A2ED1t7eOLNTQvHU
-        jDyCsPh6jCQH1b8d9L7/8pGmviYZWaxUKcwzrdd1oQ==
-X-Google-Smtp-Source: AA6agR4rLLw+2Mto2FpA5ylVcQgfsw/VaaN2Qj6skwfPvRFieasT15e8jBuvji+aQt2J7BgeABU3RO/b1tEnhAymIVY=
-X-Received: by 2002:a05:6402:1d8c:b0:44e:dec5:512b with SMTP id
- dk12-20020a0564021d8c00b0044edec5512bmr11273909edb.408.1662729047659; Fri, 09
- Sep 2022 06:10:47 -0700 (PDT)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=UIRvXHTNoeDqezjVDKZIa9QbJ/vSoeeLNCnvGd1A/vc=;
+        b=W5MAEL96nd7bZHpnVME9pqpX72gDrM1qyD2BZAjEEHeUFuy/K+jhhlpdYS71fJ0GaV
+         ndzgAZz0FnNaXF2FXBX2xfAJBhhWJvfo/0xBwBnZpbEanAr7h9FLHMm38sY6IRsAwQL9
+         1LjPm11AUgZZy9CSNDlinEL1cfaDhMNSsXSuhJ/kUAuFFndTfxPwDDbWYIjsXHK294O/
+         6Gedkcr5QDCMqjaakwieirZlvElRczM9FQ61KBtnKaDRzOwY90HF4/XtPOAnyl7cTLlg
+         RHGxOatyS0OKZ672jAF3LSkjf9M7ZkzCIq7vivxrMrDSNVTm3HHRZcvc7z9VE0cEUf8R
+         tObQ==
+X-Gm-Message-State: ACgBeo22qkjwMWI0pbKZIEuU6hyRuoxuZE5U8Ch5/8m6IMEamZIltnNY
+        zl/fFbNjjoofMDfPAyLaP0PCBPOCVA==
+X-Google-Smtp-Source: AA6agR7cCDucdSYelHHvnx027e8Kw1szzFVyW4fTzmwx0A3MdQvbRHl7VXLH0+ZF0EGR0NDVMpya4A==
+X-Received: by 2002:a05:6871:14e:b0:127:3f08:4599 with SMTP id z14-20020a056871014e00b001273f084599mr4748909oab.183.1662729145015;
+        Fri, 09 Sep 2022 06:12:25 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a8-20020a544e08000000b0034d8b1b3c4bsm216108oiy.36.2022.09.09.06.12.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Sep 2022 06:12:24 -0700 (PDT)
+Received: (nullmailer pid 812506 invoked by uid 1000);
+        Fri, 09 Sep 2022 13:12:23 -0000
+Date:   Fri, 9 Sep 2022 08:12:23 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Bykowski <marek.bykowski@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] of/fdt: =?iso-8859-1?Q?Don'?=
+ =?iso-8859-1?Q?t_calculate_initrd_size_from_DT_if=A0start?= > end
+Message-ID: <20220909131223.GA812258-robh@kernel.org>
+References: <20220909023358.76881-1-marek.bykowski@gmail.com>
 MIME-Version: 1.0
-References: <649e875962b486e0bf849aba8f386eb6290a433a.1662714555.git.geert+renesas@glider.be>
-In-Reply-To: <649e875962b486e0bf849aba8f386eb6290a433a.1662714555.git.geert+renesas@glider.be>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 9 Sep 2022 15:10:36 +0200
-Message-ID: <CAMRc=MdCLu3415xvr6vVmNCvD5_k49L3XS3K6ue-fPmiiW2n8w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: renesas,rcar-gpio: Add r8a779g0 support
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220909023358.76881-1-marek.bykowski@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 9, 2022 at 11:09 AM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Document support for the GPIO controller blocks in the Renesas R-Car
-> V4H (R8A779G0) SoC.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Fri, 09 Sep 2022 02:33:57 +0000, Marek Bykowski wrote:
+> If the properties 'linux,initrd-start' and 'linux,initrd-end' of
+> the chosen node populated from the bootloader, eg. U-Boot, are so that
+> start > end, then the phys_initrd_size calculated from end - start is
+> negative that subsequently gets converted to a high positive value for
+> being unsigned long long. Then, the memory region with the (invalid)
+> size is added to the bootmem and attempted being paged in paging_init()
+> that results in the kernel fault.
+> 
+> For example, on the FVP ARM64 system I'm running, the U-Boot populates
+> the 'linux,initrd-start' with 8800_0000 and 'linux,initrd-end' with 0.
+> The phys_initrd_size calculated is then ffff_ffff_7800_0000
+> (= 0 - 8800_0000 = -8800_0000 + ULLONG_MAX + 1). paging_init() then
+> attempts to map the address 8800_0000 + ffff_ffff_7800_0000 and oops'es
+> as below.
+> 
+> It should be stressed, it is generally a fault of the bootloader's with
+> the kernel relying on it, however we should not allow the bootloader's
+> misconfiguration to lead to the kernel oops. Not only the kernel should be
+> bullet proof against it but also finding the root cause of the paging
+> fault spanning over the bootloader, DT, and kernel may happen is not so
+> easy.
+> 
+>   Unable to handle kernel paging request at virtual address fffffffefe43c000
+>   Mem abort info:
+>     ESR = 0x96000007
+>     EC = 0x25: DABT (current EL), IL = 32 bits
+>     SET = 0, FnV = 0
+>     EA = 0, S1PTW = 0
+>   Data abort info:
+>     ISV = 0, ISS = 0x00000007
+>     CM = 0, WnR = 0
+>   swapper pgtable: 4k pages, 39-bit VAs, pgdp=0000000080e3d000
+>   [fffffffefe43c000] pgd=0000000080de9003, pud=0000000080de9003
+>   Unable to handle kernel paging request at virtual address ffffff8000de9f90
+>   Mem abort info:
+>     ESR = 0x96000005
+>     EC = 0x25: DABT (current EL), IL = 32 bits
+>     SET = 0, FnV = 0
+>     EA = 0, S1PTW = 0
+>   Data abort info:
+>     ISV = 0, ISS = 0x00000005
+>     CM = 0, WnR = 0
+>   swapper pgtable: 4k pages, 39-bit VAs, pgdp=0000000080e3d000
+>   [ffffff8000de9f90] pgd=0000000000000000, pud=0000000000000000
+>   Internal error: Oops: 96000005 [#1] PREEMPT SMP
+>   Modules linked in:
+>   CPU: 0 PID: 0 Comm: swapper Not tainted 5.4.51-yocto-standard #1
+>   Hardware name: FVP Base (DT)
+>   pstate: 60000085 (nZCv daIf -PAN -UAO)
+>   pc : show_pte+0x12c/0x1b4
+>   lr : show_pte+0x100/0x1b4
+>   sp : ffffffc010ce3b30
+>   x29: ffffffc010ce3b30 x28: ffffffc010ceed80
+>   x27: fffffffefe43c000 x26: fffffffefe43a028
+>   x25: 0000000080bf0000 x24: 0000000000000025
+>   x23: ffffffc010b8d000 x22: ffffffc010e3d000
+>   x23: ffffffc010b8d000 x22: ffffffc010e3d000
+>   x21: 0000000080de9000 x20: ffffff7f80000f90
+>   x19: fffffffefe43c000 x18: 0000000000000030
+>   x17: 0000000000001400 x16: 0000000000001c00
+>   x15: ffffffc010cef1b8 x14: ffffffffffffffff
+>   x13: ffffffc010df1f40 x12: ffffffc010df1b70
+>   x11: ffffffc010ce3b30 x10: ffffffc010ce3b30
+>   x9 : 00000000ffffffc8 x8 : 0000000000000000
+>   x7 : 000000000000000f x6 : ffffffc010df16e8
+>   x5 : 0000000000000000 x4 : 0000000000000000
+>   x3 : 00000000ffffffff x2 : 0000000000000000
+>   x1 : 0000008080000000 x0 : ffffffc010af1d68
+>   Call trace:
+>    show_pte+0x12c/0x1b4
+>    die_kernel_fault+0x54/0x78
+>    __do_kernel_fault+0x11c/0x128
+>    do_translation_fault+0x58/0xac
+>    do_mem_abort+0x50/0xb0
+>    el1_da+0x1c/0x90
+>    __create_pgd_mapping+0x348/0x598
+>    paging_init+0x3f0/0x70d0
+>    setup_arch+0x2c0/0x5d4
+>    start_kernel+0x94/0x49c
+>   Code: 92748eb5 900052a0 9135a000 cb010294 (f8756a96)
+> 
+> Signed-off-by: Marek Bykowski <marek.bykowski@gmail.com>
 > ---
->  Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-> index 75e5da6a7cc04bbd..aa424e2b95f87a51 100644
-> --- a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-> @@ -52,6 +52,7 @@ properties:
->            - enum:
->                - renesas,gpio-r8a779a0     # R-Car V3U
->                - renesas,gpio-r8a779f0     # R-Car S4-8
-> +              - renesas,gpio-r8a779g0     # R-Car V4H
->            - const: renesas,rcar-gen4-gpio # R-Car Gen4
->
->    reg:
-> --
-> 2.25.1
->
+> v2 -> v3:
+> - I confused the description I fixed now. I put that we should
+>   complain if start < end and it should be the other way around
+>   if end > start
+> v1 -> v2:
+> - followed Rob's suggestion that we check on start > end instead of
+>   for end being 0
+> ---
+>  drivers/of/fdt.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
 Applied, thanks!
-
-Bart
