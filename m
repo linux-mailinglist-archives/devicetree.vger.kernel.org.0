@@ -2,73 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05C0C5B3301
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 11:13:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2F6E5B3300
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 11:13:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232087AbiIIJKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 05:10:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46292 "EHLO
+        id S231849AbiIIJLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 05:11:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232054AbiIIJKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 05:10:08 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E52454C94
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 02:09:57 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:91db:705e:cfbc:a001])
-        by albert.telenet-ops.be with bizsmtp
-        id Hl9v2800K0sKggw06l9vcR; Fri, 09 Sep 2022 11:09:55 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oWa1L-004bZP-5b; Fri, 09 Sep 2022 11:09:55 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oWa1K-004OZM-85; Fri, 09 Sep 2022 11:09:54 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: gpio: renesas,rcar-gpio: Add r8a779g0 support
-Date:   Fri,  9 Sep 2022 11:09:53 +0200
-Message-Id: <649e875962b486e0bf849aba8f386eb6290a433a.1662714555.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232067AbiIIJLD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 05:11:03 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8209135D5A
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 02:11:01 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id w8so1594398lft.12
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 02:11:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Ru7Sx5i9RvgY3g7fyc0DntX2hhZQfjQ93TQ69JqCe9Q=;
+        b=Qkpoucx28Duq+NWHjpWycxiETGjowchu+jAIp4OPfbnygiILEsjNGFgiRLH/4QoFvB
+         de+MBz7CCHm4zXvnhMyLGxUc9jYkb/B029h5fWWApL3nE0Q6U0fXLcAhDJ8WUCuFpUBO
+         h7pxc4i32kGOvf2FPvk7vkFJrOMJL3kFsKzN0FUU/lsSmnkBICPE9Tm/pvOb3/CFXcOW
+         EFLcESJOlinIWR8IGZGtwa3biq92p+gxHvtswCI9Mmd/UF4hvAwTvHvIZpOHUCSNRsOt
+         S+f5YJJOmMJClItubheGV3tkFExxsu8J0u91JJeOKZfnm13MNrUK968/Fy29g9R6mp6Y
+         uE2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Ru7Sx5i9RvgY3g7fyc0DntX2hhZQfjQ93TQ69JqCe9Q=;
+        b=035Hc9aVGgopACbWFg6grnWGhJee6XV+6ePvSJxfed5vLRKe+Khsimh7gq6iuhbMQP
+         NarRqJT1JSbWLhtuXg8JPXxRfN7XCf+PvDAoKI9B9KJiko1F+t03IouAytkY0cGdbQcn
+         rcQQYEGe4S6/XBGUscNIqFEFgo8Cd/V5B/PqCyz6Ade8Vajbg9ZNeAAq+rVIGnKjwWTv
+         58iO91aOt7WZBDsARAEe0JdgfTHxlAvV1tFtHy79yn3bnFrmxPVHCoAgggQeX+QwmBcd
+         AH3f1oKBcUd94j89zdJs8JiTksiZgI/4mNjfyDDG/qAWoOcPvF/2mCyf1uESgVHVzFfN
+         TVQg==
+X-Gm-Message-State: ACgBeo1OCoWRp4qgdB00wEOwOKt68Hk6QSatRbH7AgIVPT651qBFBl7P
+        gK6xMCkGLzBxD/fKAlFzm6izRA==
+X-Google-Smtp-Source: AA6agR7+f0ARlXM0jJUnvsVkrZZApw52MJnuOH4zi76ULJbHUHYUwamJBsE5yP9Jqf98yR788MdsSQ==
+X-Received: by 2002:ac2:5bd2:0:b0:498:909:9c81 with SMTP id u18-20020ac25bd2000000b0049809099c81mr2509172lfn.120.1662714660020;
+        Fri, 09 Sep 2022 02:11:00 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id o16-20020a05651238b000b0049602a81111sm2758lft.107.2022.09.09.02.10.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Sep 2022 02:10:59 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3] dt-bindings: mfd: qcom,tcsr: drop simple-mfd from IPQ6018
+Date:   Fri,  9 Sep 2022 11:10:56 +0200
+Message-Id: <20220909091056.128949-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for the GPIO controller blocks in the Renesas R-Car
-V4H (R8A779G0) SoC.
+Commit 7677ed11e9fa ("dt-bindings: mfd: qcom,tcsr: Convert to dtschema")
+converted bindings to DT schema literally - including the
+qcom,tcsr-ipq6018 expecting syscon and simple-mfd.  Such configuration
+is not used in DTS and there is no actual need of it.  The TCSR block is
+purely configuration block and should not have children.  Any child
+device should be simply moved outside of TCSR syscon block.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-index 75e5da6a7cc04bbd..aa424e2b95f87a51 100644
---- a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-@@ -52,6 +52,7 @@ properties:
-           - enum:
-               - renesas,gpio-r8a779a0     # R-Car V3U
-               - renesas,gpio-r8a779f0     # R-Car S4-8
-+              - renesas,gpio-r8a779g0     # R-Car V4H
-           - const: renesas,rcar-gen4-gpio # R-Car Gen4
+Changes since v2
+================
+1. Rebase on current MFD changes.
+2. Split from the series. Nothing depends on it, AFAIK.
+v2: https://lore.kernel.org/all/20220817145901.865977-2-krzysztof.kozlowski@linaro.org/
+---
+ .../devicetree/bindings/mfd/qcom,tcsr.yaml    | 46 +++++++++----------
+ 1 file changed, 21 insertions(+), 25 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+index d3c25daa995e..b12809b5cc22 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+@@ -15,31 +15,27 @@ description:
+ 
+ properties:
+   compatible:
+-    oneOf:
+-      - items:
+-          - enum:
+-              - qcom,msm8998-tcsr
+-              - qcom,qcs404-tcsr
+-              - qcom,sc7180-tcsr
+-              - qcom,sc7280-tcsr
+-              - qcom,sdm630-tcsr
+-              - qcom,sdm845-tcsr
+-              - qcom,sm8150-tcsr
+-              - qcom,tcsr-apq8064
+-              - qcom,tcsr-apq8084
+-              - qcom,tcsr-ipq8064
+-              - qcom,tcsr-mdm9615
+-              - qcom,tcsr-msm8660
+-              - qcom,tcsr-msm8916
+-              - qcom,tcsr-msm8953
+-              - qcom,tcsr-msm8960
+-              - qcom,tcsr-msm8974
+-              - qcom,tcsr-msm8996
+-          - const: syscon
+-      - items:
+-          - const: qcom,tcsr-ipq6018
+-          - const: syscon
+-          - const: simple-mfd
++    items:
++      - enum:
++          - qcom,msm8998-tcsr
++          - qcom,qcs404-tcsr
++          - qcom,sc7180-tcsr
++          - qcom,sc7280-tcsr
++          - qcom,sdm630-tcsr
++          - qcom,sdm845-tcsr
++          - qcom,sm8150-tcsr
++          - qcom,tcsr-apq8064
++          - qcom,tcsr-apq8084
++          - qcom,tcsr-ipq6018
++          - qcom,tcsr-ipq8064
++          - qcom,tcsr-mdm9615
++          - qcom,tcsr-msm8660
++          - qcom,tcsr-msm8916
++          - qcom,tcsr-msm8953
++          - qcom,tcsr-msm8960
++          - qcom,tcsr-msm8974
++          - qcom,tcsr-msm8996
++      - const: syscon
  
    reg:
+     maxItems: 1
 -- 
-2.25.1
+2.34.1
 
