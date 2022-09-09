@@ -2,105 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 897335B3931
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:39:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F054F5B3958
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:41:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbiIINig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 09:38:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55690 "EHLO
+        id S229845AbiIINkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 09:40:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231424AbiIINi2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:38:28 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C078139AE6;
-        Fri,  9 Sep 2022 06:38:20 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 289C5AT0002225;
-        Fri, 9 Sep 2022 09:38:02 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3jfu4m4avs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Sep 2022 09:38:02 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 289Dc0at042517
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 9 Sep 2022 09:38:00 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Fri, 9 Sep 2022 09:38:00 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Fri, 9 Sep 2022 09:37:59 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Fri, 9 Sep 2022 09:37:59 -0400
-Received: from ibrahim-vm.ad.analog.com ([10.158.19.28])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 289DbUun018872;
-        Fri, 9 Sep 2022 09:37:51 -0400
-From:   Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-To:     <jdelvare@suse.com>, <linux@roeck-us.net>
-CC:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        <linux-hwmon@vger.kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v8 4/4] MAINTAINERS: Add maintainer for hwmon/max31760
-Date:   Fri, 9 Sep 2022 16:37:18 +0300
-Message-ID: <20220909133718.388213-5-Ibrahim.Tilki@analog.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220909133718.388213-1-Ibrahim.Tilki@analog.com>
-References: <20220909133718.388213-1-Ibrahim.Tilki@analog.com>
+        with ESMTP id S230270AbiIINko (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:40:44 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900749FA96
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 06:40:39 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id t14so2789946wrx.8
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 06:40:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=l/8cXar681flBGzxgbG6UuPD2UpWX85uZYv3ng5pRwQ=;
+        b=xZP7AcRPFPttHhSHgUojl13iCFA4//waZdPgpzMGeyfFB4Q5UEfU+u5hZ2PQTyid0c
+         jDrIKuismD9DhjHJ0MxzYXgGPU4QZUokPTxgShwNRG3O8/b/vwPhNXg8lfMeIfkzBkVp
+         FTjgWGyk59Hssb9L1Fjb69eLAhOCrhJx0GeL1XFcmwKwhPWNTi3mfQhKFRGSfGkEMeXi
+         /pLIe7qmopDioQ8A76AKp69haLz7ALj7iX0maI2tY1l33H08JBZDXDZROM681PG9oz5O
+         reRTth3+2YvUBNg3ZxEbT0VY8xNGlZbKKMnqgruglRkgxugfvgcVAUxNzqKl+Z2/oYaM
+         VuJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=l/8cXar681flBGzxgbG6UuPD2UpWX85uZYv3ng5pRwQ=;
+        b=kW4imbR702lfDKeiVlSQ43HjUNI4cc5L4uUEINTUhiNfHA0CKxo2LBtFvkMT6gA4th
+         j/DP5Ondt3cj3/6sN7g2QyPG+o6lLBqUQCkxgUH3S10Majfe/kT2jeZ79K2mZZYh4B7o
+         JWcRiRQ4CFG/lDbyfQcSMIjLEvnEvovzAdEXKw2ysCJ5BzAeapa8xF6ed1Go7TBtEjWe
+         LUkjx6xgRAkjd1rvsmB/50TeibVMGzuKTtee6RK4Izd5rTaucJWs1St/4csx62NvaeEh
+         W4A07m2p1TRfm/GefU42w+TibtbSF2nFLSk7VGM+fwxkMVjcgUyXIoFAfUdbBG7qem8Y
+         MEeg==
+X-Gm-Message-State: ACgBeo2W5CgHHwuojmiuEC7yFQJjzxgxQDHVZ+TZNPizqyJG4rFRusPt
+        iTDua9Wh8NAwa0Wl+YpRwppZoQ==
+X-Google-Smtp-Source: AA6agR7LhQJJ7nlAY9bZ5I3UdVH9iuqeYV1eJviGAwfIYRDWwaBuiIO1FkL7e7G7/dgCRhR7jpnbYQ==
+X-Received: by 2002:a5d:4d0a:0:b0:228:d9c0:5abe with SMTP id z10-20020a5d4d0a000000b00228d9c05abemr8401736wrt.693.1662730837061;
+        Fri, 09 Sep 2022 06:40:37 -0700 (PDT)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id q20-20020a1cf314000000b003a604a29a34sm660622wmq.35.2022.09.09.06.40.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Sep 2022 06:40:35 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ekansh Gupta <ekangupt@qti.qualcomm.com>,
+        Bharath Kumar <bkumar@qti.qualcomm.com>,
+        Himateja Reddy <hmreddy@quicinc.com>,
+        Anirudh Raghavendra <araghave@quicinc.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 00/10] misc: fastrpc: Add audiopd support
+Date:   Fri,  9 Sep 2022 16:39:28 +0300
+Message-Id: <20220909133938.3518520-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: OqF5oOYmBFMf20jVWjMMB3nq1eJOVHaa
-X-Proofpoint-GUID: OqF5oOYmBFMf20jVWjMMB3nq1eJOVHaa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-09_08,2022-09-09_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- adultscore=0 priorityscore=1501 suspectscore=0 phishscore=0 malwarescore=0
- impostorscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0 mlxlogscore=698
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
- definitions=main-2209090047
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer for hwmon/max31760 driver
+This patchset adds audiopd support to fastrpc.
 
-Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+The v2 of this patchset is here:
+https://lore.kernel.org/all/20220902154900.3404524-1-abel.vesa@linaro.org/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f1390b827..78ab41c92 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1334,6 +1334,15 @@ F:	drivers/iio/amplifiers/hmc425a.c
- F:	drivers/staging/iio/*/ad*
- X:	drivers/iio/*/adjd*
- 
-+ANALOG DEVICES INC MAX31760 DRIVER
-+M:	Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-+S:	Maintained
-+W:	http://wiki.analog.com/
-+W:	https://ez.analog.com/linux-software-drivers
-+F:	Documentation/devicetree/bindings/hwmon/adi,max31760.yaml
-+F:	Documentation/hwmon/max31760.rst
-+F:	drivers/hwmon/max31760.c
-+
- ANALOGBITS PLL LIBRARIES
- M:	Paul Walmsley <paul.walmsley@sifive.com>
- S:	Supported
+Abel Vesa (10):
+  misc: fastrpc: Rename audio protection domain to root
+  misc: fastrpc: Add reserved mem support
+  dt-bindings: misc: fastrpc: Document memory-region property
+  misc: fastrpc: Add fastrpc_remote_heap_alloc
+  misc: fastrpc: Use fastrpc_map_put in fastrpc_map_create on fail
+  misc: fastrpc: Rework fastrpc_req_munmap
+  misc: fastrpc: Add support for audiopd
+  misc: fastrpc: Safekeep mmaps on interrupted invoke
+  misc: fastrpc: Add mmap request assigning for static PD pool
+  misc: fastrpc: Add dma_mask to fastrpc_channel_ctx
+
+ .../bindings/misc/qcom,fastrpc.yaml           |   5 +
+ drivers/misc/fastrpc.c                        | 260 +++++++++++++++---
+ include/uapi/misc/fastrpc.h                   |   7 +
+ 3 files changed, 240 insertions(+), 32 deletions(-)
+
 -- 
-2.36.1
+2.34.1
 
