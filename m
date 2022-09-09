@@ -2,127 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53C305B2D2E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 05:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C06E5B2D8B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 06:37:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229950AbiIIDzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 23:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39318 "EHLO
+        id S229596AbiIIEht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 00:37:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230368AbiIIDzP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 23:55:15 -0400
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6417940BCE;
-        Thu,  8 Sep 2022 20:55:01 -0700 (PDT)
-Received: by mail-il1-x136.google.com with SMTP id v15so221890iln.6;
-        Thu, 08 Sep 2022 20:55:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=luAVF5aEdjvD1byneAmq5lnXjBJGV9h+Tb9rnaF2QKQ=;
-        b=DPNJ0GZianmjCYdjstfUTn0ZmA+DvgwSZSek/P6nB2oFj7hr9jRPptwui2aj01GFLJ
-         n0UIeO/pkMDqyssxsydEevhDEkCJ090n4Gc9H9TCpsiEV44yXC4/Pbrg4d554ZIipBxJ
-         b9HDdFmk9I5DJOaGHVKxTNASIkLFs79UtYxRTywTngKWsT3WV2xxJqJTrNENJzVw9aAK
-         z/IZcfEb8cVe18KhAn4EoVMCE8kmIiiiqXh+UinYHW/eXhWF1LhovqBtf3WHUjjvrPX+
-         8ryGxtJLpkeMP6DR49GZCNmBtTEAXi+iX+Qhgewd5DMcFqoro1PWYEdtdQ3tipIDS95E
-         TDAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=luAVF5aEdjvD1byneAmq5lnXjBJGV9h+Tb9rnaF2QKQ=;
-        b=LHJ0hOGofN3XAXK7eZheVddkHQexnTd+bIvnFCdTl838+gUDnPN93yNuTiMz7IkqJO
-         lPPV/p1ZiMaNKG0ACk578C2qKAQ4yUpC6ECJ3H1fu4N11Q3WmVakP5RviHulGpMFgyhB
-         LsiqUVh5kcXjSkV+08V2qWYURkOzHTE1vThaOZ+LWyxbZ0NEurkKZFn0oF51CN0mhP48
-         VFuH94il3Gm7TX95nlKGwZdOe8C87WB3KsVZxee7TF/977NXf5MkOIklFCXjAc03Q+tr
-         jXM7TV5CDgo7CwwSb5E89oCgNp3y4RtryS1qmdPUQ+peWm3W9hjR64zIaLTeTnTXd7kp
-         X+8g==
-X-Gm-Message-State: ACgBeo1PU+2aTBoikgi2W8Ce9I5T+jw2nJIAB+hRUkvFSXdUYetTaSaJ
-        qobD2R/6nn29tpxqyKqQKvU=
-X-Google-Smtp-Source: AA6agR42wPOdRNb1nMDzyXsFBo2JCHRxCP0NFAlpug4chL6u1jetlLY7a3mEcUY7XtKf3+Nt5lHLEw==
-X-Received: by 2002:a92:cd0d:0:b0:2eb:e4a:2d4a with SMTP id z13-20020a92cd0d000000b002eb0e4a2d4amr3350218iln.309.1662695699618;
-        Thu, 08 Sep 2022 20:54:59 -0700 (PDT)
-Received: from fedora.. ([2604:2d80:4d8e:a000:6063:7cd5:2f24:16a6])
-        by smtp.gmail.com with ESMTPSA id n28-20020a02715c000000b00346b4b25252sm330579jaf.13.2022.09.08.20.54.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 20:54:59 -0700 (PDT)
-From:   Joel Selvaraj <joelselvaraj.oss@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Joel Selvaraj <joelselvaraj.oss@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v5 3/3] arm64: dts: qcom: sdm845-xiaomi-beryllium-ebbg: introduce Xiaomi Poco F1 EBBG variant
-Date:   Thu,  8 Sep 2022 22:54:47 -0500
-Message-Id: <20220909035447.36674-4-joelselvaraj.oss@gmail.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220909035447.36674-1-joelselvaraj.oss@gmail.com>
-References: <20220909035447.36674-1-joelselvaraj.oss@gmail.com>
+        with ESMTP id S229577AbiIIEhs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 00:37:48 -0400
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58AE4BC109;
+        Thu,  8 Sep 2022 21:37:47 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 1528F5C008C;
+        Fri,  9 Sep 2022 00:37:44 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Fri, 09 Sep 2022 00:37:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1662698264; x=
+        1662784664; bh=lgWE+h8k8CPjrHKGGM4gEM/OqNYn4B7ZsXMD/6Q3Clc=; b=Q
+        4EauHNXlnQogRYaXMZDBEiUvHbOqsvSyH+2kN6jX6kuF76ebRCeM5dn7acezOCtT
+        aXaLebajew5IURbUjL71cuTjpYEq+XBX40t64zzRzdh5Xj+UXgSC/Wuv2s9hmeeT
+        GESeAPnIh1XzuLvDcrkoc00lUSRbSmHG0wqK4MGyJLF5UDjCzbWr98pvfaRrdilY
+        tEvMVmLcCTSbEsLGab02D+oloIkVe+oLZdCcN8YvxtL3WA8HGBIr5Z0P1JZ+YsXK
+        +j2h48YtMSiQMTYRKZKPn0XroJpJq/kIZPq0yjzpyMcp96ZLxrP6c2TQSrQvCU3m
+        3PUPrtPksoZdWDUBWAUyg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1662698264; x=
+        1662784664; bh=lgWE+h8k8CPjrHKGGM4gEM/OqNYn4B7ZsXMD/6Q3Clc=; b=g
+        WAJ4iYM2rQ2Z309ZBPWmsXQXNkGVEw/LoPirSvUUQzeD3CyrlRuG2+bD8aOgh2XA
+        jE/5Mvhi4D7s6AjHiumU8X0tMRHPP81PgywwB2m1WgX1+qWdmWiD/x1oNQF7Hi6F
+        vcvb3/hutsI09mEERtSlDkYhc5p6ig4f/TkL3R/2B9ckIcvKYnvcr5m/+Aa50/et
+        hiH5X/VPqnahX4vtJOZCLcLCrwhedtM/D2yN/P0oqjvn1Aixzv1h0BegseMmLq83
+        j5RTbXj5T3UK3vbBqAiaHujXSK+R3J+nDAICWqeOcOriFcQSAIFjPaerV2i9PEa6
+        Obbp1eVbuVYNq0hAPG67w==
+X-ME-Sender: <xms:F8MaY6W0Ro7Kv_m6ezgXQj5c3L3VTZaMMpevDz4xaX2TyLR7G11HcQ>
+    <xme:F8MaY2lEeQCgghcj9GY5HMBJiAfSJBfyLy8vmTkcnIzYrdNZFrvCD83epXXdHoO69
+    J6Xui7qY64DInHSsA>
+X-ME-Received: <xmr:F8MaY-bORD3HcCvwGA6Mijwj4MqCsyt0PVFPpf4glrfEeYWX0l1HKGM6qhP6tdq3I2OZ6N5FwcxidhoG_N3So_IHqg5nANUtLaENO-4SEVoG7L_ZWfwc21D30w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedtgedgkeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpefhtdeuhefgueehffegleevieevjeeufeduveefffdvkeehuefh
+    feefheelvdekhfenucffohhmrghinhepthifihhtthgvrhdrtghomhenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhl
+    lhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:F8MaYxUoGl08c8YRH0qtyIaslOwHc10ehluUyGI67HUebe-ZAqnE4g>
+    <xmx:F8MaY0mzxYnBLmA66DavPynG5l2T0NB4U3E3-l4NNpr2sIcb8PGeNA>
+    <xmx:F8MaY2eIc17f3dsO8QzYr7wgnW9CT90Nfis4Xlbx7aftGtkVViU9Wg>
+    <xmx:GMMaYymX6xEu2fn8AXMzw4eg6b1jP5WFCtcIiuT-fz9-vjKNrxK83w>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 9 Sep 2022 00:37:42 -0400 (EDT)
+Subject: Re: [PATCH 07/12] riscv: dts: allwinner: Add Allwinner D1 Nezha
+ devicetree
+To:     Conor.Dooley@microchip.com
+Cc:     wens@csie.org, jernej.skrabec@gmail.com,
+        linux-sunxi@lists.linux.dev, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
+        linux-riscv@lists.infradead.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        Peter Korsgaard <peter@korsgaard.com>,
+        Icenowy Zheng <uwu@icenowy.me>
+References: <20220815050815.22340-1-samuel@sholland.org>
+ <20220815050815.22340-8-samuel@sholland.org>
+ <adc4a8e2-7347-7616-99b9-59762023b2ff@microchip.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <8a2194bf-93bd-de4d-8d39-0cd72aabb0a9@sholland.org>
+Date:   Thu, 8 Sep 2022 23:37:42 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <adc4a8e2-7347-7616-99b9-59762023b2ff@microchip.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce support for the Xiaomi Poco F1 EBBG variant. The EBBG variant
-uses EBBG FT8719 panel manufactured by EBBG.
+Hi Conor,
 
-Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile                 |  1 +
- .../dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts     | 15 +++++++++++++++
- 2 files changed, 16 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
+On 8/19/22 5:10 PM, Conor.Dooley@microchip.com wrote:
+> Finally got around to giving this a go with the fix for loading
+> modules which is mostly what was blocking me before..
+> 
+> On 15/08/2022 06:08, Samuel Holland wrote:
+>> "D1 Nezha" is Allwinner's first-party development board for the D1 SoC.
+>> It was shipped with 512M, 1G, or 2G of DDR3. It supports onboard audio,
+> 
+> I am really not keen on the way you have things, with the memory
+> nodes removed from the device tree. I know your preferred flow
+> for booting these things might be to pass the dtb up from U-Boot,
+> but I think the devicetree in the kernel should be usable in a
+> standalone manner, even if that is the barest-minimum memory
+> config.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index d0bba59d2a8c..a5045bd120c1 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -128,6 +128,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-fajita.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-akari.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-akatsuki.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-apollo.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium-ebbg.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium-tianma.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-polaris.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-new file mode 100644
-index 000000000000..76931ebad065
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/dts-v1/;
-+
-+#include "sdm845-xiaomi-beryllium-common.dtsi"
-+
-+/ {
-+	model = "Xiaomi Pocophone F1 (EBBG)";
-+	compatible = "xiaomi,beryllium-ebbg", "qcom,sdm845";
-+};
-+
-+&display_panel {
-+	compatible = "ebbg,ft8719";
-+	status = "okay";
-+};
--- 
-2.37.3
+That is simply not possible to guarantee. As an obvious example, consider the
+MangoPi MQ-Pro board with socketed DRAM:
 
+https://twitter.com/mangopi_sbc/status/1516225559214583808
+
+But focusing on the /memory node misses the bigger picture. The DTB is passed
+through _all_ of the firmware stages, and gets patched by every one of them:
+
+ - SPL/boot0 adds the /memory node with the detected DRAM size.
+   If the in-tree DTS has a "minimum memory config" (which for a
+   board with socketed DRAM means the smallest possible die), I
+   guarantee people will use it and complain about missing DRAM.
+
+ - The SBI implementation reserves memory for itself and any
+   possible secure partitions. Right now, booting happens to work
+   without the reserved-memory node because the SBI implementation
+   is loaded at the beginning of RAM, and Linux ignores RAM below
+   the kernel load address.
+
+   However, memory-constrained devices (e.g. D1s) will need to get
+   those 2 MiB back by loading the kernel at the start of DRAM and
+   SBI at the end of DRAM. Then the reserved-memory node becomes
+   quite important.
+
+   It also adds nodes for CPU idle states, since the available
+   states and their latencies depend on the SBI implementation.
+
+   It also reserves devices used by it or by a secure partition.
+   And it is responsible for extracting data (e.g. MAC addresses)
+   from "secure" eFuses which the OS may not have access to.
+
+ - U-Boot adds other information, like boot arguments, the address
+   of the initramfs and framebuffer, etc. These are less of a
+   concern because of course U-Boot can patch these in to a DTB
+   loaded from disk, but they are relevant if you want to load a
+   DTB from a later bootloader like GRUB.
+
+If you load a DTB from disk, you lose all of the changes made by the earlier
+firmware stages. On ARM, U-Boot tries to work around this by copying a few
+specific bits of information from the firmware DTB to the DTB loaded from disk.
+But this misses the point that the SBI implementation can modify *any* part of
+the DTB. (So in practice U-Boot on ARM already loses CPU idle states and
+reserved memory nodes that were added by the PSCI implementation.)
+
+As an extreme example, consider paravirtualization, where only a small subset of
+DRAM and peripherals may be made available to any one OS partition.
+
+Fundamentally, I reserve the right to make arbitrary changes to the DTB in the
+SBI implementation, and thus I cannot condone using the DTBs generated from the
+Linux source tree for any purpose other than validation.
+
+Regards,
+Samuel
