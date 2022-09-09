@@ -2,103 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2ACF5B3918
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:37:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A218A5B392E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:39:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231321AbiIINgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 09:36:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52288 "EHLO
+        id S229873AbiIINiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 09:38:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231290AbiIINgA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:36:00 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7A59121696
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 06:35:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=d07l+9icoAhW5M8YCAxkQQTAXsCT
-        YpocxQfQ2osUfX0=; b=EMQF7bu4VopK5ivXXrgW0yGJsiDvG5UMaV6IIz1j2Be8
-        FY+/lsv52L266/MKTUcYV+TK6hcoDaL8j1ZRWxEd/tFaSX5SiXUoW3nmMlTqwt82
-        1HYoKGjrn2cw4764cuiEPlrPclrm/NWu56qfv1pvb6eFFsS/5pkliB4AP1dm/Yo=
-Received: (qmail 500285 invoked from network); 9 Sep 2022 15:35:57 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Sep 2022 15:35:57 +0200
-X-UD-Smtp-Session: l3s3148p1@m5AzoD7oO+AucrSh
-Date:   Fri, 9 Sep 2022 15:35:56 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: net: renesas,etheravb: Add r8a779g0
- support
-Message-ID: <YxtBPKg5zesFY3BE@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <cover.1662714607.git.geert+renesas@glider.be>
- <cddb61cd9702ceefc702176bd8ff640c4ff59ffd.1662714607.git.geert+renesas@glider.be>
+        with ESMTP id S229598AbiIINiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:38:09 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 222C512B294;
+        Fri,  9 Sep 2022 06:38:08 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 289DAOwH030782;
+        Fri, 9 Sep 2022 09:37:50 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3jf8yc3ppk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Sep 2022 09:37:49 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 289DbmFU042441
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 9 Sep 2022 09:37:48 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 9 Sep 2022 09:37:47 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 9 Sep 2022 09:37:47 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 9 Sep 2022 09:37:47 -0400
+Received: from ibrahim-vm.ad.analog.com ([10.158.19.28])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 289DbUuj018872;
+        Fri, 9 Sep 2022 09:37:33 -0400
+From:   Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>
+CC:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        <linux-hwmon@vger.kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v8 0/4] hwmon: Add max31760 fan speed controller
+Date:   Fri, 9 Sep 2022 16:37:14 +0300
+Message-ID: <20220909133718.388213-1-Ibrahim.Tilki@analog.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lm72HkNFIToI4sx6"
-Content-Disposition: inline
-In-Reply-To: <cddb61cd9702ceefc702176bd8ff640c4ff59ffd.1662714607.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 2qJPxa8D7yW71o9WLeWB5S7bfn2LySoI
+X-Proofpoint-ORIG-GUID: 2qJPxa8D7yW71o9WLeWB5S7bfn2LySoI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-09_08,2022-09-09_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=899
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 spamscore=0 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209090047
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+changes in v8:
+  - use sizeof(*)
+  - use DEFINE_SIMPLE_DEV_PM_OPS
+  - remove __maybe_unused
+  - remove of_match_ptr
+  - dt-bindings: style fixes
 
---lm72HkNFIToI4sx6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+changes in v7:
+  - make max31760_read_string static
 
-On Fri, Sep 09, 2022 at 11:13:23AM +0200, Geert Uytterhoeven wrote:
-> Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
-> Renesas R-Car V4H (R8A779G0) SoC.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+changes in v6:
+  - update description of hwmon documentation
+  - add hwmon documentation to index.rst
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+changes in v5:
+  - add dt-bindings documentation
+  - add maintainer
+
+changes in v4:
+  - use sysfs_emit instead of sprintf
+  - use kstrtou8 for pwm
+  - use closest match for pwm1_auto_point_temp_hyst
+
+changes in v3:
+  - add regmap cache
+  - remove pwm1_auto_point[1-48]_{temp,temp_hyst} attributes
+  - add pwm1_auto_point_temp_hyst attribute
+
+changes in v2:
+  - remove pulse_per_rev variable in tach_to_rpm
+  - remove temperature max_hyst and crit_hyst
+  - strict value checking for fan_enable and pwm_enable
+  - do not clamp pwm value for Look-up table
+  - add sysfs_attr_init call
+  - add documentation
 
 
---lm72HkNFIToI4sx6
-Content-Type: application/pgp-signature; name="signature.asc"
+Ibrahim Tilki (4):
+  drivers: hwmon: Add max31760 fan speed controller driver
+  docs: hwmon: add max31760 documentation
+  dt-bindings: hwmon: Add bindings for max31760
+  MAINTAINERS: Add maintainer for hwmon/max31760
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/hwmon/adi,max31760.yaml          |  44 ++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/max31760.rst              |  77 +++
+ MAINTAINERS                                   |   9 +
+ drivers/hwmon/Kconfig                         |  12 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/max31760.c                      | 596 ++++++++++++++++++
+ 7 files changed, 740 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31760.yaml
+ create mode 100644 Documentation/hwmon/max31760.rst
+ create mode 100644 drivers/hwmon/max31760.c
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMbQTwACgkQFA3kzBSg
-KbaXYg/8CpZFPlX03GQFoX2v78TgVtUmEKVapnTyvJpgwQVsSVbl7Iozkai93L+P
-cBbbBJK2i2M3gA3LdoYZf9mPSahJfLoF6a/Q7pnGkxWU1HK2Vax6+sMAH7fCVYYJ
-WE1hJDqNj+ShFKvpgMaUCNGe6+WeLedP4l0HOoVkocFS4LKwjwxW0jMvNALB/w9w
-GZo/cVuX3p1Z1gZseoGQaG//xbfpM3R8DYyqO2sqXqD4nTuCVQ1Czc/ROL8PxANp
-XcleWmgAG67nen5KwmHyaRj4ToMLCevlOTRxgIWRUDGGKI4Pm2tCLKmIc7LuUMhw
-fAkixwfTmHFUw+QbZXNJZC9cBvj3LzgF5HJJZoIcvadI0hMuEe6zidbq5MsSElxs
-fRM0h1b0SaQuUVZGN80YRzn3G22Fyv6Rm4Mh6Of9MvMSS4n2KytMPpSH+5MFCH+B
-kV+FJfyaAD5bS1nqV4G1WjFAIhHeXHj9TO9YFBeyNcBqBnieSi04QUoHzylkTgSm
-v0BdDCg6u2WA+cE4akHlI9wE7nyMA/aYx87cw95YLUY8zNCXhqur6WuZNTb/nfGt
-Co+cgWB84RJxqZ6n+uTJ5kb3A0nMqJsNmf8xawfcrc937/5Cf9s4YAfsfbHIaIVj
-s7NBS1oO4XCGkfDzuGdZmLQ/ZCIHhY+8z5d5l2QHwK29BuQdqzg=
-=Wjn8
------END PGP SIGNATURE-----
+-- 
+2.36.1
 
---lm72HkNFIToI4sx6--
