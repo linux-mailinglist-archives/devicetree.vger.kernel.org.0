@@ -2,42 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D8DD5B3EE9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 20:34:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40F75B3EFF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 20:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbiIISeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 14:34:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54520 "EHLO
+        id S229493AbiIISrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 14:47:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230354AbiIISeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 14:34:12 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AFFB128960
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 11:34:11 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.fritz.box)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oWipI-0007Ij-Mq; Fri, 09 Sep 2022 20:34:04 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Lee Jones <lee@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com,
+        with ESMTP id S229567AbiIISrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 14:47:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC36130842;
+        Fri,  9 Sep 2022 11:47:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C078C620B7;
+        Fri,  9 Sep 2022 18:47:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D79EC433C1;
+        Fri,  9 Sep 2022 18:47:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662749265;
+        bh=KQAifQugDA8mdZXeKVOC1h5AUP6dZ+XfBsejVtQVVyQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cgis6XqH+8A4x2sfm5RGxquGi/ap8JDpYGVGSK8HwEdDNx9f5uJzm9g44eIHLEtXb
+         R187VsPfk5yB/JsY5GwlNxySWc4RTCwZVw0feIPS4QQ1GhXcfYpgGS885Bqy5kaRL9
+         avZjnCAVL9s6dAmPYNaoX/y44661Bmk05HgfmWNf6w0v0Y1K1macnFc8tCxGzLk2NZ
+         Coh25f8O/4jRgf/a2IP7k7vp+X8jFEhscUUP0am97p9Fy1xWzsYV77DLii59RlxTCR
+         zIT0JQgHHROtYIFeIYrWFBIrOFofnUerphTtiUFgOsUf0dMPEv7elJPm7Ac23xEY7O
+         DC7lp/fo/BKTQ==
+Date:   Fri, 9 Sep 2022 19:47:39 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Astrid Rost <astrid.rost@axis.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCHv3 0/6] RK3588 Power Domain Support
-Date:   Fri,  9 Sep 2022 20:33:51 +0200
-Message-Id: <166274831282.21181.3968253085074632950.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220906143825.199089-1-sebastian.reichel@collabora.com>
-References: <20220906143825.199089-1-sebastian.reichel@collabora.com>
+        kernel@axis.com,
+        alsa-devel-mejlinglistan <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: sound: ts3a227e: add control of debounce
+ times
+Message-ID: <YxuKS7S3/aHtDNMq@sirena.org.uk>
+References: <20220907135827.16209-1-astrid.rost@axis.com>
+ <2b81d814-f47a-e548-83dc-b1e38857e8ce@linaro.org>
+ <Yxn9o1MVMPnFO3PM@sirena.org.uk>
+ <ac2bcca1-6997-2d17-b1d6-a5e81ced2613@linaro.org>
+ <9a72bd22-9298-65ce-a894-540f98745a7e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Jqed1H5o0jXqkowM"
+Content-Disposition: inline
+In-Reply-To: <9a72bd22-9298-65ce-a894-540f98745a7e@linaro.org>
+X-Cookie: FORTH IF HONK THEN
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -45,33 +65,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Sep 2022 16:38:19 +0200, Sebastian Reichel wrote:
-> This adds power domain support for the new RK3588(s) SoC
-> series. The series has been tested with ethernet on the
-> RK3588 EVB1 board.
-> 
-> Changes since PATCHv2:
->  * https://lore.kernel.org/all/20220831182629.79255-1-sebastian.reichel@collabora.com/
->    (Note: I accidently send PATCHv2 with an incorrect patch version)
->  * Change license of DT header after message from Finley Xiao (Thanks!)
->  * Add Lee Jones to Cc list for the MFD DT binding
->  * Collected further Acked-by for DT bindings
-> 
-> [...]
 
-Applied, thanks!
+--Jqed1H5o0jXqkowM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[1/6] dt-bindings: arm: rockchip: add rk5388 compatible string to pmu.yaml
-      commit: aa8414fffd9892a81de76d4bb91c70149a005769
-[2/6] dt-bindings: add power-domain header for rk3588
-      commit: 67944950c2d0bdb7cfc8855f1d9b44fc4ef51510
-[3/6] dt-bindings: power: rockchip: Add bindings for rk3588
-      commit: 167bbadee8c2aa53d56a2466bddd98c8c0aaf846
-[5/6] soc: rockchip: power-domain: do not enable PD
-      commit: 47bceb7cda6a78b3735694790e70f5cdc254058e
-[6/6] soc: rockchip: power-domain: add power domain support for rk3588
-      commit: 6541b424ce1dda616d3946e839f015c984df7a99
+On Fri, Sep 09, 2022 at 10:21:30AM +0200, Krzysztof Kozlowski wrote:
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> It's more than one property and many other patch submitters were using
+> this reason as well. As a result, few TXT bindings grew from 5 to 10
+> properties within one year and there was still no conversion to YAML.
+
+> I understand your concerns however I have stronger motivation to do the
+> conversion, than for accepting new features.
+
+For me the metric is proportionality - the amount of extra effort we're
+forcing people to go through should bear some relationship to the change
+they're trying to make.  We can't very well complain that people don't
+upstream things if when they try to do so they have to jump through some
+tangentially related hoops relating to the existing code in order to get
+anything done.  We can and should *ask* people to do additional cleanups
+or whatever but creating requirements that dramatically expand the scope
+of work someone's having to do are a lot of stop energy.
+
+--Jqed1H5o0jXqkowM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMbiksACgkQJNaLcl1U
+h9A7Wgf/ZgdTJKiEDmpaLKTPfTfTsjf1KAym2sQrtDKauo+M6AOHc0PWCDgjnRC1
+04Oi9yEs/3/WdJVIqImjQQEfzEfPH3SLekj4cwKGu1KM4Otog62IqZT2Ms3ZhMRR
+TOBSy0lNibBQmrDehFTTrYusFwZI+Zri5JBpcEksWu7swxM/BKkteB75Xm0uKZo/
+k80IIhTEaY6SBQ+3k/6cgvVJAFIRo1MFkdlOKboL7sZTKKVTE4F4P0Pdr+FlfGel
+mYysNGLILSi4Awk9RaeSyiIcZmNSaW6OlOdaH1rFT3dl0Qx8Co7JGjm0SGkwO9uY
+e6JJht7Nnigw5VzTrwNoX8w19iRlng==
+=tvQB
+-----END PGP SIGNATURE-----
+
+--Jqed1H5o0jXqkowM--
