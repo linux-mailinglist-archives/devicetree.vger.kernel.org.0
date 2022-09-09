@@ -2,68 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57CA25B3DEC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 19:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 757F95B3DF2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 19:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbiIIR1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 13:27:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59208 "EHLO
+        id S229517AbiIIR2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 13:28:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbiIIR1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 13:27:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE9F37F9E;
-        Fri,  9 Sep 2022 10:27:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 656476207D;
-        Fri,  9 Sep 2022 17:27:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BF16C433D6;
-        Fri,  9 Sep 2022 17:27:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662744437;
-        bh=kaILKnrlF7r0CddZpeC4K/EwWafqCO7cxKu3AIkoRvk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MlNRDRUsnF9R/Sn0n+PILjmX+poyd4gIV3SkFm7omnR1WLiGY/PBDoOrhKBq7FaR2
-         /Gi7AF9WQDTtPG1CpVWBGAqmhGqsdlCi215XYRoPp1rQ5mdSWB6OEpkpawsQzjH8sW
-         k9/E/fu3x/tDoSCKMuFsd4baSLT2L+3Phzj9hz1TdfROw49cq71ZHHNBLIiXrAnu/w
-         LhFYrtLXj3YKLJdd9eenk4+Ki8eESxY4zAobeFZnpxHJwnTX1DJT2F0Du0jRvTXjeK
-         VNzqf1DcAG32jKHBZNOdW+CJ3S58bE1nO2fqXCE0jyxfIXVpyEZGBIijV2VWuIrZew
-         YZG0P2Kh1ufkA==
-Date:   Fri, 9 Sep 2022 18:27:09 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Lucas Tanure <tanureal@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230118AbiIIR2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 13:28:22 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C58B111B768;
+        Fri,  9 Sep 2022 10:28:18 -0700 (PDT)
+Received: from [213.70.33.226] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oWhnW-0006sv-JQ; Fri, 09 Sep 2022 19:28:10 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Matt Flax <flatmax@flatmax.com>,
-        - <patches@opensource.cirrus.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        asahi@lists.linux.dev
-Subject: Re: [PATCH 00/10] Support for CS42L83 on Apple machines
-Message-ID: <Yxt3bbs7TPLSKTaa@sirena.org.uk>
-References: <20220909135334.98220-1-povik+lin@cutebit.org>
- <a7c2df88-766a-4657-8379-649a5ae93ac4@opensource.cirrus.com>
+        Kever Yang <kever.yang@rock-chips.com>,
+        Jagan Teki <jagan@edgeble.ai>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Jagan Teki <jagan@edgeble.ai>, linux-i2c@vger.kernel.org,
+        David Wu <david.wu@rock-chips.com>
+Subject: Re: [PATCH v4 01/13] i2c: rk3x: Add rv1126 support
+Date:   Fri, 09 Sep 2022 19:28:09 +0200
+Message-ID: <6158946.mvXUDI8C0e@phil>
+In-Reply-To: <20220907160207.3845791-2-jagan@edgeble.ai>
+References: <20220907160207.3845791-1-jagan@edgeble.ai> <20220907160207.3845791-2-jagan@edgeble.ai>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="c7j6oBAWbbGfiDda"
-Content-Disposition: inline
-In-Reply-To: <a7c2df88-766a-4657-8379-649a5ae93ac4@opensource.cirrus.com>
-X-Cookie: FORTH IF HONK THEN
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,35 +45,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jagan,
 
---c7j6oBAWbbGfiDda
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+it looks like this is missing Wolfram Sang, the i2c maintainer?
 
-On Fri, Sep 09, 2022 at 05:16:48PM +0100, Richard Fitzgerald wrote:
+Am Mittwoch, 7. September 2022, 18:01:55 CEST schrieb Jagan Teki:
+> Add i2c support for Rockchip RV1126 SoC.
+> 
+> Cc: linux-i2c@vger.kernel.org
+> Signed-off-by: David Wu <david.wu@rock-chips.com>
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 
-> Mark: I've no objection to you taking my patches from this chain instead
-> of waiting for me to re-send them myself. I can rebase my remaining
-> patches onto this chain. But I do have comments on patches #4 and #7.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-> I've been very busy and don't have time right now to deal with
-> re-sending my original patch chain.
 
-OK, great - I guess applying stuff will make less work for you later.
+Heiko
 
---c7j6oBAWbbGfiDda
-Content-Type: application/pgp-signature; name="signature.asc"
+> ---
+> Changes for v4:
+> - new patch
+> 
+>  drivers/i2c/busses/i2c-rk3x.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/i2c/busses/i2c-rk3x.c b/drivers/i2c/busses/i2c-rk3x.c
+> index 2e98e7793bba..d1658ed76562 100644
+> --- a/drivers/i2c/busses/i2c-rk3x.c
+> +++ b/drivers/i2c/busses/i2c-rk3x.c
+> @@ -1165,6 +1165,11 @@ static const struct rk3x_i2c_soc_data rv1108_soc_data = {
+>  	.calc_timings = rk3x_i2c_v1_calc_timings,
+>  };
+>  
+> +static const struct rk3x_i2c_soc_data rv1126_soc_data = {
+> +	.grf_offset = 0x118,
+> +	.calc_timings = rk3x_i2c_v1_calc_timings,
+> +};
+> +
+>  static const struct rk3x_i2c_soc_data rk3066_soc_data = {
+>  	.grf_offset = 0x154,
+>  	.calc_timings = rk3x_i2c_v0_calc_timings,
+> @@ -1195,6 +1200,10 @@ static const struct of_device_id rk3x_i2c_match[] = {
+>  		.compatible = "rockchip,rv1108-i2c",
+>  		.data = &rv1108_soc_data
+>  	},
+> +	{
+> +		.compatible = "rockchip,rv1126-i2c",
+> +		.data = &rv1126_soc_data
+> +	},
+>  	{
+>  		.compatible = "rockchip,rk3066-i2c",
+>  		.data = &rk3066_soc_data
+> 
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMbd2wACgkQJNaLcl1U
-h9B6LQf+MPHcw1mzNH++FkEdl0UnCVxCjYWkYqdl/1xPUX4v5Fml2caza/NofX7J
-tXms945HN9eAO2JpxMSjZhr7xAwnr/M5s3mAudBceL0CplrJ5+L8vdEbEBlVUE0r
-HUZKNmowpqUhuIGjzFanHy7jOVU7iOp0w9duhy4D4FPXMAwA7Y08wsDokPkyMWmd
-emYKmXSa8/7IypBUKCDE0ltSnQgAUsqo/yLfjmZ7ocQvmCzQBpAuQYTgBqupfhQF
-Lu5V2QUXug1xA/iWKqOXqXSxv9pY7yLX/+LLT5NijZaqtMZ0Xrt3qZzb75dF+QXT
-ya9T308GWaZ7RcJWtIoPAfvVpw4qBA==
-=S/yJ
------END PGP SIGNATURE-----
 
---c7j6oBAWbbGfiDda--
+
