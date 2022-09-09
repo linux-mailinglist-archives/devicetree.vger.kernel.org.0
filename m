@@ -2,66 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41CFD5B2C22
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 04:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82AAF5B2C56
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 05:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbiIICeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 22:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44376 "EHLO
+        id S229505AbiIIDDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 23:03:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbiIICeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 22:34:15 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B0A7FE49;
-        Thu,  8 Sep 2022 19:34:14 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id p7so425940lfu.3;
-        Thu, 08 Sep 2022 19:34:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=FvkyKhuO6YMpCu4RPk+9qOwp6OFIggmy0x2K8NtlShI=;
-        b=Rol8pyqq+vW07WbnF0rdsnGFbZUDCQsXGwCD0KyWnzTP+ReRGZeA3oYrfhQul88Jg2
-         e5fh04e2Id9xhzzEU3WdzsfD1iz5biFbzwD1WfBFTP6T4YwHFblnB1F4UzgQXDQPaJ1t
-         OVVlFiNZUZ46kWD5XVjSiEgGF3sGzNIRUoD0K0/sw7V1kBBxoJK/j3HhqKiTGxT6NCyp
-         6NOS+WwJ8PQzKvvAuezbZb3t/ETiBJqhLnyAxjNdf9fvrQxANownmlC6v931I4bK9Ip/
-         v7BR2h9faVqDqDD7HPhH9AHToyJxUWg4sbublUirVLnr7B77aYcxjKKJ0oGsgeSopsfv
-         wwKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=FvkyKhuO6YMpCu4RPk+9qOwp6OFIggmy0x2K8NtlShI=;
-        b=JB9y+AKZdFVjHW3Mn/o4LkoKMqHREHPn1WsBgDdsIV4l9j7/o8yJSfoueNGbUEBC6b
-         5ubz5YnCRnx6mjjHPXcSkEMWcWSbLD0XL0fDpuSIoa1lLeBcubGfElOhU2j2ALQpyT4G
-         MU/x/+RmKlUcEUMotewGxHIVCFb1OCh077bBZlPVXp9qMsKGQv4/Loq6NXQVx3jCFT/J
-         ac2cJ5g3prCjxe7V+LiYFV4e8a+SLPfyQTVAq30O2BEXo7flg4RJz9owhbK4hU+tOd2P
-         HAvhfJ9AgOWdKV0pVoLtRlblC9G+1+Gf0IEB1bTFbhHncbf353GKw9dj/LBwC3vSrngI
-         Worw==
-X-Gm-Message-State: ACgBeo3DmfdCcv++BtM8f+CRnkm81bctNpP3IVAbReoIW9/rKGvRzhCm
-        7P9qJF9ZeMl8D4AWNjL4NPL9MhNr4Pa4/A==
-X-Google-Smtp-Source: AA6agR6Rp+5iCeYFPUODi36Z+roKmLLfV1ikdMlf5O8kG8GKIhHS3I3myEf6RO9v+a3TEBXwn/m0xw==
-X-Received: by 2002:a05:6512:2293:b0:48c:f602:475d with SMTP id f19-20020a056512229300b0048cf602475dmr4154025lfu.232.1662690852775;
-        Thu, 08 Sep 2022 19:34:12 -0700 (PDT)
-Received: from localhost.localdomain ([89.46.86.70])
-        by smtp.gmail.com with ESMTPSA id u28-20020ac2519c000000b0049301e29e41sm66845lfi.233.2022.09.08.19.34.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 19:34:12 -0700 (PDT)
-From:   Marek Bykowski <marek.bykowski@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Marek Bykowski <marek.bykowski@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] =?UTF-8?q?of/fdt:=20Don't=20calculate=20initrd=20size=20f?= =?UTF-8?q?rom=20DT=20if=C2=A0start=20>=20end?=
-Date:   Fri,  9 Sep 2022 02:33:57 +0000
-Message-Id: <20220909023358.76881-1-marek.bykowski@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229577AbiIIDDY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 23:03:24 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF551582C;
+        Thu,  8 Sep 2022 20:03:15 -0700 (PDT)
+X-UUID: c0d2c67193eb42889d5a7552711bcfff-20220909
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=nRrzLr0u0a2LxRzP4qr8jLs8uhCW1lHwfV7WYpZt4U8=;
+        b=b1y6SmNnlGbReW+FCttMYoLLKWVCvbSyUJFPYSmwY72wOgVyOY6KjyU5ATHawDqLavb8RxzXAOgVUyeqgQ/lNHcg6QSrzzJwr+XgzGF0v10wxGmO/ATce/p5lrPDjypbQQvbmZFYoCii/Id8g7RfO4vaByeWuPOovD6EiorbDgI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:39093756-2afb-4449-b842-cb0b23810449,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release
+        _Ham,ACTION:release,TS:45
+X-CID-INFO: VERSION:1.1.10,REQID:39093756-2afb-4449-b842-cb0b23810449,OB:0,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_H
+        am,ACTION:release,TS:45
+X-CID-META: VersionHash:84eae18,CLOUDID:8329e0eb-2856-4fce-b125-09d4c7ebe045,C
+        OID:059c1f7df189,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
+X-UUID: c0d2c67193eb42889d5a7552711bcfff-20220909
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 756152050; Fri, 09 Sep 2022 11:03:09 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Fri, 9 Sep 2022 11:03:08 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Fri, 9 Sep 2022 11:03:07 +0800
+Message-ID: <3b18a9c687af38f7299261c9a589ef3dfc5a1aa7.camel@mediatek.com>
+Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to
+ set pre-emphasis
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Date:   Fri, 9 Sep 2022 11:03:07 +0800
+In-Reply-To: <3c180570-ecf9-3db4-c698-39c1b4679c6e@linaro.org>
+References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
+         <20220819091344.2274-2-chunfeng.yun@mediatek.com>
+         <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
+         <816ecf6287533137b750c8bde9de5830e4229c56.camel@mediatek.com>
+         <bee8abe5-0299-d05e-643c-4810aa33f978@linaro.org>
+         <1a16cce9fe164bafc06ae193310be71c6f645d75.camel@mediatek.com>
+         <000babd8-5980-3d77-f156-324b3442cbe7@linaro.org>
+         <114c357f8d7f049d21ede789a292a8e2d45f4c61.camel@mediatek.com>
+         <0a82842d-283c-e266-84f4-6306f29b61da@linaro.org>
+         <8dcb4de53a52ab44d40f490099b6ed13e5ef7fe0.camel@mediatek.com>
+         <3c180570-ecf9-3db4-c698-39c1b4679c6e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,113 +82,157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the properties 'linux,initrd-start' and 'linux,initrd-end' of
-the chosen node populated from the bootloader, eg. U-Boot, are so that
-start > end, then the phys_initrd_size calculated from end - start is
-negative that subsequently gets converted to a high positive value for
-being unsigned long long. Then, the memory region with the (invalid)
-size is added to the bootmem and attempted being paged in paging_init()
-that results in the kernel fault.
+On Wed, 2022-08-31 at 09:03 +0300, Krzysztof Kozlowski wrote:
+> On 31/08/2022 06:00, Chunfeng Yun wrote:
+> > On Tue, 2022-08-30 at 13:08 +0300, Krzysztof Kozlowski wrote:
+> > > On 29/08/2022 05:37, Chunfeng Yun wrote:
+> > > > On Fri, 2022-08-26 at 09:36 +0300, Krzysztof Kozlowski wrote:
+> > > > > On 26/08/2022 08:36, Chunfeng Yun wrote:
+> > > > > > On Tue, 2022-08-23 at 13:24 +0300, Krzysztof Kozlowski
+> > > > > > wrote:
+> > > > > > > On 22/08/2022 10:07, Chunfeng Yun wrote:
+> > > > > > > > On Fri, 2022-08-19 at 15:15 +0300, Krzysztof Kozlowski
+> > > > > > > > wrote:
+> > > > > > > > > On 19/08/2022 12:13, Chunfeng Yun wrote:
+> > > > > > > > > > Add a property to set usb2 phy's pre-emphasis.
+> > > > > > > > > > 
+> > > > > > > > > > Signed-off-by: Chunfeng Yun <
+> > > > > > > > > > chunfeng.yun@mediatek.com>
+> > > > > > > > > > ---
+> > > > > > > > > >  Documentation/devicetree/bindings/phy/mediatek,tph
+> > > > > > > > > > y.ya
+> > > > > > > > > > ml |
+> > > > > > > > > > 7
+> > > > > > > > > > +++++++
+> > > > > > > > > >  1 file changed, 7 insertions(+)
+> > > > > > > > > > 
+> > > > > > > > > > diff --git
+> > > > > > > > > > a/Documentation/devicetree/bindings/phy/mediatek,tp
+> > > > > > > > > > hy.y
+> > > > > > > > > > aml
+> > > > > > > > > > b/Documentation/devicetree/bindings/phy/mediatek,tp
+> > > > > > > > > > hy.y
+> > > > > > > > > > aml
+> > > > > > > > > > index 848edfb1f677..aee2f3027371 100644
+> > > > > > > > > > ---
+> > > > > > > > > > a/Documentation/devicetree/bindings/phy/mediatek,tp
+> > > > > > > > > > hy.y
+> > > > > > > > > > aml
+> > > > > > > > > > +++
+> > > > > > > > > > b/Documentation/devicetree/bindings/phy/mediatek,tp
+> > > > > > > > > > hy.y
+> > > > > > > > > > aml
+> > > > > > > > > > @@ -219,6 +219,13 @@ patternProperties:
+> > > > > > > > > >          minimum: 1
+> > > > > > > > > >          maximum: 15
+> > > > > > > > > >  
+> > > > > > > > > > +      mediatek,pre-emphasis:
+> > > > > > > > > > +        description:
+> > > > > > > > > > +          The selection of pre-emphasis (U2 phy)
+> > > > > > > > > > +        $ref:
+> > > > > > > > > > /schemas/types.yaml#/definitions/uint32
+> > > > > > > > > > +        minimum: 1
+> > > > > > > > > > +        maximum: 3
+> > > > > > > > > 
+> > > > > > > > > Instead of hard-coding register values in bindings,
+> > > > > > > > > you
+> > > > > > > > > should
+> > > > > > > > > rather
+> > > > > > > > > describe here feature/effect. If it is in units, use
+> > > > > > > > > unit
+> > > > > > > > > suffixes.
+> > > > > > > > > If
+> > > > > > > > > it is some choice, usually string enum is
+> > > > > > > > > appropriate.
+> > > > > > > > 
+> > > > > > > > How about changing description as bellow:
+> > > > > > > > 
+> > > > > > > > "The level of pre-emphasis, increases one level, boosts
+> > > > > > > > the
+> > > > > > > > relative
+> > > > > > > > amplitudes of signal's higher frequencies components
+> > > > > > > > about
+> > > > > > > > 4.16%
+> > > > > > > > (U2
+> > > > > > > > phy)"
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > Still the question is what is the unit. 4.16%?
+> > > > > > 
+> > > > > > No unit, it's a level value, like an index of array.
+> > > > > > 
+> > > > > 
+> > > > > So a value from register/device programming? 
+> > > > 
+> > > > Yes
+> > > > > Rather a regular units
+> > > > > should be used if that's possible. If not, this should be
+> > > > > clearly
+> > > > > described here, not some magical number which you encode into
+> > > > > DTS...
+> > > > 
+> > > > Ok, I'll add more descriptions.
+> > > 
+> > > Better use logical value, e.g.
+> > > 
+> > 
+> > 
+https://urldefense.com/v3/__https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml*L38__;Iw!!CTRNKA9wMg0ARbw!1e-h0R_uwcaHKfKC9qYfaRWYeuWRq1sLCGy3yupNmkFyuW5s1nmRotL7Y0vFG9ETLLTA$
+> > >  
+> > 
+> > Optional unit may be -percent or -bp, but the value 4.16% * X
+> > (X=1,2,3...)is not an exact value, they are variable in a range and
+> > dependent more factors.
+> > So I think use level value is simple enough.
+> 
+> Then again explain exactly what are the levels. How you wrote it last
+> time, -bp would do the trick.
 
-For example, on the FVP ARM64 system I'm running, the U-Boot populates
-the 'linux,initrd-start' with 8800_0000 and 'linux,initrd-end' with 0.
-The phys_initrd_size calculated is then ffff_ffff_7800_0000
-(= 0 - 8800_0000 = -8800_0000 + ULLONG_MAX + 1). paging_init() then
-attempts to map the address 8800_0000 + ffff_ffff_7800_0000 and oops'es
-as below.
+There are many different methods of measuring pre-emphasis.
+The way used in MediaTek USB2 PHY as below:
 
-It should be stressed, it is generally a fault of the bootloader's with
-the kernel relying on it, however we should not allow the bootloader's
-misconfiguration to lead to the kernel oops. Not only the kernel should be
-bullet proof against it but also finding the root cause of the paging
-fault spanning over the bootloader, DT, and kernel may happen is not so
-easy.
+pre-emphasis level equation = Vpp/Vs -1;
+Vpp: peak-peak voltage of differential signal;
+Vs : static voltage of differential signal, normal voltage, e.g. 400mV
+for u2 phy;
 
-  Unable to handle kernel paging request at virtual address fffffffefe43c000
-  Mem abort info:
-    ESR = 0x96000007
-    EC = 0x25: DABT (current EL), IL = 32 bits
-    SET = 0, FnV = 0
-    EA = 0, S1PTW = 0
-  Data abort info:
-    ISV = 0, ISS = 0x00000007
-    CM = 0, WnR = 0
-  swapper pgtable: 4k pages, 39-bit VAs, pgdp=0000000080e3d000
-  [fffffffefe43c000] pgd=0000000080de9003, pud=0000000080de9003
-  Unable to handle kernel paging request at virtual address ffffff8000de9f90
-  Mem abort info:
-    ESR = 0x96000005
-    EC = 0x25: DABT (current EL), IL = 32 bits
-    SET = 0, FnV = 0
-    EA = 0, S1PTW = 0
-  Data abort info:
-    ISV = 0, ISS = 0x00000005
-    CM = 0, WnR = 0
-  swapper pgtable: 4k pages, 39-bit VAs, pgdp=0000000080e3d000
-  [ffffff8000de9f90] pgd=0000000000000000, pud=0000000000000000
-  Internal error: Oops: 96000005 [#1] PREEMPT SMP
-  Modules linked in:
-  CPU: 0 PID: 0 Comm: swapper Not tainted 5.4.51-yocto-standard #1
-  Hardware name: FVP Base (DT)
-  pstate: 60000085 (nZCv daIf -PAN -UAO)
-  pc : show_pte+0x12c/0x1b4
-  lr : show_pte+0x100/0x1b4
-  sp : ffffffc010ce3b30
-  x29: ffffffc010ce3b30 x28: ffffffc010ceed80
-  x27: fffffffefe43c000 x26: fffffffefe43a028
-  x25: 0000000080bf0000 x24: 0000000000000025
-  x23: ffffffc010b8d000 x22: ffffffc010e3d000
-  x23: ffffffc010b8d000 x22: ffffffc010e3d000
-  x21: 0000000080de9000 x20: ffffff7f80000f90
-  x19: fffffffefe43c000 x18: 0000000000000030
-  x17: 0000000000001400 x16: 0000000000001c00
-  x15: ffffffc010cef1b8 x14: ffffffffffffffff
-  x13: ffffffc010df1f40 x12: ffffffc010df1b70
-  x11: ffffffc010ce3b30 x10: ffffffc010ce3b30
-  x9 : 00000000ffffffc8 x8 : 0000000000000000
-  x7 : 000000000000000f x6 : ffffffc010df16e8
-  x5 : 0000000000000000 x4 : 0000000000000000
-  x3 : 00000000ffffffff x2 : 0000000000000000
-  x1 : 0000008080000000 x0 : ffffffc010af1d68
-  Call trace:
-   show_pte+0x12c/0x1b4
-   die_kernel_fault+0x54/0x78
-   __do_kernel_fault+0x11c/0x128
-   do_translation_fault+0x58/0xac
-   do_mem_abort+0x50/0xb0
-   el1_da+0x1c/0x90
-   __create_pgd_mapping+0x348/0x598
-   paging_init+0x3f0/0x70d0
-   setup_arch+0x2c0/0x5d4
-   start_kernel+0x94/0x49c
-  Code: 92748eb5 900052a0 9135a000 cb010294 (f8756a96) 
+The pre-emphasis circuitry within t-phy can be dynamically programmed
+to three different levels of pre-emphasis. The exact value of
+pre-emphasis cannot be predetermined, because each device requires
+a percentage of pre-emphasis that is dependent on the output signal
+strength and transmission path characteristics.
 
-Signed-off-by: Marek Bykowski <marek.bykowski@gmail.com>
----
-v2 -> v3:
-- I confused the description I fixed now. I put that we should
-  complain if start < end and it should be the other way around
-  if end > start
-v1 -> v2:
-- followed Rob's suggestion that we check on start > end instead of
-  for end being 0
----
- drivers/of/fdt.c | 2 ++
- 1 file changed, 2 insertions(+)
+Below shows three programmable pre-emphasis levels for a differential
+drive signal of 400 mV. The amount of pre-emphasis changes according
+to the transmission path parameters.
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 223d617ecfe1..4acb1be8723b 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -889,6 +889,8 @@ static void __init early_init_dt_check_for_initrd(unsigned long node)
- 	if (!prop)
- 		return;
- 	end = of_read_number(prop, len/4);
-+	if (start > end)
-+		return;
+programmable level   typical pre-emphasis level
+1                    4.16%
+2                    8.30%
+3                    12.40%
 
- 	__early_init_dt_declare_initrd(start, end);
- 	phys_initrd_start = start;
---
-2.25.1
+The reasons that why prefer to use programmable level in dt-binding as
+following:
+1. as you said, -bp may do the trick, but the main problem is that
+   pre-emphasis level is variable on different SoC, and is also
+   variable even on different pcb for the same SoC. e.g. for the
+   programmable level 1, pre-emphasis level may be 6% on a platform,
+   but for the programmable level 2, pre-emphasis level may be also
+   6% on another platform;
+   I think use pre-emphasis level in property, e.g. 4.16%, the
+   deviation may be bigger than 40%, may cause confusion for users,
+   due to we can't promise that the actual measurement is about 4.16%,
+   it may be 2%, or 5% when measured;
+2. the programmable / logical level is flexible when we support more
+   and pre-emphasis level, ans it is easy for us to tune the level
+   due to it's continuous value.
+3. all other vendor properties that can't provide exact measurable
+   value in this dt-binding make use of logic level, I want to
+   keep them align;
+
+Thanks a lot
+
+> 
+> Best regards,
+> Krzysztof
 
