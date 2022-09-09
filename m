@@ -2,111 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 979465B349E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 11:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 033725B34AA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 11:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbiIIJvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 05:51:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41294 "EHLO
+        id S229754AbiIIJ4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 05:56:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbiIIJvg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 05:51:36 -0400
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 181048A6C6;
-        Fri,  9 Sep 2022 02:50:58 -0700 (PDT)
-Received: by mail-il1-x136.google.com with SMTP id k2so537888ilu.9;
-        Fri, 09 Sep 2022 02:50:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=iXpi4U8D0jaH4ywTCd7jtJqMOxZPuO4ixqMMM3v8Cm0=;
-        b=gy+X09X/RNQ4H6tibwvG0tzOvReyZtjiSFRUJ2CzxhUdURHeBxxU/OkH8yT922mRQT
-         +gjpFUKX/OKuV1IWkLN1WpBSYhRbJqpdELwywSpGTlTJ9n5sow7627EtQFbivc2t6Uvy
-         dLdhuxk8pQ4iIgzrA8QVKlkXH0eA5WoYVDTPunLwfAsdfaOjq8S+PLRsar9WlLY8xmPV
-         O3ok4OAE+mVzLIGSK4GeS3rROGIiZafCCdgoU8WWvaMcSp/0S8XmSyt/FZF19SIsAgzi
-         c8t3tkpJmeSgTBmG9Xzzfs/m+RA+iVz0iZlSWVwEsxoJGgBGUoyhEM70FoBK8Y4EfdfS
-         1Dww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=iXpi4U8D0jaH4ywTCd7jtJqMOxZPuO4ixqMMM3v8Cm0=;
-        b=taX0Ztsy8aucfiqSBaRHOIl0naBK/wgSynsKQUM3TSKDO0uPIpoW/aMe2k2G68StPI
-         eS5iYZrXa9jTNuMLfc5YHMSEotuqGjEDCer6PENNTSFl32GyeIoRmaEaxVi+DPBU9XsT
-         8TUM1uPbRGKiwHlVnKXc/KYUI6NPzQgvDlGXu161FwJHr4N+lfggsvwwXVioUuksxIP9
-         ObcMplew6d4mcJ9e7PfoDOO+RgtJAUWg9fv4blZlMWYfT9CCNtc1Bs0fC0IMbM/biy7R
-         RA8cenAFA7nBuyjXuDewjkwocbNXmWJPWqx50bFhLMoDaQSdJKsXYUtgV8SmqUgXhl9m
-         sgsA==
-X-Gm-Message-State: ACgBeo30XSHpaT7XAB1fd9rKeBWNT9dCf55NuQRlbGXIvOfLG2Mx//Lx
-        Hw5FslRIlz9abzMx8fnsgKlrMtpeg12K+9yNh2Y=
-X-Google-Smtp-Source: AA6agR7KW/O26IuwfE8+w6n2uh6iQn/xc37vHGc2t5D1if8njYyXjIDt+1pCy8VRdbo8CwxIzKeTAV0l9jKnXIPH5bc=
-X-Received: by 2002:a05:6e02:198d:b0:2ec:d6c5:49e8 with SMTP id
- g13-20020a056e02198d00b002ecd6c549e8mr4044219ilf.187.1662717057366; Fri, 09
- Sep 2022 02:50:57 -0700 (PDT)
+        with ESMTP id S229529AbiIIJz6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 05:55:58 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7534210D716;
+        Fri,  9 Sep 2022 02:55:56 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2899tiT8128627;
+        Fri, 9 Sep 2022 04:55:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1662717344;
+        bh=yfJHCddKoM4/t4ldECOTSRa6m8lwHsn3/QA2RapOHow=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=oXjG371K99Fe7fjvf/Wbhof3BXUmrWGMVPfCEuFSYrjAv1539n+3Pm/3qbVv/CSaq
+         2WVD7K6p6yTRWw85UUphfTnO1Cddin3AN0oYVuF3Z+LQR/72JNFL6N1g5nMR3NeijQ
+         PlPcz0KBDmlptP6MpJLN1UEZadAMETCJMKUpZqgc=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2899tiba009395
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 9 Sep 2022 04:55:44 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 9 Sep
+ 2022 04:55:43 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 9 Sep 2022 04:55:43 -0500
+Received: from uda0132425.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2899tePE081550;
+        Fri, 9 Sep 2022 04:55:41 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3] arm64: dts: ti: k3-am642-sk: Add DT entry for onboard LEDs
+Date:   Fri, 9 Sep 2022 15:25:38 +0530
+Message-ID: <166271733143.1620157.7880368240890578820.b4-ty@ti.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220830123254.522222-1-vigneshr@ti.com>
+References: <20220830123254.522222-1-vigneshr@ti.com>
 MIME-Version: 1.0
-References: <20220909073456.239668-1-gengcixi@gmail.com> <20220909073456.239668-2-gengcixi@gmail.com>
- <Yxr0+LJWWsF53dr2@google.com>
-In-Reply-To: <Yxr0+LJWWsF53dr2@google.com>
-From:   Cixi Geng <gengcixi@gmail.com>
-Date:   Fri, 9 Sep 2022 17:50:21 +0800
-Message-ID: <CAF12kFteDZLk-2PBufnuar43bgPzoxWsOjR0-zQ01ZqLyTCxQw@mail.gmail.com>
-Subject: Re: [PATCH V7 1/2] dt-bindings: mfd: sprd: Add bindings for ums512
- global registers
-To:     Lee Jones <lee@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        baolin.wang@linux.alibaba.com,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lee Jones <lee@kernel.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=889=E6=97=A5=E5=91=
-=A8=E4=BA=94 16:10=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Fri, 09 Sep 2022, Cixi Geng wrote:
->
-> > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> >
-> > Add bindings for Unisoc system global register which provide register m=
-ap
-> > for clocks.
-> >
-> > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
-> >  1 file changed, 68 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-g=
-lbreg.yaml
->
-> I'll take this when the clk driver changes are merged.
-this patch is depends on the clk dt-bingdings, which is already merged [1]
-so the patch can be applied without wating the clk driver
-and the clk driver need merge this first
+Hi Vignesh Raghavendra,
 
-commitID =EF=BC=886a3a6c7ae0ef235faebf66bac56384dbd5f944dc=EF=BC=89
-[1]. https://lore.kernel.org/all/20220711202740.198F4C34115@smtp.kernel.org=
-/
+On Tue, 30 Aug 2022 18:02:54 +0530, Vignesh Raghavendra wrote:
+> From: Aparna M <a-m1@ti.com>
+> 
+> AM642 SK has 8 leds connected to tpic2810 onboard. Add support for these
+> gpio leds.
+> 
+> 
 
+I have applied the following to branch master on [1].
+Thank you!
 
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+[1/1] arm64: dts: ti: k3-am642-sk: Add DT entry for onboard LEDs
+      commit: b216dc1a41f787620636376bf2be666f08c031d0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
