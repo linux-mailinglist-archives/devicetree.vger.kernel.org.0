@@ -2,109 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A46FE5B3AD3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B24725B3ADA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231759AbiIIOjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 10:39:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59162 "EHLO
+        id S231719AbiIIOj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 10:39:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231989AbiIIOjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 10:39:11 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7DA2131EFE
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 07:39:08 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 289Ecrvu028789;
-        Fri, 9 Sep 2022 09:38:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1662734333;
-        bh=/W1V9VjLhYWJvu0GqytWx+ASGz1sW+xhsEjVJxd9Vmc=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=FTUDwktsZ6ZunynYuXpUKmUjJMLdycR9mjCLudsVI9Swk5gc4h+etFBOJGFNk2zk2
-         IUVYhTZ4syjTvz8+xhLWzT4W8xEn9hA38huaLiqUUZ1VUzD4ZLQQCcwQkQrDX3BxB1
-         UfbMNNQ2X8Z03htzm8GtPa5NxnMcd1JQbzGUpUIQ=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 289EcqGM111116
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 9 Sep 2022 09:38:53 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 9 Sep
- 2022 09:38:52 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 9 Sep 2022 09:38:52 -0500
-Received: from uda0132425.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 289EcnDF075516;
-        Fri, 9 Sep 2022 09:38:50 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Georgi Vlaev <g-vlaev@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 0/2] arm64: dts: ti: k3-am62: Add ePWM support
-Date:   Fri, 9 Sep 2022 20:08:24 +0530
-Message-ID: <166273427560.1752090.16795860109420912612.b4-ty@ti.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220531205229.198011-1-g-vlaev@ti.com>
-References: <20220531205229.198011-1-g-vlaev@ti.com>
+        with ESMTP id S232043AbiIIOj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 10:39:57 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D639F2DAB9;
+        Fri,  9 Sep 2022 07:39:52 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-12803ac8113so4383119fac.8;
+        Fri, 09 Sep 2022 07:39:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=ftf0UiBiLz6oFjDNarvElWVwFaQsvk8ZXx/a/CGTdUA=;
+        b=glcYjFQn/spcxFV3Xbqgd1TpuMc+lKgGTMDl/afa5uuSuN9Hqk3gsmqQ/a71Z+Zzin
+         vxsJXgeltKUv0GrQNHv+yS9IHGJHVAkKzscA+99dS32t25oaA5oN9S5lKTA8yMrnRcdX
+         S3qJHTgamA1onWuW/VWt58hnEwLyZ2z7mKuLIl/NpH6cbUB4Ni5Z56p39u0bJu0ZoW+Z
+         +WH0YTyxL1XQMyPRJpUNwGQhrCbAZYL/pe2B49iJBTSRoTsRsXUor9qF0nJAa2lESmr3
+         dBuJMPeu19jEYJCEyr1G4gKOz00fv2ieRH0vylSGv4QMuayTjyF05u7JJmtYuOdClunY
+         hvjA==
+X-Gm-Message-State: ACgBeo12AK38bKgxJ8W0Zy66aZGTo7J0Van8MAz9sMVJuVPzEO5RwUfD
+        9eGn6PWAL/0+b8BjUofqCg==
+X-Google-Smtp-Source: AA6agR5sH9jO7ewRPhu2gd//ThcK3OpubXNqMdFFa9cMj5yim/Bj6Us12fZJ2x/42Jw0BfKu1F4DjA==
+X-Received: by 2002:a05:6808:152a:b0:344:c8d1:27e1 with SMTP id u42-20020a056808152a00b00344c8d127e1mr3922484oiw.294.1662734391944;
+        Fri, 09 Sep 2022 07:39:51 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 19-20020a9d0113000000b006391bdbb361sm340925otu.31.2022.09.09.07.39.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Sep 2022 07:39:51 -0700 (PDT)
+Received: (nullmailer pid 1025314 invoked by uid 1000);
+        Fri, 09 Sep 2022 14:39:50 -0000
+Date:   Fri, 9 Sep 2022 09:39:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: qcom,pdc: convert to YAML
+Message-ID: <20220909143950.GA992904-robh@kernel.org>
+References: <20220103074348.6039-1-luca.weiss@fairphone.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220103074348.6039-1-luca.weiss@fairphone.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Georgi Vlaev,
-
-On Tue, 31 May 2022 23:52:27 +0300, Georgi Vlaev wrote:
-> This patch series enables the ePWM support on the AM62 platform.
-> The ePWMs are enabled by default, but we have to disable them
-> for the AM625-SK board, as they are not in use.
+On Mon, Jan 03, 2022 at 08:43:48AM +0100, Luca Weiss wrote:
+> Convert the PDC interrupt controller bindings to YAML.
 > 
-> Georgi Vlaev (2):
->   arm64: dts: ti: k3-am62-main: Add epwm nodes
->   arm64: dts: ti: k3-am625-sk: Add epwm nodes
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> Changes since v1:
+> * Adjust description of second reg-name as suggested by Maulik Shah
 > 
-> [...]
+> @Rob Herring: Hope it's ok to keep your R-b given the above changes
+> 
+> This patch depends on the following patch, which fixed sm8250 & sm8350
+> compatibles and adds sm6350.
+> https://lore.kernel.org/linux-arm-msm/20211213082614.22651-4-luca.weiss@fairphone.com/
+> 
+>  .../interrupt-controller/qcom,pdc.txt         | 77 -----------------
+>  .../interrupt-controller/qcom,pdc.yaml        | 86 +++++++++++++++++++
+>  2 files changed, 86 insertions(+), 77 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
 
-I have applied the following to branch master on [1].
-Thank you!
+In checking top compatibles without schemas[1][2], I found this. Now 
+applied with sm8150 compatible which was the only change since this.
 
-[1/2] arm64: dts: ti: k3-am62-main: Add epwm nodes
-      commit: ab1ad455cf33de6dc1f6cbf0d0d1d49dbe3d9e4f
-[2/2] arm64: dts: ti: k3-am625-sk: Add epwm nodes
-      commit: acf3fdc88665a26abfe22827993a2dabf182a513
+Rob
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
-
+[1] https://gitlab.com/robherring/linux-dt/-/jobs/3005191129
+[2] https://gitlab.com/robherring/linux-dt/-/jobs/3005191129/artifacts/file/all-compatible-warnings.log
