@@ -2,148 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 810FC5B3AAC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A46FE5B3AD3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbiIIO1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 10:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35622 "EHLO
+        id S231759AbiIIOjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 10:39:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230213AbiIIO1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 10:27:30 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F45AA34B;
-        Fri,  9 Sep 2022 07:27:27 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id d68so1526000iof.11;
-        Fri, 09 Sep 2022 07:27:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=4j6yKaic5oazyrfOzloSvEnmZiVIQ82dAZTjcffuWZg=;
-        b=UiiAI9XyEeR/oqwkvPuc94AtrS6oWDXhykkIlAoDa8w9HH/WegNqVN0v1sCJq6I6a9
-         r8WGcDpMIM9zkNteK7ldn8TFZrVfShoRhF5pPOytP1BKIotrlSCwACqOphvjokwCHIrx
-         gNSHg4A0PE9PfUlkjNKwfUzYRzPba1cDRbjVsinojglTZaUJ7AB2OmOjqvIi4Qk3sjHp
-         cJgZgim1voRO1bEttDw0dcPqIXVt6zODhSHK89ESkKepxQe8mcwyZaQvJ5jid4RLXMFg
-         Rd1kHrAS1gwvE0zaIRR/cSaGlGTQyxCVLPwzZ1sncSS4Ltnb6avqlWyryVcgKowKxB1g
-         DkAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=4j6yKaic5oazyrfOzloSvEnmZiVIQ82dAZTjcffuWZg=;
-        b=uNj2O1jAhtHYDEAS4r0BQc+m5aZnoWZrnOCORVml6V31aVpUoAzXB8yy8W2AcR0UHv
-         BssbMmAJ9lvG+1MdSrQw0IT6X3NzuCNd+RF9uMRBRSU1a7mLgWp2VVjUqFs2pCtl8wrW
-         Um4R2G1P2w+Hy5aSMiyJPysUXfMBZVKXkOMHyoHiGRB+/aObiBfpE+jO9cfrORvuzQB8
-         mcskCZAR2Gswn9XFJ47YRR90UvLZucIN8QZ9KMIaNL8C36u2Y4o5DmKKjXhe9dm524cH
-         Ie698+mdfAUkuIPs7c7ro3NmeFJ4+QxNE479uv0qqkkLsba+xosqrxFNw9CFdjUe6V2L
-         Ui0Q==
-X-Gm-Message-State: ACgBeo039DbILvl4cKw9ubEBfoYb30PfxZv8ZVv7UOfxH1RJ6oiLDZBr
-        1l6Cyf5Z2Pf0raXE2JOT/642EnQO3OjkONn683bDybRnZUSo4w==
-X-Google-Smtp-Source: AA6agR4pz0L5yvddtwv72CCCdzO6a3EN4ynaOMKwWs5GvwYO0ZR81ZO9gHHGEY1wt4jRVKYW4rO3TjMNYXvHNrkxFEg=
-X-Received: by 2002:a05:6638:160c:b0:343:4cdd:8fe5 with SMTP id
- x12-20020a056638160c00b003434cdd8fe5mr7865935jas.299.1662733647201; Fri, 09
- Sep 2022 07:27:27 -0700 (PDT)
+        with ESMTP id S231989AbiIIOjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 10:39:11 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7DA2131EFE
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 07:39:08 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 289Ecrvu028789;
+        Fri, 9 Sep 2022 09:38:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1662734333;
+        bh=/W1V9VjLhYWJvu0GqytWx+ASGz1sW+xhsEjVJxd9Vmc=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=FTUDwktsZ6ZunynYuXpUKmUjJMLdycR9mjCLudsVI9Swk5gc4h+etFBOJGFNk2zk2
+         IUVYhTZ4syjTvz8+xhLWzT4W8xEn9hA38huaLiqUUZ1VUzD4ZLQQCcwQkQrDX3BxB1
+         UfbMNNQ2X8Z03htzm8GtPa5NxnMcd1JQbzGUpUIQ=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 289EcqGM111116
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 9 Sep 2022 09:38:53 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 9 Sep
+ 2022 09:38:52 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 9 Sep 2022 09:38:52 -0500
+Received: from uda0132425.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 289EcnDF075516;
+        Fri, 9 Sep 2022 09:38:50 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Georgi Vlaev <g-vlaev@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 0/2] arm64: dts: ti: k3-am62: Add ePWM support
+Date:   Fri, 9 Sep 2022 20:08:24 +0530
+Message-ID: <166273427560.1752090.16795860109420912612.b4-ty@ti.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220531205229.198011-1-g-vlaev@ti.com>
+References: <20220531205229.198011-1-g-vlaev@ti.com>
 MIME-Version: 1.0
-References: <20220909073456.239668-1-gengcixi@gmail.com> <20220909073456.239668-2-gengcixi@gmail.com>
- <Yxr0+LJWWsF53dr2@google.com> <CAF12kFteDZLk-2PBufnuar43bgPzoxWsOjR0-zQ01ZqLyTCxQw@mail.gmail.com>
- <dc63bd52-edbf-d13b-86b3-db83bfd8b7e1@linaro.org> <CAF12kFt95PYcK249Zm8r+jZtEm3vGTd3AXn2DB_CG0Xf=3xeFQ@mail.gmail.com>
- <fe1838eb-8ec5-62a9-3d90-bf2fe4070535@linaro.org> <YxsofwCfTZqqJOiK@google.com>
-In-Reply-To: <YxsofwCfTZqqJOiK@google.com>
-From:   Cixi Geng <gengcixi@gmail.com>
-Date:   Fri, 9 Sep 2022 22:26:51 +0800
-Message-ID: <CAF12kFsGytPEqwDXiR+f7coKHeJp5vNP6EPzbcqUPDAggc5_yg@mail.gmail.com>
-Subject: Re: [PATCH V7 1/2] dt-bindings: mfd: sprd: Add bindings for ums512
- global registers
-To:     Lee Jones <lee@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        baolin.wang@linux.alibaba.com,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lee Jones <lee@kernel.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=889=E6=97=A5=E5=91=
-=A8=E4=BA=94 19:50=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Fri, 09 Sep 2022, Krzysztof Kozlowski wrote:
->
-> > On 09/09/2022 12:16, Cixi Geng wrote:
-> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E4=BA=8E2022=E5=
-=B9=B49=E6=9C=889=E6=97=A5=E5=91=A8=E4=BA=94 17:57=E5=86=99=E9=81=93=EF=BC=
-=9A
-> > >>
-> > >> On 09/09/2022 11:50, Cixi Geng wrote:
-> > >>> Lee Jones <lee@kernel.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=889=E6=97=
-=A5=E5=91=A8=E4=BA=94 16:10=E5=86=99=E9=81=93=EF=BC=9A
-> > >>>>
-> > >>>> On Fri, 09 Sep 2022, Cixi Geng wrote:
-> > >>>>
-> > >>>>> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > >>>>>
-> > >>>>> Add bindings for Unisoc system global register which provide regi=
-ster map
-> > >>>>> for clocks.
-> > >>>>>
-> > >>>>> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > >>>>> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> > >>>>> Reviewed-by: Rob Herring <robh@kernel.org>
-> > >>>>> ---
-> > >>>>>  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++=
-++++++
-> > >>>>>  1 file changed, 68 insertions(+)
-> > >>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,um=
-s512-glbreg.yaml
-> > >>>>
-> > >>>> I'll take this when the clk driver changes are merged.
-> > >>> this patch is depends on the clk dt-bingdings, which is already mer=
-ged [1]
-> > >>
-> > >> which is merged to different tree, so this one here cannot go via MF=
-D
-> > >> tree without cross-tree merges.
-> > > Hi Krzysztof:
-> > > I test on the latest kernel 506357871c18e06565840d71c2ef9f818e19f460
-> > > (torvalds/master) version:6.0.0.rc4
-> > > what you mean is I must warting your branch upgrade the cross-tree?
-> >
-> > Ah, you linked email message so that rather indicated applying to clk
-> > tree, but indeed it is already in the mainline.
->
-> ... and also, I'm *still* not playing that game with DT bindings.
->
-> It's bad enough that we have to sync across subsystems to avoid
-> build-breakages.  If documentation comes together in -next and
-> subsequently Mainline that should be adequate.
->
-> I doubt Linus is running DT checker(s) on each pull-request he merges,
-> nor are there any stipulations for DT bindings to be bisectable
-> post-merge.
+Hi Georgi Vlaev,
 
-Thanks Lee and Krzysztof's review. I wiil send the patch a new version to
-add the adress-cell  const property.and I think we have agreed on that
-the dependent patch already exist in mainline.
-so these patches can applied as long as no other issues.
+On Tue, 31 May 2022 23:52:27 +0300, Georgi Vlaev wrote:
+> This patch series enables the ePWM support on the AM62 platform.
+> The ePWMs are enabled by default, but we have to disable them
+> for the AM625-SK board, as they are not in use.
+> 
+> Georgi Vlaev (2):
+>   arm64: dts: ti: k3-am62-main: Add epwm nodes
+>   arm64: dts: ti: k3-am625-sk: Add epwm nodes
+> 
+> [...]
 
-Best regards,
-Cixi
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+I have applied the following to branch master on [1].
+Thank you!
+
+[1/2] arm64: dts: ti: k3-am62-main: Add epwm nodes
+      commit: ab1ad455cf33de6dc1f6cbf0d0d1d49dbe3d9e4f
+[2/2] arm64: dts: ti: k3-am625-sk: Add epwm nodes
+      commit: acf3fdc88665a26abfe22827993a2dabf182a513
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
