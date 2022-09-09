@@ -2,213 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE1925B2B1C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 02:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E005B2BB5
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 03:36:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbiIIAbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Sep 2022 20:31:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52494 "EHLO
+        id S229653AbiIIBgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Sep 2022 21:36:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229703AbiIIAbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 20:31:45 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2256ED51C8;
-        Thu,  8 Sep 2022 17:31:44 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28904cqE008607;
-        Fri, 9 Sep 2022 00:31:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=XmVWEIzCNB723ISEUcSXGd8hG0eHhwHmmaZx+2kGF1k=;
- b=UUALUAa+c89HXmK+FhKXjNCBRNq1C8UfXeCdCEuMdra167rKh6EpK0FYkUUYVjpwPyA2
- vR8vtb5jM3vlTxn/gd+wvFpQEdHlmjiNsBdNJ7nDQxAegVFQ1XSMiiaMhXUMZ0vVC+d6
- YLHH5tE57eJJzbU+cjGBNvVnYtxNJjSE5CWQ/BBbqCoK81Hu5fDvobuIHxlbKCrpKmac
- P19Bvay6pBpv5c60ZY7m0DY00W5lQpHH7iIhfDvXYu6fslk9ap0EmYjK/poGm2cZp+gN
- GXnQKRKct6IQdi1Wg7alsV1kVyj+wbpWy5YNrNcW5VFzGKncA1ZT/c1geAsb9yBQeU6+ /g== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jfeuutcap-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 09 Sep 2022 00:31:36 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2890QY12027849
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 9 Sep 2022 00:26:34 GMT
-Received: from [10.47.206.1] (10.49.16.6) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 8 Sep 2022
- 17:26:33 -0700
-Message-ID: <4c017ad4-558b-a8d4-bc8a-eebd2d5a35ba@quicinc.com>
-Date:   Thu, 8 Sep 2022 17:25:55 -0700
+        with ESMTP id S229546AbiIIBgw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Sep 2022 21:36:52 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 277A91079FA;
+        Thu,  8 Sep 2022 18:36:47 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-1278a61bd57so332183fac.7;
+        Thu, 08 Sep 2022 18:36:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=X/EZDtBCJrUGRIamC4teU2YJMrak7hI+I7Ky8llWW9E=;
+        b=EPeHvNpiflSA2NJUm1qXeASxNHRjKLaBqu1qlpW0B2OIjvvB4d0jyrvVs1l38V2lNs
+         b6CqvWK3fjPV3oRM11WgtP4/f7ia5msjZaa7V9jwuwT8XpUI2OYY+Hec3lb0/pf43GLk
+         65OeBmSW9edvj0oT81geJZShLDJLgo9WigXrT06rnAAZw/rNyfZ0jq5IIfpdO9aHSh+y
+         Ldd4xFTp5bQ6X52qrbhw2m1h8YlzRRfFbGstbP8uFDSnP23DRTUhEGBUPGcjV8ERIsco
+         Lh8Vej/fxQgTpkom/YJESp6ab8GDqoSihDBnrQuqudUdb5WXq8FsScVkEH9Z4jIILpHG
+         szrg==
+X-Gm-Message-State: ACgBeo06TMAaJYuy1+DrgopZE7YUvRB8h7orDvLCph9EA+9nhmC1W59l
+        ry8gDgV61z/phO92ASPHeg==
+X-Google-Smtp-Source: AA6agR747AZv98h49vbs6uS03Dihe0xwNcWZz/GVQQY2NnEyKrNRx72F0ULZHX8xIhmFf3LxBp3kkw==
+X-Received: by 2002:a05:6870:b68f:b0:10b:ba83:92d4 with SMTP id cy15-20020a056870b68f00b0010bba8392d4mr3446141oab.130.1662687406373;
+        Thu, 08 Sep 2022 18:36:46 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t8-20020a0568301e2800b00636e6dea5e5sm359254otr.23.2022.09.08.18.36.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Sep 2022 18:36:45 -0700 (PDT)
+Received: (nullmailer pid 3734979 invoked by uid 1000);
+        Fri, 09 Sep 2022 01:36:44 -0000
+Date:   Thu, 8 Sep 2022 20:36:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sergiu.Moga@microchip.com
+Cc:     krzysztof.kozlowski@linaro.org, lee@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
+        richard.genoud@gmail.com, radu_nicolae.pirea@upb.ro,
+        gregkh@linuxfoundation.org, broonie@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, jirislaby@kernel.org,
+        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com,
+        Tudor.Ambarus@microchip.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 06/13] dt-bindings: serial: atmel,at91-usart: Add
+ SAM9260 compatibles to SAM9x60
+Message-ID: <20220909013644.GA3731620-robh@kernel.org>
+References: <20220906135511.144725-1-sergiu.moga@microchip.com>
+ <20220906135511.144725-7-sergiu.moga@microchip.com>
+ <9aa29d74-b1fc-d00e-dee4-57f277a366ab@linaro.org>
+ <c30cc112-0fb8-01e6-1bb8-eed7db0b9049@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 2/4] pinctrl: qcom: spmi-gpio: Fix the GPIO strength
- mapping
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Anjelique Melendez <quic_amelende@quicinc.com>,
-        <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <konrad.dybcio@somainline.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Anirudh Ghayal <quic_aghayal@quicinc.com>
-References: <20220907201528.9351-1-quic_amelende@quicinc.com>
- <20220907201528.9351-3-quic_amelende@quicinc.com>
- <2b809e98-85ea-6ad9-e810-106563937ddc@linaro.org>
-From:   David Collins <quic_collinsd@quicinc.com>
-In-Reply-To: <2b809e98-85ea-6ad9-e810-106563937ddc@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 7qGC2BDiu5fGxALdpzm6kwfI6r3ja-Ss
-X-Proofpoint-GUID: 7qGC2BDiu5fGxALdpzm6kwfI6r3ja-Ss
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-08_14,2022-09-08_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 spamscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0
- mlxscore=0 mlxlogscore=999 clxscore=1011 phishscore=0 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2209080086
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c30cc112-0fb8-01e6-1bb8-eed7db0b9049@microchip.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/8/22 04:14, Krzysztof Kozlowski wrote:
-> On 07/09/2022 22:15, Anjelique Melendez wrote:
->> From: Anirudh Ghayal <quic_aghayal@quicinc.com>
->>
->> The SPMI based PMICs have the HIGH and LOW GPIO output
->> strength mappings interchanged, fix them.
->>
->> Keep the mapping same for older SSBI based PMICs.
->>
->> CRs-Fixed: 2246473
+On Thu, Sep 08, 2022 at 03:15:44PM +0000, Sergiu.Moga@microchip.com wrote:
+> On 08.09.2022 15:30, Krzysztof Kozlowski wrote:
+> > On 06/09/2022 15:55, Sergiu Moga wrote:
+> >> Add the AT91SAM9260 serial compatibles to the list of SAM9X60 compatibles
+> >> in order to highlight the incremental characteristics of the SAM9X60
+> >> serial IP.
+> >>
+> >> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> >> ---
+> >>
+> >>
+> >> v1 -> v2:
+> >> - Nothing, this patch was not here before
+> >>
+> >>
+> >>   Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml | 2 ++
+> >>   1 file changed, 2 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+> >> index b25535b7a4d2..4d80006963c7 100644
+> >> --- a/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+> >> +++ b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+> >> @@ -26,6 +26,8 @@ properties:
+> >>         - items:
+> >>             - const: microchip,sam9x60-dbgu
+> >>             - const: microchip,sam9x60-usart
+> >> +          - const: atmel,at91sam9260-dbgu
+> >> +          - const: atmel,at91sam9260-usart
+> > 
+> > This is weird. You say in commit msg to "highlight the incremental
+> > characteristics" but you basically change here existing compatibles.
 > 
-> What is this tag about?
-
-This is for internal tracking.  It will be removed in the next version
-of this patch series.
-
-
->>  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c     | 2 +-
->>  drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c     | 4 ++--
->>  include/dt-bindings/pinctrl/qcom,pmic-gpio.h | 9 +++++++--
->>  3 files changed, 10 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
->> index cf6b6047de8d..fceccf1ec099 100644
->> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
->> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
->> @@ -525,7 +525,7 @@ static int pmic_gpio_config_set(struct pinctrl_dev *pctldev, unsigned int pin,
->>  			pad->pullup = arg;
->>  			break;
->>  		case PMIC_GPIO_CONF_STRENGTH:
->> -			if (arg > PMIC_GPIO_STRENGTH_LOW)
->> +			if (arg > PMIC_GPIO_STRENGTH_HIGH)
->>  				return -EINVAL;
->>  			pad->strength = arg;
->>  			break;
->> diff --git a/drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c b/drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c
->> index 1b41adda8129..0f96d130813b 100644
->> --- a/drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c
->> +++ b/drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c
->> @@ -1,7 +1,7 @@
->>  // SPDX-License-Identifier: GPL-2.0-only
->>  /*
->>   * Copyright (c) 2015, Sony Mobile Communications AB.
->> - * Copyright (c) 2013, The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2013, 2018 The Linux Foundation. All rights reserved.
->>   */
->>  
->>  #include <linux/module.h>
->> @@ -371,7 +371,7 @@ static int pm8xxx_pin_config_set(struct pinctrl_dev *pctldev,
->>  			banks |= BIT(0);
->>  			break;
->>  		case PM8XXX_QCOM_DRIVE_STRENGH:
->> -			if (arg > PMIC_GPIO_STRENGTH_LOW) {
->> +			if (arg > PM8921_GPIO_STRENGTH_LOW) {
->>  				dev_err(pctrl->dev, "invalid drive strength\n");
->>  				return -EINVAL;
->>  			}
->> diff --git a/include/dt-bindings/pinctrl/qcom,pmic-gpio.h b/include/dt-bindings/pinctrl/qcom,pmic-gpio.h
->> index e5df5ce45a0f..950be952ad3e 100644
->> --- a/include/dt-bindings/pinctrl/qcom,pmic-gpio.h
->> +++ b/include/dt-bindings/pinctrl/qcom,pmic-gpio.h
 > 
-> You cannot mix bindings with driver. This is an ABI break.
-
-This could be split into two patches.  However, both would need to make
-it into any given build to avoid runtime regressions when
-pinctrl-spmi-gpio.c rejects GPIO strength configurations larger than 1.
-
-I suppose that this kind of bi-directional dependency could be avoided
-by using one of these checks instead in the driver:
-
-if (arg > 3) {
-
-or
-
-if (arg > max(PMIC_GPIO_STRENGTH_LOW, PMIC_GPIO_STRENGTH_HIGH))
-
-Going this route would only require that the driver patch is picked up
-before the DT header patch.
-
-
-
->> @@ -12,9 +12,14 @@
->>  #define PMIC_GPIO_PULL_UP_1P5_30	3
->>  
->>  #define PMIC_GPIO_STRENGTH_NO		0
->> -#define PMIC_GPIO_STRENGTH_HIGH		1
->> +#define PMIC_GPIO_STRENGTH_LOW		1
->>  #define PMIC_GPIO_STRENGTH_MED		2
->> -#define PMIC_GPIO_STRENGTH_LOW		3
->> +#define PMIC_GPIO_STRENGTH_HIGH		3
+> Does "show that they are incremental IP's" sound better then?
 > 
-> Didn't you just break all DTSes in the world?
+> 
+> > This is not enum, but a list.
+> > 
+> 
+> 
+> What do you mean by this? I know it is a list, I specified so in the 
+> commit message.
 
-Currently, all PMIC GPIO peripherals managed by the pinctrl-spmi-gpio
-driver are having their drive strength control register programmed
-incorrectly at runtime for the constant name used in DT (i.e.
-PMIC_GPIO_STRENGTH_LOW vs PMIC_GPIO_STRENGTH_HIGH).  Changing the values
-of those constants as done in this patch fixes that incorrect behavior.
+You are saying that compatible must be exactly the 4 strings above in 
+the order listed. You need another entry with another 'items' list.
 
-The qcom,drive-strength DT property is taking a raw drive strength
-control register value instead of some logical strength abstraction.
-I'm not sure of a better way to handle the situation than fixing the
-incorrect drive strength constant to register value mapping as defined
-in qcom,pmic-gpio.h.
-
-Changing the mapping in qcom,pmic-gpio.h without updating any dtsi files
-could cause a problem for very old targets that use SSBI instead of SPMI
-for PMIC communication.  However, for there to actually be a problem,
-PMIC_GPIO_STRENGTH_LOW or PMIC_GPIO_STRENGTH_HIGH would need to be
-specified for the SSBI PMIC.  That would be GPIO devices with compatible
-strings: "qcom,pm8018-gpio", "qcom,pm8038-gpio", "qcom,pm8058-gpio",
-"qcom,pm8917-gpio", or "qcom,pm8921-gpio".  I could find no instances of
-this situation in the kernel source tree.
-
-The PMIC_GPIO_STRENGTH_LOW or PMIC_GPIO_STRENGTH_HIGH usage in dtsi
-files for SPMI PMICs does not need to be modified.  The DT header patch
-fixes configurations that are currently broken for them.
-
-Note that the drive strength misconfiguration issue doesn't present a
-problem for commercial products as this patch has been cherry-picked
-downstream for several years.
-
-Take care,
-David
+Rob
