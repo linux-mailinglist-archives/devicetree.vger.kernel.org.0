@@ -2,211 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31F805B2E62
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 08:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 581A65B2E7C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 08:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229939AbiIIGAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 02:00:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48972 "EHLO
+        id S230209AbiIIGGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 02:06:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbiIIF77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 01:59:59 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE1D3A17C;
-        Thu,  8 Sep 2022 22:59:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1662703197; x=1694239197;
-  h=subject:from:to:cc:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=TUTNp7tl9jBH5gO6p63V0NMyQAOZJ1ygWfraWfAJrNc=;
-  b=ccnlhaOvXpy3BdYkE6kwGoIcdETjfT4NmgzvmVQrovOzeQT3f24hXqb4
-   O5Hm63SnR7OOHPWB+IaqIg9oKflS0fScvjxJmgEzZuD9l7HOfAQDmGBhg
-   m9obkz0SSDhTc+hvWdJxORDsPwzrUV/hj0iM73jxLwTZeojh7/UQWjtvf
-   aE50L2bGez4oQzBwNJ/ZsW6wQiCd6zpYiBP9/9i7dehcGCJ71mru3YbXV
-   o3/lTdpzD1qFc7zPkUi5lDY4XAhiwk2fExZ5IHtH2mk9hvRMFM9rDbXWQ
-   S+gX3lJVw0aEWP92GsRqV3gSCJ2JvOneb4jdZneqeTQetQPFeHlBUmkIs
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,302,1654552800"; 
-   d="scan'208";a="26081637"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 09 Sep 2022 07:59:54 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 09 Sep 2022 07:59:54 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 09 Sep 2022 07:59:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1662703194; x=1694239194;
-  h=from:to:cc:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=TUTNp7tl9jBH5gO6p63V0NMyQAOZJ1ygWfraWfAJrNc=;
-  b=AxeWm9HI5bnejNpj7Z7edWKWGzR0EVA6/0v1TRV/yqJqfOc8RqK/xJKK
-   j4I32uEkLFqFDO0e/MSnqZrct4idEozUIvP/xEW4sW6AxmAS5RY6XTd9b
-   RYLJ4RsPGyzYlj3w3dUG4m7Fh9lKTLezdhSWg31sehyJndFDiNFQrMFHr
-   92BTBGsRl1cV1hxfKI2Gj6slmdjuqQOM0jpbgMCR2/Q5+F3HZBw/plH9G
-   kRAj2L7KvgADOI9LMmpxg6Lyq+trbLt9vI1GdTVccU77S3uYbt+ZNN4o3
-   CNqqD2DzfGV2Cfz2DflhwOxgFz+ZUi0Qw2O6XGzk3fzgKt+f9fsnPcCs8
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,302,1654552800"; 
-   d="scan'208";a="26081636"
-Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw74xx: add PCIe support
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 09 Sep 2022 07:59:54 +0200
-Received: from steina-w.localnet (unknown [10.123.49.11])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 5695B280056;
-        Fri,  9 Sep 2022 07:59:54 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
+        with ESMTP id S230220AbiIIGGQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 02:06:16 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2062.outbound.protection.outlook.com [40.107.92.62])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B85F7767;
+        Thu,  8 Sep 2022 23:06:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N1ghE8QrQIRauTOkZqGFPM5yfaNkMUay82riTtvlSTOOuLeBFgeFrTJNi8xfql2VDVOC/7hBlpYONgWCGeMoRJujcniEtcQb6rsdRzokOCp9zhcFDT0151phIfngwsSaurJf5ttipdsKC5ydFZ/mY/fVXsWr9b1SY/kejTlaBwK0fXRP0DOqlBvBSdKLzIj4QpeKvx9QYE9RhqWjg6ss30Xz4IJDPEDWBR/jqUJDWxT2Xpe3G4cXZQGOb+rmOa2Msgls8wYfCsvh3vPzvSXB+B76258agGH+pUJbgweoKIuJmlsAhu2MF9poz0DOn4NB2BZMKylNQJTOAKlvc3vmYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mkSK8vnX5eIRDE5Pz+h0RnYfAe9p+VQb7Zc46JcUE1A=;
+ b=hqNvQPPSqjbTolH5io53uVDyPJklEktlS+twVlVrg8Bf/JTcsOIU3oHV2N/gBh45bkDsMYdZCFwPYfL0JodLeZ0uth86VLOYGRF5pA6ulPiIbPWrWVSRN6KXP8utG5k9Z53oBJXnj/oDAxfGSHadpAUirngdKxpvELwqTbbFH4+7TEEON4Fegcte2H84yiIzrbFLHOwBke1XWEWTSYIF2RS0Ta8KOBPH9XcngJdqkh/W0Xvvt5d47v9eoTqKLHRqh/RwXbVXwzCu5PaDD66+RFBy9qlK2qRij1rRFbMYfr0TU9WdPEUqZItfb/PrIE1eta+1KGZrZfNrHLVpcvpgDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mkSK8vnX5eIRDE5Pz+h0RnYfAe9p+VQb7Zc46JcUE1A=;
+ b=yyOlLiDzKZ8fPbLlQZ0AiL6SE6NUYynCD2C9uSQv0VuD5BC70QF4FSboI60dxMvbq1qChhn2MkdDSCT5k2qAcvAIFF+2qcLd0XRGeiob3ZT71+zFbNshKH1PrSf7QVMPnUdt1LoLcyiGGdUq5w9BWGVFs559xB4Qyi/sMLPczUA=
+Received: from MW4PR04CA0087.namprd04.prod.outlook.com (2603:10b6:303:6b::32)
+ by SN7PR12MB6814.namprd12.prod.outlook.com (2603:10b6:806:266::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.16; Fri, 9 Sep
+ 2022 06:06:12 +0000
+Received: from CO1NAM11FT095.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:6b:cafe::4c) by MW4PR04CA0087.outlook.office365.com
+ (2603:10b6:303:6b::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.18 via Frontend
+ Transport; Fri, 9 Sep 2022 06:06:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT095.mail.protection.outlook.com (10.13.174.179) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5612.13 via Frontend Transport; Fri, 9 Sep 2022 06:06:11 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 9 Sep
+ 2022 01:06:07 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 9 Sep
+ 2022 01:06:07 -0500
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Fri, 9 Sep 2022 01:06:02 -0500
+From:   Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 09 Sep 2022 07:59:52 +0200
-Message-ID: <2530681.Lt9SDvczpP@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220908154903.4100386-1-tharvey@gateworks.com>
-References: <20220908154903.4100386-1-tharvey@gateworks.com>
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        "Robert Richter" <rric@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>,
+        <saikrishna12468@gmail.com>, <git@amd.com>,
+        Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: [PATCH v5 0/2] edac: Add support for Xilinx ZynqMP OCM EDAC
+Date:   Fri, 9 Sep 2022 11:35:46 +0530
+Message-ID: <20220909060548.24694-1-sai.krishna.potthuri@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT095:EE_|SN7PR12MB6814:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b5489d7-6099-4aab-b36c-08da92296580
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1hJExN/Bq+mBl6irsvAuJXopjIVXMXiuSwY7UyMyT2u8TJpkFoE7EkRuR7awUBKtmb2eoyDb39x+sNb4QdU9wWlDLu74n4Z2OBBxhn5+klReAUq/p3/k9XbyYFcZoXSvBccYmAtrkK9OYHVrjwjCEXGUp5Z8SalW7nE5sSqVdwh61jvAz7R5Q/e6GSbrivo5iGlKIE/IUcnfR7rwwqDK+k1Re6Z2inHTbvulAZBsLRBwcFNfD6JvaX2swsgox2SonWt5+c20rN4LvZodaV54+i+1iQ9CSqUF8BMGFpZ40F2Lum7mk/yYTuE7e5FpX9X6fdqBQv3PKXxEETGT/EY5PQZBXznroiPZKpDWBXbu7b5x9oOQZt6Ti5q1jq15r81Nxx0YGVkMvDu/riwlN+ixDA105RDAbwLfT4sy5VMyHSmye3ljTqevm9eygk1TuCM29T0mDbgrPUTj2v5MsVs10Zz1tJDPAY6smtJWEy62ngAXHc8GnM1R2e30gIME6vlvH9YBIK7ACTkA88hRGDzHk3lidzDmX5O7w9asieE1FtqPkbszMMXuEhi+A/omXfIhC/1S+UcxVMKYK8LVgVaX/SQcLllHHufBRkHaE3QCMRWO4Wxej3Z8XR0KkTpoYsJoHPhYImgRslt1pJ67PB7Dgxb3Gip+Hv6LAzYLQ3qd9T4hs6w1TOLjAOnQAt/wmjK0wbtXrkLCABrAk3/0YcJXcYxCgSObYSYMI2iScNbL63NXMDMPI5uZ7O92PuJzaqQ4a9+r/J3rY5of4gOzbJ8CBh6YWLP2sO2jG3wscfm71UsYsB2B/KK2fWoYrxv8LCEF
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(376002)(39860400002)(346002)(136003)(396003)(36840700001)(46966006)(40470700004)(81166007)(478600001)(6666004)(356005)(41300700001)(26005)(36860700001)(83380400001)(186003)(47076005)(336012)(82740400003)(1076003)(2616005)(8936002)(426003)(4326008)(86362001)(70206006)(70586007)(82310400005)(40480700001)(7416002)(8676002)(36756003)(2906002)(103116003)(40460700003)(54906003)(110136005)(316002)(5660300002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2022 06:06:11.8717
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b5489d7-6099-4aab-b36c-08da92296580
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT095.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6814
+X-Spam-Status: No, score=0.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tim,
+edac: Add support for Xilinx ZynqMP OCM EDAC
 
-Am Donnerstag, 8. September 2022, 17:49:03 CEST schrieb Tim Harvey:
-> Add PCIe support on the Gateworks GW74xx board. While at it,
-> fix the related gpio line names from the previous incorrect values.
-> 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
->  .../dts/freescale/imx8mp-venice-gw74xx.dts    | 40 +++++++++++++++++--
->  1 file changed, 37 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts index
-> e0fe356b662d..7644db61d631 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> @@ -8,6 +8,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
->  #include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/phy/phy-imx8-pcie.h>
-> 
->  #include "imx8mp.dtsi"
-> 
-> @@ -100,6 +101,12 @@ led-1 {
->  		};
->  	};
-> 
-> +	pcie0_refclk: pcie0-refclk {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
->  	pps {
->  		compatible = "pps-gpio";
->  		pinctrl-names = "default";
-> @@ -215,8 +222,8 @@ &gpio1 {
->  &gpio2 {
->  	gpio-line-names =
->  		"", "", "", "", "", "", "", "",
-> -		"", "", "", "", "", "", "", "",
-> -		"pcie3_wdis#", "", "", "pcie1_wdis@", "pcie2_wdis#", "", 
-"", "",
-> +		"", "", "", "", "", "", "pcie3_wdis#", "",
-> +		"", "", "pcie2_wdis#", "", "", "", "", "",
->  		"", "", "", "", "", "", "", "";
->  };
-> 
-> @@ -562,6 +569,28 @@ &i2c4 {
->  	status = "okay";
->  };
-> 
-> +&pcie_phy {
-> +	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
-> +	fsl,clkreq-unsupported;
-> +	clocks = <&pcie0_refclk>;
-> +	clock-names = "ref";
-> +	status = "okay";
-> +};
-> +
-> +&pcie {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pcie0>;
-> +	reset-gpio = <&gpio2 17 GPIO_ACTIVE_LOW>;
-> +	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
-> +		 <&clk IMX8MP_CLK_PCIE_ROOT>,
-> +		 <&clk IMX8MP_CLK_HSIO_AXI>;
-> +	clock-names = "pcie", "pcie_aux", "pcie_bus";
+changes in v5:
+-> 1/2, 2/2 - Added 'Co-developed-by' tag.
+-> 2/2 - Updated the driver hep text to be more clear about the hardware
+this driver is targeted.
+-> 2/2 - Fixed the warning reported by kernel test robot.
 
-With the still pending dt-binding patch at [1] the clock order shall be
-"pcie", "pcie_bus", "pcie_phy".
+changes in v4:
+-> 2/2 - Replaced \n\r with \n.
 
-Best regards,
-Alexander
+changes in v3:
+-> 1/2 - Moved the binding from edac to memory-controllers directory.
+-> 1/2 - Changed the file name to match with the compatible.
+-> 1/2 - Used additionalProperties instead of unevaluatedProperties.
+-> 1/2 - Used macro instead of constant value.
 
-[1] https://lore.kernel.org/lkml/20220822184701.25246-2-Sergey.Semin@baikalelectronics.ru/
+changes in v2:
+-> 1/2 - Used define for interrupt flag.
+-> 1/2 - Updated the description and title.
+-> 2/2 - Removed Kernel doc for probe and remove.
+-> 2/2 - Used COMPILE_TEST, used wrapper for get and ioremap resource.
+-> 2/2 - Fixed few comments related to static variable declaration
+and print statements.
 
-> +	assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
-> +	assigned-clock-rates = <10000000>;
-> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
-> +	status = "okay";
-> +};
-> +
->  /* GPS / off-board header */
->  &uart1 {
->  	pinctrl-names = "default";
-> @@ -694,7 +723,6 @@ pinctrl_hog: hoggrp {
->  			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	
-0x40000040 /* DIO0 */
->  			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	
-0x40000040 /* DIO1 */
->  			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /
-* M2SKT_OFF# */
-> -			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	
-0x40000150 /* PCIE1_WDIS# */
->  			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	
-0x40000150 /* PCIE2_WDIS# */
->  			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /
-* PCIE3_WDIS# */
->  			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	
-0x40000040 /* M2SKT_RST# */
-> @@ -807,6 +835,12 @@ MX8MP_IOMUXC_SD2_DATA1__GPIO2_IO16	0x10
-> 
->  		>;
-> 
->  	};
-> 
-> +	pinctrl_pcie0: pciegrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	
-0x110
-> +		>;
-> +	};
-> +
->  	pinctrl_pmic: pmicgrp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_NAND_DATA01__GPIO3_IO07	
-0x140
+Sai Krishna Potthuri (1):
+  edac: zynqmp_ocm: Add EDAC support for ZynqMP OCM
 
+Shubhrajyoti Datta (1):
+  dt-bindings: edac: Add bindings for Xilinx ZynqMP OCM
 
+ .../xlnx,zynqmp-ocmc-1.0.yaml                 |  45 ++
+ MAINTAINERS                                   |   7 +
+ drivers/edac/Kconfig                          |   9 +
+ drivers/edac/Makefile                         |   1 +
+ drivers/edac/zynqmp_ocm_edac.c                | 622 ++++++++++++++++++
+ 5 files changed, 684 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,zynqmp-ocmc-1.0.yaml
+ create mode 100644 drivers/edac/zynqmp_ocm_edac.c
 
+-- 
+2.17.1
 
