@@ -2,800 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 663425B2E77
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 08:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FA8A5B2E9D
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 08:18:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230302AbiIIGGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 02:06:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32964 "EHLO
+        id S230249AbiIIGSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 02:18:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230314AbiIIGG3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 02:06:29 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2040.outbound.protection.outlook.com [40.107.237.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 768B0F7767;
-        Thu,  8 Sep 2022 23:06:25 -0700 (PDT)
+        with ESMTP id S230025AbiIIGSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 02:18:20 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CED54804AD;
+        Thu,  8 Sep 2022 23:18:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1662704296; x=1694240296;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=2P1MqUe1Ad4YuN4EK16MflkSP1SVGjMGVp56HxDYy9c=;
+  b=Mx1C5KVZIgfpeLOvtUK8LDDCPXd2soxxBKkE1YsyISGHvxtcSWjCrdcz
+   JLjtF/nmOh/38tPfmbhcNYe81R3q3ejHcQwFKD6SKYugi5pI5ahCqWZN+
+   1PChB8FwrHdZr69xFPg8qqqE5Vs/AS2ULYKK/7eQY34faxzK2q3yds4U2
+   GxIebo1e17AQe0DjsTYZA8B+XAJ9KQ+RuowOmN24jJDLTCZWvVgu+svBq
+   SgunnHnLMTlTT/hY+Z83fPlDb98lEcYzk2bjaILU8cFxS5wQt5SR4FTrS
+   yIEdmgp6TKpRNDFngBo3jbo1T/XsqnoAousVOqSvo9IlVYEAqklUGXdOG
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,302,1654585200"; 
+   d="scan'208";a="112887400"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Sep 2022 23:18:14 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Thu, 8 Sep 2022 23:18:12 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12 via Frontend Transport; Thu, 8 Sep 2022 23:18:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K+bCL2i08LwareSUakm3hxZH2bK2K8oL4DCOMYaUD2DpUDXpAMCD36uB10ijEmSbVPpA6mKKOwvtDA98Rw1jt7ngeTTwzhCrDmZPMaFSvvY4eBc4rzUs3gUFky84ialJYyjeUK2hvLUfxJkSaU1Z2kghQ5mcoKViakVsJ+9LaJ2sWs56EeB3FmyKgiUke9LPCHh25Cs6Q9Z2S6Lhh6tZb8u7t88nz1Ocp0EsbEjS4v95+NitQI46yj68qXgb8QRuFJOgllSwN7YH8Txzb4/UTpmKTR0c0nJ6B/X0KBoQmjm+bbYcTIvj8D6GkOAkoeJ8mmPZtvsR7+2u2XpXZHPWJA==
+ b=nOVd5lLO/Mm3pt1F7nK5Y9rM+1XrAseNfwSRrzwMT0atgO4rY4ew8oSvndAIjdjCcExvMt0LxdMML3TzBMSBt0Er5+YogI0AFf1Ri83DUffv4N6lZ1r45Yilv89vKGhjWM7Pi8+/n78sUY9fncvKe1LS3gVE11s0x8bJye/aYPr84UKH+UrE6AcxQAJKwplkzJqMBMnjcz6Oi37piJVgI1boC+Jakeyghd14xWINcQj0Z6mscd3NaLJJtoR2JkWGoFNQUUpnUhAZXTwvRcpoetsJzNu0VZ43B0/v4wfjqH8RZMT+woLyAoFv48YNQiYfBlezEAYs1LZE1Vq0lKrEHg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WsRT9TNJlBEtVzLI/HSB3NHmxmSKofCONxmbmUQKIyQ=;
- b=FBV1Drv+QGM6s3nEn1aZpyWl8k/e52LKTrVNO2ry2e8nXk99buN12QX1e2zjRekD5ffVYi71WBk/24qkdEJCbhC+WGfz/a1dyfy5YPX3fy+820AqzmNH3DPBDop7lHayKqh9oki9sP7ya8RcSMHh5LU1OKZzd5m9rxZDslbZWomawqla/YpZUlh5wOM5S2lFSQrY+ia83hhSUGsnhMj34ZwVTJoYOSQi8xWobmbIYFugnxCQIbOqbiI3rXynRixnBD9VhRejlDs/pTJeFioaYkb+f41vi5pUwUZi7f2PZ0M7M5SdXxwnU+i5uk7gKm7pucVH2RIF65qAoN6LzjPtGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=6oTEAZO7k5wUPiubpTLWTrhEBWGYxvLultNPd7R2Kfc=;
+ b=HB6aifr/dLjakHZvz1/c331jnpMXVf0NxJXYwE+RWQoq2hiaUlfFVwoatYK/1chwLFvXStZarQPGHnK7BTvnKfMcCteVL6cyzTmzKOL0oqmO0YxWt0fvqz2czDAwYOjVvPLXxjDHZA4U+Gm3kT57TZIRHa2u6eAaN7K+UTvsrOiaRGu3erxLGCmSkjVBukQAmVeqDiMvtYq2rXL7Or3XkE/BATA+IyizBMkmfyhSwTFpmhL8d+a8DS9IlzVtXwN4p+UFbU4FOCL4Ab+hJ2GtecAz2w7BNOoAp1V2D+AxVjLgtvVmMMFY2KWBVg/IWXTtIAS1I5mlOmBCNILE5TDlbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WsRT9TNJlBEtVzLI/HSB3NHmxmSKofCONxmbmUQKIyQ=;
- b=KhOgATH8LncJV/fvjtDcQQst+0SedeXqUFykiUk3yX1+wyh8bFk9Tgamafgn3a7xMMsGIfjrzF1bpvBMruBw4/Hnom2IFWJElkpq2PZkLjzDV06L5GPWHj7idh6OXTRBglwXbp1HeM7S9KuAZ/4/WtXDqDi0YR52RCcJmjPpmgw=
-Received: from DM6PR01CA0016.prod.exchangelabs.com (2603:10b6:5:296::21) by
- SJ0PR12MB7067.namprd12.prod.outlook.com (2603:10b6:a03:4ae::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5612.16; Fri, 9 Sep 2022 06:06:19 +0000
-Received: from DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:296:cafe::cc) by DM6PR01CA0016.outlook.office365.com
- (2603:10b6:5:296::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
- Transport; Fri, 9 Sep 2022 06:06:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT017.mail.protection.outlook.com (10.13.172.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5612.13 via Frontend Transport; Fri, 9 Sep 2022 06:06:18 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 9 Sep
- 2022 01:06:17 -0500
-Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Fri, 9 Sep 2022 01:06:12 -0500
-From:   Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        "Robert Richter" <rric@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
+ bh=6oTEAZO7k5wUPiubpTLWTrhEBWGYxvLultNPd7R2Kfc=;
+ b=jKYDyGzV3+KcC341xzb/rB4nxdt/2mDBlX+ORxgF5Cceo+n6DlUYf55jHMwKRFqJIZApt32vv/AIN82tpX8QsENmpKfP1bQ8qHYO3rj6dF8SnAlYTh3j82pstvKMt8HeGldWUF9UP2CIHfnaulIF/2pT7z/vj6WWMn+oTm9CK7c=
+Received: from SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
+ by BL1PR11MB5542.namprd11.prod.outlook.com (2603:10b6:208:31d::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19; Fri, 9 Sep
+ 2022 06:18:06 +0000
+Received: from SA2PR11MB4874.namprd11.prod.outlook.com
+ ([fe80::6982:4db0:989c:c097]) by SA2PR11MB4874.namprd11.prod.outlook.com
+ ([fe80::6982:4db0:989c:c097%9]) with mapi id 15.20.5612.014; Fri, 9 Sep 2022
+ 06:18:06 +0000
+From:   <Kavyasree.Kotagiri@microchip.com>
+To:     <robh@kernel.org>
+CC:     <Claudiu.Beznea@microchip.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>,
-        <saikrishna12468@gmail.com>, <git@amd.com>,
-        Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Subject: [PATCH v5 2/2] edac: zynqmp_ocm: Add EDAC support for ZynqMP OCM
-Date:   Fri, 9 Sep 2022 11:35:48 +0530
-Message-ID: <20220909060548.24694-3-sai.krishna.potthuri@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220909060548.24694-1-sai.krishna.potthuri@amd.com>
-References: <20220909060548.24694-1-sai.krishna.potthuri@amd.com>
+        <linux-kernel@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <Nicolas.Ferre@microchip.com>,
+        <lee@kernel.org>, <robh+dt@kernel.org>, <Sergiu.Moga@microchip.com>
+Subject: RE: [RESEND PATCH v9 1/3] dt-bindings: mfd: Convert atmel-flexcom to
+ json-schema
+Thread-Topic: [RESEND PATCH v9 1/3] dt-bindings: mfd: Convert atmel-flexcom to
+ json-schema
+Thread-Index: AQHYw5S351ZiP2+bvEqYZuXgNIsbDK3WCUwAgACWniA=
+Date:   Fri, 9 Sep 2022 06:18:06 +0000
+Message-ID: <SA2PR11MB48742AF8A0C9BC6D32D57A2892439@SA2PR11MB4874.namprd11.prod.outlook.com>
+References: <20220908150658.1839520-1-kavyasree.kotagiri@microchip.com>
+ <20220908150658.1839520-2-kavyasree.kotagiri@microchip.com>
+ <1662671776.565921.3355400.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1662671776.565921.3355400.nullmailer@robh.at.kernel.org>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA2PR11MB4874:EE_|BL1PR11MB5542:EE_
+x-ms-office365-filtering-correlation-id: 4ac8872e-ff56-493c-32dd-08da922b0f44
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: mk3gsJ65lPrZdbZ2dhInox0tDUN/a5SROGPdVZq5/cRVm4uptS+s23G42IwMqW9M79CAOXCJGB70XLtbDrrm18/FZ/yvvl9Vij3lT5uZG6ZEIrGcJrFHLiDCiFoU9KlHK04hMupWb4H+QhJbl/TiPOtLmpqPWBOvbncR5nToc6qhhAUFVeVoAj20g0/3Reyg7Bs61hielZ9aQ4IQs8mCKDys72Rkw/vgeBp6b3qdwp6AWHdCwM2LfIEzEhX2k6Fg38liHyPsN5qKcJMBxtWR+eXTRu16yz05drz5ryKm8Z5QWj5PDAzqK8Q89QCd3aeIOnNkl51hNwJxu3Umqe4BoTMRZRKSOmO7efXe0T8srQq/ZcDZIHPDVYilpU3ezbTa/JH/6rmcAz7+abquJRkGotBu+AwP7LD1vfP7zBvxicxYkVnTmPMpgb3zj7z4HBYrSAaWhwEFeepbdg1X/5pHG8P3o3DArR3liQ37+4uT3FkE1niBqXIAVQ2JnJKbplK2hqCPsCv2a5Ks4K3bVyG30UqE49l59CXLJqii1pR3BXbp9hf/QTYK35l+qPRGvXq7DgNaiFbOhpHTufbo9w5pokLwzuVIuZvVsJEnEQIsJuEpMqDiA3rVrorbp1+UTiQELeI1YEW9UEW5FHzKjaE/ILN1RPY+twzD/2NljFuTHcPdBtWedh0uEeE/6sSUOC4OCx4ISDSGZRIcMLChWjSnO64KGxWHzoCfNA+H2QKmdo0DjnZxDRegJD2JfLnkHN4gaIDG/ZiuJb7d2Cs7cOTB81Y/aQgAPHhUYHDOj9qmrfkqsHFWmW6JR+Qk7k0zLRKl3jAjidShrG4kng02otQp0Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB4874.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(39860400002)(376002)(346002)(136003)(366004)(38100700002)(54906003)(6916009)(316002)(86362001)(2906002)(66446008)(38070700005)(8936002)(66476007)(52536014)(64756008)(55016003)(66946007)(5660300002)(66556008)(107886003)(122000001)(4326008)(76116006)(8676002)(71200400001)(966005)(33656002)(478600001)(41300700001)(83380400001)(186003)(7696005)(9686003)(26005)(6506007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MjVz3pI4wCIfLGkjpVzJudU82/o+G6IsWwUr6A7uyrm1MAobXOhoqjTxjFaf?=
+ =?us-ascii?Q?qGHdIcwHyLJ8oOB+s98WdKYbFmx6r9m/IUQBsHQB1hyd9KQZAFx8I6QkWjzW?=
+ =?us-ascii?Q?K1EJ9EnK8eJyXgismQeig3kGnqtE9mIZ2ayAILk70yaQnVWWW1+QPLda5C80?=
+ =?us-ascii?Q?0S2yu9r0EWJwQz3o1eq14wrqKDne2d2fj7lhLWVQJK9zEovbsu6MLVDHFJrQ?=
+ =?us-ascii?Q?iZm+Odr83F+qSSuwShnxmkpNb7h/CjTTsQpc3GbovPn4f0K4sId6T/NChNse?=
+ =?us-ascii?Q?we2tCHfJQNX5oYO+d3AsJYhc8ruX+nJ/x1jCpuByDkLWV851i24C186OGjdz?=
+ =?us-ascii?Q?HkATVc7g9XOG5clAPfZyN8qLCAQtLRsZlAIe/ln17jQZMHOOTwq/9cV/35vA?=
+ =?us-ascii?Q?OYvEJZleqMVcgNKHYoZpUuucYKK48G8gfhctZsOPuTI1eCtwGEGyi8g/EI1e?=
+ =?us-ascii?Q?vLL3+6kTillgcgRi8r9zZYqhdFontkMlw78xX14+WgTkkrAcsQavY/WPKBZB?=
+ =?us-ascii?Q?OmhgOvmz0eaCsS9q8CdBa42L0hc2/VaHx04NE7lfXjPRfL6qOsk7VD+6HagF?=
+ =?us-ascii?Q?s50bBgZmSYhaZjqsoTRvAcvGz0I2z+8VwCPgmzyJNG8vTj0Ig5wFptWGfbCQ?=
+ =?us-ascii?Q?MGnpb0o/8uDYLC8HWA2Yu9QViP9fiDZfl7mYvagPKjf6ubY4EKT5THriZr2L?=
+ =?us-ascii?Q?+D61vz7Z4MJ6bJIFScLvPbm45U67oLjr1vdWMsskZ7YUjd2+L0svo6o1TudW?=
+ =?us-ascii?Q?kYEQDlQOxPIJC5BUX/RqAslxUu7Glqb15eDzJGb5HTsHIYRPSVqbKCWf4wVi?=
+ =?us-ascii?Q?E2dg6ydZBxLuvRlNsC6yXq2dp//vnDcKs9ORAjHobCFNEfQf5bF5fBNooD3o?=
+ =?us-ascii?Q?yEM0vOk+kzRWnHLZy3anxwNm/KRrCuxBrGL7k/k9g3R6rfP+4/NZFN+8ow8z?=
+ =?us-ascii?Q?q+2BN5Ec+e47TRXMSLNFSjDy9IUHgqLtiiZH/vtJf8vMpDfI7ihKtJPVUMl7?=
+ =?us-ascii?Q?/4VRDmEyySXAj9rcqGHdWv6n9zXdTcvLP2q68KSh6VtNKn9ETjhIbc/bXhKp?=
+ =?us-ascii?Q?r6LpH7CTWGuXafe0F2XAHI+a4kBr0/qPRxEqDpWXovUl4qW6WYJ1n5bvgpIE?=
+ =?us-ascii?Q?5mnea7BhRjrRdpVLxiGaWgJI9zGzrZnK7Vt5pz+kouE6qaZk29U2GE4G79MV?=
+ =?us-ascii?Q?L1H0qP8AiFXqHC4ORF2Q9uYR5L8A5YRIytMzpCLIOOAmvQ7YjDBs41oJ/NcB?=
+ =?us-ascii?Q?xM8GexKJ2dGiZXp7PT6vqr+LQSaF7xHIFqDICtAJfLkUE56lT/ctsyHXd6fa?=
+ =?us-ascii?Q?nO974x70+XcisTACeOCcjv4lz1qv59u4P04/GRj2weE6TOKtMX/JTwUfYlNk?=
+ =?us-ascii?Q?GdQQonLzxCroSdD5XO8upOGr9m0B1096hHKonQpI3mtmxjma5BMqiQuyhDk6?=
+ =?us-ascii?Q?PbzcK+YYsvUDgyKU0nldKWs6cTkLz+DKllVqXn429UEPPkp3NdZiN1kbAWtq?=
+ =?us-ascii?Q?kGfqd5QeHAVULrwROzoPcAuBYV+62fkJas32ixoZQ0b9xb3uaFaJHV+sEzFB?=
+ =?us-ascii?Q?uZkwXj+tD+kCg+DWk9NvDM2sbHtikA7Oq2gNga4v0SZ7pWNczDek4Ro7Wz3w?=
+ =?us-ascii?Q?fg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT017:EE_|SJ0PR12MB7067:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7c2f1dd-79d3-4623-6db5-08da9229699b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eYHSTa/KgOZxMhnKy/gAQwYEHn0fGrRfZTqU1ji78s8MDhrHdd1KQYwS6j9rBi9C0xQTUXWet8OKJIE0KfC7PEITub6YinGEbdov1M9MEpQrIiMyFM2etBy+6A/qKiO4taWAHT5aNEVvtuQpgkNg5ytl4iOR46WeRakMf5CemoF8ieWk91omydU0+8uFpEDKWHjViUAXoM2JwQ072zE4lP4OLzIqcofYUMZ5HHXYbGdSVuocIl+p477FOU5gFJQCEZyyl29JtL3VJ46P2yTZ1uFyBVVSyGT6LGuv4OJRpSiIIXJV+Pm8VlKFuDpYMpRpwxuU8cU0z9njR8mXtMatqnh+vnFov/BCAshxGkPbkTaPimLEViL0m4bLivZTylkBKl99Oh2ICp1WRuROw4oAxvEdaiLwS4l9gSEqPNCkPZtrB5D3pathDmGEuTCM9DzYSLx6GPAaqnhCOfASfBU9k0ApJXt0lbSZZr9P78+rMwvposT4z+dq2rKRgBChPo7FYgqAgiWNcBtahMRU0nKNCXUHdz7rKjo866teTmHPxJy0eumL4PU+gDNG9VpphEDNxMwPiinouEQTuh8Y5Hpgl0X8LfXQBFiBDNF3KyNbyYB1rUl7Anj4Q0rolq7w7UdIONk1Z9SR6rg41S4Rwx0u34CCsfxuMBgbNfNIILNAmP4y3n4ajcCRO9p04O29GsKFWZRzLouU8/EKwPCAPGkQw+lInbDL3k4w7X4nUUMDD9FAivw5LpkZqa6tb1FgwRkB732NTcm0GidejTyMOWXKEKKqLOnMPQ45IIXNFQHQ+lY=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(376002)(136003)(346002)(39860400002)(396003)(36840700001)(46966006)(40470700004)(82740400003)(7416002)(103116003)(30864003)(2906002)(36756003)(47076005)(5660300002)(40480700001)(70206006)(70586007)(8936002)(26005)(356005)(8676002)(186003)(478600001)(4326008)(2616005)(6666004)(40460700003)(316002)(81166007)(54906003)(110136005)(86362001)(82310400005)(1076003)(36860700001)(83380400001)(41300700001)(336012)(426003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2022 06:06:18.8361
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4874.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ac8872e-ff56-493c-32dd-08da922b0f44
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2022 06:18:06.3400
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7c2f1dd-79d3-4623-6db5-08da9229699b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7067
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OmaAA+fDjKxMjvCCgp2FGI1vIV801r3ILXd7+4FWhVCDKQCxDcimPMIqrNM9ZsIXpvNjQboswPtiKcaElRNdZfPV+scwvn1ToYPlxvQwzIQXWsaVVHDai4mBll3axSFX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5542
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add EDAC support for Xilinx ZynqMP OCM Controller, this driver
-reports CE and UE errors based on the interrupts, and also creates ue/ce
-sysfs entries for error injection.
+>=20
+> On Thu, 08 Sep 2022 13:06:56 -0200, Kavyasree Kotagiri wrote:
+> > Convert the Atmel flexcom device tree bindings to json schema.
+> >
+> > Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> > ---
+> > v8 -> v9:
+> >  - Changed reference provided for spi bindings to atmel,at91rm9200-
+> spi.yaml
+> >
+> > v7 -> v8:
+> >  - Added back patternProperties for child nodes.
+> >
+> > v6 -> v7:
+> >  - Change filename to atmel,sama5d2-flexcom.yaml
+> >  - Add #address-cells, #size-cells to flexcom node - Fixed warnings.
+> >
+> > v5 -> v6:
+> >  - Removed spi node from example as suggested by Rob and
+> >    also pattern properties(spi dt-bindings conversion to yaml patch is =
+under
+> review).
+> >    Once that is accepted, I will add back spi example through new patch=
+.
+> >
+> > v4 -> v5:
+> >  - Fixed indentations.
+> >
+> > v3 -> v4:
+> >  - Corrected format of enum used for compatible string.
+> >
+> > v2 -> v3:
+> >  - used enum for compatible string.
+> >  - changed irq flag to IRQ_TYPE_LEVEL_HIGH in example.
+> >  - fixed dtschema errors.
+> >
+> > v1 -> v2:
+> >  - Fix title.
+> >
+> >  .../bindings/mfd/atmel,sama5d2-flexcom.yaml   | 91
+> +++++++++++++++++++
+> >  .../devicetree/bindings/mfd/atmel-flexcom.txt | 63 -------------
+> >  2 files changed, 91 insertions(+), 63 deletions(-)
+> >  create mode 100644
+> Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-
+> flexcom.txt
+> >
+>=20
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+>=20
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+>=20
+> Full log is available here: https://patchwork.ozlabs.org/patch/
+>=20
+>=20
+> flexcom@e0040000: spi@400: Unevaluated properties are not allowed
+> ('dma-names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dtb
+>         arch/arm/boot/dts/lan966x-pcb8291.dtb
+>         arch/arm/boot/dts/lan966x-pcb8309.dtb
+>=20
+> flexcom@e0044000: spi@400: Unevaluated properties are not allowed
+> ('dma-names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dtb
+>         arch/arm/boot/dts/lan966x-pcb8291.dtb
+>         arch/arm/boot/dts/lan966x-pcb8309.dtb
+>=20
+> flexcom@e0060000: spi@400: Unevaluated properties are not allowed
+> ('dma-names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dtb
+>         arch/arm/boot/dts/lan966x-pcb8291.dtb
+>         arch/arm/boot/dts/lan966x-pcb8309.dtb
+>=20
+> flexcom@e0064000: spi@400: Unevaluated properties are not allowed
+> ('dma-names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dtb
+>         arch/arm/boot/dts/lan966x-pcb8291.dtb
+>         arch/arm/boot/dts/lan966x-pcb8309.dtb
+>=20
+> flexcom@e0070000: spi@400: Unevaluated properties are not allowed
+> ('dma-names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb
+>         arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dtb
+>         arch/arm/boot/dts/lan966x-pcb8291.dtb
+>         arch/arm/boot/dts/lan966x-pcb8309.dtb
+>=20
+> flexcom@e2824000: spi@400: Unevaluated properties are not allowed
+> ('dma-names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/at91-sama7g5ek.dtb
+>=20
+> flexcom@f8034000: spi@400: Unevaluated properties are not allowed
+> ('dma-names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/at91-kizbox3-hs.dtb
+>         arch/arm/boot/dts/at91-sama5d27_som1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_icp.dtb
+>         arch/arm/boot/dts/at91-sama5d2_ptc_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_xplained.dtb
+>=20
+> flexcom@f8038000: spi@400: Unevaluated properties are not allowed
+> ('dma-names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/at91-kizbox3-hs.dtb
+>         arch/arm/boot/dts/at91-sama5d27_som1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_icp.dtb
+>         arch/arm/boot/dts/at91-sama5d2_ptc_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_xplained.dtb
+>=20
+> flexcom@fc010000: spi@400: Unevaluated properties are not allowed ('dma-
+> names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/at91-kizbox3-hs.dtb
+>         arch/arm/boot/dts/at91-sama5d27_som1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_icp.dtb
+>         arch/arm/boot/dts/at91-sama5d2_ptc_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_xplained.dtb
+>=20
+> flexcom@fc014000: spi@400: Unevaluated properties are not allowed ('dma-
+> names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/at91-kizbox3-hs.dtb
+>         arch/arm/boot/dts/at91-sama5d27_som1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_icp.dtb
+>         arch/arm/boot/dts/at91-sama5d2_ptc_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_xplained.dtb
+>=20
+> flexcom@fc018000: spi@400: Unevaluated properties are not allowed ('dma-
+> names', 'dmas' were unexpected)
+>         arch/arm/boot/dts/at91-kizbox3-hs.dtb
+>         arch/arm/boot/dts/at91-sama5d27_som1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_icp.dtb
+>         arch/arm/boot/dts/at91-sama5d2_ptc_ek.dtb
+>         arch/arm/boot/dts/at91-sama5d2_xplained.dtb
 
-Co-developed-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Reported-by: kernel test robot <lkp@intel.com>
----
- MAINTAINERS                    |   7 +
- drivers/edac/Kconfig           |   9 +
- drivers/edac/Makefile          |   1 +
- drivers/edac/zynqmp_ocm_edac.c | 622 +++++++++++++++++++++++++++++++++
- 4 files changed, 639 insertions(+)
- create mode 100644 drivers/edac/zynqmp_ocm_edac.c
+dma properties for spi node is already being covered by Sergiu in below pat=
+ch:
+https://lore.kernel.org/lkml/b4625526-8f9b-ada8-f854-751a48545576@linaro.or=
+g/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index edc96cdb85e8..7a40caf536c2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21692,6 +21692,13 @@ F:	Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
- F:	drivers/dma/xilinx/xilinx_dpdma.c
- F:	include/dt-bindings/dma/xlnx-zynqmp-dpdma.h
- 
-+XILINX ZYNQMP OCM EDAC DRIVER
-+M:	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-+M:	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/memory-controllers/xlnx,zynqmp-ocmc-1.0.yaml
-+F:	drivers/edac/zynqmp_ocm_edac.c
-+
- XILINX ZYNQMP PSGTR PHY DRIVER
- M:	Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
- M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-index 58ab63642e72..bc30b7d02062 100644
---- a/drivers/edac/Kconfig
-+++ b/drivers/edac/Kconfig
-@@ -539,4 +539,13 @@ config EDAC_DMC520
- 	  Support for error detection and correction on the
- 	  SoCs with ARM DMC-520 DRAM controller.
- 
-+config EDAC_ZYNQMP_OCM
-+	tristate "Xilinx ZynqMP OCM Controller"
-+	depends on ARCH_ZYNQMP || COMPILE_TEST
-+	help
-+	  This driver is targeted for Xilinx ZynqMP OCM (On Chip Memory)
-+	  controller to support for error detection and correction.
-+	  This driver can also be built as a module. If so, the module
-+	  will be called zynqmp_ocm_edac.
-+
- endif # EDAC
-diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
-index 2d1641a27a28..634c1cec1588 100644
---- a/drivers/edac/Makefile
-+++ b/drivers/edac/Makefile
-@@ -84,3 +84,4 @@ obj-$(CONFIG_EDAC_QCOM)			+= qcom_edac.o
- obj-$(CONFIG_EDAC_ASPEED)		+= aspeed_edac.o
- obj-$(CONFIG_EDAC_BLUEFIELD)		+= bluefield_edac.o
- obj-$(CONFIG_EDAC_DMC520)		+= dmc520_edac.o
-+obj-$(CONFIG_EDAC_ZYNQMP_OCM)		+= zynqmp_ocm_edac.o
-diff --git a/drivers/edac/zynqmp_ocm_edac.c b/drivers/edac/zynqmp_ocm_edac.c
-new file mode 100644
-index 000000000000..a8da94f3e067
---- /dev/null
-+++ b/drivers/edac/zynqmp_ocm_edac.c
-@@ -0,0 +1,622 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Xilinx ZynqMP OCM ECC Driver
-+ *
-+ * Copyright (C) 2022 Advanced Micro Devices, Inc.
-+ */
-+
-+#include <linux/edac.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+
-+#include "edac_module.h"
-+
-+#define ZYNQMP_OCM_EDAC_MSG_SIZE	256
-+
-+#define ZYNQMP_OCM_EDAC_STRING	"zynqmp_ocm"
-+
-+/* Controller registers */
-+#define CTRL_OFST			0x0
-+#define OCM_ISR_OFST		0x04
-+#define OCM_IMR_OFST		0x08
-+#define OCM_IEN_OFST		0x0C
-+#define OCM_IDS_OFST		0x10
-+
-+/* ECC control register */
-+#define ECC_CTRL_OFST		0x14
-+
-+/* Correctable error info registers */
-+#define CE_FFA_OFST			0x1C
-+#define CE_FFD0_OFST		0x20
-+#define CE_FFD1_OFST		0x24
-+#define CE_FFD2_OFST		0x28
-+#define CE_FFD3_OFST		0x2C
-+#define CE_FFE_OFST			0x30
-+
-+/* Uncorrectable error info registers */
-+#define UE_FFA_OFST			0x34
-+#define UE_FFD0_OFST		0x38
-+#define UE_FFD1_OFST		0x3C
-+#define UE_FFD2_OFST		0x40
-+#define UE_FFD3_OFST		0x44
-+#define UE_FFE_OFST			0x48
-+
-+/* ECC control register bit field definitions */
-+#define ECC_CTRL_CLR_CE_ERR	0x40
-+#define ECC_CTRL_CLR_UE_ERR	0x80
-+
-+/* Fault injection data and count registers */
-+#define OCM_FID0_OFST		0x4C
-+#define OCM_FID1_OFST		0x50
-+#define OCM_FID2_OFST		0x54
-+#define OCM_FID3_OFST		0x58
-+#define OCM_FIC_OFST		0x74
-+
-+#define UE_MAX_BITPOS_LOWER	31
-+#define UE_MIN_BITPOS_UPPER	32
-+#define UE_MAX_BITPOS_UPPER	63
-+
-+/* Interrupt masks */
-+#define OCM_CEINTR_MASK		BIT(6)
-+#define OCM_UEINTR_MASK		BIT(7)
-+#define OCM_ECC_ENABLE_MASK	BIT(0)
-+#define OCM_CEUE_MASK		GENMASK(7, 6)
-+
-+#define OCM_FICOUNT_MASK	GENMASK(23, 0)
-+#define OCM_BASEVAL			0xFFFC0000
-+#define EDAC_DEVICE			"ZynqMP-OCM"
-+
-+/**
-+ * struct ecc_error_info - ECC error log information
-+ * @addr:	Fault generated at this address
-+ * @data0:	Generated fault data
-+ * @data1:	Generated fault data
-+ */
-+struct ecc_error_info {
-+	u32 addr;
-+	u32 data0;
-+	u32 data1;
-+};
-+
-+/**
-+ * struct zynqmp_ocm_ecc_status - ECC status information to report
-+ * @ce_cnt:	Correctable error count
-+ * @ue_cnt:	Uncorrectable error count
-+ * @ceinfo:	Correctable error log information
-+ * @ueinfo:	Uncorrectable error log information
-+ */
-+struct zynqmp_ocm_ecc_status {
-+	u32 ce_cnt;
-+	u32 ue_cnt;
-+	struct ecc_error_info ceinfo;
-+	struct ecc_error_info ueinfo;
-+};
-+
-+/**
-+ * struct zynqmp_ocm_edac_priv - DDR memory controller private instance data
-+ * @baseaddr:	Base address of the DDR controller
-+ * @message:	Buffer for framing the event specific info
-+ * @stat:	ECC status information
-+ * @p_data:	Pointer to platform data
-+ * @ce_cnt:	Correctable Error count
-+ * @ue_cnt:	Uncorrectable Error count
-+ * @ce_bitpos:	Bit position for Correctable Error
-+ * @ue_bitpos0:	First bit position for Uncorrectable Error
-+ * @ue_bitpos1:	Second bit position for Uncorrectable Error
-+ */
-+struct zynqmp_ocm_edac_priv {
-+	void __iomem *baseaddr;
-+	char message[ZYNQMP_OCM_EDAC_MSG_SIZE];
-+	struct zynqmp_ocm_ecc_status stat;
-+	const struct zynqmp_ocm_platform_data *p_data;
-+	u32 ce_cnt;
-+	u32 ue_cnt;
-+	u8 ce_bitpos;
-+	u8 ue_bitpos0;
-+	u8 ue_bitpos1;
-+};
-+
-+/**
-+ * zynqmp_ocm_edac_geterror_info - Get the current ecc error info
-+ * @base:	Pointer to the base address of the ddr memory controller
-+ * @p:		Pointer to the ocm ecc status structure
-+ * @mask:	Status register mask value
-+ *
-+ * Determines there is any ecc error or not
-+ *
-+ */
-+static void zynqmp_ocm_edac_geterror_info(void __iomem *base,
-+					  struct zynqmp_ocm_ecc_status *p, int mask)
-+{
-+	if (mask & OCM_CEINTR_MASK) {
-+		p->ce_cnt++;
-+		p->ceinfo.data0 = readl(base + CE_FFD0_OFST);
-+		p->ceinfo.data1 = readl(base + CE_FFD1_OFST);
-+		p->ceinfo.addr = (OCM_BASEVAL | readl(base + CE_FFA_OFST));
-+		writel(ECC_CTRL_CLR_CE_ERR, base + OCM_ISR_OFST);
-+	} else if (mask & OCM_UEINTR_MASK) {
-+		p->ue_cnt++;
-+		p->ueinfo.data0 = readl(base + UE_FFD0_OFST);
-+		p->ueinfo.data1 = readl(base + UE_FFD1_OFST);
-+		p->ueinfo.addr = (OCM_BASEVAL | readl(base + UE_FFA_OFST));
-+		writel(ECC_CTRL_CLR_UE_ERR, base + OCM_ISR_OFST);
-+	}
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_handle_error - Handle controller error types CE and UE
-+ * @dci:	Pointer to the edac device controller instance
-+ * @p:		Pointer to the ocm ecc status structure
-+ *
-+ * Handles the controller ECC correctable and uncorrectable error.
-+ */
-+static void zynqmp_ocm_edac_handle_error(struct edac_device_ctl_info *dci,
-+					 struct zynqmp_ocm_ecc_status *p)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+	struct ecc_error_info *pinf;
-+
-+	if (p->ce_cnt) {
-+		pinf = &p->ceinfo;
-+		snprintf(priv->message, ZYNQMP_OCM_EDAC_MSG_SIZE,
-+			 "\nOCM ECC error type :%s\n"
-+			 "Addr: [0x%X]\nFault Data[31:0]: [0x%X]\n"
-+			 "Fault Data[63:32]: [0x%X]",
-+			 "CE", pinf->addr, pinf->data0, pinf->data1);
-+		edac_device_handle_ce(dci, 0, 0, priv->message);
-+	}
-+
-+	if (p->ue_cnt) {
-+		pinf = &p->ueinfo;
-+		snprintf(priv->message, ZYNQMP_OCM_EDAC_MSG_SIZE,
-+			 "\nOCM ECC error type :%s\n"
-+			 "Addr: [0x%X]\nFault Data[31:0]: [0x%X]\n"
-+			 "Fault Data[63:32]: [0x%X]",
-+			 "UE", pinf->addr, pinf->data0, pinf->data1);
-+		edac_device_handle_ue(dci, 0, 0, priv->message);
-+	}
-+
-+	memset(p, 0, sizeof(*p));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_intr_handler - isr routine
-+ * @irq:        irq number
-+ * @dev_id:     device id pointer
-+ *
-+ * This is the ISR routine called by edac core interrupt thread.
-+ * Used to check and post ECC errors.
-+ *
-+ * Return: IRQ_NONE, if interrupt not set or IRQ_HANDLED otherwise
-+ */
-+static irqreturn_t zynqmp_ocm_edac_intr_handler(int irq, void *dev_id)
-+{
-+	struct edac_device_ctl_info *dci = dev_id;
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+	int regval;
-+
-+	regval = readl(priv->baseaddr + OCM_ISR_OFST);
-+	if (!(regval & OCM_CEUE_MASK))
-+		return IRQ_NONE;
-+
-+	zynqmp_ocm_edac_geterror_info(priv->baseaddr,
-+				      &priv->stat, regval);
-+
-+	priv->ce_cnt += priv->stat.ce_cnt;
-+	priv->ue_cnt += priv->stat.ue_cnt;
-+	zynqmp_ocm_edac_handle_error(dci, &priv->stat);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_get_eccstate - Return the controller ecc status
-+ * @base:	Pointer to the ddr memory controller base address
-+ *
-+ * Get the ECC enable/disable status for the controller
-+ *
-+ * Return: ecc status 0/1.
-+ */
-+static bool zynqmp_ocm_edac_get_eccstate(void __iomem *base)
-+{
-+	return readl(base + ECC_CTRL_OFST) & OCM_ECC_ENABLE_MASK;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_fault_count_show - Shows fault injection count
-+ * @dci:        Pointer to the edac device struct
-+ * @data:       Pointer to user data
-+ *
-+ * Shows the fault injection count, once the counter reaches
-+ * zero, it injects errors
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_fault_count_show(struct edac_device_ctl_info *dci,
-+						       char *data)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	return sprintf(data, "FIC: 0x%x\n",
-+			readl(priv->baseaddr + OCM_FIC_OFST));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_fault_count_store - write fi count
-+ * @dci:	Pointer to the edac device struct
-+ * @data:	Pointer to user data
-+ * @count:	read the size bytes from buffer
-+ *
-+ * Update the fault injection count register, once the counter reaches
-+ * zero, it injects errors
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_fault_count_store(struct edac_device_ctl_info *dci,
-+							const char *data, size_t count)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+	u32 ficount;
-+
-+	if (!data)
-+		return -EFAULT;
-+
-+	if (kstrtouint(data, 0, &ficount))
-+		return -EINVAL;
-+
-+	ficount &= OCM_FICOUNT_MASK;
-+	writel(ficount, priv->baseaddr + OCM_FIC_OFST);
-+
-+	return count;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_cebitpos_show - Shows CE bit position
-+ * @dci:        Pointer to the edac device struct
-+ * @data:       Pointer to user data
-+ *
-+ * Shows the Correctable error bit position,
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_cebitpos_show(struct edac_device_ctl_info
-+							*dci, char *data)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (priv->ce_bitpos <= UE_MAX_BITPOS_LOWER)
-+		return sprintf(data, "Fault Injection Data Reg: [0x%x]\n",
-+			((readl(priv->baseaddr + OCM_FID0_OFST))));
-+
-+	return sprintf(data, "Fault Injection Data Reg: [0x%x]\n",
-+			((readl(priv->baseaddr + OCM_FID1_OFST))));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_cebitpos_store - Set CE bit position
-+ * @dci:	Pointer to the edac device struct
-+ * @data:	Pointer to user data
-+ * @count:	read the size bytes from buffer
-+ *
-+ * Set any one bit to inject CE error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_cebitpos_store(struct edac_device_ctl_info *dci,
-+						     const char *data, size_t count)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (!data)
-+		return -EFAULT;
-+
-+	if (kstrtou8(data, 0, &priv->ce_bitpos))
-+		return -EINVAL;
-+
-+	if (priv->ce_bitpos <= UE_MAX_BITPOS_LOWER) {
-+		writel(1 << priv->ce_bitpos, priv->baseaddr + OCM_FID0_OFST);
-+		writel(0, priv->baseaddr + OCM_FID1_OFST);
-+	} else if (priv->ce_bitpos <= UE_MAX_BITPOS_UPPER) {
-+		writel(1 << (priv->ce_bitpos - UE_MIN_BITPOS_UPPER),
-+		       priv->baseaddr + OCM_FID1_OFST);
-+		writel(0, priv->baseaddr + OCM_FID0_OFST);
-+	} else {
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "Bit number > 64 is not valid\n");
-+	}
-+
-+	return count;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_uebitpos0_show - Shows UE bit postion0
-+ * @dci:        Pointer to the edac device struct
-+ * @data:       Pointer to user data
-+ *
-+ * Shows the one of bit position for UE error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_uebitpos0_show(struct edac_device_ctl_info *dci,
-+						     char *data)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (priv->ue_bitpos0 <= UE_MAX_BITPOS_LOWER)
-+		return sprintf(data, "Fault Injection Data Reg: [0x%x]\n",
-+			((readl(priv->baseaddr + OCM_FID0_OFST))));
-+
-+	return sprintf(data, "Fault Injection Data Reg: [0x%x]\n",
-+			((readl(priv->baseaddr + OCM_FID1_OFST))));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_uebitpos0_store - set UE bit position0
-+ * @dci:	Pointer to the edac device struct
-+ * @data:	Pointer to user data
-+ * @count:	read the size bytes from buffer
-+ *
-+ * Set the first bit position for UE Error generation,we need to configure
-+ * any two bit positions to inject UE Error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_uebitpos0_store(struct edac_device_ctl_info *dci,
-+						      const char *data, size_t count)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (!data)
-+		return -EFAULT;
-+
-+	if (kstrtou8(data, 0, &priv->ue_bitpos0))
-+		return -EINVAL;
-+
-+	if (priv->ue_bitpos0 <= UE_MAX_BITPOS_LOWER)
-+		writel(1 << priv->ue_bitpos0, priv->baseaddr + OCM_FID0_OFST);
-+	else if (priv->ue_bitpos0 <= UE_MAX_BITPOS_UPPER)
-+		writel(1 << (priv->ue_bitpos0 - UE_MIN_BITPOS_UPPER),
-+		       priv->baseaddr + OCM_FID1_OFST);
-+	else
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "Bit position > 64 is not valid\n");
-+	edac_printk(KERN_INFO, EDAC_DEVICE,
-+		    "Set another bit position for UE\n");
-+
-+	return count;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_uebitpos1_show - Shows UE bit postion1
-+ * @dci:        Pointer to the edac device struct
-+ * @data:       Pointer to user data
-+ *
-+ * Shows the second bit position configured for UE error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_uebitpos1_show(struct edac_device_ctl_info *dci,
-+						     char *data)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (priv->ue_bitpos1 <= UE_MAX_BITPOS_LOWER)
-+		return sprintf(data, "Fault Injection Data Reg: [0x%x]\n",
-+			((readl(priv->baseaddr + OCM_FID0_OFST))));
-+
-+	return sprintf(data, "Fault Injection Data Reg: [0x%x]\n",
-+			((readl(priv->baseaddr + OCM_FID1_OFST))));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_uebitpos1_store - Set UE second bit position
-+ * @dci:	Pointer to the edac device struct
-+ * @data:	Pointer to user data
-+ * @count:	read the size bytes from buffer
-+ *
-+ * Set the second bit position for UE Error generation,we need to configure
-+ * any two bit positions to inject UE Error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_uebitpos1_store(struct edac_device_ctl_info *dci,
-+						      const char *data, size_t count)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+	u32 mask;
-+
-+	if (!data)
-+		return -EFAULT;
-+
-+	if (kstrtou8(data, 0, &priv->ue_bitpos1))
-+		return -EINVAL;
-+
-+	if (priv->ue_bitpos0 == priv->ue_bitpos1) {
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "Bit positions should not be equal\n");
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * If both bit positions are referring to 32 bit data, then configure
-+	 * only FID0 register or if it is 64 bit data, then configure only
-+	 * FID1 register.
-+	 */
-+	if (priv->ue_bitpos0 <= UE_MAX_BITPOS_LOWER &&
-+	    priv->ue_bitpos1 <= UE_MAX_BITPOS_LOWER) {
-+		mask = (1 << priv->ue_bitpos0);
-+		mask |= (1 << priv->ue_bitpos1);
-+		writel(mask, priv->baseaddr + OCM_FID0_OFST);
-+		writel(0, priv->baseaddr + OCM_FID1_OFST);
-+	} else if ((priv->ue_bitpos0 >= UE_MIN_BITPOS_UPPER &&
-+		    priv->ue_bitpos0 <= UE_MAX_BITPOS_UPPER) &&
-+		   (priv->ue_bitpos1 >= UE_MIN_BITPOS_UPPER &&
-+		    priv->ue_bitpos1 <= UE_MAX_BITPOS_UPPER)) {
-+		mask = (1 << (priv->ue_bitpos0 - UE_MIN_BITPOS_UPPER));
-+		mask |= (1 << (priv->ue_bitpos1 - UE_MIN_BITPOS_UPPER));
-+		writel(mask, priv->baseaddr + OCM_FID1_OFST);
-+		writel(0, priv->baseaddr + OCM_FID0_OFST);
-+	}
-+
-+	/*
-+	 * If one bit position is referring a bit in 32 bit data and other in
-+	 * 64 bit data, just configure FID0/FID1 based on uebitpos1.
-+	 */
-+	if (priv->ue_bitpos0 <= UE_MAX_BITPOS_LOWER &&
-+	    (priv->ue_bitpos1 >= UE_MIN_BITPOS_UPPER &&
-+	     priv->ue_bitpos1 <= UE_MAX_BITPOS_UPPER)) {
-+		writel(1 << (priv->ue_bitpos1 - UE_MIN_BITPOS_UPPER),
-+		       priv->baseaddr + OCM_FID1_OFST);
-+	} else if ((priv->ue_bitpos0 >= UE_MIN_BITPOS_UPPER &&
-+		    priv->ue_bitpos0 <= UE_MAX_BITPOS_UPPER) &&
-+		   (priv->ue_bitpos1 <= UE_MAX_BITPOS_LOWER)) {
-+		writel(1 << priv->ue_bitpos1,
-+		       priv->baseaddr + OCM_FID0_OFST);
-+	} else {
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "Bit position > 64 is not valid, Valid bits:[63:0]\n");
-+	}
-+
-+	edac_printk(KERN_INFO, EDAC_DEVICE,
-+		    "UE at Bit Position0: %d Bit Position1: %d\n",
-+		    priv->ue_bitpos0, priv->ue_bitpos1);
-+
-+	return count;
-+}
-+
-+static struct edac_dev_sysfs_attribute zynqmp_ocm_edac_sysfs_attributes[] = {
-+	{
-+		.attr = {
-+			.name = "inject_cebitpos",
-+			.mode = (0644)
-+		},
-+		.show = zynqmp_ocm_edac_inject_cebitpos_show,
-+		.store = zynqmp_ocm_edac_inject_cebitpos_store},
-+	{
-+		.attr = {
-+			.name = "inject_uebitpos0",
-+			.mode = (0644)
-+		},
-+		.show = zynqmp_ocm_edac_inject_uebitpos0_show,
-+		.store = zynqmp_ocm_edac_inject_uebitpos0_store},
-+	{
-+		.attr = {
-+			.name = "inject_uebitpos1",
-+			.mode = (0644)
-+		},
-+		.show = zynqmp_ocm_edac_inject_uebitpos1_show,
-+		.store = zynqmp_ocm_edac_inject_uebitpos1_store},
-+	{
-+		.attr = {
-+			.name = "inject_fault_count",
-+			.mode = (0644)
-+		},
-+		.show = zynqmp_ocm_edac_inject_fault_count_show,
-+		.store = zynqmp_ocm_edac_inject_fault_count_store},
-+	/* End of list */
-+	{
-+		.attr = {.name = NULL}
-+	}
-+};
-+
-+/**
-+ * zynqmp_set_ocm_edac_sysfs_attributes - create sysfs attributes
-+ * @edac_dev:	Pointer to the edac device struct
-+ *
-+ * Creates sysfs entries for error injection
-+ */
-+static void zynqmp_set_ocm_edac_sysfs_attributes(struct edac_device_ctl_info
-+						*edac_dev)
-+{
-+	edac_dev->sysfs_attributes = zynqmp_ocm_edac_sysfs_attributes;
-+}
-+
-+static int zynqmp_ocm_edac_probe(struct platform_device *pdev)
-+{
-+	struct zynqmp_ocm_edac_priv *priv;
-+	struct edac_device_ctl_info *dci;
-+	void __iomem *baseaddr;
-+	struct resource *res;
-+	int irq, ret;
-+
-+	baseaddr = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(baseaddr))
-+		return PTR_ERR(baseaddr);
-+
-+	if (!zynqmp_ocm_edac_get_eccstate(baseaddr)) {
-+		edac_printk(KERN_INFO, EDAC_DEVICE,
-+			    "ECC not enabled\n");
-+		return -ENXIO;
-+	}
-+
-+	dci = edac_device_alloc_ctl_info(sizeof(*priv), ZYNQMP_OCM_EDAC_STRING,
-+					 1, ZYNQMP_OCM_EDAC_STRING, 1, 0, NULL, 0,
-+					 edac_device_alloc_index());
-+	if (!dci)
-+		return -ENOMEM;
-+
-+	priv = dci->pvt_info;
-+	platform_set_drvdata(pdev, dci);
-+	dci->dev = &pdev->dev;
-+	priv->baseaddr = baseaddr;
-+	dci->mod_name = pdev->dev.driver->name;
-+	dci->ctl_name = ZYNQMP_OCM_EDAC_STRING;
-+	dci->dev_name = dev_name(&pdev->dev);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0) {
-+		ret = irq;
-+		goto free_dev_ctl;
-+	}
-+
-+	ret = devm_request_irq(&pdev->dev, irq,
-+			       zynqmp_ocm_edac_intr_handler,
-+			       0, dev_name(&pdev->dev), dci);
-+	if (ret) {
-+		edac_printk(KERN_ERR, EDAC_DEVICE, "Failed to request Irq\n");
-+		goto free_dev_ctl;
-+	}
-+
-+	writel(OCM_CEUE_MASK, priv->baseaddr + OCM_IEN_OFST);
-+
-+	zynqmp_set_ocm_edac_sysfs_attributes(dci);
-+	ret = edac_device_add_device(dci);
-+	if (ret)
-+		goto free_dev_ctl;
-+
-+	return 0;
-+
-+free_dev_ctl:
-+	edac_device_free_ctl_info(dci);
-+
-+	return ret;
-+}
-+
-+static int zynqmp_ocm_edac_remove(struct platform_device *pdev)
-+{
-+	struct edac_device_ctl_info *dci = platform_get_drvdata(pdev);
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	writel(OCM_CEUE_MASK, priv->baseaddr + OCM_IDS_OFST);
-+	edac_device_del_device(&pdev->dev);
-+	edac_device_free_ctl_info(dci);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id zynqmp_ocm_edac_match[] = {
-+	{ .compatible = "xlnx,zynqmp-ocmc-1.0"},
-+	{ /* end of table */ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, zynqmp_ocm_edac_match);
-+
-+static struct platform_driver zynqmp_ocm_edac_driver = {
-+	.driver = {
-+		   .name = "zynqmp-ocm-edac",
-+		   .of_match_table = zynqmp_ocm_edac_match,
-+		   },
-+	.probe = zynqmp_ocm_edac_probe,
-+	.remove = zynqmp_ocm_edac_remove,
-+};
-+
-+module_platform_driver(zynqmp_ocm_edac_driver);
-+
-+MODULE_AUTHOR("Advanced Micro Devices, Inc");
-+MODULE_DESCRIPTION("Xilinx ZynqMP OCM ECC driver");
-+MODULE_LICENSE("GPL");
--- 
-2.17.1
 
+Thanks,
+Kavya
