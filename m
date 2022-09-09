@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F36545B3527
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 12:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC9785B3531
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 12:28:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230448AbiIIK1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 06:27:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33024 "EHLO
+        id S230447AbiIIK2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 06:28:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230470AbiIIK13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 06:27:29 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 894AF12ED9E
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 03:27:27 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id bq23so1915638lfb.7
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 03:27:27 -0700 (PDT)
+        with ESMTP id S230470AbiIIK1w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 06:27:52 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E55AD12EDA3
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 03:27:51 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id u18so1908518lfo.8
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 03:27:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=vcvSVO7eEwUNctjKRZT9oELQ2OBzLeEtMGQY3Kqpv3M=;
-        b=MQEA8b+S7mOgyZq+pveaQ6KenuHKP6w260v1W3xdsdzLBQnX8eGIamKktCN1o1RwnG
-         m4lZzn6MUZhQWDl21/lhmTwADZQ5ro9KABntVVr08uXvnA6E/dtXXdEES9k07tFvWBUG
-         qiAhUTVzNLA7+U8EySD1fR0U+z6f+zJ7d4/nI6fT2RgMkwirL/YnaD9gNV8R1haPh988
-         p0pFheYd0pLqhFsaAVkdXVVw/TZaGbxhCH4j/k/wSZ7qr4LbA2IGjtJPSpXqlHiMbtRd
-         U/8YZMM3oOmv5uZ1KWYz/BnML0EpI8TyckVHATCzTRnXkLP9iaJRNRHc59sIspRJFJNr
-         YF1Q==
+        bh=MdgTqWa8PMe5m9lGLQyBMeaM+KoNXQu56hVGmJIQl88=;
+        b=yf8TXBaiqNxkECQJxgP7lb8OknI0N2YcxNkCmHQgudtOJ6rVVz6MGdrxhWHe/IitI3
+         MyacPiSkU8dQ7tzFxkRHHkgLEc8Nz+oXz4oERi/SovxXXY9D5XXyThDKgIzLCplkSHge
+         S4OSL4U6+o0QVoN2fz3Q4v2HK47dXWDdDXnXn2r+S8OYnmXTfpyjLdYUGaM5OtDanar1
+         c61+8WcvYf4Jx4NukG04A3lxrVconx7yqrELVHreuug2ZGLbwnmlawh+OwkeEB/FbSIl
+         cNSZeVcOiN0Zv52+Ge3/3HAmxFfToXMcrs4mv9ARB6jMW04n10sXsRj/Kh3XNbhlQj5y
+         48CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=vcvSVO7eEwUNctjKRZT9oELQ2OBzLeEtMGQY3Kqpv3M=;
-        b=mxAXJVYZu/A7drCLCvZFqHZcG7OOOsVtKYazDCfKk3oyIcx0X/mc1Y4wV1j1b4kkTx
-         FgVh5/0LPvn0Qrbdz68qlLEdaSiIzYhe0xQNcRoo8FVyHfqX/JKUxQ1Sa3nMhfaJ67iH
-         g+rqGZ6RsY7JG9uEWj3nojQw4e7i0o8w3+7JhoI5h7AGSKgQz5D6qXgcjOoL6Tk8kCG7
-         ydr7+SVXgCTMw/OY1wYRspJt1k0Grcv4iX/1KoXQOmt2ctiovEhn1p1H/GJCNfv/B7xk
-         47m75NUlfKdKC9+V6xXnSSGOtEUNP+K9hBERf4QkctvYAzeBa+TJ9itYspUkT4sOTWtN
-         +xBQ==
-X-Gm-Message-State: ACgBeo2NSwYAHlL9RpJrS0vgrO/2ckyFhI+HarCzfBje1kTwk3d2Sijl
-        YgFiCM7xzgd9TUShg3reEKZtxeUwz3354g==
-X-Google-Smtp-Source: AA6agR7NSE7pZiygumw2uPQ5r3/8TC7NVPWJK3dwjIxzt9NMfVnnSA4nT8tJOPzzhyWVwrX4PWqskQ==
-X-Received: by 2002:a19:4954:0:b0:498:ff56:375d with SMTP id l20-20020a194954000000b00498ff56375dmr332038lfj.626.1662719245912;
-        Fri, 09 Sep 2022 03:27:25 -0700 (PDT)
+        bh=MdgTqWa8PMe5m9lGLQyBMeaM+KoNXQu56hVGmJIQl88=;
+        b=t1Sga9hor4KYY3YSMsRBM67R9GFOqFn2OrVEcai71EXouT7MylycJ9JLbgZtjePy3q
+         kf8M9Ab/mvAA8RPMYpZrWJiNy+TuFlWC50kodr3o8PzrCBOEKVWQkkhQfcpSVkXRLRSx
+         TMyxrpFyN3NKzqh9lLqCZDUk2ZOKQgMnSA3QkYBmDwwgOgGNkCIMZc7/ZVybp28MEZQP
+         gbuPBNH8XdG6vLdJNxXvWqGMz1ONkntCI0nLnJIdZEQAER9Y3HgbMZ5IRVw11sP9QAaT
+         H+nVKxa3QqVhqBjESMMBvJH7+GjlJWa02oF2b10dTSGThxvBlSjCWzFzyKRYwc2bGN81
+         fowg==
+X-Gm-Message-State: ACgBeo1D/5/CgUotAYVUiEPhZvk6ffSE3N/ADdZFZORRP6swzfe9P/lx
+        /MKLeAX/WMQ5CzvXlhMvGiRiMg==
+X-Google-Smtp-Source: AA6agR4SsKCc+VU/xIFD0O9P6fQMp97CHSWUPhr8bbjRiSarVshTWmX0DTYjn5TzQLL11mwr9Mz1zA==
+X-Received: by 2002:ac2:46f9:0:b0:498:f633:8136 with SMTP id q25-20020ac246f9000000b00498f6338136mr1330606lfo.117.1662719270311;
+        Fri, 09 Sep 2022 03:27:50 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d15-20020ac244cf000000b004946a758d21sm26038lfm.161.2022.09.09.03.27.24
+        by smtp.gmail.com with ESMTPSA id m18-20020ac24252000000b0048a85bd4429sm27356lfl.126.2022.09.09.03.27.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 03:27:25 -0700 (PDT)
-Message-ID: <14906209-bb23-f223-4384-e3c4906eedd5@linaro.org>
-Date:   Fri, 9 Sep 2022 12:27:23 +0200
+        Fri, 09 Sep 2022 03:27:49 -0700 (PDT)
+Message-ID: <df504a6b-fda5-adb6-6367-d75d35fce65a@linaro.org>
+Date:   Fri, 9 Sep 2022 12:27:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: net: renesas,etheravb: R-Car V3U is
- R-Car Gen4
+Subject: Re: [PATCH 2/2] dt-bindings: net: renesas,etheravb: Add r8a779g0
+ support
 Content-Language: en-US
 To:     Geert Uytterhoeven <geert+renesas@glider.be>,
         "David S . Miller" <davem@davemloft.net>,
@@ -70,14 +70,14 @@ Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-renesas-soc@vger.kernel.org
 References: <cover.1662714607.git.geert+renesas@glider.be>
- <5355709e0744680d792d1e57e43441cb0b7b7611.1662714607.git.geert+renesas@glider.be>
+ <cddb61cd9702ceefc702176bd8ff640c4ff59ffd.1662714607.git.geert+renesas@glider.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5355709e0744680d792d1e57e43441cb0b7b7611.1662714607.git.geert+renesas@glider.be>
+In-Reply-To: <cddb61cd9702ceefc702176bd8ff640c4ff59ffd.1662714607.git.geert+renesas@glider.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,15 +86,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 09/09/2022 11:13, Geert Uytterhoeven wrote:
-> Despite the name, R-Car V3U is the first member of the R-Car Gen4
-> family.  Hence move its compatible value to the R-Car Gen4 section.
+> Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
+> Renesas R-Car V4H (R8A779G0) SoC.
 > 
 > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 6 +++++-
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 
 Best regards,
