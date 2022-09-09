@@ -2,119 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4AC15B393F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E99215B3999
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:51:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbiIINlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 09:41:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36466 "EHLO
+        id S231759AbiIINqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 09:46:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231531AbiIINlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:41:14 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95222D740B
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 06:40:56 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id v185-20020a1cacc2000000b003b42e4f278cso1505698wme.5
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 06:40:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=SjnyqrKU3a4CNpCZHHyS1qgsjA3Xz0dtD141C+vhpK0=;
-        b=BvCZeklMzNy4mEVQUnVSdZ4dmnKPwauLvSGOTeFCLgduVN1HgOjijfwNIjkmrfsI0A
-         cuRozeXgHjsxEq5F8RXNpW8VsI8OzyOt4FNE8zZYHqC1W26kARAs9f0euTZh3YmN9Y1O
-         Gf6vEtF7X3LBrlJPGV3m/WRyJ+KCoISi/mSeK21y2Cax7J8EM1j9Ug0RbzVaLBHUAmZE
-         LqxEmi8tmjlEsABDyt0JaCKOnf6+oQxsIpElFHPRRL3K8z5wNNObpyq5ICQPWl6oAosC
-         LgjUgJsv03aXvR+mNZ46D7ZXGTk7x2GAAs6E7vi4TlMeVaouspkj8v5uVcgFCvTfEINf
-         61oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=SjnyqrKU3a4CNpCZHHyS1qgsjA3Xz0dtD141C+vhpK0=;
-        b=gKWjFLgBAEYZ12yx54VsCNl566ndv/Qgzewn1BTu7Qnt/t8pFdHXIo6e8DurNTYBJI
-         qbwWX1rHCPYxql5Y3vkLi2dBoNL69jxwBKIUHIAhAuULFFNlvUGUxFXc2l63ocbfMDhM
-         nFyjPJA/MEEEyWYlWVv3UU+TgEhxvqM53fS+o8P60Wnr4pDGnC8z25/7C+F3lZlQp3W5
-         kalcnYKlTNuqHGSxmu52D7Rfa6YoPtmaecXCQSZ2iG6NKoDDS5oTcbEs39TbbH7e5Nxf
-         /UKioOGx6Uey52DvltCbbucZqjfj1t82rbGW0wTJIldwmlMw8xCiVa/r53UvhClUNFH4
-         ihwA==
-X-Gm-Message-State: ACgBeo1twyqxvGLgKbsQOu6W6xQuAu2hjn0yMi5H48lZOImPyU6i4/u6
-        vX4apx+7O6kZyqnRaPz4jRhOzQ==
-X-Google-Smtp-Source: AA6agR4ZzK1P/fT75Fob60yh43LN2tPxmqM9oJ0Olo8dNwOHVQnjMUgHzzYwLWZ3fJPI9WHVz2TXUw==
-X-Received: by 2002:a05:600c:a48:b0:3b3:3256:63c with SMTP id c8-20020a05600c0a4800b003b33256063cmr4736942wmq.34.1662730854662;
-        Fri, 09 Sep 2022 06:40:54 -0700 (PDT)
-Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id q20-20020a1cf314000000b003a604a29a34sm660622wmq.35.2022.09.09.06.40.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Sep 2022 06:40:53 -0700 (PDT)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ekansh Gupta <ekangupt@qti.qualcomm.com>,
-        Bharath Kumar <bkumar@qti.qualcomm.com>,
-        Himateja Reddy <hmreddy@quicinc.com>,
-        Anirudh Raghavendra <araghave@quicinc.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 10/10] misc: fastrpc: Add dma_mask to fastrpc_channel_ctx
-Date:   Fri,  9 Sep 2022 16:39:38 +0300
-Message-Id: <20220909133938.3518520-11-abel.vesa@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220909133938.3518520-1-abel.vesa@linaro.org>
-References: <20220909133938.3518520-1-abel.vesa@linaro.org>
+        with ESMTP id S231574AbiIINqp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:46:45 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7400813A07C;
+        Fri,  9 Sep 2022 06:46:28 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 34A74100018;
+        Fri,  9 Sep 2022 13:45:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1662731127;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=gyLP9CmLkcl1bGVvXClRy+vUMLTzbqd++Vuh487Ocsk=;
+        b=oMQznvKITh0Ti9IbYYaYWltTgRzj0erZ3nEh9JkMg6qA15h7sYxX2EF65aX3mmzXRk293A
+        +HG/yTf4Ni6GyAQhiTSga94vVXPypRU6YO2dhOEmwKHjvW4e2RgJ3KykvbG5+Bq6X6jEyI
+        ETn2U854M/fwiHLSqxO073gW3IDHfUl91R5HlwCyyDUkoWQXj3QTvpo/f4V2OkdEO1k/10
+        bne2wy20JT4FwGDoRvu6Hgc908GM9EdRIGphOPZSOQg72KwYQSDcZjHKR+y2bA3lG1EXtq
+        0qI8UeLQNX17RDT/fOShMmUi6fowMDBGKoJpGYSEechAQ5GW/WD2J94Mm+AYNg==
+Date:   Fri, 9 Sep 2022 15:45:19 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 5/6] ARM: dts: sun8i: a83t: Add MIPI CSI-2 controller
+ node
+Message-ID: <YxtDb/jrR7uMabs5@aptenodytes>
+References: <20220826182803.604563-1-paul.kocialkowski@bootlin.com>
+ <20220826182803.604563-6-paul.kocialkowski@bootlin.com>
+ <YwkYKcffdRGnq+pK@pendragon.ideasonboard.com>
+ <YxC7+Pi4v3Bc1oXc@aptenodytes>
+ <YxC/3KLfJHpld+jx@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="0g1R3vKr/uSZfMdm"
+Content-Disposition: inline
+In-Reply-To: <YxC/3KLfJHpld+jx@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dma_set_mask_and_coherent only updates the mask to which the device
-dma_mask pointer points to. Add a dma_mask to the channel ctx and set
-the device dma_mask to point to that, otherwise the dma_set_mask will
-return an error and the dma_set_coherent_mask will be skipped too.
 
-Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/misc/fastrpc.c | 2 ++
- 1 file changed, 2 insertions(+)
+--0g1R3vKr/uSZfMdm
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-index b9d9bfad93f6..31fb1e9e3e47 100644
---- a/drivers/misc/fastrpc.c
-+++ b/drivers/misc/fastrpc.c
-@@ -278,6 +278,7 @@ struct fastrpc_channel_ctx {
- 	struct list_head invoke_interrupted_mmaps;
- 	bool secure;
- 	bool unsigned_support;
-+	u64 dma_mask;
- };
- 
- struct fastrpc_device {
-@@ -2302,6 +2303,7 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
- 	kref_init(&data->refcount);
- 
- 	dev_set_drvdata(&rpdev->dev, data);
-+	rdev->dma_mask = &data->dma_mask;
- 	dma_set_mask_and_coherent(rdev, DMA_BIT_MASK(32));
- 	INIT_LIST_HEAD(&data->users);
- 	INIT_LIST_HEAD(&data->invoke_interrupted_mmaps);
--- 
-2.34.1
+Hi Laurent,
 
+On Thu 01 Sep 22, 17:21, Laurent Pinchart wrote:
+> On Thu, Sep 01, 2022 at 04:04:40PM +0200, Paul Kocialkowski wrote:
+> > Hi Laurent,
+> >=20
+> > On Fri 26 Aug 22, 21:59, Laurent Pinchart wrote:
+> > > Hi Paul,
+> > >=20
+> > > Thank you for the patch.
+> > >=20
+> > > On Fri, Aug 26, 2022 at 08:28:02PM +0200, Paul Kocialkowski wrote:
+> > > > MIPI CSI-2 is supported on the A83T with a dedicated controller that
+> > > > covers both the protocol and D-PHY. It can be connected to the CSI
+> > > > interface as a V4L2 subdev through the fwnode graph.
+> > > >=20
+> > > > This is not done by default since connecting the bridge without a
+> > > > subdev attached to it will cause a failure on the CSI driver.
+> > >=20
+> > > No urgency, but would it be possible to fix this so that the CSI-2
+> > > receiver can be connected to the CSI unconditionally in DT ? The
+> > > connection exists at the hardware level in the SoC, and should thus
+> > > exist here too, regardless of whether or not a sensor is connected.
+> >=20
+> > Yes it's true that having the link always would be legitimate.
+> >=20
+> > For the context, this CSI controller can be switched between the MIPI C=
+SI-2
+> > controller and a parallel sensor input (i.e. it's not dedicated to one =
+or the
+> > other like on the V3).
+> >=20
+> > Last time I tried, having the connection between the two always there r=
+esulted
+> > in the unability to use a parallel sensor when no sensor is attached to=
+ the
+> > mipi csi-2 receiver. Probably because the async notifier never complete=
+s since
+> > the mipi csi-2's subdev is never registered without a sensor subdev att=
+ached.
+> >=20
+> > Do you see a way to handle this case properly?
+>=20
+> It sounds like an issue in the CSI-2 receiver driver. If there's no
+> input device attached to it, it should register its subdev directly,
+> without its own async notifier.
+
+Yes it turns out there was an error on that side, thanks for bringing it up!
+I have sent a fixup series which takes care of it.
+
+Now it becomes possible to always describe the links without downsides.
+Well, the CSI driver will still wait for the MIPI CSI-2 bridge's subdev
+when its node is enabled in device-tree, but I think that is expected.
+
+Cheers,
+
+Paul
+
+> > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > > ---
+> > > >  arch/arm/boot/dts/sun8i-a83t.dtsi | 26 ++++++++++++++++++++++++++
+> > > >  1 file changed, 26 insertions(+)
+> > > >=20
+> > > > diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/=
+sun8i-a83t.dtsi
+> > > > index 82fdb04122ca..ecf9f3b2c0c0 100644
+> > > > --- a/arch/arm/boot/dts/sun8i-a83t.dtsi
+> > > > +++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
+> > > > @@ -1064,6 +1064,32 @@ csi: camera@1cb0000 {
+> > > >  			status =3D "disabled";
+> > > >  		};
+> > > > =20
+> > > > +		mipi_csi2: csi@1cb1000 {
+> > > > +			compatible =3D "allwinner,sun8i-a83t-mipi-csi2";
+> > > > +			reg =3D <0x01cb1000 0x1000>;
+> > > > +			interrupts =3D <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +			clocks =3D <&ccu CLK_BUS_CSI>,
+> > > > +				 <&ccu CLK_CSI_SCLK>,
+> > > > +				 <&ccu CLK_MIPI_CSI>,
+> > > > +				 <&ccu CLK_CSI_MISC>;
+> > > > +			clock-names =3D "bus", "mod", "mipi", "misc";
+> > > > +			resets =3D <&ccu RST_BUS_CSI>;
+> > > > +			status =3D "disabled";
+> > > > +
+> > > > +			ports {
+> > > > +				#address-cells =3D <1>;
+> > > > +				#size-cells =3D <0>;
+> > > > +
+> > > > +				mipi_csi2_in: port@0 {
+> > > > +					reg =3D <0>;
+> > > > +				};
+> > > > +
+> > > > +				mipi_csi2_out: port@1 {
+> > > > +					reg =3D <1>;
+> > > > +				};
+> > > > +			};
+> > > > +		};
+> > > > +
+> > > >  		hdmi: hdmi@1ee0000 {
+> > > >  			compatible =3D "allwinner,sun8i-a83t-dw-hdmi";
+> > > >  			reg =3D <0x01ee0000 0x10000>;
+>=20
+> --=20
+> Regards,
+>=20
+> Laurent Pinchart
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--0g1R3vKr/uSZfMdm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmMbQ28ACgkQ3cLmz3+f
+v9HuxQf/URHJvX9hyDkHJd/fZD6Tl0GkdanL5dUdysUgnQe+i1ceqqoOGzF+ZJpW
+mv+Rbum00q/RE6nm+lGpFT2ig1SYGuOCxnZrbsXZiSvSzZ8+YY/cB6sRm+ywP7Go
+QbVk+I+bEky7qtcKIWa3guNbtFBLm3rixBZ6CmjKnxdTXh6vN9lJlTMbbui0pffQ
+k1QuoQ1Ea9AK7Rxyc4tWIIGK9Ljn96j7cHKqW1/Bi5FQyqDtFWgvwQGA4eiOxWOj
+RrkwZH7D28Z1mHgUO6Mc8O+z/t2AzE3VvD7hcxt1RtNh1Un6t3YS4I9d6LSNCDyH
+ylFJhr0z42NWy3mkaxagW6QSEaVn1A==
+=jCke
+-----END PGP SIGNATURE-----
+
+--0g1R3vKr/uSZfMdm--
