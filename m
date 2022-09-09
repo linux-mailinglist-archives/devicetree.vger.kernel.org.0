@@ -2,63 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A64B5B36B2
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 13:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 199FC5B36EE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 14:08:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbiIILui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 07:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43846 "EHLO
+        id S229668AbiIIMIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 08:08:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231342AbiIILug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 07:50:36 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CAD6102D6B;
-        Fri,  9 Sep 2022 04:50:32 -0700 (PDT)
+        with ESMTP id S229899AbiIIMII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 08:08:08 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4255212F20F;
+        Fri,  9 Sep 2022 05:08:04 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7FA85B824F0;
-        Fri,  9 Sep 2022 11:50:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B68D9C433D6;
-        Fri,  9 Sep 2022 11:50:26 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id BF424CE229E;
+        Fri,  9 Sep 2022 12:08:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49ED9C433D6;
+        Fri,  9 Sep 2022 12:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662724229;
-        bh=PtQE/YhXm6St5Y9JcAd1LJh87edXn81fJl5QLGWj/kg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=F+Iluq77ucNorR29R6YwzNMUt5accogZTJmkvYv17gl/mXvDEMklaE4mbhjOr+mCs
-         ZlEs4BSrHWIdIt+BIUz0+wrZBy08Vw4tG8D/wJgduSvnCmqmmksAal7zT8Y/IlrpmQ
-         Lnjh3UiayP7t1qAoJ9D8wQx1CXmLovb3q49tosHg0Azb465TiLaylb72L6cbqxgaGU
-         95ta8EctiYo7VjlB2mOkjwTD6Ub3HTz2fjAqbNrVj8K36aDfgSqmrpLvlHcfHWQcsw
-         m+u0vHvLmElAPSJz4xazcttJjv4fck1YodoIh8dOCkYzyr78h/524oWGMxTZd1L1eJ
-         wtCpjGmxNR1PA==
-Date:   Fri, 9 Sep 2022 12:50:23 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Cixi Geng <gengcixi@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        baolin.wang@linux.alibaba.com,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
+        s=k20201202; t=1662725278;
+        bh=Lz2P15vcZ1ZdRM5cHrVBvarPsmfwgCGjAbApIl9rp5A=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=CCeG8HorK/8vU9xByifGY+FGtLVW8gwjYZY3c3WO1c03uSgOJ5c7qF0/eB61w5nmq
+         OQkvU8vMK8tXpNVzi3imL0xTfNainAlCIgs/vEXusT1HDA6sXZDZJaeY9mhydG+ro9
+         6kOeARHRaowQglhyOQe8YPwmj5d/mybpRX6r1IvJwL6x8AHtF5LSVvAL/XAMK5q/+G
+         rq4Wld9gqMsi2I8MMgRgjQUQp1icUqKHWoprjqmVCcgjULEKoRS+mf2ViN/NXd+PWJ
+         iYOn1skbdcD+tVuKYoMleE2RDOaCPqjoFRVaqhs6HGwc+iuHbd2PPdllOGffG+t9mx
+         cg8mW+kfIi3cg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oWcnc-009AnD-1t;
+        Fri, 09 Sep 2022 13:07:56 +0100
+Date:   Fri, 09 Sep 2022 13:07:55 +0100
+Message-ID: <87edwkrbs4.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Frank Li <frank.li@nxp.com>
+Cc:     "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH V7 1/2] dt-bindings: mfd: sprd: Add bindings for ums512
- global registers
-Message-ID: <YxsofwCfTZqqJOiK@google.com>
-References: <20220909073456.239668-1-gengcixi@gmail.com>
- <20220909073456.239668-2-gengcixi@gmail.com>
- <Yxr0+LJWWsF53dr2@google.com>
- <CAF12kFteDZLk-2PBufnuar43bgPzoxWsOjR0-zQ01ZqLyTCxQw@mail.gmail.com>
- <dc63bd52-edbf-d13b-86b3-db83bfd8b7e1@linaro.org>
- <CAF12kFt95PYcK249Zm8r+jZtEm3vGTd3AXn2DB_CG0Xf=3xeFQ@mail.gmail.com>
- <fe1838eb-8ec5-62a9-3d90-bf2fe4070535@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fe1838eb-8ec5-62a9-3d90-bf2fe4070535@linaro.org>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "jdmason@kudzu.us" <jdmason@kudzu.us>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "ntb@lists.linux.dev" <ntb@lists.linux.dev>,
+        "lznuaa@gmail.com" <lznuaa@gmail.com>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>
+Subject: Re: [EXT] Re: [PATCH v9 2/4] irqchip: Add IMX MU MSI controller driver
+In-Reply-To: <AM9PR04MB8793CE5AAAB281CE628845AC88409@AM9PR04MB8793.eurprd04.prod.outlook.com>
+References: <20220907034856.3101570-1-Frank.Li@nxp.com>
+        <20220907034856.3101570-3-Frank.Li@nxp.com>
+        <87fsh2qpq4.wl-maz@kernel.org>
+        <AM9PR04MB879338D6D4B55A74CD002E6D88409@AM9PR04MB8793.eurprd04.prod.outlook.com>
+        <877d2dvs0d.wl-maz@kernel.org>
+        <AM9PR04MB8793CE5AAAB281CE628845AC88409@AM9PR04MB8793.eurprd04.prod.outlook.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: frank.li@nxp.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev, lznuaa@gmail.com, imx@lists.linux.dev, manivannan.sadhasivam@linaro.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,51 +93,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 09 Sep 2022, Krzysztof Kozlowski wrote:
+On Thu, 08 Sep 2022 16:35:20 +0100,
+Frank Li <frank.li@nxp.com> wrote:
 
-> On 09/09/2022 12:16, Cixi Geng wrote:
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 于2022年9月9日周五 17:57写道：
-> >>
-> >> On 09/09/2022 11:50, Cixi Geng wrote:
-> >>> Lee Jones <lee@kernel.org> 于2022年9月9日周五 16:10写道：
-> >>>>
-> >>>> On Fri, 09 Sep 2022, Cixi Geng wrote:
-> >>>>
-> >>>>> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> >>>>>
-> >>>>> Add bindings for Unisoc system global register which provide register map
-> >>>>> for clocks.
-> >>>>>
-> >>>>> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> >>>>> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> >>>>> Reviewed-by: Rob Herring <robh@kernel.org>
-> >>>>> ---
-> >>>>>  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
-> >>>>>  1 file changed, 68 insertions(+)
-> >>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
-> >>>>
-> >>>> I'll take this when the clk driver changes are merged.
-> >>> this patch is depends on the clk dt-bingdings, which is already merged [1]
-> >>
-> >> which is merged to different tree, so this one here cannot go via MFD
-> >> tree without cross-tree merges.
-> > Hi Krzysztof:
-> > I test on the latest kernel 506357871c18e06565840d71c2ef9f818e19f460
-> > (torvalds/master) version:6.0.0.rc4
-> > what you mean is I must warting your branch upgrade the cross-tree?
+> > > > > +struct imx_mu_msi {
+> > > > > +     spinlock_t                      lock;
+> > > > > +     raw_spinlock_t                  reglock;
+> > > >
+> > > > Why two locks? Isn't one enough to protect both MSI allocation (which
+> > > > happens once in a blue moon) and register access?
+> > >
+> > > [Frank Li] Previously your comment, ask me to use raw_spinlock for
+> > > read\write register access.  I don't think raw_spinlock is good for
+> > > MSI allocation.
+> > 
+> > Why wouldn't it be good enough? I'd really like to know.[Frank Li] '
 > 
-> Ah, you linked email message so that rather indicated applying to clk
-> tree, but indeed it is already in the mainline.
+> [Frank Li] According to my understand, raw_spinlock skip some lockdep
+> /debug feature to get better performance, which should be used when
+> Frequently call, such as irq handle\polling thread.
 
-... and also, I'm *still* not playing that game with DT bindings.
+I'm afraid you are terribly misguided. They both have the same debug
+features because they are both using the same core implementation, and
+the only difference is whether this is preemptible for RT purposes or
+not.
 
-It's bad enough that we have to sync across subsystems to avoid
-build-breakages.  If documentation comes together in -next and
-subsequently Mainline that should be adequate.
+> Spinlock have DEBUG feature to check wrong use lock.  Allocate MSI generally
+> only is call once when driver probe.
 
-I doubt Linus is running DT checker(s) on each pull-request he merges,
-nor are there any stipulations for DT bindings to be bisectable
-post-merge.
+Again, you should really read the code and the documentation and stop
+making things up.
+
+> 
+> The basic principle,  lock should be used only when necessary.  Access reg and
+> Allocate msi is totally independence events.
+
+Independent events that do not occur simultaneously. So no harm in
+sharing the same lock.
+
+	M.
 
 -- 
-Lee Jones [李琼斯]
+Without deviation from the norm, progress is not possible.
