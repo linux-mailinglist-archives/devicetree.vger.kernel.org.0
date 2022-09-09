@@ -2,97 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF7E85B3909
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16ED75B390F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 15:33:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbiIINb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 09:31:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43858 "EHLO
+        id S231145AbiIINd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 09:33:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbiIINb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:31:56 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0691128C27
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 06:31:54 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id f9so1967089lfr.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 06:31:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=cZxkflV/q5ieg6QIGvNNw96tN+Wgvq8rOl0y2IRENRo=;
-        b=znzz2/7abQQkt4vAdjs6bJVDpUSlbqZ895K4XDM99ipILFZSxTJLF28IwoJXozPkIG
-         3yBZasPtIRtEprKfyIvVdy+AhmGsczPzS4VVTBL2fmkGq0O33Yj2j5CqUihNE72Gz98M
-         mc+RgWomNe37JqmX+BWIVdld8Z9bQLaB12op2V3FC0XKBk7sX4rq1Vxpu1vsHkhmTC61
-         IUoTPvaq2tvgCJrbvlUD3QQbGCDsvHYTxRTmskb3WLz06+YkVG+/5HVMq1kuIg80aiYr
-         07uVdrtybjEqwFmx2yji+JTosp4zqIqY7KeEZtZecIsVWAPrUuAC9ZwpcckRE5VoAAsz
-         4gQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=cZxkflV/q5ieg6QIGvNNw96tN+Wgvq8rOl0y2IRENRo=;
-        b=q9ym+qDdwh9UcTLfpMVz5VjLyokksQ5S/2qnkloWQIACjzEBNvTqWaI+51D7Fpjhnc
-         IwFbUjgFknpBHRcuhnuxfeyyZvZkGHQ5FW8W1Czdbke5Mwavr9GIrJhp+vslVifJJv8h
-         4NDBKsjMMiiXxCJXWFkbH4hzUpxF/+JT+G9jVNb3LLqyvMHukW+oEqA7jJN+82dyA4FK
-         VDRoWIg7RN0zPqQS3VGTxM/Bk6j0JBCQfJRH91chbxsaxi5cJY+V2Ba7w1AEcKEzMGTO
-         w24nLpc4P9NX0Q/udWZ5hss39/bo4vfZg9UEwtlCcQ4VtxmioN6txG3aDhevZcz267uq
-         byjw==
-X-Gm-Message-State: ACgBeo26ymmQhSWtgim05Ofx3JZOSAE3pMPbv27I7bCHSv9vcYfnVACI
-        YUnbei8xkVrdPbh0vBfLJyn96g==
-X-Google-Smtp-Source: AA6agR6SrrVszTgecSUF4mraXRXnzc9XOymrHwu9PdfD+Q5Lv2UdQT9V7Mddk5ArGOetg25usOQyRQ==
-X-Received: by 2002:a05:6512:e98:b0:492:cf3c:8860 with SMTP id bi24-20020a0565120e9800b00492cf3c8860mr4375495lfb.603.1662730313275;
-        Fri, 09 Sep 2022 06:31:53 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id e3-20020a056512090300b00494974f951esm77463lft.267.2022.09.09.06.31.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 06:31:52 -0700 (PDT)
-Message-ID: <c5d54b15-8caa-764a-6f6c-32ab5b07be0b@linaro.org>
-Date:   Fri, 9 Sep 2022 15:31:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 6/6] ARM: dts: qcom: apq8064: use hdmi_phy for the MMCC's
- hdmipll clock
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S230427AbiIINdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:33:55 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35351395AF
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 06:33:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=Vwa96NPgAe99rk95Oztt/MJ7OGnv
+        DPqnWAHViyLBFuA=; b=Y2mE1fX0CJq50Vu0qh0VwdOQioeTh6x54BxNuxJLC0Kn
+        X+/FIxENbsmFoREbeUD823swA7UKrNRx51hZ9Z2fA5Hm+f9bbWxXHbvwElN3CC2I
+        YpwLMpFfkHz/91jknlQeFx5bPl+ubkTpS3lRkrmTz8pVfMqaCLyNKJuiQw01G70=
+Received: (qmail 499396 invoked from network); 9 Sep 2022 15:33:48 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Sep 2022 15:33:48 +0200
+X-UD-Smtp-Session: l3s3148p1@ylSFmD7oDZQucrSh
+Date:   Fri, 9 Sep 2022 15:33:47 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20220909132010.3814817-1-dmitry.baryshkov@linaro.org>
- <20220909132010.3814817-7-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220909132010.3814817-7-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-watchdog@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, Thanh Quan <thanh.quan.xn@renesas.com>
+Subject: Re: [PATCH] dt-bindings: watchdog: renesas-wdt: Add r8a779g0 support
+Message-ID: <YxtAuwlMpsEnV1Tn@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-watchdog@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, Thanh Quan <thanh.quan.xn@renesas.com>
+References: <e3a246be066d5e9c2231285bc1488fc12866cf5d.1662714387.git.geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xSFMtCNoZNxEK8u/"
+Content-Disposition: inline
+In-Reply-To: <e3a246be066d5e9c2231285bc1488fc12866cf5d.1662714387.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 15:20, Dmitry Baryshkov wrote:
-> Link hdmi_phy as a clock provider of "hdmipll" clock to the MMCC.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm/boot/dts/qcom-apq8064.dtsi | 2 +-
+
+--xSFMtCNoZNxEK8u/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Sep 09, 2022 at 11:08:11AM +0200, Geert Uytterhoeven wrote:
+> From: Thanh Quan <thanh.quan.xn@renesas.com>
+>=20
+> Document support for the Watchdog Timer (WDT) Controller in the Renesas
+> R-Car V4H (R8A779G0) SoC.
+>=20
+> Signed-off-by: Thanh Quan <thanh.quan.xn@renesas.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--xSFMtCNoZNxEK8u/
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Although this depends on the driver change for bisectability.
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMbQLgACgkQFA3kzBSg
+KbabMw//YSsvQK1h8tn6ot0Z7AN2OjwQ7Enqz2P7xHw/ES8RL8SXaE3ZiOlYEOmj
+UdLCtORqxb261X3bgPkdOzpjV/4bvn/BKUWzujVm+5c9yFVlFLMgxvrXYdxWmzoG
+zzuC8ya/kbxSK2dIxOefI0FF/s/HpTpFQMYyv1xh0kG/JCzQblKmnjX3QX/VcS31
+JyQ0zSwv7dwEDAsyeIjIB1PSIEfSWH6PmzS1j5keSEF2S0bdzmN0JoNcd0l0qxQH
+jbo0DIRN1SuA8JHqqjwlwzErC+ji0yZm6v8zR6bF5Ibp8rzQW+otVtlnnVsG3XIs
+Z3aUlIlGcZGqLnPvsRYfbrLNz+CFbuun/lh2gcjh/6vB1C5ixlLLc8K7d0Urduy4
+mWagxaI/3ST3Ps32LYm5cIC41DTTa+pN7z3TnrgN5OHSsrutJhFtd349GEJc77ka
+TtjgE1sfDRuzHJ83WQNon921IizwJN98yyRE8/q0T84i3hTY11bimDZ+310HKrhR
+M68GsICAdjGSZpJzU7qqqseewB2CpXYcWP13ofJzOJ2qc8s1Jt4P05Esx6JSbfGV
+sPZikeNE+vNOlWOqMiw2rqnk4t8Xe2e2KcnWA63i4/67twKXfV5bOnlhnPcQJbma
+/SfN8Dj7QV8E67QwWyRWWojUJ/0Rh7+UMayScoEuQqok6BobNXg=
+=3kMa
+-----END PGP SIGNATURE-----
+
+--xSFMtCNoZNxEK8u/--
