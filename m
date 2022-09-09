@@ -2,75 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86DCA5B327D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 10:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBC6C5B3281
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 10:59:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbiIII57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 04:57:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58246 "EHLO
+        id S229455AbiIII65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 04:58:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231268AbiIII50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 04:57:26 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16229A1D72
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 01:57:06 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id k9so1667214wri.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 01:57:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date;
-        bh=rHPt+Pbc0bwJycb8g2JrUPaT739qQsbXoj9p9DUlASE=;
-        b=o8/U+pWZQB+BK2sQxVVXYhAtmR4twA2BIVHdD3qEUSTRXfTJet6ivAh/aa0kvfqXEP
-         en7ejU3nOu4bQP6vZpt50O7hMAYuCNjbSyl+Fa89NpV4Uy7Esi4TN4YFK/rH3VWPAH7P
-         9Ei7dmjS3X1tO9Pz5sxHqw8caG2m5uY4X2GGynE9KsZFWpqSIUVZMXz+V8FBPPp8iE/b
-         jKXvos0xjGCtBk/9THaZM1g5m8Dz6skfbkxP1TdHKCHd5Lru3SgjUnu7sqZXzGV6Eb1h
-         VfleTZ5RUJB6ZF7/NKUdrty0fGbKxEfl4I/63IWGo7vRairVqhSMFZFiuWfawbo9FaJr
-         atlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=rHPt+Pbc0bwJycb8g2JrUPaT739qQsbXoj9p9DUlASE=;
-        b=4/hXVAVoCv8CYx5NlHHORSM9vthrse32v0ZoUUg9ntYMiUdeLniHuXAJKtWA55qPMZ
-         OsS04tTuAl9pIKWIShDbTbk2IrwokVQbeeR6exgPI85+7CElEeYwPqjMHdZqYW3cR0em
-         Gx7rXjZCEy0Tl0o5+KSQALX2O8z77fVASUuK2Kr7yTZHNs+L167SaOYKcfw3eyGHLpP6
-         i5yERQ+LVLYRRjd2quEh0CVbKd+4b9WUHqEDfetG9+ZFjiP2bTb0AZxnGaD/e5EGF/7d
-         8Kdo51WsQZoAwY3kaedKNi9J1uVOatpVvZhuSGR+HcLbWFmDIkk+9glx/BJkZK1gLeJL
-         9i/w==
-X-Gm-Message-State: ACgBeo1TyOBLMmfp/sGD+Uq3Lv3FZQtuCblI+rFuO26laoMN4zq+cj8O
-        RmkKND58Ztp9IWHl/q25TlUenA==
-X-Google-Smtp-Source: AA6agR6zK39Nn38XEAPq9Ou9Er2T2ugG1x2dP6ckDfLlUnVh5tdCyv2sC6o38IAapwEnt34CuzxuKA==
-X-Received: by 2002:adf:e904:0:b0:228:e0d5:2c55 with SMTP id f4-20020adfe904000000b00228e0d52c55mr7254035wrm.714.1662713824642;
-        Fri, 09 Sep 2022 01:57:04 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id f25-20020a1c6a19000000b003a5ffec0b91sm1166157wmc.30.2022.09.09.01.57.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Sep 2022 01:57:04 -0700 (PDT)
-Date:   Fri, 9 Sep 2022 10:57:01 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, ardb@kernel.org,
-        davem@davemloft.net, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v9 25/33] dt-bindings: crypto: rockchip: convert to new
- driver bindings
-Message-ID: <Yxr/3RjQs9x2KqL7@Red>
-References: <20220901125710.3733083-1-clabbe@baylibre.com>
- <20220901125710.3733083-26-clabbe@baylibre.com>
- <20220907203853.GA288174-robh@kernel.org>
+        with ESMTP id S230439AbiIII6d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 04:58:33 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F7F10BA6A;
+        Fri,  9 Sep 2022 01:58:04 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 1E34721F3;
+        Fri,  9 Sep 2022 10:58:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1662713882;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=OKWpGy9Sm/h+vL8rknv+UFCIpuNP8hHTtInxhBqUUDg=;
+        b=1q0wZefGZU+a4bo3O0XKv6aSKfvwAMAjX9kZILz6cFvd4hJc7n+RCZAqPbbJWnWs2NG9Ej
+        XTKxJ5WMmUyE+Jf8aY30uRm4NMKCbE1Xr1RoiPmX23porTbAu35EWL/RGX+RjPMVu0CXR6
+        s1l5XzVG6ytQ2dL3uB/L1QdwhTy7VXdS35mBIdH+eIdB62mbXYjITgDZSGY5Loanzmi0vM
+        yiAOdWIIvKZqoHUfw5imLbdL92IbqSj6VznRJ8FU/rfP7o+UkMeGWusj+mf2TcBL9OgNiz
+        kcsFcOTibFGsYngS5wygKrK9aqqO+wbqskG/E77XNAvy4JDWQaoYg9+Ep2fY3g==
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220907203853.GA288174-robh@kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Date:   Fri, 09 Sep 2022 10:58:01 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH v2 13/20] nvmem: core: drop priv pointer in post process
+ callback
+In-Reply-To: <373b10aa-f5c8-28b3-88b0-f87a1a40b000@linaro.org>
+References: <20220901221857.2600340-1-michael@walle.cc>
+ <20220901221857.2600340-14-michael@walle.cc>
+ <373b10aa-f5c8-28b3-88b0-f87a1a40b000@linaro.org>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <42bc3f6796cc75baafc15c6d2c71ec92@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,142 +69,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Wed, Sep 07, 2022 at 03:38:53PM -0500, Rob Herring a écrit :
-> On Thu, Sep 01, 2022 at 12:57:02PM +0000, Corentin Labbe wrote:
-> > The latest addition to the rockchip crypto driver need to update the
-> > driver bindings.
+Am 2022-09-09 10:52, schrieb Srinivas Kandagatla:
+> On 01/09/2022 23:18, Michael Walle wrote:
+>> It doesn't make any more sense to have a opaque pointer set up by the
+>> nvmem device. Usually, the layout isn't associated with a particular
+>> nvmem device.
+>> 
+> This is really not a good idea to remove the context pointer, as this
+> is the only way for callback to get context which it can make use of.
+
+In which case? As I mentioned it's the priv to the nvmem driver and all
+the "normal" callbacks can do very little with it. If there will be a
+future need, then there should be a proper opaque pointer associated
+with the layout and not the nvmem driver.
+
+-michael
+
+> I would prefer this to be left as it is.
 > 
-> This sounds like you changed the driver, so change the binding. That 
-> would be an ABI break. But it looks like you are adding support for new 
-> h/w, so say that. Bindings aren't about a driver.
+> --srini
 > 
-
-Hello
-
-Ok, I will change the commit log.
-
-> > 
-> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> > ---
-> >  .../crypto/rockchip,rk3288-crypto.yaml        | 79 +++++++++++++++++--
-> >  1 file changed, 71 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-> > index 8a219d439d02..b7870a4cbdbe 100644
-> > --- a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-> > +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-> > @@ -13,6 +13,8 @@ properties:
-> >    compatible:
-> >      enum:
-> >        - rockchip,rk3288-crypto
-> > +      - rockchip,rk3328-crypto
-> > +      - rockchip,rk3399-crypto
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -21,21 +23,82 @@ properties:
-> >      maxItems: 1
-> >  
-> >    clocks:
-> > +    minItems: 3
-> >      maxItems: 4
-> >  
-> >    clock-names:
-> > -    items:
-> > -      - const: aclk
-> > -      - const: hclk
-> > -      - const: sclk
-> > -      - const: apb_pclk
-> > +    minItems: 3
-> > +    maxItems: 4
-> >  
-> >    resets:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 3
-> >  
-> >    reset-names:
-> > -    items:
-> > -      - const: crypto-rst
-> > +    minItems: 1
-> > +    maxItems: 3
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: rockchip,rk3288-crypto
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 4
-> > +        clock-names:
-> > +          items:
-> > +            - const: aclk
-> > +            - const: hclk
-> > +            - const: sclk
-> > +            - const: apb_pclk
-> > +        resets:
-> > +          maxItems: 1
-> > +        reset-names:
-> > +          items:
-> > +            - const: crypto-rst
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: rockchip,rk3328-crypto
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          maxItems: 3
-> > +        clock-names:
-> > +          items:
-> > +            - const: hclk_master
-> > +            - const: hclk_slave
-> > +            - const: sclk
-> 
-> Do we really need new names? Was 'aclk' not the bus master clock?
-
-I follow name convention from dt-bindings/clock/rk3328-cru.h
-
-> 
-> If the clocks and resets aren't the same, then maybe these 2 new chips 
-> should be their own binding.
-
-I dont understand what you mean ?
-You mean having a rk3288-crypto.yaml and a rk3328-crypto.yaml (which will be related to the same driver) ?
-
-> > +        resets:
-> > +          maxItems: 1
-> > +        reset-names:
-> > +          items:
-> > +            - const: crypto-rst
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: rockchip,rk3399-crypto
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          maxItems: 3
-> > +        clock-names:
-> > +          items:
-> > +            - const: hclk_master
-> > +            - const: hclk_slave
-> > +            - const: sclk
-> > +        resets:
-> > +          minItems: 3
-> > +        reset-names:
-> > +          items:
-> > +            - const: rst_master
-> > +            - const: rst_slave
-> 
-> 'rst_' is redundant, drop.
-> 
-
-I will fix it
-
-Thanks for the review
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+>> ---
+>> changes since v1:
+>>   - new patch
+>> 
+>>   drivers/nvmem/core.c           | 4 ++--
+>>   drivers/nvmem/imx-ocotp.c      | 4 ++--
+>>   include/linux/nvmem-provider.h | 5 +++--
+>>   3 files changed, 7 insertions(+), 6 deletions(-)
+>> 
+>> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+>> index d31d3f0ab517..6910796937f9 100644
+>> --- a/drivers/nvmem/core.c
+>> +++ b/drivers/nvmem/core.c
+>> @@ -1523,8 +1523,8 @@ static int __nvmem_cell_read(struct nvmem_device 
+>> *nvmem,
+>>   		nvmem_shift_read_buffer_in_place(cell, buf);
+>>     	if (cell->read_post_process) {
+>> -		rc = cell->read_post_process(nvmem->priv, id, index,
+>> -					     cell->offset, buf, cell->bytes);
+>> +		rc = cell->read_post_process(id, index, cell->offset, buf,
+>> +					     cell->bytes);
+>>   		if (rc)
+>>   			return rc;
+>>   	}
+>> diff --git a/drivers/nvmem/imx-ocotp.c b/drivers/nvmem/imx-ocotp.c
+>> index ac0edb6398f1..5e869d4a81c5 100644
+>> --- a/drivers/nvmem/imx-ocotp.c
+>> +++ b/drivers/nvmem/imx-ocotp.c
+>> @@ -222,8 +222,8 @@ static int imx_ocotp_read(void *context, unsigned 
+>> int offset,
+>>   	return ret;
+>>   }
+>>   -static int imx_ocotp_cell_pp(void *context, const char *id, int 
+>> index,
+>> -			     unsigned int offset, void *data, size_t bytes)
+>> +static int imx_ocotp_cell_pp(const char *id, int index, unsigned int 
+>> offset,
+>> +			     void *data, size_t bytes)
+>>   {
+>>   	u8 *buf = data;
+>>   	int i;
+>> diff --git a/include/linux/nvmem-provider.h 
+>> b/include/linux/nvmem-provider.h
+>> index 9d22dc5a3fa5..46067a6a0395 100644
+>> --- a/include/linux/nvmem-provider.h
+>> +++ b/include/linux/nvmem-provider.h
+>> @@ -19,8 +19,9 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned 
+>> int offset,
+>>   typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
+>>   				 void *val, size_t bytes);
+>>   /* used for vendor specific post processing of cell data */
+>> -typedef int (*nvmem_cell_post_process_t)(void *priv, const char *id, 
+>> int index,
+>> -					 unsigned int offset, void *buf, size_t bytes);
+>> +typedef int (*nvmem_cell_post_process_t)(const char *id, int index,
+>> +					 unsigned int offset, void *buf,
+>> +					 size_t bytes);
+>>     enum nvmem_type {
+>>   	NVMEM_TYPE_UNKNOWN = 0,
