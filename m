@@ -2,126 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 375725B3A34
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:01:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E1085B3A70
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbiIINzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 09:55:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42326 "EHLO
+        id S229544AbiIIOMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 10:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbiIINyx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 09:54:53 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B12F2F003;
-        Fri,  9 Sep 2022 06:54:46 -0700 (PDT)
-From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1662731682; bh=F2niW+KZ7cR+aKTNLQ9ayIzd0xynY1DOFy+scVH0nu4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=f19OV5FyCizyB27g4LsgdtN2U8izv06YSBjl/ZQxM2ox6/qL12dv0sVE/opDmQzKJ
-         ECGWqYgfwQInmlO/dngqMBr13P2VTx9CBUGWfGtaaRZsyemqPrWMbcPPP6g1r/g0JS
-         S6SmZRJogie0GpaIa15JBn4kvcsBj8cmOlJ4MMHQ=
-To:     James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Lucas Tanure <tanureal@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Charles Keepax <ckeepax@opensource.cirrus.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Matt Flax <flatmax@flatmax.com>,
-        - <patches@opensource.cirrus.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        asahi@lists.linux.dev
-Subject: [PATCH 10/10] ASoC: cs42l42: Implement 'set_bclk_ratio'
-Date:   Fri,  9 Sep 2022 15:53:34 +0200
-Message-Id: <20220909135334.98220-11-povik+lin@cutebit.org>
-In-Reply-To: <20220909135334.98220-1-povik+lin@cutebit.org>
-References: <20220909135334.98220-1-povik+lin@cutebit.org>
+        with ESMTP id S229668AbiIIOMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 10:12:54 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 322D4A6C22
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 07:12:54 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oWeUW-0005i0-Q7; Fri, 09 Sep 2022 15:56:20 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     linux-rockchip@lists.infradead.org,
+        Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, cl@rock-chips.com,
+        s.hauer@pengutronix.de, pgwipeout@gmail.com, vkoul@kernel.org,
+        kishon@ti.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
+        hjc@rock-chips.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: phy-rockchip-inno-dsidphy: add compatible for rk3568
+Date:   Fri, 09 Sep 2022 15:56:19 +0200
+Message-ID: <19907775.sIn9rWBj0N@diego>
+In-Reply-To: <20220906174823.28561-3-macroalpha82@gmail.com>
+References: <20220906174823.28561-1-macroalpha82@gmail.com> <20220906174823.28561-3-macroalpha82@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver wants to know the bit rate on the serial bus and takes that
-to be the value set by 'set_sysclk'. The 'set_bclk_ratio' op is a better
-fit for figuring out the clocking parameters of the serial bus, so
-implement that and give it precedence over the prior methods.
+Am Dienstag, 6. September 2022, 19:48:20 CEST schrieb Chris Morgan:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add a compatible string for the rk3568 dsi-dphy.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 
-Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
----
- sound/soc/codecs/cs42l42.c | 17 ++++++++++++++++-
- sound/soc/codecs/cs42l42.h |  1 +
- 2 files changed, 17 insertions(+), 1 deletion(-)
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-diff --git a/sound/soc/codecs/cs42l42.c b/sound/soc/codecs/cs42l42.c
-index 3f067cf9131a..36761ba0f2c4 100644
---- a/sound/soc/codecs/cs42l42.c
-+++ b/sound/soc/codecs/cs42l42.c
-@@ -898,7 +898,10 @@ static int cs42l42_pcm_hw_params(struct snd_pcm_substream *substream,
- 
- 	cs42l42->srate = params_rate(params);
- 
--	if (cs42l42->sclk) {
-+	if (cs42l42->bclk_ratio) {
-+		/* machine driver has set the BCLK/samp-rate ratio */
-+		bclk = cs42l42->bclk_ratio * params_rate(params);
-+	} else if (cs42l42->sclk) {
- 		/* machine driver has set the SCLK */
- 		bclk = cs42l42->sclk;
- 	} else {
-@@ -984,6 +987,17 @@ static int cs42l42_set_sysclk(struct snd_soc_dai *dai,
- 	return -EINVAL;
- }
- 
-+static int cs42l42_set_bclk_ratio(struct snd_soc_dai *dai,
-+				unsigned int bclk_ratio)
-+{
-+	struct snd_soc_component *component = dai->component;
-+	struct cs42l42_private *cs42l42 = snd_soc_component_get_drvdata(component);
-+
-+	cs42l42->bclk_ratio = bclk_ratio;
-+
-+	return 0;
-+}
-+
- static int cs42l42_mute_stream(struct snd_soc_dai *dai, int mute, int stream)
- {
- 	struct snd_soc_component *component = dai->component;
-@@ -1087,6 +1101,7 @@ static const struct snd_soc_dai_ops cs42l42_ops = {
- 	.hw_params	= cs42l42_pcm_hw_params,
- 	.set_fmt	= cs42l42_set_dai_fmt,
- 	.set_sysclk	= cs42l42_set_sysclk,
-+	.set_bclk_ratio	= cs42l42_set_bclk_ratio,
- 	.mute_stream	= cs42l42_mute_stream,
- };
- 
-diff --git a/sound/soc/codecs/cs42l42.h b/sound/soc/codecs/cs42l42.h
-index bc51bb09da5c..a72136664112 100644
---- a/sound/soc/codecs/cs42l42.h
-+++ b/sound/soc/codecs/cs42l42.h
-@@ -35,6 +35,7 @@ struct  cs42l42_private {
- 	int irq;
- 	int pll_config;
- 	u32 sclk;
-+	u32 bclk_ratio;
- 	u32 srate;
- 	u8 plug_state;
- 	u8 hs_type;
--- 
-2.33.0
+> ---
+>  .../devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
+> index 8a3032a3bd73..5c35e5ceec0b 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
+> @@ -18,6 +18,7 @@ properties:
+>        - rockchip,px30-dsi-dphy
+>        - rockchip,rk3128-dsi-dphy
+>        - rockchip,rk3368-dsi-dphy
+> +      - rockchip,rk3568-dsi-dphy
+>  
+>    reg:
+>      maxItems: 1
+> 
+
+
+
 
