@@ -2,257 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2A945B3A9E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 810FC5B3AAC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:27:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231131AbiIIOXB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 9 Sep 2022 10:23:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53820 "EHLO
+        id S231178AbiIIO1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 10:27:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbiIIOW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 10:22:57 -0400
-Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE11E133A1A
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 07:22:54 -0700 (PDT)
-Received: from CHE01-GV0-obe.outbound.protection.outlook.com
- (mail-gv0che01lp2047.outbound.protection.outlook.com [104.47.22.47]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-31-Fz9ZJPNUMoe3m95_SQ814A-3; Fri, 09 Sep 2022 16:22:50 +0200
-X-MC-Unique: Fz9ZJPNUMoe3m95_SQ814A-3
-Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8) by
- GV0P278MB0131.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:1c::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5612.12; Fri, 9 Sep 2022 14:22:48 +0000
-Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- ([fe80::6c6d:333:ab23:3f5b]) by ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- ([fe80::6c6d:333:ab23:3f5b%3]) with mapi id 15.20.5612.020; Fri, 9 Sep 2022
- 14:22:48 +0000
-Date:   Fri, 9 Sep 2022 16:22:47 +0200
-From:   Francesco Dolcini <francesco.dolcini@toradex.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain
- provider which controls
-Message-ID: <20220909142247.GA238001@francesco-nb.int.toradex.com>
-References: <20220609150851.23084-1-max.oss.09@gmail.com>
- <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
- <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
- <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
- <20220726160337.GA41736@francesco-nb.int.toradex.com>
- <CAPDyKFqGFjywJ-Vmmn9=-NOzJX=24mH9A03H9djS=nJotKWK8A@mail.gmail.com>
- <20220728112146.GA97654@francesco-nb.int.toradex.com>
- <CAPDyKFqtCxrjALeCmhuqQ2VmmUHhi-DjXO30uHChTPFeDbp+JQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFqtCxrjALeCmhuqQ2VmmUHhi-DjXO30uHChTPFeDbp+JQ@mail.gmail.com>
-X-ClientProxiedBy: MR1P264CA0202.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:501:57::19) To ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:2e::8)
+        with ESMTP id S230213AbiIIO1a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 10:27:30 -0400
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F45AA34B;
+        Fri,  9 Sep 2022 07:27:27 -0700 (PDT)
+Received: by mail-io1-xd31.google.com with SMTP id d68so1526000iof.11;
+        Fri, 09 Sep 2022 07:27:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=4j6yKaic5oazyrfOzloSvEnmZiVIQ82dAZTjcffuWZg=;
+        b=UiiAI9XyEeR/oqwkvPuc94AtrS6oWDXhykkIlAoDa8w9HH/WegNqVN0v1sCJq6I6a9
+         r8WGcDpMIM9zkNteK7ldn8TFZrVfShoRhF5pPOytP1BKIotrlSCwACqOphvjokwCHIrx
+         gNSHg4A0PE9PfUlkjNKwfUzYRzPba1cDRbjVsinojglTZaUJ7AB2OmOjqvIi4Qk3sjHp
+         cJgZgim1voRO1bEttDw0dcPqIXVt6zODhSHK89ESkKepxQe8mcwyZaQvJ5jid4RLXMFg
+         Rd1kHrAS1gwvE0zaIRR/cSaGlGTQyxCVLPwzZ1sncSS4Ltnb6avqlWyryVcgKowKxB1g
+         DkAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=4j6yKaic5oazyrfOzloSvEnmZiVIQ82dAZTjcffuWZg=;
+        b=uNj2O1jAhtHYDEAS4r0BQc+m5aZnoWZrnOCORVml6V31aVpUoAzXB8yy8W2AcR0UHv
+         BssbMmAJ9lvG+1MdSrQw0IT6X3NzuCNd+RF9uMRBRSU1a7mLgWp2VVjUqFs2pCtl8wrW
+         Um4R2G1P2w+Hy5aSMiyJPysUXfMBZVKXkOMHyoHiGRB+/aObiBfpE+jO9cfrORvuzQB8
+         mcskCZAR2Gswn9XFJ47YRR90UvLZucIN8QZ9KMIaNL8C36u2Y4o5DmKKjXhe9dm524cH
+         Ie698+mdfAUkuIPs7c7ro3NmeFJ4+QxNE479uv0qqkkLsba+xosqrxFNw9CFdjUe6V2L
+         Ui0Q==
+X-Gm-Message-State: ACgBeo039DbILvl4cKw9ubEBfoYb30PfxZv8ZVv7UOfxH1RJ6oiLDZBr
+        1l6Cyf5Z2Pf0raXE2JOT/642EnQO3OjkONn683bDybRnZUSo4w==
+X-Google-Smtp-Source: AA6agR4pz0L5yvddtwv72CCCdzO6a3EN4ynaOMKwWs5GvwYO0ZR81ZO9gHHGEY1wt4jRVKYW4rO3TjMNYXvHNrkxFEg=
+X-Received: by 2002:a05:6638:160c:b0:343:4cdd:8fe5 with SMTP id
+ x12-20020a056638160c00b003434cdd8fe5mr7865935jas.299.1662733647201; Fri, 09
+ Sep 2022 07:27:27 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ZRAP278MB0495:EE_|GV0P278MB0131:EE_
-X-MS-Office365-Filtering-Correlation-Id: eac0751f-bd6e-4bec-7c61-08da926ec595
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0
-X-Microsoft-Antispam-Message-Info: aAj2rigwqGGfl/fTnUvujiT+0W8z/mYkTb0I5XDoqigy5u7nhABiuPcWc/5bF3RBLwcBL2GpTNqiPD81U+UnTwgFuoX2ruM5N+A5vk4Vy0M7Oez+SMA5oRqi9nvYj/iApP9Qe92p81UIRPtnfZM3G6wYNBvF4tar3PSPt+/FkQ5nXROOL6MtoUnpR3deMSoYfhKslQkFsKwbcMsISGNphS3Nmpoym2oAezPQ7J/sFjzwq7Oh4hYgm3P+yekKsUnYABL/ctDa69wQJPZuZq+XfC3X9FjOpi9X1bT1Cws/Rbch0RgFKy/ygC8IkGppzaoF9FxDfrLiHv8oIRKirj6pRouR/TKd1wu+e3efgZxeHZQOGFmZAGxFOQUMhx0ojwfRnJVmbpKtm9X597bbpFmaX2q2/qg9olBqEQxcNoHSbjsdUrYAtDQbfX5KxZuCy9KTtjIbayMG9nreso+FpMNmApR7Yn5rFooNsFQeevXIb60F157/KkMU5J4CUij+CykZcjdJsicu7gCWvI0592lqhO478yJFhaFmMptXXrX96KwUKsJ9M4ZpGF0W5/RunoLnlQ8JpxVph0Z+WYvYHGUVP7l3vM0W7vzJWQ9JfkPkERP9dvM9Wkn2MsFyvJb0WXnEZkC7Zs7M4Tk4eW1dyaL2x8f3ki/etK2yIZWaIMyEkKRmyzaqoiSQIrLG90nxgNe7QZ5ZKaTq09P2R/GSLCAcfl2FCZhLvr3uSHoujiNyEfF3JMd2uaAWZczCJwQMMww2ixuPujpA8CkdIpEt2LJ7iiRgnAoG7HnuwrOEe1/eKJs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(396003)(376002)(136003)(39840400004)(346002)(44832011)(38350700002)(83380400001)(186003)(1076003)(33656002)(7416002)(316002)(54906003)(2906002)(6916009)(8936002)(8676002)(66556008)(66946007)(4326008)(38100700002)(66476007)(5660300002)(966005)(478600001)(6486002)(41300700001)(6512007)(26005)(86362001)(52116002)(6506007);DIR:OUT;SFP:1102
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Q1SYc1moejR5DBMT0TvRuDuf2XAcW3Cwflh7cwUrJ8KclNOcntoWn4BDy4Ku?=
- =?us-ascii?Q?Du985vd1ipIBrZu9ddfYOMmgE58jIwpQdjRjhJs8Bwrx5V8t8nXwcIzSMmSG?=
- =?us-ascii?Q?Y2ybb8OrOTqls4172XqMY/79RfKsHroLWKKUYrpxmosYWDyEsGJl52U4X5Jt?=
- =?us-ascii?Q?WVjNDfBF0tDK2wtlT318ljrkbaAmQMY37GqSeoI+ugTG0Tukl38xDlorM5/b?=
- =?us-ascii?Q?8597AcZJjD4k0OR7+iuQNnOFk9dVNOrGSC0gVvvVs0V6Fhv2H1KRZOy75j3h?=
- =?us-ascii?Q?gVJDTj+tqLJVRgZrzOO6ahxGI1x9q7yzwzTnxywJyN2kA6n5iOYSFf89xXM5?=
- =?us-ascii?Q?HZQjtfl8PUoF6PGGIVzKGsUrK1N2b965HEiFF38t3Z5vrlfPB4R7hFEaNEGF?=
- =?us-ascii?Q?Ufi+z53NmksOYsN0jXtZnqo6hJEgsPq/oUCDFmuJ9nnr/XbFMw1/3cHBIawq?=
- =?us-ascii?Q?f+AbZpHKWYtuFfCj8MGMY2Kkgol9nY4tHvUZf2z+GWxvx1+IUB/h3izl1ceY?=
- =?us-ascii?Q?440yHOKfYDCtzzWW982T0AWwTFPS8vXFFj8cPvgxsMivENsO1VX5JZtOSkn2?=
- =?us-ascii?Q?M1moBXqgMRS6e1XX84KHAJwFkypyFrGspwGcPvlr2IgIRczZ9ujL/RrW44te?=
- =?us-ascii?Q?hbbKj9odIhsP2mLYUQpXoljJAr6giMpQtGZ/rUAGWRfnEVbchRXodNXNrwSi?=
- =?us-ascii?Q?Wx1SprFoM0E9LnH4LEWAiP5Te9eXsPPYIn29orIHL7MSeL9cOO5jcywREYLU?=
- =?us-ascii?Q?6WNC4jAIJ5rT9aN/Ve9Nr46BXEP3dgHf4vYEgbFuzd+5qUwBLqJ8NuoZD6p8?=
- =?us-ascii?Q?3DAs9CTE80uGE4q22Clo4mYze4BVF/M06ZAsr24fPpgw7gVvFo6WTWXQ3ZFX?=
- =?us-ascii?Q?4RN0TzYWZK4vzyfrnK3eNMTadAt4oQdylNokzdCGFHlfXuXWNOwmYw+13X9m?=
- =?us-ascii?Q?B4ZdBi1LmgMcyfsnJS6g1WcWa5makbK6n8ckVgfjSDxy7Qz/reJjQnaf6xvH?=
- =?us-ascii?Q?QpzxcuFebaDoW9FxOOL8BlaoB71+asceWXnTsBTNVEe+pzPZ224JVcex9VD4?=
- =?us-ascii?Q?3SI5VUw2FV2XDl4ksdJ8oXnzqKde8qiDdFFvC8CU1D/XKN4zGHbj8UibeNJN?=
- =?us-ascii?Q?Sst0+iIlD3cYGUBuuAhe3RVtJgYxtu7Tv1Z3O1y8v9S/OIVoqz8qTYHySyPk?=
- =?us-ascii?Q?GFZm/6JMxsvL4NwFRM23mOXykekrwkqtfxNT8g7+MLHX9ku17FSvq3pDRAJE?=
- =?us-ascii?Q?bjpMUhAAklFW0NfJsXteRzVuN8BRCAZHT4b6ZzN2LZ74PegQ+txvf39NcGve?=
- =?us-ascii?Q?24EgKTvO95lNoLNkS3WHineZt/KDDvtK+ni5UADDQuBfVa/EmHisTnQFfZKF?=
- =?us-ascii?Q?OiZkhTkOiZRK9FeaIjQaPUQ0cKLLrbOSrxB/dqdaK2aA4DG4LjdkMPB0jg0w?=
- =?us-ascii?Q?CzAVfW8xQrxoLW5jbe0UtHMUfXEsH8oVIizpWiNHWU/p6JlFqkcyKIGRPgJu?=
- =?us-ascii?Q?ElRjXjPsKJuSN30urLJ8uAM9o5NnmiuGcHXywbYXoZ6hvmL0AqSuA6yPqbaR?=
- =?us-ascii?Q?HphWQ9FaT+7sV3jqcl8jpZNIatM4LOIe4WVhw5X+AzlbXlKjGzZh+fHvZ1ig?=
- =?us-ascii?Q?Lw=3D=3D?=
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eac0751f-bd6e-4bec-7c61-08da926ec595
-X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2022 14:22:48.6650
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Wmfj01+x3q9JUylafiVzIAo3JSFvhR1bgiCqS3ijZqdtfTs+liw9Qa/yW21oBMWZQHWj2oZAIrMIq0X93A1NUZTGlX/xuerb9O9CBgB8ImI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV0P278MB0131
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220909073456.239668-1-gengcixi@gmail.com> <20220909073456.239668-2-gengcixi@gmail.com>
+ <Yxr0+LJWWsF53dr2@google.com> <CAF12kFteDZLk-2PBufnuar43bgPzoxWsOjR0-zQ01ZqLyTCxQw@mail.gmail.com>
+ <dc63bd52-edbf-d13b-86b3-db83bfd8b7e1@linaro.org> <CAF12kFt95PYcK249Zm8r+jZtEm3vGTd3AXn2DB_CG0Xf=3xeFQ@mail.gmail.com>
+ <fe1838eb-8ec5-62a9-3d90-bf2fe4070535@linaro.org> <YxsofwCfTZqqJOiK@google.com>
+In-Reply-To: <YxsofwCfTZqqJOiK@google.com>
+From:   Cixi Geng <gengcixi@gmail.com>
+Date:   Fri, 9 Sep 2022 22:26:51 +0800
+Message-ID: <CAF12kFsGytPEqwDXiR+f7coKHeJp5vNP6EPzbcqUPDAggc5_yg@mail.gmail.com>
+Subject: Re: [PATCH V7 1/2] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+To:     Lee Jones <lee@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Orson Zhai <orsonzhai@gmail.com>,
+        baolin.wang@linux.alibaba.com,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Ulf,
-
-On Fri, Aug 26, 2022 at 03:50:46PM +0200, Ulf Hansson wrote:
-> On Thu, 28 Jul 2022 at 13:21, Francesco Dolcini
-> <francesco.dolcini@toradex.com> wrote:
+Lee Jones <lee@kernel.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=889=E6=97=A5=E5=91=
+=A8=E4=BA=94 19:50=E5=86=99=E9=81=93=EF=BC=9A
+>
+> On Fri, 09 Sep 2022, Krzysztof Kozlowski wrote:
+>
+> > On 09/09/2022 12:16, Cixi Geng wrote:
+> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E4=BA=8E2022=E5=
+=B9=B49=E6=9C=889=E6=97=A5=E5=91=A8=E4=BA=94 17:57=E5=86=99=E9=81=93=EF=BC=
+=9A
+> > >>
+> > >> On 09/09/2022 11:50, Cixi Geng wrote:
+> > >>> Lee Jones <lee@kernel.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=889=E6=97=
+=A5=E5=91=A8=E4=BA=94 16:10=E5=86=99=E9=81=93=EF=BC=9A
+> > >>>>
+> > >>>> On Fri, 09 Sep 2022, Cixi Geng wrote:
+> > >>>>
+> > >>>>> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > >>>>>
+> > >>>>> Add bindings for Unisoc system global register which provide regi=
+ster map
+> > >>>>> for clocks.
+> > >>>>>
+> > >>>>> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > >>>>> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+> > >>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+> > >>>>> ---
+> > >>>>>  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++=
+++++++
+> > >>>>>  1 file changed, 68 insertions(+)
+> > >>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,um=
+s512-glbreg.yaml
+> > >>>>
+> > >>>> I'll take this when the clk driver changes are merged.
+> > >>> this patch is depends on the clk dt-bingdings, which is already mer=
+ged [1]
+> > >>
+> > >> which is merged to different tree, so this one here cannot go via MF=
+D
+> > >> tree without cross-tree merges.
+> > > Hi Krzysztof:
+> > > I test on the latest kernel 506357871c18e06565840d71c2ef9f818e19f460
+> > > (torvalds/master) version:6.0.0.rc4
+> > > what you mean is I must warting your branch upgrade the cross-tree?
 > >
-> > On Thu, Jul 28, 2022 at 11:37:07AM +0200, Ulf Hansson wrote:
-> > > On Tue, 26 Jul 2022 at 18:03, Francesco Dolcini
-> > > <francesco.dolcini@toradex.com> wrote:
-> > > >
-> > > > Hello Ulf and everybody,
-> > > >
-> > > > On Wed, Jul 13, 2022 at 01:43:28PM +0200, Ulf Hansson wrote:
-> > > > > On Thu, 23 Jun 2022 at 18:14, Max Krummenacher <max.oss.09@gmail.com> wrote:
-> > > > > > So our plan is to explicitly handle a (shared) regulator in every
-> > > > > > driver involved, adding that regulator capability for drivers not
-> > > > > > already having one.
-> > > > >
-> > > > > Please don't! I have recently rejected a similar approach for Tegra
-> > > > > platforms, which now have been converted into using the power domain
-> > > > > approach.
-> > > >
-> > > > Just to quickly re-iterate how our hardware design looks like, we do
-> > > > have a single gpio that control the power of a whole board area that is
-> > > > supposed to be powered-off in suspend mode, this area could contains
-> > > > devices that have a proper Linux driver and some passive driver-less
-> > > > components (e.g. level shifter) - the exact mix varies.
-> > > >
-> > > > Our proposal in this series was to model this as a power domain that
-> > > > could be controlled with a regulator. Krzysztof, Robin and others
-> > > > clearly argued against this idea.
-> > >
-> > > Well, historically we haven't modelled these kinds of power-rails
-> > > other than through power-domains. And this is exactly what genpd and
-> > > PM domains in Linux are there to help us with.
-> > >
-> > > Moreover, on another SoC/platform, maybe the power-rails are deployed
-> > > differently and maybe those have the ability to scale performance too.
-> > > Then it doesn't really fit well with the regulator model anymore.
-> > >
-> > > If we want to continue to keep drivers portable, I don't see any
-> > > better option than continuing to model these power-rails as
-> > > power-domains.
-> > >
-> > > >
-> > > > The other approach would be to have a single regulator shared with the
-> > > > multiple devices we have there (still not clear how that would work in
-> > > > case we have only driver-less passive components). This is just a
-> > > > device-tree matter, maybe we would need to add support for a supply to
-> > > > some device drivers.
-> > > >
-> > > > Honestly my conclusion from this discussion is that the only viable
-> > > > option is this second one, do I miss something?
-> > >
-> > > No thanks!
-> > >
-> > > Well, unless you can convince me there are benefits to this approach
-> > > over the power-domain approach.
-> >
-> > I'm fine with our current power-domain proposal here, I do not need to
-> > convince you, I have the other problem to convince someone to merge
-> > it :-)
-> >
-> > Maybe Krzysztof, Robin or Mark can comment again after you explained
-> > your view on this topic.
-> 
-> To move things forward, I suggest you re-start with the power domain approach.
-> 
-> Moreover, to avoid any churns, just implement it as another new SoC
-> specific genpd provider and let the provider deal with the regulator.
-I'm sorry, but I was not able to understand what you mean, can you
-provide some additional hint on the topic? Some reference driver we can
-look at?
+> > Ah, you linked email message so that rather indicated applying to clk
+> > tree, but indeed it is already in the mainline.
+>
+> ... and also, I'm *still* not playing that game with DT bindings.
+>
+> It's bad enough that we have to sync across subsystems to avoid
+> build-breakages.  If documentation comes together in -next and
+> subsequently Mainline that should be adequate.
+>
+> I doubt Linus is running DT checker(s) on each pull-request he merges,
+> nor are there any stipulations for DT bindings to be bisectable
+> post-merge.
 
-The driver we implemented and proposed with this patch is just
-connecting a power-domain to a regulator, it's something at the board
-level, not at the SoC one.
-We do not have a (existing) SoC driver were we could add the power
-domain provider as an additional functionality.
+Thanks Lee and Krzysztof's review. I wiil send the patch a new version to
+add the adress-cell  const property.and I think we have agreed on that
+the dependent patch already exist in mainline.
+so these patches can applied as long as no other issues.
 
-> In this way, you don't need to invent any new types of DT bindings,
-> but can re-use existing ones.
-The only new binding would be a new "compatible" to have a place to
-tie the regulator instance used in the device tree, but I do not think
-that this is an issue at all.
-
-The main concern that was raised on this topic was that we have to
-somehow link the power-domain to the specific peripherals (the power
-domain consumer) in the device tree.
-
-Adding the power-domain property there will trigger validation errors
-unless we do explicitly add the power-domains to the schema for each
-peripheral we need this. To me this does not really work, but maybe I'm
-not understanding something.
-
-This is what Rob wrote on the topic [1]:
-  > No. For 'power-domains' bindings have to define how many there are and
-  > what each one is.
-
-Just as an example from patch [2]:
-
-  can1: can@0 {
-    compatible = "microchip,mcp251xfd";
-    power-domains = <&pd_sleep_moci>;
-  };
-
-leads to:
-
-  imx8mm-verdin-nonwifi-dahlia.dtb: can@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-          From schema: .../bindings/net/can/microchip,mcp251xfd.yaml
-
-> If you post a new version, please keep me cced, then I will help to review it.
-Thanks!
-
-Francesco
-
-[1] https://lore.kernel.org/all/20220613191549.GA4092455-robh@kernel.org/
-[2] https://lore.kernel.org/all/20220609150851.23084-6-max.oss.09@gmail.com/
-
+Best regards,
+Cixi
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
