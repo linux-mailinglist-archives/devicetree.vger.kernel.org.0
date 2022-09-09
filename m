@@ -2,80 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A8A15B3D02
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 18:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C985B3D0E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 18:34:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231604AbiIIQao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 12:30:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57776 "EHLO
+        id S231650AbiIIQeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 12:34:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231722AbiIIQam (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 12:30:42 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B25A5A2F3
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 09:30:40 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id l12so2475846ljg.9
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 09:30:40 -0700 (PDT)
+        with ESMTP id S231808AbiIIQeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 12:34:21 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1DE71228D4
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 09:34:20 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id i203-20020a1c3bd4000000b003b3df9a5ecbso174231wma.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 09:34:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=GhijzOpjBSZ7nCgUhoccck5ZIQUlIFoaWDsMZJ6nH7k=;
-        b=I4j7Pcd20LpWaZq4vo2jbbXxGnuCGPC0vRNNXv1pXnQQ36vo7i4bBmWp3N7c5Q0UaR
-         pJAQr2bZFOrGVsPkVjaaWMcaApx1uJ/8uNzOErXc0bZQ3H1MIoZR1MwQK+OLtAyomOXb
-         6+cFZbBG77MIxiPYQEVIWAuWmOJQJTG1dkg2nfnkkh8DranTyzJhy6ZryT9gbUyD2c+q
-         /U0VayMgCPIEwYHEYKVRVWJRHiYMQPa44xPTj8typjdYNZ09p0O6QikgvEGnxmcyEHT+
-         XYgzmsuF1duIulbUaWkT+IuAdxaRDgmm+c9f4pBglM3YqKnBu4NTORRCVrZvwmAVGdl+
-         rzEQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=uVW2jiD31C988RMPTQ1P3zK85Jo5uekRaWjAtsdVBbE=;
+        b=YWllJyDOo8QQxSdyuL5vmOOvqpEilZz/uPE8GCXyCoJMVdH9q3bayMkSgicYokxx4/
+         SMj0WfzlsypS6+X44G7M8s7/Kt2zQPboRfmf0u7345z6eJ7yIERfee5qoWjbhnvEOclo
+         Z2+RcRcUbhn3sOxBrtLOTkXLZvBWHz1P12duhBo3NfobhELYLDeLh8wb2A5CQdohE7ul
+         dOHmIw+Yw18bjqREG6oDCELm7ENjzIASaMnhTbn1We9qRFDuHTUYwktJb8k58lRBrAIt
+         JwTbumTLmamfcKpNif4ByEQB28rBV5V2aypn2PRcRpbkgghNOjeMRKDH5O4c755KqKxG
+         Eqxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=GhijzOpjBSZ7nCgUhoccck5ZIQUlIFoaWDsMZJ6nH7k=;
-        b=SQPszhUQUT0w8Pfd4RX3PtlT+4LvZhUVKnHhf2eQdJ06j2JALKByg2CEAvlAQHodMb
-         MJCkZ7dpkVsjTT/YwJWQwh98gHMwH62YVRcsMpBEZhoru8hy8jcvdmLkApIgxnU3zHHm
-         sT0+1TU1c4hz6Y9GmrC8mdAyLdB68k1WqwGNos5LBWbqSX1r3AK09yfsfoaDLBOeojYh
-         XcFoCbFBtxc4t9KfUC+uvmv79hqIPune84rU6e/5gyilB9CgwbUtzuGx0haD9aYEiy+R
-         Zo9oj4Qm12eg3Zhy4qenA7tJQjwmXTwQIoMm45JBZHYENq5jz9GzPguQGQU7UWQU2Mel
-         8KTQ==
-X-Gm-Message-State: ACgBeo31ADxACypQphigL+1tLKvznAL+iTogqjzu/q8twYks+P/9YLlA
-        YOubZdXUqZ4z7nK/zbc1/09cvQ==
-X-Google-Smtp-Source: AA6agR7w7saLxlIJEBvuYi+z1NoLl7P1vzJYXRWF1pav4TOZ4YU2x0cHschDHYJ9ylCz+VQq0/EW3w==
-X-Received: by 2002:a05:651c:4ca:b0:268:10c2:87bc with SMTP id e10-20020a05651c04ca00b0026810c287bcmr4529265lji.241.1662741038516;
-        Fri, 09 Sep 2022 09:30:38 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h27-20020a2eb0fb000000b00261b9ccb18esm147240ljl.10.2022.09.09.09.30.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 09:30:37 -0700 (PDT)
-Message-ID: <9e5ec2a2-7b69-648d-4069-8d169abd7f4f@linaro.org>
-Date:   Fri, 9 Sep 2022 18:30:36 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=uVW2jiD31C988RMPTQ1P3zK85Jo5uekRaWjAtsdVBbE=;
+        b=j5qfcCe0M+kiZGzPTUku5XDZaEqdszaQV1PSlpUuxibhKj422FT1qQ53ta6HKEdde+
+         5ah+Q3r3uki4RkSdAO0Sy2TlJpf2UxlKQPqY1M7APjfofrTbluNo+4Lg2KhAwzsmMEQ1
+         RftqCyUmt8M0nyyb/5MyQE3yoHNwhIsP2ziMRUJdffQa/SWFEDZ80yTlxRrnn7bs5Kj3
+         bP260LVM8VI4/GcSEuZDvoqBkUR8tQqC3u9XLeD161HhwXEmCrGVrVbT8QPOJQ1GPNVr
+         R+ncpbpucLdsdg1ATzXsJx9zX8zNpdatITQ/suiHsqPTW8e992Ia2MhBHoTDD0dxRupU
+         7E9Q==
+X-Gm-Message-State: ACgBeo26FkBJ4TURIaKDKJUmpQJ3TETdm5bm3MxjQMO5N7fvvRTPrlS1
+        OQpwjgVrv6PQeVeK3fk7pWatkA==
+X-Google-Smtp-Source: AA6agR4a2OFnWQnq7IGakBhGxO39o4LL7e7ag10YHggU4kdZ3jxBuBYgXmMoWyCycaIl6Jk779xkXg==
+X-Received: by 2002:a05:600c:1e88:b0:3a6:2ca3:f7f2 with SMTP id be8-20020a05600c1e8800b003a62ca3f7f2mr6284798wmb.7.1662741259161;
+        Fri, 09 Sep 2022 09:34:19 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id c5-20020a5d63c5000000b0022a2e4b2b25sm816849wrw.113.2022.09.09.09.34.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Sep 2022 09:34:18 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bryan.odonoghue@linaro.org
+Subject: [PATCH 0/1] Update apq8016 lpass-cpu compat string 
+Date:   Fri,  9 Sep 2022 17:34:15 +0100
+Message-Id: <20220909163416.1021551-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 0/7] dt-bindings: remoteproc/misc/qcom: stricten SMD/GLINK
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        David Heidelberg <david@ixit.cz>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-References: <20220909125403.803158-1-krzysztof.kozlowski@linaro.org>
- <20220909162351.GA1455181-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220909162351.GA1455181-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,29 +68,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 18:23, Rob Herring wrote:
-> On Fri, Sep 09, 2022 at 02:53:56PM +0200, Krzysztof Kozlowski wrote:
->> Hi,
->>
->> This depends on qcom,fastrpc.yaml conversion in Rob's tree, therefore
->> everything should go the same way, I think.
->>
->> Best regards,
->> Krzysztof
->>
->> Krzysztof Kozlowski (7):
->>   dt-bindings: misc: qcom,fastrpc: correct qcom,nsessions name
->>   dt-bindings: misc: qcom,fastrpc: add compute iommus
->>   dt-bindings: misc: qcom,fastrpc: restrict channel names
->>   dt-bindings: misc: qcom,fastrpc: correct example for GLINK edge
->>   dt-bindings: remoteproc: qcom,glink-edge: require channels in children
->>   dt-bindings: soc: qcom: smd: restrict child name to smd-edge
->>   dt-bindings: remoteproc: qcom,smd-edge: define children
-> 
-> Series applied.
+Per discussion with Krzysztof on this yesterday:
+https://lore.kernel.org/linux-arm-msm/20220908105720.857294-1-bryan.odonoghue@linaro.org/T/#mb16386b0b6d45de6a7d7e01733d5b6a7d0b85c25
 
+Mark the old lpass compat string as deprecated in yaml and leave a comment
+in the commit log to explain new SoC additions should use the corrected
+version.
 
-OK, thanks!
+Bryan O'Donoghue (1):
+  ASoC: dt-bindings: Mark old binding qcom,cpu-lpass-apq8016 as
+    deprecated
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml    | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+-- 
+2.37.3
+
