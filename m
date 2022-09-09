@@ -2,69 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E84FF5B2D9F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 06:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F805B2E62
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 08:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbiIIEm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 00:42:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57168 "EHLO
+        id S229939AbiIIGAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 02:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbiIIEmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 00:42:54 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0DFF16FA;
-        Thu,  8 Sep 2022 21:42:51 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id v1so699369plo.9;
-        Thu, 08 Sep 2022 21:42:51 -0700 (PDT)
+        with ESMTP id S229965AbiIIF77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 01:59:59 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE1D3A17C;
+        Thu,  8 Sep 2022 22:59:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=vi9VdkVa7lyguXCc6ti24fUYhj9gycPlVQvLVe1uqzc=;
-        b=O23Ay2yc1nU0Tu+F3Hz3NHINh3npNtAVMgeGMWpjMZg5FXJHqFU7UVya67jiYLqpu9
-         6rDXIL7pGZemIR4C+xfvjNeQQEMLZYuTJhToBjWTRbgNhSnY0m6AZZkd7ZnjZeeQZhPw
-         w4NeZuFVvNERspv1ywVzgILuMECcNirhjRgZTYtvTGvBqSsA3GdhIRtVIhZVMMVTLz1R
-         bkpE29e0LymhOfF3cjmhcR+GwSvMmDnKU2DztbdXxfajTxXI6ERFgwqmQiezrMWFjeMu
-         Vwry869H25V8NCc6Dr6t0ZHtnn9NZ5wflpaOnygxtFJ+OvqEjkNqoh0CZgCQIE7FhpV4
-         E3GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=vi9VdkVa7lyguXCc6ti24fUYhj9gycPlVQvLVe1uqzc=;
-        b=2Tc+A+vto45QTkdrwJiLpDOsJdLjQ+tJ6i7N68vDxs5CoX624tnXq8nwba+y/t9Ded
-         A4SMQ8d/wjz0k1lzlRQV38JtfavK5ib05ro0csGuPaIKll4BFzK6ChLCg6KojIgjFnYf
-         blEiEqQ+CJq+ewliBU8NWoUoPSEFDV0z8N2myrmHeqk1Nx3QLF/2QSxIR8Wxhiho3Xsv
-         AjMaf/MvSmvuWvo3JFx1y0ge3fvWeueSMm8RKrkM8DY4fbtBlrayFz72Nj+cARM/2ajc
-         TmNHcQbrK0A0AREeQoNvbBDG4hzl1CYpgv+HvMxyRBcy8SrycaSX0g0+dh4DU35M0Ifn
-         aFeg==
-X-Gm-Message-State: ACgBeo3jfXtGL0YeY7R7KFV40hYyo+/uVmlmiDujFJf8KIw+AUQdv4mi
-        pn2+ITJtmHDSoRj5n5bXAOo=
-X-Google-Smtp-Source: AA6agR4pkU5ll+tnc3+3L54oHu2PDeaLCgnPH2O0NtGYRt8tmqTbBdJUi1tNZv9+4Seq4khUnDyIrw==
-X-Received: by 2002:a17:90a:e7d2:b0:200:a220:6495 with SMTP id kb18-20020a17090ae7d200b00200a2206495mr7852697pjb.5.1662698570543;
-        Thu, 08 Sep 2022 21:42:50 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:7554:1f24:9d2b:37a0])
-        by smtp.gmail.com with ESMTPSA id w76-20020a627b4f000000b0052d46b43006sm509285pfc.156.2022.09.08.21.42.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Sep 2022 21:42:50 -0700 (PDT)
-Date:   Thu, 8 Sep 2022 21:42:47 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 02/11] Input: iqs7222 - report malformed properties
-Message-ID: <YxrER3gYKg3joI7u@google.com>
-References: <20220908131548.48120-1-jeff@labundy.com>
- <20220908131548.48120-3-jeff@labundy.com>
- <YxpcyY0BAumyaeVR@google.com>
- <20220909020809.GB3306@nixie71>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662703197; x=1694239197;
+  h=subject:from:to:cc:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=TUTNp7tl9jBH5gO6p63V0NMyQAOZJ1ygWfraWfAJrNc=;
+  b=ccnlhaOvXpy3BdYkE6kwGoIcdETjfT4NmgzvmVQrovOzeQT3f24hXqb4
+   O5Hm63SnR7OOHPWB+IaqIg9oKflS0fScvjxJmgEzZuD9l7HOfAQDmGBhg
+   m9obkz0SSDhTc+hvWdJxORDsPwzrUV/hj0iM73jxLwTZeojh7/UQWjtvf
+   aE50L2bGez4oQzBwNJ/ZsW6wQiCd6zpYiBP9/9i7dehcGCJ71mru3YbXV
+   o3/lTdpzD1qFc7zPkUi5lDY4XAhiwk2fExZ5IHtH2mk9hvRMFM9rDbXWQ
+   S+gX3lJVw0aEWP92GsRqV3gSCJ2JvOneb4jdZneqeTQetQPFeHlBUmkIs
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,302,1654552800"; 
+   d="scan'208";a="26081637"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 09 Sep 2022 07:59:54 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 09 Sep 2022 07:59:54 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 09 Sep 2022 07:59:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662703194; x=1694239194;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=TUTNp7tl9jBH5gO6p63V0NMyQAOZJ1ygWfraWfAJrNc=;
+  b=AxeWm9HI5bnejNpj7Z7edWKWGzR0EVA6/0v1TRV/yqJqfOc8RqK/xJKK
+   j4I32uEkLFqFDO0e/MSnqZrct4idEozUIvP/xEW4sW6AxmAS5RY6XTd9b
+   RYLJ4RsPGyzYlj3w3dUG4m7Fh9lKTLezdhSWg31sehyJndFDiNFQrMFHr
+   92BTBGsRl1cV1hxfKI2Gj6slmdjuqQOM0jpbgMCR2/Q5+F3HZBw/plH9G
+   kRAj2L7KvgADOI9LMmpxg6Lyq+trbLt9vI1GdTVccU77S3uYbt+ZNN4o3
+   CNqqD2DzfGV2Cfz2DflhwOxgFz+ZUi0Qw2O6XGzk3fzgKt+f9fsnPcCs8
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,302,1654552800"; 
+   d="scan'208";a="26081636"
+Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw74xx: add PCIe support
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Sep 2022 07:59:54 +0200
+Received: from steina-w.localnet (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 5695B280056;
+        Fri,  9 Sep 2022 07:59:54 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 09 Sep 2022 07:59:52 +0200
+Message-ID: <2530681.Lt9SDvczpP@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220908154903.4100386-1-tharvey@gateworks.com>
+References: <20220908154903.4100386-1-tharvey@gateworks.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220909020809.GB3306@nixie71>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,91 +87,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 08, 2022 at 09:08:09PM -0500, Jeff LaBundy wrote:
-> Hi Dmitry,
+Hi Tim,
+
+Am Donnerstag, 8. September 2022, 17:49:03 CEST schrieb Tim Harvey:
+> Add PCIe support on the Gateworks GW74xx board. While at it,
+> fix the related gpio line names from the previous incorrect values.
 > 
-> On Thu, Sep 08, 2022 at 02:21:13PM -0700, Dmitry Torokhov wrote:
-> > On Thu, Sep 08, 2022 at 08:15:39AM -0500, Jeff LaBundy wrote:
-> > > Nonzero return values of several calls to fwnode_property_read_u32()
-> > > are silenty ignored, leaving no way to know that the properties were
-> > > not applied in the event of an error.
-> > > 
-> > > To solve this problem, follow the design pattern used throughout the
-> > > rest of the driver by first checking if the property is present, and
-> > > then evaluating the return value of fwnode_property_read_u32().
-> > > 
-> > > Fixes: e505edaedcb9 ("Input: add support for Azoteq IQS7222A/B/C")
-> > > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
-> > > ---
-> > >  drivers/input/misc/iqs7222.c | 65 ++++++++++++++++++++++++++++++------
-> > >  1 file changed, 55 insertions(+), 10 deletions(-)
-> > > 
-> > > diff --git a/drivers/input/misc/iqs7222.c b/drivers/input/misc/iqs7222.c
-> > > index 04c1050d845c..fdade24caa8a 100644
-> > > --- a/drivers/input/misc/iqs7222.c
-> > > +++ b/drivers/input/misc/iqs7222.c
-> > > @@ -1819,8 +1819,17 @@ static int iqs7222_parse_chan(struct iqs7222_private *iqs7222, int chan_index)
-> > >  		chan_setup[0] |= IQS7222_CHAN_SETUP_0_REF_MODE_FOLLOW;
-> > >  		chan_setup[4] = val * 42 + 1048;
-> > >  
-> > > -		if (!fwnode_property_read_u32(chan_node, "azoteq,ref-weight",
-> > > -					      &val)) {
-> > > +		if (fwnode_property_present(chan_node, "azoteq,ref-weight")) {
-> > > +			error = fwnode_property_read_u32(chan_node,
-> > > +							 "azoteq,ref-weight",
-> > > +							 &val);
-> > 
-> > fwnode_property_read_u32() returns EINVAL if property is missing, so
-> > maybe have:
-> > 
-> > 		error = fwnode_property_read_u32(chan_node,
-> > 						 "azoteq,ref-weight", &val);
-> > 		if (!error) {
-> > 			...
-> > 		} else {
-> > 			if (error != -EINVAL) {
-> > 				dev_err(&client->dev,
-> > 					"Failed to read %s reference weight: %d\n",
-> > 					fwnode_get_name(chan_node), error);
-> > 				goto put_chan_node;
-> > 			}
-> > 		}
-> > 
-> > to avoid double calls into property handling code?
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+>  .../dts/freescale/imx8mp-venice-gw74xx.dts    | 40 +++++++++++++++++--
+>  1 file changed, 37 insertions(+), 3 deletions(-)
 > 
-> That's a better idea; I can fold this into the helper functions proposed
-> for the previous patch too.
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts index
+> e0fe356b662d..7644db61d631 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> @@ -8,6 +8,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/linux-event-codes.h>
+>  #include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/phy/phy-imx8-pcie.h>
+> 
+>  #include "imx8mp.dtsi"
+> 
+> @@ -100,6 +101,12 @@ led-1 {
+>  		};
+>  	};
+> 
+> +	pcie0_refclk: pcie0-refclk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <100000000>;
+> +	};
+> +
+>  	pps {
+>  		compatible = "pps-gpio";
+>  		pinctrl-names = "default";
+> @@ -215,8 +222,8 @@ &gpio1 {
+>  &gpio2 {
+>  	gpio-line-names =
+>  		"", "", "", "", "", "", "", "",
+> -		"", "", "", "", "", "", "", "",
+> -		"pcie3_wdis#", "", "", "pcie1_wdis@", "pcie2_wdis#", "", 
+"", "",
+> +		"", "", "", "", "", "", "pcie3_wdis#", "",
+> +		"", "", "pcie2_wdis#", "", "", "", "", "",
+>  		"", "", "", "", "", "", "", "";
+>  };
+> 
+> @@ -562,6 +569,28 @@ &i2c4 {
+>  	status = "okay";
+>  };
+> 
+> +&pcie_phy {
+> +	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
+> +	fsl,clkreq-unsupported;
+> +	clocks = <&pcie0_refclk>;
+> +	clock-names = "ref";
+> +	status = "okay";
+> +};
+> +
+> +&pcie {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pcie0>;
+> +	reset-gpio = <&gpio2 17 GPIO_ACTIVE_LOW>;
+> +	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
+> +		 <&clk IMX8MP_CLK_PCIE_ROOT>,
+> +		 <&clk IMX8MP_CLK_HSIO_AXI>;
+> +	clock-names = "pcie", "pcie_aux", "pcie_bus";
 
-We might be talking about different helpers. I had in mind:
+With the still pending dt-binding patch at [1] the clock order shall be
+"pcie", "pcie_bus", "pcie_phy".
 
-static int __iqs7222_parse_cycle(...)
-{
-...
-}
+Best regards,
+Alexander
 
-static int iqs7222_parse_cycle(...)
-{
-...
-	int retval = 0;
+[1] https://lore.kernel.org/lkml/20220822184701.25246-2-Sergey.Semin@baikalelectronics.ru/
 
-	error = iqs7222_parse_props(iqs7222, &cycle_node, cycle_index,
-				    IQS7222_REG_GRP_CYCLE,
-				    IQS7222_REG_KEY_NONE);
-	if (error)
-		return error;
+> +	assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
+> +	assigned-clock-rates = <10000000>;
+> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
+> +	status = "okay";
+> +};
+> +
+>  /* GPS / off-board header */
+>  &uart1 {
+>  	pinctrl-names = "default";
+> @@ -694,7 +723,6 @@ pinctrl_hog: hoggrp {
+>  			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	
+0x40000040 /* DIO0 */
+>  			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	
+0x40000040 /* DIO1 */
+>  			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /
+* M2SKT_OFF# */
+> -			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	
+0x40000150 /* PCIE1_WDIS# */
+>  			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	
+0x40000150 /* PCIE2_WDIS# */
+>  			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /
+* PCIE3_WDIS# */
+>  			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	
+0x40000040 /* M2SKT_RST# */
+> @@ -807,6 +835,12 @@ MX8MP_IOMUXC_SD2_DATA1__GPIO2_IO16	0x10
+> 
+>  		>;
+> 
+>  	};
+> 
+> +	pinctrl_pcie0: pciegrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_DATA2__GPIO2_IO17	
+0x110
+> +		>;
+> +	};
+> +
+>  	pinctrl_pmic: pmicgrp {
+>  		fsl,pins = <
+>  			MX8MP_IOMUXC_NAND_DATA01__GPIO3_IO07	
+0x140
 
-	if (cycle_node) {
-		retval = __iqs7222_parse_cycle(...);
-		fwnode_put(cycle_node);
-	}
 
 
-	return retval;
-}
 
-so that we drop the node from one place.
-
-Thanks.
-
--- 
-Dmitry
