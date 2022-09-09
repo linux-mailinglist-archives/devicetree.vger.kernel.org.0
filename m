@@ -2,176 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 178295B3C31
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 17:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10C6F5B3C37
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 17:41:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232410AbiIIPka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 11:40:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55064 "EHLO
+        id S229715AbiIIPlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 11:41:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231833AbiIIPj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 11:39:58 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63259F0E
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 08:39:25 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id s10so1674239ljp.5
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 08:39:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=qFZsms0Dv3NVUxeThUQNo8sDEg3tK+2lEhh1M4gisys=;
-        b=Rhr1KEKR4olPmjGIeJmMGyYsDXJcxp3jNLIhCSM7xHdBhNXB4mIXvShHqa33o/4qR8
-         1Rn4/Geet2RBhVvQJnSHsfXXeWyEoTuzuCXI8Yd6x7QUCLLWTHGONsuPnpWjqOHYJejV
-         cBTDsQGSTnTQaPx0pzA6XUJ8pwu7esj23I9qtAWeytzbmypDzbiEKAY0zG934AbnanB9
-         j0S7fdpvWOgB8dgsciiSJT7/l4AB8dL66GRBNNqGxEiXU0ZogdSvrsuEYJ8BgslBRP/f
-         q075CvrYoAdCx62Ougj89O4GIwz0xIHZJ98gBg4f+M989kD2EaKVyY3TdhpOkRTOueIR
-         GglA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=qFZsms0Dv3NVUxeThUQNo8sDEg3tK+2lEhh1M4gisys=;
-        b=6/3ZVTiSYckpjpr9fOhnVsP6kbN7DYXixFlarSH3NU+a5OWDPYSL7Y0JEfsZbx5uJF
-         WqjuoW6Mwj8p9TLxNvvbL02zKNNbCHUwposWY4HyM4i0Pn9uCsiKGvNmYgtLa0x9WDYx
-         beLOr488/EueUNp/1XMz/Pc80F2TTG+XN+moqUxak5vWXo+6bw4UBcrLr3MrqPvePra1
-         HyQIfrer/Ntf3nbxUtuiUnz0t/1e3PAlwGZdUpb2Hdmy0fcoj9W0+Uxlh9uTp/88ke+y
-         Uw9AhamFcA8C1nuXocnx/vqIIM0jRUlZcyrpsnRiJPqf59siXs5bvZ6oZ1b/RATYDFL2
-         Hp/w==
-X-Gm-Message-State: ACgBeo1irb7ShETo7HsQgNZ+De/D0LZtpes2HehI7LG3JB6VToCj/Qk/
-        vQa7e4GC0mWg+kpKFNrQb6uBCQ==
-X-Google-Smtp-Source: AA6agR4dq1PWRdB6Tn+4D7OYv2QLunn/rmVg46gVFQ4jkUpLnkZo6JRcx9ECqIkBGuZ7RUMmNfcF+w==
-X-Received: by 2002:a2e:96cc:0:b0:26b:d950:1f70 with SMTP id d12-20020a2e96cc000000b0026bd9501f70mr2881788ljj.232.1662737963861;
-        Fri, 09 Sep 2022 08:39:23 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s7-20020a056512214700b00497a6fe85b8sm116555lfr.250.2022.09.09.08.39.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 08:39:23 -0700 (PDT)
-Message-ID: <c6d71abe-51d9-945e-bf70-c84b7c5e71bf@linaro.org>
-Date:   Fri, 9 Sep 2022 17:39:22 +0200
+        with ESMTP id S229494AbiIIPlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 11:41:50 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C25CB58B7A;
+        Fri,  9 Sep 2022 08:41:48 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2896txfn019569;
+        Fri, 9 Sep 2022 10:40:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=Clf9mXR3sw1334kjnflf4AmtbQrj5dxGIw3Qv1BRiok=;
+ b=OcTUM6mkHq0wl0WFSBs72vimJiPvwf91uMHCKGl2yJ2aHGnPz3y9VGaqhdaF99ssEten
+ RETe1dIwjJZSAiVOqzoMjYJUABaIO9zgxkcWwDtfwwaJ0qYPp5zwA8uG/GUqT4tQu/tg
+ XSBnldU/dkpVoz15dbhXTnma1brCzI3wFj0Vgj0+Ehel7mU51OySNa75frojH6BxUMLY
+ ULYOodY1Ox0LkBpNGtpO00+tpah3sW5RiuX5PgTzbZFrwggVRYGKA8Oxv9uVazxIspAj
+ 3hakfa+bskj8gCf+S0PlWE1s3TlND4EGu0gmA/5AlNsZOMjjzEE34PWpwIg0aHu3O8+D tw== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3jc4b2hst4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Sep 2022 10:40:20 -0500
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.12; Fri, 9 Sep
+ 2022 10:40:18 -0500
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.12 via Frontend
+ Transport; Fri, 9 Sep 2022 10:40:18 -0500
+Received: from [198.90.251.95] (edi-sw-dsktp-006.ad.cirrus.com [198.90.251.95])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 16512B16;
+        Fri,  9 Sep 2022 15:40:18 +0000 (UTC)
+Message-ID: <aabae52f-8230-f837-c17a-59d781b5af62@opensource.cirrus.com>
+Date:   Fri, 9 Sep 2022 16:40:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH net-next v4 1/5] net: ipqess: introduce the Qualcomm
- IPQESS driver
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 07/10] ASoC: cs42l42: Split I2C identity into separate
+ module
 Content-Language: en-US
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-References: <20220909152454.7462-1-maxime.chevallier@bootlin.com>
- <20220909152454.7462-2-maxime.chevallier@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220909152454.7462-2-maxime.chevallier@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
+        James Schulman <james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        "Lucas Tanure" <tanureal@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+CC:     Charles Keepax <ckeepax@opensource.cirrus.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Matt Flax <flatmax@flatmax.com>,
+        - <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <asahi@lists.linux.dev>
+References: <20220909135334.98220-1-povik+lin@cutebit.org>
+ <20220909135334.98220-8-povik+lin@cutebit.org>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+In-Reply-To: <20220909135334.98220-8-povik+lin@cutebit.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: Y-D6NcGbOnTjQoKFLYGA2bCwWrsx9q_W
+X-Proofpoint-ORIG-GUID: Y-D6NcGbOnTjQoKFLYGA2bCwWrsx9q_W
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 17:24, Maxime Chevallier wrote:
-> The Qualcomm IPQESS controller is a simple 1G Ethernet controller found
-> on the IPQ4019 chip. This controller has some specificities, in that the
-> IPQ4019 platform that includes that controller also has an internal
-> switch, based on the QCA8K IP.
-> 
-> It is connected to that switch through an internal link, and doesn't
-> expose directly any external interface, hence it only supports the
-> PHY_INTERFACE_MODE_INTERNAL for now.
-> 
-> It has 16 RX and TX queues, with a very basic RSS fanout configured at
-
-Thank you for your patch. There is something to discuss/improve.
-
-> +}
-> +
-> +static int ipqess_axi_probe(struct platform_device *pdev)
+On 09/09/2022 14:53, Martin Povišer wrote:
+> +static int cs42l42_i2c_probe(struct i2c_client *i2c_client)
 > +{
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct net_device *netdev;
-> +	phy_interface_t phy_mode;
-> +	struct resource *res;
-> +	struct ipqess *ess;
-> +	int i, err = 0;
+> +	struct device *dev = &i2c_client->dev;
+> +	struct cs42l42_private *cs42l42;
+> +	struct regmap *regmap;
+> +	int ret;
 > +
-> +	netdev = devm_alloc_etherdev_mqs(&pdev->dev, sizeof(struct ipqess),
-
-sizeof(*)
-
-> +					 IPQESS_NETDEV_QUEUES,
-> +					 IPQESS_NETDEV_QUEUES);
-> +	if (!netdev)
+> +	cs42l42 = devm_kzalloc(dev, sizeof(*cs42l42), GFP_KERNEL);
+> +	if (!cs42l42)
 > +		return -ENOMEM;
 > +
-> +	ess = netdev_priv(netdev);
-> +	ess->netdev = netdev;
-> +	ess->pdev = pdev;
-> +	spin_lock_init(&ess->stats_lock);
-> +	SET_NETDEV_DEV(netdev, &pdev->dev);
-> +	platform_set_drvdata(pdev, netdev);
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	ess->hw_addr = devm_ioremap_resource(&pdev->dev, res);
-
-Use a helper for this.
-
-> +	if (IS_ERR(ess->hw_addr))
-> +		return PTR_ERR(ess->hw_addr);
-> +
-> +	err = of_get_phy_mode(np, &phy_mode);
-> +	if (err) {
-> +		dev_err(&pdev->dev, "incorrect phy-mode\n");
-> +		return err;
+> +	regmap = devm_regmap_init_i2c(i2c_client, &cs42l42_regmap);
+> +	if (IS_ERR(regmap)) {
+> +		ret = PTR_ERR(regmap);
+> +		dev_err(&i2c_client->dev, "regmap_init() failed: %d\n", ret);
+> +		return ret;
 > +	}
 > +
-> +	ess->ess_clk = devm_clk_get(&pdev->dev, "ess");
+> +	cs42l42->dev = dev;
+> +	cs42l42->regmap = regmap;
+> +	cs42l42->irq = i2c_client->irq;
+> +
+> +	ret = cs42l42_common_probe(cs42l42, &cs42l42_soc_component, &cs42l42_dai);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = cs42l42_init(cs42l42);
+> +	if (ret)
+> +		cs42l42_common_remove(cs42l42);
 
-There is no such clock "ess"...
+This introduces a bug that regulator_bulk_disable() is called
+twice if there is an error.
 
-> +	if (!IS_ERR(ess->ess_clk))
-> +		clk_prepare_enable(ess->ess_clk);
-> +
-> +	ess->ess_rst = devm_reset_control_get(&pdev->dev, "ess");
-
-Same problem.
-
-> +	if (IS_ERR(ess->ess_rst))
-> +		goto err_clk;
-> +
-> +	ipqess_reset(ess);
-> +
-> +	ess->phylink_config.dev = &netdev->dev;
-> +	ess->phylink_config.type = PHYLINK_NETDEV;
-> +	ess->phylink_config.mac_capabilities = MAC_SYM_PAUSE | MAC_10 |
-> +					       MAC_100 | MAC_1000FD;
-> +
-> +	__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-> +		  ess->phylink_config.supported_interfaces);
-> +
-> +	ess->phylink = phylink_create(&ess->phylink_config,
-> +				      of_fwnode_handle(np), phy_mode,
-> +				      &ipqess_phylink_mac_ops);
-> +	if (IS_ERR(ess->phylink)) {
-> +		err = PTR_ERR(ess->phylink);
-> +		goto err_clk;
-> +	}
-> +
-
-Best regards,
-Krzysztof
+cs42l42_init() was supposed to clean up if it returns an error, which
+it nearly does, but my original patch is missing the call to free_irq()
+in the error paths of cs42l42_init().
