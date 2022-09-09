@@ -2,109 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3BBD5B3AF6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CC5D5B3AFC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 16:45:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232251AbiIIOot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 10:44:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44380 "EHLO
+        id S232235AbiIIOpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 10:45:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232252AbiIIOok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 10:44:40 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66899D68;
-        Fri,  9 Sep 2022 07:44:25 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id b144so1859885pfb.7;
-        Fri, 09 Sep 2022 07:44:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date;
-        bh=JwpogmzKpFPJvP8h2Z1mQPxrdy62RLNQd+TYcZ7zSbE=;
-        b=joJJGXz0U4E0gIubhJhO2WG0Cwjl6mgRNJpuDkms8LVHpNU1IU0RAnobRA8b/RQHAN
-         e9ImhOtcUMP9Fifd9Vi+2iLAavOVHD40+bxbWjPUcuyOiL21WUnuHkpLixUJgvo1+K68
-         vbouwFTO7TrJKGU9MHfkJ64fawf0bND5o2whrLUf+WOr1UGvhvQOpsJUxiwr+J1W+ykm
-         BoABuseR+znNzBBo5v42KEPky8a0jqTfO/yynRcnTzDXtReTr/bJb6bFmd0FExd0iDjG
-         R/ZNrKJbd6hlKI6G+EvLZGiQ5gi8gZ70wD38K+nTX8cyTkdjYU5XPZUq+DV2i70hqbtA
-         K/2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date;
-        bh=JwpogmzKpFPJvP8h2Z1mQPxrdy62RLNQd+TYcZ7zSbE=;
-        b=NeIZWe66fs7HtnMx7DfJgucfXLaH79/yb+w1HXMEKmvPsi2j+NRN/fb3SVA4gQj0Ha
-         5Y1eFBTik9KPh2PlPnY5+lNf3GfD3dg5a0VEn2Km/2XFBV5OlVLHqnXR+QodJygye+di
-         H4m4t3B9SZdUE8urwcS+yF0kDq8k2Qx0FOJ2gUbktIeyt843UvGM0NMRS9IKi+Hbb0U+
-         cnHOEF7MtRLATFRgnlVE6bgZcEF2csDP/3jJjwxeM1l2aO52dNNJtt6cvDVMqx25phHI
-         BDcwI7T/ew4yAskByj20iVGDlxfabSp5Ots1yTQgrs1xw8AHTsD5C59+kAUJtrEUU/tJ
-         piKw==
-X-Gm-Message-State: ACgBeo2dC8vDJ9lT4z7C8/AfmFGeaaNNncSU9H6tnfhkKvKAEXtkDVtg
-        674hYxxp9uwNeQv9fVx8yTY=
-X-Google-Smtp-Source: AA6agR5BRNiy5DuY7qYIc8SOSaZWIyXS0/+us37cIkezr95VmsQyotpDWLyM9Bq5KqtQtJeaf1xU3g==
-X-Received: by 2002:a65:590d:0:b0:434:bb83:26bf with SMTP id f13-20020a65590d000000b00434bb8326bfmr12020030pgu.581.1662734664474;
-        Fri, 09 Sep 2022 07:44:24 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n2-20020a170902d2c200b00176b63535adsm545351plc.260.2022.09.09.07.44.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 07:44:23 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <b1e73db6-fa52-26d1-4080-667c21e1b00d@roeck-us.net>
-Date:   Fri, 9 Sep 2022 07:44:22 -0700
+        with ESMTP id S232296AbiIIOpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 10:45:16 -0400
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA09C642CE;
+        Fri,  9 Sep 2022 07:45:06 -0700 (PDT)
+Received: by soltyk.jannau.net (Postfix, from userid 1000)
+        id C8BB826F000; Fri,  9 Sep 2022 16:45:04 +0200 (CEST)
+Date:   Fri, 9 Sep 2022 16:45:04 +0200
+From:   Janne Grunau <j@jannau.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sameer Pujar <spujar@nvidia.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org,
+        asahi@lists.linux.dev
+Subject: Re: [PATCH v8 1/5] dt-bindings: reserved-memory: Document
+ iommu-addresses
+Message-ID: <20220909144504.GA4024@jannau.net>
+References: <20220905170833.396892-1-thierry.reding@gmail.com>
+ <20220905170833.396892-2-thierry.reding@gmail.com>
+ <20220908223247.GA3448766-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: watchdog: renesas-wdt: Add r8a779g0 support
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-watchdog@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, Thanh Quan <thanh.quan.xn@renesas.com>
-References: <e3a246be066d5e9c2231285bc1488fc12866cf5d.1662714387.git.geert+renesas@glider.be>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <e3a246be066d5e9c2231285bc1488fc12866cf5d.1662714387.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220908223247.GA3448766-robh@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/9/22 02:08, Geert Uytterhoeven wrote:
-> From: Thanh Quan <thanh.quan.xn@renesas.com>
+On 2022-09-08 17:32:47 -0500, Rob Herring wrote:
+> On Mon, Sep 05, 2022 at 07:08:29PM +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> > 
+> > This adds the "iommu-addresses" property to reserved-memory nodes, which
+> > allow describing the interaction of memory regions with IOMMUs. Two use-
+> > cases are supported:
+> > 
+> >   1. Static mappings can be described by pairing the "iommu-addresses"
+> >      property with a "reg" property. This is mostly useful for adopting
+> >      firmware-allocated buffers via identity mappings. One common use-
+> >      case where this is required is if early firmware or bootloaders
+> >      have set up a bootsplash framebuffer that a display controller is
+> >      actively scanning out from during the operating system boot
+> >      process.
+> > 
+> >   2. If an "iommu-addresses" property exists without a "reg" property,
+> >      the reserved-memory node describes an IOVA reservation. Such memory
+> >      regions are excluded from the IOVA space available to operating
+> >      system drivers and can be used for regions that must not be used to
+> >      map arbitrary buffers.
+> > 
+> > Each mapping or reservation is tied to a specific device via a phandle
+> > to the device's device tree node. This allows a reserved-memory region
+> > to be reused across multiple devices.
+> > 
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> > Changes in v8:
+> > - include validation warning fixes that had crept into an unrelated patch
+> > 
+> > Changes in v7:
+> > - keep reserved-memory.txt to avoid broken references
+> > 
+> > Changes in v6:
+> > - add device phandle to iommu-addresses property in examples
+> > - remove now unused dt-bindings/reserved-memory.h header
+> > 
+> >  .../reserved-memory/reserved-memory.yaml      | 70 +++++++++++++++++++
+> >  1 file changed, 70 insertions(+)
 > 
-> Document support for the Watchdog Timer (WDT) Controller in the Renesas
-> R-Car V4H (R8A779G0) SoC.
+> Thanks for being persistent with this. It looks good to me.
 > 
-> Signed-off-by: Thanh Quan <thanh.quan.xn@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
-> ---
->   Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 1 +
->   1 file changed, 1 insertion(+)
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> index a8d7dde5271b8f2f..b2647bbaa19ce6c8 100644
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> @@ -65,6 +65,7 @@ properties:
->             - enum:
->                 - renesas,r8a779a0-wdt     # R-Car V3U
->                 - renesas,r8a779f0-wdt     # R-Car S4-8
-> +              - renesas,r8a779g0-wdt     # R-Car V4H
->             - const: renesas,rcar-gen4-wdt # R-Car Gen4
->   
->     reg:
+> I really don't like new common bindings with only 1 user, so I hope the 
+> Asahi folks chime in here. Or really anyone else look at it.
 
+The Asahi WIP display controller/processor driver uses this binding with 
+static non 1:1 mappings. The binding is sufficient for our needs our 
+needs.
+
+Janne
