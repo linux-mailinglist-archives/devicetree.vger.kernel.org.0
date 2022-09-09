@@ -2,95 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0EAA5B3FF8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 21:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EDDD5B402E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 21:51:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231854AbiIITje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 15:39:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38654 "EHLO
+        id S230047AbiIITvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 15:51:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231848AbiIITiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 15:38:15 -0400
-Received: from mail.baikalelectronics.com (mail.baikalelectronics.com [87.245.175.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3AD1512A30C;
-        Fri,  9 Sep 2022 12:36:59 -0700 (PDT)
-Received: from mail (mail.baikal.int [192.168.51.25])
-        by mail.baikalelectronics.com (Postfix) with ESMTP id 1FF9DDBC;
-        Fri,  9 Sep 2022 22:40:37 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.com 1FF9DDBC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baikalelectronics.ru; s=mail; t=1662752437;
-        bh=XhHryGSZHGP03Jv9lWNGiOTfawDZbC1lKYZsUpCgoPE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
-        b=f3ZxPHEwbSW0BwgxmIIJuW7MNqads3okGsX9m8mbXX9xf3xo/edZr0OobgzCh5CME
-         j3IzwQ9hARPRyYwOO7eCLAY2fOf+C4t2ENAI+IYdsq4b3CCY4yb9l2MH8C9JrW5nNC
-         Uqlowcv/v3XqB3A/DiEb2HkUKPwGS/T0rd5YQg7k=
-Received: from localhost (192.168.168.10) by mail (192.168.51.25) with
- Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 9 Sep 2022 22:36:48 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-ide@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v8 23/23] MAINTAINERS: Add maintainers for DWC AHCI SATA driver
-Date:   Fri, 9 Sep 2022 22:36:21 +0300
-Message-ID: <20220909193621.17380-24-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20220909193621.17380-1-Sergey.Semin@baikalelectronics.ru>
-References: <20220909193621.17380-1-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S229710AbiIITvJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 15:51:09 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80FD12E6B9;
+        Fri,  9 Sep 2022 12:51:08 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 289IJ1NY018025;
+        Fri, 9 Sep 2022 19:40:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=wHW1vNz16ltIDMS+8hT4yCgVJQqCNH1NVloPPsitZoE=;
+ b=D0ZOzjw6MsK0FF4bC4oAi2TFPsNcj/9Cv01k0ryLfkE34BJaAC9qtWoQRdJzs56JH4yG
+ FcWCjtJFHA6LMWhhWdKlGtrkTnuNvWxX5SERreZxM+RP7CAUMu8U1VDUj2QFNSQK9YYs
+ 6L+PHxMLGa8dkzmIhwbkSq0aP8MMHjqANoTNhvYrZQhmxZl3Es0A0nBgbX+93qpaKfCC
+ MQYKMe+TLA5vQLzRkzZ8NaEszScAm08ki7NU2x9qA6nzj+c0eXk6oG7Whoq/DYw812Nv
+ OhH/SgGv58+oPvUxWGBISuwNhR1sODozS3purx7y70eOQQ8ibireAhR5BxyeDftC6+SB ig== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jfujq42ne-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 09 Sep 2022 19:40:16 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 289JeFb1019667
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 9 Sep 2022 19:40:15 GMT
+Received: from hu-amelende-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Fri, 9 Sep 2022 12:40:14 -0700
+From:   Anjelique Melendez <quic_amelende@quicinc.com>
+To:     <corbet@lwn.net>, <sre@kernel.org>, <robh+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <quic_collinsd@quicinc.com>
+CC:     <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Anjelique Melendez <quic_amelende@quicinc.com>
+Subject: [PATCH v5 0/2] add support for PON GEN3 device
+Date:   Fri, 9 Sep 2022 12:39:16 -0700
+Message-ID: <20220909193915.20057-1-quic_amelende@quicinc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Lt0PEa-5rPL6KHM2R1y1Ic2evwV-iM0u
+X-Proofpoint-GUID: Lt0PEa-5rPL6KHM2R1y1Ic2evwV-iM0u
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-09_09,2022-09-09_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1011
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 impostorscore=0
+ suspectscore=0 mlxlogscore=999 adultscore=0 spamscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209090069
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as a maintainer of the new DWC AHCI SATA driver and
-its DT-bindings schema.
+Changes from v4:
+  - Updated commit message for patch 1/2
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Changes from v3:
+  - Addressed Krysztof's comments on patch 1/2
+    - Added missing minItems/maxItems
+    - Merged if statments with same constraints together
+    - Removed description from "reg-names"
+    
+Changes from v2:
+  - Added new "qcom,pmk8350-pon" compatible string as per Krysztof's
+    advice
+  - Updated dt logic to use comptaible strings to decide constraints
+    as per Krysztof's comment
+  - Added new patch (v3 2/2) to support new compatible string
 
----
+Changes from v1:
+  - Updated path which was missing Documentation/devicetree prefix
+  - Updated CC list
 
-Changelog v2:
-- Use dlemoal/libata.git git tree for the LIBATA SATA AHCI SYNOPSYS
-  DWC driver (@Damien).
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+New patch series to separate this patch from applied patches.
+Comments from original patch can be found
+https://lore.kernel.org/linux-arm-msm/27515993-18f3-8891-4835-9b6a8d7f86b0@quicinc.com/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9d7f64dc0efe..7a1cb5ff19cd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11552,6 +11552,15 @@ F:	drivers/ata/ahci_platform.c
- F:	drivers/ata/libahci_platform.c
- F:	include/linux/ahci_platform.h
- 
-+LIBATA SATA AHCI SYNOPSYS DWC CONTROLLER DRIVER
-+M:	Serge Semin <fancer.lancer@gmail.com>
-+L:	linux-ide@vger.kernel.org
-+S:	Maintained
-+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/dlemoal/libata.git
-+F:	Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
-+F:	Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-+F:	drivers/ata/ahci_dwc.c
-+
- LIBATA SATA PROMISE TX2/TX4 CONTROLLER DRIVER
- M:	Mikael Pettersson <mikpelinux@gmail.com>
- L:	linux-ide@vger.kernel.org
+David Collins (1):
+  dt-bindings: power: reset: qcom-pon: Add new compatible
+    "qcom,pmk8350-pon"
+
+Anjelique Melendez (1):
+  power: reset: qcom-pon: add support for qcom,pmk8350-pon compatible string
+
+ Documentation/devicetree/bindings/power/reset/qcom,pon.yaml | 50 +++++++++++++++++++++++++++---
+ drivers/power/reset/qcom-pon.c | 1 +
+ 2 file changed, 47 insertions(+), 4 deletions(-)
 -- 
-2.37.2
+2.35.1
 
