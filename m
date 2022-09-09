@@ -2,71 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59B885B323B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 10:49:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80C195B3255
+	for <lists+devicetree@lfdr.de>; Fri,  9 Sep 2022 10:53:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbiIIIsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Sep 2022 04:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47868 "EHLO
+        id S230354AbiIIIwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Sep 2022 04:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231741AbiIIIs2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 04:48:28 -0400
+        with ESMTP id S230448AbiIIIwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Sep 2022 04:52:25 -0400
 Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D30B212D1AB
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 01:48:27 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id v185-20020a1cacc2000000b003b42e4f278cso964696wme.5
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 01:48:27 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5900512FBB2
+        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 01:52:16 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id bg5-20020a05600c3c8500b003a7b6ae4eb2so3942069wmb.4
+        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 01:52:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=qHVswhVACDLOTVZmDz8woSoanr3PlEeTXqdYDzKWiac=;
-        b=aMPagJHU+dBvQYKAjci2vGliRESLcJzfv12RrSlAS7weQhJKXuTvKCZ+vVLhhDwBEy
-         7mcNQCfsbpzdDJjT7QBASPp/asPlPElmDoRdfo7isuu8oAuH+8WWwItPeWeAlJjoSQbr
-         687BhLcGxls6lXdY1K8i8hrMCJXAx9xhcw9f/bEa+Zd0DaypUEorp768is1CzcRnhiJj
-         GJCiId5/1Kb6ItpILoFp2frmNbIIlgFJFGLJjxW3YxCPnL0HZ/XWFZZ3AoFBeBAv5bo3
-         Ot3zvAoe9hl9TVnGEham1wJwNnMplbpeaZXatumSvQoTX6Ngjet5ORsHKdIwZ892MYd8
-         Y26A==
+        bh=xUYfPwKfjWj8UMEg1ZOqkwBhAmHe0cmPeP+wDEVrkOQ=;
+        b=TubYt+GybM3R6FXjLZ/HMzhZe/TPRKvDFmW4wnSeSjkjwv7l4KlvYzC5QXADNJrGvd
+         JOaD0zwqo1+n1dO/0X9WCrJ7DwiGCZ7yCZGN06+ztXv9HvKgMtS19rT43Y5/dXIu5bXS
+         eYqIliMmVz+St0Navdlh2leuJlnzrJG4A5smh9Mf/cH8z2wJxaSKk+s9q/9dMTSgz3eM
+         ch5re4PO6rxPqhP8acOlfiWaCVtgnEGZqqLvRPb+VjfyOC5uKlYUq9zOq9fx+tE6VNE9
+         sc58LAPXfMnjboti2FKUJnFRul2unn2US5QO1sBHb80J369YvubNxnXsut6Tq0lcidTu
+         S7Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=qHVswhVACDLOTVZmDz8woSoanr3PlEeTXqdYDzKWiac=;
-        b=S557NBwftwXAPk2OOhrev57YfpYe6woi30QPgjuUzamWpsL+bda1fkLhzhHQmXjZ+L
-         ShdPHwZuH2yMgXMzBX1xJ4uX1MweYTfnVHlWnPaA5hMeXdisqoNyftGCWpTRoPdlzpH2
-         p/XI/xdGv6ZpSjAvGeA0E42qXRkxfGNkSLSPuSS3Noy5jMbs0Wb1szztV5kLE4OPLKjR
-         R91Gtwek4AGDo4fj0DIUuWmtd9deYcMaqYg4SjjxbZDLbTfxgGM8NOXkImjjZUn1jPq+
-         XkNyTid5OakhWlD8IH4tMGsGj+YU2cBBMWHB8zMKh5pQadE5jwFL5crwoFLJqc6DWene
-         oFXA==
-X-Gm-Message-State: ACgBeo1Uoj7Pz2vLkBYPf1c7j7fILLsxAcq+HPJLbreAAQKq2M2/kBUH
-        NTfBqs+MblhleKA2yOiZ34ASWg==
-X-Google-Smtp-Source: AA6agR7k0FqLnxJKlHx+725dk2xWhXPx8/Es727NpYHaX+cqeN/AGjFkoMi4mIs61qP+DouU2xVVJQ==
-X-Received: by 2002:a1c:4c03:0:b0:3a5:d65c:c1e7 with SMTP id z3-20020a1c4c03000000b003a5d65cc1e7mr4883562wmf.4.1662713306373;
-        Fri, 09 Sep 2022 01:48:26 -0700 (PDT)
+        bh=xUYfPwKfjWj8UMEg1ZOqkwBhAmHe0cmPeP+wDEVrkOQ=;
+        b=JcsmkjKQ+OtB4Oqc8rAK6OOMccyD2mGcfDeVgzQMY4qU8VeGrcQ45RVbeG8wi2pBjq
+         VbovHJNSGryWsXAssq3irsJOfMsLBu57x7bKgzIAPi84pI5yUHL8V5b/ByEGOl9TiFB8
+         +ZTyOdVXY/O8ScRZAS0JQCYTQ4ktjc2HcL7uEy8Rw3gU/TTqt0ANoNNSW6cvvbFyWLNS
+         Seu8OezsrOIPqR/QQwIEpdcp7go843q8+qjP0u3WtT4HHT0knVvXcUX3N1aRObNCgOhl
+         p3I4x+udDfdGMyEdfjaeLONowDL95rCwP/VA6qHbxuoPuuS5PBuQxZTHq773pb6yo8HN
+         ssgg==
+X-Gm-Message-State: ACgBeo1zeONxygfIUmiIG12VGC8NDaoR2xk3BFsTONygApLRGJ4KfznQ
+        cW0GhRs6+onyp0bT6XmP3ef60Q==
+X-Google-Smtp-Source: AA6agR6YJCB2REeMJ4VtYkJNS0dCNv+3+WdATOvoAFtL5QD6iWSIVlpuGC2hE4dJ8XV2FmJqUy44nw==
+X-Received: by 2002:a05:600c:2059:b0:3a5:92cc:19c5 with SMTP id p25-20020a05600c205900b003a592cc19c5mr4469580wmg.101.1662713534861;
+        Fri, 09 Sep 2022 01:52:14 -0700 (PDT)
 Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id fc10-20020a05600c524a00b003a5de95b105sm5974868wmb.41.2022.09.09.01.48.24
+        by smtp.googlemail.com with ESMTPSA id bg35-20020a05600c3ca300b003a5c1e916c8sm1012461wmb.1.2022.09.09.01.52.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Sep 2022 01:48:25 -0700 (PDT)
-Message-ID: <1c83195f-0228-b3c7-3652-8f2c59c7da22@linaro.org>
-Date:   Fri, 9 Sep 2022 09:48:24 +0100
+        Fri, 09 Sep 2022 01:52:13 -0700 (PDT)
+Message-ID: <bee9db9d-fc1b-41d8-5714-1c7f48bb0722@linaro.org>
+Date:   Fri, 9 Sep 2022 09:52:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/4] nvmem: sunxi_sid: Always use 32-bit MMIO reads
+Subject: Re: [PATCH v2 06/20] nvmem: core: add nvmem_add_one_cell()
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220814173656.11856-1-samuel@sholland.org>
- <20220814173656.11856-2-samuel@sholland.org>
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+References: <20220901221857.2600340-1-michael@walle.cc>
+ <20220901221857.2600340-7-michael@walle.cc>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220814173656.11856-2-samuel@sholland.org>
+In-Reply-To: <20220901221857.2600340-7-michael@walle.cc>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,55 +87,127 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 14/08/2022 18:36, Samuel Holland wrote:
-> The SID SRAM on at least some SoCs (A64 and D1) returns different values
-> when read with bus cycles narrower than 32 bits. This is not immediately
-> obvious, because memcpy_fromio() uses word-size accesses as long as
-> enough data is being copied.
+On 01/09/2022 23:18, Michael Walle wrote:
+> Add a new function to add exactly one cell. This will be used by the
+> nvmem layout drivers to add custom cells. In contrast to the
+> nvmem_add_cells(), this has the advantage that we don't have to assemble
+> a list of cells on runtime.
 > 
-> The vendor driver always uses 32-bit MMIO reads, so do the same here.
-> This is faster than the register-based method, which is currently used
-> as a workaround on A64. And it fixes the values returned on D1, where
-> the SRAM method was being used.
-> 
-> The special case for the last word is needed to maintain .word_size == 1
-> for sysfs ABI compatibility, as noted previously in commit de2a3eaea552
-> ("nvmem: sunxi_sid: Optimize register read-out method").
-> 
-Missing Cc stable..
-
---srini
-> Fixes: 07ae4fde9efa ("nvmem: sunxi_sid: Add support for D1 variant")
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> Signed-off-by: Michael Walle <michael@walle.cc>
 > ---
+> changes since v1:
+>   - none
 > 
->   drivers/nvmem/sunxi_sid.c | 15 ++++++++++++++-
->   1 file changed, 14 insertions(+), 1 deletion(-)
+>   drivers/nvmem/core.c           | 58 ++++++++++++++++++++--------------
+>   include/linux/nvmem-provider.h |  8 +++++
+>   2 files changed, 42 insertions(+), 24 deletions(-)
 > 
-> diff --git a/drivers/nvmem/sunxi_sid.c b/drivers/nvmem/sunxi_sid.c
-> index 5750e1f4bcdb..92dfe4cb10e3 100644
-> --- a/drivers/nvmem/sunxi_sid.c
-> +++ b/drivers/nvmem/sunxi_sid.c
-> @@ -41,8 +41,21 @@ static int sunxi_sid_read(void *context, unsigned int offset,
->   			  void *val, size_t bytes)
->   {
->   	struct sunxi_sid *sid = context;
-> +	u32 word;
-> +
-> +	/* .stride = 4 so offset is guaranteed to be aligned */
-> +	__ioread32_copy(val, sid->base + sid->value_offset + offset, bytes / 4);
->   
-> -	memcpy_fromio(val, sid->base + sid->value_offset + offset, bytes);
-> +	val += round_down(bytes, 4);
-> +	offset += round_down(bytes, 4);
-> +	bytes = bytes % 4;
-> +
-> +	if (!bytes)
-> +		return 0;
-> +
-> +	/* Handle any trailing bytes */
-> +	word = readl_relaxed(sid->base + sid->value_offset + offset);
-> +	memcpy(val, &word, bytes);
->   
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index be38e62fd190..3dfd149374a8 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -501,6 +501,35 @@ static int nvmem_cell_info_to_nvmem_cell_entry(struct nvmem_device *nvmem,
 >   	return 0;
 >   }
+>   
+> +/**
+> + * nvmem_add_one_cell() - Add one cell information to an nvmem device
+> + *
+> + * @nvmem: nvmem device to add cells to.
+> + * @info: nvmem cell info to add to the device
+> + *
+> + * Return: 0 or negative error code on failure.
+> + */
+> +int nvmem_add_one_cell(struct nvmem_device *nvmem,
+> +		       const struct nvmem_cell_info *info)
+> +{
+> +	struct nvmem_cell_entry *cell;
+> +	int rval;
+> +
+> +	cell = kzalloc(sizeof(*cell), GFP_KERNEL);
+> +	if (!cell)
+> +		return -ENOMEM;
+> +
+> +	rval = nvmem_cell_info_to_nvmem_cell_entry(nvmem, info, cell);
+> +	if (rval) {
+> +		kfree(cell);
+> +		return rval;
+> +	}
+> +
+> +	nvmem_cell_entry_add(cell);
+> +
+> +	return 0;
+> +}
+> +
+
+EXPORT_SYMBOL_GPL ???
+
+>   /**
+>    * nvmem_add_cells() - Add cell information to an nvmem device
+>    *
+> @@ -514,34 +543,15 @@ static int nvmem_add_cells(struct nvmem_device *nvmem,
+>   		    const struct nvmem_cell_info *info,
+>   		    int ncells)
+>   {
+> -	struct nvmem_cell_entry **cells;
+> -	int i, rval = 0;
+> -
+> -	cells = kcalloc(ncells, sizeof(*cells), GFP_KERNEL);
+> -	if (!cells)
+> -		return -ENOMEM;
+> +	int i, rval;
+>   
+>   	for (i = 0; i < ncells; i++) {
+> -		cells[i] = kzalloc(sizeof(**cells), GFP_KERNEL);
+> -		if (!cells[i]) {
+> -			rval = -ENOMEM;
+> -			goto out;
+> -		}
+> -
+> -		rval = nvmem_cell_info_to_nvmem_cell_entry(nvmem, &info[i], cells[i]);
+> -		if (rval) {
+> -			kfree(cells[i]);
+> -			goto out;
+> -		}
+> -
+> -		nvmem_cell_entry_add(cells[i]);
+> +		rval = nvmem_add_one_cell(nvmem, &info[i]);
+> +		if (rval)
+> +			return rval;
+>   	}
+>   
+> -out:
+> -	/* remove tmp array */
+> -	kfree(cells);
+> -
+> -	return rval;
+> +	return 0;
+>   }
+>   
+>   /**
+> diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
+> index 14a32a1bc249..385d29168008 100644
+> --- a/include/linux/nvmem-provider.h
+> +++ b/include/linux/nvmem-provider.h
+> @@ -155,6 +155,9 @@ struct nvmem_device *devm_nvmem_register(struct device *dev,
+>   void nvmem_add_cell_table(struct nvmem_cell_table *table);
+>   void nvmem_del_cell_table(struct nvmem_cell_table *table);
+>   
+> +int nvmem_add_one_cell(struct nvmem_device *nvmem,
+> +		       const struct nvmem_cell_info *info);
+> +
+>   #else
+>   
+>   static inline struct nvmem_device *nvmem_register(const struct nvmem_config *c)
+> @@ -172,6 +175,11 @@ devm_nvmem_register(struct device *dev, const struct nvmem_config *c)
+>   
+>   static inline void nvmem_add_cell_table(struct nvmem_cell_table *table) {}
+>   static inline void nvmem_del_cell_table(struct nvmem_cell_table *table) {}
+> +static inline int nvmem_add_one_cell(struct nvmem_device *nvmem,
+> +				     const struct nvmem_cell_info *info)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+>   
+>   #endif /* CONFIG_NVMEM */
+>   #endif  /* ifndef _LINUX_NVMEM_PROVIDER_H */
