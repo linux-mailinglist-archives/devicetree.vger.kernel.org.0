@@ -2,83 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A58415B4689
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 15:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 455A65B4697
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 16:21:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbiIJNpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 09:45:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56674 "EHLO
+        id S229549AbiIJOVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 10:21:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbiIJNpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 09:45:38 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CE4D97
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 06:45:36 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-3487d84e477so49465227b3.6
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 06:45:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :mime-version:from:to:cc:subject:date;
-        bh=ohu1pLF6fYLbCN7zxNevtaFlsVPRi/7jyJ6A8aD5tiU=;
-        b=A7GzSRl2+E1yRlU7BPN4q19IsUaV6yU09rQ127Dl/g6v+/MTozgq1QAPkBmcNYb757
-         EEw2BWIR06vDYHHt66smSwxlDSydTCy6Bfher1MrRh/Y/BAzkcmw9ZyHmpreMQ8CNf/b
-         AMur25Dob6N492RYyFVmWOZtXtXO0EvLJIklpchgQ4WAYeEoAa9o30vjKUWnIMcQQeQd
-         iGE5K31AhByOK5X5WtyNDL+YL2zaDd48M4QtY9vw2EtwNYNP8LvW1D5DSc1EHE2ExVqC
-         1Q/bFSmfyWDDDL+u8JsOdUWOhS3SwDbduYfGF8OwThXliDfnVqhp65tzm+R4K2DqLUcO
-         ps7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=ohu1pLF6fYLbCN7zxNevtaFlsVPRi/7jyJ6A8aD5tiU=;
-        b=7KlE0gPq5xiSj1lOk+0KnrjQB68MdgIL7GcMCYV4mCrtCY4b52GjLl0uTUJhJHw7ps
-         mwIPiOPHDJvL12+9cqK3MZ2B+6bdm1GNRGJWL+fuxp9oBKbmL00LBZhUJf/TgFtvsC1+
-         GrlB3D2Mgtsq3Yecerhw6fFt0qgF0a9HLvSbxzzTpmsJWdQHVZSWfjsPtDoPKRc4kAKk
-         dRQN5NUnghRilZgjxrzgAjObsJaqE/etvKNsF/ohGchvpCS0vGJSnWJOkHcZzsXTuAkw
-         mXe8Co6o6bgCZ00hQ/SnifxAUCJAP0Q0Zqv0CfLbW6pEVjQcMm36gUz12ktgdm6D8K9k
-         lQfQ==
-X-Gm-Message-State: ACgBeo3RyUYPA0A/inuB4eEWYne7YZkGc849JNRm3j9mPz99MhNP+jsP
-        wsMqynj22UbujFoouBc8g4HCmoIrc3bBrT2knLQ=
-X-Google-Smtp-Source: AA6agR78zfJmaqEckF2iShQGDlE5BNsIUb6eolw6R9ziZuEc4gbjNYa9PfG7j6LTnfst7jj7CxXaCGsM81JpEHwVQN0=
-X-Received: by 2002:a81:74d:0:b0:348:be77:7700 with SMTP id
- 74-20020a81074d000000b00348be777700mr7670709ywh.488.1662817535781; Sat, 10
- Sep 2022 06:45:35 -0700 (PDT)
-MIME-Version: 1.0
-From:   Amelia Lucas <datalistsdask@gmail.com>
-Date:   Sat, 10 Sep 2022 08:45:25 -0500
-Message-ID: <CADvfT5Zyx4hBV7B5bRJL-=DV+G38ZDrSfpRFZFOecVNhHU9yQQ@mail.gmail.com>
-Subject: RE: 13000+ Attendees HR Technology Conference & Expo- 2022
-To:     Amelia Lucas <datalistsdask@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_FILL_THIS_FORM_SHORT,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229582AbiIJOVR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 10:21:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1E5D5247A;
+        Sat, 10 Sep 2022 07:21:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7F443B80092;
+        Sat, 10 Sep 2022 14:21:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B82DC433D6;
+        Sat, 10 Sep 2022 14:21:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662819674;
+        bh=63DVG7CI05AFTgN1wqbObJQpKPDKqz6f9ZGmJ68BDdc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Jfz9c2+1L0Qbi/i+NBg8hjor0yFDFEsC0SMMf8FEX4SjB8Q6FGsd/75tlKJmLPdCN
+         +kB3wPQfewensiY6Kbw0H7OQumEPvm+GWC/96iYTKA7zrx9ahWBPgD59wGLfCUQueO
+         1OnIfOxYk09pT/1Nd5YsXsTFjD/RWSgvuR9D//metjOk1SKzkaR9clbalvjT/DmRQQ
+         JS95rT14hk0TBxhqHec7DysS6hf+bc8J+oZ85M7PMRaRg0CZBfl96av9Uh/TTHkt+V
+         BjV1fZjy2/6xqBz67vXyFTiCjxhl90HHJGjIaMTbr43yDLe2J4qmTSBuW+LJXCJn+m
+         pWx/O8ZQr0wHA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oX1M7-009POh-UA;
+        Sat, 10 Sep 2022 15:21:12 +0100
+Date:   Sat, 10 Sep 2022 15:21:12 +0100
+Message-ID: <87zgf7paxz.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Janne Grunau <j@jannau.net>
+Cc:     asahi@lists.linux.dev, Mark Kettenis <kettenis@openbsd.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 01/10] dt-bindings: apple,aic: Fix required item "apple,fiq-index" in affinity description
+In-Reply-To: <20220910114324.GD4024@jannau.net>
+References: <20220909135103.98179-1-j@jannau.net>
+        <20220909135103.98179-2-j@jannau.net>
+        <874jxfqzvj.wl-maz@kernel.org>
+        <20220910114324.GD4024@jannau.net>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: j@jannau.net, asahi@lists.linux.dev, kettenis@openbsd.org, alyssa@rosenzweig.io, marcan@marcan.st, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, sven@svenpeter.dev, tglx@linutronix.de, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Sat, 10 Sep 2022 12:43:24 +0100,
+Janne Grunau <j@jannau.net> wrote:
+> 
+> On 2022-09-10 11:37:20 +0100, Marc Zyngier wrote:
+> > On Fri, 09 Sep 2022 14:50:54 +0100,
+> > Janne Grunau <j@jannau.net> wrote:
+> > > 
+> > > Fixes: dba07ad11384 ("dt-bindings: apple,aic: Add affinity description for per-cpu pseudo-interrupts")
+> > > Signed-off-by: Janne Grunau <j@jannau.net>
+> > > ---
+> > > 
+> > >  .../devicetree/bindings/interrupt-controller/apple,aic.yaml     | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+> > > index 85c85b694217..e18107eafe7c 100644
+> > > --- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+> > > @@ -96,7 +96,7 @@ properties:
+> > >                Documentation/devicetree/bindings/arm/cpus.yaml).
+> > >  
+> > >          required:
+> > > -          - fiq-index
+> > > +          - apple,fiq-index
+> > >            - cpus
+> > >  
+> > >  required:
+> > 
+> > With a commit message added,
+> 
+> I've added
+> 
+> | The required list used "fiq-index" instead of "apple,fiq-index"
+> | described as property and used in the dts. Add the missing "apple,"
+> | prefix.
+> 
+> as commit description.
 
-I hope you're doing great and staying healthy!
+Perfect, ship it.
 
-Would you be interested in acquiring HR Technology Conference & Expo
-Attendees List-2022?
+	M.
 
-List Includes :- Org-Name, First Name, Last Name, Contact Job Title,
-Verified Email Address, Website URL, Mailing Address, Phone Number,
-Fax Number, Industry and many more=E2=80=A6
-
-Number of Contacts: - 13,968
-Cost: - $ 1,529
-
-if you're interested please let me know I will assist you with further deta=
-ils.
-
-Kind Regards,
-Amelia Lucas
-Marketing Coordinator
+-- 
+Without deviation from the norm, progress is not possible.
