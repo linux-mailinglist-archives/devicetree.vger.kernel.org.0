@@ -2,70 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D09585B47FD
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 20:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A24385B4816
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 21:42:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbiIJS4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 14:56:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38244 "EHLO
+        id S229543AbiIJTmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 15:42:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiIJS4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 14:56:32 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B44E7481E2;
-        Sat, 10 Sep 2022 11:56:31 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id u9so11411209ejy.5;
-        Sat, 10 Sep 2022 11:56:31 -0700 (PDT)
+        with ESMTP id S229437AbiIJTmu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 15:42:50 -0400
+Received: from mail.baikalelectronics.com (mail.baikalelectronics.com [87.245.175.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 206B8422C0;
+        Sat, 10 Sep 2022 12:42:43 -0700 (PDT)
+Received: from mail (mail.baikal.int [192.168.51.25])
+        by mail.baikalelectronics.com (Postfix) with ESMTP id 85498BD0;
+        Sat, 10 Sep 2022 22:46:31 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.com 85498BD0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date;
-        bh=3PplGYcFwa58sgJyq0s6GKaVr3wUW1D0jH7TKWDQs/0=;
-        b=qWwmi4l9tkhs+K+eUHh6fIlNVbj02RW1SDpguvVyPuvThzzfNg9bg2OztEF1cYiRTc
-         s5H9IgSqdamsiXQz/SkWKrUKZqxF5WgDo+x7IWiMS6thkN0YtolScBTDH1lZLNQJYxsI
-         g/GWUO/FqZq9YixXfYdM6Si5IlRsN4IU1G8e5H4Fq42KGQZnEAaqKLWYnSWx6A1KdWFO
-         PyiTSUaX0lrZ0K8rlKFMaR1jpnQVutklE1v+xncU3wblKEgj8qiVEdatVCyWn9qnEa/l
-         A4AeCDK9ZlWhr1t4SD3CTNS3qXjz6cNlJC4VDYrGLbJYefMw5dF8j0xUZ42lVAO5KPR2
-         0QYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date;
-        bh=3PplGYcFwa58sgJyq0s6GKaVr3wUW1D0jH7TKWDQs/0=;
-        b=y8m6rrrSroreOh8k3PCywa/ra/zFeOL8i+sgSZnXldhb4wtWEBOwx64cltLHzJ4PWD
-         ef0glHNndAY777R0iMtUPUtbyCmAnyNhobHTyfIG+O+lr9d8m/NYW1X3CCA9bv2G4Iv5
-         ctxCY9n5Ume5pIyEekbCWXgnqsAeljPTBH9vLjHZz8k29GCvqJpvqUsrZXB2v0bs+f0y
-         gBUEiWSq8s2K1b6DD1vSDiNS2f37QsFoBIEHeTT6hbbDvzhzp/hdzlDkWOI44pR1cbI6
-         ujla5ld4GdHziClsqLNpLWQVPKIRVlEHtVcYNlG84kCp/7QyXghBsMsFOPCRnF5MtFen
-         2r0A==
-X-Gm-Message-State: ACgBeo21fS7+hWR2LHEqotHN5qsyoEY83mCrb+WXl71x/W60t+9LJWKC
-        5bpuMyCCBckuf7cMdlYuV9Y=
-X-Google-Smtp-Source: AA6agR77n+mQgZTAm6u67SKl30loSrOlLzz5oqTb2H7JEQJz++WyB3Qxbiq6/Hgq/4xQMVJbsUKIrg==
-X-Received: by 2002:a17:907:96ab:b0:779:b7d8:41ba with SMTP id hd43-20020a17090796ab00b00779b7d841bamr6352676ejc.449.1662836190148;
-        Sat, 10 Sep 2022 11:56:30 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id g22-20020a170906539600b0072f4f4dc038sm2045125ejo.42.2022.09.10.11.56.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Sep 2022 11:56:29 -0700 (PDT)
-Message-ID: <64d03f6e-c578-3155-e3fb-53dbe53573eb@gmail.com>
-Date:   Sat, 10 Sep 2022 20:56:28 +0200
+        d=baikalelectronics.ru; s=mail; t=1662839192;
+        bh=ArECxP+rDilarAbLvnMGb8PZUWvtXVeLvnvVHb+Au9E=;
+        h=From:To:CC:Subject:Date:From;
+        b=WA1SMVV1yu0QcqZNhe3lzSCFh+1YMOFKaC0zlPFSNxa7hIEsciqrNcQ1kFPg3ca9p
+         eaoJm+8b4kjviSjbzbUPD4Cb/aKb9oCSaC8/Ki8DlzvXmDxSdFLA6tmqq4xg9MME1Q
+         MtF+PiRgr9c0lSqT2jlHW0u6YP6qm0DKKpiVt894=
+Received: from localhost (192.168.168.10) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 10 Sep 2022 22:42:40 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-edac@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 00/19] EDAC/mc/synopsys: Various fixes and cleanups
+Date:   Sat, 10 Sep 2022 22:42:18 +0300
+Message-ID: <20220910194237.10142-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-From:   Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1] dt-bindings: spi: rockchip: add power-domains property
-To:     broonie@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,29 +66,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Rockchip rk3399 TRM mentions that pd_sdioaudio includes
-sdio, spi, i2s and spdif. Add a power-domains property to
-reduce notifications with spi-rockchip.yaml.
+This patchset is a first one in the series created in the framework of
+my Baikal-T1 DDRC-related work:
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+[1: In-progress] EDAC/mc/synopsys: Various fixes and cleanups
+Link: ---you are looking at it---
+[2: In-progress] EDAC/synopsys: Add generic DDRC info and address mapping
+Link: https://lore.kernel.org/linux-edac/20220822191427.27969-1-Sergey.Semin@baikalelectronics.ru
+[3: In-progress] EDAC/synopsys: Add generic resources and Baikal-T1 support
+Link: https://lore.kernel.org/linux-edac/20220822191957.28546-1-Sergey.Semin@baikalelectronics.ru
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-index 52768894b..66e49947b 100644
---- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-@@ -82,6 +82,9 @@ properties:
-       where the "sleep" configuration may describe the state
-       the pins should be in during system suspend.
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
+Note the patchsets above must be merged in the same order as they are
+placed in the list in order to prevent conflicts. Nothing prevents them
+from being reviewed synchronously though. Any tests are very welcome.
+Thanks in advance.
+
+Regarding this series content. It's an initial patchset which
+traditionally provides various fixes, cleanups and modifications required
+for the more comfortable further features development. The main goal of it
+though is to detach the Xilinx Zynq A05 DDRC related code into the
+dedicated driver since first it has nothing to do with the Synopsys DW
+uMCTL2 DDR controller and second it will be a great deal obstacle on the
+way of extending the Synopsys-part functionality.
+
+The series starts with fixes patches, which in short concern the next
+aspects: touching the ZynqMP-specific CSRs on the Xilinx ZinqMP platform
+only, serializing an access to the ECCCLR register, adding correct memory
+devices type detection, setting a correct value to the
+mem_ctl_info.scrub_cap field, dropping an erroneous ADDRMAP[4] parsing and
+getting back a correct order of the ECC errors info detection procedure.
+
+Afterwards the patchset provides several cleanup patches required for the
+more coherent code splitting up (Xilinx Zynq A05 and Synopsys DW uMCTL2)
+so the provided modifications would be useful in both drivers. First we
+get to replace the platform resource manual IO-remapping with the
+devm_platform_ioremap_resource() method call. Secondly we suggest to drop:
+internal CE/UE errors counters, local to_mci() macros definition, some
+redundant ecc_error_info structure fields and redundant info from the
+error message, duplicated dimm->nr_pages debug printout and spaces from
+the MEM_TYPE flags declarations. (The later two updates concern the MCI
+core part.) Thirdly before splitting up the driver we need to add an
+unique MC index allocation infrastructure to the MCI core.  It's required
+since after splitting the driver up we'll need to make sure both device
+types could be correctly probed on the same platform. Finally the Xilinx
+Zynq A05 part of the driver is moved out to a dedicated driver where it
+should been originally placed. After that the platform-specific setups API
+is removed from the Synopsys DW uMCTL2 DDRC driver since it's no longer
+required.
+
+Finally as the cherry on the cake we suggest to unify the DW uMCTL2 DDRC
+driver entities naming and replace the open-coded "shift/mask" patter with
+the kernel helpers like BIT/GENMASK/FIELD_x in there. It shall
+significantly improve the code readability.
+
+Link: https://lore.kernel.org/linux-edac/20220822190730.27277-1-Sergey.Semin@baikalelectronics.ru/
+Changelog 2:
+- Move Synopsys DW uMCTL2 DDRC bindings file renaming to a separate patch.
+  (@Krzysztof)
+- Introduce a new compatible string "snps,dw-umctl2-ddrc" matching the new
+  DT-schema name.
+- Forgot to fix some of the prefix of the SYNPS_ZYNQMP_IRQ_REGS macro
+  in several places. (@tbot)
+- Drop the no longer used "priv" pointer from the mc_init() function.
+  (@tbot)
+- Include "linux/bitfield.h" header file to get the FIELD_GET macro
+  definition. (@tbot)
+- Drop the already merged in patches:
+[PATCH 12/20] EDAC/mc: Replace spaces with tabs in memtype flags definition
+[PATCH 13/20] EDAC/mc: Drop duplicated dimm->nr_pages debug printout
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Punnaiah Choudary Kalluri <punnaiah.choudary.kalluri@xilinx.com>
+Cc: Manish Narani <manish.narani@xilinx.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>
+Cc: James Morse <james.morse@arm.com>
+Cc: Robert Richter <rric@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-edac@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (19):
+  EDAC/synopsys: Fix native uMCTL2 IRQs handling procedure
+  EDAC/synopsys: Fix generic device type detection procedure
+  EDAC/synopsys: Fix mci->scrub_cap field setting
+  EDAC/synopsys: Drop erroneous ADDRMAP4.addrmap_col_b10 parse
+  EDAC/synopsys: Fix reading errors count before ECC status
+  EDAC/synopsys: Use platform device devm ioremap method
+  EDAC/synopsys: Drop internal CE and UE counters
+  EDAC/synopsys: Drop local to_mci macro implementation
+  EDAC/synopsys: Drop struct ecc_error_info.blknr field
+  EDAC/synopsys: Shorten out struct ecc_error_info.bankgrpnr field name
+  EDAC/synopsys: Drop redundant info from error message
+  EDAC/mc: Init DIMM labels in MC registration method
+  EDAC/mc: Add MC unique index allocation procedure
+  dt-bindings: memory: snps: Detach Zynq DDRC controller support
+  dt-bindings: memory: snps: Use more descriptive device name
+  EDAC/synopsys: Detach Zynq DDRC controller support
+  EDAC/synopsys: Drop unused platform-specific setup API
+  EDAC/synopsys: Unify the driver entities naming
+  EDAC/synopsys: Convert to using BIT/GENMASK/FIELD_x macros
+
+ .../snps,dw-umctl2-ddrc.yaml                  |  56 ++
+ .../memory-controllers/synopsys,ddrc-ecc.yaml |  76 --
+ .../xlnx,zynq-ddrc-a05.yaml                   |  38 +
+ MAINTAINERS                                   |   3 +
+ drivers/edac/Kconfig                          |   9 +-
+ drivers/edac/Makefile                         |   1 +
+ drivers/edac/edac_mc.c                        | 135 ++-
+ drivers/edac/edac_mc.h                        |   4 +
+ drivers/edac/synopsys_edac.c                  | 903 ++++++------------
+ drivers/edac/zynq_edac.c                      | 504 ++++++++++
+ 10 files changed, 1026 insertions(+), 703 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
+ create mode 100644 drivers/edac/zynq_edac.c
+
 -- 
-2.20.1
+2.37.2
 
