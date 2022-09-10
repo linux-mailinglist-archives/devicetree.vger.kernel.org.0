@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78B6F5B4651
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 14:47:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F6275B464C
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 14:47:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbiIJMrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 08:47:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38438 "EHLO
+        id S229656AbiIJMrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 08:47:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbiIJMrJ (ORCPT
+        with ESMTP id S229577AbiIJMrJ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 08:47:09 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9FC57880
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F0BB57887
         for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 05:47:07 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id bq23so7249211lfb.7
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 05:47:07 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id a8so7207371lff.13
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 05:47:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=TxrB+xzXcIbg2kPlqQv8V5RPFZvr7T/st6qWl58n8ds=;
-        b=SEPZv1Vew6IXsBVfgCi1dIDAmnaxQKruFh52oB1vHY7fEmuTeRm3aiyircMyAUNgJw
-         CqESxYrOhWHZt/97DGFDT1NUMyDBvnmJKqxoUTxyaLctkplefdwZDcGUClSBCw2TefHP
-         V6cQY/dgX/5oJvaYK7MOePctM1NMf9D87XO6lmMsVOg8ypFIHeli/7Sz1xVcI5fyhXvL
-         tmcjSLKHbAz0FczE3w7S6Lm/KORyrPMg//MBU6+v5dJor4v3iYv8ei7iC3QWAZt886VN
-         Nx20hpC/s/6kioyFgyd//dz/8BrB28fgVsxpe8kyT0AWD4CbnLhaljeAsrun5/4dEjWY
-         qjUA==
+        bh=E42nL0SnLuu/advWVSA0exITSa9nePRzRLUKZ/sijPQ=;
+        b=SJxt8lNR5AHZZUvEoZhMSYNUIElaFZyRNFubRnBVFbp+C/s57x29zwFeMdkT65bM0O
+         R0gihKvGO1FoKu6u3OqISgtPtJz8LZaQly4mMwmG8Iw1nrRnOFUiKzwezcXyppKaJJUW
+         rempBnSkgEULIXFnC6HXeN5q7k5yElGCZGfwgCWONi+jPLuyvbhdPi5ChFdc+E/Orp8Y
+         rwHQDBr14qQ6eB5IrCWSdMGkiCSvHcc92gHEUx/xc4TTngz0HCHKfpN0WhNx0nfKk+ra
+         f8R6D1uDLc87lelFS+NPJynk2YklUANxpeqHiOmtVeVcYVB2/2+TaV47RlPLP7+nkBUU
+         d9Ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=TxrB+xzXcIbg2kPlqQv8V5RPFZvr7T/st6qWl58n8ds=;
-        b=G3Mx33xIQ0cykH90+aAX46KZaVFhPavbCjn1UdVWmxlReJhHu5IZHAsQYFna9cQJpq
-         bN0QSCBQBTzVoQWigLkOpMFHfrzvqaItm4A3efGzDzHlyNMGEgMC06QYSqCUwvCFp3qM
-         ULYBoHcf+hwFVAqzkljsy17NpS+33zIjEQ/pqmNDFROaIAO5xJTSfsvyedKthAZg/MMV
-         qUvdz68d+qvyF3yxgnj3Cj3c0ACakg0zyfSDgxzCPYdd0FVey2mrhz/gmD4MkZz653k1
-         PfqeRB7I0giHG6T2kwS8wkUauQzSr5tCJ7cBy9bEXDynCflT9q9DAhnie7VAodePX9gT
-         3okw==
-X-Gm-Message-State: ACgBeo3RwWURbJWDMbn3mwGWUpvpS9Um0LAg+1IcgXTWRLUaLM21S1oh
-        4ZRiiMua2HilaN1DjiYGIQPCrg==
-X-Google-Smtp-Source: AA6agR5Q5mDFxvykXW1L9Goka43Fws1Tj9i5dMULtqO1AcZ861wmqXlDYcgeINLWKqQqzGRmz2RfCA==
-X-Received: by 2002:ac2:4bd0:0:b0:497:abfd:3572 with SMTP id o16-20020ac24bd0000000b00497abfd3572mr4846435lfq.200.1662814025809;
-        Sat, 10 Sep 2022 05:47:05 -0700 (PDT)
+        bh=E42nL0SnLuu/advWVSA0exITSa9nePRzRLUKZ/sijPQ=;
+        b=kcvWzsiOf50dERlyixJp/sxq4/7yrs+z5WBSEpx3Ec3iU6dNruZshe1gEAGmV+EEOe
+         oTbPQ8wFUgoJNaQslVguOn6wgoG6+M9HyDwD6HLEV8U3mGNohfDAl0+5xk8fBlc59RSz
+         BMtJtheIXhtKeD8bXquYRxRE0MJNFrTfSdl5JGbaUcd0S0m9AJ/6w31HaFLzDIli/l/g
+         +imPM5o173GnonQ5FGU89wcvsZ4+cp/kDvDOTQHx+7e1jb771uxFaj0bE2h85nLVZkZU
+         0rePI1gtgG8GS/RmV/JxKWNXjX5ZT3M9HGEzK67Dokh/gkRHc2EF+23Cs3VbF6iGEFEy
+         WhsQ==
+X-Gm-Message-State: ACgBeo0AOBDoyv3PtF3W1UmemtmVn5nss9Tqw7Azt6MYsA7ZA7QW91wN
+        8plmAP7iRfpLODIWpGT9jhoNCQ==
+X-Google-Smtp-Source: AA6agR5eonv7R5b5BupEFDATrPIP336R2/jmJGZrzWiWVO3yhpxHO/1WNnkHTD3CLeycM+YZkShCtA==
+X-Received: by 2002:a19:505e:0:b0:497:abf6:1115 with SMTP id z30-20020a19505e000000b00497abf61115mr5632021lfj.36.1662814026639;
+        Sat, 10 Sep 2022 05:47:06 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
         by smtp.gmail.com with ESMTPSA id k14-20020a2e920e000000b002677a3ad1d9sm327463ljg.76.2022.09.10.05.47.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Sep 2022 05:47:05 -0700 (PDT)
+        Sat, 10 Sep 2022 05:47:06 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,10 +60,12 @@ To:     Andy Gross <agross@kernel.org>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
         Zhang Rui <rui.zhang@intel.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [RFC PATCH 04/10] thermal/drivers/tsens: drop single-cell code for mdm9607
-Date:   Sat, 10 Sep 2022 15:46:55 +0300
-Message-Id: <20220910124701.4060321-5-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [RFC PATCH 05/10] thermal/drivers/tsens: drop msm8976-specific defines
+Date:   Sat, 10 Sep 2022 15:46:56 +0300
+Message-Id: <20220910124701.4060321-6-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org>
 References: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org>
@@ -71,7 +73,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,118 +81,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no dtsi file for mdm9607 in the kernel sources. Drop the
-compatibility with unofficial dtsi and remove support for handling the
-single-cell calibration data on mdm9607.
+Drop msm8976-specific defines, which duplicate generic ones.
 
 Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/thermal/qcom/tsens-v0_1.c | 84 +------------------------------
- 1 file changed, 1 insertion(+), 83 deletions(-)
+ drivers/thermal/qcom/tsens-v1.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-index add5d9dbc9d4..c3613b7ccc19 100644
---- a/drivers/thermal/qcom/tsens-v0_1.c
-+++ b/drivers/thermal/qcom/tsens-v0_1.c
-@@ -133,39 +133,6 @@
+diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+index 868d7b4c9e36..e6ef3bacfc39 100644
+--- a/drivers/thermal/qcom/tsens-v1.c
++++ b/drivers/thermal/qcom/tsens-v1.c
+@@ -78,11 +78,6 @@
  
- #define BIT_APPEND		0x3
+ #define MSM8976_CAL_SEL_MASK	0x3
  
--/* eeprom layout data for mdm9607 */
--#define MDM9607_BASE0_MASK	0x000000ff
--#define MDM9607_BASE1_MASK	0x000ff000
--#define MDM9607_BASE0_SHIFT	0
--#define MDM9607_BASE1_SHIFT	12
+-#define MSM8976_CAL_DEGC_PT1	30
+-#define MSM8976_CAL_DEGC_PT2	120
+-#define MSM8976_SLOPE_FACTOR	1000
+-#define MSM8976_SLOPE_DEFAULT	3200
 -
--#define MDM9607_S0_P1_MASK	0x00003f00
--#define MDM9607_S1_P1_MASK	0x03f00000
--#define MDM9607_S2_P1_MASK	0x0000003f
--#define MDM9607_S3_P1_MASK	0x0003f000
--#define MDM9607_S4_P1_MASK	0x0000003f
--
--#define MDM9607_S0_P2_MASK	0x000fc000
--#define MDM9607_S1_P2_MASK	0xfc000000
--#define MDM9607_S2_P2_MASK	0x00000fc0
--#define MDM9607_S3_P2_MASK	0x00fc0000
--#define MDM9607_S4_P2_MASK	0x00000fc0
--
--#define MDM9607_S0_P1_SHIFT	8
--#define MDM9607_S1_P1_SHIFT	20
--#define MDM9607_S2_P1_SHIFT	0
--#define MDM9607_S3_P1_SHIFT	12
--#define MDM9607_S4_P1_SHIFT	0
--
--#define MDM9607_S0_P2_SHIFT	14
--#define MDM9607_S1_P2_SHIFT	26
--#define MDM9607_S2_P2_SHIFT	6
--#define MDM9607_S3_P2_SHIFT	18
--#define MDM9607_S4_P2_SHIFT	6
--
--#define MDM9607_CAL_SEL_MASK	0x00700000
--#define MDM9607_CAL_SEL_SHIFT	20
--
- static int calibrate_8916(struct tsens_priv *priv)
- {
- 	int base0 = 0, base1 = 0, i;
-@@ -370,56 +337,7 @@ static int calibrate_8974(struct tsens_priv *priv)
+ /* eeprom layout data for qcs404/405 (v1) */
+ #define BASE0_MASK	0x000007f8
+ #define BASE1_MASK	0x0007f800
+@@ -160,8 +155,8 @@ static void compute_intercept_slope_8976(struct tsens_priv *priv,
+ 	priv->sensor[10].slope = 3286;
  
- static int calibrate_9607(struct tsens_priv *priv)
- {
--	int base, i;
--	u32 p1[5], p2[5];
--	int mode = 0;
--	u32 *qfprom_cdata;
--	int ret;
--
--	ret = tsens_calibrate_nvmem(priv, 2);
--	if (!ret)
--		return 0;
--
--	qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
--	if (IS_ERR(qfprom_cdata))
--		return PTR_ERR(qfprom_cdata);
--
--	mode = (qfprom_cdata[2] & MDM9607_CAL_SEL_MASK) >> MDM9607_CAL_SEL_SHIFT;
--	dev_dbg(priv->dev, "calibration mode is %d\n", mode);
--
--	switch (mode) {
--	case TWO_PT_CALIB:
--		base = (qfprom_cdata[2] & MDM9607_BASE1_MASK) >> MDM9607_BASE1_SHIFT;
--		p2[0] = (qfprom_cdata[0] & MDM9607_S0_P2_MASK) >> MDM9607_S0_P2_SHIFT;
--		p2[1] = (qfprom_cdata[0] & MDM9607_S1_P2_MASK) >> MDM9607_S1_P2_SHIFT;
--		p2[2] = (qfprom_cdata[1] & MDM9607_S2_P2_MASK) >> MDM9607_S2_P2_SHIFT;
--		p2[3] = (qfprom_cdata[1] & MDM9607_S3_P2_MASK) >> MDM9607_S3_P2_SHIFT;
--		p2[4] = (qfprom_cdata[2] & MDM9607_S4_P2_MASK) >> MDM9607_S4_P2_SHIFT;
--		for (i = 0; i < priv->num_sensors; i++)
--			p2[i] = ((base + p2[i]) << 2);
--		fallthrough;
--	case ONE_PT_CALIB2:
--		base = (qfprom_cdata[0] & MDM9607_BASE0_MASK);
--		p1[0] = (qfprom_cdata[0] & MDM9607_S0_P1_MASK) >> MDM9607_S0_P1_SHIFT;
--		p1[1] = (qfprom_cdata[0] & MDM9607_S1_P1_MASK) >> MDM9607_S1_P1_SHIFT;
--		p1[2] = (qfprom_cdata[1] & MDM9607_S2_P1_MASK) >> MDM9607_S2_P1_SHIFT;
--		p1[3] = (qfprom_cdata[1] & MDM9607_S3_P1_MASK) >> MDM9607_S3_P1_SHIFT;
--		p1[4] = (qfprom_cdata[2] & MDM9607_S4_P1_MASK) >> MDM9607_S4_P1_SHIFT;
--		for (i = 0; i < priv->num_sensors; i++)
--			p1[i] = ((base + p1[i]) << 2);
--		break;
--	default:
--		for (i = 0; i < priv->num_sensors; i++) {
--			p1[i] = 500;
--			p2[i] = 780;
--		}
--		break;
--	}
--
--	compute_intercept_slope(priv, p1, p2, mode);
--	kfree(qfprom_cdata);
--
--	return 0;
-+	return tsens_calibrate_nvmem(priv, 2);
+ 	for (i = 0; i < priv->num_sensors; i++) {
+-		priv->sensor[i].offset = (p1[i] * MSM8976_SLOPE_FACTOR) -
+-				(MSM8976_CAL_DEGC_PT1 *
++		priv->sensor[i].offset = (p1[i] * SLOPE_FACTOR) -
++				(CAL_DEGC_PT1 *
+ 				priv->sensor[i].slope);
+ 	}
  }
- 
- /* v0.1: 8916, 8939, 8974, 9607 */
 -- 
 2.35.1
 
