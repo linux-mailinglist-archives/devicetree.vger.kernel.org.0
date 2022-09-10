@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8ED65B4577
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 11:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D217C5B4574
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 11:15:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbiIJJPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 05:15:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44852 "EHLO
+        id S229661AbiIJJPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 05:15:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbiIJJOq (ORCPT
+        with ESMTP id S229624AbiIJJOq (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 05:14:46 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 989DE1D0CD
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98A4D1D0D2
         for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 02:14:44 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id v6so4806370ljj.0
+Received: by mail-lf1-x130.google.com with SMTP id bt10so6747904lfb.1
         for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 02:14:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=F43WJbqoo0esyv4lpLD+5bCe2x3EVG4sANVKIPN1Vsw=;
-        b=gjQYC5tvkqwyAfGwYyZaxzlELAmUX4A4Oc5Oq/5KenDEAxOminiHi9muEYn8A5WejU
-         Uk7OxU1imFSFvjNZQNUToxTlaFjq4NRad7xRkUJXd6zsnr6J0NkZMmVT7BiGI8N0Prcz
-         0xaLNWYTVpp+8UMU318UqhCqWbUJkiHbtO03y2f+rLdIqBiDNIe6snfySzCuhjsygfTy
-         AlOEfVBmxbrSoPXrmO7/0ECoPXMyPeq1hXfPNzTgGDV/MzAZWzq8ksfA7viiIiV3+DTI
-         nfNqUPkNCi2v8m+zsAHxBFrvrlDropSFV8TWS+4v1ktuu5mWDxRc29Uz3cQQQuAZpG9r
-         sa8w==
+        bh=/UI25rqJUxEZV+KxQUPmeT2zHV2+PmX8LADJ48o6xoo=;
+        b=kbEYjCacCwwdYF1VmovswFKBZiUu3Qwmhu50PiF5y0ch3buakY2D6pcV2dHcW7Sa6X
+         HdglS8dDaZDG6fuEndyKp2FTHKj0dC6J2a3f/dpxR9lgtcLoEMh7jEhqzOtE90OeAvw3
+         KTEcCQieDu3ZZBryzVcxsahmLujx84jfjvxPqDXVmuJpDtjoImEIdw5q7CxYvXDqJKR+
+         I4Ekl+BLl2jAo3jMctdNjAKATx7DbMuaYxhVndtSbrHdqun9D74cnlqnH9DwYKwh1sf9
+         NJmByo+qZKZdBpxq7Cvj73iVLkZwfAUE9D/oZd6Y7IFat8Mt4vxR3KRHN6Wdez6T0wQH
+         b7hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=F43WJbqoo0esyv4lpLD+5bCe2x3EVG4sANVKIPN1Vsw=;
-        b=nKJ7g4UxAKeYswDhn6HvZVTfQ4QHbgNhNcLsQQKT0QPLs8RCXRve+0oIVMrCCXGMHD
-         tTHJVmuN4UquBH4y8XwdB1MHwZxJZLPLytQ5BlY3u+YmWiECigtpf9twf0K9FPEqHhOy
-         LrQoSmHWybMvd3AosunvP0KoUX7dwxbugu3FCDja9gXUhQ4jRbXyM7jBEDKBACoMXO++
-         8AARkEfCLN/TgQmEmo7oSGuyFuRYOjAwdchODE0FuRkO71tOUnE2Ojwezdj2/D5bNoPL
-         OtSmldc1V60XO/sLssRsRzpxORD8ywej+Fgk7EvkGzzEhYVYiHHZ/EQ5aXXyMJsUhbcB
-         Qunw==
-X-Gm-Message-State: ACgBeo3VREYwx8lA3NXi7IWo2/X5MiUxFWyWelDn5jjnexS3ZOAp8O08
-        8KbHKBpF6XoSd93yI8lyVCSuOA==
-X-Google-Smtp-Source: AA6agR4rhGrcfIu0K6zucUbz27AGSZJkv8AZnGPF287UzI8abX8D1GX4w+zjXIJoDrL3P/ZIcJk53Q==
-X-Received: by 2002:a2e:958a:0:b0:26a:a393:4480 with SMTP id w10-20020a2e958a000000b0026aa3934480mr4974663ljh.490.1662801282674;
-        Sat, 10 Sep 2022 02:14:42 -0700 (PDT)
+        bh=/UI25rqJUxEZV+KxQUPmeT2zHV2+PmX8LADJ48o6xoo=;
+        b=a3yBfLIhwDImS6Kxe+RuvU+mrjuBw4BWtOg98VpdDYW6yEbOFu7t4FoKHIFq3rSrtB
+         pwzUTYd67sIKdh5BxzsCI5eGl4kDevY8w4jl2PM29xw6ESHnZ4MLMgR+sQlKcO0ZRl1Y
+         p9fDT7bZCCx8KSBVBGcg1mx+hnCqn/C2JJubewOg64971uS9puZJ2+cvZNpJfJaZ9oAp
+         hUFbfSxMDa/33Z106Eoi/ge0lgQEAdCYIHBm+Hb3t9OWdbsvbAM80OZ4VPcfpB+jT7TM
+         LfQFZDGjSZwIFwcubv7H8atMPB/7WiYcAQ6niFspnKH1BfhVZpPwG824QF9p0Q7W9zxd
+         KJvg==
+X-Gm-Message-State: ACgBeo0D7TesJmIP4qLoKh8S9oVV3jUBIk18zQBcWRi7cVwM/67gl6Zf
+        8gJuPrypFh5HtWAo+YEOGFwb5A==
+X-Google-Smtp-Source: AA6agR5JSebTMqV9gwQ2S1KjheukgqYP3EiXpHmNCLHtumpvk7Vclk5W+5qNtkxF1tD6wcHKjq7i7A==
+X-Received: by 2002:a05:6512:92a:b0:497:ac14:6d0f with SMTP id f10-20020a056512092a00b00497ac146d0fmr5015791lft.615.1662801284057;
+        Sat, 10 Sep 2022 02:14:44 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id x22-20020a19e016000000b0048b26d4bb64sm201552lfg.40.2022.09.10.02.14.41
+        by smtp.gmail.com with ESMTPSA id x22-20020a19e016000000b0048b26d4bb64sm201552lfg.40.2022.09.10.02.14.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Sep 2022 02:14:42 -0700 (PDT)
+        Sat, 10 Sep 2022 02:14:43 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Banajit Goswami <bgoswami@quicinc.com>,
@@ -61,9 +61,9 @@ To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 05/15] arm64: dts: qcom: sdm845: align dai node names with dtschema
-Date:   Sat, 10 Sep 2022 11:14:18 +0200
-Message-Id: <20220910091428.50418-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 06/15] arm64: dts: qcom: msm8996: align dai node names with dtschema
+Date:   Sat, 10 Sep 2022 11:14:19 +0200
+Message-Id: <20220910091428.50418-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220910091428.50418-1-krzysztof.kozlowski@linaro.org>
 References: <20220910091428.50418-1-krzysztof.kozlowski@linaro.org>
@@ -81,57 +81,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 DT schema expects DAI node names to be "dai":
 
-  qcom/sdm845-xiaomi-beryllium.dtb: dais: 'qi2s@22' does not match any of the regexes: '^dai@[0-9]+$', 'pinctrl-[0-9]+'
+  qcom/msm8996-mtp.dtb: dais: 'hdmi@1' does not match any of the regexes: '^dai@[0-9]+$', 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts           | 2 +-
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 2 +-
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts   | 4 ++--
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 132417e2d11e..2110a5893149 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -651,7 +651,7 @@ led@5 {
- 
- /* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
- &q6afedai {
--	qi2s@22 {
-+	dai@22 {
- 		reg = <QUATERNARY_MI2S_RX>;
- 		qcom,sd-lines = <0 1 2 3>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index 0f470cf1ed1c..68e2a07a01dc 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -338,7 +338,7 @@ resin {
- 
- /* QUAT I2S Uses 1 I2S SD Line for audio on TAS2559/60 amplifiers */
- &q6afedai {
--	qi2s@22 {
-+	dai@22 {
- 		reg = <QUATERNARY_MI2S_RX>;
- 		qcom,sd-lines = <0>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-index afc17e4d403f..4f6f1ce7286c 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-@@ -544,8 +544,8 @@ resin {
- };
- 
- &q6afedai {
--	qi2s@22 {
--		reg = <22>;
-+	dai@22 {
-+		reg = <QUATERNARY_MI2S_RX>;
- 		qcom,sd-lines = <0>;
- 	};
- };
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index abc17c905bfe..b346ecccb94d 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -3402,7 +3402,7 @@ q6afedai: dais {
+ 							#address-cells = <1>;
+ 							#size-cells = <0>;
+ 							#sound-dai-cells = <1>;
+-							hdmi@1 {
++							dai@1 {
+ 								reg = <1>;
+ 							};
+ 						};
 -- 
 2.34.1
 
