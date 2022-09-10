@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F22A5B4592
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 11:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 375365B45CC
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 11:54:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229929AbiIJJQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 05:16:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46714 "EHLO
+        id S229451AbiIJJyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 05:54:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbiIJJPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 05:15:49 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC1032BBD
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 02:14:57 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id w8so6680676lft.12
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 02:14:57 -0700 (PDT)
+        with ESMTP id S229455AbiIJJyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 05:54:05 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F4FF4D26C
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 02:54:04 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id f14so5837263lfg.5
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 02:54:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=rmqQ4kjPWFQWglKjigsMWHNac7/x7IFTq30UtYcnmqY=;
-        b=Vjv2svewyIN2U5P6rvQjir03D+g6EpmVV3R6ajRIKLNBxcpOyr4c4UkbjxSM2TJMEy
-         X+uE+EHNFtIz8QgvKTsrOU9PktlAgLEH22tw6yVTmv7GIFcDbPr/VtOqGgwfR1NMwfOw
-         vILCk45ixAfgzYbW3ggWvrPOSHlJ+0h1N+FUZ4ufHrp0bz93hydaUtQ+mvXQWkWA2Yco
-         jcSuqcQkHn1OD5ndnsaPbY5cBFgLLZfKrWIP8iWBBpslUS75Qv0MYRM9aseg1myl8LLC
-         VBFGtXf/oWA1EA23L2E/nbzjOC7v0tGI2rZjT0BPoK0wLpfKqFt7jRFs4M9tO7pnq/sy
-         i6NQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=nGB1eH+3YKYlQxfebPcTH9aYOLxz9Odp7+V7DTmi6rw=;
+        b=KG/jKE9eJLKyuIo+VLF+hq1v8WKbwaXb2CB1x+cN8rYSxuBllbtpxwMbLrWm/bT04T
+         WyLoDnIwu9X16TJVAU5mu4aAt7Fbb4vcZB/oTh8QRqtka9TGeSCOwxlXeGzOH14P5pr8
+         OJ/WHW0lBYpXRx4viTTTdK2bbFawt1Q6EtDqTHn0JkbXzI3Aso62XbbGKBVVJPp1Qi5p
+         hZOmJkS2XrYb4AnC0YO6CF0QE2VNpYepl797Z4WAl+LB+tRYHKKoMY/SVQRKyvvPBVMG
+         m9dIvgBYfZV1alxD7ivNobc/rA0lBaq3hhCOYPiewSUQNFeYsumvlKxTp7M0NN5DQUqL
+         w9WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=rmqQ4kjPWFQWglKjigsMWHNac7/x7IFTq30UtYcnmqY=;
-        b=oOXDgeX/ibNeBSPvgVNuRrhYmzR2uuTxU70tvCPr9EWVg/Z8O5jyT1eQC8QRv8a7jP
-         V3I4HBGThVyLu2vhmtYFB+ZbhhgOvxVkgTQnyFyrTABawQJ/6JXLzrf+PkLx3czpjE4W
-         KPch7jhvIKLf9n5a7STSRKseNiqhIG4HtKWnq9pPnnJ0UN1bX+ciVdltBRwiptdKWK4s
-         U0mMbaseqdfReMYvjrfW/17zfhft+WaHbykGVH1QhgTbMNc13N2DWMyS1Jgif458k37K
-         AKn7KGk2LHE3TJBya6gGa5RlqBccaVRggoLP7vw9qx1/8P/88+A39I2fZnUshqDkk7P4
-         Xwyw==
-X-Gm-Message-State: ACgBeo2REw44zzJc5AvKVhnZk5TH1mOjF8MrH+JxQ7ELSsqoC/PDdIh/
-        vM93EcuwioLPXANDLM+FkqBPQQ==
-X-Google-Smtp-Source: AA6agR5M2+DIslDj5uqNrZ+M/RK85p19Fiy/OF3lTqm4PY6EnhQ2RxNj9gfL7c/DjWGFWotv07lyEA==
-X-Received: by 2002:a05:6512:4002:b0:499:280:9c5b with SMTP id br2-20020a056512400200b0049902809c5bmr1753800lfb.593.1662801295116;
-        Sat, 10 Sep 2022 02:14:55 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id x22-20020a19e016000000b0048b26d4bb64sm201552lfg.40.2022.09.10.02.14.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Sep 2022 02:14:54 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 15/15] dt-bindings: soc: qcom: apr: add missing properties
-Date:   Sat, 10 Sep 2022 11:14:28 +0200
-Message-Id: <20220910091428.50418-16-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220910091428.50418-1-krzysztof.kozlowski@linaro.org>
-References: <20220910091428.50418-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=nGB1eH+3YKYlQxfebPcTH9aYOLxz9Odp7+V7DTmi6rw=;
+        b=ty6SgfIFfg9y736+DXZPTlZxSsNmdYs2Pc70i0b+LPskBKJ9iS6QN/cmLsYJkRc41w
+         cf+xOh9hpvHoCOFI14qeAC9BdQZamxmAPp7YMslKpMt2GVUymqnaoFAUsN/GDBfr0s/1
+         fv/ODm7jCOYUykV1dtJKo3CwpHC3z3EXiG1j4IuxwJd2YZiroLb9/4HlGpC+yhLpwG4s
+         zWNhZDVnoh6YYW+VondJ2Rs4C2cNtLdnddhq46U9ZToW9SMB92DQpTJSASPtB4ym+5eE
+         f0xbsoiqr1FmsJqZtqNQ2Nu5AzE0J8n71CDbN9DoMB4r4AmrtP+iHYlDDI4MPE4oJBfa
+         /ACA==
+X-Gm-Message-State: ACgBeo0CjnWhBDFSIsJrddIn707o4rJSPpdfffgjaAYHx0hO53NYqVKw
+        sGM4Rhp4BgAgnExF4jH08IS0wPTz1mRamg==
+X-Google-Smtp-Source: AA6agR6yKiJIkOeCvvAjvFniHPVqzLuNpnS2U7oFcUbfk1Gf0CX7xdQoS/kkXI97ntqfaPtR7++x8w==
+X-Received: by 2002:a05:6512:b8b:b0:498:f32a:3c1e with SMTP id b11-20020a0565120b8b00b00498f32a3c1emr3186445lfv.123.1662803643026;
+        Sat, 10 Sep 2022 02:54:03 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id z14-20020a19650e000000b00490b5f09973sm208638lfb.92.2022.09.10.02.54.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Sep 2022 02:54:02 -0700 (PDT)
+Message-ID: <7055eeb7-0ca7-37f2-7e7a-3880a8f0323e@linaro.org>
+Date:   Sat, 10 Sep 2022 11:54:00 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [RFC PATCH 01/10] dt-bindings: apple,aic: Fix required item
+ "apple,fiq-index" in affinity description
+Content-Language: en-US
+To:     Janne Grunau <j@jannau.net>, asahi@lists.linux.dev
+Cc:     Mark Kettenis <kettenis@openbsd.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220909135103.98179-1-j@jannau.net>
+ <20220909135103.98179-2-j@jannau.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220909135103.98179-2-j@jannau.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,89 +84,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The APR bindings were not describing all properties already used in DTS:
-1. Add qcom,glink-channels, qcom,smd-channels and qcom,intents (widely
-   used).
-2. Add power-domains for MSM8996.
+On 09/09/2022 15:50, Janne Grunau wrote:
+> Fixes: dba07ad11384 ("dt-bindings: apple,aic: Add affinity description for per-cpu pseudo-interrupts")
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- .../bindings/soc/qcom/qcom,apr.yaml           | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+You miss commit description.
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-index 54328d74af85..f47491aab3b1 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-@@ -20,6 +20,9 @@ properties:
-       - qcom,apr-v2
-       - qcom,gpr
- 
-+  power-domains:
-+    maxItems: 1
-+
-   qcom,apr-domain:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     enum: [1, 2, 3, 4, 5, 6, 7]
-@@ -52,6 +55,26 @@ properties:
-         2 = Audio DSP Domain
-         3 = Application Processor Domain
- 
-+  qcom,glink-channels:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    description: Channel name used for the communication
-+    items:
-+      - const: apr_audio_svc
-+
-+  qcom,intents:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      List of (size, amount) pairs describing what intents should be
-+      preallocated for this virtual channel. This can be used to tweak the
-+      default intents available for the channel to meet expectations of the
-+      remote.
-+
-+  qcom,smd-channels:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    description: Channel name used for the communication
-+    items:
-+      - const: apr_audio_svc
-+
-   '#address-cells':
-     const: 1
- 
-@@ -172,6 +195,30 @@ required:
-   - compatible
-   - qcom,domain
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,gpr
-+    then:
-+      properties:
-+        power-domains: false
-+
-+  - if:
-+      required:
-+        - qcom,glink-channels
-+    then:
-+      properties:
-+        qcom,smd-channels: false
-+
-+  - if:
-+      required:
-+        - qcom,smd-channels
-+    then:
-+      properties:
-+        qcom,glink-channels: false
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
-
+Best regards,
+Krzysztof
