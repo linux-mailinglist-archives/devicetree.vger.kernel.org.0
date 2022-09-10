@@ -2,154 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C965A5B466C
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 14:55:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A58415B4689
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 15:45:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbiIJMzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 08:55:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49490 "EHLO
+        id S229492AbiIJNpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 09:45:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiIJMzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 08:55:08 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5806125EBE
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 05:55:07 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-333a4a5d495so48403607b3.10
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 05:55:07 -0700 (PDT)
+        with ESMTP id S229527AbiIJNpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 09:45:38 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CE4D97
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 06:45:36 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-3487d84e477so49465227b3.6
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 06:45:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from
          :mime-version:from:to:cc:subject:date;
-        bh=H9+aEqiuPXTD/0BZaNY7OkRWAFHFJteXc5O3Y0RlriU=;
-        b=mBHDGwsHzU8tUV9CsDzMvAXPhxljy4Z/pZKGE4kQymHkgT8ih+5G40SzDLbN0kydlr
-         2tjDhbT4XnoRojq0JPdXDKumG2iQzpTlod5jENB0Cm9jPsLf+C8Pno1eaDHvK2vv0B94
-         kEwzHuGm9EWHRfiL5Mi+LeccMdIBUaH3HdQCPcpJFiQLybFtiFFgow+Hb4LrlXukH5Jk
-         6MQn8oaQF5MsKJZ/DHvGM+7k+ekMr/btC25EG+mB3XqY74ddKV4jEin1nU1so8g744At
-         T1F+z15ipWU2Fji4Ho5ed+7xdgKVX6OvR6gIkUvrdVIsEDmRHc3wpW8aeTJmAwBVbZke
-         a44w==
+        bh=ohu1pLF6fYLbCN7zxNevtaFlsVPRi/7jyJ6A8aD5tiU=;
+        b=A7GzSRl2+E1yRlU7BPN4q19IsUaV6yU09rQ127Dl/g6v+/MTozgq1QAPkBmcNYb757
+         EEw2BWIR06vDYHHt66smSwxlDSydTCy6Bfher1MrRh/Y/BAzkcmw9ZyHmpreMQ8CNf/b
+         AMur25Dob6N492RYyFVmWOZtXtXO0EvLJIklpchgQ4WAYeEoAa9o30vjKUWnIMcQQeQd
+         iGE5K31AhByOK5X5WtyNDL+YL2zaDd48M4QtY9vw2EtwNYNP8LvW1D5DSc1EHE2ExVqC
+         1Q/bFSmfyWDDDL+u8JsOdUWOhS3SwDbduYfGF8OwThXliDfnVqhp65tzm+R4K2DqLUcO
+         ps7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
+        h=content-transfer-encoding:to:subject:message-id:date:from
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=H9+aEqiuPXTD/0BZaNY7OkRWAFHFJteXc5O3Y0RlriU=;
-        b=e5l6/HkJQyw6N3NjtApUaq3RCDYB+7N9ZtDqo+UH5l/XCrlmIvY4SM2MlvVZHurC0Q
-         pn+weOBMrtafkwuY0xyC2J4dmuYdTNC+rbV42ICyF9i3WK82KRDOzmDaKQTEwmsGdjIK
-         7QW+mSqxl0GspMcKhK7TAXZ9hqMdAwsPTvs5SAFxprcBy3T06Mbr6yICyezOSo7++tLI
-         2JYsFuwUSMpNdNS0MXX29SBJpZvvHU5VEGyKdIT3/9flH1Gy8j0PNtpb14PORrwaK3r4
-         VXpDUK6ZL/uGTJ0y2WMEFQmBNREP/VADXTnbROGzW0UM+HLhsX6iQn2GQ7rGl2V+lkNf
-         /Hsw==
-X-Gm-Message-State: ACgBeo2wlKZ+czI/CIclzQBrtVDcOh148uI+QXqVGUStgM1IAEj72Pn/
-        gC9U2M1rH2lIExQ1oynatTNuqvG2hPBSrULEEcFHUw==
-X-Google-Smtp-Source: AA6agR5M01fLD1dnWRcihDf9ksYjlQdjkT0J9p3TdYpAK/1HdHOcbQhPoqH8kNrR1WJrJnAvY1r3ksR1w8AubJ+eWUI=
-X-Received: by 2002:a0d:ffc5:0:b0:341:6cc1:c589 with SMTP id
- p188-20020a0dffc5000000b003416cc1c589mr15944568ywf.418.1662814506532; Sat, 10
- Sep 2022 05:55:06 -0700 (PDT)
+        bh=ohu1pLF6fYLbCN7zxNevtaFlsVPRi/7jyJ6A8aD5tiU=;
+        b=7KlE0gPq5xiSj1lOk+0KnrjQB68MdgIL7GcMCYV4mCrtCY4b52GjLl0uTUJhJHw7ps
+         mwIPiOPHDJvL12+9cqK3MZ2B+6bdm1GNRGJWL+fuxp9oBKbmL00LBZhUJf/TgFtvsC1+
+         GrlB3D2Mgtsq3Yecerhw6fFt0qgF0a9HLvSbxzzTpmsJWdQHVZSWfjsPtDoPKRc4kAKk
+         dRQN5NUnghRilZgjxrzgAjObsJaqE/etvKNsF/ohGchvpCS0vGJSnWJOkHcZzsXTuAkw
+         mXe8Co6o6bgCZ00hQ/SnifxAUCJAP0Q0Zqv0CfLbW6pEVjQcMm36gUz12ktgdm6D8K9k
+         lQfQ==
+X-Gm-Message-State: ACgBeo3RyUYPA0A/inuB4eEWYne7YZkGc849JNRm3j9mPz99MhNP+jsP
+        wsMqynj22UbujFoouBc8g4HCmoIrc3bBrT2knLQ=
+X-Google-Smtp-Source: AA6agR78zfJmaqEckF2iShQGDlE5BNsIUb6eolw6R9ziZuEc4gbjNYa9PfG7j6LTnfst7jj7CxXaCGsM81JpEHwVQN0=
+X-Received: by 2002:a81:74d:0:b0:348:be77:7700 with SMTP id
+ 74-20020a81074d000000b00348be777700mr7670709ywh.488.1662817535781; Sat, 10
+ Sep 2022 06:45:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
- <20220901102312.2005553-2-dmitry.baryshkov@linaro.org> <3e525135-d205-eddc-ff2d-98c8321386e3@linaro.org>
- <20220908193705.GA3002673-robh@kernel.org> <1ebe64a3-fab9-1dd7-517a-01001a176d9f@linaro.org>
- <CAL_JsqLkV_fnUnc4cS=cdTvP3rKYAS011_+KZYiBGhXDx-pHnA@mail.gmail.com> <2204eab4-b22d-8ee7-4595-49139cb387a8@linaro.org>
-In-Reply-To: <2204eab4-b22d-8ee7-4595-49139cb387a8@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 10 Sep 2022 15:54:55 +0300
-Message-ID: <CAA8EJpqHL-gO=zSG6Ek=-y4njGF5R66z0MwLeKZ9U4Ag1j51Og@mail.gmail.com>
-Subject: Re: [PATCH v6 01/12] dt-bindings: display/msm: split qcom,mdss bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
+From:   Amelia Lucas <datalistsdask@gmail.com>
+Date:   Sat, 10 Sep 2022 08:45:25 -0500
+Message-ID: <CADvfT5Zyx4hBV7B5bRJL-=DV+G38ZDrSfpRFZFOecVNhHU9yQQ@mail.gmail.com>
+Subject: RE: 13000+ Attendees HR Technology Conference & Expo- 2022
+To:     Amelia Lucas <datalistsdask@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_FILL_THIS_FORM_SHORT,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 10 Sept 2022 at 11:45, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 10/09/2022 00:23, Rob Herring wrote:
-> >>>>
-> >>>> This should be ref to dsi-controller-main.yaml... or based on previous
-> >>>> Rob's feedback you dropped it everywhere in children?
-> >>>
-> >>> I don't think I said. I thought about it some, as yes, we normally have
-> >>> done as you suggested. The downside is with a ref we'll do the whole
-> >>> validation of the child node twice (unless the referenced schema has a
-> >>> 'select: false') whereas here only 'compatible' is validated twice. This
-> >>> way also complicates checking for unevaluatedProperties/additionalProperties.
-> >>>
-> >>> So maybe better to keep with the 'normal' way and make this a ref.
-> >>
-> >> Well.. I tried using $ref in the previous iteration, but then I faced
-> >> the fact that I can not use it. Using the $ref the node gets validated
-> >> even if it is disabled, and we do not want to do this. The nodes are
-> >> usually split in way that regulators are specified in the board DT file.
-> >> Thus disabled dsi/dsi-phy nodes do not get all the required regulators.
-> >> And dt-validate happily dumps tons of warnings for disabled nodes. Thus
-> >> I ended up with the compatible rather than $ref.
-> >
-> > Only warnings about required properties? Those are supposed to get
-> > filtered out if the node is disabled. Maybe being in a $ref doesn't
-> > work.
->
-> This seems to break regardless it is in $ref or when you directly
-> reference the schema.
->
-> I tested display/msm/dpu-sc7180.yaml on modified DTB when a required
-> property is missing (I removed reg-names) and:
->
-> 1. When node is enabled:
->
-> c7180-idp.dtb: display-controller@ae01000: 'reg-names' is a required
-> property
->
->         Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
->
-> rch/arm64/boot/dts/qcom/sc7180-idp.dtb: display-controller@ae01000:
-> Unevaluated properties are not allowed ('interrupt-parent',
-> 'interrupts', 'operating-points-v2', 'opp-table', 'ports',
-> 'power-domains' were unexpected)
->
->
-> 2. When node is disabled the first error disappears (so no clue which
-> one is missing) but schema does not pass:
->
-> qcom/sc7180-idp.dtb: display-controller@ae01000: Unevaluated properties
-> are not allowed ('interrupt-parent', 'interrupts',
-> 'operating-points-v2', 'opp-table', 'ports', 'power-domains' were
-> unexpected)
->
->         From schema: Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
->
->
-> However I think there is no such problem, as Dmitry said, that ref
-> changes anything. There will be always failure - either from parent
-> schema (using $ref) or from device child schema (the one which actually
-> misses the property).
+Hi,
 
-Initially I stumbled upon this issue with the dsi and dsi_phy nodes
-for msm8996 devices. If I have $ref here, dsi1/dsi1_phy nodes will
-emit warnings regarding the missing -supply properties despite nodes
-being disabled. If I use `compatible' here, the schema checks pass.
-Thus I'd prefer to leave `compatible' here. Not to mention that it
-also allows specifying a tighter binding than just using the $ref.
+I hope you're doing great and staying healthy!
 
--- 
-With best wishes
-Dmitry
+Would you be interested in acquiring HR Technology Conference & Expo
+Attendees List-2022?
+
+List Includes :- Org-Name, First Name, Last Name, Contact Job Title,
+Verified Email Address, Website URL, Mailing Address, Phone Number,
+Fax Number, Industry and many more=E2=80=A6
+
+Number of Contacts: - 13,968
+Cost: - $ 1,529
+
+if you're interested please let me know I will assist you with further deta=
+ils.
+
+Kind Regards,
+Amelia Lucas
+Marketing Coordinator
