@@ -2,128 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C83535B47B2
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 19:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D09585B47FD
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 20:56:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbiIJRWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 13:22:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32842 "EHLO
+        id S229512AbiIJS4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 14:56:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbiIJRWG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 13:22:06 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 888E73B970
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 10:22:05 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id t14so8362341wrx.8
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 10:22:05 -0700 (PDT)
+        with ESMTP id S229446AbiIJS4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 14:56:32 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B44E7481E2;
+        Sat, 10 Sep 2022 11:56:31 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id u9so11411209ejy.5;
+        Sat, 10 Sep 2022 11:56:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=nPCSVK9pdaIBJcPEVZGRT55TFQr/Oe9ib1kIMeabBB8=;
-        b=CHH6mDbo9WtruJDHBaleEzJCvp4+L6hVaUy7X+365IqMW2Exnbd/pIElaqqLBOngEx
-         JoCVTF9sRENaZcEecykQ4R0kTsgePdfeZ17NRtVdpJxD8KhiOY/FmiusP4hdpub34yhV
-         GLRMjxz73OgB5BZe06p13GcO62EM61Z45BhpPo0Thy2ZxkWkzzJyN76K02IlGrMS/yYa
-         Zw+57X8HNwXWCKNJvwuKHnzOXbcvIo+xpaTJU3wqz5xEb8rojHYdN7p2eOslkYdTa/Su
-         R4P1wyMlBOmeFa5f0Nti9R3X1acfeRw6mJMS/RlXwX1QcC5hoKp8TwzZ7zxI5XZ+7fFK
-         jyPA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date;
+        bh=3PplGYcFwa58sgJyq0s6GKaVr3wUW1D0jH7TKWDQs/0=;
+        b=qWwmi4l9tkhs+K+eUHh6fIlNVbj02RW1SDpguvVyPuvThzzfNg9bg2OztEF1cYiRTc
+         s5H9IgSqdamsiXQz/SkWKrUKZqxF5WgDo+x7IWiMS6thkN0YtolScBTDH1lZLNQJYxsI
+         g/GWUO/FqZq9YixXfYdM6Si5IlRsN4IU1G8e5H4Fq42KGQZnEAaqKLWYnSWx6A1KdWFO
+         PyiTSUaX0lrZ0K8rlKFMaR1jpnQVutklE1v+xncU3wblKEgj8qiVEdatVCyWn9qnEa/l
+         A4AeCDK9ZlWhr1t4SD3CTNS3qXjz6cNlJC4VDYrGLbJYefMw5dF8j0xUZ42lVAO5KPR2
+         0QYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=nPCSVK9pdaIBJcPEVZGRT55TFQr/Oe9ib1kIMeabBB8=;
-        b=Z/j/Zl5STJtDpxd5cxaWgGzzs2McVSluwUcZPrh1/UDzc0r6cjnpivZ3oCWMpdWpOu
-         AdjOxY1J+dxT1NaBBCA5kNKbZRCHUDVz8IyLGxiG+usvm5oYiu2VZEvKpIFX2BIyL9rZ
-         qWrAwLisX7J3vpUGV2oR5FCt5ulyUJMx1VtcCDhu5uDyJ1THLT8beV5aBvu3I6TMfjuB
-         FCjYtkJ39UKtvIigW1XOcbqGX4PueAB+fr24aCY8ThHUaqXy0xoOzAr8zLVm/b5BqUxY
-         JcUrTYZXcdwogZhNAvw7efBHvHgw2gIf04uwpQRp2ACXAO/UovvjUz1oUlPMOWEfxPtQ
-         F3Kg==
-X-Gm-Message-State: ACgBeo2epxn22YKW0lbqZ6lAUf6FvST2P2j8o3UqQeoYi+jCs3yOLrfl
-        sAN2oD2fYLlMOH/9Qgov/hnz9g==
-X-Google-Smtp-Source: AA6agR5KKtHnpe0ulUs2She+q6y/RMaBCM+sygMPbaVKYfTNsEaZ5DavYqYaXJwgwNqVKHzvIUhBsQ==
-X-Received: by 2002:adf:fbc7:0:b0:220:6004:18ca with SMTP id d7-20020adffbc7000000b00220600418camr10582323wrs.632.1662830524071;
-        Sat, 10 Sep 2022 10:22:04 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id o28-20020a05600c511c00b003b462b314e7sm3927105wms.16.2022.09.10.10.22.02
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date;
+        bh=3PplGYcFwa58sgJyq0s6GKaVr3wUW1D0jH7TKWDQs/0=;
+        b=y8m6rrrSroreOh8k3PCywa/ra/zFeOL8i+sgSZnXldhb4wtWEBOwx64cltLHzJ4PWD
+         ef0glHNndAY777R0iMtUPUtbyCmAnyNhobHTyfIG+O+lr9d8m/NYW1X3CCA9bv2G4Iv5
+         ctxCY9n5Ume5pIyEekbCWXgnqsAeljPTBH9vLjHZz8k29GCvqJpvqUsrZXB2v0bs+f0y
+         gBUEiWSq8s2K1b6DD1vSDiNS2f37QsFoBIEHeTT6hbbDvzhzp/hdzlDkWOI44pR1cbI6
+         ujla5ld4GdHziClsqLNpLWQVPKIRVlEHtVcYNlG84kCp/7QyXghBsMsFOPCRnF5MtFen
+         2r0A==
+X-Gm-Message-State: ACgBeo21fS7+hWR2LHEqotHN5qsyoEY83mCrb+WXl71x/W60t+9LJWKC
+        5bpuMyCCBckuf7cMdlYuV9Y=
+X-Google-Smtp-Source: AA6agR77n+mQgZTAm6u67SKl30loSrOlLzz5oqTb2H7JEQJz++WyB3Qxbiq6/Hgq/4xQMVJbsUKIrg==
+X-Received: by 2002:a17:907:96ab:b0:779:b7d8:41ba with SMTP id hd43-20020a17090796ab00b00779b7d841bamr6352676ejc.449.1662836190148;
+        Sat, 10 Sep 2022 11:56:30 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id g22-20020a170906539600b0072f4f4dc038sm2045125ejo.42.2022.09.10.11.56.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Sep 2022 10:22:03 -0700 (PDT)
-Message-ID: <ee9f1ba2-cc53-beeb-7f96-5d1097f8e2e7@linaro.org>
-Date:   Sat, 10 Sep 2022 18:22:02 +0100
+        Sat, 10 Sep 2022 11:56:29 -0700 (PDT)
+Message-ID: <64d03f6e-c578-3155-e3fb-53dbe53573eb@gmail.com>
+Date:   Sat, 10 Sep 2022 20:56:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: Mark old binding
- qcom,cpu-lpass-apq8016 as deprecated
+ Thunderbird/91.13.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1] dt-bindings: spi: rockchip: add power-domains property
+To:     broonie@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, robh+dt@kernel.org,
-        agross@kernel.org, devicetree@vger.kernel.org,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20220910014206.1101962-1-bryan.odonoghue@linaro.org>
- <20220910014206.1101962-2-bryan.odonoghue@linaro.org>
- <1662821635.164850.34696.nullmailer@robh.at.kernel.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <1662821635.164850.34696.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2022 15:53, Rob Herring wrote:
-> On Sat, 10 Sep 2022 02:42:06 +0100, Bryan O'Donoghue wrote:
->> We've had some discongruity in the compatible string of the lpass for 8916
->> for a while.
->>
->> Mark the old compat as deprecated. New SoC additions such as msm8936 and
->> msm8939 should use the compat string "qcom,apq8016-lpass-cpu".
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>   .../devicetree/bindings/sound/qcom,lpass-cpu.yaml   | 13 ++++++++-----
->>   1 file changed, 8 insertions(+), 5 deletions(-)
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml:23:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-> 
-> dtschema/dtc warnings/errors:
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+The Rockchip rk3399 TRM mentions that pd_sdioaudio includes
+sdio, spi, i2s and spdif. Add a power-domains property to
+reduce notifications with spi-rockchip.yaml.
 
-Bah, you were right.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-I didn't see this in the noise generated by the tool
+diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+index 52768894b..66e49947b 100644
+--- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+@@ -82,6 +82,9 @@ properties:
+       where the "sleep" configuration may describe the state
+       the pins should be in during system suspend.
+ 
++  power-domains:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+-- 
+2.20.1
 
-/home/deckard/Development/qualcomm/qlt-kernel/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml:23:9: 
-[warning] wrong indentation: expected 10 but found 8 (indentation)
-
-Is there some way to slim the output down to just the yaml file I am 
-interested in ?
-
-Dmitry submitted a patch for this at some stage I think
