@@ -2,56 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09BA65B4984
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 23:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DB4F5B4A65
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 23:53:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbiIJVUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 17:20:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57418 "EHLO
+        id S229732AbiIJVxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 17:53:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbiIJVUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 17:20:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE2A4F385;
-        Sat, 10 Sep 2022 14:18:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C320F60ED2;
-        Sat, 10 Sep 2022 21:18:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1194DC433D6;
-        Sat, 10 Sep 2022 21:18:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662844682;
-        bh=hTXg7u7di5Z06XG9BCn6oG8/0a79m4ePnTp0VKoo82Y=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CG6o00K2dCfLwceRNLmpSpSCcaic2uyVWej/dfQVMc16+JSiL+RmetQQ5xXiKJV3j
-         X4/9+wrxSLsiMnN4O1kndQtW2FDv0k2TvjjIoGfXpj0lhKrI8ZmB9ZFfFChVQ8ktV9
-         /64VmHPg+7oL6FRvQGX5brEeXBQEZIRtjwVYiYRTOpgM361IsX4fdxVkHsm90JDPRc
-         rCpGYhKKLJrbs+Cu13aaC63DOV932T5PGsAxlPJCuudYPYhja4114zV1EwQ9w4bG3z
-         1wMDxEtL8n62XlC195EG/8DurRdG9Mitcy0e0iaMnS/pwPMotOZc8in3C4PoNkeO1K
-         41i8CI+kQZ3/g==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Sasha Levin <sashal@kernel.org>, jic23@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        hns@goldelico.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 05/21] dt-bindings: iio: gyroscope: bosch,bmg160: correct number of pins
-Date:   Sat, 10 Sep 2022 17:17:36 -0400
-Message-Id: <20220910211752.70291-5-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220910211752.70291-1-sashal@kernel.org>
-References: <20220910211752.70291-1-sashal@kernel.org>
+        with ESMTP id S229635AbiIJVxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 17:53:03 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365652DABD
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 14:53:01 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id gh9so11961547ejc.8
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 14:53:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=1PPWCbKXlEnu4f5Y1l2ZGcr26PupHUMW55EBs/BVMPw=;
+        b=jafaxW5FyQ4KBW/ss0lvDFQS+BytcTlCthxnY13MDRI2O751HlCvxQGZRO58po3QOu
+         jBNoL1p04iABMzEsXUW+UewQmoEVE+zAtBnAxFa7/StgjWqJO9sn/z3XQ/FUvyImetKI
+         45JNjteSQ84/waP9QAb74Id1C5s1XmyAS1kpk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=1PPWCbKXlEnu4f5Y1l2ZGcr26PupHUMW55EBs/BVMPw=;
+        b=WCjLD3FZ1pQMhJIMn/IR+eHD/M7lBMCI2PtSQWY1GrrUoZLlQ1a7LcP/fahdgu4Md6
+         YLy5LMbGKKvUnd59NueXuU3ee+xNxJ9ArZpLuhqG8mWIquRrJoAKKo0VI9/RBypY2OuH
+         oAuney6nfs50zzpgBOTilsqJMWZiYZtoI/9Skn6KijuOOvEc8UjX1dabOPKknxKE/qlk
+         ZgaqyrVCFqUm89H3NHmQhuiSwnu4pRDTnInxyIp8nJp71u8vvlDFZgy7mZdm8cN200s0
+         0eCyIuG+79UK9ICHP2Qhv1raOFEZV+Cw95gGAcFdxkLEFiqrqux0nPoRpVG3xs0TPqIs
+         KV1A==
+X-Gm-Message-State: ACgBeo3esAcDEeBgF/GIDbpvmCZafUNQbbRKRCpqGnDZyeR/DjtJSeBi
+        HtjFKixzuUqSRuYOeIB3Tds3ZOn82Cuh8wyq
+X-Google-Smtp-Source: AA6agR4JBGn9v+1TbAlVXFdK/pDVC+IuGDExIM+PB+IYpiCraHN4wt3ARDkHdjye9SmkFDmM6ZMeig==
+X-Received: by 2002:a17:907:972a:b0:77b:45b6:b047 with SMTP id jg42-20020a170907972a00b0077b45b6b047mr2834423ejc.479.1662846779463;
+        Sat, 10 Sep 2022 14:52:59 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
+        by smtp.gmail.com with ESMTPSA id u1-20020aa7d541000000b0045154772462sm1781427edr.5.2022.09.10.14.52.57
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Sep 2022 14:52:57 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id az24-20020a05600c601800b003a842e4983cso4411208wmb.0
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 14:52:57 -0700 (PDT)
+X-Received: by 2002:a05:600c:548b:b0:3b4:61f4:804e with SMTP id
+ iv11-20020a05600c548b00b003b461f4804emr4580041wmb.188.1662846776956; Sat, 10
+ Sep 2022 14:52:56 -0700 (PDT)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220909102720.v3.1.Ib599a6001558a4afd11016e7016d74dce748a749@changeid>
+In-Reply-To: <20220909102720.v3.1.Ib599a6001558a4afd11016e7016d74dce748a749@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Sat, 10 Sep 2022 14:52:44 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WtJ_UJkXJkMY0Ma4Fum8Xicqiv=ZX5QCJ=woL51VjFxw@mail.gmail.com>
+Message-ID: <CAD=FV=WtJ_UJkXJkMY0Ma4Fum8Xicqiv=ZX5QCJ=woL51VjFxw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: input: touchscreen: elants_i2c: Add
+ eth3915n touchscreen chip
+To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Henry Sun <henrysun@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Yunlong Jia <yunlong.jia@ecs.com.tw>,
+        David Heidelberg <david@ixit.cz>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,41 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi,
 
-[ Upstream commit 767470209cedbe2cc72ba38d77c9f096d2c7694c ]
+On Fri, Sep 9, 2022 at 3:28 AM Yunlong Jia
+<yunlong.jia@ecs.corp-partner.google.com> wrote:
+>
+> Add an elan touch screen chip eth3915n.
+> This chip requires more delay time than the eth3500.
+>
+> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.com.tw>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Acked-by: David Heidelberg <david@ixit.cz>
 
-BMG160 has two interrupt pins to which interrupts can be freely mapped.
-Correct the schema to express such case and fix warnings like:
+This has the same problem talked about in:
 
-  qcom/msm8916-alcatel-idol347.dtb: gyroscope@68: interrupts: [[97, 1], [98, 1]] is too long
+https://lore.kernel.org/r/CAD=FV=XEkPfU9wjwGrp59QJDAspUbWwmOTSZfE1Y5PWt1w309w@mail.gmail.com/
 
-However the basic issue still persists - the interrupts should come in a
-defined order.
+Namely that the Signed-off-by and "From" address don't match. You need
+to fix that.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Link: https://lore.kernel.org/r/20220805075503.16983-1-krzysztof.kozlowski@linaro.org
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+Also note that neither of your patches indicates what changed between v2 and v3.
 
-diff --git a/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml b/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml
-index b6bbc312a7cf7..1414ba9977c16 100644
---- a/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml
-+++ b/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml
-@@ -24,8 +24,10 @@ properties:
- 
-   interrupts:
-     minItems: 1
-+    maxItems: 2
-     description:
-       Should be configured with type IRQ_TYPE_EDGE_RISING.
-+      If two interrupts are provided, expected order is INT1 and INT2.
- 
- required:
-   - compatible
--- 
-2.35.1
 
+-Doug
