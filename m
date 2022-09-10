@@ -2,117 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1395B4604
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 13:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5B805B4616
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 13:37:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiIJLKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 07:10:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50516 "EHLO
+        id S229527AbiIJLhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 07:37:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbiIJLKh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 07:10:37 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D933919299
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 04:10:36 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id e15so2340463wmq.1
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 04:10:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=e0lWsW7oYN2pLdYvVwsW9YZInJiIO1cnSbKxWFNA6Qw=;
-        b=rx0wXz8boXDoylwKAAVBThqEzGvERQ3RlctuAOcE9pAmWrpt6CLCPgMbeT6UAFOdAE
-         BbT232XOV2E6/fkivbf4EL8xejocxSZGIItOnfqt36K395+bYZWDBYSqH27pHU7NZnHF
-         jz/w2Z0aZuoUA/rcJmpObDCT2ctdH2JJdjPmqgpZhgzLS8JzG/SogP/jcMxppCFjwZFm
-         BNNmh7g8cUTbr+JoVZCJ4Oh9fEGyjWGGq+7lhqG/4Ga0VChUQNCuU5nRTOIwK3kqd08H
-         dOxTbG6jHbi3Xib7+1blPBkTu8cJFzo06nFbTPQPntNYP0ybubXYHlhBXTYh2qvYkewt
-         CRNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=e0lWsW7oYN2pLdYvVwsW9YZInJiIO1cnSbKxWFNA6Qw=;
-        b=wJD6vALDFEoO+INWUeRQEuP17tqC9m9S3BkymkrnlavwwqJ3CnLySkq1yMp1362tA3
-         6aoE09mby8ZNNvoR87wUhkKKl8y7tGflBKc4Del2A6ffSxyrLH0kxt88FsvzyEh6aZ3O
-         npO4P+E++fzSy9DUi+5CcvotnJjbe3l41oaFtpc8oelL18Pns1lKmSHaNMPnjmlkjgdS
-         KSlU3HLSr8IpB7i1bsML+a8d4lHPyXqjPmFvusQ01cj4fV1EaIdF5USypOeD43C8M0hq
-         e53+Z8Wl42MtTtp9xZDO7Ne+9kr9EYXPR8Rd5MbAOOllJpJ6qiGs5QL5V/n3QAst82wF
-         Fb7A==
-X-Gm-Message-State: ACgBeo3dpaKN5ilxn4WQ5nwlUz246bUv67r4ld0fAad26zW1E/Djsjg0
-        goVRdaPi+8ai7PVmNze5nmJuQw==
-X-Google-Smtp-Source: AA6agR4s7HGfTcWpcgsUc7IaEnkO+z/U3SVMM0JiNqo5R9Ovh+W9Yjkj3ueHl97GOuWQiVOErGCYAw==
-X-Received: by 2002:a7b:cd14:0:b0:3a5:c5b3:508 with SMTP id f20-20020a7bcd14000000b003a5c5b30508mr7868303wmj.179.1662808235456;
-        Sat, 10 Sep 2022 04:10:35 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id z13-20020adfd0cd000000b0022587413219sm2614837wrh.16.2022.09.10.04.10.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Sep 2022 04:10:34 -0700 (PDT)
-Message-ID: <fa0bd321-cf92-98e9-bf5c-9969cfba9b06@linaro.org>
-Date:   Sat, 10 Sep 2022 12:10:33 +0100
+        with ESMTP id S229582AbiIJLhT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 07:37:19 -0400
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5BA35A81E;
+        Sat, 10 Sep 2022 04:37:15 -0700 (PDT)
+Received: by soltyk.jannau.net (Postfix, from userid 1000)
+        id 44E6126F009; Sat, 10 Sep 2022 13:37:14 +0200 (CEST)
+Date:   Sat, 10 Sep 2022 13:37:14 +0200
+From:   Janne Grunau <j@jannau.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     asahi@lists.linux.dev, Mark Kettenis <kettenis@openbsd.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 04/10] dt-bindings: arm: apple: Add t6001/t6002 Mac
+ Studio compatibles
+Message-ID: <20220910113714.GC4024@jannau.net>
+References: <20220909135103.98179-1-j@jannau.net>
+ <20220909135103.98179-5-j@jannau.net>
+ <25b42684-1bee-b7f6-a89d-ed0b0ea7428b@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: Mark old binding
- qcom,cpu-lpass-apq8016 as deprecated
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220910014206.1101962-1-bryan.odonoghue@linaro.org>
- <20220910014206.1101962-2-bryan.odonoghue@linaro.org>
- <d47aa92f-d8fa-24fd-653b-aa01c3f7c040@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <d47aa92f-d8fa-24fd-653b-aa01c3f7c040@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <25b42684-1bee-b7f6-a89d-ed0b0ea7428b@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2022 08:55, Krzysztof Kozlowski wrote:
-> On 10/09/2022 03:42, Bryan O'Donoghue wrote:
->> We've had some discongruity in the compatible string of the lpass for 8916
->> for a while.
->>
->> Mark the old compat as deprecated. New SoC additions such as msm8936 and
->> msm8939 should use the compat string "qcom,apq8016-lpass-cpu".
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>   .../devicetree/bindings/sound/qcom,lpass-cpu.yaml   | 13 ++++++++-----
->>   1 file changed, 8 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> index ef18a572a1ff3..e2c0f573a3084 100644
->> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> @@ -18,11 +18,14 @@ description: |
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - qcom,lpass-cpu
->> -      - qcom,apq8016-lpass-cpu
->> -      - qcom,sc7180-lpass-cpu
->> -      - qcom,sc7280-lpass-cpu
->> +    oneOf:
->> +      - enum:
->> +        - qcom,lpass-cpu
->> +        - qcom,apq8016-lpass-cpu
+On 2022-09-10 11:57:34 +0200, Krzysztof Kozlowski wrote:
+> On 09/09/2022 15:50, Janne Grunau wrote:
+> > This adds the following apple,t6001 platform:
+> > 
+> > - apple,j375c - Mac Studio (M1 Max, 2022)
+> > 
+> > And the initial apple,t6002 platform:
+> > 
+> > - apple,j375d - Mac Studio (M1 Ultra, 2022)
+> > 
+> > Signed-off-by: Janne Grunau <j@jannau.net>
+> > ---
+> > 
+> >  Documentation/devicetree/bindings/arm/apple.yaml | 11 ++++++++++-
+> >  1 file changed, 10 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/apple.yaml b/Documentation/devicetree/bindings/arm/apple.yaml
+> > index 8d93e8a6cc18..b34e56b9dc59 100644
+> > --- a/Documentation/devicetree/bindings/arm/apple.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/apple.yaml
+> > @@ -19,12 +19,14 @@ description: |
+> >    - MacBook Air (M1, 2020)
+> >    - iMac (24-inch, M1, 2021)
+> >  
+> > -  And devices based on the "M1 Pro" and "M1 Max" SoCs:
+> > +  And devices based on the "M1 Pro", "M1 Max" and "M1 Ultra" SoCs:
+> >  
+> >    - MacBook Pro (14-inch, M1 Pro, 2021)
+> >    - MacBook Pro (14-inch, M1 Max, 2021)
+> >    - MacBook Pro (16-inch, M1 Pro, 2021)
+> >    - MacBook Pro (16-inch, M1 Max, 2021)
+> > +  - Mac Studio (M1 Max, 2022)
+> > +  - Mac Studio (M1 Ultra, 2022)
+> >  
+> >    The compatible property should follow this format:
+> >  
+> > @@ -79,8 +81,15 @@ properties:
+> >            - enum:
+> >                - apple,j314c # MacBook Pro (14-inch, M1 Max, 2021)
+> >                - apple,j316c # MacBook Pro (16-inch, M1 Max, 2021)
+> > +              - apple,j375c # Mac Studio (M1 Max, 2022)
+> >            - const: apple,t6001
+> >            - const: apple,arm-platform
 > 
-> The indentation looks odd here. Are you sure it passes the `make
-> dt_binding_check`?
+> Blank line.
 
-It does yeah
+Added. The other entries in this list are not separated by blank lines.  
+What would preferred to fix this? A whitespace only patch or can just 
+add those additional blank lines in this change?
 
----
-bod
+> > +      - description: Apple M1 Ultra SoC based platforms
+> 
+> With this:
+> 
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Thanks,
+Janne
