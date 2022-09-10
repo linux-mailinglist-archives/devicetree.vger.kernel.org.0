@@ -2,81 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD6295B451E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 10:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AD435B4546
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 10:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbiIJIK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 04:10:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60078 "EHLO
+        id S229567AbiIJIpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 04:45:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbiIJIK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 04:10:58 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A50E482F81
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 01:10:56 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id a14so2527821ljj.8
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 01:10:56 -0700 (PDT)
+        with ESMTP id S229578AbiIJIpb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 04:45:31 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E12E639BB3
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 01:45:29 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id v6so4753705ljj.0
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 01:45:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=txFmNqivSGonl1t91BWxPpRyV6wFFoxPfmlb622zlU4=;
-        b=A5TM8+1WniIN3PtwC3BZhC1jY1dASPxIPewi0arGlquPn/062oVa4wvFnMaDdQ66xH
-         lLilxwCx+Oczx5jWgRyQAg2ip6OazqkWh4V1XGR+5gIyckfUpA9X8SqJjFyZ9pnRxktj
-         2+zY2Wbhp317Cx2fosdt/tCEvQLJwCf3HpMROaX2tqvwQuaQZnNiWg3z/MJEsvvxSkeE
-         DvFlwqgD3HwX/BAKIc4wnOuWTCDa/EAWxAAGuwbzVd41uc7TfsfZhmE6x6K+Fxk299rC
-         NcqRotinLeaE2WIaVpi4zQ1ropa7GfNiFpkLdd1oK6uzUNnuzaig1dB0hts3oEkvc+Pf
-         LL6A==
+        bh=P9E6EJOAjkihEVhh+VHXY0BL5/AxfW43uIcjA2GedNQ=;
+        b=iVPhA7d5Az8rlbmvca1G2gC/MeeY9juG8dCTbIgYVWCUDRGFTqYJUnk3IA7ZCNWoaF
+         ls7vqVUcjKPgvnmzpq3w/5bt+ntAiY/Wu3ZuLe4OcCKTb8JjTTr3J5m5u4FKKVjdRkLV
+         63RIJleMQOrYi+o4EU9WbHPJKfYZZGMPMx2tPS3wqf86q9hPsCeD170/CFy0pJcpkfuX
+         s3HMMz3kCpAntkSBiamVRVsfBlD2NHLEhrixMsWy83IGSMvdAcMukTihnz5Z3uGomS97
+         ug4R+HRSGvh+XWgxba0hQx0Uy2q1mG8dvoZZa5qnJiHdr2vsZgk+uVXtgmNIxXGkO95/
+         lVgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=txFmNqivSGonl1t91BWxPpRyV6wFFoxPfmlb622zlU4=;
-        b=vXRqdAWcB5mtMKd2eAPe9ZPSeKeTEM8otOFcT0aWBRHMZA+5rOK8JTUn+/2cDDIe28
-         2eKGnFRZlAi3xYLUYFTnjyrFQZYV6N0qrTeaVx5CQThCLV4IKAWuVod814RE7XWWK86X
-         XwXiy8AJcS4S3mYJBadKnF9S2eOemdJkzcEIDPDxEMd1DtoS21y3F1k6n/zAQ2cL9l15
-         WL7FdhwsMNWISWNrzjJrH0z6asowQLlH4Edwc9wUFF/KKo7I+6w0C1FrKCB1h9DONPal
-         kY3rKqVdzZeWhRgSsBRxv/bzeKFM66r3PbYMs7NTRzyMU27ajIEE4LmUaVORknVVusQy
-         axMw==
-X-Gm-Message-State: ACgBeo0r8dA5diC9Kadwb6G2UgSLytQy8GNGQm3c/uNSlvW3Pd661UDj
-        KnOkSayVrvnBXrIEBK9OWsGwAw==
-X-Google-Smtp-Source: AA6agR7789VL7NQdhtwL2QwBsV2k2YfdkUDrGL8k0PU+vC77/8Ct9Y0/++AmZJIlkccmwRb2Sq7irw==
-X-Received: by 2002:a2e:8541:0:b0:261:b44b:1a8b with SMTP id u1-20020a2e8541000000b00261b44b1a8bmr5409456ljj.46.1662797454999;
-        Sat, 10 Sep 2022 01:10:54 -0700 (PDT)
+        bh=P9E6EJOAjkihEVhh+VHXY0BL5/AxfW43uIcjA2GedNQ=;
+        b=ikjqqKD0x978WCa8rdgIzN6MuXTV5xANAC91CWPD/X4OFRoZ4tArOrZooFVJyx6OC2
+         nQZMNkp/WxoURQNUocFsiPMN5L70u51fmcqUUjGFUaJPE1jWPQz0FNxxtQx4sfINXeJA
+         zOnKeXwdIaDOqfFCFmYYavLXDp8x47ykl2inGE23pHlXsV0dV/6S5v9co0zAjPi++k5D
+         KSM9YTpNy/1Tt7VZUC2uLFlLu2nWbYj1MdY88VPeNmj3Ljic4zxOuo6RElwnjMQozlvM
+         3ZAsOq8V4jt8X+SFbvA8/TxgkhM+egNtWXs9p32HFNINLqaB/H4X/WAAg2Eku6xDhHPo
+         N7og==
+X-Gm-Message-State: ACgBeo2N14QFzQ9N9QBneasv8skLNNCfldDsLvRCdm6appC1Az6dPko+
+        QA9ntsjhxWsFLlOuCiIZyQWdbw==
+X-Google-Smtp-Source: AA6agR6xJmtXQZHTsaPv0yXAg2Xgwt41B3uhxvyWqB8zdnoZRUfTeBkz1VRmj+33lgWRIDrhrUpC6w==
+X-Received: by 2002:a2e:3817:0:b0:26a:d369:ca71 with SMTP id f23-20020a2e3817000000b0026ad369ca71mr4359670lja.191.1662799528217;
+        Sat, 10 Sep 2022 01:45:28 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s16-20020a05651c201000b00267232d0652sm259553ljo.46.2022.09.10.01.10.54
+        by smtp.gmail.com with ESMTPSA id d29-20020ac25edd000000b0048a83336343sm183581lfq.252.2022.09.10.01.45.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Sep 2022 01:10:54 -0700 (PDT)
-Message-ID: <bd23014f-eb9b-31a5-f777-c1b15f65fd89@linaro.org>
-Date:   Sat, 10 Sep 2022 10:10:53 +0200
+        Sat, 10 Sep 2022 01:45:27 -0700 (PDT)
+Message-ID: <2204eab4-b22d-8ee7-4595-49139cb387a8@linaro.org>
+Date:   Sat, 10 Sep 2022 10:45:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v8 3/4] dt-bindings: hwmon: Add bindings for max31760
+Subject: Re: [PATCH v6 01/12] dt-bindings: display/msm: split qcom,mdss
+ bindings
 Content-Language: en-US
-To:     "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20220909133718.388213-1-Ibrahim.Tilki@analog.com>
- <20220909133718.388213-4-Ibrahim.Tilki@analog.com>
- <1662740789.477872.1507147.nullmailer@robh.at.kernel.org>
- <20220909164710.GA1537271-robh@kernel.org>
- <DM8PR03MB624727E043782EC34DBBE6B196439@DM8PR03MB6247.namprd03.prod.outlook.com>
+To:     Rob Herring <robh@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
+ <20220901102312.2005553-2-dmitry.baryshkov@linaro.org>
+ <3e525135-d205-eddc-ff2d-98c8321386e3@linaro.org>
+ <20220908193705.GA3002673-robh@kernel.org>
+ <1ebe64a3-fab9-1dd7-517a-01001a176d9f@linaro.org>
+ <CAL_JsqLkV_fnUnc4cS=cdTvP3rKYAS011_+KZYiBGhXDx-pHnA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DM8PR03MB624727E043782EC34DBBE6B196439@DM8PR03MB6247.namprd03.prod.outlook.com>
+In-Reply-To: <CAL_JsqLkV_fnUnc4cS=cdTvP3rKYAS011_+KZYiBGhXDx-pHnA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,37 +93,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 19:48, Tilki, Ibrahim wrote:
-ded form is:
+On 10/09/2022 00:23, Rob Herring wrote:
+>>>>
+>>>> This should be ref to dsi-controller-main.yaml... or based on previous
+>>>> Rob's feedback you dropped it everywhere in children?
+>>>
+>>> I don't think I said. I thought about it some, as yes, we normally have
+>>> done as you suggested. The downside is with a ref we'll do the whole
+>>> validation of the child node twice (unless the referenced schema has a
+>>> 'select: false') whereas here only 'compatible' is validated twice. This
+>>> way also complicates checking for unevaluatedProperties/additionalProperties.
+>>>
+>>> So maybe better to keep with the 'normal' way and make this a ref.
 >>
->> reg:
->>   items:
->>     - items:
->>         - minimum: 0x50
->>           maximum: 0x57
->>
+>> Well.. I tried using $ref in the previous iteration, but then I faced
+>> the fact that I can not use it. Using the $ref the node gets validated
+>> even if it is disabled, and we do not want to do this. The nodes are
+>> usually split in way that regulators are specified in the board DT file.
+>> Thus disabled dsi/dsi-phy nodes do not get all the required regulators.
+>> And dt-validate happily dumps tons of warnings for disabled nodes. Thus
+>> I ended up with the compatible rather than $ref.
 > 
-> Actually it passes the check when I remove maxItems property:
-> 
->   reg:
->     description: I2C address of slave device.
->     items:
->       minimum: 0x50
->       maximum: 0x57
-> 
-> I cannot find a way to specify both maxItems and min-max limits.
-> Which one should I drop? Line below is from the output of dt_bindigs_check:
-> 
-> hint: "maxItems" is not needed with an "items" list
+> Only warnings about required properties? Those are supposed to get
+> filtered out if the node is disabled. Maybe being in a $ref doesn't
+> work.
 
-Use Rob's first syntax:
+This seems to break regardless it is in $ref or when you directly
+reference the schema.
 
-reg:
-  minimum: 0x50
-  maximum: 0x57
+I tested display/msm/dpu-sc7180.yaml on modified DTB when a required
+property is missing (I removed reg-names) and:
 
-(this will expect only one item)
+1. When node is enabled:
 
+c7180-idp.dtb: display-controller@ae01000: 'reg-names' is a required
+property
+
+	Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
+
+rch/arm64/boot/dts/qcom/sc7180-idp.dtb: display-controller@ae01000:
+Unevaluated properties are not allowed ('interrupt-parent',
+'interrupts', 'operating-points-v2', 'opp-table', 'ports',
+'power-domains' were unexpected)
+
+
+2. When node is disabled the first error disappears (so no clue which
+one is missing) but schema does not pass:
+
+qcom/sc7180-idp.dtb: display-controller@ae01000: Unevaluated properties
+are not allowed ('interrupt-parent', 'interrupts',
+'operating-points-v2', 'opp-table', 'ports', 'power-domains' were
+unexpected)
+
+	From schema: Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
+
+
+However I think there is no such problem, as Dmitry said, that ref
+changes anything. There will be always failure - either from parent
+schema (using $ref) or from device child schema (the one which actually
+misses the property).
 
 Best regards,
 Krzysztof
