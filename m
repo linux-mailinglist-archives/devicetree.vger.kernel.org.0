@@ -2,137 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 649B85B45D9
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 11:57:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7AA15B45DF
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 12:11:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbiIJJ5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 05:57:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59892 "EHLO
+        id S229451AbiIJKLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 06:11:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbiIJJ5i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 05:57:38 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6430061732
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 02:57:37 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id p5so4807743ljc.13
-        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 02:57:37 -0700 (PDT)
+        with ESMTP id S229510AbiIJKLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 06:11:51 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700CA4BD34
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 03:11:49 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id u132so3937781pfc.6
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 03:11:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=di6y3lgL6/Xwh2roDgO2ozbIM7NNb7UpCHSHi5LvIPw=;
-        b=v1ZsmwYhAOLWCYJGiD4erYR6547DZJ093JWddRfMKa+6UG/8SzlI5P0GLbCMAhpgrJ
-         eSXXKaVTEgZ384CqQsmzLJR4iKzMTo+ujoKwt2fAt1kGToyTWJblorHFZd+L45r9Cqux
-         lWy97doHSajiQVb5Rvx7qH+YlmZbyWpw9IxV9MUXQ2XqU84sGMF4dcpgN/dMsTHsvj1G
-         nnhqsujVHDbHU4jbtLukt31MxGyRvS9BVPBaTj0bK81RfJgf42ZjonE6nwGkM011muPa
-         E6tG5Rziv9mNNmoDjCO0fV73BKpJhoUH0gPnS7hAnEL/Of9J3dtKXsNnFV2MkYI66L+V
-         mC6Q==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:from:to:cc:subject:date;
+        bh=ZUmNA8xjXnyvVqbPXtxAOFIH6y4iNXyI1HdrmpoCWsw=;
+        b=SpfQJwObTfXi9D0+zz43uVNo40kNwrgZm2CBDDxyJLGh3gh9P4xxIvvYqnIizYrL0Z
+         YsEN7/XFVUj9u8FWneXrVzlTDNG+IRBbiPPtTAU/mx4ykzotFb9fThLKe0j+xu4f1pld
+         dnN9YSY/w2y9C6DFGa6HNPu+V5fGzSzW1u/JzLfzRzo6dG0pOhKv/oU1IjVukKq6+rHa
+         VO5wo0brpbHCnWEGjGM1mk2XPkUHIctJlkq7m743ijsDOXPalCPVWFzaquWKOmO73kHt
+         10df1bF89IhYvULdWIBBZRDdp2qzSvOPQ7B7DckzRuIMsM3w31JsNkSf3rzf4m4NA5sk
+         GsRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=di6y3lgL6/Xwh2roDgO2ozbIM7NNb7UpCHSHi5LvIPw=;
-        b=gBGm5+KbORZhVYX87p/vLiSCCiJLnRLnyzx3065ofA/IjJgVAY9xdqfURFZ8FlJPvm
-         ecgjLDKIX9Ibk1rrckaQNmEATf8UvuPCXq1sHz1eKj8DUJU9AgDF3KExUkniI4tV6uYv
-         81yeagS9OTgvunfSSHT/AGH1hoGIZEOP7dXcYbMLw8TG3zA0zZZEJDzhxTvQeXOD6eo4
-         iyb81RB8mC01YURe/igWIUqDgEguGrFjkcCI1g8suKbYC9tUbEFCkMc3oKpZto2PHncV
-         K01i5ba/ZQCs91brAWM9fvGbwCi8G2UcK494CFgBx6DZpQDPfMEyabEfLeYvfiax3367
-         Xv4g==
-X-Gm-Message-State: ACgBeo2okb0alqaVQ0vgM2AFchG+/MXZGhf4Ggiv6WMHsCIZGZ5gqYtQ
-        wWGuziAghug2RreRRz3Va1rTMQ==
-X-Google-Smtp-Source: AA6agR7DRUR5XLupdHg1UbHTPQ5Xex+5uNKR5iPQ66OKB5h91llG7taDqAAzraAd9ke8GLL9hjpb9A==
-X-Received: by 2002:a2e:834b:0:b0:261:a7a4:d2d2 with SMTP id l11-20020a2e834b000000b00261a7a4d2d2mr4838421ljh.175.1662803855741;
-        Sat, 10 Sep 2022 02:57:35 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k28-20020a05651c10bc00b0025e00e0116esm283955ljn.128.2022.09.10.02.57.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Sep 2022 02:57:35 -0700 (PDT)
-Message-ID: <25b42684-1bee-b7f6-a89d-ed0b0ea7428b@linaro.org>
-Date:   Sat, 10 Sep 2022 11:57:34 +0200
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=ZUmNA8xjXnyvVqbPXtxAOFIH6y4iNXyI1HdrmpoCWsw=;
+        b=t/OmmYIjGZCOd3HB80uqVx2nD5ftchv4F38beliGQL/ANEOgcaonQs1zLljYf8Ldsn
+         nnV5c29XTXznIw3JJX23/HCe9RXVz4ok+cLQeHBwJieyQ96p2C+nIiu/IoqvvtZz45Id
+         7IAgI2fUgOcyCNtGVtgQ70dpyZUYyA2rRo1+Ie4aff1h5f8Du3nIFfo4HTGNEF4Qj8QP
+         TduQoF4vkL88+9gMU8oY9DXtywrogByTYNJ7MAaMAOwYzdmWLj0QWi78Davag18DQUw9
+         WvZseIsTuaCr0V+1j81ovCeMLrM+4ITjesbzL88qOybZjjjniW9sQ3d1LzudLArpU68y
+         pBUA==
+X-Gm-Message-State: ACgBeo1oUi8KBQs7uP5wOwe2wve1CYXtSFWd0yrlYMHkmmhtvoyke0Ph
+        /jBcGXCcdoPix+OAgxGBRoxk0I+3fVQv+cGkakA=
+X-Google-Smtp-Source: AA6agR4UJBFNAQpmi7RYj4wGHpzSx/494EQdg9afAKcJqeR6O4FkpDKqChf1Lq2I1G3zoY+OvuPTNSFkVv0DOuqFbmY=
+X-Received: by 2002:a63:77c4:0:b0:435:4224:98b6 with SMTP id
+ s187-20020a6377c4000000b00435422498b6mr11789328pgc.94.1662804708889; Sat, 10
+ Sep 2022 03:11:48 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [RFC PATCH 04/10] dt-bindings: arm: apple: Add t6001/t6002 Mac
- Studio compatibles
-Content-Language: en-US
-To:     Janne Grunau <j@jannau.net>, asahi@lists.linux.dev
-Cc:     Mark Kettenis <kettenis@openbsd.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Hector Martin <marcan@marcan.st>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220909135103.98179-1-j@jannau.net>
- <20220909135103.98179-5-j@jannau.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220909135103.98179-5-j@jannau.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Received: by 2002:a05:7300:73c9:b0:6f:3e39:d3f7 with HTTP; Sat, 10 Sep 2022
+ 03:11:48 -0700 (PDT)
+Reply-To: joejessthwaitefoundation4449@gmail.com
+From:   "Joe & Jess Thwaite Foundation" <taiwoamure32@gmail.com>
+Date:   Sat, 10 Sep 2022 03:11:48 -0700
+Message-ID: <CAEi87s+9v0QV6uX0dp6jtAtZcG4WfirKtciCiW1KHLeu5fzaEQ@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=7.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        LOTS_OF_MONEY,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM,UNDISC_MONEY autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:442 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5006]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [joejessthwaitefoundation4449[at]gmail.com]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [taiwoamure32[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [taiwoamure32[at]gmail.com]
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.1 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  2.0 MONEY_FREEMAIL_REPTO Lots of money from someone using free
+        *      email?
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+        *  0.1 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 15:50, Janne Grunau wrote:
-> This adds the following apple,t6001 platform:
-> 
-> - apple,j375c - Mac Studio (M1 Max, 2022)
-> 
-> And the initial apple,t6002 platform:
-> 
-> - apple,j375d - Mac Studio (M1 Ultra, 2022)
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> ---
-> 
->  Documentation/devicetree/bindings/arm/apple.yaml | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/apple.yaml b/Documentation/devicetree/bindings/arm/apple.yaml
-> index 8d93e8a6cc18..b34e56b9dc59 100644
-> --- a/Documentation/devicetree/bindings/arm/apple.yaml
-> +++ b/Documentation/devicetree/bindings/arm/apple.yaml
-> @@ -19,12 +19,14 @@ description: |
->    - MacBook Air (M1, 2020)
->    - iMac (24-inch, M1, 2021)
->  
-> -  And devices based on the "M1 Pro" and "M1 Max" SoCs:
-> +  And devices based on the "M1 Pro", "M1 Max" and "M1 Ultra" SoCs:
->  
->    - MacBook Pro (14-inch, M1 Pro, 2021)
->    - MacBook Pro (14-inch, M1 Max, 2021)
->    - MacBook Pro (16-inch, M1 Pro, 2021)
->    - MacBook Pro (16-inch, M1 Max, 2021)
-> +  - Mac Studio (M1 Max, 2022)
-> +  - Mac Studio (M1 Ultra, 2022)
->  
->    The compatible property should follow this format:
->  
-> @@ -79,8 +81,15 @@ properties:
->            - enum:
->                - apple,j314c # MacBook Pro (14-inch, M1 Max, 2021)
->                - apple,j316c # MacBook Pro (16-inch, M1 Max, 2021)
-> +              - apple,j375c # Mac Studio (M1 Max, 2022)
->            - const: apple,t6001
->            - const: apple,arm-platform
-
-Blank line.
-
-> +      - description: Apple M1 Ultra SoC based platforms
-
-With this:
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+--=20
+Spende von 1.700.000,00 Euro an Sie.
+Spender: Joe & Jess Thwaite
+Bitte kontaktieren Sie: (joejessthwaitefoundation4449@gmail.com) f=C3=BCr
+weitere Details.
