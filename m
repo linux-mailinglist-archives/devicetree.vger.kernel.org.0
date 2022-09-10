@@ -2,86 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CEE15B461C
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 13:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BC405B4643
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 14:47:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbiIJLq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 07:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43644 "EHLO
+        id S229607AbiIJMrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 08:47:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiIJLq2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 07:46:28 -0400
-Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A8811172;
-        Sat, 10 Sep 2022 04:46:27 -0700 (PDT)
-Received: by soltyk.jannau.net (Postfix, from userid 1000)
-        id 781C126F009; Sat, 10 Sep 2022 13:46:26 +0200 (CEST)
-Date:   Sat, 10 Sep 2022 13:46:26 +0200
-From:   Janne Grunau <j@jannau.net>
-To:     asahi@lists.linux.dev
-Cc:     Mark Kettenis <kettenis@openbsd.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Hector Martin <marcan@marcan.st>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229498AbiIJMrF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 08:47:05 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8104F57575
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 05:47:04 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id a8so7207256lff.13
+        for <devicetree@vger.kernel.org>; Sat, 10 Sep 2022 05:47:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=ygGjW9rzSm7+9sQEq9LAthoAlgsWeQrb6LhBAbELqYs=;
+        b=lnoVF8uYyAuPjsc+Zs2852If5yU+bFNZT7OqufJDVKLby3LsmFY6XM+RPWbVNTuc78
+         pNPFk05fqBejFctBVL0ulXrSQ26vr3w4JAuMxK1mwpBILYilPC9l+WLb5DXE/xEuErle
+         VEMw6avBb6iILCy9URRAsLW8ahr2/2bUs/aEEqji4qnE8QaV9fHr+RAo4x5ID/xJlccR
+         UsCIIVPUtyWi0ur2fN7HuuZ6vOAR5Hpf4iuGUWmaF1CWV5YJnJa7ahf+dyJPY0IFz8pA
+         ng3S295Nib47SaT44pLxjOlZH0C2mK9gpaU5/hFX1WoYG1hdGRZYFn5Yq+Sw/jofwBoH
+         Toxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=ygGjW9rzSm7+9sQEq9LAthoAlgsWeQrb6LhBAbELqYs=;
+        b=4wu73GK61OdUm/P1+abOTBvMtyvyko2PKR54LqDU5SARGtmHG50Ly0QyNdzroCU0iH
+         sHhBg0voeyKgjTvPpfQdQSdUpcMSxtUls5R8AGlDIuze2I/digsYKMiXnsnevUlJmC3H
+         0Fbfginz7V4YnuW0lQuStTvPHo1+mWoct08VezZHw5mn4SCDtlce+l1lFLMOd/oh9/AW
+         M7B7Wir9CxpaFFwA+Pqnk4t6V6zkkiYQqwi0UUgAq+kE8pqHN1QEiYaaaD5uXpTlD9gj
+         bti2kNU972BX6bBlkBpigI6EUMKYlNkJPmh5O/JjjjDInUN780UkMRJWkZUHPBZLxaC/
+         IcLw==
+X-Gm-Message-State: ACgBeo1OmMjOGakTn+PN9tiePXaCjMzjCKss+Xb385Nlf+M+v1gmr48b
+        wIyEDf9csF9Xc8mVFn3lOue+lg==
+X-Google-Smtp-Source: AA6agR7LPqrahQNaRb3d6xjgAXgKZkCHZMlYWAHBupsVVGc/p/vsLSIcNu4VsS9cQlgXuDcju6u6Qg==
+X-Received: by 2002:a05:6512:1315:b0:492:cbc8:e10d with SMTP id x21-20020a056512131500b00492cbc8e10dmr5713163lfu.41.1662814022845;
+        Sat, 10 Sep 2022 05:47:02 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id k14-20020a2e920e000000b002677a3ad1d9sm327463ljg.76.2022.09.10.05.47.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 Sep 2022 05:47:02 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 08/10] arm64: dts: apple: Add J375 devicetrees
-Message-ID: <20220910114626.GE4024@jannau.net>
-References: <20220909135103.98179-1-j@jannau.net>
- <20220909135103.98179-9-j@jannau.net>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [RFC PATCH 00/10] thermal/drivers/tsens: specify nvmem cells in DT rather than parsing them manually
+Date:   Sat, 10 Sep 2022 15:46:51 +0300
+Message-Id: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220909135103.98179-9-j@jannau.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-09-09 15:51:01 +0200, Janne Grunau wrote:
-> These are the Mac Studio devices with M1 Max (t6001) and
-> M1 Ultra (t6002).
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> ---
-> 
->  arch/arm64/boot/dts/apple/Makefile        |   2 +
->  arch/arm64/boot/dts/apple/t6001-j375c.dts |  18 ++++
->  arch/arm64/boot/dts/apple/t6002-j375d.dts |  50 ++++++++++
->  arch/arm64/boot/dts/apple/t600x-j375.dtsi | 115 ++++++++++++++++++++++
->  4 files changed, 185 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/apple/t6001-j375c.dts
->  create mode 100644 arch/arm64/boot/dts/apple/t6002-j375d.dts
->  create mode 100644 arch/arm64/boot/dts/apple/t600x-j375.dtsi
+Historically the tsens driver fetches the calibration data as a blob and
+then parses the blob on its own. This results in semi-duplicated code
+spreading over the platform-specific functions.
 
-...
+This patch series changes tsens calibration code to use pre-parsed nvmem
+cells rather than parsing the blob in the driver. For backwards
+compatibility the old code is left in place for msm8916 and qcs404, two
+platforms which have in-tree DT files. For msm8974 the original function
+is left intact, since it differs significantly (and I can not test the
+code on msm8974). For all other affected platforms the old parsing code
+has been dropped as a part of this RFC.
 
-> diff --git a/arch/arm64/boot/dts/apple/t600x-j375.dtsi b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
-> new file mode 100644
-> index 000000000000..c5444cb34389
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
-> @@ -0,0 +1,115 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +/*
-> + * Mac Studio (2022)
-> + *
-> + * This file contains the parts common to J375 devices with both t6001 and t6002.
-> + *
-> + * target-type: J375c / J375d
-> + *
-> + * Copyright The Asahi Linux Contributors
-> + */
-> +
-> +/dts-v1/;
+The code was tested on msm8916 and qcs404 only, thus it is being sent as
+an RFC.
 
-This stray "/dts-v1/;" has been removed locally from the .dtsi file, 
-fixing a build error.
+Dmitry Baryshkov (10):
+  dt-bindings: thermal: tsens: support per-sensor calibration cells
+  thermal/drivers/tsens: Support using nvmem cells for calibration data
+  thermal/drivers/tsens: drop single-cell code for msm8939
+  thermal/drivers/tsens: drop single-cell code for mdm9607
+  thermal/drivers/tsens: drop msm8976-specific defines
+  thermal/drivers/tsens: use generic calibration routine for msm8976
+  thermal/drivers/tsens: use tsens_calibrate_nvmem for msm8976
+    calibration
+  thermal/drivers/tsens: drop single-cell code for msm8976
+  arm64: dts: qcom: msm8916: specify per-sensor calibration cells
+  arm64: dts: qcom: qcs404: specify per-sensor calibration cells
 
-Janne
+ .../bindings/thermal/qcom-tsens.yaml          |  64 +++++-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |  70 +++++-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          | 120 +++++++++-
+ drivers/thermal/qcom/tsens-v0_1.c             | 208 +-----------------
+ drivers/thermal/qcom/tsens-v1.c               | 154 +------------
+ drivers/thermal/qcom/tsens.c                  |  62 ++++++
+ drivers/thermal/qcom/tsens.h                  |   4 +
+ 7 files changed, 314 insertions(+), 368 deletions(-)
+
+-- 
+2.35.1
+
