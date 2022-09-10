@@ -2,71 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F5075B44A5
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 08:33:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80AB05B44D8
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 09:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230311AbiIJGda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 02:33:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45120 "EHLO
+        id S230004AbiIJHAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 03:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231316AbiIJGcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 02:32:54 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B70A3B07DC
-        for <devicetree@vger.kernel.org>; Fri,  9 Sep 2022 23:32:37 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id o25so6570841wrf.9
-        for <devicetree@vger.kernel.org>; Fri, 09 Sep 2022 23:32:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=hFaMhiJ2smTY3tKW4XMPUKWJJb1/OofcwoKHsMVmwSo=;
-        b=o2anOs2Q2VroHG5wz70Ofe7YBNn0OmrnSLsTKtY2Xe9gulO4fILMMGIbv23+MoYP3T
-         dDHkWbC2cuZsuIf68xyFwRoaeYjWQ9SJmWqtcbfe81RDtg5PG6eUCKAfNfPbZ9+ex2+I
-         3OVxhwdqUSInN/vfgoaExzHwr7ByZ+Vx6KJzkcfD93hP9JqR20qdGexnidFHzuaqtpEQ
-         ndLfeKbufe4gHKIWUQn385HMeQiMVmuI25o8bHr1zNeusBWM2v0sMQuu3DLVlb0B0Dgh
-         Yu3QJY1lZttHJRna+PA8h6NInUWzg8x66ojb3YIiGWYk0X39vIY9e7tz2CgM3P5z3B71
-         MN3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=hFaMhiJ2smTY3tKW4XMPUKWJJb1/OofcwoKHsMVmwSo=;
-        b=fOVrWRdqafulw1+SS1RrmeOuIFtuOUsjc7FD9H/BmBQYBIbmbzfDhtWXpi5cQ3G4Wh
-         2BRd3ILJwWjFxRMO5QvIxtb+IPZRteG5gfvoZOpkt/uOU8gECXdqD/ZNk/qYxZFEq4BP
-         /mZG5SZXdxClowYjfMNhCMhnA1pDBOxOnoj2rE2tTt54rBwG9UuWiA4Sb5PNVd0JpsG7
-         g6ayEnJLlwbboJZtYWMSKMaJHo/EZ3pYDHq/vkVDkaeCYWTmhids+cPbB0ldOzzHIG0S
-         Q/Tc5kf5Tr2p6o1/vdefhJHrVdMsZi8k4wP402l6bfjYe1wPPszkU8/lBUEbroQ019wD
-         VzuA==
-X-Gm-Message-State: ACgBeo3xW5FadtArQNzgn1wlyYrXlWCZpTggXftxK2id+O9skNSKuitQ
-        20tDhI4s409d49Rf2Tvsapay
-X-Google-Smtp-Source: AA6agR4Z10iWlqJ86QU2gjMalZBEweVgqa+WdXv2zKRkU4TqxEoOOH7EISzHhzglLNEWx0l1uhMFAQ==
-X-Received: by 2002:a5d:6484:0:b0:226:dd0e:b09c with SMTP id o4-20020a5d6484000000b00226dd0eb09cmr9901777wri.388.1662791556316;
-        Fri, 09 Sep 2022 23:32:36 -0700 (PDT)
-Received: from localhost.localdomain ([117.217.182.47])
-        by smtp.gmail.com with ESMTPSA id n16-20020a05600c4f9000b003a5c7a942edsm2828122wmq.28.2022.09.09.23.32.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Sep 2022 23:32:35 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org
-Cc:     kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 12/12] PCI: qcom-ep: Add support for SM8450 SoC
-Date:   Sat, 10 Sep 2022 12:00:45 +0530
-Message-Id: <20220910063045.16648-13-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220910063045.16648-1-manivannan.sadhasivam@linaro.org>
-References: <20220910063045.16648-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S230114AbiIJHAA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 03:00:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE401252A6;
+        Fri,  9 Sep 2022 23:59:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4538960BED;
+        Sat, 10 Sep 2022 06:59:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ED87C433C1;
+        Sat, 10 Sep 2022 06:59:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662793197;
+        bh=H1aoyF1uXDfRBKooemHT/8QDr5kWAqldZd79V0FSS58=;
+        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+        b=HkVhrj8ZkFAQeYHVojvPSgOc1WVVOxlAoXPqHcO2Z6yb0wUaVL9FPyhgG9Zz374NC
+         iGu3kEdcNhqji2wnhaf2btSUDwzx3pBR600fLRdy1F2Aw/wYAdu9Kc1+atHsq+fYLC
+         6r9ZOJn3UVe3f82vukvu126twrCN7rG9JfNFvFhJ90h/9bX6h3VG5JD7p0kUWdo6sI
+         Jb5o7KD4rjUzrwwbXtKyNCQX25yXFNDMvA815pubAf2svV7IB9qtDcQ8YCaikOuXYE
+         HSOt6CU/T8f/n1Ylu5L711uUzIZQ6neDiODjBsXprO4tE5WSiphM6UqxcK3O0oDYM1
+         Tl44ZAw1s5PlQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v3 2/2] ath11k: Add WoW support for WCN6750
+From:   Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220902112520.24804-3-quic_mpubbise@quicinc.com>
+References: <20220902112520.24804-3-quic_mpubbise@quicinc.com>
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc:     <ath11k@lists.infradead.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <166279319008.7195.445410596806378846.kvalo@kernel.org>
+Date:   Sat, 10 Sep 2022 06:59:55 +0000 (UTC)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,27 +56,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for SM8450 SoC to the Qualcomm PCIe Endpoint Controller
-driver. The driver uses the same config as of the existing SDX55 chipset.
-So additional settings are not required.
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/pci/controller/dwc/pcie-qcom-ep.c | 1 +
- 1 file changed, 1 insertion(+)
+> Add support for WoW on WCN6750 chipset.
+> 
+> Unlike other chips where WoW exit happens after sending WoW wakeup
+> WMI command, exit from WoW suspend in the case of WCN6750 happens
+> upon sending a WoW exit SMP2P (Shared memory point to point) message
+> to the firmware.
+> 
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> 
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-index 92140a09aac5..16bb8f166c3b 100644
---- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-@@ -789,6 +789,7 @@ static int qcom_pcie_ep_remove(struct platform_device *pdev)
- 
- static const struct of_device_id qcom_pcie_ep_match[] = {
- 	{ .compatible = "qcom,sdx55-pcie-ep", },
-+	{ .compatible = "qcom,sm8450-pcie-ep", },
- 	{ }
- };
- 
+Failed to build:
+
+ERROR: modpost: "ath11k_pci_disable_ce_irqs_except_wake_irq" [drivers/net/wireless/ath/ath11k/ath11k_ahb.ko] undefined!
+ERROR: modpost: "ath11k_pci_enable_ce_irqs_except_wake_irq" [drivers/net/wireless/ath/ath11k/ath11k_ahb.ko] undefined!
+
+This is because EXPORT_SYMBOL() macros were missing, added those in the pending branch:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=e522bd3df8ab17f661547603a44f4b7d84223d73
+
 -- 
-2.25.1
+https://patchwork.kernel.org/project/linux-wireless/patch/20220902112520.24804-3-quic_mpubbise@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
