@@ -2,357 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 253645B46CC
-	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 16:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 073EF5B46D3
+	for <lists+devicetree@lfdr.de>; Sat, 10 Sep 2022 16:36:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbiIJOdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Sep 2022 10:33:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33426 "EHLO
+        id S229510AbiIJOgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Sep 2022 10:36:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbiIJOc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 10:32:58 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A136F491FF;
-        Sat, 10 Sep 2022 07:32:39 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id t7so7816356wrm.10;
-        Sat, 10 Sep 2022 07:32:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=0KP4+DvPw8H2XraCq7DVmGrh+MmfdY68pVAk8xlOP9M=;
-        b=SILmZi99yu35ydR0RYfV9tGeJ0qa/xOUYpNHbMggNP3vxL40vmgTVKf970KXUY9ayT
-         AXL5v1ai5SU4NFCm0KaBkslJ1Ab6nRaK8cAUPYovN1m7UqYSdTb+Q1vvXtv6f9Itai9z
-         tW2u91WHX+DCVu4ffsQcby6bFXeyDstSrVpmoUlNwk5OYSUOY22RxUCeGm4f23U20A9M
-         /MCB/YHMOiL96e5844XVkTSOdgQU0HYIJbS7sePNMIfqtZzwwfuYPl1ETmP5cbyoKC4e
-         hEnN9TeZY+H2RmJVGvlJwk6d+UvNo6gp3PHW/8hobmGwj9jdhEeb8LjR27NrtcB1pTqL
-         9b6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=0KP4+DvPw8H2XraCq7DVmGrh+MmfdY68pVAk8xlOP9M=;
-        b=6knyNLeTmw6a2UwvwtgL2FTuYu00c+8dU85xaeoiVH5Qe+xeJJPHT02A8u5BIzAp1p
-         SJKlURR2+74B9Nyny6lGU7LjodcGTGpiEYWMRSwqSJ5Jl4Tf3SXPYIBkqHifG68+Rd3Y
-         ln8itN/hF62XT1Zq6HOKB6uMWuyeZP0T3glRBKhz8STmiw1cFqCX8ovtEhurwjXjZji3
-         +l9Pb2q8WxzJoh7Ssq854Li44RWYGPfJIi9FRtcrqxwdLGwVzppfjc4AIlxDlg2MVxgD
-         NzgazGXKSQpdwGdnnB0PaoY3eUwHo70iViuWC1ULGGs9lZuDyRZ3zsD/tck1/4JIJO9D
-         H4EQ==
-X-Gm-Message-State: ACgBeo2b6Imq0FiVJIi3VjgBssA1K5Qxh1X18gWUgah00HNBg6/uXbS0
-        1X/z8oJbspA/wOjz7Q9/b8g=
-X-Google-Smtp-Source: AA6agR4TQDpqBEIq9PShOGI/4/ptzgX6DungIY4QdXEVG/cVUMgnnDWQ6nDzqDo7dEXOcZaafiUaEQ==
-X-Received: by 2002:a05:6000:1ac8:b0:22a:4cd7:92bc with SMTP id i8-20020a0560001ac800b0022a4cd792bcmr1365822wry.230.1662820358722;
-        Sat, 10 Sep 2022 07:32:38 -0700 (PDT)
-Received: from localhost ([77.78.20.135])
-        by smtp.gmail.com with ESMTPSA id q127-20020a1c4385000000b003a5f54e3bbbsm3933139wma.38.2022.09.10.07.32.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Sep 2022 07:32:38 -0700 (PDT)
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Iskren Chernev <iskren.chernev@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 9/9] arm64: dts: qcom: sm4250: Add support for oneplus-billie2
-Date:   Sat, 10 Sep 2022 17:32:13 +0300
-Message-Id: <20220910143213.477261-10-iskren.chernev@gmail.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220910143213.477261-1-iskren.chernev@gmail.com>
-References: <20220910143213.477261-1-iskren.chernev@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229505AbiIJOgD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Sep 2022 10:36:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B6D948CB4;
+        Sat, 10 Sep 2022 07:36:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AC38760C62;
+        Sat, 10 Sep 2022 14:36:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AEFAC433D6;
+        Sat, 10 Sep 2022 14:36:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662820562;
+        bh=isySrLDgKP74ougWyw0149NHuWvGdizFdHM/yAEf9I0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=PCUcvDSCunG77vPvOslvmxGpfK3UhNmV5cpJAVsOZUwQ7FR5kqI+ZDJbDFuuqPpgL
+         g8FiHQpEk5ViRbr8Dd3Zjr+TA5D/ANoBp6NQcuH/jQFqgg/2PVLcJHW7JE6F0OdFto
+         VYt38ft6h4vFGzQ7HOt12UYMh+ciFZGKBOJbMJ7m36jYCckND3HLHgk/pQlWgxuI5V
+         TbjLDskWS3Ypo4yFf9F8Eckt8DMA3jiDNdruiMeBGZg/I21ZfqqdGYAHpDXTdweZP+
+         UW69MgzjyeuZehxgQ6Bw/d0nMZFHNhF3ytGFYtHy9tdndOxfc3N+7oQsUgTbQtT+j2
+         vwrWObvr5RW7w==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oX1aR-009PXN-N5;
+        Sat, 10 Sep 2022 15:35:59 +0100
+Date:   Sat, 10 Sep 2022 15:35:59 +0100
+Message-ID: <87y1urpa9c.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Frank Li <frank.li@nxp.com>
+Cc:     "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "jdmason@kudzu.us" <jdmason@kudzu.us>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "ntb@lists.linux.dev" <ntb@lists.linux.dev>,
+        "lznuaa@gmail.com" <lznuaa@gmail.com>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>
+Subject: Re: [EXT] Re: [PATCH v9 2/4] irqchip: Add IMX MU MSI controller driver
+In-Reply-To: <AM9PR04MB8793746D9ECC6F07FD5B841888439@AM9PR04MB8793.eurprd04.prod.outlook.com>
+References: <20220907034856.3101570-1-Frank.Li@nxp.com>
+        <20220907034856.3101570-3-Frank.Li@nxp.com>
+        <87fsh2qpq4.wl-maz@kernel.org>
+        <AM9PR04MB879338D6D4B55A74CD002E6D88409@AM9PR04MB8793.eurprd04.prod.outlook.com>
+        <877d2dvs0d.wl-maz@kernel.org>
+        <AM9PR04MB8793CE5AAAB281CE628845AC88409@AM9PR04MB8793.eurprd04.prod.outlook.com>
+        <87edwkrbs4.wl-maz@kernel.org>
+        <AM9PR04MB8793746D9ECC6F07FD5B841888439@AM9PR04MB8793.eurprd04.prod.outlook.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: frank.li@nxp.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev, lznuaa@gmail.com, imx@lists.linux.dev, manivannan.sadhasivam@linaro.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support for OnePlus Nord N100, based on SM4250. Currently
-working:
-- boots
-- usb
-- buildin flash storage (UFS)
-- SD card reader
+On Fri, 09 Sep 2022 15:59:01 +0100,
+Frank Li <frank.li@nxp.com> wrote:
+> 
+> > >
+> > > [Frank Li] According to my understand, raw_spinlock skip some lockdep
+> > > /debug feature to get better performance, which should be used when
+> > > Frequently call, such as irq handle\polling thread.
+> > 
+> > I'm afraid you are terribly misguided. They both have the same debug
+> > features because they are both using the same core implementation, and
+> > the only difference is whether this is preemptible for RT purposes or
+> > not.
+> > 
+> > > Spinlock have DEBUG feature to check wrong use lock.  Allocate MSI
+> > generally
+> > > only is call once when driver probe.
+> > 
+> > Again, you should really read the code and the documentation and stop
+> > making things up.
+> 
+> [Frank Li] Thanks. You give me the correct direction. Some stackoverflow's
+> Doc was misleaded.  I double checked spin_lock implementation.  PREEMPT_RT
+> Kernel map spin_lock to rt_mutex.
+> 
+> I am curious  why exist spin_lock_irqsave and raw_spin_lock_irqsave before
+> PREEMTP_RT merge into kernel tree. 
 
-Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/sm4250-oneplus-billie2.dts  | 241 ++++++++++++++++++
- 2 files changed, 242 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+Because the RT merge has been going on for 10 years or so, long before
+CONFIG_RT was merged. Also, a mutex has a spin lock at its core, and
+it makes sense to have a single primitive for all these lock types.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f4126f7e7640..5d2570b600e0 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -137,6 +137,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-polaris.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-new file mode 100644
-index 000000000000..b9094f1efca0
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-@@ -0,0 +1,241 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021, Iskren Chernev <iskren.chernev@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sm4250.dtsi"
-+
-+/ {
-+	model = "OnePlus Nord N100";
-+	compatible = "oneplus,billie2", "qcom,sm4250";
-+
-+	/* required for bootloader to select correct board */
-+	qcom,msm-id = <0x1a1 0x10000 0x1bc 0x10000>;
-+	qcom,board-id = <0x1000b 0x00>;
-+
-+	aliases {
-+	};
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		stdout-path = "framebuffer0";
-+
-+		framebuffer0: framebuffer@9d400000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0 0x5c000000 0 (1600 * 720 * 4)>;
-+			width = <720>;
-+			height = <1600>;
-+			stride = <(720 * 4)>;
-+			format = "a8r8g8b8";
-+		};
-+	};
-+};
-+
-+&xo_board {
-+	clock-frequency = <19200000>;
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32764>;
-+};
-+
-+&reserved_memory {
-+	bootloader_log_mem: memory@5fff7000 {
-+		reg = <0x00 0x5fff7000 0x00 0x8000>;
-+		no-map;
-+	};
-+
-+	ramoops@cbe00000 {
-+		compatible = "ramoops";
-+		reg = <0x0 0xcbe00000 0x0 0x400000>;
-+		record-size = <0x40000>;
-+		pmsg-size = <0x200000>;
-+		console-size = <0x40000>;
-+		ftrace-size = <0x40000>;
-+	};
-+
-+	param_mem: memory@cc200000 {
-+		reg = <0x00 0xcc200000 0x00 0x100000>;
-+		no-map;
-+	};
-+
-+	mtp_mem: memory@cc300000 {
-+		reg = <0x00 0xcc300000 0x00 0xb00000>;
-+		no-map;
-+	};
-+};
-+
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&hsusb_phy {
-+	vdd-supply = <&vreg_l4a>;
-+	vdda-pll-supply = <&vreg_l12a>;
-+	vdda-phy-dpdm-supply = <&vreg_l15a>;
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <14 4>;
-+};
-+
-+&sdhc_2 {
-+	vmmc-supply = <&vreg_l22a>;
-+	vqmmc-supply = <&vreg_l5a>;
-+
-+	cd-gpios = <&tlmm 88 GPIO_ACTIVE_HIGH>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_hc {
-+	vcc-supply = <&vreg_l24a>;
-+	vcc-max-microamp = <600000>;
-+	vccq2-supply = <&vreg_l11a>;
-+	vccq2-max-microamp = <600000>;
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l4a>;
-+	vdda-pll-supply = <&vreg_l12a>;
-+	vddp-ref-clk-supply = <&vreg_l18a>;
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators-0 {
-+		compatible = "qcom,rpm-pm6125-regulators";
-+
-+		vreg_s6a: s6 {
-+			regulator-min-microvolt = <320000>;
-+			regulator-max-microvolt = <1456000>;
-+		};
-+
-+		vreg_s7a: s7 {
-+			regulator-min-microvolt = <1280000>;
-+			regulator-max-microvolt = <2040000>;
-+		};
-+
-+		vreg_s8a: s8 {
-+			regulator-min-microvolt = <1064000>;
-+			regulator-max-microvolt = <1304000>;
-+		};
-+
-+		vreg_l1a: l1 {
-+			regulator-min-microvolt = <952000>;
-+			regulator-max-microvolt = <1152000>;
-+		};
-+
-+		vreg_l4a: l4 {
-+			regulator-min-microvolt = <488000>;
-+			regulator-max-microvolt = <1000000>;
-+		};
-+
-+		vreg_l5a: l5 {
-+			regulator-min-microvolt = <1648000>;
-+			regulator-max-microvolt = <3056000>;
-+		};
-+
-+		vreg_l6a: l6 {
-+			regulator-min-microvolt = <576000>;
-+			regulator-max-microvolt = <656000>;
-+		};
-+
-+		vreg_l7a: l7 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1304000>;
-+		};
-+
-+		vreg_l8a: l8 {
-+			regulator-min-microvolt = <400000>;
-+			regulator-max-microvolt = <728000>;
-+		};
-+
-+		vreg_l9a: l9 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2000000>;
-+		};
-+
-+		vreg_l10a: l10 {
-+			regulator-min-microvolt = <1704000>;
-+			regulator-max-microvolt = <1904000>;
-+		};
-+
-+		vreg_l11a: l11 {
-+			regulator-min-microvolt = <1704000>;
-+			regulator-max-microvolt = <1952000>;
-+		};
-+
-+		vreg_l12a: l12 {
-+			regulator-min-microvolt = <1624000>;
-+			regulator-max-microvolt = <1984000>;
-+		};
-+
-+		vreg_l13a: l13 {
-+			regulator-min-microvolt = <1504000>;
-+			regulator-max-microvolt = <1952000>;
-+		};
-+
-+		vreg_l14a: l14 {
-+			regulator-min-microvolt = <1704000>;
-+			regulator-max-microvolt = <1904000>;
-+		};
-+
-+		vreg_l15a: l15 {
-+			regulator-min-microvolt = <2920000>;
-+			regulator-max-microvolt = <3232000>;
-+		};
-+
-+		vreg_l16a: l16 {
-+			regulator-min-microvolt = <1704000>;
-+			regulator-max-microvolt = <1904000>;
-+		};
-+
-+		vreg_l17a: l17 {
-+			regulator-min-microvolt = <1152000>;
-+			regulator-max-microvolt = <1304000>;
-+		};
-+
-+		vreg_l18a: l18 {
-+			regulator-min-microvolt = <1104000>;
-+			regulator-max-microvolt = <1304000>;
-+		};
-+
-+		vreg_l19a: l19 {
-+			regulator-min-microvolt = <1624000>;
-+			regulator-max-microvolt = <3304000>;
-+		};
-+
-+		vreg_l20a: l20 {
-+			regulator-min-microvolt = <1624000>;
-+			regulator-max-microvolt = <3304000>;
-+		};
-+
-+		vreg_l21a: l21 {
-+			regulator-min-microvolt = <2400000>;
-+			regulator-max-microvolt = <3544000>;
-+		};
-+
-+		vreg_l22a: l22 {
-+			regulator-min-microvolt = <2952000>;
-+			regulator-max-microvolt = <3304000>;
-+		};
-+
-+		vreg_l23a: l23 {
-+			regulator-min-microvolt = <3296000>;
-+			regulator-max-microvolt = <3304000>;
-+		};
-+
-+		vreg_l24a: l24 {
-+			regulator-min-microvolt = <2704000>;
-+			regulator-max-microvolt = <3544000>;
-+		};
-+	};
-+};
+	M.
+
 -- 
-2.37.2
-
+Without deviation from the norm, progress is not possible.
