@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE9145B4E5B
-	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 13:25:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EC6E5B4E61
+	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 13:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbiIKLZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 07:25:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37028 "EHLO
+        id S230293AbiIKLZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 07:25:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229981AbiIKLZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 07:25:17 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 251F7255AA
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 04:25:14 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id r12so5860841ljg.10
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 04:25:14 -0700 (PDT)
+        with ESMTP id S230141AbiIKLZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 07:25:26 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B8EC2B60E
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 04:25:24 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id i26so10369424lfp.11
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 04:25:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date;
-        bh=21UAo0RYhRyCP3O6AErO2Ufh7UGzkqHnj/6wN8Fi/Ug=;
-        b=K2K5asFsuISr8zYckfshnl7MGPv0QVgi54eHC8QJcpYm9t4LK97hHhq4ho+7ypRO+D
-         48kKndEBwZm3scpmQO0HiWYiiaoxksoaLBmqPQJVxeeOaaQEYy1yUgOM27e+orA4MMWg
-         CAwWnVvr+E1ZB/MGTyRYk3NsxEfHaNCJWSfBCbuUjM5Zm/ybDbSaMCaIxmO0VqIl28eO
-         GM8t52NSHVHihqdHD/7BtML8rAmdx6hZ8dfq8yMsxHHOVDPiJim2NYqJSM6u3H2sJvSn
-         AFgGdgNQeg0+tQpeRcugBc+nPdfjebvAycBWekGgmDpgz//38wKNFJ7AZBzFvxWdhkrG
-         7bWA==
+        bh=YHs0SEaDJbXoyLL77gh0qKqzR2QzJo2QI/lC2jkxjBs=;
+        b=tb7K4ihe99wtgXdoqfVWwjkSv2XWRM7zXDgHrB6hsB2te0rfp1CtsyaVPTEis4qNgF
+         +xBz1Jdl3YWL0Zix/aOG+fIhrZPxQmmvqGIaMTjdSDIAfEP/Xycds5CJ8ZsVG3RJdbNI
+         2MiM7rTLj3qqwl/9UrPJIbhwnHRwcCF+fS6XOXnGBPsG5sze7vHT6FhzSPij717/DsHN
+         aLlZmRI28TEtOTwEXZX5FBn8L84vfukjcKXs21EXFaO7z3dOr4klvTM4gn+2hgO3zpdo
+         +iCaizTRKG/A+ugula+uVSknSDQq47BtyhFp9ss6khHoJ6H88UofMvwrN+cxrR/pjDkQ
+         QyEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=21UAo0RYhRyCP3O6AErO2Ufh7UGzkqHnj/6wN8Fi/Ug=;
-        b=GU1ysuwApEOsZUUcleqMe7UVftX6El6mRnypvgx4lNE9fjr8JX/ebzrCcrd5fFfWQt
-         DcndWElm7JRUwP+CJJlMlKW07HaGWa+JI0vEiXUmX+QIf41UQeHZqy66idmN2N7Y4r9H
-         ueY3diQazHdM41a5L7WjY+4+RZywr64osGYVDmW873qnz4dGeAvh7cvgMIanxeh362s/
-         dEz3XckKFPrX2YG9QMOyleCcl6EC8rZb6GI+wnTNyvxjBvOMVkorfpqGsncvJ03lZ8kR
-         LsCyVWHFVOXR/aJEytAwJ6Bv/0ykLcbqcd1bm7EEekD78ay6bXREnU1Zs8lZlanGny8+
-         uvtg==
-X-Gm-Message-State: ACgBeo1uO6rnHoQi+wxJnv8sxrdvkn+KJNSPFY2QBuIfkTqTM9yGton+
-        dxPrUy1HbLQxOlwutq9Csf+ioQ==
-X-Google-Smtp-Source: AA6agR4Y9GxA7+hcq40DFJUOCZTcQSANfOPHmPXnKml3PqnAuetAHV5dzb2fYJOYcXBvUnk++c9xWg==
-X-Received: by 2002:a2e:7019:0:b0:26b:db2a:577f with SMTP id l25-20020a2e7019000000b0026bdb2a577fmr4432616ljc.105.1662895512521;
-        Sun, 11 Sep 2022 04:25:12 -0700 (PDT)
+        bh=YHs0SEaDJbXoyLL77gh0qKqzR2QzJo2QI/lC2jkxjBs=;
+        b=uYe22V+IfwUzI8mJpTVXk54SALl/mRt5S0HBan+BgK8DabZCfpYUDVQqU5yahG5dLT
+         0WBSVaowPg5IpWBGGnFWFlxHUJxS15y3QpofJTQY5+5PkSKqJGhNHNgUqdyb9hH/EEWD
+         XQPuemj+8x1WKsSktzDSl6KNLioJTgIvoQkUY3XWssau8MlSJ3Sf0KnHcNeaz13NMOXc
+         S6XVfX4XNfLE2scGhNs9HqwfehHmxJhMNuT4WB4zuOn1a5fvLDXDD216e/gx/jZhh1xC
+         JFynqeNUpF0N5K6Yy/3umoMxb0Z3aINXYpxuti9+bjEf3riDStIG1DkyceV+fxQXfqcR
+         bdoQ==
+X-Gm-Message-State: ACgBeo3hwOBRrqgTDKBMT+vRpfQ11+k6X8vwOc/vp2OhOi+HjbEtYNCl
+        QomgTZ8HyUFDQKIy+9VcBF0lMA==
+X-Google-Smtp-Source: AA6agR5oNmr6m8z31B/zJnwas91EEnPX1JPNa8YKgusE48/bwlAxCnz1sfRM7bpJpFsZWk7+VjHkxw==
+X-Received: by 2002:a05:6512:3e13:b0:499:1829:5181 with SMTP id i19-20020a0565123e1300b0049918295181mr3138202lfv.71.1662895522679;
+        Sun, 11 Sep 2022 04:25:22 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f4-20020a05651c02c400b00261d619fb16sm629007ljo.82.2022.09.11.04.25.11
+        by smtp.gmail.com with ESMTPSA id p4-20020a2eb984000000b0026b96b8ecb6sm629851ljp.111.2022.09.11.04.25.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Sep 2022 04:25:11 -0700 (PDT)
+        Sun, 11 Sep 2022 04:25:22 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: power: qcom,rpmpd: drop non-working codeaurora.org emails
-Date:   Sun, 11 Sep 2022 13:25:08 +0200
-Message-Id: <20220911112508.202995-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: pinctrl: qcom: drop non-working codeaurora.org emails
+Date:   Sun, 11 Sep 2022 13:25:20 +0200
+Message-Id: <20220911112520.203062-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -77,22 +79,35 @@ undeliverable address: No such user here.").
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml         | 1 -
+ .../devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml        | 2 +-
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-index 0ccca493251a..3934a2b44894 100644
---- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-+++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+index 33d1d37fdf6d..624e14f00790 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+@@ -8,7 +8,6 @@ title: Qualcomm Technologies, Inc. Low Power Audio SubSystem (LPASS)
+   Low Power Island (LPI) TLMM block
+ 
+ maintainers:
+-  - Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+   - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+ 
+ description: |
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
+index 30e682579391..ad3496784678 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
 @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm RPM/RPMh Power domains
+ title: Qualcomm Technologies, Inc. SC7280 TLMM block
  
  maintainers:
 -  - Rajendra Nayak <rnayak@codeaurora.org>
 +  - Bjorn Andersson <andersson@kernel.org>
  
- description:
-   For RPM/RPMh Power domains, we communicate a performance state to RPM/RPMh
+ description: |
+   This binding describes the Top Level Mode Multiplexer block found in the
 -- 
 2.34.1
 
