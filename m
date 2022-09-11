@@ -2,106 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C5E05B5070
-	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 19:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B5BF5B5087
+	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 20:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbiIKR6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 13:58:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48738 "EHLO
+        id S229677AbiIKSUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 14:20:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbiIKR6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 13:58:43 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68D51AD9A;
-        Sun, 11 Sep 2022 10:58:42 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id e18so9738957edj.3;
-        Sun, 11 Sep 2022 10:58:42 -0700 (PDT)
+        with ESMTP id S229695AbiIKSU1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 14:20:27 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADD61252BE;
+        Sun, 11 Sep 2022 11:20:26 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id s6so181389lfo.7;
+        Sun, 11 Sep 2022 11:20:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date;
-        bh=HxRei77Xp8obrUM8ZKH0UQc8VS1BrZDO+yvP75r8n8Y=;
-        b=LNVxR1Dl3mdJNHZ6NRC5n4+AdHrxMiNdTjYO0xPECVmNAbS2r4XUNLYwNFrBIVlefq
-         ZLV4bnC8XkJYyNzaiSTk9bJzQRmfiZiSSSYjyg9fDyjdWHQElXmw2XsZGrieVJetsBDA
-         kTk4x6hjbH63kSNKYf29uWIH0KnF5cqsvbTsaYF89AY5ZvIndt+KHViZbzXRt1mtweyu
-         9X3mqEPaA2np+cAUqFmjAyk/aBXHZ9o9VIvaQ056C2pbQ0tjhozAQz2qsPBuETn8SjbH
-         VsWX1V2boT/Wl+WxxndsmEX7giquAllWLg63ocX3JJEHTP5uInkvvQszSI7+jdEETzkE
-         pg8g==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date;
+        bh=Mhy+3CWxTNrO346Kg7VTtnGn/vofZ7u7oyFEO3SVd3g=;
+        b=G1SC4zSV3RuG5u0WV4E6Fo8xz4Hhj5vVEP6SuuXC5K7vIiFtUcWl287d3KMBj8NW9R
+         Y81zqrzejNcK2F3A+ZDNXfOSK0hkAHnFo8TDHXZY/OwzvRSehuleF/wCLlGSsfkFJnUD
+         wWrQHIha6vaGZnSg8tnIDjdowDcg6YNvnGgmg8Wszud4lOd+rPE56LrCe4PMqkGB6MC8
+         9AXWv+/NHWaufa/uqdb4JTfWvnU6I84iexXCtgUGOVrCymGPQPbGlkOVRXoprhyVD6s5
+         kZ1wyN1beBMeAZgH8BEKqAGQVQ9SCF36XSp4e8eIooqCWNNAooJKXhF514b3m4QS9S1c
+         Bgag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date;
-        bh=HxRei77Xp8obrUM8ZKH0UQc8VS1BrZDO+yvP75r8n8Y=;
-        b=fPvIqzlbMMxLO79jZqY8jIF91ITqkGJu4xX2a/3TWMuK0hb5dHvvbU6HAcRw8DAo1U
-         xYUUuZ0yVOE1t6pFWkD88PEqGsvwPnvMa7QJoT3X+lscQhkC7cP1r94DRVRkKSV4dQWj
-         xSWHiLA/8S58hEws/qF+eGPbgKQwtz67qfVoYA55FKVIlM5vMmFcNLelCzZyW9W+enNP
-         3kN0LbMQOzjGXBtITxGV7kw2fz7rHGeOTYqxtQK3Goh/FbTDpjD6aJd8ArCyK7FbsEtt
-         SKPVlha6upyHdmDytqFF2ftKDz8+4zFgMNSVqmv5nENNN2FRVX0RQH5iBVXDqSPvbZT7
-         RQKA==
-X-Gm-Message-State: ACgBeo3C1Wlzt2iSu58vv7No3Ho7AhPL736bodTzmwmCBBSgmej6rMC2
-        nTGeoRnENNyUlCMCFrV+GAY=
-X-Google-Smtp-Source: AA6agR5Y2+l6SqfFS/nrVWrI/d8uzaeNYAGgi3ptnWeCv2FCpvhUWD9McTtnUfb599zcYZsKvTF1TA==
-X-Received: by 2002:a05:6402:1f86:b0:447:8edd:1c4b with SMTP id c6-20020a0564021f8600b004478edd1c4bmr19078351edc.163.1662919121378;
-        Sun, 11 Sep 2022 10:58:41 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id 1-20020a170906218100b00730b61d8a5esm3243305eju.61.2022.09.11.10.58.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Sep 2022 10:58:40 -0700 (PDT)
-Message-ID: <12af4fe6-4d35-cb4a-f5f6-06e3aba990cb@gmail.com>
-Date:   Sun, 11 Sep 2022 19:58:39 +0200
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=Mhy+3CWxTNrO346Kg7VTtnGn/vofZ7u7oyFEO3SVd3g=;
+        b=Bxkl3j8KetpYmPsFZCmNle4PsLGxEoZW6xF5SyqH/nOGDwbfPPU0PhgtY+rxYHYpNN
+         Vcomu58JMhAOFQ1ssFeGPgraQgVqsvYhQiEwXlftWG+4LgqsndprHNiWHqVm2/o422lb
+         QiT4q/u1hEtct6E2JaitEq7uQ1Oi5ylTghfDF8Fgp6WNTwD0VLw64+kepmmzFmZhBlbd
+         DR6QndvNuy9zGi/Q+5Cws+UWNV4ywVg8bEKd2GrEcpR/g9AhVXDzUcgFyxK6+/ZKjHqp
+         l+idbgXbVD/MIlh8VyB11PLcXbjyROJhbHirIouI2VWZAGklOMKL4dZvMycuhGAucytt
+         CJ8g==
+X-Gm-Message-State: ACgBeo15ktZxTbCXadB7hU+6n3rf3mjm/UklIm3cp36r1jSsTJcV9mNC
+        sKILTOoQn7RnVDRwWRrXe7M=
+X-Google-Smtp-Source: AA6agR5LSSiN/cax4urw2HZ7KDpGL+g/xPYKFXKs+PdODqUpgdWPFW990sj9/c+ITlhC2yEsbcqPYQ==
+X-Received: by 2002:a05:6512:39d6:b0:498:f615:df07 with SMTP id k22-20020a05651239d600b00498f615df07mr4578653lfu.387.1662920424912;
+        Sun, 11 Sep 2022 11:20:24 -0700 (PDT)
+Received: from mobilestation ([95.79.140.178])
+        by smtp.gmail.com with ESMTPSA id dt6-20020a0565122a8600b004976809d6a7sm677341lfb.283.2022.09.11.11.20.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Sep 2022 11:20:24 -0700 (PDT)
+Date:   Sun, 11 Sep 2022 21:20:21 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     "Larson, Bradley" <Bradley.Larson@amd.com>
+Cc:     Brad Larson <brad@pensando.io>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "alcooperx@gmail.com" <alcooperx@gmail.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "brijeshkumar.singh@amd.com" <brijeshkumar.singh@amd.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "gsomlo@gmail.com" <gsomlo@gmail.com>,
+        "gerg@linux-m68k.org" <gerg@linux-m68k.org>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "piotrs@cadence.com" <piotrs@cadence.com>,
+        "p.yadav@ti.com" <p.yadav@ti.com>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "samuel@sholland.org" <samuel@sholland.org>,
+        "Suthikulpanit, Suravee" <Suravee.Suthikulpanit@amd.com>,
+        "Lendacky, Thomas" <Thomas.Lendacky@amd.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "will@kernel.org" <will@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v6 12/17] spi: dw: Add support for AMD Pensando Elba SoC
+Message-ID: <20220911182021.i5go6lfsedggq6wl@mobilestation>
+References: <20220820195750.70861-1-brad@pensando.io>
+ <20220820195750.70861-13-brad@pensando.io>
+ <20220821181848.cxjpv2f4cqvdtnq3@mobilestation>
+ <4aab1595-53a6-32af-8cfb-90f5e258d29e@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-From:   Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v2] dt-bindings: spi: rockchip: add power-domains property
-To:     broonie@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4aab1595-53a6-32af-8cfb-90f5e258d29e@amd.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Rockchip rk3399 TRM mentions that pd_sdioaudio includes
-sdio, spi, i2s and spdif. Add a power-domains property to
-to match reality with spi-rockchip.yaml.
+On Wed, Aug 31, 2022 at 06:04:02PM +0000, Larson, Bradley wrote:
+> On 8/21/22 11:18 AM, Serge Semin wrote:
+> > On Sat, Aug 20, 2022 at 12:57:45PM -0700, Brad Larson wrote:
+> >> From: Brad Larson <blarson@amd.com>
+> >>
+> >> The AMD Pensando Elba SoC includes a DW apb_ssi v4 controller
+> >> with device specific chip-select control.  The Elba SoC
+> >> provides four chip-selects where the native DW IP supports
+> >> two chip-selects.  The Elba DW_SPI instance has two native
+> >> CS signals that are always overridden.
+> >>
+> >> Signed-off-by: Brad Larson <blarson@amd.com>
+> >> ---
+> >>   drivers/spi/spi-dw-mmio.c | 77 +++++++++++++++++++++++++++++++++++++++
+> >>   1 file changed, 77 insertions(+)
+> >>
+> >> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+> >> index 26c40ea6dd12..36b8c5e10bb3 100644
+> >> --- a/drivers/spi/spi-dw-mmio.c
+> >> +++ b/drivers/spi/spi-dw-mmio.c
+> >> @@ -53,6 +53,24 @@ struct dw_spi_mscc {
+> >>        void __iomem        *spi_mst; /* Not sparx5 */
+> >>   };
+> >>
+> >> +struct dw_spi_elba {
+> >> +     struct regmap *syscon;
+> >> +};
+> >> +
+> >> +/*
+> >> + * Elba SoC does not use ssi, pin override is used for cs 0,1 and
+> >> + * gpios for cs 2,3 as defined in the device tree.
+> >> + *
+> >> + * cs:  |       1               0
+> >> + * bit: |---3-------2-------1-------0
+> >> + *      |  cs1   cs1_ovr   cs0   cs0_ovr
+> >> + */
+> >> +#define ELBA_SPICS_REG                       0x2468
+> >> +#define ELBA_SPICS_SHIFT(cs)         (2 * (cs))
+> >> +#define ELBA_SPICS_MASK(cs)          (0x3 << ELBA_SPICS_SHIFT(cs))
+> >> +#define ELBA_SPICS_SET(cs, val)      \
+> >> +                     ((((val) << 1) | 0x1) << ELBA_SPICS_SHIFT(cs))
+> > Please take the @Andy' notes into account:
+> > https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Flkml%2FCAHp75Vex0VkECYd%3DkY0m6%3DjXBYSXg2UFu7vn271%2BQ49WZn22GA%40mail.gmail.com%2F&amp;data=05%7C01%7CBradley.Larson%40amd.com%7C25d0f17dfcbd44f661c808da83a19a98%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637967027418603429%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=VFI%2FptM79YYbZm%2FyQmtssLsNIQ75AOU05ronZ1QStlU%3D&amp;reserved=0
+> 
+> Yes, I had a tested change for this but missed adding to the patch update.
+> This is the change and I'll resend just this patch.
+> 
+> --- a/drivers/spi/spi-dw-mmio.c
+> +++ b/drivers/spi/spi-dw-mmio.c
+> @@ -66,10 +66,6 @@ struct dw_spi_elba {
+>    *      |  cs1   cs1_ovr   cs0   cs0_ovr
+>    */
+>   #define ELBA_SPICS_REG 0x2468
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Acked-by: Heiko Stuebner <heiko@sntech.de>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+> -#define ELBA_SPICS_SHIFT(cs)           (2 * (cs))
+> -#define ELBA_SPICS_MASK(cs)            (0x3 << ELBA_SPICS_SHIFT(cs))
+> -#define ELBA_SPICS_SET(cs, val)        \
+> -                       ((((val) << 1) | 0x1) << ELBA_SPICS_SHIFT(cs))
 
-Changed V2:
-  Fix comment
----
- Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Why do you remove these macros? Just replace 0x3 with GENMASM(1, 0),
+0x1 with BIT(0), (2 * (cs)) statement with ((cs) << 1) as Andy
+suggested. Using macros for such complex statement is a good practice.
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-index 52768894b..66e49947b 100644
---- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-@@ -82,6 +82,9 @@ properties:
-       where the "sleep" configuration may describe the state
-       the pins should be in during system suspend.
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
--- 
-2.20.1
+Also please rename ELBA_SPICS_SHIFT() to ELBA_SPICS_OFFSET() so to
+have a more coherent CSR-related macros naming in the driver.
 
+-Sergey
+
+> 
+>   /*
+>    * The Designware SPI controller (referred to as master in the 
+> documentation)
+> @@ -257,8 +253,9 @@ static int dw_spi_canaan_k210_init(struct 
+> platform_device *pdev,
+> 
+>   static void dw_spi_elba_override_cs(struct dw_spi_elba *dwselba, int 
+> cs, int enable)
+>   {
+> - regmap_update_bits(dwselba->syscon, ELBA_SPICS_REG, ELBA_SPICS_MASK(cs),
+> -                          ELBA_SPICS_SET(cs, enable));
+> + regmap_update_bits(dwselba->syscon, ELBA_SPICS_REG,
+> +                          (GENMASK(1, 0) << ((cs) << 1)),
+> +                          ((enable) << 1 | BIT(0)) << ((cs) << 1));
+> 
+>   }
+> 
+> > One more nitpick below.
+> >
+> > +static int dw_spi_elba_init(struct platform_device *pdev,
+> > +                         struct dw_spi_mmio *dwsmmio)
+> > +{
+> > +     const char *syscon_name = "amd,pensando-elba-syscon";
+> > +     struct device_node *np = pdev->dev.of_node;
+> >> +     struct device_node *node;
+> >> +     struct dw_spi_elba *dwselba;
+> > Please, use the reverse xmas tree order of the local variables
+> > as the rest of the driver mainly implies.
+> Changed to reverse xmas tree ordering.
+> 
+> Regards,
+> Brad
