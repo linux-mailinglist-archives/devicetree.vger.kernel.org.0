@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEC545B51AA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 00:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6DF55B51AD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 00:55:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229807AbiIKWxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 18:53:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37682 "EHLO
+        id S229811AbiIKWzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 18:55:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbiIKWxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 18:53:54 -0400
+        with ESMTP id S229572AbiIKWzl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 18:55:41 -0400
 Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B18825598
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 15:53:53 -0700 (PDT)
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-12b542cb1d3so9231080fac.13
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 15:53:53 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BF4821E0A
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 15:55:40 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-1279948d93dso18952529fac.10
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 15:55:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=to:subject:message-id:date:user-agent:from:references:in-reply-to
          :mime-version:from:to:cc:subject:date;
-        bh=R0Xe62CKqg1FjucP7NunxjUjOTqqu84A+guaTpi+kNo=;
-        b=FTd2AeTvIBSI1/fx7Ds0M+6SFsq4MZyXzV5o39QxPabwSFCeGLUkTTGfYkAsz9NBKT
-         79xQYhfFhoxww/uFE7H/V7zpZbQQzLocezZu43dt4Dz9VU4E0/+30oFIXIz7+ja8cw1Q
-         PVYCgERF2VAGgBYgtRN5VBOjxtiqQZOVh1fA8=
+        bh=nlcIQGarpQZF1b3fqIIEqAzgfa9Oo0Ubme7PE3yoogc=;
+        b=eaaBTIwttt2CjIs/FXfOF4vlIZCdC9jW55CaoI+H1a2K1pq3RM0VFGrIiSlYIPOiPW
+         Qlrn8bN0Ra+7DncrXuIYcOYujD/gqXLxB7pGV++pzW64HuK1pefvkJ1jUH+cgehbvP3N
+         5HQdmB14xiAq7k1qiVq/13s8VkQ9imB2EJ9UY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=to:subject:message-id:date:user-agent:from:references:in-reply-to
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=R0Xe62CKqg1FjucP7NunxjUjOTqqu84A+guaTpi+kNo=;
-        b=UzlU0Fbps9QFCBqYpaI8PDGFNhI2mwY8ErlxpXF/BGGlV5nf/X/gRfaK/v90PTdJqC
-         kL8wvrvw4+yCfCLhs3tb2vdvuoUVxfmaiYNGvyldkt2jOOKxMZp5uTSOdjx7wSCpxV4p
-         Zds2ECzpzSBtM+19j826LXkXCXz36V3pBozIJFV33pi2SkJ5lkj4yNmKlO1WO60dITxJ
-         0StiPQHQ2f9NKCE/UvRT1vg5s+gcpGkWrD5p2aWtdwpHGmjMofaFoZWJcI6C8eJ4J0NX
-         ucXSkHz7aufaOfK9uV+PpqUogw93LoIZ3G4pLJMaYIL+rJ/iBNaiW66j7qxIdfmKNyH8
-         oBdg==
-X-Gm-Message-State: ACgBeo1vdEjvGMNiMqRfkFX2BIpvGh+Fig4E9xckFTGxiXUV9hNpf/ky
-        eT68H318Djp+V+gitt+eT4iuKgyz+elDwwDP+xoNkQ==
-X-Google-Smtp-Source: AA6agR7p7DOQVvWBuWdS4FNFDI/yWu78jAI8Lol3RU4hpSvR1XPiDf+9BNXPpiLd43jKteUzzh7vh3kywdcpj1xfsZo=
-X-Received: by 2002:a05:6871:6a1:b0:127:3a21:7e00 with SMTP id
- l33-20020a05687106a100b001273a217e00mr10575784oao.44.1662936832620; Sun, 11
- Sep 2022 15:53:52 -0700 (PDT)
+        bh=nlcIQGarpQZF1b3fqIIEqAzgfa9Oo0Ubme7PE3yoogc=;
+        b=losI7OgWM+ROGSxkedj34yhffDlU4SLJsoOlvx4h4hZrbcwmBB1Lw0kVXJkY7DsZ0A
+         iEOskm20HvCULnR3ooFskdF+5MyyLSTlRFPUk7JVVP7nFx6MFWYjrpDteucBPicqKEXq
+         AEVvkzgpI7aMn8qaUQmQkZEmRQ7EkktWC+Uiry2vI0Xy5nhWD609stfNyNl8QtAVxTqQ
+         7WID4/M5tmyf7rWrRstM/XKF3tFKO3WvEHkCKDDtW6/ONJV3954bsiyr12wf0dZ7Ll6B
+         tDT2fYSQhcGtp5U9Br6UU32zYLohjHHtONAT987X+cTtBbewRjHczUqvs+ZSZDi/Q0GG
+         Psog==
+X-Gm-Message-State: ACgBeo18zHinFGMY6umSs7EGgGmaUgAfKtcQafPHpcvoWy5pkmr22vzK
+        hf6wQaYBNqp1Nj3bWg55WoS3+J2MMEnmg/xzMzr2Cg==
+X-Google-Smtp-Source: AA6agR7OYBLg+WdC6y3UCRy2aVOaumf8UJxXjuDOYFe8okh2tGp8wIsyxmb63X1InGt+PoQArJn6b6NMdTC54iHquW4=
+X-Received: by 2002:a05:6808:bca:b0:344:ef42:930f with SMTP id
+ o10-20020a0568080bca00b00344ef42930fmr7698554oik.0.1662936939654; Sun, 11 Sep
+ 2022 15:55:39 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Sun, 11 Sep 2022 17:53:52 -0500
+ HTTPREST; Sun, 11 Sep 2022 17:55:39 -0500
 MIME-Version: 1.0
-In-Reply-To: <1662643422-14909-4-git-send-email-quic_srivasam@quicinc.com>
-References: <1662643422-14909-1-git-send-email-quic_srivasam@quicinc.com> <1662643422-14909-4-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1662643422-14909-5-git-send-email-quic_srivasam@quicinc.com>
+References: <1662643422-14909-1-git-send-email-quic_srivasam@quicinc.com> <1662643422-14909-5-git-send-email-quic_srivasam@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Sun, 11 Sep 2022 17:53:52 -0500
-Message-ID: <CAE-0n53_i89jvcUwFUDgnfx28sFt8+7r3_jWBWYvDf6MMhAnvQ@mail.gmail.com>
-Subject: Re: [PATCH v6 3/8] remoteproc: qcom: Add compatible name for SC7280 ADSP
+Date:   Sun, 11 Sep 2022 17:55:39 -0500
+Message-ID: <CAE-0n50i7jqoA8rYhkvMEd_i13apA1ZWhHsXBj99Sn_8Hkywag@mail.gmail.com>
+Subject: Re: [PATCH v6 4/8] remoteproc: qcom: Update rproc parse firmware callback
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         agross@kernel.org, bgoswami@quicinc.com,
         bjorn.andersson@linaro.org, broonie@kernel.org,
@@ -62,7 +62,7 @@ To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,11 +70,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-09-08 06:23:37)
-> Update adsp pil data and compatible name for loading ADSP
-> binary on SC7280 based platforms.
+Quoting Srinivasa Rao Mandadapu (2022-09-08 06:23:38)
+> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
+> index 02d17b4..207270d4 100644
+> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> @@ -447,7 +447,7 @@ static unsigned long adsp_panic(struct rproc *rproc)
+>         return qcom_q6v5_panic(&adsp->q6v5);
+>  }
 >
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> ---
+> -static const struct rproc_ops adsp_ops = {
+> +static struct rproc_ops adsp_ops = {
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+This is sad.
+
+>         .start = adsp_start,
+>         .stop = adsp_stop,
+>         .da_to_va = adsp_da_to_va,
+> @@ -590,6 +590,9 @@ static int adsp_probe(struct platform_device *pdev)
+>                 return ret;
+>         }
+>
+> +       if (desc->has_iommu)
+> +               adsp_ops.parse_fw = rproc_elf_load_rsc_table;
+> +
+
+Why not have two different set of ops so that the function pointer table
+can't be hijacked? One for the parse_fw callback? Or simply return from
+rproc_elf_load_rsc_table() when has_iommu is false?
+
+>         rproc = rproc_alloc(&pdev->dev, pdev->name, &adsp_ops,
