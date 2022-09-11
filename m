@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D5EE5B4F14
-	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 15:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EECCD5B4F17
+	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 15:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230136AbiIKNev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 09:34:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
+        id S230253AbiIKNfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 09:35:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229981AbiIKNet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 09:34:49 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ACCE13EBD
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:34:46 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id f9so9942733lfr.3
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:34:46 -0700 (PDT)
+        with ESMTP id S230353AbiIKNfQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 09:35:16 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436C324085
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:35:14 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id u18so10668594lfo.8
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:35:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=wctNSXNbMq1vwHivguPTh0Fiiygf6p6HSq32K97qKig=;
-        b=ACjGbNo2nFAOSs8ADfceCgCv47HpBNYHrjK1k1nTaPSqt49MT3AQjtASUpKyN+td47
-         cbG8KD2ekdI1Njx1RkC4slaOPjzLsaI+WPICNF6FwM3zK4SduCFqM5i0j79OFoFwTiGu
-         W4dZUw387LoTe/OJWbe2KKn9lStbMpApbdddTo8ycNzRdST+fAY1RxipMWX0Z7PrhyZw
-         BoYKMVwH2QIHiOGEjhFFkbJPxpadO0VlTZeObNzyRLgNnRMOurp7ucYql02n5xyHkDNB
-         jpPiEBu6dQiHNZ9g4beGYaFQyCFhRBFzn0iL5YECE8FZ7F2cTbXlazRXhk2ecKMBkn+4
-         TqBw==
+        bh=QlVRgO/cxLzkQMXlTq+j27uwBVDl70ffY/8cBjcxA7o=;
+        b=J54BrCgxF4HVfOhDGi30ygpf0pUi3CG1IwNZTXXn7aL4skdmFnlp8WPUWiBNX0Fu2b
+         0If6k6Q5p1FHayfINaA4DoshW4hQ7S6ynyXRP/R94I8BXnaIG87G1r9s14YQqJDr5Nf/
+         NOIRRsP+KZ17cQ2cRfZ00X3AOO7JTysmll93g6i4a7u/Are18m+oPb+rpMdVYa/xh8Wi
+         3aejEEUcLsO1Jkp9/N9okSom9cESnjsXgeXPxDZB/r453KAeo84AqBtKE0/snWa1R545
+         LSrdUp1+rTJHnpr2OD6C/dEZcvhNma2gx9B+heDAMt/In5wIDFzYt+35ZS5wuT+eixFX
+         Izyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=wctNSXNbMq1vwHivguPTh0Fiiygf6p6HSq32K97qKig=;
-        b=5Zq5g5C6dXKtAUuhaw6eToJDFR5B4S5wea+QRinGciA8ooguctfmN2Es/k57xei7LY
-         XA3JSfa7/fjzf1X6oyXE+sz80q6WyuQzj8RD1A9iq9sQ9Gdd9tLrGTyR4+fHYAifRZqk
-         SHitw/QidneXiSQh0KgHz1n25DCIq4u+t1wueY4H7hmOIOtgpVe4MHm9md16H/udh5Qg
-         nR2C7DzfZPrgXeLSkoXX/AR0/4JbVNSQ02ZJIkiKQJHY+GuYr5I25tcGhXXR5WvQktF8
-         WzaMRMO6NeuU/p2iVi+E0avAE/5dWDfb+KIbtkEp2FvjOrcMdGPq6vTP1IpIp7GMkAhP
-         iQAA==
-X-Gm-Message-State: ACgBeo3gSFdaHvZyHAeCj2lqOl2iIiNB/aaTShDV50JU1A4Oyzk9wtlZ
-        tt6WaOlAVF+Od/L2j5eingX+JQ==
-X-Google-Smtp-Source: AA6agR6Thu5GlYp/fIo0gdu4ChNB+/s/q23ujBMXgqZNrzL3hCAe49WPkEQzgjVBAMD3CBKpWyHjfw==
-X-Received: by 2002:ac2:44ca:0:b0:499:b6ff:bc75 with SMTP id d10-20020ac244ca000000b00499b6ffbc75mr2249105lfm.233.1662903284712;
-        Sun, 11 Sep 2022 06:34:44 -0700 (PDT)
+        bh=QlVRgO/cxLzkQMXlTq+j27uwBVDl70ffY/8cBjcxA7o=;
+        b=4Am1jcNN+pM6omX15wCjGnTRW4zJRnrVuPcDBtBx8AcwI+cyB7GtwA8fuwb46XRSvv
+         uVa/NRLHGLZ7+l5J1c6fpYUQuqDPDJRkwjAjGipQCLiLDVDlhTdiDz9i+UyDpsWq7sKG
+         4L5Xs7irTEgPGYg+dz9PHxRmP6e69jyTDXuL8c8Ltu4ERji620HB2tVjQyuXfsZMH8zE
+         4TxwaaFTmZ6HmFRSlrhQ2tlqtV/xJ1y7/78Z5DrPSM9OWG7RTdFYROywmW/rW/Hgc8B6
+         8Dx8HLfpI8wVsjrjnX6aTUfGAIBwQn7Bi+IG1KylvClikAanF1i1HLZxZjgjIX/5cSJm
+         ShHg==
+X-Gm-Message-State: ACgBeo2l761Qm+pwJF1b36vIJPyffB8nJzrQDEyFvC9BahSru4UQ6A7X
+        fQ0KKRMDDb5zb0A2IkUDImZox1wfRvp+sw==
+X-Google-Smtp-Source: AA6agR61CK8CK9Swd5vV7gek3vz+DGp2FC0Jgm0BFfEyQtU9+TQN+EcHbpzoO7UZssxwhl2LR9uQfQ==
+X-Received: by 2002:ac2:5107:0:b0:497:adac:7305 with SMTP id q7-20020ac25107000000b00497adac7305mr6451873lfb.32.1662903312669;
+        Sun, 11 Sep 2022 06:35:12 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a21-20020a19ca15000000b00494b2d8030fsm610018lfg.177.2022.09.11.06.34.43
+        by smtp.gmail.com with ESMTPSA id u13-20020a056512128d00b0048b256bb005sm618836lfs.49.2022.09.11.06.35.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Sep 2022 06:34:43 -0700 (PDT)
-Message-ID: <45d1de3c-6bf4-571b-58db-b65c8ffce061@linaro.org>
-Date:   Sun, 11 Sep 2022 15:34:43 +0200
+        Sun, 11 Sep 2022 06:35:11 -0700 (PDT)
+Message-ID: <9c7b977c-841b-68d1-505c-3dfaf86ad9bc@linaro.org>
+Date:   Sun, 11 Sep 2022 15:35:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: Mark old binding
- qcom,cpu-lpass-apq8016 as deprecated
+Subject: Re: [PATCH v9 3/4] dt-bindings: hwmon: Add bindings for max31760
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, robh+dt@kernel.org,
-        agross@kernel.org, devicetree@vger.kernel.org,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20220910014206.1101962-1-bryan.odonoghue@linaro.org>
- <20220910014206.1101962-2-bryan.odonoghue@linaro.org>
- <1662821635.164850.34696.nullmailer@robh.at.kernel.org>
- <ee9f1ba2-cc53-beeb-7f96-5d1097f8e2e7@linaro.org>
+To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, jdelvare@suse.com,
+        linux@roeck-us.net
+Cc:     linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220910171945.48088-1-Ibrahim.Tilki@analog.com>
+ <20220910171945.48088-4-Ibrahim.Tilki@analog.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ee9f1ba2-cc53-beeb-7f96-5d1097f8e2e7@linaro.org>
+In-Reply-To: <20220910171945.48088-4-Ibrahim.Tilki@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,20 +77,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2022 19:22, Bryan O'Donoghue wrote:
-> Bah, you were right.
+On 10/09/2022 19:19, Ibrahim Tilki wrote:
+> Adding bindings for Analog Devices MAX31760 Fan-Speed Controller
 > 
-> I didn't see this in the noise generated by the tool
-> 
-> /home/deckard/Development/qualcomm/qlt-kernel/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml:23:9: 
-> [warning] wrong indentation: expected 10 but found 8 (indentation)
-> 
-> Is there some way to slim the output down to just the yaml file I am 
-> interested in ?
-> 
-> Dmitry submitted a patch for this at some stage I think
+> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> ---
+>  .../bindings/hwmon/adi,max31760.yaml          | 42 +++++++++++++++++++
 
-It's since long time and documented in writing-schema.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
