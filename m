@@ -2,68 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8551E5B51C8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 01:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 536035B5211
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 02:01:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiIKXIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 19:08:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52146 "EHLO
+        id S229536AbiILABr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 20:01:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbiIKXIK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 19:08:10 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA14723143
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 16:08:08 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id az6so6028769wmb.4
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 16:08:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=03VzagkjLOZMZXtX4Iqh7uQQRbS04IHPhXkVjGsWCh0=;
-        b=Kt8AT3oioPTuhpIZvqFKzPhuTeW1M3VUZsrHAJQl2NJaPZ/kjD9A+Bz+/eFfxYjN46
-         MRgNrNh8b8TOaaKIS5Lq1foX9fFum0FOQGVv8xAwmKUQtDMmBtV0/VSD39+++LEtyEqb
-         RnuZ3xQ9XX77Sq43sC7BsiKa8yKBO/Y2pfzXnYrZF8nuO8lnucsUGCwVxrr9PHee9tGp
-         GmbqTv2/gCbNd0BKV16E+sT6tTYSI5lABVSWpkOZPqSdotx3kTtl7SoCz3wjAkK+Cvh7
-         /C/wt7XH6pBbb7O441uzkbG69P52DycKUTtklqMhxJjLzaBS4l+ICDcXcLFt9ov1r+gb
-         8VFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=03VzagkjLOZMZXtX4Iqh7uQQRbS04IHPhXkVjGsWCh0=;
-        b=A+jrIcmrjnBDUrTZn5XSjQE1AFyFail4xvDQvDh3h5n6yDFpvKxMCo1NienWcFAi5s
-         xCFDdMDMUJJV49CCrM/YynPNwOPktONB0DMZpo9hHIqzY2K0d89xhsakU6D+/XZ5olNl
-         kkxZH7CMSWJDZgU20ExuViN+VWG8xrPrvTrkTyjhJJ4B4GjpKf/W9PAwVWdOql7dE2wE
-         q6F4/3enIKmx38bEJvf2fwlKUhM3Dug6XOJsOXoVancojcuB1OwN0i9sCaRDwuWQ6QcY
-         7Ss9HnkLOZFQ0Sv7h/zE+ptfwje9wAf/x5JhEgkzkAbjVguR0GjdTxcorxSoE1jIaMiR
-         TlDA==
-X-Gm-Message-State: ACgBeo2MTgmlkB2/dvByStFql8rENe+LfsZcmmicVGTCq++FRAIohUNF
-        8vDSX9NW8EcQIJpzfipKYMWG7A==
-X-Google-Smtp-Source: AA6agR7leoxxs5UHvMoKjSI+IgV1IfyQiK6YNBZYUt0YGqWG8VKPufew1vG1OE+FHkntf9DXjUp2vA==
-X-Received: by 2002:a05:600c:35d0:b0:3a8:3f16:2c38 with SMTP id r16-20020a05600c35d000b003a83f162c38mr12579508wmq.162.1662937687288;
-        Sun, 11 Sep 2022 16:08:07 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id h11-20020adff18b000000b00228daaa84aesm5780656wro.25.2022.09.11.16.08.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Sep 2022 16:08:06 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     bryan.odonoghue@linaro.org
-Subject: [PATCH v3] ASoC: dt-bindings: Mark old binding qcom,cpu-lpass-apq8016 as deprecated
-Date:   Mon, 12 Sep 2022 00:08:03 +0100
-Message-Id: <20220911230803.1286202-2-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220911230803.1286202-1-bryan.odonoghue@linaro.org>
-References: <20220911230803.1286202-1-bryan.odonoghue@linaro.org>
+        with ESMTP id S229498AbiILABp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 20:01:45 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E98691F2E7;
+        Sun, 11 Sep 2022 17:01:43 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB9A9113E;
+        Sun, 11 Sep 2022 17:01:49 -0700 (PDT)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AC5713F73B;
+        Sun, 11 Sep 2022 17:01:40 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, Karl Kurbjun <karl.os@veroson.com>,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: [PATCH 0/7] arm64: sunxi: h616: Add USB support
+Date:   Mon, 12 Sep 2022 00:59:38 +0100
+Message-Id: <20220911235945.6635-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,41 +48,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We've had some discongruity in the compatible string of the lpass for 8916
-for a while.
+The USB IP used in the Allwinner H616 SoC is very similar to the one
+used in the H3 chip: it contains four USB 2.0 host controllers and four
+PHYs, where the first PHY is shared with a separate USB-OTG controller.
 
-Mark the old compat as deprecated. New SoC additions such as msm8936 and
-msm8939 should use the compat string "qcom,apq8016-lpass-cpu".
+But out of the four ports, only port 2 works out of the box, the other
+ports require some resources and registers of port 2 to be enabled as
+well.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../devicetree/bindings/sound/qcom,lpass-cpu.yaml   | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+Implement the required workaround in the Allwinner USB PHY driver, and
+key this off the respective compatible string. This core code is
+contained in patch 3/7. The first two patches add the respective DT
+binding documentation, whereas patch 4/7 encodes all the configuration
+options for the H616 USB PHY into the driver.
+The last three patches add the respective devicetree nodes, to the H616
+.dtsi, but also to the DTs of the two supported boards.
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-index ef18a572a1ff3..fb39875c6ec7e 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-@@ -18,11 +18,14 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - qcom,lpass-cpu
--      - qcom,apq8016-lpass-cpu
--      - qcom,sc7180-lpass-cpu
--      - qcom,sc7280-lpass-cpu
-+    oneOf:
-+      - enum:
-+          - qcom,lpass-cpu
-+          - qcom,apq8016-lpass-cpu
-+          - qcom,sc7180-lpass-cpu
-+          - qcom,sc7280-lpass-cpu
-+      - const: qcom,lpass-cpu-apq8016
-+        deprecated: true
- 
-   reg:
-     minItems: 1
+This allows USB to be used on any H616 based machine. This was tested on
+the X96 Mate box.
+
+This series is an update on what was included in earlier versions of the
+initial H616 support series, but was later dropped to get the basic
+support in first more quickly.
+It is now based on v6.0-rc4 and is also available here:
+https://github.com/apritzel/linux/commits/h616-usb
+
+Please have a look and test on your hardware, especically on all ports
+exposed on header pins of the OrangePi Zero2 board.
+
+Cheers,
+Andre
+
+Andre Przywara (7):
+  dt-bindings: usb: Add H616 compatible string
+  dt-bindings: usb: Add special clock for Allwinner H616 PHY
+  phy: sun4i-usb: Introduce port2 SIDDQ quirk
+  phy: sun4i-usb: Add support for the H616 USB PHY
+  arm64: dts: allwinner: h616: Add USB nodes
+  arm64: dts: allwinner: h616: OrangePi Zero 2: Add USB nodes
+  arm64: dts: allwinner: h616: X96 Mate: Add USB nodes
+
+ .../phy/allwinner,sun8i-h3-usb-phy.yaml       |  19 +++
+ .../devicetree/bindings/usb/generic-ehci.yaml |   1 +
+ .../devicetree/bindings/usb/generic-ohci.yaml |   1 +
+ .../allwinner/sun50i-h616-orangepi-zero2.dts  |  42 +++++
+ .../dts/allwinner/sun50i-h616-x96-mate.dts    |  25 +++
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 160 ++++++++++++++++++
+ drivers/phy/allwinner/phy-sun4i-usb.c         |  71 ++++++++
+ 7 files changed, 319 insertions(+)
+
 -- 
-2.37.3
+2.35.3
 
