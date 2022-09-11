@@ -2,68 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08AF15B4F0F
-	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 15:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D5EE5B4F14
+	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 15:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229727AbiIKNdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 09:33:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48088 "EHLO
+        id S230136AbiIKNev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 09:34:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229816AbiIKNdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 09:33:19 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C0F2CE3C
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:33:18 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id a14so5504250ljj.8
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:33:17 -0700 (PDT)
+        with ESMTP id S229981AbiIKNet (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 09:34:49 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ACCE13EBD
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:34:46 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id f9so9942733lfr.3
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:34:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=1sv+9GxZvTQ6143OU1z3a5G2/CCtID2mF5c13ibNQWk=;
-        b=r4ivx5eUaC7hZcbI49hnJCtaTwlnzOAksk2x6q5NpjBXXyPnSbEKAo4qgQPEMQNGut
-         Wh8iWJ84mLw+M0eURiyatCIrakY3JPIkiJQLpYQrr2z8XPIfs25m6iJ/rWJf3yhRUD1l
-         HxixAOJ0nw+zWo0LpeacuEf2EMlGbDab76MT+RVS5ezYXWMb19ojwpCMGwY5skCEARXt
-         eDZoMjE1Ql0mYpBfnHjVhW0Ed2KuNWGufSL38U8pceJjYsemya6xxEIj3EnxIE/fDH3c
-         oA5+Ua1WEutIscLTz9YKEJLGaLy5qN+rTwxY7vX/mMu345C/ihDH7MRX9dR/VQ58txpI
-         CqPw==
+        bh=wctNSXNbMq1vwHivguPTh0Fiiygf6p6HSq32K97qKig=;
+        b=ACjGbNo2nFAOSs8ADfceCgCv47HpBNYHrjK1k1nTaPSqt49MT3AQjtASUpKyN+td47
+         cbG8KD2ekdI1Njx1RkC4slaOPjzLsaI+WPICNF6FwM3zK4SduCFqM5i0j79OFoFwTiGu
+         W4dZUw387LoTe/OJWbe2KKn9lStbMpApbdddTo8ycNzRdST+fAY1RxipMWX0Z7PrhyZw
+         BoYKMVwH2QIHiOGEjhFFkbJPxpadO0VlTZeObNzyRLgNnRMOurp7ucYql02n5xyHkDNB
+         jpPiEBu6dQiHNZ9g4beGYaFQyCFhRBFzn0iL5YECE8FZ7F2cTbXlazRXhk2ecKMBkn+4
+         TqBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=1sv+9GxZvTQ6143OU1z3a5G2/CCtID2mF5c13ibNQWk=;
-        b=wfiMBLpR+uHVzl3d14qwPePXFuCd0MbXiOE2rrgb9wszNB8uIwudkTlGMxcsRL7Joj
-         OEIrTEcU3MZLkLESb0/EbLVh1Zi6iqMg+0LuShKayYkoEEsmDPogJolVIwEIQ6SE0FPb
-         nFeS3/guKCtFwEX5f/mh5njVNHqjaeTAqIzvFwYH/73OKWhlhgTjpeHGNR3pfis5Lzqy
-         d0gYAtWZOfBBmrQfNATrEb9uLqTxsdAP+obtyB510LqNY+epFOV07jKGAklwJmeOvBS7
-         cMhCSnaTl6GEtVLAZfIKzCNIgqEGVDwI5ZUM2iOIt5ATvw/oUSDlSNFwiVykADeKQ4Fh
-         II6Q==
-X-Gm-Message-State: ACgBeo00gTNl4k2/X6gPjDkMkghKoHY8u1KGnwDxCoJRrXf8dwB6p0Xg
-        BdVxJp+3wpHa/5Em4ZCZDMa/zw==
-X-Google-Smtp-Source: AA6agR5Tp89RJwNg77XkaWI6yk1Ms0Wp2i4w7/5dpQXI9Ww266DQD8DU98lSjmZiJz5yPRHVlZZDXA==
-X-Received: by 2002:a2e:7201:0:b0:26b:dd49:721b with SMTP id n1-20020a2e7201000000b0026bdd49721bmr4383261ljc.509.1662903196477;
-        Sun, 11 Sep 2022 06:33:16 -0700 (PDT)
+        bh=wctNSXNbMq1vwHivguPTh0Fiiygf6p6HSq32K97qKig=;
+        b=5Zq5g5C6dXKtAUuhaw6eToJDFR5B4S5wea+QRinGciA8ooguctfmN2Es/k57xei7LY
+         XA3JSfa7/fjzf1X6oyXE+sz80q6WyuQzj8RD1A9iq9sQ9Gdd9tLrGTyR4+fHYAifRZqk
+         SHitw/QidneXiSQh0KgHz1n25DCIq4u+t1wueY4H7hmOIOtgpVe4MHm9md16H/udh5Qg
+         nR2C7DzfZPrgXeLSkoXX/AR0/4JbVNSQ02ZJIkiKQJHY+GuYr5I25tcGhXXR5WvQktF8
+         WzaMRMO6NeuU/p2iVi+E0avAE/5dWDfb+KIbtkEp2FvjOrcMdGPq6vTP1IpIp7GMkAhP
+         iQAA==
+X-Gm-Message-State: ACgBeo3gSFdaHvZyHAeCj2lqOl2iIiNB/aaTShDV50JU1A4Oyzk9wtlZ
+        tt6WaOlAVF+Od/L2j5eingX+JQ==
+X-Google-Smtp-Source: AA6agR6Thu5GlYp/fIo0gdu4ChNB+/s/q23ujBMXgqZNrzL3hCAe49WPkEQzgjVBAMD3CBKpWyHjfw==
+X-Received: by 2002:ac2:44ca:0:b0:499:b6ff:bc75 with SMTP id d10-20020ac244ca000000b00499b6ffbc75mr2249105lfm.233.1662903284712;
+        Sun, 11 Sep 2022 06:34:44 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b15-20020a2eb90f000000b00261e7244887sm653164ljb.60.2022.09.11.06.33.15
+        by smtp.gmail.com with ESMTPSA id a21-20020a19ca15000000b00494b2d8030fsm610018lfg.177.2022.09.11.06.34.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Sep 2022 06:33:15 -0700 (PDT)
-Message-ID: <94a1dbec-c59a-5feb-3df3-6f4fb90eefe1@linaro.org>
-Date:   Sun, 11 Sep 2022 15:33:14 +0200
+        Sun, 11 Sep 2022 06:34:43 -0700 (PDT)
+Message-ID: <45d1de3c-6bf4-571b-58db-b65c8ffce061@linaro.org>
+Date:   Sun, 11 Sep 2022 15:34:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v1] dt-bindings: spi: rockchip: add power-domains property
+Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: Mark old binding
+ qcom,cpu-lpass-apq8016 as deprecated
 Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>, broonie@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <64d03f6e-c578-3155-e3fb-53dbe53573eb@gmail.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, robh+dt@kernel.org,
+        agross@kernel.org, devicetree@vger.kernel.org,
+        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20220910014206.1101962-1-bryan.odonoghue@linaro.org>
+ <20220910014206.1101962-2-bryan.odonoghue@linaro.org>
+ <1662821635.164850.34696.nullmailer@robh.at.kernel.org>
+ <ee9f1ba2-cc53-beeb-7f96-5d1097f8e2e7@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <64d03f6e-c578-3155-e3fb-53dbe53573eb@gmail.com>
+In-Reply-To: <ee9f1ba2-cc53-beeb-7f96-5d1097f8e2e7@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,15 +80,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2022 20:56, Johan Jonker wrote:
-> The Rockchip rk3399 TRM mentions that pd_sdioaudio includes
-> sdio, spi, i2s and spdif. Add a power-domains property to
-> reduce notifications with spi-rockchip.yaml.
+On 10/09/2022 19:22, Bryan O'Donoghue wrote:
+> Bah, you were right.
+> 
+> I didn't see this in the noise generated by the tool
+> 
+> /home/deckard/Development/qualcomm/qlt-kernel/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml:23:9: 
+> [warning] wrong indentation: expected 10 but found 8 (indentation)
+> 
+> Is there some way to slim the output down to just the yaml file I am 
+> interested in ?
+> 
+> Dmitry submitted a patch for this at some stage I think
 
-Drop the last sentence - there are no notifications. Just write bindings
-to match reality (hardware).
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It's since long time and documented in writing-schema.
 
 Best regards,
 Krzysztof
