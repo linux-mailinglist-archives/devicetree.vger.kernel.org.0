@@ -2,93 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A221E5B4F3B
-	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 15:57:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D8395B4F64
+	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 16:15:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230241AbiIKN5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 09:57:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47814 "EHLO
+        id S230404AbiIKOPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 10:15:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230294AbiIKN5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 09:57:31 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A7C832D83
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:57:30 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id bt10so10768966lfb.1
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:57:30 -0700 (PDT)
+        with ESMTP id S230345AbiIKOO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 10:14:59 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75041DF8C
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 07:14:57 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id r12so6132521ljg.10
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 07:14:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=sUy2r7OpYbVTxjP66h3aOfUcbCczz3Xb2QL907aFIfY=;
-        b=EeEQNO20u/AcC8mN1VXzTnmX4WBQlRAKnxPq0MFZyt6FjMvOtn61bEaHA3Ql1a87DO
-         hQ0L0yl1Z5BZ+RQvJ+gAhBK2YRSZANff6Yc76SMzARAE9ef2IOg8WZUkLrEIjvWfdH0h
-         g46zfTFzuwyeeToN/o+JSLgxk0QmCfbm01PYtWXUhvME4sAXg+Mbm70tUpeSCyyyEO4D
-         rpr8+1gF7e1XO2SvCYDEpGqbwGPvtqfcQw11+Jcf7py3rJXV0Qm6DyVO3mvLeBWLL+5q
-         Y9UqhYLR/CeIhOsOMd1IP05kCq/nfMjPOV/tocyCjb2jxqOoB/lGyjAELH8oJSUCfGj1
-         Lyfg==
+        bh=ddlxEjUCTa5p+PAW4T51jeoxEb5xm1//QtVZS2B2ZgI=;
+        b=Pm5lgItTseorDVzE7EcLBSIE7xajSLwpFiaQ7ZXfo/QmOGxopfTWQiCuzwkc5Vee5n
+         hYqVXFbIFAxcKLG8SKRBEzvjCblPH0Em4s0y3JyZN/7qHdE8sH12SsLjtMYPfZloGC9H
+         r2TXYqW6LvWmJSLNFuPo4Wt2WXUuA78oOJ78yE5B/xgjE4bsW7nLG/ZAuxcA+0QL5feZ
+         zV9ou4IIxW7ZdOrVRQFlIZDyjn4pYiQKysTmnzxGInc4d3JgIYfHEFIrLkErn7wOZSjV
+         b9PBLy11MqGtddV6ZnyNFN7dPnbFtHyyDRiNOJSJSzCT7L/V4YPWNLyqq94x5304S+SG
+         lbIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=sUy2r7OpYbVTxjP66h3aOfUcbCczz3Xb2QL907aFIfY=;
-        b=1kGmB46EkxERkpN0vgomSWsM1MjhSwC8EAPgH5K5/33zGG2dbOdIXk0tRaWaUtCYJc
-         n/sU138sUK/W6NxSNhXDzCZ/3FpdHqyy9jlVQ+FPdghvMISyhdzAKtJD+nwp5Yhicqhr
-         IDZ+qVTX/4r3cFeQjK+aTy8o09ltIzxI64O2uDTSqqDFnIP0ieyggzqFJq0GAoFYMDi8
-         4q7bxilb7ST+2uwdbt5xXMVAZD83jh4IV+hvdcTLUyTtwHEXVx5onKl8xJPFCS9P2nOl
-         G+bpR9xgMoIJnSL2j/yH/IaYTmNjZoKurvj1ChPOQW/tSmbioIY/R0CcYILlxOEOi00N
-         J2EQ==
-X-Gm-Message-State: ACgBeo2LKOuSlW5rNi07kOni+qR8SH8TZ8s21apeJtnTqd2SqNCvl7oT
-        Nsiem/tgHW289chXsWTSIS8WYw==
-X-Google-Smtp-Source: AA6agR6k3QkKGyQsoo4V+rbvrB3g6fJSbouAlVs4pVeVAPh5/JHC7Aw11e1/EuJMHp+jP5VGi1CLMA==
-X-Received: by 2002:a19:5505:0:b0:497:ad71:39f4 with SMTP id n5-20020a195505000000b00497ad7139f4mr6224530lfe.226.1662904648482;
-        Sun, 11 Sep 2022 06:57:28 -0700 (PDT)
+        bh=ddlxEjUCTa5p+PAW4T51jeoxEb5xm1//QtVZS2B2ZgI=;
+        b=tRzMDDh88WpRECUo52YQEy7+3wPNcBxCGTt/OgO6fjQ2CKJDueGEUWvbyewvyg8DlF
+         Iu6Lv+ohpPaMDf5sIB9vAsojlJHMcpjgJ0yucWC4U8VOVWgnp2/dZYUqm47EbWnz0ANw
+         AlfwNUxWQy69kLCU7CQEobfLb8xpevady+aiad2RiBvNkXBRwcJK0gtOiVBy0SCqgqeh
+         wZaFonNUJcHS4QjcQQF+knVbJmh0pZbp5g4/7OwKjdFIj+L3Ze5sDgG4zij1TxHmJ1Wx
+         jSGqlKq9A0/t+CjBbHQsplnH6KWGZ6E/IcE2Kj0kYkDBFiSugBkLkS5DPXwnNfQ7vqKh
+         H9Ug==
+X-Gm-Message-State: ACgBeo1Syh2wIWs4PcpXjWoMalQSJoYlRLr1LPNW8WOhyo7dJqLI1gLm
+        KYTxHaZcCRhL6DlT/ZKqcZ5TAA==
+X-Google-Smtp-Source: AA6agR6/WvcfCz+aB6nzGKHOQzd/f18YPvf0ok5/H1DGcGun+eLMBpR7AZ8TZeI7MuUlFXNCufiC2Q==
+X-Received: by 2002:a2e:9b91:0:b0:26a:ce59:c517 with SMTP id z17-20020a2e9b91000000b0026ace59c517mr6117571lji.181.1662905695793;
+        Sun, 11 Sep 2022 07:14:55 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o5-20020ac25e25000000b00492b0d23d24sm615623lfg.247.2022.09.11.06.57.27
+        by smtp.gmail.com with ESMTPSA id c9-20020ac25309000000b0049488c97d39sm617989lfh.212.2022.09.11.07.14.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Sep 2022 06:57:27 -0700 (PDT)
-Message-ID: <f013accb-96f7-a025-1d41-e2e97f8b2aa8@linaro.org>
-Date:   Sun, 11 Sep 2022 15:57:26 +0200
+        Sun, 11 Sep 2022 07:14:55 -0700 (PDT)
+Message-ID: <11e61fa5-f770-9c9f-23b9-3d1dcb205bc5@linaro.org>
+Date:   Sun, 11 Sep 2022 16:14:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v6 01/12] dt-bindings: display/msm: split qcom,mdss
- bindings
+Subject: Re: [PATCH] dt-bindings: pci: qcom,pcie-ep: correct qcom,perst-regs
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
- <20220901102312.2005553-2-dmitry.baryshkov@linaro.org>
- <3e525135-d205-eddc-ff2d-98c8321386e3@linaro.org>
- <20220908193705.GA3002673-robh@kernel.org>
- <1ebe64a3-fab9-1dd7-517a-01001a176d9f@linaro.org>
- <CAL_JsqLkV_fnUnc4cS=cdTvP3rKYAS011_+KZYiBGhXDx-pHnA@mail.gmail.com>
- <2204eab4-b22d-8ee7-4595-49139cb387a8@linaro.org>
- <CAA8EJpqHL-gO=zSG6Ek=-y4njGF5R66z0MwLeKZ9U4Ag1j51Og@mail.gmail.com>
- <e7a132e7-a819-ebe2-e6e5-c01cbfacef15@linaro.org>
- <CAA8EJpoPPRAQPfVQmSfrrDrroMp0bzvJ=-vHMRx72aKTBgPOTA@mail.gmail.com>
+        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+References: <20220911135547.23106-1-krzysztof.kozlowski@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJpoPPRAQPfVQmSfrrDrroMp0bzvJ=-vHMRx72aKTBgPOTA@mail.gmail.com>
+In-Reply-To: <20220911135547.23106-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,31 +81,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2022 15:45, Dmitry Baryshkov wrote:
-> On Sun, 11 Sept 2022 at 14:27, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 10/09/2022 14:54, Dmitry Baryshkov wrote:
->>>>
->>>> However I think there is no such problem, as Dmitry said, that ref
->>>> changes anything. There will be always failure - either from parent
->>>> schema (using $ref) or from device child schema (the one which actually
->>>> misses the property).
->>>
->>> Initially I stumbled upon this issue with the dsi and dsi_phy nodes
->>> for msm8996 devices. If I have $ref here, dsi1/dsi1_phy nodes will
->>> emit warnings regarding the missing -supply properties despite nodes
->>> being disabled. If I use `compatible' here, the schema checks pass.
->>> Thus I'd prefer to leave `compatible' here. Not to mention that it
->>> also allows specifying a tighter binding than just using the $ref.
->>
->> I don't think we understood each other. I claim that error will be there
->> anyway, just from different schema. So your change fixes nothing in
->> total schema check...
+On 11/09/2022 15:55, Krzysztof Kozlowski wrote:
+> qcom,perst-regs is an phandle array of one item with a phandle and its
+> arguments.
 > 
-> If the node is disabled, there will be no different schema check.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> index 3d23599e5e91..077e002b07d3 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> @@ -60,8 +60,10 @@ properties:
+>                   enable registers
+>      $ref: "/schemas/types.yaml#/definitions/phandle-array"
+>      items:
+> -      minItems: 3
+> -      maxItems: 3
+> +      - items:
+> +          - description: Syscon to TCSR system registers
+> +          - description: Perst enable offset
+> +          - description: Perst separateion enable offset
 
-As I wrote before, there was.
+Unfortunately this still complains:
+
+qcom-sdx55-t55.dtb: pcie-ep@40000000: qcom,perst-regs:0: [28] is too short
+
+
+where 28 is the phandle...
+
 
 Best regards,
 Krzysztof
