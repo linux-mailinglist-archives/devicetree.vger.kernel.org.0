@@ -2,115 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CFC55B50D7
-	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 21:19:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0B315B50F9
+	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 22:02:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbiIKTTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 15:19:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37780 "EHLO
+        id S229573AbiIKUCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 16:02:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbiIKTTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 15:19:39 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13C5838A1
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 12:19:37 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id k10so11539565lfm.4
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 12:19:36 -0700 (PDT)
+        with ESMTP id S229488AbiIKUCH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 16:02:07 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3A1521E1B;
+        Sun, 11 Sep 2022 13:02:05 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id z25so11667079lfr.2;
+        Sun, 11 Sep 2022 13:02:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=apzG3xku8I3ZdvmAyq4e50tGVV+Ky/wz//4vHO1DJgc=;
-        b=uHlWNh9ubEWHL2dHypDQKfqR1vRoY/u3L3VnE52MFf9bJn5LGd5ehhYXJt4m/PlbkA
-         CtfIVcb3pu57WkiF8DjEesF+PUeUqeqypzKQv9x/xL0alQnOgPA6+9E6iMqbuzmIP/vR
-         hpc0sh2T/OoVBKPl6RqUDE2cYXhJOVZ5Yl37F103A5WJxwE+lAY/EpDBLvt8uaHYVx4c
-         ZBp4gmvoNaCkEVgaBlB3H1Om6APfYRccQwZvrjsdULChjMmqfF6ECNwGKTElkN0m3jbF
-         XUx1Zth+D30LLZucO386T9b+3KJF6q1A5w7HnBpc39zXCVtUOu4NBN0ZeVCXnqoRWfj0
-         UM1g==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=ODiSAz5GoDVvEflUs4cY+E/qyFEeIR8p4OfDGwfDUCY=;
+        b=HNby4CKdwe0H6mSOnSLSeDGZhbyv4b733JpQnS/jeUcEgeGf6FAY0m9Pv67i43ZPKZ
+         QfVegvJ5+cfa5AdittxB/W/WDD/CAK0zDgJdLvkSHD8QswJOMeoLqor7DOB2WddhoocE
+         j12sBZo8RT6idgKLBIS7UOunFeVp7ae/9FCZRc/sTz4ippP3uKhwOjVG1oxjlmAI2/Pf
+         ekl+z75k4Lr3GCeMg/7OaDo0cZNTKPG948xszXwTu8lOt3DaNI/OhuiElrSwdwjJAYEB
+         sJqCdRK+Ue6Cj69SKZaKJGnL//YJSySn0m1i5gay492FCHm5O5zOw3qjp9jfYcBjGwkf
+         UtYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=apzG3xku8I3ZdvmAyq4e50tGVV+Ky/wz//4vHO1DJgc=;
-        b=kFL07P9zOKf2S/Iy3EB6izjyyOezYT9wj1yFOiW1PLOiTkvbyVRGi1PL+ngAUi0Wjs
-         A5Ao/29s+VwEQdBhQrPd2mHtY0m0SphJpBV1Y9z1vEET/IRqp3NiPI9R/ZduMDaNwLDm
-         pW1yilVpZCmqeCvK+05mSBP72Ty7wNF0ivPdXKuo/LAm4qYI62Ge09JcWZ4EfjsnqVHL
-         ZiVlmeqkTHs43SrZyD0eVG8cZ5kR/LI0OE4GKTHBO6+1F5U+MzE/tNFdtFM/K+vnr4mZ
-         prSB7cjN/iHcxXK4FMNu4noF3DMkIgMeQgNx5L/OjL1Hw+D2uR/wfEQgMg5ntGvWhurO
-         PkxA==
-X-Gm-Message-State: ACgBeo06twKQ0ptb00nwdz4Vy0hFZwZ3ak3axRQw9oaaZ7S3qpHb3vUB
-        L7SaucTFGDaTk3vaIDcXzph8UQ==
-X-Google-Smtp-Source: AA6agR7HkDM6NL+ZQ3n6KFtN5GzDUUVIGgl3PFqUw1Fy7FX4FxHrVRhX6lvmxFhkZYmEKyoUD/zzow==
-X-Received: by 2002:a05:6512:15a5:b0:49a:84f4:9284 with SMTP id bp37-20020a05651215a500b0049a84f49284mr1115466lfb.477.1662923975359;
-        Sun, 11 Sep 2022 12:19:35 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h6-20020ac25966000000b004949ea5480fsm703756lfp.97.2022.09.11.12.19.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Sep 2022 12:19:34 -0700 (PDT)
-Message-ID: <2b4ab827-28aa-5e3f-951a-0bf43d1eb7b9@linaro.org>
-Date:   Sun, 11 Sep 2022 21:19:28 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v6 01/12] dt-bindings: display/msm: split qcom,mdss
- bindings
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=ODiSAz5GoDVvEflUs4cY+E/qyFEeIR8p4OfDGwfDUCY=;
+        b=gTclPz+B06ENFHY9zelAM9kh/7AUkfZCvEpORUIJM3Xg18FOE1V+P79S979L5WSepv
+         2lUyVJHxfbCn/+dgG3Gv21OIWkZgW4z5V4cYZt9zpEHIHLJUBCUjCXTdvTkP1fhkw9q7
+         aTBKMnDJopdmxzy18T4M0dk6PsMqkTZxDYyFyAbJpgKXhVRzTe5RihGW9QDHkfIEqw27
+         Y4LVt+mX9bPa12ix8EYK4lAry7nQkh4cVNG0oInUB9CYDCgT2BqFW9B4TZ+IWbjmu2+T
+         vPlmloKgAazV5OJpK7anpmr7E8HTr7A7nVhufNpCBOfB2vuKgP6ebphiTPFXcohoQbVv
+         BAMA==
+X-Gm-Message-State: ACgBeo0fSpAOsrLYnD4aUMkJE+izQLTGLmSHvXldWROIu2XgIsPkTbCB
+        TXx3JiABqmeKo4/iOb95k14=
+X-Google-Smtp-Source: AA6agR5o9w3jHgH6jOAnjSEtmM4+wdhzyt/LnlRCsUhmnRFqJ4jcSPNhm/kvjFpDN6+xvtJAzEHEcQ==
+X-Received: by 2002:a05:6512:260d:b0:492:df5a:e4f9 with SMTP id bt13-20020a056512260d00b00492df5ae4f9mr7349293lfb.90.1662926523904;
+        Sun, 11 Sep 2022 13:02:03 -0700 (PDT)
+Received: from localhost (95-31-185-216.broadband.corbina.ru. [95.31.185.216])
+        by smtp.gmail.com with ESMTPSA id u8-20020a056512094800b00497a0ea92dcsm707896lft.180.2022.09.11.13.02.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Sep 2022 13:02:03 -0700 (PDT)
+From:   Mikhail Rudenko <mike.rudenko@gmail.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
- <20220901102312.2005553-2-dmitry.baryshkov@linaro.org>
- <3e525135-d205-eddc-ff2d-98c8321386e3@linaro.org>
- <20220908193705.GA3002673-robh@kernel.org>
- <1ebe64a3-fab9-1dd7-517a-01001a176d9f@linaro.org>
- <CAL_JsqLkV_fnUnc4cS=cdTvP3rKYAS011_+KZYiBGhXDx-pHnA@mail.gmail.com>
- <2204eab4-b22d-8ee7-4595-49139cb387a8@linaro.org>
- <CAA8EJpqHL-gO=zSG6Ek=-y4njGF5R66z0MwLeKZ9U4Ag1j51Og@mail.gmail.com>
- <e7a132e7-a819-ebe2-e6e5-c01cbfacef15@linaro.org>
- <CAA8EJpoPPRAQPfVQmSfrrDrroMp0bzvJ=-vHMRx72aKTBgPOTA@mail.gmail.com>
- <f013accb-96f7-a025-1d41-e2e97f8b2aa8@linaro.org>
- <CAA8EJprnrKP9Ze__KTTNGDs8sj3QhqpiHnnhf1=ipq+CFCoXsQ@mail.gmail.com>
- <272413e3-73d4-8e0d-7b5d-93007e419f76@linaro.org>
- <6e3bca5a-8b01-af12-ae69-b0044a8790f6@linaro.org>
-In-Reply-To: <6e3bca5a-8b01-af12-ae69-b0044a8790f6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Shawn Tu <shawnx.tu@intel.com>, Jimmy Su <jimmy.su@intel.com>,
+        Arnd Bergmann <arnd@arndb.de>, Arec Kao <arec.kao@intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>
+Cc:     Mikhail Rudenko <mike.rudenko@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add Omnivision OV4689 image sensor driver
+Date:   Sun, 11 Sep 2022 23:01:33 +0300
+Message-Id: <20220911200147.375198-1-mike.rudenko@gmail.com>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2022 20:36, Krzysztof Kozlowski wrote:
+Hello,
 
->> If your child schema fails, the referencing schema fails as well...
-> 
-> 
-> Although now with DSI-PHY I cannot reproduce it and I am pretty sure I
-> reproduced it with DPU controllers after modifying the DTS to lack a
-> property... Hmmm
+this series implements support for Omnivision OV4689 image
+sensor. The Omnivision OV4689 is a high performance, 1/3-inch, 4
+megapixel image sensor. Ihis chip supports high frame rate speeds up
+to 90 fps at 2688x1520 resolution. It is programmable through an I2C
+interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
+connection.
 
-https://github.com/devicetree-org/dt-schema/pull/82
+The driver is based on Rockchip BSP kernel [1]. It implements 4-lane CSI-2
+and single 2688x1520 @ 30 fps mode. The driver was tested on Rockchip
+3399-based FriendlyElec NanoPi M4 board with MCAM400 camera module.
 
+While porting the driver, I stumbled upon two issues:
 
-Best regards,
-Krzysztof
+(1) In the original driver, horizontal total size (HTS) was set to a
+value (2584) lower then the frame width (2688), resulting in negative
+hblank. In this driver, I increased HTS to 2688, but fps dropped from
+29.88 to 28.73. What is the preferred way to handle this?
+
+(2) The original driver exposes analog gain range 0x0 - 0x7ff, but the
+gain is not linear across that range. Instead, it is piecewise linear
+(and discontinuous). 0x0-0xff register values result in 0x-2x gain,
+0x100-0x1ff to 0x-4x, 0x300-0x3ff to 0x-8x, and 0x700-0x7ff to 0x-16x,
+with more linear segments in between. Rockchip's camera engine code
+chooses one of the above segments depenging on the desired gain
+value. The question is, how should we proceed keeping in mind
+libcamera use case? Should the whole 0x0-0x7ff be exposed as-is and
+libcamera will do the mapping, or the driver will do the mapping
+itself and expose some logical gain units not tied to the actual gain
+register value? Meanwhile, this driver conservatively exposes only
+0x0-0xf8 gain register range.
+
+[1] https://github.com/rockchip-linux/kernel/blob/develop-4.19/drivers/media/i2c/ov4689.c
+
+changes in v2:
+- bindings: reword descriptions
+- bindings: move clock description to clocks property
+- bindings: add data-lanes and link-frequencies properties to port
+- driver: validate media bus configuration when probing
+
+Mikhail Rudenko (2):
+  media: dt-bindings: media: i2c: document OV4689 DT bindings
+  media: i2c: add support for ov4689
+
+ .../bindings/media/i2c/ovti,ov4689.yaml       | 141 +++
+ MAINTAINERS                                   |   8 +
+ drivers/media/i2c/Kconfig                     |  14 +
+ drivers/media/i2c/Makefile                    |   1 +
+ drivers/media/i2c/ov4689.c                    | 951 ++++++++++++++++++
+ 5 files changed, 1115 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+ create mode 100644 drivers/media/i2c/ov4689.c
+
+--
+2.37.3
