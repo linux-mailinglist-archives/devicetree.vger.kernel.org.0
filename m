@@ -2,120 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2DC5B50BE
-	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 20:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 881A95B50C4
+	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 21:02:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiIKS4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 14:56:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45208 "EHLO
+        id S229499AbiIKTCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 15:02:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbiIKS4F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 14:56:05 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7E9A1A05A
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 11:56:00 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id y29so8184884ljq.7
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 11:56:00 -0700 (PDT)
+        with ESMTP id S229457AbiIKTCb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 15:02:31 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B4E31F60B;
+        Sun, 11 Sep 2022 12:02:30 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id a8so11442927lff.13;
+        Sun, 11 Sep 2022 12:02:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=RPQy1aNVD24fj2brehWpaN5iIeVrcdsDrdD2wAGWJbw=;
-        b=c75Vojp6jAAIpodeHlqPi0GJc4HMYQ5s4cTSvzo5PjQO2eaDN+Y8J294PC1o/W1Mh1
-         7rJkE/pTpxM+OVoq/75nokUTo+OB5oPdKt0pd+v6NKiNM+aiHrN+0QPW7Nocpvt7Ns+X
-         dixVgW8RsCGSdey2Ot5IOqy1BVePjs0mufrNarMJch+192iMV44lLqUEvsCfnKr+P8O9
-         YchsFXgqg9leGJO+/nfFqxOD01IZpocXxcRjBt+TrAJ4SC7ZnnimbF3kdLHtgqVXVRtM
-         LkI4b+oWGMzBUaDArYKQud1rHpXu5yk80gIVS8LklPOaGdWE/0e0Et0uD4u8r0xrt2md
-         Hz1g==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=R7k/HCYliz2JMXrD/gWTWpEn2AgS+sBNmeV7tUSLyYk=;
+        b=F5IAJqUFjefPwXI/eMWPS2PIGXtuJxNJTKOU5kbxb2i83mqWX3NrZlh4f8mOSNsMxr
+         2mHoaMOCRtHW5bVBw8XssdC4jXzAzTvvsjhFDYoYpbD2d0S5+T+hsY+UPbwmEa3QK/Yj
+         8F/TdHJAm6EMDjlzPJ/g7CwX/VNIGDNHxFqyP8+wfV/8zbTf3n8OGTjH6ZO9tneEbXoB
+         up5FesAkUoBpzA0p9wJR0p+ceE+C+ACyQh7WdNXkn5cOWQgwhG/chso2iM8JI0K1lTRS
+         ZkKC2UXxEJ0SkSt+P4sq76xSC2J/TKx+OC08EtcM4X4hQom7LBanaGu+uV8nyEZZXsQn
+         mMHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=RPQy1aNVD24fj2brehWpaN5iIeVrcdsDrdD2wAGWJbw=;
-        b=XAA8LPccpSKs/6atwj96iC36jMl0etEMA8P8YNIJwMasNEP6lMxT+lgziU3X5lNK6g
-         E2CDlXr1UQQpu9LihzBBbqXnV0pZV1AmKLI7+Syu8D/l9DsCFBjHoky8+Dfu+/sBIBUI
-         yb3VrXbojbxKzi+pn3fWoMoFUYsoR/Niv3NIK3EonguMY7KRK/dXply5fcqXgMKoUxf4
-         nY10N7otQg3MaBBbrPoELpbSCQxX+9pLB3rEvseLUXD/ISL3Dzh8Vz42T905bER0IcNX
-         0vmMILwu8gL3cQoL7BzaW1GFwEB5WPwlapyEh20IeFZQCbYHwVTZatmLVgOMPQjd/bDC
-         3sNA==
-X-Gm-Message-State: ACgBeo3sWnkgvz8yr102owkHF2L23zehdzBbMo9KY4s7Wtrdmt2JyArw
-        JT6AkTD/A95S+bdt9n8+R++JHg==
-X-Google-Smtp-Source: AA6agR5kw9mbNFc8XSl/zb4xnABTaoglXNP4qJenxxMNT/Dy+78GH+uJdblCn8w8V3fRV1ow1HficA==
-X-Received: by 2002:a2e:be28:0:b0:25f:d901:16ef with SMTP id z40-20020a2ebe28000000b0025fd90116efmr7159410ljq.126.1662922558995;
-        Sun, 11 Sep 2022 11:55:58 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w1-20020ac25d41000000b004991437990esm704068lfd.11.2022.09.11.11.55.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Sep 2022 11:55:58 -0700 (PDT)
-Message-ID: <7cf581a6-0602-7d6d-1518-7ae62a89031e@linaro.org>
-Date:   Sun, 11 Sep 2022 20:55:46 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v6 01/12] dt-bindings: display/msm: split qcom,mdss
- bindings
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=R7k/HCYliz2JMXrD/gWTWpEn2AgS+sBNmeV7tUSLyYk=;
+        b=xQk+96snRWCZcDcY1gCvTjdI2dDpAT39um4k/w9aVuQicYloeuaoelJAWBF6Kk+kN/
+         NXaoO3T3/TfxEJaKxSrH+r2C77KpqoYeBX0xHhskG9hgxmT19AiZnLTSwznmb+Wc7uSU
+         lVfQusE09UrIYtJdxkFPHS4ctiSGsQ9tnlPXddXCXwFCzgvC5rB1aLH3568wGYRS098s
+         fHysNObtux6VsxAAX1emPp3qKChcv1ykHTnu6E6EXlPnSCxIlFFlhhR7n5IQL/aLD43Q
+         +G4iqubfS4CqBhmzjFf8xT11HlhTlqO0eHRx+B3vWYdRDIR0ynSE+zwDM7+MBLTxwKXr
+         AwGA==
+X-Gm-Message-State: ACgBeo0dceynSnJN85scrwvwr5OGbIF+uERmyR6z1CeHxzPmjUgklZvi
+        M+zsGbSP0jnsMoUFrr6mY/g=
+X-Google-Smtp-Source: AA6agR661eYPiCA4jxDeckYPBpxq60oDtAYe5RRmXrEPt1VECUEn5OqLLxLGKQ70fP94XWdNryZo3g==
+X-Received: by 2002:a05:6512:3a92:b0:499:2982:a520 with SMTP id q18-20020a0565123a9200b004992982a520mr3581742lfu.213.1662922948357;
+        Sun, 11 Sep 2022 12:02:28 -0700 (PDT)
+Received: from mobilestation ([95.79.140.178])
+        by smtp.gmail.com with ESMTPSA id y27-20020a056512045b00b00499019c34a3sm693631lfk.184.2022.09.11.12.02.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Sep 2022 12:02:27 -0700 (PDT)
+Date:   Sun, 11 Sep 2022 22:02:25 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
- <20220901102312.2005553-2-dmitry.baryshkov@linaro.org>
- <3e525135-d205-eddc-ff2d-98c8321386e3@linaro.org>
- <20220908193705.GA3002673-robh@kernel.org>
- <1ebe64a3-fab9-1dd7-517a-01001a176d9f@linaro.org>
- <CAL_JsqLkV_fnUnc4cS=cdTvP3rKYAS011_+KZYiBGhXDx-pHnA@mail.gmail.com>
- <2204eab4-b22d-8ee7-4595-49139cb387a8@linaro.org>
- <CAA8EJpqHL-gO=zSG6Ek=-y4njGF5R66z0MwLeKZ9U4Ag1j51Og@mail.gmail.com>
- <e7a132e7-a819-ebe2-e6e5-c01cbfacef15@linaro.org>
- <CAA8EJpoPPRAQPfVQmSfrrDrroMp0bzvJ=-vHMRx72aKTBgPOTA@mail.gmail.com>
- <f013accb-96f7-a025-1d41-e2e97f8b2aa8@linaro.org>
- <CAA8EJprnrKP9Ze__KTTNGDs8sj3QhqpiHnnhf1=ipq+CFCoXsQ@mail.gmail.com>
- <272413e3-73d4-8e0d-7b5d-93007e419f76@linaro.org>
- <6e3bca5a-8b01-af12-ae69-b0044a8790f6@linaro.org>
-In-Reply-To: <6e3bca5a-8b01-af12-ae69-b0044a8790f6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 09/20] dt-bindings: PCI: dwc: Add
+ interrupts/interrupt-names common properties
+Message-ID: <20220911190225.gmmmvbjbczsqwhdk@mobilestation>
+References: <20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru>
+ <20220822184701.25246-10-Sergey.Semin@baikalelectronics.ru>
+ <20220831212443.GA267718-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220831212443.GA267718-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2022 20:36, Krzysztof Kozlowski wrote:
+On Wed, Aug 31, 2022 at 04:24:43PM -0500, Rob Herring wrote:
+> On Mon, Aug 22, 2022 at 09:46:50PM +0300, Serge Semin wrote:
+> > Currently the 'interrupts' and 'interrupt-names' are defined being too
+> > generic to really describe any actual IRQ interface. Moreover the DW PCIe
+> > End-point devices are left with no IRQ signals. All of that can be fixed
+> > by adding the IRQ-related properties to the common DW PCIe DT-schema and
+> > defining a common and device-specific set of the IRQ names in accordance
+> > with the hardware reference manual. Seeing there are common and dedicated
+> > IRQ signals for DW PCIe Root Port and End-point controllers we suggest to
+> > split the IRQ names up into two sets: common definitions available in the
+> > snps,dw-pcie-common.yaml schema and Root Port specific names defined in
+> > the snps,dw-pcie.yaml schema. The former one will be applied to both DW
+> > PCIe RP and EP controllers, while the later one - for the RP only.
+> > 
+> > Note since there are DW PCI-based vendor-specific DT-bindings with the
+> > custom names assigned to the same IRQ resources we have no much choice but
+> > to add them to the generic DT-schemas in order to have the schemas being
+> > applicable for such devices. Let's mark these names as deprecated so not
+> > to encourage the new DT-bindings to use them.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > 
+> > ---
+> > 
+> > Changelog v3:
+> > - This is a new patch unpinned from the next one:
+> >   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
+> >   by the Rob' request. (@Rob)
+> > 
+> > Changelog v5:
+> > - Add platform-specific interrupt names, but mark them as deprecated.
+> > ---
+> >  .../bindings/pci/snps,dw-pcie-common.yaml     | 51 ++++++++++++++
+> >  .../bindings/pci/snps,dw-pcie-ep.yaml         | 17 +++++
+> >  .../devicetree/bindings/pci/snps,dw-pcie.yaml | 67 ++++++++++++++++++-
+> >  3 files changed, 132 insertions(+), 3 deletions(-)
+> 
 
->> /home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dtb:
->> dsi@c994000: 'vdda-supply' does not match any of the regexes:
->> 'pinctrl-[0-9]+'
->>
->>
->>
->> If your child schema fails, the referencing schema fails as well...
-> 
-> 
-> Although now with DSI-PHY I cannot reproduce it and I am pretty sure I
-> reproduced it with DPU controllers after modifying the DTS to lack a
-> property... Hmmm
-> 
-I think I have a fix for this in DT schema.
+> I still don't like how you've done interrupts/clocks/reg. I'd suggest 
+> dropping it if you want this series applied soonish.
 
-Best regards,
-Krzysztof
+I can't drop this modification because what is currently done with the
+generic resource names much worse. Most importantly the generic names
+suggested here are also added to the driver in the framework of this
+patchset. So one way or another these new names need to be
+added to the DT-bindings.
+
+As I already said many times we need to find a solution which would
+suit both of us. For me it's to add the new names with detailed
+description and if possible restrict the non-standard resource names
+usage. For you it's to implement a suitable named properties
+constraints. At the same time you keep pushing only what you need
+without concerning what is required for this patchset to be coherent
+in accordance with the new functionality.
+
+I've listed all the possible options in this message:
+https://lore.kernel.org/linux-pci/20220619163727.xjdlx2jf565uhids@mobilestation/
+I asked you many times to pay your attention to it, but you kept
+ignoring these requests so I had to resubmit the series after waiting
+more than two months for your response. Please let's find out a
+solution which would suit both of us this time.
+
+So you don't like having the "definitions" keyword in the DT-schemas.
+Do you? Ok. I'll just move all the names defined in there right in the
+named properties constraints. But in any case since these are the
+common DT-schemas we are talking about we can't expect the names being
+specified in a fixed order since at the very least some of them can be
+absent in particular device implementation. What do you say on this?
+Do you have any alternative solution I miss?
+
+-Sergey
+
+> 
+> Rob
