@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FD265B5859
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E92885B586C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:29:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230237AbiILK2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 06:28:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49894 "EHLO
+        id S230217AbiILK2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 06:28:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230205AbiILK2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:28:41 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECADE38685;
+        with ESMTP id S230187AbiILK2k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:28:40 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0016B386A2;
         Mon, 12 Sep 2022 03:28:38 -0700 (PDT)
 Received: from mercury (unknown [185.122.133.20])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B7D3A6601FE1;
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B7B256601FE0;
         Mon, 12 Sep 2022 11:28:37 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
         s=mail; t=1662978517;
-        bh=csuEsJifKVJyLRd1XpzpXHyhSvlWfN/+RiTgurHozt0=;
+        bh=DRiZC5zI3w4caCIF0yPN0iBcoObFd36g1UxxkKSXqgQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gBQhSNbb14ZZXY4urBm4VWUdYii3jxLQAQJ5yFtGvzYDFZL8uL7jOMdrlu3XgrKMf
-         mRQCuSzsMS336AoTuLFGe++JTaZE87uC7WbKBUX5onGz41MBar3jXPxxBq6zCecxrg
-         /hDzErS0Go6RWGHL/oioHn3hbMyGg1eCCz6V1M24D30fJndp1vbCtwGw3nUh1NABQE
-         601C+ALp/MHqa6QgUa2piHoLVVvrTAXI9kaIkl/lEwGYkbjDUORjDk2T5E7/Q5/B91
-         CVhjoPK96/v/Ulbcs8IR+S2snWNmVOxzB/RsEBIewQ75xSwXJAIusK8Lb8+92ONevi
-         QGkoeCBsTim+A==
+        b=M4BzXAj26aLaZmdDj4BImvIfeWREijDpm2B8zCBilMMWF9oGicJ0hITLLrr5f9y74
+         C+ZqG//Lc1lwKZefepmYeGPis009R2ZQUPqeWOErugyfJ8l2mVECA8t0ojmQ8RYRbN
+         7iddZ0DcsLusCLzZxKG90rwHvBHimtf0TgL0TC4EUMwAzsv3MbE3OU00VDXSGWDuDl
+         7aKShpsTj1Lh9CiTlI+F6/SALVXMxe1wO4fJC+ODcP1h9vV5tzBe/8nmrGiJpCGOaX
+         lf08Db8RLQG8YXvU2lWjlGC9tzINW4SyesnxpHdgGFZfcD6OftcN6KYv5oWm8sVA/6
+         6zsLXIA7ijVJQ==
 Received: by mercury (Postfix, from userid 1000)
-        id A83E8106335A; Sun, 11 Sep 2022 14:27:38 +0200 (CEST)
-Date:   Sun, 11 Sep 2022 14:27:38 +0200
+        id 403B81063360; Sun, 11 Sep 2022 14:55:45 +0200 (CEST)
+Date:   Sun, 11 Sep 2022 14:55:45 +0200
 From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: reset: restart-handler: add common
- schema
-Message-ID: <20220911122738.jjve6fs63fj733ug@mercury.elektranox.org>
-References: <20220907123630.57383-1-krzysztof.kozlowski@linaro.org>
- <20220907163218.aja4pazw3sbxnoop@pali>
+To:     Mithil Bavishi <bavishimithil@gmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        tony@atomide.com, linux@armlinux.org.uk, contact@paulk.fr
+Subject: Re: [PATCH 03/10] power: reset: Add TWL6030 power driver, with
+ minimal support for power off
+Message-ID: <20220911125545.73afzbirtnsdbmgo@mercury.elektranox.org>
+References: <20220820071659.1215-1-bavishimithil@gmail.com>
+ <20220820071659.1215-4-bavishimithil@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jm67xm5kqtnotww6"
+        protocol="application/pgp-signature"; boundary="kq6iicrq5qwpzlb4"
 Content-Disposition: inline
-In-Reply-To: <20220907163218.aja4pazw3sbxnoop@pali>
+In-Reply-To: <20220820071659.1215-4-bavishimithil@gmail.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DATE_IN_PAST_12_24,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
@@ -62,151 +63,198 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---jm67xm5kqtnotww6
-Content-Type: text/plain; charset=iso-8859-1
+--kq6iicrq5qwpzlb4
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-On Wed, Sep 07, 2022 at 06:32:18PM +0200, Pali Roh=E1r wrote:
-> On Wednesday 07 September 2022 14:36:30 Krzysztof Kozlowski wrote:
-> > Add common schema for restart and shutdown handlers, so they all use
-> > same meaning of "priority" field.  The Linux drivers already have this
-> > property and some systems want to customize it per-board in DTS.
-> >=20
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >=20
-> > ---
-> >=20
-> > See also:
-> > https://lore.kernel.org/all/8fe93da3-f768-16ae-7025-1cfa97a42b27@linaro=
-=2Eorg/
-> > https://lore.kernel.org/all/20220831081715.14673-1-pali@kernel.org/
-> > ---
-> >  .../bindings/power/reset/gpio-restart.yaml    | 13 ++------
-> >  .../bindings/power/reset/restart-handler.yaml | 30 +++++++++++++++++++
-> >  2 files changed, 33 insertions(+), 10 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/power/reset/resta=
-rt-handler.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/power/reset/gpio-restart=
-=2Eyaml b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
-> > index a72d5c721516..d3d18e0f5db3 100644
-> > --- a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
-> > +++ b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
-> > @@ -25,6 +25,9 @@ description: >
-> >    inactive-delay, the GPIO is driven active again.  After a delay spec=
-ified by wait-delay, the
-> >    restart handler completes allowing other restart handlers to be atte=
-mpted.
-> > =20
-> > +allOf:
-> > +  - $ref: restart-handler.yaml#
-> > +
-> >  properties:
-> >    compatible:
-> >      const: gpio-restart
-> > @@ -41,16 +44,6 @@ properties:
-> >        in its inactive state.
-> > =20
-> >    priority:
-> > -    $ref: /schemas/types.yaml#/definitions/uint32
-> > -    description: |
-> > -      A priority ranging from 0 to 255 (default 129) according to the =
-following guidelines:
-> > -
-> > -        0:   Restart handler of last resort, with limited restart capa=
-bilities.
-> > -        128: Default restart handler; use if no other restart handler =
-is expected to be available,
-> > -             and/or if restart functionality is sufficient to restart =
-the entire system.
-> > -        255: Highest priority restart handler, will preempt all other =
-restart handlers.
-> > -    minimum: 0
-> > -    maximum: 255
-> >      default: 129
-> > =20
-> >    active-delay:
-> > diff --git a/Documentation/devicetree/bindings/power/reset/restart-hand=
-ler.yaml b/Documentation/devicetree/bindings/power/reset/restart-handler.ya=
-ml
-> > new file mode 100644
-> > index 000000000000..f5d22ca0cd45
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
-> > @@ -0,0 +1,30 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/power/reset/restart-handler.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Restart and shutdown handler generic binding
-> > +
-> > +maintainers:
-> > +  - Sebastian Reichel <sre@kernel.org>
-> > +
-> > +description:
-> > +  Restart and shutdown handler device is responsible for powering off =
-the
-> > +  system, e.g. my cutting off the power.  System might have several re=
-start
-> > +  handlers, which usually are tried from most precise to last resort.
-> > +
-> > +properties:
-> > +  priority:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
+On Sat, Aug 20, 2022 at 12:46:53PM +0530, Mithil Bavishi wrote:
+> From: Paul Kocialkowski <contact@paulk.fr>
 >=20
-> IIRC priority is signed integer number, not unsigned.
+> This adds a TWL6030 power driver, that currently only supports powering
+> off the device when the TWL is used as system power controller.
 >=20
-> > +    description: |
-> > +      A priority ranging from 0 to 255 according to the following guid=
-elines::
-> > +        0:   Restart handler of last resort, with limited restart capa=
-bilities.
-> > +        128: Typical, default restart handler; use if no other restart=
- handler
-> > +             is expected to be available, and/or if restart functional=
-ity is
-> > +             sufficient to restart the entire system.
-> > +        255: Highest priority restart handler, will preempt all other =
-restart handlers.
-> > +    minimum: 0
-> > +    maximum: 255
+> This driver might be extended to support more power-related features of t=
+he
+> TWL6030.
 >=20
-> And IIRC also other values (above 255 or below 0) are allowed for tuning
-> two "highest" or two "last resort" handlers.
+> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+> ---
+>  drivers/power/reset/Kconfig         | 10 ++++
+>  drivers/power/reset/Makefile        |  1 +
+>  drivers/power/reset/twl6030-power.c | 93 +++++++++++++++++++++++++++++
+>  3 files changed, 104 insertions(+)
+>  create mode 100644 drivers/power/reset/twl6030-power.c
 >=20
-> This needs to be checked / tested to ensure that new schema is not incorr=
-ect.
+> diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
+> index 39117b697..5156b1613 100644
+> --- a/drivers/power/reset/Kconfig
+> +++ b/drivers/power/reset/Kconfig
+> @@ -316,3 +316,13 @@ config TWL4030_POWER
+>            and load scripts controlling which resources are switched off/=
+on
+>            or reset when a sleep, wakeup or warm reset event occurs.
+>  endif
+> +
+> +config TWL6030_POWER
+> +	bool "TI TWL6030 power resources"
+> +	depends on TWL4030_CORE && ARM
+> +	help
+> +	  Say yes here if you want to use the power resources on the
+> +	  TWL6030 family chips.
+> +
+> +	  When used as system power controller, this driver allows turning off
+> +	  the main power supply.
+> diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
+> index e9db25b09..692d51cef 100644
+> --- a/drivers/power/reset/Makefile
+> +++ b/drivers/power/reset/Makefile
+> @@ -37,3 +37,4 @@ obj-$(CONFIG_POWER_RESET_SC27XX) +=3D sc27xx-poweroff.o
+>  obj-$(CONFIG_NVMEM_REBOOT_MODE) +=3D nvmem-reboot-mode.o
+>  obj-$(CONFIG_POWER_MLXBF) +=3D pwr-mlxbf.o
+>  obj-$(CONFIG_TWL4030_POWER) +=3D twl4030-power.o
+> +obj-$(CONFIG_TWL6030_POWER) +=3D twl6030-power.o
+> diff --git a/drivers/power/reset/twl6030-power.c b/drivers/power/reset/tw=
+l6030-power.c
+> new file mode 100644
+> index 000000000..78c8a02a3
+> --- /dev/null
+> +++ b/drivers/power/reset/twl6030-power.c
+> @@ -0,0 +1,93 @@
+> +/*
+> + * TWL6030 power
+> + *
+> + * Copyright (C) 2016 Paul Kocialkowski <contact@paulk.fr>
+> + *
+> + * This file is subject to the terms and conditions of the GNU General
+> + * Public License. See the file "COPYING" in the main directory of this
+> + * archive for more details.
+> + *
+> + * This program is distributed in the hope that it will be useful,
+> + * but WITHOUT ANY WARRANTY; without even the implied warranty of
+> + * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> + * GNU General Public License for more details.
+> + */
 
-priority is blindly copied into the priority field of struct
-notifier_block, which is of type int. But that is an implementation
-detail. I think the proposal from Krzysztof looks good. But let's
-wait a bit to give Rob a chance to review.
+Please use SPDX format for license.
+
+> +
+> +#include <linux/module.h>
+> +#include <linux/pm.h>
+> +#include <linux/mfd/twl.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +
+> +#define TWL6030_PHOENIX_DEV_ON		0x25
+> +
+> +#define TWL6030_PHOENIX_APP_DEVOFF	BIT(0)
+> +#define TWL6030_PHOENIX_CON_DEVOFF	BIT(1)
+> +#define TWL6030_PHOENIX_MOD_DEVOFF	BIT(2)
+> +
+> +void twl6030_power_off(void)
+> +{
+> +	int err;
+> +
+> +	err =3D twl_i2c_write_u8(TWL6030_MODULE_ID0, TWL6030_PHOENIX_APP_DEVOFF=
+ |
+> +		TWL6030_PHOENIX_CON_DEVOFF | TWL6030_PHOENIX_MOD_DEVOFF,
+> +		TWL6030_PHOENIX_DEV_ON);
+> +	if (err)
+> +		pr_err("TWL6030 Unable to power off\n");
+> +}
+> +
+> +static bool twl6030_power_use_poweroff(struct device_node *node)
+> +{
+> +	if (of_property_read_bool(node, "ti,system-power-controller"))
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id twl6030_power_of_match[] =3D {
+> +	{
+> +		.compatible =3D "ti,twl6030-power",
+> +	},
+> +	{ },
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, twl6030_power_of_match);
+> +#endif	/* CONFIG_OF */
+> +
+> +static int twl6030_power_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *node =3D pdev->dev.of_node;
+> +
+> +	if (!node) {
+> +		dev_err(&pdev->dev, "Platform data is missing\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Board has to be wired properly to use this feature */
+> +	if (twl6030_power_use_poweroff(node) && !pm_power_off)
+> +		pm_power_off =3D twl6030_power_off;
+
+Please devm_register_sys_off_handler or devm_register_power_off_handler().
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int twl6030_power_remove(struct platform_device *pdev)
+> +{
+> +	return 0;
+> +}
+
+Empty remove function can be removed.
+
+> +
+> +static struct platform_driver twl6030_power_driver =3D {
+> +	.driver =3D {
+> +		.name	=3D "twl6030_power",
+> +		.of_match_table =3D of_match_ptr(twl6030_power_of_match),
+
+The driver is not useful without CONFIG_OF, so you can just remove the
+#ifdef around twl6030_power_of_match and drop of_match_ptr here.
 
 -- Sebastian
 
---jm67xm5kqtnotww6
+> +	},
+> +	.probe		=3D twl6030_power_probe,
+> +	.remove		=3D twl6030_power_remove,
+> +};
+> +
+> +module_platform_driver(twl6030_power_driver);
+> +
+> +MODULE_AUTHOR("Paul Kocialkowski <contact@paulk.fr>");
+> +MODULE_DESCRIPTION("Power management for TWL6030");
+> +MODULE_LICENSE("GPL");
+> --=20
+> 2.25.1
+>=20
+
+--kq6iicrq5qwpzlb4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmMd1DoACgkQ2O7X88g7
-+pqS+A//YH8tttmtMUPbKLQ3SdPDIFr6POfYz3R6gLWk4aUpJfjKkrXVEFhkYS5N
-rM3quasa6z53XqmP6Ix5bQYpmsWjml+5AJdDp+k+a8wvFJKuZPkNx0XfvY5+BVtZ
-c+qPiSY+DETFcrbUw22O/faMLYn5YtsW3TR70y2vrlrW4avEkfXGEI6U4wAjDmfs
-xyTVhQSXVmQaWo1WEwfjm9W7INBsNdCZDNMwYP/4nBqbRIrXt9ncAmsVbyvyzDHt
-/p7wD5EUmY+SLOdvE0jUAUoZx+Ml/KhrgpvLaDZeW59PqZAdbirPvtA6njhGYVbU
-tjyRyARMJP5KehBhJOnpYwdfj4ZpKAx+pHLi1lCkepxQv+OuuhivL7K9+a+gp3Ly
-rVKj799tbeWIS+P/JWbX7eN+xCa9HMweHsppvKjkSH8fslXcrSlLTa1wjJQLrdHk
-VnhAFOs5EcIYJwSe7LECw/CwI8gtbVpaeNsqADH/Farh2B+Rf3g1gdFC5ieYX8Mq
-VfTcQMR+z1RW/+/T7j1HIZHzVcEI3IO58aP8o+8QZ3lobCxF2byejZgio/kVjt4T
-UxaGzggheWK8xy7yQjqQlDZXoruRiLr0oxodJF+C2jM+3nyG9eRSAt4+IoaM0vb2
-qNqk+xBfGmZlDKENUnQMqKqs+Efl961/ynOtCHy+0R4yLEiaBJo=
-=Iw6r
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmMd2s0ACgkQ2O7X88g7
++pq7pA//c8rhoEaTQYCtLWztRJSjzmHr9CN0dA3thpfcfumLKVuJwZ8G7nzx60Ye
+vaiDHTiN5yAjh6Ahwmm+qNuljUDIkt2bmLCSVGn+YimpHq1Rh+hl6JSsXIkdFQ8c
+Ko/R8PwW/kGRlh87aD2Doeau1CBU3uU4XZ0xhc1cm0BLCgaPHSRN9Gq7ClQgrb6h
+tgAoe/dAeV3fNusbsUhIKcX9AfGVl8tchy5Vg2AdSdIQGI2HlV2kOZrx+eP0CUm2
+XIE1VtlED5ApAaYcsVSOSEgU/YjB9Q1ME70ZyW5rpTNs6IEQ/jHZ7szZEQwcLHrm
+LgcDH8BS8KTiglbSc/L+PhSyRHQBVe47o1aI8Nu5PNXS/B4EkG92twf1fJ/T4lRE
+lKWj8vs4swRI0jyQC/mwtpfPuxxHysmFoKzR2evPlZ7IIaa84of7biwWEERrv083
+AAiVcdyGbaPFq81NZgjNyOxs4wLK8WrLkwUhuqr278aeUi656xPGSYPh0pHv/qsR
+ZG4Uqyv1luV3ZyhAavMgqZHJRZHDxxPBaHYmoVOJdZ/byF0G9t5W1ZOsopFtm7Wi
+8L+feuz3X2Vg6cVW487ryhbcEL82BrIKdb5t1GkNTsGE4SOhlHzZSCvyD0xBrwGP
+cqwSkgMEx8OzgIxY+x/x6uGk4vx2hDoebvhG9yH7DNYJ0IE5ST8=
+=rfEv
 -----END PGP SIGNATURE-----
 
---jm67xm5kqtnotww6--
+--kq6iicrq5qwpzlb4--
