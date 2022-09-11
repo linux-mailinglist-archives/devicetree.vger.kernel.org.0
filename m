@@ -2,205 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B5BF5B5087
-	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 20:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37DF85B5095
+	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 20:32:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbiIKSUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 14:20:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40986 "EHLO
+        id S229550AbiIKScO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 14:32:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbiIKSU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 14:20:27 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADD61252BE;
-        Sun, 11 Sep 2022 11:20:26 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id s6so181389lfo.7;
-        Sun, 11 Sep 2022 11:20:26 -0700 (PDT)
+        with ESMTP id S229540AbiIKScO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 14:32:14 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959B92657E
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 11:32:12 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id by6so8121127ljb.11
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 11:32:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date;
-        bh=Mhy+3CWxTNrO346Kg7VTtnGn/vofZ7u7oyFEO3SVd3g=;
-        b=G1SC4zSV3RuG5u0WV4E6Fo8xz4Hhj5vVEP6SuuXC5K7vIiFtUcWl287d3KMBj8NW9R
-         Y81zqrzejNcK2F3A+ZDNXfOSK0hkAHnFo8TDHXZY/OwzvRSehuleF/wCLlGSsfkFJnUD
-         wWrQHIha6vaGZnSg8tnIDjdowDcg6YNvnGgmg8Wszud4lOd+rPE56LrCe4PMqkGB6MC8
-         9AXWv+/NHWaufa/uqdb4JTfWvnU6I84iexXCtgUGOVrCymGPQPbGlkOVRXoprhyVD6s5
-         kZ1wyN1beBMeAZgH8BEKqAGQVQ9SCF36XSp4e8eIooqCWNNAooJKXhF514b3m4QS9S1c
-         Bgag==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=CJXbh3Xap4zY5eQIBuWZa2H6CtZ/Yj97TIZIsBjxr1M=;
+        b=z5c14zbbVxY09fE+Nk/QBvyyPJYiCjPwsMB8KGmgbW83W/QBwu/QRURWpzATI+Fzhq
+         jBQUCJ0h5UpEOhLQNrikSa0TsyDs94DpyWDhBVYdQt76P9zBYqs9hTkhd8cnxWqpnEwi
+         3UR1Werh08Ym28uoNmuOCKXVequx+1skQY49QV0t6kw5G8JiUoZUtCzrCFFlQJGcRJN8
+         teT/9vUQ3NJww0DoQQGeWhDgQSnDqAB4pkgzVcD47eN6Hb+oV9i3c15TnNbUmeuC1owF
+         m7gcRtRyIvOQj6FQb/wcUz9Mc9ExR73BnNd9wPZ/YiZqVdvIUXLax8Z5yzWqu1fLkCZU
+         kk8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=Mhy+3CWxTNrO346Kg7VTtnGn/vofZ7u7oyFEO3SVd3g=;
-        b=Bxkl3j8KetpYmPsFZCmNle4PsLGxEoZW6xF5SyqH/nOGDwbfPPU0PhgtY+rxYHYpNN
-         Vcomu58JMhAOFQ1ssFeGPgraQgVqsvYhQiEwXlftWG+4LgqsndprHNiWHqVm2/o422lb
-         QiT4q/u1hEtct6E2JaitEq7uQ1Oi5ylTghfDF8Fgp6WNTwD0VLw64+kepmmzFmZhBlbd
-         DR6QndvNuy9zGi/Q+5Cws+UWNV4ywVg8bEKd2GrEcpR/g9AhVXDzUcgFyxK6+/ZKjHqp
-         l+idbgXbVD/MIlh8VyB11PLcXbjyROJhbHirIouI2VWZAGklOMKL4dZvMycuhGAucytt
-         CJ8g==
-X-Gm-Message-State: ACgBeo15ktZxTbCXadB7hU+6n3rf3mjm/UklIm3cp36r1jSsTJcV9mNC
-        sKILTOoQn7RnVDRwWRrXe7M=
-X-Google-Smtp-Source: AA6agR5LSSiN/cax4urw2HZ7KDpGL+g/xPYKFXKs+PdODqUpgdWPFW990sj9/c+ITlhC2yEsbcqPYQ==
-X-Received: by 2002:a05:6512:39d6:b0:498:f615:df07 with SMTP id k22-20020a05651239d600b00498f615df07mr4578653lfu.387.1662920424912;
-        Sun, 11 Sep 2022 11:20:24 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id dt6-20020a0565122a8600b004976809d6a7sm677341lfb.283.2022.09.11.11.20.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Sep 2022 11:20:24 -0700 (PDT)
-Date:   Sun, 11 Sep 2022 21:20:21 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     "Larson, Bradley" <Bradley.Larson@amd.com>
-Cc:     Brad Larson <brad@pensando.io>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-        "alcooperx@gmail.com" <alcooperx@gmail.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "brijeshkumar.singh@amd.com" <brijeshkumar.singh@amd.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "gsomlo@gmail.com" <gsomlo@gmail.com>,
-        "gerg@linux-m68k.org" <gerg@linux-m68k.org>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "yamada.masahiro@socionext.com" <yamada.masahiro@socionext.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "piotrs@cadence.com" <piotrs@cadence.com>,
-        "p.yadav@ti.com" <p.yadav@ti.com>,
-        "rdunlap@infradead.org" <rdunlap@infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "samuel@sholland.org" <samuel@sholland.org>,
-        "Suthikulpanit, Suravee" <Suravee.Suthikulpanit@amd.com>,
-        "Lendacky, Thomas" <Thomas.Lendacky@amd.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "will@kernel.org" <will@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v6 12/17] spi: dw: Add support for AMD Pensando Elba SoC
-Message-ID: <20220911182021.i5go6lfsedggq6wl@mobilestation>
-References: <20220820195750.70861-1-brad@pensando.io>
- <20220820195750.70861-13-brad@pensando.io>
- <20220821181848.cxjpv2f4cqvdtnq3@mobilestation>
- <4aab1595-53a6-32af-8cfb-90f5e258d29e@amd.com>
+        bh=CJXbh3Xap4zY5eQIBuWZa2H6CtZ/Yj97TIZIsBjxr1M=;
+        b=lFXPyavw9W8GjFtOKhoeugzGEelpxEKgPCfznvA2y+rao7LvbfwibgiC6FGYisJmGF
+         gMFLDvtEbTUOFbj2WOBbj7hJqDeA1BpksEe9GSdtBoyHhT2MTT7gKI3Wt3BW3+98hXyv
+         uKivc1pI/f/hXmuUO5U2YTGwOpfRYHa66R+ACsUH7oqqh2GcwMu08o+lZ9iBP6zFR9sF
+         nG6N1kTi7Bfw/hDc9LvEf/+o6sTT5+Rqj/KV0T5V7D0Zlf+XhHb5jzLYHukNmpePT+uJ
+         YRAZQLb3eJSsY3KnMjZpMkhR2g60d0/kT5QzlCwM4c+Tx+m6kcC9FlaBIJHCmmBjzGi6
+         3Pag==
+X-Gm-Message-State: ACgBeo1oYcy4DRbVseVF2FEkSg1CMcsUac6wOMoKmJ5mVi/nnIBdZwWB
+        CvdAp1p0SpQPqe/cnlXHoQQt2vft1mWlHw==
+X-Google-Smtp-Source: AA6agR5hY97184QmyDcuYKUeAfNkmILa3HpnemXLkjw+R3Ly5FLbgpKseMmBQkt7x2uVq9MVLcIZAA==
+X-Received: by 2002:a2e:a4cb:0:b0:26b:6e61:6631 with SMTP id p11-20020a2ea4cb000000b0026b6e616631mr5212944ljm.66.1662921130955;
+        Sun, 11 Sep 2022 11:32:10 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id p10-20020a2eba0a000000b00261e8e4e381sm744630lja.2.2022.09.11.11.32.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Sep 2022 11:32:10 -0700 (PDT)
+Message-ID: <272413e3-73d4-8e0d-7b5d-93007e419f76@linaro.org>
+Date:   Sun, 11 Sep 2022 20:32:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4aab1595-53a6-32af-8cfb-90f5e258d29e@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v6 01/12] dt-bindings: display/msm: split qcom,mdss
+ bindings
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
+ <20220901102312.2005553-2-dmitry.baryshkov@linaro.org>
+ <3e525135-d205-eddc-ff2d-98c8321386e3@linaro.org>
+ <20220908193705.GA3002673-robh@kernel.org>
+ <1ebe64a3-fab9-1dd7-517a-01001a176d9f@linaro.org>
+ <CAL_JsqLkV_fnUnc4cS=cdTvP3rKYAS011_+KZYiBGhXDx-pHnA@mail.gmail.com>
+ <2204eab4-b22d-8ee7-4595-49139cb387a8@linaro.org>
+ <CAA8EJpqHL-gO=zSG6Ek=-y4njGF5R66z0MwLeKZ9U4Ag1j51Og@mail.gmail.com>
+ <e7a132e7-a819-ebe2-e6e5-c01cbfacef15@linaro.org>
+ <CAA8EJpoPPRAQPfVQmSfrrDrroMp0bzvJ=-vHMRx72aKTBgPOTA@mail.gmail.com>
+ <f013accb-96f7-a025-1d41-e2e97f8b2aa8@linaro.org>
+ <CAA8EJprnrKP9Ze__KTTNGDs8sj3QhqpiHnnhf1=ipq+CFCoXsQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAA8EJprnrKP9Ze__KTTNGDs8sj3QhqpiHnnhf1=ipq+CFCoXsQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 31, 2022 at 06:04:02PM +0000, Larson, Bradley wrote:
-> On 8/21/22 11:18 AM, Serge Semin wrote:
-> > On Sat, Aug 20, 2022 at 12:57:45PM -0700, Brad Larson wrote:
-> >> From: Brad Larson <blarson@amd.com>
-> >>
-> >> The AMD Pensando Elba SoC includes a DW apb_ssi v4 controller
-> >> with device specific chip-select control.  The Elba SoC
-> >> provides four chip-selects where the native DW IP supports
-> >> two chip-selects.  The Elba DW_SPI instance has two native
-> >> CS signals that are always overridden.
-> >>
-> >> Signed-off-by: Brad Larson <blarson@amd.com>
-> >> ---
-> >>   drivers/spi/spi-dw-mmio.c | 77 +++++++++++++++++++++++++++++++++++++++
-> >>   1 file changed, 77 insertions(+)
-> >>
-> >> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-> >> index 26c40ea6dd12..36b8c5e10bb3 100644
-> >> --- a/drivers/spi/spi-dw-mmio.c
-> >> +++ b/drivers/spi/spi-dw-mmio.c
-> >> @@ -53,6 +53,24 @@ struct dw_spi_mscc {
-> >>        void __iomem        *spi_mst; /* Not sparx5 */
-> >>   };
-> >>
-> >> +struct dw_spi_elba {
-> >> +     struct regmap *syscon;
-> >> +};
-> >> +
-> >> +/*
-> >> + * Elba SoC does not use ssi, pin override is used for cs 0,1 and
-> >> + * gpios for cs 2,3 as defined in the device tree.
-> >> + *
-> >> + * cs:  |       1               0
-> >> + * bit: |---3-------2-------1-------0
-> >> + *      |  cs1   cs1_ovr   cs0   cs0_ovr
-> >> + */
-> >> +#define ELBA_SPICS_REG                       0x2468
-> >> +#define ELBA_SPICS_SHIFT(cs)         (2 * (cs))
-> >> +#define ELBA_SPICS_MASK(cs)          (0x3 << ELBA_SPICS_SHIFT(cs))
-> >> +#define ELBA_SPICS_SET(cs, val)      \
-> >> +                     ((((val) << 1) | 0x1) << ELBA_SPICS_SHIFT(cs))
-> > Please take the @Andy' notes into account:
-> > https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Flkml%2FCAHp75Vex0VkECYd%3DkY0m6%3DjXBYSXg2UFu7vn271%2BQ49WZn22GA%40mail.gmail.com%2F&amp;data=05%7C01%7CBradley.Larson%40amd.com%7C25d0f17dfcbd44f661c808da83a19a98%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637967027418603429%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=VFI%2FptM79YYbZm%2FyQmtssLsNIQ75AOU05ronZ1QStlU%3D&amp;reserved=0
+On 11/09/2022 19:45, Dmitry Baryshkov wrote:
+> On Sun, 11 Sept 2022 at 16:57, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 11/09/2022 15:45, Dmitry Baryshkov wrote:
+>>> On Sun, 11 Sept 2022 at 14:27, Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 10/09/2022 14:54, Dmitry Baryshkov wrote:
+>>>>>>
+>>>>>> However I think there is no such problem, as Dmitry said, that ref
+>>>>>> changes anything. There will be always failure - either from parent
+>>>>>> schema (using $ref) or from device child schema (the one which actually
+>>>>>> misses the property).
+>>>>>
+>>>>> Initially I stumbled upon this issue with the dsi and dsi_phy nodes
+>>>>> for msm8996 devices. If I have $ref here, dsi1/dsi1_phy nodes will
+>>>>> emit warnings regarding the missing -supply properties despite nodes
+>>>>> being disabled. If I use `compatible' here, the schema checks pass.
+>>>>> Thus I'd prefer to leave `compatible' here. Not to mention that it
+>>>>> also allows specifying a tighter binding than just using the $ref.
+>>>>
+>>>> I don't think we understood each other. I claim that error will be there
+>>>> anyway, just from different schema. So your change fixes nothing in
+>>>> total schema check...
+>>>
+>>> If the node is disabled, there will be no different schema check.
+>>
+>> As I wrote before, there was.
 > 
-> Yes, I had a tested change for this but missed adding to the patch update.
-> This is the change and I'll resend just this patch.
+> The following results were captured with the following command, with
+> most of the DSI and MDSS schema files fixed, using the following
+> command:
+> $ PATH=~/.local/bin/:$PATH make -C ../build-64/ ARCH=arm64
+> qcom/sda660-inforce-ifc6560.dtb  CHECK_DTBS=y
+> DT_SCHEMA_FILES=display/msm
 > 
-> --- a/drivers/spi/spi-dw-mmio.c
-> +++ b/drivers/spi/spi-dw-mmio.c
-> @@ -66,10 +66,6 @@ struct dw_spi_elba {
->    *      |  cs1   cs1_ovr   cs0   cs0_ovr
->    */
->   #define ELBA_SPICS_REG 0x2468
+> As you can see from the example below, when using 'compatible' I'm
+> getting warnings just for the gpu@5000000 node, while using $ref I
+> also got warnings for the dsi-phy@c996400 node (disabled in the DT
+> file).
+> For your reference the tree in question is uploaded to the:
+>     https://git.linaro.org/people/dmitry.baryshkov/kernel.git msm-mdss-yaml
 
-> -#define ELBA_SPICS_SHIFT(cs)           (2 * (cs))
-> -#define ELBA_SPICS_MASK(cs)            (0x3 << ELBA_SPICS_SHIFT(cs))
-> -#define ELBA_SPICS_SET(cs, val)        \
-> -                       ((((val) << 1) | 0x1) << ELBA_SPICS_SHIFT(cs))
+I did not say anything about msm-mdss. I said you will get errors from
+child schema anyway.
 
-Why do you remove these macros? Just replace 0x3 with GENMASM(1, 0),
-0x1 with BIT(0), (2 * (cs)) statement with ((cs) << 1) as Andy
-suggested. Using macros for such complex statement is a good practice.
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 
-Also please rename ELBA_SPICS_SHIFT() to ELBA_SPICS_OFFSET() so to
-have a more coherent CSR-related macros naming in the driver.
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dtb:
+dsi@c994000: clock-names: ['mdp_core', 'byte', 'byte_intf', 'mnoc',
+'iface', 'bus', 'core_mmss', 'pixel', 'core'] is too long
 
--Sergey
+	From schema:
+/home/krzk/dev/linux/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 
-> 
->   /*
->    * The Designware SPI controller (referred to as master in the 
-> documentation)
-> @@ -257,8 +253,9 @@ static int dw_spi_canaan_k210_init(struct 
-> platform_device *pdev,
-> 
->   static void dw_spi_elba_override_cs(struct dw_spi_elba *dwselba, int 
-> cs, int enable)
->   {
-> - regmap_update_bits(dwselba->syscon, ELBA_SPICS_REG, ELBA_SPICS_MASK(cs),
-> -                          ELBA_SPICS_SET(cs, enable));
-> + regmap_update_bits(dwselba->syscon, ELBA_SPICS_REG,
-> +                          (GENMASK(1, 0) << ((cs) << 1)),
-> +                          ((enable) << 1 | BIT(0)) << ((cs) << 1));
-> 
->   }
-> 
-> > One more nitpick below.
-> >
-> > +static int dw_spi_elba_init(struct platform_device *pdev,
-> > +                         struct dw_spi_mmio *dwsmmio)
-> > +{
-> > +     const char *syscon_name = "amd,pensando-elba-syscon";
-> > +     struct device_node *np = pdev->dev.of_node;
-> >> +     struct device_node *node;
-> >> +     struct dw_spi_elba *dwselba;
-> > Please, use the reverse xmas tree order of the local variables
-> > as the rest of the driver mainly implies.
-> Changed to reverse xmas tree ordering.
-> 
-> Regards,
-> Brad
+/home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dtb:
+dsi@c994000: 'vdda-supply' does not match any of the regexes:
+'pinctrl-[0-9]+'
+
+
+
+If your child schema fails, the referencing schema fails as well...
+
+
+Best regards,
+Krzysztof
