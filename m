@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5DB75B4F1A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 15:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3A995B4F1E
+	for <lists+devicetree@lfdr.de>; Sun, 11 Sep 2022 15:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230250AbiIKNfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 09:35:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51430 "EHLO
+        id S230156AbiIKNh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 09:37:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230272AbiIKNf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 09:35:28 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D2F2E6BD
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:35:26 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 9so6714144ljr.2
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:35:26 -0700 (PDT)
+        with ESMTP id S230136AbiIKNhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 09:37:25 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5149527FFF
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:37:24 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id i26so10654641lfp.11
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 06:37:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=KICw7UMl7zN23PIkXw/yJP4KTrozrVApXevGldlrPOo=;
-        b=FvkMmM0nF9BOpltwukZ1eETLa9lu+wZbzCJEwXswmP3jC7vtJqvX3Lwd5drKZPSwQa
-         0A012OE5i9Jc8TNKsM30kebAXaiqKK4qziLLe1O0GCDvLkMHNcqT/0PufQa0+EO8khgT
-         UZkX3uAlqssIECsMGJw+B4F63Jg93Z0ybKR4xKMDYqC9G94xZE8+kyuSPI+wS6h3yG1n
-         OLVUXwkvXOjMuCOwn+OLmHMCVxZhT3kGOnf9gm8EYayMHhqows1ZImqrddu9ZfZSr7ex
-         XqADU2RSkmAHup/Nrty5QZFQIjNFNd4uhURlLFXXoejAG1nB9IZbgVmvaDJ6i0Ww8NKy
-         GmHg==
+        bh=ae3obZ6xNwy7r5xGyrjRqVjIzsAgTF+V8+8P3DQs4ck=;
+        b=tEI1Vb3SiFQt1nVT79g4fTkhzFwPN9946CF/OeoCGSN9UpKje900PJE8wgeKBTThrT
+         O8YnrkKKbqhPPom9F+C6MQHKNHj1s5N71q/b4IfxSRPIGDLj6Olu2uXPgT5qbw6cRhDR
+         KKiLFho0ROSXJDcCl/xyjA9leXK2OElJMVpPQ/K6SjcMAC6fei3AmY/RnKMpNKPXffPF
+         PcoanndnxTTWf1TZXwYmO8wwQSNzurVFWQZ/3SQN2RZL38KmvU7j+FxQylaNe+4SMzip
+         6/gOiuzUjQupf7OlSseD1CSyFVFw6IxvkLZCDcx+O0pOolr4bzVYQfat0r0m2zE4Uzub
+         9h2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=KICw7UMl7zN23PIkXw/yJP4KTrozrVApXevGldlrPOo=;
-        b=Iav0guduafk9OVKpU6VS0p7aVcSThLhSKZb21Z5NTDO3EorUPN9Oq+SV8oXYz4a0t9
-         IskMhcWk+FsoVQLAZ8Au35siPlYVjM8nD2n7KMS9wfAtTAD7uSXObtsHLrWDwimbXuFJ
-         BmprBc/IGbFNKA90EK7UPVuoctMIFRdrfTtvtQz72kXa5plfRIGfT0TChnOwK1TNMX9t
-         Ng1Up405KEQ/xe4HD+dZshicGjDEre8Qv2fsfyOlza+4171llWPaLNwE1DF+qgcvY8Jx
-         jGmOi3Pp29KCv5qF5HkOXieJudHPlL2ZNMZJrCHSlDrM1p/GuUkvHi1pA/HXj8KM94f9
-         zubw==
-X-Gm-Message-State: ACgBeo1porkWPwDAh9EXAw4AJalFyKzyqixW4uPXzQYpC3wXizHaw5UK
-        L04vL3KPGgBM/g0yG4GU78roag==
-X-Google-Smtp-Source: AA6agR7ht56AETrc67OcWwjk2ZdTN89lNQG6sdK7NhjVDq+yGtmrt31v3dYPncjALQdQHUUg3ZF0PA==
-X-Received: by 2002:a2e:8709:0:b0:26b:eb1d:a811 with SMTP id m9-20020a2e8709000000b0026beb1da811mr2510375lji.64.1662903324811;
-        Sun, 11 Sep 2022 06:35:24 -0700 (PDT)
+        bh=ae3obZ6xNwy7r5xGyrjRqVjIzsAgTF+V8+8P3DQs4ck=;
+        b=W+foGOlnP/A+9wwc4CDlAdZhWRc0KxLo+JclzPg4I9nPK9ZR/tERq7dd7GRpHxadmc
+         EfKvDyxp4+Edue0JZntrPPyk0v9vZgz10Iuw3IjH0kWJBhAWH3pL9WaWBw9BlJ/JRse9
+         oJazie7soC8i+ba4y+BTUwq9ZmWy8xADTspb+H7OvKPxYZA5r2fgbBKGIiU3SqHALDnp
+         Zqe4MfLtvpcJivsCColro1mNUnFH5Ak+Pt54rz8kdXbvayhygl8t1u87BLU8H16wrVJQ
+         h0H4e0aVwqICd9kdUh3HjLdQqbu+H+DKRmdjMdNkhZAOivFrHVmofaPQDjySP6S3xptE
+         k1og==
+X-Gm-Message-State: ACgBeo2N0Pob5tfQIoaWEtBG+5mGcKViQA2sFnak7rbVAPBGLsqwDQeQ
+        nGZZARM5yWGsZOWJ28Xch5qk7w==
+X-Google-Smtp-Source: AA6agR6uGBP6sA6xiTk67d6e5N6CPYKgmdLRbR9Iasd8iydXnoRVaZa1bUt07RKUKqCJzenAxNbF/g==
+X-Received: by 2002:a05:6512:2255:b0:492:ebbb:5f0d with SMTP id i21-20020a056512225500b00492ebbb5f0dmr7027817lfu.304.1662903442721;
+        Sun, 11 Sep 2022 06:37:22 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v9-20020a05651203a900b004946bec4e61sm614338lfp.140.2022.09.11.06.35.24
+        by smtp.gmail.com with ESMTPSA id y24-20020a199158000000b004947984b385sm616645lfj.87.2022.09.11.06.37.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Sep 2022 06:35:24 -0700 (PDT)
-Message-ID: <f32df517-ce96-d461-89a9-df16b46ebcc2@linaro.org>
-Date:   Sun, 11 Sep 2022 15:35:23 +0200
+        Sun, 11 Sep 2022 06:37:22 -0700 (PDT)
+Message-ID: <c53ad0ba-7a0c-4f5b-e31d-ab63e2e9b6b7@linaro.org>
+Date:   Sun, 11 Sep 2022 15:37:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v9 3/4] dt-bindings: hwmon: Add bindings for max31760
+Subject: Re: [RFC PATCH 01/10] dt-bindings: thermal: tsens: support per-sensor
+ calibration cells
 Content-Language: en-US
-To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, jdelvare@suse.com,
-        linux@roeck-us.net
-Cc:     linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220910171945.48088-1-Ibrahim.Tilki@analog.com>
- <20220910171945.48088-4-Ibrahim.Tilki@analog.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org>
+ <20220910124701.4060321-2-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220910171945.48088-4-Ibrahim.Tilki@analog.com>
+In-Reply-To: <20220910124701.4060321-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,20 +86,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2022 19:19, Ibrahim Tilki wrote:
-> Adding bindings for Analog Devices MAX31760 Fan-Speed Controller
+On 10/09/2022 14:46, Dmitry Baryshkov wrote:
+> Allow specifing the exact calibration mode and calibration data as nvmem
+> cells, rather than specifying just a single calibration data blob.
 > 
-> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/hwmon/adi,max31760.yaml          | 42 +++++++++++++++++++
+>  .../bindings/thermal/qcom-tsens.yaml          | 64 ++++++++++++++++---
+>  1 file changed, 54 insertions(+), 10 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index 038d81338fcf..b813f6f19c1d 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -77,18 +77,62 @@ properties:
+>        - const: critical
+>  
+>    nvmem-cells:
+> -    minItems: 1
+> -    maxItems: 2
+> -    description:
+> -      Reference to an nvmem node for the calibration data
+> +    oneOf:
+> +      - minItems: 1
+> +        maxItems: 2
+> +        description:
+> +          Reference to an nvmem node for the calibration data
+> +      - minItems: 5
+> +        maxItems: 35
+> +        description: |
+> +          Reference to an nvmem cells for the calibration mode, two calibration
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+s/an nvmem/nvmem/
 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-If a tag was not added on purpose, please state why and what changed.
 
 Best regards,
 Krzysztof
