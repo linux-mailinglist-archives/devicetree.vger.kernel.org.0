@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60C5B5B58B0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:47:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92BEC5B58BC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:51:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbiILKrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 06:47:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49116 "EHLO
+        id S229722AbiILKv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 06:51:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbiILKrR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:47:17 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF2F31EE4
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:47:15 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id f9so13414050lfr.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:47:15 -0700 (PDT)
+        with ESMTP id S229642AbiILKvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:51:25 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2035F3054D
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:51:23 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id by6so10018326ljb.11
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:51:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=bS7LDsVs3qcnyEA5WCUeLMEdHfGdR6OQ6NC7pdWEKCo=;
-        b=v9C7GeUH/ntRNwKKZ1I7TT6BQcjJBRkVZ1XpH6mXDdIGqsu2oqlY8NR6ikeS2VHyL8
-         7XoeJToQeSx7WIMqvu9S5zhL+/zdPWkCJ/xRvKy5UYL5moSuGoTzW/rT+uXwRSG6Eiic
-         vRv3Oy4PyY5Y4nPRruZEaZcvpvxM6lCfMQ0gzcT4tFsasIVkJa+3D6W6V8K+hfLskejA
-         LNX5aQQbJSTAfgk7Upg8DIPsy+QVWFepdmlC4bDE/vck/eapbQzWJPan/jIBh9yCxMTn
-         xdGGkKSLDDM4Cf8yXZKpajXEJTCiwphjC+CcMOkntC3mGhoodSx7fPj7QXXQPJ79Il6x
-         BM5g==
+        bh=JyxZJBDxwa1juNFoQDcnNx8kzZcf1BUcQHxFamfBS9U=;
+        b=ol/VATnLs6JCVymJeLMyS2ANExMLVBlpsGNJCzRIcNIEumS6IS4Y8ZFSmBuInRU1YP
+         5pwlePB8AIjfMmLI7BDksVLpV7C92efrimaWI2/owvq5NFJHK6DTiIfwoIhiwElyVNpN
+         13FnRgm3CbJSI9TEiOkwwz7EnK8b/hF88zTBBWECRy1Jf1I8RUFe3K80YJVvsDBb2xQ1
+         WqRs+9yV4++IkJP0CjVXEXa8fFFJc00VV2btLPtEdnC9aAhjSiLSzw/8s9HXycU+i0Wh
+         2IuL0zGZkf69gLqn9u6ZtW38fTBofCLyf/9CakO7RjOCzEFut6tC09dJPYwyaW3XKtwm
+         hAcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=bS7LDsVs3qcnyEA5WCUeLMEdHfGdR6OQ6NC7pdWEKCo=;
-        b=3sdJDho88JjWxqBxrN6P+/CaCpgMY5ZDY7d18ME7k6xAunt0/RFiVwjcEy5f0IZW2n
-         HV194aYZfy0ovc1AXA+UajqPhq+4J/WN/Hc3f4veEdqgbFGzlNtM1VN51Uuu9AmljdBS
-         VMlo5PDidUPUsY5sDvFI219g6Kr+lfshQzht1xIHYmnu58a3+T9pzurgv8/f1hwLryfJ
-         STyzPNatiXR6VAc+MH0j5lrgNsvJW5/rY9T2UwLj4hsbNfsxNs6Eo8jmZ2S9wdlkpzXO
-         Gn4OO13PTSTX0yvYEL1F3QNO1eh3jgDTPdOXraBtAsivkhM5kOhuiVUJxWWm1n+1i99Q
-         pZoQ==
-X-Gm-Message-State: ACgBeo1a1Bh6ztAuRHBUi+O1qNTu/C2BiHqozd6yY66AQmsPE2rQUlKw
-        bubZRa6T0gDx8oT7nwh46RNs2Q==
-X-Google-Smtp-Source: AA6agR5+jaTiqHAiQpzt1KGZYW6NOWDU4UIg3cF3n4GCh9g7ACcWMJRrb7wrqPm8IlRGzsNs5ZLcOA==
-X-Received: by 2002:a05:6512:3f8c:b0:492:b392:bb84 with SMTP id x12-20020a0565123f8c00b00492b392bb84mr8267929lfa.368.1662979633605;
-        Mon, 12 Sep 2022 03:47:13 -0700 (PDT)
+        bh=JyxZJBDxwa1juNFoQDcnNx8kzZcf1BUcQHxFamfBS9U=;
+        b=EcRkRm/5yjw1zJkWPkd5sNHdEaXuvw6d//u+o6/6Nvvy03borPE1HuNmcA1Gq8ZqUC
+         yAcRODfraQR8EpgJgfmIypQbasNwCYYd4R7syVCUSxuefHO0N9qtgSEtBqnGpW+bZ2PC
+         iGexJKjUJHXW0OQLXYFMhGu625n3UTVlzo5t1NCDtpQp4wjV/V1vifOthqk5ltkXJn+H
+         I1Yd7/t93T3BoRhqxdjn1ZMmCkGvbm1PXfGhnLKJDi7ba40NpugOV7UztqhuI2m24Xom
+         r1pPbdPXppuyvI48Pl3yfJNNgeisql1MAySCXlNYdvWjAMayLHsqbtkr0w02QXK4f82h
+         hUjQ==
+X-Gm-Message-State: ACgBeo2u8kncYnoox1nbyipOnsc9YNehtAcdtckQhQ/Lr0q/9i6tSQYT
+        IX+yRW6K/N58PPGYE0FoxceHXQ==
+X-Google-Smtp-Source: AA6agR79aoCpEogSUJhr9xxLEteFdk51Jg5L0gCGuub7enPMTGd6uvgE8eglysHg+QSpeMwTWtu5sw==
+X-Received: by 2002:a2e:a552:0:b0:25e:6fa1:a6c4 with SMTP id e18-20020a2ea552000000b0025e6fa1a6c4mr7292256ljn.90.1662979881408;
+        Mon, 12 Sep 2022 03:51:21 -0700 (PDT)
 Received: from [10.129.96.84] ([109.232.243.34])
-        by smtp.gmail.com with ESMTPSA id p8-20020a2eb7c8000000b0026c111ac7bcsm188263ljo.86.2022.09.12.03.47.12
+        by smtp.gmail.com with ESMTPSA id d28-20020a0565123d1c00b0048a8586293asm1005267lfv.48.2022.09.12.03.51.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Sep 2022 03:47:13 -0700 (PDT)
-Message-ID: <79c11b6a-8f34-a5ee-373d-f88d5a980039@linaro.org>
-Date:   Mon, 12 Sep 2022 12:47:09 +0200
+        Mon, 12 Sep 2022 03:51:20 -0700 (PDT)
+Message-ID: <14d7bbb5-51c4-8fc0-2303-f5164c6da903@linaro.org>
+Date:   Mon, 12 Sep 2022 12:51:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 3/4] dt-bindings: remoteproc: qcom: wcnss: Add
- qcom,pronto compatible
+Subject: Re: [PATCH v1] dt-bindings: clock: convert rockchip,rk3128-cru.txt to
+ YAML
 Content-Language: en-US
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     bjorn.andersson@linaro.org, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20220908184925.2714098-1-sireeshkodali1@gmail.com>
- <20220908184925.2714098-4-sireeshkodali1@gmail.com>
- <ad201ee7-d83c-9ebc-3619-64632f1f266e@linaro.org>
- <CMU3V4NK164X.1D3TDJPALGIDD@skynet-linux>
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc:     zhangqing@rock-chips.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <76d87f49-6a44-0a05-c9dc-af870fade924@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CMU3V4NK164X.1D3TDJPALGIDD@skynet-linux>
+In-Reply-To: <76d87f49-6a44-0a05-c9dc-af870fade924@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,22 +78,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2022 05:33, Sireesh Kodali wrote:
-> On Fri Sep 9, 2022 at 1:30 PM IST, Krzysztof Kozlowski wrote:
->> On 08/09/2022 20:49, Sireesh Kodali wrote:
->>> The qcom,pronto compatible is used in the wcn36xx driver to determine
->>> which register to access. However, this compatible was not documented.
->>> This patch documents the existing compatible as is, since it isn't
->>> immediately clear why the wcn36xx driver uses this extra compatible,
->>> rather than relying directly on the regular compatible string.
->>
->> The patch does much more - messes entirely all compatibles...
+On 11/09/2022 23:20, Johan Jonker wrote:
+> Convert rockchip,rk3128-cru.txt to YAML.
 > 
-> Is there another preferred way to handle this?
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 
-The one which does not introduces any other changes than what you wrote
-here. You wrote here, that qcom,pronto is being added, so why some
-things are changed to oneOf or to enums?
+Thank you for your patch. There is something to discuss/improve.
+
+> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
+> new file mode 100644
+> index 000000000..03e5d7f0e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: GPL-2.0
+
+Can't it be Dual licensed?
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/rockchip,rk3128-cru.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip RK3126/RK3128 Clock and Reset Unit (CRU)
+> +
+> +maintainers:
+> +  - Elaine Zhang <zhangqing@rock-chips.com>
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +description: |
+> +  The RK3126/RK3128 clock controller generates and supplies clock to various
+> +  controllers within the SoC and also implements a reset controller for SoC
+> +  peripherals.
+> +  Each clock is assigned an identifier and client nodes can use this identifier
+> +  to specify the clock which they consume. All available clocks are defined as
+> +  preprocessor macros in the dt-bindings/clock/rk3128-cru.h headers and can be
+> +  used in device tree sources. Similar macros exist for the reset sources in
+> +  these files.
+> +  There are several clocks that are generated outside the SoC. It is expected
+> +  that they are defined using standard clock bindings with following
+> +  clock-output-names:
+> +    - "xin24m"     - crystal input       - required
+> +    - "ext_i2s"    - external I2S clock  - optional
+> +    - "gmac_clkin" - external GMAC clock - optional
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3126-cru
+> +      - rockchip,rk3128-cru
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: xin24m
+
+More clocks were mentioned in old binding.
+
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the "general register files" (GRF),
+> +      if missing pll rates are not changeable, due to the missing pll
+> +      lock status.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#clock-cells"
+> +  - "#reset-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    cru: clock-controller@20000000 {
+> +      compatible = "rockchip,rk3128-cru";
+> +      reg = <0x20000000 0x1000>;
+> +      rockchip,grf = <&grf>;
+> +      #clock-cells = <1>;
+> +      #reset-cells = <1>;
+> +    };
+
 
 Best regards,
 Krzysztof
