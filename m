@@ -2,79 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F2E05B58D4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:56:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1D9D5B58DE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbiILK45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 06:56:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
+        id S229968AbiILK5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 06:57:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiILK44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:56:56 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB43333E02
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:56:54 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id q21so14269185lfo.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:56:54 -0700 (PDT)
+        with ESMTP id S230041AbiILK5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:57:24 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 538A933352
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:57:23 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id f14so13222304lfg.5
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:57:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=6tUzH5tD0/EQDJEHdG2/yvhoYIxFUu9UMKWjQ4i6dFU=;
-        b=SteGjDdLxOkNmkZpFFdzmeBoHnptV89fx54Dw/Oq0PuAe8oAuJV+gZsgGNzUvlISyV
-         6PYF38zZkik05eSX8MajAQR9M0Huu+NQys7oOd88lgiBWzxJD45vl6m6SHoJEfJoYTMe
-         HQ0GGJu0nKzn3j1OQSrt8Gky3N9KPvFQID5TKwuIoZ/Dv3XzWrBx6MkkTc4uTHn0CCpY
-         ximD+qWIvYS16GSJ+uHHpyo875URq4ospCkjtpGgP6w+aeJoGShxs86YneVdCB6GSc37
-         9tj5VgPVbmIPhaQN2awukxTRNMnVY8Bpx/9+fJIcoZUrafA8Rn8YAxl9EBiXG8o6DrDv
-         053w==
+        bh=HMWJPzdm7LYZ0h8otC1FbEzhBnQw85P+nGu0rzixY9o=;
+        b=Mpl5aGqpSDa7nHFLKV0y2Y9pxhx/FXwd6kelexR5s5QnvobWEc4atfr04mAKCbSooR
+         Eqo0wROh95s0AT0YMPmCLgf09bV9TG9ellmi4xqC5g66/npUr/U/h23XwFLu4DfE6NL2
+         qUohoW8NjiQTheKYoYkSsUxizI5AAnFqJ0NDl0ruWseusK3QLXmM5OAOqrKUfGFnWNOR
+         IDWi9Y02U2stPGe6586/V88b5x2gL5xhCn+yW2N3AbvcU8HHqHEmoBd1oGtTn3SUzlIj
+         j9kd3BrwEUSaMOl6bTBIIUdYNK3aJeRcbvxuKkv0O1YK/DpR1wYDHpKnzBxeNXoVwhxF
+         U8LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=6tUzH5tD0/EQDJEHdG2/yvhoYIxFUu9UMKWjQ4i6dFU=;
-        b=UKxOt49PkAlkmj9BFWbAWMRlM6jsiNUrZGM9KmxRmcLbz5n1VNfDXtW6HCMUTdD4QY
-         WaDKcIEBwOKWEZ7b9TXnqanROV4osXBcBzqpl40NiWFBxX6u9Z7j0+iyZwxcGD/MzFPG
-         mwEE7ivmsrEaVWTdmXQUkSOpK0ikRop8cH27pG7uX2eqowZbvR3g0DNDEV4T2w29FA68
-         UcZiC2K/PhnSQpA2+rEHPQ5opgKL5XClSmXqh2wz5FLNaioD4j8XxKYNhgpLGEti3tSR
-         JrwEt47rEzUV9stG2EH8Ng/gY5sZi8aswiVi/Mqe44vwh59czZGnQI5r9LIyqcP78dVp
-         tCAA==
-X-Gm-Message-State: ACgBeo0yhJOgKeBH1d3eNvmgNtOgmmLkcQFnrOWpCNBcJ5VBY54ij6Ns
-        D4+5iGy1PqFllti7N8FtmlyfMA==
-X-Google-Smtp-Source: AA6agR7DCprV111kPIM22VhkcLuzQZR4DAuJ30/naNbA1c9awj4/5+Rmp5HIg+7zRvXmBQbRD/hMDg==
-X-Received: by 2002:a05:6512:2381:b0:492:afa4:6b67 with SMTP id c1-20020a056512238100b00492afa46b67mr8076625lfv.621.1662980212623;
-        Mon, 12 Sep 2022 03:56:52 -0700 (PDT)
+        bh=HMWJPzdm7LYZ0h8otC1FbEzhBnQw85P+nGu0rzixY9o=;
+        b=cqkmCPVroYEyr7OwP6ezPyVEXE9vIbsGX3Fo3Bs7gIT8lHFNKWIsFrchnAgBi5XRCY
+         jgfNPFsGs/y4bRYTRoBfsTGPR0+sh7eTsK966STxRbFG/8J58BXBZR8DvTw8WicGjKYW
+         J220VwYqj0IUkM+fz+mFQqMn5foUacpbcI2ccDIYT36wcktKOEslOKNoxxn0crzqd0XE
+         T1yVqo5zytvxSSJgi+Oqag/cP1xauWbeOwOHFE+mNXpubY7SijsixSoHry1lHjEISDlp
+         +KZq2PjFWv49cwsTU/RvECsHprwu/Y6GY92rgbLY0HKZTYhRGruPd9IpzIi55uiroa/J
+         vpMw==
+X-Gm-Message-State: ACgBeo0KDFbX2r4uIeNfn4FMKCB1ZORplO6Ro1H/19B4xP19CyS79aGo
+        mPj2H/jt2YH4N64f4o/vtFy0KU6mfKoKTA==
+X-Google-Smtp-Source: AA6agR4f4eXl0jS5Wl8xvyRDaq8ZjEEr6LcKUwnHnsVlC107wKXUmp3ypgBDV5IxJD8HCS5Vl8cxrg==
+X-Received: by 2002:a05:6512:798:b0:497:aa2b:8b10 with SMTP id x24-20020a056512079800b00497aa2b8b10mr9034975lfr.636.1662980241513;
+        Mon, 12 Sep 2022 03:57:21 -0700 (PDT)
 Received: from [10.129.96.84] ([109.232.243.34])
-        by smtp.gmail.com with ESMTPSA id n4-20020a05651203e400b00492d064e8f8sm1002962lfq.263.2022.09.12.03.56.51
+        by smtp.gmail.com with ESMTPSA id c28-20020ac25f7c000000b004917a30c82bsm999821lfc.153.2022.09.12.03.57.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Sep 2022 03:56:52 -0700 (PDT)
-Message-ID: <e3c0bafe-394c-e8cc-aba0-6eb480dc5b43@linaro.org>
-Date:   Mon, 12 Sep 2022 12:56:49 +0200
+        Mon, 12 Sep 2022 03:57:21 -0700 (PDT)
+Message-ID: <4eecf3e8-78ef-7fa4-c615-7b7f27465a7d@linaro.org>
+Date:   Mon, 12 Sep 2022 12:57:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/2] media: i2c: add support for ov4689
+Subject: Re: [PATCH v3] ASoC: dt-bindings: Mark old binding
+ qcom,cpu-lpass-apq8016 as deprecated
 Content-Language: en-US
-To:     Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Christian Hemp <c.hemp@phytec.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Marek Vasut <marex@denx.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220911200147.375198-1-mike.rudenko@gmail.com>
- <20220911200147.375198-3-mike.rudenko@gmail.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220911230803.1286202-1-bryan.odonoghue@linaro.org>
+ <20220911230803.1286202-2-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220911200147.375198-3-mike.rudenko@gmail.com>
+In-Reply-To: <20220911230803.1286202-2-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,38 +77,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2022 22:01, Mikhail Rudenko wrote:
-> +static const struct i2c_device_id ov4689_id[] = {
-> +	{ "ov4689", 0 },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(i2c, ov4689_id);
-> +
-> +static const struct of_device_id ov4689_of_match[] = {
-> +	{ .compatible = "ovti,ov4689" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, ov4689_of_match);
-> +
-> +static struct i2c_driver ov4689_i2c_driver = {
-> +	.driver = {
-> +		.name = "ov4689",
-> +		.pm = &ov4689_pm_ops,
-> +		.of_match_table = of_match_ptr(ov4689_of_match),
+On 12/09/2022 01:08, Bryan O'Donoghue wrote:
+> We've had some discongruity in the compatible string of the lpass for 8916
+> for a while.
+> 
+> Mark the old compat as deprecated. New SoC additions such as msm8936 and
+> msm8939 should use the compat string "qcom,apq8016-lpass-cpu".
+> 
 
-of_match_ptr is usually paired with maybe_unused, otherwise you will
-have compile test warnings.
-
-> +	},
-> +	.probe = ov4689_probe,
-> +	.remove	= ov4689_remove,
-> +	.id_table = ov4689_id,
-> +};
-> +
-> +module_i2c_driver(ov4689_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("OmniVision ov4689 sensor driver");
-> +MODULE_LICENSE("GPL");
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
