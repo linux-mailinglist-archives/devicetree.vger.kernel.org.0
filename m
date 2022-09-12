@@ -2,340 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 763585B5DBB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 17:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04CAC5B5E30
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 18:26:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbiILP60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 11:58:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37164 "EHLO
+        id S229692AbiILQ0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 12:26:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbiILP6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 11:58:24 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C557923BEF;
-        Mon, 12 Sep 2022 08:58:22 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-12803ac8113so24530816fac.8;
-        Mon, 12 Sep 2022 08:58:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=zS3yyO6nCl1vnt2+U5h2vaJpvgKIH5YZrOhEZbFuxHU=;
-        b=nakGdPijdCEQMU1qYn516B5hmEMlfAuhuo4O0m46XqT6MCxr6fWsgCHtoMegs1630o
-         o7FXK3g5IXx7RIYg+Q/2VI3ughcPt3ed9rtAtKzrtvDmdH5Wk6H4SK6qTM7nFDVK5wu3
-         tR9MZr6xx2WcdIBOGVom/vuVncU0QmAqqGlLghwK3uzq7brCduRUaOGEbPDJWltNgb2v
-         Jv4uimlcnhWO3m37jYGR4Nz50d7mmjuViJ5eP2YuyMGQ1TVjQLFwNLFKTjNreawdeR04
-         4srWUsgk8hRxYO8Yfyi5XNHtQnmIxiuDVO7U5EF9RHK9BiUwN2Kiwhd9DOQtNBhxV5u+
-         1wwA==
-X-Gm-Message-State: ACgBeo2EAlAsd8JAL1QE2n4DdpWjpa/F0Ru86W+oAk5eRNO91/v5GiDc
-        84OpWF4WE0vEnDVq4rfmcGZfxEnXlw==
-X-Google-Smtp-Source: AA6agR5Bbgn+aZKzFHPgJzhnCMuycnAj8Aw4zJ2DKHRCLHlWHnTyXwfjOfTLuF3fPvcNkWwYQL67Xw==
-X-Received: by 2002:a05:6870:3285:b0:11f:5465:4943 with SMTP id q5-20020a056870328500b0011f54654943mr12039498oac.188.1662998301981;
-        Mon, 12 Sep 2022 08:58:21 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s4-20020a4aa544000000b0044b22632d51sm4266748oom.2.2022.09.12.08.58.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Sep 2022 08:58:21 -0700 (PDT)
-Received: (nullmailer pid 1373603 invoked by uid 1000);
-        Mon, 12 Sep 2022 15:58:20 -0000
-Date:   Mon, 12 Sep 2022 10:58:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, daniel.lezcano@linaro.org,
-        andersson@kernel.org, rafael@kernel.org, bhupesh.linux@gmail.com
-Subject: Re: [PATCH 3/4] dt-bindings: thermal: Add qcom,qmi-tmd-device and
- qcom,tmd-device yaml bindings
-Message-ID: <20220912155820.GA1362480-robh@kernel.org>
-References: <20220912085049.3517140-1-bhupesh.sharma@linaro.org>
- <20220912085049.3517140-4-bhupesh.sharma@linaro.org>
+        with ESMTP id S229616AbiILQ0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 12:26:18 -0400
+X-Greylist: delayed 1388 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 12 Sep 2022 09:26:16 PDT
+Received: from fallback25.mail.ru (fallback25.m.smailru.net [94.100.189.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 143761C109;
+        Mon, 12 Sep 2022 09:26:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=8US1vgXixv7xa8A9nBZ4Deph+E3LZ8h4N6j7S9Yzc6k=;
+        t=1662999976;x=1663089976; 
+        b=wcANcI2P7EzntN+tzPMfpbbGOSnVV8INfw/W8vE9dQg1YRKWGjp3m6e6cMW+rBqCCVwDQO+hYjO60ICxh8LE1hURaH5uyEHGojIg5lObsJWo1ub8m6wxptZzYZaqrbcgfXkBENWi3gbw3y8V2nzfWd6z8Mg+lS/DFqFxrL1yi0fpmpUyAVk736AaQpP5L/qsL+g4chMddwui24nh0rhtdeJ6Ii1JoSJypZWEaMbsG9OcCWry7FY6Roy+KTFm48HMi4xVTstAWL0zkb7W9fVJ8ziMmZl+mkY7yVFri6XXcZhSi7utabfh6zFP4MfE1WVxDsILjwlgaiT8uL5WlhKxsw==;
+Received: from [10.161.100.15] (port=37086 helo=smtpng3.i.mail.ru)
+        by fallback25.m.smailru.net with esmtp (envelope-from <fido_max@inbox.ru>)
+        id 1oXltp-0007ec-AX; Mon, 12 Sep 2022 19:03:05 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=8US1vgXixv7xa8A9nBZ4Deph+E3LZ8h4N6j7S9Yzc6k=;
+        t=1662998585;x=1663088585; 
+        b=fXUW2PD0lHHjO2zxV/3Y4hMBZDhLgpyyMoOWDXodgl/7Lk3VsPr6odU9NZ6AhsqUH+tORIIra7IjbP08WeA9lmd8+Co1BjbiThgIhRmsS39hrn4ego/AP9R8i0hbg5RyThTW/KWMriCWAK6iGj8GSae/wWCudGm138waBTfcFcG5oMZ8ZM6QfzO5Jd7N1+RNLzn5pWWmpkHskRlgUi60KSJ5Y6NovmZkveZSMiDhHbL6xzFrQqZfbXOam1+xukHHhf8E5i/PS059aPIYXO2kSLb9IPRo5RADAK2IuPDGO5AEVYLZxyI9XK/UwGIOcQtwwhzU+JnOE5mDzNhwS7iSDw==;
+Received: by smtpng3.m.smailru.net with esmtpa (envelope-from <fido_max@inbox.ru>)
+        id 1oXltZ-0002Zl-LS; Mon, 12 Sep 2022 19:02:50 +0300
+Message-ID: <61d4abee-b785-f6d0-1afd-3299083fd27c@inbox.ru>
+Date:   Mon, 12 Sep 2022 19:02:47 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220912085049.3517140-4-bhupesh.sharma@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH net-next] dt-bindings: net: dsa: convert ocelot.txt to
+ dt-schema
+Content-Language: en-US
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Colin Foster <colin.foster@in-advantage.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220912153702.246206-1-vladimir.oltean@nxp.com>
+From:   Maxim Kochetkov <fido_max@inbox.ru>
+In-Reply-To: <20220912153702.246206-1-vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailru-Src: smtp
+X-7564579A: 646B95376F6C166E
+X-77F55803: 4F1203BC0FB41BD98A32D11463CB84D82663DA822CE640DCAD5655D05B28A237182A05F5380850405EEF27D46583D87F477E910B058DE7ED5AE8E7EBF558BBCD3B70540C45998270
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7677FBC47C69A9293EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F7900637FC0948D7756001208638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D8AA7F8F81A15FD4E4A65E922D93E9F1716F9789CCF6C18C3F8528715B7D10C86878DA827A17800CE76E0B6B202B8EE8599FA2833FD35BB23D9E625A9149C048EEC65AC60A1F0286FE2CC0D3CB04F14752D2E47CDBA5A96583BD4B6F7A4D31EC0BC014FD901B82EE079FA2833FD35BB23D27C277FBC8AE2E8B1BE95B8C87527B4BA471835C12D1D977C4224003CC8364762BB6847A3DEAEFB0F43C7A68FF6260569E8FC8737B5C2249EC8D19AE6D49635B68655334FD4449CB9ECD01F8117BC8BEAAAE862A0553A39223F8577A6DFFEA7CB0EC3B1FCAE4A06943847C11F186F3C59DAA53EE0834AAEE
+X-C1DE0DAB: 9604B64F49C60606AD91A466A1DEF99B296C473AB1E142185AC9E3593CE4B31AB1881A6453793CE9274300E5CE05BD4401A9E91200F654B0D4C601CEA03E70EE62A0B7FAC1A43EF08DBE3677FAB95117C574AAF92CB21A169C2B6934AE262D3EE7EAB7254005DCED8DA55E71E02F9FC08E8E86DC7131B365E7726E8460B7C23C
+X-C8649E89: 4E36BF7865823D7055A7F0CF078B5EC49A30900B95165D34C75F910DBB8BE8989805CC95668CC3AFB6108C3EBDC61B19470548E84D426AB30725BAB1F64B98191D7E09C32AA3244C65FA36AA7DE6F861D7682B05ACB502BFFE8DA44ABE2443F7FE8D267BAF400505
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojlrfVkOjGUc8pFl4ahuSzLg==
+X-Mailru-Sender: 689FA8AB762F7393CC2E0F076E87284E7172974701A0C013ECDB4CE1FBDB9EB898CC072019C18A892CA7F8C7C9492E1F2F5E575105D0B01ADBE2EF17B331888EEAB4BC95F72C04283CDA0F3B3F5B9367
+X-Mras: Ok
+X-7564579A: B8F34718100C35BD
+X-77F55803: 6242723A09DB00B432349F57BDBE6FC5102DFFA97DB55D05DA9B8BC18EBE5BAA049FFFDB7839CE9EB3F9D156658E49A3DBB6F795AB2405D2328B1CFAF8BA98E2D171CCF9FA619655
+X-7FA49CB5: 0D63561A33F958A5EA06B542706C3E4EB8D3D9D0EC2CCA6C30EFA4949FBBC4A5CACD7DF95DA8FC8BD5E8D9A59859A8B64071617579528AACCC7F00164DA146DAFE8445B8C89999728AA50765F790063781612DB815465C93389733CBF5DBD5E9C8A9BA7A39EFB766F5D81C698A659EA7CC7F00164DA146DA9985D098DBDEAEC886D40F53BA192295F6B57BC7E6449061A352F6E88A58FB86F5D81C698A659EA775ECD9A6C639B01B78DA827A17800CE7F45C1E71A9DFFA2A731C566533BA786AA5CC5B56E945C8DA
+X-C1DE0DAB: 9604B64F49C60606AD91A466A1DEF99B296C473AB1E142185AC9E3593CE4B31AB1881A6453793CE9274300E5CE05BD44CFFBF5018520E3987BB222D9AD51FB28F806EE4A770593A87E567C5E67DA451A250F2D7D8FB26E69B1881A6453793CE9C32612AADDFBE06133F7A9E5587C79A693EDB24507CE13387DFF0A840B692CF8
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojlrfVkOjGUc8ncrsnt7Fu6w==
+X-Mailru-MI: 8000000000000800
+X-Mras: Ok
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 02:20:48PM +0530, Bhupesh Sharma wrote:
-> Add qcom,qmi-tmd-device and qcom,tmd-device yaml bindings.
+
+
+On 12.09.2022 18:37, Vladimir Oltean wrote:
+> Replace the free-form description of device tree bindings for VSC9959
+> and VSC9953 with a YAML formatted dt-schema description. This contains
+> more or less the same information, but reworded to be a bit more
+> succint.
 > 
-> Qualcomm QMI based TMD cooling device(s) are used for various
-> mitigations for remote subsystem(s) including remote processor
-> mitigation, rail voltage restriction etc.
-> 
-> Each child node represents one remote subsystem and each child
-> of this subsystem in-turn represents separate TMD cooling device.
-> 
-> Cc: daniel.lezcano@linaro.org
-> Cc: rafael@kernel.org
-> Cc: andersson@kernel.org
-> Cc: robh@kernel.org
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  .../bindings/thermal/qcom,qmi-tmd-device.yaml |  78 +++++++++++
->  .../bindings/thermal/qcom,tmd-device.yaml     | 122 ++++++++++++++++++
->  include/dt-bindings/thermal/qcom,tmd.h        |  14 ++
->  3 files changed, 214 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
->  create mode 100644 Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
->  create mode 100644 include/dt-bindings/thermal/qcom,tmd.h
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml b/Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
-> new file mode 100644
-> index 000000000000..dfda5b611a93
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/thermal/qcom,qmi-tmd-device.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm QMI based thermal mitigation (TMD) cooling devices.
-> +
-> +maintainers:
-> +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> +
-> +description:
-> +  Qualcomm QMI based TMD cooling device(s) are used for various
-> +  mitigations for remote subsystem(s) including remote processor
-> +  mitigation, rail voltage restriction etc.
-> +
-> +properties:
-> +  $nodename:
-> +    const: qmi-tmd-devices
-> +
-> +  compatible:
-> +    items:
-> +      - const: qcom,qmi-tmd-devices
-> +
-> +  modem0:
-> +    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-> +
-> +  adsp:
-> +    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-> +
-> +  cdsp:
-> +    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-> +
-> +  slpi:
-> +    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/thermal/qcom,tmd.h>
-> +    qmi-tmd-devices {
-> +      compatible = "qcom,qmi-tmd-devices";
-> +
-> +      modem0 {
-> +        qcom,instance-id = <MODEM0_INSTANCE_ID>;
-> +
-> +        modem0_pa: tmd-device0 {
-> +          label = "pa";
-> +          #cooling-cells = <2>;
-> +        };
-> +
-> +        modem0_proc: tmd-device1 {
-> +          label = "modem";
-> +          #cooling-cells = <2>;
-> +        };
-> +
-> +        modem0_current: tmd-device2 {
-> +          label = "modem_current";
-> +          #cooling-cells = <2>;
-> +        };
-> +
-> +        modem0_skin: tmd-device3 {
-> +          label = "modem_skin";
-> +          #cooling-cells = <2>;
-> +        };
-> +
-> +        modem0_vdd: tmd-device4 {
-> +          label = "cpuv_restriction_cold";
-> +          #cooling-cells = <2>;
-> +        };
-> +      };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml b/Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
-> new file mode 100644
-> index 000000000000..38ac62f03376
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/thermal/qcom,tmd-device.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm thermal mitigation (TMD) cooling devices
-> +
-> +maintainers:
-> +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> +
-> +description:
-> +  Qualcomm thermal mitigation (TMD) cooling devices. Each child node
-> +  represents one remote subsystem and each child of this subsystem in-turn
-> +  represents separate cooling devices.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^(modem|adsp|cdsp|slpi[0-9])?$"
-
-Node names are supposed to reflect the class of device, not instance.
-
-> +
-> +  qcom,instance-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Remote subsystem QMI server instance id to be used for communicating with QMI.
-
-In general, we don't do instance indexes in DT. You'll need to explain 
-where the value comes from.
-
-> +
-> +patternProperties:
-> +  "^tmd-device[0-9]?$":
-
-A cooling provider should have a standard node name. Not sure offhand if 
-we defined one in the spec or not yet.
-
-> +    type: object
-> +    description:
-> +      Subnodes indicating tmd cooling device of a specific category.
-> +    properties:
-> +      label:
-> +        maxItems: 1
-> +        description: |
-> +          Remote subsystem device identifier. Acceptable device names -
-> +          "pa" -> for pa cooling device,
-> +          "cpuv_restriction_cold" -> for vdd restriction,
-> +          "cx_vdd_limit" -> for vdd limit,
-> +          "modem" -> for processor passive cooling device,
-> +          "modem_current" -> for current limiting device,
-> +          "modem_bw" ->  for bus bandwidth limiting device,
-> +          "cpr_cold" -> for cpr restriction.
-> +
-> +      "#cooling-cells":
-> +        const: 2
-> +
-> +    required:
-> +      - label
-> +      - "#cooling-cells"
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - qcom,instance-id
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/thermal/qcom,tmd.h>
-> +    modem0 {
-> +      qcom,instance-id = <MODEM0_INSTANCE_ID>;
-> +
-> +      modem0_pa: tmd-device0 {
-> +        label = "pa";
-> +        #cooling-cells = <2>;
-> +      };
-> +
-> +      modem0_proc: tmd-device1 {
-> +        label = "modem";
-> +        #cooling-cells = <2>;
-> +      };
-> +
-> +      modem0_current: tmd-device2 {
-> +        label = "modem_current";
-> +        #cooling-cells = <2>;
-> +      };
-> +
-> +      modem0_skin: tmd-device3 {
-> +        label = "modem_skin";
-> +        #cooling-cells = <2>;
-> +      };
-> +
-> +      modem0_vdd: tmd-device4 {
-> +        label = "cpuv_restriction_cold";
-> +        #cooling-cells = <2>;
-> +      };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/thermal/qcom,tmd.h>
-> +    adsp {
-> +      qcom,instance-id = <ADSP_INSTANCE_ID>;
-> +
-> +      adsp_vdd: tmd-device1 {
-> +        label = "cpuv_restriction_cold";
-> +        #cooling-cells = <2>;
-> +      };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/thermal/qcom,tmd.h>
-> +    cdsp {
-> +      qcom,instance-id = <CDSP_INSTANCE_ID>;
-> +
-> +      cdsp_vdd: tmd-device1 {
-> +        label = "cpuv_restriction_cold";
-> +        #cooling-cells = <2>;
-> +      };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/thermal/qcom,tmd.h>
-> +    slpi {
-> +      qcom,instance-id = <SLPI_INSTANCE_ID>;
-> +
-> +      slpi_vdd: tmd-device1 {
-> +        label = "cpuv_restriction_cold";
-> +        #cooling-cells = <2>;
-> +      };
-> +    };
-> diff --git a/include/dt-bindings/thermal/qcom,tmd.h b/include/dt-bindings/thermal/qcom,tmd.h
-> new file mode 100644
-> index 000000000000..5ede4422e04e
-> --- /dev/null
-> +++ b/include/dt-bindings/thermal/qcom,tmd.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-
-Dual license.
-
-> +/*
-> + * This header provides constants for the Qualcomm TMD instances.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_THERMAL_QCOM_TMD_H_
-> +#define _DT_BINDINGS_THERMAL_QCOM_TMD_H_
-> +
-> +#define MODEM0_INSTANCE_ID	0x0
-> +#define ADSP_INSTANCE_ID	0x1
-> +#define CDSP_INSTANCE_ID	0x43
-> +#define SLPI_INSTANCE_ID	0x53
-> +
-> +#endif
-> -- 
-> 2.37.1
-> 
-> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
