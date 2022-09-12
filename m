@@ -2,70 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92BEC5B58BC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DFA75B58CD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbiILKv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 06:51:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55712 "EHLO
+        id S229867AbiILKz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 06:55:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbiILKvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:51:25 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2035F3054D
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:51:23 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id by6so10018326ljb.11
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:51:23 -0700 (PDT)
+        with ESMTP id S229511AbiILKzZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:55:25 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 055F4167F0
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:55:24 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id x10so10058778ljq.4
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:55:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=JyxZJBDxwa1juNFoQDcnNx8kzZcf1BUcQHxFamfBS9U=;
-        b=ol/VATnLs6JCVymJeLMyS2ANExMLVBlpsGNJCzRIcNIEumS6IS4Y8ZFSmBuInRU1YP
-         5pwlePB8AIjfMmLI7BDksVLpV7C92efrimaWI2/owvq5NFJHK6DTiIfwoIhiwElyVNpN
-         13FnRgm3CbJSI9TEiOkwwz7EnK8b/hF88zTBBWECRy1Jf1I8RUFe3K80YJVvsDBb2xQ1
-         WqRs+9yV4++IkJP0CjVXEXa8fFFJc00VV2btLPtEdnC9aAhjSiLSzw/8s9HXycU+i0Wh
-         2IuL0zGZkf69gLqn9u6ZtW38fTBofCLyf/9CakO7RjOCzEFut6tC09dJPYwyaW3XKtwm
-         hAcQ==
+        bh=uODYllNYs6vH+/kP4ToqCRWAa9suYiwygYLIovAsVnU=;
+        b=g5fbjdZa+uRqiNsPW0QD54nGvN7X5aBbFAzzt0v+0YiKM55+91yR7pR/x/1kFFkQFa
+         PDWGSbEg3Hot7+eat0TLFcdROvwOW+1/mXiy8dFW66v1Yfs/O2y2K2kwkSzPLZa+v+CL
+         tbOCLnGjXC9j7Eiy+HSp7flLu5Efsj19mYkdWiGfFLW7npPqOtK3Hf00X84ZPZfXdQ40
+         HWI+QwpAqjra5/lqiZrtlwzDRvHrT1bbE5QnQsSnnuBYwEROC2mZXilwtTGqHLS3PBuL
+         LuYNy2zrrUDmQNecRjfxlA1JgSEiNErKvDJs17T6D5Vqs562DgVOLs+kqp0BrUQh4iEU
+         mt3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=JyxZJBDxwa1juNFoQDcnNx8kzZcf1BUcQHxFamfBS9U=;
-        b=EcRkRm/5yjw1zJkWPkd5sNHdEaXuvw6d//u+o6/6Nvvy03borPE1HuNmcA1Gq8ZqUC
-         yAcRODfraQR8EpgJgfmIypQbasNwCYYd4R7syVCUSxuefHO0N9qtgSEtBqnGpW+bZ2PC
-         iGexJKjUJHXW0OQLXYFMhGu625n3UTVlzo5t1NCDtpQp4wjV/V1vifOthqk5ltkXJn+H
-         I1Yd7/t93T3BoRhqxdjn1ZMmCkGvbm1PXfGhnLKJDi7ba40NpugOV7UztqhuI2m24Xom
-         r1pPbdPXppuyvI48Pl3yfJNNgeisql1MAySCXlNYdvWjAMayLHsqbtkr0w02QXK4f82h
-         hUjQ==
-X-Gm-Message-State: ACgBeo2u8kncYnoox1nbyipOnsc9YNehtAcdtckQhQ/Lr0q/9i6tSQYT
-        IX+yRW6K/N58PPGYE0FoxceHXQ==
-X-Google-Smtp-Source: AA6agR79aoCpEogSUJhr9xxLEteFdk51Jg5L0gCGuub7enPMTGd6uvgE8eglysHg+QSpeMwTWtu5sw==
-X-Received: by 2002:a2e:a552:0:b0:25e:6fa1:a6c4 with SMTP id e18-20020a2ea552000000b0025e6fa1a6c4mr7292256ljn.90.1662979881408;
-        Mon, 12 Sep 2022 03:51:21 -0700 (PDT)
+        bh=uODYllNYs6vH+/kP4ToqCRWAa9suYiwygYLIovAsVnU=;
+        b=yXElSF/noRdrqoqK/LXvxt23R2B2OMixkoc+sZoz1Uk6ngcgmUC9R5VvgNuNY4EUVN
+         6Po5PJfg3EGoDabijrPhAXUhTcXpvZkch8cE1dGv/NO+xOp7iNChqt0YrGXVx5oa0EN4
+         QbgsEshFKFlaB2r7hXaZMyaZIlNwdGaNHIVvF+VJQbxd40NKdTtr0ZeGDNUt7jJjwEqf
+         5q4jXveLHtHpMO7ytbIGdJeJGsFjkWuLqlEw7hAxlq5/TKbPlwtLA0ofz4GwW6QD4CW5
+         k0qaT42J9/6ZpRlWBp1V7qpeAMUhTPpvWWo6er7X2JK/WC3vMfdrvDx4Z4L18vnM2jfg
+         XPJA==
+X-Gm-Message-State: ACgBeo2B2CCz3vdijQUDaQ28IZvYc7C7G4c1Op74ePsnMBsA09rJV5Qu
+        2E7YKi9YzYymcQpQgCGsXEX3xQ==
+X-Google-Smtp-Source: AA6agR7lep5ZcMDwaWlJ4ySJTisrqo0Rgf7jMEe3bPC10uTlj7rtt8SS/ZwEojVJGCAYkw9+IAP/Dg==
+X-Received: by 2002:a2e:9cda:0:b0:26b:e930:6f7d with SMTP id g26-20020a2e9cda000000b0026be9306f7dmr4201796ljj.436.1662980122396;
+        Mon, 12 Sep 2022 03:55:22 -0700 (PDT)
 Received: from [10.129.96.84] ([109.232.243.34])
-        by smtp.gmail.com with ESMTPSA id d28-20020a0565123d1c00b0048a8586293asm1005267lfv.48.2022.09.12.03.51.20
+        by smtp.gmail.com with ESMTPSA id f17-20020a056512229100b00498fc3d4d15sm996417lfu.190.2022.09.12.03.55.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Sep 2022 03:51:20 -0700 (PDT)
-Message-ID: <14d7bbb5-51c4-8fc0-2303-f5164c6da903@linaro.org>
-Date:   Mon, 12 Sep 2022 12:51:18 +0200
+        Mon, 12 Sep 2022 03:55:21 -0700 (PDT)
+Message-ID: <cd363d98-74be-b42f-b1e1-c0f7e79f6011@linaro.org>
+Date:   Mon, 12 Sep 2022 12:55:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v1] dt-bindings: clock: convert rockchip,rk3128-cru.txt to
- YAML
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: document OV4689 DT
+ bindings
 Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
-Cc:     zhangqing@rock-chips.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
-        mturquette@baylibre.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <76d87f49-6a44-0a05-c9dc-af870fade924@gmail.com>
+To:     Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Christian Hemp <c.hemp@phytec.de>,
+        Arec Kao <arec.kao@intel.com>, Arnd Bergmann <arnd@arndb.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Jimmy Su <jimmy.su@intel.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220911200147.375198-1-mike.rudenko@gmail.com>
+ <20220911200147.375198-2-mike.rudenko@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <76d87f49-6a44-0a05-c9dc-af870fade924@gmail.com>
+In-Reply-To: <20220911200147.375198-2-mike.rudenko@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,99 +88,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2022 23:20, Johan Jonker wrote:
-> Convert rockchip,rk3128-cru.txt to YAML.
+On 11/09/2022 22:01, Mikhail Rudenko wrote:
+> Add device-tree binding documentation for OV4689 image sensor driver,
+> and the relevant MAINTAINERS entries.
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
 
-Thank you for your patch. There is something to discuss/improve.
+Too many "media" prefixes in the subject. Also you duplicated dt
+bindings as prefix and commit msg (skip the latter).
 
-> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
+> ---
+>  .../bindings/media/i2c/ovti,ov4689.yaml       | 141 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 148 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
 > new file mode 100644
-> index 000000000..03e5d7f0e
+> index 000000000000..376330b5572a
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: GPL-2.0
-
-Can't it be Dual licensed?
-
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> @@ -0,0 +1,141 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/rockchip,rk3128-cru.yaml#
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov4689.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Rockchip RK3126/RK3128 Clock and Reset Unit (CRU)
+> +title: Omnivision OV4689 CMOS
 > +
 > +maintainers:
-> +  - Elaine Zhang <zhangqing@rock-chips.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
+> +  - Mikhail Rudenko <mike.rudenko@gmail.com>
 > +
 > +description: |
-> +  The RK3126/RK3128 clock controller generates and supplies clock to various
-> +  controllers within the SoC and also implements a reset controller for SoC
-> +  peripherals.
-> +  Each clock is assigned an identifier and client nodes can use this identifier
-> +  to specify the clock which they consume. All available clocks are defined as
-> +  preprocessor macros in the dt-bindings/clock/rk3128-cru.h headers and can be
-> +  used in device tree sources. Similar macros exist for the reset sources in
-> +  these files.
-> +  There are several clocks that are generated outside the SoC. It is expected
-> +  that they are defined using standard clock bindings with following
-> +  clock-output-names:
-> +    - "xin24m"     - crystal input       - required
-> +    - "ext_i2s"    - external I2S clock  - optional
-> +    - "gmac_clkin" - external GMAC clock - optional
+> +  The Omnivision OV4689 is a high performance, 1/3-inch, 4 megapixel
+> +  image sensor. Ihis chip supports high frame rate speeds up to 90 fps
+> +  at 2688x1520 resolution. It is programmable through an I2C
+> +  interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
+> +  connection.
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - rockchip,rk3126-cru
-> +      - rockchip,rk3128-cru
+> +    const: ovti,ov4689
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
 > +  clocks:
+> +    description:
+> +      External clock (XVCLK) for the sensor, 6-64 MHz
 > +    maxItems: 1
 > +
-> +  clock-names:
-> +    const: xin24m
+> +  clock-names: true
 
-More clocks were mentioned in old binding.
+This has to be strictly defined - which name you expect.
 
 > +
-> +  rockchip,grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +  dovdd-supply:
 > +    description:
-> +      Phandle to the syscon managing the "general register files" (GRF),
-> +      if missing pll rates are not changeable, due to the missing pll
-> +      lock status.
+> +      Digital I/O voltage supply, 1.7-3.0 V
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - "#reset-cells"
+> +  avdd-supply:
+> +    description:
+> +      Analog voltage supply, 2.6-3.0 V
 > +
-> +additionalProperties: false
+> +  dvdd-supply:
+> +    description:
+> +      Digital core voltage supply, 1.1-1.3 V
 > +
-> +examples:
-> +  - |
-> +    cru: clock-controller@20000000 {
-> +      compatible = "rockchip,rk3128-cru";
-> +      reg = <0x20000000 0x1000>;
-> +      rockchip,grf = <&grf>;
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +    };
+> +  powerdown-gpios:
+> +    maxItems: 1
 
+You can skip here maxItems - it is defined by gpio-consumer-common.
+
+> +    description:
+> +      GPIO connected to the powerdown pin (active low)
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO connected to the reset pin (active low)
+> +
 
 Best regards,
 Krzysztof
