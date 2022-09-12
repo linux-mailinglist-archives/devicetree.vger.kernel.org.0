@@ -2,80 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C1A5B5847
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 589C75B587B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:33:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbiILK1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 06:27:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48610 "EHLO
+        id S229741AbiILKdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 06:33:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229731AbiILK1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:27:05 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9003739B85;
-        Mon, 12 Sep 2022 03:26:59 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BA5DC6601FDB;
-        Mon, 12 Sep 2022 11:26:57 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662978418;
-        bh=lsakC5tXlXnwjZ+SXxeOjNZ2MoFmMoIsT0zJ4vJo5oc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=IoVq3MfDQ8Lq/69DJYionI4z0bCBxPZDwZDZXcK6CaMLDtptMrQZ9S5NcGnaCpV/E
-         WO5+MytT5DVhIi0Us7pHAB8we6kAYnpaWwY8hwFgcdCJXVEyLK6c0ducJz8cFqkxeg
-         XE2RyAGtqXhOSFTYIpcGorjtbtlc9AlwWH3OS9nfuSilhbqWdj7um0BRsHpGNuAaGH
-         7Nq0KTNWdziVMeQBdRRiLd1yjPga0SpRCN5OtcSgBcZcIfXkMq2qw0tUeRKkBAp2Ve
-         Q5s9ciPg0dH1qDawwpsraC04BLszfQGAERB7tF3uOpLxCQJVs+WAzITzDPOu+hUvVF
-         tBHfe49Mvg7og==
-Message-ID: <ed7ca57f-81c8-514d-2c64-26a4aa8e75d2@collabora.com>
-Date:   Mon, 12 Sep 2022 12:26:55 +0200
+        with ESMTP id S229636AbiILKc7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:32:59 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A0496435
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:32:59 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id t5so12013401edc.11
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:32:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=pa6W1YODU5uWUjf7zUhRw95uZp1QNrawRSVyyiW7Vl0=;
+        b=RbzFH4Z4USAJQAYUrNqiIlm2Ou3paeEKXx7EA6MqxzRIeMg5OYjW7hnVzCRokjI8Uh
+         UlSugb4mjNXVJA3f+6Stg4HhjA1g6w4rzssqcy+trVOXpReT/SWY/DhL00wgMFauBPY4
+         +9KqJAYCJwyhtrWvNCzGEsoSLnpJdz1zmnzBA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=pa6W1YODU5uWUjf7zUhRw95uZp1QNrawRSVyyiW7Vl0=;
+        b=NLSY5eoXtwFySF1rbjNdCRGxwb35ll+kuFkxlWO31fghXNNAWWht283g/uOda0b5kq
+         ohtvm/MgBBTDqYh+q05uAfO5/W/KmqtKFklIAc5z+wwHzUocJ4uwfKjyNERSqx+JkTmu
+         UggPRDCg7Uhh5LGiXYOLp4D+FQfprnFAp/THEbHP/tx92kl4abUTGyop8odlvzvPHFFQ
+         6dAQBCPCCqmOfGAuhTthik0ldhsedevHwivoBZcjy8gOZlhIz4BYEj+ZXMxEhG6pHt4F
+         wbhYHA7Ns3sfziMtI2ms2VLFnMzw1oqlWXW0wVdVranU2/7DxzuJ+eFLN6Fu9wFgri3J
+         bJXw==
+X-Gm-Message-State: ACgBeo3a4ZgpoeAuZcWxnBj567BktuqFaY6uSMnyRGHokdy7DAbutnOq
+        Iag4415zcLBCc6vjOA0AU1l/jvqK0COwUTLKlWP3fg==
+X-Google-Smtp-Source: AA6agR4M8kUfW+1+K71sRAnTB0B7zC1boeAgnNmeFDTIx6IxH5frVa+UGb0pWsh9PfgPzIod9Cpy0WGwITz9nMf2SRs=
+X-Received: by 2002:a05:6402:890:b0:44e:bb54:7f54 with SMTP id
+ e16-20020a056402089000b0044ebb547f54mr22112611edy.307.1662978777293; Mon, 12
+ Sep 2022 03:32:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v3 8/9] drm/mediatek: Add clear RELAY_MODE bit to set
- gamma
-Content-Language: en-US
-To:     "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20220908171153.670762-1-nfraprado@collabora.com>
+In-Reply-To: <20220908171153.670762-1-nfraprado@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 12 Sep 2022 18:32:46 +0800
+Message-ID: <CAGXv+5ERm1kXf+YgeDMOgkEY77Fx1o8FK=anWn22g7SAGXSfhw@mail.gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: mediatek: asurada: Enable internal display
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220911153734.24243-1-jason-jh.lin@mediatek.com>
- <20220911153734.24243-9-jason-jh.lin@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220911153734.24243-9-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/09/22 17:37, Jason-JH.Lin ha scritto:
-> Since the bootlaoder may set the RELAY_MODE to gamma be for the kerenl,
-> we have to clear the RELAY_MODE bit to make sure that the gamma is
-> enabled correctly.
-> 
-> Fixes: b10023b03082 ("FROMGIT: drm/mediatek: Separate gamma module")
+On Fri, Sep 9, 2022 at 1:11 AM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+>
+> This series adds and enables all components required to have a working
+> internal display on the Asurada platform.
+>
+>
+> N=C3=ADcolas F. R. A. Prado (3):
+>   arm64: dts: mediatek: asurada: Add display regulators
+>   arm64: dts: mediatek: asurada: Add display backlight
+>   arm64: dts: mediatek: asurada: Enable internal display
 
-This Fixes tag is invalid. Please fix.
+Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Regards,
-Angelo
-
+Tested _remotely_ on Hayato, with EDID read back correctly.
