@@ -2,117 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C9EF5B59F7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 14:08:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E78B65B5A2D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 14:34:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbiILMIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 08:08:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40426 "EHLO
+        id S229681AbiILMeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 08:34:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbiILMI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 08:08:29 -0400
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B68B93340E;
-        Mon, 12 Sep 2022 05:08:28 -0700 (PDT)
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 12 Sep 2022 21:08:28 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 2EBE420584CE;
-        Mon, 12 Sep 2022 21:08:28 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Mon, 12 Sep 2022 21:08:28 +0900
-Received: from [10.212.158.44] (unknown [10.212.158.44])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 048DBB62A4;
-        Mon, 12 Sep 2022 21:08:26 +0900 (JST)
-Subject: Re: [PATCH v2 6/8] ARM: dts: uniphier: Add ahci controller and glue
- layer nodes for PXs2
-To:     Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
-        Olof Johansson <olof@lixom.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220912071511.1385-1-hayashi.kunihiko@socionext.com>
- <20220912071511.1385-7-hayashi.kunihiko@socionext.com>
- <a8d5db25-9191-4af0-b9e0-77fb75493a7f@www.fastmail.com>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <0a3e5fe1-0099-ef11-29f4-0d3a64ae5e9a@socionext.com>
-Date:   Mon, 12 Sep 2022 21:10:40 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S229520AbiILMd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 08:33:58 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D573F19C0C;
+        Mon, 12 Sep 2022 05:33:57 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (unknown [89.101.193.67])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 74E8E59D;
+        Mon, 12 Sep 2022 14:33:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1662986034;
+        bh=OCONmltQ48JY/YT9CDPBBkFazBRp8ZnFJ3hSFJK1fdM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bPVtIkUEjXS4bAh+FpQWcljgMTF8Yu0sGxpznz++6eX4xXaNb0kp+yDCR1m54/oIK
+         3LgUXp2+3lZm7yK5+29RSjQ3iZhh1zmaMI1Q2IlYmkGxWufXJupFchAg+OVI9K4fGt
+         +ASpBdLYh5up9lRx2MRWvyVd/LjJjOoonXfH7EfQ=
+Date:   Mon, 12 Sep 2022 15:33:39 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        dianders@chromium.org, lkundrak@v3.sk,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>, tzimmermann@suse.de,
+        javierm@redhat.com, maarten.lankhorst@linux.intel.com,
+        mripard@kernel.org
+Subject: Re: [PATCH v1 0/2] Revert chrontel-ch7033 byteswap order series
+Message-ID: <Yx8nI/AMk/Gu8o/J@pendragon.ideasonboard.com>
+References: <20220912113856.817188-1-robert.foss@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <a8d5db25-9191-4af0-b9e0-77fb75493a7f@www.fastmail.com>
-Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220912113856.817188-1-robert.foss@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
+Hi Rob,
 
-On 2022/09/12 17:36, Arnd Bergmann wrote:
-> On Mon, Sep 12, 2022, at 9:15 AM, Kunihiko Hayashi wrote:
->> Add ahci controller and glue layer nodes including reset and phy.
->> This supports for PXs2 and the boards without PXs2 vodka board that
->> doesn't implement any SATA connectors.
->>
->> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->> +		ahci: ahci@65600000 {
->> +			compatible = "socionext,uniphier-pxs2-ahci",
->> +				     "generic-ahci";
->> +			status = "disabled";
->> +			reg = <0x65600000 0x10000>;
->> +			interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&sys_clk 28>;
->> +			resets = <&sys_rst 28>, <&ahci_rst 0>;
->> +			ports-implemented = <1>;
->> +			phys = <&ahci_phy>;
->> +		};
->> +
->> +		ahci-glue@65700000 {
->> +			compatible = "socionext,uniphier-pxs2-ahci-glue",
->> +				     "simple-mfd";
+On Mon, Sep 12, 2022 at 01:38:54PM +0200, Robert Foss wrote:
+> After applying the "chrontel-ch7033: Add byteswap order option" series,
+> Laurent reported an issues with the approach. Since no fix has been submitted
+> for the issues outlined in time for the next kernel release, I'd like to
+> revert this series for now.
 > 
-> Here as well, the "ahci-glue" name seems rather unusual for a node
-> name. What does it actually do, and why is this not just part of
-> the sata node?
-
-According to ata/sata-common.yaml, "ahci@65600000" node for generic SATA
-host controller is better expressed as "sata@65600000". I'll fix it.
-
-However, "ahci-glue@65700000" is the integration of SATA related functions
-(reset and phy). Maybe "sata-controller" seems to be the best, but
-I couldn't find this usage.
-
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +			ranges = <0 0x65700000 0x100>;
->> +
->> +			ahci_rst: reset@0 {
->> +				compatible =
-> "socionext,uniphier-pxs2-ahci-reset";
+> Just to be clear I would very much like to see a v3 of this[1] series, where the
+> issues outlined have been fixed.
 > 
-> I think the node name here should be "reset-controller@0".
-
-Yes, I'll fix it.
-
->> +
->> +			ahci_phy: phy@10 {
->> +				compatible =
-> "socionext,uniphier-pxs2-ahci-phy";
+> [1] https://lore.kernel.org/all/20220902153906.31000-1-macroalpha82@gmail.com/
 > 
-> and "sata-phy@10" here.
+> Robert Foss (2):
+>   Revert "dt-bindings: Add byteswap order to chrontel ch7033"
+>   Revert "drm/bridge: ti-sn65dsi86: Implement bridge connector
+>     operations for DP"
 
-I'll fix it too.
+For the series,
 
-Thank you,
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
----
-Best Regards
-Kunihiko Hayashi
+>  .../display/bridge/chrontel,ch7033.yaml       | 13 ---------
+>  drivers/gpu/drm/bridge/ti-sn65dsi86.c         | 28 -------------------
+>  2 files changed, 41 deletions(-)
+
+-- 
+Regards,
+
+Laurent Pinchart
