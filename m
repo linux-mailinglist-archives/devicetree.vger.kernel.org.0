@@ -2,151 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8C645B618F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 21:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B0965B6191
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 21:21:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbiILTUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 15:20:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42918 "EHLO
+        id S229916AbiILTVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 15:21:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229916AbiILTUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 15:20:43 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4658940BF5;
-        Mon, 12 Sep 2022 12:20:41 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id t8-20020a9d5908000000b0063b41908168so6538596oth.8;
-        Mon, 12 Sep 2022 12:20:41 -0700 (PDT)
+        with ESMTP id S230410AbiILTVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 15:21:10 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AE7340BF5
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 12:21:08 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id y127so9573796pfy.5
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 12:21:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=SZHaj8okATHVu/Q6unhlirD3gdvtLQE0uzOf/LJ8iDA=;
+        b=3jCsf+VpeWOvXcTHOtj3qCcqITNJAWUXdFB4Af2SSbboVCNSqGCXIa/g1mo8eeB/Rv
+         ECJ0bR2AromSL8szpZbzsbrJN6NbS1XzRyVMqUSxL2lgIPvQ+sA10mrSI9rTizSW7OLZ
+         N1OBXiISmx3TJbLxQ/lArGmmNwgltBOKtdrooRGQtAqlSLxW+f48DNTm/fKpYAyBpYMY
+         G478oyvo6RYUmGTZc7MX1fsccejQa5O+kgUBaYtyIV86wmVbX2Uyc2qIuqv/Fv/vOgoc
+         l7Y5QZQcqHzsN9ZvxxU3TD+A/9cfviUM1UCPjixA3oL1y5AdM7TY7wTVChO6OOk5f06I
+         YJ8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=3AP/8H6lNUJxt0e4xcmzSjTGN2LrpryaMTGu/8MaPTE=;
-        b=ZbLO/SQ42CahYnGvYwX+wqjgPx9KsurMrUQEwF59S7pbdB8cgNOrAixKUGOkDV5sJ9
-         v2xEr3seWQ3bOWhYieyVRX5hRUPM2tr/5EpVV30IruxQpnSx0aadCdSdjnX7XiWkgh4c
-         AQe82Sn984j8+8UOv9JaxWp9UKHIizE5uUF1gGoVnKFgkMCgZoikWCw/sJN9sKEOROyO
-         DchfAmZ/B4OigGww3ihcgJe0ncZ+ioqxRzdpgRdI/SbMyg0dM0lhoGBzppSvkybMMi0M
-         T6gs+cN3wiftMBZrG6s1dMH1CPB5z7Dm3iZVAjMs9BwdJCBU+P0eDWIDcHEhRV9NAT1P
-         Ozxg==
-X-Gm-Message-State: ACgBeo2Dt1pAghHuoEKqPSzdHTufCsUtxHLiHN52O8Kb6ODje0AGeOwZ
-        yOS1W7XPjuF96V5kKCZPbkl0rIZ1CQ==
-X-Google-Smtp-Source: AA6agR7xawQGM5WeoMEXiFMiRQalX4BDsabwBsBRE57tKwigga13hjnnPHVUevtOi6lJDbcfUCqFBA==
-X-Received: by 2002:a05:6830:1d89:b0:655:d851:365f with SMTP id y9-20020a0568301d8900b00655d851365fmr3412786oti.293.1663010440379;
-        Mon, 12 Sep 2022 12:20:40 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s22-20020a4ac816000000b0044b47bb023fsm4449106ooq.37.2022.09.12.12.20.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Sep 2022 12:20:39 -0700 (PDT)
-Received: (nullmailer pid 1680895 invoked by uid 1000);
-        Mon, 12 Sep 2022 19:20:38 -0000
-Date:   Mon, 12 Sep 2022 14:20:38 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH v2 15/20] dt-bindings: nvmem: add YAML schema for the
- sl28 vpd layout
-Message-ID: <20220912192038.GA1661550-robh@kernel.org>
-References: <20220901221857.2600340-1-michael@walle.cc>
- <20220901221857.2600340-16-michael@walle.cc>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=SZHaj8okATHVu/Q6unhlirD3gdvtLQE0uzOf/LJ8iDA=;
+        b=dwVgJQrh0IgkfzlMkGNa+HZ/TCQasSIfR4ZQB126K7qDuKFOYhVwiNqtIICbgLW40W
+         98qOfIqZ6OFtUqQS5MrWKh4fS0tJIDiBK4w1L3Xl38/H2azwOpOAezj3TjWwZQcmApYA
+         v/X5aDtU2VppywvAnwF1EAT//IbSdxpllbIAQ0wSgcmhBSVCSoZ2e2qGPVnsRW1u6ohj
+         Dj9Lo+QbJwGZkDtA/7b3AO7uwJb6iaobvfQfJypqKEMZvevRbRJ4M8bndNXuexjs1twL
+         qt5LEJUTuvr96K+1ohR1vDIqw97ZJv9xNfXSGrrrdtYIsuXBY3lz6126ZUTLU+NzF4xd
+         e6nA==
+X-Gm-Message-State: ACgBeo2yuTfQj8nwpiSRu6ZWgJn6ai/rglqYzDTpl3OwNGLs7K83247d
+        k3dO5sOKZQGYbosQ9FhqxD5R28oOTIjCcgp1+R5bVQ==
+X-Google-Smtp-Source: AA6agR4QSkhDFUb4mywD3J9h/2Xq5LTVyTodEmqOY/s8+f884DXkrrz5OQO3/bz3sSdo7c6fEuYfhoHcnGlD4O+2qrc=
+X-Received: by 2002:a65:6a4a:0:b0:434:a2b8:1a83 with SMTP id
+ o10-20020a656a4a000000b00434a2b81a83mr24179676pgu.125.1663010467524; Mon, 12
+ Sep 2022 12:21:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220901221857.2600340-16-michael@walle.cc>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220908135940.299324-1-jagan@edgeble.ai> <20220908135940.299324-4-jagan@edgeble.ai>
+ <CAPY8ntARtgRT_kYbS-zw9kAuc16Qy49UF+y2H1143s_2=cnmYg@mail.gmail.com>
+In-Reply-To: <CAPY8ntARtgRT_kYbS-zw9kAuc16Qy49UF+y2H1143s_2=cnmYg@mail.gmail.com>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Tue, 13 Sep 2022 00:50:56 +0530
+Message-ID: <CA+VMnFwTFbisCJOB_9XcwT_xxnyxNjeqNX5cyMHmviWtpZ6T3g@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] drm: panel: Add Jadard JD9365DA-H3 DSI panel
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 02, 2022 at 12:18:52AM +0200, Michael Walle wrote:
-> Add a schema for the NVMEM layout on Kontron's sl28 boards.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
-> changes since v1:
->  - add custom select
->  - add description
->  - add "additionalProperties: false", I wasn't sure if all the
->    subnodes needs it. I'd say yes, but the brcm,nvram binding
->    doesn't have them neither.
-> 
->  .../nvmem/layouts/kontron,sl28-vpd.yaml       | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-> new file mode 100644
-> index 000000000000..0c180f29e880
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/layouts/kontron,sl28-vpd.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVMEM layout of the Kontron SMARC-sAL28 vital product data
-> +
-> +maintainers:
-> +  - Michael Walle <michael@walle.cc>
-> +
-> +description:
-> +  The vital product data (VPD) of the sl28 boards contains a serial
-> +  number and a base MAC address. The actual MAC addresses for the
-> +  on-board ethernet devices are derived from this base MAC address by
-> +  adding an offset.
-> +
-> +# We need a select here so we don't match all nodes with 'user-otp'
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: kontron,sl28-vpd
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: kontron,sl28-vpd
-> +      - const: user-otp
-> +
-> +  serial-number:
-> +    type: object
-> +    description: The board's serial number
-> +
-> +  base-mac-address:
-> +    type: object
-> +    description:
-> +      Base MAC address for all on-module network interfaces. The first
-> +      argument of the phandle will be treated as an offset.
-> +
-> +    properties:
-> +      "#nvmem-cell-cells":
+Hi Dave,
 
-You can't just add a new #.*-cells buried in a device binding. I'm fine 
-with the concept though having more than 1 user would be nice.
+On Thu, 8 Sept 2022 at 20:33, Dave Stevenson
+<dave.stevenson@raspberrypi.com> wrote:
+>
+> Hi Jagan
+>
+> On Thu, 8 Sept 2022 at 15:00, Jagan Teki <jagan@edgeble.ai> wrote:
+> >
+> > Jadard JD9365DA-H3 is WUXGA MIPI DSI panel and it support TFT
+> > dot matrix LCD with 800RGBx1280 dots at maximum.
 
-Any case that doesn't match foos->#foo-cells or has a default # of 
-cells if missing (as this does) has to be added to dtschema to decode it 
-properly. It won't really matter until there's a user with 2 or more 
-entries. I'm happy to do update the dtschema part, but I'd prefer to see 
-the schema in dtschema rather than the kernel.
+Look like I wrapped the wrong text, maybe this copy came from vendor
+code. Yes, the datasheet mentioned this as WXGA resolution.
 
-Rob
+Thanks for this. I will correct it.
+
+>
+> Sorry, I'm confused by this commit text.
+>
+> WUXGA is normally defined as 1920x1200.
+> So the panel is 1920x1200, but it supports a max of 800x1280 pixels?
+> What do the other pixels do then?
+>
+> Google implies that Jadard JD9365DA-H3 is a driver IC, not a panel. So
+> is this driver for all JD9365DA-H3 based panels, not just one panel?
+> Having a compatible of "chongzhou,cz101b4001" implies it.
+> (Thinking about it, I have a JD9365Z based DSI panel on my desk, but
+> the JD9365Z is made by Fitipower and it supports a max resolution of
+> 720x1280. Those trailing letters are obviously very significant on
+> this range)
+
+Yes, chongzhou,cz101b4001 panel which used JD9365DA-H3 controller IC.
+Though JD9365DA-H3 itself is not a direct panel, we usually denote
+controller IC as panel driver as these are part of Linux DRM panel and
+as its own compatible "jadard,jd9365da-h3"
+
+Thanks,
+Jagan.
