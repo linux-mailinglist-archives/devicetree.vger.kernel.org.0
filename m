@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A5E35B576B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 11:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8747C5B5777
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 11:52:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229854AbiILJsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 05:48:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44480 "EHLO
+        id S229630AbiILJwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 05:52:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbiILJsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 05:48:07 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C3ED33E12
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 02:48:05 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id p69so5179340yba.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 02:48:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=9KAyBQijTc3CpY3EfApFNAsttaB3kwx6DpC0Y5jtA9Q=;
-        b=fI/oQ91V3UMq7QHATLIhT0zngzZqANMZEIEEmkW6IwtVd+qww7q05/SSYvkZsS09Fa
-         a2KLEkxHBAEakzuv3pd8jxX41/WPFudaKChaHl6Fn39fJf92BNtfqLuQq1+PHZsTxBVr
-         AowhUfAjnZF7s+NNlloEscq7OVj0UKnwYO97QeFF0aYkyfk099UhUG72/J6Vxp3uMQuw
-         nf3o8xMnm9tJN/4VM8qiP19yc5SPPZHQWYFhsoLcufSREaE8Tvk7zC8S/2vvYmEbW0Kc
-         EEC8J6R9verapZnJv+DYCu2WM3TCF67OkrN7wjqp/jHD1EswGh6mRlGuhTK7xYEhdrbP
-         R1PQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=9KAyBQijTc3CpY3EfApFNAsttaB3kwx6DpC0Y5jtA9Q=;
-        b=xChpX8lcYt7ZlqYBaA1/IYtSFuxv/qotgX2RuyzvxUZ6ylldepEKiQsGJqSY6Xngi3
-         Vajd6glgcGjvV+AQLNjN22eJ1AAuRKemUpDOCeFJLznIL6/ytt/kOQVam2/Fkozh5Ymw
-         lf/eCr/LAnYFp2dIyzah1Au0El/h3aKzcWKaP/U2/ieZPxy9ef3cWqK6WYx+H3Jk3DBi
-         d6uFmG3xZ3B2Kw8LBubCfP3WbqxcSyXoCP1fSXF7AKh+1OHqCmVoAzubO77VAma1dbTm
-         gr704UaghrePSGa8lsPQyCkiACfpb3XtH2W+wqqz/xx/yrf3o8N8FiJa8E5HSDywqjhO
-         bZnQ==
-X-Gm-Message-State: ACgBeo2IG2nDg6m3gKlUf5jaOxn98RaxIjkr8juMGU+dSH4CYbKNNxF4
-        mJyyyL+Rfzifz1kzmaF8SwhJKxurlhQl80A/PI/bKw==
-X-Google-Smtp-Source: AA6agR7wVfHaKMVKYT9CgXHm7YdGWzLQ+Ye4BLq4wSI4z3lFIir4B/5e7qryW0ODuTaziLs0IC/XisQ4sSDzl76fwoQ=
-X-Received: by 2002:a05:6902:1029:b0:6af:2c99:4630 with SMTP id
- x9-20020a056902102900b006af2c994630mr3352655ybt.516.1662976084730; Mon, 12
- Sep 2022 02:48:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org>
- <20220910124701.4060321-7-dmitry.baryshkov@linaro.org> <c397e8e7-3126-c1f9-8d0e-4b3181e5c5e0@collabora.com>
-In-Reply-To: <c397e8e7-3126-c1f9-8d0e-4b3181e5c5e0@collabora.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 12 Sep 2022 12:47:53 +0300
-Message-ID: <CAA8EJpot=sRtw6XaGmXy0bFe7KTzhCrDZxV0Na0w4Rigp09svg@mail.gmail.com>
-Subject: Re: [RFC PATCH 06/10] thermal/drivers/tsens: use generic calibration
- routine for msm8976
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229453AbiILJwU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 05:52:20 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C69082229E;
+        Mon, 12 Sep 2022 02:52:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=i7scest9/GRb/SJTIXxI6p7sk+zo39k5Ettiz2gvQT0=; b=tRz4vOR8lAGwAn6YrCx+p6EKSw
+        snonH391ow5yXmrkOBmGvfgdClNw4V5uJ5tywGTSBm3IVVBU2Z/1FsNfS2HhT6U5mhGydyO30vCij
+        zsw438CFRgu2T9drmOt2gnRCME4fBwRo989z9W8rTRcIyLSSQ4m9vkTV6Eplu0wcJSLTpS6hBu56u
+        ii5wo8Zgio3aZ5A7M4kwnAnMnq6dRozl3+6pHPEzUq1IxgNVeB4tn7aE5eFcGk4LoQotp/lnfaM+s
+        l2AtwF5zjBQ9mE4zmpe0j7bHl9Cnngi21ZZWTKvkugRGlXeYeb1Vl1ZnaUxY6fwZc8f2TBh9qHfAJ
+        HW1Pw7/Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34252)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oXg6o-0001Qx-Bb; Mon, 12 Sep 2022 10:52:06 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oXg6j-00080m-W7; Mon, 12 Sep 2022 10:52:02 +0100
+Date:   Mon, 12 Sep 2022 10:52:01 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
+        brcm80211-dev-list.pdl@broadcom.com,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Hector Martin <marcan@marcan.st>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Kalle Valo <kvalo@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        SHA-cyfmac-dev-list@infineon.com, Sven Peter <sven@svenpeter.dev>,
+        van Spriel <arend@broadcom.com>
+Subject: [PATCH wireless-next v2 0/12] Add support for bcm4378 on Apple
+ platforms
+Message-ID: <Yx8BQbjJT4I2oQ5K@shell.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,29 +72,41 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Mon, 12 Sept 2022 at 11:57, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 10/09/22 14:46, Dmitry Baryshkov ha scritto:
-> > According to msm-3.10, msm8976 uses the same routine for processing
-> > calibration data as other platforms. Drop the msm8976-specific
-> > compute_intercept_slope_8976() and use compute_intercept_slope().
-> >
-> > Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
-> > Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->
-> As far as I remember, at least some MSM8976 versions don't have the slope
-> fuses populated and/or the values are bad. This is the reason why slopes
-> are hardcoded.
->
-> This commit would break support for MSM8976.
-> Cc'ing Marijn, as he should be able to re-test this.
+This series adds support for bcm4378 found on Apple platforms, and has
+been tested on the Apple Mac Mini. It is a re-posting of a subset of
+Hector's previous 38 patch series, and it is believed that the comments
+from that review were addressed.
 
-Thanks! I was not sure, granted that the downstream seems to use
-standard procedure. The details/retesting would be appreciated.
+(I'm just the middle man; please don't complain if something has been
+missed.)
 
+v2:
+- sending for wireless-next
+- fixed up %ld -> %zd for size_t
+- added reviewed-bys
+
+ arch/arm64/boot/dts/apple/t8103-j274.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-j293.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-j313.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-j456.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-j457.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-jxxx.dtsi          |   2 +
+ .../net/wireless/broadcom/brcm80211/brcmfmac/bus.h |  19 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/chip.c    |   2 +
+ .../wireless/broadcom/brcm80211/brcmfmac/common.c  |  12 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/common.h  |   1 +
+ .../broadcom/brcm80211/brcmfmac/firmware.c         | 115 ++++--
+ .../broadcom/brcm80211/brcmfmac/firmware.h         |   4 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/msgbuf.h  |   4 +-
+ .../net/wireless/broadcom/brcm80211/brcmfmac/of.c  |  12 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/pcie.c    | 431 +++++++++++++++++++--
+ .../wireless/broadcom/brcm80211/brcmfmac/sdio.c    |  38 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/sdio.h    |   2 +
+ .../net/wireless/broadcom/brcm80211/brcmfmac/usb.c |  23 +-
+ .../broadcom/brcm80211/include/brcm_hw_ids.h       |   2 +
+ include/linux/bcma/bcma_driver_chipcommon.h        |   1 +
+ 21 files changed, 610 insertions(+), 117 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
