@@ -2,125 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C49385B63F9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 01:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C38AF5B6465
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 01:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiILXS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 19:18:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48108 "EHLO
+        id S230016AbiILXye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 19:54:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbiILXS6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 19:18:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B2BE4D4C3;
-        Mon, 12 Sep 2022 16:18:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A4D4A61248;
-        Mon, 12 Sep 2022 23:18:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D8FDC433D6;
-        Mon, 12 Sep 2022 23:18:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663024736;
-        bh=Cbxm+wScoYOf9uPveDUFKU8DcvePcdgz86AWflGIWGY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rvTMuQ7WeoupNppQh23rMin98zJBenTTh0ffkK+vAqBMaNLE4c3BzIakEvwtytdTA
-         zcFFV8BbKHNLWAnAEwG4o6mYHbTnzD8r+6TIc3Jtz8aS3S68BRvkIuSIZWRX0to0SQ
-         orZAAg64mcK9WhsBrPW7i3PyHosRp13pm9ouNzxRhF4B5sF6sZdTQoiPaTr7A6HIpd
-         h/XBvDcW7OPYMf73P3PGafLlm+/TLf/b045wwxLeFUhZ+8xcuG2LoLX6CQiFxQ24L2
-         J5h91f5jmTXwzBtnKBaq7HAmlrhOvhtIC5x6wjWHGeDgc1An/6BW8XgjlxRxqIND5+
-         3Humv28P1fyGQ==
-Received: by mail-ot1-f51.google.com with SMTP id br15-20020a056830390f00b0061c9d73b8bdso6931073otb.6;
-        Mon, 12 Sep 2022 16:18:56 -0700 (PDT)
-X-Gm-Message-State: ACgBeo2vmfbXRwUfpMTcxUlwfUrTrsZmooe1uLWIY4MpBt/2IcbAdGBt
-        4V5Pur7OyS2vWQZFwVaq4T3y4ReUqTKpQKFWhw==
-X-Google-Smtp-Source: AA6agR55s+Nptinq02WALbixXv8dp5IISYyISRrmH3F234MXAeWMGzIeiugX1fRAbtZ5vhUEAsCawoybA9uXwAw5ejc=
-X-Received: by 2002:a05:6830:6999:b0:61d:26f8:94c1 with SMTP id
- cy25-20020a056830699900b0061d26f894c1mr11827454otb.278.1663024735220; Mon, 12
- Sep 2022 16:18:55 -0700 (PDT)
+        with ESMTP id S229932AbiILXya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 19:54:30 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E78F3B8;
+        Mon, 12 Sep 2022 16:54:28 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id i203-20020a1c3bd4000000b003b3df9a5ecbso7493185wma.1;
+        Mon, 12 Sep 2022 16:54:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=KIbgpY6+1YhC7lqEl0JPrCwtf2oGmEfe1YyH1pp/SBc=;
+        b=kCicGgSECxPPDBKXnMGEOAp7I8wqLvhSd+8rg6aWfpMwtoL3F6/0j5WlmMftfzAp8m
+         DOAETJ+Y4qTz34ZaixQYWDpp+dtrfMMx1G1+YScR4YAMv+FnpV4Q7caovFU3wLtSqro2
+         y1ti0jS9QJe0VD1N+X8t80EjqJGM4KGzUT7UB3kcHHbqTNf+pRMlSGWl1KwC8llMno8y
+         eDD09930fBB4MqVFBskX5ahNRHNespsgL+7zmJikfaCcFcvRI8D8/5ZO26OSTL+jp2iB
+         HS86AEKjlCUa9jMus05VBGw0gsm4N133TSr1l1ZinqR5+9y1F0rkSCZC7Kpig0L93C2/
+         XqwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=KIbgpY6+1YhC7lqEl0JPrCwtf2oGmEfe1YyH1pp/SBc=;
+        b=RW56icnrTkUEiNI/S6Iahmsw2uWdW68EF7TetNSF0VgYwQvZVRPDYEfsE8tajeL/aT
+         fyrYmALfPxvw5vfiGnj+BAXlfRJ6DIQMiPJ9nbhhmyHIhybjU0YGP8BbYLoz4CRO/Byg
+         z4Dgp4mYBeWf5OT6aw5MfbFYZfW11v1gU21P0KhPwxXoZfW1bv0QPlJM5jnKAfA6dlqZ
+         QXNRCHp39tH8FCJcZElSB/rBba+PsROAtQcZALEXClLJGgwtzCUnRY+mjioKxORvNuUd
+         nMtdO9UOLtnz+a7/7L4FHaYkJQYl+CLYLK0TyPZqm18tLnLJcoXKpDvT/COnGQtOzGLT
+         t2RA==
+X-Gm-Message-State: ACgBeo0UxTQ885G7WN+WWiXP/DSUfu3W+wmK94JSyemFPu0mGOlDz5tP
+        VquWzbD2GT/MoKcOSgrabo0T4khr2ys=
+X-Google-Smtp-Source: AA6agR4WrCCP8pg9bYfF5l8JC/R67n0Ryj8bIpFR4K0Bn2K6ynVet7bq5LBEt11olK+O2abCJ+wVSg==
+X-Received: by 2002:a7b:ce99:0:b0:3b4:9031:fc02 with SMTP id q25-20020a7bce99000000b003b49031fc02mr480729wmj.154.1663026866881;
+        Mon, 12 Sep 2022 16:54:26 -0700 (PDT)
+Received: from localhost.localdomain (188.red-83-35-57.dynamicip.rima-tde.net. [83.35.57.188])
+        by smtp.gmail.com with ESMTPSA id bh16-20020a05600c3d1000b003a60ff7c082sm11633789wmb.15.2022.09.12.16.54.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Sep 2022 16:54:26 -0700 (PDT)
+From:   Angel Iglesias <ang.iglesiasg@gmail.com>
+To:     linux-iio <linux-iio@vger.kernel.org>
+Cc:     Angel Iglesias <ang.iglesiasg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v6 8/9] dt-bindings: iio: pressure: bmp085: Add BMP380 compatible string
+Date:   Tue, 13 Sep 2022 01:53:50 +0200
+Message-Id: <67224da4ae308bb752fc8fdecc54345cedab6c21.1663025017.git.ang.iglesiasg@gmail.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <cover.1663025017.git.ang.iglesiasg@gmail.com>
+References: <cover.1663025017.git.ang.iglesiasg@gmail.com>
 MIME-Version: 1.0
-References: <20220908141205.18256-1-allen-kh.cheng@mediatek.com>
-In-Reply-To: <20220908141205.18256-1-allen-kh.cheng@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Tue, 13 Sep 2022 07:18:39 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9=cNCLhvCAEnPsw3Y4iBE=g9aTS+QLZXDVZH8N3cj+xQ@mail.gmail.com>
-Message-ID: <CAAOTY_9=cNCLhvCAEnPsw3Y4iBE=g9aTS+QLZXDVZH8N3cj+xQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/mediatek: Fix wrong dither settings
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Allen:
+Add bosch,bmp380 compatible string for the new family of sensors.
+This family includes the BMP380, BMP384 and BMP388. The register map
+in this family changes substantially and introduces new features
+but core concepts and operations carryover from the previous iterations
 
-Allen-KH Cheng <allen-kh.cheng@mediatek.com> =E6=96=BC 2022=E5=B9=B49=E6=9C=
-=888=E6=97=A5 =E9=80=B1=E5=9B=9B =E6=99=9A=E4=B8=8A10:12=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> The width and height arguments in the cmdq packet for mtk_dither_config()
-> are inverted. We fix the incorrect width and height for dither settings
-> in mtk_dither_config().
+Signed-off-by: Angel Iglesias <ang.iglesiasg@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/iio/pressure/bmp085.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Applied to mediatek-drm-fixes [1], thanks.
+diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
+index 49257f9251e8..72cd2c2d3f17 100644
+--- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
++++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/iio/pressure/bmp085.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: BMP085/BMP180/BMP280/BME280 pressure iio sensors
++title: BMP085/BMP180/BMP280/BME280/BMP380 pressure iio sensors
+ 
+ maintainers:
+   - Andreas Klinger <ak@it-klinger.de>
+@@ -16,6 +16,7 @@ description: |
+     https://www.bosch-sensortec.com/bst/products/all_products/bmp180
+     https://www.bosch-sensortec.com/bst/products/all_products/bmp280
+     https://www.bosch-sensortec.com/bst/products/all_products/bme280
++    https://www.bosch-sensortec.com/bst/products/all_products/bmp380
+ 
+ properties:
+   compatible:
+@@ -24,6 +25,7 @@ properties:
+       - bosch,bmp180
+       - bosch,bmp280
+       - bosch,bme280
++      - bosch,bmp380
+ 
+   reg:
+     maxItems: 1
+-- 
+2.37.3
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-fixes
-
-Regards,
-Chun-Kuang.
-
->
-> Fixes: 73d3724745db ("drm/mediatek: Adjust to the alphabetic order for me=
-diatek-drm")
-> Co-developed-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
-m/mediatek/mtk_drm_ddp_comp.c
-> index 2d72cc5ddaba..6b6d5335c834 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> @@ -157,7 +157,7 @@ static void mtk_dither_config(struct device *dev, uns=
-igned int w,
->  {
->         struct mtk_ddp_comp_dev *priv =3D dev_get_drvdata(dev);
->
-> -       mtk_ddp_write(cmdq_pkt, h << 16 | w, &priv->cmdq_reg, priv->regs,=
- DISP_REG_DITHER_SIZE);
-> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv->regs,=
- DISP_REG_DITHER_SIZE);
->         mtk_ddp_write(cmdq_pkt, DITHER_RELAY_MODE, &priv->cmdq_reg, priv-=
->regs,
->                       DISP_REG_DITHER_CFG);
->         mtk_dither_set_common(priv->regs, &priv->cmdq_reg, bpc, DISP_REG_=
-DITHER_CFG,
-> --
-> 2.18.0
->
