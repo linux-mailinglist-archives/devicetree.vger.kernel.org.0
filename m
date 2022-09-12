@@ -2,147 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9D645B5BF6
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 16:13:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1402E5B5BFB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 16:14:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230083AbiILONR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 10:13:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40936 "EHLO
+        id S229924AbiILOOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 10:14:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230000AbiILONP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 10:13:15 -0400
-Received: from sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E7A7DF82;
-        Mon, 12 Sep 2022 07:13:12 -0700 (PDT)
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id a816cab0;
-        Mon, 12 Sep 2022 16:13:08 +0200 (CEST)
-Date:   Mon, 12 Sep 2022 16:13:08 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     ALSI@bang-olufsen.dk, aspriel@gmail.com, franky.lin@broadcom.com,
-        hante.meuleman@broadcom.com, alyssa@rosenzweig.io,
-        asahi@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
-        davem@davemloft.net, devicetree@vger.kernel.org,
-        edumazet@google.com, marcan@marcan.st, kuba@kernel.org,
-        kvalo@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        pabeni@redhat.com, zajec5@gmail.com, robh+dt@kernel.org,
-        SHA-cyfmac-dev-list@infineon.com, sven@svenpeter.dev,
-        arend@broadcom.com
-In-Reply-To: <Yx87omI/la1o+Aye@shell.armlinux.org.uk>
-Subject: Re: [PATCH wireless-next v2 01/12] dt-bindings: net: bcm4329-fmac:
- Add Apple properties & chips
-References: <Yx8BQbjJT4I2oQ5K@shell.armlinux.org.uk>
- <E1oXg7N-0064ug-9l@rmk-PC.armlinux.org.uk>
- <20220912115911.e7dlm2xugfq57mei@bang-olufsen.dk>
- <Yx8gasTCj90Q5qZz@shell.armlinux.org.uk> <Yx87omI/la1o+Aye@shell.armlinux.org.uk>
-MIME-version: 1.0
-Content-type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Message-ID: <d3cee741b298e526@bloch.sibelius.xs4all.nl>
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230000AbiILOOm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 10:14:42 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC4E1B86E;
+        Mon, 12 Sep 2022 07:14:39 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1278a61bd57so23697169fac.7;
+        Mon, 12 Sep 2022 07:14:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=zjUBlDf7L9Ynqi1H6fGKN/mNwcz/H/7eLC0Jbu7Mkrc=;
+        b=MVz5fKusp2X9lCGAYMLyHkHb+qCaP3oKXencGmS8tm8E8nK1BrNA5Tnh7osiLZwXdP
+         pkCevpaivPAnYYgyLmJa04zYqLRl0zZzBO+TDTh8tcNXRML6KScmtPv7wTPlp1zdBtsW
+         qmxBSTl07tl7qTHCKDUdN6X4xkDKz9hvS5mY8cD+BWT/p0kTx2lGFIv88SbJAUFK2ijL
+         1U+Hrp+Vv3PqigjDtlPwUgkkqsVagf9QprMqYrVDybB8oIEGArrHZ0KWZzPpk+cnzj2h
+         iKPibG0jw6BCLUvdCSm/Gc28f2lSLydq4e2ecHWUSPH5M7hUIHyN7XNrj19XXkY/QnMU
+         PyhA==
+X-Gm-Message-State: ACgBeo2piCT2rX36S6mrMOpefSFdFhQCEUEjb+DsCmcXa7e1jEa4OKbx
+        ihjKsvJEXpzEHkOpK+ga2g==
+X-Google-Smtp-Source: AA6agR52VoqB+17Gb0BUpHCSjA4obhxCNA59bFjHr4WfcACjZNkTiq/l3Kzt5b9km8c8ddT0yiL62g==
+X-Received: by 2002:a05:6808:1202:b0:345:b62b:3756 with SMTP id a2-20020a056808120200b00345b62b3756mr9487837oil.165.1662992079011;
+        Mon, 12 Sep 2022 07:14:39 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m26-20020a0568301e7a00b006339b36127dsm4654253otr.3.2022.09.12.07.14.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Sep 2022 07:14:38 -0700 (PDT)
+Received: (nullmailer pid 1164923 invoked by uid 1000);
+        Mon, 12 Sep 2022 14:14:37 -0000
+Date:   Mon, 12 Sep 2022 09:14:37 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        alsa-devel@alsa-project.org,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH v3 09/14] ASoC: dt-bindings:: qcom,q6asm: convert to
+ dtschema
+Message-ID: <20220912141437.GA1164860-robh@kernel.org>
+References: <20220908091946.44800-1-krzysztof.kozlowski@linaro.org>
+ <20220908091946.44800-10-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220908091946.44800-10-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Mon, 12 Sep 2022 15:01:06 +0100
-> From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+On Thu, 08 Sep 2022 11:19:41 +0200, Krzysztof Kozlowski wrote:
+> Convert Qualcomm Audio Stream Manager (Q6ASM) bindings to DT schema.
 > 
-> On Mon, Sep 12, 2022 at 01:04:58PM +0100, Russell King (Oracle) wrote:
-> > On Mon, Sep 12, 2022 at 11:59:17AM +0000, Alvin Šipraga wrote:
-> > > On Mon, Sep 12, 2022 at 10:52:41AM +0100, Russell King wrote:
-> > > > From: Hector Martin <marcan@marcan.st>
-> > > > 
-> > > > This binding is currently used for SDIO devices, but these chips are
-> > > > also used as PCIe devices on DT platforms and may be represented in the
-> > > > DT. Re-use the existing binding and add chip compatibles used by Apple
-> > > > T2 and M1 platforms (the T2 ones are not known to be used in DT
-> > > > platforms, but we might as well document them).
-> > > > 
-> > > > Then, add properties required for firmware selection and calibration on
-> > > > M1 machines.
-> > > > 
-> > > > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > > > Signed-off-by: Hector Martin <marcan@marcan.st>
-> > > > Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-> > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> > > > ---
-> > > >  .../net/wireless/brcm,bcm4329-fmac.yaml       | 39 +++++++++++++++++--
-> > > >  1 file changed, 35 insertions(+), 4 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> > > > index 53b4153d9bfc..fec1cc9b9a08 100644
-> > > > --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> > > > +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> > > > @@ -4,7 +4,7 @@
-> > > >  $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
-> > > >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > >  
-> > > > -title: Broadcom BCM4329 family fullmac wireless SDIO devices
-> > > > +title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
-> > > >  
-> > > >  maintainers:
-> > > >    - Arend van Spriel <arend@broadcom.com>
-> > > > @@ -41,11 +41,17 @@ title: Broadcom BCM4329 family fullmac wireless SDIO devices
-> > > >                - cypress,cyw4373-fmac
-> > > >                - cypress,cyw43012-fmac
-> > > >            - const: brcm,bcm4329-fmac
-> > > > -      - const: brcm,bcm4329-fmac
-> > > > +      - enum:
-> > > > +          - brcm,bcm4329-fmac
-> > > > +          - pci14e4,43dc  # BCM4355
-> > > > +          - pci14e4,4464  # BCM4364
-> > > > +          - pci14e4,4488  # BCM4377
-> > > > +          - pci14e4,4425  # BCM4378
-> > > > +          - pci14e4,4433  # BCM4387
-> > > >  
-> > > >    reg:
-> > > > -    description: SDIO function number for the device, for most cases
-> > > > -      this will be 1.
-> > > > +    description: SDIO function number for the device (for most cases
-> > > > +      this will be 1) or PCI device identifier.
-> > > >  
-> > > >    interrupts:
-> > > >      maxItems: 1
-> > > > @@ -85,6 +91,31 @@ title: Broadcom BCM4329 family fullmac wireless SDIO devices
-> > > >        takes precedence.
-> > > >      type: boolean
-> > > >  
-> > > > +  brcm,cal-blob:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > > > +    description: A per-device calibration blob for the Wi-Fi radio. This
-> > > > +      should be filled in by the bootloader from platform configuration
-> > > > +      data, if necessary, and will be uploaded to the device if present.
-> > > 
-> > > Is this a leftover from a previous revision of the patchset? Because as
-> > > far as I can tell, the CLM blob is (still) being loaded via firmware,
-> > > and no additional parsing has been added for this particular OF
-> > > property. Should it be dropped?
-> > 
-> > It does appear to be unparsed, but I don't know whether it's needed for
-> > the binding or not. I'll wait for the Asahi folk to review your comment
-> > before possibly removing it.
+> The original bindings documented:
+> 1. APR service node with compatibles: "qcom,q6asm" and
+>    "qcom,q6asm-v<MAJOR-NUMBER>.<MINOR-NUMBER>",
+> 2. actual DAIs child node with compatible "qcom,q6asm-dais".
 > 
-> Okay, the answer is, it is still very much part of the binding, and
-> the m1n1 boot loader populates it.
+> The conversion entirely drops (1) because the compatible is already
+> documented in bindings/soc/qcom/qcom,apr.yaml.  The
+> "qcom,q6asm-v<MAJOR-NUMBER>.<MINOR-NUMBER>" on the other hand is not
+> used at all - neither in existing DTS, nor in downstream sources - so
+> versions seems to be fully auto-detectable.
 > 
-> This series is a subset of a larger series (remember the previous 34
-> or 35 patch series?), so there are things in the binding document
-> which are not included in this series.
+> Another change done in conversion is adding "iommus" property, which is
+> already used in DTS and Linux driver.
 > 
-> I don't think it makes sense to break up the binding document given
-> that it has already been reviewed several times in its current state,
-> should we really remove this one property and throw away all that
-> review effort.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Expected warning because the qcom,apr.yaml is being fixed in next commit:
+> 
+>   Documentation/devicetree/bindings/sound/qcom,q6asm.example.dtb: apr: service@7: 'dais' does not match any of the regexes: '^.*@[0-9a-f]+$', 'pinctrl-[0-9]+'
+>     From schema: /home/krzk/dev/linux/linux/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
+> 
+> Changes since v2:
+> 1. Rename to qcom,q6asm-dais.yaml (Rob)
+> 2. Extend commit msg.
+> 
+> Changes since v1:
+> 1. New patch.
+> ---
+>  .../bindings/sound/qcom,q6asm-dais.yaml       | 112 ++++++++++++++++++
+>  .../devicetree/bindings/sound/qcom,q6asm.txt  |  70 -----------
+>  2 files changed, 112 insertions(+), 70 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6asm-dais.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/qcom,q6asm.txt
+> 
 
-The OpenBSD driver already uses these properties.  So even if the
-Linux driver doesn't use this yet, there is an existing implementation
-that does.  That should be good enough for it to be included in the
-binding isn't it?
+Reviewed-by: Rob Herring <robh@kernel.org>
