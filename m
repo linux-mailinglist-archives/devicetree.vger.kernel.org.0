@@ -2,145 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15E0D5B5238
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 02:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41BFC5B5246
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 02:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229533AbiILAZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 20:25:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40480 "EHLO
+        id S229583AbiILAoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 20:44:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbiILAZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 20:25:28 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D8923BF2;
-        Sun, 11 Sep 2022 17:25:26 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id v6so8789224ljj.0;
-        Sun, 11 Sep 2022 17:25:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date;
-        bh=h8W2MnZNp3EZmLKRR3GWmvgYqI8g8ANtG+giDN21Mqk=;
-        b=NNqmkuzUK6Nd6d3TWklj2yIflQbEKWrbIx+e8qxCgDx+ijBblJrZE8LbkSpQsjeBir
-         dOeevbJGBE0HJoQuwEftKsr8b3ofSFhXNQIlrCvb/5t0ZpoL26n3Y1IMvMtNnvcs3VSj
-         cJt0zVBGQuaFIrvgsBamWITds+4NK7XBgNikC7U0SjfSrMXUyc9Xrjg2RfLTQ1RhXd0+
-         Ku1OnLVJNkf+Di8r4ArtlCVB8gfdz1b5D5Vh40UTuUAh3BEboB6IHzleoQooLLCTw5xO
-         s7B1eWexM9w1jxota4iiMOovN43dHP3eDD29YImQ16CqSitnC2sasFQskhKZHcwbPk65
-         QVZA==
+        with ESMTP id S229570AbiILAoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 20:44:19 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5188927CF9;
+        Sun, 11 Sep 2022 17:44:18 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-12803ac8113so19440371fac.8;
+        Sun, 11 Sep 2022 17:44:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=h8W2MnZNp3EZmLKRR3GWmvgYqI8g8ANtG+giDN21Mqk=;
-        b=rg07l2baPFjr4yjT8ujIa3UXg+9C7CVgNSKtsOLj3ZGTZ1H3kgxOTT6SsrBaMw1FhG
-         3G6oEeMOOTAb8/T1S6fc5bBBFfwIDrlyaJ4+12n8ylkCdaeP26ocmXe8oZj3gV5KdIch
-         797tSeXPYsCqOQM7CgqCPNWOpxOltcHbTYAf3yBZjJL0V0JCP/cQ1CDXjfeN8HpPE2sm
-         6Q04vh6+xadax12PP03QXCXwe97nEOzqQZOvFEVIozI4bxgdY8H8fI/L2bRzIqwASNJf
-         ZlubARWb0gBMOZ+BmuZE8+/hKQBO/iwdgQwFOGwmHMqhOwoF9lAUljWKXtSsxVhdV9na
-         sWEA==
-X-Gm-Message-State: ACgBeo1OKpQAW8FnvWO4r0ffyioVzID15FJNw0o05DT/lJoj1FmBXCse
-        IRm8mkFbd8pc3MbtswhjJ3o=
-X-Google-Smtp-Source: AA6agR6fWGbuq1oQIOBjg+4w4n6JqgNzTcJXHVGsGnK7wvUl3teiIllyKwXeUlece/Rd3BsQ6U3+3w==
-X-Received: by 2002:a05:651c:160c:b0:264:a5ae:7dd2 with SMTP id f12-20020a05651c160c00b00264a5ae7dd2mr7290892ljq.80.1662942324919;
-        Sun, 11 Sep 2022 17:25:24 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id z28-20020a2eb53c000000b0025fe7f33bc4sm820357ljm.49.2022.09.11.17.25.23
+        bh=V+fdkvdPWRhvXn+afJKKR9vxZ+OhqSngIUjZosWiaGM=;
+        b=CwzMWhbmooMFXwzX8zqVWMtuNLpJ2KLVVKDkWjZRgq1tZhPztZ8TFzvNrf1KllNTkb
+         qiBTFL3egj+1Kw47Cdd44kuFJPaHDjUbgjp2FW/6Ldk0b2xOydMNLZK4GIyFvjoJUo5Z
+         xOf+97STy4agG3M4HYPu7YqqPD9qR2s9gwPQci4T3vxJOOxT03mfNPyF/ZUeVm6G7621
+         VGI8LgTOA4Sbzh+VPnIEZAMmwYHgIW5fwICMknXY65SfHf90M8BFZNrsUtARHBiUgDKG
+         QF1vJsiHJUPBly1ny9Mgsy1QKs29o5zLGGmRDJNaL/FBoT7+0WBpmqZyUSKtOHfVguK7
+         QSow==
+X-Gm-Message-State: ACgBeo20VfV5ksuHJCp30GiqIhCrv6xo1wdeRdgpVkeuvl8lrjsl8bF+
+        2EvjRhJ1ceMw7r/BR6/szFVRouvbdw==
+X-Google-Smtp-Source: AA6agR6EjSggqXBE7a+I9hL6SZCJ+S5mIWBC+TVZZAoQKWYb+xJHzJHktuQdS8OxzNaK4ZaxTze78Q==
+X-Received: by 2002:a05:6808:d4c:b0:345:32dc:7a69 with SMTP id w12-20020a0568080d4c00b0034532dc7a69mr8061256oik.118.1662943457205;
+        Sun, 11 Sep 2022 17:44:17 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y5-20020a4ade05000000b00475790c9a08sm470912oot.16.2022.09.11.17.44.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Sep 2022 17:25:24 -0700 (PDT)
-Date:   Mon, 12 Sep 2022 03:25:22 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Sun, 11 Sep 2022 17:44:16 -0700 (PDT)
+Received: (nullmailer pid 3629323 invoked by uid 1000);
+        Mon, 12 Sep 2022 00:44:15 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Hugues Fruchet <hugues.fruchet@foss.st.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Alain Volmat <alain.volmat@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, willmcvicker@google.com
-Subject: Re: [PATCH v5 20/20] PCI: dwc: Add Baikal-T1 PCIe controller support
-Message-ID: <20220912002522.arx4vypiv363qcni@mobilestation>
-References: <20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru>
- <20220822184701.25246-21-Sergey.Semin@baikalelectronics.ru>
- <YwzbARMkb/69+l2d@lpieralisi>
- <63a54a1b-66ba-9739-8217-13f75e602cd5@arm.com>
- <98179709-1ece-61ab-d43a-fc38a4fd3f67@arm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <98179709-1ece-61ab-d43a-fc38a4fd3f67@arm.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-media@vger.kernel.org,
+        Philippe CORNU <philippe.cornu@foss.st.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, devicetree@vger.kernel.org
+In-Reply-To: <20220910144010.34272-2-hugues.fruchet@foss.st.com>
+References: <20220910144010.34272-1-hugues.fruchet@foss.st.com> <20220910144010.34272-2-hugues.fruchet@foss.st.com>
+Subject: Re: [PATCH v1 1/5] dt-bindings: media: add bindings for dcmipp driver
+Date:   Sun, 11 Sep 2022 19:44:15 -0500
+Message-Id: <1662943455.958018.3629322.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 31, 2022 at 09:54:14AM +0100, Robin Murphy wrote:
-> On 2022-08-31 09:36, Robin Murphy wrote:
-> > On 2022-08-29 16:28, Lorenzo Pieralisi wrote:
-> > [...]
-> > > > +static int bt1_pcie_add_port(struct bt1_pcie *btpci)
-> > > > +{
-> > > > +    struct device *dev = &btpci->pdev->dev;
-> > > > +    int ret;
-> > > > +
-> > > > +    /*
-> > > > +     * DW PCIe Root Port controller is equipped with eDMA capable of
-> > > > +     * working with the 64-bit memory addresses.
-> > > > +     */
-> > > > +    ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-> > > > +    if (ret)
-> > > > +        return ret;
-> > > 
-> > > Is this the right place to set the DMA mask for the host controller
-> > > embedded DMA controller (actually, the dev pointer is the _host_
-> > > controller device) ?
-> > > 
-> > > How this is going to play when combined with:
-> > > 
-> > > https://lore.kernel.org/linux-pci/1e63a581-14ae-b4b5-a5bf-ca8f09c33af6@arm.com
-> > > 
-> > > It is getting a bit confusing. I believe the code in the link
-> > > above sets the mask so that through the DMA API we are capable
-> > > of getting an MSI doorbell virtual address whose physical address
-> > > can be addressed by the endpoint; this through the DMA API.
-> > > 
-> > > This patch is setting the DMA mask for a different reason, namely
-> > > setting the host controller embedded DMA controller addressing
-> > > capabilities.
-> > > 
-> > > AFAICS - both approaches set the mask for the same device - now
-> > > the question is about which one is legitimate and how to handle
-> > > the other.
-> > 
-> > Assuming the dw-edma-pcie driver is the relevant one, that already sets
-> > its own masks on its own device, so I also don't see why this is here.
+On Sat, 10 Sep 2022 16:40:06 +0200, Hugues Fruchet wrote:
+> From: Alain Volmat <alain.volmat@foss.st.com>
+> 
+> Add the yaml binding for the DCMIPP driver.
+> 
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+> ---
+>  .../bindings/media/st,stm32-dcmipp.yaml       | 96 +++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
 > 
 
-> Ah, I just found the patch at [1], which further implies that this is indeed
-> completely bogus.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Really? Elaborate please. What you said in the comment to that patch
-has nothing to do with the change you comment here.
+yamllint warnings/errors:
 
--Sergey
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/st,stm32-dcmipp.example.dtb: dcmipp@5a000000: port:endpoint: Unevaluated properties are not allowed ('pclk-max-frequency' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
 
-> 
-> Robin.
-> 
-> [1] https://lore.kernel.org/dmaengine/20220822185332.26149-23-Sergey.Semin@baikalelectronics.ru/
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
