@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D05F55B5726
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 11:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD8F65B5765
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 11:47:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229584AbiILJ0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 05:26:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46648 "EHLO
+        id S229610AbiILJrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 05:47:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbiILJ0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 05:26:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D27931033;
-        Mon, 12 Sep 2022 02:26:17 -0700 (PDT)
+        with ESMTP id S229549AbiILJrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 05:47:12 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 189E833437;
+        Mon, 12 Sep 2022 02:47:12 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6ED7C6112C;
-        Mon, 12 Sep 2022 09:26:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20A2EC433D6;
-        Mon, 12 Sep 2022 09:26:14 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D05B7B80CAC;
+        Mon, 12 Sep 2022 09:47:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01499C43470;
+        Mon, 12 Sep 2022 09:47:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662974776;
-        bh=Oq0ZzVeBX8F/RKS4c4Vh4FGTIXqsPapMIyRWRtNrqkg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GU69TbWSZ4eAoMzeJfsgt0vzabJ5NQPvio0rifqGc1qyyqcoM1R5c4RCnTghwH9CU
-         IB21B+wU7wC7LHpPaE+vefWzWR7WqSO4wJqx1wObZGPpKki6lLlkGUk45FV9L7dH2H
-         0flvhvNaQ1bLe5FJQnci4Bn1O5556vJO43oOyhhazWtX2FRb2p9KXMdNSPSjmmUMva
-         B5CGzELM9/2mkVFYHYs0K/K8zCB/TVhPIma9iB2j2rtdNtS0RIsMy8nOooaExLZ6Cq
-         aPaSKwmIXZBpGeOJz93ujl/9BnY6Xx3qq8Fi4nv1ViSMQmTEykzF5bE6/5RA9006Tr
-         bQVusZjVXMCrw==
-Date:   Mon, 12 Sep 2022 17:26:11 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH devicetree] arm64: dts: ls1028a-rdb: add more ethernet
- aliases
-Message-ID: <20220912092611.GW1728671@dragon>
-References: <20220905212458.1549179-1-vladimir.oltean@nxp.com>
+        s=k20201202; t=1662976029;
+        bh=73e6jktn30rL4M3qmP6vMz0NvkYREdBKcFnFfXbAHg8=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=FlQXOwlXlyOmcKvqWfSFzV1aZ+1zJum6NXi/2kzzCXzF4M4OIiL+JQ8lKv/cgXKDj
+         Tcyy54yozwXLjySkswm1hxndZAuZJxAl+LOBS4k9Bdg1cS1Qi2v6MCT1Hd4eTxs2/J
+         ZgrTHc/x4kZuC9LpemlxeMIs4LsKGVU6jM5VTvT2zSmeKEszInJ85JDtdYdplVGp6h
+         q46h6MWexga2prb4OePzhPbVQZtO74zvHthCUMmL2AdaEYsJ+t/7o8RvPC/zdMTH+7
+         3Yxj3iJxVi/LlB9nefdfWvHuGp96bZJPaV8UM+u4bhQkaxwj5jPq12ViKO0Gt7ahzj
+         WviYHg8xWMXkQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        heiko@sntech.de
+In-Reply-To: <12af4fe6-4d35-cb4a-f5f6-06e3aba990cb@gmail.com>
+References: <12af4fe6-4d35-cb4a-f5f6-06e3aba990cb@gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: spi: rockchip: add power-domains property
+Message-Id: <166297602779.48440.1398773429375792864.b4-ty@kernel.org>
+Date:   Mon, 12 Sep 2022 10:47:07 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220905212458.1549179-1-vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-65ba7
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -57,30 +57,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 06, 2022 at 12:24:58AM +0300, Vladimir Oltean wrote:
-> Commit "arm64: dts: ls1028a: enable swp5 and eno3 for all boards" which
-> Shawn declared as applied, but for which I can't find a sha1sum, has
-> enabled a new Ethernet port on the LS1028A-RDB (&enetc_port3), but
-> U-Boot, which passes a MAC address to Linux' device tree through the
-> /aliases node, fails to do this for this newly enabled port.
+On Sun, 11 Sep 2022 19:58:39 +0200, Johan Jonker wrote:
+> The Rockchip rk3399 TRM mentions that pd_sdioaudio includes
+> sdio, spi, i2s and spdif. Add a power-domains property to
+> to match reality with spi-rockchip.yaml.
 > 
-> Fix that by adding more ethernet aliases in the only
-> backwards-compatible way possible: at the end of the current list.
 > 
-> And since it is possible to very easily convert either swp4 or swp5 to
-> DSA user ports now (which have a MAC address of their own), using these
-> U-Boot commands:
-> 
-> => fdt addr $fdt_addr_r
-> => fdt rm /soc/pcie@1f0000000/ethernet-switch@0,5/ports/port@4 ethernet
-> 
-> it would be good if those DSA user ports (swp4, swp5) gained a valid MAC
-> address from U-Boot as well. In order for that to work properly,
-> provision two more ethernet aliases for &mscc_felix_port{4,5} as well.
-> 
-> The resulting ordering is slightly unusual, but to me looks more natural
-> than eno0, eno2, swp0, swp1, swp2, swp3, eno3, swp4, swp5.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Applied, thanks!
+Applied to
+
+   broonie/spi.git for-next
+
+Thanks!
+
+[1/1] dt-bindings: spi: rockchip: add power-domains property
+      commit: 83e5335bf58b090b1fc0b30cb1a1fedf07f0c217
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
