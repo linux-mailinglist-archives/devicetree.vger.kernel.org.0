@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA0425B53E9
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 267745B53F0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:18:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbiILGSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 02:18:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49760 "EHLO
+        id S229785AbiILGSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 02:18:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbiILGSI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:18:08 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D73F286E5
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:18:02 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id p5so9307951ljc.13
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:18:02 -0700 (PDT)
+        with ESMTP id S229702AbiILGSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:18:16 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6214D28723
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:18:04 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id h3so913511lja.1
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:18:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=fEX3mEf1YS0VEGkwrFu/5ECJ6Ev0hCKVagP2clm1WMU=;
-        b=fVTuBzBUkJ22VyHG6FNWHCYgoRTNWjgDMyVIXuk5sPhnDy9eMiAtlWYY0PFzdJhw/U
-         9+5yWBbsHubw+nvqkA1HLrAS/8/1lKSI5915T74J9v3RSmSdCTTb2ln2Mzu/JiXtj3FS
-         1MvRPCL0Fgc68BNi4TdRhQmgamnDzYCS2SyWM62/DGd0wh9wSpjiSqyyPqLoPWD0bFc4
-         NZig99eryWwBIx55fgIpZSlt1dV7SbwapfQ+IWbWLtWq4Twl0Sxb/mXCLlWbuvHGahnO
-         wnSj3BnhqAjSGvLRc8QAuakyz8X1izLxPP0juDBdmNoLgP0IfekWnN7fOnFYPg4moGi6
-         4xrQ==
+        bh=F43nv8/M+cL0CQPWEGRQlPTNWaqRQm3bONcFJuSIY7A=;
+        b=A7XnkFV8JygYpzI+K7FIUb7NSbKPQhJ86e+gadfJ11SGAzkTHjVP0B8wKi1WlLAjDT
+         FxcV6fLHq2EaU1ynM4X1z0909bqA1Rt2dWAXubIwo5+YLV9qELixFeCC9xo8/2NQSi/t
+         wo0HHxNzmJRyIBQ00wsdrn4xJyTx1SrUm7/nfb61Cr2CAAAdOF1cocWDfK0oCvhTevjT
+         C1jJlK12W68d4kY6OxSPKSqYI75TsVAfq6h3HFRZxfN7eE1Ri6RIW6NyARAVo9S9+7Pj
+         v+58UdCE9hIUhsl+pom7C9P7uCJAXfk/rLEQ+RvbGaw5dQxr5UODLFUfPBCkDw7B2yjz
+         ELUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=fEX3mEf1YS0VEGkwrFu/5ECJ6Ev0hCKVagP2clm1WMU=;
-        b=akhWPq2zyaSEtx1rzSZUdZ9NS/Ak0mkrpdVSYbr5Ynq43KXcqLuLkyZmY8Y/7NIcUn
-         TDtnSP8CgzFYGEbX9AZvS9Msq2CFnBcRvFpzwqML69OERpsy3qi0z/25gRJE43a81snP
-         1+iGJPyHSs5BqHKciekzqeSPPASitIHvLz/yeIPWeq5rWX1rmLkW1H4703D2yDK2J2YL
-         4JAzy6ArgreOGKahg7MfcMSyI+I/7wR2xpUpcMBSMP8PIN/5+PmYGH6ruAcCcW493+0W
-         cW46m7CYZdQSwroE/3JPCNI0eNAPIrzyN6a9yrIyoG1jS6A82cJph/y+1g8MW4534Tiw
-         0n4Q==
-X-Gm-Message-State: ACgBeo1ElQQQvr3aTe9NlEORDSvhOWo2sa98lT/5J03iSThMPM5ZqGzt
-        7QVwJnJHJquiqXwsVa+ouvZaWQ==
-X-Google-Smtp-Source: AA6agR4M8TAMHhPFbvbyPN9nvAjoUxf1GnokNm6GLAPiY8e/5IWPCyGMpO033fwrrhvc4VXrB2/CtQ==
-X-Received: by 2002:a2e:5cb:0:b0:26a:b1bc:bba5 with SMTP id 194-20020a2e05cb000000b0026ab1bcbba5mr6959655ljf.93.1662963480813;
-        Sun, 11 Sep 2022 23:18:00 -0700 (PDT)
+        bh=F43nv8/M+cL0CQPWEGRQlPTNWaqRQm3bONcFJuSIY7A=;
+        b=aBbYWYY1fuZhCSbCgQt2YoANZFCKSuh6XeNMBsEYPxJrc4LbRJxxYQdyjzWeROgrvI
+         RzelHyqp41Xrj8Vw2IyF03F8odQYHWBpKqQvcjMWyuiXV6+t4ZO1YKKfNFfiRn7cbwz3
+         ORHE6vbs0t0RThWMGl7wdhtSNc/yaCRDlqD+iL+p115ME/zGANn75cNAR8bmYwe2wk0D
+         P/s8Yq+UacFPvLhL8tRFbZOj/jhSgD820dLFvQdM6zYRHDUgpg3YIoIiZ6ycB9OmimoC
+         UAL7vWqrlY0xNo2rutghQL5xm9JYG2efcmAI6gYfa1L+4jKjIgwL7YKYexPHJOsE4LZm
+         e7cA==
+X-Gm-Message-State: ACgBeo0EP3iFILoiihTS21P59SQz4H4GHzXsjySqe9vNrnFsOmL58sd+
+        3o2hvHeq3lZpau7dp3DhSn2wPQ==
+X-Google-Smtp-Source: AA6agR7X1hSRlJCWjl1EPIyxzpnPf13OnmsIlWlF9PER1H8bs5y2ZqqsChORkdl64SClLdzgNvYEKw==
+X-Received: by 2002:a2e:a587:0:b0:25f:e6ac:c287 with SMTP id m7-20020a2ea587000000b0025fe6acc287mr7087104ljp.416.1662963482077;
+        Sun, 11 Sep 2022 23:18:02 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t19-20020ac24c13000000b004996fbfd75esm876805lfq.71.2022.09.11.23.17.59
+        by smtp.gmail.com with ESMTPSA id t19-20020ac24c13000000b004996fbfd75esm876805lfq.71.2022.09.11.23.18.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Sep 2022 23:18:00 -0700 (PDT)
+        Sun, 11 Sep 2022 23:18:01 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 05/40] dt-bindings: pinctrl: qcom,sm6125-pinctrl: do not require function on non-GPIOs
-Date:   Mon, 12 Sep 2022 08:17:11 +0200
-Message-Id: <20220912061746.6311-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 06/40] dt-bindings: pinctrl: qcom,sm6125-pinctrl: extend example
+Date:   Mon, 12 Sep 2022 08:17:12 +0200
+Message-Id: <20220912061746.6311-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
 References: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
@@ -71,7 +71,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,51 +79,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Certain pins, like SDcard related, do not have functions and such should
-not be required:
-
-  sdc1-clk-pins: 'function' is a required property
+Extend example with children for pin configuration and indent it with
+4-spaces.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
-
-Another question is whether 'function' should be disallowed for such
-pins?
----
- .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml        | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml | 46 +++++++++++++------
+ 1 file changed, 33 insertions(+), 13 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
-index 84ed16f9915d..735eb5d6834d 100644
+index 735eb5d6834d..5cb8b272cb7d 100644
 --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
 +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
-@@ -61,7 +61,6 @@ $defs:
-     description:
-       Pinctrl node's client devices use subnodes for desired pin configuration.
-       Client device subnodes use below standard properties.
--    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
+@@ -126,17 +126,37 @@ $defs:
  
-     properties:
-       pins:
-@@ -112,7 +111,16 @@ $defs:
- 
-     required:
-       - pins
--      - function
+ examples:
+   - |
+-        #include <dt-bindings/interrupt-controller/arm-gic.h>
+-        pinctrl@500000 {
+-                compatible = "qcom,sm6125-tlmm";
+-                reg = <0x00500000 0x400000>,
+-                    <0x00900000 0x400000>,
+-                    <0x00d00000 0x400000>;
+-                reg-names = "west", "south", "east";
+-                interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+-                gpio-controller;
+-                gpio-ranges = <&tlmm 0 0 134>;
+-                #gpio-cells = <2>;
+-                interrupt-controller;
+-                #interrupt-cells = <2>;
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pinctrl@500000 {
++        compatible = "qcom,sm6125-tlmm";
++        reg = <0x00500000 0x400000>,
++              <0x00900000 0x400000>,
++              <0x00d00000 0x400000>;
++        reg-names = "west", "south", "east";
++        interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
++        gpio-controller;
++        gpio-ranges = <&tlmm 0 0 134>;
++        #gpio-cells = <2>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
 +
-+    allOf:
-+      - $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-+      - if:
-+          properties:
-+            pins:
-+              pattern: "^gpio[0-9]|[1-9][0-9]|1[0-2][0-9]|13[0-2]$"
-+        then:
-+          required:
-+            - function
- 
-     additionalProperties: false
- 
++        sdc2-off-state {
++            clk-pins {
++                pins = "sdc2_clk";
++                drive-strength = <2>;
++                bias-disable;
++            };
++
++            cmd-pins {
++                pins = "sdc2_cmd";
++                drive-strength = <2>;
++                bias-pull-up;
++            };
++
++            data-pins {
++                pins = "sdc2_data";
++                drive-strength = <2>;
++                bias-pull-up;
++            };
+         };
++    };
 -- 
 2.34.1
 
