@@ -2,82 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5CDD5B619A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 21:22:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 802B75B6197
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 21:22:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230492AbiILTWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 15:22:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43656 "EHLO
+        id S230447AbiILTWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 15:22:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231124AbiILTWW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 15:22:22 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5DCC4457F
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 12:22:19 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id p1-20020a17090a2d8100b0020040a3f75eso9140758pjd.4
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 12:22:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=ssS5zdl8ImzFpzzUh/59HsD/G3hcv1J/zHJhsPeEVKI=;
-        b=QTNd0+iDH81yMYKwvCkapX347WklRs1UjNbmqjqu+SixUF/dyK2U/L25vDmJoSKOi3
-         cldUN75Qt3pWVPV4ItiOTKw3QmVbfx2t9fO+kOp/uR+OVGSNK84/CGvdkYW2B6CYdcFW
-         Wq+yE+ym4VzTjz6ZEaev54lNyuvfsYAMRbx9WBKIbKDfFApLXXh7HCbQDbOWXbuV7e/Z
-         p4ZYhleNdJoMyxd/UMk4saHWkZIy8ocYbb+uic0g2UPbXa2o3re6fnkS/4PFf64IzvLj
-         h5/aLBm5eprqh9XYSKn6YxzUzZrJc1ikkmR4FgUwPDRheKWQz3X4hv09w283fMWLjILy
-         yfaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=ssS5zdl8ImzFpzzUh/59HsD/G3hcv1J/zHJhsPeEVKI=;
-        b=EQPSymVQZNT6QINYhjyaqCV+9XHhMHeXD01+ehLkytXayvQeH19WxQuX8sX+GxSL70
-         YnKdg1DOpb+OUuGioyArryjmWe6JPJtSdwGwFcnlg+4M8IA71qtmpkq2KUBFDtz3niAN
-         kv/os1oqifLE5RO5nvh4FzJAvbYd1eCCSu1OsusRBBfdgXHUBCPbDvbJ3r2pQDjrfkXv
-         kDmkdIy0o45d1d4juO4YvlUnKj+Ko45OeD5KT8POTNjuGr4Ru85IfGjpPHVstI8ms6Ln
-         rGFlNvCk17Q6YqE7OXgj3uzyjSazTbVRzlxDPxNWDQWCPyIva0/7PgJWhZg0j6zmknNQ
-         LxQQ==
-X-Gm-Message-State: ACgBeo1eTHiGLnftkGJ5qLtYy4gHO4CZNtAoV45BI5VafLiOwtrcpfz0
-        zxlsQ0CfY3ptStK//8CSMv2F662zdeDb0gXgkJYJoA==
-X-Google-Smtp-Source: AA6agR7HIYkNnScIvRpJFZ0Oo8uVvzZR00lzwcMhNhL2BpnUIm/nvmgBF7LUeuTXgD11N++k7tQH3Pa9XHu01N2sGa8=
-X-Received: by 2002:a17:90b:4f8d:b0:202:dd39:c03a with SMTP id
- qe13-20020a17090b4f8d00b00202dd39c03amr5104418pjb.71.1663010538983; Mon, 12
- Sep 2022 12:22:18 -0700 (PDT)
+        with ESMTP id S230463AbiILTWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 15:22:14 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 193954361C;
+        Mon, 12 Sep 2022 12:22:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1663010532; x=1694546532;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=TXS01MeQcvfoprp7LLm9T1zw6OQ9jGZYEO3glco0J4Y=;
+  b=k6lvxM5NhVVlV9AgaFgY/2GWYiqjX5LWElNX6CkiPcTMBcYnJDR3DGd3
+   C6hi7r+j+3c2Hl1Bkntk3HUxjkOozAtIXiVtMUP7Tvfr7aSxJnTBHh7lb
+   rIUBj9ed7cZR2u0A4kXqklL2KqyNhklJS+VvbnsVPSY5niIezqb7iAtQC
+   oIc4Y42MeQyegk/XLvUCsQRyAso9xb+rGmk+HzMhydWM7P5n9xj7z0zFk
+   gw+cRGdoRG6Ws5Ur3eyEQ72XPIm/S3tLqepDEpu+UBj3PxPemL8fqeCvG
+   m/o0XsuvlWbfmHcZpf7cDP/8iZlLzTZLcbJPhrkw+jYDK18BEXPagX1Nu
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,310,1654585200"; 
+   d="scan'208";a="173492040"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Sep 2022 12:22:11 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Mon, 12 Sep 2022 12:22:10 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Mon, 12 Sep 2022 12:22:09 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <claudiu.beznea@microchip.com>, <nicolas.ferre@microchip.com>,
+        <michael@walle.cc>, Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH] ARM: dts: lan966x: Fix the interrupt number for internal PHYs
+Date:   Mon, 12 Sep 2022 21:26:29 +0200
+Message-ID: <20220912192629.461452-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20220907160207.3845791-1-jagan@edgeble.ai> <20220907160207.3845791-2-jagan@edgeble.ai>
- <6158946.mvXUDI8C0e@phil>
-In-Reply-To: <6158946.mvXUDI8C0e@phil>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Tue, 13 Sep 2022 00:52:08 +0530
-Message-ID: <CA+VMnFz3+vx4b3H=v7g1q-ytKLRjohs2tGmeuA6sRfWA8J6BRw@mail.gmail.com>
-Subject: Re: [PATCH v4 01/13] i2c: rk3x: Add rv1126 support
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, David Wu <david.wu@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+According to the datasheet the interrupts for internal PHYs are
+80 and 81.
 
-On Fri, 9 Sept 2022 at 22:58, Heiko Stuebner <heiko@sntech.de> wrote:
->
-> Hi Jagan,
->
-> it looks like this is missing Wolfram Sang, the i2c maintainer?
+Fixes: 6ad69e07def67c ("ARM: dts: lan966x: add MIIM nodes")
+Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+---
+ arch/arm/boot/dts/lan966x.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-My bad. I will add him in the next version. Thanks.
+diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
+index bcb130a2471d..23665a042990 100644
+--- a/arch/arm/boot/dts/lan966x.dtsi
++++ b/arch/arm/boot/dts/lan966x.dtsi
+@@ -547,13 +547,13 @@ mdio1: mdio@e200413c {
+ 
+ 			phy0: ethernet-phy@1 {
+ 				reg = <1>;
+-				interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+ 				status = "disabled";
+ 			};
+ 
+ 			phy1: ethernet-phy@2 {
+ 				reg = <2>;
+-				interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+ 				status = "disabled";
+ 			};
+ 		};
+-- 
+2.33.0
 
-Jagan.
