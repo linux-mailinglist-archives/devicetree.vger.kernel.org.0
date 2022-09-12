@@ -2,212 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8117C5B56D0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 10:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EA0D5B56DB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 10:58:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbiILI5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 04:57:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36480 "EHLO
+        id S229593AbiILI6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 04:58:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230108AbiILI5X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 04:57:23 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D03EC1D0DE;
-        Mon, 12 Sep 2022 01:57:22 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28C8v8wF009452;
-        Mon, 12 Sep 2022 03:57:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1662973028;
-        bh=acFE7U4SCLkZaqwno3QJ6Kxih9diQctIL1Ztjs2RjO8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=xZEV6+qq1gs3EmGHHfMPoouPYvJb2XC+YjkSIlPEUwdOAToS5VIIghqxK2KBXgYPO
-         JQoLdm30Puc7zU+V8/AF5PVY2CZwfFPeAp7z0jar0h3fjnCu7sdeAl72AA2tCX779O
-         tdeFhqLzYhCi6lKLbn3o9s3q6FC6lb/glVB864wQ=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28C8v82p073062
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 12 Sep 2022 03:57:08 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 12
- Sep 2022 03:57:08 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Mon, 12 Sep 2022 03:57:08 -0500
-Received: from uda0492258.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28C8up6x104303;
-        Mon, 12 Sep 2022 03:57:04 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <robh+dt@kernel.org>, <lee.jones@linaro.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <kishon@ti.com>,
-        <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
-        <grygorii.strashko@ti.com>, <rogerq@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>
-Subject: [PATCH v5 3/3] phy: ti: gmii-sel: Add support for CPSW5G GMII SEL in J7200
-Date:   Mon, 12 Sep 2022 14:26:50 +0530
-Message-ID: <20220912085650.83263-4-s-vadapalli@ti.com>
+        with ESMTP id S230476AbiILI6U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 04:58:20 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2073.outbound.protection.outlook.com [40.107.223.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2467E357EE;
+        Mon, 12 Sep 2022 01:58:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c9W+V6nXpsFQ5XGQ9zC2ONQUtZ8is2HOtwAFcCDENyI9wuYHpU2GB85zrVb2R7e8lEyavIdr4eAgfscC8YE473IbLLC+mc4NO2sIskwQgjXeYw1sWpZlkRhs/jj4Wp7rDucAMSq3JGOJ5Ckx3bSH/RHQy3dmvn4UnYDmY0GyxN3NeFLBGc5+rj07LmBgr1dXEpNITZMmXIiLLJNvPj0rUEPYxkKcrOahahxosD85J/jfqnLmI2D1cPxyMqqKZns0DQJCaxu6ox6UhcFC/pjlF8zmaYRkNsSUHGhtn+4kqKT2X5qKmUw3nud5/VjvStZmyTEiTpsfaj2+q+K3hNPpKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DyCbu/l72mwyRYeYSWRWBXIVyx4LADLne7kqFNeqjwY=;
+ b=NRtFTLpKTjFtYkeVVVN2Sh9YjfB7eVH6r9vwNFa2S3E5azvaMJ25g8g8E+enlFqBqhMdSu2CyPH2ID7FnF9qtI1MeGaupnqzLq/YL5NV4Ftk+OYzkHnmqSTNMMbzKGPyLhDyv2SngZhmRnwoj401uiPKAtDYOszicPxaqZaWiGc1AH37SJhh4XDQ2jpyBGYHLTjTqX00raFessQXebNTem6ezGVLshtYSOxsSATOPg4GDotPb2bDsLdy6yqmj+7VOr0uAfHSPt3QfAOvyhxTmGiE8m61X4jbXKImDxAQfR/9S3PgEUnsEwJFMpAMxn8gyiRUte3ANptGC4LmY0o5cQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DyCbu/l72mwyRYeYSWRWBXIVyx4LADLne7kqFNeqjwY=;
+ b=Nau1eb5OR3onmhzDJDutJ0dw7B65N8eCLWYV55Q7/49IJREFwZWoO/7W7JGvpfzqzoPkisMKngBi4zuqsiEciI1SCcIo6Xj5/MlxOmt+197C9AcSlUcQg4BzRIyKwNweIS/5xHZcSjdc5RoOYNiF4wRMBAweMH2QOLYmi/lIGIc=
+Received: from DS7PR03CA0345.namprd03.prod.outlook.com (2603:10b6:8:55::29) by
+ BL1PR12MB5205.namprd12.prod.outlook.com (2603:10b6:208:308::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Mon, 12 Sep
+ 2022 08:57:58 +0000
+Received: from DM6NAM11FT073.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:55:cafe::4f) by DS7PR03CA0345.outlook.office365.com
+ (2603:10b6:8:55::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12 via Frontend
+ Transport; Mon, 12 Sep 2022 08:57:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT073.mail.protection.outlook.com (10.13.173.152) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5612.13 via Frontend Transport; Mon, 12 Sep 2022 08:57:57 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 12 Sep
+ 2022 03:57:56 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 12 Sep
+ 2022 03:57:56 -0500
+Received: from xhdnavam40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Mon, 12 Sep 2022 03:57:53 -0500
+From:   Piyush Mehta <piyush.mehta@amd.com>
+To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <balbi@kernel.org>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
+        <siva.durga.prasad.paladugu@amd.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Piyush Mehta <piyush.mehta@amd.com>
+Subject: [PATCH] dt-bindings: usb: dwc3: Add interrupt-names to include hibernation interrupt
+Date:   Mon, 12 Sep 2022 14:27:30 +0530
+Message-ID: <20220912085730.390555-1-piyush.mehta@amd.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220912085650.83263-1-s-vadapalli@ti.com>
-References: <20220912085650.83263-1-s-vadapalli@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT073:EE_|BL1PR12MB5205:EE_
+X-MS-Office365-Filtering-Correlation-Id: 83cef9e4-082b-4bfb-167c-08da949ce384
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Vvq4wJ1VWIU/19I+MKQtJOk89b4kRBx8+4//5Zn6Efeg+5nZfJvPxmxB51jT8hGHIsbHxsDLcB7aEhjgJKYrxMf3/f6omK6VIIEPAQWWzD3KI6yI6nDmPwFz1IAce1GZGCKKva+i+BSuPyJrJR72ad/pisa7ApM/89Gq67avH+5ZiMdfSpqu6fgu7Um6ndIWQZbCkDbQDHJD/tsFU1amTuFcsEFBxnBDA0nmsnnNcDvj0AE2QYdt0bdzVVTaMSJYTsRtqcBQnobKlfw97N27zbfsqPUt+dPuOa+2TyTGAiy0GXQjPxjh8jOndNlFBPIV8Q8JghBqvGuvTJv+iLkXG2dKUfgLZ3I/tBSMT0jXPwSOoQCtP1ieAAXnVK9DLWoZsgHiRNOn02ROZCw1l+myZtbDTv8GVobVNGXVizbP6Qtm43rsMBFUvjyFC2vYayiPVxErQ4zBu3qNEouovpvQC+pMQV6/nQU+G9cdrGctzRcnOIxkSDft7+SfS0M9TvJWwFeO2B5t/TgRSaU8OsNpdCfdMfolJqSWBJgWclE0yJ0So1n2vE/+FTDpq344DAGmXm+udOY2fNHryfRvuQlvVEu1y/MHmGcqGKaCfSFeU/w0nKr0PToybaazoRqW3REH8e206FFXDOvp1u7qxdAHU1Ns1xV60fc3xPvqCwR6VBYbFObIGiuarFGgZ8WgqxjTnQfWHyLdcjVZ9WvQxW2zfZbzJ+FsozwbURh8OPQbvYg1rCmctMdoD9pSloMCGqJaArmBOIyjmPt8BPKSZlG3y2qeLVQn0j410hmfvUNqqNfMU2TBcI0A9ZWQdz7yzVvS
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(396003)(346002)(376002)(136003)(36840700001)(46966006)(40470700004)(4744005)(36860700001)(47076005)(1076003)(8676002)(86362001)(4326008)(82310400005)(70586007)(70206006)(478600001)(8936002)(44832011)(426003)(2616005)(6666004)(5660300002)(336012)(186003)(40460700003)(356005)(2906002)(82740400003)(41300700001)(110136005)(316002)(36756003)(26005)(83380400001)(54906003)(40480700001)(81166007)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2022 08:57:57.8302
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83cef9e4-082b-4bfb-167c-08da949ce384
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT073.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5205
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each of the CPSW5G ports in J7200 support additional modes like QSGMII.
-Add a new compatible for J7200 to support the additional modes.
+From: Manish Narani <manish.narani@xilinx.com>
 
-In TI's J7200, each of the CPSW5G ethernet interfaces can act as a
-QSGMII or QSGMII-SUB port. The QSGMII interface is responsible for
-performing auto-negotiation between the MAC and the PHY while the rest of
-the interfaces are designated as QSGMII-SUB interfaces, indicating that
-they will not be taking part in the auto-negotiation process.
+The hibernation feature enabled for Xilinx ZynqMP SoC in DWC3 IP.
+Added the below interrupt-names in the binding schema for the same.
 
-To indicate the interface which will serve as the main QSGMII interface,
-add a property "ti,qsgmii-main-ports", whose value indicates the
-port number of the interface which shall serve as the main QSGMII
-interface. The rest of the interfaces are then assigned QSGMII-SUB mode by
-default. The property "ti,qsgmii-main-ports" is used to configure the
-CTRLMMR_ENETx_CTRL register.
+dwc_usb3: dwc3 core interrupt-names
+otg: otg interrupt-names
+hiber: hibernation interrupt-names
 
-Depending on the device, it is possible for more than one QSGMII main port
-to exist. Thus, the property "ti,qsgmii-main-ports" is defined as an array
-of values in order to reuse the property for other devices.
-
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
 ---
- drivers/phy/ti/phy-gmii-sel.c | 47 ++++++++++++++++++++++++++++++++---
- 1 file changed, 44 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/phy/ti/phy-gmii-sel.c b/drivers/phy/ti/phy-gmii-sel.c
-index d0ab69750c6b..0bcfd6d96b4d 100644
---- a/drivers/phy/ti/phy-gmii-sel.c
-+++ b/drivers/phy/ti/phy-gmii-sel.c
-@@ -22,6 +22,12 @@
- #define AM33XX_GMII_SEL_MODE_RMII	1
- #define AM33XX_GMII_SEL_MODE_RGMII	2
+diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+index 1779d08ba1c0..618fa7bd32be 100644
+--- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+@@ -53,6 +53,8 @@ properties:
+       - const: dwc_usb3
+       - items:
+           enum: [host, peripheral, otg]
++      - items:
++          enum: [dwc_usb3, otg, hiber]
  
-+/* J72xx SoC specific definitions for the CONTROL port */
-+#define J72XX_GMII_SEL_MODE_QSGMII	4
-+#define J72XX_GMII_SEL_MODE_QSGMII_SUB	6
-+
-+#define PHY_GMII_PORT(n)	BIT((n) - 1)
-+
- enum {
- 	PHY_GMII_SEL_PORT_MODE = 0,
- 	PHY_GMII_SEL_RGMII_ID_MODE,
-@@ -43,6 +49,7 @@ struct phy_gmii_sel_soc_data {
- 	u32 features;
- 	const struct reg_field (*regfields)[PHY_GMII_SEL_LAST];
- 	bool use_of_data;
-+	u64 extra_modes;
- };
- 
- struct phy_gmii_sel_priv {
-@@ -53,6 +60,7 @@ struct phy_gmii_sel_priv {
- 	struct phy_gmii_sel_phy_priv *if_phys;
- 	u32 num_ports;
- 	u32 reg_offset;
-+	u32 qsgmii_main_ports;
- };
- 
- static int phy_gmii_sel_mode(struct phy *phy, enum phy_mode mode, int submode)
-@@ -88,10 +96,17 @@ static int phy_gmii_sel_mode(struct phy *phy, enum phy_mode mode, int submode)
- 		gmii_sel_mode = AM33XX_GMII_SEL_MODE_MII;
- 		break;
- 
-+	case PHY_INTERFACE_MODE_QSGMII:
-+		if (!(soc_data->extra_modes & BIT(PHY_INTERFACE_MODE_QSGMII)))
-+			goto unsupported;
-+		if (if_phy->priv->qsgmii_main_ports & BIT(if_phy->id - 1))
-+			gmii_sel_mode = J72XX_GMII_SEL_MODE_QSGMII;
-+		else
-+			gmii_sel_mode = J72XX_GMII_SEL_MODE_QSGMII_SUB;
-+		break;
-+
- 	default:
--		dev_warn(dev, "port%u: unsupported mode: \"%s\"\n",
--			 if_phy->id, phy_modes(submode));
--		return -EINVAL;
-+		goto unsupported;
- 	}
- 
- 	if_phy->phy_if_mode = submode;
-@@ -123,6 +138,11 @@ static int phy_gmii_sel_mode(struct phy *phy, enum phy_mode mode, int submode)
- 	}
- 
- 	return 0;
-+
-+unsupported:
-+	dev_warn(dev, "port%u: unsupported mode: \"%s\"\n",
-+		 if_phy->id, phy_modes(submode));
-+	return -EINVAL;
- }
- 
- static const
-@@ -188,6 +208,13 @@ struct phy_gmii_sel_soc_data phy_gmii_sel_soc_am654 = {
- 	.regfields = phy_gmii_sel_fields_am654,
- };
- 
-+static const
-+struct phy_gmii_sel_soc_data phy_gmii_sel_cpsw5g_soc_j7200 = {
-+	.use_of_data = true,
-+	.regfields = phy_gmii_sel_fields_am654,
-+	.extra_modes = BIT(PHY_INTERFACE_MODE_QSGMII),
-+};
-+
- static const struct of_device_id phy_gmii_sel_id_table[] = {
- 	{
- 		.compatible	= "ti,am3352-phy-gmii-sel",
-@@ -209,6 +236,10 @@ static const struct of_device_id phy_gmii_sel_id_table[] = {
- 		.compatible	= "ti,am654-phy-gmii-sel",
- 		.data		= &phy_gmii_sel_soc_am654,
- 	},
-+	{
-+		.compatible	= "ti,j7200-cpsw5g-phy-gmii-sel",
-+		.data		= &phy_gmii_sel_cpsw5g_soc_j7200,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, phy_gmii_sel_id_table);
-@@ -350,6 +381,7 @@ static int phy_gmii_sel_probe(struct platform_device *pdev)
- 	struct device_node *node = dev->of_node;
- 	const struct of_device_id *of_id;
- 	struct phy_gmii_sel_priv *priv;
-+	u32 main_ports = 1;
- 	int ret;
- 
- 	of_id = of_match_node(phy_gmii_sel_id_table, pdev->dev.of_node);
-@@ -363,6 +395,15 @@ static int phy_gmii_sel_probe(struct platform_device *pdev)
- 	priv->dev = &pdev->dev;
- 	priv->soc_data = of_id->data;
- 	priv->num_ports = priv->soc_data->num_ports;
-+	of_property_read_u32(node, "ti,qsgmii-main-ports", &main_ports);
-+	/*
-+	 * Ensure that main_ports is within bounds. If the property
-+	 * ti,qsgmii-main-ports is not mentioned, or the value mentioned
-+	 * is out of bounds, default to 1.
-+	 */
-+	if (main_ports < 1 || main_ports > 4)
-+		main_ports = 1;
-+	priv->qsgmii_main_ports = PHY_GMII_PORT(main_ports);
- 
- 	priv->regmap = syscon_node_to_regmap(node->parent);
- 	if (IS_ERR(priv->regmap)) {
+   clocks:
+     description:
 -- 
 2.25.1
 
