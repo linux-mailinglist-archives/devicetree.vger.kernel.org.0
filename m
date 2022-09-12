@@ -2,69 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B82655B6292
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 23:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48BA25B6299
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 23:14:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbiILVMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 17:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41682 "EHLO
+        id S229629AbiILVOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 17:14:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbiILVM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 17:12:29 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 930A040565;
-        Mon, 12 Sep 2022 14:12:28 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1280590722dso26857805fac.1;
-        Mon, 12 Sep 2022 14:12:28 -0700 (PDT)
+        with ESMTP id S229553AbiILVOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 17:14:51 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F70CE26;
+        Mon, 12 Sep 2022 14:14:49 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-1274ec87ad5so26907197fac.0;
+        Mon, 12 Sep 2022 14:14:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Nip0DqpF4pFkRZH+cZCKwsl/yHMaJf5IoaaXn/QNxSk=;
-        b=EA4/lT4fZgdAFSZckHI4+WzZzlAqPld7jfIcIyfTEF5Vyuc32sAKeWzHVFNTIym76C
-         OQ7zXTyo5JRzQq6CkpbNUU95A2SSV4aFMcXfh8TX0Jb18nC+T4hBZHetMBOAspQKZW1b
-         aVyCwH9j0+W+mwTvKuCzFOCn5WqaoIyLORwU+z+EreHtcdZIBbs2ZTYwF2EEHDQ/yknO
-         B2zQYzsCSkCcrmpKc08gf9QnIR/sf9YW6VXYkH2lg/gv9gaUJRoRtxmukjQ5wAKRx84I
-         pfu9ndrNScM0AHoBzNH4ldagIbL9dAuwomLLcI/Lj9Nh8G/gOi9Hs+nH7yGT0mzT4nDT
-         7HFw==
-X-Gm-Message-State: ACgBeo0KbgysU3Sm/SoPNiErJpp9BLKWj4Ba+qm7T7pdgCSxMtBTFECU
-        XkNi7cLhZFOG7tnLPL/mtQ==
-X-Google-Smtp-Source: AA6agR7BL/CQtAyYvQvcr+vIkRvAqs7VKLr+Xu8UpOBsWQGAV67Cg2TMBwDDp3CR4aFgS7C2yCTYNw==
-X-Received: by 2002:a05:6808:1996:b0:34f:c809:e298 with SMTP id bj22-20020a056808199600b0034fc809e298mr128276oib.184.1663017147764;
-        Mon, 12 Sep 2022 14:12:27 -0700 (PDT)
+        bh=fiSD7aHOomub7Bw8jMO+JVKqU+yrc5sM1nDH0VKG+Bk=;
+        b=4Uj4ik5X2LxDVs4JTGjAZT3+KYmANEpAdywG1kFMYpxXa9j+8NoD0aM/k2fNKoZlWE
+         wdentr+dLvFMGhrtb1494liM8yfR8Ko2Mf01Px9uUvYIdR7LGHBXhYbe67aQKuVopFaC
+         qrxx4HSkiVI3EbFf7KjeGB7x1Qa/Wf02f+TCWXC7aA8QEW4Vr+FzKxXkJuB4DYymhr/w
+         Bd+gK20fd8xa/fTRmoq9pQ6Y05GE8llxxWZ9JCTPhc2j6ek6CV4L+++yEpbR0QlQpviU
+         5WyqCuREqD6X2jlCWS9GKo2OZ5GVzjG11insEKlAs9u+JI5tUMf9yGGYug2jF5URN78C
+         t2uQ==
+X-Gm-Message-State: ACgBeo0sVTdtdXHoAh9xBTww6WANphNgRNliGVVtOJpmr7nyPv0GE02C
+        rdppOO/CC9hJQOi/8909jnJ8Ro2BeQ==
+X-Google-Smtp-Source: AA6agR56LXac0gKGPNWMMY2CmdvxpOvzzadUO9D9Xr0ldGtCxf/0sjBd37ze5CYxEn3iCv9kikW/XA==
+X-Received: by 2002:a05:6808:25a:b0:34d:8e1d:771f with SMTP id m26-20020a056808025a00b0034d8e1d771fmr117255oie.185.1663017288667;
+        Mon, 12 Sep 2022 14:14:48 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c186-20020acab3c3000000b0034484c532c7sm4421093oif.32.2022.09.12.14.12.26
+        by smtp.gmail.com with ESMTPSA id w12-20020a056870338c00b0012769122387sm1500443oae.54.2022.09.12.14.14.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Sep 2022 14:12:27 -0700 (PDT)
-Received: (nullmailer pid 1872059 invoked by uid 1000);
-        Mon, 12 Sep 2022 21:12:26 -0000
-Date:   Mon, 12 Sep 2022 16:12:26 -0500
+        Mon, 12 Sep 2022 14:14:48 -0700 (PDT)
+Received: (nullmailer pid 1886514 invoked by uid 1000);
+        Mon, 12 Sep 2022 21:14:47 -0000
+Date:   Mon, 12 Sep 2022 16:14:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sven Peter <sven@svenpeter.dev>
-Cc:     Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: net: Add Broadcom BCM4377 family
- PCIe Bluetooth
-Message-ID: <20220912211226.GA1847448-robh@kernel.org>
-References: <20220907170935.11757-1-sven@svenpeter.dev>
- <20220907170935.11757-3-sven@svenpeter.dev>
- <bcb799ea-d58e-70dc-c5c2-daaff1b19bf5@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        David Miller <davem@davemloft.net>
+Subject: Re: [PATCH 3/4] dt-bindings: net: snps,dwmac: Update reg maxitems
+Message-ID: <20220912211447.GB1847448-robh@kernel.org>
+References: <20220907204924.2040384-1-bhupesh.sharma@linaro.org>
+ <20220907204924.2040384-4-bhupesh.sharma@linaro.org>
+ <da383499-fe9f-816e-8180-a9661a9c0496@linaro.org>
+ <46087486-bacd-c408-7ead-5b120412412b@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bcb799ea-d58e-70dc-c5c2-daaff1b19bf5@linaro.org>
+In-Reply-To: <46087486-bacd-c408-7ead-5b120412412b@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -76,125 +69,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 08, 2022 at 01:19:17PM +0200, Krzysztof Kozlowski wrote:
-> On 07/09/2022 19:09, Sven Peter wrote:
-> > These chips are combined Wi-Fi/Bluetooth radios which expose a
-> > PCI subfunction for the Bluetooth part.
-> > They are found in Apple machines such as the x86 models with the T2
-> > chip or the arm64 models with the M1 or M2 chips.
+On Tue, Sep 13, 2022 at 12:23:42AM +0530, Bhupesh Sharma wrote:
+> On 9/8/22 8:11 PM, Krzysztof Kozlowski wrote:
+> > On 07/09/2022 22:49, Bhupesh Sharma wrote:
+> > > Since the Qualcomm dwmac based ETHQOS ethernet block
+> > > supports 64-bit register addresses, update the
+> > > reg maxitems inside snps,dwmac YAML bindings.
 > > 
-> > Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> > ---
-> > changes from v1:
-> >   - added apple,* pattern to brcm,board-type
-> >   - s/PCI/PCIe/
-> >   - fixed 1st reg cell inside the example to not contain the bus number
+> > Please wrap commit message according to Linux coding style / submission
+> > process:
+> > https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 > > 
-> > .../bindings/net/brcm,bcm4377-bluetooth.yaml  | 78 +++++++++++++++++++
-> >  MAINTAINERS                                   |  1 +
-> >  2 files changed, 79 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/brcm,bcm4377-bluetooth.yaml
+> > > 
+> > > Cc: Bjorn Andersson <andersson@kernel.org>
+> > > Cc: Rob Herring <robh@kernel.org>
+> > > Cc: Vinod Koul <vkoul@kernel.org>
+> > > Cc: David Miller <davem@davemloft.net>
+> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > > ---
+> > >   Documentation/devicetree/bindings/net/snps,dwmac.yaml | 2 +-
+> > >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > index 2b6023ce3ac1..f89ca308d55f 100644
+> > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > @@ -94,7 +94,7 @@ properties:
+> > >     reg:
+> > >       minItems: 1
+> > > -    maxItems: 2
+> > > +    maxItems: 4
 > > 
-> > diff --git a/Documentation/devicetree/bindings/net/brcm,bcm4377-bluetooth.yaml b/Documentation/devicetree/bindings/net/brcm,bcm4377-bluetooth.yaml
-> > new file mode 100644
-> > index 000000000000..fb851f8e6bcb
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/brcm,bcm4377-bluetooth.yaml
-> > @@ -0,0 +1,78 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/brcm,bcm4377-bluetooth.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Broadcom BCM4377 family PCIe Bluetooth Chips
-> > +
-> > +allOf:
-> > +  - $ref: bluetooth-controller.yaml#
+> > Qualcomm ETHQOS schema allows only 2 in reg-names, so this does not make
+> > sense for Qualcomm and there are no users of 4 items.
 > 
-> Put it before properties (so after description).
-> 
-> > +
-> > +maintainers:
-> > +  - Sven Peter <sven@svenpeter.dev>
-> > +
-> > +description:
-> > +  This binding describes Broadcom BCM4377 family PCIe-attached bluetooth chips
-> > +  usually found in Apple machines. The Wi-Fi part of the chip is described in
-> > +  bindings/net/wireless/brcm,bcm4329-fmac.yaml.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - pci14e4,5fa0 # BCM4377
-> > +      - pci14e4,5f69 # BCM4378
-> > +      - pci14e4,5f71 # BCM4387
-> > +
-> > +  reg:
-> > +    description: PCI device identifier.
-> 
-> maxItems: X
+> On this platform the two reg spaces are 64-bit, whereas for other
+> platforms based on dwmmac, for e.g. stm32 have 32-bit address space.
 
-And drop the description.
+The schema for reg is how many addr/size entries regardless of cell 
+sizes.
 
+> Without this fix I was getting the following error with 'make dtbs_check':
 > 
-> > +
-> > +  brcm,board-type:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: Board type of the Bluetooth chip. This is used to decouple
-> > +      the overall system board from the Bluetooth module and used to construct
-> > +      firmware and calibration data filenames.
-> > +      On Apple platforms, this should be the Apple module-instance codename
-> > +      prefixed by "apple,", e.g. "apple,atlantisb".
-> > +    pattern: '^apple,.*'
-> > +
-> > +  brcm,taurus-cal-blob:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    description: A per-device calibration blob for the Bluetooth radio. This
-> > +      should be filled in by the bootloader from platform configuration
-> > +      data, if necessary, and will be uploaded to the device.
-> > +      This blob is used if the chip stepping of the Bluetooth module does not
-> > +      support beamforming.
-> 
-> Isn't it:
-> s/beamforming/beam forming/
-> ?
-> 
-> > +
-> > +  brcm,taurus-bf-cal-blob:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    description: A per-device calibration blob for the Bluetooth radio. This
-> > +      should be filled in by the bootloader from platform configuration
-> > +      data, if necessary, and will be uploaded to the device.
-> > +      This blob is used if the chip stepping of the Bluetooth module supports
-> > +      beamforming.
-> 
-> Same here.
-> 
-> > +
-> > +  local-bd-address: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - local-bd-address
-> > +  - brcm,board-type
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    pcie {
-> > +      #address-cells = <3>;
-> > +      #size-cells = <2>;
-> > +
-> > +      bluetooth@0,1 {
-> 
-> The unit address seems to be different than reg.
+> Documentation/devicetree/bindings/net/qcom,ethqos.example.dtb:
+> ethernet@20000: reg: [[0, 131072], [0, 65536], [0, 221184], [0, 256]] is too
+> long
+> 	From schema: /home/bhsharma/code/upstream/linux-bckup/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml
 
-Right, this says dev 0, func 1.
-
-dtc can check this, but IIRC it would need 'device_type = "pci";' 
-in the parent. So please add that, and verify you get a warning.
+The default cell sizes for examples is 1 for addr/size. If you want it 
+to be 2, you have to write your own parent node. But why? It's just an 
+example. Use 1 cell like the example originally had.
 
 Rob
