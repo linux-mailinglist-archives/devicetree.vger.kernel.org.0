@@ -2,95 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7114D5B5E14
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 18:22:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2CE85B5EB5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 19:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbiILQWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 12:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40262 "EHLO
+        id S229943AbiILRAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 13:00:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbiILQWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 12:22:02 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B192A70D;
-        Mon, 12 Sep 2022 09:22:01 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1278a61bd57so24712400fac.7;
-        Mon, 12 Sep 2022 09:22:01 -0700 (PDT)
+        with ESMTP id S229908AbiILRAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 13:00:21 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE4211C37
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 10:00:18 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id z187so9196292pfb.12
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 10:00:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=sfYBJC32ETGyteiWg3YC9wQpy2EzrGHLM+DajwGhI4I=;
+        b=b9P3PVEQ9u6tuw4txhn443NBSCEH8tCVzgKr4rmIdZFsA7TJUheFOKJC7L39lri40z
+         4NKkxjzd8vuOT7w+CY7VVC18Frtz41ldO3BbwB9sK6olTDNV6ACrIw2EDDG6MAesNhe1
+         HoyK7EUtVSQBKgfpLvJ8kxwvN9xIbYqR/OLJuC4F9TzSeEbDUck+kq6bHLY1Zny2exPt
+         IqNkab7JEGth4ZT2EjQRjbbVSNUHFK+XAKjKitJzYTRglRw4sIjKlqmebilPV/ZI3+tg
+         st2WDmMsWFCwxApJhzVm9K0UYRehYXzLWdGzitqjmizle8lMy5vaj7DGoHakP4Eam9LX
+         Kr1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=r00DFKnjQ6MqdljnOGbZpoS3i+7YfIuY/QvCEDJNxz4=;
-        b=GhWPfTyhJqQZoB2Xb40gICKlvU0d01gBDgCNQMgWcIhKIOP8QlDhSdoPBZnGSzJADP
-         yFAOX1tkCQj/FMO40wbZBcJ1Fa17sdo3ouzEE2cxV7vY8sJMHkWiCS0VpgYKJIB+PHlE
-         b6HQw2/kIf+2I3BvrrEIL04Balu+yEHrCXW96FUumc+Hd33dnaiQvJheWwUvs7eSFTmI
-         eWHxdDKNuG7N/mmk9VxnTCeyaeHZvuhaHRZWx50s6fTkTM6thFbGqr+Vs9jbZHVZQnPE
-         R+1KebOhKUUynu9wI5cwX6dhINrzK7kAZqg3gVVmA8KqPygh+Zz+HQSbhae2CxqhTH5W
-         axNQ==
-X-Gm-Message-State: ACgBeo3qvW2r8kkWPxz52SEoCevNu8pF6y7K8U7ujgHam/oIlDrCmEdk
-        qbWv/oJ9N6zt9xRL/dmZgQ==
-X-Google-Smtp-Source: AA6agR6loyFpBasqevtTvWoqIcVpwvLcLwVcfU8zNnKPyNcqpBvzXAW2C9KsWZEg5Kqo5x6rdL4rWA==
-X-Received: by 2002:a05:6870:a78e:b0:12b:542b:e5b2 with SMTP id x14-20020a056870a78e00b0012b542be5b2mr5139723oao.112.1662999720989;
-        Mon, 12 Sep 2022 09:22:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j16-20020a056870169000b0011e73536301sm5706841oae.52.2022.09.12.09.22.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Sep 2022 09:22:00 -0700 (PDT)
-Received: (nullmailer pid 1413504 invoked by uid 1000);
-        Mon, 12 Sep 2022 16:21:59 -0000
-Date:   Mon, 12 Sep 2022 11:21:59 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        linux-rockchip@lists.infradead.org, philipp.tomsich@vrull.eu,
-        linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, kever.yang@rock-chips.com,
-        zhangqing@rock-chips.com, linux-kernel@vger.kernel.org,
-        heiko@sntech.de
-Subject: Re: [PATCH v1 03/11] dt-bindings: pwm: rockchip: add
- rockchip,rk3128-pwm
-Message-ID: <20220912162159.GA1397560-robh@kernel.org>
-References: <20220909212543.17428-1-jbx6244@gmail.com>
- <f5dd0ee4-d97e-d878-ffde-c06e9b233e38@gmail.com>
- <1662821635.180247.34700.nullmailer@robh.at.kernel.org>
- <1c13181b-8421-69d8-21ee-9742dd5f55dd@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=sfYBJC32ETGyteiWg3YC9wQpy2EzrGHLM+DajwGhI4I=;
+        b=OUeEUvMGjnvgr0YvITBuX2W2bdfoItwioxpXuoN6O7Y3EMjig43iG5dYNqQ9KfuquH
+         ygC55eVNFGxBELf6MdGiqbQyhJtyBiZosmmJphxSLGeQjwQdvAsBToa+OKe24DlQFPyE
+         1JGd9jLnoRpVYKYRZ/MNtfMJ39q2f9HnGtcRlCzgRmclMCUKsV5aI9dBrOJz9hDzpyui
+         xga/z6yKJYSRjMdmk8W4jMG6HBJTv0KI6nqltsI8AY8pNaTnv70Rox9R3BqsDxr72kZA
+         G4kfuQ2taMot9etOLR08VQhacUZAyVbqz1O+2Ql2BZmmh3z3gnxCO8yGWTJwe4WJQZTn
+         BoEg==
+X-Gm-Message-State: ACgBeo3yZ2qH635KPzZQrb94tf35J2yMbpzNNbFPJWTyp/uXclVAJe8U
+        JHkl5OqkiXnCi+uHtRHvuyW35Q==
+X-Google-Smtp-Source: AA6agR4X4xWoT+7YRcOdp1xsn8Z9iuWeLxFphBLc3/8KNvPhY5ySw4xeAoZBvddlZJmKeRi76+goxQ==
+X-Received: by 2002:a63:fc13:0:b0:42b:890d:5954 with SMTP id j19-20020a63fc13000000b0042b890d5954mr24154219pgi.200.1663002017237;
+        Mon, 12 Sep 2022 10:00:17 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1c60:5362:9d7f:2354:1d0a:78e3? ([2401:4900:1c60:5362:9d7f:2354:1d0a:78e3])
+        by smtp.gmail.com with ESMTPSA id pg2-20020a17090b1e0200b001fd7fe7d369sm5442265pjb.54.2022.09.12.10.00.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Sep 2022 10:00:16 -0700 (PDT)
+Message-ID: <333abaaa-4e56-7a4e-a4a1-f3f54970a21e@linaro.org>
+Date:   Mon, 12 Sep 2022 22:30:11 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1c13181b-8421-69d8-21ee-9742dd5f55dd@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 5/9] dt-bindings: mmc: sdhci-msm: Add pinctrl-1
+ property
+Content-Language: en-US
+To:     Iskren Chernev <iskren.chernev@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220910143213.477261-1-iskren.chernev@gmail.com>
+ <20220910143213.477261-6-iskren.chernev@gmail.com>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <20220910143213.477261-6-iskren.chernev@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 10, 2022 at 09:48:04PM +0200, Johan Jonker wrote:
-> Reduced CC.
+
+
+On 9/10/22 8:02 PM, Iskren Chernev wrote:
+> Most mmc blocks contain two pinctrls, default and sleep. But then
+> dt-schema complains about pinctrl-1 not being defined.
 > 
-> Hi Rob,
+> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
+> ---
+>   Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index a792fa5574a0..775476d7f9f0 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -97,6 +97,10 @@ properties:
+>       description:
+>         Should specify pin control groups used for this controller.
+>   
+> +  pinctrl-1:
+> +    description:
+> +      Should specify sleep pin control groups used for this controller.
+> +
+>     resets:
+>       maxItems: 1
+>   
 
-Seemed like a simple enough warning to fix...
+Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 
-> The rk3328 and rv1108 PWM interrupt is chaired between blocks I think.
-> For rv1108 the same interrupt is used for all PWM nodes.
-> For rk3328 only added to one PWM node.
-> Currently not in use in a Linux drivers??
-
-How is that relevant to the binding? It's used in dts files.
-
-> 
-> No consensus yet...on removing or parent node, so it stays as it is...
-> Maybe if you have ideas things will change. ;)
-
-Only that existing issues should be addressed before adding new 
-platforms especially if the binding might change in an incompatible way 
-(splitting nodes).
-
-Rob
+Thanks.
