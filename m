@@ -2,64 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1402E5B5BFB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 16:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B09935B5C15
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 16:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbiILOOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 10:14:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42678 "EHLO
+        id S230187AbiILOSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 10:18:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230000AbiILOOm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 10:14:42 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC4E1B86E;
-        Mon, 12 Sep 2022 07:14:39 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1278a61bd57so23697169fac.7;
-        Mon, 12 Sep 2022 07:14:39 -0700 (PDT)
+        with ESMTP id S230213AbiILOSJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 10:18:09 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66F732AB0;
+        Mon, 12 Sep 2022 07:18:07 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-127d10b4f19so23704932fac.9;
+        Mon, 12 Sep 2022 07:18:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=zjUBlDf7L9Ynqi1H6fGKN/mNwcz/H/7eLC0Jbu7Mkrc=;
-        b=MVz5fKusp2X9lCGAYMLyHkHb+qCaP3oKXencGmS8tm8E8nK1BrNA5Tnh7osiLZwXdP
-         pkCevpaivPAnYYgyLmJa04zYqLRl0zZzBO+TDTh8tcNXRML6KScmtPv7wTPlp1zdBtsW
-         qmxBSTl07tl7qTHCKDUdN6X4xkDKz9hvS5mY8cD+BWT/p0kTx2lGFIv88SbJAUFK2ijL
-         1U+Hrp+Vv3PqigjDtlPwUgkkqsVagf9QprMqYrVDybB8oIEGArrHZ0KWZzPpk+cnzj2h
-         iKPibG0jw6BCLUvdCSm/Gc28f2lSLydq4e2ecHWUSPH5M7hUIHyN7XNrj19XXkY/QnMU
-         PyhA==
-X-Gm-Message-State: ACgBeo2piCT2rX36S6mrMOpefSFdFhQCEUEjb+DsCmcXa7e1jEa4OKbx
-        ihjKsvJEXpzEHkOpK+ga2g==
-X-Google-Smtp-Source: AA6agR52VoqB+17Gb0BUpHCSjA4obhxCNA59bFjHr4WfcACjZNkTiq/l3Kzt5b9km8c8ddT0yiL62g==
-X-Received: by 2002:a05:6808:1202:b0:345:b62b:3756 with SMTP id a2-20020a056808120200b00345b62b3756mr9487837oil.165.1662992079011;
-        Mon, 12 Sep 2022 07:14:39 -0700 (PDT)
+        bh=6YGdXNBF/c0oqfE1hMQ7tgrfVLZvvzby7VDXrmZA37w=;
+        b=f2iMWglbbFvOYUQMTDB+BQoJSHHJ3p94MM59cGQAIQDl32iC2v+TWxpXOyw3nIIN9K
+         eHKMaEhjQrpaZj22YcQ1vUpCH2s95EMXyN1umNKkPCp2ggY18Byoi7lfCxy7NdNg5Cnt
+         IOEEDwx8eRRZWUGfdllZJkJKDIkaTrj2hlW2elK9H/s3GNbk1ErL/APKJeAFuSHWoItP
+         GatEzJHGVXME0++WSN4Kbb0e+8UjU9rk0tOc4I1E9xBJcEqKRGPry6Zmn4udEOxvk4E8
+         6AAPeimAMBi+CKivYoqIR+ZZi4lx10gZWGOnQN9dwowM95SCSZWjzOs3nl/vp+Mt1diR
+         PpIQ==
+X-Gm-Message-State: ACgBeo25ZJG5ep7cfQuF9Y/6RfO1Y0igCUQ6myr+UCcUbUyO3DFhLmTo
+        IzG6wwXd0QoKGiI+eb/HDQ==
+X-Google-Smtp-Source: AA6agR4CwSU4uVGK/o+2p9jJRUTXIWhKhhZiIaxeBS8wUBRGOtazNn0fvax4V9LaW4NlZ/FlekrRTg==
+X-Received: by 2002:a05:6870:c14a:b0:11d:588:da3a with SMTP id g10-20020a056870c14a00b0011d0588da3amr11611484oad.214.1662992286997;
+        Mon, 12 Sep 2022 07:18:06 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m26-20020a0568301e7a00b006339b36127dsm4654253otr.3.2022.09.12.07.14.38
+        by smtp.gmail.com with ESMTPSA id c186-20020acab3c3000000b0034484c532c7sm3963232oif.32.2022.09.12.07.18.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Sep 2022 07:14:38 -0700 (PDT)
-Received: (nullmailer pid 1164923 invoked by uid 1000);
-        Mon, 12 Sep 2022 14:14:37 -0000
-Date:   Mon, 12 Sep 2022 09:14:37 -0500
+        Mon, 12 Sep 2022 07:18:06 -0700 (PDT)
+Received: (nullmailer pid 1178996 invoked by uid 1000);
+        Mon, 12 Sep 2022 14:18:05 -0000
+Date:   Mon, 12 Sep 2022 09:18:05 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH v3 09/14] ASoC: dt-bindings:: qcom,q6asm: convert to
- dtschema
-Message-ID: <20220912141437.GA1164860-robh@kernel.org>
-References: <20220908091946.44800-1-krzysztof.kozlowski@linaro.org>
- <20220908091946.44800-10-krzysztof.kozlowski@linaro.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 01/15] dt-bindings: memory: snps: Replace opencoded
+ numbers with macros
+Message-ID: <20220912141805.GA1170702-robh@kernel.org>
+References: <20220910195659.11843-1-Sergey.Semin@baikalelectronics.ru>
+ <20220910195659.11843-2-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220908091946.44800-10-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220910195659.11843-2-Sergey.Semin@baikalelectronics.ru>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -71,44 +79,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 08 Sep 2022 11:19:41 +0200, Krzysztof Kozlowski wrote:
-> Convert Qualcomm Audio Stream Manager (Q6ASM) bindings to DT schema.
+On Sat, Sep 10, 2022 at 10:56:45PM +0300, Serge Semin wrote:
+> Xilinx ZynqMP DDRC-based example contains the opencoded numerical literals
+> in the IRQ lines definition. It doesn't seem justified since the
+> corresponding platform has well defined ARM GIC interface. Let's replace
+> the numbers with the corresponding macros then.
 > 
-> The original bindings documented:
-> 1. APR service node with compatibles: "qcom,q6asm" and
->    "qcom,q6asm-v<MAJOR-NUMBER>.<MINOR-NUMBER>",
-> 2. actual DAIs child node with compatible "qcom,q6asm-dais".
-> 
-> The conversion entirely drops (1) because the compatible is already
-> documented in bindings/soc/qcom/qcom,apr.yaml.  The
-> "qcom,q6asm-v<MAJOR-NUMBER>.<MINOR-NUMBER>" on the other hand is not
-> used at all - neither in existing DTS, nor in downstream sources - so
-> versions seems to be fully auto-detectable.
-> 
-> Another change done in conversion is adding "iommus" property, which is
-> already used in DTS and Linux driver.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > 
 > ---
 > 
-> Expected warning because the qcom,apr.yaml is being fixed in next commit:
-> 
->   Documentation/devicetree/bindings/sound/qcom,q6asm.example.dtb: apr: service@7: 'dais' does not match any of the regexes: '^.*@[0-9a-f]+$', 'pinctrl-[0-9]+'
->     From schema: /home/krzk/dev/linux/linux/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-> 
-> Changes since v2:
-> 1. Rename to qcom,q6asm-dais.yaml (Rob)
-> 2. Extend commit msg.
-> 
-> Changes since v1:
-> 1. New patch.
+> Changelog v2:
+> - This is a new patch created on v2 based on the @Krzysztof' request not
+>   to have the opencoded numbers in the bindings example. (@Krzysztof)
 > ---
->  .../bindings/sound/qcom,q6asm-dais.yaml       | 112 ++++++++++++++++++
->  .../devicetree/bindings/sound/qcom,q6asm.txt  |  70 -----------
->  2 files changed, 112 insertions(+), 70 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6asm-dais.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/qcom,q6asm.txt
-> 
+>  .../bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml     | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
