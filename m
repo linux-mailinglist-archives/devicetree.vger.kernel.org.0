@@ -2,172 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 532045B58F6
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 13:04:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B5275B590B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 13:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229880AbiILLET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 07:04:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44612 "EHLO
+        id S230181AbiILLMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 07:12:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbiILLES (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 07:04:18 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694B9240AA;
-        Mon, 12 Sep 2022 04:04:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230167AbiILLMG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 07:12:06 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C002731DE5;
+        Mon, 12 Sep 2022 04:12:05 -0700 (PDT)
+Received: from mercury (unknown [185.122.133.20])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 08D2EB80CB7;
-        Mon, 12 Sep 2022 11:04:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CAE3C433D6;
-        Mon, 12 Sep 2022 11:04:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662980654;
-        bh=DmabOioRzklG+bbZ2I16FOiymU5bebFOCVF91CBoRCQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bengJI+cLu/+t6vEhIrf7XyvJYGO2t/P3TWJ53MCqHe9/kEE1LeWxUgo5owZC8ndT
-         NohsWN9PwspKEjBLY1Wuq0WdsXS92I5rMUcLQ71viO0lopY3/UPECjA2w1Ag1QpnpP
-         9izvefVplCdgzjUg1mX3D+pVVV+opJZ7RgbneAtSEjjhepnpFMpeAh/FnacdiTvG2W
-         Iy2AxFztXPIGataB55lH5yVQzDWbYGZeZsw4swCeTD8p9dyyBzgIZdgAl1U9s/cKJe
-         epI4z1EcjgyunqBpE4cXGO4tmzw/JJaL09J3mKyift1wR8hOjAdmlw5WmEhM839voe
-         zRGNPIGWL7xMA==
-Message-ID: <8326572f-8a88-6e8b-edda-7730a0a3597d@kernel.org>
-Date:   Mon, 12 Sep 2022 14:04:10 +0300
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 56EBB6601FDD;
+        Mon, 12 Sep 2022 12:12:04 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1662981124;
+        bh=Gp9A2fQl73ZyLrnlWhsrPpz2tEWHWALZC2NoG8+cS9g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=j4BO6VgCytBp7s77/ESjAuP7e+bivpGEiU9tUgdbv6DiXFW5CtbnYyxoBHcm8VFV0
+         WDNvUQXWRY6BBnAKy7izR5A5FiWERGjrS6sR/FoZj1oJe2cOImFpLj+LQXTs4U589c
+         CK6f5OYpustIAUPF6uSSzJgTZJJGqX5AUaXvVPoFPwqsnsXCbE5nNKiEpAeYneZlwV
+         vhHoEFC6ChWrvfas4BXcZjD+7JM2CXDUHvrvBCI3HCO17zYWTDnT59gyDyzQPJL81B
+         SVNvKdAV4k4fjhmD9EZuyTBjkpd+6ahMAdO1PMWsyajPJ+mfP96/f8vXV/zur9DBET
+         VmRpcxhSAX0rQ==
+Received: by mercury (Postfix, from userid 1000)
+        id 5D88F106084A; Mon, 12 Sep 2022 13:12:01 +0200 (CEST)
+Date:   Mon, 12 Sep 2022 13:12:01 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mazziesaccount@gmail.com, alina_yu@richtek.com,
+        cy_huang@richtek.com, alinayu829@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] Documentation: power: rt9471: Document exported
+ sysfs entries
+Message-ID: <20220912111201.nxjgqzpa7pftzwlb@mercury.elektranox.org>
+References: <1661742391-11378-1-git-send-email-u0084500@gmail.com>
+ <1661742391-11378-4-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 3/3] dt-bindings: memory-controllers: gpmc-child: add
- wait-pin polarity
-Content-Language: en-US
-To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-Cc:     "tony@atomide.com" <tony@atomide.com>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20220906124747.1767318-1-benedikt.niedermayr@siemens.com>
- <20220906124747.1767318-5-benedikt.niedermayr@siemens.com>
- <70a2fec4-e7b9-e8ed-4d8a-d547003dbb9e@kernel.org>
- <125ea34a12928fcdd8ef118eced8b2c59039d2ab.camel@siemens.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <125ea34a12928fcdd8ef118eced8b2c59039d2ab.camel@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="pameyxirnllnovkl"
+Content-Disposition: inline
+In-Reply-To: <1661742391-11378-4-git-send-email-u0084500@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Benedikt,
 
-On 12/09/2022 10:43, Niedermayr, BENEDIKT wrote:
-> On Thu, 2022-09-08 at 15:09 +0300, Roger Quadros wrote:
->> Benedikt,
->>
->>
->> On 06/09/2022 15:47, B. Niedermayr wrote:
->>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
->>>
->>> The GPMC controller has the ability to configure the polarity for
->>> the
->>> wait pin. The current properties do not allow this configuration.
->>> This binding directly configures the WAITPIN<X>POLARITY bit
->>> in the GPMC_CONFIG register.
->>>
->>> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com
->>>>
->>> ---
->>>  .../bindings/memory-controllers/ti,gpmc-child.yaml          | 6
->>> ++++++
->>>  1 file changed, 6 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/memory-
->>> controllers/ti,gpmc-child.yaml
->>> b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
->>> child.yaml
->>> index 6e3995bb1630..a115b544a407 100644
->>> --- a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
->>> child.yaml
->>> +++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
->>> child.yaml
->>> @@ -230,6 +230,12 @@ properties:
->>>        Wait-pin used by client. Must be less than "gpmc,num-
->>> waitpins".
->>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>  
->>> +  gpmc,wait-pin-active-low:
->>> +    description: |
->>> +      Set the polarity for the selected wait pin to active low.
->>> +      Defaults to active high if this is not set.
->>> +    type: boolean
->>> +
->>
->> I just checked that the default behaviour is active low.
->> Reset value of the polarity register field is 0, which means active
->> low.
->>
->> We will need to use the property "gpmc,wait-pin-active-high" instead.
->>
->> Sorry for not catching this earlier.
-> 
-> It's ok. No worries.
-> 
-> Well, the Datasheets are telling me different reset values here. 
-> The am335x TRM (Rev. Q) defines the reset value of WAIT1PINPOLARITY as
-> 0x0, whereas the am64x TRM (Rev. C) defines the reset value of WAIT1PIN
-> POLARITY as 0x1. The am64x TRM also defines different reset values for 
-> WAIT0PINPOLARITY and WAIT1PINPOLARITY.
-> 
-> The interesting thing is that I'm currently working on an am335x
-> platform and I dumped the GPMC_CONFIG register and got 0x00000a00
-> (WAIT1PINPOLARITY == 0x1). So It doesn't behave like the TRM specifies.
+--pameyxirnllnovkl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I can confirm the same behaviour on am642 EVM as well.
-I get 0xa00 on reading GPMC_CONFIG.
+Hi,
 
-> 
-> 
-> Nevertheless, I'm setting the WAITXPINPOLARITY bits in both cases
-> accordingly.  
-> 0x0 in case "gpmc,wait-pin-active-low" is set and 0x1 in case
-> "gpmc,wait-pin-active-low" is not set. So the reset value is always
-> overwritten.
-> 
-> 
-> Using "gpmc,wait-pin-active-high" rather than "gpmc,wait-pin-active-low
-> " is also ok for me, but it feels more like a cosmetic thing at this
-> point. 
+On Mon, Aug 29, 2022 at 11:06:31AM +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+>=20
+> Document the settings exported by rt9471 charger driver through sysfs ent=
+ries:
+> - sysoff_enable
+> - charge_term_enable
+> - port_detect_enable
+>=20
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+>  Documentation/ABI/testing/sysfs-class-power | 44 +++++++++++++++++++++++=
+++++++
+>  1 file changed, 44 insertions(+)
+>=20
+> diff --git a/Documentation/ABI/testing/sysfs-class-power b/Documentation/=
+ABI/testing/sysfs-class-power
+> index a9ce63c..1f8afe5 100644
+> --- a/Documentation/ABI/testing/sysfs-class-power
+> +++ b/Documentation/ABI/testing/sysfs-class-power
+> @@ -768,3 +768,47 @@ Description:
+> =20
+>  		Access: Read
+>  		Valid values: 1-31
+> +
+> +What:		/sys/class/power_supply/rt9471-*/sysoff_enable
+> +Date:		Sep 2022
+> +KernelVersion:	6.1
+> +Contact:	ChiYuan Huang <cy_huang@richtek.com>
+> +Description:
+> +		This entry allows enabling the sysoff mode of rt9471 charger devices.
+> +		If enabled and the input is removed, the internal battery FET is turned
+> +		off to reduce the leakage from the BAT pin. See device datasheet for d=
+etails.
+> +
+> +		Access: Read, Write
+> +		Valid values:
+> +		- 1: enabled
+> +		- 0: disabled
 
-My main concern is for legacy platforms not specifying the property in DT.
-Earlier we were not touching the WAITPINPOLARITY config and now we are
-so we might break some legacy platforms that don't specify
-the polarity and we flip it here.
+This is not a very good description of what the control does. When
+do you expect users to control this?
 
-Fortunately, there are only few boards using gpmc wait-pin and mostly wait-pin 0
-for which there is no discrepancy as far as wait-pin reset value is concerned.
+> +What:		/sys/class/power_supply/rt9471-*/charge_term_enable
+> +Date:		Sep 2022
+> +KernelVersion:	6.1
+> +Contact:	ChiYuan Huang <cy_huang@richtek.com>
+> +Description:
+> +		This entry allows enabling the charge termination function of rt9471 c=
+harger
+> +		devices. If enabled, the battery charging current, and the battery vol=
+tage
+> +		reachs charge termination condition, the internal battery FET will be =
+turned off
+> +		to optimize the battery life. See device datasheet for details.
+> +
+> +		Access: Read, Write
+> +		Valid values:
+> +		- 1: enabled
+> +		- 0: disabled
 
-logicpd-torpedo-baseboard.dtsi:		gpmc,wait-pin = <0>;
-omap3-devkit8000-common.dtsi:		gpmc,wait-pin = <0>;
-Binary file omap3-devkit8000.dtb matches
-Binary file omap3-devkit8000-lcd43.dtb matches
-Binary file omap3-devkit8000-lcd70.dtb matches
-omap3-lilly-a83x.dtsi:		gpmc,wait-pin = <0>;
-Binary file omap3-lilly-dbb056.dtb matches
-Binary file omap3-zoom3.dtb matches
+Just write 0 to .../charge_term_current to disable it.
+No need for a custom property.
 
-Only 1 board is using wait-pin 1
-omap-zoom-common.dtsi:		gpmc,wait-pin = <1>;
+> +What:		/sys/class/power_supply/rt9471-*/port_detect_enable
+> +Date:		Sep 2022
+> +KernelVersion:	6.1
+> +Contact:	ChiYuan Huang <cy_huang@richtek.com>
+> +Description:
+> +		This entry allows enabling the USB BC12 port detect function of rt9471=
+ charger
+> +		devices. If enabled and VBUS is inserted, device will start to do the =
+BC12
+> +		port detect and report the usb port type when port detect is done. See
+> +		datasheet for details.
+> +
+> +		Access: Read, Write
+> +		Valid values:
+> +		- 1: enabled
+> +		- 0: disabled
 
-from OMP36xx TRM, here are the reset values
-WAIT3PINPOLARITY 0x1
-WAIT2PINPOLARITY 0x0
-WAIT1PINPOLARITY 0x1
-WAIT0PINPOLARITY 0x0
+Why would one want to disable this?
+Can't the driver just enable it unconditionally?
 
-cheers,
--roger
+-- Sebastian
+
+--pameyxirnllnovkl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmMfE/wACgkQ2O7X88g7
++poN5A//e2GwrsU29B5CvHNwF9pakLNcbw8DuGqSelVL2J3+8mEODmWMv1TWsxaU
+D4w898MpRUBS40c9wA+yt+Fu0HO9Cz9egXIGUJAmAVkD8x9HtaJ4WMLrOrxxwQsk
+Jt4o81fB6dGEeC1sQy7GVzLADTqHDk8nMziX7XmExXXxIT2XzolRFIagx63U3JSz
++whjNgpxOUsEY24r8DpWe7V/bK4i55EU+9bx7uHH61453Wj0hLNuTV9lt5EHykha
+YlDUzgMogWAxavSI0r8sfNcaqlAsQ2Gcn/Tkj6RDDTR2WCycZrt4UrpNfKZDE8ic
+3GaI396kawRm6VzPz8MNMGNiw06CaI+nZP+jjK1SkY8BCk+4Hzu5WCqAoniBH6E1
+8n0Do7nOsIgOprMiBxlL6LOa2SadVLFaeufppHridMZhuB5n0y0CjWBj3ntAYv0u
+fv9Al8Y/Gv5vYuFedEjlBD+72oQltri2soeOVDXOfHDV2sp8MSEIP0eCOSj0htLk
+IGlWbqoVnrVf9EVNGe842DXZj0PjQtUGzEnnNOxdW3AgPCf9GqZPOw0EQns1dP6P
+bOnayVbdRolfvqgbedXvgygu3QOPlo0WKfWqY98HTjSUP66bCGPyGfGGg7GC3afY
+rQ4fAw4j8Cm16NYu59Zgc61zWRpzYISbU5CPYn8C0NthGn8u32Y=
+=xo/s
+-----END PGP SIGNATURE-----
+
+--pameyxirnllnovkl--
