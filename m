@@ -2,172 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D32875B54A1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B685B54AD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:45:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229786AbiILGlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 02:41:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36928 "EHLO
+        id S229536AbiILGpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 02:45:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbiILGlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:41:10 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409B71F2E5
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:41:08 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id s10so8750540ljp.5
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:41:08 -0700 (PDT)
+        with ESMTP id S229459AbiILGpn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:45:43 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08C2B95B8;
+        Sun, 11 Sep 2022 23:45:43 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-12803ac8113so20908547fac.8;
+        Sun, 11 Sep 2022 23:45:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=IUm/MN9hYg83su7ZYahLGm5MEwsIsG/QUzjstSeG6Mo=;
-        b=kI34oFaT/0WS4Cfj03tST6nGUpXjNT380JwZ8FEdZt75QHxAkIIf6k0og+uTwf9eTq
-         NucX3cDSq5+0xiCS0rQXRopsfEykwrDtmoLfDq5k1ccgq58Ym+3kbNX/k38bz/lnJhfd
-         a5yFamW9SM3CFIxVNuRbQoPP7Su31yvXtOON777PIstuoMTTkLMqG/H/F6ObCibwPlCQ
-         NEH3rmwq85391FHz4YrWGLtUoGLzBJgCcB04MAVXh/Kel3ysSkw/tN011zrV6s6epDp5
-         IE+auP7GxK133EIlSC8Ez0IiUkBvtfxpVv8in9PJQMvU6spqLCbJIYuXosuQfHsL3edu
-         xQdQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=/OqphlDthIJI2RqLUN/nxefOOpSEEaymfSm7D+IizKA=;
+        b=nmZKbEBaPNiUzzDffjbekwxrmm6YC3LMNFQudNLnTg36FnsIMg046qGljB1fzjZQ/t
+         +96qzAfsUOl+iNvMHcT3DMr0I1XXrUVx5NCbN2uFS7gcREfadXL7XRZLlPXoNVaSedO3
+         NNoYlmTI4lO72poCR/PAwBTcmGq1AsB9MMYFgTzZ3O8fjKUTL+uM+G+88U33hXONVY9F
+         JB5a5WuyBTRSXSH/NEsvurSJW0+mHmIqfaVwHxf0b4eqVXri9RMbliZjfH7PkGD8+2mo
+         ZtkxTIYHD8f3/3HEwKIHxZf64oTYmh5czEsl3o+IuqZZ8UQ2yLcSueuRopLLWTFhhW2j
+         tzTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=IUm/MN9hYg83su7ZYahLGm5MEwsIsG/QUzjstSeG6Mo=;
-        b=tozuYGPz4imbKUeUPE2TkvAh71SyO7GstFuG9+2H/ncugy7aWqL3hPRGRftIa2bS2o
-         OwwwWBTtimUXkeKPAkyv6LjCdcAhAnnssP3LiqcsM2NfLlcY8304JL+S1W8vNGPLahzV
-         I0xelmIxyRw6/tuzNfw5b8gpNLv8HmqrBvyb9RrtO+zNQlX0PndYel9fEwBvM9DE8vD4
-         gu4W1Lx7PVtBsh/IGgsqCV6fMqq5oyI298WJOjxJaFoQCfemKLkZi0yX66DwL3/8uRU1
-         rroV1xZXE5yj4Z5aLyvFskAFkgt9CDXdJoDh9mfgI7tBVLPNUfaANX83GnE6zzu9Frav
-         ixIA==
-X-Gm-Message-State: ACgBeo2SK8QBvJy7tJwYp1lPl7XW2RKApDD5z4xLnd8rjKwkQsrXo3pW
-        M+dZaOeDxotK0lSTX3Dvf2qAVbMFFX6o0Z3UrOx5rg==
-X-Google-Smtp-Source: AA6agR5s2whA7uWOJa+KmUu83OmHts4XhTJeLfLamvGr/SSqHLqGGJ3PE6/vnSEQ3bawMQV3MgXyResxjLGZLowFb1s=
-X-Received: by 2002:a2e:7314:0:b0:26a:ca18:60eb with SMTP id
- o20-20020a2e7314000000b0026aca1860ebmr6790851ljc.69.1662964866499; Sun, 11
- Sep 2022 23:41:06 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=/OqphlDthIJI2RqLUN/nxefOOpSEEaymfSm7D+IizKA=;
+        b=gSh9tUv/jKrted1uv3+MNPtkblwUuE+QE7Fx9WEYQPiSrMk1QSEkze90PBZiG7oPoe
+         BNRiTRv47y0Qc1t+Thku5ESBRhhseniN6qUi5GLoI0RWGXzzs8P+gzKLedulTxQKCchJ
+         5XPyraPKe16xoAokWstz9V7Gyiowlosg2DQrN2yknPpObYUyZUz9S8LrWGYDfTngm4Dd
+         HG8bRojjCnhu5zMmMnEtK8rgd1T4qzgR/xHdd2zxCDxQ0CXhAMVY7mcie8BLDPYa4945
+         8Y/Z5qwuC1j21AAHP56CJb1zDNrN2w3YBOQV8X4RHGT55szeOKbrgt4CGLUsc4n4vOQL
+         /rSw==
+X-Gm-Message-State: ACgBeo2m0ukaTvQmzw/5ZF88M71deflQnb8YJ+x6f79jEZXmmkxb+4Vk
+        4OGxOCNBKqTYWUd7ErkX1xY=
+X-Google-Smtp-Source: AA6agR79MxHLd1nO4blkqAXiLWq78Jw+XI914wdGfM5RU4KVUAOF1DjVrQmr49w7Os+y248v4WofRw==
+X-Received: by 2002:a05:6870:438a:b0:127:ad56:b751 with SMTP id r10-20020a056870438a00b00127ad56b751mr11584429oah.200.1662965142289;
+        Sun, 11 Sep 2022 23:45:42 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:b5d7:d916:de6d:55a0? ([2600:1700:2442:6db0:b5d7:d916:de6d:55a0])
+        by smtp.gmail.com with ESMTPSA id p21-20020a9d6955000000b0063b31e8f457sm4140337oto.75.2022.09.11.23.45.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Sep 2022 23:45:41 -0700 (PDT)
+Message-ID: <3fcea82c-f5cf-f066-67b9-08669c44a9c6@gmail.com>
+Date:   Mon, 12 Sep 2022 01:45:40 -0500
 MIME-Version: 1.0
-References: <20220908144424.4232-1-zong.li@sifive.com> <20220908144424.4232-6-zong.li@sifive.com>
- <36fe0073-7fa2-9733-7041-d9f70da1a5ea@microchip.com>
-In-Reply-To: <36fe0073-7fa2-9733-7041-d9f70da1a5ea@microchip.com>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Mon, 12 Sep 2022 14:40:55 +0800
-Message-ID: <CANXhq0rRZhPtrpRQOnwbJj-GRVSCHErLxvGnPAxqfJBk8rNRPQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] soc: sifive: ccache: use pr_fmt() to remove
- CCACHE: prefixes
-To:     Conor Dooley <Conor.Dooley@microchip.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Ben Dooks <ben.dooks@sifive.com>, bp@alien8.de,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-edac@vger.kernel.org,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] driver: of: overlay: demote message to warning
+Content-Language: en-US
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Daniel Walker <danielwa@cisco.com>
+Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>, xe-linux-external@cisco.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220907230709.271889-1-danielwa@cisco.com>
+ <973f7127-8165-45f6-071f-04360046b7d7@gmail.com>
+ <20220908003510.GE4320@zorba>
+ <c0c66918-f55e-83e4-edea-b2d32fdb27a7@gmail.com>
+In-Reply-To: <c0c66918-f55e-83e4-edea-b2d32fdb27a7@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 9, 2022 at 2:40 AM <Conor.Dooley@microchip.com> wrote:
->
-> On 08/09/2022 15:44, Zong Li wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >
-> > From: Ben Dooks <ben.dooks@sifive.com>
-> >
-> > Use the pr_fmt() macro to prefix all the output with "CCACHE:"
-> > to avoid having to write it out each time, or make a large diff
-> > when the next change comes along.
-> >
-> > Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
-> > Signed-off-by: Zong Li <zong.li@sifive.com>
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->
-> btw, I think Ben missed a print - a pr_err() in init().
->
+On 9/8/22 12:55, Frank Rowand wrote:
+> On 9/7/22 19:35, Daniel Walker wrote:
+>> On Wed, Sep 07, 2022 at 06:54:02PM -0500, Frank Rowand wrote:
+>>> On 9/7/22 18:07, Daniel Walker wrote:
+>>>> This warning message shows by default on the vast majority of overlays
+>>>> applied. Despite the text identifying this as a warning it is marked
+>>>> with the loglevel for error. At Cisco we filter the loglevels to only
+>>>> show error messages. We end up seeing this message but it's not really
+>>>> an error.
+>>>>
+>>>> For this reason it makes sense to demote the message to the warning
+>>>> loglevel.
+>>>>
+>>>> Cc: xe-linux-external@cisco.com
+>>>> Signed-off-by: Daniel Walker <danielwa@cisco.com>
+>>>> ---
+>>>>  drivers/of/overlay.c | 2 +-
+>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+>>>> index bd8ff4df723d..4ae276ed9a65 100644
+>>>> --- a/drivers/of/overlay.c
+>>>> +++ b/drivers/of/overlay.c
+>>>> @@ -358,7 +358,7 @@ static int add_changeset_property(struct overlay_changeset *ovcs,
+>>>>  	}
+>>>>  
+>>>>  	if (!of_node_check_flag(target->np, OF_OVERLAY))
+>>>> -		pr_err("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
+>>>> +		pr_warn("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
+>>>>  		       target->np, new_prop->name);
+>>>>  
+>>>>  	if (ret) {
+>>>
+>>> NACK
+>>>
+>>> This is showing a real problem with the overlay.
+>>
+>> What's the real problem ?
+>>
+>> Daniel
+> 
+> A memory leak when the overlay is removed.
+> 
+> I'll send a patch to update the overlay file in Documumentation/devicetree/ to provide
+> more information about this.  If you don't see a patch by tomorrow, feel free to
+> ping me.
+> 
+> -Frank
 
-I got that one, I will fix it in v4
+The good news is that your question prodded me to start improving the in kernel documentation
+of overlays.  The promised patch is a rough start at:
 
-> > ---
-> >  drivers/soc/sifive/sifive_ccache.c | 15 +++++++++------
-> >  1 file changed, 9 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-> > index 58d14f11a63a..b3929c4d6d5b 100644
-> > --- a/drivers/soc/sifive/sifive_ccache.c
-> > +++ b/drivers/soc/sifive/sifive_ccache.c
-> > @@ -5,6 +5,9 @@
-> >   * Copyright (C) 2018-2022 SiFive, Inc.
-> >   *
-> >   */
-> > +
-> > +#define pr_fmt(fmt) "CCACHE: " fmt
-> > +
-> >  #include <linux/debugfs.h>
-> >  #include <linux/interrupt.h>
-> >  #include <linux/of_irq.h>
-> > @@ -85,13 +88,13 @@ static void ccache_config_read(void)
-> >
-> >         cfg = readl(ccache_base + SIFIVE_CCACHE_CONFIG);
-> >
-> > -       pr_info("CCACHE: %u banks, %u ways, sets/bank=%llu, bytes/block=%llu\n",
-> > +       pr_info("%u banks, %u ways, sets/bank=%llu, bytes/block=%llu\n",
-> >                 (cfg & 0xff), (cfg >> 8) & 0xff,
-> >                 BIT_ULL((cfg >> 16) & 0xff),
-> >                 BIT_ULL((cfg >> 24) & 0xff));
-> >
-> >         cfg = readl(ccache_base + SIFIVE_CCACHE_WAYENABLE);
-> > -       pr_info("CCACHE: Index of the largest way enabled: %u\n", cfg);
-> > +       pr_info("Index of the largest way enabled: %u\n", cfg);
-> >  }
-> >
-> >  static const struct of_device_id sifive_ccache_ids[] = {
-> > @@ -155,7 +158,7 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
-> >         if (irq == g_irq[DIR_CORR]) {
-> >                 add_h = readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_HIGH);
-> >                 add_l = readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_LOW);
-> > -               pr_err("CCACHE: DirError @ 0x%08X.%08X\n", add_h, add_l);
-> > +               pr_err("DirError @ 0x%08X.%08X\n", add_h, add_l);
-> >                 /* Reading this register clears the DirError interrupt sig */
-> >                 readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_COUNT);
-> >                 atomic_notifier_call_chain(&ccache_err_chain,
-> > @@ -175,7 +178,7 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
-> >         if (irq == g_irq[DATA_CORR]) {
-> >                 add_h = readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_HIGH);
-> >                 add_l = readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_LOW);
-> > -               pr_err("CCACHE: DataError @ 0x%08X.%08X\n", add_h, add_l);
-> > +               pr_err("DataError @ 0x%08X.%08X\n", add_h, add_l);
-> >                 /* Reading this register clears the DataError interrupt sig */
-> >                 readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_COUNT);
-> >                 atomic_notifier_call_chain(&ccache_err_chain,
-> > @@ -185,7 +188,7 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
-> >         if (irq == g_irq[DATA_UNCORR]) {
-> >                 add_h = readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_HIGH);
-> >                 add_l = readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_LOW);
-> > -               pr_err("CCACHE: DataFail @ 0x%08X.%08X\n", add_h, add_l);
-> > +               pr_err("DataFail @ 0x%08X.%08X\n", add_h, add_l);
-> >                 /* Reading this register clears the DataFail interrupt sig */
-> >                 readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_COUNT);
-> >                 atomic_notifier_call_chain(&ccache_err_chain,
-> > @@ -227,7 +230,7 @@ static int __init sifive_ccache_init(void)
-> >                 rc = request_irq(g_irq[i], ccache_int_handler, 0, "ccache_ecc",
-> >                                  NULL);
-> >                 if (rc) {
-> > -                       pr_err("CCACHE: Could not request IRQ %d\n", g_irq[i]);
-> > +                       pr_err("Could not request IRQ %d\n", g_irq[i]);
-> >                         return rc;
-> >                 }
-> >         }
-> > --
-> > 2.17.1
-> >
->
+   https://lore.kernel.org/all/20220912062615.3727029-1-frowand.list@gmail.com/
+
+The bad news is that what I wrote doesn't explain the memory leak in any more detail.
+If an overlay adds a property to a node in the base device tree then the memory
+allocated to do the add will not be freed when the overlay is removed.  Since it is
+possible to add and remove overlays multiple times, the ensuing size of the memory
+leak is potentially unbounded.
+
+-Frank
