@@ -2,180 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14B965B553C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 09:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB85C5B5553
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 09:26:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbiILHT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 03:19:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57536 "EHLO
+        id S229670AbiILH0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 03:26:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230008AbiILHS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 03:18:57 -0400
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5AEE22DABE;
-        Mon, 12 Sep 2022 00:17:11 -0700 (PDT)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 12 Sep 2022 16:16:00 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id DEA102059027;
-        Mon, 12 Sep 2022 16:15:59 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Mon, 12 Sep 2022 16:15:59 +0900
-Received: from plum.e01.socionext.com (unknown [10.212.243.119])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 2E24BB62AE;
-        Mon, 12 Sep 2022 16:15:59 +0900 (JST)
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229702AbiILH0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 03:26:22 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BB68DF0A;
+        Mon, 12 Sep 2022 00:26:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1662967582;
+  x=1694503582;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=05diJUZu/cyIOJ1zFesddsZ3mo/aGhYsxj011+saq28=;
+  b=Mz09qrGO+EY9FNSVyEief9x+TdMPqG1YUJ7D2J4FgGVxLV5heeVUJGnx
+   tCOy/t+MwPJnDCRFzqH5ogrtyW5nt8S7C9BZQZn8FYVw2VeQ1u473saFV
+   YqrwqhRxFce5191h5HnFT66NIOcg9xFDXRFDatdZ7ljxPO3pJ93zAPHkr
+   aCdSbcMWv6Z2lyyhcY7PcYxBy+ZLHBoyAWWc5OVStH6Hm3K4BbPRLxPqz
+   3WzdTFkiWX8mlbsgdhfl2hvMzFdTyLQOBUlg0j7Zj/wCN69Mql+yKe2sw
+   iEi630pUcxkH18EHezFixWpH862XRQ1oKwSLV+eatRPzqPvdrVdGPfagV
+   g==;
+Message-ID: <d521d40e-c79d-b044-44b7-6f10845f4268@axis.com>
+Date:   Mon, 12 Sep 2022 09:26:18 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] dt-bindings: sound: ts3a227e: add control of debounce
+ times
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>
+CC:     Astrid Rost <Astrid.Rost@axis.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH v2 9/9] arm64: dts: uniphier: Add L2 cache node
-Date:   Mon, 12 Sep 2022 16:15:54 +0900
-Message-Id: <20220912071554.1480-10-hayashi.kunihiko@socionext.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220912071554.1480-1-hayashi.kunihiko@socionext.com>
-References: <20220912071554.1480-1-hayashi.kunihiko@socionext.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        kernel <kernel@axis.com>,
+        alsa-devel-mejlinglistan <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220907135827.16209-1-astrid.rost@axis.com>
+ <2b81d814-f47a-e548-83dc-b1e38857e8ce@linaro.org>
+ <Yxn9o1MVMPnFO3PM@sirena.org.uk>
+ <ac2bcca1-6997-2d17-b1d6-a5e81ced2613@linaro.org>
+ <9a72bd22-9298-65ce-a894-540f98745a7e@linaro.org>
+From:   Astrid Rost <astridr@axis.com>
+In-Reply-To: <9a72bd22-9298-65ce-a894-540f98745a7e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail04w.axis.com (10.20.40.10) To se-mail05w.axis.com
+ (10.20.40.11)
+X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a L2 cache node referenced from CPU nodes as the missing cache
-hierarchy information because the following warning was issued.
+Hello,
+> 
+> It's more than one property and many other patch submitters were using
+> this reason as well. As a result, few TXT bindings grew from 5 to 10
+> properties within one year and there was still no conversion to YAML.
 
-  cacheinfo: Unable to detect cache hierarchy for CPU 0
-  Early cacheinfo failed, ret = -2
+> 
+> I understand your concerns however I have stronger motivation to do the
+> conversion, than for accepting new features.
 
-Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
----
- arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi |  6 ++++++
- arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi | 12 ++++++++++++
- arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi |  8 ++++++++
- 3 files changed, 26 insertions(+)
+I agree, I will do the conversion.
 
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi b/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-index 6a7d7973e9dd..a75356db006b 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-@@ -36,6 +36,7 @@ cpu0: cpu@0 {
- 			reg = <0 0x000>;
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
-@@ -45,8 +46,13 @@ cpu1: cpu@1 {
- 			reg = <0 0x001>;
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cluster0_opp>;
- 		};
-+
-+		l2: l2-cache {
-+			compatible = "cache";
-+		};
- 	};
- 
- 	cluster0_opp: opp-table {
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-index e24784e12b7b..1e6317e371ba 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-@@ -46,6 +46,7 @@ cpu0: cpu@0 {
- 			reg = <0 0x000>;
- 			clocks = <&sys_clk 32>;
- 			enable-method = "psci";
-+			next-level-cache = <&a72_l2>;
- 			operating-points-v2 = <&cluster0_opp>;
- 			#cooling-cells = <2>;
- 		};
-@@ -56,6 +57,7 @@ cpu1: cpu@1 {
- 			reg = <0 0x001>;
- 			clocks = <&sys_clk 32>;
- 			enable-method = "psci";
-+			next-level-cache = <&a72_l2>;
- 			operating-points-v2 = <&cluster0_opp>;
- 			#cooling-cells = <2>;
- 		};
-@@ -66,6 +68,7 @@ cpu2: cpu@100 {
- 			reg = <0 0x100>;
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
-+			next-level-cache = <&a53_l2>;
- 			operating-points-v2 = <&cluster1_opp>;
- 			#cooling-cells = <2>;
- 		};
-@@ -76,9 +79,18 @@ cpu3: cpu@101 {
- 			reg = <0 0x101>;
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
-+			next-level-cache = <&a53_l2>;
- 			operating-points-v2 = <&cluster1_opp>;
- 			#cooling-cells = <2>;
- 		};
-+
-+		a72_l2: l2-cache0 {
-+			compatible = "cache";
-+		};
-+
-+		a53_l2: l2-cache1 {
-+			compatible = "cache";
-+		};
- 	};
- 
- 	cluster0_opp: opp-table-0 {
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-index 6277be04a974..72ba6a52233e 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-@@ -43,6 +43,7 @@ cpu0: cpu@0 {
- 			reg = <0 0x000>;
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cluster0_opp>;
- 			#cooling-cells = <2>;
- 		};
-@@ -53,6 +54,7 @@ cpu1: cpu@1 {
- 			reg = <0 0x001>;
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cluster0_opp>;
- 			#cooling-cells = <2>;
- 		};
-@@ -63,6 +65,7 @@ cpu2: cpu@2 {
- 			reg = <0 0x002>;
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cluster0_opp>;
- 			#cooling-cells = <2>;
- 		};
-@@ -73,9 +76,14 @@ cpu3: cpu@3 {
- 			reg = <0 0x003>;
- 			clocks = <&sys_clk 33>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
- 			operating-points-v2 = <&cluster0_opp>;
- 			#cooling-cells = <2>;
- 		};
-+
-+		l2: l2-cache {
-+			compatible = "cache";
-+		};
- 	};
- 
- 	cluster0_opp: opp-table {
--- 
-2.25.1
-
+Astrid
