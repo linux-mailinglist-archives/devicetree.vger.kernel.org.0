@@ -2,138 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7FD95B54E2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC5A65B54EB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 09:01:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229536AbiILG5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 02:57:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57658 "EHLO
+        id S229527AbiILHBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 03:01:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229944AbiILG51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:57:27 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D686129836;
-        Sun, 11 Sep 2022 23:57:21 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id z187so7688046pfb.12;
-        Sun, 11 Sep 2022 23:57:21 -0700 (PDT)
+        with ESMTP id S229744AbiILHBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 03:01:06 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB667248E1;
+        Mon, 12 Sep 2022 00:01:04 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-1279948d93dso20942097fac.10;
+        Mon, 12 Sep 2022 00:01:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date;
-        bh=RH/VDeel2O1YnlzpP/dZvddnsVEsPqbgyyssL39vics=;
-        b=gOb/2EOHn/DXorTgYSkaeK/VP0b+XX5cx8PHCJXZwWKVQ/UlOotxXM2VVtmKmdcJqr
-         01FQqzVaQHC+N0ptiQjT/sTCtY5ZhOua1T3KdBpBc9wqNixcEhVA5FsiUcY64S9vfmvf
-         xM/QCRBFfBjzHB0Mf2uVlZLMclOKmqegY6rn6rKWYls9USHG345uJbaVzKjqBVYl8r9r
-         OdKDLuP9bxEUY8EWJt8mhgOyVOQtNCG08xImsPvYQ6do50kbpEjdCu9XROp0UycaBVMQ
-         Z9mMUqFhOu/lCHxqnOlmftitCXlEcXCCTAUJphXYhB8HNscg+/6QHhJHdfY4yuH1Rf+9
-         2CSw==
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date;
+        bh=0XqePnbUiZRUs1aoZwR1nk/QBuAoAA0VQaa7BjnVFKc=;
+        b=A6Q5Hv6Il8qOaS54NO2Ry9eBN6HQFkccYnhowINrA1kwFRMRRoOR/cddqU3nRmeg7B
+         +Xast8Kr3pNn0JRMSjgQwFsCSWZfarok0cmmZawlRICgVvVhcXqztq6YTYmjQZ/4zUaT
+         nHeWcfY/PgpWFIy/2ckCt5phDPezDId+hQjOjmcdhIj/RER4kPsQuUUePSHayNRHwwEO
+         /un/F1CPqQ6cP5ns92/66M5fpc+tDI55qOdIJNzk2e9XQtq0/eTC130Q0r+sgOIRuU6t
+         BO2NiBN4Ngm41/DMS4bdhdONkwpxuVTz2W9v43Y4QtmSR/GxA5prMFof4vWwOceinU3B
+         1Jvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=RH/VDeel2O1YnlzpP/dZvddnsVEsPqbgyyssL39vics=;
-        b=GdPcGmMz+qOOzrDiG/bZhdhT1Ug+TbNLlIaMc/8fXw3t7hIfuQbc/lFRm0LAcOpUVa
-         fNi6nDT5fvqhJ8vtVnbWP343gv+cuzm0UbwAmc7l98pPgm0Ix/XenwhA6Mgo1Ki5Kg+l
-         a5roOW0N91M/kob2mm7wDMnsadoNPPT3KgrLGljOdIksOVjbCMOeKqzJhKpRcMnrCtXW
-         rjzSMG3Kno5Q4P9b30A6iCq2W3IGXBGh71dKDtthteDxCxPBfXtth37hzZ0UUCyN4ywA
-         5LnonRiZ4Mo/6mJrUSR4ngPCZ8rB2tDkTh6KeqaTOrgWIh3ns+x2e5BkOpdpZM4RCUDP
-         Fcqg==
-X-Gm-Message-State: ACgBeo0MlqLZNALV/WDiZFCCUigS5v4G+4MUhV99Dx5faWyOZYJlZiZt
-        gPf7U3uHr2JcB0HeEITLefo=
-X-Google-Smtp-Source: AA6agR7KjZMWdwPDH/jae1lbcmTSopZmpnSqprgC0cuM0EYlmKFfX7MGzzvOWi7Gh5tpVwrGcgLpeA==
-X-Received: by 2002:a63:5620:0:b0:429:9ad7:b4f2 with SMTP id k32-20020a635620000000b004299ad7b4f2mr21948494pgb.162.1662965840685;
-        Sun, 11 Sep 2022 23:57:20 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:569:7171:597e:5b7:9ff9:1cd5])
-        by smtp.gmail.com with ESMTPSA id l12-20020a170903244c00b001743be790b4sm5044611pls.215.2022.09.11.23.57.17
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 11 Sep 2022 23:57:20 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sre@kernel.org
-Cc:     mazziesaccount@gmail.com, alina_yu@richtek.com,
-        cy_huang@richtek.com, alinayu829@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH RESEND v4 3/3] Documentation: power: rt9471: Document exported sysfs entries
-Date:   Mon, 12 Sep 2022 14:57:03 +0800
-Message-Id: <1662965823-17760-4-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1662965823-17760-1-git-send-email-u0084500@gmail.com>
-References: <1662965823-17760-1-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=0XqePnbUiZRUs1aoZwR1nk/QBuAoAA0VQaa7BjnVFKc=;
+        b=bDAOumjDwM4UDfzQfCsaoKLrbQ7tzExSV5bJQjp9t5+ZRvXdKDeFjVxTa565NzuTT6
+         AocOQgp20wotJQFZl2dOXJPbJqR8+OCrI3zKeRyM1ELwpdO5XiaY6y1r5R15gHmfb7Rq
+         xsQSG6gXQoEca9CvKZeB4i8YEoEb0StOUVUKmVCvl2pIYUhNOBa8kqWg45VKzHjs7ppe
+         YWm0R2/ImJqIN8WHIWttLRVo5tXgBJebYVVKPRy99YVXlyKWy/ot5n/ISyf4qz7GHeOw
+         J/ytZMwfbaaq10YEy3P1zhCLthNOnR5ng/jXcXsIFx1+SayyglHlJYWm28gk1fcQyiE3
+         eR0A==
+X-Gm-Message-State: ACgBeo0VFL78ssT5bifOF2Ahh1roF+fji0nMOpn90VzPkzNFSxasAeuI
+        PfOx6ZvL0RpU8gVORlpXfTA=
+X-Google-Smtp-Source: AA6agR5Dfm7ftir3Lu6vuv1Hee8MmOKzMhyPyHFYr6COnsiaPhm+rn/kPOZouXsDMgUjf2AQKpCVBA==
+X-Received: by 2002:a05:6808:1156:b0:34d:c734:6a79 with SMTP id u22-20020a056808115600b0034dc7346a79mr5937865oiu.161.1662966062857;
+        Mon, 12 Sep 2022 00:01:02 -0700 (PDT)
+Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
+        by smtp.gmail.com with ESMTPSA id e5-20020a056808148500b003432bb4322esm3502490oiw.40.2022.09.12.00.01.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Sep 2022 00:01:01 -0700 (PDT)
+Message-ID: <a8bcba9c64a6d38a82094aa38a4a7da1b2897fdf.camel@gmail.com>
+Subject: Re: [PATCH 1/3] iio: adc: ad7923: fix channel readings for some
+ variants
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Date:   Mon, 12 Sep 2022 09:02:16 +0200
+In-Reply-To: <20220911122644.4d408fe6@jic23-huawei>
+References: <20220909151413.1164754-1-nuno.sa@analog.com>
+         <20220909151413.1164754-2-nuno.sa@analog.com>
+         <20220911122644.4d408fe6@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+On Sun, 2022-09-11 at 12:26 +0100, Jonathan Cameron wrote:
+> On Fri, 9 Sep 2022 17:14:11 +0200
+> Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
+>=20
+> > Some of the supported devices have 4 or 2 LSB trailing bits that
+> > should
+> > not be taken into account. Hence we need to shift these bits out
+> > which
+> > fits perfectly on the scan type shift property. This change fixes
+> > both
+> > raw and buffered reads.
+>=20
+> Hi Nuno,
 
-Document the settings exported by rt9471 charger driver through sysfs entries:
-- sysoff_enable
-- charge_term_enable
-- port_detect_enable
+Hi Jonathan,
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- Documentation/ABI/testing/sysfs-class-power | 44 +++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+>=20
+> Seems that all the values of shift are 12 - realbits.
+> If that's the case, can we reduce the noise this patch creates by
+> just
+> updating AD7923_V_CHAN() to set .shift =3D 12 - (bits) ?
+>=20
 
-diff --git a/Documentation/ABI/testing/sysfs-class-power b/Documentation/ABI/testing/sysfs-class-power
-index a9ce63c..1f8afe5 100644
---- a/Documentation/ABI/testing/sysfs-class-power
-+++ b/Documentation/ABI/testing/sysfs-class-power
-@@ -768,3 +768,47 @@ Description:
- 
- 		Access: Read
- 		Valid values: 1-31
-+
-+What:		/sys/class/power_supply/rt9471-*/sysoff_enable
-+Date:		Sep 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry allows enabling the sysoff mode of rt9471 charger devices.
-+		If enabled and the input is removed, the internal battery FET is turned
-+		off to reduce the leakage from the BAT pin. See device datasheet for details.
-+
-+		Access: Read, Write
-+		Valid values:
-+		- 1: enabled
-+		- 0: disabled
-+
-+What:		/sys/class/power_supply/rt9471-*/charge_term_enable
-+Date:		Sep 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry allows enabling the charge termination function of rt9471 charger
-+		devices. If enabled, the battery charging current, and the battery voltage
-+		reachs charge termination condition, the internal battery FET will be turned off
-+		to optimize the battery life. See device datasheet for details.
-+
-+		Access: Read, Write
-+		Valid values:
-+		- 1: enabled
-+		- 0: disabled
-+
-+What:		/sys/class/power_supply/rt9471-*/port_detect_enable
-+Date:		Sep 2022
-+KernelVersion:	6.1
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry allows enabling the USB BC12 port detect function of rt9471 charger
-+		devices. If enabled and VBUS is inserted, device will start to do the BC12
-+		port detect and report the usb port type when port detect is done. See
-+		datasheet for details.
-+
-+		Access: Read, Write
-+		Valid values:
-+		- 1: enabled
-+		- 0: disabled
--- 
-2.7.4
+Yes, it should be pretty much the same... As I don't have any strong
+feelings I can do as you suggest.
+
+> I guess that's not as flexible if anyone adds support for a device
+> with different shifts, but I suspect that may never happen.
+>=20
+
+Or a device with realbits > 12. But yeah, I'm also fairly positive we
+won't see that happening...
+
+- Nuno S=C3=A1
 
