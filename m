@@ -2,118 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 353875B52B4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 04:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294105B52DF
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 05:36:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiILCws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Sep 2022 22:52:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52908 "EHLO
+        id S229828AbiILDgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Sep 2022 23:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbiILCws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 22:52:48 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975BD24F01;
-        Sun, 11 Sep 2022 19:52:46 -0700 (PDT)
-X-UUID: c5330deb367146d3bf4327e8d57c20ab-20220912
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=9iQvNSCdIGu6UTVgz7Ig2p0RKCQGqQ3bI7wc8ozG05w=;
-        b=eS14lgERbfazx0EJ/IX03eKDpG/nbcEiqebhl6SJ0nXpVeVk0wUjynSkBEPT30UyRpMh7PPAvPGn3L7Vb+Z5XTI3kFVCfaEFUgETW8QOu93VC9H5aT4ZWR5qW4zg7zVgEcGhevqbG6ttaTTXtkGuLvmscO/ix2FW1eoGvShTwRM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:42fd265f-293b-4e61-9a9e-641637606e13,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,BULK:0,RULE:Release
-        _Ham,ACTION:release,TS:51
-X-CID-INFO: VERSION:1.1.10,REQID:42fd265f-293b-4e61-9a9e-641637606e13,OB:0,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,BULK:0,RULE:Release_H
-        am,ACTION:release,TS:51
-X-CID-META: VersionHash:84eae18,CLOUDID:672309f6-6e85-48d9-afd8-0504bbfe04cb,C
-        OID:affc5e72d426,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: c5330deb367146d3bf4327e8d57c20ab-20220912
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <nathan.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 791623106; Mon, 12 Sep 2022 10:52:39 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 12 Sep 2022 10:52:38 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Mon, 12 Sep 2022 10:52:38 +0800
-Message-ID: <3b0dd4bf01400641a6b622f2c5344c9ded8b5995.camel@mediatek.com>
-Subject: Re: [PATCH v2 0/6] Add first version mt8188 vdosys0 driver
-From:   Nathan Lu <nathan.lu@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "Rex-BC Chen" <rex-bc.chen@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <lancelot.wu@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 12 Sep 2022 10:52:37 +0800
-In-Reply-To: <cd896ff3-47b7-43eb-c821-8c5fb53c6ae6@linaro.org>
-References: <20220906084449.20124-1-nathan.lu@mediatek.com>
-         <cd896ff3-47b7-43eb-c821-8c5fb53c6ae6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229636AbiILDd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Sep 2022 23:33:57 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA6412A431;
+        Sun, 11 Sep 2022 20:31:04 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id go6so2544543pjb.2;
+        Sun, 11 Sep 2022 20:31:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date;
+        bh=SMR6YWuSQioPH6Os8XTpP5+lKSuupclNHAfA4vuKHOE=;
+        b=HhvJFxRzZkYsoH49KqlxQ3mpHQ9BkN+DBm4nu7o6ii38OmWBWhlrxJ/n54et6iYCBs
+         ToMX0M9i9R+F1Ne6SeDP4mOhu3sBcrn/3xaPgIwzc1IcWC3vhmujbdTWSMTFH5mVFL9c
+         blHz1VZ/WxGNNjIDXCHmj5guTsWiIg5hccHflAvhgxy1whaaDmlxIskr0NHyRhNAVT1t
+         v+XTcHrblI2AIT42+qmeL4AaocUyopfShojYVN8Uu412oNVhRjyNpCl6Y6CKVc55P22j
+         cugd6fUn/++kCUvNsrVzR2OHkwDmH7Q3TF2Ghxm8s+xdimjzzKDM5FELXwTpydPRdAhv
+         vjOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date;
+        bh=SMR6YWuSQioPH6Os8XTpP5+lKSuupclNHAfA4vuKHOE=;
+        b=2FceRjeXV3UuYGDxpUj/0YBTPfkp5QFfvlIKuEmY5VFxsrbboOfbe2HENwrhfxXkxd
+         qLtfSlCajq2fVKMwWXmSdoMFbMOSJeyYZZYfcijnhrJ50iFew6qRh0Haw79EwHWPJ3Kd
+         kaGMIiLxtXRiAQyF3oQhsK+3lKF3BwBxwyzVnzS9f12kVR8kVg6pfFUUHC0LjQNn3Gnf
+         rOuCeryYAbX+WD3OUqUyiI75MWq0Gm0qYg1gnBYKiQQyb5PQ3MkWifwvYkdy2/XUm6Mz
+         uoW3+L0juFvrHq82YDfh3MJB4MdWy15A5pG52d9I/8ZfNjwyBR1xiZab+5ajOLI4tJcq
+         7ZLQ==
+X-Gm-Message-State: ACgBeo2A1uU+/d/Zb8Kqx/yJU0AWK1aPAYkbEw8ITx4BiZLmuMk/QCcZ
+        GYdfnJiCctk56P1giMmC7xI=
+X-Google-Smtp-Source: AA6agR4PCplLKRsxLzXRwXSlaeySbfdJnAEF9Kl4MwT3HpsKL3FDaX3GamFu3LHN/SYVqwY/MAQxJw==
+X-Received: by 2002:a17:902:ce84:b0:176:b0fb:96a7 with SMTP id f4-20020a170902ce8400b00176b0fb96a7mr24708420plg.51.1662953464111;
+        Sun, 11 Sep 2022 20:31:04 -0700 (PDT)
+Received: from localhost ([2406:7400:61:8a0f:392d:db19:673c:627a])
+        by smtp.gmail.com with ESMTPSA id ij9-20020a170902ab4900b0016ee4b0bd60sm4618699plb.166.2022.09.11.20.31.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Sep 2022 20:31:03 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 12 Sep 2022 09:00:55 +0530
+Message-Id: <CMU3SV8982P6.Y923I0TZSPYL@skynet-linux>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>
+Cc:     <bjorn.andersson@linaro.org>, "Andy Gross" <agross@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
+        "Mathieu Poirier" <mathieu.poirier@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "open list" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/4] dt-bindings: remoteproc: qcom: Convert wcnss
+ documentation to YAML
+From:   "Sireesh Kodali" <sireeshkodali1@gmail.com>
+X-Mailer: aerc 0.11.0
+References: <20220908184925.2714098-1-sireeshkodali1@gmail.com>
+ <20220908184925.2714098-3-sireeshkodali1@gmail.com>
+ <643e8223-f88f-9258-dc36-1732dfa8bb19@linaro.org>
+In-Reply-To: <643e8223-f88f-9258-dc36-1732dfa8bb19@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Fri Sep 9, 2022 at 1:27 PM IST, Krzysztof Kozlowski wrote:
+> On 08/09/2022 20:49, Sireesh Kodali wrote:
+> > This is a direct conversion of the existing txt documentation to YAML.
+> > It is in preparation for the addition of pronto-v3 to the docs. This
+> > patch doesn't document any of the existing subnodes/properties that are
+> > not documented in the existing txt file. That is done in a separate
+> > patch.
+>
+> There is no conversion here... Just adding new bindings.
 
-Apologize for the incovenience.
-I will remove it.
+My mistake, will be fixed in v3
 
-Best regards,
-
-On Thu, 2022-09-08 at 15:14 +0200, Krzysztof Kozlowski wrote:
-> On 06/09/2022 10:44, nathan.lu wrote:
-> > From: Nathan Lu <nathan.lu@mediatek.com>
-> > 
-> > This path is based on [1] and [2]
-> > [1] Add MediaTek SoC(vdosys1) support for mt8195
-> >     - 
-> > https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/list/?series=658416__;!!CTRNKA9wMg0ARbw!zuOwDY1dopRZLeZe36Ate1lspoWzDaM06Gj2x8zf9OprwhIMON5dJOlixUGivOIU$
-> >  
-> > [2] Add MediaTek SoC DRM (vdosys1) support for mt8195
-> >     - 
-> > https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/list/?series=665269__;!!CTRNKA9wMg0ARbw!zuOwDY1dopRZLeZe36Ate1lspoWzDaM06Gj2x8zf9OprwhIMON5dJOlixX9HBrk2$
-> >  
-> > 
-> 
-> Can you stop ccing internal/fake/non-existing email addresses?
-> 
-> Your message couldn't be delivered to wsd_upstream@mediatek.com
-> because
-> the remote server is misconfigured. See the technical details below
-> for
-> more information.
-> 
-> 
+Thanks,
+Sireesh
+>
 > Best regards,
 > Krzysztof
 
