@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7314C5B56AF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 10:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B26D75B56B3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 10:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbiILIvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 04:51:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55136 "EHLO
+        id S230368AbiILIvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 04:51:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230220AbiILIvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 04:51:19 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A0F72BB35
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 01:51:15 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id j12so7926821pfi.11
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 01:51:15 -0700 (PDT)
+        with ESMTP id S230257AbiILIvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 04:51:33 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F9AB3204C
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 01:51:20 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id i15-20020a17090a4b8f00b0020073b4ac27so7486504pjh.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 01:51:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=cW0iJRf8+xA5COcXhAJlFmlOVxkiZHTZTL93C3LInnc=;
-        b=srYaZbbQ+5ULu/L0xi/5apWf3Fm7EWWe9T3NJjdWY7T4y1QltC/uAf2AxZK0toIecP
-         EpzyZMldCUZm6CXBfx65FpzzXhsE2BuwX4YvynXPDupeTV2hw1Q0i1PnTBvqcL/7QrGR
-         YQ9fBYNymtPPRGdhKmboNt4/7HjIjqqRBSQt5UIu5sriJAAheKJlED0LmHGiKWFZnlQd
-         INpQBVonBqXENyVM5UAf0H/ftRi9Ujh8vIZKATl/3mdmxncb4qUOzRhITLSE1k+1UtRE
-         iO4HpkUFtobSw8mb+i8HWNzgoLqkRfPmBKdYpxzKzGzz/SmuClIKp9yU+iMNi8C7kr/f
-         Xe2A==
+        bh=1zMGL2ixE5LCd3AUjYaIWCURF27Vc3NSedrdWveqpGY=;
+        b=qnAbeKHHWAua2FsRSh5RVQENB1C4wsQrjYQWC7NzJX+M+0WBiPN8Cxec2do/GI9Z6W
+         ZwycFxYmafyghC3hCkhfF/79Wop9M8T+AYG6Wn1cap6YTzstNYG+qvgS3dt+TlaIuV1n
+         z3MulZIHLKxxw5pZroXHhC5pcevaSZEtUyT5ATEWkErvg/0N2V4Sry1tFYmKOZ+rOpL/
+         sUOCaZI873v4QOlbkDx/BOXCT+0783QGx7Qgl/4JcBoo5p8HLNh1P0BPdA4GHWVr0SOp
+         tuMg5Ru8qY1GIUeI4Ky28Pwu4KZlq0lbGz3Cpnhz8Kqee20s8arx/qDCzkg1FMwOhRGK
+         suWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=cW0iJRf8+xA5COcXhAJlFmlOVxkiZHTZTL93C3LInnc=;
-        b=qcS44NyC15Zq9wW5SZBnv9OrMtHmKgODvelo8+1fbClbNOvEMfBZrjNphLEtn0MmqU
-         nsFyKDOwMEpIAGJOS+h8EdnSmM0HR+BbLfu4P/+gAWGl+a210kkt8JCJAb2nKNNpQKWj
-         9k4L/EaTL274VeBswVNkUMofujPNIT0NmInwhvweAWRaFJpU8frguPlMJai6c7KeKQ3o
-         n4bTUz1sXqtow8TZJ2ZHYy9H9iqFyIYSHxt/6SIGpGjbS4zduTmrAWkGOGsxG90+9WOj
-         4+g1pUqo92Y2gbYar/RukldOS1ItBmi/oOSD3hSD8Q0DrKrEHifS/3KOPPGmU7AdAoBz
-         xYuQ==
-X-Gm-Message-State: ACgBeo0f89XmxDoYQTL8ZsMfsm2KEtvvhd1m2qwqukdaW4fJvnI0/0md
-        uNzfK/8aCtqB/xDuon7NtBaenK/y9JtvCw==
-X-Google-Smtp-Source: AA6agR4x7RI96Nnn/97AnsXd8xxocHTttbzDxD1tIBMmjqvnswDLArR+mDoLRJ5Q33zDr+pXChusIA==
-X-Received: by 2002:a63:ff55:0:b0:438:fa5d:af36 with SMTP id s21-20020a63ff55000000b00438fa5daf36mr3754995pgk.533.1662972675200;
-        Mon, 12 Sep 2022 01:51:15 -0700 (PDT)
+        bh=1zMGL2ixE5LCd3AUjYaIWCURF27Vc3NSedrdWveqpGY=;
+        b=T3+ezdyl1BVSQ+rflanQ5AS5dZN5ajCoPtviMZndT3luPOv1EEL9Et5H/wcr0kV70/
+         +8Ub+7TvqtfPg56LCMawW2qtIdTiXRI23AI52u2izYjfHN27UkmgWXdPArInnmeR8Ypd
+         rSjJ2fpUujO4HbrnsFgashIrkrFeXzjJG+M1GSZrSSdGc2/opWM3W6ujlGbJCmcAFzD1
+         Bslaq9HcOIRQ0uZiPGFIVBMfJhdgOPPbofWWP4ByBtVu8R+HGpGM8q0cvB4pTg3TZVZK
+         UrXEzxoyYlT/Ke/T65MzMGMf6UByq5EIqjbJriqe0h+r8Ju2aASzZFmy7/gcDj7LQMzu
+         Ov7A==
+X-Gm-Message-State: ACgBeo0lt5uNNWZmD0cNi9yGGzrAsYSg0kq4enZXXKHIpdLk4zMjkAXj
+        heCrDDzXsYQ+RpOf+ijcpEGjZg==
+X-Google-Smtp-Source: AA6agR6mlldSXRGSuFIIPQLCfI9vWIkSiikHuzlG+pdLOGRiBOae8WbmAOExsu92OXfTerNcph4Dtw==
+X-Received: by 2002:a17:902:d4ce:b0:178:1e39:3218 with SMTP id o14-20020a170902d4ce00b001781e393218mr9689845plg.144.1662972679148;
+        Mon, 12 Sep 2022 01:51:19 -0700 (PDT)
 Received: from localhost.localdomain ([2401:4900:1c60:5362:9d7f:2354:1d0a:78e3])
-        by smtp.gmail.com with ESMTPSA id h13-20020a170902f54d00b00172897952a0sm5326699plf.283.2022.09.12.01.51.11
+        by smtp.gmail.com with ESMTPSA id h13-20020a170902f54d00b00172897952a0sm5326699plf.283.2022.09.12.01.51.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Sep 2022 01:51:14 -0700 (PDT)
+        Mon, 12 Sep 2022 01:51:18 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org
@@ -55,9 +55,9 @@ Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
         daniel.lezcano@linaro.org, robh@kernel.org, andersson@kernel.org,
         rafael@kernel.org, bhupesh.sharma@linaro.org,
         bhupesh.linux@gmail.com
-Subject: [PATCH 3/4] dt-bindings: thermal: Add qcom,qmi-tmd-device and qcom,tmd-device yaml bindings
-Date:   Mon, 12 Sep 2022 14:20:48 +0530
-Message-Id: <20220912085049.3517140-4-bhupesh.sharma@linaro.org>
+Subject: [PATCH 4/4] MAINTAINERS: Add entry for Qualcomm Cooling Driver
+Date:   Mon, 12 Sep 2022 14:20:49 +0530
+Message-Id: <20220912085049.3517140-5-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220912085049.3517140-1-bhupesh.sharma@linaro.org>
 References: <20220912085049.3517140-1-bhupesh.sharma@linaro.org>
@@ -73,261 +73,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add qcom,qmi-tmd-device and qcom,tmd-device yaml bindings.
+Add myself as the maintainer for the Qualcomm Cooling
+driver (aka Qualcomm Thermal Mitigation Device Driver).
 
-Qualcomm QMI based TMD cooling device(s) are used for various
-mitigations for remote subsystem(s) including remote processor
-mitigation, rail voltage restriction etc.
-
-Each child node represents one remote subsystem and each child
-of this subsystem in-turn represents separate TMD cooling device.
-
+Cc: andersson@kernel.org
 Cc: daniel.lezcano@linaro.org
 Cc: rafael@kernel.org
-Cc: andersson@kernel.org
-Cc: robh@kernel.org
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- .../bindings/thermal/qcom,qmi-tmd-device.yaml |  78 +++++++++++
- .../bindings/thermal/qcom,tmd-device.yaml     | 122 ++++++++++++++++++
- include/dt-bindings/thermal/qcom,tmd.h        |  14 ++
- 3 files changed, 214 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
- create mode 100644 Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
- create mode 100644 include/dt-bindings/thermal/qcom,tmd.h
+ MAINTAINERS | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml b/Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
-new file mode 100644
-index 000000000000..dfda5b611a93
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 4dbf82d3b775..20f90089bf10 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -17048,6 +17048,16 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+ F:	drivers/mtd/nand/raw/qcom_nandc.c
+ 
++QUALCOMM QMI COOLING DRIVER (THERMAL MITIGATION DEVICE DRIVER)
++M:	Bhupesh Sharma <bhupesh.sharma@linaro.org>
++L:	linux-pm@vger.kernel.org
++L:	linux-arm-msm@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
++F:	Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
++F:	drivers/thermal/qcom/qmi_cooling/
++F:	include/dt-bindings/thermal/qcom,tmd.h
 +
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/thermal/qcom,qmi-tmd-device.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm QMI based thermal mitigation (TMD) cooling devices.
-+
-+maintainers:
-+  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
-+
-+description:
-+  Qualcomm QMI based TMD cooling device(s) are used for various
-+  mitigations for remote subsystem(s) including remote processor
-+  mitigation, rail voltage restriction etc.
-+
-+properties:
-+  $nodename:
-+    const: qmi-tmd-devices
-+
-+  compatible:
-+    items:
-+      - const: qcom,qmi-tmd-devices
-+
-+  modem0:
-+    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-+
-+  adsp:
-+    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-+
-+  cdsp:
-+    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-+
-+  slpi:
-+    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/thermal/qcom,tmd.h>
-+    qmi-tmd-devices {
-+      compatible = "qcom,qmi-tmd-devices";
-+
-+      modem0 {
-+        qcom,instance-id = <MODEM0_INSTANCE_ID>;
-+
-+        modem0_pa: tmd-device0 {
-+          label = "pa";
-+          #cooling-cells = <2>;
-+        };
-+
-+        modem0_proc: tmd-device1 {
-+          label = "modem";
-+          #cooling-cells = <2>;
-+        };
-+
-+        modem0_current: tmd-device2 {
-+          label = "modem_current";
-+          #cooling-cells = <2>;
-+        };
-+
-+        modem0_skin: tmd-device3 {
-+          label = "modem_skin";
-+          #cooling-cells = <2>;
-+        };
-+
-+        modem0_vdd: tmd-device4 {
-+          label = "cpuv_restriction_cold";
-+          #cooling-cells = <2>;
-+        };
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml b/Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
-new file mode 100644
-index 000000000000..38ac62f03376
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
-@@ -0,0 +1,122 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/thermal/qcom,tmd-device.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm thermal mitigation (TMD) cooling devices
-+
-+maintainers:
-+  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
-+
-+description:
-+  Qualcomm thermal mitigation (TMD) cooling devices. Each child node
-+  represents one remote subsystem and each child of this subsystem in-turn
-+  represents separate cooling devices.
-+
-+properties:
-+  $nodename:
-+    pattern: "^(modem|adsp|cdsp|slpi[0-9])?$"
-+
-+  qcom,instance-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Remote subsystem QMI server instance id to be used for communicating with QMI.
-+
-+patternProperties:
-+  "^tmd-device[0-9]?$":
-+    type: object
-+    description:
-+      Subnodes indicating tmd cooling device of a specific category.
-+    properties:
-+      label:
-+        maxItems: 1
-+        description: |
-+          Remote subsystem device identifier. Acceptable device names -
-+          "pa" -> for pa cooling device,
-+          "cpuv_restriction_cold" -> for vdd restriction,
-+          "cx_vdd_limit" -> for vdd limit,
-+          "modem" -> for processor passive cooling device,
-+          "modem_current" -> for current limiting device,
-+          "modem_bw" ->  for bus bandwidth limiting device,
-+          "cpr_cold" -> for cpr restriction.
-+
-+      "#cooling-cells":
-+        const: 2
-+
-+    required:
-+      - label
-+      - "#cooling-cells"
-+
-+    additionalProperties: false
-+
-+required:
-+  - qcom,instance-id
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/thermal/qcom,tmd.h>
-+    modem0 {
-+      qcom,instance-id = <MODEM0_INSTANCE_ID>;
-+
-+      modem0_pa: tmd-device0 {
-+        label = "pa";
-+        #cooling-cells = <2>;
-+      };
-+
-+      modem0_proc: tmd-device1 {
-+        label = "modem";
-+        #cooling-cells = <2>;
-+      };
-+
-+      modem0_current: tmd-device2 {
-+        label = "modem_current";
-+        #cooling-cells = <2>;
-+      };
-+
-+      modem0_skin: tmd-device3 {
-+        label = "modem_skin";
-+        #cooling-cells = <2>;
-+      };
-+
-+      modem0_vdd: tmd-device4 {
-+        label = "cpuv_restriction_cold";
-+        #cooling-cells = <2>;
-+      };
-+    };
-+
-+  - |
-+    #include <dt-bindings/thermal/qcom,tmd.h>
-+    adsp {
-+      qcom,instance-id = <ADSP_INSTANCE_ID>;
-+
-+      adsp_vdd: tmd-device1 {
-+        label = "cpuv_restriction_cold";
-+        #cooling-cells = <2>;
-+      };
-+    };
-+
-+  - |
-+    #include <dt-bindings/thermal/qcom,tmd.h>
-+    cdsp {
-+      qcom,instance-id = <CDSP_INSTANCE_ID>;
-+
-+      cdsp_vdd: tmd-device1 {
-+        label = "cpuv_restriction_cold";
-+        #cooling-cells = <2>;
-+      };
-+    };
-+
-+  - |
-+    #include <dt-bindings/thermal/qcom,tmd.h>
-+    slpi {
-+      qcom,instance-id = <SLPI_INSTANCE_ID>;
-+
-+      slpi_vdd: tmd-device1 {
-+        label = "cpuv_restriction_cold";
-+        #cooling-cells = <2>;
-+      };
-+    };
-diff --git a/include/dt-bindings/thermal/qcom,tmd.h b/include/dt-bindings/thermal/qcom,tmd.h
-new file mode 100644
-index 000000000000..5ede4422e04e
---- /dev/null
-+++ b/include/dt-bindings/thermal/qcom,tmd.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * This header provides constants for the Qualcomm TMD instances.
-+ */
-+
-+#ifndef _DT_BINDINGS_THERMAL_QCOM_TMD_H_
-+#define _DT_BINDINGS_THERMAL_QCOM_TMD_H_
-+
-+#define MODEM0_INSTANCE_ID	0x0
-+#define ADSP_INSTANCE_ID	0x1
-+#define CDSP_INSTANCE_ID	0x43
-+#define SLPI_INSTANCE_ID	0x53
-+
-+#endif
+ QUALCOMM RMNET DRIVER
+ M:	Subash Abhinov Kasiviswanathan <quic_subashab@quicinc.com>
+ M:	Sean Tranchetti <quic_stranche@quicinc.com>
 -- 
 2.37.1
 
