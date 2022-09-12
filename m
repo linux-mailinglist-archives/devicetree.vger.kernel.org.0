@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A71CA5B5465
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 946C45B5436
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:20:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbiILGVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 02:21:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50170 "EHLO
+        id S230118AbiILGUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 02:20:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230194AbiILGUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:20:54 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 770C82B61B
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:19:00 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id q21so13239759lfo.0
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:18:59 -0700 (PDT)
+        with ESMTP id S229885AbiILGTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:19:16 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665962A256
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:18:37 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id f9so12423076lfr.3
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:18:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=Z/95Brm84Hs/a3P501KqW9gtmX0Qfi6hmXE/MDLL0vI=;
-        b=PLoAGfgYNr7od2O4N2jBATlyy9GsidtsOIMLThrsH+SM3UaH/dbI0LB74rLQz7mTld
-         BXMJAwXOEC+24QzIPIaMlrAcZTTiWY4OgQDhPMxzxdtgEULAWYZvemx2eE3TBxKA1OSg
-         F0plECT478eM9Y7YmoosYIi+S49h+4fb7ZJqaCF1pH2q4T9gA36lsULF9RWpN7oLFSCW
-         VRTDRuhFLxE7eZ71cXkrLSyH8nCfNfJoFgB/CbGB5FEmaQDNzYDSli9PqfiRUzSC6nq4
-         0cJFwnb4PJmd98hCiAKVjbdR90vSU6SpukpLUGdvA0rMCJcMrsk+txXTzVVTSN4wmqYe
-         JYhg==
+        bh=nXdmZRWySMH2y4BHslWMyDvfmlDcWpCDzcQgKmezSiA=;
+        b=aS+agOqhWINw9MuAJ0n32qJeHyY3pODek/iNq3Rojv3DYFvibsVMgg5Ku/4AwlqjKS
+         yUX1g0w9BfjFNhByRz4ypR3sjOe976/vzTOP3MHbTCI9TkaPlrZKI9mHSaJ+9nz96KQR
+         Dqx96gtCyqAdr5ltVbudxyFj3SeDsL0nWPL8eb5Fwb2BDPzlg4t0dyn8BNV/bY5jz7Br
+         SCMQch7z2wWWzy5vaCDpDFeaKvU93G/K2PVJr07EEH07WVaLnD4zxaVuz4aOgfE/9iw9
+         9WVpDL82VrfX5xN+bDgXCG9mxqNOm4ZUnNY6/PBM8IECQrEnrDYA62L37EUmk+DbVNQg
+         fKZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=Z/95Brm84Hs/a3P501KqW9gtmX0Qfi6hmXE/MDLL0vI=;
-        b=Yth7BioNygdZV51WM/DHw+vwC7qV678ma5W1Pdd/xYWlAW59I+SR1Auo765NLvu2GU
-         TzUdNFw6eIdmgGfcutWUMMmT8jNLZnpJp+WGauV4uAZpe8lOPSan8+2hj57pmAwZ89SJ
-         Q6TxflqBDlm1NR1Wy0hy11yXWo5AvlRscO7q6TmxB/DQiBNOhA8cBTq3pHiAs6pBJ7lY
-         M8qztLSusXlhFlQjfZp1S1TuQ0+KMPn3Hl9w0HSMPzJegVPryy+hjZWEsqLRar9ve7+H
-         G9fllmdZgJ85ok5qbOcCyhQF8jfJyAg+Cl9YDLUB6h9fxvJ2nVkI/BDBKbMgiUCUaYRt
-         brSQ==
-X-Gm-Message-State: ACgBeo3sAl7J3FW3qltay+n9SioJdEXnb0UXzwrqOcR+XpFLqoaqvR/H
-        7PrXrfZXlU7uBdP8d0zZa/pvqw==
-X-Google-Smtp-Source: AA6agR5oG2zgeaH/mojNn55ZSx64wxS+B+6Ny6B04LZFluXVKFQhqrN6oR2dY8galG82Ymg64bJlzQ==
-X-Received: by 2002:a05:6512:24b:b0:497:a7a7:2ddf with SMTP id b11-20020a056512024b00b00497a7a72ddfmr8890896lfo.379.1662963514996;
-        Sun, 11 Sep 2022 23:18:34 -0700 (PDT)
+        bh=nXdmZRWySMH2y4BHslWMyDvfmlDcWpCDzcQgKmezSiA=;
+        b=6OEX1g/WWkUDWO89lJASSDRg3Z5MNblE75f6SEK9ctYbqc82WxR6TftZ3loJHEfggC
+         YmBnd5dckgeuI/6BH4P7STL5gL0N2GGfVXNzvWiBYPwSqSFEcG/lM77BmqxaoRhO1eoY
+         DiGGMTWOZdRcsWxHtme36XpeVfT/HCK29BkA4SxIwR0CJyRW4O8mUxxLliskfJDypV0H
+         xQJT8VYBRE0rUJRlOiLvTpyMsx2nclqjrjhc2VMiM470YBQaLQRmf+gNaqKj1jaQtHKT
+         cLF/IfFJ+jqfvm7FfGCu1R3g8Yq099ZRjDBQ1ISOgRHf+btVPbruDlUfGUpIlrGDsOXF
+         ESnQ==
+X-Gm-Message-State: ACgBeo2PBFQTBQG+vS0zZY3Ldm4iLEIN5EDNO1APjeqZfpQd6rPppInW
+        psTRpyLJnzIDdUsnvAvuH7Yqgw==
+X-Google-Smtp-Source: AA6agR45OVFDsP7/GSM/ZCIfw7CKomhVPysvR/TQNc6CDDrydTsLOCiRTXPAkluJzMM6x8e58vrekg==
+X-Received: by 2002:a05:6512:682:b0:49a:9db4:5a3f with SMTP id t2-20020a056512068200b0049a9db45a3fmr1641603lfe.214.1662963516774;
+        Sun, 11 Sep 2022 23:18:36 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t19-20020ac24c13000000b004996fbfd75esm876805lfq.71.2022.09.11.23.18.33
+        by smtp.gmail.com with ESMTPSA id t19-20020ac24c13000000b004996fbfd75esm876805lfq.71.2022.09.11.23.18.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Sep 2022 23:18:34 -0700 (PDT)
+        Sun, 11 Sep 2022 23:18:36 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 29/40] dt-bindings: pinctrl: qcom,sc8180x-pinctrl: do not require function on non-GPIOs
-Date:   Mon, 12 Sep 2022 08:17:35 +0200
-Message-Id: <20220912061746.6311-30-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 30/40] dt-bindings: pinctrl: qcom,sc8180x-pinctrl: fix indentation in example
+Date:   Mon, 12 Sep 2022 08:17:36 +0200
+Message-Id: <20220912061746.6311-31-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
 References: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
@@ -79,51 +79,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Certain pins, like SDcard related, do not have functions and such should
-not be required:
-
-  sdc1-clk-pins: 'function' is a required property
+Bindings example should be indented with 4-spaces.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
-
-Another question is whether 'function' should be disallowed for such
-pins?
----
- .../bindings/pinctrl/qcom,sc8180x-pinctrl.yaml       | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ .../pinctrl/qcom,sc8180x-pinctrl.yaml         | 64 +++++++++----------
+ 1 file changed, 32 insertions(+), 32 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
-index 646fabdf81f7..4afe20bac87c 100644
+index 4afe20bac87c..b98eeba2c530 100644
 --- a/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
 +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
-@@ -61,7 +61,6 @@ patternProperties:
-     description:
-       Pinctrl node's client devices use subnodes for desired pin configuration.
-       Client device subnodes use below standard properties.
--    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
+@@ -126,37 +126,37 @@ patternProperties:
  
-     properties:
-       pins:
-@@ -112,7 +111,16 @@ patternProperties:
- 
-     required:
-       - pins
--      - function
+ examples:
+   - |
+-        #include <dt-bindings/interrupt-controller/arm-gic.h>
+-        pinctrl@3100000 {
+-                compatible = "qcom,sc8180x-tlmm";
+-                reg = <0x03100000 0x300000>,
+-                      <0x03500000 0x700000>,
+-                      <0x03d00000 0x300000>;
+-                reg-names = "west", "east", "south";
+-                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+-                gpio-controller;
+-                #gpio-cells = <2>;
+-                interrupt-controller;
+-                #interrupt-cells = <2>;
+-                gpio-ranges = <&tlmm 0 0 190>;
+-
+-                gpio-wo-subnode-state {
+-                        pins = "gpio1";
+-                        function = "gpio";
+-                };
+-
+-                uart-w-subnodes-state {
+-                        rx-pins {
+-                                pins = "gpio4";
+-                                function = "qup6";
+-                                bias-pull-up;
+-                        };
+-
+-                        tx-pins {
+-                                pins = "gpio5";
+-                                function = "qup6";
+-                                bias-disable;
+-                        };
+-                };
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pinctrl@3100000 {
++        compatible = "qcom,sc8180x-tlmm";
++        reg = <0x03100000 0x300000>,
++              <0x03500000 0x700000>,
++              <0x03d00000 0x300000>;
++        reg-names = "west", "east", "south";
++        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++        gpio-controller;
++        #gpio-cells = <2>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++        gpio-ranges = <&tlmm 0 0 190>;
 +
-+    allOf:
-+      - $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-+      - if:
-+          properties:
-+            pins:
-+              pattern: "^gpio([0-9]|[1-9][0-9]|1[0-8][0-9])$"
-+        then:
-+          required:
-+            - function
- 
-     additionalProperties: false
- 
++        gpio-wo-subnode-state {
++            pins = "gpio1";
++            function = "gpio";
+         };
++
++        uart-w-subnodes-state {
++            rx-pins {
++                pins = "gpio4";
++                function = "qup6";
++                bias-pull-up;
++            };
++
++            tx-pins {
++                pins = "gpio5";
++                function = "qup6";
++                bias-disable;
++            };
++        };
++    };
+ ...
 -- 
 2.34.1
 
