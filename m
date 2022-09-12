@@ -2,67 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 589C75B587B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD9D75B58A4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:44:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbiILKdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 06:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60478 "EHLO
+        id S229781AbiILKo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 06:44:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiILKc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:32:59 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A0496435
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:32:59 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id t5so12013401edc.11
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:32:58 -0700 (PDT)
+        with ESMTP id S229533AbiILKoZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:44:25 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7E5124F19
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:44:23 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id k10so14129411lfm.4
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 03:44:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=pa6W1YODU5uWUjf7zUhRw95uZp1QNrawRSVyyiW7Vl0=;
-        b=RbzFH4Z4USAJQAYUrNqiIlm2Ou3paeEKXx7EA6MqxzRIeMg5OYjW7hnVzCRokjI8Uh
-         UlSugb4mjNXVJA3f+6Stg4HhjA1g6w4rzssqcy+trVOXpReT/SWY/DhL00wgMFauBPY4
-         +9KqJAYCJwyhtrWvNCzGEsoSLnpJdz1zmnzBA=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=F5GFWlX5p+iK1uMljz0gi7oHJBPZquU122BFTAsILYU=;
+        b=I7I0XbaD3zB7PPPgbSX9itHG4KiBz5coBxZLBl3oHU2imYvQhzYzeLkusK+K8RR2uJ
+         mQ2gcpMbYoNuZkCYLhJuT2nqzpwToLAxHOIL+N7PlwUpoKxU+oCwVmYwmvUUzvs3QKsr
+         9j/6XZHnm+t5AIJgfwQa0wRYc6razGcbtC+HXOOqfr8cHphk9b2XicS7aUsPnGOxHjHB
+         sXO4a0mWXRlSmZStxHBfeHkvx92UTqQFKOHdrEPROXQtDr/C5d5KTXIMB5hIYLyjESsB
+         +p+aWcwSQe0MYOlwNSiDiYwoYATAHhm/AYkc0dBH0rC6Lu2Ie20+a33SlQkRhKvTpbfd
+         KX5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=pa6W1YODU5uWUjf7zUhRw95uZp1QNrawRSVyyiW7Vl0=;
-        b=NLSY5eoXtwFySF1rbjNdCRGxwb35ll+kuFkxlWO31fghXNNAWWht283g/uOda0b5kq
-         ohtvm/MgBBTDqYh+q05uAfO5/W/KmqtKFklIAc5z+wwHzUocJ4uwfKjyNERSqx+JkTmu
-         UggPRDCg7Uhh5LGiXYOLp4D+FQfprnFAp/THEbHP/tx92kl4abUTGyop8odlvzvPHFFQ
-         6dAQBCPCCqmOfGAuhTthik0ldhsedevHwivoBZcjy8gOZlhIz4BYEj+ZXMxEhG6pHt4F
-         wbhYHA7Ns3sfziMtI2ms2VLFnMzw1oqlWXW0wVdVranU2/7DxzuJ+eFLN6Fu9wFgri3J
-         bJXw==
-X-Gm-Message-State: ACgBeo3a4ZgpoeAuZcWxnBj567BktuqFaY6uSMnyRGHokdy7DAbutnOq
-        Iag4415zcLBCc6vjOA0AU1l/jvqK0COwUTLKlWP3fg==
-X-Google-Smtp-Source: AA6agR4M8kUfW+1+K71sRAnTB0B7zC1boeAgnNmeFDTIx6IxH5frVa+UGb0pWsh9PfgPzIod9Cpy0WGwITz9nMf2SRs=
-X-Received: by 2002:a05:6402:890:b0:44e:bb54:7f54 with SMTP id
- e16-20020a056402089000b0044ebb547f54mr22112611edy.307.1662978777293; Mon, 12
- Sep 2022 03:32:57 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=F5GFWlX5p+iK1uMljz0gi7oHJBPZquU122BFTAsILYU=;
+        b=kBYHa+lawi9K69cCnM5hXAx0QVySSEH8tCGnb1p2tWKwiX0f6n/tiNZUu0HWSYQEYO
+         y377BW5rrtDLLdkWxY37WhjADpv47KSnJadtIdo64E7aq33UAeZjinOmdaAlzqcr3q/1
+         fjHb+jN0W3DXY8a5cJDvs6fO2tTJJmDF0Sbh9TKUF+1RoDXtm66m+gTxr0JyIQUbDlM+
+         ADrxQoTYUPmCmZbrakDRvC68PXiUhNKvcq+hSqtImKways+Gizq61vgnHYB+X24/+kuS
+         HRqoe1NdbWSQQ/PHrW0+q/mTltdyc11gkS7bgyMnB2RgqYBuyUcbhj6LX6FpaOO6K2XO
+         i++w==
+X-Gm-Message-State: ACgBeo1Dpjy+B1NHtCu06NK8yrBA/Dx+lUfhaf3R0WTg5SVAKR++kviS
+        UDPwwHzW0QSkNAaCL/6ipStAYg==
+X-Google-Smtp-Source: AA6agR7/0d9DiYev9RCBwIhVGhNfzBFslqnPc8Ij7QZ/jYKPApzGCBOfvtR+jDenXc5T/wt3zdzt3w==
+X-Received: by 2002:a05:6512:b15:b0:492:ebc3:80d9 with SMTP id w21-20020a0565120b1500b00492ebc380d9mr9721467lfu.77.1662979462003;
+        Mon, 12 Sep 2022 03:44:22 -0700 (PDT)
+Received: from [10.129.96.84] ([109.232.243.34])
+        by smtp.gmail.com with ESMTPSA id y18-20020a2e7d12000000b00268d84f8db1sm1019944ljc.92.2022.09.12.03.44.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Sep 2022 03:44:21 -0700 (PDT)
+Message-ID: <aa6d8c7d-1723-7674-2142-a5aafe30e570@linaro.org>
+Date:   Mon, 12 Sep 2022 12:44:17 +0200
 MIME-Version: 1.0
-References: <20220908171153.670762-1-nfraprado@collabora.com>
-In-Reply-To: <20220908171153.670762-1-nfraprado@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 12 Sep 2022 18:32:46 +0800
-Message-ID: <CAGXv+5ERm1kXf+YgeDMOgkEY77Fx1o8FK=anWn22g7SAGXSfhw@mail.gmail.com>
-Subject: Re: [PATCH 0/3] arm64: dts: mediatek: asurada: Enable internal display
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 06/13] dt-bindings: serial: atmel,at91-usart: Add
+ SAM9260 compatibles to SAM9x60
+Content-Language: en-US
+To:     Sergiu.Moga@microchip.com, robh@kernel.org
+Cc:     lee@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        Claudiu.Beznea@microchip.com, richard.genoud@gmail.com,
+        radu_nicolae.pirea@upb.ro, gregkh@linuxfoundation.org,
+        broonie@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        jirislaby@kernel.org, admin@hifiphile.com,
+        Kavyasree.Kotagiri@microchip.com, Tudor.Ambarus@microchip.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20220906135511.144725-1-sergiu.moga@microchip.com>
+ <20220906135511.144725-7-sergiu.moga@microchip.com>
+ <9aa29d74-b1fc-d00e-dee4-57f277a366ab@linaro.org>
+ <c30cc112-0fb8-01e6-1bb8-eed7db0b9049@microchip.com>
+ <20220909013644.GA3731620-robh@kernel.org>
+ <b6b044f6-de87-e85b-0b51-e957b90622ab@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b6b044f6-de87-e85b-0b51-e957b90622ab@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,19 +88,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 9, 2022 at 1:11 AM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
->
-> This series adds and enables all components required to have a working
-> internal display on the Asurada platform.
->
->
-> N=C3=ADcolas F. R. A. Prado (3):
->   arm64: dts: mediatek: asurada: Add display regulators
->   arm64: dts: mediatek: asurada: Add display backlight
->   arm64: dts: mediatek: asurada: Enable internal display
+On 12/09/2022 09:45, Sergiu.Moga@microchip.com wrote:
+> On 09.09.2022 04:36, Rob Herring wrote:
+>> On Thu, Sep 08, 2022 at 03:15:44PM +0000, Sergiu.Moga@microchip.com wrote:
+>>> On 08.09.2022 15:30, Krzysztof Kozlowski wrote:
+>>>> On 06/09/2022 15:55, Sergiu Moga wrote:
+>>>>> Add the AT91SAM9260 serial compatibles to the list of SAM9X60 compatibles
+>>>>> in order to highlight the incremental characteristics of the SAM9X60
+>>>>> serial IP.
+>>>>>
+>>>>> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+>>>>> ---
+>>>>>
+>>>>>
+>>>>> v1 -> v2:
+>>>>> - Nothing, this patch was not here before
+>>>>>
+>>>>>
+>>>>>    Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml | 2 ++
+>>>>>    1 file changed, 2 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+>>>>> index b25535b7a4d2..4d80006963c7 100644
+>>>>> --- a/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+>>>>> @@ -26,6 +26,8 @@ properties:
+>>>>>          - items:
+>>>>>              - const: microchip,sam9x60-dbgu
+>>>>>              - const: microchip,sam9x60-usart
+>>>>> +          - const: atmel,at91sam9260-dbgu
+>>>>> +          - const: atmel,at91sam9260-usart
+>>>>
+>>>> This is weird. You say in commit msg to "highlight the incremental
+>>>> characteristics" but you basically change here existing compatibles.
+>>>
+>>>
+>>> Does "show that they are incremental IP's" sound better then?
+>>>
+>>>
+>>>> This is not enum, but a list.
+>>>>
+>>>
+>>>
+>>> What do you mean by this? I know it is a list, I specified so in the
+>>> commit message.
+>>
+>> You are saying that compatible must be exactly the 4 strings above in
+>> the order listed. You need another entry with another 'items' list.
+>>
+>> Rob
+> 
+> 
+> That is what was intended though: a list of the 4 compatibles in that 
+> exact order. The 4th patch of this series also ensures that all 9x60 
+> nodes have that exact list of 4 compatibles.
 
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+The commit msg suggest otherwise - two options, because it is
+incremental... But this one is not really incremental - you require this
+one, only one, configuration. It's in general fine, but commit msg
+should reflect what you are really intend to do here and why you are
+doing it.
 
-Tested _remotely_ on Hayato, with EDID read back correctly.
+
+Best regards,
+Krzysztof
