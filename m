@@ -2,125 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70B95B58EC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 13:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 400BF5B58DB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 12:57:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229880AbiILLA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 07:00:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42994 "EHLO
+        id S229966AbiILK5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 06:57:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229861AbiILLA5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 07:00:57 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 804EA21E04
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 04:00:56 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id by6so10048102ljb.11
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 04:00:56 -0700 (PDT)
+        with ESMTP id S229931AbiILK5M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 06:57:12 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C43399E6;
+        Mon, 12 Sep 2022 03:57:06 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id a8so14123824lff.13;
+        Mon, 12 Sep 2022 03:57:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=VNRLB5dMr8KxcMuJauPpZNtGEDYIcFeLhKYuKfQ2WK4=;
-        b=Wr271pDa4rYLOMj1WYVJWc+MhXbFaiyoYNkavxMyqSK0firTu7PnHjPX39Rgx7kg6O
-         stiKUajPEgJzCGa8pAk3WO8Qc91CsGQGrOY8LJ9j52EVVd1MgNPN3WaVUuEJnJN11u4b
-         Qpg5WIoDM7DlRIOn4EJIs4ZEtbl9xc8upENfntB+G01YNTtdBEv/YwlO25SJuNNc/nL6
-         a3+S9EEJWQBLPyv5sAJ4LR/Wj54TYjrFhtt0kPua0B2frGbW9lGlwZ1V6Oqz7i7sx03d
-         yGtQxThRzGLvFRlb8Np9yms1PBoIZPkKtHK6nE3JHQPr1W9wN+R147UYGbkNUD7oxVWm
-         S0PA==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date;
+        bh=SfQ57WCd2filUQKaiahUm3tHK33Vpzs3bBhJ7Iu9Mas=;
+        b=pahlf/KkG2TqqRIkSUFAssCyCUSn32bhXczkTl98v792cAqfsrDghieOW+wV1nfaDC
+         PKbvX7tCxIfIy4qoFCrQKICFzHz82bTwOFc+/N2DYHw5mpKNR9H2qrZMUIdroCG9TTkS
+         mWwtgpxkz14pIUW8kCFCUTrhjXWFHJM7K0mVDkr5zUOvDZ15odhYX94yTH6jSnJ4UyG/
+         T6cMrn+2bXu4RcMG/mogtCTZTS7+UcWOcx8AhFkbQjkBlpp3xpmuprq4KyzmEmnb9Fkb
+         2IQGeQsT7KJ0JkKewO3c8wptoiEwy5S4bxOsL6aaasRcdajYevsur5NXAYgkcmVr+5DA
+         x1vA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=VNRLB5dMr8KxcMuJauPpZNtGEDYIcFeLhKYuKfQ2WK4=;
-        b=GodV/5R1PAMy/GCVilsYid9wjSYaBqK5iGZ6pSqJMjkcXshFJD0zy/Y2Ynp1eIxGUy
-         AwXz3ZDgaNluPnAWe8MSEPexw5sI6xqUn+MTep+QsICBBMB984Yae96zFLKM+vRHsM3u
-         4P760RhLzjf3h/0+sJ9qg53Pkj+noJj7yU7sBX8UjixeRT1cL99h9tfGLbxe/PgPxIDj
-         en//TGoMzks7NeAw5rby/6ssSFGCxvk82zTTCVP1Cu6VA0No0Z89plsOCdOXNmh5XydU
-         tkEtmfUm95shGuQNhy/JT/GpSnz9BKinau8GBTcUVKINj4K5LLdszUClQQmvyYOVtrk+
-         c0QQ==
-X-Gm-Message-State: ACgBeo1o1V89LumJOf5Y7iEXwFEqQMp9DY0UlZOh95SeIEiTVTWRlZaU
-        Iatt8xbDs5dTINFNSDgm8RhCDQ==
-X-Google-Smtp-Source: AA6agR5qUmM2ZmB3u+ceQgLmGH1b3qt0oNh2whK2G3kPo3FfMoZ57icsO07DBG7SNBSMhG5XpY/UNg==
-X-Received: by 2002:a2e:9801:0:b0:25e:45ed:edc5 with SMTP id a1-20020a2e9801000000b0025e45ededc5mr7229723ljj.467.1662980454897;
-        Mon, 12 Sep 2022 04:00:54 -0700 (PDT)
-Received: from [10.129.96.84] ([109.232.243.34])
-        by smtp.gmail.com with ESMTPSA id v6-20020a197406000000b004979df1c1fasm1010823lfe.61.2022.09.12.04.00.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Sep 2022 04:00:54 -0700 (PDT)
-Message-ID: <15b65ac4-6656-dec5-80fd-e3c29b226a25@linaro.org>
-Date:   Mon, 12 Sep 2022 13:00:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 6/7] arm64: dts: allwinner: h616: OrangePi Zero 2: Add USB
- nodes
-Content-Language: en-US
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        bh=SfQ57WCd2filUQKaiahUm3tHK33Vpzs3bBhJ7Iu9Mas=;
+        b=Wo911hPFBzByuWgTHq6q/BLIIQQ8EAICGKgtNj9Gg5bFF8bts/2s0uxyw4meVoqgLP
+         C6OX1Y7q/lJ7tJpmK+HGa50WS1n9za7bmDN9XuhjjyMm8l2cnsFbVdV0Ri8QAcmkNIdr
+         bGedFqLDAo6iMrnCEGFajEQbLcnBkJW9+2d2LReXzQuXR5H1qmGxUv8evG5YbbdVlXf4
+         PqTLeXqsl1QFitHitCYHtaqnpEdRTxKshLW1GaqNx9GWBnGp7VqLl3GqlweXsejKs4Vj
+         RvY08mwihTfAXZi6UgEafmS7jsgkmqRZmEL1DYBu8+++TYqcHgxUvs1/YpBNFNv2Fik4
+         DJZQ==
+X-Gm-Message-State: ACgBeo3Rgtk+WKkBFkOklO1Dl+updUpHbaKJyWGzVfI8q2W3H2qn6vw3
+        z0r76Q0NLfGiGKGj6wKrg9I=
+X-Google-Smtp-Source: AA6agR7ZSaCF1JNh7jJYFNvT/rUQTL1Ugzt7WYhpjAh72ciQd3+jLN/b1KQ83Q4KpArjnx9LVzpgEA==
+X-Received: by 2002:a05:6512:3ca8:b0:499:2f89:cb42 with SMTP id h40-20020a0565123ca800b004992f89cb42mr4210284lfv.227.1662980224856;
+        Mon, 12 Sep 2022 03:57:04 -0700 (PDT)
+Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
+        by smtp.gmail.com with ESMTPSA id d19-20020a2e3313000000b0025d5eb5dde7sm427198ljc.104.2022.09.12.03.57.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Sep 2022 03:57:04 -0700 (PDT)
+Date:   Mon, 12 Sep 2022 13:02:19 +0200
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Kent Gustavsson <kent@minoris.se>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, Karl Kurbjun <karl.os@veroson.com>,
-        Icenowy Zheng <icenowy@aosc.io>
-References: <20220911235945.6635-1-andre.przywara@arm.com>
- <20220911235945.6635-7-andre.przywara@arm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220911235945.6635-7-andre.przywara@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 4/9] iio: adc: mcp3911: use resource-managed version
+ of iio_device_register
+Message-ID: <Yx8Ru3x1IgmUYzUA@gmail.com>
+References: <20220815061625.35568-1-marcus.folkesson@gmail.com>
+ <20220815061625.35568-5-marcus.folkesson@gmail.com>
+ <20220820134150.2b45339c@jic23-huawei>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220820134150.2b45339c@jic23-huawei>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2022 01:59, Andre Przywara wrote:
-> The OrangePi Zero 2 has one USB-A host port, VBUS is provided by
-> a GPIO controlled regulator.
-> The USB-C port is meant to power the board, but is also connected to
-> the USB 0 port, which we configure as an MUSB peripheral.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../allwinner/sun50i-h616-orangepi-zero2.dts  | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> index 02893f3ac99d..3197dc43397b 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-> @@ -49,8 +49,25 @@ reg_vcc5v: vcc5v {
->  		regulator-max-microvolt = <5000000>;
->  		regulator-always-on;
->  	};
-> +
-> +	reg_usb1_vbus: usb1-vbus {
+Hi,
 
-Generic node names, so at least generic prefix/suffix (regulator-usb1-vbus)
+On Sat, Aug 20, 2022 at 01:41:50PM +0100, Jonathan Cameron wrote:
+> On Mon, 15 Aug 2022 08:16:20 +0200
+> Marcus Folkesson <marcus.folkesson@gmail.com> wrote:
+>=20
+> > Keep using managed resources as much as possible.
+> >=20
+> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > ---
+> >  drivers/iio/adc/mcp3911.c | 53 ++++++++++++---------------------------
+> >  1 file changed, 16 insertions(+), 37 deletions(-)
+> >=20
+> > diff --git a/drivers/iio/adc/mcp3911.c b/drivers/iio/adc/mcp3911.c
+> > index 890af7dca62d..7e2efe702e57 100644
+> > --- a/drivers/iio/adc/mcp3911.c
+> > +++ b/drivers/iio/adc/mcp3911.c
+> > @@ -258,6 +258,13 @@ static int mcp3911_config(struct mcp3911 *adc)
+> >  	return  mcp3911_write(adc, MCP3911_REG_CONFIG, configreg, 2);
+> >  }
+> > =20
+> > +static void mcp3911_cleanup_regulator(void *_adc)
+>=20
+> Missed this on previous versions, but why not pass
+> the regulator pointer in as the parameter for the callback?
+>=20
+> static void mcp391_cleanup_regulator(void *reg)
+> {
+> 	regulator_disable(adc->vref);
+> }
+>=20
+> Note this can't use the new devm_regulator_get_enable()
+> because we need access to the regulator within the driver.
+>=20
+> I can tidy this up whilst applying (or given it's really minor I might
+> not bother :)
+>=20
+> Note we are stalled at the moment with this series on getting the
+> fixes upstream.  I'll probably send that pull request shortly.
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb1-vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&reg_vcc5v>;
-> +		enable-active-high;
-> +		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>; /* PC16 */
-> +		status = "okay";
+Just a friendly reminder to not forget to pick up this series.
 
-No need for status.
+Thanks,
 
-
-Best regards,
-Krzysztof
+/Marcus
