@@ -2,488 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B610B5B61FC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 22:02:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8D535B6221
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 22:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiILUCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 16:02:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56992 "EHLO
+        id S229722AbiILUZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 16:25:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbiILUCn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 16:02:43 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6131E476D8
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 13:02:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1663012960;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=cQ57WPay1FOoOwhk7UbfhxpJpqOtmdGmCfusLiBuMXQ=;
-        b=Tn8qoglMET/WNbLHIcJaANzZWpALlO4uim2F4ppmU9GDEvewp9gvWLCKUPoAjFnIylU9UT
-        etMezCPz8mcDa/u6thLI36KLZzrx8UF/KVqdLBsZorJjYfwab/ShDv0VFo90FVaWck/u2Q
-        4o9gpasg6KSn7HZt0Q8UrpHaRAXgZ6U=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-645-ejhyIUY3M1OUy21Sbwnd8Q-1; Mon, 12 Sep 2022 16:02:39 -0400
-X-MC-Unique: ejhyIUY3M1OUy21Sbwnd8Q-1
-Received: by mail-qk1-f197.google.com with SMTP id bm11-20020a05620a198b00b006bb2388ef0cso8251025qkb.5
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 13:02:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=cQ57WPay1FOoOwhk7UbfhxpJpqOtmdGmCfusLiBuMXQ=;
-        b=I5m8ppfU2AmZwPPB19IXfvG0iMJmy83VyT4QxxaWAJudwKzxsQQeZBXJ8sBSwoX4dl
-         T2Vnh1z30iEp+NLydegfpY80WEwosMcQMAWkZu0YSjioxIyfQY2B278SBdT2Bjk3lnR0
-         YPht+YkRegupc2lIyFG6LHoMy1dkl9lhUTajr7Ipd23V061jXHgHw7YfSVyXoKMNOstw
-         C3GZCc6HJlxBMCzlg3Ceusm2FT4/uVzIZ/utqPB5r/Lcp7L4GO7abrA1bm4OAQwL3GtU
-         HEZlUQ+p59VEcWCLETLr2lmy1/fXmNe9LpjyjC/ACMX79Xw74+rW0JhDkB5heTZ5Hmp9
-         cvSg==
-X-Gm-Message-State: ACgBeo3pO+d64WzdnP3ctJ+LIp7ge3VGEaNS+J+mUsuH2IVUku5XrOsg
-        Vp39uOJJBUHixjX55IbdKwXz+E5WRSctphg85/EWtxw5kCMEHGKX11mpV+vEOzF0hIOWghpV2W2
-        78odKWQzQEegB3S2Ycty6
-X-Received: by 2002:ac8:7dd6:0:b0:35b:a061:d5ae with SMTP id c22-20020ac87dd6000000b0035ba061d5aemr14777287qte.661.1663012958701;
-        Mon, 12 Sep 2022 13:02:38 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR7Hwdid+qpP1Y75W/qxorPyJ+820KaQs6HJTIOJvydsto2iRE/Y0aRqpZgIYAQrZpG0pMAfyQ==
-X-Received: by 2002:ac8:7dd6:0:b0:35b:a061:d5ae with SMTP id c22-20020ac87dd6000000b0035ba061d5aemr14777226qte.661.1663012958174;
-        Mon, 12 Sep 2022 13:02:38 -0700 (PDT)
-Received: from [192.168.13.171] (93-36-115-26.ip60.fastwebnet.it. [93.36.115.26])
-        by smtp.gmail.com with ESMTPSA id cj5-20020a05622a258500b00344883d3ef8sm7195716qtb.84.2022.09.12.13.02.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Sep 2022 13:02:37 -0700 (PDT)
-Message-ID: <6710ea41-ab2c-f73d-6afa-469a56e00765@redhat.com>
-Date:   Mon, 12 Sep 2022 22:02:23 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Subject: Re: [PATCH 4/4] fpga: zynqmp: Add afi config driver
-Content-Language: en-US
-To:     Xu Yilun <yilun.xu@intel.com>
-Cc:     "Manne, Nava kishore" <nava.kishore.manne@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "mdf@kernel.org" <mdf@kernel.org>,
-        "hao.wu@intel.com" <hao.wu@intel.com>,
-        "trix@redhat.com" <trix@redhat.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "ronak.jain@xilinx.com" <ronak.jain@xilinx.com>,
-        "rajan.vaja@xilinx.com" <rajan.vaja@xilinx.com>,
-        "abhyuday.godhasara@xilinx.com" <abhyuday.godhasara@xilinx.com>,
-        "piyush.mehta@xilinx.com" <piyush.mehta@xilinx.com>,
-        "lakshmi.sai.krishna.potthuri@xilinx.com" 
-        <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        "harsha.harsha@xilinx.com" <harsha.harsha@xilinx.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "nava.manne@xilinx.com" <nava.manne@xilinx.com>,
+        with ESMTP id S229765AbiILUZp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 16:25:45 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2043.outbound.protection.outlook.com [40.107.20.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74CC3491D2;
+        Mon, 12 Sep 2022 13:25:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bZUi7BEf5vAevSZ/aqIN/ehoj3qCKLeij/eSuWaB30cjXfRlzMdPOrhPq+NrupvV1I/vZ4RZBbgpWI4pIIGGr5+23h8e59STL6G54jD5iN0E4FJKCieu/mYQaT0ODDd1Rvb+78x1zvhUes0yGisPOnr8F0Yqztd3sAq6I8nZOtUbRRqG25rbnlSw3BYTivUb1mAAtEPK8uFLppKWCPWm0sV4cRKDz1ysJnMf6gTO0vo4AS+OAIAEgxqUIlZolPmKqGbhP7f/RD/0mqGHZBb1aWrTAaUSEHVdax7MPMtndEQMreaYPdk9P9ZrNI6/RBaoymbkMw1mCLYB5sJF0g3HbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rtyJfyAa2vXdfaRRJ/2gqPN92w/EJ7hH+5vPoIksXPk=;
+ b=CY04wB6nAv4Rf5gm1nFmx7IGx8hlgpJtGRVBzG14uNsyRj0yOSdQvBQwG0J/tR+Yg7QWXGZRTjjAT+4GDgRVUdzBz0kV/o1yE0yWuf39u9CTm89YJleRUX79VhEUN1D3diWU95r2tROQDzMVJqFaVCtmF42Kbwhl7BIb1WV9nM1UT6pzGPfvz8ew8wS48+gD7A3Fr9PsGh8JBjAPV5zmIIAVAMffl1qeKAXXcX05Okro6E3zJpMHoneqIyUDEU4ABzGwbL/1lnkwWcGH0u9zJQUnJc6Cjprico02VgqXX9tbByZGE2G3Sb9SLbJcc0qg37hKSxNW3RyDx00G9P+x5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rtyJfyAa2vXdfaRRJ/2gqPN92w/EJ7hH+5vPoIksXPk=;
+ b=Bv7KVuWWzO0gCUTBChgMOf1L/veUsprFVj+OlxolSHJoFN3aQnxO3dWICAS5Vb54gwNowiXNd6vUlGrv4UKu2jJTBGY4IUCtVU9VO+4JVj2D+9d0Q9P0mFLQdNAN3kv7gl0G4PWSkBGWvzRNBvGVEUBCT3rILC/yFvFeFRTp4l8=
+Received: from AM0PR04MB6289.eurprd04.prod.outlook.com (2603:10a6:208:145::23)
+ by AS8PR04MB8916.eurprd04.prod.outlook.com (2603:10a6:20b:42f::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Mon, 12 Sep
+ 2022 20:25:40 +0000
+Received: from AM0PR04MB6289.eurprd04.prod.outlook.com
+ ([fe80::7d0b:b02:69b9:a3b4]) by AM0PR04MB6289.eurprd04.prod.outlook.com
+ ([fe80::7d0b:b02:69b9:a3b4%4]) with mapi id 15.20.5612.022; Mon, 12 Sep 2022
+ 20:25:40 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Olof Johansson <olof@lixom.net>
+CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>
-References: <20220824035542.706433-1-nava.kishore.manne@amd.com>
- <20220824035542.706433-5-nava.kishore.manne@amd.com>
- <YwoNdUPoSKKHhzxx@yilunxu-OptiPlex-7050>
- <DM6PR12MB39932285FD0EC72F1F04D8E8CD799@DM6PR12MB3993.namprd12.prod.outlook.com>
- <7b4b0dfd-ecf6-0b50-ee8e-82a2014c5e9e@redhat.com>
- <YxOScT3/m0RaEhyG@yilunxu-OptiPlex-7050>
-From:   Marco Pagani <marpagan@redhat.com>
-In-Reply-To: <YxOScT3/m0RaEhyG@yilunxu-OptiPlex-7050>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        "Z.Q. Hou" <zhiqiang.hou@nxp.com>
+Subject: RE: [PATCH v4 1/2] arm64: dts: lx2160a: update PCIe nodes to match
+ rev2 silicon
+Thread-Topic: [PATCH v4 1/2] arm64: dts: lx2160a: update PCIe nodes to match
+ rev2 silicon
+Thread-Index: AQHYsneOky2+HjmY4EWzmWjEy+MxQq3bhxCAgADehdA=
+Date:   Mon, 12 Sep 2022 20:25:39 +0000
+Message-ID: <AM0PR04MB6289B28243FCBA64CAD110B98F449@AM0PR04MB6289.eurprd04.prod.outlook.com>
+References: <20220817202538.21493-1-leoyang.li@nxp.com>
+ <20220817202538.21493-2-leoyang.li@nxp.com>
+ <CAOesGMhz8PYNG_bgMX-6gka77k1hJOZUv6xqJRqATaJ6mFbk6A@mail.gmail.com>
+In-Reply-To: <CAOesGMhz8PYNG_bgMX-6gka77k1hJOZUv6xqJRqATaJ6mFbk6A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM0PR04MB6289:EE_|AS8PR04MB8916:EE_
+x-ms-office365-filtering-correlation-id: 0286530a-c2f0-4905-35f1-08da94fcf5a0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: tORfKZPStf0MNEKZ7ke85fLDmY8ihtykRh4g5ehTH8u/7IjS9kgUnuAtvLO/4fA/BkCFjLOpIP8onH6LvTcJnlqddHPA8EyYiSL10E85ASOjH9EeT3zUrPiJmKAhWZyXwGyPzElizg5DnJ/jiTiSyRdO0Vv6IINgoi1n1vE3LGgtT9qrlN5IKa/ad3dwLU/UiUwMkhlNRji9R34EHOUSiQO/gkrFW/BOh62bO2LAhjTa0fLVFrqksu5oseYcIN/PAtzxI1L456K5vouI6U+CRGzl7HDIuef0qLo1XuPLY33GJtz+Z834bg6Sf+dqFPQE8HHYhvQbwPDXsifmOn0trEPiOZi00HcvV07DfdAEmTrB0lRaGBEbvcKTosdkdq1R/dlL6qtrMsv8ccrEPnFa6mSJwJVQ559zKZ57aSnNa2PtnhH4fkDjLKB8UE7afufaa1uSUbQCPmf/eakEnYiM/s+KFmkXWkbih2e0nEq+EFarwUS/3c2Cex0q4Uv9z2yrBYJ71CNsD0v6AVeNPlhlu668iKym5r7IckUn9wr2MOY9DTSUUd/h4SblZ0qpLTmiHbZiXoyz6J6+G4jY6r53IZnGyKVQdclQ6SRzR9YtzAcLqpckVNcvxp7+kjLbLv2+rDduHHqjMhBHImMrJi2BR6BcDiywV2GMDJGbH6r+ucJS/C0os1Ywq4MkWkrul9S1DVH/wASCKzl2fayNuQR8sHpcOSEu7YuI8pvThYHHE53GJqyBaNsiMF+6MjHRiyC9xAGJEoskRzbONztRQ5IdhA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6289.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(366004)(39860400002)(136003)(396003)(451199015)(83380400001)(55016003)(186003)(9686003)(52536014)(8676002)(6916009)(54906003)(5660300002)(4326008)(71200400001)(55236004)(86362001)(53546011)(6506007)(66476007)(7696005)(76116006)(66556008)(478600001)(38100700002)(15650500001)(33656002)(8936002)(41300700001)(122000001)(66946007)(64756008)(26005)(316002)(66446008)(2906002)(38070700005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RlEwNnkwcmRFeC90OWI0RXJGMWxsTlB0Rm9LTDFSZlJEZVBvNDBDUzkybDd5?=
+ =?utf-8?B?Vmc2MW9rQTY2dHAzVjNCbVBycVZ4VmdMdTlNTmp1WEhXb0FLeTJQUU9DeG04?=
+ =?utf-8?B?Q01YR3h6S1RETzhRWEhiZTdabWtrU2NTa1VCMTNiTE1tRTZuQnhuckNuNXR6?=
+ =?utf-8?B?YkNzcUNkWkU5bUlJWE9KdFFFMlh5SFpucTBLazRSQ2F5a0lSMVNJbzN6TVcr?=
+ =?utf-8?B?TFB4L1M5Z2wvT2hIQ2xWYThIamtoWnF0MC94Y055QkNtaWcrbk5WTk5OQnV1?=
+ =?utf-8?B?SlAybmhDaGpuVXZwc2ZpQklLMnJHTlRCdUxvVkoyZlk5cEYySFdzK3cwT1B5?=
+ =?utf-8?B?TVlFY1p1Mll4bWhvdDNFZXRRZGlaekdGMFlUWHJxdnVqM2taY1Q4MXJDaG5S?=
+ =?utf-8?B?L0JMcVZNTE1OeTZ5N2ZHMFFJd3E3MUlKViszdForRVYwVTFqTm5XSThwL3d1?=
+ =?utf-8?B?WTRhNWpka1hvTW80RVNmMEZLU1JnQ0syN0IxMnJ0Q01PRHNXNFQ5bElJT2h5?=
+ =?utf-8?B?ZkQrdHR3YStGQUdtdmMrT2lQeU04dUlVVWRiQnNWT1o4WDRWVldMUG5SNkhL?=
+ =?utf-8?B?Um9INkZxZEJUMUdKaWU5ZWtYNERiRGFBTzA5dWJCOFpiVkdzcFg1NUhMbU8v?=
+ =?utf-8?B?dm5HVGN6cFVObU9yblBEdzFQVE5Rd0d6Z3JhckJEM3Y1eWF3STltRUZDcTFL?=
+ =?utf-8?B?cVVneWpPSitsUTg1R2diN3JsWFNETldzdmQ5cDcrb3dxUkhkUXMvSmIxVlg5?=
+ =?utf-8?B?WENCYlhGZmFBRkJhYk5rK2FGZm13SGVxVVN6bG5SM1ZaaFVTZzVXYmk0WDJq?=
+ =?utf-8?B?cHFIb0Vrbkh3VHlzS1lBeC80TVVpNXhWdzVVTWIrRXN5OEZaVEpjRWpjVmcr?=
+ =?utf-8?B?cVZEZkp3M2Y4dUZxeTJtUVN3WDNuNEp1eGlPend1L2cxYzMvYlgzTTZ0QlNv?=
+ =?utf-8?B?UHhxc3FMbEYyQk9VMHk3MVlxbUFjbk92NDlLRmtMSjVobm80MmlTZEk5ZmJK?=
+ =?utf-8?B?MnZiaDRuNGtLZnRDNHh4K0VHNFh5ZXBVcFBJNEZiMUprL3BHdi81Wi9ZYkpm?=
+ =?utf-8?B?Z01FL0pUUC9ubllMYkxpdVhsUHNSSnJ6WktjalFtTm5paSs4Z2VxZ01scEdB?=
+ =?utf-8?B?MExwYUVZL3FRbkdvbDd0cVpVVDhSQkVJS0lpREJiQ0IzQzZrWFlMaVRhTjd1?=
+ =?utf-8?B?OW8zSS8wWEkyRGtYeUJrTDEzbzdVM3NrYkhvZnhjQ2ViMnNaUkZBU2lQYit4?=
+ =?utf-8?B?dXk3dHRMdW1iaWYrVHowUWhwS2YwRnBTbThXdm1FNVBnMWQwcUZIZEgycDgw?=
+ =?utf-8?B?L0ttVDJndHkwNmw5U3ZodGJlRFBocEhZdkhPWm52cVBqQmFhUW44TE9uZDJW?=
+ =?utf-8?B?S3B2SElTT1hOTkc2dzZwenRCcEsrbkxkSVV4NStTdndoekJNSTZneFZPcHZx?=
+ =?utf-8?B?dXJQRFJkYmF2SjV4R1NPOWowSzF3NUNvZ3pVRXJ3cCsrODl4UURzT1U1b1dB?=
+ =?utf-8?B?NldlbTFsTVQzSjMvanFaUUMwbXdXRy9neHNUeEMzcDdrNlk2d1lReGwxQzRE?=
+ =?utf-8?B?ajNmWWlDNTBwQlJVMmQ4M1hKK0hSKzVEd1krakdyOFIzS0paOVI0ay82aDZH?=
+ =?utf-8?B?a2xFUUtBQW9xdEx3dStlNERrczZlR0xkdk1QT29FQTFCVjlUcUVpa25RM1lo?=
+ =?utf-8?B?Ny9scnZRZ3NUZ2oyQ1k3bHh5VmJoOGpCZ0R0a2RhNTBkYm0rSzJqbnZRL2Nv?=
+ =?utf-8?B?Q2ZNRFY2TkQvcW0xS2N4eUg1ejhSeWNjaW5xUEdQVEZJejBIc28xMHQzWHhE?=
+ =?utf-8?B?SUpEV1VkNDZqSkl6MGpuRTRzM0Zqb3MwaGZleitmbEI2SVQwSVZSOEJJbS83?=
+ =?utf-8?B?WDE3WGR0SW9zakJDak8xN0paZG4vSkRVNSt5VnUzQjlhd3lPZklKMXRFU2NU?=
+ =?utf-8?B?KzZDdEh4MjZaTTRSeHF6T2Y2MEUva2dzYUZmRC9TQ1JHaUxwQVk4MEFIQVMy?=
+ =?utf-8?B?MUNLbHpCbW1LWkdpMnFNUGdHK21vYXB5L0paZks3Vy9OM2dYTmZSWHdyeHVC?=
+ =?utf-8?B?T0J6T1J0aFg0SjN1UjA3clVwb1EzaUdvdlJWUGd4eDVzM3FYTkd2WTY0RXZV?=
+ =?utf-8?Q?bQjnzitg1iO87/CoZMi7SEc/K?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6289.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0286530a-c2f0-4905-35f1-08da94fcf5a0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2022 20:25:39.9620
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /8RMyEOn1hL4eb87vp1ddDm+mp+sxbdX2zZtgFwiGPSrTd02knX6hHC0EBRoubAHzjbO+O9O4pcKVFzwOz0cqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8916
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-09-03 19:44, Xu Yilun wrote:
-> On 2022-09-01 at 11:53:29 +0200, Marco Pagani wrote:
->> Hi Nava,
->>
->> On 2022-08-30 11:19, Manne, Nava kishore wrote:
->>> Hi Yilun,
->>>
->>> 	Please find my response inline.
->>>
->>>> -----Original Message-----
->>>> From: Xu Yilun <yilun.xu@intel.com>
->>>> Sent: Saturday, August 27, 2022 5:56 PM
->>>> To: Manne, Nava kishore <nava.kishore.manne@amd.com>
->>>> Cc: git (AMD-Xilinx) <git@amd.com>; robh+dt@kernel.org;
->>>> krzysztof.kozlowski+dt@linaro.org; michal.simek@xilinx.com;
->>>> mdf@kernel.org; hao.wu@intel.com; trix@redhat.com;
->>>> p.zabel@pengutronix.de; gregkh@linuxfoundation.org;
->>>> ronak.jain@xilinx.com; rajan.vaja@xilinx.com;
->>>> abhyuday.godhasara@xilinx.com; piyush.mehta@xilinx.com;
->>>> lakshmi.sai.krishna.potthuri@xilinx.com; harsha.harsha@xilinx.com;
->>>> linus.walleij@linaro.org; nava.manne@xilinx.com;
->>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
->>>> kernel@vger.kernel.org; linux-fpga@vger.kernel.org
->>>> Subject: Re: [PATCH 4/4] fpga: zynqmp: Add afi config driver
->>>>
->>>> CAUTION: This message has originated from an External Source. Please use
->>>> proper judgment and caution when opening attachments, clicking links, or
->>>> responding to this email.
->>>>
->>>>
->>>> On 2022-08-24 at 09:25:42 +0530, Nava kishore Manne wrote:
->>>>> Add zynqmp AXI FIFO interface(AFI) config driver. This is useful for
->>>>> the configuration of the PS-PL interface on Zynq US+ MPSoC platform.
->>>>
->>>> Please help illustrate how to use the device for FPGA reprogramming, why it
->>>> should be implemented as an FPGA bridge.
->>>>
->>>> From the code I actually didn't see any operation that gates the fpga-region
->>>> from other part of the machine.
->>>>
->>>
->>> The Zynq UltraScale MPSoC family consists of a system-on-chip (SoC) style integrated processing system (PS)
->>> and a Programmable Logic (PL) unit, providing an extensible and flexible SoC solution on a single die. 
->>> Xilinx Zynq US+ MPSoC connect the PS to the programmable logic (PL) through the AXI port. 
->>> This AXI port helps to establish the data path between the PS and PL (Here AXI Interface act as a Gating between PS and PL)
->>> and this AXI port configuration vary from design to design.  In-order to establish the proper communication path between
->>> PS and PL (Full region),  the AXI port data path should be configured with proper values priories to load the full region.
->>>
->>> Will update the description in v2.
->>
->> Are you implementing your AFI driver as a Bridge because you want to
->> change the configuration of the AXI HP interfaces exported by the PS
->> every time you reconfigure the full fabric?
->>
->> I understand the need to change the configuration of the PS-PL
->> interface at each full reconfiguration to ensure that the parameters
->> of the AXI ports exported by the PS (like the widths of data read
->> and write channels) matches the configuration of the master AXI ports
->> exported by the PL design. However, it seems to me that performing this
->> configuration doesn't fit the role of the FPGA Bridge, whose sole
->> responsibility should be gating the Region's interface during
->> reconfiguration.
->>
->> I think this need could be addressed by adding a new component to the
->> FPGA subsystem called "FPGA Adapter". The Adapter will be an optional
->> component associated with a Region like a Bridge. It will be responsible
->> for changing the configuration of its Region's static interface
->> (or PS/HPS/DRAM interface for the full FPGA) to match the interface
->> exported by the specific reconfigurable module (or full static design).
-> 
-> I saw the Documentation/driver_api/interconnect.rst, but didn't look deep
-> into it. For this AFI case, it sets the bus width, is it OK to use it?
-> 
-> Thanks,
-> Yilun
-
-Thanks for pointing me to the interconnect subsystem. I'm currently
-investigating if it's possible to implement a driver for the AFI
-(and possibly other PS interconnects with their QoS regulators)
-using the subsystem.
-Thanks,
-Marco
-
-> 
->> Moreover, besides bus-level properties like address/data width and
->> protocol conversion, the Adapter could also be used to configure
->> system-level properties. For instance, the designer may use it to change
->> the memory access policy for the specific reconfigurable module if it
->> uses bus mastering.
->>
->>>
->>>>>
->>>>> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
->>>>> ---
->>>>>  MAINTAINERS               |   6 ++
->>>>>  drivers/fpga/Kconfig      |  13 +++
->>>>>  drivers/fpga/Makefile     |   1 +
->>>>>  drivers/fpga/zynqmp-afi.c | 211
->>>>> ++++++++++++++++++++++++++++++++++++++
->>>>>  4 files changed, 231 insertions(+)
->>>>>  create mode 100644 drivers/fpga/zynqmp-afi.c
->>>>>
->>>>> diff --git a/MAINTAINERS b/MAINTAINERS index
->>>>> 20ffac651214..957e753e6406 100644
->>>>> --- a/MAINTAINERS
->>>>> +++ b/MAINTAINERS
->>>>> @@ -8032,6 +8032,12 @@ F:     Documentation/fpga/
->>>>>  F:   drivers/fpga/
->>>>>  F:   include/linux/fpga/
->>>>>
->>>>> +FPGA ZYNQMP PS-PL BRIDGE DRIVER
->>>>> +M:   Nava kishore Manne <nava.kishore.manne@amd.com>
->>>>> +S:   Supported
->>>>> +F:   Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
->>>>> +F:   drivers/fpga/zynqmp-afi.c
->>>>> +
->>>>>  INTEL MAX10 BMC SECURE UPDATES
->>>>>  M:   Russ Weight <russell.h.weight@intel.com>
->>>>>  L:   linux-fpga@vger.kernel.org
->>>>> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig index
->>>>> 6c416955da53..c08794d30fb5 100644
->>>>> --- a/drivers/fpga/Kconfig
->>>>> +++ b/drivers/fpga/Kconfig
->>>>> @@ -130,6 +130,19 @@ config XILINX_PR_DECOUPLER
->>>>>         reconfiguration, preventing the system deadlock that can
->>>>>         occur if AXI transactions are interrupted by DFX.
->>>>>
->>>>> +config ZYNQMP_AFI
->>>>> +     tristate "Xilinx ZYNQMP AFI support"
->>>>> +     depends on FPGA_BRIDGE
->>>>> +     help
->>>>> +       Say Y to enable drivers to handle the PS-PL clocks configurations
->>>>> +       and PS-PL Bus-width. Xilinx Zynq US+ MPSoC connect the PS to the
->>>>> +       programmable logic (PL) through the AXI port. This AXI port helps
->>>>> +       to establish the data path between the PS and PL.
->>>>> +       In-order to establish the proper communication path between PS and
->>>> PL,
->>>>> +       the AXI port data path should be configured with the proper Bus-
->>>> width
->>>>> +       values and it will also handles the PS-PL reset signals to reset the
->>>>> +       PL domain.
->>>>
->>>> Same concern, please describe its relationship to FPGA reprogramming.
->>>>
->>>
->>> Same as above.
->>> Will update the description in v2.
->>>
->>>>> +
->>>>>  config FPGA_REGION
->>>>>       tristate "FPGA Region"
->>>>>       depends on FPGA_BRIDGE
->>>>> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile index
->>>>> 42ae8b58abce..94cfe60972db 100644
->>>>> --- a/drivers/fpga/Makefile
->>>>> +++ b/drivers/fpga/Makefile
->>>>> @@ -31,6 +31,7 @@ obj-$(CONFIG_FPGA_BRIDGE)           += fpga-bridge.o
->>>>>  obj-$(CONFIG_SOCFPGA_FPGA_BRIDGE)    += altera-hps2fpga.o altera-
->>>> fpga2sdram.o
->>>>>  obj-$(CONFIG_ALTERA_FREEZE_BRIDGE)   += altera-freeze-bridge.o
->>>>>  obj-$(CONFIG_XILINX_PR_DECOUPLER)    += xilinx-pr-decoupler.o
->>>>> +obj-$(CONFIG_ZYNQMP_AFI)             += zynqmp-afi.o
->>>>>
->>>>>  # High Level Interfaces
->>>>>  obj-$(CONFIG_FPGA_REGION)            += fpga-region.o
->>>>> diff --git a/drivers/fpga/zynqmp-afi.c b/drivers/fpga/zynqmp-afi.c new
->>>>> file mode 100644 index 000000000000..bc975d304039
->>>>> --- /dev/null
->>>>> +++ b/drivers/fpga/zynqmp-afi.c
->>>>> @@ -0,0 +1,211 @@
->>>>> +// SPDX-License-Identifier: GPL-2.0
->>>>> +/*
->>>>> + * Copyright (C) 2022 Xilinx, Inc.
->>>>> + */
->>>>> +
->>>>> +#include <linux/err.h>
->>>>> +#include <linux/firmware/xlnx-zynqmp.h> #include
->>>>> +<linux/fpga/fpga-bridge.h> #include <linux/io.h> #include
->>>>> +<linux/module.h> #include <linux/of.h> #include
->>>>> +<linux/platform_device.h> #include <linux/reset.h> #include
->>>>> +<linux/slab.h>
->>>>> +
->>>>> +/* Registers and special values for doing register-based operations */
->>>>> +#define AFI_RDCHAN_CTRL_OFFSET       0x00
->>>>> +#define AFI_WRCHAN_CTRL_OFFSET       0x14
->>>>> +#define AFI_BUSWIDTH_MASK    BIT(0)
->>>>> +
->>>>> +/**
->>>>> + * struct zynqmp_afi - AFI register description.
->>>>> + * @dev: device that owns this.
->>>>> + * @of_node: Device Tree overlay.
->>>>> + * @resets: Pointer to the reset control for ps-pl resets.
->>>>> + */
->>>>> +struct zynqmp_afi {
->>>>> +     struct device *dev;
->>>>> +     struct device_node *of_node;
->>>>> +     struct reset_control *resets;
->>>>> +};
->>>>> +
->>>>> +/**
->>>>> + * struct zynqmp_afi_configreg - AFI configuration registers info.
->>>>> + * @reg:     Name of the AFI configuration register.
->>>>> + * @id:              Register index value.
->>>>> + */
->>>>> +struct zynqmp_afi_configreg {
->>>>> +     char *reg;
->>>>> +     u32 id;
->>>>> +};
->>>>> +
->>>>> +static struct zynqmp_afi_configreg afi_cfgreg[] = {
->>>>> +     {.reg = "xlnx,afi-fm0-rd-bus-width",    .id = AFIFM0_RDCTRL},
->>>>> +     {.reg = "xlnx,afi-fm1-rd-bus-width",    .id = AFIFM1_RDCTRL},
->>>>> +     {.reg = "xlnx,afi-fm2-rd-bus-width",    .id = AFIFM2_RDCTRL},
->>>>> +     {.reg = "xlnx,afi-fm3-rd-bus-width",    .id = AFIFM3_RDCTRL},
->>>>> +     {.reg = "xlnx,afi-fm4-rd-bus-width",    .id = AFIFM4_RDCTRL},
->>>>> +     {.reg = "xlnx,afi-fm5-rd-bus-width",    .id = AFIFM5_RDCTRL},
->>>>> +     {.reg = "xlnx,afi-fm6-rd-bus-width",    .id = AFIFM6_RDCTRL},
->>>>> +     {.reg = "xlnx,afi-fm0-wr-bus-width",    .id = AFIFM0_WRCTRL},
->>>>> +     {.reg = "xlnx,afi-fm1-wr-bus-width",    .id = AFIFM1_WRCTRL},
->>>>> +     {.reg = "xlnx,afi-fm2-wr-bus-width",    .id = AFIFM2_WRCTRL},
->>>>> +     {.reg = "xlnx,afi-fm3-wr-bus-width",    .id = AFIFM3_WRCTRL},
->>>>> +     {.reg = "xlnx,afi-fm4-wr-bus-width",    .id = AFIFM4_WRCTRL},
->>>>> +     {.reg = "xlnx,afi-fm5-wr-bus-width",    .id = AFIFM5_WRCTRL},
->>>>> +     {.reg = "xlnx,afi-fm6-wr-bus-width",    .id = AFIFM6_WRCTRL},
->>>>> +     {.reg = "xlnx,afi-fs-ss0-bus-width",    .id = AFIFS},
->>>>> +     {.reg = "xlnx,afi-fs-ss2-bus-width",    .id = AFIFS_SS2},
->>>>> +     {}
->>>>> +};
->>>>> +
->>>>> +static int zynqmp_afi_config(struct zynqmp_afi *afi_data) {
->>>>> +     struct zynqmp_afi_configreg *cfgptr = afi_cfgreg;
->>>>> +     struct device_node *np = afi_data->of_node;
->>>>> +     u32 afi_ss0_val, afi_ss1_val, bus_width;
->>>>> +     int ret;
->>>>> +
->>>>> +     while (cfgptr->reg) {
->>>>> +             ret = of_property_read_u32(np, cfgptr->reg, &bus_width);
->>>>> +             if (!ret) {
->>>>> +                     if (cfgptr->id == AFIFS_SS2) {
->>>>> +                             if (bus_width == 32)
->>>>> +                                     ret = zynqmp_pm_afi(AFIFS_SS2,
->>>>> +                                                         AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL);
->>>>> +                             else if (bus_width == 64)
->>>>> +                                     ret = zynqmp_pm_afi(AFIFS_SS2,
->>>>> +
->>>> AFIFS_SS0_SS2_BUS_WIDTH_64_CONFIG_VAL);
->>>>> +                             else if (bus_width == 128)
->>>>> +                                     ret = zynqmp_pm_afi(AFIFS_SS2,
->>>>> +
->>>> AFIFS_SS0_SS2_BUS_WIDTH_128_CONFIG_VAL);
->>>>> +                             else
->>>>> +                                     return -EINVAL;
->>>>> +                     } else if (cfgptr->id == AFIFS) {
->>>>> +                             if (bus_width == 32)
->>>>> +                                     afi_ss0_val = AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL;
->>>>> +                             else if (bus_width == 64)
->>>>> +                                     afi_ss0_val =
->>>> AFIFS_SS0_SS2_BUS_WIDTH_64_CONFIG_VAL;
->>>>> +                             else if (bus_width == 128)
->>>>> +                                     afi_ss0_val =
->>>> AFIFS_SS0_SS2_BUS_WIDTH_128_CONFIG_VAL;
->>>>> +                             else
->>>>> +                                     return -EINVAL;
->>>>> +
->>>>> +                             ret = of_property_read_u32(np, "xlnx,afi-fs-ss1-bus-
->>>> width",
->>>>> +                                                        &bus_width);
->>>>> +                             if (!ret) {
->>>>> +                                     if (bus_width == 32)
->>>>> +                                             afi_ss1_val =
->>>> AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL;
->>>>> +                                     else if (bus_width == 64)
->>>>> +                                             afi_ss1_val =
->>>> AFIFS_SS1_BUS_WIDTH_64_CONFIG_VAL;
->>>>> +                                     else if (bus_width == 128)
->>>>> +                                             afi_ss1_val =
->>>> AFIFS_SS1_BUS_WIDTH_128_CONFIG_VAL;
->>>>> +                                     else
->>>>> +                                             return -EINVAL;
->>>>> +
->>>>> +                                     ret = zynqmp_pm_afi(AFIFS, afi_ss1_val |
->>>> afi_ss0_val);
->>>>> +                             }
->>>>> +                     } else {
->>>>> +                             if (bus_width == 32)
->>>>> +                                     ret = zynqmp_pm_afi(cfgptr->id,
->>>>> +                                                         AFIFM_BUS_WIDTH_32_CONFIG_VAL);
->>>>> +                             else if (bus_width == 64)
->>>>> +                                     ret = zynqmp_pm_afi(cfgptr->id,
->>>>> +                                                         AFIFM_BUS_WIDTH_64_CONFIG_VAL);
->>>>> +                             else if (bus_width == 128)
->>>>> +                                     ret = zynqmp_pm_afi(cfgptr->id,
->>>>> +                                                         AFIFM_BUS_WIDTH_128_CONFIG_VAL);
->>>>> +                             else
->>>>> +                                     return -EINVAL;
->>>>> +                     }
->>>>> +             }
->>>>> +             cfgptr++;
->>>>> +     }
->>>>> +
->>>>> +     return 0;
->>>>> +}
->>>>> +
->>>>> +static int zynqmp_afi_enable_set(struct fpga_bridge *bridge, bool
->>>>> +enable) {
->>>>> +     struct device_node *overlay = bridge->info->overlay;
->>>>> +     struct zynqmp_afi *priv = bridge->priv;
->>>>> +     int ret = 0;
->>>>> +
->>>>> +     if (enable) {
->>>>> +             reset_control_reset(priv->resets);
->>>>> +             return 0;
->>>>> +     }
->>>>> +
->>>>> +     of_node_get(overlay);
->>>>> +     priv->of_node =
->>>>> +     of_find_node_with_property(overlay,
->>>>> +                                "xlnx,afi-fm0-rd-bus-width");
->>>>
->>>> I'm a little confused here. The fpga_image_info.overlay is for fpga-region, but
->>>> from your binding doc this property is for this afi device. You want to add
->>>> another overlay targeting afi dev node during reprograming?
->>>>
->>>
->>> Yes, it uses Overlay's(overlay targeting afi dev node). As I said above for design-to-design AFI configs
->>> relevant to the full region may change and these configs must be set prior to program the full region
->>> once this overlay integrated to the live tree the existing afi config values will be replace with the new one's
->>>
->>>>> +     if (priv->of_node)
->>>>> +             ret = zynqmp_afi_config(priv);
->>>>> +     of_node_put(priv->of_node);
->>>>> +
->>>>> +     return ret;
->>>>> +}
->>>>> +
->>>>> +static const struct fpga_bridge_ops zynqmp_afi_br_ops = {
->>>>> +     .enable_set = zynqmp_afi_enable_set, };
->>>>> +
->>>>> +static const struct of_device_id zynqmp_afi_of_match[] = {
->>>>> +     { .compatible =  "xlnx,zynqmp-afi-fpga" },
->>>>> +     { },
->>>>> +};
->>>>> +MODULE_DEVICE_TABLE(of, zynqmp_afi_of_match);
->>>>> +
->>>>> +static int zynqmp_afi_probe(struct platform_device *pdev) {
->>>>> +     struct device *dev = &pdev->dev;
->>>>> +     struct zynqmp_afi *priv;
->>>>> +     struct fpga_bridge *br;
->>>>> +
->>>>> +     priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
->>>>> +     if (!priv)
->>>>> +             return -ENOMEM;
->>>>> +
->>>>> +     priv->dev = dev;
->>>>> +
->>>>> +     priv->resets =
->>>> devm_reset_control_array_get_optional_exclusive(&pdev->dev);
->>>>> +     if (IS_ERR(priv->resets))
->>>>> +             return PTR_ERR(priv->resets);
->>>>> +
->>>>> +     br = fpga_bridge_register(dev, "Xilinx ZynqMP AFI",
->>>>> +                               &zynqmp_afi_br_ops, priv);
->>>>> +     if (IS_ERR(br)) {
->>>>> +             dev_err(dev, "unable to register Xilinx ZynqMP AFI");
->>>>
->>>> Need a "\n" at the end?
->>>>
->>>
->>> Will fix.
->>>
->>> Regards,
->>> Navakishore.
->>>
->>
->> Thanks,
->> Marco
->>
-> 
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogT2xvZiBKb2hhbnNzb24g
+PG9sb2ZAbGl4b20ubmV0Pg0KPiBTZW50OiBNb25kYXksIFNlcHRlbWJlciAxMiwgMjAyMiAyOjA1
+IEFNDQo+IFRvOiBMZW8gTGkgPGxlb3lhbmcubGlAbnhwLmNvbT4NCj4gQ2M6IHNoYXduZ3VvQGtl
+cm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOw0KPiByb2JoK2R0QGtlcm5lbC5v
+cmc7IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgtDQo+IGtlcm5l
+bEB2Z2VyLmtlcm5lbC5vcmc7IFouUS4gSG91IDx6aGlxaWFuZy5ob3VAbnhwLmNvbT4NCj4gU3Vi
+amVjdDogUmU6IFtQQVRDSCB2NCAxLzJdIGFybTY0OiBkdHM6IGx4MjE2MGE6IHVwZGF0ZSBQQ0ll
+IG5vZGVzIHRvIG1hdGNoDQo+IHJldjIgc2lsaWNvbg0KPiANCj4gSGksDQo+IA0KPiBPbiBXZWQs
+IEF1ZyAxNywgMjAyMiBhdCAxOjI2IFBNIExpIFlhbmcgPGxlb3lhbmcubGlAbnhwLmNvbT4gd3Jv
+dGU6DQo+ID4NCj4gPiBUaGUgb3JpZ2luYWwgZHRzIHdhcyBjcmVhdGVkIGJhc2VkIG9uIHRoZSBu
+b24tcHJvZHVjdGlvbiByZXYxIHNpbGljb24NCj4gPiB3aGljaCB3YXMgb25seSB1c2VkIGZvciBl
+dmFsdWF0aW9uLiAgVXBkYXRlIHRoZSBQQ0llIG5vZGVzIHRvIGFsaWduDQo+ID4gd2l0aCB0aGUg
+ZGlmZmVyZW50IGNvbnRyb2xsZXIgdXNlZCBpbiBwcm9kdWN0aW9uIHJldjIgc2lsaWNvbi4NCj4g
+DQo+IEhvdyBjYW4gSSBjb25maXJtIHdoYXQgdmVyc2lvbiBvZiBzaWxpY29uIEkgaGF2ZSBvbiBh
+IHN5c3RlbT8NCj4gDQo+IE15IG5vbi1ldmFsdWF0aW9uIGNvbW1lcmNpYWxseSBwdXJjaGFzZWQg
+c3lzdGVtIChIb25leUNvbWIgTFgySykgaGFzOg0KPiANCj4gIyBjYXQgL3N5cy9idXMvc29jL2Rl
+dmljZXMvc29jMC9yZXZpc2lvbg0KPiAxLjANCg0KVGhpcyBpcyBkaWZmZXJlbnQgZnJvbSB0aGUg
+aW5mb3JtYXRpb24gSSBnb3QuICBJZiB0aGVyZSBpcyBzdGlsbCBhY3RpdmUgUmV2MS4wIHN5c3Rl
+bSBpbiB1c2UsIEkgd291bGQgYWdyZWUgdGhhdCB3ZSBwcm9iYWJseSBuZWVkIHRvIGNyZWF0ZSBh
+IG5ldyBkZXZpY2UgdHJlZSBmb3IgdGhlIHJldjIgc2lsaWNvbi4gIFRoYW5rcyBmb3IgdGhlIGlu
+Zm9ybWF0aW9uLg0KDQo+IA0KPiBBbmQgSSB3aWxsIGJlIHJlYWxseSBncnVtcHkgaWYgdGhpcyBz
+eXN0ZW0gc3RvcHMgd29ya2luZy4gSXQncyB3aGF0IEkgdXNlIHRvIGRvDQo+IGFsbCBteSBtYWlu
+dGFpbmVyIHdvcmssIGV2ZW4gaWYgdGhhdCdzIGJlZW4gZmFpcmx5IGRvcm1hbnQgdGhpcyB5ZWFy
+Lg0KPiANCj4gSXQncyBvdmVyYWxsIHNldHRpbmcgb2ZmIHJlZCBmbGFncyB0byB1cGRhdGUgYW4g
+aW4tcGxhY2UgZGV2aWNldHJlZSB0byBhICJuZXcNCj4gcmV2aXNpb24iIG9mIHNpbGljb24gaW5z
+dGVhZCBvZiBhZGRpbmcgYSBuZXcgRFQgZm9yIHNhaWQgcmV2aXNpb24uIDIxNjBBIGhhcw0KPiBi
+ZWVuIG9uIHRoZSBtYXJrZXQgZm9yIHNldmVyYWwgeWVhcnMsIHNvIGl0IGp1c3Qgc2VlbXMgb2Rk
+IHRvIGFsbCBvZiB0aGUNCj4gc3VkZGVuIHJldHJvYWN0aXZlbHkgbWFrZSB0aGluZ3Mgbm9uLWJh
+Y2t3YXJkcy1jb21wYXRpYmxlLg0KPiANCj4gDQo+IA0KPiAtT2xvZg0KPiANCj4gDQo+IA0KPiAN
+Cj4gLU9sb2YNCg==
