@@ -2,107 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB5055B58F3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 13:03:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 532045B58F6
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 13:04:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbiILLD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 07:03:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44168 "EHLO
+        id S229880AbiILLET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 07:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiILLD0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 07:03:26 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1047C240AA
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 04:03:25 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id z20so10094866ljq.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 04:03:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=G7P5hA9wOSLBXqSdRwPeUlAgDG4lwQwhL2nJLwjQams=;
-        b=XtLnQuvrPx9A+MFrRCcOUcy5fG/hvXnkzzoVvVsH1p1rEdt4zGs4GDwxW8BUaZOQQg
-         u3WLqIPJorOUnyBG7o7hNO+hYycaIcvhEHBMXwjsPr9B+c79I3O8Ief0U9MGAwAN2doL
-         gM8rCPDKVCbKlp32u/OpdGirsuM7AUrGLUVPHSrGN0J1ftNf3Q1wYx4odD5xTn7ziQTF
-         94GZ+zDNfIsULo5G117cjBIo7NnMLEuVjCQHd22/IFwaus95yaYytR6ZHwaRZifUoYUe
-         2veOfmpV8GAcJ9yI1XhoF5710X4Xvnz/UYajKdZgnCRljMLHwG6+z+nsxpyzzQ/Rg4Dx
-         /mPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=G7P5hA9wOSLBXqSdRwPeUlAgDG4lwQwhL2nJLwjQams=;
-        b=2eRAarebkR75MuAUqe3I7IFOgXMMUfDiXmCUylNoElXDZW6Zw4MIvesK1XEYnBzM9o
-         8SH7n73Fs7SuyznhaBWkuBwThIIzUICpK0L11qRjVLsQfL4jgiUsrkZrD9KAfdQdHmJI
-         T3uHz6RQTDU49MyBmichJf1wVKL4Ud7CFvQ2Q1G0muEFBD6bGbhTPbiRMrlNtodJG6+m
-         Url0Z7Ixj3QPg6x7vbPdQkJJxNiBdrZcvb1jTdY6Zv3dcHuBbCwZ0czeypYqqItoG6kS
-         y+5A9gYAXAwTHQSqZRfzD/s1sYEW9hKlIUdOvDsOhPxV/RLvCa9Tj0PkXe0asJsS3xbT
-         0R6A==
-X-Gm-Message-State: ACgBeo0NcPAfkfk9mmFIbCrexrCsiV1AsosbYd8F7yvCbv07Tsro1G/W
-        96nkpgpORDf5q083CAZouUMw3Q==
-X-Google-Smtp-Source: AA6agR730B3CFYUgs1dVi5uDB6Aw0n6UU9CaEwfSOINZu0psxKmo9L85hcMqZ1/m71geee8z8vXp/A==
-X-Received: by 2002:a2e:bd12:0:b0:264:7373:3668 with SMTP id n18-20020a2ebd12000000b0026473733668mr7029636ljq.18.1662980603279;
-        Mon, 12 Sep 2022 04:03:23 -0700 (PDT)
-Received: from [10.129.96.84] ([109.232.243.34])
-        by smtp.gmail.com with ESMTPSA id x28-20020a2ea99c000000b0026bfadf87e3sm776339ljq.20.2022.09.12.04.03.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Sep 2022 04:03:22 -0700 (PDT)
-Message-ID: <eea8e746-6561-71ca-12f0-d010a0672edf@linaro.org>
-Date:   Mon, 12 Sep 2022 13:03:20 +0200
+        with ESMTP id S229872AbiILLES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 07:04:18 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694B9240AA;
+        Mon, 12 Sep 2022 04:04:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 08D2EB80CB7;
+        Mon, 12 Sep 2022 11:04:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CAE3C433D6;
+        Mon, 12 Sep 2022 11:04:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662980654;
+        bh=DmabOioRzklG+bbZ2I16FOiymU5bebFOCVF91CBoRCQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=bengJI+cLu/+t6vEhIrf7XyvJYGO2t/P3TWJ53MCqHe9/kEE1LeWxUgo5owZC8ndT
+         NohsWN9PwspKEjBLY1Wuq0WdsXS92I5rMUcLQ71viO0lopY3/UPECjA2w1Ag1QpnpP
+         9izvefVplCdgzjUg1mX3D+pVVV+opJZ7RgbneAtSEjjhepnpFMpeAh/FnacdiTvG2W
+         Iy2AxFztXPIGataB55lH5yVQzDWbYGZeZsw4swCeTD8p9dyyBzgIZdgAl1U9s/cKJe
+         epI4z1EcjgyunqBpE4cXGO4tmzw/JJaL09J3mKyift1wR8hOjAdmlw5WmEhM839voe
+         zRGNPIGWL7xMA==
+Message-ID: <8326572f-8a88-6e8b-edda-7730a0a3597d@kernel.org>
+Date:   Mon, 12 Sep 2022 14:04:10 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [RESEND PATCH v9 1/3] dt-bindings: mfd: Convert atmel-flexcom to
- json-schema
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3 3/3] dt-bindings: memory-controllers: gpmc-child: add
+ wait-pin polarity
 Content-Language: en-US
-To:     Kavyasree.Kotagiri@microchip.com, robh@kernel.org
-Cc:     Claudiu.Beznea@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        UNGLinuxDriver@microchip.com, krzysztof.kozlowski+dt@linaro.org,
-        Nicolas.Ferre@microchip.com, lee@kernel.org, robh+dt@kernel.org,
-        Sergiu.Moga@microchip.com
-References: <20220908150658.1839520-1-kavyasree.kotagiri@microchip.com>
- <20220908150658.1839520-2-kavyasree.kotagiri@microchip.com>
- <1662671776.565921.3355400.nullmailer@robh.at.kernel.org>
- <SA2PR11MB48742AF8A0C9BC6D32D57A2892439@SA2PR11MB4874.namprd11.prod.outlook.com>
- <CO1PR11MB48654A4239AB7A760193497992449@CO1PR11MB4865.namprd11.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CO1PR11MB48654A4239AB7A760193497992449@CO1PR11MB4865.namprd11.prod.outlook.com>
+To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+Cc:     "tony@atomide.com" <tony@atomide.com>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20220906124747.1767318-1-benedikt.niedermayr@siemens.com>
+ <20220906124747.1767318-5-benedikt.niedermayr@siemens.com>
+ <70a2fec4-e7b9-e8ed-4d8a-d547003dbb9e@kernel.org>
+ <125ea34a12928fcdd8ef118eced8b2c59039d2ab.camel@siemens.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <125ea34a12928fcdd8ef118eced8b2c59039d2ab.camel@siemens.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2022 10:16, Kavyasree.Kotagiri@microchip.com wrote:
->>> flexcom@fc018000: spi@400: Unevaluated properties are not allowed
->> ('dma-
->>> names', 'dmas' were unexpected)
->>>         arch/arm/boot/dts/at91-kizbox3-hs.dtb
->>>         arch/arm/boot/dts/at91-sama5d27_som1_ek.dtb
->>>         arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dtb
->>>         arch/arm/boot/dts/at91-sama5d2_icp.dtb
->>>         arch/arm/boot/dts/at91-sama5d2_ptc_ek.dtb
->>>         arch/arm/boot/dts/at91-sama5d2_xplained.dtb
+Benedikt,
+
+On 12/09/2022 10:43, Niedermayr, BENEDIKT wrote:
+> On Thu, 2022-09-08 at 15:09 +0300, Roger Quadros wrote:
+>> Benedikt,
 >>
->> dma properties for spi node is already being covered by Sergiu in below
->> patch:
->> https://lore.kernel.org/lkml/b4625526-8f9b-ada8-f854-
->> 751a48545576@linaro.org/
 >>
-> Hi Rob, Please let me know your comments.
+>> On 06/09/2022 15:47, B. Niedermayr wrote:
+>>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+>>>
+>>> The GPMC controller has the ability to configure the polarity for
+>>> the
+>>> wait pin. The current properties do not allow this configuration.
+>>> This binding directly configures the WAITPIN<X>POLARITY bit
+>>> in the GPMC_CONFIG register.
+>>>
+>>> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com
+>>>>
+>>> ---
+>>>  .../bindings/memory-controllers/ti,gpmc-child.yaml          | 6
+>>> ++++++
+>>>  1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/memory-
+>>> controllers/ti,gpmc-child.yaml
+>>> b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
+>>> child.yaml
+>>> index 6e3995bb1630..a115b544a407 100644
+>>> --- a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
+>>> child.yaml
+>>> +++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
+>>> child.yaml
+>>> @@ -230,6 +230,12 @@ properties:
+>>>        Wait-pin used by client. Must be less than "gpmc,num-
+>>> waitpins".
+>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>>  
+>>> +  gpmc,wait-pin-active-low:
+>>> +    description: |
+>>> +      Set the polarity for the selected wait pin to active low.
+>>> +      Defaults to active high if this is not set.
+>>> +    type: boolean
+>>> +
+>>
+>> I just checked that the default behaviour is active low.
+>> Reset value of the polarity register field is 0, which means active
+>> low.
+>>
+>> We will need to use the property "gpmc,wait-pin-active-high" instead.
+>>
+>> Sorry for not catching this earlier.
+> 
+> It's ok. No worries.
+> 
+> Well, the Datasheets are telling me different reset values here. 
+> The am335x TRM (Rev. Q) defines the reset value of WAIT1PINPOLARITY as
+> 0x0, whereas the am64x TRM (Rev. C) defines the reset value of WAIT1PIN
+> POLARITY as 0x1. The am64x TRM also defines different reset values for 
+> WAIT0PINPOLARITY and WAIT1PINPOLARITY.
+> 
+> The interesting thing is that I'm currently working on an am335x
+> platform and I dumped the GPMC_CONFIG register and got 0x00000a00
+> (WAIT1PINPOLARITY == 0x1). So It doesn't behave like the TRM specifies.
 
-this means it cannot be currently tested. Are you sure that there are no
-warnings in all DTBs with your patches?
+I can confirm the same behaviour on am642 EVM as well.
+I get 0xa00 on reading GPMC_CONFIG.
 
+> 
+> 
+> Nevertheless, I'm setting the WAITXPINPOLARITY bits in both cases
+> accordingly.  
+> 0x0 in case "gpmc,wait-pin-active-low" is set and 0x1 in case
+> "gpmc,wait-pin-active-low" is not set. So the reset value is always
+> overwritten.
+> 
+> 
+> Using "gpmc,wait-pin-active-high" rather than "gpmc,wait-pin-active-low
+> " is also ok for me, but it feels more like a cosmetic thing at this
+> point. 
 
-Best regards,
-Krzysztof
+My main concern is for legacy platforms not specifying the property in DT.
+Earlier we were not touching the WAITPINPOLARITY config and now we are
+so we might break some legacy platforms that don't specify
+the polarity and we flip it here.
+
+Fortunately, there are only few boards using gpmc wait-pin and mostly wait-pin 0
+for which there is no discrepancy as far as wait-pin reset value is concerned.
+
+logicpd-torpedo-baseboard.dtsi:		gpmc,wait-pin = <0>;
+omap3-devkit8000-common.dtsi:		gpmc,wait-pin = <0>;
+Binary file omap3-devkit8000.dtb matches
+Binary file omap3-devkit8000-lcd43.dtb matches
+Binary file omap3-devkit8000-lcd70.dtb matches
+omap3-lilly-a83x.dtsi:		gpmc,wait-pin = <0>;
+Binary file omap3-lilly-dbb056.dtb matches
+Binary file omap3-zoom3.dtb matches
+
+Only 1 board is using wait-pin 1
+omap-zoom-common.dtsi:		gpmc,wait-pin = <1>;
+
+from OMP36xx TRM, here are the reset values
+WAIT3PINPOLARITY 0x1
+WAIT2PINPOLARITY 0x0
+WAIT1PINPOLARITY 0x1
+WAIT0PINPOLARITY 0x0
+
+cheers,
+-roger
