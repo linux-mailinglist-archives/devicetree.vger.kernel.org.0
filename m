@@ -2,170 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05ECE5B62E2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 23:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D2415B62E4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 23:41:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbiILVkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 17:40:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47860 "EHLO
+        id S229677AbiILVlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 17:41:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbiILVkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 17:40:20 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10olkn2058.outbound.protection.outlook.com [40.92.40.58])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19BD716599
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 14:40:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qgi7nL4YFh2QLrsTl3GSFnp863j9UkPP4bVtrnxo4qvhmm/y3MsRYsSue6yNsp0OYdzUIonvhE6ClB4bJNjOPEbljVRofRAOmqJyfOwGO0Brnkbvz3e8JhEwKkvtWixHkWjbN/2JSwnLkG8c7VCkgMzwUY8SoaM/zRZVB3I6Q4q80yC6RUzk5wGX2YFFITXClI+BGPOPWEF004U+4+cN3w6ZPGYqAhyrrN6Pnd7SkHzMtBu45Mkey+hTg/fCM6O48uzqpIH6OVEhP1PTHrRWQAH1UoOrl5Lm/eP+Osc3ewDgGb8VvRTj+PgOx8we9V5Sif6JU95CzQZEFDVbKaDv6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BlrLmjwkkP5xjwDhY9JbJsMKvB0T+Ryy9XG7HtI41oM=;
- b=nB8clvAa/ygs3bgvBQZQRiTDsyLFb9x4J+LQssfwWhhK+6tzfbn8uYnstxC2gglauwIn9j4rghJ3Riax4nIJZHT52SysL0dFEaMLYW4gEVgJZEhC7WugzQ0kO9+SKeGujNH+z41OIiKLgqrRiq1Myu3wJ4coT5auksb9Erqr+ymgGaZCHlqPK0PXkUfBZqkQR7YjwzJuYxyW2F1veMr+mGsQGEYhp3AhArUPiY0SwgfPbslLhlmoJyrGPW4euw6wQ67Dlp+YVy/oqphb2TiPxQaOpKSXw6gL1g8/GEAv6HxKXQXa9ZijEbAsRM7z6SwL4N43QaWQGdPb6E+VK8AmIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BlrLmjwkkP5xjwDhY9JbJsMKvB0T+Ryy9XG7HtI41oM=;
- b=BkkY6rClBgjLmojxUSLkDjxjfiuKjbMWWGq7k6WrSRlXyH069HEq3EKRs0kiQbeppYewFZkRxul/86Vx85ccD1q2pDJqYlTlogTa0TSUtd6z8bB3ZQGys3JRdcbfHb9oQj0YnQCyfnI74/yy32KS4R0h7Eg04lS2obxIo9m2vyVkgxiOVZvh77cEx6QAWNhNHckY1ltDetC/DjJaOijIa10s1Qs0ZFrYPlRreaF7zKSTSQbx87joHv/niTdzcnrBaY3l3MCHBIDlxycU8w81Y364SbAzmD5mh8D4e4sXMEm1jHEEGP24gjqurkwhm9fUlwtqNXKT7jqkUnCTn62VAQ==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by BY5PR06MB6578.namprd06.prod.outlook.com (2603:10b6:a03:23a::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Mon, 12 Sep
- 2022 21:40:16 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::433a:1493:6a39:ee43]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::433a:1493:6a39:ee43%5]) with mapi id 15.20.5612.022; Mon, 12 Sep 2022
- 21:40:16 +0000
-Date:   Mon, 12 Sep 2022 16:40:11 -0500
-From:   Chris Morgan <macromorgan@hotmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, daniel@ffwll.ch,
-        airlied@linux.ie, sam@ravnborg.org, thierry.reding@gmail.com
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add NewVision NV3051D
- panel bindings
-Message-ID: <SN6PR06MB5342A0EE256279CF6E3516D0A5449@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20220906185208.13395-1-macroalpha82@gmail.com>
- <20220906185208.13395-2-macroalpha82@gmail.com>
- <cbdbc7d8-a3b9-d960-68c7-457c947e4285@linaro.org>
- <SN6PR06MB534207102C2E8AFCE63C3231A5419@SN6PR06MB5342.namprd06.prod.outlook.com>
- <20220909014235.GA3737396-robh@kernel.org>
+        with ESMTP id S229498AbiILVlS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 17:41:18 -0400
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 993604C628;
+        Mon, 12 Sep 2022 14:41:17 -0700 (PDT)
+Received: by mail-ot1-f44.google.com with SMTP id q39-20020a056830442700b0063889adc0ddso6808051otv.1;
+        Mon, 12 Sep 2022 14:41:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=hHCbztoz711aErDzurhGsImrPO3YU1Pl3k1mCXJj9tE=;
+        b=h0IfeZTayGMYUA0CtVA5zlZxs1ngjtLShu/sJoAF/oysgBdp1MABcxuNfSoSz7NmjD
+         arvdDK4A246wTeT5pTRS0oytJ74JDkbWSIXZ5M7ooqbkcGttZPCuIFfsvj9LQXfAjRGF
+         hnET5YxVnQ06gKtqvp6ePVtQUCS0W985uuJE4Y+/sjww1SwS2W02GaLmb5XZrPttDq/a
+         7j9nsHBgNsW4YNCyPIEz+sbKLn1kYPxq5gPioS1R8ccRyv1PnRNMLdxMwVCfWccpiLYr
+         yiTNjjgDy+F2Yf7FnsPIRg+TYPIO4/2Oy9dv4Rz9RMv/gJkfTsQy3kM4oQZtkIqMIVQ+
+         BbKg==
+X-Gm-Message-State: ACgBeo3mVuiMk/c1RFyF9/rTr9XYpAER2rN9R4uc5gcxBClTg+P+WPWg
+        xCqbt4YVJHmeIuzVPzU4gvZwIYDOSQ==
+X-Google-Smtp-Source: AA6agR7cipcL6S/IPEpmMHPQYyfjpwZjscKDUjn5cFCgFd+7bYQSPpU9BaEkDDSC5PqhYhzfru4smA==
+X-Received: by 2002:a9d:6255:0:b0:639:4cc1:4bd5 with SMTP id i21-20020a9d6255000000b006394cc14bd5mr11073055otk.212.1663018876871;
+        Mon, 12 Sep 2022 14:41:16 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f11-20020a9d7b4b000000b006394136eae0sm5154986oto.57.2022.09.12.14.41.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Sep 2022 14:41:16 -0700 (PDT)
+Received: (nullmailer pid 1948319 invoked by uid 1000);
+        Mon, 12 Sep 2022 21:41:15 -0000
+Date:   Mon, 12 Sep 2022 16:41:15 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH 3/3] dt-bindings: mfd: qcom,spmi-pmic: use generic node
+ name "gpio"
+Message-ID: <20220912214115.GA1948286-robh@kernel.org>
+References: <20220908080938.29199-1-krzysztof.kozlowski@linaro.org>
+ <20220908080938.29199-3-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220909014235.GA3737396-robh@kernel.org>
-X-TMN:  [ChTNNPAobBuEdvLexL9pidjNvw7e+0WR]
-X-ClientProxiedBy: SA9PR03CA0021.namprd03.prod.outlook.com
- (2603:10b6:806:20::26) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <20220912214011.GA6173@wintermute.localdomain>
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|BY5PR06MB6578:EE_
-X-MS-Office365-Filtering-Correlation-Id: bcafb8a5-f45f-4ee4-dc43-08da9507617d
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: U5SRN6kVYenQugJKi1QGFdRvuMQp6EG0r3oCbF+kxVgGA/vy2X3WFPbTf/TTnfh+ROa/uIFwdXw7uHSSUUU2luY8Lah4D3ckdcV1i+Fu8dW05otCnTib0XJjvFGBeVXAQ0Li5xQCiprG5LWCv6Z/F24Pb9m7qecfG0B6tX64ZzsAGrkc8oPx2JlGZYS69hjptNpo4i7aquHMad4KXPd4M31IFZ0/dOv49WsSh/zpkHfxaCxY8/SY008scK4j81eaUHJb0MCnxLVfObnW9hLDPrIJhEsvqVpIZ9GFUQB3lDLOZM7P3eOUt/uJpXGewtfiowZKhKTd3bwfs2018u5zvDldAy07I4Mkw0XcwG3++3+IYsDjVmMQPEpaUWVy6TKsQY40zNaS4pK8SgnLlgcJ/v1MkESifM+M/cUn6ooXtOTNRD4QZwnptpmOYMJ/+87o6Vjz8SfDQV+U/IaWc/9dv1vCpAv7UOF9cE0dAPEkoc0kGH/2hRUy/bZBM/1pEaFuG50hgzxiInkwFkyoREPei0QliSCWwZfCoeczGIG86EU1KV1UquWQAulvKiMIUdyQKqpgs6f7OTLn/zGXJmoUG1VvolHkGl0LT+c9W0wxsuQE7Y35kNNwq1Jus2vbgJsdTCX3mVXBRdCJgZl2FY0Jz+2psuc2vrZlvV/kSRIST8NwYaPXZg9HGBsr7+NnOpCD
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EHnLjP3G8VRRx7wbrL0iwh64T3Khp93pz87bdmYecxrvPn32OuDnHqwS35P9?=
- =?us-ascii?Q?+oZxZPb0WIT+ySXbN0HwwqKUlVZsbbUZFt3HKp8wflKGBrTrdNKhbi7/h5Aa?=
- =?us-ascii?Q?vBZ1l3lNFz+9YEb+u+7tcT73Mj2ltpxpH3V5TP+xQZZ8utKTvOA0+84KcalP?=
- =?us-ascii?Q?LdqoefAOuxa0jSzGeHrH+CthP3GLrNBU28jxjSPyVhyedIZGI9TqREg3b0yu?=
- =?us-ascii?Q?lyGMFCgqDK15H88F+kvFBdzZUHStumZo3LNSVBErs693Tj5uftz7nSlVGJka?=
- =?us-ascii?Q?QnK7hia1gHt+rYpdNDkBAcG/CBlW9JLE4CoNmOprFa5+UQGcmICmYls2Nc8j?=
- =?us-ascii?Q?KXptXW0cJc4e0Z/6ERuCUqZq816DivAQQ3R/Fss1pJP9TFm+d+j/X8eYVsSi?=
- =?us-ascii?Q?L1weHKBVAj2t9sWe8RmjTRHg9n8ixSR9lqt7YPL/Mcw5VpI8wILO4cQR7hI+?=
- =?us-ascii?Q?QSiPw+tmGGlFOcDeYZE7JbXnTqRSYm1aUad+XuW0kniUcLlo9+ij/XLyXoTo?=
- =?us-ascii?Q?rRzlYYlbuvt8cEy8uuxLG8zpS0j7dpA0YeNT8MwSjkHV5Rn64fhay22423E7?=
- =?us-ascii?Q?C5uXoqA4fnzrN/r72hQt2vnWoBue5rU5jdnwrnngm7YgFsIKGbKpmCSIKdqY?=
- =?us-ascii?Q?X6yCO+evQte1205zlrp1fvwtPMaXMPDJVAphuBHXrddYaXaFGZUGM6BuXNlv?=
- =?us-ascii?Q?7IaF54Sjq89PCenKuRw67D79/nJlu5xpsLTrsCXmad1J+4bc5QbQGAXiQDRR?=
- =?us-ascii?Q?XPoYI7WHzg/lG+UpQwn0/cpwmwoExQJ6qOZiKWJsNuPHPB+RWWWIv8Opk6bB?=
- =?us-ascii?Q?j80bwKUfVPqqj+8IGEMU3om65pz42786rFsO/lQCfhgPAHnYImE69awoNgaP?=
- =?us-ascii?Q?ZUgU/IJ2QnM680fegnnRGq7TN2xuuyrYAlQCwKBQH1okefPGDRMp+Hlvy/IA?=
- =?us-ascii?Q?oTqiNdAtgdtbQg8dlB4/qD5mKsYRO+XQQwOTXqiqErk0ZPZL3ZZE7AFK6WA7?=
- =?us-ascii?Q?OcPEfvfSDAPjsuT1b+lw1R1kPRwdUscr4hCCgRqGniS6T7O1NsoV0CK7CnQg?=
- =?us-ascii?Q?DwQq1eypg/N9FYxjWqG6uzsTlp1Z0ypd76MUX1mDFlrQ71rexs9mJR8gf5Lh?=
- =?us-ascii?Q?IhDHjaDBGJ3UE/6eLpWUc40ah2WFQnosxzHJUMAc+UlzqXdmf/bDQ/Ssk9N5?=
- =?us-ascii?Q?vUSqdvnjPUwuGN2AP/3CEAZiEkXetJ9L/QtSfymS9Wrd55N1rR5k/sFTnvgG?=
- =?us-ascii?Q?C/CWNBRkQoKVapZc5InW6/HD9OCdSuE5yhWy3R17Ag=3D=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: bcafb8a5-f45f-4ee4-dc43-08da9507617d
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2022 21:40:16.6637
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR06MB6578
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220908080938.29199-3-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 08, 2022 at 08:42:35PM -0500, Rob Herring wrote:
-> On Wed, Sep 07, 2022 at 08:35:13AM -0500, Chris Morgan wrote:
-> > On Wed, Sep 07, 2022 at 02:53:56PM +0200, Krzysztof Kozlowski wrote:
-> > > On 06/09/2022 20:52, Chris Morgan wrote:
-> > > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > > 
-> > > > Add documentation for the NewVision NV3051D panel bindings.
-> > > > Note that for the two expected consumers of this panel binding
-> > > > the underlying LCD model is unknown.
-> > > > 
-> > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > > ---
-> > > >  .../display/panel/newvision,nv3051d.yaml      | 48 +++++++++++++++++++
-> > > >  1 file changed, 48 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..016168d8d7b2
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-> > > > @@ -0,0 +1,48 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: https://nam12.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fdisplay%2Fpanel%2Fnewvision%2Cnv3051d.yaml%23&amp;data=05%7C01%7C%7Cab7f68ce677846b1638508da920493a4%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C637982845610791935%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=6XxrzD1zkl8SYQqV9nkH1WzKfdcy6doNfzan8r228W0%3D&amp;reserved=0
-> > > 
-> > > You need to document vendor prefix... but the filename does not match
-> > > compatible.
-> > 
-> > Okay, will do that. This is a tricky one because while I know the panel
-> > controller IC (a NewVision NV3051D) I don't actually know the LCD panel
-> > itself, the vendor is somewhat tight lipped. I do know the product it
-> > goes into, so that's why I did what I did with the compatible strings.
-> > If that's not correct I guess let me know. I did see for other drivers
-> > (such as the NewVision NV3052C) the driver was written for the IC
-> > and the panel name was listed differently, hence what I was going for
-> > here.
+On Thu, 08 Sep 2022 10:09:38 +0200, Krzysztof Kozlowski wrote:
+> GPIO controller nodes are named by convention just "gpio", not "gpios".
 > 
-> I think most cases like this targeting a specific LCD driver IC, there's 
-> a driver IC compatible as a fallback. 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> (TBC, 'driver' here is not Linux driver, but the h/w chip.)
-> 
-> Rob
 
-So in this case would my compatible string in the devicetree need to
-be something like "anbernic,rg353-panel", "newvision,nv3051d" then?
-And the module itself have the compatible string of "newvision,nv3051d"?
-
-My fear is that I write this as a newvision,nv3051d kernel module
-and then later on there comes a new panel using the nv3051d that wants
-to use this too. Again keeping things confusing I have no LCD panel
-part number from the manufacturer for this, and I cannot see anything
-on the panel itself denoting what LCD it is.
-
-Thank you for your help. Just wrapping up getting some of my favorite
-devices supported in mainline. :-)
+Acked-by: Rob Herring <robh@kernel.org>
