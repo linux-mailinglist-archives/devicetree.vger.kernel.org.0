@@ -2,85 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B3E95B63B8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 00:32:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D0E15B63BB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 00:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbiILWcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 18:32:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34326 "EHLO
+        id S229702AbiILWdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 18:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbiILWcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 18:32:39 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737BD2657E;
-        Mon, 12 Sep 2022 15:32:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ZX8kTjNb1OOunWDYNDXXUuOsP3Gq9/veJvgsWSAbe/o=; b=V4Pg6SmK+2QhTLA9izOfS9Y1J3
-        5tIcMVrIL5POqtSNX4Ot1mZ9H6mv44fGvSB6F7N5hfdaV4h+l9SiXTe3A8AtT3a5jMaKAQKXAa3+G
-        ODE052ngza0oeNVwy3ZkY22xXcoTUGmsPLVXy6viB6ilZ8iI/Lvx1uGBge4M8RPFv3/M=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oXryc-00GWzd-Jx; Tue, 13 Sep 2022 00:32:26 +0200
-Date:   Tue, 13 Sep 2022 00:32:26 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: net: renesas: Document Renesas Ethernet
- Switch
-Message-ID: <Yx+zehiPfhEjkw1y@lunn.ch>
-References: <20220909132614.1967276-1-yoshihiro.shimoda.uh@renesas.com>
- <20220909132614.1967276-3-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S229616AbiILWdS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 18:33:18 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3077225E98;
+        Mon, 12 Sep 2022 15:33:18 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 9AAC75C0086;
+        Mon, 12 Sep 2022 18:33:17 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Mon, 12 Sep 2022 18:33:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1663021997; x=1663108397; bh=BlGpyGNetH
+        0dfu+MS0Zcjr8kjhe2OqZ2zMEm7PaX9oc=; b=fqatqgOuwf9G2nKhRG+hWQjz9d
+        tc8rMU//RxhIcAuW45zXjsJO3S9vZRbK/Xl4fgfh8sW3gAuG8ttc/O/iVsFXOuNt
+        LZWVT0MD2fX/LzvygJl+4K8x35j8MHq61lrtPsBcSPvhA6Zxg0nzERUCojoStaym
+        iGXuCdsUfpEzzsdGn1CCTGGceVQv0bPwJP6EaauqLk0q07Y3gBJN0AtaAzegX7pi
+        l2Ubwg9VvakVRGNTStWcV+8HjCNX5hURjx74zLKJR93a2A2MIcgOLjXwVz+Htiil
+        2RZ+sbyDigpbjWRaAZHTRd7UEWkJ+eylz3ZKl7ToEl4I8Yqo3fScktj6seuA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1663021997; x=1663108397; bh=BlGpyGNetH0dfu+MS0Zcjr8kjhe2
+        OqZ2zMEm7PaX9oc=; b=M3+yPT0yGtaeO8xyZAHQf6ksS7DJ+YTaqJMtskXz/Jw3
+        WXB4wwlbIcM0wHTZgLQUsSbPoqjem8zsxMNJ5eIDcmbzyRzqoIow0pcGuzFxzIyn
+        ah9pRQcO5LdYIIaJVis2hQd9a6ez7kJ3ERLads1kMcpzaoyU/IYVNM7FQpNftpYD
+        t2qEIhhgJJcbFU740JBS9ERI3vG64jricrQAAnoDiCwFG1xLzB0F0RqJGMcPqWCW
+        Zmdc/0KTks/m45iHdNt4tQ1qaK9Kg728lVCc2ZyaaGs7agJ5VKLINvvBUU7tZvMR
+        j6mPCkTG4ZazzDt5up4s9E0Q8jhPj6MOLjK9kNCacA==
+X-ME-Sender: <xms:rbMfY1A_m_I59xBEX9iQ7Msrd0RJ0MDTFJw-gWebhyRmqjbIi10VTA>
+    <xme:rbMfYzjxscxxknWDC2FSbn1nIlCKIwHXOsMo-qLxJokicB3B_dnbrkxJNXELwiX3P
+    TcklqKBVofTEhi7IzI>
+X-ME-Received: <xmr:rbMfYwldfO1GyylafwOey24_yWDzmu2yJRsnQNiD7K08kWq8iTSsES6MWQzG8duIxJrSM7tDD5gy5meua9CGjmExNxq3rfET>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedufedgudefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    gfrhhlucfvnfffucdlvdefmdenucfjughrpeffhffvvefukfhfgggtuggjsehgtderredt
+    tddvnecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoehprghtrhhitghkse
+    hsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpeehfeejheeftdejiedvfeekffeh
+    ledukeduleelffekgfdtleduledvtdegtdehkeenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehprghtrhhitghksehsthiftgigrdighiii
+X-ME-Proxy: <xmx:rbMfY_weubAiLYS5-0pn8RA1C_pBJUY9UlLyRu9uAug1yC53H-9Qpg>
+    <xmx:rbMfY6RdPOXfJ-1Mich6_IuyiIeggzZ4O7KeP6Km3pj0S98R2pbUaw>
+    <xmx:rbMfYybT6-K1a8mJAuMG4zARYT5nHFkLYH5BaQHc9sHL3iYfqCGRZQ>
+    <xmx:rbMfY3Q52pzHX0mH3AJQcWSvP5_gpKEmSVEC250coAB9Gxhf0pHDlw>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 12 Sep 2022 18:33:17 -0400 (EDT)
+Date:   Mon, 12 Sep 2022 17:33:16 -0500
+From:   Patrick Williams <patrick@stwcx.xyz>
+To:     Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v2] ARM: dts: aspeed: yosemitev2: Enable i2c13 controller
+Message-ID: <Yx+zrEViePskgaWq@heinlein.stwcx.org.github.beta.tailscale.net>
+References: <20220907123810.GA27621@hcl-ThinkPad-T495>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="yDAZokfzATjmbX/8"
 Content-Disposition: inline
-In-Reply-To: <20220909132614.1967276-3-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220907123810.GA27621@hcl-ThinkPad-T495>
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        PDS_OTHER_BAD_TLD,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +  '#address-cells':
-> +    description: Number of address cells for the MDIO bus.
-> +    const: 1
 
-Please could you explain this a bit more.
+--yDAZokfzATjmbX/8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Sep 07, 2022 at 06:08:10PM +0530, Karthikeyan Pasupathi wrote:
+> Added IPMB-13 channel for Debug Card communication.
+
+Wouldn't this be better to be the title?  'enable OCP debug card'  Might
+need some reference to what an "OCP debug card" is in the commit
+message.
+
+>=20
+> ---
+> --- v2-Updated the title
+> ---
+>=20
+> ---
+> --- v1 - Initial draft.
+> ---
+>=20
+> Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/=
+arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+> index 8864e9c312a8..84236df522dc 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+> @@ -215,6 +215,17 @@
+>  	};
+>  };
+> =20
+> +&i2c13 {
+> +	status =3D "okay";
+> +	// Debug Card
+> +	multi-master;
+> +	ipmb13@10 {
+> +		compatible =3D "ipmb-dev";
+> +		reg =3D <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+> +		i2c-protocol;
+> +	};
+> +};
 > +
-> +  '#size-cells':
-> +    description: Number of size cells on the MDIO bus.
-> +    const: 0
-> +
-> +  ports:
-> +    type: object
+>  &pwm_tacho {
+>  	status =3D "okay";
+>  	//FSC
+> --=20
+> 2.17.1
+>=20
 
-I think ethernet-ports is the preferred name.
+--=20
+Patrick Williams
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - power-domains
-> +  - '#address-cells'
-> +  - '#size-cells'
+--yDAZokfzATjmbX/8
+Content-Type: application/pgp-signature; name="signature.asc"
 
-So ports are not required? You can have a 0 port switch?
+-----BEGIN PGP SIGNATURE-----
 
-   Andrew
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmMfs6wACgkQqwNHzC0A
+wRmHKBAAlNXFcJtu9yCVKhFfr7GFurgvb0K/iScj3nGp1R13ZouYN4V5ud9h9jtI
+8KNzlfq1Rt7FnSWSejfGlty0dOQQViEnmz463uBRmNM4KTfMl+9P5MAGg+FJzNq9
+PUxnEIkKtOtC+rRq2PHXmbntqtkquE7q+cxkC8qVsgpUqDrAuDMA1W2cuc2kjZqz
+4Ork/zI3eSf/xP9jtvCXvIsqgKwPiXdtk5TMoftWYUAPatS3SCUN83ycKTLIfVEZ
+fFCcDlSpqPH5TeZYeOswMIPRQS+imyCUWaQOlEdbYEQlwFmzlgG6LV8/pFjkheoQ
+HgxsRKSL6xfVpCRPG5lnds5PKUdvLCpHi5YLnBb6Y5qg+5vt7BvLGqgjeZVc9AFZ
+u+t3FPIgmQ+v2CL/2P9/hff50cFFvYIyR2Vn+drH/ML1WOFNd380NQy3RtcPj+Fw
+eQZuln4EE3ShoQHme8zHVkmAtjXx9jLEt44ZpBnlkvT9PwVwX+rNm+Cj8MprFU+b
+RHMahDMNcf/HE4oT4M84YSW79N1ZWsBOctPC2Z1f23WTWf0Eywv4arqRZN45S0Vj
+G/KVJJZGzevDLdYUDuSi/b2UzKZa9u0xwDwtkV7iKqXkiKc+qcOyoY62S2avaf5p
+4UKD9C3Daw+CTDmfe89RdTYfLplB8Fk/czldTiyi5sRQychzpf4=
+=kf/G
+-----END PGP SIGNATURE-----
+
+--yDAZokfzATjmbX/8--
