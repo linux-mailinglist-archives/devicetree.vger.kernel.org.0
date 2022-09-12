@@ -2,98 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B09935B5C15
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 16:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A52805B5C19
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 16:20:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230187AbiILOSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 10:18:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47336 "EHLO
+        id S230132AbiILOUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 10:20:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230213AbiILOSJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 10:18:09 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66F732AB0;
-        Mon, 12 Sep 2022 07:18:07 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-127d10b4f19so23704932fac.9;
-        Mon, 12 Sep 2022 07:18:07 -0700 (PDT)
+        with ESMTP id S230106AbiILOUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 10:20:22 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 069E017ABA
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 07:20:20 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id n35-20020a05600c502300b003b4924c6868so586184wmr.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 07:20:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile-fr.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=OokCHQqZcXfv+VBYvmBm8VEVxvtBPrE2ziQe6Vmeo8k=;
+        b=SQAjEfgDj3vgH3TWm1UumNl8W6G6AREWNYpOngCqSrgCAfYQRZ1W1iIN+jzMgE1j/F
+         grbfRGIbmXzuj2+/Nyd4Gn9m3k+jm3jXr3xmBJH1+nKMnl1ANiC8cuQ+PsDdJfzkraCy
+         UEs/lbtLdkTeKCvn5rRJ5wO+ACysS9kXz6Bx6+9NGEafq/LnE5w0hyhPtXK29ToPOxPk
+         nXAaHAqPmXsFs/xluJidI4LQPG1lq3K4iVO5rwQhuEcxtKJI/5UPs9Y4T7jm3lf/6BKU
+         4K7IpK1va/DeNLaz9mBFhtqbZpFI6KB98K58IT5ZXWcDzB3fgjNngQzFVOABphk+7PZM
+         cNPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=6YGdXNBF/c0oqfE1hMQ7tgrfVLZvvzby7VDXrmZA37w=;
-        b=f2iMWglbbFvOYUQMTDB+BQoJSHHJ3p94MM59cGQAIQDl32iC2v+TWxpXOyw3nIIN9K
-         eHKMaEhjQrpaZj22YcQ1vUpCH2s95EMXyN1umNKkPCp2ggY18Byoi7lfCxy7NdNg5Cnt
-         IOEEDwx8eRRZWUGfdllZJkJKDIkaTrj2hlW2elK9H/s3GNbk1ErL/APKJeAFuSHWoItP
-         GatEzJHGVXME0++WSN4Kbb0e+8UjU9rk0tOc4I1E9xBJcEqKRGPry6Zmn4udEOxvk4E8
-         6AAPeimAMBi+CKivYoqIR+ZZi4lx10gZWGOnQN9dwowM95SCSZWjzOs3nl/vp+Mt1diR
-         PpIQ==
-X-Gm-Message-State: ACgBeo25ZJG5ep7cfQuF9Y/6RfO1Y0igCUQ6myr+UCcUbUyO3DFhLmTo
-        IzG6wwXd0QoKGiI+eb/HDQ==
-X-Google-Smtp-Source: AA6agR4CwSU4uVGK/o+2p9jJRUTXIWhKhhZiIaxeBS8wUBRGOtazNn0fvax4V9LaW4NlZ/FlekrRTg==
-X-Received: by 2002:a05:6870:c14a:b0:11d:588:da3a with SMTP id g10-20020a056870c14a00b0011d0588da3amr11611484oad.214.1662992286997;
-        Mon, 12 Sep 2022 07:18:06 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c186-20020acab3c3000000b0034484c532c7sm3963232oif.32.2022.09.12.07.18.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Sep 2022 07:18:06 -0700 (PDT)
-Received: (nullmailer pid 1178996 invoked by uid 1000);
-        Mon, 12 Sep 2022 14:18:05 -0000
-Date:   Mon, 12 Sep 2022 09:18:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v2 01/15] dt-bindings: memory: snps: Replace opencoded
- numbers with macros
-Message-ID: <20220912141805.GA1170702-robh@kernel.org>
-References: <20220910195659.11843-1-Sergey.Semin@baikalelectronics.ru>
- <20220910195659.11843-2-Sergey.Semin@baikalelectronics.ru>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=OokCHQqZcXfv+VBYvmBm8VEVxvtBPrE2ziQe6Vmeo8k=;
+        b=jyEWRmbbz/tyP/emT4qSdWdP/2X+9VtQ5/HmFvgUxR16Vd1KM3N2zYQkkMMiNNjM0U
+         VF54KXCJVG+1+WL9UZswCw7aouHsFhVpuqeiRXVpppIvb3/i/xqnPstjQ5EMAWbcghlH
+         UJuIgWP6SL8b9xv0lOft6vWT0QF+udHwDCIZkOiDrWzuBJxyZqN+GkmxHA0oBpsV/Jv9
+         EzXx/MmLzGsuinIax3FpoIGdqKzZziQ03dJjmz4Brf6wzMOp5Z0RLlyyeCjDZvSfZgaq
+         BG7l5gbl5kNtyZwRo+xthIpUiW7i2EzEnOcEY4aPqg9iw7qum9O3BBS+9iTzw6ZfLDeR
+         lxAQ==
+X-Gm-Message-State: ACgBeo2QrlfZUE/1VgRxde3wuRyLDEIZoV+iFh88Sf8nlQQJoh2mDQjJ
+        U36quYz7m9Msqu1rO8DzL0l5yA==
+X-Google-Smtp-Source: AA6agR6yP/ytBFmYGPx+E+UKmma5WNAO5gv2l61F6pZovdpQlogCT4obLRcHpd7/YTYwciAuz6tx6g==
+X-Received: by 2002:a05:600c:2e52:b0:3b4:622c:1b4b with SMTP id q18-20020a05600c2e5200b003b4622c1b4bmr9550486wmf.153.1662992418510;
+        Mon, 12 Sep 2022 07:20:18 -0700 (PDT)
+Received: from ?IPV6:2a01:cb05:8f8a:1800:1c97:b8d1:b477:d53f? (2a01cb058f8a18001c97b8d1b477d53f.ipv6.abo.wanadoo.fr. [2a01:cb05:8f8a:1800:1c97:b8d1:b477:d53f])
+        by smtp.gmail.com with ESMTPSA id q3-20020adff783000000b0021f15514e7fsm8937693wrp.0.2022.09.12.07.20.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Sep 2022 07:20:18 -0700 (PDT)
+Message-ID: <94b57cbc-b865-e0b4-0d52-3da72f2dd026@smile.fr>
+Date:   Mon, 12 Sep 2022 16:20:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220910195659.11843-2-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v2 6/6] soc: ti: pruss: Add helper functions to get/set
+ PRUSS_CFG_GPMUX
+Content-Language: en-US
+To:     linux-kernel@vger.kernel.org, Md Danish Anwar <danishanwar@ti.com>
+Cc:     bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
+        linux-arm-kernel@lists.infradead.org, rogerq@kernel.org,
+        grygorii.strashko@ti.com, vigneshr@ti.com, kishon@ti.com
+References: <20220418123004.9332-1-p-mohan@ti.com>
+ <20220418123004.9332-7-p-mohan@ti.com>
+From:   Romain Naour <romain.naour@smile.fr>
+In-Reply-To: <20220418123004.9332-7-p-mohan@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 10, 2022 at 10:56:45PM +0300, Serge Semin wrote:
-> Xilinx ZynqMP DDRC-based example contains the opencoded numerical literals
-> in the IRQ lines definition. It doesn't seem justified since the
-> corresponding platform has well defined ARM GIC interface. Let's replace
-> the numbers with the corresponding macros then.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v2:
-> - This is a new patch created on v2 based on the @Krzysztof' request not
->   to have the opencoded numbers in the bindings example. (@Krzysztof)
-> ---
->  .../bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml     | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
++Danish
 
-Acked-by: Rob Herring <robh@kernel.org>
+Hi Danish,
+
+(Removed Puranjay (as he is no longer with TI) and adding Danish.)
+
+Le 18/04/2022 à 14:30, Puranjay Mohan a écrit :
+> From: Tero Kristo <t-kristo@ti.com>
+> 
+> Add two new helper functions pruss_cfg_get_gpmux() & pruss_cfg_set_gpmux()
+> to get and set the GP MUX mode for programming the PRUSS internal wrapper
+> mux functionality as needed by usecases.
+
+Actually I'm curious about how the GP MUX mode are supposed to work in some
+cases. The register mapping in the AM57xx TRM seems confusing.
+
+See the "PRU-ICSS I/O Interface" part about the "PRU-ICSS Internal Wrapper
+Multiplexing" [1].
+
+The commit "ARM: dts: am57xx-idk: Add prueth on ICSS" [2] (only in the
+TI kernel tree) adds pruss1 and pruss2 for the am571x-idk board.
+
+But this commit doesn't really explain the ti,pruss-gp-mux-sel setting
+from pruss1_eth and pruss2_eth:
+
+    /* Dual mac ethernet application node on icss1 */
+    pruss1_eth {
+    	status = "okay";
+    	compatible = "ti,am57-prueth";
+
+    	ti,pruss-gp-mux-sel = <0>,	/* GP, default */
+    			      <4>;	/* MII2, needed for PRUSS1_MII1 */
+    }
+
+    &pruss2_eth {
+    	ti,pruss-gp-mux-sel = <4>,	/* MII2, needed for PRUSS1_MII0 */
+    			      <4>;	/* MII2, needed for PRUSS1_MII1 */
+    };
+
+At the first look, the two comments in pruss2_eth node about PRUSS1_MIIx seems
+dubious. Indeed, it would means that the PRUSS2 setting (ti,pruss-gp-mux-sel) is
+required to makes PRUSS1 work.
+
+In my use case, only the pruss1 is expected to be used with the prueth driver.
+
+Actually, the prueth on PRUSS1 partially works with only pruss1_eth's gp-mux
+initialized:
+
+    pruss1_eth {
+            status = "okay";
+            compatible = "ti,am57-prueth";
+
+            ti,pruss-gp-mux-sel = <0>,      /* GP, default */
+                                  <4>;      /* MII2, needed for PRUSS1_MII1 */
+    }
+
+    pruss2_eth {
+            status = "disabled";
+    }
+
+(Tests done with the ti-linux-kernel 5.10.y)
+
+On wireshark I noticed ethernet frames (ping) sent from the board but the reply
+from the remote PC is never received on the board.
+
+It really seems we need pruss2_eth's gp-mux initialized.
+The problem here is that I don't want to enable PRUSS2 just to
+configure pruss2_eth's gp-mux for the sake of pruss1.
+
+I had to write manually (using devmem2) the "good" value (0x10002003) in
+PRUSS2_CFG0 and PRUSS2_CFG1 to configure entirely the PRUSS1_MII1.
+
+I'm not sure how the driver should handle this register mapping properly.
+
+[1] https://www.ti.com/lit/ds/symlink/am5749.pdf
+
+[2]
+https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=linux-5.10.y&id=2a3b089f5697fe2f9a9875b2fba1bef88d196a53
+
+Best regards,
+Romain
+
+> 
+> Co-developed-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> ---
+>  include/linux/pruss_driver.h | 44 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+> 
+> diff --git a/include/linux/pruss_driver.h b/include/linux/pruss_driver.h
+> index e2d5477225c6..3312281ef4c1 100644
+> --- a/include/linux/pruss_driver.h
+> +++ b/include/linux/pruss_driver.h
+> @@ -35,4 +35,48 @@ struct pruss {
+>  	struct clk *iep_clk_mux;
+>  };
+>  
+> +/**
+> + * pruss_cfg_get_gpmux() - get the current GPMUX value for a PRU device
+> + * @pruss: pruss instance
+> + * @pru_id: PRU identifier (0-1)
+> + * @mux: pointer to store the current mux value into
+> + *
+> + * Return: 0 on success, or an error code otherwise
+> + */
+> +static inline int pruss_cfg_get_gpmux(struct pruss *pruss,
+> +				      enum pruss_pru_id pru_id, u8 *mux)
+> +{
+> +	int ret = 0;
+> +	u32 val;
+> +
+> +	if (pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
+> +		return -EINVAL;
+> +
+> +	ret = pruss_cfg_read(pruss, PRUSS_CFG_GPCFG(pru_id), &val);
+> +	if (!ret)
+> +		*mux = (u8)((val & PRUSS_GPCFG_PRU_MUX_SEL_MASK) >>
+> +			    PRUSS_GPCFG_PRU_MUX_SEL_SHIFT);
+> +	return ret;
+> +}
+> +
+> +/**
+> + * pruss_cfg_set_gpmux() - set the GPMUX value for a PRU device
+> + * @pruss: pruss instance
+> + * @pru_id: PRU identifier (0-1)
+> + * @mux: new mux value for PRU
+> + *
+> + * Return: 0 on success, or an error code otherwise
+> + */
+> +static inline int pruss_cfg_set_gpmux(struct pruss *pruss,
+> +				      enum pruss_pru_id pru_id, u8 mux)
+> +{
+> +	if (mux >= PRUSS_GP_MUX_SEL_MAX ||
+> +	    pru_id < 0 || pru_id >= PRUSS_NUM_PRUS)
+> +		return -EINVAL;
+> +
+> +	return pruss_cfg_update(pruss, PRUSS_CFG_GPCFG(pru_id),
+> +				PRUSS_GPCFG_PRU_MUX_SEL_MASK,
+> +				(u32)mux << PRUSS_GPCFG_PRU_MUX_SEL_SHIFT);
+> +}
+> +
+>  #endif	/* _PRUSS_DRIVER_H_ */
+
