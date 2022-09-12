@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28AB75B549A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D32875B54A1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:41:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbiILGiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 02:38:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59770 "EHLO
+        id S229786AbiILGlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 02:41:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229762AbiILGiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:38:03 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDABF205E4
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:38:01 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id bt10so13260607lfb.1
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:38:01 -0700 (PDT)
+        with ESMTP id S229766AbiILGlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:41:10 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409B71F2E5
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:41:08 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id s10so8750540ljp.5
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:41:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=6MMFOsdik3pOVxza5iFw67+zQvf/yIVZHtdOoLDh9XA=;
-        b=WBHyt8tStNEomzn+/msR7XqF/ADGnzCqlpOgYyuTl9iS4felZamXZBRCDP0wkg8l4R
-         fV0ajIesocWpV+qkZk7ucUVPVljcFmi1gppGcQ39zw/MdY3OaKKpXa2+KAEzcCDsWJCb
-         YBFw+HGsnM+pYVt73fG5IHj4mit/jgCc+fc82ai5AYNJ6x38I5qethpk/vJg07qVRFs8
-         HZC1Ev/RjvySyWmKUC46gT5n+2+94pblkCEqx98gZ6P4t1Cvz3eLBfjp37QJqhEkr4Zx
-         +YlPi400FroQQTn0yRA7lE9kfYLTg7gd4xDoXrAn56m7jJac34t5p/lCI9l10F4KwMHz
-         z4jg==
+        bh=IUm/MN9hYg83su7ZYahLGm5MEwsIsG/QUzjstSeG6Mo=;
+        b=kI34oFaT/0WS4Cfj03tST6nGUpXjNT380JwZ8FEdZt75QHxAkIIf6k0og+uTwf9eTq
+         NucX3cDSq5+0xiCS0rQXRopsfEykwrDtmoLfDq5k1ccgq58Ym+3kbNX/k38bz/lnJhfd
+         a5yFamW9SM3CFIxVNuRbQoPP7Su31yvXtOON777PIstuoMTTkLMqG/H/F6ObCibwPlCQ
+         NEH3rmwq85391FHz4YrWGLtUoGLzBJgCcB04MAVXh/Kel3ysSkw/tN011zrV6s6epDp5
+         IE+auP7GxK133EIlSC8Ez0IiUkBvtfxpVv8in9PJQMvU6spqLCbJIYuXosuQfHsL3edu
+         xQdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=6MMFOsdik3pOVxza5iFw67+zQvf/yIVZHtdOoLDh9XA=;
-        b=HmU3X7IjekwT/liVemzLuNx35NPS3PEKy+LsURcjsbughnjibdGTY32332mjJpdr7+
-         4e7ZJgJDtIXD3A+Vv0ZO4lunJnis7uytLAK8HYhr8r8zzMiMW3Xwifn8K9jCoXvlFVrT
-         XAR7PsCQSZzbNcDprZkI+t+pWz22ir5fN0xwnGLiq+7SQvnHp5lOyinunm/OwXU5qSRs
-         GTfGcPmsb6REz9dDEP4aIttrC9vOqvZLkzueRIJlLF2OK7eflmh277ss1qBfWOIpR6ob
-         hblFy8WO9PyfpJaJelXlqa8nP0F44NZoBWpi7+9jPhMABIEvvdz4MLs8s2+ao183iXAr
-         LoRQ==
-X-Gm-Message-State: ACgBeo3dNTRWoUjLXReQqXHAr6JNH3ooSsKQOYoB79z4rMe1Ql/abulf
-        3e3Z5MNerobHfFWz/XNj5ep5Sqn27I+BcqApUJ/RhQ==
-X-Google-Smtp-Source: AA6agR4TNG/RUu6QvTb9n6GXwBlk0k8cBa5EHKOtjXVmvbElP2VBINK++CQPC2Fa7/4D5YPELdVxUs9VgUcSmTm1/68=
-X-Received: by 2002:ac2:5681:0:b0:498:f58f:c006 with SMTP id
- 1-20020ac25681000000b00498f58fc006mr5016032lfr.428.1662964679707; Sun, 11 Sep
- 2022 23:37:59 -0700 (PDT)
+        bh=IUm/MN9hYg83su7ZYahLGm5MEwsIsG/QUzjstSeG6Mo=;
+        b=tozuYGPz4imbKUeUPE2TkvAh71SyO7GstFuG9+2H/ncugy7aWqL3hPRGRftIa2bS2o
+         OwwwWBTtimUXkeKPAkyv6LjCdcAhAnnssP3LiqcsM2NfLlcY8304JL+S1W8vNGPLahzV
+         I0xelmIxyRw6/tuzNfw5b8gpNLv8HmqrBvyb9RrtO+zNQlX0PndYel9fEwBvM9DE8vD4
+         gu4W1Lx7PVtBsh/IGgsqCV6fMqq5oyI298WJOjxJaFoQCfemKLkZi0yX66DwL3/8uRU1
+         rroV1xZXE5yj4Z5aLyvFskAFkgt9CDXdJoDh9mfgI7tBVLPNUfaANX83GnE6zzu9Frav
+         ixIA==
+X-Gm-Message-State: ACgBeo2SK8QBvJy7tJwYp1lPl7XW2RKApDD5z4xLnd8rjKwkQsrXo3pW
+        M+dZaOeDxotK0lSTX3Dvf2qAVbMFFX6o0Z3UrOx5rg==
+X-Google-Smtp-Source: AA6agR5s2whA7uWOJa+KmUu83OmHts4XhTJeLfLamvGr/SSqHLqGGJ3PE6/vnSEQ3bawMQV3MgXyResxjLGZLowFb1s=
+X-Received: by 2002:a2e:7314:0:b0:26a:ca18:60eb with SMTP id
+ o20-20020a2e7314000000b0026aca1860ebmr6790851ljc.69.1662964866499; Sun, 11
+ Sep 2022 23:41:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220908144424.4232-1-zong.li@sifive.com> <20220908144424.4232-4-zong.li@sifive.com>
- <632b2853-1543-e3ba-b34f-39f3f4fdaddc@microchip.com>
-In-Reply-To: <632b2853-1543-e3ba-b34f-39f3f4fdaddc@microchip.com>
+References: <20220908144424.4232-1-zong.li@sifive.com> <20220908144424.4232-6-zong.li@sifive.com>
+ <36fe0073-7fa2-9733-7041-d9f70da1a5ea@microchip.com>
+In-Reply-To: <36fe0073-7fa2-9733-7041-d9f70da1a5ea@microchip.com>
 From:   Zong Li <zong.li@sifive.com>
-Date:   Mon, 12 Sep 2022 14:37:48 +0800
-Message-ID: <CANXhq0rUzyFOF_pShoPf18VrN2YH8AfgKRg438ak_3iMcRfSGA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/6] soc: sifive: ccache: determine the cache level
- from dts
+Date:   Mon, 12 Sep 2022 14:40:55 +0800
+Message-ID: <CANXhq0rRZhPtrpRQOnwbJj-GRVSCHErLxvGnPAxqfJBk8rNRPQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] soc: sifive: ccache: use pr_fmt() to remove
+ CCACHE: prefixes
 To:     Conor Dooley <Conor.Dooley@microchip.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         krzysztof.kozlowski+dt@linaro.org,
@@ -77,60 +77,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 9, 2022 at 2:28 AM <Conor.Dooley@microchip.com> wrote:
+On Fri, Sep 9, 2022 at 2:40 AM <Conor.Dooley@microchip.com> wrote:
 >
 > On 08/09/2022 15:44, Zong Li wrote:
 > > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > >
-> > Composable cache could be L2 or L3 cache, use 'cache-level' property of
-> > device node to determine the level.
+> > From: Ben Dooks <ben.dooks@sifive.com>
 > >
+> > Use the pr_fmt() macro to prefix all the output with "CCACHE:"
+> > to avoid having to write it out each time, or make a large diff
+> > when the next change comes along.
+> >
+> > Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
 > > Signed-off-by: Zong Li <zong.li@sifive.com>
-> > Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> btw, I think Ben missed a print - a pr_err() in init().
+>
+
+I got that one, I will fix it in v4
+
 > > ---
-> >  drivers/soc/sifive/sifive_ccache.c | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> >  drivers/soc/sifive/sifive_ccache.c | 15 +++++++++------
+> >  1 file changed, 9 insertions(+), 6 deletions(-)
 > >
 > > diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-> > index 949b824e89ad..690c19489317 100644
+> > index 58d14f11a63a..b3929c4d6d5b 100644
 > > --- a/drivers/soc/sifive/sifive_ccache.c
 > > +++ b/drivers/soc/sifive/sifive_ccache.c
-> > @@ -38,6 +38,7 @@
-> >  static void __iomem *ccache_base;
-> >  static int g_irq[SIFIVE_CCACHE_MAX_ECCINTR];
-> >  static struct riscv_cacheinfo_ops ccache_cache_ops;
-> > +static int level;
-> >
-> >  enum {
-> >         DIR_CORR = 0,
-> > @@ -144,7 +145,7 @@ static const struct attribute_group *ccache_get_priv_group(struct cacheinfo
-> >                                                            *this_leaf)
-> >  {
-> >         /* We want to use private group for composable cache only */
-> > -       if (this_leaf->level == 2)
-> > +       if (this_leaf->level == level)
-> >                 return &priv_attr_group;
-> >         else
-> >                 return NULL;
-> > @@ -215,6 +216,9 @@ static int __init sifive_ccache_init(void)
-> >         if (!ccache_base)
-> >                 return -ENOMEM;
-> >
-> > +       if (of_property_read_u32(np, "cache-level", &level))
-> > +               return -ENODEV;
->
-> I think ENOENT or EINVAL are more comment patterns here?
->
-> Either way,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->
-
-I will fix it in V4 patch. Thanks
-
+> > @@ -5,6 +5,9 @@
+> >   * Copyright (C) 2018-2022 SiFive, Inc.
+> >   *
+> >   */
 > > +
-> >         intr_num = of_property_count_u32_elems(np, "interrupts");
-> >         if (!intr_num) {
-> >                 pr_err("CCACHE: no interrupts property\n");
+> > +#define pr_fmt(fmt) "CCACHE: " fmt
+> > +
+> >  #include <linux/debugfs.h>
+> >  #include <linux/interrupt.h>
+> >  #include <linux/of_irq.h>
+> > @@ -85,13 +88,13 @@ static void ccache_config_read(void)
+> >
+> >         cfg = readl(ccache_base + SIFIVE_CCACHE_CONFIG);
+> >
+> > -       pr_info("CCACHE: %u banks, %u ways, sets/bank=%llu, bytes/block=%llu\n",
+> > +       pr_info("%u banks, %u ways, sets/bank=%llu, bytes/block=%llu\n",
+> >                 (cfg & 0xff), (cfg >> 8) & 0xff,
+> >                 BIT_ULL((cfg >> 16) & 0xff),
+> >                 BIT_ULL((cfg >> 24) & 0xff));
+> >
+> >         cfg = readl(ccache_base + SIFIVE_CCACHE_WAYENABLE);
+> > -       pr_info("CCACHE: Index of the largest way enabled: %u\n", cfg);
+> > +       pr_info("Index of the largest way enabled: %u\n", cfg);
+> >  }
+> >
+> >  static const struct of_device_id sifive_ccache_ids[] = {
+> > @@ -155,7 +158,7 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
+> >         if (irq == g_irq[DIR_CORR]) {
+> >                 add_h = readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_HIGH);
+> >                 add_l = readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_LOW);
+> > -               pr_err("CCACHE: DirError @ 0x%08X.%08X\n", add_h, add_l);
+> > +               pr_err("DirError @ 0x%08X.%08X\n", add_h, add_l);
+> >                 /* Reading this register clears the DirError interrupt sig */
+> >                 readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_COUNT);
+> >                 atomic_notifier_call_chain(&ccache_err_chain,
+> > @@ -175,7 +178,7 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
+> >         if (irq == g_irq[DATA_CORR]) {
+> >                 add_h = readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_HIGH);
+> >                 add_l = readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_LOW);
+> > -               pr_err("CCACHE: DataError @ 0x%08X.%08X\n", add_h, add_l);
+> > +               pr_err("DataError @ 0x%08X.%08X\n", add_h, add_l);
+> >                 /* Reading this register clears the DataError interrupt sig */
+> >                 readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_COUNT);
+> >                 atomic_notifier_call_chain(&ccache_err_chain,
+> > @@ -185,7 +188,7 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
+> >         if (irq == g_irq[DATA_UNCORR]) {
+> >                 add_h = readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_HIGH);
+> >                 add_l = readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_LOW);
+> > -               pr_err("CCACHE: DataFail @ 0x%08X.%08X\n", add_h, add_l);
+> > +               pr_err("DataFail @ 0x%08X.%08X\n", add_h, add_l);
+> >                 /* Reading this register clears the DataFail interrupt sig */
+> >                 readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_COUNT);
+> >                 atomic_notifier_call_chain(&ccache_err_chain,
+> > @@ -227,7 +230,7 @@ static int __init sifive_ccache_init(void)
+> >                 rc = request_irq(g_irq[i], ccache_int_handler, 0, "ccache_ecc",
+> >                                  NULL);
+> >                 if (rc) {
+> > -                       pr_err("CCACHE: Could not request IRQ %d\n", g_irq[i]);
+> > +                       pr_err("Could not request IRQ %d\n", g_irq[i]);
+> >                         return rc;
+> >                 }
+> >         }
 > > --
 > > 2.17.1
 > >
