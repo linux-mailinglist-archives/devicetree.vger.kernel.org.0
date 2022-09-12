@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 208465B54C8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F0F5B54CB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 08:51:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229963AbiILGvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 02:51:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47682 "EHLO
+        id S230183AbiILGvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 02:51:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbiILGuy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:50:54 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B83381BEAB
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:50:52 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id n23-20020a17090a091700b00202a51cc78bso5141453pjn.2
-        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:50:52 -0700 (PDT)
+        with ESMTP id S230034AbiILGu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 02:50:56 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA4FD29CB0
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:50:54 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id j6-20020a17090a694600b00200bba67dadso7217500pjm.5
+        for <devicetree@vger.kernel.org>; Sun, 11 Sep 2022 23:50:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
          :cc:subject:date;
-        bh=KI8GGOYVJ30lpXYNmzlWaq92ei+up8qB7deF01pAkE4=;
-        b=GMSuU6wrb4gbfYf/Vc0tM7RnsBejNC2gtIIk2Qqm496IkB0U2XSIRA7/Jc4ugHnvJs
-         OjneuLH3F3Tt6TL+fqiz9ZTMfWhaKcV8kS+Ks+EnFKBo9g/JouaqfyJYIgRBbtNcARKx
-         TSXTQUnz4KJ0Ot9xsMK5tE25NnaQ5FR1FKCBlzmQEkAi7CY6TUQqxkaP1cuwrKiuK8gO
-         WvbVra2LCBBnXAph5GtB+6dwcB9ZESeRqDMp90+XJi4IXC3bjqUICagf5lSjyhQxXrix
-         +DVTC69T1Ux9AQNu1LPgcguNE5wRhBuCY30SLbS4F05NmeRNLvqBYo0Da8WUeWCnllaa
-         ixmQ==
+        bh=5bvvWd4WtFmP4+rZD5AyV+ZxO3T7wivPuDP2w82MTho=;
+        b=FP9hdz+N9C/PONsacP63b61e/uNXZATGo+NRzmt/BylcfobvcSASL5nQQa+6oOb5Lr
+         kr2XyLjdEHilcKvSzSLUxyBIcjObULVXS/DfpXb/7o6LceKQ8DB6C4wrtcy/ENLG+vJA
+         meM+ZRxMdNkP6sTTqADSPH1FbB1BVgiDr3uIo/3ll7E2emaSZBVOI2uSk2CcfPPYkk2p
+         qSj3IhyOy5mkICecsju6GUnSQfRrn5p1FG5nOa0Pv5WIHeZmLE63bSuRv4YDHOG3bm0J
+         a1vCeDqnNmQLzulII4+Bnf8jHTPrXjspXTg3Q7nIPkfHs1FSmeykmodRycRazcm7AOFc
+         gG/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=references:in-reply-to:message-id:date:subject:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=KI8GGOYVJ30lpXYNmzlWaq92ei+up8qB7deF01pAkE4=;
-        b=GiPJlfyk4QW8MyrP480zoe3QELFdnX0zJdYoSoScvlN4Ip3dFGmDCelkmNi7P3nfga
-         yg8KAcbOhUbEFPot2xMg88UOmrWQclc2MKxjps9HRBI+AoITgxeLZMLBf/871TbaPfZd
-         qYiqlDUzexUhdwRuctnTP5wCJvOOlaZcH7Xj1ubYKsA6M1opp4wGr2SrJtHMnhaCbOs2
-         XX5i7U1EsJfKpLDPiGKJ96tQjiFcJ1JKBQEyAB7gf6iA+5BZuKjlnmWVewtZsBROlT+8
-         pRnPcOu2wSyjiq5P3BGVP3yMfeC+eVGpEhYvjufEAIpFPbyNCpPEbq2ZtqZCXassNuAH
-         eDRA==
-X-Gm-Message-State: ACgBeo3m4V48edZideat6O6qYPVmfjps5pOObuxCb2VZlgkR1SWGsLc+
-        cseyrELn/TWP25sXG1EFjdwazw==
-X-Google-Smtp-Source: AA6agR6nGrzvFOlvlGJ8qouQVgLOiB7yFHWl4qEw+wEQhb08Q+u4R9GUJDn3p2gGJylOnOwQcAnDDQ==
-X-Received: by 2002:a17:90a:6a83:b0:200:9da5:d0e7 with SMTP id u3-20020a17090a6a8300b002009da5d0e7mr21960464pjj.187.1662965451415;
-        Sun, 11 Sep 2022 23:50:51 -0700 (PDT)
+        bh=5bvvWd4WtFmP4+rZD5AyV+ZxO3T7wivPuDP2w82MTho=;
+        b=WcKusGC89QVv6y4LRScHj8odPe/DK3LmdWwWX6U2WyuEw3vR/yMzDnrdc4OPXSFOUw
+         0nEHUjB02m7hQrThQfrGYRdn+etC6j4orMo4QCimhiPCeDe32bmAzs+4vPgtTg2FJ6DO
+         oRCLUFprK46RNL0x/oHNPByuWlA5kSA0JPVXG1ZxQZng6bM67SW0qJLtda789/x57ov1
+         l3PaPk1wEdMh0uYCOKktND+IaTLEPfT90dqKCQsfJf+DJnGoI1/GveVnwxFsobJcFoRf
+         pfPcvIzt+5UOGCCWevRkzGCp3udFAPSF0oAezxf2FFw1Svdz26DL3tMlM0DF4+UMbg+Y
+         PNXg==
+X-Gm-Message-State: ACgBeo1PhkhOzDBf67C3dDTpFW2oIO9YZkosDZB/jOMbzS1njtUuxPnb
+        W3aXu2Bd1951OY2FPvxrTN2NGA==
+X-Google-Smtp-Source: AA6agR7768wxpg0BWBnut+gOBLkDMgBOyzVmCR1vQg/Yp6BRsdW/kl+DoZcjtTlnwkyxI6fdXHU8tA==
+X-Received: by 2002:a17:903:22cc:b0:178:18a1:d16c with SMTP id y12-20020a17090322cc00b0017818a1d16cmr11282283plg.155.1662965454516;
+        Sun, 11 Sep 2022 23:50:54 -0700 (PDT)
 Received: from localhost.localdomain (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id v62-20020a632f41000000b00430c6fd7ffbsm4705716pgv.84.2022.09.11.23.50.48
+        by smtp.gmail.com with ESMTPSA id v62-20020a632f41000000b00430c6fd7ffbsm4705716pgv.84.2022.09.11.23.50.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Sep 2022 23:50:50 -0700 (PDT)
+        Sun, 11 Sep 2022 23:50:53 -0700 (PDT)
 From:   Zong Li <zong.li@sifive.com>
 To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         palmer@dabbelt.com, paul.walmsley@sifive.com,
@@ -55,15 +55,15 @@ To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH v4 5/6] soc: sifive: ccache: use pr_fmt() to remove CCACHE: prefixes
-Date:   Mon, 12 Sep 2022 06:50:28 +0000
-Message-Id: <20220912065029.1793-6-zong.li@sifive.com>
+Subject: [PATCH v4 6/6] soc: sifive: ccache: define the macro for the register shifts
+Date:   Mon, 12 Sep 2022 06:50:29 +0000
+Message-Id: <20220912065029.1793-7-zong.li@sifive.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220912065029.1793-1-zong.li@sifive.com>
 References: <20220912065029.1793-1-zong.li@sifive.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,94 +71,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ben Dooks <ben.dooks@sifive.com>
+Define the macro for the register shifts, it could make the code be
+more readable
 
-Use the pr_fmt() macro to prefix all the output with "CCACHE:"
-to avoid having to write it out each time, or make a large diff
-when the next change comes along.
-
-Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
 Signed-off-by: Zong Li <zong.li@sifive.com>
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- drivers/soc/sifive/sifive_ccache.c | 17 ++++++++++-------
- 1 file changed, 10 insertions(+), 7 deletions(-)
+ drivers/soc/sifive/sifive_ccache.c | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index 17080af7dfa0..91f0c2b32ea2 100644
+index 91f0c2b32ea2..1c171150e878 100644
 --- a/drivers/soc/sifive/sifive_ccache.c
 +++ b/drivers/soc/sifive/sifive_ccache.c
-@@ -5,6 +5,9 @@
-  * Copyright (C) 2018-2022 SiFive, Inc.
-  *
-  */
-+
-+#define pr_fmt(fmt) "CCACHE: " fmt
-+
- #include <linux/debugfs.h>
- #include <linux/interrupt.h>
+@@ -13,6 +13,7 @@
  #include <linux/of_irq.h>
-@@ -85,13 +88,13 @@ static void ccache_config_read(void)
+ #include <linux/of_address.h>
+ #include <linux/device.h>
++#include <linux/bitfield.h>
+ #include <asm/cacheinfo.h>
+ #include <soc/sifive/sifive_ccache.h>
+ 
+@@ -33,6 +34,11 @@
+ #define SIFIVE_CCACHE_DATECCFAIL_COUNT 0x168
+ 
+ #define SIFIVE_CCACHE_CONFIG 0x00
++#define SIFIVE_CCACHE_CONFIG_BANK_MASK GENMASK_ULL(7, 0)
++#define SIFIVE_CCACHE_CONFIG_WAYS_MASK GENMASK_ULL(15, 8)
++#define SIFIVE_CCACHE_CONFIG_SETS_MASK GENMASK_ULL(23, 16)
++#define SIFIVE_CCACHE_CONFIG_BLKS_MASK GENMASK_ULL(31, 24)
++
+ #define SIFIVE_CCACHE_WAYENABLE 0x08
+ #define SIFIVE_CCACHE_ECCINJECTERR 0x40
+ 
+@@ -87,11 +93,11 @@ static void ccache_config_read(void)
+ 	u32 cfg;
  
  	cfg = readl(ccache_base + SIFIVE_CCACHE_CONFIG);
- 
--	pr_info("CCACHE: %u banks, %u ways, sets/bank=%llu, bytes/block=%llu\n",
-+	pr_info("%u banks, %u ways, sets/bank=%llu, bytes/block=%llu\n",
- 		(cfg & 0xff), (cfg >> 8) & 0xff,
- 		BIT_ULL((cfg >> 16) & 0xff),
- 		BIT_ULL((cfg >> 24) & 0xff));
+-
+-	pr_info("%u banks, %u ways, sets/bank=%llu, bytes/block=%llu\n",
+-		(cfg & 0xff), (cfg >> 8) & 0xff,
+-		BIT_ULL((cfg >> 16) & 0xff),
+-		BIT_ULL((cfg >> 24) & 0xff));
++	pr_info("%llu banks, %llu ways, sets/bank=%llu, bytes/block=%llu\n",
++		FIELD_GET(SIFIVE_CCACHE_CONFIG_BANK_MASK, cfg),
++		FIELD_GET(SIFIVE_CCACHE_CONFIG_WAYS_MASK, cfg),
++		BIT_ULL(FIELD_GET(SIFIVE_CCACHE_CONFIG_SETS_MASK, cfg)),
++		BIT_ULL(FIELD_GET(SIFIVE_CCACHE_CONFIG_BLKS_MASK, cfg)));
  
  	cfg = readl(ccache_base + SIFIVE_CCACHE_WAYENABLE);
--	pr_info("CCACHE: Index of the largest way enabled: %u\n", cfg);
-+	pr_info("Index of the largest way enabled: %u\n", cfg);
- }
- 
- static const struct of_device_id sifive_ccache_ids[] = {
-@@ -155,7 +158,7 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
- 	if (irq == g_irq[DIR_CORR]) {
- 		add_h = readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_HIGH);
- 		add_l = readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_LOW);
--		pr_err("CCACHE: DirError @ 0x%08X.%08X\n", add_h, add_l);
-+		pr_err("DirError @ 0x%08X.%08X\n", add_h, add_l);
- 		/* Reading this register clears the DirError interrupt sig */
- 		readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_COUNT);
- 		atomic_notifier_call_chain(&ccache_err_chain,
-@@ -175,7 +178,7 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
- 	if (irq == g_irq[DATA_CORR]) {
- 		add_h = readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_HIGH);
- 		add_l = readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_LOW);
--		pr_err("CCACHE: DataError @ 0x%08X.%08X\n", add_h, add_l);
-+		pr_err("DataError @ 0x%08X.%08X\n", add_h, add_l);
- 		/* Reading this register clears the DataError interrupt sig */
- 		readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_COUNT);
- 		atomic_notifier_call_chain(&ccache_err_chain,
-@@ -185,7 +188,7 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
- 	if (irq == g_irq[DATA_UNCORR]) {
- 		add_h = readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_HIGH);
- 		add_l = readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_LOW);
--		pr_err("CCACHE: DataFail @ 0x%08X.%08X\n", add_h, add_l);
-+		pr_err("DataFail @ 0x%08X.%08X\n", add_h, add_l);
- 		/* Reading this register clears the DataFail interrupt sig */
- 		readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_COUNT);
- 		atomic_notifier_call_chain(&ccache_err_chain,
-@@ -218,7 +221,7 @@ static int __init sifive_ccache_init(void)
- 
- 	intr_num = of_property_count_u32_elems(np, "interrupts");
- 	if (!intr_num) {
--		pr_err("CCACHE: no interrupts property\n");
-+		pr_err("No interrupts property\n");
- 		return -ENODEV;
- 	}
- 
-@@ -227,7 +230,7 @@ static int __init sifive_ccache_init(void)
- 		rc = request_irq(g_irq[i], ccache_int_handler, 0, "ccache_ecc",
- 				 NULL);
- 		if (rc) {
--			pr_err("CCACHE: Could not request IRQ %d\n", g_irq[i]);
-+			pr_err("Could not request IRQ %d\n", g_irq[i]);
- 			return rc;
- 		}
- 	}
+ 	pr_info("Index of the largest way enabled: %u\n", cfg);
 -- 
 2.17.1
 
