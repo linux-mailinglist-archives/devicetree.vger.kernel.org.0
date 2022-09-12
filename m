@@ -2,113 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31D8E5B62D7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 23:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 734885B62DC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Sep 2022 23:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbiILVfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 17:35:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42620 "EHLO
+        id S229565AbiILViA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 17:38:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229569AbiILVfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 17:35:53 -0400
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC4B4BD29;
-        Mon, 12 Sep 2022 14:35:52 -0700 (PDT)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-127f5411b9cso26959926fac.4;
-        Mon, 12 Sep 2022 14:35:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=/o3x3HJJvyFzRpNNCPC85nRj+zJ3gyuFs0jeQWhGJmw=;
-        b=juYaYKhrF7cl0EaKYaWZ+AS2Kstij6b2t45dYf+NYCpf1G0dMMWSYSrMvXLotkY9Px
-         CBBOwsrvYqBIbOhvKXR3688Rti0rZUiUoAEve5Rs2+yFLM672o1WCzQnB6Dn62+C9/BF
-         tL3igihIXZ73g7Eq6LNME/dpsWqfqItJgn3j/EW5GDiMtswOwh05xBsrhqqa8pU4wVK4
-         LGMsdYOMTYfd2JNDsyeKuUHwWnqH5aE/XVFbMBfPjCNMpeqZ0wPOTXZI3tANZJAWvB4f
-         4bp7UK5qMcC0agm4EWYRzAWhL3BrXNkatylqbMOhaSER9FEaEC8wyFbql5BXG5Yml7VI
-         a3vA==
+        with ESMTP id S229894AbiILVh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 17:37:57 -0400
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB6C4C60A;
+        Mon, 12 Sep 2022 14:37:56 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-12803ac8113so26942400fac.8;
+        Mon, 12 Sep 2022 14:37:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=/o3x3HJJvyFzRpNNCPC85nRj+zJ3gyuFs0jeQWhGJmw=;
-        b=G5MByno6gEZuNRKVklmywVrI1rCTIbl+UzOVdDkD4k1CE3dndbueyISD6wGfpLigG+
-         ukGEdoItz02ZVYcBUH2goObKy1NfdC6UQ/D3d1P7npCcLuaAtzI1OG/5dvYFhXQjKzt9
-         4xH+R3PqkqXv7o1x2MZ8+yY3ETVxkt6B671vdXWHfeWy9H/iB1yLfprXi4gS/auyoUuj
-         HIU16IaW+V7ie1i6Pv4/iqlgs1+NTLbmLGs0A6Qt/8vZBunwUILxE6ma1SEvBGo/orML
-         UaBOfui8JIOwfOA9DlUT7djlojujtEEXi2eWhqfwoJkxzeCZDm25DF6iSAGVqBaeIxF8
-         Z8aA==
-X-Gm-Message-State: ACgBeo2GUT0pHSRkx9ePG3vhBB9prmklx0TM9pUg9ZEVT8G2zov4TPeb
-        RSxYkiF/SmPD77ouleW2PqM=
-X-Google-Smtp-Source: AA6agR7OE+87SRc4MPIhGnL6cCMzVvYQe3e6nMRpyLIY5RBCxJbTrkn+IJpD7vA73ULAoKLnIkwcbg==
-X-Received: by 2002:a05:6870:e413:b0:127:2f43:af44 with SMTP id n19-20020a056870e41300b001272f43af44mr174675oag.175.1663018551656;
-        Mon, 12 Sep 2022 14:35:51 -0700 (PDT)
-Received: from wintermute.localdomain ([76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id eq22-20020a056870a91600b0012779ba00fesm6426446oab.2.2022.09.12.14.35.50
+        bh=BHNK/xH+mhQJiZxZdU0ybg1u2AYkzOcqp8cQqgJ1qYc=;
+        b=tQcSsAxw8ASH0FSYkCRocrKGrO4hxyPXaoxkTCHiifDna4GtVY3taF7DIzFAH+3CEA
+         5+SdcBFhSeE/74+XFVWCJlx2DV9MeC2EdheSi5lqPfueOACB/L2uMMxevAuCX7HJYYxP
+         a58jMTC1cMUhPD2MTdGkqFQnayOpQfTRPTC+PesqTVZ6esKfyxiZlTUKgKFL+SvSkuu0
+         YrKYTfJorCBIE4zTHbcnhvOxIocBHWA26XMzHOU0fR48KR5sjFik49WziPAepzKFRTLP
+         ZK/lLiG++Q/Ao9pKjsu7aLH+Lt+ttEtYtVTiu6JGS6d7H16zmRqhn0UP+dOhSHFEg4+N
+         f5uQ==
+X-Gm-Message-State: ACgBeo1PJE4GtfDODhvgHX0kkf0485o17HzaKdm5L9lRlVS8e4Ukmf+7
+        X95MtHOcNuw9VOtBVRuaMQ==
+X-Google-Smtp-Source: AA6agR7Q2f7QGvzITg1wOOoy7fhFuc9v9GHyCZijQT0w2SIi0n8gG1E9UqGwLwefbawZKU/G6mw3zg==
+X-Received: by 2002:a05:6870:e616:b0:12b:82e8:dc53 with SMTP id q22-20020a056870e61600b0012b82e8dc53mr207070oag.276.1663018675791;
+        Mon, 12 Sep 2022 14:37:55 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u22-20020a056871009600b0012b342d1125sm5342647oaa.13.2022.09.12.14.37.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Sep 2022 14:35:51 -0700 (PDT)
-Date:   Mon, 12 Sep 2022 16:35:47 -0500
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        dianders@chromium.org, lkundrak@v3.sk,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>, tzimmermann@suse.de,
-        javierm@redhat.com, maarten.lankhorst@linux.intel.com,
-        mripard@kernel.org
-Subject: Re: [PATCH v1 0/2] Revert chrontel-ch7033 byteswap order series
-Message-ID: <20220912213547.GA6141@wintermute.localdomain>
-References: <20220912113856.817188-1-robert.foss@linaro.org>
+        Mon, 12 Sep 2022 14:37:55 -0700 (PDT)
+Received: (nullmailer pid 1943256 invoked by uid 1000);
+        Mon, 12 Sep 2022 21:37:54 -0000
+Date:   Mon, 12 Sep 2022 16:37:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Julius Werner <jwerner@chromium.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
+        Dmitry Osipenko <digetx@gmail.com>
+Subject: Re: [PATCH 2/4 v2] dt-bindings: memory: Add numeric LPDDR compatible
+ string variant
+Message-ID: <20220912213754.GA1942982-robh@kernel.org>
+References: <20220907232914.243502-1-jwerner@chromium.org>
+ <20220907232914.243502-2-jwerner@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220912113856.817188-1-robert.foss@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220907232914.243502-2-jwerner@chromium.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 01:38:54PM +0200, Robert Foss wrote:
-> After applying the "chrontel-ch7033: Add byteswap order option" series,
-> Laurent reported an issues with the approach. Since no fix has been submitted
-> for the issues outlined in time for the next kernel release, I'd like to
-> revert this series for now.
+On Wed, 07 Sep 2022 16:29:12 -0700, Julius Werner wrote:
+> This patch allows a new kind of compatible string for LPDDR parts in the
+> device tree bindings, in addition to the existing hardcoded
+> <vendor>,<part-number> strings. The new format contains manufacturer and
+> part (revision) information in numerical form, such as lpddr3-ff,0201
+> for an LPDDR3 part with manufacturer ID ff and revision ID 0201. This
+> helps cases where LPDDR parts are probed at runtime by boot firmware and
+> cannot be matched to hardcoded part numbers, such as the firmware on the
+> qcom/sc7280-herobrine boards does (which supports 4 different memory
+> configurations at the moment, and more are expected to be added later at
+> a point where the boot firmware can no longer be updated to specifically
+> accomodate them).
 > 
-> Just to be clear I would very much like to see a v3 of this[1] series, where the
-> issues outlined have been fixed.
+> Signed-off-by: Julius Werner <jwerner@chromium.org>
+> ---
+>  .../memory-controllers/ddr/jedec,lpddr-props.yaml    | 10 ++++++++++
+>  .../memory-controllers/ddr/jedec,lpddr2.yaml         |  8 +++++---
+>  .../memory-controllers/ddr/jedec,lpddr3.yaml         | 12 ++++++++----
+>  3 files changed, 23 insertions(+), 7 deletions(-)
+> 
+> Changelog:
+> 
+> - v2
+>   - Updated commit message to describe intended use case as an example
+> 
 
-I will work on a v3 soon, I just have to finish a few other things first.
-
-That said, I'm not very familiar with what we're trying to do in an automated
-fashion. In my use case I have DPI output (from an Allwinner R8 to this bridge)
-which then connects via HDMI. I'm aware that we should be able to get the color
-space information from the HDMI connector, correct? Is it that information I
-would then need to use to set the bridge colorspace, or is it the color info
-from the DPI connector I'm using?
-
-I'm still pretty new to DRM drivers so this is mostly new to me. Thank you.
-
-> 
-> [1] https://lore.kernel.org/all/20220902153906.31000-1-macroalpha82@gmail.com/
-> 
-> Robert Foss (2):
->   Revert "dt-bindings: Add byteswap order to chrontel ch7033"
->   Revert "drm/bridge: ti-sn65dsi86: Implement bridge connector
->     operations for DP"
-> 
->  .../display/bridge/chrontel,ch7033.yaml       | 13 ---------
->  drivers/gpu/drm/bridge/ti-sn65dsi86.c         | 28 -------------------
->  2 files changed, 41 deletions(-)
-> 
-> -- 
-> 2.34.1
-> 
+Acked-by: Rob Herring <robh@kernel.org>
