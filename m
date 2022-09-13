@@ -2,60 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 569C05B7680
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 18:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52CB45B7685
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 18:33:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbiIMQaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 12:30:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38746 "EHLO
+        id S231707AbiIMQdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 12:33:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230092AbiIMQ3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 12:29:47 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA9265FE;
-        Tue, 13 Sep 2022 08:24:40 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1279948d93dso32956281fac.10;
-        Tue, 13 Sep 2022 08:24:40 -0700 (PDT)
+        with ESMTP id S231709AbiIMQcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 12:32:52 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB238B1B9A;
+        Tue, 13 Sep 2022 08:27:50 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-127f5411b9cso33055144fac.4;
+        Tue, 13 Sep 2022 08:27:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=HBF93/3uK9ytKfofiwTx1nTs+Gg2IlX8qJpJ9qDMavQ=;
-        b=2W+ksGrzg7OUySG/4x3B6OcCYhY1v2DvrGEntEwbX9KNP6znF/l/wnqKBcwFddMOYR
-         uqO60Yc0ECadqyyGzzUPUIOCey7ZFT/rvmRu7AwzVm7sjo2xT9rOGwqIzroJONuK/S3G
-         x6zdq4oYBA3/sXeDzn385OQIX+1exvul/OHYeXKa/8xnmK605P0brs3wzCPfnaZ5dPKa
-         4+cxEeO9qIJbI2S4zueU6efdzfvRVB7PQwi8ixnrJamJNqmNmM3fGg1g483mORbydNLa
-         bQOEKr1GYLC+lFZNzTLe/rZpM7G9CR3UkvCM/mUhLxysDoIL+GksYGeWpuUJ7Dbfm6J6
-         39tQ==
-X-Gm-Message-State: ACgBeo22Ji+uMLhIH+9Z7W8DYimMyebTFTtR3oke1+hOsO1zZMd84ZdC
-        KlKCEv0LhUdD54AFhK/CZg==
-X-Google-Smtp-Source: AA6agR73mOYbb8xQ4qxcGvgPxj2G+or5wV6qhF+ujSQEWH0K2S2Dxeq4LDJSwvhbSYSE8rlvI6P68g==
-X-Received: by 2002:aca:3b89:0:b0:345:64e9:73c2 with SMTP id i131-20020aca3b89000000b0034564e973c2mr1723594oia.87.1663082583448;
-        Tue, 13 Sep 2022 08:23:03 -0700 (PDT)
+        bh=VVZjlnn+THkJqyJoRk9RBQPIt/3qGui9L2xBWv1no4A=;
+        b=DYXOx2epFovfGFJTyFufOREnqZSd/pnX/KWK7PnZ3qLZURRyDlndYPqJl/ADpBT900
+         mX0Fa0EIkc92ZJbud+WnwTiICsiTfN89X5NDDGDDpXTpXWCLtCJI3hHa1ZiEqdr5L1jX
+         zAtG895Q3mXXM8Lhq4ZAB1cB9001BqqkCGfGzVaRlNlWBiij8Gb3tfGS+U0gwWITIfBe
+         pmEbnzj7i1g1oT4+R+2vcJBkJgl7U36Ui88oyHE+Q7ilMKiZDq4rWKXQ4sfXHOQ+b6ri
+         +kJlbZO2c5CiF1PwstzVIa4iiLuXKZa13AI31x3Qobk1BZIXxEsyjzTiBFjxtoIrCubP
+         G9bw==
+X-Gm-Message-State: ACgBeo32xxELQbZK/Mwz/SXs2D6hf9n9jBYgXu8c5STJPKQ/U3MH2Sfb
+        mGXd6Nf8peegEYc6nDjB1w==
+X-Google-Smtp-Source: AA6agR6Xeph40B/AphNQeHOSVdWolS1Sqe/wRlZeFUjKP/k/ZntbKo+PcwJJyVFs2nGsVh70g3Qr4w==
+X-Received: by 2002:a05:6870:4727:b0:126:e6:3848 with SMTP id b39-20020a056870472700b0012600e63848mr2027523oaq.60.1663082781782;
+        Tue, 13 Sep 2022 08:26:21 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m7-20020a9d6447000000b00616d25dc933sm6013736otl.69.2022.09.13.08.23.02
+        by smtp.gmail.com with ESMTPSA id x88-20020a9d20e1000000b00637032a39a3sm5977109ota.6.2022.09.13.08.26.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 08:23:02 -0700 (PDT)
-Received: (nullmailer pid 3762736 invoked by uid 1000);
-        Tue, 13 Sep 2022 15:23:02 -0000
-Date:   Tue, 13 Sep 2022 10:23:02 -0500
+        Tue, 13 Sep 2022 08:26:21 -0700 (PDT)
+Received: (nullmailer pid 3767287 invoked by uid 1000);
+        Tue, 13 Sep 2022 15:26:20 -0000
+Date:   Tue, 13 Sep 2022 10:26:20 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-phy@lists.infradead.org, linux-mips@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        UNGLinuxDriver@microchip.com, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 1/1] dt-bindings: phy: ocelot-serdes: convert to YAML
-Message-ID: <20220913152302.GA3762698-robh@kernel.org>
-References: <20220911163715.4036144-1-colin.foster@in-advantage.com>
- <20220911163715.4036144-2-colin.foster@in-advantage.com>
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: add QCOM SM6115 display clock
+ bindings
+Message-ID: <20220913152620.GA3762864-robh@kernel.org>
+References: <20220911164635.182973-1-a39.skl@gmail.com>
+ <20220911164635.182973-2-a39.skl@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220911163715.4036144-2-colin.foster@in-advantage.com>
+In-Reply-To: <20220911164635.182973-2-a39.skl@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -67,30 +70,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 11 Sep 2022 09:37:15 -0700, Colin Foster wrote:
-> Convert the phy-ocelot-serdes device tree binding to the new YAML format.
+On Sun, Sep 11, 2022 at 06:46:18PM +0200, Adam Skladowski wrote:
+> Add device tree bindings for display clock controller for
+> Qualcomm Technology Inc's SM6115 SoC.
 > 
-> Additionally, add the file to MAINTAINERS since the original file didn't
-> exist.
-> 
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
 > ---
+>  .../bindings/clock/qcom,sm6115-dispcc.yaml    | 70 +++++++++++++++++++
+>  .../dt-bindings/clock/qcom,sm6115-dispcc.h    | 36 ++++++++++
+>  2 files changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6115-dispcc.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sm6115-dispcc.h
 > 
-> v1 -> v2:
->     * new yaml file is now named mscc,vsc7514-serdes.yaml
->     * examlpes != examples
->     * remove "driver" name from the binding
->     * remove ethernet port consumer from the example
->     * add additionalProperties: false
->     * remove unnecessary, obvious sentence in the description
-> 
-> ---
->  .../bindings/phy/mscc,vsc7514-serdes.yaml     | 56 +++++++++++++++++++
->  .../bindings/phy/phy-ocelot-serdes.txt        | 43 --------------
->  MAINTAINERS                                   |  1 +
->  3 files changed, 57 insertions(+), 43 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/mscc,vsc7514-serdes.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/phy-ocelot-serdes.txt
-> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6115-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6115-dispcc.yaml
+> new file mode 100644
+> index 000000000000..a6bf363b5015
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm6115-dispcc.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,sm6115-dispcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Display Clock Controller Binding for SM6115
+
+s/Binding //
+
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +
+> +description: |
+
+Don't need '|' when no formatting to preserve.
+
+With those fixes,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
