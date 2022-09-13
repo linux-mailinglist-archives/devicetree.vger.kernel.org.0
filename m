@@ -2,181 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F229F5B7699
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 18:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD1F55B76B2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 18:48:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231584AbiIMQkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 12:40:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49686 "EHLO
+        id S231516AbiIMQr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 12:47:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230470AbiIMQkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 12:40:05 -0400
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D946266134;
-        Tue, 13 Sep 2022 08:34:46 -0700 (PDT)
-Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-1278624b7c4so33136234fac.5;
-        Tue, 13 Sep 2022 08:34:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=NHkxcPH5FKv85ET3//U58TPQlebHVHmJ2tvNIdZ+Pnk=;
-        b=Darz0lUGLMTmn+d7WnnrWf3Tx4tOBEUj0MCzL/yJ2LGOof2uindOvs9w8Zcplvs4dj
-         czy4+vHtjGawtxNrvqtHdPtAQ7eH7DlJWmZDz5S56WX3d63E/a0A2nlJy/SkCHykoIa2
-         vFnYj8UsxjnVRGz0ls/J+iiZuCwnz1h8GMkV0Ql3mLZm/I5mvwmJhYuwOu9zJmRjGXE1
-         P7cIV4LdQMGdE+sGg82oqgmr/k0JQAIJEv4RmwSa2jzBXkH5qL/BUC5tqF067zxq22T5
-         GtJN11FUB9CHV299NV9Djb5Zkh5jJZWLuF/FXFYrpIwOlo7nqfHrnNCaBvQvhOn7QWyG
-         uhqA==
-X-Gm-Message-State: ACgBeo0rtAp3Pt05C/RqxiaI9MY4NcDO2G/Rm24gF/Y3UPSSnKFRjNdu
-        FWvGqwn4xEtD5CNEdKCGnA==
-X-Google-Smtp-Source: AA6agR7/9mHH3ZQG6E/UF5ELa28GzOs6gjtCqRrgLO2UV3sUe47CiR9I5zbcMrvbHWigfDm8U1Xr1g==
-X-Received: by 2002:a05:6870:4586:b0:10d:2ec7:be6 with SMTP id y6-20020a056870458600b0010d2ec70be6mr2203912oao.7.1663083166741;
-        Tue, 13 Sep 2022 08:32:46 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r35-20020a05687017a300b0011e37fb5493sm7354117oae.30.2022.09.13.08.32.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 08:32:46 -0700 (PDT)
-Received: (nullmailer pid 3776213 invoked by uid 1000);
-        Tue, 13 Sep 2022 15:32:45 -0000
-Date:   Tue, 13 Sep 2022 10:32:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     heiko@sntech.de, zhangqing@rock-chips.com,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
-        mturquette@baylibre.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: clock: convert rockchip,rk3128-cru.txt
- to YAML
-Message-ID: <20220913153245.GA3769654-robh@kernel.org>
-References: <76d87f49-6a44-0a05-c9dc-af870fade924@gmail.com>
+        with ESMTP id S231496AbiIMQra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 12:47:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BA52BD1CB;
+        Tue, 13 Sep 2022 08:41:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BD3236148A;
+        Tue, 13 Sep 2022 15:39:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F939C433C1;
+        Tue, 13 Sep 2022 15:39:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663083561;
+        bh=hdzbMLB+OJ8cSYqpFPdtuabfUwCyTVksg9R5H7w1rxY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=u1B1fl67g266hqwu9fyDgpcc5qq+LxmYN+nz3ADp6ysgt/uXn8K+ZiIa7907dCy1p
+         gqdsag6VJtsW2qIPJCKxLRAFSnW0CephlAfhYQKbSyyrqsK3r3Yd8yre1yJ+yZiccZ
+         uZiejsrrYo1te3jO4kDp7HTFkmvd+s9ouvCSFW1mBHNM2ruXpp8rOKOj6wiEEe0h32
+         3AozQ/ZNMofA+h11rH9LLL4iir3sHjzojSNMM3nnSPTCMNqjep5OUiz6x3PVEzeVDx
+         R5vzu8XPqwI83WUCxronnovJvaAWY/iYzanVOXTmPVU5ENUUWioQWtHjy85tKrVZwS
+         v4lz3nvTIRJaA==
+Date:   Tue, 13 Sep 2022 10:39:18 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, daniel.lezcano@linaro.org,
+        robh@kernel.org, rafael@kernel.org, bhupesh.linux@gmail.com
+Subject: Re: [PATCH 1/4] thermal: qcom: qmi_cooling: Add skeletal qmi cooling
+ driver
+Message-ID: <20220913153918.e2bckss5htpjuuhw@builder.lan>
+References: <20220912085049.3517140-1-bhupesh.sharma@linaro.org>
+ <20220912085049.3517140-2-bhupesh.sharma@linaro.org>
+ <ec1858fe-753f-c63a-4580-35851241fbcf@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <76d87f49-6a44-0a05-c9dc-af870fade924@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+In-Reply-To: <ec1858fe-753f-c63a-4580-35851241fbcf@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 11, 2022 at 11:20:10PM +0200, Johan Jonker wrote:
-> Convert rockchip,rk3128-cru.txt to YAML.
+On Mon, Sep 12, 2022 at 02:23:21PM -0700, Jeff Johnson wrote:
+> On 9/12/2022 1:50 AM, Bhupesh Sharma wrote:
+[..]
+> > diff --git a/drivers/thermal/qcom/qmi_cooling/qcom_qmi_cooling.c b/drivers/thermal/qcom/qmi_cooling/qcom_qmi_cooling.c
+[..]
+> > +static struct qmi_elem_info tmd_mitigation_dev_id_type_v01_ei[] = {
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  .../bindings/clock/rockchip,rk3128-cru.txt    | 58 ---------------
->  .../bindings/clock/rockchip,rk3128-cru.yaml   | 73 +++++++++++++++++++
->  2 files changed, 73 insertions(+), 58 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
+> note that commit ff6d365898d ("soc: qcom: qmi: use const for struct
+> qmi_elem_info") allows QMI message encoding/decoding rules to be const
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.txt b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.txt
-> deleted file mode 100644
-> index 6f8744fd3..000000000
-> --- a/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.txt
-> +++ /dev/null
-> @@ -1,58 +0,0 @@
-> -* Rockchip RK3126/RK3128 Clock and Reset Unit
-> -
-> -The RK3126/RK3128 clock controller generates and supplies clock to various
-> -controllers within the SoC and also implements a reset controller for SoC
-> -peripherals.
-> -
-> -Required Properties:
-> -
-> -- compatible: should be "rockchip,rk3126-cru" or "rockchip,rk3128-cru"
-> -  "rockchip,rk3126-cru" - controller compatible with RK3126 SoC.
-> -  "rockchip,rk3128-cru" - controller compatible with RK3128 SoC.
-> -- reg: physical base address of the controller and length of memory mapped
-> -  region.
-> -- #clock-cells: should be 1.
-> -- #reset-cells: should be 1.
-> -
-> -Optional Properties:
-> -
-> -- rockchip,grf: phandle to the syscon managing the "general register files"
-> -  If missing pll rates are not changeable, due to the missing pll lock status.
-> -
-> -Each clock is assigned an identifier and client nodes can use this identifier
-> -to specify the clock which they consume. All available clocks are defined as
-> -preprocessor macros in the dt-bindings/clock/rk3128-cru.h headers and can be
-> -used in device tree sources. Similar macros exist for the reset sources in
-> -these files.
-> -
-> -External clocks:
-> -
-> -There are several clocks that are generated outside the SoC. It is expected
-> -that they are defined using standard clock bindings with following
-> -clock-output-names:
-> - - "xin24m" - crystal input - required,
-> - - "ext_i2s" - external I2S clock - optional,
-> - - "gmac_clkin" - external GMAC clock - optional
-> -
-> -Example: Clock controller node:
-> -
-> -	cru: cru@20000000 {
-> -		compatible = "rockchip,rk3128-cru";
-> -		reg = <0x20000000 0x1000>;
-> -		rockchip,grf = <&grf>;
-> -
-> -		#clock-cells = <1>;
-> -		#reset-cells = <1>;
-> -	};
-> -
-> -Example: UART controller node that consumes the clock generated by the clock
-> -  controller:
-> -
-> -	uart2: serial@20068000 {
-> -		compatible = "rockchip,serial";
-> -		reg = <0x20068000 0x100>;
-> -		interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
-> -		clock-frequency = <24000000>;
-> -		clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
-> -		clock-names = "sclk_uart", "pclk_uart";
-> -	};
-> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
-> new file mode 100644
-> index 000000000..03e5d7f0e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/rockchip,rk3128-cru.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip RK3126/RK3128 Clock and Reset Unit (CRU)
-> +
-> +maintainers:
-> +  - Elaine Zhang <zhangqing@rock-chips.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +description: |
-> +  The RK3126/RK3128 clock controller generates and supplies clock to various
-> +  controllers within the SoC and also implements a reset controller for SoC
-> +  peripherals.
-> +  Each clock is assigned an identifier and client nodes can use this identifier
-> +  to specify the clock which they consume. All available clocks are defined as
-> +  preprocessor macros in the dt-bindings/clock/rk3128-cru.h headers and can be
-> +  used in device tree sources. Similar macros exist for the reset sources in
-> +  these files.
+> <https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=for-next&id=ff6d365898d4d31bd557954c7fc53f38977b491c>
+> 
+> I'm waiting for that to land in the soc tree before I submit my changes to
+> all of the existing drivers, but you can do this now for the new driver
+> 
 
-> +  There are several clocks that are generated outside the SoC. It is expected
-> +  that they are defined using standard clock bindings with following
-> +  clock-output-names:
+I did merge your patch recently, so you should be able to fetch
+linux-next and continue this work:
 
-Which node does clock-output-names live in?
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20220822153435.7856-1-quic_jjohnson@quicinc.com/
 
-From the description, it sounds more like this should be 
-clocks/clock-names.
-
-> +    - "xin24m"     - crystal input       - required
-> +    - "ext_i2s"    - external I2S clock  - optional
-> +    - "gmac_clkin" - external GMAC clock - optional
+Looking forward to the continuation,
+Bjorn
