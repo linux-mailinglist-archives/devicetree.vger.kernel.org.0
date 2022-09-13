@@ -2,179 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 970DB5B6A0F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 10:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5FA85B6A37
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:03:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231343AbiIMI6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 04:58:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37194 "EHLO
+        id S231235AbiIMJC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 05:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231548AbiIMI6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 04:58:33 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A100F4AD5A
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:58:31 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id b5so19607611wrr.5
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:58:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=u4ofErT5hOMpQGT6cywWVhLXqVmQE7e7Op5vJ0iCaOQ=;
-        b=CUrH1MyfvoQBLVS+1bNqDxagpk8da2WmGc2X1jrklxStrvrUxn++Ywcgqx4VN4roZP
-         3JoWE/S1P5XiPpC1x88uK2gd5f0n8/2AErWwpORKgOYDSO2QX1BLfa/TV+WZ3ETxZqjZ
-         yA9oaHKWEQxh7RsoMinCS3UG31NCTBqZYQhGwrTXRnezldgzViR9B1WBGt3Yo+k45Sc7
-         V6+CA9AfLN/TYasyOOx2E5RtQHlLqaJtRmrJlVBn+rP5yC2Eerbum8v9QWZGx3QEogNa
-         UvTH9AogHf5pSxhoPDcUR45WAChcbzM+/LcF1ed7SQeaShR1U0Bf5VnBC/fNhhcCsQqX
-         T2jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=u4ofErT5hOMpQGT6cywWVhLXqVmQE7e7Op5vJ0iCaOQ=;
-        b=MOlWjSvzXvBjxdb0xTGXFBG93BxCv8t73XPEQaScgvqBa+CzeeimdixmSd0U6ktW8G
-         lqL9QeJ/vkWhM2DuEY1U4hdHZtn4yJgJco8Drv7/SZbSgILOhNhQrG+gELRhgJQrAO8i
-         NhOp7T2K6PJXqpZ24HquS5uGnXZ+Ys8MUj5lBeMAsQLv3ntTt19lgXfLbu3tpg/OdnXd
-         jsOZdTT2q92jsBJjziQdhRga2HWlCsJ4OElsI/sX5eq7pSVawfhQGdKMJdi1hA3oQdoX
-         si8gziXRdzw9pheJLxCD9uSuSYm8PNUE+EqJUMfBtZaFC1+mboLKMCm5yL7nYfFcpcs6
-         v+iw==
-X-Gm-Message-State: ACgBeo2MMkouW1rY+/7kDjsTLub73yi0qVq15fMbUdfrpMX/w3nlPlAP
-        nGOJm0AgAe2TWZ0SPlz9+aDnNg==
-X-Google-Smtp-Source: AA6agR7NJFeL1td8GL5y3jCMjrfmIttwAxs8dqRjcGTJeYaHGfS5MNlGiXG2PnvftRkB5RfgEcW7rQ==
-X-Received: by 2002:a5d:5c08:0:b0:228:e139:43f3 with SMTP id cc8-20020a5d5c08000000b00228e13943f3mr17794182wrb.396.1663059510234;
-        Tue, 13 Sep 2022 01:58:30 -0700 (PDT)
-Received: from [10.119.22.201] ([89.101.193.70])
-        by smtp.gmail.com with ESMTPSA id c18-20020adffb12000000b00226f0a00348sm9726306wrr.111.2022.09.13.01.58.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Sep 2022 01:58:29 -0700 (PDT)
-Message-ID: <5f8ca612-5a89-db3a-42f3-a0613c192a87@linaro.org>
-Date:   Tue, 13 Sep 2022 10:58:28 +0200
+        with ESMTP id S231247AbiIMJCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:02:21 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947331DA45;
+        Tue, 13 Sep 2022 02:02:00 -0700 (PDT)
+Received: from canpemm500004.china.huawei.com (unknown [172.30.72.56])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MRcmM4P5YzNmJv;
+        Tue, 13 Sep 2022 16:57:23 +0800 (CST)
+Received: from [10.174.179.106] (10.174.179.106) by
+ canpemm500004.china.huawei.com (7.192.104.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 13 Sep 2022 17:01:58 +0800
+Subject: Re: [PATCH next v4 1/2] i2c: hisi: Add initial device tree support
+To:     Yicong Yang <yangyicong@huawei.com>, <yangyicong@hisilicon.com>,
+        <xuwei5@huawei.com>, <wsa@kernel.org>, <robh+dt@kernel.org>
+CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20220909074842.281232-1-chenweilong@huawei.com>
+ <cc27d1af-7f8a-7c51-a101-1b254a2d761b@huawei.com>
+From:   chenweilong <chenweilong@huawei.com>
+Message-ID: <64721a3f-8fa4-45b4-1045-544cdd021bd8@huawei.com>
+Date:   Tue, 13 Sep 2022 17:01:57 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 06/13] dt-bindings: serial: atmel,at91-usart: Add
- SAM9260 compatibles to SAM9x60
-Content-Language: en-US
-To:     Sergiu.Moga@microchip.com, robh@kernel.org
-Cc:     lee@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-        Claudiu.Beznea@microchip.com, richard.genoud@gmail.com,
-        radu_nicolae.pirea@upb.ro, gregkh@linuxfoundation.org,
-        broonie@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        jirislaby@kernel.org, admin@hifiphile.com,
-        Kavyasree.Kotagiri@microchip.com, Tudor.Ambarus@microchip.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20220906135511.144725-1-sergiu.moga@microchip.com>
- <20220906135511.144725-7-sergiu.moga@microchip.com>
- <9aa29d74-b1fc-d00e-dee4-57f277a366ab@linaro.org>
- <c30cc112-0fb8-01e6-1bb8-eed7db0b9049@microchip.com>
- <20220909013644.GA3731620-robh@kernel.org>
- <b6b044f6-de87-e85b-0b51-e957b90622ab@microchip.com>
- <aa6d8c7d-1723-7674-2142-a5aafe30e570@linaro.org>
- <77d38e3f-6d8c-dbb1-2e66-c768d95b5e35@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <77d38e3f-6d8c-dbb1-2e66-c768d95b5e35@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <cc27d1af-7f8a-7c51-a101-1b254a2d761b@huawei.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Language: en-US
+X-Originating-IP: [10.174.179.106]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ canpemm500004.china.huawei.com (7.192.104.92)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2022 15:09, Sergiu.Moga@microchip.com wrote:
-> On 12.09.2022 13:44, Krzysztof Kozlowski wrote:
->> On 12/09/2022 09:45, Sergiu.Moga@microchip.com wrote:
->>> On 09.09.2022 04:36, Rob Herring wrote:
->>>> On Thu, Sep 08, 2022 at 03:15:44PM +0000, Sergiu.Moga@microchip.com wrote:
->>>>> On 08.09.2022 15:30, Krzysztof Kozlowski wrote:
->>>>>> On 06/09/2022 15:55, Sergiu Moga wrote:
->>>>>>> Add the AT91SAM9260 serial compatibles to the list of SAM9X60 compatibles
->>>>>>> in order to highlight the incremental characteristics of the SAM9X60
->>>>>>> serial IP.
->>>>>>>
->>>>>>> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
->>>>>>> ---
->>>>>>>
->>>>>>>
->>>>>>> v1 -> v2:
->>>>>>> - Nothing, this patch was not here before
->>>>>>>
->>>>>>>
->>>>>>>     Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml | 2 ++
->>>>>>>     1 file changed, 2 insertions(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
->>>>>>> index b25535b7a4d2..4d80006963c7 100644
->>>>>>> --- a/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
->>>>>>> @@ -26,6 +26,8 @@ properties:
->>>>>>>           - items:
->>>>>>>               - const: microchip,sam9x60-dbgu
->>>>>>>               - const: microchip,sam9x60-usart
->>>>>>> +          - const: atmel,at91sam9260-dbgu
->>>>>>> +          - const: atmel,at91sam9260-usart
->>>>>>
->>>>>> This is weird. You say in commit msg to "highlight the incremental
->>>>>> characteristics" but you basically change here existing compatibles.
->>>>>
->>>>>
->>>>> Does "show that they are incremental IP's" sound better then?
->>>>>
->>>>>
->>>>>> This is not enum, but a list.
->>>>>>
->>>>>
->>>>>
->>>>> What do you mean by this? I know it is a list, I specified so in the
->>>>> commit message.
->>>>
->>>> You are saying that compatible must be exactly the 4 strings above in
->>>> the order listed. You need another entry with another 'items' list.
->>>>
->>>> Rob
->>>
->>>
->>> That is what was intended though: a list of the 4 compatibles in that
->>> exact order. The 4th patch of this series also ensures that all 9x60
->>> nodes have that exact list of 4 compatibles.
+On 2022/9/13 15:48, Yicong Yang wrote:
+> On 2022/9/9 15:48, Weilong Chen wrote:
+>> The HiSilicon I2C controller can be used on embedded platform, which
+>> boot from devicetree.
 >>
->> The commit msg suggest otherwise - two options, because it is
->> incremental... But this one is not really incremental - you require this
->> one, only one, configuration. It's in general fine, but commit msg
->> should reflect what you are really intend to do here and why you are
->> doing it.
+>> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+>> ---
+>>  drivers/i2c/busses/Kconfig    |  2 +-
+>>  drivers/i2c/busses/i2c-hisi.c | 19 ++++++++++++++++++-
+>>  2 files changed, 19 insertions(+), 2 deletions(-)
 >>
+>> diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
+>> index 7284206b278b..6d0fdf48e97d 100644
+>> --- a/drivers/i2c/busses/Kconfig
+>> +++ b/drivers/i2c/busses/Kconfig
+>> @@ -673,7 +673,7 @@ config I2C_HIGHLANDER
+>>  
+>>  config I2C_HISI
+>>  	tristate "HiSilicon I2C controller"
+>> -	depends on (ARM64 && ACPI) || COMPILE_TEST
+>> +	depends on ARM64 || COMPILE_TEST
+>>  	help
+>>  	  Say Y here if you want to have Hisilicon I2C controller support
+>>  	  available on the Kunpeng Server.
+>> diff --git a/drivers/i2c/busses/i2c-hisi.c b/drivers/i2c/busses/i2c-hisi.c
+>> index 76c3d8f6fc3c..7a77f306d05f 100644
+>> --- a/drivers/i2c/busses/i2c-hisi.c
+>> +++ b/drivers/i2c/busses/i2c-hisi.c
+>> @@ -5,6 +5,9 @@
+>>   * Copyright (c) 2021 HiSilicon Technologies Co., Ltd.
+>>   */
+>>  
+>> +#ifdef CONFIG_ACPI
+>> +#include <linux/acpi.h>
+>> +#endif
+>>  #include <linux/bits.h>
+>>  #include <linux/bitfield.h>
+>>  #include <linux/completion.h>
+>> @@ -13,6 +16,9 @@
+>>  #include <linux/io.h>
+>>  #include <linux/module.h>
+>>  #include <linux/mod_devicetable.h>
+>> +#ifdef CONFIG_OF
+>> +#include <linux/of.h>
+>> +#endif
+> I don't think the protection for the headers is necessary and common. The
+> ACPI/OF specific functions should have already been handled well with{out}
+> ACPI/OF config. Have you met some problems without these?
+>
+> BTW, it's better to have a changelog when updating the patches.
+
+This kind usage does exist in the kernel, for example: drivers/rtc/rtc-mc146818-lib.c.
+
+It can be consistent with the protection below MODULE_DEVICE_TABLE.
+
+>>  #include <linux/platform_device.h>
+>>  #include <linux/property.h>
+>>  #include <linux/units.h>
+>> @@ -483,17 +489,28 @@ static int hisi_i2c_probe(struct platform_device *pdev)
+>>  	return 0;
+>>  }
+>>  
+>> +#ifdef CONFIG_ACPI
+>>  static const struct acpi_device_id hisi_i2c_acpi_ids[] = {
+>>  	{ "HISI03D1", 0 },
+>>  	{ }
+>>  };
+>>  MODULE_DEVICE_TABLE(acpi, hisi_i2c_acpi_ids);
+>> +#endif
+>> +
+>> +#ifdef CONFIG_OF
+>> +static const struct of_device_id hisi_i2c_dts_ids[] = {
+>> +	{ .compatible = "hisilicon,hisi-i2c", },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, hisi_i2c_dts_ids);
+>> +#endif
+>>  
+>>  static struct platform_driver hisi_i2c_driver = {
+>>  	.probe		= hisi_i2c_probe,
+>>  	.driver		= {
+>>  		.name	= "hisi-i2c",
+>> -		.acpi_match_table = hisi_i2c_acpi_ids,
+>> +		.acpi_match_table = ACPI_PTR(hisi_i2c_acpi_ids),
+>> +		.of_match_table = of_match_ptr(hisi_i2c_dts_ids),
+>>  	},
+>>  };
+>>  module_platform_driver(hisi_i2c_driver);
 >>
->> Best regards,
->> Krzysztof
-> 
-> 
-> My apologies, I still do not understand what is wrong with the commit 
-> message. My intention was to ensure that every 9x60 usart compatible is 
-> followed by the 9260 compatibles because the 9x60 serial IP is an 
-> improvement over the 9260 one. Would you prefer it to be just the first 
-> part of the commit message: `Add the AT91SAM9260 serial compatibles to 
-> the list of SAM9X60 compatibles`? That way it would really only be what 
-> the commit does.
+> .
 
-Let me rephrase it:
 
-What your commit is doing is requiring additional fallback compatibles.
-Therefore the commit msg should answer - why do you require additional
-fallback compatibles?
-
-Incremental characteristics sound to me optional. I can increment
-sam9x60 with something or I can skip it. But you are not doing it...
-sam9x60 was already there and now you require a fallback.
-
-Best regards,
-Krzysztof
