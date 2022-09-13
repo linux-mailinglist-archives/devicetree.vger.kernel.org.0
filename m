@@ -2,137 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 973CB5B6ED5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 16:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D9D85B6EDB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 16:06:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232405AbiIMOF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 10:05:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48518 "EHLO
+        id S232440AbiIMOGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 10:06:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232408AbiIMOFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 10:05:25 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE4C51D0FE
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:05:21 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id g3so84412wrq.13
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:05:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=j9AE7+MGh6BY4KWPPr0cYlAvnl+eZtdW7kdT8YeWHs4=;
-        b=t7zXByxfhkphBgJbdx3n8AKs4Gz+pxXzSTFS5wBaNmr+qOv7Sr4XhjrvTVxIhkh0Ta
-         8L75sQ/srTNdlt0SQfgnmHvUfxDGE6fJ8Au2UWZQO8Z8ZRfdjc78TCFNuEc+nN27fwh+
-         Te4qdHZP09jJzN5Ry8mPXvWZZ+AOdbctnHFk50Qh5ITXsL/+jQadBoon96xZh+7IYJ9D
-         +ws4w5IJuKdcfoHimVRKpfIv0eIuNPrbQFMQ5h2dtVW4RZ/Lk8S6bOjtH8vCKGMmDndV
-         kPHLeVQMU1y8WZGAcKjK5Y3Wx+bALc6FahO41KIhhnhUDX7Xei0L8BPDsT6ggJFAzTLC
-         Mn+Q==
+        with ESMTP id S232411AbiIMOFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 10:05:54 -0400
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 038571C127;
+        Tue, 13 Sep 2022 07:05:52 -0700 (PDT)
+Received: by mail-oo1-f50.google.com with SMTP id w39-20020a4a97aa000000b0044dfa1ddc67so1952747ooi.6;
+        Tue, 13 Sep 2022 07:05:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=j9AE7+MGh6BY4KWPPr0cYlAvnl+eZtdW7kdT8YeWHs4=;
-        b=lo2fFCyomitUuUXMTgEiLtMtu9DaWpwIbu7VcYqt9nzPnCyX7vrwc7nQF4ccPxqqtU
-         sFJqo7fOegEgcWAhF3z9JS1Ppc2uOJBh4tI11amz5jJ3s+G8VaGf2BhcS7cwJvuOr2ba
-         a5mmRFTa4XRIv5vYNJLUB3z4pE9NbIpGy5yasd4Vb3YFeqzcyoLBTyHj0ZYauYducnnb
-         C8D7KEo0IdQKdkaW+Els7RA+k0DWfueHPYA1UfjQvfMdpgr4jjIDleqkekWVGfr/wcoa
-         cdev88Om8J0z2Hr0R3QUFNUsQnBPGcbCFcDtsYgmQ/U8cqgwRDFn22nnE08TLKcPRF9y
-         paTQ==
-X-Gm-Message-State: ACgBeo1xl+jDjV1GFhcN/uaTE/T2spfIiMCAuThLmKLiV+e7dOfvMIRD
-        Hzgeek8VR2KAeVp+VtHFeoFmVw==
-X-Google-Smtp-Source: AA6agR6O1+8Y82XcsDX3f13kxIP4XvI+yu4ytmhCNVBE5REp8reHPbHcE+gUKAFUNjCG8wSqIsMnaw==
-X-Received: by 2002:a5d:648c:0:b0:22a:2c04:97a5 with SMTP id o12-20020a5d648c000000b0022a2c0497a5mr16033680wri.326.1663077919967;
-        Tue, 13 Sep 2022 07:05:19 -0700 (PDT)
-Received: from [10.119.22.201] ([89.101.193.67])
-        by smtp.gmail.com with ESMTPSA id l17-20020a5d6751000000b0021efc75914esm10468603wrw.79.2022.09.13.07.05.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Sep 2022 07:05:19 -0700 (PDT)
-Message-ID: <638002c3-f402-96d3-7eb8-991f7f05f703@linaro.org>
-Date:   Tue, 13 Sep 2022 16:05:18 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=gUoMuqH8RQNLf6TD5ZgHBTjgUa9ZzQ80Xl0NxTsaRAQ=;
+        b=atlBAHFy5pXU5vu/FMKYD5xMcXZAvVe+4JOqgOWDp0mnko8v3jEdh4zxfnyufDdVg4
+         fQSsLQu1Ub54q3gePuLMKBsBm+/SxRlNNSMkdFerrY1m6SUOqU08GFGQVxp3oCLX02Z/
+         UMz8gTiMyKApaCMQAD+uRgddhIecikQPGw4MtYPIZr1ZLFAfarZMDpnJS9GC/KbSQAFa
+         JlufXp8IkqgQ3kWExDBZWP4gymgvbNTMiM9yk9zjmg6UjLbEhBGDTtuRP5VhnY0neV5G
+         PmqnkENH9bO5++xzkjZY2bqInAM+fzAOSqrjyvPOo1kKVGD5x0ShyQDF9H2kkooCyJr3
+         cPzA==
+X-Gm-Message-State: ACgBeo1vsi/waodI0BM1NqWhLqSdFMaZtoD2gPM9cbEy36p3z6V8Ctvl
+        TJmUR9tUwJ8z737u2tftLg==
+X-Google-Smtp-Source: AA6agR6RrtTNw9L8FzOsi4f1dPwDybzh223SP/qImE6imeHr6gssP4vZDFglDT81BonBYIffpKUqWw==
+X-Received: by 2002:a4a:b04e:0:b0:472:912a:63c9 with SMTP id g14-20020a4ab04e000000b00472912a63c9mr8418280oon.87.1663077951213;
+        Tue, 13 Sep 2022 07:05:51 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k6-20020a056870818600b0010d7242b623sm7045343oae.21.2022.09.13.07.05.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 07:05:50 -0700 (PDT)
+Received: (nullmailer pid 3591626 invoked by uid 1000);
+        Tue, 13 Sep 2022 14:05:49 -0000
+Date:   Tue, 13 Sep 2022 09:05:49 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     philipp.tomsich@vrull.eu, linux-kernel@vger.kernel.org,
+        sjg@chromium.org, heiko@sntech.de, thierry.reding@gmail.com,
+        vigneshr@ti.com, linux-rockchip@lists.infradead.org,
+        linux-mmc@vger.kernel.org, gregkh@linuxfoundation.org,
+        linux@roeck-us.net, u.kleine-koenig@pengutronix.de, kishon@ti.com,
+        robh+dt@kernel.org, miquel.raynal@bootlin.com, jamie@jamieiles.com,
+        wim@linux-watchdog.org, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, zhangqing@rock-chips.com,
+        linux-watchdog@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pwm@vger.kernel.org, vkoul@kernel.org, richard@nod.at,
+        linux-mtd@lists.infradead.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-usb@vger.kernel.org, ulf.hansson@linaro.org,
+        kever.yang@rock-chips.com
+Subject: Re: [PATCH v1 01/11] dt-bindings: serial: rockchip: add
+ rockchip,rk3128-uart
+Message-ID: <20220913140549.GA3591205-robh@kernel.org>
+References: <20220909212543.17428-1-jbx6244@gmail.com>
+ <4f283231-2ed4-202b-0c23-157bce0841ee@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH V2] dt-bindings: clock: add i.MX8M Anatop
-Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, abelvesa@kernel.org,
-        abel.vesa@linaro.org, sboyd@kernel.org
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20220913092908.1708931-1-peng.fan@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220913092908.1708931-1-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4f283231-2ed4-202b-0c23-157bce0841ee@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2022 11:29, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Sat, 10 Sep 2022 00:01:28 +0200, Johan Jonker wrote:
+> Add rockchip,rk3128-uart compatible string.
 > 
-> i.MX8M Family features an anatop module the produces PLL to clock
-> control module(CCM) root clock. Add the missing yaml file.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
+>  Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> V2:
->  Drop syscon, use clock-controller
->  Add fsl vendor prefix
->  Add interrupt property
-> 
->  dts update not included, so there will be dtbs_check fail.
-> 
->  .../bindings/clock/fsl,imx8m-anatop.yaml      | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml b/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
-> new file mode 100644
-> index 000000000000..2c0efa58d898
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/fsl,imx8m-anatop.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX8M Family Anatop Module
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +description: |
-> +  NXP i.MX8M Family anatop PLL module which generates PLL to CCM root.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - fsl,imx8mm-anatop
-> +          - fsl,imx8mq-anatop
-> +      - items:
-> +          - enum:
-> +              - fsl,imx8mn-anatop
-> +              - fsl,imx8mp-anatop
-> +          - const: fsl,imx8mm-anatop
 
-You dropped syscon which solves part of my previous comment. I suggested
-to make it proper clock provider, so you would need clock-cells. Any
-reason it is no a real clock provider?
-
-Best regards,
-Krzysztof
+Acked-by: Rob Herring <robh@kernel.org>
