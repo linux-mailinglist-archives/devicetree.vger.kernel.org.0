@@ -2,326 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E28725B6E24
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 15:16:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 159985B6E40
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 15:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232163AbiIMNPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 09:15:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42464 "EHLO
+        id S231781AbiIMNSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 09:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231557AbiIMNPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 09:15:16 -0400
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 381C21182A;
-        Tue, 13 Sep 2022 06:15:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-        s=20161220; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=6o06f6lKEImR2OALb/GgSAF0FPbhPTKph1QDZj138Gs=; b=sXRPMgLBbkNt0C3LJq4SxOZxBA
-        LSJ9IVYtjeAVFej55mgdlka/cBZmDdcis60BPJ939Mka3rHW3GreBFC2/oPbXvCIQtbGNv5akR0Vm
-        Vq05qGXpQ/ZrVMEQBlX6PNnsUBIi55eVO2RPt0U9eggvOpK37uivYHdHpYBONfW+jPuqQl8B8v8Tc
-        EzCr9CTJNgDcIpmWoFA58j+eiqlhuplS4CscU8OY1JS79FUyDj7FdIpWuacMT85d39eyiiiobHbRa
-        rbHGxTF7SFgHuZ56wRVCxo1kRYSdY45y0B25sQ5qXt3hakA7Brk/ZBH4HkmzvNMzQx/2Wo6Zmd5HN
-        XYXIsF7g==;
-Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=toshino.localdomain)
-        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1oY5ki-00EVnM-MZ; Tue, 13 Sep 2022 16:15:00 +0300
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 8/8] drm/tegra: Add Tegra234 support to NVDEC driver
-Date:   Tue, 13 Sep 2022 16:14:46 +0300
-Message-Id: <20220913131447.2877280-9-cyndis@kapsi.fi>
-X-Mailer: git-send-email 2.37.0
-In-Reply-To: <20220913131447.2877280-1-cyndis@kapsi.fi>
-References: <20220913131447.2877280-1-cyndis@kapsi.fi>
+        with ESMTP id S232236AbiIMNSO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 09:18:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BAD7175A7;
+        Tue, 13 Sep 2022 06:18:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 25A03612E7;
+        Tue, 13 Sep 2022 13:18:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1332AC433C1;
+        Tue, 13 Sep 2022 13:18:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663075086;
+        bh=xuogeMmae4zT8SIRfPgSZkOLLfxJdslWB0l9uOwRQKg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=pDJEW/H4/D/borWfO0g1TfUN8Jwp1Q5NggtFMs769QUfZ1AjjQRjRBFZLgkMd5AFR
+         FjBWZbBatC00zcbi/p3ViM4oeU382BEP753zhf7+7pglOiKHBS0+oTNtMYCzKysUuh
+         epEb4TKK/SsyVXywwuK3ZNEAdL8XNSCs6j2K9Pe6DolSfHdGOh6Jo9BnMNPVO3GBcr
+         PQQiWYtmGDzKpKw6MUllfSxrbBTUEptWndN51AQA9bGVk9QH9/u6puep7NoBn/sFlY
+         p7uU7+f3WahEQkfkwMDtyvMWYCIwCtaMoY69gRLuHPaSP5w9voC7Sxmb9/Qvqfxshg
+         59wpOZiB7DIGQ==
+Message-ID: <4ffb1f04-ebd2-0d18-b909-5aeb3e0ded81@kernel.org>
+Date:   Tue, 13 Sep 2022 16:18:02 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 91.158.25.70
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3 3/3] dt-bindings: memory-controllers: gpmc-child: add
+ wait-pin polarity
+Content-Language: en-US
+To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+Cc:     "tony@atomide.com" <tony@atomide.com>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20220906124747.1767318-1-benedikt.niedermayr@siemens.com>
+ <20220906124747.1767318-5-benedikt.niedermayr@siemens.com>
+ <70a2fec4-e7b9-e8ed-4d8a-d547003dbb9e@kernel.org>
+ <125ea34a12928fcdd8ef118eced8b2c59039d2ab.camel@siemens.com>
+ <8326572f-8a88-6e8b-edda-7730a0a3597d@kernel.org>
+ <ca4f7a8f6f48b02e9dacb1dae27e90edaab2fcc3.camel@siemens.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <ca4f7a8f6f48b02e9dacb1dae27e90edaab2fcc3.camel@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mikko Perttunen <mperttunen@nvidia.com>
+Benedikt,
 
-Add support for the Tegra234 version of NVDEC to the NVDEC driver.
-This version sports a RISC-V controller and requires a few additional
-clocks. After firmware has been loaded, the behavior is, however,
-backwards compatible.
+On 13/09/2022 11:23, Niedermayr, BENEDIKT wrote:
+> Roger,
+> 
+> On Mon, 2022-09-12 at 14:04 +0300, Roger Quadros wrote:
+>> Benedikt,
+>>
+>> On 12/09/2022 10:43, Niedermayr, BENEDIKT wrote:
+>>> On Thu, 2022-09-08 at 15:09 +0300, Roger Quadros wrote:
+>>>> Benedikt,
+>>>>
+>>>>
+>>>> On 06/09/2022 15:47, B. Niedermayr wrote:
+>>>>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+>>>>>
+>>>>> The GPMC controller has the ability to configure the polarity
+>>>>> for
+>>>>> the
+>>>>> wait pin. The current properties do not allow this
+>>>>> configuration.
+>>>>> This binding directly configures the WAITPIN<X>POLARITY bit
+>>>>> in the GPMC_CONFIG register.
+>>>>>
+>>>>> Signed-off-by: Benedikt Niedermayr <
+>>>>> benedikt.niedermayr@siemens.com
+>>>>> ---
+>>>>>  .../bindings/memory-controllers/ti,gpmc-child.yaml          |
+>>>>> 6
+>>>>> ++++++
+>>>>>  1 file changed, 6 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/memory-
+>>>>> controllers/ti,gpmc-child.yaml
+>>>>> b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
+>>>>> child.yaml
+>>>>> index 6e3995bb1630..a115b544a407 100644
+>>>>> --- a/Documentation/devicetree/bindings/memory-
+>>>>> controllers/ti,gpmc-
+>>>>> child.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/memory-
+>>>>> controllers/ti,gpmc-
+>>>>> child.yaml
+>>>>> @@ -230,6 +230,12 @@ properties:
+>>>>>        Wait-pin used by client. Must be less than "gpmc,num-
+>>>>> waitpins".
+>>>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>  
+>>>>> +  gpmc,wait-pin-active-low:
+>>>>> +    description: |
+>>>>> +      Set the polarity for the selected wait pin to active
+>>>>> low.
+>>>>> +      Defaults to active high if this is not set.
+>>>>> +    type: boolean
+>>>>> +
+>>>>
+>>>> I just checked that the default behaviour is active low.
+>>>> Reset value of the polarity register field is 0, which means
+>>>> active
+>>>> low.
+>>>>
+>>>> We will need to use the property "gpmc,wait-pin-active-high"
+>>>> instead.
+>>>>
+>>>> Sorry for not catching this earlier.
+>>>
+>>> It's ok. No worries.
+>>>
+>>> Well, the Datasheets are telling me different reset values here. 
+>>> The am335x TRM (Rev. Q) defines the reset value of WAIT1PINPOLARITY
+>>> as
+>>> 0x0, whereas the am64x TRM (Rev. C) defines the reset value of
+>>> WAIT1PIN
+>>> POLARITY as 0x1. The am64x TRM also defines different reset values
+>>> for 
+>>> WAIT0PINPOLARITY and WAIT1PINPOLARITY.
+>>>
+>>> The interesting thing is that I'm currently working on an am335x
+>>> platform and I dumped the GPMC_CONFIG register and got 0x00000a00
+>>> (WAIT1PINPOLARITY == 0x1). So It doesn't behave like the TRM
+>>> specifies.
+>>
+>> I can confirm the same behaviour on am642 EVM as well.
+>> I get 0xa00 on reading GPMC_CONFIG.
+>>
+>>>
+>>> Nevertheless, I'm setting the WAITXPINPOLARITY bits in both cases
+>>> accordingly.  
+>>> 0x0 in case "gpmc,wait-pin-active-low" is set and 0x1 in case
+>>> "gpmc,wait-pin-active-low" is not set. So the reset value is always
+>>> overwritten.
+>>>
+>>>
+>>> Using "gpmc,wait-pin-active-high" rather than "gpmc,wait-pin-
+>>> active-low
+>>> " is also ok for me, but it feels more like a cosmetic thing at
+>>> this
+>>> point. 
+>>
+>> My main concern is for legacy platforms not specifying the property
+>> in DT.
+>> Earlier we were not touching the WAITPINPOLARITY config and now we
+>> are
+>> so we might break some legacy platforms that don't specify
+>> the polarity and we flip it here.
+>>
+>> Fortunately, there are only few boards using gpmc wait-pin and mostly
+>> wait-pin 0
+>> for which there is no discrepancy as far as wait-pin reset value is
+>> concerned.
+>>
+>> logicpd-torpedo-baseboard.dtsi:		gpmc,wait-pin = <0>;
+>> omap3-devkit8000-common.dtsi:		gpmc,wait-pin = <0>;
+>> Binary file omap3-devkit8000.dtb matches
+>> Binary file omap3-devkit8000-lcd43.dtb matches
+>> Binary file omap3-devkit8000-lcd70.dtb matches
+>> omap3-lilly-a83x.dtsi:		gpmc,wait-pin = <0>;
+>> Binary file omap3-lilly-dbb056.dtb matches
+>> Binary file omap3-zoom3.dtb matches
+>>
+>> Only 1 board is using wait-pin 1
+>> omap-zoom-common.dtsi:		gpmc,wait-pin = <1>;
+>>
+>> from OMP36xx TRM, here are the reset values
+>> WAIT3PINPOLARITY 0x1
+>> WAIT2PINPOLARITY 0x0
+>> WAIT1PINPOLARITY 0x1
+>> WAIT0PINPOLARITY 0x0
+> 
+> Ah ok. The picture is getting clearer.
+> 
+> Does it make sense then not to use a boolean property in that case?
+> With a boolean property we are only able to change the polarity bits
+> into one direction (0 -> 1 or 1 -> 0) but we have different reset
+> values for each bit.
+> 
+> This part of my patch may then break the mentioned legacy platforms
+> because it even overwrites the register in case the property is not
+> set:
+> 
+> 
+> +	if (p->wait_pin_active_low)
+> +		config1 &= ~GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
+> +	else
+> +		config1 |= GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
+> +
+> +	gpmc_write_reg(GPMC_CONFIG, config1);
+> 
+> 
+> So in order to preserve compatibility as well as the possibility to
+> change the polarity bits into the desired value I would propose to use
+> an uint32 value for the desired value and in case the dt-property is
+> not set we should not touch the register at all.
 
-Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
----
- drivers/gpu/drm/tegra/drm.c   |   1 +
- drivers/gpu/drm/tegra/nvdec.c | 140 ++++++++++++++++++++++++++++++----
- 2 files changed, 126 insertions(+), 15 deletions(-)
+I'm sorry I didn't understand how uint32 value solves this issue.
+Could you please explain with a DT example?
 
-diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
-index 6748ec1e0005..a014f11e9edb 100644
---- a/drivers/gpu/drm/tegra/drm.c
-+++ b/drivers/gpu/drm/tegra/drm.c
-@@ -1382,6 +1382,7 @@ static const struct of_device_id host1x_drm_subdevs[] = {
- 	{ .compatible = "nvidia,tegra194-vic", },
- 	{ .compatible = "nvidia,tegra194-nvdec", },
- 	{ .compatible = "nvidia,tegra234-vic", },
-+	{ .compatible = "nvidia,tegra234-nvdec", },
- 	{ /* sentinel */ }
- };
- 
-diff --git a/drivers/gpu/drm/tegra/nvdec.c b/drivers/gpu/drm/tegra/nvdec.c
-index 05af4d107421..10fd21517281 100644
---- a/drivers/gpu/drm/tegra/nvdec.c
-+++ b/drivers/gpu/drm/tegra/nvdec.c
-@@ -8,6 +8,7 @@
- #include <linux/dma-mapping.h>
- #include <linux/host1x.h>
- #include <linux/iommu.h>
-+#include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_device.h>
-@@ -16,18 +17,21 @@
- #include <linux/pm_runtime.h>
- #include <linux/reset.h>
- 
--#include <soc/tegra/pmc.h>
-+#include <soc/tegra/mc.h>
- 
- #include "drm.h"
- #include "falcon.h"
-+#include "riscv.h"
- #include "vic.h"
- 
-+#define NVDEC_FALCON_DEBUGINFO			0x1094
- #define NVDEC_TFBIF_TRANSCFG			0x2c44
- 
- struct nvdec_config {
- 	const char *firmware;
- 	unsigned int version;
- 	bool supports_sid;
-+	bool has_riscv;
- 	bool has_extra_clocks;
- };
- 
-@@ -40,9 +44,14 @@ struct nvdec {
- 	struct device *dev;
- 	struct clk_bulk_data clks[3];
- 	unsigned int num_clks;
-+	struct reset_control *reset;
- 
- 	/* Platform configuration */
- 	const struct nvdec_config *config;
-+
-+	/* RISC-V specific data */
-+	struct tegra_drm_riscv riscv;
-+	phys_addr_t carveout_base;
- };
- 
- static inline struct nvdec *to_nvdec(struct tegra_drm_client *client)
-@@ -56,7 +65,7 @@ static inline void nvdec_writel(struct nvdec *nvdec, u32 value,
- 	writel(value, nvdec->regs + offset);
- }
- 
--static int nvdec_boot(struct nvdec *nvdec)
-+static int nvdec_boot_falcon(struct nvdec *nvdec)
- {
- #ifdef CONFIG_IOMMU_API
- 	struct iommu_fwspec *spec = dev_iommu_fwspec_get(nvdec->dev);
-@@ -92,6 +101,64 @@ static int nvdec_boot(struct nvdec *nvdec)
- 	return 0;
- }
- 
-+static int nvdec_wait_debuginfo(struct nvdec *nvdec, const char *phase)
-+{
-+	int err;
-+	u32 val;
-+
-+	err = readl_poll_timeout(nvdec->regs + NVDEC_FALCON_DEBUGINFO, val, val == 0x0, 10, 100000);
-+	if (err) {
-+		dev_err(nvdec->dev, "failed to boot %s, debuginfo=0x%x\n", phase, val);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int nvdec_boot_riscv(struct nvdec *nvdec)
-+{
-+	int err;
-+
-+	err = reset_control_acquire(nvdec->reset);
-+	if (err)
-+		return err;
-+
-+	nvdec_writel(nvdec, 0xabcd1234, NVDEC_FALCON_DEBUGINFO);
-+
-+	err = tegra_drm_riscv_boot_bootrom(&nvdec->riscv, nvdec->carveout_base, 1,
-+					   &nvdec->riscv.bl_desc);
-+	if (err) {
-+		dev_err(nvdec->dev, "failed to execute bootloader\n");
-+		goto release_reset;
-+	}
-+
-+	err = nvdec_wait_debuginfo(nvdec, "bootloader");
-+	if (err)
-+		goto release_reset;
-+
-+	err = reset_control_reset(nvdec->reset);
-+	if (err)
-+		goto release_reset;
-+
-+	nvdec_writel(nvdec, 0xabcd1234, NVDEC_FALCON_DEBUGINFO);
-+
-+	err = tegra_drm_riscv_boot_bootrom(&nvdec->riscv, nvdec->carveout_base, 1,
-+					   &nvdec->riscv.os_desc);
-+	if (err) {
-+		dev_err(nvdec->dev, "failed to execute firmware\n");
-+		goto release_reset;
-+	}
-+
-+	err = nvdec_wait_debuginfo(nvdec, "firmware");
-+	if (err)
-+		goto release_reset;
-+
-+release_reset:
-+	reset_control_release(nvdec->reset);
-+
-+	return err;
-+}
-+
- static int nvdec_init(struct host1x_client *client)
- {
- 	struct tegra_drm_client *drm = host1x_to_drm_client(client);
-@@ -191,7 +258,7 @@ static const struct host1x_client_ops nvdec_client_ops = {
- 	.exit = nvdec_exit,
- };
- 
--static int nvdec_load_firmware(struct nvdec *nvdec)
-+static int nvdec_load_falcon_firmware(struct nvdec *nvdec)
- {
- 	struct host1x_client *client = &nvdec->client.base;
- 	struct tegra_drm *tegra = nvdec->client.drm;
-@@ -254,7 +321,6 @@ static int nvdec_load_firmware(struct nvdec *nvdec)
- 	return err;
- }
- 
--
- static __maybe_unused int nvdec_runtime_resume(struct device *dev)
- {
- 	struct nvdec *nvdec = dev_get_drvdata(dev);
-@@ -266,13 +332,19 @@ static __maybe_unused int nvdec_runtime_resume(struct device *dev)
- 
- 	usleep_range(10, 20);
- 
--	err = nvdec_load_firmware(nvdec);
--	if (err < 0)
--		goto disable;
-+	if (nvdec->config->has_riscv) {
-+		err = nvdec_boot_riscv(nvdec);
-+		if (err < 0)
-+			goto disable;
-+	} else {
-+		err = nvdec_load_falcon_firmware(nvdec);
-+		if (err < 0)
-+			goto disable;
- 
--	err = nvdec_boot(nvdec);
--	if (err < 0)
--		goto disable;
-+		err = nvdec_boot_falcon(nvdec);
-+		if (err < 0)
-+			goto disable;
-+	}
- 
- 	return 0;
- 
-@@ -348,10 +420,18 @@ static const struct nvdec_config nvdec_t194_config = {
- 	.supports_sid = true,
- };
- 
-+static const struct nvdec_config nvdec_t234_config = {
-+	.version = 0x23,
-+	.supports_sid = true,
-+	.has_riscv = true,
-+	.has_extra_clocks = true,
-+};
-+
- static const struct of_device_id tegra_nvdec_of_match[] = {
- 	{ .compatible = "nvidia,tegra210-nvdec", .data = &nvdec_t210_config },
- 	{ .compatible = "nvidia,tegra186-nvdec", .data = &nvdec_t186_config },
- 	{ .compatible = "nvidia,tegra194-nvdec", .data = &nvdec_t194_config },
-+	{ .compatible = "nvidia,tegra234-nvdec", .data = &nvdec_t234_config },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, tegra_nvdec_of_match);
-@@ -410,12 +490,42 @@ static int nvdec_probe(struct platform_device *pdev)
- 	if (err < 0)
- 		host_class = HOST1X_CLASS_NVDEC;
- 
--	nvdec->falcon.dev = dev;
--	nvdec->falcon.regs = nvdec->regs;
-+	if (nvdec->config->has_riscv) {
-+		struct tegra_mc *mc;
- 
--	err = falcon_init(&nvdec->falcon);
--	if (err < 0)
--		return err;
-+		mc = devm_tegra_memory_controller_get(dev);
-+		if (IS_ERR(mc)) {
-+			dev_err_probe(dev, PTR_ERR(mc),
-+				"failed to get memory controller handle\n");
-+			return PTR_ERR(mc);
-+		}
-+
-+		err = tegra_mc_get_carveout_info(mc, 1, &nvdec->carveout_base, NULL);
-+		if (err) {
-+			dev_err(dev, "failed to get carveout info: %d\n", err);
-+			return err;
-+		}
-+
-+		nvdec->reset = devm_reset_control_get_exclusive_released(dev, "nvdec");
-+		if (IS_ERR(nvdec->reset)) {
-+			dev_err_probe(dev, PTR_ERR(nvdec->reset), "failed to get reset\n");
-+			return PTR_ERR(nvdec->reset);
-+		}
-+
-+		nvdec->riscv.dev = dev;
-+		nvdec->riscv.regs = nvdec->regs;
-+
-+		err = tegra_drm_riscv_read_descriptors(&nvdec->riscv);
-+		if (err < 0)
-+			return err;
-+	} else {
-+		nvdec->falcon.dev = dev;
-+		nvdec->falcon.regs = nvdec->regs;
-+
-+		err = falcon_init(&nvdec->falcon);
-+		if (err < 0)
-+			return err;
-+	}
- 
- 	platform_set_drvdata(pdev, nvdec);
- 
--- 
-2.37.0
-
+cheers,
+-roger
