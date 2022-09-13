@@ -2,74 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27EFF5B6F81
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 16:14:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F8AA5B6FC0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 16:18:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232892AbiIMOMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 10:12:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36484 "EHLO
+        id S233016AbiIMOPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 10:15:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232834AbiIMOMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 10:12:19 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D890622B38
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:09:50 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id cc5so11163778wrb.6
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:09:50 -0700 (PDT)
+        with ESMTP id S233027AbiIMOOk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 10:14:40 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71846113E
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:10:49 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id o5so5505494wms.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:10:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=Fs0hIEr9Z/qDOaw7wxhV6YcmsyfMXrbDsl0PwBvcZqw=;
-        b=XviCFBNoCT32bo2QVUQlYnPKtrlUwqB/86dYUGiGdt4UwDX+NOfmIvlei1SHhMZepv
-         Sy8VptFzZ/oWWO3J0ggVOW4rVAs7Lo+zFpoVtxrKGB0+lp/ujyfVmqGDbWkS/Oq0XPuL
-         vUtidk8kGyCp1Yh0K1MkrWteWz0PVI9812t4aF8Zj6LHHe/nQzzcUMjYDQgNmLE5jUvn
-         agXaOEcGv2lRJP+yI7x6GQqkNtHgPyGAQUWAKWb/6kSQaYU7Ej6jjXg3/kuV3cNep0xY
-         47cuWeepfNgDngKhIwB1kcvj2X/O6iub7qn9RLcvXL1nP1JOlr8RSURh8fKhBpD13ePU
-         xn0Q==
+        bh=Te8k9s87unrEgkHcqd5vPRmIiJKPic6o0P3DO6oru9I=;
+        b=QoJLC3BR8wDCo0dQ4CZeGh+M7CkQEibwhsg+xXmtc17UNjkMc3FijrZZ8W+wCgcV+w
+         ySkg74u3AxilkIEmjGc0Xx2e962mqazZ6/UQrt9W4by/BzG0qwzstX9ZKjqqCjfB2nG6
+         xKtWNmPImF3XS5vF751fxviMKRoxE35J5eE7uVUQlNpnYARhoVqIn47L1yCG7phXHSWN
+         orojVXRqGtTSJ0dbiWgPf25SzujNYA3IwAgLUlt6ZjrlDUGbYLeC6ofk8L02Q8oPymWU
+         8A9ZrAiZdpk1mpxk5OEz39GpXFHlf3DJQ1VhQPXhATxU/S3gCOC8fPyDC0BcYjGZUGhs
+         FOWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=Fs0hIEr9Z/qDOaw7wxhV6YcmsyfMXrbDsl0PwBvcZqw=;
-        b=FatFZPzMtSphHRPVJHMo/1IggRNMCj7nSSfEqK805ldGBH9yhTwynKvoyZ4fBxvwUt
-         NNaBMSayJLFoK/3J15WiCTffbU7xOg12rrtrg9lAGsHotmlsDVWxLQROeepzHhARDjAU
-         kaQDT9OlNyD5Xkjg7562gJ7vy9G/+7dIbCePaD5fhFuD9kmGNyvN93UPSylg+ox2ee+E
-         yI9CsKwgf4jzorjqQKZ7dGpc0Msbo5FKB9srcJmO5HNl6DTO/QoVkCrQmQyp9ZaGSCsJ
-         YL6Q4px/Nb0NdKOK7f7AfP2YH/PT9V33K5lUchNV3qLUOfiqCv/FUWEmFczBP5J/oeSY
-         QudQ==
-X-Gm-Message-State: ACgBeo1lLAEnrUyY5DMgehGpck/qhkH05fs21w3p3SRxn0dq2mh+6uDP
-        q4N5XYz8XEjWIJH+0J9WehjEHQ==
-X-Google-Smtp-Source: AA6agR7YAfLA3FM/2BfjfTrC+FHk56M2fnmAwd2x85EcjwTFGXBFK9tDFzOWQz8kzZ6r2UDik+6fow==
-X-Received: by 2002:a05:6000:1541:b0:22a:3b77:6ef4 with SMTP id 1-20020a056000154100b0022a3b776ef4mr12730373wry.303.1663078188394;
-        Tue, 13 Sep 2022 07:09:48 -0700 (PDT)
+        bh=Te8k9s87unrEgkHcqd5vPRmIiJKPic6o0P3DO6oru9I=;
+        b=FqKF3G2Lp/tYC97040GTkVK81n4GR9Dtl0HK40wSL582XRxv2KpHd0PAvHjBLrWLxN
+         mDxo7DDZe7D4ZxagEj9na6YDDfLUXxvxfTQy2sso4nA28/aVOvRolwtXrwnrG18Gj+PB
+         V3sG1O8WDq+zEeUyak+QXn9baRPEwi8mAnimksXBhPWLwr7wDCRWWamJkF7T4emZvVuL
+         svnP5jeyrj4hWsxFmCkqNwyuCVDP8JZexJLBfk4QbxQxLIn5Y9MHOlpYN7xoR05Mfxzy
+         DVzhXjK8DPvFYgIHbagzwgGM0sZ99iBMYWzs+664APEzgVJWWtb2QNaUqTwRr0OTR+kY
+         HeLQ==
+X-Gm-Message-State: ACgBeo3gmCFmAj3eqckrioEpcwnQd/dEEEk2dv82T+SqQjE/cSAdaGTk
+        DL1LtA+cfD07JbcdYXl9AoaAeQ==
+X-Google-Smtp-Source: AA6agR7fg9Yc5sCrG6pv+2JK5BauOdoRWdSdVeWZ38mpN9v3VOy/zNf3eVr4hucIAuIPexefzL+VVQ==
+X-Received: by 2002:a05:600c:4a9a:b0:3b4:78ab:bae5 with SMTP id b26-20020a05600c4a9a00b003b478abbae5mr2681954wmp.114.1663078246057;
+        Tue, 13 Sep 2022 07:10:46 -0700 (PDT)
 Received: from [10.119.22.201] ([89.101.193.67])
-        by smtp.gmail.com with ESMTPSA id 11-20020a05600c020b00b003b4868eb6bbsm9224984wmi.23.2022.09.13.07.09.47
+        by smtp.gmail.com with ESMTPSA id o12-20020a5d4a8c000000b002285f73f11dsm13050983wrq.81.2022.09.13.07.10.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Sep 2022 07:09:47 -0700 (PDT)
-Message-ID: <f9473120-5bb2-dd73-5431-cd5a16337e31@linaro.org>
-Date:   Tue, 13 Sep 2022 16:09:47 +0200
+        Tue, 13 Sep 2022 07:10:45 -0700 (PDT)
+Message-ID: <6ab84de3-acbd-066f-1e19-4be556d3f4d9@linaro.org>
+Date:   Tue, 13 Sep 2022 16:10:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add i.MX8M Mini Gateworks GW7904
- board
+Subject: Re: [PATCH] gpio: pca953x: Introduce support for nxp,pcal6408
 Content-Language: en-US
-To:     Tim Harvey <tharvey@gateworks.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
+To:     Nate Drude <nate.d@variscite.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220912181819.775919-1-tharvey@gateworks.com>
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     eran.m@variscite.com
+References: <20220912171347.4167372-1-nate.d@variscite.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220912181819.775919-1-tharvey@gateworks.com>
+In-Reply-To: <20220912171347.4167372-1-nate.d@variscite.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,12 +79,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2022 20:18, Tim Harvey wrote:
-> Add DT compatible string for i.MX8M Mini based Gateworks GW7904 board.
-> 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+On 12/09/2022 19:13, Nate Drude wrote:
+> Signed-off-by: Nate Drude <nate.d@variscite.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Missing commit msg.
+
+> ---
+>  Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 1 +
+
+Split bindings to separate patch.
+
 
 
 Best regards,
