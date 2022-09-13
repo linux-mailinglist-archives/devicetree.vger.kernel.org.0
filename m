@@ -2,148 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E49F5B79EF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 20:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74AF65B7A1F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 20:52:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232023AbiIMSpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 14:45:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59782 "EHLO
+        id S232889AbiIMSwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 14:52:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232186AbiIMSpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 14:45:24 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60053.outbound.protection.outlook.com [40.107.6.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F1272FF5;
-        Tue, 13 Sep 2022 11:25:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NEZ61zWH1xhk6X/flD86TjFPXeShSolwl59Pv39fZvmUGaF04mEJO2caDTTgE/CGtdmG5bpwlbcDHzzsDMr1BfT6DTnpATgPignVXPtHR8TdKkwub0jUn5yxCYs8Igj871CmtT12+NZRSeM87lDjlGYTScfxG1Zn8UTpuikg4VoeBFE5v4ohX69F94lLam8UUtF/yuYt2lu1/ZSuI7wrFxRTzOgKVQ60GGbTxVb5rNsMCnwaFjGVGPBN4vJ4Wy3Q8stJbuIX51VUMRAh/ZDyLy5r9OxnJz82qERN+HwbI/bnbtU1wWvrhY06M2ehZYfhstYT/62qSc+D1R9wG2c89w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7JJb0+KLIkszdvuFJ8NTPM1cCUfVgIzleKkqxxBKF0A=;
- b=AMpRU2Mv2eYpOaDZSL0z2SYol0zqWFNcjCIaflF4LABwr/mnFe1iXzxoc73MuinDRB56Ueg3Vzc1FWVgNSRm2Xh6MARNmr4xy8C7u2ax8KV17FmZ0o3vG+4wJucr5ac3R4J/zFtZN/KghEbN+nYaxkieP+KOb+YAIfj9qxliPfDmNaDUYdBwTuCupLTGmNHZNarIFHmfl48DUa/gzMXDTpexC4h1wws/Z0VX6+BlrE63TBy5cwy3pGcM960VMAEiMAOmMZu0SbY+VUDINGNIP8OwRETpkl6Oldzowcie3VuoaLOvNCGqkMoOaGjGA2gVgEIZaBMtVKu5B9Jqst8mEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=variscite.com; dmarc=pass action=none
- header.from=variscite.com; dkim=pass header.d=variscite.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=variscite.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7JJb0+KLIkszdvuFJ8NTPM1cCUfVgIzleKkqxxBKF0A=;
- b=m7hI0u0X+aOzKXeKOUUxVDIbZ50ZCD7D6ls6gSs/KhMO/hofOEPUEyTEPXimOj3Rv9qIpd3PVoMvZdU7VAkf6Fc643Noi4Bv/FSs8jbavOU7ChRbPqRbr1wEdR3/1gbYrd39Ffb8JdV5sesoXoQw7frCphwHZMlc2m+G9AT/EDrsfg/OgPNZMj1MrzGeEHstpnWATprCOMBarUdH4OEpek/wWy8eePUoMzqHB/WKwZaIwCIpbc4s1MbTnVljocx+a+PFKvhmAfHaF+MdQVd1AS/z0GbYbUcpH96d5kDfH8/vhaLQ9b8HiVQ3UiLuH1vxPJ4z7nYmdcu5LaiGBK3E3A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=variscite.com;
-Received: from DB9PR08MB6825.eurprd08.prod.outlook.com (2603:10a6:10:2af::9)
- by DB9PR08MB6716.eurprd08.prod.outlook.com (2603:10a6:10:2a9::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.16; Tue, 13 Sep
- 2022 18:25:07 +0000
-Received: from DB9PR08MB6825.eurprd08.prod.outlook.com
- ([fe80::a88a:b945:e903:42a8]) by DB9PR08MB6825.eurprd08.prod.outlook.com
- ([fe80::a88a:b945:e903:42a8%9]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
- 18:25:07 +0000
-From:   Nate Drude <nate.d@variscite.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231516AbiIMSvx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 14:51:53 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7D1513F9E;
+        Tue, 13 Sep 2022 11:36:07 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-127f5411b9cso34546683fac.4;
+        Tue, 13 Sep 2022 11:36:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=NsKE+BEH4KxDRW88FUFgCoVeNl0M6BtUtpnnF6L+EYk=;
+        b=PPbkPSfW1hDiiPqLH9kK9sIJFeDY2iRLQOvcTafJ07rKg+GeVXNNg894bhw9aPiri9
+         +SbkLrhqov1V0euqs77hjslbg6r6eAkChJlBXU/QfrOsZZ87Wv66pakJwmpJ2JSWSbCq
+         fCdjEaeWdh7T+Y+ZTfEkfjLE6G07x0AlDMAkYeSg0ytHQPDtAfXGW7x2oh6oSHIG8cbY
+         BWre580BlRcmlaQ//JDqTbNu0B8+kinT61DYfi53jSSbyWQjDBwy10SB2nIlEP96MKNv
+         3J18B+sxwj4HctgamnOmiffZFEvj5zkEi6CZTIV9qJ8lDfsCm0f6/jaTLERknBgGlBWl
+         fFRg==
+X-Gm-Message-State: ACgBeo0Od7HAX92dO07LbsqzUK9CPRw4XDzSSa3faSAkRm4sB67cu/om
+        mDnedxc1BTgHD0CWTXncPA==
+X-Google-Smtp-Source: AA6agR4F9hbDNpEPKWtVF5rfUO9KvOelSHz3eMtkGVqZO0hzZpUIJ/ltVqY558YMHeovwK4OZUGfiA==
+X-Received: by 2002:a05:6870:608e:b0:12b:c0de:bc9d with SMTP id t14-20020a056870608e00b0012bc0debc9dmr378101oae.52.1663094167138;
+        Tue, 13 Sep 2022 11:36:07 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b11-20020a056870d1cb00b001276cea2320sm7379784oac.58.2022.09.13.11.36.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 11:36:06 -0700 (PDT)
+Received: (nullmailer pid 162606 invoked by uid 1000);
+        Tue, 13 Sep 2022 18:36:05 -0000
+Date:   Tue, 13 Sep 2022 13:36:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     eran.m@variscite.com, Nate Drude <nate.d@variscite.com>
-Subject: [PATCH v2 2/2] gpio: pca953x: introduce support for nxp,pcal6408
-Date:   Tue, 13 Sep 2022 13:24:36 -0500
-Message-Id: <20220913182436.589713-2-nate.d@variscite.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220913182436.589713-1-nate.d@variscite.com>
-References: <20220913182436.589713-1-nate.d@variscite.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CH0PR03CA0020.namprd03.prod.outlook.com
- (2603:10b6:610:b0::25) To DB9PR08MB6825.eurprd08.prod.outlook.com
- (2603:10a6:10:2af::9)
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fixes for v6.0, take 2
+Message-ID: <20220913183605.GA155025-robh@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR08MB6825:EE_|DB9PR08MB6716:EE_
-X-MS-Office365-Filtering-Correlation-Id: 801f8038-c19c-459a-7677-08da95b548e0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2H1w+5h5nPB4AxBlagomEfc+t5mCfAvu/WixxV/7Ot0DGpofVZ7P7iq9gSNUKse3EUWYQNW7MXdm21qefYIXB7YfeKWorx5vMrVk+cHet+tZNELR3xGs0V0xhjL2yqbtTLajEyj+wnE60JsCKECtkCQe+pSo4aiUyVQWoJo+r/XFGa3q21ezSTHklgRoJhFg5/xF1rNPRneR/cmm6ahXwdFa/9G464RBDHTMAbw93Q6XUYwTU4n56xAhgGAD2juNS/Al1mH1CgkBohHGUnnkuUpmyO10EsiaBiBc8flecDkifmZXemR0wsJQB2KYfUvZPI3y3Ed4/PDcjmNnGaZo1O27KCBEwLXrdYKWbp823JJzzBKagw8g6QlXtA175v1V+9lpK62U74gq9acAR38HIHvs5lKXe0rbhJfT8suYjnkJds71vqpxL+fJHGZvYyHHD7rn+6Q5ZZ1cgAdyylXWaxzLv5NRv9PhLOrAub2sYfdqZP5UAwCXpLn8fnQ8Qm9082lDSTmnHRrioizo5CW+NmN67nPrwprvxoOBR+qlA8wy6lajYPfYuy4bU1wUt4a1TQaKM/Gy9sAkIBRn+f+pofKvhzKj/echihmldqoz2dOXOJPMrqTpg2GJz34QU/Va1JqYjiryk9/DEQYA/NQ5wzViLlEWN8ipshz9C+soHEwsTfIeFQwiaslOhpJev9s0MdKOA3XDBQkI6+/75JXIUOeDYTj+W6nr5vZazh5L00s3xuCkC+YCZ1J4XCW4z4xT3xIEJWza+eCdtFGHeEpLig==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR08MB6825.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(376002)(39850400004)(136003)(366004)(396003)(346002)(451199015)(316002)(1076003)(6506007)(2616005)(2906002)(52116002)(8936002)(66946007)(4326008)(38350700002)(38100700002)(110136005)(8676002)(107886003)(66556008)(36756003)(5660300002)(6666004)(66476007)(186003)(478600001)(41300700001)(6512007)(86362001)(6486002)(26005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DNjnQgn1JHg0DGPy0OwfdR8D9j5TngU5ju1dYPoaL3H89L94R610lmY5Te17?=
- =?us-ascii?Q?XTo0XGrCqMakDHCRkrWIaTYg/eDg8Dlyja14SxBJqHgPTf/BbsYuXxnz7z86?=
- =?us-ascii?Q?6H1GWShJnMrOhbw5wDaGdcaprHqG3lsiEmMSczY+VNF3WwYqcKWX+gNMMNuo?=
- =?us-ascii?Q?nreOf1306eFEpJ94yb5jczUqD/7DXTW1tbG2MxVbSa2jGntQCIG2isDIjzPw?=
- =?us-ascii?Q?t/6HmV5KCAAtl0zrpLD22qxpM6ytb9YViklDpmdXmq5eITdtnpNBC7lKFsNf?=
- =?us-ascii?Q?aoFVNT8hKqi+ucvAGvahYJj6vEdZTisEhC+EX4jN8n3QkSOUGK8G2Qsq7oul?=
- =?us-ascii?Q?kMWYXKvKwSU8hHviLHg48SoEtdnd6O6nKLW1pyb0CYeIBGPw40Q2oGSW13nM?=
- =?us-ascii?Q?WprR65ixstVQ3tqwD1gJ78OEqn7ixx1UbNNd2BIQvQBxnzN3+8X8ILhvxEan?=
- =?us-ascii?Q?ZwAl8rp4fdoslAdkZkfeEz9casp6Um6PDUyzXvoGn23WYJYfiuQF+0n1H0gm?=
- =?us-ascii?Q?E1f9ZjTFqud7U957c4Foxyl5krUyiHiLrI1u4ytX+jkXfboIBpakXtaIT86O?=
- =?us-ascii?Q?YlB0F16z6HsgWJfcTL08K3kye9rcq848G1t3Cfp/Ok7Dr/F+JzjrIN3NMezK?=
- =?us-ascii?Q?ZuOdAqkW4Q1Idf8DTZTvah6/goZqv5XgR1U+a4/lt/IUej1I0qkLaLrV2mJJ?=
- =?us-ascii?Q?onjM/3bw06cT6xddmFXuHpXsfMeZTGcyvoPA+eS9VMfNzJirHG5jTp5yTDSt?=
- =?us-ascii?Q?bMdiXyBkqhjMwMRkZVc1TgatEDAUJRmuyETX7M1IgEpBroFAjrBDIeLhcAEN?=
- =?us-ascii?Q?LG/LvpV0OZUpGCMn21jG1CjkQtqbrPXPg6v4nRm3j4el8R9n0ZdDswtjsIPw?=
- =?us-ascii?Q?ZQZTueKUY9a/xPsn4yTNXW310CYoa512mmTZwGS8WgTcZuF4e7HAPs0eRZi7?=
- =?us-ascii?Q?Sxg0TMiz5U7eHQIGR2EeZowr1yuDCIP9zmkPj969N/BYsmcTF5yjl3Z4MbWg?=
- =?us-ascii?Q?egZgTGx+UB07mR+z3mRp/vBo27fcS+PgpaDxpN14C4mrdLxWGFLldVLhJyf/?=
- =?us-ascii?Q?cYRcOzmcBe1ZZoHEVpEdghqq6z41QWfu8l9EPMbR6n2E0uoQO9ak+4yUr6DU?=
- =?us-ascii?Q?FVmhVqORZ2s0PoUifWjzpjZ1M+TX0zIMbWfvj4+PujbVHpEsw7ba1DDJ+RpA?=
- =?us-ascii?Q?ZcZg9cRMDF1d2IjypCAaQRMibRTCxamYQSr28tbPpFtw75hchrEdfOUa2nT3?=
- =?us-ascii?Q?Me2QrZAC1g9sdLHXtwJ/zBCbiJe7o16b2ySCIN7Ng8ZT0RDgaDswoKoNbo4H?=
- =?us-ascii?Q?wQ3SE4WMwSJF9RYP+yAD0ZMav5OCMTU4cDxJZC0w2yEOHrnKMznDySzzXP07?=
- =?us-ascii?Q?aBwGFr7od+Fpp++jbfXg2Dtubs7Ujzh+qYepoTD76u83YHV29S3ov1aJi5FW?=
- =?us-ascii?Q?8eBtsl/ew+7Xh1Dr8pIUQyZErZCO3YNueI4vWv0t7o6CZICblLElEGkE7BN9?=
- =?us-ascii?Q?Qwgu6RR26wHLJL06gv9ZaiLVstOJUWtZ4ss/l86c/ByPwvQN9hRuggUsXm33?=
- =?us-ascii?Q?A8PATKPkATgcZjx87WjUd5ZitCLZwX041jp/KVJl?=
-X-OriginatorOrg: variscite.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 801f8038-c19c-459a-7677-08da95b548e0
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR08MB6825.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2022 18:25:07.2822
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 399ae6ac-38f4-4ef0-94a8-440b0ad581de
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qx0/gyMw3LaNmFea0N6VzzGX2OFaA78tVSSNk/Pyw9ajcbhLxL70KtrHv7+8TuVP0Ahki5SyoiOp5mkolKUIiQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB6716
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The NXP PCAL6408 is the 8-bit version of PCAL6416.
+Linus,
 
-Signed-off-by: Nate Drude <nate.d@variscite.com>
----
- drivers/gpio/gpio-pca953x.c | 2 ++
- 1 file changed, 2 insertions(+)
+Please pull a couple more DT fixes.
 
-diff --git a/drivers/gpio/gpio-pca953x.c b/drivers/gpio/gpio-pca953x.c
-index 2925f4d8cef3..ba012ac7cd8c 100644
---- a/drivers/gpio/gpio-pca953x.c
-+++ b/drivers/gpio/gpio-pca953x.c
-@@ -89,6 +89,7 @@ static const struct i2c_device_id pca953x_id[] = {
- 	{ "pca9575", 16 | PCA957X_TYPE | PCA_INT, },
- 	{ "pca9698", 40 | PCA953X_TYPE, },
- 
-+	{ "pcal6408", 8 | PCA953X_TYPE | PCA_LATCH_INT, },
- 	{ "pcal6416", 16 | PCA953X_TYPE | PCA_LATCH_INT, },
- 	{ "pcal6524", 24 | PCA953X_TYPE | PCA_LATCH_INT, },
- 	{ "pcal9535", 16 | PCA953X_TYPE | PCA_LATCH_INT, },
-@@ -1243,6 +1244,7 @@ static const struct of_device_id pca953x_dt_ids[] = {
- 	{ .compatible = "nxp,pca9575", .data = OF_957X(16, PCA_INT), },
- 	{ .compatible = "nxp,pca9698", .data = OF_953X(40, 0), },
- 
-+	{ .compatible = "nxp,pcal6408", .data = OF_953X(8, PCA_LATCH_INT), },
- 	{ .compatible = "nxp,pcal6416", .data = OF_953X(16, PCA_LATCH_INT), },
- 	{ .compatible = "nxp,pcal6524", .data = OF_953X(24, PCA_LATCH_INT), },
- 	{ .compatible = "nxp,pcal9535", .data = OF_953X(16, PCA_LATCH_INT), },
--- 
-2.37.3
+Rob
 
+
+The following changes since commit 568035b01cfb107af8d2e4bd2fb9aea22cf5b868:
+
+  Linux 6.0-rc1 (2022-08-14 15:50:18 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.0-2
+
+for you to fetch changes up to de11663b75b0a8f1cfeb00d3b4acec9bd5a49cad:
+
+  dt-bindings: pinctrl: qcom: drop non-working codeaurora.org emails (2022-09-13 10:18:23 -0500)
+
+----------------------------------------------------------------
+Devicetree fixes for v6.0, take 2:
+
+- Update some stale binding maintainer emails
+
+- Fix property name error in apple,aic binding
+
+- Add missing param to of_dma_configure_id() stub
+
+- Fix an off-by-one error in unflatten_dt_nodes()
+
+----------------------------------------------------------------
+Janne Grunau (1):
+      dt-bindings: apple,aic: Fix required item "apple,fiq-index" in affinity description
+
+Krzysztof Kozlowski (3):
+      dt-bindings: interconnect: fsl,imx8m-noc: drop Leonard Crestez
+      dt-bindings: power: qcom,rpmpd: drop non-working codeaurora.org emails
+      dt-bindings: pinctrl: qcom: drop non-working codeaurora.org emails
+
+Neil Armstrong (1):
+      MAINTAINERS: Update email of Neil Armstrong
+
+Sergey Shtylyov (1):
+      of: fdt: fix off-by-one error in unflatten_dt_nodes()
+
+Thierry Reding (1):
+      of/device: Fix up of_dma_configure_id() stub
+
+ .mailmap                                             |  1 +
+ .../arm/amlogic/amlogic,meson-gx-ao-secure.yaml      |  2 +-
+ .../bindings/display/amlogic,meson-dw-hdmi.yaml      |  2 +-
+ .../bindings/display/amlogic,meson-vpu.yaml          |  2 +-
+ .../bindings/display/bridge/analogix,anx7814.yaml    |  2 +-
+ .../bindings/display/bridge/ite,it66121.yaml         |  2 +-
+ .../bindings/display/panel/sgd,gktw70sdae4se.yaml    |  2 +-
+ .../devicetree/bindings/i2c/amlogic,meson6-i2c.yaml  |  2 +-
+ .../bindings/interconnect/fsl,imx8m-noc.yaml         |  2 +-
+ .../bindings/interrupt-controller/apple,aic.yaml     |  2 +-
+ .../bindings/mailbox/amlogic,meson-gxbb-mhu.yaml     |  2 +-
+ .../devicetree/bindings/media/amlogic,axg-ge2d.yaml  |  2 +-
+ .../devicetree/bindings/media/amlogic,gx-vdec.yaml   |  2 +-
+ .../bindings/media/amlogic,meson-gx-ao-cec.yaml      |  2 +-
+ .../devicetree/bindings/mfd/khadas,mcu.yaml          |  2 +-
+ .../devicetree/bindings/net/amlogic,meson-dwmac.yaml |  2 +-
+ .../bindings/phy/amlogic,axg-mipi-dphy.yaml          |  2 +-
+ .../bindings/phy/amlogic,meson-g12a-usb2-phy.yaml    |  2 +-
+ .../phy/amlogic,meson-g12a-usb3-pcie-phy.yaml        |  2 +-
+ .../pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml       |  1 -
+ .../bindings/pinctrl/qcom,sc7280-pinctrl.yaml        |  2 +-
+ .../bindings/power/amlogic,meson-ee-pwrc.yaml        |  2 +-
+ .../devicetree/bindings/power/qcom,rpmpd.yaml        |  2 +-
+ .../bindings/reset/amlogic,meson-reset.yaml          |  2 +-
+ .../devicetree/bindings/rng/amlogic,meson-rng.yaml   |  2 +-
+ .../bindings/serial/amlogic,meson-uart.yaml          |  2 +-
+ .../bindings/soc/amlogic/amlogic,canvas.yaml         |  2 +-
+ .../bindings/spi/amlogic,meson-gx-spicc.yaml         |  2 +-
+ .../bindings/spi/amlogic,meson6-spifc.yaml           |  2 +-
+ .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml    |  2 +-
+ .../bindings/watchdog/amlogic,meson-gxbb-wdt.yaml    |  2 +-
+ MAINTAINERS                                          | 20 ++++++++++----------
+ drivers/of/fdt.c                                     |  2 +-
+ include/linux/of_device.h                            |  5 +++--
+ 34 files changed, 44 insertions(+), 43 deletions(-)
