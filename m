@@ -2,106 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD7A25B677A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 07:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63B7F5B678C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 07:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230086AbiIMFt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 01:49:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58800 "EHLO
+        id S229935AbiIMF4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 01:56:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230053AbiIMFt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 01:49:58 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2046.outbound.protection.outlook.com [40.107.92.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 017D0BC00;
-        Mon, 12 Sep 2022 22:49:56 -0700 (PDT)
+        with ESMTP id S229763AbiIMF4b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 01:56:31 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2093.outbound.protection.outlook.com [40.107.113.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B64BF1EAE0;
+        Mon, 12 Sep 2022 22:56:29 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f3i60rCWjWkLOlXl0rVZWTYWWUHXlWxsr1gJFdcfEnBINuBD23p5sK6lqFVnCetOiFvy5xCWBB5gAg+cpLf4wmwF1N26RU9Pmr7SkPpNx6Pfwzm5jfoaN4qY1967VhgiY6mAeTLOUI6IQC/oxhHszc2nMiw7KtkWSqiFG3vw6IdPZqno6LwwNlgcUDcjzgWX6/jNc5XL9v/F4pYb3A5HzBl6El1dfuoDUVR0mEEIxmm072C0EewiNcjrZYlnRjpoHH3nBPicXC5EWSldy9savEqz5wS/XTud4Dvb54kuhMx6YvLn2zOQD5nLZQLX5WtmT2vk0N4d9xj5H5S+Spkdzg==
+ b=TxexUdwex2xVCc6UhZea79kvHCia3N/Bj97uNMC1T7IrkTQ3P3oOXCbEsVEboCbnbxmRiMQFFcKfxwEfsJUweBNyH8xMsPc37FhoK5d2VQs9jCsHX/y5KSEobaMUclTmibllOd0PTDOE/qXD2AEgV5hF+V+AEe4G8T3py4yWD3Ufky+eWC4vyaZ6fHkn5dwhVcdGcrwGJeEO+UagSs+5SvYWT8KJVIa1OpA7BA9ysPaU8fV1Go6SwZJOoW9Viu+Tn0S93ntwu0TbpVJu1UOAuYzEcT0T8IbGKUn1AAxgZf5zooXCESaqBy1lsWUBwwt0163dOYitDsLLbxkdAKsvbg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8ZfSTbsDcS+nTdKNeQCrSYQVDFdvyhN8W1n7JW0Rb3U=;
- b=NwplxbAn54N3ku60hdm/CVPTvdvibU5NxUbfGMPSvXVvZQbEEKE+awm4btjOhdwS24KLbo7Cpp8PY7LNoWPKGD2bLysu9XhL7CR77UQwUuI1ayG31/Agmo9rt2fVIyp4+MXQ6JL2iF94wH4pfPFxNrLNM4vHN8OUwHctjURuCm5dv4B8mXUbNlUjn80CzFp3CGBSZwypBJT9uyu5YrxVNDrzirxE5UO/DJl0KCmzfxTtYwUVv7ihdQAfqT7VIacokdNFyC7uC1GpWUXAJCQPGVSv4sRRuAgTOvOHmeO2kym+5CS577LBxOtxCf1lpV4kRSYB8gqDSbqV5woylSkxjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=XDA4Niwyn+ugo/aXoiw1815IIm17yFRd2o1HZ5g3ySc=;
+ b=KCerxSLvpbnuK8wNw1ayMmbbwY2uA/Dc1NiqeGfbifcWXN03vsEiKA/zVHk/ZDqydXUdU0PreAHrlX0a8t9lgQlKxr/1vRGdMXU1/HSsmq5oCTQmXqPNtw64CFFvCU6ivUl2gjGayHW5fSkH1X0+Jee8/GzQ2rHrlsFFhh0wsd7/rDO+NIthmqUmQYivleNbeuPrt8ttOPLXpYBoGMC62HXrg0hhSIwMGbJeSR5G87VQDpMby0dkd4doXil853WbJg26/O7pMb3Sc1vkQJymZR5Eh59Nm+E2gWtQHmnVQ1u4KQyTPrwI3aai43M+B8Qyhsam26H7K84smFqmpTflyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8ZfSTbsDcS+nTdKNeQCrSYQVDFdvyhN8W1n7JW0Rb3U=;
- b=RWUYCde+4mkwHnNVHDblL3Q5HQReNs1QnibpqXRbypnVIVtgbXWL6UdLvofS9b1+KgTzuS/jXjUlie6HfEJXSR+wf8aixmoOUarvD7YEFNf2SIdwiYDsu2NTBwFvu8uKyye55fTkwL2KXko0Y+MfW/fJYjlJCQHqjRFPB8ofdZw=
-Received: from CY5PR19CA0030.namprd19.prod.outlook.com (2603:10b6:930:15::26)
- by SA0PR12MB4431.namprd12.prod.outlook.com (2603:10b6:806:95::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Tue, 13 Sep
- 2022 05:49:52 +0000
-Received: from CY4PEPF0000B8EB.namprd05.prod.outlook.com
- (2603:10b6:930:15:cafe::c0) by CY5PR19CA0030.outlook.office365.com
- (2603:10b6:930:15::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22 via Frontend
- Transport; Tue, 13 Sep 2022 05:49:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000B8EB.mail.protection.outlook.com (10.167.241.7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5612.10 via Frontend Transport; Tue, 13 Sep 2022 05:49:52 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 00:49:43 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 12 Sep
- 2022 22:49:29 -0700
-Received: from [172.19.74.144] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Tue, 13 Sep 2022 00:49:28 -0500
-Message-ID: <89f6af46-e995-9456-a7b3-0bbbcb1f70eb@amd.com>
-Date:   Mon, 12 Sep 2022 22:49:27 -0700
+ bh=XDA4Niwyn+ugo/aXoiw1815IIm17yFRd2o1HZ5g3ySc=;
+ b=HBAV/pG1DirlglLGCvR7A5DR9xjGvN2wh1rjAiCNo5grG68qLlaWCG+CrmeTZi0JUvfJYJsv8GbvAOW8Y8PCf2auiPFU7UJQKtqHcYf37VW3NipxE6IsOerNAA2ESNqSAQX2h9xOBEC5U5eCaTzdqdagR7E9yOfwbKGEhueIi6k=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYWPR01MB9984.jpnprd01.prod.outlook.com
+ (2603:1096:400:1e0::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19; Tue, 13 Sep
+ 2022 05:56:27 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::194:78eb:38cf:d6db]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::194:78eb:38cf:d6db%4]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
+ 05:56:27 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH 2/5] dt-bindings: net: renesas: Document Renesas Ethernet
+ Switch
+Thread-Topic: [PATCH 2/5] dt-bindings: net: renesas: Document Renesas Ethernet
+ Switch
+Thread-Index: AQHYxE/JYHnObnoZ8E2hxqzBhga8oq3cZnEAgAB6qDA=
+Date:   Tue, 13 Sep 2022 05:56:27 +0000
+Message-ID: <TYBPR01MB53417273B5DE02851CA2DA47D8479@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20220909132614.1967276-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220909132614.1967276-3-yoshihiro.shimoda.uh@renesas.com>
+ <Yx+zehiPfhEjkw1y@lunn.ch>
+In-Reply-To: <Yx+zehiPfhEjkw1y@lunn.ch>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TYWPR01MB9984:EE_
+x-ms-office365-filtering-correlation-id: 803ff787-68d0-4bed-ae74-08da954cb2d9
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7spvdsuvxjYWwo/WiEp5D72egjUT7qSBqFeiCeguvAGmDC1C/YmbXJvl7rW15a0T4kBn3+6BLm/xEjHNgrrgPDHAwHXFT7dwQsElYuiL+WP6uVmOCq5dj4kp9IMoPQWchgX8QCVHDX7PutQ8J85x0RRSjm7zFbmMFYF0GYuBXb82lxNZy5fDF1oVDBU3mEwdrlBR3cA/fhYAo7s9trgUU2+HERZFl0e6RBjQuy9bzqfUM7sB+muRwMtxm+SJEGJcaXNjjEazpMRaxnm+XZRcWecAu7Wpbj0r1q3VQV5ET9+qP4i/Qy2uzFQPScyECBPJKaeEEAf5ubff8NDQArDiIZlyCjxuhDol0RzXYGcIVZPA+H4RIdOmVHNY5gSpvWXYM3k0sNfcX1FKP7hK7uwzVP0VbsOQClc3e6FKJ5dWflwUcjUAV68JuHufsIMKcAPsF4IyqRSnMmaikQoSaKz71BaLMoxPcWFpou2QUVGaqZQT+/LJBqHWJeHLgpJlw0varHZSvMgu8oJw0ngJW//sqImYJhVOwyBdtEeIu9McTutXmQ9l+QxFV0GsDVND1qsd3pAu5Alj2vBBM2yTTXV0mmlcp1h365wTglishh5++RZ04a4tmey5D9ijnwKr9zoVyJMYMwJTmP4WK/HbzEXUKCHBOFQxDflPs6sKtLIIfc0xePA+Dnmu5l5MAowvN01u6SxBQxoLhuspZeeaaupRbaG/8UdtwMtJA3SfdOntNYj9GZ0THEopyzYN5oY4FR2NnwRjvDMe09d+id1FA9rvyA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(346002)(39860400002)(376002)(396003)(451199015)(38070700005)(8936002)(8676002)(76116006)(66946007)(9686003)(66476007)(54906003)(7416002)(83380400001)(2906002)(86362001)(55016003)(38100700002)(6916009)(41300700001)(122000001)(5660300002)(52536014)(186003)(66446008)(66556008)(4326008)(64756008)(316002)(33656002)(6506007)(478600001)(71200400001)(7696005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Zy07bejbGQnUpZ32QVxzbJA6p/LoOzGho8CezCwP3I0tpT1tQpCu1tYiG/JF?=
+ =?us-ascii?Q?9SJXJaE9Tc7o5ImZbWxTBfxTL/ZuUHa5SnNYhQ0ydESbQE0CIXfcH05y9IVS?=
+ =?us-ascii?Q?rocM4WBPuw3p0OO4SuNpCOwykiqRWMWn6f2yA8kSehXd1ziwW7DzvNoqiGiQ?=
+ =?us-ascii?Q?szutnAYucJ1nf7li3gVOzJkf6ZuXwvSBDvl2y2OoxJWDOls8bBU8Zr2QiOUy?=
+ =?us-ascii?Q?sybPuJzF/JgXbFwwYwGDdd1NWAV1pbUnEff7yHNkXYncLzLNQjMzOeIzQ3DQ?=
+ =?us-ascii?Q?s3bfoSR7MYRLMtAme0IaeXvVQkeAQSDgYki/VsB4C1NGDqaFAzGISw1guDLu?=
+ =?us-ascii?Q?VAm0SGTOjGmcndq+aSgUP0tnAiGnGEtCx0pWQRaqzkMcXZ1faN5AltQfHBNc?=
+ =?us-ascii?Q?A935Psdv4JRXRPHsgAJk1gy1sSc5e820JXNXbaHXunCpXFHWUW/9R+EXsNzi?=
+ =?us-ascii?Q?JcytOfghLHNT+HzAYpyDlkoriqKU55ngyDK/ddTSBDG5fJjmCK29IaFC6yW6?=
+ =?us-ascii?Q?Kho17otRkZXshZfs+zX9pkMxyk9o9x5KJBu7aEQpUyFFh1BePQWLN10cooOZ?=
+ =?us-ascii?Q?pIuqCpsZ4sBu1D0baGlvdX+KG5iZ3jUPg5IMloVSJJXQI27wJ5NwQPELxB49?=
+ =?us-ascii?Q?Lss20ieRj5fQ1l9uWn3tIImremn7fqsIHtDvSHNGVPTgelJNXvyyqHYShbM8?=
+ =?us-ascii?Q?soBlEmAdbsrZowDSZa246zobp6treke6sj1TbIbVC+QyWj/SzGQnWuSCWswv?=
+ =?us-ascii?Q?tn6/T25CB4sBjMMOBWKqkm9JB+s/WCIYgzeLea0tF/79wiW2BOVBorS6X8nr?=
+ =?us-ascii?Q?sC2mhbpikLa3NxyfemD4FFuMyo2QzDgAkrZ+IpclUTXyAyh33BF7ZUPlQDpr?=
+ =?us-ascii?Q?s0dqWpR2HZMBtdolOLI5/Tj+R8WlsJyd9BQnYv/H//XmwknuiBT2U5UOFOBr?=
+ =?us-ascii?Q?YX4Lv823NhIMipLG3ujzU/Y+NrF4oE5GGbb8HnsqL4DBXTWnJ7vCbleg8pwh?=
+ =?us-ascii?Q?DqjWUnwMEyB14c/msGfPEzEsHKxfQpdAcTIiY2Z+vSiwigmrFECHMBBKXXtD?=
+ =?us-ascii?Q?b0XJHw4H6uPjU4fmJUJUBRM7ajnhV4w/EhLCtcmWnRH+xRCl5q9wHYOFJbb2?=
+ =?us-ascii?Q?7kIDUBIvnsMFbnvMI/qhyjzZsTN7pMNZauykYYlkbJaybKeU3ZbygZR6+Nz9?=
+ =?us-ascii?Q?Pcj6FvtYLy3mEzE0lCWonZv3di6To3Wh6J9zkUrvPIisa4A0tjKGrlXfGZlp?=
+ =?us-ascii?Q?Evn4cpdm99C1L3ioIm1JZ9zhoQjHTBdo7rSfAxfc613W60WTd3n/2DPAqtzH?=
+ =?us-ascii?Q?F8HfMcZaVF184ZIyVCham9nT5DShiL/MfrDOavO1vk70lMdrLJVQqTtsEgUB?=
+ =?us-ascii?Q?YPnGazt51EMVK6UKHWGPJs0T32tSZvtYRbdNwR0hCEzxe0bKNQAoLGMUKJTW?=
+ =?us-ascii?Q?fA89phK8lSrkJklJi4eDAgK9cArmiXGW4A2CCzSvU+Pg2EFTqPB9fq35JVO8?=
+ =?us-ascii?Q?l1fQdM0POACxxZNS37vEkOZpDHuloKwdJzw/liAMKeSSiDajSdxPI8JT+IYk?=
+ =?us-ascii?Q?Tf+0gYQy490ezof6SIKzdmqtfbS+pgoAve9T9ts3Shru18TB3oioPXewnGZu?=
+ =?us-ascii?Q?C999fPzE7pWaecmxhQeQJYugeNiXd9x8QPi4VirmlcJurk2jGb4GJpZQGO8Z?=
+ =?us-ascii?Q?I18nJA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH RFC 2/2] pci: create device tree node for selected devices
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <frowand.list@gmail.com>,
-        <helgaas@kernel.org>, <clement.leger@bootlin.com>,
-        <max.zhen@amd.com>, <sonal.santan@amd.com>, <larry.liu@amd.com>,
-        <brian.xu@amd.com>, <stefano.stabellini@xilinx.com>,
-        <trix@redhat.com>
-References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
- <1661809417-11370-3-git-send-email-lizhi.hou@amd.com>
- <20220902185403.GA173255-robh@kernel.org>
-From:   Lizhi Hou <lizhi.hou@amd.com>
-In-Reply-To: <20220902185403.GA173255-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000B8EB:EE_|SA0PR12MB4431:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf53a335-3c3a-46a9-3df2-08da954bc75a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Wh7o+nsYerTObVE7oWteDDM6qMgU7jN7I3h3r8yaBMXMyWXGHDTPgrHBkpdyFsmWrZWvkd6KOoJQZAl5ha2bkiciulg114I1tF9+GmCI2MKEOfgSZ+6TQP88bseUTk+IkAop/KfUf2tp+XcuCHhIW66ldAOex6YiXIEpauOJsFCbC4z9V0yY45Yx+PwsRNO23roQaXAPJX45N4EoYfaQyOzPvo+0Ytkik3KfmFz9fPvk0miWvTe1jbo7uDFi6EiPkeWeppnWQ9SH73s7VQPEkstq2r6A9SltnqBpb+J+xcWKSQM8LlBayJgyQDLBnC8hHLyRTGyu0IoCZTsXM5qNawBx+2X7+Fx3k+ImZBfWQgWdv/4yFt2ZI7JOGbTaSktO5Zr2pwBdJv9a5S5psXPawqj+TBSJMDvcB5hEjN25f0rIPrHu8UUrGEsfC6UT0yRCIsV+/5ZFxe9oCsmmWPf/7B47xfY7zCfnt6gRIfrUX/pQkg9pszOj+3SYLPC76DuY5RdhWyTYOzfq3Yw2rng+pZAoyS0uT4LSpDhy3qSt+WXo1LskpPWI5fy7+4dhQKQISHKz+VXSCvJ5Wl0RBVDuyqymoZgR5GS389WsG9kozHYklG2Q98m7fzUm95WXCee2NBARt2UIRGPGlZLHz2yk3PMxEbbsfX5JaLYc5IbUcJd50tk9WJOeNl0HGFj+5tW/BHesskm1gL7Y3D0llLNlGlKgTnyVUiEdobvIxTJyiDLcXTWTGP96E/vjjhBhNZhPiLS1BvaLfMl7cVbCf/G9fLVuJV7kyw0ul32PiRSdTTgK+OSvg1V9dddngKhz0PVqUCIxjz8D+ZFkzi56F0cWcw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(376002)(346002)(396003)(136003)(451199015)(40470700004)(46966006)(36840700001)(41300700001)(4326008)(8676002)(30864003)(82740400003)(426003)(40460700003)(47076005)(86362001)(81166007)(70206006)(44832011)(31696002)(186003)(356005)(31686004)(83380400001)(53546011)(36756003)(2616005)(82310400005)(26005)(54906003)(8936002)(2906002)(336012)(316002)(478600001)(16576012)(6916009)(5660300002)(40480700001)(70586007)(36860700001)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2022 05:49:52.4449
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 803ff787-68d0-4bed-ae74-08da954cb2d9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2022 05:56:27.6697
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf53a335-3c3a-46a9-3df2-08da954bc75a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000B8EB.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4431
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uwVYgpM0hgIzGPwnmqDMCspYs5NEAJ+F4t9GY2K9cERmVavLphXc9vcb4/FRW3/uwMKjHYXbg+USubL/DDfr9INfy5WzVpWmI/rlFkR27T/0yJzODQ6iiDOcZK6FUfhK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB9984
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -110,367 +131,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andrew,
 
-On 9/2/22 11:54, Rob Herring wrote:
-> On Mon, Aug 29, 2022 at 02:43:37PM -0700, Lizhi Hou wrote:
->> The PCI endpoint device such as Xilinx Alveo PCI card maps the register
->> spaces from multiple hardware peripherals to its PCI BAR. Normally,
->> the PCI core discovers devices and BARs using the PCI enumeration process.
->> And the process does not provide a way to discover the hardware peripherals
->> been mapped to PCI BARs.
-> This sentence doesn't make sense.
+Thank you for your review!
 
-How about changing it to:
+> From: Andrew Lunn, Sent: Tuesday, September 13, 2022 7:32 AM
+>=20
+> > +  '#address-cells':
+> > +    description: Number of address cells for the MDIO bus.
+> > +    const: 1
+>=20
+> Please could you explain this a bit more.
 
-And it does not discover the hardware peripherals that are present in a 
-PCI device, and which can be accessed through the PCI BARs.
+I realized that the property is completely wrong.
+This #address-cells here (out of "port") is not needed.
+So, I'll drop it.
+Instead of that, I'll add a description of "#address-cell"
+in the port as " Port number of ETHA (TSNA)".
 
->
->> For Alveo PCI card, the card firmware provides a
->> flattened device tree to describe the hardware peripherals on its BARs.
->> And the Alveo card driver can load this flattened device tree and leverage
->> device tree framework to generate platform devices for the hardware
->> peripherals eventually.
->>
->> Apparently, the device tree framework requires a device tree node for the
->> PCI device. Thus, it can generate the device tree nodes for hardware
->> peripherals underneath. Because PCI is self discoverable bus, there might
->> not be a device tree node created for PCI devices. This patch is to add
->> support to generate device tree node for PCI devices. It introduces a
->> kernel option. When the option is turned on, the kernel will generate
->> device tree nodes for PCI bridges unconditionally. It will also generate
->> a device tree node for Xilinx Alveo U50 by using PCI quirks. The generated
->> device tree nodes do not have any property. The future patches will add
->> necessary properties.
->>
->> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
->> Signed-off-by: Sonal Santan <sonal.santan@amd.com>
->> Signed-off-by: Max Zhen <max.zhen@amd.com>
->> Signed-off-by: Brian Xu <brian.xu@amd.com>
->> ---
->>   drivers/pci/Kconfig         |  11 ++++
->>   drivers/pci/bus.c           |   2 +
->>   drivers/pci/msi/irqdomain.c |   6 +-
->>   drivers/pci/of.c            | 106 ++++++++++++++++++++++++++++++++++++
->>   drivers/pci/pci-driver.c    |   3 +-
->>   drivers/pci/pci.h           |  16 ++++++
->>   drivers/pci/quirks.c        |  11 ++++
->>   drivers/pci/remove.c        |   1 +
->>   8 files changed, 153 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/pci/Kconfig b/drivers/pci/Kconfig
->> index 55c028af4bd9..9eca5420330b 100644
->> --- a/drivers/pci/Kconfig
->> +++ b/drivers/pci/Kconfig
->> @@ -198,6 +198,17 @@ config PCI_HYPERV
->>   	  The PCI device frontend driver allows the kernel to import arbitrary
->>   	  PCI devices from a PCI backend to support PCI driver domains.
->>   
->> +config PCI_OF
-> We already have OF_PCI so this is confusing. Maybe
-> 'PCI_DYNAMIC_OF_NODES'.
-Sure. I will change it to PCI_DYNAMIC_OF_NODES
->
->
->> +	bool "Device tree node for PCI devices"
->> +	select OF_DYNAMIC
->> +	help
->> +	  This option enables support for generating device tree nodes for some
->> +	  PCI devices. Thus, the driver of this kind can load and overlay
->> +	  flattened device tree for its downstream devices.
->> +
->> +	  Once this option is selected, the device tree nodes will be generated
->> +	  for all PCI/PCIE bridges.
->> +
->>   choice
->>   	prompt "PCI Express hierarchy optimization setting"
->>   	default PCIE_BUS_DEFAULT
->> diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
->> index 3cef835b375f..f752b804ad1f 100644
->> --- a/drivers/pci/bus.c
->> +++ b/drivers/pci/bus.c
->> @@ -316,6 +316,8 @@ void pci_bus_add_device(struct pci_dev *dev)
->>   	 */
->>   	pcibios_bus_add_device(dev);
->>   	pci_fixup_device(pci_fixup_final, dev);
->> +	if (dev->hdr_type == PCI_HEADER_TYPE_BRIDGE)
-> Would pci_is_bridge() work here? That would include cardbus, but I think
-> that won't matter in practice.
-ok. I will use pci_is_bridge() here.
->
->> +		of_pci_make_dev_node(dev);
->
->>   	pci_create_sysfs_dev_files(dev);
->>   	pci_proc_attach_device(dev);
->>   	pci_bridge_d3_update(dev);
->> diff --git a/drivers/pci/msi/irqdomain.c b/drivers/pci/msi/irqdomain.c
->> index e9cf318e6670..eeaf44169bfd 100644
->> --- a/drivers/pci/msi/irqdomain.c
->> +++ b/drivers/pci/msi/irqdomain.c
->> @@ -230,8 +230,10 @@ u32 pci_msi_domain_get_msi_rid(struct irq_domain *domain, struct pci_dev *pdev)
->>   	pci_for_each_dma_alias(pdev, get_msi_id_cb, &rid);
->>   
->>   	of_node = irq_domain_get_of_node(domain);
->> -	rid = of_node ? of_msi_map_id(&pdev->dev, of_node, rid) :
->> -			iort_msi_map_id(&pdev->dev, rid);
->> +	if (of_node && !of_node_check_flag(of_node, OF_DYNAMIC))
->> +		rid = of_msi_map_id(&pdev->dev, of_node, rid);
->> +	else
->> +		rid = iort_msi_map_id(&pdev->dev, rid);
->>   
->>   	return rid;
->>   }
->> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
->> index 196834ed44fe..19856d42e147 100644
->> --- a/drivers/pci/of.c
->> +++ b/drivers/pci/of.c
->> @@ -469,6 +469,8 @@ static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *
->>   		} else {
->>   			/* We found a P2P bridge, check if it has a node */
->>   			ppnode = pci_device_to_OF_node(ppdev);
->> +			if (of_node_check_flag(ppnode, OF_DYNAMIC))
->> +				ppnode = NULL;
->>   		}
->>   
->>   		/*
->> @@ -599,6 +601,110 @@ int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge)
->>   	return pci_parse_request_of_pci_ranges(dev, bridge);
->>   }
->>   
->> +#if IS_ENABLED(CONFIG_PCI_OF)
->> +struct of_pci_node {
->> +	struct list_head node;
->> +	struct device_node *dt_node;
->> +	struct of_changeset cset;
->> +};
->> +
->> +static LIST_HEAD(of_pci_node_list);
->> +static DEFINE_MUTEX(of_pci_node_lock);
-> There is a 'data' pointer in device_node which you could use to store
-> the changeset. Then you wouldn't need a list. (though 'data' is rarely
-> used and I hoped to get rid of it)
+> > +
+> > +  '#size-cells':
+> > +    description: Number of size cells on the MDIO bus.
+> > +    const: 0
 
-Ok. So if I understand correctly, in of_pci_removed_node(), it may check 
-the flag and assume 'data' is pointing to cset if OF_DYNAMIC is set.
+Also I'll drop this.
 
->> +
->> +static void of_pci_free_node(struct of_pci_node *node)
->> +{
->> +	of_changeset_destroy(&node->cset);
->> +	kfree(node->dt_node->full_name);
->> +	if (node->dt_node)
->> +		of_node_put(node->dt_node);
-> You free full_name before freeing the node, so you could have a UAF.
-> That needs to be taken care of when releasing the node.
-Got it. I will fix this.
->
->> +	kfree(node);
->> +}
->> +
->> +void of_pci_remove_node(struct pci_dev *pdev)
->> +{
->> +	struct list_head *ele, *next;
->> +	struct of_pci_node *node;
->> +
->> +	mutex_lock(&of_pci_node_lock);
->> +
->> +	list_for_each_safe(ele, next, &of_pci_node_list) {
->> +		node = list_entry(ele, struct of_pci_node, node);
->> +		if (node->dt_node == pdev->dev.of_node) {
->> +			list_del(&node->node);
->> +			mutex_unlock(&of_pci_node_lock);
->> +			of_pci_free_node(node);
->> +			break;
->> +		}
->> +	}
->> +	mutex_unlock(&of_pci_node_lock);
->> +}
-> The above bits aren't really particular to PCI, so they probably
-> belong in the DT core code. Frank will probably have thoughts on what
-> this should look like.
-Sure. Looking forward Frank's comment.
->
->> +
->> +void of_pci_make_dev_node(struct pci_dev *pdev)
->> +{
->> +	const char *pci_type = "dev";
->> +	struct device_node *parent;
->> +	struct of_pci_node *node;
->> +	int ret;
->> +
->> +	/*
->> +	 * if there is already a device tree node linked to this device,
->> +	 * return immediately.
->> +	 */
->> +	if (pci_device_to_OF_node(pdev))
->> +		return;
->> +
->> +	/* check if there is device tree node for parent device */
->> +	if (!pdev->bus->self)
->> +		parent = pdev->bus->dev.of_node;
->> +	else
->> +		parent = pdev->bus->self->dev.of_node;
->> +	if (!parent)
->> +		return;
->> +
->> +	node = kzalloc(sizeof(*node), GFP_KERNEL);
->> +	if (!node)
->> +		return;
->> +	of_changeset_init(&node->cset);
->> +
->> +	node->dt_node = of_node_alloc(NULL);
->> +	if (!node->dt_node) {
->> +		ret = -ENOMEM;
->> +		goto failed;
->> +	}
->> +	node->dt_node->parent = parent;
->> +
->> +	if (pci_is_bridge(pdev))
->> +		pci_type = "pci";
->> +
->> +	node->dt_node->full_name = kasprintf(GFP_KERNEL, "%s@%x,%x", pci_type,
->> +					     PCI_SLOT(pdev->devfn),
->> +					     PCI_FUNC(pdev->devfn));
->> +	if (!node->dt_node->full_name) {
->> +		ret = -ENOMEM;
->> +		goto failed;
->> +	}
-> Wait, aren't you missing adding properties? You need 'reg',
-> 'compatbile', and 'device_type = "pci"' for bridges.
-In this patch series nobody consumes the dynamic generated node yet, 
-Thus I did not add any property. I will add one or two patches to this 
-series for the properties you listed.
->
->> +
->> +	ret = of_changeset_attach_node(&node->cset, node->dt_node);
->> +	if (ret)
->> +		goto failed;
->> +
->> +	ret = of_changeset_apply(&node->cset);
->> +	if (ret)
->> +		goto failed;
->> +
->> +	pdev->dev.of_node = node->dt_node;
->> +
->> +	mutex_lock(&of_pci_node_lock);
->> +	list_add(&node->node, &of_pci_node_list);
->> +	mutex_unlock(&of_pci_node_lock);
->> +
->> +	return;
->> +
->> +failed:
->> +	of_pci_free_node(node);
->> +}
-> Pass in the parent node and node name, and this function is not PCI
-> specific either.
+> > +  ports:
+> > +    type: object
+>=20
+> I think ethernet-ports is the preferred name.
 
-Ok. How about introducing new functions of_changeset_create_node(), 
-of_changeset_create_property_*()  to of/dynamic.c?
+OK. I'll rename it.
 
-So the function could be like:
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +  - power-domains
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+>=20
+> So ports are not required? You can have a 0 port switch?
 
-of_pci_make_dev_node ()
+Thank you for pointed it out. I'll add "ethernet-ports" and
+drop '#address-cells' and '#size-cells'.
 
-{
+Best regards,
+Yoshihiro Shimoda
 
-     node = of_changeset_create_node (cset, full_name, parent); //alloc  
-of_node and add to cset
-
-     of_changeset_create_property_string(cset, node, name, string);  
-//alloc of_property and add to cset
-
-     of_changeset_create_property_u32_array(cset, node, name, array, len);
-
-     ....  add more properties;
-
-     of_changeset_apply(cset)
-
-}
-
-
-Thanks,
-
-Lizhi
-
->
->> +#endif
->> +
->>   #endif /* CONFIG_PCI */
->>   
->>   /**
->> diff --git a/drivers/pci/pci-driver.c b/drivers/pci/pci-driver.c
->> index 49238ddd39ee..1540c4c9a770 100644
->> --- a/drivers/pci/pci-driver.c
->> +++ b/drivers/pci/pci-driver.c
->> @@ -1628,7 +1628,8 @@ static int pci_dma_configure(struct device *dev)
->>   	bridge = pci_get_host_bridge_device(to_pci_dev(dev));
->>   
->>   	if (IS_ENABLED(CONFIG_OF) && bridge->parent &&
->> -	    bridge->parent->of_node) {
->> +	    bridge->parent->of_node &&
->> +	    !of_node_check_flag(bridge->parent->of_node, OF_DYNAMIC)) {
->>   		ret = of_dma_configure(dev, bridge->parent->of_node, true);
->>   	} else if (has_acpi_companion(bridge)) {
->>   		struct acpi_device *adev = to_acpi_device_node(bridge->fwnode);
->> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
->> index 785f31086313..319b79920d40 100644
->> --- a/drivers/pci/pci.h
->> +++ b/drivers/pci/pci.h
->> @@ -678,6 +678,22 @@ static inline int devm_of_pci_bridge_init(struct device *dev, struct pci_host_br
->>   
->>   #endif /* CONFIG_OF */
->>   
->> +#ifdef CONFIG_PCI_OF
->> +void of_pci_make_dev_node(struct pci_dev *pdev);
->> +void of_pci_remove_node(struct pci_dev *pdev);
->> +
->> +#else
->> +static inline void
->> +of_pci_make_dev_node(struct pci_dev *pdev)
->> +{
->> +}
->> +
->> +static inline void
->> +of_pci_remove_node(struct pci_dev *pdev);
->> +{
->> +}
->> +#endif /* CONFIG_OF_DYNAMIC */
->> +
->>   #ifdef CONFIG_PCIEAER
->>   void pci_no_aer(void);
->>   void pci_aer_init(struct pci_dev *dev);
->> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
->> index 4944798e75b5..58a81e9ff0ed 100644
->> --- a/drivers/pci/quirks.c
->> +++ b/drivers/pci/quirks.c
->> @@ -5956,3 +5956,14 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x56b1, aspm_l1_acceptable_latency
->>   DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x56c0, aspm_l1_acceptable_latency);
->>   DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x56c1, aspm_l1_acceptable_latency);
->>   #endif
->> +
->> +/*
->> + * For PCIe device which have multiple downstream devices, its driver may use
->> + * a flattened device tree to describe the downstream devices.
->> + * To overlay the flattened device tree, the PCI device and all its ancestor
->> + * devices need to have device tree nodes on system base device tree. Thus,
->> + * before driver probing, it might need to add a device tree node as the final
->> + * fixup.
->> + */
->> +DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_XILINX, 0x5020, of_pci_make_dev_node);
->> +DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_XILINX, 0x5021, of_pci_make_dev_node);
->> diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
->> index 4c54c75050dc..0eaa9d9a3609 100644
->> --- a/drivers/pci/remove.c
->> +++ b/drivers/pci/remove.c
->> @@ -23,6 +23,7 @@ static void pci_stop_dev(struct pci_dev *dev)
->>   		device_release_driver(&dev->dev);
->>   		pci_proc_detach_device(dev);
->>   		pci_remove_sysfs_dev_files(dev);
->> +		of_pci_remove_node(dev);
->>   
->>   		pci_dev_assign_added(dev, false);
->>   	}
->> -- 
->> 2.27.0
->>
->>
+>    Andrew
