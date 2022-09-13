@@ -2,168 +2,442 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 358F25B6E62
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 15:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA3915B6E68
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 15:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232233AbiIMNb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 09:31:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36764 "EHLO
+        id S231842AbiIMNcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 09:32:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231314AbiIMNb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 09:31:27 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2050.outbound.protection.outlook.com [40.107.21.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5541B78B;
-        Tue, 13 Sep 2022 06:31:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oYuHjznnzA+pwxfGZvI3PLI12tO78mJTsbYrYR3t1v2UrkJcUODrgo+JG08sy6Er5e6hGne6NiNVO9qrQ3yhWg6qpUVnioTMxJJ8yJQztherAiqglB/cF1MEBb+lAvPtebTeW/kNX4VZ8PcZvWsWYO3dz0UhXzHCAyyk+XwOm4Z6IwQY4mxdWx/bQJ0ja9YWk0jsImw5RXHGgNVrKs5McKbVfz7TcPTl985XphqEwR0d6wT+z67aDSbxBNtaBrjJdpvwlq9XhfdRgCOrMWQkitcHNCCoSu0flnVx3t78r19rHY3YgVRxRSJuhjC1QEzHlp3FZqx6SAuCQ2gnfF0LBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uZvLcNIa9VdXhUsxczkDEsL2pEtvVPsobP9yoX/qDLU=;
- b=N7lLcc9A06zVcTZSTrA2l/UONjVZAVpKW/qacGzbZTkG5PR9qSbvsPMcC/ufiUtZg9Qk2C1KtFuD+PH1zhQFWHC4pIAHcz/qXBtgPJn3TpagyUzvKpUZQWNo8ujrtsqi7QUHaM4UhvWaOJjghFB1ICeQJk4ASwg3Rsl5hDJq0kkrMSVQrq7WcUT6tO4xuL2NIiEbhbFXrxpl8PLFtnz25LvHsOuO7w/aZLfVhBBSMFC5+D+IcjLZVErOpLHK2pXNB23DJrA9pcxWD6VX5ZeceO5NPm2QjjY8hm6S5x6sxyvjcYpjx00/rqQ4gxf5AyecQnU9CxtJM/gtAsrigK7MJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uZvLcNIa9VdXhUsxczkDEsL2pEtvVPsobP9yoX/qDLU=;
- b=ffd7OTiM0G4NVuMyCg+yXVCM21rMo370V25g+Wa53It7BrYW0DY58uHvnw+cwMBBAH4BB8wZBxMF+JdV/ov8qMR26paX+5gQaZHhuh2jNTtePgqhlKUVYDQ0Cp6juDz9RF9DEQ23h1qqmRIs48sroku2IZ1aSA1JA5PK3UgUZFI=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by GV1PR04MB9150.eurprd04.prod.outlook.com (2603:10a6:150:25::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Tue, 13 Sep
- 2022 13:31:23 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::a67a:849c:aeff:cad1]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::a67a:849c:aeff:cad1%7]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
- 13:31:22 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232280AbiIMNcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 09:32:10 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B5227CD0;
+        Tue, 13 Sep 2022 06:32:09 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id r13-20020a056830418d00b0065601df69c0so2714399otu.7;
+        Tue, 13 Sep 2022 06:32:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=I+ucQEKSvX9YOsHVXukRimqDti9pARbM+2lMpF+5sVw=;
+        b=VYvXQv7GHFDxM44chGXnVCB86sQ49t4fmag4Fv+ZFWyb/2vd5JG+Y+7i/ONqR5k1r+
+         UrNODBoSSsM7aum5DKeUt3RH5E3nWRH7DwgqUVCPMgCBD3Qp+k7DvP20my5yMEr7HaKn
+         T25tqL6bBmt3kJ/ylEEdwjJK2Fz2k+wLaG5fbf7J7OFqvN18n2S+6c3kO0vxl8eq+N1+
+         UIevMhPbCyUxX57wOv/cs0TACfOCgKBglmxlMz0fUDxEPk/Ivki6BKJVVdWPMkzZDMML
+         ZA57bZ/7O6bwmCkWbeDa6lhdCO06Z59hSCD6vcDYoGTnY+cbrS6Br1CyNI7KMfxMZpHS
+         /Q1A==
+X-Gm-Message-State: ACgBeo2t/zulNJ5gQ0xu58ybsgUBULF0UDm4EUzFvi2MzZe/DVeSqq0v
+        1wea3as5BRluB9x716KSxw==
+X-Google-Smtp-Source: AA6agR5Sdatjw3/2OGeg7hmdKmuqP2x9bjcJr/HcdynCSVCCYMv6HOx4eLTpdeARTxIvD3Z5O/0EGQ==
+X-Received: by 2002:a05:6830:608b:b0:638:d739:a18d with SMTP id by11-20020a056830608b00b00638d739a18dmr13301349otb.144.1663075928326;
+        Tue, 13 Sep 2022 06:32:08 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s4-20020a4aa544000000b0044b22632d51sm5313038oom.2.2022.09.13.06.32.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 06:32:08 -0700 (PDT)
+Received: (nullmailer pid 3537975 invoked by uid 1000);
+        Tue, 13 Sep 2022 13:32:07 -0000
+Date:   Tue, 13 Sep 2022 08:32:07 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Janne Grunau <j@jannau.net>
+Cc:     asahi@lists.linux.dev, Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        George McCollister <george.mccollister@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?utf-8?B?QWx2aW4gxaBpcHJhZ2E=?= <alsi@bang-olufsen.dk>,
-        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Marek Vasut <marex@denx.de>, John Crispin <john@phrozen.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH net-next 3/3] dt-bindings: net: dsa: remove label = "cpu"
- from examples
-Thread-Topic: [PATCH net-next 3/3] dt-bindings: net: dsa: remove label = "cpu"
- from examples
-Thread-Index: AQHYxtBCZhrlfLn9yUSG8exS6G8zpK3dBZ8AgABW+gA=
-Date:   Tue, 13 Sep 2022 13:31:22 +0000
-Message-ID: <20220913133122.gzs2uhuk626eazee@skbuf>
-References: <20220912175058.280386-1-vladimir.oltean@nxp.com>
- <20220912175058.280386-4-vladimir.oltean@nxp.com>
- <b11e86c6-ff35-2103-cebe-ebe5f737d9de@arinc9.com>
-In-Reply-To: <b11e86c6-ff35-2103-cebe-ebe5f737d9de@arinc9.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI1PR04MB5136:EE_|GV1PR04MB9150:EE_
-x-ms-office365-filtering-correlation-id: 4060d515-7ae9-4190-f921-08da958c4009
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6GUCwnowrWRLij396NIUbhWmCyZFr8e6NHLYgxiEpjW8JZ+cMTQxXGR5/XRL25owF4thzSWXT8+UeVo2w9Ig6UWyEws+k5iT12YHTpCXoyKP8eJWgVeZjX8FOyKpJdMc5g8j3gikaCGLwjzNz0HxJbAk0QRr2RPTXCp+a0ctt8uD/yxwelVnLVQ+TF8lsnxxmaofeTkPxGplBC29XHAHiR1y1FAFHQ9yibC7bGUlDe+ZDtO++T97lim/ie72VOQ6QpKyHj46jkeq/GXI79qs/QeQRqbOsNMDJo7pwz/a5lu6lwhVAK8W/GJAbC6SH7aFT7T4Gx6wWALU8yABdvJrrjH5BXgP6G26LmKYCfHzzrFf4VJ7b3rI94Zouzs8C/QKorQtMiLWbO9bL+Otw6xz20v+L8YAjS7Ox4/Ko48oYJAj4gs/I5iID2SSqMIb2KkbVQCWYbiorjT0O4NM7xK40bcOkUYyD59dDbLzFukkd6BMRo9gl3psTn4AKB27kCMRz3wVLPDMsbw+fSBMhYAYp/Api7/iWoJj1+563ZGtWgwxOw2An2S26m0xaYjKG8kZ0QOU9Lgp2UhWxjuPQDhwixvqySmSjU541tUqHgnoxnmeXkNHBYslvBS8AFLFJXKmY+pzEtKigx+UVaSKSK9d00uVX1arCzbraVv4HBeNvLzo68Ud0otQujP7p7/utTRN8n8YK7jfWRDO+4+PsJboeNdUGmVeZVI5EQMZv/aNv/EhbKont71v0HKdKUXdvPpbKt24WREsUG6QSroy9LBAJw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(4636009)(39860400002)(396003)(136003)(376002)(366004)(346002)(451199015)(33716001)(66946007)(122000001)(91956017)(8676002)(7406005)(66446008)(186003)(66476007)(64756008)(5660300002)(478600001)(1076003)(38070700005)(66556008)(54906003)(44832011)(38100700002)(7416002)(86362001)(8936002)(4744005)(26005)(41300700001)(6512007)(6916009)(6486002)(6506007)(316002)(4326008)(71200400001)(2906002)(76116006)(83380400001)(9686003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SnJhMGk3TzdPdTNITitkQTczUXNQRFBpSFN1SVJzSEpEeGZFKy8wTEg1M1J6?=
- =?utf-8?B?TDVNVTgxZy9PL243VDVEanZtUnhHWTd4R3ROa2JLUGZrTUcyMEZJeEl1U2pL?=
- =?utf-8?B?ZkhxU1RuRERLTG5lY1FhV0Z5MS8vS01DWnluUGZVN1YzOFMwVVBWOXZDeDB6?=
- =?utf-8?B?MDc0SnpSV1BydUE4SFJvb0UwRW8wWEpGQzlyVUZzdFBJa3hTL2JIMXovdFFZ?=
- =?utf-8?B?dEFCb2VwOURwUXM4OTJ1RXdpajJMMWQwczllOFhIaHZ6NXJSdUtqZTR5TS9r?=
- =?utf-8?B?cWFWTFY1UkE2RjRydEV0KzY0aWpWbk5YczZGbWdyOXQxdmhsQ3FkMEdHUEEx?=
- =?utf-8?B?MDdUSjQ3N25acHo4MTBuTWRwMHgwZ1NnbzVrSkRhNmQ2Zk9MYnRxMkJWQ0hZ?=
- =?utf-8?B?NGhOOE1MVzRnWkoyaGZxQnJKdi9SZWJGZVlBWThCR2ZBTUhoUHJPajFXcXZJ?=
- =?utf-8?B?WXUyVWcwWFpRZVpzOHVnNWZVWFEwUHBLL1EybFZFRklaZVRYNy81L3QzdTdW?=
- =?utf-8?B?NWNlY0EvQmxIY2xRWm9aZFJHTm05OGhLY2lqWUJDeEoxaGQzUXdjaWROUXBZ?=
- =?utf-8?B?dWxGbFlWaWcvNHlHaWg4MWxuL2FmUUFBZXJuSWVsdURCSU1YSEEyb2o2S2cv?=
- =?utf-8?B?Qmh4VEF5Q0NtRGJmdVZpdTNSM1FXRC9MV05RMjMvajBxOEhiR3pjWDdpaEJM?=
- =?utf-8?B?RXdRTmI4eDdQTXpMM2x2TUoxRFVEU2hiazhNUHR0RGllL1RqR0J6MFB3SEhJ?=
- =?utf-8?B?L29SMmI0NkhzcDMyWmtiRFJGTnVXTXc3SE5KajBrbDVKUCtWcG5OeGZ4YVd2?=
- =?utf-8?B?eWFXQ3dCN1RQY1JHNFkvV2wxOGl5SjJucklLczBoYUNNbVJvVkY1c00rSkR6?=
- =?utf-8?B?YUdVNEdjU0krcEF0aS8zZlRpWVgzdFJDUnI3aEVabXpoVnN4VERiWGZIdFJs?=
- =?utf-8?B?QWQwNHptR2pMWXRFRTZqdlJnN0VUcEJndTVFenBuKy9lNTJsdEhwd0dOV2dx?=
- =?utf-8?B?VFpIWUN4NWRhdGF6VS9lN0V4UW1OUXUxb3ErRjd0a0swaFF3SFlPOWFycjRU?=
- =?utf-8?B?VVVoQkhnK2RTWEJ6Vk02S1lqeWp2MGt5Y0o1N01CSm5ibzk5THJzcWJONTNF?=
- =?utf-8?B?dy9OVVprbEJySnVnTU1qWkJJaHUrUmtjc1V2cUVlMG94aGhCMEpnSVVodmtG?=
- =?utf-8?B?ZnJ2MWNqM0RNWjQvYXVvaU14bFRoUnNQbkpleUxUV1pDdnJhN0ZLV1JRRUhT?=
- =?utf-8?B?ZkpMdHBhYklQb0JVQytkNE5HYUxIUDV2YlFSUUxyVDMrOFIwQndDcS9DeG5K?=
- =?utf-8?B?SkNVTi9WdUNOTlJYV1lPaXdYTEZJV2swU0c3bzgrb3J5eDc5K1hBc3MrbTRQ?=
- =?utf-8?B?U0MrRzVLOUR6VUh4dnNta2Mvb1hYcGNUODc3bmRFVUxqS1c1c0g5MFloeUpk?=
- =?utf-8?B?R3ZrbGpWbXdCWGNKQzhsM2JKQVdZU0M4RklDcVBJckcva1pvOUlVbUIxTHY4?=
- =?utf-8?B?QndGN25pMWRyMUpSQ2lVamxJQmR4UzljU3Y2VUwrQ2V6cWxsZ1VnSjJ2Wjd5?=
- =?utf-8?B?SXkwallQR3hnckpJVEZvYlREamdybVBrMWY0T1hTK0w2ZVhRaHFEQVFDUXJC?=
- =?utf-8?B?RGo4Qkxqd1huV3ZlNmYzNk5KYXh0NW5pdzYvQTV3ejY4SG56a2N3N1ZYVDdi?=
- =?utf-8?B?MnhmM25ULzYrRkxEMHNDMCs0eG4wWCtIU1N1NmYzcUVaWExlbmgwOTk1a3ZD?=
- =?utf-8?B?aSt3Kys0L3dvV1U4azgzT0RobkpkNU1hMHZOcjNRM0M0YzRMR3U3REJhZ2dX?=
- =?utf-8?B?VFRuWFdXWEN6ODFUUUVpQW4zcmhYNktmczlvbzZseVNvczVRZE8xcHdPZW5B?=
- =?utf-8?B?UnQzMlFpMVcvRDV1TUliWkxpQjNmdDIvbnd2NkM1TkpDeEpTNUdldmF0aWly?=
- =?utf-8?B?dTBuOHpIZEErWS9PdWZFL3JFTlhjV1FFdUtFNndoRzVwa3B0YUhIVEE2Qkw3?=
- =?utf-8?B?Nk4yTm5aT1VPck41MXpMOVl6MnMxV1E1UVBwTUNSMk1pdURJQmw4amoyWFov?=
- =?utf-8?B?UDBGb3Zjbk5ETE9qSWtrVXoyTUlqU3kvZzV3eHdxcEpGcmt1OWY0S0tZQitM?=
- =?utf-8?B?TlM4eENabWRCOExtK0xVckRNVjFUNEs1a0J5d0lsQ3BHVVFPamorNzd5ZFAw?=
- =?utf-8?B?ZlE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DC7BC06195C1264BB75F9F5C71D9BCC2@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 06/10] arm64: dts: apple: Add initial
+ t6000/t6001/t6002 DTs
+Message-ID: <20220913133207.GA3500192-robh@kernel.org>
+References: <20220909135103.98179-1-j@jannau.net>
+ <20220909135103.98179-7-j@jannau.net>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4060d515-7ae9-4190-f921-08da958c4009
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2022 13:31:22.8233
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ChRUK3U66oGz853Sh55iDtYPbDy7184ZCZ2GLMGuWxgbzNH4/QjYDNGsHJxv+5FKYHsBx98tOj/Cizr3gRjXiw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9150
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220909135103.98179-7-j@jannau.net>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCBTZXAgMTMsIDIwMjIgYXQgMTE6MjA6MDRBTSArMDMwMCwgQXLEsW7DpyDDnE5BTCB3
-cm90ZToNCj4gSXMgdGhlcmUgYWxzbyBhIHBsYW4gdG8gcmVtb3ZlIHRoaXMgZnJvbSBldmVyeSBk
-ZXZpY2V0cmVlIG9uIG1haW5saW5lIHRoYXQNCj4gaGFzIGdvdCB0aGlzIHByb3BlcnR5IG9uIHRo
-ZSBDUFUgcG9ydD8NCj4gDQo+IEknZCBsaWtlIHRvIGRvIHRoZSBzYW1lIG9uIHRoZSBEVHMgb24g
-T3BlbldydC4NCg0KSSBkb24ndCByZWFsbHkgaGF2ZSB0aGUgdGltZSB0byBzcGxpdCBwYXRjaGVz
-IHRvd2FyZHMgZXZlcnkgaW5kaXZpZHVhbA0KcGxhdGZvcm0gbWFpbnRhaW5lciBhbmQgZm9sbG93
-IHVwIHdpdGggdGhlbSB1bnRpbCBzdWNoIHBhdGNoZXMgd291bGQgZ2V0DQphY2NlcHRlZC4gSSB3
-b3VsZCBlbmNvdXJhZ2Ugc3VjaCBhbiBpbml0aWF0aXZlIGNvbWluZyBmcm9tIHNvbWVib2R5IGVs
-c2UsDQp0aG91Z2gu
+On Fri, Sep 09, 2022 at 03:50:59PM +0200, Janne Grunau wrote:
+> From: Hector Martin <marcan@marcan.st>
+> 
+> These SoCs are found in Apple devices with M1 Pro (t6000), M1 Max
+> (t6001) and M1 Ultra (t6002).
+> 
+> t6000 is a cut-down version of t6001, so the former just includes the
+> latter and disables the missing bits (This is currently just one PMGR
+> node and all of its domains.
+> 
+> t6002 is two connected t6001 dies. The implementation seems to use
+> t6001 with blocks disabled (mostly on the second die). MMIO addresses on
+> the second die have a constant offset. The interrupt controller is
+> multi-die aware. This setup can be represented in the device tree with
+> two top level "soc" nodes. The MMIO offset is applied via "ranges" and
+> devices are included with preproceesor macros to make the node labels
+> unique and to specify the die number for the interrupt definition.
+> 
+> Device nodes are distributed over dtsi files based on whether they are
+> present on both dies or just on the first die. The only execption is the
+> NVMe controller which resides on the second die. Its nodes are in a
+> separate file.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Co-developed-by: Janne Grunau <j@jannau.net>
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> 
+> ---
+> 
+> 
+> ---
+>  arch/arm64/boot/dts/apple/multi-die-cpp.h     |   23 +
+>  arch/arm64/boot/dts/apple/t6000.dtsi          |   18 +
+>  arch/arm64/boot/dts/apple/t6001.dtsi          |   63 +
+>  arch/arm64/boot/dts/apple/t6002.dtsi          |  173 ++
+>  arch/arm64/boot/dts/apple/t600x-common.dtsi   |  128 ++
+>  arch/arm64/boot/dts/apple/t600x-die0.dtsi     |  298 +++
+>  arch/arm64/boot/dts/apple/t600x-dieX.dtsi     |  103 +
+>  .../arm64/boot/dts/apple/t600x-gpio-pins.dtsi |   45 +
+>  arch/arm64/boot/dts/apple/t600x-nvme.dtsi     |   42 +
+>  arch/arm64/boot/dts/apple/t600x-pmgr.dtsi     | 2012 +++++++++++++++++
+>  10 files changed, 2905 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/apple/multi-die-cpp.h
+>  create mode 100644 arch/arm64/boot/dts/apple/t6000.dtsi
+>  create mode 100644 arch/arm64/boot/dts/apple/t6001.dtsi
+>  create mode 100644 arch/arm64/boot/dts/apple/t6002.dtsi
+>  create mode 100644 arch/arm64/boot/dts/apple/t600x-common.dtsi
+>  create mode 100644 arch/arm64/boot/dts/apple/t600x-die0.dtsi
+>  create mode 100644 arch/arm64/boot/dts/apple/t600x-dieX.dtsi
+>  create mode 100644 arch/arm64/boot/dts/apple/t600x-gpio-pins.dtsi
+>  create mode 100644 arch/arm64/boot/dts/apple/t600x-nvme.dtsi
+>  create mode 100644 arch/arm64/boot/dts/apple/t600x-pmgr.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/apple/multi-die-cpp.h b/arch/arm64/boot/dts/apple/multi-die-cpp.h
+> new file mode 100644
+> index 000000000000..153d89dd0ae1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/apple/multi-die-cpp.h
+> @@ -0,0 +1,23 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ OR MIT
+> + *
+> + * C preprocessor macros for t600x multi die support.
+> + */
+> +
+> +#ifndef __DTS_APPLE_MULTI_DIE_CPP_H
+> +#define __DTS_APPLE_MULTI_DIE_CPP_H
+> +
+> +#ifndef __stringify
+> +/* copied from include/linux/stringify.h */
+
+Which is dual licensed? Arguably, not big enough to matter.
+
+> +#define __stringify_1(x...)     #x
+> +#define __stringify(x...)       __stringify_1(x)
+> +#endif
+> +
+> +#ifndef __concat
+> +#define __concat_1(x, y...)     x ## y
+> +#define __concat(x, y...)       __concat_1(x, y)
+> +#endif
+> +
+> +#define DIE_NODE(a) __concat(a, DIE)
+> +#define DIE_LABEL(a) __stringify(__concat(a, DIE))
+
+Not a pattern we encourage in DT, but seems necessary here.
+
+> +
+> +#endif /* !__LINUX_STRINGIFY_H */
+> diff --git a/arch/arm64/boot/dts/apple/t6000.dtsi b/arch/arm64/boot/dts/apple/t6000.dtsi
+> new file mode 100644
+> index 000000000000..89c3b211b116
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/apple/t6000.dtsi
+> @@ -0,0 +1,18 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * Apple T6000 "M1 Pro" SoC
+> + *
+> + * Other names: H13J, "Jade Chop"
+> + *
+> + * Copyright The Asahi Linux Contributors
+> + */
+> +
+> +/* This chip is just a cut down version of t6001, so include it and disable the missing parts */
+> +
+> +#include "t6001.dtsi"
+> +
+> +/ {
+> +	compatible = "apple,t6000", "apple,arm-platform";
+> +};
+> +
+> +/delete-node/ &pmgr_south;
+> diff --git a/arch/arm64/boot/dts/apple/t6001.dtsi b/arch/arm64/boot/dts/apple/t6001.dtsi
+> new file mode 100644
+> index 000000000000..620b17e4031f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/apple/t6001.dtsi
+> @@ -0,0 +1,63 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * Apple T6001 "M1 Max" SoC
+> + *
+> + * Other names: H13J, "Jade"
+> + *
+> + * Copyright The Asahi Linux Contributors
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/apple-aic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pinctrl/apple.h>
+> +
+> +#include "multi-die-cpp.h"
+> +
+> +#include "t600x-common.dtsi"
+> +
+> +/ {
+> +	compatible = "apple,t6001", "apple,arm-platform";
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +
+> +		ranges;
+> +		nonposted-mmio;
+> +
+> +		// filled via templated includes at the end of the file
+> +	};
+> +};
+> +
+> +#define DIE
+> +#define DIE_NO 0
+> +
+> +&{/soc} {
+> +	#include "t600x-die0.dtsi"
+> +	#include "t600x-dieX.dtsi"
+> +	#include "t600x-nvme.dtsi"
+> +};
+> +
+> +#include "t600x-gpio-pins.dtsi"
+> +#include "t600x-pmgr.dtsi"
+> +
+> +#undef DIE
+> +#undef DIE_NO
+> +
+> +
+> +&aic {
+> +	affinities {
+> +		e-core-pmu-affinity {
+> +			apple,fiq-index = <AIC_CPU_PMU_E>;
+> +			cpus = <&cpu_e00 &cpu_e01>;
+> +		};
+> +
+> +		p-core-pmu-affinity {
+> +			apple,fiq-index = <AIC_CPU_PMU_P>;
+> +			cpus = <&cpu_p00 &cpu_p01 &cpu_p02 &cpu_p03
+> +				&cpu_p10 &cpu_p11 &cpu_p12 &cpu_p13>;
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/apple/t6002.dtsi b/arch/arm64/boot/dts/apple/t6002.dtsi
+> new file mode 100644
+> index 000000000000..32c971c0e191
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/apple/t6002.dtsi
+> @@ -0,0 +1,173 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * Apple T6002 "M1 Ultra" SoC
+> + *
+> + * Other names: H13J, "Jade 2C"
+> + *
+> + * Copyright The Asahi Linux Contributors
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/apple-aic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pinctrl/apple.h>
+> +
+> +#include "multi-die-cpp.h"
+> +
+> +#include "t600x-common.dtsi"
+> +
+> +/ {
+> +	compatible = "apple,t6002", "apple,arm-platform";
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cpus {
+> +		cpu_e10: cpu@800 {
+> +			compatible = "apple,icestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x800>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +
+> +		cpu_e11: cpu@801 {
+> +			compatible = "apple,icestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x801>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +
+> +		cpu_p20: cpu@10900 {
+> +			compatible = "apple,firestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x10900>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +
+> +		cpu_p21: cpu@10901 {
+> +			compatible = "apple,firestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x10901>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +
+> +		cpu_p22: cpu@10902 {
+> +			compatible = "apple,firestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x10902>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +
+> +		cpu_p23: cpu@10903 {
+> +			compatible = "apple,firestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x10903>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +
+> +		cpu_p30: cpu@10a00 {
+> +			compatible = "apple,firestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x10a00>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +
+> +		cpu_p31: cpu@10a01 {
+> +			compatible = "apple,firestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x10a01>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +
+> +		cpu_p32: cpu@10a02 {
+> +			compatible = "apple,firestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x10a02>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +
+> +		cpu_p33: cpu@10a03 {
+> +			compatible = "apple,firestorm";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x10a03>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0>; /* To be filled by loader */
+> +		};
+> +	};
+> +
+> +	die0: soc@0 {
+
+Where does 0 come from? 
+
+Unit address comes from 'reg' or 'ranges'. Empty ranges here means all 
+of the address space is part of this node which obviously is not true 
+given the next node. You need a 1:1 non-empty ranges entry.
+
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +		nonposted-mmio;
+> +
+> +		// filled via templated includes at the end of the file
+> +	};
+> +
+> +	die1: soc@1 {
+
+soc@2200000000
+
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x2 0x0 0x22 0x0 0x4 0x0>,
+> +				<0x7 0x0 0x27 0x0 0xf 0x80000000>;
+> +		nonposted-mmio;
+> +
+> +		// filled via templated includes at the end of the file
+> +	};
+> +};
+> +
+> +#define DIE
+> +#define DIE_NO 0
+> +
+> +&die0 {
+> +	#include "t600x-die0.dtsi"
+
+Looks like this one is not templated, so it doesn't really need to be 
+here. But it's fine.
+
+> +	#include "t600x-dieX.dtsi"
+> +};
+> +
+> +#include "t600x-pmgr.dtsi"
+> +#include "t600x-gpio-pins.dtsi"
+> +
+> +#undef DIE
+> +#undef DIE_NO
+> +
+> +#define DIE _die1
+> +#define DIE_NO 1
+> +
+> +&die1 {
+> +	#include "t600x-dieX.dtsi"
+> +	#include "t600x-nvme.dtsi"
+> +};
+> +
+> +#include "t600x-pmgr.dtsi"
+> +
+> +#undef DIE
+> +#undef DIE_NO
+> +
+> +
+> +&aic {
+> +	affinities {
+> +		e-core-pmu-affinity {
+> +			apple,fiq-index = <AIC_CPU_PMU_E>;
+> +			cpus = <&cpu_e00 &cpu_e01
+> +				&cpu_e10 &cpu_e11>;
+> +		};
+> +
+> +		p-core-pmu-affinity {
+> +			apple,fiq-index = <AIC_CPU_PMU_P>;
+> +			cpus = <&cpu_p00 &cpu_p01 &cpu_p02 &cpu_p03
+> +				&cpu_p10 &cpu_p11 &cpu_p12 &cpu_p13
+> +				&cpu_p20 &cpu_p21 &cpu_p22 &cpu_p23
+> +				&cpu_p30 &cpu_p31 &cpu_p32 &cpu_p33>;
+> +		};
+> +	};
+> +};
