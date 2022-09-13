@@ -2,55 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE43F5B7737
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:06:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E195C5B773A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232126AbiIMRFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 13:05:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38010 "EHLO
+        id S232085AbiIMRFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 13:05:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232010AbiIMREs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:04:48 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF930101CC;
-        Tue, 13 Sep 2022 08:54:38 -0700 (PDT)
-Received: from pan.home (unknown [IPv6:2a00:23c6:c311:3401:dd1a:56ef:ffd9:f71c])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: martyn)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 477ED6601F8A;
-        Tue, 13 Sep 2022 16:54:02 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.co.uk;
-        s=mail; t=1663084442;
-        bh=sdbwrq+7bQ+B1i6ZcK2joAyKTUYFXv+CHRUaPv0/yxA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iLgSG4f6SN7JI9tQ0EOuSosVFUWy+QlyqPJlCWtPeOW5qJeDcQN5fpMFCVJKVpcMR
-         l5gZtlB/LYUC2wfzl/Q8Y/YRrs4rKNtJi0mYktNs+CaSNBTBR3FzgyLtM3BXoTsiQc
-         hkHeVldyZRBr1JdKe3ZsCDz9UlvxXbQjO0FYR4bkNn/L1T40Xlu/mJxw/dHYzRAypz
-         JCXuIKWIihTgo81COGPQQEjuZDELF5Mwytkn0t1BrOCrhY/ih/KPRc4NfP6qotYx8u
-         LNscsegVzYaSXoeMS2Ymf98e23A/qtWNj8UAsQaeX82vM5dRoeLpSffR6lvLcb3oOE
-         981nPfv5nxaQA==
-From:   Martyn Welch <martyn.welch@collabora.co.uk>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Martyn Welch <martyn.welch@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/5] dt-bindings: gpio: pca95xx: add entry for pcal6534 and PI4IOE5V6534Q
-Date:   Tue, 13 Sep 2022 16:53:45 +0100
-Message-Id: <20220913155348.38716-2-martyn.welch@collabora.co.uk>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220913155348.38716-1-martyn.welch@collabora.co.uk>
-References: <20220913155348.38716-1-martyn.welch@collabora.co.uk>
+        with ESMTP id S232010AbiIMRFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:05:16 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A20E8169E;
+        Tue, 13 Sep 2022 08:55:03 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1274ec87ad5so33357781fac.0;
+        Tue, 13 Sep 2022 08:55:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=9js1M1Ii2LBgsHaQvlOo8Knhz7Y350P1S5r7xrIXqTQ=;
+        b=EVT5HWXUYM003TARno3IQO4Hi8JaemayLjFweoL6eo5u9hy0Z94/QAe5tkpSLq7jNO
+         qYn5rtrkA3B2dp0lkEgiL/Py6VLwKGq9LaSsw6sn8hPDvVXd9sNmRXYo7BVRpKpDxPJV
+         KEFdiZm0BU+9wCRDxPwubXA/xkR8ebGI/udNzqaMIWHXmJqLpATMtFK1UL1+jxb1WAw8
+         bN36v4vQJ5vgrGZkEn+74ulmam80mpxf4uHGowzhgP57VqasPWL0X2S5lMmVBsg5i/GT
+         ljxneJ9trWIp6N0EVbc0CrZUiNhcsMKXFd5NdkoKLq+fm5x72HQgLWLpxgfaU7bRoq+k
+         b6BA==
+X-Gm-Message-State: ACgBeo1gV49i0rCkR+kekKz5GrtDA6BwLoDMf81h+ZQ32v0RyLPviW/c
+        TKTa14kWA6NqjYd2m2X+rw==
+X-Google-Smtp-Source: AA6agR6OSLSOn5d1tMnYfRyDMU2tMdpF8Je09Y8xIoPZ+L8vtccd6B7jTMVW9FMSQvYR8s6Xdz1Rmg==
+X-Received: by 2002:a05:6870:231e:b0:116:8e04:5d03 with SMTP id w30-20020a056870231e00b001168e045d03mr2158319oao.210.1663084449931;
+        Tue, 13 Sep 2022 08:54:09 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l10-20020a0568302b0a00b0063711d42df5sm2875562otv.30.2022.09.13.08.54.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 08:54:09 -0700 (PDT)
+Received: (nullmailer pid 3805949 invoked by uid 1000);
+        Tue, 13 Sep 2022 15:54:08 -0000
+Date:   Tue, 13 Sep 2022 10:54:08 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        George McCollister <george.mccollister@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Marek Vasut <marex@denx.de>, John Crispin <john@phrozen.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH net-next 3/3] dt-bindings: net: dsa: remove label = "cpu"
+ from examples
+Message-ID: <20220913155408.GA3802998-robh@kernel.org>
+References: <20220912175058.280386-1-vladimir.oltean@nxp.com>
+ <20220912175058.280386-4-vladimir.oltean@nxp.com>
+ <b11e86c6-ff35-2103-cebe-ebe5f737d9de@arinc9.com>
+ <20220913133122.gzs2uhuk626eazee@skbuf>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20220913133122.gzs2uhuk626eazee@skbuf>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,138 +96,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Martyn Welch <martyn.welch@collabora.com>
+On Tue, Sep 13, 2022 at 01:31:22PM +0000, Vladimir Oltean wrote:
+> On Tue, Sep 13, 2022 at 11:20:04AM +0300, Arınç ÜNAL wrote:
+> > Is there also a plan to remove this from every devicetree on mainline that
+> > has got this property on the CPU port?
+> > 
+> > I'd like to do the same on the DTs on OpenWrt.
+> 
+> I don't really have the time to split patches towards every individual
+> platform maintainer and follow up with them until such patches would get
+> accepted. I would encourage such an initiative coming from somebody else,
+> though.
 
-The NXP PCAL6534 is a 34-bit I2C I/O expander similar to the PCAL6524. The
-Diodes PI4IOE5V6534Q is a functionally identical chip provided by Diodes
-Inc.
+You can always do a patch for everyone and ask soc@kernel.org 
+maintainers to apply directly.
 
-Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
-
-Changes in v2:
- - Enumerate pi4ioe5v6534q as requiring pcal6534 fallback
-
-Changes in v3:
- - Corrected indentation
-
-Changes in v4:
- - Further indentation corrections
-
- .../bindings/gpio/gpio-pca95xx.yaml           | 98 ++++++++++---------
- 1 file changed, 52 insertions(+), 46 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-index 977b14db09b0..382d04900032 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-@@ -15,52 +15,58 @@ description: |+
- 
- properties:
-   compatible:
--    enum:
--      - exar,xra1202
--      - maxim,max7310
--      - maxim,max7312
--      - maxim,max7313
--      - maxim,max7315
--      - maxim,max7319
--      - maxim,max7320
--      - maxim,max7321
--      - maxim,max7322
--      - maxim,max7323
--      - maxim,max7324
--      - maxim,max7325
--      - maxim,max7326
--      - maxim,max7327
--      - nxp,pca6408
--      - nxp,pca6416
--      - nxp,pca9505
--      - nxp,pca9506
--      - nxp,pca9534
--      - nxp,pca9535
--      - nxp,pca9536
--      - nxp,pca9537
--      - nxp,pca9538
--      - nxp,pca9539
--      - nxp,pca9554
--      - nxp,pca9555
--      - nxp,pca9556
--      - nxp,pca9557
--      - nxp,pca9574
--      - nxp,pca9575
--      - nxp,pca9698
--      - nxp,pcal6416
--      - nxp,pcal6524
--      - nxp,pcal9535
--      - nxp,pcal9554b
--      - nxp,pcal9555a
--      - onnn,cat9554
--      - onnn,pca9654
--      - ti,pca6107
--      - ti,pca9536
--      - ti,tca6408
--      - ti,tca6416
--      - ti,tca6424
--      - ti,tca9539
--      - ti,tca9554
-+    oneOf:
-+      - items:
-+          - const: diodes,pi4ioe5v6534q
-+          - const: nxp,pcal6534
-+      - items:
-+          - enum:
-+              - exar,xra1202
-+              - maxim,max7310
-+              - maxim,max7312
-+              - maxim,max7313
-+              - maxim,max7315
-+              - maxim,max7319
-+              - maxim,max7320
-+              - maxim,max7321
-+              - maxim,max7322
-+              - maxim,max7323
-+              - maxim,max7324
-+              - maxim,max7325
-+              - maxim,max7326
-+              - maxim,max7327
-+              - nxp,pca6408
-+              - nxp,pca6416
-+              - nxp,pca9505
-+              - nxp,pca9506
-+              - nxp,pca9534
-+              - nxp,pca9535
-+              - nxp,pca9536
-+              - nxp,pca9537
-+              - nxp,pca9538
-+              - nxp,pca9539
-+              - nxp,pca9554
-+              - nxp,pca9555
-+              - nxp,pca9556
-+              - nxp,pca9557
-+              - nxp,pca9574
-+              - nxp,pca9575
-+              - nxp,pca9698
-+              - nxp,pcal6416
-+              - nxp,pcal6524
-+              - nxp,pcal6534
-+              - nxp,pcal9535
-+              - nxp,pcal9554b
-+              - nxp,pcal9555a
-+              - onnn,cat9554
-+              - onnn,pca9654
-+              - ti,pca6107
-+              - ti,pca9536
-+              - ti,tca6408
-+              - ti,tca6416
-+              - ti,tca6424
-+              - ti,tca9539
-+              - ti,tca9554
- 
-   reg:
-     maxItems: 1
--- 
-2.35.1
-
+Rob
