@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69DEF5B767B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 18:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 569C05B7680
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 18:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231628AbiIMQ17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 12:27:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55020 "EHLO
+        id S230282AbiIMQaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 12:30:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231269AbiIMQ1h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 12:27:37 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD6767B2A4;
-        Tue, 13 Sep 2022 08:23:03 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1280590722dso33060295fac.1;
-        Tue, 13 Sep 2022 08:23:03 -0700 (PDT)
+        with ESMTP id S230092AbiIMQ3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 12:29:47 -0400
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA9265FE;
+        Tue, 13 Sep 2022 08:24:40 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1279948d93dso32956281fac.10;
+        Tue, 13 Sep 2022 08:24:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Wk/p18xJMNComokJnouExLqevPYgY3WIuHduT5z5UaE=;
-        b=LvEbm9VDVkG57pyliYr6qu0De9+H17QoDeY+ZGiTfH19xl10WNxXLxba7i6CPwUIan
-         K4bTqo9D/He0ijMI+02PCSsz+36dBeCcRdafk0kbElEuWjq2xpjJxh19v8UX9bPlQDay
-         N5j/92B0l23KVyMii0cXI6fkWqtuhEiTkMfXp6tRFvioO4euFe2CA9o2VBjmqYYGbrDM
-         qBZoSjn8B8VH5224e/xoinAZRLHl3Rrtm7PcRJvWNErMX1vgZuedNXyBASwAEfLQJQ3n
-         RZnaDI2mtJYdbaFIEIjQYjmMiBTe6c7F5cLGpLhPLmssUZIbapoZQGMDcmR4sjB6TRvc
-         K2nw==
-X-Gm-Message-State: ACgBeo2lH+htSpQuuVXVXyuBqzXpqmEf0OpBByKl2PTWNEy5472M0uDX
-        QvMSG2EztCdS9L+FH74RdHJZTOxiJg==
-X-Google-Smtp-Source: AA6agR7r0TwDiXVOXUGXZmyD9bayxsvjxqO1u/v0jvdTZFJic4WcZ4cxjERsdWDjKKY/rvsSto9+nA==
-X-Received: by 2002:a05:6870:170b:b0:127:6654:6768 with SMTP id h11-20020a056870170b00b0012766546768mr2004800oae.256.1663082455510;
-        Tue, 13 Sep 2022 08:20:55 -0700 (PDT)
+        bh=HBF93/3uK9ytKfofiwTx1nTs+Gg2IlX8qJpJ9qDMavQ=;
+        b=2W+ksGrzg7OUySG/4x3B6OcCYhY1v2DvrGEntEwbX9KNP6znF/l/wnqKBcwFddMOYR
+         uqO60Yc0ECadqyyGzzUPUIOCey7ZFT/rvmRu7AwzVm7sjo2xT9rOGwqIzroJONuK/S3G
+         x6zdq4oYBA3/sXeDzn385OQIX+1exvul/OHYeXKa/8xnmK605P0brs3wzCPfnaZ5dPKa
+         4+cxEeO9qIJbI2S4zueU6efdzfvRVB7PQwi8ixnrJamJNqmNmM3fGg1g483mORbydNLa
+         bQOEKr1GYLC+lFZNzTLe/rZpM7G9CR3UkvCM/mUhLxysDoIL+GksYGeWpuUJ7Dbfm6J6
+         39tQ==
+X-Gm-Message-State: ACgBeo22Ji+uMLhIH+9Z7W8DYimMyebTFTtR3oke1+hOsO1zZMd84ZdC
+        KlKCEv0LhUdD54AFhK/CZg==
+X-Google-Smtp-Source: AA6agR73mOYbb8xQ4qxcGvgPxj2G+or5wV6qhF+ujSQEWH0K2S2Dxeq4LDJSwvhbSYSE8rlvI6P68g==
+X-Received: by 2002:aca:3b89:0:b0:345:64e9:73c2 with SMTP id i131-20020aca3b89000000b0034564e973c2mr1723594oia.87.1663082583448;
+        Tue, 13 Sep 2022 08:23:03 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i34-20020a056870892200b0012644cc4feasm7055376oao.55.2022.09.13.08.20.54
+        by smtp.gmail.com with ESMTPSA id m7-20020a9d6447000000b00616d25dc933sm6013736otl.69.2022.09.13.08.23.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 08:20:55 -0700 (PDT)
-Received: (nullmailer pid 3752130 invoked by uid 1000);
-        Tue, 13 Sep 2022 15:20:54 -0000
-Date:   Tue, 13 Sep 2022 10:20:54 -0500
+        Tue, 13 Sep 2022 08:23:02 -0700 (PDT)
+Received: (nullmailer pid 3762736 invoked by uid 1000);
+        Tue, 13 Sep 2022 15:23:02 -0000
+Date:   Tue, 13 Sep 2022 10:23:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-phy@lists.infradead.org, linux-mips@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH] dt-bindings: pci: qcom,pcie-ep: correct qcom,perst-regs
-Message-ID: <20220913152054.GA3736444-robh@kernel.org>
-References: <20220911135547.23106-1-krzysztof.kozlowski@linaro.org>
- <11e61fa5-f770-9c9f-23b9-3d1dcb205bc5@linaro.org>
+        UNGLinuxDriver@microchip.com, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/1] dt-bindings: phy: ocelot-serdes: convert to YAML
+Message-ID: <20220913152302.GA3762698-robh@kernel.org>
+References: <20220911163715.4036144-1-colin.foster@in-advantage.com>
+ <20220911163715.4036144-2-colin.foster@in-advantage.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <11e61fa5-f770-9c9f-23b9-3d1dcb205bc5@linaro.org>
+In-Reply-To: <20220911163715.4036144-2-colin.foster@in-advantage.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -69,38 +67,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 11, 2022 at 04:14:54PM +0200, Krzysztof Kozlowski wrote:
-> On 11/09/2022 15:55, Krzysztof Kozlowski wrote:
-> > qcom,perst-regs is an phandle array of one item with a phandle and its
-> > arguments.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> > index 3d23599e5e91..077e002b07d3 100644
-> > --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> > @@ -60,8 +60,10 @@ properties:
-> >                   enable registers
-> >      $ref: "/schemas/types.yaml#/definitions/phandle-array"
-> >      items:
-> > -      minItems: 3
-> > -      maxItems: 3
-> > +      - items:
-> > +          - description: Syscon to TCSR system registers
-> > +          - description: Perst enable offset
-> > +          - description: Perst separateion enable offset
+On Sun, 11 Sep 2022 09:37:15 -0700, Colin Foster wrote:
+> Convert the phy-ocelot-serdes device tree binding to the new YAML format.
 > 
-> Unfortunately this still complains:
+> Additionally, add the file to MAINTAINERS since the original file didn't
+> exist.
 > 
-> qcom-sdx55-t55.dtb: pcie-ep@40000000: qcom,perst-regs:0: [28] is too short
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> ---
 > 
+> v1 -> v2:
+>     * new yaml file is now named mscc,vsc7514-serdes.yaml
+>     * examlpes != examples
+>     * remove "driver" name from the binding
+>     * remove ethernet port consumer from the example
+>     * add additionalProperties: false
+>     * remove unnecessary, obvious sentence in the description
 > 
-> where 28 is the phandle...
+> ---
+>  .../bindings/phy/mscc,vsc7514-serdes.yaml     | 56 +++++++++++++++++++
+>  .../bindings/phy/phy-ocelot-serdes.txt        | 43 --------------
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 57 insertions(+), 43 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/mscc,vsc7514-serdes.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/phy-ocelot-serdes.txt
+> 
 
-Meaning the dt is wrong or there's a tooling issue?
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
