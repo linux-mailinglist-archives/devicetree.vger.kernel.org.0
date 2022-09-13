@@ -2,61 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D35F85B6D5D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 14:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 676DE5B6D6C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 14:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232231AbiIMMgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 08:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46552 "EHLO
+        id S232167AbiIMMjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 08:39:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232167AbiIMMfr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 08:35:47 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B1D74F1AE;
-        Tue, 13 Sep 2022 05:35:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7979DB80EAF;
-        Tue, 13 Sep 2022 12:35:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A73CCC433D7;
-        Tue, 13 Sep 2022 12:35:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663072528;
-        bh=uHIBPhso38HQKEjnPuE3Q0bWh5FsM+Uxinj0JhYllyE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nB7wHUPdjoC1IC5X4AqEub0UfBrlv+rwv+kvtlii6wiH4LJdtiC1ObJojV1NNqcHr
-         rzgfkRNxpR2angv+u6PykUQQhGk+GzxfwICyHUz5s6XSzPzmByMh8Rl/CodnEn76d2
-         VlB1ekO71fwdrGCxOw19Hu4w61wvvXQLNpOsGzvR3yWFGPjVKUZvYRToCd25PVev8a
-         MQUBzfrAT181SCeTP+6jSk1/Zz5vgod4FCjX8NuvlNH4VytQ3KVl0eiWaFD2Ky9OXU
-         Jncdl5d2xDOvtM+hGDNbB9lFdV60qDfx4RHuFzzBrtjBVXp/B9757huE80mQ3smcZ9
-         g9kMvHUYjZpqA==
-Date:   Tue, 13 Sep 2022 14:35:24 +0200
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
-        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
-        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 02/12] dt-bindings: net: mediatek: add WED
- binding for MT7986 eth driver
-Message-ID: <YyB5DNIihzwdpfnP@lore-desk>
-References: <cover.1662661555.git.lorenzo@kernel.org>
- <e8e2e1134fde632b7f6aaf9d96feab471385f84c.1662661555.git.lorenzo@kernel.org>
- <20220913121149.GB3397630-robh@kernel.org>
+        with ESMTP id S231945AbiIMMjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 08:39:42 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80079.outbound.protection.outlook.com [40.107.8.79])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7ECB7EE
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 05:39:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QTJwNqxZ5q4nseYNsM0l7qEB4mOi3aiV8q4R/XHZxME5a6yWBWeZS0/v43KqE4M4hqb6/5fNl+OxvfjqDz8T8hc5HeZQwh9T/stzPxf3p1EQhUlVISBGQXhp+W0Y06m+yZpwWNLHnBhJ4ur24RFFYG+Te5EBnwiwkL3iUWLm4VP+cBJnusqgzzP0csi3br3qGRK7Gz+mii3fnUlWeCjL/3RrnWEHuLbFKEmq/qZ3ncXcJmerJ95mGt3TrWjV7nGecbZeuIAu+s+MN7pEjY2GEVycbopmKIVRJ+rtYmnyGVzPhlfjMbpc5YU+TT4lq/SLx9IrARwcIjzvd5CuP2QcJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XmYAI0FUednDeD34KXmO1x+s/M8w4EeFqWyT0GOQpXA=;
+ b=Vp6P/m/6YUHzAIJhvOdSSaOAKQiwcUVQW1DDS3nIXwPjtkc2opOpgxokiUT2499a56iUy1JBttySxU1GSMXRkvW5hok54XR09UsjzqisM9zdzge7dFkzSI3cGxdwbNyKOehZkpq6uz2yzIGH+JoP52bjZ2DsOAbHbkst725cKKyKNYGPbBF8gtKIMQqzYUsu15XgDrFQG4bwTH4eGAmxMswkRa3hQy6S8Q+Y8CuOnIRGjaw8a8H9a/WsxlHgKl2ZjIe9O5NxBDCK+EOlSlq5um/1ISsIEglfD+FcJNR/naIV3v3DCISf8N/p9IuNA2FKhhjlmI7Jw6xJz4emCo1S9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XmYAI0FUednDeD34KXmO1x+s/M8w4EeFqWyT0GOQpXA=;
+ b=fkRZBravI6jh9TJ4GM1SXAl9LeDtfRVqbGX1j8jYAR9bQ8CIRwqG17eUW5ypOgJZ5I7r+HheARhYQ7GLOOwpBGBe7tt3Jru6XXPvHZfnfNYXk8/82Dk2SI3wiUhqg4aallEFoFycAxsqYGYr2YiVai6KoT8Nsf92dD8ZGaChWUg=
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
+ by PA4PR04MB9269.eurprd04.prod.outlook.com (2603:10a6:102:2a4::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Tue, 13 Sep
+ 2022 12:39:37 +0000
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::b152:60ce:3622:7962]) by PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::b152:60ce:3622:7962%5]) with mapi id 15.20.5566.021; Tue, 13 Sep 2022
+ 12:39:36 +0000
+From:   Shenwei Wang <shenwei.wang@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [EXT] Re: [PATCH v6 5/5] arm64: dts: freescale: add support for
+ i.MX8DXL EVK board
+Thread-Topic: [EXT] Re: [PATCH v6 5/5] arm64: dts: freescale: add support for
+ i.MX8DXL EVK board
+Thread-Index: AQHYtlAgdVQnsa8uOkGgg6uKMosVx63NI2KAgAVTviCACRxCgIAAZ46QgADDfQCAAK6j0A==
+Date:   Tue, 13 Sep 2022 12:39:36 +0000
+Message-ID: <PAXPR04MB91850653F39FA2E2098435EA89479@PAXPR04MB9185.eurprd04.prod.outlook.com>
+References: <20220822175245.222691-1-shenwei.wang@nxp.com>
+ <20220822175245.222691-6-shenwei.wang@nxp.com>
+ <20220903034819.GF1728671@dragon>
+ <PAXPR04MB9185D243324279DD80C371DB897E9@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <20220912081649.GR1728671@dragon>
+ <PAXPR04MB9185F52BA6FEC47E6412EB3C89449@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <20220913020708.GE1728671@dragon>
+In-Reply-To: <20220913020708.GE1728671@dragon>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a39e7996-d4f6-4034-4ffc-08da958504b2
+x-ms-traffictypediagnostic: PA4PR04MB9269:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kgjL9OcedVL0M7S7UyMuSmyTDipP7xnpgrnvG2A2cnzgz80Up82ZCErloNmpJlzL9rzSHsCUkMmA5VY9e1UW/BQJitC5DJb2me2UipdRAT+gASQYsctFwOvEr6aEz3v87++SlDrUEoit2utkq+Ug+izYB2zzXHTqqBYvDENdryVd/S+YN+ILZjX7ZVuVmJ3Cy66RgnyP5lzWv1D2ML8UJN/zZ1drL17ca0STdBHyJH682mSTQonD5D0Ljt+i4BKEmz14Oo+M9kbXPTIFI5UOKgz2nPhW9zjov/oBq9VxlrxwfBGwBVkEmaW6Sh8yhE6EBLZQFBa0SzucAgZAd6ntYlCR9/B/xyBvyTakhYRPjWw0e7/P6qQYgLngKzYbGwjQIFfOmutEgA8EBPHTd/RUGjjeuPhzGtG3GPOGJ3dXowybcow02agmrhz0I1GE+MZyd8jg0G0sjN4zHLEn4GVO/AyJz12shTYelDYa/BcqaTifwpuz3FxxjkE+6/K6PBkKs8dBcG1CWv6F2vY+au7hevLAmqvuTxAC1OkJAgcfPOFxh1TK7O+H6wMlh8ogAu4jci2E1NxUO/JrZQoTOh87q/ii1eKYA6Bbg04UL8YjOnoEpvEt37FajO8uCkCTe3ONLKyDd0NTd4O/wuqHcjritDBsLhjIDr7kNNdEK2zNCP40qX4TzcFccR3vvuzixQRuSGs2AptESgYmRWiM8SeX5Pz2mVr1mJRP2+Hu/0HYTf+BArtD07S6D2GQBiFFu0c9SkH2ASXwKBojK1j7lZgRsw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(396003)(346002)(39860400002)(376002)(451199015)(86362001)(38070700005)(41300700001)(316002)(76116006)(38100700002)(122000001)(53546011)(9686003)(55016003)(44832011)(52536014)(186003)(83380400001)(33656002)(4326008)(66946007)(66556008)(8936002)(2906002)(5660300002)(26005)(71200400001)(478600001)(54906003)(8676002)(7696005)(6916009)(6506007)(55236004)(66446008)(64756008)(66476007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?PkFkDHbfiWJZvu9mf4FJpXD+a1KL3zzj7bSTP7C6N4uejGuWhTNmy9HHRrQv?=
+ =?us-ascii?Q?9AuykH+2lfZriQFq0bvoCoexZ9WNSyvI4ys0g1cgRJv8tJFL/+6brp+Gtqeu?=
+ =?us-ascii?Q?wJdP6ZVVl/lhX2pRRUHXO2WgIL61JIY7+lQ5hALrtjaTYK3kMk7pbbWdutLR?=
+ =?us-ascii?Q?jccILmCVAg/xPUGQ7Fe/gvOL7uMhRZbVRspPiPxIjaza4o+2sWodpYQ5vc+Z?=
+ =?us-ascii?Q?XVCkFecZNHJYVYGtO7Y3Ta7qe0mZymeyqLw3kdmedfrFkVP5Wa9CvPhbV9Jp?=
+ =?us-ascii?Q?mLJiaDodtYKPcdkCiWiOAnnaXgVRo2ZRFl8jPl2/vfMWG6CkAxdeM9kOSZ0U?=
+ =?us-ascii?Q?mbBMV/vkxeMWJ25iJWy3hra6Oyk8cTZC8RxRUAoucE26++DOXdB89gFopjRN?=
+ =?us-ascii?Q?igjhIJ/DtNMNUVoXsbFi8LkzEpqN3HGasEMFmK3GOt1BmIxEcKDT9SygU/YM?=
+ =?us-ascii?Q?/o4R2gj8FlqQnV0eXyzi0b9WlT9ilJmdXpPU3A0o5nDtZKW51jcIWpC7o4W6?=
+ =?us-ascii?Q?sNay7J0wuzPusvHbFV1KGaDyKPKG1Agvi24AFYeW4Rsu2K4kpoy06POejt/s?=
+ =?us-ascii?Q?mXLGUEFgU4vLkE+f3yZkjmGws5bzeHxpczucYyvRf8+z6plWu5Zv6KAMJgKk?=
+ =?us-ascii?Q?AE0iW6O/o05gEOxcmvBzlxqviJDS611i4ZksJtnpxz/b9lFgxhMgo7vrjFUJ?=
+ =?us-ascii?Q?FxZjwkPIyuu/kXFTf2QpIbqljkPqYlDprjcPOrH96kFKJ+0E5aL1L8GT5dNt?=
+ =?us-ascii?Q?mlyUTD4H0MImU7hxzRTrjfCddJ2WdGav0vSZ5/KxVDYRBaaQtzLiWHp+wZBF?=
+ =?us-ascii?Q?wa+55cZtvh/5jYlpuIwmOhruR3O5gCRuxqc7o7YPSQ5+nJ2R1K9YiXpOvHkc?=
+ =?us-ascii?Q?n0jj71JK2ADIP2CO2c1Pj3++mktuBgu78kQUHDr6GlSP2Vlhpt5I5Gf4jiWE?=
+ =?us-ascii?Q?ZWglectNm6EpzDozg3wp4lp3uhcdBln+3QgQD3xJx7D8SvxGOwQds9RixXq2?=
+ =?us-ascii?Q?1bKu/pSnwN5jJyWz8Ap59akHem/nvNjPtRBJvdb5uy6y3dewPha1Rq7VK829?=
+ =?us-ascii?Q?9wUYLr+6BkrMTMRkHpAngJZkOn9pHokSq+a3w5jK7iNlCEHQc92B8llUQNmf?=
+ =?us-ascii?Q?OFlrSYkCR+C1eUp1dvL1tLWJ1OTqE4kbQnmS19T1VQKTjDpcgEXHjodjLM62?=
+ =?us-ascii?Q?vXb+pL4ImAP5u85SuwQp95M/OZM21s0OvNvSW8IcbsfG9RqHByqeORULqJnM?=
+ =?us-ascii?Q?D7la2yebyQzzWjNTSyX1fRTm9prjxqPFtF++EUTPRx4+ZV2Pwl9xRLJ6HVXg?=
+ =?us-ascii?Q?+ru/xjHNQUabLTUFrNJWcDB2EO7UZdh5eeFe/B/LR100XONG5Jjm4GAfgD9p?=
+ =?us-ascii?Q?8s5RrnBR1mzFziFbQLtUQnUMnaDVDxRBgcoA6n6qA4pW/2VWvkNQoDkm+05G?=
+ =?us-ascii?Q?pXFn+pp+rjW25rn0CtguKyoJPsaP1dGAN6713SRbV8819DZ5yoW7+1Fy7OSa?=
+ =?us-ascii?Q?Vr/F3KEz6fl5ZrDEVQkZdYJ4Pxv66LJFEN63j1Ml71snCALLoo8IoSA+F6sV?=
+ =?us-ascii?Q?SD0m1L4cZcPCRBZqM/O5+rMQ4YLawUlhTI3E+iJQ?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="glOFOUKnXXIJKcRM"
-Content-Disposition: inline
-In-Reply-To: <20220913121149.GB3397630-robh@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a39e7996-d4f6-4034-4ffc-08da958504b2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2022 12:39:36.7861
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zkzDwhwEfxtPna1+tezwVFID23xfYouGDKyx3ry79uXSkbDNb3KAbjXRLWVcOWy6Vv+sYZllV0F4pDJqPecvtw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9269
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,60 +131,75 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---glOFOUKnXXIJKcRM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-> On Thu, Sep 08, 2022 at 09:33:36PM +0200, Lorenzo Bianconi wrote:
-> > Document the binding for the Wireless Ethernet Dispatch core on the
-> > MT7986 ethernet driver
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/net/mediatek,net.yaml | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/=
-Documentation/devicetree/bindings/net/mediatek,net.yaml
-> > index f5564ecddb62..0116f100ef19 100644
-> > --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> > +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> > @@ -238,6 +238,15 @@ allOf:
-> >            minItems: 2
-> >            maxItems: 2
-> > =20
-> > +        mediatek,wed:
-> > +          $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +          minItems: 2
-> > +          maxItems: 2
-> > +          items:
-> > +            maxItems: 1
-> > +          description:
-> > +            List of phandles to wireless ethernet dispatch nodes.
+> -----Original Message-----
+> From: Shawn Guo <shawnguo@kernel.org>
+> Sent: Monday, September 12, 2022 9:07 PM
+> To: Shenwei Wang <shenwei.wang@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Sascha Hauer <s.hauer@pengutronix.de=
+>;
+> Pengutronix Kernel Team <kernel@pengutronix.de>; Peng Fan
+> <peng.fan@nxp.com>; devicetree@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; imx@lists.linux.dev; dl-linux-imx <linux-
+> imx@nxp.com>
+> Subject: Re: [EXT] Re: [PATCH v6 5/5] arm64: dts: freescale: add support =
+for
+> i.MX8DXL EVK board
 >=20
-> There's already a definition of this in the binding. Move it to the main=
-=20
-> section and put 'mediatek,wed: false' in if/then schemas for variants=20
-> that don't have it.
+> Caution: EXT Email
+>=20
+> On Mon, Sep 12, 2022 at 02:35:18PM +0000, Shenwei Wang wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Shawn Guo <shawnguo@kernel.org>
+> > > Sent: Monday, September 12, 2022 3:17 AM
+> > > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > > Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > > <krzysztof.kozlowski+dt@linaro.org>; Sascha Hauer
+> > > <s.hauer@pengutronix.de>; Pengutronix Kernel Team
+> > > <kernel@pengutronix.de>; Peng Fan <peng.fan@nxp.com>;
+> > > devicetree@vger.kernel.org; linux-arm- kernel@lists.infradead.org;
+> > > imx@lists.linux.dev; dl-linux-imx <linux- imx@nxp.com>
+> > > > > > +
+> > > > > > +     reg_fec1_sel: regulator-1 {
+> > > > > > +             compatible =3D "regulator-fixed";
+> > > > > > +             regulator-name =3D "fec1_supply";
+> > > > > > +             regulator-min-microvolt =3D <3300000>;
+> > > > > > +             regulator-max-microvolt =3D <3300000>;
+> > > > > > +             gpio =3D <&pca6416_1 11 GPIO_ACTIVE_HIGH>;
+> > > > >
+> > > > > Missing enable-active-high?
+> > > >
+> > > > No. Enabling this regulator to select the fec1 interface instead of=
+ usdhc2.
+> > > Pulling this GPIO pin to low is to use FEC1 interface.
+> > >
+> > > Then the polarity cell should be GPIO_ACTIVE_LOW rather than
+> > > GPIO_ACTIVE_HIGH?
+> > >
+> >
+> > That doesn't matter since any GPIO phandle flags are ignored in the nod=
+e of
+> "regulator-fixed".  The final flag is only determined by the property of =
+"enable-
+> active-high".  If there is a "enable-active-high", the GPIO line works as=
+ active
+> high. If no such a property, it works as active low by default. Right?
+> >
+>=20
+> Well, we are talking about the correctness of DT (hardware description), =
+not
+> how kernel driver works with DT.
+>=20
 
-ack, I will fix it in v2.
+So the correct syntax here is: if enable-active-high is used, the flag of g=
+pio phandle should also be configured as "ACTIVE_HIGH". Otherwise, if no en=
+able-active-high, the GPIO flag should be "ACTIVE_LOW".  Is my understandin=
+g correct?
 
 Regards,
-Lorenzo
+Shenwei
 
->=20
-> Rob
-
---glOFOUKnXXIJKcRM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYyB5DAAKCRA6cBh0uS2t
-rH5VAP9r5wu/WxhYFf8dIOlicHQDZN6wIFzX8X/7pBVxvvcwBQD+M8TRrQPqazjQ
-ldlFUEfUuFbhyHyCrpeXw08o+DqluwA=
-=Ef0Z
------END PGP SIGNATURE-----
-
---glOFOUKnXXIJKcRM--
+> Shawn
