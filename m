@@ -2,61 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 928B25B6560
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 04:07:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 912F25B6569
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 04:10:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiIMCHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 22:07:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43104 "EHLO
+        id S229817AbiIMCKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 22:10:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiIMCHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 22:07:16 -0400
+        with ESMTP id S229608AbiIMCKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 22:10:30 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 671CE50051
-        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 19:07:15 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3244628E14;
+        Mon, 12 Sep 2022 19:10:29 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 01CAB612ED
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:07:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88AEEC433D6;
-        Tue, 13 Sep 2022 02:07:12 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BCF93612F1;
+        Tue, 13 Sep 2022 02:10:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0FBFC433D6;
+        Tue, 13 Sep 2022 02:10:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663034834;
-        bh=6szBzBcA80yfhLBaS718DT01/BeRIqYhT2meY4Qtyl8=;
+        s=k20201202; t=1663035028;
+        bh=iOCa/FOL18eu25U24rNQrT/Q1C5N9fUY4knAgfJAbw0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qELHrdFTR09Frx+jF5R60y3ci5sXEhT7FFIDHMy6X86j7OdAjHlGKKStEYtC3cCDv
-         A+eNDPM+RP8cAxXVTitYUtzuYD+drHwNahrzf7l0XqNXOR6tbFLKaGahnOpQJYtkB/
-         E3BkaAoUCOOqC+j4tCzcw8btbLfJAnMV/kR36Xaf1vyvOk7WtFlU8ExdddpJlP17ir
-         MrndvPFBwk5m6CXe/lDnC8gQ6Xku17AoqPFnA/aKV3XH9mj3k4kqykvt7Z7GCCGZZ1
-         wQU2PcEvsyZOgnAjpnCwKxzXyQM6mR1FXeeJDVJAoHO3SE0Fn6Onq/rZ9MxoTnP9ua
-         8OgyY6cron0Wg==
-Date:   Tue, 13 Sep 2022 10:07:08 +0800
+        b=u6B3JbWVVNBuEb+sTPlq//nvc1w11lCpPl/Bjnf8XqbwnHiQE8Qu9RqHTP8UDi13f
+         QHa0o6Gs1IW8ytNMZEwyzTSwAiz/ZSNRYNt6z5EPr7CfKTHxw5duYrltmZMaQlU9e6
+         uO6p2OGrbCUoFVFNL/PKYDpGFhRv/ZIIdbyZ+xx+943/c9vSr0QGrwfQHelr+LzxVX
+         RiHS/N7UYxg7rLuAhJWyVzmVuvxTd57hTfAORr9PJjOaJM2EBCjRQzDPSgiJ8nNygn
+         Mla/vJeYgMYbxJMi8P+dYKDQ0C7hoczCINWz0dK7FELA8HeB6TcoZvvtHkH2W13rya
+         rDlWKBt+swlAg==
+Date:   Tue, 13 Sep 2022 10:10:21 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Shenwei Wang <shenwei.wang@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [EXT] Re: [PATCH v6 5/5] arm64: dts: freescale: add support for
- i.MX8DXL EVK board
-Message-ID: <20220913020708.GE1728671@dragon>
-References: <20220822175245.222691-1-shenwei.wang@nxp.com>
- <20220822175245.222691-6-shenwei.wang@nxp.com>
- <20220903034819.GF1728671@dragon>
- <PAXPR04MB9185D243324279DD80C371DB897E9@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <20220912081649.GR1728671@dragon>
- <PAXPR04MB9185F52BA6FEC47E6412EB3C89449@PAXPR04MB9185.eurprd04.prod.outlook.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Jun Li <jun.li@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw74xx: add USB DR support
+Message-ID: <20220913021021.GF1728671@dragon>
+References: <20220908154227.4099410-1-tharvey@gateworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <PAXPR04MB9185F52BA6FEC47E6412EB3C89449@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <20220908154227.4099410-1-tharvey@gateworks.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -67,40 +60,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 02:35:18PM +0000, Shenwei Wang wrote:
+On Thu, Sep 08, 2022 at 08:42:27AM -0700, Tim Harvey wrote:
+> Add support for USB DR on USB1 interface. Host/Device detection is done
+> using the usb-role-switch connector with a GPIO as USB1_OTG_ID is not
+> connected internally.
 > 
-> 
-> > -----Original Message-----
-> > From: Shawn Guo <shawnguo@kernel.org>
-> > Sent: Monday, September 12, 2022 3:17 AM
-> > To: Shenwei Wang <shenwei.wang@nxp.com>
-> > Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> > <krzysztof.kozlowski+dt@linaro.org>; Sascha Hauer <s.hauer@pengutronix.de>;
-> > Pengutronix Kernel Team <kernel@pengutronix.de>; Peng Fan
-> > <peng.fan@nxp.com>; devicetree@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; imx@lists.linux.dev; dl-linux-imx <linux-
-> > imx@nxp.com>
-> > > > > +
-> > > > > +     reg_fec1_sel: regulator-1 {
-> > > > > +             compatible = "regulator-fixed";
-> > > > > +             regulator-name = "fec1_supply";
-> > > > > +             regulator-min-microvolt = <3300000>;
-> > > > > +             regulator-max-microvolt = <3300000>;
-> > > > > +             gpio = <&pca6416_1 11 GPIO_ACTIVE_HIGH>;
-> > > >
-> > > > Missing enable-active-high?
-> > >
-> > > No. Enabling this regulator to select the fec1 interface instead of usdhc2.
-> > Pulling this GPIO pin to low is to use FEC1 interface.
-> > 
-> > Then the polarity cell should be GPIO_ACTIVE_LOW rather than
-> > GPIO_ACTIVE_HIGH?
-> > 
-> 
-> That doesn't matter since any GPIO phandle flags are ignored in the node of "regulator-fixed".  The final flag is only determined by the property of "enable-active-high".  If there is a "enable-active-high", the GPIO line works as active high. If no such a property, it works as active low by default. Right?
-> 
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 
-Well, we are talking about the correctness of DT (hardware description),
-not how kernel driver works with DT.
-
-Shawn
+Applied, thanks!
