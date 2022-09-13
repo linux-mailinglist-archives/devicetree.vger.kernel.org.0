@@ -2,113 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61EC05B6EC3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 16:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B1AA5B6ECF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 16:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232341AbiIMOCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 10:02:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43306 "EHLO
+        id S231652AbiIMOFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 10:05:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231672AbiIMOCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 10:02:09 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E06551BE98;
-        Tue, 13 Sep 2022 07:02:08 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0ADB46602016;
-        Tue, 13 Sep 2022 15:02:07 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663077727;
-        bh=fiGIiNykQrjpzh1k5qa71sltsz5JgetWMFsEzWdQqUU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QIP/l+02X2HOzkBv4sasLj1bbI5kuH2esQsBfcnTt7BM2GYmaIgiwnV7h1Zi7i7+c
-         2NSq3boPtXFBxSxyxiKZQOYc/fprhlVw3qSZ2+1L0fnctMFEmYkSGP+YOwm6/ciLQB
-         E/33CLOzJ4mY7BgZS7Cx2KwwZD4ZIXd8H6J5zFz2a+x3zHi61M+j4WKbt50VQioLbN
-         U2A9gLs50gbNA2CoyPG5sTw6zIUO+CmJ9pRsBsXAXTv4T/zZ0By8D8I93moxQf4VbY
-         uCbL+XM+JPqBxLfCW5PPtdbEZnA61WNHdmGVtjZYIzszz0CdtwzBS/rtQT+S8lPEWf
-         Wrr9vIks6FAPA==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, chunkuang.hu@kernel.org,
-        jason-jh.lin@mediatek.com, rex-bc.chen@mediatek.com,
-        moudy.ho@mediatek.com, allen-kh.cheng@mediatek.com,
-        p.zabel@pengutronix.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH 2/2] soc: mediatek: mutex: Add support for MT6795 Helio X10 display mutex
-Date:   Tue, 13 Sep 2022 16:01:21 +0200
-Message-Id: <20220913140121.403637-3-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220913140121.403637-1-angelogioacchino.delregno@collabora.com>
-References: <20220913140121.403637-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S231781AbiIMOFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 10:05:10 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C1B217AB5;
+        Tue, 13 Sep 2022 07:05:09 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-1280590722dso32422347fac.1;
+        Tue, 13 Sep 2022 07:05:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=xaesEF6Lfa7W1zJ6vFq2YbimoamHUz/4xsPADg2pI8U=;
+        b=RwUD0q3JC+YmmFu5pL2OrGMDcPn/E2pVWwX0jNlBkd5Y29iohNZWJcgS+LM8GAW6Tu
+         wiTYmgRK7F9K8Edp8rCQ4602xjIQAY25bQHmBftPUXppAIhfYwVFtJmkhSjTw8ugBSFt
+         uEMjiWxmHWVvkd57VatGuJIqqjITGF6TIQRaCs15MMp6qkJ3+I+//zEmxm777zIUwRSu
+         HgKahI4FgJ8Q4mPolNv0IvlGcyQtu4B3Hjg4wKFHyGF6A3GEgvDZdYuIuTlyWSAoUii9
+         Ap3G+UySAmoXvZXp4kX1bTA+OImCjLBlZLGPm1r7O1rHYGAdq3gzxtiFpqaYte3L8P5v
+         yIag==
+X-Gm-Message-State: ACgBeo16qvksH6PBcM7XQBaCJuCx7SUwiY5bSLsUegkstgNtDh+KWYyL
+        3LaUUz9TPouz1cxK8JBCaw==
+X-Google-Smtp-Source: AA6agR5MZRUSO5U2/vJRsvdSOp4dyqOHS68xLdRjVDmKQUFF5s/TuXl3QUxdaeD4NpNEuWbsXwlnmw==
+X-Received: by 2002:a05:6808:21a2:b0:345:d23e:d2e2 with SMTP id be34-20020a05680821a200b00345d23ed2e2mr1526157oib.273.1663077908262;
+        Tue, 13 Sep 2022 07:05:08 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q6-20020acaf206000000b003451c927e0dsm5119169oih.38.2022.09.13.07.05.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 07:05:07 -0700 (PDT)
+Received: (nullmailer pid 3590506 invoked by uid 1000);
+        Tue, 13 Sep 2022 14:05:07 -0000
+Date:   Tue, 13 Sep 2022 09:05:07 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH RESEND v11 6/8] dt-bindings: clk: baikal-t1: Add DDR/PCIe
+ reset IDs
+Message-ID: <20220913140507.GA3590451-robh@kernel.org>
+References: <20220909192616.16542-1-Sergey.Semin@baikalelectronics.ru>
+ <20220909192616.16542-7-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220909192616.16542-7-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT6795 has the same mutex mod/sof register layout as MT2712 and MT8173,
-but supports only four SOF, as it has two DSI and one DPI.
-Support is added by reusing most of the MT8173 data, with the addition
-of a mt6795-specific SOF array (and devicetree compatible, of course).
+On Fri, 09 Sep 2022 22:26:14 +0300, Serge Semin wrote:
+> Aside with a set of the trigger-like resets Baikal-T1 CCU provides
+> additional directly controlled reset signals for the DDR and PCIe
+> controllers. As a preparation before adding these resets support to the
+> kernel let's extent the Baikal-T1 CCU IDs list with the new IDs, which
+> will be used to access the corresponding reset controls.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> 
+> ---
+> 
+> Changelog v11:
+> - This is a new patch created by detaching the DT-part from:
+> [PATCH v10 6/7] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
+>   (@Krzysztof)
+> ---
+>  include/dt-bindings/reset/bt1-ccu.h | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/soc/mediatek/mtk-mutex.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-index e82421386335..eb021e347753 100644
---- a/drivers/soc/mediatek/mtk-mutex.c
-+++ b/drivers/soc/mediatek/mtk-mutex.c
-@@ -433,6 +433,13 @@ static const unsigned int mt2712_mutex_sof[DDP_MUTEX_SOF_MAX] = {
- 	[MUTEX_SOF_DSI3] = MUTEX_SOF_DSI3,
- };
- 
-+static const unsigned int mt6795_mutex_sof[DDP_MUTEX_SOF_MAX] = {
-+	[MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
-+	[MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0,
-+	[MUTEX_SOF_DSI1] = MUTEX_SOF_DSI1,
-+	[MUTEX_SOF_DPI0] = MUTEX_SOF_DPI0,
-+};
-+
- static const unsigned int mt8167_mutex_sof[DDP_MUTEX_SOF_MAX] = {
- 	[MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
- 	[MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0,
-@@ -487,6 +494,13 @@ static const struct mtk_mutex_data mt2712_mutex_driver_data = {
- 	.mutex_sof_reg = MT2701_MUTEX0_SOF0,
- };
- 
-+static const struct mtk_mutex_data mt6795_mutex_driver_data = {
-+	.mutex_mod = mt8173_mutex_mod,
-+	.mutex_sof = mt6795_mutex_sof,
-+	.mutex_mod_reg = MT2701_MUTEX0_MOD0,
-+	.mutex_sof_reg = MT2701_MUTEX0_SOF0,
-+};
-+
- static const struct mtk_mutex_data mt8167_mutex_driver_data = {
- 	.mutex_mod = mt8167_mutex_mod,
- 	.mutex_sof = mt8167_mutex_sof,
-@@ -865,6 +879,8 @@ static const struct of_device_id mutex_driver_dt_match[] = {
- 	  .data = &mt2701_mutex_driver_data},
- 	{ .compatible = "mediatek,mt2712-disp-mutex",
- 	  .data = &mt2712_mutex_driver_data},
-+	{ .compatible = "mediatek,mt6795-disp-mutex",
-+	  .data = &mt6795_mutex_driver_data},
- 	{ .compatible = "mediatek,mt8167-disp-mutex",
- 	  .data = &mt8167_mutex_driver_data},
- 	{ .compatible = "mediatek,mt8173-disp-mutex",
--- 
-2.37.2
-
+Acked-by: Rob Herring <robh@kernel.org>
