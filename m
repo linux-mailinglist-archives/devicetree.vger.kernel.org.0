@@ -2,83 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAE005B7723
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:04:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AA4D5B7743
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232287AbiIMRCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 13:02:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
+        id S230417AbiIMRF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 13:05:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231793AbiIMRCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:02:07 -0400
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C255FC2F8E;
-        Tue, 13 Sep 2022 08:52:36 -0700 (PDT)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1280590722dso33310597fac.1;
-        Tue, 13 Sep 2022 08:52:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=5zitqPC3jMtJbaLdwQVMwLjdGwbT3nTG1S1emU8nL1U=;
-        b=sAy8pBfjvKtajL62pv16X9ckRrfyBV2Mt9MBDIvvcUdaEVQR19tvYoZDQRBEvXyFHT
-         baxCotSb8jwDGSbp1TKY9jV1x0Kmc++1SR90m1pnI+VOASngCj1VNWef+YLkVRaZLmyZ
-         qeYccj1OcvZ02e5y7YwkbZjdFdv1JYoEht9XFURyMqikKvB6truRhF0fdY21pHUhoLzK
-         bPDp7WqQL1+4DMOghNUc6JnzQH76RDGTtkO2GtsrwsY8ZskMHIY5B+GvNjO2133jZ7bp
-         5zkzRactxbKoCdX8+VGCGzA2szxst20qFpOWuvSaDrfkkTq2M6x9MurRmFmvPJ4Rd7nm
-         +ckg==
-X-Gm-Message-State: ACgBeo21Oqg8G7I9IlVq81P+ddNLicjG6hflFN7p2WrlQ+7YhI1cAgCC
-        sLGg4aTZEMeJ8YYEkaUYkA==
-X-Google-Smtp-Source: AA6agR7MSb86Jh0ODTdi1vPWAkVgAwcB/GFNDkT4A6alMUaihbsgFK1AzksLP6OGUPFazQIqjFTFcQ==
-X-Received: by 2002:a05:6808:2119:b0:34f:ca73:ee72 with SMTP id r25-20020a056808211900b0034fca73ee72mr1922974oiw.247.1663084320424;
-        Tue, 13 Sep 2022 08:52:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r196-20020acaa8cd000000b0034fd36e95bfsm1740582oie.31.2022.09.13.08.51.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 08:52:00 -0700 (PDT)
-Received: (nullmailer pid 3802793 invoked by uid 1000);
-        Tue, 13 Sep 2022 15:51:58 -0000
-Date:   Tue, 13 Sep 2022 10:51:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Eric Dumazet <edumazet@google.com>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        John Crispin <john@phrozen.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        George McCollister <george.mccollister@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Andrew Lunn <andrew@lunn.ch>, UNGLinuxDriver@microchip.com,
-        Rob Herring <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-        netdev@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        DENG Qingfang <dqfext@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: dsa: mt7530: stop
- requiring phy-mode on CPU ports
-Message-ID: <20220913155158.GA3802757-robh@kernel.org>
-References: <20220912175058.280386-1-vladimir.oltean@nxp.com>
- <20220912175058.280386-3-vladimir.oltean@nxp.com>
+        with ESMTP id S231290AbiIMRE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:04:57 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B691579EE1;
+        Tue, 13 Sep 2022 08:54:57 -0700 (PDT)
+Received: from pan.home (unknown [IPv6:2a00:23c6:c311:3401:dd1a:56ef:ffd9:f71c])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: martyn)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3F7596601F9E;
+        Tue, 13 Sep 2022 16:54:01 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.co.uk;
+        s=mail; t=1663084441;
+        bh=pvWhVzpGSdCdMt93Q2cYWMs/1fHlhI/I0Tq0M6hXpd4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=C53bPee+1BzNSFOYVOXHTGVrO0Cnq7Mu+Cy/6k/69jQ6OTPDQ3W0Y+FHNgCp2ErFs
+         8AOfI/wxiKMbe2jCPc9lmOH6He5wdxPsYtbMUv20kCB+HEw0wMfphZhjYVn0EBBFM5
+         Ob9NSHeg3OBMFpfb7Bs0dqXvoirc4gfkzNu2A0DtAAJVyGwO9E3erj7b1eTt0Heq2q
+         nhBEYDzTRTnIwn0Xfq66E+P18wyY2nYCD2dWjaGTfmmOPPc6d6EWqpCt72cG7M7mu0
+         Ds5wdAm2ZubxofdHjvmJfbQH4w+L/QA/ipG6D19yjNDE+nGbIpamWO4LtpQAALk1a1
+         8pi8FqvKCnz7g==
+From:   Martyn Welch <martyn.welch@collabora.co.uk>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Martyn Welch <martyn.welch@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/5] dt-bindings: vendor-prefixes: add Diodes
+Date:   Tue, 13 Sep 2022 16:53:44 +0100
+Message-Id: <20220913155348.38716-1-martyn.welch@collabora.co.uk>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220912175058.280386-3-vladimir.oltean@nxp.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,15 +54,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Sep 2022 20:50:57 +0300, Vladimir Oltean wrote:
-> The common dsa-port.yaml does this (and more) since commit 2ec2fb8331af
-> ("dt-bindings: net: dsa: make phylink bindings required for CPU/DSA
-> ports").
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
->  Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml | 3 ---
->  1 file changed, 3 deletions(-)
-> 
+From: Martyn Welch <martyn.welch@collabora.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+Diodes Incorporated is a manufacturer of application specific standard
+products within the discrete, logic, analog, and mixed-signal semiconductor
+markets.
+
+https://www.diodes.com/
+
+Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+
+Changes in v2:
+ - None
+
+Changes in v3:
+ - None
+
+Changes in v4:
+ - None
+
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 2f0151e9f6be..7ee9b7692ed1 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -328,6 +328,8 @@ patternProperties:
+     description: Digi International Inc.
+   "^digilent,.*":
+     description: Diglent, Inc.
++  "^diodes,.*":
++    description: Diodes, Inc.
+   "^dioo,.*":
+     description: Dioo Microcircuit Co., Ltd
+   "^dlc,.*":
+-- 
+2.35.1
+
