@@ -2,82 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D11BB5B6DAE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 14:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F06B65B6DC9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 14:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231876AbiIMMvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 08:51:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38674 "EHLO
+        id S231146AbiIMMz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 08:55:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232220AbiIMMvo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 08:51:44 -0400
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F66F550BA;
-        Tue, 13 Sep 2022 05:51:36 -0700 (PDT)
-Received: by mail-oo1-f43.google.com with SMTP id u3-20020a4ab5c3000000b0044b125e5d9eso1907440ooo.12;
-        Tue, 13 Sep 2022 05:51:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=rCib1oPKNeqwhjgyZPg5qrlZWJuZ4oIqDxh1dHYtZ8M=;
-        b=YJjNmBeGRepVHpfk/808zSHgzfVr/6Pjd6Wj6cVcjvwYe6gOt+26O8AiG0oGHamVaW
-         XEMv/8BqrLrc16Py4Sr9WOZpp9AKec7Hg73KgcO97Nk3hLlfe1nwWX/LHEa6VmkrJ22o
-         2SXtJA67ll516pZ2iv5IbVIiqydlqs6ay/l+MbKjkkSkdCCti13udJ8q4KMNEdG0EQmt
-         wLDzTy1569VnyO7O9A81xJYBb3Fx6g2dQV6LO+wHR6Xt1AUBVhX2W3u2wcZ1sxVh69wT
-         OO87Knpoh5JqjVA1jbn0xZ2mJlKBEfXlwabXqzD+gN9kkVIhIt0PPNLW7DebvMn/26NC
-         IhUg==
-X-Gm-Message-State: ACgBeo2VueXRyRv9Kj7VjJVXJWZJPRlTyayTfgvWeLtCuvkESXPJzLDS
-        Xqqfa3ZRQARBOFqCR5CgyQ==
-X-Google-Smtp-Source: AA6agR5mi7Jah20YgSuPWfVOtUnnTXJ+PFtSuNgGWRT9VPeGRubhOqoZaY45lklY7gFU99uh/CFu1w==
-X-Received: by 2002:a4a:ae01:0:b0:44d:fb9b:ecfd with SMTP id z1-20020a4aae01000000b0044dfb9becfdmr10935773oom.64.1663073495394;
-        Tue, 13 Sep 2022 05:51:35 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w8-20020a9d5388000000b00616e2d2204csm5879427otg.21.2022.09.13.05.51.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 05:51:35 -0700 (PDT)
-Received: (nullmailer pid 3472863 invoked by uid 1000);
-        Tue, 13 Sep 2022 12:51:34 -0000
-Date:   Tue, 13 Sep 2022 07:51:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 02/15] dt-bindings: hwlock: qcom-hwspinlock: correct
- example indentation
-Message-ID: <20220913125134.GA3472817-robh@kernel.org>
-References: <20220909092035.223915-1-krzysztof.kozlowski@linaro.org>
- <20220909092035.223915-3-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S231576AbiIMMzZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 08:55:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9861B80;
+        Tue, 13 Sep 2022 05:55:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 46B3C61463;
+        Tue, 13 Sep 2022 12:55:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34E3EC433D6;
+        Tue, 13 Sep 2022 12:55:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663073722;
+        bh=nVK1PpFpr3HrxHyxFHxXGkoi91E0D9INc8k4vrxLlO4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sQoTQw9b5uv42Gc79PBJk8gsxELlxcrDQhMhi8d3x3Y2H9xEos2A972w/zKyL1j/Q
+         y+/N5nIH7j3YYttsfXFwQL0GqSrEsQqgI1TBZIcIvwMM4fTpp/7nV8T31BKiOeHnq8
+         zT7WK4MG3gv74eeXFHhXSxDJkApJ5MJUIpox63pT4JL+LYxJpMcuI2gh17Blly0Xbq
+         GhrcN4ahEMfOCEEmF+PYYPrCfkw1mlryD7UDb4bFlCfh/99isAXsEJjs6dM6Nr26g0
+         PeLZjr8LXFSDl64K6lGbDQsHVflDJ4fUwvLSY04ZLge11E1g02kiEq46Q19SQPLuNI
+         q6bO4q8xV2/Mw==
+Date:   Tue, 13 Sep 2022 14:55:18 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
+        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
+        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 01/12] arm64: dts: mediatek: mt7986: add support
+ for Wireless Ethernet Dispatch
+Message-ID: <YyB9tvD6+gQUe2tk@lore-desk>
+References: <cover.1662661555.git.lorenzo@kernel.org>
+ <e034b4b71437bce747b128382f1504d5cdc6974b.1662661555.git.lorenzo@kernel.org>
+ <20220913120950.GA3397630-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZB171Q3MrJkpLRzK"
 Content-Disposition: inline
-In-Reply-To: <20220909092035.223915-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220913120950.GA3397630-robh@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 09 Sep 2022 11:20:22 +0200, Krzysztof Kozlowski wrote:
-> Use some consistent indentation (4-space) for DTS example.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/hwlock/qcom-hwspinlock.yaml    | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+--ZB171Q3MrJkpLRzK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sep 13, Rob Herring wrote:
+> On Thu, Sep 08, 2022 at 09:33:35PM +0200, Lorenzo Bianconi wrote:
+> > Introduce wed0 and wed1 nodes in order to enable offloading forwarding
+> > between ethernet and wireless devices on the mt7986 chipset.
+> >=20
+> > Co-developed-by: Bo Jiao <Bo.Jiao@mediatek.com>
+> > Signed-off-by: Bo Jiao <Bo.Jiao@mediatek.com>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boo=
+t/dts/mediatek/mt7986a.dtsi
+> > index e3a407d03551..419d056b8369 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> > @@ -222,6 +222,25 @@ ethsys: syscon@15000000 {
+> >  			 #reset-cells =3D <1>;
+> >  		};
+> > =20
+> > +		wed_pcie: wed_pcie@10003000 {
+> > +			compatible =3D "mediatek,wed";
+>=20
+> This is undocumented. It needs a binding.
+
+ack I will fix it in v2.
+
+>=20
+> > +			reg =3D <0 0x10003000 0 0x10>;
+> > +		};
+> > +
+> > +		wed0: wed@15010000 {
+> > +			compatible =3D "mediatek,wed", "syscon";
+>=20
+> Some are syscon's and some are not?
+
+ack I will fix it in v2.
+
+Regards,
+Lorenzo
+>=20
+> > +			reg =3D <0 0x15010000 0 0x1000>;
+> > +			interrupt-parent =3D <&gic>;
+> > +			interrupts =3D <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
+> > +		};
+> > +
+> > +		wed1: wed@15011000 {
+> > +			compatible =3D "mediatek,wed", "syscon";
+> > +			reg =3D <0 0x15011000 0 0x1000>;
+> > +			interrupt-parent =3D <&gic>;
+> > +			interrupts =3D <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
+> > +		};
+> > +
+> >  		eth: ethernet@15100000 {
+> >  			compatible =3D "mediatek,mt7986-eth";
+> >  			reg =3D <0 0x15100000 0 0x80000>;
+> > @@ -256,6 +275,7 @@ eth: ethernet@15100000 {
+> >  						 <&apmixedsys CLK_APMIXED_SGMPLL>;
+> >  			mediatek,ethsys =3D <&ethsys>;
+> >  			mediatek,sgmiisys =3D <&sgmiisys0>, <&sgmiisys1>;
+> > +			mediatek,wed =3D <&wed0>, <&wed1>;
+> >  			#reset-cells =3D <1>;
+> >  			#address-cells =3D <1>;
+> >  			#size-cells =3D <0>;
+> > --=20
+> > 2.37.3
+> >=20
+> >=20
+
+--ZB171Q3MrJkpLRzK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYyB9tgAKCRA6cBh0uS2t
+rEI/AP9/wgj2OBuhzFXTwuox6VAFFP2XrEoPs+UIwXt69PmD+gD/WvunCMCbUQC7
+V+zgy5wDDPTsNR0A6Wd+b8I6LYtAQg4=
+=Wi3g
+-----END PGP SIGNATURE-----
+
+--ZB171Q3MrJkpLRzK--
