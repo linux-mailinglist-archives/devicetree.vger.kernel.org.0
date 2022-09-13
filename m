@@ -2,126 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61A5F5B6B20
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:46:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8FBC5B6B43
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 12:01:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231874AbiIMJqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 05:46:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58706 "EHLO
+        id S231379AbiIMKBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 06:01:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230399AbiIMJp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:45:58 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D59185E67D;
-        Tue, 13 Sep 2022 02:45:44 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28D9jUwI040710;
-        Tue, 13 Sep 2022 04:45:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663062330;
-        bh=AU++iYqWva29bjfI9XPz8HMqFvoP8KDo2s0Fll1WpH4=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=GOna1rC0nCv/Dng5o3Q8QaywDzCvKovFlIV4Oq1JEi/JQhJJFnknFCrfF115lC2cF
-         uwnFcbaImkbxaQ3Qjglgb4JzD/NAg1+v6x/Z1v1zPiwjwEOpQ1X6cNShvD9aJq3TE6
-         noTtnQyYQI1sr8k9S9pf2kXBsIeqP11fuLRbmyb0=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28D9jUhE016051
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Sep 2022 04:45:30 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 13
- Sep 2022 04:45:30 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 13 Sep 2022 04:45:30 -0500
-Received: from [10.24.69.241] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28D9jQcd076907;
-        Tue, 13 Sep 2022 04:45:26 -0500
-Message-ID: <d802f419-f2d6-faca-e0a9-591f4d705b28@ti.com>
-Date:   Tue, 13 Sep 2022 15:15:25 +0530
+        with ESMTP id S231406AbiIMKA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 06:00:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A0C4356C1;
+        Tue, 13 Sep 2022 03:00:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 086C261376;
+        Tue, 13 Sep 2022 10:00:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E3A6C4314A;
+        Tue, 13 Sep 2022 10:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663063253;
+        bh=FxlTTbRW/PHWQLM1GoFV+cyBk7DG7ySc4dceL+AbcAA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=m36TKF+Od7aovmLVkhd6VzfaQH3QQPFD2jJIjUB1cTBbWhHGsAVbHjILijA9zEFGq
+         t+CNJvwqRiS06ZSs/43Jk/ZMRe7/g9Rs8GSLNx7UJSviH66AzmkOAGBCE/e/CB157t
+         HnAwO4JmfoODZJcMnxSca+unDNZQKQrJGV2BYLowEvMHZakmLNFmkmaoteSLrMCl9O
+         vS87clT1cmNLUsluCbV89hmWkDKQFvxIVt97ldS5cBN2oWO3cYjnZs8h+uYwVgEMFm
+         pK8MRozpi3QAvAiZUWFgKq3gFmXt6a42/zRptKaAHa28I95oDpLEb5ZoWMc0fBcP4x
+         vxPpCfF0k18xg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oY2iq-0005VP-G7; Tue, 13 Sep 2022 12:00:52 +0200
+Date:   Tue, 13 Sep 2022 12:00:52 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        johan+linaro@kernel.org, steev@kali.org
+Subject: Re: [PATCH] arm64: dts: qcom: thinkpad-x13s: Update firmware location
+Message-ID: <YyBU1G9O1l4LqMF7@hovoldconsulting.com>
+References: <20220913054030.3234-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-CC:     <robh+dt@kernel.org>, <lee.jones@linaro.org>, <kishon@ti.com>,
-        <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
-        <grygorii.strashko@ti.com>, <rogerq@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v5 2/3] dt-bindings: phy: ti: phy-gmii-sel: Add bindings
- for J7200
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-References: <20220912085650.83263-1-s-vadapalli@ti.com>
- <20220912085650.83263-3-s-vadapalli@ti.com>
- <7a673b7c-9e04-2a23-98b9-243696597bba@linaro.org>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <7a673b7c-9e04-2a23-98b9-243696597bba@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220913054030.3234-1-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+On Tue, Sep 13, 2022 at 11:10:30AM +0530, Manivannan Sadhasivam wrote:
+> The firmware location in linux-firmware has been changed to include the
+> SoC name. So use the updated location in Thinkpad devicetree.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 13/09/22 14:57, Krzysztof Kozlowski wrote:
-> On 12/09/2022 10:56, Siddharth Vadapalli wrote:
-> 
->>  required:
->>    - compatible
->>    - reg
->> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
->> index 016a37db1ea1..da7cac537e15 100644
->> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
->> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
->> @@ -53,12 +53,25 @@ properties:
->>        - ti,am43xx-phy-gmii-sel
->>        - ti,dm814-phy-gmii-sel
->>        - ti,am654-phy-gmii-sel
->> +      - ti,j7200-cpsw5g-phy-gmii-sel
->>  
->>    reg:
->>      maxItems: 1
->>  
->>    '#phy-cells': true
->>  
->> +  ti,qsgmii-main-ports:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description: |
->> +      Required only for QSGMII mode. Array to select the port for
-> 
-> Not really an array...
-> 
->> +      QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
->> +      ports automatically. Any one of the 4 CPSW5G ports can act as the
->> +      main port with the rest of them being the QSGMII_SUB ports.
->> +    maxItems: 1
-> 
-> 
-> You say it is an array, but you have here just one item, so it is just
-> uint32. Do you expect it to grow? If so, when? Why it cannot grow now?
+I guess we should pick a commit prefix that we stick to for changes to
+this driver.
 
-Thank you for reviewing the patch.
+	arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13s:
 
-I have defined it as an array because I plan to reuse this property for
-other TI devices like J721e which supports up to two QSGMII main ports.
-J7200 on the other hand can have at most one QSGMII main port, which is
-why I have restricted the array size to one element as of this series.
-In the upcoming patches that I will be posting for J721e, I will be
-changing the maxItems to 2 for J721e's compatible while it will continue
-to remain 1 for J7200's compatible. This is the reason for defining the
-property as an array.
+is arguably unnecessarily long even if it follows the pattern of some
+other qcom dts.
 
-Regards,
-Siddharth.
+Shall we just use
+
+	arm64: dts: qcom: sc8280xp-x13s:
+
+which matches sc8280xp-crd? Or stick "lenovo" in there as well? Or just
+keep the whole thing unchanged?
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index c379650e52b1..3b7943d6e164 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -554,13 +554,13 @@ keyboard@68 {
+>  };
+>  
+>  &remoteproc_adsp {
+> -	firmware-name = "qcom/LENOVO/21BX/qcadsp8280.mbn";
+> +	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcadsp8280.mbn";
+>  
+>  	status = "okay";
+>  };
+>  
+>  &remoteproc_nsp0 {
+> -	firmware-name = "qcom/LENOVO/21BX/qccdsp8280.mbn";
+> +	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qccdsp8280.mbn";
+>  
+>  	status = "okay";
+>  };
+
+Change itself looks good otherwise:
+
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+
+Johan
