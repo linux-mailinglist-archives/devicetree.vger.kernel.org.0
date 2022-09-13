@@ -2,62 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DCCD5B78A3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E6425B78A7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:48:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233583AbiIMRqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 13:46:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42160 "EHLO
+        id S233533AbiIMRrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 13:47:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233315AbiIMRqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:46:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A99463E4;
-        Tue, 13 Sep 2022 09:42:28 -0700 (PDT)
+        with ESMTP id S233621AbiIMRrS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:47:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69EB012D34;
+        Tue, 13 Sep 2022 09:44:38 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 998F1614B2;
-        Tue, 13 Sep 2022 16:42:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AC96C433C1;
-        Tue, 13 Sep 2022 16:42:26 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DCDB861510;
+        Tue, 13 Sep 2022 16:44:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D4C7C433D7;
+        Tue, 13 Sep 2022 16:44:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663087347;
-        bh=3Q42QFQ/ngGZQQeyp7QhP6eTWM1+zQJpWZ4yQpNfCck=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CxcOkubrZXQn2EQ474gG4UJo8mQX4nMBEhGTo20JqjXQk8APbj4ESssFffXLIIrHe
-         EkQekGPKV6oi28uzSCB2vMMBMNbL4MG/Y5Jqo/Ck6PRg6Gf6/9R/4ETjb53/y1bDmI
-         ER8i6KF9wD8A2E87VuxXZrTmY3TJJvX2uADpxHUwm4/hxI6WH3ha1O7+/zCtIQmadL
-         tSaG76vGXeo3tTYJOqbp4CDh6cL8oz16K6lPvZscMq0aHIQ5cAbdBIkL0kaQ1BFzBj
-         ZnFYabEV5yARdpuFbCj0JK78O4TM5SxigD6MRnGzfigOv/gp8fXAhW6xuuCQGo/mmn
-         t/XgkL+PxS2DQ==
-Date:   Tue, 13 Sep 2022 22:12:23 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     kever.yang@rock-chips.com, sjg@chromium.org,
-        philipp.tomsich@vrull.eu, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        ulf.hansson@linaro.org, miquel.raynal@bootlin.com, richard@nod.at,
-        vigneshr@ti.com, kishon@ti.com, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, gregkh@linuxfoundation.org,
-        broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net,
-        zhangqing@rock-chips.com, jamie@jamieiles.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-phy@lists.infradead.org,
-        linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v1 09/11] dt-bindings: phy: phy-rockchip-inno-usb2: add
- rockchip,rk3128-usb2phy
-Message-ID: <YyCy7838UGnV2qcR@matsya>
-References: <20220909212543.17428-1-jbx6244@gmail.com>
- <d477a077-a68f-e752-5192-807db80a9e68@gmail.com>
+        s=k20201202; t=1663087477;
+        bh=LazoKil10sVAZo5jouuuvttZYHH0Wrl8ysZuo+MFHqA=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=UGMg0ZxrSB5Y6y8eMg/Y0A/G+j9ibH66bPhWEedVUf2YD4QweIwj/SbhyEWlWNG36
+         rK7QXPvjiOQq18oefDdZs7C7wm2umGln1VW2I4LhUmnFYpzgpes8lfP2ZutmGnyGS3
+         vqpzYJYyQewKn4+iIszV+eOoSQRaYy+/5og1k4DlTJ7Ktd1KoegY5gf9gwWl9ahJuT
+         EpGhjwUIa8wCC2Tp+knxbWDkSXBRuCNIl958P4h/C2eHOJvEaSQSCqhF00yLKCQ+0z
+         qnddPHDYBAJNgbxrByylGyfQA72RswR6iHn2N1MSoIXGO0N3OvGr51L3d/1aZR+iDz
+         Bj9/kwajdbHog==
+From:   Mark Brown <broonie@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com
+In-Reply-To: <20220913123456.384513-1-angelogioacchino.delregno@collabora.com>
+References: <20220913123456.384513-1-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v4 0/4] MediaTek Helio X10 MT6795 - MT6331/6332 Regulators
+Message-Id: <166308747505.261771.11158894502965288583.b4-ty@kernel.org>
+Date:   Tue, 13 Sep 2022 17:44:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d477a077-a68f-e752-5192-807db80a9e68@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-7dade
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -68,10 +58,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-09-22, 00:01, Johan Jonker wrote:
-> Add rockchip,rk3128-usb2phy compatible string.
+On Tue, 13 Sep 2022 14:34:52 +0200, AngeloGioacchino Del Regno wrote:
+> In an effort to give some love to the apparently forgotten MT6795 SoC,
+> I am upstreaming more components that are necessary to support platforms
+> powered by this one apart from a simple boot to serial console.
+> 
+> This series adds support for the regulators found in MT6331 and MT6332
+> main/companion PMICs.
+> 
+> [...]
 
-Applied, thanks
+Applied to
 
--- 
-~Vinod
+   broonie/regulator.git for-next
+
+Thanks!
+
+[1/4] dt-bindings: regulator: Add bindings for MT6331 regulator
+      commit: 6385e21692bbb0b35eca8120d576b3c1ba1ad9d3
+[2/4] regulator: Add driver for MT6331 PMIC regulators
+      commit: 6f7a71f804287a7566314ab1a73d8ca2c18ca0d7
+[3/4] dt-bindings: regulator: Add bindings for MT6332 regulator
+      commit: e22943e32e1fc314b8e2b095ae3495d1bfa9aca5
+[4/4] regulator: Add driver for MT6332 PMIC regulators
+      commit: 1cc5a52e873a4f9725eafe5aa9cd213b7b58e29e
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
