@@ -2,169 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FFF25B751B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 17:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFFE55B75D7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 17:57:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233480AbiIMPep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 11:34:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34062 "EHLO
+        id S236397AbiIMP5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 11:57:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236716AbiIMPdr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 11:33:47 -0400
-Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B85677FE43;
-        Tue, 13 Sep 2022 07:41:00 -0700 (PDT)
+        with ESMTP id S236285AbiIMP4l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 11:56:41 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58C9090C58;
+        Tue, 13 Sep 2022 07:56:11 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d12so12075048plr.6;
+        Tue, 13 Sep 2022 07:56:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1663080061; x=1694616061;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=+0bJLl7XXBn2mnQPoCDEw9fJxIAC5EOVcVVMuJTzH6k=;
-  b=tTBYVQWoqfDe6VIPnKCaVmTjQdJWGd5dppqTK2olilOqfKka9LjVcPpz
-   xbpXsH61PUyqnAQ3mU4O2ckxX3OENhZ9o9gFr4j185+H03PlqJsR8CX5G
-   Cf4EgetDUtGJMZoC+uKvY7YPBRHsE2QfFOBoan6NgCfHTn6ezoYLo7Zl7
-   o=;
-X-IronPort-AV: E=Sophos;i="5.93,313,1654560000"; 
-   d="scan'208";a="225465858"
-Subject: Re: [PATCH v5 20/21] hwmon: (mr75203) add debugfs to read and write
- temperature coefficients
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-pdx-2b-28a78e3f.us-west-2.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2022 14:40:23 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan2.pdx.amazon.com [10.236.137.194])
-        by email-inbound-relay-pdx-2b-28a78e3f.us-west-2.amazon.com (Postfix) with ESMTPS id 0C13CA0EC0;
-        Tue, 13 Sep 2022 14:40:21 +0000 (UTC)
-Received: from EX19D013UWA002.ant.amazon.com (10.13.138.210) by
- EX13MTAUWB001.ant.amazon.com (10.43.161.207) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Tue, 13 Sep 2022 14:40:20 +0000
-Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
- EX19D013UWA002.ant.amazon.com (10.13.138.210) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
- Tue, 13 Sep 2022 14:40:20 +0000
-Received: from [192.168.151.102] (10.85.143.178) by mail-relay.amazon.com
- (10.43.60.234) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Tue, 13 Sep 2022 14:40:16 +0000
-Message-ID: <3b121ab4-dd64-68b3-ee89-8571b5d3651e@amazon.com>
-Date:   Tue, 13 Sep 2022 17:40:16 +0300
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=BigZgzDalXUaUQ1hOGkvbyJvBJcRFxv/fgnReKtRTcE=;
+        b=WFpSktm2Mw82yuwQ7/wyCjSuG6TNNYEa5KCF6cBQdRZGJHQ9unp/s9SSPsHoSy4auE
+         opY2wZimheSkddlWEzgfaoo9l2oAlb/dP0NLy1091Z4rbn0R2Dl2rwa63TdLmEu7+PXm
+         DebvbCRBNXJqpJoXYG2AcIMQarpGfUewuYztSeu0KRlnJFteqDZTfzNAiVWJ+SM8UKPZ
+         UczbmrMKn1tM3Vpy0ikq5Fs7ezqANjPwoO5dDW+qsUfplPLIkwHkWE78Oxa2CI8GqGVq
+         akpFAJvnzpIOdEq/BocwoMXN3XpApEC4W3U3PBpFrngeI+6IAriPpKUBw8X8e9KTSKgo
+         1daQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=BigZgzDalXUaUQ1hOGkvbyJvBJcRFxv/fgnReKtRTcE=;
+        b=KmW8aiAYQGPQTHzqF2eNChWcD6xb/g+O7VgNwjevX9XTKHCdD5KcU6t3xmzZuaHmHR
+         9bYJFiXyWsvj365Bk4s1CnHX0S2Ssyt4RI8StZt2SWD9W+IOp/8eFIpjQUyXlqxgAEP9
+         ecD++Xro9tlSqoeY3+6gToQWaijObammZyyepiGEXT+JJDHADVg3lRJeP9zA1o0/9uZC
+         z9O1o5HZN/7lS61l1sqc/dMsz/K4WuTXORgWXzgcDjqbpbb3B7/tMjO/zUQeTkDC4Ma+
+         XZnBOUwA5sQHLChqPDal6IQGX9wx2/TmiATdos0pxYoTHBe9m9GJ60wQJI41sAvJdjA2
+         aUHQ==
+X-Gm-Message-State: ACgBeo1DnmqFzpCewkhMDk+oOCgo4brqxqHJEXc3HqsrgQ/j25qom4Kk
+        UZScvqk9oTX+/nAECm0rsyP8652Q8A46S1VDvEEGXJGxTFo=
+X-Google-Smtp-Source: AA6agR7qMJQc4dCUaMDXsSVcOWzc8M1rs65BfNUznpDkE+XLgjqPyC+AronHj/TF2hyMk/7rv/F3M0KOhQogQlM7x9I=
+X-Received: by 2002:a17:902:b085:b0:178:3af4:31b2 with SMTP id
+ p5-20020a170902b08500b001783af431b2mr7826829plr.122.1663080306463; Tue, 13
+ Sep 2022 07:45:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-CC:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <hhhawa@amazon.com>,
-        <jonnyc@amazon.com>, "Farber, Eliav" <farbere@amazon.com>
-References: <20220908152449.35457-1-farbere@amazon.com>
- <20220908152449.35457-21-farbere@amazon.com>
- <YxowTBIODMLjf1Ek@smile.fi.intel.com>
- <581a4a0b-8e0e-b7a2-f873-77ed74b54e96@amazon.com>
-Content-Language: en-US
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <581a4a0b-8e0e-b7a2-f873-77ed74b54e96@amazon.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-12.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220911040628.13774-1-cnsztl@gmail.com> <7426763.EvYhyI6sBW@phil>
+In-Reply-To: <7426763.EvYhyI6sBW@phil>
+From:   Tianling Shen <cnsztl@gmail.com>
+Date:   Tue, 13 Sep 2022 22:44:54 +0800
+Message-ID: <CAOP2_TiBA0HZPO4tDviUuLMvw+oHe4BR3wiAMwdRodjfuEfVow@mail.gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: rockchip: add EEPROM node for NanoPi R4S
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/13/2022 4:06 PM, Farber, Eliav wrote:
-> On 9/8/2022 9:11 PM, Andy Shevchenko wrote:
->> On Thu, Sep 08, 2022 at 03:24:48PM +0000, Eliav Farber wrote:
->>> This change adds debugfs to read and write temperature sensor 
->>> coefficients
->>> - g, h, j and cal5.
->>>
->>> The coefficients can vary between product and product, so it can be 
->>> very
->>> useful to be able to modify them on the fly during the calibration
->>> process.
->>>
->>> e.g.:
->>>
->>> cat /sys/kernel/debug/940f23d0000.pvt/ts_coeff_cal5
->>> 4096
->>>
->>> echo 83000 > sys/kernel/debug/940f23d0000.pvt/ts_coeff_g
->>
->> ...
->>
->>> - Return j coefficient to use debugfs_create_file() instead of
->>>   debugfs_create_u32() because j is signed.
->>
->> You can use
->>
->> DEFINE_DEBUGFS_ATTRIBUTE(ts_coeff_j, ts_coeff_j_get, ts_coeff_j_set, 
->> "%lld\n");
->>
->> which still makes code compact. 
->
->
-> I tried your suggestion to use DEFINE_DEBUGFS_ATTRIBUTE but I can't set
-> j to be a negative value:
->
-> root@alpine:~# cat /sys/kernel/debug/940f23d0000.pvt/ts_coeff_j
-> 0
-> root@alpine:~# echo 100 > /sys/kernel/debug/940f23d0000.pvt/ts_coeff_j
-> root@alpine:~# cat /sys/kernel/debug/940f23d0000.pvt/ts_coeff_j
-> 100
-> root@alpine:~# echo -100 > /sys/kernel/debug/940f23d0000.pvt/ts_coeff_j
-> sh: write error: Invalid argument
->
-> This is the code I added:
->
-> static int ts_coeff_j_set(void *data, u64 val)
-> {
->     struct pvt_device *pvt = data;
->
->     pvt->ts_coeff.j = val;
->     return 0;
-> }
->
-> static int ts_coeff_j_get(void *data, u64 *val)
-> {
->     struct pvt_device *pvt = data;
->
->     *val = pvt->ts_coeff.j;
->     return 0;
-> }
->
-> DEFINE_DEBUGFS_ATTRIBUTE(ts_coeff_j_fops, ts_coeff_j_get,
->              ts_coeff_j_set, "%lld\n");
->
-> static void devm_pvt_ts_dbgfs_remove(void *data)
-> {
->     struct pvt_device *pvt = (struct pvt_device *)data;
->
->     debugfs_remove_recursive(pvt->dbgfs_dir);
->     pvt->dbgfs_dir = NULL;
-> }
->
-> static int pvt_ts_dbgfs_create(struct pvt_device *pvt, struct device 
-> *dev)
-> {
->     ...
->     debugfs_create_file("ts_coeff_j", 0644, pvt->dbgfs_dir, pvt,
->                 &ts_coeff_j_fops);
->     ...
->
-> I'm using kernel 5.10.112.
-> Can you please see if I'm did anything wrong? 
+Hi Heiko,
 
-It seems like debugfs_attr_write() calls simple_attr_write() and it uses
-kstrtoull(), which is why it fails when setting a negative value.
-This is the same also in v6.0-rc5.
+On Tue, Sep 13, 2022 at 6:22 PM Heiko Stuebner <heiko@sntech.de> wrote:
+>
+> Hi,
+>
+> Am Sonntag, 11. September 2022, 06:06:28 CEST schrieb Tianling Shen:
+> > NanoPi R4S has a EEPROM attached to the 2nd I2C bus (U92), which
+> > stores the MAC address.
+> >
+> > FriendlyElec ship two versions of the R4S [1]: The standard as well
+> > as the enterprise edition with only the enterprise edition including
+> > the EEPROM chip that stores the unique MAC address.
+>
+> This needs to go differently.
+>
+> If the eeprom is only preset on the enterprise-version, you need
+> a separate devicetree for it, that provides the eeprom node.
+>
+> Declaring the eeprom "in error" on a device that doesn't have it,
+> isn't the way to go.
+>
+> Look for example at rockchip/rk3399-nanopi-m4b.dts for reference
+> on how to do it - and also remember to add the new binding
+> for that board. And can also again declare the correct mac-address
+> cell.
+>
 
-debugfs_attr_read() on the other hand does show the correct value also
-when j is negative.
+Got it, thank you! I will do it these days.
 
---
-Regards, Eliav
+Regards,
+Tianling.
 
-
+>
+> Heiko
+>
+> >
+> > 1. https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R4S#Differences_Between_R4S_Standard_Version_.26_R4S_Enterprise_Version
+> >
+> > Changes in v4:
+> > - Removed `mac-address` cell as it breaks the standard edition
+> >
+> > Changes in v3:
+> > - Added address-cells and size-cells
+> >
+> > Changes in v2:
+> > - Added the size of EEPROM
+> > - Added `mac-address` cell to pass the MAC address to kernel
+> > - Removed `read-only` property in EEPROM node
+> >
+> > Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+> > index fe5b52610010..42c99573ab27 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+> > @@ -68,6 +68,17 @@ &emmc_phy {
+> >       status = "disabled";
+> >  };
+> >
+> > +&i2c2 {
+> > +     eeprom@51 {
+> > +             compatible = "microchip,24c02", "atmel,24c02";
+> > +             reg = <0x51>;
+> > +             pagesize = <16>;
+> > +             size = <256>;
+> > +             #address-cells = <1>;
+> > +             #size-cells = <1>;
+> > +     };
+> > +};
+> > +
+> >  &i2c4 {
+> >       status = "disabled";
+> >  };
+> >
+>
+>
+>
+>
