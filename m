@@ -2,97 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E89F85B6826
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 08:53:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C4805B683C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 08:57:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230472AbiIMGw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 02:52:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47312 "EHLO
+        id S229763AbiIMG5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 02:57:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229743AbiIMGw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 02:52:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB7C5723B;
-        Mon, 12 Sep 2022 23:52:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 31141612F5;
-        Tue, 13 Sep 2022 06:52:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB946C433C1;
-        Tue, 13 Sep 2022 06:52:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663051975;
-        bh=hWHxEDedf3cSC7f7f24lBb2iCboOD36DDx7oM7Ayfgw=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=kuaBiT/nXFq3/twgRuVpId5EVcEU2CN8EJv61qJKttfmRRkGhmWGnH8u6apvh6HGJ
-         YZ2qoY5sZ89GWHIebALbxqwbIEhLVjKurcU6kWpGT1hdxcs57I4u8XzUyN2RFoCI2l
-         aaWAI9V123JfmyGu3uLwCFRmy2VONgdeFkopY2v6En5cHnNx904blBn8QNikDOfRgF
-         l15HBrD2TLiRwFjZSlniiVKIchdasVOawOZ+XhLdmKvvxO3fSQPRMHslYynj1ettOf
-         jQD1Ij8zykfrxnkEfbVJHa+h88voJQjumbw8ZLsFzF7ZnZlUKwN8SQgfAKshqYMler
-         Bp7Tp7GyzxNyg==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-Cc:     Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Hector Martin <marcan@marcan.st>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        "Rafa__ Mi__ecki" <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        SHA-cyfmac-dev-list@infineon.com, Sven Peter <sven@svenpeter.dev>
-Subject: Re: [PATCH wireless-next v2 12/12] arm64: dts: apple: Add WiFi module and antenna properties
-References: <Yx8BQbjJT4I2oQ5K@shell.armlinux.org.uk>
-        <E1oXg8I-0064vm-1C@rmk-PC.armlinux.org.uk>
-Date:   Tue, 13 Sep 2022 09:52:45 +0300
-In-Reply-To: <E1oXg8I-0064vm-1C@rmk-PC.armlinux.org.uk> (Russell King's
-        message of "Mon, 12 Sep 2022 10:53:38 +0100")
-Message-ID: <87bkrjbwaq.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        with ESMTP id S229575AbiIMG5e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 02:57:34 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C081C91C;
+        Mon, 12 Sep 2022 23:57:33 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28D6vMw2107882;
+        Tue, 13 Sep 2022 01:57:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1663052242;
+        bh=ghPSwh8yLq/NWzjzDD4mLMi0WTVtkeRcUYlzeZWnpH8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=F4fmZ8C3BB1KpN/XJMRIDmBjJ83M6YlcMAXPgSGaY4bAXlOqpzyBPVOtsQyF3t4f1
+         G4Z+gmmeqg9ItXaMidhiPY9ubtjaisqkX4nUFEX1p6IqVUlEqisHM9sqWaDfE9TBnI
+         xprwFH9xbxpXbWmipeKgB/68fNi21nBCuQY0ORTY=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28D6vMpB013241
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 13 Sep 2022 01:57:22 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 13
+ Sep 2022 01:57:22 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 13 Sep 2022 01:57:22 -0500
+Received: from [172.24.145.199] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28D6vIKR088119;
+        Tue, 13 Sep 2022 01:57:19 -0500
+Message-ID: <a8c9750f-9dc1-3e73-69a4-1f687f3681c3@ti.com>
+Date:   Tue, 13 Sep 2022 12:27:18 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 0/5] arm64: dts: ti: Add support for AM62A family of
+ SoCs
+Content-Language: en-US
+To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
+References: <20220901141328.899100-1-vigneshr@ti.com>
+From:   Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <20220901141328.899100-1-vigneshr@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SCC_BODY_URI_ONLY,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Russell King (Oracle) <rmk+kernel@armlinux.org.uk> writes:
 
-> From: Hector Martin <marcan@marcan.st>
->
-> Add the new module-instance/antenna-sku properties required to select
-> WiFi firmwares properly to all board device trees.
->
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  arch/arm64/boot/dts/apple/t8103-j274.dts  | 4 ++++
->  arch/arm64/boot/dts/apple/t8103-j293.dts  | 4 ++++
->  arch/arm64/boot/dts/apple/t8103-j313.dts  | 4 ++++
->  arch/arm64/boot/dts/apple/t8103-j456.dts  | 4 ++++
->  arch/arm64/boot/dts/apple/t8103-j457.dts  | 4 ++++
->  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi | 2 ++
->  6 files changed, 22 insertions(+)
 
-I didn't get any reply to my question in v1 so I assume this patch 12 is
-ok to take to wireless-next. ARM folks, if this is not ok please let me
-know.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+On 01/09/22 19:43, Vignesh Raghavendra wrote:
+> This series adds basic boot support for AM62A SoCs with UART, MMC/SD and
+> GPIO support on AM62A SK EVM
+> 
+> Bootlog: https://gist.github.com/r-vignesh/4d88f53bb0489f1675fa78f993e95d3f
+> Tech Ref manual: https://www.ti.com/lit/zip/spruj16
+> Schematics: https://www.ti.com/lit/zip/sprr459
+> 
+Tested-By: Devarsh Thakkar <devarsht@ti.com>
+Boot logs: https://gist.github.com/devarsht/f7f95e77d8019bdf7ce7265a20ea64a4
