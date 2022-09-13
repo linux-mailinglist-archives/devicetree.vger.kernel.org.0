@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 912F25B6569
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 04:10:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B545B658D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 04:24:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229817AbiIMCKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 22:10:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48114 "EHLO
+        id S229979AbiIMCYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 22:24:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbiIMCKa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 22:10:30 -0400
+        with ESMTP id S229918AbiIMCYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 22:24:42 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3244628E14;
-        Mon, 12 Sep 2022 19:10:29 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E85DD0;
+        Mon, 12 Sep 2022 19:24:38 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BCF93612F1;
-        Tue, 13 Sep 2022 02:10:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0FBFC433D6;
-        Tue, 13 Sep 2022 02:10:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A42B612CE;
+        Tue, 13 Sep 2022 02:24:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 048A5C43470;
+        Tue, 13 Sep 2022 02:24:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663035028;
-        bh=iOCa/FOL18eu25U24rNQrT/Q1C5N9fUY4knAgfJAbw0=;
+        s=k20201202; t=1663035876;
+        bh=tSUVqagejTTQFNc/fHvohjFQ0Cm3n0W/NExp2yGcDww=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u6B3JbWVVNBuEb+sTPlq//nvc1w11lCpPl/Bjnf8XqbwnHiQE8Qu9RqHTP8UDi13f
-         QHa0o6Gs1IW8ytNMZEwyzTSwAiz/ZSNRYNt6z5EPr7CfKTHxw5duYrltmZMaQlU9e6
-         uO6p2OGrbCUoFVFNL/PKYDpGFhRv/ZIIdbyZ+xx+943/c9vSr0QGrwfQHelr+LzxVX
-         RiHS/N7UYxg7rLuAhJWyVzmVuvxTd57hTfAORr9PJjOaJM2EBCjRQzDPSgiJ8nNygn
-         Mla/vJeYgMYbxJMi8P+dYKDQ0C7hoczCINWz0dK7FELA8HeB6TcoZvvtHkH2W13rya
-         rDlWKBt+swlAg==
-Date:   Tue, 13 Sep 2022 10:10:21 +0800
+        b=S5w/NYuCcBv2d+rjsBCaNInfLCTXWlRFjCOt3I3d+kNlxIIQvfLOoZaMR4sGl8lKI
+         d9OhG/MQ5kath2p3D7Vf7jJabn5VJZZFKxkuVJHLen5jpdl2UP/xA5ETw3tb+VDUFE
+         PnZI7iG2RwqebAlPmJKN5nDxm4vKpDTqGjPXeStZ1+YdkCzB5DKyQq3YqQEq51V9Uc
+         Cszbms6MYE3jJiJNoP9PS4P4DIYaKXtukSeLDh0lGLowoC4L6skNhkFjL5YuuSYR1L
+         bb5G8RX9xWCLtT9N6j8hflutgFQ6HfSLp/a/b1JXezQxV6pr9WxFBI+a98Cf0DXAIQ
+         GFtSHjyGdGZCg==
+Date:   Tue, 13 Sep 2022 10:24:30 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Tim Harvey <tharvey@gateworks.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
@@ -40,16 +40,15 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Jun Li <jun.li@nxp.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-venice-gw74xx: add USB DR support
-Message-ID: <20220913021021.GF1728671@dragon>
-References: <20220908154227.4099410-1-tharvey@gateworks.com>
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/5] arm64: dts: imx8mp-venice-gw74xx: fix CAN STBY
+ polarity
+Message-ID: <20220913022430.GG1728671@dragon>
+References: <20220912180836.773729-1-tharvey@gateworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220908154227.4099410-1-tharvey@gateworks.com>
+In-Reply-To: <20220912180836.773729-1-tharvey@gateworks.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -60,11 +59,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 08, 2022 at 08:42:27AM -0700, Tim Harvey wrote:
-> Add support for USB DR on USB1 interface. Host/Device detection is done
-> using the usb-role-switch connector with a GPIO as USB1_OTG_ID is not
-> connected internally.
+On Mon, Sep 12, 2022 at 11:08:32AM -0700, Tim Harvey wrote:
+> The CAN STBY poarlity is active-low. Specify it as such by removing the
+> 'enable-active-high' property and updating the gpio property.
 > 
+> Fixes: 7899eb6cb15d ("arm64: dts: imx: Add i.MX8M Plus Gateworks gw7400 dts support")
 > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 
-Applied, thanks!
+Applied all, thanks!
