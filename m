@@ -2,94 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F36F5B7D43
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 00:48:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E1DF5B7D8A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 01:34:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229813AbiIMWsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 18:48:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56212 "EHLO
+        id S229456AbiIMXe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 19:34:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229783AbiIMWsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 18:48:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE4257266;
-        Tue, 13 Sep 2022 15:48:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B57661633;
-        Tue, 13 Sep 2022 22:48:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12D77C433C1;
-        Tue, 13 Sep 2022 22:48:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663109295;
-        bh=o9OIk885vyZJTga7FlpTPbIJ66vBCL62iD+MWzKjerk=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=ToLNKLDL9gcSKRmoFvcXKS5RrT5qUgPALnwTjceD7qiZ9vVnI8ndDcKra0OgBp6aB
-         W687LCj3DnU2yr6Td4Jn4ceDSqDiLlyFQtqjbPI5uRj6ul1IG1rzUmmkL9iHzbrs+N
-         F56QQqQU7RAHEKpV0Jb2EZCU+jhnJCxjkDCwBKgYzCwjxmTmz8l44sfNheHNpGvC/t
-         h8rZlX95/FpNwu7ZqgVsDkacyN+bQC/OD3ekfOYI3qtdBXF9u5XxwlbG3wDrTZZHX5
-         GWVFTkgDF/sly2MLGsg7Kax1lzBYf+1NWVIQQsLmCYw7uERQEBvtHMDqIqJntbXmK2
-         mbGo06Wy9dtpQ==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     linux-kernel@vger.kernel.org, agross@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
-        ohad@wizery.com, linux-arm-msm@vger.kernel.org,
-        baolin.wang@linux.alibaba.com, linux-remoteproc@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org,
-        devicetree@vger.kernel.org, vkoul@kernel.org
-Subject: Re: (subset) [PATCH v3 00/15] ARM/hwlock: qcom: switch TCSR mutex to MMIO
-Date:   Tue, 13 Sep 2022 17:48:08 -0500
-Message-Id: <166310928500.670084.9085382465104729419.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220909092035.223915-1-krzysztof.kozlowski@linaro.org>
-References: <20220909092035.223915-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229521AbiIMXez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 19:34:55 -0400
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7330A1A3AF;
+        Tue, 13 Sep 2022 16:34:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=/9i0RT8xYnvhhYLydSNCy5w2V2bVU0zcdBS2b/Mx3KU=; b=t4p3qotLpiXBOK695FV6Av3c7P
+        V9ch6wXoz1ze/fCRWkrmnKtiyv6PaIrGIqra//NJzO/QtAuQ55T8o35R8QevMFZ/1RRuhOIdBe0Pb
+        avPTqmgXSgQ1OqwAURW4GVR+y4TIRhuAIq14QtDmIXoVDxzd3jv5vBBLC5789Wo00msxADOfYqo6d
+        IP7LviZekrBf8W8u1g4RbQ1Bpc1F0suAv1V7jHk0oBFLZ2XyQNjY80HoVM4apaNTL112jO+GQTaU6
+        lzWwjEfT/q37SX/2QQDb5Eon30dK0Xg8IzwevJjJleospvIdLzX/LFXnkA3JNVm5WeLcfH8+OuinY
+        ThNQ8k1A==;
+Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1oYFQ0-00HI4E-6B; Tue, 13 Sep 2022 23:34:16 +0000
+Date:   Wed, 14 Sep 2022 00:34:16 +0100
+From:   Matthew Wilcox <willy@infradead.org>
+To:     Doug Berger <opendmb@gmail.com>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mike Kravetz <mike.kravetz@oracle.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Borislav Petkov <bp@suse.de>,
+        "Paul E. McKenney" <paulmck@kernel.org>,
+        Neeraj Upadhyay <quic_neeraju@quicinc.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        David Hildenbrand <david@redhat.com>, Zi Yan <ziy@nvidia.com>,
+        Oscar Salvador <osalvador@suse.de>,
+        Hari Bathini <hbathini@linux.ibm.com>,
+        Kees Cook <keescook@chromium.org>,
+        - <devicetree-spec@vger.kernel.org>,
+        KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>,
+        Mel Gorman <mgorman@suse.de>, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mm@kvack.org, iommu@lists.linux.dev
+Subject: Re: [PATCH 03/21] mm/hugetlb: correct demote page offset logic
+Message-ID: <YyETeBdbldnoRZ+x@casper.infradead.org>
+References: <20220913195508.3511038-1-opendmb@gmail.com>
+ <20220913195508.3511038-4-opendmb@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220913195508.3511038-4-opendmb@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 9 Sep 2022 11:20:20 +0200, Krzysztof Kozlowski wrote:
-> Switch older Qualcomm SoCs to use MMIO-based method instead of syscon.
-> 
-> Not tested on hardware. Please kindly provide tests.
-> 
-> Changes since v2
-> ================
-> 1. Rebase on current MFD changes.
-> 2. Add Rb tag.
-> 3. Split MFD patch to separate patchset:
-> https://lore.kernel.org/linux-devicetree/20220909091056.128949-1-krzysztof.kozlowski@linaro.org/T/#u
-> 
-> [...]
+On Tue, Sep 13, 2022 at 12:54:50PM -0700, Doug Berger wrote:
+> With gigantic pages it may not be true that struct page structures
+> are contiguous across the entire gigantic page. The mem_map_offset
+> function is used here in place of direct pointer arithmetic to
+> correct for this.
 
-Applied, thanks!
+We're just eliminating mem_map_offset().  Please use nth_page()
+instead.
 
-[05/15] arm64: dts: qcom: ipq6018: add missing TCSR syscon compatible
-        commit: d30bcfa4408596e8dd3714dfdd90334d2bdc9856
-[06/15] arm64: dts: qcom: msm8953: add missing TCSR syscon compatible
-        commit: d07ac9d93ced0f8203230bf1de49b7cc605e1547
-[07/15] arm64: dts: qcom: qcs404: add missing TCSR syscon compatible
-        commit: 98460385091fc2e86a296f9643105d8a8777ccc2
-[08/15] arm64: dts: qcom: msm8996: add missing TCSR syscon compatible
-        commit: 8a99e0fc8bd3fa9c8be1fc115a2e38f4fd51ccda
-[11/15] arm64: dts: qcom: ipq6018: switch TCSR mutex to MMIO
-        commit: f5e303aefc06b7508d7a490f9a2d80e4dc134c70
-[12/15] arm64: dts: qcom: msm8994: switch TCSR mutex to MMIO
-        commit: 9e826e05061c61d84217bbe436b4ef0bedbfe458
-[14/15] ARM: dts: qcom: apq8084: switch TCSR mutex to MMIO
-        commit: 16ae4e557b2fa9fc7372b4503247aca80a476272
-[15/15] ARM: dts: qcom: msm8226: switch TCSR mutex to MMIO
-        commit: 18a4af7a598445af54e1e16a66b7f31669578701
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+>  	for (i = 0; i < pages_per_huge_page(h);
+>  				i += pages_per_huge_page(target_hstate)) {
+> +		subpage = mem_map_offset(page, i);
+>  		if (hstate_is_gigantic(target_hstate))
