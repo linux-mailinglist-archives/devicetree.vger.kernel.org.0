@@ -2,47 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8FBC5B6B43
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 12:01:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E1CD5B6B64
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 12:07:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231379AbiIMKBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 06:01:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49764 "EHLO
+        id S230515AbiIMKHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 06:07:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231406AbiIMKA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 06:00:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A0C4356C1;
-        Tue, 13 Sep 2022 03:00:54 -0700 (PDT)
+        with ESMTP id S230070AbiIMKHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 06:07:39 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 478D32CC8C;
+        Tue, 13 Sep 2022 03:07:38 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 086C261376;
-        Tue, 13 Sep 2022 10:00:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E3A6C4314A;
-        Tue, 13 Sep 2022 10:00:53 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 2CB7CCE1122;
+        Tue, 13 Sep 2022 10:07:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE3F8C433D6;
+        Tue, 13 Sep 2022 10:07:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663063253;
-        bh=FxlTTbRW/PHWQLM1GoFV+cyBk7DG7ySc4dceL+AbcAA=;
+        s=k20201202; t=1663063653;
+        bh=9T09pnZ4br3N5U7hSARbndf3XneEvzKGBgD2m355k6U=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=m36TKF+Od7aovmLVkhd6VzfaQH3QQPFD2jJIjUB1cTBbWhHGsAVbHjILijA9zEFGq
-         t+CNJvwqRiS06ZSs/43Jk/ZMRe7/g9Rs8GSLNx7UJSviH66AzmkOAGBCE/e/CB157t
-         HnAwO4JmfoODZJcMnxSca+unDNZQKQrJGV2BYLowEvMHZakmLNFmkmaoteSLrMCl9O
-         vS87clT1cmNLUsluCbV89hmWkDKQFvxIVt97ldS5cBN2oWO3cYjnZs8h+uYwVgEMFm
-         pK8MRozpi3QAvAiZUWFgKq3gFmXt6a42/zRptKaAHa28I95oDpLEb5ZoWMc0fBcP4x
-         vxPpCfF0k18xg==
+        b=EVtodVYM0Atf9N+5W/k/GHEkAuhbUSmUtshrsGrqF0nxKiat3+D0MIxwxSly66xTR
+         1HJlvhkN0QZQu0OA4NHJw/hplCKNHMgp9A+fhZYRKfUB80AdcZ4F36x+YUA/EFy4n8
+         zEiI3dV8t4NKzP4F4AftmZS49CXCd2XTfhajmZAh3pBDbbM/qLRgqPsmN6xTcECksx
+         si1pih/ndkD3/Ab2B8i0fAGPYQczAmF3oP54KPpmNu6AZ4EeEJprwiG0p9Z5Q4rurt
+         L1ZiUCQLsHcW2VSZUonuLczNElqZIFtr+MOftEkePKZGS0zoY8SGWzgHQb9n8Opt6v
+         N8s3k92sjZf3g==
 Received: from johan by xi.lan with local (Exim 4.94.2)
         (envelope-from <johan@kernel.org>)
-        id 1oY2iq-0005VP-G7; Tue, 13 Sep 2022 12:00:52 +0200
-Date:   Tue, 13 Sep 2022 12:00:52 +0200
+        id 1oY2pI-0006Wa-7D; Tue, 13 Sep 2022 12:07:32 +0200
+Date:   Tue, 13 Sep 2022 12:07:32 +0200
 From:   Johan Hovold <johan@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        johan+linaro@kernel.org, steev@kali.org
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, johan+linaro@kernel.org,
+        steev@kali.org
 Subject: Re: [PATCH] arm64: dts: qcom: thinkpad-x13s: Update firmware location
-Message-ID: <YyBU1G9O1l4LqMF7@hovoldconsulting.com>
+Message-ID: <YyBWZOMz3mKlje05@hovoldconsulting.com>
 References: <20220913054030.3234-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -57,6 +58,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
+
+[ Resend with Bjorn's address updated as the Linaro one now bounces. ]
 
 On Tue, Sep 13, 2022 at 11:10:30AM +0530, Manivannan Sadhasivam wrote:
 > The firmware location in linux-firmware has been changed to include the
