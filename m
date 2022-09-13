@@ -2,103 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC3925B68E5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 09:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 853DA5B68EB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 09:48:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231199AbiIMHro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 03:47:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
+        id S231252AbiIMHs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 03:48:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231197AbiIMHrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 03:47:42 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4FB92B279;
-        Tue, 13 Sep 2022 00:47:40 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28D7RcfM001287;
-        Tue, 13 Sep 2022 09:47:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=selector1;
- bh=9P711+eQCOk5ISckTakcoZwY6kIXAn04AkyNx5gVPME=;
- b=SX+U39hC0sw2Szs2sqIojWc5HVnozHLPdYr2trN/zqT0NMnFts8tp8CNdKS8XQvVAtOU
- uv8F6FJ5SgNgrTZqNuSP9b+cORk6v7H2GtkIPY7TxXA8V7PPeTodn5GLRIo5fCzBds2B
- c2u95+ILfTbt1UHhM1Ii5DjDBDRd3teGt1COycqoyO8mRX+akcwg8o2rP64LuuTbo75R
- ro/bDaeEzWFcpFVCSNALY/ktDy0I9/BPaw1os9KQAbwPYnNILWkrp9ONGOmNkG00d3n3
- I1GDORTdksn0aPiucwipWda9xEXgLcfIEBMktxcu7aDpCnjdYE3ZKLrv47+czoAT3i08 cg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3jgjwv76h9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 13 Sep 2022 09:47:06 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2D957100051;
-        Tue, 13 Sep 2022 09:46:40 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A07B3215155;
-        Tue, 13 Sep 2022 09:46:40 +0200 (CEST)
-Received: from localhost (10.75.127.123) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Tue, 13 Sep
- 2022 09:46:40 +0200
-From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabien Dessenne <fabien.dessenne@foss.st.com>
-Subject: [PATCH] dt-bindings: pinctrl: stm32: add missing entries for gpio subnodes
-Date:   Tue, 13 Sep 2022 09:46:39 +0200
-Message-ID: <20220913074639.31932-1-alexandre.torgue@foss.st.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S231244AbiIMHsY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 03:48:24 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 306165A164;
+        Tue, 13 Sep 2022 00:48:19 -0700 (PDT)
+Received: from canpemm500009.china.huawei.com (unknown [172.30.72.53])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4MRb9N6szFznVFp;
+        Tue, 13 Sep 2022 15:45:28 +0800 (CST)
+Received: from [10.67.102.169] (10.67.102.169) by
+ canpemm500009.china.huawei.com (7.192.105.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 13 Sep 2022 15:48:08 +0800
+CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH next v4 1/2] i2c: hisi: Add initial device tree support
+To:     Weilong Chen <chenweilong@huawei.com>, <yangyicong@hisilicon.com>,
+        <xuwei5@huawei.com>, <wsa@kernel.org>, <robh+dt@kernel.org>
+References: <20220909074842.281232-1-chenweilong@huawei.com>
+From:   Yicong Yang <yangyicong@huawei.com>
+Message-ID: <cc27d1af-7f8a-7c51-a101-1b254a2d761b@huawei.com>
+Date:   Tue, 13 Sep 2022 15:48:08 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.123]
-X-ClientProxiedBy: GPXDAG2NODE4.st.com (10.75.127.68) To EQNDAG1NODE4.st.com
- (10.75.129.133)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-13_02,2022-09-12_02,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220909074842.281232-1-chenweilong@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.102.169]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ canpemm500009.china.huawei.com (7.192.105.203)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "interrupt-controller" and gpio-line-names to gpio subnodes in order to
-fix dtb validation.
+On 2022/9/9 15:48, Weilong Chen wrote:
+> The HiSilicon I2C controller can be used on embedded platform, which
+> boot from devicetree.
+> 
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+> ---
+>  drivers/i2c/busses/Kconfig    |  2 +-
+>  drivers/i2c/busses/i2c-hisi.c | 19 ++++++++++++++++++-
+>  2 files changed, 19 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
+> index 7284206b278b..6d0fdf48e97d 100644
+> --- a/drivers/i2c/busses/Kconfig
+> +++ b/drivers/i2c/busses/Kconfig
+> @@ -673,7 +673,7 @@ config I2C_HIGHLANDER
+>  
+>  config I2C_HISI
+>  	tristate "HiSilicon I2C controller"
+> -	depends on (ARM64 && ACPI) || COMPILE_TEST
+> +	depends on ARM64 || COMPILE_TEST
+>  	help
+>  	  Say Y here if you want to have Hisilicon I2C controller support
+>  	  available on the Kunpeng Server.
+> diff --git a/drivers/i2c/busses/i2c-hisi.c b/drivers/i2c/busses/i2c-hisi.c
+> index 76c3d8f6fc3c..7a77f306d05f 100644
+> --- a/drivers/i2c/busses/i2c-hisi.c
+> +++ b/drivers/i2c/busses/i2c-hisi.c
+> @@ -5,6 +5,9 @@
+>   * Copyright (c) 2021 HiSilicon Technologies Co., Ltd.
+>   */
+>  
+> +#ifdef CONFIG_ACPI
+> +#include <linux/acpi.h>
+> +#endif
+>  #include <linux/bits.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/completion.h>
+> @@ -13,6 +16,9 @@
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+>  #include <linux/mod_devicetable.h>
+> +#ifdef CONFIG_OF
+> +#include <linux/of.h>
+> +#endif
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+I don't think the protection for the headers is necessary and common. The
+ACPI/OF specific functions should have already been handled well with{out}
+ACPI/OF config. Have you met some problems without these?
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-index d35dcc4f0242..92582cccbb1b 100644
---- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-@@ -65,6 +65,10 @@ patternProperties:
-       '#gpio-cells':
-         const: 2
- 
-+      interrupt-controller: true
-+      '#interrupt-cells':
-+        const: 2
-+
-       reg:
-         maxItems: 1
-       clocks:
-@@ -80,6 +84,8 @@ patternProperties:
-         minimum: 1
-         maximum: 16
- 
-+      gpio-line-names: true
-+
-       st,bank-name:
-         description:
-           Should be a name string for this bank as specified in the datasheet.
--- 
-2.17.1
+BTW, it's better to have a changelog when updating the patches.
 
+>  #include <linux/platform_device.h>
+>  #include <linux/property.h>
+>  #include <linux/units.h>
+> @@ -483,17 +489,28 @@ static int hisi_i2c_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +#ifdef CONFIG_ACPI
+>  static const struct acpi_device_id hisi_i2c_acpi_ids[] = {
+>  	{ "HISI03D1", 0 },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(acpi, hisi_i2c_acpi_ids);
+> +#endif
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id hisi_i2c_dts_ids[] = {
+> +	{ .compatible = "hisilicon,hisi-i2c", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, hisi_i2c_dts_ids);
+> +#endif
+>  
+>  static struct platform_driver hisi_i2c_driver = {
+>  	.probe		= hisi_i2c_probe,
+>  	.driver		= {
+>  		.name	= "hisi-i2c",
+> -		.acpi_match_table = hisi_i2c_acpi_ids,
+> +		.acpi_match_table = ACPI_PTR(hisi_i2c_acpi_ids),
+> +		.of_match_table = of_match_ptr(hisi_i2c_dts_ids),
+>  	},
+>  };
+>  module_platform_driver(hisi_i2c_driver);
+> 
