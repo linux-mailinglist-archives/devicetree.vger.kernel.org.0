@@ -2,101 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B4025B7837
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EB3F5B7834
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233235AbiIMRjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 13:39:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53944 "EHLO
+        id S233195AbiIMRjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 13:39:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233101AbiIMRjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:39:02 -0400
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CF6F6567E;
-        Tue, 13 Sep 2022 09:30:45 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id C4986419C2;
-        Tue, 13 Sep 2022 16:30:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1663086642; bh=vzWGyteueLsswzGvi+6XzWghfOIHbD8/EIY1vSvR/2M=;
-        h=Date:To:Cc:References:From:Subject:In-Reply-To;
-        b=khIywr8WAbFrcw7TLx+uGW8CRvSACmoi7qpuUwztfsImZq9bzF8i+TRYGI3X7WbJ1
-         1RRCyGUAth3b9bJ5bxJSOI/+aCZ1TqqDi/1gq4kBGpURUdn958V+cR/46Si8LnyL+X
-         Mb4QcGDJoE7IigtySNENfJBexu/NkOxtY5zIH8QRuBAfE55yuNzMwC5CmKw2M0dkRv
-         R8uflIzlvFxskcw+n4qmMKUzbrwQ1fusimFZIDiGGY27mORXkC+UBnON5bnwMSGPob
-         6bISHAp3tvNg44BUigPGss7Go+A5c9z3GBGL3eUfQjfxzceB62UthaxyXwH7doqVHE
-         IOLtGy5d1M09Q==
-Message-ID: <7e9f12eb-7f5b-1757-cd2f-5d5f1ca9aacd@marcan.st>
-Date:   Wed, 14 Sep 2022 01:30:30 +0900
+        with ESMTP id S233212AbiIMRjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:39:18 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E64F0A6C1E;
+        Tue, 13 Sep 2022 09:31:24 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-12803ac8113so33554215fac.8;
+        Tue, 13 Sep 2022 09:31:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=eN4Bm2YNr1OhBwgvWHkqVE6CvGxcgSaMgt/c8EArC4Y=;
+        b=TKm+DJIBBbY95gcmHzcC29zIPC+qCIoTR1pcR4hjNjOQ+VJmilFqsnhk6xmfz6XU08
+         jqA0sRZApReCi8VObRluTG6FfoFlyXh7rxFQZYFLWAX7y0hOSHDlTjIoDHHmkaKfhywy
+         JMhDK5kJ1k/YZIV4cZNh3IXifFWk6Vg1KjqHTSpSYtn9gjPtbC7Ec7/ix9kKzq760jNX
+         05/fF0YuwB2SkiAWpk9IuLqGg8DZxBcAL12g3JKPt2UHA6V0s6/l3TbMRdzhULLx/cFz
+         8wK4RXk6R9bhDc7o3srAIANKCTwdYnW5V+IVXTGcDhAqKclNBpRzfjlfBFEI98e6oTx8
+         uF8w==
+X-Gm-Message-State: ACgBeo1wRRo8o38MjgnvqXiqs6UddbIRjMbilLB/DdZFsB+UsN9TeJod
+        JGH6N/A3Rd06gKm4WlL6HQ==
+X-Google-Smtp-Source: AA6agR64pHlJID3fpnHnMTPp4HrGN4ImeREXRRvOMrwTsIQQ56ZQHBorRhNB0BTFZchYa+YiTTl0mg==
+X-Received: by 2002:a05:6808:1246:b0:34d:8c6d:b189 with SMTP id o6-20020a056808124600b0034d8c6db189mr71076oiv.208.1663086683777;
+        Tue, 13 Sep 2022 09:31:23 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o20-20020a9d6d14000000b00636d6571ff7sm6159453otp.70.2022.09.13.09.31.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 09:31:23 -0700 (PDT)
+Received: (nullmailer pid 3856678 invoked by uid 1000);
+        Tue, 13 Sep 2022 16:31:22 -0000
+Date:   Tue, 13 Sep 2022 11:31:22 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Peter Huewe <peterhuewe@gmx.de>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Johannes Holland <johannes.holland@infineon.com>,
+        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+        Jason Gunthorpe <jgg@ziepe.ca>, eajames@linux.ibm.com
+Subject: Re: [PATCH 1/2] dt-bindings: tpm: Add schema for TIS I2C devices
+Message-ID: <20220913163122.GA3809735-robh@kernel.org>
+References: <20220913091025.1768882-1-joel@jms.id.au>
+ <20220913091025.1768882-2-joel@jms.id.au>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: es-ES
-To:     Kalle Valo <kvalo@kernel.org>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc:     Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rafa__ Mi__ecki <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        SHA-cyfmac-dev-list@infineon.com, Sven Peter <sven@svenpeter.dev>
-References: <Yx8BQbjJT4I2oQ5K@shell.armlinux.org.uk>
- <E1oXg8I-0064vm-1C@rmk-PC.armlinux.org.uk> <87bkrjbwaq.fsf@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH wireless-next v2 12/12] arm64: dts: apple: Add WiFi module
- and antenna properties
-In-Reply-To: <87bkrjbwaq.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220913091025.1768882-2-joel@jms.id.au>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2022 15.52, Kalle Valo wrote:
-> Russell King (Oracle) <rmk+kernel@armlinux.org.uk> writes:
+On Tue, Sep 13, 2022 at 06:40:23PM +0930, Joel Stanley wrote:
+> From: Johannes Holland <johannes.holland@infineon.com>
 > 
->> From: Hector Martin <marcan@marcan.st>
->>
->> Add the new module-instance/antenna-sku properties required to select
->> WiFi firmwares properly to all board device trees.
->>
->> Signed-off-by: Hector Martin <marcan@marcan.st>
->> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
->> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
->> ---
->>  arch/arm64/boot/dts/apple/t8103-j274.dts  | 4 ++++
->>  arch/arm64/boot/dts/apple/t8103-j293.dts  | 4 ++++
->>  arch/arm64/boot/dts/apple/t8103-j313.dts  | 4 ++++
->>  arch/arm64/boot/dts/apple/t8103-j456.dts  | 4 ++++
->>  arch/arm64/boot/dts/apple/t8103-j457.dts  | 4 ++++
->>  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi | 2 ++
->>  6 files changed, 22 insertions(+)
+
+Not really v1. And there was v19 that I already reviewed...
+
+> Add a YAML schema to support device tree bindings for the generic I2C
+
+s/YAML/DT/
+
+> physical layer. Refer to the TCG PC Client Platform TPM Profile (PTP)
+> Specification for TPM 2.0 v1.04 Revision 14.
 > 
-> I didn't get any reply to my question in v1 so I assume this patch 12 is
-> ok to take to wireless-next. ARM folks, if this is not ok please let me
-> know.
+> This includes descriptions for the Nuvoton and Infineon devices.
+> 
+> Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> ---
+>  .../bindings/security/tpm/tpm-tis-i2c.yaml    | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+> new file mode 100644
+> index 000000000000..fb7b747ff2a5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/security/tpm/tpm-tis-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I2C PTP based TPM Device Tree Bindings
 
-Yup, this is OK to merge via wireless-next. In case you need it,
+s/Device Tree Bindings/Devices/
 
-Acked-by: Hector Martin <marcan@marcan.st>
+> +
+> +maintainers:
+> +  - Johannes Holland <johannes.holland@infineon.com>
+> +
+> +description:
+> +  Device Tree Bindings for I2C based Trusted Platform Module (TPM).
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^tpm(@[0-9a-f]+)?$"
+> +
+> +  compatible:
+> +    oneOf:
+> +      - description: Infineon's Trusted Platform Module (TPM) (SLB9673).
+> +        items:
+> +          - const: infineon,slb9673
 
-- Hector
+You need to remove from trivial-devices.yaml. A revert of [1] perhaps.
+
+> +      - description: Nuvoton's Trusted Platform Module (TPM) (NPCT75x).
+> +        items:
+> +          - const: nuvoton,npct75x
+> +          - const: tcg,tpm-tis-i2c
+> +      - const: tcg,tpm-tis-i2c
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      tpm@2e {
+> +        compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
+> +        reg = <0x2e>;
+> +      };
+> +    };
+> +...
+> -- 
+> 2.35.1
+> 
+> 
+
+[1] https://lore.kernel.org/all/20220608173113.9232-2-Alexander.Steffen@infineon.com/
