@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 331A85B6A7D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:15:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 263725B6A81
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231693AbiIMJP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 05:15:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41116 "EHLO
+        id S231143AbiIMJRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 05:17:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231714AbiIMJPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:15:11 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D16CB4B4A4
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:15:06 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id d12-20020a05600c34cc00b003a83d20812fso9081434wmq.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:15:06 -0700 (PDT)
+        with ESMTP id S231435AbiIMJRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:17:45 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 720B963AF
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:17:44 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id z14-20020a05600c0a0e00b003b486df42a3so3954558wmp.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:17:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=I/Mv98oHP0/f1ZyceyrF/g721c07PKvu/qjNaWv5reI=;
-        b=Z8WpMfw0pRjMi3Mb+dD1O7TMz7vAtiM+N5oDNR6+WtMwfKkD5/jMX2s4b4Nn1s6lCf
-         uBTq3Yw9MulTdmCBgW22QQ0PVmzNDwXOKYevTHSWCumERA7r5YyYUB2K9G5+wUoypfAb
-         4mzOINsbqUk9GT40CIKpZjvS89o9KRbag8pk1xmyHkzbyy/C0mZQPUxYjQW8WzTAStny
-         EJzvaNBum89m9J3CaVnaDonow5lfnS+fJq5D6lr93TnYEum/TzG7QxUGDYjeUVS3Jgdj
-         AEStdqi6abv/TyUWScEcJV/V1aIszsjZ3RQdKbt2ae8PjzIpUVEzT25fLS9xTaBfWNb4
-         +KTQ==
+        bh=ptSq3Svo4+b1TidsJn6ZUIUmysoM5J9grskyUr7sykc=;
+        b=GVxo614YVRjtNRdN1Z5AIMPDoc41sG+XHVm2ohsWehhhlH9B6kZTrr54Zx+oyZTXAn
+         kh5cpA449d5kCYebink/7iv03k82x5Z9e2QVNKNzPh826A7kdH4cetXLRDIazzuO3xRC
+         CVAUUofEv/QDc5C4k/SsZwg6Imt35rSKiLp4YOQfORGCGsnJiecPxuDydqv9SaMYtrdp
+         YrYwI9yGI8/JaVSfLYUxs5J7/XLKzZPv4SjkrghBp4z7ZsNigyedwy9Y5VAo+Okhoc/1
+         6ieFTg9xjLfAPxmAawThozlh9d/B3CPBvVU7R61Qu5pdjdujfHd96q1KGc2b17S/XBhv
+         UNIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=I/Mv98oHP0/f1ZyceyrF/g721c07PKvu/qjNaWv5reI=;
-        b=XM1qKcwprwbUy8H5g5ScK4YHEuW/kKxPXur+QcERf4DlxhvdvCLkxuTFiUsL3Rq864
-         JqPsnJ44PEuFIqSw3dw4XXSTwh85a/xk/bB/qCWYDZt3TNFtHnX9AFXibOpzljSjR8jD
-         KtkCmYPMPRPg9LdFR/BNsnZK4vFlzV+rC82KALNJQb56KkQ1zvMl60s7n/Sa2YmOuEuc
-         zsv12egd4ttMDl1ICvUMzWtOfZMgaBQren0EdSgXNnkMOhhypVzkLHeYR8hgk3nBhoXD
-         k+Bzic6+TH2nRnSTTgPXps5Q++T6hI/U0OOuna4q+2AGODVlpdCk2R8tN1Q73BCQ54pR
-         i+Lg==
-X-Gm-Message-State: ACgBeo2nXvUNnreSj8oej6pqSuFA1mqsvD4+hlG8U2hBbQp46AKLsHDF
-        MAVPqrHPgOy7UwSA0jJNDQJfoQ==
-X-Google-Smtp-Source: AA6agR7xQckWJ8q0iXajXNSoX8AJcR4BafyUpCNMpKCM7p6jj1XfH/H/B5e62uSYSzEXR2+74UVV6A==
-X-Received: by 2002:a1c:721a:0:b0:3b4:641c:5d99 with SMTP id n26-20020a1c721a000000b003b4641c5d99mr1668745wmc.71.1663060505199;
-        Tue, 13 Sep 2022 02:15:05 -0700 (PDT)
+        bh=ptSq3Svo4+b1TidsJn6ZUIUmysoM5J9grskyUr7sykc=;
+        b=mcH3OYA8auBRtYhYDK450lLyx8yGDihNLDKNtTapjz+jGmpZ/KfdTAsIqtoFMmUX87
+         cPELuXlp/wY8o2l/5Lieksg8+N+r9f4Lp7nJdtJIOsfOrVP0RyrANNq2WTPxO/owzdC4
+         WFvHJkoHWjEsst/u+XBTtJYiEXu3Dl9ZAPYlVN5Sb6KMxU9NtgnsCXsXEbc5iqBI9rSt
+         x2tVbTdJOVU2n8OhcxKRnMS9xjVrFzPJNbuO335P8lUk45b/nJHb4kA6JU4VYwIQzVf+
+         o/7nGPSsYd+wL2vN0puCETLghFHoAuAJOBqKOBVk8EyB5cRVxbxekJNqOI8JKyuTPvYc
+         YqFg==
+X-Gm-Message-State: ACgBeo3mK0UOHPAjp++9jozlACwWXbJaF9x9izffDAiUbW70BKwTVoKR
+        IbUWrGAWV1DQtRL9zgPxbYrSDMVn+NmrIso+
+X-Google-Smtp-Source: AA6agR4c8Xn/5MYNeO9EkH/19VCi9VcV6o/f975UuiiJoTdV184nE0y3Ae6RMZwogomDh2xyW8xXqQ==
+X-Received: by 2002:a05:600c:35cc:b0:3a6:f08:9b1 with SMTP id r12-20020a05600c35cc00b003a60f0809b1mr1613421wmq.22.1663060663115;
+        Tue, 13 Sep 2022 02:17:43 -0700 (PDT)
 Received: from [10.119.22.201] ([89.101.193.70])
-        by smtp.gmail.com with ESMTPSA id b14-20020a5d634e000000b00228da396f9dsm9644753wrw.84.2022.09.13.02.15.04
+        by smtp.gmail.com with ESMTPSA id l2-20020a05600c4f0200b003b4924493bfsm5764638wmq.9.2022.09.13.02.17.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Sep 2022 02:15:04 -0700 (PDT)
-Message-ID: <98ab5118-aa32-af20-a732-dcb5e362717b@linaro.org>
-Date:   Tue, 13 Sep 2022 11:15:03 +0200
+        Tue, 13 Sep 2022 02:17:42 -0700 (PDT)
+Message-ID: <fe13c70b-8712-eef2-0342-782802027edc@linaro.org>
+Date:   Tue, 13 Sep 2022 11:17:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [RESEND PATCH v9 1/3] dt-bindings: mfd: Convert atmel-flexcom to
- json-schema
+Subject: Re: [PATCH v3 0/3] omap-gpmc wait pin additions
 Content-Language: en-US
-To:     Kavyasree.Kotagiri@microchip.com, robh@kernel.org
-Cc:     Claudiu.Beznea@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        UNGLinuxDriver@microchip.com, krzysztof.kozlowski+dt@linaro.org,
-        Nicolas.Ferre@microchip.com, lee@kernel.org, robh+dt@kernel.org,
-        Sergiu.Moga@microchip.com
-References: <20220908150658.1839520-1-kavyasree.kotagiri@microchip.com>
- <20220908150658.1839520-2-kavyasree.kotagiri@microchip.com>
- <1662671776.565921.3355400.nullmailer@robh.at.kernel.org>
- <SA2PR11MB48742AF8A0C9BC6D32D57A2892439@SA2PR11MB4874.namprd11.prod.outlook.com>
- <CO1PR11MB48654A4239AB7A760193497992449@CO1PR11MB4865.namprd11.prod.outlook.com>
- <eea8e746-6561-71ca-12f0-d010a0672edf@linaro.org>
- <CO1PR11MB48650B395FB6A4D94B51CE0792479@CO1PR11MB4865.namprd11.prod.outlook.com>
+To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     rogerq@kernel.org, tony@atomide.com, robh+dt@kernel.org
+References: <20220906124747.1767318-1-benedikt.niedermayr@siemens.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CO1PR11MB48650B395FB6A4D94B51CE0792479@CO1PR11MB4865.namprd11.prod.outlook.com>
+In-Reply-To: <20220906124747.1767318-1-benedikt.niedermayr@siemens.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -84,32 +74,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2022 07:29, Kavyasree.Kotagiri@microchip.com wrote:
->>>>> flexcom@fc018000: spi@400: Unevaluated properties are not allowed
->>>> ('dma-
->>>>> names', 'dmas' were unexpected)
->>>>>         arch/arm/boot/dts/at91-kizbox3-hs.dtb
->>>>>         arch/arm/boot/dts/at91-sama5d27_som1_ek.dtb
->>>>>         arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dtb
->>>>>         arch/arm/boot/dts/at91-sama5d2_icp.dtb
->>>>>         arch/arm/boot/dts/at91-sama5d2_ptc_ek.dtb
->>>>>         arch/arm/boot/dts/at91-sama5d2_xplained.dtb
->>>>
->>>> dma properties for spi node is already being covered by Sergiu in below
->>>> patch:
->>>> https://lore.kernel.org/lkml/b4625526-8f9b-ada8-f854-
->>>> 751a48545576@linaro.org/
->>>>
->>> Hi Rob, Please let me know your comments.
->>
->> this means it cannot be currently tested. Are you sure that there are no
->> warnings in all DTBs with your patches?
->>
-> Yes, I ran dtbs_check. I don’t see any warnings.
+On 06/09/2022 14:47, B. Niedermayr wrote:
+> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+> 
+> Currently it is not possible to configure the WAIT0PINPOLARITY and 
+> WAIT1PINPOLARITY bits of the GPMC_CONFIG register directly via 
+> device tree properties.
+> 
 
-Then the warning could be probably ignored (I assume it is really fixed
-when both patchsets land).
-
+Just a disclaimer:
+This waits in my inbox for a week, it's not ignored. Unfortunately it
+will need to wait a bit more, due to traveling / ELCE. I see some
+discussion going, though.
 
 Best regards,
 Krzysztof
