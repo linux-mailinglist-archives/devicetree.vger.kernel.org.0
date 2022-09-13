@@ -2,71 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDA345B6954
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 10:17:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFD955B695B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 10:20:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231368AbiIMIRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 04:17:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38534 "EHLO
+        id S230221AbiIMIUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 04:20:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231268AbiIMIRw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 04:17:52 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E1459261
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:17:50 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id r66-20020a1c4445000000b003b494ffc00bso359387wma.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:17:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=vGVgNjVIquChRYG3qNsuhFrwCzwmt0K1e1bT0honEPI=;
-        b=TU7nC+WV/Iqgj8T8V/TWKd4PZw0eiq5Sa3jBgVl4y4E5CAIF5CCWmegZpz8EcNv+18
-         U4i6AnT264NkAmyb48ufAfjXVG+uEBaetxgH1Lyk9qIYi40q1+Qk0Tj5UvNiDHQekD87
-         IMCNbUhsao2RvnRex5PozcE8ltGYi6SvnBrpTAi1IU6YhieMEgXKQE6u8w/fM3OqZ00H
-         G6Qihgb7JzNDCwUzZ1kLu4oJHh2oeLmZLnyoLnbZzr0p20Rh3FhFZdpOiCPkgQzLIR1W
-         HqmoCZtfzXMKi24A3dZsbEe84M3TC7MF2/y6LwRsJEUKGop6nFBFVcoLQ2kPZz4jhYx/
-         OgZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=vGVgNjVIquChRYG3qNsuhFrwCzwmt0K1e1bT0honEPI=;
-        b=WO2TU377imoItOeI+PHHXaGYXvNXiOi1sqg7NUeVBuejaOVzIcEzQyoOqZ69gDEOGy
-         1o05vi4byiC3dT3Uz2P+U3ts44QeccdNykLp6IlNljKJfoeN3LABo8kRz8NYDA3dFOWw
-         77sCeJRZ4nFg5JEop5msWZqxbdjNH2+wQ0AGXPwWZwhkpbabOPuEprhGiehLudUMOM3w
-         Yet4d6DFdhx4+PsteS4v5f+BNo32+RaCAQdhciMMX8jRSbXae8+0kuRfAVJiirhuSgis
-         7nbhQFQ9aHXqlvok0Nfpm/wkgtxD/u1TTW9u8I4sPF5o2P7PsfUi+bXZHNVyZQykj4Cb
-         tgDQ==
-X-Gm-Message-State: ACgBeo3xBr+AI+bZfe5ihmz4+wusROfx1G9jPuDY8m1n2l3nQyXORTPE
-        VddOQ9mjy9Auyn40k03+82DojA==
-X-Google-Smtp-Source: AA6agR4meZWm9mDdaxGaxa+e19Zlo0nNYMe+FubUX0U/41wXMZk3HjVPAmlXDUztz0OYV2rMoaYsJw==
-X-Received: by 2002:a1c:7412:0:b0:3b4:7a81:e7e4 with SMTP id p18-20020a1c7412000000b003b47a81e7e4mr1401171wmc.15.1663057068753;
-        Tue, 13 Sep 2022 01:17:48 -0700 (PDT)
-Received: from bullseye-11-arm64.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id q127-20020a1c4385000000b003a5f54e3bbbsm13091967wma.38.2022.09.13.01.17.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 01:17:47 -0700 (PDT)
-Date:   Tue, 13 Sep 2022 08:17:46 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
+        with ESMTP id S230498AbiIMIT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 04:19:59 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677F3BF64;
+        Tue, 13 Sep 2022 01:19:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1663057151; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=cbD2oH6qV+7f5NwVYgIJya2nvrNAGDpLFrbMwDhNRhRq0ADLO5oIbXtGn0ZFWg3c0wH64WMNrrxOmfk1KtU6Mn+04VafA9n4Uwt2U6R/iUCRywgzxhPUfYJ1msr6DG7vevuM2kEOPpI1sgPmC6EKMmlkjFFOyyqzCHOSFR5+aag=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1663057151; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=5ta8cGICr0VOJM3jC+pGpsMR/rkOeJqhzZDkRQ4xBHw=; 
+        b=ZrR99btLqzgG+9bJWWYITysE2GBxYdI5P2IhlexV2cyxX7ySwd+GhWnz9Yh9v/SYZCzkOPDSZDLj3AYqqY+juPsOv1RZu7Ogeojk8mb05opMb6v+7gIRXeCrJxb/1XxoRwASJcuErKWTcsR2CQi110VygrpKD0A9Ac8JDssjlWs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1663057151;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=5ta8cGICr0VOJM3jC+pGpsMR/rkOeJqhzZDkRQ4xBHw=;
+        b=FIMUqSjX4QdqKRIUAo/ZmX4QYgTQV628cIf8ACY3Gc4sGipLUi5K8tD4+ZB2KbUZ
+        NMXt/GQc/Kiuj1GsXiEmqc1MhTkN7XiQOJC2tlZDwHVCFnmEa/oMThCUcOto7R+DpTy
+        O0cUbIdWZv4RXIaEFJXVXtE+0hTrXhlLyR6uBipY=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1663057148935836.8616576818519; Tue, 13 Sep 2022 01:19:08 -0700 (PDT)
+Message-ID: <a2dd3f5d-9d25-bb24-9db2-1587487c80a2@arinc9.com>
+Date:   Tue, 13 Sep 2022 11:19:01 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dsa: mt7530: replace label
+ = "cpu" with proper checks
+Content-Language: en-US
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] power: supply: Add Lenovo Yoga C630 EC driver
-Message-ID: <20220913081746.wjj5jne6fjbzcjxr@bullseye-11-arm64.lan>
-References: <20220810030500.2793882-1-bjorn.andersson@linaro.org>
- <20220810030500.2793882-3-bjorn.andersson@linaro.org>
- <20220912165802.dvlf3eeqx5g3bzdm@maple.lan>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220912165802.dvlf3eeqx5g3bzdm@maple.lan>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        George McCollister <george.mccollister@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Marek Vasut <marex@denx.de>, John Crispin <john@phrozen.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20220912175058.280386-1-vladimir.oltean@nxp.com>
+ <20220912175058.280386-2-vladimir.oltean@nxp.com>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20220912175058.280386-2-vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,100 +86,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 05:00:17PM +0000, Daniel Thompson wrote:
-> On Tue, Aug 09, 2022 at 10:05:00PM -0500, Bjorn Andersson wrote:
-> > The Qualcomm Snapdragon-based Lenovo Yoga C630 has some sort of EC
-> > providing AC-adapter and battery status, as well as USB Type-C altmode
-> > notifications for Displayport operation.
->
-> There's a couple of minor review comments but before we get to that:
-> woo hoo!
+On 12.09.2022 20:50, Vladimir Oltean wrote:
+> The fact that some DSA device trees use 'label = "cpu"' for the CPU port
+> is nothing but blind cargo cult copying. The 'label' property was never
+> part of the DSA DT bindings for anything except the user ports, where it
+> provided a hint as to what name the created netdevs should use.
+> 
+> DSA does use the "cpu" port label to identify a CPU port in dsa_port_parse(),
+> but this is only for non-OF code paths (platform data).
+> 
+> The proper way to identify a CPU port is to look at whether the
+> 'ethernet' phandle is present.
+> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-... and now with the correct address for Bjorn too (comments still below
-and indented > one level).
+Reviewed-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
+Arınç
 
-Daniel.
-
-
-> > The Yoga C630 ships with Windows, where these operations primarily are
-> > implemented in ACPI, but due to various issues with the hardware
-> > representation therein it's not possible to run Linux on this
-> > information. As such this is a best-effort re-implementation of these
-> > operations, based on the register map expressed in ACPI and a fair
-> > amount of trial and error.
-> >
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > ---
-> >  drivers/power/supply/Kconfig        |  11 +
-> >  drivers/power/supply/Makefile       |   1 +
-> >  drivers/power/supply/yoga-c630-ec.c | 547 ++++++++++++++++++++++++++++
-> >  3 files changed, 559 insertions(+)
-> >  create mode 100644 drivers/power/supply/yoga-c630-ec.c
-> >
-> > diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-> > index 1aa8323ad9f6..6e706e948ad2 100644
-> > --- a/drivers/power/supply/Kconfig
-> > +++ b/drivers/power/supply/Kconfig
-> > @@ -897,4 +897,15 @@ config BATTERY_UG3105
-> >  	  device is off or suspended, the functionality of this driver is
-> >  	  limited to reporting capacity only.
-> >
-> > +config LENOVO_YOGA_C630_EC
-> > +	tristate "Lenovo Yoga C630 EC battery driver"
-> > +	depends on DRM
-> > +	depends on I2C
->
-> This needs a "depends on TYPEC" in order to avoid linker errors.
->
->
-> > +	help
-> > +	  Driver for the Embedded Controller in the Qualcomm Snapdragon-based
-> > +	  Lenovo Yoga C630, which provides battery information and USB Type-C
-> > +	  altmode notifications.
-> > +
-> > +	  Say M or Y here to include this support.
-> > +
-> >  endif # POWER_SUPPLY
-> > diff --git a/drivers/power/supply/yoga-c630-ec.c b/drivers/power/supply/yoga-c630-ec.c
-> > new file mode 100644
-> > index 000000000000..1fa0b5844e01
-> > --- /dev/null
-> > +++ b/drivers/power/supply/yoga-c630-ec.c
-> > @@ -0,0 +1,547 @@
-> > <snip>
-> > +static int yoga_c630_ec_bat_get_property(struct power_supply *psy,
-> > +					 enum power_supply_property psp,
-> > +					 union power_supply_propval *val)
-> > +{
-> > +	struct yoga_c630_ec *ec = power_supply_get_drvdata(psy);
-> > +	int rc = 0;
-> > +
-> > +	if (ec->bat_present)
-> > +		yoga_c630_ec_maybe_update_bat_status(ec);
-> > +	else if (psp != POWER_SUPPLY_PROP_PRESENT)
-> > +		return -ENODEV;
-> > +
-> > +	switch (psp) {
-> >       <snip>
-> > +	case POWER_SUPPLY_PROP_TECHNOLOGY:
-> > +		val->intval = POWER_SUPPLY_TECHNOLOGY_LION;
-> > +		break;
-> > +	case POWER_SUPPLY_PROP_MODEL_NAME:
-> > +		val->strval = "PABAS0241231";
-> > +		break;
-> > +	case POWER_SUPPLY_PROP_MANUFACTURER:
-> > +		val->strval = "Compal";
-> > +		break;
-> > +	case POWER_SUPPLY_PROP_SERIAL_NUMBER:
-> > +		val->strval = "05072018";
-> > +		break;
->
-> I'm a little sceptical that hardcoding a serial number into the
-> driver provides anybody any benefit (regardless of whether the
-> AML code does this). AFAICT this is not a commonly implemented property
-> in other power supplies so I'm not clear why this is needed.
->
->
-> Daniel.
+> ---
+>   .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml | 12 +++---------
+>   1 file changed, 3 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> index f9e7b6e20b35..fa271ee16b5e 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> @@ -163,9 +163,7 @@ patternProperties:
+>           allOf:
+>             - $ref: dsa-port.yaml#
+>             - if:
+> -              properties:
+> -                label:
+> -                  const: cpu
+> +              required: [ ethernet ]
+>               then:
+>                 required:
+>                   - phy-mode
+> @@ -187,9 +185,7 @@ $defs:
+>           patternProperties:
+>             "^(ethernet-)?port@[0-9]+$":
+>               if:
+> -              properties:
+> -                label:
+> -                  const: cpu
+> +              required: [ ethernet ]
+>               then:
+>                 if:
+>                   properties:
+> @@ -215,9 +211,7 @@ $defs:
+>           patternProperties:
+>             "^(ethernet-)?port@[0-9]+$":
+>               if:
+> -              properties:
+> -                label:
+> -                  const: cpu
+> +              required: [ ethernet ]
+>               then:
+>                 if:
+>                   properties:
