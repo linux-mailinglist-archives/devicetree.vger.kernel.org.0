@@ -2,80 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5355B69B6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 10:40:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9557B5B69CA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 10:44:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229765AbiIMIkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 04:40:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38930 "EHLO
+        id S230430AbiIMIo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 04:44:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231338AbiIMIjl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 04:39:41 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78D4D2DF0
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:39:36 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id z12so1253824wrp.9
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:39:36 -0700 (PDT)
+        with ESMTP id S231142AbiIMIox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 04:44:53 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75B7E15A01
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:44:51 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id h8so12603261wrf.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:44:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=uXn2kJmSnOy/skqD13Z6q/Bm/edUDnU+xZ+VxBn/tq8=;
-        b=IqhQhQ7VlpeOfvp3Gjx1Jcswtb9IN9La2TCB/B6Ps/qALDH7gISIMKnvskAfLI6vKi
-         LazyuZYo/rapSrf/MnH4Y69v24Q/3UV0iGMxpkZ/l3zAk/93Z+yzUXuuAfW5M49dLXzy
-         d1mGbjxif3uXKOQHxc/+jzCkFYEyHe+NZzH4QkloJgVHyLM4FKs509jw+v+ZMQCWUQ+h
-         5w5RGsYJ1FQZVJN8aQ294C4SafBWv037zj2MISDbzb27woZbF8Cv9Q24HHFWL+HW3HHf
-         uIIThnOhiNcpve3kl0zOCN41VN386ct5qS1YBOg1y//Jr+C0JfQvcft31yY29yGv/9LG
-         tOKQ==
+        bh=FZVlunLlsLup+p0bI6QeJ/RYwaTVchuEcmhidvQoejo=;
+        b=kGbIXxFn248s5nHz45P6zHNJW7wMKw4UuALZcV4uPLjbNXuN5nj379TTa5FLLkyNsf
+         q2wrH6TX6hyS1BksUxlPprxthHCwrvt7TR9BRePqeSur77r6cEVFSZPbQomcezasWWgf
+         th24b8xfsFYpSfaPNqL8uHGV1UA3yLH2ZKhLh4KHfYZZretdGgkhVNUBEvd38XI9WB91
+         wEFcu0TTwNgwmDC2z2/HtY+7Z1wEraLgP12icYpOyEPmpVCcpFBftXv20TE2hdkTQu/s
+         1aw6W1Et6FXYyFCJEibOe5XmJvU9fqWcxqkD2ypK6W609SU5UJxYCLbtAStHKKDCaR1S
+         CIhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=uXn2kJmSnOy/skqD13Z6q/Bm/edUDnU+xZ+VxBn/tq8=;
-        b=5f3+CyNVipzM7OYBEjA0klXYqF2phpHCjRgm8jpNcB2LhRJfzymL0PmlX/6D+7Uwyf
-         W0cmO9L/vZOmbwxITcP+nkC5ZX7xcbusaJ+lwPI5nCOCh1ujzrs9uj2WtvVzpJ1TpVk2
-         3W+eBQR132rpkrFTEBunEUaLor5FuJQDKvNhmAl/rqhWFN2v/9DbMMquYWybH0doZnd2
-         8DFpBO4kFaBnWjj1OI4R6Akq34WslkOgEpfOjuYn1iNzSvUUYgYrrC1F5HNJYIyUXfzZ
-         7wMIulmGLJcef3M22qjCuG90lsIM3BFHGkSu9C+nxh7DB/wnMGljtqVMBKwoXlNoE1K6
-         maNg==
-X-Gm-Message-State: ACgBeo1i5LB8IhbKsp7NXuP4BArNs1MybsCUPQFW0D1b55a5ilyouPtW
-        uVVWi7/Jn37k5df9AMtBVyOuLg==
-X-Google-Smtp-Source: AA6agR6xDP8YhUAqPRV2B1RS5sMRp8HTP1cLkkOYlHerD1lbSH3yDIQOMd8tXRMgT1B4nqloLOQuGw==
-X-Received: by 2002:a05:6000:2a6:b0:22a:baa9:3103 with SMTP id l6-20020a05600002a600b0022abaa93103mr2430328wry.376.1663058375003;
-        Tue, 13 Sep 2022 01:39:35 -0700 (PDT)
+        bh=FZVlunLlsLup+p0bI6QeJ/RYwaTVchuEcmhidvQoejo=;
+        b=QI5S03Y3g8rWbxTaIABMUkOVbRvmwSqJ4blwSDiC4eHdUbhE/73zQQZjsBJpv+1nGq
+         0Ewe2PHVn7n8JfbsfZTOpKzlOqKzvIqcYKKTTdoTRuIaibk95van5xiXZTv5REKDlJSj
+         ca95383SQGHF0d8q6Bof/1lQG+eKNC5XvHSH5D0BABh+AKpS2VUHJ5ViBGFsT3B87Arz
+         zobVyvHCneuaIxbZBiELn0DY8VYawIBKpiykdz/2sqk7BJl2rGH/+SDRc7N0/xobrchI
+         0tGlvSH543rj8kZb6KCdPZZWMbVCTpc9u3emvoI9OEIKIWQeDfNHturyV4g8RSGxL8/T
+         xmPg==
+X-Gm-Message-State: ACgBeo21QXmgvjGmsyi6jNiCroByiL5lqNkcLcl6CUp6kpIl6EDf9m6s
+        OVWWpeZc+2T5t5yT10DOOu54ug==
+X-Google-Smtp-Source: AA6agR6WhtQN8m38UaEkj0ux7abtkAZ4ZImaPmtJ2jpMlO+urIKvzCnDHmVTHBa4/sB4bFG4oepkgg==
+X-Received: by 2002:adf:e4ca:0:b0:228:d8b7:48a7 with SMTP id v10-20020adfe4ca000000b00228d8b748a7mr16964661wrm.300.1663058689956;
+        Tue, 13 Sep 2022 01:44:49 -0700 (PDT)
 Received: from [10.119.22.201] ([89.101.193.70])
-        by smtp.gmail.com with ESMTPSA id a5-20020a5d5085000000b002253d865715sm9870008wrt.87.2022.09.13.01.39.34
+        by smtp.gmail.com with ESMTPSA id p16-20020a05600c359000b003b486027c8asm7322640wmq.20.2022.09.13.01.44.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Sep 2022 01:39:34 -0700 (PDT)
-Message-ID: <e160baf1-cca9-46b6-eaf7-129b1b1eb9c3@linaro.org>
-Date:   Tue, 13 Sep 2022 10:39:33 +0200
+        Tue, 13 Sep 2022 01:44:49 -0700 (PDT)
+Message-ID: <d318a618-350b-22bc-13f2-586fafe038ea@linaro.org>
+Date:   Tue, 13 Sep 2022 10:44:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/5] ASoC: dt-bindings: fsl_rpmsg: Add a property to
- assign platform driver name
+Subject: Re: [EXT] Re: [PATCH v6 5/5] arm64: dts: freescale: add support for
+ i.MX8DXL EVK board
 Content-Language: en-US
-To:     Chancel Liu <chancel.liu@nxp.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+To:     Shenwei Wang <shenwei.wang@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "S.J. Wang" <shengjiu.wang@nxp.com>,
-        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-References: <VI1PR04MB4222EAA244F7A7F179E85500E3479@VI1PR04MB4222.eurprd04.prod.outlook.com>
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        dl-linux-imx <linux-imx@nxp.com>
+References: <20220822175245.222691-1-shenwei.wang@nxp.com>
+ <20220822175245.222691-6-shenwei.wang@nxp.com>
+ <20220903034819.GF1728671@dragon>
+ <PAXPR04MB9185D243324279DD80C371DB897E9@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <20220912081649.GR1728671@dragon>
+ <PAXPR04MB9185F52BA6FEC47E6412EB3C89449@PAXPR04MB9185.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <VI1PR04MB4222EAA244F7A7F179E85500E3479@VI1PR04MB4222.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB9185F52BA6FEC47E6412EB3C89449@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,67 +89,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2022 09:14, Chancel Liu wrote:
->>> Add a string property to assign ASoC platform driver name. It also
->>> represents the rpmsg channel this sound card sits on. This property
->>> can be omitted if there is only one sound card and it sits on
->>> "rpmsg-audio-channel".
->>>
->>> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
->>> ---
->>>  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 34 +++++++++++++++++--
->>>  1 file changed, 32 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
->> b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
->>> index d370c98a62c7..35e3cb9f768b 100644
->>> --- a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
->>> +++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
->>> @@ -11,8 +11,11 @@ maintainers:
->>>
->>>  description: |
->>>    fsl_rpmsg is a virtual audio device. Mapping to real hardware devices
->>> -  are SAI, DMA controlled by Cortex M core. What we see from Linux
->>> -  side is a device which provides audio service by rpmsg channel.
->>> +  are SAI, MICFIL, DMA controlled by Cortex M core. What we see from
->>> +  Linux side is a device which provides audio service by rpmsg channel.
->>> +  We can create different sound cards which access different hardwares
->>> +  such as SAI, MICFIL, .etc through building rpmsg channels between
->>> +  Cortex-A and Cortex-M.
->>>
->>>  properties:
->>>    compatible:
->>> @@ -85,6 +88,14 @@ properties:
->>>        This is a boolean property. If present, the receiving function
->>>        will be enabled.
->>>
->>> +  fsl,platform:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +    description: |
->>> +      A string property to assign ASoC platform driver name.
->>
->> No, this is not a property of hardware. Naming of some drivers in some
->> systems does not fit DTS and bindings.
->>
-> 
-> This property aims to tell the ASoC driver which rpmsg channel the
-> sound card depends on. If there are several sound cards sit on rpmsg,
-> we should pass correct information in dts node to specify the name of
-> rpmsg channel. That is why I meant to add this property. I just want to
-> use a string property to distinguish different names of rpmsg channel.
-> 
-> Actually this property is hardware-related. As we discussed before,
-> this kind of sound card based on rpmsg works under this mechanism
-> Cortex-A core tells the Cortex-M core configuration of the PCM
-> parameters then Cortex-M controls real hardware devices. This property
-> specifying rpmsg channel represents the real hardware audio controller.
-> 
-> That's my idea adding this property. Do you have any better suggestion?
+On 12/09/2022 16:35, Shenwei Wang wrote:
 
-Any reason why not using phandle to sound card node? If your property is
-about rpmsg channel name, use something like that, e.g.
-"fsl,rpmsg-channel-name" or What you wrote in property description and
-here are quite different things...
+>>>>> +             gpio = <&pca6416_1 11 GPIO_ACTIVE_HIGH>;
+>>>>
+>>>> Missing enable-active-high?
+>>>
+>>> No. Enabling this regulator to select the fec1 interface instead of usdhc2.
+>> Pulling this GPIO pin to low is to use FEC1 interface.
+>>
+>> Then the polarity cell should be GPIO_ACTIVE_LOW rather than
+>> GPIO_ACTIVE_HIGH?
+>>
+> 
+> That doesn't matter since any GPIO phandle flags are ignored in the node of "regulator-fixed".  The final flag is only determined by the property of "enable-active-high".  If there is a "enable-active-high", the GPIO line works as active high. If no such a property, it works as active low by default. Right?
+
+No. Your flags must match hardware, even if bindings also expect
+enable-active-high.
+
 
 Best regards,
 Krzysztof
