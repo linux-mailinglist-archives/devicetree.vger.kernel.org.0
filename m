@@ -2,120 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73CA75B6AA8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:27:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C965B6AAA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:27:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231616AbiIMJ1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 05:27:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59026 "EHLO
+        id S231421AbiIMJ1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 05:27:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230083AbiIMJ1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:27:13 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B377C5D103
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:27:10 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id d12-20020a05600c34cc00b003a83d20812fso9101265wmq.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:27:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=A4LqlvJqTCL3K7F8VdDe86oF1VVPopXq7gBGt91lvWY=;
-        b=hG+a7+eAc1zS3/eRlTBCKgxZTUc0mspGCSwL0YIhLdJb4l+3+qrMBkdZZ0rhHBSl9c
-         XkAsLl4GHX1icsnSpDk6+e374y3DUGw6rtTBlAVvKfv59hYc8DRZUhMonOcZPLyUiTVw
-         NvqGHxHzvabcynkcekZ/NVToPkrquGRP+kvEGhKgp99aR+RKr2ys+aDj8nphB1HBtQO+
-         qQMKzMId3x+Qf989VuCKdwPt3VKjCIqMjqHzJFW3vi00I+dTmz9o+XIIpKJwj8DzIDWH
-         LH3nMjOICAfYY5Fc+7LvyAbSKhptGuhTZ9wKlzIQ6zgd8QRlBiPxBBs97Jy5283NkKZ+
-         l6bQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=A4LqlvJqTCL3K7F8VdDe86oF1VVPopXq7gBGt91lvWY=;
-        b=AJwYj6thbuGneu6AfkdVSpuF8l8il25X2ljFiWeesIvWpW3SAz9xZ+B+opbJNiHpdw
-         ggm6Lrzi8R7hz5YeIWcpe4C6FNV3BZ4iRe/Yeyyey1sZ/cIKWNbAOPr8MGyqpTYVAmhi
-         FymJzb9nysIv6lPBWLmHoImuFh42teTXJFBwhUT7g3/K/Q9RV+rT6jvV+mAUhElowg3i
-         j2CDmk7aYxoEGr1E0fGKlh3yeXsjG7u62G7zFcCBqjdPxFf3tZobdkV6aodnIU8EoP3u
-         DJ2Jk/ZnTZwXTrgL/aD2ezkSJfZOEY9lhkK3GzBO2kt9OLvAHc0q8h6Av5+E9jwOkflH
-         BMfA==
-X-Gm-Message-State: ACgBeo0mh2gMm1U534vKe8E2w8dMNkNJaJcivYsCoG2sUivfD6WyiEFS
-        PtHXb8nQ7VHnsduxwqSngeLElQ==
-X-Google-Smtp-Source: AA6agR5p/qbPuVvy9m1Yt1iIXxn5YpCz5ncjcdjDVD5Pt0QNGXf/4iK5GiwHzR06XFGIWqe9dELkLQ==
-X-Received: by 2002:a1c:7916:0:b0:3b4:7575:d2f9 with SMTP id l22-20020a1c7916000000b003b47575d2f9mr1653598wme.27.1663061229054;
-        Tue, 13 Sep 2022 02:27:09 -0700 (PDT)
-Received: from [10.119.22.201] ([89.101.193.70])
-        by smtp.gmail.com with ESMTPSA id c16-20020adfef50000000b0021f131de6aesm9884628wrp.34.2022.09.13.02.27.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Sep 2022 02:27:08 -0700 (PDT)
-Message-ID: <7a673b7c-9e04-2a23-98b9-243696597bba@linaro.org>
-Date:   Tue, 13 Sep 2022 11:27:07 +0200
+        with ESMTP id S231691AbiIMJ1j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:27:39 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150072.outbound.protection.outlook.com [40.107.15.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36013564FC;
+        Tue, 13 Sep 2022 02:27:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SAJRJR0ZycQVfW3VNQufnhPsN4164L+Zb6EvvNPO2n3V9cefLIJw1ctnaAhhP1nX5A7Y0KHSELziGcSK8Lz+aAfgQJqFD/uqSnFMGZaN9jHDEjAfJXw4xH6JDJDMtMzaJcRCZWM3ADn1BhbNq/I1SBEAMGC04geuQjY0izO9nY7nfxiqpzs7PynTLf5wshgx3OqliI9ci7BrXRb5VknoqBECL67KuFKTdieXqNDZ6SxIH09AKiVIAaC9ICGfpe/qapDVUH4+cy92LCbeMx1HmR5KSAf8AQ49i9FH+Va7DOgnZSGiKa2zYTuHJV4MNZGnM+PRWIB1Ldd75o9RZf9Z6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SCdMU7hOc5jim7gx8cEvOCEqNTqfA35WFAkIMUJFVwE=;
+ b=nbkhmL+6ruiB+bnjorj8yvtMMT2QqiUtC6ABm4y3RQYxJP/ODcK09BzFAg+538qnrUKhmFwReTFsXqi88b1UMzdcqy4BSmQlAx1MbHHouflDEExv5+en4fV2xivxde1goMp6oKS2oPfeKOB61P/4R5cAE/v6FojHTDqjnkx+8nXNSeDCDj5OgVIfINa+loaOWqYjEjflIuMoIdL/Hnp46GIb9SsS4O9/7Agnr3hcFZm2mH8jbllzdU+W5XgOWREzXVwn3pH0ypQWJAIp2mg0vz5ZzcA+3qq/zZtpyXv/H9W2bI7cDVd6FlgLg/HToCYAMJxtexAVIvyEXq/RxUq6GA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SCdMU7hOc5jim7gx8cEvOCEqNTqfA35WFAkIMUJFVwE=;
+ b=Q4KYZX3VdomlxefxZMFSzmmzkcCU2omDss5+h2zuozRwr62bLutDFbCOBfTqHxeNE4ZcKgkyjGg+fJGrFw0HPiNxG/XafeYmiEgF5jPiGK/aY42cob4liuhfaLcTBfAy1jxEFDZWF5Kp9LaF1GlGLh0rnSyfZRsdE8cj3p6TUxI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM8PR04MB7234.eurprd04.prod.outlook.com (2603:10a6:20b:1dd::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Tue, 13 Sep
+ 2022 09:27:33 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::75b7:64ed:bc9e:5354]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::75b7:64ed:bc9e:5354%5]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
+ 09:27:33 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        abelvesa@kernel.org, abel.vesa@linaro.org, sboyd@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2] dt-bindings: clock: add i.MX8M Anatop
+Date:   Tue, 13 Sep 2022 17:29:08 +0800
+Message-Id: <20220913092908.1708931-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0082.apcprd02.prod.outlook.com
+ (2603:1096:4:90::22) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v5 2/3] dt-bindings: phy: ti: phy-gmii-sel: Add bindings
- for J7200
-Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>, robh+dt@kernel.org,
-        lee.jones@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        kishon@ti.com, vkoul@kernel.org, dan.carpenter@oracle.com,
-        grygorii.strashko@ti.com, rogerq@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20220912085650.83263-1-s-vadapalli@ti.com>
- <20220912085650.83263-3-s-vadapalli@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220912085650.83263-3-s-vadapalli@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AM8PR04MB7234:EE_
+X-MS-Office365-Filtering-Correlation-Id: 35a1ce82-6d66-4593-e1d6-08da956a2ff0
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YrQfAGrv4mhIitbDZrU6czJTTNbsmYFGTdxEpugQOddoS5JfOvUL9YJNjgkSijFxVjwPQ9+2ddR/YrMqEib9+cUUhFi+Cu6l6sr0XFGaDG2yl7/LUBNlCtpoAR0LmYSoJhomfEsEqRu7uFtkqUgIXhxDDmIhYAV2ZkQqpIVEDFzKP66M+KAAykC1yvrZ0dVHJv2sqx6CUS43OkvQcurM5lAr8SFnpDpRMz4lWc5+xftmRcwGppDaja5eabYBiiE1uLuHWigdijQA5NJyAYITb8seBeI+KoemkARZ8825tKmVES9jL9vl/2nZeNt0V48QZo++EJJhlei87zIoTtKBHy2TA5gFX9hb6M8kO1qaziu5kiytHcwuEciAFOv3ZP/O9IpCEnkwirEeNJaNwKhzv6y7VGw6A7MaLKOlZUWmTwMa8i6CpybYcFiQD+MLRtXlM7g6F+Z02ICNltUObArI96TIrk9GfEpPRKwmfqi0dP1kBO3Gktn8klVzxaBR0YMpKuaQv9tG3cqNMO/34aOLG/qQEU/pfW2kXYNgB/ZTLtMplBsnoROBfr+TluX9qcCT6/1nJsAIb4RMeRBUzc3Fth3OhUot4axMJUzYW3BsqIttxRVba65FosZ51UFNbj8F4f8gsSGHtlDC+nLkxcUlM9w08ydAUt8ks1pIi4zCbrtw5utWraHuwzIc12MShs5HPhsmNCoWoPHCsH953stG/rnn+mEiVCGWDQIFpxe3vEQ6vtO4G7G7g5nMgk61h8Dc/45bZScU++bOoCtP3A1TLY8Wa95FxTbgSrgQ+8R7uqZRODq5Ip2v14R9ZAsn9O8YnknpNmeK7XBqHhE37ESyEA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(366004)(376002)(39860400002)(136003)(396003)(451199015)(6506007)(6666004)(66946007)(2616005)(38100700002)(41300700001)(86362001)(2906002)(478600001)(966005)(52116002)(1076003)(83380400001)(38350700002)(7416002)(316002)(5660300002)(4326008)(186003)(6486002)(66556008)(8676002)(8936002)(6512007)(26005)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QXtE9gu8t6g8+tiuXJtE5bFDWhrm68UXFKphlYbrUrF1lm9kGNH+TeHZEezZ?=
+ =?us-ascii?Q?rLnHD4TA2mINgudR+Mr2MKE/Pu5nhvBWlEFLAq1cIEcXN7YpW/4AqfLTPfNP?=
+ =?us-ascii?Q?Y4v+zQc9Znti355csSeFizWeqWweoqzoF6loSlbRHr8NuGk8S3mdIGnIHkEq?=
+ =?us-ascii?Q?DVpUCjcR2q1LtcOX1OzLfR7zkmHsC7Pcpeu022a4YONiTKtUfg8llkdGMcK1?=
+ =?us-ascii?Q?eCvNDDlYcoSItatLz9R9ojBTMBD7Cc0hMPOI/xxp6iyJV1woqzFrKftraNFd?=
+ =?us-ascii?Q?vWbc6hqVRHjNw7S+TqgcBsvAud2SE62xhdMfsDObqIEoBpop8GI31l9nLdZh?=
+ =?us-ascii?Q?lXerizAzahOPKbzHb1ag8ZKy9jvbYmOIzC/6oFqCWQ2EkQL2ymyuAtDpthgs?=
+ =?us-ascii?Q?OejvZsV8WTZLLYtzGlN+214gEfR4gWGGT4E8JWxYjKxrGHSN2uZN/qruKRmS?=
+ =?us-ascii?Q?YKLwvhZBItUUlXAS2oIk/TnAylHQy/6ybocHTgsxfE4/DPa017Sk/OR2h7Kw?=
+ =?us-ascii?Q?TGSWpn+/JcPS2D7wGIcvAArLT+AHMH3CZjpO0qT2W4mFfAMzFQo+lvD7XBgp?=
+ =?us-ascii?Q?Tzan5eroD6zqVs67EwJKp8qypSPo9JUAZWxuCLs2Mz/V/rBN4x/eXyqW1+2Z?=
+ =?us-ascii?Q?hsIsFCQLbbmYxPHZY4NgpjmnrUfGBlMtX6X/NCHOSwOklnoqJn5LlkVvbMjk?=
+ =?us-ascii?Q?NPnM4/4KUN7FjNQXYGCcItF+l1Dee35uPfFj094jdY5uQ6exxM04SWybakwi?=
+ =?us-ascii?Q?PCP4ZKBawJxAy1IJMm7fJjz6hnDzklKR0tazZ0xWzVeAOGet52m2pTM6Hm3C?=
+ =?us-ascii?Q?Y09e2DOMWfPXdAsCzy1SWBKbFSl75b1eSIuNTuk2M+8ZK8W/ULa2EKSdVbKc?=
+ =?us-ascii?Q?Wo/L6yZB/WaopPbKAF6T6Jqawccp0834MweqDh4BWUmgqZ9tSK1tw9jVvdPF?=
+ =?us-ascii?Q?u0zvKqqzx2sf8vW1YPtHrb0HTf8fAr3TWS29VJAiNHS7HOPH80Ucx3Xqa1zn?=
+ =?us-ascii?Q?E1Is1fI0QF1VbAKJVQ3nk7QDSCQ2Lui+Bs6kdvditsBeS+BjX8oeIBc5DDKT?=
+ =?us-ascii?Q?NZibTZMYPBdhQFpcY0xUWnoiUHqzdMJdPievLqQzsOTdiHarAnIksG5S0gVN?=
+ =?us-ascii?Q?p3jvZ6j/iXS0kOd2zUthx298/g+9CeKscCrKU1Zj8j5mvK6+aTMyaxcFFdOp?=
+ =?us-ascii?Q?dGGy9mfCJ7t1Frty6w0JSKTfKg8vy/h2npfo3pDT8wIgpENKVg3hMz3FrRao?=
+ =?us-ascii?Q?1ihTyDy/iWWUH12kT3pOVdyobVDHCIiEkqftwnzQx+3CURJPJO6To3QsB4gQ?=
+ =?us-ascii?Q?0tarCoAyhRhefhbq+L9cwphq6rNE5FFgkpqkR5gFTu5u9Zgw6W/4GlsHUB4q?=
+ =?us-ascii?Q?ETiNLN8jz+oKJwVnN7Hx8f4TpVWfm84k/fUiG9eh5xTPhGqH45ayceRKjXlz?=
+ =?us-ascii?Q?ngnDIbTIGNYzSXbwI3dDHem2dEwONMhhaXMhDT73SOOnhYY4Zvx89CWfivY4?=
+ =?us-ascii?Q?juhawCryPW86WsKpBhSeTiylS0ilELzdS+z8cDYzzsVNLqFeTb+x3PMGRovM?=
+ =?us-ascii?Q?hwkI1JVO+henP432RD75Xc4sRQyvqHM3J1gPmM10?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35a1ce82-6d66-4593-e1d6-08da956a2ff0
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2022 09:27:33.1442
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AAymTL0pAyGPbn5Yh4XcVvYzjad1HVeTq9+ZvvNedEEhJiYuZjXy6coHixu83V90kvlIie551ipdulUgm6dxFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7234
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2022 10:56, Siddharth Vadapalli wrote:
+From: Peng Fan <peng.fan@nxp.com>
 
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
-> index 016a37db1ea1..da7cac537e15 100644
-> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
-> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
-> @@ -53,12 +53,25 @@ properties:
->        - ti,am43xx-phy-gmii-sel
->        - ti,dm814-phy-gmii-sel
->        - ti,am654-phy-gmii-sel
-> +      - ti,j7200-cpsw5g-phy-gmii-sel
->  
->    reg:
->      maxItems: 1
->  
->    '#phy-cells': true
->  
-> +  ti,qsgmii-main-ports:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: |
-> +      Required only for QSGMII mode. Array to select the port for
+i.MX8M Family features an anatop module the produces PLL to clock
+control module(CCM) root clock. Add the missing yaml file.
 
-Not really an array...
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
 
-> +      QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
-> +      ports automatically. Any one of the 4 CPSW5G ports can act as the
-> +      main port with the rest of them being the QSGMII_SUB ports.
-> +    maxItems: 1
+V2:
+ Drop syscon, use clock-controller
+ Add fsl vendor prefix
+ Add interrupt property
 
+ dts update not included, so there will be dtbs_check fail.
 
-You say it is an array, but you have here just one item, so it is just
-uint32. Do you expect it to grow? If so, when? Why it cannot grow now?
+ .../bindings/clock/fsl,imx8m-anatop.yaml      | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
 
+diff --git a/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml b/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
+new file mode 100644
+index 000000000000..2c0efa58d898
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/fsl,imx8m-anatop.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX8M Family Anatop Module
++
++maintainers:
++  - Peng Fan <peng.fan@nxp.com>
++
++description: |
++  NXP i.MX8M Family anatop PLL module which generates PLL to CCM root.
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - fsl,imx8mm-anatop
++          - fsl,imx8mq-anatop
++      - items:
++          - enum:
++              - fsl,imx8mn-anatop
++              - fsl,imx8mp-anatop
++          - const: fsl,imx8mm-anatop
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    anatop: clock-controller@30360000 {
++        compatible = "fsl,imx8mn-anatop", "fsl,imx8mm-anatop";
++        reg = <0x30360000 0x10000>;
++    };
++
++...
+-- 
+2.37.1
 
-
-Best regards,
-Krzysztof
