@@ -2,86 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA31E5B75DD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 17:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E31645B76DA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 18:55:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233543AbiIMP5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 11:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47222 "EHLO
+        id S231463AbiIMQyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 12:54:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235240AbiIMP4q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 11:56:46 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 906E790816;
-        Tue, 13 Sep 2022 07:56:19 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-11eab59db71so32749431fac.11;
-        Tue, 13 Sep 2022 07:56:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=2/8jBgH5RIn75yN488C2+nFWx/pd5MIa7k/cppE49Xc=;
-        b=IylgFFqiMqhJtvMhyWG7SacuzseFzceVslDMByZF3ur4yJrP0mWnKmmCozFs4u1Aub
-         hPL6yfuWWi1avOVfrknon89FAp89Orl9gNnGuQf8W/a3K4mXmd7dtDbN3Ywjm8cVNUjH
-         zmkmi68Zczh7N4iZUvikMku396+MorHd6Dy5sIzjhhmi2IzK3dks//vS//vc8A74eUVw
-         4mF13hQRNersuEFYVNMyG6JA4f1MI5+AfKaNMzq16hW2bi5YEFCfDeI0BGFVftNSxwGa
-         1FCu6se4uP9et9f1Tzo7ZXBx/dEn2ehpplJwGesIuXkeAyCQtXYv00Zf1Lfyavx/sbq1
-         CkMg==
-X-Gm-Message-State: ACgBeo1nmtuxPDzfKIP4/uInftlKZB09lcjykrubsxZ2puiJUSPb0pPX
-        pAmP+E2ybo/uIebIaG95tQ==
-X-Google-Smtp-Source: AA6agR6YnP6ot9GFC2YmsPAFaS8mzStQhLIBYsq7Zg+QUzJJFdErvSL6rj1KCpYcElzx/lMxYLblxA==
-X-Received: by 2002:a05:6870:f203:b0:10b:ad04:57ff with SMTP id t3-20020a056870f20300b0010bad0457ffmr1944683oao.219.1663080893771;
-        Tue, 13 Sep 2022 07:54:53 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q125-20020acac083000000b003437e4f2510sm5203060oif.11.2022.09.13.07.54.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 07:54:53 -0700 (PDT)
-Received: (nullmailer pid 3659687 invoked by uid 1000);
-        Tue, 13 Sep 2022 14:54:52 -0000
-Date:   Tue, 13 Sep 2022 09:54:52 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH v4 15/15] dt-bindings: soc: qcom: apr: add missing
- properties
-Message-ID: <20220913145452.GA3659654-robh@kernel.org>
-References: <20220910091428.50418-1-krzysztof.kozlowski@linaro.org>
- <20220910091428.50418-16-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S232055AbiIMQxo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 12:53:44 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 859B6BFEBA;
+        Tue, 13 Sep 2022 08:47:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1663084022; x=1694620022;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=7z+D4Ltf5HUEkrrqqSRW3ahpsjP+DtOUMGNcad4s4sc=;
+  b=E5UafnUQPIIiUYK4A2/QQ4WX47fXb0fwVpmvsjTQaokIhs96dVcvZhXr
+   9ck10cALskbKua5EPbB6VTK1EPAwCjn377bLfYHEgO6ZnqQgkaLGrdBjI
+   tl5fLgH9ojZwaQOpyvgn/G6accT3oaiIkEuLgBJc/hh33MFNcvc0e/08W
+   pt/XZqY4eM2/MZIBOsIvMJv3ecjp6UpyIMO8ZG9Rowktk9NuBA45SKsmK
+   XlPZTT/wguchGMNt3T5HGGMwzDgObQAPy/xfQxxb9LetK4ZUAYfVpJuSr
+   81pUKsGWnLDdD0kUKLWh+zcwFzHgmmktfxq1/pe5X6t9/kHpYpvBHIYds
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,313,1654585200"; 
+   d="scan'208";a="176926291"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Sep 2022 07:24:53 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 13 Sep 2022 07:24:44 -0700
+Received: from ROB-ULT-M68701.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Tue, 13 Sep 2022 07:24:39 -0700
+From:   Sergiu Moga <sergiu.moga@microchip.com>
+To:     <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
+        <radu_nicolae.pirea@upb.ro>, <richard.genoud@gmail.com>,
+        <gregkh@linuxfoundation.org>, <broonie@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <jirislaby@kernel.org>, <sergiu.moga@microchip.com>,
+        <admin@hifiphile.com>, <kavyasree.kotagiri@microchip.com>,
+        <tudor.ambarus@microchip.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: [PATCH v3 00/14] Make atmel serial driver aware of GCLK
+Date:   Tue, 13 Sep 2022 17:21:52 +0300
+Message-ID: <20220913142205.162399-1-sergiu.moga@microchip.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220910091428.50418-16-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 10 Sep 2022 11:14:28 +0200, Krzysztof Kozlowski wrote:
-> The APR bindings were not describing all properties already used in DTS:
-> 1. Add qcom,glink-channels, qcom,smd-channels and qcom,intents (widely
->    used).
-> 2. Add power-domains for MSM8996.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  .../bindings/soc/qcom/qcom,apr.yaml           | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
-> 
+This series of patches introduces the GCLK as a potential clock source for
+the baudrate generator of UART on sama5d2 SoCs. Unlike the serial mode of
+the USART offered by FLEXCOM, the UART does not provide a fractional part
+that can be added to the clock divisor to obtain a more accurate result,
+which greatly decreases the flexibility available for producing a higher
+variety of baudrates. Now, with the last patch of the series, the driver
+will check for a GCLK in the DT. If provided, whenever `atmel_set_termios`
+is called, unless there is a fractional part, the driver will compare the
+error rate between the desired baudrate and the actual baudrate obtained
+through each of the available clock sources and will choose the clock source
+with the lowest error rate. While at it, convert the DT binding
+for UART/USART to json-schema, update the FLEXCOM binding to reference the
+new UART/USART binding (while differentiating between the SPI of USART and the
+SPI of FLEXCOM) and do some small DT related fixups.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The DT bindings related patches of this patch series depend on this patch
+series converting atmel-flexcom bindings to json-schema:
+https://lore.kernel.org/all/20220708115619.254073-1-kavyasree.kotagiri@microchip.com/
+
+v1 -> v2:
+- [PATCH 3] dt-bindings: mfd: atmel,sama5d2-flexcom: Add SPI child node ref
+    binding:
+	- use full schema paths
+
+- [PATCH 5] dt-bindings: serial: atmel,at91-usart: convert to json-schema
+	- only do what the commit says, split the addition of other compatibles
+	(PATCH 6) and properties (PATCH 13) in other patches
+	- remove unnecessary "|"'s
+	- mention header in `atmel,usart-mode`'s description
+	- place `if:` under `allOf:`
+	- respect order of spi0's DT properties: compatible, then reg then the
+	reset of properties
+
+- two new baudrate clock source related patches:
+  [PATCH 9] tty: serial: atmel: Add definition for GCLK as baudrate source clock
+			+
+  [PATCH 10] tty: serial: atmel: Define BRSRCCK bitmask of UART IP's Mode
+    Register:
+	- v1's bitfield definition of GCLK was wrong, so add two more patches:
+		- one for the definition of GCLK of USART IP's
+		- one for the definition of BRSRCCK bitmask and its bitfields
+		for UART IP's
+
+- a new cleanup related patch that introduces a new struct atmel_uart_port field:
+  [PATCH 11] tty: serial: atmel: Only divide Clock Divisor if the IP is USART:
+  	- this ensures a division by 8 which is unnecessary and unappliable to
+	UART IP's is only done for USART IP's
+
+- four new patches regarding DT fixes and a SPI binding update that I came
+upon:
+  [PATCH 1] spi: dt-bindings: atmel,at91rm9200-spi: Add DMA related properties
+  [PATCH 2] ARM: dts: at91: sama7g5: Swap rx and tx for spi11
+  [PATCH 4] ARM: dts: at91: sam9x60ek: Add DBGU compatibles to uart1
+  [PATCH 6] dt-bindings: serial: atmel,at91-usart: Highlight SAM9X60 incremental
+
+- [PATCH 12] tty: serial: atmel: Make the driver aware of the existence of GCLK
+	- take into account the different placement of the baudrate clock source
+	into the IP's Mode Register (USART vs UART)
+	- don't check for atmel_port->gclk != NULL
+	- use clk_round_rate instead of clk_set_rate + clk_get_rate
+	- remove clk_disable_unprepare from the end of the probe method
+
+v2 -> v3:
+- Re-order the patches as suggested by Krzysztof Kozlowski:
+1. DTS changes needed for aligning to schema.
+2. all bindings
+3. rest
+
+- New DT consistency related patch:
+  [PATCH 3] ARM: dts: at91: Add `atmel,usart-mode` required property to serial
+    nodes
+
+- [PATCH 6] dt-bindings: serial: atmel,at91-usart: convert to json-schema:
+  - Check value of `atmel,usart-mode` instead of the node regex
+  - Define all properties top level and disallow them explicitly for other type,
+  since additionalProperties:false conflicts with referencing other schemas
+  - Remove useless else if: after else:
+
+- [PATCH 7] dt-bindings: serial: atmel,at91-usart: add SAM9260 compatibles to
+  SAM9X60:
+  - Use the commit message suggested by Krzysztof Kozlowski
+
+- [PATCH 8] dt-bindings: mfd: atmel,sama5d2-flexcom: Add USART child node ref
+  binding
+  - Compare devices based on the compatible instead of the clock
+
+- [PATCH 12] tty: serial: atmel: Only divide Clock Divisor if the IP is USART
+  - Use ATMEL_US_CD instead of 65535
+
+- [PATCH 14] tty: serial: atmel: Make the driver aware of the existence of GCLK
+  - add `gclk_fail` goto
+  - replace `goto err` with `goto err_clk_disable_unprepare;`
+
+
+Sergiu Moga (14):
+  ARM: dts: at91: sama7g5: Swap rx and tx for spi11
+  ARM: dts: at91: sam9x60ek: Add DBGU compatibles to uart1
+  ARM: dts: at91: Add `atmel,usart-mode` required property to serial
+    nodes
+  spi: dt-bindings: atmel,at91rm9200-spi: Add DMA related properties
+  dt-bindings: mfd: atmel,sama5d2-flexcom: Add SPI child node ref
+    binding
+  dt-bindings: serial: atmel,at91-usart: convert to json-schema
+  dt-bindings: serial: atmel,at91-usart: Add SAM9260 compatibles to
+    SAM9X60
+  dt-bindings: mfd: atmel,sama5d2-flexcom: Add USART child node ref
+    binding
+  dt-bindings: serial: atmel,at91-usart: Add gclk as a possible USART
+    clock
+  tty: serial: atmel: Define GCLK as USART baudrate source clock
+  tty: serial: atmel: Define BRSRCCK bitmask of UART IP's Mode Register
+  tty: serial: atmel: Only divide Clock Divisor if the IP is USART
+  clk: at91: sama5d2: Add Generic Clocks for UART/USART
+  tty: serial: atmel: Make the driver aware of the existence of GCLK
+
+ .../bindings/mfd/atmel,sama5d2-flexcom.yaml   |  19 +-
+ .../devicetree/bindings/mfd/atmel-usart.txt   |  98 ---------
+ .../bindings/serial/atmel,at91-usart.yaml     | 190 ++++++++++++++++++
+ .../bindings/spi/atmel,at91rm9200-spi.yaml    |  10 +
+ arch/arm/boot/dts/at91-sam9x60ek.dts          |   3 +-
+ arch/arm/boot/dts/at91rm9200.dtsi             |   6 +
+ arch/arm/boot/dts/at91sam9260.dtsi            |   8 +
+ arch/arm/boot/dts/at91sam9261.dtsi            |   5 +
+ arch/arm/boot/dts/at91sam9263.dtsi            |   5 +
+ arch/arm/boot/dts/at91sam9g45.dtsi            |   6 +
+ arch/arm/boot/dts/at91sam9n12.dtsi            |   6 +
+ arch/arm/boot/dts/at91sam9rl.dtsi             |   6 +
+ arch/arm/boot/dts/at91sam9x5.dtsi             |   7 +
+ arch/arm/boot/dts/at91sam9x5_usart3.dtsi      |   2 +
+ arch/arm/boot/dts/sam9x60.dtsi                |   2 +
+ arch/arm/boot/dts/sama5d2.dtsi                |  11 +
+ arch/arm/boot/dts/sama5d3.dtsi                |   7 +
+ arch/arm/boot/dts/sama5d3_uart.dtsi           |   3 +
+ arch/arm/boot/dts/sama5d4.dtsi                |   9 +
+ arch/arm/boot/dts/sama7g5.dtsi                |  11 +-
+ drivers/clk/at91/sama5d2.c                    |  10 +
+ drivers/tty/serial/atmel_serial.c             |  76 ++++++-
+ drivers/tty/serial/atmel_serial.h             |   4 +
+ 23 files changed, 394 insertions(+), 110 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-usart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+
+-- 
+2.34.1
+
