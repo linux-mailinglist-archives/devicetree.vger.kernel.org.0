@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F8AA5B6FC0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 16:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C185B702D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 16:24:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233016AbiIMOPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 10:15:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37990 "EHLO
+        id S232649AbiIMOUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 10:20:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233027AbiIMOOk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 10:14:40 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71846113E
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:10:49 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id o5so5505494wms.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:10:49 -0700 (PDT)
+        with ESMTP id S233260AbiIMOSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 10:18:32 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD48963F2F
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:13:19 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id bq9so21032299wrb.4
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 07:13:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=Te8k9s87unrEgkHcqd5vPRmIiJKPic6o0P3DO6oru9I=;
-        b=QoJLC3BR8wDCo0dQ4CZeGh+M7CkQEibwhsg+xXmtc17UNjkMc3FijrZZ8W+wCgcV+w
-         ySkg74u3AxilkIEmjGc0Xx2e962mqazZ6/UQrt9W4by/BzG0qwzstX9ZKjqqCjfB2nG6
-         xKtWNmPImF3XS5vF751fxviMKRoxE35J5eE7uVUQlNpnYARhoVqIn47L1yCG7phXHSWN
-         orojVXRqGtTSJ0dbiWgPf25SzujNYA3IwAgLUlt6ZjrlDUGbYLeC6ofk8L02Q8oPymWU
-         8A9ZrAiZdpk1mpxk5OEz39GpXFHlf3DJQ1VhQPXhATxU/S3gCOC8fPyDC0BcYjGZUGhs
-         FOWg==
+        bh=f8mVUn2wwNCGPRMZ2XsvYI4BbV6MhvOhbxNGkhdi3go=;
+        b=QkzPoDiabtql8w6yf7MIc+Tgvnel8YtL3RRru1HbHPEshfyg2bxczuX6I8/MwhxD8z
+         p4Hbtju3t2VPBq9aGB7uLUs7MwTqrF8yhmv/Ka6hpOPmt1cngUAUa7qzFrF4smjsv1KP
+         XJi8AOB8eaVOo4uwc1VGXmA0/2w9Ri9MgxIyziivytGT/TX/8rqbjjUSS0jvqF5RPVON
+         kydSWLts7rFgNlfK+gZE4QT5HFnHdtw1aA2MWaJWGW5TS8P0p/wHZjkDWFJGvCHQDWOs
+         XGkYJbVELmahb4v4SzRb0BEEK+VPIIHmF8xmZTu4gwZbSoJy4nlO8MEd+ylO158wnefw
+         FZQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=Te8k9s87unrEgkHcqd5vPRmIiJKPic6o0P3DO6oru9I=;
-        b=FqKF3G2Lp/tYC97040GTkVK81n4GR9Dtl0HK40wSL582XRxv2KpHd0PAvHjBLrWLxN
-         mDxo7DDZe7D4ZxagEj9na6YDDfLUXxvxfTQy2sso4nA28/aVOvRolwtXrwnrG18Gj+PB
-         V3sG1O8WDq+zEeUyak+QXn9baRPEwi8mAnimksXBhPWLwr7wDCRWWamJkF7T4emZvVuL
-         svnP5jeyrj4hWsxFmCkqNwyuCVDP8JZexJLBfk4QbxQxLIn5Y9MHOlpYN7xoR05Mfxzy
-         DVzhXjK8DPvFYgIHbagzwgGM0sZ99iBMYWzs+664APEzgVJWWtb2QNaUqTwRr0OTR+kY
-         HeLQ==
-X-Gm-Message-State: ACgBeo3gmCFmAj3eqckrioEpcwnQd/dEEEk2dv82T+SqQjE/cSAdaGTk
-        DL1LtA+cfD07JbcdYXl9AoaAeQ==
-X-Google-Smtp-Source: AA6agR7fg9Yc5sCrG6pv+2JK5BauOdoRWdSdVeWZ38mpN9v3VOy/zNf3eVr4hucIAuIPexefzL+VVQ==
-X-Received: by 2002:a05:600c:4a9a:b0:3b4:78ab:bae5 with SMTP id b26-20020a05600c4a9a00b003b478abbae5mr2681954wmp.114.1663078246057;
-        Tue, 13 Sep 2022 07:10:46 -0700 (PDT)
+        bh=f8mVUn2wwNCGPRMZ2XsvYI4BbV6MhvOhbxNGkhdi3go=;
+        b=pX3HooAoD3l/yUxNkNJLug+05EShuaHPcwjzbJgB+KkHGZkktDiUJLcxS3iuVn7Qoo
+         a3C6Xxh8P1tCR/ZJYi5ehdtRXvxJOCHzwzFYbFz6lla7Xhy0LckInPpSjCQp7ccKGXw4
+         XbFsDs7Tj4hKEPktOCQxjY11ldXRgUDmZaOOVM+jKXFEITEQ9ZPjI0QUcR9SsmsP9Drp
+         peJyV30A2uPCvZ2z3zXG3to/1WdxBrHQ2ZcWU3lXgZSZWSATHI0936MzDFu86HskUR9g
+         FFR2rPBV/Gy5yUQPghhodFQlDtwLHEK29K3Qt2tmvOOs78uzBAhl3qDtZmg+XWtUJ7j9
+         THuA==
+X-Gm-Message-State: ACgBeo1Q18lxt28Mo/D1VWcykUzUifcVWrdzpie/r0tek14AZ+DWzvLe
+        c75x2K7yIp5rWxn8L6SHbNFrTA==
+X-Google-Smtp-Source: AA6agR4BMuYOdCxjf5vGV2V6DVRRukCSfLoJIqJ+7a5ibjgKP/rLyiA04B0nG1C26VVkJlgYPiEMJA==
+X-Received: by 2002:a5d:65ce:0:b0:228:d8b6:d1 with SMTP id e14-20020a5d65ce000000b00228d8b600d1mr18294086wrw.486.1663078324009;
+        Tue, 13 Sep 2022 07:12:04 -0700 (PDT)
 Received: from [10.119.22.201] ([89.101.193.67])
-        by smtp.gmail.com with ESMTPSA id o12-20020a5d4a8c000000b002285f73f11dsm13050983wrq.81.2022.09.13.07.10.44
+        by smtp.gmail.com with ESMTPSA id l7-20020a05600c4f0700b003a845fa1edfsm2950760wmq.3.2022.09.13.07.12.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Sep 2022 07:10:45 -0700 (PDT)
-Message-ID: <6ab84de3-acbd-066f-1e19-4be556d3f4d9@linaro.org>
-Date:   Tue, 13 Sep 2022 16:10:44 +0200
+        Tue, 13 Sep 2022 07:12:03 -0700 (PDT)
+Message-ID: <bb42680b-ce02-bfd3-1d47-2264a142bd11@linaro.org>
+Date:   Tue, 13 Sep 2022 16:12:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] gpio: pca953x: Introduce support for nxp,pcal6408
+Subject: Re: [PATCH v2 3/3] dt-bindings: iio: adi,ad7923: add adi,range-double
+ property
 Content-Language: en-US
-To:     Nate Drude <nate.d@variscite.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Michael Hennerich <Michael.Hennerich@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Cameron <jic23@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     eran.m@variscite.com
-References: <20220912171347.4167372-1-nate.d@variscite.com>
+        Rob Herring <robh+dt@kernel.org>
+References: <20220912081223.173584-1-nuno.sa@analog.com>
+ <20220912081223.173584-4-nuno.sa@analog.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220912171347.4167372-1-nate.d@variscite.com>
+In-Reply-To: <20220912081223.173584-4-nuno.sa@analog.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -79,16 +80,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2022 19:13, Nate Drude wrote:
-> Signed-off-by: Nate Drude <nate.d@variscite.com>
-
-Missing commit msg.
-
+On 12/09/2022 10:12, Nuno Sá wrote:
+> Document the new property to enable doubling the analog input range.
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
 > ---
->  Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 1 +
 
-Split bindings to separate patch.
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
