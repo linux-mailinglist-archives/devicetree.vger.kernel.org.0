@@ -2,62 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 159985B6E40
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 15:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 358F25B6E62
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 15:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231781AbiIMNSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 09:18:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45382 "EHLO
+        id S232233AbiIMNb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 09:31:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232236AbiIMNSO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 09:18:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BAD7175A7;
-        Tue, 13 Sep 2022 06:18:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 25A03612E7;
-        Tue, 13 Sep 2022 13:18:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1332AC433C1;
-        Tue, 13 Sep 2022 13:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663075086;
-        bh=xuogeMmae4zT8SIRfPgSZkOLLfxJdslWB0l9uOwRQKg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=pDJEW/H4/D/borWfO0g1TfUN8Jwp1Q5NggtFMs769QUfZ1AjjQRjRBFZLgkMd5AFR
-         FjBWZbBatC00zcbi/p3ViM4oeU382BEP753zhf7+7pglOiKHBS0+oTNtMYCzKysUuh
-         epEb4TKK/SsyVXywwuK3ZNEAdL8XNSCs6j2K9Pe6DolSfHdGOh6Jo9BnMNPVO3GBcr
-         PQQiWYtmGDzKpKw6MUllfSxrbBTUEptWndN51AQA9bGVk9QH9/u6puep7NoBn/sFlY
-         p7uU7+f3WahEQkfkwMDtyvMWYCIwCtaMoY69gRLuHPaSP5w9voC7Sxmb9/Qvqfxshg
-         59wpOZiB7DIGQ==
-Message-ID: <4ffb1f04-ebd2-0d18-b909-5aeb3e0ded81@kernel.org>
-Date:   Tue, 13 Sep 2022 16:18:02 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 3/3] dt-bindings: memory-controllers: gpmc-child: add
- wait-pin polarity
-Content-Language: en-US
-To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
+        with ESMTP id S231314AbiIMNb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 09:31:27 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2050.outbound.protection.outlook.com [40.107.21.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5541B78B;
+        Tue, 13 Sep 2022 06:31:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oYuHjznnzA+pwxfGZvI3PLI12tO78mJTsbYrYR3t1v2UrkJcUODrgo+JG08sy6Er5e6hGne6NiNVO9qrQ3yhWg6qpUVnioTMxJJ8yJQztherAiqglB/cF1MEBb+lAvPtebTeW/kNX4VZ8PcZvWsWYO3dz0UhXzHCAyyk+XwOm4Z6IwQY4mxdWx/bQJ0ja9YWk0jsImw5RXHGgNVrKs5McKbVfz7TcPTl985XphqEwR0d6wT+z67aDSbxBNtaBrjJdpvwlq9XhfdRgCOrMWQkitcHNCCoSu0flnVx3t78r19rHY3YgVRxRSJuhjC1QEzHlp3FZqx6SAuCQ2gnfF0LBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uZvLcNIa9VdXhUsxczkDEsL2pEtvVPsobP9yoX/qDLU=;
+ b=N7lLcc9A06zVcTZSTrA2l/UONjVZAVpKW/qacGzbZTkG5PR9qSbvsPMcC/ufiUtZg9Qk2C1KtFuD+PH1zhQFWHC4pIAHcz/qXBtgPJn3TpagyUzvKpUZQWNo8ujrtsqi7QUHaM4UhvWaOJjghFB1ICeQJk4ASwg3Rsl5hDJq0kkrMSVQrq7WcUT6tO4xuL2NIiEbhbFXrxpl8PLFtnz25LvHsOuO7w/aZLfVhBBSMFC5+D+IcjLZVErOpLHK2pXNB23DJrA9pcxWD6VX5ZeceO5NPm2QjjY8hm6S5x6sxyvjcYpjx00/rqQ4gxf5AyecQnU9CxtJM/gtAsrigK7MJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uZvLcNIa9VdXhUsxczkDEsL2pEtvVPsobP9yoX/qDLU=;
+ b=ffd7OTiM0G4NVuMyCg+yXVCM21rMo370V25g+Wa53It7BrYW0DY58uHvnw+cwMBBAH4BB8wZBxMF+JdV/ov8qMR26paX+5gQaZHhuh2jNTtePgqhlKUVYDQ0Cp6juDz9RF9DEQ23h1qqmRIs48sroku2IZ1aSA1JA5PK3UgUZFI=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by GV1PR04MB9150.eurprd04.prod.outlook.com (2603:10a6:150:25::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Tue, 13 Sep
+ 2022 13:31:23 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::a67a:849c:aeff:cad1]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::a67a:849c:aeff:cad1%7]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
+ 13:31:22 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        George McCollister <george.mccollister@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?utf-8?B?QWx2aW4gxaBpcHJhZ2E=?= <alsi@bang-olufsen.dk>,
+        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Marek Vasut <marex@denx.de>, John Crispin <john@phrozen.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-Cc:     "tony@atomide.com" <tony@atomide.com>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20220906124747.1767318-1-benedikt.niedermayr@siemens.com>
- <20220906124747.1767318-5-benedikt.niedermayr@siemens.com>
- <70a2fec4-e7b9-e8ed-4d8a-d547003dbb9e@kernel.org>
- <125ea34a12928fcdd8ef118eced8b2c59039d2ab.camel@siemens.com>
- <8326572f-8a88-6e8b-edda-7730a0a3597d@kernel.org>
- <ca4f7a8f6f48b02e9dacb1dae27e90edaab2fcc3.camel@siemens.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <ca4f7a8f6f48b02e9dacb1dae27e90edaab2fcc3.camel@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH net-next 3/3] dt-bindings: net: dsa: remove label = "cpu"
+ from examples
+Thread-Topic: [PATCH net-next 3/3] dt-bindings: net: dsa: remove label = "cpu"
+ from examples
+Thread-Index: AQHYxtBCZhrlfLn9yUSG8exS6G8zpK3dBZ8AgABW+gA=
+Date:   Tue, 13 Sep 2022 13:31:22 +0000
+Message-ID: <20220913133122.gzs2uhuk626eazee@skbuf>
+References: <20220912175058.280386-1-vladimir.oltean@nxp.com>
+ <20220912175058.280386-4-vladimir.oltean@nxp.com>
+ <b11e86c6-ff35-2103-cebe-ebe5f737d9de@arinc9.com>
+In-Reply-To: <b11e86c6-ff35-2103-cebe-ebe5f737d9de@arinc9.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI1PR04MB5136:EE_|GV1PR04MB9150:EE_
+x-ms-office365-filtering-correlation-id: 4060d515-7ae9-4190-f921-08da958c4009
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 6GUCwnowrWRLij396NIUbhWmCyZFr8e6NHLYgxiEpjW8JZ+cMTQxXGR5/XRL25owF4thzSWXT8+UeVo2w9Ig6UWyEws+k5iT12YHTpCXoyKP8eJWgVeZjX8FOyKpJdMc5g8j3gikaCGLwjzNz0HxJbAk0QRr2RPTXCp+a0ctt8uD/yxwelVnLVQ+TF8lsnxxmaofeTkPxGplBC29XHAHiR1y1FAFHQ9yibC7bGUlDe+ZDtO++T97lim/ie72VOQ6QpKyHj46jkeq/GXI79qs/QeQRqbOsNMDJo7pwz/a5lu6lwhVAK8W/GJAbC6SH7aFT7T4Gx6wWALU8yABdvJrrjH5BXgP6G26LmKYCfHzzrFf4VJ7b3rI94Zouzs8C/QKorQtMiLWbO9bL+Otw6xz20v+L8YAjS7Ox4/Ko48oYJAj4gs/I5iID2SSqMIb2KkbVQCWYbiorjT0O4NM7xK40bcOkUYyD59dDbLzFukkd6BMRo9gl3psTn4AKB27kCMRz3wVLPDMsbw+fSBMhYAYp/Api7/iWoJj1+563ZGtWgwxOw2An2S26m0xaYjKG8kZ0QOU9Lgp2UhWxjuPQDhwixvqySmSjU541tUqHgnoxnmeXkNHBYslvBS8AFLFJXKmY+pzEtKigx+UVaSKSK9d00uVX1arCzbraVv4HBeNvLzo68Ud0otQujP7p7/utTRN8n8YK7jfWRDO+4+PsJboeNdUGmVeZVI5EQMZv/aNv/EhbKont71v0HKdKUXdvPpbKt24WREsUG6QSroy9LBAJw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(4636009)(39860400002)(396003)(136003)(376002)(366004)(346002)(451199015)(33716001)(66946007)(122000001)(91956017)(8676002)(7406005)(66446008)(186003)(66476007)(64756008)(5660300002)(478600001)(1076003)(38070700005)(66556008)(54906003)(44832011)(38100700002)(7416002)(86362001)(8936002)(4744005)(26005)(41300700001)(6512007)(6916009)(6486002)(6506007)(316002)(4326008)(71200400001)(2906002)(76116006)(83380400001)(9686003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SnJhMGk3TzdPdTNITitkQTczUXNQRFBpSFN1SVJzSEpEeGZFKy8wTEg1M1J6?=
+ =?utf-8?B?TDVNVTgxZy9PL243VDVEanZtUnhHWTd4R3ROa2JLUGZrTUcyMEZJeEl1U2pL?=
+ =?utf-8?B?ZkhxU1RuRERLTG5lY1FhV0Z5MS8vS01DWnluUGZVN1YzOFMwVVBWOXZDeDB6?=
+ =?utf-8?B?MDc0SnpSV1BydUE4SFJvb0UwRW8wWEpGQzlyVUZzdFBJa3hTL2JIMXovdFFZ?=
+ =?utf-8?B?dEFCb2VwOURwUXM4OTJ1RXdpajJMMWQwczllOFhIaHZ6NXJSdUtqZTR5TS9r?=
+ =?utf-8?B?cWFWTFY1UkE2RjRydEV0KzY0aWpWbk5YczZGbWdyOXQxdmhsQ3FkMEdHUEEx?=
+ =?utf-8?B?MDdUSjQ3N25acHo4MTBuTWRwMHgwZ1NnbzVrSkRhNmQ2Zk9MYnRxMkJWQ0hZ?=
+ =?utf-8?B?NGhOOE1MVzRnWkoyaGZxQnJKdi9SZWJGZVlBWThCR2ZBTUhoUHJPajFXcXZJ?=
+ =?utf-8?B?WXUyVWcwWFpRZVpzOHVnNWZVWFEwUHBLL1EybFZFRklaZVRYNy81L3QzdTdW?=
+ =?utf-8?B?NWNlY0EvQmxIY2xRWm9aZFJHTm05OGhLY2lqWUJDeEoxaGQzUXdjaWROUXBZ?=
+ =?utf-8?B?dWxGbFlWaWcvNHlHaWg4MWxuL2FmUUFBZXJuSWVsdURCSU1YSEEyb2o2S2cv?=
+ =?utf-8?B?Qmh4VEF5Q0NtRGJmdVZpdTNSM1FXRC9MV05RMjMvajBxOEhiR3pjWDdpaEJM?=
+ =?utf-8?B?RXdRTmI4eDdQTXpMM2x2TUoxRFVEU2hiazhNUHR0RGllL1RqR0J6MFB3SEhJ?=
+ =?utf-8?B?L29SMmI0NkhzcDMyWmtiRFJGTnVXTXc3SE5KajBrbDVKUCtWcG5OeGZ4YVd2?=
+ =?utf-8?B?eWFXQ3dCN1RQY1JHNFkvV2wxOGl5SjJucklLczBoYUNNbVJvVkY1c00rSkR6?=
+ =?utf-8?B?YUdVNEdjU0krcEF0aS8zZlRpWVgzdFJDUnI3aEVabXpoVnN4VERiWGZIdFJs?=
+ =?utf-8?B?QWQwNHptR2pMWXRFRTZqdlJnN0VUcEJndTVFenBuKy9lNTJsdEhwd0dOV2dx?=
+ =?utf-8?B?VFpIWUN4NWRhdGF6VS9lN0V4UW1OUXUxb3ErRjd0a0swaFF3SFlPOWFycjRU?=
+ =?utf-8?B?VVVoQkhnK2RTWEJ6Vk02S1lqeWp2MGt5Y0o1N01CSm5ibzk5THJzcWJONTNF?=
+ =?utf-8?B?dy9OVVprbEJySnVnTU1qWkJJaHUrUmtjc1V2cUVlMG94aGhCMEpnSVVodmtG?=
+ =?utf-8?B?ZnJ2MWNqM0RNWjQvYXVvaU14bFRoUnNQbkpleUxUV1pDdnJhN0ZLV1JRRUhT?=
+ =?utf-8?B?ZkpMdHBhYklQb0JVQytkNE5HYUxIUDV2YlFSUUxyVDMrOFIwQndDcS9DeG5K?=
+ =?utf-8?B?SkNVTi9WdUNOTlJYV1lPaXdYTEZJV2swU0c3bzgrb3J5eDc5K1hBc3MrbTRQ?=
+ =?utf-8?B?U0MrRzVLOUR6VUh4dnNta2Mvb1hYcGNUODc3bmRFVUxqS1c1c0g5MFloeUpk?=
+ =?utf-8?B?R3ZrbGpWbXdCWGNKQzhsM2JKQVdZU0M4RklDcVBJckcva1pvOUlVbUIxTHY4?=
+ =?utf-8?B?QndGN25pMWRyMUpSQ2lVamxJQmR4UzljU3Y2VUwrQ2V6cWxsZ1VnSjJ2Wjd5?=
+ =?utf-8?B?SXkwallQR3hnckpJVEZvYlREamdybVBrMWY0T1hTK0w2ZVhRaHFEQVFDUXJC?=
+ =?utf-8?B?RGo4Qkxqd1huV3ZlNmYzNk5KYXh0NW5pdzYvQTV3ejY4SG56a2N3N1ZYVDdi?=
+ =?utf-8?B?MnhmM25ULzYrRkxEMHNDMCs0eG4wWCtIU1N1NmYzcUVaWExlbmgwOTk1a3ZD?=
+ =?utf-8?B?aSt3Kys0L3dvV1U4azgzT0RobkpkNU1hMHZOcjNRM0M0YzRMR3U3REJhZ2dX?=
+ =?utf-8?B?VFRuWFdXWEN6ODFUUUVpQW4zcmhYNktmczlvbzZseVNvczVRZE8xcHdPZW5B?=
+ =?utf-8?B?UnQzMlFpMVcvRDV1TUliWkxpQjNmdDIvbnd2NkM1TkpDeEpTNUdldmF0aWly?=
+ =?utf-8?B?dTBuOHpIZEErWS9PdWZFL3JFTlhjV1FFdUtFNndoRzVwa3B0YUhIVEE2Qkw3?=
+ =?utf-8?B?Nk4yTm5aT1VPck41MXpMOVl6MnMxV1E1UVBwTUNSMk1pdURJQmw4amoyWFov?=
+ =?utf-8?B?UDBGb3Zjbk5ETE9qSWtrVXoyTUlqU3kvZzV3eHdxcEpGcmt1OWY0S0tZQitM?=
+ =?utf-8?B?TlM4eENabWRCOExtK0xVckRNVjFUNEs1a0J5d0lsQ3BHVVFPamorNzd5ZFAw?=
+ =?utf-8?B?ZlE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DC7BC06195C1264BB75F9F5C71D9BCC2@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4060d515-7ae9-4190-f921-08da958c4009
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2022 13:31:22.8233
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ChRUK3U66oGz853Sh55iDtYPbDy7184ZCZ2GLMGuWxgbzNH4/QjYDNGsHJxv+5FKYHsBx98tOj/Cizr3gRjXiw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9150
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,162 +158,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Benedikt,
-
-On 13/09/2022 11:23, Niedermayr, BENEDIKT wrote:
-> Roger,
-> 
-> On Mon, 2022-09-12 at 14:04 +0300, Roger Quadros wrote:
->> Benedikt,
->>
->> On 12/09/2022 10:43, Niedermayr, BENEDIKT wrote:
->>> On Thu, 2022-09-08 at 15:09 +0300, Roger Quadros wrote:
->>>> Benedikt,
->>>>
->>>>
->>>> On 06/09/2022 15:47, B. Niedermayr wrote:
->>>>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
->>>>>
->>>>> The GPMC controller has the ability to configure the polarity
->>>>> for
->>>>> the
->>>>> wait pin. The current properties do not allow this
->>>>> configuration.
->>>>> This binding directly configures the WAITPIN<X>POLARITY bit
->>>>> in the GPMC_CONFIG register.
->>>>>
->>>>> Signed-off-by: Benedikt Niedermayr <
->>>>> benedikt.niedermayr@siemens.com
->>>>> ---
->>>>>  .../bindings/memory-controllers/ti,gpmc-child.yaml          |
->>>>> 6
->>>>> ++++++
->>>>>  1 file changed, 6 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/memory-
->>>>> controllers/ti,gpmc-child.yaml
->>>>> b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
->>>>> child.yaml
->>>>> index 6e3995bb1630..a115b544a407 100644
->>>>> --- a/Documentation/devicetree/bindings/memory-
->>>>> controllers/ti,gpmc-
->>>>> child.yaml
->>>>> +++ b/Documentation/devicetree/bindings/memory-
->>>>> controllers/ti,gpmc-
->>>>> child.yaml
->>>>> @@ -230,6 +230,12 @@ properties:
->>>>>        Wait-pin used by client. Must be less than "gpmc,num-
->>>>> waitpins".
->>>>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>>>  
->>>>> +  gpmc,wait-pin-active-low:
->>>>> +    description: |
->>>>> +      Set the polarity for the selected wait pin to active
->>>>> low.
->>>>> +      Defaults to active high if this is not set.
->>>>> +    type: boolean
->>>>> +
->>>>
->>>> I just checked that the default behaviour is active low.
->>>> Reset value of the polarity register field is 0, which means
->>>> active
->>>> low.
->>>>
->>>> We will need to use the property "gpmc,wait-pin-active-high"
->>>> instead.
->>>>
->>>> Sorry for not catching this earlier.
->>>
->>> It's ok. No worries.
->>>
->>> Well, the Datasheets are telling me different reset values here. 
->>> The am335x TRM (Rev. Q) defines the reset value of WAIT1PINPOLARITY
->>> as
->>> 0x0, whereas the am64x TRM (Rev. C) defines the reset value of
->>> WAIT1PIN
->>> POLARITY as 0x1. The am64x TRM also defines different reset values
->>> for 
->>> WAIT0PINPOLARITY and WAIT1PINPOLARITY.
->>>
->>> The interesting thing is that I'm currently working on an am335x
->>> platform and I dumped the GPMC_CONFIG register and got 0x00000a00
->>> (WAIT1PINPOLARITY == 0x1). So It doesn't behave like the TRM
->>> specifies.
->>
->> I can confirm the same behaviour on am642 EVM as well.
->> I get 0xa00 on reading GPMC_CONFIG.
->>
->>>
->>> Nevertheless, I'm setting the WAITXPINPOLARITY bits in both cases
->>> accordingly.  
->>> 0x0 in case "gpmc,wait-pin-active-low" is set and 0x1 in case
->>> "gpmc,wait-pin-active-low" is not set. So the reset value is always
->>> overwritten.
->>>
->>>
->>> Using "gpmc,wait-pin-active-high" rather than "gpmc,wait-pin-
->>> active-low
->>> " is also ok for me, but it feels more like a cosmetic thing at
->>> this
->>> point. 
->>
->> My main concern is for legacy platforms not specifying the property
->> in DT.
->> Earlier we were not touching the WAITPINPOLARITY config and now we
->> are
->> so we might break some legacy platforms that don't specify
->> the polarity and we flip it here.
->>
->> Fortunately, there are only few boards using gpmc wait-pin and mostly
->> wait-pin 0
->> for which there is no discrepancy as far as wait-pin reset value is
->> concerned.
->>
->> logicpd-torpedo-baseboard.dtsi:		gpmc,wait-pin = <0>;
->> omap3-devkit8000-common.dtsi:		gpmc,wait-pin = <0>;
->> Binary file omap3-devkit8000.dtb matches
->> Binary file omap3-devkit8000-lcd43.dtb matches
->> Binary file omap3-devkit8000-lcd70.dtb matches
->> omap3-lilly-a83x.dtsi:		gpmc,wait-pin = <0>;
->> Binary file omap3-lilly-dbb056.dtb matches
->> Binary file omap3-zoom3.dtb matches
->>
->> Only 1 board is using wait-pin 1
->> omap-zoom-common.dtsi:		gpmc,wait-pin = <1>;
->>
->> from OMP36xx TRM, here are the reset values
->> WAIT3PINPOLARITY 0x1
->> WAIT2PINPOLARITY 0x0
->> WAIT1PINPOLARITY 0x1
->> WAIT0PINPOLARITY 0x0
-> 
-> Ah ok. The picture is getting clearer.
-> 
-> Does it make sense then not to use a boolean property in that case?
-> With a boolean property we are only able to change the polarity bits
-> into one direction (0 -> 1 or 1 -> 0) but we have different reset
-> values for each bit.
-> 
-> This part of my patch may then break the mentioned legacy platforms
-> because it even overwrites the register in case the property is not
-> set:
-> 
-> 
-> +	if (p->wait_pin_active_low)
-> +		config1 &= ~GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
-> +	else
-> +		config1 |= GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
-> +
-> +	gpmc_write_reg(GPMC_CONFIG, config1);
-> 
-> 
-> So in order to preserve compatibility as well as the possibility to
-> change the polarity bits into the desired value I would propose to use
-> an uint32 value for the desired value and in case the dt-property is
-> not set we should not touch the register at all.
-
-I'm sorry I didn't understand how uint32 value solves this issue.
-Could you please explain with a DT example?
-
-cheers,
--roger
+T24gVHVlLCBTZXAgMTMsIDIwMjIgYXQgMTE6MjA6MDRBTSArMDMwMCwgQXLEsW7DpyDDnE5BTCB3
+cm90ZToNCj4gSXMgdGhlcmUgYWxzbyBhIHBsYW4gdG8gcmVtb3ZlIHRoaXMgZnJvbSBldmVyeSBk
+ZXZpY2V0cmVlIG9uIG1haW5saW5lIHRoYXQNCj4gaGFzIGdvdCB0aGlzIHByb3BlcnR5IG9uIHRo
+ZSBDUFUgcG9ydD8NCj4gDQo+IEknZCBsaWtlIHRvIGRvIHRoZSBzYW1lIG9uIHRoZSBEVHMgb24g
+T3BlbldydC4NCg0KSSBkb24ndCByZWFsbHkgaGF2ZSB0aGUgdGltZSB0byBzcGxpdCBwYXRjaGVz
+IHRvd2FyZHMgZXZlcnkgaW5kaXZpZHVhbA0KcGxhdGZvcm0gbWFpbnRhaW5lciBhbmQgZm9sbG93
+IHVwIHdpdGggdGhlbSB1bnRpbCBzdWNoIHBhdGNoZXMgd291bGQgZ2V0DQphY2NlcHRlZC4gSSB3
+b3VsZCBlbmNvdXJhZ2Ugc3VjaCBhbiBpbml0aWF0aXZlIGNvbWluZyBmcm9tIHNvbWVib2R5IGVs
+c2UsDQp0aG91Z2gu
