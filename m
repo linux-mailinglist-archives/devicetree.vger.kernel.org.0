@@ -2,110 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CAE05B69D2
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 10:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1ECF5B69DE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 10:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbiIMIs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 04:48:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52456 "EHLO
+        id S231202AbiIMIut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 04:50:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230452AbiIMIsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 04:48:55 -0400
-Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00E03474DF;
-        Tue, 13 Sep 2022 01:48:53 -0700 (PDT)
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 13 Sep 2022 16:48:53 +0800
-Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL1.internal.ite.com.tw [192.168.65.58])
-        by mse.ite.com.tw with ESMTP id 28D8mmT0017680;
-        Tue, 13 Sep 2022 16:48:48 +0800 (GMT-8)
-        (envelope-from allen.chen@ite.com.tw)
-Received: from VirtualBox.internal.ite.com.tw (192.168.70.46) by
- CSBMAIL1.internal.ite.com.tw (192.168.65.58) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.14; Tue, 13 Sep 2022 16:48:48 +0800
-From:   allen <allen.chen@ite.com.tw>
-CC:     Allen Chen <allen.chen@ite.com.tw>,
-        Pin-yen Lin <treapking@chromium.org>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
-        Hermes Wu <Hermes.Wu@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/2] dt-bindings: it6505: add properties to restrict output bandwidth
-Date:   Tue, 13 Sep 2022 16:48:34 +0800
-Message-ID: <20220913084835.78490-2-allen.chen@ite.com.tw>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220913084835.78490-1-allen.chen@ite.com.tw>
-References: <20220913084835.78490-1-allen.chen@ite.com.tw>
+        with ESMTP id S229625AbiIMIus (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 04:50:48 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A7F5788E
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:50:47 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id cc5so9775006wrb.6
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:50:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=Ohjc9dEdH44oeiSaUzXYNAwgxLv5Lg5idMppRaZ9XgA=;
+        b=H808Dg3rwQCarMzG/PWEUqyNlqs2cBSV17PuIMFqjM3kvWX45qIqUmhvWUU4v04vXS
+         0eJroHx8Kdni1sh7tVSm9UXlpW5kpdCGAO1krmaBES063TG628AYqm139SIne85TKeYv
+         ItPvqqmnsktPAlPmNZUmB7wXEe4ZwSDtZeaanDdV52Mp8yYScAuDg3SZtSIG0d6Jxxrx
+         8g6vbtffCehAae/JJ/eaTXBkNzVo9hgNCLia3fM8O1jVdHSQHgRCJfvfRH5F88kFzhjV
+         oVbt3qDSM0KmLwlbv3r17rs9tgX6gUBtI+BE1sr7+t0qG484rKgw7Cs3B8uATWIJSJ1c
+         rUwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=Ohjc9dEdH44oeiSaUzXYNAwgxLv5Lg5idMppRaZ9XgA=;
+        b=0IMsptSpLpNkLQcC9EA7phio44Gl4B7wp4wZ2wTkCnrzztCq0pXbDZ8d6UqBHOuxdF
+         t4SUq7DhSb/1yZVbDSR85PN75lRVfGwYohHSD8xX/vpc0yCwsy1l8/qsIrRaj0y/QhoW
+         r8xOTCnz8z89w8gAH3Zg4d8O67omNTBxuM3kXP6VQkAC+tCPdKF73LpbG5JyuwT0dSLh
+         c9QIQB9uYUr9hWP6BkLZGIB3hRDaQaXgkMN3LMDMLTbFJ78MKxhE9keMjnW5Eto+IcOI
+         D3lJUUmhxAQqzBCCaZRj2omtZV47XWIu0CLg/3LyZKDeiG1kXqKxwJoVg1Lk4Ye2bi9c
+         E5kA==
+X-Gm-Message-State: ACgBeo2CS+WI4PVKNbRjPHq5DGHfsrtQTOq0/9SWK5hIibBZ7wvs2eCb
+        ekIYi+DqshMazTDEK+qGzMS1jQ==
+X-Google-Smtp-Source: AA6agR4hv6qBRnUNqNnuJw0oXOGkLN22P0OlaGd2jb4dYMuQ1e1O4+iJDjQISHd8l/vJyW+uxepzSA==
+X-Received: by 2002:a5d:6c63:0:b0:22a:4247:1e7c with SMTP id r3-20020a5d6c63000000b0022a42471e7cmr10784681wrz.625.1663059045577;
+        Tue, 13 Sep 2022 01:50:45 -0700 (PDT)
+Received: from [10.119.22.201] ([89.101.193.70])
+        by smtp.gmail.com with ESMTPSA id o19-20020a05600c4fd300b003b3180551c8sm12549252wmq.40.2022.09.13.01.50.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Sep 2022 01:50:45 -0700 (PDT)
+Message-ID: <1a683d12-eee9-e35b-3808-4856fe4dc0f2@linaro.org>
+Date:   Tue, 13 Sep 2022 10:50:44 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.70.46]
-X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
- CSBMAIL1.internal.ite.com.tw (192.168.65.58)
-X-TM-SNTS-SMTP: 5A61384729631FB07196D8DD218257ABDBFA4925E8D3BF2A3C3656C73319EC6A2002:8
-X-MAIL: mse.ite.com.tw 28D8mmT0017680
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 1/4] dt-bindings: net: qcom,ethqos: Convert bindings to
+ yaml
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, netdev@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        David Miller <davem@davemloft.net>
+References: <20220907204924.2040384-1-bhupesh.sharma@linaro.org>
+ <20220907204924.2040384-2-bhupesh.sharma@linaro.org>
+ <dcf449f5-ad28-d262-98d5-72c6ba2b7aea@linaro.org>
+ <ccd6f6c2-458d-832a-7299-d9d9ffb652a8@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ccd6f6c2-458d-832a-7299-d9d9ffb652a8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: allen chen <allen.chen@ite.com.tw>
+On 12/09/2022 19:28, Bhupesh Sharma wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your comments.
+> 
+> On 9/8/22 8:08 PM, Krzysztof Kozlowski wrote:
+>> On 07/09/2022 22:49, Bhupesh Sharma wrote:
+>>> Convert Qualcomm ETHQOS Ethernet devicetree binding to YAML.
+>>>
+>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>> Cc: Rob Herring <robh@kernel.org>
+>>> Cc: Vinod Koul <vkoul@kernel.org>
+>>> Cc: David Miller <davem@davemloft.net>
+>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>> ---
+>>>   .../devicetree/bindings/net/qcom,ethqos.txt   |  66 ---------
+>>>   .../devicetree/bindings/net/qcom,ethqos.yaml  | 139 ++++++++++++++++++
+>>
+>> You need to update maintainers - old path.
+> 
+> Sure, my bad. Will do in v2.
+> 
+>>>   2 files changed, 139 insertions(+), 66 deletions(-)
+>>>   delete mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.txt
+>>>   create mode 100644 Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.txt b/Documentation/devicetree/bindings/net/qcom,ethqos.txt
+>>> deleted file mode 100644
+>>> index 1f5746849a71..000000000000
+>>> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.txt
+>>> +++ /dev/null
+>>> @@ -1,66 +0,0 @@
+>>> -Qualcomm Ethernet ETHQOS device
+>>> -
+>>> -This documents dwmmac based ethernet device which supports Gigabit
+>>> -ethernet for version v2.3.0 onwards.
+>>> -
+>>> -This device has following properties:
+>>> -
+>>> -Required properties:
+>>> -
+>>> -- compatible: Should be one of:
+>>> -		"qcom,qcs404-ethqos"
+>>> -		"qcom,sm8150-ethqos"
+>>> -
+>>> -- reg: Address and length of the register set for the device
+>>> -
+>>> -- reg-names: Should contain register names "stmmaceth", "rgmii"
+>>> -
+>>> -- clocks: Should contain phandle to clocks
+>>> -
+>>> -- clock-names: Should contain clock names "stmmaceth", "pclk",
+>>> -		"ptp_ref", "rgmii"
+>>> -
+>>> -- interrupts: Should contain phandle to interrupts
+>>> -
+>>> -- interrupt-names: Should contain interrupt names "macirq", "eth_lpi"
+>>> -
+>>> -Rest of the properties are defined in stmmac.txt file in same directory
+>>> -
+>>> -
+>>> -Example:
+>>> -
+>>> -ethernet: ethernet@7a80000 {
+>>> -	compatible = "qcom,qcs404-ethqos";
+>>> -	reg = <0x07a80000 0x10000>,
+>>> -		<0x07a96000 0x100>;
+>>> -	reg-names = "stmmaceth", "rgmii";
+>>> -	clock-names = "stmmaceth", "pclk", "ptp_ref", "rgmii";
+>>> -	clocks = <&gcc GCC_ETH_AXI_CLK>,
+>>> -		<&gcc GCC_ETH_SLAVE_AHB_CLK>,
+>>> -		<&gcc GCC_ETH_PTP_CLK>,
+>>> -		<&gcc GCC_ETH_RGMII_CLK>;
+>>> -	interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
+>>> -			<GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
+>>> -	interrupt-names = "macirq", "eth_lpi";
+>>> -	snps,reset-gpio = <&tlmm 60 GPIO_ACTIVE_LOW>;
+>>> -	snps,reset-active-low;
+>>> -
+>>> -	snps,txpbl = <8>;
+>>> -	snps,rxpbl = <2>;
+>>> -	snps,aal;
+>>> -	snps,tso;
+>>> -
+>>> -	phy-handle = <&phy1>;
+>>> -	phy-mode = "rgmii";
+>>> -
+>>> -	mdio {
+>>> -		#address-cells = <0x1>;
+>>> -		#size-cells = <0x0>;
+>>> -		compatible = "snps,dwmac-mdio";
+>>> -		phy1: phy@4 {
+>>> -			device_type = "ethernet-phy";
+>>> -			reg = <0x4>;
+>>> -		};
+>>> -	};
+>>> -
+>>> -};
+>>> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>>> new file mode 100644
+>>> index 000000000000..f05df9b0d106
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+>>> @@ -0,0 +1,139 @@
+>>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm Ethernet ETHQOS device
+>>> +
+>>> +maintainers:
+>>> +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>> +
+>>> +description:
+>>> +  This binding describes the dwmmac based Qualcomm ethernet devices which
+>>> +  support Gigabit ethernet (version v2.3.0 onwards).
+>>> +
+>>> +  So, this file documents platform glue layer for dwmmac stmmac based Qualcomm
+>>> +  ethernet devices.
+>>> +
+>>> +allOf:
+>>> +  - $ref: "snps,dwmac.yaml#"
+>>
+>> No need for quotes.
+> 
+> Ok.
+> 
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - qcom,qcs404-ethqos
+>>> +      - qcom,sm8150-ethqos
+>>> +
+>>> +  reg: true
+>>
+>> I think both devices use two reg spaces.
+> 
+> On this platform the two reg spaces are 64-bit, whereas for other
+> platforms based on dwmmac, for e.g. stm32 have 32-bit address space.
 
-Add properties to restrict dp output data-lanes and clock.
+Then for this platform this should be made specific/constrained, so it
+must be two items.
 
-Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
----
- .../devicetree/bindings/display/bridge/ite,it6505.yaml | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> 
+>>> +
+>>> +  reg-names:
+>>> +    minItems: 1
+>>
+>> Why allowing only one item?
+> 
+> Ok, let me remove this in v2.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-index 833d11b2303a..62b9f2192202 100644
---- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-@@ -52,6 +52,14 @@ properties:
-     maxItems: 1
-     description: extcon specifier for the Power Delivery
- 
-+  data-lanes:
-+    maxItems: 1
-+    description: restrict the dp output data-lanes with value of 1-4
-+
-+  max-pixel-clock-khz:
-+    maxItems: 1
-+    description: restrict max pixel clock
-+
-   port:
-     $ref: /schemas/graph.yaml#/properties/port
-     description: A port node pointing to DPI host port node
-@@ -84,6 +92,8 @@ examples:
-             pwr18-supply = <&it6505_pp18_reg>;
-             reset-gpios = <&pio 179 1>;
-             extcon = <&usbc_extcon>;
-+            data-lanes = <2>;
-+            max-pixel-clock-khz = <150000>;
- 
-             port {
-                 it6505_in: endpoint {
--- 
-2.25.1
+And then as well you allow only one item... This should be specific. If
+not - why?
 
+> 
+>>> +    items:
+>>> +      - const: stmmaceth
+>>> +      - const: rgmii
+>>> +
+>>> +  interrupts: true
+>>
+>> This should be specific/fixed.
+>>
+>>> +
+>>> +  interrupt-names: true
+>>
+>> This should be specific/fixed.
+> 
+> These are same as in $ref: "snps,dwmac.yaml#", so
+> do we really need to specify them here? I remember on the sdhci-msm
+> YAML patch review, Rob mentioned that we should just set the property to 
+> true, in such cases.
+
+But it is not specific in dwmac.yaml. You use "xxx: true" when you want
+to accept property from other schema, assuming it is defined there
+properly. However the snps,dwmac does not define it in specific way
+because it expects specific implementation to narrow the details.
+
+> 
+> Am I missing something here?
+> 
+>>> +
+>>> +  clocks:
+>>> +    minItems: 1
+>>> +    maxItems: 4
+>>
+>> Why such flexibility?
+> 
+> Ok, let me just keep 'maxItems: 4' here for now.
+> 
+>>> +
+>>> +  clock-names:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - const: stmmaceth
+>>> +      - const: pclk
+>>> +      - const: ptp_ref
+>>> +      - const: rgmii
+>>> +
+>>> +  iommus:
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>
+>> Aren't we using only one MMU?
+> 
+> It was just for future compatibility, but I get your point.
+> Let me keep the 'maxItems: 1' here for now.
+> 
+>>> +
+>>> +  mdio: true
+>>> +
+>>> +  phy-handle: true
+>>> +
+>>> +  phy-mode: true
+>>> +
+>>> +  snps,reset-gpio: true
+>>> +
+>>> +  snps,tso:
+>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>> +    description:
+>>> +      Enables the TSO feature otherwise it will be managed by MAC HW capability register.
+>>> +
+>>> +  power-domains: true
+>>> +
+>>> +  resets: true
+>>> +
+>>> +  rx-fifo-depth: true
+>>> +
+>>> +  tx-fifo-depth: true
+>>
+>> You do not list all these properties, because you use
+>> unevaluatedProperties. Drop all of these "xxx :true".
+> 
+> Same query as above. May be I am missing something here.
+
+You do not list any properties:true from other schema, if you use
+unevaluatedProperties:false.
+
+
+Best regards,
+Krzysztof
