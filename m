@@ -2,408 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 589C15B7C9A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 23:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96E015B7CB2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 23:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229449AbiIMVLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 17:11:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57010 "EHLO
+        id S229478AbiIMVZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 17:25:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229731AbiIMVLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 17:11:01 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80044.outbound.protection.outlook.com [40.107.8.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8D33760C1;
-        Tue, 13 Sep 2022 14:10:54 -0700 (PDT)
+        with ESMTP id S229480AbiIMVZQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 17:25:16 -0400
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2068.outbound.protection.outlook.com [40.107.100.68])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45ACD18B3C;
+        Tue, 13 Sep 2022 14:25:01 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XEmaRp4V+6k0xPtqvcgPh068ClNYlEWBn29I6IXFcG7GVT1xsgDhuCn/gAABaW/s0tAhMizR+VJ3gvztGiHKCG1BsN/ojr3aCWr10dl7tl9qf2VocBZQz0+U6u8NKLLnUagd1ZEI/9gCUmj8+DkZRJw+IUg3ZDV26w0/K3+DRe7CG6/JtfETLpk/jE0hsJHYTJyqk1IlLmi2mX65pWWSG8HqYhJFhIma40yVGRtXcZ4h91EaImD85ihiVIhBQ6IBbj/A0J/FT2qNiZPWEOpnXSKrywtCbFZi98k84CVJF2ifuDm+tKZXa4thfsCT986V8osQ0KmERw63jCSKgQROnQ==
+ b=BN2iYXs+93MW1NUbyESFl6nVqVt3C7dvAunmYWLt3/eP0XUoe03GWXbtAe43IOQqE/WDhDOTcy7OArffd4zGfwPYYcktVb8Wd3IOghExlH9zZX5hSZ+tDpHZu3+mg7Pl1zd4IF5xrvFP6owMvlYBRWAq0uK/76NBFiypTnUYVH3xn4ROufa1SNfHPvGPN/RlSRVrYIjaqYWE0hl7rgsZ89vuC7IYaqKAXOrzGCQP5XCzjTUoEfPp/ftsJ1AZTiK5/aOqA9y1FqlFP8C7LoAHmg5nzyEhN8xl8CzRg41ZRJf3WwSoW1nAhDK5mCRUkgaprVe3VQBAiQ2ek5/z8T1Ydw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5h9QONj1wM2kOAz9yNa0R0Oclz4E1q1LBoedTWh3DLM=;
- b=L0QV6dni75VS51/lB/iwUi6U4ppi3ZYz20G8y63TwhFkTp5nMxWKzZZ/eT/ISQdgoBnTU9WLAgl90VQXwJ7XupM7WnvJLZORx0Oz3FsDue9V+U2fBphq56XU0qjuilCmx2xT7NdPngBnnswTK4JDy6vpJt1UgP5LAu7XsBaOXpiSwcvMmBqZG3be9+F0eNg3kcVCN2MHs8qrU9inSLxaccUd4jA3RGUjq+3k5ORpuX8P2YklliOWiqOSDhmS2YATunBSzLCNwsVnHj5o5gKR4HJtbHYa2nB7IVHNLtTbB77C7ZLgD0K9BMy2d+XqwWI0Q0qcaCCOsmKLzgFAW26b1w==
+ bh=Ouyac4I5wk39sHMcoNC7iITRa+uMNwC5cY3C9kPruTc=;
+ b=JCyZHfyCkF5RBtB7A/ak+uyq+579RgUyHBR5PwrRnzNGZdb5mDMrynkjo2peqEvOJBObFu4K/+U5q+xXRqCCxzO70xz4pfg+FGiUw0vNdTtV9Yvf1fvt4Sbrl501mvc+XXWf+I4Xcu3J9llIGN5Ijd6gW4gW5cqIVUgvIYhLYsJ6G3pba9KnnNSYLm/hsFjoAY37N94sXj++Nbvu7pm3IpNlBY5gGMf25ItgCXuJXN42XtJhc3ZLtMbVBErLT6/mlN0AWbB0wzOGbeW70bzopgTKNF7MTP9SR9FHKAUh9vy9TfEKPLS2bnDVgyHWK7QNSBW03SbWtJK2juJs2jNbqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5h9QONj1wM2kOAz9yNa0R0Oclz4E1q1LBoedTWh3DLM=;
- b=G2iROw8jhnalwQOIYm869pT/TOc3TdohO6uIQ+SmbyVriXCe1O0PVQrdnujkuw2njZgfs/RVhOP9eZDuNjsXIqopJqepzqB2wGSNBJ+COdQrJh+9mtmBR4IxbDpPmoAABFW1apx/Kc+zZoccO1fsUPX+o+9bahI98iofrARsJ4M=
+ bh=Ouyac4I5wk39sHMcoNC7iITRa+uMNwC5cY3C9kPruTc=;
+ b=S6r/D2k0UIysgewPLt9226QuPKEjbmSIEUnxeGk2u6QhuXT+uhVQ7QI/XemGNnSsWmnni+OttOE6MGKHDRORS7pq1qAFuazRqCAiZpmytlmeeGY0MmhuaBcp/n2HgfXxVwXiud8SH7MF1tjloziv4ou664EE0VdZrHMlukgWMDM=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM9PR04MB8793.eurprd04.prod.outlook.com (2603:10a6:20b:408::22)
- by PAXPR04MB8621.eurprd04.prod.outlook.com (2603:10a6:102:218::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Tue, 13 Sep
- 2022 21:10:50 +0000
-Received: from AM9PR04MB8793.eurprd04.prod.outlook.com
- ([fe80::e5ca:22d0:52e2:15f5]) by AM9PR04MB8793.eurprd04.prod.outlook.com
- ([fe80::e5ca:22d0:52e2:15f5%3]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
- 21:10:50 +0000
-From:   Frank Li <Frank.Li@nxp.com>
-To:     maz@kernel.org, tglx@linutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev,
-        lznuaa@gmail.com, imx@lists.linux.dev,
-        manivannan.sadhasivam@linaro.org
-Subject: [PATCH v10 6/6] PCI: endpoint: Add vNTB MSI support
-Date:   Tue, 13 Sep 2022 16:09:57 -0500
-Message-Id: <20220913210957.3493826-7-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220913210957.3493826-1-Frank.Li@nxp.com>
-References: <20220913210957.3493826-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BYAPR07CA0023.namprd07.prod.outlook.com
- (2603:10b6:a02:bc::36) To AM9PR04MB8793.eurprd04.prod.outlook.com
- (2603:10a6:20b:408::22)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by SA2PR08MB6588.namprd08.prod.outlook.com
+ (2603:10b6:806:fb::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.18; Tue, 13 Sep
+ 2022 21:24:58 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::e9de:97f:447d:1cee]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::e9de:97f:447d:1cee%6]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
+ 21:24:58 +0000
+Date:   Tue, 13 Sep 2022 16:24:54 -0500
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 05/11] Input: iqs7222 - trim force communication command
+Message-ID: <YyD1JmuC6UH+DDHG@nixie71>
+References: <20220908131548.48120-1-jeff@labundy.com>
+ <20220908131548.48120-6-jeff@labundy.com>
+ <YxpdeuPAYiSVjmO7@google.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YxpdeuPAYiSVjmO7@google.com>
+X-ClientProxiedBy: DS7PR06CA0034.namprd06.prod.outlook.com
+ (2603:10b6:8:54::18) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB8793:EE_|PAXPR04MB8621:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2fec1a48-2d4c-4a28-4a3b-08da95cc6f5a
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|SA2PR08MB6588:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ab24c02-0ee4-415d-303f-08da95ce6886
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mKb6VEPLtddZz5RR9Uc5JF6JRjt1qppZ1Bir162WuFrY26vOqI0P4B8jlcMCgGpj4z+5d8UHkUt7IPML0SBGDsgNMmCE6dycL/ZDN1kOBJh4Kv5RA6hhYImMN5HUtS3zIlYz3VGjuhTomvdQ14tDBAIfpwHDPTL7hrvyZGf3QD3mmaB0Qz79vK+oZC+Q0B8cuPBvG5MgUmvMfYD1oY4dnrrGh4EOAby7dNV6IVSWwj0Ixbd3Z4ZbQ46jqIG60QlH9CeS+xOSBJVUZhXt5JRxeUJv4+bKp6TnG9tQVqdI5/j0bs+9KZYjiNQEbw5+hJInv9W0QMpj92Qwjx4qIIsqtj4e4CtC0mcCeoXpvj7iPIhy46Q+jbv1iPvxlpSeKpeEMOf1uaFGGn5Gkx2hROcYvtGu+0atRB+hRMIND5XYT8wv3mRAbOtOW/cjCIK2Q0YkFTus2q5gmgBFBP4FP53Do1EFm7D/hEi+3up2TAVmlrpMs0Ipd4Ji1fKszLRCBWzbtoM+V16Aj++kR2Nd8u/+rdA31KVqhKx489ea+ViqDgMLxv4hOLO08fdi80uVK8yPlBHytrwYEOSNDX/4d7pKnbtL4Af+BEOgOMSnxMMxv6gF6kNaUsz4N2TiGT7n/lvx8yiWWFTkpgZVBRc33Kaeppw54cuwNn6CbIo4PHApGHIovAq5WrGp16uVHS/SmksNsweluEWdYlDiDd7S4NXOo8f/EQO+E9J5/KA4geuYuzz1l2Hkp4mMKxRDiB7BzLM8cdsZwjw/uq6lnf23IeRChQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8793.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(39860400002)(136003)(366004)(396003)(346002)(451199015)(38100700002)(478600001)(316002)(83380400001)(36756003)(8676002)(66556008)(2906002)(26005)(52116002)(2616005)(6486002)(66476007)(66946007)(6512007)(86362001)(6506007)(4326008)(41300700001)(7416002)(38350700002)(8936002)(5660300002)(1076003)(186003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: BuQU+Lm9/3OQMmbh9tt8sqm4Zfs6dDh03OIgyQIdXnGodtGNy/Z8R0QQDnrDUExVn6HEj1SNzkxBg0ckBxFNVHaJwYCVeo1i9CNk4FXCT/LJ0KZJcEGXKqhg+5WSu6gFMjDxGYoG/nsKT+txFFmpJnZum7wDCdbzr/aGbRMp+Ylbq0FZyPtNbRI9bd/0i+ZLSrVXM4RegdQTl19FsBrWbjT0XsX/XaNnRkWhMRd+/N3NvK/hVCkm9hb0F7+xIh0K4/e6THDx2bP6q4Bn3wj21zyMATfxkgZ975I/5PBWHmMJTAGI/psHCtTCs1n+k8LCzUraCvAyAqP0/+rt67dVziuHFHsZR+J/Prpk5mREQRnXNyx9GWcIRxe1erKLQutukN1QJfat91DRP08iS+pa2e7jBhWET6mZvqdA+b7oW/9k0fP0RaTo/wxWpfwXVg7HvfPYVf/Gpx8ue5M9wfmxzxdqp1uHtrSlqQEH0mf51ShEYqJwBscadEspyk0lP8HttdyzTvSR/6UW77dtkssa0dhfzB9zLG4V7aIfMLuE0vBfwNDyJ8Oqf9yXEsRckr+8NLth7BI8tM0tDhQNJpZYWL2TZcxpFmU8UwiefWzlz3nr1gTAW6nhgbR70o1OOtEy7W8ncb/RhsNDiLM1Z8paYlxYd96tcFFjocUlAN23bpOehJ1D1ZyBjapJ5CBosnqgFUlRg7ctiLHun8r1bp2BxfeDeIl3eMLEhec5FCwpYgLTPHlcYUgQlkiOSNS/8tj8
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(396003)(346002)(366004)(39830400003)(136003)(376002)(451199015)(66946007)(66556008)(478600001)(4326008)(8936002)(6666004)(41300700001)(4744005)(6486002)(86362001)(2906002)(38100700002)(8676002)(186003)(9686003)(316002)(5660300002)(33716001)(26005)(6916009)(6506007)(66476007)(6512007)(67856001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnBHbXUyQzJZUWNzV3JYelFQRGtQWENjWVlYQVVYSUgxUWFVd21vbDFVcmFM?=
- =?utf-8?B?UHRPTjh5SUNzR293eEZWWVl6OWdxVFgvQXZNZEI5Z1RxSjZkVk5vUTBmeFVL?=
- =?utf-8?B?bFh5bHpjaU5YOXZKbEk5UFM2NVFsNVJIbzd0RWJuLzJXd21rY2E3Nm1iUGJm?=
- =?utf-8?B?Y0F0VTg1QlZ0Q0QreGJuYWN4RDhWaStsZDVYOGxSVUJDeUVZL1JMUDFhc1pG?=
- =?utf-8?B?VjExMHlhdWFzNlc3Q2E1d3N2c2U3NGZzU3JLbkhRK0NHWHJ3WTZGQW9JZTNu?=
- =?utf-8?B?d3pqSTVZMi9Tcm1DdmFuUWloQ3dGVHBWRGJadkNZdTlRMjR2QTFSMFJ4a2ZI?=
- =?utf-8?B?N2ptaWRLQ0ExdUF5TkMzamtHNzNRS1lYZS9Tcy9zTDIxc0c0WEFQNkVWZ3A1?=
- =?utf-8?B?bGdzY1FURExheTZVNDd3NUp5WkdDb2lFUlBmcUY4TjMxSnY1OXhQOFZpSzVV?=
- =?utf-8?B?S2poKy9NU0x3QjIvb3hKQUJ1VFNTK2IwV0Q1T3Z3dFBvY2JVL0JxTzY4MzV6?=
- =?utf-8?B?R0srRUMrY3pKbXVQMDQ3Y0M3eExsQ1BudDM2cnJQaG0wRm10eDdra3Bha1Ry?=
- =?utf-8?B?bEwrc0pWa3NrY2JEbnJJbkY0bEZsVDZNQXc4amN0OUlNKzF0dU5ORGR4NFhK?=
- =?utf-8?B?N2Q1RzRxN2tXY011K1RITG1lYTk3KzV2Zi9kVUx2UnpTbFVoVHRYL2k5bzJ4?=
- =?utf-8?B?Wk1aUnlQTUREZDZEWWxwYTFLS3FWRmRBcUE4RFMxNFRsMGoyOERvQlpYUFRU?=
- =?utf-8?B?YndyaklrcjdxOUtFYWwrb0t3T2w2U0dxMzFVZiswRnNIa3RCYlh0dEltNjd6?=
- =?utf-8?B?ZlBVblhyNHMxT3luVDZKK09JSmNRQk15a3k1V2ZBc0F6NzZ6cmltdVZDRy9I?=
- =?utf-8?B?SmVJRmh6K202dFQ1dXczTUtMMFNxdDlBZjgvUW5SQTlnb1MxOFM0TDV6K1RB?=
- =?utf-8?B?SnhWN2t6Yit5SmE1dmhtblVBS1FzZnFUYzRtZ0tmY29ZOEtRNjA2aFltdkk1?=
- =?utf-8?B?aXRvRGtWaTJlOUFjQnVJK3VEUkR3L3o0SXo5ZUJTeDhBVk1EY2tlVlNSbFJV?=
- =?utf-8?B?MGIwSnZtZWF3MFI0SWNqVWxvUFp0UkJ4SWRMRTdXZkZhalcvNSszSXR6bW9n?=
- =?utf-8?B?eWNaVTN2OS9od2ZTekhYS0J0d0JiTVRZYVFQZGhQRFN4bGN3aVNvN2tZeWNk?=
- =?utf-8?B?VlJzYkphbmowVHBnVFQ5anVJVDJyNHYxZnZudHc5Z2FvUjlaUTdyZkx1S1N4?=
- =?utf-8?B?a2Z6akdEbi9WcisrS0VTNUNKSzJoMDZvWWkzZXJqWE1lTm9aZ2w3d1I2TDVH?=
- =?utf-8?B?NHBETnZiMHNTdW9uVytTejQ2WmF5a01pT1Q0Z2twWmx1ZWxkckZkVGpsdmtU?=
- =?utf-8?B?NWlEK3gycU45WHVpdGt0RUtYc3l1QSt1L3hSV2Z0VU5Eb0VHdEUzS1VYZkdo?=
- =?utf-8?B?UGlwbGxsOUdwT1g1RzVtNVo1NitIVXZ3QmtkbXVhcDFNWk5Bc2N4NTRDUUNS?=
- =?utf-8?B?VEYxbjU1VDhBYllFbXlWYVJqYlpOV3M2OElHU3BHSFZhQ2xwUXpBd1BBOUE4?=
- =?utf-8?B?N1VuR2NVY0hPU21UMGtjaTI0R0I2VFkzSDAxVFJuSDh3RzFNM0pxcEJHazM4?=
- =?utf-8?B?S0UxWENKMHo5eHdzODlvdFV0NlhhM1NnMTNDKzFySEdKLzgxNk1zMFRPOTE4?=
- =?utf-8?B?V1A2djNPUzNnOGtiMXdBcG0vSlRxbFlkWHN4SytaNHFrczBhd3JQZ2I4eUE2?=
- =?utf-8?B?c0xFSmpWUnppRHJ3eDFuMTdETHpzcEJPZWloMVZuUFlMY2tNdGtRVFpsMEs1?=
- =?utf-8?B?Z1F2VnBvZ1ZxVEZGeldGSHNkUUxGdWdEMURJdm84RGVBMVpJalpWRTdNNnZQ?=
- =?utf-8?B?WDFVbVdhaHB5K1h0STJIQkZWK3NVNC9NT3htaUY3ejFxMkdKOEtqWU5LbFha?=
- =?utf-8?B?T0RGRkZUUTYrTU9hWkdjY2lRSHJldHpRbmQ2a09YNjBzSWxRdnJ4UnZLczdE?=
- =?utf-8?B?M3U4YmcvOG5Lek53SUpYTTBkajkwbm4vbHBacTBqdGpzMlV2d1pBeHBxYlZQ?=
- =?utf-8?B?VksySldRYU43d3pCU29rLzNhQUJNUUR6ZHp2WFppVlFJdFdBeVMrc0kyNnlQ?=
- =?utf-8?Q?bu/4=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2fec1a48-2d4c-4a28-4a3b-08da95cc6f5a
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8793.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6EgK9TR6DY++zhtEKVYvSsiQZY5J61riKq8pMi+C9IIyKUsOJYd7cP26X1ox?=
+ =?us-ascii?Q?ATYK97aJqB8RgaF+sm7LYPHlGGbWB6mUE+Dy0Y3K3bWGL0vV/s/JwTP7E5mj?=
+ =?us-ascii?Q?cxOr6GZSBJRgrKnLlAdXDA66iT1YtAni4fru/u4Go6gYvD9lA+TowsQypo9n?=
+ =?us-ascii?Q?QLYhoMbsUWKQ8XV6QFyRzulKx94tkQxdMts51b5QfIUxKLode8k0tvhb3n4u?=
+ =?us-ascii?Q?c8wQf/77x8l7Sl2pGzz5CgWpvKDsHfxrv6z/cpxH+XRFvE+7UK6LDo2Gvk24?=
+ =?us-ascii?Q?QtfA4Rl96KNtbDeYo4+5b6KAMcTtgJ5SFJXjL0kaFGBYbf0V5L92y7Op/SoK?=
+ =?us-ascii?Q?jvgfnBSRgrIwAFswjSUQKNo+XRNRc4xX6D3jLGzYUDIR4TJKdhRM/d5EFuf+?=
+ =?us-ascii?Q?mAHiAO/q83I+HJek9dK0y9C1bhJXWQ57SXEWLIu95K0+r6hQyHCsYOlJqwWP?=
+ =?us-ascii?Q?druIR7TBhN67UIjFusqUh/gZGTCwo3zCuX4sp393ZhOfMC6GyAypl1g3tHNU?=
+ =?us-ascii?Q?H62qi0nAH63qJy28wSZEWGCrPjX8q5oY7uCbhKCDw5Hg4jjVkxBLqeT/aYkS?=
+ =?us-ascii?Q?p+nCMggkfO4//4JLlfrN4Vqhpg+XMA3SGHfI7/v0zr62YEso1CWSCZqQgPmQ?=
+ =?us-ascii?Q?kZWjrgtGdkrq0AHwBQsnSH+CPrROJWDouLsvycWTsaoSR6Hn9OVgagF/pmBz?=
+ =?us-ascii?Q?Xu6hc1+cMgqwByKpfftm0m4Qum/77vpZRT82Yvop6SVM78PT4HcXt9dnNLfO?=
+ =?us-ascii?Q?fRarULI5jqLbXyAZZKlqKlGlLegDBS/haji+JGjYiurb2AzMYPcWp1stfggl?=
+ =?us-ascii?Q?X39VZyYqj15pD4gmxNEyoM6fx0Xrn8dJfaY5gE/3rV/bA9pg+zrWRMAEBwVX?=
+ =?us-ascii?Q?QdlcM/4aTVuw1cSjZvGzQiHhot1UC2cHmHkoSPhyuINzMnQkmsRaaUA1+djK?=
+ =?us-ascii?Q?/k6rzj09q4A5l0xnGlRf+Q8kJ+KIL0U/uRHy4VrVfmb7Z/cC2yWqFA9UgfuD?=
+ =?us-ascii?Q?J3SBesx937TYlRE1fnBB6RETVNBQJR1JgxASi4CfvY4oKKgGj8diGOKe9GuF?=
+ =?us-ascii?Q?iZKOXXprlh7cfFB318jGkoDa2mnKPN/aQuhUusSRfd7aSK516KVZGqYYSwYf?=
+ =?us-ascii?Q?o7wp6o3y9AW8c3w679jPKnEkTqVFHcyc7/m+Wb0e3W0pNHcbHx4IFIm+9T6/?=
+ =?us-ascii?Q?swJNALl3UIf3paRGCIbRfciBFtnUnzy/66HHh3WL0gs/E2ykpWPEU7HS8SFB?=
+ =?us-ascii?Q?bgopJiOSRuQYLDCR1V++7F8fwsY0J2eyhp7WYLs7/uKTf7eyyfAuR0oGb5Gc?=
+ =?us-ascii?Q?bIjLKGJehIPG0X31p5ndvNc5fV4ClKvcb9ptZVIJY5OPZxoJ89jMgTzwisdl?=
+ =?us-ascii?Q?meFfzUpgE+CCKJGuMwYfGhn3yxVAZTmI4HG7AJpElzvJ5A/Gxts8102niWa+?=
+ =?us-ascii?Q?GLvywuvZP5rZ3wmwfHyVnCrgzrHEEGDB2ErJBMu8tf/sDo3DeYfkEtJeJbWW?=
+ =?us-ascii?Q?VXU6h5sva0x/qQ0bUSmfKj8+L+EeMsF5hn2s1h3TmOdIq4zwC9QKw5LbM4Bd?=
+ =?us-ascii?Q?pq+9p0X+MPTDz2CbLHEVEwqnA6unmV+zWwfy7HnF?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ab24c02-0ee4-415d-303f-08da95ce6886
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2022 21:10:50.3539
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2022 21:24:57.9366
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XO0ncBdrMu4U2VRzHXiw3FfQrI7fYeX5B1v5EryMMuQSdKYTPmizKBqSAbGn55nH03LkTMuMY1dtyFpeems8eA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8621
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: qgmV56Jp1b2TfYodm5wGRsZ7pWhLJzjkk5Yn7NZElPla7Fi6HLo09E9g/pL+InwVy8Ovo8U0lpa5u3YOeqhvyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR08MB6588
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-                      ┌───────┐                   ┌──────────┐
-                      │       │                   │          │
-    ┌─────────────┐   │ PCI   │                   │ PCI Host │
-    │ MSI         │◄┐ │ EP    │                   │          │
-    │ Controller  │ │ │       │ 3.MSI Write       │          │
-    └────────┬────┘ └─┼───────┼───────────────────┤          │
-      ▲      │        │       │                   ├─BAR_n    │
-      │      └────────┼───────┼──────────────────►│          │
-      │               │       │ 2.Call Back       │          │
-      │               │       │   write_msi_msg() │          │
-      │               │       │                   │          │
-      │               └───┬───┘                   └──────────┘
-      │                   │
-      └───────────────────┘
-      1.platform_msi_domain_alloc_irqs()
+Hi Dmitry,
 
-There is no defined way of raising IRQs by PCI host to the PCI endpoint.
-Only define MSI/MSI-X to let EP notified RC status change.
+On Thu, Sep 08, 2022 at 02:24:10PM -0700, Dmitry Torokhov wrote:
+> On Thu, Sep 08, 2022 at 08:15:42AM -0500, Jeff LaBundy wrote:
+> > According to the datasheets, writing only 0xFF is sufficient to
+> > elicit a communication window. Remove the superfluous 0x00 from
+> > the force communication command.
+> > 
+> > Fixes: e505edaedcb9 ("Input: add support for Azoteq IQS7222A/B/C")
+> > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
+> 
+> Applied, thank you.
 
-The memory assigned for BAR region by the PCI host is mapped to the
-message address of platform msi interrupt controller in PCI Endpoint.
-Such that, whenever the PCI host writes to the BAR region, it will
-trigger an IRQ in the Endpoint.
+I didn't happen to see this one hit your tree, so I can simply include
+it in v2 coming soon. In case I have misunderstood, please let me know.
 
-Basic working follow as
-1. EP function driver call platform_msi_domain_alloc_irqs() alloc a
-MSI irq from MSI controller with call back function write_msi_msg();
-2. write_msg_msg will config BAR and map to address defined in msi_msg;
-3. Host side trigger an IRQ in Endpoint by write to BAR region.
+> 
+> -- 
+> Dmitry
 
-Add MSI support for pci-epf-vntb. Query if system has an MSI controller.
-Set up doorbell address according to struct msi_msg.
-
-So PCI RC can write this doorbell address to trigger EP side's IRQ.
-
-If no MSI controller exists, fall back to software polling.
-
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- drivers/pci/endpoint/functions/pci-epf-vntb.c | 151 +++++++++++++++---
- 1 file changed, 128 insertions(+), 23 deletions(-)
-
-diff --git a/drivers/pci/endpoint/functions/pci-epf-vntb.c b/drivers/pci/endpoint/functions/pci-epf-vntb.c
-index 17f030befde52..90271c0394e83 100644
---- a/drivers/pci/endpoint/functions/pci-epf-vntb.c
-+++ b/drivers/pci/endpoint/functions/pci-epf-vntb.c
-@@ -44,6 +44,7 @@
- #include <linux/pci-epc.h>
- #include <linux/pci-epf.h>
- #include <linux/ntb.h>
-+#include <linux/msi.h>
- 
- static struct workqueue_struct *kpcintb_workqueue;
- 
-@@ -138,12 +139,15 @@ struct epf_ntb {
- 
- 	struct epf_ntb_ctrl *reg;
- 
-+	phys_addr_t epf_db_phys;
- 	void *epf_db;
- 
- 	phys_addr_t vpci_mw_phy[MAX_MW];
- 	void __iomem *vpci_mw_addr[MAX_MW];
- 
- 	struct delayed_work cmd_handler;
-+
-+	int msi_virqbase;
- };
- 
- #define to_epf_ntb(epf_group) container_of((epf_group), struct epf_ntb, group)
-@@ -254,10 +258,13 @@ static void epf_ntb_cmd_handler(struct work_struct *work)
- 
- 	ntb = container_of(work, struct epf_ntb, cmd_handler.work);
- 
--	for (i = 1; i < ntb->db_count; i++) {
--		if (readl_relaxed(ntb->epf_db + i * ENTRY_SIZE)) {
--			ntb_db_event(&ntb->ntb, i);
--			writel(0, ntb->epf_db + i * ENTRY_SIZE);
-+	if (!ntb->epf_db_phys) {
-+		for (i = 1; i < ntb->db_count; i++) {
-+			if (readl_relaxed(ntb->epf_db + i * ENTRY_SIZE)) {
-+				ntb->db |= 1 << (i - 1);
-+				ntb_db_event(&ntb->ntb, i);
-+				writel(0, ntb->epf_db + i * ENTRY_SIZE);
-+			}
- 		}
- 	}
- 
-@@ -456,7 +463,7 @@ static int epf_ntb_config_spad_bar_alloc(struct epf_ntb *ntb)
- 
- 	for (i = 0; i < ntb->db_count; i++) {
- 		ntb->reg->db_data[i] = 1 + i;
--		ntb->reg->db_offset[i] = 0;
-+		ntb->reg->db_offset[i] = ENTRY_SIZE * i;
- 	}
- 
- 	return 0;
-@@ -507,6 +514,28 @@ static int epf_ntb_configure_interrupt(struct epf_ntb *ntb)
- 	return 0;
- }
- 
-+static int epf_ntb_db_size(struct epf_ntb *ntb)
-+{
-+	const struct pci_epc_features *epc_features;
-+	size_t size = ENTRY_SIZE * ntb->db_count;
-+	u32 align;
-+
-+	epc_features = pci_epc_get_features(ntb->epf->epc,
-+					    ntb->epf->func_no,
-+					    ntb->epf->vfunc_no);
-+	align = epc_features->align;
-+
-+	if (size < 128)
-+		size = 128;
-+
-+	if (align)
-+		size = ALIGN(size, align);
-+	else
-+		size = roundup_pow_of_two(size);
-+
-+	return size;
-+}
-+
- /**
-  * epf_ntb_db_bar_init() - Configure Doorbell window BARs
-  * @ntb: NTB device that facilitates communication between HOST and vHOST
-@@ -522,33 +551,30 @@ static int epf_ntb_db_bar_init(struct epf_ntb *ntb)
- 	u32 align;
- 	int ret;
- 
--	size = ENTRY_SIZE * ntb->db_count;
--
- 	epc_features = pci_epc_get_features(ntb->epf->epc,
- 					    ntb->epf->func_no,
- 					    ntb->epf->vfunc_no);
- 	align = epc_features->align;
--
--	if (size < 128)
--		size = 128;
--
--	if (align)
--		size = ALIGN(size, align);
--	else
--		size = roundup_pow_of_two(size);
-+	size = epf_ntb_db_size(ntb);
- 
- 	barno = ntb->epf_ntb_bar[BAR_DB];
-+	epf_bar = &ntb->epf->bar[barno];
- 
--	mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
--	if (!mw_addr) {
--		dev_err(dev, "Failed to allocate OB address\n");
--		return -ENOMEM;
-+	if (ntb->epf_db_phys) {
-+		mw_addr = NULL;
-+		epf_bar->phys_addr = ntb->epf_db_phys;
-+		epf_bar->barno = barno;
-+		epf_bar->size = size;
-+	} else {
-+		mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
-+		if (!mw_addr) {
-+			dev_err(dev, "Failed to allocate doorbell address\n");
-+			return -ENOMEM;
-+		}
- 	}
- 
- 	ntb->epf_db = mw_addr;
- 
--	epf_bar = &ntb->epf->bar[barno];
--
- 	ret = pci_epc_set_bar(ntb->epf->epc, ntb->epf->func_no, ntb->epf->vfunc_no, epf_bar);
- 	if (ret) {
- 		dev_err(dev, "Doorbell BAR set failed\n");
-@@ -704,6 +730,84 @@ static int epf_ntb_init_epc_bar(struct epf_ntb *ntb)
- 	return 0;
- }
- 
-+#ifdef CONFIG_GENERIC_MSI_IRQ_DOMAIN
-+static void epf_ntb_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
-+{
-+	struct epf_ntb *ntb = dev_get_drvdata(desc->dev);
-+	struct epf_ntb_ctrl *reg = ntb->reg;
-+	int size = epf_ntb_db_size(ntb);
-+	u64 addr;
-+
-+	addr = msg->address_hi;
-+	addr <<= 32;
-+	addr |= msg->address_lo;
-+
-+	reg->db_data[desc->msi_index] = msg->data;
-+
-+	if (!desc->msi_index)
-+		ntb->epf_db_phys = round_down(addr, size);
-+
-+	reg->db_offset[desc->msi_index] = addr - ntb->epf_db_phys;
-+}
-+#endif
-+
-+static irqreturn_t epf_ntb_interrupt_handler(int irq, void *data)
-+{
-+	struct epf_ntb *ntb = data;
-+	int index;
-+
-+	index = irq - ntb->msi_virqbase;
-+	ntb->db |= 1 << (index - 1);
-+	ntb_db_event(&ntb->ntb, index);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+#ifdef CONFIG_GENERIC_MSI_IRQ_DOMAIN
-+static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
-+{
-+	struct device *dev = &ntb->epf->dev;
-+	struct irq_domain *domain;
-+	int virq;
-+	int ret;
-+	int i;
-+
-+	domain = dev_get_msi_domain(ntb->epf->epc->dev.parent);
-+	if (!domain)
-+		return;
-+
-+	dev_set_msi_domain(dev, domain);
-+
-+	if (platform_msi_domain_alloc_irqs(&ntb->epf->dev,
-+		ntb->db_count,
-+		epf_ntb_write_msi_msg)) {
-+		dev_err(dev, "Can't allocate MSI, falling back to polling mode\n");
-+		return;
-+	}
-+	dev_info(dev, "Using MSI as doorbell\n");
-+
-+	for (i = 0; i < ntb->db_count; i++) {
-+		virq = msi_get_virq(dev, i);
-+		ret = devm_request_irq(dev, virq,
-+			       epf_ntb_interrupt_handler, 0,
-+			       "pci_epf_vntb", ntb);
-+
-+		if (ret) {
-+			dev_err(dev, "Failed to request doorbell IRQ! Falling back to polling mode");
-+			ntb->epf_db_phys = 0;
-+			break;
-+		}
-+
-+		if (!i)
-+			ntb->msi_virqbase = virq; /* msi start virq number */
-+	}
-+}
-+#else
-+static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
-+{
-+	return;
-+}
-+#endif /* CONFIG_GENERIC_MSI_IRQ_DOMAIN */
- /**
-  * epf_ntb_epc_init() - Initialize NTB interface
-  * @ntb: NTB device that facilitates communication between HOST and vHOST2
-@@ -1299,14 +1403,15 @@ static int epf_ntb_bind(struct pci_epf *epf)
- 		goto err_bar_alloc;
- 	}
- 
-+	epf_set_drvdata(epf, ntb);
-+	epf_ntb_epc_msi_init(ntb);
-+
- 	ret = epf_ntb_epc_init(ntb);
- 	if (ret) {
- 		dev_err(dev, "Failed to initialize EPC\n");
- 		goto err_bar_alloc;
- 	}
- 
--	epf_set_drvdata(epf, ntb);
--
- 	pci_space[0] = (ntb->vntb_pid << 16) | ntb->vntb_vid;
- 	pci_vntb_table[0].vendor = ntb->vntb_vid;
- 	pci_vntb_table[0].device = ntb->vntb_pid;
--- 
-2.35.1
-
+Kind regards,
+Jeff LaBundy
