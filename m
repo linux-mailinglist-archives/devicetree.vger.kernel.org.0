@@ -2,86 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03BF35B6922
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 10:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDA345B6954
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 10:17:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231321AbiIMIAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 04:00:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47372 "EHLO
+        id S231368AbiIMIRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 04:17:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230349AbiIMIAM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 04:00:12 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3EBE240B7;
-        Tue, 13 Sep 2022 01:00:10 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 8F3B7135F;
-        Tue, 13 Sep 2022 10:00:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1663056008;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=yVtB/VJEfqHZoKPwgwxIul/sPitJMz3rz7VeLQrdCpk=;
-        b=O8jLzS5Gmcb8l6dbfs+w/rpJXtZ/yp2o/NXEZIkfR3M43rISCrVAp0+S0sGE20Npg1KUWp
-        9PW2Rv3L6Ux6Wzf4IC0DJILnCi3+NrKbmvia517IsaYsoqnBQzBMVXoF1ZOV5+TVd4S0pC
-        lBiLgqnlP8RPykM/rpIp2hWVmMzERr52IsC8r5SPPUPUHNqhiAXAX0P8o9KnTbig1cnXO9
-        iXfGstMhkzx+ANdS8AOO55NwER9t0f6S046TKu6rgyeIjEqlKwhFPMunTqkY0r97pCVtho
-        +o4MbS+lmedILV8wt9krA8FCWF08nr0ITFK8xYij3kySvXJMnxXUfxAkcKc+VQ==
+        with ESMTP id S231268AbiIMIRw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 04:17:52 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E1459261
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:17:50 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id r66-20020a1c4445000000b003b494ffc00bso359387wma.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 01:17:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=vGVgNjVIquChRYG3qNsuhFrwCzwmt0K1e1bT0honEPI=;
+        b=TU7nC+WV/Iqgj8T8V/TWKd4PZw0eiq5Sa3jBgVl4y4E5CAIF5CCWmegZpz8EcNv+18
+         U4i6AnT264NkAmyb48ufAfjXVG+uEBaetxgH1Lyk9qIYi40q1+Qk0Tj5UvNiDHQekD87
+         IMCNbUhsao2RvnRex5PozcE8ltGYi6SvnBrpTAi1IU6YhieMEgXKQE6u8w/fM3OqZ00H
+         G6Qihgb7JzNDCwUzZ1kLu4oJHh2oeLmZLnyoLnbZzr0p20Rh3FhFZdpOiCPkgQzLIR1W
+         HqmoCZtfzXMKi24A3dZsbEe84M3TC7MF2/y6LwRsJEUKGop6nFBFVcoLQ2kPZz4jhYx/
+         OgZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=vGVgNjVIquChRYG3qNsuhFrwCzwmt0K1e1bT0honEPI=;
+        b=WO2TU377imoItOeI+PHHXaGYXvNXiOi1sqg7NUeVBuejaOVzIcEzQyoOqZ69gDEOGy
+         1o05vi4byiC3dT3Uz2P+U3ts44QeccdNykLp6IlNljKJfoeN3LABo8kRz8NYDA3dFOWw
+         77sCeJRZ4nFg5JEop5msWZqxbdjNH2+wQ0AGXPwWZwhkpbabOPuEprhGiehLudUMOM3w
+         Yet4d6DFdhx4+PsteS4v5f+BNo32+RaCAQdhciMMX8jRSbXae8+0kuRfAVJiirhuSgis
+         7nbhQFQ9aHXqlvok0Nfpm/wkgtxD/u1TTW9u8I4sPF5o2P7PsfUi+bXZHNVyZQykj4Cb
+         tgDQ==
+X-Gm-Message-State: ACgBeo3xBr+AI+bZfe5ihmz4+wusROfx1G9jPuDY8m1n2l3nQyXORTPE
+        VddOQ9mjy9Auyn40k03+82DojA==
+X-Google-Smtp-Source: AA6agR4meZWm9mDdaxGaxa+e19Zlo0nNYMe+FubUX0U/41wXMZk3HjVPAmlXDUztz0OYV2rMoaYsJw==
+X-Received: by 2002:a1c:7412:0:b0:3b4:7a81:e7e4 with SMTP id p18-20020a1c7412000000b003b47a81e7e4mr1401171wmc.15.1663057068753;
+        Tue, 13 Sep 2022 01:17:48 -0700 (PDT)
+Received: from bullseye-11-arm64.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id q127-20020a1c4385000000b003a5f54e3bbbsm13091967wma.38.2022.09.13.01.17.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 01:17:47 -0700 (PDT)
+Date:   Tue, 13 Sep 2022 08:17:46 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/2] power: supply: Add Lenovo Yoga C630 EC driver
+Message-ID: <20220913081746.wjj5jne6fjbzcjxr@bullseye-11-arm64.lan>
+References: <20220810030500.2793882-1-bjorn.andersson@linaro.org>
+ <20220810030500.2793882-3-bjorn.andersson@linaro.org>
+ <20220912165802.dvlf3eeqx5g3bzdm@maple.lan>
 MIME-Version: 1.0
-Date:   Tue, 13 Sep 2022 10:00:08 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        claudiu.beznea@microchip.com, nicolas.ferre@microchip.com
-Subject: Re: [PATCH] ARM: dts: lan966x: Fix the interrupt number for internal
- PHYs
-In-Reply-To: <20220913075719.y63uvvwzquk435ht@soft-dev3-1.localhost>
-References: <20220912192629.461452-1-horatiu.vultur@microchip.com>
- <caf34bf663601404df4021bc14297eeb@walle.cc>
- <20220913075719.y63uvvwzquk435ht@soft-dev3-1.localhost>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <1f9ea2607ea1d8e0d4a2530a4c7dab41@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220912165802.dvlf3eeqx5g3bzdm@maple.lan>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-09-13 09:57, schrieb Horatiu Vultur:
->> Accoring to Table 3-155: Shared Peripheral Interrupts
->> There are ID47 and ID48 listed as "MIIM controller 0 interrupt".
->> Whatever that is, because the internal PHYs are on MIIM
->> controller 1.
->> 
->> But 80 and 81 would be ID48 and ID49. Did you test the
->> interrupts?
-> 
-> Looking the same table (3-155) in the documentation that I have these
-> interrupts correspond to ID112 and ID113 (Embedded CuPHY port 0/1 
-> interrupt).
-> And because these are shared peripheral interrupts, it is required to
-> substract 32. Therefore I got the numbers 80 and 81.
+On Mon, Sep 12, 2022 at 05:00:17PM +0000, Daniel Thompson wrote:
+> On Tue, Aug 09, 2022 at 10:05:00PM -0500, Bjorn Andersson wrote:
+> > The Qualcomm Snapdragon-based Lenovo Yoga C630 has some sort of EC
+> > providing AC-adapter and battery status, as well as USB Type-C altmode
+> > notifications for Displayport operation.
+>
+> There's a couple of minor review comments but before we get to that:
+> woo hoo!
 
-Ahh, I need more coffee :) Yes you are right.
+... and now with the correct address for Bjorn too (comments still below
+and indented > one level).
 
-> As the internal PHYs don't have yet interrupt support, I have sent a
-> patch here [1] and I have tested it with this.
-> 
-> [1] https://www.spinics.net/lists/kernel/msg4511731.html
 
-Thanks for the pointer!
+Daniel.
 
--michael
+
+> > The Yoga C630 ships with Windows, where these operations primarily are
+> > implemented in ACPI, but due to various issues with the hardware
+> > representation therein it's not possible to run Linux on this
+> > information. As such this is a best-effort re-implementation of these
+> > operations, based on the register map expressed in ACPI and a fair
+> > amount of trial and error.
+> >
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Reported-by: kernel test robot <lkp@intel.com>
+> > ---
+> >  drivers/power/supply/Kconfig        |  11 +
+> >  drivers/power/supply/Makefile       |   1 +
+> >  drivers/power/supply/yoga-c630-ec.c | 547 ++++++++++++++++++++++++++++
+> >  3 files changed, 559 insertions(+)
+> >  create mode 100644 drivers/power/supply/yoga-c630-ec.c
+> >
+> > diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+> > index 1aa8323ad9f6..6e706e948ad2 100644
+> > --- a/drivers/power/supply/Kconfig
+> > +++ b/drivers/power/supply/Kconfig
+> > @@ -897,4 +897,15 @@ config BATTERY_UG3105
+> >  	  device is off or suspended, the functionality of this driver is
+> >  	  limited to reporting capacity only.
+> >
+> > +config LENOVO_YOGA_C630_EC
+> > +	tristate "Lenovo Yoga C630 EC battery driver"
+> > +	depends on DRM
+> > +	depends on I2C
+>
+> This needs a "depends on TYPEC" in order to avoid linker errors.
+>
+>
+> > +	help
+> > +	  Driver for the Embedded Controller in the Qualcomm Snapdragon-based
+> > +	  Lenovo Yoga C630, which provides battery information and USB Type-C
+> > +	  altmode notifications.
+> > +
+> > +	  Say M or Y here to include this support.
+> > +
+> >  endif # POWER_SUPPLY
+> > diff --git a/drivers/power/supply/yoga-c630-ec.c b/drivers/power/supply/yoga-c630-ec.c
+> > new file mode 100644
+> > index 000000000000..1fa0b5844e01
+> > --- /dev/null
+> > +++ b/drivers/power/supply/yoga-c630-ec.c
+> > @@ -0,0 +1,547 @@
+> > <snip>
+> > +static int yoga_c630_ec_bat_get_property(struct power_supply *psy,
+> > +					 enum power_supply_property psp,
+> > +					 union power_supply_propval *val)
+> > +{
+> > +	struct yoga_c630_ec *ec = power_supply_get_drvdata(psy);
+> > +	int rc = 0;
+> > +
+> > +	if (ec->bat_present)
+> > +		yoga_c630_ec_maybe_update_bat_status(ec);
+> > +	else if (psp != POWER_SUPPLY_PROP_PRESENT)
+> > +		return -ENODEV;
+> > +
+> > +	switch (psp) {
+> >       <snip>
+> > +	case POWER_SUPPLY_PROP_TECHNOLOGY:
+> > +		val->intval = POWER_SUPPLY_TECHNOLOGY_LION;
+> > +		break;
+> > +	case POWER_SUPPLY_PROP_MODEL_NAME:
+> > +		val->strval = "PABAS0241231";
+> > +		break;
+> > +	case POWER_SUPPLY_PROP_MANUFACTURER:
+> > +		val->strval = "Compal";
+> > +		break;
+> > +	case POWER_SUPPLY_PROP_SERIAL_NUMBER:
+> > +		val->strval = "05072018";
+> > +		break;
+>
+> I'm a little sceptical that hardcoding a serial number into the
+> driver provides anybody any benefit (regardless of whether the
+> AML code does this). AFAICT this is not a commonly implemented property
+> in other power supplies so I'm not clear why this is needed.
+>
+>
+> Daniel.
