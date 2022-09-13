@@ -2,90 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E7B5B7758
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 224D55B7790
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232238AbiIMRHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 13:07:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43182 "EHLO
+        id S232691AbiIMRO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 13:14:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232415AbiIMRGx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:06:53 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6BF8E4D9;
-        Tue, 13 Sep 2022 08:56:09 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id b5so21478665wrr.5;
-        Tue, 13 Sep 2022 08:56:09 -0700 (PDT)
+        with ESMTP id S232616AbiIMROd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 13:14:33 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B8FD076B;
+        Tue, 13 Sep 2022 09:03:11 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id g3so657008wrq.13;
+        Tue, 13 Sep 2022 09:03:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=A1Eig4ob2xruzFnrOgNkfvNevJMOsIOAHzq6wGFNTHg=;
-        b=jnqG/3Xw42Vw3hCx2tkA1LUWA4X73P8JBwCXnUdjcxmH8K3BrrtIM6OMZP+btxOVPz
-         kKgq37YjjtNc8PDz/BUigJobIHgg7/5eL7X9bT6YMTugqrRNy/NSTU6vOmAfrHCHrnuf
-         NhF2jtGgPfuP2T39ncunefBsR0J+A78NnBBM3KBODOF6GK8W4UQoEuKaLG6jscSeHzIm
-         A+JiQjmcgbKRzh7owhNRLHav15OTGXq/GHgRSpDcMN/G8pDwHGDJD6yRbm7m+BWjl/5R
-         My+9qSZcL9XtCSLrVracdZpj5HHr25rBEFGxOv+0Y6Qm+r8u8IBwm8Fkm7CEBNSeGDqz
-         retQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=q9dIspQTU0av/CmaF79qqgUN2bSkSgVAACf4aW4xX6k=;
+        b=EZw4GlpBEsKDwY9Vn1y36CdUECm7DCP+AA5gCXuuc7tyjLj7coaS1qpT4DaPI1LUwX
+         qH43fimk85v9fIQALrARFtShmT11MjiAa4jmT1ktMvHwgL94r3gvTtUm4xS3mvq7rx7o
+         SChbj3QtJRlrrsZdjBOYDxgDjO3Igtdi0VOr0euOP/cY3mUyi4uSgI6yL/YwIT75B6L3
+         SG5fM/WvGXsheyULrDYh7RzW3zBtlIdIXJpwxY18BoROFKV6+t3l9yDLQ7xDNzPmPS+M
+         1gLYoW52kF01L1PYmZIS1cjZqX2JPAi/+xWeLnuZHuz0y1Kc0IfHjn8qviu84ZLFmOYh
+         Joqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=A1Eig4ob2xruzFnrOgNkfvNevJMOsIOAHzq6wGFNTHg=;
-        b=LlvEy651z9l9DvNAStTKy6u1zcyN50zaggUBpriDdiV8e6bn+KX2U2cFPnnuCl7cgy
-         SrGmb6PmqEZ1lmb3GIan2hfwJhGMB5FmlVQOAgG3NbubQidnHC1iI3Gu2oPZp1eD+XIO
-         mx1dJMihXNQfbkuG/XdWUuniLW58tRER99QK0Xxmx/AFhQHvgqSTCYZ3RYTiHjbfYlc7
-         O5POzb/M/VEygaG4qrM3086ju3RJsnyBE0cxPcSC3kRInWoXPAUic50G1zfvNmV7OQGd
-         X+WFM/2P1ulQi5rYQFmxnZtukBCpp1bLJXnygi/h1FPMa8zPyBxeYuUgugLTKzuanIBF
-         Vrzw==
-X-Gm-Message-State: ACgBeo2kIbLxVPOWbadpDcok8YYsLarFif8cu8w7VjTmT00Kh0SXhHEA
-        G4mDuCSDOPn/2huQepgRF/o=
-X-Google-Smtp-Source: AA6agR5MXcQhvZeL2lOM1tkCMzp/EfuKffz9Zr/BO5VivjLo3NQ+7pEPi4PF8Ub2szW7vpiCx0FbIA==
-X-Received: by 2002:a05:6000:1acb:b0:226:f39d:1a1f with SMTP id i11-20020a0560001acb00b00226f39d1a1fmr18413148wry.607.1663084564686;
-        Tue, 13 Sep 2022 08:56:04 -0700 (PDT)
-Received: from [192.168.0.30] ([47.62.125.55])
-        by smtp.gmail.com with ESMTPSA id v8-20020a05600c12c800b003a844885f88sm13138699wmd.22.2022.09.13.08.56.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Sep 2022 08:56:02 -0700 (PDT)
-Message-ID: <96cd0c78-a76d-e32c-8f05-32e127df3fb0@gmail.com>
-Date:   Tue, 13 Sep 2022 17:56:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Subject: Re: [PATCH 00/10] ASoC: mediatek: Set i2s clock sharing from machine
- drivers
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chunxu Li <chunxu.li@mediatek.com>,
-        Akihiko Odaki <akihiko.odaki@gmail.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>, kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tzung-Bi Shih <tzungbi@google.com>,
-        linux-kernel@vger.kernel.org,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=q9dIspQTU0av/CmaF79qqgUN2bSkSgVAACf4aW4xX6k=;
+        b=BTf/DQTNPlA2AC51kYw5QZ7YltCDw4aAz5bhxmidubOnbCMwHzBoR0Eh1dvaoy6Qnb
+         wyQbCeNbvhvx61CP9MuaF7IZptHlhjqTQbmOwX3NDRdwOqPu1SwUUu3cU9U3Xk9zxX9r
+         EiQyNokL6dTUB2Iomu3DoQVjXgLATyt1Uc2c/QBGr5oOLp5J+BEKFKMisD9mQZAtKJH0
+         NRdKBZsugago97YJkDWIUfl5Ikxswrzz21V0E8WfoiSgbnppcVHtdkrN1gchl+Z3G7j8
+         B2sivuWnr8ZDBRd5a8VIaGHuPosYLd+hQiYHbZrgHwK2tQyKcIdtz/OfKn3E4eAt3qXi
+         RTjQ==
+X-Gm-Message-State: ACgBeo2emAMM8/BXlJTZEmaifFX918YVobBlrjMHjm1Ws2v85CJiiGhS
+        4edC4oApoZkD7bTiEE23OCg=
+X-Google-Smtp-Source: AA6agR6FXo2eDIl0MQGY4qrIKW20mkTpBU7CcTRg/DuFdoBkQK2/GJBJ38Sg8AVB2weSBYCkgq6bgw==
+X-Received: by 2002:a05:6000:168e:b0:22a:4e45:7469 with SMTP id y14-20020a056000168e00b0022a4e457469mr8999494wrd.681.1663084970033;
+        Tue, 13 Sep 2022 09:02:50 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2501:c701:fc6e:cfa1:9281:3490])
+        by smtp.gmail.com with ESMTPSA id az8-20020a05600c600800b003b27f644488sm14116064wmb.29.2022.09.13.09.02.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 09:02:48 -0700 (PDT)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        linux-mediatek@lists.infradead.org,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Miaoqian Lin <linmq006@gmail.com>
-References: <20220908161154.648557-1-nfraprado@collabora.com>
- <166276355052.332114.1969052042106279493.b4-ty@kernel.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <166276355052.332114.1969052042106279493.b4-ty@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] media: dt-bindings: ov5645: Convert OV5645 binding to a schema
+Date:   Tue, 13 Sep 2022 17:02:24 +0100
+Message-Id: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -94,73 +74,203 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+Convert the simple OV5645 Device Tree binding to json-schema.
 
-On 10/09/2022 00:45, Mark Brown wrote:
-> On Thu, 8 Sep 2022 12:11:44 -0400, Nícolas F. R. A. Prado wrote:
->> The i2s ports on MediaTek SoCs only support a single data lane. In order
->> to achieve full-duplex operation thus two i2s ports, one for input and
->> one for output, need to be used together and sharing a single clock from
->> one of the ports.
->>
->> This clock sharing setting was previously read by the sound platform
->> driver from the devicetree, but given that the input/output pairing is
->> closely related to which codecs are connected to which ports, the
->> machine sound driver can infer and set it, so that no DT property is
->> required.
->>
->> [...]
-> 
-> Applied to
-> 
->     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-> 
-> Thanks!
-> 
-> [01/10] ASoC: mediatek: mt8192: Allow setting shared clocks from machine driver
->          commit: 8ae4fcfd5b11b5c33154732fcad99ad0f5843ce2
-> [02/10] ASoC: mediatek: mt8192-mt6359: Make i2s9 share the clock from i2s8
->          commit: 3ffb9fa3963964a730c34f48e502ac0625efc145
-> [03/10] ASoC: mediatek: mt8192: Remove clock share parsing from DT
->          commit: 9ccd51ce396a46d9d4d0c87aa6a82dd26a2f281a
-> [04/10] ASoC: mediatek: mt8183: Allow setting shared clocks from machine driver
->          commit: fea84890e5c1fb65ae8e25b2f9b86363af1f45f2
-> [05/10] ASoC: mediatek: mt8183: Configure shared clocks
->          commit: 4583392a135cc30409f5a6ceebb8374e550b03e0
-> [06/10] ASoC: mediatek: mt8183: Remove clock share parsing from DT
->          commit: cbebe67859a0e8d51e578fdd9f927f8ef2504ba4
-> [07/10] arm64: dts: mediatek: kukui: Remove i2s-share properties
->          commit: b3821f7839c2ec322926d16557aff29f4be1f4dc
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ .../devicetree/bindings/media/i2c/ov5645.txt  |  54 --------
+ .../bindings/media/i2c/ovti,ov5645.yaml       | 119 ++++++++++++++++++
+ 2 files changed, 119 insertions(+), 54 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
 
-DTS should go through my branch. We can see if there are any merge conflicts in 
-linux-next and fix them somehow or you drop the patch and I take it through my 
-tree. As you like.
+diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+deleted file mode 100644
+index 72ad992f77be..000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
++++ /dev/null
+@@ -1,54 +0,0 @@
+-* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
+-
+-The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
+-an active array size of 2592H x 1944V. It is programmable through a serial I2C
+-interface.
+-
+-Required Properties:
+-- compatible: Value should be "ovti,ov5645".
+-- clocks: Reference to the xclk clock.
+-- clock-names: Should be "xclk".
+-- clock-frequency: Frequency of the xclk clock.
+-- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
+-  to the hardware pin PWDNB which is physically active low.
+-- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
+-  the hardware pin RESETB.
+-- vdddo-supply: Chip digital IO regulator.
+-- vdda-supply: Chip analog regulator.
+-- vddd-supply: Chip digital core regulator.
+-
+-The device node must contain one 'port' child node for its digital output
+-video port, in accordance with the video interface bindings defined in
+-Documentation/devicetree/bindings/media/video-interfaces.txt.
+-
+-Example:
+-
+-	&i2c1 {
+-		...
+-
+-		ov5645: ov5645@3c {
+-			compatible = "ovti,ov5645";
+-			reg = <0x3c>;
+-
+-			enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
+-			reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&camera_rear_default>;
+-
+-			clocks = <&clks 200>;
+-			clock-names = "xclk";
+-			clock-frequency = <24000000>;
+-
+-			vdddo-supply = <&camera_dovdd_1v8>;
+-			vdda-supply = <&camera_avdd_2v8>;
+-			vddd-supply = <&camera_dvdd_1v2>;
+-
+-			port {
+-				ov5645_ep: endpoint {
+-					clock-lanes = <1>;
+-					data-lanes = <0 2>;
+-					remote-endpoint = <&csi0_ep>;
+-				};
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+new file mode 100644
+index 000000000000..7f407c988f87
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+@@ -0,0 +1,119 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5645.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV5645 Image Sensor Device Tree Bindings
++
++maintainers:
++  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: ovti,ov5645
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: XCLK Input Clock
++
++  clock-names:
++    const: xclk
++
++  clock-frequency:
++    description: Frequency of the xclk clock in Hz.
++
++  vdda-supply:
++    description: Analog voltage supply, 2.8 volts
++
++  vddd-supply:
++    description: Digital core voltage supply, 1.5 volts
++
++  vdddo-supply:
++    description: Digital I/O voltage supply, 1.8 volts
++
++  enable-gpios:
++    maxItems: 1
++    description:
++      Reference to the GPIO connected to the PWDNB pin, if any.
++
++  reset-gpios:
++    maxItems: 1
++    description:
++      Reference to the GPIO connected to the RESETB pin, if any.
++
++  port:
++    description: Digital Output Port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          clock-lanes:
++            const: 0
++
++          bus-type:
++            const: 4
++
++          data-lanes:
++            minItems: 1
++            maxItems: 2
++            items:
++              enum: [1, 2]
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - clock-frequency
++  - vdda-supply
++  - vddd-supply
++  - vdddo-supply
++  - enable-gpios
++  - reset-gpios
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++      #include <dt-bindings/gpio/gpio.h>
++
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          camera@3c {
++              compatible = "ovti,ov5645";
++              pinctrl-names = "default";
++              pinctrl-0 = <&pinctrl_ov5645>;
++              reg = <0x3c>;
++              clocks = <&clks 1>;
++              clock-names = "xclk";
++              clock-frequency = <24000000>;
++              vdddo-supply = <&ov5645_vdddo_1v8>; /* 1.8v */
++              vdda-supply = <&ov5645_vdda_2v8>;  /* 2.8v */
++              vddd-supply = <&ov5645_vddd_1v5>;  /* 1.5v */
++              enable-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
++              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
++
++              port {
++                  ov5645_ep: endpoint {
++                      remote-endpoint = <&csi0_ep>;
++                      clock-lanes = <0>;
++                      data-lanes = <1 2>;
++                  };
++              };
++          };
++      };
++...
+-- 
+2.25.1
 
-Regards,
-Matthias
-
-> [08/10] ASoC: mediatek: mt8186: Allow setting shared clocks from machine driver
->          commit: 4132a778e806f77c2bd01a9a34b07edc9dd99d76
-> [09/10] ASoC: mediatek: mt8186: Configure shared clocks
->          commit: 9986bdaee4776c5d595933cace9d54c6bc084e91
-> [10/10] ASoC: mediatek: mt8186: Remove clock share parsing from DT
->          commit: 62da80c6a124dd68b12c4d2197ecc74b79823571
-> 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
-> 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
-> 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
-> 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
-> 
-> Thanks,
-> Mark
