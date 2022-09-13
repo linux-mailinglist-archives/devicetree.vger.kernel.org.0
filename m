@@ -2,84 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C4805B683C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 08:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ECB95B6849
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 09:00:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbiIMG5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 02:57:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
+        id S230200AbiIMHAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 03:00:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbiIMG5e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 02:57:34 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C081C91C;
-        Mon, 12 Sep 2022 23:57:33 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28D6vMw2107882;
-        Tue, 13 Sep 2022 01:57:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663052242;
-        bh=ghPSwh8yLq/NWzjzDD4mLMi0WTVtkeRcUYlzeZWnpH8=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=F4fmZ8C3BB1KpN/XJMRIDmBjJ83M6YlcMAXPgSGaY4bAXlOqpzyBPVOtsQyF3t4f1
-         G4Z+gmmeqg9ItXaMidhiPY9ubtjaisqkX4nUFEX1p6IqVUlEqisHM9sqWaDfE9TBnI
-         xprwFH9xbxpXbWmipeKgB/68fNi21nBCuQY0ORTY=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28D6vMpB013241
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 13 Sep 2022 01:57:22 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 13
- Sep 2022 01:57:22 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 13 Sep 2022 01:57:22 -0500
-Received: from [172.24.145.199] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28D6vIKR088119;
-        Tue, 13 Sep 2022 01:57:19 -0500
-Message-ID: <a8c9750f-9dc1-3e73-69a4-1f687f3681c3@ti.com>
-Date:   Tue, 13 Sep 2022 12:27:18 +0530
+        with ESMTP id S229821AbiIMHAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 03:00:51 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D3D21570E;
+        Tue, 13 Sep 2022 00:00:50 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id d17so6949509qko.13;
+        Tue, 13 Sep 2022 00:00:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=765RBTHIVr4lJSrq7MpOeNT5T0qDbvjzGqtnHA+6dLY=;
+        b=lHn+kun5vFNZw9lq6iAmd/tF3UYyk0BPvoJGd++0yRRXBQubtztslYNyBRyjUH+z9P
+         rdMhmtzGLrk8qtdy76Ibz47Ps08MbIGchkkGDRJq6h6AZVBCEBJU4+678i93fsotfq5E
+         f3uZ2KDFEb04aqLpbqyHBGProH8GcgH/F9SiLgQvcvSuXhcTnPhFHpDHTVjips8ph3+n
+         NPxHmjWn4pPlbwwVCh45iPmnu4NOybLDNxEAYiVee4dQkcfoflISKmOjX9MUlXKOUBMs
+         3l8RRdfbT8Wmffk4/H/+0fRSBbVx+lJnLZElQAmgDv00uJCqMSTo3llQc2xzv9o9ANQC
+         3MWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=765RBTHIVr4lJSrq7MpOeNT5T0qDbvjzGqtnHA+6dLY=;
+        b=7pvKW8UjW4AWRBTCGTgDLoPre9K9O8SKR3QTROENamPGPFoL3ZojuzZDe3IHvbOGUQ
+         3K4eYVQdmH0IQafabB4DBd1wtWIeJb1TzsMCKu/p5aGx+VFtC6v0CQ9hwQHBBtQKAOjn
+         /NEMwAS8Iuk1S7JKYHoHLoNW+DpP0aWNX0/NndjFvjW5m1CZwXwWCUro1t6zrlm+RoFr
+         rwdh0IE0Hh58MEftTRY3JGlG/1FYWT8IYJ6PxhM9W4kIz0h3FWB3/kdbFv3aQmA+pXnX
+         k3jQFiFfcEQAHIQZJF5J5WaaO5sSk2u0xu3BlOuuBiLusJmtxsZ1g0ZP06L04Dv1Sm9r
+         4nkQ==
+X-Gm-Message-State: ACgBeo2oP8zXq9Y7AG0IQPkZDl01NQJftc3/DNBaQxAajDKZMWYUYlGp
+        xFgfkala8A4l33yeF2smp8M=
+X-Google-Smtp-Source: AA6agR6fDy9UM3qotb//TTX9Rq1I9o//vFtLnFlcAXErWRbzqoB6rMtz152VgrlNA/URkng98Cui9Q==
+X-Received: by 2002:a37:758:0:b0:6cb:c6e0:f17a with SMTP id 85-20020a370758000000b006cbc6e0f17amr16968540qkh.679.1663052449306;
+        Tue, 13 Sep 2022 00:00:49 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:216d:1a77:16d6:2f68? ([2600:1700:2442:6db0:216d:1a77:16d6:2f68])
+        by smtp.gmail.com with ESMTPSA id l19-20020a05620a28d300b006ce622e6c96sm1045426qkp.30.2022.09.13.00.00.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Sep 2022 00:00:48 -0700 (PDT)
+Message-ID: <1d9faa2e-e3fc-d104-c85f-4035233848d6@gmail.com>
+Date:   Tue, 13 Sep 2022 02:00:47 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 0/5] arm64: dts: ti: Add support for AM62A family of
- SoCs
+ Thunderbird/91.9.1
+Subject: Re: [PATCH RFC 0/2] Generate device tree node for pci devices
 Content-Language: en-US
-To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
-References: <20220901141328.899100-1-vigneshr@ti.com>
-From:   Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20220901141328.899100-1-vigneshr@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SCC_BODY_URI_ONLY,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+To:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, helgaas@kernel.org
+Cc:     clement.leger@bootlin.com, max.zhen@amd.com, sonal.santan@amd.com,
+        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
+        trix@redhat.com
+References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 01/09/22 19:43, Vignesh Raghavendra wrote:
-> This series adds basic boot support for AM62A SoCs with UART, MMC/SD and
-> GPIO support on AM62A SK EVM
+On 8/29/22 16:43, Lizhi Hou wrote:
+> This patch series introduces OF overlay support for PCI devices which
+> primarily addresses two use cases. First, it provides a data driven method
+> to describe hardware peripherals that are present in a PCI endpoint and
+> hence can be accessed by the PCI host. An example device is Xilinx/AMD
+> Alveo PCIe accelerators. Second, it allows reuse of a OF compatible
+> driver -- often used in SoC platforms -- in a PCI host based system. An
+> example device is Microchip LAN9662 Ethernet Controller.
 > 
-> Bootlog: https://gist.github.com/r-vignesh/4d88f53bb0489f1675fa78f993e95d3f
-> Tech Ref manual: https://www.ti.com/lit/zip/spruj16
-> Schematics: https://www.ti.com/lit/zip/sprr459
+> This patch series consolidates previous efforts to define such an
+> infrastructure:
+> https://lore.kernel.org/lkml/20220305052304.726050-1-lizhi.hou@xilinx.com/
+> https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
 > 
-Tested-By: Devarsh Thakkar <devarsht@ti.com>
-Boot logs: https://gist.github.com/devarsht/f7f95e77d8019bdf7ce7265a20ea64a4
+> Normally, the PCI core discovers PCI devices and their BARs using the
+> PCI enumeration process. However, the process does not provide a way to
+> discover the hardware peripherals that are present in a PCI device, and
+> which can be accessed through the PCI BARs. Also, the enumeration process
+> does not provide a way to associate MSI-X vectors of a PCI device with the
+> hardware peripherals that are present in the device. PCI device drivers
+> often use header files to describe the hardware peripherals and their
+> resources as there is no standard data driven way to do so. This patch
+> series proposes to use flattened device tree blob to describe the
+> peripherals in a data driven way. Based on previous discussion, using
+> device tree overlay is the best way to unflatten the blob and populate
+> platform devices. To use device tree overlay, there are three obvious
+> problems that need to be resolved.
+> 
+> First, we need to create a base tree for non-DT system such as x86_64. A
+> patch series has been submitted for this:
+> https://lore.kernel.org/lkml/20220624034327.2542112-1-frowand.list@gmail.com/
+> https://lore.kernel.org/lkml/20220216050056.311496-1-lizhi.hou@xilinx.com/
+> 
+> Second, a device tree node corresponding to the PCI endpoint is required
+> for overlaying the flattened device tree blob for that PCI endpoint.
+> Because PCI is a self-discoverable bus, a device tree node is usually not
+> created for PCI devices. This series adds support to generate a device
+> tree node for a PCI device which advertises itself using PCI quirks
+> infrastructure.
+> 
+> Third, we need to generate device tree nodes for PCI bridges since a child
+> PCI endpoint may choose to have a device tree node created.
+> 
+> This patch series is made up of two patches.
+> 
+> The first patch is adding OF interface to allocate an OF node. It is copied
+> from:
+> https://lore.kernel.org/lkml/20220620104123.341054-5-clement.leger@bootlin.com/
+> 
+> The second patch introduces a kernel option, CONFIG_PCI_OF. When the option
+> is turned on, the kernel will generate device tree nodes for all PCI
+> bridges unconditionally. The patch also shows how to use the PCI quirks
+> infrastructure, DECLARE_PCI_FIXUP_FINAL to generate a device tree node for
+> a device. Specifically, the patch generates a device tree node for Xilinx
+> Alveo U50 PCIe accelerator device. The generated device tree nodes do not
+> have any property. Future patches will add the necessary properties.
+> 
+> Clément Léger (1):
+>   of: dynamic: add of_node_alloc()
+> 
+> Lizhi Hou (1):
+>   pci: create device tree node for selected devices
+> 
+>  drivers/of/dynamic.c        |  50 +++++++++++++----
+>  drivers/pci/Kconfig         |  11 ++++
+>  drivers/pci/bus.c           |   2 +
+>  drivers/pci/msi/irqdomain.c |   6 +-
+>  drivers/pci/of.c            | 106 ++++++++++++++++++++++++++++++++++++
+>  drivers/pci/pci-driver.c    |   3 +-
+>  drivers/pci/pci.h           |  16 ++++++
+>  drivers/pci/quirks.c        |  11 ++++
+>  drivers/pci/remove.c        |   1 +
+>  include/linux/of.h          |   7 +++
+>  10 files changed, 200 insertions(+), 13 deletions(-)
+> 
+
+The patch description leaves out the most important piece of information.
+
+The device located at the PCI endpoint is implemented via FPGA
+   - which is programmed after Linux boots (or somewhere late in the boot process)
+      - (A) and thus can not be described by static data available pre-boot because
+            it is dynamic (and the FPGA program will often change while the Linux
+            kernel is already booted
+      - (B) can be described by static data available pre-boot because the FPGA
+            program will always be the same for this device on this system
+
+I am not positive what part of what I wrote above is correct and would appreciate
+some confirmation of what is correct or incorrect.
+
+-Frank
