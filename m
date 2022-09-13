@@ -2,56 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7101B5B6552
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 04:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 928B25B6560
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 04:07:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbiIMCDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 22:03:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37860 "EHLO
+        id S229489AbiIMCHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 22:07:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiIMCDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 22:03:31 -0400
+        with ESMTP id S229456AbiIMCHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 22:07:16 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78BF225298;
-        Mon, 12 Sep 2022 19:03:30 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 671CE50051
+        for <devicetree@vger.kernel.org>; Mon, 12 Sep 2022 19:07:15 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1FD47612E1;
-        Tue, 13 Sep 2022 02:03:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B31BC433C1;
-        Tue, 13 Sep 2022 02:03:27 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 01CAB612ED
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:07:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88AEEC433D6;
+        Tue, 13 Sep 2022 02:07:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663034609;
-        bh=dAg3FZ9zu3IH+ISvygDYxRdgqtmYTOxxK0xZvwzsjFY=;
+        s=k20201202; t=1663034834;
+        bh=6szBzBcA80yfhLBaS718DT01/BeRIqYhT2meY4Qtyl8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KewjEPEOJz4TyYv1p3rKYGZmT8zfkngZMS5S/fbreu/5YOvUiHrh9jxOwE55r7wWD
-         iE2Kc3N+YtHp1ux0Y2+aaLKvkjhaeBAVaSkRMxgRECdXM1ImDOKgwnmxQxiV3khSAn
-         xZ6/p64aPCNTXX2niNrE3HtuYtn3I7P+mCJs5ErXtvRk45FCF5DA7vgpljANnaD4TO
-         CxXMFPqqEDbOT9GVs0xTI0Ojy/w6Zw5T5RQCmzU9U34jQn+7YdtLzHErJQI0hrVhdx
-         TwYbYHOulETuC8kCuVbSvzJs8W9Zux2t1QVo0C+JoDQZFfgfmSj0edLAARizaM2vVf
-         2agfYJoP1wsag==
-Date:   Tue, 13 Sep 2022 10:03:23 +0800
+        b=qELHrdFTR09Frx+jF5R60y3ci5sXEhT7FFIDHMy6X86j7OdAjHlGKKStEYtC3cCDv
+         A+eNDPM+RP8cAxXVTitYUtzuYD+drHwNahrzf7l0XqNXOR6tbFLKaGahnOpQJYtkB/
+         E3BkaAoUCOOqC+j4tCzcw8btbLfJAnMV/kR36Xaf1vyvOk7WtFlU8ExdddpJlP17ir
+         MrndvPFBwk5m6CXe/lDnC8gQ6Xku17AoqPFnA/aKV3XH9mj3k4kqykvt7Z7GCCGZZ1
+         wQU2PcEvsyZOgnAjpnCwKxzXyQM6mR1FXeeJDVJAoHO3SE0Fn6Onq/rZ9MxoTnP9ua
+         8OgyY6cron0Wg==
+Date:   Tue, 13 Sep 2022 10:07:08 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Leo Li <leoyang.li@nxp.com>
-Cc:     Olof Johansson <olof@lixom.net>,
+To:     Shenwei Wang <shenwei.wang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Z.Q. Hou" <zhiqiang.hou@nxp.com>
-Subject: Re: [PATCH v4 1/2] arm64: dts: lx2160a: update PCIe nodes to match
- rev2 silicon
-Message-ID: <20220913020323.GD1728671@dragon>
-References: <20220817202538.21493-1-leoyang.li@nxp.com>
- <20220817202538.21493-2-leoyang.li@nxp.com>
- <CAOesGMhz8PYNG_bgMX-6gka77k1hJOZUv6xqJRqATaJ6mFbk6A@mail.gmail.com>
- <AM0PR04MB6289B28243FCBA64CAD110B98F449@AM0PR04MB6289.eurprd04.prod.outlook.com>
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [EXT] Re: [PATCH v6 5/5] arm64: dts: freescale: add support for
+ i.MX8DXL EVK board
+Message-ID: <20220913020708.GE1728671@dragon>
+References: <20220822175245.222691-1-shenwei.wang@nxp.com>
+ <20220822175245.222691-6-shenwei.wang@nxp.com>
+ <20220903034819.GF1728671@dragon>
+ <PAXPR04MB9185D243324279DD80C371DB897E9@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <20220912081649.GR1728671@dragon>
+ <PAXPR04MB9185F52BA6FEC47E6412EB3C89449@PAXPR04MB9185.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <AM0PR04MB6289B28243FCBA64CAD110B98F449@AM0PR04MB6289.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB9185F52BA6FEC47E6412EB3C89449@PAXPR04MB9185.eurprd04.prod.outlook.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -62,36 +67,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 08:25:39PM +0000, Leo Li wrote:
+On Mon, Sep 12, 2022 at 02:35:18PM +0000, Shenwei Wang wrote:
 > 
 > 
 > > -----Original Message-----
-> > From: Olof Johansson <olof@lixom.net>
-> > Sent: Monday, September 12, 2022 2:05 AM
-> > To: Leo Li <leoyang.li@nxp.com>
-> > Cc: shawnguo@kernel.org; devicetree@vger.kernel.org;
-> > robh+dt@kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> > kernel@vger.kernel.org; Z.Q. Hou <zhiqiang.hou@nxp.com>
-> > Subject: Re: [PATCH v4 1/2] arm64: dts: lx2160a: update PCIe nodes to match
-> > rev2 silicon
-> > 
-> > Hi,
-> > 
-> > On Wed, Aug 17, 2022 at 1:26 PM Li Yang <leoyang.li@nxp.com> wrote:
+> > From: Shawn Guo <shawnguo@kernel.org>
+> > Sent: Monday, September 12, 2022 3:17 AM
+> > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > <krzysztof.kozlowski+dt@linaro.org>; Sascha Hauer <s.hauer@pengutronix.de>;
+> > Pengutronix Kernel Team <kernel@pengutronix.de>; Peng Fan
+> > <peng.fan@nxp.com>; devicetree@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org; imx@lists.linux.dev; dl-linux-imx <linux-
+> > imx@nxp.com>
+> > > > > +
+> > > > > +     reg_fec1_sel: regulator-1 {
+> > > > > +             compatible = "regulator-fixed";
+> > > > > +             regulator-name = "fec1_supply";
+> > > > > +             regulator-min-microvolt = <3300000>;
+> > > > > +             regulator-max-microvolt = <3300000>;
+> > > > > +             gpio = <&pca6416_1 11 GPIO_ACTIVE_HIGH>;
+> > > >
+> > > > Missing enable-active-high?
 > > >
-> > > The original dts was created based on the non-production rev1 silicon
-> > > which was only used for evaluation.  Update the PCIe nodes to align
-> > > with the different controller used in production rev2 silicon.
+> > > No. Enabling this regulator to select the fec1 interface instead of usdhc2.
+> > Pulling this GPIO pin to low is to use FEC1 interface.
 > > 
-> > How can I confirm what version of silicon I have on a system?
+> > Then the polarity cell should be GPIO_ACTIVE_LOW rather than
+> > GPIO_ACTIVE_HIGH?
 > > 
-> > My non-evaluation commercially purchased system (HoneyComb LX2K) has:
-> > 
-> > # cat /sys/bus/soc/devices/soc0/revision
-> > 1.0
 > 
-> This is different from the information I got.  If there is still active Rev1.0 system in use, I would agree that we probably need to create a new device tree for the rev2 silicon.  Thanks for the information.
+> That doesn't matter since any GPIO phandle flags are ignored in the node of "regulator-fixed".  The final flag is only determined by the property of "enable-active-high".  If there is a "enable-active-high", the GPIO line works as active high. If no such a property, it works as active low by default. Right?
+> 
 
-Dropped both patches.
+Well, we are talking about the correctness of DT (hardware description),
+not how kernel driver works with DT.
 
 Shawn
