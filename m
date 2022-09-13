@@ -2,91 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C7F45B64AA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 02:52:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E3F5B64F0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 03:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiIMAwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Sep 2022 20:52:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56084 "EHLO
+        id S229804AbiIMBKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Sep 2022 21:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229722AbiIMAv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 20:51:58 -0400
-Received: from rcdn-iport-5.cisco.com (rcdn-iport-5.cisco.com [173.37.86.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E537B7D1;
-        Mon, 12 Sep 2022 17:51:57 -0700 (PDT)
+        with ESMTP id S229591AbiIMBKp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Sep 2022 21:10:45 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6348651421;
+        Mon, 12 Sep 2022 18:10:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=4633; q=dns/txt; s=iport;
-  t=1663030317; x=1664239917;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663031443; x=1694567443;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=P9F0VVnqIZKUSRkF3utEagp6d//8cizj9m/SBeqTz4E=;
-  b=Ka2xKt2HSmsQQFv3tyzXLkATe0yFVcXrjcEI7IlLEwK2yve1S4md3Fa4
-   dfTw/4NdoiG5/EwycgUTNBok4cQuOoCF9UZLRGAvtXwMq3Utv16vJCUpS
-   aEu/khrJ7ekePutZ8EtKPazzQr+aYvuDqH4KbUPN8Wx0ub/8igbGel5F9
-   Y=;
-IronPort-Data: =?us-ascii?q?A9a23=3ACGmM+6jwDKZKOgp2Lg34LHYIX1616BIKZh0uj?=
- =?us-ascii?q?C45NGQN5FlHY01jehtvW2nVPqneMGX3KY9wOtu38E9QsMSAmoNhSFE6/yxjQ?=
- =?us-ascii?q?S9jpJueD7x1DKtf0wB+jyH7ockOA/w2MrEsF+hpCC6FzvuRGuK59yMkiPjWH?=
- =?us-ascii?q?uOU5NPsY0ideyc1EE/Ntjo78wIJqtYAbemRW2thi/uryyHsEAfNNwpPD44hw?=
- =?us-ascii?q?/nrRCWDExjFkGhwUlQWPZintbJF/pUfJMp3yaqZdxMUTmTId9NWSdovzJnhl?=
- =?us-ascii?q?o/Y1w0mBtXgmbHhfwhTBLXTJgOJzHFRXsBOgDAb+Xd0ifl9ZaFaMBoN49mKt?=
- =?us-ascii?q?4gZJNFluZW2SAotIaTkk+UGWB4eGCZ7VUFD0O+feCni6JPNlSUqdFOpmZ2CF?=
- =?us-ascii?q?noeOYwe5/YyAmxU8/EcAC4CYwrFhO+sxr+/DO52iawLIMT1PYgSpmttwBnHA?=
- =?us-ascii?q?vs8B5POWaPH4ZlfxjhYrtpJF/ada9Yxajd1ahnEJRpVNT8/EJs4gOqsh2K5e?=
- =?us-ascii?q?jtEr1SUorcf4G/V1xF107+rO93QEvSEX8JKl0CU4GbH5HjRDRQTNdjZwj2Am?=
- =?us-ascii?q?k9ALMencTjTQokeEviz8eRnxQTVzW0IAxpQXly+ycRVQ3WWA7p3Q3H4MAJ3x?=
- =?us-ascii?q?UTqyHGWcw=3D=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AifsSl618VIKqVNSLy7SlBgqjBIkkLtp133?=
- =?us-ascii?q?Aq2lEZdPWaSKOlfuSV7ZEmPH7P+VQssR4b8+xoVJPsfZqYz+8Q3WBzB8bAYO?=
- =?us-ascii?q?CFggqVxehZhOOI/9SjIU3DH4Vmu5uIHZITNDTYNykcsS4/izPIaurJB7K8gc?=
- =?us-ascii?q?aVuds=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0CMAwBDbIJi/5hdJa1aHgEBCxIMQIF?=
- =?us-ascii?q?EC4Ird1Q9QwOTMYIlA4ETigGFM4EAix0UgWgLAQEBDQEBOQkEAQGBToM0AoU?=
- =?us-ascii?q?+AiU0CQ4BAgQBAQESAQEFAQEBAgEHBIEJE4VoDYZDAQUnEz8QCw4KLiE2BhM?=
- =?us-ascii?q?agmSCYwMxD6tHeIEBMoEBg08BhEmBXwYUEIEYhhaISiccgUlEgRWCczc+giC?=
- =?us-ascii?q?Bax+GVQSOAIdjOwNUgQUSgSFxAQgGBgcKBTIGAgwYFAQCExJTHgITDAocDlQ?=
- =?us-ascii?q?ZDA8DEgMRAQcCCxIIFSwIAwIDCAMCAyMLAgMYCQcKAx0IChwSEBQCBAYNHws?=
- =?us-ascii?q?IAxofLQkCBA4DQwgLCgMRBAMTGAsWCBAEBgMJLw0oCwMUDwEGAwYCBQUBAyA?=
- =?us-ascii?q?DFAMFJwcDIQcLJg0NBBwHHQMDBSYDAgIbBwICAwIGFwYCAnEKKA0IBAgEHB4?=
- =?us-ascii?q?lEwUCBzEFBC8CHgQFBhEJAhYCBgQFAgQEFgICEggCCCcbBxY2GQEFXQYLCSM?=
- =?us-ascii?q?cLAsGBQYWAyZSBiIBlXYIgX8BFmUOBRQIECACLitKFQQfNUWgJoIWnT9rg1a?=
- =?us-ascii?q?BQ4lXgkqSDEsRg2SkYpZmgkqKXZR+hFkCBAYFAhaBYTyBWTMaCBsVO4JoEz4?=
- =?us-ascii?q?ZD5cmhWokMQIBATcCBgsBAQMJjlKCSAEB?=
-X-IronPort-AV: E=Sophos;i="5.91,230,1647302400"; 
-   d="scan'208";a="801951762"
-Received: from rcdn-core-1.cisco.com ([173.37.93.152])
-  by rcdn-iport-5.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 13 Sep 2022 00:51:56 +0000
-Received: from zorba ([10.25.129.98])
-        by rcdn-core-1.cisco.com (8.15.2/8.15.2) with ESMTPS id 28D0prLV020983
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Tue, 13 Sep 2022 00:51:55 GMT
-Date:   Mon, 12 Sep 2022 17:51:53 -0700
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>, xe-linux-external@cisco.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] driver: of: overlay: demote message to warning
-Message-ID: <20220913005153.GZ4320@zorba>
-References: <20220907230709.271889-1-danielwa@cisco.com>
- <973f7127-8165-45f6-071f-04360046b7d7@gmail.com>
- <20220908003510.GE4320@zorba>
- <c0c66918-f55e-83e4-edea-b2d32fdb27a7@gmail.com>
- <3fcea82c-f5cf-f066-67b9-08669c44a9c6@gmail.com>
- <20220912170524.GX4320@zorba>
- <75e803f8-2b25-22c8-0831-e90d0c889da1@gmail.com>
+  bh=IBMJmz447i1H4VhdQmfyA8wQOBBhYHA3uOT0vcuYxlg=;
+  b=i7N9zxGzOUIPTfXuMbOlBz6KrzA+sJ3sjm+1DAL27BysZ8aopqATTQp9
+   qOTO2Ga8oEWRw0kShSw39H4OwcEDYK6F8panx66uQqmGroKHTVvAEHEJn
+   g+XIhUdc7a7dx+15aqsTgyvyHuc+/kLsQw/BgegMaP47cZA0D5Ocn5ICq
+   QUBYAJ66rzVlMLa6IIDS++JMSX+6UTVcUBFmmLgqUtwjy2cjHGDEvvmD0
+   eUNXZ3djlrt3+72YcUJXha58jDQC4/YdoSd2/YbCuoaaoDvxaU+Ar+cNC
+   ihvf8jf+4hPkcG/X19Rux+q94kLRTPTOaNubWdmPjZTXbifU4awLPgUwM
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10468"; a="361959331"
+X-IronPort-AV: E=Sophos;i="5.93,311,1654585200"; 
+   d="scan'208";a="361959331"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Sep 2022 18:10:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,311,1654585200"; 
+   d="scan'208";a="684655572"
+Received: from lkp-server02.sh.intel.com (HELO 4011df4f4fd3) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 12 Sep 2022 18:10:38 -0700
+Received: from kbuild by 4011df4f4fd3 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oXuRh-00033D-2t;
+        Tue, 13 Sep 2022 01:10:37 +0000
+Date:   Tue, 13 Sep 2022 09:10:22 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
+        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
+        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
+        devicetree@vger.kernel.org, robh@kernel.org
+Subject: Re: [PATCH net-next 08/12] net: ethernet: mtk_eth_soc: add foe info
+ in mtk_soc_data structure
+Message-ID: <202209130841.kze95Xi6-lkp@intel.com>
+References: <0d0bfa99e313c0b00bf75f943f58b6fe552ed004.1662661555.git.lorenzo@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <75e803f8-2b25-22c8-0831-e90d0c889da1@gmail.com>
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.25.129.98, [10.25.129.98]
-X-Outbound-Node: rcdn-core-1.cisco.com
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL autolearn=ham
+In-Reply-To: <0d0bfa99e313c0b00bf75f943f58b6fe552ed004.1662661555.git.lorenzo@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,103 +70,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 03:32:31PM -0500, Frank Rowand wrote:
-> On 9/12/22 12:05, Daniel Walker wrote:
-> > On Mon, Sep 12, 2022 at 01:45:40AM -0500, Frank Rowand wrote:
-> >> On 9/8/22 12:55, Frank Rowand wrote:
-> >>> On 9/7/22 19:35, Daniel Walker wrote:
-> >>>> On Wed, Sep 07, 2022 at 06:54:02PM -0500, Frank Rowand wrote:
-> >>>>> On 9/7/22 18:07, Daniel Walker wrote:
-> >>>>>> This warning message shows by default on the vast majority of overlays
-> >>>>>> applied. Despite the text identifying this as a warning it is marked
-> >>>>>> with the loglevel for error. At Cisco we filter the loglevels to only
-> >>>>>> show error messages. We end up seeing this message but it's not really
-> >>>>>> an error.
-> >>>>>>
-> >>>>>> For this reason it makes sense to demote the message to the warning
-> >>>>>> loglevel.
-> >>>>>>
-> >>>>>> Cc: xe-linux-external@cisco.com
-> >>>>>> Signed-off-by: Daniel Walker <danielwa@cisco.com>
-> >>>>>> ---
-> >>>>>>  drivers/of/overlay.c | 2 +-
-> >>>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>>>>
-> >>>>>> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-> >>>>>> index bd8ff4df723d..4ae276ed9a65 100644
-> >>>>>> --- a/drivers/of/overlay.c
-> >>>>>> +++ b/drivers/of/overlay.c
-> >>>>>> @@ -358,7 +358,7 @@ static int add_changeset_property(struct overlay_changeset *ovcs,
-> >>>>>>  	}
-> >>>>>>  
-> >>>>>>  	if (!of_node_check_flag(target->np, OF_OVERLAY))
-> >>>>>> -		pr_err("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
-> >>>>>> +		pr_warn("WARNING: memory leak will occur if overlay removed, property: %pOF/%s\n",
-> >>>>>>  		       target->np, new_prop->name);
-> >>>>>>  
-> >>>>>>  	if (ret) {
-> >>>>>
-> >>>>> NACK
-> >>>>>
-> >>>>> This is showing a real problem with the overlay.
-> >>>>
-> >>>> What's the real problem ?
-> >>>>
-> >>>> Daniel
-> >>>
-> >>> A memory leak when the overlay is removed.
-> >>>
-> >>> I'll send a patch to update the overlay file in Documumentation/devicetree/ to provide
-> >>> more information about this.  If you don't see a patch by tomorrow, feel free to
-> >>> ping me.
-> >>>
-> >>> -Frank
-> >>
-> >> The good news is that your question prodded me to start improving the in kernel documentation
-> >> of overlays.  The promised patch is a rough start at:
-> >>
-> >>    https://lore.kernel.org/all/20220912062615.3727029-1-frowand.list@gmail.com/
-> >>
-> >> The bad news is that what I wrote doesn't explain the memory leak in any more detail.
-> >> If an overlay adds a property to a node in the base device tree then the memory
-> >> allocated to do the add will not be freed when the overlay is removed.  Since it is
-> >> possible to add and remove overlays multiple times, the ensuing size of the memory
-> >> leak is potentially unbounded.
-> > 
-> > Isn't this only a problem if you remove the overlay?
-> 
-> Yes, but we don't know if the overlay will be removed.  And I will not accept a
-> change that suppresses the message if there is no expectation to remove the
-> overlay.
- 
-I haven't researched the whole overlay system but there was one removal function
-that I noted, I think in the link you provided above, called
-of_overlay_remove(). It appears to call free_overlay_changeset() which calls kfree().
+Hi Lorenzo,
 
-so your API seems to deal with freeing the memory. I would think the expectation is that
-people using the API would free the overlay thru your API.
+I love your patch! Yet something to improve:
 
-The only in tree usage of your API (besides the unit test) was drm/rcar-du which
-had no ability to remove the overlay that I can see. That component of the driver was
-removed several months ago.
+[auto build test ERROR on net-next/master]
 
-> > 
-> > if the dt fixup driver does have the ability to remove the overlay doesn't it
-> > have responsibility to free the memory? Or is it impossible to free the memory?
-> 
-> It is difficult due to architectural issues.  Reference counting occurs at the node
-> level, and not at the property level.  So memory related to properties is freed
-> when the corresponding overlay node reference count leads to the node being freed.
+url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/Add-WED-support-for-MT7986-chipset/20220909-033910
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git 9f8f1933dce555d3c246f447f54fca8de8889da9
+config: arm-randconfig-r005-20220911 (https://download.01.org/0day-ci/archive/20220913/202209130841.kze95Xi6-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/8500175ee61539b6c5cb7acb854ce592e78cf639
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Lorenzo-Bianconi/Add-WED-support-for-MT7986-chipset/20220909-033910
+        git checkout 8500175ee61539b6c5cb7acb854ce592e78cf639
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
 
-How does of_overlay_remove() work then? It seems like it might not be possible
-to do overlay removal, but your code has removal functions. I also see this one
-of_overlay_remove_all() ..
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-It seems like your API supports removal. Is there an issue where your API is
-maybe not complete or maybe doesn't currentily work ?
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-Maybe you could add a flag or other indicator which would indicate the overlay will never be
-removed. Then your code could rely on this property to inform on if the author
-has consider the removal issues related to overlays.
+>> ERROR: modpost: "__ffsdi2" [drivers/net/ethernet/mediatek/mtk_eth.ko] undefined!
 
-Daniel
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
