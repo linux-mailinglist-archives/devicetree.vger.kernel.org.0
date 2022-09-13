@@ -2,131 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACA985B6904
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 09:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8734F5B691E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 09:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231236AbiIMHxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 03:53:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36880 "EHLO
+        id S231314AbiIMH7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 03:59:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231131AbiIMHw7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 03:52:59 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E93C9543C5;
-        Tue, 13 Sep 2022 00:52:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1663055578; x=1694591578;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=knZhzRD1rPrCT9tfB8+UU6FETZqBRyh4NXb907yKBSI=;
-  b=HwP+9ch2y/QSzMs4cO3ITxwdCHVKOfMzO/Gls890JXDbbpdgFdE/6LYz
-   uux3pMvEBelCvi2tX6r0AuECZdOtb8RQQrus2oxeGFuov1gsQAQAJ7dwx
-   TfbTao7ar4i0+pRqRLcnDtDGmzxxRNGFjYAqHM1/waM9xYQqgAB6Gouan
-   oa/U5HM4/i3V2nkz8l3gFw7V+Loryw4EPRYwG3iB1VIsVUFLyoD9/ZQL2
-   urqgrBrJkMY/oeGiTz0gWhXCE27AXc/7+Up8RjNMhbckpP8yL0+LSMQwZ
-   qTdYitQ3iu33dNFJMgpGPbW9KdylEjSQYLj8DHXAEeLsgakQ2DN+zYbBo
-   w==;
-X-IronPort-AV: E=Sophos;i="5.93,312,1654585200"; 
-   d="scan'208";a="190584736"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Sep 2022 00:52:58 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+        with ESMTP id S231295AbiIMH7L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 03:59:11 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723A85A3FE;
+        Tue, 13 Sep 2022 00:59:08 -0700 (PDT)
+Received: from canpemm500009.china.huawei.com (unknown [172.30.72.57])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MRbMq4sKKzNmFH;
+        Tue, 13 Sep 2022 15:54:31 +0800 (CST)
+Received: from [10.67.102.169] (10.67.102.169) by
+ canpemm500009.china.huawei.com (7.192.105.203) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Tue, 13 Sep 2022 00:52:57 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Tue, 13 Sep 2022 00:52:57 -0700
-Date:   Tue, 13 Sep 2022 09:57:19 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Michael Walle <michael@walle.cc>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <claudiu.beznea@microchip.com>, <nicolas.ferre@microchip.com>
-Subject: Re: [PATCH] ARM: dts: lan966x: Fix the interrupt number for internal
- PHYs
-Message-ID: <20220913075719.y63uvvwzquk435ht@soft-dev3-1.localhost>
-References: <20220912192629.461452-1-horatiu.vultur@microchip.com>
- <caf34bf663601404df4021bc14297eeb@walle.cc>
+ 15.1.2375.31; Tue, 13 Sep 2022 15:59:06 +0800
+CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH next v4 2/2] dt-bindings: i2c: add entry for
+ hisilicon,hisi-i2c
+To:     Weilong Chen <chenweilong@huawei.com>, <yangyicong@hisilicon.com>,
+        <xuwei5@huawei.com>, <wsa@kernel.org>, <robh+dt@kernel.org>
+References: <20220909074842.281232-1-chenweilong@huawei.com>
+ <20220909074842.281232-2-chenweilong@huawei.com>
+From:   Yicong Yang <yangyicong@huawei.com>
+Message-ID: <58bd3483-3830-bb64-d7d6-5c0f1126de73@huawei.com>
+Date:   Tue, 13 Sep 2022 15:59:06 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
+In-Reply-To: <20220909074842.281232-2-chenweilong@huawei.com>
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <caf34bf663601404df4021bc14297eeb@walle.cc>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.102.169]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ canpemm500009.china.huawei.com (7.192.105.203)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 09/13/2022 09:18, Michael Walle wrote:
+On 2022/9/9 15:48, Weilong Chen wrote:
+> Add the new compatible for HiSilicon common i2c.
 > 
-> Hi Horatiu,
-
-Hi Walle,
-
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+> ---
+>  .../bindings/i2c/hisilicon,hisi-i2c.yaml      | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
 > 
-> Am 2022-09-12 21:26, schrieb Horatiu Vultur:
-> > According to the datasheet the interrupts for internal PHYs are
-> > 80 and 81.
+> diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+> new file mode 100644
+> index 000000000000..f1cb6a4c70d1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/i2c/hisilicon,hisi-i2c.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: HiSilicon common IIC controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - yangyicong@huawei.com
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: hisilicon,hisi-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clk_rate:
+> +    default: 0xEE6B280
+> +
+> +  clock-frequency:
+> +    default: 400000
+> +
+> +  i2c-sda-falling-time-ns:
+> +    default: 343
+> +
+> +  i2c-scl-falling-time-ns:
+> +    default: 203
+> +
+> +  i2c-sda-hold-time-ns:
+> +    default: 0x33E
+> +
+> +  i2c-scl-rising-time-ns:
+> +    default: 365
+> +
+> +  i2c-digital-filter-width-ns:
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c1: i2c@5038B0000{
+> +      compatible = "hisilicon,hisi-i2c";
+> +      reg = <0x38B0000 0x10000>;
+> +      interrupts = <0x0 120 0x4>;
+> +      i2c-sda-falling-time-ns = <56>;
+> +      i2c-scl-falling-time-ns = <56>;
+> +      i2c-sda-hold-time-ns = <56>;
+> +      i2c-scl-rising-time-ns = <56>;
+
+The values used here are different from above. Are they used on different
+products?
+
+> +      i2c-digital-filter;
+
+Should we discard the empty properties or is it necessary to have it?
+
+Others looks good to me, but the device tree experts may have some comments.
+
+This binding file should also be listed in the MAINTAINERS file.
+
+Thanks.
+
+> +      i2c-digital-filter-width-ns = <0x0>;
+> +      clk_rate = <0x0 0xEE6B280>;
+> +      clock-frequency = <400000>;
+> +    };
 > 
-> Can you point me to that documentation?
-
-I have not found yet one on the microchip.com
-
-> 
-> Accoring to Table 3-155: Shared Peripheral Interrupts
-> There are ID47 and ID48 listed as "MIIM controller 0 interrupt".
-> Whatever that is, because the internal PHYs are on MIIM
-> controller 1.
-> 
-> But 80 and 81 would be ID48 and ID49. Did you test the
-> interrupts?
-
-Looking the same table (3-155) in the documentation that I have these
-interrupts correspond to ID112 and ID113 (Embedded CuPHY port 0/1 interrupt).
-And because these are shared peripheral interrupts, it is required to
-substract 32. Therefore I got the numbers 80 and 81.
-
-As the internal PHYs don't have yet interrupt support, I have sent a
-patch here [1] and I have tested it with this.
-
-[1] https://www.spinics.net/lists/kernel/msg4511731.html
-
-> 
-> -michael
-> 
-> > Fixes: 6ad69e07def67c ("ARM: dts: lan966x: add MIIM nodes")
-> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > ---
-> >  arch/arm/boot/dts/lan966x.dtsi | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/lan966x.dtsi
-> > b/arch/arm/boot/dts/lan966x.dtsi
-> > index bcb130a2471d..23665a042990 100644
-> > --- a/arch/arm/boot/dts/lan966x.dtsi
-> > +++ b/arch/arm/boot/dts/lan966x.dtsi
-> > @@ -547,13 +547,13 @@ mdio1: mdio@e200413c {
-> > 
-> >                       phy0: ethernet-phy@1 {
-> >                               reg = <1>;
-> > -                             interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
-> > +                             interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-> >                               status = "disabled";
-> >                       };
-> > 
-> >                       phy1: ethernet-phy@2 {
-> >                               reg = <2>;
-> > -                             interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
-> > +                             interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
-> >                               status = "disabled";
-> >                       };
-> >               };
-
--- 
-/Horatiu
