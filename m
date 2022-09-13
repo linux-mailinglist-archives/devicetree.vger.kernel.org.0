@@ -2,351 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B8DD5B6DE3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 15:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B13775B6DEE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 15:06:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231794AbiIMNCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 09:02:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53936 "EHLO
+        id S231893AbiIMNGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 09:06:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231150AbiIMNCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 09:02:41 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0436D43611;
-        Tue, 13 Sep 2022 06:02:40 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-127f5411b9cso31872902fac.4;
-        Tue, 13 Sep 2022 06:02:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=OgnINX3gYcstW1evxH4c9tGrrNpe5XBwb2TjVnDG0QI=;
-        b=TIg9bPCaOXBH00VhQ4rUG5hbXBUqD+f6BsXKMFi6uBMRnyTbMgDyzbv54aHXcXBiWJ
-         IM9hZjy0e2lfj1gEM+4qFmUNsgwUEI4jBYhE/sX8wk6SUFD4hdH4409gKp3vhjok9Szk
-         J5VNuYk0JmKdctn/mmgGLiQ6FvL5rUcbtiS+nIZqic2ywzJMBq6kYXVHPJlPXQ3nsHaW
-         noUq/iwU3tBDjkFZQL2lpllURS0Ac0EFsm1f/C0u5v6iACZNFNecAEzC07WIrNpYzdvo
-         3bgHlEWa7UhgDBkC+6X8fDcdIblw8wSqFRejsJmBJa5gKewehkiJ/v3tE1rKv40mnexn
-         wCXw==
-X-Gm-Message-State: ACgBeo1vkK3lMoQP9WCB0IgDhYGUoJ8NYw+UJSf8YM2WWcbPkwKKU16L
-        KCXVqHhQ+A1NSbcc3aVRhA==
-X-Google-Smtp-Source: AA6agR4uCX2BHaqbqlBF8DTJ9Smk5/pE3HR04TnTTDMAIDX38owBddvZg873IHTo02S2GViD1abMJQ==
-X-Received: by 2002:a05:6870:f721:b0:12b:f4bc:9ee3 with SMTP id ej33-20020a056870f72100b0012bf4bc9ee3mr900973oab.106.1663074159082;
-        Tue, 13 Sep 2022 06:02:39 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bl32-20020a05680830a000b0034d9042758fsm5168189oib.24.2022.09.13.06.02.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 06:02:38 -0700 (PDT)
-Received: (nullmailer pid 3488951 invoked by uid 1000);
-        Tue, 13 Sep 2022 13:02:37 -0000
-Date:   Tue, 13 Sep 2022 08:02:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
-        geert+renesas@glider.be, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: net: renesas: Document Renesas Ethernet
- Switch
-Message-ID: <20220913130237.GA3475975-robh@kernel.org>
-References: <20220909132614.1967276-1-yoshihiro.shimoda.uh@renesas.com>
- <20220909132614.1967276-3-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S231823AbiIMNGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 09:06:40 -0400
+Received: from smtp-fw-6001.amazon.com (smtp-fw-6001.amazon.com [52.95.48.154])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35791FCCD;
+        Tue, 13 Sep 2022 06:06:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1663074400; x=1694610400;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=BykdxPFWKamfb0oV6qvLgKDHPSq/P2Bpyfv/MiGBYsM=;
+  b=mcxfcp1Uw0ty3x3tFhBqudcV4jDP7FvvU3YH6LJT+oSjO1MOQ9Iu1Dim
+   D+6dJNwVUJoc2l07vPJ0DNhAngOJ4yHajmKIFZRVWDmI9hq1okdJpRGtW
+   RDSTcu316hBAy9HcJqH1BdDQpa/S0bMEuoJ61m3kgqk/DVZo1Zf+aDWz/
+   4=;
+Subject: Re: [PATCH v5 20/21] hwmon: (mr75203) add debugfs to read and write
+ temperature coefficients
+Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-iad-1e-8be8ed69.us-east-1.amazon.com) ([10.43.8.2])
+  by smtp-border-fw-6001.iad6.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2022 13:06:28 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
+        by email-inbound-relay-iad-1e-8be8ed69.us-east-1.amazon.com (Postfix) with ESMTPS id 72C3AC085A;
+        Tue, 13 Sep 2022 13:06:25 +0000 (UTC)
+Received: from EX19D013UWA002.ant.amazon.com (10.13.138.210) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.207) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Tue, 13 Sep 2022 13:06:24 +0000
+Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
+ EX19D013UWA002.ant.amazon.com (10.13.138.210) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Tue, 13 Sep 2022 13:06:24 +0000
+Received: from [192.168.151.102] (10.85.143.178) by mail-relay.amazon.com
+ (10.43.60.234) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Tue, 13 Sep 2022 13:06:21 +0000
+Message-ID: <581a4a0b-8e0e-b7a2-f873-77ed74b54e96@amazon.com>
+Date:   Tue, 13 Sep 2022 16:06:20 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220909132614.1967276-3-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+CC:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <hhhawa@amazon.com>,
+        <jonnyc@amazon.com>, "Farber, Eliav" <farbere@amazon.com>
+References: <20220908152449.35457-1-farbere@amazon.com>
+ <20220908152449.35457-21-farbere@amazon.com>
+ <YxowTBIODMLjf1Ek@smile.fi.intel.com>
+Content-Language: en-US
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <YxowTBIODMLjf1Ek@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-12.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 09, 2022 at 10:26:11PM +0900, Yoshihiro Shimoda wrote:
-> Document Renesas Etherent Switch for R-Car S4-8 (r8a779f0).
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  .../bindings/net/renesas,etherswitch.yaml     | 252 ++++++++++++++++++
->  1 file changed, 252 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/renesas,etherswitch.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/renesas,etherswitch.yaml b/Documentation/devicetree/bindings/net/renesas,etherswitch.yaml
-> new file mode 100644
-> index 000000000000..1affbf208829
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/renesas,etherswitch.yaml
-> @@ -0,0 +1,252 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/renesas,etherswitch.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas Ethernet Switch
-> +
-> +maintainers:
-> +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: renesas,r8a779f0-ether-switch
-> +
-> +  reg:
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    items:
-> +      - const: base
-> +      - const: secure_base
-> +      - const: serdes
+On 9/8/2022 9:11 PM, Andy Shevchenko wrote:
+> On Thu, Sep 08, 2022 at 03:24:48PM +0000, Eliav Farber wrote:
+>> This change adds debugfs to read and write temperature sensor 
+>> coefficients
+>> - g, h, j and cal5.
+>>
+>> The coefficients can vary between product and product, so it can be very
+>> useful to be able to modify them on the fly during the calibration
+>> process.
+>>
+>> e.g.:
+>>
+>> cat /sys/kernel/debug/940f23d0000.pvt/ts_coeff_cal5
+>> 4096
+>>
+>> echo 83000 > sys/kernel/debug/940f23d0000.pvt/ts_coeff_g
+>
+> ...
+>
+>> - Return j coefficient to use debugfs_create_file() instead of
+>>   debugfs_create_u32() because j is signed.
+>
+> You can use
+>
+> DEFINE_DEBUGFS_ATTRIBUTE(ts_coeff_j, ts_coeff_j_get, ts_coeff_j_set, 
+> "%lld\n");
+>
+> which still makes code compact. 
 
-Is serdes really the same h/w block? Based on addresses, doesn't seem 
-like it.
 
-> +
-> +  interrupts:
-> +    maxItems: 47
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: mfwd_error
-> +      - const: race_error
-> +      - const: coma_error
-> +      - const: gwca0_error
-> +      - const: gwca1_error
-> +      - const: etha0_error
-> +      - const: etha1_error
-> +      - const: etha2_error
-> +      - const: gptp0_status
-> +      - const: gptp1_status
-> +      - const: mfwd_status
-> +      - const: race_status
-> +      - const: coma_status
-> +      - const: gwca0_status
-> +      - const: gwca1_status
-> +      - const: etha0_status
-> +      - const: etha1_status
-> +      - const: etha2_status
-> +      - const: rmac0_status
-> +      - const: rmac1_status
-> +      - const: rmac2_status
-> +      - const: gwca0_rxtx0
-> +      - const: gwca0_rxtx1
-> +      - const: gwca0_rxtx2
-> +      - const: gwca0_rxtx3
-> +      - const: gwca0_rxtx4
-> +      - const: gwca0_rxtx5
-> +      - const: gwca0_rxtx6
-> +      - const: gwca0_rxtx7
-> +      - const: gwca1_rxtx0
-> +      - const: gwca1_rxtx1
-> +      - const: gwca1_rxtx2
-> +      - const: gwca1_rxtx3
-> +      - const: gwca1_rxtx4
-> +      - const: gwca1_rxtx5
-> +      - const: gwca1_rxtx6
-> +      - const: gwca1_rxtx7
-> +      - const: gwca0_rxts0
-> +      - const: gwca0_rxts1
-> +      - const: gwca1_rxts0
-> +      - const: gwca1_rxts1
-> +      - const: rmac0_mdio
-> +      - const: rmac1_mdio
-> +      - const: rmac2_mdio
-> +      - const: rmac0_phy
-> +      - const: rmac1_phy
-> +      - const: rmac2_phy
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: fck
-> +      - const: tsn
-> +
-> +  resets:
-> +    maxItems: 2
+I tried your suggestion to use DEFINE_DEBUGFS_ATTRIBUTE but I can't set
+j to be a negative value:
 
-What is each one?
+root@alpine:~# cat /sys/kernel/debug/940f23d0000.pvt/ts_coeff_j
+0
+root@alpine:~# echo 100 > /sys/kernel/debug/940f23d0000.pvt/ts_coeff_j
+root@alpine:~# cat /sys/kernel/debug/940f23d0000.pvt/ts_coeff_j
+100
+root@alpine:~# echo -100 > /sys/kernel/debug/940f23d0000.pvt/ts_coeff_j
+sh: write error: Invalid argument
 
-> +
-> +  iommus:
-> +    maxItems: 16
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    description: Number of address cells for the MDIO bus.
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    description: Number of size cells on the MDIO bus.
-> +    const: 0
+This is the code I added:
 
-It's better if you put MDIO under an 'mdio' node. That also needs a ref 
-to mdio.yaml.
+static int ts_coeff_j_set(void *data, u64 val)
+{
+     struct pvt_device *pvt = data;
 
-> +
-> +  ports:
-> +    type: object
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +      '#size-cells':
-> +        const: 0
-> +
-> +    additionalProperties: false
-> +
-> +    patternProperties:
-> +      "^port@[0-9a-f]+$":
-> +        type: object
-> +
-> +        $ref: "/schemas/net/ethernet-controller.yaml#"
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          '#address-cells':
-> +            const: 1
-> +          '#size-cells':
-> +            const: 0
-> +
-> +          reg:
-> +            description:
-> +              Switch port number
-> +
-> +          phy-handle:
-> +            description:
-> +              Phandle of an Ethernet PHY.
-> +
-> +          phy-mode:
-> +            description:
-> +              This specifies the interface used by the Ethernet PHY.
-> +            enum:
-> +              - mii
-> +              - sgmii
-> +              - usxgmii
-> +
-> +        required:
-> +          - reg
-> +          - phy-handle
-> +          - phy-mode
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - power-domains
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a779f0-cpg-mssr.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/r8a779f0-sysc.h>
-> +
-> +    rswitch: ethernet@e6880000 {
+     pvt->ts_coeff.j = val;
+     return 0;
+}
 
-Drop unused labels.
+static int ts_coeff_j_get(void *data, u64 *val)
+{
+     struct pvt_device *pvt = data;
 
-> +            compatible = "renesas,r8a779f0-ether-switch";
-> +            reg = <0xe6880000 0x20000>, <0xe68c0000 0x20000>,
-> +                  <0xe6444000 0xc00>;
-> +            reg-names = "base", "secure_base", "serdes";
-> +            interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 274 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 276 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 277 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 286 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 291 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 295 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "mfwd_error", "race_error",
-> +                              "coma_error", "gwca0_error",
-> +                              "gwca1_error", "etha0_error",
-> +                              "etha1_error", "etha2_error",
-> +                              "gptp0_status", "gptp1_status",
-> +                              "mfwd_status", "race_status",
-> +                              "coma_status", "gwca0_status",
-> +                              "gwca1_status", "etha0_status",
-> +                              "etha1_status", "etha2_status",
-> +                              "rmac0_status", "rmac1_status",
-> +                              "rmac2_status",
-> +                              "gwca0_rxtx0", "gwca0_rxtx1",
-> +                              "gwca0_rxtx2", "gwca0_rxtx3",
-> +                              "gwca0_rxtx4", "gwca0_rxtx5",
-> +                              "gwca0_rxtx6", "gwca0_rxtx7",
-> +                              "gwca1_rxtx0", "gwca1_rxtx1",
-> +                              "gwca1_rxtx2", "gwca1_rxtx3",
-> +                              "gwca1_rxtx4", "gwca1_rxtx5",
-> +                              "gwca1_rxtx6", "gwca1_rxtx7",
-> +                              "gwca0_rxts0", "gwca0_rxts1",
-> +                              "gwca1_rxts0", "gwca1_rxts1",
-> +                              "rmac0_mdio", "rmac1_mdio",
-> +                              "rmac2_mdio",
-> +                              "rmac0_phy", "rmac1_phy",
-> +                              "rmac2_phy";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            clocks = <&cpg CPG_MOD 1506>, <&cpg CPG_MOD 1505>;
-> +            clock-names = "fck", "tsn";
-> +            power-domains = <&sysc R8A779F0_PD_ALWAYS_ON>;
-> +            resets = <&cpg 1506>, <&cpg 1505>;
-> +    };
-> -- 
-> 2.25.1
-> 
-> 
+     *val = pvt->ts_coeff.j;
+     return 0;
+}
+
+DEFINE_DEBUGFS_ATTRIBUTE(ts_coeff_j_fops, ts_coeff_j_get,
+              ts_coeff_j_set, "%lld\n");
+
+static void devm_pvt_ts_dbgfs_remove(void *data)
+{
+     struct pvt_device *pvt = (struct pvt_device *)data;
+
+     debugfs_remove_recursive(pvt->dbgfs_dir);
+     pvt->dbgfs_dir = NULL;
+}
+
+static int pvt_ts_dbgfs_create(struct pvt_device *pvt, struct device *dev)
+{
+     ...
+     debugfs_create_file("ts_coeff_j", 0644, pvt->dbgfs_dir, pvt,
+                 &ts_coeff_j_fops);
+     ...
+
+I'm using kernel 5.10.112.
+Can you please see if I'm did anything wrong?
+
+--
+Thanks, Eliav
+
