@@ -2,103 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE7835B6A5F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 293765B6A63
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:12:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231560AbiIMJKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 05:10:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33904 "EHLO
+        id S230512AbiIMJMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 05:12:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231435AbiIMJKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:10:48 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC9CB57890;
-        Tue, 13 Sep 2022 02:10:46 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id q9-20020a17090a178900b0020265d92ae3so14946184pja.5;
-        Tue, 13 Sep 2022 02:10:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date;
-        bh=fmTTNMO6nsNe3wwRALCsW2vgWT26jAViSTGEkQkN2xQ=;
-        b=EssyJK6fB0axPke6T/p2C87jv/sbiRJHoG4x/dQN6+jfPRmKpLaEVPmPJi+unkfh6k
-         wsetk8D4aeMRuFu9sPhjw0hQaWPficm+2owXUmNXAQgqT6ZuwKat94c8MFK54xy8Rt9u
-         Z33pfb6IO4diwG/nA4yVOkeorrRC9ogoYXIStxpS2Mr/weWRysl0Fn7ZgUZMgqKUIpV3
-         EV1Gv5B89rEP7oul9rG14R/Prndtw/svOyfwVUrg1+3JdVXgEtNcCvJOYH1zed0lxs52
-         ljUYZlz0sHAKTiDBCsFV93BapwlxhDvMbRBTdjsBNNuC7vVRl+A9SKaa6ybUELgfz5gn
-         +qxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date;
-        bh=fmTTNMO6nsNe3wwRALCsW2vgWT26jAViSTGEkQkN2xQ=;
-        b=mr+0yL9go5fow8/pAgdzBbh0tLqdLKHswrw10Eyg4J0FiPhTXbOLr8O4qVfXp9Dgzn
-         88FiqyEV1+WnJ99yd44yNk8oRWxESzdu3su+4TCRi0r9k2XhRhMMpC+/VhAJ/6rNelAK
-         66dSGG6YMOBWC87EtZ2IEzMovj40wnUqM7i/wuq7mRwa95D+1yTWUUGelud6KMQvJv6m
-         yuTQvlqT7lEVBM2cmtgSYBarL533O/mUFWt19zRqAYw5JEdNlGGJim/YHgPwSMMshflb
-         SUYbOzeohHnP1CHP6SGNa65gk0U/rPzpUvo9Ab8RFC0AFbPqyNJIvSLjiDyoCg5BcL9L
-         7ADA==
-X-Gm-Message-State: ACgBeo3cebE6hJ8CU5VXh4Xcv4SiYIoFR3Ytzlxn548KEz3TGbG8Lql4
-        DJwf+EyfpTAejwA+sJQrh0c=
-X-Google-Smtp-Source: AA6agR43iKPyWbCNjo8QDkPPZS91dQUTqq08M32ENbNk1z73i0He52m8DNdf1aE0cIL/jbK5VYyJMQ==
-X-Received: by 2002:a17:90b:4c4e:b0:202:fd53:7acd with SMTP id np14-20020a17090b4c4e00b00202fd537acdmr1413111pjb.98.1663060246366;
-        Tue, 13 Sep 2022 02:10:46 -0700 (PDT)
-Received: from voyager.lan ([45.124.203.18])
-        by smtp.gmail.com with ESMTPSA id s8-20020a17090ad48800b001f2fa09786asm6801668pju.19.2022.09.13.02.10.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 02:10:45 -0700 (PDT)
-Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-To:     Rob Herring <robh+dt@kernel.org>, Peter Huewe <peterhuewe@gmx.de>,
-        Jarkko Sakkinen <jarkko@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Johannes Holland <johannes.holland@infineon.com>,
-        eajames@linux.ibm.com
-Subject: [PATCH 2/2] tpm: tis-i2c: Add more compatible strings
-Date:   Tue, 13 Sep 2022 18:40:24 +0930
-Message-Id: <20220913091025.1768882-3-joel@jms.id.au>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220913091025.1768882-1-joel@jms.id.au>
-References: <20220913091025.1768882-1-joel@jms.id.au>
+        with ESMTP id S231435AbiIMJMM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:12:12 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D985809C
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:12:11 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oY1xf-0000rp-TU; Tue, 13 Sep 2022 11:12:07 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oY1xg-000SoJ-6q; Tue, 13 Sep 2022 11:12:06 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oY1xd-000YrN-Qf; Tue, 13 Sep 2022 11:12:05 +0200
+Date:   Tue, 13 Sep 2022 11:12:02 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com, linux-pwm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for
+ rk3588
+Message-ID: <20220913091202.2oawzrq2u5iiz6hq@pengutronix.de>
+References: <20220901135523.52151-1-sebastian.reichel@collabora.com>
+ <1662059695.095333.2226883.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ayq25s2e3amakfxs"
+Content-Disposition: inline
+In-Reply-To: <1662059695.095333.2226883.nullmailer@robh.at.kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The NPCT75x TPM is TIS compatible. It has an I2C and SPI interface.
 
-https://www.nuvoton.com/products/cloud-computing/security/trusted-platform-module-tpm/
+--ayq25s2e3amakfxs
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Add a compatible string for it, and the generic compatible.
+Hello Rob,
 
-Signed-off-by: Joel Stanley <joel@jms.id.au>
----
- drivers/char/tpm/tpm_tis_i2c.c | 2 ++
- 1 file changed, 2 insertions(+)
+On Thu, Sep 01, 2022 at 02:14:55PM -0500, Rob Herring wrote:
+> On Thu, 01 Sep 2022 15:55:23 +0200, Sebastian Reichel wrote:
+> > Add "rockchip,rk3588-pwm" compatible string for PWM nodes found
+> > on a rk3588 platform.
+> >=20
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> > No driver changes required.
+> > ---
+> >  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+>=20
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+>=20
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
 
-diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2c.c
-index 0692510dfcab..4af27b7ec5b1 100644
---- a/drivers/char/tpm/tpm_tis_i2c.c
-+++ b/drivers/char/tpm/tpm_tis_i2c.c
-@@ -368,6 +368,8 @@ MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
- #ifdef CONFIG_OF
- static const struct of_device_id of_tis_i2c_match[] = {
- 	{ .compatible = "infineon,slb9673", },
-+	{ .compatible = "nuvoton,npct75x", },
-+	{ .compatible = "tcg,tpm-tis-i2c", },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, of_tis_i2c_match);
--- 
-2.35.1
+Is this a list of *new* warnings, or is the report (somewhat) orthogonal
+to the actual change and you just used the opportunity that someone
+touched the pwm-rockchip binding to point out that there is some cleanup
+to do?
 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
+
+Hm, that gives me a 404.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ayq25s2e3amakfxs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmMgSV8ACgkQwfwUeK3K
+7Alq5QgAmOfz+nd/dPgkG496zmEYMnmf/JKWgKSLv7Za3H3D3b2lcrSIMq9ELHjz
+n3K3IxrpSMlUnbBYfIczZujgnQtmgJIfwdQ58E77dqaF5U3xXNQwrDm8AVns2LlA
+zt5YY+PuTFINuk/fM7BXHoKZlqw5vJwMb52avAkndKddXEFuS+KCR4e9eRHpd1J0
+Ma7Gwoz9EHvLg7uag9pbkyeEUG3Pnd3U+d90q3rd+byShxyNECLltESxW6+HySXf
+Je3LGm4VOnBmrobESRXIx50LS6LD3N5+kmnIKVBWb7b7lkVCmmPgT4CyzMasv4BA
+nMSmE4ylP9K3ZONkIS2/0i/hkuRIhA==
+=2uq6
+-----END PGP SIGNATURE-----
+
+--ayq25s2e3amakfxs--
