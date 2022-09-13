@@ -2,56 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CCE85B7D2C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 00:44:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F4E15B7D3C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 00:48:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbiIMWoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 18:44:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50816 "EHLO
+        id S229759AbiIMWsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 18:48:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiIMWoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 18:44:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3218E606BF;
-        Tue, 13 Sep 2022 15:44:22 -0700 (PDT)
+        with ESMTP id S229768AbiIMWsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 18:48:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A8E156B9B;
+        Tue, 13 Sep 2022 15:48:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C1679615D7;
-        Tue, 13 Sep 2022 22:44:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BF31C433C1;
-        Tue, 13 Sep 2022 22:44:20 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5572EB81168;
+        Tue, 13 Sep 2022 22:48:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4582FC433C1;
+        Tue, 13 Sep 2022 22:48:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663109061;
-        bh=u+LdKw05eVC8NkkwkIGnnnew5oolemzm7O0U9HcAWEM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kFsrrgAM5K/pMbh9DbkdQcJdez3iXO16FF/faMXQPaQxvZ9G+gNAq4MWD4pLbnJfU
-         uMAMsrkDGRy1EjpRcrw30Xtp5kDDYuXJDKwZw5z8hBDbvZTxDSQZtRZYAr+dNVg50Z
-         KohcyssjUif+mizdcAMzUpXXdIaPhkBMWeo3bAPypHjhh0sLdVfAZ5JK6pVy6pLlAu
-         g31+ToD0CaUgPD97Gok5OhrcWWo28+fBeX3cFBRNrLPBJ7mjnv5QERM8QUco3BMF4j
-         3cgaUtYnLIoY4FV/5frjl+sW1EMLEu0+1LCqfzOfvKKUCsZ3kxKROXP6Vgw+FsJjY0
-         0V4mGSSxEOllw==
-Date:   Tue, 13 Sep 2022 17:44:18 -0500
+        s=k20201202; t=1663109292;
+        bh=QsKzCHOfcOY/N7RbhmCU+cRAOgjAtvoPBbhNVir4ubw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=PmWhDoIuUyV4W2ZKqLfvoK+vt/H7JAR9h6Z0eRPrqbyPUJFffDpT1nehsnFMP1D6G
+         UrDTR5w03hiq+kUgVf1aluDktGRe6x4a+OmOwY7jH7mDDZOsBhoib4a9lqOICWpe8C
+         5STtaehrqG/NWslxCUnCL+r4r/56M25TCC+ep9Coj2KOjud6GL9tVzdyhZAy/vYWb1
+         UmtTR9ve0ybIETMwDHZ1HtGXjGoLrZNbW2lOcRjCCovQKQAoarspyplOUCZhfEtzzv
+         Jb9yoUwj1abdxTlfMRk5CEhGTZSNrokYFkQvZzhyU5p0M7jrOXOiILF5KjEVN+IYZY
+         yHgV+lzKfPsnw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 10/15] ARM: dts: qcom: msm8974: split TCSR halt regs
- out of mutex
-Message-ID: <20220913224418.jvvguc66y5le7qjo@builder.lan>
-References: <20220909092035.223915-1-krzysztof.kozlowski@linaro.org>
- <20220909092035.223915-11-krzysztof.kozlowski@linaro.org>
+To:     dmitry.baryshkov@linaro.org, mturquette@baylibre.com,
+        agross@kernel.org, sboyd@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
+        quic_tdas@quicinc.com, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/5] ARM: msm8660: change gcc to use parent_hws/data
+Date:   Tue, 13 Sep 2022 17:48:04 -0500
+Message-Id: <166310928497.670084.10905642574789152447.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220909105136.3733919-1-dmitry.baryshkov@linaro.org>
+References: <20220909105136.3733919-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220909092035.223915-11-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -62,46 +57,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 09, 2022 at 11:20:30AM +0200, Krzysztof Kozlowski wrote:
-[..]
-> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> index 90a6d4b7605c..ada232bed2c8 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> @@ -1189,7 +1189,7 @@ remoteproc_mss: remoteproc@fc880000 {
->  			resets = <&gcc GCC_MSS_RESTART>;
->  			reset-names = "mss_restart";
->  
-> -			qcom,halt-regs = <&tcsr_mutex_block 0x1180 0x1200 0x1280>;
-> +			qcom,halt-regs = <&tcsr_1 0x180 0x200 0x280>;
->  
->  			qcom,smem-states = <&modem_smp2p_out 0>;
->  			qcom,smem-state-names = "stop";
-> @@ -1230,10 +1230,15 @@ smd-edge {
->  
->  		tcsr_mutex_block: syscon@fd484000 {
->  			compatible = "syscon";
-> -			reg = <0xfd484000 0x2000>;
-> +			reg = <0xfd484000 0x1000>;
->  		};
->  
-> -		tcsr: syscon@fd4a0000 {
-> +		tcsr_1: syscon@fd485000 {
+On Fri, 9 Sep 2022 13:51:31 +0300, Dmitry Baryshkov wrote:
+> Follow the trend and convert gcc-msm8660 to use parent_hws/parent_data
+> 
+> Changes since v1:
+>  - Added patch fixing clock node names for board fixed clocks.
+> 
+> Dmitry Baryshkov (5):
+>   dt-bindings: clock: qcom,gcc-msm8660: separate GCC bindings for
+>     MSM8660
+>   clk: qcom: gcc-msm8660: use ARRAY_SIZE instead of specifying
+>     num_parents
+>   clk: qcom: gcc-msm8660: use parent_hws/_data instead of parent_names
+>   ARM: dts: qcom: msm8660: add pxo/cxo clocks to the GCC node
+>   ARM: dts: qcom-msm8660: fix node names for fixed clocks
+> 
+> [...]
 
-While the accessed registers look general purpose in nature, I would
-prefer that we stick with naming it based on the register blocks - and
-this is part of what's named "tcsr_mutex".
+Applied, thanks!
 
-Is it not possible to claim that this region is a
-"qcom,msm8974-tcsr-mutex" and a "syscon"?
+[4/5] ARM: dts: qcom: msm8660: add pxo/cxo clocks to the GCC node
+      commit: 6244e7da53dcdf0a5905f6ac2a2b643dd439a19c
+[5/5] ARM: dts: qcom-msm8660: fix node names for fixed clocks
+      commit: baecbda529331e146c7460e2aea8b54c20dcdea7
 
-> +			compatible = "qcom,tcsr-msm8974", "syscon";
-> +			reg = <0xfd485000 0x1000>;
-> +		};
-> +
-> +		tcsr_2: syscon@fd4a0000 {
-
-And I would like to keep this as "tcsr".
-
-Regards,
-Bjorn
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
