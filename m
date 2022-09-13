@@ -2,81 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3073A5B76FA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 18:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF795B7704
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 19:00:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbiIMQ6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 12:58:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57102 "EHLO
+        id S231903AbiIMQ7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 12:59:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232064AbiIMQ63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 12:58:29 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668B872687
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 08:50:14 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id bq9so21501407wrb.4
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 08:50:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=xEmsNDf40gec/YYynqTjtMwBV+qe6g+v810gZnB2/yY=;
-        b=n/VnNf+ICwVhsuuGRhFgokLQJs3XEMncu36QVLE3azT5YhnbnSmpQOE9CTuLNWloDt
-         UotvmVpIm4dXJeAFmeXtTj3VsSifIyT0Dn1ESPl8eunw5TILf3SXiL06KMnG1EStkB6+
-         PiXBXM3pxzv+7/oSbhKqETtoKIHT1My9+FWlEDQIsOfnn1ikv9sCNyPk8kd9jjSiNEDo
-         Qy0Bq3YiCk3UlTtklTb7rpxLjp7qtxssNT7HldVuQZ244KKxCFXMFLmJQPsAhkFTnTrn
-         +reZO90IKa8Gf9nYn6+T2VO1g8mSOWxQBXe0ulkQLvlMPKnmqeJXvGUa2IAHAuZ0AKos
-         gmSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=xEmsNDf40gec/YYynqTjtMwBV+qe6g+v810gZnB2/yY=;
-        b=6ThmgxWMbYPhfUGpgQLVF0cUDhPPFhcQdNEorWMxu390sBW83rfR7raF/Y3YQIXzhr
-         ope9K9X3xFdlKce0CH7H2cdqHeLi1plLngAT3rits++XSL/d+R+CgMzENG7mmqVKJ3OI
-         yfCXIxVvDOuDqllckc4Zovg97c7K/tWHsaHA0VORAxKKGwGK66bkWk2XPetSwqiMhDqS
-         AKDSA9N+HJ63F980xACW0X/3KXrRLI7hyXHW1rhvFt3dHKUUtU/7nFhVfy2a4/WohHPJ
-         CLTEnuCk5nRHZf+IJ8802sXaMFTkQFwr6IjiLYfTtNCOHTbdHOWGggp2aTzTL5MD/SBR
-         2XSw==
-X-Gm-Message-State: ACgBeo1mdh5B7LlAEbxteJq9WtvDA1lOcwe0Ui09im9rTLwo5Dd9rXQZ
-        fhpv4o8fhrQ/LNmhGsoeZIcr5fVsIWAdnNUe
-X-Google-Smtp-Source: AA6agR6Enox1pD56Uvibw4ec6gcVUjGoXNOSfHNSakSnkzP5QwlTMpiCjnemyEW1vyX0Dl/lIAU9ZQ==
-X-Received: by 2002:adf:fc02:0:b0:22a:43e8:d205 with SMTP id i2-20020adffc02000000b0022a43e8d205mr11154078wrr.420.1663079316589;
-        Tue, 13 Sep 2022 07:28:36 -0700 (PDT)
-Received: from [10.119.22.201] ([89.101.193.67])
-        by smtp.gmail.com with ESMTPSA id l4-20020a5d4104000000b0022584c82c80sm10849099wrp.19.2022.09.13.07.28.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Sep 2022 07:28:36 -0700 (PDT)
-Message-ID: <3372cb82-22be-a916-372c-292231ab74d9@linaro.org>
-Date:   Tue, 13 Sep 2022 16:28:35 +0200
+        with ESMTP id S231931AbiIMQ7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 12:59:02 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E627B530A;
+        Tue, 13 Sep 2022 08:50:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B4F1DB80FF4;
+        Tue, 13 Sep 2022 14:35:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB0E4C433C1;
+        Tue, 13 Sep 2022 14:35:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663079739;
+        bh=gHtSpBRJsCnESx+CayMi4+wi3MLvP1nBbt0jgudGcb0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KT7JJaXONwENE/J0cMDX8w8EzH5DVOKvDagK9zNtJy7siD6i42v0Utw/L9SaMiO+B
+         qyRcrmL4U+5O//MWQ3mqRYGDEht5qCz/jrDrn0NvYrx66WMiSgOmTvFu9SnSBWjb3u
+         7N9KQ/K8NjktevfXodVY9aTsf43LwiGnuHNGVxjtlxIS3yxgT8jJ1HaMpC1o9UY4lK
+         Wzn3aTo5zesxswtXiZpndF59fjAfmiDPS22q1p63LLgJQAnZyJCB4x39QPbcucTN2O
+         o8QzMgBgaS1e7OA8Lx3V6dIrBTjOqhcHdT1tWiEyOWaQHWqMFD4YLm1C9ejojTEia5
+         TYI0l9Uu5qjww==
+Date:   Tue, 13 Sep 2022 20:05:35 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] dt-bindings: phy: qcom,qmp: add missing
+ power-domains properties
+Message-ID: <YyCVN2W/98FKi5ew@matsya>
+References: <20220902080705.12050-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v3 07/14] dt-bindings: serial: atmel,at91-usart: Add
- SAM9260 compatibles to SAM9X60
-Content-Language: en-US
-To:     Sergiu Moga <sergiu.moga@microchip.com>, lee@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, radu_nicolae.pirea@upb.ro,
-        richard.genoud@gmail.com, gregkh@linuxfoundation.org,
-        broonie@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        jirislaby@kernel.org, admin@hifiphile.com,
-        kavyasree.kotagiri@microchip.com, tudor.ambarus@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20220913142205.162399-1-sergiu.moga@microchip.com>
- <20220913142205.162399-8-sergiu.moga@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220913142205.162399-8-sergiu.moga@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220902080705.12050-1-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,17 +61,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2022 16:21, Sergiu Moga wrote:
-> Require SAM9260 fallback compatible for SAM9X60, because SAM9X60 is
-> fully compatible with SAM9260 and Linux driver requires the latter.
-> 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> ---
-> 
+On 02-09-22, 10:07, Johan Hovold wrote:
+> The new SC8280XP USB PHYs require a power domain to be specified so
+> amend the bindings.
 
+Applied, thanks
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+-- 
+~Vinod
