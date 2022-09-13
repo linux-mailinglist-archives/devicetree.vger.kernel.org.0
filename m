@@ -2,174 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32ABE5B7B8D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 21:47:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B405B7BA5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 21:58:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229490AbiIMTrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 15:47:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33982 "EHLO
+        id S229669AbiIMT57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 15:57:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiIMTrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 15:47:11 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92DB67159;
-        Tue, 13 Sep 2022 12:47:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 93B76B80765;
-        Tue, 13 Sep 2022 19:47:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68118C433D6;
-        Tue, 13 Sep 2022 19:47:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663098427;
-        bh=oYa3/0jwT+rc/FaSbuVOSbxrjj1ZMQaMpvInr8HV2uM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VypoSUfiNeezvXukIt6oLyOW8QFp1ls9mlJmc2SP7wJZvo/bS+izHE82/Vw/vDMMF
-         3fsToFHYndH6gbEyPx2KkhDusCwYRNyMH6wyRA0o6A453nfbALwPGEkdnZGOwV+2L3
-         aHl7nhsKHMg1TWixa/udJB71I9sTGE76W7OeQaD6rwsXVf2d9qY9c+AvdRQ2zJoRDb
-         fh3IJd3Zz8fvXFJWlyLTAOt9W6FBgOfJ1A54vH6oESkXQve6HjJQeuf7r+baHzJftA
-         Qpw4C96an2zt+QS/UPkNCbKoRX1tpilG6wtEtRfu3QkVIJn8VEKOg/r36kVv33NHPv
-         7a7pAnmoO50hw==
-Date:   Tue, 13 Sep 2022 14:47:04 -0500
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229453AbiIMT56 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 15:57:58 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E573272EF6;
+        Tue, 13 Sep 2022 12:57:55 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id h21so9615167qta.3;
+        Tue, 13 Sep 2022 12:57:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=/QqAVzo4fvEyn6D6UHpopTegAEfKSX+ABogkBcqAx/E=;
+        b=nVJi7KBRKxtWgvxaesz2o24wWrg2ZKodAwUFy6lYQfmaIC8UuDCUN5nEpl0riwMAuz
+         EppuZ9CncgB2eWcb9NU1S/03hFJme/FpnGEI4HG5F6GSgnH547+zVsiGy5YAaSUAn1LU
+         1q+cuMIzxZeGDCcfaOowOs8Rn+rEdHSzKYBBbGPDpwxEHvNLayNaOHu7ruFOZAZrbYpT
+         LC7ttQLf1WgmEobP7lQ8CEWDWQ/ucp72KpaGBSIZ6fdFj/LwcJxiKY1GVmfq01XRlYoD
+         DHPliW4LirhpKBqjdI6qs3/he8KJ0eYf8Sg/VbiwVn8jFQ9DxWdkveCjfSzDVo07BfVt
+         qwxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=/QqAVzo4fvEyn6D6UHpopTegAEfKSX+ABogkBcqAx/E=;
+        b=D/hMM0mts5RRYi7r9RDASo8Lj2XU1/YkC5+UPzZU6IfSBt8mnorlm0fF4ljCYdONHF
+         +lm9LlwiHTmmIrZ6d/+P79LAMmJKr/n3luVQwJk5KWu+lJ+rBuMjRDWbqGc1qK6IV/HQ
+         qlV4aEpsOsMJpv5/+QCFGnV/7oik6Z3V9mPqc4W22+F6Nqaq/Xn31caMxj/TKhiM6naW
+         8d9ANlFmOARyzpgrgZA59cCXmA0R0ZjzNUM2brSnodLyHXc4/NicTzdPJsw+54AnHfYo
+         3Jz8DrN0ccnGZNh8d2eYLFxkSU8JZhMdqe5gy489n6auIesNps78jIFXn53ckVlC7UPu
+         PH/g==
+X-Gm-Message-State: ACgBeo2CcG/zvHdV8nhkDhpTggr5zjT7INmC0QLz7NZLsR5X8IRUKOUW
+        qeJQCYnfqcPGVab9JBJowcI=
+X-Google-Smtp-Source: AA6agR7Y3l92pxu+HRUPav/nUZyX/iwKCTZTxxxvSWBceRQPR0uBtmlP6bciotha6m8mHURY/t0RNg==
+X-Received: by 2002:ac8:5853:0:b0:343:7b95:96ff with SMTP id h19-20020ac85853000000b003437b9596ffmr30514112qth.386.1663099074358;
+        Tue, 13 Sep 2022 12:57:54 -0700 (PDT)
+Received: from stbirv-lnx-3.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id s11-20020a05620a29cb00b006b8e049cf08sm276305qkp.2.2022.09.13.12.57.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Sep 2022 12:57:53 -0700 (PDT)
+From:   Doug Berger <opendmb@gmail.com>
+To:     Andrew Morton <akpm@linux-foundation.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Iskren Chernev <iskren.chernev@gmail.com>,
-        Martin Botka <martin.botka@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/40] pinctrl/arm64: qcom: fix some of Qualcomm
- pinctrl schema warnings
-Message-ID: <20220913194704.rtlelrejpkz6oueq@builder.lan>
-References: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Mike Kravetz <mike.kravetz@oracle.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Borislav Petkov <bp@suse.de>,
+        "Paul E. McKenney" <paulmck@kernel.org>,
+        Neeraj Upadhyay <quic_neeraju@quicinc.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Doug Berger <opendmb@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        David Hildenbrand <david@redhat.com>, Zi Yan <ziy@nvidia.com>,
+        Oscar Salvador <osalvador@suse.de>,
+        Hari Bathini <hbathini@linux.ibm.com>,
+        Kees Cook <keescook@chromium.org>,
+        - <devicetree-spec@vger.kernel.org>,
+        KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>,
+        Mel Gorman <mgorman@suse.de>, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mm@kvack.org, iommu@lists.linux.dev
+Subject: [PATCH 00/21] mm: introduce Designated Movable Blocks
+Date:   Tue, 13 Sep 2022 12:54:47 -0700
+Message-Id: <20220913195508.3511038-1-opendmb@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 08:17:06AM +0200, Krzysztof Kozlowski wrote:
-> Hi,
-> 
-> That's a set for some of arm64 pinctrl bindings fixing most common warnings.  I
-> have a plan to continue this for remaining arm64 (sm8250 needs updates) and for
-> arm.
+MOTIVATION:
+Some Broadcom devices (e.g. 7445, 7278) contain multiple memory
+controllers with each mapped in a different address range within
+a Uniform Memory Architecture. Some users of these systems have
+expressed the desire to locate ZONE_MOVABLE memory on each
+memory controller to allow user space intensive processing to
+make better use of the additional memory bandwidth.
+Unfortunately, the historical monotonic layout of zones would
+mean that if the lowest addressed memory controller contains
+ZONE_MOVABLE memory then all of the memory available from
+memory controllers at higher addresses must also be in the
+ZONE_MOVABLE zone. This would force all kernel memory accesses
+onto the lowest addressed memory controller and significantly
+reduce the amount of memory available for non-movable
+allocations.
 
-Very nice.
+The main objective of this patch set is therefore to allow a
+block of memory to be designated as part of the ZONE_MOVABLE
+zone where it will always only be used by the kernel page
+allocator to satisfy requests for movable pages. The term
+Designated Movable Block is introduced here to represent such a
+block. The favored implementation allows modification of the
+'movablecore' kernel parameter to allow specification of a base
+address and support for multiple blocks. The existing
+'movablecore' mechanisms are retained. Other mechanisms based on
+device tree are also included in this set.
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+BACKGROUND:
+NUMA architectures support distributing movablecore memory
+across each node, but it is undesirable to introduce the
+overhead and complexities of NUMA on systems that don't have a
+Non-Uniform Memory Architecture.
 
-@Linus, please pick the dt binding patches through your tree. I will
-pick the dts changes at the end.
+Commit 342332e6a925 ("mm/page_alloc.c: introduce kernelcore=mirror option")
+also depends on zone overlap to support sytems with multiple
+mirrored ranges.
 
-Regards,
-Bjorn
+Commit c6f03e2903c9 ("mm, memory_hotplug: remove zone restrictions")
+embraced overlapped zones for memory hotplug.
 
-> 
-> Changes since v1
-> ================
-> 1. Correct commit msg in commits "fix matching pin config".
-> 2. Correct commit msg in commit #2 .
-> 3. Add Rb tags.
-> 
-> Dependencies
-> ============
-> 1. dt-bindings are independent of DTS patches.
-> 
-> Best regards,
-> Krzysztof
-> 
-> Krzysztof Kozlowski (40):
->   dt-bindings: pinctrl: qcom,sm6115-pinctrl: fix matching pin config
->   dt-bindings: pinctrl: qcom,sm6115-pinctrl: require function on GPIOs
->   dt-bindings: pinctrl: qcom,sm6115-pinctrl: fix indentation in example
->   dt-bindings: pinctrl: qcom,sm6125-pinctrl: fix matching pin config
->   dt-bindings: pinctrl: qcom,sm6125-pinctrl: do not require function on
->     non-GPIOs
->   dt-bindings: pinctrl: qcom,sm6125-pinctrl: extend example
->   dt-bindings: pinctrl: qcom,sm6350-pinctrl: fix matching pin config
->   dt-bindings: pinctrl: qcom,sm6350-pinctrl: do not require function on
->     non-GPIOs
->   dt-bindings: pinctrl: qcom,sm6350-pinctrl: fix indentation in example
->   dt-bindings: pinctrl: qcom,sm6375-pinctrl: fix matching pin config
->   dt-bindings: pinctrl: qcom,sm6375-pinctrl: do not require function on
->     non-GPIOs
->   dt-bindings: pinctrl: qcom,sm6375-pinctrl: fix indentation in example
->   dt-bindings: pinctrl: qcom,sm8250-pinctrl: do not require function on
->     non-GPIOs
->   dt-bindings: pinctrl: qcom,sm8250-pinctrl: reference tlmm common pins
->   dt-bindings: pinctrl: qcom,sm8250-pinctrl: fix indentation in example
->   dt-bindings: pinctrl: qcom,sm8350-pinctrl: fix matching pin config
->   dt-bindings: pinctrl: qcom,sm8350-pinctrl: fix indentation in example
->   dt-bindings: pinctrl: qcom,sm8350-pinctrl: do not require function on
->     non-GPIOs
->   dt-bindings: pinctrl: qcom,sm8450-pinctrl: fix matching pin config
->   dt-bindings: pinctrl: qcom,sm8450-pinctrl: fix indentation in example
->   dt-bindings: pinctrl: qcom,sm8450-pinctrl: do not require function on
->     non-GPIOs
->   dt-bindings: pinctrl: qcom,sm8450-pinctrl: add gpio-line-names
->   dt-bindings: pinctrl: qcom,sc7280-pinctrl: correct number of GPIOs
->   dt-bindings: pinctrl: qcom,sc7280-pinctrl: do not require function on
->     non-GPIOs
->   dt-bindings: pinctrl: qcom,sc7280-pinctrl: add gpio-line-names
->   dt-bindings: pinctrl: qcom,sc7280-pinctrl: reference tlmm schema
->   dt-bindings: pinctrl: qcom,sc7280-pinctrl: fix indentation in example
->   dt-bindings: pinctrl: qcom,sc8180x-pinctrl: fix matching pin config
->   dt-bindings: pinctrl: qcom,sc8180x-pinctrl: do not require function on
->     non-GPIOs
->   dt-bindings: pinctrl: qcom,sc8180x-pinctrl: fix indentation in example
->   dt-bindings: pinctrl: qcom,sc8280xp-pinctrl: fix matching pin config
->   dt-bindings: pinctrl: qcom,sc8280xp-pinctrl: do not require function
->     on non-GPIOs
->   dt-bindings: pinctrl: qcom,sc8280xp-pinctrl: fix indentation in
->     example
->   arm64: dts: qcom: sm6125: align TLMM pin configuration with DT schema
->   arm64: dts: qcom: sm6350: align TLMM pin configuration with DT schema
->   arm64: dts: qcom: sm8350-sagami: correct TS pin property
->   arm64: dts: qcom: sm8350: align TLMM pin configuration with DT schema
->   arm64: dts: qcom: sm8450: align TLMM pin configuration with DT schema
->   arm64: dts: qcom: sc7280: align TLMM pin configuration with DT schema
->   arm64: dts: qcom: sc7280-herobrine: correct TLMM gpio-line-names
-> 
->  .../bindings/pinctrl/qcom,sc7280-pinctrl.yaml |  55 +--
->  .../pinctrl/qcom,sc8180x-pinctrl.yaml         |  79 +++--
->  .../pinctrl/qcom,sc8280xp-pinctrl.yaml        |  73 ++--
->  .../bindings/pinctrl/qcom,sm6115-pinctrl.yaml |  94 +++---
->  .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml |  61 +++-
->  .../bindings/pinctrl/qcom,sm6350-pinctrl.yaml |  73 ++--
->  .../bindings/pinctrl/qcom,sm6375-tlmm.yaml    |  73 ++--
->  .../bindings/pinctrl/qcom,sm8250-pinctrl.yaml |  41 ++-
->  .../bindings/pinctrl/qcom,sm8350-pinctrl.yaml |  73 ++--
->  .../bindings/pinctrl/qcom,sm8450-pinctrl.yaml |  82 +++--
->  .../boot/dts/qcom/sc7280-herobrine-crd.dts    |   2 -
->  .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  44 +--
->  .../arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi |   8 +-
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |  20 +-
->  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |  14 +-
->  arch/arm64/boot/dts/qcom/sc7280.dtsi          | 316 +++++++++---------
->  .../qcom/sm6125-sony-xperia-seine-pdx201.dts  |   4 +-
->  arch/arm64/boot/dts/qcom/sm6125.dtsi          |  10 +-
->  arch/arm64/boot/dts/qcom/sm6350.dtsi          |  14 +-
->  .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   |   4 +-
->  arch/arm64/boot/dts/qcom/sm8350.dtsi          |  44 +--
->  .../qcom/sm8450-sony-xperia-nagara-pdx223.dts |  12 +-
->  arch/arm64/boot/dts/qcom/sm8450.dtsi          | 152 ++++-----
->  23 files changed, 733 insertions(+), 615 deletions(-)
-> 
-> -- 
-> 2.34.1
-> 
+This commit set follows their lead to allow the ZONE_MOVABLE
+zone to overlap other zones while spanning the pages from the
+lowest Designated Movable Block to the end of the node.
+Designated Movable Blocks are made absent from overlapping zones
+and present within the ZONE_MOVABLE zone.
+
+I initially investigated an implementation using a Designated
+Movable migrate type in line with comments[1] made by Mel Gorman
+regarding a "sticky" MIGRATE_MOVABLE type to avoid using
+ZONE_MOVABLE. However, this approach was riskier since it was
+much more instrusive on the allocation paths. Ultimately, the
+progress made by the memory hotplug folks to expand the
+ZONE_MOVABLE functionality convinced me to follow this approach.
+
+OPPORTUNITIES:
+There have been many attempts to modify the behavior of the
+kernel page allocators use of CMA regions. This implementation
+of Designated Movable Blocks creates an opportunity to repurpose
+the CMA allocator to operate on ZONE_MOVABLE memory that the
+kernel page allocator can use more agressively, without
+affecting the existing CMA implementation. It is hoped that the
+"shared-dmb-pool" approach included here will be useful in cases
+where memory sharing is more important than allocation latency.
+
+CMA introduced a paradigm where multiple allocators could
+operate on the same region of memory, and that paradigm can be
+extended to Designated Movable Blocks as well. I was interested
+in using kernel resource management as a mechanism for exposing
+Designated Movable Block resources (e.g. /proc/iomem) that would
+be used by the kernel page allocator like any other ZONE_MOVABLE
+memory, but could be claimed by an alternative allocator (e.g.
+CMA). Unfortunately, this becomes complicated because the kernel
+resource implementation varies materially across different
+architectures and I do not require this capability so I have
+deferred that.
+
+The MEMBLOCK_MOVABLE and MEMBLOCK_HOTPLUG have a lot in common
+and could potentially be consolidated, but I chose to avoid that
+here to reduce controversy.
+
+The CMA and DMB alignment constraints are currently the same so
+the logic could be simplified, but this implementation keeps
+them distinct to facilitate independent evolution of the
+implementations if necessary.
+
+COMMITS: 
+Commits 1-3 represent bug fixes that could have been submitted
+separately and should be submitted to linux-stable. They are
+included here because of later commit dependencies to facilitate
+review of the entire patch set.
+
+Commits 4-6 are enhancements of hugepage migration to support
+contiguous allocations (i.e. alloc_contig_range). These are
+potentially of value if a non-gigantic hugepage can be
+allocated through fallback from MIGRATE_CMA pageblocks or for
+the allocation of gigantic pages. Their real value is to support
+CMA from Designated Movable Blocks.
+
+Commits 7-15 make up the preferred embodiment of the concept of
+Designated Movable Block support.
+
+The remaining commits (i.e. 16-21) are examples of additional
+opportunites to use DMBs with other kernel services to achieve
+more aggressive sharing of DMB reservations with the kernel
+page allocator. It is hoped that they are of value to others,
+but they can be reviewed and evaluated separately from the other
+commits in this set if there is controversy and/or opportunites
+for improvement.
+
+[1] https://lore.kernel.org/lkml/20160428103927.GM2858@techsingularity.net/
+
+Doug Berger (21):
+  mm/page_isolation: protect cma from isolate_single_pageblock
+  mm/hugetlb: correct max_huge_pages accounting on demote
+  mm/hugetlb: correct demote page offset logic
+  mm/hugetlb: refactor alloc_and_dissolve_huge_page
+  mm/hugetlb: allow migrated hugepage to dissolve when freed
+  mm/hugetlb: add hugepage isolation support
+  lib/show_mem.c: display MovableOnly
+  mm/vmstat: show start_pfn when zone spans pages
+  mm/page_alloc: calculate node_spanned_pages from pfns
+  mm/page_alloc.c: allow oversized movablecore
+  mm/page_alloc: introduce init_reserved_pageblock()
+  memblock: introduce MEMBLOCK_MOVABLE flag
+  mm/dmb: Introduce Designated Movable Blocks
+  mm/page_alloc: make alloc_contig_pages DMB aware
+  mm/page_alloc: allow base for movablecore
+  dt-bindings: reserved-memory: introduce designated-movable-block
+  mm/dmb: introduce rmem designated-movable-block
+  mm/cma: support CMA in Designated Movable Blocks
+  dt-bindings: reserved-memory: shared-dma-pool: support DMB
+  mm/cma: introduce rmem shared-dmb-pool
+  mm/hugetlb: introduce hugetlb_dmb
+
+ .../admin-guide/kernel-parameters.txt         |  17 +-
+ .../designated-movable-block.yaml             |  51 ++++
+ .../reserved-memory/shared-dma-pool.yaml      |   8 +
+ drivers/of/of_reserved_mem.c                  |  20 +-
+ include/linux/cma.h                           |  13 +-
+ include/linux/dmb.h                           |  28 +++
+ include/linux/gfp.h                           |   5 +-
+ include/linux/hugetlb.h                       |   5 +
+ include/linux/memblock.h                      |   8 +
+ kernel/dma/contiguous.c                       |  33 ++-
+ lib/show_mem.c                                |   2 +-
+ mm/Kconfig                                    |  12 +
+ mm/Makefile                                   |   1 +
+ mm/cma.c                                      |  58 +++--
+ mm/dmb.c                                      | 156 ++++++++++++
+ mm/hugetlb.c                                  | 194 +++++++++++----
+ mm/memblock.c                                 |  30 ++-
+ mm/migrate.c                                  |   1 +
+ mm/page_alloc.c                               | 225 +++++++++++++-----
+ mm/page_isolation.c                           |  75 +++---
+ mm/vmstat.c                                   |   5 +
+ 21 files changed, 765 insertions(+), 182 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/designated-movable-block.yaml
+ create mode 100644 include/linux/dmb.h
+ create mode 100644 mm/dmb.c
+
+-- 
+2.25.1
+
