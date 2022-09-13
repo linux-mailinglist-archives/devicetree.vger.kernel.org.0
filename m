@@ -2,55 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 293765B6A63
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 067325B6A71
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 11:14:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230512AbiIMJMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 05:12:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35740 "EHLO
+        id S231683AbiIMJOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 05:14:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231435AbiIMJMM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:12:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D985809C
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:12:11 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oY1xf-0000rp-TU; Tue, 13 Sep 2022 11:12:07 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oY1xg-000SoJ-6q; Tue, 13 Sep 2022 11:12:06 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oY1xd-000YrN-Qf; Tue, 13 Sep 2022 11:12:05 +0200
-Date:   Tue, 13 Sep 2022 11:12:02 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com, linux-pwm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for
- rk3588
-Message-ID: <20220913091202.2oawzrq2u5iiz6hq@pengutronix.de>
-References: <20220901135523.52151-1-sebastian.reichel@collabora.com>
- <1662059695.095333.2226883.nullmailer@robh.at.kernel.org>
+        with ESMTP id S231611AbiIMJNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 05:13:55 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2292B5B074
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:13:54 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id n17-20020a05600c501100b003a84bf9b68bso9052023wmr.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 02:13:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=wOXq4EBtuFiFHBb3GzVfUsN7E33ZUXKGmJFqun2J61A=;
+        b=V6I/nxUOszHJyPi5bIFgW0oqsqnpS8KyGBZG/a1xhhRUvqDZd131R2gJ301L4Ajydl
+         v4S/TQkUc+Yh8jbzv89IO/NurpCLdjwxpHs0X3d51XESJfs0DJTevSiXxeAmYXra89Ue
+         i/xynn4IuPiMi7PZjE0hszi4fAk1YiLc8+gusYUCg2Sj6b1T6S1ZLCdhQKdLZM9pwRX2
+         feHXc5OJkHT7tne1xTkGDC3FSar9+NrF6tSWJXPPBuHV1vG9ziSDUZwfMUiAX7j/w7E+
+         XHTds1HJndxPoUQlYOwVj0vjfWtd+4fdHSmHUECt2OSq5Bb0ZPXl2SoUcp4tt/m+xdKe
+         kNrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=wOXq4EBtuFiFHBb3GzVfUsN7E33ZUXKGmJFqun2J61A=;
+        b=Z/F5nF0EpAJSiMgi7H08BOy6BzRrpsziGizK7Q3gl73Gq28eAMXMJlocq1EsPlqfr9
+         kUZ0NQa57QQSgAchD2CrRVYhMoS219rAHfcGvT9jT0lP9wLvW4Hhdk8VaGxQg9YxMFVu
+         w+VVj1Q9K65AjZTvygVfjTiU9S/xG2JIpViosYsisy83/V8KNskqGCKI2a/91vTQo7Jf
+         CwmBcgBaOYw9f1+9zACvdeu9U1WkZM9FtFkZEkiCUTrp/416/pyvA3iSx4ix1mjY8y7W
+         brLOwl5kCqTdd5JnDHLh6oMoJbhlVITsxB7f5nPxbggOC4OQ4gQ63HWMcnq/ZWB0WNRF
+         El0g==
+X-Gm-Message-State: ACgBeo1rwN29hKCMK4+TwS3J3TfKfQohfWEAS+XabTenjlJZntb2bIHG
+        T4XPEBDp38sYZf61Com4+r0Isw==
+X-Google-Smtp-Source: AA6agR404Z9zyxR/Dsu85/hoOYfczNYlMnh8Xl9pLVAYhwqsaYuQdkGuTi0iBEyaqLP4aXhbUp3Z/A==
+X-Received: by 2002:a7b:c8d5:0:b0:3b4:76bc:5dae with SMTP id f21-20020a7bc8d5000000b003b476bc5daemr1620741wml.122.1663060432548;
+        Tue, 13 Sep 2022 02:13:52 -0700 (PDT)
+Received: from [10.119.22.201] ([89.101.193.70])
+        by smtp.gmail.com with ESMTPSA id a12-20020a5d570c000000b00228dd80d78asm9673036wrv.86.2022.09.13.02.13.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Sep 2022 02:13:51 -0700 (PDT)
+Message-ID: <404caabe-f855-012e-4cae-35abdb58f23a@linaro.org>
+Date:   Tue, 13 Sep 2022 11:13:50 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ayq25s2e3amakfxs"
-Content-Disposition: inline
-In-Reply-To: <1662059695.095333.2226883.nullmailer@robh.at.kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] dt-bindings: sound: ts3a227e: add control of debounce
+ times
+Content-Language: en-US
+To:     Astrid Rost <astridr@axis.com>, Astrid Rost <Astrid.Rost@axis.com>,
+        Mark Brown <broonie@kernel.org>,
+        Dylan Reid <dgreid@chromium.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        kernel <kernel@axis.com>,
+        alsa-devel-mejlinglistan <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220907135827.16209-1-astrid.rost@axis.com>
+ <2b81d814-f47a-e548-83dc-b1e38857e8ce@linaro.org>
+ <Yxn9o1MVMPnFO3PM@sirena.org.uk>
+ <ac2bcca1-6997-2d17-b1d6-a5e81ced2613@linaro.org>
+ <9a72bd22-9298-65ce-a894-540f98745a7e@linaro.org>
+ <d521d40e-c79d-b044-44b7-6f10845f4268@axis.com>
+ <bdfa3f29-f63d-1fb7-f37b-0b4a1f6374b3@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <bdfa3f29-f63d-1fb7-f37b-0b4a1f6374b3@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,63 +88,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13/09/2022 09:16, Astrid Rost wrote:
+> 
+> Hello,
+> 
+> I did the conversion from txt to YAML.
+> It requests me to add as a maintainer?
+> 
+> Dylan was the original Author.
 
---ayq25s2e3amakfxs
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The maintainer of the bindings should be a person caring about them and
+about the hardware. Usually it is a person with some access to the
+device or to its datasheet (but it's not a requirement). Feel free to
+add yourself and/or Daniel and/or any current maintainer of the driver
+(but not subsystem maintainer).
 
-Hello Rob,
 
-On Thu, Sep 01, 2022 at 02:14:55PM -0500, Rob Herring wrote:
-> On Thu, 01 Sep 2022 15:55:23 +0200, Sebastian Reichel wrote:
-> > Add "rockchip,rk3588-pwm" compatible string for PWM nodes found
-> > on a rk3588 platform.
-> >=20
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> > No driver changes required.
-> > ---
-> >  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
->=20
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
->=20
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-
-Is this a list of *new* warnings, or is the report (somewhat) orthogonal
-to the actual change and you just used the opportunity that someone
-touched the pwm-rockchip binding to point out that there is some cleanup
-to do?
-
-> Full log is available here: https://patchwork.ozlabs.org/patch/
-
-Hm, that gives me a 404.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---ayq25s2e3amakfxs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmMgSV8ACgkQwfwUeK3K
-7Alq5QgAmOfz+nd/dPgkG496zmEYMnmf/JKWgKSLv7Za3H3D3b2lcrSIMq9ELHjz
-n3K3IxrpSMlUnbBYfIczZujgnQtmgJIfwdQ58E77dqaF5U3xXNQwrDm8AVns2LlA
-zt5YY+PuTFINuk/fM7BXHoKZlqw5vJwMb52avAkndKddXEFuS+KCR4e9eRHpd1J0
-Ma7Gwoz9EHvLg7uag9pbkyeEUG3Pnd3U+d90q3rd+byShxyNECLltESxW6+HySXf
-Je3LGm4VOnBmrobESRXIx50LS6LD3N5+kmnIKVBWb7b7lkVCmmPgT4CyzMasv4BA
-nMSmE4ylP9K3ZONkIS2/0i/hkuRIhA==
-=2uq6
------END PGP SIGNATURE-----
-
---ayq25s2e3amakfxs--
+Best regards,
+Krzysztof
