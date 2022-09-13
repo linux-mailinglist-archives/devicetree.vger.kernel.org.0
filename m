@@ -2,40 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 880C35B6B8B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 12:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B5B55B6BAF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 12:33:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231351AbiIMKWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 06:22:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48044 "EHLO
+        id S231594AbiIMKdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 06:33:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231626AbiIMKWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 06:22:31 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 538815C9FC;
-        Tue, 13 Sep 2022 03:22:19 -0700 (PDT)
-Received: from [185.122.133.20] (helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oY33V-00045I-Cl; Tue, 13 Sep 2022 12:22:13 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tianling Shen <cnsztl@gmail.com>,
-        Tianling Shen <cnsztl@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] arm64: dts: rockchip: add EEPROM node for NanoPi R4S
-Date:   Tue, 13 Sep 2022 12:22:11 +0200
-Message-ID: <7426763.EvYhyI6sBW@phil>
-In-Reply-To: <20220911040628.13774-1-cnsztl@gmail.com>
-References: <20220911040628.13774-1-cnsztl@gmail.com>
+        with ESMTP id S231567AbiIMKdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 06:33:45 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F7A85D0F9
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 03:33:44 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oY3Ec-0004rS-A2; Tue, 13 Sep 2022 12:33:42 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oY3Ed-000ToH-1B; Tue, 13 Sep 2022 12:33:41 +0200
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oY3Ea-009BNq-OO; Tue, 13 Sep 2022 12:33:40 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v2 0/3] arm64: dts: Add InnoComm WB15-EVK support
+Date:   Tue, 13 Sep 2022 12:33:34 +0200
+Message-Id: <20220913103337.1849023-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -43,75 +50,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The InnoComm WB15-EVK [1] board is a Eval base board for the WB15 SoM
+[2] which is based on the NXP i.MX8MM. This series adds InnoComm as a
+vendor prefix and the necessary dts/dtsi files.
 
-Am Sonntag, 11. September 2022, 06:06:28 CEST schrieb Tianling Shen:
-> NanoPi R4S has a EEPROM attached to the 2nd I2C bus (U92), which
-> stores the MAC address.
-> 
-> FriendlyElec ship two versions of the R4S [1]: The standard as well
-> as the enterprise edition with only the enterprise edition including
-> the EEPROM chip that stores the unique MAC address.
+Sascha
 
-This needs to go differently.
+[1] https://www.innocomm.com/product_inner.aspx?num=2233
+[2] https://www.innocomm.com/product_inner.aspx?num=2232
 
-If the eeprom is only preset on the enterprise-version, you need
-a separate devicetree for it, that provides the eeprom node.
+Changes since v1:
+- Fix spelling of InnoComm:
+  s/innocom/innocomm/
+  s/Innocom/InnoComm/
 
-Declaring the eeprom "in error" on a device that doesn't have it,
-isn't the way to go.
+Sascha Hauer (3):
+  dt-bindings: vendor-prefixes: Add prefix for InnoComm
+  dt-bindings: arm: fsl: Add InnoComm WB15 EVK
+  arm64: dts: freescale: Add InnoComm i.MX8MM based WB15 SoM and EVK
 
-Look for example at rockchip/rk3399-nanopi-m4b.dts for reference
-on how to do it - and also remember to add the new binding
-for that board. And can also again declare the correct mac-address
-cell.
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx8mm-innocomm-wb15-evk.dts    | 147 ++++++
+ .../dts/freescale/imx8mm-innocomm-wb15.dtsi   | 480 ++++++++++++++++++
+ 5 files changed, 631 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15.dtsi
 
-
-Heiko
-
-> 
-> 1. https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R4S#Differences_Between_R4S_Standard_Version_.26_R4S_Enterprise_Version
-> 
-> Changes in v4:
-> - Removed `mac-address` cell as it breaks the standard edition
-> 
-> Changes in v3:
-> - Added address-cells and size-cells
-> 
-> Changes in v2:
-> - Added the size of EEPROM
-> - Added `mac-address` cell to pass the MAC address to kernel
-> - Removed `read-only` property in EEPROM node
-> 
-> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> index fe5b52610010..42c99573ab27 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> @@ -68,6 +68,17 @@ &emmc_phy {
->  	status = "disabled";
->  };
->  
-> +&i2c2 {
-> +	eeprom@51 {
-> +		compatible = "microchip,24c02", "atmel,24c02";
-> +		reg = <0x51>;
-> +		pagesize = <16>;
-> +		size = <256>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +	};
-> +};
-> +
->  &i2c4 {
->  	status = "disabled";
->  };
-> 
-
-
-
+-- 
+2.30.2
 
