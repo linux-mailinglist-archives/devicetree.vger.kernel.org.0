@@ -2,70 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A895B7AB3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 21:20:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32ABE5B7B8D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Sep 2022 21:47:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229478AbiIMTTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 15:19:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34220 "EHLO
+        id S229490AbiIMTrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Sep 2022 15:47:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbiIMTTv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 15:19:51 -0400
+        with ESMTP id S229487AbiIMTrL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 15:47:11 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA5D248F4
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 12:19:49 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92DB67159;
+        Tue, 13 Sep 2022 12:47:09 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3552DB8104C
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 19:19:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C25F6C433D6
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 19:19:46 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 93B76B80765;
+        Tue, 13 Sep 2022 19:47:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68118C433D6;
+        Tue, 13 Sep 2022 19:47:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663096786;
-        bh=R6jS4Z4a97K5U8pIi4B/KhdQlMe9099Tb7Nblpb7eAg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W67DQT0Jpa6VrypZZXw3RXWi2q8jJCcR3yTMzL8lQ6O5aCcwy55a4ldaGFRYgpA5X
-         3l8hNvm6we5YERfbpPEZHpCEH7gsSEAz2kBE2d72740JxSarKGD4N/wh13wvDW2ij7
-         EEE38cPpXb8IyO7XhLv4XcuZOigpKu/zdLikFcGMwlxpeHj+O7ZkQJj3T0pxVe0Iay
-         rntDxxZsiEjCMJxlqwiWwTIA4sQoKlPVeg2WcOYeOTXRGfolmO1bZbKLomUjSuqehl
-         P6juOsd2tAyuEG7/Qr4XzZNEqgl5DkL3mfVT/CZOTKVFnW6e/3p4OKhh725TJ7ie/0
-         p6mVzBaaZi/Dw==
-Received: by mail-lf1-f52.google.com with SMTP id f9so20974418lfr.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 12:19:46 -0700 (PDT)
-X-Gm-Message-State: ACgBeo3hmquyD+o23/mcthIXbEZ8okJz+zzDUTfPOqMSip7e5sMu5A76
-        6cCs16culQ0Je+TX/xf6gA60QaFiFMaK787FCVfXaw==
-X-Google-Smtp-Source: AA6agR5aM4pWdQSmUlxw3xzfWQVfAcmWpXX4S0yTh4MBo1COoiN3Z+VmIU18K5DPji7JAYTvTwXfChZqZwoswz6K7YI=
-X-Received: by 2002:a05:6512:118b:b0:492:e3c4:a164 with SMTP id
- g11-20020a056512118b00b00492e3c4a164mr12052488lfr.598.1663096784863; Tue, 13
- Sep 2022 12:19:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org> <20220910124701.4060321-2-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220910124701.4060321-2-dmitry.baryshkov@linaro.org>
-From:   Amit Kucheria <amitk@kernel.org>
-Date:   Wed, 14 Sep 2022 00:49:33 +0530
-X-Gmail-Original-Message-ID: <CAHLCerNqsDCFLwSBfioWhCTiNfscywhZVe7Uqk49E5A5H7cyxw@mail.gmail.com>
-Message-ID: <CAHLCerNqsDCFLwSBfioWhCTiNfscywhZVe7Uqk49E5A5H7cyxw@mail.gmail.com>
-Subject: Re: [RFC PATCH 01/10] dt-bindings: thermal: tsens: support per-sensor
- calibration cells
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+        s=k20201202; t=1663098427;
+        bh=oYa3/0jwT+rc/FaSbuVOSbxrjj1ZMQaMpvInr8HV2uM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VypoSUfiNeezvXukIt6oLyOW8QFp1ls9mlJmc2SP7wJZvo/bS+izHE82/Vw/vDMMF
+         3fsToFHYndH6gbEyPx2KkhDusCwYRNyMH6wyRA0o6A453nfbALwPGEkdnZGOwV+2L3
+         aHl7nhsKHMg1TWixa/udJB71I9sTGE76W7OeQaD6rwsXVf2d9qY9c+AvdRQ2zJoRDb
+         fh3IJd3Zz8fvXFJWlyLTAOt9W6FBgOfJ1A54vH6oESkXQve6HjJQeuf7r+baHzJftA
+         Qpw4C96an2zt+QS/UPkNCbKoRX1tpilG6wtEtRfu3QkVIJn8VEKOg/r36kVv33NHPv
+         7a7pAnmoO50hw==
+Date:   Tue, 13 Sep 2022 14:47:04 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/40] pinctrl/arm64: qcom: fix some of Qualcomm
+ pinctrl schema warnings
+Message-ID: <20220913194704.rtlelrejpkz6oueq@builder.lan>
+References: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,101 +62,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 10, 2022 at 6:17 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> Allow specifing the exact calibration mode and calibration data as nvmem
+On Mon, Sep 12, 2022 at 08:17:06AM +0200, Krzysztof Kozlowski wrote:
+> Hi,
+> 
+> That's a set for some of arm64 pinctrl bindings fixing most common warnings.  I
+> have a plan to continue this for remaining arm64 (sm8250 needs updates) and for
+> arm.
 
-typo: specifying
+Very nice.
 
-> cells, rather than specifying just a single calibration data blob.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-Reviewed-by: Amit Kucheria <amitk@kernel.org>
+@Linus, please pick the dt binding patches through your tree. I will
+pick the dts changes at the end.
 
+Regards,
+Bjorn
 
-> ---
->  .../bindings/thermal/qcom-tsens.yaml          | 64 ++++++++++++++++---
->  1 file changed, 54 insertions(+), 10 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index 038d81338fcf..b813f6f19c1d 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -77,18 +77,62 @@ properties:
->        - const: critical
->
->    nvmem-cells:
-> -    minItems: 1
-> -    maxItems: 2
-> -    description:
-> -      Reference to an nvmem node for the calibration data
-> +    oneOf:
-> +      - minItems: 1
-> +        maxItems: 2
-> +        description:
-> +          Reference to an nvmem node for the calibration data
-> +      - minItems: 5
-> +        maxItems: 35
-> +        description: |
-> +          Reference to an nvmem cells for the calibration mode, two calibration
-> +          bases and two cells per each sensor
->
->    nvmem-cell-names:
-> -    minItems: 1
-> -    items:
-> -      - const: calib
-> -      - enum:
-> -          - calib_backup
-> -          - calib_sel
-> +    oneOf:
-> +      - minItems: 1
-> +        items:
-> +          - const: calib
-> +          - enum:
-> +              - calib_backup
-> +              - calib_sel
-> +      - minItems: 5
-> +        items:
-> +          - const: mode
-> +          - const: base1
-> +          - const: base2
-> +          - const: s0_p1
-> +          - const: s0_p2
-> +          - const: s1_p1
-> +          - const: s1_p2
-> +          - const: s2_p1
-> +          - const: s2_p2
-> +          - const: s3_p1
-> +          - const: s3_p2
-> +          - const: s4_p1
-> +          - const: s4_p2
-> +          - const: s5_p1
-> +          - const: s5_p2
-> +          - const: s6_p1
-> +          - const: s6_p2
-> +          - const: s7_p1
-> +          - const: s7_p2
-> +          - const: s8_p1
-> +          - const: s8_p2
-> +          - const: s9_p1
-> +          - const: s9_p2
-> +          - const: s10_p1
-> +          - const: s10_p2
-> +          - const: s11_p1
-> +          - const: s11_p2
-> +          - const: s12_p1
-> +          - const: s12_p2
-> +          - const: s13_p1
-> +          - const: s13_p2
-> +          - const: s14_p1
-> +          - const: s14_p2
-> +          - const: s15_p1
-> +          - const: s15_p2
->
->    "#qcom,sensors":
->      description:
-> --
-> 2.35.1
->
+> 
+> Changes since v1
+> ================
+> 1. Correct commit msg in commits "fix matching pin config".
+> 2. Correct commit msg in commit #2 .
+> 3. Add Rb tags.
+> 
+> Dependencies
+> ============
+> 1. dt-bindings are independent of DTS patches.
+> 
+> Best regards,
+> Krzysztof
+> 
+> Krzysztof Kozlowski (40):
+>   dt-bindings: pinctrl: qcom,sm6115-pinctrl: fix matching pin config
+>   dt-bindings: pinctrl: qcom,sm6115-pinctrl: require function on GPIOs
+>   dt-bindings: pinctrl: qcom,sm6115-pinctrl: fix indentation in example
+>   dt-bindings: pinctrl: qcom,sm6125-pinctrl: fix matching pin config
+>   dt-bindings: pinctrl: qcom,sm6125-pinctrl: do not require function on
+>     non-GPIOs
+>   dt-bindings: pinctrl: qcom,sm6125-pinctrl: extend example
+>   dt-bindings: pinctrl: qcom,sm6350-pinctrl: fix matching pin config
+>   dt-bindings: pinctrl: qcom,sm6350-pinctrl: do not require function on
+>     non-GPIOs
+>   dt-bindings: pinctrl: qcom,sm6350-pinctrl: fix indentation in example
+>   dt-bindings: pinctrl: qcom,sm6375-pinctrl: fix matching pin config
+>   dt-bindings: pinctrl: qcom,sm6375-pinctrl: do not require function on
+>     non-GPIOs
+>   dt-bindings: pinctrl: qcom,sm6375-pinctrl: fix indentation in example
+>   dt-bindings: pinctrl: qcom,sm8250-pinctrl: do not require function on
+>     non-GPIOs
+>   dt-bindings: pinctrl: qcom,sm8250-pinctrl: reference tlmm common pins
+>   dt-bindings: pinctrl: qcom,sm8250-pinctrl: fix indentation in example
+>   dt-bindings: pinctrl: qcom,sm8350-pinctrl: fix matching pin config
+>   dt-bindings: pinctrl: qcom,sm8350-pinctrl: fix indentation in example
+>   dt-bindings: pinctrl: qcom,sm8350-pinctrl: do not require function on
+>     non-GPIOs
+>   dt-bindings: pinctrl: qcom,sm8450-pinctrl: fix matching pin config
+>   dt-bindings: pinctrl: qcom,sm8450-pinctrl: fix indentation in example
+>   dt-bindings: pinctrl: qcom,sm8450-pinctrl: do not require function on
+>     non-GPIOs
+>   dt-bindings: pinctrl: qcom,sm8450-pinctrl: add gpio-line-names
+>   dt-bindings: pinctrl: qcom,sc7280-pinctrl: correct number of GPIOs
+>   dt-bindings: pinctrl: qcom,sc7280-pinctrl: do not require function on
+>     non-GPIOs
+>   dt-bindings: pinctrl: qcom,sc7280-pinctrl: add gpio-line-names
+>   dt-bindings: pinctrl: qcom,sc7280-pinctrl: reference tlmm schema
+>   dt-bindings: pinctrl: qcom,sc7280-pinctrl: fix indentation in example
+>   dt-bindings: pinctrl: qcom,sc8180x-pinctrl: fix matching pin config
+>   dt-bindings: pinctrl: qcom,sc8180x-pinctrl: do not require function on
+>     non-GPIOs
+>   dt-bindings: pinctrl: qcom,sc8180x-pinctrl: fix indentation in example
+>   dt-bindings: pinctrl: qcom,sc8280xp-pinctrl: fix matching pin config
+>   dt-bindings: pinctrl: qcom,sc8280xp-pinctrl: do not require function
+>     on non-GPIOs
+>   dt-bindings: pinctrl: qcom,sc8280xp-pinctrl: fix indentation in
+>     example
+>   arm64: dts: qcom: sm6125: align TLMM pin configuration with DT schema
+>   arm64: dts: qcom: sm6350: align TLMM pin configuration with DT schema
+>   arm64: dts: qcom: sm8350-sagami: correct TS pin property
+>   arm64: dts: qcom: sm8350: align TLMM pin configuration with DT schema
+>   arm64: dts: qcom: sm8450: align TLMM pin configuration with DT schema
+>   arm64: dts: qcom: sc7280: align TLMM pin configuration with DT schema
+>   arm64: dts: qcom: sc7280-herobrine: correct TLMM gpio-line-names
+> 
+>  .../bindings/pinctrl/qcom,sc7280-pinctrl.yaml |  55 +--
+>  .../pinctrl/qcom,sc8180x-pinctrl.yaml         |  79 +++--
+>  .../pinctrl/qcom,sc8280xp-pinctrl.yaml        |  73 ++--
+>  .../bindings/pinctrl/qcom,sm6115-pinctrl.yaml |  94 +++---
+>  .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml |  61 +++-
+>  .../bindings/pinctrl/qcom,sm6350-pinctrl.yaml |  73 ++--
+>  .../bindings/pinctrl/qcom,sm6375-tlmm.yaml    |  73 ++--
+>  .../bindings/pinctrl/qcom,sm8250-pinctrl.yaml |  41 ++-
+>  .../bindings/pinctrl/qcom,sm8350-pinctrl.yaml |  73 ++--
+>  .../bindings/pinctrl/qcom,sm8450-pinctrl.yaml |  82 +++--
+>  .../boot/dts/qcom/sc7280-herobrine-crd.dts    |   2 -
+>  .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  44 +--
+>  .../arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi |   8 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |  20 +-
+>  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |  14 +-
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi          | 316 +++++++++---------
+>  .../qcom/sm6125-sony-xperia-seine-pdx201.dts  |   4 +-
+>  arch/arm64/boot/dts/qcom/sm6125.dtsi          |  10 +-
+>  arch/arm64/boot/dts/qcom/sm6350.dtsi          |  14 +-
+>  .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   |   4 +-
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi          |  44 +--
+>  .../qcom/sm8450-sony-xperia-nagara-pdx223.dts |  12 +-
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi          | 152 ++++-----
+>  23 files changed, 733 insertions(+), 615 deletions(-)
+> 
+> -- 
+> 2.34.1
+> 
