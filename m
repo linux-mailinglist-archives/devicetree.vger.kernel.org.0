@@ -2,70 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C82F5B851D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 507425B8528
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:37:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231416AbiINJgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 05:36:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42608 "EHLO
+        id S231367AbiINJhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 05:37:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230453AbiINJf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:35:29 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BF7122283;
-        Wed, 14 Sep 2022 02:32:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663147973; x=1694683973;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=3COSI+5DkvURhmR3kwSxTX5q54q4f1aW8pTt8mxl1hY=;
-  b=QbpF0XiVEpGt6wM31Gn6pf+mThe2GKABohY1BC8j0S+9MCgulV3uTGeb
-   fNN75dMaFSMS+NIVCT2RyQaZIYlNYDHwJiamW5H4XjLsGAx+wDSLzjA5S
-   yNS37dIIGE92d4auLSd7lURdcZlIc8Dd3p3fb2pyKvoYebc2KPUh1mrA0
-   A+FAl/tl8C/2e4vvOrp0qiCyrvi4uYs62YOZD8EeTyBjMdWK9pqSVQK7u
-   1JgO9GG+DgLNmSAoWfb1qxEGH0cT94Khkjqj5and9auhwu5s1BjW2jNjl
-   soRNhTkOXlytZaTZHCwSFMH2rDkdxv+SwaxO2w+JU2a7AZJs8oCccM7HZ
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10469"; a="384676471"
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; 
-   d="scan'208";a="384676471"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2022 02:32:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; 
-   d="scan'208";a="720521087"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2022 02:32:50 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1oYOlD-0028WF-2H;
-        Wed, 14 Sep 2022 12:32:47 +0300
-Date:   Wed, 14 Sep 2022 12:32:47 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     "Farber, Eliav" <farbere@amazon.com>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        p.zabel@pengutronix.de, rtanwar@maxlinear.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com
-Subject: Re: [PATCH v5 20/21] hwmon: (mr75203) add debugfs to read and write
- temperature coefficients
-Message-ID: <YyGfvzlCu9qgtgA0@smile.fi.intel.com>
-References: <20220908152449.35457-1-farbere@amazon.com>
- <20220908152449.35457-21-farbere@amazon.com>
- <YxowTBIODMLjf1Ek@smile.fi.intel.com>
- <581a4a0b-8e0e-b7a2-f873-77ed74b54e96@amazon.com>
- <3b121ab4-dd64-68b3-ee89-8571b5d3651e@amazon.com>
- <YyC3hsNhbQGIlReU@smile.fi.intel.com>
- <bdb73546-f309-60dd-3c40-d749654228fe@amazon.com>
+        with ESMTP id S230453AbiINJh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:37:26 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928EE314;
+        Wed, 14 Sep 2022 02:36:12 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28E9SH3O026120;
+        Wed, 14 Sep 2022 09:35:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=subject : to :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=P99DFL9RFG9Dhn5X+kTEl7SHgN2RMsqsNHhLlj3BOvY=;
+ b=Ip67EnXSsu0OqZvxyCab6StDZCc7eCpCM4KAMHsw2oEYpruz22Grm2jFpNn39A53m9xz
+ pfPjqI1O/v4j/YzvqAVuXpXd30T1Jdd0egcFb78RCT28WDFg8l7GNV5IR1VHillExCYk
+ PAnGeAwl7vywPl1+P7agEFSUlW6GchCDKQhsuNcprFWoA6ve0/jkpMttB3+YhOHrV9mz
+ ttkMjex+JlCB8gyccD9SIFI8qPbQkkfBdZyN4YrjojojfcNxa5IWswj60ZdAvKrJAt9T
+ PRTs7CdXxjQB5HZtEbdNFxLpAa4AggYLzVMFnx6S6RwnWr4WKKS3MjIWR7RQ5b+XYbGU WQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jjy06hr3k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Sep 2022 09:35:57 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28E9ZuSl023166
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Sep 2022 09:35:56 GMT
+Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 14 Sep
+ 2022 02:35:51 -0700
+Subject: Re: [PATCH v6 4/8] remoteproc: qcom: Update rproc parse firmware
+ callback
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
+References: <1662643422-14909-1-git-send-email-quic_srivasam@quicinc.com>
+ <1662643422-14909-5-git-send-email-quic_srivasam@quicinc.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+Message-ID: <babd014c-bf8a-bbff-7bc7-fabeeb250d0d@quicinc.com>
+Date:   Wed, 14 Sep 2022 15:05:48 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <bdb73546-f309-60dd-3c40-d749654228fe@amazon.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <1662643422-14909-5-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lrqwII24AonPRi-0_-ePwr6-l-A-3otU
+X-Proofpoint-ORIG-GUID: lrqwII24AonPRi-0_-ePwr6-l-A-3otU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-14_03,2022-09-14_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ lowpriorityscore=0 priorityscore=1501 impostorscore=0 adultscore=0
+ spamscore=0 mlxlogscore=999 clxscore=1015 suspectscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2208220000 definitions=main-2209140046
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,60 +86,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 07:26:36AM +0300, Farber, Eliav wrote:
-> On 9/13/2022 8:01 PM, Andy Shevchenko wrote:
-> > On Tue, Sep 13, 2022 at 05:40:16PM +0300, Farber, Eliav wrote:
-> > > On 9/13/2022 4:06 PM, Farber, Eliav wrote:
 
-...
+On 9/8/22 6:53 PM, Srinivasa Rao Mandadapu wrote:
+> Change parse_fw callback in rproc ops from qcom_register_dump_segments
+> to rproc_elf_load_rsc_table, as section header to be parsed for memory
+> sandboxing required platforms.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> ---
+>   drivers/remoteproc/qcom_q6v5_adsp.c | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
+> index 02d17b4..207270d4 100644
+> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> @@ -447,7 +447,7 @@ static unsigned long adsp_panic(struct rproc *rproc)
+>   	return qcom_q6v5_panic(&adsp->q6v5);
+>   }
+>   
+> -static const struct rproc_ops adsp_ops = {
+> +static struct rproc_ops adsp_ops = {
+>   	.start = adsp_start,
+>   	.stop = adsp_stop,
+>   	.da_to_va = adsp_da_to_va,
+> @@ -590,6 +590,9 @@ static int adsp_probe(struct platform_device *pdev)
+>   		return ret;
+>   	}
+>   
+> +	if (desc->has_iommu)
+> +		adsp_ops.parse_fw = rproc_elf_load_rsc_table;
+> +
 
-> > > It seems like debugfs_attr_write() calls simple_attr_write() and it uses
-> > > kstrtoull(), which is why it fails when setting a negative value.
-> > > This is the same also in v6.0-rc5.
-> > > 
-> > > debugfs_attr_read() on the other hand does show the correct value also
-> > > when j is negative.
-> > 
-> > Which puzzles me since there is a few drivers that use %lld.
-> > Yeah, changing it to
-> > 
-> >        ret = sscanf(attr->set_buf, attr->fmt, &val);
-> >        if (ret != 1)
-> >                ret = -EINVAL;
-> > 
-> > probably can fix that. Dunno if debugfs maintainer is okay with this.
-> > 
-> > P.S. This needs revisiting all format strings to see if there are no
-> > additional
-> > characters, otherwise that needs to be addressed first, if feasible.
-> 
-> I was thinking of making such a correction:
-> 
-> -       ret = kstrtoull(attr->set_buf, 0, &val);
-> +       if (attr->set_buf[0] == '-')
-> +               ret = kstrtoll(attr->set_buf, 0, &val);
-> +       else
-> +               ret = kstrtoull(attr->set_buf, 0, &val);
-> 
-> and when I tested the change it worked, but then I noticed this commit:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/fs/libfs.c?h=v6.0-rc5&id=488dac0c9237647e9b8f788b6a342595bfa40bda
-> 
-> According to this, it previously used simple_strtoll() which supports
-> negative values, but was changed to use kstrtoull() to deliberately
-> return '-EINVAL' if it gets a negative value.
-> 
-> So I’m not sure debugfs maintainers will be okay with a fix that
-> basically reverts the commit I mentioned.
-> Hence, what do you suggest to do with my commit?
-> Is it ok to leave it as it is today?
+The parse_fw would still need to perform the register_dump_segments
+in addition to elf_load_rsc_table, otherwise you'll lose coredump
+functionality for ADSP on SC7280. You could perhaps just follow
+qcom_q6v5_mss parse_fw i.e. have a static func internal to adsp
+doing both and have it assigned to both wpss/adsp with the
+pre-existing has_iommu flag to differentiate between the two. With
+this you wouldn't need to remove the const in adsp_ops as well.
 
-Meanwhile asking is not a problem, at least we will know for sure.
-And yes, leave it as is, but point to the thread where you asking
-the clarification.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>   	rproc = rproc_alloc(&pdev->dev, pdev->name, &adsp_ops,
+>   			    firmware_name, sizeof(*adsp));
+>   	if (!rproc) {
+> 
