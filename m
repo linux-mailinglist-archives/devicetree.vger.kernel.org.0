@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D42A75B8C0F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 17:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E4225B8C15
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 17:41:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230348AbiINPkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 11:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57438 "EHLO
+        id S229621AbiINPlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 11:41:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230327AbiINPkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 11:40:02 -0400
+        with ESMTP id S230205AbiINPl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 11:41:27 -0400
 Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8066AA3E;
-        Wed, 14 Sep 2022 08:38:01 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEFCA31DD9;
+        Wed, 14 Sep 2022 08:41:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
         MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
         List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=gOLBlb9Twt2TVyi5QU0OEVORWi4d1OG8YQSlE6qjmQI=; b=CNSOrwQV8vwpuT7NrFT64kb16a
-        84RpgkIOOH6vzLgiPVCttzaggrt7uDhdBHsZsSAIxqXyr8ONlD+ppRrBRZM9/t6owAuczFx017TbW
-        JwlHTWJOU8dtSaTvBVQ8XI+43bvv+EP4qocVXdfkuKGmgY353v1GK68IOfy1mdJ93dxLeuGBIt5Ed
-        6OO/MhlV8oVx7QeipfGSkMGVoRSuP2ApbHHcYD0Vg2N37+G9euMcfNPBDdNKcawcxYVkxPgIY8OmT
-        UiRm1QmfVzwlXgEQZeVokbab1Ss8GPe7gCNgwNC4pUIcxU5reS1sjRjL+F8LHA1T2HW9qNnIVdblj
-        D6o8Gy8Q==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34320)
+        bh=+/Tlbli6dmKOW4NjYwLwzvti9ZsiTxMiylOYMJbYirE=; b=xUmBi4TeHDhoq0VWrwV6lv8xN7
+        vbU2AJwVxEe//asqujXEXPLAOtceiFrdlXFvXlDjON9Dwqm7ku3QI0xKLY9zESr0+Tu9tbAVqVIwD
+        EszKmJzkpuo8poZ1uWdPNjVR+1qV9o2aIsRbkCMEMQ3CjnizPQY1QlL7+SXSsyiXA/Asi0gHtyHoe
+        zwq/GNHQVV/yIRUZzT8/g9RNz/JWDJXB4QZrk+X/nSCV3XYTJ8ErqCVXC7RGD4kWmCQ9rEuazV21t
+        csryCrrmKiOzwFCifRIWv/Fm8O7zinTIoDd4hUks/lU8zLJFInckCz5RO24mDPWF5T+vgFtZMTPuV
+        7eEymAqg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34322)
         by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <linux@armlinux.org.uk>)
-        id 1oYUSW-0004Y6-Ol; Wed, 14 Sep 2022 16:37:52 +0100
+        id 1oYUVm-0004YW-H6; Wed, 14 Sep 2022 16:41:14 +0100
 Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
         (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1oYUSS-0001kz-Vo; Wed, 14 Sep 2022 16:37:48 +0100
-Date:   Wed, 14 Sep 2022 16:37:48 +0100
+        id 1oYUVl-0001lu-Pu; Wed, 14 Sep 2022 16:41:13 +0100
+Date:   Wed, 14 Sep 2022 16:41:13 +0100
 From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
 To:     Siddharth Vadapalli <s-vadapalli@ti.com>
 Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
@@ -44,15 +44,15 @@ Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
         nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         kishon@ti.com
-Subject: Re: [PATCH 2/8] net: ethernet: ti: am65-cpsw: Add support for SERDES
- configuration
-Message-ID: <YyH1TH0UqCzN37J2@shell.armlinux.org.uk>
+Subject: Re: [PATCH 5/8] net: ethernet: ti: am65-cpsw: Add support for
+ fixed-link configuration
+Message-ID: <YyH2GcLCAN+9GAn8@shell.armlinux.org.uk>
 References: <20220914095053.189851-1-s-vadapalli@ti.com>
- <20220914095053.189851-3-s-vadapalli@ti.com>
+ <20220914095053.189851-6-s-vadapalli@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220914095053.189851-3-s-vadapalli@ti.com>
+In-Reply-To: <20220914095053.189851-6-s-vadapalli@ti.com>
 Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
@@ -63,22 +63,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 03:20:47PM +0530, Siddharth Vadapalli wrote:
-> @@ -1427,6 +1471,9 @@ static void am65_cpsw_nuss_mac_link_down(struct phylink_config *config, unsigned
->  	struct net_device *ndev = port->ndev;
->  	int tmo;
+On Wed, Sep 14, 2022 at 03:20:50PM +0530, Siddharth Vadapalli wrote:
+> diff --git a/drivers/net/ethernet/ti/am65-cpsw-nuss.c b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> index 72b1df12f320..1739c389af20 100644
+> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> @@ -1494,10 +1494,50 @@ static void am65_cpsw_nuss_mac_config(struct phylink_config *config, unsigned in
+>  							  phylink_config);
+>  	struct am65_cpsw_port *port = container_of(slave, struct am65_cpsw_port, slave);
+>  	struct am65_cpsw_common *common = port->common;
+> +	struct fwnode_handle *fwnode;
+> +	bool fixed_link = false;
 >  
-> +	/* disable phy */
-> +	am65_cpsw_disable_phy(port->slave.ifphy);
+>  	if (common->pdata.extra_modes & BIT(state->interface))
+>  		writel(AM65_CPSW_SGMII_CONTROL_MR_AN_ENABLE,
+>  		       port->sgmii_base + AM65_CPSW_SGMII_CONTROL_REG);
 > +
+> +	/* Detecting fixed-link */
+> +	fwnode = of_node_to_fwnode(port->slave.phy_node);
+> +	if (fwnode)
+> +		fixed_link = !!fwnode_get_named_child_node(fwnode, "fixed-link");
+> +
+> +	if (fixed_link) {
+> +		/* In fixed-link mode, mac_link_up is not invoked.
+> +		 * Therefore, the relevant mac_link_up operations
+> +		 * have to be moved to mac_config.
+> +		 */
 
-This seems really strange. If you have a serdes interface which
-presumably supports SGMII, 1000base-X etc, then link status is sent
-across the serdes interface. If you power down the serdes, then you
-can't receive the link status, and so mac_link_up() won't be called.
+This seems very wrong. Why is mac_link_up() not invoked? Have you
+debugged this? It works for other people.
 
-Are you really sure you want to be enabling and disabling the PHY
-in mac_link_down()/mac_link_up() ?
+Please debug rather than adding hacks to drivers when you find
+things that don't seem to work.
 
 -- 
 RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
