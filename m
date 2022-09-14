@@ -2,73 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0C145B8197
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 08:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8B145B81DB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230095AbiINGqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 02:46:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36530 "EHLO
+        id S230087AbiINHNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 03:13:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiINGqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 02:46:15 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D5F653018
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 23:46:14 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id t7so24053195wrm.10
-        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 23:46:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=ImmVW0/zlsxHuw+mi1Y/IEzHEHB3es0bsHMSoWAgL4k=;
-        b=u+lq0otXn+KFbHR11SKSKZ+asxqc1H4lSrT/Aw6f7w3zGwHYtEcttBGlS3k8gKusPG
-         CbAJlMmhtPy1LkGly9A9yChqyYDjJW7gM4oBWv3nDjPFnQHa/Kp8rgF53AAr3yxlQWd5
-         Qm4Ps0L9LvLibt7KC7weO7oGIwK+NPyXTKaI+3RlkXNGKXTrQt0FQlKYUz2HBojG+r9B
-         c7epBJr25jHh+OXIfSVGIBw2hxbLjLEfVVDzityV4J5ck0ywrGpKOehQZpkkwm40jOgL
-         q6U+WQpjIvrtpwE2Gqxei7ZILJsEtOcgd6qUVfZQvbCufQBQ84wc4wn4Gs5pz2OJ6EU+
-         pCmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=ImmVW0/zlsxHuw+mi1Y/IEzHEHB3es0bsHMSoWAgL4k=;
-        b=uYPBquTeqOx3FewT3jjVEKu2f5jVkEHsOcdnmmg8o2Z2i8xqUifq0llz3cQ/1HS+TY
-         QYQfeDtvSaVWARa0xU00czmJ9M98IDsG9LiZpvwoaxbwuGLqxxJtyC9me/Fgue9LoaF4
-         a1dIRwPFQtumKuhC7qi5fD5vLKsgG6N4WJvpczE4uDBuv87D9TSCwMHXgqVir6KZ/Kbk
-         0+J8zAO3ank8ps24X7VfhGnK8POYsCrbNMsVUNGidC1rJexWOjk1WgUSMkqBT7LPec3O
-         boeOpZ9zPytVAnYjaypH+Zzau++cF8Xhh8BGAv2ZCzqGyQgtIB104h0Ug8vLB/4cNIGg
-         1Fpg==
-X-Gm-Message-State: ACgBeo1yxk97raptD5vLZKAQ7BNXaNy0RImwgyLTrEx8J3lDMB4tW1+F
-        fGb6wEoFVBTbG8UkPJKPIUA+lQ==
-X-Google-Smtp-Source: AA6agR4+sQtyB4wK6jRKjx2OlMzlixZ167jBff5k7cF+FUTrqgsIco8SvtKudY3At2GX0GTDOP0o3Q==
-X-Received: by 2002:a05:6000:1861:b0:22a:bb41:886d with SMTP id d1-20020a056000186100b0022abb41886dmr5011968wri.661.1663137973060;
-        Tue, 13 Sep 2022 23:46:13 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id t16-20020adfe110000000b00229b76f872asm14930035wrz.27.2022.09.13.23.46.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Sep 2022 23:46:11 -0700 (PDT)
-Date:   Wed, 14 Sep 2022 07:46:04 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Jerome Neanne <jneanne@baylibre.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, tony@atomide.com, afd@ti.com,
-        khilman@baylibre.com, narmstrong@baylibre.com, msp@baylibre.com,
-        j-keerthy@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
-        Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v5 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
-Message-ID: <YyF4rDbR/lwblAVt@google.com>
-References: <20220913121419.15420-1-jneanne@baylibre.com>
- <20220913121419.15420-5-jneanne@baylibre.com>
+        with ESMTP id S230130AbiINHNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:13:12 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A0461B2E
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:13:10 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oYMa4-00055e-Tg; Wed, 14 Sep 2022 09:13:08 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oYMa5-000eMq-9o; Wed, 14 Sep 2022 09:13:07 +0200
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oYMa3-00Duhq-3h; Wed, 14 Sep 2022 09:13:07 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     linux-gpio@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, kernel@pengutronix.de,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v3 0/2] gpio: Add gpio-latch driver
+Date:   Wed, 14 Sep 2022 09:13:04 +0200
+Message-Id: <20220914071306.3254881-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220913121419.15420-5-jneanne@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,41 +51,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Sep 2022, Jerome Neanne wrote:
+Third round of the gpio-latch driver. The review comments I received
+from v2 are integrated, for a changelog see the individual patches.
 
-> The TPS65219 is a power management IC PMIC designed to supply a wide
-> range of SoCs in both portable and stationary applications. Any SoC can
-> control TPS65219 over a standard I2C interface.
-> 
-> It contains the following components:
-> - Regulators.
-> - Over Temperature warning and Shut down.
-> - GPIOs
-> - Multi Function Pins (MFP)
-> - power-button
-> 
-> This patch adds support for tps65219 PMIC. At this time only
-> the functionalities listed below are made available:
-> 
-> - Regulators probe and functionalities
-> - warm and cold reset support
-> - SW shutdown support
-> - Regulator warnings via IRQs
-> - Power-button via IRQ
-> 
-> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->  MAINTAINERS                  |   1 +
->  drivers/mfd/Kconfig          |  14 ++
->  drivers/mfd/Makefile         |   1 +
->  drivers/mfd/tps65219.c       | 320 ++++++++++++++++++++++++++++++++
->  include/linux/mfd/tps65219.h | 345 +++++++++++++++++++++++++++++++++++
->  5 files changed, 681 insertions(+)
->  create mode 100644 drivers/mfd/tps65219.c
->  create mode 100644 include/linux/mfd/tps65219.h
+This time there's also devicetree@vger.kernel.org on Cc which I forgot
+to add the last two rounds.
 
-Please resend this to the email indicated in MAINTAINERS.
+Sascha
+
+Sascha Hauer (2):
+  gpio: Add gpio latch driver
+  dt-bindings: gpio: Add gpio-latch binding document
+
+ .../devicetree/bindings/gpio/gpio-latch.yaml  |  85 ++++++++
+ drivers/gpio/Kconfig                          |   6 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-latch.c                     | 192 ++++++++++++++++++
+ 4 files changed, 284 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-latch.yaml
+ create mode 100644 drivers/gpio/gpio-latch.c
 
 -- 
-DEPRECATED: Please use lee@kernel.org
+2.30.2
+
