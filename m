@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24D0D5B8C61
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 18:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D6C5B8C63
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 18:03:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbiINQCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 12:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33026 "EHLO
+        id S229895AbiINQDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 12:03:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229742AbiINQCp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 12:02:45 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7365D72B47
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 09:02:43 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id k9so26501743wri.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 09:02:43 -0700 (PDT)
+        with ESMTP id S229852AbiINQDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 12:03:11 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC08B7645D
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 09:03:09 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id z12so8132376wrp.9
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 09:03:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:from:to:cc:subject:date;
-        bh=0a1rSxvAJG0YnYk7+iIiw+NeG9+9V8j9zpStoZYAMfg=;
-        b=u7sQ9YzDa9AJttRF+k1/nMcRPdRO+kG+nfqYPxJ3nVXs9DRbmmGr7tuqKKhGqFWK4z
-         kTXcHAfcLUGjEFEyZ0/r4eO8uWM23Fsq0qt+UY0ZHrpmm/WCs8GBsLK9Qnawv0/xn0tN
-         3SMXx/1Dd4d77k/Yj6dxjyZ1c2V+ndnhDXQwdKY82wCixqLbhHm0PnCu0EWVFnIClXyw
-         xUIrmpBknDUwOWb15hb82/S8XCUYzUnORQm1GcGvqo4Y3zLpf044H5WzbhXRif+JxQ8P
-         EXeDQNwV0Mj7XtH3F17ztuSMhj0aNcoHyLdWi6pF66KjdJL17Anltq1bpS3U7DshrFmc
-         ucXw==
+        bh=aqzQjvp4t41Jz7jUGp3ZAp2nDn4twAnuhFEkrXjTvyg=;
+        b=bv4jcSOrYQdmAw5tIXiM4fFo8rXknewxV2tDaI3ZCqDkGeXZhaQ/HJVrJnoNRahM/S
+         BhS5tlXvmz5H/+q8hnohv03K4JeHvPGtooXP2ebNjn83UkN2Rzn6bqDYFbSmzO40hUjj
+         Bwu4AHdUIdPh8CMnpsGPBS0ejYA7KPdGonfD7O+S7+cV2lR1Ezal47i8MjdhVqiBqwzN
+         fsHNnnbtqX08piKeLsl0LrodwLEmVvJTyK2EfUmON0jVJQeFL0ky1kHOTkJUH4ZXr8dB
+         eedJ95XKJSZWAk8MTUCo6MEXswJb8IKj0lPbUzgy+3gzc3uaF4PZpcZTzUV6Ml+HFY02
+         6mXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date;
-        bh=0a1rSxvAJG0YnYk7+iIiw+NeG9+9V8j9zpStoZYAMfg=;
-        b=dfbu5FFNnc3qp2qR2MbTGKnnkhhQI3yp2pZFER+xbNQd1czzXXqXprJtMC1scjp43Y
-         weOLU82qPG71PM2ZXF95IA3Pb/sg0m7nlYsFi6IdrQOTI/E8Nt/kyn99tGNBClHr8H33
-         AHoS3O4sfaJWqf+ISJu09bqBeQdP+j1uguX0hsmGJ0c0m1tMEETlOkoQ/A0fK6ITvmwX
-         hvy3kH3xbg3REDFenPzobYIbnKZQIhTfxyXRdUaXsDS7Lo0EG2eNgn6LGoGqbmE1EJJT
-         bEffo1DBFweUuCto7LmO2Sr0HHgmmLxxAczEDFFhUfzS5GLFiuNDLHrWQbPpJiYUj66m
-         3qTw==
-X-Gm-Message-State: ACgBeo3q6RjH8ppwdh2JLgd3aJqgDP8WQUNVrMYRvceKSDzwZDt2Bo6X
-        wTzKv7EshihSr/JMvb2i77Tavw==
-X-Google-Smtp-Source: AA6agR7zCloyLg9dA6SkmO6teoejjwRwhuaiZfmAYiHwsaIJNXiwj59Jq8E/lGyPllk5k9+m78yl/Q==
-X-Received: by 2002:a5d:47a8:0:b0:226:f124:ad74 with SMTP id 8-20020a5d47a8000000b00226f124ad74mr23034923wrb.18.1663171361878;
-        Wed, 14 Sep 2022 09:02:41 -0700 (PDT)
+        bh=aqzQjvp4t41Jz7jUGp3ZAp2nDn4twAnuhFEkrXjTvyg=;
+        b=YD+oocyVocBNcXXidMb3rUCCbI8zz7TS1CnYKCY+nJWVT7FmSGLVF0wQOKPmz1GRcY
+         EK0EKyXCsaw2vLKstncJTlpdqEhGc6a4c4Nq/2URZdJPzhSWXtxcL/Zg/HGjcF0pbyKS
+         BUw8GClXaU52t8CL5M0NNkEqypLyQVkbcJKAZ0C8m1JCFJG3X25PPlcrU732e0jl1giM
+         1bsOsElpgyMeC2C+CjguVee/kwWAhNKGlmtK+eP9kJcRlk9oLoVKCYvTl9g1OZbpOwLO
+         ycyc6mDM+xrZF73bzOperVJ6uYJYTk1BONvEYClrHkPSAYdoQmAUgVBKFgQSChEp9ecl
+         o9WQ==
+X-Gm-Message-State: ACgBeo3zguAJZZQ5ivibjRUtRLednEWsh6D1mxixs1SuZY4IyTJhjgMK
+        fzJYy5eJAdx1fIcqIwbUA6YDQw==
+X-Google-Smtp-Source: AA6agR4lKuES9242SuLhAy9XPb7I73BC3tyhkmK9vHGMmgkz0UiKbcrDvRouOntt44xvARa+AAMRKw==
+X-Received: by 2002:a05:6000:16ce:b0:228:62e0:37a6 with SMTP id h14-20020a05600016ce00b0022862e037a6mr21764430wrf.563.1663171388351;
+        Wed, 14 Sep 2022 09:03:08 -0700 (PDT)
 Received: from localhost ([185.122.133.20])
-        by smtp.gmail.com with ESMTPSA id h17-20020a05600c2cb100b003a5ca627333sm19229570wmc.8.2022.09.14.09.02.40
+        by smtp.gmail.com with ESMTPSA id v8-20020a05600c12c800b003a844885f88sm16585749wmd.22.2022.09.14.09.03.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 09:02:41 -0700 (PDT)
+        Wed, 14 Sep 2022 09:03:07 -0700 (PDT)
 From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
@@ -58,13 +58,13 @@ Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
         linux-mediatek@lists.infradead.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: Convert mtk-pmic-keys to DT
- schema
-In-Reply-To: <20220914103021.43593-2-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: input: mediatek,pmic-keys: Add
+ compatible for MT6331 keys
+In-Reply-To: <20220914103021.43593-3-angelogioacchino.delregno@collabora.com>
 References: <20220914103021.43593-1-angelogioacchino.delregno@collabora.com>
- <20220914103021.43593-2-angelogioacchino.delregno@collabora.com>
-Date:   Wed, 14 Sep 2022 17:02:40 +0100
-Message-ID: <87leqmt04f.fsf@baylibre.com>
+ <20220914103021.43593-3-angelogioacchino.delregno@collabora.com>
+Date:   Wed, 14 Sep 2022 17:03:07 +0100
+Message-ID: <87illqt03o.fsf@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,200 +77,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
-
 On Wed, Sep 14, 2022 at 12:30, AngeloGioacchino Del Regno         <angelogioacchino.delregno@collabora.com> wrote:
 
-> Convert the mtk-pmic-keys to DT schema format.
->
-> The old binding was missing documentation for key press/release
-> interrupts, even though it was supported in hardware and driver,
-> so support for the same was added during the conversion.
+> Add a compatible for the keys found on MT6331 PMIC.
 >
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/input/mediatek,pmic-keys.yaml    | 113 ++++++++++++++++++
->  .../bindings/input/mtk-pmic-keys.txt          |  46 -------
->  2 files changed, 113 insertions(+), 46 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
->  delete mode 100644 Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
-
-Thank you for doing this. I started this but it seemed you were faster
-than me :)
 
 Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
+> ---
+>  Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >
 > diff --git a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-> new file mode 100644
-> index 000000000000..9d8a0c3aebca
-> --- /dev/null
+> index 9d8a0c3aebca..2f72ec418415 100644
+> --- a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
 > +++ b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-> @@ -0,0 +1,113 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/mediatek,pmic-keys.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek PMIC Keys
-> +
-> +maintainers:
-> +  - Chen Zhong <chen.zhong@mediatek.com>
-> +
-> +allOf:
-> +  - $ref: input.yaml#
-> +
-> +description: |
-> +  There are two key functions provided by MT6397, MT6323 and other MediaTek
-> +  PMICs: pwrkey and homekey.
-> +  The key functions are defined as the subnode of the function node provided
-> +  by the PMIC that is defined as a Multi-Function Device (MFD).
-> +
-> +  For MediaTek MT6323/MT6397 PMIC bindings see
-> +  Documentation/devicetree/bindings/mfd/mt6397.txt
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt6323-keys
-> +      - mediatek,mt6358-keys
-> +      - mediatek,mt6397-keys
-> +
-> +  power-off-time-sec: true
-> +
-> +  mediatek,long-press-mode:
-> +    description: |
-> +      Key long-press force shutdown setting
-> +      0 - disabled
-> +      1 - pwrkey
-> +      2 - pwrkey+homekey
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0
-> +    maximum: 2
-> +
-> +patternProperties:
-> +  "^((power|home)|(key-[a-z0-9-]+|[a-z0-9-]+-key))$":
-> +    $ref: input.yaml#
-> +
-> +    properties:
-> +      interrupts:
-> +        minItems: 1
-> +        items:
-> +          - description: Key press interrupt
-> +          - description: Key release interrupt
-> +
-> +      interrupt-names: true
-> +
-> +      linux-keycodes:
-> +        maxItems: 1
-> +
-> +      wakeup-source: true
-> +
-> +    required:
-> +      - linux,keycodes
-> +
-> +    if:
-> +      properties:
-> +        interrupt-names:
-> +          contains:
-> +            const: powerkey
-> +    then:
-> +      properties:
-> +        interrupt-names:
-> +          minItems: 1
-> +          items:
-> +            - const: powerkey
-> +            - const: powerkey_r
-> +    else:
-> +      properties:
-> +        interrupt-names:
-> +          minItems: 1
-> +          items:
-> +            - const: homekey
-> +            - const: homekey_r
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/input/input.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    pmic {
-> +        compatible = "mediatek,mt6397";
-> +
-> +        keys {
-> +          compatible = "mediatek,mt6397-keys";
-> +          mediatek,long-press-mode = <1>;
-> +          power-off-time-sec = <0>;
-> +
-> +          key-power {
-> +            linux,keycodes = <KEY_POWER>;
-> +            wakeup-source;
-> +          };
-> +
-> +          key-home {
-> +            linux,keycodes = <KEY_VOLUMEDOWN>;
-> +          };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt b/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
-> deleted file mode 100644
-> index 9d00f2a8e13a..000000000000
-> --- a/Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
-> +++ /dev/null
-> @@ -1,46 +0,0 @@
-> -MediaTek MT6397/MT6323 PMIC Keys Device Driver
-> -
-> -There are two key functions provided by MT6397/MT6323 PMIC, pwrkey
-> -and homekey. The key functions are defined as the subnode of the function
-> -node provided by MT6397/MT6323 PMIC that is being defined as one kind
-> -of Muti-Function Device (MFD)
-> -
-> -For MT6397/MT6323 MFD bindings see:
-> -Documentation/devicetree/bindings/mfd/mt6397.txt
-> -
-> -Required properties:
-> -- compatible: Should be one of:
-> -	- "mediatek,mt6397-keys"
-> -	- "mediatek,mt6323-keys"
-> -	- "mediatek,mt6358-keys"
-> -- linux,keycodes: See Documentation/devicetree/bindings/input/input.yaml
-> -
-> -Optional Properties:
-> -- wakeup-source: See Documentation/devicetree/bindings/power/wakeup-source.txt
-> -- mediatek,long-press-mode: Long press key shutdown setting, 1 for
-> -	pwrkey only, 2 for pwrkey/homekey together, others for disabled.
-> -- power-off-time-sec: See Documentation/devicetree/bindings/input/input.yaml
-> -
-> -Example:
-> -
-> -	pmic: mt6397 {
-> -		compatible = "mediatek,mt6397";
-> -
-> -		...
-> -
-> -		mt6397keys: mt6397keys {
-> -			compatible = "mediatek,mt6397-keys";
-> -			mediatek,long-press-mode = <1>;
-> -			power-off-time-sec = <0>;
-> -
-> -			power {
-> -				linux,keycodes = <116>;
-> -				wakeup-source;
-> -			};
-> -
-> -			home {
-> -				linux,keycodes = <114>;
-> -			};
-> -		};
-> -
-> -	};
+> @@ -25,6 +25,7 @@ properties:
+>    compatible:
+>      enum:
+>        - mediatek,mt6323-keys
+> +      - mediatek,mt6331-keys
+>        - mediatek,mt6358-keys
+>        - mediatek,mt6397-keys
+>  
 > -- 
 > 2.37.2
