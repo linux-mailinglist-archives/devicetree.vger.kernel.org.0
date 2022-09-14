@@ -2,146 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EF3E5B900F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 23:24:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D08D5B9025
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 23:41:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbiINVYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 17:24:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52036 "EHLO
+        id S229592AbiINVll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 17:41:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiINVYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 17:24:07 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E2B861E9;
-        Wed, 14 Sep 2022 14:24:05 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id bd26-20020a05600c1f1a00b003a5e82a6474so12430216wmb.4;
-        Wed, 14 Sep 2022 14:24:05 -0700 (PDT)
+        with ESMTP id S229541AbiINVlk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 17:41:40 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 105EB7EFCE
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 14:41:38 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id z12so9426266wrp.9
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 14:41:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=cgZkkoB1Bz/RFAHmuKSBre2q5MgmdKHQaadiUhQuwwI=;
-        b=FdPcRIe2gfQoQCjx1QOFkmGSVgwgHEsr++MZRUCMzJE3Gcaf5+etZRi3EQbCidd10v
-         twQrXPlzLivRZUJ1R+dE/qZTWuiVHDGNr1ffeusOuRSHuCA831r6P5sya+sS7wXO6DLy
-         SgrqggAbmAZY6ydB3BLwpozplPD3Ts6GR2JPVAt6I80V7plsYzFai0lLopZcp60+Dji2
-         9eHgVLAXCCoRLe7zo6ZiFvzrmP89NLmmxtqP779jY8gMZcd+pPwc0NzBVDJuZ4g2ppRw
-         FULL20YpZmoqhpUD0AK7WVHOIYg4hBzRGEX0XcxR+alvdpo56XTcGW62njpb3ejILjOc
-         SG6Q==
+        d=amarulasolutions.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=dJBMWqAoD425WmZpBoL2iVG1R9TS8rIDI+wnZ+EHS08=;
+        b=crnKzEVwiNAICu1JTVyVuS8qkwtdrbZVF4fXL4lQiQcf1uf/m03DZ90Sbqu8XLQnCU
+         CtuhnRZbmY9frmlgrfrPaZY0MZVcfo+YTnKTlWCts1Y6xjtfOw/3vg18Z2D8v9uBaiwI
+         MkQkfmNyXhNtIJV3BRm3Ce3BQAvKuq9lEddpM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=cgZkkoB1Bz/RFAHmuKSBre2q5MgmdKHQaadiUhQuwwI=;
-        b=1XZVGCRpa2iTckCJfoVhfbbEzOPZzvGFVc9q9T/nLj4HPaQdjROwMnsK9YnZmPggdc
-         jFtUjA4m4wXr3I6U9j9Jt6D65pcNuJjeWR319LlHdy8YI7ZeGbYNFdGWh6xUruqAClLN
-         hic30aLbNd5jsAA7k07WEPxIb/m3QGHd/4yh8ffpAo4SQDemR+oSk9fuc1FFT9n/5lFi
-         YfXj97Trxm8Jx0unDNUWlWlbWeWAPyhf/RjU+liwMY/8mqTaL+QbxojzLLmD4eQoEVY1
-         rzqJDuz/FVAIIzhs0dyoYId1IAVxwW99JRp4tMqQcUwhGnZDo28WGvmtar/6qE5p+dcE
-         iK0Q==
-X-Gm-Message-State: ACgBeo3/YOtmoJBSfAifBaCqx+ECFxFYvAvEjpYYqHrdCzWM0BCDbAxH
-        c/RVm74YpSI+g92+jo+FeRY=
-X-Google-Smtp-Source: AA6agR6BDx5TGK4RjiRpwjFmyhCS3CrrcO0KEfqjytiVgYBb1lg3M4YSvUYYT25pLio+NHumVC6uEQ==
-X-Received: by 2002:a05:600c:6d2:b0:3b4:8361:6154 with SMTP id b18-20020a05600c06d200b003b483616154mr4648444wmn.89.1663190644349;
-        Wed, 14 Sep 2022 14:24:04 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id c18-20020adffb52000000b002252ec781f7sm317708wrs.8.2022.09.14.14.24.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Sep 2022 14:24:02 -0700 (PDT)
-Message-ID: <1b739216-8bb1-162b-1af5-24acba7324bf@gmail.com>
-Date:   Wed, 14 Sep 2022 23:24:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Subject: Re: [PATCH 1/5] dt-bindings: arm: mediatek: mmsys: change compatible
- for MT8195
-Content-Language: en-US
-To:     "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=dJBMWqAoD425WmZpBoL2iVG1R9TS8rIDI+wnZ+EHS08=;
+        b=yuIcXqXhK2+fLtnB5eEOuRI+AKHYHt75E/EOhAfJg54v3QmXYUDFS6NZz3p6ho8aI3
+         gJm3VL+t9jzkA1K/sbkaVANU/2lE/sNoHXFgqFfaKcfxgR5qp0j6f70DoPTDU7w+MOug
+         /xNRVGxUsSVsNXHh8fWKKSisWEwY8ZaGfVVcnyuwTDA/M0b0grdwqEinfIONc9q9Wv80
+         y2xmM1qyoYUzy2F0y1VZw1tqgy7QV5I+Hz5p6IMHUprHdnRVHgIERE70oDoaFA1ywhF4
+         qcCJTsWTbGcnmjJVyh9B+FXLRYHODFjOsk/L2lS6jbO/R9yTZg06gP7MpM5bfaXQreZF
+         TuAw==
+X-Gm-Message-State: ACgBeo1h2JtUZgKaMILBJYYe5g2xjzxdON0VGgz8Wp1gUk0U7JVeqfP3
+        91SqR5PboNB8LEoqjoAn6tJghg==
+X-Google-Smtp-Source: AA6agR4AbWOEHie2xqoqLtD3nL+zuOB6oM2HbRcpPVp+Z0KnHfJaD12MLF4DRxtbqmt6fxXPQ7U5NA==
+X-Received: by 2002:a5d:628e:0:b0:228:6961:aa6f with SMTP id k14-20020a5d628e000000b002286961aa6fmr24027761wru.36.1663191696195;
+        Wed, 14 Sep 2022 14:41:36 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i ([93.107.34.250])
+        by smtp.gmail.com with ESMTPSA id az6-20020a05600c600600b003a5f54e3bbbsm308512wmb.38.2022.09.14.14.41.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 14:41:34 -0700 (PDT)
+Date:   Wed, 14 Sep 2022 23:41:32 +0200
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220914182331.20515-1-jason-jh.lin@mediatek.com>
- <20220914182331.20515-2-jason-jh.lin@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220914182331.20515-2-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] media: dt-bindings: ov5645: Convert OV5645 binding to a
+ schema
+Message-ID: <20220914214132.GA2173@tom-ThinkPad-T14s-Gen-2i>
+References: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Prabhakar,
 
-
-On 14/09/2022 20:23, Jason-JH.Lin wrote:
-> For previous MediaTek SoCs, such as MT8173, there are 2 display HW
-> pipelines binding to 1 mmsys with the same power domain, the same
-> clock driver and the same mediatek-drm driver.
+On Tue, Sep 13, 2022 at 05:02:24PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines binding to
-> 2 different power domains, different clock drivers and different
-> mediatek-drm drivers.
+> Convert the simple OV5645 Device Tree binding to json-schema.
 > 
-> Moreover, Hardware pipeline of VDOSYS0 has these components: COLOR,
-> CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture Quality)
-> and they makes VDOSYS0 supports PQ function while they are not
-> including in VDOSYS1.
-> 
-> Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
-> component). It makes VDOSYS1 supports the HDR function while it's not
-> including in VDOSYS0.
-> 
-> To summarize0:
-> Only VDOSYS0 can support PQ adjustment.
-> Only VDOSYS1 can support HDR adjustment.
-> 
-> Therefore, we need to separate these two different mmsys hardwares to
-> 2 different compatibles for MT8195.
-> 
-> Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add mt8195 SoC binding")
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-I'm not sure Krzysztof gave his Acked-by tag.
-
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        | 2 ++
->   1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 --------
+>  .../bindings/media/i2c/ovti,ov5645.yaml       | 119 ++++++++++++++++++
+>  2 files changed, 119 insertions(+), 54 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> index 6ad023eec193..a53b32c0a608 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> @@ -32,6 +32,8 @@ properties:
->                 - mediatek,mt8186-mmsys
->                 - mediatek,mt8192-mmsys
->                 - mediatek,mt8195-mmsys
-> +              - mediatek,mt8195-vdosys0
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> deleted file mode 100644
+> index 72ad992f77be..000000000000
+> --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> +++ /dev/null
+> @@ -1,54 +0,0 @@
+> -* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
+> -
+> -The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
+> -an active array size of 2592H x 1944V. It is programmable through a serial I2C
+> -interface.
+> -
+> -Required Properties:
+> -- compatible: Value should be "ovti,ov5645".
+> -- clocks: Reference to the xclk clock.
+> -- clock-names: Should be "xclk".
+> -- clock-frequency: Frequency of the xclk clock.
+> -- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
+> -  to the hardware pin PWDNB which is physically active low.
+> -- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
+> -  the hardware pin RESETB.
+> -- vdddo-supply: Chip digital IO regulator.
+> -- vdda-supply: Chip analog regulator.
+> -- vddd-supply: Chip digital core regulator.
+> -
+> -The device node must contain one 'port' child node for its digital output
+> -video port, in accordance with the video interface bindings defined in
+> -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> -
+> -Example:
+> -
+> -	&i2c1 {
+> -		...
+> -
+> -		ov5645: ov5645@3c {
+> -			compatible = "ovti,ov5645";
+> -			reg = <0x3c>;
+> -
+> -			enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
+> -			reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
+> -			pinctrl-names = "default";
+> -			pinctrl-0 = <&camera_rear_default>;
+> -
+> -			clocks = <&clks 200>;
+> -			clock-names = "xclk";
+> -			clock-frequency = <24000000>;
+> -
+> -			vdddo-supply = <&camera_dovdd_1v8>;
+> -			vdda-supply = <&camera_avdd_2v8>;
+> -			vddd-supply = <&camera_dvdd_1v2>;
+> -
+> -			port {
+> -				ov5645_ep: endpoint {
+> -					clock-lanes = <1>;
+> -					data-lanes = <0 2>;
+> -					remote-endpoint = <&csi0_ep>;
+> -				};
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> new file mode 100644
+> index 000000000000..7f407c988f87
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> @@ -0,0 +1,119 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5645.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OmniVision OV5645 Image Sensor Device Tree Bindings
+> +
+> +maintainers:
+> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov5645
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: XCLK Input Clock
+> +
+> +  clock-names:
+> +    const: xclk
+> +
+> +  clock-frequency:
+> +    description: Frequency of the xclk clock in Hz.
+> +
+> +  vdda-supply:
+> +    description: Analog voltage supply, 2.8 volts
+> +
+> +  vddd-supply:
+> +    description: Digital core voltage supply, 1.5 volts
+> +
+> +  vdddo-supply:
+> +    description: Digital I/O voltage supply, 1.8 volts
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Reference to the GPIO connected to the PWDNB pin, if any.
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Reference to the GPIO connected to the RESETB pin, if any.
+> +
+> +  port:
+> +    description: Digital Output Port
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          clock-lanes:
+> +            const: 0
+> +
+> +          bus-type:
+> +            const: 4
+> +
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 2
+> +            items:
+> +              enum: [1, 2]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - clock-frequency
+> +  - vdda-supply
+> +  - vddd-supply
+> +  - vdddo-supply
+> +  - enable-gpios
+> +  - reset-gpios
+> +  - port
 
-As I said in the last submission, we should make mediatek,mt8195-mmsys as a 
-fallback of vdosys0. Actually mediatek,mt8195-mmsys is only used for the 
-fallback of vdosys0.
+I think we don't need all of these properties as required.
+The only "really" required are:
+
+  - compatible
+  - reg
+  - clocks
+  - port
 
 Regards,
-Matthias
+Tommaso
 
-> +              - mediatek,mt8195-vdosys1
->                 - mediatek,mt8365-mmsys
->             - const: syscon
->         - items:
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +      #include <dt-bindings/gpio/gpio.h>
+> +
+> +      i2c {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          camera@3c {
+> +              compatible = "ovti,ov5645";
+> +              pinctrl-names = "default";
+> +              pinctrl-0 = <&pinctrl_ov5645>;
+> +              reg = <0x3c>;
+> +              clocks = <&clks 1>;
+> +              clock-names = "xclk";
+> +              clock-frequency = <24000000>;
+> +              vdddo-supply = <&ov5645_vdddo_1v8>; /* 1.8v */
+> +              vdda-supply = <&ov5645_vdda_2v8>;  /* 2.8v */
+> +              vddd-supply = <&ov5645_vddd_1v5>;  /* 1.5v */
+> +              enable-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
+> +              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
+> +
+> +              port {
+> +                  ov5645_ep: endpoint {
+> +                      remote-endpoint = <&csi0_ep>;
+> +                      clock-lanes = <0>;
+> +                      data-lanes = <1 2>;
+> +                  };
+> +              };
+> +          };
+> +      };
+> +...
+> -- 
+> 2.25.1
+> 
+
+-- 
+Tommaso Merciai
+Embedded Linux Engineer
+tommaso.merciai@amarulasolutions.com
+__________________________________
+
+Amarula Solutions SRL
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+T. +39 042 243 5310
+info@amarulasolutions.com
+www.amarulasolutions.com
