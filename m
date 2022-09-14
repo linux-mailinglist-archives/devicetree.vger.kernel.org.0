@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDCF55B8B15
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201655B8B42
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 17:05:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbiINOyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 10:54:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36840 "EHLO
+        id S230114AbiINPFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 11:05:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229757AbiINOyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:54:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E06DD132;
-        Wed, 14 Sep 2022 07:54:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0990161E23;
-        Wed, 14 Sep 2022 14:54:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DACD8C433D6;
-        Wed, 14 Sep 2022 14:54:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1663167288;
-        bh=1lMB4uwONnZkbCv2WHjxaEFCglKHhnqRUR/D9tJpSsU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0L92bicqt0+JR/a7wWzgZZmCLWkHKl9+hjueYV22kS2gAiPbMsYiX2ATdshoZtPW1
-         KlJ1PSkCJ/NY7SXcpYFVHDHTVDqjPSvivB4Hl2ksT2/jHIE5A9qPiU6LGEr8uCTYN+
-         3rD1izJ5CbuM+GKQXUg6j+s09mfxhBcS3hwsBD0k=
-Date:   Wed, 14 Sep 2022 16:55:11 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
-Cc:     linux-kernel@vger.kernel.org, will@kernel.org, axboe@kernel.dk,
-        robh+dt@kernel.org, mb@lightnvm.io, ckeepax@opensource.cirrus.com,
-        arnd@arndb.d, mst@redhat.com, javier@javigon.com,
-        mikelley@microsoft.com, jasowang@redhat.com,
-        sunilmut@microsoft.com, bjorn.andersson@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        ashish.deshpande@nxp.com, rvmanjumce@gmail.com
-Subject: Re: [PATCH v5 2/2] misc: nxp-sr1xx: UWB driver support for sr1xx
- series chip
-Message-ID: <YyHrT6q9fockgPjl@kroah.com>
-References: <20220914142944.576482-1-manjunatha.venkatesh@nxp.com>
- <20220914142944.576482-3-manjunatha.venkatesh@nxp.com>
+        with ESMTP id S229679AbiINPFq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 11:05:46 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3625C948;
+        Wed, 14 Sep 2022 08:05:44 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id d25-20020a9d72d9000000b00655d70a1aeaso7447859otk.3;
+        Wed, 14 Sep 2022 08:05:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=80//9U4S6KsWyMgkd9OiwJsN9gRoyLztpU/FnVB8ROI=;
+        b=rjS73MzAQrLV8oiXkqN7vSp/NiZldjAs0wGccHvey8PDxrvkBOio1IdnZDX+tcxL7p
+         E0uek3G7HWSniNU/0UyUmoYAWEeDREQSUf+zBAz/jNsYf0rPLmGtJpc72abLPIv3PBVq
+         A6s4LQIsGDmbjnCFX93Q9AhaianS86klPljLRthksUFvqyAQ+XxgBZNZDgI3e+9X6CeN
+         QZcEqyPdXHaaTUh6l1qJDJXdu/1DYqHZXaxFQkd83sEHFSibiJFDGIQ1JwBzrLgN7gLf
+         TMzAp/ICNCYadyzpNOGrV8mM58D9iSmqYGBGcMIU6PPmmv2DnblK1vUCVZkqkTNbT6Ig
+         CevA==
+X-Gm-Message-State: ACgBeo1Y0WwMeZYLI4jH/oiOBxfOY7oO7h+dqwrTiPfhWL5UU7BbD8Me
+        3u8wSLnUGiTSy9Jax5PArw==
+X-Google-Smtp-Source: AA6agR5zJBQVMjWrqECTLtJ5QNTsna7ICAdaJtE7muSiIc4MWJbSXlOqCD8A1Zi0t18uXDKx2/3fxQ==
+X-Received: by 2002:a9d:be7:0:b0:655:b6da:7eda with SMTP id 94-20020a9d0be7000000b00655b6da7edamr10632379oth.46.1663167943740;
+        Wed, 14 Sep 2022 08:05:43 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q14-20020a056871080e00b00127ba61535fsm8664215oap.15.2022.09.14.08.05.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 08:05:43 -0700 (PDT)
+Received: (nullmailer pid 2218149 invoked by uid 1000);
+        Wed, 14 Sep 2022 15:05:42 -0000
+Date:   Wed, 14 Sep 2022 10:05:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     kernel@pengutronix.de, Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v3 2/2] dt-bindings: gpio: Add gpio-latch binding document
+Message-ID: <20220914150542.GA2218095-robh@kernel.org>
+References: <20220914071306.3254881-1-s.hauer@pengutronix.de>
+ <20220914071306.3254881-3-s.hauer@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220914142944.576482-3-manjunatha.venkatesh@nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220914071306.3254881-3-s.hauer@pengutronix.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 07:59:44PM +0530, Manjunatha Venkatesh wrote:
-> +/**
-> + * sr1xx_dev_transceive
-> + * @op_mode indicates write/read operation
-> + *
-> + * Write and Read logic implemented under same api with
-> + * mutex lock protection so write and read synchronized
-> + *
-> + * During Uwb ranging sequence(read) need to block write sequence
-> + * in order to avoid some race condition scenarios.
-> + *
-> + * Returns     : Number of bytes write/read if read is success else (-1)
+On Wed, 14 Sep 2022 09:13:06 +0200, Sascha Hauer wrote:
+> This adds a binding for a GPIO multiplexer driver based on latches
+> connected to other GPIOs.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+> 
+> Notes:
+>     Changes since v1:
+>     - Add license to binding file
+> 
+>  .../devicetree/bindings/gpio/gpio-latch.yaml  | 85 +++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-latch.yaml
+> 
 
-I'm sure I mentioned this before, but NEVER use magic "-1" as an error
-value.  Use the real in-kernel -ERROR numbers for error codes please.
-This needs to be fixed in many places in this code.
-
-thanks,
-
-greg k-h
+Reviewed-by: Rob Herring <robh@kernel.org>
