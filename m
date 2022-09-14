@@ -2,122 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5FD5B8E94
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 20:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2669C5B8EA6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 20:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbiINSIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 14:08:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41930 "EHLO
+        id S229695AbiINSNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 14:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbiINSIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 14:08:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B1F7EFD9;
-        Wed, 14 Sep 2022 11:08:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 84C5061E53;
-        Wed, 14 Sep 2022 18:08:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4A65C433D7;
-        Wed, 14 Sep 2022 18:08:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663178919;
-        bh=q3lo6oX6Adw+l/aUZsSyNgyDa03KID4HkHE0P0JrSxY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NNDmoiwVz4L5wIWHF8ajqUmcu/xx3YnLkVN0vtlOSfWVsmnx1mM6rY9p0ehiTtSiI
-         f3Gu4rvzgOBp4oM21e0o1byq04h1rkOKi4M8eRL+RWW3+rWbQKaIhSk2vfOZcAvl/x
-         mNM1oN+TFgGkDJtYCJrILLAkewkBOSLVYBKx9psnvLsTEjiGckhNK2VLauzqC9XJ15
-         Ax6idRcIks31L6Hw4WQNQ4FU/1aeqbZJn6gEyODng0NI4oAU3Uv2YKHfblxD5kn3hU
-         RaLJRFy8GUJmZZhiTTB5QE2MzVc3nVsyXQr3oYpcWdwgTZDaBmojqKQYekxGlGkGFU
-         BNtHv8fDndveg==
-Received: by mail-vk1-f169.google.com with SMTP id g185so7858306vkb.13;
-        Wed, 14 Sep 2022 11:08:39 -0700 (PDT)
-X-Gm-Message-State: ACgBeo19EJUIUKs3KSPV0RyiSIaXRY2GvjUySflUnYKQ0OHs6bnWRygE
-        kt1VQEDTt0sCMgML5VSt8tldUOR+Cvn97G4aqA==
-X-Google-Smtp-Source: AA6agR56p/Zoyk5JDNjqFjD+eS6WCbPqja/Ej889pLyBHGKPJcCXLE8GTZmxuug9cCFfWKPkI9PSnh8bxhtIzQE3ex0=
-X-Received: by 2002:ac5:c77a:0:b0:3a2:1e50:bc11 with SMTP id
- c26-20020ac5c77a000000b003a21e50bc11mr6296626vkn.19.1663178918916; Wed, 14
- Sep 2022 11:08:38 -0700 (PDT)
+        with ESMTP id S229714AbiINSNd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 14:13:33 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED39930F63;
+        Wed, 14 Sep 2022 11:13:32 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id p1-20020a17090a2d8100b0020040a3f75eso15206719pjd.4;
+        Wed, 14 Sep 2022 11:13:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=Z6XbQYQrL3hibLXcs9Qu2WQKlcrTEXAiBTewPjwbvI8=;
+        b=ZZFFOTNzRXOnjQm+TMxLNjuV0QU8eRzrmdrOZGtS1MBevBLNUOEg6BudAEsibqF+8z
+         tk0LCKUgi1WTarJREuQznibhsy7f5C/xagb3vVH5mz2duK9MhcI9nHS3gTywr5iNSVVM
+         Hf7S06uUBQRioFGdS7URdA2l/7eBi1l1fY1LtPtpYiHX9fxE7ZDl7d3L5kg42rX2dRt5
+         z8ULCWlONGQU4KxVWLLovHQvoPqk1x7aBXrSHgKFfHVkhjkDv5dF0lusXjQaB5WWyBn+
+         eZZR/WD6XzrQN1oVov7LYUeqjZAcgiA6MlOSqIIjmOK9FyuUMZUOuev/2q8XzbMh8EaA
+         PqtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=Z6XbQYQrL3hibLXcs9Qu2WQKlcrTEXAiBTewPjwbvI8=;
+        b=eCi1iJAfpJ11IJ38AETm+eO/z5FdcAIsVUSIP1AuV7JeVaZxBZd+HgfPfFhdD0iQqi
+         Iyjn/UfFpFU3OaKyxqut2S5inD0jUpl3idMUDn01rHUf1PgfTOxFzOsPhgKfgt172eN5
+         rRGbR3G7JSok66dd4xYPcrtIxoAmk5uoCcq710bSZ79gKjFDCMoxeYVfepyMpcDCtVz/
+         wo3CJ1mYf3mfl9UAIexw4xrP4euhmBz8GSI82AtPTTAGL+2jrz4X7h6MbBFkSK9+f7t9
+         EkeaTXhOVktuJXMycgtmwwR7mBueKUqVVVzlpOzy86l5p2YxG5uDxoDSBHmI7FR2IUm3
+         0YaA==
+X-Gm-Message-State: ACgBeo1LZ2DAVuOiQti0GMb3p4sl85sWQd7/xayvbhTqqQPCJRHSvv9e
+        ktliZmDcoVWiVZ5bypB1u+I=
+X-Google-Smtp-Source: AMsMyM5fZthu4Ufl4nx1rAnN7OIJ9+p6ypeQYud2S/IB/+gY/0t6HXNQkPujoybWI4VEqBpsQ136qA==
+X-Received: by 2002:a17:90a:6401:b0:200:b8ed:ca6 with SMTP id g1-20020a17090a640100b00200b8ed0ca6mr6296772pjj.0.1663179212243;
+        Wed, 14 Sep 2022 11:13:32 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:2f68:fe7:a2e6:7595])
+        by smtp.gmail.com with ESMTPSA id y5-20020a17090a2b4500b00200b866d061sm9472692pjc.30.2022.09.14.11.13.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 11:13:31 -0700 (PDT)
+Date:   Wed, 14 Sep 2022 11:13:27 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, chen.zhong@mediatek.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 0/2] MediaTek PMIC Keys - DT schema conversion
+Message-ID: <YyIZx9j6HCluvRW+@google.com>
+References: <20220914103021.43593-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com> <20220914133513.GA26840@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-In-Reply-To: <20220914133513.GA26840@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 14 Sep 2022 13:08:22 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJMJccbwH7tR0FwZpuxMgwmAt8ZmWCbt=rOLaM4RtH9wg@mail.gmail.com>
-Message-ID: <CAL_JsqJMJccbwH7tR0FwZpuxMgwmAt8ZmWCbt=rOLaM4RtH9wg@mail.gmail.com>
-Subject: Re: [PATCH RFC 0/2] Generate device tree node for pci devices
-To:     Jeremi Piotrowski <jpiotrowski@linux.microsoft.com>
-Cc:     Lizhi Hou <lizhi.hou@amd.com>, PCI <linux-pci@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        "Zhen, Max" <max.zhen@amd.com>,
-        "Santan, Sonal" <sonal.santan@amd.com>,
-        "Liu, Larry" <larry.liu@amd.com>, "Xu, Brian" <brian.xu@amd.com>,
-        Stefano Stabellini <stefano.stabellini@xilinx.com>,
-        Tom Rix <trix@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220914103021.43593-1-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 8:35 AM Jeremi Piotrowski
-<jpiotrowski@linux.microsoft.com> wrote:
->
-> On Mon, Aug 29, 2022 at 02:43:35PM -0700, Lizhi Hou wrote:
-> > This patch series introduces OF overlay support for PCI devices which
-> > primarily addresses two use cases. First, it provides a data driven method
-> > to describe hardware peripherals that are present in a PCI endpoint and
-> > hence can be accessed by the PCI host. An example device is Xilinx/AMD
-> > Alveo PCIe accelerators. Second, it allows reuse of a OF compatible
-> > driver -- often used in SoC platforms -- in a PCI host based system. An
-> > example device is Microchip LAN9662 Ethernet Controller.
-> >
-> > This patch series consolidates previous efforts to define such an
-> > infrastructure:
-> > https://lore.kernel.org/lkml/20220305052304.726050-1-lizhi.hou@xilinx.com/
-> > https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
-> >
-> > Normally, the PCI core discovers PCI devices and their BARs using the
-> > PCI enumeration process. However, the process does not provide a way to
-> > discover the hardware peripherals that are present in a PCI device, and
-> > which can be accessed through the PCI BARs. Also, the enumeration process
-> > does not provide a way to associate MSI-X vectors of a PCI device with the
-> > hardware peripherals that are present in the device. PCI device drivers
-> > often use header files to describe the hardware peripherals and their
-> > resources as there is no standard data driven way to do so. This patch
-> > series proposes to use flattened device tree blob to describe the
-> > peripherals in a data driven way. Based on previous discussion, using
-> > device tree overlay is the best way to unflatten the blob and populate
-> > platform devices. To use device tree overlay, there are three obvious
-> > problems that need to be resolved.
->
-> Hi Lizhi,
->
-> We all *love* "have you thought about xxx" questions but I would really like to
-> get your thoughts on this. An approach to this problem that I have seen in
-> various devices is to emulate a virtual pcie switch, and expose the "sub
-> devices" behind that. That way you can carve up the BAR space, each device has
-> its own config space and mapping of MSI-X vector to device becomes clear. This
-> approach also integrates well with other kernel infrastructure (IOMMU, hotplug).
->
-> This is certainly possible on reprogrammable devices but requires some more
-> FPGA resources - though I don't believe the added utilization would be
-> significant. What do you think of this kind of solution?
+On Wed, Sep 14, 2022 at 12:30:19PM +0200, AngeloGioacchino Del Regno wrote:
+> This series converts the old mtk-pmic-keys.txt binding to DT schema,
+> documents the missing support for key press/release interrupts and
+> adds a compatible for the newly introduced MT6331 keys.
+> 
+> Changes in v2:
+>  - Removed tests leftover interrupts/interrupt-names from examples
+> 
+> AngeloGioacchino Del Regno (2):
+>   dt-bindings: input: Convert mtk-pmic-keys to DT schema
+>   dt-bindings: input: mediatek,pmic-keys: Add compatible for MT6331 keys
+> 
+>  .../bindings/input/mediatek,pmic-keys.yaml    | 114 ++++++++++++++++++
+>  .../bindings/input/mtk-pmic-keys.txt          |  46 -------
+>  2 files changed, 114 insertions(+), 46 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
 
-It would integrate easily unless the sub-devices you are targeting
-have drivers already which are not PCI drivers. Sure, we could add PCI
-support to them, but that could be a lot of churn.
+Applied the lot, thank you.
 
-There are also usecases where we don't get to change the h/w.
-
-Rob
+-- 
+Dmitry
