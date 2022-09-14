@@ -2,124 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CA585B8838
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 431B65B8847
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbiINM0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 08:26:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41418 "EHLO
+        id S229601AbiINMc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 08:32:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiINM00 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:26:26 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EBCD7DF6F;
-        Wed, 14 Sep 2022 05:26:25 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1F851660201C;
-        Wed, 14 Sep 2022 13:26:23 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663158384;
-        bh=EOvPaAPQay6+H5/vvnMCA8FXSUgtfRiBJVkGqDS8b+A=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=B8evYpC5rHOn3wXLr1ltYq8EJ/5zjF2RvyMBqF0VMnFwt0Cj37FWOeW33+VTg/oeQ
-         Vvs7390adjB2YYZ4b6U7+xqzI48EolCfCJxJOQMYUp5CCDoVaj+9ddRKD9iYBcJVfZ
-         SB6my2f00Mjz35i4iOrgVGN2OZNHISpukps2pw1iMptIpMvdi6xE8ucwdaQylrIdbh
-         LrTP+2jSTAcjE4L0Ty0nT/pjR0raKAUPTyaIn4apX/dle0G6Cmgeb5sQ3tuV1RRuMz
-         ICRwRuoFeaUMQ4hs2+/yjDBUoFJ3YStsTmeQEOXxGVHaz9ne669YneRBQEHAjvcAaN
-         Bd/iZIY7+F/DA==
-Message-ID: <c7d49663-8da1-9c49-c15d-ea3a8fe3d317@collabora.com>
-Date:   Wed, 14 Sep 2022 14:26:20 +0200
+        with ESMTP id S229498AbiINMc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:32:56 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA33736DC9;
+        Wed, 14 Sep 2022 05:32:55 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id c198so14749619pfc.13;
+        Wed, 14 Sep 2022 05:32:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=zV9/pNlaNjyK2el6e1fRNtIC3GGj80c975ZOZ3QDzu8=;
+        b=fpjDhGArOd00NcVhciHxdWcYBZ4cGta3ByCHJ6wwiK3ZsL1+dcCyu5yaTH1dUc4RVo
+         bJAnDB8HxETQ9AvtntRHw/L8aGAQ246/JDr48F+mINd4HtojNjF+yZIPFkU+dYFcKqY0
+         Jf5j3C1jnmbM8ouqSc2jCK/3uhy5mmXq97F7C2TOEPcm3Qxqsr+PxcNWJ3PV7+Fb+A/D
+         lC58rhZRnzuoPFbwrk73LpPxsSwoyW3nj+HyQK1OtHuXrnTjJSDRUWwRUZ6gBeEopqSV
+         9DFSMcSYWp7Eui55jM/daGA9YXBP+W+QDIOb6uI73nTZj5sPTOBzbr15FvdYIScA9ruj
+         JvBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=zV9/pNlaNjyK2el6e1fRNtIC3GGj80c975ZOZ3QDzu8=;
+        b=zz5VBPffGjSIv98BwjwWsAjecsl+P9AR1kvo4Wes+ve9oNqaGOi4GGwBrgByEli869
+         ItPUdCfU4KQr7lQYSxu467hginxxm399X52Q4FWEhj+aZ71ivir3AB7l4Pscl959loM9
+         NvhucXda79bCeqIya592soc5P7Ue3oWsNQyo8kCQpms4UuC1/C7VmQEtrCXQLw+xivBz
+         xMIpIneLUiQGz3U149KtgSPm535QQLgn+BRKBBHsAJlMM2rpNeMaUddm4BlGFp5oGeEB
+         T/E0OjlilMtUDA/l6bRXtmE18dXpHFf0UL4Kpf8zYrd3f07NA6gMqVujRCYm3BW0Z3GI
+         6knw==
+X-Gm-Message-State: ACgBeo0WDN3/6B7ru9XesPyzUIR5Z0uYLYQxiFAxKOwDvZ2I/aRIqgLb
+        9AanMf2lDgaoit/359hA+fo=
+X-Google-Smtp-Source: AA6agR6tRNaPK5Q+XlGLTf7QBCvdF0OFTG9sr6Yo6lrI7k0fjU3OoTI+1Zk11+65m0d4cz9+PgI/zw==
+X-Received: by 2002:a05:6a00:3492:b0:540:b30d:8396 with SMTP id cp18-20020a056a00349200b00540b30d8396mr29749270pfb.81.1663158775134;
+        Wed, 14 Sep 2022 05:32:55 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:2f68:fe7:a2e6:7595])
+        by smtp.gmail.com with ESMTPSA id w17-20020a656951000000b00438b79c7049sm8341581pgq.42.2022.09.14.05.32.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 05:32:54 -0700 (PDT)
+Date:   Wed, 14 Sep 2022 05:32:51 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Jerome Neanne <jneanne@baylibre.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, lee.jones@linaro.org,
+        tony@atomide.com, afd@ti.com, khilman@baylibre.com,
+        narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: Re: [PATCH v5 5/6] Input: Add tps65219 interrupt driven powerbutton
+Message-ID: <YyHJ8yOF+ZhKbdlp@google.com>
+References: <20220913121419.15420-1-jneanne@baylibre.com>
+ <20220913121419.15420-6-jneanne@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v9,3/7] arm64: dts: mt8192: Add thermal zones and thermal
- nodes
-Content-Language: en-US
-To:     bchihi@baylibre.com, rafael@kernel.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, amitk@kernel.org
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-References: <20220817080757.352021-1-bchihi@baylibre.com>
- <20220817080757.352021-4-bchihi@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220817080757.352021-4-bchihi@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220913121419.15420-6-jneanne@baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/08/22 10:07, bchihi@baylibre.com ha scritto:
-> From: Balsam CHIHI <bchihi@baylibre.com>
-> 
-> Add thermal zones and thermal nodes for the mt8192.
-> 
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 111 +++++++++++++++++++++++
->   1 file changed, 111 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index cbae5a5ee4a0..59ef4da06a70 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -12,6 +12,7 @@
->   #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
->   #include <dt-bindings/phy/phy.h>
->   #include <dt-bindings/power/mt8192-power.h>
-> +#include <dt-bindings/reset/mt8192-resets.h>
->   
->   / {
->   	compatible = "mediatek,mt8192";
-> @@ -599,6 +600,28 @@ spi0: spi@1100a000 {
->   			status = "disabled";
->   		};
->   
-> +		lvts_ap: thermal-sensor@1100b000 {
-> +			compatible = "mediatek,mt8192-lvts-ap";
-> +			#thermal-sensor-cells = <1>;
-> +			reg = <0 0x1100b000 0 0x1000>;
-> +			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&infracfg CLK_INFRA_THERM>;
-> +			resets = <&infracfg MT8192_INFRA_RST0_THERM_CTRL_SWRST>;
-> +			nvmem-cells = <&lvts_e_data1>;
-> +			nvmem-cell-names = "lvts_calib_data1";
-> +		};
+Hi Jerome,
+
+On Tue, Sep 13, 2022 at 02:14:18PM +0200, Jerome Neanne wrote:
+> +	idev = devm_input_allocate_device(dev);
+> +	if (!idev)
+> +		return -ENOMEM;
 > +
-> +		lvts_mcu: thermal-sensor@11278000 {
+> +	idev->name = pdev->name;
+> +	snprintf(pwr->phys, sizeof(pwr->phys), "%s/input0",
+> +		 pdev->name);
+> +	idev->phys = pwr->phys;
+> +	idev->dev.parent = dev;
 
-Please keep the nodes ordered by reg start.
+This assignment is not needed given that devm_input_allocate_device()
+is used. Otherwise:
 
-Regards,
-Angelo
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-> +			compatible = "mediatek,mt8192-lvts-mcu";
-> +			#thermal-sensor-cells = <1>;
-> +			reg = <0 0x11278000 0 0x1000>;
-> +			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&infracfg CLK_INFRA_THERM>;
-> +			resets = <&infracfg MT8192_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
-> +			nvmem-cells = <&lvts_e_data1>;
-> +			nvmem-cell-names = "lvts_calib_data1";
-> +		};
-> +
->   		spi1: spi@11010000 {
->   			compatible = "mediatek,mt8192-spi",
->   				     "mediatek,mt6765-spi";
+Please feel free to merge through MFD tree.
 
+Thanks.
+
+-- 
+Dmitry
