@@ -2,202 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF40A5B869A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 12:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5385B86B6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 12:54:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbiINKuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 06:50:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38960 "EHLO
+        id S230264AbiINKx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 06:53:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229670AbiINKuv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 06:50:51 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A14F5578AF;
-        Wed, 14 Sep 2022 03:50:49 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id dv25so33702310ejb.12;
-        Wed, 14 Sep 2022 03:50:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date;
-        bh=wpXuLValBWZP/zsjY+A/TTXQD/M5Ih3exq/CAis/KV4=;
-        b=KR5cNVuGyLreJdEwSguHZcLjR67Yrc8eSXryirIPnTbfK7hukpa0bMR5bZthCe2R8D
-         H7I4pCJlDqLsrs01RgUiuWH5+ixtVerhc1JWt78BnangoiwxjlXcSTt0iXFbbSPer46P
-         1gR8TUIM9vZkeZMiJ3pULe8rpPxESiA8IyRMQ4qlDV7d3RplQiwmgQj4DDOGLQICB5X8
-         zFDU2OTUK3y/MY/kWApsvJvzLNiXp1Yr9lI//GymPOyNKfCEbVIu0VJICPsJ8AeAFmcj
-         vFm8/7ZuEqfjqEDQs2TbQoSsC9gJBVxmtZexVkDyqsL4z+90V6CDMg8wvXhFdCQTeqYi
-         8lDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date;
-        bh=wpXuLValBWZP/zsjY+A/TTXQD/M5Ih3exq/CAis/KV4=;
-        b=t8iYHZorLwULUjPoCQKTv84nTEsYKeUDqFai6xHUaAsdJMxe73lGrbIAKdBp/l9QVr
-         me7pdm322HEhVlhcgepSCq57C8MLmKiUhIvorLucVHKn3+grItHhh+bIKuKXTxjqzpDN
-         McWzSjgFZNanqZqHvrdxLeuqhOgvk2hsG5tLzta/HeFr3GSGyOiy7rTu/h3rVe9MRq53
-         cWHKF330IMUayfBjEI6huAZqfABKwKbNLNcMfGYfqmZFVig9qgp3WEM6/0gRfi6gSviU
-         GqTy5bNAapkWGEVgIjjNlVUvU9dq8ckabEt5vWPpINcwROtKgpnnuwufqBhr9QgsVAoH
-         oZ9Q==
-X-Gm-Message-State: ACgBeo3Yn8bBFXZ+nECyylPRRX/hJ51VYTPUNAiMd744l99MUc00j22/
-        cpktHFNSyexK5exjkA9vJPc=
-X-Google-Smtp-Source: AA6agR57Ct4WYUR7jRYjlimTKGNY/sfvUSeQJTWA+6ZOqZmcdQcywa0lV0N+PBrpH4ROtVU0ncwKdw==
-X-Received: by 2002:a17:907:7f04:b0:77d:5bad:46d7 with SMTP id qf4-20020a1709077f0400b0077d5bad46d7mr9985823ejc.663.1663152648005;
-        Wed, 14 Sep 2022 03:50:48 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id g8-20020a17090669c800b0073d8ad7feeasm7316219ejs.213.2022.09.14.03.50.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Sep 2022 03:50:47 -0700 (PDT)
-Message-ID: <d70fa056-608d-0c19-7948-c67b15a4246e@gmail.com>
-Date:   Wed, 14 Sep 2022 12:50:45 +0200
+        with ESMTP id S230008AbiINKxT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 06:53:19 -0400
+Received: from EUR03-VE1-obe.outbound.protection.outlook.com (mail-eopbgr50082.outbound.protection.outlook.com [40.107.5.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BAC47D1ED;
+        Wed, 14 Sep 2022 03:52:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MjtGXM9LBQtNSWHBbKEL7pXQPHY8SuEDKOWJmkVZBNTRoNVQSj28ykRK3sGq3gZmiKFdrVK6QMVQQqOKOyVGwpEFnEoIpub6XV99addHahWKLIXbCgbOV6Xfn0q53mfZe+34/ZSdOUcHdY5UHYojKpQxjkr6L9f2ttPdFwsyuVgU0qIje9348Hr93KtRPYW88aUcJvWdWqEgtMOZyHJTHma2B1OD7rfb2ytlHJwTXzE2W3lpn2a5lu7YmHAwoszctnaMEKlCa4Onwq7RDZIo2LhS6jkjqAetAzcbhurDPydTQ6+5dvhc+XL2t16ZTBsuAgIfUXEepJecp8Ioljc74Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zsrqmrLv74rcLj6YggfdbLsnbkEzyJCO9HjL70xxRms=;
+ b=geBW7NZvKCig3/tJVUFOwMdzuEK8j8vRi6hs14aSXCG/4ECniMXjk3oqx0HBUPP9tAL4sKWX6YsNHUJuoObDzLHWhfbSteyqZTFO9j0y0xk1II5VpBr25cQnRdrYSTLAMyTAqIBKsUeEZlsWFg4IlW1O28b176X1xaLjBF0UkmZVWYyiSdTNbyL9FqThNaZW1wbms4z1y+2gqOa88UkOfENav24uAwwC7uOS7GqvKDOBzN9d3hattct8ipImEfVC4FkqMODClgLDHZaKA+x/A2vQ7vv0mCNjFfj5PrqcinpRDSSqAgdiVPGHCa7WC+xaWdX+Vz/HBWl9bxVOREmR6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zsrqmrLv74rcLj6YggfdbLsnbkEzyJCO9HjL70xxRms=;
+ b=kphC23G7uSR/uGKB9lNFHX37g7hTBrMYoFUnTj35i4Gli/cfMHTT/n/uFA9FZdhutlAE5jy0MM8EI+lQDGUpACRJH/Ht8qly/gVwrcW+grOEh+wShQF8MO8FKHw5qVBPdrTc8xhIuTp/8HKithE4xAzM0py0UwGHAz5syjNERpk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4222.eurprd04.prod.outlook.com (2603:10a6:803:46::19)
+ by DU0PR04MB9466.eurprd04.prod.outlook.com (2603:10a6:10:35a::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Wed, 14 Sep
+ 2022 10:52:36 +0000
+Received: from VI1PR04MB4222.eurprd04.prod.outlook.com
+ ([fe80::7008:1596:bb4:d904]) by VI1PR04MB4222.eurprd04.prod.outlook.com
+ ([fe80::7008:1596:bb4:d904%4]) with mapi id 15.20.5612.022; Wed, 14 Sep 2022
+ 10:52:36 +0000
+From:   Chancel Liu <chancel.liu@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shengjiu.wang@gmail.com, shengjiu.wang@nxp.com,
+        Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
+        linuxppc-dev@lists.ozlabs.org
+Cc:     Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH v2 0/7] Create a new sound card to access MICFIL based on rpmsg channel
+Date:   Wed, 14 Sep 2022 18:51:38 +0800
+Message-Id: <20220914105145.2543646-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0017.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::10) To VI1PR04MB4222.eurprd04.prod.outlook.com
+ (2603:10a6:803:46::19)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-From:   Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1] dt-bindings: clock: rockchip: change
- SPDX-License-Identifier
-To:     heiko@sntech.de, zhangqing@rock-chips.com,
-        finley.xiao@rock-chips.com, shawn.lin@rock-chips.com,
-        zhengxing@rock-chips.com, jeffy.chen@rock-chips.com,
-        jay.xu@rock-chips.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sboyd@kernel.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4222:EE_|DU0PR04MB9466:EE_
+X-MS-Office365-Filtering-Correlation-Id: 30fb2649-5d92-4f27-4d3c-08da963f3c4a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RQfA72kCzXAvm7CljvDOdL7oZNatUHbBoEh2YrGRv8NRtteOv0moI5vM2UEicStyg7nn2pSLJIvynoSqhDClbbVbrAI7mSWhtzF727yht5waQe61mMryp6CrfWufPxBsGNbtAbdvLo1Q5WFJWnqchcy+FBwe6M/yQ4gRRP29aw0GLIKjlPCVrLgq+9Pi0TlqFkBZTyqmNQiL+U0SCdq3QZk/noUmKTeydKUnXQ58QH/OtWbJj7ZoxD1YvHHMvuwjGQuvyhAh2/SUL2zKiG7Q8wqHLmlHNyvadOjFXhU7CPr4tUoTqcQsxd8Cw+gCIRZBw3qfcdOMpwILgMpme6QAr/S+lhb6kDoKQ6EFVZz8KD4h1DCM874wpgIjYfdF7LDjciUYy9sHKgF9N8CLgTZsz253U7xJu1STBmRGOyDvgZPX3X4na3syF47HozPpjPUeroel4/4Mp6t6IEU/CrhKz8pSBMAxmu08svOqc6fS4SQfTQLC2WtdWwrlX7LgYFPgRUaIQZRCqG82K4JDZ7s6Ts0SiM99V5I7RnfODuJclSVhFbGr1qyYdsqKod7s/xJy6MMBMeaLtXyV0PG9ppoicS2Cz5Bp+8YROSNFbGXQvZl5wBkNCEHW8MBtPyQnjkZW5ga+qql9kYLq0sopitYDNKb8cnRohpwdWebPMwfRVhtdSkVfhED2Q64HevVuqAqRHKBuwIW4rL3j0CUU8PVp0DfqOLcvDxV/TyQVnx+kbcVm3+xSNpgprGUm12932bf5JE0qREWiVe2fEDZRY1mg+t0/kf29nfK7mxAEIKBC1to=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4222.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39860400002)(346002)(136003)(396003)(376002)(451199015)(38350700002)(478600001)(5660300002)(8676002)(8936002)(66476007)(6486002)(66556008)(186003)(2616005)(26005)(41300700001)(6506007)(44832011)(1076003)(83380400001)(921005)(86362001)(38100700002)(52116002)(36756003)(4326008)(7416002)(2906002)(66946007)(316002)(6512007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?deuDKcHOkXqFis8gjP7nBD5rC3xekdDAzNnuoi/ODYKoQxdSoNEndAjf66Og?=
+ =?us-ascii?Q?8kH8MRHeR2RwaAPOGg7fBZ1ScUnFo5RXxrDgC2yCIWxJvHUTdxtTy1DV1SsY?=
+ =?us-ascii?Q?aLjRJPwMnx+iYT7SU/AvgI2D7bhi3sWQUfaZPCT4iDTQnpFqfQSnOruWiOyZ?=
+ =?us-ascii?Q?B1T5BT+RMfFN2HvDaG/CZ13CvoBNysXkk6V8rsm5uhWllmGuRkuJJEkr7lgy?=
+ =?us-ascii?Q?G6m7LZAw3YDBYW8bgCL1uwHGwg/EgJc1u2EuNzgFYqdr4EmqVLOR65vPLlJv?=
+ =?us-ascii?Q?0rVfSngHm4KoxhWQsO4Gogml80jvu5UOnTsb3vubpwa6EE6ogaNxo5QiF8sG?=
+ =?us-ascii?Q?TkH071BfPdd/q2tyzrFBIKwmXYeMSsNbs9YR68RlexIDqlRiHtd0TQHR/BXi?=
+ =?us-ascii?Q?Dc5dxmypdKh/8VMx+x3hZtubcw2x7VtZktj+NuXXXw27Gu4tQRRRWMY5qUK4?=
+ =?us-ascii?Q?d2KVANY+Jym42YCd43GEb4aVqegW7LlhG1WTb1ASvhyLsFaIsXmTYcl7N5Pu?=
+ =?us-ascii?Q?DHqqyI2viVTTJ2wBAqPuEEbO8nj4cGG9b4rlQnQXBqt19059A2dXIiyxnC2f?=
+ =?us-ascii?Q?mw7EVVeKtXmXFLNThgYWpcyngV7SrRutf3Wu/r0723ZGvUNS6pcHvfyzOX2B?=
+ =?us-ascii?Q?1zj7MyRX5xTeZ2ewSkPmXqTDHgjbMRZJ0XRuuc9lzBgL2Umh54WGp1ZNXf82?=
+ =?us-ascii?Q?LBjtweuGu3Vx/10Y5hoNsVCy3GTTfda1H3bwhSDw0spsns/MATVl+MEWMBoW?=
+ =?us-ascii?Q?90AdrsehSwqvxct089RHYocCRWMgsITJctxEHPAFI89HhQCPhE6/UpyQRNJl?=
+ =?us-ascii?Q?IqjS9abtbllgka7ANVHgQB7XyakKX984lYNbdh1VD+iRwxLK3pr6Al4FTyua?=
+ =?us-ascii?Q?45vaw2heETK535cvjWHOPSmrNYnwNnPKEXv1gqAo9XubDKi4IAQBjL7R9hCr?=
+ =?us-ascii?Q?RygWT8IReTHfsQo0uy6tQUEv3zvFt+HASkkIQ77jBLoY+XnxWuLxu9N6zhbM?=
+ =?us-ascii?Q?in/isJeTu9/svr54Q/xlhhENIqWnKI9jQWiVoBNwSNNYLPhfV5LlqN/mre1G?=
+ =?us-ascii?Q?8VtOwq0BHInOVyQqJmE2vO5S5qbYK06QgyNpt8MJfP824rqQb5T+IaekFZxW?=
+ =?us-ascii?Q?vukGZEPVhJ6dMfwvowApFNrAFvtxPeTtDHCTED6jmsoJGTSm2a9nZ1WARZUH?=
+ =?us-ascii?Q?YuIvdGIac0N5Z0bzbihn/RDmpEmWd9R4NYFfxmDb+7jr3J9IZQno81PrJ18F?=
+ =?us-ascii?Q?VITCBqnvScgy2fUo/8/A51Y7aebKx3YmgTiE/sgJWbezf7jQ5QL5sg+i+uGO?=
+ =?us-ascii?Q?Rr+VSFhx84TyViEz2vtDxfUU9np7vCfvaibmx8DqfLp80C/vV/WuMrjpY90J?=
+ =?us-ascii?Q?r3ArGhHW8Eflbs/KH3EI2SsAxwbbL+sZhjgueMTHbZSV+p4A16ZDNMQCqEBp?=
+ =?us-ascii?Q?+/krBSB4swXdFNp94S8kHnLcsf4TcKCjQIxlxf1oP3/m3iUbb+9xf+Dum/3D?=
+ =?us-ascii?Q?eSP7H0QwXZn6ZZF5xiXV7AoYztGl1Qhltl1tOY9u0/JSfY1UZb6eCBtB2QcT?=
+ =?us-ascii?Q?15msaaRrFaKf9xjCHUU3+9gPsuSI093AWQZZwGvj?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30fb2649-5d92-4f27-4d3c-08da963f3c4a
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4222.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 10:52:36.7298
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: B9xakmwfVQpO5UdqJpfZ9CNvAYywga7qa0A8urBSKnF3k2qNpGz1pf/rujwz9WKFPQnaF7YUF1B6djB0AqMeSw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9466
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change SPDX-License-Identifier to (GPL-2.0-only OR BSD-2-Clause)
-for Rockchip clock bindings.
+At a previous time, we have successfully created a virtual sound card
+based on rpmsg. The sound card works under this mechanism Cortex-A core
+tells the Cortex-M core the format, rate, channel, .etc configuration
+of the PCM parameters and Cortex-M controls real hardware devices such
+as SAI and DMA. From the view of Linux side, the sound card is bound to
+a rpmsg channel through which it can access SAI.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
+Here these patches are introduced to create a new virtual sound card to
+access MICFIL based on a new created rpmsg channel. It's easy to create
+a new rpmsg channel for MICFIL through rpmsg name service announcment.
+Also the other ASoC components bound to this rpmsg MICFIL sound card
+will be registered with these patches.
 
-Request for copyright holder approval.
----
- Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml  | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3036-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3188-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3228-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3288-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3308-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3368-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3399-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3568-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rv1108-cru.yaml          | 2 +-
- 10 files changed, 10 insertions(+), 10 deletions(-)
+If other sound cards using different hardware devices needs to be
+created over rpmsg in the future, these patches can be referred.
 
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
-index 3eec381c7..cb20a632c 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,px30-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
-index 1376230fe..ffac332b9 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3036-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
-index ddd7e46af..6979ed1c4 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3188-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml
-index cf7dc01d9..ca34345e1 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3228-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml
-index 96bc05749..b952b0eab 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3288-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.yaml
-index 523ee578a..e1b314ed3 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3308-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.yaml
-index adb678777..3e8225357 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3368-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
-index 54da1e31e..b06eef33b 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3399-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml
-index fc7546f52..5b49adcac 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3568-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3568-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
-index 20421c22f..95bfeb8fc 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rv1108-cru.yaml#
--- 
-2.20.1
+changes in v2:
+- Rename property in bindings file according to Krzysztof's comments
+- Update codes and comments according to Shengjiu's comments
+
+Chancel Liu (7):
+  ASoC: dt-bindings: fsl_rpmsg: Add a property to assign the rpmsg
+    channel
+  ASoC: imx-audio-rpmsg: Create rpmsg channel for MICFIL
+  ASoC: imx-pcm-rpmsg: Register different platform drivers
+  ASoC: imx-pcm-rpmsg: Multi-channel support for sound card based on
+    rpmsg
+  ASoC: fsl_rpmsg: Register different ASoC machine devices
+  ASoC: fsl_rpmsg: Multi-channel support in CPU DAI driver
+  ASoC: imx-rpmsg: Assign platform driver used by machine driver to link
+    with
+
+ .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 37 ++++++++++++++++++-
+ sound/soc/fsl/fsl_rpmsg.c                     |  6 +--
+ sound/soc/fsl/imx-audio-rpmsg.c               |  3 +-
+ sound/soc/fsl/imx-pcm-rpmsg.c                 | 10 +++--
+ sound/soc/fsl/imx-rpmsg.c                     |  6 ++-
+ 5 files changed, 52 insertions(+), 10 deletions(-)
+
+--
+2.25.1
 
