@@ -2,81 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A355A5B8624
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 12:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A4E65B862B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 12:21:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbiINKVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 06:21:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48388 "EHLO
+        id S229715AbiINKVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 06:21:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229715AbiINKVR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 06:21:17 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6835F79EFB;
-        Wed, 14 Sep 2022 03:21:16 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C9212660201C;
-        Wed, 14 Sep 2022 11:21:13 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663150874;
-        bh=+t+eS5uIq7be1EAHToZiBnClNaJKjeBU4Ul3SPxFOAg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=U8xUsm4llePZLK4+gmK9cVOZa6u5GdXx0q9y+xXYW7TEL8roG9249T7pQ7JKw/dth
-         aYI8FMx0mzU7dXn9er5jfyxsuef0HFjgEtRGAUqHLevq5MiAuiZt5tOSpvqqeuSOra
-         WLTuT2GAY6ngDengo2Ru4/uNr6jLALaTEGp3jIVxWZ51v7poOribtsURx90/5vJ/oo
-         125VMs0ilxUxlVkgiP9RcxCHTg+bSBsfwvqD08rsbzWo+VLiJIHarnd05rFIGZ6ZKd
-         ffp3ezY7Q/bWgTstgtFYwSh8f7+PmlxJqXkG2qNOvYfyfmeXu4G5OrwEylbYvC0tZ+
-         mrTGQLAUHdz1w==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     krzysztof.kozlowski+dt@linaro.org
-Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, chen.zhong@mediatek.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 2/2] dt-bindings: input: mediatek,pmic-keys: Add compatible for MT6331 keys
-Date:   Wed, 14 Sep 2022 12:20:59 +0200
-Message-Id: <20220914102059.41757-3-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220914102059.41757-1-angelogioacchino.delregno@collabora.com>
-References: <20220914102059.41757-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S229767AbiINKVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 06:21:37 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB4B66E2F3
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 03:21:28 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id e17so21523697edc.5
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 03:21:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=SPAF5hoaiFVAkY/WsLhdQk3BcWFtQ7a/5C8YkM1BjIw=;
+        b=QWnGv+shjcwg4W70DZrhq+r4hVhfMPl6BnIOdonFBtlS/Pk1/OelW0UBgPOV3vlACf
+         ioJ+jgAfsxpsVBPqopB+yMNroVNPF7GTbWgxkewFthBo2I7okCZhVrrnnptlb0vMlQU7
+         o0rXqEvaF2jA1EMvLx8W9CVarvtzmMv9kIvDuz30bNKYOHBH6rZcw4u26zQM4JXBTYZD
+         M4QH1IXNukGP4IWWrhPMZuSm9qA6CiKzWDh5ZCFnAd4akMnnrQyyzr8Rn+c8tCfY+L4s
+         Mx1bj1mcVOxBVG5HN2eJJyAUC/20eJ9KJuhR7YOk8Lp+pYh6PrpEW8DQ6rTH4jBp3LJ9
+         eCww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=SPAF5hoaiFVAkY/WsLhdQk3BcWFtQ7a/5C8YkM1BjIw=;
+        b=sJydvS94rSItl4UaOGZmY7CuKw1ZlZSblaGPGLhifor4blDtLYtzRBsXOlvBHV1kLY
+         8io6DKZBhRA+NRPIVINpN4oXfK43BGwTu2Apu0xduL3P49xsrqnQzuKgYKS0qE+ItiAM
+         kCVF87YDK77GW4QKqyYotY8GiKuosy4BYRTliIketbN/XRFtw+9pRo/FxdIhAIIkni8o
+         nt07s/tUzn5ySRuwk5eF6qi/K1T5bP2p8TSvcTgEVNnYAZ7kGURj7aO4Y+Q83MLdnSD0
+         /YTAlJl3moqPFwjg7qh/Whz6AIGFmxX3PUCCeaWT5VFsQoH2t7LOo8BbROrhs5fiIxB0
+         St2w==
+X-Gm-Message-State: ACgBeo07rm2yu3KJAkPVK6yeex32puWBWhMIo/bR8QlzUTmEF/YG5C5L
+        ZNmZBM6/RTmBP1FqdHomE4EtSCxQscberVk5gcOxFg==
+X-Google-Smtp-Source: AA6agR7wytS0FmUM8JeHLoMN29M+7pRVF7ZaiQjrJfdDoekZisRpa00u54sk9yuZ48m3e8UIOTsJ3+TLANFnZ7HydrI=
+X-Received: by 2002:a05:6402:4517:b0:443:7fe1:2d60 with SMTP id
+ ez23-20020a056402451700b004437fe12d60mr29891214edb.133.1663150886861; Wed, 14
+ Sep 2022 03:21:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220912061746.6311-1-krzysztof.kozlowski@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 14 Sep 2022 12:21:14 +0200
+Message-ID: <CACRpkdZxhbjTCagG8s8veNLfMuwXt2RhPpZPL4gPuABV=jDj5g@mail.gmail.com>
+Subject: Re: [PATCH v2 00/40] pinctrl/arm64: qcom: fix some of Qualcomm
+ pinctrl schema warnings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a compatible for the keys found on MT6331 PMIC.
+On Mon, Sep 12, 2022 at 8:17 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> That's a set for some of arm64 pinctrl bindings fixing most common warnings.  I
+> have a plan to continue this for remaining arm64 (sm8250 needs updates) and for
+> arm.
 
-diff --git a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-index e33fdca50b16..358d027e3e81 100644
---- a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-+++ b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-@@ -25,6 +25,7 @@ properties:
-   compatible:
-     enum:
-       - mediatek,mt6323-keys
-+      - mediatek,mt6331-keys
-       - mediatek,mt6358-keys
-       - mediatek,mt6397-keys
- 
--- 
-2.37.2
+I applied patches 1-33 to the pinctrl tree after I saw Bjorn was happy
+and has applied the DTS changes.
 
+Yours,
+Linus Walleij
