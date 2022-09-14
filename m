@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 375355B8262
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFF045B8268
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:55:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230291AbiINHzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 03:55:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57988 "EHLO
+        id S229602AbiINHzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 03:55:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230252AbiINHyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:54:39 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407A71155
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:54:32 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id v4so13576409pgi.10
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:54:32 -0700 (PDT)
+        with ESMTP id S230255AbiINHy5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:54:57 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2877AAE76
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:54:38 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id p18so14308832plr.8
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:54:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=BmOWU26gjLBIOonkKcZ0ILBj0OeiqDzaVAugyvdHpNQ=;
-        b=ScM8Pi5xIEHRfZElpQvyLnPbEmuIDVDUfS64bTvorxQf3MQlJGCGSFwwhlTpQqXajY
-         dEOnCFWcI8pMFn7nYJ7QR4JrW6WTQK9v5Nbyc/3pnDtdcmCOsDfe+LC+Ot5Olr/fQ/hW
-         Ra9ZQceClL0Xh2ESP7pjfaGkI/Vo6aJHCOSIUi91jHDf5+7hDCP/CIYSPb7VwnU4j3J8
-         ALqMGXIk6bz7roWDxnyriH9XiqDPKxVbhoRFESq0VFhSIsInSok8Wepimlx/V7CyHLCK
-         pyMmq+/37lUgTMduEQbKl6lIgwxdrRo6YCIF+qhiN7iwR9xf3IRF+Q8ILzSguc6ET2WB
-         1yuQ==
+        bh=zNrBu1Ho157JvXJ7EWepzZnt5L0+FsXJv3lwmZhG3S4=;
+        b=DGA3wYlgIMRr/tBoLA04b0bxdGdZp4gQW0fFU/hn3RoVKLKlLEd9Glspjr4sTd9QSj
+         vyI6pEUxb+AZ7Tj7uCBs+deTDY3SB3POaPWeHQKWS6pkewDhPDsTXxj+vlZLCf5YoAlo
+         DdYjecwo6/JXJLBmHPtGXFv6paKve7WoQI7fjWDkyMn2sQSm413GwGH/Sng5IcN6q0RV
+         y+s4hCxO2mkAoGYAnqn6lGuv3xSzBMeF0uCp64uk3EmiTEQEE8dmao/3Q/vOnbW92TAM
+         zPNbtFJyT81KhV3BmK7q+uO3GLA+4qUpkSFb2CT8JrjYaIKfdH3TwM9dsMeafHyc5t6V
+         h96w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=BmOWU26gjLBIOonkKcZ0ILBj0OeiqDzaVAugyvdHpNQ=;
-        b=vZ47j0gg2PsvyBeVmXt/KGuMzJkkA/nqhh8ldJ3hxoYFgxUVK8ZPz5nAVxiY2Fp4M3
-         IWFKM/DmVvzAWqmLV3iTVLTNA2jR02Eihh/xUK5CuEyj8c7heyUI1FmQfnHhW0KCZ2+G
-         M9kcf0ORXWpZ1WC7oc25/VuO/npSaapb08SrOvwoSNSKQTJ+OMV8zTL8DhbEcMOZvkUg
-         L8xjyJYm2ujNE4hKWoAZrODg7WHGVFHdRIpZtz/2LnyZyH5Yu72S6g+wzXbwGjEaHyAT
-         hcin6mUWI58lSvhNA7B5946KAZQdASsQUnHlFsZHW1QDpVWOXWgIvDK7uS5VSXMXXb/O
-         PI5Q==
-X-Gm-Message-State: ACgBeo0sBJ7j8ilAIBlPLaqoj/WcUxCFSRi/xyvfSZXaI2VWOUY1KK7A
-        +OICy7JgVN7Mu/GaUdH7h15i
-X-Google-Smtp-Source: AA6agR7J9lOpcH4DAcMCYZmGgbbWz6EuCww8Cg5abiUxwkNkJP96/s3sSYcJ793K0ntpPo/MN8xAmg==
-X-Received: by 2002:a63:847:0:b0:439:22e4:8e49 with SMTP id 68-20020a630847000000b0043922e48e49mr8965145pgi.165.1663142071017;
-        Wed, 14 Sep 2022 00:54:31 -0700 (PDT)
+        bh=zNrBu1Ho157JvXJ7EWepzZnt5L0+FsXJv3lwmZhG3S4=;
+        b=FbIeXbJvc1rVZIvIbWJDmmVeeamjJLLyNbTxXqCh/2IedqbeB8Zdmrh2IG4HHpgCSu
+         jFmstzuGMkMyjq/So8kgSrtiZCcM5M+3mGvlbkNbtOFbYmytfhjunX567cwt0rnB/gvK
+         IShhTKaWzwvP3+bxUzgKYGIcEmHYDewIk4+evESZm9902n0wndI0oDRul/bI0ss8QbSw
+         6YAxTgoXi59pCAlSqCovjQzTNy7hvs55LcqP5LPiTcHwe0OmIYk+edR2hc5X5/bGuu+Y
+         kHjjHXsBWQ8l1MfW22J7ZN2hbGiYYN2dToF9GlfO4YT0Q3ZCl8Ir0cX3Pkyt0/3fevcU
+         Grog==
+X-Gm-Message-State: ACgBeo0fp71/HfyYxTOY2LzK/L1yYF7QjdxFDagfg166ApSAcv7kT9kf
+        yCQcKyh2PCmZ50L6qr2rfCir
+X-Google-Smtp-Source: AA6agR7h0otvP65TpQvb+ut0k5FYF+wWp4yrnNe48ERprrnT7y18sLkINKI/0EK30RIPJmGVahQrmA==
+X-Received: by 2002:a17:903:32c1:b0:176:d67b:cf70 with SMTP id i1-20020a17090332c100b00176d67bcf70mr37160710plr.117.1663142077084;
+        Wed, 14 Sep 2022 00:54:37 -0700 (PDT)
 Received: from localhost.localdomain ([117.202.184.122])
-        by smtp.gmail.com with ESMTPSA id p8-20020a1709027ec800b00174ea015ee2sm10119054plb.38.2022.09.14.00.54.25
+        by smtp.gmail.com with ESMTPSA id p8-20020a1709027ec800b00174ea015ee2sm10119054plb.38.2022.09.14.00.54.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 00:54:30 -0700 (PDT)
+        Wed, 14 Sep 2022 00:54:36 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org
 Cc:     kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
@@ -56,9 +56,9 @@ Cc:     kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         dmitry.baryshkov@linaro.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v4 05/12] PCI: qcom-ep: Expose link transition counts via debugfs
-Date:   Wed, 14 Sep 2022 13:23:43 +0530
-Message-Id: <20220914075350.7992-6-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v4 06/12] PCI: qcom-ep: Gate Master AXI clock to MHI bus during L1SS
+Date:   Wed, 14 Sep 2022 13:23:44 +0530
+Message-Id: <20220914075350.7992-7-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220914075350.7992-1-manivannan.sadhasivam@linaro.org>
 References: <20220914075350.7992-1-manivannan.sadhasivam@linaro.org>
@@ -74,157 +74,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm PCIe controllers have debug registers in the MMIO region
-that count PCIe link transitions. Expose them over debugfs to
-userspace to help debug the low power issues.
+During L1SS, gate the Master clock supplied to the MHI bus to save power.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- drivers/pci/controller/dwc/pcie-qcom-ep.c | 60 +++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+ drivers/pci/controller/dwc/pcie-qcom-ep.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-index 72eb6cacdb3a..2dc6d4e44aff 100644
+index 2dc6d4e44aff..526e98ea23f6 100644
 --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
 +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-@@ -10,6 +10,7 @@
-  */
+@@ -27,6 +27,7 @@
+ #define PARF_SYS_CTRL				0x00
+ #define PARF_DB_CTRL				0x10
+ #define PARF_PM_CTRL				0x20
++#define PARF_MHI_CLOCK_RESET_CTRL		0x174
+ #define PARF_MHI_BASE_ADDR_LOWER		0x178
+ #define PARF_MHI_BASE_ADDR_UPPER		0x17c
+ #define PARF_DEBUG_INT_EN			0x190
+@@ -89,6 +90,9 @@
+ #define PARF_PM_CTRL_READY_ENTR_L23		BIT(2)
+ #define PARF_PM_CTRL_REQ_NOT_ENTR_L1		BIT(5)
  
- #include <linux/clk.h>
-+#include <linux/debugfs.h>
- #include <linux/delay.h>
- #include <linux/gpio/consumer.h>
- #include <linux/mfd/syscon.h>
-@@ -45,6 +46,11 @@
- #define PARF_ATU_BASE_ADDR			0x634
- #define PARF_ATU_BASE_ADDR_HI			0x638
- #define PARF_SRIS_MODE				0x644
-+#define PARF_DEBUG_CNT_PM_LINKST_IN_L2		0xc04
-+#define PARF_DEBUG_CNT_PM_LINKST_IN_L1		0xc0c
-+#define PARF_DEBUG_CNT_PM_LINKST_IN_L0S		0xc10
-+#define PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L1	0xc84
-+#define PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L2	0xc88
- #define PARF_DEVICE_TYPE			0x1000
- #define PARF_BDF_TO_SID_CFG			0x2c00
- 
-@@ -135,12 +141,14 @@ enum qcom_pcie_ep_link_status {
-  * @pci: Designware PCIe controller struct
-  * @parf: Qualcomm PCIe specific PARF register base
-  * @elbi: Designware PCIe specific ELBI register base
-+ * @mmio: MMIO register base
-  * @perst_map: PERST regmap
-  * @mmio_res: MMIO region resource
-  * @core_reset: PCIe Endpoint core reset
-  * @reset: PERST# GPIO
-  * @wake: WAKE# GPIO
-  * @phy: PHY controller block
-+ * @debugfs: PCIe Endpoint Debugfs directory
-  * @clks: PCIe clocks
-  * @num_clks: PCIe clocks count
-  * @perst_en: Flag for PERST enable
-@@ -154,6 +162,7 @@ struct qcom_pcie_ep {
- 
- 	void __iomem *parf;
- 	void __iomem *elbi;
-+	void __iomem *mmio;
- 	struct regmap *perst_map;
- 	struct resource *mmio_res;
- 
-@@ -161,6 +170,7 @@ struct qcom_pcie_ep {
- 	struct gpio_desc *reset;
- 	struct gpio_desc *wake;
- 	struct phy *phy;
-+	struct dentry *debugfs;
- 
- 	struct clk_bulk_data *clks;
- 	int num_clks;
-@@ -446,6 +456,9 @@ static int qcom_pcie_ep_get_io_resources(struct platform_device *pdev,
- 
- 	pcie_ep->mmio_res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
- 							 "mmio");
-+	pcie_ep->mmio = devm_pci_remap_cfg_resource(dev, pcie_ep->mmio_res);
-+	if (IS_ERR(pcie_ep->mmio))
-+		return PTR_ERR(pcie_ep->mmio);
- 
- 	syscon = of_parse_phandle(dev->of_node, "qcom,perst-regs", 0);
- 	if (!syscon) {
-@@ -629,6 +642,37 @@ static int qcom_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
- 	}
- }
- 
-+static int qcom_pcie_ep_link_transition_count(struct seq_file *s, void *data)
-+{
-+	struct qcom_pcie_ep *pcie_ep = (struct qcom_pcie_ep *)
-+				     dev_get_drvdata(s->private);
++/* PARF_MHI_CLOCK_RESET_CTRL fields */
++#define PARF_MSTR_AXI_CLK_EN			BIT(1)
 +
-+	seq_printf(s, "L0s transition count: %u\n",
-+		   readl_relaxed(pcie_ep->mmio + PARF_DEBUG_CNT_PM_LINKST_IN_L0S));
-+
-+	seq_printf(s, "L1 transition count: %u\n",
-+		   readl_relaxed(pcie_ep->mmio + PARF_DEBUG_CNT_PM_LINKST_IN_L1));
-+
-+	seq_printf(s, "L1.1 transition count: %u\n",
-+		   readl_relaxed(pcie_ep->mmio + PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L1));
-+
-+	seq_printf(s, "L1.2 transition count: %u\n",
-+		   readl_relaxed(pcie_ep->mmio + PARF_DEBUG_CNT_AUX_CLK_IN_L1SUB_L2));
-+
-+	seq_printf(s, "L2 transition count: %u\n",
-+		   readl_relaxed(pcie_ep->mmio + PARF_DEBUG_CNT_PM_LINKST_IN_L2));
-+
-+	return 0;
-+}
-+
-+static void qcom_pcie_ep_init_debugfs(struct qcom_pcie_ep *pcie_ep)
-+{
-+	struct dw_pcie *pci = &pcie_ep->pci;
-+
-+	debugfs_create_devm_seqfile(pci->dev, "link_transition_count", pcie_ep->debugfs,
-+				    qcom_pcie_ep_link_transition_count);
-+}
-+
- static const struct pci_epc_features qcom_pcie_epc_features = {
- 	.linkup_notifier = true,
- 	.core_init_notifier = true,
-@@ -661,6 +705,7 @@ static int qcom_pcie_ep_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct qcom_pcie_ep *pcie_ep;
-+	char *name;
- 	int ret;
+ /* PARF_AXI_MSTR_RD_HALT_NO_WRITES register fields */
+ #define PARF_AXI_MSTR_RD_HALT_NO_WRITE_EN	BIT(0)
  
- 	pcie_ep = devm_kzalloc(dev, sizeof(*pcie_ep), GFP_KERNEL);
-@@ -686,8 +731,21 @@ static int qcom_pcie_ep_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_disable_resources;
+@@ -394,6 +398,11 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
+ 		       pcie_ep->parf + PARF_MHI_BASE_ADDR_LOWER);
+ 	writel_relaxed(0, pcie_ep->parf + PARF_MHI_BASE_ADDR_UPPER);
  
-+	name = devm_kasprintf(dev, GFP_KERNEL, "%pOFP", dev->of_node);
-+	if (!name) {
-+		ret = -ENOMEM;
-+		goto err_disable_irqs;
-+	}
++	/* Gate Master AXI clock to MHI bus during L1SS */
++	val = readl_relaxed(pcie_ep->parf + PARF_MHI_CLOCK_RESET_CTRL);
++	val &= ~PARF_MSTR_AXI_CLK_EN;
++	val = readl_relaxed(pcie_ep->parf + PARF_MHI_CLOCK_RESET_CTRL);
 +
-+	pcie_ep->debugfs = debugfs_create_dir(name, NULL);
-+	qcom_pcie_ep_init_debugfs(pcie_ep);
-+
- 	return 0;
+ 	dw_pcie_ep_init_notify(&pcie_ep->pci.ep);
  
-+err_disable_irqs:
-+	disable_irq(pcie_ep->global_irq);
-+	disable_irq(pcie_ep->perst_irq);
-+
- err_disable_resources:
- 	qcom_pcie_disable_resources(pcie_ep);
- 
-@@ -701,6 +759,8 @@ static int qcom_pcie_ep_remove(struct platform_device *pdev)
- 	disable_irq(pcie_ep->global_irq);
- 	disable_irq(pcie_ep->perst_irq);
- 
-+	debugfs_remove_recursive(pcie_ep->debugfs);
-+
- 	if (pcie_ep->link_status == QCOM_PCIE_EP_LINK_DISABLED)
- 		return 0;
- 
+ 	/* Enable LTSSM */
 -- 
 2.25.1
 
