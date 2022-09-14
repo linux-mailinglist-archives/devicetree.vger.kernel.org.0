@@ -2,54 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFD6C5B8D88
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 18:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D4075B8D93
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 18:54:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiINQw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 12:52:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57492 "EHLO
+        id S229725AbiINQyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 12:54:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbiINQw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 12:52:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65605816A1;
-        Wed, 14 Sep 2022 09:52:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C48F561A33;
-        Wed, 14 Sep 2022 16:52:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81369C433C1;
-        Wed, 14 Sep 2022 16:52:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663174346;
-        bh=7cDV77aAUHsDOCpaptUAFN+6T3wnkqPji4nInaZ3JxY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OMIp+jXhg9YTg7bO0Z1A1JJ6tNw7AKyDwg7u4bjMlpfDjiBpkDVBYg/2kyDLoQbAV
-         INYOBtvZ3tPCxFF+lhzLWozrMWzr9WbDVNqgD3N7wxW5Zomyk5pdD04cSyqKH4u7If
-         FfSD6m7iIttmgH2hDzgGXDnTlpcrFfbGqZROSN6jQjuPllp2RPlAwktnoUy3FVMVNT
-         E02yYT5rgml/Y6y4oND4W/denR2+l9XKUvPtj6dyKThU0qd7BHjxRjn/u7GCA/dy1h
-         cKI+OfXxQ8Of5BiXPcWPt4fmYEpFUs0y+BPg7JWDh8cyAA1wJ4zKHfUpM1jcuxzlq5
-         mr9R8euKLl6og==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229533AbiINQyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 12:54:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576C080E92
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 09:54:09 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oYVeJ-0000Lm-Rc; Wed, 14 Sep 2022 18:54:07 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oYVeK-000jKl-5S; Wed, 14 Sep 2022 18:54:06 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oYVeH-000uIr-T1; Wed, 14 Sep 2022 18:54:05 +0200
+Date:   Wed, 14 Sep 2022 18:54:05 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Ben Dooks <ben.dooks@sifive.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 1/2] dt-bindings: spmi: Add qcom,bus-id
-Date:   Wed, 14 Sep 2022 22:22:11 +0530
-Message-Id: <20220914165212.3705892-2-vkoul@kernel.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220914165212.3705892-1-vkoul@kernel.org>
-References: <20220914165212.3705892-1-vkoul@kernel.org>
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+Subject: Re: [RFC v4 09/10] pwm: dwc: add snps,pwm-number to limit pwm count
+Message-ID: <20220914165405.ae5nfi5336nsttkc@pengutronix.de>
+References: <20220816211454.237751-1-ben.dooks@sifive.com>
+ <20220816211454.237751-10-ben.dooks@sifive.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="36k6bcw7m2zpaz4h"
+Content-Disposition: inline
+In-Reply-To: <20220816211454.237751-10-ben.dooks@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,42 +59,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For PMIC arbiter version 7 and beyond we need to define if we are using
-primary or secondary bus, so add a new property of qcom,bus-id
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
-Acked-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml   | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+--36k6bcw7m2zpaz4h
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-index fee4f0eb4665..f983b4af6db9 100644
---- a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-+++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-@@ -85,6 +85,14 @@ properties:
-     description: >
-       which of the PMIC Arb provided channels to use for accesses
- 
-+  qcom,bus-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 1
-+    description: >
-+      SPMI bus instance. only applicable to PMIC arbiter version 7 and beyond.
-+      Supported values, 0 = primary bus, 1 = secondary bus
-+
- required:
-   - compatible
-   - reg-names
-@@ -113,5 +121,7 @@ examples:
- 
-         interrupt-controller;
-         #interrupt-cells = <4>;
-+
-+        qcom,bus-id = <0>;
-     };
- 
--- 
-2.37.3
+On Tue, Aug 16, 2022 at 10:14:53PM +0100, Ben Dooks wrote:
+> Add snps,pwm-number property to indicate if the block does not have
+> all 8 of the PWM blocks.
+>=20
+> Not sure if this should be a general PWM property consider optional
+> for all PWM types, so have added a specific one here (there is only
+> one other controller with a property for PWM count at the moment)
+>=20
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+> ---
+>  drivers/pwm/pwm-dwc-of.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/pwm/pwm-dwc-of.c b/drivers/pwm/pwm-dwc-of.c
+> index d18fac287325..65c7e6621bba 100644
+> --- a/drivers/pwm/pwm-dwc-of.c
+> +++ b/drivers/pwm/pwm-dwc-of.c
+> @@ -21,12 +21,20 @@ static int dwc_pwm_plat_probe(struct platform_device =
+*pdev)
+>  {
+>  	struct device *dev =3D &pdev->dev;
+>  	struct dwc_pwm *dwc;
+> +	u32 nr_pwm;
+>  	int ret;
+> =20
+>  	dwc =3D dwc_pwm_alloc(dev);
+>  	if (!dwc)
+>  		return -ENOMEM;
+> =20
+> +	if (!device_property_read_u32(dev, "snps,pwm-number", &nr_pwm)) {
+> +		if (nr_pwm > DWC_TIMERS_TOTAL)
+> +			dev_err(dev, "too many PWMs specified (%d)\n", nr_pwm);
 
+Maybe
+
+	dev_err(dev, "too many PWMs specified (%d), falling back to " #DWC_TIMERS_=
+TOTAL "\n", nr_pwm);
+
+to make it obvious the error doesn't prevent probing the device.
+
+Or you believe the dtb and use whatever it specifies.
+
+> +		else
+> +			dwc->chip.npwm =3D nr_pwm;
+> +	}
+> +
+>  	dwc->base =3D devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(dwc->base))
+>  		return dev_err_probe(dev, PTR_ERR(dwc->base),
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--36k6bcw7m2zpaz4h
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmMiByoACgkQwfwUeK3K
+7AkV0Qf/eVEG0nhiWAz6LiL8jmkmVnatH/Y3mWr98oMaYWOu2IIgBEE1Legbv3sz
+nyAgiaykgZ3QWmD9IT1a1VTAIcaAiuEHxQDlJtGDzk6mKSSFrbgJgQpHSlQ1c1yY
+ZQ7vpIEPwRl9fptawrEy3HAL4yWI5LXY5nvFQ4yZ8jpCMmfylrBpK5XAuUFOAlCO
+Uzt4pwMkVSAM+V08JdIYbIMofZb++0Uzn1eakZ8k0jk6cVCqhjD7RPcNhq+D47nb
+oxcMnMAHLCTZDguZDLfRwiildvBhQ+RIKzjuBq0aPIOv6jJyxt6D2Ig3CQYcVWlh
+KYGCYdfGeuzr2/I9fNI4uUzOQPSVQg==
+=b6cx
+-----END PGP SIGNATURE-----
+
+--36k6bcw7m2zpaz4h--
