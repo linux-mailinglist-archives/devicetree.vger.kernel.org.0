@@ -2,77 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2C185B82DD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 10:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BA285B8348
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 10:53:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229996AbiINIYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 04:24:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
+        id S229562AbiINIxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 04:53:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230008AbiINIYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 04:24:06 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5028CB854
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:24:02 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id r12so15744502ljg.10
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:24:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=V1YVYSsl5D5EOMmP45EuuB6/EETaN2F4Y3Yv5mQzyP0=;
-        b=v4wytsxa48nEgAD91g/pZa596RMNquTq15IEhMx7xp5Q86y6iY/DNPspO8hxsStsMO
-         rVeIVf4fsNxkJDdeqwFz/CPf5gVvDPfJKsUHKUoJzBaS7BXlvb14wNvYcQjMVjsRiEKB
-         soEnc+muFJQn69YRy8oxblBk0e6E2cfFYp6wU9EGMdbC0A1YWZH5drhyw2WA3IU7lX8E
-         5uLq31lNxu1JKyVDYkwYmjWKIGVKuKnu8/lqaHy9qDEzPGWDn7sokhn2DtTgw/VJRH8X
-         AslAlzM1JQish00MRTcHJUO6Vezfq6aQIgB0Q/Lf3objanuKxNo+waDhbqR+Y+ScYhiu
-         +m2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=V1YVYSsl5D5EOMmP45EuuB6/EETaN2F4Y3Yv5mQzyP0=;
-        b=v6bKG1gAul67hZxCQ4+UbTi5jmWkLKFYSYF+StHncIh3Rr2BGWZK5Ry/JH9MBhYSxA
-         BuBxzmqXExjohu3L5xT8leapUFXVqTS6u3zv4BIIiojtnccGnmheTBsahuSa8p8KpRva
-         QoaDkG4aMZdX574QMnfkPgSoUAhUdBmDBMLaAwFBAd/4o4vOi8QsYmz4uFqQ5H/QMc0v
-         EeUzuIXK+frJz0JsBZLp6VFVnkbPo1rriY+cyiQtYJ4ICB4/lB/7sT7qTN2agVirrePO
-         3w3eDsoUHDjvHwN6zJpZYwFJGPFho2F8NkSD/tTJyFCJAtzzzkz6O2XmGp8rDahs673v
-         jQrA==
-X-Gm-Message-State: ACgBeo2A0QQUAVvEU5RapWCoLtpP3CjaiYWdseX1aHPlvuvqGkfAqaY/
-        VyQGqmhI1/ZHHlJUnI1z+KNAGw==
-X-Google-Smtp-Source: AA6agR5rklM6tu/ivEH7rZ+xthwXKKqcvkr4NjOV71oLH8VLbJajXjeCDpCBdloTLPGCpTf6RlEz3g==
-X-Received: by 2002:a2e:50b:0:b0:26a:b7ec:59ea with SMTP id 11-20020a2e050b000000b0026ab7ec59eamr10910287ljf.312.1663143840708;
-        Wed, 14 Sep 2022 01:24:00 -0700 (PDT)
-Received: from fedora.ideon.se ([85.235.10.227])
-        by smtp.gmail.com with ESMTPSA id o10-20020ac25e2a000000b00497a879e552sm2113647lfg.291.2022.09.14.01.23.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 01:24:00 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 5/5] ARM: dts: qcom-msm8660: fix node names for fixed clocks
-Date:   Wed, 14 Sep 2022 10:23:58 +0200
-Message-Id: <20220914082358.350971-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220909105136.3733919-6-dmitry.baryshkov@linaro.org>
-References: <20220909105136.3733919-6-dmitry.baryshkov@linaro.org>
+        with ESMTP id S229503AbiINIxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 04:53:06 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78EB45F7F6;
+        Wed, 14 Sep 2022 01:53:04 -0700 (PDT)
+Received: from [89.101.193.68] (helo=phil.sntech)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oYO8L-0004ae-5u; Wed, 14 Sep 2022 10:52:37 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>, kever.yang@rock-chips.com
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org, vkoul@kernel.org,
+        vigneshr@ti.com, linux@roeck-us.net, ulf.hansson@linaro.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-watchdog@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        u.kleine-koenig@pengutronix.de, linux-mtd@lists.infradead.org,
+        zhangqing@rock-chips.com, linux-pwm@vger.kernel.org,
+        jamie@jamieiles.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-spi@vger.kernel.org, gregkh@linuxfoundation.org,
+        thierry.reding@gmail.com, sjg@chromium.org,
+        philipp.tomsich@vrull.eu, kishon@ti.com, richard@nod.at,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        robh+dt@kernel.org, linux-mmc@vger.kernel.org, broonie@kernel.org,
+        wim@linux-watchdog.org, linux-serial@vger.kernel.org,
+        miquel.raynal@bootlin.com
+Subject: Re: (subset) [PATCH v1 01/11] dt-bindings: serial: rockchip: add rockchip,rk3128-uart
+Date:   Wed, 14 Sep 2022 10:52:33 +0200
+Message-Id: <166314554237.197444.11513118217413767473.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <4f283231-2ed4-202b-0c23-157bce0841ee@gmail.com>
+References: <20220909212543.17428-1-jbx6244@gmail.com> <4f283231-2ed4-202b-0c23-157bce0841ee@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,14 +55,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Fix node names for three fixed clocks to follow the
-> no-underscores-in-name rule. To remain compatible with the drivers
-> expecting to find the old clock names, add clock-output-names
-> properties.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Sat, 10 Sep 2022 00:01:28 +0200, Johan Jonker wrote:
+> Add rockchip,rk3128-uart compatible string.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Applied, thanks!
 
-Yours,
-Linus Walleij
+[08/11] dt-bindings: arm: rockchip: pmu: add rockchip,rk3128-pmu
+        commit: 9c2f4521344f3b14fa0be050100ef726edc36cbc
+[10/11] dt-bindings: soc: rockchip: grf: add rockchip,rk3128-grf
+        commit: adc4f190260a6c004f950992d8c9ee3aec8da38b
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
