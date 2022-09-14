@@ -2,97 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 835EA5B8700
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ABE85B870F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229495AbiINLIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 07:08:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40064 "EHLO
+        id S229653AbiINLND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 07:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiINLIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:08:09 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAF69237E5;
-        Wed, 14 Sep 2022 04:08:05 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id d25-20020a9d72d9000000b00655d70a1aeaso6986053otk.3;
-        Wed, 14 Sep 2022 04:08:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=2rmXNTNBwGY5J4a4h3i1VzHJdXFIlmwnn+zGBAD+UYI=;
-        b=Voga5yjRNeRKMKvtfqtn9e6+REzfgIMAzk6dRoGr6m2+vsPBBqddq/9rEmrnWJF0vg
-         Jv1GvmiCOv1p3olpf9I4LPhYl0elUA7OU0L931o5cj6W1fBgncTCF0R4Ocpts+tRCIWg
-         aT3tuyzXTWo2PBuUw8K1ZSoXnY2bjjz1LifQiznu/C1w9AduLc/FI2u4ZKDn2xPCuONG
-         Y0slGq0QazjdvYQI+Ad4fTqFRO4tSOPq/rbktFqxcIcpybt4yR2qfZwEQfXRvyiT3SPF
-         UVVIpAmn7VCnG2OUyXvjfgv0hitaxv651ZhVjXi9a8jpK25TdI7pWfNW+xQN/CJES55T
-         cw8Q==
-X-Gm-Message-State: ACgBeo1RPY7+Pit1by72NRYl66U196G8sE0mJ/ikY7SBkPAb0opUAIhg
-        rTXzm5MCX28O2G4bAflc6w==
-X-Google-Smtp-Source: AA6agR7RJKKKW2Pa1sGiCmQlgDBTlugnTg1bEE7BTI+sHywTNfckweBkJxzjZb0uy0FBTY6AHWBJYA==
-X-Received: by 2002:a05:6830:204b:b0:656:6b6e:fa77 with SMTP id f11-20020a056830204b00b006566b6efa77mr2632435otp.141.1663153684884;
-        Wed, 14 Sep 2022 04:08:04 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 93-20020a9d0be6000000b00636ee04e7aesm7016797oth.67.2022.09.14.04.08.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 04:08:04 -0700 (PDT)
-Received: (nullmailer pid 1742267 invoked by uid 1000);
-        Wed, 14 Sep 2022 11:08:03 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        andersson@kernel.org, manivannan.sadhasivam@linaro.org,
-        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
-        jassisinghbrar@gmail.com, agross@kernel.org
-In-Reply-To: <1663135386-26270-2-git-send-email-quic_sibis@quicinc.com>
-References: <1663135386-26270-1-git-send-email-quic_sibis@quicinc.com> <1663135386-26270-2-git-send-email-quic_sibis@quicinc.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox: Add dt binding for QTI CPUCP mailbox controller
-Date:   Wed, 14 Sep 2022 06:08:03 -0500
-Message-Id: <1663153683.714744.1742263.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S229586AbiINLNB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:13:01 -0400
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [IPv6:2001:690:2100:1::15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3BB55F204;
+        Wed, 14 Sep 2022 04:12:58 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id DC2D16000867;
+        Wed, 14 Sep 2022 12:12:53 +0100 (WEST)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+        tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+        with LMTP id YQhThmxqhzsu; Wed, 14 Sep 2022 12:12:51 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 73BED6007C02;
+        Wed, 14 Sep 2022 12:12:51 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+        s=mail; t=1663153971;
+        bh=TE+9CQgt2xAzeh9uyj7cWVGFcHBh3ZaeFCVNfB2arKU=;
+        h=From:To:Cc:Subject:Date;
+        b=MjgauRuOqrxAfQV1uxEKWkuO7RJmfdIuF7mkNoJcRCI3/78ftcHVohDOQ0r35K47G
+         TnrWmZYLcQHgJIOu7T7rX6WHZ4fHKjRTwqoIlHMJ9Msssf7DLZ4Jtf2p63vP5n2Xsi
+         NbU08IhI+03H73vBgcf0JHA4ajOmBtH6/iEZ+/wk=
+Received: from wslaptop.lan (unknown [IPv6:2001:818:dcb5:dc00:7a88:7f12:8ed8:518d])
+        (Authenticated sender: ist187313)
+        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 26821360089;
+        Wed, 14 Sep 2022 12:12:51 +0100 (WEST)
+From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Cc:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
+        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] arm64: dts: tegra: smaug: Add Wi-Fi and BT DT nodes 
+Date:   Wed, 14 Sep 2022 12:12:19 +0100
+Message-Id: <20220914111221.862929-1-diogo.ivo@tecnico.ulisboa.pt>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Sep 2022 11:33:05 +0530, Sibi Sankar wrote:
-> Add devicetree binding for CPUSS Control Processor (CPUCP) mailbox
-> controller.
-> 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
->  .../bindings/mailbox/qcom,cpucp-mbox.yaml          | 51 ++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
-> 
+Hello,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+These patches add DT nodes separately for the BRCM4354 Wi-FI + BT combo
+module in the Pixel C, and have both been tested on it.
 
-yamllint warnings/errors:
+Thanks!
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.example.dtb: mailbox@17400000: reg: [[0, 398458880], [0, 16], [0, 408486656], [0, 1792]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+Diogo Ivo (2):
+  arm64: dts: tegra: smaug: Add Bluetooth node
+  arm64: dts: tegra: smaug: Add Wi-Fi node
 
-doc reference errors (make refcheckdocs):
+ arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+2.37.3
 
