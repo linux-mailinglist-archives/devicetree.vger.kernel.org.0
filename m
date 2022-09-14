@@ -2,147 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 447235B8937
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 15:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA36D5B8952
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 15:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbiINNfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 09:35:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48946 "EHLO
+        id S229744AbiINNnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 09:43:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbiINNfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 09:35:16 -0400
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9226818E11;
-        Wed, 14 Sep 2022 06:35:13 -0700 (PDT)
-Received: by linux.microsoft.com (Postfix, from userid 1112)
-        id 1A52E20520AE; Wed, 14 Sep 2022 06:35:13 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 1A52E20520AE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1663162513;
-        bh=8jdg+ElUih7lPWDRjB06Zln1zyqWp+4LB/sUV1a0h8E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jnDGVNH3ELcX8x2FMzye2pY1hk+YQbgK/DQDmLfTRK5aUe3RyW83rlYBTSeV6NTLe
-         snmDYZEiy20LwhcdMmG1QQju4dZf2WCvmy6gEQHn63Xl4IY29ISDMaVPH11YjDdoRb
-         SY13OZp7JJkgzID/RjrfrA47RMjBqFLlA1GunXT0=
-Date:   Wed, 14 Sep 2022 06:35:13 -0700
-From:   Jeremi Piotrowski <jpiotrowski@linux.microsoft.com>
-To:     Lizhi Hou <lizhi.hou@amd.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh@kernel.org,
-        frowand.list@gmail.com, helgaas@kernel.org,
-        clement.leger@bootlin.com, max.zhen@amd.com, sonal.santan@amd.com,
-        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
-        trix@redhat.com
-Subject: Re: [PATCH RFC 0/2] Generate device tree node for pci devices
-Message-ID: <20220914133513.GA26840@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
+        with ESMTP id S229622AbiINNnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 09:43:05 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEE2932062;
+        Wed, 14 Sep 2022 06:43:04 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id bq9so25795019wrb.4;
+        Wed, 14 Sep 2022 06:43:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=55t9oy9rYO6atteB92gtH+id2YSq0wuOjEorCfNnfh4=;
+        b=GbW7z5KA1KjxzU5iLaNR5B7UrSRboHeExbipwRQeWnRS+XZaDEZPSv5gO6g4WjE+eL
+         s56ngNetqHmuPMLBo8dYT4Y7E/xDELeEkCd1U1TXKspkEQTZVhYH55ePPFF/w4Q/Nrz2
+         h6b/RLruWCbVIJUJBL2zGzB23nb+ybn9FgURJdJ4S1SVKEcGhGSaTn3ZWI+6cFmAdCrE
+         CT6DGhIyxsX/hzYQfXvIMCXPFdGp2vezqxXmpqjWYM9WFX2OC4HI/uvNUPEy+aBV3Qea
+         ml1dB6Zh2kLfcFIObkxp7nAyt50oiE6U9/YGd4rV5/5IQPkYfU1otSSiME17HCeHCo6T
+         EBuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=55t9oy9rYO6atteB92gtH+id2YSq0wuOjEorCfNnfh4=;
+        b=dyewdwVVCQ02TRa3VhpulcBaBJjNy642B2He3SQudPgGPm0W42KWJT84qoOgUTVO91
+         GXMqYYXTKYm56lo+xdpK4Mr5taEA/PDeufrnnfiNstvODH4+iP8/4ycIjkBomfTLeUG3
+         lvZfivIc+eXkY8AN+pAxjiFc3lnrAHcSy6+bhw684etfLRLwaXF5dtUDLPERaJD1Q+I2
+         MMaHWS0VBPcD6wisGo7+imzIXa1m9XRdBoYlS5maO0fDAMJjJA1GmGfceJxLZMMCcNHM
+         hxXkmsyhsHZfmEpUNq7Jc3jBnpHPcD7yQP5d5GvFn/1wnuvfxv4KXi6Su9eCnxi91w6J
+         vLyQ==
+X-Gm-Message-State: ACgBeo0WggYeF80x1ij6TeN28ZMXaxeeIAXoOnP1ppCzdUBqTsnvlTaf
+        QxGmpsFDNiEwxYx5eIsLMsRsiWFrCoPpeg==
+X-Google-Smtp-Source: AA6agR7D1czQQSxadf8/PUV5e13WLA+bS4TjuUa+TJHym7+J47uajM1/m+Dnn7Lmquh8MiQTRYtN9g==
+X-Received: by 2002:a05:6000:1090:b0:228:a963:3641 with SMTP id y16-20020a056000109000b00228a9633641mr22115365wrw.289.1663162983253;
+        Wed, 14 Sep 2022 06:43:03 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2501:c701:fc6e:cfa1:9281:3490])
+        by smtp.gmail.com with ESMTPSA id g8-20020a5d4888000000b00228dbaea941sm13567207wrq.26.2022.09.14.06.43.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 06:43:02 -0700 (PDT)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: rzg2ul-smarc-som: Drop enabling wdt2
+Date:   Wed, 14 Sep 2022 14:42:11 +0100
+Message-Id: <20220914134211.199631-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,
-        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 29, 2022 at 02:43:35PM -0700, Lizhi Hou wrote:
-> This patch series introduces OF overlay support for PCI devices which
-> primarily addresses two use cases. First, it provides a data driven method
-> to describe hardware peripherals that are present in a PCI endpoint and
-> hence can be accessed by the PCI host. An example device is Xilinx/AMD
-> Alveo PCIe accelerators. Second, it allows reuse of a OF compatible
-> driver -- often used in SoC platforms -- in a PCI host based system. An
-> example device is Microchip LAN9662 Ethernet Controller.
-> 
-> This patch series consolidates previous efforts to define such an
-> infrastructure:
-> https://lore.kernel.org/lkml/20220305052304.726050-1-lizhi.hou@xilinx.com/
-> https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
-> 
-> Normally, the PCI core discovers PCI devices and their BARs using the
-> PCI enumeration process. However, the process does not provide a way to
-> discover the hardware peripherals that are present in a PCI device, and
-> which can be accessed through the PCI BARs. Also, the enumeration process
-> does not provide a way to associate MSI-X vectors of a PCI device with the
-> hardware peripherals that are present in the device. PCI device drivers
-> often use header files to describe the hardware peripherals and their
-> resources as there is no standard data driven way to do so. This patch
-> series proposes to use flattened device tree blob to describe the
-> peripherals in a data driven way. Based on previous discussion, using
-> device tree overlay is the best way to unflatten the blob and populate
-> platform devices. To use device tree overlay, there are three obvious
-> problems that need to be resolved.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi Lizhi,
+WDT CH2 is specifically to check the operation of Cortex-M33 CPU so
+don't enable WDT2 by default.
 
-We all *love* "have you thought about xxx" questions but I would really like to
-get your thoughts on this. An approach to this problem that I have seen in
-various devices is to emulate a virtual pcie switch, and expose the "sub
-devices" behind that. That way you can carve up the BAR space, each device has
-its own config space and mapping of MSI-X vector to device becomes clear. This
-approach also integrates well with other kernel infrastructure (IOMMU, hotplug).
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi | 5 -----
+ 1 file changed, 5 deletions(-)
 
-This is certainly possible on reprogrammable devices but requires some more
-FPGA resources - though I don't believe the added utilization would be
-significant. What do you think of this kind of solution?
+diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+index cf3b3d118ef1..2a0feb53f0dc 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+@@ -263,8 +263,3 @@ &wdt0 {
+ 	status = "okay";
+ 	timeout-sec = <60>;
+ };
+-
+-&wdt2 {
+-	status = "okay";
+-	timeout-sec = <60>;
+-};
+-- 
+2.25.1
 
-Jeremi
-
-> 
-> First, we need to create a base tree for non-DT system such as x86_64. A
-> patch series has been submitted for this:
-> https://lore.kernel.org/lkml/20220624034327.2542112-1-frowand.list@gmail.com/
-> https://lore.kernel.org/lkml/20220216050056.311496-1-lizhi.hou@xilinx.com/
-> 
-> Second, a device tree node corresponding to the PCI endpoint is required
-> for overlaying the flattened device tree blob for that PCI endpoint.
-> Because PCI is a self-discoverable bus, a device tree node is usually not
-> created for PCI devices. This series adds support to generate a device
-> tree node for a PCI device which advertises itself using PCI quirks
-> infrastructure.
-> 
-> Third, we need to generate device tree nodes for PCI bridges since a child
-> PCI endpoint may choose to have a device tree node created.
-> 
-> This patch series is made up of two patches.
-> 
-> The first patch is adding OF interface to allocate an OF node. It is copied
-> from:
-> https://lore.kernel.org/lkml/20220620104123.341054-5-clement.leger@bootlin.com/
-> 
-> The second patch introduces a kernel option, CONFIG_PCI_OF. When the option
-> is turned on, the kernel will generate device tree nodes for all PCI
-> bridges unconditionally. The patch also shows how to use the PCI quirks
-> infrastructure, DECLARE_PCI_FIXUP_FINAL to generate a device tree node for
-> a device. Specifically, the patch generates a device tree node for Xilinx
-> Alveo U50 PCIe accelerator device. The generated device tree nodes do not
-> have any property. Future patches will add the necessary properties.
-> 
-> Clément Léger (1):
->   of: dynamic: add of_node_alloc()
-> 
-> Lizhi Hou (1):
->   pci: create device tree node for selected devices
-> 
->  drivers/of/dynamic.c        |  50 +++++++++++++----
->  drivers/pci/Kconfig         |  11 ++++
->  drivers/pci/bus.c           |   2 +
->  drivers/pci/msi/irqdomain.c |   6 +-
->  drivers/pci/of.c            | 106 ++++++++++++++++++++++++++++++++++++
->  drivers/pci/pci-driver.c    |   3 +-
->  drivers/pci/pci.h           |  16 ++++++
->  drivers/pci/quirks.c        |  11 ++++
->  drivers/pci/remove.c        |   1 +
->  include/linux/of.h          |   7 +++
->  10 files changed, 200 insertions(+), 13 deletions(-)
-> 
-> -- 
-> 2.27.0
-> 
