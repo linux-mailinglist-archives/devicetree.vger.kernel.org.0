@@ -2,120 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 424175B8BF2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 17:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D42A75B8C0F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 17:40:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiINPeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 11:34:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43620 "EHLO
+        id S230348AbiINPkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 11:40:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230039AbiINPdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 11:33:41 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CED35A880;
-        Wed, 14 Sep 2022 08:33:40 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id v16so35573652ejr.10;
-        Wed, 14 Sep 2022 08:33:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=euBywoUqWY+9yPtFA/h7+K25+vefjCBo4JeDdhHgIhg=;
-        b=na7tS1cWTqcfmwovO/xG7sjSvLAaRTdSCnO+6swrap87QiTLrqQKu4jppnggBiwxR0
-         CX2heIiM4FhpIb/birHu1wjC6MTWWWHjIH3QY15ZFGcPx2nTOUQWwo4nPl76tJD94AAY
-         zsJwmVWai2JY/gyBwxAcR7dRmRUj7vlBd5bbt7dug8Bt2ckZDoGakuqqKPVzsgWuEthk
-         9pxgkGEFzkr0BnV3R9ohnK2lLB64JJ+0YXI6TKhJIZwzoRrzAF52erwFi/u+a/KnpAS6
-         y/o7yHTZBawGCDWaol6hc3jMrZlk2TfwPKLbxMpVNmNsBudZmGgJPs+cN/A8drMjf35l
-         VNYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=euBywoUqWY+9yPtFA/h7+K25+vefjCBo4JeDdhHgIhg=;
-        b=ICM5Rnx0/4XCng0kZdsOMVVDLbbfolecm3jhW6V8RZiP/+XEfQ43JudbY/sAl3Evl5
-         aGMuflvcBIuUgBGLihaFmVrVCSd6BxJSEWrG+VQAlvHT3xDpi5TesbNP6FqS7ExGnF4z
-         skAoiJq7MH/DF+kHfN8L3Zw0Y7jFGzF7cEQ6URQ+ED77E7Q9hQKMHU6uPSFG8WOKkI4o
-         nIq/GahYC5OuGOJZV8yYasi7pTeAmov+lQOF5ileoSu/apbGweXPZras/a4wHEn/yAju
-         ts/IGG8JVj4giEgJz4AZWz19ZL7AI12PD6lwkuWoaKpqBZoWPbvoC+bLOVYFg/5mi83E
-         oSig==
-X-Gm-Message-State: ACgBeo3s32W1VUmFFZq4WegQ8jA/WLuMpN/q1l98UUBXtkuDHRrDgrFB
-        bxnbKO6rlj9P44W8FjU7WMwETKiHGBOVoSn+4xw=
-X-Google-Smtp-Source: AA6agR6FfLnXUSOTPacpx7RREDFu38n5a5EdGdNa5zwcSzUCfG/WghGZdEtUSgmo4eg0hC4iuJsVeuEL0FdtOUeP6Kg=
-X-Received: by 2002:a17:907:80d:b0:73d:a576:dfbd with SMTP id
- wv13-20020a170907080d00b0073da576dfbdmr26468956ejb.402.1663169618930; Wed, 14
- Sep 2022 08:33:38 -0700 (PDT)
+        with ESMTP id S230327AbiINPkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 11:40:02 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8066AA3E;
+        Wed, 14 Sep 2022 08:38:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=gOLBlb9Twt2TVyi5QU0OEVORWi4d1OG8YQSlE6qjmQI=; b=CNSOrwQV8vwpuT7NrFT64kb16a
+        84RpgkIOOH6vzLgiPVCttzaggrt7uDhdBHsZsSAIxqXyr8ONlD+ppRrBRZM9/t6owAuczFx017TbW
+        JwlHTWJOU8dtSaTvBVQ8XI+43bvv+EP4qocVXdfkuKGmgY353v1GK68IOfy1mdJ93dxLeuGBIt5Ed
+        6OO/MhlV8oVx7QeipfGSkMGVoRSuP2ApbHHcYD0Vg2N37+G9euMcfNPBDdNKcawcxYVkxPgIY8OmT
+        UiRm1QmfVzwlXgEQZeVokbab1Ss8GPe7gCNgwNC4pUIcxU5reS1sjRjL+F8LHA1T2HW9qNnIVdblj
+        D6o8Gy8Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34320)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oYUSW-0004Y6-Ol; Wed, 14 Sep 2022 16:37:52 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oYUSS-0001kz-Vo; Wed, 14 Sep 2022 16:37:48 +0100
+Date:   Wed, 14 Sep 2022 16:37:48 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        vladimir.oltean@nxp.com, grygorii.strashko@ti.com, vigneshr@ti.com,
+        nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kishon@ti.com
+Subject: Re: [PATCH 2/8] net: ethernet: ti: am65-cpsw: Add support for SERDES
+ configuration
+Message-ID: <YyH1TH0UqCzN37J2@shell.armlinux.org.uk>
+References: <20220914095053.189851-1-s-vadapalli@ti.com>
+ <20220914095053.189851-3-s-vadapalli@ti.com>
 MIME-Version: 1.0
-References: <20220914151125.212876-1-dmitry.osipenko@collabora.com>
-In-Reply-To: <20220914151125.212876-1-dmitry.osipenko@collabora.com>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Wed, 14 Sep 2022 17:33:27 +0200
-Message-ID: <CAJiuCcefkre611=1UXEkwScN+bYSBhE_ivGzTK7ZMvp-j4MbRQ@mail.gmail.com>
-Subject: Re: [PATCH v1] ARM: dts: sun8i: h3: orangepi-pc: Add CMA reserved
- memory node
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-sunxi@lists.linux.dev,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220914095053.189851-3-s-vadapalli@ti.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
-
-On Wed, 14 Sept 2022 at 17:12, Dmitry Osipenko
-<dmitry.osipenko@collabora.com> wrote:
->
-> Add 256MB CMA node to the Orange Pi PC board. This fixes memory allocation
-> failures for Cedrus video decoder on trying to play a 1080p video with
-> gstreamer.
->
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> ---
->  arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts b/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts
-> index b96e015f54ee..e655346a9fb4 100644
-> --- a/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts
-> +++ b/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts
-> @@ -60,6 +60,20 @@ chosen {
->                 stdout-path = "serial0:115200n8";
->         };
->
-> +       reserved-memory {
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               ranges;
-> +
-> +               linux,cma@40000000 {
-> +                       compatible = "shared-dma-pool";
-> +                       alloc-ranges = <0x40000000 0x40000000>;
-> +                       size = <0x10000000>; /* 256MiB */
-> +                       linux,cma-default;
-> +                       reusable;
-> +               };
-> +       };
+On Wed, Sep 14, 2022 at 03:20:47PM +0530, Siddharth Vadapalli wrote:
+> @@ -1427,6 +1471,9 @@ static void am65_cpsw_nuss_mac_link_down(struct phylink_config *config, unsigned
+>  	struct net_device *ndev = port->ndev;
+>  	int tmo;
+>  
+> +	/* disable phy */
+> +	am65_cpsw_disable_phy(port->slave.ifphy);
 > +
 
-This change seems legit for all H3 boards and could be moved to the H3 dtsi, no?
+This seems really strange. If you have a serdes interface which
+presumably supports SGMII, 1000base-X etc, then link status is sent
+across the serdes interface. If you power down the serdes, then you
+can't receive the link status, and so mac_link_up() won't be called.
 
-Regards,
-Clement
+Are you really sure you want to be enabling and disabling the PHY
+in mac_link_down()/mac_link_up() ?
 
->         connector {
->                 compatible = "hdmi-connector";
->                 type = "a";
-> --
-> 2.37.3
->
->
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
