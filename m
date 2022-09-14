@@ -2,71 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E216D5B8280
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10A355B82A6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 10:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbiINH4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 03:56:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58058 "EHLO
+        id S229945AbiINILj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 04:11:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230282AbiINH4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:56:01 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 063EC73330
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:55:14 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id f24so14326021plr.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:55:14 -0700 (PDT)
+        with ESMTP id S230095AbiINILh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 04:11:37 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F0352833
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:11:29 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id q17so3376373lji.11
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:11:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=hFaMhiJ2smTY3tKW4XMPUKWJJb1/OofcwoKHsMVmwSo=;
-        b=SI9/Uz3M6YTJuRrSklbDpYpOxcVa9EPeijj7hjfrjhgN7PSc0SyAhg2b2p9nJCKCKZ
-         DYKQTfC+3xzr5UiTb+m0HrZGWNNosaCAXUZflJpipOHhyJbdBP5uI1Y0YAMho4yudN2z
-         okoywYcyQr5939F1C5W8fSNXGDdYGnUjiEa0fk2MTbtseIBDKBWRjWrz6PzcXLtKkgsB
-         AEgrR6y0T/6CM3yapiECs5coK3HQcCxUvwSkXuAqJTKABXm5ZKDFw9gX9ZVg7FVeb0CU
-         12lioqIJlSzkmWcHFeKOyTTP8u9jrTZXP3BwQVnrYB+uE2ppyUS8t4C9HuROZxNcJobI
-         w26g==
+        bh=iZWQ5Y5Hi8CWhQBH1f5b8elpMACX9kHtiFs5cgZXWnU=;
+        b=pTTW6wt42ZbuGip9KqG9W/2VYWHhw9uRUsEbJ71hITKbzWz8HMrDBeXeN+lTXP9sEZ
+         qQoWJEAnxO1ATDIv/Y3BSxD+OBY8UMg3gmoO2spFVBt+Xy7ntJGhAjla8OZh/nP+h0Xn
+         lDTGqERssXYy/TcUzunBFj8dLoefb8mF3afS0HGohD6t4l60XchdN0IIHckT44xo8hOn
+         JhL/5FQcq9k/9eTq0BLqXU1IXFn9RCGhNgHcObSmv16LIgvQwijupPFm48RCP5iCQ/dk
+         lBIoSywTcHRE7mELJet68lYb8ym8aatv0cT0wTFh+bQ8qNnDyGgumgP5DVBCr3p+rowc
+         ZH6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=hFaMhiJ2smTY3tKW4XMPUKWJJb1/OofcwoKHsMVmwSo=;
-        b=Qa1+fZcivfBBT6p7v6fqaq2UCojxCHR4tGeOQc2TSD6O9ySJOKmscLrDDEXK9aJDhr
-         FEGiCuImuQl0h3DbZlD+IAQ5ZSSn0KqaPJ1aDdLs/xIJxk0cood9kdrqfkRa/IloNblZ
-         uyqtImDUM5mxxquOT9APVhVt9BMZiL710JPksACfO5RsAkC173Da5g2vVL4tcU0v3qC4
-         VWYbRPPhwe3IT7StjegbEyGAoCxUeG9wc4XFtaoiZmKXvBGw96QBLSygRKOp5ZjQ2w7j
-         lCG30nyub4PqvEXFKM/H/6i5jZP06e12e1CyJziV9PheHNp6kYNkebBbOzrZvS52cr1T
-         bqPg==
-X-Gm-Message-State: ACrzQf2F+2y6LKdL5VLydfvPC2oeFRmt2M4FnKMqWF8Q+Yi3qJm7VWkp
-        rp61TiqV52xBySStVIeuNYuy
-X-Google-Smtp-Source: AMsMyM6c2IDayNxwlIUQZQjw88mwOxFAIh5cGe60tsv+xKZ08buMF1QIjqLM4JKeB9FRPixp7FXtmw==
-X-Received: by 2002:a17:90b:1b50:b0:202:f495:6b43 with SMTP id nv16-20020a17090b1b5000b00202f4956b43mr3447648pjb.85.1663142114331;
-        Wed, 14 Sep 2022 00:55:14 -0700 (PDT)
-Received: from localhost.localdomain ([117.202.184.122])
-        by smtp.gmail.com with ESMTPSA id p8-20020a1709027ec800b00174ea015ee2sm10119054plb.38.2022.09.14.00.55.08
+        bh=iZWQ5Y5Hi8CWhQBH1f5b8elpMACX9kHtiFs5cgZXWnU=;
+        b=7f22Ycol0iU7tvFwKEQIx3vd3gfn7HMkMc1/i2qV+28d61rCU4NxrAA2Y3B9p908Ed
+         4+qNQ07fQjQdMLBA163QogjUM94vLdOM7ZLsNITvm6LIHvwZCgucEsrDwLXL8LzPXxNl
+         m3iZLi2ihv/QKtEjg4kuna94jOTMAYp4Y6tbRf/6ZOSdx+0th5r7u6AlTfwlw4j9NASP
+         S43R28MabadJM1qxAmiDV54PT3kM+wFYQBVtzp+86atN8n0pxicnVr56na4zLBTeDRFo
+         IgKq9VLGO7mDWgDBq1AnZGGvFh9+z2H4+45fsa5ED7Cit2HGgHOP9+FSTtGFqBL7Re1O
+         ZidA==
+X-Gm-Message-State: ACgBeo0GdyY9IFNjfm5j4qRGgOWjswimGzRVqU9wwpAlE+dpWYQD/ic1
+        Zz5KUEGRnB8iqGY6x6ReWPytmw==
+X-Google-Smtp-Source: AA6agR7KVYLe94RDe7L+HNI/gTnXhrOM85yrUN8V96og/vOzDi3rBrNsY1d49OC2TJJcwr2NURMcBw==
+X-Received: by 2002:a2e:9410:0:b0:26c:170e:e107 with SMTP id i16-20020a2e9410000000b0026c170ee107mr2483758ljh.455.1663143087450;
+        Wed, 14 Sep 2022 01:11:27 -0700 (PDT)
+Received: from fedora.ideon.se ([85.235.10.227])
+        by smtp.gmail.com with ESMTPSA id g12-20020ac24d8c000000b0048cc076a03dsm2265290lfe.237.2022.09.14.01.11.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 00:55:13 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org
-Cc:     kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v4 12/12] PCI: qcom-ep: Add support for SM8450 SoC
-Date:   Wed, 14 Sep 2022 13:23:50 +0530
-Message-Id: <20220914075350.7992-13-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220914075350.7992-1-manivannan.sadhasivam@linaro.org>
-References: <20220914075350.7992-1-manivannan.sadhasivam@linaro.org>
+        Wed, 14 Sep 2022 01:11:26 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: clock: qcom,gcc-msm8660: separate GCC bindings for MSM8660
+Date:   Wed, 14 Sep 2022 10:11:24 +0200
+Message-Id: <20220914081124.350266-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220909105136.3733919-2-dmitry.baryshkov@linaro.org>
+References: <20220909105136.3733919-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,27 +80,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for SM8450 SoC to the Qualcomm PCIe Endpoint Controller
-driver. The driver uses the same config as of the existing SDX55 chipset.
-So additional settings are not required.
+Hi Dmitry!
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/pci/controller/dwc/pcie-qcom-ep.c | 1 +
- 1 file changed, 1 insertion(+)
+Overall this looks very good, I suppose we follow up with
+adding PXO and CXO to the device tree(s).
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-index 92140a09aac5..16bb8f166c3b 100644
---- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-@@ -789,6 +789,7 @@ static int qcom_pcie_ep_remove(struct platform_device *pdev)
- 
- static const struct of_device_id qcom_pcie_ep_match[] = {
- 	{ .compatible = "qcom,sdx55-pcie-ep", },
-+	{ .compatible = "qcom,sm8450-pcie-ep", },
- 	{ }
- };
- 
--- 
-2.25.1
+> Create a separate DT bindings for Global Clock Controller on MSM8660
+> platform.
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
+(...)
+> +examples:
+> +  # Example for GCC for MSM8974:
+
+I think that should be "for MSM8660" now?
+
+With that nitpick:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
