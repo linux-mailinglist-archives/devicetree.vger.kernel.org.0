@@ -2,94 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88C8D5B82D9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 10:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2C185B82DD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 10:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbiINIYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 04:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
+        id S229996AbiINIYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 04:24:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbiINIXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 04:23:33 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 915C9B854;
-        Wed, 14 Sep 2022 01:23:32 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id i19so10385247pgi.1;
-        Wed, 14 Sep 2022 01:23:32 -0700 (PDT)
+        with ESMTP id S230008AbiINIYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 04:24:06 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5028CB854
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:24:02 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id r12so15744502ljg.10
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:24:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=P9iChXnOlLAzZFdNLnY5kfU9Doj3uGfj35dzgStEZMU=;
-        b=pE75bF9llgDlVL1tONbpIXNBJPLRnBJ9hkVccGmGOVuo021D3xEEvmTbepvrp8RVQr
-         ksUoC0NRWRrNZLspcVVn15dc6H2MMgAUGlezFBxb336KBr2ISMC+Dob4DjGk0FXlLOdr
-         WkFcg065fEqebST0Ysnz2LT/kpx/5VLtckcfp7gjjoudRS21JgjoxZbTi+2H4DxA0bVn
-         IzKXx6LwUO4kUp22kqP9tM6yPZmYTN1qotSSkGMZmYpLiXRsvbsxLl+Ffm+JeCgEc6kX
-         Ux3dTYooLnUEPTySDAWTWdTXIlOqiLvClX3trv6ZUD6Nz3p9d6P+c2/KkvUMvOIaNd7c
-         buaQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=V1YVYSsl5D5EOMmP45EuuB6/EETaN2F4Y3Yv5mQzyP0=;
+        b=v4wytsxa48nEgAD91g/pZa596RMNquTq15IEhMx7xp5Q86y6iY/DNPspO8hxsStsMO
+         rVeIVf4fsNxkJDdeqwFz/CPf5gVvDPfJKsUHKUoJzBaS7BXlvb14wNvYcQjMVjsRiEKB
+         soEnc+muFJQn69YRy8oxblBk0e6E2cfFYp6wU9EGMdbC0A1YWZH5drhyw2WA3IU7lX8E
+         5uLq31lNxu1JKyVDYkwYmjWKIGVKuKnu8/lqaHy9qDEzPGWDn7sokhn2DtTgw/VJRH8X
+         AslAlzM1JQish00MRTcHJUO6Vezfq6aQIgB0Q/Lf3objanuKxNo+waDhbqR+Y+ScYhiu
+         +m2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=P9iChXnOlLAzZFdNLnY5kfU9Doj3uGfj35dzgStEZMU=;
-        b=AibkY6GTBdn/dJvJGddKTAMYr/FYdlk/wBSniQscuBzFrYdhpZir85uxJErRU3hMIi
-         V6XhgukqMQm2t7pkMGU6qYyBN3TbiXwj9LpY/3cThQ/ZedYMJrqdR1H7MOMdXW5M0rVv
-         WlctsKHU/oG3bLUEFVpAIorU6vfi3gtNgaUjRAVZ1Gl59yUFTYxL8j6e2KweQ6/xVyRq
-         1eHepmRduw0gVbNSycD5Dzq4qBbFCwg3Co6/Czhc81PStK/HhbO4XhBFy4M7qniD3V5G
-         v1oQ+PEzQmEqFE6W4b3v5v2HttjxarpTeK/ALiaUKhZjQJQlVVpDm5pc/5+vMlQbFyp9
-         fAOg==
-X-Gm-Message-State: ACgBeo3S6okl+AXzNsQCW/67PwTpiduU/iTzP3NQiQvxVKFW+kS/jsH5
-        op4PNCGuf88KW5s8O6Dpv08=
-X-Google-Smtp-Source: AA6agR6dE7decz+Ly0pUJByGQRsEwzFqUinIHdNRUA3Q963/UJZSsOEZOG0jYDqSaqN70/rX5SouIQ==
-X-Received: by 2002:a63:81c8:0:b0:438:919e:8256 with SMTP id t191-20020a6381c8000000b00438919e8256mr20790669pgd.39.1663143811878;
-        Wed, 14 Sep 2022 01:23:31 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:486:362c:d94f:b1bb:6842:3424])
-        by smtp.gmail.com with ESMTPSA id f8-20020aa79d88000000b0053e468a78a8sm9381986pfq.158.2022.09.14.01.23.27
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Sep 2022 01:23:30 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
-Cc:     cy_huang@richtek.com, chiaen_wu@richtek.com,
-        alice_chen@richtek.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mfd: mt6370: fix the indentation in the example
-Date:   Wed, 14 Sep 2022 16:23:23 +0800
-Message-Id: <1663143803-28660-1-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        bh=V1YVYSsl5D5EOMmP45EuuB6/EETaN2F4Y3Yv5mQzyP0=;
+        b=v6bKG1gAul67hZxCQ4+UbTi5jmWkLKFYSYF+StHncIh3Rr2BGWZK5Ry/JH9MBhYSxA
+         BuBxzmqXExjohu3L5xT8leapUFXVqTS6u3zv4BIIiojtnccGnmheTBsahuSa8p8KpRva
+         QoaDkG4aMZdX574QMnfkPgSoUAhUdBmDBMLaAwFBAd/4o4vOi8QsYmz4uFqQ5H/QMc0v
+         EeUzuIXK+frJz0JsBZLp6VFVnkbPo1rriY+cyiQtYJ4ICB4/lB/7sT7qTN2agVirrePO
+         3w3eDsoUHDjvHwN6zJpZYwFJGPFho2F8NkSD/tTJyFCJAtzzzkz6O2XmGp8rDahs673v
+         jQrA==
+X-Gm-Message-State: ACgBeo2A0QQUAVvEU5RapWCoLtpP3CjaiYWdseX1aHPlvuvqGkfAqaY/
+        VyQGqmhI1/ZHHlJUnI1z+KNAGw==
+X-Google-Smtp-Source: AA6agR5rklM6tu/ivEH7rZ+xthwXKKqcvkr4NjOV71oLH8VLbJajXjeCDpCBdloTLPGCpTf6RlEz3g==
+X-Received: by 2002:a2e:50b:0:b0:26a:b7ec:59ea with SMTP id 11-20020a2e050b000000b0026ab7ec59eamr10910287ljf.312.1663143840708;
+        Wed, 14 Sep 2022 01:24:00 -0700 (PDT)
+Received: from fedora.ideon.se ([85.235.10.227])
+        by smtp.gmail.com with ESMTPSA id o10-20020ac25e2a000000b00497a879e552sm2113647lfg.291.2022.09.14.01.23.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 01:24:00 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 5/5] ARM: dts: qcom-msm8660: fix node names for fixed clocks
+Date:   Wed, 14 Sep 2022 10:23:58 +0200
+Message-Id: <20220914082358.350971-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220909105136.3733919-6-dmitry.baryshkov@linaro.org>
+References: <20220909105136.3733919-6-dmitry.baryshkov@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+> Fix node names for three fixed clocks to follow the
+> no-underscores-in-name rule. To remain compatible with the drivers
+> expecting to find the old clock names, add clock-output-names
+> properties.
+>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Fix the indentation in the binding example. There're two redudant space
-charactors need to be removed.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
-index 410e2d4..250484d 100644
---- a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
-+++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
-@@ -119,7 +119,7 @@ examples:
-       #address-cells = <1>;
-       #size-cells = <0>;
- 
--        pmic@34 {
-+      pmic@34 {
-         compatible = "mediatek,mt6370";
-         reg = <0x34>;
-         wakeup-source;
--- 
-2.7.4
-
+Yours,
+Linus Walleij
