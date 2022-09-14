@@ -2,46 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 465655B81E2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C70E5B820F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:33:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbiINHNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 03:13:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35864 "EHLO
+        id S229850AbiINHdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 03:33:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230141AbiINHNU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:13:20 -0400
+        with ESMTP id S229602AbiINHdQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:33:16 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F28967C8B
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:13:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB1D6BD6F
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:33:14 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oYMa4-00055g-Tg; Wed, 14 Sep 2022 09:13:08 +0200
-Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oYMtS-00076d-Ep; Wed, 14 Sep 2022 09:33:10 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oYMa5-000eMw-Jh; Wed, 14 Sep 2022 09:13:08 +0200
-Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oYMa3-00Duib-5f; Wed, 14 Sep 2022 09:13:07 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     linux-gpio@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, kernel@pengutronix.de,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v3 2/2] dt-bindings: gpio: Add gpio-latch binding document
-Date:   Wed, 14 Sep 2022 09:13:06 +0200
-Message-Id: <20220914071306.3254881-3-s.hauer@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220914071306.3254881-1-s.hauer@pengutronix.de>
-References: <20220914071306.3254881-1-s.hauer@pengutronix.de>
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oYMtS-000eOy-63; Wed, 14 Sep 2022 09:33:08 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oYMtQ-000lNc-69; Wed, 14 Sep 2022 09:33:08 +0200
+Date:   Wed, 14 Sep 2022 09:33:05 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com, linux-pwm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for
+ rk3588
+Message-ID: <20220914073305.4zorbsve75raiygd@pengutronix.de>
+References: <20220901135523.52151-1-sebastian.reichel@collabora.com>
+ <1662059695.095333.2226883.nullmailer@robh.at.kernel.org>
+ <20220913091202.2oawzrq2u5iiz6hq@pengutronix.de>
+ <20220913141601.fi6pl2xdo4xmtw6t@mercury.elektranox.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="d4hlshwof6wtcph6"
+Content-Disposition: inline
+In-Reply-To: <20220913141601.fi6pl2xdo4xmtw6t@mercury.elektranox.org>
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Mail-From: ukl@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
@@ -53,111 +60,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a binding for a GPIO multiplexer driver based on latches
-connected to other GPIOs.
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
+--d4hlshwof6wtcph6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Notes:
-    Changes since v1:
-    - Add license to binding file
+On Tue, Sep 13, 2022 at 04:16:01PM +0200, Sebastian Reichel wrote:
+> Hi,
+>=20
+> On Tue, Sep 13, 2022 at 11:12:02AM +0200, Uwe Kleine-K=F6nig wrote:
+> > Hello Rob,
+> >=20
+> > On Thu, Sep 01, 2022 at 02:14:55PM -0500, Rob Herring wrote:
+> > > On Thu, 01 Sep 2022 15:55:23 +0200, Sebastian Reichel wrote:
+> > > > Add "rockchip,rk3588-pwm" compatible string for PWM nodes found
+> > > > on a rk3588 platform.
+> > > >=20
+> > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > > > ---
+> > > > No driver changes required.
+> > > > ---
+> > > >  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >=20
+> > >=20
+> > > Running 'make dtbs_check' with the schema in this patch gives the
+> > > following warnings. Consider if they are expected or the schema is
+> > > incorrect. These may not be new warnings.
+> > >=20
+> > > Note that it is not yet a requirement to have 0 warnings for dtbs_che=
+ck.
+> > > This will change in the future.
+> >=20
+> > Is this a list of *new* warnings, or is the report (somewhat) orthogonal
+> > to the actual change and you just used the opportunity that someone
+> > touched the pwm-rockchip binding to point out that there is some cleanup
+> > to do?
+> >=20
+> > > Full log is available here: https://patchwork.ozlabs.org/patch/
+> >=20
+> > Hm, that gives me a 404.
+>=20
+> This is an existing problem with the rv1108 binding.
+> The rk3588 does not have pwm interrupts.
 
- .../devicetree/bindings/gpio/gpio-latch.yaml  | 85 +++++++++++++++++++
- 1 file changed, 85 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-latch.yaml
+I thought so, so:
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-latch.yaml b/Documentation/devicetree/bindings/gpio/gpio-latch.yaml
-new file mode 100644
-index 0000000000000..856a9e1e43b45
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-latch.yaml
-@@ -0,0 +1,85 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/gpio-latch.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GPIO latch controller
-+
-+maintainers:
-+  - Sascha Hauer <s.hauer@pengutronix.de>
-+
-+description: |
-+  This binding describes a GPIO multiplexer based on latches connected to
-+  other GPIOs, like this:
-+
-+  CLK0 ----------------------.        ,--------.
-+  CLK1 -------------------.  `--------|>    #0 |
-+                          |           |        |
-+  OUT0 ----------------+--|-----------|D0    Q0|-----|<
-+  OUT1 --------------+-|--|-----------|D1    Q1|-----|<
-+  OUT2 ------------+-|-|--|-----------|D2    Q2|-----|<
-+  OUT3 ----------+-|-|-|--|-----------|D3    Q3|-----|<
-+  OUT4 --------+-|-|-|-|--|-----------|D4    Q4|-----|<
-+  OUT5 ------+-|-|-|-|-|--|-----------|D5    Q5|-----|<
-+  OUT6 ----+-|-|-|-|-|-|--|-----------|D6    Q6|-----|<
-+  OUT7 --+-|-|-|-|-|-|-|--|-----------|D7    Q7|-----|<
-+         | | | | | | | |  |           `--------'
-+         | | | | | | | |  |
-+         | | | | | | | |  |           ,--------.
-+         | | | | | | | |  `-----------|>    #1 |
-+         | | | | | | | |              |        |
-+         | | | | | | | `--------------|D0    Q0|-----|<
-+         | | | | | | `----------------|D1    Q1|-----|<
-+         | | | | | `------------------|D2    Q2|-----|<
-+         | | | | `--------------------|D3    Q3|-----|<
-+         | | | `----------------------|D4    Q4|-----|<
-+         | | `------------------------|D5    Q5|-----|<
-+         | `--------------------------|D6    Q6|-----|<
-+         `----------------------------|D7    Q7|-----|<
-+                                      `--------'
-+
-+  The number of clk-gpios and latched-gpios is not fixed. The actual number
-+  of number of latches and the number of inputs per latch is derived from
-+  the number of GPIOs given in the corresponding device tree properties.
-+
-+properties:
-+  compatible:
-+    const: gpio-latch
-+  "#gpio-cells":
-+    const: 2
-+
-+  clk-gpios:
-+    description: Array of GPIOs to be used to clock a latch
-+
-+  latched-gpios:
-+    description: Array of GPIOs to be used as inputs per latch
-+
-+  gpio-controller: true
-+
-+  gpio-line-names: true
-+
-+required:
-+  - compatible
-+  - "#gpio-cells"
-+  - gpio-controller
-+  - clk-gpios
-+  - latched-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio-latch {
-+        #gpio-cells = <2>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_di_do_leds>;
-+        compatible = "gpio-latch";
-+        gpio-controller;
-+
-+        clk-gpios = <&gpio3 7 0>, <&gpio3 8 0>;
-+        latched-gpios = <&gpio3 21 0>, <&gpio3 22 0>,
-+                       <&gpio3 23 0>, <&gpio3 24 0>,
-+                       <&gpio3 25 0>, <&gpio3 26 0>,
-+                       <&gpio3 27 0>, <&gpio3 28 0>;
-+    };
--- 
-2.30.2
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
 
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--d4hlshwof6wtcph6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmMhg64ACgkQwfwUeK3K
+7AkzOQf/UlE4uRbME2zQ6MnFx1BbofJkGfho9rOJJtyCBopDKAYsf+bqwxmNKeL/
+JJn+OhgKkFgnnqDuhcxp/ObXO8s6hgc7bswXYjYLZ0suDQOnA6DaScHnuJdecNyY
+p9dmbYoGxtwI1LjGifz1J8DyC3Y9v2jZi6sd6hV10RGf4W9KYzWNUzwbm9U9LZQG
+G2aCxu5ilXJYhkPoUItBEzlGIyuhh9mcZ9viwPlPsC2Bf220DKVUE+wqfajFSeQ1
+rkteqmsJYIGQJuCleX/gEgnCy5XoCG3J3XkiVOwoYE5S0eSlMB/WAD4PH72ViTwi
+blpiE1JnAMoGaXeTLz7p8Ngd48dfJA==
+=I5Ps
+-----END PGP SIGNATURE-----
+
+--d4hlshwof6wtcph6--
