@@ -2,168 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF46E5B87AA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:58:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51FB85B87C4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbiINL6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 07:58:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49892 "EHLO
+        id S229673AbiINMDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 08:03:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229889AbiINL6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:58:39 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94CBC501A6;
-        Wed, 14 Sep 2022 04:58:38 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4CCC36601D9B;
-        Wed, 14 Sep 2022 12:58:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663156716;
-        bh=shSymtIAxGsCHrnbATpRaFoRfpKmWQ0G2qmKifjEWQ0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=OI18wQE+hAXB+BPsNMLhS4Fcg4vEbzpxLY8CRUGvYkZvTJaoBhrl4dXnYv0gE5Pvu
-         QNQRUikenrDUMNPBAQzn1IG4je905fA2B4PbGiq/TXXcEdcBZyliFcRmF1ODAExZx9
-         /8XIb1AGQYWphZG3+GBUBbSkBI2/qRTY3xwoV3i6qCj/iHq+M68KIMyTXHwLrjo96E
-         LCNyrFANVNsZvA8uJJ3IKWJNiYtCmqTjHj87LLe5Cb5FA3OFJE0aaRwzS/l4T6qRJu
-         L96oOwx7leewIwSEm1pgcUuxb46OafzKoDwwlyZsHlQZEsvmjLPfgywFriphG8jXyi
-         OcgcdTp/hpzKw==
-Message-ID: <48cb4f47-754c-9994-2489-7ffabfc1b3b9@collabora.com>
-Date:   Wed, 14 Sep 2022 13:58:32 +0200
+        with ESMTP id S229490AbiINMD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:03:28 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B252E692;
+        Wed, 14 Sep 2022 05:03:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=AGiS0RJTIfvi76lZW3pl+xDVDO1sAPMtoNwFdsbw634=; b=vjqzDyEsUkoDI9FWKQ04N1BR2s
+        lD59yHKCy3WGtuA1rDc+Q0YxLU6LluESH/a1B1rKF7jjIl4zL6XTDb1DUlT6qdXEXikhXG3HMTXLJ
+        HNykcBcCSnQN9qaBKbb6R5fja2iq16eQKNYD0inuCUT3zrAyI3+Aldk025u4Gul/K7M8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oYR6g-00Gh3A-SF; Wed, 14 Sep 2022 14:03:06 +0200
+Date:   Wed, 14 Sep 2022 14:03:06 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH 3/5] net: ethernet: renesas: Add Ethernet Switch driver
+Message-ID: <YyHC+r3uP7s15kny@lunn.ch>
+References: <20220909132614.1967276-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220909132614.1967276-4-yoshihiro.shimoda.uh@renesas.com>
+ <Yx+9OrYDxKjVUutF@lunn.ch>
+ <TYBPR01MB5341F0C51EB2EBEF5A7107E7D8469@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v9,1/7] thermal: mediatek: Relocate driver to mediatek
- folder
-Content-Language: en-US
-To:     bchihi@baylibre.com, rafael@kernel.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, amitk@kernel.org
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-References: <20220817080757.352021-1-bchihi@baylibre.com>
- <20220817080757.352021-2-bchihi@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220817080757.352021-2-bchihi@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TYBPR01MB5341F0C51EB2EBEF5A7107E7D8469@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/08/22 10:07, bchihi@baylibre.com ha scritto:
-> From: Michael Kao <michael.kao@mediatek.com>
+> > > +static void rswitch_adjust_link(struct net_device *ndev)
+> > > +{
+> > > +	struct rswitch_device *rdev = netdev_priv(ndev);
+> > > +	struct phy_device *phydev = ndev->phydev;
+> > > +
+> > > +	if (phydev->link != rdev->etha->link) {
+> > > +		phy_print_status(phydev);
+> > > +		rdev->etha->link = phydev->link;
+> > > +	}
+> > 
+> > Given that the SERDES supports 100 and 1G, it seems odd you don't need
+> > to do anything here.
 > 
-> Add MediaTek proprietary folder to upstream more thermal zone and cooler
-> drivers, relocate the original thermal controller driver to it, and rename it
-> as "auxadc_thermal.c" to show its purpose more clearly.
+> Indeed. However, unfortunately, the current hardware cannot change the speed at runtime...
+> So, I'll add such comments here.
+
+Then you need to tell phylib about this. MAC drivers with limitations
+often call phy_set_max_speed() to remove higher speeds which the PHY
+can support, but the MAC cannot. You need to go further and remove
+lower speeds as well. The autoneg in the PHY should then only work for
+the speeds you actually support.
+
+> > > +static int rswitch_serdes_common_setting(void __iomem *addr0,
+> > > +					 enum rswitch_serdes_mode mode)
+> > > +{
+> > > +	switch (mode) {
+> > > +	case SGMII:
+> > > +		rswitch_serdes_write32(addr0, 0x0244, 0x180, 0x97);
+> > > +		rswitch_serdes_write32(addr0, 0x01d0, 0x180, 0x60);
+> > > +		rswitch_serdes_write32(addr0, 0x01d8, 0x180, 0x2200);
+> > > +		rswitch_serdes_write32(addr0, 0x01d4, 0x180, 0);
+> > > +		rswitch_serdes_write32(addr0, 0x01e0, 0x180, 0x3d);
+> > 
+> > Please add #defines for all these magic numbers.
 > 
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> Co-developed-by: Ben Tseng <ben.tseng@mediatek.com>
-> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
-> Co-developed-by: Balsam CHIHI <bchihi@baylibre.com>
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> ---
->   drivers/thermal/Kconfig                       | 14 ++++--------
->   drivers/thermal/Makefile                      |  2 +-
->   drivers/thermal/mediatek/Kconfig              | 22 +++++++++++++++++++
->   drivers/thermal/mediatek/Makefile             |  1 +
->   .../auxadc_thermal.c}                         |  2 +-
->   5 files changed, 29 insertions(+), 12 deletions(-)
->   create mode 100644 drivers/thermal/mediatek/Kconfig
->   create mode 100644 drivers/thermal/mediatek/Makefile
->   rename drivers/thermal/{mtk_thermal.c => mediatek/auxadc_thermal.c} (99%)
+> I should have added comments before though, the datasheet also describes
+> such magic numbers like below...
+> Step S.4.1	bank 0x180	address = 0x0244		data = 0x00000097
+> Step S.4.2	bank 0x180	address = 0x01d0		data = 0x00000060
+> ...
 > 
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index e052dae614eb..d35f63daca3b 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -412,16 +412,10 @@ config DA9062_THERMAL
->   	  zone.
->   	  Compatible with the DA9062 and DA9061 PMICs.
->   
-> -config MTK_THERMAL
-> -	tristate "Temperature sensor driver for mediatek SoCs"
-> -	depends on ARCH_MEDIATEK || COMPILE_TEST
-> -	depends on HAS_IOMEM
-> -	depends on NVMEM || NVMEM=n
-> -	depends on RESET_CONTROLLER
-> -	default y
-> -	help
-> -	  Enable this option if you want to have support for thermal management
-> -	  controller present in Mediatek SoCs
-> +menu "Mediatek thermal drivers"
-> +depends on ARCH_MEDIATEK || COMPILE_TEST
-> +source "drivers/thermal/mediatek/Kconfig"
-> +endmenu
->   
->   config AMLOGIC_THERMAL
->   	tristate "Amlogic Thermal Support"
-> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> index def8e1a0399c..f7daeb8056c4 100644
-> --- a/drivers/thermal/Makefile
-> +++ b/drivers/thermal/Makefile
-> @@ -55,7 +55,7 @@ obj-y				+= st/
->   obj-$(CONFIG_QCOM_TSENS)	+= qcom/
->   obj-y				+= tegra/
->   obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
-> -obj-$(CONFIG_MTK_THERMAL)	+= mtk_thermal.o
-> +obj-y				+= mediatek/
->   obj-$(CONFIG_GENERIC_ADC_THERMAL)	+= thermal-generic-adc.o
->   obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
->   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
-> diff --git a/drivers/thermal/mediatek/Kconfig b/drivers/thermal/mediatek/Kconfig
-> new file mode 100644
-> index 000000000000..8ff32370b591
-> --- /dev/null
-> +++ b/drivers/thermal/mediatek/Kconfig
-> @@ -0,0 +1,22 @@
-> +config MTK_THERMAL
-> +	tristate "MediaTek thermal drivers"
-> +	depends on THERMAL_OF
-> +	help
-> +	  This is the option for MediaTek thermal software solutions.
-> +	  Please enable corresponding options to get temperature
-> +	  information from thermal sensors or turn on throttle
-> +	  mechaisms for thermal mitigation.
-> +
-> +if MTK_THERMAL
-> +
-> +config MTK_SOC_THERMAL
-> +	tristate "AUXADC temperature sensor driver for MediaTek SoCs"
-> +	depends on HAS_IOMEM
-> +	depends on NVMEM
+> So, perhaps we can define like the followings:
+> #define	SERDES_BANK_180		0x180
+> 
+> #define	SERDES_STEP_S_4_1_ADDR	0x0244
+> #define	SERDES_STEP_S_4_1_DATA	0x00000097
 
-That's not true. This driver doesn't depend on NVMEM, as in function
-mtk_thermal_get_calibration_data(), the calibration params are initialized
-with default values and if no "calibration-data" cell was found, it will
-return 0 and simply go on with probing... and this is because not all SoCs
-need calibration data from eFuses.
-If you check carefully, the original entry says "NVMEM || NVMEM=n".
+Not really any better. Better to comment that you have no idea what
+any of this does, it is all black magic.
 
-Please drop the NVMEM dependency from this config entirely.
-
-> +	depends on RESET_CONTROLLER
-
-While at it, can you please also drop the dependency for RESET_CONTROLLER?
-I know it was present on the original config entry, but that's wrong, as
-the driver doesn't strictly require resets, as it uses device_reset_optional().
-
-
-Regards,
-Angelo
-
+    Andrew
