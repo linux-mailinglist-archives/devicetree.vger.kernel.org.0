@@ -2,195 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 437925B8CAF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 18:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F18195B8CBB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 18:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229784AbiINQRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 12:17:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56478 "EHLO
+        id S229647AbiINQUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 12:20:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229725AbiINQRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 12:17:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40FE75FCD
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 09:17:53 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oYV5E-0004Qa-3U; Wed, 14 Sep 2022 18:17:52 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oYV5E-000jHC-BQ; Wed, 14 Sep 2022 18:17:50 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oYV5C-000uDx-0B; Wed, 14 Sep 2022 18:17:50 +0200
-Date:   Wed, 14 Sep 2022 18:17:49 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Ben Dooks <ben.dooks@sifive.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-Subject: Re: [RFC v4 07/10] pwm: dwc: make timer clock configurable
-Message-ID: <20220914161749.uqdjtsr57dydu4jm@pengutronix.de>
-References: <20220816211454.237751-1-ben.dooks@sifive.com>
- <20220816211454.237751-8-ben.dooks@sifive.com>
+        with ESMTP id S229928AbiINQUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 12:20:09 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D4003E759;
+        Wed, 14 Sep 2022 09:20:06 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-127d10b4f19so42292303fac.9;
+        Wed, 14 Sep 2022 09:20:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=nXLhEVGz1qMo8aImbTGN6nLiSfBsJOREM/Vz/U5qmX8=;
+        b=b/aiH/LXrB96+WSTfnQZme2JgcaYpeDJ28PT381kMINMTaTM0Z4ApFiXBp9KtpuTMm
+         Lnj7HOj3n4M+phUOn8gZvG6BN+NhihCb2Jj9JupfvhLVBM0p100wApRX9FJqtvSg+Jl7
+         SQLvRzz50vWQcb2YqAJkf7ujtiCgevOu3G3tBt0tOb+QAURDlRlXTVf5y76VZ2juJ9yO
+         Asg2YK1a0QJxwWeOQc5CJVRK4bieTxbReN5lfAJez4taJjFCc84NK7/BM1snkk8NcAUG
+         Qn9uBdrVwZhtubbQ0f1TQ8Z6kt1JgXHOXc4PmxzIetfIBHxyFfsqV2cbt3fQUXbcm4Gl
+         FRlw==
+X-Gm-Message-State: ACgBeo37G1OP4RC0aTo/XSPPSaicGAavTyqGJUuhX/5inQdkWUDYgNE4
+        2Xn1L+7cROCo03XxOrivoA==
+X-Google-Smtp-Source: AA6agR5RYHCagG3o1f6+CTby/sjSQ+8CfTLBxsLk+r37c+5y+Q1ZyAWXz8zlIpAZlh7jKaNdGgEKXQ==
+X-Received: by 2002:a05:6870:82a8:b0:126:8942:24e3 with SMTP id q40-20020a05687082a800b00126894224e3mr2751959oae.133.1663172405607;
+        Wed, 14 Sep 2022 09:20:05 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z17-20020a9d62d1000000b00655d20b2b76sm6035651otk.33.2022.09.14.09.20.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 09:20:05 -0700 (PDT)
+Received: (nullmailer pid 2461881 invoked by uid 1000);
+        Wed, 14 Sep 2022 16:20:04 -0000
+Date:   Wed, 14 Sep 2022 11:20:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, krzysztof.kozlowski@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
+        vladimir.oltean@nxp.com, grygorii.strashko@ti.com, vigneshr@ti.com,
+        nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kishon@ti.com
+Subject: Re: [PATCH 1/8] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
+ bindings for J721e CPSW9G
+Message-ID: <20220914162004.GA2433106-robh@kernel.org>
+References: <20220914095053.189851-1-s-vadapalli@ti.com>
+ <20220914095053.189851-2-s-vadapalli@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7ggtuwrutrl7fzkk"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220816211454.237751-8-ben.dooks@sifive.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220914095053.189851-2-s-vadapalli@ti.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---7ggtuwrutrl7fzkk
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Ben,
-
-On Tue, Aug 16, 2022 at 10:14:51PM +0100, Ben Dooks wrote:
-> Add a configurable clock base rate for the pwm as when being built
-> for non-PCI the block may be sourced from an internal clock.
->=20
-> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+On Wed, Sep 14, 2022 at 03:20:46PM +0530, Siddharth Vadapalli wrote:
+> Update bindings for TI K3 J721e SoC which contains 9 ports (8 external
+> ports) CPSW9G module and add compatible for it.
+> 
+> Changes made:
+>     - Add new compatible ti,j721e-cpswxg-nuss for CPSW9G.
+>     - Extend pattern properties for new compatible.
+>     - Change maximum number of CPSW ports to 8 for new compatible.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 > ---
-> v4:
->  - moved earlier before the of changes to make the of changes one patch
-> v2:
->   - removed the ifdef and merged the other clock patch in here
-> ---
->  drivers/pwm/pwm-dwc-pci.c |  1 +
->  drivers/pwm/pwm-dwc.c     | 10 ++++++----
->  drivers/pwm/pwm-dwc.h     |  2 ++
->  3 files changed, 9 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/pwm/pwm-dwc-pci.c b/drivers/pwm/pwm-dwc-pci.c
-> index 2213d0e7f3c8..949423e368f9 100644
-> --- a/drivers/pwm/pwm-dwc-pci.c
-> +++ b/drivers/pwm/pwm-dwc-pci.c
-> @@ -20,6 +20,7 @@
->  #include <linux/pci.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/pwm.h>
-> +#include <linux/clk.h>
-> =20
->  #include "pwm-dwc.h"
-> =20
+>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 23 +++++++++++++++++--
+>  1 file changed, 21 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> index 821974815dec..868b7fb58b06 100644
+> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> @@ -57,6 +57,7 @@ properties:
+>        - ti,am654-cpsw-nuss
+>        - ti,j7200-cpswxg-nuss
+>        - ti,j721e-cpsw-nuss
+> +      - ti,j721e-cpswxg-nuss
+>        - ti,am642-cpsw-nuss
+>  
+>    reg:
+> @@ -111,7 +112,7 @@ properties:
+>          const: 0
+>  
+>      patternProperties:
+> -      "^port@[1-4]$":
+> +      "^port@[1-8]$":
+>          type: object
+>          description: CPSWxG NUSS external ports
+>  
+> @@ -121,7 +122,7 @@ properties:
+>          properties:
+>            reg:
+>              minimum: 1
+> -            maximum: 4
+> +            maximum: 8
+>              description: CPSW port number
+>  
+>            phys:
+> @@ -181,6 +182,21 @@ required:
+>    - '#size-cells'
+>  
+>  allOf:
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              const: ti,j721e-cpswxg-nuss
+> +    then:
+> +      properties:
+> +        ethernet-ports:
+> +          patternProperties:
+> +            "^port@[5-8]$": false
+> +            properties:
+> +              reg:
+> +                maximum: 4
 
-This hunk is strange. Why do you add a header but no user of a symbol
-declared in that header? Maybe it should go to pwm-dwc.h?
+Your indentation is off. 'properties' here is under patternProperties 
+making it a DT property.
 
-> diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
-> index 90a8ae1252a1..1251620ab771 100644
-> --- a/drivers/pwm/pwm-dwc.c
-> +++ b/drivers/pwm/pwm-dwc.c
-> @@ -14,6 +14,7 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/pci.h>
-> +#include <linux/clk.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/pwm.h>
-> =20
-> @@ -47,13 +48,13 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *=
-dwc,
->  	 * periods and check are the result within HW limits between 1 and
->  	 * 2^32 periods.
->  	 */
-> -	tmp =3D DIV_ROUND_CLOSEST_ULL(state->duty_cycle, DWC_CLK_PERIOD_NS);
-> +	tmp =3D DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
->  	if (tmp < 1 || tmp > (1ULL << 32))
->  		return -ERANGE;
->  	low =3D tmp - 1;
-> =20
->  	tmp =3D DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
-> -				    DWC_CLK_PERIOD_NS);
-> +				    dwc->clk_ns);
->  	if (tmp < 1 || tmp > (1ULL << 32))
->  		return -ERANGE;
->  	high =3D tmp - 1;
-> @@ -128,12 +129,12 @@ static void dwc_pwm_get_state(struct pwm_chip *chip=
-, struct pwm_device *pwm,
-> =20
->  	duty =3D dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
->  	duty +=3D 1;
-> -	duty *=3D DWC_CLK_PERIOD_NS;
-> +	duty *=3D dwc->clk_ns;
->  	state->duty_cycle =3D duty;
-> =20
->  	period =3D dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
->  	period +=3D 1;
-> -	period *=3D DWC_CLK_PERIOD_NS;
-> +	period *=3D dwc->clk_ns;
->  	period +=3D duty;
->  	state->period =3D period;
-> =20
-> @@ -156,6 +157,7 @@ struct dwc_pwm *dwc_pwm_alloc(struct device *dev)
->  	if (!dwc)
->  		return NULL;
-> =20
-> +	dwc->clk_ns =3D 10;
->  	dwc->chip.dev =3D dev;
->  	dwc->chip.ops =3D &dwc_pwm_ops;
->  	dwc->chip.npwm =3D DWC_TIMERS_TOTAL;
+> +
+>    - if:
+>        not:
+>          properties:
+> @@ -192,6 +208,9 @@ allOf:
+>          ethernet-ports:
+>            patternProperties:
+>              "^port@[3-4]$": false
+> +            properties:
+> +              reg:
+> +                maximum: 2
 
-After this conversion all usage of DWC_CLK_PERIOD_NS is done so the
-#define can go away?
+Same here.
 
-> diff --git a/drivers/pwm/pwm-dwc.h b/drivers/pwm/pwm-dwc.h
-> index 68f98eb76152..e5a1f7be7bc8 100644
-> --- a/drivers/pwm/pwm-dwc.h
-> +++ b/drivers/pwm/pwm-dwc.h
-> @@ -41,6 +41,8 @@ struct dwc_pwm_ctx {
->  struct dwc_pwm {
->  	struct pwm_chip chip;
->  	void __iomem *base;
-> +	struct clk *clk;
-> +	unsigned int clk_ns;
->  	struct dwc_pwm_ctx ctx[DWC_TIMERS_TOTAL];
->  };
->  #define to_dwc_pwm(p)	(container_of((p), struct dwc_pwm, chip))
-> --=20
-> 2.35.1
->=20
->=20
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---7ggtuwrutrl7fzkk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmMh/qoACgkQwfwUeK3K
-7AmVUAgAl/Pel6F6G4l1cQUDFfo/EmALiRQCkARq4P+N5pznEUJFbNEzb7iY5FHP
-aaRoIYSUCZhIfr3aNI57ZrWPThxRcnSnpmBc8CD/e8/7o8ixdS/7/jNtcbSQ0Ztl
-ho6Rdb7X89W7wIjeHHdKrXws54BSWdLqgJdzVsx8l27bHV6utbW4HZ5B8o3BLgFu
-+e/nPG9CSUadsHbYkvgzgL+sS9fJaJBPdEGh6S9Y2j3hBdfqZt0gFMpSga2w12wy
-2aT663OfVTHxuPUoL7fDhcLRglArSiFWuD+THNqD5WhW4qr/s87oAcgRC+MQbgEZ
-ICINuQJNIb6jWPbzdT4Ds+sGxf0NNg==
-=W5Dx
------END PGP SIGNATURE-----
-
---7ggtuwrutrl7fzkk--
+>  
+>  additionalProperties: false
+>  
+> -- 
+> 2.25.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
