@@ -2,101 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 431B65B8847
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42E4F5B8874
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiINMc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 08:32:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49482 "EHLO
+        id S229744AbiINMnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 08:43:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbiINMc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:32:56 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA33736DC9;
-        Wed, 14 Sep 2022 05:32:55 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id c198so14749619pfc.13;
-        Wed, 14 Sep 2022 05:32:55 -0700 (PDT)
+        with ESMTP id S229663AbiINMnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:43:53 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C77F675FFF
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 05:43:52 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id u9so34480408ejy.5
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 05:43:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=zV9/pNlaNjyK2el6e1fRNtIC3GGj80c975ZOZ3QDzu8=;
-        b=fpjDhGArOd00NcVhciHxdWcYBZ4cGta3ByCHJ6wwiK3ZsL1+dcCyu5yaTH1dUc4RVo
-         bJAnDB8HxETQ9AvtntRHw/L8aGAQ246/JDr48F+mINd4HtojNjF+yZIPFkU+dYFcKqY0
-         Jf5j3C1jnmbM8ouqSc2jCK/3uhy5mmXq97F7C2TOEPcm3Qxqsr+PxcNWJ3PV7+Fb+A/D
-         lC58rhZRnzuoPFbwrk73LpPxsSwoyW3nj+HyQK1OtHuXrnTjJSDRUWwRUZ6gBeEopqSV
-         9DFSMcSYWp7Eui55jM/daGA9YXBP+W+QDIOb6uI73nTZj5sPTOBzbr15FvdYIScA9ruj
-         JvBQ==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=mgqw+6JpGXn2oifvzQVlVRMAL4x59CkZWm4PptgSgFk=;
+        b=fVa4Ty+UkhM6eyVyz8m/FQl2wVTe94vkm2UAuMPeXqk2kvhGbi9GAU5q1ShPveFCZn
+         Y++NRtsmc1f20iIFZZ1jtBAelomaavMORZ7kl661S2hDY2Ki22yd99XeiNU+hMQEsF26
+         Ln9uS5aUrilbxCuv/oLwSqf+opxYiQfSkZeRaEXrwweq2TKKtGVw/Un182e4nemq5kcT
+         JfpA0jPVg4RpMTyOE8AkuSHuTq2DQBydLaI2Q53HH4lNJi0bpVd7pyNI/kngC85VjiX+
+         LB/1ka96RTB0//P+kPGd6+Rdu545gO1GB7WkbahmegUAs2GwUFLC0z7j2NXsp88vjzhl
+         wb6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=zV9/pNlaNjyK2el6e1fRNtIC3GGj80c975ZOZ3QDzu8=;
-        b=zz5VBPffGjSIv98BwjwWsAjecsl+P9AR1kvo4Wes+ve9oNqaGOi4GGwBrgByEli869
-         ItPUdCfU4KQr7lQYSxu467hginxxm399X52Q4FWEhj+aZ71ivir3AB7l4Pscl959loM9
-         NvhucXda79bCeqIya592soc5P7Ue3oWsNQyo8kCQpms4UuC1/C7VmQEtrCXQLw+xivBz
-         xMIpIneLUiQGz3U149KtgSPm535QQLgn+BRKBBHsAJlMM2rpNeMaUddm4BlGFp5oGeEB
-         T/E0OjlilMtUDA/l6bRXtmE18dXpHFf0UL4Kpf8zYrd3f07NA6gMqVujRCYm3BW0Z3GI
-         6knw==
-X-Gm-Message-State: ACgBeo0WDN3/6B7ru9XesPyzUIR5Z0uYLYQxiFAxKOwDvZ2I/aRIqgLb
-        9AanMf2lDgaoit/359hA+fo=
-X-Google-Smtp-Source: AA6agR6tRNaPK5Q+XlGLTf7QBCvdF0OFTG9sr6Yo6lrI7k0fjU3OoTI+1Zk11+65m0d4cz9+PgI/zw==
-X-Received: by 2002:a05:6a00:3492:b0:540:b30d:8396 with SMTP id cp18-20020a056a00349200b00540b30d8396mr29749270pfb.81.1663158775134;
-        Wed, 14 Sep 2022 05:32:55 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:2f68:fe7:a2e6:7595])
-        by smtp.gmail.com with ESMTPSA id w17-20020a656951000000b00438b79c7049sm8341581pgq.42.2022.09.14.05.32.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 05:32:54 -0700 (PDT)
-Date:   Wed, 14 Sep 2022 05:32:51 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Jerome Neanne <jneanne@baylibre.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        nm@ti.com, kristo@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, lee.jones@linaro.org,
-        tony@atomide.com, afd@ti.com, khilman@baylibre.com,
-        narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH v5 5/6] Input: Add tps65219 interrupt driven powerbutton
-Message-ID: <YyHJ8yOF+ZhKbdlp@google.com>
-References: <20220913121419.15420-1-jneanne@baylibre.com>
- <20220913121419.15420-6-jneanne@baylibre.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=mgqw+6JpGXn2oifvzQVlVRMAL4x59CkZWm4PptgSgFk=;
+        b=GYgtt/wG48W9AwTWUvnP81EKPXcJ6mgjjBMmc9qgd6hzeC0WOatJSiRHNKS8dubCsF
+         RuqyWRsQzWeg/z0WLytR/6eFgUGnPHfAVvmijtFVX/4V15SWFdCuOMgP47z9csDg75Sw
+         ksTiAR5CPVH4YrsIiVksnVvtG5m2IgiNqnMd1/j+toPatLNgdUMXIlv0xZycgflT54Vz
+         BGekyh6Imsog7thPSE0lX2t/GhULJMZ0evoYHEmojLzhoLdxC+37tVW/k/Li/zTvR6Kr
+         7YhAiH1kiUMT/9jwQFhV9DAyRkJ/gik81VVgnb2T/VqioRhREbB54LZ5oha0J0B8W6nu
+         QElw==
+X-Gm-Message-State: ACgBeo1waX5hXKbI1pnA4J8uMnXNHazIqOwLGrE4s0B6+kwM10pA6SzU
+        jqw3v5m5NgD7ZaFy4JZI5SVZWFs1bESLkw2Nu9qMSjpFiszN5g==
+X-Google-Smtp-Source: AA6agR4aGz/CzCXBPA1eEHSbXj6QZOoC4n4RqZ/g4zieZlX6n+p/yT1Ft7+SAvQM3qQZZ8R1YS123Kdmx+ty0nhB+mQ=
+X-Received: by 2002:a17:907:a0c6:b0:77d:7ad3:d05f with SMTP id
+ hw6-20020a170907a0c600b0077d7ad3d05fmr10320261ejc.734.1663159431415; Wed, 14
+ Sep 2022 05:43:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220913121419.15420-6-jneanne@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220913155348.38716-1-martyn.welch@collabora.co.uk> <20220913155348.38716-2-martyn.welch@collabora.co.uk>
+In-Reply-To: <20220913155348.38716-2-martyn.welch@collabora.co.uk>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Wed, 14 Sep 2022 14:43:40 +0200
+Message-ID: <CAMRc=MdSsLfQDGHD0w5GwvYQMZWteY_vwbLB6Y=urVpzNhQJGA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] dt-bindings: gpio: pca95xx: add entry for pcal6534
+ and PI4IOE5V6534Q
+To:     Martyn Welch <martyn.welch@collabora.co.uk>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martyn Welch <martyn.welch@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome,
+On Tue, Sep 13, 2022 at 5:54 PM Martyn Welch
+<martyn.welch@collabora.co.uk> wrote:
+>
+> From: Martyn Welch <martyn.welch@collabora.com>
+>
+> The NXP PCAL6534 is a 34-bit I2C I/O expander similar to the PCAL6524. The
+> Diodes PI4IOE5V6534Q is a functionally identical chip provided by Diodes
+> Inc.
+>
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>
 
-On Tue, Sep 13, 2022 at 02:14:18PM +0200, Jerome Neanne wrote:
-> +	idev = devm_input_allocate_device(dev);
-> +	if (!idev)
-> +		return -ENOMEM;
-> +
-> +	idev->name = pdev->name;
-> +	snprintf(pwr->phys, sizeof(pwr->phys), "%s/input0",
-> +		 pdev->name);
-> +	idev->phys = pwr->phys;
-> +	idev->dev.parent = dev;
+Can you rebase this on top of my for-next branch[1]? We've had some
+new models added and the patch no longer applies.
 
-This assignment is not needed given that devm_input_allocate_device()
-is used. Otherwise:
+Bart
 
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-
-Please feel free to merge through MFD tree.
-
-Thanks.
-
--- 
-Dmitry
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
