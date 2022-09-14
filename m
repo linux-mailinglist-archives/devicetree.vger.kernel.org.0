@@ -2,59 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A795B8AA9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE895B8AC2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:37:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbiINOeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 10:34:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
+        id S229632AbiINOhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 10:37:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiINOeA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:34:00 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC42B7C301
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 07:33:57 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:e925:8cbe:2e99:b03b])
-        by baptiste.telenet-ops.be with bizsmtp
-        id KqZi2800s3vs4GX01qZiPV; Wed, 14 Sep 2022 16:33:55 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oYTSP-005B5L-Rc; Wed, 14 Sep 2022 16:33:41 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oYTS7-000zXm-2p; Wed, 14 Sep 2022 16:33:23 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Russell King <linux@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 3/3] dt-bindings: display: bridge: nxp,tda998x: Convert to json-schema
-Date:   Wed, 14 Sep 2022 16:33:22 +0200
-Message-Id: <1224e757ec958f8b29ec66e783a7ee805c339d84.1663165552.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1663165552.git.geert+renesas@glider.be>
-References: <cover.1663165552.git.geert+renesas@glider.be>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        with ESMTP id S229996AbiINOhL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:37:11 -0400
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com [64.147.123.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C822A952;
+        Wed, 14 Sep 2022 07:37:10 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.west.internal (Postfix) with ESMTP id 129872B05FE9;
+        Wed, 14 Sep 2022 10:37:07 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Wed, 14 Sep 2022 10:37:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1663166227; x=1663169827; bh=xJl2LAcb7s
+        EtYyZZirpB40eXZ6TcEV285ewHbMiGHJI=; b=piWbBs9PPgYGh2Yd6lS9tc7WwI
+        XNL1rCYm241QYhVaH2WfS739Ogdhc859b7MBJzm2MzFQjJauJDpFUvI6gZ/af88R
+        3TYMurTzQbH0NqT2+tW41r/+Q1hZBy0TPr25tz8ma9zJK/vYMNz2+s0ea40gBTYg
+        kpa3O4Zv0fA1nHKBPECgREefHvoQG5/4/sMhCnxa+cNP87+uWISUU30e99D4K6B5
+        8BWE1416bw0mXAMMy1uVblm+oQPiy2cNHVuOebpZz3o0D4/RMYSKHywDX3Hh9yRV
+        Y0tGZ4iwIHGomC/BdoYLBn+R3SzendrxzbM6fKNea92uqrC2fn3pksvieCOw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1663166227; x=1663169827; bh=xJl2LAcb7sEtYyZZirpB40eXZ6Tc
+        EV285ewHbMiGHJI=; b=gMG/aBa+oGgQjd+/ok4dy4gyBSqRAbQywHM1kORil8sQ
+        eDACTZ1OCszT3/FUxg8llfRZypl7mT5kw8sIBhOdao0bJS1iXmaLdpWDsXQEutIJ
+        F+3HN43kBbBOjiU5hXvnVN3XI/kMZNiNeKoXAyaD4B4PXlWGscbXzJBDZX2ZJm86
+        YW1tPlSiVhbGVgky4GsmqSmdHIKeJU4v277tE9GzPENbS4kFqIhLDDzyKr8zTHw1
+        l7o1qqw4M//ocJYxIJCm6E1kGfm1df/X4gvYG8ra6Tp7Z5WfxpA4dSRb1YP5iVfR
+        1mIvZLnC0PSeqbFLut9hP0ULJGKbR3lvt2sXfOmZdA==
+X-ME-Sender: <xms:EuchY9MaMcssPsEd1xci-FuxgQVod6czzH3xtY2cN0eyfN6g0Cwobg>
+    <xme:EuchY_8ZfJ53snt4OaYZp__pFEniwGN0_gaSDqo2ctUu4swari2FU-GUsplNzV5ev
+    IVBHQfarlJSudlIkJY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeduiedgkeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:EuchY8SDpgqo2AZCZ91WrWHvYzrCapaW6Vfved99dfMLEevEsJ0OnA>
+    <xmx:EuchY5ue29jLwFVKDIFDnM2X3Y_oDQut4qg0M7EFaTO0e8wdiMVhsA>
+    <xmx:EuchY1eOKYPyfcSgSopOIA3YweuvyRS5XfzlOHvnOYhDKWw-Au6HYA>
+    <xmx:E-chYwstl8IEIdpA5qVBh1eDzjjyYVa4A3SxXRaSToptA2qF1lrbkW2TxoY>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id CC81DB60086; Wed, 14 Sep 2022 10:37:06 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-934-g6274855a4c-fm-20220913.002-g6274855a
+Mime-Version: 1.0
+Message-Id: <78651e07-6b3e-4243-8e1f-fcd1dfb3ffe1@www.fastmail.com>
+In-Reply-To: <20220914142944.576482-2-manjunatha.venkatesh@nxp.com>
+References: <20220914142944.576482-1-manjunatha.venkatesh@nxp.com>
+ <20220914142944.576482-2-manjunatha.venkatesh@nxp.com>
+Date:   Wed, 14 Sep 2022 16:36:46 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Manjunatha Venkatesh" <manjunatha.venkatesh@nxp.com>,
+        linux-kernel@vger.kernel.org,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Will Deacon" <will@kernel.org>, "Jens Axboe" <axboe@kernel.dk>,
+        robh+dt@kernel.org
+Cc:     mb@lightnvm.io, ckeepax@opensource.cirrus.com, arnd@arndb.d,
+        mst@redhat.com, javier@javigon.com, mikelley@microsoft.com,
+        jasowang@redhat.com, sunilmut@microsoft.com,
+        bjorn.andersson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, ashish.deshpande@nxp.com,
+        rvmanjumce@gmail.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: uwb: Device tree information for Nxp SR1XX
+ SOCs
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,201 +92,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the NXP TDA998x HDMI transmitter Device Tree binding
-documentation to json-schema.
+On Wed, Sep 14, 2022, at 4:29 PM, Manjunatha Venkatesh wrote:
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,sr1xx
+> +
 
-Add missing "#sound-dai-cells" property.
-Add ports hierarchy, as an alternative to port.
-Drop pinctrl properties, as they do not belong here.
+You should not have wildcard names in the compatible string.
+Make this a specific model number without 'xx', and
+have the devices list their own name along with the oldest
+one they are compatible with.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - Add maximum to video-ports,
-  - Drop unneeded maxItems for audio-ports,
-  - Complete port descriptions.
----
- .../bindings/display/bridge/nxp,tda998x.yaml  | 109 ++++++++++++++++++
- .../bindings/display/bridge/tda998x.txt       |  54 ---------
- 2 files changed, 109 insertions(+), 54 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/tda998x.txt
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
-new file mode 100644
-index 0000000000000000..c4bf543974737b5c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/nxp,tda998x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP TDA998x HDMI transmitter
-+
-+maintainers:
-+  - Russell King <linux@armlinux.org.uk>
-+
-+properties:
-+  compatible:
-+    const: nxp,tda998x
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  video-ports:
-+    default: 0x230145
-+    maximum: 0xffffff
-+    description:
-+      24 bits value which defines how the video controller output is wired to
-+      the TDA998x input.
-+
-+  audio-ports:
-+    description:
-+      Array of 8-bit values, 2 values per DAI (Documentation/sound/soc/dai.rst).
-+      The implementation allows one or two DAIs.
-+      If two DAIs are defined, they must be of different type.
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    items:
-+      minItems: 1
-+      items:
-+        - description: |
-+            The first value defines the DAI type: TDA998x_SPDIF or TDA998x_I2S
-+            (see include/dt-bindings/display/tda998x.h).
-+        - description:
-+            The second value defines the tda998x AP_ENA reg content when the
-+            DAI in question is used.
-+
-+  '#sound-dai-cells':
-+    enum: [ 0, 1 ]
-+
-+  nxp,calib-gpios:
-+    maxItems: 1
-+    description:
-+      Calibration GPIO, which must correspond with the gpio used for the
-+      TDA998x interrupt pin.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+    description: Parallel input port
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        type: object
-+        description: Parallel input port
-+
-+      port@1:
-+        type: object
-+        description: HDMI output port
-+
-+required:
-+  - compatible
-+  - reg
-+
-+oneOf:
-+  - required:
-+      - port
-+  - required:
-+      - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/display/tda998x.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        tda998x: hdmi-encoder@70 {
-+            compatible = "nxp,tda998x";
-+            reg = <0x70>;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
-+            video-ports = <0x230145>;
-+
-+            #sound-dai-cells = <1>;
-+                         /* DAI-format / AP_ENA reg value */
-+            audio-ports = <TDA998x_SPDIF 0x04>,
-+                          <TDA998x_I2S 0x03>;
-+
-+            port {
-+                tda998x_in: endpoint {
-+                    remote-endpoint = <&lcdc_0>;
-+                };
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/display/bridge/tda998x.txt b/Documentation/devicetree/bindings/display/bridge/tda998x.txt
-deleted file mode 100644
-index f5a02f61dd36f1c6..0000000000000000
---- a/Documentation/devicetree/bindings/display/bridge/tda998x.txt
-+++ /dev/null
-@@ -1,54 +0,0 @@
--Device-Tree bindings for the NXP TDA998x HDMI transmitter
--
--Required properties;
--  - compatible: must be "nxp,tda998x"
--
--  - reg: I2C address
--
--Required node:
--  - port: Input port node with endpoint definition, as described
--        in Documentation/devicetree/bindings/graph.txt
--
--Optional properties:
--  - interrupts: interrupt number and trigger type
--	default: polling
--
--  - pinctrl-0: pin control group to be used for
--	screen plug/unplug interrupt.
--
--  - pinctrl-names: must contain a "default" entry.
--
--  - video-ports: 24 bits value which defines how the video controller
--	output is wired to the TDA998x input - default: <0x230145>
--
--  - audio-ports: array of 8-bit values, 2 values per one DAI[1].
--	The first value defines the DAI type: TDA998x_SPDIF or TDA998x_I2S[2].
--	The second value defines the tda998x AP_ENA reg content when the DAI
--	in question is used. The implementation allows one or two DAIs. If two
--	DAIs are defined, they must be of different type.
--
--  - nxp,calib-gpios: calibration GPIO, which must correspond with the
--	gpio used for the TDA998x interrupt pin.
--
--[1] Documentation/sound/soc/dai.rst
--[2] include/dt-bindings/display/tda998x.h
--
--Example:
--
--#include <dt-bindings/display/tda998x.h>
--
--	tda998x: hdmi-encoder {
--		compatible = "nxp,tda998x";
--		reg = <0x70>;
--		interrupt-parent = <&gpio0>;
--		interrupts = <27 2>;		/* falling edge */
--		pinctrl-0 = <&pmx_camera>;
--		pinctrl-names = "default";
--		video-ports = <0x230145>;
--
--		#sound-dai-cells = <2>;
--			     /*	DAI-format	AP_ENA reg value */
--		audio-ports = <	TDA998x_SPDIF	0x04
--				TDA998x_I2S	0x03>;
--
--	};
--- 
-2.25.1
-
+     Arnd
