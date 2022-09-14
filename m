@@ -2,164 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 454395B80F8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 07:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D3025B810E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 07:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229940AbiINFbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 01:31:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
+        id S229767AbiINFnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 01:43:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbiINFbX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 01:31:23 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F7F6FA05;
-        Tue, 13 Sep 2022 22:31:13 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 953565C006A;
-        Wed, 14 Sep 2022 01:31:12 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Wed, 14 Sep 2022 01:31:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
-         h=cc:cc:content-transfer-encoding:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1663133472; x=
-        1663219872; bh=APxc/mSmgwWOZvUwfXzsxNO8MT7v2MA9SqTEW8ZVVuI=; b=d
-        Yx67sL465KSfwtsLGjd+N3XPhUi8e053DdlMuQao5aUkdhFikxdnVUj2+lTNGkfC
-        suLNSMG4SxQz1p+dSfrrh9mF3GNEMRg1gnth1YRw4ERJ+5q21hQ+Y5c076hNM8an
-        /9e5DAesU3HnJ197S4NDnGsE06ZxY/GCOYkJ1yxexReZBOFOUcvTLk66N3nOuVl/
-        mv7N9om2OBJpOhFJMM59sU8KeozCY/IDSGfatzMgytxcoAS6tC5LpUqScUFAeQrQ
-        ZhW9e7VgN7/man79/DxAIoMLxMLvwPDMCMjwQ5CtcMtHiL63hnHjafl3cNur7U4X
-        yvWkk3RwMjav7ecPjq4Yw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1663133472; x=1663219872; bh=APxc/mSmgwWOZ
-        vUwfXzsxNO8MT7v2MA9SqTEW8ZVVuI=; b=eC8TLuaym//VGKA7JMfz/yPn9Gk9F
-        +Lxw1ImHQB8AqcWdEHbso/vJT1TsoksScuPxXVJymdpTGI+aadfUvswrRjAWo8lT
-        AVBPEMqBof7W4q52Eou5bDtndWHN80Ic2X9d2Pfk8b24qB3ywaE+nvuPR2lwZRPr
-        yegZb/tp1k6rk7yY0GUri5Ko6rddGXwX4ZJXnkZ80VsFf7ujX75GHWp4DX9r40jx
-        y8lWN7rj+5Ih4Z69QKke2AEQt4tsZtpO0VkA4e6ypF3rxqbxyIYVXHatDyDWascq
-        ILZluQBaaJp2VI4l72X1P1BB0dtRhIyhYgnda/62kHqSClQ/3RpXuPMnA==
-X-ME-Sender: <xms:IGchY0TCAFc6WYn2v5edC8fblOUNZDau8_r2K3TmnwX_Nvgs8xebRA>
-    <xme:IGchYxzrgRD7y8sddyQCcGoewQ5ciHccvX9pJy2BSGEyg8RMLTACijlRp5ImOPwMM
-    MGyHbJKG8Hbb37bXFo>
-X-ME-Received: <xmr:IGchYx2bvL0VcXUJUEraF262PongCmQD8pZfYcbp9AYcn8p7s35c1UYlVNkHxwMbKXJqaIli3Z-JBa6HcrhlNYlKH_lnmkqRay6lovfoNXp2U5XMbKMzppv7Bah2NEI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeduhedgleeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevufffkffojghfggfgsedtke
-    ertdertddtnecuhfhrohhmpeforghthhgvficuofgtuehrihguvgcuoehmrghtthesthhr
-    rghvvghrshgvrdgtohhmrdgruheqnecuggftrfgrthhtvghrnhephfffueehtedukeevje
-    dvieevffehjeeiteehhfefkeehgeffleefleejudekgfevnecuffhomhgrihhnpehtrhgr
-    vhgvrhhsvgdrtghomhdrrghunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomhepmhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghu
-X-ME-Proxy: <xmx:IGchY4CFSaY1FH1So4XWsLQKT0-A_OQzwpTEomr2pe5hd01-ZLeOjQ>
-    <xmx:IGchY9ibgimoE-bzfQYxsXIZLtEoEd8JVAcl6IlysvehEBOTDy-Agg>
-    <xmx:IGchY0oHp4C9lDxv5EYlVlm60FTQEugrqwUV8kXOwm4MxeF6EKDm8Q>
-    <xmx:IGchY-WE7AbEtYaNHluRlqJXND1sJaCCvi5b3RA1t8EVM_4L7fYYsg>
-Feedback-ID: i426947f3:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 14 Sep 2022 01:31:09 -0400 (EDT)
-From:   Mathew McBride <matt@traverse.com.au>
-To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        jdelvare@suse.com, linux@roeck-us.net,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Mathew McBride <matt@traverse.com.au>
-Subject: [PATCH 3/3] arm64: dts: ten64: add configuration for fan controller
-Date:   Wed, 14 Sep 2022 05:30:30 +0000
-Message-Id: <20220914053030.8929-4-matt@traverse.com.au>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20220914053030.8929-1-matt@traverse.com.au>
-References: <20220914053030.8929-1-matt@traverse.com.au>
+        with ESMTP id S229539AbiINFnG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 01:43:06 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E219A6C120;
+        Tue, 13 Sep 2022 22:43:03 -0700 (PDT)
+X-UUID: fc5106fa49fb4d63a2d5902ecb05f796-20220914
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=HiauB9ANq4Y2Q0NtJvs5OWH/ggmKqoFe3c2E0fWAmmw=;
+        b=kmABBap7pgxwMUt7iFQj+xpj679zZxB3fCStH7ixjLbVI1NK+apPVL1Tsx8PNmMlZ+Hn0T9d4D6F1T6t5u1jjubNtNTBeTw2K9ZBkP4XRYuiahq4i5vYHV6DjCxERbrQVHpUW77z8cg293DsLfJ2dDlRtVBvQbwr8oQ92m+luzs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:7b7e2adc-34c4-4bd8-bc16-9c5e8d520b06,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:39a5ff1,CLOUDID:69b75dec-2856-4fce-b125-09d4c7ebe045,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: fc5106fa49fb4d63a2d5902ecb05f796-20220914
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 383026811; Wed, 14 Sep 2022 13:42:59 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 14 Sep 2022 13:42:58 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 14 Sep 2022 13:42:55 +0800
+Message-ID: <207b8c4ef0999a7b859c5e2eaf270293d2f18f75.camel@mediatek.com>
+Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to
+ set pre-emphasis
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Date:   Wed, 14 Sep 2022 13:42:55 +0800
+In-Reply-To: <8090e2e1-afce-9341-2ae7-3f4e094409b6@linaro.org>
+References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
+         <20220819091344.2274-2-chunfeng.yun@mediatek.com>
+         <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
+         <816ecf6287533137b750c8bde9de5830e4229c56.camel@mediatek.com>
+         <bee8abe5-0299-d05e-643c-4810aa33f978@linaro.org>
+         <1a16cce9fe164bafc06ae193310be71c6f645d75.camel@mediatek.com>
+         <000babd8-5980-3d77-f156-324b3442cbe7@linaro.org>
+         <114c357f8d7f049d21ede789a292a8e2d45f4c61.camel@mediatek.com>
+         <0a82842d-283c-e266-84f4-6306f29b61da@linaro.org>
+         <8dcb4de53a52ab44d40f490099b6ed13e5ef7fe0.camel@mediatek.com>
+         <3c180570-ecf9-3db4-c698-39c1b4679c6e@linaro.org>
+         <3b18a9c687af38f7299261c9a589ef3dfc5a1aa7.camel@mediatek.com>
+         <8090e2e1-afce-9341-2ae7-3f4e094409b6@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Ten64 desktop appliance has a Noctua NF-A4x20 PWM fan,
-controlled by a Microchip EMC2301 PWM fan controller.
+On Fri, 2022-09-09 at 10:27 +0200, Krzysztof Kozlowski wrote:
+> On 09/09/2022 05:03, Chunfeng Yun wrote:
+> > On Wed, 2022-08-31 at 09:03 +0300, Krzysztof Kozlowski wrote:
+> > > On 31/08/2022 06:00, Chunfeng Yun wrote:
+> > > > On Tue, 2022-08-30 at 13:08 +0300, Krzysztof Kozlowski wrote:
+> > > > > On 29/08/2022 05:37, Chunfeng Yun wrote:
+> > > > > > On Fri, 2022-08-26 at 09:36 +0300, Krzysztof Kozlowski
+> > > > > > wrote:
+> > > > > > > On 26/08/2022 08:36, Chunfeng Yun wrote:
+> > > > > > > > On Tue, 2022-08-23 at 13:24 +0300, Krzysztof Kozlowski
+> > > > > > > > wrote:
+> > > > > > > > > On 22/08/2022 10:07, Chunfeng Yun wrote:
+> > > > > > > > > > On Fri, 2022-08-19 at 15:15 +0300, Krzysztof
+> > > > > > > > > > Kozlowski
+> > > > > > > > > > wrote:
+> > > > > > > > > > > On 19/08/2022 12:13, Chunfeng Yun wrote:
+> > > > > > > > > > > > Add a property to set usb2 phy's pre-emphasis.
+> > > > > > > > > > > > 
+> > > > > > > > > > > > Signed-off-by: Chunfeng Yun <
+> > > > > > > > > > > > chunfeng.yun@mediatek.com>
+> > > > > > > > > > > > ---
+> > > > > > > > > > > >  Documentation/devicetree/bindings/phy/mediatek
+> > > > > > > > > > > > ,tph
+> > > > > > > > > > > > y.ya
+> > > > > > > > > > > > ml |
+> > > > > > > > > > > > 7
+> > > > > > > > > > > > +++++++
+> > > > > > > > > > > >  1 file changed, 7 insertions(+)
+> > > > > > > > > > > > 
+> > > > > > > > > > > > diff --git
+> > > > > > > > > > > > a/Documentation/devicetree/bindings/phy/mediate
+> > > > > > > > > > > > k,tp
+> > > > > > > > > > > > hy.y
+> > > > > > > > > > > > aml
+> > > > > > > > > > > > b/Documentation/devicetree/bindings/phy/mediate
+> > > > > > > > > > > > k,tp
+> > > > > > > > > > > > hy.y
+> > > > > > > > > > > > aml
+> > > > > > > > > > > > index 848edfb1f677..aee2f3027371 100644
+> > > > > > > > > > > > ---
+> > > > > > > > > > > > a/Documentation/devicetree/bindings/phy/mediate
+> > > > > > > > > > > > k,tp
+> > > > > > > > > > > > hy.y
+> > > > > > > > > > > > aml
+> > > > > > > > > > > > +++
+> > > > > > > > > > > > b/Documentation/devicetree/bindings/phy/mediate
+> > > > > > > > > > > > k,tp
+> > > > > > > > > > > > hy.y
+> > > > > > > > > > > > aml
+> > > > > > > > > > > > @@ -219,6 +219,13 @@ patternProperties:
+> > > > > > > > > > > >          minimum: 1
+> > > > > > > > > > > >          maximum: 15
+> > > > > > > > > > > >  
+> > > > > > > > > > > > +      mediatek,pre-emphasis:
+> > > > > > > > > > > > +        description:
+> > > > > > > > > > > > +          The selection of pre-emphasis (U2
+> > > > > > > > > > > > phy)
+> > > > > > > > > > > > +        $ref:
+> > > > > > > > > > > > /schemas/types.yaml#/definitions/uint32
+> > > > > > > > > > > > +        minimum: 1
+> > > > > > > > > > > > +        maximum: 3
+> > > > > > > > > > > 
+> > > > > > > > > > > Instead of hard-coding register values in
+> > > > > > > > > > > bindings,
+> > > > > > > > > > > you
+> > > > > > > > > > > should
+> > > > > > > > > > > rather
+> > > > > > > > > > > describe here feature/effect. If it is in units,
+> > > > > > > > > > > use
+> > > > > > > > > > > unit
+> > > > > > > > > > > suffixes.
+> > > > > > > > > > > If
+> > > > > > > > > > > it is some choice, usually string enum is
+> > > > > > > > > > > appropriate.
+> > > > > > > > > > 
+> > > > > > > > > > How about changing description as bellow:
+> > > > > > > > > > 
+> > > > > > > > > > "The level of pre-emphasis, increases one level,
+> > > > > > > > > > boosts
+> > > > > > > > > > the
+> > > > > > > > > > relative
+> > > > > > > > > > amplitudes of signal's higher frequencies
+> > > > > > > > > > components
+> > > > > > > > > > about
+> > > > > > > > > > 4.16%
+> > > > > > > > > > (U2
+> > > > > > > > > > phy)"
+> > > > > > > > > > 
+> > > > > > > > > 
+> > > > > > > > > Still the question is what is the unit. 4.16%?
+> > > > > > > > 
+> > > > > > > > No unit, it's a level value, like an index of array.
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > So a value from register/device programming? 
+> > > > > > 
+> > > > > > Yes
+> > > > > > > Rather a regular units
+> > > > > > > should be used if that's possible. If not, this should be
+> > > > > > > clearly
+> > > > > > > described here, not some magical number which you encode
+> > > > > > > into
+> > > > > > > DTS...
+> > > > > > 
+> > > > > > Ok, I'll add more descriptions.
+> > > > > 
+> > > > > Better use logical value, e.g.
+> > > > > 
+> > > > 
+> > > > 
+> > 
+> > 
+https://urldefense.com/v3/__https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml*L38__;Iw!!CTRNKA9wMg0ARbw!1e-h0R_uwcaHKfKC9qYfaRWYeuWRq1sLCGy3yupNmkFyuW5s1nmRotL7Y0vFG9ETLLTA$
+> > > > >  
+> > > > 
+> > > > Optional unit may be -percent or -bp, but the value 4.16% * X
+> > > > (X=1,2,3...)is not an exact value, they are variable in a range
+> > > > and
+> > > > dependent more factors.
+> > > > So I think use level value is simple enough.
+> > > 
+> > > Then again explain exactly what are the levels. How you wrote it
+> > > last
+> > > time, -bp would do the trick.
+> > 
+> > There are many different methods of measuring pre-emphasis.
+> > The way used in MediaTek USB2 PHY as below:
+> > 
+> > pre-emphasis level equation = Vpp/Vs -1;
+> > Vpp: peak-peak voltage of differential signal;
+> > Vs : static voltage of differential signal, normal voltage, e.g.
+> > 400mV
+> > for u2 phy;
+> > 
+> > The pre-emphasis circuitry within t-phy can be dynamically
+> > programmed
+> > to three different levels of pre-emphasis. The exact value of
+> > pre-emphasis cannot be predetermined, because each device requires
+> > a percentage of pre-emphasis that is dependent on the output signal
+> > strength and transmission path characteristics.
+> > 
+> > Below shows three programmable pre-emphasis levels for a
+> > differential
+> > drive signal of 400 mV. The amount of pre-emphasis changes
+> > according
+> > to the transmission path parameters.
+> > 
+> > programmable level   typical pre-emphasis level
+> > 1                    4.16%
+> > 2                    8.30%
+> > 3                    12.40%
+> > 
+> > The reasons that why prefer to use programmable level in dt-binding 
+> > as
+> > following:
+> > 1. as you said, -bp may do the trick, but the main problem is that
+> >    pre-emphasis level is variable on different SoC, and is also
+> >    variable even on different pcb for the same SoC. e.g. for the
+> >    programmable level 1, pre-emphasis level may be 6% on a
+> > platform,
+> >    but for the programmable level 2, pre-emphasis level may be also
+> >    6% on another platform;
+> >    I think use pre-emphasis level in property, e.g. 4.16%, the
+> >    deviation may be bigger than 40%, may cause confusion for users,
+> >    due to we can't promise that the actual measurement is about
+> > 4.16%,
+> >    it may be 2%, or 5% when measured;
+> > 2. the programmable / logical level is flexible when we support
+> > more
+> >    and pre-emphasis level, ans it is easy for us to tune the level
+> >    due to it's continuous value.
+> > 3. all other vendor properties that can't provide exact measurable
+> >    value in this dt-binding make use of logic level, I want to
+> >    keep them align;
+> 
+> Hm, that's clarifies a lot. Thanks for explanation.
+I couldn't know more about pre-emphasis without your questions, thank
+you very much.
 
-This binding allows the fan speed to be slowed to a
-quieter level when the system is not busy.
-
-Reference: https://ten64doc.traverse.com.au/hardware/fan-control/
-
-Signed-off-by: Mathew McBride <matt@traverse.com.au>
----
- .../boot/dts/freescale/fsl-ls1088a-ten64.dts  | 43 +++++++++++++++++++
- 1 file changed, 43 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-index ef6c8967533e..fd8261c9a186 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-@@ -87,6 +87,35 @@ sfp_xg1: dpmac1-sfp {
- 		los-gpios = <&sfpgpio 7 GPIO_ACTIVE_HIGH>;
- 		maximum-power-milliwatt = <2000>;
- 	};
-+
-+	thermal-zones {
-+		soc {
-+			trips {
-+				fanmid0: fanmid0 {
-+					temperature = <60000>;
-+					hysteresis = <2000>;
-+					type = "active";
-+				};
-+
-+				fanmax0: fanmax0 {
-+					temperature = <70000>;
-+					hysteresis = <2000>;
-+					type = "active";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map2 {
-+					trip = <&fanmid0>;
-+					cooling-device = <&case_fan 0 6>;
-+				};
-+				map3 {
-+					trip = <&fanmax0>;
-+					cooling-device = <&case_fan 7 THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- /* XG1 - Upper SFP */
-@@ -231,6 +260,20 @@ at97sc: tpm@29 {
- 		compatible = "atmel,at97sc3204t";
- 		reg = <0x29>;
- 	};
-+
-+	fanctrl: emc2301@2f {
-+		reg = <0x2f>;
-+		compatible = "microchip,emc2301";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		case_fan: fan@0 {
-+			reg = <0>;
-+			min-rpm = /bits/ 16 <3000>;
-+			max-rpm = /bits/ 16 <5500>;
-+			#cooling-cells = <2>;
-+		};
-+	};
- };
- 
- &i2c2 {
--- 
-2.30.1
+>  It's ok for me.
+> 
+> 
+> Best regards,
+> Krzysztof
 
