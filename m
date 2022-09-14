@@ -2,82 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95DEF5B856D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AECBB5B8587
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbiINJqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 05:46:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44346 "EHLO
+        id S231398AbiINJvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 05:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229877AbiINJqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:46:06 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1320F61718;
-        Wed, 14 Sep 2022 02:46:03 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28E9T8S7002005;
-        Wed, 14 Sep 2022 09:45:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=subject : to :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=guhL3O6ImPZ+HTuGT/P6lnT7Op7WWDU+WfpjFmZYUy4=;
- b=DC8c6SAznRFpZ5qi4ZjCd/1S5MWT7BKTAaOGdrMK9ISYW/7q/GRa7PZRf0EQEN2qp44X
- wNtjF4CAJMZV8Tun4wmhlqqu+Nu2UAP17vaITaHOTF9UtZrj/+ilwILpUBqmexqaz6sC
- KeEkzLapqpnwrLy+r94Q2/XF495O0IT5kTHFCgGzxTm1BPSsODIkCadhZ3ixil8u4vHo
- A1oOqDKHV49MyfiJnTGImrBQjU0n2UnwrUGzwa/2Z889Xm2TCV+FXMTqXMG23zwf+GQ/
- qy3R/YPMF/xRhbrpq3SHb8w7PxRT+qRWI1wRJHs6xUoS0VXJMh7AmBAkeMbEamC+GUF6 QA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jjy0ghs6e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Sep 2022 09:45:23 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28E9jMSJ006867
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Sep 2022 09:45:22 GMT
-Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 14 Sep
- 2022 02:45:17 -0700
-Subject: Re: [PATCH v6 8/8] remoteproc: qcom: Update QDSP6 out-of-reset
- timeout value
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
-References: <1662643422-14909-1-git-send-email-quic_srivasam@quicinc.com>
- <1662643422-14909-9-git-send-email-quic_srivasam@quicinc.com>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-Message-ID: <5dbdf924-784d-9cf1-84d5-a03f18f98768@quicinc.com>
-Date:   Wed, 14 Sep 2022 15:15:14 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S231348AbiINJvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:51:41 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C14F65567;
+        Wed, 14 Sep 2022 02:51:38 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28E9p0IM101243;
+        Wed, 14 Sep 2022 04:51:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1663149060;
+        bh=G5JJSLPgnGzsnxIH7JQUb1JFnlgikFlcJPmPUeJjPUw=;
+        h=From:To:CC:Subject:Date;
+        b=s3Znpfhb4NmL5yzgyXSqQIR4gSlAVIN5T/1oiDJndb7JK0H8FZJ6e4gpBi26uBGgc
+         Z0Tf89GbH2FFVlgk0tRdtGAK2WhPTYnMH7e9vQgMo2yXEKspatsZDcr/FxU/VHsV/O
+         7XLzMYbUPmLCnNdyWtKUX+X+czsVGXOZ9DDLaonY=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28E9p0X8010181
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 14 Sep 2022 04:51:00 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 14
+ Sep 2022 04:50:59 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Wed, 14 Sep 2022 04:50:59 -0500
+Received: from uda0492258.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28E9osD0046564;
+        Wed, 14 Sep 2022 04:50:55 -0500
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
+        <vladimir.oltean@nxp.com>, <grygorii.strashko@ti.com>,
+        <vigneshr@ti.com>, <nsekhar@ti.com>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH 0/8] Add support for J721e CPSW9G and SGMII mode 
+Date:   Wed, 14 Sep 2022 15:20:45 +0530
+Message-ID: <20220914095053.189851-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <1662643422-14909-9-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fNNkQFqrZNDs09HN57U8kZG3Ab63zVpy
-X-Proofpoint-GUID: fNNkQFqrZNDs09HN57U8kZG3Ab63zVpy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-14_03,2022-09-14_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 bulkscore=0 impostorscore=0 mlxlogscore=999 spamscore=0
- malwarescore=0 suspectscore=0 clxscore=1015 adultscore=0 phishscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2208220000 definitions=main-2209140047
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,52 +68,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add compatible for J721e CPSW9G.
 
+Add support to power on and configure SERDES PHY.
 
-On 9/8/22 6:53 PM, Srinivasa Rao Mandadapu wrote:
-> Update QDSP6 out-of-reset timeout value to 1 second, as sometimes
-> ADSP boot failing on SC7280 based platforms with existing value.
-> Also add few micro seconds sleep after enabling boot core
-> start register.
+Add support for SGMII mode for J7200 CPSW5G and J721e CPSW9G.
 
-Please do check if the timeout that you hit is due to lack of
-required clock/bus scaling. If so increasing the timeout would
-be just an interim hack and might stop working in the future.
+Siddharth Vadapalli (8):
+  dt-bindings: net: ti: k3-am654-cpsw-nuss: Update bindings for J721e
+    CPSW9G
+  net: ethernet: ti: am65-cpsw: Add support for SERDES configuration
+  net: ethernet: ti: am65-cpsw: Add mac control function
+  net: ethernet: ti: am65-cpsw: Add mac enable link function
+  net: ethernet: ti: am65-cpsw: Add support for fixed-link configuration
+  net: ethernet: ti: am65-cpsw: Add support for SGMII mode for J7200
+    CPSW5G
+  net: ethernet: ti: am65-cpsw: Add support for J721e CPSW9G
+  net: ethernet: ti: am65-cpsw: Enable SGMII mode for J721e CPSW9G
 
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->   drivers/remoteproc/qcom_q6v5_adsp.c | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
-> index e55d593..4414e23 100644
-> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
-> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
-> @@ -34,7 +34,7 @@
->   /* time out value */
->   #define ACK_TIMEOUT			1000
->   #define ACK_TIMEOUT_US			1000000
-> -#define BOOT_FSM_TIMEOUT		10000
-> +#define BOOT_FSM_TIMEOUT		1000000
->   /* mask values */
->   #define EVB_MASK			GENMASK(27, 4)
->   /*QDSP6SS register offsets*/
-> @@ -422,13 +422,14 @@ static int adsp_start(struct rproc *rproc)
->   
->   	/* De-assert QDSP6 stop core. QDSP6 will execute after out of reset */
->   	writel(LPASS_BOOT_CORE_START, adsp->qdsp6ss_base + CORE_START_REG);
-> +	usleep_range(100, 110);
->   
->   	/* Trigger boot FSM to start QDSP6 */
->   	writel(LPASS_BOOT_CMD_START, adsp->qdsp6ss_base + BOOT_CMD_REG);
->   
->   	/* Wait for core to come out of reset */
->   	ret = readl_poll_timeout(adsp->qdsp6ss_base + BOOT_STATUS_REG,
-> -			val, (val & BIT(0)) != 0, 10, BOOT_FSM_TIMEOUT);
-> +			val, (val & BIT(0)) != 0, 100, BOOT_FSM_TIMEOUT);
->   	if (ret) {
->   		dev_err(adsp->dev, "failed to bootup adsp\n");
->   		goto disable_adsp_clks;
-> 
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   |  23 ++-
+ drivers/net/ethernet/ti/am65-cpsw-nuss.c      | 186 +++++++++++++++---
+ 2 files changed, 178 insertions(+), 31 deletions(-)
+
+-- 
+2.25.1
+
