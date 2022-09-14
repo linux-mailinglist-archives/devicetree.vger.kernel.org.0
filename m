@@ -2,35 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03EEA5B8222
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:42:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A6A5B823E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:51:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbiINHmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 03:42:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41132 "EHLO
+        id S229949AbiINHu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 03:50:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiINHmc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:42:32 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6D70272846
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:42:31 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 2F7AD8158;
-        Wed, 14 Sep 2022 07:34:38 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Keerthy <j-keerthy@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am625-sk: Use pwm-led instead of gpio-led
-Date:   Wed, 14 Sep 2022 10:42:24 +0300
-Message-Id: <20220914074224.44786-2-tony@atomide.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220914074224.44786-1-tony@atomide.com>
-References: <20220914074224.44786-1-tony@atomide.com>
+        with ESMTP id S229957AbiINHu6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:50:58 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EBBF42AEC;
+        Wed, 14 Sep 2022 00:50:56 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7A0526601F99;
+        Wed, 14 Sep 2022 08:50:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663141854;
+        bh=Hym1WPnQu+rJ0jePjiNMfQK8daaeMyb7rYGk5n5O/g0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ggQVBOHgbv+NxebDh3BTpsvKZhJcZ7O0tLF0ERDgZTt8gV4LjNmXR8MU2r0Fgsr3e
+         s9vOhlqStzlzBTxG0/dnXTVyLu/royUM9Rz3v25wsvBULrSPNrflOnvJ2Lv8dZaiUg
+         PQrnm1ZP/fhNValzboM6nXEanDAKBp93u/kOIkvQ4J56CXsW+uBToQGAZPuQ7lcayP
+         oVsHLdSkPjS57zfcnAA4vhjh/hggt8WMQPkHrmTQkbWaVO9Rjokx6oXmOY7TwSKu+Q
+         MV/65EYZlDCMF0OPDM6BSjQM0NqiZcuOAZRVtrHJ8d8OKIC+otG14JD3Ip//gLnKGm
+         ygKuL+XyjonLg==
+Message-ID: <739426eb-7381-d9e2-62e5-bdaf41d13821@collabora.com>
+Date:   Wed, 14 Sep 2022 09:50:50 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v3 7/7] phy: phy-mtk-tphy: fix the phy type setting issue
+Content-Language: en-US
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Eddie Hung <eddie.hung@mediatek.com>
+References: <20220914060746.10004-1-chunfeng.yun@mediatek.com>
+ <20220914060746.10004-7-chunfeng.yun@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220914060746.10004-7-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -38,63 +65,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On am625, pad c17 can be used either in gpio mode or pwm mode to control
-the connected led. Let's change to use pwm-led for additional brighness
-control.
+Il 14/09/22 08:07, Chunfeng Yun ha scritto:
+> The PHY type is not set if the index is non zero, prepare type
+> value according to the index, like as mask value.
+> 
+> Fixes: 39099a443358 ("phy: phy-mtk-tphy: support type switch by pericfg")
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-The pwm controller is dmtimer7 for pad C17. We configure it for 128 Hz
-rate (1000000000 / 7812500) similar to what has been done elsewhere for
-pwm-leds.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Cc: Keerthy <j-keerthy@ti.com>
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm64/boot/dts/ti/k3-am625-sk.dts | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -131,18 +131,25 @@ vdd_sd_dv: regulator-4 {
- 	};
- 
- 	leds {
--		compatible = "gpio-leds";
--		pinctrl-names = "default";
--		pinctrl-0 = <&usr_led_pins_default>;
-+		compatible = "pwm-leds";
- 
- 		led-0 {
- 			label = "am62-sk:green:heartbeat";
--			gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
-+			pwms = <&main_pwm7 0 7812500 0>;
-+			max-brightness = <255>;
- 			linux,default-trigger = "heartbeat";
- 			function = LED_FUNCTION_HEARTBEAT;
- 			default-state = "off";
- 		};
- 	};
-+
-+	main_pwm7: dmtimer-main-pwm-7 {
-+		pinctrl-0 = <&usr_led_pins_default>;
-+		pinctrl-names = "default";
-+		compatible = "ti,omap-dmtimer-pwm";
-+		#pwm-cells = <3>;
-+		ti,timers = <&main_timer7>;
-+	};
- };
- 
- &main_pmx0 {
-@@ -203,7 +210,7 @@ AM62X_IOPAD(0x240, PIN_INPUT, 0) /* (D17) MMC1_SDCD */
- 
- 	usr_led_pins_default: usr-led-pins-default {
- 		pinctrl-single,pins = <
--			AM62X_IOPAD(0x244, PIN_OUTPUT, 7) /* (C17) MMC1_SDWP.GPIO1_49 */
-+			AM62X_IOPAD(0x244, PIN_OUTPUT, 2) /* (C17) MMC1_SDWP.TIMER_IO7 */
- 		>;
- 	};
- 
--- 
-2.37.1
