@@ -2,96 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DC8C5B85FC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 12:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D15FD5B867B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 12:37:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiINKLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 06:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59846 "EHLO
+        id S229710AbiINKhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 06:37:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbiINKLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 06:11:01 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E2427CE9;
-        Wed, 14 Sep 2022 03:10:53 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id q9so4750543pgq.8;
-        Wed, 14 Sep 2022 03:10:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=JiXzFao2IXE51u6P2eepNq4pCQEWFKf+k65/k79eqvc=;
-        b=ikDi6LLBbbYK1nnIT1Ou8BfEK76v6fQhkiOXMHLw3p+/ijkuPKbdTVdrbZsafS37N1
-         EyCt8n+nFCQo8XFEbVDemcwryO2XY01rEonCd2P1XOcXjnhlkjQFQOQcksN2EzmkipOj
-         1flfuxGL5zMqibMR7/f2CYVjy9t+dHcvmqUntN96x0MQKhzbJJGKdtOw9ajkETEi//hf
-         aGAzUoUkvmU/g57pz7yAErvLOrRtwOAbYK6uOXsCB9eQ6zXjrBTn8ZT0wlAu+x0vL+9x
-         DK6uF3h0LV4kxhAfEgQydIEwwjysH4UcDgjjiiiRrbl3kbcXU/+ATLaAwnnrwxM4xRhN
-         IQOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=JiXzFao2IXE51u6P2eepNq4pCQEWFKf+k65/k79eqvc=;
-        b=pMAESNjRz1ubCELa3x1+3fr2Yjj21+gRQ+NHvsd3KWUGGMpX4swGqVI53mZVyVJNe/
-         zZsqvKerOuiXK4ArmRyytKtll2dMr2wgMikGTw53zfD//v/jokVQfMoOQEPRJFzlWbDY
-         zbCwysGPvqHUsZe7JNihxPbFrAnJEPbC6iNmZngsCwjIZiUTwMysBVEKOyXgqZeQbyXk
-         g74jW2bcWOe/QUQLydiRK7UkZ5dU1vU5sDvJWrFznTImlK0rjOMr/y8W2lbtwN7/r0XO
-         C5MReg2qwFoY0ksRYd2OqTrBbsnn9z+8aECddCmSuSeCJy4/E3xPJ5VEPUFZR6BPddX2
-         3igw==
-X-Gm-Message-State: ACgBeo3MUtE2ROG4/xh7yhuG4j4f7w2flJn+neXqe/puGCl20SySUjL/
-        Qo/AM+IhzLB5+eD7YPE8twI=
-X-Google-Smtp-Source: AA6agR6w9UOk+8+u3Q3O3QDSvcoRdevs+VLAWiIaZfwqEmlFuQ2DIAZvmrGw8MdBImY9OqxWqeBvkA==
-X-Received: by 2002:a63:de58:0:b0:439:41e9:dda2 with SMTP id y24-20020a63de58000000b0043941e9dda2mr6207728pgi.331.1663150253131;
-        Wed, 14 Sep 2022 03:10:53 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:2f68:fe7:a2e6:7595])
-        by smtp.gmail.com with ESMTPSA id b6-20020a1709027e0600b00176dee43e0dsm10143840plm.285.2022.09.14.03.10.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 03:10:52 -0700 (PDT)
-Date:   Wed, 14 Sep 2022 03:10:50 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 05/11] Input: iqs7222 - trim force communication command
-Message-ID: <YyGoqqGbY2YczV2E@google.com>
-References: <20220908131548.48120-1-jeff@labundy.com>
- <20220908131548.48120-6-jeff@labundy.com>
- <YxpdeuPAYiSVjmO7@google.com>
- <YyD1JmuC6UH+DDHG@nixie71>
+        with ESMTP id S229727AbiINKhK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 06:37:10 -0400
+X-Greylist: delayed 1496 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 14 Sep 2022 03:37:09 PDT
+Received: from gateway24.websitewelcome.com (gateway24.websitewelcome.com [192.185.51.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 874F3785A6
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 03:37:09 -0700 (PDT)
+Received: from cm17.websitewelcome.com (cm17.websitewelcome.com [100.42.49.20])
+        by gateway24.websitewelcome.com (Postfix) with ESMTP id 82C9233A8F
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 05:12:12 -0500 (CDT)
+Received: from 162-215-252-169.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id YPNLonIb2SQZkYPNMoG6XK; Wed, 14 Sep 2022 05:12:12 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=ttYh+Qjcpm764F1HotUg308tg5syECwL71pQ0RbAGH4=; b=apWdl7nxIjaVLstrQsqLqHeZAf
+        kFPmvU1CBzx7LlOlIHeGSH8S3C8vpYpqZ9Z88/YWtuiozvZOx97WPemAjUxcgTTKr5Nd//83b/IT/
+        9Zx+go1dZhQ3vXq/uaWh7NRyGUiD4BCM7JCtuxxvDwLXm4b0Kzxo/D9bi/hlWnvjoE4Bp6sQGwQmW
+        lqt8kZQsg+p/06hai6jSmIHELisTpu+30IpFOsAkvg5PEZCLB9FE3yd4bGfDP2A3j3tnMyEWg339E
+        rl14pYtxFmwOnAqh+C18/thEYAl8PZUk7WOa8Qt5xVQs41EnnEzaQBDstGNWLKpRhTIGb//RLfm3G
+        kjVfuCyA==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:56638 helo=localhost)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <linux@roeck-us.net>)
+        id 1oYPNL-003s8B-B5;
+        Wed, 14 Sep 2022 10:12:11 +0000
+Date:   Wed, 14 Sep 2022 03:12:07 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Mathew McBride <matt@traverse.com.au>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        jdelvare@suse.com, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] hwmon: add Microchip EMC230X fan controller driver
+Message-ID: <20220914101207.GA938301@roeck-us.net>
+References: <20220914053030.8929-1-matt@traverse.com.au>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YyD1JmuC6UH+DDHG@nixie71>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220914053030.8929-1-matt@traverse.com.au>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1oYPNL-003s8B-B5
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:56638
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 7
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 13, 2022 at 04:24:54PM -0500, Jeff LaBundy wrote:
-> Hi Dmitry,
+On Wed, Sep 14, 2022 at 05:30:27AM +0000, Mathew McBride wrote:
+> The Microchip EMC230X (formerly made by SMSC) family of fan controllers
+> provide PWM control for up to 5 fans (in the EMC2305). The EMC230X is
+> capable of maintaining (closed-loop) a target RPM speed through PWM.
 > 
-> On Thu, Sep 08, 2022 at 02:24:10PM -0700, Dmitry Torokhov wrote:
-> > On Thu, Sep 08, 2022 at 08:15:42AM -0500, Jeff LaBundy wrote:
-> > > According to the datasheets, writing only 0xFF is sufficient to
-> > > elicit a communication window. Remove the superfluous 0x00 from
-> > > the force communication command.
-> > > 
-> > > Fixes: e505edaedcb9 ("Input: add support for Azoteq IQS7222A/B/C")
-> > > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
-> > 
-> > Applied, thank you.
+> This driver has been tested with the EMC2301 (on our Traverse Ten64
+> appliance) and with the EMC2305 demo board (ADM00879).
 > 
-> I didn't happen to see this one hit your tree, so I can simply include
-> it in v2 coming soon. In case I have misunderstood, please let me know.
+> The driver is by no means complete, for example, further work would
+> be required to support the different PWM output frequencies for
+> voltage-based fan speed control. (So far this driver has only been
+> tested with direct PWM capable fans, like the 4 pin fans found
+> in recent PCs)
+> 
+> The emc230x driver also has thermal subsystem integration which allows
+> the emc230x-controlled fan(s) to be used as cooling devices.
 
-Should be there now.
+I just accepted a driver or emc2301/2/3/5. Please submit improvements
+on top of that driver if needed; we won't have competing drivers
+for the same chip in the kernel, and replacing a just accepted driver
+smply does not make any sense.
 
-Thanks.
-
--- 
-Dmitry
+Guenter
