@@ -2,292 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 710C35B89D1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA38F5B89D3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbiINODT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 10:03:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48878 "EHLO
+        id S230026AbiINOET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 10:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229921AbiINOCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:02:47 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 968CE7B1FC
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 07:01:59 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-3450990b0aeso181072047b3.12
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 07:01:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=Jpvw6KQrg1S/1pBzjKmf1uB7j3K3Ydzu3g9Y661w0mg=;
-        b=SkZLLCuVFtvkjNpiUf9LPgljx+x3GViN3GfToJE6bAHwx8xwEol/R5nw9W/QyFzRZ7
-         gXOjT5KI08bgm1JpKwaz3Sxs9Et4ZJDxyn4xb2JZFOVP13qFGJvXO1nxuXEid0AQ1WLm
-         SnZaYOTTr+rUN0Te1fG7rm+RBTk2Hk2ZJu1CnqLwW0o9DPkv4gTJL3Cj/ctaMZ/zDRZH
-         a/IH8DAJxjb+9Qf8wXXAKSziVHP6QPIwJBC+gjpYM9N5kzTF/BQdeNbghraGPXv/8hiU
-         HQ3AooobyqGbhFAMkhOhrL+1N27n6yOZlA2cMDGzRmp9Y4e6w2kqJSHZaK+9ldoEF0Q8
-         38uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=Jpvw6KQrg1S/1pBzjKmf1uB7j3K3Ydzu3g9Y661w0mg=;
-        b=ZRMKAfwFM62TSoFZzf19dpVxV2A4N9ctZfMmQdPOWgcQn4eCU4x0cE4FO94GIENDET
-         /7bVJrTPlHSp64CFKyaqX0Gb6QKEJpuS2p77Eebn45tW80v/3Mu3TBdUu2KQ6pJnJr1V
-         I7MvME0bBiuejlg7NJOJlU7fsurEhEFHPMLo3C6CNYxEmx9ZxhUeT0w6VvX40CIx7jIG
-         pDVSntq7Bp8s2GMTBrarlcssB+5VxyRluj45UOz21mCIjgaI6g5YdP1ZM6I5SU4Egzu4
-         YqOYNYkNl/zbOHXIUn0AnNHKq81roTN73Itq8PW3H9/y/xI8uyieRUgB8AbpOq4GyZ5n
-         lExQ==
-X-Gm-Message-State: ACgBeo36PrVRKpxa8+4FE2cOcRmm/Gjjz6EYMEaFer5LHWExAjazO6AB
-        6Wri4o5KipTFGHOTBHVc60cm4x0kojRI4am40CuZNw==
-X-Google-Smtp-Source: AA6agR4nfEc6ZNsx4IMOTInLJ4GeQaYzxa2yEmi0xC39dBnNrVhTzdhx3g4hnT+XIUeaBnxCZhEg3BlhYDeiFM6ISHA=
-X-Received: by 2002:a81:1604:0:b0:345:3b96:a166 with SMTP id
- 4-20020a811604000000b003453b96a166mr31947771yww.30.1663164118168; Wed, 14 Sep
- 2022 07:01:58 -0700 (PDT)
+        with ESMTP id S229896AbiINOD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:03:56 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC9077A75B;
+        Wed, 14 Sep 2022 07:03:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663164197; x=1694700197;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=EOVc9ziEqaOHEF8KtxeBZDVcCAHtgf66ha0JPUoEHMI=;
+  b=c0dPIsIPuw25dS0g6hC+GY/1L8XFdSHZHUhoU/vRAPzpIKfDR4YGwXSk
+   eAbTE1+ksH9EMLHHKBx9ApGvmscAw/EnghA0PvSO1MAErjP8csEdTOimL
+   P7DQAd0Pf8utdFgRKumhsBjDp2lX0ysdkDleJl9+FdR9VTwSskJrSCvID
+   L2VNa01seMB9MPMEhgFBBxteBlC65CRRKeX4orzyP9J+IFPcbMgJVMSSz
+   W0OT77ko1bLkdt3F8zqL/HRHImOdhIrYhnD9LAQWU2U1no+Gp9YqjrfHs
+   UsZjW4xB5IEPDte0xKwrKO6/wRN4txHlN+BwFknm3N+Fkx3OjMkvsqKa3
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10470"; a="360175769"
+X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; 
+   d="scan'208";a="360175769"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2022 07:03:15 -0700
+X-IronPort-AV: E=Sophos;i="5.93,315,1654585200"; 
+   d="scan'208";a="759228271"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2022 07:03:12 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1oYSyr-002Ev7-1X;
+        Wed, 14 Sep 2022 17:03:09 +0300
+Date:   Wed, 14 Sep 2022 17:03:09 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     "Farber, Eliav" <farbere@amazon.com>
+Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, rtanwar@maxlinear.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com
+Subject: Re: [PATCH v5 20/21] hwmon: (mr75203) add debugfs to read and write
+ temperature coefficients
+Message-ID: <YyHfHSIz9F+1SGnX@smile.fi.intel.com>
+References: <20220908152449.35457-1-farbere@amazon.com>
+ <20220908152449.35457-21-farbere@amazon.com>
+ <YxowTBIODMLjf1Ek@smile.fi.intel.com>
+ <581a4a0b-8e0e-b7a2-f873-77ed74b54e96@amazon.com>
+ <3b121ab4-dd64-68b3-ee89-8571b5d3651e@amazon.com>
+ <YyC3hsNhbQGIlReU@smile.fi.intel.com>
+ <bdb73546-f309-60dd-3c40-d749654228fe@amazon.com>
+ <YyGfvzlCu9qgtgA0@smile.fi.intel.com>
 MIME-Version: 1.0
-References: <20220817080757.352021-1-bchihi@baylibre.com> <20220817080757.352021-3-bchihi@baylibre.com>
- <716d6471-f0e2-489e-5f9e-9e38e9e7953a@collabora.com>
-In-Reply-To: <716d6471-f0e2-489e-5f9e-9e38e9e7953a@collabora.com>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Wed, 14 Sep 2022 16:01:22 +0200
-Message-ID: <CAGuA+orxfcycwcUMpLe+dkjnXPQkELQsz0vBggGKTQ04XRGc+g@mail.gmail.com>
-Subject: Re: [PATCH v9,2/7] dt-bindings: thermal: Add dt-binding document for
- LVTS thermal controllers
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, khilman@baylibre.com,
-        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YyGfvzlCu9qgtgA0@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
+On Wed, Sep 14, 2022 at 12:32:47PM +0300, Andy Shevchenko wrote:
+> On Wed, Sep 14, 2022 at 07:26:36AM +0300, Farber, Eliav wrote:
+> > On 9/13/2022 8:01 PM, Andy Shevchenko wrote:
+> > > On Tue, Sep 13, 2022 at 05:40:16PM +0300, Farber, Eliav wrote:
+> > > > On 9/13/2022 4:06 PM, Farber, Eliav wrote:
 
-I've got the following errors after implementing these changes :
-[...]
-  nvmem-cells:
-    minItems: 1
-    description: Calibration eFuse data for LVTS
+...
 
-  nvmem-cell-names:
-    minItems: 1
-    items:
-      pattern: 'lvts-calib-data[0-9]+$'
+> > > > It seems like debugfs_attr_write() calls simple_attr_write() and it uses
+> > > > kstrtoull(), which is why it fails when setting a negative value.
+> > > > This is the same also in v6.0-rc5.
+> > > > 
+> > > > debugfs_attr_read() on the other hand does show the correct value also
+> > > > when j is negative.
+> > > 
+> > > Which puzzles me since there is a few drivers that use %lld.
+> > > Yeah, changing it to
+> > > 
+> > >        ret = sscanf(attr->set_buf, attr->fmt, &val);
+> > >        if (ret != 1)
+> > >                ret = -EINVAL;
+> > > 
+> > > probably can fix that. Dunno if debugfs maintainer is okay with this.
+> > > 
+> > > P.S. This needs revisiting all format strings to see if there are no
+> > > additional
+> > > characters, otherwise that needs to be addressed first, if feasible.
+> > 
+> > I was thinking of making such a correction:
+> > 
+> > -       ret = kstrtoull(attr->set_buf, 0, &val);
+> > +       if (attr->set_buf[0] == '-')
+> > +               ret = kstrtoll(attr->set_buf, 0, &val);
+> > +       else
+> > +               ret = kstrtoull(attr->set_buf, 0, &val);
+> > 
+> > and when I tested the change it worked, but then I noticed this commit:
+> > 
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/fs/libfs.c?h=v6.0-rc5&id=488dac0c9237647e9b8f788b6a342595bfa40bda
+> > 
+> > According to this, it previously used simple_strtoll() which supports
+> > negative values, but was changed to use kstrtoull() to deliberately
+> > return '-EINVAL' if it gets a negative value.
+> > 
+> > So I’m not sure debugfs maintainers will be okay with a fix that
+> > basically reverts the commit I mentioned.
+> > Hence, what do you suggest to do with my commit?
+> > Is it ok to leave it as it is today?
+> 
+> Meanwhile asking is not a problem, at least we will know for sure.
+> And yes, leave it as is, but point to the thread where you asking
+> the clarification.
 
-  "#thermal-sensor-cells":
-    const: 1
+For the record:
 
-allOf:
-  - $ref: thermal-sensor.yaml#
+$ git grep -n -A1 -w DEFINE_DEBUGFS_ATTRIBUTE | grep ');' | sed 's,.*\(".*%.*"\).*,\1,' | sort | uniq -c
+  1 "%08llx\n"
+  5 "0x%016llx\n"
+  5 "0x%02llx\n"
+  5 "0x%04llx\n"
+ 13 "0x%08llx\n"
+  1 "0x%4.4llx\n"
+  3 "0x%.4llx\n"
+  4 "0x%llx\n"
+  1 "%1lld\n"
+ 40 "%lld\n"
+  2 "%lli\n"
+129 "%llu\n"
+  1 "%#llx\n"
+  2 "%llx\n"
 
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - mediatek,mt8192-lvts-ap
-              - mediatek,mt8192-lvts-mcu
-    then:
-      properties:
-        nvmem-cells:
-          maxItems: 1
+means that sscanf() should work and fix the issue. You may even propose a patch
+as a starter for a discussion.
 
-        nvmem-cell-names:
-          maxItems: 1
+-- 
+With Best Regards,
+Andy Shevchenko
 
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - mediatek,mt8195-lvts-ap
-              - mediatek,mt8195-lvts-mcu
-    then:
-      properties:
-        nvmem-cells:
-          maxItems: 2
 
-        nvmem-cell-names:
-          maxItems: 2
-[...]
-
-$ make DT_CHECKER_FLAGS=-m dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-/home/balsam/src/linux-mtk-lvts-newThermalOF/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml:
-properties:nvmem-cell-names:items: {'pattern':
-'lvts-calib-data[0-9]+$'} is not of type 'array'
-from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-/home/balsam/src/linux-mtk-lvts-newThermalOF/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml:
-ignoring, error in schema: properties: nvmem-cell-names: items
-  DTEX    Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dts
-  DTC     Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dtb
-  CHECK   Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dtb
-Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dtb:0:0:
-/example-0/soc/thermal-sensor@1100b000: failed to match any schema
-with compatible: ['mediatek,mt8192-lvts-ap']
-
-am I missing something?
-
-Best regards,
-Balsam
-
-On Wed, Sep 14, 2022 at 2:19 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 17/08/22 10:07, bchihi@baylibre.com ha scritto:
-> > From: Alexandre Bailon <abailon@baylibre.com>
-> >
-> > Add dt-binding document for mt8192 and mt8195 LVTS thermal controllers.
-> >
-> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-> > Co-developed-by: Balsam CHIHI <bchihi@baylibre.com>
-> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> > ---
-> >   .../thermal/mediatek,lvts-thermal.yaml        | 152 ++++++++++++++++++
-> >   1 file changed, 152 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> > new file mode 100644
-> > index 000000000000..31d9e220513a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> > @@ -0,0 +1,152 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/thermal/mediatek,lvts-thermal.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MediaTek SoC LVTS thermal controller
->
-> title: MediaTek SoC Low Voltage Thermal Sensor (LVTS)
->
-> > +
-> > +maintainers:
-> > +  - Yu-Chia Chang <ethan.chang@mediatek.com>
-> > +  - Ben Tseng <ben.tseng@mediatek.com>
-> > +
-> > +description: |
->
-> description:
->    LVTS is a thermal management architecture composed of three subsystems,
->    a Sensing device - Thermal Sensing Micro Circuit Unit (TSMCU),
->    a Convertor - Low Voltage Thermal Sensor convertor (LVTS), and
->    a Digital controller (LVTS_CTRL).
->
-> > +  LVTS (Low Voltage Thermal Sensor).
-> > +  The architecture will be first used on mt8192 and mt8195.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mediatek,mt8192-lvts-ap
-> > +      - mediatek,mt8192-lvts-mcu
-> > +      - mediatek,mt8195-lvts-ap
-> > +      - mediatek,mt8195-lvts-mcu
-> > +
-> > +  "#thermal-sensor-cells":
-> > +    const: 1
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description: LVTS instance registers.
->
-> This description looks obvious, as it doesn't really say anything "new"...
-> I would rather drop it.
->
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description: LVTS instance interrupts.
->
-> Same here
->
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +    description: LVTS instance clock.
->
-> and here.
->
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +    description: |
-> > +      LVTS instance SW reset for HW AP/MCU domain to clean temporary data
-> > +      on HW initialization/resume.
->
-> What about something like...
->
->    resets:
->      items:
->        - description: LVTS reset for clearing temporary data on AP/MCU
->
-> > +
-> > +  nvmem-cells:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    description: Calibration efuse data for LVTS
->
->    nvmem-cells:
->      minItems: 1
->      items:
->        - description: Calibration eFuse data for LVTS
->        - description: Additional eFuse data (?)
->
->
-> > +
-> > +  nvmem-cell-names:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    description: Calibration efuse cell names for LVTS
->
-> Actually, maxItems is not really two, but it depends on how many
-> eFuse arrays / nvmem cells we have for each SoC, so I was thinking...
->
-> ...what about doing something like
->
->    nvmem-cell-names:
->      minItems: 1
->      items:
->        pattern: 'lvts-calib-data[0-9]+$'
->
-> and then,
->    if:
->      properties:
->        compatible:
->          contains:
->            enum:
->              - mediatek,blahblah-something
->    then:
->      properties:
->        nvmem-cell-names:
->          maxItems: 2 (or 3, 4, 5...)
->
-> P.S.: I haven't tried any binding check on the proposed lines.
->
-> Krzysztof, any opinions on that?
->
-> Regards,
-> Angelo
->
->
->
