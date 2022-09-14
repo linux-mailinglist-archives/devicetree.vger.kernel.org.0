@@ -2,111 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2E815B909E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 00:53:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A18F5B90EE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 01:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbiINWxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 18:53:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33608 "EHLO
+        id S229629AbiINXP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 19:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbiINWxH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 18:53:07 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3124079699
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 15:53:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=wQXjBzdg41KdPR4FAisMwEL9Z7vR
-        HYCLO5o4inc0Lz0=; b=cnzYtuCo85EKaAZM6q6PcHl90eQJbL8R74zDY1cn8flJ
-        ukMkjYAy+3eT/v5OtZdfqQrCPAvoemzqyqGdaA1myZ7iP7Y12M2Uf4P6rwtMoCDk
-        C11tjTjC/IEcS9FoVi0A3tBidWMbyKqakdEF0cOHpFTeW5mT0mb7DybTCaUuilU=
-Received: (qmail 2747360 invoked from network); 15 Sep 2022 00:53:03 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Sep 2022 00:53:03 +0200
-X-UD-Smtp-Session: l3s3148p1@FyPG/arojp1ScWNM
-Date:   Wed, 14 Sep 2022 23:53:02 +0100
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        with ESMTP id S229518AbiINXP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 19:15:57 -0400
+Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCAC4832EE;
+        Wed, 14 Sep 2022 16:15:55 -0700 (PDT)
+Received: from email.seznam.cz
+        by email-smtpc30a.ko.seznam.cz (email-smtpc30a.ko.seznam.cz [10.53.18.44])
+        id 0aa2f93eee0e2a000b7f5850;
+        Thu, 15 Sep 2022 01:15:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1663197349; bh=vttjsrrKYHZff055eJ7HDwEzNJ9lp5KqYVC8udeORe4=;
+        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+         Content-Transfer-Encoding;
+        b=gIEU5YQma9cwg4duemaOXqae+/WFlMU/BB3eg2xTQN/WF6pBk0+4BTOzTByW+IRxt
+         ABLH+pUWnVRht7c7rCom7rMONzSKhk32l/6LHJaxafSDCsWJ1EthjG3272eHofsnQ+
+         oUKuRPcmny/33lImCk+JG9ZzxcxYTEVbb4nTIKo0=
+Received: from localhost.localdomain (2a02:8308:900d:2400:4bcc:f22e:1266:5194 [2a02:8308:900d:2400:4bcc:f22e:1266:5194])
+        by email-relay23.ko.seznam.cz (Seznam SMTPD 1.3.137) with ESMTP;
+        Thu, 15 Sep 2022 01:13:17 +0200 (CEST)  
+From:   Matej Vasilevski <matej.vasilevski@seznam.cz>
+To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: renesas: Fix USB PHY device and child node
- names
-Message-ID: <YyJbTm6pON02tOry@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <6442b4042e26537abc8632c4772f8201685f1f1f.1663165098.git.geert+renesas@glider.be>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Matej Vasilevski <matej.vasilevski@seznam.cz>
+Subject: [PATCH v3 0/3] can: ctucanfd: hardware rx timestamps reporting
+Date:   Thu, 15 Sep 2022 01:12:46 +0200
+Message-Id: <20220914231249.593643-1-matej.vasilevski@seznam.cz>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fkCufnkvT+8tYsdC"
-Content-Disposition: inline
-In-Reply-To: <6442b4042e26537abc8632c4772f8201685f1f1f.1663165098.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---fkCufnkvT+8tYsdC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+this is the v3 patch for CTU CAN FD hardware timestamps reporting.
 
-On Wed, Sep 14, 2022 at 04:21:54PM +0200, Geert Uytterhoeven wrote:
-> make dtbs_check:
->=20
->     usb-phy@e6590100: '#phy-cells' is a required property
-> 	    From schema: dtschema/schemas/phy/phy-provider.yaml
->=20
-> The R-Car Gen2 USB PHY device nodes do not represent USB PHYs
-> theirselves, and thus do not have "#phy-cells" properties.  Fix the
-> warning by renaming them from "usb-phy" to "usb-phy-controller".
-> Rename their child nodes from "usb-channel" to "usb-phy", as these do
-> represent USB PHYs.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Changes since v2: https://lore.kernel.org/all/20220801184656.702930-1-matej.vasilevski@seznam.cz/t/#u
+- proper timestamping clock handling
+	- clocks manually enabled using clk_prepare_enable, then managed
+	  by runtime PM (if runtime PM is enabled)
+	- driver should work even without CONFIG_PM
+- access to the timecounter is now protected by a spinlock
+- harmonized with Vincent's patch - TX timestamping capability is now
+  correctly reported
+- work_delay_jiffies stored as unsigned long instead of u32
+- max work delay limited to 3600 seconds (instead of 86k seconds)
+- adressed the rest of the comments from the patch V2 review
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Changes since v1: https://lore.kernel.org/all/20220512232706.24575-1-matej.vasilevski@seznam.cz/
+- Removed kconfig option to enable/disable timestamps.
+- Removed dt parameters ts-frequency and ts-used-bits. Now the user
+  only needs to add the timestamping clock phandle to clocks, and even
+  that is optional.
+- Added SIOCSHWTSTAMP ioctl to enable/disable timestamps.
+- Adressed comments from the RFC review.
 
-> See also "[PATCH v2] dt-bindings: phy: renesas,rcar-gen2-usb-phy:
-> Convert to json-schema"
-> https://lore.kernel.org/r/dbdcffd009302734fe2fb895ce04b72fa1ea4355.166316=
-5000.git.geert+renesas@glider.be
+Matej Vasilevski (3):
+  dt-bindings: can: ctucanfd: add another clock for HW timestamping
+  can: ctucanfd: add HW timestamps to RX and error CAN frames
+  doc: ctucanfd: RX frames timestamping for platform devices
 
-Awesome that this is finally solved \o/
+ .../bindings/net/can/ctu,ctucanfd.yaml        |  19 +-
+ .../can/ctu/ctucanfd-driver.rst               |  13 +-
+ drivers/net/can/ctucanfd/Makefile             |   2 +-
+ drivers/net/can/ctucanfd/ctucanfd.h           |  20 ++
+ drivers/net/can/ctucanfd/ctucanfd_base.c      | 235 ++++++++++++++++--
+ drivers/net/can/ctucanfd/ctucanfd_pci.c       |   5 +-
+ drivers/net/can/ctucanfd/ctucanfd_platform.c  |   5 +-
+ drivers/net/can/ctucanfd/ctucanfd_timestamp.c |  70 ++++++
+ 8 files changed, 342 insertions(+), 27 deletions(-)
+ create mode 100644 drivers/net/can/ctucanfd/ctucanfd_timestamp.c
 
 
---fkCufnkvT+8tYsdC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMiW04ACgkQFA3kzBSg
-KbbFOg//YLYRmLyD1sSfxAA87sWQxJjMFK6qUZLTOxyoDrNAODZyatZh2E8viqbu
-Z7XQ/n+yTCy/5WePm1Zy4kzP+w2zeI3l3q+PN67SV3CuVZSzoLQmOTvthiaorMRA
-GMK0KcSPFVEIaSr0fOpjVCe0LzGE5kM0lHLwj7zI8e3DwpzTjfHC1GN5/6be1CBJ
-idVnsmw8GZyyooNC+oP4wvFw/dBcNB4ekj3hdms8mKLw+8UwyhYWlmYKbtKuI7+x
-/tV7LHwbrfsUvzCIorU+4oDKckOp8+PY9m2qMpshNTY9SQixtboipIj3/1BYK/ee
-rIqWCf7e1dFDTwrsMBlh1841Q2dEsW9qiywU186OU7z6IVXALqZB6QJeBMvZDIFt
-svSvOgG84N1S7UW20zgsBTlb2yMYCZkWffk7XCU4b9P3w22wGryRpVUDN9vnoV4e
-v+b9vzSjXiR84uYTbxpzlJfBgqe4mALqYfB92UDHnYxVQYFuX6/RO3s9OhuUdsOk
-xO+awiHd2CGhM0tMbBTWXDp/oKL3wG7k3y6GL51Rud+QiSsARMFzVMBkrRAnCSOY
-Ao7PUFTIOQHXdJzJCfhyUJygBvTHDFZwUTXaxTwmLNZ4+ngPTjRe3zmX/n2m5jE2
-rUv2LzsGstDojJmm6vuCwV1mXJVcKskkq5CEtdQchOOY5O576Xo=
-=Q61F
------END PGP SIGNATURE-----
-
---fkCufnkvT+8tYsdC--
+base-commit: c9ae520ac3faf2f272b5705b085b3778c7997ec8
+--
+2.25.1
