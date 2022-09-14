@@ -2,92 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E2B85B83EE
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DCFF5B8428
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:08:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230343AbiINJFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 05:05:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48600 "EHLO
+        id S230469AbiINJH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 05:07:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230504AbiINJEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:04:52 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B735E754B9;
-        Wed, 14 Sep 2022 02:02:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0E4DEB816A9;
-        Wed, 14 Sep 2022 09:02:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3358C433D7;
-        Wed, 14 Sep 2022 09:02:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663146148;
-        bh=UJz4aN/zdRRoD8mU+4qWJUCxaeD7+BrOWhvFIVTF5ZY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=NQ3rub8p3E7vJe85wJCr5q5sXa4qgClvk6QULL6Vws8liAHY0ihtXOd2cLQ8ilobj
-         RIqYhqUgLGOrBRhwHkEujuGzZ2cmj7yCmP0n+/XPKzOBdZOaihESxuBa/k3QJziozF
-         Hf3o/kl1uzWuyco5GEqGykpOBHFDb38UNkWPU+j+MqST0q034djzGvCtths30AxM4Z
-         y/T6ZUaY16uLQjn6rx1jmEp3WzF8a9A0LsRJBa2C9bFM5uXlOQ6jG4gdUm+LshI4cE
-         bxtI1JdS4hJdTraDWnm1XnEAX9Na0w7GafT0pYVpa1jVxorjeb6fjaHRtdDT+xUDGB
-         l/mFAlKHGX17w==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Sasha Levin <sashal@kernel.org>, liviu.dudau@arm.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 01/16] arm64: dts: juno: Add missing MHU secure-irq
-Date:   Wed, 14 Sep 2022 05:02:09 -0400
-Message-Id: <20220914090224.470913-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S231209AbiINJGo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:06:44 -0400
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC14E77540;
+        Wed, 14 Sep 2022 02:03:45 -0700 (PDT)
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-12b542cb1d3so29443603fac.13;
+        Wed, 14 Sep 2022 02:03:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=D+SZ90LOGKr6PSOG3NHenig+A+JoVupnzjOX8oY/5mM=;
+        b=nExX2H2C6WrTnNGSpxdkS/T1FL5M+Sr7vDYZT64HVjqQ5M/Pa7eAR4by6hMu0qfyxJ
+         3qbx21WcZf9gvJ23WYaYT5830WSHS9I0fxKg5PWV043q44CqnXwRpghkSNe3CAkC/uqg
+         JPNtPeZPgYSXBQ7jaLQMuYgYFWkLBrzEBMKeRSjk84LrI9NFp8PEgHV3rrvI5gEoAegf
+         f0oQrUcSA3nLHzjEbTP2bLpRjk3SI89VDDLBFyZfxUCyDyebpuKlXPAIT+G/kgKm4CcM
+         Wx3w7v7TzkDjxerXa+Q1jnVQXJueeoxUDhwHa49rCdpFkjQAs1c6QaIyJ738DjN9kXJM
+         8TQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=D+SZ90LOGKr6PSOG3NHenig+A+JoVupnzjOX8oY/5mM=;
+        b=mS2ni3e0ADsFiF1qCeBITsk7T8O8LmLeE91HIMJy19qDftYRJFvwM2dy/t6oT+B6yi
+         f7Htf5q7tcGNsxRJUGOz/K8zQmjphWgNJnQ3jOXpGz/tP69LfQX8EgUl4KSRCJtAplc0
+         HoseSD7WQOoylt+wR7eXB79RUEDz+tNXAFCPVVcHYfyLkhHqSZJ569gbIRa2/AYRRpds
+         bCij+EtBiybsKXXqm+DVZdRpCdMEHozWFnv75d+Hpj8fNTuJz1oLWg00IKRA0sDvJKrf
+         zMInELL+E2TEvGfcEypT+flN4wzIk6pkfcqrrUvSINfXQayZdy5HP3RUhiEWNacDn/fu
+         LpXg==
+X-Gm-Message-State: ACgBeo0EjWnu/dm5J0Fju19ojj3p57mh3j0FuhXGog2xSFp3D+QJMDvR
+        HA2ReI4Fn4LirnlHPvlmsaBEoESWmY+9efg7Twg=
+X-Google-Smtp-Source: AA6agR6ka3E1cNjL/pn5j8TiAFXOCTm4ghY2UhrM1mmRzKbdO8p0jFiJ1HzoekaKmYo3JI4vfIcTz0ZDPjt6wYynFCE=
+X-Received: by 2002:a05:6808:bcb:b0:345:aa85:6f33 with SMTP id
+ o11-20020a0568080bcb00b00345aa856f33mr1451152oik.83.1663146214114; Wed, 14
+ Sep 2022 02:03:34 -0700 (PDT)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220914085451.11723-1-arinc.unal@arinc9.com> <20220914085451.11723-5-arinc.unal@arinc9.com>
+In-Reply-To: <20220914085451.11723-5-arinc.unal@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 14 Sep 2022 11:03:23 +0200
+Message-ID: <CAMhs-H8MohXO6xNf+vNodv9hDyCog5_Hjcb6_=_ujmYmmeEdSg@mail.gmail.com>
+Subject: Re: [PATCH 04/10] dt-bindings: memory: mt7621: add syscon as
+ compatible string
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>, erkin.bozoglu@xeront.com,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jassi Brar <jaswinder.singh@linaro.org>
+On Wed, Sep 14, 2022 at 10:55 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arin=
+c9.com> wrote:
+>
+> Add syscon as a constant string on the compatible property as it's requir=
+ed
+> for the SoC to work. Update the example accordingly.
+>
+> Fixes: 5278e4a181ff ("dt-bindings: memory: add binding for Mediatek's MT7=
+621 SDRAM memory controller")
+> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> ---
+>  .../bindings/memory-controllers/mediatek,mt7621-memc.yaml   | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 
-[ Upstream commit 422ab8fe15e30066d4c8e236b747c77069bfca45 ]
+Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-The MHU secure interrupt exists physically but is missing in the DT node.
-
-Specify the interrupt in DT node to fix a warning on Arm Juno board:
-   mhu@2b1f0000: interrupts: [[0, 36, 4], [0, 35, 4]] is too short
-
-Link: https://lore.kernel.org/r/20220801141005.599258-1-jassisinghbrar@gmail.com
-Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/arm/juno-base.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-index a2635b14da309..34e5549ea748a 100644
---- a/arch/arm64/boot/dts/arm/juno-base.dtsi
-+++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-@@ -26,7 +26,8 @@ mailbox: mhu@2b1f0000 {
- 		compatible = "arm,mhu", "arm,primecell";
- 		reg = <0x0 0x2b1f0000 0x0 0x1000>;
- 		interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-+			     <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
- 		#mbox-cells = <1>;
- 		clocks = <&soc_refclk100mhz>;
- 		clock-names = "apb_pclk";
--- 
-2.35.1
-
+Thanks,
+    Sergio Paracuellos
