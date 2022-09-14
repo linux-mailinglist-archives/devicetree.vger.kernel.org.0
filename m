@@ -2,133 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56DF95B8E2D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 19:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 019415B8E3C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 19:39:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbiINRax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 13:30:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55390 "EHLO
+        id S229614AbiINRjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 13:39:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229609AbiINRaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 13:30:52 -0400
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CB8680365;
-        Wed, 14 Sep 2022 10:30:51 -0700 (PDT)
-Received: by mail-qv1-xf33.google.com with SMTP id c6so12278061qvn.6;
-        Wed, 14 Sep 2022 10:30:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=0L27G4iP/cuKuBXoxBJrd9C7v+AkXXve2e5WgZmnPFM=;
-        b=OwNpFg7qm3P6LQcskO6h973FuZ5ZH5pqPhL9rSvFWvFDrm4IqvH2rasrZoz63gaIVM
-         QBxwZeFlhTErfLCFnU/hBTKbTzaucoDPNVe+ec0H2jDaK8Ebhzi4iLc4B30cdh5SIP+J
-         U/u8Q+X/XTfAqwup7cUdIYBZy2FMkUqtyZkZx1xbRc2bYhX/D4AOCAU6cAR2wn7cwBTv
-         b/PDf4eVJsqSWzv4DCt6F0Fc7zS9N2yOjUi4GsS5Wj91RFeCQIxdy5ahy+ncakDr8iB6
-         Fxan9Mw9UOkoWGjPBTPYJun8O3wwAS+yMUT6j8hC6rwUjtVB9XEcsUqg/IOrwP18C5+W
-         aNJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=0L27G4iP/cuKuBXoxBJrd9C7v+AkXXve2e5WgZmnPFM=;
-        b=zB37yqYVwGp49Nxmoo0/lZHTwnyD0owHONmfIu0qSNIdzeGhAew/qCNUolvLPNkAiF
-         fKQ9VZKbAZqT8qvD5bz/gWa6CmoiAqcJQfcyKiYoCUaEAwy1mfkHvHyiAs8IE5RmCjHG
-         b3uOkOQaUA15yL4LkDkp59Yj3mt2Jb91DnkLssaZuIQX2bm+0Lm9SC1joLYTSCt1qpez
-         a+pdyfB/AQ2GD+CDNOT2ihDa6X2MdpTxElWGpcLcqtrwHUaC5VXxtac5EdYhz5QWcbpD
-         UJtnII5DkMMQf9rnKTM+66oHxswwFGfRO66grUV06EwFELsCsDY4K/tdICWCaV+NXzOK
-         jTlA==
-X-Gm-Message-State: ACgBeo3rOrzdHGSIV7e/dENJHKEPAsHQdu6znGZk5YJPib1jviwaxdNU
-        UdwOkwZ4lGRQkhHu5/Ksyyg=
-X-Google-Smtp-Source: AA6agR4NanY+oRAKCwumuYS4qynQNlgRdXUQ9CoMAaXbiNck4dr+MBmcWBG+TscWXqo8NNLfJw1SfA==
-X-Received: by 2002:a05:6214:2aaa:b0:4ac:acbd:7ef8 with SMTP id js10-20020a0562142aaa00b004acacbd7ef8mr16025208qvb.126.1663176650653;
-        Wed, 14 Sep 2022 10:30:50 -0700 (PDT)
-Received: from [10.69.40.226] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id x8-20020ac85388000000b0035bafecff78sm1838006qtp.74.2022.09.14.10.30.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Sep 2022 10:30:50 -0700 (PDT)
-Message-ID: <4d715585-413d-a506-1bc0-1f12a0aec716@gmail.com>
-Date:   Wed, 14 Sep 2022 10:30:45 -0700
+        with ESMTP id S229484AbiINRjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 13:39:07 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF75A7D783;
+        Wed, 14 Sep 2022 10:39:06 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28EHMBUJ028956;
+        Wed, 14 Sep 2022 17:38:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=rvVmLVjGZvLYsnQC4NpMDlUGCLF47EMYil578unxKAE=;
+ b=DshsbVTUZA7O6bQDT+7+ojYtjWIPMBer0N2mWIX9+m9qwLdTlFYnfBkIv2sHOK3QeNe/
+ fXkdcf3lUK+khhNXvQqf69p6fjsabmrOG2pplHQyDozFawrUSAM2TzCfBXuWRLQN9g9w
+ rXI5JjLuS29pl2OUybWld2+sUiaN/DomiJfKV0wtRhmebneu9HDclg2Sx1nvGzke+/7d
+ V/Je27IOwKbZFPJ4mEalKqS523OFqKepixrhVusfFqO4bnEqxEJEQErGvZ+gDSMBomZN
+ 9PnaOttvYzcmlQ7HisxIHkx3ZJsrpXThlpPst9jyDLBMlYz3uTaSpx9uJKPQ384GGb14 ig== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jjy0htrm4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Sep 2022 17:38:28 +0000
+Received: from nasanex01a.na.qualcomm.com ([10.52.223.231])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28EHcRLg023297
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Sep 2022 17:38:27 GMT
+Received: from [10.110.68.235] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 14 Sep
+ 2022 10:38:26 -0700
+Message-ID: <b8e0cbb4-8d4e-1208-0fa0-8f9178b6d85f@quicinc.com>
+Date:   Wed, 14 Sep 2022 10:38:25 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH 02/21] mm/hugetlb: correct max_huge_pages accounting on
- demote
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 2/2] mailbox: Add support for QTI CPUCP mailbox controller
 Content-Language: en-US
-To:     Mike Kravetz <mike.kravetz@oracle.com>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Muchun Song <songmuchun@bytedance.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Borislav Petkov <bp@suse.de>,
-        "Paul E. McKenney" <paulmck@kernel.org>,
-        Neeraj Upadhyay <quic_neeraju@quicinc.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        David Hildenbrand <david@redhat.com>, Zi Yan <ziy@nvidia.com>,
-        Oscar Salvador <osalvador@suse.de>,
-        Hari Bathini <hbathini@linux.ibm.com>,
-        Kees Cook <keescook@chromium.org>,
-        - <devicetree-spec@vger.kernel.org>,
-        KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>,
-        Mel Gorman <mgorman@suse.de>, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mm@kvack.org, iommu@lists.linux.dev
-References: <20220913195508.3511038-1-opendmb@gmail.com>
- <20220913195508.3511038-3-opendmb@gmail.com> <YyIN+bpKdCb3JuuY@monkey>
-From:   Doug Berger <opendmb@gmail.com>
-In-Reply-To: <YyIN+bpKdCb3JuuY@monkey>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Sibi Sankar <quic_sibis@quicinc.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <jassisinghbrar@gmail.com>, <manivannan.sadhasivam@linaro.org>
+CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <konrad.dybcio@somainline.org>,
+        Gaurav Kohli <gkohli@codeaurora.org>
+References: <1663135386-26270-1-git-send-email-quic_sibis@quicinc.com>
+ <1663135386-26270-3-git-send-email-quic_sibis@quicinc.com>
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <1663135386-26270-3-git-send-email-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SCC_BODY_URI_ONLY,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zsvqOhOkRg0rVPDsdfbuvfxrDPfjUjY2
+X-Proofpoint-GUID: zsvqOhOkRg0rVPDsdfbuvfxrDPfjUjY2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-14_08,2022-09-14_04,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ mlxlogscore=766 spamscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ malwarescore=0 clxscore=1011 impostorscore=0 suspectscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2208220000
+ definitions=main-2209140085
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/14/2022 10:23 AM, Mike Kravetz wrote:
-> On 09/13/22 12:54, Doug Berger wrote:
->> When demoting a hugepage to a smaller order, the number of pages
->> added to the target hstate will be the size of the large page
->> divided by the size of the smaller page.
->>
->> Fixes: 8531fc6f52f5 ("hugetlb: add hugetlb demote page support")
->> Signed-off-by: Doug Berger <opendmb@gmail.com>
->> ---
->>   mm/hugetlb.c | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/mm/hugetlb.c b/mm/hugetlb.c
->> index e070b8593b37..79949893ac12 100644
->> --- a/mm/hugetlb.c
->> +++ b/mm/hugetlb.c
->> @@ -3472,7 +3472,8 @@ static int demote_free_huge_page(struct hstate *h, struct page *page)
->>   	 * based on pool changes for the demoted page.
->>   	 */
->>   	h->max_huge_pages--;
->> -	target_hstate->max_huge_pages += pages_per_huge_page(h);
->> +	target_hstate->max_huge_pages += pages_per_huge_page(h) /
->> +					 pages_per_huge_page(target_hstate);
->>   
->>   	return rc;
->>   }
-> 
-> This has already been fixed here,
-> 
-> https://lore.kernel.org/linux-mm/20220823030209.57434-2-linmiaohe@huawei.com/
-> 
-Excellent! Thanks for the pointer and sorry for the noise.
--Doug
+Hi Sibi,
+
+> +
+> +MODULE_AUTHOR("Gaurav Kohli <gkohli@codeaurora.org>");
+> +MODULE_AUTHOR("Sibi Sankar <quic_sibis@qti.qualcomm.com>");
+
+Email address should be quic_sibi@quicinc.com.
+
+codeaurora.org is any way deprecated, so we should we keep it ? I know 
+giving the credit is important, but above address will not be reachable 
+anyways.
+
+---Trilok Soni
