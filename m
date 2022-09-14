@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 201655B8B42
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 17:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6565D5B8B44
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 17:06:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbiINPFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 11:05:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55782 "EHLO
+        id S229748AbiINPGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 11:06:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbiINPFq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 11:05:46 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3625C948;
-        Wed, 14 Sep 2022 08:05:44 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id d25-20020a9d72d9000000b00655d70a1aeaso7447859otk.3;
-        Wed, 14 Sep 2022 08:05:44 -0700 (PDT)
+        with ESMTP id S229569AbiINPGX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 11:06:23 -0400
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2502F74DF6;
+        Wed, 14 Sep 2022 08:06:22 -0700 (PDT)
+Received: by mail-oo1-f54.google.com with SMTP id k10-20020a4ad10a000000b004756ab911f8so1597732oor.2;
+        Wed, 14 Sep 2022 08:06:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=80//9U4S6KsWyMgkd9OiwJsN9gRoyLztpU/FnVB8ROI=;
-        b=rjS73MzAQrLV8oiXkqN7vSp/NiZldjAs0wGccHvey8PDxrvkBOio1IdnZDX+tcxL7p
-         E0uek3G7HWSniNU/0UyUmoYAWEeDREQSUf+zBAz/jNsYf0rPLmGtJpc72abLPIv3PBVq
-         A6s4LQIsGDmbjnCFX93Q9AhaianS86klPljLRthksUFvqyAQ+XxgBZNZDgI3e+9X6CeN
-         QZcEqyPdXHaaTUh6l1qJDJXdu/1DYqHZXaxFQkd83sEHFSibiJFDGIQ1JwBzrLgN7gLf
-         TMzAp/ICNCYadyzpNOGrV8mM58D9iSmqYGBGcMIU6PPmmv2DnblK1vUCVZkqkTNbT6Ig
-         CevA==
-X-Gm-Message-State: ACgBeo1Y0WwMeZYLI4jH/oiOBxfOY7oO7h+dqwrTiPfhWL5UU7BbD8Me
-        3u8wSLnUGiTSy9Jax5PArw==
-X-Google-Smtp-Source: AA6agR5zJBQVMjWrqECTLtJ5QNTsna7ICAdaJtE7muSiIc4MWJbSXlOqCD8A1Zi0t18uXDKx2/3fxQ==
-X-Received: by 2002:a9d:be7:0:b0:655:b6da:7eda with SMTP id 94-20020a9d0be7000000b00655b6da7edamr10632379oth.46.1663167943740;
-        Wed, 14 Sep 2022 08:05:43 -0700 (PDT)
+        bh=DG8jK2VGVF6CoXW6DXySelXNuunB85oFke/oAJQGn7M=;
+        b=wVOliwZVEQI9pO23PMCDUuiPMOrSfmsFpFylZNZhzpR9IDQf3FSXZ5sLXeTbj50fzt
+         3EYUeFnvjlXkRcZToVcNYrtSZV4DAt9ND34Bu2AVK4y1P1x75A0Kqz4ureK45fDLytzx
+         5qhJG8yxhwD8zVZx/EGaCOZRi5KhV2/+2UPZcxCRqHVmKsz1qYGhbwsxdTOXBEcButud
+         F6VSik//BR5lG1Mpg5nGBJReABciRjR5q5r8EsilBb7gsT6KtLpaP2Q7rm/RKeIt9aZF
+         wThNAHZzLiHI90FTHRpcS313T+Dj61vGW46Xvf2y3azu9mqvRUPSqpAgvsa30Q2x20JV
+         JYIw==
+X-Gm-Message-State: ACgBeo3XV5xuCXpaxURU9E37svEj+1TVXikjtv4kQVsxhBO0NNPsPb1j
+        Ex786d2kc9kOeE7RhLG95w==
+X-Google-Smtp-Source: AA6agR77S+W1uvRmgcKfkwfbm9OYUUZIqqBM8PBzfVvughcMQPv55SChHWRW8CTOWrpBRsoJZsZ3vg==
+X-Received: by 2002:a4a:d41:0:b0:44a:8081:733c with SMTP id 62-20020a4a0d41000000b0044a8081733cmr12883364oob.71.1663167981347;
+        Wed, 14 Sep 2022 08:06:21 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q14-20020a056871080e00b00127ba61535fsm8664215oap.15.2022.09.14.08.05.42
+        by smtp.gmail.com with ESMTPSA id u22-20020a056871009600b0012b342d1125sm7788150oaa.13.2022.09.14.08.06.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 08:05:43 -0700 (PDT)
-Received: (nullmailer pid 2218149 invoked by uid 1000);
-        Wed, 14 Sep 2022 15:05:42 -0000
-Date:   Wed, 14 Sep 2022 10:05:42 -0500
+        Wed, 14 Sep 2022 08:06:20 -0700 (PDT)
+Received: (nullmailer pid 2221684 invoked by uid 1000);
+        Wed, 14 Sep 2022 15:06:20 -0000
+Date:   Wed, 14 Sep 2022 10:06:20 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     kernel@pengutronix.de, Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: gpio: Add gpio-latch binding document
-Message-ID: <20220914150542.GA2218095-robh@kernel.org>
-References: <20220914071306.3254881-1-s.hauer@pengutronix.de>
- <20220914071306.3254881-3-s.hauer@pengutronix.de>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     cy_huang@richtek.com, robh+dt@kernel.org, chiaen_wu@richtek.com,
+        linux-mediatek@lists.infradead.org, alice_chen@richtek.com,
+        linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: mt6370: fix the indentation in the
+ example
+Message-ID: <20220914150620.GA2221443-robh@kernel.org>
+References: <1663143803-28660-1-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220914071306.3254881-3-s.hauer@pengutronix.de>
+In-Reply-To: <1663143803-28660-1-git-send-email-u0084500@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -64,20 +65,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Sep 2022 09:13:06 +0200, Sascha Hauer wrote:
-> This adds a binding for a GPIO multiplexer driver based on latches
-> connected to other GPIOs.
+On Wed, 14 Sep 2022 16:23:23 +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Fix the indentation in the binding example. There're two redudant space
+> charactors need to be removed.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > ---
-> 
-> Notes:
->     Changes since v1:
->     - Add license to binding file
-> 
->  .../devicetree/bindings/gpio/gpio-latch.yaml  | 85 +++++++++++++++++++
->  1 file changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-latch.yaml
+>  Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
