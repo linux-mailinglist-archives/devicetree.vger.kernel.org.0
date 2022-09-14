@@ -2,224 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B73A5B8601
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 12:11:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DC8C5B85FC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 12:11:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbiINKL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 06:11:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60240 "EHLO
+        id S229489AbiINKLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 06:11:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbiINKL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 06:11:26 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E826C27CE9;
-        Wed, 14 Sep 2022 03:11:24 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28EA6UeT001093;
-        Wed, 14 Sep 2022 10:10:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=subject : to :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=PqegGpNl0qJyiVy3o716TPoEjNN3fwQINyxJgf9bHko=;
- b=hH0l4vGVvCyI5B3eAGYn/Ki7Ne3B+X2+UmDkLfG1w4BWkwaGmhW222yduKmVFPXHbLfK
- 3X5+cBr//p4bXcS37cKmp8gJlkQN6q5Y29Tv4rUReR5jMxjKNiBNPQBGNjawY6oCp+tm
- Qr1okHQoR5l1IwjuD8tnxC2LOyHuM/+jxfrXlTqHM+4pWO6RbcAHCWt27lq1hfu3+1vD
- mqFe6FTts/xi8gHSkZ8DUW/s/iR1dOueoabah1TvhM5g6N0Y4FsBub3BqkSrIoEgtDF0
- 889WWApMG6z8Y9NbNjD9ukT0zXz6SvscTvIblerGOYrLEDKSkbjSFvThRJxFn9Qg8+cd qw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jjy06htkg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Sep 2022 10:10:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28EAAfux002847
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 14 Sep 2022 10:10:41 GMT
-Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 14 Sep
- 2022 03:10:36 -0700
-Subject: Re: [PATCH v6 7/8] remoteproc: qcom: Add support for memory sandbox
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
-References: <1662643422-14909-1-git-send-email-quic_srivasam@quicinc.com>
- <1662643422-14909-8-git-send-email-quic_srivasam@quicinc.com>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-Message-ID: <3c951582-070c-675f-14c7-ca033ca347b6@quicinc.com>
-Date:   Wed, 14 Sep 2022 15:40:33 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S229630AbiINKLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 06:11:01 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E2427CE9;
+        Wed, 14 Sep 2022 03:10:53 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id q9so4750543pgq.8;
+        Wed, 14 Sep 2022 03:10:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=JiXzFao2IXE51u6P2eepNq4pCQEWFKf+k65/k79eqvc=;
+        b=ikDi6LLBbbYK1nnIT1Ou8BfEK76v6fQhkiOXMHLw3p+/ijkuPKbdTVdrbZsafS37N1
+         EyCt8n+nFCQo8XFEbVDemcwryO2XY01rEonCd2P1XOcXjnhlkjQFQOQcksN2EzmkipOj
+         1flfuxGL5zMqibMR7/f2CYVjy9t+dHcvmqUntN96x0MQKhzbJJGKdtOw9ajkETEi//hf
+         aGAzUoUkvmU/g57pz7yAErvLOrRtwOAbYK6uOXsCB9eQ6zXjrBTn8ZT0wlAu+x0vL+9x
+         DK6uF3h0LV4kxhAfEgQydIEwwjysH4UcDgjjiiiRrbl3kbcXU/+ATLaAwnnrwxM4xRhN
+         IQOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=JiXzFao2IXE51u6P2eepNq4pCQEWFKf+k65/k79eqvc=;
+        b=pMAESNjRz1ubCELa3x1+3fr2Yjj21+gRQ+NHvsd3KWUGGMpX4swGqVI53mZVyVJNe/
+         zZsqvKerOuiXK4ArmRyytKtll2dMr2wgMikGTw53zfD//v/jokVQfMoOQEPRJFzlWbDY
+         zbCwysGPvqHUsZe7JNihxPbFrAnJEPbC6iNmZngsCwjIZiUTwMysBVEKOyXgqZeQbyXk
+         g74jW2bcWOe/QUQLydiRK7UkZ5dU1vU5sDvJWrFznTImlK0rjOMr/y8W2lbtwN7/r0XO
+         C5MReg2qwFoY0ksRYd2OqTrBbsnn9z+8aECddCmSuSeCJy4/E3xPJ5VEPUFZR6BPddX2
+         3igw==
+X-Gm-Message-State: ACgBeo3MUtE2ROG4/xh7yhuG4j4f7w2flJn+neXqe/puGCl20SySUjL/
+        Qo/AM+IhzLB5+eD7YPE8twI=
+X-Google-Smtp-Source: AA6agR6w9UOk+8+u3Q3O3QDSvcoRdevs+VLAWiIaZfwqEmlFuQ2DIAZvmrGw8MdBImY9OqxWqeBvkA==
+X-Received: by 2002:a63:de58:0:b0:439:41e9:dda2 with SMTP id y24-20020a63de58000000b0043941e9dda2mr6207728pgi.331.1663150253131;
+        Wed, 14 Sep 2022 03:10:53 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:2f68:fe7:a2e6:7595])
+        by smtp.gmail.com with ESMTPSA id b6-20020a1709027e0600b00176dee43e0dsm10143840plm.285.2022.09.14.03.10.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 03:10:52 -0700 (PDT)
+Date:   Wed, 14 Sep 2022 03:10:50 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 05/11] Input: iqs7222 - trim force communication command
+Message-ID: <YyGoqqGbY2YczV2E@google.com>
+References: <20220908131548.48120-1-jeff@labundy.com>
+ <20220908131548.48120-6-jeff@labundy.com>
+ <YxpdeuPAYiSVjmO7@google.com>
+ <YyD1JmuC6UH+DDHG@nixie71>
 MIME-Version: 1.0
-In-Reply-To: <1662643422-14909-8-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: vLI_AbPmfzToR8czebEypD7BNlSF5HO0
-X-Proofpoint-ORIG-GUID: vLI_AbPmfzToR8czebEypD7BNlSF5HO0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-14_03,2022-09-14_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 priorityscore=1501 impostorscore=0 adultscore=0
- spamscore=0 mlxlogscore=999 clxscore=1015 suspectscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2208220000 definitions=main-2209140049
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YyD1JmuC6UH+DDHG@nixie71>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9/8/22 6:53 PM, Srinivasa Rao Mandadapu wrote:
-> Update pil driver with SMMU mapping for allowing authorised
-> memory access to ADSP firmware, by carveout reserved adsp memory
-> region from device tree file.
+On Tue, Sep 13, 2022 at 04:24:54PM -0500, Jeff LaBundy wrote:
+> Hi Dmitry,
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> ---
-> Changes since V5:
-> 	-- Remove adsp_rproc_unmap_smmu, adsp_of_unmap_smmu, adsp_of_map_smmu and
-> 	   adsp_rproc_map_smmu functions.
-> 	-- Remove find_loaded_rsc_table call back initialization.
-> 	-- Rename adsp_sandbox_needed to has_iommu.
-> Changes since V4:
-> 	-- Split the code and add appropriate APIs for resource allocation and free.
-> 	-- Update adsp_unmap_smmu with missing free ops call.
-> 	-- Update normalizing length value in adsp_of_unmap_smmu.
-> Changes since V3:
-> 	-- Rename is_adsp_sb_needed to adsp_sandbox_needed.
-> 	-- Add smmu unmapping in error case and in adsp stop.
-> Changes since V2:
-> 	-- Replace platform_bus_type with adsp->dev->bus.
-> 	-- Use API of_parse_phandle_with_args() instead of of_parse_phandle_with_fixed_args().
-> 	-- Replace adsp->is_wpss with adsp->is_adsp.
-> 	-- Update error handling in adsp_start().
+> On Thu, Sep 08, 2022 at 02:24:10PM -0700, Dmitry Torokhov wrote:
+> > On Thu, Sep 08, 2022 at 08:15:42AM -0500, Jeff LaBundy wrote:
+> > > According to the datasheets, writing only 0xFF is sufficient to
+> > > elicit a communication window. Remove the superfluous 0x00 from
+> > > the force communication command.
+> > > 
+> > > Fixes: e505edaedcb9 ("Input: add support for Azoteq IQS7222A/B/C")
+> > > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
+> > 
+> > Applied, thank you.
 > 
->   drivers/remoteproc/qcom_q6v5_adsp.c | 55 ++++++++++++++++++++++++++++++++++++-
->   1 file changed, 54 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
-> index ccb5592..e55d593 100644
-> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
-> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
-> @@ -9,6 +9,7 @@
->   #include <linux/firmware.h>
->   #include <linux/interrupt.h>
->   #include <linux/io.h>
-> +#include <linux/iommu.h>
->   #include <linux/iopoll.h>
->   #include <linux/kernel.h>
->   #include <linux/mfd/syscon.h>
-> @@ -48,6 +49,8 @@
->   #define LPASS_PWR_ON_REG		0x10
->   #define LPASS_HALTREQ_REG		0x0
->   
-> +#define SID_MASK_DEFAULT        0xF
-> +
->   #define QDSP6SS_XO_CBCR		0x38
->   #define QDSP6SS_CORE_CBCR	0x20
->   #define QDSP6SS_SLEEP_CBCR	0x3c
-> @@ -333,6 +336,42 @@ static int adsp_load(struct rproc *rproc, const struct firmware *fw)
->   	return 0;
->   }
->   
-> +static void adsp_unmap_smmu(struct rproc *rproc)
-> +{
-> +	struct qcom_adsp *adsp = (struct qcom_adsp *)rproc->priv;
-> +
-> +	iommu_unmap(rproc->domain, adsp->mem_phys, adsp->mem_size);
-> +}
-> +
-> +static int adsp_map_smmu(struct qcom_adsp *adsp, struct rproc *rproc)
+> I didn't happen to see this one hit your tree, so I can simply include
+> it in v2 coming soon. In case I have misunderstood, please let me know.
 
-you could perhaps name the func to adsp_map_carveout/adsp_unmap_carveout
+Should be there now.
 
+Thanks.
 
-> +{
-> +	struct of_phandle_args args;
-> +	long long sid;
-> +	unsigned long iova;
-> +	int ret;
-> +
-> +	if (!rproc->domain)
-> +		return -EINVAL;
-> +
-> +	ret = of_parse_phandle_with_args(adsp->dev->of_node, "iommus", "#iommu-cells", 0, &args);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	sid = args.args[0] & SID_MASK_DEFAULT;
-> +
-> +	/* Add SID configuration for ADSP Firmware to SMMU */
-> +	iova =  adsp->mem_phys | (sid << 32);
-> +
-> +	ret = iommu_map(rproc->domain, iova, adsp->mem_phys,
-> +			adsp->mem_size,	IOMMU_READ | IOMMU_WRITE);
-> +	if (ret) {
-> +		dev_err(adsp->dev, "Unable to map ADSP Physical Memory\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   static int adsp_start(struct rproc *rproc)
->   {
->   	struct qcom_adsp *adsp = (struct qcom_adsp *)rproc->priv;
-> @@ -343,9 +382,17 @@ static int adsp_start(struct rproc *rproc)
->   	if (ret)
->   		return ret;
->   
-> +	if (adsp->has_iommu) {
-> +		ret = adsp_map_smmu(adsp, rproc);
-> +		if (ret) {
-> +			dev_err(adsp->dev, "ADSP smmu mapping failed\n");
-> +			goto disable_irqs;
-> +		}
-> +	}
-> +
->   	ret = clk_prepare_enable(adsp->xo);
->   	if (ret)
-> -		goto disable_irqs;
-> +		goto adsp_smmu_unmap;
->   
->   	ret = qcom_rproc_pds_enable(adsp, adsp->proxy_pds,
->   				    adsp->proxy_pd_count);
-> @@ -401,6 +448,9 @@ static int adsp_start(struct rproc *rproc)
->   	qcom_rproc_pds_disable(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
->   disable_xo_clk:
->   	clk_disable_unprepare(adsp->xo);
-> +adsp_smmu_unmap:
-> +	if (adsp->has_iommu)
-> +		adsp_unmap_smmu(rproc);
->   disable_irqs:
->   	qcom_q6v5_unprepare(&adsp->q6v5);
->   
-> @@ -429,6 +479,9 @@ static int adsp_stop(struct rproc *rproc)
->   	if (ret)
->   		dev_err(adsp->dev, "failed to shutdown: %d\n", ret);
->   
-> +	if (adsp->has_iommu)
-> +		adsp_unmap_smmu(rproc);
-> +
->   	handover = qcom_q6v5_unprepare(&adsp->q6v5);
->   	if (handover)
->   		qcom_adsp_pil_handover(&adsp->q6v5);
-> 
+-- 
+Dmitry
