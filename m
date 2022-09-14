@@ -2,243 +2,328 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16B0E5B8A2B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:17:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0B115B8A9B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbiINORA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 10:17:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56402 "EHLO
+        id S230107AbiINOds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 10:33:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiINOQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:16:59 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0C111461;
-        Wed, 14 Sep 2022 07:16:57 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-1274ec87ad5so41421747fac.0;
-        Wed, 14 Sep 2022 07:16:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=LqWwwMgkG7q5ptOWydu1eZtOteFgp2ChgqWkwJBq1/Y=;
-        b=QyRcxR/1I67iRc4JOMrM1UHyd9ELBkgR2k5LY1Vwa277XUMq9wY9ugUsw1qdwSEZhN
-         Pu5s+07Yo67EPyU3fknadJKfAe/Evrb5ibhkpyzSKauJUbyfUIPYa1+7EcOvvoti/D3W
-         tLlM3yGRrD6Fz9K8mLvqG3mkFG1+rsqr4LxN3Nd1nSHzS/quucz1LCPwdVShHqYkNkdr
-         UVuLKGKWfMXQfJ7mfomzUUcqvOqikFsaW9CadJTWZU4j8Oo7LZmCI6uGFXMKI8SrcgSE
-         CjPlaeQcDbuJDr3YlDcGljLFaU4U30YfmIQhI5SCPTvKFMy6r7IappuHDXeTFDhOGSmc
-         J7dQ==
-X-Gm-Message-State: ACgBeo3JSXUaFRtRrk3eL561sDmL8yI26ZMZ2WQYx5zqc3C0qQ+UTDGL
-        MfrsOqDt8QhmEFC8sZc1QQ==
-X-Google-Smtp-Source: AA6agR7phoLpgx1eeplqQalugb9TIpdhbmJA6tTFog1tvBunzcuMFods958BQm82BxYmhHzdK6ybAg==
-X-Received: by 2002:a05:6808:bca:b0:344:ef42:930f with SMTP id o10-20020a0568080bca00b00344ef42930fmr1919902oik.0.1663165017098;
-        Wed, 14 Sep 2022 07:16:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 59-20020a9d0141000000b0063695ad0cbesm7221742otu.66.2022.09.14.07.16.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 07:16:56 -0700 (PDT)
-Received: (nullmailer pid 2138104 invoked by uid 1000);
-        Wed, 14 Sep 2022 14:16:55 -0000
-Date:   Wed, 14 Sep 2022 09:16:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S230095AbiINOdr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:33:47 -0400
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D62BE2C125
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 07:33:45 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:e925:8cbe:2e99:b03b])
+        by andre.telenet-ops.be with bizsmtp
+        id KqZi2800x3vs4GX01qZilT; Wed, 14 Sep 2022 16:33:43 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1oYTSQ-005B5L-8B; Wed, 14 Sep 2022 16:33:42 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1oYTD1-000z8A-UK; Wed, 14 Sep 2022 16:17:47 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH] media: dt-bindings: ov5645: Convert OV5645 binding to a
- schema
-Message-ID: <20220914141655.GA2131586-robh@kernel.org>
-References: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2] dt-bindings: phy: renesas,rcar-gen2-usb-phy: Convert to json-schema
+Date:   Wed, 14 Sep 2022 16:17:37 +0200
+Message-Id: <dbdcffd009302734fe2fb895ce04b72fa1ea4355.1663165000.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 13, 2022 at 05:02:24PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Convert the simple OV5645 Device Tree binding to json-schema.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 --------
->  .../bindings/media/i2c/ovti,ov5645.yaml       | 119 ++++++++++++++++++
->  2 files changed, 119 insertions(+), 54 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-> deleted file mode 100644
-> index 72ad992f77be..000000000000
-> --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-> +++ /dev/null
-> @@ -1,54 +0,0 @@
-> -* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
-> -
-> -The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
-> -an active array size of 2592H x 1944V. It is programmable through a serial I2C
-> -interface.
-> -
-> -Required Properties:
-> -- compatible: Value should be "ovti,ov5645".
-> -- clocks: Reference to the xclk clock.
-> -- clock-names: Should be "xclk".
-> -- clock-frequency: Frequency of the xclk clock.
-> -- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
-> -  to the hardware pin PWDNB which is physically active low.
-> -- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
-> -  the hardware pin RESETB.
-> -- vdddo-supply: Chip digital IO regulator.
-> -- vdda-supply: Chip analog regulator.
-> -- vddd-supply: Chip digital core regulator.
-> -
-> -The device node must contain one 'port' child node for its digital output
-> -video port, in accordance with the video interface bindings defined in
-> -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> -
-> -Example:
-> -
-> -	&i2c1 {
-> -		...
-> -
-> -		ov5645: ov5645@3c {
-> -			compatible = "ovti,ov5645";
-> -			reg = <0x3c>;
-> -
-> -			enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
-> -			reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
-> -			pinctrl-names = "default";
-> -			pinctrl-0 = <&camera_rear_default>;
-> -
-> -			clocks = <&clks 200>;
-> -			clock-names = "xclk";
-> -			clock-frequency = <24000000>;
-> -
-> -			vdddo-supply = <&camera_dovdd_1v8>;
-> -			vdda-supply = <&camera_avdd_2v8>;
-> -			vddd-supply = <&camera_dvdd_1v2>;
-> -
-> -			port {
-> -				ov5645_ep: endpoint {
-> -					clock-lanes = <1>;
-> -					data-lanes = <0 2>;
-> -					remote-endpoint = <&csi0_ep>;
-> -				};
-> -			};
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
-> new file mode 100644
-> index 000000000000..7f407c988f87
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5645.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OV5645 Image Sensor Device Tree Bindings
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
+Convert the Renesas R-Car Gen2 USB PHY Device Tree binding documentation
+to json-schema.
 
-What are you using from here?
+Add missing properties.
+Rename the device node from "usb-phy" to "usb-phy-controller", as it
+does not represent a USB PHY itself, and thus does not have a
+"#phy-cells" property.
+Rename the child nodes from "usb-channel" to "usb-phy", as these do
+represent USB PHYs.
+Drop the second example, as it doesn't add any value.
 
-(Answer below)
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v2:
+  - Rename nodes to fix "'#phy-cells' is a required property".
 
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov5645
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: XCLK Input Clock
-> +
-> +  clock-names:
-> +    const: xclk
-> +
-> +  clock-frequency:
-> +    description: Frequency of the xclk clock in Hz.
-> +
-> +  vdda-supply:
-> +    description: Analog voltage supply, 2.8 volts
-> +
-> +  vddd-supply:
-> +    description: Digital core voltage supply, 1.5 volts
-> +
-> +  vdddo-supply:
-> +    description: Digital I/O voltage supply, 1.8 volts
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Reference to the GPIO connected to the PWDNB pin, if any.
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Reference to the GPIO connected to the RESETB pin, if any.
-> +
-> +  port:
-> +    description: Digital Output Port
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          clock-lanes:
-> +            const: 0
-> +
-> +          bus-type:
-> +            const: 4
-> +
-> +          data-lanes:
-> +            minItems: 1
-> +            maxItems: 2
-> +            items:
-> +              enum: [1, 2]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - clock-frequency
-> +  - vdda-supply
-> +  - vddd-supply
-> +  - vdddo-supply
-> +  - enable-gpios
-> +  - reset-gpios
-> +  - port
-> +
-> +additionalProperties: false
+This is the final conversion to json-schema of DT bindings for Renesas
+ARM SoCs, hurray!
 
-You are not because this prevents it. Either remove the ref or use 
-unevaluatedProperties.
+Note that there are still a few plain text bindings left for Renesas IP
+cores that are present on non-Renesas SoCs (nbpfaxi and usdhi6rol0).
+---
+ .../devicetree/bindings/phy/rcar-gen2-phy.txt | 112 ----------------
+ .../phy/renesas,rcar-gen2-usb-phy.yaml        | 123 ++++++++++++++++++
+ 2 files changed, 123 insertions(+), 112 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml
 
-Rob
+diff --git a/Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt b/Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt
+deleted file mode 100644
+index a3bd1c4499b75bdb..0000000000000000
+--- a/Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt
++++ /dev/null
+@@ -1,112 +0,0 @@
+-* Renesas R-Car generation 2 USB PHY
+-
+-This file provides information on what the device node for the R-Car generation
+-2 USB PHY contains.
+-
+-Required properties:
+-- compatible: "renesas,usb-phy-r8a7742" if the device is a part of R8A7742 SoC.
+-	      "renesas,usb-phy-r8a7743" if the device is a part of R8A7743 SoC.
+-	      "renesas,usb-phy-r8a7744" if the device is a part of R8A7744 SoC.
+-	      "renesas,usb-phy-r8a7745" if the device is a part of R8A7745 SoC.
+-	      "renesas,usb-phy-r8a77470" if the device is a part of R8A77470 SoC.
+-	      "renesas,usb-phy-r8a7790" if the device is a part of R8A7790 SoC.
+-	      "renesas,usb-phy-r8a7791" if the device is a part of R8A7791 SoC.
+-	      "renesas,usb-phy-r8a7794" if the device is a part of R8A7794 SoC.
+-	      "renesas,rcar-gen2-usb-phy" for a generic R-Car Gen2 or
+-					  RZ/G1 compatible device.
+-
+-	      When compatible with the generic version, nodes must list the
+-	      SoC-specific version corresponding to the platform first
+-	      followed by the generic version.
+-
+-- reg: offset and length of the register block.
+-- #address-cells: number of address cells for the USB channel subnodes, must
+-		  be <1>.
+-- #size-cells: number of size cells for the USB channel subnodes, must be <0>.
+-- clocks: clock phandle and specifier pair.
+-- clock-names: string, clock input name, must be "usbhs".
+-
+-The USB PHY device tree node should have the subnodes corresponding to the USB
+-channels. These subnodes must contain the following properties:
+-- reg: the USB controller selector; see the table below for the values.
+-- #phy-cells: see phy-bindings.txt in the same directory, must be <1>.
+-
+-The phandle's argument in the PHY specifier is the USB controller selector for
+-the USB channel other than r8a77470 SoC; see the selector meanings below:
+-
+-+-----------+---------------+---------------+
+-|\ Selector |               |               |
+-+ --------- +       0       |       1       |
+-| Channel  \|               |               |
+-+-----------+---------------+---------------+
+-| 0         | PCI EHCI/OHCI | HS-USB        |
+-| 2         | PCI EHCI/OHCI | xHCI          |
+-+-----------+---------------+---------------+
+-
+-For r8a77470 SoC;see the selector meaning below:
+-
+-+-----------+---------------+---------------+
+-|\ Selector |               |               |
+-+ --------- +       0       |       1       |
+-| Channel  \|               |               |
+-+-----------+---------------+---------------+
+-| 0         | EHCI/OHCI     | HS-USB        |
+-+-----------+---------------+---------------+
+-
+-Example (Lager board):
+-
+-	usb-phy@e6590100 {
+-		compatible = "renesas,usb-phy-r8a7790", "renesas,rcar-gen2-usb-phy";
+-		reg = <0 0xe6590100 0 0x100>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		clocks = <&cpg CPG_MOD 704>;
+-		clock-names = "usbhs";
+-		power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
+-		resets = <&cpg 704>;
+-
+-		usb0: usb-channel@0 {
+-			reg = <0>;
+-			#phy-cells = <1>;
+-		};
+-		usb2: usb-channel@2 {
+-			reg = <2>;
+-			#phy-cells = <1>;
+-		};
+-	};
+-
+-Example (iWave RZ/G1C sbc):
+-
+-	usbphy0: usb-phy0@e6590100 {
+-		compatible = "renesas,usb-phy-r8a77470",
+-			     "renesas,rcar-gen2-usb-phy";
+-		reg = <0 0xe6590100 0 0x100>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		clocks = <&cpg CPG_MOD 704>;
+-		clock-names = "usbhs";
+-		power-domains = <&sysc R8A77470_PD_ALWAYS_ON>;
+-		resets = <&cpg 704>;
+-
+-		usb0: usb-channel@0 {
+-			reg = <0>;
+-			#phy-cells = <1>;
+-		};
+-	};
+-
+-	usbphy1: usb-phy@e6598100 {
+-		compatible = "renesas,usb-phy-r8a77470",
+-			     "renesas,rcar-gen2-usb-phy";
+-		reg = <0 0xe6598100 0 0x100>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		clocks = <&cpg CPG_MOD 706>;
+-		clock-names = "usbhs";
+-		power-domains = <&sysc R8A77470_PD_ALWAYS_ON>;
+-		resets = <&cpg 706>;
+-
+-		usb1: usb-channel@0 {
+-			reg = <0>;
+-			#phy-cells = <1>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml
+new file mode 100644
+index 0000000000000000..afc09f39b02bd2c4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml
+@@ -0,0 +1,123 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/renesas,rcar-gen2-usb-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas R-Car Gen2 USB PHY
++
++maintainers:
++  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - renesas,usb-phy-r8a7742      # RZ/G1H
++          - renesas,usb-phy-r8a7743      # RZ/G1M
++          - renesas,usb-phy-r8a7744      # RZ/G1N
++          - renesas,usb-phy-r8a7745      # RZ/G1E
++          - renesas,usb-phy-r8a77470     # RZ/G1C
++          - renesas,usb-phy-r8a7790      # R-Car H2
++          - renesas,usb-phy-r8a7791      # R-Car M2-W
++          - renesas,usb-phy-r8a7794      # R-Car E2
++      - const: renesas,rcar-gen2-usb-phy # R-Car Gen2 or RZ/G1
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: usbhs
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++patternProperties:
++  "^usb-phy@[02]$":
++    type: object
++    description: Subnode corresponding to a USB channel.
++
++    properties:
++      reg:
++        description: FIXME RZ/G1C supports channel 0 only
++        enum: [0, 2]
++
++      '#phy-cells':
++        description: |
++          The phandle's argument in the PHY specifier is the USB controller
++          selector for the USB channel.
++          For RZ/G1C:
++            - 0 for EHCI/OHCI
++            - 1 for HS-USB
++          For all other SoCS:
++            - 0 for PCI EHCI/OHCI
++            - 1 for HS-USB (channel 0) or xHCI (channel 2)
++        const: 1
++
++    required:
++      - reg
++      - '#phy-cells'
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - '#address-cells'
++  - '#size-cells'
++  - clocks
++  - clock-names
++  - resets
++  - power-domains
++  - usb-phy@0
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: renesas,usb-phy-r8a77470
++then:
++  properties:
++    usb-phy@2: false
++else:
++  required:
++    - usb-phy@2
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
++    #include <dt-bindings/power/r8a7790-sysc.h>
++    usb-phy-controller@e6590100 {
++        compatible = "renesas,usb-phy-r8a7790", "renesas,rcar-gen2-usb-phy";
++        reg = <0xe6590100 0x100>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        clocks = <&cpg CPG_MOD 704>;
++        clock-names = "usbhs";
++        power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
++        resets = <&cpg 704>;
++
++        usb0: usb-phy@0 {
++            reg = <0>;
++            #phy-cells = <1>;
++        };
++        usb2: usb-phy@2 {
++            reg = <2>;
++            #phy-cells = <1>;
++        };
++    };
+-- 
+2.25.1
+
