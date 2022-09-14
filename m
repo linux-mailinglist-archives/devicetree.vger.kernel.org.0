@@ -2,154 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D93AF5B86C9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 12:54:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD48A5B86E0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:01:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230133AbiINKyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 06:54:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39328 "EHLO
+        id S229770AbiINLBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 07:01:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbiINKxw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 06:53:52 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60087.outbound.protection.outlook.com [40.107.6.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 802DB7F0A0;
-        Wed, 14 Sep 2022 03:53:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XbP2TnQP0iXsWtBXyLEGwfQ1IjXGT1gy8clyd/p7chMMEHHuVgHK1N2m5NldOe/tOPs8eo1dPRA+orUWi61v26PFuy2SLUxNywW1Rpl9bPKAqTqsk8L+9iwVSpDgA0MZh7GrV2FTBbhDSFkpeOWfQlfFBZ3WKGzxZ87XNktt8EuccKWHzaxJtQ1SXhoBRAvwDIq08Lsrydpo9lCzshUhrVEpT0xPtZcC+Yy8tmSdi49dVFzc2G0ta4H462WO0H7WwE6QGQ/xkwjJPPWNwaBWkzkTeq4tTqrIdB6URi4YStH/c2HBYjc/60RJRKETJJ/JtTMXwT3U0xUF0eB0ae6zqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PxTQ7IVzde13UUXchPar1dvJ+XllS83LF43FxapAL3E=;
- b=fuZnNzNalix4Ij4FSEWgnThxQt8DKwtEP0RCJZj59cM0RCRnISA6kF1WLn7P2VINxB6lTzTDsG6e/Bn5GHElna8bfQdwoOcFPZVEvzqip/3x7xTr0tQnoOO/+Sz4+yf1fWaYr4D5DFolZ/OoiFO/BJ4vOfQv4qFneXfAFg2ctddMFID8qQ/Iiq3Ia/R+fiN8NnzW5ZjXjUQfD4Qvp1vvhr/P050jIFEcqrwF0Jd9hZRcuIQOB/zvqQcwA0hIXJFpIb/9zcIaeFSHft2KqKkVjkgBoV74vMNZYVj+tiavo3catumxz1tMNfuuirZ35ErRAX8POZn/UouW1tiPUDE69w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PxTQ7IVzde13UUXchPar1dvJ+XllS83LF43FxapAL3E=;
- b=D38spTBDRR796QMIzkyiS4w9EQsB4j/uYAPhz0UFbAiaCtU44I/uhMhsqvJq7loH7fZoy/BtTBi3sJEFIYP+g0Z96DCkDtHy9r6e6zF4kiKZDHYFBqV2su+EONZitBvOSTFy9k3QSYRl+jdnpRHTUIgRR3WDdXAMlBLNjsi+Y3c=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB4222.eurprd04.prod.outlook.com (2603:10a6:803:46::19)
- by PA4PR04MB7773.eurprd04.prod.outlook.com (2603:10a6:102:cd::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Wed, 14 Sep
- 2022 10:53:11 +0000
-Received: from VI1PR04MB4222.eurprd04.prod.outlook.com
- ([fe80::7008:1596:bb4:d904]) by VI1PR04MB4222.eurprd04.prod.outlook.com
- ([fe80::7008:1596:bb4:d904%4]) with mapi id 15.20.5612.022; Wed, 14 Sep 2022
- 10:53:11 +0000
-From:   Chancel Liu <chancel.liu@nxp.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shengjiu.wang@gmail.com, shengjiu.wang@nxp.com,
-        Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
-        linuxppc-dev@lists.ozlabs.org
-Cc:     Chancel Liu <chancel.liu@nxp.com>
-Subject: [PATCH v2 7/7] ASoC: imx-rpmsg: Assign platform driver used by machine driver to link with
-Date:   Wed, 14 Sep 2022 18:51:45 +0800
-Message-Id: <20220914105145.2543646-8-chancel.liu@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220914105145.2543646-1-chancel.liu@nxp.com>
-References: <20220914105145.2543646-1-chancel.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0017.apcprd02.prod.outlook.com
- (2603:1096:4:1f4::10) To VI1PR04MB4222.eurprd04.prod.outlook.com
- (2603:10a6:803:46::19)
+        with ESMTP id S230005AbiINLBP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:01:15 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFFFD3CBCF;
+        Wed, 14 Sep 2022 04:01:13 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1E489660201C;
+        Wed, 14 Sep 2022 12:01:12 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663153272;
+        bh=+oritojqCO8DEgbEjdeplXhbt1Fs4LI2IwrWyEO+7yo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=CmA7McZJrKu/LJ1dL5OZKk3zC2UGvVxiuV+jzi2JSfUdEIQQ6pcDDUlNIWWaLnXvm
+         BvhBEC6EtZa8DZ7k7LZjCk1vmKQ7h/haNidlrY996NxwHS4IqLXMiUF59sKqvn+MJ6
+         iLnoXKDaOLA+DpU6apMGtFSVbsgFYZeE8MjhLwNKZlR1U0fBiPjTflYKsO8e8kNsTu
+         +TiKRLHx6ICjxgB6/RGhioE+yW8ZhKJIgi+ynNK5W8+ul+AmY7ZovnJJ1oPJVkcrju
+         ELxIKCiThJJRpVn373S0BJvUyQ082WV5T65l22yInFtlFIJhPJSi4roS6Vrhv0Hr+R
+         cykx0cm7qrMIA==
+Message-ID: <3a91e743-2b8f-51b6-9ac1-adc3e7ec8cc4@collabora.com>
+Date:   Wed, 14 Sep 2022 13:01:09 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR04MB4222:EE_|PA4PR04MB7773:EE_
-X-MS-Office365-Filtering-Correlation-Id: 91ac7b32-99c2-4332-f937-08da963f50de
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tJtzV7k7ktrr69yrqu9xHZ2hqNq28+hO/D21roToFEcA/NpsTi3l4HKM4TROk6IoTF/Fg7/enFre3/49VazrzkgxXvn9eibcb6NFwklBCga8g4vqUUPXQTWS2YNoMMUbtz1LCQMj86UUq7zbur4LdAPrpHZQKX3ou113juqpfCaHuVjJH11DryfaDHMKY3xzxW1lCC37OERLIVzY4n7Zc+rNKvJ/Ebpntx2CBAZNdm5qpoqvnSOcVseFOeLxetiYqd8mbKcObZ4ljNKkte3tPlnFJubEsO9VUkTn2G8/oLGqsAOrx4YTw8M8JQv/eVYFznDsHHBvdQeHANhoq4c0JmaNbE1yQSL+ojSaiVtLAo5JtKOhmqUpZqS0W1n5pvh3D4Axr1DIMH0/B1aj9aWIuCzc6t/7+CUFlUOJtJ1VYoSL02eMhFDiHhSPfB0rma6TEQ+/AZA1emlsODAKEeCigb2lvwku1SfEDxrAZ6iK3Tpa4U0MGQuwdLR9DlvqC7g7zibe26iFDe0h4IvRy4N1dVFxvRI2VbjREXvJ4K9zNhTQH0yXXzV7ea1BfvEPEt0aE5Sket+jzkPpq1vom7Jx1VmGT8532c292VFmfnpYlTr5RJ+tDD3ES8OVLOaguR9iR0sGcqtAse6rbb5ndvvtNIGnITEkU0gPCuw1HqmT/6kuUFGC4IvM0/KgiRy0QM9/LrDm9vWmj4f9Ts0Hf826vh1K8guzVg7S+biPFGMTqPCEQYcGIQFv1xA3fosLg3iswpeM4BRQOJrq8IAOTANbFIY+UUKJSWkz9sluasO+FyA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4222.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(396003)(39860400002)(366004)(136003)(451199015)(36756003)(66946007)(921005)(316002)(2616005)(6666004)(1076003)(8676002)(2906002)(186003)(52116002)(26005)(478600001)(83380400001)(86362001)(38350700002)(41300700001)(38100700002)(6512007)(7416002)(6506007)(44832011)(66556008)(66476007)(6486002)(5660300002)(4326008)(8936002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0H//9kjscboxctIrq6Ln6iD7iFBf9yo6VhK0VyEw3ua6ByvTDbRCJ3bnBlbU?=
- =?us-ascii?Q?OnBJl5yLm69zMdJbuLYFud9oJay77xFDYXSQyA31fB5gfqtoQfZt+vm5TjDv?=
- =?us-ascii?Q?CHUWPMB23mMCDV5xY18tC598lCr0sLszQNbV/Nyg9aoSUznXk3CMxFONkt5O?=
- =?us-ascii?Q?zHfhtvqV0vl81RGiD0EtsovEdqIwzBL87l6mklGIbJLOtzSJG9MDh5exppXY?=
- =?us-ascii?Q?Y8ngtXr1omEMmKIgwk5RqQ590Qiufihte84uFd3YEHTgMP1luhK0GYd1cnTG?=
- =?us-ascii?Q?my4XVZA66G/twgDxX3fdDbaZygrpCWknIiRaTdcUVw1T2fNVwdSZwJ+wrWnI?=
- =?us-ascii?Q?LugSBjQgpfyxqikaYw5W3x4Cp0JneOIh6WlTgoxfohvdisStia7ZN7hAMBro?=
- =?us-ascii?Q?UyJy06ejfMOaRwr3IRqchnbG3iAO+8nF+4HRyJN149MscFBHGtWAo+NLkpmz?=
- =?us-ascii?Q?hJFYQcuxDoGD5VlEoIAiGBP5fkj/EnJkpCX8Uuzvq6jaNYTCALKPuZ35A5Og?=
- =?us-ascii?Q?UTTsKsdAPxJVaONhzx1aXNKc2QlmELCDzmNS2VtgECqc6Ah3URnPnyH5J8zV?=
- =?us-ascii?Q?6vc1oxsU1+8LXGamAFENFOz1ZBAdA0mIBMW9HR3thHVKaYmc/ILVCbb23/iz?=
- =?us-ascii?Q?cHegmT++zxWwbdVCUP4470axZ5XRByyNEzxOO2dC+LkUP8pMos+8sZdEO5Fa?=
- =?us-ascii?Q?HqXcm3B/0kmiqtMui2r19tpTTFlpMxs+bUSS7e6Ofl/f2B7ZATGwhv/IJbDn?=
- =?us-ascii?Q?nlep2tEggSyFmpElB1SzQDgk+6CEaO2OpodiTmO2PANhJhxK47cpkGh5HzMi?=
- =?us-ascii?Q?i0kU2jJ2/nzQaPM0IYeYqCyNPucvMrcTjgEZBGNj9c95ae9RsI3HSxfOUAmW?=
- =?us-ascii?Q?+ElDPhd+Rszq4NwUjymrJVWHtJDXWceGGEnbjYOSmqb9DbKukdyTUuJqbpRD?=
- =?us-ascii?Q?89LFJUUmp58efn4o5MeYPwC9fzG2YufZZ9DNKz5Gtr1N1/ibVM22p5CtN3Om?=
- =?us-ascii?Q?Uzt+atqaxDy4xLOVId+be/vPLaqKeyfE6R87+w4iTkTdHMT7f8Py53blbkjA?=
- =?us-ascii?Q?b7ayvV6uY78BZPD9n1tg3g+8t4oW4j/OIPG0qvL5QOk8aUmEtILYofDFaeLL?=
- =?us-ascii?Q?Rssw1OaM0DFmjZhDsj810zJ6JN4k+t9dJMOwRI4wEi0WmW3diGvFoaVmBOb2?=
- =?us-ascii?Q?dc8xe476zg4o70u/Dp4vLDdYdbzzDRLd8NWJKF6Gd5F6p7w6g86Qo2hc0j8H?=
- =?us-ascii?Q?H+kEoT6UHkuO3MErxMWRzXuaIleXOT683VhuOAXtPBk84eoUCqPb7nLWsGY1?=
- =?us-ascii?Q?2irbXBnVWKA1rMDdcOEaHpV/25+unjKnD6EokGGQMLcHhCvBVrzd2GEAKkGv?=
- =?us-ascii?Q?aR0MdaubcgkHlPFgBt1WcVsqX5QehBhRFAcTiQ3KadynzLq01PAVqREvdSfG?=
- =?us-ascii?Q?TWlYDr+aJBszIl0/Qjsk+2xMKr5t9zPd3np+m4Iphvbpyx/p2Qga343dBsiq?=
- =?us-ascii?Q?RwBsAM3JscK1HvTYpDom10zHMbGkSLB84/aUyFugvJC+AkvpdI9CGlqGk/pK?=
- =?us-ascii?Q?NpBBO0JKN4ECZH4zbJfUxZpZFDI61ZzhoQKFq9xg?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 91ac7b32-99c2-4332-f937-08da963f50de
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4222.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 10:53:11.3679
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Di8Mif1hC/yZVl0kpWRqUvV7CKCkQ63HHhOFQVKt1CBdncXaivyWfduWY2iaAjSyn7CHn+4YUyxB3qMZSSziYw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7773
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH] arm64: dts: mediatek: mt6795: Add CPUX system timer node
+Content-Language: en-US
+To:     matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220729093536.27623-1-angelogioacchino.delregno@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220729093536.27623-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each ASoC platform driver is named by rpmsg channel. ASoC machine
-driver can parse "fsl,rpmsg-channel-name" property to figure out which
-ASoC platform driver it should link with.
+Il 29/07/22 11:35, AngeloGioacchino Del Regno ha scritto:
+> Add a node for mt6795-systimer: this is necessary to start the
+> System Timer(s) for all cores, finally making CNTVCT_EL0 usable.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
----
- sound/soc/fsl/imx-rpmsg.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Hello Matthias,
 
-diff --git a/sound/soc/fsl/imx-rpmsg.c b/sound/soc/fsl/imx-rpmsg.c
-index 2e117311e582..57684064c9da 100644
---- a/sound/soc/fsl/imx-rpmsg.c
-+++ b/sound/soc/fsl/imx-rpmsg.c
-@@ -36,6 +36,7 @@ static int imx_rpmsg_probe(struct platform_device *pdev)
- 	struct platform_device *rpmsg_pdev = to_platform_device(dev);
- 	struct device_node *np = rpmsg_pdev->dev.of_node;
- 	struct of_phandle_args args;
-+	const char *platform_name;
- 	struct imx_rpmsg *data;
- 	int ret = 0;
- 
-@@ -81,7 +82,10 @@ static int imx_rpmsg_probe(struct platform_device *pdev)
- 	}
- 
- 	data->dai.cpus->dai_name = dev_name(&rpmsg_pdev->dev);
--	data->dai.platforms->name = IMX_PCM_DRV_NAME;
-+	if (!of_property_read_string(np, "fsl,rpmsg-channel-name", &platform_name))
-+		data->dai.platforms->name = platform_name;
-+	else
-+		data->dai.platforms->name = "rpmsg-audio-channel";
- 	data->dai.playback_only = true;
- 	data->dai.capture_only = true;
- 	data->card.num_links = 1;
--- 
-2.25.1
+gentle ping for this one - this has no floating dependencies and it's
+verified to work as expected.
+
+Cheers,
+Angelo
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+> index d4842b4a4eb7..46f0e54be766 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+> @@ -230,6 +230,14 @@ sysirq: intpol-controller@10200620 {
+>   			reg = <0 0x10200620 0 0x20>;
+>   		};
+>   
+> +		systimer: timer@10200670 {
+> +			compatible = "mediatek,mt6795-systimer";
+> +			reg = <0 0x10200670 0 0x10>;
+> +			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&system_clk>;
+> +			clock-names = "clk13m";
+> +		};
+> +
+>   		gic: interrupt-controller@10221000 {
+>   			compatible = "arm,gic-400";
+>   			#interrupt-cells = <3>;
+
 
