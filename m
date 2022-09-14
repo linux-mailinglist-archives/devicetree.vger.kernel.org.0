@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD4A15B8CCA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 18:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 802B15B8CF9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 18:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbiINQXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 12:23:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35078 "EHLO
+        id S230051AbiINQ2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 12:28:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbiINQXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 12:23:05 -0400
+        with ESMTP id S229528AbiINQ2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 12:28:05 -0400
 Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7959CDB;
-        Wed, 14 Sep 2022 09:23:04 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-1279948d93dso42308424fac.10;
-        Wed, 14 Sep 2022 09:23:04 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D01E844F4;
+        Wed, 14 Sep 2022 09:27:26 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-1225219ee46so42432499fac.2;
+        Wed, 14 Sep 2022 09:27:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=kkiJ2QjkXnMB41sUfUeccKp4SNjAEkQI5boRWjBFc08=;
-        b=GZ6hj7oAVUSMzR9c1KUH6Pfzg/nafDv7Ncsg/WVWXd9dVrb2j8gTZG/C4rnUqxg+mc
-         rEHovf7PWeVstBeSZH+8VOSQOFgvvuFUHA1WJ5K3m8+lPJrESv2tT/7J50zZXA9MwVbm
-         Wa3YvdGICNhxP5vGajMwfNbC1Y/NzV+xuWXEqwvrydo9TPd6S86OrS8IrB5uQCr4yTok
-         Amm/5bL2zl7JGkEuJhSubPedfQcgbbaFOkukRwdBnzCN7zbsyP0+rekdX98a6x4cbdIC
-         /Yt7DWrJ0ZNDvecw9h4g6fd7u78mQBPFc9wNoKfrl/1XiB/MHZowZYY5+JhiBvK/o2mt
-         gNqQ==
-X-Gm-Message-State: ACgBeo2OzcG0UU5dxT1T0yiCq4qqvG72uaIYxn4aNPB2K6wgaXvdReDe
-        2NncP/HjvVV6Y1JrSCXNiA==
-X-Google-Smtp-Source: AA6agR4yXmDTUtpS5negz9/3cRnAaZwJa9iYI3g67nuCBTVaTrtcngEtf+aypRfug1+79wQ4Acy6zw==
-X-Received: by 2002:a05:6870:568b:b0:127:9fdd:f31b with SMTP id p11-20020a056870568b00b001279fddf31bmr2926635oao.79.1663172583965;
-        Wed, 14 Sep 2022 09:23:03 -0700 (PDT)
+        bh=zZD8tJ7NCtrHJsbCaNSP87Y3qe7OynbxFKCss/jxB3I=;
+        b=bLDYu1JGbEvYJN7uMWfR1S0F9M66PQD3EL094y77Gs2LGAeM28pvRPEKVSzeCfjkvA
+         YlIizg67ks5xulJq2zWSxRT05VMuflKI4KSYmb1KXyK0jLF4nSUjZLKKzb4Jew1libA8
+         hDy5X+jAD50eUoLx80G4N0DZbwHGMcGDm/FkB10+snerpKeh2IaW5x0B2CpT1/pCOOGl
+         +wisL5b3ak8iVW0BlOIJNpITi8P1K9t+7CRFtAd69HeIWoHfqNlsduP9s2tPaunFMTfp
+         Vk3OQCSNL23znCqg9+aKrHPeBUqJMp8wmYzIkasdZ9WTbP5ZaC3gAHetucCYa8UItJWt
+         gAJA==
+X-Gm-Message-State: ACgBeo25sYwWWC0mWGi4vsqW00RJzJW/fPHiZqV9y328GNbd/WAB5kka
+        74k8fvqQvwxGtqLl53BuJA==
+X-Google-Smtp-Source: AA6agR508A59RRasBqGG0pg5H5/FqMmo9DiIAClotXDA1a4zQTOyhkP1kMxVLkm7CrmxQf7x66/I2A==
+X-Received: by 2002:a05:6870:34d:b0:127:cb87:a169 with SMTP id n13-20020a056870034d00b00127cb87a169mr2787895oaf.87.1663172845636;
+        Wed, 14 Sep 2022 09:27:25 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t35-20020a05687063a300b00127c03b39cesm8601649oap.35.2022.09.14.09.23.02
+        by smtp.gmail.com with ESMTPSA id g9-20020a056830160900b00655d9ea896bsm5587940otr.47.2022.09.14.09.27.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 09:23:03 -0700 (PDT)
-Received: (nullmailer pid 2478210 invoked by uid 1000);
-        Wed, 14 Sep 2022 16:23:02 -0000
-Date:   Wed, 14 Sep 2022 11:23:02 -0500
+        Wed, 14 Sep 2022 09:27:25 -0700 (PDT)
+Received: (nullmailer pid 2501100 invoked by uid 1000);
+        Wed, 14 Sep 2022 16:27:24 -0000
+Date:   Wed, 14 Sep 2022 11:27:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, krzysztof.kozlowski@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        vladimir.oltean@nxp.com, grygorii.strashko@ti.com, vigneshr@ti.com,
-        nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kishon@ti.com
-Subject: Re: [PATCH 1/8] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
- bindings for J721e CPSW9G
-Message-ID: <20220914162302.GA2468487-robh@kernel.org>
-References: <20220914095053.189851-1-s-vadapalli@ti.com>
- <20220914095053.189851-2-s-vadapalli@ti.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
+        chen.zhong@mediatek.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, matthias.bgg@gmail.com,
+        linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: Convert mtk-pmic-keys to DT
+ schema
+Message-ID: <20220914162724.GA2500989-robh@kernel.org>
+References: <20220914103021.43593-1-angelogioacchino.delregno@collabora.com>
+ <20220914103021.43593-2-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220914095053.189851-2-s-vadapalli@ti.com>
+In-Reply-To: <20220914103021.43593-2-angelogioacchino.delregno@collabora.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,23 +68,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 03:20:46PM +0530, Siddharth Vadapalli wrote:
-> Update bindings for TI K3 J721e SoC which contains 9 ports (8 external
-> ports) CPSW9G module and add compatible for it.
+On Wed, 14 Sep 2022 12:30:20 +0200, AngeloGioacchino Del Regno wrote:
+> Convert the mtk-pmic-keys to DT schema format.
 > 
-> Changes made:
->     - Add new compatible ti,j721e-cpswxg-nuss for CPSW9G.
->     - Extend pattern properties for new compatible.
->     - Change maximum number of CPSW ports to 8 for new compatible.
+> The old binding was missing documentation for key press/release
+> interrupts, even though it was supported in hardware and driver,
+> so support for the same was added during the conversion.
 > 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 23 +++++++++++++++++--
->  1 file changed, 21 insertions(+), 2 deletions(-)
+>  .../bindings/input/mediatek,pmic-keys.yaml    | 113 ++++++++++++++++++
+>  .../bindings/input/mtk-pmic-keys.txt          |  46 -------
+>  2 files changed, 113 insertions(+), 46 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
+> 
 
-What's the base for this patch? It didn't apply for me.
-
-Run 'make dt_binding_check'. It should point out the issue I did. If 
-not, let me know.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
