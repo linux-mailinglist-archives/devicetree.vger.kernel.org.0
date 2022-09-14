@@ -2,105 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D0F65B8794
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:53:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96AB75B879A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:54:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230035AbiINLxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 07:53:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
+        id S229531AbiINLyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 07:54:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230006AbiINLxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:53:14 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 367DE7CB78;
-        Wed, 14 Sep 2022 04:53:13 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id q15-20020a17090a304f00b002002ac83485so14213789pjl.0;
-        Wed, 14 Sep 2022 04:53:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:content-disposition:mime-version:message-id:subject:to
-         :from:date:from:to:cc:subject:date;
-        bh=zNTAPmubHkNZqERn8Ow0wjaXzc3lyqgqXMfCavEhJtY=;
-        b=XtZV7oNVYofg92Yb3OX3u7WO49325wE9x86I1EwJeDLpMyFVEI6aWEHF+F2CxM6zGf
-         d7b12ga77Yj10JAHy0RwKk6n+LzdcRI5lQKuI7JxBf9FPUhR6iDIdFQ3N61h64hS5Q51
-         BcS19VL8tkNUrGVXN06aoxuBoXoxyNRSrgQw+71JKgx0E7RCkiKjC9J5ks0alNkEJsCE
-         MaISpyXyfwKEldUldBEkOfhk3+wDXC1fj3EQmnZavxwK/dgQ1lR8cKAbI3w5XdnUu9Q6
-         AKb/Bu5LNiuiNRtkZG0SwJ1EZnU9yAuEP4ejK8/L/5S9Z02Y/ambZRUlZtjwLioRqRIj
-         vMww==
+        with ESMTP id S229809AbiINLyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:54:05 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C8947CB63
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 04:54:04 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1274ec87ad5so40317169fac.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 04:54:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:content-disposition:mime-version:message-id:subject:to
-         :from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=zNTAPmubHkNZqERn8Ow0wjaXzc3lyqgqXMfCavEhJtY=;
-        b=N1U35fPGpqWEdQgblWMDdbVZiyeJUsBl73ZHEkhSLtYN3fhVpLZlyVETAUcRlvg7bh
-         VA2XJUC9m3UXpHHJYhwe/0jR0feqS6a7D0b6lDwVi6EIg3d5Y+u5hNFrJxcCaYYDuNL5
-         RHnESva4+t4HFzHKHjHcRI3IzJO16jnusEXKFob3TMmwICSvvYn2+dnQT8+FHcR0ZZtX
-         dB4bLQ+7jOZsK8XUoFz6f9NKBK0C23aOZmUI8sJG6AWL23wCW/w90HiAhfhcWPviQeGq
-         yKbVCCH0NpnAnR2mtXY2tzVwdIKrX1JoRR8c25kSneihE7G0lbjHl+3Q0U1EZuODwdC+
-         gWag==
-X-Gm-Message-State: ACrzQf2WdVUMRSTFMz4uGAVc2yV+HlWn45dYEQ/b8PguTYZcZvkpM168
-        pppDbh+kInAZi2yGpBvfW+yChkoPp/A=
-X-Google-Smtp-Source: AMsMyM63y+ZAyDVuiNe57GaYzJpX0zfKOHIMdAmdRcLvqUT30aH7rhdhTFkoPlNGah14pDgMX8U/OQ==
-X-Received: by 2002:a17:90a:13c8:b0:200:17ca:f183 with SMTP id s8-20020a17090a13c800b0020017caf183mr4329771pjf.104.1663156392497;
-        Wed, 14 Sep 2022 04:53:12 -0700 (PDT)
-Received: from hcl-ThinkPad-T495 ([2401:4900:1ce3:4f78:48c4:2ac5:ccad:657d])
-        by smtp.gmail.com with ESMTPSA id f189-20020a6238c6000000b00540e3cbf6c1sm9809854pfa.180.2022.09.14.04.53.09
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 14 Sep 2022 04:53:12 -0700 (PDT)
-Date:   Wed, 14 Sep 2022 17:23:07 +0530
-From:   Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: [PATCH v3] ARM: dts: aspeed: yosemit V2: Disable the EEPROM driver
-Message-ID: <20220914115307.GA339@hcl-ThinkPad-T495>
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=+ByLpxeC4c6v+n1+RocXDgPBcD3Sp7DzptktP1I0ZSk=;
+        b=KzQRUmY0gwQu5+mIHLTuL5hPMWpKU+8W0+bJlmaNT/HvJLUI0o863PmLWyjKuvhmiW
+         5eAVgrpY1yyvB5e9G0kTWiJCYYOrEw9A8+aPeb4Yx0wyGgaQDs7/ej93RxmSwsISG0jJ
+         yHDEkG35EwrjW4iAyoEIhAmhgL/AS4T+t20FreuljhdwZ+JMjludYzkH3bFOmqAuF/pC
+         l4GokB0X0uJ+Zzp/5ZqXWoPphFuZcdPp7KBZnf5aFZQhnYnI1UMH1ShmDuVsW/YcnxQa
+         vuq+A7cQ9C44M3iIwCMSpR79rJn+RF0mDF+E/ava6Gtf55gkKWPVAIOVwjGu5AL4yYrc
+         Fxqg==
+X-Gm-Message-State: ACgBeo1Epw32BYgWbiG+g8wPpNaHK4wsKNlKWdfpSaBjEHY5RBqHgMub
+        4oHnitIzHDB4H2/v9Z+Iqw==
+X-Google-Smtp-Source: AA6agR6jQr1ZMShO6ffw0Kcm7VMDiDMUe8P9JExeD8OBfdHQrReYRyzJURAdVPXFbS2fiEy8Tp+ryg==
+X-Received: by 2002:a05:6870:3041:b0:127:32b2:70a8 with SMTP id u1-20020a056870304100b0012732b270a8mr2163513oau.122.1663156443490;
+        Wed, 14 Sep 2022 04:54:03 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ay8-20020a056808300800b0034d8abf42f1sm6359474oib.23.2022.09.14.04.54.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 04:54:03 -0700 (PDT)
+Received: (nullmailer pid 1832345 invoked by uid 1000);
+        Wed, 14 Sep 2022 11:54:02 -0000
+Date:   Wed, 14 Sep 2022 06:54:02 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     kernel@pengutronix.de, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add prefix for
+ InnoComm
+Message-ID: <20220914115402.GA1832312-robh@kernel.org>
+References: <20220913103337.1849023-1-s.hauer@pengutronix.de>
+ <20220913103337.1849023-2-s.hauer@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220913103337.1849023-2-s.hauer@pengutronix.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Removed NIC EEPROM driver IPMB-12 channel and enabled it as
-generic i2c EEPROM.
+On Tue, 13 Sep 2022 12:33:35 +0200, Sascha Hauer wrote:
+> This adds a vendor prefix for InnoComm Mobile Technology Corp.,
+> see https://www.innocomm.com/.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+> 
+> Notes:
+>     Changes since v1:
+>     - Fix spelling of InnoComm
+> 
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
----
---- v3- Updated the title and commit
---- v2- Updated the title
---- v1- Initial draft
----
-
-Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
----
- arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 6 ------
- 1 file changed, 6 deletions(-)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-index 8864e9c312a8..2293f10e94d6 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-@@ -207,12 +207,6 @@
- 
- &i2c12 {
- 	status = "okay";
--	//MEZZ_FRU
--	eeprom@51 {
--		compatible = "atmel,24c64";
--		reg = <0x51>;
--		pagesize = <32>;
--	};
- };
- 
- &pwm_tacho {
--- 
-2.17.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
