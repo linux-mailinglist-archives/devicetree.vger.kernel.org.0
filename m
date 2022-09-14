@@ -2,274 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 288AD5B893D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 15:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C23FC5B8898
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbiINNgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 09:36:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
+        id S229788AbiINMu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 08:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbiINNgi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 09:36:38 -0400
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63265282F
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 06:36:35 -0700 (PDT)
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220914133630epoutp02eae1a4db747541366944bfe187067427~UvZCEOIzZ2540725407epoutp02s
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 13:36:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220914133630epoutp02eae1a4db747541366944bfe187067427~UvZCEOIzZ2540725407epoutp02s
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1663162590;
-        bh=jxdQn9sKNQMpQidlDXQKLu/i+Z/Yw0lTnHctr22NF88=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=Zhl9kD/UrW0Ppm4XgIPUTflYi0iC0LVnh0dkdUgJ6r6vdRDM7pEAuBOyzDjQ6qqAK
-         xZtVyaDDdbmmm/Mijn/lbv+LiEpdYLNejfjyy+Mda+kbZ7E4Sr7JKS8Z6xKlwp4BPC
-         6Rcqg3yK+vu4MfeRX6hBqpas4viEu4DiwJZ7uFB8=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20220914133630epcas5p229133ad282c8b03f551bc85336168070~UvZBZnOv72014920149epcas5p2Y;
-        Wed, 14 Sep 2022 13:36:30 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.183]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4MSLvv4gnsz4x9Pt; Wed, 14 Sep
-        2022 13:36:27 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        7D.DD.54060.BD8D1236; Wed, 14 Sep 2022 22:36:27 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-        20220914124818epcas5p4bb7e56887102928c29b2f475cc7008a5~Uuu8AwyvI2316423164epcas5p4V;
-        Wed, 14 Sep 2022 12:48:18 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220914124818epsmtrp26706a2683f35114d48bb5c5f17845889~Uuu7-lfPl2435224352epsmtrp2d;
-        Wed, 14 Sep 2022 12:48:18 +0000 (GMT)
-X-AuditID: b6c32a4b-e33fb7000000d32c-35-6321d8dbab05
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        A6.18.18644.19DC1236; Wed, 14 Sep 2022 21:48:17 +0900 (KST)
-Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220914124814epsmtip12f888ca94a1710628813e5181e042c14~Uuu4uiG3l0608306083epsmtip1k;
-        Wed, 14 Sep 2022 12:48:14 +0000 (GMT)
-From:   "Aakarsh Jain" <aakarsh.jain@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Smitha T Murthy'" <smitha.t@samsung.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Cc:     <m.szyprowski@samsung.com>, <andrzej.hajda@intel.com>,
-        <mchehab@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <ezequiel@vanguardiasur.com.ar>, <jernej.skrabec@gmail.com>,
-        <benjamin.gaignard@collabora.com>, <stanimir.varbanov@linaro.org>,
-        <dillon.minfei@gmail.com>, <david.plowman@raspberrypi.com>,
-        <mark.rutland@arm.com>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <andi@etezian.org>, <alim.akhtar@samsung.com>,
-        <aswani.reddy@samsung.com>, <pankaj.dubey@samsung.com>,
-        <linux-fsd@tesla.com>, <aakarsh.jain@samsung.com>
-In-Reply-To: <7a164961-5b32-8d80-a6f6-8c9f64622085@linaro.org>
-Subject: RE: [Patch v2 01/15] dt-bindings: media: s5p-mfc: Add new DT schema
- for MFC
-Date:   Wed, 14 Sep 2022 18:18:13 +0530
-Message-ID: <011f01d8c838$43234ba0$c969e2e0$@samsung.com>
+        with ESMTP id S229744AbiINMuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:50:18 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2068.outbound.protection.outlook.com [40.92.19.68])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70AD872FC0
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 05:50:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fcEk62DrM9ZatyIhTe9zlhptG9FqC5Zd6XPJSG2Xd2vhLShsaF83ojZEXff+4VmOF2fMo1aZc5InKLn+vSjL7LjepvQUiK+U6mq0yPnT2Qh9kBRfsR0To2udXoDO75yqxOHDxPw6oeOAcZx8rRYhs3xWq7BVoWd80qn14tiC6VFECw9vp2GDLKWgcRZKS1+lBUJLdJNjrQhVaakk6bw2I1LdgsgzeZ3dFO7JzPSih5vFcFwUUjS9wvMvjY10dA9hxVeUEu/g0UsEBMcXe7uvcyQ6+fY8oSPS100N4u5oUKZShX/Y35gDIXNFg5W5bXXcmR6zGpDo2jJvOvS5wuHiOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Cm/wa3N/DQ5ueRmPIS3teIF/3i+5yGblTApUT86SGo8=;
+ b=TcEEqydjsBeGbvDHOBoZTTP8Q802r2TIho1uud0WHs4fd+vdw2oNlO3YiheCqyvtttxoI0RRaVWotk7yYWvsCvb5Ib7xSNnYLxXB+gh3pU9qw/wE342RmrNi4VWJZonCPhO6QhXnzMS+RfXB8vlCHgMPYbT0GgkXKbf1kqnsBfAiQUmYkTAqjB5ZvAkgpetyqK41WECot0yyWB40skOHUTxIoi2yPdbKO7OTFxCf3d/VY39YBp6syhdT+/75yRD1C17vL0eORuyU/FM2EJLGhcC8vru4JxHRlqBHdWqEbWYk1nlSRiAkJApN2BD3XCnLwBK8diO6Glp+/kwGIZdMJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Cm/wa3N/DQ5ueRmPIS3teIF/3i+5yGblTApUT86SGo8=;
+ b=IRbFaOkDXjPb//i3EgdqPLO49ehtemjazPsxSKjqt0g6Kt7/fTtUFpqG7wOTiMZTA+zkA4/SzATJgts/dB+0u/n4F8cCcv32sWuldxOojuvaCwlhaiKTP9/EDOhuet6rib/rLie4s5nrIfQE4j9fmYvymLQPpaeRnP4t7hcqmMlmrhbgMv6EbABAifaCIeRxdFWEU1ook1VAV4wfuLPufEq42yMF+kFh6SebTItGqRhmmaXdfinGM/YqxyoF9QpXxZnp2JOyUWqkiT75Y5Q9qbUNWNjqNZMv+kxvFDfSaoFwqw8jX9M/iRIlCUiMbH5dgeYMMTeHNK0coAkWj9l7xw==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by DS7PR06MB6855.namprd06.prod.outlook.com (2603:10b6:5:2c6::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Wed, 14 Sep
+ 2022 12:50:14 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::433a:1493:6a39:ee43]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::433a:1493:6a39:ee43%5]) with mapi id 15.20.5612.022; Wed, 14 Sep 2022
+ 12:50:14 +0000
+Date:   Wed, 14 Sep 2022 07:50:08 -0500
+From:   Chris Morgan <macromorgan@hotmail.com>
+To:     Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Chris Morgan <macroalpha82@gmail.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, cl@rock-chips.com,
+        s.hauer@pengutronix.de, frattaroli.nicolas@gmail.com,
+        pgwipeout@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        vkoul@kernel.org, kishon@ti.com
+Subject: Re: [PATCH v3 0/3] rockchip-dsi for rk3568
+Message-ID: <SN6PR06MB5342040C7772D95351DFD22FA5469@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20220912205607.5969-1-macroalpha82@gmail.com>
+ <1d98ce70-81d5-df92-c881-1d9611042401@wolfvision.net>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1d98ce70-81d5-df92-c881-1d9611042401@wolfvision.net>
+X-TMN:  [uftzgUg1YuARdUxhVyZ0p4OJJw23TOmz]
+X-ClientProxiedBy: SN4PR0501CA0100.namprd05.prod.outlook.com
+ (2603:10b6:803:42::17) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <20220914125008.GA20@wintermute.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIwYET59QqMDNmfP0SYfUTdtmHMHgGIcczBAeDI2w8CVnGc/wIQr8+8ApxhNais3ElrcA==
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0zTVxTHc/v7tb/CrHbI4oWIq01kIim0o9QLA7dsuPwMLjTDbXEbYFN+
-        AUJpuz6cThOB4WOIhClstkPeUAMORmmBIRCEMiJZ5pgdMLA8FFIoQpDHFDRzLS0b/33ueX3P
-        OTeHifmUEf7MNLmGUsklMi7DG2/uCdrPGx3eK+U/ztqLplt1dDRR0sxAlc/sNDReuYyj7iYz
-        gUzWHzBk6Ouio1LLb3TUcuchjhpnnN4BnQ1H9tJ6gGb1YwzUMecMNj4apKNJxyfoflsxA+X9
-        ZKajHy02AlUPDdBQjfEFDVWYVwh0vsNCIFt7M0A5Fyy0d/zIWyW3ANlqqwLkUNUSRv6stxFk
-        ZfssjTTWfsMgHwy2M8imqnPk+d51nMw31QLyn+wbBJlrGWKQy8Y9ZP/qMiHe/ml6VColSaZU
-        HEouVSSnyVOiubHxSe8lhYv4Ap4gAh3kcuSSDCqaG3NUzHs/TebcBZdzUiLTOk1iiVrNDT0U
-        pVJoNRQnVaHWRHMpZbJMKVSGqCUZaq08JUROaSIFfP6b4c7AE+mploa/MKWNd6r0+V0iE3wf
-        mAu8mJAthNca6xku9mHfBrDhRXIu8HbyEoAXMw2E+7EM4JX1x7TNDIPhKnA72gCcKrrkibID
-        eG+kaCOKwQ6F4/15dJfD15V+obF5w4Gxi3B4Z9DPxV7sQ9AwqdsQ38n+GN6cMWC5gMnE2fvg
-        mp3pMrPYEfBaVi5w86vwrm4Kd5cJhjXlc5i7Iw5cm66hu9jXWWbWOuGR2gV71/IwVw+QPeIF
-        Wyb7CHdCDKwtvgjcvBM6+kweuz9cXuhguFkKH1XMegRksKG9EHfz27DLWoy7+sTYQbChLdRt
-        DoBF/fUe3e3wyvMpz7ZYsLVkkwNh8YNndDfvhj111aAAcPVbRtNvGU2/ZQT9/2plAK8FfpRS
-        nZFCqcOVYXLqy/8+XKrIMIKNUzkQ2woeTiyGdAMaE3QDyMS4vqz8YxypDytZcvorSqVIUmll
-        lLobhDvX/S3m/5pU4bw1uSZJIIzgC0UikTAiTCTg7mIVBgOpDztFoqHSKUpJqTbzaEwv/0za
-        mfizvzgWCn2fFiyYo+Nymr8Y86dVZ7fw7doI69EB2Y4Eqz24vCaovLJeEHZ1/cZqgbqp8YM/
-        grQf7Ut5Eju88i5nQlxKG2V9fvv+74nzndbDh0+P/Z2z+8zqPGIMhFn74nknTWRb1fzaXphz
-        kDQfLy4J5B9bTKyNNl/S1ZCWl9rqnm3h84npRxx/9k5/d/PDbP0c4RMQsNJ+uezs/sgc8Vid
-        b1ycqSv9cuzgnpHee+tvSBPKY0p5YlkU3YaW7X7jddenZkaHkoyvmxciJdueDC897aw4V677
-        OkuUUOh4+daOfKFyLPWz652/eh+fO7WuMDQJXok5UTbsUCzajxj8TFFcXJ0qERzAVGrJv6Uz
-        VRmzBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupgleLIzCtJLcpLzFFi42LZdlhJTnfiWcVkg4MfrCye7pjJavFg3jY2
-        i8U/njNZ3F/8mcXi0Oat7BZbrsxmtlh+/ACrxfwj51gtth98xGKx8QVQ9uLMuywWz+evY7R4
-        Oesem8Xe10DFmx5fY7V4+Crc4vKuOWwWPRu2slqsPXKX3WLp9YtMFss2/WGyWLT1C7tF694j
-        7BZ392xjtGhpO8LkIOmxZt4aRo8dd5cwelxf8onZY+esu+wei/e8ZPLYtKqTzePOtT1sHpuX
-        1Hu0Hv3F4tG3ZRWjx7+mueweXUeus3l83iTncerrZ/YAvigum5TUnMyy1CJ9uwSujM9vcgq2
-        6VR8PXCevYHxnUoXIyeHhICJxPLlkxi7GLk4hAR2MEp8eLmKBSIhI/G/7Rg7hC0ssfLfczBb
-        SOApo8SGDl0Qm01AX+L+qR5WkGYRge+MEo3nbrCAOMwCK1kk7t7qYoEYe5pJ4v/9JWwgLZwC
-        dhLLH84Es4UFQiROXF8AZHNwsAioSvx8zgES5hWwlJjc2MUIYQtKnJz5BOwiZgFtiac3n8LZ
-        yxa+Zoa4TkHi59NlrCC2iECYxMsrD5ggasQljv7sYZ7AKDwLyahZSEbNQjJqFpKWBYwsqxgl
-        UwuKc9Nziw0LjPJSy/WKE3OLS/PS9ZLzczcxghOLltYOxj2rPugdYmTiYDzEKMHBrCTC2xei
-        kCzEm5JYWZValB9fVJqTWnyIUZqDRUmc90LXyXghgfTEktTs1NSC1CKYLBMHp1QDk0be/Av9
-        WUb+B8rVrhY9bz7Sv0T5OO/5ulnP/fyMUg5c7Tt3Nbp6zxTeosWTDd/nK1s2BB3c6b7pa+Xq
-        SKalZTzrmkw2P59uHK2wq850o73kVtkcEWeO2cK9UhfTV//mPF3y5dkxFY3LPi2Fa24X/yy6
-        Lnk/0+FUYOaH2uif6exuFX9enOqtE5oTsz7pxl7L/abmVdKREbwp7etTm/lPT75rLbdE8tW9
-        SoHEFZsnLbSwX3hf6vV/8/DdCttnRe2f88HhKfNWpbwrj32bp+kHNl5SjtIqKvQ7FVExlWmX
-        +uHN3Tr/LuuueaTfUFgRGjaveHXpRRVjLqNUww1Hr5v/+165a861vt37TM/Pehp0RYmlOCPR
-        UIu5qDgRAIExCsqbAwAA
-X-CMS-MailID: 20220914124818epcas5p4bb7e56887102928c29b2f475cc7008a5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220907063313epcas5p114f793010fd0f2797e93bd83ed18a1d7
-References: <20220907064715.55778-1-smitha.t@samsung.com>
-        <CGME20220907063313epcas5p114f793010fd0f2797e93bd83ed18a1d7@epcas5p1.samsung.com>
-        <20220907064715.55778-2-smitha.t@samsung.com>
-        <08168057-853c-5b17-7d88-dc6c30e82f14@linaro.org>
-        <000101d8c382$75750e00$605f2a00$@samsung.com>
-        <7a164961-5b32-8d80-a6f6-8c9f64622085@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|DS7PR06MB6855:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12952209-7447-4f66-9f29-08da964fa956
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Ku0ZDlcsNnTbbjF30NLbfSuI3oI7CGVQ+SCIRcTVtg74ywywIFnPub9yuELFVMRo4pOMcS5xPQeRKGp+zuzj55s1jeMKFtKOpREvMTDsggoigRgE6xtnVxspGrIRd08eJaOcHMfrvCfMeMz6TSU2bvAn4Dlucxlp/qGC0/LGgeJbH1Qh3xc+lB1qKPK/EgGmJsv9agGzG0DwTmNVuioRedqkgIIbodAPH5T694eyNxG8A22YZ0eQiYftDUYoId1xE9BGARMCTZznAyTjQJyPH3h3Yx97MWn6BQ4pQbZySVvYqkusBMPd11Hm12HMV1O/5fLtN3hfShhSX5PY8vz1PoXvLk/ERHZNUbAK5P2vLIoqE9JurBRptvP3e5aGJkiw+Gl219By5q8ctOjG94g44i4E5VDLzY4jusHpkFlc6VTrroymY1lfwBy86MpYztPFXmGQds9iuwF7RLfX46mRCEX3yLUTrWDYRip4F29uEUptgmmo6a3HNhVkECfEeDgpT5TBuy/MylXL9H76SxYLog1c52aBJYxsb8MXe1sCjzrbc3DdIfGq8OwST02Lqa7c2vVnhSd26XxQzkBMyHFmPVMO24xgYIBbXgScboUUhpJ0C0gqBUCM/9oXb7ekkz/AJm+iSovsvUxv7AbBVuKRNGCQCmT2bL8SHYAFZVGiVvZFpzbtQ07wzOwPnT+1haKD
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yeqPo69FuSyxrs29a7G4CYojY9xmaHc2tvjXMAEBechmDXbRMVE4KZWbpLFW?=
+ =?us-ascii?Q?OW4+HyHQZJlAdx2Z1AvQiUixlxPfcwTlmywc9z7ucnI0YoFxfSa84FEHmuSO?=
+ =?us-ascii?Q?v/EXMtPF08q99wSnI9agU5tMjCb8+ttbadNhvRY3QaB4CQFZGxr03Pxv6Cou?=
+ =?us-ascii?Q?fKUfx9/600C1tfMq979eS7qiY8CNlDZ717HjE6G/Gtujte4TdZ9i/mjy/jHH?=
+ =?us-ascii?Q?d2dnuZf4OIyPipSjXevpZ5ea5+p+6VvRU2VCtyxBUpChzey639wAPH/Wp18F?=
+ =?us-ascii?Q?dxLzZX4NpUZwCX4hXzEMeXRsk95ath66cwhS7kxvJmOdrxKWLo93TAWUXPWR?=
+ =?us-ascii?Q?F2EBCCMOym8qrKmqKQI7Vlyy0h9q4/e5lCes5dl2VoDgULR4fiKWpT4C+tun?=
+ =?us-ascii?Q?CdDqQoDM1SRNhKjhYM8r8aAzBhO0rBBUDdVKlDtbHEr1JdEv6MVW8cDvs7Nm?=
+ =?us-ascii?Q?JxyZAzmjS38l3UUoF+3VSH/TrOSqM85mZm+hPyGiKUZP3xEFD7TT45Q4nIQ2?=
+ =?us-ascii?Q?CihYJsscPQhu/DpCeZEsmacOGNR9T4DE0Cxyv2619HYcKEDGaHDUrP7CLmfi?=
+ =?us-ascii?Q?YgVbcU+5diSQZhW30q/VI5fRQkXASvG0V+NDCO6dAifWtmlV1O6k03ioO6TB?=
+ =?us-ascii?Q?JoFwlg1Aq8LnuQPIOs5fGlF3gHyMiuTFruJ8rBg0gxyMYtJ7AKUD4ImbiR7g?=
+ =?us-ascii?Q?7xaaBuREBxSgUzm2V/vI5X6rn5L1oJgIThFrpfTBMsj9wUjBe8czvAMEHhMb?=
+ =?us-ascii?Q?BAoBp3bNerOM5zJiMA5Zlvjbzr6fGAcpe1BZ952LBUK85YsPf5/qLF0iva/n?=
+ =?us-ascii?Q?JnRJ6nPBIF5PIj/aVZfLR8OtA8oIuALTiAJ9fAMZx0jblJMJUmUF9jAxkVOZ?=
+ =?us-ascii?Q?+wv4hAdlXiRSWKO0FjoG2iQtsMvb8dmBZ/2jPhaieIlpPQ6U+cmMzvdqBUKE?=
+ =?us-ascii?Q?jOtqAXcGRN3RT3wQg3pI1JHbTQXaUugeUJ6Ie6C8Kf72Nh7h9XPAVE4jaJVl?=
+ =?us-ascii?Q?2wNErohfx1cSa3a/Rzb5bv+ehJFdC/XC4zr46b1EitCoF9+1fn1Ms+eFFRG4?=
+ =?us-ascii?Q?4GJMza7EXJD1PEKkfE9lWNY5Mvg02kSBbpn41sydG5BHhul/GQ2tbrD2LB3S?=
+ =?us-ascii?Q?3RMYa+VOry+wb7ISc9uYU/+JcRJduTyHiNki6f++eHT+87WGCzL1WNYxPdOk?=
+ =?us-ascii?Q?7Lx6HRQ8SxnEtR+JY1EIaiQSWHbS6dMiY0prSC57l9kHOhQsup9VgUFCTCP7?=
+ =?us-ascii?Q?K+D3bwOQG4aZnOlkybF48AI5rspotUYF/Ekq88C/IQ=3D=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12952209-7447-4f66-9f29-08da964fa956
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 12:50:14.0047
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR06MB6855
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 14, 2022 at 07:46:41AM +0200, Michael Riesch wrote:
+> Hi Chris,
+> 
+> On 9/12/22 22:56, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > This series adds support for the dsi and dphy controllers on the
+> > Rockchip RK3568.
+> > 
+> > Tested on an Anbernic RG503, Anbernic RG353P, and Odroid Go Advance.
+> > 
+> > Changes since V2:
+> >  - Removed dsi controller patches, as those have been merged upstream.
+> >  - Removed notes about rolling back clock drivers. If I set the parent
+> >    clock of the VOP port I'm using to VPLL and set the clock rate of
+> >    PLL_VPLL to 500MHz this series works correctly for my panels without
+> >    rolling anything back (per Heiko this is the correct way).
+> 
+> I tried this but it didn't help (neither did reverting ff3187eabb5c
+> "clk: rockchip: drop CLK_SET_RATE_PARENT from dclk_vop* on rk3568"). On
+> my display the content is shifted horizontally and the colors are often
+> wrong.
 
+There's still something wrong with the VOP2 driver, and I'm trying to
+get to the bottom of it. Are you by chance enabling HDMI? Can you check
+the clock for the dclk_vopx (where x is the port) that you are using?
+It should be very close or the same as the pixel clock of your panel.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40linaro.org=5D
-> Sent: 08 September 2022 20:41
-> To: Aakarsh Jain <aakarsh.jain=40samsung.com>; 'Krzysztof Kozlowski'
-> <krzysztof.kozlowski=40linaro.org>; 'Smitha T Murthy'
-> <smitha.t=40samsung.com>; linux-arm-kernel=40lists.infradead.org; linux-
-> media=40vger.kernel.org; linux-kernel=40vger.kernel.org;
-> devicetree=40vger.kernel.org
-> Cc: m.szyprowski=40samsung.com; andrzej.hajda=40intel.com;
-> mchehab=40kernel.org; hverkuil-cisco=40xs4all.nl;
-> ezequiel=40vanguardiasur.com.ar; jernej.skrabec=40gmail.com;
-> benjamin.gaignard=40collabora.com; stanimir.varbanov=40linaro.org;
-> dillon.minfei=40gmail.com; david.plowman=40raspberrypi.com;
-> mark.rutland=40arm.com; robh+dt=40kernel.org; krzk+dt=40kernel.org;
-> andi=40etezian.org; alim.akhtar=40samsung.com; aswani.reddy=40samsung.com=
-;
-> pankaj.dubey=40samsung.com; linux-fsd=40tesla.com
-> Subject: Re: =5BPatch v2 01/15=5D dt-bindings: media: s5p-mfc: Add new DT
-> schema for MFC
->=20
-> On 08/09/2022 14:56, Aakarsh Jain wrote:
-> >
-> >
-> >> -----Original Message-----
-> >> From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40linaro.org=
-=5D
-> >> Sent: 07 September 2022 16:52
-> >> To: Smitha T Murthy <smitha.t=40samsung.com>; linux-arm-
-> >> kernel=40lists.infradead.org; linux-media=40vger.kernel.org; linux-
-> >> kernel=40vger.kernel.org; devicetree=40vger.kernel.org
-> >> Cc: m.szyprowski=40samsung.com; andrzej.hajda=40intel.com;
-> >> mchehab=40kernel.org; hverkuil-cisco=40xs4all.nl;
-> >> ezequiel=40vanguardiasur.com.ar; jernej.skrabec=40gmail.com;
-> >> benjamin.gaignard=40collabora.com; stanimir.varbanov=40linaro.org;
-> >> dillon.minfei=40gmail.com; david.plowman=40raspberrypi.com;
-> >> mark.rutland=40arm.com; robh+dt=40kernel.org; krzk+dt=40kernel.org;
-> >> andi=40etezian.org; alim.akhtar=40samsung.com;
-> aswani.reddy=40samsung.com;
-> >> pankaj.dubey=40samsung.com; linux-fsd=40tesla.com;
-> >> aakarsh.jain=40samsung.com
-> >> Subject: Re: =5BPatch v2 01/15=5D dt-bindings: media: s5p-mfc: Add new=
- DT
-> >> schema for MFC
-> >>
-> >> On 07/09/2022 08:47, Smitha T Murthy wrote:
-> >>> Adds DT schema for s5p-mfc in yaml format
-> >>
-> >> s/Adds/Convert/
-> >> (as convert to DT schema)
-> >>
-> > ok, I will change.
-> >
-> >> Please mention here changes to original binding (I see at least
-> >> adding iommus and dropping some properties).
-> >>
-> > ok. I will make this changes.
-> >>>
-> >>> Signed-off-by: Aakarsh Jain <aakarsh.jain=40samsung.com>
-> >>> Signed-off-by: Smitha T Murthy <smitha.t=40samsung.com>
-> >>> ---
-> >>>  .../devicetree/bindings/media/s5p-mfc.txt     =7C  77 +------------
-> >>>  .../bindings/media/samsung,s5p-mfc.yaml       =7C 109
-> >> ++++++++++++++++++
-> >>>  2 files changed, 110 insertions(+), 76 deletions(-)  create mode
-> >>> 100644 Documentation/devicetree/bindings/media/samsung,s5p-
-> mfc.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> >>> b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> >>> index aa54c8159d9f..0b7c4dd40095 100644
-> >>> --- a/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> >>> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> >>> =40=40 -1,76 +1 =40=40
-> >>> -* Samsung Multi Format Codec (MFC)
-> >>> -
-> >>> -Multi Format Codec (MFC) is the IP present in Samsung SoCs which
-> >>> -supports high resolution decoding and encoding functionalities.
-> >>> -The MFC device driver is a v4l2 driver which can encode/decode
-> >>> -video raw/elementary streams and has support for all popular -video
-> codecs.
-> >>> -
-> >>> -Required properties:
-> >>> -  - compatible : value should be either one among the following
-> >>> -	(a) =22samsung,mfc-v5=22 for MFC v5 present in Exynos4 SoCs
-> >>> -	(b) =22samsung,mfc-v6=22 for MFC v6 present in Exynos5 SoCs
-> >>> -	(c) =22samsung,mfc-v7=22 for MFC v7 present in Exynos5420 SoC
-> >>> -	(d) =22samsung,mfc-v8=22 for MFC v8 present in Exynos5800 SoC
-> >>> -	(e) =22samsung,exynos5433-mfc=22 for MFC v8 present in Exynos5433
-> >> SoC
-> >>> -	(f) =22samsung,mfc-v10=22 for MFC v10 present in Exynos7880 SoC
-> >>> -
-> >>> -  - reg : Physical base address of the IP registers and length of me=
-mory
-> >>> -	  mapped region.
-> >>> -
-> >>> -  - interrupts : MFC interrupt number to the CPU.
-> >>> -  - clocks : from common clock binding: handle to mfc clock.
-> >>> -  - clock-names : from common clock binding: must contain =22mfc=22,
-> >>> -		  corresponding to entry in the clocks property.
-> >>> -
-> >>> -Optional properties:
-> >>> -  - power-domains : power-domain property defined with a phandle
-> >>> -			   to respective power domain.
-> >>> -  - memory-region : from reserved memory binding: phandles to two
-> >> reserved
-> >>> -	memory regions, first is for =22left=22 mfc memory bus interfaces,
-> >>> -	second if for the =22right=22 mfc memory bus, used when no SYSMMU
-> >>> -	support is available; used only by MFC v5 present in Exynos4 SoCs
-> >>> -
-> >>> -Obsolete properties:
-> >>> -  - samsung,mfc-r, samsung,mfc-l : support removed, please use
-> >>> memory-
-> >> region
-> >>> -	property instead
-> >>
-> >> When did they become obsolete? Is it enough of time to remove them?
-> >
-> > these properties were there earlier, we didn't added them in obsolete
-> properties.
->=20
-> This is not the answer to my question. Is it enough of time to remove
-> deprecated properties?
->=20
-sorry I misunderstood. These two mfc-l and mfc-r are still used in mfcv5 ve=
-rsion as they use MFC_NUM_PORTS as 2, so we cannot make them obsolete yet. =
-In next patch series we will add allOf: if: else: conditions for all the pr=
-operties of each compatible string.
-Thanks for the review.
->=20
->=20
+I noticed on mine that the HDMI was interfering with it. For now not
+only have I disabled the HDMI but also put it on VP0 while my DSI is
+on VP1 (note that if both are active you'll get a null pointer
+dereference from the vop2 driver which is another thing I'm chasing
+down). I think this is because the hdmi_ref is allowed to set its
+parent clock (which is the PLL_HPLL), so it does to 24000000.
+
+Basically here's what I've done to overcome the VOP2 issues and get
+DSI working with this patch series.
+1) Disabled HDMI (with it on VP0).
+2) Enabled DSI and the DSI-DPHY (with it on VP1).
+3) Set the parent clock of DCLK_VOP0 to PLL_HPLL.
+4) Set the parent clock of DCLK_VOP1 to PLL_VPLL.
+5) Set the clock rate for PLL_VPLL to 500000000.
+
+Doing this allows the DCLK_VOP1 to run at the correct speed for my
+panel instead of 24000000 like it would otherwise. When this occurs
+I get a correct image. If for whatever reason the DCLK_VOPx of the
+port I'm trying to run the panel on is at 24000000 is when I get
+the shifted image.
+
+The long term fix I'm trying to work on is to figure out how to
+successfully get the VOP2 driver to not crash when VP0 and VP1
+are both used for the RK3566 (note this actually should work for
+you on an RK3568 board though), so that whole bit about disabling
+HDMI might not apply to you if it's enabled.
+
+In summary, check the DCLK_VOPx where x is the port you are using.
+If it's not at or very close to your pixel clock that's probably
+why your image is shifted, at least it was for me.
+
+Thank you.
+
+> 
+> >  - Added additional details about refactoring DPHY driver to add
+> >    2.5GHz for rk356x. All other devices still have a max speed of 1GHz.
+> >  - Notified Heiko that the BIT(5) for both PLL_POST_DIV_ENABLE and
+> >    PLL_POST_DIV_ENABLE_MASK is deliberate, because of how the
+> >    phy_update_bits() works.
+> > 
+> > Changes since RFCv1:
+> >  - Identified cause of image shift (clock changes).
+> >  - Noted that driver works now.
+> >  - Added devicetree nodes for rk356x.dtsi.
+> > 
+> > Chris Morgan (3):
+> >   dt-bindings: phy-rockchip-inno-dsidphy: add compatible  for rk3568
+> >   phy/rockchip: inno-dsidphy: Add support for rk3568
+> >   arm64: dts: rockchip: Add DSI and DSI-DPHY nodes to rk356x
+> 
+> I am testing this on a RK3568 EVB1, which has a display mounted on the
+> PCB. I'll submit the patches that add support for this setup soon. For
+> the time being a preliminary
+> 
+> Tested-by: Michael Riesch <michael.riesch@wolfvision.net>
+> 
+> Thanks for your work!
 > Best regards,
-> Krzysztof
-
+> Michael
+> 
+> > 
+> >  .../bindings/phy/rockchip,px30-dsi-dphy.yaml  |   1 +
+> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  72 +++++++
+> >  .../phy/rockchip/phy-rockchip-inno-dsidphy.c  | 204 ++++++++++++++----
+> >  3 files changed, 231 insertions(+), 46 deletions(-)
+> > 
