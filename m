@@ -2,82 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C3BF5B88BD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F08CE5B88DF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 15:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbiINM6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 08:58:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58004 "EHLO
+        id S229821AbiINNND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 09:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229831AbiINM6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:58:52 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 734A9785AD
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 05:58:49 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id lc7so34588337ejb.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 05:58:49 -0700 (PDT)
+        with ESMTP id S229899AbiINNNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 09:13:00 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4658F520BC
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 06:12:58 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id bd26-20020a05600c1f1a00b003a5e82a6474so11482420wmb.4
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 06:12:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=RbeM9DZniF3+BT0n/bil36L/UN9NE1w4V5SmRGWQ15E=;
-        b=Sk9Sv6K0LAVqg5NkER8hGVtz1lY8vgR5kQkURSb0bBWvQdp6b5TRWDYlnqe1IPls//
-         kwYrnHjMmJVEYrRZs992Y4+oIR6cu7Qz4y/BT2qhZv5wJjNt3hQkl/GFFN6rWqinAd4D
-         mYQFwi/D5TQ06aKzoZBomC1Cz/MeoGKvz67RuyTDlopCePzGXtBPWTDz70yGbfnE7AUD
-         zujS0IGqwmqxJxbbKR6yknxyrpr4qGcgScMh2KBGF1sBDl8D5Sx503EMGJB/BLkSdCeU
-         7zQeDy1lQdFRmNJqb7d6wdaF9Miwbq1OYkadFT3vKa64e8cEsZrRezgTwhrpOC1nuHX2
-         iPBw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=c+CXqJzxevLGaFZnXFMUkD0mAJpWpY3HHP1XZ4X/APE=;
+        b=u+XT01IjaCLCz8d+8m02RUkMURuAC7Y57T1yTElVAjMz9t6zu9QTskZ5/QAmrc65fk
+         lSi/+v5aP2KayImK4B6PQOyCfqr422Y/WnQZZMKdLnyBKnRaDW118CY5G8nnn4yzS84Y
+         F2ZQBm+0A+DPolf9fdy4KYUeGvJiBd7S5fkVlnJx1NoDK/vWe+/NqmcHWiWbtDq5OoiB
+         +/40yL0rksS9xZhUCsMiCJqryi6y50sPhTWQtMYdiRtei42pIpTMo9rmdope+0sUSVoV
+         f8582kLOEaWVVhco8EAP9WW3fKhgqLEBrj5NqpyEMw9ZT3waIpijMBbB5Hcv5/weOgm/
+         mgTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=RbeM9DZniF3+BT0n/bil36L/UN9NE1w4V5SmRGWQ15E=;
-        b=rs07N4jfz17dZhtpC7TWSeYj7Ful0rSpxNs4p/6vI+12W6FKL6eJU8AV5K727jty03
-         asm2+aqyQZovCUL+RW9wcmknoGnHEqPJdKgvM1XRMw5uZ2GVQDoJd9uAsyqd9/UsRO3M
-         ltWxB34Fgm3/nlbuzWFAj6BrQBoTuUaiYnu4HYu8ME2JTbxlBBVfPD3kmyGbSJFkZNZl
-         wz909IzbmcUqDWIVL/iCsZgUwowxOL1bUE0mXgXYKCQeo1LULZuNwNdbGDT+Mz1YqODR
-         0hBmCqAdYLI6+Q7v9BAu44Ln1/nHni+nWZf5kkYCTXMO/yxPtKtEretY+4VPr77xr8sf
-         6bGQ==
-X-Gm-Message-State: ACgBeo0NylyZ5UwQ9PeYr74PYanNDUpNt1w4RDWkDrBM9BBL7GI6hPuA
-        niEdpQbgHAjzYaybJBbTSzaXI5BkJuncrYm2SzaW9w==
-X-Google-Smtp-Source: AA6agR4JR88clS0aetO6jT0vyk4MuwBqg1K1qnwtnMfXx3GWwDQs4vpwTRHZrGOnQQePAzb8qtteFI0vsOD0JzLVzAU=
-X-Received: by 2002:a17:907:e9e:b0:77f:9688:2714 with SMTP id
- ho30-20020a1709070e9e00b0077f96882714mr7738909ejc.208.1663160327903; Wed, 14
- Sep 2022 05:58:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220913164104.203957-1-dmitry.torokhov@gmail.com> <20220913164104.203957-2-dmitry.torokhov@gmail.com>
-In-Reply-To: <20220913164104.203957-2-dmitry.torokhov@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 14 Sep 2022 14:58:36 +0200
-Message-ID: <CACRpkdZaVrF43K8hSyamd99b+tCs-nEsKH=1oqo=5ww4v6EKfg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] media: i2c: s5k6a3: switch to using gpiod API
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=c+CXqJzxevLGaFZnXFMUkD0mAJpWpY3HHP1XZ4X/APE=;
+        b=dUoBgWFSZhDJ8rWaB2aISLxfQdbpsLb08qsSDKJsMZVFGV9EEXe7wf8YFLEqZQal48
+         fyVz668deqzfnfBhUnzeWJxXVMRQT1be6UciE3mr+ANZgyVlDZeYyhNYAK5aKmiIYXzu
+         L+t7rfPJRjBwCxfuz45lbfFr+ltsrCX++ZkKuwdsPf9gNIcyIc4ToGiiPC3DyJlfYFE2
+         NrDe4RqhP6S5Z30KgzEem9H7eoe1fZmWlw7TaK1oXAQchMWi+tD/xWr1MSGVfXs4KzSu
+         wBWn24jb9NSy6fYwbjOxQmZgzJuFOaEoqDeIlOl3OIF7347Zh5T00LFMQ8zBrly+gVZ+
+         6tkQ==
+X-Gm-Message-State: ACgBeo0tEj/jXZsKvwK1lxCm7zM0wlRJUhpqPphO81XhmhmSgrP+0i23
+        hi5R90SaXvBITJ/j03rzD2WWd0hRse9aXMv7
+X-Google-Smtp-Source: AA6agR6AhmsKmw9U1RIEhuPZ5xg6Jj809FQ9MFO5psrfyvEWyVwyGP/mSb/5Gtm2SZ+pZAziD10o8A==
+X-Received: by 2002:a05:600c:1ca0:b0:3a8:41cf:a31f with SMTP id k32-20020a05600c1ca000b003a841cfa31fmr3115606wms.161.1663161176590;
+        Wed, 14 Sep 2022 06:12:56 -0700 (PDT)
+Received: from localhost.localdomain (210.145.15.109.rev.sfr.net. [109.15.145.210])
+        by smtp.googlemail.com with ESMTPSA id c6-20020adffb46000000b0022acb7195aesm970605wrs.33.2022.09.14.06.12.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 06:12:56 -0700 (PDT)
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: 
+Date:   Wed, 14 Sep 2022 15:12:19 +0200
+Message-Id: <20220914131219.18236-1-aouledameur@baylibre.com>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 13, 2022 at 6:41 PM Dmitry Torokhov
-<dmitry.torokhov@gmail.com> wrote:
+Subject: [PATCH] arm64: dts: mediatek: mt8183: remove thermal zones without
+ trips.
 
-> This patch switches the driver away from legacy gpio/of_gpio API to
-> gpiod API, and removes one of the last uses of of_get_gpio_flags().
->
-> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Thermal zones without trip point are not registered by thermal core.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+tzts1 ~ tzts6 zones of mt8183 were intially introduced for test-purpose
+only but are not supposed to remain on DT.
 
-Yours,
-Linus Walleij
+Remove the zones above and keep only cpu_thermal.
+
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 57 ------------------------
+ 1 file changed, 57 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 9d32871973a2..f65fae8939de 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -1182,63 +1182,6 @@ THERMAL_NO_LIMIT
+ 					};
+ 				};
+ 			};
+-
+-			/* The tzts1 ~ tzts6 don't need to polling */
+-			/* The tzts1 ~ tzts6 don't need to thermal throttle */
+-
+-			tzts1: tzts1 {
+-				polling-delay-passive = <0>;
+-				polling-delay = <0>;
+-				thermal-sensors = <&thermal 1>;
+-				sustainable-power = <5000>;
+-				trips {};
+-				cooling-maps {};
+-			};
+-
+-			tzts2: tzts2 {
+-				polling-delay-passive = <0>;
+-				polling-delay = <0>;
+-				thermal-sensors = <&thermal 2>;
+-				sustainable-power = <5000>;
+-				trips {};
+-				cooling-maps {};
+-			};
+-
+-			tzts3: tzts3 {
+-				polling-delay-passive = <0>;
+-				polling-delay = <0>;
+-				thermal-sensors = <&thermal 3>;
+-				sustainable-power = <5000>;
+-				trips {};
+-				cooling-maps {};
+-			};
+-
+-			tzts4: tzts4 {
+-				polling-delay-passive = <0>;
+-				polling-delay = <0>;
+-				thermal-sensors = <&thermal 4>;
+-				sustainable-power = <5000>;
+-				trips {};
+-				cooling-maps {};
+-			};
+-
+-			tzts5: tzts5 {
+-				polling-delay-passive = <0>;
+-				polling-delay = <0>;
+-				thermal-sensors = <&thermal 5>;
+-				sustainable-power = <5000>;
+-				trips {};
+-				cooling-maps {};
+-			};
+-
+-			tztsABB: tztsABB {
+-				polling-delay-passive = <0>;
+-				polling-delay = <0>;
+-				thermal-sensors = <&thermal 6>;
+-				sustainable-power = <5000>;
+-				trips {};
+-				cooling-maps {};
+-			};
+ 		};
+ 
+ 		pwm0: pwm@1100e000 {
+-- 
+2.37.3
+
