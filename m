@@ -2,51 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AA7E5B8729
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:22:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C946B5B8737
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229805AbiINLV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 07:21:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57374 "EHLO
+        id S229982AbiINLYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 07:24:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiINLV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:21:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B0F15282C;
-        Wed, 14 Sep 2022 04:21:57 -0700 (PDT)
+        with ESMTP id S229881AbiINLXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:23:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B596D6525A;
+        Wed, 14 Sep 2022 04:23:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F2BC6B81A56;
-        Wed, 14 Sep 2022 11:21:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1239EC43470;
-        Wed, 14 Sep 2022 11:21:51 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5D3B1B81A5B;
+        Wed, 14 Sep 2022 11:23:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DBDBC433D6;
+        Wed, 14 Sep 2022 11:23:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663154514;
-        bh=NDeIrvAGzQB35u8/vo9amOwg2PRBtNRJ+6o05BpVR/w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BWhbxAUla8/f5Cceny+h0DeJHMbnzCloDlnodU8ArKhxzJm26qCoaKfM290UQHlOL
-         Bm8SaFqPuAH8F8gPGXjpH/1CTvrETbOf/ZcSUp71fu9r1J3NjfUwJB8KHhQaFapiW3
-         ZFurclqOd3VWB3wgI+Whdu2qxdnIcaE6CfQM8X1pLmyv1hV5tg64yBg2otvrTJfCDh
-         qwL9aWp3kxyGR5fYEy8Lhyq7c+cfgaE1mmtRD8ZtT8IikAj4rX4T1hzayJcCscKHSj
-         7yqpsA82ahhyGwA9es+dBzckq9zioS/btHqq+mCX4/5HpB3UEFfxTuamm1I2ULMgbd
-         +B9EkpcEC2Oxw==
+        s=k20201202; t=1663154625;
+        bh=rospQRd01AkN2gJUmUr22fajGKIcwYulhJwV6VJLFOI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jSzSk/akGXmI6A/Szevs3K7j5JrGCFq1vhUkoXLB16FgUZi7uGKdThmVonAXyG329
+         W9kiXbpbTiB02IbvLvBp21sDOQsZ4AfkRrIBpzTcxZY9klwRsXGZJErnpBPdb7YFGp
+         5fgHGmpNPVJccWQfF2xt6pBuR/cze6U4Uudt6wXV1mHTDwZzGshxlA6LHfqSkqMz20
+         b5iHPBhpHp3G0DV1uR+gEXES4mtiuMCdKOFDSBEiN/9YHgNAxHVASCnPzdyaw7nCWa
+         ercs03qaNVfiyjnseeSaT0VoBMk2hI6TTH5+57NEZHNP435XPd3waHXWgpaMskqJdn
+         xmKZgP6MQtZEA==
+Date:   Wed, 14 Sep 2022 16:53:41 +0530
 From:   Vinod Koul <vkoul@kernel.org>
 To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
+Cc:     David Collins <quic_collinsd@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 1/2] dt-bindings: spmi: Add qcom,bus-id
-Date:   Wed, 14 Sep 2022 16:51:38 +0530
-Message-Id: <20220914112139.3680354-2-vkoul@kernel.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220914112139.3680354-1-vkoul@kernel.org>
-References: <20220914112139.3680354-1-vkoul@kernel.org>
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        David Dai <daidavid1@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] spmi: pmic-arb: Add support for PMIC v7
+Message-ID: <YyG5vRgsejk7Y0DH@matsya>
+References: <20220201134108.2677578-1-vkoul@kernel.org>
+ <YhUVAwtfjuIdKrRQ@matsya>
+ <1c66890b-6736-61ef-7d16-619f90ced4a0@linaro.org>
+ <4f1ae43c-0f22-19fe-0794-3cc268104396@linaro.org>
+ <20220829222601.47241C433C1@smtp.kernel.org>
+ <Yw2TsARPfuCLvDg0@matsya>
+ <20220830211129.6D60EC433C1@smtp.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220830211129.6D60EC433C1@smtp.kernel.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -57,43 +65,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For PMIC arbiter version 7 and beyond we need to define if we are using
-primary or secondary bus, so add a new property of qcom,bus-id
+On 30-08-22, 14:11, Stephen Boyd wrote:
+> Quoting Vinod Koul (2022-08-29 21:36:00)
+> > On 29-08-22, 15:25, Stephen Boyd wrote:
+> > > Quoting Dmitry Baryshkov (2022-06-18 08:29:58)
+> > > > On 01/05/2022 22:41, Dmitry Baryshkov wrote:
+> > > > > On 22/02/2022 19:53, Vinod Koul wrote:
+> > > > >> On 01-02-22, 19:11, Vinod Koul wrote:
+> > > > >>> Hello,
+> > > > >>>
+> > > > >>> The is version 3 of support for PMIC v7. I have added a new property
+> > > > >>> qcom,bus-id for supporting v7 and then add driver changes for v7
+> > > > >>>
+> > > > >>> This depends on yaml conversion patch:
+> > > > >>> https://lore.kernel.org/linux-arm-msm/20211227170151.73116-1-david@ixit.cz/ 
+> > > > >>>
+> > > > >>
+> > > > >> Any feedback on this...
+> > > > > 
+> > > > > Another gracious reminder about these patches. At this moment this is 
+> > > > > one of the important pieces lacking for the full SM8450 support in the 
+> > > > > upstream kernel.
+> > > > 
+> > > > Stephen, yet another ping. This is the blocking point for the further 
+> > > > SM8450 progress.
+> > > > 
+> > > 
+> > > Sorry I completely missed this one as it fell off the end of my inbox
+> > > into the abyss.
+> > 
+> > Thanks for the reply. Is this applied now or you have some feedback for
+> > me to address..
+> > 
+> 
+> Does it apply along with the series from qcom[1]? I have to check and
+> make sure they both work together.
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
-Acked-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml  | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+There were conflicts, I have resolved, tested on top of spmi/next again
+and posted the v4 now.. Hope this would get in.
 
-diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-index fee4f0eb4665..aa8e891b2bb4 100644
---- a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-+++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-@@ -85,6 +85,14 @@ properties:
-     description: >
-       which of the PMIC Arb provided channels to use for accesses
- 
-+  qcom,bus-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 1
-+    description: >
-+      SPMI bus instance. only applicable to PMIC arbiter version 7 and beyond.
-+      Supported values, 0 = primary bus, 1 = secondary bus
-+
- required:
-   - compatible
-   - reg-names
-@@ -113,5 +121,8 @@ examples:
- 
-         interrupt-controller;
-         #interrupt-cells = <4>;
-+
-+        qcom,bus-id = <0>;
-+
-     };
- 
 -- 
-2.37.3
-
+~Vinod
