@@ -2,91 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B11E45B82D4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 10:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88C8D5B82D9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 10:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229718AbiINIVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 04:21:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45952 "EHLO
+        id S229709AbiINIYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 04:24:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbiINIVP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 04:21:15 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6A6606B6
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:21:13 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id u18so23963577lfo.8
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:21:13 -0700 (PDT)
+        with ESMTP id S229962AbiINIXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 04:23:33 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 915C9B854;
+        Wed, 14 Sep 2022 01:23:32 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id i19so10385247pgi.1;
+        Wed, 14 Sep 2022 01:23:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=HPOc2r2Mv0iLL9j0PTNSIeCrmzZgG3Oinx57Kh7zhpo=;
-        b=nnHRkeL3hOTdYU4DZmToXZGXxw6fXLVX0nccWGidAhFYIDbMG3HcrehWL3g+UrwLy7
-         6uu+oT/t6UM3M7HpY95R1leTNPcYYbNq2Zeu+xhKViBa210aAmCQhp7hAozEyS4c3HKC
-         8ko2jaBkwAQ9uyb60Ez3b0hTdOwfKClafuVL9unxc5CIlaKCRzZkM0yr7D+I1KwqwUgV
-         1w9Dxe300q570rn7HoY4eU9cMla5ar1ubU7cflmTUYJbPv14hg0LpXnjNE2WYTsWq09v
-         QCG2ZUk99ySDWRXt8bm8C7fT9nXrExhBZ7M8Nf+pX9r9mYe7CBwK0+fnrvMo+XRX9ldz
-         xirA==
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=P9iChXnOlLAzZFdNLnY5kfU9Doj3uGfj35dzgStEZMU=;
+        b=pE75bF9llgDlVL1tONbpIXNBJPLRnBJ9hkVccGmGOVuo021D3xEEvmTbepvrp8RVQr
+         ksUoC0NRWRrNZLspcVVn15dc6H2MMgAUGlezFBxb336KBr2ISMC+Dob4DjGk0FXlLOdr
+         WkFcg065fEqebST0Ysnz2LT/kpx/5VLtckcfp7gjjoudRS21JgjoxZbTi+2H4DxA0bVn
+         IzKXx6LwUO4kUp22kqP9tM6yPZmYTN1qotSSkGMZmYpLiXRsvbsxLl+Ffm+JeCgEc6kX
+         Ux3dTYooLnUEPTySDAWTWdTXIlOqiLvClX3trv6ZUD6Nz3p9d6P+c2/KkvUMvOIaNd7c
+         buaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=HPOc2r2Mv0iLL9j0PTNSIeCrmzZgG3Oinx57Kh7zhpo=;
-        b=gOjzzHMKGOY15yDfzGck43XBK2HAU3U/56DIbsmrqd0VTNHNMBkkpeIH+FyiBWRHzl
-         /vl2ndhNNl3vQ2ov5VLVPe2ApJza+jdpdSkH6PqZ5v9Mep3b3NWqYx7E/zojncJjI/A4
-         80xN9Gm0ZxvvHXNMP+56cVqiuNcNeRrLDDyn1q2KIBg/T9mgBbYhVtQHHhoGcU3JEIH1
-         G1vGPpT+2hzIvj4fNlgBn+luxc5Xyln254PxIOztsN+FkA0e+/GbGken4dCAdIjUutZn
-         UPJOY8Sb7wnLEnExZQbiIZ0oP6y4kMFXaDIQQX064Pbp/jueGJe7PQO1pq+1pbz+XpPE
-         NMSA==
-X-Gm-Message-State: ACgBeo1WUVUfpaM4xTMiB9Noe1+ToOcANVnV+H6s2lM6wfGemPIFNfc8
-        UGawOzk8Zwdbhby/q3gN3b4mwQ==
-X-Google-Smtp-Source: AA6agR6SeoZ+/gpeQWg206vhajN6dCAqsepzi40f7Xpfh3rG+8q5rqyQ2wzg5KGyWwFwSXnxZ0VpTQ==
-X-Received: by 2002:a05:6512:903:b0:494:8355:baef with SMTP id e3-20020a056512090300b004948355baefmr11164218lft.180.1663143672229;
-        Wed, 14 Sep 2022 01:21:12 -0700 (PDT)
-Received: from fedora.ideon.se ([85.235.10.227])
-        by smtp.gmail.com with ESMTPSA id d12-20020ac244cc000000b004979db5aa5bsm2077666lfm.223.2022.09.14.01.21.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 01:21:11 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 4/5] ARM: dts: qcom: msm8660: add pxo/cxo clocks to the GCC node
-Date:   Wed, 14 Sep 2022 10:21:09 +0200
-Message-Id: <20220914082109.350834-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220909105136.3733919-5-dmitry.baryshkov@linaro.org>
-References: <20220909105136.3733919-5-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        bh=P9iChXnOlLAzZFdNLnY5kfU9Doj3uGfj35dzgStEZMU=;
+        b=AibkY6GTBdn/dJvJGddKTAMYr/FYdlk/wBSniQscuBzFrYdhpZir85uxJErRU3hMIi
+         V6XhgukqMQm2t7pkMGU6qYyBN3TbiXwj9LpY/3cThQ/ZedYMJrqdR1H7MOMdXW5M0rVv
+         WlctsKHU/oG3bLUEFVpAIorU6vfi3gtNgaUjRAVZ1Gl59yUFTYxL8j6e2KweQ6/xVyRq
+         1eHepmRduw0gVbNSycD5Dzq4qBbFCwg3Co6/Czhc81PStK/HhbO4XhBFy4M7qniD3V5G
+         v1oQ+PEzQmEqFE6W4b3v5v2HttjxarpTeK/ALiaUKhZjQJQlVVpDm5pc/5+vMlQbFyp9
+         fAOg==
+X-Gm-Message-State: ACgBeo3S6okl+AXzNsQCW/67PwTpiduU/iTzP3NQiQvxVKFW+kS/jsH5
+        op4PNCGuf88KW5s8O6Dpv08=
+X-Google-Smtp-Source: AA6agR6dE7decz+Ly0pUJByGQRsEwzFqUinIHdNRUA3Q963/UJZSsOEZOG0jYDqSaqN70/rX5SouIQ==
+X-Received: by 2002:a63:81c8:0:b0:438:919e:8256 with SMTP id t191-20020a6381c8000000b00438919e8256mr20790669pgd.39.1663143811878;
+        Wed, 14 Sep 2022 01:23:31 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:486:362c:d94f:b1bb:6842:3424])
+        by smtp.gmail.com with ESMTPSA id f8-20020aa79d88000000b0053e468a78a8sm9381986pfq.158.2022.09.14.01.23.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 14 Sep 2022 01:23:30 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
+Cc:     cy_huang@richtek.com, chiaen_wu@richtek.com,
+        alice_chen@richtek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: mfd: mt6370: fix the indentation in the example
+Date:   Wed, 14 Sep 2022 16:23:23 +0800
+Message-Id: <1663143803-28660-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Add pxo/cxo clocks to the GCC device tree node.
->
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-Oh there is that patch, very nice!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Fix the indentation in the binding example. There're two redudant space
+charactors need to be removed.
 
-Yours,
-Linus Walleij
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+---
+ Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+index 410e2d4..250484d 100644
+--- a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
++++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+@@ -119,7 +119,7 @@ examples:
+       #address-cells = <1>;
+       #size-cells = <0>;
+ 
+-        pmic@34 {
++      pmic@34 {
+         compatible = "mediatek,mt6370";
+         reg = <0x34>;
+         wakeup-source;
+-- 
+2.7.4
+
