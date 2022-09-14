@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ADD05B82CB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 10:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B11E45B82D4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 10:21:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229449AbiINISV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 04:18:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41432 "EHLO
+        id S229718AbiINIVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 04:21:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229788AbiINISU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 04:18:20 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC2257266
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:18:19 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id z25so23990946lfr.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:18:19 -0700 (PDT)
+        with ESMTP id S229639AbiINIVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 04:21:15 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6A6606B6
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:21:13 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id u18so23963577lfo.8
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 01:21:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=cqlKYYIAKLvsbLj53oR9k582UP5q4RYbtnJSev6cErM=;
-        b=Ui29HLS6JX+VL10Nk/QmkazWJs5eqmCGy+EBD5rEqHVWeVDY3jR9jnyTTuenZuP2gN
-         FfPaJZMuM7YJ1D0xETS6nq8V/OY9q1tQplruaQC+VqZALHUq9Wm6IUFzNH6lmCcBBMW5
-         zj7Diql+6Qg5vdW1ZlxOm5ult7ZN/0TK+kJUskBpshhHyft8pRA6qHqMqGKkrbiXdMDv
-         mwoMwHbtjmmwQOWEE8BKiW1rVRGGup1odxYpRa2dRAHrhLmIPCErDuRQjaCOOwGPoLMF
-         GddEz6AWWuFqrgMsiJhvNbRul3sp8Pv6YYliW+VOr4jIOGbg9uqvRHF5QROpDJLYtjOO
-         zIpg==
+        bh=HPOc2r2Mv0iLL9j0PTNSIeCrmzZgG3Oinx57Kh7zhpo=;
+        b=nnHRkeL3hOTdYU4DZmToXZGXxw6fXLVX0nccWGidAhFYIDbMG3HcrehWL3g+UrwLy7
+         6uu+oT/t6UM3M7HpY95R1leTNPcYYbNq2Zeu+xhKViBa210aAmCQhp7hAozEyS4c3HKC
+         8ko2jaBkwAQ9uyb60Ez3b0hTdOwfKClafuVL9unxc5CIlaKCRzZkM0yr7D+I1KwqwUgV
+         1w9Dxe300q570rn7HoY4eU9cMla5ar1ubU7cflmTUYJbPv14hg0LpXnjNE2WYTsWq09v
+         QCG2ZUk99ySDWRXt8bm8C7fT9nXrExhBZ7M8Nf+pX9r9mYe7CBwK0+fnrvMo+XRX9ldz
+         xirA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=cqlKYYIAKLvsbLj53oR9k582UP5q4RYbtnJSev6cErM=;
-        b=0+s3iudprJrIEA+4/nMo/brxskNJJCGoetECrts+eoSeYjxTFAEfNo5YSE/O+I83qR
-         nVbG1tqgD4NIdvgs6fV1yQ1UKWXIkrLoZ0TQQAqaaaEl7nztIT1BInVvMI+5HD1ot2b1
-         yn3kLy22qmnXdYasH6RoAWCzMutNhVtmmkTiWvuJj91JeiVQyG6EyehWQbboY19b0Uc4
-         ggepiUMLzoMX8BxG1isVDFNsNnbaARkbhpgXsjXygtYcfB3OeiKswyjAoT5ytZJs9ju9
-         HgR2Mqrs4/cajgj3mohTGfJ13hDCmT7Yw3GBiNzloNHV2LQSMPI4c58z5XicZeuNnFfl
-         Q3TQ==
-X-Gm-Message-State: ACgBeo3i2Ck9/2PjlKlgSIYuEqUfMvSiJjeIh8bPpSaNBGB8Y87WKXFp
-        vM+y+5parY4oh5Z3vw+UhMIPpA==
-X-Google-Smtp-Source: AA6agR6P7OpDqTPgN/zl2efEUWG/+XDiPW89d9J9OrHDj0WdFOiF+xS/Sp/rMXTZe8SY7JSdBDn1XQ==
-X-Received: by 2002:ac2:4c4b:0:b0:499:3234:64fd with SMTP id o11-20020ac24c4b000000b00499323464fdmr7562363lfk.190.1663143497876;
-        Wed, 14 Sep 2022 01:18:17 -0700 (PDT)
+        bh=HPOc2r2Mv0iLL9j0PTNSIeCrmzZgG3Oinx57Kh7zhpo=;
+        b=gOjzzHMKGOY15yDfzGck43XBK2HAU3U/56DIbsmrqd0VTNHNMBkkpeIH+FyiBWRHzl
+         /vl2ndhNNl3vQ2ov5VLVPe2ApJza+jdpdSkH6PqZ5v9Mep3b3NWqYx7E/zojncJjI/A4
+         80xN9Gm0ZxvvHXNMP+56cVqiuNcNeRrLDDyn1q2KIBg/T9mgBbYhVtQHHhoGcU3JEIH1
+         G1vGPpT+2hzIvj4fNlgBn+luxc5Xyln254PxIOztsN+FkA0e+/GbGken4dCAdIjUutZn
+         UPJOY8Sb7wnLEnExZQbiIZ0oP6y4kMFXaDIQQX064Pbp/jueGJe7PQO1pq+1pbz+XpPE
+         NMSA==
+X-Gm-Message-State: ACgBeo1WUVUfpaM4xTMiB9Noe1+ToOcANVnV+H6s2lM6wfGemPIFNfc8
+        UGawOzk8Zwdbhby/q3gN3b4mwQ==
+X-Google-Smtp-Source: AA6agR6SeoZ+/gpeQWg206vhajN6dCAqsepzi40f7Xpfh3rG+8q5rqyQ2wzg5KGyWwFwSXnxZ0VpTQ==
+X-Received: by 2002:a05:6512:903:b0:494:8355:baef with SMTP id e3-20020a056512090300b004948355baefmr11164218lft.180.1663143672229;
+        Wed, 14 Sep 2022 01:21:12 -0700 (PDT)
 Received: from fedora.ideon.se ([85.235.10.227])
-        by smtp.gmail.com with ESMTPSA id n21-20020a05651203f500b004972b0bb426sm2267909lfq.257.2022.09.14.01.18.17
+        by smtp.gmail.com with ESMTPSA id d12-20020ac244cc000000b004979db5aa5bsm2077666lfm.223.2022.09.14.01.21.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 01:18:17 -0700 (PDT)
+        Wed, 14 Sep 2022 01:21:11 -0700 (PDT)
 From:   Linus Walleij <linus.walleij@linaro.org>
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -62,12 +62,12 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 3/5] clk: qcom: gcc-msm8660: use parent_hws/_data instead of parent_names
-Date:   Wed, 14 Sep 2022 10:18:13 +0200
-Message-Id: <20220914081813.350628-1-linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 4/5] ARM: dts: qcom: msm8660: add pxo/cxo clocks to the GCC node
+Date:   Wed, 14 Sep 2022 10:21:09 +0200
+Message-Id: <20220914082109.350834-1-linus.walleij@linaro.org>
 X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220909105136.3733919-4-dmitry.baryshkov@linaro.org>
-References: <20220909105136.3733919-4-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220909105136.3733919-5-dmitry.baryshkov@linaro.org>
+References: <20220909105136.3733919-5-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,13 +80,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Convert the clock driver to specify parent data rather than parent
-> names, to actually bind using 'clock-names' specified in the DTS rather
-> than global clock names. Use parent_hws where possible to refer parent
-> clocks directly, skipping the lookup.
+> Add pxo/cxo clocks to the GCC device tree node.
 >
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
+Oh there is that patch, very nice!
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
