@@ -2,267 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D3025B810E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 07:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65A115B8114
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 07:46:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbiINFnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 01:43:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46442 "EHLO
+        id S229796AbiINFqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 01:46:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbiINFnG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 01:43:06 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E219A6C120;
-        Tue, 13 Sep 2022 22:43:03 -0700 (PDT)
-X-UUID: fc5106fa49fb4d63a2d5902ecb05f796-20220914
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=HiauB9ANq4Y2Q0NtJvs5OWH/ggmKqoFe3c2E0fWAmmw=;
-        b=kmABBap7pgxwMUt7iFQj+xpj679zZxB3fCStH7ixjLbVI1NK+apPVL1Tsx8PNmMlZ+Hn0T9d4D6F1T6t5u1jjubNtNTBeTw2K9ZBkP4XRYuiahq4i5vYHV6DjCxERbrQVHpUW77z8cg293DsLfJ2dDlRtVBvQbwr8oQ92m+luzs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:7b7e2adc-34c4-4bd8-bc16-9c5e8d520b06,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:69b75dec-2856-4fce-b125-09d4c7ebe045,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: fc5106fa49fb4d63a2d5902ecb05f796-20220914
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 383026811; Wed, 14 Sep 2022 13:42:59 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 14 Sep 2022 13:42:58 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 14 Sep 2022 13:42:55 +0800
-Message-ID: <207b8c4ef0999a7b859c5e2eaf270293d2f18f75.camel@mediatek.com>
-Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to
- set pre-emphasis
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>
-Date:   Wed, 14 Sep 2022 13:42:55 +0800
-In-Reply-To: <8090e2e1-afce-9341-2ae7-3f4e094409b6@linaro.org>
-References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
-         <20220819091344.2274-2-chunfeng.yun@mediatek.com>
-         <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
-         <816ecf6287533137b750c8bde9de5830e4229c56.camel@mediatek.com>
-         <bee8abe5-0299-d05e-643c-4810aa33f978@linaro.org>
-         <1a16cce9fe164bafc06ae193310be71c6f645d75.camel@mediatek.com>
-         <000babd8-5980-3d77-f156-324b3442cbe7@linaro.org>
-         <114c357f8d7f049d21ede789a292a8e2d45f4c61.camel@mediatek.com>
-         <0a82842d-283c-e266-84f4-6306f29b61da@linaro.org>
-         <8dcb4de53a52ab44d40f490099b6ed13e5ef7fe0.camel@mediatek.com>
-         <3c180570-ecf9-3db4-c698-39c1b4679c6e@linaro.org>
-         <3b18a9c687af38f7299261c9a589ef3dfc5a1aa7.camel@mediatek.com>
-         <8090e2e1-afce-9341-2ae7-3f4e094409b6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
+        with ESMTP id S229536AbiINFqt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 01:46:49 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on20619.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e1b::619])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C3F43E6A
+        for <devicetree@vger.kernel.org>; Tue, 13 Sep 2022 22:46:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QW80vYvbvfAeo5hJnMSuqviXy3yhsTFBuBTOpo7E8ltTm6f5JKcuvLXP9pUUwnUiGSeL/i3zFc9KizuyBwD2IHWdXqBDpodq4jscLSZgnVvV3nOfwHak09k3mqzEFnqLy1GJe/N1txJAJ9ZCeWfo99+DSGeir39baUykqHeDdbxhN2H09ufH5q9yUPwymCiWfPUgW3MV7TPxfyvVRg6nR4SR+tjmx+2rE7MpEy5jEldQsM+5LYOlwmq1dheLBIUm+kvvmtkwcR2AGorYUubmmXZl7aHnRPCNXe/eyinUCeBdF80muWc85swbCslKsBxEiyEnDSeltBSjrQNCY42f1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ViW3CuQlPho4HL9C8a93qhQLH9QJYZOT5zNYgMEED2U=;
+ b=lWwJowLWKBj2wLcBrP+KRqdpOB4HqXAyQ7g8zAVlsMgO3CKvApeYg/3Ygsfz3Ez9vi0C/E99npzSkwBTwg5Hucn2J74PUda86bdwJf7GiUuA2w6CJJcTP8JG/sJQEYMEPjy6L7ju/uo8g/5B81IFQa+jLcfqwOeQYSAIzq+sTrnOh8TwminaGdubLBEzOujROfl2YXfrRU5CMTI9rINmYc9pVL+aN7iKcSu4CEeNRKpEaFrDz03Hy7namrJDWF60QmOSSM1S6ajt9gdUHESAsjIQwLiSod4B1WThN0a+rRy3vv6//QnO10XyZfKbBvA7OyOK6IDXoVzh6MH9TPDCjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ViW3CuQlPho4HL9C8a93qhQLH9QJYZOT5zNYgMEED2U=;
+ b=qrA1UUGCUE/8/kYkx7TO+GljRYtuN1GeNj9uiBL8URIQlkOJXy1QhzeKwLq7nAY6vsijcTM4DULSCdk/RxumWju8bAH+VXyhqldcCCoJcuC06t5N3S4zL8hwJJQuizrvGkpnkrKVfz1lgjrjs3pReQvAfDK1i3YgyfUXpZDGnB4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by PAVPR08MB9331.eurprd08.prod.outlook.com (2603:10a6:102:303::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Wed, 14 Sep
+ 2022 05:46:43 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::d5b:f7f0:4c2:cc95]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::d5b:f7f0:4c2:cc95%4]) with mapi id 15.20.5612.022; Wed, 14 Sep 2022
+ 05:46:43 +0000
+Message-ID: <1d98ce70-81d5-df92-c881-1d9611042401@wolfvision.net>
+Date:   Wed, 14 Sep 2022 07:46:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v3 0/3] rockchip-dsi for rk3568
+Content-Language: en-US
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        cl@rock-chips.com, s.hauer@pengutronix.de,
+        frattaroli.nicolas@gmail.com, pgwipeout@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        vkoul@kernel.org, kishon@ti.com,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20220912205607.5969-1-macroalpha82@gmail.com>
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+In-Reply-To: <20220912205607.5969-1-macroalpha82@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: ZR2P278CA0014.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:50::20) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|PAVPR08MB9331:EE_
+X-MS-Office365-Filtering-Correlation-Id: 573c920c-89e8-487c-632f-08da961480ee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uB973LALViQrjkQb9zup0AtkVeAmv42vko0+cjYaNST4ahvwT30qxIKNX5o7bD38QqzXkOmXshT/Yb5zZoIw1l9c3eKnx118auc+VkJYX1BjcKjjfadiD+dhjrJHMLLyEM9g6mzPpfj6iLoscIBAmp8yp+28WF7oDsY+iu4jkGyAwgP6SwOKMLPU/eWo/qZjmZdMA+ScDfCtPAdmYgaTOEQR3rXVVSvkgpDdfJO3XlvesKgcK4lfrnjgcPXMI/rK+vPw7Bgm/fzHTjAajn3+dkdHYl3Hz1umPJG6L9XDo6oEl+td1ROiCwaJYuyzzMg/eJXkFcprU2xbWvOUir4Ig0xwNnxu7M7cB1n7FfK51G77YwUgYv/wCkrFt3447YBqD6AL6KxtsuntrS2RH0v8j+jOTjFUj5zS3YjwecxzzuzmrJ21el96weKAmfEmOsjhKiTG27Z6+bwuXqzllf+7gyvuJnrogTq3Yo+MDUXsCnZrXI0x1Zpbvk00Iux8EVavSvJ2Kf4KLZGg2mNEdj4UIWsdTLdPGE9SlYZNJ7m9QROp4O9o9t3AivCI+ZKVRFj2Ujkr0DadjgZ+5pHswnTRuv3l1fBfB+VQD3XOw3uP7xYE6eO5bw/j8krT939Xa+wqUpln1uvwXy9e0qkPbvehYM8/tc4wMmRDmxQdBV0gi8OFZqvqjmKUyYGFUteTXHff8yNpxmg8ozYwX+z93pMnwUiG0aFkj1nR4YQ5difhO+oo5SenRBylTkE6guyxPJ9o0+DMBXZNPE+Jdz6ioZ6jPfiPfG3wOj+aq6dtVRgpE34=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(346002)(39850400004)(396003)(366004)(376002)(451199015)(4326008)(86362001)(44832011)(66556008)(478600001)(31686004)(316002)(5660300002)(36756003)(41300700001)(38100700002)(2616005)(2906002)(66946007)(66476007)(6506007)(8676002)(83380400001)(8936002)(6512007)(7416002)(6486002)(52116002)(186003)(53546011)(31696002)(45080400002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWFjMFBsZE5FVnVwY2svcHluRWVXckZIWkVTZm9palVWUEN6bXRPL28wQ2JJ?=
+ =?utf-8?B?OTh0RW03ZVdYU2M4VUp0dEQ5aUdnNStHSGxYUVM1dXhNeTcwejJFRmpuT3c0?=
+ =?utf-8?B?NDV2cmE0SlJ3OVBnbEVOaUJEY1JSYTd6cGJjcnRNd2xXNjE2S0F5ZFJnbzJj?=
+ =?utf-8?B?dFpJWThaMnlVWjBCVVJVWUF3WXJwWk5JYkFpSytPd2syK01VZjZhTVJEVnBS?=
+ =?utf-8?B?cnU0ek9hSnZzbk5MaHAxTlFUc3BEbk9XYjB0VkdIamZNcVZrV0dXelFhT1ll?=
+ =?utf-8?B?VHZWK25NTk1HSGhqNnhNTDQwRSs5VW9naE5WN0RNNmEweEU3SmVnOGIrZlo2?=
+ =?utf-8?B?dHVOaU1qcW5YVGdxOFBtWEV3em80SC9KcG92TkFZaE5LUjJyQnhFME0vQ1lC?=
+ =?utf-8?B?eTdIOTZ5dGFxTVViaGRYbHFUMzErdmpvQVVYZzhCSTVyZU40ekZZdUZsVmVJ?=
+ =?utf-8?B?aGpMSkFNVURrdU40eHJubjFWdm9SUmp6NElVeWpaNlJqNXlFWVRmMnhsS3Z4?=
+ =?utf-8?B?V1RxWlJCY0FyNnM4bGcxNklsQ1ljYWpmK245MUllTG0xdk5uOGhTUElzZGxU?=
+ =?utf-8?B?SU1lVHFXczdwci9ENlNSSlkzS05YV0hQVmZhaHZuY1lvYmU2SS9sR0NVRW8w?=
+ =?utf-8?B?OU0yb3M1UjhCTFIrMHFJZTZITVlaZVFDVVhkdms2OCt0bUl3OWI1WVhQbmNl?=
+ =?utf-8?B?clFydVBZZDV4MlZGUHRMc1FHd1IrQ2c1dFFGMkIwOUNFWDNHbzhuSzVFdVBv?=
+ =?utf-8?B?V0tNMVBuSzI2VGtzRkJKNW9JM1gxQlhMNFdDREsvMmFXemxiZXFXaGdDb05M?=
+ =?utf-8?B?eGRjSjB0b3lad3pmaG1lZXZMVG1mQU45c05ZcGFObzh2Y3FPczV4S3RDRVJL?=
+ =?utf-8?B?enk1N2VQZjl5REc1R09NSkdkWDdLS0puVFQvaCtZZDRvcm1aUE1TcTRrY3NL?=
+ =?utf-8?B?blpuV1o0aHhhN3RORlRFaE9ERUpJNGdSWmVOMER6YmV4Zy9QMGpxVUZCVzBZ?=
+ =?utf-8?B?U0xzK0xVbWthM2RUUkhwMzVNWWtRWG55d3R2bkpiRHlIYUZiZ1M5YzF1ZzZq?=
+ =?utf-8?B?Qnp4VW1VcVJIRTRUS2tRNERhT2FZcUZUQSt4cTByTkczVHg2ZDBDOG9IclAz?=
+ =?utf-8?B?a1FtaThxY3FHUVZzaTJEa2tTMUtCa2dHSEM4K1dJc1M3cExZZW5JOS9JU3lK?=
+ =?utf-8?B?ZFVrKzNFdVNJZ2tsb2pXdjc2TEwva1RZNkxtZ1VYZU9ZODRzU1A3UTFEOFdE?=
+ =?utf-8?B?Tmh5M1ltam1ITkkySXNtelN1MFFLM1BYeXA1VUVucks0emRydHorT2dUWVlu?=
+ =?utf-8?B?ZnRjLzVFODd2MVMrM2swd2did1lIY2YveW1ObU5zM25BQ0pKMjN6NXBhSVNS?=
+ =?utf-8?B?cUo2R2xTNDBxTXdNblU3KzMzQlpNMmFwZE5MdFk0SXQxQUk2YnpSTXd0M2pp?=
+ =?utf-8?B?eU93djB5ZlNjeW1kd1kxM1dNRmNmbXBKL1ZlcTlxOFlaaTdhY2Qwc0xxdmVK?=
+ =?utf-8?B?cDU4Rm94YkppOWZxa0o4MWJobC9pOGZTd3ozZ29jbmFiM2FWS0JyT2x1cC9D?=
+ =?utf-8?B?ZFd0aFlSZEc3ejlINmlxSUZRZWlrQXhEcGZtUWdmSFRNZjFKVVZ5aUpGLzQ5?=
+ =?utf-8?B?NkNvdW5QN3BuZWZ5dG41MmVIVklBamN1YS96VmVZcTBLVzNScitvd0pKQTZY?=
+ =?utf-8?B?cHlOeCtmWnhqeTNrcERUKzJQR3RjYy94OUV6Z3BPTGhvbVFzNVFuVDhCYU9B?=
+ =?utf-8?B?c3JnTG40c3JhNklqd2RHZGxKUlk1aUJUaGVpaS9MaldRV3pMUkx5UWlhNVJR?=
+ =?utf-8?B?d0NXZ2ZxaEduamVha2Njb3lOaG84cFBuUUs3QzdiTDV5Y29RSnFnckI2NGhk?=
+ =?utf-8?B?OG5GUzZjMWUvQWlpeUwrTkFyRzF6M1N6K3BzanVtZnNLUlkxOUY3WDM3ekhO?=
+ =?utf-8?B?dCt2VVNvQlAvMEhxU3IrNFQrYXhhd1o3MUVCdFIrT0RMWTEyUGVWNzF5aEY4?=
+ =?utf-8?B?WmFCQlY1eEszd0g0dVg5S2hRdTZVV3ZEdHg0TDM5N2tYK01BeDZnbjRiQ0Rm?=
+ =?utf-8?B?VVBJeXRvZEhRZXRBeFUvVXVVdE45OEJTY1hGbUpFK1RNT3dZbVlyU0tvaUZY?=
+ =?utf-8?B?b21GOEFRUHZvckNEWU9OaURRbzgrelYwQkFSUWZ4MnpGOGIvU2xJbmMrbUM4?=
+ =?utf-8?B?ajFGbnp5TGtIUjNZUFdLZk5tMUpjdzBjdlgyWk51bzVVL1JDRXd0cW85eVZI?=
+ =?utf-8?Q?imt25dBNBeo0iwPMrtRv8hfPduAZVioLOvwcjqiQ/A=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 573c920c-89e8-487c-632f-08da961480ee
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 05:46:43.4059
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GKYOkMWAFzrOAOlKvqvGVKujIeyKdptfI0wZCZplGW+0HkKkA2IL8UUjWYXLMatjWpBvP9T2OI4TT4Tqx8FE7pFQrIPyGt4y8GlL1KLTLbE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR08MB9331
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-09-09 at 10:27 +0200, Krzysztof Kozlowski wrote:
-> On 09/09/2022 05:03, Chunfeng Yun wrote:
-> > On Wed, 2022-08-31 at 09:03 +0300, Krzysztof Kozlowski wrote:
-> > > On 31/08/2022 06:00, Chunfeng Yun wrote:
-> > > > On Tue, 2022-08-30 at 13:08 +0300, Krzysztof Kozlowski wrote:
-> > > > > On 29/08/2022 05:37, Chunfeng Yun wrote:
-> > > > > > On Fri, 2022-08-26 at 09:36 +0300, Krzysztof Kozlowski
-> > > > > > wrote:
-> > > > > > > On 26/08/2022 08:36, Chunfeng Yun wrote:
-> > > > > > > > On Tue, 2022-08-23 at 13:24 +0300, Krzysztof Kozlowski
-> > > > > > > > wrote:
-> > > > > > > > > On 22/08/2022 10:07, Chunfeng Yun wrote:
-> > > > > > > > > > On Fri, 2022-08-19 at 15:15 +0300, Krzysztof
-> > > > > > > > > > Kozlowski
-> > > > > > > > > > wrote:
-> > > > > > > > > > > On 19/08/2022 12:13, Chunfeng Yun wrote:
-> > > > > > > > > > > > Add a property to set usb2 phy's pre-emphasis.
-> > > > > > > > > > > > 
-> > > > > > > > > > > > Signed-off-by: Chunfeng Yun <
-> > > > > > > > > > > > chunfeng.yun@mediatek.com>
-> > > > > > > > > > > > ---
-> > > > > > > > > > > >  Documentation/devicetree/bindings/phy/mediatek
-> > > > > > > > > > > > ,tph
-> > > > > > > > > > > > y.ya
-> > > > > > > > > > > > ml |
-> > > > > > > > > > > > 7
-> > > > > > > > > > > > +++++++
-> > > > > > > > > > > >  1 file changed, 7 insertions(+)
-> > > > > > > > > > > > 
-> > > > > > > > > > > > diff --git
-> > > > > > > > > > > > a/Documentation/devicetree/bindings/phy/mediate
-> > > > > > > > > > > > k,tp
-> > > > > > > > > > > > hy.y
-> > > > > > > > > > > > aml
-> > > > > > > > > > > > b/Documentation/devicetree/bindings/phy/mediate
-> > > > > > > > > > > > k,tp
-> > > > > > > > > > > > hy.y
-> > > > > > > > > > > > aml
-> > > > > > > > > > > > index 848edfb1f677..aee2f3027371 100644
-> > > > > > > > > > > > ---
-> > > > > > > > > > > > a/Documentation/devicetree/bindings/phy/mediate
-> > > > > > > > > > > > k,tp
-> > > > > > > > > > > > hy.y
-> > > > > > > > > > > > aml
-> > > > > > > > > > > > +++
-> > > > > > > > > > > > b/Documentation/devicetree/bindings/phy/mediate
-> > > > > > > > > > > > k,tp
-> > > > > > > > > > > > hy.y
-> > > > > > > > > > > > aml
-> > > > > > > > > > > > @@ -219,6 +219,13 @@ patternProperties:
-> > > > > > > > > > > >          minimum: 1
-> > > > > > > > > > > >          maximum: 15
-> > > > > > > > > > > >  
-> > > > > > > > > > > > +      mediatek,pre-emphasis:
-> > > > > > > > > > > > +        description:
-> > > > > > > > > > > > +          The selection of pre-emphasis (U2
-> > > > > > > > > > > > phy)
-> > > > > > > > > > > > +        $ref:
-> > > > > > > > > > > > /schemas/types.yaml#/definitions/uint32
-> > > > > > > > > > > > +        minimum: 1
-> > > > > > > > > > > > +        maximum: 3
-> > > > > > > > > > > 
-> > > > > > > > > > > Instead of hard-coding register values in
-> > > > > > > > > > > bindings,
-> > > > > > > > > > > you
-> > > > > > > > > > > should
-> > > > > > > > > > > rather
-> > > > > > > > > > > describe here feature/effect. If it is in units,
-> > > > > > > > > > > use
-> > > > > > > > > > > unit
-> > > > > > > > > > > suffixes.
-> > > > > > > > > > > If
-> > > > > > > > > > > it is some choice, usually string enum is
-> > > > > > > > > > > appropriate.
-> > > > > > > > > > 
-> > > > > > > > > > How about changing description as bellow:
-> > > > > > > > > > 
-> > > > > > > > > > "The level of pre-emphasis, increases one level,
-> > > > > > > > > > boosts
-> > > > > > > > > > the
-> > > > > > > > > > relative
-> > > > > > > > > > amplitudes of signal's higher frequencies
-> > > > > > > > > > components
-> > > > > > > > > > about
-> > > > > > > > > > 4.16%
-> > > > > > > > > > (U2
-> > > > > > > > > > phy)"
-> > > > > > > > > > 
-> > > > > > > > > 
-> > > > > > > > > Still the question is what is the unit. 4.16%?
-> > > > > > > > 
-> > > > > > > > No unit, it's a level value, like an index of array.
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > So a value from register/device programming? 
-> > > > > > 
-> > > > > > Yes
-> > > > > > > Rather a regular units
-> > > > > > > should be used if that's possible. If not, this should be
-> > > > > > > clearly
-> > > > > > > described here, not some magical number which you encode
-> > > > > > > into
-> > > > > > > DTS...
-> > > > > > 
-> > > > > > Ok, I'll add more descriptions.
-> > > > > 
-> > > > > Better use logical value, e.g.
-> > > > > 
-> > > > 
-> > > > 
-> > 
-> > 
-https://urldefense.com/v3/__https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml*L38__;Iw!!CTRNKA9wMg0ARbw!1e-h0R_uwcaHKfKC9qYfaRWYeuWRq1sLCGy3yupNmkFyuW5s1nmRotL7Y0vFG9ETLLTA$
-> > > > >  
-> > > > 
-> > > > Optional unit may be -percent or -bp, but the value 4.16% * X
-> > > > (X=1,2,3...)is not an exact value, they are variable in a range
-> > > > and
-> > > > dependent more factors.
-> > > > So I think use level value is simple enough.
-> > > 
-> > > Then again explain exactly what are the levels. How you wrote it
-> > > last
-> > > time, -bp would do the trick.
-> > 
-> > There are many different methods of measuring pre-emphasis.
-> > The way used in MediaTek USB2 PHY as below:
-> > 
-> > pre-emphasis level equation = Vpp/Vs -1;
-> > Vpp: peak-peak voltage of differential signal;
-> > Vs : static voltage of differential signal, normal voltage, e.g.
-> > 400mV
-> > for u2 phy;
-> > 
-> > The pre-emphasis circuitry within t-phy can be dynamically
-> > programmed
-> > to three different levels of pre-emphasis. The exact value of
-> > pre-emphasis cannot be predetermined, because each device requires
-> > a percentage of pre-emphasis that is dependent on the output signal
-> > strength and transmission path characteristics.
-> > 
-> > Below shows three programmable pre-emphasis levels for a
-> > differential
-> > drive signal of 400 mV. The amount of pre-emphasis changes
-> > according
-> > to the transmission path parameters.
-> > 
-> > programmable level   typical pre-emphasis level
-> > 1                    4.16%
-> > 2                    8.30%
-> > 3                    12.40%
-> > 
-> > The reasons that why prefer to use programmable level in dt-binding 
-> > as
-> > following:
-> > 1. as you said, -bp may do the trick, but the main problem is that
-> >    pre-emphasis level is variable on different SoC, and is also
-> >    variable even on different pcb for the same SoC. e.g. for the
-> >    programmable level 1, pre-emphasis level may be 6% on a
-> > platform,
-> >    but for the programmable level 2, pre-emphasis level may be also
-> >    6% on another platform;
-> >    I think use pre-emphasis level in property, e.g. 4.16%, the
-> >    deviation may be bigger than 40%, may cause confusion for users,
-> >    due to we can't promise that the actual measurement is about
-> > 4.16%,
-> >    it may be 2%, or 5% when measured;
-> > 2. the programmable / logical level is flexible when we support
-> > more
-> >    and pre-emphasis level, ans it is easy for us to tune the level
-> >    due to it's continuous value.
-> > 3. all other vendor properties that can't provide exact measurable
-> >    value in this dt-binding make use of logic level, I want to
-> >    keep them align;
-> 
-> Hm, that's clarifies a lot. Thanks for explanation.
-I couldn't know more about pre-emphasis without your questions, thank
-you very much.
+Hi Chris,
 
->  It's ok for me.
+On 9/12/22 22:56, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
+> This series adds support for the dsi and dphy controllers on the
+> Rockchip RK3568.
 > 
-> Best regards,
-> Krzysztof
+> Tested on an Anbernic RG503, Anbernic RG353P, and Odroid Go Advance.
+> 
+> Changes since V2:
+>  - Removed dsi controller patches, as those have been merged upstream.
+>  - Removed notes about rolling back clock drivers. If I set the parent
+>    clock of the VOP port I'm using to VPLL and set the clock rate of
+>    PLL_VPLL to 500MHz this series works correctly for my panels without
+>    rolling anything back (per Heiko this is the correct way).
 
+I tried this but it didn't help (neither did reverting ff3187eabb5c
+"clk: rockchip: drop CLK_SET_RATE_PARENT from dclk_vop* on rk3568"). On
+my display the content is shifted horizontally and the colors are often
+wrong.
+
+>  - Added additional details about refactoring DPHY driver to add
+>    2.5GHz for rk356x. All other devices still have a max speed of 1GHz.
+>  - Notified Heiko that the BIT(5) for both PLL_POST_DIV_ENABLE and
+>    PLL_POST_DIV_ENABLE_MASK is deliberate, because of how the
+>    phy_update_bits() works.
+> 
+> Changes since RFCv1:
+>  - Identified cause of image shift (clock changes).
+>  - Noted that driver works now.
+>  - Added devicetree nodes for rk356x.dtsi.
+> 
+> Chris Morgan (3):
+>   dt-bindings: phy-rockchip-inno-dsidphy: add compatible  for rk3568
+>   phy/rockchip: inno-dsidphy: Add support for rk3568
+>   arm64: dts: rockchip: Add DSI and DSI-DPHY nodes to rk356x
+
+I am testing this on a RK3568 EVB1, which has a display mounted on the
+PCB. I'll submit the patches that add support for this setup soon. For
+the time being a preliminary
+
+Tested-by: Michael Riesch <michael.riesch@wolfvision.net>
+
+Thanks for your work!
+Best regards,
+Michael
+
+> 
+>  .../bindings/phy/rockchip,px30-dsi-dphy.yaml  |   1 +
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  72 +++++++
+>  .../phy/rockchip/phy-rockchip-inno-dsidphy.c  | 204 ++++++++++++++----
+>  3 files changed, 231 insertions(+), 46 deletions(-)
+> 
