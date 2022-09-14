@@ -2,80 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 774185B8A0F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E2D5B8A24
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiINOMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 10:12:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
+        id S229683AbiINOQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 10:16:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbiINOMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:12:52 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5734C20BC0;
-        Wed, 14 Sep 2022 07:12:47 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-127d10b4f19so41228513fac.9;
-        Wed, 14 Sep 2022 07:12:47 -0700 (PDT)
+        with ESMTP id S230053AbiINOPx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:15:53 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8383F3A496;
+        Wed, 14 Sep 2022 07:15:51 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id t14so25938416wrx.8;
+        Wed, 14 Sep 2022 07:15:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=zOs1QKwbZyIiYcD44wohoU5bGlws2KHw+g3vnQSorCQ=;
+        b=Ks2ZZ2IN9vBeYDzJ0s9jZhTQYhtlLUrRLYKvlMVyyF+fOG6cQTXOWPlmH7SnCj0oBN
+         0xmRSYhQ7hlpYwFPu3mfH8C7Ausi9Cy8vkEBvWrSbbraws/ubtp/3x12f2bTL7Agaox5
+         KVldTUUHDt2FtdfDZ5Zle50v9SNWt6CPMcCnkiQnT49u3x7ZVxVBp59xJkBzlLrnQE4z
+         RcfgjOk6uUsHIuOpY+mlpl7LLgkTFyfYG9343COAOqBPxDodKIih9CbroSaqWXSllqWF
+         G06iBnCr1pHfkDxMkzBfV5FGHAAtPRKLDyZ6j1V63/XjY/2MOv2HujUttLL0FRVpTOzk
+         T+5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=SPyIRI2qTfSO2auACHjp148Yr0cJMKWfWPP3G131wXU=;
-        b=t96/vH5/9GB7Eta089omBEugVF5xihEsKoZAzr3U1yIJCcZUsXUFkpf1LsUm72X468
-         4RjA7kBiy+UnffeCkWNDckOL9lqQ5jDQ9YgNGHrvUy6tQN9LyxPk5sXKuvXfSk6LZiXD
-         f/RnDGwiDc4y+E6TVXlb5/5Tt/hpF+4HnKTs8BhKeycZ70Ezf1WqsdSqJWYdMaveZDsG
-         QoRQ77fPZR3zSQXGRp62mUzPCmbuN5YzVnBwOv3qShV1Ixi+tuKOWAep7z508m2IxNgh
-         3Vlm3yPdSoZHCtEd8keU47fr7a44Q4FKQlZ/RY8Gih7TB465GvXuXTB97+DowgZyFxl4
-         J+3Q==
-X-Gm-Message-State: ACgBeo1xN2kQu2nyIxgBAzyHCW5uhgGXsRdvjtMycTh/WPsx7aQlCEgR
-        McdwETqRF1tNvQslwRiMOw==
-X-Google-Smtp-Source: AA6agR7QeunMWJohZIlFuCMAfUkU6WKkOLpkzcAPqf/clN22a3MXHYUvpcOCZ79QPAgMSv29PpsnAA==
-X-Received: by 2002:aca:5b0b:0:b0:344:bea0:8c88 with SMTP id p11-20020aca5b0b000000b00344bea08c88mr1980979oib.225.1663164766562;
-        Wed, 14 Sep 2022 07:12:46 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t184-20020a4a54c1000000b0044b0465bd07sm6451845ooa.20.2022.09.14.07.12.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 07:12:46 -0700 (PDT)
-Received: (nullmailer pid 2131256 invoked by uid 1000);
-        Wed, 14 Sep 2022 14:12:45 -0000
-Date:   Wed, 14 Sep 2022 09:12:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     allen-kh.cheng@mediatek.com, devicetree@vger.kernel.org,
-        chunkuang.hu@kernel.org, rex-bc.chen@mediatek.com,
-        moudy.ho@mediatek.com, matthias.bgg@gmail.com,
-        jason-jh.lin@mediatek.com, linux-mediatek@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: soc: mediatek: Add display mutex
- support for MT6795
-Message-ID: <20220914141245.GA2131194-robh@kernel.org>
-References: <20220913140121.403637-1-angelogioacchino.delregno@collabora.com>
- <20220913140121.403637-2-angelogioacchino.delregno@collabora.com>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=zOs1QKwbZyIiYcD44wohoU5bGlws2KHw+g3vnQSorCQ=;
+        b=U+UjIkKIyV2wWVfbPYyOI9szUPQgbGeITQGhItl4U2WsaUqKpAxB2NpTz/Tt6MrZUP
+         Cn5PunTLGlKzudCmqdBt5feqiRpv6+PUiR0m0Du6hrVbzVX/bYq5Y7eQhmH1UqaEqlDz
+         K63bMpOXh6ksKS+r46fX6Uo40kpBwJa9UDRyK779zH81eJokWuEcVIhHrRNx1z0N/Ttt
+         gkJb97/f5tWGZ3v1PodTAjZZ6B4lV/MKV7HSXt+r6DYDHS1+hmgN2J8uoelonRehtr18
+         OIVi+Tg0I1VE0Ra9xQndPuoJS+IH0MD57IWRCKOYBbpAh6ZnKqKJ936m0i8t5srNa2LM
+         qX8Q==
+X-Gm-Message-State: ACgBeo273NgEzsBUbvbFb5d5zAn6qblGglU61vg2Xnq4MeLXqrGf6F4d
+        IoFuqLMZC35MCIGmaVaIOWE=
+X-Google-Smtp-Source: AA6agR7Bu+ObYtkfeAMtim+ngA8n2IPmkQsqMg5NlIrP9uzCd4DPRq+COGJZeAVGftuRUF2LCdFdKQ==
+X-Received: by 2002:a5d:6f03:0:b0:22a:2de6:9229 with SMTP id ay3-20020a5d6f03000000b0022a2de69229mr18997910wrb.91.1663164949659;
+        Wed, 14 Sep 2022 07:15:49 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id o16-20020a056000011000b0021e4829d359sm13315939wrx.39.2022.09.14.07.15.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Sep 2022 07:15:48 -0700 (PDT)
+Message-ID: <a8af4c54-12a2-a314-f190-f12859ef4ddd@gmail.com>
+Date:   Wed, 14 Sep 2022 16:15:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220913140121.403637-2-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8183: remove thermal zones
+ without trips.
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220914131339.18348-1-aouledameur@baylibre.com>
+Content-Language: en-US
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220914131339.18348-1-aouledameur@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Sep 2022 16:01:20 +0200, AngeloGioacchino Del Regno wrote:
-> Add compatible for MT6795 Helio X10 SoC.
+
+
+On 14/09/2022 15:13, Amjad Ouled-Ameur wrote:
+> Thermal zones without trip point are not registered by thermal core.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../devicetree/bindings/soc/mediatek/mediatek,mutex.yaml         | 1 +
->  1 file changed, 1 insertion(+)
+> tzts1 ~ tzts6 zones of mt8183 were intially introduced for test-purpose
+> only but are not supposed to remain on DT.
+> 
+> Remove the zones above and keep only cpu_thermal.
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+My understanding is that this thermal zones exist but are not used. DTS should 
+describe the HW as it is, so I propose to add
+status = "disabled";
+to the zones.
+
+Regards,
+Matthias
+
+> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 57 ------------------------
+>   1 file changed, 57 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 9d32871973a2..f65fae8939de 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1182,63 +1182,6 @@ THERMAL_NO_LIMIT
+>   					};
+>   				};
+>   			};
+> -
+> -			/* The tzts1 ~ tzts6 don't need to polling */
+> -			/* The tzts1 ~ tzts6 don't need to thermal throttle */
+> -
+> -			tzts1: tzts1 {
+> -				polling-delay-passive = <0>;
+> -				polling-delay = <0>;
+> -				thermal-sensors = <&thermal 1>;
+> -				sustainable-power = <5000>;
+> -				trips {};
+> -				cooling-maps {};
+> -			};
+> -
+> -			tzts2: tzts2 {
+> -				polling-delay-passive = <0>;
+> -				polling-delay = <0>;
+> -				thermal-sensors = <&thermal 2>;
+> -				sustainable-power = <5000>;
+> -				trips {};
+> -				cooling-maps {};
+> -			};
+> -
+> -			tzts3: tzts3 {
+> -				polling-delay-passive = <0>;
+> -				polling-delay = <0>;
+> -				thermal-sensors = <&thermal 3>;
+> -				sustainable-power = <5000>;
+> -				trips {};
+> -				cooling-maps {};
+> -			};
+> -
+> -			tzts4: tzts4 {
+> -				polling-delay-passive = <0>;
+> -				polling-delay = <0>;
+> -				thermal-sensors = <&thermal 4>;
+> -				sustainable-power = <5000>;
+> -				trips {};
+> -				cooling-maps {};
+> -			};
+> -
+> -			tzts5: tzts5 {
+> -				polling-delay-passive = <0>;
+> -				polling-delay = <0>;
+> -				thermal-sensors = <&thermal 5>;
+> -				sustainable-power = <5000>;
+> -				trips {};
+> -				cooling-maps {};
+> -			};
+> -
+> -			tztsABB: tztsABB {
+> -				polling-delay-passive = <0>;
+> -				polling-delay = <0>;
+> -				thermal-sensors = <&thermal 6>;
+> -				sustainable-power = <5000>;
+> -				trips {};
+> -				cooling-maps {};
+> -			};
+>   		};
+>   
+>   		pwm0: pwm@1100e000 {
