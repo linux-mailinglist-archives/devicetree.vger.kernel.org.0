@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C88B5B8393
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:01:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E2B85B83EE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:05:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbiINJBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 05:01:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37746 "EHLO
+        id S230343AbiINJFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 05:05:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbiINJBM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:01:12 -0400
+        with ESMTP id S230504AbiINJEw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:04:52 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC051F2F2;
-        Wed, 14 Sep 2022 02:01:11 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B735E754B9;
+        Wed, 14 Sep 2022 02:02:51 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 74CF1B816A9;
-        Wed, 14 Sep 2022 09:01:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2886C433C1;
-        Wed, 14 Sep 2022 09:01:06 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0E4DEB816A9;
+        Wed, 14 Sep 2022 09:02:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3358C433D7;
+        Wed, 14 Sep 2022 09:02:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663146069;
-        bh=tuq12uiHXCIaOV0yOG2YnavzeCeNFrj76CmV14UkXi0=;
+        s=k20201202; t=1663146148;
+        bh=UJz4aN/zdRRoD8mU+4qWJUCxaeD7+BrOWhvFIVTF5ZY=;
         h=From:To:Cc:Subject:Date:From;
-        b=iFDh1dh4CHiv2dLavIwUdHFbwAK0tx0+rTfa3TzqLrmt6UXE3dMPjEJZbGTux3zWL
-         aHEOxQ/oNbS8OC6SyqF8t/j0rebEgcLlF1dfWV+OpHKyDlwWPtaAq7QKHEKe65vpTg
-         6XGfY/tsWOeAroAgZq9yQEY2P9dLL9ElauR7irsdgYG4ACiGvuQAs7Nm2WcYFMpa4d
-         YYVDP4njWAXAQ8FFbw8o1baVHXG1zyCHzAhQCV2fF2bIYLTX88aEpNP5FPho/GR6JF
-         hFOCKiCjAUMLo0QqbJvs0VDupsTRzz3gKy6ObTWhEFPb5xHSUs3fSg0g/hd7Q/ISC2
-         soD2DfjPwtLjw==
+        b=NQ3rub8p3E7vJe85wJCr5q5sXa4qgClvk6QULL6Vws8liAHY0ihtXOd2cLQ8ilobj
+         RIqYhqUgLGOrBRhwHkEujuGzZ2cmj7yCmP0n+/XPKzOBdZOaihESxuBa/k3QJziozF
+         Hf3o/kl1uzWuyco5GEqGykpOBHFDb38UNkWPU+j+MqST0q034djzGvCtths30AxM4Z
+         y/T6ZUaY16uLQjn6rx1jmEp3WzF8a9A0LsRJBa2C9bFM5uXlOQ6jG4gdUm+LshI4cE
+         bxtI1JdS4hJdTraDWnm1XnEAX9Na0w7GafT0pYVpa1jVxorjeb6fjaHRtdDT+xUDGB
+         l/mFAlKHGX17w==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
@@ -39,9 +39,9 @@ Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
         lpieralisi@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.19 01/22] arm64: dts: juno: Add missing MHU secure-irq
-Date:   Wed, 14 Sep 2022 05:00:42 -0400
-Message-Id: <20220914090103.470630-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 01/16] arm64: dts: juno: Add missing MHU secure-irq
+Date:   Wed, 14 Sep 2022 05:02:09 -0400
+Message-Id: <20220914090224.470913-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 X-stable: review
@@ -75,7 +75,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-index 065381c1cbf5a..b5039d6a1d1d1 100644
+index a2635b14da309..34e5549ea748a 100644
 --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
 +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
 @@ -26,7 +26,8 @@ mailbox: mhu@2b1f0000 {
