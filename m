@@ -2,76 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C17B5B8911
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 15:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E78E5B891E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 15:27:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbiINNYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 09:24:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35888 "EHLO
+        id S229600AbiINN13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 09:27:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiINNYt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 09:24:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E6F91261A
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 06:24:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 056C961D34
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 13:24:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6814DC433D6
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 13:24:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663161887;
-        bh=Ap78JJd6ypcwMpcaSscsFKXGN0Fxo3Ue+b8/dCkm1PM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=D4K+kWGRtV9TbnqqENU6LT9pZYGoCiSg1RxRWMUGDrHxPsIo9L0RmOWnsFEktLcS2
-         382ZeAp5GSf7wwI+WiTs6PXV06CHKFeOEpy6lquHg6pPKoYQGtmEN7IA/JofXpI0To
-         wi/AV+T0MejncCJuH0rYBxwWDFglVGszWukTjsxMFSpfBLf1hwu2yPFeg153W8bPPc
-         rdzaGXl3X5X9t5nKZjhci36lTo4v4zrnKnk+QnGzZcerBsVdB6tUiBk8Y7GytqB5Gq
-         MfLkcFnZakNtpXzpUkACSZpTj2c4Do0AhGJpClZ0WOtTzcRAbyVv2ZRbUFJtXgECaO
-         fsKXzVxe6NDtQ==
-Received: by mail-vs1-f51.google.com with SMTP id q26so10371363vsr.7
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 06:24:47 -0700 (PDT)
-X-Gm-Message-State: ACgBeo0pg53U8OagmktPn4ZkFYzByB5OsQ6XuUS1PaJYU9WW/qiEQ9pq
-        HvfqfLcROJNqM7TFGdXR5yBVxc9Cu1KR78Iaig==
-X-Google-Smtp-Source: AA6agR6aIpiKfjuTwhYuoW3Ym1QGOYtcJNyyRMfQfI+buVIsZgtH9VEh2hXuSf7FK9z6m5XAI0G2chq8t6GsVuFw6AM=
-X-Received: by 2002:a67:c18a:0:b0:398:4c72:cafb with SMTP id
- h10-20020a67c18a000000b003984c72cafbmr8927154vsj.53.1663161886288; Wed, 14
- Sep 2022 06:24:46 -0700 (PDT)
+        with ESMTP id S229632AbiINN10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 09:27:26 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 345DB6CD01
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 06:27:23 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id bz13so25723853wrb.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 06:27:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=8KUXcLjtkVihtg11T3oMt0vYyGo5xNo18xehwjt6aQM=;
+        b=d0YJHn4cl28LBNrFF2Jacudh0DH+lp8gvP4kqahW8yoym8X30qfMq9xOV1VrDFMtLL
+         +Qp5qIAsAYCUzQDPvkkNOBJrG3yiouopMdMBUZAYieEoHCSdl4k0DjgkcKYf8pCqg/69
+         OFnkAafaqoXnKOXKpwfSJDJE3HXsAZC5CYh5j8AzL3TwM/WksIx65zOSFThNRAXC57jO
+         qOeZnadSPmxZ3bhrA68xOCUcERLU+r9NvOqlY6Mf61VUvqmTyoqL8b31yQRP7JLoGe0X
+         fk9NM5uN8BY4HiK2qqyj1tLYHLhlwBtFunBY3cSzJRlZfq2vroy/vrIO7I6l1Ccc0Fy7
+         onFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=8KUXcLjtkVihtg11T3oMt0vYyGo5xNo18xehwjt6aQM=;
+        b=eojSEc9J7e29r/QoOQauJd02MhOYZ/PlTLrydnZESDFLSGUvncOViQQo+UEWQXt3dv
+         6e4vT4s0TRqN8r0rT64pKL8PpCLxSmthODZqsMyzNaQb8JI9o9URdeQ3jXZamNKgIdgd
+         KqmNISMmSIyLTLGt3p/RPQCsS7B6B0K/uCQBsZYCPV3vZvy/SUOm7sZh7uIyuGHjdIgz
+         H1VyaSw8HiyfH4ZCYymeabRZLH20QnvBCS0PJTP9NlYnV6uxoCFx4Kut9uLjXVh/clcg
+         ip5Xl63tBXoJFKoafR9Mov0H+Hftzwx1j7aVrJuJDsTJY86aCQ533PN9o78jZeRkWphu
+         NG9w==
+X-Gm-Message-State: ACgBeo0ZNkqmvJv1vzmRzLhwJKBbIXwJCxBVas5l/FlA1xUrQhLFcUtH
+        mwsqoyXmVibGm3KSyVm6Bvp83w==
+X-Google-Smtp-Source: AA6agR6TPMPPsLlhAtiQsyA/yLJqtqEhq4K5gfSRuANSt5F79zP1ztVc47OyVeBgOoCioZNHWtccbw==
+X-Received: by 2002:a5d:6986:0:b0:228:60f9:b013 with SMTP id g6-20020a5d6986000000b0022860f9b013mr20518582wru.102.1663162041670;
+        Wed, 14 Sep 2022 06:27:21 -0700 (PDT)
+Received: from [192.168.0.20] (210.145.15.109.rev.sfr.net. [109.15.145.210])
+        by smtp.gmail.com with ESMTPSA id v8-20020a05600c12c800b003a844885f88sm16243456wmd.22.2022.09.14.06.27.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Sep 2022 06:27:21 -0700 (PDT)
+Message-ID: <bfce8af1-8826-be59-437f-0982c14f6d24@baylibre.com>
+Date:   Wed, 14 Sep 2022 15:27:19 +0200
 MIME-Version: 1.0
-References: <20220914100443.24104-1-jiaxianhua@gmail.com>
-In-Reply-To: <20220914100443.24104-1-jiaxianhua@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 14 Sep 2022 08:24:34 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKM_und9B8LNSutyoWPfS-QCXojdn3Pb-Yg4xN7Oc1UFg@mail.gmail.com>
-Message-ID: <CAL_JsqKM_und9B8LNSutyoWPfS-QCXojdn3Pb-Yg4xN7Oc1UFg@mail.gmail.com>
-Subject: Re: [PATCH] dtc: remove duplicate judgments
-To:     Jia Xianhua <jiaxianhua@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 16/17] arm64: dts: mediatek: add mt8365 device-tree
+Content-Language: en-US
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+To:     fparent@baylibre.com
+Cc:     broonie@kernel.org, chaotian.jing@mediatek.com,
+        chunfeng.yun@mediatek.com, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, jic23@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux@roeck-us.net,
+        matthias.bgg@gmail.com, qii.wang@mediatek.com, robh+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, ulf.hansson@linaro.org,
+        vkoul@kernel.org, wim@linux-watchdog.org
+References: <20220531135026.238475-17-fparent@baylibre.com>
+ <20220720131257.530168-1-aouledameur@baylibre.com>
+In-Reply-To: <20220720131257.530168-1-aouledameur@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 5:05 AM Jia Xianhua <jiaxianhua@gmail.com> wrote:
->
-> There is no need to check the VALID_DTB repeatedly, and can be combined
-> into one if statement.
->
-> Signed-off-by: Jia Xianhua <jiaxianhua@gmail.com>
-> ---
->  scripts/dtc/libfdt/fdt.c | 3 ---
->  1 file changed, 3 deletions(-)
+Hi Fabien,
 
-dtc in the kernel is copied as-is from upstream dtc. So we don't take
-patches. They must be submitted to upstream dtc first and sync'ed
-back.
+On 7/20/22 15:12, Amjad Ouled-Ameur wrote:
+> Hi Fabien,
+>
+>> +		tzts4: tzts4-thermal {
+>> +			polling-delay-passive = <0>;
+>> +			polling-delay = <0>;
+>> +			thermal-sensors = <&thermal 4>;
+>> +			trips {};
+>> +			cooling-maps {};
+>> +		};
+> AFAIK mt8365 has only 3 thermal sensors, therefore tzts4 should not be
+> added.
 
-Rob
+I discussed this further with MediaTek. tzts1, tzts2, tzts3 and tzts4 
+are used
+
+for test-purpose only. Since they do not have trip points, thermal core 
+wouldn't
+
+register them anyway. Thus, I think we should remove them altogether. Only
+
+cpu_thermal zone is relevant and should remain.
+
+
+Regards,
+
+Amjad
+
+> Regards,
+> Amjad
