@@ -2,111 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51FB85B87C4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:03:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D43E5B87D2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbiINMDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 08:03:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60100 "EHLO
+        id S230022AbiINMIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 08:08:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiINMD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:03:28 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B252E692;
-        Wed, 14 Sep 2022 05:03:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=AGiS0RJTIfvi76lZW3pl+xDVDO1sAPMtoNwFdsbw634=; b=vjqzDyEsUkoDI9FWKQ04N1BR2s
-        lD59yHKCy3WGtuA1rDc+Q0YxLU6LluESH/a1B1rKF7jjIl4zL6XTDb1DUlT6qdXEXikhXG3HMTXLJ
-        HNykcBcCSnQN9qaBKbb6R5fja2iq16eQKNYD0inuCUT3zrAyI3+Aldk025u4Gul/K7M8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oYR6g-00Gh3A-SF; Wed, 14 Sep 2022 14:03:06 +0200
-Date:   Wed, 14 Sep 2022 14:03:06 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 3/5] net: ethernet: renesas: Add Ethernet Switch driver
-Message-ID: <YyHC+r3uP7s15kny@lunn.ch>
-References: <20220909132614.1967276-1-yoshihiro.shimoda.uh@renesas.com>
- <20220909132614.1967276-4-yoshihiro.shimoda.uh@renesas.com>
- <Yx+9OrYDxKjVUutF@lunn.ch>
- <TYBPR01MB5341F0C51EB2EBEF5A7107E7D8469@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+        with ESMTP id S229952AbiINMIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:08:44 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536E17F26A;
+        Wed, 14 Sep 2022 05:08:43 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id x23-20020a056830409700b00655c6dace73so7886297ott.11;
+        Wed, 14 Sep 2022 05:08:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=hMLOKeXHOSnfU4zqlH09bFkg9yKTy1Fq4MgQhLwV+DM=;
+        b=WqKPOl6rGbJkJDcmUZJKm9+cFsO7LUXmJzzIuABQtOGMH61PFFFE6DlEYv5XcyZurb
+         P6ih1dm839xQss4jsNECSTSPLjfY66ziaAgWveGhr2r59MzK9oAUlis6efayvsrybFbL
+         1kORO6DN4zFFWAUMoq9TWm/iWyYw3pElSDmLGBM4SszCmo39CXNRkIyU+gPW5tCXOloC
+         V6YpX0IY3pL7ig46D6oJbv9tGQn4UM8RdXuqqHRJzpc+rwhDM3+zKi08QN7s+0mwKpsD
+         S5QrYU1BxPkKqFgLxb2m3lGOWu3w7Te37yyPn8In99e0PLNrHUPXbzHjNsKPN5baXsGD
+         RQGQ==
+X-Gm-Message-State: ACgBeo3RF0fSJ34gdTAuMpZKTGEbcC/2BhMzccgXZf8ed4FTwUtkwSbu
+        yG3/O354+F9TwmC4hDvwxA==
+X-Google-Smtp-Source: AA6agR4qmKdSRMjr6cCYgddorY7oSjwFoX8ZUGglOu9qJOO8G4H+NFYqgp2cN0UGOoshspqJbqDiNQ==
+X-Received: by 2002:a05:6830:6104:b0:654:fb1:faba with SMTP id ca4-20020a056830610400b006540fb1fabamr10605314otb.183.1663157322251;
+        Wed, 14 Sep 2022 05:08:42 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m26-20020a0568301e7a00b006339b36127dsm7172351otr.3.2022.09.14.05.08.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 05:08:41 -0700 (PDT)
+Received: (nullmailer pid 1869045 invoked by uid 1000);
+        Wed, 14 Sep 2022 12:08:40 -0000
+Date:   Wed, 14 Sep 2022 07:08:40 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Mikko Perttunen <cyndis@kapsi.fi>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, Sameer Pujar <spujar@nvidia.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        linux-tegra@vger.kernel.org, Ashish Mhetre <amhetre@nvidia.com>
+Subject: Re: [PATCH v2 3/8] dt-bindings: Add bindings for Tegra234 NVDEC
+Message-ID: <20220914120840.GA1837218-robh@kernel.org>
+References: <20220913131447.2877280-1-cyndis@kapsi.fi>
+ <20220913131447.2877280-4-cyndis@kapsi.fi>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <TYBPR01MB5341F0C51EB2EBEF5A7107E7D8469@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220913131447.2877280-4-cyndis@kapsi.fi>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +static void rswitch_adjust_link(struct net_device *ndev)
-> > > +{
-> > > +	struct rswitch_device *rdev = netdev_priv(ndev);
-> > > +	struct phy_device *phydev = ndev->phydev;
-> > > +
-> > > +	if (phydev->link != rdev->etha->link) {
-> > > +		phy_print_status(phydev);
-> > > +		rdev->etha->link = phydev->link;
-> > > +	}
-> > 
-> > Given that the SERDES supports 100 and 1G, it seems odd you don't need
-> > to do anything here.
+On Tue, Sep 13, 2022 at 04:14:41PM +0300, Mikko Perttunen wrote:
+> From: Mikko Perttunen <mperttunen@nvidia.com>
 > 
-> Indeed. However, unfortunately, the current hardware cannot change the speed at runtime...
-> So, I'll add such comments here.
-
-Then you need to tell phylib about this. MAC drivers with limitations
-often call phy_set_max_speed() to remove higher speeds which the PHY
-can support, but the MAC cannot. You need to go further and remove
-lower speeds as well. The autoneg in the PHY should then only work for
-the speeds you actually support.
-
-> > > +static int rswitch_serdes_common_setting(void __iomem *addr0,
-> > > +					 enum rswitch_serdes_mode mode)
-> > > +{
-> > > +	switch (mode) {
-> > > +	case SGMII:
-> > > +		rswitch_serdes_write32(addr0, 0x0244, 0x180, 0x97);
-> > > +		rswitch_serdes_write32(addr0, 0x01d0, 0x180, 0x60);
-> > > +		rswitch_serdes_write32(addr0, 0x01d8, 0x180, 0x2200);
-> > > +		rswitch_serdes_write32(addr0, 0x01d4, 0x180, 0);
-> > > +		rswitch_serdes_write32(addr0, 0x01e0, 0x180, 0x3d);
-> > 
-> > Please add #defines for all these magic numbers.
+> Update NVDEC bindings for Tegra234. This new engine version only has
+> two memory clients, but now requires three clocks, and as a bigger
+> change the engine loads firmware from a secure carveout configured by
+> the bootloader.
 > 
-> I should have added comments before though, the datasheet also describes
-> such magic numbers like below...
-> Step S.4.1	bank 0x180	address = 0x0244		data = 0x00000097
-> Step S.4.2	bank 0x180	address = 0x01d0		data = 0x00000060
-> ...
+> For the latter, we need to add a phandle to the memory controller
+> to query the location of this carveout, and several other properties
+> containing offsets into the firmware inside the carveout. These
+> properties are intended to be populated through a device tree overlay
+> configured at flashing time, so that the values correspond to the
+> flashed NVDEC firmware.
 > 
-> So, perhaps we can define like the followings:
-> #define	SERDES_BANK_180		0x180
+> As the binding was getting large with many conditional properties,
+> also split the Tegra234 version out into a separate file.
 > 
-> #define	SERDES_STEP_S_4_1_ADDR	0x0244
-> #define	SERDES_STEP_S_4_1_DATA	0x00000097
+> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> ---
+> v2:
+> - Split out into separate file to avoid complexity with
+>   conditionals etc.
+> ---
+>  .../gpu/host1x/nvidia,tegra234-nvdec.yaml     | 154 ++++++++++++++++++
+>  1 file changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra234-nvdec.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra234-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra234-nvdec.yaml
+> new file mode 100644
+> index 000000000000..eab0475ca983
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra234-nvdec.yaml
+> @@ -0,0 +1,154 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra234-nvdec.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Device tree binding for NVIDIA Tegra234 NVDEC
+> +
+> +description: |
+> +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
+> +  and newer chips. It is located on the Host1x bus and typically
+> +  programmed through Host1x channels.
+> +
+> +maintainers:
+> +  - Thierry Reding <treding@gmail.com>
+> +  - Mikko Perttunen <mperttunen@nvidia.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^nvdec@[0-9a-f]*$"
+> +
+> +  compatible:
+> +    enum:
+> +      - nvidia,tegra234-nvdec
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: nvdec
+> +      - const: fuse
+> +      - const: tsec_pka
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: nvdec
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  dma-coherent: true
+> +
+> +  interconnects:
+> +    items:
+> +      - description: DMA read memory client
+> +      - description: DMA write memory client
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: dma-mem
+> +      - const: write
+> +
+> +  nvidia,memory-controller:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to the memory controller for determining carveout information.
+> +
+> +  nvidia,bl-manifest-offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Offset to bootloader manifest from beginning of firmware. Typically set as
+> +      part of a device tree overlay corresponding to flashed firmware.
+> +
+> +  nvidia,bl-code-offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Offset to bootloader code section from beginning of firmware. Typically set as
+> +      part of a device tree overlay corresponding to flashed firmware.
+> +
+> +  nvidia,bl-data-offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Offset to bootloader data section from beginning of firmware. Typically set as
+> +      part of a device tree overlay corresponding to flashed firmware.
+> +
+> +  nvidia,os-manifest-offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Offset to operating system manifest from beginning of firmware. Typically set as
+> +      part of a device tree overlay corresponding to flashed firmware.
+> +
+> +  nvidia,os-code-offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Offset to operating system code section from beginning of firmware. Typically set as
+> +      part of a device tree overlay corresponding to flashed firmware.
+> +
+> +  nvidia,os-data-offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Offset to operating system data section from beginning of firmware. Typically set as
+> +      part of a device tree overlay corresponding to flashed firmware.
 
-Not really any better. Better to comment that you have no idea what
-any of this does, it is all black magic.
+I don't think DT is the place for describing your runtime loaded 
+firmware layout.
 
-    Andrew
+Rob
