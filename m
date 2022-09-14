@@ -2,99 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 091855B87A4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF46E5B87AA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 13:58:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbiINL4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 07:56:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48502 "EHLO
+        id S229997AbiINL6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 07:58:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiINL4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:56:51 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 972482F03E;
-        Wed, 14 Sep 2022 04:56:49 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1274ec87ad5so40335254fac.0;
-        Wed, 14 Sep 2022 04:56:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=JxLgOu6mpwnw6SY29Fdqty2Ik/m+3DmPqodTz8p4N7c=;
-        b=bcJEqOtNAatRINLla1+kNIoiKJNMMPW4lw+YuXyAnOKSP9Dij2+fySL9C4jk9kHzj/
-         6ZI5pUNbpXHvkr6z4PmlvTNOeyu2Cu00FbZQCng2PS14g0kzcGZUUAd/qs/rRJeEeMdL
-         NR9LgDTFpaOYMAFCI8i4QALlpr4sOCZtw+YyXf5dA63XwE6NAc95u7Vjkh+XGib1y6n0
-         PHrhwk9f6BrKQluZr077+fK2ZDVRYQJY5EpaEfhLn0HWZeCECEYnfLnxiBQ2swFcQDNM
-         aKMMv+sgEEe9udupLHagnPt8iG5xbMgxdkNc00MtYS8n9Ti3uO4RIeIvYHTmpLhWsYMf
-         DICw==
-X-Gm-Message-State: ACgBeo16XE7jYTBOm4iPvw/VwFeA9jO800syK3gGk9ftY6omCFkkob2B
-        yJ078+Qwb9hrjW9Sxvw+vQ==
-X-Google-Smtp-Source: AA6agR6iZ+uJtt57/qlMbscIjcVecG6JevOV1N1fEvnEnVqYWCqmEO8HGbz9r0g/xhTHzye7sagkSw==
-X-Received: by 2002:aca:add2:0:b0:34f:6883:5878 with SMTP id w201-20020acaadd2000000b0034f68835878mr1690227oie.260.1663156608789;
-        Wed, 14 Sep 2022 04:56:48 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y19-20020a4acb93000000b0044b02c62872sm6431880ooq.10.2022.09.14.04.56.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 04:56:48 -0700 (PDT)
-Received: (nullmailer pid 1837080 invoked by uid 1000);
-        Wed, 14 Sep 2022 11:56:47 -0000
-Date:   Wed, 14 Sep 2022 06:56:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Colin Foster <colin.foster@in-advantage.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>
-Subject: Re: [PATCH v2 net-next] dt-bindings: net: dsa: convert ocelot.txt to
- dt-schema
-Message-ID: <20220914115647.GA1837019-robh@kernel.org>
-References: <20220913125806.524314-1-vladimir.oltean@nxp.com>
+        with ESMTP id S229889AbiINL6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 07:58:39 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94CBC501A6;
+        Wed, 14 Sep 2022 04:58:38 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4CCC36601D9B;
+        Wed, 14 Sep 2022 12:58:35 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663156716;
+        bh=shSymtIAxGsCHrnbATpRaFoRfpKmWQ0G2qmKifjEWQ0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OI18wQE+hAXB+BPsNMLhS4Fcg4vEbzpxLY8CRUGvYkZvTJaoBhrl4dXnYv0gE5Pvu
+         QNQRUikenrDUMNPBAQzn1IG4je905fA2B4PbGiq/TXXcEdcBZyliFcRmF1ODAExZx9
+         /8XIb1AGQYWphZG3+GBUBbSkBI2/qRTY3xwoV3i6qCj/iHq+M68KIMyTXHwLrjo96E
+         LCNyrFANVNsZvA8uJJ3IKWJNiYtCmqTjHj87LLe5Cb5FA3OFJE0aaRwzS/l4T6qRJu
+         L96oOwx7leewIwSEm1pgcUuxb46OafzKoDwwlyZsHlQZEsvmjLPfgywFriphG8jXyi
+         OcgcdTp/hpzKw==
+Message-ID: <48cb4f47-754c-9994-2489-7ffabfc1b3b9@collabora.com>
+Date:   Wed, 14 Sep 2022 13:58:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220913125806.524314-1-vladimir.oltean@nxp.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v9,1/7] thermal: mediatek: Relocate driver to mediatek
+ folder
+Content-Language: en-US
+To:     bchihi@baylibre.com, rafael@kernel.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, amitk@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+References: <20220817080757.352021-1-bchihi@baylibre.com>
+ <20220817080757.352021-2-bchihi@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220817080757.352021-2-bchihi@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Sep 2022 15:58:06 +0300, Vladimir Oltean wrote:
-> Replace the free-form description of device tree bindings for VSC9959
-> and VSC9953 with a YAML formatted dt-schema description. This contains
-> more or less the same information, but reworded to be a bit more
-> succint.
+Il 17/08/22 10:07, bchihi@baylibre.com ha scritto:
+> From: Michael Kao <michael.kao@mediatek.com>
 > 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
+> Add MediaTek proprietary folder to upstream more thermal zone and cooler
+> drivers, relocate the original thermal controller driver to it, and rename it
+> as "auxadc_thermal.c" to show its purpose more clearly.
+> 
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Co-developed-by: Ben Tseng <ben.tseng@mediatek.com>
+> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
+> Co-developed-by: Balsam CHIHI <bchihi@baylibre.com>
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
 > ---
-> v1->v2:
-> - provide a more detailed description of the DT binding
-> - allow little-endian and big-endian properties
-> - allow interrupts property and make it required for vsc9959
-> - describe the meaning of the interrupts property
-> - reduce indentation in examples from 8 spaces to 4
-> - change license so it matches the driver
+>   drivers/thermal/Kconfig                       | 14 ++++--------
+>   drivers/thermal/Makefile                      |  2 +-
+>   drivers/thermal/mediatek/Kconfig              | 22 +++++++++++++++++++
+>   drivers/thermal/mediatek/Makefile             |  1 +
+>   .../auxadc_thermal.c}                         |  2 +-
+>   5 files changed, 29 insertions(+), 12 deletions(-)
+>   create mode 100644 drivers/thermal/mediatek/Kconfig
+>   create mode 100644 drivers/thermal/mediatek/Makefile
+>   rename drivers/thermal/{mtk_thermal.c => mediatek/auxadc_thermal.c} (99%)
 > 
->  .../bindings/net/dsa/mscc,ocelot.yaml         | 260 ++++++++++++++++++
->  .../devicetree/bindings/net/dsa/ocelot.txt    | 213 --------------
->  2 files changed, 260 insertions(+), 213 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/dsa/ocelot.txt
-> 
+> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> index e052dae614eb..d35f63daca3b 100644
+> --- a/drivers/thermal/Kconfig
+> +++ b/drivers/thermal/Kconfig
+> @@ -412,16 +412,10 @@ config DA9062_THERMAL
+>   	  zone.
+>   	  Compatible with the DA9062 and DA9061 PMICs.
+>   
+> -config MTK_THERMAL
+> -	tristate "Temperature sensor driver for mediatek SoCs"
+> -	depends on ARCH_MEDIATEK || COMPILE_TEST
+> -	depends on HAS_IOMEM
+> -	depends on NVMEM || NVMEM=n
+> -	depends on RESET_CONTROLLER
+> -	default y
+> -	help
+> -	  Enable this option if you want to have support for thermal management
+> -	  controller present in Mediatek SoCs
+> +menu "Mediatek thermal drivers"
+> +depends on ARCH_MEDIATEK || COMPILE_TEST
+> +source "drivers/thermal/mediatek/Kconfig"
+> +endmenu
+>   
+>   config AMLOGIC_THERMAL
+>   	tristate "Amlogic Thermal Support"
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index def8e1a0399c..f7daeb8056c4 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -55,7 +55,7 @@ obj-y				+= st/
+>   obj-$(CONFIG_QCOM_TSENS)	+= qcom/
+>   obj-y				+= tegra/
+>   obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
+> -obj-$(CONFIG_MTK_THERMAL)	+= mtk_thermal.o
+> +obj-y				+= mediatek/
+>   obj-$(CONFIG_GENERIC_ADC_THERMAL)	+= thermal-generic-adc.o
+>   obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
+>   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+> diff --git a/drivers/thermal/mediatek/Kconfig b/drivers/thermal/mediatek/Kconfig
+> new file mode 100644
+> index 000000000000..8ff32370b591
+> --- /dev/null
+> +++ b/drivers/thermal/mediatek/Kconfig
+> @@ -0,0 +1,22 @@
+> +config MTK_THERMAL
+> +	tristate "MediaTek thermal drivers"
+> +	depends on THERMAL_OF
+> +	help
+> +	  This is the option for MediaTek thermal software solutions.
+> +	  Please enable corresponding options to get temperature
+> +	  information from thermal sensors or turn on throttle
+> +	  mechaisms for thermal mitigation.
+> +
+> +if MTK_THERMAL
+> +
+> +config MTK_SOC_THERMAL
+> +	tristate "AUXADC temperature sensor driver for MediaTek SoCs"
+> +	depends on HAS_IOMEM
+> +	depends on NVMEM
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+That's not true. This driver doesn't depend on NVMEM, as in function
+mtk_thermal_get_calibration_data(), the calibration params are initialized
+with default values and if no "calibration-data" cell was found, it will
+return 0 and simply go on with probing... and this is because not all SoCs
+need calibration data from eFuses.
+If you check carefully, the original entry says "NVMEM || NVMEM=n".
+
+Please drop the NVMEM dependency from this config entirely.
+
+> +	depends on RESET_CONTROLLER
+
+While at it, can you please also drop the dependency for RESET_CONTROLLER?
+I know it was present on the original config entry, but that's wrong, as
+the driver doesn't strictly require resets, as it uses device_reset_optional().
+
+
+Regards,
+Angelo
+
