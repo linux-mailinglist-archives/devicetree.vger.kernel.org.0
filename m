@@ -2,66 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 778EA5B89D7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:04:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E7585B89DC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:06:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiINOEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 10:04:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49210 "EHLO
+        id S229766AbiINOGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 10:06:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229691AbiINOEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:04:13 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3125776749;
-        Wed, 14 Sep 2022 07:03:31 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id p5so18383861ljc.13;
-        Wed, 14 Sep 2022 07:03:31 -0700 (PDT)
+        with ESMTP id S229727AbiINOFr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:05:47 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAEAC17E0D;
+        Wed, 14 Sep 2022 07:04:38 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id q21so22419311edc.9;
+        Wed, 14 Sep 2022 07:04:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=RuOaQhYbr5T6MnVhKoqqAsTO1OPpUIr9a2tO5WPZWDM=;
-        b=AGUMhUoe/H7w88i8PFdtQ174vMV296Ir4r9mB1fITufoi78axuTufLaolDs9Ehxl4O
-         LLyVBU6EzXaef7L78EOxP6vurGBUt8t6zilrdAch01Fe3uxy/mc4bywRGdiToIC39aaa
-         deA3pBlLnz8GPTMpHAD0HYwtw50jRCVmRud0wdKcyb3Gy2gBZkZNe8Pg9eiKwGK6KX2h
-         i5wZKuQIz2jwB931JEjoEn90t+sCNN6x/4HgLJHisdcn2T1oy8w55xpZKCnuIdgqxM8J
-         PXTxuPcVrjr04OfMUbLRh8WBYuB3WIuyEs3bJ8g3D5q33H42pLv8LxkKMBcY/jxsw52U
-         isVQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date;
+        bh=wEDzTwxrIye6DBQ+Z+6xLzRtJPWeUjIxeMng9yTZ0WM=;
+        b=CZUMo++y40L5CbP+Qh1y1NT9yhiPyJu8hefUewe+RWgwkir4KMgyFfNeeCPNb1B7Vw
+         kFBp2cZraSbb/mG0Xw/YvC6HuoqrL5JDk7qAO3pVVACplBOCSLxlJ9Gocbwz5Pfe/FzW
+         2gt05etS3cWJqNUh4eJ5gXJd9Qj7CvZ2jH6myu+abExaHpRQO/R9YAhlskwfApC+1O+o
+         reUYq1oJxJ4/6qGHsfuG5coTMCoUAtbfzrUbtPR2etEGx+jiGrr7BF594TDkAuRhWTNW
+         AZCTndKR4hLtxzd0cMMloJJhnjC/Rr9dAct7DMVER/9UA8zY4tn2rNuZQtAlF4LOPd20
+         RZ8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=RuOaQhYbr5T6MnVhKoqqAsTO1OPpUIr9a2tO5WPZWDM=;
-        b=Xr86ixZXqSrhpilTx5w3a7fD+DzSlxJtbft6IVdbh1jZvBBz5gihcs29sduIwABVlz
-         /4rH6yQVWp4n/0FRqQt6OUgM57Am+QPQOdNbBa8IpoJ+zoN05PMdfnqGmce6WzyMBilt
-         6v5TNJWnLQvKZlOXS23HqPDha7jE5dd6LqxxcsTXnyHYNFj9eofKsZrqwbFOrUi1WxAJ
-         OHRZTMdMSx12nAuwoEdOKg7ly7OvWgMRvrGqVVW4tLwCadViJYCwqxoGBm1cCGjQnXXY
-         UbpaVmTmoaIOJ8b9D4B3fqvikk5/SHPa3OYEekcVv/vtHUaP46AIiiTLTf52O9cF+TQw
-         cjeQ==
-X-Gm-Message-State: ACgBeo26SGFV/ELLE3JPmrh9VyxAVRW/nSteCmJ/6Kmr2iSFiIgHB4ip
-        beNRA/Ocz7BFT6V6pZvclGaAfg2Rq00=
-X-Google-Smtp-Source: AA6agR4sbK568RX4DmdnSaUdOXVE88bOWn6gQcKR0Saa7DkE22cWHGE/0hnXA6d66FTa2MobS6KotQ==
-X-Received: by 2002:a2e:a812:0:b0:261:8f2d:9530 with SMTP id l18-20020a2ea812000000b002618f2d9530mr10270837ljq.251.1663164192725;
-        Wed, 14 Sep 2022 07:03:12 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id v21-20020ac258f5000000b00492f6ddba59sm2404038lfo.75.2022.09.14.07.03.11
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date;
+        bh=wEDzTwxrIye6DBQ+Z+6xLzRtJPWeUjIxeMng9yTZ0WM=;
+        b=N+C3sPvIdz822ugSQva0sZ1xvXC1+DdCMbduUPZLyiR/GKwhQb2sVHNW0rRXVB7260
+         AAA6Cyu8fSE4B0OQjDf6pFZyNGn328TF0PDa8i/jZWQicYwS6uZK9GVaGLcnqrg3jn5K
+         FxrV/6qTemHw5Y9YqjrOTKMveFwoXH0u0tT2BETDiyIBzM8vXFy9AVAU4VXwh0GKYLLm
+         SDG44tMttOUbctqHvD0W8ryJRZhkilGLZQTEGlVrr0JVrQwmjAuRgJgAnVAE4Pi/zBPI
+         kMVDthiFMU3lya3z0nL9NHE1efaxeRNkTfxSYnp49rHVzLKaOmldIbISGTaiwApnE/mH
+         MlKg==
+X-Gm-Message-State: ACgBeo2gI6tje/ROt0zwxSj4P4NImpRwoWLe6njf56MUD4ISKUkNkiMF
+        z5cqCMqJG4PYLPlcjndF8jA=
+X-Google-Smtp-Source: AA6agR64r/xDMqGRQPE1UGGL1HVms7d/KPO2FeA5gQDKAead2Pf5q9urlAC3QDO6Mz5fZYQOugxSJw==
+X-Received: by 2002:aa7:cada:0:b0:452:5b04:efd9 with SMTP id l26-20020aa7cada000000b004525b04efd9mr7217530edt.84.1663164275929;
+        Wed, 14 Sep 2022 07:04:35 -0700 (PDT)
+Received: from localhost.localdomain (93-42-70-134.ip85.fastwebnet.it. [93.42.70.134])
+        by smtp.googlemail.com with ESMTPSA id i10-20020a1709061e4a00b0073dba2d9f99sm7560296ejj.128.2022.09.14.07.04.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 07:03:12 -0700 (PDT)
-Date:   Wed, 14 Sep 2022 17:03:10 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, kernel@pengutronix.de
-Subject: Re: [PATCH v3 1/2] gpio: Add gpio latch driver
-Message-ID: <20220914140310.5ffrnsy63piegdyr@mobilestation>
-References: <20220914071306.3254881-1-s.hauer@pengutronix.de>
- <20220914071306.3254881-2-s.hauer@pengutronix.de>
+        Wed, 14 Sep 2022 07:04:35 -0700 (PDT)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: dma: rework qcom,adm Documentation to yaml schema
+Date:   Wed, 14 Sep 2022 16:04:25 +0200
+Message-Id: <20220914140426.7609-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220914071306.3254881-2-s.hauer@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -72,286 +73,190 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 09:13:05AM +0200, Sascha Hauer wrote:
-> This driver implements a GPIO multiplexer based on latches connected to
-> other GPIOs. A set of data GPIOs is connected to the data input of
-> multiple latches. The clock input of each latch is driven by another
-> set of GPIOs. With two 8-bit latches 10 GPIOs can be multiplexed into
-> 16 GPIOs. GPOs might be a better term as in fact the multiplexed pins
-> are output only.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
-> 
-> Notes:
->     Changes since v2:
->     - Fix inconsistent licensing
->     - document locks
->     - use regular bit operations
->     - include linux/mod_devicetable.h rather than linux/of_device.h
->     - Put spinlock and mutex into a union to make clear that only one of them is used
->     - rename __gpio_latch_set to gpio_latch_set_unlocked
->     
->     Changes since v1:
->     - Use gpiod_set_value_cansleep when the underlying GPIOs might sleep
->     - Move MODULE_DEVICE_TABLE near to the end
-> 
->  drivers/gpio/Kconfig      |   6 ++
->  drivers/gpio/Makefile     |   1 +
->  drivers/gpio/gpio-latch.c | 192 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 199 insertions(+)
->  create mode 100644 drivers/gpio/gpio-latch.c
-> 
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index 0642f579196f2..e4603810ec910 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -1690,6 +1690,12 @@ config GPIO_AGGREGATOR
->  	      industrial control context, to be operated from userspace using
->  	      the GPIO chardev interface.
->  
-> +config GPIO_LATCH
-> +	tristate "GPIO latch driver"
-> +	help
-> +	  Say yes here to enable a driver for GPIO multiplexers based on latches
-> +	  connected to other GPIOs.
-> +
->  config GPIO_MOCKUP
->  	tristate "GPIO Testing Driver"
->  	select IRQ_SIM
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index a0985d30f51bb..310fa08decc69 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -75,6 +75,7 @@ obj-$(CONFIG_GPIO_IT87)			+= gpio-it87.o
->  obj-$(CONFIG_GPIO_IXP4XX)		+= gpio-ixp4xx.o
->  obj-$(CONFIG_GPIO_JANZ_TTL)		+= gpio-janz-ttl.o
->  obj-$(CONFIG_GPIO_KEMPLD)		+= gpio-kempld.o
-> +obj-$(CONFIG_GPIO_LATCH)		+= gpio-latch.o
->  obj-$(CONFIG_GPIO_LOGICVC)		+= gpio-logicvc.o
->  obj-$(CONFIG_GPIO_LOONGSON1)		+= gpio-loongson1.o
->  obj-$(CONFIG_GPIO_LOONGSON)		+= gpio-loongson.o
-> diff --git a/drivers/gpio/gpio-latch.c b/drivers/gpio/gpio-latch.c
-> new file mode 100644
-> index 0000000000000..4134cba1c88a8
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-latch.c
-> @@ -0,0 +1,192 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * GPIO latch driver
-> + *
-> + *  Copyright (C) 2022 Sascha Hauer <s.hauer@pengutronix.de>
-> + *
-> + * This driver implements a GPIO (or better GPO as there is no input)
-> + * multiplexer based on latches like this:
-> + *
-> + * CLK0 ----------------------.        ,--------.
-> + * CLK1 -------------------.  `--------|>    #0 |
-> + *                         |           |        |
-> + * OUT0 ----------------+--|-----------|D0    Q0|-----|<
-> + * OUT1 --------------+-|--|-----------|D1    Q1|-----|<
-> + * OUT2 ------------+-|-|--|-----------|D2    Q2|-----|<
-> + * OUT3 ----------+-|-|-|--|-----------|D3    Q3|-----|<
-> + * OUT4 --------+-|-|-|-|--|-----------|D4    Q4|-----|<
-> + * OUT5 ------+-|-|-|-|-|--|-----------|D5    Q5|-----|<
-> + * OUT6 ----+-|-|-|-|-|-|--|-----------|D6    Q6|-----|<
-> + * OUT7 --+-|-|-|-|-|-|-|--|-----------|D7    Q7|-----|<
-> + *        | | | | | | | |  |           `--------'
-> + *        | | | | | | | |  |
-> + *        | | | | | | | |  |           ,--------.
-> + *        | | | | | | | |  `-----------|>    #1 |
-> + *        | | | | | | | |              |        |
-> + *        | | | | | | | `--------------|D0    Q0|-----|<
-> + *        | | | | | | `----------------|D1    Q1|-----|<
-> + *        | | | | | `------------------|D2    Q2|-----|<
-> + *        | | | | `--------------------|D3    Q3|-----|<
-> + *        | | | `----------------------|D4    Q4|-----|<
-> + *        | | `------------------------|D5    Q5|-----|<
-> + *        | `--------------------------|D6    Q6|-----|<
-> + *        `----------------------------|D7    Q7|-----|<
-> + *                                     `--------'
-> + *
-> + * The above is just an example. The actual number of number of latches and
-> + * the number of inputs per latch is derived from the number of GPIOs given
-> + * in the corresponding device tree properties.
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "gpiolib.h"
-> +
-> +struct gpio_latch_priv {
-> +	struct gpio_chip gc;
-> +	struct gpio_descs *clk_gpios;
-> +	struct gpio_descs *latched_gpios;
-> +	int n_latched_gpios;
-> +	unsigned long *shadow;
-> +	/*
-> +	 * Depending on whether any of the underlying GPIOs may sleep we either
-> +	 * use a mutex or a spinlock to protect our shadow map.
-> +	 */
-> +	union {
-> +		struct mutex mutex; /* protects @shadow */
-> +		spinlock_t spinlock; /* protects @shadow */
-> +	};
-> +};
-> +
-> +static int gpio_latch_get_direction(struct gpio_chip *gc, unsigned int offset)
-> +{
-> +	return GPIO_LINE_DIRECTION_OUT;
-> +}
-> +
-> +static void gpio_latch_set_unlocked(struct gpio_latch_priv *priv,
-> +				    void (*set)(struct gpio_desc *desc, int value),
-> +				    unsigned int offset, bool val)
-> +{
-> +	int latch = offset / priv->n_latched_gpios;
-> +	int i;
-> +
-> +	assign_bit(offset, priv->shadow, val);
-> +
+Rework the qcom,adm Documentation to yaml schema.
+This is not a pure conversion since originally the driver has changed
+implementation for the #dma-cells and was wrong from the start.
+Also the driver now handles the common DMA clients implementation with
+the first cell that denotes the channel number and nothing else since
+the client will have to provide the crci information via other means.
 
-> +	for (i = 0; i < priv->n_latched_gpios; i++)
-> +		set(priv->latched_gpios->desc[i],
-> +		    test_bit(latch * priv->n_latched_gpios + i, priv->shadow));
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ .../devicetree/bindings/dma/qcom,adm.yaml     | 96 +++++++++++++++++++
+ .../devicetree/bindings/dma/qcom_adm.txt      | 61 ------------
+ 2 files changed, 96 insertions(+), 61 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom,adm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/qcom_adm.txt
 
--> duration?
+diff --git a/Documentation/devicetree/bindings/dma/qcom,adm.yaml b/Documentation/devicetree/bindings/dma/qcom,adm.yaml
+new file mode 100644
+index 000000000000..6c08245bf5d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/qcom,adm.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/qcom,adm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm ADM DMA Controller
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++description: |
++  QCOM ADM DMA controller provides DMA capabilities for
++  peripheral buses such as NAND and SPI.
++
++properties:
++  compatible:
++    const: qcom,adm
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#dma-cells":
++    const: 1
++
++  clocks:
++    items:
++      - description: phandle to the core clock
++      - description: phandle to the iface clock
++
++  clock-names:
++    items:
++      - const: core
++      - const: iface
++
++  resets:
++    items:
++      - description: phandle to the clk reset
++      - description: phandle to the c0 reset
++      - description: phandle to the c1 reset
++      - description: phandle to the c2 reset
++
++  reset-names:
++    items:
++      - const: clk
++      - const: c0
++      - const: c1
++      - const: c2
++
++  qcom,ee:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: indicates the security domain identifier used in the secure world.
++    minimum: 0
++    maximum: 255
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#dma-cells"
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - qcom,ee
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
++    #include <dt-bindings/reset/qcom,gcc-ipq806x.h>
++
++    adm_dma: dma-controller@18300000 {
++        compatible = "qcom,adm";
++        reg = <0x18300000 0x100000>;
++        interrupts = <0 170 0>;
++        #dma-cells = <1>;
++
++        clocks = <&gcc ADM0_CLK>,
++                  <&gcc ADM0_PBUS_CLK>;
++        clock-names = "core", "iface";
++
++        resets = <&gcc ADM0_RESET>,
++                  <&gcc ADM0_C0_RESET>,
++                  <&gcc ADM0_C1_RESET>,
++                  <&gcc ADM0_C2_RESET>;
++        reset-names = "clk", "c0", "c1", "c2";
++        qcom,ee = <0>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/dma/qcom_adm.txt b/Documentation/devicetree/bindings/dma/qcom_adm.txt
+deleted file mode 100644
+index 9d3b2f917b7b..000000000000
+--- a/Documentation/devicetree/bindings/dma/qcom_adm.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-QCOM ADM DMA Controller
+-
+-Required properties:
+-- compatible: must contain "qcom,adm" for IPQ/APQ8064 and MSM8960
+-- reg: Address range for DMA registers
+-- interrupts: Should contain one interrupt shared by all channels
+-- #dma-cells: must be <2>.  First cell denotes the channel number.  Second cell
+-  denotes CRCI (client rate control interface) flow control assignment.
+-- clocks: Should contain the core clock and interface clock.
+-- clock-names: Must contain "core" for the core clock and "iface" for the
+-  interface clock.
+-- resets: Must contain an entry for each entry in reset names.
+-- reset-names: Must include the following entries:
+-  - clk
+-  - c0
+-  - c1
+-  - c2
+-- qcom,ee: indicates the security domain identifier used in the secure world.
+-
+-Example:
+-		adm_dma: dma@18300000 {
+-			compatible = "qcom,adm";
+-			reg = <0x18300000 0x100000>;
+-			interrupts = <0 170 0>;
+-			#dma-cells = <2>;
+-
+-			clocks = <&gcc ADM0_CLK>, <&gcc ADM0_PBUS_CLK>;
+-			clock-names = "core", "iface";
+-
+-			resets = <&gcc ADM0_RESET>,
+-				<&gcc ADM0_C0_RESET>,
+-				<&gcc ADM0_C1_RESET>,
+-				<&gcc ADM0_C2_RESET>;
+-			reset-names = "clk", "c0", "c1", "c2";
+-			qcom,ee = <0>;
+-		};
+-
+-DMA clients must use the format descripted in the dma.txt file, using a three
+-cell specifier for each channel.
+-
+-Each dmas request consists of 3 cells:
+- 1. phandle pointing to the DMA controller
+- 2. channel number
+- 3. CRCI assignment, if applicable.  If no CRCI flow control is required, use 0.
+-    The CRCI is used for flow control.  It identifies the peripheral device that
+-    is the source/destination for the transferred data.
+-
+-Example:
+-
+-	spi4: spi@1a280000 {
+-		spi-max-frequency = <50000000>;
+-
+-		pinctrl-0 = <&spi_pins>;
+-		pinctrl-names = "default";
+-
+-		cs-gpios = <&qcom_pinmux 20 0>;
+-
+-		dmas = <&adm_dma 6 9>,
+-			<&adm_dma 5 10>;
+-		dma-names = "rx", "tx";
+-	};
+-- 
+2.37.2
 
-> +
-> +	set(priv->clk_gpios->desc[latch], 1);
-
--> duration?
-
-> +	set(priv->clk_gpios->desc[latch], 0);
-
-I am pretty much sure there must be some duration between the actions
-above *. See for instance the tw and (tsu + th) timing requirements in
-the next edge-triggered flip-flops:
-https://www.ti.com/lit/ds/symlink/sn74lv74a.pdf?ts=1663163389954&ref_url=https%253A%252F%252Fwww.google.com%252F
-
-The durations are normally small (ns or a bit smaller) but still need
-to be added anyway.
-
-Note since the durations are device-specific an additional DT-property array
-with durations should be added too.
-
-* already faced weird problems in this regard.
-
--Sergey
-
-> +}
-> +
-> +static void gpio_latch_set(struct gpio_chip *gc, unsigned int offset, int val)
-> +{
-> +	struct gpio_latch_priv *priv = gpiochip_get_data(gc);
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&priv->spinlock, flags);
-> +
-> +	gpio_latch_set_unlocked(priv, gpiod_set_value, offset, val);
-> +
-> +	spin_unlock_irqrestore(&priv->spinlock, flags);
-> +}
-> +
-> +static void gpio_latch_set_can_sleep(struct gpio_chip *gc, unsigned int offset, int val)
-> +{
-> +	struct gpio_latch_priv *priv = gpiochip_get_data(gc);
-> +
-> +	mutex_lock(&priv->mutex);
-> +
-> +	gpio_latch_set_unlocked(priv, gpiod_set_value_cansleep, offset, val);
-> +
-> +	mutex_unlock(&priv->mutex);
-> +}
-> +
-> +static bool gpio_latch_can_sleep(struct gpio_latch_priv *priv, unsigned int n_latches)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < n_latches; i++)
-> +		if (gpiod_cansleep(priv->clk_gpios->desc[i]))
-> +			return true;
-> +
-> +	for (i = 0; i < priv->n_latched_gpios; i++)
-> +		if (gpiod_cansleep(priv->latched_gpios->desc[i]))
-> +			return true;
-> +
-> +	return false;
-> +}
-> +
-> +static int gpio_latch_probe(struct platform_device *pdev)
-> +{
-> +	struct gpio_latch_priv *priv;
-> +	unsigned int n_latches;
-> +
-> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->clk_gpios = devm_gpiod_get_array(&pdev->dev, "clk", GPIOD_OUT_LOW);
-> +	if (IS_ERR(priv->clk_gpios))
-> +		return PTR_ERR(priv->clk_gpios);
-> +
-> +	priv->latched_gpios = devm_gpiod_get_array(&pdev->dev, "latched", GPIOD_OUT_LOW);
-> +	if (IS_ERR(priv->latched_gpios))
-> +		return PTR_ERR(priv->latched_gpios);
-> +
-> +	n_latches = priv->clk_gpios->ndescs;
-> +	priv->n_latched_gpios = priv->latched_gpios->ndescs;
-> +
-> +	priv->shadow = devm_bitmap_zalloc(&pdev->dev, n_latches * priv->n_latched_gpios,
-> +					  GFP_KERNEL);
-> +	if (!priv->shadow)
-> +		return -ENOMEM;
-> +
-> +	if (gpio_latch_can_sleep(priv, n_latches)) {
-> +		priv->gc.can_sleep = true;
-> +		priv->gc.set = gpio_latch_set_can_sleep;
-> +		mutex_init(&priv->mutex);
-> +	} else {
-> +		priv->gc.can_sleep = false;
-> +		priv->gc.set = gpio_latch_set;
-> +		spin_lock_init(&priv->spinlock);
-> +	}
-> +
-> +	priv->gc.get_direction = gpio_latch_get_direction;
-> +	priv->gc.ngpio = n_latches * priv->n_latched_gpios;
-> +	priv->gc.owner = THIS_MODULE;
-> +	priv->gc.base = -1;
-> +	priv->gc.parent = &pdev->dev;
-> +
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	return devm_gpiochip_add_data(&pdev->dev, &priv->gc, priv);
-> +}
-> +
-> +static const struct of_device_id gpio_latch_ids[] = {
-> +	{
-> +		.compatible	= "gpio-latch",
-> +	}, {
-> +		/* sentinel */
-> +	}
-> +};
-> +MODULE_DEVICE_TABLE(of, gpio_latch_ids);
-> +
-> +static struct platform_driver gpio_latch_driver = {
-> +	.driver	= {
-> +		.name		= "gpio-latch",
-> +		.of_match_table	= gpio_latch_ids,
-> +	},
-> +	.probe	= gpio_latch_probe,
-> +};
-> +module_platform_driver(gpio_latch_driver);
-> +
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_AUTHOR("Sascha Hauer <s.hauer@pengutronix.de>");
-> +MODULE_DESCRIPTION("GPIO latch driver");
-> -- 
-> 2.30.2
-> 
