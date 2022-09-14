@@ -2,107 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 336505B89C5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:02:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 710C35B89D1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 16:03:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbiINOCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 10:02:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48534 "EHLO
+        id S229920AbiINODT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 10:03:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbiINOCN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:02:13 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C40E2140A9
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 07:01:24 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id f9so24633261lfr.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 07:01:24 -0700 (PDT)
+        with ESMTP id S229921AbiINOCr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 10:02:47 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 968CE7B1FC
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 07:01:59 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-3450990b0aeso181072047b3.12
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 07:01:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=tkQ2gij3IWVpYWf59I81AFLezwcjvGUELvmkiUnZplU=;
-        b=DFsG/LkzdyNq1ygpJt5ZhZ/qbXe9ZrqRf+2XsUYliUGNaapd3HjPRYqrrFDHkpuP8U
-         KDKCf2COGFoasFQC/T+eL9HTpvJqCw8QuOtrfwaM+2d7GN5DoEwic9ggsc3s+ST97nlB
-         9OE8ywg4y3gncpe8jvI0Xd6FkFE/MepNk5idJYeKKcVuFDvH7IfaV+aEqhMaP9YC8YXO
-         6I9vCkqbZgZ7zYbICIMNdCod5B8N2084jF+WlOdNm3pfBLfeWC/V0VYe2fkGMQVkF9dF
-         LRywsPVL7WlsFAI1OH0bP+LbU1nLX9uzYoxQBJMD3N/i7FjZPVN6pZmXuAX0YzwFwjli
-         KiDg==
+        bh=Jpvw6KQrg1S/1pBzjKmf1uB7j3K3Ydzu3g9Y661w0mg=;
+        b=SkZLLCuVFtvkjNpiUf9LPgljx+x3GViN3GfToJE6bAHwx8xwEol/R5nw9W/QyFzRZ7
+         gXOjT5KI08bgm1JpKwaz3Sxs9Et4ZJDxyn4xb2JZFOVP13qFGJvXO1nxuXEid0AQ1WLm
+         SnZaYOTTr+rUN0Te1fG7rm+RBTk2Hk2ZJu1CnqLwW0o9DPkv4gTJL3Cj/ctaMZ/zDRZH
+         a/IH8DAJxjb+9Qf8wXXAKSziVHP6QPIwJBC+gjpYM9N5kzTF/BQdeNbghraGPXv/8hiU
+         HQ3AooobyqGbhFAMkhOhrL+1N27n6yOZlA2cMDGzRmp9Y4e6w2kqJSHZaK+9ldoEF0Q8
+         38uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=tkQ2gij3IWVpYWf59I81AFLezwcjvGUELvmkiUnZplU=;
-        b=jHq/I1TvxF4dDVy5LCHKx4UfAXj4pQpoJ+pWAOpApljyILw2NZA9BoHPXuilI3dD0t
-         IOgT3HXdZE9eQdYS73AWA7euxUD3S0n9tmroy6rqERxLWKM2hzenZkwYWaWS4LDKlWvK
-         ycEtvgLhhLA/zGEaTZy94GToXLpXmKIW+TLMdXxM9NRDN1PXb5cRkl7ADOO9ffZFCWid
-         RkOC5EQwWFEM9cWy1qeOvlZCl98K2qB7yaDOlhdZ+NfvFEzpT05YAd+DMxj6i/zz631c
-         +oFfLGPkCY55DQjeXSNm1NVc/ZJ5YlwM7aLFLweatakbkN9Znuxr8lOOg6vab7q02Hgx
-         ZCcg==
-X-Gm-Message-State: ACgBeo3Pz/5EhWdosXUnmVvD+fj1btdWubgRjMMC/yx9cs/54BDVIssR
-        kGM8BoLRIANKEk8k8zwYINYryNKxKXCmPEZkVx7L/g==
-X-Google-Smtp-Source: AA6agR7X61E5vyWoRMVEAMnwI7yhahS3J9/2twMcEzs8aFUjVsC6q4tksh5kS0GIjvek6Xxz9vgbIFRwYNfpaT7SPTY=
-X-Received: by 2002:ac2:4c42:0:b0:497:9dfe:e870 with SMTP id
- o2-20020ac24c42000000b004979dfee870mr11527722lfk.184.1663164083141; Wed, 14
- Sep 2022 07:01:23 -0700 (PDT)
+        bh=Jpvw6KQrg1S/1pBzjKmf1uB7j3K3Ydzu3g9Y661w0mg=;
+        b=ZRMKAfwFM62TSoFZzf19dpVxV2A4N9ctZfMmQdPOWgcQn4eCU4x0cE4FO94GIENDET
+         /7bVJrTPlHSp64CFKyaqX0Gb6QKEJpuS2p77Eebn45tW80v/3Mu3TBdUu2KQ6pJnJr1V
+         I7MvME0bBiuejlg7NJOJlU7fsurEhEFHPMLo3C6CNYxEmx9ZxhUeT0w6VvX40CIx7jIG
+         pDVSntq7Bp8s2GMTBrarlcssB+5VxyRluj45UOz21mCIjgaI6g5YdP1ZM6I5SU4Egzu4
+         YqOYNYkNl/zbOHXIUn0AnNHKq81roTN73Itq8PW3H9/y/xI8uyieRUgB8AbpOq4GyZ5n
+         lExQ==
+X-Gm-Message-State: ACgBeo36PrVRKpxa8+4FE2cOcRmm/Gjjz6EYMEaFer5LHWExAjazO6AB
+        6Wri4o5KipTFGHOTBHVc60cm4x0kojRI4am40CuZNw==
+X-Google-Smtp-Source: AA6agR4nfEc6ZNsx4IMOTInLJ4GeQaYzxa2yEmi0xC39dBnNrVhTzdhx3g4hnT+XIUeaBnxCZhEg3BlhYDeiFM6ISHA=
+X-Received: by 2002:a81:1604:0:b0:345:3b96:a166 with SMTP id
+ 4-20020a811604000000b003453b96a166mr31947771yww.30.1663164118168; Wed, 14 Sep
+ 2022 07:01:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220910143213.477261-1-iskren.chernev@gmail.com> <20220910143213.477261-6-iskren.chernev@gmail.com>
-In-Reply-To: <20220910143213.477261-6-iskren.chernev@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 14 Sep 2022 16:00:46 +0200
-Message-ID: <CAPDyKFp5kLF2kkFg3n5ZNzp3oX7hU-SAj9iSoJKDX7PAQxU75A@mail.gmail.com>
-Subject: Re: [PATCH v3 5/9] dt-bindings: mmc: sdhci-msm: Add pinctrl-1 property
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220817080757.352021-1-bchihi@baylibre.com> <20220817080757.352021-3-bchihi@baylibre.com>
+ <716d6471-f0e2-489e-5f9e-9e38e9e7953a@collabora.com>
+In-Reply-To: <716d6471-f0e2-489e-5f9e-9e38e9e7953a@collabora.com>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Wed, 14 Sep 2022 16:01:22 +0200
+Message-ID: <CAGuA+orxfcycwcUMpLe+dkjnXPQkELQsz0vBggGKTQ04XRGc+g@mail.gmail.com>
+Subject: Re: [PATCH v9,2/7] dt-bindings: thermal: Add dt-binding document for
+ LVTS thermal controllers
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amitk@kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, khilman@baylibre.com,
+        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 10 Sept 2022 at 16:32, Iskren Chernev <iskren.chernev@gmail.com> wrote:
->
-> Most mmc blocks contain two pinctrls, default and sleep. But then
-> dt-schema complains about pinctrl-1 not being defined.
->
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
+Hi Angelo,
 
-Applied for next, thanks!
+I've got the following errors after implementing these changes :
+[...]
+  nvmem-cells:
+    minItems: 1
+    description: Calibration eFuse data for LVTS
 
-Kind regards
-Uffe
+  nvmem-cell-names:
+    minItems: 1
+    items:
+      pattern: 'lvts-calib-data[0-9]+$'
 
+  "#thermal-sensor-cells":
+    const: 1
 
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+allOf:
+  - $ref: thermal-sensor.yaml#
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - mediatek,mt8192-lvts-ap
+              - mediatek,mt8192-lvts-mcu
+    then:
+      properties:
+        nvmem-cells:
+          maxItems: 1
+
+        nvmem-cell-names:
+          maxItems: 1
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - mediatek,mt8195-lvts-ap
+              - mediatek,mt8195-lvts-mcu
+    then:
+      properties:
+        nvmem-cells:
+          maxItems: 2
+
+        nvmem-cell-names:
+          maxItems: 2
+[...]
+
+$ make DT_CHECKER_FLAGS=-m dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+  LINT    Documentation/devicetree/bindings
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+/home/balsam/src/linux-mtk-lvts-newThermalOF/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml:
+properties:nvmem-cell-names:items: {'pattern':
+'lvts-calib-data[0-9]+$'} is not of type 'array'
+from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+/home/balsam/src/linux-mtk-lvts-newThermalOF/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml:
+ignoring, error in schema: properties: nvmem-cell-names: items
+  DTEX    Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dts
+  DTC     Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dtb
+  CHECK   Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dtb
+Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dtb:0:0:
+/example-0/soc/thermal-sensor@1100b000: failed to match any schema
+with compatible: ['mediatek,mt8192-lvts-ap']
+
+am I missing something?
+
+Best regards,
+Balsam
+
+On Wed, Sep 14, 2022 at 2:19 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> index a792fa5574a0..775476d7f9f0 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> @@ -97,6 +97,10 @@ properties:
->      description:
->        Should specify pin control groups used for this controller.
+> Il 17/08/22 10:07, bchihi@baylibre.com ha scritto:
+> > From: Alexandre Bailon <abailon@baylibre.com>
+> >
+> > Add dt-binding document for mt8192 and mt8195 LVTS thermal controllers.
+> >
+> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> > Co-developed-by: Balsam CHIHI <bchihi@baylibre.com>
+> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> > ---
+> >   .../thermal/mediatek,lvts-thermal.yaml        | 152 ++++++++++++++++++
+> >   1 file changed, 152 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> > new file mode 100644
+> > index 000000000000..31d9e220513a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> > @@ -0,0 +1,152 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/thermal/mediatek,lvts-thermal.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek SoC LVTS thermal controller
 >
-> +  pinctrl-1:
-> +    description:
-> +      Should specify sleep pin control groups used for this controller.
-> +
+> title: MediaTek SoC Low Voltage Thermal Sensor (LVTS)
+>
+> > +
+> > +maintainers:
+> > +  - Yu-Chia Chang <ethan.chang@mediatek.com>
+> > +  - Ben Tseng <ben.tseng@mediatek.com>
+> > +
+> > +description: |
+>
+> description:
+>    LVTS is a thermal management architecture composed of three subsystems,
+>    a Sensing device - Thermal Sensing Micro Circuit Unit (TSMCU),
+>    a Convertor - Low Voltage Thermal Sensor convertor (LVTS), and
+>    a Digital controller (LVTS_CTRL).
+>
+> > +  LVTS (Low Voltage Thermal Sensor).
+> > +  The architecture will be first used on mt8192 and mt8195.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mediatek,mt8192-lvts-ap
+> > +      - mediatek,mt8192-lvts-mcu
+> > +      - mediatek,mt8195-lvts-ap
+> > +      - mediatek,mt8195-lvts-mcu
+> > +
+> > +  "#thermal-sensor-cells":
+> > +    const: 1
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: LVTS instance registers.
+>
+> This description looks obvious, as it doesn't really say anything "new"...
+> I would rather drop it.
+>
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description: LVTS instance interrupts.
+>
+> Same here
+>
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: LVTS instance clock.
+>
+> and here.
+>
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +    description: |
+> > +      LVTS instance SW reset for HW AP/MCU domain to clean temporary data
+> > +      on HW initialization/resume.
+>
+> What about something like...
+>
 >    resets:
->      maxItems: 1
+>      items:
+>        - description: LVTS reset for clearing temporary data on AP/MCU
 >
-> --
-> 2.37.2
+> > +
+> > +  nvmem-cells:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    description: Calibration efuse data for LVTS
+>
+>    nvmem-cells:
+>      minItems: 1
+>      items:
+>        - description: Calibration eFuse data for LVTS
+>        - description: Additional eFuse data (?)
+>
+>
+> > +
+> > +  nvmem-cell-names:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    description: Calibration efuse cell names for LVTS
+>
+> Actually, maxItems is not really two, but it depends on how many
+> eFuse arrays / nvmem cells we have for each SoC, so I was thinking...
+>
+> ...what about doing something like
+>
+>    nvmem-cell-names:
+>      minItems: 1
+>      items:
+>        pattern: 'lvts-calib-data[0-9]+$'
+>
+> and then,
+>    if:
+>      properties:
+>        compatible:
+>          contains:
+>            enum:
+>              - mediatek,blahblah-something
+>    then:
+>      properties:
+>        nvmem-cell-names:
+>          maxItems: 2 (or 3, 4, 5...)
+>
+> P.S.: I haven't tried any binding check on the proposed lines.
+>
+> Krzysztof, any opinions on that?
+>
+> Regards,
+> Angelo
+>
+>
 >
