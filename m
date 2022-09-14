@@ -2,93 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42E4F5B8874
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 873C35B8880
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 14:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbiINMnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 08:43:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38008 "EHLO
+        id S229885AbiINMqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 08:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbiINMnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:43:53 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C77F675FFF
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 05:43:52 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id u9so34480408ejy.5
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 05:43:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=mgqw+6JpGXn2oifvzQVlVRMAL4x59CkZWm4PptgSgFk=;
-        b=fVa4Ty+UkhM6eyVyz8m/FQl2wVTe94vkm2UAuMPeXqk2kvhGbi9GAU5q1ShPveFCZn
-         Y++NRtsmc1f20iIFZZ1jtBAelomaavMORZ7kl661S2hDY2Ki22yd99XeiNU+hMQEsF26
-         Ln9uS5aUrilbxCuv/oLwSqf+opxYiQfSkZeRaEXrwweq2TKKtGVw/Un182e4nemq5kcT
-         JfpA0jPVg4RpMTyOE8AkuSHuTq2DQBydLaI2Q53HH4lNJi0bpVd7pyNI/kngC85VjiX+
-         LB/1ka96RTB0//P+kPGd6+Rdu545gO1GB7WkbahmegUAs2GwUFLC0z7j2NXsp88vjzhl
-         wb6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=mgqw+6JpGXn2oifvzQVlVRMAL4x59CkZWm4PptgSgFk=;
-        b=GYgtt/wG48W9AwTWUvnP81EKPXcJ6mgjjBMmc9qgd6hzeC0WOatJSiRHNKS8dubCsF
-         RuqyWRsQzWeg/z0WLytR/6eFgUGnPHfAVvmijtFVX/4V15SWFdCuOMgP47z9csDg75Sw
-         ksTiAR5CPVH4YrsIiVksnVvtG5m2IgiNqnMd1/j+toPatLNgdUMXIlv0xZycgflT54Vz
-         BGekyh6Imsog7thPSE0lX2t/GhULJMZ0evoYHEmojLzhoLdxC+37tVW/k/Li/zTvR6Kr
-         7YhAiH1kiUMT/9jwQFhV9DAyRkJ/gik81VVgnb2T/VqioRhREbB54LZ5oha0J0B8W6nu
-         QElw==
-X-Gm-Message-State: ACgBeo1waX5hXKbI1pnA4J8uMnXNHazIqOwLGrE4s0B6+kwM10pA6SzU
-        jqw3v5m5NgD7ZaFy4JZI5SVZWFs1bESLkw2Nu9qMSjpFiszN5g==
-X-Google-Smtp-Source: AA6agR4aGz/CzCXBPA1eEHSbXj6QZOoC4n4RqZ/g4zieZlX6n+p/yT1Ft7+SAvQM3qQZZ8R1YS123Kdmx+ty0nhB+mQ=
-X-Received: by 2002:a17:907:a0c6:b0:77d:7ad3:d05f with SMTP id
- hw6-20020a170907a0c600b0077d7ad3d05fmr10320261ejc.734.1663159431415; Wed, 14
- Sep 2022 05:43:51 -0700 (PDT)
+        with ESMTP id S229503AbiINMqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 08:46:08 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9CA3796A5;
+        Wed, 14 Sep 2022 05:46:00 -0700 (PDT)
+X-UUID: ab88dfb6068b477bbb2b45efc767d0ab-20220914
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=aUZWTs4n4ys6gRZNfBS5r6NVuRwpcI3HfWmJC/NvUBs=;
+        b=m8EfpTAsxrRVLL8uPyxx8xS1Ks2ReKLVrAWpZ2Aw+Br4/djN5tdnOFf0RlFLqWlV5m6RMQjhUdgNZnOg/FO1htDwK15spgEyGt24DAsnwZqqAmFnqeQ+d+Ftz/SwzkQJ/ES3SbedJPStH0GFFcQmX3stbhyUOhftTSO9xzyY0F8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:cc37958e-fb46-412f-8f25-28e222328fce,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+        ON:release,TS:70
+X-CID-INFO: VERSION:1.1.11,REQID:cc37958e-fb46-412f-8f25-28e222328fce,IP:0,URL
+        :0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
+        ON:quarantine,TS:70
+X-CID-META: VersionHash:39a5ff1,CLOUDID:81aa63f6-6e85-48d9-afd8-0504bbfe04cb,B
+        ulkID:22091420455628VDJZF5,BulkQuantity:0,Recheck:0,SF:28|17|19|48,TC:nil,
+        Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: ab88dfb6068b477bbb2b45efc767d0ab-20220914
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 674760164; Wed, 14 Sep 2022 20:45:55 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 14 Sep 2022 20:45:53 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 14 Sep 2022 20:45:53 +0800
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <angelogioacchino.delregno@collabora.com>, <sboyd@kernel.org>
+CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>
+Subject: [PATCH v2 0/4] Introduce MediaTek frequency hopping driver
+Date:   Wed, 14 Sep 2022 20:45:48 +0800
+Message-ID: <20220914124552.16964-1-johnson.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-References: <20220913155348.38716-1-martyn.welch@collabora.co.uk> <20220913155348.38716-2-martyn.welch@collabora.co.uk>
-In-Reply-To: <20220913155348.38716-2-martyn.welch@collabora.co.uk>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 14 Sep 2022 14:43:40 +0200
-Message-ID: <CAMRc=MdSsLfQDGHD0w5GwvYQMZWteY_vwbLB6Y=urVpzNhQJGA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] dt-bindings: gpio: pca95xx: add entry for pcal6534
- and PI4IOE5V6534Q
-To:     Martyn Welch <martyn.welch@collabora.co.uk>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martyn Welch <martyn.welch@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 13, 2022 at 5:54 PM Martyn Welch
-<martyn.welch@collabora.co.uk> wrote:
->
-> From: Martyn Welch <martyn.welch@collabora.com>
->
-> The NXP PCAL6534 is a 34-bit I2C I/O expander similar to the PCAL6524. The
-> Diodes PI4IOE5V6534Q is a functionally identical chip provided by Diodes
-> Inc.
->
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->
+The purpose of this serie is to enhance frequency hopping and spread spectrum
+clocking feature for MT8186.
+We introduce new PLL register APIs and some helpers for FHCTL hardware control.
+For MT8186 PLL driver, we replace mtk_clk_register_plls() with newly added API
+to support frequency hopping and SSC function for specific PLLs.
 
-Can you rebase this on top of my for-next branch[1]? We've had some
-new models added and the patch no longer applies.
+Changes in v2:
+- Use SoC-specific compatible instead of generic one.
+- Use standard clocks property and vendor-specific property in dt-binding.
+- Remove some unused arguments and fix some coding style.
 
-Bart
+Johnson Wang (4):
+  clk: mediatek: Export PLL operations symbols
+  dt-bindings: arm: mediatek: Add new bindings of MediaTek frequency
+    hopping
+  clk: mediatek: Add new clock driver to handle FHCTL hardware
+  clk: mediatek: Change PLL register API for MT8186
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
+ .../bindings/arm/mediatek/mediatek,fhctl.yaml |  47 +++
+ drivers/clk/mediatek/Makefile                 |   2 +-
+ drivers/clk/mediatek/clk-fhctl.c              | 244 ++++++++++++++++
+ drivers/clk/mediatek/clk-fhctl.h              |  26 ++
+ drivers/clk/mediatek/clk-mt8186-apmixedsys.c  |  66 ++++-
+ drivers/clk/mediatek/clk-pll.c                |  84 +++---
+ drivers/clk/mediatek/clk-pll.h                |  56 ++++
+ drivers/clk/mediatek/clk-pllfh.c              | 268 ++++++++++++++++++
+ drivers/clk/mediatek/clk-pllfh.h              |  82 ++++++
+ 9 files changed, 821 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
+ create mode 100644 drivers/clk/mediatek/clk-fhctl.c
+ create mode 100644 drivers/clk/mediatek/clk-fhctl.h
+ create mode 100644 drivers/clk/mediatek/clk-pllfh.c
+ create mode 100644 drivers/clk/mediatek/clk-pllfh.h
+
+-- 
+2.18.0
+
