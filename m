@@ -2,90 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D2825B8B80
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 17:13:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65EDB5B8B87
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 17:14:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230217AbiINPM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 11:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41094 "EHLO
+        id S229820AbiINPOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 11:14:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230230AbiINPMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 11:12:48 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A566E79A49;
-        Wed, 14 Sep 2022 08:12:35 -0700 (PDT)
-Received: from dimapc.. (109-252-122-187.nat.spd-mgts.ru [109.252.122.187])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id F2E056601D89;
-        Wed, 14 Sep 2022 16:12:32 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663168353;
-        bh=ydjcQ1QOFS4WSgFT533j3Ns+CFkrINqmO/sGexuEFqg=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Mx2EmglggWsdosfaVzyUtCqlosAam1q3Gq4svO37Op5pjDeyYwEDmhVtmVx/7cuSJ
-         13oO3Hf7QXSKUvt3W5erP3NrKdF4k2E3VOtWHo7B/GlLe2d/J8IyfmXnmGvAIP3qtA
-         nVq3nBzfZUDUshJW7Cp67Th75nIGt3frnLX4mnQls93RV7ti4L6/EnieZGdJyYLP2M
-         0AcJ9i0SHY195qfrFLmCpCSV5reMg/cSYC/JQiFH6coRAjjQa7r9NlLLddWQpQC5yj
-         XISb0U2l0LIEvoLer2JNrgXmejoeSkHacqL3pVrrmJAHKpPHRnUzEgBOoJ2PpmA0t6
-         bjO/ku+XNqpLw==
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v1] ARM: dts: sun8i: h3: orangepi-pc: Add CMA reserved memory node
-Date:   Wed, 14 Sep 2022 18:11:25 +0300
-Message-Id: <20220914151125.212876-1-dmitry.osipenko@collabora.com>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S229609AbiINPOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 11:14:17 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CE3E79A5C;
+        Wed, 14 Sep 2022 08:14:16 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-11eab59db71so41774727fac.11;
+        Wed, 14 Sep 2022 08:14:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=mqCUADzpoo8AFdoi8q+vW/4XMqO6zRBOxuOuOr9QdQE=;
+        b=g3lmTOkQK1MrzJR0YWw9jfO7xLH479CmC4B8EXWFVYkB2JyjMvKkFlIT+6epQ25FkL
+         I6608xPyXZEvcvRLGYzxnNNrOXcqJ/1YUcrE/Dk0kYXC3/kQcPRUSEZI03eQAiafiPIZ
+         Gzsw/UM74l96ZUhCJ2j40VLdJC/YPtYr2JiBhstGm1wAdCgP1nvNbDSqsqHKrcYxF3y8
+         H8RgFbS2S/O6w3TnWmb8T3eqWDIhaBcoke6zKW/v4IAl56xIgIxOkadSMU3AzhEawFWT
+         kHWh6acfuOyYrlehUure4FfMhS0qQ9+7Q+tZJcZv4KoUZGUSMvrRNhj8wPBqlPPbmkmr
+         dpBw==
+X-Gm-Message-State: ACgBeo0N+9IKbbWlVgQm6VfwHcbhjEZlfvgRYAyZIJeLNgnlND51jaeG
+        H8ZoyZWCENuU0Nvgiujdcg==
+X-Google-Smtp-Source: AA6agR7bsAhsApH+C7wdfjNUjslyXpkMLePmDH1OXJw3zdJmRZjSzOly8XTZk4JY5P//x3SzNBNRew==
+X-Received: by 2002:a05:6870:e616:b0:12b:82e8:dc53 with SMTP id q22-20020a056870e61600b0012b82e8dc53mr2767817oag.276.1663168455901;
+        Wed, 14 Sep 2022 08:14:15 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u22-20020a056871009600b0012b342d1125sm7798176oaa.13.2022.09.14.08.14.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 08:14:15 -0700 (PDT)
+Received: (nullmailer pid 2263826 invoked by uid 1000);
+        Wed, 14 Sep 2022 15:14:14 -0000
+Date:   Wed, 14 Sep 2022 10:14:14 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH 04/10] dt-bindings: memory: mt7621: add syscon as
+ compatible string
+Message-ID: <20220914151414.GA2233841-robh@kernel.org>
+References: <20220914085451.11723-1-arinc.unal@arinc9.com>
+ <20220914085451.11723-5-arinc.unal@arinc9.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220914085451.11723-5-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add 256MB CMA node to the Orange Pi PC board. This fixes memory allocation
-failures for Cedrus video decoder on trying to play a 1080p video with
-gstreamer.
+On Wed, Sep 14, 2022 at 11:54:45AM +0300, Arınç ÜNAL wrote:
+> Add syscon as a constant string on the compatible property as it's required
+> for the SoC to work. Update the example accordingly.
 
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
----
- arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+It's not required. It's required to automagically create a regmap. That 
+can be done yourself as well. The downside to adding 'syscon' is it 
+requires a DT update. Maybe that's fine for this platform? I don't know.
 
-diff --git a/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts b/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts
-index b96e015f54ee..e655346a9fb4 100644
---- a/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts
-+++ b/arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts
-@@ -60,6 +60,20 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		linux,cma@40000000 {
-+			compatible = "shared-dma-pool";
-+			alloc-ranges = <0x40000000 0x40000000>;
-+			size = <0x10000000>; /* 256MiB */
-+			linux,cma-default;
-+			reusable;
-+		};
-+	};
-+
- 	connector {
- 		compatible = "hdmi-connector";
- 		type = "a";
--- 
-2.37.3
-
+> 
+> Fixes: 5278e4a181ff ("dt-bindings: memory: add binding for Mediatek's MT7621 SDRAM memory controller")
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+>  .../bindings/memory-controllers/mediatek,mt7621-memc.yaml   | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
+> index 85e02854f083..6ccdaf99c778 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: mediatek,mt7621-memc
+> +    items:
+> +      - const: mediatek,mt7621-memc
+> +      - const: syscon
+>  
+>    reg:
+>      maxItems: 1
+> @@ -25,6 +27,6 @@ additionalProperties: false
+>  examples:
+>    - |
+>      memory-controller@5000 {
+> -        compatible = "mediatek,mt7621-memc";
+> +        compatible = "mediatek,mt7621-memc", "syscon";
+>          reg = <0x5000 0x1000>;
+>      };
+> -- 
+> 2.34.1
+> 
+> 
