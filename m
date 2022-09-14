@@ -2,76 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59C415B8246
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A69965B824F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 09:54:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230208AbiINHvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 03:51:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52494 "EHLO
+        id S230034AbiINHyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 03:54:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbiINHvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:51:10 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434FA72EEC;
-        Wed, 14 Sep 2022 00:51:06 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B14FF6601F99;
-        Wed, 14 Sep 2022 08:51:04 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663141865;
-        bh=td9Mn6SI38pjiwsa/3/Ycx6KzL/TxB3i21YJ8fi/QV4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=nGdLPb4/17JuyvRGI6BUUlidHc6XUlBuxfX8TEkB4aFEXPovQ1oCATvsZeACLn6XV
-         o24gg1zYz8AamgGDoXLWw5Q/8hW0JtXjK4sQIWwsAICRIQGMKAi62kECy3eRRMVaYA
-         70GBg6wa2iwWdLDPfZjNdEQycbw9TudF2jnDSgjL4ehpeW7gyuP5vVMy/2VS4RJfNB
-         97whXP5WZA/6JA481VT+d8fqGJ/famH7HeEmUF/Jxwfa8hbLC4EA+VCHgvODodvsGm
-         sxYHJB6hkCE+HBNGg1FtX+Z+SBJ4ZfYOLONWnAeHBgL/oZdIlUupx+52CivvzPp3jV
-         myzW2ig2P6J7Q==
-Message-ID: <4bd8d270-0766-b452-b7de-12fda2c56102@collabora.com>
-Date:   Wed, 14 Sep 2022 09:51:01 +0200
+        with ESMTP id S229601AbiINHyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 03:54:02 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C8572B6D
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:54:01 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id s18so8364334plr.4
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 00:54:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=i92P129jwcnuZH816qZJ1IWu3zvfW04AJO+Q2M5LqcQ=;
+        b=hB3UKKDDyW2WRbdD3HlbHciPD2CGHw2rIq6ppt7ntDzNlb1fzUDfwIhrAEvuZmEOFN
+         +T/iwDwyH93yCQb4eWan/BGAmyDvj/btQGAifjtphyr11dTXdVtmwXRTIlQGxoWCYj+t
+         kPFRXBL2zSieVT4f13gkxffw07EjR3E2Yxa3BlUAJoyYIilfyI7uX5ayeIJR05xo4ISs
+         lQshzI0qquUUEZvZDR6+r9c7qVrSwHWIyuh/Y1Vr4QgL9KUHnbOmjsrTPHxq2MDo4CI0
+         Irutl/Q7aTT2BVK9xBfYuLC0Qt+RKvO7OVOJjkhyU/ZkO2YXbyh9G647yzXNEzyDq+8R
+         UVoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=i92P129jwcnuZH816qZJ1IWu3zvfW04AJO+Q2M5LqcQ=;
+        b=plLc2wBmHxWUjTxzmtcJ8EawNis5Sxb5EU5lIIwO5UvdGa2QZJo7Ux2UQ+thrjv5wu
+         z4qR9jh3Fnh7Dm/ZfkJHtfnpF1W8d+2bIoUMOWW4T1zxI20YVT1nhF6gL0EvOtOl3hZi
+         p66DAtCQ7U3qa4e/fRlpew3eytx5EcZrm6ElijtKfDqrEHTtoY2BjH775ouwM76KllmJ
+         4PYTWth32cI4PkdUiPxTePywxGNjFxHHohp606Eb/VASs3KA2kHvPcm71r9kJQbaYxXV
+         ZAOGnDYaTr/EILnmNseiHCEHG8u3DmEbr0J3GycoYeEi93HvN+wjmMA/mNzYUZ1jolOm
+         Vvcg==
+X-Gm-Message-State: ACgBeo2NjE64hGcwXp8rbXX9Ik034EXIXUUSvvkPmSp+QedSFumVH976
+        YYZneRKndamQ1I8OkmnSz7f0glC2mStsnvc=
+X-Google-Smtp-Source: AA6agR6YoJex0y5EYdcUci15/PySROE0FYkHTQfY4GRinhXGyDd7mvbTWPskVAxdyehD3vAByV6DZA==
+X-Received: by 2002:a17:902:b08b:b0:178:48b6:f5a8 with SMTP id p11-20020a170902b08b00b0017848b6f5a8mr6441535plr.3.1663142040732;
+        Wed, 14 Sep 2022 00:54:00 -0700 (PDT)
+Received: from localhost.localdomain ([117.202.184.122])
+        by smtp.gmail.com with ESMTPSA id p8-20020a1709027ec800b00174ea015ee2sm10119054plb.38.2022.09.14.00.53.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Sep 2022 00:54:00 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org
+Cc:     kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        dmitry.baryshkov@linaro.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v4 00/12] Improvements to the Qcom PCIe Endpoint driver
+Date:   Wed, 14 Sep 2022 13:23:38 +0530
+Message-Id: <20220914075350.7992-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v3 3/7] phy: phy-mtk-tphy: add property to set
- pre-emphasis
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Eddie Hung <eddie.hung@mediatek.com>
-References: <20220914060746.10004-1-chunfeng.yun@mediatek.com>
- <20220914060746.10004-3-chunfeng.yun@mediatek.com>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220914060746.10004-3-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/09/22 08:07, Chunfeng Yun ha scritto:
-> Add a property to set usb2 phy's pre-emphasis, it's disabled by default
-> on some SoCs.
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Hello,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This series contains improvements to the Qualcomm PCIe Endpoint controller
+driver. The major improvements are the addition of SM8450 SoC support and
+debugfs interface for exposing link transition counts.
 
+This series has been tested on SM8450 based dev board.
+
+NOTE: Since the bindings are ACKed, the whole series could be merged to the
+PCI tree.
+
+Thanks,
+Mani
+
+Changes in v4:
+
+* Collected tags for bindings patches
+* Reworded the subject of patch 2/12
+
+Changes in v3:
+
+* Removed the maxItems property from "items" list
+* Reworded the debugfs patch
+* Dropped the eDMA patch since that depends on ongoing eDMA series from Sergey
+* Added two new patches that helps in saving power during idle and low power
+  state
+
+Changes in v2:
+
+* Fixed the comments on bindings patches
+* Added Ack from Krzysztof
+
+Manivannan Sadhasivam (12):
+  PCI: qcom-ep: Add kernel-doc for qcom_pcie_ep structure
+  PCI: qcom-ep: Rely on the clocks supplied by devicetree
+  PCI: qcom-ep: Make use of the cached dev pointer
+  PCI: qcom-ep: Disable IRQs during driver remove
+  PCI: qcom-ep: Expose link transition counts via debugfs
+  PCI: qcom-ep: Gate Master AXI clock to MHI bus during L1SS
+  PCI: qcom-ep: Disable Master AXI Clock when there is no PCIe traffic
+  dt-bindings: PCI: qcom-ep: Make PERST separation optional
+  PCI: qcom-ep: Make PERST separation optional
+  dt-bindings: PCI: qcom-ep: Define clocks per platform
+  dt-bindings: PCI: qcom-ep: Add support for SM8450 SoC
+  PCI: qcom-ep: Add support for SM8450 SoC
+
+ .../devicetree/bindings/pci/qcom,pcie-ep.yaml |  86 +++++++---
+ drivers/pci/controller/dwc/pcie-qcom-ep.c     | 154 ++++++++++++++----
+ 2 files changed, 188 insertions(+), 52 deletions(-)
+
+-- 
+2.25.1
 
