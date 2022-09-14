@@ -2,91 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED055B908A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 00:44:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2E815B909E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 00:53:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbiINWoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 18:44:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51086 "EHLO
+        id S229603AbiINWxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 18:53:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiINWoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 18:44:23 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41B777FE6A
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 15:44:22 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id j6-20020a17090a694600b00200bba67dadso15765696pjm.5
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 15:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=sG4BoPjz3e0C1eNVOCbe3XTFIwC27NVv9II1vqkhBzU=;
-        b=egbvshYQ7PhrCmmQJ075kMdOFDDe3HbCrbPAzU4N7wm3xIVLSn3FY2NwJllG+vOH2Y
-         cfsytFveVVA76ltMYro/rPbqsT5qasiJrLGV06HXsjPbVlCelxfgW+1TeQRgLDieYUs/
-         fSIHFafGEDMeum17aLYPRphQAQbAyOw5sFwWk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=sG4BoPjz3e0C1eNVOCbe3XTFIwC27NVv9II1vqkhBzU=;
-        b=k0GHzFZCcnUrldmXKpdO0kv8d287rRfZCjGTfa5DJlsEvbxwPmManSAz6HWoytzZ+d
-         BholWROYYj7DAzwCkWxY5zloUWSFPa3Y7DODxKz02DLGyltMOyzGC/WkSs/UEJF/IziH
-         3L4Z9ze4gGxxr+5TtRS3GGuyDQoomLPjB3jDMn0Q9JqsB/kEqFesei0bDTyuTpZWqOzr
-         KCdvAuVMhnlGuL1lFgxwKLQG+UgDELwsEM0xEJCcAu5d1x0CNRjjQNgVD8b+19fHNWzK
-         YRHatJuMKcLfcSjWSHURdpHSv9X0TcqfNR7L70iHvjSkKy7kzZhv0MRI7Rlm+Xvpl5L2
-         +CXw==
-X-Gm-Message-State: ACgBeo3aHobFhFuoFPSJwqbVBXQ85KReTlaMnn3+R0dLb2igRtDFYuyx
-        ZfMAcOEadxSKOotuzoTSTFxU8K1GkM1ozw==
-X-Google-Smtp-Source: AA6agR6BJK39kIszlvDaPT1D98yFN2nfwJm8G/GuZYjFwhHiuy8VicYOPBae1seWlmxlUZK/eZORTQ==
-X-Received: by 2002:a17:90a:d804:b0:202:f247:91b0 with SMTP id a4-20020a17090ad80400b00202f24791b0mr7319391pjv.8.1663195461789;
-        Wed, 14 Sep 2022 15:44:21 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:c963:b4c8:c1a:85f6])
-        by smtp.gmail.com with ESMTPSA id x1-20020a170902ec8100b0017854cee6ebsm2981009plg.72.2022.09.14.15.44.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 15:44:21 -0700 (PDT)
-Date:   Wed, 14 Sep 2022 15:44:18 -0700
-From:   Brian Norris <briannorris@chromium.org>
-To:     Heiko Stuebner <heiko@sntech.de>,
+        with ESMTP id S229531AbiINWxH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 18:53:07 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3124079699
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 15:53:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=wQXjBzdg41KdPR4FAisMwEL9Z7vR
+        HYCLO5o4inc0Lz0=; b=cnzYtuCo85EKaAZM6q6PcHl90eQJbL8R74zDY1cn8flJ
+        ukMkjYAy+3eT/v5OtZdfqQrCPAvoemzqyqGdaA1myZ7iP7Y12M2Uf4P6rwtMoCDk
+        C11tjTjC/IEcS9FoVi0A3tBidWMbyKqakdEF0cOHpFTeW5mT0mb7DybTCaUuilU=
+Received: (qmail 2747360 invoked from network); 15 Sep 2022 00:53:03 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Sep 2022 00:53:03 +0200
+X-UD-Smtp-Session: l3s3148p1@FyPG/arojp1ScWNM
+Date:   Wed, 14 Sep 2022 23:53:02 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add gru-scarlet sku{2,4}
- variants
-Message-ID: <YyJZQuw5aQKbW9K/@google.com>
-References: <20220817123350.1.Ibb15bab32dbfa0d89f86321c4eae7adbc8d7ad4a@changeid>
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: renesas: Fix USB PHY device and child node
+ names
+Message-ID: <YyJbTm6pON02tOry@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <6442b4042e26537abc8632c4772f8201685f1f1f.1663165098.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fkCufnkvT+8tYsdC"
 Content-Disposition: inline
-In-Reply-To: <20220817123350.1.Ibb15bab32dbfa0d89f86321c4eae7adbc8d7ad4a@changeid>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <6442b4042e26537abc8632c4772f8201685f1f1f.1663165098.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 12:33:55PM -0700, Brian Norris wrote:
-> The Gru-Scarlet family includes a variety of SKU identifiers, using
-> parts of a 3-bit space {0..7}. SKU2 and SKU4 devices (under a few
-> different manufacturer names) also use the Innolux display.
-> 
-> For reference, the original vendor tree source:
-> 
-> CHROMIUM: arm64: dts: rockchip: add sku{0,2,4} compatibility
-> https://chromium.googlesource.com/chromiumos/third_party/kernel/+/f6ed665c9e2eb37fb2680debbb36ec9fb0e8fb97
-> 
-> CHROMIUM: arm64: dts: rockchip: scarlet: add SKU0 device tree
-> https://chromium.googlesource.com/chromiumos/third_party/kernel/+/9987c8776f4b087d135d761e59f7fa6cc83fc7fc
-> 
-> Signed-off-by: Brian Norris <briannorris@chromium.org>
 
-Ping. What's happening with this? I got one non-actionable comment (that
-I replied to), but I can't tell if this is just waiting on Heiko to pick
-it up, or if it needs a DT reviewer.
+--fkCufnkvT+8tYsdC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Brian
+On Wed, Sep 14, 2022 at 04:21:54PM +0200, Geert Uytterhoeven wrote:
+> make dtbs_check:
+>=20
+>     usb-phy@e6590100: '#phy-cells' is a required property
+> 	    From schema: dtschema/schemas/phy/phy-provider.yaml
+>=20
+> The R-Car Gen2 USB PHY device nodes do not represent USB PHYs
+> theirselves, and thus do not have "#phy-cells" properties.  Fix the
+> warning by renaming them from "usb-phy" to "usb-phy-controller".
+> Rename their child nodes from "usb-channel" to "usb-phy", as these do
+> represent USB PHYs.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+> See also "[PATCH v2] dt-bindings: phy: renesas,rcar-gen2-usb-phy:
+> Convert to json-schema"
+> https://lore.kernel.org/r/dbdcffd009302734fe2fb895ce04b72fa1ea4355.166316=
+5000.git.geert+renesas@glider.be
+
+Awesome that this is finally solved \o/
+
+
+--fkCufnkvT+8tYsdC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMiW04ACgkQFA3kzBSg
+KbbFOg//YLYRmLyD1sSfxAA87sWQxJjMFK6qUZLTOxyoDrNAODZyatZh2E8viqbu
+Z7XQ/n+yTCy/5WePm1Zy4kzP+w2zeI3l3q+PN67SV3CuVZSzoLQmOTvthiaorMRA
+GMK0KcSPFVEIaSr0fOpjVCe0LzGE5kM0lHLwj7zI8e3DwpzTjfHC1GN5/6be1CBJ
+idVnsmw8GZyyooNC+oP4wvFw/dBcNB4ekj3hdms8mKLw+8UwyhYWlmYKbtKuI7+x
+/tV7LHwbrfsUvzCIorU+4oDKckOp8+PY9m2qMpshNTY9SQixtboipIj3/1BYK/ee
+rIqWCf7e1dFDTwrsMBlh1841Q2dEsW9qiywU186OU7z6IVXALqZB6QJeBMvZDIFt
+svSvOgG84N1S7UW20zgsBTlb2yMYCZkWffk7XCU4b9P3w22wGryRpVUDN9vnoV4e
+v+b9vzSjXiR84uYTbxpzlJfBgqe4mALqYfB92UDHnYxVQYFuX6/RO3s9OhuUdsOk
+xO+awiHd2CGhM0tMbBTWXDp/oKL3wG7k3y6GL51Rud+QiSsARMFzVMBkrRAnCSOY
+Ao7PUFTIOQHXdJzJCfhyUJygBvTHDFZwUTXaxTwmLNZ4+ngPTjRe3zmX/n2m5jE2
+rUv2LzsGstDojJmm6vuCwV1mXJVcKskkq5CEtdQchOOY5O576Xo=
+=Q61F
+-----END PGP SIGNATURE-----
+
+--fkCufnkvT+8tYsdC--
