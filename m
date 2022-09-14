@@ -2,157 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6A85B800C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 06:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED58A5B8047
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 06:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbiINENh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 00:13:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60702 "EHLO
+        id S229657AbiINE1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 00:27:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiINENb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 00:13:31 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81399132;
-        Tue, 13 Sep 2022 21:13:28 -0700 (PDT)
-Received: from canpemm500004.china.huawei.com (unknown [172.30.72.55])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MS6Jz2ZmkzNm7C;
-        Wed, 14 Sep 2022 12:08:51 +0800 (CST)
-Received: from [10.174.179.106] (10.174.179.106) by
- canpemm500004.china.huawei.com (7.192.104.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 14 Sep 2022 12:13:26 +0800
-Subject: Re: [PATCH next v4 2/2] dt-bindings: i2c: add entry for
- hisilicon,hisi-i2c
-To:     Rob Herring <robh@kernel.org>
-CC:     <yangyicong@hisilicon.com>, <xuwei5@huawei.com>, <wsa@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20220909074842.281232-1-chenweilong@huawei.com>
- <20220909074842.281232-2-chenweilong@huawei.com>
- <20220913122203.GA3413501-robh@kernel.org>
-From:   chenweilong <chenweilong@huawei.com>
-Message-ID: <a4f1011c-0034-9acf-e0ce-aa9e900823f9@huawei.com>
-Date:   Wed, 14 Sep 2022 12:13:26 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+        with ESMTP id S229518AbiINE1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 00:27:05 -0400
+Received: from smtp-fw-9102.amazon.com (smtp-fw-9102.amazon.com [207.171.184.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F6748E99;
+        Tue, 13 Sep 2022 21:27:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1663129624; x=1694665624;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=R2PH0fTVkuZ36bSfVulz65uK785hLVcgLYUgevvR8/g=;
+  b=jVXGsKdTeaKQ+yzTL4XKqCT3YIyFSksmTGjmJ+Gc6bnsdAmHUoK9J069
+   38pANd1mIf3prYZ1dwwUMLzAZrrtt+wOg0z1/cYFnZpRu2OM9wdsGEFUt
+   QiWDPDqTX2y2qtFj3L8G5opmH9qdoRaYwn8HtB78KBEba3SWWGZEqAfJO
+   k=;
+X-IronPort-AV: E=Sophos;i="5.93,313,1654560000"; 
+   d="scan'208";a="259225995"
+Subject: Re: [PATCH v5 20/21] hwmon: (mr75203) add debugfs to read and write
+ temperature coefficients
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-iad-1d-35b1f9a2.us-east-1.amazon.com) ([10.25.36.210])
+  by smtp-border-fw-9102.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2022 04:26:48 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
+        by email-inbound-relay-iad-1d-35b1f9a2.us-east-1.amazon.com (Postfix) with ESMTPS id 11E6C2015D4;
+        Wed, 14 Sep 2022 04:26:44 +0000 (UTC)
+Received: from EX19D013UWA003.ant.amazon.com (10.13.138.202) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Wed, 14 Sep 2022 04:26:40 +0000
+Received: from EX13MTAUEE002.ant.amazon.com (10.43.62.24) by
+ EX19D013UWA003.ant.amazon.com (10.13.138.202) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Wed, 14 Sep 2022 04:26:40 +0000
+Received: from [192.168.159.232] (10.85.143.178) by mail-relay.amazon.com
+ (10.43.62.224) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Wed, 14 Sep 2022 04:26:37 +0000
+Message-ID: <bdb73546-f309-60dd-3c40-d749654228fe@amazon.com>
+Date:   Wed, 14 Sep 2022 07:26:36 +0300
 MIME-Version: 1.0
-In-Reply-To: <20220913122203.GA3413501-robh@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+CC:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <hhhawa@amazon.com>,
+        <jonnyc@amazon.com>, "Farber, Eliav" <farbere@amazon.com>
+References: <20220908152449.35457-1-farbere@amazon.com>
+ <20220908152449.35457-21-farbere@amazon.com>
+ <YxowTBIODMLjf1Ek@smile.fi.intel.com>
+ <581a4a0b-8e0e-b7a2-f873-77ed74b54e96@amazon.com>
+ <3b121ab4-dd64-68b3-ee89-8571b5d3651e@amazon.com>
+ <YyC3hsNhbQGIlReU@smile.fi.intel.com>
 Content-Language: en-US
-X-Originating-IP: [10.174.179.106]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- canpemm500004.china.huawei.com (7.192.104.92)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <YyC3hsNhbQGIlReU@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-15.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for your review. I'll update the patch.
-On 2022/9/13 20:22, Rob Herring wrote:
-> On Fri, Sep 09, 2022 at 03:48:42PM +0800, Weilong Chen wrote:
->> Add the new compatible for HiSilicon common i2c.
+On 9/13/2022 8:01 PM, Andy Shevchenko wrote:
+> On Tue, Sep 13, 2022 at 05:40:16PM +0300, Farber, Eliav wrote:
+>> On 9/13/2022 4:06 PM, Farber, Eliav wrote:
+>
+> ...
+>
+>> It seems like debugfs_attr_write() calls simple_attr_write() and it uses
+>> kstrtoull(), which is why it fails when setting a negative value.
+>> This is the same also in v6.0-rc5.
 >>
->> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
->> ---
->>  .../bindings/i2c/hisilicon,hisi-i2c.yaml      | 67 +++++++++++++++++++
->>  1 file changed, 67 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
->> new file mode 100644
->> index 000000000000..f1cb6a4c70d1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
->> @@ -0,0 +1,67 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/i2c/hisilicon,hisi-i2c.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: HiSilicon common IIC controller Device Tree Bindings
->> +
->> +maintainers:
->> +  - yangyicong@huawei.com
->> +
->> +allOf:
->> +  - $ref: /schemas/i2c/i2c-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: hisilicon,hisi-i2c
-> You need SoC specific compatibles.
+>> debugfs_attr_read() on the other hand does show the correct value also
+>> when j is negative.
 >
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clk_rate:
->> +    default: 0xEE6B280
-> What is this property for? Use the clock binding.
+> Which puzzles me since there is a few drivers that use %lld.
+> Yeah, changing it to
 >
->> +
->> +  clock-frequency:
->> +    default: 400000
->> +
->> +  i2c-sda-falling-time-ns:
->> +    default: 343
->> +
->> +  i2c-scl-falling-time-ns:
->> +    default: 203
->> +
->> +  i2c-sda-hold-time-ns:
->> +    default: 0x33E
-> The rest are in decimal. Be consistent.
+>        ret = sscanf(attr->set_buf, attr->fmt, &val);
+>        if (ret != 1)
+>                ret = -EINVAL;
 >
->> +
->> +  i2c-scl-rising-time-ns:
->> +    default: 365
->> +
->> +  i2c-digital-filter-width-ns:
->> +    default: 0
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c1: i2c@5038B0000{
-> Space needed              ^
+> probably can fix that. Dunno if debugfs maintainer is okay with this.
 >
-> Use lowercase hex.
->
-> Drop unused labels.
->   
->> +      compatible = "hisilicon,hisi-i2c";
->> +      reg = <0x38B0000 0x10000>;
->> +      interrupts = <0x0 120 0x4>;
->> +      i2c-sda-falling-time-ns = <56>;
->> +      i2c-scl-falling-time-ns = <56>;
->> +      i2c-sda-hold-time-ns = <56>;
->> +      i2c-scl-rising-time-ns = <56>;
->> +      i2c-digital-filter;
->> +      i2c-digital-filter-width-ns = <0x0>;
->> +      clk_rate = <0x0 0xEE6B280>;
->> +      clock-frequency = <400000>;
->> +    };
->> -- 
->> 2.31.GIT
->>
->>
-> .
+> P.S. This needs revisiting all format strings to see if there are no 
+> additional
+> characters, otherwise that needs to be addressed first, if feasible.
 
+I was thinking of making such a correction:
 
+-       ret = kstrtoull(attr->set_buf, 0, &val);
++       if (attr->set_buf[0] == '-')
++               ret = kstrtoll(attr->set_buf, 0, &val);
++       else
++               ret = kstrtoull(attr->set_buf, 0, &val);
+
+and when I tested the change it worked, but then I noticed this commit:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/fs/libfs.c?h=v6.0-rc5&id=488dac0c9237647e9b8f788b6a342595bfa40bda
+
+According to this, it previously used simple_strtoll() which supports
+negative values, but was changed to use kstrtoull() to deliberately
+return '-EINVAL' if it gets a negative value.
+
+So I’m not sure debugfs maintainers will be okay with a fix that
+basically reverts the commit I mentioned.
+Hence, what do you suggest to do with my commit?
+Is it ok to leave it as it is today?
+
+--
+Thanks, Eliav
