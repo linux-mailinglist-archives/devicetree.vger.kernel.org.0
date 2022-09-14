@@ -2,66 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BCC05B7FBD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 05:51:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A6A85B800C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 06:13:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbiINDvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Sep 2022 23:51:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37480 "EHLO
+        id S229547AbiINENh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 00:13:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbiINDvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Sep 2022 23:51:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC0726BD62;
-        Tue, 13 Sep 2022 20:51:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 48D926172C;
-        Wed, 14 Sep 2022 03:51:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D39B1C433C1;
-        Wed, 14 Sep 2022 03:51:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663127463;
-        bh=z8tc2ny0iFtuM5BfRqU4jj6Iv1L3O0pRxMBp27sVGlE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=s+EkfzWhfz6I0+9PBt12GbOskPncWqFE0sEtFo5zv/hgxDwWNOJ87fqwA7ibJrPWb
-         M+SYHXFdEvhlqpMcfSSwfzEoPHPoSTU0hlXOAsOpzwlEm0Z/oQ4vWrTGWwvHZ8sOtQ
-         gyvZuypo0tavxdQwlYbjplrOsyDVqIv4RzjdDiz5A5/G7AsxRzqewt/XO+XPRIuVH/
-         LOxFmWDo8xx8rOMevJzO7HeV4sEdXdZy0v0jEjF/xtOa/oiihM23m7/38FdjpDh9X+
-         GQvtZQ7PBZ0GnDSu7iT8kJDyXlPFaLLnUu7onndf3SSoj7bxNMtHA/WBf8ZwKH723W
-         rLYdZ25EL4LHA==
-Date:   Wed, 14 Sep 2022 11:50:47 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add i.MX8M Mini Gateworks
- GW7904 board
-Message-ID: <20220914035047.GJ1728671@dragon>
-References: <20220912181819.775919-1-tharvey@gateworks.com>
+        with ESMTP id S229463AbiINENb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 00:13:31 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81399132;
+        Tue, 13 Sep 2022 21:13:28 -0700 (PDT)
+Received: from canpemm500004.china.huawei.com (unknown [172.30.72.55])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MS6Jz2ZmkzNm7C;
+        Wed, 14 Sep 2022 12:08:51 +0800 (CST)
+Received: from [10.174.179.106] (10.174.179.106) by
+ canpemm500004.china.huawei.com (7.192.104.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 14 Sep 2022 12:13:26 +0800
+Subject: Re: [PATCH next v4 2/2] dt-bindings: i2c: add entry for
+ hisilicon,hisi-i2c
+To:     Rob Herring <robh@kernel.org>
+CC:     <yangyicong@hisilicon.com>, <xuwei5@huawei.com>, <wsa@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20220909074842.281232-1-chenweilong@huawei.com>
+ <20220909074842.281232-2-chenweilong@huawei.com>
+ <20220913122203.GA3413501-robh@kernel.org>
+From:   chenweilong <chenweilong@huawei.com>
+Message-ID: <a4f1011c-0034-9acf-e0ce-aa9e900823f9@huawei.com>
+Date:   Wed, 14 Sep 2022 12:13:26 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220912181819.775919-1-tharvey@gateworks.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220913122203.GA3413501-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.174.179.106]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ canpemm500004.china.huawei.com (7.192.104.92)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 11:18:18AM -0700, Tim Harvey wrote:
-> Add DT compatible string for i.MX8M Mini based Gateworks GW7904 board.
-> 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+Thanks for your review. I'll update the patch.
+On 2022/9/13 20:22, Rob Herring wrote:
+> On Fri, Sep 09, 2022 at 03:48:42PM +0800, Weilong Chen wrote:
+>> Add the new compatible for HiSilicon common i2c.
+>>
+>> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+>> ---
+>>  .../bindings/i2c/hisilicon,hisi-i2c.yaml      | 67 +++++++++++++++++++
+>>  1 file changed, 67 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+>> new file mode 100644
+>> index 000000000000..f1cb6a4c70d1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+>> @@ -0,0 +1,67 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/i2c/hisilicon,hisi-i2c.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: HiSilicon common IIC controller Device Tree Bindings
+>> +
+>> +maintainers:
+>> +  - yangyicong@huawei.com
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: hisilicon,hisi-i2c
+> You need SoC specific compatibles.
+>
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clk_rate:
+>> +    default: 0xEE6B280
+> What is this property for? Use the clock binding.
+>
+>> +
+>> +  clock-frequency:
+>> +    default: 400000
+>> +
+>> +  i2c-sda-falling-time-ns:
+>> +    default: 343
+>> +
+>> +  i2c-scl-falling-time-ns:
+>> +    default: 203
+>> +
+>> +  i2c-sda-hold-time-ns:
+>> +    default: 0x33E
+> The rest are in decimal. Be consistent.
+>
+>> +
+>> +  i2c-scl-rising-time-ns:
+>> +    default: 365
+>> +
+>> +  i2c-digital-filter-width-ns:
+>> +    default: 0
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c1: i2c@5038B0000{
+> Space needed              ^
+>
+> Use lowercase hex.
+>
+> Drop unused labels.
+>   
+>> +      compatible = "hisilicon,hisi-i2c";
+>> +      reg = <0x38B0000 0x10000>;
+>> +      interrupts = <0x0 120 0x4>;
+>> +      i2c-sda-falling-time-ns = <56>;
+>> +      i2c-scl-falling-time-ns = <56>;
+>> +      i2c-sda-hold-time-ns = <56>;
+>> +      i2c-scl-rising-time-ns = <56>;
+>> +      i2c-digital-filter;
+>> +      i2c-digital-filter-width-ns = <0x0>;
+>> +      clk_rate = <0x0 0xEE6B280>;
+>> +      clock-frequency = <400000>;
+>> +    };
+>> -- 
+>> 2.31.GIT
+>>
+>>
+> .
 
-Applied both, thanks!
+
