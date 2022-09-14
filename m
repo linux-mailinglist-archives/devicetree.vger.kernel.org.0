@@ -2,108 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DCFF5B8428
-	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C9095B84D0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Sep 2022 11:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbiINJH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 05:07:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48684 "EHLO
+        id S229436AbiINJTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 05:19:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231209AbiINJGo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:06:44 -0400
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC14E77540;
-        Wed, 14 Sep 2022 02:03:45 -0700 (PDT)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-12b542cb1d3so29443603fac.13;
-        Wed, 14 Sep 2022 02:03:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=D+SZ90LOGKr6PSOG3NHenig+A+JoVupnzjOX8oY/5mM=;
-        b=nExX2H2C6WrTnNGSpxdkS/T1FL5M+Sr7vDYZT64HVjqQ5M/Pa7eAR4by6hMu0qfyxJ
-         3qbx21WcZf9gvJ23WYaYT5830WSHS9I0fxKg5PWV043q44CqnXwRpghkSNe3CAkC/uqg
-         JPNtPeZPgYSXBQ7jaLQMuYgYFWkLBrzEBMKeRSjk84LrI9NFp8PEgHV3rrvI5gEoAegf
-         f0oQrUcSA3nLHzjEbTP2bLpRjk3SI89VDDLBFyZfxUCyDyebpuKlXPAIT+G/kgKm4CcM
-         Wx3w7v7TzkDjxerXa+Q1jnVQXJueeoxUDhwHa49rCdpFkjQAs1c6QaIyJ738DjN9kXJM
-         8TQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=D+SZ90LOGKr6PSOG3NHenig+A+JoVupnzjOX8oY/5mM=;
-        b=mS2ni3e0ADsFiF1qCeBITsk7T8O8LmLeE91HIMJy19qDftYRJFvwM2dy/t6oT+B6yi
-         f7Htf5q7tcGNsxRJUGOz/K8zQmjphWgNJnQ3jOXpGz/tP69LfQX8EgUl4KSRCJtAplc0
-         HoseSD7WQOoylt+wR7eXB79RUEDz+tNXAFCPVVcHYfyLkhHqSZJ569gbIRa2/AYRRpds
-         bCij+EtBiybsKXXqm+DVZdRpCdMEHozWFnv75d+Hpj8fNTuJz1oLWg00IKRA0sDvJKrf
-         zMInELL+E2TEvGfcEypT+flN4wzIk6pkfcqrrUvSINfXQayZdy5HP3RUhiEWNacDn/fu
-         LpXg==
-X-Gm-Message-State: ACgBeo0EjWnu/dm5J0Fju19ojj3p57mh3j0FuhXGog2xSFp3D+QJMDvR
-        HA2ReI4Fn4LirnlHPvlmsaBEoESWmY+9efg7Twg=
-X-Google-Smtp-Source: AA6agR6ka3E1cNjL/pn5j8TiAFXOCTm4ghY2UhrM1mmRzKbdO8p0jFiJ1HzoekaKmYo3JI4vfIcTz0ZDPjt6wYynFCE=
-X-Received: by 2002:a05:6808:bcb:b0:345:aa85:6f33 with SMTP id
- o11-20020a0568080bcb00b00345aa856f33mr1451152oik.83.1663146214114; Wed, 14
- Sep 2022 02:03:34 -0700 (PDT)
+        with ESMTP id S229933AbiINJSb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 05:18:31 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE94792FC;
+        Wed, 14 Sep 2022 02:08:56 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28E8VNGu001667;
+        Wed, 14 Sep 2022 09:06:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=subject : to :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6kFVICJ6jtew+3rXDnaR4PptRyZuceTadVnuNa0iKHA=;
+ b=BTL4oP5NvIADiQ1ivZ3ezjIUGfhUotu3xzPc450+vkR+1JcE9dkIRozqbInMhCuPFQ4K
+ mqfGGZxTJh2ISvv2lrD/sf7WpInxYdsCcEpSNyYSiyv1uaA+R/QAooEsNxL0PHrXrtCu
+ zgS9E5/tElD8Mn/dTD9iEd09TIOul/sua3iRX2kh2XgTSZBJWTliRydErbH1+vu8+q1z
+ qpYBPUC7bfp5cOz2+TpOhRDjYrdwSs9mYAsT4lgF9ur2/ED3kVbB8G/1XHrAeh+N4kUb
+ s6TNQx8LKFzWl8MHMhJF1AeUHOEZHMbGfzINjdXMTL92MZP2dTMidAvfTOOJ+BytkkPn GA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jjy0c9pua-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Sep 2022 09:06:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28E96ig6020032
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 14 Sep 2022 09:06:44 GMT
+Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 14 Sep
+ 2022 02:06:39 -0700
+Subject: Re: [PATCH v6 2/8] remoteproc: qcom: Add flag in adsp private data
+ structure
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
+References: <1662643422-14909-1-git-send-email-quic_srivasam@quicinc.com>
+ <1662643422-14909-3-git-send-email-quic_srivasam@quicinc.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+Message-ID: <9a483cbc-f90a-65c8-5edf-95fa9016ce6b@quicinc.com>
+Date:   Wed, 14 Sep 2022 14:36:36 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20220914085451.11723-1-arinc.unal@arinc9.com> <20220914085451.11723-5-arinc.unal@arinc9.com>
-In-Reply-To: <20220914085451.11723-5-arinc.unal@arinc9.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Wed, 14 Sep 2022 11:03:23 +0200
-Message-ID: <CAMhs-H8MohXO6xNf+vNodv9hDyCog5_Hjcb6_=_ujmYmmeEdSg@mail.gmail.com>
-Subject: Re: [PATCH 04/10] dt-bindings: memory: mt7621: add syscon as
- compatible string
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, erkin.bozoglu@xeront.com,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1662643422-14909-3-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: L5iTt_yBFld5wBfQbdRVnxufNqTspuly
+X-Proofpoint-GUID: L5iTt_yBFld5wBfQbdRVnxufNqTspuly
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-14_03,2022-09-14_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 mlxlogscore=999 priorityscore=1501
+ phishscore=0 mlxscore=0 bulkscore=0 adultscore=0 impostorscore=0
+ spamscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2208220000 definitions=main-2209140044
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 10:55 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arin=
-c9.com> wrote:
->
-> Add syscon as a constant string on the compatible property as it's requir=
-ed
-> for the SoC to work. Update the example accordingly.
->
-> Fixes: 5278e4a181ff ("dt-bindings: memory: add binding for Mediatek's MT7=
-621 SDRAM memory controller")
-> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+On 9/8/22 6:53 PM, Srinivasa Rao Mandadapu wrote:
+> Add flag in qcom_adsp private data structure and initialize
+> it to distinguish ADSP and WPSS modules for using iommu selectively.
+
+There are other flags available to distinguish between ADSP and WPSS
+like 'is_wpss'. So you probably want to tweak your commit message to
+just say if it has a iommu in front of it or not and skip referencing
+WPSS.
+
+Reviewed-by: Sibi Sankar <quic_sibis@quicinc.com>
+
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 > ---
->  .../bindings/memory-controllers/mediatek,mt7621-memc.yaml   | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-
-Thanks,
-    Sergio Paracuellos
+> Changes since V5:
+> 	-- Rename adsp_sandbox_needed to has_iommu.
+> Changes since V3:
+> 	-- Rename is_adsp_sb_needed to adsp_sandbox_needed.
+> Changes since V2:
+> 	-- Add is_adsp_sb_needed flag instead of is_wpss.
+> 
+>   drivers/remoteproc/qcom_q6v5_adsp.c | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
+> index 2f3b9f5..fa2ccac 100644
+> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> @@ -62,6 +62,7 @@ struct adsp_pil_data {
+>   	const char *sysmon_name;
+>   	int ssctl_id;
+>   	bool is_wpss;
+> +	bool has_iommu;
+>   	bool auto_boot;
+>   
+>   	const char **clk_ids;
+> @@ -99,6 +100,7 @@ struct qcom_adsp {
+>   	phys_addr_t mem_reloc;
+>   	void *mem_region;
+>   	size_t mem_size;
+> +	bool has_iommu;
+>   
+>   	struct device *proxy_pds[QCOM_Q6V5_RPROC_PROXY_PD_MAX];
+>   	size_t proxy_pd_count;
+> @@ -596,12 +598,15 @@ static int adsp_probe(struct platform_device *pdev)
+>   	}
+>   
+>   	rproc->auto_boot = desc->auto_boot;
+> +	rproc->has_iommu = desc->has_iommu;
+>   	rproc_coredump_set_elf_info(rproc, ELFCLASS32, EM_NONE);
+>   
+>   	adsp = (struct qcom_adsp *)rproc->priv;
+>   	adsp->dev = &pdev->dev;
+>   	adsp->rproc = rproc;
+>   	adsp->info_name = desc->sysmon_name;
+> +	adsp->has_iommu = desc->has_iommu;
+> +
+>   	platform_set_drvdata(pdev, adsp);
+>   
+>   	if (desc->is_wpss)
+> 
