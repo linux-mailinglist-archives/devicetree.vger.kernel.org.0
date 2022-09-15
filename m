@@ -2,149 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45D735B9DB1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 16:49:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C76E05B9DEA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbiIOOto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 10:49:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50048 "EHLO
+        id S229697AbiIOPBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 11:01:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbiIOOtm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 10:49:42 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C9A5BC98
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 07:49:40 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id z12so12936125wrp.9
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 07:49:40 -0700 (PDT)
+        with ESMTP id S229457AbiIOPB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:01:29 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 190D27B78D
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:01:28 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id n23-20020a7bc5d7000000b003a62f19b453so17912043wmk.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:01:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=u+MEx5X3tH0fljhxGvHQehUVImd5GhUM1h1Z4SXLLYI=;
-        b=JCVUvByF49G5XLnjbdd4yUFKZVdv/7edOBeVAAqmyxi2aqpjJoG/hDEIvfD6bm1Orm
-         luepYghg92YFh+ykjBbDhZqOEbL5pIQHuAKOeVdKC3tB1B/T/SYAKLNHMiDR+9gz9jrG
-         Tsb65OBW715HfOtzLuCSWkXA3y+Wjc6BmHNkoEg8+e5NpLnXx5TtOH4UTc3YKAJGDnRI
-         9HJgNgiH3VyBOTBEaYK2Rnn52WTFBQRkUsWlvSaa5J9AN5GSRMUhIoC6YXaKEA3fLHlc
-         RzkQ1zwrHdSHSmhakhnHA2aMI80k7fMg+FnChWOQlUujQqIFLMXMusrKg8C0NpJTFj27
-         8Utw==
+        bh=+/YQUGKG79YoC7NHmR5xoM7tUa0JcBEoBM0TE1piCw0=;
+        b=x7ObIcWspzpH54hkjhs8OwMGiLUcGWhOMmC0pBQFQxq3YZJYvi3YA73jiX+qH/6+OI
+         JXl+M7Fo2u3nJG6fjPitWelyCyRJ3jXIGzZvVLEXokDA/EUQXCpwARal6i6RxJ97KYqo
+         VKDeXw+aIS6Z2lbpU4e1sN1gsZbELUvuilkCg/W8iNXfqCAizIE6nlyfRODFXBZ6RypA
+         0CfyWev+HCQb3ALaycsOzgjonb51SZHayj3nUov1w3e8Ub0I5OiYdymgHn5V1r5s2y4u
+         PSsqubl72/uJRT1PsaXxcdXEnYsewWiCabI2Ank7nkkOCt8xm16/J2cfRF3Oo6BL7H5x
+         dXFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=u+MEx5X3tH0fljhxGvHQehUVImd5GhUM1h1Z4SXLLYI=;
-        b=rkGITLpJhcLDChNI3VtoGKFgJNcLvCQqICZ1LhUxz7sABSPQ8tCXmcByU7KJIfNdJs
-         DR2cS0I2ZjlZ1JOn5rui14FGf6pohOUtrvhUTuE01JSfUaVnHzzYaFo8Lyo9V29ksDid
-         U/hFgRF9D2olAyqieSho15nJuY7eD44pKnSz9AYpFtmJ+BSkpUN3EnPIe/01Tyw6jyOb
-         2gP8Nq9TaAv1a0sYFnikd5KmPaV/NUNxaS1HBxeKHxymIx79dv0HZmcTWyd77c3nHbac
-         EFm9Z8xmXk2ZU7pIP7jAGFIyM3NZQ4dLuXuCn658daA0x9TLoyG9vxtS4ClGaSoHD16H
-         4fSA==
-X-Gm-Message-State: ACrzQf39+faereYf0n5D9FptjCKCC33eg9iDxCIjyRTBEtiHim/Vhhd/
-        tth09FiOHNym+KVg1g5xFz08UQ==
-X-Google-Smtp-Source: AMsMyM5XOGsqrjqboyvXUIJfpP7pyqYRF4cq1JP8xx8yhipEVSCPdpV3hhNdVUJhIN58nfUGXwHOhA==
-X-Received: by 2002:a5d:5a0d:0:b0:228:da3f:738 with SMTP id bq13-20020a5d5a0d000000b00228da3f0738mr22398wrb.526.1663253378697;
-        Thu, 15 Sep 2022 07:49:38 -0700 (PDT)
+        bh=+/YQUGKG79YoC7NHmR5xoM7tUa0JcBEoBM0TE1piCw0=;
+        b=qPM4MbKfG8tdNGN6j7SFQuqEUp0Cm+EI8dgOipZNHaFs8Mcs1EjI+Hx0lrFGmnEQrN
+         eXKpX4a7Nm+m3aibh2ce4b0wdVx0rZDcnr/D64F1syXn7Hai7pKnqFvFWbIgZcchRh06
+         sYoa4pmBUVzLXswk4gu2wLJSXLnzyclmlk0Ys7FZhmv62Bv+fHwX0lvSTuvVbzQjU2T8
+         svNzxggwTK4TuewDMWUeWu8P7vBedW13fxZEn8SNweKcc7u8rRYw0H294LHWi9VsWjRG
+         8bFSQFOu6593NOuPgKel5PZ7t89Gd52Dv+bVnGhWA8HuVmZreQjAshJZzBGPC2zgOaNE
+         K34A==
+X-Gm-Message-State: ACrzQf1JF209DDy4JSVsWfrxJXMKgBZqVoT1q0UYdN3LtjUrJ0532KeS
+        pfb+OJCJ4MomKAAZkxhVJzH3aA==
+X-Google-Smtp-Source: AMsMyM6Doquqmik2Z+CTCB4I78Qh1NPhEmbjqCZB/XV48p5OywlUQjico/uVsTBXHXmBgg/gKsQW2w==
+X-Received: by 2002:a1c:7412:0:b0:3b4:7a81:e7e4 with SMTP id p18-20020a1c7412000000b003b47a81e7e4mr148115wmc.15.1663254086507;
+        Thu, 15 Sep 2022 08:01:26 -0700 (PDT)
 Received: from [10.119.22.201] ([89.101.193.72])
-        by smtp.gmail.com with ESMTPSA id x10-20020a05600c420a00b003b4935f04aasm3157668wmh.10.2022.09.15.07.49.37
+        by smtp.gmail.com with ESMTPSA id r10-20020a5d694a000000b0021e51c039c5sm2825251wrw.80.2022.09.15.08.01.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Sep 2022 07:49:38 -0700 (PDT)
-Message-ID: <79889adc-9224-c257-3957-3a02ec55f091@linaro.org>
-Date:   Thu, 15 Sep 2022 15:49:37 +0100
+        Thu, 15 Sep 2022 08:01:26 -0700 (PDT)
+Message-ID: <69d4218e-5e85-098a-621a-e02b484285a8@linaro.org>
+Date:   Thu, 15 Sep 2022 16:01:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v3 10/15] ARM: dts: qcom: msm8974: split TCSR halt regs
- out of mutex
+Subject: Re: [PATCH 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R4S
+ Enterprise Edition
 Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220909092035.223915-1-krzysztof.kozlowski@linaro.org>
- <20220909092035.223915-11-krzysztof.kozlowski@linaro.org>
- <20220913224418.jvvguc66y5le7qjo@builder.lan>
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220911040628.13774-1-cnsztl@gmail.com>
+ <20220915022511.4267-1-cnsztl@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220913224418.jvvguc66y5le7qjo@builder.lan>
+In-Reply-To: <20220915022511.4267-1-cnsztl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/2022 23:44, Bjorn Andersson wrote:
-> On Fri, Sep 09, 2022 at 11:20:30AM +0200, Krzysztof Kozlowski wrote:
-> [..]
->> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
->> index 90a6d4b7605c..ada232bed2c8 100644
->> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
->> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
->> @@ -1189,7 +1189,7 @@ remoteproc_mss: remoteproc@fc880000 {
->>  			resets = <&gcc GCC_MSS_RESTART>;
->>  			reset-names = "mss_restart";
->>  
->> -			qcom,halt-regs = <&tcsr_mutex_block 0x1180 0x1200 0x1280>;
->> +			qcom,halt-regs = <&tcsr_1 0x180 0x200 0x280>;
->>  
->>  			qcom,smem-states = <&modem_smp2p_out 0>;
->>  			qcom,smem-state-names = "stop";
->> @@ -1230,10 +1230,15 @@ smd-edge {
->>  
->>  		tcsr_mutex_block: syscon@fd484000 {
->>  			compatible = "syscon";
->> -			reg = <0xfd484000 0x2000>;
->> +			reg = <0xfd484000 0x1000>;
->>  		};
->>  
->> -		tcsr: syscon@fd4a0000 {
->> +		tcsr_1: syscon@fd485000 {
+On 15/09/2022 03:25, Tianling Shen wrote:
+> Add devicetree binding documentation for the FriendlyARM NanoPi R4S
+> Enterprise Edition.
 > 
-> While the accessed registers look general purpose in nature, I would
-> prefer that we stick with naming it based on the register blocks - and
-> this is part of what's named "tcsr_mutex".
+> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
 
-Then everything would be like:
 
-tcsr_mutex_1: syscon@fd484000
-tcsr_mutex_2: syscon@fd485000
-tcsr: syscon@fd4a0000
-?
-
-> 
-> Is it not possible to claim that this region is a
-> "qcom,msm8974-tcsr-mutex" and a "syscon"?
-
-Hm, yes, that's another approach. We can go this way, but it has one
-drawback - you could have two different devices (mutex and syscon user)
-poking to the same registers. The regmap makes it safe from concurrency
-point of view, but not safe from logic point of view.
-
-Splitting these makes it sure, that no one touches hwlock registers,
-except the hwlock driver.
-
-Any preference?
-
-> 
->> +			compatible = "qcom,tcsr-msm8974", "syscon";
->> +			reg = <0xfd485000 0x1000>;
->> +		};
->> +
->> +		tcsr_2: syscon@fd4a0000 {
-> 
-> And I would like to keep this as "tcsr".
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
