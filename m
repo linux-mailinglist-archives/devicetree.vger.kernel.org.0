@@ -2,67 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCBEC5B91AD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 02:33:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BEE45B91E7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 02:46:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230095AbiIOAcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 20:32:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36576 "EHLO
+        id S230218AbiIOAqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 20:46:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbiIOAck (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 20:32:40 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A62E89919
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 17:32:36 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id q15-20020a17090a304f00b002002ac83485so15990523pjl.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 17:32:36 -0700 (PDT)
+        with ESMTP id S229910AbiIOAqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 20:46:43 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC41356C0
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 17:46:41 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id y17so33501109ejo.6
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 17:46:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=XmAEu+rEqMnoQ4fYaJ1lwcyZ2oHP4Ye2gu5ZnE2+iKI=;
-        b=b9zRb5qx26NUMFO1t3kdBHxBzUummX61WcTsSce8Wh+jvgHT2w9HZ77xKg8/lbEJAV
-         NvKUrGrdluj4TJyMiDRW8qvnQoqUohlvHxEm+0Kqx1vHe0Ab52ySj5SUMx5YxLuBmCDm
-         HQnW1VB9bjJydsu4znkdg41Hpg6xxxpOx5vBo=
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=WgZixTRxTWoDkCtULJb0cXzPEDep5TgMZR2wDcQQdOw=;
+        b=Kg+1UZzlDU50pcnzV1o05HTamlrToevhWcGaP84OVJsseY3AhIhNhwicDxakzx5zQO
+         W7HZ1yWfcO696l161SYZhn+PCzNXzc1jy5DgAJFhVBcg1Q2wVas/GrD/F87VOavB801q
+         1SiQDMUdU6HpX4x5oSDoCEz5kxjQU8EyeCuyk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=XmAEu+rEqMnoQ4fYaJ1lwcyZ2oHP4Ye2gu5ZnE2+iKI=;
-        b=1dVcAsV7h88bv6BGD1tAmgfGWLf42xx+IaruFaj6qsX40JO4v8RBeG65keF4fMTbVJ
-         6OkFoZHcdEHRSCD4DlS4B0IkHeYT+vzc6Vzin2WI4XYqJ4o5egubM9woExk9ZSzqGyYG
-         0h4Ytn2I7L6pEItUiLB8TEVdtaPv1wqSw2Oj84iCBnSNapbj0BELF23fcWPb6L+u9f+r
-         MSBVEVFVgjpYZMatWeScevHcxTxHTsBl4nME0lpRKhhjt3mXFZRKGJr/0lYR8IeWpQue
-         /NM9nPU0X//BoQ9UcPUFowJ7aj9GlTbMWSK9GfBaJ4QLRZeU4oMjf7IPmKZcq4TinSyn
-         ETEw==
-X-Gm-Message-State: ACrzQf3rx9uQ8dMMQ73BdaDiIRJ1YFqPcw/eBEi12g/JnfrlOkPcjF4Q
-        Nhu9SqsCe8irC8Ylo42cVKb8p6LAFPgW+Q==
-X-Google-Smtp-Source: AMsMyM5h+vAYH6x4dFdq8BwMyVkTmfrO+P6807dDuE2WtrINEtklFntFef3cPp2vZ6Sqh5QruBma2g==
-X-Received: by 2002:a17:90a:d149:b0:1fb:6dfb:1fb8 with SMTP id t9-20020a17090ad14900b001fb6dfb1fb8mr7431902pjw.25.1663201955492;
-        Wed, 14 Sep 2022 17:32:35 -0700 (PDT)
-Received: from jwerner-p920.mtv.corp.google.com ([2620:15c:202:201:347e:2a81:558b:d912])
-        by smtp.gmail.com with ESMTPSA id 199-20020a6214d0000000b0053e22c7f135sm10991202pfu.141.2022.09.14.17.32.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Sep 2022 17:32:34 -0700 (PDT)
-From:   Julius Werner <jwerner@chromium.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Julius Werner <jwerner@chromium.org>
-Subject: [PATCH 4/4 v4] dt-bindings: memory: Add jedec,lpddrX-channel binding
-Date:   Wed, 14 Sep 2022 17:32:22 -0700
-Message-Id: <20220915003222.1296421-4-jwerner@chromium.org>
-X-Mailer: git-send-email 2.37.2.789.g6183377224-goog
-In-Reply-To: <20220915003222.1296421-1-jwerner@chromium.org>
-References: <20220915003222.1296421-1-jwerner@chromium.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=WgZixTRxTWoDkCtULJb0cXzPEDep5TgMZR2wDcQQdOw=;
+        b=Xn8PVqhh1qlnwtGRFX6FiRFqogU2jx5iAYxP3QW9pyrNxKg+vgCJfX+F0F0Nsv8aVO
+         sVNhTpiLosNgmZD9+OvHvpl77K+rwusa7xDRDacra2qIPjgo5nPO0CJSy6QQ9CNP3eeB
+         99HnhR0eBzOIWGvdDfhXCWipPUcokGD9K/aJmsVuppZzrGK3zc08Ubv9iDmMFcH7N6ic
+         mx1B17oPRrxdtZ0fdqQ0KZWNF0csOPQgFlwdoHt/iDiZgKcjASEkOEX0Lg/hYe5OsIr1
+         lKUzUtVLQxvSWtvx5or9JfCC3ZMUg+Zoqo5tDBaf/VfCxGhWE7yRhiPnPe69eN1Glfds
+         pX5Q==
+X-Gm-Message-State: ACgBeo08l0qpwYltk3ns2JCUrOJQP3DV5S8k6yu5b8M1LZuIfZ5xRwgr
+        f69y39YfkPWpjFSmv52q+lWFxUdRwSQ4hPaJdU4bBA==
+X-Google-Smtp-Source: AA6agR54zdmn7Yw5OAkEnKI6FIl0BrR5R5qoYvJoVPX6e0a0Ba7VGgMA3ek/Ii7ijMcFUlJ3KBZn+g4zCLbdbONkGRU=
+X-Received: by 2002:a17:906:401:b0:73d:af73:b78 with SMTP id
+ d1-20020a170906040100b0073daf730b78mr27986527eja.122.1663202800297; Wed, 14
+ Sep 2022 17:46:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220826065621.2255795-1-judyhsiao@chromium.org> <166308148206.625876.8801069802083923195.b4-ty@kernel.org>
+In-Reply-To: <166308148206.625876.8801069802083923195.b4-ty@kernel.org>
+From:   Judy Hsiao <judyhsiao@chromium.org>
+Date:   Thu, 15 Sep 2022 08:46:29 +0800
+Message-ID: <CAJXt+b90z32L3ZYh22Vnxo4=DbETJZjf+rx9X7ZuqqmaBDggfQ@mail.gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Fix Dmic no sound on villager-r1
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     quic_srivasam@quicinc.com, judyhsiao@google.com,
+        cychiang@google.com, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+        mka@chromium.org, Rob Herring <robh+dt@kernel.org>,
+        swboyd@chromium.org, dianders@chromium.org,
+        devicetree@vger.kernel.org,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,218 +68,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a new device tree binding for an LPDDR channel to serve
-as a top-level organizing node for LPDDR part nodes nested below it. An
-LPDDR channel needs to have an "io-width" property to describe its width
-(this is important because this width does not always match the io-width
-of the part number, indicating that multiple parts are wired in parallel
-on the same channel), as well as one or more nested "rank@X" nodes.
-Those represent information about the individual ranks of each LPDDR
-part connected on that channel and should match the existing
-"jedec,lpddrX" bindings for individual LPDDR parts.
+Please help to apply
+Add dtsi for sc7280 herobrine boards that using rt5682 codec (v4)
+https://patchwork.kernel.org/project/linux-arm-msm/list/?series=661760
+It's dependencies are landed.
 
-New platforms should be using this node -- the existing practice of
-providing a raw, toplevel "jedec,lpddrX" node without indication of how
-many identical parts are in the system should be considered deprecated.
+Thanks & Regards
 
-Signed-off-by: Julius Werner <jwerner@chromium.org>
----
- .../ddr/jedec,lpddr-channel.yaml              | 146 ++++++++++++++++++
- .../ddr/jedec,lpddr-props.yaml                |  10 +-
- 2 files changed, 155 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
-
-Changelog:
-
-- v2:
-  - changed $ref for rank subnode to specifically match LPDDR type in
-    compatible string
-  - moved `reg` up to be listed right below `compatible`
-- v3:
-  - no changes
-- v4:
-  - no changes
-
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
-new file mode 100644
-index 00000000000000..34b5bd153f63e0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
-@@ -0,0 +1,146 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr-channel.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LPDDR channel with chip/rank topology description
-+
-+description:
-+  An LPDDR channel is a completely independent set of LPDDR pins (DQ, CA, CS,
-+  CK, etc.) that connect one or more LPDDR chips to a host system. The main
-+  purpose of this node is to overall LPDDR topology of the system, including the
-+  amount of individual LPDDR chips and the ranks per chip.
-+
-+maintainers:
-+  - Julius Werner <jwerner@chromium.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - jedec,lpddr2-channel
-+      - jedec,lpddr3-channel
-+      - jedec,lpddr4-channel
-+      - jedec,lpddr5-channel
-+
-+  io-width:
-+    description:
-+      The number of DQ pins in the channel. If this number is different
-+      from (a multiple of) the io-width of the LPDDR chip, that means that
-+      multiple instances of that type of chip are wired in parallel on this
-+      channel (with the channel's DQ pins split up between the different
-+      chips, and the CA, CS, etc. pins of the different chips all shorted
-+      together).  This means that the total physical memory controlled by a
-+      channel is equal to the sum of the densities of each rank on the
-+      connected LPDDR chip, times the io-width of the channel divided by
-+      the io-width of the LPDDR chip.
-+    enum:
-+      - 8
-+      - 16
-+      - 32
-+      - 64
-+      - 128
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^rank@[0-9]+$":
-+    type: object
-+    description:
-+      Each physical LPDDR chip may have one or more ranks. Ranks are
-+      internal but fully independent sub-units of the chip. Each LPDDR bus
-+      transaction on the channel targets exactly one rank, based on the
-+      state of the CS pins. Different ranks may have different densities and
-+      timing requirements.
-+    required:
-+      - reg
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: jedec,lpddr2-channel
-+    then:
-+      patternProperties:
-+        "^rank@[0-9]+$":
-+          $ref: /schemas/memory-controllers/ddr/jedec,lpddr2.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: jedec,lpddr3-channel
-+    then:
-+      patternProperties:
-+        "^rank@[0-9]+$":
-+          $ref: /schemas/memory-controllers/ddr/jedec,lpddr3.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: jedec,lpddr4-channel
-+    then:
-+      patternProperties:
-+        "^rank@[0-9]+$":
-+          $ref: /schemas/memory-controllers/ddr/jedec,lpddr4.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: jedec,lpddr5-channel
-+    then:
-+      patternProperties:
-+        "^rank@[0-9]+$":
-+          $ref: /schemas/memory-controllers/ddr/jedec,lpddr5.yaml#
-+
-+required:
-+  - compatible
-+  - io-width
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    lpddr-channel0 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      compatible = "jedec,lpddr3-channel";
-+      io-width = <32>;
-+
-+      rank@0 {
-+        compatible = "lpddr3-ff,0100", "jedec,lpddr3";
-+        reg = <0>;
-+        density = <8192>;
-+        io-width = <16>;
-+        revision-id = <1 0>;
-+      };
-+    };
-+
-+    lpddr-channel1 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      compatible = "jedec,lpddr4-channel";
-+      io-width = <32>;
-+
-+      rank@0 {
-+        compatible = "lpddr4-05,0301", "jedec,lpddr4";
-+        reg = <0>;
-+        density = <4096>;
-+        io-width = <32>;
-+        revision-id = <3 1>;
-+      };
-+
-+      rank@1 {
-+        compatible = "lpddr4-05,0301", "jedec,lpddr4";
-+        reg = <1>;
-+        density = <2048>;
-+        io-width = <32>;
-+        revision-id = <3 1>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-index 92ef660888f318..30267ce701249a 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-@@ -9,7 +9,8 @@ title: Common properties for LPDDR types
- description:
-   Different LPDDR types generally use the same properties and only differ in the
-   range of legal values for each. This file defines the common parts that can be
--  reused for each type.
-+  reused for each type. Nodes using this schema should generally be nested under
-+  an LPDDR channel node.
- 
- maintainers:
-   - Krzysztof Kozlowski <krzk@kernel.org>
-@@ -25,6 +26,13 @@ properties:
-       The latter form can be useful when LPDDR nodes are created at runtime by
-       boot firmware that doesn't have access to static part number information.
- 
-+  reg:
-+    description:
-+      The rank number of this LPDDR rank when used as a subnode to an LPDDR
-+      channel.
-+    minimum: 0
-+    maximum: 3
-+
-   revision-id:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
-     description:
--- 
-2.31.0
-
+On Tue, Sep 13, 2022 at 11:04 PM Bjorn Andersson <andersson@kernel.org> wrote:
+>
+> On Fri, 26 Aug 2022 06:56:21 +0000, Judy Hsiao wrote:
+> > Fix the DMIC no sound issue of villager-r1 by using "PP1800_L2C" as the
+> > DMIC power source to match the hardware schematic.
+> >
+> > This patch:
+> >    1. set vdd-micb-supply to PP1800_L2C as the MIC Bias voltage regulator.
+> >    2. In audio-routing, set VA DMIC01~VA DMIC03 to use the vdd-micb-supply
+> >       setting.
+> >
+> > [...]
+>
+> Applied, thanks!
+>
+> [1/1] arm64: dts: qcom: sc7280: Fix Dmic no sound on villager-r1
+>       commit: 61a301ca83736afeeeb307b931c59f107067da3c
+>
+> Best regards,
+> --
+> Bjorn Andersson <andersson@kernel.org>
