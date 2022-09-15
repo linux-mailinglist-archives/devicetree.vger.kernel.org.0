@@ -2,67 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 594045B936E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 06:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50BF25B93D2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 07:09:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbiIOEAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 00:00:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54766 "EHLO
+        id S229650AbiIOFI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 01:08:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiIOEAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 00:00:48 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA6CA7FE46;
-        Wed, 14 Sep 2022 21:00:46 -0700 (PDT)
-X-UUID: 00915933d2e14e81b4d06fabd70aef1f-20220915
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=QyzP8AuS/Yj0m/junatFACxq+Em7ckmn0zUUcXx/+6Y=;
-        b=jNUOM6Aa7TMxJMOdy654GIdhBC/Oc19rbw9iyarUcTXy8t2X49Svo/F7pMC0Gp9muKzAiYNKUC/hV5ssILbODkJF+JCwa8Szo52PDeu8+hcWbCtwWfPGDQYt2VohlVbUA1efBRZW9doJv/VeuzTNb5GqYK76fjAibpGIapiozvs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:16e903de-09ca-4471-b54e-783b31bc17a6,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:3e3bb65d-5ed4-4e28-8b00-66ed9f042fbd,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 00915933d2e14e81b4d06fabd70aef1f-20220915
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 48536846; Thu, 15 Sep 2022 12:00:42 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 15 Sep 2022 12:00:40 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 15 Sep 2022 12:00:40 +0800
-Message-ID: <47ad92dfc593681508fcf09df1303cdfe86c4202.camel@mediatek.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: arm: mediatek: Add new bindings of
- MediaTek frequency hopping
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <sboyd@kernel.org>
-CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>
-Date:   Thu, 15 Sep 2022 12:00:40 +0800
-In-Reply-To: <06eb15ea-56b3-4f18-be18-3fc710cef779@collabora.com>
-References: <20220914124552.16964-1-johnson.wang@mediatek.com>
-         <20220914124552.16964-3-johnson.wang@mediatek.com>
-         <06eb15ea-56b3-4f18-be18-3fc710cef779@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229657AbiIOFIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 01:08:25 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FDB85F8F;
+        Wed, 14 Sep 2022 22:08:23 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id s140so898175oie.0;
+        Wed, 14 Sep 2022 22:08:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=HDYs7vs+thMMDY6yodcXDXhWOMLfZv2S6AqnKaCcDRk=;
+        b=fjRmEANxa4Ci2C8NGJiFGaRrqPV7/+Nt5aUx0ywwlww2acQv/sYHN5d6AolkIP0DQX
+         KqHyfAMrtRvGjnMHQjlU16OpHm+pdfyJRF2NicOj8VwEAcRByvQ0M5vG32FM+Hg8CRn/
+         n0i6jEQKIS6D5fzEKN9CyVZv2AMrh6vaCgd55CiltFeLPSAXi9K7Hebvtfiq3Zt7ZgfT
+         Ab522y4Lxwh2mf5KWWtJxdH2h6M5ZOfo5Urpbcf+wdjJkuAbk6dkDReLh05/97W5lk84
+         TI9bfIKW2MLl5tSkw/By4VeksO1HwfGNfh1R4llpWrhD5vz6uoAOPS0vfQhMu/WYXlUy
+         CvhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=HDYs7vs+thMMDY6yodcXDXhWOMLfZv2S6AqnKaCcDRk=;
+        b=UCy3JB/+EknL61wfEjVmZP6Q2EKZiWKDhym1Dkfat1Xg/6uet4FTMskvaCjbYsEBM/
+         lfuFDSZpUwbDxXliK9QpOsJmddEvf3QTDd5GDn0lZIGLzJQBgMslk92B0RdvEYT6VIgK
+         3Ab+Xhnsjev3+5IzBlT2hAXhsUuRsfOEJgdEEH09r5+1y5eZ2OUhdfrKE8DHaZaR7UFG
+         2gP7HylAEiND8JjlrUvWNr1KsF4MT+ju/UwSmatW0eKVN6V331oX93x13TFWZ+J0G2pR
+         H1nwPJk1AhHX82xpqISYeVmw23PNeHXk6P0SX24ik6vFSgJnZDv7MYkjmah5wsAhVO5J
+         rMBQ==
+X-Gm-Message-State: ACgBeo1llZJjTDBWYxCuSQIBKiS4bvMtW2k1gwM/in0D8JhSxjjKPugm
+        +wRQw71SCG79nPvLyIVeFVfcugqIL56CednJjnQfzh6Ys0mrEEBC
+X-Google-Smtp-Source: AA6agR7bm8mPpUUJY4ncvftwWMu/7VrdSYwhN+VZHkwkeVNOVpRT4cvzU/rsGAzLjl6BjtlpzTZ33WDL/s/fD5kAklc=
+X-Received: by 2002:a05:6808:1b22:b0:34f:7879:53cc with SMTP id
+ bx34-20020a0568081b2200b0034f787953ccmr3378456oib.144.1663218502705; Wed, 14
+ Sep 2022 22:08:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+References: <20220914085451.11723-1-arinc.unal@arinc9.com> <20220914085451.11723-11-arinc.unal@arinc9.com>
+In-Reply-To: <20220914085451.11723-11-arinc.unal@arinc9.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Thu, 15 Sep 2022 07:08:10 +0200
+Message-ID: <CAMhs-H-Nxub7==J0gTO9A+Lw_hurWaUeR+ZoqnS5KrJcJs6S_A@mail.gmail.com>
+Subject: Re: [PATCH 10/10] mips: dts: ralink: mt7621: add GB-PC2 LEDs
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>, erkin.bozoglu@xeront.com,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        Petr Louda <petr.louda@outlook.cz>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,139 +89,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
+On Wed, Sep 14, 2022 at 10:56 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arin=
+c9.com> wrote:
+>
+> Add the missing LEDs for GB-PC2. The ethblack-green, ethblue-green, power
+> and system LEDs weren't added previously, because they don't exist on the
+> device schematics. Tests on a GB-PC2 by me and Petr proved otherwise.
+>
+> The i2c bus cannot be used on GB-PC2 as its pins are wired to LEDs instea=
+d,
+> and GB-PC1 does not use it. Therefore, do not enable it on both devices.
+>
+> Link: https://github.com/ngiger/GnuBee_Docs/blob/master/GB-PCx/Documents/=
+GB-PC2_V1.1_schematic.pdf
+> Tested-by: Petr Louda <petr.louda@outlook.cz>
+> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> ---
+>  .../boot/dts/ralink/mt7621-gnubee-gb-pc1.dts  |  6 ---
+>  .../boot/dts/ralink/mt7621-gnubee-gb-pc2.dts  | 42 ++++++++++++++++---
+>  2 files changed, 36 insertions(+), 12 deletions(-)
 
-Thanks for your review.
-
-On Wed, 2022-09-14 at 15:46 +0200, AngeloGioacchino Del Regno wrote:
-> Il 14/09/22 14:45, Johnson Wang ha scritto:
-> > Add the new binding documentation for MediaTek frequency hopping
-> > and spread spectrum clocking control.
-> > 
-> > Co-developed-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> > Signed-off-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> > Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> > ---
-> >   .../bindings/arm/mediatek/mediatek,fhctl.yaml | 47
-> > +++++++++++++++++++
-> >   1 file changed, 47 insertions(+)
-> >   create mode 100644
-> > Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yam
-> > l
-> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yam
-> > l
-> > new file mode 100644
-> > index 000000000000..7b0fd0889bb6
-> > --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yam
-> > l
-> > @@ -0,0 +1,47 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> > https://urldefense.com/v3/__http://devicetree.org/schemas/arm/mediatek/mediatek,fhctl.yaml*__;Iw!!CTRNKA9wMg0ARbw!3sumdhtrK5Ah5_rfIilgm4UUmnwkkqMpc3r_ZfkLfsXsLn-_AKm9ZokhJGD1Fl-gJpckAKHZh-jNVW64KRU8Duv1kg$
-> >  
-> > +$schema: 
-> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!3sumdhtrK5Ah5_rfIilgm4UUmnwkkqMpc3r_ZfkLfsXsLn-_AKm9ZokhJGD1Fl-gJpckAKHZh-jNVW64KRWMb8jIsw$
-> >  
-> > +
-> > +title: MediaTek frequency hopping and spread spectrum clocking
-> > control
-> > +
-> > +maintainers:
-> > +  - Edward-JW Yang <edward-jw.yang@mediatek.com>
-> > +
-> > +description: |
-> > +  Frequency hopping control (FHCTL) is a piece of hardware that
-> > control
-> > +  some PLLs to adopt "hopping" mechanism to adjust their
-> > frequency.
-> > +  Spread spectrum clocking (SSC) is another function provided by
-> > this hardware.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt8186-fhctl
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> 
-> There are still a few issues in this binding that I can immediately
-> see...
-> 
-> > +
-> > +  clocks:
-> 
-> MT8195 has 23 PLLs, MT8186 has 14, but perhaps in the future we may
-> see
-> something more than that on some newer SoC, so...
-> 
->    clocks:
->      maxItems: 30
-
-May I add "minItems: 1" to clocks property?
-
-Without this, dt_binding_check will fail because we don't have enough
-clocks in the example. (Both MT8195 and MT8186 don't have 30 PLLs)
-
-> 
-> > +    description: Phandles of the PLL with FHCTL hardware
-> > capability.
-> > +
-> > +  mediatek,hopping-ssc-percents:
-> > +    description: The percentage of spread spectrum clocking for
-> > one PLL.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> This is an array, so...
-> $ref: /schemas/types.yaml#/definitions/uint32-array
-> 
-> ...also, maxItems?
-
-As you know, mediatek,hopping-ssc-percents property is used to specify
-ssc rate for matching clocks.
-
-If we have to add maxItems, I think we should specify the same value
-as clocks property. Is my understanding wrong?
-
-
-Thanks!
-
-BRs,
-Johnson Wang
-> 
-> and you should also specify:
-> 
-> default: 0   <- because, by default, SSC is disabled
-> minimum: 0   <- because this is the minimum accepted value
-> 
-> 
-> Regards,
-> Angelo
-> 
-> > +    maximum: 8
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/mt8186-clk.h>
-> > +    fhctl: fhctl@1000ce00 {
-> > +        compatible = "mediatek,mt8186-fhctl";
-> > +        reg = <0x1000c000 0xe00>;
-> > +        clocks = <&apmixedsys CLK_APMIXED_MSDCPLL>;
-> > +        mediatek,hopping-ssc-percents = <3>;
-> > +    };
-> 
-> 
-
+Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
