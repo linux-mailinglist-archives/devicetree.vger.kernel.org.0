@@ -2,135 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 823AA5B9AA2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:22:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6955D5B9B13
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:41:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbiIOMWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 08:22:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33550 "EHLO
+        id S229972AbiIOMlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 08:41:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiIOMWV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:22:21 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C9F89812;
-        Thu, 15 Sep 2022 05:22:20 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28F5erk7015415;
-        Thu, 15 Sep 2022 07:20:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=CUUZCN8CbQjdSUIzRh++MknIDM7YeGQKIOTWG5m6Yk0=;
- b=V/9llfCjSPnhOow+ROHdKUa1UlshXzdMA3N+MpTbafilTn9IBHJymHgTFfKI6XruT3Bk
- Dx5Agbd0n/SH1Eu6Y52pa/pJC7FH647QXWtkUIOV+WZtfuHgK0ppxI8ug+tDFn34CJDj
- dqzUqa465i3h6CHoKjHVdgSRtJuFOm9txFrGdXo7AW7ngrMnfgiyFbs2orFB8Xq2hLXj
- s4NRnrlS2EmfFJ6+iTzpObSsm2LJp8DJs3Sw7gYJSUbPxVWqGNWEn3CpHZqU8Q7KTcxp
- L+evTk9rqOTw8hIWoKxTlHEUK1TG25zqm7ZKgSkedXCAVkVayYWgOI8BYNOZ7Q2lpADM 5Q== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3jjxyr2ac4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Sep 2022 07:20:31 -0500
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.12; Thu, 15 Sep
- 2022 07:20:29 -0500
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.12 via Frontend
- Transport; Thu, 15 Sep 2022 07:20:29 -0500
-Received: from [198.90.251.95] (edi-sw-dsktp-006.ad.cirrus.com [198.90.251.95])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E0C66468;
-        Thu, 15 Sep 2022 12:20:22 +0000 (UTC)
-Message-ID: <2839a437-a57a-ffc4-da8e-dde9a9a9a5cc@opensource.cirrus.com>
-Date:   Thu, 15 Sep 2022 13:20:22 +0100
+        with ESMTP id S229923AbiIOMky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:40:54 -0400
+X-Greylist: delayed 600 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 15 Sep 2022 05:40:28 PDT
+Received: from sirokuusama2.dnainternet.net (sirokuusama2.dnainternet.net [83.102.40.153])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F101834E;
+        Thu, 15 Sep 2022 05:40:28 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by sirokuusama2.dnainternet.net (Postfix) with ESMTP id 6A15313F40;
+        Thu, 15 Sep 2022 15:24:16 +0300 (EEST)
+X-Virus-Scanned: DNA Internet at dnainternet.net
+X-Spam-Score: 2.975
+X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
+        version=3.4.6
+Received: from sirokuusama2.dnainternet.net ([83.102.40.153])
+        by localhost (sirokuusama2.dnainternet.net [127.0.0.1]) (DNA Internet, port 10041)
+        with ESMTP id JJQ4Ub41JQ2D; Thu, 15 Sep 2022 15:24:16 +0300 (EEST)
+Received: from omenapuu2.dnainternet.net (omenapuu2.dnainternet.net [83.102.40.54])
+        by sirokuusama2.dnainternet.net (Postfix) with ESMTP id 4E600137B5;
+        Thu, 15 Sep 2022 15:24:12 +0300 (EEST)
+Received: from localhost (87-95-101-152.bb.dnainternet.fi [87.95.101.152])
+        by omenapuu2.dnainternet.net (Postfix) with ESMTP id 8CBEB1E5;
+        Thu, 15 Sep 2022 15:24:03 +0300 (EEST)
+From:   andy.shevchenko@gmail.com
+Date:   Thu, 15 Sep 2022 15:24:02 +0300
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Cc:     linux-gpio@vger.kernel.org, git@amd.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, brgl@bgdev.pl, linus.walleij@linaro.org
+Subject: Re: [PATCH v2 2/2] gpio: pca9570: add slg7xl45106 support
+Message-ID: <YyMZYjWTN7yw93n5@surfacebook>
+References: <20220915114803.26185-1-shubhrajyoti.datta@amd.com>
+ <20220915114803.26185-3-shubhrajyoti.datta@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 04/11] ASoC: cs42l42: Split probe() and remove() into
- stages
-Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
-        James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        "Lucas Tanure" <tanureal@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-CC:     Charles Keepax <ckeepax@opensource.cirrus.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Matt Flax <flatmax@flatmax.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        - <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <asahi@lists.linux.dev>
-References: <20220915094444.11434-1-povik+lin@cutebit.org>
- <20220915094444.11434-5-povik+lin@cutebit.org>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-In-Reply-To: <20220915094444.11434-5-povik+lin@cutebit.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: y3RD2Dp-yKLUCoYgbRs2U3VWByN4ed9F
-X-Proofpoint-GUID: y3RD2Dp-yKLUCoYgbRs2U3VWByN4ed9F
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220915114803.26185-3-shubhrajyoti.datta@amd.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2022 10:44, Martin Povišer wrote:
-> From: Richard Fitzgerald <rf@opensource.cirrus.com>
-> 
-> To prepare for adding SoundWire the probe must be split into three
-> parts:
-> 
-> 1) The bus-specific probe
-> 2) Common bus-agnostic probe steps
-> 3) Initialization of the peripheral registers
-> 
-> Step (3) must be separate because on SoundWire devices the probe must
-> enable power supplies and release reset so that the peripheral can be
-> enumerated by the bus, but it isn't possible to access registers until
-> enumeration has completed.
-> 
-> The call to devm_snd_soc_register_component() must be done at stage (2)
-> so that it can EPROBE_DEFER if necessary. In SoundWire systems stage (3)
-> is not a probe event so a deferral at this stage would not result in
-> re-probing dependencies.
-> 
-> A new init_done flag indicates that the chip has been identified and
-> initialized. This is used to prevent cs42l42_remove(), cs42l42_suspend(),
-> cs42l42_restore() and cs42l42_irq_thread() from attempting register
-> accesses if the chip was not successfully initialized. Although this
-> cannot happen on I2C, because the entire probe would fail, it is
-> possible on SoundWire if probe succeeds but the cs42l42 is never
-> enumerated.
-> 
-> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
-> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
-> ---
->   sound/soc/codecs/cs42l42.c | 127 +++++++++++++++++++++++++------------
->   sound/soc/codecs/cs42l42.h |   2 +
->   2 files changed, 87 insertions(+), 42 deletions(-)
-> 
-> diff --git a/sound/soc/codecs/cs42l42.c b/sound/soc/codecs/cs42l42.c
-> index 11cb659f03e0..427b29db2252 100644
-> --- a/sound/soc/codecs/cs42l42.c
-> +++ b/sound/soc/codecs/cs42l42.c
-> @@ -1627,7 +1627,7 @@ static irqreturn_t cs42l42_irq_thread(int irq, void *data)
->   	int report = 0;
->   
->   	mutex_lock(&cs42l42->irq_lock);
-> -	if (cs42l42->suspended) {
-> +	if (cs42l42->suspended || !cs42l42->init_done) {
->   		mutex_unlock(&cs42l42->irq_lock);
->   		return IRQ_NONE;
->   	}
+Thu, Sep 15, 2022 at 05:18:03PM +0530, Shubhrajyoti Datta kirjoitti:
+> slg7xl45106 is a I2C GPO expander.
+> Add a compatible string for the same. Also update the
+> driver to write and read from it.
 
-This doesn't apply to broonie/for-next. Needs rebasing onto commit:
-ea75deef1a73 ("ASoC: cs42l42: Only report button state if there was a
-button interrupt")
+It's better, but something to improve.
+
+...
+
+>  /**
+>   * struct pca9570 - GPIO driver data
+>   * @chip: GPIO controller chip
+> @@ -25,6 +27,12 @@ struct pca9570 {
+>  	struct gpio_chip chip;
+>  	struct mutex lock;
+>  	u8 out;
+> +	const struct pca9570_platform_data *p_data;
+
+I would put it after 'chip' member, so it will save 4 bytes on 64-bit machines
+of some architectures. Also, don't you need to add a kernel doc for a new
+member?
+
+> +};
+
+> +struct pca9570_platform_data {
+> +	u16 ngpio;
+> +	u32 command;
+>  };
+
+Strictly speaking this should be defined before struct pca9570, otherwise you
+need to have a forward declaration.
+
+> @@ -122,13 +138,28 @@ static int pca9570_probe(struct i2c_client *client)
+>  static const struct i2c_device_id pca9570_id_table[] = {
+>  	{ "pca9570", 4 },
+>  	{ "pca9571", 8 },
+> +	{ "slg7xl45106", 8 },
+>  	{ /* sentinel */ }
+
+This table should also use your new structure:
+
+	{ "slg7xl45106", (kernel_ulong_t)&slg7xl45106_gpio },
+
+(In the similar way for the existing entries)
+
+Taking the last into consideration I would suggest to split this to two
+changes:
+1) introducing a new data structure with conversion of the existing members;
+2) adding support for a new chip.
+
+>  };
+
+Othewise looks good.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
