@@ -2,85 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6FC5B93D9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 07:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 919A05B93ED
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 07:29:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiIOFKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 01:10:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35246 "EHLO
+        id S229644AbiIOF3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 01:29:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbiIOFKD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 01:10:03 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C1C48EB1;
-        Wed, 14 Sep 2022 22:10:02 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id cm7-20020a056830650700b006587fe87d1aso1299175otb.10;
-        Wed, 14 Sep 2022 22:10:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=DhzhPn2YSCEh/VEOd0K8UJG8nXmRRJz83NMi2inqG5U=;
-        b=TRp9RmLfxbRJhlww8zHaCm/TpVgwOtsHI0NJZ+7W6/5GSoKr9S1KjDo0+A34loUwnd
-         Y7ZFouu0m1Ed7irNlcM8J9ILz++S7ACpAabM8lKxAfc+WGenNQoYoEt7J/aU36CZX0Ls
-         xvL2VVyr42+vA+1uryRs4TnUweX0gn98LA+fwCpzedQ1Tmy6bvS06sNzYD6IEKGXz/PF
-         pgFni+MKcYV5M9Xr3X3UlbRWimWhugjgzMMf3NjuXbviA7QRbf8ofGK3+7dCUhTVtl00
-         gsJsxqAGFaoop+1OCG7z3qc1kkgHOAKLBtVLWxv5GK6nRb7rry6XR0cBuIc4rhd+sl7p
-         AKiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=DhzhPn2YSCEh/VEOd0K8UJG8nXmRRJz83NMi2inqG5U=;
-        b=uQy7AjoKzyeDiCAjGmAUnN+o/Rfi5vimprKe91iYX+YIoSSrCsI0pZEzIW8Sn8HqhD
-         3lgTdoi9iXUOzy1LETzFpCHAvhANREODm0TpLwj+gswXmNy9Zc06L6ocQrEn4EQpsqxe
-         Wt30O0EsMQJI0H4vqwItk2o9/K79Qilam9VKAscZ84yHVRY7AgtwvTprAvuBx0OpYNql
-         1oartcaiMlkPYfhwhtDDsToqPjj6dlfrnhNVDb58bTjRFCgVgyoRQNNNlB6js+F8m/OP
-         Lqrg6R+lBpabYGhKW3t+Mo4b7y95cL5wvUaAd65u7KbmkqDkFNhclPvb+4jnLUAEAVGc
-         BKFg==
-X-Gm-Message-State: ACgBeo2bfK98ATrTTH7vDDY0oVJx6KuTotfjIYNBsnaqDUgi17OdDwSl
-        5HbQOyNkqBP+iCd26D2rfYaiH9g2cT5D0zAEJDc=
-X-Google-Smtp-Source: AA6agR7ttNz1jhPVaAmBo6hvEqvWJ4oTkoElikatgicTx2EhjceigRoiTrcQZO71eJfHowxRsQGpz9KUh/yJigwBSLg=
-X-Received: by 2002:a05:6830:150e:b0:655:bc7d:1e5d with SMTP id
- k14-20020a056830150e00b00655bc7d1e5dmr10361973otp.272.1663218601884; Wed, 14
- Sep 2022 22:10:01 -0700 (PDT)
+        with ESMTP id S229463AbiIOF3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 01:29:05 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DCC38A1F6;
+        Wed, 14 Sep 2022 22:29:03 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28F5SiwT069455;
+        Thu, 15 Sep 2022 00:28:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1663219724;
+        bh=K0Smy6+dcZ3+jbrkiTBsT2EN7qk27a0ML3lu4mrkYSk=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=a3JK2oAeIy2caPv/gh4aon6eVcU+f6SrFLgeWaAmOlV3fyvyvKJWofaVs+c6B8teG
+         JzRHatAadZUsNxmc2Nc2GksFLbAwxZ2RR2kmxbC59V6IO8tkkd76Eu81MYDhnuuiM/
+         CtBCZKdOvHbw4rLG2twIHiQxiGjnziJMJ24eCWvI=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28F5Siuo009104
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Sep 2022 00:28:44 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 15
+ Sep 2022 00:28:44 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 15 Sep 2022 00:28:44 -0500
+Received: from [10.24.69.241] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28F5Sdbe001244;
+        Thu, 15 Sep 2022 00:28:40 -0500
+Message-ID: <d48e5ef4-6d5b-0977-ed45-de810e42356c@ti.com>
+Date:   Thu, 15 Sep 2022 10:58:39 +0530
 MIME-Version: 1.0
-References: <20220914085451.11723-1-arinc.unal@arinc9.com> <20220914085451.11723-10-arinc.unal@arinc9.com>
-In-Reply-To: <20220914085451.11723-10-arinc.unal@arinc9.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Thu, 15 Sep 2022 07:09:49 +0200
-Message-ID: <CAMhs-H8dE2XOvUZ029X0r85_v81=oMsOGRcaGdjL=+Ti8F0uKQ@mail.gmail.com>
-Subject: Re: [PATCH 09/10] mips: dts: ralink: mt7621: fix external phy on GB-PC2
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, erkin.bozoglu@xeront.com,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+CC:     <lee.jones@linaro.org>, <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <kishon@ti.com>,
+        <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
+        <grygorii.strashko@ti.com>, <rogerq@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sjakhade@cadence.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH 1/6] dt-bindings: phy: ti: phy-gmii-sel: Add bindings for
+ J721e
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+References: <20220914093911.187764-1-s-vadapalli@ti.com>
+ <20220914093911.187764-2-s-vadapalli@ti.com>
+ <20220914161527.GA2269201-robh@kernel.org>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <20220914161527.GA2269201-robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,20 +74,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 10:56 AM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arin=
-c9.com> wrote:
->
-> The address of the external phy on the mdio bus is 5. Update the devicetr=
-ee
-> for GB-PC2 accordingly.
->
-> Fixes: 5bc148649cf3 ("staging: mt7621-dts: fix GB-PC2 devicetree")
-> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
-> ---
->  arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+Hello Rob,
 
-Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+On 14/09/22 21:45, Rob Herring wrote:
+> On Wed, Sep 14, 2022 at 03:09:06PM +0530, Siddharth Vadapalli wrote:
+>> TI's J721e SoC supports additional PHY modes like QSGMII and SGMII
+>> that are not supported on earlier SoCs. Add a compatible for it.
+>>
+>> Extend ti,qsgmii-main-ports property to support selection of upto
+>> two main ports at once across the two QSGMII interfaces.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
+>>  .../bindings/phy/ti,phy-gmii-sel.yaml         | 52 ++++++++++++++++---
+>>  1 file changed, 46 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> index da7cac537e15..1e19efab018b 100644
+>> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> @@ -54,6 +54,7 @@ properties:
+>>        - ti,dm814-phy-gmii-sel
+>>        - ti,am654-phy-gmii-sel
+>>        - ti,j7200-cpsw5g-phy-gmii-sel
+>> +      - ti,j721e-cpsw9g-phy-gmii-sel
+>>  
+>>    reg:
+>>      maxItems: 1
+>> @@ -65,12 +66,19 @@ properties:
+>>      description: |
+>>        Required only for QSGMII mode. Array to select the port for
+>>        QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
+>> -      ports automatically. Any one of the 4 CPSW5G ports can act as the
+>> -      main port with the rest of them being the QSGMII_SUB ports.
+>> -    maxItems: 1
+>> -    items:
+>> -      minimum: 1
+>> -      maximum: 4
+>> +      ports automatically. For J7200 CPSW5G with the compatible:
+>> +      ti,j7200-cpsw5g-phy-gmii-sel, ti,qsgmii-main-ports is an
+>> +      array of only one element, which is the port number ranging from
+>> +      1 to 4. For J721e CPSW9G with the compatible:
+>> +      ti,j721e-cpsw9g-phy-gmii-sel, ti,qsgmii-main-ports is an array
+>> +      of two elements, which corresponds to two potential QSGMII main
+>> +      ports. The first element and second element of the array can both
+>> +      range from 1 to 8 each, corresponding to two QSGMII main ports.
+>> +      For J721e CPSW9G, to configure port 2 as the first QSGMII main
+>> +      port and port 7 as the second QSGMII main port, we specify:
+>> +      ti,qsgmii-main-ports = <2>, <7>;
+>> +      If only one QSGMII main port is desired, mention the same main
+>> +      port twice.
+> 
+> Two different forms for the same property name is not great. Just make a 
+> new property if you need something different.
 
-Thanks,
-    Sergio Paracuellos
+Thank you for reviewing the patch. Based on the discussion for the
+previous series at [1], I had planned to reuse the same property
+"ti,qsgmii-main-ports" for TI's J721e device too. The reason for this is
+that the property represents the same feature on both devices which is
+that of the QSGMII main port. The only difference between the two of
+them is that J7200's CPSW5G has 4 external ports while J721e's CPSW9G
+has 8 external ports. Thus, J7200 can have at most one QSGMII main port
+while J721e can have up to two. Adding a new property which describes
+the same feature appears to be redundant to me. Please let me know.
+
+[1]-> https://lore.kernel.org/r/48080f45-ea9d-e8dc-7720-ef82fc84e3b3@linaro.org/
+
+Regards,
+Siddharth.
