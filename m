@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C26D5B9BFA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 15:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8556B5B9BF8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 15:37:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229725AbiIONh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229715AbiIONh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 15 Sep 2022 09:37:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49880 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbiIONhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 09:37:55 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEF86796A8
+        with ESMTP id S229750AbiIONhy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 09:37:54 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB17A580BC
         for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 06:37:52 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id j16so3379074lfg.1
+Received: by mail-lf1-x12e.google.com with SMTP id w8so30410389lft.12
         for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 06:37:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=xLl1+HaFAhir63TdFLmycfKdo0fXS2XkIKvjvSbQ1Nk=;
-        b=AmI9nkPQfI3fycH00aC6X1ulpYhwMOVMLnz/r8LFqu6Ab64uXa3w/yaVZsy+cpCbYI
-         YWyQFG8oQVRISMVi9Y3PAJfkElFX137nJFJ4Ebm51x6cEuYqst8wOy/EHG9xcj9Uyzcd
-         ClDMl9zG9+Hqj3eI9DJGH9TYE9pVLI5kRuVGTtPzpM31l9qrqRPfmYDd9QaJlJB8oiQE
-         NdjB1am3KyXmy/aSdw/jRNUnFeIUyalMI2jBQ5wWew8tHTed00lQ7wWmPrHtUbSgRl25
-         YKKkpF83AO0N4PyvcS56VgHd4IZONriqxFBj8bETqlBCPfsNyBCgiVpDa2kSbk+9ER1v
-         cxKQ==
+        bh=tIjMPrRqwqPSnP1hh31gNUZhQEljaPdxT4w+WxX3VA8=;
+        b=SQfUuosmGzXeyUFqIwC6ANcYguxesblctkFZ6e/MwrIU91U0N2f9NyXP5CvkY8i1l+
+         U/RXfX5OPSnzCjcRKGEWcCiM86xqQMWisMS/dic8sivuh22QAnhEIvZ+afbqZGF/D188
+         39LbriLsR/6pCijBjQihaMEfz3KP07+ZhlG510jq8NdUGEgt52JMbzzEQMXQlM2YUXNy
+         CfJ0eqpoh1N6kVc5lIfVJRhmhbByoAwk088WiL3RkPw8Xn8cIaCdF4ynsH8bFQVwPUtQ
+         bHCY6ofNNXXrUB3vHuw/4gVNrfjjGvmzGdamEZeJDGb8dzpDNsjVjKla/EGpeFNYAMW+
+         FfrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=xLl1+HaFAhir63TdFLmycfKdo0fXS2XkIKvjvSbQ1Nk=;
-        b=Oa9lR0TTjg5/DmLObkBzH4wejyg9gVpERH4TFSBstj+GnhtQEi6SUxg4Rh0a65hBGu
-         TtCeRi/hxS0kev8Md65v10Ts2k8lrWHfRSbqZMGkgU78Xe5WqH8nP+TBOx9m+apW3R0x
-         eQ6S0lovkQo6bTmzzKYduhnh4feaeqTNDJBp+a0NlABSsLVQA8fANejt/aEnpA4NA8XL
-         6oNgdHGUowbRyLjnTpMpxXA2zGeKrBg9jlbVUIKFkY2xe/0JlcsESbp4Zl0gw/UaB2b9
-         tDrndQB6kvqOpOUan0S7WmoaSkB5Ze/fdC0ial0RpIah1m2CKxkUPWjL7CtG+GJBcOui
-         u82A==
-X-Gm-Message-State: ACrzQf06RzniaZo2MrKgdUN7oCKIjroAkToxRRIK64d+llBhPNUNDWju
-        LqGnWnZhtHPG8HEoUgUfMTcmYg==
-X-Google-Smtp-Source: AMsMyM6oz/VxhjmWV4vYgowMjGG3fUQlFnl4zdnkNJvB/P2chbWDhsHl+Sr7SN6/kHXsv7AYmTh//A==
-X-Received: by 2002:a05:6512:3b09:b0:49f:3fca:2c87 with SMTP id f9-20020a0565123b0900b0049f3fca2c87mr656295lfv.603.1663249071317;
-        Thu, 15 Sep 2022 06:37:51 -0700 (PDT)
+        bh=tIjMPrRqwqPSnP1hh31gNUZhQEljaPdxT4w+WxX3VA8=;
+        b=fl6ZKEsiht4PGKsJ1E1k9EBdbtPy4hkfxigQbfW2YjocLHXC4QwBSVge1SutY4gRP8
+         iqq0SDJJhvKYYZPbbiWjE5yIMZXfzGc+nNU7IG5ufstrVfVLeuWhpvbfRltOXHaV1GyO
+         WVxil7//W/GQpmqWFiKTssposU/9OkA4ajvtCitpgCdso5FWJLudLf9Vexypc48FGh68
+         +WClX0wICB073BhgkIK1WNnR71pIKfNxKpUtAEJMerQHO/QcJCUfT8lntyq2y2DhrG/C
+         5bscL3p2GAlyqiPhqCkQgtPVq93g8OVP3H341TAB16yuiiFcJE4Fwyb2AvD3TkBRm/bq
+         cTgg==
+X-Gm-Message-State: ACgBeo1mhMBv/eYd5tXX9a8KMo8nJfuFS/K5Jbdq4tt8+wUoszyORy8d
+        ojnTPun3mSZbvwhGzUSoc5oJvw==
+X-Google-Smtp-Source: AA6agR689jknU3F73dahsT8VHWb56ggL1jWoQT5L/J6oD6KUIKiRs3D0yvIcsbbf57bZQ530cJCa+A==
+X-Received: by 2002:ac2:5f58:0:b0:497:9ef1:bfeb with SMTP id 24-20020ac25f58000000b004979ef1bfebmr12963409lfz.25.1663249072069;
+        Thu, 15 Sep 2022 06:37:52 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 2-20020a2e0902000000b0026ad753448fsm3142634ljj.85.2022.09.15.06.37.50
+        by smtp.gmail.com with ESMTPSA id 2-20020a2e0902000000b0026ad753448fsm3142634ljj.85.2022.09.15.06.37.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 06:37:50 -0700 (PDT)
+        Thu, 15 Sep 2022 06:37:51 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-Subject: [PATCH v7 09/12] dt-bindings: display/msm: split dpu-msm8998 into DPU and MDSS parts
-Date:   Thu, 15 Sep 2022 16:37:39 +0300
-Message-Id: <20220915133742.115218-10-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v7 10/12] dt-bindings: display/msm: split dpu-qcm2290 into DPU and MDSS parts
+Date:   Thu, 15 Sep 2022 16:37:40 +0300
+Message-Id: <20220915133742.115218-11-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220915133742.115218-1-dmitry.baryshkov@linaro.org>
 References: <20220915133742.115218-1-dmitry.baryshkov@linaro.org>
@@ -78,51 +78,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to make the schema more readable, split dpu-msm8998 into the DPU
+In order to make the schema more readable, split dpu-qcm2290 into the DPU
 and MDSS parts, each one describing just a single device binding.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../bindings/display/msm/dpu-msm8998.yaml     | 150 ------------------
- .../display/msm/qcom,msm8998-dpu.yaml         |  95 +++++++++++
- .../display/msm/qcom,msm8998-mdss.yaml        |  75 +++++++++
- 3 files changed, 170 insertions(+), 150 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
- create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
- create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
+ .../bindings/display/msm/dpu-qcm2290.yaml     | 148 ------------------
+ .../display/msm/qcom,qcm2290-dpu.yaml         |  84 ++++++++++
+ .../display/msm/qcom,qcm2290-mdss.yaml        |  85 ++++++++++
+ 3 files changed, 169 insertions(+), 148 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml b/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
+diff --git a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
 deleted file mode 100644
-index 67791dbc3b5d..000000000000
---- a/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
+index 42e676bdda4e..000000000000
+--- a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
 +++ /dev/null
-@@ -1,150 +0,0 @@
+@@ -1,148 +0,0 @@
 -# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
 -%YAML 1.2
 ----
--$id: http://devicetree.org/schemas/display/msm/dpu-msm8998.yaml#
+-$id: http://devicetree.org/schemas/display/msm/dpu-qcm2290.yaml#
 -$schema: http://devicetree.org/meta-schemas/core.yaml#
 -
--title: Qualcomm Display DPU dt properties for MSM8998 target
+-title: Qualcomm Display DPU dt properties for QCM2290 target
 -
 -maintainers:
--  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+-  - Loic Poulain <loic.poulain@linaro.org>
 -
 -description: |
 -  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
--  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
--  bindings of MDSS and DPU are mentioned for MSM8998 target.
+-  sub-blocks like DPU display controller and DSI. Device tree bindings of MDSS
+-  and DPU are mentioned for QCM2290 target.
 -
 -$ref: /schemas/display/msm/mdss-common.yaml#
 -
 -properties:
 -  compatible:
 -    items:
--      - const: qcom,msm8998-mdss
+-      - const: qcom,qcm2290-mdss
 -
 -  clocks:
 -    items:
--      - description: Display AHB clock
+-      - description: Display AHB clock from gcc
 -      - description: Display AXI clock
 -      - description: Display core clock
 -
@@ -133,6 +133,12 @@ index 67791dbc3b5d..000000000000
 -      - const: core
 -
 -  iommus:
+-    maxItems: 2
+-
+-  interconnects:
+-    maxItems: 1
+-
+-  interconnect-names:
 -    maxItems: 1
 -
 -patternProperties:
@@ -145,188 +151,176 @@ index 67791dbc3b5d..000000000000
 -    properties:
 -      compatible:
 -        items:
--          - const: qcom,msm8998-dpu
+-          - const: qcom,qcm2290-dpu
 -
 -      reg:
 -        items:
 -          - description: Address offset and size for mdp register set
--          - description: Address offset and size for regdma register set
 -          - description: Address offset and size for vbif register set
--          - description: Address offset and size for non-realtime vbif register set
 -
 -      reg-names:
 -        items:
 -          - const: mdp
--          - const: regdma
 -          - const: vbif
--          - const: vbif_nrt
 -
 -      clocks:
 -        items:
--          - description: Display ahb clock
--          - description: Display axi clock
--          - description: Display mem-noc clock
--          - description: Display core clock
--          - description: Display vsync clock
+-          - description: Display AXI clock from gcc
+-          - description: Display AHB clock from dispcc
+-          - description: Display core clock from dispcc
+-          - description: Display lut clock from dispcc
+-          - description: Display vsync clock from dispcc
 -
 -      clock-names:
 -        items:
--          - const: iface
 -          - const: bus
--          - const: mnoc
+-          - const: iface
 -          - const: core
+-          - const: lut
 -          - const: vsync
 -
 -unevaluatedProperties: false
 -
 -examples:
 -  - |
--    #include <dt-bindings/clock/qcom,mmcc-msm8998.h>
+-    #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
+-    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
 -    #include <dt-bindings/interrupt-controller/arm-gic.h>
+-    #include <dt-bindings/interconnect/qcom,qcm2290.h>
 -    #include <dt-bindings/power/qcom-rpmpd.h>
 -
--    mdss: display-subsystem@c900000 {
--        compatible = "qcom,msm8998-mdss";
--        reg = <0x0c900000 0x1000>;
+-    mdss: mdss@5e00000 {
+-        #address-cells = <1>;
+-        #size-cells = <1>;
+-        compatible = "qcom,qcm2290-mdss";
+-        reg = <0x05e00000 0x1000>;
 -        reg-names = "mdss";
--
--        clocks = <&mmcc MDSS_AHB_CLK>,
--                 <&mmcc MDSS_AXI_CLK>,
--                 <&mmcc MDSS_MDP_CLK>;
+-        power-domains = <&dispcc MDSS_GDSC>;
+-        clocks = <&gcc GCC_DISP_AHB_CLK>,
+-                 <&gcc GCC_DISP_HF_AXI_CLK>,
+-                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
 -        clock-names = "iface", "bus", "core";
 -
--        #address-cells = <1>;
--        #interrupt-cells = <1>;
--        #size-cells = <1>;
--
--        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+-        interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
 -        interrupt-controller;
--        iommus = <&mmss_smmu 0>;
+-        #interrupt-cells = <1>;
 -
--        power-domains = <&mmcc MDSS_GDSC>;
+-        interconnects = <&mmrt_virt MASTER_MDP0 &bimc SLAVE_EBI1>;
+-        interconnect-names = "mdp0-mem";
+-
+-        iommus = <&apps_smmu 0x420 0x2>,
+-                 <&apps_smmu 0x421 0x0>;
 -        ranges;
 -
--        display-controller@c901000 {
--            compatible = "qcom,msm8998-dpu";
--            reg = <0x0c901000 0x8f000>,
--                  <0x0c9a8e00 0xf0>,
--                  <0x0c9b0000 0x2008>,
--                  <0x0c9b8000 0x1040>;
--            reg-names = "mdp", "regdma", "vbif", "vbif_nrt";
+-        mdss_mdp: display-controller@5e01000 {
+-                compatible = "qcom,qcm2290-dpu";
+-                reg = <0x05e01000 0x8f000>,
+-                      <0x05eb0000 0x2008>;
+-                reg-names = "mdp", "vbif";
 -
--            clocks = <&mmcc MDSS_AHB_CLK>,
--                     <&mmcc MDSS_AXI_CLK>,
--                     <&mmcc MNOC_AHB_CLK>,
--                     <&mmcc MDSS_MDP_CLK>,
--                     <&mmcc MDSS_VSYNC_CLK>;
--            clock-names = "iface", "bus", "mnoc", "core", "vsync";
+-                clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+-                         <&dispcc DISP_CC_MDSS_AHB_CLK>,
+-                         <&dispcc DISP_CC_MDSS_MDP_CLK>,
+-                         <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
+-                         <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+-                clock-names = "bus", "iface", "core", "lut", "vsync";
 -
--            interrupt-parent = <&mdss>;
--            interrupts = <0>;
--            operating-points-v2 = <&mdp_opp_table>;
--            power-domains = <&rpmpd MSM8998_VDDMX>;
+-                operating-points-v2 = <&mdp_opp_table>;
+-                power-domains = <&rpmpd QCM2290_VDDCX>;
 -
--            ports {
--                #address-cells = <1>;
--                #size-cells = <0>;
+-                interrupt-parent = <&mdss>;
+-                interrupts = <0>;
 -
--                port@0 {
--                    reg = <0>;
--                    dpu_intf1_out: endpoint {
--                        remote-endpoint = <&dsi0_in>;
--                    };
+-                ports {
+-                        #address-cells = <1>;
+-                        #size-cells = <0>;
+-
+-                        port@0 {
+-                                reg = <0>;
+-                                dpu_intf1_out: endpoint {
+-                                        remote-endpoint = <&dsi0_in>;
+-                                };
+-                        };
 -                };
--
--                port@1 {
--                    reg = <1>;
--                    dpu_intf2_out: endpoint {
--                        remote-endpoint = <&dsi1_in>;
--                    };
--                };
--            };
--        };
+-         };
 -    };
 -...
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
 new file mode 100644
-index 000000000000..b02adba36e9e
+index 000000000000..a7b382f01b56
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
-@@ -0,0 +1,95 @@
++++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
+@@ -0,0 +1,84 @@
 +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/msm/qcom,msm8998-dpu.yaml#
++$id: http://devicetree.org/schemas/display/msm/qcom,qcm2290-dpu.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm Display DPU dt properties for MSM8998 target
++title: Qualcomm Display DPU dt properties for QCM2290 target
 +
 +maintainers:
-+  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
++  - Loic Poulain <loic.poulain@linaro.org>
 +
 +$ref: /schemas/display/msm/dpu-common.yaml#
 +
 +properties:
 +  compatible:
 +    items:
-+      - const: qcom,msm8998-dpu
++      - const: qcom,qcm2290-dpu
 +
 +  reg:
 +    items:
 +      - description: Address offset and size for mdp register set
-+      - description: Address offset and size for regdma register set
 +      - description: Address offset and size for vbif register set
-+      - description: Address offset and size for non-realtime vbif register set
 +
 +  reg-names:
 +    items:
 +      - const: mdp
-+      - const: regdma
 +      - const: vbif
-+      - const: vbif_nrt
 +
 +  clocks:
 +    items:
-+      - description: Display ahb clock
-+      - description: Display axi clock
-+      - description: Display mem-noc clock
-+      - description: Display core clock
-+      - description: Display vsync clock
++      - description: Display AXI clock from gcc
++      - description: Display AHB clock from dispcc
++      - description: Display core clock from dispcc
++      - description: Display lut clock from dispcc
++      - description: Display vsync clock from dispcc
 +
 +  clock-names:
 +    items:
-+      - const: iface
 +      - const: bus
-+      - const: mnoc
++      - const: iface
 +      - const: core
++      - const: lut
 +      - const: vsync
 +
 +unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/qcom,mmcc-msm8998.h>
++    #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
++    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
 +    #include <dt-bindings/power/qcom-rpmpd.h>
 +
-+    display-controller@c901000 {
-+        compatible = "qcom,msm8998-dpu";
-+        reg = <0x0c901000 0x8f000>,
-+              <0x0c9a8e00 0xf0>,
-+              <0x0c9b0000 0x2008>,
-+              <0x0c9b8000 0x1040>;
-+        reg-names = "mdp", "regdma", "vbif", "vbif_nrt";
++    display-controller@5e01000 {
++        compatible = "qcom,qcm2290-dpu";
++        reg = <0x05e01000 0x8f000>,
++              <0x05eb0000 0x2008>;
++        reg-names = "mdp", "vbif";
 +
-+        clocks = <&mmcc MDSS_AHB_CLK>,
-+                 <&mmcc MDSS_AXI_CLK>,
-+                 <&mmcc MNOC_AHB_CLK>,
-+                 <&mmcc MDSS_MDP_CLK>,
-+                 <&mmcc MDSS_VSYNC_CLK>;
-+        clock-names = "iface", "bus", "mnoc", "core", "vsync";
++        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
++                 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                 <&dispcc DISP_CC_MDSS_MDP_CLK>,
++                 <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
++                 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++        clock-names = "bus", "iface", "core", "lut", "vsync";
++
++        operating-points-v2 = <&mdp_opp_table>;
++        power-domains = <&rpmpd QCM2290_VDDCX>;
 +
 +        interrupt-parent = <&mdss>;
 +        interrupts = <0>;
-+        operating-points-v2 = <&mdp_opp_table>;
-+        power-domains = <&rpmpd MSM8998_VDDMX>;
 +
 +        ports {
 +            #address-cells = <1>;
@@ -338,48 +332,41 @@ index 000000000000..b02adba36e9e
 +                    remote-endpoint = <&dsi0_in>;
 +                };
 +            };
-+
-+            port@1 {
-+                reg = <1>;
-+                endpoint {
-+                    remote-endpoint = <&dsi1_in>;
-+                };
-+            };
 +        };
 +    };
 +...
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
 new file mode 100644
-index 000000000000..c2550cfb797e
+index 000000000000..c821220eef55
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
-@@ -0,0 +1,75 @@
++++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+@@ -0,0 +1,85 @@
 +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/msm/qcom,msm8998-mdss.yaml#
++$id: http://devicetree.org/schemas/display/msm/qcom,qcm2290-mdss.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm MSM8998 Display MDSS
++title: Qualcomm QCM220 Display MDSS
 +
 +maintainers:
-+  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
++  - Loic Poulain <loic.poulain@linaro.org>
 +
 +description:
 +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-+  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
-+  bindings of MDSS are mentioned for MSM8998 target.
++  sub-blocks like DPU display controller and DSI. Device tree bindings of MDSS
++  are mentioned for QCM2290 target.
 +
 +$ref: /schemas/display/msm/mdss-common.yaml#
 +
 +properties:
 +  compatible:
 +    items:
-+      - const: qcom,msm8998-mdss
++      - const: qcom,qcm2290-mdss
 +
 +  clocks:
 +    items:
-+      - description: Display AHB clock
++      - description: Display AHB clock from gcc
 +      - description: Display AXI clock
 +      - description: Display core clock
 +
@@ -390,6 +377,12 @@ index 000000000000..c2550cfb797e
 +      - const: core
 +
 +  iommus:
++    maxItems: 2
++
++  interconnects:
++    maxItems: 1
++
++  interconnect-names:
 +    maxItems: 1
 +
 +patternProperties:
@@ -397,35 +390,39 @@ index 000000000000..c2550cfb797e
 +    type: object
 +    properties:
 +      compatible:
-+        const: qcom,msm8998-dpu
++        const: qcom,qcm2290-dpu
 +
 +unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/qcom,mmcc-msm8998.h>
++    #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
++    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
 +    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interconnect/qcom,qcm2290.h>
 +    #include <dt-bindings/power/qcom-rpmpd.h>
 +
-+    display-subsystem@c900000 {
-+        compatible = "qcom,msm8998-mdss";
-+        reg = <0x0c900000 0x1000>;
++    mdss@5e00000 {
++        #address-cells = <1>;
++        #size-cells = <1>;
++        compatible = "qcom,qcm2290-mdss";
++        reg = <0x05e00000 0x1000>;
 +        reg-names = "mdss";
-+
-+        clocks = <&mmcc MDSS_AHB_CLK>,
-+                 <&mmcc MDSS_AXI_CLK>,
-+                 <&mmcc MDSS_MDP_CLK>;
++        power-domains = <&dispcc MDSS_GDSC>;
++        clocks = <&gcc GCC_DISP_AHB_CLK>,
++                 <&gcc GCC_DISP_HF_AXI_CLK>,
++                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
 +        clock-names = "iface", "bus", "core";
 +
-+        #address-cells = <1>;
-+        #interrupt-cells = <1>;
-+        #size-cells = <1>;
-+
-+        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++        interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
 +        interrupt-controller;
-+        iommus = <&mmss_smmu 0>;
++        #interrupt-cells = <1>;
 +
-+        power-domains = <&mmcc MDSS_GDSC>;
++        interconnects = <&mmrt_virt MASTER_MDP0 &bimc SLAVE_EBI1>;
++        interconnect-names = "mdp0-mem";
++
++        iommus = <&apps_smmu 0x420 0x2>,
++                 <&apps_smmu 0x421 0x0>;
 +        ranges;
 +    };
 +...
