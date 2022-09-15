@@ -2,107 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52F135B9F2F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41D105B9F72
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 18:15:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbiIOPus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 11:50:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35696 "EHLO
+        id S229644AbiIOQPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 12:15:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbiIOPum (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:50:42 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9025E659
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:50:41 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id e16so31528297wrx.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:50:41 -0700 (PDT)
+        with ESMTP id S229735AbiIOQPO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 12:15:14 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B441985F84;
+        Thu, 15 Sep 2022 09:15:08 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id sb3so13644221ejb.9;
+        Thu, 15 Sep 2022 09:15:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=8FafyiLKp7Or/rqYTONtDbmDLktFN+TQm06lEnE/xp0=;
-        b=UGvqViR+bEKfooxOKyl61f7zfYyQvT3UR91MaRK85zA5upl5qvDxqCoYKwJ9DbWTbK
-         BXQL3kZQNfu+ZhhTwX2xaT1PBD7Pu3vnSgv12g+kYrQ2LV8GjDH8vmwFKRwZPgX+gFDW
-         TBPL6AoRQG31b3E6zsUUF4ThJvDyFtPPpPzwdVXByH1tUimkdPTSP2WZPTrEOMpALbFB
-         gQMlu9ZPYymNR8I1+X5iHBmP91hAAVgubxZvSgnLsYX+cRx0Lclj9mYlxbT0PYlvNFFN
-         FUInwGCU7YdzwE8wrt6TGzeYpZmzNrsdnFcmv2tLFaUHqB/528M+HtMe8eYJfLm+oKOn
-         RBtQ==
+        bh=v2ge41u1gkNzSONdXiyudp7Lzl9Dg/unbQXBLoKq9hU=;
+        b=iTCO8J125qCrTxA0iFg+H1CARAxPJgyE9NsRJLpA9r9D8bUaWWeCK6S9k7gqxcj3Nm
+         Mu7zY/+rEaZgFvF3wjEs/FobHCbKxmsrSWVf9uhjW17ucx/0cyp/Q1ib2FTk8xzczHyY
+         ywJAEAqZ07B2QbbqEHtOqHcHlhepNzIDpIuWqG5sVY/6MsZdOJTd9iu6/71j0DNuiYCD
+         enZgampz2rDAFbxE+wZj6ogxF96aNxELSuA1qe30H78lJ2taZaCIVIZS+CG8+ggfmQc1
+         cyqx6sWFRvF8/8pLFsW8rTlRDV9dcEw+dm2byuljsDKAO+PVEInoQ4LjchdJHhRI/ul9
+         ktjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=8FafyiLKp7Or/rqYTONtDbmDLktFN+TQm06lEnE/xp0=;
-        b=EReRFlmsquzOjfiPwExgODe9rHX5JyvjNDCCJcBwiFAUPgyc7WbkfwoWhuxj2NZQqN
-         39nB8UWq45vQt+Nd3ncihpHXWUV+sJxCO2lwGTX7yl9fikiYaACnKXLrQjtyJ/LZbWg2
-         ew7Ot3U30FjFucVRlHVqoepVtvFoskzwhwocZH+MQpwWLot+JNEp/2RAOnzGFgVgUONp
-         krsE8mcusQMdHATfnYyDO/2F7vc0df+ik1Gss11ldycA0S89g23e118ZagQNmGE/6VPy
-         OcW4wRuNp0oh8oMDet1ZtPh0tMPpwcHxJ1UqW8JxumlSTf9YtzucIZG4RrbWzXqjcIz8
-         OAmg==
-X-Gm-Message-State: ACrzQf1eqRGqX1ImljlKkU+f4A6ZwyTzDLbNn2zuc+fX4+dta1cNTIwm
-        8cuW9FJ8RjOd66/Bcri6lQV5uw==
-X-Google-Smtp-Source: AMsMyM73EKanDBPB3oY8SpNYbImMYZv2oSNslZxghiuD4hWcbfKeoMv+Z3dheYOFVSWUYKvpr0r0rg==
-X-Received: by 2002:a05:6000:10ca:b0:22a:3318:861f with SMTP id b10-20020a05600010ca00b0022a3318861fmr207641wrx.284.1663257040069;
-        Thu, 15 Sep 2022 08:50:40 -0700 (PDT)
-Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id e7-20020adfa747000000b0022878c0cc5esm2880247wrd.69.2022.09.15.08.50.37
+        bh=v2ge41u1gkNzSONdXiyudp7Lzl9Dg/unbQXBLoKq9hU=;
+        b=l7IiitGP5ga1vkWiNwLI2WDd8SzrRRqHLYWpg7pTshdqzldo84jGwrmsdwt6iW0ncj
+         A/cLhCHRDoqhKH1l8XAtfq/zVj/pUWwm+XNYUsd75wH5KegWnMU9ee1YNd8t6hVRLGCf
+         Q/SMZyoX7c738uRGmQbhMSwBucWVnst+FdiPzKzX3YhifPHD8oqtlCHSmhzSOtR2t77t
+         Rqun7XBz2o+5fYmVztD0GfGwnSp9qXZKxonRgCUN/m//QwFsiIaJ8vV6jveZrEAQFmGZ
+         SvZbBi4V7oC0dE/SXHVBMvbiCNTGqd2B9BW/rBRB8v875g0dzXAf59x86xlvXI+AtMkN
+         O+cg==
+X-Gm-Message-State: ACrzQf2VX2KSPNAL681E0Jlk5CEyzLf5ybbWQfWAfpdWXLBKgohMkxUZ
+        BJehxnjhJXfiAleRlVEB2Gg=
+X-Google-Smtp-Source: AMsMyM5GrGz4GNx2hR374vuxPTyGV4EiiDxDSFGeIzTW/B5ABJzPFHP6RC1/GJ37AU08z/DjL8FVuA==
+X-Received: by 2002:a17:907:3e89:b0:779:4869:b799 with SMTP id hs9-20020a1709073e8900b007794869b799mr467545ejc.91.1663258507015;
+        Thu, 15 Sep 2022 09:15:07 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id r9-20020a1709061ba900b007413360a48fsm9224878ejg.50.2022.09.15.09.15.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Sep 2022 08:50:39 -0700 (PDT)
-Message-ID: <ca326ce8-3eee-8a7a-a522-9ffbdf7d8a82@linaro.org>
-Date:   Thu, 15 Sep 2022 17:50:28 +0200
+        Thu, 15 Sep 2022 09:15:05 -0700 (PDT)
+Message-ID: <1fd48fa0-66eb-5af9-6168-d1df602216a5@gmail.com>
+Date:   Thu, 15 Sep 2022 18:15:04 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8183: remove thermal zones
- without trips.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+Subject: Re: [PATCH 4/5] arm64: dts: change compatible of vdosys0 and vdosys1
+ for mt8195
 Content-Language: en-US
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220914131339.18348-1-aouledameur@baylibre.com>
- <a8af4c54-12a2-a314-f190-f12859ef4ddd@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <a8af4c54-12a2-a314-f190-f12859ef4ddd@gmail.com>
+To:     "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220914182331.20515-1-jason-jh.lin@mediatek.com>
+ <20220914182331.20515-5-jason-jh.lin@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220914182331.20515-5-jason-jh.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/09/2022 16:15, Matthias Brugger wrote:
-> 
-> 
-> On 14/09/2022 15:13, Amjad Ouled-Ameur wrote:
->> Thermal zones without trip point are not registered by thermal core.
->>
->> tzts1 ~ tzts6 zones of mt8183 were intially introduced for test-purpose
->> only but are not supposed to remain on DT.
->>
->> Remove the zones above and keep only cpu_thermal.
->>
-> 
-> My understanding is that this thermal zones exist but are not used. DTS 
-> should describe the HW as it is, so I propose to add
-> status = "disabled";
-> to the zones.
-> 
 
-At least the trip points must be declared as stated in the bindings
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/thermal/thermal-zones.yaml#n213
+On 14/09/2022 20:23, Jason-JH.Lin wrote:
+> For previous MediaTek SoCs, such as MT8173, there are 2 display HW
+> pipelines binding to 1 mmsys with the same power domain, the same
+> clock driver and the same mediatek-drm driver.
+> 
+> For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines binding to
+> 2 different power domains, different clock drivers and different
+> mediatek-drm drivers.
+> 
+> Moreover, Hardware pipeline of VDOSYS0 has these components: COLOR,
+> CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture Quality)
+> and they makes VDOSYS0 supports PQ function while they are not
+> including in VDOSYS1.
+> 
+> Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
+> component). It makes VDOSYS1 supports the HDR function while it's not
+> including in VDOSYS0.
+> 
+> To summarize0:
+> Only VDOSYS0 can support PQ adjustment.
+> Only VDOSYS1 can support HDR adjustment.
+> 
+> Therefore, we need to separate these two different mmsys hardwares to
+> 2 different compatibles for MT8195.
+> 
+> Fixes: b852ee68fd72 ("arm64: dts: mt8195: Add display node for vdosys0")
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+No fixes tag needed, there is no runtime bug.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Regards,
+Matthias
+
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 905d1a90b406..6ec6d59a16ec 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1966,7 +1966,7 @@
+>   		};
+>   
+>   		vdosys0: syscon@1c01a000 {
+> -			compatible = "mediatek,mt8195-mmsys", "syscon";
+> +			compatible = "mediatek,mt8195-vdosys0", "syscon";
+>   			reg = <0 0x1c01a000 0 0x1000>;
+>   			mboxes = <&gce0 0 CMDQ_THR_PRIO_4>;
+>   			#clock-cells = <1>;
+> @@ -2101,7 +2101,7 @@
+>   		};
+>   
+>   		vdosys1: syscon@1c100000 {
+> -			compatible = "mediatek,mt8195-mmsys", "syscon";
+> +			compatible = "mediatek,mt8195-vdosys1", "syscon";
+>   			reg = <0 0x1c100000 0 0x1000>;
+>   			#clock-cells = <1>;
+>   		};
