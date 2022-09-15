@@ -2,118 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7E15B967E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 10:37:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 436A15B968C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 10:45:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbiIOIhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 04:37:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54526 "EHLO
+        id S229497AbiIOIpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 04:45:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbiIOIhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 04:37:31 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F0F97EDF;
-        Thu, 15 Sep 2022 01:37:27 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28F8av5d020223;
-        Thu, 15 Sep 2022 03:36:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663231017;
-        bh=2RSmklK1TVuVRmWe/70Gpjzew728xNGbXx1E3M+lpr8=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=SpCm8zgKOL/xH+6QYS9hvm1VYeoEBIuy1znTpdRovLDu9xZs7LUrdNrXbob4fdXYE
-         SdUQxG0OXJlbZv1B1gn/bGHjyRvvaGYY1+DzyQ2Vn3cSqQURh8qKVmGMg2iCz5i/Cn
-         hxHb3a4gfERI7btHXOlSmaP7o+0CY2r4WUuFZELk=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28F8avuA055725
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Sep 2022 03:36:57 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 15
- Sep 2022 03:36:57 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 15 Sep 2022 03:36:57 -0500
-Received: from [10.24.69.241] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28F8alx3095898;
-        Thu, 15 Sep 2022 03:36:47 -0500
-Message-ID: <baa51dc7-3605-0001-386a-35e386b920da@ti.com>
-Date:   Thu, 15 Sep 2022 14:06:46 +0530
+        with ESMTP id S229710AbiIOIo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 04:44:59 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51606582E
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 01:44:57 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id o20-20020a05600c4fd400b003b4a516c479so2813710wmq.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 01:44:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=dH3Xddf4i5wgA75cL5yNqkffds3UMT4VE2SGxW8RhZ0=;
+        b=w3JmFD3guZo7MocNtVx9G7wa+lRT/sZ8vNA5Uk1hmDctwgD4yofQefYoX8F9daHJgw
+         /0mT5QAI3kVtnkM2mfOod90kPojQvCiejX5Hxg7lMTT44u2XJt7koTpLZocfyObv/O4X
+         mmC3zcZdT+vnVMIwHNHDmIu1tLDpT8rHjxk84pHQGBZDamxaPRMdMzMd2h1NiJaFSman
+         lJqbLD4q6jUAR6ZGnZvJ4/YNPZEQyreaj6OM1fN/Xijpj5Tz6fXxilW+yv2+tuF+yVX5
+         1Vg8a7Y3pe2aH1P07gTISmTQZGZwkbxOHrmeW9Kekcbk91Zi1mtZZPKEyxY0uWcMyasu
+         +5uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=dH3Xddf4i5wgA75cL5yNqkffds3UMT4VE2SGxW8RhZ0=;
+        b=zecpg2P6LImJ1OJUriLZNRrze0JoQhiM678yI98fQSVitrWtsELutgCOYHyLTdQxoI
+         F096uwstzzqJaUsos5esQu/0R+frRfUa0Y6ewQ+SVCkoA+hA2F7VbXNXkNfUuR/68/71
+         aRyXnTIpkDLmYE9jcom1APeeuhEGnIhGBtDKwKjYk2/ZslDGywSsOhUL7otycg0LBn7a
+         KLsnNHYCiOpC7UJ/kwtT9fa6bVzgjvYikI3QWZeljmMb/5QADBnnwHgnB7R9MKfrbgIW
+         fbbMbLZNmiZdSud49G4FGaM5D4woITE1kfAcqlM/ABEMHyXAmkh2+g3MwBKeeEDzBX8d
+         TqEA==
+X-Gm-Message-State: ACgBeo2px5hPeUNgnTwEddEGAVjuTnN6Q/NiBjdqaFN58I4L6tFjAT7W
+        MQM4ZyY3KhBR5oFpDm5v9gbKQg==
+X-Google-Smtp-Source: AA6agR6g3+PdSE1eWZLnJptiRikw1dAQOcBMC54WBw3sZVuwHijTXaUiB7oVB1SdslSnYh68ync4Sw==
+X-Received: by 2002:a05:600c:2e15:b0:3b4:9c95:2871 with SMTP id o21-20020a05600c2e1500b003b49c952871mr5852312wmf.133.1663231496194;
+        Thu, 15 Sep 2022 01:44:56 -0700 (PDT)
+Received: from [10.119.22.201] ([89.101.193.73])
+        by smtp.gmail.com with ESMTPSA id iv11-20020a05600c548b00b003a1980d55c4sm2080912wmb.47.2022.09.15.01.44.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Sep 2022 01:44:55 -0700 (PDT)
+Message-ID: <05ce5c7c-c7e2-cac1-341a-5461804f96ea@linaro.org>
+Date:   Thu, 15 Sep 2022 09:44:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vladimir.oltean@nxp.com>,
-        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH 2/8] net: ethernet: ti: am65-cpsw: Add support for SERDES
- configuration
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] dt-bindings: usb: dwc3: Add interrupt-names to include
+ hibernation interrupt
 Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-References: <20220914095053.189851-1-s-vadapalli@ti.com>
- <20220914095053.189851-3-s-vadapalli@ti.com>
- <YyH1TH0UqCzN37J2@shell.armlinux.org.uk>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <YyH1TH0UqCzN37J2@shell.armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"
+To:     "Mehta, Piyush" <piyush.mehta@amd.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "balbi@kernel.org" <balbi@kernel.org>
+Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "Paladugu, Siva Durga Prasad" <siva.durga.prasad.paladugu@amd.com>,
+        Manish Narani <manish.narani@xilinx.com>
+References: <20220912085730.390555-1-piyush.mehta@amd.com>
+ <4cc7a6d2-64ef-c176-21ad-4c3e66f664f7@linaro.org>
+ <MN2PR12MB43330B57F5CFBEC35105665188469@MN2PR12MB4333.namprd12.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <MN2PR12MB43330B57F5CFBEC35105665188469@MN2PR12MB4333.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Russell,
+On 14/09/2022 14:15, Mehta, Piyush wrote:
+>  
+>> Where is the user (DTS) and implementation of this change? If this is specific
+>> to Xilinx, why you do not have device specific compatible?
+> [Piyush]:
+> We have dedicated irq line for hibernation feature,  "hiber" irq line triggers hibernation interrupt.
+> DWC3 core supports the hibernation feature, we have a dedicated code which is yet to be upstreamed.
+> As the hibernation feature provided by dwc3-core, so this will be supported by other SOC/vendors.
 
-On 14/09/22 21:07, Russell King (Oracle) wrote:
-> On Wed, Sep 14, 2022 at 03:20:47PM +0530, Siddharth Vadapalli wrote:
->> @@ -1427,6 +1471,9 @@ static void am65_cpsw_nuss_mac_link_down(struct phylink_config *config, unsigned
->>  	struct net_device *ndev = port->ndev;
->>  	int tmo;
->>  
->> +	/* disable phy */
->> +	am65_cpsw_disable_phy(port->slave.ifphy);
->> +
-> 
-> This seems really strange. If you have a serdes interface which
-> presumably supports SGMII, 1000base-X etc, then link status is sent
-> across the serdes interface. If you power down the serdes, then you
-> can't receive the link status, and so mac_link_up() won't be called.
-> 
-> Are you really sure you want to be enabling and disabling the PHY
-> in mac_link_down()/mac_link_up() ?
+But is hiber irq line present in other vendors? What confuses me is
+adding not only "hiber" irq but also otg in completely new enum.
 
-Thank you for reviewing the patch. The PHY passed to the
-"am65_cpsw_disable_phy()" and "am65_cpsw_disable_phy()" functions within
-the "am65_cpsw_nuss_mac_link_down()" and "am65_cpsw_nuss_mac_link_up()"
-functions respectively, is the CPSW ethernet MAC's PHY and not the
-SERDES PHY. The SERDES PHY is powered on through the function call to
-the "am65_cpsw_init_phy()" function.
 
-The calls to the functions "am65_cpsw_enable_phy()" and
-"am65_cpsw_disable_phy()" within the "am65_cpsw_nuss_mac_link_up()" and
-"am65_cpsw_nuss_mac_link_down()" functions respectively, try to power on
-and power off the CPSW ethernet MAC's phy. Looking at it again,they do
-nothing, since the driver corresponding to the ethernet MAC's PHY which
-happens to be drivers/phy/ti/phy-gmii-sel.c, does not provide any
-methods to power on and power off the ethernet MAC's PHY. I have just
-realized that this is stale code and will remove it in the v2 series.
-
-Also, I realize now that I did not invoke "am65_cpsw_disable_phy()" on
-the SERDES PHY in the driver's remove function. I will fix this in the
-v2 series.
-
-Regards,
-Siddharth.
+Best regards,
+Krzysztof
