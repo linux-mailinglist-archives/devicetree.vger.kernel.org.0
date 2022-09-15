@@ -2,163 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFD405B9570
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 09:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B98A45B957C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 09:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbiIOHaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 03:30:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54230 "EHLO
+        id S229877AbiIOHf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 03:35:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230009AbiIOH35 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 03:29:57 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 367CD13E12;
-        Thu, 15 Sep 2022 00:29:42 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28F7T0Dv004698;
-        Thu, 15 Sep 2022 02:29:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663226940;
-        bh=kK3MFPKNCAR0l9Tkn5PBHDwUH9L6G+mhGZnNZrSdX1A=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=x8uvcSgB81Unk5UGB9mpQOB66hsSep6s8mt1L6w8k+X8tHXkOgwvwDvHiKdRFuZCD
-         a5KYW/7lhG2fEqkvkDT5gBixwb/0eo7exnmH4sMwIlAZWCQgC12auNUca1qVAZ13j2
-         He1KUrB8hobi49LvXtFQ2pYSuU8Q3UeGMTs+iT2I=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28F7T0af017667
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Sep 2022 02:29:00 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 15
- Sep 2022 02:28:59 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 15 Sep 2022 02:28:59 -0500
-Received: from [10.24.69.241] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28F7SrQY016573;
-        Thu, 15 Sep 2022 02:28:54 -0500
-Message-ID: <2b21b163-0a70-4786-4314-20743178a2e2@ti.com>
-Date:   Thu, 15 Sep 2022 12:58:53 +0530
+        with ESMTP id S229713AbiIOHfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 03:35:50 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914E88A7C1;
+        Thu, 15 Sep 2022 00:35:49 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28F4nAWe014700;
+        Thu, 15 Sep 2022 07:35:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=LkOCqTWtTL5/+97RNV04n2J7GXFNzsYNOika+RKy+0I=;
+ b=JhXpYtHefWR9ZzBBpAn+bXcoXxRP+QFXvJ3kLbLFvLjr4PWeXp+MQ5AOFLCPIo81PIF5
+ btF3oep9+JZd9wJdCZTgvmxQXKrfD4HQLFASQewubXYETCdhDi8a/bbeLN+sYDgSLZa4
+ 4ZHVa8HfsqgPyhS/5qc77ryqHa3ktQdDZUTewv37+obecWtMZbVloDPyrNU2+uRIQYg2
+ 9A9D9pSb9HwwMi7WNylyqb6Ict6qW8KZbyq/IgtEgogKgW/XSQC/zOhr9kcDKZ/q3/Sz
+ TEbWTGrt2n/aV7Jy4qVcJCZF4ic3sRYpqI4rWQoZdkyoZguTykBEYm5ceE1oIUg2/VC1 Ww== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jkd9hub6p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Sep 2022 07:35:41 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28F7ZeoL028571
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Sep 2022 07:35:40 GMT
+Received: from [10.216.56.33] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 15 Sep
+ 2022 00:35:35 -0700
+Message-ID: <49b835f4-cea8-6422-fa53-7c0ef443873b@quicinc.com>
+Date:   Thu, 15 Sep 2022 13:05:32 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
-        <vladimir.oltean@nxp.com>, <grygorii.strashko@ti.com>,
-        <vigneshr@ti.com>, <nsekhar@ti.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH 1/8] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
- bindings for J721e CPSW9G
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add required-opps for USB
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-References: <20220914095053.189851-1-s-vadapalli@ti.com>
- <20220914095053.189851-2-s-vadapalli@ti.com>
- <20220914162004.GA2433106-robh@kernel.org>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <20220914162004.GA2433106-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Bjorn Andersson <andersson@kernel.org>
+CC:     <agross@kernel.org>, <konrad.dybcio@somainline.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sboyd@kernel.org>,
+        <mka@chromium.org>, <johan+linaro@kernel.org>,
+        <quic_kriskura@quicinc.com>, <dianders@chromium.org>
+References: <20220914053017.23617-1-quic_rjendra@quicinc.com>
+ <20220915022025.rwqooixqhhuott6n@builder.lan>
+From:   Rajendra Nayak <quic_rjendra@quicinc.com>
+In-Reply-To: <20220915022025.rwqooixqhhuott6n@builder.lan>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LBI3N4Xz_qV0i635FNECLvZO1tBb472p
+X-Proofpoint-GUID: LBI3N4Xz_qV0i635FNECLvZO1tBb472p
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-15_04,2022-09-14_04,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 phishscore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
+ malwarescore=0 mlxscore=0 suspectscore=0 mlxlogscore=999 adultscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2208220000 definitions=main-2209150040
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
 
-On 14/09/22 21:50, Rob Herring wrote:
-> On Wed, Sep 14, 2022 at 03:20:46PM +0530, Siddharth Vadapalli wrote:
->> Update bindings for TI K3 J721e SoC which contains 9 ports (8 external
->> ports) CPSW9G module and add compatible for it.
+On 9/15/2022 7:50 AM, Bjorn Andersson wrote:
+> On Wed, Sep 14, 2022 at 11:00:17AM +0530, Rajendra Nayak wrote:
+>> USB has a requirement to put a performance state vote on 'cx'
+>> while active. Use 'required-opps' to pass this information from
+>> device tree, and since all the GDSCs in GCC (including USB) are
+>> sub-domains of cx, we also add cx as a power-domain for GCC.
+>> Now when any of the consumers of the GDSCs (in this case USB)
+>> votes on a perforamance state, genpd framework can identify that
+>> the GDSC itself does not support a performance state and it
+>> then propogates the vote to the parent, which in this case is cx.
 >>
->> Changes made:
->>     - Add new compatible ti,j721e-cpswxg-nuss for CPSW9G.
->>     - Extend pattern properties for new compatible.
->>     - Change maximum number of CPSW ports to 8 for new compatible.
+>> This change would also mean that any GDSC in GCC thats left enabled
+>> during low power state (perhaps because its marked with a
+>> ALWAYS_ON flag) can prevent the system from entering low power
+>> since that would prevent cx from transitioning to low power.
+>> Ideally any consumers that would need to have their devices
+>> (partially) powered to support wakeups should look at making the
+>> resp. GDSCs transtion to a Retention (PWRSTS_RET) state instead
+>> of leaving them ALWAYS_ON.
 >>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
 >> ---
->>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 23 +++++++++++++++++--
->>  1 file changed, 21 insertions(+), 2 deletions(-)
+>> * This patch is a follow up based on the discussion on the previously
+>>    posted version to support USB performance state voting [1]
 >>
->> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->> index 821974815dec..868b7fb58b06 100644
->> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->> @@ -57,6 +57,7 @@ properties:
->>        - ti,am654-cpsw-nuss
->>        - ti,j7200-cpswxg-nuss
->>        - ti,j721e-cpsw-nuss
->> +      - ti,j721e-cpswxg-nuss
->>        - ti,am642-cpsw-nuss
->>  
->>    reg:
->> @@ -111,7 +112,7 @@ properties:
->>          const: 0
->>  
->>      patternProperties:
->> -      "^port@[1-4]$":
->> +      "^port@[1-8]$":
->>          type: object
->>          description: CPSWxG NUSS external ports
->>  
->> @@ -121,7 +122,7 @@ properties:
->>          properties:
->>            reg:
->>              minimum: 1
->> -            maximum: 4
->> +            maximum: 8
->>              description: CPSW port number
->>  
->>            phys:
->> @@ -181,6 +182,21 @@ required:
->>    - '#size-cells'
->>  
->>  allOf:
->> +  - if:
->> +      not:
->> +        properties:
->> +          compatible:
->> +            contains:
->> +              const: ti,j721e-cpswxg-nuss
->> +    then:
->> +      properties:
->> +        ethernet-ports:
->> +          patternProperties:
->> +            "^port@[5-8]$": false
->> +            properties:
->> +              reg:
->> +                maximum: 4
+>> * Another patch that this approach depends on is the one to fix the
+>>    handling of PWRSTS_RET in the GDSC driver [2] so we can have USB
+>>    GDSC transtion to a RET state instead of marking it ALWAYS_ON
+>>
+>> [1] https://lore.kernel.org/linux-usb/YTduDqCO9aUyAsw1@ripper/
+>> [2] https://lore.kernel.org/all/20220901101756.28164-1-quic_rjendra@quicinc.com/#t
+>>
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index ad04025a8a1a..8a21446738bf 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -828,6 +828,7 @@
+>>   			#clock-cells = <1>;
+>>   			#reset-cells = <1>;
+>>   			#power-domain-cells = <1>;
+>> +			power-domains = <&rpmhpd SC7280_CX>;
+>>   		};
+>>   
+>>   		ipcc: mailbox@408000 {
+>> @@ -3456,6 +3457,7 @@
+>>   					  "ss_phy_irq";
+>>   
+>>   			power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
+>> +			required-opps = <&rpmhpd_opp_svs>;
 > 
-> Your indentation is off. 'properties' here is under patternProperties 
-> making it a DT property.
-> 
->> +
->>    - if:
->>        not:
->>          properties:
->> @@ -192,6 +208,9 @@ allOf:
->>          ethernet-ports:
->>            patternProperties:
->>              "^port@[3-4]$": false
->> +            properties:
->> +              reg:
->> +                maximum: 2
-> 
-> Same here.
+> The patch looks really good, but don't you need &rpmhpd_opp_nom for the
+> 200MHz assigned to GCC_USB30_PRIM_MASTER_CLK?
 
-Thank you for reviewing the patch. Sorry for the indentation errors. I
-will fix them in the v2 series.
+you are right, I wrote this patch a long while back, not sure if
+we were on a lower clock back then, thanks for catching, I will fix it
+and repost.
+  
+> Also, how about adding the same to &usb_2, while we're at it?
 
-Regards,
-Siddharth.
+Sure, will do that as well. thanks.
+
+> 
+> Regards,
+> Bjorn
+> 
+>>   
+>>   			resets = <&gcc GCC_USB30_PRIM_BCR>;
+>>   
+>> -- 
+>> 2.17.1
+>>
