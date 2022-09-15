@@ -2,138 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BD195B9A85
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 823AA5B9AA2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:22:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbiIOMKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 08:10:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40226 "EHLO
+        id S229591AbiIOMWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 08:22:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229809AbiIOMKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:10:13 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC4B90196;
-        Thu, 15 Sep 2022 05:10:03 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id go34so41663279ejc.2;
-        Thu, 15 Sep 2022 05:10:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=Mm+2DF8Mo7Se/7xi0leL6LbCETFmkcHoyeYmjEsX7WE=;
-        b=iNoJjQVdspv7m0yKLXVJrb4efOtJSSHERmTzFyT9xZLDSyp/4LN2GLTzOR6ypDx4uW
-         +LhYeJ1I8QptOMuvtaasDCWX+VMjA32+ODdAUfeidPDRBwFVQ0lmmXxa/N9S7I+wTJGG
-         S6bV5syj0z6s5VeZYErVjdRq/PYqW2EEcEf0r9RfC4Gc8XcTkew3oSRKNUQw/sYEl76+
-         7F/MFBYcGtRQOwgUW1iDTvl9PhY+yDdGYGG7wvk+OlD9QdE0tmUmEiQEDtvn9WN4UQyT
-         xbj5Wsc1oqKpjS9Dp7NQSzWAYebPpbGwb+XA7RhqI/fKDeSwTzgnZS10uUHIYg/Y495F
-         WzQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=Mm+2DF8Mo7Se/7xi0leL6LbCETFmkcHoyeYmjEsX7WE=;
-        b=lmfGvKs5WD7fiJIczvZ4FhUjDF8jGBlcItS6NmUDWv4/MJVZGqbV++YG5Vrz/zv+yn
-         RuZ/XcfXk9sRMV62SOkoJUqxG6qxlyPbKAI3RPD70Ug5M6GCVxjP/V4kpQNuz7QwUGes
-         c/UjRYd1iYQGWmdKKTEaRUveWrgRV8FTWw4JHDA6N1C86OOyk+T0FwTRdvUGr36Z+DTS
-         NfO2jo6KMagkrVt9r/08PGwAmHw8TmHXxdGtQG6K0IbyLIjXX02ZrYyfX4oiLUlLx5Cq
-         18RXanYIiv0sotgWiZoZ/QEdX0q0GzLRf8rrceGnU1wln5SS++WV9jxhSnRYQdhaaxiP
-         Pn6Q==
-X-Gm-Message-State: ACgBeo0NnJod8hxjb+lIjsAKsLDGQnznQrGe8gFf5wLjgr6HpSW5pRL2
-        hFjBGs0hM7s9L//IAGymrAoT1PKXjI8=
-X-Google-Smtp-Source: AA6agR7akluhHbNA/L17G/el95vY0mQC3fDf8p1ne3XD+jaMEkWDy68uAbjZAN6V7dObPS9wUm/IEA==
-X-Received: by 2002:a17:907:7255:b0:77e:f3df:747a with SMTP id ds21-20020a170907725500b0077ef3df747amr12036041ejc.519.1663243801255;
-        Thu, 15 Sep 2022 05:10:01 -0700 (PDT)
-Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id gu2-20020a170906f28200b00718e4e64b7bsm8912344ejb.79.2022.09.15.05.09.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 05:10:00 -0700 (PDT)
-Date:   Thu, 15 Sep 2022 14:09:58 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Mikko Perttunen <cyndis@kapsi.fi>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 0/3] Host1x context isolation on Tegra234
-Message-ID: <YyMWFtZ5JTwVw3RT@orome>
-References: <20220907083844.2486805-1-cyndis@kapsi.fi>
+        with ESMTP id S229553AbiIOMWV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:22:21 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C9F89812;
+        Thu, 15 Sep 2022 05:22:20 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28F5erk7015415;
+        Thu, 15 Sep 2022 07:20:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=CUUZCN8CbQjdSUIzRh++MknIDM7YeGQKIOTWG5m6Yk0=;
+ b=V/9llfCjSPnhOow+ROHdKUa1UlshXzdMA3N+MpTbafilTn9IBHJymHgTFfKI6XruT3Bk
+ Dx5Agbd0n/SH1Eu6Y52pa/pJC7FH647QXWtkUIOV+WZtfuHgK0ppxI8ug+tDFn34CJDj
+ dqzUqa465i3h6CHoKjHVdgSRtJuFOm9txFrGdXo7AW7ngrMnfgiyFbs2orFB8Xq2hLXj
+ s4NRnrlS2EmfFJ6+iTzpObSsm2LJp8DJs3Sw7gYJSUbPxVWqGNWEn3CpHZqU8Q7KTcxp
+ L+evTk9rqOTw8hIWoKxTlHEUK1TG25zqm7ZKgSkedXCAVkVayYWgOI8BYNOZ7Q2lpADM 5Q== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3jjxyr2ac4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Sep 2022 07:20:31 -0500
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.12; Thu, 15 Sep
+ 2022 07:20:29 -0500
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.12 via Frontend
+ Transport; Thu, 15 Sep 2022 07:20:29 -0500
+Received: from [198.90.251.95] (edi-sw-dsktp-006.ad.cirrus.com [198.90.251.95])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E0C66468;
+        Thu, 15 Sep 2022 12:20:22 +0000 (UTC)
+Message-ID: <2839a437-a57a-ffc4-da8e-dde9a9a9a5cc@opensource.cirrus.com>
+Date:   Thu, 15 Sep 2022 13:20:22 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="qlPgB3ZnVYKZSLq1"
-Content-Disposition: inline
-In-Reply-To: <20220907083844.2486805-1-cyndis@kapsi.fi>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 04/11] ASoC: cs42l42: Split probe() and remove() into
+ stages
+Content-Language: en-US
+To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
+        James Schulman <james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        "Lucas Tanure" <tanureal@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     Charles Keepax <ckeepax@opensource.cirrus.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Matt Flax <flatmax@flatmax.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        - <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <asahi@lists.linux.dev>
+References: <20220915094444.11434-1-povik+lin@cutebit.org>
+ <20220915094444.11434-5-povik+lin@cutebit.org>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+In-Reply-To: <20220915094444.11434-5-povik+lin@cutebit.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: y3RD2Dp-yKLUCoYgbRs2U3VWByN4ed9F
+X-Proofpoint-GUID: y3RD2Dp-yKLUCoYgbRs2U3VWByN4ed9F
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/09/2022 10:44, Martin Povišer wrote:
+> From: Richard Fitzgerald <rf@opensource.cirrus.com>
+> 
+> To prepare for adding SoundWire the probe must be split into three
+> parts:
+> 
+> 1) The bus-specific probe
+> 2) Common bus-agnostic probe steps
+> 3) Initialization of the peripheral registers
+> 
+> Step (3) must be separate because on SoundWire devices the probe must
+> enable power supplies and release reset so that the peripheral can be
+> enumerated by the bus, but it isn't possible to access registers until
+> enumeration has completed.
+> 
+> The call to devm_snd_soc_register_component() must be done at stage (2)
+> so that it can EPROBE_DEFER if necessary. In SoundWire systems stage (3)
+> is not a probe event so a deferral at this stage would not result in
+> re-probing dependencies.
+> 
+> A new init_done flag indicates that the chip has been identified and
+> initialized. This is used to prevent cs42l42_remove(), cs42l42_suspend(),
+> cs42l42_restore() and cs42l42_irq_thread() from attempting register
+> accesses if the chip was not successfully initialized. Although this
+> cannot happen on I2C, because the entire probe would fail, it is
+> possible on SoundWire if probe succeeds but the cs42l42 is never
+> enumerated.
+> 
+> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
+> ---
+>   sound/soc/codecs/cs42l42.c | 127 +++++++++++++++++++++++++------------
+>   sound/soc/codecs/cs42l42.h |   2 +
+>   2 files changed, 87 insertions(+), 42 deletions(-)
+> 
+> diff --git a/sound/soc/codecs/cs42l42.c b/sound/soc/codecs/cs42l42.c
+> index 11cb659f03e0..427b29db2252 100644
+> --- a/sound/soc/codecs/cs42l42.c
+> +++ b/sound/soc/codecs/cs42l42.c
+> @@ -1627,7 +1627,7 @@ static irqreturn_t cs42l42_irq_thread(int irq, void *data)
+>   	int report = 0;
+>   
+>   	mutex_lock(&cs42l42->irq_lock);
+> -	if (cs42l42->suspended) {
+> +	if (cs42l42->suspended || !cs42l42->init_done) {
+>   		mutex_unlock(&cs42l42->irq_lock);
+>   		return IRQ_NONE;
+>   	}
 
---qlPgB3ZnVYKZSLq1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Sep 07, 2022 at 11:38:41AM +0300, Mikko Perttunen wrote:
-> From: Mikko Perttunen <mperttunen@nvidia.com>
->=20
-> Hi all,
->=20
-> this series adds support for Host1x context isolation
-> on Tegra234 (Orin). The difference from previous generations
-> is that there are two IOMMUs to which engines can be attached
-> to, resulting in having to have a set of contexts for each one.
->=20
-> Patches should be applied in order. The first patch is needed
-> so that the kernel doesn't attempt to use a context device
-> attached to the wrong IOMMU when context stream IDs are present
-> in the device tree. The other two patches have a compile time
-> dependency.
->=20
-> Thanks,
-> Mikko
->=20
-> Mikko Perttunen (3):
->   gpu: host1x: Select context device based on attached IOMMU
->   dt-bindings: Add Host1x context stream IDs on Tegra234
->   arm64: tegra: Add context isolation domains on Tegra234
->=20
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 19 +++++++++++++++++++
->  drivers/gpu/drm/tegra/uapi.c             |  2 +-
->  drivers/gpu/host1x/context.c             |  5 +++++
->  include/dt-bindings/memory/tegra234-mc.h | 10 ++++++++++
->  include/linux/host1x.h                   |  1 +
->  5 files changed, 36 insertions(+), 1 deletion(-)
-
-All three patches applied.
-
-Thanks,
-Thierry
-
---qlPgB3ZnVYKZSLq1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmMjFhYACgkQ3SOs138+
-s6HuFg//Zw+zHuUSSm2nTYZM6Nq/HlNb6b2B3jroN+sSGvNVUhChrpiN/Jl4dJDV
-T9bO7qYmz5iQ3wKbfGoVwqGtOvuvAy40v2qAljSTd8iFLPDmwWWM8cVL4x83V2Hh
-Rg44v6yBJ+lKg8AEoKcLbd00VuwwLyrXl4cKBHyTmR3Mk9Rr4xj5dvAyeb6uwZun
-xC2w3jBzBZeaSZRJSqx57TN8mlULvr8MUaM2agQN2jUQ4EObNdZyW3NfLsjh88HT
-unYtWlJlWbYmsADPx63JCG16KiQ6no9rqNrq4R5TWdZpTo5rDrc1wENKJKdRe5Ua
-ciOmOcI9RRYOCi+13XxDHb4jVttrIfdw7dafCDFv1RjtQ0EzGnBshpe60E6p4Tqx
-/bgzfgkEkM4W730Bf0eDbGGc1xmvS1oWae010GxTMQVyx4U74yAMCjP+VubatlLy
-CItmx+zyANZxUc/4NXfO0m7ItR64L9IBGMRsuvrQbGqx65Yk9MOPYDTNggGCNm9R
-nGi4ipdqv1MsJPavzjTW+DxoFuvb0uq0ldS2HaO9nAM67xSspRf+tKGFuyZcPZZd
-C0BPqB9U8Z5WhQk0xiMXUhOjIlxP96UX3vgca5DGi2thQWaAcvBduKaQG5WryQvg
-2ZTZNGNPTSmU0ciTeXQ007/bMWfRtgD2HxyLDC8bEDmwFnG4j8s=
-=ZApN
------END PGP SIGNATURE-----
-
---qlPgB3ZnVYKZSLq1--
+This doesn't apply to broonie/for-next. Needs rebasing onto commit:
+ea75deef1a73 ("ASoC: cs42l42: Only report button state if there was a
+button interrupt")
