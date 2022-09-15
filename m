@@ -2,104 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9B1C5B922A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 03:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 316DD5B9236
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 03:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229919AbiIOBdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 21:33:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46652 "EHLO
+        id S229498AbiIOBh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 21:37:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbiIOBds (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 21:33:48 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5922C792DE;
-        Wed, 14 Sep 2022 18:33:44 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28F0ZueQ017536;
-        Thu, 15 Sep 2022 01:33:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=LRBFs3XrfWaoGBTNqSmEzJ2c04tlJ8Rh82eU+9eVUuw=;
- b=CwLYmIockp2hO1HIFAmLCwql+ZIz8z79i7hCI1ceXHtX9LT8mlv9Y2vkMxBR2texMvL9
- m5u67dlx/JJjuUTe75kta+ZQEV9StCCW/J8KPBFhpRK/Foo7wlrgd//7giu4Pptb/Ffp
- uqwbvJvmxpdGDsU5WCaGncSj/tqC1dnFndiQK58hz+vjSpLfvCsVr9OE7abtGwf9hwt/
- ddhaB+HMixJXtTgTQ27Cr7uAL8c+ojHR1Dd8QWClv+8DftUR5Ziv2HfFnM4ucXspLLvm
- i1k2h/gOD97gjMn1iM0ebvqiZFdtjUcSuHCKUqkZueTZBzABIOdxucLdSJy3Vf4z2x4j JQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jkp8arh6q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Sep 2022 01:33:11 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28F1XAPk023301
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 15 Sep 2022 01:33:11 GMT
-Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 14 Sep
- 2022 18:33:07 -0700
-Subject: Re: [PATCH 2/2] mailbox: Add support for QTI CPUCP mailbox controller
-To:     Trilok Soni <quic_tsoni@quicinc.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <jassisinghbrar@gmail.com>, <manivannan.sadhasivam@linaro.org>
-CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <konrad.dybcio@somainline.org>,
-        Gaurav Kohli <gkohli@codeaurora.org>
-References: <1663135386-26270-1-git-send-email-quic_sibis@quicinc.com>
- <1663135386-26270-3-git-send-email-quic_sibis@quicinc.com>
- <b8e0cbb4-8d4e-1208-0fa0-8f9178b6d85f@quicinc.com>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-Message-ID: <04d046aa-59c8-46c5-d957-5d2e48f25d72@quicinc.com>
-Date:   Thu, 15 Sep 2022 07:03:04 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S229473AbiIOBh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 21:37:58 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56069356F4;
+        Wed, 14 Sep 2022 18:37:55 -0700 (PDT)
+X-UUID: 50a4d611035e4c9dbc8292300dcfb242-20220915
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Hll8D14Qt08YGxyPP/LHoUI1r1mvl/3LO8G0w9Pypy4=;
+        b=SW7AwRMt03iywCX638DbFqJFe72Bsdqs4YRABETl8FUwO62IHzhfcMP/pJjjfsawpgYEtK9djRulMWClhVvx57fCEbe1R24DDPrD7oRGdtEhNNpRUSXAviMPQ/Jr1HJ2DFpaXiumE0A0GagtPuioD5OxXDRE7EYQ6HFWzr2DUD8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:64aa8fcd-4baf-4823-86ec-3b2949ac0a9c,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:39a5ff1,CLOUDID:601578ec-2856-4fce-b125-09d4c7ebe045,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 50a4d611035e4c9dbc8292300dcfb242-20220915
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1255417790; Thu, 15 Sep 2022 09:37:46 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 15 Sep 2022 09:37:45 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 15 Sep 2022 09:37:45 +0800
+Message-ID: <f206b9f6c4c61b90306e19c713e2758d471ec037.camel@mediatek.com>
+Subject: Re: [PATCH 5/5] dt-bindings: arm: mediatek: mmsys: remove the
+ unused compatible for mt8195
+From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 15 Sep 2022 09:37:45 +0800
+In-Reply-To: <1b3a880f-06a2-1865-3791-03021aa34175@gmail.com>
+References: <20220914182331.20515-1-jason-jh.lin@mediatek.com>
+         <20220914182331.20515-6-jason-jh.lin@mediatek.com>
+         <1b3a880f-06a2-1865-3791-03021aa34175@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <b8e0cbb4-8d4e-1208-0fa0-8f9178b6d85f@quicinc.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: aVU5gjC4oydM2V8ZopPTFBLGNHmETNjq
-X-Proofpoint-ORIG-GUID: aVU5gjC4oydM2V8ZopPTFBLGNHmETNjq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-14_11,2022-09-14_04,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- mlxscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0 mlxlogscore=794
- clxscore=1015 phishscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2208220000
- definitions=main-2209150002
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Trilok,
-Thanks for taking time to review the patch.
+On Wed, 2022-09-14 at 22:45 +0200, Matthias Brugger wrote:
+> 
+> On 14/09/2022 20:23, Jason-JH.Lin wrote:
+> > The compatible properties of mt8195 have changed to
+> > mediatek,mt8195-vdosys0
+> > and mediatek,mt8195-vdosys1 from mediatek,mt895-mmsys, so remove
+> > the unused
+> > compatible.
+> > 
+> > Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add mt8195
+> > SoC binding")
+> > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  
+> > .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml         |
+> > 1 -
+> >   1 file changed, 1 deletion(-)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > index a53b32c0a608..bfbdd30d2092 100644
+> > ---
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > +++
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > @@ -31,7 +31,6 @@ properties:
+> >                 - mediatek,mt8183-mmsys
+> >                 - mediatek,mt8186-mmsys
+> >                 - mediatek,mt8192-mmsys
+> > -              - mediatek,mt8195-mmsys
+> 
+> Should be part of the first patch. As described in the review.
 
-On 9/14/22 11:08 PM, Trilok Soni wrote:
-> Hi Sibi,
-> 
->> +
->> +MODULE_AUTHOR("Gaurav Kohli <gkohli@codeaurora.org>");
->> +MODULE_AUTHOR("Sibi Sankar <quic_sibis@qti.qualcomm.com>");
-> 
-> Email address should be quic_sibi@quicinc.com.
-> 
-> codeaurora.org is any way deprecated, so we should we keep it ? I know 
-> giving the credit is important, but above address will not be reachable 
-> anyways.
-Ack my bad.
+Ok, I'll merge this patch into the first patch.
+
+Regards,
+Jason-JH.Lin
 
 > 
-> ---Trilok Soni
+> Regards,
+> Matthias
+> 
+> >                 - mediatek,mt8195-vdosys0
+> >                 - mediatek,mt8195-vdosys1
+> >                 - mediatek,mt8365-mmsys
+> 
+> 
+-- 
+Jason-JH Lin <jason-jh.lin@mediatek.com>
+
