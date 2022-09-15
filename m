@@ -2,74 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 376E05BA051
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 19:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32B265BA058
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 19:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbiIORUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 13:20:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36424 "EHLO
+        id S229716AbiIORXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 13:23:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229889AbiIORUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 13:20:36 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1786D491EC
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 10:20:34 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id r3-20020a05600c35c300b003b4b5f6c6bdso779132wmq.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 10:20:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=GMQu+Y5MmIbydykdiifw+beEBbT3HPvfrEgmPiWWPA4=;
-        b=C9sQs9sk1ckiPcvzOIsgVxkZl7PhKg8R3xxYZG8w1Re81id1DuBl24tWMV6fJIMuAh
-         7Jh1BUO+vpE+d7M09+aeNubo5Qou7BItDPmnhLpbMYIOULmwHvCgwHNqOVJBWXsGFD4R
-         8xQIVU9cqnq4pqvoBwKJip18cRkUIwqHffNJ27LOtjuw8Dd0JCVr3YV0QpfhaGXK2uHd
-         Vsgsi0YLbgVVOgP3oIglxUNHlBE06zfkDFvattpKst0rAlk8aez4WGJmLXHnIpG/7cyv
-         2Ri4Q3fekfYMye/xvD4nmOShZfj6zfpqOCiYP9wHQ19lrOmnjAg5o8CJmY5pvU91xjdo
-         osUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=GMQu+Y5MmIbydykdiifw+beEBbT3HPvfrEgmPiWWPA4=;
-        b=wztFBh/Cr+LfuIMtyuFYWinpggbExXmi+YZ03caan8xfPyCyoNC66Nl68zBlchBBdB
-         xKfOXCjJJyFdLg5ecvb27mPDxaGLozSc9+JNh6miTqfPWuiPPXEm90Eg688WpcFMDdZ/
-         vKJqCMNkch2QQWd30ULYtd4aF6qvrn2xQwJI5CDkoF3cj2jTaF4HqJxnmOg7AbAADRjb
-         OzzFqo8C9CLvUrUht3ANN++Axm1VGAmao8lIwJpeEYImpR6GDIw1ChXn9lLTU07sTeLl
-         qXUbNQwrF6xCZbGjziqlLtwAu046RZaAlmjxTeJswB6ZwNGOTWxnYyco637Pt4A4sGrZ
-         YLkA==
-X-Gm-Message-State: ACrzQf26IzLr39LLMQe5865QfSKlUT6ACb8p5bSUZT/4QV1hF8uBIsn0
-        mEdMWcbLFF2aI/MglwM8SQXp8Q==
-X-Google-Smtp-Source: AMsMyM6G4CD/tMHlq2tzVSbpToSXOyOrtSoAAC5uClinvbXwxCGIVWwya+GRyFBf6LQxfXbbcQ914Q==
-X-Received: by 2002:a05:600c:5122:b0:3b4:768d:f491 with SMTP id o34-20020a05600c512200b003b4768df491mr680108wms.68.1663262432570;
-        Thu, 15 Sep 2022 10:20:32 -0700 (PDT)
-Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id o11-20020a05600c510b00b003a845621c5bsm3408304wms.34.2022.09.15.10.20.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Sep 2022 10:20:32 -0700 (PDT)
-Message-ID: <789f2638-b4da-146d-64ce-3e156428bcd7@linaro.org>
-Date:   Thu, 15 Sep 2022 19:20:19 +0200
+        with ESMTP id S229889AbiIORXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 13:23:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEFE19E88A;
+        Thu, 15 Sep 2022 10:23:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D7F406258B;
+        Thu, 15 Sep 2022 17:23:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D7E8C433C1;
+        Thu, 15 Sep 2022 17:23:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663262619;
+        bh=pBZfZnF367uJzd8ea6waz1hCGji3S73heEJwNc2UmTA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HSa8lPN+3ZKAfu6aW3ra+49E5CpJZnIyMhgQmOLb3RZF9/uSDtJSI2HDqFbS1dJYP
+         2jtVRHb7YalMtbsk7ztOEFMDyN3rJjAdINFBiUOhQ2PSqrXTOXFbTRQkddmb917YMe
+         Wvp0BjputE7oaVsgn2dcagxnHrEbxVWbSI4A4CX9ObPkHRGd3utO6Ff3bxj9kg9Q/j
+         XJ7QtP5+5BHHNIAfzTe+T+ezmiekda0deA03OOeZUBp5vNGBa0qfgsH1j6s+F4e9Nj
+         RNVYoaaOHYnFOF0OqQoLL2pTKyI+s9Zzj3ouGtGuU/8G7TDaPU/BEkSksufFRDCatv
+         SgJjFlTEk4A3Q==
+Date:   Thu, 15 Sep 2022 12:23:36 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, bgoswami@quicinc.com,
+        perex@perex.cz, tiwai@suse.com, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 2/4] ASoC: dt-bindings: qcom,sm8250: add compatibles
+ for sm8450 and sm8250
+Message-ID: <20220915172336.zh3l2kb42uis45ey@builder.lan>
+References: <20220915125611.22473-1-srinivas.kandagatla@linaro.org>
+ <20220915125611.22473-3-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4 0/4] thermal: mediatek: Add support for MT8365 SoC
-Content-Language: en-US
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        matthias.bgg@gmail.com
-Cc:     rafael@kernel.org, fparent@baylibre.com, amitk@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-        robh+dt@kernel.org, rui.zhang@intel.com
-References: <20220909073609.32337-1-aouledameur@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20220909073609.32337-1-aouledameur@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220915125611.22473-3-srinivas.kandagatla@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,44 +58,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/09/2022 09:36, Amjad Ouled-Ameur wrote:
-> This patchset adds thermal support for MT8365 SoC which contains three
-> thermal sensors.
+On Thu, Sep 15, 2022 at 01:56:09PM +0100, Srinivas Kandagatla wrote:
+> Add compatibles for sm8450 and sm8250xp based soundcards.
 > 
-> Changes in V4:
-> - rebased on thermal/linux-next
-> - Use callback for raw_to_mcelsius()
-> - Use struct 'struct thermal_zone_device_ops' instead of
-> no longer existent 'struct thermal_zone_of_device_ops'
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Amjad Ouled-Ameur (1):
->    thermal: mediatek: add another get_temp ops for thermal sensors
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> index a3a4289f713e..58b9c6463364 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> @@ -23,6 +23,8 @@ properties:
+>        - qcom,sdm845-sndcard
+>        - qcom,sm8250-sndcard
+>        - qcom,qrb5165-rb5-sndcard
+> +      - qcom,sm8450-sndcard
+> +      - qcom,sc8280xp-sndcard
+
+It's nice when these are kept sorted...
+
+Regards,
+Bjorn
+
+>  
+>    audio-routing:
+>      $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> -- 
+> 2.21.0
 > 
-> Fabien Parent (2):
->    dt-bindings: thermal: mediatek: add binding documentation for MT8365
->      SoC
->    thermal: mediatek: add support for MT8365 SoC
-> 
-> Markus Schneider-Pargmann (1):
->    thermal: mediatek: control buffer enablement tweaks
-> 
->   .../bindings/thermal/mediatek-thermal.txt     |   1 +
->   drivers/thermal/mtk_thermal.c                 | 197 +++++++++++++++---
->   2 files changed, 166 insertions(+), 32 deletions(-)
-
-The series does not apply on the thermal tree.
-
-Please refresh the series against:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/log/?h=thermal/linux-next
-
-Thanks
-
-   -- D.
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
