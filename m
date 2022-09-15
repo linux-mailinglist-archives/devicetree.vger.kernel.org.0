@@ -2,101 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 436A15B968C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 10:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF8F75B96C8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 10:59:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbiIOIpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 04:45:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34754 "EHLO
+        id S229669AbiIOI7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 04:59:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbiIOIo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 04:44:59 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51606582E
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 01:44:57 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id o20-20020a05600c4fd400b003b4a516c479so2813710wmq.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 01:44:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=dH3Xddf4i5wgA75cL5yNqkffds3UMT4VE2SGxW8RhZ0=;
-        b=w3JmFD3guZo7MocNtVx9G7wa+lRT/sZ8vNA5Uk1hmDctwgD4yofQefYoX8F9daHJgw
-         /0mT5QAI3kVtnkM2mfOod90kPojQvCiejX5Hxg7lMTT44u2XJt7koTpLZocfyObv/O4X
-         mmC3zcZdT+vnVMIwHNHDmIu1tLDpT8rHjxk84pHQGBZDamxaPRMdMzMd2h1NiJaFSman
-         lJqbLD4q6jUAR6ZGnZvJ4/YNPZEQyreaj6OM1fN/Xijpj5Tz6fXxilW+yv2+tuF+yVX5
-         1Vg8a7Y3pe2aH1P07gTISmTQZGZwkbxOHrmeW9Kekcbk91Zi1mtZZPKEyxY0uWcMyasu
-         +5uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=dH3Xddf4i5wgA75cL5yNqkffds3UMT4VE2SGxW8RhZ0=;
-        b=zecpg2P6LImJ1OJUriLZNRrze0JoQhiM678yI98fQSVitrWtsELutgCOYHyLTdQxoI
-         F096uwstzzqJaUsos5esQu/0R+frRfUa0Y6ewQ+SVCkoA+hA2F7VbXNXkNfUuR/68/71
-         aRyXnTIpkDLmYE9jcom1APeeuhEGnIhGBtDKwKjYk2/ZslDGywSsOhUL7otycg0LBn7a
-         KLsnNHYCiOpC7UJ/kwtT9fa6bVzgjvYikI3QWZeljmMb/5QADBnnwHgnB7R9MKfrbgIW
-         fbbMbLZNmiZdSud49G4FGaM5D4woITE1kfAcqlM/ABEMHyXAmkh2+g3MwBKeeEDzBX8d
-         TqEA==
-X-Gm-Message-State: ACgBeo2px5hPeUNgnTwEddEGAVjuTnN6Q/NiBjdqaFN58I4L6tFjAT7W
-        MQM4ZyY3KhBR5oFpDm5v9gbKQg==
-X-Google-Smtp-Source: AA6agR6g3+PdSE1eWZLnJptiRikw1dAQOcBMC54WBw3sZVuwHijTXaUiB7oVB1SdslSnYh68ync4Sw==
-X-Received: by 2002:a05:600c:2e15:b0:3b4:9c95:2871 with SMTP id o21-20020a05600c2e1500b003b49c952871mr5852312wmf.133.1663231496194;
-        Thu, 15 Sep 2022 01:44:56 -0700 (PDT)
-Received: from [10.119.22.201] ([89.101.193.73])
-        by smtp.gmail.com with ESMTPSA id iv11-20020a05600c548b00b003a1980d55c4sm2080912wmb.47.2022.09.15.01.44.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Sep 2022 01:44:55 -0700 (PDT)
-Message-ID: <05ce5c7c-c7e2-cac1-341a-5461804f96ea@linaro.org>
-Date:   Thu, 15 Sep 2022 09:44:54 +0100
+        with ESMTP id S229531AbiIOI7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 04:59:39 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07CE56357;
+        Thu, 15 Sep 2022 01:59:34 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28F8x8TW046686;
+        Thu, 15 Sep 2022 03:59:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1663232348;
+        bh=40RIuyJ2v1HtbWXuDnlrnW8RPk37ZglF34ofD503bS4=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=e6bzabUStOo5T8yO8QyySkKPtyAhaLQOdu0IzNLPYPl6WThhdxkxO3CvyMuESRKUr
+         HBgzIoe13+R+HH+bj5pDYLr3ycGz1gLDzQjQmEo0LBIcg4TrFB5pmJaGbCEG4Mpmjd
+         is+d28/hY8zW1pv6W+daAhYeMAyZTQvDqSVEIE4E=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28F8x7GY066923
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Sep 2022 03:59:07 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 15
+ Sep 2022 03:59:07 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 15 Sep 2022 03:59:06 -0500
+Received: from [10.24.69.241] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28F8x1kZ032248;
+        Thu, 15 Sep 2022 03:59:01 -0500
+Message-ID: <1c3facf9-1ecf-f090-e800-803d83a89e4b@ti.com>
+Date:   Thu, 15 Sep 2022 14:29:00 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH] dt-bindings: usb: dwc3: Add interrupt-names to include
- hibernation interrupt
+ Thunderbird/91.11.0
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vladimir.oltean@nxp.com>,
+        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH 5/8] net: ethernet: ti: am65-cpsw: Add support for
+ fixed-link configuration
 Content-Language: en-US
-To:     "Mehta, Piyush" <piyush.mehta@amd.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "balbi@kernel.org" <balbi@kernel.org>
-Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "Paladugu, Siva Durga Prasad" <siva.durga.prasad.paladugu@amd.com>,
-        Manish Narani <manish.narani@xilinx.com>
-References: <20220912085730.390555-1-piyush.mehta@amd.com>
- <4cc7a6d2-64ef-c176-21ad-4c3e66f664f7@linaro.org>
- <MN2PR12MB43330B57F5CFBEC35105665188469@MN2PR12MB4333.namprd12.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <MN2PR12MB43330B57F5CFBEC35105665188469@MN2PR12MB4333.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+References: <20220914095053.189851-1-s-vadapalli@ti.com>
+ <20220914095053.189851-6-s-vadapalli@ti.com>
+ <YyH2GcLCAN+9GAn8@shell.armlinux.org.uk>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <YyH2GcLCAN+9GAn8@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/09/2022 14:15, Mehta, Piyush wrote:
->  
->> Where is the user (DTS) and implementation of this change? If this is specific
->> to Xilinx, why you do not have device specific compatible?
-> [Piyush]:
-> We have dedicated irq line for hibernation feature,  "hiber" irq line triggers hibernation interrupt.
-> DWC3 core supports the hibernation feature, we have a dedicated code which is yet to be upstreamed.
-> As the hibernation feature provided by dwc3-core, so this will be supported by other SOC/vendors.
+Hello Russell,
 
-But is hiber irq line present in other vendors? What confuses me is
-adding not only "hiber" irq but also otg in completely new enum.
+On 14/09/22 21:11, Russell King (Oracle) wrote:
+> On Wed, Sep 14, 2022 at 03:20:50PM +0530, Siddharth Vadapalli wrote:
+>> diff --git a/drivers/net/ethernet/ti/am65-cpsw-nuss.c b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+>> index 72b1df12f320..1739c389af20 100644
+>> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+>> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+>> @@ -1494,10 +1494,50 @@ static void am65_cpsw_nuss_mac_config(struct phylink_config *config, unsigned in
+>>  							  phylink_config);
+>>  	struct am65_cpsw_port *port = container_of(slave, struct am65_cpsw_port, slave);
+>>  	struct am65_cpsw_common *common = port->common;
+>> +	struct fwnode_handle *fwnode;
+>> +	bool fixed_link = false;
+>>  
+>>  	if (common->pdata.extra_modes & BIT(state->interface))
+>>  		writel(AM65_CPSW_SGMII_CONTROL_MR_AN_ENABLE,
+>>  		       port->sgmii_base + AM65_CPSW_SGMII_CONTROL_REG);
+>> +
+>> +	/* Detecting fixed-link */
+>> +	fwnode = of_node_to_fwnode(port->slave.phy_node);
+>> +	if (fwnode)
+>> +		fixed_link = !!fwnode_get_named_child_node(fwnode, "fixed-link");
+>> +
+>> +	if (fixed_link) {
+>> +		/* In fixed-link mode, mac_link_up is not invoked.
+>> +		 * Therefore, the relevant mac_link_up operations
+>> +		 * have to be moved to mac_config.
+>> +		 */
+> 
+> This seems very wrong. Why is mac_link_up() not invoked? Have you
+> debugged this? It works for other people.
+> 
+> Please debug rather than adding hacks to drivers when you find
+> things that don't seem to work.
 
+I will debug and find out. I had assumed that mac_link_up() is not
+invoked in fixed-link mode. Thank you for clarifying.
 
-Best regards,
-Krzysztof
+Regards,
+Siddharth.
