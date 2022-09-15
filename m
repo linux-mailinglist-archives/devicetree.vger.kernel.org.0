@@ -2,381 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD675B9BD7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 15:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 175675B9BE6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 15:37:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229624AbiIONbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 09:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42476 "EHLO
+        id S229609AbiIONhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 09:37:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbiIONbB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 09:31:01 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6237332B;
-        Thu, 15 Sep 2022 06:30:58 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id r23so8753293pgr.6;
-        Thu, 15 Sep 2022 06:30:58 -0700 (PDT)
+        with ESMTP id S229572AbiIONhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 09:37:46 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 070455A142
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 06:37:45 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id a8so30352462lff.13
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 06:37:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:content-disposition:mime-version:message-id:subject:cc
-         :to:date:from:from:to:cc:subject:date;
-        bh=zoTspqWd5bEUesqew89wekkGeLmxDKVtWg/6vWPEcVA=;
-        b=diPv9eE8ZrjRMgwOHQWjWF7Z3I+kFUmpzeiv6mqpxAgU4cEEX1w2q7V+jd97klVSCN
-         +JNMReRmpwdKOwCsOfk2qlyQ9yuXGnxa6bmo7ULGWFjMjwCbuGTG2wMv9ZB44tdkwp8G
-         V4XHzlQvSaUl6l1jnC0yut0SW42DfqWy6kkrcsJb6TzbnhclFeM4pm8lmN8IHlixOboI
-         35wwCP2tbRIdT11qQYFA30qAaLcgpL6FUug9a44EufETzK+2ARUOXutidYAFks248RCt
-         cBbQfK0pWiFqIf+Ot9rEJZM1LlhXYkGT3Vu2+H8dqAmQhbDoVKGj91TTen8o4rNMQPq/
-         eHbQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=lrd6VnfqJApSJppb6xI303k0JwHHmOYhEyNS4XGWRFA=;
+        b=KoTHBVBAaChkoFAE5029XAI7eKlWeFk7/R39zb6Go2RhR48+VIk6tJFy50F/jCglRE
+         WHDFLDLIjL4F7O9tvzKs8RejHyBr8msYVAKt6GrVllvrU0VwgE74TLaMCSGTGLkJb1NX
+         rfZIQ/t8XOWI2205/AuyhZS8XeGPyjYWonydI1m7u3B6VPGJvOpL4pLFt9FDJsDiE8Np
+         LxpQM3R1Naj7LiYv7tHATUkJWyJW2Xg6bIOkO4fYKldOcD5j1jdtN0AVMGiSRBPGtKWc
+         hc4vlDNl4NJj090m6tOXRpxOro/0uxgz1H33BZIC//CgHcAeHstCtHLvzmx8SC3v/Mru
+         iWcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:content-disposition:mime-version:message-id:subject:cc
-         :to:date:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=zoTspqWd5bEUesqew89wekkGeLmxDKVtWg/6vWPEcVA=;
-        b=YNgkVV3Vo9UZR2petz4YMJSRa7UCgtXk59Sdo0xATnNRLgKHbdWoofF51jQqLIomsn
-         iDYxZePu+vKHEGji7nuJX+s2aZzSTNsm9k+07avuud9urKY6veADIUwSR4zSSLnD0OsY
-         ktK83l1geDFTgKtTKEUyAMaXmvfz/w13oHyNM815mA1Ukgs5DIXpOzWzaTtv4CHyhD6n
-         uL0bCTLis+tQ1yFcWM4kw5zEl2TbPC0hRckoXyeVY9JW8UJb+e8SA46UJA2Zsugl0Mhe
-         TB2K+gjEh8o7BZUdtnJKvPNQf5rSR5EAy3Z5FzQyEts4T3hYP3Pp3i2eC5wbmj4MIVQf
-         XD6A==
-X-Gm-Message-State: ACgBeo3AgBWqUEUqlxyEFLG1L1W3GC2SeQtOXS1WeMywYBFvN95/yFER
-        HedT2QKsiujuYwi6k2Th5vc=
-X-Google-Smtp-Source: AA6agR4bMIf/3jAPwqIs8t1E4svX1XsycKqQB3/V+I5xeEwg3OdKocTDsW3R1hzYfIzaamKTuHcK7g==
-X-Received: by 2002:a65:5941:0:b0:41d:a203:c043 with SMTP id g1-20020a655941000000b0041da203c043mr35592296pgu.483.1663248658051;
-        Thu, 15 Sep 2022 06:30:58 -0700 (PDT)
-Received: from logan-ThinkPad-T14-Gen-1 ([117.241.76.28])
-        by smtp.gmail.com with ESMTPSA id u1-20020a17090341c100b00176ba091cd3sm9464771ple.196.2022.09.15.06.30.52
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 15 Sep 2022 06:30:57 -0700 (PDT)
-From:   Logananth Sundararaj <logananth13.hcl@gmail.com>
-X-Google-Original-From: Logananth Sundararaj <logananth_s@hcl.com>
-Date:   Thu, 15 Sep 2022 19:00:49 +0530
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org
-Cc:     thangavel.k@hcl.com, naveen.mosess@hcl.com, patrick@stwcx.xyz,
-        velumanit@hcl.com
-Subject: [PATCH v6] ARM: dts: aspeed: Adding Facebook Yosemite V3.5 BMC
-Message-ID: <20220915133049.GA9319@logan-ThinkPad-T14-Gen-1>
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=lrd6VnfqJApSJppb6xI303k0JwHHmOYhEyNS4XGWRFA=;
+        b=NFdVHCVkwQ8PwFTB2hKn1oo/3QTSwiCRWekChmAWwKj4b7GYixXsvBF+E18FejYtfx
+         eDzmX0S9Ry10iHKk8lLuP87VvmYAIXRJ70Al3Z60zDuH5FLi20ZislSFc4qBCN5xl0qr
+         ZbYepR1Es9nIkV49nM8785euJf5tEyHExRMMijQaZ6Zm2Iq2E85tHlmI19vQQzghdV1A
+         WHAjTakRcPEP+OtpI9KgtgUo8a4TS0mYN7KfY+LRVitsWjCBs3q1r8JU5WkkgjodeBE1
+         A5dOdxGUJZVlpN9NPyf+6LhufGfiXqzicn8Ta7iw52FIDEXo4CZF9aUnidC2VMJi5Pqi
+         xr5A==
+X-Gm-Message-State: ACgBeo1cH6MfEn8DL2NoI/hpQs5rqXxREQjKr4g6S/YxBMvPxkUhLOpf
+        0zCovvylgISM3uvLgd6CP+gQOQ==
+X-Google-Smtp-Source: AA6agR5fzXF7XwpqvzAUleEv9zA3CFS2t43pRwg1PxEtvOSAtJvDH/n2zv8Nkk7iQj+WC4hWVUuoMw==
+X-Received: by 2002:a05:6512:3d9f:b0:497:a108:544f with SMTP id k31-20020a0565123d9f00b00497a108544fmr12679417lfv.688.1663249063304;
+        Thu, 15 Sep 2022 06:37:43 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id 2-20020a2e0902000000b0026ad753448fsm3142634ljj.85.2022.09.15.06.37.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Sep 2022 06:37:42 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: [PATCH v7 00/12] dt-bindings: display/msm: rework MDSS and DPU bindings
+Date:   Thu, 15 Sep 2022 16:37:30 +0300
+Message-Id: <20220915133742.115218-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Yosemite V3.5 is a facebook multi-node server
-platform that host four OCP server. The BMC
-in the Yosemite V3.5 platform based on AST2600 SoC.
+Create separate YAML schema for MDSS devicesd$ (both for MDP5 and DPU
+devices). Cleanup DPU schema files, so that they do not contain schema
+for both MDSS and DPU nodes. Apply misc small fixes to the DPU schema
+afterwards. Add schema for the MDSS and DPU on sm8250 platform.
 
-This patch adds linux device tree entry related to
-Yosemite V3.5 specific devices connected to BMC SoC.
+Changes since v6:
+ - Removed extra newlines (Krzysztof)
+ - Added $ref to dpu-common.yaml#/ports/port@foo to enforce schema
+   for the port nodes (Rob)
+ - Removed unused allOf's (Rob)
+ - Fixed repeated interconnects descriptions (Rob)
+ - Fixed dpu-common.yaml and mdss-common.yaml descriptions (Rob)
+ - Fixed intentation of examples (Krzysztof)
+ - Renamed MDSS and DPU schema to follow compat names (Rob)
 
-Signed-off-by: Logananth Sundararaj <logananth_s@hcl.com>
+Changes since v5:
+ - Dropped the core clock from mdss.yaml. It will be handled in a
+   separate patchset together with adding the clock itself.
+ - Fixed a typo in two commit subjects (mdm -> msm).
 
----
---- v6 - commit and version updated.
---- v5 - Aligned and formatted.
---- v4 - Bootagrs and memory removed.
---- v3 - Addressed v2 patch comments.
---- v2 - Enabled i2c drivers.
---- v1 - Initial draft.
----
+Changes since v4:
+ - Created separate mdss-common.yaml
+ - Rather than squashing everything into mdss.yaml, create individual
+   schema files for MDSS devices.
 
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../boot/dts/aspeed-bmc-facebook-fby35.dts    | 260 ++++++++++++++++++
- 2 files changed, 261 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
+Changes since v3:
+ - Changed mdss->(dpu, dsi, etc.) relationship into the tight binding
+   depending on the mdss compatible string.
+ - Added sm8250 dpu schema and added qcom,sm8250-mdss to mdss.yaml
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7e0934180724..58add093e5fb 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1465,6 +1465,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-cloudripper.dtb \
- 	aspeed-bmc-facebook-cmm.dtb \
- 	aspeed-bmc-facebook-elbert.dtb \
-+	aspeed-bmc-facebook-fby35.dtb \
- 	aspeed-bmc-facebook-fuji.dtb \
- 	aspeed-bmc-facebook-galaxy100.dtb \
- 	aspeed-bmc-facebook-minipack.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
-new file mode 100644
-index 000000000000..f2164c69cbb1
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
-@@ -0,0 +1,260 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright (c) 2020 Facebook Inc.
-+
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "Facebook fby35";
-+	compatible = "facebook,fby35", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+			<&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-+			<&adc1 4>, <&adc1 5>, <&adc1 6>;
-+	};
-+
-+	spi_gpio: spi-gpio {
-+		status = "okay";
-+		compatible = "spi-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-sck = <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
-+		gpio-mosi = <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
-+		gpio-miso = <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
-+		num-chipselects = <1>;
-+		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
-+
-+		tpmdev@0 {
-+			compatible = "tcg,tpm_tis-spi";
-+			spi-max-frequency = <33000000>;
-+			reg = <0>;
-+		};
-+	};
-+};
-+
-+&mac3 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+	no-hw-checksum;
-+	use-ncsi;
-+	mlx,multi-host;
-+	ncsi-ctrl,start-redo-probe;
-+	ncsi-ctrl,no-channel-monitor;
-+	ncsi-package = <1>;
-+	ncsi-channel = <1>;
-+	ncsi-rexmit = <1>;
-+	ncsi-timeout = <2>;
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	status = "okay";
-+	compatible = "snps,dw-apb-uart";
-+};
-+
-+&wdt1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst1_default>;
-+	aspeed,reset-type = "soc";
-+	aspeed,external-signal;
-+	aspeed,ext-push-pull;
-+	aspeed,ext-active-high;
-+	aspeed,ext-pulse-duration = <256>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "spi0.0";
-+		spi-max-frequency = <50000000>;
-+		#include "openbmc-flash-layout-128.dtsi"
-+	};
-+	flash@1 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "spi0.1";
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+&i2c0 {
-+	// Host1 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb0@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c1 {
-+	// Host2 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb1@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c2 {
-+	// Host3 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb2@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c3 {
-+	// Host4 IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb3@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	// NIC SENSOR TEMP
-+	status = "okay";
-+	tmp421@1f {
-+		compatible = "ti,tmp421";
-+		reg = <0x1f>;
-+	};
-+};
-+
-+&i2c9 {
-+	// Debug-Card IPMB bus
-+	status = "okay";
-+	multi-master;
-+	ipmb9@30 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x30 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	// FRU EEPROM
-+	status = "okay";
-+	eeprom@51 {
-+		compatible = "atmel,24c64";
-+		reg = <0x51>;
-+		pagesize = <32>;
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+	// INLET TEMP
-+	tmp75@4e {
-+		compatible = "ti,tmp75";
-+		reg = <0x4e>;
-+	};
-+	// OUTLET TEMP
-+	tmp75@4f {
-+		compatible = "ti,tmp75";
-+		reg = <0x4f>;
-+	};
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+};
-+
-+&adc0 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		&pinctrl_adc2_default &pinctrl_adc3_default
-+		&pinctrl_adc4_default &pinctrl_adc5_default
-+		&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-+		&pinctrl_adc10_default &pinctrl_adc11_default
-+		&pinctrl_adc12_default &pinctrl_adc13_default>;
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&uhci {
-+	status = "okay";
-+};
+Changes since v2:
+ - Added a patch to allow opp-table under the dpu* nodes.
+ - Removed the c&p issue which allowed the @0 nodes under the MDSS
+   device node.
+
+Changes since v1:
+ - Renamed DPU device nodes from mdp@ to display-controller@
+ - Described removal of mistakenly mentioned "lut" clock
+ - Switched mdss.yaml to use $ref instead of fixing compatible strings
+ - Dropped mdp-opp-table description (renamed by Krzysztof in his
+   patchset)
+ - Reworked DPU's ports definitions. Dropped description of individual
+   ports, left only /ports $ref and description in dpu-common.yaml.
+
+Dmitry Baryshkov (12):
+  dt-bindings: display/msm: split qcom,mdss bindings
+  dt-bindings: display/msm: add gcc-bus clock to dpu-smd845
+  dt-bindings: display/msm: add interconnects property to
+    qcom,mdss-smd845
+  dt-bindings: display/msm: move common DPU properties to
+    dpu-common.yaml
+  dt-bindings: display/msm: move common MDSS properties to
+    mdss-common.yaml
+  dt-bindings: display/msm: split dpu-sc7180 into DPU and MDSS parts
+  dt-bindings: display/msm: split dpu-sc7280 into DPU and MDSS parts
+  dt-bindings: display/msm: split dpu-sdm845 into DPU and MDSS parts
+  dt-bindings: display/msm: split dpu-msm8998 into DPU and MDSS parts
+  dt-bindings: display/msm: split dpu-qcm2290 into DPU and MDSS parts
+  dt-bindings: display/msm: add missing device nodes to mdss-* schemas
+  dt-bindings: display/msm: add support for the display on SM8250
+
+ .../bindings/display/msm/dpu-common.yaml      |  48 ++++
+ .../bindings/display/msm/dpu-msm8998.yaml     | 223 ----------------
+ .../bindings/display/msm/dpu-qcm2290.yaml     | 222 ----------------
+ .../bindings/display/msm/dpu-sc7180.yaml      | 235 -----------------
+ .../bindings/display/msm/dpu-sc7280.yaml      | 239 ------------------
+ .../bindings/display/msm/dpu-sdm845.yaml      | 217 ----------------
+ .../devicetree/bindings/display/msm/mdp5.txt  |  30 +--
+ .../bindings/display/msm/mdss-common.yaml     |  83 ++++++
+ .../bindings/display/msm/qcom,mdss.yaml       | 164 ++++++++++++
+ .../display/msm/qcom,msm8998-dpu.yaml         |  95 +++++++
+ .../display/msm/qcom,msm8998-mdss.yaml        |  87 +++++++
+ .../display/msm/qcom,qcm2290-dpu.yaml         |  84 ++++++
+ .../display/msm/qcom,qcm2290-mdss.yaml        |  91 +++++++
+ .../bindings/display/msm/qcom,sc7180-dpu.yaml |  95 +++++++
+ .../display/msm/qcom,sc7180-mdss.yaml         | 102 ++++++++
+ .../bindings/display/msm/qcom,sc7280-dpu.yaml |  98 +++++++
+ .../display/msm/qcom,sc7280-mdss.yaml         | 111 ++++++++
+ .../bindings/display/msm/qcom,sdm845-dpu.yaml |  90 +++++++
+ .../display/msm/qcom,sdm845-mdss.yaml         |  91 +++++++
+ .../bindings/display/msm/qcom,sm8250-dpu.yaml |  92 +++++++
+ .../display/msm/qcom,sm8250-mdss.yaml         | 103 ++++++++
+ 21 files changed, 1435 insertions(+), 1165 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-common.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
+
 -- 
-2.17.1
+2.35.1
 
