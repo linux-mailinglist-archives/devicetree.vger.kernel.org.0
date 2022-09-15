@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCF7C5B95D1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 09:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E5A15B95D4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 09:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbiIOH7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 03:59:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50750 "EHLO
+        id S229956AbiIOH7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 03:59:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbiIOH7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 03:59:05 -0400
+        with ESMTP id S230148AbiIOH7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 03:59:08 -0400
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E31D979EA;
-        Thu, 15 Sep 2022 00:58:58 -0700 (PDT)
-X-UUID: 73448702196f4cf593af475cd2e6d34b-20220915
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 849BD979C7;
+        Thu, 15 Sep 2022 00:59:00 -0700 (PDT)
+X-UUID: ede7870b5c2f420185519a2cf7931ea9-20220915
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=0nq7xfZDD4ZYowzdYVLDw56ampwPWvrE73MxNai3bhk=;
-        b=H8o4MGyDjEqq9sV3a/dJRfBlEDwcDTHY5rEZkkfbD+taj8QXNgWWu9KaUE2xfSRptw3IIaF/c1mKjOMQTxktzlUXGvXLG4xjsaGoUCclGzbILLUFz+QNSsklMWUg1AhgBg4I9Clsqsim1SFDBm5CU6jv+a/kYXHF2hARFR1TxZk=;
+        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=RHy/Gx3KYGknHMgZ5mq5VmWHIkd/JO3p2XkWakbWclY=;
+        b=hfM5rf3FyAYDFq8pvvH/d5bRqgCCY7ZC5Tp4wLKKZP/s8iFc1P//jR+YK6pWoo4hY3PeBzZ2sxxPyU7v3RwwptPBr9BXweP1VYVPjLVyXcRn6gy9PFp2Jp3OYpHv0ZZE6Kc5rf2RQnqR185tIQ2pRVO2tVuTntCXeMiqybdqbZU=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:e3e95d95-6d63-43ee-b40a-6069970fa253,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:10897ef6-6e85-48d9-afd8-0504bbfe04cb,B
+X-CID-O-INFO: VERSION:1.1.11,REQID:aa67205b-22e9-49f4-a519-9b5397f6239e,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:39a5ff1,CLOUDID:a171b97b-ea28-4199-b57e-003c7d60873a,B
         ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
         RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 73448702196f4cf593af475cd2e6d34b-20220915
+X-UUID: ede7870b5c2f420185519a2cf7931ea9-20220915
 Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
         (envelope-from <rex-bc.chen@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 960130676; Thu, 15 Sep 2022 15:58:51 +0800
+        with ESMTP id 1364317064; Thu, 15 Sep 2022 15:58:51 +0800
 Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
  mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -47,10 +47,12 @@ CC:     <matthias.bgg@gmail.com>,
         <linux-kernel@vger.kernel.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>,
         Bo-Chen Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH 0/4] Add dp-intf and dp nodes
-Date:   Thu, 15 Sep 2022 15:58:45 +0800
-Message-ID: <20220915075849.1920-1-rex-bc.chen@mediatek.com>
+Subject: [PATCH 1/4] arm64: dts: mt8195: Add dp-intf nodes
+Date:   Thu, 15 Sep 2022 15:58:46 +0800
+Message-ID: <20220915075849.1920-2-rex-bc.chen@mediatek.com>
 X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20220915075849.1920-1-rex-bc.chen@mediatek.com>
+References: <20220915075849.1920-1-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-MTK:  N
@@ -64,19 +66,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series add MediaTek dp-intf nodes and dp nodes.
-This series is based on linux-next-20220914.
+Add dp-intf0 and dp-intf1 nodes for MT8195.
 
-Bo-Chen Chen (4):
-  arm64: dts: mt8195: Add dp-intf nodes
-  arm64: dts: mt8195: Add dptx nodes
-  arm64: dts: mediatek: cherry: Add dp-intf ports
-  arm64: dts: mediatek: cherry: Add edptx and dptx support
+Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
- .../boot/dts/mediatek/mt8195-cherry.dtsi      | 86 +++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 48 +++++++++++
- 2 files changed, 134 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index 905d1a90b406..93e6a106a9b8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -2155,5 +2155,28 @@
+ 			clock-names = "apb", "smi", "gals";
+ 			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+ 		};
++
++		dp_intf0: dp-intf@1c015000 {
++			status = "disabled";
++			compatible = "mediatek,mt8195-dp-intf";
++			reg = <0 0x1c015000 0 0x1000>;
++			interrupts = <GIC_SPI 657 IRQ_TYPE_LEVEL_HIGH 0>;
++			clocks = <&vdosys0  CLK_VDO0_DP_INTF0>,
++				 <&vdosys0 CLK_VDO0_DP_INTF0_DP_INTF>,
++				 <&apmixedsys CLK_APMIXED_TVDPLL1>;
++			clock-names = "engine", "pixel", "pll";
++		};
++
++		dp_intf1: dp-intf@1c113000 {
++			compatible = "mediatek,mt8195-dp-intf";
++			reg = <0 0x1c113000 0 0x1000>;
++			interrupts = <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH 0>;
++			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
++			clocks = <&vdosys1 CLK_VDO1_DP_INTF0_MM>,
++				 <&vdosys1 CLK_VDO1_DPINTF>,
++				 <&apmixedsys CLK_APMIXED_TVDPLL2>;
++			clock-names = "engine", "pixel", "pll";
++			status = "disabled";
++		};
+ 	};
+ };
 -- 
 2.18.0
 
