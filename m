@@ -2,443 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F685B9226
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 03:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9B1C5B922A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 03:33:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbiIOBbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 21:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45648 "EHLO
+        id S229919AbiIOBdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 21:33:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbiIOBbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 21:31:13 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 558DE69F72;
-        Wed, 14 Sep 2022 18:31:11 -0700 (PDT)
-X-UUID: 623697e2114d46bf9fbe34725ac66fa6-20220915
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=1Dkt2iyWGB5eEBrBavMQEPfw+ydgwLy70S8Syi1KApk=;
-        b=R3qlMAodXTEyQwa89oTTItD9Zvnvr4b6fj8qjBlEVMaKN3a38hIQEx3+mg1mxmv8bHHTtcr/6BmtHW8cSSOl50ktI+YzefztCGrRXiJQFKbV0GzaQ5O9LzkUsNYvwt836ludaNgno567LLxX6AeXBXjvVfzEiTB502crjCs2cMk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:1867e654-41ff-44bf-81e8-7d1106a1ea77,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:56c76ff6-6e85-48d9-afd8-0504bbfe04cb,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 623697e2114d46bf9fbe34725ac66fa6-20220915
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 416589156; Thu, 15 Sep 2022 09:31:07 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 15 Sep 2022 09:31:05 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 15 Sep 2022 09:31:05 +0800
-Message-ID: <fadb9b2eb8a66bf8c4c22a9220798952804fd455.camel@mediatek.com>
-Subject: Re: [PATCH 2/5] soc: mediatek: change compatible name for mt8195
-From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "Singo Chang" <singo.chang@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 15 Sep 2022 09:31:05 +0800
-In-Reply-To: <f748b0a8-2e6c-b690-19f2-13f3a695f2cb@gmail.com>
-References: <20220914182331.20515-1-jason-jh.lin@mediatek.com>
-         <20220914182331.20515-3-jason-jh.lin@mediatek.com>
-         <f748b0a8-2e6c-b690-19f2-13f3a695f2cb@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229738AbiIOBds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 21:33:48 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5922C792DE;
+        Wed, 14 Sep 2022 18:33:44 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28F0ZueQ017536;
+        Thu, 15 Sep 2022 01:33:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=LRBFs3XrfWaoGBTNqSmEzJ2c04tlJ8Rh82eU+9eVUuw=;
+ b=CwLYmIockp2hO1HIFAmLCwql+ZIz8z79i7hCI1ceXHtX9LT8mlv9Y2vkMxBR2texMvL9
+ m5u67dlx/JJjuUTe75kta+ZQEV9StCCW/J8KPBFhpRK/Foo7wlrgd//7giu4Pptb/Ffp
+ uqwbvJvmxpdGDsU5WCaGncSj/tqC1dnFndiQK58hz+vjSpLfvCsVr9OE7abtGwf9hwt/
+ ddhaB+HMixJXtTgTQ27Cr7uAL8c+ojHR1Dd8QWClv+8DftUR5Ziv2HfFnM4ucXspLLvm
+ i1k2h/gOD97gjMn1iM0ebvqiZFdtjUcSuHCKUqkZueTZBzABIOdxucLdSJy3Vf4z2x4j JQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jkp8arh6q-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Sep 2022 01:33:11 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28F1XAPk023301
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Sep 2022 01:33:11 GMT
+Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 14 Sep
+ 2022 18:33:07 -0700
+Subject: Re: [PATCH 2/2] mailbox: Add support for QTI CPUCP mailbox controller
+To:     Trilok Soni <quic_tsoni@quicinc.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <jassisinghbrar@gmail.com>, <manivannan.sadhasivam@linaro.org>
+CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <konrad.dybcio@somainline.org>,
+        Gaurav Kohli <gkohli@codeaurora.org>
+References: <1663135386-26270-1-git-send-email-quic_sibis@quicinc.com>
+ <1663135386-26270-3-git-send-email-quic_sibis@quicinc.com>
+ <b8e0cbb4-8d4e-1208-0fa0-8f9178b6d85f@quicinc.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+Message-ID: <04d046aa-59c8-46c5-d957-5d2e48f25d72@quicinc.com>
+Date:   Thu, 15 Sep 2022 07:03:04 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <b8e0cbb4-8d4e-1208-0fa0-8f9178b6d85f@quicinc.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: aVU5gjC4oydM2V8ZopPTFBLGNHmETNjq
+X-Proofpoint-ORIG-GUID: aVU5gjC4oydM2V8ZopPTFBLGNHmETNjq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-14_11,2022-09-14_04,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
+ mlxscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0 mlxlogscore=794
+ clxscore=1015 phishscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2208220000
+ definitions=main-2209150002
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Hey Trilok,
+Thanks for taking time to review the patch.
 
-Thanks for the reviews.
-
-On Wed, 2022-09-14 at 22:42 +0200, Matthias Brugger wrote:
+On 9/14/22 11:08 PM, Trilok Soni wrote:
+> Hi Sibi,
 > 
-> On 14/09/2022 20:23, Jason-JH.Lin wrote:
-> > In mt8195, vdosys0 and vdosys1 are 2 different function blocks
-> > for mediatek-drm, so using 2 compatible instead of identifying
-> > multiple mmsys by io_start.
-> > 
-> > Fixes: b804923b7ccb ("soc: mediatek: add mtk-mmsys support for
-> > mt8195 vdosys0")
-> > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+>> +
+>> +MODULE_AUTHOR("Gaurav Kohli <gkohli@codeaurora.org>");
+>> +MODULE_AUTHOR("Sibi Sankar <quic_sibis@qti.qualcomm.com>");
 > 
->  From what I have seen we can just revert the commit. No fixes tag
-> needed, it 
-> does not fix any (runtime) bug.
+> Email address should be quic_sibi@quicinc.com.
 > 
-OK, I'll revert the original patch then add a new patch for
-adding driver data of "mediatek,mt8195-vdosys0" compatible.
+> codeaurora.org is any way deprecated, so we should we keep it ? I know 
+> giving the credit is important, but above address will not be reachable 
+> anyways.
+Ack my bad.
 
-Regards,
-Jason-JH.Lin
-
-> Regards,
-> Matthias
 > 
-> > ---
-> >   drivers/soc/mediatek/mtk-mmsys.c | 141 +++++---------------------
-> > -----
-> >   drivers/soc/mediatek/mtk-mmsys.h |   6 --
-> >   2 files changed, 21 insertions(+), 126 deletions(-)
-> > 
-> > diff --git a/drivers/soc/mediatek/mtk-mmsys.c
-> > b/drivers/soc/mediatek/mtk-mmsys.c
-> > index 06d8e83a2cb5..e1c653f3abc0 100644
-> > --- a/drivers/soc/mediatek/mtk-mmsys.c
-> > +++ b/drivers/soc/mediatek/mtk-mmsys.c
-> > @@ -26,61 +26,26 @@ static const struct mtk_mmsys_driver_data
-> > mt2701_mmsys_driver_data = {
-> >   	.num_routes = ARRAY_SIZE(mmsys_default_routing_table),
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt2701_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt2701_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt2712_mmsys_driver_data = {
-> >   	.clk_driver = "clk-mt2712-mm",
-> >   	.routes = mmsys_default_routing_table,
-> >   	.num_routes = ARRAY_SIZE(mmsys_default_routing_table),
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt2712_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt2712_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt6779_mmsys_driver_data = {
-> >   	.clk_driver = "clk-mt6779-mm",
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt6779_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt6779_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt6797_mmsys_driver_data = {
-> >   	.clk_driver = "clk-mt6797-mm",
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt6797_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt6797_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt8167_mmsys_driver_data = {
-> >   	.clk_driver = "clk-mt8167-mm",
-> >   	.routes = mt8167_mmsys_routing_table,
-> >   	.num_routes = ARRAY_SIZE(mt8167_mmsys_routing_table),
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt8167_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt8167_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt8173_mmsys_driver_data = {
-> >   	.clk_driver = "clk-mt8173-mm",
-> >   	.routes = mmsys_default_routing_table,
-> > @@ -88,13 +53,6 @@ static const struct mtk_mmsys_driver_data
-> > mt8173_mmsys_driver_data = {
-> >   	.sw0_rst_offset = MT8183_MMSYS_SW0_RST_B,
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt8173_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt8173_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt8183_mmsys_driver_data = {
-> >   	.clk_driver = "clk-mt8183-mm",
-> >   	.routes = mmsys_mt8183_routing_table,
-> > @@ -102,13 +60,6 @@ static const struct mtk_mmsys_driver_data
-> > mt8183_mmsys_driver_data = {
-> >   	.sw0_rst_offset = MT8183_MMSYS_SW0_RST_B,
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt8183_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt8183_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt8186_mmsys_driver_data = {
-> >   	.clk_driver = "clk-mt8186-mm",
-> >   	.routes = mmsys_mt8186_routing_table,
-> > @@ -116,13 +67,6 @@ static const struct mtk_mmsys_driver_data
-> > mt8186_mmsys_driver_data = {
-> >   	.sw0_rst_offset = MT8186_MMSYS_SW0_RST_B,
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt8186_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt8186_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt8192_mmsys_driver_data = {
-> >   	.clk_driver = "clk-mt8192-mm",
-> >   	.routes = mmsys_mt8192_routing_table,
-> > @@ -130,66 +74,29 @@ static const struct mtk_mmsys_driver_data
-> > mt8192_mmsys_driver_data = {
-> >   	.sw0_rst_offset = MT8186_MMSYS_SW0_RST_B,
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt8192_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt8192_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt8195_vdosys0_driver_data = {
-> > -	.io_start = 0x1c01a000,
-> >   	.clk_driver = "clk-mt8195-vdo0",
-> >   	.routes = mmsys_mt8195_routing_table,
-> >   	.num_routes = ARRAY_SIZE(mmsys_mt8195_routing_table),
-> >   };
-> >   
-> >   static const struct mtk_mmsys_driver_data
-> > mt8195_vdosys1_driver_data = {
-> > -	.io_start = 0x1c100000,
-> >   	.clk_driver = "clk-mt8195-vdo1",
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt8195_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 2,
-> > -	.drv_data = {
-> > -		&mt8195_vdosys0_driver_data,
-> > -		&mt8195_vdosys1_driver_data,
-> > -	},
-> > -};
-> > -
-> >   static const struct mtk_mmsys_driver_data
-> > mt8365_mmsys_driver_data = {
-> >   	.clk_driver = "clk-mt8365-mm",
-> >   	.routes = mt8365_mmsys_routing_table,
-> >   	.num_routes = ARRAY_SIZE(mt8365_mmsys_routing_table),
-> >   };
-> >   
-> > -static const struct mtk_mmsys_match_data mt8365_mmsys_match_data =
-> > {
-> > -	.num_drv_data = 1,
-> > -	.drv_data = {
-> > -		&mt8365_mmsys_driver_data,
-> > -	},
-> > -};
-> > -
-> >   struct mtk_mmsys {
-> >   	void __iomem *regs;
-> >   	const struct mtk_mmsys_driver_data *data;
-> >   	spinlock_t lock; /* protects mmsys_sw_rst_b reg */
-> >   	struct reset_controller_dev rcdev;
-> > -	phys_addr_t io_start;
-> >   };
-> >   
-> > -static int mtk_mmsys_find_match_drvdata(struct mtk_mmsys *mmsys,
-> > -					const struct
-> > mtk_mmsys_match_data *match)
-> > -{
-> > -	int i;
-> > -
-> > -	for (i = 0; i < match->num_drv_data; i++)
-> > -		if (mmsys->io_start == match->drv_data[i]->io_start)
-> > -			return i;
-> > -
-> > -	return -EINVAL;
-> > -}
-> > -
-> >   void mtk_mmsys_ddp_connect(struct device *dev,
-> >   			   enum mtk_ddp_comp_id cur,
-> >   			   enum mtk_ddp_comp_id next)
-> > @@ -284,7 +191,6 @@ static int mtk_mmsys_probe(struct
-> > platform_device *pdev)
-> >   	struct device *dev = &pdev->dev;
-> >   	struct platform_device *clks;
-> >   	struct platform_device *drm;
-> > -	const struct mtk_mmsys_match_data *match_data;
-> >   	struct mtk_mmsys *mmsys;
-> >   	struct resource *res;
-> >   	int ret;
-> > @@ -317,20 +223,11 @@ static int mtk_mmsys_probe(struct
-> > platform_device *pdev)
-> >   		dev_err(dev, "Couldn't get mmsys resource\n");
-> >   		return -EINVAL;
-> >   	}
-> > -	mmsys->io_start = res->start;
-> > -
-> > -	match_data = of_device_get_match_data(dev);
-> > -	if (match_data->num_drv_data > 1) {
-> > -		/* This SoC has multiple mmsys channels */
-> > -		ret = mtk_mmsys_find_match_drvdata(mmsys, match_data);
-> > -		if (ret < 0) {
-> > -			dev_err(dev, "Couldn't get match driver
-> > data\n");
-> > -			return ret;
-> > -		}
-> > -		mmsys->data = match_data->drv_data[ret];
-> > -	} else {
-> > -		dev_dbg(dev, "Using single mmsys channel\n");
-> > -		mmsys->data = match_data->drv_data[0];
-> > +
-> > +	mmsys->data = of_device_get_match_data(&pdev->dev);
-> > +	if (!mmsys->data) {
-> > +		dev_err(dev, "Couldn't get match driver data\n");
-> > +		return -EINVAL;
-> >   	}
-> >   
-> >   	platform_set_drvdata(pdev, mmsys);
-> > @@ -353,47 +250,51 @@ static int mtk_mmsys_probe(struct
-> > platform_device *pdev)
-> >   static const struct of_device_id of_match_mtk_mmsys[] = {
-> >   	{
-> >   		.compatible = "mediatek,mt2701-mmsys",
-> > -		.data = &mt2701_mmsys_match_data,
-> > +		.data = &mt2701_mmsys_driver_data,
-> >   	},
-> >   	{
-> >   		.compatible = "mediatek,mt2712-mmsys",
-> > -		.data = &mt2712_mmsys_match_data,
-> > +		.data = &mt2712_mmsys_driver_data,
-> >   	},
-> >   	{
-> >   		.compatible = "mediatek,mt6779-mmsys",
-> > -		.data = &mt6779_mmsys_match_data,
-> > +		.data = &mt6779_mmsys_driver_data,
-> >   	},
-> >   	{
-> >   		.compatible = "mediatek,mt6797-mmsys",
-> > -		.data = &mt6797_mmsys_match_data,
-> > +		.data = &mt6797_mmsys_driver_data,
-> >   	},
-> >   	{
-> >   		.compatible = "mediatek,mt8167-mmsys",
-> > -		.data = &mt8167_mmsys_match_data,
-> > +		.data = &mt8167_mmsys_driver_data,
-> >   	},
-> >   	{
-> >   		.compatible = "mediatek,mt8173-mmsys",
-> > -		.data = &mt8173_mmsys_match_data,
-> > +		.data = &mt8173_mmsys_driver_data,
-> >   	},
-> >   	{
-> >   		.compatible = "mediatek,mt8183-mmsys",
-> > -		.data = &mt8183_mmsys_match_data,
-> > +		.data = &mt8183_mmsys_driver_data,
-> >   	},
-> >   	{
-> >   		.compatible = "mediatek,mt8186-mmsys",
-> > -		.data = &mt8186_mmsys_match_data,
-> > +		.data = &mt8186_mmsys_driver_data,
-> >   	},
-> >   	{
-> >   		.compatible = "mediatek,mt8192-mmsys",
-> > -		.data = &mt8192_mmsys_match_data,
-> > +		.data = &mt8192_mmsys_driver_data,
-> > +	},
-> > +	{
-> > +		.compatible = "mediatek,mt8195-vdosys0",
-> > +		.data = &mt8195_vdosys0_driver_data,
-> >   	},
-> >   	{
-> > -		.compatible = "mediatek,mt8195-mmsys",
-> > -		.data = &mt8195_mmsys_match_data,
-> > +		.compatible = "mediatek,mt8195-vdosys1",
-> > +		.data = &mt8195_vdosys1_driver_data,
-> >   	},
-> >   	{
-> >   		.compatible = "mediatek,mt8365-mmsys",
-> > -		.data = &mt8365_mmsys_match_data,
-> > +		.data = &mt8365_mmsys_driver_data,
-> >   	},
-> >   	{ }
-> >   };
-> > diff --git a/drivers/soc/mediatek/mtk-mmsys.h
-> > b/drivers/soc/mediatek/mtk-mmsys.h
-> > index f01ba206481d..77f37f8c715b 100644
-> > --- a/drivers/soc/mediatek/mtk-mmsys.h
-> > +++ b/drivers/soc/mediatek/mtk-mmsys.h
-> > @@ -87,18 +87,12 @@ struct mtk_mmsys_routes {
-> >   };
-> >   
-> >   struct mtk_mmsys_driver_data {
-> > -	const resource_size_t io_start;
-> >   	const char *clk_driver;
-> >   	const struct mtk_mmsys_routes *routes;
-> >   	const unsigned int num_routes;
-> >   	const u16 sw0_rst_offset;
-> >   };
-> >   
-> > -struct mtk_mmsys_match_data {
-> > -	unsigned short num_drv_data;
-> > -	const struct mtk_mmsys_driver_data *drv_data[];
-> > -};
-> > -
-> >   /*
-> >    * Routes in mt8173, mt2701, mt2712 are different. That means
-> >    * in the same register address, it controls different
-> > input/output
--- 
-Jason-JH Lin <jason-jh.lin@mediatek.com>
-
+> ---Trilok Soni
