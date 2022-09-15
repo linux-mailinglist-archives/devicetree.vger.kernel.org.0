@@ -2,123 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5038F5B9A43
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C80EC5B9A8C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:14:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbiIOMBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 08:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59266 "EHLO
+        id S229471AbiIOMOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 08:14:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbiIOMA7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:00:59 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68E7E4B0FF;
-        Thu, 15 Sep 2022 05:00:58 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-11e9a7135easo47131341fac.6;
-        Thu, 15 Sep 2022 05:00:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Ibj0ymzRR4GUJoYQ24/tVkDs+sr69Nrlxd/BPWsb0Y8=;
-        b=hfcqZB7eeOHUKALpnyiZ/0gy4uSU9AjijBqlGz6pVt9TUd9KtVooQxXqBgXrwOH/bf
-         THqGPmtlZRkf/tAYouUEK8T4XfpvYhXG+kuYT5WxBcenqAHXGj9SZdEdX/Ua9daAGfWP
-         wmTivsYfCoo0Ahp7rOgkJp09uSpyvs121na68zfGJRqrTVn/HWV46yHNf5dgCZc7Oi9j
-         mr06AXfr1sL1F6fj3OORFLVegyy4Xfj+DagBOjtaSHun7i13rDh4i9wuLrhtXt84KXX/
-         KcuoDo2g5WqKp0ee009/bvOyw4BsOK91B/M1MRQW989feWXPXp/aZHKZvAQtWcpKlrj6
-         Yn2A==
-X-Gm-Message-State: ACgBeo3TxIRc0TblYG9SJ+4nMsAuu42Zpds91UDytuAyewUo+U0dFajv
-        YPgvTCUq/Akfu0iAtgM68g==
-X-Google-Smtp-Source: AA6agR7pNMbq3j3o61DIlxtKFdHspY+N6pgmXWZtv/LHrDFYftbEP9a2x/r5eoiQ/3IuAf3pu1gqHQ==
-X-Received: by 2002:a05:6870:2049:b0:127:927a:bf40 with SMTP id l9-20020a056870204900b00127927abf40mr4992974oad.248.1663243257253;
-        Thu, 15 Sep 2022 05:00:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l2-20020a056808020200b00344f28a7a4csm7609592oie.22.2022.09.15.05.00.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 05:00:56 -0700 (PDT)
-Received: (nullmailer pid 989368 invoked by uid 1000);
-        Thu, 15 Sep 2022 12:00:56 -0000
-Date:   Thu, 15 Sep 2022 07:00:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, Alex Elder <elder@ieee.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        vkoul@kernel.org, Rajendra Nayak <quic_rjendra@quicinc.com>,
-        devicetree@vger.kernel.org, Sibi Sankar <quic_sibis@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH V9 1/7] dt-bindings: Added the yaml bindings for DCC
-Message-ID: <20220915120056.GA988392-robh@kernel.org>
-References: <cover.1663173477.git.quic_schowdhu@quicinc.com>
- <41b94746e1560d63f16fb5dc965042ec496aeaf1.1663173478.git.quic_schowdhu@quicinc.com>
- <20220915093715.ednaqtx7ko6f5zlw@krzk-bin>
- <00b01df4-232b-24d4-7339-0fcfa6b210a9@quicinc.com>
+        with ESMTP id S229449AbiIOMOG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:14:06 -0400
+X-Greylist: delayed 3686 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 15 Sep 2022 05:14:04 PDT
+Received: from wp126.webpack.hosteurope.de (wp126.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:8485::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6326C71;
+        Thu, 15 Sep 2022 05:14:04 -0700 (PDT)
+Received: from p5098d998.dip0.t-ipconnect.de ([80.152.217.152] helo=hermes.fivetechno.de); authenticated
+        by wp126.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id 1oYmnM-0003Cv-HF; Thu, 15 Sep 2022 13:12:36 +0200
+X-Virus-Scanned: by amavisd-new 2.12.2 using newest ClamAV at
+        linuxbbg.five-lan.de
+Received: from roc-pc (p5098d998.dip0.t-ipconnect.de [80.152.217.152])
+        (authenticated bits=0)
+        by hermes.fivetechno.de (8.15.2/8.16.1/SUSE Linux 0.8) with ESMTPSA id 28FBCWc1020749
+        (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO);
+        Thu, 15 Sep 2022 13:12:32 +0200
+From:   Markus Reichl <m.reichl@fivetechno.de>
+To:     linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Markus Reichl <m.reichl@fivetechno.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Add HDMI supplies on rk3399-roc-pc
+Date:   Thu, 15 Sep 2022 13:11:36 +0200
+Message-Id: <20220915111138.1108-1-m.reichl@fivetechno.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <00b01df4-232b-24d4-7339-0fcfa6b210a9@quicinc.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1663244045;f051a3cd;
+X-HE-SMSGID: 1oYmnM-0003Cv-HF
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 15, 2022 at 05:06:29PM +0530, Souradeep Chowdhury wrote:
-> 
-> On 9/15/2022 3:07 PM, Krzysztof Kozlowski wrote:
-> > On Wed, 14 Sep 2022 22:31:11 +0530, Souradeep Chowdhury wrote:
-> > > Documentation for Data Capture and Compare(DCC) device tree bindings
-> > > in yaml format.
-> > > 
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> > > ---
-> > >   .../devicetree/bindings/arm/msm/qcom,dcc.yaml      | 43 ++++++++++++++++++++++
-> > >   1 file changed, 43 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
-> > > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.example.dtb: dma-router@a0: dma-masters:0: [4294967295, 4294967295] is too long
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/dma-router.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.example.dtb: dma-router@a0: dma-masters:0: [4294967295, 4294967295] is too long
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: dma-masters:0: [4294967295, 4294967295] is too long
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/dma-router.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: dma-masters:0: [4294967295, 4294967295] is too long
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.yaml
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: Unevaluated properties are not allowed ('dma-channels', 'dma-masters', 'dma-requests' were unexpected)
-> > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.yaml
-> > 
-> > doc reference errors (make refcheckdocs):
-> > 
-> > See https://patchwork.ozlabs.org/patch/
-> > 
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> > 
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> > 
-> > pip3 install dtschema --upgrade
-> > 
-> > Please check and re-submit.
-> This reported error is unrelated to my yaml file. Kindly check from your
-> end.
+Add avdd-0v9-supply and avdd-1v8-supply to hdmi node for
+rk3399-roc-pc to silence dmesg warning and match the name
+of the 1v8 supply to the circuit sheet.
 
-Yes, you can ignore it.
+Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Rob
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+index acb174d3a8c5..51d1bf25faae 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+@@ -274,6 +274,8 @@ &hdmi {
+ 	ddc-i2c-bus = <&i2c3>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&hdmi_cec>;
++	avdd-0v9-supply = <&vcca0v9_hdmi>;
++	avdd-1v8-supply = <&vcca1v8_hdmi>;
+ 	status = "okay";
+ };
+ 
+@@ -369,8 +371,8 @@ regulator-state-mem {
+ 				};
+ 			};
+ 
+-			vcc1v8_hdmi: LDO_REG2 {
+-				regulator-name = "vcc1v8_hdmi";
++			vcca1v8_hdmi: LDO_REG2 {
++				regulator-name = "vcca1v8_hdmi";
+ 				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-min-microvolt = <1800000>;
+-- 
+2.30.2
 
