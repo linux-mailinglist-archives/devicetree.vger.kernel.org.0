@@ -2,92 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1A65B9A27
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 13:55:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DD3D5B9A36
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 13:59:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbiIOLzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 07:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44528 "EHLO
+        id S229682AbiIOL7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 07:59:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230327AbiIOLzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 07:55:31 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66056AA32;
-        Thu, 15 Sep 2022 04:51:44 -0700 (PDT)
-X-UUID: a393d04e339944e291a7c2b06be6d449-20220915
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=XojuKpZCUNxY4C6Madj4ukhRH/8ix5f31tF8a8eQ3Js=;
-        b=Z+09M7b9nMVgON3lUU9Ty8w49WszrIE9Hl8V2vlur+9FyWxrpbtTPZAPzXMpvCW8V3kfAHOXGgMZwRQkFGZWEeoOT25zepObPhBsSy8vszPJCbGQEkUuAzKYIx8g/NVJPi16XJUFccQR58j4VEGjHrV9m/8h1lPba2Af6akc4IU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:cdc27629-086a-42e6-83f5-44f08ad779f2,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:5710c17b-ea28-4199-b57e-003c7d60873a,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: a393d04e339944e291a7c2b06be6d449-20220915
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1673206933; Thu, 15 Sep 2022 19:51:39 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 15 Sep 2022 19:51:38 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 15 Sep 2022 19:51:38 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        kyrie wu <kyrie.wu@mediatek.com>
-Subject: [PATCH] media: mediatek: venc: Add h264 extended profile support
-Date:   Thu, 15 Sep 2022 19:51:35 +0800
-Message-ID: <20220915115135.7271-1-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        with ESMTP id S229480AbiIOL7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 07:59:06 -0400
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2CF2B1;
+        Thu, 15 Sep 2022 04:59:05 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id o204so1905783oia.12;
+        Thu, 15 Sep 2022 04:59:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=Z+Uk70wenuE2avVZw1KYjIwZYeZGOnR3WHL7he3UtOU=;
+        b=vz2Wy+s1JjmOFKTKAKJus36qPcmotwslIGbAmAvQF1tQEM8Q81Dj1aWbDgx/uYJ6KV
+         5HVkmhiWYBJqNDyc3RhdL81MVPXy+ln4wkErmdRiZKOPjr2Yg1kvWdaFOO0yDsvwww8V
+         7q2E3rFt0OkX4FfmpsxL0MKLWhR3sQW6QzyfBfnjkuXw9c62+2Yu7eyuHzKMHKT4E5B2
+         ORun/28lPboL3fj+vJj+uSm4JE/xXNioGLxTm3qZAv3MiPLf+AUfT1WSZIkfFsnOWAu0
+         vQ84+gD7Q9kFAdAINF9WNNnYBVWzD3bCJhJa5iSbLFQ+4yOBYXeCTZVz3pqKCBeF4nvY
+         i9oA==
+X-Gm-Message-State: ACgBeo2m/O1CKrHczIekeMwMsYJHMD9AtZf1JHDW9I8Ng4Dwam4r2zGd
+        e8dMpOK0pHI7iaiFlvG5xA==
+X-Google-Smtp-Source: AA6agR49VcAXbJ6flKXkElRGNVqdgLKhCCqHMxvV8f9HxhM/De4Z+GNeFJnd7dQ9ytUjuxfD6+kfcQ==
+X-Received: by 2002:a05:6808:13cd:b0:343:41aa:4cbe with SMTP id d13-20020a05680813cd00b0034341aa4cbemr3803456oiw.264.1663243144633;
+        Thu, 15 Sep 2022 04:59:04 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bm52-20020a0568081ab400b00339befdfad0sm7567647oib.50.2022.09.15.04.59.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Sep 2022 04:59:04 -0700 (PDT)
+Received: (nullmailer pid 986126 invoked by uid 1000);
+        Thu, 15 Sep 2022 11:59:03 -0000
+Date:   Thu, 15 Sep 2022 06:59:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     cy_huang <u0084500@gmail.com>, sre@kernel.org,
+        alina_yu@richtek.com, alinayu829@gmail.com,
+        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        cy_huang@richtek.com, mazziesaccount@gmail.com
+Subject: Re: [PATCH v5 1/3] dt-bindings: power: supply: Add Richtek RT9471
+ battery charger
+Message-ID: <20220915115903.GA984598-robh@kernel.org>
+References: <1663173015-7934-1-git-send-email-u0084500@gmail.com>
+ <1663173015-7934-2-git-send-email-u0084500@gmail.com>
+ <20220915095121.lh5c5gbn53qedtgw@krzk-bin>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220915095121.lh5c5gbn53qedtgw@krzk-bin>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add h264 extended profile support
+On Thu, Sep 15, 2022 at 10:51:21AM +0100, Krzysztof Kozlowski wrote:
+> On Thu, 15 Sep 2022 00:30:13 +0800, cy_huang wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> > 
+> > Add bindings for the Richtek RT9471 I2C controlled battery charger.
+> > 
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Co-developed-by: Alina Yu <alina_yu@richtek.com>
+> > Signed-off-by: Alina Yu <alina_yu@richtek.com>
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> > Since v3
+> > - Move unevaluatedProperties line after $ref for binding patch.
+> > - Add Reviewed-by tag for binding patch.
+> > 
+> > Since v2
+> > - Remove the properties for interrupt controller things in the binding documentation.
+> > - Fix dtc error for typo, it's 'regulator-name', not 'regulator-compatible'.
+> > - Add regulator min/max microamp to allow otg vbus current adjustable in example.
+> > - Specify the active-level for charge-enable-gpios in binding example.
+> > 
+> > ---
+> >  .../bindings/power/supply/richtek,rt9471.yaml      | 73 ++++++++++++++++++++++
+> >  1 file changed, 73 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9471.yaml
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.example.dtb: dma-router@a0: dma-masters:0: [4294967295, 4294967295] is too long
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.example.dtb: dma-router@a0: dma-masters:0: [4294967295, 4294967295] is too long
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/dma-router.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: dma-masters:0: [4294967295, 4294967295] is too long
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/dma-router.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: dma-masters:0: [4294967295, 4294967295] is too long
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: Unevaluated properties are not allowed ('dma-channels', 'dma-masters', 'dma-requests' were unexpected)
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.yaml
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Co-developed-by: kyrie wu <kyrie.wu@mediatek.com>
-Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
----
- drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Ignore this. Unrelated.
 
-diff --git a/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c b/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
-index 13c4f860fa69..ac2ef6275d78 100644
---- a/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
-@@ -243,8 +243,7 @@ static unsigned int h264_get_profile(struct venc_h264_inst *inst,
- 		mtk_vcodec_err(inst, "unsupported CONSTRAINED_BASELINE");
- 		return 0;
- 	case V4L2_MPEG_VIDEO_H264_PROFILE_EXTENDED:
--		mtk_vcodec_err(inst, "unsupported EXTENDED");
--		return 0;
-+		return 88;
- 	default:
- 		mtk_vcodec_debug(inst, "unsupported profile %d", profile);
- 		return 100;
--- 
-2.18.0
-
+Rob
