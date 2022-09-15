@@ -2,357 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74F965B9721
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 11:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E76BB5B9738
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 11:14:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbiIOJNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 05:13:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49570 "EHLO
+        id S229986AbiIOJOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 05:14:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbiIOJNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 05:13:00 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 319A598C99;
-        Thu, 15 Sep 2022 02:12:29 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 37A326602027;
-        Thu, 15 Sep 2022 10:12:27 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663233147;
-        bh=0Nv1GDYmG1+Tf/QGBiPyYSe3l2wpzzwmu2YgKDw0Vtk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bf54FXYRzzNzCeO06TmguT/mz8p37/lU8aOTW/ytBSHJRHKXMOCFoh+Sg9vAY2XwQ
-         0VtzVYAjlJXvNtseddqiPvLJp9pjeoe3aztmc1BTvn+8Ue/TGDYzQU2CYWVGZCRswD
-         DOE7Ui2UIC23WYMvZu1VxLkoZe1HU9RhQo30x5SDKkKcHCGyQ/yckSn4Q0SJLRwJdY
-         LU9G2hF72ej1q0mxP8aj2dWKYDQgCF5uZr7W9aG0jPbHGgoj5/OIjZUHpypVBKkBP/
-         CbanjVqmyjZu0cM+5ffFoutpi3bi9UtHV/g1mhaQJkZDZ+AScd/0QVsCCLtTXzoIWu
-         Zi9lj43GRTKqQ==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     sean.wang@mediatek.com
-Cc:     pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 7/7] leds: leds-mt6323: Add support for WLEDs and MT6332
-Date:   Thu, 15 Sep 2022 11:12:14 +0200
-Message-Id: <20220915091214.59673-8-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220915091214.59673-1-angelogioacchino.delregno@collabora.com>
-References: <20220915091214.59673-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S229993AbiIOJOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 05:14:34 -0400
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03lp2171.outbound.protection.outlook.com [104.47.51.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E813C9A94A;
+        Thu, 15 Sep 2022 02:13:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Au9dUrFeLZET1/a08L97199WWNM3GBO8LDhwvCwQzxy41zMESYl8U30BXtL42L69dkjnKWgZLjzOybagwoebckvRL5H44COdOw7VgJL006bn7sfYvvH9GpRkFvt6D9spcjUL4X08WtyCMOnPIacS2lNsq6R9l7Z6YgIjKfF6Bj25uzNhefxCkt/KI7hSlR9UJqO8rirW3/edPDpdXWgdi3CcDblV2fEfcTTNbFim7RJsZUO5lgSwmsBjxarONpnCjeqm/jje3kqLZn3WrAiPH3R1Bl36c9AalFWF8WqL1o71HYy10sB3yC7G6lFU8mhkqh97ThLdsPp+c9YrxRAOEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cjm2yOeu5bflkRWpOsHcJ5Bo7gL9KIPB1d9+ZwfX464=;
+ b=Ha0pIFZHNnUun0Rv2+n6YBbygvboF1Gx2+QjWrs0vn2DEQXW/0oVgE+48EzgjEBT1cfF+h+i9ykcw06d48mqPmEbKtez9ozl6XzHYDSOPx84IlHZB1/RACgh2Xl+bdlYb3iYhtg/GSKyq/qzAyXAMeR3/u8Mmdws0WM0+JrHmric8qyAS+f45ASmEXf3aW6kbof0cKnznuT2w4eEZY5r9e7k4LT91/biQ96DgzGzG1IFw5q17UATCaKKht7ONlT7h12A2gmMGOtPUypWgpFfaJQg9mnXzedY2bgSok4WuBFL1czXd4cxEzGtNSiDE+0cTW4tG/j6A64pqwY+tBHdCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 194.138.21.76) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=siemens.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=siemens.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cjm2yOeu5bflkRWpOsHcJ5Bo7gL9KIPB1d9+ZwfX464=;
+ b=g4qjqOC/7PcdMZL2aJisBAePTIwS8zXockWEtz+O6qUGFLGJTWmaBk5Bhy3SGwe1kTS2K3keIzc/ZpoDSMMDg07vKlc2x2lEFJdntG2AxLuOLm+swlpnxQX7S2XAk42FiCui53kOzhKva7nc154FbLISPDcrhdm3ObbEUlAkkJfrbn+SPNpH+u5JaiHqnh5IiGrtwQRyfNg4+gKYk1L5oPsI2dMjpwoxmnrJ6mZ/SGWcTU0bur8JAO/NPk7QFH2v7zkJ3QCr4kzhi1wxssXTKjMbhM1/SR3bnkdG9Yvd7Fw7IwYapbyLuLb+BcFE2gKX2mH8FytR4A7UeH8a6nVpVw==
+Received: from DB9PR02CA0026.eurprd02.prod.outlook.com (2603:10a6:10:1d9::31)
+ by PAVPR10MB7115.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:316::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Thu, 15 Sep
+ 2022 09:13:44 +0000
+Received: from DB5EUR01FT034.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:10:1d9:cafe::8c) by DB9PR02CA0026.outlook.office365.com
+ (2603:10a6:10:1d9::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.15 via Frontend
+ Transport; Thu, 15 Sep 2022 09:13:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 194.138.21.76)
+ smtp.mailfrom=siemens.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=siemens.com;
+Received-SPF: Pass (protection.outlook.com: domain of siemens.com designates
+ 194.138.21.76 as permitted sender) receiver=protection.outlook.com;
+ client-ip=194.138.21.76; helo=hybrid.siemens.com; pr=C
+Received: from hybrid.siemens.com (194.138.21.76) by
+ DB5EUR01FT034.mail.protection.outlook.com (10.152.4.246) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5632.12 via Frontend Transport; Thu, 15 Sep 2022 09:13:43 +0000
+Received: from DEMCHDC8A0A.ad011.siemens.net (139.25.226.106) by
+ DEMCHDC8VSA.ad011.siemens.net (194.138.21.76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.12; Thu, 15 Sep 2022 11:13:43 +0200
+Received: from bennie-lenovo.fritz.box (144.145.220.66) by
+ DEMCHDC8A0A.ad011.siemens.net (139.25.226.106) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.12; Thu, 15 Sep 2022 11:13:43 +0200
+From:   "B. Niedermayr" <benedikt.niedermayr@siemens.com>
+To:     <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <rogerq@kernel.org>, <tony@atomide.com>,
+        <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>
+Subject: [PATCH v4 0/3] omap-gpmc wait pin additions 
+Date:   Thu, 15 Sep 2022 11:13:30 +0200
+Message-ID: <20220915091333.2425306-1-benedikt.niedermayr@siemens.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [144.145.220.66]
+X-ClientProxiedBy: DEMCHDC8A0A.ad011.siemens.net (139.25.226.106) To
+ DEMCHDC8A0A.ad011.siemens.net (139.25.226.106)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5EUR01FT034:EE_|PAVPR10MB7115:EE_
+X-MS-Office365-Filtering-Correlation-Id: daed6ec1-d7f6-4fff-8717-08da96fa96b0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wEEea+qt4S6Th4WgrC5gKZNvOYpW9rq3JcbOQPI5LhzfvVHeILR5Jw1a/ZX/yHqjGUzNdnLzJzOMM5d7o+oYMchBF7PJZqtN9SefGh8mizKeJ/vyPtnya23QbwtV8VByD6eUZcStrqZblFBse17UD/r4Sf1wCqrXw/tESsEdIYUaMnuT5NFJdPxKQ9dOTh2Ce4br9rhxpUpLbSC4HRRQWiCASuP3YYAzeJJiPjRxjGVgPmY6XKq95ljzvo07irx4waq0pPjxnfb/UGXtTnhYZQTWBmVxrhodUBCUWKBEwZq6wGbHe8DFJRvyvMHEE/HCoH2dAgKuI2cnSGbth1861jGQYG19fwhsU/3uhy/FcWbMKi7QJ0RpylyLnAid0iRk9IdW+NVYuaD3xthjjYjpjZuxvvLvhM7i7GQ26ntYPudguQOrKtVAkuw8Y0jyB9g2ZzT4gOgHaWkkS0a2a9DfbKVJ21MJdZszPRfigxMUk6EfdiKYb650lm4fbptDIL/8qxsaM7t99qlfjEFJxbRLDyjf2le//eB75riNwUOaIHwnl/2UNvupNqmXZfsEul5JT2E4TfUGSXTxe+7GqMO0RVM7IOrxcbqP4J8jpolrli0ZZBA0B+oilJwIjB/ydUC4uo9GPBZQajF/G+T6+orJ+DC2CS95Z8ho+L3oIXgZR6NIxoYLHuZpHO8zDLzwEek+zlYu/3o8VdyKpoBUFa5bcOdvK5C8ijf0B78tEBnWC3g/Ds79NTNW/OKZKUGRAWiFOuqbEMRzEEOR/iOhkz3rWdFZ/KOc22zTKCTn9ZjkcIA=
+X-Forefront-Antispam-Report: CIP:194.138.21.76;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:hybrid.siemens.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(346002)(396003)(39860400002)(376002)(136003)(451199015)(36840700001)(46966006)(40470700004)(82960400001)(81166007)(110136005)(4326008)(316002)(26005)(54906003)(86362001)(4743002)(356005)(40460700003)(5660300002)(478600001)(6666004)(8676002)(36860700001)(82310400005)(36756003)(956004)(2616005)(1076003)(82740400003)(186003)(40480700001)(8936002)(70206006)(47076005)(70586007)(16526019)(83380400001)(41300700001)(336012)(2906002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2022 09:13:43.9706
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: daed6ec1-d7f6-4fff-8717-08da96fa96b0
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;Ip=[194.138.21.76];Helo=[hybrid.siemens.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB5EUR01FT034.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR10MB7115
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic code to turn on and off WLEDs and wire up MT6332 support
-to take advantage of it.
-This is a simple approach due to to the aforementioned PMIC supporting
-only on/off status so, at the time of writing, it is impossible for me
-to validate more advanced functionality due to lack of hardware.
+From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/leds/leds-mt6323.c | 171 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 164 insertions(+), 7 deletions(-)
+Currently it is not possible to configure the WAIT0PINPOLARITY and 
+WAIT1PINPOLARITY bits of the GPMC_CONFIG register directly via 
+device tree properties.
 
-diff --git a/drivers/leds/leds-mt6323.c b/drivers/leds/leds-mt6323.c
-index 16b5ac60a487..772581567050 100644
---- a/drivers/leds/leds-mt6323.c
-+++ b/drivers/leds/leds-mt6323.c
-@@ -20,6 +20,11 @@
- #define RG_DRV_32K_CK_PDN		BIT(11)
- #define RG_DRV_32K_CK_PDN_MASK		BIT(11)
- 
-+/* 32K/1M/6M clock common for WLED device */
-+#define RG_VWLED_1M_CK_PDN		BIT(0)
-+#define RG_VWLED_32K_CK_PDN		BIT(12)
-+#define RG_VWLED_6M_CK_PDN		BIT(13)
-+
- /*
-  * Register field for TOP_CKPDN2 to enable
-  * individual clock for LED device.
-@@ -73,7 +78,7 @@ struct mt6323_led {
- 	int			id;
- 	struct mt6323_leds	*parent;
- 	struct led_classdev	cdev;
--	enum led_brightness	current_brightness;
-+	unsigned int		current_brightness;
- };
- 
- /**
-@@ -86,6 +91,7 @@ struct mt6323_led {
-  * @num_isink_con:	Number of ISINKx_CON registers
-  * @isink_max_regs:	Number of ISINK[0..x] registers
-  * @isink_en_ctrl:	Offset to ISINK_EN_CTRL register
-+ * @iwled_en_ctrl:	Offset to IWLED_EN_CTRL register
-  */
- struct mt6323_regs {
- 	const u16 *top_ckpdn;
-@@ -96,18 +102,21 @@ struct mt6323_regs {
- 	u8 num_isink_con;
- 	u8 isink_max_regs;
- 	u16 isink_en_ctrl;
-+	u16 iwled_en_ctrl;
- };
- 
- /**
-  * struct mt6323_hwspec - hardware specific parameters
-  * @max_period:		Maximum period for all LEDs
-  * @max_leds:		Maximum number of supported LEDs
-+ * @max_wleds:		Maximum number of WLEDs
-  * @max_brightness:	Maximum brightness for all LEDs
-  * @unit_duty:		Steps of duty per period
-  */
- struct mt6323_hwspec {
- 	u16 max_period;
- 	u8 max_leds;
-+	u8 max_wleds;
- 	u16 max_brightness;
- 	u16 unit_duty;
- };
-@@ -379,6 +388,117 @@ static int mt6323_led_set_brightness(struct led_classdev *cdev,
- 	return ret;
- }
- 
-+static int mtk_wled_hw_on(struct led_classdev *cdev)
-+{
-+	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
-+	struct mt6323_leds *leds = led->parent;
-+	const struct mt6323_regs *regs = leds->pdata->regs;
-+	struct regmap *regmap = leds->hw->regmap;
-+	int ret;
-+
-+	ret = regmap_clear_bits(regmap, regs->top_ckpdn[0], RG_VWLED_32K_CK_PDN);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_clear_bits(regmap, regs->top_ckpdn[0], RG_VWLED_6M_CK_PDN);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_clear_bits(regmap, regs->top_ckpdn[0], RG_VWLED_1M_CK_PDN);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(5000, 6000);
-+
-+	/* Enable WLED channel pair */
-+	ret = regmap_set_bits(regmap, regs->iwled_en_ctrl, BIT(led->id));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_set_bits(regmap, regs->iwled_en_ctrl, BIT(led->id + 1));
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int mtk_wled_hw_off(struct led_classdev *cdev)
-+{
-+	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
-+	struct mt6323_leds *leds = led->parent;
-+	const struct mt6323_regs *regs = leds->pdata->regs;
-+	struct regmap *regmap = leds->hw->regmap;
-+	int ret;
-+
-+	ret = regmap_clear_bits(regmap, regs->iwled_en_ctrl, BIT(led->id + 1));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_clear_bits(regmap, regs->iwled_en_ctrl, BIT(led->id));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_set_bits(regmap, regs->top_ckpdn[0], RG_VWLED_32K_CK_PDN);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_set_bits(regmap, regs->top_ckpdn[0], RG_VWLED_6M_CK_PDN);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_set_bits(regmap, regs->top_ckpdn[0], RG_VWLED_1M_CK_PDN);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static unsigned int mt6323_get_wled_brightness(struct led_classdev *cdev)
-+{
-+	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
-+	struct mt6323_leds *leds = led->parent;
-+	const struct mt6323_regs *regs = leds->pdata->regs;
-+	struct regmap *regmap = leds->hw->regmap;
-+	unsigned int status;
-+	int ret;
-+
-+	ret = regmap_read(regmap, regs->iwled_en_ctrl, &status);
-+	if (ret)
-+		return 0;
-+
-+	/* Always two channels per WLED */
-+	status &= BIT(led->id) | BIT(led->id + 1);
-+
-+	return status ? led->current_brightness : 0;
-+}
-+
-+static int mt6323_wled_set_brightness(struct led_classdev *cdev,
-+				      unsigned int brightness)
-+{
-+	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
-+	struct mt6323_leds *leds = led->parent;
-+	int ret = 0;
-+
-+	mutex_lock(&leds->lock);
-+
-+	if (brightness) {
-+		if (!led->current_brightness)
-+			ret = mtk_wled_hw_on(cdev);
-+		if (ret)
-+			goto out;
-+	} else {
-+		ret = mtk_wled_hw_off(cdev);
-+		if (ret)
-+			goto out;
-+	}
-+
-+	led->current_brightness = brightness;
-+out:
-+	mutex_unlock(&leds->lock);
-+
-+	return ret;
-+}
-+
- static int mt6323_led_set_dt_default(struct led_classdev *cdev,
- 				     struct device_node *np)
- {
-@@ -418,6 +538,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
- 	int ret;
- 	unsigned int status;
- 	u32 reg;
-+	u8 max_leds;
- 
- 	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
- 	if (!leds)
-@@ -428,6 +549,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
- 	leds->pdata = device_get_match_data(dev);
- 	regs = leds->pdata->regs;
- 	spec = leds->pdata->spec;
-+	max_leds = spec->max_leds + spec->max_wleds;
- 
- 	/*
- 	 * leds->hw points to the underlying bus for the register
-@@ -447,6 +569,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
- 
- 	for_each_available_child_of_node(np, child) {
- 		struct led_init_data init_data = {};
-+		bool is_wled;
- 
- 		ret = of_property_read_u32(child, "reg", &reg);
- 		if (ret) {
-@@ -454,7 +577,7 @@ static int mt6323_led_probe(struct platform_device *pdev)
- 			goto put_child_node;
- 		}
- 
--		if (reg >= spec->max_leds || reg >= MAX_SUPPORTED_LEDS ||
-+		if (reg >= max_leds || reg >= MAX_SUPPORTED_LEDS ||
- 		    leds->led[reg]) {
- 			dev_err(dev, "Invalid led reg %u\n", reg);
- 			ret = -EINVAL;
-@@ -467,14 +590,24 @@ static int mt6323_led_probe(struct platform_device *pdev)
- 			goto put_child_node;
- 		}
- 
-+		is_wled = of_property_read_bool(child, "mediatek,is-wled");
-+
- 		leds->led[reg] = led;
- 		leds->led[reg]->id = reg;
- 		leds->led[reg]->cdev.max_brightness = spec->max_brightness;
--		leds->led[reg]->cdev.brightness_set_blocking =
--					mt6323_led_set_brightness;
--		leds->led[reg]->cdev.blink_set = mt6323_led_set_blink;
--		leds->led[reg]->cdev.brightness_get =
--					mt6323_get_led_hw_brightness;
-+
-+		if (is_wled) {
-+			leds->led[reg]->cdev.brightness_set_blocking =
-+						mt6323_wled_set_brightness;
-+			leds->led[reg]->cdev.brightness_get =
-+						mt6323_get_wled_brightness;
-+		} else {
-+			leds->led[reg]->cdev.brightness_set_blocking =
-+						mt6323_led_set_brightness;
-+			leds->led[reg]->cdev.blink_set = mt6323_led_set_blink;
-+			leds->led[reg]->cdev.brightness_get =
-+						mt6323_get_led_hw_brightness;
-+		}
- 		leds->led[reg]->parent = leds;
- 
- 		ret = mt6323_led_set_dt_default(&leds->led[reg]->cdev, child);
-@@ -542,6 +675,17 @@ static const struct mt6323_regs mt6331_registers = {
- 	.isink_en_ctrl = 0x43a,
- };
- 
-+static const struct mt6323_regs mt6332_registers = {
-+	.top_ckpdn = (const u16[]){ 0x8094, 0x809a, 0x80a0 },
-+	.num_top_ckpdn = 3,
-+	.top_ckcon = (const u16[]){ 0x80a6, 0x80ac },
-+	.num_top_ckcon = 2,
-+	.isink_con = (const u16[]){ 0x8cd4 },
-+	.num_isink_con = 1,
-+	.isink_max_regs = 12, /* IWLED[0..2, 3..9] */
-+	.iwled_en_ctrl = 0x8cda,
-+};
-+
- static const struct mt6323_hwspec mt6323_spec = {
- 	.max_period = 10000,
- 	.max_leds = 4,
-@@ -549,6 +693,13 @@ static const struct mt6323_hwspec mt6323_spec = {
- 	.unit_duty = 3125,
- };
- 
-+static const struct mt6323_hwspec mt6332_spec = {
-+	/* There are no LEDs in MT6332. Only WLEDs are present. */
-+	.max_leds = 0,
-+	.max_wleds = 1,
-+	.max_brightness = 1024,
-+};
-+
- static const struct mt6323_data mt6323_pdata = {
- 	.regs = &mt6323_registers,
- 	.spec = &mt6323_spec,
-@@ -559,9 +710,15 @@ static const struct mt6323_data mt6331_pdata = {
- 	.spec = &mt6323_spec,
- };
- 
-+static const struct mt6323_data mt6332_pdata = {
-+	.regs = &mt6332_registers,
-+	.spec = &mt6332_spec,
-+};
-+
- static const struct of_device_id mt6323_led_dt_match[] = {
- 	{ .compatible = "mediatek,mt6323-led", .data = &mt6323_pdata},
- 	{ .compatible = "mediatek,mt6331-led", .data = &mt6331_pdata },
-+	{ .compatible = "mediatek,mt6332-led", .data = &mt6332_pdata },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mt6323_led_dt_match);
+It is also not possible to use the same wait-pin for different 
+cs-regions.
+
+While the current implementation may fullfill most usecases, it may not
+be sufficient for more complex setups (e.g. FPGA/ASIC interfaces), where 
+more complex interfacing options where possible.
+
+For example interfacing an ASIC which offers multiple cs-regions but
+only one waitpin the current driver and dt-bindings are not sufficient.
+
+While using the same waitpin for different cs-regions worked for older
+kernels (4.14) the omap-gpmc.c driver refused to probe (-EBUSY) with
+newer kernels (>5.10).
+
+Changes since v1: 
+  * Rebase against recent 6.0.0-rc3 kernel, but the maintainers list
+    stays the same!
+  * Updated eMail recipients list
+Changes since v2:
+  * Remove the gpmc register configuration out of the gpiochip
+    callbacks. In this case the memory interface configuration
+    is not done via gpio bindings.
+  * Some minor code fixes
+  * Changed git commit descriptions
+Change since v3:
+  * Use a uint32 dt-property instean a boolean one
+  * If the dt-property is not set, then don't touch the
+    GPMC_CONFIG register
+  * Changed git commit descriptions
+
+
+Benedikt Niedermayr (3):
+  memory: omap-gpmc: allow shared wait pins
+  memory: omap-gpmc: add support for wait pin polarity
+  dt-bindings: memory-controllers: gpmc-child: add wait-pin polarity
+
+ .../memory-controllers/ti,gpmc-child.yaml     |  7 +++++
+ drivers/memory/omap-gpmc.c                    | 30 +++++++++++++++++--
+ include/linux/platform_data/gpmc-omap.h       |  6 ++++
+ 3 files changed, 41 insertions(+), 2 deletions(-)
+
 -- 
-2.37.2
+2.34.1
 
