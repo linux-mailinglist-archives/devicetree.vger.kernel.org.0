@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4AD5B9786
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 11:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 399425B978F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 11:36:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229738AbiIOJfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 05:35:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57104 "EHLO
+        id S229652AbiIOJg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 05:36:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229773AbiIOJfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 05:35:43 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C213A14A
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 02:35:41 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id az6so13512163wmb.4
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 02:35:41 -0700 (PDT)
+        with ESMTP id S229632AbiIOJgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 05:36:54 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB7F675FFE
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 02:36:52 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id az6so13514329wmb.4
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 02:36:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=zAQhEoqs9m6tH0S1Pwi/N64OzurKgUWPJ1fRej5gFrw=;
-        b=Vjxh0C/hmbpUVZ/3/fYlTE1tcmtpwzvvwDGawLMSy2FaTgqKyMGNDna02fmkZer0uG
-         2F+KT5uttz3K/VNbEMKfP2YSLKGCPDcr4o7mo1gjFXINnajbx9vHG+vNUu6ATNkeO2K6
-         /oAQ2KuQj2Ai+xTS0VdfkhPPGdD0EfSkjIJ/ljj0hLQAj2VqRjX6e++3iMXqkKIrs1U9
-         O6VfGv5tNCb9QcSgo7XHrYDVq+cEdaGjIManrO8mm3MOzzDmlBCgUKqi2ysu7+go8jOh
-         wRCl2IWp4OcBBJSP+pKlxKnZz9xqWDNz+oc1/S0/kWkXEOU7yb2jya+pPZ10zliRB/PS
-         HkFg==
+        bh=Q5oC9faImt9D0zslczuwTCnYe/Fu0rELKtEkE9Enw9k=;
+        b=f4LkzKRBrsqWOrsiFynIlNRNEQmtjOegH1rGBO+J54GGi14tmZ4vkp5YWia1ONm9XQ
+         gglhzp0BPaXj7TKFENEnKH+gdfBYtpJfsVAIYYq12crzhi5Ze4CfcNVH+W27xf4XbM2u
+         RAtYzlKtplUiso71VruUWkBsbAWqFRHtXe7VpandjNf9xGkQ2yV3kOKxVcFpOXxYTZIz
+         wPgyVT1xaaVqBD60PGeh+V9a1FT16BGuZHnXdAmohTN7Bt3HzB/VrxwCF17u79iDIEL5
+         WOx9T/JumWYeL3z6RzxZ2IrJsiu3GAwASrAA73e1YIZX5JBWmNqUcaGL8qXwBOWLb8os
+         rW5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=zAQhEoqs9m6tH0S1Pwi/N64OzurKgUWPJ1fRej5gFrw=;
-        b=m98ga3mm4Jq9IifJyvsYbZeWrsFOlthJ2IPQVjT8PHcMc+5LV67ilif9i/mZnl+c7Y
-         33s6iNR2rPfyNlnmR/t1KSRtQEpTWnr8XUcJDpaGlQKUhOZVhLiyCATpV3qDRqlcGp7l
-         bZFF3StdAUAFmFjyXNPXomSUKikDtd/8CPID3OHM5qfC0KFK3Is0ji9vAHdu6OvlVh2Z
-         9rsnEIrmsfSJzQT8wG5NLMVL12z8pbjKc3usALN4tAeGO4y0Y7aArVjw21dWGX7N5rqc
-         p3QvgWZn2hTmI2jT3Yy9ZTYVsPGslO+NBKbr8yJxTRPk0iGaUtBL7SFD0UJGwIrIvYiq
-         6iWg==
-X-Gm-Message-State: ACgBeo1eZC8prqoz78SYgQOSVzmBoNgxI6pkUUQlUdY4Yal9pxKbv09T
-        exD231lypr2QNifBgQ2cVNxphg==
-X-Google-Smtp-Source: AA6agR7x+cQFPHQpAzgOrdY5Dr+3kqXzw6uVPUGUgZRe4xBrQsDIXWw5+TeXlLrt3hz4d2so4EFEBA==
-X-Received: by 2002:a05:600c:3ba0:b0:3b4:8ad0:6c with SMTP id n32-20020a05600c3ba000b003b48ad0006cmr5919992wms.186.1663234540088;
-        Thu, 15 Sep 2022 02:35:40 -0700 (PDT)
+        bh=Q5oC9faImt9D0zslczuwTCnYe/Fu0rELKtEkE9Enw9k=;
+        b=ECSpeeICWTYzNARl17Szt4BoZw6K4yKFEQ1F5aOt+z84hvVD6m3Tx3CavOXjWgZfns
+         sr27JN3ScBfVfaD2wsiJGU0vkVB9J/fknQ0b9Sge+jg+/G4S48/tU8dJbXRVtxhekrox
+         iZfkcC7soo/YJCd7PP1PauBV7wPEZKD2acg1hruhVAKFjpsclhgsbuzbqZ7Qd1usWfzC
+         c6B800IF4QzGabXF2SP9EHMOiWfywsNTEfUTSc8yMwiyoHTFRea8lKE07SXFyce/6JjG
+         qyeWLWU5+XbXTlIQuzr4h6Hj/yZr4zF82F/ckCdS2+RODW/a+i5x8u8aev9GTaUPOAEe
+         MMtA==
+X-Gm-Message-State: ACgBeo17pcuRzI4PQdE9K3gHeUj9IJv3qOM07lqguKCDNsKFhi95dx4V
+        UIjY0mTv3VSh0ahxJFgkIJvf2A==
+X-Google-Smtp-Source: AA6agR65hP5LHu32uKJVvqgNLMb2zEp4ZAqaMy8dZpFTmm+m6vtEIK3zg73WcW0k9xNVMlLa6+0nVA==
+X-Received: by 2002:a7b:c844:0:b0:3a9:70d2:bf23 with SMTP id c4-20020a7bc844000000b003a970d2bf23mr5929370wml.165.1663234611305;
+        Thu, 15 Sep 2022 02:36:51 -0700 (PDT)
 Received: from krzk-bin ([89.101.193.73])
-        by smtp.gmail.com with ESMTPSA id y17-20020adff6d1000000b00228d6edade0sm1995265wrp.46.2022.09.15.02.35.39
+        by smtp.gmail.com with ESMTPSA id f7-20020a05600c4e8700b003a60bc8ae8fsm2544406wmq.21.2022.09.15.02.36.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 02:35:39 -0700 (PDT)
-Date:   Thu, 15 Sep 2022 10:35:37 +0100
+        Thu, 15 Sep 2022 02:36:50 -0700 (PDT)
+Date:   Thu, 15 Sep 2022 10:36:49 +0100
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: phy: renesas,rcar-gen2-usb-phy: Convert
- to json-schema
-Message-ID: <20220915093537.qqddtqx2lr5ttuck@krzk-bin>
-References: <dbdcffd009302734fe2fb895ce04b72fa1ea4355.1663165000.git.geert+renesas@glider.be>
+To:     Alex Helms <alexander.helms.jy@renesas.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, geert+renesas@glider.be,
+        robh+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add bindings for Renesas ProXO
+Message-ID: <20220915093649.djdipsrq4homkmaz@krzk-bin>
+References: <20220914211809.22500-1-alexander.helms.jy@renesas.com>
+ <20220914211809.22500-2-alexander.helms.jy@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <dbdcffd009302734fe2fb895ce04b72fa1ea4355.1663165000.git.geert+renesas@glider.be>
+In-Reply-To: <20220914211809.22500-2-alexander.helms.jy@renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -74,102 +72,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Sep 2022 16:17:37 +0200, Geert Uytterhoeven wrote:
-> Convert the Renesas R-Car Gen2 USB PHY Device Tree binding documentation
-> to json-schema.
+On Wed, 14 Sep 2022 14:18:08 -0700, Alex Helms wrote:
+> Add dt bindings for the Renesas ProXO oscillator.
 > 
-> Add missing properties.
-> Rename the device node from "usb-phy" to "usb-phy-controller", as it
-> does not represent a USB PHY itself, and thus does not have a
-> "#phy-cells" property.
-> Rename the child nodes from "usb-channel" to "usb-phy", as these do
-> represent USB PHYs.
-> Drop the second example, as it doesn't add any value.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
 > ---
-> v2:
->   - Rename nodes to fix "'#phy-cells' is a required property".
-> 
-> This is the final conversion to json-schema of DT bindings for Renesas
-> ARM SoCs, hurray!
-> 
-> Note that there are still a few plain text bindings left for Renesas IP
-> cores that are present on non-Renesas SoCs (nbpfaxi and usdhi6rol0).
-> ---
->  .../devicetree/bindings/phy/rcar-gen2-phy.txt | 112 ----------------
->  .../phy/renesas,rcar-gen2-usb-phy.yaml        | 123 ++++++++++++++++++
->  2 files changed, 123 insertions(+), 112 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt
->  create mode 100644 Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml
+>  .../bindings/clock/renesas,proxo.yaml         | 50 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 ++
+>  2 files changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,proxo.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/clock/renesas,proxo.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/clock/renesas,proxo.yaml#
 
+doc reference errors (make refcheckdocs):
 
-usb-phy@e6590100: 'usb-channel@0' does not match any of the regexes: '^usb-phy@[02]$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb
+See https://patchwork.ozlabs.org/patch/
 
-usb-phy@e6590100: 'usb-channel@0', 'usb-channel@2' do not match any of the regexes: '^usb-phy@[02]$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dtb
-	arch/arm/boot/dts/r8a7742-iwg21d-q7.dtb
-	arch/arm/boot/dts/r8a7743-iwg20d-q7-dbcm-ca.dtb
-	arch/arm/boot/dts/r8a7743-iwg20d-q7.dtb
-	arch/arm/boot/dts/r8a7743-sk-rzg1m.dtb
-	arch/arm/boot/dts/r8a7744-iwg20d-q7-dbcm-ca.dtb
-	arch/arm/boot/dts/r8a7744-iwg20d-q7.dtb
-	arch/arm/boot/dts/r8a7745-iwg22d-sodimm-dbhd-ca.dtb
-	arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dtb
-	arch/arm/boot/dts/r8a7745-sk-rzg1e.dtb
-	arch/arm/boot/dts/r8a7790-lager.dtb
-	arch/arm/boot/dts/r8a7790-stout.dtb
-	arch/arm/boot/dts/r8a7791-koelsch.dtb
-	arch/arm/boot/dts/r8a7791-porter.dtb
-	arch/arm/boot/dts/r8a7794-alt.dtb
-	arch/arm/boot/dts/r8a7794-silk.dtb
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-usb-phy@e6590100: 'usb-phy@0' is a required property
-	arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dtb
-	arch/arm/boot/dts/r8a7742-iwg21d-q7.dtb
-	arch/arm/boot/dts/r8a7743-iwg20d-q7-dbcm-ca.dtb
-	arch/arm/boot/dts/r8a7743-iwg20d-q7.dtb
-	arch/arm/boot/dts/r8a7744-iwg20d-q7-dbcm-ca.dtb
-	arch/arm/boot/dts/r8a7744-iwg20d-q7.dtb
-	arch/arm/boot/dts/r8a7745-iwg22d-sodimm-dbhd-ca.dtb
-	arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dtb
-	arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb
-	arch/arm/boot/dts/r8a7790-lager.dtb
-	arch/arm/boot/dts/r8a7790-stout.dtb
-	arch/arm/boot/dts/r8a7791-koelsch.dtb
-	arch/arm/boot/dts/r8a7791-porter.dtb
-	arch/arm/boot/dts/r8a7794-alt.dtb
-	arch/arm/boot/dts/r8a7794-silk.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-usb-phy@e6590100: 'usb-phy@2' is a required property
-	arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dtb
-	arch/arm/boot/dts/r8a7742-iwg21d-q7.dtb
-	arch/arm/boot/dts/r8a7743-iwg20d-q7-dbcm-ca.dtb
-	arch/arm/boot/dts/r8a7743-iwg20d-q7.dtb
-	arch/arm/boot/dts/r8a7744-iwg20d-q7-dbcm-ca.dtb
-	arch/arm/boot/dts/r8a7744-iwg20d-q7.dtb
-	arch/arm/boot/dts/r8a7745-iwg22d-sodimm-dbhd-ca.dtb
-	arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dtb
-	arch/arm/boot/dts/r8a7790-lager.dtb
-	arch/arm/boot/dts/r8a7790-stout.dtb
-	arch/arm/boot/dts/r8a7791-koelsch.dtb
-	arch/arm/boot/dts/r8a7791-porter.dtb
-	arch/arm/boot/dts/r8a7794-alt.dtb
-	arch/arm/boot/dts/r8a7794-silk.dtb
+pip3 install dtschema --upgrade
 
-usb-phy@e6598100: 'usb-channel@0' does not match any of the regexes: '^usb-phy@[02]$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb
-
-usb-phy@e6598100: 'usb-phy@0' is a required property
-	arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb
+Please check and re-submit.
