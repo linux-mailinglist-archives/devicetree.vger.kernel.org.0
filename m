@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F975B9EC6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AA2C5B9ECF
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:31:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230099AbiIOP0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 11:26:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58276 "EHLO
+        id S230095AbiIOPbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 11:31:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbiIOP0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:26:38 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5119481E0
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:37 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id a2so6933683lfb.6
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:37 -0700 (PDT)
+        with ESMTP id S229758AbiIOPa4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:30:56 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231AA4CA16
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:30:55 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id cc5so21608689wrb.6
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:30:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=NGazZew8Y/T93RBEu0rYu+/kI7DSokoP451E6Z1yuOs=;
-        b=lOBzlr+RwiNVd00cmYqUTdvRuhX+AKrMsHzbiHOo2bxswHOV2JuFqMEdCzS0RXt6zG
-         o077pIe/KYko7PZAQmOLUvS4bgxEL9BguHl/LHIgQTnACRIYYPcRc+K9vLLoEJ1QTzSL
-         KIiFVnmJCBYLGL6leZmHA77dfmNvtWGLL83c7hacH5D4a+q76SlMv7s7CpS1DP242klN
-         yGA5wyROzDiI362WAx+E9H6XjJQRK7P/TeMdpcjfMzSgLXVLiHR7DAoEqi6PpEV5JTJp
-         55jz8zySBqJPQaqRMB8DRq+rACJF5yhn02d75drCRUxUPtyFjci/Abz2/UeV7fLz9LsL
-         L7Yg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=peWX2leln2ZSvGXaMu2OH9aKkEDXDvB9GSTH9krlino=;
+        b=uaKZlfhNWAwsybApB1eOAM7LNBWicBlt3I++btMi2TJURkhNvIay6Jusv7tU7E1qUK
+         YKtrqSh48n0LlexHOX0Oyjzb8Fe463TwR4Snje0AV5ZCxyiGYySPP3Og7qaUSCfHPKqx
+         FgeUb9ckbGLjeYNUyn81dVTwps/ZC71LeHVCOw5MjYFr/Jk/ZstWzXPv00BuUC+kcRPF
+         Y7/R5AmF+6BkDWci7VS4UHSnu3FaEUFifk83mZWcsM/xzzsPtQSvdI9C64IONvbEfECE
+         WVHUjLCgeogixFOhCFchYarZWt35VpNQyrADs9uKGv4xpbc6iFjdwqE+mW2E45nzNgan
+         akzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=NGazZew8Y/T93RBEu0rYu+/kI7DSokoP451E6Z1yuOs=;
-        b=o9wM7gwkd35bK8/VLBbf0vzKH+yMjXXxCsEMdRIFGWnXFSIq3I83mKh8tvuaZ+Vf2t
-         /OxzT38BvHaPETbZjm56M4jqnx151p21fIR1R+Z3AvkDMSM0YcLhOnmzXQNK63zUi1/f
-         gduFL1RLuCSzWjyAXL3d3wowCnsHXIOXMXjmLoveqECUZL1KFy41wQZ7kc5uJbCy1o/c
-         VRscuUQFSi00w40ghtkehPaoUgiQlZFB5OZ+yn3yVxuTqw/VoHmBnPOtHzve11eFY1Un
-         s2tH0KfSLPYdvxou/F0H8EFiUTi3UIGFcbbQwMoCWtGn05YG9TFzUXxpSriGMtTGtsxz
-         km/Q==
-X-Gm-Message-State: ACrzQf3FfiQWZ5G6gtVa7Pp7cc9Q0tjKxibPTEe/QS0sE+qrWadkCynO
-        7OFAzP4k+HaJEchcsCjsws5/uw==
-X-Google-Smtp-Source: AMsMyM5jItUWEij2YWgUvDvnmq+N3TKx5OZ8y6WEEGX3GvS/98us9DDqj3iJtLi0vM1TdhePZbUG1Q==
-X-Received: by 2002:a19:e308:0:b0:494:6cb5:8e3a with SMTP id a8-20020a19e308000000b004946cb58e3amr135598lfh.680.1663255596238;
-        Thu, 15 Sep 2022 08:26:36 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id a18-20020a056512201200b00494813c689dsm3012653lfb.219.2022.09.15.08.26.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 08:26:35 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC PATCH 7/7] arm64: qcom: dts: nile: correct firmware paths
-Date:   Thu, 15 Sep 2022 18:26:30 +0300
-Message-Id: <20220915152630.133528-8-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220915152630.133528-1-dmitry.baryshkov@linaro.org>
-References: <20220915152630.133528-1-dmitry.baryshkov@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=peWX2leln2ZSvGXaMu2OH9aKkEDXDvB9GSTH9krlino=;
+        b=3dpb3vw0j+XEysI0z+Ayxzg1Wtb0HUZoBnHRmyqQazV+o70+ZVgIumLzg6ojU70YpH
+         e5bzAHfmsutdYqn6SpUBIx108xj+5iIvH2wSFoNVXJaBroJjIfQFasIerDrYSORMUerM
+         7Q38ZMYQQv24o78eDZTBp3BEVXGi6v3OTQ3o4+n0vvH1YVdFwNMBvbwuJhHJBWBWUA8x
+         HLrovLqwN5BQRY5XdTEEgpmkDsckUOEcJwKZlGca85wlENTrpwdwcdcmWbfADTDARoZW
+         AbZPY5S2LZObUXW9+UGy8NO16OU/j+GsCE5FMHW7FILaA9D+GVjKfc6eyXP/4dtAwOB9
+         5IGg==
+X-Gm-Message-State: ACrzQf1L6T6CXy21dFhzivUett6xWaL4+WDyitm/T6uPQQA8RcUm9p6u
+        GBJeA0DlEJ57dtcbYMeBbNJwvQ==
+X-Google-Smtp-Source: AMsMyM4JdjbuB3k8yaPzdP6kkU/k6S5PWAUIpyf2xFZ17JyUWm9Y+cRZWv3T9S8Zi8zpNvkSu4R4LQ==
+X-Received: by 2002:a5d:48c2:0:b0:228:6226:381a with SMTP id p2-20020a5d48c2000000b002286226381amr152194wrs.366.1663255853678;
+        Thu, 15 Sep 2022 08:30:53 -0700 (PDT)
+Received: from [10.119.22.201] ([89.101.193.72])
+        by smtp.gmail.com with ESMTPSA id a5-20020adffb85000000b0022a2f4fa042sm2809237wrr.103.2022.09.15.08.30.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Sep 2022 08:30:52 -0700 (PDT)
+Message-ID: <04187280-3c35-c9ac-fc70-b5066108ac0c@linaro.org>
+Date:   Thu, 15 Sep 2022 16:30:51 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] dt-bindings: mailbox: Convert mtk-gce to DT schema
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220915101716.70225-1-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220915101716.70225-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,27 +78,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct firmware paths for the Sony Xperia Nile devices to include the
-SoC name.
+On 15/09/2022 11:17, AngeloGioacchino Del Regno wrote:
+> Convert the mtk-gce mailbox binding to DT schema format.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../mailbox/mediatek,gce-mailbox.yaml         | 104 ++++++++++++++++++
+>  .../devicetree/bindings/mailbox/mtk-gce.txt   |  82 --------------
+>  2 files changed, 104 insertions(+), 82 deletions(-)
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+How is this related to:
+https://lore.kernel.org/all/66591c84-ee8d-7152-f0c5-5e4a07f632fb@linaro.org/
+?
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-index 09c07800793a..71b9e3170d63 100644
---- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-@@ -155,7 +155,7 @@ extcon_usb: extcon-usb {
- };
- 
- &adsp_pil {
--	firmware-name = "adsp.mdt";
-+	firmware-name = "qcom/sdm630/nile/adsp.mdt";
- };
- 
- &blsp_i2c1 {
--- 
-2.35.1
+Changelog? Previous review tag?
 
+
+Best regards,
+Krzysztof
