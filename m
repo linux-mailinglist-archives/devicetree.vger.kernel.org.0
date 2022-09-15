@@ -2,168 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76CD95B9A79
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:09:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD195B9A85
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:10:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230430AbiIOMJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 08:09:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40178 "EHLO
+        id S229612AbiIOMKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 08:10:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230418AbiIOMI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:08:59 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1EB86FD4;
-        Thu, 15 Sep 2022 05:08:47 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id n83so1935681oif.11;
-        Thu, 15 Sep 2022 05:08:46 -0700 (PDT)
+        with ESMTP id S229809AbiIOMKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:10:13 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC4B90196;
+        Thu, 15 Sep 2022 05:10:03 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id go34so41663279ejc.2;
+        Thu, 15 Sep 2022 05:10:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=Mm+2DF8Mo7Se/7xi0leL6LbCETFmkcHoyeYmjEsX7WE=;
+        b=iNoJjQVdspv7m0yKLXVJrb4efOtJSSHERmTzFyT9xZLDSyp/4LN2GLTzOR6ypDx4uW
+         +LhYeJ1I8QptOMuvtaasDCWX+VMjA32+ODdAUfeidPDRBwFVQ0lmmXxa/N9S7I+wTJGG
+         S6bV5syj0z6s5VeZYErVjdRq/PYqW2EEcEf0r9RfC4Gc8XcTkew3oSRKNUQw/sYEl76+
+         7F/MFBYcGtRQOwgUW1iDTvl9PhY+yDdGYGG7wvk+OlD9QdE0tmUmEiQEDtvn9WN4UQyT
+         xbj5Wsc1oqKpjS9Dp7NQSzWAYebPpbGwb+XA7RhqI/fKDeSwTzgnZS10uUHIYg/Y495F
+         WzQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=CWexIgbA3IRIwyMqeKFp2DYo/QKwW457pkqopssZBso=;
-        b=8QGKCc7l4aWtoyszUTSZ3pQH33poc76OsyYsBgf3wd0woQi4/w5ecb7j8j0Hzghx59
-         u0Iqzz+Bd6frKur3fB0o1IXpoatgZaezyOcmj1wZUmlqhTdLtG1E+DOgaIBaS/ippRvS
-         YQS3YX6mh2kWJ3t/TFMGIPLt4mGflC+raB+gpTqV0qIXHmYXF0WEd2MYlShX6m7m37xh
-         zO0onefH6EgZLVvKRhcvO5BIFI64TK1wnMBLBgqZrnX8dpIwK4bUKVmgwZDKfbWaTLw7
-         nkefoRrKf33N9gKx+Svkziw0LXPIck7cjaxt8MsztFFHzATApViSp6P91n+TiQqdioGw
-         6awQ==
-X-Gm-Message-State: ACgBeo0xIvGgb2mP3iC6fF8c2eVWpEN1ltlM5xhDFgjxWL1dT5TEToXH
-        TlIal8g4X7K0E8VdDfV5j3rD5YmXWA==
-X-Google-Smtp-Source: AA6agR5dB/lKeEMCwtyIAsd5I1+hpRgDUrSLNVqzCErkZDE/p7to/702NAT8rsqbA8ikleCipXFM2A==
-X-Received: by 2002:a05:6808:1a98:b0:34f:8b40:6263 with SMTP id bm24-20020a0568081a9800b0034f8b406263mr4073595oib.265.1663243725872;
-        Thu, 15 Sep 2022 05:08:45 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id en8-20020a056870078800b0012c52bd4369sm602362oab.19.2022.09.15.05.08.45
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=Mm+2DF8Mo7Se/7xi0leL6LbCETFmkcHoyeYmjEsX7WE=;
+        b=lmfGvKs5WD7fiJIczvZ4FhUjDF8jGBlcItS6NmUDWv4/MJVZGqbV++YG5Vrz/zv+yn
+         RuZ/XcfXk9sRMV62SOkoJUqxG6qxlyPbKAI3RPD70Ug5M6GCVxjP/V4kpQNuz7QwUGes
+         c/UjRYd1iYQGWmdKKTEaRUveWrgRV8FTWw4JHDA6N1C86OOyk+T0FwTRdvUGr36Z+DTS
+         NfO2jo6KMagkrVt9r/08PGwAmHw8TmHXxdGtQG6K0IbyLIjXX02ZrYyfX4oiLUlLx5Cq
+         18RXanYIiv0sotgWiZoZ/QEdX0q0GzLRf8rrceGnU1wln5SS++WV9jxhSnRYQdhaaxiP
+         Pn6Q==
+X-Gm-Message-State: ACgBeo0NnJod8hxjb+lIjsAKsLDGQnznQrGe8gFf5wLjgr6HpSW5pRL2
+        hFjBGs0hM7s9L//IAGymrAoT1PKXjI8=
+X-Google-Smtp-Source: AA6agR7akluhHbNA/L17G/el95vY0mQC3fDf8p1ne3XD+jaMEkWDy68uAbjZAN6V7dObPS9wUm/IEA==
+X-Received: by 2002:a17:907:7255:b0:77e:f3df:747a with SMTP id ds21-20020a170907725500b0077ef3df747amr12036041ejc.519.1663243801255;
+        Thu, 15 Sep 2022 05:10:01 -0700 (PDT)
+Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id gu2-20020a170906f28200b00718e4e64b7bsm8912344ejb.79.2022.09.15.05.09.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 05:08:45 -0700 (PDT)
-Received: (nullmailer pid 1008120 invoked by uid 1000);
-        Thu, 15 Sep 2022 12:08:44 -0000
-Date:   Thu, 15 Sep 2022 07:08:44 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Alex Helms <alexander.helms.jy@renesas.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        mturquette@baylibre.com, geert+renesas@glider.be
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add bindings for Renesas ProXO
-Message-ID: <20220915120844.GA996386-robh@kernel.org>
-References: <20220914211809.22500-1-alexander.helms.jy@renesas.com>
- <20220914211809.22500-2-alexander.helms.jy@renesas.com>
+        Thu, 15 Sep 2022 05:10:00 -0700 (PDT)
+Date:   Thu, 15 Sep 2022 14:09:58 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Mikko Perttunen <cyndis@kapsi.fi>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 0/3] Host1x context isolation on Tegra234
+Message-ID: <YyMWFtZ5JTwVw3RT@orome>
+References: <20220907083844.2486805-1-cyndis@kapsi.fi>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qlPgB3ZnVYKZSLq1"
 Content-Disposition: inline
-In-Reply-To: <20220914211809.22500-2-alexander.helms.jy@renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220907083844.2486805-1-cyndis@kapsi.fi>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 02:18:08PM -0700, Alex Helms wrote:
-> Add dt bindings for the Renesas ProXO oscillator.
-> 
-> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
-> ---
->  .../bindings/clock/renesas,proxo.yaml         | 50 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  2 files changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/renesas,proxo.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/renesas,proxo.yaml b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
-> new file mode 100644
-> index 000000000..2ae131431
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/renesas,versaclock7.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas ProXO Oscillator Device Tree Bindings
-> +
-> +maintainers:
-> +  - Alex Helms <alexander.helms.jy@renesas.com>
-> +
-> +description: |
 
-Don't need '|' if no formatting to preserve.
+--qlPgB3ZnVYKZSLq1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +  Renesas ProXO is a family of programmable ultra-low phase noise 
-> +  quartz-based oscillators.
+On Wed, Sep 07, 2022 at 11:38:41AM +0300, Mikko Perttunen wrote:
+> From: Mikko Perttunen <mperttunen@nvidia.com>
+>=20
+> Hi all,
+>=20
+> this series adds support for Host1x context isolation
+> on Tegra234 (Orin). The difference from previous generations
+> is that there are two IOMMUs to which engines can be attached
+> to, resulting in having to have a set of contexts for each one.
+>=20
+> Patches should be applied in order. The first patch is needed
+> so that the kernel doesn't attempt to use a context device
+> attached to the wrong IOMMU when context stream IDs are present
+> in the device tree. The other two patches have a compile time
+> dependency.
+>=20
+> Thanks,
+> Mikko
+>=20
+> Mikko Perttunen (3):
+>   gpu: host1x: Select context device based on attached IOMMU
+>   dt-bindings: Add Host1x context stream IDs on Tegra234
+>   arm64: tegra: Add context isolation domains on Tegra234
+>=20
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 19 +++++++++++++++++++
+>  drivers/gpu/drm/tegra/uapi.c             |  2 +-
+>  drivers/gpu/host1x/context.c             |  5 +++++
+>  include/dt-bindings/memory/tegra234-mc.h | 10 ++++++++++
+>  include/linux/host1x.h                   |  1 +
+>  5 files changed, 36 insertions(+), 1 deletion(-)
 
-Are they all the same from a s/w standpoint. If not you need specific 
-compatibles for the differences. 
+All three patches applied.
 
-> +
-> +properties:
-> +  '#clock-cells':
-> +    const: 0
-> +
-> +  compatible:
-> +    enum:
-> +      - renesas,proxo-xp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  renesas,xtal:
-> +    description: Internal crystal frequency, default is 50000000 (50MHz)
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+Thanks,
+Thierry
 
-Use 'clock-frequency'.
+--qlPgB3ZnVYKZSLq1
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
-> +required:
-> +  - '#clock-cells'
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c@0 {
+-----BEGIN PGP SIGNATURE-----
 
-i2c {
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmMjFhYACgkQ3SOs138+
+s6HuFg//Zw+zHuUSSm2nTYZM6Nq/HlNb6b2B3jroN+sSGvNVUhChrpiN/Jl4dJDV
+T9bO7qYmz5iQ3wKbfGoVwqGtOvuvAy40v2qAljSTd8iFLPDmwWWM8cVL4x83V2Hh
+Rg44v6yBJ+lKg8AEoKcLbd00VuwwLyrXl4cKBHyTmR3Mk9Rr4xj5dvAyeb6uwZun
+xC2w3jBzBZeaSZRJSqx57TN8mlULvr8MUaM2agQN2jUQ4EObNdZyW3NfLsjh88HT
+unYtWlJlWbYmsADPx63JCG16KiQ6no9rqNrq4R5TWdZpTo5rDrc1wENKJKdRe5Ua
+ciOmOcI9RRYOCi+13XxDHb4jVttrIfdw7dafCDFv1RjtQ0EzGnBshpe60E6p4Tqx
+/bgzfgkEkM4W730Bf0eDbGGc1xmvS1oWae010GxTMQVyx4U74yAMCjP+VubatlLy
+CItmx+zyANZxUc/4NXfO0m7ItR64L9IBGMRsuvrQbGqx65Yk9MOPYDTNggGCNm9R
+nGi4ipdqv1MsJPavzjTW+DxoFuvb0uq0ldS2HaO9nAM67xSspRf+tKGFuyZcPZZd
+C0BPqB9U8Z5WhQk0xiMXUhOjIlxP96UX3vgca5DGi2thQWaAcvBduKaQG5WryQvg
+2ZTZNGNPTSmU0ciTeXQ007/bMWfRtgD2HxyLDC8bEDmwFnG4j8s=
+=ZApN
+-----END PGP SIGNATURE-----
 
-> +      reg = <0x0 0x100>;
-
-Drop
-
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      proxo: proxo@55 {
-
-clock-controller@55
-
-> +        compatible = "renesas,proxo-xp";
-> +        reg = <0x55>;
-> +        #clock-cells = <0>;
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 350102355..d52a8a5d2 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -16080,6 +16080,11 @@ S:	Supported
->  F:	Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
->  F:	drivers/iio/adc/rzg2l_adc.c
->  
-> +RENESAS PROXO CLOCK DRIVER
-> +M:	Alex Helms <alexander.helms.jy@renesas.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/clock/renesas,proxo.yaml
-> +
->  RESET CONTROLLER FRAMEWORK
->  M:	Philipp Zabel <p.zabel@pengutronix.de>
->  S:	Maintained
-> -- 
-> 2.30.2
-> 
-> 
+--qlPgB3ZnVYKZSLq1--
