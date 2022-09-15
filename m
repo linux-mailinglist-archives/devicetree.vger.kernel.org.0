@@ -2,74 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7F885B9FA5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 18:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 177E95B9FBC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 18:40:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbiIOQca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 12:32:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
+        id S229624AbiIOQkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 12:40:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbiIOQc3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 12:32:29 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419B08A1D7;
-        Thu, 15 Sep 2022 09:32:28 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id n17-20020a05600c501100b003a84bf9b68bso14122293wmr.3;
-        Thu, 15 Sep 2022 09:32:28 -0700 (PDT)
+        with ESMTP id S229503AbiIOQj7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 12:39:59 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12CCF21253
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 09:39:58 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id t65so17825250pgt.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 09:39:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=OW/Ex82NxAoUPhZ7WksjsJWpT0Wxc4UMr3Q8n9sA3l0=;
-        b=oa1iAq2oQGEn8eKul2dVLQzOitSaXu1V04U72I5Tb0OJxKctS0GCAc9ZSxB0ODpizN
-         dJ/F5KUO+H+d6BJkjcgX4GbYv5T2yLX6nJjt7FZ6xuQNXQUNp615t60zU28VyfC20HYa
-         EyRu7HQpsUN9ud7rY9SDSkPkrXYxVs1LFi1qkOyBpO05fcwiS76omNG8QrNo0OayXhWO
-         cVNqgX4cl5DNheQtok6eO86lW3GRYsEm4iN9IZD1saczShJXfDcjsWa0TWoZS6F8uwbP
-         uUzh2eNswEfdIkHix87bYZ2fxQerSaaSUB7vkmwvx0813r39HwLdzpBcLYm0RR4ouMhe
-         z0Yg==
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=RkWGT9yQHWHTXXm5E5ctM+LbterE/dY2uqCbfyonKt8=;
+        b=gumQQAFlGYvN9ynL/A+akjjufry3KtQo+pgN9JFbxSOCca2trA+55rKFztsyTHWXp+
+         Q/ZYiWAjIfkrV9xuonsyLrqgO/IfIIBNuEEF+6N2U94VkkyCkh2ZerlcUHW/IYsXwS15
+         gJOtRTgF32jkGnBySGruPhD05QGwg3XZHCP695yxkHljm+E4BOOsz7oAH3TZ4x0pFNjj
+         bUIiu5mcdYpK67zVBMeQGTsUAMg+x8tdziBDMWz+ZUiLREzFle5JFGa/9aORWVraGIdL
+         KsPxYVV1pvOjzYY/RJXuIV/AbAknbo/uAKWWFWBHH3UE+rQHnpuK2788Y1fw+yCb1poe
+         +RBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=OW/Ex82NxAoUPhZ7WksjsJWpT0Wxc4UMr3Q8n9sA3l0=;
-        b=M2+rnjQvd3LoOTnfP5HeItbxj/vuMzpjhjM3F0MvUkZnEawKUWMLc0AWWJTiu0Dir8
-         sDNCwXvrV6a/YuO/a+IlYPLPmCJrrInciOD2fTsgxI9zpVMLp2VtcrnXNxyI3CtkK0R8
-         8YRDVQrl3ophALVL2G556qxRhptbxYNqQpM/rZOVqOalKNTsFPe5R+RzHwx4MU8YWuY1
-         O3LVvMuhdiqFauc5nX1oawB44dDYFRxvTEiXWbyMKPNVW/zAXUicSxntEBBbteIK3Kfn
-         RLhu/gsd39nGVTFjtHM1dThpmqtC9gW2NNR4VLa2mz3z2nmoIeiTjv6qwVhJDAe6tOQL
-         vsyQ==
-X-Gm-Message-State: ACrzQf12k2S4oxxE5tP1Wp5Z//ycOd/sSg/MAapPDL9cEpHQT04FlFJh
-        QIKm7cc+gI2Pj4+knaMUYrZWaNu83/0=
-X-Google-Smtp-Source: AMsMyM5vSjMhWO1RDq7b4M3mpsFrRuHxRzzw7FrIG+23DFOAsZqCTFeWng1l9RQ7qYEL5fpA6SuztA==
-X-Received: by 2002:a05:600c:6029:b0:3b4:9fcc:cbb3 with SMTP id az41-20020a05600c602900b003b49fcccbb3mr451881wmb.169.1663259546781;
-        Thu, 15 Sep 2022 09:32:26 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id fc8-20020a05600c524800b003b48dac344esm3975873wmb.43.2022.09.15.09.32.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Sep 2022 09:32:25 -0700 (PDT)
-Message-ID: <990c00a4-f20d-1e7e-e4d3-6731947c1456@gmail.com>
-Date:   Thu, 15 Sep 2022 18:32:24 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=RkWGT9yQHWHTXXm5E5ctM+LbterE/dY2uqCbfyonKt8=;
+        b=wVV56qaenbkpxaq4Pbk+pUds8BjC4ikyeVxUPcvM7r8+/k8eKBRLAoteEgpTq5sn8d
+         6KMd5dBKBMhEUgw/UQ6hQWPflOp/b7WmVdMJkT/GaXlkD05Ln5tGHpDTB/yeRYIKViHI
+         7gTrJBLtxv+dxou77vKLFqijEKOYCCXmomLUy1ohejMa/kj//hMnGBvdljoKPkhhweWc
+         diGqBZxj0UC6MhPMBAmmMTCrRmJtje1KXY78qnMEVWg7+xD1jrPE/MPVm7QaIiHkTb5X
+         42NmL4K0+lrzx8pxDMWAvUlxvt571V/LFDwgnBT2kjrMm+qyzOv/piUs9yV9p2g2qYQO
+         XbCw==
+X-Gm-Message-State: ACrzQf3to/Rui/s+5Nk9Wjj/tAdYKlGhr130DsmdSWE1yOA3MM18LxH5
+        bCjos9N76+DhaoLGL2NUH9bJVg==
+X-Google-Smtp-Source: AMsMyM6s2WDMJGPu8tV/Wn9Y9tLoRGIUCm5iTpZGgft29tWl675ANncBYsC09zQCOspfPZ+hKqyrPg==
+X-Received: by 2002:a63:564b:0:b0:42c:414a:95fd with SMTP id g11-20020a63564b000000b0042c414a95fdmr623215pgm.5.1663259997496;
+        Thu, 15 Sep 2022 09:39:57 -0700 (PDT)
+Received: from localhost.localdomain ([2405:201:c00a:a073:f820:a732:fc7f:74df])
+        by smtp.gmail.com with ESMTPSA id x21-20020aa78f15000000b00540f3ac5fb8sm12841652pfr.69.2022.09.15.09.39.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Sep 2022 09:39:57 -0700 (PDT)
+From:   Jagan Teki <jagan@edgeble.ai>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH v5 0/6] ARM: Add Rockchip RV1126 support
+Date:   Thu, 15 Sep 2022 22:09:41 +0530
+Message-Id: <20220915163947.1922183-1-jagan@edgeble.ai>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Subject: Re: [PATCH] arm64: dts: mediatek: mt6795: Add CPUX system timer node
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220729093536.27623-1-angelogioacchino.delregno@collabora.com>
- <3a91e743-2b8f-51b6-9ac1-adc3e7ec8cc4@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <3a91e743-2b8f-51b6-9ac1-adc3e7ec8cc4@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,49 +69,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Jagan Teki <jagan@amarulasolutions.com>
 
+RV1126 is a high-performance vision processor SoC for IPC/CVR,
+especially for AI related application.
 
-On 14/09/2022 13:01, AngeloGioacchino Del Regno wrote:
-> Il 29/07/22 11:35, AngeloGioacchino Del Regno ha scritto:
->> Add a node for mt6795-systimer: this is necessary to start the
->> System Timer(s) for all cores, finally making CNTVCT_EL0 usable.
->>
->> Signed-off-by: AngeloGioacchino Del Regno 
->> <angelogioacchino.delregno@collabora.com>
-> 
-> Hello Matthias,
-> 
-> gentle ping for this one - this has no floating dependencies and it's
-> verified to work as expected.
-> 
+This series add left over patches from v4 [1]. The dts patches
+will send in another series as we have some naming convention
+updates.
 
-Applied, thanks!
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220907160207.3845791-1-jagan@edgeble.ai/
 
-> Cheers,
-> Angelo
-> 
->> ---
->>   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi 
->> b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->> index d4842b4a4eb7..46f0e54be766 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->> @@ -230,6 +230,14 @@ sysirq: intpol-controller@10200620 {
->>               reg = <0 0x10200620 0 0x20>;
->>           };
->> +        systimer: timer@10200670 {
->> +            compatible = "mediatek,mt6795-systimer";
->> +            reg = <0 0x10200670 0 0x10>;
->> +            interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
->> +            clocks = <&system_clk>;
->> +            clock-names = "clk13m";
->> +        };
->> +
->>           gic: interrupt-controller@10221000 {
->>               compatible = "arm,gic-400";
->>               #interrupt-cells = <3>;
-> 
-> 
+Any inputs?
+Jagan.
+
+Jagan Teki (6):
+  i2c: rk3x: Add rv1126 support
+  clk: rockchip: Add dt-binding header for RV1126
+  dt-bindings: clock: rockchip: Document RV1126 CRU
+  clk: rockchip: Add clock controller support for RV1126 SoC.
+  ARM: dts: rockchip: Add Rockchip RV1126 pinctrl
+  ARM: dts: rockchip: Add Rockchip RV1126 SoC
+
+ .../bindings/clock/rockchip,rv1126-cru.yaml   |   62 +
+ MAINTAINERS                                   |    2 +-
+ arch/arm/boot/dts/rv1126-pinctrl.dtsi         |  212 +++
+ arch/arm/boot/dts/rv1126.dtsi                 |  430 ++++++
+ drivers/clk/rockchip/Kconfig                  |    7 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-rv1126.c             | 1156 +++++++++++++++++
+ drivers/clk/rockchip/clk.h                    |   19 +
+ drivers/i2c/busses/i2c-rk3x.c                 |    9 +
+ .../dt-bindings/clock/rockchip,rv1126-cru.h   |  632 +++++++++
+ 10 files changed, 2529 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1126-cru.yaml
+ create mode 100644 arch/arm/boot/dts/rv1126-pinctrl.dtsi
+ create mode 100644 arch/arm/boot/dts/rv1126.dtsi
+ create mode 100644 drivers/clk/rockchip/clk-rv1126.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rv1126-cru.h
+
+-- 
+2.25.1
+
