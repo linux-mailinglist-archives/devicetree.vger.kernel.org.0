@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DA05B98BE
+	by mail.lfdr.de (Postfix) with ESMTP id 503AE5B98BF
 	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 12:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiIOK3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 06:29:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58250 "EHLO
+        id S229885AbiIOK3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 06:29:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbiIOK3d (ORCPT
+        with ESMTP id S229774AbiIOK3d (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 06:29:33 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A884FC59
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 03:29:30 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id u15-20020a05600c19cf00b003b4acef34b1so902640wmq.4
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 03:29:30 -0700 (PDT)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB95CF0
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 03:29:31 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id n8so6043076wmr.5
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 03:29:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date;
-        bh=y4XRiTWvqgw8E7sxid7nxz5JdJQpRcJN2TxmeR9LcxI=;
-        b=UskMr1TVUJPvARbAHGUNzn4UiwFMUZlB0Pg8EpP5zSDSP1fl6GzS2MqlHLQYjG71Kk
-         mJ7i9ugJFQlFbTlIT1tX0Rt6B+7F40RcaExLSC/fxFBjFwn5XjtonqDUNtxECzOC0g5H
-         RWAZzm+5cAbLo5v63fZaTyVBwskAbGpAkmbiVQWL6kfJviigzbCmsHG8RLsLUZG3kOsf
-         76TwZdJcnKsnEeVHvYnhPkVRV8AQLOpLP0C3cIIm8ATYtVaXEEdw5NmleWJD2HVcU7JY
-         exEcoPpIJvFE3ilh07DDzOBJIpL4bnpiUoZr+b6SwT0RL3IIGIOruY7XSCK3NMzguzB+
-         qVNQ==
+        bh=t1tgoHzcuNz6608F9ral59980nRZm0iCe/jA9+SaWcw=;
+        b=xfY46AXwiEIXzTNjMYfvBmoBvK4Okl/KzOSF3uSeGFm9POQCmX8JyovEnujiJcNHwM
+         Q3BVJh22F5JuOT6W6BYomK3QVYIlZkz0XNt+sRs7eohfl2mDzwt9HSwzSjqL1+PF1j5C
+         I99VRPz5qfWn/dIucemh/z/u9xxMc9BOy2JhbFIgxaaqqq3q9hJ6G5dA/ZIfbEJy5t0z
+         zrTUFWM6+xc6gsr7KV0J85QlrOcwQ4zjeDX9eNA9jOm6bMTFUHS7HeImyzOvC1Kl9jea
+         +QRxQhQeaOoNkcXJWMYW5xrvveb4Xy7B53oSinOGsWTXdBO0E9KnJAdbVNffCEsei0Jv
+         kVRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=y4XRiTWvqgw8E7sxid7nxz5JdJQpRcJN2TxmeR9LcxI=;
-        b=41P1wMATu4YjBknxEhz4ZeLNHdcLpLHMMsNowNZKTNmqVpFRB9AImt3gPN4Q4+/Hx3
-         nd/kfEJ9HWu6XHs4f19xx3OIIoDp/c/mkaOGGztmn+8DjPkTZzqtbr161rtIXmUbJv1x
-         gy09cEyGPXoOU1pbACGxKmSm5JuLhPg27gpQ7JGChH8+qcFN4frhVR8rdRyI8DWGdEJ7
-         pIH7fJe7PA362m+dCpkU4nIkUWu06lWj/1DPipNylWsDGgyaFvpW2g4VPVqI8isEaj+D
-         QfpVoXex70Okl3LThGB/CwtYtwvhp4/GY4xZZISEM91yWAVt0b3ffiq/J7zl+sZ7ZrFi
-         KIuQ==
-X-Gm-Message-State: ACgBeo22+S3DntbfP5hdQh/AYmwMxUQy32ABNX5sGp6vJufqMj+cYVb5
-        lS8V8HAgWwjOrv0RB2BKKh3aSQ==
-X-Google-Smtp-Source: AA6agR4ITHPf6PE0PpNsbQL8uu+SD5+Ipjy3UMkuh7QN1NNOw1P8DQLXtw9k5JAvWgJlo0dMBPEE3w==
-X-Received: by 2002:a05:600c:268f:b0:3b4:acef:34ab with SMTP id 15-20020a05600c268f00b003b4acef34abmr1427464wmt.176.1663237769154;
-        Thu, 15 Sep 2022 03:29:29 -0700 (PDT)
+        bh=t1tgoHzcuNz6608F9ral59980nRZm0iCe/jA9+SaWcw=;
+        b=hb9YfBG7YJ+KhNm26ULJP10r/k9pSApY7++CdnUr+S6DE5RzOuDMw2j+fBT1GhAFhY
+         qYvF3Bc87ln/JNftgt4H1r5lJy5SXZvCqXaot1CN1NEuqzmLillf+/aEI5CKwsbP8mQw
+         YwXOvMTFOFm/M8L8S85qTInc8mlkKUjqlEneqMlPWDK3Ccd7uVc/mKzhartsD5BSh2Ud
+         8Bw7coWjmf2iQjM16McBUdXo10RIQRsG/RjqIbGRmk+wJc/c+UEC0Z0vI/vJudMiFpU1
+         /cfwbGOkt1Em185lM+45KYS5cGizGiAoxZb+rqrYMRFDVRkTIN31+apfdq13kGvTPfiQ
+         +DFg==
+X-Gm-Message-State: ACrzQf0VnzkR0qxQ4gx+lUy+dMilqbJ0IFDPYZ+pCze3UifuVS41QTdx
+        FjeE1qdzv4ac1xsERNRfWscaMQ==
+X-Google-Smtp-Source: AMsMyM6l0IFcUEUYMdFQtm6+1h40cpF70ZwsOEncfkwpO534Z60smPFIjDXh6oCkTPCcHe7qz5kDEg==
+X-Received: by 2002:a05:600c:5110:b0:3b4:b3d7:c30f with SMTP id o16-20020a05600c511000b003b4b3d7c30fmr333227wms.93.1663237770497;
+        Thu, 15 Sep 2022 03:29:30 -0700 (PDT)
 Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id q17-20020adff951000000b00228dff8d975sm2098257wrr.109.2022.09.15.03.29.28
+        by smtp.gmail.com with ESMTPSA id q17-20020adff951000000b00228dff8d975sm2098257wrr.109.2022.09.15.03.29.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 03:29:28 -0700 (PDT)
+        Thu, 15 Sep 2022 03:29:29 -0700 (PDT)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
         robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
@@ -56,9 +56,9 @@ To:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
         dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
         Chris Morgan <macromorgan@hotmail.com>,
         devicetree@vger.kernel.org
-Subject: [PATCH v1 1/2] Revert "Revert "drm/bridge: ti-sn65dsi86: Implement bridge connector operations for DP""
-Date:   Thu, 15 Sep 2022 12:29:23 +0200
-Message-Id: <20220915102924.370090-2-robert.foss@linaro.org>
+Subject: [PATCH v1 2/2] Revert "drm/bridge: chrontel-ch7033: Add byteswap order setting"
+Date:   Thu, 15 Sep 2022 12:29:24 +0200
+Message-Id: <20220915102924.370090-3-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220915102924.370090-1-robert.foss@linaro.org>
 References: <20220915102924.370090-1-robert.foss@linaro.org>
@@ -66,88 +66,65 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit was accidentally reverted instead of another commit, and
-therefore needs to be reinstated.
+Revert this patch since it depends on devicetree functionality that
+previously has been reverted in the below commit.
 
-This reverts commit 8c9c40ec83445b188fb6b59e119bf5c2de81b02d.
+commit e798ba3374a1 ("Revert "dt-bindings: Add byteswap order to chrontel ch7033"")
+
+This reverts commit ce9564cfc9aea65e68eb343c599317633bc2321a.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- drivers/gpu/drm/bridge/ti-sn65dsi86.c | 28 +++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ drivers/gpu/drm/bridge/chrontel-ch7033.c | 15 ++-------------
+ 1 file changed, 2 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi86.c b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-index 6e053e2af229..3c3561942eb6 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-@@ -29,6 +29,7 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_bridge_connector.h>
-+#include <drm/drm_edid.h>
- #include <drm/drm_mipi_dsi.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-@@ -68,6 +69,7 @@
- #define  BPP_18_RGB				BIT(0)
- #define SN_HPD_DISABLE_REG			0x5C
- #define  HPD_DISABLE				BIT(0)
-+#define  HPD_DEBOUNCED_STATE			BIT(4)
- #define SN_GPIO_IO_REG				0x5E
- #define  SN_GPIO_INPUT_SHIFT			4
- #define  SN_GPIO_OUTPUT_SHIFT			0
-@@ -1158,10 +1160,33 @@ static void ti_sn_bridge_atomic_post_disable(struct drm_bridge *bridge,
- 	pm_runtime_put_sync(pdata->dev);
- }
+diff --git a/drivers/gpu/drm/bridge/chrontel-ch7033.c b/drivers/gpu/drm/bridge/chrontel-ch7033.c
+index c5719908ce2d..ba060277c3fd 100644
+--- a/drivers/gpu/drm/bridge/chrontel-ch7033.c
++++ b/drivers/gpu/drm/bridge/chrontel-ch7033.c
+@@ -68,7 +68,6 @@ enum {
+ 	BYTE_SWAP_GBR	= 3,
+ 	BYTE_SWAP_BRG	= 4,
+ 	BYTE_SWAP_BGR	= 5,
+-	BYTE_SWAP_MAX	= 6,
+ };
  
-+static enum drm_connector_status ti_sn_bridge_detect(struct drm_bridge *bridge)
-+{
-+	struct ti_sn65dsi86 *pdata = bridge_to_ti_sn65dsi86(bridge);
-+	int val = 0;
-+
-+	pm_runtime_get_sync(pdata->dev);
-+	regmap_read(pdata->regmap, SN_HPD_DISABLE_REG, &val);
-+	pm_runtime_put_autosuspend(pdata->dev);
-+
-+	return val & HPD_DEBOUNCED_STATE ? connector_status_connected
-+					 : connector_status_disconnected;
-+}
-+
-+static struct edid *ti_sn_bridge_get_edid(struct drm_bridge *bridge,
-+					  struct drm_connector *connector)
-+{
-+	struct ti_sn65dsi86 *pdata = bridge_to_ti_sn65dsi86(bridge);
-+
-+	return drm_get_edid(connector, &pdata->aux.ddc);
-+}
-+
- static const struct drm_bridge_funcs ti_sn_bridge_funcs = {
- 	.attach = ti_sn_bridge_attach,
- 	.detach = ti_sn_bridge_detach,
- 	.mode_valid = ti_sn_bridge_mode_valid,
-+	.get_edid = ti_sn_bridge_get_edid,
-+	.detect = ti_sn_bridge_detect,
- 	.atomic_pre_enable = ti_sn_bridge_atomic_pre_enable,
- 	.atomic_enable = ti_sn_bridge_atomic_enable,
- 	.atomic_disable = ti_sn_bridge_atomic_disable,
-@@ -1257,6 +1282,9 @@ static int ti_sn_bridge_probe(struct auxiliary_device *adev,
- 	pdata->bridge.type = pdata->next_bridge->type == DRM_MODE_CONNECTOR_DisplayPort
- 			   ? DRM_MODE_CONNECTOR_DisplayPort : DRM_MODE_CONNECTOR_eDP;
+ /* Page 0, Register 0x19 */
+@@ -356,8 +355,6 @@ static void ch7033_bridge_mode_set(struct drm_bridge *bridge,
+ 	int hsynclen = mode->hsync_end - mode->hsync_start;
+ 	int vbporch = mode->vsync_start - mode->vdisplay;
+ 	int vsynclen = mode->vsync_end - mode->vsync_start;
+-	u8 byte_swap;
+-	int ret;
  
-+	if (pdata->bridge.type == DRM_MODE_CONNECTOR_DisplayPort)
-+		pdata->bridge.ops = DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_DETECT;
-+
- 	drm_bridge_add(&pdata->bridge);
+ 	/*
+ 	 * Page 4
+@@ -401,16 +398,8 @@ static void ch7033_bridge_mode_set(struct drm_bridge *bridge,
+ 	regmap_write(priv->regmap, 0x15, vbporch);
+ 	regmap_write(priv->regmap, 0x16, vsynclen);
  
- 	ret = ti_sn_attach_host(pdata);
+-	/* Input color swap. Byte order is optional and will default to
+-	 * BYTE_SWAP_BGR to preserve backwards compatibility with existing
+-	 * driver.
+-	 */
+-	ret = of_property_read_u8(priv->bridge.of_node, "chrontel,byteswap",
+-				  &byte_swap);
+-	if (!ret && byte_swap < BYTE_SWAP_MAX)
+-		regmap_update_bits(priv->regmap, 0x18, SWAP, byte_swap);
+-	else
+-		regmap_update_bits(priv->regmap, 0x18, SWAP, BYTE_SWAP_BGR);
++	/* Input color swap. */
++	regmap_update_bits(priv->regmap, 0x18, SWAP, BYTE_SWAP_BGR);
+ 
+ 	/* Input clock and sync polarity. */
+ 	regmap_update_bits(priv->regmap, 0x19, 0x1, mode->clock >> 16);
 -- 
 2.34.1
 
