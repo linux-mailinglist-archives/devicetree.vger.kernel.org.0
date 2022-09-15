@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66EBA5BA062
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 19:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E52DE5BA069
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 19:35:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiIOR25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 13:28:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44662 "EHLO
+        id S229648AbiIORfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 13:35:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbiIOR24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 13:28:56 -0400
-X-Greylist: delayed 108957 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 15 Sep 2022 10:28:53 PDT
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14C49C1E9;
-        Thu, 15 Sep 2022 10:28:53 -0700 (PDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 130CD600877D;
-        Thu, 15 Sep 2022 18:28:51 +0100 (WEST)
-X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
-        tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
-        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
-        with LMTP id Iz1jkrXv98L6; Thu, 15 Sep 2022 18:28:48 +0100 (WEST)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
-        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 98B476008777;
-        Thu, 15 Sep 2022 18:28:48 +0100 (WEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
-        s=mail; t=1663262928;
-        bh=mnGCfMED2lxDnun/7mMj+BV+IXlh6vYMUbEN10N5x10=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=nSXDkOus+D3A8GgGdGQMukCCKNoKeoEAjULrD+QB1aBWwjkkg6WsTH7TEgkQTEb07
-         WoSWB5fXiXbvVj9sfmMq115jxodQyU5afVPO3IM3BbY8LjYmAGYUTO7i//IDgyQY97
-         w4vYRBw+BpwKwSwIzRXqEA+qqk/UrKKHxxNPZDvQ=
-Received: from wslaptop (unknown [IPv6:2001:818:dcb5:dc00:7a88:7f12:8ed8:518d])
-        (Authenticated sender: ist187313)
-        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 5EEDB360095;
-        Thu, 15 Sep 2022 18:28:48 +0100 (WEST)
-Date:   Thu, 15 Sep 2022 18:29:06 +0100
-From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: tegra: smaug: Add Wi-Fi and BT DT nodes
-Message-ID: <20220915172906.rjcxhxx53kdcmwuh@wslaptop>
-References: <20220914111221.862929-1-diogo.ivo@tecnico.ulisboa.pt>
- <YyL+DmHdJBdoy5KU@orome>
+        with ESMTP id S229495AbiIORfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 13:35:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 779B094ED9;
+        Thu, 15 Sep 2022 10:35:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2D2C0B821A6;
+        Thu, 15 Sep 2022 17:35:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A8BEC433D7;
+        Thu, 15 Sep 2022 17:35:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663263306;
+        bh=CAMApLxsFRyjlyr+zQja25pEOP5xoAT8KHk+CoyIDFc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dU1SpkiyesP1hIUQ3RbcudqirXdwXcV3euWJIx/UEq+ycww2iblUo7QV5sbbST7ai
+         ihHMISisL6gJ98h7IHBXmonTsEI+qowFl1pF0Y+Kl+q5vL6xs+efwkuQqH5942OVZD
+         GBXPXizjD/fnXENYVRW+KSTPGQ9+DVCBXAZBcvLBG5T6yPLO3S8EiFYWDzUTIRWx0j
+         CAEYo/72vsaE91o/S/36exZnm5xvPDadg1yTxJKxz7yaTFY2cmtC3lXwUnjTd/59Zr
+         dT3T8/691ahFQAkle4HDo5KiKODQjjuN5Pv/aVC4UySM4cuz//dcOsJgmmzGtaC42w
+         AW0VvnbS6xylQ==
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     jic23@kernel.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        lorenzo.bianconi@redhat.com, robh@kernel.org
+Subject: [PATCH 0/2] add support for LSM6DSTX
+Date:   Thu, 15 Sep 2022 19:34:58 +0200
+Message-Id: <cover.1663262890.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YyL+DmHdJBdoy5KU@orome>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 15, 2022 at 12:27:26PM +0200, Thierry Reding wrote:
-> Both patches applied, thanks!
-> 
-> Given that this is a rather old device that we rarely see third party
-> contributions for, would you mind sharing some details on your setup?
-> Are you running any of the after market OSes on this?
-> 
-> Thierry
+Add support for LSM6DSTX IMU mems sensor
+https://www.st.com/resource/en/datasheet/lsm6dstx.pdf
 
-Hello,
+Lorenzo Bianconi (2):
+  iio: imu: st_lsm6dsx: add support to LSM6DSTX
+  dt-bindings: iio: imu: st_lsm6dsx: add lsm6dstx device bindings
 
-I am running the latest Arch Linux ARM image on it, and the 5.19 kernel,
-which allow the device to be used from the TTY, since there are
-some bugs in the graphics stack preventing a full desktop environment.
+ Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
+ drivers/iio/imu/st_lsm6dsx/Kconfig                        | 2 +-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h                   | 2 ++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c            | 2 +-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c              | 7 ++++++-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c               | 5 +++++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c               | 5 +++++
+ 7 files changed, 23 insertions(+), 3 deletions(-)
 
-Best regards,
-Diogo
+-- 
+2.37.3
+
