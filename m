@@ -2,764 +2,385 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F1C5B9523
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 09:22:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B790C5B952D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 09:23:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbiIOHWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 03:22:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45240 "EHLO
+        id S229448AbiIOHXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 03:23:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbiIOHWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 03:22:10 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AE18A7EE
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 00:22:07 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oYjC9-0003VR-O8; Thu, 15 Sep 2022 09:21:57 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oYjC9-000qe9-Qn; Thu, 15 Sep 2022 09:21:56 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oYjC7-00128B-Jj; Thu, 15 Sep 2022 09:21:55 +0200
-Date:   Thu, 15 Sep 2022 09:21:52 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229714AbiIOHXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 03:23:30 -0400
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2048.outbound.protection.outlook.com [40.107.117.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66A58C014;
+        Thu, 15 Sep 2022 00:23:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Jpv67A5a7YdBKD7kropn3xwwf6M+uBW+EucWEe5ZJxNS5R5DTPr9RoGqSUIzb70h66Pxq6sbCaFx7D9bADKEpdqdCEWCnn+Ktb4X2XERoELiDS9b/cSa2CSPVzPAgV6JdRcGt/cuTK5ieIkIvhLDSRRcr2tCSro8ojtk+vta5628Pr/fWp5sidrqXu4Py49GrWtLiRMJKycpiFfVFGPElG+r3CEg2f/Do1bFRhgdTeagsQx/F/2Fs2IXgNSwFVeypEnnOaDjIjwbHOaAvdUgZwjMr7ArSe1/+7mD8Yx0M6NSw3RVaDfBWWKdWbRvb4OnSeeOV6Fs1nvchZhjIZdHHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A+z1e7n5JOifjvSboUY6E5tkv149Juo9RHerviOzW+A=;
+ b=hdhUtHXOC2wMmDtOMjyi8ypemUMhEVT0GjnIx8yPyGzQi+Vx74Aztyr4uTXEEtX053BYSSL6Df5aTfkqj3taeW2xqINlbEn/i9Jmy/eNekqHyTBS4JoF6a3cMO6YJHJTazodPBHZEpsNTcBnHpUIbCznsxootvqrRFxkz9yvN9c+JSajWdANyPiTDHXmdjaqpG08/xYWriXpqJI8CmRn7OZHhX0yUmZuyU1TNuflFBdrlpZ8/OJXODdl//NjvQ/1eyKCL5le44QF1UONCMK+YgETeeUchk8eY380Ij9agD+CwacNMOW+H3RFjfZbGjZlVuNyExynMUoLjTUizLPayg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=jms.id.au smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A+z1e7n5JOifjvSboUY6E5tkv149Juo9RHerviOzW+A=;
+ b=YOWsndCF9M8fTrTP2whpOri0lpmJlZL7CThoAYZ/0n5Zz4o0gU1/uVG9YVefAeStsPeSFvMlP7aAkb55CC+9hH0+Otpu4cfSe6hf2qAt3lM4/w3n9Xy9/0N3J2WrmH4+6jUMO7lA5eFIl5mI31LMNZgusW0qPWXwz4imGvPFjEGYOI9WFG98VRwkKnakPZUi8IU66oYj6K7hYwAZL0hSKDpyq9f9o3G4Ee8bHN/muNRSdSJsQCI5IReeDPVw4gfPpmqu9eabNk16YPl1ZHZOYq1Xoq9XrNGmJYrbZWvdzzmJvC7PBNZKdnc40dAx6gMJAvUhNM7EG0qdJRuCWpeZcg==
+Received: from SG2PR02CA0050.apcprd02.prod.outlook.com (2603:1096:4:54::14) by
+ KL1PR0401MB4273.apcprd04.prod.outlook.com (2603:1096:820:2a::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.14; Thu, 15 Sep
+ 2022 07:23:23 +0000
+Received: from SG2APC01FT0019.eop-APC01.prod.protection.outlook.com
+ (2603:1096:4:54:cafe::9b) by SG2PR02CA0050.outlook.office365.com
+ (2603:1096:4:54::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.15 via Frontend
+ Transport; Thu, 15 Sep 2022 07:23:23 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=Wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=Wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of Wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ SG2APC01FT0019.mail.protection.outlook.com (10.13.36.86) with Microsoft SMTP
+ Server id 15.20.5632.12 via Frontend Transport; Thu, 15 Sep 2022 07:23:21
+ +0000
+From:   Bonnie Lo <Bonnie_Lo@Wiwynn.com>
+To:     joel@jms.id.au
+Cc:     patrickw3@fb.com, garnermic@fb.com, Delphine_Chiu@Wiwynn.com,
+        Bonnie_Lo@Wiwynn.com, Bonnie Lo <Bonnie_Lo@wiwynn.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v10 3/4] pwm: add microchip soft ip corePWM driver
-Message-ID: <20220915072152.y346csakn7wetpz5@pengutronix.de>
-References: <20220824091215.141577-1-conor.dooley@microchip.com>
- <20220824091215.141577-4-conor.dooley@microchip.com>
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org
+Subject: [PATCH] greatlakes: dts: Add Facebook greatlakes (AST2600) BMC
+Date:   Thu, 15 Sep 2022 15:23:02 +0800
+Message-Id: <20220915072304.1438-1-Bonnie_Lo@Wiwynn.com>
+X-Mailer: git-send-email 2.17.1
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2APC01FT0019:EE_|KL1PR0401MB4273:EE_
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="s27i4bbymvcnc6ny"
-Content-Disposition: inline
-In-Reply-To: <20220824091215.141577-4-conor.dooley@microchip.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 7edeb20a-d248-48c8-73f4-08da96eb2c2a
+Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JSl4ik627xYFOn/NOZKuIX44pZpoDt1PYNxRZYuKoQEu8S0+sBAnthT5fsOp3YuDA85Ve1qCGEiUocF8XGXgLsOoZlVUDDze/k252w3r2SOc9oNVwBjVPufY0bd3qLv8PFyCcrhOMnlA4hw7Z+eKYG4cvN6saCXW1Dc1bTkqOifDto3a8y9JoPwfKFlXeeq3kNtaIlrpff1e3IhSphRCykDH9IfLnEOsMQBb3jrPrJFr19jVsWCmc/zhAmtuuSZ//R441rjLBHHbh9YhWCwhongSjvm6ZkEygBQYr+X6q+tRSHJTMQfWRe/UWYSYjkhOtBXnALzQYY8GRZ3RjUovhI8LEPQ1+LbaLx5aQvpRROTg47EO7C/izfZrHlskb4O6OhMshRQz1aYkTVKD8R9QCpVmxHO0jv93UA+TGpwODoycyrcfAtxidJtRQUULma5kjz8w7sqHH3fPbsg8xuTjxoc7zq6FxKEimMYLbc0XTE18PanjuErlLo30OBqpLJ8wyjoc3HCs8FBdnovuKj2gaF7Gfe7lRxsWJrsaJh+QH2cAwcGfQH8vzgEehuBJVPCHqXSRxIHQ/MwJX+IkR5ELJsFwUDHklGl/7ht7gMPT73hMPImcreF873dAKS24tFNI6jkMZ5XpzdY4V1tt27tqUQsACzNTmLWc9jVWNWrBXTGISfegbyTm3hI3V80HSmXkt2Mq1UoQwBUq6SfGqchgWdbYBEHxPy8wGIbHDH6ZgL1JxD6Ew7OSdWwlnJP2ApMq
+X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230022)(6069001)(4636009)(346002)(396003)(136003)(39860400002)(376002)(47680400002)(451199015)(46966006)(36840700001)(82740400003)(1076003)(70206006)(70586007)(36860700001)(4326008)(40480700001)(8676002)(6506007)(956004)(26005)(356005)(81166007)(478600001)(41300700001)(6666004)(36736006)(36906005)(6916009)(54906003)(6512007)(6486002)(316002)(83380400001)(336012)(2616005)(186003)(47076005)(8936002)(7416002)(36756003)(86362001)(82310400005)(5660300002)(2906002)(9316004);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2022 07:23:21.9901
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7edeb20a-d248-48c8-73f4-08da96eb2c2a
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource: SG2APC01FT0019.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0401MB4273
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Bonnie Lo <Bonnie_Lo@wiwynn.com>
 
---s27i4bbymvcnc6ny
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add linux device tree entry related to
+greatlakes specific devices connected to BMC SoC.
 
-Hello,
+Signed-off-by: Bonnie Lo <Bonnie_Lo@wiwynn.com>
+---
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/aspeed-bmc-facebook-greatlakes.dts    | 248 ++++++++++++++++++
+ 2 files changed, 249 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
 
-On Wed, Aug 24, 2022 at 10:12:14AM +0100, Conor Dooley wrote:
-> Add a driver that supports the Microchip FPGA "soft" PWM IP core.
->=20
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  drivers/pwm/Kconfig              |  10 +
->  drivers/pwm/Makefile             |   1 +
->  drivers/pwm/pwm-microchip-core.c | 402 +++++++++++++++++++++++++++++++
->  3 files changed, 413 insertions(+)
->  create mode 100644 drivers/pwm/pwm-microchip-core.c
->=20
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 60d13a949bc5..e4de8c02c3c0 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -393,6 +393,16 @@ config PWM_MEDIATEK
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-mediatek.
-> =20
-> +config PWM_MICROCHIP_CORE
-> +	tristate "Microchip corePWM PWM support"
-> +	depends on SOC_MICROCHIP_POLARFIRE || COMPILE_TEST
-> +	depends on HAS_IOMEM && OF
-> +	help
-> +	  PWM driver for Microchip FPGA soft IP core.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-microchip-core.
-> +
->  config PWM_MXS
->  	tristate "Freescale MXS PWM support"
->  	depends on ARCH_MXS || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 7bf1a29f02b8..a65625359ece 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -34,6 +34,7 @@ obj-$(CONFIG_PWM_LPSS_PCI)	+=3D pwm-lpss-pci.o
->  obj-$(CONFIG_PWM_LPSS_PLATFORM)	+=3D pwm-lpss-platform.o
->  obj-$(CONFIG_PWM_MESON)		+=3D pwm-meson.o
->  obj-$(CONFIG_PWM_MEDIATEK)	+=3D pwm-mediatek.o
-> +obj-$(CONFIG_PWM_MICROCHIP_CORE)	+=3D pwm-microchip-core.o
->  obj-$(CONFIG_PWM_MTK_DISP)	+=3D pwm-mtk-disp.o
->  obj-$(CONFIG_PWM_MXS)		+=3D pwm-mxs.o
->  obj-$(CONFIG_PWM_NTXEC)		+=3D pwm-ntxec.o
-> diff --git a/drivers/pwm/pwm-microchip-core.c b/drivers/pwm/pwm-microchip=
--core.c
-> new file mode 100644
-> index 000000000000..4ec2f1fce600
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-microchip-core.c
-> @@ -0,0 +1,402 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * corePWM driver for Microchip "soft" FPGA IP cores.
-> + *
-> + * Copyright (c) 2021-2022 Microchip Corporation. All rights reserved.
-> + * Author: Conor Dooley <conor.dooley@microchip.com>
-> + * Documentation:
-> + * https://www.microsemi.com/document-portal/doc_download/1245275-corepw=
-m-hb
-> + *
-> + * Limitations:
-> + * - If the IP block is configured without "shadow registers", all regis=
-ter
-> + *   writes will take effect immediately, causing glitches on the output.
-> + *   If shadow registers *are* enabled, a write to the "SYNC_UPDATE" reg=
-ister
-> + *   notifies the core that it needs to update the registers defining the
-> + *   waveform from the contents of the "shadow registers".
-> + * - The IP block has no concept of a duty cycle, only rising/falling ed=
-ges of
-> + *   the waveform. Unfortunately, if the rising & falling edges register=
-s have
-> + *   the same value written to them the IP block will do whichever of a =
-rising
-> + *   or a falling edge is possible. I.E. a 50% waveform at twice the req=
-uested
-> + *   period. Therefore to get a 0% waveform, the output is set the max h=
-igh/low
-> + *   time depending on polarity.
-> + * - The PWM period is set for the whole IP block not per channel. The d=
-river
-> + *   will only change the period if no other PWM output is enabled.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/math.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +
-> +#define PREG_TO_VAL(PREG) ((PREG) + 1)
-> +
-> +#define MCHPCOREPWM_PRESCALE_MAX	0x100
-> +#define MCHPCOREPWM_PERIOD_STEPS_MAX	0xff
-> +#define MCHPCOREPWM_PERIOD_MAX		0xff00
-> +
-> +#define MCHPCOREPWM_PRESCALE	0x00
-> +#define MCHPCOREPWM_PERIOD	0x04
-> +#define MCHPCOREPWM_EN(i)	(0x08 + 0x04 * (i)) /* 0x08, 0x0c */
-> +#define MCHPCOREPWM_POSEDGE(i)	(0x10 + 0x08 * (i)) /* 0x10, 0x18, ..., 0=
-x88 */
-> +#define MCHPCOREPWM_NEGEDGE(i)	(0x14 + 0x08 * (i)) /* 0x14, 0x1c, ..., 0=
-x8c */
-> +#define MCHPCOREPWM_SYNC_UPD	0xe4
-> +
-> +struct mchp_core_pwm_chip {
-> +	struct pwm_chip chip;
-> +	struct clk *clk;
-> +	struct mutex lock; /* protect the shared period */
-> +	void __iomem *base;
-> +	u32 sync_update_mask;
-> +	u16 channel_enabled;
-> +};
-> +
-> +static inline struct mchp_core_pwm_chip *to_mchp_core_pwm(struct pwm_chi=
-p *chip)
-> +{
-> +	return container_of(chip, struct mchp_core_pwm_chip, chip);
-> +}
-> +
-> +static void mchp_core_pwm_enable(struct pwm_chip *chip, struct pwm_devic=
-e *pwm,
-> +				 bool enable, u64 period)
-> +{
-> +	struct mchp_core_pwm_chip *mchp_core_pwm =3D to_mchp_core_pwm(chip);
-> +	u8 channel_enable, reg_offset, shift;
-> +
-> +	/*
-> +	 * There are two adjacent 8 bit control regs, the lower reg controls
-> +	 * 0-7 and the upper reg 8-15. Check if the pwm is in the upper reg
-> +	 * and if so, offset by the bus width.
-> +	 */
-> +	reg_offset =3D MCHPCOREPWM_EN(pwm->hwpwm >> 3);
-> +	shift =3D pwm->hwpwm & 7;
-> +
-> +	channel_enable =3D readb_relaxed(mchp_core_pwm->base + reg_offset);
-> +	channel_enable &=3D ~(1 << shift);
-> +	channel_enable |=3D (enable << shift);
-> +
-> +	writel_relaxed(channel_enable, mchp_core_pwm->base + reg_offset);
-> +	mchp_core_pwm->channel_enabled &=3D ~BIT(pwm->hwpwm);
-> +	mchp_core_pwm->channel_enabled |=3D enable << pwm->hwpwm;
-> +
-> +	/*
-> +	 * Notify the block to update the waveform from the shadow registers.
-> +	 * The updated values will not appear on the bus until they have been
-> +	 * applied to the waveform at the beginning of the next period. We must
-> +	 * write these registers and wait for them to be applied before
-> +	 * considering the channel enabled.
-> +	 * If the delay is under 1 us, sleep for at least 1 us anyway.
-> +	 */
-> +	if (mchp_core_pwm->sync_update_mask & (1 << pwm->hwpwm)) {
-> +		u64 delay;
-> +
-> +		delay =3D div_u64(period, 1000u) ? : 1u;
-> +		writel_relaxed(1U, mchp_core_pwm->base + MCHPCOREPWM_SYNC_UPD);
-> +		usleep_range(delay, delay * 2);
-> +	}
-> +}
-> +
-> +static u64 mchp_core_pwm_calc_duty(struct pwm_chip *chip, struct pwm_dev=
-ice *pwm,
-> +				   const struct pwm_state *state, u8 prescale, u8 period_steps)
-> +{
-> +	struct mchp_core_pwm_chip *mchp_core_pwm =3D to_mchp_core_pwm(chip);
-> +	u64 duty_steps, tmp;
-> +	u16 prescale_val =3D PREG_TO_VAL(prescale);
-> +
-> +	/*
-> +	 * Calculate the duty cycle in multiples of the prescaled period:
-> +	 * duty_steps =3D duty_in_ns / step_in_ns
-> +	 * step_in_ns =3D (prescale * NSEC_PER_SEC) / clk_rate
-> +	 * The code below is rearranged slightly to only divide once.
-> +	 */
-> +	duty_steps =3D state->duty_cycle * clk_get_rate(mchp_core_pwm->clk);
-> +	tmp =3D prescale_val * NSEC_PER_SEC;
-> +	return div64_u64(duty_steps, tmp);
-> +}
-> +
-> +static void mchp_core_pwm_apply_duty(struct pwm_chip *chip, struct pwm_d=
-evice *pwm,
-> +				     const struct pwm_state *state, u64 duty_steps, u8 period_steps)
-> +{
-> +	struct mchp_core_pwm_chip *mchp_core_pwm =3D to_mchp_core_pwm(chip);
-> +	u8 posedge, negedge;
-> +	u8 period_steps_val =3D PREG_TO_VAL(period_steps);
-> +
-> +	/*
-> +	 * Setting posedge =3D=3D negedge doesn't yield a constant output,
-> +	 * so that's an unsuitable setting to model duty_steps =3D 0.
-> +	 * In that case set the unwanted edge to a value that never
-> +	 * triggers.
-> +	 */
-> +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED) {
-> +		negedge =3D !duty_steps ? period_steps_val : 0u;
-> +		posedge =3D duty_steps;
-> +	} else {
-> +		posedge =3D !duty_steps ? period_steps_val : 0u;
-> +		negedge =3D duty_steps;
-> +	}
-> +
-> +	writel_relaxed(posedge, mchp_core_pwm->base + MCHPCOREPWM_POSEDGE(pwm->=
-hwpwm));
-> +	writel_relaxed(negedge, mchp_core_pwm->base + MCHPCOREPWM_NEGEDGE(pwm->=
-hwpwm));
-> +}
-> +
-> +static int mchp_core_pwm_calc_period(struct pwm_chip *chip, const struct=
- pwm_state *state,
-> +				     u8 *prescale, u8 *period_steps)
-> +{
-> +	struct mchp_core_pwm_chip *mchp_core_pwm =3D to_mchp_core_pwm(chip);
-> +	u64 tmp, clk_rate;
-> +
-> +	/*
-> +	 * Calculate the period cycles and prescale values.
-> +	 * The registers are each 8 bits wide & multiplied to compute the period
-> +	 * using the formula:
-> +	 * (clock_period) * (prescale + 1) * (period_steps + 1)
-> +	 * so the maximum period that can be generated is 0x10000 times the
-> +	 * period of the input clock.
-> +	 * However, due to the design of the "hardware", it is not possible to
-> +	 * attain a 100% duty cycle if the full range of period_steps is used.
-> +	 * Therefore period_steps is restricted to 0xFE and the maximum multiple
-> +	 * of the clock period attainable is 0xFF00.
-> +	 */
-> +	clk_rate =3D clk_get_rate(mchp_core_pwm->clk);
-> +
-> +	/*
-> +	 * If clk_rate is too big, the following multiplication might overflow.
-> +	 * However this is implausible, as the fabric of current FPGAs cannot
-> +	 * provide clocks at a rate high enough.
-> +	 */
-> +	if (clk_rate >=3D NSEC_PER_SEC)
-> +		return -EINVAL;
-> +
-> +	tmp =3D mul_u64_u64_div_u64(state->period, clk_rate, NSEC_PER_SEC);
-> +
-> +	/*
-> +	 * The hardware adds one to the register value, so decrement by one to
-> +	 * account for the offset
-> +	 */
-> +	if (tmp >=3D MCHPCOREPWM_PERIOD_MAX) {
-> +		*prescale =3D MCHPCOREPWM_PRESCALE_MAX - 1;
-> +		*period_steps =3D MCHPCOREPWM_PERIOD_STEPS_MAX - 1;
-> +		return 0;
-> +	}
-> +
-> +	*prescale =3D div_u64(tmp, MCHPCOREPWM_PERIOD_STEPS_MAX);
-> +	/* PREG_TO_VAL() can produce a value larger than UINT8_MAX */
-> +	*period_steps =3D div_u64(tmp, PREG_TO_VAL(*prescale)) - 1;
-> +
-> +	return 0;
-> +}
-> +
-> +static inline void mchp_core_pwm_apply_period(struct mchp_core_pwm_chip =
-*mchp_core_pwm,
-> +					      u8 prescale, u8 period_steps)
-> +{
-> +	writel_relaxed(prescale, mchp_core_pwm->base + MCHPCOREPWM_PRESCALE);
-> +	writel_relaxed(period_steps, mchp_core_pwm->base + MCHPCOREPWM_PERIOD);
-> +}
-> +
-> +static int mchp_core_pwm_apply(struct pwm_chip *chip, struct pwm_device =
-*pwm,
-> +			       const struct pwm_state *state)
-> +{
-> +	struct mchp_core_pwm_chip *mchp_core_pwm =3D to_mchp_core_pwm(chip);
-> +	struct pwm_state current_state =3D pwm->state;
-> +	bool period_locked;
-> +	u64 duty_steps;
-> +	u16 prescale;
-> +	u8 period_steps;
-> +	int ret;
-> +
-> +	mutex_lock(&mchp_core_pwm->lock);
-> +
-> +	if (!state->enabled) {
-> +		mchp_core_pwm_enable(chip, pwm, false, current_state.period);
-> +		mutex_unlock(&mchp_core_pwm->lock);
-> +		return 0;
-> +	}
-> +
-> +	/*
-> +	 * If the only thing that has changed is the duty cycle or the polarity,
-> +	 * we can shortcut the calculations and just compute/apply the new duty
-> +	 * cycle pos & neg edges
-> +	 * As all the channels share the same period, do not allow it to be
-> +	 * changed if any other channels are enabled.
-> +	 * If the period is locked, it may not be possible to use a period
-> +	 * less than that requested. In that case, we just abort.
-> +	 */
-> +	period_locked =3D mchp_core_pwm->channel_enabled & ~(1 << pwm->hwpwm);
-> +
-> +	if (period_locked) {
-> +		u16 hw_prescale;
-> +		u8 hw_period_steps;
-> +
-> +		mchp_core_pwm_calc_period(chip, state, (u8 *)&prescale, &period_steps);
-
-Huh, if (u8 *)&prescale works depends on endianness.
-
-> +		hw_prescale =3D readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PRESCA=
-LE);
-> +		hw_period_steps =3D readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PE=
-RIOD);
-> +
-> +		if ((period_steps + 1) * (prescale + 1) <
-> +		    (hw_period_steps + 1) * (hw_prescale + 1)) {
-> +			mutex_unlock(&mchp_core_pwm->lock);
-> +			return -EINVAL;
-> +		}
-> +
-> +		/*
-> +		 * It is possible that something could have set the period_steps
-
-My German feel for the English language says s/could have/has/
-> +		 * register to 0xff, which would prevent us from setting a 100%
-
-For my understanding: It would also prevent a 0% relative duty, right?
-
-> +		 * duty cycle, as explained in the mchp_core_pwm_calc_period()
-
-s/duty/relative duty/; s/the //
-
-> +		 * above.
-> +		 * The period is locked and we cannot change this, so we abort.
-> +		 */
-> +		if (period_steps =3D=3D MCHPCOREPWM_PERIOD_STEPS_MAX) {
-
-Don't you need to check hw_period_steps =3D=3D MCHPCOREPWM_PERIOD_STEPS_MAX
-here?
-
-> +			mutex_unlock(&mchp_core_pwm->lock);
-> +			return -EINVAL;
-> +		}
-> +
-> +		prescale =3D hw_prescale;
-> +		period_steps =3D hw_period_steps;
-> +	} else if (!current_state.enabled || current_state.period !=3D state->p=
-eriod) {
-> +		ret =3D mchp_core_pwm_calc_period(chip, state, (u8 *)&prescale, &perio=
-d_steps);
-
-ret is only used in this block, so the declaration can go into here,
-too.
-
-> +		if (ret) {
-> +			mutex_unlock(&mchp_core_pwm->lock);
-> +			return ret;
-> +		}
-> +		mchp_core_pwm_apply_period(mchp_core_pwm, prescale, period_steps);
-> +	} else {
-> +		prescale =3D readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PRESCALE);
-> +		period_steps =3D readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PERIO=
-D);
-> +		/*
-> +		 * As above, it is possible that something could have set the
-> +		 * period_steps register to 0xff, which would prevent us from
-> +		 * setting a 100% duty cycle, as explained above.
-> +		 * As the period is not locked, we are free to fix this.
-> +		 */
-
-Are you sure this is safe? I think it isn't. Consider:
-
-	pwm_apply_state(mypwm, { .duty =3D 0, .period =3D A, .enabled =3D true, });
-	pwm_apply_state(mypwm, { .duty =3D 0, .period =3D B, .enabled =3D false, }=
-);
-	pwm_apply_state(mypwm, { .duty =3D 0, .period =3D B, .enabled =3D true, });
-
-Then you have in the third call prescale and period_steps still
-corresponding to A because you didn't update these registers in the 2nd
-call as you exited early.
-
-> +		if (period_steps =3D=3D MCHPCOREPWM_PERIOD_STEPS_MAX) {
-> +			period_steps -=3D 1;
-> +			mchp_core_pwm_apply_period(mchp_core_pwm, prescale, period_steps);
-> +		}
-> +	}
-> +
-> +	duty_steps =3D mchp_core_pwm_calc_duty(chip, pwm, state, prescale, peri=
-od_steps);
-> +
-> +	/*
-> +	 * Because the period is per channel, it is possible that the requested
-> +	 * duty cycle is longer than the period, in which case cap it to the
-> +	 * period, IOW a 100% duty cycle.
-> +	 */
-> +	if (duty_steps > period_steps)
-> +		duty_steps =3D period_steps + 1;
-> +
-> +	mchp_core_pwm_apply_duty(chip, pwm, state, duty_steps, period_steps);
-> +
-> +	mchp_core_pwm_enable(chip, pwm, true, state->period);
-> +
-> +	mutex_unlock(&mchp_core_pwm->lock);
-> +
-> +	return 0;
-
-Locking could be a bit simplified by doing:
-
-diff --git a/drivers/pwm/pwm-microchip-core.c b/drivers/pwm/pwm-microchip-c=
-ore.c
-index 4ec2f1fce600..d1578d73818f 100644
---- a/drivers/pwm/pwm-microchip-core.c
-+++ b/drivers/pwm/pwm-microchip-core.c
-@@ -197,8 +197,8 @@ static inline void mchp_core_pwm_apply_period(struct mc=
-hp_core_pwm_chip *mchp_co
- 	writel_relaxed(period_steps, mchp_core_pwm->base + MCHPCOREPWM_PERIOD);
- }
-=20
--static int mchp_core_pwm_apply(struct pwm_chip *chip, struct pwm_device *p=
-wm,
--			       const struct pwm_state *state)
-+static int mchp_core_pwm_apply_locked(struct pwm_chip *chip, struct pwm_de=
-vice *pwm,
-+				      const struct pwm_state *state)
- {
- 	struct mchp_core_pwm_chip *mchp_core_pwm =3D to_mchp_core_pwm(chip);
- 	struct pwm_state current_state =3D pwm->state;
-@@ -208,11 +208,8 @@ static int mchp_core_pwm_apply(struct pwm_chip *chip, =
-struct pwm_device *pwm,
- 	u8 period_steps;
- 	int ret;
-=20
--	mutex_lock(&mchp_core_pwm->lock);
--
- 	if (!state->enabled) {
- 		mchp_core_pwm_enable(chip, pwm, false, current_state.period);
--		mutex_unlock(&mchp_core_pwm->lock);
- 		return 0;
- 	}
-=20
-@@ -236,10 +233,8 @@ static int mchp_core_pwm_apply(struct pwm_chip *chip, =
-struct pwm_device *pwm,
- 		hw_period_steps =3D readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PERI=
-OD);
-=20
- 		if ((period_steps + 1) * (prescale + 1) <
--		    (hw_period_steps + 1) * (hw_prescale + 1)) {
-+		    (hw_period_steps + 1) * (hw_prescale + 1))
--			mutex_unlock(&mchp_core_pwm->lock);
- 			return -EINVAL;
--		}
-=20
- 		/*
- 		 * It is possible that something could have set the period_steps
-@@ -248,19 +243,16 @@ static int mchp_core_pwm_apply(struct pwm_chip *chip,=
- struct pwm_device *pwm,
- 		 * above.
- 		 * The period is locked and we cannot change this, so we abort.
- 		 */
--		if (period_steps =3D=3D MCHPCOREPWM_PERIOD_STEPS_MAX) {
-+		if (period_steps =3D=3D MCHPCOREPWM_PERIOD_STEPS_MAX)
--			mutex_unlock(&mchp_core_pwm->lock);
- 			return -EINVAL;
--		}
-=20
- 		prescale =3D hw_prescale;
- 		period_steps =3D hw_period_steps;
- 	} else if (!current_state.enabled || current_state.period !=3D state->per=
-iod) {
- 		ret =3D mchp_core_pwm_calc_period(chip, state, (u8 *)&prescale, &period_=
-steps);
--		if (ret) {
-+		if (ret)
--			mutex_unlock(&mchp_core_pwm->lock);
- 			return ret;
--		}
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 05d8aef6e5d2..40fa906ab17f 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1580,6 +1580,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
+        aspeed-bmc-asrock-e3c246d4i.dtb \
+        aspeed-bmc-asrock-romed8hm3.dtb \
+        aspeed-bmc-bytedance-g220a.dtb \
++       aspeed-bmc-facebook-greatlakes.dtb \
+        aspeed-bmc-facebook-bletchley.dtb \
+        aspeed-bmc-facebook-cloudripper.dtb \
+        aspeed-bmc-facebook-cmm.dtb \
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts b/arch/ar=
+m/boot/dts/aspeed-bmc-facebook-greatlakes.dts
+new file mode 100644
+index 000000000000..f011cc4d370f
+--- /dev/null
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-greatlakes.dts
+@@ -0,0 +1,248 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++// Copyright 2022 Facebook Inc.
 +
- 		mchp_core_pwm_apply_period(mchp_core_pwm, prescale, period_steps);
- 	} else {
- 		prescale =3D readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PRESCALE);
-@@ -292,11 +284,24 @@ static int mchp_core_pwm_apply(struct pwm_chip *chip,=
- struct pwm_device *pwm,
-=20
- 	mchp_core_pwm_enable(chip, pwm, true, state->period);
-=20
--	mutex_unlock(&mchp_core_pwm->lock);
--
- 	return 0;
- }
-=20
-+static int mchp_core_pwm_apply(struct pwm_chip *chip, struct pwm_device *p=
-wm,
-+			       const struct pwm_state *state)
-+{
-+	struct mchp_core_pwm_chip *mchp_core_pwm =3D to_mchp_core_pwm(chip);
-+	int ret;
++/dts-v1/;
++#include "aspeed-g6.dtsi"
++#include <dt-bindings/gpio/aspeed-gpio.h>
++#include <dt-bindings/i2c/i2c.h>
++#include <dt-bindings/leds/leds-pca955x.h>
 +
-+	mutex_lock(&mchp_core_pwm->lock);
++/ {
++       model =3D "AST2600 EVB";
++       compatible =3D "aspeed,ast2600";
 +
-+	ret =3D mchp_core_pwm_apply_locked(chip, pwm, state);
++       aliases {
++               serial4 =3D &uart5;
++       };
 +
-+	mutex_unlock(&mchp_core_pwm->lock);
++       chosen {
++               stdout-path =3D &uart5;
++               bootargs =3D "console=3DttyS4,57600n8 root=3D/dev/ram rw vm=
+alloc=3D384M";
++       };
 +
-+	return ret;
-+}
++       memory@80000000 {
++               device_type =3D "memory";
++               reg =3D <0x80000000 0x80000000>;
++       };
 +
- static void mchp_core_pwm_get_state(struct pwm_chip *chip, struct pwm_devi=
-ce *pwm,
- 				    struct pwm_state *state)
- {
++       iio-hwmon {
++               compatible =3D "iio-hwmon";
++               io-channels =3D <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
++                               <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
++                               <&adc1 0>, <&adc1 2>, <&adc1 3>, <&adc1 4>,
++                               <&adc1 5>, <&adc1 6>;
++       };
++};
++
++&uart1 {
++       status =3D "okay";
++};
++
++&uart2 {
++       status =3D "okay";
++};
++
++&uart3 {
++       status =3D "okay";
++};
++
++&uart4 {
++       status =3D "okay";
++};
++
++&uart5 {
++       status =3D "okay";
++};
++
++&wdt1 {
++       status =3D "okay";
++       pinctrl-names =3D "default";
++       pinctrl-0 =3D <&pinctrl_wdtrst1_default>;
++       aspeed,reset-type =3D "soc";
++       aspeed,external-signal;
++       aspeed,ext-push-pull;
++       aspeed,ext-active-high;
++       aspeed,ext-pulse-duration =3D <256>;
++};
++
++&mac3 {
++       status =3D "okay";
++       pinctrl-names =3D "default";
++       pinctrl-0 =3D <&pinctrl_rmii4_default>;
++       no-hw-checksum;
++       use-ncsi;
++       mlx,multi-host;
++       ncsi-ctrl,start-redo-probe;
++       ncsi-ctrl,no-channel-monitor;
++       ncsi-package =3D <1>;
++       ncsi-channel =3D <1>;
++       ncsi-rexmit =3D <1>;
++       ncsi-timeout =3D <2>;
++};
++
++&rtc {
++       status =3D "okay";
++};
++
++&fmc {
++       status =3D "okay";
++       flash@0 {
++               status =3D "okay";
++               m25p,fast-read;
++               label =3D "bmc";
++               spi-rx-bus-width =3D <4>;
++               spi-max-frequency =3D <50000000>;
++#include "openbmc-flash-layout-64.dtsi"
++       };
++       flash@1 {
++               status =3D "okay";
++               m25p,fast-read;
++               label =3D "bmc2";
++               spi-rx-bus-width =3D <4>;
++               spi-max-frequency =3D <50000000>;
++       };
++};
++
++&i2c0 {
++       status =3D "okay";
++       multi-master;
++       ipmb0@10 {
++               compatible =3D "ipmb-dev";
++               reg =3D <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++               i2c-protocol;
++       };
++};
++
++&i2c1 {
++       status =3D "okay";
++       multi-master;
++       ipmb1@10 {
++               compatible =3D "ipmb-dev";
++               reg =3D <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++               i2c-protocol;
++       };
++};
++
++&i2c2 {
++       status =3D "okay";
++       multi-master;
++       ipmb2@10 {
++               compatible =3D "ipmb-dev";
++               reg =3D <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++               i2c-protocol;
++       };
++};
++
++&i2c3 {
++       status =3D "okay";
++       multi-master;
++       ipmb3@10 {
++               compatible =3D "ipmb-dev";
++               reg =3D <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++               i2c-protocol;
++       };
++};
++
++&i2c4 {
++       status =3D "okay";
++};
++
++&i2c5 {
++       status =3D "okay";
++};
++
++&i2c6 {
++       status =3D "okay";
++};
++
++&i2c7 {
++       status =3D "okay";
++};
++
++&i2c8 {
++       status =3D "okay";
++       tmp421@1f {
++               compatible =3D "ti,tmp421";
++               reg =3D <0x1f>;
++       };
++       // NIC EEPROM
++       eeprom@50 {
++               compatible =3D "st,24c32";
++               reg =3D <0x50>;
++       };
++};
++
++&i2c9 {
++       status =3D "okay";
++       multi-master;
++       ipmb9@10 {
++               compatible =3D "ipmb-dev";
++               reg =3D <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++               i2c-protocol;
++       };
++};
++
++&i2c10 {
++       status =3D "okay";
++};
++
++&i2c11 {
++       status =3D "okay";
++       eeprom@51 {
++               compatible =3D "atmel,24c128";
++               reg =3D <0x51>;
++       };
++       eeprom@54 {
++               compatible =3D "atmel,24c128";
++               reg =3D <0x54>;
++       };
++};
++
++&i2c12 {
++       status =3D "okay";
++       lm75@4f {
++               compatible =3D "lm75";
++               reg =3D <0x4f>;
++       };
++};
++
++&i2c13 {
++       status =3D "okay";
++};
++
++&adc0 {
++       ref_voltage =3D <2500>;
++       status =3D "okay";
++       pinctrl-0 =3D <&pinctrl_adc0_default &pinctrl_adc1_default
++                       &pinctrl_adc2_default &pinctrl_adc3_default
++                       &pinctrl_adc4_default &pinctrl_adc5_default
++                       &pinctrl_adc6_default &pinctrl_adc7_default>;
++};
++
++&adc1 {
++       ref_voltage =3D <2500>;
++       status =3D "okay";
++       pinctrl-0 =3D <&pinctrl_adc8_default &pinctrl_adc10_default
++                       &pinctrl_adc11_default &pinctrl_adc12_default
++                       &pinctrl_adc13_default &pinctrl_adc14_default>;
++};
++
++
++&ehci0 {
++       status =3D "okay";
++};
++
++&ehci1 {
++       status =3D "okay";
++};
++
++&uhci {
++       status =3D "okay";
++};
++
++&gpio0 {
++       pinctrl-names =3D "default";
++       pinctrl-0 =3D <&pinctrl_gpiu1_default &pinctrl_gpiu7_default>;
++};
++
++
+--
+2.17.1
 
-The diffstat is negative, so maybe that's subjective.
-
-> +}
-> +
-> +static void mchp_core_pwm_get_state(struct pwm_chip *chip, struct pwm_de=
-vice *pwm,
-> +				    struct pwm_state *state)
-> +{
-> +	struct mchp_core_pwm_chip *mchp_core_pwm =3D to_mchp_core_pwm(chip);
-> +	u16 prescale;
-> +	u8 period_steps, duty_steps, posedge, negedge;
-> +
-> +	mutex_lock(&mchp_core_pwm->lock);
-> +
-> +	if (mchp_core_pwm->channel_enabled & (1 << pwm->hwpwm))
-> +		state->enabled =3D true;
-> +	else
-> +		state->enabled =3D false;
-> +
-> +	prescale =3D PREG_TO_VAL(readb_relaxed(mchp_core_pwm->base + MCHPCOREPW=
-M_PRESCALE));
-> +
-> +	period_steps =3D PREG_TO_VAL(readb_relaxed(mchp_core_pwm->base + MCHPCO=
-REPWM_PERIOD));
-> +	state->period =3D period_steps * prescale * NSEC_PER_SEC;
-
-This is broken on 32 bit archs (here: arm):
-
-$ cat test.c
-#include <inttypes.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char *argv[])
-{
-	uint8_t period_steps =3D atoi(argv[1]);
-	uint16_t prescale =3D atoi(argv[2]);
-	uint64_t period;
-
-	period =3D period_steps * prescale * 1000000000L;
-
-	printf("period_steps =3D %" PRIu8 "\n", period_steps);
-	printf("prescale =3D %" PRIu16 "\n", prescale);
-	printf("period =3D %" PRIu64 "\n", period);
-
-	return 0;
-}
-
-$ make test
-cc     test.c   -o test
-
-$ ./test 255 65535
-period_steps =3D 255
-prescale =3D 65535
-period =3D 18446744073018591744
-
-The problem is that the result of 16711425 * 1000000000L isn't affected
-by the type of period and so it's promoted to L which isn't big enough
-to hold 16711425000000000 where longs are only 32 bit wide.
-
-> +	state->period =3D DIV64_U64_ROUND_UP(state->period, clk_get_rate(mchp_c=
-ore_pwm->clk));
-> +
-> +	posedge =3D readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_POSEDGE(pwm=
-->hwpwm));
-> +	negedge =3D readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_NEGEDGE(pwm=
-->hwpwm));
-> +
-> +	if ((negedge =3D=3D posedge) && state->enabled) {
-
-Why do you need that state->enabled?
-
-> +		state->duty_cycle =3D state->period;
-> +		state->period *=3D 2;
-> +	} else {
-> +		duty_steps =3D abs((s16)posedge - (s16)negedge);
-> +		state->duty_cycle =3D duty_steps * prescale * NSEC_PER_SEC;
-> +		state->duty_cycle =3D DIV64_U64_ROUND_UP(state->duty_cycle,
-> +						       clk_get_rate(mchp_core_pwm->clk));
-
-Micro optimisation: Call clk_get_rate() only once.
-
-> +	}
-> +
-> +	state->polarity =3D negedge < posedge ? PWM_POLARITY_INVERSED : PWM_POL=
-ARITY_NORMAL;
-> +
-> +	mutex_unlock(&mchp_core_pwm->lock);
-
-You could release the lock a bit earlier.
-
-> +}
-> +
-> +static const struct pwm_ops mchp_core_pwm_ops =3D {
-> +	.apply =3D mchp_core_pwm_apply,
-> +	.get_state =3D mchp_core_pwm_get_state,
-> +	.owner =3D THIS_MODULE,
-> +};
-> +
-> +static const struct of_device_id mchp_core_of_match[] =3D {
-> +	{
-> +		.compatible =3D "microchip,corepwm-rtl-v4",
-> +	},
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, mchp_core_of_match);
-> +
-> +static int mchp_core_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct mchp_core_pwm_chip *mchp_pwm;
-> +	struct resource *regs;
-> +	int ret;
-> +
-> +	mchp_pwm =3D devm_kzalloc(&pdev->dev, sizeof(*mchp_pwm), GFP_KERNEL);
-> +	if (!mchp_pwm)
-> +		return -ENOMEM;
-> +
-> +	mchp_pwm->base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &reg=
-s);
-> +	if (IS_ERR(mchp_pwm->base))
-> +		return PTR_ERR(mchp_pwm->base);
-> +
-> +	mchp_pwm->clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
-> +	if (IS_ERR(mchp_pwm->clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(mchp_pwm->clk),
-> +				     "failed to get PWM clock\n");
-> +
-> +	if (of_property_read_u32(pdev->dev.of_node, "microchip,sync-update-mask=
-",
-> +				 &mchp_pwm->sync_update_mask))
-> +		mchp_pwm->sync_update_mask =3D 0u;
-
-That u suffix is unusual. I'd drop it.
-
-> +	mutex_init(&mchp_pwm->lock);
-> +
-> +	mchp_pwm->chip.dev =3D &pdev->dev;
-> +	mchp_pwm->chip.ops =3D &mchp_core_pwm_ops;
-> +	mchp_pwm->chip.npwm =3D 16;
-> +
-> +	mchp_pwm->channel_enabled =3D readb_relaxed(mchp_pwm->base + MCHPCOREPW=
-M_EN(0));
-> +	mchp_pwm->channel_enabled |=3D readb_relaxed(mchp_pwm->base + MCHPCOREP=
-WM_EN(1)) << 8;
-> +
-> +	ret =3D devm_pwmchip_add(&pdev->dev, &mchp_pwm->chip);
-> +	if (ret < 0)
-> +		return dev_err_probe(&pdev->dev, ret, "failed to add PWM chip\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver mchp_core_pwm_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "mchp-core-pwm",
-> +		.of_match_table =3D mchp_core_of_match,
-> +	},
-> +	.probe =3D mchp_core_pwm_probe,
-> +};
-> +module_platform_driver(mchp_core_pwm_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
-> +MODULE_DESCRIPTION("corePWM driver for Microchip FPGAs");
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---s27i4bbymvcnc6ny
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmMi0o0ACgkQwfwUeK3K
-7AmHigf+OK4CW6QoqlGQwB5uR+EuBJa9T5NQZ2GdzZubRGJIVfgSFf3AnfLpxSlk
-dNXLb+uEC5W08WChw/Oyr5iL+MbzLogJqTghekMps6regvVANE/Ia9VgKJ45DTU/
-dCgE9HqnpmbkqvP3aLhnXAZrDXYxu6hZu3EEdTvISr5OpnrDplnN+gxlncVYyjhI
-5aUQcjrKxmrgrp4b4Mn/64pQ1NuwITl6WOknI6yh4osWY/UPBhzRn8sUKENcwg47
-Znd/NIpni/dLsA5KaFjcOEAcYC8RWqHBU+b6lmuYhaBONAdaKGLY2lbne7tw5Syf
-eHvH4pEEHKJPxHaNkB4Sm6O9W4qiKw==
-=bTyK
------END PGP SIGNATURE-----
-
---s27i4bbymvcnc6ny--
+WIWYNN PROPRIETARY This email (and any attachments) contains proprietary or=
+ confidential information and is for the sole use of its intended recipient=
+. Any unauthorized review, use, copying or distribution of this email or th=
+e content of this email is strictly prohibited. If you are not the intended=
+ recipient, please notify the sender and delete this email immediately.
