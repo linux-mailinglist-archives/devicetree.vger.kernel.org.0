@@ -2,143 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF9A5B9788
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 11:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C4AD5B9786
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 11:35:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229766AbiIOJgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 05:36:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57530 "EHLO
+        id S229738AbiIOJfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 05:35:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229773AbiIOJf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 05:35:59 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7E3174DF1;
-        Thu, 15 Sep 2022 02:35:58 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28F9ZYmo017194;
-        Thu, 15 Sep 2022 04:35:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663234534;
-        bh=ZqlwKipWWBwqNMDlQeWidZRKes3p7b+3rjYNO5D59kw=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=FEylberaJX4iZU07VA4aakxSwjUokj+AiWr1SehxTaXb6OnHgmzdcylrFgrlJE6JE
-         Ra5TzusYJHIC5zVTjLRqZvgz/rfAKRAAv9K0rKAIIF80MHLb8yuw/oBXKRfN+SoM3X
-         oPuCZ7i3PDGxZxfLnP4DropwK9hdXxz2/iYu9Le0=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28F9ZYPS087012
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Sep 2022 04:35:34 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 15
- Sep 2022 04:35:33 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 15 Sep 2022 04:35:33 -0500
-Received: from [10.24.69.241] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28F9ZSbk014554;
-        Thu, 15 Sep 2022 04:35:29 -0500
-Message-ID: <7a5dd6b3-389f-13a2-7c96-8e97e0ab4e55@ti.com>
-Date:   Thu, 15 Sep 2022 15:05:28 +0530
+        with ESMTP id S229773AbiIOJfn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 05:35:43 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C213A14A
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 02:35:41 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id az6so13512163wmb.4
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 02:35:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=zAQhEoqs9m6tH0S1Pwi/N64OzurKgUWPJ1fRej5gFrw=;
+        b=Vjxh0C/hmbpUVZ/3/fYlTE1tcmtpwzvvwDGawLMSy2FaTgqKyMGNDna02fmkZer0uG
+         2F+KT5uttz3K/VNbEMKfP2YSLKGCPDcr4o7mo1gjFXINnajbx9vHG+vNUu6ATNkeO2K6
+         /oAQ2KuQj2Ai+xTS0VdfkhPPGdD0EfSkjIJ/ljj0hLQAj2VqRjX6e++3iMXqkKIrs1U9
+         O6VfGv5tNCb9QcSgo7XHrYDVq+cEdaGjIManrO8mm3MOzzDmlBCgUKqi2ysu7+go8jOh
+         wRCl2IWp4OcBBJSP+pKlxKnZz9xqWDNz+oc1/S0/kWkXEOU7yb2jya+pPZ10zliRB/PS
+         HkFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=zAQhEoqs9m6tH0S1Pwi/N64OzurKgUWPJ1fRej5gFrw=;
+        b=m98ga3mm4Jq9IifJyvsYbZeWrsFOlthJ2IPQVjT8PHcMc+5LV67ilif9i/mZnl+c7Y
+         33s6iNR2rPfyNlnmR/t1KSRtQEpTWnr8XUcJDpaGlQKUhOZVhLiyCATpV3qDRqlcGp7l
+         bZFF3StdAUAFmFjyXNPXomSUKikDtd/8CPID3OHM5qfC0KFK3Is0ji9vAHdu6OvlVh2Z
+         9rsnEIrmsfSJzQT8wG5NLMVL12z8pbjKc3usALN4tAeGO4y0Y7aArVjw21dWGX7N5rqc
+         p3QvgWZn2hTmI2jT3Yy9ZTYVsPGslO+NBKbr8yJxTRPk0iGaUtBL7SFD0UJGwIrIvYiq
+         6iWg==
+X-Gm-Message-State: ACgBeo1eZC8prqoz78SYgQOSVzmBoNgxI6pkUUQlUdY4Yal9pxKbv09T
+        exD231lypr2QNifBgQ2cVNxphg==
+X-Google-Smtp-Source: AA6agR7x+cQFPHQpAzgOrdY5Dr+3kqXzw6uVPUGUgZRe4xBrQsDIXWw5+TeXlLrt3hz4d2so4EFEBA==
+X-Received: by 2002:a05:600c:3ba0:b0:3b4:8ad0:6c with SMTP id n32-20020a05600c3ba000b003b48ad0006cmr5919992wms.186.1663234540088;
+        Thu, 15 Sep 2022 02:35:40 -0700 (PDT)
+Received: from krzk-bin ([89.101.193.73])
+        by smtp.gmail.com with ESMTPSA id y17-20020adff6d1000000b00228d6edade0sm1995265wrp.46.2022.09.15.02.35.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Sep 2022 02:35:39 -0700 (PDT)
+Date:   Thu, 15 Sep 2022 10:35:37 +0100
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: Re: [PATCH v2] dt-bindings: phy: renesas,rcar-gen2-usb-phy: Convert
+ to json-schema
+Message-ID: <20220915093537.qqddtqx2lr5ttuck@krzk-bin>
+References: <dbdcffd009302734fe2fb895ce04b72fa1ea4355.1663165000.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vladimir.oltean@nxp.com>,
-        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH 6/8] net: ethernet: ti: am65-cpsw: Add support for SGMII
- mode for J7200 CPSW5G
-Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-References: <20220914095053.189851-1-s-vadapalli@ti.com>
- <20220914095053.189851-7-s-vadapalli@ti.com>
- <YyH2zCscSV5KQtZ9@shell.armlinux.org.uk>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <YyH2zCscSV5KQtZ9@shell.armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <dbdcffd009302734fe2fb895ce04b72fa1ea4355.1663165000.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Russell,
+On Wed, 14 Sep 2022 16:17:37 +0200, Geert Uytterhoeven wrote:
+> Convert the Renesas R-Car Gen2 USB PHY Device Tree binding documentation
+> to json-schema.
+> 
+> Add missing properties.
+> Rename the device node from "usb-phy" to "usb-phy-controller", as it
+> does not represent a USB PHY itself, and thus does not have a
+> "#phy-cells" property.
+> Rename the child nodes from "usb-channel" to "usb-phy", as these do
+> represent USB PHYs.
+> Drop the second example, as it doesn't add any value.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2:
+>   - Rename nodes to fix "'#phy-cells' is a required property".
+> 
+> This is the final conversion to json-schema of DT bindings for Renesas
+> ARM SoCs, hurray!
+> 
+> Note that there are still a few plain text bindings left for Renesas IP
+> cores that are present on non-Renesas SoCs (nbpfaxi and usdhi6rol0).
+> ---
+>  .../devicetree/bindings/phy/rcar-gen2-phy.txt | 112 ----------------
+>  .../phy/renesas,rcar-gen2-usb-phy.yaml        | 123 ++++++++++++++++++
+>  2 files changed, 123 insertions(+), 112 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml
+> 
 
-On 14/09/22 21:14, Russell King (Oracle) wrote:
-> On Wed, Sep 14, 2022 at 03:20:51PM +0530, Siddharth Vadapalli wrote:
->> Add support for SGMII mode in both fixed-link MAC2MAC master mode and
->> MAC2PHY modes for CPSW5G ports.
->>
->> Add SGMII mode to the list of extra_modes in j7200_cpswxg_pdata.
->>
->> The MAC2PHY mode has been tested in fixed-link mode using a bootstrapped
->> PHY. The MAC2MAC mode has been tested by a customer with J7200 SoC on
->> their device.
->>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> ---
->>  drivers/net/ethernet/ti/am65-cpsw-nuss.c | 19 ++++++++++++++++---
->>  1 file changed, 16 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/net/ethernet/ti/am65-cpsw-nuss.c b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
->> index 1739c389af20..3f40178436ff 100644
->> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
->> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
->> @@ -75,7 +75,15 @@
->>  #define AM65_CPSW_PORTN_REG_TS_CTL_LTYPE2       0x31C
->>  
->>  #define AM65_CPSW_SGMII_CONTROL_REG		0x010
->> +#define AM65_CPSW_SGMII_MR_ADV_ABILITY_REG	0x018
-> 
-> This doesn't seem to be used in this patch, should it be part of some
-> other patch in the series?
-> 
->>  #define AM65_CPSW_SGMII_CONTROL_MR_AN_ENABLE	BIT(0)
->> +#define AM65_CPSW_SGMII_CONTROL_MASTER_MODE	BIT(5)
-> 
-> Ditto.
-> 
->> +
->> +#define MAC2MAC_MR_ADV_ABILITY_BASE		(BIT(15) | BIT(0))
->> +#define MAC2MAC_MR_ADV_ABILITY_FULLDUPLEX	BIT(12)
->> +#define MAC2MAC_MR_ADV_ABILITY_1G		BIT(11)
->> +#define MAC2MAC_MR_ADV_ABILITY_100M		BIT(10)
->> +#define MAC2PHY_MR_ADV_ABILITY			BIT(0)
-> 
-> Most of the above don't seem to be used, and the only one that seems to
-> be used is used in a variable declaration where the variable isn't used,
-> and thus us also unused.
-> 
->>  
->>  #define AM65_CPSW_CTL_VLAN_AWARE		BIT(1)
->>  #define AM65_CPSW_CTL_P0_ENABLE			BIT(2)
->> @@ -1493,6 +1501,7 @@ static void am65_cpsw_nuss_mac_config(struct phylink_config *config, unsigned in
->>  	struct am65_cpsw_slave_data *slave = container_of(config, struct am65_cpsw_slave_data,
->>  							  phylink_config);
->>  	struct am65_cpsw_port *port = container_of(slave, struct am65_cpsw_port, slave);
->> +	u32 mr_adv_ability = MAC2MAC_MR_ADV_ABILITY_BASE;
-> 
-> This doesn't seem to be used; should it be part of a different patch?
-> 
-> I get the impression that most of this patch should be elsewhere in this
-> series.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Thank you for pointing it out. These should have been a part of the
-previous patch [PATCH 5/8]. Sorry for the confusion. I will fix this in
-the v2 series.
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-Regards,
-Siddharth.
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+usb-phy@e6590100: 'usb-channel@0' does not match any of the regexes: '^usb-phy@[02]$', 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb
+
+usb-phy@e6590100: 'usb-channel@0', 'usb-channel@2' do not match any of the regexes: '^usb-phy@[02]$', 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dtb
+	arch/arm/boot/dts/r8a7742-iwg21d-q7.dtb
+	arch/arm/boot/dts/r8a7743-iwg20d-q7-dbcm-ca.dtb
+	arch/arm/boot/dts/r8a7743-iwg20d-q7.dtb
+	arch/arm/boot/dts/r8a7743-sk-rzg1m.dtb
+	arch/arm/boot/dts/r8a7744-iwg20d-q7-dbcm-ca.dtb
+	arch/arm/boot/dts/r8a7744-iwg20d-q7.dtb
+	arch/arm/boot/dts/r8a7745-iwg22d-sodimm-dbhd-ca.dtb
+	arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dtb
+	arch/arm/boot/dts/r8a7745-sk-rzg1e.dtb
+	arch/arm/boot/dts/r8a7790-lager.dtb
+	arch/arm/boot/dts/r8a7790-stout.dtb
+	arch/arm/boot/dts/r8a7791-koelsch.dtb
+	arch/arm/boot/dts/r8a7791-porter.dtb
+	arch/arm/boot/dts/r8a7794-alt.dtb
+	arch/arm/boot/dts/r8a7794-silk.dtb
+
+usb-phy@e6590100: 'usb-phy@0' is a required property
+	arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dtb
+	arch/arm/boot/dts/r8a7742-iwg21d-q7.dtb
+	arch/arm/boot/dts/r8a7743-iwg20d-q7-dbcm-ca.dtb
+	arch/arm/boot/dts/r8a7743-iwg20d-q7.dtb
+	arch/arm/boot/dts/r8a7744-iwg20d-q7-dbcm-ca.dtb
+	arch/arm/boot/dts/r8a7744-iwg20d-q7.dtb
+	arch/arm/boot/dts/r8a7745-iwg22d-sodimm-dbhd-ca.dtb
+	arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dtb
+	arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb
+	arch/arm/boot/dts/r8a7790-lager.dtb
+	arch/arm/boot/dts/r8a7790-stout.dtb
+	arch/arm/boot/dts/r8a7791-koelsch.dtb
+	arch/arm/boot/dts/r8a7791-porter.dtb
+	arch/arm/boot/dts/r8a7794-alt.dtb
+	arch/arm/boot/dts/r8a7794-silk.dtb
+
+usb-phy@e6590100: 'usb-phy@2' is a required property
+	arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dtb
+	arch/arm/boot/dts/r8a7742-iwg21d-q7.dtb
+	arch/arm/boot/dts/r8a7743-iwg20d-q7-dbcm-ca.dtb
+	arch/arm/boot/dts/r8a7743-iwg20d-q7.dtb
+	arch/arm/boot/dts/r8a7744-iwg20d-q7-dbcm-ca.dtb
+	arch/arm/boot/dts/r8a7744-iwg20d-q7.dtb
+	arch/arm/boot/dts/r8a7745-iwg22d-sodimm-dbhd-ca.dtb
+	arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dtb
+	arch/arm/boot/dts/r8a7790-lager.dtb
+	arch/arm/boot/dts/r8a7790-stout.dtb
+	arch/arm/boot/dts/r8a7791-koelsch.dtb
+	arch/arm/boot/dts/r8a7791-porter.dtb
+	arch/arm/boot/dts/r8a7794-alt.dtb
+	arch/arm/boot/dts/r8a7794-silk.dtb
+
+usb-phy@e6598100: 'usb-channel@0' does not match any of the regexes: '^usb-phy@[02]$', 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb
+
+usb-phy@e6598100: 'usb-phy@0' is a required property
+	arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb
