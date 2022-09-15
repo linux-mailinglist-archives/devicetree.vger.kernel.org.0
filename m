@@ -2,171 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 475925B9B41
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:45:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2CB5B9B46
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:48:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230179AbiIOMpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 08:45:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38600 "EHLO
+        id S229874AbiIOMs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 08:48:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbiIOMol (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:44:41 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB3E1106
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 05:44:30 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id q21so30264197lfo.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 05:44:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=GbMPySDSU6WmgItxp994TYVOui10YiB6AOxxeQ38DWA=;
-        b=OqodDEGO+HX5IYC9wkHWaQK5n7oCF9NayMeRaEdr5CfLpP6ZdmbbjKl0tYIp+k83/4
-         bl180r0LxM8gmM+gUm4C2glC2htKXT5ok97uABU/WEVMlya+FWL2czplb1WcjMcCYlL0
-         Cc/AcAwuPyOaFrCI4928xwDNL6hnRfgxgDOHxiANtwI4QcXwGTvm2xfcZB5vw9eR4i46
-         DPPKaWjwnl7WqZUSjsR70Zysx599E3JZHvOcKTSUt5LX3Jmh7sFyMiBegFW1J6GmHifq
-         mugNViCCsDLuqqkpTpQWAaZheQ5Xub+jqgdN7DdIfo3cEoGhEwnWww9aiR4gWPDEgQJ1
-         mBrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=GbMPySDSU6WmgItxp994TYVOui10YiB6AOxxeQ38DWA=;
-        b=0z0SIZ106YMq8mATRyUYAa3Z9YuIZ4NIxm8/G7/ZDrYlT97kVumOagXmaLKY6Hs5Yj
-         6DoRdVxGoeHt4NvlN1MdDeWscgY7UpXCDJa/UNlxZafugzcOmnciv7ipZS3WcYZXmW/F
-         KCft07nPEbAYaOFtviQI38p7r0dr+jSPC6j+syGW2wnSoPMf1F90YTXAd8TLzge2w8PB
-         BQYdAXceLn+FSWzxKFaRZtJIG1CY7UY2KOh573Ym9OiTTjCIfalmZOMwEaBSqeh3afTW
-         E0sCmjWmJZ6TPoS+M+zHWs52OQhr47pV/0K7OmjVNkMrjFOVkzV6qcp8r0RnDXGg7h7n
-         qhvA==
-X-Gm-Message-State: ACgBeo1lYqNpg8Y0IMNOcuhWbU5rYn8c+zMGkv5Q/GF7JIPsabGuJ/8S
-        TPdaASvqwRdYk88aC2sZq5DTbA==
-X-Google-Smtp-Source: AA6agR5e3aLhLl+SPavx1J3SMAHglV+z0HW2twco7cekVm4i6twl/pbFFjIx5uZ3q6jZeGHephVbIA==
-X-Received: by 2002:a05:6512:3185:b0:49c:3310:6910 with SMTP id i5-20020a056512318500b0049c33106910mr4619068lfe.352.1663245869189;
-        Thu, 15 Sep 2022 05:44:29 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id p8-20020a2eb7c8000000b0026c16e9e45bsm1954318ljo.17.2022.09.15.05.44.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Sep 2022 05:44:28 -0700 (PDT)
-Message-ID: <49cb7d54-6546-5228-0c30-6b37faa87ec9@linaro.org>
-Date:   Thu, 15 Sep 2022 15:44:28 +0300
+        with ESMTP id S229796AbiIOMs1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:48:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCB8593211;
+        Thu, 15 Sep 2022 05:48:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 77741623AF;
+        Thu, 15 Sep 2022 12:48:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF092C43141;
+        Thu, 15 Sep 2022 12:48:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663246105;
+        bh=vYPH7fx1ureHC33v6mpOR/ZwVsXqh5v8XdoMYLJYITA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bmtTYnl887if/Y0PWs0Xbs/vZfSB5mW18ArMYw7ewAyImXhFphVNnQFBg1XBV2gvL
+         PGHrgrm1goParP2chNY18YPBXEfZ/qkFhXfEZvdcN9xfBkF9qTCGNced5Te6DUgCpm
+         JjExm0wKOJNu3tSJsyyCKFp7kLW2nMo3mDAxxBTrIHmrPCicWpYsgg3sV+Yq2OnWuR
+         oAn+pGRXBZo9Z4kh6wEWM+D+3N0z18h9XzthMruxg3rzEk272624f7UfBKtSOEQ/Bd
+         eYSt8u96/MoWI3i6y+JdEhPEJT2LQwfz6Vup8KKWg+S7FDtKmTfEVgZNlYwO2pmIHT
+         6omV+kTcrri9g==
+Received: by mail-vs1-f41.google.com with SMTP id q26so13678535vsr.7;
+        Thu, 15 Sep 2022 05:48:25 -0700 (PDT)
+X-Gm-Message-State: ACgBeo3nKSComtmY9k5wQNFMqmLhUxzB/Av4YVbhBLWjQmpCo2iMQRto
+        c28dYhZZ3ARxz9k0s20n4Vlh3cdzRS97VPu1Eg==
+X-Google-Smtp-Source: AA6agR6cWMD0DU2Xd5g/oUc1mkJQuwd2KsOUyJJshpK/eKp9yVKE22ZbQHQDM85SEx87Sd6nqnD3BhvwMhkBxmAkNQY=
+X-Received: by 2002:a67:c18a:0:b0:398:4c72:cafb with SMTP id
+ h10-20020a67c18a000000b003984c72cafbmr10648043vsj.53.1663246104815; Thu, 15
+ Sep 2022 05:48:24 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Subject: Re: [PATCH v6 04/12] dt-bindings: display/msm: move common DPU
- properties to dpu-common.yaml
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+References: <20220909135103.98179-1-j@jannau.net> <20220909135103.98179-7-j@jannau.net>
+ <20220913133207.GA3500192-robh@kernel.org> <20220914110448.GF4024@jannau.net>
+In-Reply-To: <20220914110448.GF4024@jannau.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 15 Sep 2022 07:48:13 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKxU4W1yTRWuxbVAtQJPx_4+jqF7p29R9TW5MNsrLoTCQ@mail.gmail.com>
+Message-ID: <CAL_JsqKxU4W1yTRWuxbVAtQJPx_4+jqF7p29R9TW5MNsrLoTCQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 06/10] arm64: dts: apple: Add initial
+ t6000/t6001/t6002 DTs
+To:     Janne Grunau <j@jannau.net>
+Cc:     asahi@lists.linux.dev, Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
-        David Airlie <airlied@linux.ie>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        freedreno@lists.freedesktop.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
- <20220901102312.2005553-5-dmitry.baryshkov@linaro.org>
- <20220907195904.GA98468-robh@kernel.org>
- <CAA8EJpoJk-_LC25uyqkQ0Q8CYziNuU8nSnExm40542xZcvcbxQ@mail.gmail.com>
-In-Reply-To: <CAA8EJpoJk-_LC25uyqkQ0Q8CYziNuU8nSnExm40542xZcvcbxQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2022 00:13, Dmitry Baryshkov wrote:
-> On Wed, 7 Sept 2022 at 22:59, Rob Herring <robh@kernel.org> wrote:
->>
->> On Thu, Sep 01, 2022 at 01:23:04PM +0300, Dmitry Baryshkov wrote:
->>> Move properties common to all DPU DT nodes to the dpu-common.yaml.
->>>
->>> Note, this removes description of individual DPU port@ nodes. However
->>> such definitions add no additional value. The reg values do not
->>> correspond to hardware INTF indices. The driver discovers and binds
->>> these ports not paying any care for the order of these items. Thus just
->>> leave the reference to graph.yaml#/properties/ports and the description.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>>   .../bindings/display/msm/dpu-common.yaml      | 44 ++++++++++++++++++
->>>   .../bindings/display/msm/dpu-msm8998.yaml     | 46 ++-----------------
->>>   .../bindings/display/msm/dpu-qcm2290.yaml     | 41 ++---------------
->>>   .../bindings/display/msm/dpu-sc7180.yaml      | 45 ++----------------
->>>   .../bindings/display/msm/dpu-sc7280.yaml      | 45 ++----------------
->>>   .../bindings/display/msm/dpu-sdm845.yaml      | 46 ++-----------------
->>>   6 files changed, 64 insertions(+), 203 deletions(-)
->>>   create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-common.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-common.yaml b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
->>> new file mode 100644
->>> index 000000000000..bf5764e9932b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
->>> @@ -0,0 +1,44 @@
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/display/msm/dpu-common.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm Display DPU dt properties (common properties)
->>> +
->>> +maintainers:
->>> +  - Krishna Manikandan <quic_mkrishn@quicinc.com>
->>> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> +  - Rob Clark <robdclark@gmail.com>
->>> +
->>> +description: |
->>> +  Common properties for QCom DPU display controller.
->>> +
->>> +properties:
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  power-domains:
->>> +    maxItems: 1
->>> +
->>> +  operating-points-v2: true
->>> +  opp-table:
->>> +    type: object
->>> +
->>> +  ports:
->>> +    $ref: /schemas/graph.yaml#/properties/ports
->>> +    description: |
->>> +      Contains the list of output ports from DPU device. These ports
->>> +      connect to interfaces that are external to the DPU hardware,
->>> +      such as DSI, DP etc.
->>
->> Haven't we been over this already?
->>
->> You have to define 'port' nodes or else anything is allowed in them
->> (and endpoint nodes). If you want to define them as pattern, then fine.
->> But you must have a ref to graph.yaml#/properties/port.
-> 
-> Last time you asked to do this, I did a check. Adding any additional
-> property results in a schema error. And this is logical.
-> graph.yaml#/properties/ports already limits the node properties. I
-> thus do not see a need to define port@[0-9a-f]+$. Did I miss anything?
+On Wed, Sep 14, 2022 at 6:04 AM Janne Grunau <j@jannau.net> wrote:
+>
+> On 2022-09-13 08:32:07 -0500, Rob Herring wrote:
+> > On Fri, Sep 09, 2022 at 03:50:59PM +0200, Janne Grunau wrote:
+> > > From: Hector Martin <marcan@marcan.st>
+> > >
+> > > These SoCs are found in Apple devices with M1 Pro (t6000), M1 Max
+> > > (t6001) and M1 Ultra (t6002).
+> > >
+> > > t6000 is a cut-down version of t6001, so the former just includes the
+> > > latter and disables the missing bits (This is currently just one PMGR
+> > > node and all of its domains.
+> > >
+> > > t6002 is two connected t6001 dies. The implementation seems to use
+> > > t6001 with blocks disabled (mostly on the second die). MMIO addresses on
+> > > the second die have a constant offset. The interrupt controller is
+> > > multi-die aware. This setup can be represented in the device tree with
+> > > two top level "soc" nodes. The MMIO offset is applied via "ranges" and
+> > > devices are included with preproceesor macros to make the node labels
+> > > unique and to specify the die number for the interrupt definition.
+> > >
+> > > Device nodes are distributed over dtsi files based on whether they are
+> > > present on both dies or just on the first die. The only execption is the
+> > > NVMe controller which resides on the second die. Its nodes are in a
+> > > separate file.
+> > >
+> > > Signed-off-by: Hector Martin <marcan@marcan.st>
+> > > Co-developed-by: Janne Grunau <j@jannau.net>
+> > > Signed-off-by: Janne Grunau <j@jannau.net>
+> > >
+> > > ---
+> > >
+> > >
+> > > ---
+> > >  arch/arm64/boot/dts/apple/multi-die-cpp.h     |   23 +
+> > >  arch/arm64/boot/dts/apple/t6000.dtsi          |   18 +
+> > >  arch/arm64/boot/dts/apple/t6001.dtsi          |   63 +
+> > >  arch/arm64/boot/dts/apple/t6002.dtsi          |  173 ++
+> > >  arch/arm64/boot/dts/apple/t600x-common.dtsi   |  128 ++
+> > >  arch/arm64/boot/dts/apple/t600x-die0.dtsi     |  298 +++
+> > >  arch/arm64/boot/dts/apple/t600x-dieX.dtsi     |  103 +
+> > >  .../arm64/boot/dts/apple/t600x-gpio-pins.dtsi |   45 +
+> > >  arch/arm64/boot/dts/apple/t600x-nvme.dtsi     |   42 +
+> > >  arch/arm64/boot/dts/apple/t600x-pmgr.dtsi     | 2012 +++++++++++++++++
+> > >  10 files changed, 2905 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/apple/multi-die-cpp.h
+> > >  create mode 100644 arch/arm64/boot/dts/apple/t6000.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/apple/t6001.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/apple/t6002.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/apple/t600x-common.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/apple/t600x-die0.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/apple/t600x-dieX.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/apple/t600x-gpio-pins.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/apple/t600x-nvme.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/apple/t600x-pmgr.dtsi
+> > >
+> > > diff --git a/arch/arm64/boot/dts/apple/multi-die-cpp.h b/arch/arm64/boot/dts/apple/multi-die-cpp.h
+> > > new file mode 100644
+> > > index 000000000000..153d89dd0ae1
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/apple/multi-die-cpp.h
+> > > @@ -0,0 +1,23 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0+ OR MIT
+> > > + *
+> > > + * C preprocessor macros for t600x multi die support.
+> > > + */
+> > > +
+> > > +#ifndef __DTS_APPLE_MULTI_DIE_CPP_H
+> > > +#define __DTS_APPLE_MULTI_DIE_CPP_H
+> > > +
+> > > +#ifndef __stringify
+> > > +/* copied from include/linux/stringify.h */
+> >
+> > Which is dual licensed? Arguably, not big enough to matter.
+>
+> include/linux/stringify.h has no license header at all. If that's
+> acceptable I will drop it from this file as well.
+> I started from scratch with the SPDX header from other apple dts files.
+> I should have paid more attention after replacing it with kernel
+> __stringify (I probably would have updated it if stringify.h had a SPDX
+> header).
 
-I see, what I did miss now. I missed adding properties to individual 
-/port nodes. Please excuse me. BTW: is there any reason for not 
-enforcing this in the graph.yaml?
+I'd leave the license and just drop the comment. The construct is not
+copyrightable IMO.
 
--- 
-With best wishes
-Dmitry
+> > > +#define __stringify_1(x...)     #x
+> > > +#define __stringify(x...)       __stringify_1(x)
+> > > +#endif
+> > > +
+> > > +#ifndef __concat
+> > > +#define __concat_1(x, y...)     x ## y
+> > > +#define __concat(x, y...)       __concat_1(x, y)
+> > > +#endif
+> > > +
+> > > +#define DIE_NODE(a) __concat(a, DIE)
+> > > +#define DIE_LABEL(a) __stringify(__concat(a, DIE))
+> >
+> > Not a pattern we encourage in DT, but seems necessary here.
+>
+> That is probably an arguments for keeping __concat/__stringify local
+> instead of adding it to include/dt-bindings
 
+Yes.
+
+> > > +
+> > > +#endif /* !__LINUX_STRINGIFY_H */
+
+Stale comment.
+
+Rob
