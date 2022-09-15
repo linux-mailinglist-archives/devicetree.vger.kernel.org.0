@@ -2,88 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A5B25BA133
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 21:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 646085BA205
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 22:53:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbiIOT0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 15:26:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58682 "EHLO
+        id S229719AbiIOUxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 16:53:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229763AbiIOTZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 15:25:54 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC5EC38479;
-        Thu, 15 Sep 2022 12:25:51 -0700 (PDT)
-Received: from g550jk.localnet (31-151-115-246.dynamic.upc.nl [31.151.115.246])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 9A3F3C17AF;
-        Thu, 15 Sep 2022 19:25:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1663269949; bh=pG6rNu+xBVtdF6lIbK5/MTm5x53xJnK8SaUNXzXLpiI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ZnuEvWhUqWz1yGuHuWH7Ym9xDE/mlMVABda1gLNAb1Oh2veqg7RICtgi15aakUegp
-         edoR2gF/bHDa6rx8r17gvs3NQYnQ3i6prEPOkfu17ysAJeP9fAcc3FwRD8IDZuSBU7
-         ei/DPpTER44TZPojnpMgR/Gz/5EVeBHve19SkPcI=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        marcel@holtmann.org, "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        with ESMTP id S229615AbiIOUxi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 16:53:38 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A29B481E8;
+        Thu, 15 Sep 2022 13:53:36 -0700 (PDT)
+Received: from [167.98.135.4] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oYvrO-00079Q-DO; Thu, 15 Sep 2022 22:53:22 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: bluetooth: broadcom: add BCM43430A0 & BCM43430A1
-Date:   Thu, 15 Sep 2022 21:25:49 +0200
-Message-ID: <2956343.mvXUDI8C0e@g550jk>
-In-Reply-To: <20220225204138.935022-1-luca@z3ntu.xyz>
-References: <20220225204138.935022-1-luca@z3ntu.xyz>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Atish Patra <atishp@rivosinc.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 02/10] dt-bindings: riscv: Sort the CPU core list alphabetically
+Date:   Thu, 15 Sep 2022 22:53:20 +0200
+Message-ID: <2526125.Lt9SDvczpP@phil>
+In-Reply-To: <20220915181558.354737-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220915181558.354737-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220915181558.354737-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
-
-On Freitag, 25. Februar 2022 21:41:37 CEST Luca Weiss wrote:
-> Document the compatible string for BCM43430A0 bluetooth used in lg-lenok
-> and BCM43430A1 used in asus-sparrow.
+Am Donnerstag, 15. September 2022, 20:15:50 CEST schrieb Prabhakar:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Sort the CPU cores list alphabetically for maintenance.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Can someone please apply this patch? It still seems to apply without fuzz.
+That makes a lot of sense
 
-Regards
-Luca
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
 > ---
-> Changes in v2:
-> - add bcm43430a1 too, adjust commit message to reflect that
+> v2->v3
+> * included RB tag from Geert
 > 
->  Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> v1->v2
+> * Included RB tag from Krzysztof
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml index
-> 5aac094fd217..dd035ca639d4 100644
-> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> @@ -19,6 +19,8 @@ properties:
->        - brcm,bcm4329-bt
->        - brcm,bcm4330-bt
->        - brcm,bcm4334-bt
-> +      - brcm,bcm43430a0-bt
-> +      - brcm,bcm43430a1-bt
->        - brcm,bcm43438-bt
->        - brcm,bcm4345c5
->        - brcm,bcm43540-bt
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index 873dd12f6e89..2a1c5ae5b0aa 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -27,17 +27,17 @@ properties:
+>      oneOf:
+>        - items:
+>            - enum:
+> -              - sifive,rocket0
+> +              - canaan,k210
+>                - sifive,bullet0
+>                - sifive,e5
+>                - sifive,e7
+>                - sifive,e71
+> -              - sifive,u74-mc
+> -              - sifive,u54
+> -              - sifive,u74
+> +              - sifive,rocket0
+>                - sifive,u5
+> +              - sifive,u54
+>                - sifive,u7
+> -              - canaan,k210
+> +              - sifive,u74
+> +              - sifive,u74-mc
+>            - const: riscv
+>        - items:
+>            - enum:
+> 
 
 
 
