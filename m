@@ -2,46 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E513B5B9667
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 10:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 085DF5B966C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 10:34:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229921AbiIOIcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 04:32:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46978 "EHLO
+        id S229898AbiIOIeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 04:34:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiIOIcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 04:32:39 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 118FB9569E;
-        Thu, 15 Sep 2022 01:32:37 -0700 (PDT)
-X-UUID: 8bed5012100d42258b60ba20f626b509-20220915
+        with ESMTP id S230014AbiIOIdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 04:33:40 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A5D95E56;
+        Thu, 15 Sep 2022 01:33:39 -0700 (PDT)
+X-UUID: e351d00115f24bf6a508f74911a78e51-20220915
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=2V4ISJ1pSA6PqL2bSlrt/KFVdLf7Qresglb+Otewhw8=;
-        b=gYXijqSQhE3/J/2NToiB2wQqFbam+DeNvKZLztSmC+CHfRSniaQBDPctaznvMYslFNdZt5Ftlpl+g+esEnIedIoLcbwWvAOh8ZLY00WMrXuLrmXwOWl7AQ9v4OJUIw+MPtTg70XkG4zqayzhi9/1mgPO/hxqYYRZZKWxJHX30mU=;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=+VzMpAhkDeuqCaOFZo9E99GwTzm37KqLKnhL2XdlWf8=;
+        b=GxL0aYkDjZMLA7fhW6vIZnmZ96hSg1AnyFlHFe/cqKbCb8k/VSrAITYg10ZEyRGL8eugIwvCuVeaO452YJwCaVtTNEqo0f8/y5SfyHxqNqEN86nyD7bX5f5/y0axO14ZwNn/ALgEmqvT+qTSyFge8hfAVXgwDLN/v0IrDqiB0V4=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:177355e2-3559-440d-8837-51d1c5acb34a,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:45
-X-CID-INFO: VERSION:1.1.11,REQID:177355e2-3559-440d-8837-51d1c5acb34a,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-        elease,TS:45
-X-CID-META: VersionHash:39a5ff1,CLOUDID:81f37ff6-6e85-48d9-afd8-0504bbfe04cb,B
-        ulkID:220915161402LYR09JH6,BulkQuantity:134,Recheck:0,SF:28|17|19|48,TC:ni
-        l,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
-X-UUID: 8bed5012100d42258b60ba20f626b509-20220915
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+X-CID-O-INFO: VERSION:1.1.11,REQID:70194f9e-b879-4a8d-a868-0e89ecba5c94,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:39a5ff1,CLOUDID:4eedbf5d-5ed4-4e28-8b00-66ed9f042fbd,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: e351d00115f24bf6a508f74911a78e51-20220915
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
         (envelope-from <rex-bc.chen@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 272185181; Thu, 15 Sep 2022 16:32:32 +0800
+        with ESMTP id 1208655419; Thu, 15 Sep 2022 16:33:34 +0800
 Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
  mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 15 Sep 2022 16:32:31 +0800
+ Thu, 15 Sep 2022 16:33:32 +0800
 Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 15 Sep 2022 16:32:31 +0800
-Message-ID: <7cec789d6d54f4bb85e9129d39a3da52e26293dd.camel@mediatek.com>
-Subject: Re: [PATCH 1/4] arm64: dts: mt8195: Add dp-intf nodes
+ Transport; Thu, 15 Sep 2022 16:33:32 +0800
+Message-ID: <cc8dc51e9b0815843ef11957903f4867274ce63b.camel@mediatek.com>
+Subject: Re: [PATCH 4/4] arm64: dts: mediatek: cherry: Add edptx and dptx
+ support
 From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
@@ -57,11 +55,11 @@ CC:     "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Project_Global_Chrome_Upstream_Group 
         <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 15 Sep 2022 16:32:31 +0800
-In-Reply-To: <f882ab40-b9bf-3f38-d62e-c175135383c3@collabora.com>
+Date:   Thu, 15 Sep 2022 16:33:32 +0800
+In-Reply-To: <9e0bc249-73cf-90d8-02d4-e9bdf8f34056@collabora.com>
 References: <20220915075849.1920-1-rex-bc.chen@mediatek.com>
-         <20220915075849.1920-2-rex-bc.chen@mediatek.com>
-         <f882ab40-b9bf-3f38-d62e-c175135383c3@collabora.com>
+         <20220915075849.1920-5-rex-bc.chen@mediatek.com>
+         <9e0bc249-73cf-90d8-02d4-e9bdf8f34056@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
@@ -79,75 +77,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, 2022-09-15 at 16:13 +0800, AngeloGioacchino Del Regno wrote:
 > Il 15/09/22 09:58, Bo-Chen Chen ha scritto:
-> > Add dp-intf0 and dp-intf1 nodes for MT8195.
+> > - Add pinctrl for edptx and dptx.
+> > - Add port for edptx and dptx.
 > > 
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 23
-> > +++++++++++++++++++++++
-> >   1 file changed, 23 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > index 905d1a90b406..93e6a106a9b8 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > @@ -2155,5 +2155,28 @@
-> >   			clock-names = "apb", "smi", "gals";
-> >   			power-domains = <&spm
-> > MT8195_POWER_DOMAIN_VDOSYS1>;
-> >   		};
-> > +
-> > +		dp_intf0: dp-intf@1c015000 {
 > 
-> Please keep the devicetree nodes ordered by mmio.
-> dp_intf0 goes between mutex@1c016000 and larb@1c018000.
+> The commit description is not great: explain why this board needs
+> eDP/DP
+> (so, explain that eDP is connected to internal panel, DP for external
+> display)
+> 
+> Thanks,
+> Angelo
 > 
 
 Hello Angelo,
 
-Thanks for your review.
-
-I think it should be merge@1c014000 and mutex@1c016000?
-I will move dp-intf@1c015000 between them.
-
-> > +			status = "disabled";
-> 
-> status = "disabled" across the entire mt8195.dtsi nodes is always at
-> the end.
-> Please keep consistency.
-> 
-
-OK, I will modify this in next version.
+OK, I will improve the commit message in next version.
 
 BRs,
 Bo-Chen
 
-> > +			compatible = "mediatek,mt8195-dp-intf";
-> > +			reg = <0 0x1c015000 0 0x1000>;
-> > +			interrupts = <GIC_SPI 657 IRQ_TYPE_LEVEL_HIGH
-> > 0>;
-> > +			clocks = <&vdosys0  CLK_VDO0_DP_INTF0>,
-> > +				 <&vdosys0 CLK_VDO0_DP_INTF0_DP_INTF>,
-> > +				 <&apmixedsys CLK_APMIXED_TVDPLL1>;
-> > +			clock-names = "engine", "pixel", "pll";
-> > +		};
-> > +
-> > +		dp_intf1: dp-intf@1c113000 {
-> > +			compatible = "mediatek,mt8195-dp-intf";
-> > +			reg = <0 0x1c113000 0 0x1000>;
-> > +			interrupts = <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH
-> > 0>;
-> > +			power-domains = <&spm
-> > MT8195_POWER_DOMAIN_VDOSYS1>;
-> > +			clocks = <&vdosys1 CLK_VDO1_DP_INTF0_MM>,
-> > +				 <&vdosys1 CLK_VDO1_DPINTF>,
-> > +				 <&apmixedsys CLK_APMIXED_TVDPLL2>;
-> > +			clock-names = "engine", "pixel", "pll";
-> > +			status = "disabled";
-> > +		};
-> >   	};
-> >   };
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
 > 
 > 
 
