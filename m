@@ -2,102 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 085DF5B966C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 10:34:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E7E15B967E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 10:37:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229898AbiIOIeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 04:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47866 "EHLO
+        id S229554AbiIOIhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 04:37:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230014AbiIOIdk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 04:33:40 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A5D95E56;
-        Thu, 15 Sep 2022 01:33:39 -0700 (PDT)
-X-UUID: e351d00115f24bf6a508f74911a78e51-20220915
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=+VzMpAhkDeuqCaOFZo9E99GwTzm37KqLKnhL2XdlWf8=;
-        b=GxL0aYkDjZMLA7fhW6vIZnmZ96hSg1AnyFlHFe/cqKbCb8k/VSrAITYg10ZEyRGL8eugIwvCuVeaO452YJwCaVtTNEqo0f8/y5SfyHxqNqEN86nyD7bX5f5/y0axO14ZwNn/ALgEmqvT+qTSyFge8hfAVXgwDLN/v0IrDqiB0V4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:70194f9e-b879-4a8d-a868-0e89ecba5c94,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:4eedbf5d-5ed4-4e28-8b00-66ed9f042fbd,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: e351d00115f24bf6a508f74911a78e51-20220915
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1208655419; Thu, 15 Sep 2022 16:33:34 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 15 Sep 2022 16:33:32 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 15 Sep 2022 16:33:32 +0800
-Message-ID: <cc8dc51e9b0815843ef11957903f4867274ce63b.camel@mediatek.com>
-Subject: Re: [PATCH 4/4] arm64: dts: mediatek: cherry: Add edptx and dptx
- support
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 15 Sep 2022 16:33:32 +0800
-In-Reply-To: <9e0bc249-73cf-90d8-02d4-e9bdf8f34056@collabora.com>
-References: <20220915075849.1920-1-rex-bc.chen@mediatek.com>
-         <20220915075849.1920-5-rex-bc.chen@mediatek.com>
-         <9e0bc249-73cf-90d8-02d4-e9bdf8f34056@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230113AbiIOIhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 04:37:31 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F0F97EDF;
+        Thu, 15 Sep 2022 01:37:27 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28F8av5d020223;
+        Thu, 15 Sep 2022 03:36:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1663231017;
+        bh=2RSmklK1TVuVRmWe/70Gpjzew728xNGbXx1E3M+lpr8=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=SpCm8zgKOL/xH+6QYS9hvm1VYeoEBIuy1znTpdRovLDu9xZs7LUrdNrXbob4fdXYE
+         SdUQxG0OXJlbZv1B1gn/bGHjyRvvaGYY1+DzyQ2Vn3cSqQURh8qKVmGMg2iCz5i/Cn
+         hxHb3a4gfERI7btHXOlSmaP7o+0CY2r4WUuFZELk=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28F8avuA055725
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Sep 2022 03:36:57 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 15
+ Sep 2022 03:36:57 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 15 Sep 2022 03:36:57 -0500
+Received: from [10.24.69.241] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28F8alx3095898;
+        Thu, 15 Sep 2022 03:36:47 -0500
+Message-ID: <baa51dc7-3605-0001-386a-35e386b920da@ti.com>
+Date:   Thu, 15 Sep 2022 14:06:46 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vladimir.oltean@nxp.com>,
+        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH 2/8] net: ethernet: ti: am65-cpsw: Add support for SERDES
+ configuration
+Content-Language: en-US
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+References: <20220914095053.189851-1-s-vadapalli@ti.com>
+ <20220914095053.189851-3-s-vadapalli@ti.com>
+ <YyH1TH0UqCzN37J2@shell.armlinux.org.uk>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <YyH1TH0UqCzN37J2@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-09-15 at 16:13 +0800, AngeloGioacchino Del Regno wrote:
-> Il 15/09/22 09:58, Bo-Chen Chen ha scritto:
-> > - Add pinctrl for edptx and dptx.
-> > - Add port for edptx and dptx.
-> > 
-> 
-> The commit description is not great: explain why this board needs
-> eDP/DP
-> (so, explain that eDP is connected to internal panel, DP for external
-> display)
-> 
-> Thanks,
-> Angelo
-> 
+Hello Russell,
 
-Hello Angelo,
-
-OK, I will improve the commit message in next version.
-
-BRs,
-Bo-Chen
-
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+On 14/09/22 21:07, Russell King (Oracle) wrote:
+> On Wed, Sep 14, 2022 at 03:20:47PM +0530, Siddharth Vadapalli wrote:
+>> @@ -1427,6 +1471,9 @@ static void am65_cpsw_nuss_mac_link_down(struct phylink_config *config, unsigned
+>>  	struct net_device *ndev = port->ndev;
+>>  	int tmo;
+>>  
+>> +	/* disable phy */
+>> +	am65_cpsw_disable_phy(port->slave.ifphy);
+>> +
 > 
+> This seems really strange. If you have a serdes interface which
+> presumably supports SGMII, 1000base-X etc, then link status is sent
+> across the serdes interface. If you power down the serdes, then you
+> can't receive the link status, and so mac_link_up() won't be called.
 > 
+> Are you really sure you want to be enabling and disabling the PHY
+> in mac_link_down()/mac_link_up() ?
 
+Thank you for reviewing the patch. The PHY passed to the
+"am65_cpsw_disable_phy()" and "am65_cpsw_disable_phy()" functions within
+the "am65_cpsw_nuss_mac_link_down()" and "am65_cpsw_nuss_mac_link_up()"
+functions respectively, is the CPSW ethernet MAC's PHY and not the
+SERDES PHY. The SERDES PHY is powered on through the function call to
+the "am65_cpsw_init_phy()" function.
+
+The calls to the functions "am65_cpsw_enable_phy()" and
+"am65_cpsw_disable_phy()" within the "am65_cpsw_nuss_mac_link_up()" and
+"am65_cpsw_nuss_mac_link_down()" functions respectively, try to power on
+and power off the CPSW ethernet MAC's phy. Looking at it again,they do
+nothing, since the driver corresponding to the ethernet MAC's PHY which
+happens to be drivers/phy/ti/phy-gmii-sel.c, does not provide any
+methods to power on and power off the ethernet MAC's PHY. I have just
+realized that this is stale code and will remove it in the v2 series.
+
+Also, I realize now that I did not invoke "am65_cpsw_disable_phy()" on
+the SERDES PHY in the driver's remove function. I will fix this in the
+v2 series.
+
+Regards,
+Siddharth.
