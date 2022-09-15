@@ -2,214 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EB0C5B9437
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 08:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB6155B943E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 08:25:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbiIOGT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 02:19:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48194 "EHLO
+        id S229533AbiIOGZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 02:25:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiIOGTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 02:19:55 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAF5029801;
-        Wed, 14 Sep 2022 23:19:52 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28F6JgKZ080619;
-        Thu, 15 Sep 2022 01:19:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663222782;
-        bh=j/00PjYVqUZW6pY/LRc0/xTw2zanbwYMcCDvuOddwzU=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=Ottj6VqNfd1sEgwJ4t9zIBtp+TgTaa/1HZmrfgzEUNbVFIu+Yy7zF6gk/m8Je4W4d
-         d9B9uFYTVkXmgU69OPm0vk3h/MKJQlhsHRoT7A/fu9Kx8B3qFQYgq7qjjLFAYQRSGb
-         IXIwrqGpLbjasUoMbuksKamzYREP95KsRILWtv64=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28F6JgRM085529
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Sep 2022 01:19:42 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 15
- Sep 2022 01:19:42 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 15 Sep 2022 01:19:41 -0500
-Received: from [10.24.69.241] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28F6JbNQ011013;
-        Thu, 15 Sep 2022 01:19:37 -0500
-Message-ID: <cc3d140a-d26e-3227-e7d6-14430cdbff8c@ti.com>
-Date:   Thu, 15 Sep 2022 11:49:36 +0530
+        with ESMTP id S229436AbiIOGZU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 02:25:20 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAA767677C;
+        Wed, 14 Sep 2022 23:25:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1663223085; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=QhT+tIPCFvVSGigO6Bnk6e6Bh2/EWYUf/infZjmQGj6iO1TGNFp9mXguDuOUm/DpWvf1OgKkKfqzIb7ZN6l9ctq0lWG5/c7d1CSAjTq9cvsm/EE5alr2+5SNHKUxhuVbtlW8IBJ9ao1FlLD5+bECDV2zoGW0ERjC6wFnGpVteZ0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1663223085; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=SaIR9ac/WNESLZgIJ7NfWDPlOEsbmM5EMrQeBc4rRcQ=; 
+        b=GuqatCqi3aNs0LWmQ5GNwlHSYYwAWDsF+H0n4REekizZUb117F/XuatyMC2g/jcD0YiW3vzn3hJN0FaaKwBPpjtMyOueJBdmUDuH34d8RrIXUsWSeagJIFN/B5GVfqb3tgRyCWelbulAdkRevrMZE3eXoEl767I/gNWhoQyVQ4Q=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1663223085;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=SaIR9ac/WNESLZgIJ7NfWDPlOEsbmM5EMrQeBc4rRcQ=;
+        b=XDIDPnVMmzMdjdr4PWLtYOkpEuSco+I7L4NEGf6+WLphaJt9VGVtFjp9BCrmtJuU
+        7ij/J6uM1EF/jrYfl1rkVfuPnaeTFjQfXrlAeYxX/MKVqAxa1Ngir6nbwhzyqohMOwn
+        1gQDBTSmHpK+ZKrFbJ0+d3Q77xQtFQSvBjt7EQxw=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1663223084388940.7928349747789; Wed, 14 Sep 2022 23:24:44 -0700 (PDT)
+Message-ID: <aca736cd-a2f9-2af9-df59-7f8be7c991b6@arinc9.com>
+Date:   Thu, 15 Sep 2022 09:24:37 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-CC:     <robh+dt@kernel.org>, <lee.jones@linaro.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <kishon@ti.com>,
-        <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
-        <grygorii.strashko@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <sjakhade@cadence.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH 3/6] phy: ti: gmii-sel: Add support for CPSW9G GMII SEL in
- J721e
+Subject: Re: [PATCH 04/10] dt-bindings: memory: mt7621: add syscon as
+ compatible string
 Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>
-References: <20220914093911.187764-1-s-vadapalli@ti.com>
- <20220914093911.187764-4-s-vadapalli@ti.com>
- <dfb88c31-b6ae-32d4-2b8a-db6027ed19c8@kernel.org>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <dfb88c31-b6ae-32d4-2b8a-db6027ed19c8@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>, erkin.bozoglu@xeront.com,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>
+References: <20220914085451.11723-1-arinc.unal@arinc9.com>
+ <20220914085451.11723-5-arinc.unal@arinc9.com>
+ <20220914151414.GA2233841-robh@kernel.org>
+ <44045164-692d-c8f5-3216-b043fb821634@arinc9.com>
+ <CAMhs-H-0XV9ocrG3_MuVc3Q=o8HnYso2CqUURjVR3OMc=dAMYg@mail.gmail.com>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <CAMhs-H-0XV9ocrG3_MuVc3Q=o8HnYso2CqUURjVR3OMc=dAMYg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Roger,
-
-On 14/09/22 17:04, Roger Quadros wrote:
-> Hi Siddharth,
-> 
-> On 14/09/2022 12:39, Siddharth Vadapalli wrote:
->> Each of the CPSW9G ports in J721e support additional modes like QSGMII.
->> Add a new compatible for J721e to support the additional modes.
+On 15.09.2022 06:21, Sergio Paracuellos wrote:
+> On Wed, Sep 14, 2022 at 5:19 PM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
 >>
->> In TI's J721e, each of the CPSW9G ethernet interfaces can act as a
->> QSGMII main or QSGMII-SUB port. The QSGMII main interface is responsible
->> for performing auto-negotiation between the MAC and the PHY while the rest
->> of the interfaces are designated as QSGMII-SUB interfaces, indicating that
->> they will not be taking part in the auto-negotiation process.
+>> On 14.09.2022 18:14, Rob Herring wrote:
+>>> On Wed, Sep 14, 2022 at 11:54:45AM +0300, Arınç ÜNAL wrote:
+>>>> Add syscon as a constant string on the compatible property as it's required
+>>>> for the SoC to work. Update the example accordingly.
+>>>
+>>> It's not required. It's required to automagically create a regmap. That
+>>> can be done yourself as well. The downside to adding 'syscon' is it
+>>> requires a DT update. Maybe that's fine for this platform? I don't know.
 >>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> ---
->>  drivers/phy/ti/phy-gmii-sel.c | 47 +++++++++++++++++++++++++++--------
->>  1 file changed, 37 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/phy/ti/phy-gmii-sel.c b/drivers/phy/ti/phy-gmii-sel.c
->> index f0b2ba7a9c96..fdb1a7db123d 100644
->> --- a/drivers/phy/ti/phy-gmii-sel.c
->> +++ b/drivers/phy/ti/phy-gmii-sel.c
->> @@ -223,6 +223,13 @@ struct phy_gmii_sel_soc_data phy_gmii_sel_cpsw5g_soc_j7200 = {
->>  	.extra_modes = BIT(PHY_INTERFACE_MODE_QSGMII) | BIT(PHY_INTERFACE_MODE_SGMII),
->>  };
->>  
->> +static const
->> +struct phy_gmii_sel_soc_data phy_gmii_sel_cpsw9g_soc_j721e = {
->> +	.use_of_data = true,
->> +	.regfields = phy_gmii_sel_fields_am654,
->> +	.extra_modes = BIT(PHY_INTERFACE_MODE_QSGMII),
->> +};
->> +
->>  static const struct of_device_id phy_gmii_sel_id_table[] = {
->>  	{
->>  		.compatible	= "ti,am3352-phy-gmii-sel",
->> @@ -248,6 +255,10 @@ static const struct of_device_id phy_gmii_sel_id_table[] = {
->>  		.compatible	= "ti,j7200-cpsw5g-phy-gmii-sel",
->>  		.data		= &phy_gmii_sel_cpsw5g_soc_j7200,
->>  	},
->> +	{
->> +		.compatible	= "ti,j721e-cpsw9g-phy-gmii-sel",
->> +		.data		= &phy_gmii_sel_cpsw9g_soc_j721e,
->> +	},
->>  	{}
->>  };
->>  MODULE_DEVICE_TABLE(of, phy_gmii_sel_id_table);
->> @@ -389,7 +400,7 @@ static int phy_gmii_sel_probe(struct platform_device *pdev)
->>  	struct device_node *node = dev->of_node;
->>  	const struct of_device_id *of_id;
->>  	struct phy_gmii_sel_priv *priv;
->> -	u32 main_ports = 1;
->> +	u32 main_ports[2] = {1, 1};
->>  	int ret;
->>  
->>  	of_id = of_match_node(phy_gmii_sel_id_table, pdev->dev.of_node);
->> @@ -403,15 +414,31 @@ static int phy_gmii_sel_probe(struct platform_device *pdev)
->>  	priv->dev = &pdev->dev;
->>  	priv->soc_data = of_id->data;
->>  	priv->num_ports = priv->soc_data->num_ports;
->> -	of_property_read_u32(node, "ti,qsgmii-main-ports", &main_ports);
->> -	/*
->> -	 * Ensure that main_ports is within bounds. If the property
->> -	 * ti,qsgmii-main-ports is not mentioned, or the value mentioned
->> -	 * is out of bounds, default to 1.
->> -	 */
->> -	if (main_ports < 1 || main_ports > 4)
->> -		main_ports = 1;
->> -	priv->qsgmii_main_ports = PHY_GMII_PORT(main_ports);
->> +	/* Differentiate between J7200 CPSW5G and J721e CPSW9G */
->> +	if (of_device_is_compatible(node, "ti,j7200-cpsw5g-phy-gmii-sel") > 0) {
+>> My GB-PC2 won't boot without syscon on mt7621.dtsi. This string was
+>> always there on the memory controller node on mt7621.dtsi.
 > 
-> Why not just "if (of_device_is_compatible())" ?
+> The string was introduced because the mt7621 clock driver needs to
+> read some registers creating a regmap from the syscon. The bindings
+> were added before the clock driver was properly mainlined and at first
+> the clock driver was using ralink architecture dependent operations
+> rt_memc_* defined in
+> 'arch/mips/include/asm/mach-ralink/ralink_regs.h'. I forgot to update
+> the mem controller binding when memc became a syscon so I think this
+> patch is correct. I also think the sample should use 'syscon' in the
+> node name instead of memory-controller.
 
-Thank you for reviewing the patch. I will fix this in the v2 series.
+Will change to syscon in v2.
 
-> 
->> +		of_property_read_u32(node, "ti,qsgmii-main-ports", &main_ports[0]);
->> +		/*
->> +		 * Ensure that main_ports is within bounds. If the property
->> +		 * ti,qsgmii-main-ports is not mentioned, or the value mentioned
->> +		 * is out of bounds, default to 1.
->> +		 */
->> +		if (main_ports[0] < 1 || main_ports[0] > 4)
->> +			main_ports[0] = 1;
-> 
-> how about printing this issue with dev_err()?
-
-I agree that using dev_err() instead of defaulting to a value is a
-better choice here. I had initially planned on defaulting to a value
-since this check is a part of the probe function and I had thought that
-the phy-mode is not yet known at this point. However, looking at it
-again, for the special case where the property "ti,qsgmii-main-ports" is
-mentioned in the devicetree node, it is possible to know with certainty
-that QSGMII mode is intended and a wrong value has been provided in the
-devicetree node. I will add dev_err() in the v2 series, instead of
-defaulting to 1 if the check fails.
-
-For the other scenario where "ti,qsgmii-main-ports" is not mentioned in
-the devicetree node, I think that defaulting to 1 would be the correct
-choice since the intended phy-mode is not yet known at this point.
-
-> 
->> +		priv->qsgmii_main_ports = PHY_GMII_PORT(main_ports[0]);
->> +	} else if (of_device_is_compatible(node, "ti,j721e-cpsw9g-phy-gmii-sel") > 0) {
->> +		of_property_read_u32_array(node, "ti,qsgmii-main-ports", &main_ports[0], 2);
->> +		/*
->> +		 * Ensure that main_ports is within bounds. If the property
->> +		 * ti,qsgmii-main-ports is not mentioned, or the value mentioned
->> +		 * is out of bounds, default to 1.
->> +		 */
->> +		if (main_ports[0] < 1 || main_ports[0] > 8)
->> +			main_ports[0] = 1;
->> +		if (main_ports[1] < 1 || main_ports[1] > 8)
->> +			main_ports[1] = 1;
->> +		priv->qsgmii_main_ports = PHY_GMII_PORT(main_ports[0]);
->> +		priv->qsgmii_main_ports |= PHY_GMII_PORT(main_ports[1]);
->> +	}
-> 
-> The whole if/else logic can be got rid of if you store num_qsgmii_main_ports in priv data structure
-> after obtaining it from of_data.
-> 
-> Then all the above reduces to
-> 	for (i = 0; i < priv->num_qsgmii_main_ports; i++) {
-> 		if (main_ports[i] ...)
-> 	}
-> 
-> It will also make it very easy to scale later on for future platforms.
-
-Thank you for the suggestion. I will add the variable "u32
-num_qsgmii_main_ports" in "struct phy_gmii_sel_soc_data" and set its
-value to 1 for the "phy_gmii_sel_cpsw5g_soc_j7200" compatible and to 2
-for the "phy_gmii_sel_cpsw9g_soc_j721e" compatible. I will implement
-this in the v2 series.
-
-Regards,
-Siddharth.
+Arınç
