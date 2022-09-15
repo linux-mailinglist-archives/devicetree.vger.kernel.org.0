@@ -2,264 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5818A5B9440
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 08:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FFB25B946B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 08:29:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbiIOGZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 02:25:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54170 "EHLO
+        id S229796AbiIOG3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 02:29:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiIOGZU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 02:25:20 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E92760F5;
-        Wed, 14 Sep 2022 23:25:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1663223087; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=LHfWDtMNgOvOfEbfNUHH9nIVo7W0rsksV3jz1HdukHzBpVG+42uLX9ZfDPkPVk1hL+X7w6M7RLj1PbYXRP3RdOh1iJ1/EXSXKAM1z0oOg0FVrERfrR55hxkBjJSrck0Veaqv36JCs1gzWfvz8tebQqZ9E/vAHXGU1/Fw2QhNEvc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1663223087; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=oEaoXALK+VgOi7G2IDCnIIo3seYUhyWLBC+zZdaDb8Y=; 
-        b=Iq43QbpkA2rATF9wTLiSrjmVigKCaJOk3d1KCpdo1g+8C1VHY+SmaCp0p5gzE6/oNiCZAEMMupt/uAJmYQxLjrPWE8St/UWmtPXNImOjFzY24qoikd5AolmEM1F4D1QksnFCAQd/JaNc72Zlr3oEaVnJ7me84dQMe672C/HWzDw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1663223087;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=oEaoXALK+VgOi7G2IDCnIIo3seYUhyWLBC+zZdaDb8Y=;
-        b=Y11g1riPDVbG/5BDpiZU6eaGOxYQFzWbaNt27euGXFMWU3Y6CepPFVZIf5nSK8Af
-        M3m57dpRwluzHEFRe9T7llqErBzbAqxFi46y8SauBrNvWFAYZuk+L+3ICxe87N0jJS+
-        DiZRNF69GzVKb/0Cx743dvlgGK4mo80/WjzHgltU=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1663223086300677.7194623027028; Wed, 14 Sep 2022 23:24:46 -0700 (PDT)
-Message-ID: <90a639f9-d0b6-e2f3-a93b-b13a9695adae@arinc9.com>
-Date:   Thu, 15 Sep 2022 09:24:39 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 05/10] mips: dts: ralink: mt7621: fix some dtc warnings
-Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229755AbiIOG3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 02:29:34 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 977AD95ADF;
+        Wed, 14 Sep 2022 23:29:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1663223347; x=1694759347;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=yenovilFRNpCqkpDtpDC2f1lhfdhpbwLD7Xa2hXAFhQ=;
+  b=REDLWnC1QPKeAX1ijcEl/q33DoCeXytCTEC46YNUN0590sR3ZkLnKFWb
+   M1XzOux+Ng2jLOZcPjt9lWVgAapvOmV7cyj5UqkTlLpf0WO0jEiHoNLft
+   5gTjPqrgbh6qFqsTgpvWHdwLiOIwmHzan29X0fs8TrklZkgxTE5/dQixY
+   WTkaVtaEkyXxiLcrWmpiZw0Dg1/cduGlHSVh9AWzyc/Urm762jFULTJN3
+   rmXP34gblfy5lCaEpwP8OSF5r50Wfqg9aFpal5YRTjCdzFvkGu8pnLD0n
+   fdDCwFk4gTsg/rfDDP2WQ+Ppiu7zZ/A4Jb34kZ7NjYOIvDCsyWfz4uqab
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,317,1654552800"; 
+   d="scan'208";a="26189606"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 15 Sep 2022 08:29:04 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 15 Sep 2022 08:29:04 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 15 Sep 2022 08:29:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1663223344; x=1694759344;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=yenovilFRNpCqkpDtpDC2f1lhfdhpbwLD7Xa2hXAFhQ=;
+  b=Y3G8eh989lOcarD1QrBhrBg2IX+Fs2Pf3L3QluLkBmsb9ay8bxY1Y9T/
+   MRBKR24jLBfbQt7RAAcYyYZyytoPlcFkzZnZbhHgdwpD6Ajbl3vjKslp2
+   XEqCTW572cTqDqzBGTPUfi+Q4/tH/hoJjX5uQcouutSQhLSB2f8Hbl0Sm
+   iRX2RoPFMYP8uZqJeCWe9IEOeZyXhL7IogqJa6hfVManwpwu30b2hFuQp
+   pwKDOdBH/dIKAqcR3JBGl0vgEKYR0aY+8hGMAPonItdSuWUSRDFKXktGd
+   9dLCw3We8qRBu/E2J9PFyO81+KDaHd7oUgiIqC6ORpeBh+Y2tTYxd2gHt
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,317,1654552800"; 
+   d="scan'208";a="26189604"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 15 Sep 2022 08:29:04 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D467C280056;
+        Thu, 15 Sep 2022 08:29:03 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, erkin.bozoglu@xeront.com,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>
-References: <20220914085451.11723-1-arinc.unal@arinc9.com>
- <20220914085451.11723-6-arinc.unal@arinc9.com>
- <CAMhs-H9pj+qEdOCEhkyCJPvbFonLuhgSHgL4L6kkhO3YRh52vw@mail.gmail.com>
- <6593afa8-931b-81eb-d9a8-ec3adbd047c6@arinc9.com>
- <CAMhs-H_woEpWVEWbe+1p76g6M3ALjoVn-OgzpnJQHOjd02tHxw@mail.gmail.com>
- <CAMhs-H9m9LdQ3J5PjDNo_fh1b6rhSdu5Ddb3nfE=2nWxfTCP=A@mail.gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <CAMhs-H9m9LdQ3J5PjDNo_fh1b6rhSdu5Ddb3nfE=2nWxfTCP=A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>, Li Jun <jun.li@nxp.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/4] USB host support for TQMa8MPxL + MBa8MPxL
+Date:   Thu, 15 Sep 2022 08:28:51 +0200
+Message-Id: <20220915062855.751881-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.09.2022 08:59, Sergio Paracuellos wrote:
-> On Thu, Sep 15, 2022 at 5:30 AM Sergio Paracuellos
-> <sergio.paracuellos@gmail.com> wrote:
->>
->> On Wed, Sep 14, 2022 at 12:46 PM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>>
->>> Hi Sergio,
->>>
->>> On 14.09.2022 12:14, Sergio Paracuellos wrote:
->>>> Hi Arinc,
->>>>
->>>> On Wed, Sep 14, 2022 at 10:55 AM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
->>>>>
->>>>> Fix the dtc warnings below.
->>>>>
->>>>> /cpus/cpu@0: failed to match any schema with compatible: ['mips,mips1004Kc']
->>>>> /cpus/cpu@1: failed to match any schema with compatible: ['mips,mips1004Kc']
->>>>> uartlite@c00: $nodename:0: 'uartlite@c00' does not match '^serial(@.*)?$'
->>>>>           From schema: /home/arinc9/Documents/linux/Documentation/devicetree/bindings/serial/8250.yaml
->>>>> uartlite@c00: Unevaluated properties are not allowed ('clock-names' was unexpected)
->>>>>           From schema: /home/arinc9/Documents/linux/Documentation/devicetree/bindings/serial/8250.yaml
->>>>> sdhci@1e130000: $nodename:0: 'sdhci@1e130000' does not match '^mmc(@.*)?$'
->>>>>           From schema: /home/arinc9/Documents/linux/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->>>>> sdhci@1e130000: Unevaluated properties are not allowed ('bus-width', 'cap-mmc-highspeed', 'cap-sd-highspeed', 'disable-wp', 'max-frequency', 'vmmc-supply', 'vqmmc-supply' were unexpected)
->>>>>           From schema: /home/arinc9/Documents/linux/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->>>>> xhci@1e1c0000: $nodename:0: 'xhci@1e1c0000' does not match '^usb(@.*)?'
->>>>>           From schema: /home/arinc9/Documents/linux/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
->>>>> xhci@1e1c0000: compatible: ['mediatek,mt8173-xhci'] is too short
->>>>>           From schema: /home/arinc9/Documents/linux/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
->>>>> switch0@0: $nodename:0: 'switch0@0' does not match '^(ethernet-)?switch(@.*)?$'
->>>>>           From schema: /home/arinc9/Documents/linux/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>>> port@1: status:0: 'off' is not one of ['okay', 'disabled', 'reserved']
->>>>>           From schema: /home/arinc9/.local/lib/python3.10/site-packages/dtschema/schemas/dt-core.yaml
->>>>> port@2: status:0: 'off' is not one of ['okay', 'disabled', 'reserved']
->>>>>           From schema: /home/arinc9/.local/lib/python3.10/site-packages/dtschema/schemas/dt-core.yaml
->>>>> port@3: status:0: 'off' is not one of ['okay', 'disabled', 'reserved']
->>>>>           From schema: /home/arinc9/.local/lib/python3.10/site-packages/dtschema/schemas/dt-core.yaml
->>>>>
->>>>> - Remove "mips,mips1004Kc" compatible string from the cpu nodes. This
->>>>> doesn't exist anywhere.
->>>>> - Change "memc: syscon@5000" to "memc: memory-controller@5000".
->>>>> - Change "uartlite: uartlite@c00" to "serial0: serial@c00" and remove the
->>>>> aliases node.
->>>>> - Remove "clock-names" from the serial0 node. The property doesn't exist on
->>>>> the 8250.yaml schema.
->>>>> - Change "sdhci: sdhci@1e130000" to "mmc: mmc@1e130000".
->>>>> - Change "xhci: xhci@1e1c0000" to "usb: usb@1e1c0000".
->>>>> - Add "mediatek,mtk-xhci" as the second compatible string on the usb node.
->>>>> - Change "switch0: switch0@0" to "switch0: switch@0"
->>>>> - Change "off" to "disabled" for disabled nodes.
->>>>>
->>>>> Remaining warnings are caused by the lack of json-schema documentation.
->>>>>
->>>>> /cpuintc: failed to match any schema with compatible: ['mti,cpu-interrupt-controller']
->>>>> /palmbus@1e000000/wdt@100: failed to match any schema with compatible: ['mediatek,mt7621-wdt']
->>>>> /palmbus@1e000000/i2c@900: failed to match any schema with compatible: ['mediatek,mt7621-i2c']
->>>>> /palmbus@1e000000/spi@b00: failed to match any schema with compatible: ['ralink,mt7621-spi']
->>>>> /ethernet@1e100000: failed to match any schema with compatible: ['mediatek,mt7621-eth']
->>>>>
->>>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>>> ---
->>>>>    .../boot/dts/ralink/mt7621-gnubee-gb-pc1.dts  |  2 +-
->>>>>    .../boot/dts/ralink/mt7621-gnubee-gb-pc2.dts  |  2 +-
->>>>>    arch/mips/boot/dts/ralink/mt7621.dtsi         | 32 +++++++------------
->>>>>    3 files changed, 14 insertions(+), 22 deletions(-)
->>>>>
->>>>> diff --git a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
->>>>> index 24eebc5a85b1..6ecb8165efe8 100644
->>>>> --- a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
->>>>> +++ b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
->>>>> @@ -53,7 +53,7 @@ system {
->>>>>           };
->>>>>    };
->>>>>
->>>>> -&sdhci {
->>>>> +&mmc {
->>>>>           status = "okay";
->>>>>    };
->>>>>
->>>>> diff --git a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
->>>>> index 34006e667780..2e534ea5bab7 100644
->>>>> --- a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
->>>>> +++ b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
->>>>> @@ -37,7 +37,7 @@ key-reset {
->>>>>           };
->>>>>    };
->>>>>
->>>>> -&sdhci {
->>>>> +&mmc {
->>>>>           status = "okay";
->>>>>    };
->>>>>
->>>>> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
->>>>> index ee46ace0bcc1..9302bdc04510 100644
->>>>> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
->>>>> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
->>>>> @@ -15,13 +15,11 @@ cpus {
->>>>>
->>>>>                   cpu@0 {
->>>>>                           device_type = "cpu";
->>>>> -                       compatible = "mips,mips1004Kc";
->>>>>                           reg = <0>;
->>>>>                   };
->>>>>
->>>>>                   cpu@1 {
->>>>>                           device_type = "cpu";
->>>>> -                       compatible = "mips,mips1004Kc";
->>>>>                           reg = <1>;
->>>>>                   };
->>>>>           };
->>>>
->>>> Instead of removing this, since compatible is correct here, I think a
->>>> cpus yaml file needs to be added to properly define mips CPU's but
->>>> compatible strings using all around the sources are a bit messy. Take
->>>> a look of how is this done for arm [0]
->>>
->>> I did investigate the arm bindings beforehand. I've seen that some of
->>> the strings are also checked by code. I don't see the mips strings used
->>> anywhere but DTs so I had decided to remove it here. I guess we can make
->>> a basic binding to list the mips processor cores.
->>
->> At the very least I do think a compatible string should exist for cpu
->> nodes :). And because of the mess with MIPS cpu nodes in dts files all
->> around I think we should only add this 'compatible' as a requirement
->> and mark 'reg' and 'device_type' as optionals.
-> 
-> I have just sent a patch to start from containing all compatible
-> strings I have found in the 'arch/mips/boot/dts' folder:
-> 
-> https://lore.kernel.org/linux-devicetree/20220915055514.463241-1-sergio.paracuellos@gmail.com/T/#u
+Hi everybody,
 
-Awesome, I'll keep the string on v2.
+this is the next version of this series for USB host support on TQMa8MPxL +
+MBa8MPxL. Thanks everybody for their feedback on v1.
 
-> 
->>
->>>
->>> What do you think Thomas?
->>>
->>>>
->>>>> @@ -33,11 +31,6 @@ cpuintc: cpuintc {
->>>>>                   compatible = "mti,cpu-interrupt-controller";
->>>>>           };
->>>>>
->>>>> -       aliases {
->>>>> -               serial0 = &uartlite;
->>>>> -       };
->>>>> -
->>>>> -
->>>>>           mmc_fixed_3v3: regulator-3v3 {
->>>>>                   compatible = "regulator-fixed";
->>>>>                   regulator-name = "mmc_power";
->>>>> @@ -110,17 +103,16 @@ i2c: i2c@900 {
->>>>>                           pinctrl-0 = <&i2c_pins>;
->>>>>                   };
->>>>>
->>>>> -               memc: syscon@5000 {
->>>>> +               memc: memory-controller@5000 {
->>>>>                           compatible = "mediatek,mt7621-memc", "syscon";
->>>>>                           reg = <0x5000 0x1000>;
->>>>>                   };
->>>>>
->>>>
->>>> I think syscon nodes need to use 'syscon' in the node name, but I am
->>>> not 100% sure.
->>>
->>> I've tested this patch series on my GB-PC2, it currently works fine.
->>> Also, DT binding for MT7621 memory controller uses memory-controller on
->>> the example so I guess it's fine?
->>
->> I know that works fine but when the node is a syscon it is good to
->> have that syscon in the node name (I don't know if having it is a rule
->> or something, I guess no). In any case I agree that binding and dts
->> should match.
+The DT configuration itself (patch 4) is rather straight forward, but leads to
+the following dmesg errors regarding superspeed ports:
+> [    8.549243] hub 2-1:1.0: hub_ext_port_status failed (err = -110)
+> [   22.885263] usb 2-1: Failed to suspend device, error -110
 
-Understood, I'll keep it syscon in v2.
+This hardware works fine using the downstream kernel, because for imx8mp this
+ITP sync feature is enabled conditionally [1] & [2].
+Hacking this into mainline resulted in a working superspeed setup as well. I
+also noticed that on some android kernel [3] depending in IP core version either
+GCTL.SOFTITPSYNC or GFLADJ.GFLADJ_REFCLK_LPM_SEL is enabled unconditionally.
+So I opted for the latter one using some quirk (patch 1-3).
 
-Arınç
+Changes in v3:
+* Added Krzysztof's A-b to Patch 1
+* Added Li Jun's R-b to Patch 2
+* Remove 'snps,dis-u2-freeclk-exists-quirk' in Patch 3
+  snps,gfladj-refclk-lpm-sel-quirk is a superset of the old one
+* Removed 'snps,dis_u3_susphy_quirk' in Patch 4
+  This is addressed by patch series [4] & [5] separately
+
+Thanks and best regards,
+Alexander
+
+[1] https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/usb/dwc3/dwc3-imx8mp.c?h=lf-5.10.y#n134
+[2] https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/usb/dwc3/core.c?h=lf-5.10.y#n333
+[3] https://android.googlesource.com/kernel/msm/+/87a6b154766907020cc74c7726e8a68aaa9d7f6b%5E%21/#F0
+[4] https://lore.kernel.org/all/1662547028-22279-1-git-send-email-jun.li@nxp.com/
+[5] https://lore.kernel.org/all/1663067426-29534-1-git-send-email-jun.li@nxp.com/
+
+Alexander Stein (4):
+  dt-bindings: usb: dwc3: Add gfladj-refclk-lpm-sel-quirk
+  usb: dwc3: core: add gfladj_refclk_lpm_sel quirk
+  arm64: dts: imx8mp: Add snps,gfladj-refclk-lpm-sel quirk to USB nodes
+  arm64: dts: tqma8mpql: add support for 2nd USB (host) interface
+
+Alexander Stein (4):
+  dt-bindings: usb: dwc3: Add gfladj-refclk-lpm-sel-quirk
+  usb: dwc3: core: add gfladj_refclk_lpm_sel quirk
+  arm64: dts: imx8mp: Add snps,gfladj-refclk-lpm-sel quirk to USB nodes
+  arm64: dts: tqma8mpql: add support for 2nd USB (host) interface
+
+ .../devicetree/bindings/usb/snps,dwc3.yaml    |  5 +++
+ .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 41 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  4 +-
+ drivers/usb/dwc3/core.c                       |  8 +++-
+ drivers/usb/dwc3/core.h                       |  2 +
+ 5 files changed, 57 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
+
