@@ -2,113 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6955D5B9B13
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF58E5B9AD0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:30:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbiIOMlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 08:41:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56592 "EHLO
+        id S229542AbiIOMas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 08:30:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbiIOMky (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:40:54 -0400
-X-Greylist: delayed 600 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 15 Sep 2022 05:40:28 PDT
-Received: from sirokuusama2.dnainternet.net (sirokuusama2.dnainternet.net [83.102.40.153])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F101834E;
-        Thu, 15 Sep 2022 05:40:28 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by sirokuusama2.dnainternet.net (Postfix) with ESMTP id 6A15313F40;
-        Thu, 15 Sep 2022 15:24:16 +0300 (EEST)
-X-Virus-Scanned: DNA Internet at dnainternet.net
-X-Spam-Score: 2.975
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
-        version=3.4.6
-Received: from sirokuusama2.dnainternet.net ([83.102.40.153])
-        by localhost (sirokuusama2.dnainternet.net [127.0.0.1]) (DNA Internet, port 10041)
-        with ESMTP id JJQ4Ub41JQ2D; Thu, 15 Sep 2022 15:24:16 +0300 (EEST)
-Received: from omenapuu2.dnainternet.net (omenapuu2.dnainternet.net [83.102.40.54])
-        by sirokuusama2.dnainternet.net (Postfix) with ESMTP id 4E600137B5;
-        Thu, 15 Sep 2022 15:24:12 +0300 (EEST)
-Received: from localhost (87-95-101-152.bb.dnainternet.fi [87.95.101.152])
-        by omenapuu2.dnainternet.net (Postfix) with ESMTP id 8CBEB1E5;
-        Thu, 15 Sep 2022 15:24:03 +0300 (EEST)
-From:   andy.shevchenko@gmail.com
-Date:   Thu, 15 Sep 2022 15:24:02 +0300
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc:     linux-gpio@vger.kernel.org, git@amd.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, brgl@bgdev.pl, linus.walleij@linaro.org
-Subject: Re: [PATCH v2 2/2] gpio: pca9570: add slg7xl45106 support
-Message-ID: <YyMZYjWTN7yw93n5@surfacebook>
-References: <20220915114803.26185-1-shubhrajyoti.datta@amd.com>
- <20220915114803.26185-3-shubhrajyoti.datta@amd.com>
+        with ESMTP id S229458AbiIOMar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:30:47 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE6E52DCE;
+        Thu, 15 Sep 2022 05:30:46 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id n17-20020a05600c501100b003a84bf9b68bso13686154wmr.3;
+        Thu, 15 Sep 2022 05:30:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=c+Ixagfdqqfi9wNyp/go1IY1VNhsc9BwApfAZYB8y+I=;
+        b=a3qy5KM52SHzBpO8QWXXmAg8KbFRBDajnpP6lPCH5KCeQrUfjmnp3iwzv4h9eapnB9
+         d6iy9VTfxLbAhFUWBqzS6nVBZOn2rbiVcF26Rna5546dJLp73XHY7Oz7S9XsBZswg2JG
+         KTyravUUhz1wPa8i8P4CUcLDGSC7MvotdYUnQwJri3WjmumXSQm5Rc6JYxwMyZ6S9+rd
+         LrJNgC48RCLU2smuV6XLM3YACYI0ULiGNha+/NmGD2IbGTRf8ljlejmhHseBZxoWh1qV
+         VSzu9V9TxPfTQUWYXWfktrlRzcbangO98rrywJN51kvJytWiOejCW+eBBPtabSEnmxxL
+         dlmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=c+Ixagfdqqfi9wNyp/go1IY1VNhsc9BwApfAZYB8y+I=;
+        b=dgJfc/hxGKVbnlKxrnZcJmTo+KDcTjOVK/JFi+QlOnDTIeY10Dr6yV1kri52U2nzrX
+         qAmytraNor4kT00Lv4ytEqCFXb4tWb3zbGoKmr3H4qWzytlw0OeYoR9S9/KtgvxFYkCI
+         NoLAQTjznLEOMf9ocGc+MRrD7Mr8La5YbCuF7VTF+yZP4LHFcwuHbYKlssrs6yxPL9yj
+         8y3mpYGHnwIYeSf5PJGpFk+IZpu5Q28jQNNdroyEexUy/Ys5KYmL4eOgmiYtqLq30mGT
+         w4VMx2pqXrbGUOi052Oid0QLHenTKQzUUNSmV4zaHLUsqzG3PAOIXy5sDTqsJUq7Qlq1
+         X5JA==
+X-Gm-Message-State: ACgBeo0alr8UQEcnpZNB5RNYHmm1SQ3glyPNo5D3Gd2JJP+Drwwmmxs+
+        HeuaqpJ5CkP6YiR46XlGtW8=
+X-Google-Smtp-Source: AA6agR5ynfZI5mse/u4KZUzS26/Osxt7zqxNXljRtp4wLS14zPizEyLgNeVDmvm5SpFmI/vlYOLaiw==
+X-Received: by 2002:a05:600c:594:b0:3b4:7637:9444 with SMTP id o20-20020a05600c059400b003b476379444mr6707704wmd.52.1663245044964;
+        Thu, 15 Sep 2022 05:30:44 -0700 (PDT)
+Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id n4-20020a1ca404000000b003b47ff3807fsm2738613wme.5.2022.09.15.05.30.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Sep 2022 05:30:43 -0700 (PDT)
+Date:   Thu, 15 Sep 2022 14:30:41 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Mohan Kumar <mkumard@nvidia.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        treding@nvidia.com, jonathanh@nvidia.com, spujar@nvidia.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra: Enable HDA node for AGX Orin
+Message-ID: <YyMa8aN5vS6jIF45@orome>
+References: <20220901043305.26634-1-mkumard@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="7CfBdTTZ6H+m+y/A"
 Content-Disposition: inline
-In-Reply-To: <20220915114803.26185-3-shubhrajyoti.datta@amd.com>
+In-Reply-To: <20220901043305.26634-1-mkumard@nvidia.com>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thu, Sep 15, 2022 at 05:18:03PM +0530, Shubhrajyoti Datta kirjoitti:
-> slg7xl45106 is a I2C GPO expander.
-> Add a compatible string for the same. Also update the
-> driver to write and read from it.
 
-It's better, but something to improve.
+--7CfBdTTZ6H+m+y/A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-...
+On Thu, Sep 01, 2022 at 10:03:05AM +0530, Mohan Kumar wrote:
+> Enable HDA node for AGX Orin platform.
+>=20
+> Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts | 1 +
+>  1 file changed, 1 insertion(+)
 
->  /**
->   * struct pca9570 - GPIO driver data
->   * @chip: GPIO controller chip
-> @@ -25,6 +27,12 @@ struct pca9570 {
->  	struct gpio_chip chip;
->  	struct mutex lock;
->  	u8 out;
-> +	const struct pca9570_platform_data *p_data;
+Applied, thanks.
 
-I would put it after 'chip' member, so it will save 4 bytes on 64-bit machines
-of some architectures. Also, don't you need to add a kernel doc for a new
-member?
+Thierry
 
-> +};
+--7CfBdTTZ6H+m+y/A
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +struct pca9570_platform_data {
-> +	u16 ngpio;
-> +	u32 command;
->  };
+-----BEGIN PGP SIGNATURE-----
 
-Strictly speaking this should be defined before struct pca9570, otherwise you
-need to have a forward declaration.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmMjGvEACgkQ3SOs138+
+s6ESuhAAsF6Ndt6GgdhgHLdA/U18ihSuLGLrHM264Dg6eEyUo5LewHRSlfQo1ZgJ
+21M4SeklzkTKirz7r3IJJo8JZN3u4PfejQ5fzDF2OuYOiMTXcVmnKc42A2ur9yn5
+6tx92YKnVXF39plDE86VO3Rxtkfnm9Ej7lWP7P3Cdnz3DlOoz5jo431gWlPsA618
+TdpxBXj544RNJl/gwbB/9YVVlpsYNb4xHM9KOaXPBpvbwCu0Ioap+BtBJUaMTyoS
+O6zevTL7yLQgap5BgBQb9pX60TzXpofpzlkpNY1iTtcaxWbHLsCufx26Luor8A6/
+V0zStLjyyjd1UwK/pLvwBm67HIx33qUWQCCETq9ySonAGDKvLUDh3Z4mC2+0RYkG
+7gBmOZY/9FoO3KM7oCsXf5VDOlogUUYlvIc4P2gfrPct+PUJpAScWvjtODD+9Opx
+p2hfzXHh1WAWXH87/B7RRkDGhyNBF6dpbkRa2AXV+a6VC7H8RdfWc7Jh6S9Kggyy
+/OTV06pwjKaPIOkNPNbPE4hc/uTTdw44BzZCBBjNtrYfC0syZwmjxhTokDXfOd6h
+zKyOm3ol5dwSLMqOEpUoXtxFKxA/Tl+YdxsXBAGjKvRjlQpbQ22VVj5YJ3f0OYS0
+4WfQdLMp4q8nGo/JHJZzqiU72Tbhmt/eWPr2+AE6pDTwM2JesPM=
+=T1Oo
+-----END PGP SIGNATURE-----
 
-> @@ -122,13 +138,28 @@ static int pca9570_probe(struct i2c_client *client)
->  static const struct i2c_device_id pca9570_id_table[] = {
->  	{ "pca9570", 4 },
->  	{ "pca9571", 8 },
-> +	{ "slg7xl45106", 8 },
->  	{ /* sentinel */ }
-
-This table should also use your new structure:
-
-	{ "slg7xl45106", (kernel_ulong_t)&slg7xl45106_gpio },
-
-(In the similar way for the existing entries)
-
-Taking the last into consideration I would suggest to split this to two
-changes:
-1) introducing a new data structure with conversion of the existing members;
-2) adding support for a new chip.
-
->  };
-
-Othewise looks good.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--7CfBdTTZ6H+m+y/A--
