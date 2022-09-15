@@ -2,96 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65B8B5B9F8E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 18:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7F885B9FA5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 18:32:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbiIOQVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 12:21:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47236 "EHLO
+        id S229846AbiIOQca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 12:32:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbiIOQVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 12:21:47 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C649DB6B;
-        Thu, 15 Sep 2022 09:21:46 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 80E2C6601BB1;
-        Thu, 15 Sep 2022 17:21:44 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663258905;
-        bh=Z5N5FX44YimNiJSczF5hZWEdAZshfEyrSoqz/isyZe4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=nUC5r/nansvPFsy1DZP/Nw1dA1VwK9kbcBlqQ3NqLgg2/R7O7P+qYinPhF6rc9yZJ
-         16lHboarvLcD3ASLmvrbPzHXZOxYYnPm86yxMmwjjrK6yntlGWmoWuHlGfbLf4H6Wu
-         ZisTbEy68c2EuCZzScMC10ZLbjUTWITJpUMhaLLLgH3ZYkLzL6Rvx8BFQtPx6OH+2/
-         LIEYID9wpXcIg3T/uIYu0unmscu23G6YdVUFKJM98UEkrcU6HnBPoALbf1jREGMBYU
-         vKmkNV8PyWYb23tsGqPBFm0wd2qIajM1OFWDcD4gkJWMg0I7UdLc1IeArSHGFXJ0bG
-         s+fkZM0WJW/mQ==
-Message-ID: <9af70465-6923-d625-fe08-7cd66d3775c8@collabora.com>
-Date:   Thu, 15 Sep 2022 18:21:41 +0200
+        with ESMTP id S229688AbiIOQc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 12:32:29 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419B08A1D7;
+        Thu, 15 Sep 2022 09:32:28 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id n17-20020a05600c501100b003a84bf9b68bso14122293wmr.3;
+        Thu, 15 Sep 2022 09:32:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=OW/Ex82NxAoUPhZ7WksjsJWpT0Wxc4UMr3Q8n9sA3l0=;
+        b=oa1iAq2oQGEn8eKul2dVLQzOitSaXu1V04U72I5Tb0OJxKctS0GCAc9ZSxB0ODpizN
+         dJ/F5KUO+H+d6BJkjcgX4GbYv5T2yLX6nJjt7FZ6xuQNXQUNp615t60zU28VyfC20HYa
+         EyRu7HQpsUN9ud7rY9SDSkPkrXYxVs1LFi1qkOyBpO05fcwiS76omNG8QrNo0OayXhWO
+         cVNqgX4cl5DNheQtok6eO86lW3GRYsEm4iN9IZD1saczShJXfDcjsWa0TWoZS6F8uwbP
+         uUzh2eNswEfdIkHix87bYZ2fxQerSaaSUB7vkmwvx0813r39HwLdzpBcLYm0RR4ouMhe
+         z0Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=OW/Ex82NxAoUPhZ7WksjsJWpT0Wxc4UMr3Q8n9sA3l0=;
+        b=M2+rnjQvd3LoOTnfP5HeItbxj/vuMzpjhjM3F0MvUkZnEawKUWMLc0AWWJTiu0Dir8
+         sDNCwXvrV6a/YuO/a+IlYPLPmCJrrInciOD2fTsgxI9zpVMLp2VtcrnXNxyI3CtkK0R8
+         8YRDVQrl3ophALVL2G556qxRhptbxYNqQpM/rZOVqOalKNTsFPe5R+RzHwx4MU8YWuY1
+         O3LVvMuhdiqFauc5nX1oawB44dDYFRxvTEiXWbyMKPNVW/zAXUicSxntEBBbteIK3Kfn
+         RLhu/gsd39nGVTFjtHM1dThpmqtC9gW2NNR4VLa2mz3z2nmoIeiTjv6qwVhJDAe6tOQL
+         vsyQ==
+X-Gm-Message-State: ACrzQf12k2S4oxxE5tP1Wp5Z//ycOd/sSg/MAapPDL9cEpHQT04FlFJh
+        QIKm7cc+gI2Pj4+knaMUYrZWaNu83/0=
+X-Google-Smtp-Source: AMsMyM5vSjMhWO1RDq7b4M3mpsFrRuHxRzzw7FrIG+23DFOAsZqCTFeWng1l9RQ7qYEL5fpA6SuztA==
+X-Received: by 2002:a05:600c:6029:b0:3b4:9fcc:cbb3 with SMTP id az41-20020a05600c602900b003b49fcccbb3mr451881wmb.169.1663259546781;
+        Thu, 15 Sep 2022 09:32:26 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id fc8-20020a05600c524800b003b48dac344esm3975873wmb.43.2022.09.15.09.32.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Sep 2022 09:32:25 -0700 (PDT)
+Message-ID: <990c00a4-f20d-1e7e-e4d3-6731947c1456@gmail.com>
+Date:   Thu, 15 Sep 2022 18:32:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH] dt-bindings: mailbox: Convert mtk-gce to DT schema
+ Thunderbird/102.2.1
+Subject: Re: [PATCH] arm64: dts: mediatek: mt6795: Add CPUX system timer node
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org
-Cc:     jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220915101716.70225-1-angelogioacchino.delregno@collabora.com>
- <04187280-3c35-c9ac-fc70-b5066108ac0c@linaro.org>
-From:   AngeloGioacchino Del Regno 
+To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <04187280-3c35-c9ac-fc70-b5066108ac0c@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220729093536.27623-1-angelogioacchino.delregno@collabora.com>
+ <3a91e743-2b8f-51b6-9ac1-adc3e7ec8cc4@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <3a91e743-2b8f-51b6-9ac1-adc3e7ec8cc4@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/09/22 17:30, Krzysztof Kozlowski ha scritto:
-> On 15/09/2022 11:17, AngeloGioacchino Del Regno wrote:
->> Convert the mtk-gce mailbox binding to DT schema format.
+
+
+On 14/09/2022 13:01, AngeloGioacchino Del Regno wrote:
+> Il 29/07/22 11:35, AngeloGioacchino Del Regno ha scritto:
+>> Add a node for mt6795-systimer: this is necessary to start the
+>> System Timer(s) for all cores, finally making CNTVCT_EL0 usable.
 >>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> Signed-off-by: AngeloGioacchino Del Regno 
+>> <angelogioacchino.delregno@collabora.com>
+> 
+> Hello Matthias,
+> 
+> gentle ping for this one - this has no floating dependencies and it's
+> verified to work as expected.
+> 
+
+Applied, thanks!
+
+> Cheers,
+> Angelo
+> 
 >> ---
->>   .../mailbox/mediatek,gce-mailbox.yaml         | 104 ++++++++++++++++++
->>   .../devicetree/bindings/mailbox/mtk-gce.txt   |  82 --------------
->>   2 files changed, 104 insertions(+), 82 deletions(-)
+>>   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi 
+>> b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+>> index d4842b4a4eb7..46f0e54be766 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+>> @@ -230,6 +230,14 @@ sysirq: intpol-controller@10200620 {
+>>               reg = <0 0x10200620 0 0x20>;
+>>           };
+>> +        systimer: timer@10200670 {
+>> +            compatible = "mediatek,mt6795-systimer";
+>> +            reg = <0 0x10200670 0 0x10>;
+>> +            interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+>> +            clocks = <&system_clk>;
+>> +            clock-names = "clk13m";
+>> +        };
+>> +
+>>           gic: interrupt-controller@10221000 {
+>>               compatible = "arm,gic-400";
+>>               #interrupt-cells = <3>;
 > 
-> How is this related to:
-> https://lore.kernel.org/all/66591c84-ee8d-7152-f0c5-5e4a07f632fb@linaro.org/
-> ?
 > 
-> Changelog? Previous review tag?
-> 
-
-I completely forgot that I had already sent something similar in the past,
-so that was done from scratch :\
-I always keep note of what I send, what's accepted, what's not (etc) but,
-for some reason, that older series wasn't present in my notes.
-
-In any case, the older series wasn't just a dt schema conversion, but also
-changed how we got clocks from the driver, while this one is only a
-conversion and nothing else.
-
-Regards,
-Angelo
-
-> 
-> Best regards,
-> Krzysztof
-
-
