@@ -2,98 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF4325B9D34
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 16:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DDB95B9D6A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 16:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229979AbiIOOdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 10:33:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48280 "EHLO
+        id S230295AbiIOOg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 10:36:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230163AbiIOOdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 10:33:38 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A34E49D13D
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 07:33:36 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id v185-20020a1cacc2000000b003b42e4f278cso14823256wme.5
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 07:33:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=wnHQKWcpBCnlgkgGEcKhjPdjmSAL7sgo8FjBnqwxuRk=;
-        b=Fv+3vdzUC/FW+D3gRIqf4d/40nLZ0zbPTAiGBYbmnKQ2x5kWskEbj0ZiKXWr6V7q4t
-         JrlU3+00PgYIY2OT3jM7xg2Y1g+0CLkgtCM6owx9l3Mp47n1oObxi+zYKpOjaThYeXYg
-         MZ1t7kEwhXLF4mOSj5P5nWUcBQRbwwcHwsjLOpjmTxmGJNCN8eiN4aBW9+8Qfatt23jB
-         BTK7al5c5lv7n52rQ3z8b3oUamHfqvs6G2bh3rha6B4/REwYzRiAH7RpUaXDnt9E5Yjb
-         6ciAsg1M3dyAAgp/pkDfjWEwK/Wyh39O3t2Ylg6DlA5dC0TJB7+0s4Fn7kaWgvWJDsGd
-         GRMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=wnHQKWcpBCnlgkgGEcKhjPdjmSAL7sgo8FjBnqwxuRk=;
-        b=K3sL+8V8Kgy0eRT6T1eBoBoJqw4K3m+6tHnONO1//0NxsqkMI1QsKtwNY/a0vHrBNB
-         urdnoFOIeQJ+eGiVrA6huItTuFoOghZMETNdpYh/nioum6zdRMIjgxHnYwDvYjYqf5Le
-         of/Oljn0SSsjsdexIrxFRbTSLLddrPwkOX9o0wfJTklgS1479PuUg3CqhRFmAprbyOrW
-         wfReRjgsQoPNCD+o3tUVkQtR1lu0C9+tcC/x7is83FOTu0L1TxfvUL93OpOyliZhtoOE
-         ZiTgEiBUf3meI+9/OIFNmrOh3sOcfQ0y6q+dqGRXWhDhDOexaKFrXbySAFNRLyAVN8GG
-         zkKQ==
-X-Gm-Message-State: ACgBeo3eSYWdDM7We5fOeffBKJPjSESAfbULiVjPRCsTh34fZIWiLvzB
-        dZBxVyQ0+PTZFut1FR1+rWLEtg==
-X-Google-Smtp-Source: AA6agR4DnsY43bvjKQeTuEmCzbwS04r06XWMjNusiQH3OTZHOoDDvEls+8tqOGfusd7I3N4mwXsNKQ==
-X-Received: by 2002:a1c:721a:0:b0:3b4:641c:5d99 with SMTP id n26-20020a1c721a000000b003b4641c5d99mr7157814wmc.71.1663252415188;
-        Thu, 15 Sep 2022 07:33:35 -0700 (PDT)
-Received: from [10.119.22.201] ([89.101.193.72])
-        by smtp.gmail.com with ESMTPSA id m188-20020a1c26c5000000b003b33943ce5esm2991082wmm.32.2022.09.15.07.33.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Sep 2022 07:33:34 -0700 (PDT)
-Message-ID: <0d2490ac-f5cc-c55a-030e-a49f021f81fa@linaro.org>
-Date:   Thu, 15 Sep 2022 15:33:33 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v6 01/12] dt-bindings: display/msm: split qcom,mdss
- bindings
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S230242AbiIOOfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 10:35:39 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BC673904;
+        Thu, 15 Sep 2022 07:35:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 182DAB82108;
+        Thu, 15 Sep 2022 14:35:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3F71C433D6;
+        Thu, 15 Sep 2022 14:34:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663252498;
+        bh=MBEuRB4+zVxwIj+Pghot4ZhJxcst/TbsIw8jjymioF0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gmtJtNs8ZOB1r4cxXaWG4juoTtBhPPZIQ53ZQ2DVpOlfUatCxNQcU7i9hbFo9XeuU
+         5/DaHWwkQEWaK0pUMPT7plOJCOdLe8eHmWi8lNlfpfAGW4pLidggxmyGHylstVEkXp
+         1e/OhA+qjllUV0dT4kKG/oZzQBcm6XQVQ5cmHjS80jrWWhn9c5qkVnuIsWufyXwrM4
+         2QKPRg7XM3B1denglydAWs0itGudVz6ekbaPxa0DVXv2GWL+3PTcJ1yJqL0RND+QzF
+         8sYDx02ahVpYycq22zc5r01qF9vWk0Qjc0YXLzaQ1I39Iue/12s9UF/sOsAydnMn7/
+         OEBnZxgeMb4sg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1oYpxG-0005AW-Cc; Thu, 15 Sep 2022 16:35:02 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
- <20220901102312.2005553-2-dmitry.baryshkov@linaro.org>
- <3e525135-d205-eddc-ff2d-98c8321386e3@linaro.org>
- <20220908193705.GA3002673-robh@kernel.org>
- <1ebe64a3-fab9-1dd7-517a-01001a176d9f@linaro.org>
- <CAL_JsqLkV_fnUnc4cS=cdTvP3rKYAS011_+KZYiBGhXDx-pHnA@mail.gmail.com>
- <2204eab4-b22d-8ee7-4595-49139cb387a8@linaro.org>
- <CAA8EJpqHL-gO=zSG6Ek=-y4njGF5R66z0MwLeKZ9U4Ag1j51Og@mail.gmail.com>
- <e7a132e7-a819-ebe2-e6e5-c01cbfacef15@linaro.org>
- <CAA8EJpoPPRAQPfVQmSfrrDrroMp0bzvJ=-vHMRx72aKTBgPOTA@mail.gmail.com>
- <f013accb-96f7-a025-1d41-e2e97f8b2aa8@linaro.org>
- <CAA8EJprnrKP9Ze__KTTNGDs8sj3QhqpiHnnhf1=ipq+CFCoXsQ@mail.gmail.com>
- <272413e3-73d4-8e0d-7b5d-93007e419f76@linaro.org>
- <6e3bca5a-8b01-af12-ae69-b0044a8790f6@linaro.org>
- <2b4ab827-28aa-5e3f-951a-0bf43d1eb7b9@linaro.org>
- <dafc0231-c578-07f1-1f4b-1cf819fa349a@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dafc0231-c578-07f1-1f4b-1cf819fa349a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: ipq8074: fix PCIe PHY serdes size
+Date:   Thu, 15 Sep 2022 16:34:30 +0200
+Message-Id: <20220915143431.19842-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -101,29 +58,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2022 12:50, Dmitry Baryshkov wrote:
-> On 11/09/2022 22:19, Krzysztof Kozlowski wrote:
->> On 11/09/2022 20:36, Krzysztof Kozlowski wrote:
->>
->>>> If your child schema fails, the referencing schema fails as well...
->>>
->>>
->>> Although now with DSI-PHY I cannot reproduce it and I am pretty sure I
->>> reproduced it with DPU controllers after modifying the DTS to lack a
->>> property... Hmmm
->>
->> https://github.com/devicetree-org/dt-schema/pull/82
-> 
-> Thanks for the quick fix!
-> 
-> However I think I'd still stick to the compatible binding for two reasons:
->   - It doesn't evaluate schema twice for these nodes
->   - It allows us to tightly link child nodes with the parent compatible, 
-> which I think, was one of the points raised several revisions ago.
+The size of the PCIe PHY serdes register region is 0x1c4 and the
+corresponding 'reg' property should specifically not include the
+adjacent regions that are defined in the child node (e.g. tx and rx).
 
-Yes, true. The referenced schema sometimes accepts few compatibles and
-this gives strict matching without additional complexity.
+Fixes: 33057e1672fe ("ARM: dts: ipq8074: Add pcie nodes")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index d53675fc1595..b9bf43215ada 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -199,7 +199,7 @@ qusb_phy_0: phy@79000 {
+ 
+ 		pcie_qmp0: phy@86000 {
+ 			compatible = "qcom,ipq8074-qmp-pcie-phy";
+-			reg = <0x00086000 0x1000>;
++			reg = <0x00086000 0x1c4>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -227,7 +227,7 @@ pcie_phy0: phy@86200 {
+ 
+ 		pcie_qmp1: phy@8e000 {
+ 			compatible = "qcom,ipq8074-qmp-pcie-phy";
+-			reg = <0x0008e000 0x1000>;
++			reg = <0x0008e000 0x1c4>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+-- 
+2.35.1
 
-Best regards,
-Krzysztof
