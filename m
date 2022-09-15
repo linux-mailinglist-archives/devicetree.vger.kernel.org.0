@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CCDF5B9EC4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 842C05B9EC0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230165AbiIOP0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 11:26:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58360 "EHLO
+        id S230210AbiIOP0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 11:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbiIOP0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:26:38 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8417145F6B
+        with ESMTP id S230099AbiIOP0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:26:36 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E2D3686C
         for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:36 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id j13so7895036ljh.4
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:36 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id s10so21996172ljp.5
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=CSJ/eStQwOd/6bKkqYW/kpR5igHLqJM9FCdnOYOs/Dc=;
-        b=m/87F35YC2MWcHrQCTtwBxMNQzaCNyhV15mxXhFlEA3czL1+fDA+2YE2x3zP2NRQRt
-         Tn6o2O984Kr2xD5d50Qpp67QiNdO0rku3PLMntajOHpu4ghcG2xURZ3LlAIrYUZVPWtV
-         xy7d9i8pvYaigd6cqu02+ZNVq7MswBtk/jOxImYMYF6kLuFm3jALwMkCkYCE7Xou+SYY
-         83iEFEXITznNdyLwuG1QaZqN7DksAs1Da6LHlK7Rn07xfVPORq2qozSrqM4hYFEDYvZQ
-         SF4GQm5nrJfIPwIMiJ/os1/soFzkwRfDaNZDa3OKYIXUXg6fcd3SQe3koCqyBLeQAYS0
-         nRVA==
+        bh=88q0uaT0W4PSqz2n21mo6iTJbvDrBb3jnu7RufIt4VY=;
+        b=wAN3FOF3hEFpYwMWYvqhPq39vrGFisBaJs6FFMbc0nL0pasCA2qwhlgcKBhoL+VUlG
+         aWOkno162V8jGTtXffKCBZsLspiuS/7+WDTXBMIGwBQx40gbo+x8becGOM0l1Q+5fXwx
+         aiROw9qcGcmQWvcQ4tBPr6G5s7ul4YDB+A9m3l9jAGnT3nGm43MjtbM36Agd3uab2i4Y
+         hOKGFwgvvUE1JV9jwLvBpTjqISD0RU/3f9L3aHLW1h9i+r8W9A6hx40ZhInxab1aSzJ+
+         4aDIkPU6hGEUmYIChY3uVfd5AICuWmkPB1P2z1uUqY1I7vQJ6QRZ6byK8fvx4QzND/zC
+         MArQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=CSJ/eStQwOd/6bKkqYW/kpR5igHLqJM9FCdnOYOs/Dc=;
-        b=dPNtQ6cXKkQu0SYrZAQd3o/eKCAk0FFdLoV9p3si2QyS3t7ofuyeVWf6WsNsMGc65d
-         1kI7paT3mUP6ZMGLTGK0tfjdaDhvBdFX3qAi4Jyf1ak9hGSMShaEo7sIrk/3+RSHJxw6
-         qAGTGOj/wu/gGDAGAfMx4EOGZEVZvi25uAS0mmxbmx/eeUIr+aFqiHU0HB8Vqos1rSi8
-         yQL40RM7/Y8ceDi7cgAIpe2dFjysy6LkjqytZ8UQD05XCp+C2u9qva2b6s2XmxyO2v53
-         CuSTZ60IbuAkZtfTQiGc7j2jizhVvR5+hVxzeZvFQKVA342tG4V99xBd8Fp/Rbrd4eIS
-         qj7g==
-X-Gm-Message-State: ACrzQf3d2RyaFAGteL1h3WwUXxQ8ltom9l4brCI+aKI7az59L0hZwal3
-        d4I7OM+YsBUjLafTaVbmEdh24Q==
-X-Google-Smtp-Source: AMsMyM5D7see3Xp/T6n6kjsCznPxtGlG92upYHezzjN8xa0cDNLaTanoYsTNtCeIBEgCbqSpkH+N3w==
-X-Received: by 2002:a05:651c:546:b0:26b:fc04:5c4d with SMTP id q6-20020a05651c054600b0026bfc045c4dmr79248ljp.281.1663255594885;
-        Thu, 15 Sep 2022 08:26:34 -0700 (PDT)
+        bh=88q0uaT0W4PSqz2n21mo6iTJbvDrBb3jnu7RufIt4VY=;
+        b=ZrQfRwrBbsughtGZf7BGo7btbfsqjVvC5AbzTRfAN9GnV3afcMteZUC4xhAuZT3dGA
+         9QPYq6Zbh1ofCfP49pkK68pu/S3NcQiAtKZ5RL0zaIPN5lLY5rUkpCVLo2Di69JkjwFw
+         r54ndaYK/Pnlzyl4ES6IyhKcYKrMPeF92B15cPRwd8ezYJ3eeyF/QB8NU6NgWrsf/uDw
+         pmkIGJDhIPm1IoJIzE8GyHH8RJP+/os/uyOLAghUdDD/kt7+VIeI3wZq9B5YtCvy0XsG
+         opnBGs18x7pHzBw2BiS7rVL37SXUSKNXulPC7sboS5XjdbNTAaWLdOl/3+ThEXJRSLTR
+         ZrBg==
+X-Gm-Message-State: ACrzQf1cmVFx4Zjl0bSLWrIJEgyfO8E6mF5L25oinLQo3z1LWcoQuU6h
+        0nx96iZNOabImwh+2Di8tnoz9g==
+X-Google-Smtp-Source: AMsMyM4lw10VeFu3E0HomBRlpIzoYW2T+ifnf18dQ20lZ7pmTiiozldysVSFXWginnN7HGaIiMFcUQ==
+X-Received: by 2002:a05:651c:158e:b0:26b:46a6:bf63 with SMTP id h14-20020a05651c158e00b0026b46a6bf63mr80483ljq.21.1663255595584;
+        Thu, 15 Sep 2022 08:26:35 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
         by smtp.gmail.com with ESMTPSA id a18-20020a056512201200b00494813c689dsm3012653lfb.219.2022.09.15.08.26.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 08:26:34 -0700 (PDT)
+        Thu, 15 Sep 2022 08:26:35 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -55,9 +55,9 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC PATCH 5/7] arm64: qcom: dts: sagami: correct firmware paths
-Date:   Thu, 15 Sep 2022 18:26:28 +0300
-Message-Id: <20220915152630.133528-6-dmitry.baryshkov@linaro.org>
+Subject: [RFC PATCH 6/7] arm64: qcom: dts: pdx223: correct firmware paths
+Date:   Thu, 15 Sep 2022 18:26:29 +0300
+Message-Id: <20220915152630.133528-7-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220915152630.133528-1-dmitry.baryshkov@linaro.org>
 References: <20220915152630.133528-1-dmitry.baryshkov@linaro.org>
@@ -65,65 +65,45 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct firmware paths for the Sony Xperia Sagami devices to include the
-SoC name.
+Correct firmware paths for the Sony Xperia 1 IV to include the SoC name.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ .../boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dts      | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-index b3c9952ac173..e0940cb58681 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi
-@@ -77,12 +77,12 @@ ramoops@ffc00000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dts b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dts
+index d68765eb6d4f..ae867dbe4762 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dts
++++ b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dts
+@@ -523,17 +523,17 @@ &pcie0_phy {
+ };
  
- &adsp {
- 	status = "okay";
+ &remoteproc_adsp {
 -	firmware-name = "qcom/adsp.mbn";
-+	firmware-name = "qcom/sdm8350/sagami/adsp.mbn";
++	firmware-name = "qcom/sdm8450/pdx223/adsp.mbn";
+ 	status = "okay";
  };
  
- &cdsp {
- 	status = "okay";
+ &remoteproc_cdsp {
 -	firmware-name = "qcom/cdsp.mbn";
-+	firmware-name = "qcom/sdm8350/sagami/cdsp.mbn";
++	firmware-name = "qcom/sdm8450/pdx223/cdsp.mbn";
+ 	status = "okay";
  };
  
- &i2c1 {
-@@ -175,12 +175,12 @@ &i2c17 {
- &ipa {
- 	status = "okay";
- 	memory-region = <&pil_ipa_fw_mem>;
--	firmware-name = "qcom/ipa_fws.mbn";
-+	firmware-name = "qcom/sdm8350/sagami/ipa_fws.mbn";
- };
- 
- &mpss {
- 	status = "okay";
--	firmware-name = "qcom/modem.mbn";
-+	firmware-name = "qcom/sdm8350/sagami/modem.mbn";
- };
- 
- &pmk8350_rtc {
-@@ -210,7 +210,7 @@ &qupv3_id_2 {
- 
- &slpi {
- 	status = "okay";
+ &remoteproc_slpi {
 -	firmware-name = "qcom/slpi.mbn";
-+	firmware-name = "qcom/sdm8350/sagami/slpi.mbn";
++	firmware-name = "qcom/sdm8450/pdx223/slpi.mbn";
+ 	status = "okay";
  };
  
- &spi14 {
 -- 
 2.35.1
 
