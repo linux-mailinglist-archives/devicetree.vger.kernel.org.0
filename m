@@ -2,105 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DA15B976A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 11:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBAAB5B9773
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 11:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbiIOJ3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 05:29:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45204 "EHLO
+        id S229790AbiIOJbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 05:31:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbiIOJ3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 05:29:21 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436A680F70;
-        Thu, 15 Sep 2022 02:29:20 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28F9Sx4k123160;
-        Thu, 15 Sep 2022 04:28:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663234139;
-        bh=I2K32vA2lgUmiXzBYb3fBHYBUakCcdVOGjJp84HLIok=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=dd3iJHo8sI5xKsMtmCSyf21XC0+DBvQIT4J0MMsy+3ntAmtHHbtG8J6ALgs3V7y4B
-         K/q1ptHc2mmAkFLSsFwfm61U7eVupHnaq78vci0xtmqh0PpRoHFJ69MCJswooHI4j9
-         A6iIyZ1YtGzaVRaQI/o24d/EY2TBDGzKRT/Kapkk=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28F9SxZo016129
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 15 Sep 2022 04:28:59 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 15
- Sep 2022 04:28:58 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 15 Sep 2022 04:28:58 -0500
-Received: from [10.24.69.241] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28F9SrSC079482;
-        Thu, 15 Sep 2022 04:28:53 -0500
-Message-ID: <ab683d52-d469-35cf-b3b5-50c9edfc173b@ti.com>
-Date:   Thu, 15 Sep 2022 14:58:52 +0530
+        with ESMTP id S229548AbiIOJbW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 05:31:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB359675F;
+        Thu, 15 Sep 2022 02:31:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 88CCC62245;
+        Thu, 15 Sep 2022 09:31:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F950C433C1;
+        Thu, 15 Sep 2022 09:31:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663234280;
+        bh=b3yoajN2tS9K2V4FVmNAQPYuhL3f6oCbNn9iOEv9S7o=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=kPQp6MOmi56yTOqy4z9eaTamTfWOQYv2XAwbLjY//ynzz2xIMog5rT3dGytTm76g8
+         14UVrIAYYINPsuwezbjiaTjoT2D8Eltkv41YNOzovoP2v+UDeUZ7N2Z4GDNqBMuoKq
+         EMatOaYkQhHAt9NeiK4N7GVO+6qTpwl0ZM28xgSYs0ta8oMYPrJ3059R0F/VcBenUO
+         VkyXhL8o3IlxA6Od+YCas7G8Pn7xp0QUHdc+NbH7O/PQyzg4w5hXvhVATaWLLEv51Q
+         33w7OhpUlwDy9UfRnNghWakMaTJhA97ESC4vI6SsrVpwIPXQw9GQQT6dch6UTJu1uW
+         WhBem6d7ZxB2A==
+From:   Mark Brown <broonie@kernel.org>
+To:     devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        alsa-devel@alsa-project.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220910091428.50418-1-krzysztof.kozlowski@linaro.org>
+References: <20220910091428.50418-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v4 00/15] ASoC/qcom/arm64: Qualcomm ADSP DTS and binding fixes
+Message-Id: <166323427717.2395893.6929759615552147148.b4-ty@kernel.org>
+Date:   Thu, 15 Sep 2022 10:31:17 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vladimir.oltean@nxp.com>,
-        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH 5/8] net: ethernet: ti: am65-cpsw: Add support for
- fixed-link configuration
-Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-References: <20220914095053.189851-1-s-vadapalli@ti.com>
- <20220914095053.189851-6-s-vadapalli@ti.com>
- <YyH8us424n3dyLYT@shell.armlinux.org.uk>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <YyH8us424n3dyLYT@shell.armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-7dade
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Russell,
-
-On 14/09/22 21:39, Russell King (Oracle) wrote:
-> On Wed, Sep 14, 2022 at 03:20:50PM +0530, Siddharth Vadapalli wrote:
->> Check for fixed-link in am65_cpsw_nuss_mac_config() using struct
->> am65_cpsw_slave_data's phy_node property to obtain fwnode. Since
->> am65_cpsw_nuss_mac_link_up() is not invoked in fixed-link mode, perform
->> the relevant operations in am65_cpsw_nuss_mac_config() itself.
+On Sat, 10 Sep 2022 11:14:13 +0200, Krzysztof Kozlowski wrote:
+> Dependencies/merging
+> ====================
+> 1. The DTS patches are independent.
+> 2. The binding patches should come together, because of context changes. Could
+>    be one of: Qualcomm SoC, ASoC or DT tree.
 > 
-> Further to my other comments, you also fail to explain that, when in
-> fixed-link SGMII mode, you _emulate_ being a PHY - which I deduce
-> since you are sending the duplex setting and speed settings via the
-> SGMII control word. Also, as SGMII was invented for a PHY to be able
-> to communicate the media negotiation resolution to the MAC, SGMII
-> defines that the PHY fills in the speed and duplex information in
-> the control word to pass it to the MAC, and the MAC acknowledges this
-> information. There is no need (and SGMII doesn't permit) the MAC to
-> advertise what it's doing.
+> Changes since v3
+> ================
+> 1. Patch 9-10: re-order, so first apr.yaml is corrected and then we convert to
+>    DT schema. This makes patchset fully bisectable in expense of changing the same
+>    lines twice.
+> 2. Patch 11: New patch.
 > 
-> Maybe this needs to be explained in the commit message?
+> [...]
 
-I had tested SGMII fixed-link mode using a bootstrapped ethernet layer-1
-PHY. Based on your clarification in the previous mails that there is an
-issue with the fixed-link mode which I need to debug, I assume that what
-you are referring to here also happens to be a consequence of that.
-Please let me know if I have misunderstood what you meant to convey.
+Applied to
 
-Regards,
-Siddharth.
+   broonie/sound.git for-next
+
+Thanks!
+
+[09/15] dt-bindings: soc: qcom: apr: correct service children
+        commit: b2496de1dfdddfceb87e7a7b791c3a249c860682
+[10/15] ASoC: dt-bindings: qcom,q6asm: convert to dtschema
+        commit: 7b0ad4629d1fb719ae71a8f2968e8c6268ab1709
+[11/15] ASoC: dt-bindings: qcom,q6adm: convert to dtschema
+        commit: 301628d805019999f1ae9764aadfcface9c4e309
+[12/15] ASoC: dt-bindings: qcom,q6dsp-lpass-ports: cleanup example
+        commit: 0630efc3b849f65ef3bad803b84bc0819591dac9
+[13/15] ASoC: dt-bindings: qcom,q6dsp-lpass-clocks: cleanup example
+        commit: 7af18f4efd85c2e85458e3f504e129a97f6baaf2
+[14/15] ASoC: dt-bindings: qcom,q6apm-dai: adjust indentation in example
+        commit: 5f170e21fe96fbd1f81ace9ec6e6b695e1098733
+[15/15] dt-bindings: soc: qcom: apr: add missing properties
+        commit: b2d7616e13c4eb766f5e2f6568c2e746e76b7b53
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
