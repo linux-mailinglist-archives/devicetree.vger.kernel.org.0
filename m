@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BEE45B91E7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 02:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40F275B9217
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 03:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230218AbiIOAqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 20:46:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
+        id S229978AbiIOBUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 21:20:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbiIOAqn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 20:46:43 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC41356C0
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 17:46:41 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id y17so33501109ejo.6
-        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 17:46:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=WgZixTRxTWoDkCtULJb0cXzPEDep5TgMZR2wDcQQdOw=;
-        b=Kg+1UZzlDU50pcnzV1o05HTamlrToevhWcGaP84OVJsseY3AhIhNhwicDxakzx5zQO
-         W7HZ1yWfcO696l161SYZhn+PCzNXzc1jy5DgAJFhVBcg1Q2wVas/GrD/F87VOavB801q
-         1SiQDMUdU6HpX4x5oSDoCEz5kxjQU8EyeCuyk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=WgZixTRxTWoDkCtULJb0cXzPEDep5TgMZR2wDcQQdOw=;
-        b=Xn8PVqhh1qlnwtGRFX6FiRFqogU2jx5iAYxP3QW9pyrNxKg+vgCJfX+F0F0Nsv8aVO
-         sVNhTpiLosNgmZD9+OvHvpl77K+rwusa7xDRDacra2qIPjgo5nPO0CJSy6QQ9CNP3eeB
-         99HnhR0eBzOIWGvdDfhXCWipPUcokGD9K/aJmsVuppZzrGK3zc08Ubv9iDmMFcH7N6ic
-         mx1B17oPRrxdtZ0fdqQ0KZWNF0csOPQgFlwdoHt/iDiZgKcjASEkOEX0Lg/hYe5OsIr1
-         lKUzUtVLQxvSWtvx5or9JfCC3ZMUg+Zoqo5tDBaf/VfCxGhWE7yRhiPnPe69eN1Glfds
-         pX5Q==
-X-Gm-Message-State: ACgBeo08l0qpwYltk3ns2JCUrOJQP3DV5S8k6yu5b8M1LZuIfZ5xRwgr
-        f69y39YfkPWpjFSmv52q+lWFxUdRwSQ4hPaJdU4bBA==
-X-Google-Smtp-Source: AA6agR54zdmn7Yw5OAkEnKI6FIl0BrR5R5qoYvJoVPX6e0a0Ba7VGgMA3ek/Ii7ijMcFUlJ3KBZn+g4zCLbdbONkGRU=
-X-Received: by 2002:a17:906:401:b0:73d:af73:b78 with SMTP id
- d1-20020a170906040100b0073daf730b78mr27986527eja.122.1663202800297; Wed, 14
- Sep 2022 17:46:40 -0700 (PDT)
+        with ESMTP id S229966AbiIOBUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 21:20:33 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9EFC3687F
+        for <devicetree@vger.kernel.org>; Wed, 14 Sep 2022 18:20:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1663204832;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=0bjgK+lBiTyGtI8DZXw0xpj/MCgq70rfPwVLT8sgAVc=;
+        b=PojxM1SO5HJjfnkHNViNThtWw6Ht/X95Jj2x+BF8UHJvQeYWc0qNrwtC+Xpx/QUcuDaoGf
+        yTMK8jkdeQkdR/7SRRBwM/IWRFcA9E4/4tIMk2d/+wv51HgSYvrtEibDyLEUTcC8ufN4dZ
+        HeStn3sE+uYMIe5anSk5tJ8BfGVfBSo=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-594-nDvdEKQIPbKHKqYFLvmIfg-1; Wed, 14 Sep 2022 21:20:27 -0400
+X-MC-Unique: nDvdEKQIPbKHKqYFLvmIfg-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.rdu2.redhat.com [10.11.54.3])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 5C6B83C0D85A;
+        Thu, 15 Sep 2022 01:20:27 +0000 (UTC)
+Received: from localhost (ovpn-12-63.pek2.redhat.com [10.72.12.63])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 786D31121314;
+        Thu, 15 Sep 2022 01:20:26 +0000 (UTC)
+Date:   Thu, 15 Sep 2022 09:20:22 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Stefan Berger <stefanb@linux.ibm.com>,
+        Nayna Jain <nayna@linux.ibm.com>, akpm@linux-foundation.org,
+        nasastry@in.ibm.com, Michael Ellerman <mpe@ellerman.id.au>,
+        "kexec@lists.infradead.org" <kexec@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-integrity <linux-integrity@vger.kernel.org>
+Subject: Re: [PATCH v8 0/4] tpm: Preserve TPM measurement log across kexec
+ (ppc64)
+Message-ID: <YyJ91vHulTdjri49@MiWiFi-R3L-srv>
+References: <20220901214610.768645-1-stefanb@linux.ibm.com>
+ <ce08b0af-fb1b-0ade-61ac-f66e95d6eb6a@linux.ibm.com>
+ <CAL_JsqJ+M6TP9kWXDAUqqh7wfPHkE8YfEU7j5HWqeGMhL=c6bg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220826065621.2255795-1-judyhsiao@chromium.org> <166308148206.625876.8801069802083923195.b4-ty@kernel.org>
-In-Reply-To: <166308148206.625876.8801069802083923195.b4-ty@kernel.org>
-From:   Judy Hsiao <judyhsiao@chromium.org>
-Date:   Thu, 15 Sep 2022 08:46:29 +0800
-Message-ID: <CAJXt+b90z32L3ZYh22Vnxo4=DbETJZjf+rx9X7ZuqqmaBDggfQ@mail.gmail.com>
-Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Fix Dmic no sound on villager-r1
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     quic_srivasam@quicinc.com, judyhsiao@google.com,
-        cychiang@google.com, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        mka@chromium.org, Rob Herring <robh+dt@kernel.org>,
-        swboyd@chromium.org, dianders@chromium.org,
-        devicetree@vger.kernel.org,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJ+M6TP9kWXDAUqqh7wfPHkE8YfEU7j5HWqeGMhL=c6bg@mail.gmail.com>
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.3
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,31 +67,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please help to apply
-Add dtsi for sc7280 herobrine boards that using rt5682 codec (v4)
-https://patchwork.kernel.org/project/linux-arm-msm/list/?series=661760
-It's dependencies are landed.
-
-Thanks & Regards
-
-On Tue, Sep 13, 2022 at 11:04 PM Bjorn Andersson <andersson@kernel.org> wrote:
->
-> On Fri, 26 Aug 2022 06:56:21 +0000, Judy Hsiao wrote:
-> > Fix the DMIC no sound issue of villager-r1 by using "PP1800_L2C" as the
-> > DMIC power source to match the hardware schematic.
+On 09/14/22 at 01:01pm, Rob Herring wrote:
+> On Mon, Sep 12, 2022 at 8:01 AM Stefan Berger <stefanb@linux.ibm.com> wrote:
 > >
-> > This patch:
-> >    1. set vdd-micb-supply to PP1800_L2C as the MIC Bias voltage regulator.
-> >    2. In audio-routing, set VA DMIC01~VA DMIC03 to use the vdd-micb-supply
-> >       setting.
 > >
-> > [...]
->
-> Applied, thanks!
->
-> [1/1] arm64: dts: qcom: sc7280: Fix Dmic no sound on villager-r1
->       commit: 61a301ca83736afeeeb307b931c59f107067da3c
->
-> Best regards,
-> --
-> Bjorn Andersson <andersson@kernel.org>
+> > Hi Rob,
+> >
+> >    can you take this series in your tree?
+> 
+> IMO, it should be someone that cares about TPM, kexec, or powerpc.
+> Yes, there's code in drivers/of/, but that is purely to avoid
+> duplication of code across powerpc and arm64.
+
+Looks like a PPC specific improvement, is it possible to have TPM on
+other ARCHes? For generic code patch, Andrew kindly help pick them
+into his tree if cooked. If it's an arch or component specific code,
+we usually ask arch or component maintainer to take it.
+
+For this patchset, it should be merged into ppc tree?
+
+Thanks
+Baoquan
+
