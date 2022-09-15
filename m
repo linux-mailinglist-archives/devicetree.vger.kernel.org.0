@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCD405B9EBC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B3DC5B9EBE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229906AbiIOP0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 11:26:37 -0400
+        id S229452AbiIOP0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 11:26:38 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230036AbiIOP0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:26:35 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54BF945F6B
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:34 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id w8so30928808lft.12
+        with ESMTP id S230057AbiIOP0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:26:36 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C3D93B95F
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:35 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id r12so21070357ljg.10
         for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=qvHk4DrIbTDxru8F4UVY05nNjanUC/r5WgFJSexSTzs=;
-        b=h7sB0UdV8hX/Y6FO9Kx5RtiHkCYJsq6LKFWet0KfXhD2XPr1Zv4Sg2pV0Oo4WSO1I5
-         1hb+kOuUdpQDE4QUdyt9il285+FNC716D8gc61d1dQeNU8gOgCUcL8ast9hQzNsAIaLu
-         RFL+2eeHqepiT5fH1MxhzOZh0CpEGIyL8uuEZkOm+s2ik1RhIAa8iC5QjEhFyhj/igG5
-         FzohW3+u2CLr8ANfPm+PxFy4ysZ2MDhb1Va7jMsr72oQegmjGfJwTdAU0Z1+D7EdqU/L
-         XObrkZWKBPThBcIOqkdn82mcCmjSN4qQZTLflFg1B5CSUdFXrsKR1koIwP/OW8dULO0R
-         CepA==
+        bh=ShH33aamXq9yto+qDd3gy7jLR1LtKFm+0b8TRMJLzK4=;
+        b=YFWFr5daZj2g9Vp43zR/JwG7FmRQ/yZekyQZpQMhC7/uQ2St1Qvg1h9/43Fk7ZcGE1
+         zMnlVKYc9zrnjve2hZSLvJdFSOYSxWDu+8YgoeMV0cKjnWxpUEm3jZz2+iKAJXwdA720
+         xi+54LwC56EbA1lT30jpO4uxtnYgonpzHMCslqCjo7kmkfoV9jIBH8m2wIETz7oxmniD
+         wXdB+YpZgdjSVw2PCah1nMF9flSsT4jVOgmiCG4adeVWyR3p5XpmycgIrVVlHkfUWud9
+         ei4umdv3rjAIZbsZ/6aHYmsq/qfYHQqdt1eVP6M0NXMVnVlwQ54TvyxghouEYhlLKniQ
+         B5hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=qvHk4DrIbTDxru8F4UVY05nNjanUC/r5WgFJSexSTzs=;
-        b=eyqe48Jya86y7qWpoXRLXaBQLzbeJC30NSX5sBawdnbbOLuB/sTdZ4Ek94TYqB9e4d
-         jPEYdqWvj1wQNLponC32mtjHzIGAqmO2gWhVFKFC/YZwLJh26Eq6zl+PRKJ/fTqb3QQh
-         xUDrbfy3+qshOlVfnxp8TfC8MczKsUvB8OXQWSWJulb0m+3DsDF/ESutHor9R/iqrAfQ
-         R2N34exBw/oVDupfVTFbG+WjiQpgQSKR+BsuSQQvEXK1QaQnfgNRc4uZcGr2murw1c9s
-         lqHd8xzTsEkMFdDBVgv2iHa9bDanncdciwgOXtrLp/OdVICs536X395JqlC+nC1j72ii
-         WiOw==
-X-Gm-Message-State: ACrzQf2C5ROdMMJea7dLBg/UFhOLhigYeHx9N+Q6r2WgBF5Djpg1Ju5u
-        vgSXRtwsHf6OiWJXqAYKDm02BQ==
-X-Google-Smtp-Source: AMsMyM5+ylozfKDFXCPIT/OcDAHAEGyGSISUsbexRgJk8enEunm+V+PWXG2DOgcTZtvcj5vMKor5XA==
-X-Received: by 2002:a05:6512:39c7:b0:49c:b8ec:14b9 with SMTP id k7-20020a05651239c700b0049cb8ec14b9mr127415lfu.569.1663255592695;
-        Thu, 15 Sep 2022 08:26:32 -0700 (PDT)
+        bh=ShH33aamXq9yto+qDd3gy7jLR1LtKFm+0b8TRMJLzK4=;
+        b=avcfTIk7fqNaJvb1WxuFy8o+T9L6DMMqPVtLrC+EeomdAu+T1BvjyrYQlcsocPAK6J
+         2g0ttuGnHxeGDuJl7lQyr952zfCdgNQBCzf2nWPeN0/W0a4OT09tlK00jkO7TdBG5ni9
+         8s8h3046bFY1dLDMb1fVAVuOauCtOT2fg1l97lun7zkV5944cwsl3i2+p3iNTWLdxrUr
+         IfzbgqQo6CRaVG5sBl7X/CX4lXPTKbP92iIuHVRThR7bOGMIx7haDf15qGMmCw8vEHz8
+         1T3ZhNSfb0p4oFGz50IZLLAcjQgsefobAUCV14ieRmOZIoDbQ76CrUA7OaD0Y8J79sHz
+         Jl9g==
+X-Gm-Message-State: ACrzQf0G1KTW6kWfUbiBFGGClbn+c1ywO7v5honn12CReaWvAPI9Rggi
+        YEV36xzNRGB8Yv9Wxb22yooKRQ==
+X-Google-Smtp-Source: AMsMyM41G40bb9FluFMy68AvJjR8J3oSxdOVFoeHyOW0der1L5+mtmVxBp/Ifw7BwMmfMohMf1VOgg==
+X-Received: by 2002:a2e:921a:0:b0:26c:1166:6666 with SMTP id k26-20020a2e921a000000b0026c11666666mr97063ljg.128.1663255593403;
+        Thu, 15 Sep 2022 08:26:33 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id a18-20020a056512201200b00494813c689dsm3012653lfb.219.2022.09.15.08.26.31
+        by smtp.gmail.com with ESMTPSA id a18-20020a056512201200b00494813c689dsm3012653lfb.219.2022.09.15.08.26.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 08:26:32 -0700 (PDT)
+        Thu, 15 Sep 2022 08:26:33 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -55,9 +55,9 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC PATCH 2/7] arm64: qcom: dts: w737: correct firmware paths
-Date:   Thu, 15 Sep 2022 18:26:25 +0300
-Message-Id: <20220915152630.133528-3-dmitry.baryshkov@linaro.org>
+Subject: [RFC PATCH 3/7] arm64: qcom: dts: miix-630: correct firmware paths
+Date:   Thu, 15 Sep 2022 18:26:26 +0300
+Message-Id: <20220915152630.133528-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220915152630.133528-1-dmitry.baryshkov@linaro.org>
 References: <20220915152630.133528-1-dmitry.baryshkov@linaro.org>
@@ -72,63 +72,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct firmware paths for the Samsung Galaxy Book2 to include the SoC
-name.
+Correct firmware paths for the Lenovo Miix 630 to include the SoC name.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-index f954fe5cb61a..78eb967041e5 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-@@ -124,7 +124,7 @@ spss_mem: memory@98f00000 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+index cf81c33a9d7e..a105143bee4a 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
++++ b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+@@ -28,8 +28,8 @@ keyboard@3a {
  };
  
- &adsp_pas {
--	firmware-name = "qcom/samsung/w737/qcadsp850.mbn";
-+	firmware-name = "qcom/sdm850/samsung/w737/qcadsp850.mbn";
- 	status = "okay";
+ &remoteproc_mss {
+-	firmware-name = "qcom/LENOVO/81F1/qcdsp1v28998.mbn",
+-			"qcom/LENOVO/81F1/qcdsp28998.mbn";
++	firmware-name = "qcom/msm8998/LENOVO/81F1/qcdsp1v28998.mbn",
++			"qcom/msm8998/LENOVO/81F1/qcdsp28998.mbn";
  };
  
-@@ -336,7 +336,7 @@ vreg_lvs2a_1p8: lvs2 {
- };
- 
- &cdsp_pas {
--	firmware-name = "qcom/samsung/w737/qccdsp850.mbn";
-+	firmware-name = "qcom/sdm850/samsung/w737/qccdsp850.mbn";
- 	status = "okay";
- };
- 
-@@ -385,7 +385,7 @@ digitizer@9 {
- &ipa {
- 	status = "okay";
- 	memory-region = <&ipa_fw_mem>;
--	firmware-name = "qcom/samsung/w737/ipa_fws.elf";
-+	firmware-name = "qcom/sdm850/samsung/w737/ipa_fws.elf";
- };
- 
- /* No idea why it causes an SError when enabled */
-@@ -395,7 +395,7 @@ &llcc {
- 
- &mss_pil {
- 	status = "okay";
--	firmware-name = "qcom/samsung/w737/qcdsp1v2850.mbn", "qcom/samsung/w737/qcdsp2850.mbn";
-+	firmware-name = "qcom/sdm850/samsung/w737/qcdsp1v2850.mbn", "qcom/sdm850/samsung/w737/qcdsp2850.mbn";
- };
- 
- &qup_i2c10_default {
-@@ -696,7 +696,7 @@ &usb_2_qmpphy {
- 
- &venus {
- 	status = "okay";
--	firmware-name = "qcom/samsung/w737/qcvss850.mbn";
-+	firmware-name = "qcom/sdm850/samsung/w737/qcvss850.mbn";
- };
- 
- &wcd9340{
+ &sdhc2 {
 -- 
 2.35.1
 
