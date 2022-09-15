@@ -2,114 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87F5C5B9ADF
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 475925B9B41
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:45:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbiIOMen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 08:34:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50470 "EHLO
+        id S230179AbiIOMpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 08:45:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbiIOMem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:34:42 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393441BE94;
-        Thu, 15 Sep 2022 05:34:41 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 9-20020a1c0209000000b003b494ffc00bso512321wmc.0;
-        Thu, 15 Sep 2022 05:34:41 -0700 (PDT)
+        with ESMTP id S229923AbiIOMol (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 08:44:41 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB3E1106
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 05:44:30 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id q21so30264197lfo.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 05:44:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=rfculMke3zk45DcIX3PPH21HXBrjMaL/S8KLHRg8ugM=;
-        b=YrZJor5mvnPIukgz8cSamggmjZsUqONu3wuIJKar66MB98OwRPW7marl7wCKWm5wud
-         mpKomQ37vBIYwegP6yARerHptVrt4UnC3UNy3esbb6doUt8EIdxRrKS49yBk7DYY02hi
-         afXM3rRsxc5BBvQ7P7GI2YDVA0zE6c38v2fzRXRg8qoY6n1quHWoC/5cURbwUW/BWvP3
-         QBLY6mi/t0U5XmIiJ6wPcB9Sr1MmDUE17ElTmqw3TFFwct9hMzf7s2jIYIu6JRzOyZFd
-         +n1th/L4tqdN7fD5ybgM7cik8O15vlJwzg36RD+KNC+0c6gFjnwQM3cm9l1IgUIC44op
-         t5Dg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=GbMPySDSU6WmgItxp994TYVOui10YiB6AOxxeQ38DWA=;
+        b=OqodDEGO+HX5IYC9wkHWaQK5n7oCF9NayMeRaEdr5CfLpP6ZdmbbjKl0tYIp+k83/4
+         bl180r0LxM8gmM+gUm4C2glC2htKXT5ok97uABU/WEVMlya+FWL2czplb1WcjMcCYlL0
+         Cc/AcAwuPyOaFrCI4928xwDNL6hnRfgxgDOHxiANtwI4QcXwGTvm2xfcZB5vw9eR4i46
+         DPPKaWjwnl7WqZUSjsR70Zysx599E3JZHvOcKTSUt5LX3Jmh7sFyMiBegFW1J6GmHifq
+         mugNViCCsDLuqqkpTpQWAaZheQ5Xub+jqgdN7DdIfo3cEoGhEwnWww9aiR4gWPDEgQJ1
+         mBrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=rfculMke3zk45DcIX3PPH21HXBrjMaL/S8KLHRg8ugM=;
-        b=ARknv2ssmh/XBtnGadUdA6XcOXZPvl15+FLzAwz7Hehr0YW3nBP4SMLv4j+T113lYW
-         DrsiHoIDslTaUct3gcIiJ6KdnfrGG8p5GIVZaEDHGaITLZitsrGkMig6GCxQGD4sSZ+a
-         6Zkr9P/e5kYr9jvvjOxxwj5VEVUap55t9r2IAyndcmcPDjv+O8pwk5ifMR0teJdSCviO
-         QIGbj+JrP2BSM23IKfouBRBdMYGSkey6aAw8gf8HivsqsyI4sVvyPUm3wU1wokvrHu25
-         b09YvVvmhktXVG0SncA1HyhOgU3L/Z3eVzxRCl4dcyxWpvdWTaCgEgL8aXDNFCAxiOrr
-         cj7g==
-X-Gm-Message-State: ACgBeo0PivG+J1KlePopG7YnQGg7qeH6DxFHlSCy+QnoE+qoIfq+FG5D
-        QLPjzNEuFhRdJ3130RBwCDQ=
-X-Google-Smtp-Source: AA6agR5dJkvlup2rpQkt+oWVxvD8ZgsmkloLfLtallqtpWyFCASSlhjY1pdqhDoQKo7l7D4/65b7yg==
-X-Received: by 2002:a05:600c:27d1:b0:3b4:5e9c:23ed with SMTP id l17-20020a05600c27d100b003b45e9c23edmr3380383wmb.180.1663245279759;
-        Thu, 15 Sep 2022 05:34:39 -0700 (PDT)
-Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id l37-20020a05600c1d2500b003a601a1c2f7sm2720142wms.19.2022.09.15.05.34.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 05:34:38 -0700 (PDT)
-Date:   Thu, 15 Sep 2022 14:34:37 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Mohan Kumar <mkumard@nvidia.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        treding@nvidia.com, jonathanh@nvidia.com, spujar@nvidia.com,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Add iommus for AGX Orin hda node
-Message-ID: <YyMb3f3r9qZbFy6+@orome>
-References: <20220830052736.21348-1-mkumard@nvidia.com>
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=GbMPySDSU6WmgItxp994TYVOui10YiB6AOxxeQ38DWA=;
+        b=0z0SIZ106YMq8mATRyUYAa3Z9YuIZ4NIxm8/G7/ZDrYlT97kVumOagXmaLKY6Hs5Yj
+         6DoRdVxGoeHt4NvlN1MdDeWscgY7UpXCDJa/UNlxZafugzcOmnciv7ipZS3WcYZXmW/F
+         KCft07nPEbAYaOFtviQI38p7r0dr+jSPC6j+syGW2wnSoPMf1F90YTXAd8TLzge2w8PB
+         BQYdAXceLn+FSWzxKFaRZtJIG1CY7UY2KOh573Ym9OiTTjCIfalmZOMwEaBSqeh3afTW
+         E0sCmjWmJZ6TPoS+M+zHWs52OQhr47pV/0K7OmjVNkMrjFOVkzV6qcp8r0RnDXGg7h7n
+         qhvA==
+X-Gm-Message-State: ACgBeo1lYqNpg8Y0IMNOcuhWbU5rYn8c+zMGkv5Q/GF7JIPsabGuJ/8S
+        TPdaASvqwRdYk88aC2sZq5DTbA==
+X-Google-Smtp-Source: AA6agR5e3aLhLl+SPavx1J3SMAHglV+z0HW2twco7cekVm4i6twl/pbFFjIx5uZ3q6jZeGHephVbIA==
+X-Received: by 2002:a05:6512:3185:b0:49c:3310:6910 with SMTP id i5-20020a056512318500b0049c33106910mr4619068lfe.352.1663245869189;
+        Thu, 15 Sep 2022 05:44:29 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id p8-20020a2eb7c8000000b0026c16e9e45bsm1954318ljo.17.2022.09.15.05.44.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Sep 2022 05:44:28 -0700 (PDT)
+Message-ID: <49cb7d54-6546-5228-0c30-6b37faa87ec9@linaro.org>
+Date:   Thu, 15 Sep 2022 15:44:28 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="BROt6oKdMv4Rnb6W"
-Content-Disposition: inline
-In-Reply-To: <20220830052736.21348-1-mkumard@nvidia.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+Subject: Re: [PATCH v6 04/12] dt-bindings: display/msm: move common DPU
+ properties to dpu-common.yaml
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
+        David Airlie <airlied@linux.ie>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        freedreno@lists.freedesktop.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
+ <20220901102312.2005553-5-dmitry.baryshkov@linaro.org>
+ <20220907195904.GA98468-robh@kernel.org>
+ <CAA8EJpoJk-_LC25uyqkQ0Q8CYziNuU8nSnExm40542xZcvcbxQ@mail.gmail.com>
+In-Reply-To: <CAA8EJpoJk-_LC25uyqkQ0Q8CYziNuU8nSnExm40542xZcvcbxQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08/09/2022 00:13, Dmitry Baryshkov wrote:
+> On Wed, 7 Sept 2022 at 22:59, Rob Herring <robh@kernel.org> wrote:
+>>
+>> On Thu, Sep 01, 2022 at 01:23:04PM +0300, Dmitry Baryshkov wrote:
+>>> Move properties common to all DPU DT nodes to the dpu-common.yaml.
+>>>
+>>> Note, this removes description of individual DPU port@ nodes. However
+>>> such definitions add no additional value. The reg values do not
+>>> correspond to hardware INTF indices. The driver discovers and binds
+>>> these ports not paying any care for the order of these items. Thus just
+>>> leave the reference to graph.yaml#/properties/ports and the description.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>   .../bindings/display/msm/dpu-common.yaml      | 44 ++++++++++++++++++
+>>>   .../bindings/display/msm/dpu-msm8998.yaml     | 46 ++-----------------
+>>>   .../bindings/display/msm/dpu-qcm2290.yaml     | 41 ++---------------
+>>>   .../bindings/display/msm/dpu-sc7180.yaml      | 45 ++----------------
+>>>   .../bindings/display/msm/dpu-sc7280.yaml      | 45 ++----------------
+>>>   .../bindings/display/msm/dpu-sdm845.yaml      | 46 ++-----------------
+>>>   6 files changed, 64 insertions(+), 203 deletions(-)
+>>>   create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-common.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-common.yaml b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
+>>> new file mode 100644
+>>> index 000000000000..bf5764e9932b
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/display/msm/dpu-common.yaml
+>>> @@ -0,0 +1,44 @@
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/display/msm/dpu-common.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm Display DPU dt properties (common properties)
+>>> +
+>>> +maintainers:
+>>> +  - Krishna Manikandan <quic_mkrishn@quicinc.com>
+>>> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> +  - Rob Clark <robdclark@gmail.com>
+>>> +
+>>> +description: |
+>>> +  Common properties for QCom DPU display controller.
+>>> +
+>>> +properties:
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>> +
+>>> +  operating-points-v2: true
+>>> +  opp-table:
+>>> +    type: object
+>>> +
+>>> +  ports:
+>>> +    $ref: /schemas/graph.yaml#/properties/ports
+>>> +    description: |
+>>> +      Contains the list of output ports from DPU device. These ports
+>>> +      connect to interfaces that are external to the DPU hardware,
+>>> +      such as DSI, DP etc.
+>>
+>> Haven't we been over this already?
+>>
+>> You have to define 'port' nodes or else anything is allowed in them
+>> (and endpoint nodes). If you want to define them as pattern, then fine.
+>> But you must have a ref to graph.yaml#/properties/port.
+> 
+> Last time you asked to do this, I did a check. Adding any additional
+> property results in a schema error. And this is logical.
+> graph.yaml#/properties/ports already limits the node properties. I
+> thus do not see a need to define port@[0-9a-f]+$. Did I miss anything?
 
---BROt6oKdMv4Rnb6W
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I see, what I did miss now. I missed adding properties to individual 
+/port nodes. Please excuse me. BTW: is there any reason for not 
+enforcing this in the graph.yaml?
 
-On Tue, Aug 30, 2022 at 10:57:36AM +0530, Mohan Kumar wrote:
-> Add iommus entry for hda node for AGX Orin platform.
->=20
-> Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+-- 
+With best wishes
+Dmitry
 
-Applied, thanks.
-
-Thierry
-
---BROt6oKdMv4Rnb6W
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmMjG9wACgkQ3SOs138+
-s6Go3g/+KMe2XIpHNIxP2MZonHnO3rrh9c3y6Netl4+m2XSYvvSS/aURkEGPn7MG
-gHleQa4mb2s2DROvtbrUZ66idQsz7NYwjYM1c3q9+COuVu612uQ8ChcxC5lQP7Y5
-WRA4iWa5YdOMaz9dr+5X+2fo0FcyDIqU5oMKRPQOaxZJah5ymT+eBLXXjJCgVacN
-T0Y/RUfvG5WuTMIo9KhNNA5PJiJh4VTjaXoKT0I7W7noINujrbJBXDtDpxcbLd2a
-Okwhn/Xrq5IL4fzAl7YThHNex/8xmejptn1HSfNH3gZI5+8WuskZE8GmXclihbeD
-3weJ3rYPtUbn23aJYJ95KqBM7qS9M4s5EOkNsHmbvsWesR6V6Ob0kzzalbOtX4sq
-KsW8R3iJYQznkahyecZ8lxyH7Toyw41CYQXNyehoX0DUNc8jCLrnANvlMAFHnrp0
-qZdjNRqV0o5zzokPeytSj3c1d1xuwAfXsFJPkmuPypMxJp1bJTRPmXSnJ6m4GAQD
-xpz+P/ewZh4IFf5K+mHhw+LOkAzpweje3vICMi8ZL+hZtiRSDgBOqD1GHSDn7I6U
-w5DiuzYkyszhHkcwDbdrJPFy10ZUHMmD07TW3d3QpZJmEnEvRShSIWdBdgN/keLN
-MXHTnOMsO0FkyUsr7hqYbhDwgAZQKfctDERhRLR+80DMulT5xKE=
-=nCvA
------END PGP SIGNATURE-----
-
---BROt6oKdMv4Rnb6W--
