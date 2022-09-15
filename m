@@ -2,95 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DD3D5B9A36
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 13:59:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0E6C5B9A3F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 14:00:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiIOL7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 07:59:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53170 "EHLO
+        id S229992AbiIOMAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 08:00:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiIOL7G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 07:59:06 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2CF2B1;
-        Thu, 15 Sep 2022 04:59:05 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id o204so1905783oia.12;
-        Thu, 15 Sep 2022 04:59:05 -0700 (PDT)
+        with ESMTP id S230141AbiIOL77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 07:59:59 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2686222A4;
+        Thu, 15 Sep 2022 04:59:56 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id w22-20020a056830061600b006546deda3f9so12362447oti.4;
+        Thu, 15 Sep 2022 04:59:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Z+Uk70wenuE2avVZw1KYjIwZYeZGOnR3WHL7he3UtOU=;
-        b=vz2Wy+s1JjmOFKTKAKJus36qPcmotwslIGbAmAvQF1tQEM8Q81Dj1aWbDgx/uYJ6KV
-         5HVkmhiWYBJqNDyc3RhdL81MVPXy+ln4wkErmdRiZKOPjr2Yg1kvWdaFOO0yDsvwww8V
-         7q2E3rFt0OkX4FfmpsxL0MKLWhR3sQW6QzyfBfnjkuXw9c62+2Yu7eyuHzKMHKT4E5B2
-         ORun/28lPboL3fj+vJj+uSm4JE/xXNioGLxTm3qZAv3MiPLf+AUfT1WSZIkfFsnOWAu0
-         vQ84+gD7Q9kFAdAINF9WNNnYBVWzD3bCJhJa5iSbLFQ+4yOBYXeCTZVz3pqKCBeF4nvY
-         i9oA==
-X-Gm-Message-State: ACgBeo2m/O1CKrHczIekeMwMsYJHMD9AtZf1JHDW9I8Ng4Dwam4r2zGd
-        e8dMpOK0pHI7iaiFlvG5xA==
-X-Google-Smtp-Source: AA6agR49VcAXbJ6flKXkElRGNVqdgLKhCCqHMxvV8f9HxhM/De4Z+GNeFJnd7dQ9ytUjuxfD6+kfcQ==
-X-Received: by 2002:a05:6808:13cd:b0:343:41aa:4cbe with SMTP id d13-20020a05680813cd00b0034341aa4cbemr3803456oiw.264.1663243144633;
-        Thu, 15 Sep 2022 04:59:04 -0700 (PDT)
+        bh=sLkaEDH98zZtAFnFWH1/tkX3GjTR/wSS1F3yaWvbetE=;
+        b=AA7dZ16l3Sm5Cwa7lSY4EB+hH4urK5XIEDF7ebpPCLFajFFpvibr0TTHwF5fdSNZRU
+         EsrTkXaAqrB2MtzpITMcoU6ZEhKLEAmqO0HOP7vmK6h+Ye5GoEJvsy8lXfhVn80q/pgl
+         2LPN/Ee8eKxTVVAwJMCswrVuLFxogSVnMO/osSD7fYnx1trcoo4oiaqNT1KDld9566z2
+         UHoMGB5Y8jWLVAa5vQQUqIC3V5Fqi4/uGvZyrUV57PqRZgcmeQa3RKLnv6D8es4/gi9A
+         PmXoOuUbnhoWQwf096hSJwXKlxmIhiFuTtFIPL6mZtBEPQU5AlULfW9qfTLDjjuRbvQd
+         eU9A==
+X-Gm-Message-State: ACgBeo0DkaWcHkjVVwxNVauNtLCcbI3BFxNewl+navC0wczewJTYpTn1
+        jUwh7lD+oNV823DdaTY/zg==
+X-Google-Smtp-Source: AA6agR5MZxVPb+jJCNa0zyEESImmngxm4labBAs2ed6ZpK10/DXIEoUu4T82Z3m8x1of5HNcL4DzTA==
+X-Received: by 2002:a9d:7c89:0:b0:655:dfb1:331c with SMTP id q9-20020a9d7c89000000b00655dfb1331cmr7872731otn.224.1663243196172;
+        Thu, 15 Sep 2022 04:59:56 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bm52-20020a0568081ab400b00339befdfad0sm7567647oib.50.2022.09.15.04.59.03
+        by smtp.gmail.com with ESMTPSA id cd15-20020a056830620f00b00638c25074afsm8406773otb.34.2022.09.15.04.59.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 04:59:04 -0700 (PDT)
-Received: (nullmailer pid 986126 invoked by uid 1000);
-        Thu, 15 Sep 2022 11:59:03 -0000
-Date:   Thu, 15 Sep 2022 06:59:03 -0500
+        Thu, 15 Sep 2022 04:59:55 -0700 (PDT)
+Received: (nullmailer pid 987712 invoked by uid 1000);
+        Thu, 15 Sep 2022 11:59:55 -0000
+Date:   Thu, 15 Sep 2022 06:59:55 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     cy_huang <u0084500@gmail.com>, sre@kernel.org,
-        alina_yu@richtek.com, alinayu829@gmail.com,
-        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        cy_huang@richtek.com, mazziesaccount@gmail.com
-Subject: Re: [PATCH v5 1/3] dt-bindings: power: supply: Add Richtek RT9471
- battery charger
-Message-ID: <20220915115903.GA984598-robh@kernel.org>
-References: <1663173015-7934-1-git-send-email-u0084500@gmail.com>
- <1663173015-7934-2-git-send-email-u0084500@gmail.com>
- <20220915095121.lh5c5gbn53qedtgw@krzk-bin>
+Cc:     Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: spmi: Add qcom,bus-id
+Message-ID: <20220915115955.GA986622-robh@kernel.org>
+References: <20220914165212.3705892-1-vkoul@kernel.org>
+ <20220914165212.3705892-2-vkoul@kernel.org>
+ <20220915095103.7qys3ixd6yyngkzs@krzk-bin>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220915095121.lh5c5gbn53qedtgw@krzk-bin>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220915095103.7qys3ixd6yyngkzs@krzk-bin>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 15, 2022 at 10:51:21AM +0100, Krzysztof Kozlowski wrote:
-> On Thu, 15 Sep 2022 00:30:13 +0800, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
+On Thu, Sep 15, 2022 at 10:51:03AM +0100, Krzysztof Kozlowski wrote:
+> On Wed, 14 Sep 2022 22:22:11 +0530, Vinod Koul wrote:
+> > For PMIC arbiter version 7 and beyond we need to define if we are using
+> > primary or secondary bus, so add a new property of qcom,bus-id
 > > 
-> > Add bindings for the Richtek RT9471 I2C controlled battery charger.
-> > 
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Co-developed-by: Alina Yu <alina_yu@richtek.com>
-> > Signed-off-by: Alina Yu <alina_yu@richtek.com>
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > Acked-by: Rob Herring <robh@kernel.org>
 > > ---
-> > Since v3
-> > - Move unevaluatedProperties line after $ref for binding patch.
-> > - Add Reviewed-by tag for binding patch.
-> > 
-> > Since v2
-> > - Remove the properties for interrupt controller things in the binding documentation.
-> > - Fix dtc error for typo, it's 'regulator-name', not 'regulator-compatible'.
-> > - Add regulator min/max microamp to allow otg vbus current adjustable in example.
-> > - Specify the active-level for charge-enable-gpios in binding example.
-> > 
-> > ---
-> >  .../bindings/power/supply/richtek,rt9471.yaml      | 73 ++++++++++++++++++++++
-> >  1 file changed, 73 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9471.yaml
+> >  .../devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml   | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
 > > 
 > 
 > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -99,17 +83,18 @@ On Thu, Sep 15, 2022 at 10:51:21AM +0100, Krzysztof Kozlowski wrote:
 > yamllint warnings/errors:
 > 
 > dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.example.dtb: dma-router@a0: dma-masters:0: [4294967295, 4294967295] is too long
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.example.dtb: dma-router@a0: dma-masters:0: [4294967295, 4294967295] is too long
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/dma-router.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: dma-masters:0: [4294967295, 4294967295] is too long
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/dma-router.yaml
 > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: dma-masters:0: [4294967295, 4294967295] is too long
 > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.yaml
 > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: Unevaluated properties are not allowed ('dma-channels', 'dma-masters', 'dma-requests' were unexpected)
 > 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/st,stm32-dmamux.example.dtb: dma-router@40020800: dma-masters:0: [4294967295, 4294967295] is too long
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/dma-router.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.example.dtb: dma-router@a0: dma-masters:0: [4294967295, 4294967295] is too long
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/dma-router.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.example.dtb: dma-router@a0: dma-masters:0: [4294967295, 4294967295] is too long
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.yaml
 
 Ignore this. Unrelated.
 
 Rob
+
