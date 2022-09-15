@@ -2,125 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B5E95B9321
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 05:36:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDF295B9327
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 05:37:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230001AbiIODg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Sep 2022 23:36:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52400 "EHLO
+        id S229779AbiIODhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Sep 2022 23:37:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbiIODg3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 23:36:29 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7E4A92F71;
-        Wed, 14 Sep 2022 20:36:21 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id g23so8138675qtu.2;
-        Wed, 14 Sep 2022 20:36:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=uJffsqDRUOivPZiC/tl2/T1Mr1z4G0FCt64C8blLYZ4=;
-        b=VeguLffCxfpspTiwdtq9UYKbMufW723noBqlOXGYv9kyyzX90xkv2vzm2I2PEPmJJO
-         boAIMekRhBXHBG5vAF/QLtA3W9Gp+22wTwqels+K66SvO1fO9YieGqy6CVxr4Fk7F4BS
-         KUTeULswMGfGvshWz45/zc8Jep/TmSo97GyH7V948bwu4qDtkN+ZeXR6U8urNPdbxjUm
-         NbnwEFcxITV8IL1wfCvKNK4GRkZIq5quF3ntXhlP4AwfwWuZ4/6wejY4RmLfL2G1YoKZ
-         rHKCYKu4YydlyPA348LQYnDMLm9Hjo4u//s0ftLmErPMSbCdVE8mY8bsou+HyL8nY4Rr
-         +xWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=uJffsqDRUOivPZiC/tl2/T1Mr1z4G0FCt64C8blLYZ4=;
-        b=n0Yl+GBWlD4iJQMP4eKFSzq3WBqpsrRA5AHfPWVdNdn+h76Ip+AKDJMLcws9hKhjID
-         waWlFEAG6p9xZ4zx1PHtjZYxX+6vDrPZJPlhY2wyRkltOQb9vs0a4TXLSBjdCk50piJT
-         emDKWxr7+AqWoJjn2bsFyxlSSBreSiM+6qkABvqJ1euHUAoe9AY9xcNJVhZhPoWC/GWZ
-         SGGPA0xEdqA4I3BlnYctltuJkN2eedBFeziHQSZiTFcNwXjsS6Ulks/wAdMow4EcLM9I
-         bbW2UXkubVjoA7zMAFGNuyXn9HKjbiESsG5ajG/Ne6xy/y6ifJ4lqUCruBGQdUyG6A+P
-         3O6w==
-X-Gm-Message-State: ACgBeo3oarBA3iRDS1S4Ss42oBFvZ+ZPrCyfnXVPqYBAw78OV/fA4TaZ
-        TtCEOvJkvhG4uG4pm6isvD1AKBXo9KK/q7e8OV4=
-X-Google-Smtp-Source: AA6agR4c8u6CA4VfIRaIl+yIQVBvxQDaeXAQN44DFOYuEyXUnfD+E++zb5w5jiIL9rOauuVd+M9PPulwORz+2O5YzXE=
-X-Received: by 2002:a05:622a:164e:b0:35b:a852:52ca with SMTP id
- y14-20020a05622a164e00b0035ba85252camr21445333qtj.2.1663212980577; Wed, 14
- Sep 2022 20:36:20 -0700 (PDT)
+        with ESMTP id S229553AbiIODhI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Sep 2022 23:37:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52EF48FD5E;
+        Wed, 14 Sep 2022 20:37:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E298F6207C;
+        Thu, 15 Sep 2022 03:37:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AE29C433C1;
+        Thu, 15 Sep 2022 03:37:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663213026;
+        bh=NA4vUx3CdUJJXA0CDhqCgLfROQzZlzUG1H7jgLMiY2E=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=uWTGkVvLAb0zEwelr8UxbaNTClJ1DG1AiBeTB2vZmE9tkjDdgZTxdGtB9UJO4pseC
+         I0A1YFHXfb+x3cV/mfAKIG4QiPbo61JinlXlKwXbVQ7WbEh7Wjx8/a1zD9hc5IqcEn
+         bXQXeqaClH5FC6btlu/3d3iXdW/9wMsFUPxMiLSzk7hwPjve8ApcdR7soUShzHNvS+
+         a7MfMz9P7HUG8c9KeawDRf0dmYRKxN2rdJLN1YSkPqZOLAKaSvjLRF+3xNOGEAmOX3
+         M4H/FRuJmzvm3SWvBvIRmEBtxcu1rWDtqwSi2ousscj65dooHF45e5pvRLM7SqgzcK
+         1rvB3utn3RNrQ==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     agross@kernel.org, konrad.dybcio@somainline.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [PATCH 1/2] ARM: dts: qcom: ipq8064: reorganize node order and sort them
+Date:   Wed, 14 Sep 2022 22:36:49 -0500
+Message-Id: <166321302061.788007.18183689542662464163.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220718153815.29414-1-ansuelsmth@gmail.com>
+References: <20220718153815.29414-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-References: <20220311060936.10663-1-JJLIU0@nuvoton.com> <20220311060936.10663-2-JJLIU0@nuvoton.com>
- <3f77c8c8-4bba-007b-fae9-5fb47f44719c@canonical.com>
-In-Reply-To: <3f77c8c8-4bba-007b-fae9-5fb47f44719c@canonical.com>
-From:   Jim Liu <jim.t90615@gmail.com>
-Date:   Thu, 15 Sep 2022 11:36:09 +0800
-Message-ID: <CAKUZ0+HLAxLw8Tio1HZt8TkYag_UGuDktjNbORwPzfRRrEJ0jQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] dts: add Nuvoton sgpio feature
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     JJLIU0@nuvoton.com, KWLIU@nuvoton.com, linus.walleij@linaro.org,
-        brgl@bgdev.pl, robh+dt@kernel.org, avifishman70@gmail.com,
-        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, CTCCHIEN@nuvoton.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof Kozlowski
+On Mon, 18 Jul 2022 17:38:14 +0200, Christian Marangi wrote:
+> Reorganize node order and sort them by address.
+> 
+> 
 
-Thanks for your review.
-I am modifying this driver now, and i have some questions.
+Applied, thanks!
 
-what's mean "Generic node name." ?
-Nuvoton NPCM750 SGPIO module is base on serial to parallel IC (HC595)
-and parallel to serial IC (HC165).
-and dts node name is followed aspeed dts node name.
-
-Could you give more information??
+[1/2] ARM: dts: qcom: ipq8064: reorganize node order and sort them
+      commit: ee1e278a84e7578e4aa20820852b7f73b4929c63
+[2/2] ARM: dts: qcom: ipq8064: pad addresses to 8 digit
+      commit: cc02fed341d5f5ea1af531ced213c41a836a3678
 
 Best regards,
-Jim
-
-On Fri, Mar 11, 2022 at 5:18 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 11/03/2022 07:09, jimliu2 wrote:
-> > add Nuvoton sgpio feature
-> >
-> > Signed-off-by: jimliu2 <JJLIU0@nuvoton.com>
-> > ---
-> >  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 30 +++++++++++++++++++
-> >  1 file changed, 30 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> > index 3696980a3da1..58f4b463c745 100644
-> > --- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> > +++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> > @@ -329,6 +329,36 @@
-> >                               status = "disabled";
-> >                       };
-> >
-> > +                     sgpio1: sgpio@101000 {
->
-> Generic node name.
->
-> > +                             clocks = <&clk NPCM7XX_CLK_APB3>;
-> > +                             compatible = "nuvoton,npcm750-sgpio";
-> > +                             interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> > +                             gpio-controller;
-> > +                             #gpio-cells = <2>;
-> > +                             pinctrl-names = "default";
-> > +                             pinctrl-0 = <&iox1_pins>;
-> > +                             bus-frequency = <16000000>;
-> > +                             nin_gpios = <64>;
-> > +                             nout_gpios = <64>;
-> > +                             reg = <0x101000 0x200>;
->
-> In each node first goes compatible, then reg.
->
-> Best regards,
-> Krzysztof
+-- 
+Bjorn Andersson <andersson@kernel.org>
