@@ -2,101 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4734F5B9EB3
-	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:25:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35E505B9EB7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Sep 2022 17:26:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbiIOPZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 11:25:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57308 "EHLO
+        id S230024AbiIOP0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 11:26:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbiIOPZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:25:50 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A69F545987
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:25:48 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id n10so826704wrw.12
-        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:25:48 -0700 (PDT)
+        with ESMTP id S229906AbiIOP0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 11:26:34 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA0FB45F6B
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:32 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id w8so30928709lft.12
+        for <devicetree@vger.kernel.org>; Thu, 15 Sep 2022 08:26:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=BHcfoRSqhikD1hOYg44uSOWlY3aFvjAHe7q8Qax5QmY=;
-        b=QtgpMJ5u5NKyPnVF5sV8RMe62k5Pq1GkPk+H7kZxWT2atc1Zns1MUPWnp8WWEEAUXN
-         2f+2bevcxW+hU2Zs1ZJ2Pn6G6DkC6HfXsJmkFIYeEQsiMfPaPMTfM1WBCzkT5Ebcrv6O
-         G7pSJhoK0ymrDBryJIIvmR0SS9k8XgHB6vYFxlNmRzZoyKUvclDPnlfs4V0OWcaf8Zgz
-         L1PMFH2hnOVB1E/DrkSu8jlhVDAYSXtZXk1fYbFe1yx0+BQfv7epwdHQO53c/gku3R96
-         4dJgBHea6ALP8/wLjGgQPEvmbXEpcMM81Bh4nVWjyIk9tMm+Vp6pOl8U74N2skEreA85
-         nkAA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=NTZcUovtCDdljr2spczeaDTN8WbbFr8UHBMo+ZAGqqg=;
+        b=d4hpKrpWtDHuutgapuiTV80C58Cy5UNEW9bp7HnE0S7S9P7RgFPxhzZJgAv2M7V/ji
+         KeBLe6gvQJV7ORg8JXsqlZKbcU2EsfqllaTx4senjldIhp7NW9Cz0ku2yKN1SonEdzwS
+         JMvcfBXMbvDHvGSe4RYjdYkg9SByF88ZlsYMXarHsFHwee3CJr/oBlow4V3iAH149Gz/
+         W0OG6HsdhsXFjkR9XpPqho4q30IyaX8dVLJoMJy6tOhKpwfp4jDGcxC7oToVFyGfK6Ml
+         Y7AwMd015W9agI8zFJrC3CHPYMCVrbX1pnfpSXDqu5F5QAom1wZpd4trQrPXHKiPAAeu
+         hMIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=BHcfoRSqhikD1hOYg44uSOWlY3aFvjAHe7q8Qax5QmY=;
-        b=h49j5FiC49YQ+/zHGFdoiBrYqvVwgxTlj8cwWLY5lx1ReBcDAyCx6t/J5TSHb+jrwc
-         PoPqmLIzZN1z80xVyRyyEWKiOmQu47IVuR6Nqx57vP2Y3UKwIcFKHy0QwF607bewHHuu
-         RCKLuZ0LB6lecbsblGGGBNR84vUXvi8+G9PeWomC5kRtyYjqLMWRGm+p9u1GdHblIxGb
-         7TczZvQPgj5OuwXm2id8O/WlDvL4iOonhf8SnP86WbDi66Ksl+KR7jRf7GHyXqScqWsE
-         g6W/6XJV6sdhfg3NRSGx0QOQtxz65BTtWk+cOsVkXfoxGQtvvRrqYY1xJ5hitv/I0qv/
-         ObTg==
-X-Gm-Message-State: ACrzQf0V7DsHVeeKXek32UXJkAfnzUNakCe1BoUzg0MQv4iDlqHPXQ1G
-        tpBm0WILXM9o7oYk4LshzG5rBw==
-X-Google-Smtp-Source: AMsMyM6jbHiu69sUiE2afsrEB9VDk+2EF3IxK7ozsl+xHorAt3Mj1j34+HcOi0Wy/USm0LikBipx9g==
-X-Received: by 2002:a05:6000:178c:b0:222:f8ec:9977 with SMTP id e12-20020a056000178c00b00222f8ec9977mr111630wrg.509.1663255547251;
-        Thu, 15 Sep 2022 08:25:47 -0700 (PDT)
-Received: from [10.119.22.201] ([89.101.193.72])
-        by smtp.gmail.com with ESMTPSA id c11-20020a05600c0a4b00b003b47e8a5d22sm3834952wmq.23.2022.09.15.08.25.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Sep 2022 08:25:46 -0700 (PDT)
-Message-ID: <bb932677-d7b5-a39f-ebb9-4a64812591a1@linaro.org>
-Date:   Thu, 15 Sep 2022 16:25:45 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=NTZcUovtCDdljr2spczeaDTN8WbbFr8UHBMo+ZAGqqg=;
+        b=Kfok3+zWWSBpRAIrkPJMfI9r2kpjLYpG+wWEQwJhEVakeTCYywpD5AWgTbAdMVolK1
+         zS8V/5nP7w0/dYeg5ULPyvYrTpchtzocuAgVpOD+8bQ/WUaRU+gHxGP4pgawbNkkgd6W
+         oyNL4O+QWO7hsPGJtovapz5UveB/W8pDUMgsJINcoTzakN6ztDr4FFfmjcgRGpWuSM+R
+         90S0eVltXJy9+gNir0ihUMZCjh2w0F9WoxYs3WIxvEq8DfOkia1LxGqk8dSC6/qUkNY0
+         GDRjVaYkQb8/SvX+NqJCZoqxZwtoLBooi+iW1ktzYU/41fnJp7j/+mJjJUbXUnTUCe0q
+         SPaQ==
+X-Gm-Message-State: ACrzQf0SZTY0DwHa44PNERPs5XAhALyvWOQPywH4TC02ms3hIvkDCF3Y
+        TwpJjUk6iFOm+HZ2SGrqLvt/Iw==
+X-Google-Smtp-Source: AMsMyM4lL1NH8uHnyDasRY+3Sw4cO0S7APiEvlWdmoBJ3nR4V1iGjC2sNIl5sWxi87aw9BDlDKc/0g==
+X-Received: by 2002:a05:6512:2592:b0:49c:53de:7eb8 with SMTP id bf18-20020a056512259200b0049c53de7eb8mr131009lfb.401.1663255591259;
+        Thu, 15 Sep 2022 08:26:31 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id a18-20020a056512201200b00494813c689dsm3012653lfb.219.2022.09.15.08.26.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Sep 2022 08:26:30 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [RFC PATCH 0/7] arm64: qcom: dts: correct firmware paths
+Date:   Thu, 15 Sep 2022 18:26:23 +0300
+Message-Id: <20220915152630.133528-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2] dt-bindings: mfd: mt6370: fix the indentation in the
- example
-Content-Language: en-US
-To:     ChiYuan Huang <u0084500@gmail.com>, Rob Herring <robh@kernel.org>
-Cc:     matthias.bgg@gmail.com, devicetree@vger.kernel.org,
-        cy_huang@richtek.com, linux-mediatek@lists.infradead.org,
-        alice_chen@richtek.com, robh+dt@kernel.org, lee@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, chiaen_wu@richtek.com
-References: <1663157936-5010-1-git-send-email-u0084500@gmail.com>
- <20220915134353.GA1168381-robh@kernel.org>
- <CADiBU3_6dXf1TUv9f7HbFfrqsfMUmT1Ejve6+O6OGnmTtxzpEQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CADiBU3_6dXf1TUv9f7HbFfrqsfMUmT1Ejve6+O6OGnmTtxzpEQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2022 14:56, ChiYuan Huang wrote:
->>
->> Please add Acked-by/Reviewed-by tags when posting new versions. However,
->> there's no need to repost patches *only* to add the tags. The upstream
->> maintainer will do that for acks received on the version they apply.
->>
->> If a tag was not added on purpose, please state why and what changed.
->>
-> I'm not sure about the rule.
-> AngeloGioacchino said I need to add the 'Fixes' tag.
-> I think it might be important.
-> And I immediately submit the v2 patch and add the 'fixes' tag.
-> So patch v3 and add 'Acked-by' tag?
+This patchset corrects firmware paths for several Qualcomm-based devices
+to include the SoC name. This is sent as an RFC to settle on the
+firmware paths for Sony devices.
 
-https://lore.kernel.org/all/20220914150620.GA2221443-robh@kernel.org/
+Dmitry Baryshkov (7):
+  arm64: qcom: dts: c630: correct firmware paths
+  arm64: qcom: dts: w737: correct firmware paths
+  arm64: qcom: dts: miix-630: correct firmware paths
+  arm64: qcom: dts: ifc6560: correct firmware paths
+  arm64: qcom: dts: sagami: correct firmware paths
+  arm64: qcom: dts: pdx223: correct firmware paths
+  arm64: qcom: dts: nile: correct firmware paths
 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+ arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts   |  4 ++--
+ arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts    |  2 +-
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi  |  2 +-
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts   |  8 ++++----
+ arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts       | 10 +++++-----
+ .../arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi | 10 +++++-----
+ .../boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dts |  6 +++---
+ 7 files changed, 21 insertions(+), 21 deletions(-)
 
+-- 
+2.35.1
 
-Best regards,
-Krzysztof
