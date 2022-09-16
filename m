@@ -2,109 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFE955BB03B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 17:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69DDD5BB041
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 17:32:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbiIPPbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 11:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46662 "EHLO
+        id S230076AbiIPPcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 11:32:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiIPPbO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 11:31:14 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D63390839;
-        Fri, 16 Sep 2022 08:31:12 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1oZDJ7-00Gir7-07; Fri, 16 Sep 2022 15:31:09 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v2] ARM: dts: imx6qdl-gw54xx: add CAN regulator
-Date:   Fri, 16 Sep 2022 08:31:07 -0700
-Message-Id: <20220916153107.1802079-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229505AbiIPPcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 11:32:33 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2317915C3;
+        Fri, 16 Sep 2022 08:32:32 -0700 (PDT)
+Received: from localhost.localdomain (unknown [186.189.224.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: adalessandro)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8AB8B6601FAA;
+        Fri, 16 Sep 2022 16:32:25 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663342350;
+        bh=SDfL43uN7TS0CIFsjEl56ILa0pLZzGPF0gpzroZOqo4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dnioMijY8E0B3dPuLCOzUrpMDx9NKdoQemIUis94V24SH6whLLgLCmGJEiOe3b9gg
+         p7jgGdjUHDiYORI7STU8m9Y++hQTCp1rAzzpftGE0k4xmCu85pCANlKyIF/e1890Bs
+         P4FHFzwvqgaERnsfTZH2bQ0+BktwVqd620FQsEVsSeQYgddbSA7kPR2CslUPYf79ot
+         9cca6llq0kZd/GdsfVymoyq4wxASSBxZ2uAU678Bg6Zr6q7oFHYBi0kymCA0lDmM+S
+         M78yDTZRj64skUcYI6YD5lRaLptzsVtR7LfEDo6R7tDgqR8Npg5+pHvNmVGDvOa4Ry
+         jbskuXoZ04ClQ==
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+To:     bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org
+Cc:     ariel.dalessandro@collabora.com, arnd@arndb.de,
+        f.fainelli@gmail.com, krzyszccf.kozlowski+dt@linaro.org,
+        nsaenz@kernel.org, olof@lixom.net, robh+dt@kernel.org,
+        soc@kernel.org, stefan.wahren@i2se.com, william.zhang@broadcom.com
+Subject: [PATCH] ARM: dts: Add Raspberry Pi Compute Module 4 CANOPi Board
+Date:   Fri, 16 Sep 2022 12:31:56 -0300
+Message-Id: <20220916153156.30412-1-ariel.dalessandro@collabora.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GW54xx has a transceiver with a STBY pin connected to an IMX6 GPIO.
-Configure this as a regulator to drive it low when CAN is in use.
+The Eclipse KUKSA CANOPi [0] is a baseboard for the Raspberry Compute
+Module 4 (CM4). It contains a VIA VL805 4 Port USB controller and two
+MCP251xFD based CAN-FD interfaces.
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v2:
-- move compatible to start of child node
-- fix typo in commit log
----
- arch/arm/boot/dts/imx6qdl-gw54xx.dtsi | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+[0] https://github.com/boschresearch/kuksa.hardware
 
-diff --git a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-index cda48bf2f168..a9b04f9f1c2b 100644
---- a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-@@ -137,6 +137,16 @@ reg_3p3v: regulator@1 {
- 			regulator-always-on;
- 		};
- 
-+		reg_can1_stby: regulator-can1-stby {
-+			compatible = "regulator-fixed";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pinctrl_reg_can1>;
-+			regulator-name = "can1_stby";
-+			gpio = <&gpio1 2 GPIO_ACTIVE_LOW>;
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
+Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+---
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts  | 139 ++++++++++++++++++
+ arch/arm64/boot/dts/broadcom/Makefile         |   1 +
+ .../dts/broadcom/bcm2711-rpi-cm4-canopi.dts   |   2 +
+ 4 files changed, 143 insertions(+)
+ create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
+
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 05d8aef6e5d2..8930ab2c132c 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -98,6 +98,7 @@ dtb-$(CONFIG_ARCH_BCM2835) += \
+ 	bcm2837-rpi-zero-2-w.dtb \
+ 	bcm2711-rpi-400.dtb \
+ 	bcm2711-rpi-4-b.dtb \
++	bcm2711-rpi-cm4-canopi.dtb \
+ 	bcm2711-rpi-cm4-io.dtb \
+ 	bcm2835-rpi-zero.dtb \
+ 	bcm2835-rpi-zero-w.dtb
+diff --git a/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts b/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
+new file mode 100644
+index 000000000000..52ec5908883c
+--- /dev/null
++++ b/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
+@@ -0,0 +1,139 @@
++// SPDX-License-Identifier: GPL-2.0
++/dts-v1/;
++#include "bcm2711-rpi-cm4.dtsi"
 +
- 		reg_usb_h1_vbus: regulator@2 {
- 			compatible = "regulator-fixed";
- 			reg = <2>;
-@@ -200,6 +210,7 @@ IMX_AUDMUX_V2_PTCR_SYN
- &can1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexcan1>;
-+	xceiver-supply = <&reg_can1_stby>;
- 	status = "okay";
- };
- 
-@@ -687,7 +698,6 @@ pinctrl_flexcan1: flexcan1grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_KEY_ROW2__FLEXCAN1_RX	0x1b0b1
- 			MX6QDL_PAD_KEY_COL2__FLEXCAN1_TX	0x1b0b1
--			MX6QDL_PAD_GPIO_2__GPIO1_IO02		0x4001b0b0 /* CAN_STBY */
- 		>;
- 	};
- 
-@@ -786,6 +796,12 @@ MX6QDL_PAD_SD4_DAT2__PWM4_OUT		0x1b0b1
- 		>;
- 	};
- 
-+	pinctrl_reg_can1: regcan1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_2__GPIO1_IO02		0x4001b0b0 /* CAN_STBY */
-+		>;
++/ {
++	model = "Raspberry Pi Compute Module 4 CANOPi Board";
++
++	clocks {
++		clk_mcp251xfd_osc: mcp251xfd-osc {
++			#clock-cells = <0>;
++			compatible = "fixed-clock";
++			clock-frequency = <20000000>;
++		};
 +	};
 +
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD3_DAT7__UART1_TX_DATA	0x1b0b1
++	leds {
++		led-act {
++			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-pwr {
++			label = "PWR";
++			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
++			default-state = "keep";
++			linux,default-trigger = "default-on";
++		};
++	};
++};
++
++&ddc0 {
++	status = "okay";
++};
++
++&ddc1 {
++	status = "okay";
++};
++
++&hdmi0 {
++	status = "okay";
++};
++
++&hdmi1 {
++	status = "okay";
++};
++
++&i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0_gpio44>;
++	status = "okay";
++	clock-frequency = <100000>;
++
++	pcf85063a@51 {
++		compatible = "nxp,pcf85063a";
++		reg = <0x51>;
++	};
++};
++
++&pcie0 {
++	pci@0,0 {
++		device_type = "pci";
++		#address-cells = <3>;
++		#size-cells = <2>;
++		ranges;
++
++		reg = <0 0 0 0 0>;
++
++		usb@0,0 {
++			reg = <0 0 0 0 0>;
++			resets = <&reset RASPBERRYPI_FIRMWARE_RESET_ID_USB>;
++		};
++	};
++};
++
++&pixelvalve0 {
++	status = "okay";
++};
++
++&pixelvalve1 {
++	status = "okay";
++};
++
++&pixelvalve2 {
++	status = "okay";
++};
++
++&pixelvalve4 {
++	status = "okay";
++};
++
++&spi {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_gpio7>;
++	cs-gpios = <&gpio 8 1>, <&gpio 7 1>;
++	dmas = <&dma 6>, <&dma 7>;
++	dma-names = "tx", "rx";
++
++	mcp251xfd0: mcp251xfd@0 {
++		compatible = "microchip,mcp251xfd";
++		reg = <0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&mcp251xfd0_pins>;
++		spi-max-frequency = <20000000>;
++		interrupt-parent = <&gpio>;
++		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
++		clocks = <&clk_mcp251xfd_osc>;
++	};
++
++	mcp251xfd1: mcp251xfd@1 {
++		compatible = "microchip,mcp251xfd";
++		reg = <1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&mcp251xfd1_pins>;
++		spi-max-frequency = <20000000>;
++		interrupt-parent = <&gpio>;
++		interrupts = <22 IRQ_TYPE_LEVEL_LOW>;
++		clocks = <&clk_mcp251xfd_osc>;
++	};
++};
++
++&gpio {
++	mcp251xfd0_pins: mcp251xfd0_pins {
++		brcm,pins = <27>;
++		brcm,function = <BCM2835_FSEL_GPIO_IN>;
++	};
++
++	mcp251xfd1_pins: mcp251xfd1_pins {
++		brcm,pins = <22>;
++		brcm,function = <BCM2835_FSEL_GPIO_IN>;
++	};
++};
++
++&vc4 {
++	status = "okay";
++};
++
++&vec {
++	status = "disabled";
++};
+diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
+index e8584d3b698f..7cd88b8c0345 100644
+--- a/arch/arm64/boot/dts/broadcom/Makefile
++++ b/arch/arm64/boot/dts/broadcom/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
+ 			      bcm2711-rpi-4-b.dtb \
++			      bcm2711-rpi-cm4-canopi.dtb \
+ 			      bcm2711-rpi-cm4-io.dtb \
+ 			      bcm2837-rpi-3-a-plus.dtb \
+ 			      bcm2837-rpi-3-b.dtb \
+diff --git a/arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts b/arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
+new file mode 100644
+index 000000000000..e9369aa0eb39
+--- /dev/null
++++ b/arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
+@@ -0,0 +1,2 @@
++// SPDX-License-Identifier: GPL-2.0
++#include "arm/bcm2711-rpi-cm4-canopi.dts"
 -- 
-2.25.1
+2.37.2
 
