@@ -2,178 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57E1D5BAB53
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 12:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA7AB5BAB87
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 12:45:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232069AbiIPKci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 06:32:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40174 "EHLO
+        id S231752AbiIPKpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 06:45:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232100AbiIPKcE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 06:32:04 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70072.outbound.protection.outlook.com [40.107.7.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C22EAFAD6;
-        Fri, 16 Sep 2022 03:19:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OagK+bqEA6wu/tcKjayI2HjF6kfUsQm33OxaA5XJJ5fkSY5GbbyoctIbGxY3JnPDa9uRYf766Fzb3ZqcHvnb/F4Ax1783LqRooRXRpBSRBz5AMtLv/tjQ4tSTF4xoTvr5V1nOx0T9o24LV6tUo9cLr/BvMt6RdbEoIHk8BMBaqCu8LifrH8rJsNPt+mom0XZCZ/tQjwrZv2L9mUxwG6P/koghr6bpaJxtnDp4X5eFyyMn3tDAmxwKEELe2unDxvrlftEGFsUf4Q5FuY+0ov76Sul+UPcNqKs0alMBerZ7TDBeqRAQ0U88AXuDeiCLRK+fEPu7SpSovWqfZW2SBpPrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D+VqnzUl5Z7hfweJG11an1Y83cEXeGWUbndlGwEHYlI=;
- b=Pt23YU+xrZ86TLicU4I6EfktE0mu+rvDfFPQZu0rCkQA+K1GJFfm2cPPDWzsBqEouMgYA85XHl6CdNbjKL29wEAR0G78ozdBhr9R1AVSCctqUHelVvsAvSvSE+Rvl/E7f8OeDn7xxVpRGL+nJJGAzW4UUrHdBJ8dQTSPTssDY3+ohCxzh/rQQA2Avw1mO9hLk8s+IvvidCtJxi9RQqklJQV1lQ2Oebhu6jPdX8DpjgtkpcpWCx8T1kZOcC/h7fzByyMazErm+lqU3U3htHpjqCwAQKU/ya/vPfjRDjVwNb4nB1zHFqOc4Hu+tIUCkMf3d4JyZvaxSBfQnsTpdd1Qlw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D+VqnzUl5Z7hfweJG11an1Y83cEXeGWUbndlGwEHYlI=;
- b=cbYDTcaW5Zlpu/f/MX3ZdMAbELBgMEykGkeGq38D+cf1qq8Sy7OnW9e4x2hO3JoFk3598+/fWvy3A9S7fUQJrg/0JGGH0H6YnoRnjj0AzD5K1f9AS+L4m0/ts1W2l9COitY5QLBA9yzakfR1ooMfgbABAc3y+UAM3Vt7eGaQTYw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR04MB5005.eurprd04.prod.outlook.com (2603:10a6:803:57::30)
- by AS8PR04MB8833.eurprd04.prod.outlook.com (2603:10a6:20b:42c::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.15; Fri, 16 Sep
- 2022 10:17:54 +0000
-Received: from VI1PR04MB5005.eurprd04.prod.outlook.com
- ([fe80::9466:d44b:804:72ef]) by VI1PR04MB5005.eurprd04.prod.outlook.com
- ([fe80::9466:d44b:804:72ef%5]) with mapi id 15.20.5632.016; Fri, 16 Sep 2022
- 10:17:54 +0000
-Date:   Fri, 16 Sep 2022 13:17:38 +0300
-From:   Viorel Suman <viorel.suman@oss.nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Abel Vesa <abelvesa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        with ESMTP id S231377AbiIPKo3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 06:44:29 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCEEEAE9CE;
+        Fri, 16 Sep 2022 03:25:10 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id e131so1183339yba.7;
+        Fri, 16 Sep 2022 03:25:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=GiIfw1dxibIqjmHKxoLe0gdkj3kFgIi+iMb1sHlKIyE=;
+        b=YFDCh0XobXY1owjyvGCQYgvG6NuqdzTk1ecS+/18WVvqqmDIM+5su4KWEKCe7uB3+r
+         Gfkb5EVKa9gIfut4n2/7v5A481pLC9hl7mfjn8cyYZO+9X6cxTKNzUk2ol8rG+DgoBca
+         EH4dTyD44qE4MVGZlimy332ilMVLeIhP2aZfkCh+4aE9XbQ7mwTU0rI/DXzfY15Mf1p8
+         uytp15Fe2Nij3h7woGeCdYrzxZ17YBEC4nt6jrpqbI8fy1PgAAHDgebpRNT5jA/3SHK1
+         zV0NelATY/cz1njuhyMVbX+eA+yzudt6ctbJnyUtSandPaPRQ27DFW6fncmRD+2Axirm
+         ynLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=GiIfw1dxibIqjmHKxoLe0gdkj3kFgIi+iMb1sHlKIyE=;
+        b=bwygVrgNx8xWWFRzZ6lJiQYsLANeRj7Fbbsf7XlIT3SZGbaeQQwFL0begFI3U62TNT
+         5OVe+Sr4SnGXvis78PXxV4CzqzIg14fGwG2g2NswDtQVTyepc2OfIG1t6FDntcGOFPBA
+         RW/UaNLD/CVq6LvE+3I+dBP2OnWwqfY9hahmBRUwtqhbpJLJOw/gh9CCfeBwDCjkQtA3
+         2AUpxq53BEstGDHdvmzjT4p8bpj5sarhTOxp+dU+NNgQLo/UGfOKu706zZy/QNsCnj2S
+         AhcA9/SNI/wEybUAH3g2kHNYDqZrr/4ps2dpTtVf5u/KoZ3UfXwrk6i7D5iddFLO9HCf
+         Zxdg==
+X-Gm-Message-State: ACrzQf0EhAIImeBQmmnWoxchlKuCKlHBFoCjyq+3FwlOhBhPA/OVOHs4
+        P+uAohQ6aGHIgiBUL2GBLomlzW9wo8XP5o1uTdc=
+X-Google-Smtp-Source: AMsMyM4Wv12sOXw1JibT4UDIF9iFQLRDHgdZt1xzBtXwSBe6jqHIlRJqa6y/OkUzGJh8OumyiiXb3VBK2ELbIVIOgQc=
+X-Received: by 2002:a25:8b8c:0:b0:67b:5c18:870 with SMTP id
+ j12-20020a258b8c000000b0067b5c180870mr3663306ybl.244.1663323900308; Fri, 16
+ Sep 2022 03:25:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220914214132.GA2173@tom-ThinkPad-T14s-Gen-2i>
+In-Reply-To: <20220914214132.GA2173@tom-ThinkPad-T14s-Gen-2i>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 16 Sep 2022 11:24:33 +0100
+Message-ID: <CA+V-a8ufbsiz3p2n3LmYxES2aJYN9y8byF9bSyckNFz=fB-5LQ@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: ov5645: Convert OV5645 binding to a schema
+To:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viorel Suman <viorel.suman@nxp.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: firmware: imx: sync with SCFW kit
- v1.13.0
-Message-ID: <20220916101738.xn7xx7ipf7p5dbok@fsr-ub1664-116>
-References: <20220915181805.424670-1-viorel.suman@oss.nxp.com>
- <20220915181805.424670-2-viorel.suman@oss.nxp.com>
- <42e78db0-74f9-3098-0cf2-908092a0b594@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <42e78db0-74f9-3098-0cf2-908092a0b594@linaro.org>
-X-ClientProxiedBy: AM0PR10CA0048.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:150::28) To VI1PR04MB5005.eurprd04.prod.outlook.com
- (2603:10a6:803:57::30)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5005:EE_|AS8PR04MB8833:EE_
-X-MS-Office365-Filtering-Correlation-Id: c67bd8a9-f200-4756-9719-08da97ccb80a
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yoXEJK/OiqfM5XwO5pkPKZUEmICqwvGXSYhzrjhF/pS3G05uB+o0TtyDXN9jm9asm8SGzP7kkSADO/CTgXJa4Ik1/iIl0/CHVATQNkdE4Qas91kIitzVI8sNEpsNE81lC1laMTRs/nBikaL1BhmU/wF0lmenAWTKf6gpe1RPy6yPWVhQ6DZpqkW71X8BJCLc1kEASDMCujOG4yH56XvgslJ9Vohpa6cU62CjM9hRGqW7PbsxFpAWgddfHbtZPIFxZgW0POQUhyWch/L9Oa6xxeC7HxnQa/q3o33ndxbEU0WQwfH3LN4dKNt9IdsmfBzsUtCLbY7muOteaW3L0q+knrEljZr/6ME30Dq+ps5NTKcavnc7cOPWeqby3qX/zvDYvfwk16GnLnGK73TqBJ/kqqU+uHOotUcvM/2yMN9NQBsD82/TjuW3k1SRUj/Q966C9l/1ZjQwn/+tG6D/RzkOBQfkPGNTXAczhCd8RMtrZbQ8xSv4P+S4S9xpv4qv9MbHX+sSBZ15VMWc9SvezUwcTDXtHxpLL6jkCF1GP1t6zAnEkvaak8AFPmO7y2tBxG7C3nK/Yqra9Okmmmp8zjYpG3vFoXRWPcUXTZWf9hPhPTCGrXyGfHIn86KobJbSDtvXDONEq1QB73pS3COhDOQHM5B019aGaKYK3ZmqkPhFlG2NB5Q0IKclWbST+hfh+D9pQyMzAsPbwyQX0TY8gOQhCJyAoEOR67xJhR3Gco6Ywe0IAluco3oqkg57+4RNqJBr920Ti5XhkYSRhrJry36woS8K39/6xgBMOM8oz1dAgI4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5005.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(4636009)(376002)(346002)(136003)(366004)(396003)(39860400002)(451199015)(8676002)(6506007)(53546011)(6512007)(966005)(26005)(9686003)(7416002)(86362001)(6486002)(44832011)(38350700002)(478600001)(38100700002)(1076003)(186003)(83380400001)(41300700001)(33716001)(6666004)(52116002)(4326008)(2906002)(66946007)(5660300002)(8936002)(316002)(6916009)(66556008)(66476007)(54906003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MjF5T+Sc3B7OqQm5tnLW8QrO0fjFkq4dSqhrXHasmteZz5uitvY4E/y4cqo2?=
- =?us-ascii?Q?CL/7dQ3aaWyAyonfPRoL7Qik570J2rAdqYsoxlhJQ5r05N06Q3o6HUMdI+TR?=
- =?us-ascii?Q?5HG7PBQhHOE/x0+ry53BSlT98LlDFjI9x5DN8rbYkjUe8F3S25wTdvq9Pg+a?=
- =?us-ascii?Q?HnxQtBdZHD/DOyR6RvEhg1GxunnYkAAzcO+9x4QVnIylGjZ0kC0ONgSrERby?=
- =?us-ascii?Q?117Kmq4djE/djjeGUcqqefkcL0tFLmy7XbEgahttQBDmVwQAA3iAjc9PiSUe?=
- =?us-ascii?Q?IlCnF/guhdJcVqfyHaojHV7JrGBpfD4/qQgZKj2ZtEXx0H5jrTyfy8MSo/DY?=
- =?us-ascii?Q?RkIXTMboJO2wYrPIVrULfv0iEP5vA8OKL2xM+tjC+VNQgulNnN+1fVeC73dk?=
- =?us-ascii?Q?WdTv03o/x+bOj0sSfhMpzeSlc46brUBPWncgWNRT7dmQNrmmqfpjz3T4GcEi?=
- =?us-ascii?Q?Ri6B+Yy3MN8+tFMLErAo0FzLWnFnMFPUemvOS7q9yiTE4MvhwMMumg2Mm86/?=
- =?us-ascii?Q?dtBHtvvIMwsd39/a2nJH8bAmkkzTyGaw9Hnwqf6YJtivqscfC26TMZmVUOEz?=
- =?us-ascii?Q?Vu8VdI/el/BKgCEFbVgW9MEA6KnytKtqHUbBnoiVDwCFqWG/suwPyAP2Q9Uw?=
- =?us-ascii?Q?UCliutRkOuuljzAfftS6A3lpegZgeTOlagTU8VY5z4EiF90/wzVXRC88ezA7?=
- =?us-ascii?Q?65gnTnK/CVGZekm8yHBqUN2CUeOhWnnFXNKUHhGfBeCmu9445J5KNeCrfd0k?=
- =?us-ascii?Q?1VDY70a/WNI1iTxt++tccnbauH7vz7/n6tYmTa/bw7v+S746J73GZeFmSeYi?=
- =?us-ascii?Q?CnR86AwVsZaVeGyRYt+topwRfvXQ6i+7kC2Qi2v/oqxTnNoY0UJLSA1a1Qu4?=
- =?us-ascii?Q?wYXap02tpZzIuqfbk4/D2Z3rDQRLNSzSA+/HcTSVK6CyzS/f42BCTmq/7mev?=
- =?us-ascii?Q?MGnUM1ShiVw38qhN3SZvo3JrLkhZxEvy0i4wPBfYYxwVuVH6uuMfothoJTiP?=
- =?us-ascii?Q?2/rbh4cobatiD5qepQ8EJx7GL+ogUwisUZRQYN1BDtADw1tLntHAIdH62oxV?=
- =?us-ascii?Q?LAsngw5clfj4vbHAN6BQHBXYGiOgJB2nc9DWFz2t4rrM6ea6mydnEVYDb5aW?=
- =?us-ascii?Q?gPaLCecV9sJFfVKdBIgc9R+GarIsjwmzUNryZ7A9NIGQ9bMam/5/jTwpfrwL?=
- =?us-ascii?Q?9iS4pPHDLto9EEN2StqyP0meNEkw9pqP9ON2T57DEV5B7S1+uaOo6QBdvsx6?=
- =?us-ascii?Q?S+xCxnnQvOkum6SDFicF8yifm979QTKKwvOZ+XVwt8OoWncs3+kLhNJVZY7x?=
- =?us-ascii?Q?po30IO4gCwJpKF7BNPx/JDvCgPi7QCqT9ml0F7oF1BRvl1ui1Qd+evECoAaZ?=
- =?us-ascii?Q?9LZG5Zc4NURKXlo4xAgLf2MrXTA1d+d38GU0xbvxMFrAeETF2KnBud8KmUeR?=
- =?us-ascii?Q?6piwZjbt0gUIdETtX0Tr7Qa2PjsV/VuSPXmGOYHOOtTDNSz2JDuALU629aJf?=
- =?us-ascii?Q?gkauvB/wTpqGmiCufi89aZO14YTg17YKPjn+jtcs3YLcpdExVRdzahbD5RUM?=
- =?us-ascii?Q?Zr2rOdSSnXXJ8GQNfhX3EJYTuVbvVGBjG86qhUU0?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c67bd8a9-f200-4756-9719-08da97ccb80a
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5005.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2022 10:17:54.6920
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SYpyffW3oCetockp9TtBCThKt1GXTR/IWeOe+KYYW574AUTqLIllDnNcmcFmIUaeEbWYmj2A2IWC8JwEPfaU5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8833
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-16 10:38:30, Krzysztof Kozlowski wrote:
-> On 15/09/2022 19:18, Viorel Suman (OSS) wrote:
-> > From: Viorel Suman <viorel.suman@nxp.com>
-> > 
-> > Sync defines with the latest available SCFW kit version 1.13.0,
-> > may be found at the address below:
-> > 
-> > https://www.nxp.com/webapp/Download?colCode=L5.15.32_2.0.0_SCFWKIT-1.13.0&appType=license
-> > 
-> > Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
+Hi Tommaso,
+
+Thank you for the review.
+
+On Wed, Sep 14, 2022 at 10:41 PM Tommaso Merciai
+<tommaso.merciai@amarulasolutions.com> wrote:
+>
+> Hi Prabhakar,
+>
+> On Tue, Sep 13, 2022 at 05:02:24PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Convert the simple OV5645 Device Tree binding to json-schema.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > > ---
-> >  include/dt-bindings/firmware/imx/rsrc.h | 299 ++++++++++++++++--------
-> >  1 file changed, 203 insertions(+), 96 deletions(-)
-> > 
-> > diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
-> > index 43885056557c..a4c68f394986 100644
-> > --- a/include/dt-bindings/firmware/imx/rsrc.h
-> > +++ b/include/dt-bindings/firmware/imx/rsrc.h
-> > @@ -13,34 +13,38 @@
-> >   * never be changed or removed (only added to at the end of the list).
-> >   */
-> >  
-> > -#define IMX_SC_R_A53			0
-> > -#define IMX_SC_R_A53_0			1
-> 
-> You cannot change binding constants... Aren't you breaking all possible
-> boards and users?
+> >  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 --------
+> >  .../bindings/media/i2c/ovti,ov5645.yaml       | 119 ++++++++++++++++++
+> >  2 files changed, 119 insertions(+), 54 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > deleted file mode 100644
+> > index 72ad992f77be..000000000000
+> > --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > +++ /dev/null
+> > @@ -1,54 +0,0 @@
+> > -* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
+> > -
+> > -The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
+> > -an active array size of 2592H x 1944V. It is programmable through a serial I2C
+> > -interface.
+> > -
+> > -Required Properties:
+> > -- compatible: Value should be "ovti,ov5645".
+> > -- clocks: Reference to the xclk clock.
+> > -- clock-names: Should be "xclk".
+> > -- clock-frequency: Frequency of the xclk clock.
+> > -- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
+> > -  to the hardware pin PWDNB which is physically active low.
+> > -- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
+> > -  the hardware pin RESETB.
+> > -- vdddo-supply: Chip digital IO regulator.
+> > -- vdda-supply: Chip analog regulator.
+> > -- vddd-supply: Chip digital core regulator.
+> > -
+> > -The device node must contain one 'port' child node for its digital output
+> > -video port, in accordance with the video interface bindings defined in
+> > -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > -
+> > -Example:
+> > -
+> > -     &i2c1 {
+> > -             ...
+> > -
+> > -             ov5645: ov5645@3c {
+> > -                     compatible = "ovti,ov5645";
+> > -                     reg = <0x3c>;
+> > -
+> > -                     enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
+> > -                     reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
+> > -                     pinctrl-names = "default";
+> > -                     pinctrl-0 = <&camera_rear_default>;
+> > -
+> > -                     clocks = <&clks 200>;
+> > -                     clock-names = "xclk";
+> > -                     clock-frequency = <24000000>;
+> > -
+> > -                     vdddo-supply = <&camera_dovdd_1v8>;
+> > -                     vdda-supply = <&camera_avdd_2v8>;
+> > -                     vddd-supply = <&camera_dvdd_1v2>;
+> > -
+> > -                     port {
+> > -                             ov5645_ep: endpoint {
+> > -                                     clock-lanes = <1>;
+> > -                                     data-lanes = <0 2>;
+> > -                                     remote-endpoint = <&csi0_ep>;
+> > -                             };
+> > -                     };
+> > -             };
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> > new file mode 100644
+> > index 000000000000..7f407c988f87
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> > @@ -0,0 +1,119 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5645.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: OmniVision OV5645 Image Sensor Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ovti,ov5645
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description: XCLK Input Clock
+> > +
+> > +  clock-names:
+> > +    const: xclk
+> > +
+> > +  clock-frequency:
+> > +    description: Frequency of the xclk clock in Hz.
+> > +
+> > +  vdda-supply:
+> > +    description: Analog voltage supply, 2.8 volts
+> > +
+> > +  vddd-supply:
+> > +    description: Digital core voltage supply, 1.5 volts
+> > +
+> > +  vdddo-supply:
+> > +    description: Digital I/O voltage supply, 1.8 volts
+> > +
+> > +  enable-gpios:
+> > +    maxItems: 1
+> > +    description:
+> > +      Reference to the GPIO connected to the PWDNB pin, if any.
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description:
+> > +      Reference to the GPIO connected to the RESETB pin, if any.
+> > +
+> > +  port:
+> > +    description: Digital Output Port
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          clock-lanes:
+> > +            const: 0
+> > +
+> > +          bus-type:
+> > +            const: 4
+> > +
+> > +          data-lanes:
+> > +            minItems: 1
+> > +            maxItems: 2
+> > +            items:
+> > +              enum: [1, 2]
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - clock-frequency
+> > +  - vdda-supply
+> > +  - vddd-supply
+> > +  - vdddo-supply
+> > +  - enable-gpios
+> > +  - reset-gpios
+> > +  - port
+>
+> I think we don't need all of these properties as required.
+> The only "really" required are:
+>
+>   - compatible
+>   - reg
+>   - clocks
+>   - port
+>
+Agreed, it's just the driver requirement hence the previous bindings
+had marked them as required.
 
-Hi Krzysztof,
-
-There is a backward compatibility section added in the end of the patch,
-it follows the same approach as in SCFW kit v1.13.0:
-
-+/*
-+ * Compatibility defines for sc_rsrc_t
-+ */
-+#define IMX_SC_R_A35                   IMX_SC_R_AP_2
-+#define IMX_SC_R_A35_0                 IMX_SC_R_AP_2_0
-+#define IMX_SC_R_A35_1                 IMX_SC_R_AP_2_1
-+#define IMX_SC_R_A35_2                 IMX_SC_R_AP_2_2
-+#define IMX_SC_R_A35_3                 IMX_SC_R_AP_2_3
-+#define IMX_SC_R_A53                   IMX_SC_R_AP_0
-+#define IMX_SC_R_A53_0                 IMX_SC_R_AP_0_0
-+#define IMX_SC_R_A53_1                 IMX_SC_R_AP_0_1
-+#define IMX_SC_R_A53_2                 IMX_SC_R_AP_0_2
-+#define IMX_SC_R_A53_3                 IMX_SC_R_AP_0_3
-
-Regards,
-Viorel
-
+Cheers,
+Prabhakar
