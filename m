@@ -2,88 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 822745BB2FD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 21:45:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 367145BB30D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 21:56:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230022AbiIPTpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 15:45:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36774 "EHLO
+        id S229538AbiIPT4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 15:56:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229783AbiIPTpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 15:45:53 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AFDFAE224;
-        Fri, 16 Sep 2022 12:45:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1663357551; x=1694893551;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=lMng9lxVFZajrqtvs0LNq4NoNTqYcVaV72Uah0GvGrA=;
-  b=DweHb8SVeUUCMAzjzTmmP7r/a0hLJAm36Yy5Xq/vGUXVhusGh/2A4fZ0
-   zr1pVwqlX+54dhsguwuf8iVL/Es9gDuvqxF0r6LSa9pZvjXBGvfzPnNwc
-   BI/ZKDEn8Uql3oX7056jW+ONXV0U51qc9HKsPRibCOjuvsWsbPhQqinCB
-   ZM9Xy1kYtXvWEjLXjwzg14XEcBKC2D+sRbqzwN9aWHBEye2MJ5CviZqj6
-   ir+YXlBHueZDQ6XHY6C/wRKu0PsXZiAT0GHIeSj5vISRt62yaannmTnIF
-   vWtiUtuyf4YlX1fF/CrW/oMUXjo351Fa4JCALLc2Ei/FkEbTL2guIouK9
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,321,1654585200"; 
-   d="scan'208";a="177568901"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Sep 2022 12:45:50 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 16 Sep 2022 12:45:46 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.12 via Frontend Transport; Fri, 16 Sep 2022 12:45:44 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <claudiu.beznea@microchip.com>, <nicolas.ferre@microchip.com>,
-        <UNGLinuxDriver@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH] ARM: dts: lan966x: Add otp support
-Date:   Fri, 16 Sep 2022 21:49:46 +0200
-Message-ID: <20220916194946.2869510-1-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
+        with ESMTP id S229540AbiIPT4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 15:56:04 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5325E857E2
+        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 12:56:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=xKW9HCH0RRzuIKcIL0dkQ2rVH+p7
+        c90a51JoGrwa+dA=; b=OdiQxvESefjQ9i5N8+V2eeYjYJv4Qps8LxuB/y8zAEBl
+        MC4yg8h/ZkjUFZ3BWiDA9W3+5NSW0dHqcgazmSyvgOPbIf0hpBOSzBCfmBlwymht
+        tLmLJtG2YgIUAvw46ZNHd2pdPRWYDq+kyeiNDXp7TTtlDioSQv2EwocHyaA6RkU=
+Received: (qmail 3519391 invoked from network); 16 Sep 2022 21:56:01 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 16 Sep 2022 21:56:01 +0200
+X-UD-Smtp-Session: l3s3148p1@MxRTwNDorutSjfsd
+Date:   Fri, 16 Sep 2022 20:56:01 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: renesas,rcar-i2c: Add r8a779g0 support
+Message-ID: <YyTU0YLL2v5JD4v9@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <a6a704ff5fb06218daed492010e320605a4efe2f.1662714509.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="GEppY4HOh5vKE/AD"
+Content-Disposition: inline
+In-Reply-To: <a6a704ff5fb06218daed492010e320605a4efe2f.1662714509.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add OTP (one time programmable) support.
-The both lan966x SocS (lan9662 and lan9668) have the same OTP IP.
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- arch/arm/boot/dts/lan966x.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+--GEppY4HOh5vKE/AD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
-index 23665a0429906..784caba369485 100644
---- a/arch/arm/boot/dts/lan966x.dtsi
-+++ b/arch/arm/boot/dts/lan966x.dtsi
-@@ -163,6 +163,11 @@ port7: port@7 {
- 			};
- 		};
- 
-+		otp: otp@e0021000 {
-+			compatible = "microchip,lan9668-otpc", "microchip,lan9662-otpc";
-+			reg = <0xe0021000 0x300>;
-+		};
-+
- 		flx0: flexcom@e0040000 {
- 			compatible = "atmel,sama5d2-flexcom";
- 			reg = <0xe0040000 0x100>;
--- 
-2.33.0
+On Fri, Sep 09, 2022 at 11:09:02AM +0200, Geert Uytterhoeven wrote:
+> Document support for the I2C Bus Interfaces in the Renesas R-Car V4H
+> (R8A779G0) SoC.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Applied to for-next, thanks!
+
+
+--GEppY4HOh5vKE/AD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMk1NEACgkQFA3kzBSg
+KbZ+wg//ckrlMwqCpG5HfBbb1Alplp1o+OCXDPdo3//l6JSxge4A7XakhCQziiuH
+7tdlBXiC0l95w54SznwzpbYJuWsCxerKTR3tS5F+JIDUIBDA/veEwT371d2MgV8q
+ww2kzLMIdFwMmyrWMUGW41Ic3lKDOM6hMurIGe0HkoLkgs/1JS05ltjT4wDuXbFe
+fFiw1lxUabjRSzoXKjr8S8oWrN9AwBnmJI4gbwZVUgO7K7/biLr1fFjZtTr6CMmE
+GDwNVxWvsu/VY1N867ANEt/uVLVJ2tchofWwsaONhbSlPbr6gxosiqA8Bf6UfmD4
+Dc8T+Tcgiw5pnGeqLitmXQ4Z3L8BJg7YnlTkbLmV4KoCFo3JiPvb0Vjk+eUbsyEO
+O/uYVN2WJOCM9wXDwyfv2L7b1DnRTfFAWhMGyZXIhDFLPdB0GsdP10/kj0XGU6hW
+F+L2/cteBnncF9UNbDHtNVACFiW2Ild1UgdrMqj+ZrCxU5YyWsSGEej3Y4JF2u+j
+ux1r7nyPjXFSCyC+LXVQIwkESayxcAJyNpCDWln19PINiztX9T+WEW3XEUyMFWVA
+kD45PjJ1/bbyp/WLc6k4gDHgWXHDLSZfCmgJGj2oRE04OxCShRhpuWUXz3m9TXZ4
+QDX9JCm4K03X0Ez0OUkDi+00v/eJNjuac7PmQ377qBoxjmiGG60=
+=M/hm
+-----END PGP SIGNATURE-----
+
+--GEppY4HOh5vKE/AD--
