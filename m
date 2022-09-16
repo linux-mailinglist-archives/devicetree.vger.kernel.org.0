@@ -2,152 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 518A15BB2D9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 21:34:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D09905BB2E4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 21:41:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbiIPTeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 15:34:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49586 "EHLO
+        id S230131AbiIPTlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 15:41:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiIPTet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 15:34:49 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E56427169
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 12:34:49 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id j188so4993742oih.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 12:34:49 -0700 (PDT)
+        with ESMTP id S229593AbiIPTla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 15:41:30 -0400
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F11941835C;
+        Fri, 16 Sep 2022 12:41:29 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id t8-20020a9d5908000000b0063b41908168so15535397oth.8;
+        Fri, 16 Sep 2022 12:41:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=aicP2K83VM92jTlqsgEQywQTfMOm3eA1TKiIG1BN/gQ=;
-        b=3cGij0EqeL57CWhvfvEsvAlB4ioXrttaGL4yRDUhP93UqrytBrg7Wr5dHa57+ARVzs
-         fnUgwnOJtFhL+frLpUPpJXbXqQuCFiZkVvZ4ZlT+SpEEczq8yikrNJHhsBakY2v8fGou
-         J2UpajqAwziKabz/PmigcozlkCtjRV9+afMEFsaU3s6krN/Jyyzl15+NvtZ6KBOSBQks
-         BcxJxpW5nlEG5Q2kA3+iJMnHmgApPTgboEgEpfrlmzL3mtLydkVCEzNNpSubDpTi9IXo
-         F+JAPXE0raVm6p+qojyeX701jdw2EUp1lSoXcgb1Wy3clT7IiL8vFCao/AiYWQBd01wh
-         c4JQ==
-X-Gm-Message-State: ACgBeo2FQAWhGywEkU/AUC4pvwbk1Y0Ksb/ceLCBdNPFWgqHuJcGdQPg
-        87c1O4in1/Q3G4klzeEuUA==
-X-Google-Smtp-Source: AA6agR4J7zvdwv/V4oQGPr98WBG9bFOkurxyeyJYrG6ryhwaYjdBsKelsE9z1sQlQ3F2oKN7a/aw/A==
-X-Received: by 2002:aca:b802:0:b0:350:3d:3300 with SMTP id i2-20020acab802000000b00350003d3300mr7109294oif.56.1663356888185;
-        Fri, 16 Sep 2022 12:34:48 -0700 (PDT)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=rnBpLy/J1dgd76aFhw5FRIiMycfqNVIws11h81p/NbU=;
+        b=w8EJQ9HuinnqzdUivoC9wyIv4hqI+k81G9PXuOsBNfCwev8PnonvKbpq/XsLbKRzcv
+         7ta5mjGADY7rGIacGTYhqWdJ9pi6ToPoCLcOSI3PXpn+lHGQutfEk3Oo11BfRNhmeW6X
+         d6aV3Ipnn6zqDN2mvxlikPeZN0dQjCPEpjgtl4T7sOStGs8KZjf/O5ZztVMQ3zA9xdfV
+         q2rJ8kGbWKAH0W53n/iSz7El+iUxmj4lhc6PibLuHYcGW9l3XFN4koWUL2Z2Nh7KMp5q
+         2xNc7IrP2SmlVjCwORFOuwjGlSB+w7wc3HmMPO5jPW07GJyiNyZpi8Pf1EcfDjl2tXoS
+         aOzw==
+X-Gm-Message-State: ACrzQf2NZcTh2/KCPkGUzuxzk40VeHQVDaETS2d+s4qJs30ZznfsBZIr
+        ZpXN0ISEpElaxQfHgWJL3w==
+X-Google-Smtp-Source: AMsMyM5pqr2hJIPZ5Ycq9i2ddvBU0Tqj0jiQjbffC/+TCU+VgGx6xTzvHWQ4WsRCZjTtPRkCSNER1Q==
+X-Received: by 2002:a05:6830:2706:b0:659:de15:2cae with SMTP id j6-20020a056830270600b00659de152caemr1661203otu.4.1663357289198;
+        Fri, 16 Sep 2022 12:41:29 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z26-20020a9d7a5a000000b006370abdc976sm10353895otm.58.2022.09.16.12.34.47
+        by smtp.gmail.com with ESMTPSA id p13-20020a056830130d00b006391adb6034sm10333282otq.72.2022.09.16.12.41.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Sep 2022 12:34:47 -0700 (PDT)
-Received: (nullmailer pid 1139065 invoked by uid 1000);
-        Fri, 16 Sep 2022 19:34:47 -0000
-Date:   Fri, 16 Sep 2022 14:34:47 -0500
+        Fri, 16 Sep 2022 12:41:28 -0700 (PDT)
+Received: (nullmailer pid 1149627 invoked by uid 1000);
+        Fri, 16 Sep 2022 19:41:27 -0000
+Date:   Fri, 16 Sep 2022 14:41:27 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     devicetree@vger.kernel.org, tsbogend@alpha.franken.de,
-        krzk+dt@kernel.org, arinc.unal@arinc9.com
-Subject: Re: [PATCH] dt-bindings: mips: add CPU bindings for MIPS architecture
-Message-ID: <20220916193447.GA1134515-robh@kernel.org>
-References: <20220915055514.463241-1-sergio.paracuellos@gmail.com>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 04/10] dt-bindings: memory: mt7621: add
+ syscon as compatible string
+Message-ID: <20220916194127.GA1139257-robh@kernel.org>
+References: <20220915065542.13150-1-arinc.unal@arinc9.com>
+ <20220915065542.13150-5-arinc.unal@arinc9.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220915055514.463241-1-sergio.paracuellos@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220915065542.13150-5-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 15, 2022 at 07:55:14AM +0200, Sergio Paracuellos wrote:
-> Add the yaml binding for available CPUs in MIPS architecture.
+On Thu, Sep 15, 2022 at 09:55:36AM +0300, Arınç ÜNAL wrote:
+> Add syscon as a constant string on the compatible property as it's required
+> for the SoC to work. Update the example accordingly.
+
+I read this and start to give you the same reply as v1. Then I remember 
+saying this already...
+
+Update the commit message such that it answers my question and I don't 
+think you just ignored me and have to go find v1. The fact that this 
+change makes the binding match what is already in use in dts files is an 
+important detail.
+
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> Fixes: 5278e4a181ff ("dt-bindings: memory: add binding for Mediatek's MT7621 SDRAM memory controller")
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 > ---
->  .../devicetree/bindings/mips/cpus.yaml        | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/cpus.yaml
+>  .../bindings/memory-controllers/mediatek,mt7621-memc.yaml | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentation/devicetree/bindings/mips/cpus.yaml
-> new file mode 100644
-> index 000000000000..4277adc65ed6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mips/cpus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MIPS CPUs bindings
-> +
-> +maintainers:
-> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> +
-> +description: |+
-> +  The device tree allows to describe the layout of CPUs in a system through
-> +  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
-> +  defining properties for every cpu.
-> +
-> +properties:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  compatible:
-> +    enum:
-> +      - brcm,bmips3300
-> +      - brcm,bmips4350
-> +      - brcm,bmips4380
-> +      - brcm,bmips5000
-> +      - brcm,bmips5200
-
-You need to remove bindings/mips/brcm/brcm,bmips.txt. But it also 
-defines a property which needs to be added.
-
-I didn't check the rest for existing documentation...
-
-> +      - ingenic,xburst-mxu1.0
-> +      - ingenic,xburst-fpu1.0-mxu1.1
-> +      - ingenic,xburst-fpu2.0-mxu2.0
-> +      - loongson,gs264
-> +      - mips,mips1004Kc
-> +      - mips,m14Kc
-> +      - mips,mips24KEc
-> +      - mips,mips4KEc
-> +      - mips,mips74Kc
-> +      - mips,mips24Kc
-> +      - mti,mips24KEc
-> +      - mti,mips14KEc
-> +      - mti,mips14Kc
-> +      - mti,interaptiv
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    cpus {
-> +      #size-cells = <0>;
-> +      #address-cells = <1>;
-> +
-> +      cpu@0 {
-> +        device_type = "cpu";
-> +        compatible = "mips,mips1004Kc";
-> +        reg = <0>;
-> +      };
-> +
-> +      cpu@1 {
-> +        device_type = "cpu";
-> +        compatible = "mips,mips1004Kc";
-> +        reg = <1>;
-> +      };
-> +    };
-> +
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
+> index 85e02854f083..ba8cd6d81d08 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: mediatek,mt7621-memc
+> +    items:
+> +      - const: mediatek,mt7621-memc
+> +      - const: syscon
+>  
+>    reg:
+>      maxItems: 1
+> @@ -24,7 +26,7 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> -    memory-controller@5000 {
+> -        compatible = "mediatek,mt7621-memc";
+> +    syscon@5000 {
+> +        compatible = "mediatek,mt7621-memc", "syscon";
+>          reg = <0x5000 0x1000>;
+>      };
 > -- 
-> 2.25.1
+> 2.34.1
 > 
 > 
