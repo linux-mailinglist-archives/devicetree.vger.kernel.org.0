@@ -2,111 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCFF85BACFB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 14:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2485BAD09
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 14:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230250AbiIPMIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 08:08:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59426 "EHLO
+        id S230361AbiIPMKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 08:10:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231266AbiIPMIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 08:08:13 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2061d.outbound.protection.outlook.com [IPv6:2a01:111:f400:7d00::61d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D5F1B07DD;
-        Fri, 16 Sep 2022 05:08:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gOECUFYPrZm9XxVNcvhC4RAr+ZSXWCXmvzFBvEMBf77eXeTAvcoRzZxY4slEeRg2NYH+m2RPWFo3TfHzj0m6KlVRz3dKXdyG/Wuj8Juz1gFtz4nF5Mb/WFFrh6tHV8lXR0dkBXaKpPjh+tAYVJv68QdyJRJ/jlYHkQ9fjNSyJwxoaL0a1g+Mq2KAUK0KIThiCvFths8I0wOlAzvlhKFAso1E2FawMIJaTceG7EA5ty0Ox9QqvzyALBb/T8lYr+A6tEbbLi3CIyOLCmAjrEcS2mnXECqdSYPid/Dm0/DdytyqzqtPu+OJREpJNdxxp5R1i7tPm/Rq2UKamQXROzmkcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f8OSsBGWL2fu9pifgQy0rHy2ryaiWNNvHdS60SZAXM8=;
- b=IgJy9gpGfRuFLz8HwCPGa15Z6GGAhRo+K6HqUuOh2/lryz0KJ3yJftF1Mj4k6g0rlRY5PuQdSSOJxvwzSsMfwqlOZvqfXHi/3YuXO6O/0rLohw/R85UAZNTdxgAkhZgBdHdXdLH6+4ojgsUvyRgqSsbkT4DRe97zF5QKbdCYrfrdO8/EIOm5tZ6QKb5y1/kFUhouToxx5UbAblJC2MKLFH6VmenyPDE/q5Pr4eGT5ggWbyZnPT+WKRPQEOcqYvza9N5O/ixUtz8H3mZ/fpFukvXemBT/iaVVFTQ9JvPBzcw4r2kI1+cfoy1/WF+khS80hXRs0RhLGM7NN98MXTD6gQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 194.138.21.76) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=siemens.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=siemens.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f8OSsBGWL2fu9pifgQy0rHy2ryaiWNNvHdS60SZAXM8=;
- b=Qs/a2COvQ28BFPoBp9iLRbLpLqnb+GLqqZ4hidpitxh1riwkM7z0R9n9xDvMht5VPtV/8wO7IYcJGfVR5lVyRdyKv/B5czyGEYduF7BBEHXMbD01C42TaYB+tKIxWUQCNChHJKcwZipmqafDt2/kIyF3FmijT3hokwfOmY48iCtkcgw2j9J1VdUIuKJUYabONldpSDLRtUcJFQXQjkMAbYHBwXD/G524Vv3RqtpeNflemK2THFRps3qoMZm+QHYWteaAMi40GV5oFpTQWejiYn+YyFiGx9YPozFGOkdyGeq72c5VwNAOJhg/JY2lUczc0NNHRwpOOipBzys4kV7kIQ==
-Received: from AM5PR1001CA0039.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:206:15::16) by VE1PR10MB3936.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:800:16a::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.16; Fri, 16 Sep
- 2022 12:08:07 +0000
-Received: from VE1EUR01FT021.eop-EUR01.prod.protection.outlook.com
- (2603:10a6:206:15:cafe::5b) by AM5PR1001CA0039.outlook.office365.com
- (2603:10a6:206:15::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.16 via Frontend
- Transport; Fri, 16 Sep 2022 12:08:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 194.138.21.76)
- smtp.mailfrom=siemens.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=siemens.com;
-Received-SPF: Pass (protection.outlook.com: domain of siemens.com designates
- 194.138.21.76 as permitted sender) receiver=protection.outlook.com;
- client-ip=194.138.21.76; helo=hybrid.siemens.com; pr=C
-Received: from hybrid.siemens.com (194.138.21.76) by
- VE1EUR01FT021.mail.protection.outlook.com (10.152.2.223) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5632.12 via Frontend Transport; Fri, 16 Sep 2022 12:08:06 +0000
-Received: from DEMCHDC89XA.ad011.siemens.net (139.25.226.103) by
- DEMCHDC8VSA.ad011.siemens.net (194.138.21.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.12; Fri, 16 Sep 2022 14:08:06 +0200
-Received: from bennie-lenovo.fritz.box (144.145.220.65) by
- DEMCHDC89XA.ad011.siemens.net (139.25.226.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.12; Fri, 16 Sep 2022 14:08:06 +0200
-From:   "B. Niedermayr" <benedikt.niedermayr@siemens.com>
-To:     <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <rogerq@kernel.org>, <tony@atomide.com>,
-        <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>
-Subject: [PATCH v5 3/3] dt-bindings: memory-controllers: gpmc-child: add wait-pin polarity
-Date:   Fri, 16 Sep 2022 14:07:49 +0200
-Message-ID: <20220916120749.2517727-4-benedikt.niedermayr@siemens.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
-References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
+        with ESMTP id S229501AbiIPMKf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 08:10:35 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAFAFB02A9;
+        Fri, 16 Sep 2022 05:10:33 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-3452214cec6so257204957b3.1;
+        Fri, 16 Sep 2022 05:10:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=CRuPtm9mLoySIqLzdHqyZ1IbgS4zBvwylgrMlMJv3sc=;
+        b=UClSsp/C4HO4xWEczUQVssGecEPz0RD9ZApnbexavm4RlF6z6CrTtavcEvw/7Vr0TT
+         WNQDrrIOiA0BtoHXo8Ns2fRJITmenLUOsFOjKykiaJ6luYE7puP+AXhbbL65kSmMI2yc
+         zazhXXGzwjECxqg6hCH0sSmAGtECSADbzwsoaAS9YBHDM2eQEAwSDqcKTfQcTJvKd1In
+         QWPfySLDeFuuiDxjenxqzsAL2yBwWT3mT0eR5j9nzcY6z7am0DZmSvEHpvNbMI6OOrbg
+         Xv8LHYg867e07o8aKiQfN5uhfPGNQxvMtwbifvRAy4dtK06qvbz/24lVjp7g2qEMF3F4
+         Xpbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=CRuPtm9mLoySIqLzdHqyZ1IbgS4zBvwylgrMlMJv3sc=;
+        b=h63IRUlU+5TpF88TRYgzhTfl05X5+4lgvTLaGOCS+ZIse6/YkTPtpE/QeVgHvfxXVP
+         xTDt7XcZZM7TE9Nv2OSiGB04yxUDu6j9/oqgL1EX9kncfjJ01OEu/nUjMYxBvVLV5lBj
+         OTGYHE4OHKttLp6qCtYb/3j0YRCfHqxGZ3Kk9aNahnxfiOpjTUyVTHIKMMQAXOuQxDGx
+         m/fU+ay1u3VvHaqGHDRFKnogD/ANGFLMqfUHEUJTX3mGGXjo493BFstLgUpPa3BlqntI
+         SHC1CbVLiLUy74FQM3BNYItYaHzHgdmY59QR7ySqR2a3egLgk2QJCOUEpwsVmzXbGGBi
+         XFvw==
+X-Gm-Message-State: ACrzQf3NoibEU27v2kQ2DTwJ0DxdHo9aph1LrEzzYNFl497wgdmLzEl5
+        AsG6MA/75hqGqDq63wv0LQZNXuoKGMTfPj9mu5Y=
+X-Google-Smtp-Source: AMsMyM6z53ELXSU8V4/Wie2GOwlyU/rWfkuGiA4kczX8ggJiVxz4SbnIPqprzBbRn+wB47ZDO3hcxlVMj4irzMUXpPc=
+X-Received: by 2002:a0d:d883:0:b0:346:88b5:f4ff with SMTP id
+ a125-20020a0dd883000000b0034688b5f4ffmr4053722ywe.355.1663330232764; Fri, 16
+ Sep 2022 05:10:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [144.145.220.65]
-X-ClientProxiedBy: DEMCHDC89XA.ad011.siemens.net (139.25.226.103) To
- DEMCHDC89XA.ad011.siemens.net (139.25.226.103)
-X-TM-AS-Product-Ver: SMEX-14.0.0.3080-8.6.1018-26680.007
-X-TM-AS-Result: No-10--9.764200-8.000000
-X-TMASE-MatchedRID: FgBlj4RFa/fEuqVdWhBa8X8otomh/kVbH9B97WCZlj2VyEX4i+SWU0yQ
-        5fRSh265B0L0/Ut7x1D47Xv617HbR+THRSYVdIx5q9dxv4TizKefv2cITmCgNtfeP+V/VXwsm2C
-        Uy/KcAJ4RxZBQI0dbZ/WKGThQ2qZNfKZSSl2fkbJNVVoqlq60cKPFjJEFr+oldywMrbEEeHuNo+
-        PRbWqfRMprJP8FBOIaSV75InlJNiVWinQHdvOEPaUSlfmMuqTbB6/NalQ+MetfLg8e3/TOYg==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--9.764200-8.000000
-X-TMASE-Version: SMEX-14.0.0.3080-8.6.1018-26680.007
-X-TM-SNTS-SMTP: D6C2432536DEF1B57229023358F3385994EC9B5EE406E35E2474F5590CE04B8B2000:8
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1EUR01FT021:EE_|VE1PR10MB3936:EE_
-X-MS-Office365-Filtering-Correlation-Id: bcf16aac-2b3d-4a53-93a7-08da97dc1d86
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PTeEIpnccWrRCTQ1fIsjTN6wbzEuVLC171f9aRmzQLeOcqmLdMfkBBA+FAmiBYc0rmOVme5jOJY0lXO+jet5lo1/Sz8bzr9XyuDKce5rPZDqocu5OYocKDuyaWxaJ0dPz5wdRfbFOtRznpssRHWc3x4nhied9LKGbipytkXor/MJ5p0T4V/vh3XO+EHivIF1Ur29Aa9XTxG5DWH3yXSQvjzeagioiEg4qtqxMImqL3rim5k3Wp7YNcBe7ln/mWnPEZMht92Gh4YMT1Kstx13zSQJpz78yQo2iV+gkYyf/RAo4ltwUkwSy6iKhbNJyyAcq8hqCa+0Uz+RCOVH199mBCx1vx5p2CuS+bpRQeA6MsZtEoeyGJdyqbxKn0mUDmw9KQIrWml1CikeIavSgDOq2sPyAx28x/zcrpIc8IAU7GudZPFPE5O4WB1D2SjOG6BrgY1qOc+QI1WYLyMeWHyDkPht2CtXR+j+DIlO6Se+HqvYhDffShqmIYDYjG5aex72AGwfNpEFe2ERTZ58M+4a0Bf+U0KeQCvf7iWJ7lo+wsUnWitfQXRahKZt6Gx8QkD7oRKtaji+Cca7/RBR5DuVICWGOqe6oJRXEs5cCO8E7WXSKuodjpvjU3Jaf5oZY5/EgmyWVkiJE0wcsDPg/++4ixhdRpXeu14TCVEmMyz0rtba3EjNbexATeTxRIMmGmBe3mpGiL2zJNXeyRB7t98mN+obRWHvChVo8qnDqXtfvrs6rpywYUp2hJCqv0hAaviD/UVwYLadeD5IVf1otWLjlWGAULnTioUDC79KIcVEUvFIdKyRiRO73f2odfGawsJj
-X-Forefront-Antispam-Report: CIP:194.138.21.76;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:hybrid.siemens.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(136003)(346002)(376002)(39860400002)(396003)(451199015)(40470700004)(36840700001)(46966006)(8676002)(316002)(8936002)(5660300002)(54906003)(86362001)(4326008)(70206006)(70586007)(110136005)(82960400001)(36860700001)(82740400003)(47076005)(40460700003)(41300700001)(6666004)(956004)(478600001)(26005)(2616005)(81166007)(16526019)(336012)(186003)(1076003)(356005)(40480700001)(82310400005)(36756003)(2906002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2022 12:08:06.9679
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bcf16aac-2b3d-4a53-93a7-08da97dc1d86
-X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;Ip=[194.138.21.76];Helo=[hybrid.siemens.com]
-X-MS-Exchange-CrossTenant-AuthSource: VE1EUR01FT021.eop-EUR01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR10MB3936
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_NONE autolearn=no
+References: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <YyRjiY5XRPglSHuN@paasikivi.fi.intel.com>
+In-Reply-To: <YyRjiY5XRPglSHuN@paasikivi.fi.intel.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 16 Sep 2022 13:10:05 +0100
+Message-ID: <CA+V-a8thLoy1f0-GK05958Qg8CzQ4wU3QHNwSW8-D_DmcZRoYw@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: ov5645: Convert OV5645 binding to a schema
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -114,37 +70,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+Hi Sakari,
 
-The GPMC controller has the ability to configure the polarity for the
-wait pin. The current properties do not allow this configuration.
-This binding directly configures the WAITPIN<X>POLARITY bit
-in the GPMC_CONFIG register by setting the gpmc,wait-pin-polarity
-dt-property.
+Thank you for the review.
 
-Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
----
- .../bindings/memory-controllers/ti,gpmc-child.yaml         | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Fri, Sep 16, 2022 at 12:52 PM Sakari Ailus
+<sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Prabhakar,
+>
+> On Tue, Sep 13, 2022 at 05:02:24PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Convert the simple OV5645 Device Tree binding to json-schema.
+<snip>
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          clock-lanes:
+> > +            const: 0
+> > +
+> > +          bus-type:
+> > +            const: 4
+>
+> Please drop the two, they provide no information to the driver that already
+> knows this. (Unless of course, the driver supports other bus types these
+> bindings do not document. Some OV sensors do.) clock-lanes needs to go in
+> any case, and data-lanes are dependent on bus-type being 4 I presume.
+>
+Agreed, I will drop the above two and send a v2.
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
-index 6e3995bb1630..8e541acdb1ff 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
-@@ -230,6 +230,13 @@ properties:
-       Wait-pin used by client. Must be less than "gpmc,num-waitpins".
-     $ref: /schemas/types.yaml#/definitions/uint32
- 
-+  gpmc,wait-pin-polarity:
-+    description: |
-+      Set the desired polarity for the selected wait pin.
-+      0 for active low, 1 for active high.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
-+
-   gpmc,wait-on-read:
-     description: Enables wait monitoring on reads.
-     type: boolean
--- 
-2.34.1
+> bus-type is also not present in the example.
+>
+Ahh, I missed that.
 
+Cheers,
+Prabhakar
