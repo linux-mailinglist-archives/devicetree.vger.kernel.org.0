@@ -2,250 +2,458 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C175BB188
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 19:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97FD95BB206
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 20:22:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbiIPRPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 13:15:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45488 "EHLO
+        id S229757AbiIPSWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 14:22:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229731AbiIPRPa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 13:15:30 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274C361D95
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 10:15:28 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id dv25so50871577ejb.12
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 10:15:28 -0700 (PDT)
+        with ESMTP id S229599AbiIPSWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 14:22:30 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E19C8A5723
+        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 11:22:27 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id ay9so5857186qtb.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 11:22:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=UKj9UGbXYvEgM0CJerOBIFmYNI3OH+KXrWnGoYkjkbc=;
-        b=JkWCKXbyMNHGdGJZpg3xwevNAHEElmCrtUwV0oTmQOerPQBVslZbRYD932oLcbhXC/
-         Af/yZk6mE7xNlm/+jeLPbjRYQt0KeKUXX9A1YZgKq9FUizyvBit8uzSbWys9VPuIGTVH
-         qSvCEGjTYtm0oRTWzEXh2F50X6GvfusYC/xUFpaeNk4btCeEH1YTHFHdQHr2vjKdYgGT
-         9rDm3XN0Fcs/yhc2Ldeb+53NQr4bU3xGcY8rbDFh4BIkjnRhtUsEq/s2kUECcDn1MfrS
-         G+tcUNsVOdhbFIgQHJdvYLGRUQWduPdColxMcPnQylVhxssGoj4v4ESu9CepZ32l/hOD
-         aXUA==
+        bh=21s3mIokPi1HbguXYtTformDqpF6+8/wpnpcqA84+18=;
+        b=aYW28XOAShH4DgqCVHJ0J3MfJ4tVEwpgNUx0A624qDKd8D69tbmH6Uy4jdDSNq6vLI
+         L02xpnuOVkjFgISK4nqDcYEy7mSJo2icvX2uGJu1ONncR+9RuYrdHZt5l/apVxHSO9Gt
+         V6SdGs8grxqotmdQJ7FM/cwhdI51jTH/SQ9fY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=UKj9UGbXYvEgM0CJerOBIFmYNI3OH+KXrWnGoYkjkbc=;
-        b=UI2FRm4aLiwsdjWyxZMZ2QHJafuZyP/ajnpv0ngL5NtsiXRfA1ZbWToer4C1FQgBF8
-         rFxNYaS5Z5QEIgVwajaF4z4rBnGUJzrXv4hCcgXiocM/gyCYUQH790tiLqsGs68ZcCPF
-         N4YqmnHxX70kLA/6M/GAHwLkwSVOayjwWvuNeBEd01JwtxqKwVTjNJrmUdYqVpyYspZU
-         jCRDXWb5K0U7T96zMpjhVFvd/ovAnMEaRukMXMa+nDiLgi5akiaHNsNRof/wBPul0xWl
-         Z+d47ZBXeaUQ27I73mvLhdfdFlzDg8ifUsW5DLT9GiKUfyfd0UsstF7NVPTIvWHD4RV2
-         +qzg==
-X-Gm-Message-State: ACrzQf2d06MGBW2zY9bhqcpvKJuj7vULo743qiDofAOphgoJciSwfSxN
-        vB8IY727AhGtaJyqps2cF/BqBfaw7j/YLCqwcDi5Ig==
-X-Google-Smtp-Source: AMsMyM79jF/mQUjZkPBzBVS66n8GDckLQzu9iZ4Q2FgLNCzLYn6iwTiqqFodYM/inPq47dG72kAYJzNkRM/I3UtTlRs=
-X-Received: by 2002:a17:907:1df1:b0:779:4f57:6bb2 with SMTP id
- og49-20020a1709071df100b007794f576bb2mr4327098ejc.407.1663348526555; Fri, 16
- Sep 2022 10:15:26 -0700 (PDT)
+        bh=21s3mIokPi1HbguXYtTformDqpF6+8/wpnpcqA84+18=;
+        b=prGHi8+fauxciGIbBI8ifakP+W0wOamiRVdisS4UkOpNqFgfMqulPpGn42if5eMD8Q
+         QFlEmop7IIThOzr/v6GBUtqyEznmz+wQ6eUlaT65SbwHw4YYxx+TAoPAqpFMJHXS8N3W
+         UmShrzDy7JgyMVdn5N6kBQUC6Dh7hOQ9jjQyIYM+NB1ojSTIXlqiQ1N7Fpl+a7pfnokJ
+         WiaZ2w0CGim5LxH6mtb3Igw/FtAJMygrc0d6VAGyICTYlixGtmceX1ZhWQXy78bR+0lv
+         j3qXt5zc6BsQYQAzLSZoHQ+FZsxItA7aKFeB9maMYb1dFSvudDuHQY+b/QnUB2c2K5ja
+         Xr7A==
+X-Gm-Message-State: ACrzQf1+nBaM3TyctWrWsx7rBdN0+dFj+mTFA8vRK6Hp6GHe3ihBhAfA
+        wdZWdaZWZ8EvJzJVo9ueHQN+4PjlgmhP5amavOHqw1+DiMI=
+X-Google-Smtp-Source: AMsMyM7Yy+7V8SmcBWCwTKZgsSDsOmHXEw3oK4FftBX0NEWQUH3mg2HUHfuk6KX9JnRiq7Oa2G+UAiJjKARFawqsFhw=
+X-Received: by 2002:a05:622a:4ce:b0:35b:417d:ab68 with SMTP id
+ q14-20020a05622a04ce00b0035b417dab68mr5418502qtx.282.1663352546954; Fri, 16
+ Sep 2022 11:22:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220829194247.GC2264818@p14s> <20220908111757.14633-1-tinghan.shen@mediatek.com>
- <CANLsYkx6kXk8u_ajFbnhdWTkZBLtrq_z02jryLBSVH0x--_ZFw@mail.gmail.com> <a5ecd1dd567ca58807b289f2488d933f27e087dd.camel@mediatek.com>
-In-Reply-To: <a5ecd1dd567ca58807b289f2488d933f27e087dd.camel@mediatek.com>
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-Date:   Fri, 16 Sep 2022 11:15:14 -0600
-Message-ID: <CANLsYkxPdWErZErgGukvsMWcaGSRDpoKEkMeukvFi=BVTdpm8A@mail.gmail.com>
-Subject: Re: [PATCH v2 4/9] remoteproc: mediatek: Support probing for the 2nd
- core of dual-core SCP
-To:     TingHan Shen <tinghan.shen@mediatek.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        bjorn.andersson@linaro.org, bleung@chromium.org,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-        dnojiri@chromium.org, enric.balletbo@collabora.com,
-        groeck@chromium.org, gustavoars@kernel.org, keescook@chromium.org,
-        krzk+dt@kernel.org, lee.jones@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, matthias.bgg@gmail.com,
-        pmalani@chromium.org, robh+dt@kernel.org,
-        sebastian.reichel@collabora.com, weishunc@google.com
+References: <CACeCKackdbDZrk5fk7qyMwSdTdzyTS=m1vHPFnQOj672W=2nOA@mail.gmail.com>
+ <20220628182336.GA711518-robh@kernel.org> <CAEXTbpex9nxP-nyPWvSBchAW4j3C4MZfVHTb=5X0iSLY1bSAKg@mail.gmail.com>
+ <CAEXTbpf_jxK-R5aA81FCbpAH4bChA2B9+8qExZUbA7Y+Ort=Gg@mail.gmail.com>
+ <CAL_Jsq+C04RXLtm6Ac85Ru3EGwJbqV_UD3_dDWVrKvFSvdm7Ng@mail.gmail.com>
+ <CAE-0n53ers881LOTCEmKDDxJQt+5vvXJSURs=o6TcOiR5m_EAw@mail.gmail.com>
+ <CACeCKacJnnk4_dXEX7XiboOWrYpfAcE=ukP63agVAYUxWR9Vbg@mail.gmail.com>
+ <CAE-0n50jm1ovUcBC0GCQJszk-4u+0vDQtAxHxsu9SLyn_CkQuQ@mail.gmail.com>
+ <CACeCKadtmGZ5iuTHdMms6ZHGn-Uv=MbcdtqmUzqCb=5WHuPj2Q@mail.gmail.com>
+ <20220712174551.GG1823936-robh@kernel.org> <YxGzk6DNAt0aCvIY@chromium.org>
+In-Reply-To: <YxGzk6DNAt0aCvIY@chromium.org>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Fri, 16 Sep 2022 11:21:56 -0700
+Message-ID: <CACeCKad9WtvTu_8_RfiCnkcFnagZvm+Rpx_Vrj8OORQ_=u2snQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Pin-yen Lin <treapking@chromium.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Sept 2022 at 06:00, TingHan Shen <tinghan.shen@mediatek.com> wrote:
->
-> On Thu, 2022-09-08 at 14:58 -0600, Mathieu Poirier wrote:
-> > On Thu, 8 Sept 2022 at 05:21, Tinghan Shen <tinghan.shen@mediatek.com>
-> > wrote:
-> >
-> > > Hi Mathieu,
-> > >
-> > > > > The mtk_scp.c driver only supports the single core SCP and the
-> > > > > 1st core of a dual-core SCP. This patch extends it for the 2nd core.
-> > > > >
-> > > > > MT8195 SCP is a dual-core MCU. Both cores are housed in the same
-> > >
-> > > subsys.
-> > > >
-> > > > s/subsys/subsystem
-> > > >
-> > > > > They have the same viewpoint of registers and memory.
-> > > > >
-> > > > > Core 1 of the SCP features its own set of core configuration registers,
-> > > > > interrupt controller, timers, and DMAs. The rest of the peripherals
-> > > > > in this subsystem are shared by core 0 and core 1.
-> > > > >
-> > > > > As for memory, core 1 has its own cache memory. the SCP SRAM is shared
-> > > >
-> > > > /the/The
-> > > >
-> > > > > by core 0 and core 1.
-> > > > >
-> > > > > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> > > > > ---
-> > > > >  drivers/remoteproc/mtk_scp.c | 22 ++++++++++++++++++++--
-> > > > >  1 file changed, 20 insertions(+), 2 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/remoteproc/mtk_scp.c
-> > >
-> > > b/drivers/remoteproc/mtk_scp.c
-> > > > > index 3510c6d0bbc8..91b4aefde4ac 100644
-> > > > > --- a/drivers/remoteproc/mtk_scp.c
-> > > > > +++ b/drivers/remoteproc/mtk_scp.c
-> > > > > @@ -23,6 +23,10 @@
-> > > > >  #define MAX_CODE_SIZE 0x500000
-> > > > >  #define SECTION_NAME_IPI_BUFFER ".ipi_buffer"
-> > > > >
-> > > > > +#define SCP_CORE_0 0
-> > > > > +#define SCP_CORE_1 1
-> > > > > +#define SCP_CORE_SINGLE 0xF
-> > > > > +
-> > > > >  /**
-> > > > >   * scp_get() - get a reference to SCP.
-> > > > >   *
-> > > > > @@ -836,6 +840,7 @@ static int scp_probe(struct platform_device *pdev)
-> > > > >     struct resource *res;
-> > > > >     const char *fw_name = "scp.img";
-> > > > >     int ret, i;
-> > > > > +   u32 core_id = SCP_CORE_SINGLE;
-> > > > >
-> > > > >     ret = rproc_of_parse_firmware(dev, 0, &fw_name);
-> > > > >     if (ret < 0 && ret != -EINVAL)
-> > > > > @@ -851,8 +856,16 @@ static int scp_probe(struct platform_device *pdev)
-> > > > >     scp->data = of_device_get_match_data(dev);
-> > > > >     platform_set_drvdata(pdev, scp);
-> > > > >
-> > > > > +   ret = of_property_read_u32_index(dev->of_node,
-> > >
-> > > "mediatek,scp-core", 1, &core_id);
-> > > > > +   if (ret == 0)
-> > > > > +           dev_info(dev, "Boot SCP dual core %u\n", core_id);
-> > > >
-> > > > Why is the DT property "mediatek,scp-core" needed at all?  Since the
-> > >
-> > > compatible
-> > > > "mediatek,mt8195-scp-dual" has already been defined previously in this
-> > >
-> > > patchset,
-> > > > initialising the second core, if present, is a matter of looking at the
-> > > > compatile string.
-> > >
-> > > This idea of identify cores by the compatible looks workable.
-> > > I'll update this series at next version.
-> > > Thanks!
-> > >
-> > > >
-> > > > > +
-> > > > >     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sram");
-> > > > > -   scp->sram_base = devm_ioremap_resource(dev, res);
-> > > > > +   if (core_id == SCP_CORE_1)
-> > > > > +           scp->sram_base = devm_ioremap(dev, res->start,
-> > >
-> > > resource_size(res));
-> > > > > +   else
-> > > > > +           scp->sram_base = devm_ioremap_resource(dev, res);
-> > > > > +
-> > > >
-> > > > This looks very broken...  For this to work you would need to have two DT
-> > > > entries with the "mediatek,mt8195-scp-dual" compatible properly, one with
-> > > > "mediatek,scp-core = <&scp_dual1 0>;" and another one with
-> > >
-> > > "mediatek,scp-core = <&scp_dual0 1>;".
-> > > >
-> > > > Which is also very broken...  Here you have a binding whose first
-> > >
-> > > argument is a
-> > > > reference to the core sibling while the second argument is a
-> > >
-> > > characteristic of
-> > > > the current core, which is highly confusing.
-> > > >
-> > > > I suggest what when you see the compatible binding
-> > >
-> > > "mediatek,mt8195-scp", a
-> > > > single core is initialized.  If you see "mediatek,mt8195-scp-dual", both
-> > >
-> > > cores
-> > > > are initialized as part of the _same_ probe.
-> > > >
-> > > > If the above analysis is not correct it means I misinterpreted your
-> > > > work and if so, a serious amount of comments is needed _and_ a very
-> > >
-> > > detailed
-> > > > example in "mtk,scp.yaml" that leaves no room for interpretation.
-> > > >
-> > > > I will stop reviewing this patchset until you have clarified how this
-> > >
-> > > works.
-> > > >
-> > > > Thanks,
-> > > > Mathieu
-> > >
-> > > There's one problem of initializng the CORE1 using the same probe flow.
-> > > The register space of CORE0 and CORE1 are overlapped in the device node.
-> > > Both cores need to use the 'cfg' registers defined in scp yaml.
-> > > The devm_ioremap_resource catches address overlapping and returns error
-> > > when
-> > > probing CORE1 driver.
-> > >
-> >
-> > That is exactly why I suggest to initialise both cores within the same
-> > probe() function.
-> >
->
-> Hi Mathieu,
->
-> I'm thinking about how to initialise in the same probe() function.
-> I'm wondering if this implies that using one scp driver to initialize 2 cores?
-> If it is, I assume the dts descriptions for both cores should be contained in one node.
->
-> When there's one node for both cores, it looks like that there is a problem of
-> using dma_allocate_coherent(). Each core has its own reserved memory region.
-> When there's only one device for both cores, it's not able to identify the memory region
-> by the device parameter of dma_allocate_coherent().
->
-> Is it acceptable to consider manually allocating core 1 device in the probe() when probing core 0?
+Hi folks,
 
-Look at what Suman did for TI's K3 R5[1] and DSP[2] platforms.
-Reviewing the bindings for both platforms will also give you a good
-idea of how things work.
+On Fri, Sep 2, 2022 at 12:41 AM Prashant Malani <pmalani@chromium.org> wrote:
+>
+> Hi Rob,
+>
+> On Jul 12 11:45, Rob Herring wrote:
+> >
+> > That's not the right interpretation. There should not be some Type-C
+> > specific child mux/switch node because the device has no such h/w within
+> > it. Assuming all the possibilities Stephen outlined are valid, it's
+> > clear this lane selection has nothing to do with Type-C. It does have an
+> > output port for its DP output already and using that to describe the
+> > connection to DP connector(s) and/or Type-C connector(s) should be
+> > handled.
+> > Rob
+>
+> Below I've listed the proposal binding (for the Type-C connector) along
+> with 2 sample hardware diagrams and corresponding DT.
 
-[1]. https://elixir.bootlin.com/linux/v6.0-rc5/source/drivers/remoteproc/ti_k3_r5_remoteproc.c#L1683
-[2]. https://elixir.bootlin.com/linux/v6.0-rc5/source/drivers/remoteproc/ti_k3_dsp_remoteproc.c#L673
+Any thoughts about this proposal?
 
 >
+> The updated binding in usb-c-connector would be as follows:
 >
-> Best regards,
-> TingHan
+> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> index ae515651fc6b..a043b09cb8ec 100644
+> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> @@ -183,6 +183,30 @@ properties:
+>        port@1:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description: Super Speed (SS), present in SS capable connectors.
+> +        properties:
+> +          '#address-cells':
+> +            const: 1
+> +
+> +          '#size-cells':
+> +            const: 0
+> +
+> +        patternProperties:
+> +          "^endpoint@[0-1]$":
+> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +            description:
+> +              Endpoints for the two SS lanes. endpoint@0 refers to SSTRX1 (A2,A3,B10,B11)
+> +              and endpoint@1 refers to SSTRX2 (B2,B3,A10,A11).
+> +            additionalProperties: false
+> +
+> +              properties:
+> +                reg:
+> +                  maxItems: 1
+> +
+> +                remote-endpoint: true
+> +
+> +              required:
+> +                - reg
+> +                - remote-endpoint
+>
+>        port@2:
+>          $ref: /schemas/graph.yaml#/properties/port
+>
+> Here are 2 examples of how that would look on some existing hardware:
+>
+> Example 1. 2 usb-c-connectors connecting to 1 drm bridge / DP switch:
+>
+> Here is the diagram we are using on the MTK platform:
+>
+>                  SOC
+>         +---------------------+                                              C0
+>         |                     |            +----------+       2 lane      +--------+
+>         |                     |            |          +---------/---------+ SSTRX1 |
+>         |                     |            |          |                   |        |
+>         |    MIPI DPI         |            |          |  2 lane           |        |
+>         |                     +------------+ ANX 7625 +---/-----+    +----+ SSTRX2 |
+>         |                     |            |          |         |    |    +--------+
+>         |                     |            +----------+         |    |
+>         +---------------------+                                 |    |
+>         |                     |            +----------+ 2 lane  |    |       C1
+>         |                     |            |          +----/----C----+    +--------+
+>         |    USB3 HC          |   2 lane   |          |         |         | SSTRX1 |
+>         |                     +-----/------+ USB3 HUB |         +---------+        |
+>         |  (host controller)  |            |          |       2 lane      |        |
+>         |                     |            |          +---------/---------+ SSTRX2 |
+>         +---------------------+            |          |                   |        |
+>                                            +----------+                   +--------+
+>
+> Some platforms use it6505, so that can be swapped in for anx7625
+> without any change to the rest of the hardware diagram.
+>
+> From the above, we can see that it is helpful to describe the
+> Type-C SS lines as 2 endpoints:
+> - 1 for SSTX1+SSRX1 (A2,A3 + B10,B11)
+> - 1 for SSTX2+SSRX2 (B2,B3 + A10, A11)
+>
+> A device tree for this would look as follows:
+>
+> // Type-C port driver
+> ec {
+>     ...
+>     cros_ec_typec {
+>         ...
+>         usb-c0 {
+>             compatible = "usb-c-connector";
+>             ports {
+>                 hs : port@0 {
+>                     ...
+>                 };
+>                 ss: port@1 {
+>                     reg = <1>;
+>                     c0_sstrx1: endpoint@0 {
+>                         reg = <0>;
+>                         remote-endpoint = <&anx7625_out0>;
+>                     };
+>                     c0_sstrx2: endpoint@0 {
+>                         reg = <0>;
+>                         remote-endpoint = <&usb3hub_out0>;
+>                     };
+>                 };
+>                 sbu : port@2 {
+>                     ...
+>                 };
+>             };
+>         };
+>         usb-c1 {
+>             compatible = "usb-c-connector";
+>             ports {
+>                 hs : port@0 {
+>                     ...
+>                 };
+>                 ss: port@1 {
+>                     reg = <1>;
+>                     c1_sstrx1: endpoint@0 {
+>                         reg = <0>;
+>                         remote-endpoint = <&anx7625_out1>;
+>                     };
+>                     c1_sstrx2: endpoint@0 {
+>                         reg = <0>;
+>                         remote-endpoint = <&usb3hub_out1>;
+>                     };
+>                 };
+>                 sbu : port@2 {
+>                     ...
+>                 };
+>             };
+>         };
+>     };
+> };
+>
+> // DRM bridge / Type-C mode switch
+> anx_bridge: anx7625@58 {
+>     compatible = "analogix,anx7625";
+>     reg = <0x58>;
+>     ...
+>     // Input from DP controller
+>     port@0 {
+>         reg = <0>;
+>         ...
+>     };
+>
+>     // Output to Type-C connector / DP panel
+>     port@1 {
+>         reg = <1>;
+>
+>         anx7625_out0: endpoint@0 {
+>             reg = <0>;
+>             mode-switch;
+>             remote-endpoint = <&c0_sstrx1>;
+>         };
+>         anx7625_out1: endpoint@1 {
+>             reg = <1>;
+>             mode-switch;
+>             remote-endpoint = <&c1_sstrx1>;
+>         };
+>     };
+> };
+>
+> // USB3 hub
+> usb3hub: foo_hub {
+>     ...
+>     ports@0 {
+>          // End point connected to USB3 host controller on SOC.
+>     };
+>     port@1 {
+>         reg = <1>;
+>
+>         foo_hub_out0: endpoint@0 {
+>             reg = <0>;
+>             mode-switch; ---> See c.) later
+>             remote-endpoint = <&c0_sstrx2>;
+>         };
+>         foo_hub_out1: endpoint@1 {
+>             reg = <1>;
+>             mode-switch;
+>             remote-endpoint = <&c1_sstrx2>;
+>         };
+>     };
+> };
+>
+> Notes:
+> - On the Chrome OS platform, the USB3 Hub is controlled by
+> the EC, so we don't really need to describe that connection,
+> but I've added a minimal one here just to show how the graph
+> connection would work if the HUB was controlled by the SoC.
+> - The above assumes that other hardware is controlling orientation.
+> We can add "orientation-switch" drivers along the graph path
+> if there is other hardware which controls orientation.
+>
+> Example 2: 1 USB-C connector connected to 1 drm-bridge/ mode-switch
+>
+> I've tried to use Bjorn's example [1], but I might have made
+> some mistakes since I don't have access to the schematic.
 >
 >
+>                   SoC
+>   +------------------------------------------+
+>   |                                          |
+>   |  +---------------+                       |
+>   |  |               |                       |
+>   |  |  DP ctrllr    |       +---------+     |                 C0
+>   |  |               +-------+         |     |   2 lane     +----------+
+>   |  +---------------+       |  QMP    +-----+-----/--------+ SSTRX1   |
+>   |                          |  PHY    |     |              |          |
+>   |  +-------------+  2 lane |         |     |   2 lane     |          |
+>   |  |             +----/----+         +-----+-----/--------+ SSTRX2   |
+>   |  |    dwc3     |         +---------+     |              |          |
+>   |  |             |                         |              |          |
+>   |  |             |         +---------+     |              |          |
+>   |  |             +---------+ HS PHY  |     |   HS lanes   |          |
+>   |  +-------------+         |         +-----+----/---------+ D +/-    |
+>   |                          |         |     |              +----------+
+>   |                          +---------+     |
+>   |                                          |
+>   +------------------------------------------+
 >
+> The DT would look something like this (borrowing from Stephen's example [2]):
 >
+> qmp {
+>     mode-switch; ----> See b.) later.
+>     orientation-switch;
+>     ports {
+>         qmp_usb_in: port@0 {
+>             reg = <0>;
+>             remote-endpoint = <&usb3_phy_out>;
+>         };
+>         qmp_dp_in: port@1 {
+>             reg = <1>;
+>             remote-endpoint = <&dp_phy_out>;
+>         };
+>         port@2 {
+>             reg = <2>;
+>             qmp_usb_dp_out0: endpoint@0 {
+>                 reg = <0>;
+>                 remote-endpoint = <&c0_sstrx1>;
+>             };
+>             qmp_usb_dp_out1: endpoint@1 {
+>                 reg = <1>;
+>                 remote-endpoint = <&c0_sstrx2>;
+>             };
+>         };
+> };
 >
+> dp-phy {
+>     ports {
+>         dp_phy_out: port {
+>             remote-endpoint = <&qmp_dp_in>;
+>         };
+>     };
+> };
 >
+> dwc3: usb-phy {
+>     ports {
+>         usb3_phy_out: port@0 {
+>             reg = <0>;
+>             remote-endpoint = <&qmp_usb_in>;
+>         };
+>     };
+> };
 >
+> glink {
+>     c0: usb-c-connector {
+>         compatible = "usb-c-connector";
+>         ports {
+>             hs: port@0 {
+>                 reg = <0>;
+>                 endpoint@0 {
+>                     reg = <0>;
+>                     remote-endpoint = <&hs_phy_out>;
+>                 };
+>             };
 >
+>             ss: port@1 {
+>                 reg = <1>;
+>                 c0_sstrx1: endpoint@0 {
+>                     reg = <0>;
+>                     remote-endpoint = <&qmp_usb_dp_out0>;
+>                 };
+>                 c0_sstrx2: endpoint@1 {
+>                     reg = <1>;
+>                     remote-endpoint = <&qmp_usb_dp_out1>;
+>                 };
+>             };
+>         };
+>     };
+> };
+>
+> Notes:
+> a. This proposal doesn't deal with the DRM bridge HPD forwarding; I
+> believe that is covered by Stephen's example/proposal in [2], and
+> can be addressed separately. That said, this binding is compatible
+> with the proposal in [2], that is, make the "mode-switch" driver a
+> drm-bridge and forward the HPD info to the upstream DRM-bridge (DP controller).
+> The driver implementing "mode-switch" will be able to do that, since
+> it gets DP status/attention VDOS with HPD info from the Type-C port driver.
+> b. If both SSTRX pairs from a connector are routed to the same
+> hardware block (example 2) then the device would keep "mode-switch"
+> as a top level property (and the fwnode associated with "mode-switch"
+> is the drm-bridge device).
+> c. If SSTRX pairs from 2 connectors are routed to the same
+> hardware block (example 1), then each end-point which is connected to
+> the USB-C connector will have a "mode-switch" property in its end-point.
+> There will be 2 mode switches registered here, and the fwnode for each
+> "mode-switch" is the end-point node.
+>
+> b.) and c.) can be handled by Type C mux registration and matching
+> code. We already have 3 mux devs for each mux [3].
+>
+> For the single mode-switch case, mux_dev[1] will just refer to the top-level
+> mode-switch registered by the DRM bridge / switch driver (example 1).
+> For the 2 mode-switch case, typec_mux_dev[1] will have 2 child
+> typec_mux_dev's, each of which represents the mode-switches
+> registered by the DRM bridge / switch driver. Introducing this
+> indirection means the port driver / alternate mode driver don't
+> need to care about how the connectors are routed; the framework
+> will just call the mux_set() function on the mux_dev() or its
+> children if it has any.
+>
+> The benefit of this approach is existing bindings (which just
+> assume 1 endpoint from usb-c-connector/port@1) should continue to
+> work without any changes.
+>
+> Why don't we use data lanes for the usb-c-connector
+> endpoints? I guess we could, but I am not a fan of adding the
+> extra data-lane parsing logic to the Type-C framework (I
+> don't think drivers need that level of detail from the connector
+> binding). And even then, we will still need an extra end-point
+> if the lanes of the USB-C connector are routed to different hardware blocks.
+>
+> The Type-C connector spec doesn't specify any alternate modes
+> with < 1 SSTRX pair, so the most we can ever have (short of a
+> major change to the spec) is 2 SSTRX end points for a
+> connector each being routed to different hardware blocks.
+> Codifying these as endpoint@0 and endpoint@1 in the usb-c-connector
+> binding seems to line up nicely with this detail of the spec.
+>
+> Thanks,
+>
+> -Prashant
+>
+> [1] https://lore.kernel.org/linux-usb/Yv1y9Wjp16CstJvK@baldur/
+> [2] https://lore.kernel.org/linux-usb/CAE-0n52-QVeUVCB1qZzPbYyrb1drrbJf6H2DEEW9bOE6mh7egw@mail.gmail.com/
+> [3] https://elixir.bootlin.com/linux/v6.0-rc3/source/drivers/usb/typec/mux.c#L259
