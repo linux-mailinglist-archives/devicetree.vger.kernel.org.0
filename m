@@ -2,226 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D1405BA3C2
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 03:11:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B94625BA3F6
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 03:25:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbiIPBL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 21:11:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56468 "EHLO
+        id S229704AbiIPBZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 21:25:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbiIPBL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 21:11:26 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370535281B;
-        Thu, 15 Sep 2022 18:11:25 -0700 (PDT)
-X-UUID: 9d14abbb1a114425abe224d8fdd7e27d-20220916
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=aC9p5EUciWE62FXN9xCu29LXkZgaSFsdB9J57e55t1U=;
-        b=bov35MI20lo6NjA1sBWjEIFc2XrdaYjH9hP/GhM5/2AECz4hp2Gq0TxXNzb9Ln90HMOdMZlPlHoswUNc+LohcSwdSqQ45U0xhu8yLzaGUW5LPxIqEIT8e/YDsPAeWSRovW0FP2k8AWvIO6rt5zQAQwSH8K83ECC20RfP1tzviA8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:d17b4d39-36f8-4f9d-b16f-0ec5aff9e2c5,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:aa77d25d-5ed4-4e28-8b00-66ed9f042fbd,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 9d14abbb1a114425abe224d8fdd7e27d-20220916
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1707785144; Fri, 16 Sep 2022 09:11:20 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 16 Sep 2022 09:11:18 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 16 Sep 2022 09:11:18 +0800
-Message-ID: <d87203dea8d57868751dfbbce33d210e8976da7c.camel@mediatek.com>
-Subject: Re: [PATCH 1/5] dt-bindings: arm: mediatek: mmsys: change
- compatible for MT8195
-From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        "Singo Chang" <singo.chang@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 16 Sep 2022 09:11:18 +0800
-In-Reply-To: <a8e18b62-f49f-7c99-e046-3ee609e11627@gmail.com>
-References: <20220914182331.20515-1-jason-jh.lin@mediatek.com>
-         <20220914182331.20515-2-jason-jh.lin@mediatek.com>
-         <1b739216-8bb1-162b-1af5-24acba7324bf@gmail.com>
-         <296155e2a12a474439ba092e73b4bcffbf3d3edc.camel@mediatek.com>
-         <a8e18b62-f49f-7c99-e046-3ee609e11627@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229579AbiIPBZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 21:25:19 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995A152FE3;
+        Thu, 15 Sep 2022 18:25:17 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-12803ac8113so50004825fac.8;
+        Thu, 15 Sep 2022 18:25:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=we/qDjsEEkRmB9uRokHCLu2f8y3YPtpNWkqYAj/IL98=;
+        b=f8i35YrWhB0or5muFx5oxkQzENiuEKEXDc5ZHWoxhKbi5qXXW76jxZqhxUp7FYx8f2
+         6bPI58cjBHJo/KAbMcqX7njm+QCwec+ovmhwK1Rs6gogjFkaznpbGtxTCWi5rZS/gKNo
+         Qbq1nkjii3S9vN1rnU609oCG+DCxWxIBsMrDWCz+c7GOp3U7CHhGUQus6FE/fQG3P1/S
+         aUrfc1VLGiwqlID1o/QM4XbC61mcH/jbFZu7JLGSk/TNZhEdMm3Lr/VW72rYWZLkI25Z
+         B8p6el1JuRN0f/Gs03EvoJ2aqzR9xwiMK1Xwy6H8qM6PzgJHDGsXf1QOXknerWnL5xzz
+         XAOg==
+X-Gm-Message-State: ACgBeo0BYoyTVMrO1JRq0WxGw3eRf0B1EiRrik9vYkWfZ3YlYrAN1cGj
+        AR/DGq7Z4fewFG6gVeer2g==
+X-Google-Smtp-Source: AA6agR74FXyXUTi7l5UGPuM/qMCgePdrF2GBBhtCUwsTv5ymPHxdQD0p3cQoMVOmVMJOdbdfMEK2yg==
+X-Received: by 2002:a05:6870:2418:b0:101:9461:787c with SMTP id n24-20020a056870241800b001019461787cmr6892531oap.196.1663291516113;
+        Thu, 15 Sep 2022 18:25:16 -0700 (PDT)
+Received: from xps15.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.googlemail.com with ESMTPSA id ca6-20020a056830610600b00655bb503564sm9242321otb.50.2022.09.15.18.25.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Sep 2022 18:25:15 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org
+Subject: [PATCH] dt: Add a check for undocumented compatible strings in kernel
+Date:   Thu, 15 Sep 2022 20:25:09 -0500
+Message-Id: <20220916012510.2718170-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-09-15 at 18:20 +0200, Matthias Brugger wrote:
-> Hi Jason,
-> 
-> On 15/09/2022 03:24, Jason-JH Lin wrote:
-> > Hi Matthias,
-> > 
-> > Thanks for the reviews.
-> > 
-> > On Wed, 2022-09-14 at 23:24 +0200, Matthias Brugger wrote:
-> > > 
-> > > On 14/09/2022 20:23, Jason-JH.Lin wrote:
-> > > > For previous MediaTek SoCs, such as MT8173, there are 2 display
-> > > > HW
-> > > > pipelines binding to 1 mmsys with the same power domain, the
-> > > > same
-> > > > clock driver and the same mediatek-drm driver.
-> > > > 
-> > > > For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines
-> > > > binding
-> > > > to
-> > > > 2 different power domains, different clock drivers and
-> > > > different
-> > > > mediatek-drm drivers.
-> > > > 
-> > > > Moreover, Hardware pipeline of VDOSYS0 has these components:
-> > > > COLOR,
-> > > > CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture
-> > > > Quality)
-> > > > and they makes VDOSYS0 supports PQ function while they are not
-> > > > including in VDOSYS1.
-> > > > 
-> > > > Hardware pipeline of VDOSYS1 has the component ETHDR (HDR
-> > > > related
-> > > > component). It makes VDOSYS1 supports the HDR function while
-> > > > it's
-> > > > not
-> > > > including in VDOSYS0.
-> > > > 
-> > > > To summarize0:
-> > > > Only VDOSYS0 can support PQ adjustment.
-> > > > Only VDOSYS1 can support HDR adjustment.
-> > > > 
-> > > > Therefore, we need to separate these two different mmsys
-> > > > hardwares
-> > > > to
-> > > > 2 different compatibles for MT8195.
-> > > > 
-> > > > Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add
-> > > > mt8195
-> > > > SoC binding")
-> > > > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> > > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > 
-> > > I'm not sure Krzysztof gave his Acked-by tag.
-> > 
-> > I'll remove this tag.
-> > > 
-> > > > ---
-> > > >    .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml    
-> > > >     |
-> > > > 2 ++
-> > > >    1 file changed, 2 insertions(+)
-> > > > 
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > index 6ad023eec193..a53b32c0a608 100644
-> > > > ---
-> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > +++
-> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > @@ -32,6 +32,8 @@ properties:
-> > > >                  - mediatek,mt8186-mmsys
-> > > >                  - mediatek,mt8192-mmsys
-> > > >                  - mediatek,mt8195-mmsys
-> > > > +              - mediatek,mt8195-vdosys0
-> > > 
-> > > As I said in the last submission, we should make mediatek,mt8195-
-> > > mmsys as a
-> > > fallback of vdosys0. Actually mediatek,mt8195-mmsys is only used
-> > > for
-> > > the
-> > > fallback of vdosys0.
-> > 
-> > I think adding both vdosys0 and vdosys1 can make the description of
-> > this patch clearer.
-> > 
-> > It's find to me to only add "mediatek,mt8195-vdosys0" in this
-> > patch.
-> > So I'll remove the "mediatek,mt8195-vdosys1" at the next version.
-> > 
-> 
-> That's not what I wanted to suggest. Up to now in upstream kernel
-> compatible 
-> mediatek,mt8195-mmsys enables support fro vdosys0. The vdosys1 is not
-> yet 
-> upstream, so no support.
-> If we change the compatible, we should keep mediatek,mt8195-mmsys as
-> fallback of 
-> "mediatek,mt8195-vdosys0" so that older device tree blobs won't break
-> with a Mtk811
-> newer kernel.
-> For "mediatek,mt8195-vdosys1" we do not need a fallback compatible as
-> the code 
-> never reached upstream, so no breakage expected.
-> 
-> Hope I explain myself now.
-> 
-> Regards,
-> Matthias
-> 
+Add a make target, dt_compatible_check, to extract compatible strings
+from kernel sources and check if they are documented by a schema.
+At least version v2022.08 of dtschema with dt-check-compatible is
+required.
 
-I think I misunderstood your reply to the patch "dt-bindings: arm:
-mediatek: mmsys: remove the unused compatible for mt8195", so I merge
-it into this patch.
+This check can also be run manually on specific files or directories:
 
-Thanks for your patient explanation.
-I will keep the "mediatek,mt8195-
-mmsys" in this patch.
+scripts/dtc/dt-extract-compatibles drivers/clk/ | \
+  xargs dt-check-compatible -v -s Documentation/devicetree/bindings/processed-schema.json
 
-Regards,
-Jason-JH.Lin
+Currently, there are about 3800 undocumented compatible strings. Most of
+these are cases where the binding is not yet converted (given there
+are 1900 .txt binding files remaining).
 
-> 
-> > Regards,
-> > Jason-JH.Lin
-> > > 
-> > > Regards,
-> > > Matthias
-> > > 
-> > > > +              - mediatek,mt8195-vdosys1
-> > > >                  - mediatek,mt8365-mmsys
-> > > >              - const: syscon
-> > > >          - items:
-> > > 
-> > > 
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/Makefile |  3 +
+ Makefile                                   |  4 ++
+ scripts/dtc/dt-extract-compatibles         | 68 ++++++++++++++++++++++
+ 3 files changed, 75 insertions(+)
+ create mode 100755 scripts/dtc/dt-extract-compatibles
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 1eaccf135b30..bf2d8a8ced77 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -75,3 +75,6 @@ always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dtb,
+ # build artifacts here before they are processed by scripts/Makefile.clean
+ clean-files = $(shell find $(obj) \( -name '*.example.dts' -o \
+ 			-name '*.example.dtb' \) -delete 2>/dev/null)
++
++dt_compatible_check: $(obj)/processed-schema.json
++	$(Q)$(srctree)/scripts/dtc/dt-extract-compatibles $(srctree) | xargs dt-check-compatible -v -s $<
+diff --git a/Makefile b/Makefile
+index f09673b6c11d..7f19e1725b2f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1419,6 +1419,10 @@ PHONY += dt_binding_check
+ dt_binding_check: scripts_dtc
+ 	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
+ 
++PHONY += dt_compatible_check
++dt_compatible_check: dt_binding_check
++	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings $@
++
+ # ---------------------------------------------------------------------------
+ # Modules
+ 
+diff --git a/scripts/dtc/dt-extract-compatibles b/scripts/dtc/dt-extract-compatibles
+new file mode 100755
+index 000000000000..3a6dd3c40ac1
+--- /dev/null
++++ b/scripts/dtc/dt-extract-compatibles
+@@ -0,0 +1,68 @@
++#!/usr/bin/env python3
++# SPDX-License-Identifier: GPL-2.0-only
++
++import os
++import glob
++import re
++import argparse
++
++
++def parse_of_declare_macros(data):
++	""" Find all compatible strings in OF_DECLARE() style macros """
++	compat_list = []
++	for m in re.finditer(r'(IRQCHIP|OF)_(DECLARE|MATCH)(_DRIVER)?\(.*?\)', data):
++		try:
++			compat = re.search(r'"(.*?)"', m[0])[1]
++		except:
++			# Fails on compatible strings in #define, so just skip
++			continue
++		compat_list += [compat]
++
++	return compat_list
++
++
++def parse_of_device_id(data):
++	""" Find all compatible strings in of_device_id structs """
++	compat_list = []
++	for m in re.finditer(r'of_device_id\s+[a-zA-Z0-9_]+\[\]\s*=\s*({.*?);', data):
++		compat_list += re.findall(r'\.compatible\s+=\s+"([a-zA-Z0-9_\-,]+)"', m[1])
++
++	return compat_list
++
++
++def parse_compatibles(file):
++	with open(file, 'r', encoding='utf-8') as f:
++		data = f.read().replace('\n', '')
++
++	compat_list = parse_of_declare_macros(data)
++	compat_list += parse_of_device_id(data)
++
++	return compat_list
++
++def print_compat(filename, compatibles):
++	if not compatibles:
++		return
++	if show_filename:
++		compat_str = ' '.join(compatibles)
++		print(filename + ": compatible(s): " + compat_str)
++	else:
++		print(*compatibles, sep='\n')
++
++show_filename = False
++
++if __name__ == "__main__":
++	ap = argparse.ArgumentParser()
++	ap.add_argument("cfile", type=str, nargs='*', help="C source files or directories to parse")
++	ap.add_argument('-H', '--with-filename', help="Print filename with compatibles", action="store_true")
++	args = ap.parse_args()
++
++	show_filename = args.with_filename
++
++	for f in args.cfile:
++		if os.path.isdir(f):
++			for filename in glob.iglob(f + "/**/*.c", recursive=True):
++				compat_list = parse_compatibles(filename)
++				print_compat(filename, compat_list)
++		else:
++			compat_list = parse_compatibles(f)
++			print_compat(f, compat_list)
 -- 
-Jason-JH Lin <jason-jh.lin@mediatek.com>
+2.34.1
 
