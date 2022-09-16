@@ -2,200 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FC0E5BA9D9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 12:00:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 103D75BA9E5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 12:03:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230305AbiIPJ7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 05:59:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46688 "EHLO
+        id S230376AbiIPKDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 06:03:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbiIPJ7n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 05:59:43 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 600FA1D30C
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 02:59:40 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id c11so35169270wrp.11
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 02:59:40 -0700 (PDT)
+        with ESMTP id S230372AbiIPKDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 06:03:10 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E880AB180;
+        Fri, 16 Sep 2022 03:03:06 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id cc5so25351198wrb.6;
+        Fri, 16 Sep 2022 03:03:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=UVm1C95vT38GM94e6CViaFZISiegXpJ1e7DF2NSTPTI=;
-        b=bhYPUvW7uobCHqRcA9Vj3ZjaW6xL99IdwqjFC8qM0Jl4ZXfwe92iy9BbxTFUuk0khN
-         4ym1RzCTQZsi4TEKidMBSeqvmJ9V7bs7vIlN/hnDuU+zM4bwNV3Nyu3tCH1tdocT7Vsh
-         jMfXbyM+Py1tJmmaxS724Iv1w8wDV7bbQNO+B2FZnKu6qNsqozCEa8YzL7mJGGOH4hfc
-         cCqYJnF6TJ8d+1dRoMMibMX+UFCeGV41zSr5qW8MK7KPlGVpVDr4hCc2HRA4jMtjy4ah
-         yUzAj7IJJiGtiQWLJW1gn47jG7RkxzWpSSe/2Rijg1l90saoVJR8QfWyYssbN4/DSkjL
-         1cJw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Nfu4jbyiIWMFkY+HaHxsAx5hZmCA7LP0E6OJ69aVXfM=;
+        b=C/Sh2hiT1LT2Gc0Sf6D+PolCRdD3eiDxQZaf9gySo+WrgTH57+9iw/OiHI8sL43LZj
+         L3YiSsfOHF+V6G65wLA6ASrTvW9eV9veWQxsb6zBvFu4FsgAKGGQnmRpZScNx/qK089B
+         3HudYX2l+tfRKt4o2xc2/CWZt+kHSRER3d28emrqVgqkQVaHgDjz2LodKloEUotm9WO+
+         FxuatBVRmpmYpADnPf/bHPdmv4tGn6QckMoFnw/ySiVOE5wQTOUKuB94Cxi/W+qT2rc4
+         eVAS0e76IQHQcXXcsq3Srsvt5FvKQydvvJrUl+qBoHMm4GQz4qjZWUfazX3VA4QE5gy9
+         OqxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=UVm1C95vT38GM94e6CViaFZISiegXpJ1e7DF2NSTPTI=;
-        b=AhJpUC7/eT7Wbv8LEcg32nJWRd87orqgPScuBBhKeRFGX1nL+gTLidLOh76B0qlV+u
-         7ADP00tKn7Q7btv4ujV416WmSyXxIZeoWDL4g84pOanip6qfsqJhW4WY1/MiYvKCAgF0
-         9Qu8c5/GAxzHv++ciPQs0ywOhz0itnLO8EsSIhRIj7HPfejOSFXhKBpKii21depR/MSq
-         JamMvxkqZAk+iTGiO9CZUXpJyuVy2c0RvVX2sd+8gbPDklqQdQyTrXogfwpZiG1tHKgH
-         kmrwyA+39VnoN4eVftJ8DJ3Xk4u++sqmSqRlW9LQBm/hmPh1GcjoqyP7dY5c5Y/UXiDJ
-         0kZg==
-X-Gm-Message-State: ACrzQf3Vn9U97QGoyUMuV3LG8vc7/DKRokSFI0UTPY6vJwL59IzsbM59
-        SbGwDILKJ71qdiS5Ks9Xw8lHlw==
-X-Google-Smtp-Source: AMsMyM5h1UeC2XNVcdubto3gNXr5RqMo2zbFaKy9N4TJIeCelFSv6htEok5vkMZvu0/B7fVzaBF/Eg==
-X-Received: by 2002:a05:6000:1d81:b0:226:fa3a:8721 with SMTP id bk1-20020a0560001d8100b00226fa3a8721mr2320700wrb.475.1663322378789;
-        Fri, 16 Sep 2022 02:59:38 -0700 (PDT)
-Received: from [10.119.22.201] ([89.101.193.73])
-        by smtp.gmail.com with ESMTPSA id n6-20020a1c7206000000b003b4764442f0sm1690179wmc.11.2022.09.16.02.59.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Sep 2022 02:59:38 -0700 (PDT)
-Message-ID: <a56aad01-222d-5637-7757-2a1afeed945d@linaro.org>
-Date:   Fri, 16 Sep 2022 10:59:37 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Nfu4jbyiIWMFkY+HaHxsAx5hZmCA7LP0E6OJ69aVXfM=;
+        b=wF1/frhDauQeUnrQzeEs6qbeKppXN1x+4PnT+H/mQTqRqh9C1XTy7/mdizRTPo0hDt
+         E8rh+uT0nWUJFHgaNnVwQBrsDXkK0BXUgbOw/tFttONPHxFTfQVz02xVL2eKB3+fJ/sj
+         eHkQee8nMSSI3h1ZC48FkN+h6iX1ZD+J+oWIA+xpXHD83JsuuWH7ngFUMcTyxe4b8Fow
+         3eN85RjDuCVANGktmf8b0iXAucIR2J2TtD856FCuocxjKmmCqOZQRSIisr9ccZvLse7J
+         PsFy++GjQwMShIg1aXU1A+jDqZyiDLHpeKF29fJRnoDer31Mhjw35rmqoUFy55q3Hobb
+         vz3Q==
+X-Gm-Message-State: ACrzQf11o6osqh+PHydB2znHIdGAzld9pUAzMFwUszRAovxS0m5jrtXQ
+        OCDRm0I/IpqkChdSDGufilKNoZuQ50lsYQ==
+X-Google-Smtp-Source: AMsMyM6bKnPSD8sPETVPpx5ETWKeHIlMmO5gxFWnDcpUgM/fPWUhx2LuNiOGcqCe/g7AaoqV/7ROFw==
+X-Received: by 2002:adf:fd47:0:b0:228:dbab:8f5d with SMTP id h7-20020adffd47000000b00228dbab8f5dmr2243749wrs.524.1663322584420;
+        Fri, 16 Sep 2022 03:03:04 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2501:c701:453:ec29:bd55:6b15])
+        by smtp.gmail.com with ESMTPSA id a8-20020adfe5c8000000b0021db7b0162esm4725069wrn.105.2022.09.16.03.03.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Sep 2022 03:03:03 -0700 (PDT)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: Adjust whitespace around '{'
+Date:   Fri, 16 Sep 2022 11:02:51 +0100
+Message-Id: <20220916100251.20329-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH V2] dt-bindings: clock: add i.MX8M Anatop
-Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "abelvesa@kernel.org" <abelvesa@kernel.org>,
-        "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>
-Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220913092908.1708931-1-peng.fan@oss.nxp.com>
- <638002c3-f402-96d3-7eb8-991f7f05f703@linaro.org>
- <DU0PR04MB94173A2BEB0DA8EC22E3EBDD88469@DU0PR04MB9417.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB94173A2BEB0DA8EC22E3EBDD88469@DU0PR04MB9417.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/09/2022 01:11, Peng Fan wrote:
->> Subject: Re: [PATCH V2] dt-bindings: clock: add i.MX8M Anatop
->>
->> On 13/09/2022 11:29, Peng Fan (OSS) wrote:
->>> From: Peng Fan <peng.fan@nxp.com>
->>>
->>> i.MX8M Family features an anatop module the produces PLL to clock
->>> control module(CCM) root clock. Add the missing yaml file.
->>>
->>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>> ---
->>>
->>> V2:
->>>  Drop syscon, use clock-controller
->>>  Add fsl vendor prefix
->>>  Add interrupt property
->>>
->>>  dts update not included, so there will be dtbs_check fail.
->>>
->>>  .../bindings/clock/fsl,imx8m-anatop.yaml      | 46 +++++++++++++++++++
->>>  1 file changed, 46 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
->>> b/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
->>> new file mode 100644
->>> index 000000000000..2c0efa58d898
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
->>> @@ -0,0 +1,46 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>> +---
->>> +$id:
->>>
->> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
->>> +cetree.org%2Fschemas%2Fclock%2Ffsl%2Cimx8m-
->> anatop.yaml%23&amp;data=05
->>>
->> +%7C01%7Cpeng.fan%40nxp.com%7Ca3a47985f9d9452744af08da9590fe79
->> %7C686ea
->>>
->> +1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637986747221860721%7CU
->> nknown%7C
->>>
->> +TWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWw
->> iLCJXV
->>>
->> +CI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=I4LSaFBDMZv%2FcgFyIR1w
->> m2Irc%2F%2F
->>> +Z9eKChPCJY7XMfDo%3D&amp;reserved=0
->>> +$schema:
->>>
->> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
->>> +cetree.org%2Fmeta-
->> schemas%2Fcore.yaml%23&amp;data=05%7C01%7Cpeng.fan%
->>>
->> +40nxp.com%7Ca3a47985f9d9452744af08da9590fe79%7C686ea1d3bc2b4c6
->> fa92cd9
->>>
->> +9c5c301635%7C0%7C0%7C637986747221860721%7CUnknown%7CTWFpb
->> GZsb3d8eyJWI
->>>
->> +joiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7
->> C3000%
->>>
->> +7C%7C%7C&amp;sdata=dm5exAJpmPmY%2B0vCuZtpzt7k8GHeKZKtitSvep0
->> 5G%2Bw%3D
->>> +&amp;reserved=0
->>> +
->>> +title: NXP i.MX8M Family Anatop Module
->>> +
->>> +maintainers:
->>> +  - Peng Fan <peng.fan@nxp.com>
->>> +
->>> +description: |
->>> +  NXP i.MX8M Family anatop PLL module which generates PLL to CCM root.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - enum:
->>> +          - fsl,imx8mm-anatop
->>> +          - fsl,imx8mq-anatop
->>> +      - items:
->>> +          - enum:
->>> +              - fsl,imx8mn-anatop
->>> +              - fsl,imx8mp-anatop
->>> +          - const: fsl,imx8mm-anatop
->>
->> You dropped syscon which solves part of my previous comment. I suggested
->> to make it proper clock provider, so you would need clock-cells. Any reason
->> it is no a real clock provider?
-> 
-> oh. I overlooked this point. The current i.MX8M linux clk driver directly
-> search the node to get anatop base:
-> https://elixir.bootlin.com/linux/v6.0-rc5/source/drivers/clk/imx/clk-imx8mp.c#L416
-> 
-> Not take it as a real clock provider from linux view.
-> 
-> I will add clock-cells in v3.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Why the Linux driver appeared before bindings? Broken implementation is
-not a valid reason to push such bindings. :/
+Drop extra space around the '{' sign. No functional changes (same DTB).
 
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/r9a07g043.dtsi | 2 +-
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 2 +-
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+index ff6aab388eb7..689aa4ba416b 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+@@ -619,7 +619,7 @@ gic: interrupt-controller@11900000 {
+ 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 
+-		sdhi0: mmc@11c00000  {
++		sdhi0: mmc@11c00000 {
+ 			compatible = "renesas,sdhi-r9a07g043",
+ 				     "renesas,rcar-gen3-sdhi";
+ 			reg = <0x0 0x11c00000 0 0x10000>;
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index 35e7255471b8..2283d4fb8736 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -778,7 +778,7 @@ gic: interrupt-controller@11900000 {
+ 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 
+-		sdhi0: mmc@11c00000  {
++		sdhi0: mmc@11c00000 {
+ 			compatible = "renesas,sdhi-r9a07g044",
+ 				     "renesas,rcar-gen3-sdhi";
+ 			reg = <0x0 0x11c00000 0 0x10000>;
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
+index d27b6c388580..358d4c34465f 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
+@@ -784,7 +784,7 @@ gic: interrupt-controller@11900000 {
+ 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 
+-		sdhi0: mmc@11c00000  {
++		sdhi0: mmc@11c00000 {
+ 			compatible = "renesas,sdhi-r9a07g054",
+ 				     "renesas,rcar-gen3-sdhi";
+ 			reg = <0x0 0x11c00000 0 0x10000>;
+-- 
+2.25.1
+
