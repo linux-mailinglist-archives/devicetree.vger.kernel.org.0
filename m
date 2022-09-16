@@ -2,97 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC1AC5BB0A5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 17:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A04F45BB0AC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 18:01:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230054AbiIPP7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 11:59:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60616 "EHLO
+        id S229712AbiIPQBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 12:01:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbiIPP7W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 11:59:22 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB12B4430;
-        Fri, 16 Sep 2022 08:59:21 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id r18so50411920eja.11;
-        Fri, 16 Sep 2022 08:59:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=0eOqMrsEPlo8wf0Kb/kFeTkXHYSCkhl/zlKEpzl3GUU=;
-        b=gmfWSQs3LmqC3lPZz6lRjnb/2ggeGEEHLUBxU1OLJpLVLP4A7WoN54WvtK4PvmRago
-         DJ9oDYAR4M8yLdwcNKjJEqQrw2KjX20ioimVvQ+pgFXJsBbEYSKFYcD1ILYkCEV453tS
-         Jfaoy30nBTJHahfepA+1qFu9skK6DuZMvkYFOgrXUAmvuznVk1HPyPUVudHJNgg4w5Et
-         KKyGAz2tHFco7JBCiAn2U1suRoxbPiErP4StNYJdTevGeqKHu606Uj/UithsHYQkYqLA
-         kw+V+dTqrFrMDlXCZZ63vPwUH5+R8XvRfjoVwMeH5wmpQvpWeNardHMOtp444A5WTeee
-         rnzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=0eOqMrsEPlo8wf0Kb/kFeTkXHYSCkhl/zlKEpzl3GUU=;
-        b=JkQRYSw/PTIy/Bd6zX23yGhTAjAAdtPfmGoncjIOhMXK/SfB6ATnbyTbz1tBQRVb5B
-         ZZnQ/hAu0WAsUuDkToFgEQNL6lUrQBmgNwdUDEi1iKKLQ2NAZ+RWtXm0cd7mnEpR4XCd
-         cxlLs08kqPciYSaOAXyfimwQC9pqR1iqImrEmSDYrpy5ooNAEdYzX9Agi56xNtTUVsPk
-         k72TYEcK+BrcaFG+bOkmVNGRgB2zcuoD4dGyeJuuEkQ5UXZmsMVUSPHtV21dQPqPeMIh
-         MDoCGZITgeBRUmTMrtkYnL7XJ8rfb1XJTP84z1sFXIZB7JzS8DSatdo8RwwyMxrvlXoe
-         SU5A==
-X-Gm-Message-State: ACrzQf3aty7EchuUTgvHORbDoPNMevHP87vFaPc5wehhvW2k1sv8JFuZ
-        dQNw2KnPHptClZGvZWPIiaA=
-X-Google-Smtp-Source: AMsMyM7d7ML3/4FI57O/qGJTqdztH/7vmNeZp6oIqHbhq3K1SwPiHviL8jifBmzWTeiZcHwH/46FZQ==
-X-Received: by 2002:a17:906:7945:b0:73b:e605:f31 with SMTP id l5-20020a170906794500b0073be6050f31mr4090685ejo.129.1663343959977;
-        Fri, 16 Sep 2022 08:59:19 -0700 (PDT)
-Received: from lab.hqhome163.com ([194.183.10.152])
-        by smtp.gmail.com with ESMTPSA id u3-20020a05640207c300b00451e3160451sm9437675edy.89.2022.09.16.08.59.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Sep 2022 08:59:18 -0700 (PDT)
-Date:   Fri, 16 Sep 2022 15:54:31 +0000
-From:   Alessandro Carminati <alessandro.carminati@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229715AbiIPQBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 12:01:51 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E00BB5309;
+        Fri, 16 Sep 2022 09:01:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=3EsgdYxv3bAdply+WFCCtrGgnDOEs6JuczlAlI2uTl4=; b=kEetesxUQx2vEXBflfgLiCWQim
+        ZEzzOcc/JoyjhMYKsDlBNmcX7LkGLuyRPB8pT3TSf4inL5UhWAcEN2SjGZj4ZTuX7wZHL1LZGpj96
+        /D2a8xLAIj/2rJ+jZ8gnkOU3gCwwOjEZGogV53m0L7pAdNSsLLwEzqEIR8UGyr3CEyrOEUe8JJMFD
+        wxhqv7MkYzv6O3rd0o/4Jhq2WxvAzHOrQ8uVLda1rWehoR/iwYhpaIcetQflkolQJ3knqwcAl03+D
+        fWQwzLGd6sn7aUxCX3mseU7b0mYNExNuJ7s7t7a0d6U3YVxEbJZ6GnC+S2MFoRhaxAotbjAlgPqnO
+        FDdvGeBw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34366)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oZDmc-0006sb-Ql; Fri, 16 Sep 2022 17:01:38 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oZDmY-0003fR-A3; Fri, 16 Sep 2022 17:01:34 +0100
+Date:   Fri, 16 Sep 2022 17:01:34 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
+        brcm80211-dev-list.pdl@broadcom.com,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Hector Martin <marcan@marcan.st>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Kalle Valo <kvalo@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] Add sata version of the quartz64-a board
-Message-ID: <YyScN7ezdngpRxq/@lab.hqhome163.com>
-References: <YyRxx4zovhMMeQYV@lab.hqhome163.com>
- <2385186.jE0xQCEvom@phil>
- <2145659.NgBsaNRSFp@phil>
+        linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        SHA-cyfmac-dev-list@infineon.com, Sven Peter <sven@svenpeter.dev>,
+        van Spriel <arend@broadcom.com>
+Subject: [PATCH wireless-next v3 0/12] Add support for bcm4378 on Apple
+ platforms
+Message-ID: <YySd3pASZKUh4leX@shell.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2145659.NgBsaNRSFp@phil>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you for the review.
-While I wait for the dt-maintainers direction, I will fix the patch following your advice.
-Shortly, I'll post the new version.
+Hi,
 
-Alessandro
+This series adds support for bcm4378 found on Apple platforms, and has
+been tested on the Apple Mac Mini. It is a re-posting of a subset of
+Hector's previous 38 patch series, and it is believed that the comments
+from that review were addressed.
 
+Note: this is part of a larger patch set. The DT bindings are used on
+OpenBSD, and all properties, including brcm,cal-blob, are in use there,
+and will be used by further patches for Linux.
 
-On Fri, Sep 16, 2022 at 03:18:28PM +0200, Heiko Stuebner wrote:
-> Hi again,
-> 
-> Am Freitag, 16. September 2022, 15:12:10 CEST schrieb Heiko Stuebner:
-> > > +&sata1 {
-> > > +	status = "okay";
-> > > +};
-> > 
-> > I guess you may want to disable the now unused usb controller?
-> 
-> ignore that ... I just realized that is was kept disabled by patch1
-> 
-> 
-> Heiko
-> 
-> 
+(I'm just the middle man; please don't complain if something has been
+missed.)
+
+v3:
+- removed blank line in patch 7
+- added description of "strip_mac" in patch 8
+- added reviewed-bys and acked-bys
+- added explanantion of "brcm,cal-blob" to cover message
+v2:
+- sending for wireless-next
+- fixed up %ld -> %zd for size_t
+- added reviewed-bys
+
+ .../bindings/net/wireless/brcm,bcm4329-fmac.yaml   |  39 +-
+ arch/arm64/boot/dts/apple/t8103-j274.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-j293.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-j313.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-j456.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-j457.dts           |   4 +
+ arch/arm64/boot/dts/apple/t8103-jxxx.dtsi          |   2 +
+ .../net/wireless/broadcom/brcm80211/brcmfmac/bus.h |  19 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/chip.c    |   2 +
+ .../wireless/broadcom/brcm80211/brcmfmac/common.c  |  12 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/common.h  |   1 +
+ .../broadcom/brcm80211/brcmfmac/firmware.c         | 116 ++++--
+ .../broadcom/brcm80211/brcmfmac/firmware.h         |   4 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/msgbuf.h  |   4 +-
+ .../net/wireless/broadcom/brcm80211/brcmfmac/of.c  |  12 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/pcie.c    | 430 +++++++++++++++++++--
+ .../wireless/broadcom/brcm80211/brcmfmac/sdio.c    |  38 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/sdio.h    |   2 +
+ .../net/wireless/broadcom/brcm80211/brcmfmac/usb.c |  23 +-
+ .../broadcom/brcm80211/include/brcm_hw_ids.h       |   2 +
+ include/linux/bcma/bcma_driver_chipcommon.h        |   1 +
+ 21 files changed, 610 insertions(+), 117 deletions(-)
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
