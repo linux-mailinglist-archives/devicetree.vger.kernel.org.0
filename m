@@ -2,203 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79D675BB2B9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 21:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74DC95BB2C2
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 21:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbiIPTTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 15:19:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59852 "EHLO
+        id S229889AbiIPT0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 15:26:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiIPTTG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 15:19:06 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98306B81C8;
-        Fri, 16 Sep 2022 12:19:05 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id n83so7291426oif.11;
-        Fri, 16 Sep 2022 12:19:05 -0700 (PDT)
+        with ESMTP id S229683AbiIPT0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 15:26:49 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2EBCB2CC2;
+        Fri, 16 Sep 2022 12:26:48 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-127ba06d03fso53545878fac.3;
+        Fri, 16 Sep 2022 12:26:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=VSUsli+NytIctY1ygKKA0hjMdyhuIuRvkK4ZCkGJMxM=;
-        b=zdDB1eAgQbzI8UdRUcot/jkTOOWNF901ouAYQwoVi9LUqSxRnfTPJOZkXBSheVw/w7
-         NATaZM7UqUUPM0F0rwLbO1AWdwPe5mioeiQD2rYUQsrc+Hq7n/30lhZ0duGou2hNIkNg
-         r/KAywbGh/uHUb+gF7WxaGYosm6gIA9WDxgiGnONPszW5TTOX7OibpEoI/FaSKjzRJ9y
-         gmXnAQ9qq2JEBu1aVHm36q6fYj1Y5ZrSWgTkMq2yJQF0oZP0Dj4ds5EFoAiWFNypQNZm
-         o0gw9wvmH3OJA6jovMfoo5UrLvrPHln5JYqf7NME8o+U7vCvsEt5oOLCqoVfhozChv/j
-         c84w==
-X-Gm-Message-State: ACrzQf3xAFU+UCQmLKdGsZ4fIUo9dPxyGl6O4QZYoZeLoXTFfRsV6WR8
-        mIts3k1S7Jf2XFRKhs+1vA==
-X-Google-Smtp-Source: AMsMyM7uTgiKhdX9RaMJ+7hc4ycY+sZFX/kej2v/t2DkPXchD8Hd/HLen6sX4ZYmf29qGxF2CLO+8A==
-X-Received: by 2002:aca:3b89:0:b0:345:64e9:73c2 with SMTP id i131-20020aca3b89000000b0034564e973c2mr2967841oia.87.1663355944824;
-        Fri, 16 Sep 2022 12:19:04 -0700 (PDT)
+        bh=Ke1TOcq52Y6OwDXCGQ05OBtNCNaVL02BAxNe0NDeJo8=;
+        b=ivsTUMBF4hEy35G9D5SsrE9Ut7UTssSCWMUjP/q/2uFdUDmMc6aTj3sY8Jlf/ODyZQ
+         2enJgMZtrYgTLBfjrHlfH1bkn7Nw5Qpd6DDFGTDunzMSXqyNAKuodYZi6Z8JKoGfALxF
+         enZky/JTjng8Ss4T+mzzAeDbGQiU5QJcsaor2mvLrtrmvuKIi0wtu6oG+2i7THHXoLe1
+         92dmcIcF68fdBushFcZN11SkFrUi+NywOvxYOjldGjaDvYdWDn4U/rVRzCd34hNOW8sh
+         AVyPyrSB9ld8dNRC95Y2w/hUcZhZn0u4EoV+Z3OltXVZWmIKyuWz5f36P7nCAw1FQue+
+         B32Q==
+X-Gm-Message-State: ACrzQf30iVz5JXhcyvRTagy6dZ6yYfOVFRpcEJBfENFjKNH4zjNv0xTF
+        3ZqQuAbUCge7paikiw0StQ==
+X-Google-Smtp-Source: AMsMyM4U9+tZj3zH2CTItuqDwEA1iIjQf8jTkrlZO11xz26CMMNWw0vnqIxdHMIbX2j/QzAsrO99Kw==
+X-Received: by 2002:a05:6871:212:b0:122:6ce2:16a2 with SMTP id t18-20020a056871021200b001226ce216a2mr3810217oad.227.1663356407809;
+        Fri, 16 Sep 2022 12:26:47 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z5-20020a05687041c500b0010e20d0b2e3sm3261064oac.44.2022.09.16.12.19.03
+        by smtp.gmail.com with ESMTPSA id u35-20020a4a8c26000000b004729c1d519csm9310216ooj.27.2022.09.16.12.26.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Sep 2022 12:19:04 -0700 (PDT)
-Received: (nullmailer pid 1112115 invoked by uid 1000);
-        Fri, 16 Sep 2022 19:19:03 -0000
-Date:   Fri, 16 Sep 2022 14:19:03 -0500
+        Fri, 16 Sep 2022 12:26:47 -0700 (PDT)
+Received: (nullmailer pid 1125112 invoked by uid 1000);
+        Fri, 16 Sep 2022 19:26:46 -0000
+Date:   Fri, 16 Sep 2022 14:26:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Alexey Dobriyan <adobriyan@gmail.com>,
-        Takashi Iwai <tiwai@suse.de>,
-        Christian Brauner <brauner@kernel.org>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Marc Herbert <marc.herbert@intel.com>,
-        James Smart <jsmart2021@gmail.com>,
-        Justin Tee <justin.tee@broadcom.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 3/5] dt-bindings: arm: msm: Rework kpss-gcc driver
- Documentation to yaml
-Message-ID: <20220916191903.GA1109317-robh@kernel.org>
-References: <20220914142256.28775-1-ansuelsmth@gmail.com>
- <20220914142256.28775-4-ansuelsmth@gmail.com>
+To:     Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
+Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
+        will@kernel.org, axboe@kernel.dk, mb@lightnvm.io,
+        ckeepax@opensource.cirrus.com, arnd@arndb.d, mst@redhat.com,
+        javier@javigon.com, mikelley@microsoft.com, jasowang@redhat.com,
+        sunilmut@microsoft.com, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        ashish.deshpande@nxp.com, rvmanjumce@gmail.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: uwb: Device tree information for Nxp
+ SR1XX SOCs
+Message-ID: <20220916192646.GA1112472-robh@kernel.org>
+References: <20220914142944.576482-1-manjunatha.venkatesh@nxp.com>
+ <20220914142944.576482-2-manjunatha.venkatesh@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220914142256.28775-4-ansuelsmth@gmail.com>
+In-Reply-To: <20220914142944.576482-2-manjunatha.venkatesh@nxp.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 04:22:54PM +0200, Christian Marangi wrote:
-> Rework kpss-gcc driver Documentation to yaml Documentation.
-> The current kpss-gcc Documentation have major problems and can't be
-> converted directly. Introduce various changes to the original
-> Documentation.
+On Wed, Sep 14, 2022 at 07:59:43PM +0530, Manjunatha Venkatesh wrote:
+> Ultra-wideband (UWB) is a short-range wireless communication protocol.
 > 
-> Add #clock-cells additional binding as this clock outputs a static clk
-> named acpu_l2_aux with supported compatible.
-> Only some compatible require and outputs a clock, for the others, set
-> only the reg as a required binding to correctly export the kpss-gcc
-> registers. As the reg is shared also add the required syscon compatible.
+> NXP has SR1XX family of UWB Subsystems (UWBS) devices. SR1XX SOCs
+> are FiRa Compliant. SR1XX SOCs are flash less devices and they need
+> Firmware Download on every device boot. More details on the SR1XX Family
+> can be found at https://www.nxp.com/products/:UWB-TRIMENSION
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> The sr1xx driver work the SR1XX Family of UWBS, and uses UWB Controller
+> Interface (UCI).  The corresponding details are available in the FiRa
+> Consortium Website (https://www.firaconsortium.org/).
+> 
+> Link: https://lore.kernel.org/r/20220527184351.3829543-2-manjunatha.venkatesh@nxp.com
+> Signed-off-by: Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
 > ---
->  .../bindings/arm/msm/qcom,kpss-gcc.txt        | 44 ---------
->  .../bindings/arm/msm/qcom,kpss-gcc.yaml       | 90 +++++++++++++++++++
+> Changes since v4:
+>   - Devicetree documentation updated as per the review comments
+>   - Text Aligment related issues are addressed
+> 
+>  .../bindings/uwb/nxp,uwb-sr1xx.yaml           | 63 +++++++++++++++++++
 
-Please move to bindings/clock/
+Use compatible string for filename.
 
-Same comments as the other one.
-
->  2 files changed, 90 insertions(+), 44 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
-
-> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml b/Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml
 > new file mode 100644
-> index 000000000000..27f7df7e3ec4
+> index 000000000000..0f8c774b8306
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +++ b/Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
+
+Why 3 clause? Everywhere else for bindings is using BSD-2-Clause
+
+> +
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/arm/msm/qcom,kpss-gcc.yaml#
+> +$id: http://devicetree.org/schemas/uwb/nxp,uwb-sr1xx.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)
+> +title: Ultra Wide Band(UWB)driver support for NXP SR1XX SOCs family
+
+Bindings describe h/w devices, not drivers.
+
 > +
+> +description: The nxp-sr1xx driver works for the NXP SR1XX series of Ultra Wide
+> +    Band devices namely, SR150 and SR100T devices, and uses UWB Controller Interface (UCI).
+> +    The corresponding details are available in the FiRa Consortium Website.
+> +    (https://www.firaconsortium.org/). More details on the SR1XX Family can be
+> +    found at https://www.nxp.com/products/:UWB-TRIMENSION
+
+Blank line.
+
 > +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +
-> +description: |
-> +  Krait Processor Sub-system (KPSS) Global Clock Controller (GCC). Used
-> +  to control L2 mux (in the current implementation) and provide access
-> +  to the kpss-gcc registers.
+> +  - Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,kpss-gcc-ipq8064
-> +          - qcom,kpss-gcc-apq8064
-> +          - qcom,kpss-gcc-msm8974
-> +          - qcom,kpss-gcc-msm8960
-> +          - qcom,kpss-gcc-msm8660
-> +          - qcom,kpss-gcc-mdm9615
-> +      - const: qcom,kpss-gcc
-> +      - const: syscon
+> +    enum:
+> +      - nxp,sr1xx
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  clocks:
-> +    items:
-> +      - description: phandle to pll8_vote
-> +      - description: phandle to pxo_board
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pll8_vote
-> +      - const: pxo
-> +
-> +  '#clock-cells':
-> +    const: 0
+> +  spi-max-frequency:
+> +    maximum: 45000000
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - qcom,kpss-gcc-ipq8064
-> +          - qcom,kpss-gcc-apq8064
-> +          - qcom,kpss-gcc-msm8974
-> +          - qcom,kpss-gcc-msm8960
-> +then:
-> +  required:
-> +    - clocks
-> +    - clock-names
-> +    - '#clock-cells'
-> +else:
-> +  properties:
-> +    clock: false
-> +    clock-names: false
-> +    '#clock-cells': false
+> +  - spi-max-frequency
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
+> +    /* for Raspberry Pi with pin control stuff for GPIO irq */
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
 > +
-> +    clock-controller@2011000 {
-> +      compatible = "qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc", "syscon";
-> +      reg = <0x2011000 0x1000>;
-> +      clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-> +      clock-names = "pll8_vote", "pxo";
-> +      #clock-cells = <0>;
+> +    fragment@1 {
+> +        target = <&spi0>;
+> +        __overlay__ {
+
+Remove overlay details from example. This should be just 'spi {'.
+
+The schemas ignore '__' nodes so your example is not getting tested (and 
+has errors).
+
+> +            /* needed to avoid dtc warning */
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            status = "disabled";
+
+Examples should be enabled. Drop.
+
+> +
+> +            sr1xx: sr1xx@0 {
+> +                compatible = "nxp,sr1xx";
+> +                reg = <0>;    /* CE0 */
+> +                /* GPIO_24 (PIN 18) Host Irq*/
+> +                nxp,sr1xx-irq-gpio = <&gpio 24 0>;
+
+Use 'interrupts'. Also, not documented.
+
+> +                /* GPIO_18(PIN 12) Chip Enable*/
+> +                nxp,sr1xx-ce-gpio = <&gpio 18 0>;
+
+-gpios is the preferred form.
+
+> +                /* GPIO_23(PIN 16) Read Indication from Host to SR1xx*/
+> +                nxp,sr1xx-ri-gpio = <&gpio 23 0>;
+> +                /*max supported frequency */
+> +                spi-max-frequency = <20000000>;
+> +            };
+> +        };
 > +    };
-> +
-> +  - |
-> +    clock-controller@2011000 {
-> +      compatible = "qcom,kpss-gcc-mdm9615", "qcom,kpss-gcc", "syscon";
-> +      reg = <0x02011000 0x1000>;
-> +    };
-> +...
-> +
-> -- 
+> --
 > 2.37.2
 > 
 > 
