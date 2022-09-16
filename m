@@ -2,355 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CC035BAC6C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 13:29:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 390105BACC7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 13:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbiIPL3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 07:29:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56616 "EHLO
+        id S230266AbiIPLw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 07:52:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231424AbiIPL1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 07:27:55 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98DCAA6AC1;
-        Fri, 16 Sep 2022 04:27:44 -0700 (PDT)
+        with ESMTP id S229821AbiIPLw4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 07:52:56 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B62AEAE9FC;
+        Fri, 16 Sep 2022 04:52:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1663327664; x=1694863664;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Nrpsxb/rKJqG/XxeP8HqJcLVbAL3Nbz4lEV7eFKKW6A=;
-  b=nQGogwMEJoJNtwoD7JRpPaLwn/YepgvQlOd/5a5LqQtbOB2TjGJgXwFg
-   Cw1FhjnU0xv0ndGjSngW6AVjcAGM7PHreA3iYEtYtWhU25cAMTH3clBWE
-   efoQeZJc7pAJvEIVC/zUVp681HEp/biNpaPC/olabe5VzlzSu2A212Of2
-   a2feCMrUI/nAR/hjOTVmV6Lw0MVFOvJZliWYvsRdVNvMhRV3hc/y7uHeS
-   xKGxaGMRnPuLJhObVr24CdS1HaptaqtwSbagEcHGaOzL0pvcd78dg4blv
-   3EDtopBZV8U4V7cQs5B7pOrSlCB59/3ozvlIYLUoiMunfL9FjdALLpWbR
-   A==;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663329175; x=1694865175;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ymRcD4SMNJ2Wskv31fxwW5RgjmCxw86sr/wur9dJFcg=;
+  b=gVbmxKKLN1rrk3zw/H4FgFrJuBJepJc9YpkScbWhTTqZdIHA/TOQvS0y
+   7qUMmc/2lzcGnpDNY4cHd5EdJPXZtgu+FL4Z7L944YzSyVPQx9SD1MKvW
+   SKzjf57YJMmma3MDWARp7nHVJ5POL497sPY1K+o8waT+bHMqI8tY9QNGd
+   wqWtfVIooehPlLqPIOSzDpX801uAxJWoGl92xfl9gn7TXw2zPAp+dBVYP
+   okWMFmZjkdFPuU4UTPCQOaDkt7O/BCMaeSPUlhUqUMH9KkgaswrkHprf4
+   3vQpQn1LXuMdeBo0gDZZxFcLWJuXNZyQOeQ2DIX8vvT6N8jbzdFXWLH8h
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="362938151"
 X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; 
-   d="scan'208";a="180674480"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Sep 2022 04:27:43 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 16 Sep 2022 04:27:42 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Fri, 16 Sep 2022 04:27:39 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+   d="scan'208";a="362938151"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2022 04:52:55 -0700
+X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; 
+   d="scan'208";a="595226961"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2022 04:52:43 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 5C6812010E;
+        Fri, 16 Sep 2022 14:52:41 +0300 (EEST)
+Date:   Fri, 16 Sep 2022 11:52:41 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Shravan Chippa <shravan.chippa@microchip.com>
-CC:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cyril Jean <Cyril.Jean@microchip.com>,
-        Lewis Hanly <lewis.hanly@microchip.com>,
-        Vattipalli Praveen <praveen.kumar@microchip.com>,
-        Wolfgang Grandegger <wg@aries-embedded.de>,
-        Hugh Breslin <hugh.breslin@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 10/10] riscv: dts: microchip: add a devicetree for aries' m100pfsevp
-Date:   Fri, 16 Sep 2022 12:26:46 +0100
-Message-ID: <20220916112645.567794-11-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220916112645.567794-1-conor.dooley@microchip.com>
-References: <20220916112645.567794-1-conor.dooley@microchip.com>
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] media: dt-bindings: ov5645: Convert OV5645 binding to a
+ schema
+Message-ID: <YyRjiY5XRPglSHuN@paasikivi.fi.intel.com>
+References: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device trees for both configs used by the Aries Embedded
-M100PFSEVP. The M100OFSEVP consists of a MPFS250T on a SOM,
-featuring:
-- 2GB DDR4 SDRAM dedicated to the HMS
-- 512MB DDR4 SDRAM dedicated to the FPGA
-- 32 MB SPI NOR Flash
-- 4 GByte eMMC
+Hi Prabhakar,
 
-and a carrier board with:
-- 2x Gigabit Ethernet
-- USB
-- 2x UART
-- 2x CAN
-- TFT connector
-- HSMC extension connector
-- 3x PMOD extension connectors
-- microSD-card slot
+On Tue, Sep 13, 2022 at 05:02:24PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Convert the simple OV5645 Device Tree binding to json-schema.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 --------
+>  .../bindings/media/i2c/ovti,ov5645.yaml       | 119 ++++++++++++++++++
+>  2 files changed, 119 insertions(+), 54 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> deleted file mode 100644
+> index 72ad992f77be..000000000000
+> --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> +++ /dev/null
+> @@ -1,54 +0,0 @@
+> -* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
+> -
+> -The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
+> -an active array size of 2592H x 1944V. It is programmable through a serial I2C
+> -interface.
+> -
+> -Required Properties:
+> -- compatible: Value should be "ovti,ov5645".
+> -- clocks: Reference to the xclk clock.
+> -- clock-names: Should be "xclk".
+> -- clock-frequency: Frequency of the xclk clock.
+> -- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
+> -  to the hardware pin PWDNB which is physically active low.
+> -- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
+> -  the hardware pin RESETB.
+> -- vdddo-supply: Chip digital IO regulator.
+> -- vdda-supply: Chip analog regulator.
+> -- vddd-supply: Chip digital core regulator.
+> -
+> -The device node must contain one 'port' child node for its digital output
+> -video port, in accordance with the video interface bindings defined in
+> -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> -
+> -Example:
+> -
+> -	&i2c1 {
+> -		...
+> -
+> -		ov5645: ov5645@3c {
+> -			compatible = "ovti,ov5645";
+> -			reg = <0x3c>;
+> -
+> -			enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
+> -			reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
+> -			pinctrl-names = "default";
+> -			pinctrl-0 = <&camera_rear_default>;
+> -
+> -			clocks = <&clks 200>;
+> -			clock-names = "xclk";
+> -			clock-frequency = <24000000>;
+> -
+> -			vdddo-supply = <&camera_dovdd_1v8>;
+> -			vdda-supply = <&camera_avdd_2v8>;
+> -			vddd-supply = <&camera_dvdd_1v2>;
+> -
+> -			port {
+> -				ov5645_ep: endpoint {
+> -					clock-lanes = <1>;
+> -					data-lanes = <0 2>;
+> -					remote-endpoint = <&csi0_ep>;
+> -				};
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> new file mode 100644
+> index 000000000000..7f407c988f87
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> @@ -0,0 +1,119 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5645.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OmniVision OV5645 Image Sensor Device Tree Bindings
+> +
+> +maintainers:
+> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov5645
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: XCLK Input Clock
+> +
+> +  clock-names:
+> +    const: xclk
+> +
+> +  clock-frequency:
+> +    description: Frequency of the xclk clock in Hz.
+> +
+> +  vdda-supply:
+> +    description: Analog voltage supply, 2.8 volts
+> +
+> +  vddd-supply:
+> +    description: Digital core voltage supply, 1.5 volts
+> +
+> +  vdddo-supply:
+> +    description: Digital I/O voltage supply, 1.8 volts
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Reference to the GPIO connected to the PWDNB pin, if any.
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Reference to the GPIO connected to the RESETB pin, if any.
+> +
+> +  port:
+> +    description: Digital Output Port
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          clock-lanes:
+> +            const: 0
+> +
+> +          bus-type:
+> +            const: 4
 
-Link: https://www.aries-embedded.com/polarfire-soc-fpga-microsemi-m100pfs-som-mpfs025t-pcie-serdes
-Link: https://www.aries-embedded.com/evaluation-kit/fpga/polarfire-microchip-soc-fpga-m100pfsevp-riscv-hsmc-pmod
-Link: https://downloads.aries-embedded.de/products/M100PFS/Hardware/M100PFSEVP-Schematics.pdf
-Co-developed-by: Wolfgang Grandegger <wg@aries-embedded.de>
-Signed-off-by: Wolfgang Grandegger <wg@aries-embedded.de>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/microchip/Makefile        |   1 +
- .../dts/microchip/mpfs-m100pfs-fabric.dtsi    |  45 +++++
- .../boot/dts/microchip/mpfs-m100pfsevp.dts    | 179 ++++++++++++++++++
- 3 files changed, 225 insertions(+)
- create mode 100644 arch/riscv/boot/dts/microchip/mpfs-m100pfs-fabric.dtsi
- create mode 100644 arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
+Please drop the two, they provide no information to the driver that already
+knows this. (Unless of course, the driver supports other bus types these
+bindings do not document. Some OV sensors do.) clock-lanes needs to go in
+any case, and data-lanes are dependent on bus-type being 4 I presume.
 
-diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
-index f18477b2e86d..7427a20934f3 100644
---- a/arch/riscv/boot/dts/microchip/Makefile
-+++ b/arch/riscv/boot/dts/microchip/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-icicle-kit.dtb
-+dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-m100pfsevp.dtb
- dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-polarberry.dtb
- dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-sev-kit.dtb
- obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-m100pfs-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-m100pfs-fabric.dtsi
-new file mode 100644
-index 000000000000..7b9ee13b6a3a
---- /dev/null
-+++ b/arch/riscv/boot/dts/microchip/mpfs-m100pfs-fabric.dtsi
-@@ -0,0 +1,45 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/* Copyright (c) 2022 Microchip Technology Inc */
-+
-+/ {
-+	fabric_clk3: fabric-clk3 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <62500000>;
-+	};
-+
-+	fabric_clk1: fabric-clk1 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <125000000>;
-+	};
-+
-+	pcie: pcie@2000000000 {
-+		compatible = "microchip,pcie-host-1.0";
-+		#address-cells = <0x3>;
-+		#interrupt-cells = <0x1>;
-+		#size-cells = <0x2>;
-+		device_type = "pci";
-+		reg = <0x20 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
-+		reg-names = "cfg", "apb";
-+		bus-range = <0x0 0x7f>;
-+		interrupt-parent = <&plic>;
-+		interrupts = <119>;
-+		interrupt-map = <0 0 0 1 &pcie_intc 0>,
-+				<0 0 0 2 &pcie_intc 1>,
-+				<0 0 0 3 &pcie_intc 2>,
-+				<0 0 0 4 &pcie_intc 3>;
-+		interrupt-map-mask = <0 0 0 7>;
-+		clocks = <&fabric_clk1>, <&fabric_clk1>, <&fabric_clk3>;
-+		clock-names = "fic0", "fic1", "fic3";
-+		ranges = <0x3000000 0x0 0x8000000 0x20 0x8000000 0x0 0x80000000>;
-+		msi-parent = <&pcie>;
-+		msi-controller;
-+		status = "disabled";
-+		pcie_intc: interrupt-controller {
-+			#address-cells = <0>;
-+			#interrupt-cells = <1>;
-+			interrupt-controller;
-+		};
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-new file mode 100644
-index 000000000000..7463e19112e2
---- /dev/null
-+++ b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-@@ -0,0 +1,179 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Original all-in-one devicetree:
-+ * Copyright (C) 2021-2022 - Wolfgang Grandegger <wg@aries-embedded.de>
-+ * Rewritten to use includes:
-+ * Copyright (C) 2022 - Conor Dooley <conor.dooley@microchip.com>
-+ */
-+/dts-v1/;
-+
-+#include "mpfs.dtsi"
-+#include "mpfs-m100pfs-fabric.dtsi"
-+
-+/* Clock frequency (in Hz) of the rtcclk */
-+#define MTIMER_FREQ	1000000
-+
-+/ {
-+	model = "Aries Embedded M100PFEVPS";
-+	compatible = "aries,m100pfsevp", "microchip,mpfs";
-+
-+	aliases {
-+		ethernet0 = &mac0;
-+		ethernet1 = &mac1;
-+		serial0 = &mmuart0;
-+		serial1 = &mmuart1;
-+		serial2 = &mmuart2;
-+		serial3 = &mmuart3;
-+		serial4 = &mmuart4;
-+		gpio0 = &gpio0;
-+		gpio1 = &gpio2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial1:115200n8";
-+	};
-+
-+	cpus {
-+		timebase-frequency = <MTIMER_FREQ>;
-+	};
-+
-+	ddrc_cache_lo: memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x40000000>;
-+	};
-+	ddrc_cache_hi: memory@1040000000 {
-+		device_type = "memory";
-+		reg = <0x10 0x40000000 0x0 0x40000000>;
-+	};
-+};
-+
-+&can0 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	interrupts = <13>, <14>, <15>, <16>,
-+		     <17>, <18>, <19>, <20>,
-+		     <21>, <22>, <23>, <24>,
-+		     <25>, <26>;
-+	ngpios = <14>;
-+	status = "okay";
-+
-+	pmic-irq-hog {
-+		gpio-hog;
-+		gpios = <13 0>;
-+		input;
-+	};
-+
-+	/* Set to low for eMMC, high for SD-card */
-+	mmc-sel-hog {
-+		gpio-hog;
-+		gpios = <12 0>;
-+		output-high;
-+	};
-+};
-+
-+&gpio2 {
-+	interrupts = <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>,
-+		     <53>, <53>, <53>, <53>;
-+	status = "okay";
-+};
-+
-+&mac0 {
-+	status = "okay";
-+	phy-mode = "gmii";
-+	phy-handle = <&phy0>;
-+	phy0: ethernet-phy@0 {
-+		reg = <0>;
-+	};
-+};
-+
-+&mac1 {
-+	status = "okay";
-+	phy-mode = "gmii";
-+	phy-handle = <&phy1>;
-+	phy1: ethernet-phy@0 {
-+		reg = <0>;
-+	};
-+};
-+
-+&mbox {
-+	status = "okay";
-+};
-+
-+&mmc {
-+	max-frequency = <50000000>;
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	no-1-8-v;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&mmuart1 {
-+	status = "okay";
-+};
-+
-+&mmuart2 {
-+	status = "okay";
-+};
-+
-+&mmuart3 {
-+	status = "okay";
-+};
-+
-+&mmuart4 {
-+	status = "okay";
-+};
-+
-+&pcie {
-+	status = "okay";
-+};
-+
-+&qspi {
-+	status = "okay";
-+};
-+
-+&refclk {
-+	clock-frequency = <125000000>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	status = "okay";
-+};
-+
-+&spi1 {
-+	status = "okay";
-+};
-+
-+&syscontroller {
-+	status = "okay";
-+};
-+
-+&usb {
-+	status = "okay";
-+	dr_mode = "host";
-+};
+bus-type is also not present in the example.
+
+> +
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 2
+> +            items:
+> +              enum: [1, 2]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - clock-frequency
+> +  - vdda-supply
+> +  - vddd-supply
+> +  - vdddo-supply
+> +  - enable-gpios
+> +  - reset-gpios
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +      #include <dt-bindings/gpio/gpio.h>
+> +
+> +      i2c {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          camera@3c {
+> +              compatible = "ovti,ov5645";
+> +              pinctrl-names = "default";
+> +              pinctrl-0 = <&pinctrl_ov5645>;
+> +              reg = <0x3c>;
+> +              clocks = <&clks 1>;
+> +              clock-names = "xclk";
+> +              clock-frequency = <24000000>;
+> +              vdddo-supply = <&ov5645_vdddo_1v8>; /* 1.8v */
+> +              vdda-supply = <&ov5645_vdda_2v8>;  /* 2.8v */
+> +              vddd-supply = <&ov5645_vddd_1v5>;  /* 1.5v */
+> +              enable-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
+> +              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
+> +
+> +              port {
+> +                  ov5645_ep: endpoint {
+> +                      remote-endpoint = <&csi0_ep>;
+> +                      clock-lanes = <0>;
+> +                      data-lanes = <1 2>;
+> +                  };
+> +              };
+> +          };
+> +      };
+> +...
+
 -- 
-2.36.1
+Kind regards,
 
+Sakari Ailus
