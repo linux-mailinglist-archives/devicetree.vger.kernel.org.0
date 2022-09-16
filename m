@@ -2,167 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 300255BB0AF
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 18:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B605BB0C4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 18:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229765AbiIPQCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 12:02:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37970 "EHLO
+        id S230103AbiIPQDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 12:03:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbiIPQCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 12:02:34 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2442EB5309;
-        Fri, 16 Sep 2022 09:02:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
-        In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=vuN8zb6d1gSMbyOMfzwYTsEwMhMACez3BjzbPzroncs=; b=u9nKpqmP5jAG3qk5q+RQhhwEN2
-        jV+LVQl7kr6Jh5cVT5NK2CC86y458UA6WER0gb4IKYwozP75qezQjoHWH5jvGHuoz5623g7UWuMkD
-        rif40LKPWr0tYcnj5evZG6lo9xvVjO0z7ooaw16QjM466GdcV6JYiLAp36QCEHcb0aDry+wO2/jzk
-        MSYOYhxmCWsFPytGoEyrSAYSEF8xAiKq/thVgXHBBg4GApb2Nocb6WWKhyemp24owr+3KWKd278ON
-        G+nZRnvhYbAt/rlYEUc4NXA2Nj+WZXbVjQ3mU5/VMOACmgR4JWoGsWIN1mxJgRR5VNnfqsGLkIVvX
-        wO4ZgQNg==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:59238 helo=rmk-PC.armlinux.org.uk)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1oZDnO-0006t3-Kn; Fri, 16 Sep 2022 17:02:26 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-        id 1oZDnO-0077Zy-18; Fri, 16 Sep 2022 17:02:26 +0100
-In-Reply-To: <YySd3pASZKUh4leX@shell.armlinux.org.uk>
-References: <YySd3pASZKUh4leX@shell.armlinux.org.uk>
-From:   Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-To:     Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
-        brcm80211-dev-list.pdl@broadcom.com,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Hector Martin <marcan@marcan.st>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Kalle Valo <kvalo@kernel.org>,
+        with ESMTP id S230312AbiIPQDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 12:03:41 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CFBFB56D4;
+        Fri, 16 Sep 2022 09:03:39 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id f20so27666500edf.6;
+        Fri, 16 Sep 2022 09:03:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :from:to:cc:subject:date;
+        bh=0tzsYhIa/dJvbCToayIrS0oYwHSfAteRC0zZoxGOrYs=;
+        b=ood1pSNoIDGVsXsJLLimQBf0wBeePDy5702cPx3nGCu0Tnl5hw29tfYIC6dLIOgtyI
+         FCvrpwOEjXHHFrpZ8hDRrIpUYxFl+eIS42VhT4Mj8vjyvHWojC675/LjbrLdtzIqeFMh
+         f8Y5jsO50gTRwTenIEEMto21rJ2DEVR7uTQOYNUkyJFRiynrJhVfYed2GCMrrcgIoIc5
+         JkAYBUZwukXx3y4hgSTK8IuDAvMvWCL6gzq9A/66QgqK1voi7i17NXA0da+TyO/VfiVF
+         +FKM1XvridpgPulfJUEikthb2GszkqrgaE49V+rRINW5pHeFY73yFj0ckEeI8Phxx7UZ
+         nzWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=0tzsYhIa/dJvbCToayIrS0oYwHSfAteRC0zZoxGOrYs=;
+        b=TcxSzAUmgR86YHZrRrAm6GVpggte5MOaXyDFgjBD1/Vgdiw63CSBtJDGQrcHEZX36C
+         UkvYuee2kH1GQcUbWwyaSUeVRriXFWJAV4XjamWnVcj2fAEStVFIFWPZP+I/hxPMXpNi
+         V68XUP5Da5s3ehkDE0TTtfpScnr+SRXsGSrjq3DX5RUc1DC6Nt9qnd0Tp7zL81Q5XIDH
+         iIq6t4ulymC3hwRo/58Ehj/KkXouAxmstnBt2XEmDJXsL2CzqcwOv3Pyh7ZoVz/NvmFi
+         doJljl4xZgNNFvfP7rL0pM1TXQfvKb4Q1d62LcbXrzBHxH65ss+p0g0nCfyd33egT2tF
+         1Blg==
+X-Gm-Message-State: ACrzQf1ZPti2bywZQZ2lWJS5Yt9k3U9zvmfMKrwUpCuIs7HAzoYDYvXa
+        iiSPB59j7RuH5JOoevG/Cgk=
+X-Google-Smtp-Source: AMsMyM5npQxF7K1v7kagePkuwRUXy27ta1vg9zfBOyLq7NF5/u9kulaO10bqfVSrJZ3HjJZO6N9woQ==
+X-Received: by 2002:a05:6402:34c8:b0:451:c7db:4984 with SMTP id w8-20020a05640234c800b00451c7db4984mr4523980edc.171.1663344217479;
+        Fri, 16 Sep 2022 09:03:37 -0700 (PDT)
+Received: from lab.hqhome163.com ([194.183.10.152])
+        by smtp.gmail.com with ESMTPSA id la6-20020a170907780600b0078015cebd8csm4780157ejc.117.2022.09.16.09.03.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Sep 2022 09:03:36 -0700 (PDT)
+Date:   Fri, 16 Sep 2022 15:58:50 +0000
+From:   Alessandro Carminati <alessandro.carminati@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        "Rafa__ Mi__ecki" <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        SHA-cyfmac-dev-list@infineon.com, Sven Peter <sven@svenpeter.dev>,
-        van Spriel <arend@broadcom.com>
-Subject: [PATCH wireless-next v3 01/12] dt-bindings: net: bcm4329-fmac: Add
- Apple properties & chips
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/3] arm64: dts: rockchip: k3566-quartz64-a: fix names
+ entries
+Message-ID: <YySdOhxoFI/hkRN3@lab.hqhome163.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1oZDnO-0077Zy-18@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date:   Fri, 16 Sep 2022 17:02:26 +0100
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hector Martin <marcan@marcan.st>
+Fixes: "No underscores in node names" general rule,
+Fixes: The newly agreed on scheme for regulators to have
+"-regulator" at the end
 
-This binding is currently used for SDIO devices, but these chips are
-also used as PCIe devices on DT platforms and may be represented in the
-DT. Re-use the existing binding and add chip compatibles used by Apple
-T2 and M1 platforms (the T2 ones are not known to be used in DT
-platforms, but we might as well document them).
-
-Then, add properties required for firmware selection and calibration on
-M1 machines.
-
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Hector Martin <marcan@marcan.st>
-Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Signed-off-by: Alessandro Carminati <alessandro.carminati@gmail.com>
 ---
- .../net/wireless/brcm,bcm4329-fmac.yaml       | 39 +++++++++++++++++--
- 1 file changed, 35 insertions(+), 4 deletions(-)
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 22 +++++++++----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-index 53b4153d9bfc..fec1cc9b9a08 100644
---- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+index d943559b157c..a30b17fd3c27 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+@@ -28,7 +28,7 @@ gmac1_clkin: external-gmac1-clock {
+ 		#clock-cells = <0>;
+ 	};
  
--title: Broadcom BCM4329 family fullmac wireless SDIO devices
-+title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
+-	fan: gpio_fan {
++	fan: gpio-fan {
+ 		compatible = "gpio-fan";
+ 		gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
+ 		gpio-fan,speed-map = <0    0
+@@ -38,7 +38,7 @@ fan: gpio_fan {
+ 		#cooling-cells = <2>;
+ 	};
  
- maintainers:
-   - Arend van Spriel <arend@broadcom.com>
-@@ -41,11 +41,17 @@ title: Broadcom BCM4329 family fullmac wireless SDIO devices
-               - cypress,cyw4373-fmac
-               - cypress,cyw43012-fmac
-           - const: brcm,bcm4329-fmac
--      - const: brcm,bcm4329-fmac
-+      - enum:
-+          - brcm,bcm4329-fmac
-+          - pci14e4,43dc  # BCM4355
-+          - pci14e4,4464  # BCM4364
-+          - pci14e4,4488  # BCM4377
-+          - pci14e4,4425  # BCM4378
-+          - pci14e4,4433  # BCM4387
+-	hdmi-con {
++	hdmi-connector {
+ 		compatible = "hdmi-connector";
+ 		type = "a";
  
-   reg:
--    description: SDIO function number for the device, for most cases
--      this will be 1.
-+    description: SDIO function number for the device (for most cases
-+      this will be 1) or PCI device identifier.
+@@ -116,7 +116,7 @@ simple-audio-card,codec {
+ 		};
+ 	};
  
-   interrupts:
-     maxItems: 1
-@@ -85,6 +91,31 @@ title: Broadcom BCM4329 family fullmac wireless SDIO devices
-       takes precedence.
-     type: boolean
+-	vcc12v_dcin: vcc12v_dcin {
++	vcc12v_dcin: vcc12v-dcin-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc12v_dcin";
+ 		regulator-always-on;
+@@ -139,7 +139,7 @@ vbus: vbus {
+ 		vin-supply = <&vcc12v_dcin>;
+ 	};
  
-+  brcm,cal-blob:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: A per-device calibration blob for the Wi-Fi radio. This
-+      should be filled in by the bootloader from platform configuration
-+      data, if necessary, and will be uploaded to the device if present.
-+
-+  brcm,board-type:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Overrides the board type, which is normally the compatible of
-+      the root node. This can be used to decouple the overall system board or
-+      device name from the board type for WiFi purposes, which is used to
-+      construct firmware and NVRAM configuration filenames, allowing for
-+      multiple devices that share the same module or characteristics for the
-+      WiFi subsystem to share the same firmware/NVRAM files. On Apple platforms,
-+      this should be the Apple module-instance codename prefixed by "apple,",
-+      e.g. "apple,honshu".
-+
-+  apple,antenna-sku:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Antenna SKU used to identify a specific antenna configuration
-+      on Apple platforms. This is use to build firmware filenames, to allow
-+      platforms with different antenna configs to have different firmware and/or
-+      NVRAM. This would normally be filled in by the bootloader from platform
-+      configuration data.
-+
- required:
-   - compatible
-   - reg
+-	vcc3v3_pcie_p: vcc3v3-pcie-p-regulator {
++	vcc3v3_pcie_p: vcc3v3-p-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+ 		gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
+@@ -151,7 +151,7 @@ vcc3v3_pcie_p: vcc3v3-pcie-p-regulator {
+ 		vin-supply = <&vcc_3v3>;
+ 	};
+ 
+-	vcc5v0_usb: vcc5v0_usb {
++	vcc5v0_usb: vcc5v0-usb-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc5v0_usb";
+ 		regulator-always-on;
+@@ -165,7 +165,7 @@ vcc5v0_usb: vcc5v0_usb {
+ 	 * the host ports are sourced from vcc5v0_usb
+ 	 * the otg port is sourced from vcc5v0_midu
+ 	 */
+-	vcc5v0_usb20_host: vcc5v0_usb20_host {
++	vcc5v0_usb20_host: vcc5v0-usb20-host-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+ 		gpio = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
+@@ -177,7 +177,7 @@ vcc5v0_usb20_host: vcc5v0_usb20_host {
+ 		vin-supply = <&vcc5v0_usb>;
+ 	};
+ 
+-	vcc5v0_usb20_otg: vcc5v0_usb20_otg {
++	vcc5v0_usb20_otg: vcc5v0-usb20-otg-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+ 		gpio = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
+@@ -187,7 +187,7 @@ vcc5v0_usb20_otg: vcc5v0_usb20_otg {
+ 		vin-supply = <&dcdc_boost>;
+ 	};
+ 
+-	vcc3v3_sd: vcc3v3_sd {
++	vcc3v3_sd: vcc3v3-sd-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-low;
+ 		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_LOW>;
+@@ -201,7 +201,7 @@ vcc3v3_sd: vcc3v3_sd {
+ 	};
+ 
+ 	/* sourced from vbus and vcc_bat+ via rk817 sw5 */
+-	vcc_sys: vcc_sys {
++	vcc_sys: vcc-sys-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc_sys";
+ 		regulator-always-on;
+@@ -212,7 +212,7 @@ vcc_sys: vcc_sys {
+ 	};
+ 
+ 	/* sourced from vcc_sys, sdio module operates internally at 3.3v */
+-	vcc_wl: vcc_wl {
++	vcc_wl: vcc-wl-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc_wl";
+ 		regulator-always-on;
+@@ -249,7 +249,7 @@ &cpu3 {
+ 
+ &cpu_thermal {
+ 	trips {
+-		cpu_hot: cpu_hot {
++		cpu_hot: cpu-hot {
+ 			temperature = <55000>;
+ 			hysteresis = <2000>;
+ 			type = "active";
 -- 
-2.30.2
+2.34.1
 
