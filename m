@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A04AA5BA3AF
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 03:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D1405BA3C2
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 03:11:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbiIPBI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 21:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50968 "EHLO
+        id S229544AbiIPBL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 21:11:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbiIPBIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 21:08:54 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC9E753BA;
-        Thu, 15 Sep 2022 18:08:52 -0700 (PDT)
-X-UUID: 585eb4c119234dc58bab61523952d906-20220916
+        with ESMTP id S229579AbiIPBL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 21:11:26 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370535281B;
+        Thu, 15 Sep 2022 18:11:25 -0700 (PDT)
+X-UUID: 9d14abbb1a114425abe224d8fdd7e27d-20220916
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=pxKJ+gbL8/7B+B3rKoAm20e7s3BjFPOR+hbkLzLpVZw=;
-        b=dUJDFZxnhgD0Peniri4oGNPS5LkJOLGcw6shdoW1s2uFKui/bNitAxvsnimQbC0/H1H5lLJ3UICc6tywpPl55kY0Ft5ewS25YPxOkUMjcJDVvmCLMKuHwesyEHDty+NZamwQSEcs8vARHI9gqcZ6NlGqoiN2Kw1epvFUrAbhmhA=;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=aC9p5EUciWE62FXN9xCu29LXkZgaSFsdB9J57e55t1U=;
+        b=bov35MI20lo6NjA1sBWjEIFc2XrdaYjH9hP/GhM5/2AECz4hp2Gq0TxXNzb9Ln90HMOdMZlPlHoswUNc+LohcSwdSqQ45U0xhu8yLzaGUW5LPxIqEIT8e/YDsPAeWSRovW0FP2k8AWvIO6rt5zQAQwSH8K83ECC20RfP1tzviA8=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:303ef100-f933-4e54-8193-87739730948c,IP:0,U
+X-CID-O-INFO: VERSION:1.1.11,REQID:d17b4d39-36f8-4f9d-b16f-0ec5aff9e2c5,IP:0,U
         RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
         release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:256d92f6-6e85-48d9-afd8-0504bbfe04cb,B
+X-CID-META: VersionHash:39a5ff1,CLOUDID:aa77d25d-5ed4-4e28-8b00-66ed9f042fbd,B
         ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
         RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 585eb4c119234dc58bab61523952d906-20220916
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+X-UUID: 9d14abbb1a114425abe224d8fdd7e27d-20220916
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
         (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 162167583; Fri, 16 Sep 2022 09:08:49 +0800
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1707785144; Fri, 16 Sep 2022 09:11:20 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 16 Sep 2022 09:08:48 +0800
+ 15.2.792.15; Fri, 16 Sep 2022 09:11:18 +0800
 Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 16 Sep 2022 09:08:48 +0800
-Message-ID: <e00c1115761b292a6525b71dd7283014f2ade896.camel@mediatek.com>
+ Transport; Fri, 16 Sep 2022 09:11:18 +0800
+Message-ID: <d87203dea8d57868751dfbbce33d210e8976da7c.camel@mediatek.com>
 Subject: Re: [PATCH 1/5] dt-bindings: arm: mediatek: mmsys: change
  compatible for MT8195
 From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
@@ -48,14 +48,14 @@ To:     Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 CC:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
+        "Singo Chang" <singo.chang@mediatek.com>,
         Nancy Lin <nancy.lin@mediatek.com>,
         <dri-devel@lists.freedesktop.org>,
         <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 16 Sep 2022 09:08:47 +0800
+Date:   Fri, 16 Sep 2022 09:11:18 +0800
 In-Reply-To: <a8e18b62-f49f-7c99-e046-3ee609e11627@gmail.com>
 References: <20220914182331.20515-1-jason-jh.lin@mediatek.com>
          <20220914182331.20515-2-jason-jh.lin@mediatek.com>
@@ -186,7 +186,7 @@ On Thu, 2022-09-15 at 18:20 +0200, Matthias Brugger wrote:
 > If we change the compatible, we should keep mediatek,mt8195-mmsys as
 > fallback of 
 > "mediatek,mt8195-vdosys0" so that older device tree blobs won't break
-> with a 
+> with a Mtk811
 > newer kernel.
 > For "mediatek,mt8195-vdosys1" we do not need a fallback compatible as
 > the code 
