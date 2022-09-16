@@ -2,128 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4B2D5BB48F
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 00:57:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C41CE5BB4B5
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 01:15:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbiIPW5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 18:57:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40246 "EHLO
+        id S229564AbiIPXPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 19:15:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbiIPW47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 18:56:59 -0400
-Received: from alln-iport-8.cisco.com (alln-iport-8.cisco.com [173.37.142.95])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4934A6C0F;
-        Fri, 16 Sep 2022 15:56:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=1247; q=dns/txt; s=iport;
-  t=1663369018; x=1664578618;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XPfewIDcEztVz8CVeYI2ZFWuT7eoBXu50vErkadwthw=;
-  b=P/gHJJ7COb58FDHt82eFQnxBawovIQmxioF5U1YlaWWPzZJMfN7yViCB
-   R7VdJlNWh8tQtvpTFCzD3GpTqNLwLzBRMpvmF8i5IBipTJZMeZ080Ef2Q
-   rwLUlnZ9vtcBQF81uwrkNS1TRt/YQudT5y4EN+SFXPnt0edM5GnxAxncH
-   g=;
-X-IPAS-Result: =?us-ascii?q?A0AeAADH/iRjmI9dJa1aHAEBAQEBAQcBARIBAQQEAQFAg?=
- =?us-ascii?q?T0FAQELAYN5PpYnA5FmiyoUgWgLAQEBDQEBQgQBAYFTgzIChGoCJTYHDgECB?=
- =?us-ascii?q?AEBAQEDAgMBAQEBAQEDAQEFAQEBAgEHBBQBAQEBAQEBAR0ZBQ4QJ4V1hkMBA?=
- =?us-ascii?q?gM6PxALDgQGLkkOBoMQgyEDqDZ4gTOBAYgdgWUUEIEZAZAjJxyBSUSEPz6EK?=
- =?us-ascii?q?oZWBJkEOANFHUEDC0I1GAMUAwUkBwMZDyMNDQQWBwwDAwUlAwICGwcCAgMCB?=
- =?us-ascii?q?hMFAgJNOAgECAQrJA8FAgcvBQQvAh4EBQYRCAIWAgYEBAQEFQIQCAIIJhcHE?=
- =?us-ascii?q?zMZAQVZEAkhHA4aDQUGEwMgbwVFDygzNTkrHRsKgQ4qKBUDBAQDAgYTAwMiA?=
- =?us-ascii?q?hAqMRQEKRMSLQcrcwkCAyJnBQMDBCgsAwkhHwcoJjwHWToBBAMDECI9BgMJA?=
- =?us-ascii?q?wIkW4EwKAUDDRkmCAUjFh4ECD4CBQaaVh98XwJZCmAYo2yeWYNggUeMO5IXT?=
- =?us-ascii?q?BGDZaUNlwqiYYRbAgQGBQIWgWgDMIFbMxoIGxWDI1AZD44sDQmOTiRsAgYLA?=
- =?us-ascii?q?QEDCYsLAQE?=
-IronPort-Data: A9a23:Z/cuBaNYBDz9BjvvrR1Ol8FynXyQoLVcMsEvi/4bfWQNrUpz0mBSy
- DMcXjiGMvbcYjGnKN10aIvgoEsBu5HQztNkSnM5pCpnJ55oRWUpJjg4wmPYZX76whjrFRo/h
- ykmQoCcaphyFBcwnz/1WlTbhSEUOZqgG/ytU4YoBggrHVU+EHZ410o58wIEqtcAbeaRUlvlV
- eza+6UzCHf9s9KjGjtJg04rgEoHUMXa4Fv0jHRnDRx4lAO2e00uMX4qDfrZw00U7WVjNrXSq
- +7rlNlV945ClvsnIovNfr3TKiXmTlNOVOSDoiI+ZkSsvvRNjhAy3qEFFPcxVXlGgT64mYFS1
- +tmhKXlHG/FPoWU8AgcewNTHyc7Nqpc9fqYZ3O+qseUiUbBdhMAwd03UxpwZtJeq70xWD0Vn
- RAbAGhlghSri+uwwb+/VeBEjcU4J86tN4Qa0p1l5WCCVat3GM2SE80m4/dBxCsCq8JJFMr4X
- NFecyVfUgXmXRN2bwJ/5JUWxbf02SaXnydjgFaUo7cnpmve1gp81JDzP9fPPN+HX8NYmgCfv
- G2u12j0HBAROcCFxDet7H2hnKnMkDn9VYZUE6e3ntZwh1eThWAPIB4bT122pb++kEHWc8pWL
- VAZ/is166E06EutT97gdx6/pmWZuh0bHdFXFoUS5huK1aPS70CdB3MYZjFEYd0i8sQxQFQXO
- kShhdjlA3lkt6eYDC3b/baPpjT0Mi8QRYMfWcMaZTcF797dgIwesizeRN1SFv+WkePeKAill
- lhmsxMCr7kUiMcK0YCy8lbGny+gq/D1ougdu1u/soWNs14RWWK1W2C7wQOBvKofdu51WnHE7
- SZbw5LBhAwbJcvV/BFhVtnhC11ACxytCjzXgVd1E4Im8VxBEFb8INgAuVmSyKqVW/volBfza
- 0PV/AhW/pIWYz2hbLR8ZMS6DMFCIUnc+TbNCKm8gjlmO8gZmOq7EMdGPhT4M4fFyxRErE3HE
- c3HGftA9F5DYUid8BK4Rv0GzZggzT0kyGXYSPjTlkr5iuHDPybOFOtfazNii9zVCovZ8G05F
- P4CZ6O3J+l3DIUSnwGOq9dIdABWRZTFLcms8Jw/mhG/zvpOQTF9VKC5LUIJcI1+lKMdjfbT4
- ny4QSdlJKnX2xX6xfGxQik7MtvHBM8nxVpiZHBEFQjzgRALP93whJrzgrNqJ9HLAsQ5k64tJ
- xTEEu3daslypsPvoW9FNMOj99IyKHxGR2umZkKYXdT2RLY4LyShxzMuVlWHGPUmZsZvifYDn
- g==
-IronPort-HdrOrdr: A9a23:4xM42q2wdZKm3DocpQlwfgqjBIkkLtp133Aq2lEZdPWaSKOlfu
- SV7ZEmPH7P+VQssR4b8+xoVJPsfZqYz+8Q3WBzB8bAYOCFggqVxehZhOOI/9SjIU3DH4Vmu5
- uIHZITNDTYNykcsS4/izPIaurJB7K8gcaVuds=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.93,321,1654560000"; 
-   d="scan'208";a="930591598"
-Received: from rcdn-core-7.cisco.com ([173.37.93.143])
-  by alln-iport-8.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 16 Sep 2022 22:56:49 +0000
-Received: from zorba ([10.25.129.98])
-        by rcdn-core-7.cisco.com (8.15.2/8.15.2) with ESMTPS id 28GMukaE015046
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Fri, 16 Sep 2022 22:56:48 GMT
-Date:   Fri, 16 Sep 2022 15:56:46 -0700
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>, xe-linux-external@cisco.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] driver: of: overlay: demote message to warning
-Message-ID: <20220916225646.GK4320@zorba>
-References: <20220907230709.271889-1-danielwa@cisco.com>
- <973f7127-8165-45f6-071f-04360046b7d7@gmail.com>
- <20220908003510.GE4320@zorba>
- <c0c66918-f55e-83e4-edea-b2d32fdb27a7@gmail.com>
- <3fcea82c-f5cf-f066-67b9-08669c44a9c6@gmail.com>
- <20220912170524.GX4320@zorba>
- <75e803f8-2b25-22c8-0831-e90d0c889da1@gmail.com>
- <20220913005153.GZ4320@zorba>
- <00850627-7ada-3a02-158c-30f3b8334d51@gmail.com>
+        with ESMTP id S229505AbiIPXPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 19:15:18 -0400
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95867EFCA;
+        Fri, 16 Sep 2022 16:15:16 -0700 (PDT)
+Received: by mail-qv1-xf30.google.com with SMTP id c6so17763820qvn.6;
+        Fri, 16 Sep 2022 16:15:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=+bv5lr59/g1aPozwq5SSmg1kLWkBcrS80IisdYpq8ds=;
+        b=WbHEOiZiAG1GeZU84P3nUVJ87vS7kj2ncGiul4s+LkbfxX4BeZH1LsknTAioFVF7tF
+         vJzQG99N6DuYi6mjdydEAL78XOzFiZekhypavFZgbBFGEzRN6zPPfCh+I2xGIgbOmh1J
+         tybc4KXxIKvXaQwxq2JPsHhup3ZN2fC0k5hfKqychAG9Ghalq2D3WERCsyjxxHfLxwCZ
+         6s7769LkbfQ5NglQU0dRuvNEsbYh95QIlV4MFw9+XzvfYZGK25s2gz8cxlTW5xLBqgs3
+         ZOQMCoL2D1XBXmQSWVzT7C2EUYvZPaNzZVwNgDN169+j7R8VvQ7DZverJ0b/mEdgLNGP
+         rkcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=+bv5lr59/g1aPozwq5SSmg1kLWkBcrS80IisdYpq8ds=;
+        b=k61dQWrzKKJgI40Hi8DYkYTOuuORfF7dK80rvj3lRtuyeyEsWOceQAYb5fkNldOFpH
+         T1wWtZFNVHg/1+JG6zYZi+8l8B8X9alYoFyeZ0cmw+q38D5fqQ5pZ204dgTPRbVWG+xK
+         Ld2IEVC0Zplzxjw8BmeN/5fI3i2JNBIjRNujRZtVTVwDhRJ4LzOrarhhwjfozETO3mtR
+         Fmxny0lAzVQXWDBRACBF3NRLVlC+RszfmN9weTsdW4Sd9JLFS9mwaQH3F2dRjgwpmF36
+         dyg4n8qrVdJ8Qnr8NqqujCZYp2qj17g97XFalFEGdxTeEumZqiSyJ7YoRoDu5/e+MpCM
+         Ux1g==
+X-Gm-Message-State: ACrzQf39Atw8LnNtAINWliDcpvwdl96THwHWh4uVtB7imuXsfztUvYqf
+        5xrtjQ9JgGS4THJkgJ5N/j4=
+X-Google-Smtp-Source: AMsMyM4mj8y0FfOLKhpY+5s2482ObrhIYlObLAVkaag0S8ugH4uq5lLpx5TUxIwCCxZXYeGdERtG0w==
+X-Received: by 2002:a05:6214:2385:b0:474:78de:f8dd with SMTP id fw5-20020a056214238500b0047478def8ddmr5950432qvb.66.1663370116062;
+        Fri, 16 Sep 2022 16:15:16 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:90c9:b1c1:5c9e:9030? ([2600:1700:2442:6db0:90c9:b1c1:5c9e:9030])
+        by smtp.gmail.com with ESMTPSA id p11-20020ac8460b000000b003435bb7fe9csm5907640qtn.78.2022.09.16.16.15.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Sep 2022 16:15:15 -0700 (PDT)
+Message-ID: <f831f62b-004b-4f73-2a66-de9d675c44b6@gmail.com>
+Date:   Fri, 16 Sep 2022 18:15:14 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <00850627-7ada-3a02-158c-30f3b8334d51@gmail.com>
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.25.129.98, [10.25.129.98]
-X-Outbound-Node: rcdn-core-7.cisco.com
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH RFC 0/2] Generate device tree node for pci devices
+Content-Language: en-US
+To:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, helgaas@kernel.org
+Cc:     clement.leger@bootlin.com, max.zhen@amd.com, sonal.santan@amd.com,
+        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
+        trix@redhat.com
+References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 16, 2022 at 05:47:54PM -0500, Frank Rowand wrote:
-> > 
-> > Maybe you could add a flag or other indicator which would indicate the overlay will never be
-> > removed. Then your code could rely on this property to inform on if the author
-> > has consider the removal issues related to overlays.
+On 8/29/22 16:43, Lizhi Hou wrote:
+> This patch series introduces OF overlay support for PCI devices which
+> primarily addresses two use cases. First, it provides a data driven method
+> to describe hardware peripherals that are present in a PCI endpoint and
+> hence can be accessed by the PCI host. An example device is Xilinx/AMD
+> Alveo PCIe accelerators. Second, it allows reuse of a OF compatible
+> driver -- often used in SoC platforms -- in a PCI host based system. An
+> example device is Microchip LAN9662 Ethernet Controller.
 > 
-> No.  I guess I wasn't clear enough above, where I said:
+> This patch series consolidates previous efforts to define such an
+> infrastructure:
+> https://lore.kernel.org/lkml/20220305052304.726050-1-lizhi.hou@xilinx.com/
+> https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
 > 
->    "And I will not accept a
->     change that suppresses the message if there is no expectation to remove the
->     overlay."
+> Normally, the PCI core discovers PCI devices and their BARs using the
+> PCI enumeration process. However, the process does not provide a way to
+> discover the hardware peripherals that are present in a PCI device, and
+> which can be accessed through the PCI BARs. Also, the enumeration process
+> does not provide a way to associate MSI-X vectors of a PCI device with the
+> hardware peripherals that are present in the device. PCI device drivers
+> often use header files to describe the hardware peripherals and their
+> resources as there is no standard data driven way to do so. This patch> series proposes to use flattened device tree blob to describe the
+> peripherals in a data driven way.
+
+> Based on previous discussion, using
+> device tree overlay is the best way to unflatten the blob and populate
+> platform devices.
+
+I still do not agree with this statement.  The device tree overlay
+implementation is very incomplete and should not be used until it
+becomes more complete.  No need to debate this right now, but I don't want
+to let this go unchallenged.
+
+If there is no base system device tree on an ACPI based system, then I
+am not convinced that a mixed ACPI / device tree implementation is
+good architecture.  I might be more supportive of using a device tree
+description of a PCI device in a detached device tree (not linked to
+the system device tree, but instead freestanding).  Unfortunately the
+device tree functions assume a single system devicetree, with no concept
+of a freestanding tree (eg, if a NULL device tree node is provided to
+a function or macro, it often defaults to the root of the system device
+tree).  I need to go look at whether the flag OF_DETACHED handles this,
+or if it could be leveraged to do so.
+
+> To use device tree overlay, there are three obvious
+> problems that need to be resolved.
 > 
-> There are multiple reasons for this, but the most fundamental is that if a
-> new overlay is not removable, then any overlay already applied can not be
-> removed (because overlays must be removed in the reverse order that they
-> are applied).  It would be incredibly bad architecture to allow an overlay
-> to block another overlay from being removed.
+> First, we need to create a base tree for non-DT system such as x86_64. A
+> patch series has been submitted for this:
+> https://lore.kernel.org/lkml/20220624034327.2542112-1-frowand.list@gmail.com/
+> https://lore.kernel.org/lkml/20220216050056.311496-1-lizhi.hou@xilinx.com/
+> 
+> Second, a device tree node corresponding to the PCI endpoint is required
+> for overlaying the flattened device tree blob for that PCI endpoint.
+> Because PCI is a self-discoverable bus, a device tree node is usually not
+> created for PCI devices. This series adds support to generate a device
+> tree node for a PCI device which advertises itself using PCI quirks
+> infrastructure.
+> 
+> Third, we need to generate device tree nodes for PCI bridges since a child
+> PCI endpoint may choose to have a device tree node created.
+> 
+> This patch series is made up of two patches.
+> 
+> The first patch is adding OF interface to allocate an OF node. It is copied
+> from:
+> https://lore.kernel.org/lkml/20220620104123.341054-5-clement.leger@bootlin.com/
+> 
+> The second patch introduces a kernel option, CONFIG_PCI_OF. When the option
+> is turned on, the kernel will generate device tree nodes for all PCI
+> bridges unconditionally. The patch also shows how to use the PCI quirks
+> infrastructure, DECLARE_PCI_FIXUP_FINAL to generate a device tree node for
+> a device. Specifically, the patch generates a device tree node for Xilinx
+> Alveo U50 PCIe accelerator device. The generated device tree nodes do not
+> have any property. Future patches will add the necessary properties.
+> 
+> Clément Léger (1):
+>   of: dynamic: add of_node_alloc()
+> 
+> Lizhi Hou (1):
+>   pci: create device tree node for selected devices
+> 
+>  drivers/of/dynamic.c        |  50 +++++++++++++----
+>  drivers/pci/Kconfig         |  11 ++++
+>  drivers/pci/bus.c           |   2 +
+>  drivers/pci/msi/irqdomain.c |   6 +-
+>  drivers/pci/of.c            | 106 ++++++++++++++++++++++++++++++++++++
+>  drivers/pci/pci-driver.c    |   3 +-
+>  drivers/pci/pci.h           |  16 ++++++
+>  drivers/pci/quirks.c        |  11 ++++
+>  drivers/pci/remove.c        |   1 +
+>  include/linux/of.h          |   7 +++
+>  10 files changed, 200 insertions(+), 13 deletions(-)
+> 
 
-So how about an option to turn off removable overlays entirely? As far as I can
-tell it's not used currently by the tiny number of implementation I've seen.
-
-Cisco doesn't need it, and we could have a smaller kernel without it.
-
-The issue is that the error log on blast is log level abuse in my opinion. If
-there's no way to fix it, it should not be an error.
-
-Daniel
