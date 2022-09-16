@@ -2,56 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 260C55BA8B6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 10:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D475BA8F4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 11:06:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbiIPIzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 04:55:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38836 "EHLO
+        id S230502AbiIPJEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 05:04:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbiIPIzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 04:55:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9A6731DFA;
-        Fri, 16 Sep 2022 01:55:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5185E628A2;
-        Fri, 16 Sep 2022 08:55:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 205D7C433D6;
-        Fri, 16 Sep 2022 08:55:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663318536;
-        bh=Gz7CdvA45HCDb6th7LwBzTIznfVz9pKyAzu+NRvXVCI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=EVvw86MfUbSb1gKv7CzuoDHiNM4FoCmGS3Ljm3Na2KIei4bPxlKVxe8jBzC7YE5BY
-         T1wh9DJcTL8eWhF4YCFBTbi5mDOQmiTYESS7DATwHKM0H1xBh6qNUS0Flgc4hsvCQU
-         5Lh3PHY7nJc3YrG+Wb0QORBpsjqsTgAdUiOfyd2+wTt6AYmB0wPfooJJfyaAyu5iR8
-         LpJSWVOVlz9iKs2r5ZLYrSYXbhwWVQ3N8Yev/TESWWd+tWf11EnoHLb2THBt11qsyZ
-         Jbt5oUESF+ADoTD/My6hURp3lGItBska4ItP9Vwl52++5k7eFx8+UYcKoVQxj4EbQI
-         hItJk/ggGcHdw==
-Message-ID: <a48446ef-5298-4123-b6e1-acab73a616e5@kernel.org>
-Date:   Fri, 16 Sep 2022 11:55:32 +0300
+        with ESMTP id S230449AbiIPJEa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 05:04:30 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873062EC;
+        Fri, 16 Sep 2022 02:04:26 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28G93TM3094011;
+        Fri, 16 Sep 2022 04:03:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1663319009;
+        bh=l0yzlJ3VRMyHn0c+evjmOZziDl/jyYHZXoy+RPAZVdM=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=eJRu0kkW24ozs/jtJW/PYVEugEbz2ay/34uU2ygzirMc5nQdG05EhffOWwfr8ZuXC
+         Olszw/35kOgWvKBhyrZu8qJYaeJNcZufdioCFwT9uehW91esMzumEmXTxw3yiqSUG8
+         oj38/d00b9A0F9uUYHFQroho+0UgBwATb66gJt4A=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28G93Thh016060
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 16 Sep 2022 04:03:29 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 16
+ Sep 2022 04:03:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 16 Sep 2022 04:03:28 -0500
+Received: from [10.24.69.241] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28G93NF6100788;
+        Fri, 16 Sep 2022 04:03:24 -0500
+Message-ID: <85398274-c0fb-6ef6-29b3-ad8d2465f8e4@ti.com>
+Date:   Fri, 16 Sep 2022 14:33:23 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v4 2/3] memory: omap-gpmc: add support for wait pin
- polarity
+ Thunderbird/91.11.0
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vladimir.oltean@nxp.com>,
+        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH 5/8] net: ethernet: ti: am65-cpsw: Add support for
+ fixed-link configuration
 Content-Language: en-US
-To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     tony@atomide.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org
-References: <20220915091333.2425306-1-benedikt.niedermayr@siemens.com>
- <20220915091333.2425306-3-benedikt.niedermayr@siemens.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20220915091333.2425306-3-benedikt.niedermayr@siemens.com>
-Content-Type: text/plain; charset=UTF-8
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+References: <20220914095053.189851-1-s-vadapalli@ti.com>
+ <20220914095053.189851-6-s-vadapalli@ti.com>
+ <YyH8us424n3dyLYT@shell.armlinux.org.uk>
+ <ab683d52-d469-35cf-b3b5-50c9edfc173b@ti.com>
+ <YyL5WyA74/QRe/Y4@shell.armlinux.org.uk>
+ <c76fdb7a-a95f-53c6-6e0e-d9283dd2de2d@ti.com>
+ <YyQjqU7O5WRfrush@shell.armlinux.org.uk>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <YyQjqU7O5WRfrush@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,125 +79,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Russell,
 
-
-On 15/09/2022 12:13, B. Niedermayr wrote:
-> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+On 16/09/22 12:50, Russell King (Oracle) wrote:
+> On Fri, Sep 16, 2022 at 10:24:48AM +0530, Siddharth Vadapalli wrote:
+>> On 15/09/22 15:37, Russell King (Oracle) wrote:
+>>> Hi,
+>>>
+>>> On Thu, Sep 15, 2022 at 02:58:52PM +0530, Siddharth Vadapalli wrote:
+>>>> Hello Russell,
+>>>>
+>>>> On 14/09/22 21:39, Russell King (Oracle) wrote:
+>>>>> On Wed, Sep 14, 2022 at 03:20:50PM +0530, Siddharth Vadapalli wrote:
+>>>>>> Check for fixed-link in am65_cpsw_nuss_mac_config() using struct
+>>>>>> am65_cpsw_slave_data's phy_node property to obtain fwnode. Since
+>>>>>> am65_cpsw_nuss_mac_link_up() is not invoked in fixed-link mode, perform
+>>>>>> the relevant operations in am65_cpsw_nuss_mac_config() itself.
+>>>>>
+>>>>> Further to my other comments, you also fail to explain that, when in
+>>>>> fixed-link SGMII mode, you _emulate_ being a PHY - which I deduce
+>>>>> since you are sending the duplex setting and speed settings via the
+>>>>> SGMII control word. Also, as SGMII was invented for a PHY to be able
+>>>>> to communicate the media negotiation resolution to the MAC, SGMII
+>>>>> defines that the PHY fills in the speed and duplex information in
+>>>>> the control word to pass it to the MAC, and the MAC acknowledges this
+>>>>> information. There is no need (and SGMII doesn't permit) the MAC to
+>>>>> advertise what it's doing.
+>>>>>
+>>>>> Maybe this needs to be explained in the commit message?
+>>>>
+>>>> I had tested SGMII fixed-link mode using a bootstrapped ethernet layer-1
+>>>> PHY. Based on your clarification in the previous mails that there is an
+>>>> issue with the fixed-link mode which I need to debug, I assume that what
+>>>> you are referring to here also happens to be a consequence of that.
+>>>> Please let me know if I have misunderstood what you meant to convey.
+>>>
+>>> I think what you're saying is that you have this setup:
+>>>
+>>>   ethernet MAC <--SGMII link--> ethernet PHY <---> media
+>>>
+>>> which you are operating in fixed link mode?
+>>
+>> Yes, and the other end is connected to my PC's ethernet port.
+>>
+>>>
+>>> From the SGMII specification: "This is achieved by using the Auto-
+>>> Negotiation functionality defined in Clause 37 of the IEEE
+>>> Specification 802.3z. Instead of the ability advertisement, the PHY
+>>> sends the control information via its tx_config_Reg[15:0] as specified
+>>> in Table 1 whenever the control information changes. Upon receiving
+>>> control information, the MAC acknowledges the update of the control
+>>> information by asserting bit 14 of its tx_config_reg{15:0] as specified
+>>> in Table 1."
+>>>
+>>> For the control word sent from the MAC to the PHY, table 1 specifies a
+>>> value of 0x4001. All the zero bits in that word which are zero are
+>>> marked as "Reserved for future use." There are no fields for speed and
+>>> duplex in this acknowledgement word to the PHY.
+>>>
+>>> I hope this clears up my point.
+>>
+>> Thank you for the detailed explanation. After reading the above, my
+>> understanding is that even in the fixed-link mode, the ethernet MAC is
+>> not supposed to advertise the speed and duplex settings. The ethernet
+>> MACs present on both ends of the connection are supposed to be set to
+>> the same speed and duplex settings via the devicetree node. Thus, only
+>> for my setup which happens to be a special case of fixed-link mode where
+>> the ethernet PHY is present, I am having to send the control word due to
+>> the presence of a PHY in between.
 > 
-> The waitpin polarity can be configured via the WAITPIN<X>POLARITY bits
-> in the GPMC_CONFIG register. This is currently not supported by the
-> driver. This patch adds support for setting the required register bits
-> with the "gpmc,wait-pin-polarity" dt-property.
+> In SGMII, the control word is only passed between the ethernet MAC and
+> the ethernet PHY. It is not conveyed across the media.
 > 
-> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-> ---
->  drivers/memory/omap-gpmc.c              | 22 ++++++++++++++++++++++
->  include/linux/platform_data/gpmc-omap.h |  6 ++++++
->  2 files changed, 28 insertions(+)
-
-
-./scripts/checkpatch.pl --strict
-
--------------------------------------------------------------
-0002-memory-omap-gpmc-add-support-for-wait-pin-polarity.patch
--------------------------------------------------------------
-CHECK: Alignment should match open parenthesis
-#42: FILE: drivers/memory/omap-gpmc.c:1899:
-+			pr_err("%s: invalid wait-pin-polarity (pin: %d, polarity: %d)\n",
-+				__func__, p->wait_pin, p->wait_pin_polarity);
-
-CHECK: Please don't use multiple blank lines
-#47: FILE: drivers/memory/omap-gpmc.c:1904:
-+
-+
-
-CHECK: Blank lines aren't necessary after an open brace '{'
-#55: FILE: drivers/memory/omap-gpmc.c:1995:
- 	if (!of_property_read_u32(np, "gpmc,wait-pin", &p->wait_pin)) {
-+
-
-CHECK: Alignment should match open parenthesis
-#58: FILE: drivers/memory/omap-gpmc.c:1998:
-+		of_property_read_u32(np,
-+			"gpmc,wait-pin-polarity",
-
-total: 0 errors, 0 warnings, 4 checks, 58 lines checked
-
-NOTE: For some of the reported defects, checkpatch may be able to
-      mechanically convert to the typical style using --fix or --fix-inplace.
-
+>> And, I am supposed to mention this in
+>> the commit message, which I haven't done. Please let me know if this is
+>> what I was supposed to understand.
 > 
-> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
-> index e3674a15b934..66dd7dd80653 100644
-> --- a/drivers/memory/omap-gpmc.c
-> +++ b/drivers/memory/omap-gpmc.c
-> @@ -132,6 +132,7 @@
->  #define GPMC_CONFIG_DEV_SIZE	0x00000002
->  #define GPMC_CONFIG_DEV_TYPE	0x00000003
->  
-> +#define GPMC_CONFIG_WAITPINPOLARITY(pin)	(BIT(pin) << 8)
->  #define GPMC_CONFIG1_WRAPBURST_SUPP     (1 << 31)
->  #define GPMC_CONFIG1_READMULTIPLE_SUPP  (1 << 30)
->  #define GPMC_CONFIG1_READTYPE_ASYNC     (0 << 29)
-> @@ -1881,6 +1882,21 @@ int gpmc_cs_program_settings(int cs, struct gpmc_settings *p)
->  
->  	gpmc_cs_write_reg(cs, GPMC_CS_CONFIG1, config1);
->  
-> +	if (p->wait_on_read || p->wait_on_write) {
-> +		config1 = gpmc_read_reg(GPMC_CONFIG);
-> +
-> +		if (p->wait_pin_polarity == WAITPINPOLARITY_ACTIVE_LOW)
-> +			config1 &= ~GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
-> +		else if (p->wait_pin_polarity == WAITPINPOLARITY_ACTIVE_HIGH)
-> +			config1 |= GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
-> +		else if (p->wait_pin_polarity != WAITPINPOLARITY_DEFAULT)
-> +			pr_err("%s: invalid wait-pin-polarity (pin: %d, polarity: %d)\n",
-> +				__func__, p->wait_pin, p->wait_pin_polarity);
-> +
-> +		gpmc_write_reg(GPMC_CONFIG, config1);
-> +	}
-> +
-> +
->  	return 0;
->  }
->  
-> @@ -1981,6 +1997,12 @@ void gpmc_read_settings_dt(struct device_node *np, struct gpmc_settings *p)
->  	}
->  
->  	if (!of_property_read_u32(np, "gpmc,wait-pin", &p->wait_pin)) {
-> +
-> +		p->wait_pin_polarity = WAITPINPOLARITY_DEFAULT;
-> +		of_property_read_u32(np,
-> +			"gpmc,wait-pin-polarity",
-> +			&p->wait_pin_polarity);
-> +
->  		p->wait_on_read = of_property_read_bool(np,
->  							"gpmc,wait-on-read");
->  		p->wait_on_write = of_property_read_bool(np,
-> diff --git a/include/linux/platform_data/gpmc-omap.h b/include/linux/platform_data/gpmc-omap.h
-> index c9cc4e32435d..c46c28069c31 100644
-> --- a/include/linux/platform_data/gpmc-omap.h
-> +++ b/include/linux/platform_data/gpmc-omap.h
-> @@ -136,6 +136,11 @@ struct gpmc_device_timings {
->  #define GPMC_MUX_AAD			1	/* Addr-Addr-Data multiplex */
->  #define GPMC_MUX_AD			2	/* Addr-Data multiplex */
->  
-> +/* Wait pin polarity values */
-> +#define WAITPINPOLARITY_DEFAULT -1
-> +#define WAITPINPOLARITY_ACTIVE_LOW 0
-> +#define WAITPINPOLARITY_ACTIVE_HIGH 1
-> +
->  struct gpmc_settings {
->  	bool burst_wrap;	/* enables wrap bursting */
->  	bool burst_read;	/* enables read page/burst mode */
-> @@ -149,6 +154,7 @@ struct gpmc_settings {
->  	u32 device_width;	/* device bus width (8 or 16 bit) */
->  	u32 mux_add_data;	/* multiplex address & data */
->  	u32 wait_pin;		/* wait-pin to be used */
-> +	u32 wait_pin_polarity;	/* wait-pin polarity */
->  };
->  
->  /* Data for each chip select */
+> If you implement this conventionally, then you don't need to mention it
+> in the commit message, because you're following the standard.
+> 
+>> I am planning to change to a proper fixed-link setup without any
+>> ethernet PHY between the MACs, for debugging the driver's fixed-link
+>> mode where the "mac_link_up()" is not invoked.
+> 
+> SGMII is designed for the setup in the diagram I provided in my previous
+> email. It is not designed for two MACs to talk direct to each other
+> without any ethernet PHY because of the asymmetric nature of the control
+> word.
+> 
+> The PHY sends e.g. a control word of 0x9801 for 1G full duplex. On
+> reception of that, the MAC responds with 0x4001. Finally, the PHY
+> responds with 0xd801 to acknowledge the receipt of the MAC response.
+> 
+> If both ends of the link are SGMII, both ends will be waiting for
+> the control word from a PHY which is not present, and the link will
+> not come up.
+> 
+> 1000base-X is a symmetric protocol where both ends of the link
+> advertise their capabilities, acknowledge each others abilities and
+> resolve the duplex and pause settings.
+> 
+> SGMII is a Cisco proprietary modification of 1000base-X designed for
+> communicating the results of media autonegotiation between an
+> ethernet PHY and ethernet MAC.
 
-cheers,
--roger
+
+I will try to implement and test SGMII mode in the conventional way with
+both the MAC and the PHY present. If I am unable to do so, I will revert
+to the current set of patches for the special case where the MAC
+emulates a PHY, and mention this setup in the commit message of the v2
+series. I hope this approach would be fine to proceed with. Please let
+me know in case of any suggestions.
+
+Regards,
+Siddharth.
