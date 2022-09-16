@@ -2,235 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC9C75BA7AB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 09:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEB3B5BA7CD
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 10:07:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230255AbiIPH6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 03:58:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36214 "EHLO
+        id S230285AbiIPIHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 04:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230282AbiIPH6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 03:58:45 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1045A2AAE;
-        Fri, 16 Sep 2022 00:58:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1663315121; x=1694851121;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=+YZ5QAM3jH7WsbzMta1Kcg57pDJVYoZo5HIrRlxfl3k=;
-  b=GPVHPmUX9wf1Z+a6nyh3muxaPjacLXfTlQuzRNjB8YWj4xm3g7I7fGuI
-   AoVbMXwRYxHmsBc8MioGt3Nr1ZXS2TrSRda0fW+S8yo1RA6Lr9auvQL+a
-   A+/5IztW+2D67dsudT0Cy/IOxZIZjdJN1yqA5+Cei2rAiiDtsyT1P878B
-   NOmctSGGf6j5VKgN1D54diD9UugL2FYHAt+bl5vBoQMXOW6rulSpqT7SR
-   1lJBpQ5uOA/u1bz3v+AHSitKwEL+ZNXr2kn/wQaiUYYcMlkZAMpcMIrVQ
-   bUVbJb1XjOJ8Umlz2i6hOntp6XA/CpIIP8EPScTibR3q3F1qi+e9O2hBQ
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; 
-   d="scan'208";a="180770865"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Sep 2022 00:58:25 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 16 Sep 2022 00:58:24 -0700
-Received: from kavya.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Fri, 16 Sep 2022 00:58:21 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <lee@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <sergiu.moga@microchip.com>
-Subject: [PATCH v9 3/3] mfd: atmel-flexcom: Add support for lan966x flexcom chip-select configuration
-Date:   Fri, 16 Sep 2022 05:57:44 -0200
-Message-ID: <20220916075744.1879428-4-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220916075744.1879428-1-kavyasree.kotagiri@microchip.com>
-References: <20220916075744.1879428-1-kavyasree.kotagiri@microchip.com>
+        with ESMTP id S230238AbiIPIHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 04:07:49 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41896A0;
+        Fri, 16 Sep 2022 01:07:48 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id EEFF06601FAF;
+        Fri, 16 Sep 2022 09:07:45 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663315666;
+        bh=EGEeQPHzg9d9NeLO4LlWhqbKYOV3HYOQAzbQDjfcLPo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dwIlyRZpI255XiQ5X5bnfs17TlqwaHJeAxfgxbOmPZYmaWvjo1sddVURK2O5hqGSK
+         tg7kzERlD8aw6wM5W3r5mKylCFJgfjszbQ9WxOU5oMr8zanVDayOa/Pe3EFTUICmV6
+         trA6xPZHGGEJFRfGgGfDybjrbyQsnUI9GQBcwxyNUdKMCvFJTfg2/BG6V3Z9etGWFb
+         pphSD1tFBx7KrY/UQ1EBXlZZsSQ0uJUJfXgvLjGyullzqyz9BgTv+pb8r/hfhHmPhT
+         AG7+s8MY9cJSTtjtNUYj/2VfvuTVEyaPNo9iqvhdtwE/Gjn3S2ltgYM7T8nYkzDtYB
+         T04Ika6vl9r6g==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     robh+dt@kernel.org
+Cc:     jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v2 1/2] dt-bindings: mailbox: Convert mtk-gce to DT schema
+Date:   Fri, 16 Sep 2022 10:07:41 +0200
+Message-Id: <20220916080742.26851-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LAN966x SoC have 5 flexcoms. Each flexcom has 2 chip-selects
-which are optional I/O lines. For each chip select of each
-flexcom there is a configuration register FLEXCOM_SHARED[0-4]:SS_MASK[0-1].
-The width of configuration register is 21 because there are
-21 shared pins on each of which the chip select can be mapped.
-Each bit of the register represents a different FLEXCOM_SHARED pin.
+Convert the mtk-gce mailbox binding to DT schema format.
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Reviewed-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
-v8 -> v9:
- - No changes.
 
-v7 -> v8:
- - Changed compatible string to microchip,lan9668-flexcom.
+A previous attempt for this was made at [1], but it was changing
+the way of getting clocks (by name for all).
+Keeping clock-names not required for the multi-gce case makes this
+binding simpler, hence I chose to abandon the change at [1] and go
+for this one instead.
 
-v6 -> v7:
- - No changes.
+Any Reviewed-by or Acked-by tag was dropped, as this conversion was
+completely redone from scratch and differs from [1] for the
+aforementioned reasons.
 
-v5 -> v6:
- - No changes.
+[1]: https://lore.kernel.org/all/20220524151512.247435-1-angelogioacchino.delregno@collabora.com/
 
-v4 -> v5:
- - No changes.
+ .../mailbox/mediatek,gce-mailbox.yaml         | 104 ++++++++++++++++++
+ .../devicetree/bindings/mailbox/mtk-gce.txt   |  82 --------------
+ 2 files changed, 104 insertions(+), 82 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
 
-v3 -> v4:
- - Add condition for a flexcom whether to configure chip-select lines
-   or not, based on "microchip,flx-shrd-pins" property existence because
-   chip-select lines are optional.
-
-v2 -> v3:
- - used goto label for clk_disable in error cases.
-
-v1 -> v2:
- - use GENMASK for mask, macros for maximum allowed values.
- - use u32 values for flexcom chipselects instead of strings.
- - disable clock in case of errors.
-
- drivers/mfd/atmel-flexcom.c | 94 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 93 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/mfd/atmel-flexcom.c b/drivers/mfd/atmel-flexcom.c
-index 33caa4fba6af..92ea15d5fd72 100644
---- a/drivers/mfd/atmel-flexcom.c
-+++ b/drivers/mfd/atmel-flexcom.c
-@@ -28,15 +28,68 @@
- #define FLEX_MR_OPMODE(opmode)	(((opmode) << FLEX_MR_OPMODE_OFFSET) &	\
- 				 FLEX_MR_OPMODE_MASK)
- 
-+/* LAN966x flexcom shared register offsets */
-+#define FLEX_SHRD_SS_MASK_0	0x0
-+#define FLEX_SHRD_SS_MASK_1	0x4
-+#define FLEX_SHRD_PIN_MAX	20
-+#define FLEX_CS_MAX		1
-+#define FLEX_SHRD_MASK		GENMASK(20, 0)
+diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+new file mode 100644
+index 000000000000..ac6ca7fc5302
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+@@ -0,0 +1,104 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+struct atmel_flex_caps {
-+	bool has_flx_cs;
-+};
++title: Mediatek Global Command Engine Mailbox
 +
- struct atmel_flexcom {
- 	void __iomem *base;
-+	void __iomem *flexcom_shared_base;
- 	u32 opmode;
- 	struct clk *clk;
- };
- 
-+static int atmel_flexcom_lan966x_cs_config(struct platform_device *pdev)
-+{
-+	struct atmel_flexcom *ddata = dev_get_drvdata(&pdev->dev);
-+	struct device_node *np = pdev->dev.of_node;
-+	u32 flx_shrd_pins[2], flx_cs[2], val;
-+	int err, i, count;
++maintainers:
++  - Houlong Wei <houlong.wei@mediatek.com>
 +
-+	count = of_property_count_u32_elems(np, "microchip,flx-shrd-pins");
-+	if (count <= 0 || count > 2) {
-+		dev_err(&pdev->dev, "Invalid %s property (%d)\n", "flx-shrd-pins",
-+				count);
-+		return -EINVAL;
-+	}
++description: |
++  The Global Command Engine (GCE) is used to help read/write registers with
++  critical time limitation, such as updating display configuration during the
++  vblank. The GCE can be used to implement the Command Queue (CMDQ) driver.
 +
-+	err = of_property_read_u32_array(np, "microchip,flx-shrd-pins", flx_shrd_pins, count);
-+	if (err)
-+		return err;
++properties:
++  compatible:
++    enum:
++      - mediatek,mt6779-gce
++      - mediatek,mt8173-gce
++      - mediatek,mt8183-gce
++      - mediatek,mt8186-gce
++      - mediatek,mt8192-gce
++      - mediatek,mt8195-gce
 +
-+	err = of_property_read_u32_array(np, "microchip,flx-cs", flx_cs, count);
-+	if (err)
-+		return err;
++  "#mbox-cells":
++    const: 2
++    description:
++      The first cell describes the Thread ID of the GCE,
++      the second cell describes the priority of the GCE thread
 +
-+	for (i = 0; i < count; i++) {
-+		if (flx_shrd_pins[i] > FLEX_SHRD_PIN_MAX)
-+			return -EINVAL;
++  reg:
++    maxItems: 1
 +
-+		if (flx_cs[i] > FLEX_CS_MAX)
-+			return -EINVAL;
++  interrupts:
++    maxItems: 1
 +
-+		val = ~(1 << flx_shrd_pins[i]) & FLEX_SHRD_MASK;
++  clocks:
++    items:
++      - description: Global Command Engine clock
 +
-+		if (flx_cs[i] == 0)
-+			writel(val, ddata->flexcom_shared_base + FLEX_SHRD_SS_MASK_0);
-+		else
-+			writel(val, ddata->flexcom_shared_base + FLEX_SHRD_SS_MASK_1);
-+	}
++  clock-names:
++    items:
++      - const: gce
 +
-+	return 0;
-+}
++required:
++  - compatible
++  - "#mbox-cells"
++  - reg
++  - interrupts
++  - clocks
 +
- static int atmel_flexcom_probe(struct platform_device *pdev)
- {
- 	struct device_node *np = pdev->dev.of_node;
-+	const struct atmel_flex_caps *caps;
- 	struct resource *res;
- 	struct atmel_flexcom *ddata;
- 	int err;
-@@ -76,13 +129,52 @@ static int atmel_flexcom_probe(struct platform_device *pdev)
- 	 */
- 	writel(FLEX_MR_OPMODE(ddata->opmode), ddata->base + FLEX_MR);
- 
-+	caps = of_device_get_match_data(&pdev->dev);
-+	if (!caps) {
-+		dev_err(&pdev->dev, "Could not retrieve flexcom caps\n");
-+		err = -EINVAL;
-+		goto clk_disable;
-+	}
++if:
++  not:
++    properties:
++      compatible:
++        contains:
++          const: mediatek,mt8195-gce
++then:
++  required:
++    - clock-names
 +
-+	if (caps->has_flx_cs && of_property_read_bool(np, "microchip,flx-shrd-pins")) {
-+		ddata->flexcom_shared_base = devm_platform_get_and_ioremap_resource(pdev, 1, NULL);
-+		if (IS_ERR(ddata->flexcom_shared_base)) {
-+			err = dev_err_probe(&pdev->dev,
-+					PTR_ERR(ddata->flexcom_shared_base),
-+					"failed to get flexcom shared base address\n");
-+			goto clk_disable;
-+		}
++additionalProperties: false
 +
-+		err = atmel_flexcom_lan966x_cs_config(pdev);
-+		if (err)
-+			goto clk_disable;
-+	}
++examples:
++  # Example for a device client and for a MediaTek mutex client
++  - |
++    #include <dt-bindings/clock/mt8173-clk.h>
++    #include <dt-bindings/gce/mt8173-gce.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/power/mt8173-power.h>
 +
-+clk_disable:
- 	clk_disable_unprepare(ddata->clk);
-+	if (err)
-+		return err;
- 
- 	return devm_of_platform_populate(&pdev->dev);
- }
- 
-+static const struct atmel_flex_caps atmel_flexcom_caps = {};
++    gce: mailbox@12120000 {
++        compatible = "mediatek,mt8173-gce";
++        reg = <0x10816000 0x1000>;
++        interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
++        #mbox-cells = <2>;
++        clocks = <&infracfg CLK_INFRA_GCE>;
++        clock-names = "gce";
++    };
 +
-+static const struct atmel_flex_caps lan966x_flexcom_caps = {
-+	.has_flx_cs = true,
-+};
++    syscon@14000000 {
++        compatible = "mediatek,mt8173-mmsys", "syscon";
++        reg = <0x14000000 0x1000>;
++        power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
++        #clock-cells = <1>;
++        #reset-cells = <1>;
++        mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
++                 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
++        mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
++    };
 +
- static const struct of_device_id atmel_flexcom_of_match[] = {
--	{ .compatible = "atmel,sama5d2-flexcom" },
-+	{
-+		.compatible = "atmel,sama5d2-flexcom",
-+		.data = &atmel_flexcom_caps,
-+	},
-+
-+	{
-+		.compatible = "microchip,lan9668-flexcom",
-+		.data = &lan966x_flexcom_caps,
-+	},
-+
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, atmel_flexcom_of_match);
++    mutex@14020000 {
++        compatible = "mediatek,mt8173-disp-mutex";
++        reg = <0x14020000 0x1000>;
++        interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
++        power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
++        clocks = <&mmsys CLK_MM_MUTEX_32K>;
++        mediatek,gce-client-reg = <&gce SUBSYS_1402XXXX 0 0x1000>;
++        mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
++                              <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
++    };
+diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+deleted file mode 100644
+index c2aeba63bd47..000000000000
+--- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
++++ /dev/null
+@@ -1,82 +0,0 @@
+-MediaTek GCE
+-===============
+-
+-The Global Command Engine (GCE) is used to help read/write registers with
+-critical time limitation, such as updating display configuration during the
+-vblank. The GCE can be used to implement the Command Queue (CMDQ) driver.
+-
+-CMDQ driver uses mailbox framework for communication. Please refer to
+-mailbox.txt for generic information about mailbox device-tree bindings.
+-
+-Required properties:
+-- compatible: can be "mediatek,mt8173-gce", "mediatek,mt8183-gce",
+-  "mediatek,mt8186-gce", "mediatek,mt8192-gce", "mediatek,mt8195-gce" or
+-  "mediatek,mt6779-gce".
+-- reg: Address range of the GCE unit
+-- interrupts: The interrupt signal from the GCE block
+-- clock: Clocks according to the common clock binding
+-- clock-names: Must be "gce" to stand for GCE clock
+-- #mbox-cells: Should be 2.
+-	<&phandle channel priority>
+-	phandle: Label name of a gce node.
+-	channel: Channel of mailbox. Be equal to the thread id of GCE.
+-	priority: Priority of GCE thread.
+-
+-Required properties for a client device:
+-- mboxes: Client use mailbox to communicate with GCE, it should have this
+-  property and list of phandle, mailbox specifiers.
+-Optional properties for a client device:
+-- mediatek,gce-client-reg: Specify the sub-system id which is corresponding
+-  to the register address, it should have this property and list of phandle,
+-  sub-system specifiers.
+-  <&phandle subsys_number start_offset size>
+-  phandle: Label name of a gce node.
+-  subsys_number: specify the sub-system id which is corresponding
+-                 to the register address.
+-  start_offset: the start offset of register address that GCE can access.
+-  size: the total size of register address that GCE can access.
+-
+-Optional properties for a client mutex node:
+-- mediatek,gce-events: GCE events used by clients. The event numbers are
+-  defined in 'dt-bindings/gce/<chip>-gce.h'.
+-
+-Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h',
+-'dt-bindings/gce/mt8183-gce.h', 'dt-bindings/gce/mt8186-gce.h'
+-'dt-bindings/gce/mt8192-gce.h', 'dt-bindings/gce/mt8195-gce.h' or
+-'dt-bindings/gce/mt6779-gce.h'.
+-Such as sub-system ids, thread priority, event ids.
+-
+-Example:
+-
+-	gce: gce@10212000 {
+-		compatible = "mediatek,mt8173-gce";
+-		reg = <0 0x10212000 0 0x1000>;
+-		interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
+-		clocks = <&infracfg CLK_INFRA_GCE>;
+-		clock-names = "gce";
+-		#mbox-cells = <2>;
+-	};
+-
+-Example for a client device:
+-
+-	mmsys: clock-controller@14000000 {
+-		compatible = "mediatek,mt8173-mmsys";
+-		mboxes = <&gce 0 CMDQ_THR_PRIO_LOWEST>,
+-			 <&gce 1 CMDQ_THR_PRIO_LOWEST>;
+-		mutex-event-eof = <CMDQ_EVENT_MUTEX0_STREAM_EOF
+-				CMDQ_EVENT_MUTEX1_STREAM_EOF>;
+-		mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>,
+-					  <&gce SUBSYS_1401XXXX 0x2000 0x100>;
+-		...
+-	};
+-
+-Example for a client mutex node:
+-	mutex: mutex@14020000 {
+-		compatible = "mediatek,mt8173-disp-mutex";
+-		reg = <0 0x14020000 0 0x1000>;
+-		interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
+-		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
+-		clocks = <&mmsys CLK_MM_MUTEX_32K>;
+-		mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
+-				      <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
+-	};
 -- 
-2.25.1
+2.37.2
 
