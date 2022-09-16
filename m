@@ -2,64 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FB2E5BB245
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 20:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 754435BB25E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 20:44:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230034AbiIPSjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 14:39:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33750 "EHLO
+        id S229561AbiIPSo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 14:44:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbiIPSjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 14:39:20 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3F0B777D;
-        Fri, 16 Sep 2022 11:39:19 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-127dca21a7dso53285693fac.12;
-        Fri, 16 Sep 2022 11:39:19 -0700 (PDT)
+        with ESMTP id S229533AbiIPSo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 14:44:57 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BC0619037;
+        Fri, 16 Sep 2022 11:44:53 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id cm7-20020a056830650700b006587fe87d1aso4950219otb.10;
+        Fri, 16 Sep 2022 11:44:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=LloOAAh3fMnP4loPWLwVdN2fBYfkgLtJ0iyYP475p/A=;
-        b=kblzHY3iywxTM/a3KfzXHjHcGSX+w6ywCJjqnpGySEKxfmzqgW6pcfJteKMg+ne4qt
-         8KcDFi1l8Ws9HH8LT1/X78ciOKMZzGy+cBh+i1rRpxj2vKoxZdzoYTNwKpGMGSw/j16d
-         0C/DmSxhbSmKKVSCejcF8Cm8aLYnWVoZXot3AZ8CU1HBHoVwyLq0TUYNg636XqkZpwHX
-         UF75cC+WnTftAs4sd3MLzssBK+T6eOMzlIUA555IP8rLcYHaAThNS7I9DGdDO7G1TJIC
-         yI0dOd7/4LLTda92EvEnp1oRoPJIPmpXa1cVUNfCV5AbYymLNHTR5AF2ZOFnzif8ibax
-         8T4g==
-X-Gm-Message-State: ACgBeo3uOrwBndKOuq4Fv/LtclK6c+AXx7xPD48aJzJw9nRvWIN7W3GV
-        /4Br3d55/Qf1yBFP+95Tdg==
-X-Google-Smtp-Source: AA6agR4rJd3UZwBNHhnMn8U25gn7La8l8lm2O3ldIEUl+kA3gcHdpA10nwvFJdyB9SsWmen12iN1vg==
-X-Received: by 2002:a05:6870:2191:b0:126:729a:b1d0 with SMTP id l17-20020a056870219100b00126729ab1d0mr8892314oae.131.1663353558579;
-        Fri, 16 Sep 2022 11:39:18 -0700 (PDT)
+        bh=AcISesseQOa+PI6N+Szu0u2ec8VrM0pL1w8wMuhGk+A=;
+        b=fkBpxGN26ox4PV5QyHbKCkS2ZXsyUmYj9zFYabQjyUILI29ms8+4pbCE14sCRW9x/1
+         bmnw+TB5DiYfgua1lGIc2L1ZN5W5CFS5t4dCBueeP0mKD8XER4EFoM6IjMTmxSpCEaLD
+         wA5FJjj8j/1rb+KJFl16i7sPGHpG1GFjGXD7i1WxwoNzszrfQuwwT13uFLsxkkVjc+u7
+         053QA8Lr2iGDW3A0bFvlitGrOQMMgZF8c8k0j8tRKU6U9rtmrhfp7WujgpFhAsilLSaE
+         MC0ztBjgnVXVM6aV9PC5cEXC9OwvZ4SPXxzwVk4+BtLRDfSWd+XJcKrb4Go5iE1XMGFG
+         4dUQ==
+X-Gm-Message-State: ACrzQf36znK9GLSQS6of72ujQApAnQyayHr+bFah68KFtyNrq1I7cSAr
+        17b5C6s+DQdUkXX3buNwJg==
+X-Google-Smtp-Source: AMsMyM4ZAUR0TYm2dSOQ/wwRxqpVT9kMdKEEWitydHl4jnUcSMBwbd/m+VsvzleoQWixieqvsTeOrg==
+X-Received: by 2002:a05:6830:2a17:b0:636:f7fc:98bb with SMTP id y23-20020a0568302a1700b00636f7fc98bbmr2900347otu.223.1663353892663;
+        Fri, 16 Sep 2022 11:44:52 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r11-20020a056871088b00b0012752d3212fsm3218681oaq.53.2022.09.16.11.39.17
+        by smtp.gmail.com with ESMTPSA id l9-20020a056870204900b00127a6357bd5sm3353805oad.49.2022.09.16.11.44.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Sep 2022 11:39:18 -0700 (PDT)
-Received: (nullmailer pid 1044162 invoked by uid 1000);
-        Fri, 16 Sep 2022 18:39:17 -0000
-Date:   Fri, 16 Sep 2022 13:39:17 -0500
+        Fri, 16 Sep 2022 11:44:52 -0700 (PDT)
+Received: (nullmailer pid 1054596 invoked by uid 1000);
+        Fri, 16 Sep 2022 18:44:51 -0000
+Date:   Fri, 16 Sep 2022 13:44:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Janne Grunau <j@jannau.net>
-Cc:     devicetree@vger.kernel.org,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Hector Martin <marcan@marcan.st>,
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Richter <rric@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-edac@vger.kernel.org,
+        Manish Narani <manish.narani@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        devicetree@vger.kernel.org,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
         linux-arm-kernel@lists.infradead.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v1 03/10] dt-bindings: arm: apple: Add t6001/t6002 Mac
- Studio compatibles
-Message-ID: <20220916183917.GA1044129-robh@kernel.org>
-References: <20220916142550.269905-1-j@jannau.net>
- <20220916142550.269905-4-j@jannau.net>
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Tony Luck <tony.luck@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, James Morse <james.morse@arm.com>
+Subject: Re: [PATCH v2 14/19] dt-bindings: memory: snps: Detach Zynq DDRC
+ controller support
+Message-ID: <20220916184451.GA1054535-robh@kernel.org>
+References: <20220910194237.10142-1-Sergey.Semin@baikalelectronics.ru>
+ <20220910194237.10142-15-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220916142550.269905-4-j@jannau.net>
+In-Reply-To: <20220910194237.10142-15-Sergey.Semin@baikalelectronics.ru>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -71,26 +81,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Sep 2022 16:25:43 +0200, Janne Grunau wrote:
-> This adds the following apple,t6001 platform:
+On Sat, 10 Sep 2022 22:42:32 +0300, Serge Semin wrote:
+> The Zynq A05 DDRC controller has nothing in common with DW uMCTL2 DDRC:
+> the CSRs layout is absolutely different and it doesn't support IRQs unlike
+> DW uMCTL2 DDR controller of all versions (v1.x, v2.x and v3.x). Thus there
+> is no any reason to have these controllers described in the same bindings.
+> Let's split the DT-schema up.
 > 
-> - apple,j375c - Mac Studio (M1 Max, 2022)
+> Note since the synopsys,ddrc-ecc.yaml schema describes the Synopsys DW
+> uMCTL2 DDR controller only, we need to accordingly fix the device
+> descriptions.
 > 
-> And the initial apple,t6002 platform:
-> 
-> - apple,j375d - Mac Studio (M1 Ultra, 2022)
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > 
 > ---
 > 
-> Changes in v1:
->  - added blank lines between SoC entires
->  - added Krzysztof's ack
-> 
->  Documentation/devicetree/bindings/arm/apple.yaml | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
+> Changelog v2:
+> - Move Synopsys DW uMCTL2 DDRC bindings file renaming to a separate
+>   patch. (@Krzysztof)
+> ---
+>  .../memory-controllers/synopsys,ddrc-ecc.yaml | 63 ++++++-------------
+>  .../xlnx,zynq-ddrc-a05.yaml                   | 38 +++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 59 insertions(+), 43 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
