@@ -2,47 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BECB5BB297
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 21:00:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D98075BB2A7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 21:11:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbiIPTAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 15:00:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38408 "EHLO
+        id S229471AbiIPTLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 15:11:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230320AbiIPTAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 15:00:38 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F1FE371A9;
-        Fri, 16 Sep 2022 12:00:37 -0700 (PDT)
+        with ESMTP id S229809AbiIPTLp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 15:11:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D44BB69E8;
+        Fri, 16 Sep 2022 12:11:45 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 81BE0B82055;
-        Fri, 16 Sep 2022 19:00:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 918DCC433C1;
-        Fri, 16 Sep 2022 19:00:32 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BDB2D62D55;
+        Fri, 16 Sep 2022 19:11:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E63BC433C1;
+        Fri, 16 Sep 2022 19:11:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663354834;
-        bh=pITHOG3XiMpOygf5N7xHvQ2HYp5lH+CVDS0HOuIp0BI=;
-        h=From:To:Cc:Subject:Date:From;
-        b=HvXfWnuN9ie9YL6VtZM3wqunV8xS5LIVp++h3KeANlVmpWIPmyTlR9DPyvEC6BwkA
-         xbr3WrgIM5Lq2j/fr2esjx3h98lRVqKct8wiHieAwi6SljjVsjuZUbSWlVdu/eqsXe
-         zaeec6neBB4HnGV7Fb81XVL4eaAvzrEa1mG0zsKSeugmvV9ed1zOdAobHqYYCbhTOV
-         IeVjcWb++YPqGjEBSC6bLEvBynsXfUJjuGsSoN+xUjinR2Kuk44jar92KP6nvHZJj/
-         UA1qdGdIl3w+x7PHfNMlz9M2ndMOHwYsaDl2ktKDi/51k9q/NhlUf2mtbpHI5L0om/
-         6B/IsdLKBNmpQ==
-From:   Conor Dooley <conor@kernel.org>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        s=k20201202; t=1663355504;
+        bh=ON/pptyKFVUg7D83LSDO5V0oG+BOKV5rguUzzH7k8sA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RCZiTwkMTDz3m3INuO75+/69RIGcrxGVmCFk/P9sqTo01hWOQQMJFRMz2/f3Lik8H
+         lQmbR1e0bx+C11/aRv0+GH+xT0y56GzGob2N1Ppn7h0GLGYKdqM6ZWKTF2DlVYQYfS
+         TK9i+1pXu4B6yAlln14AHOmwwtx5OYtaIJq8Aty5BfK47R3Q/ocu9hzK2sLhJz5goc
+         KWcVTqYhPhk5ECadSkeDTtiZ1ecp9OHqcsaqWo2VCvONDAoiTKEeC6RtHe1M/is8dh
+         hr98kPDdJJWmeO7/okrgQsuK69uka3OkMc5RyhhuIbgVV9QSaGevyXR1Zfu53V8ohE
+         99A3b7E+hGsQw==
+Date:   Fri, 16 Sep 2022 14:11:41 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steve Twiss <stwiss.opensource@diasemi.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH] dt-bindings: mfd: dlg,da9063: add missing regulator patterns
-Date:   Fri, 16 Sep 2022 20:00:10 +0100
-Message-Id: <20220916190009.2292223-1-conor@kernel.org>
-X-Mailer: git-send-email 2.37.3
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: sc8180x: Introduce Lenovo Flex 5G
+Message-ID: <20220916191141.xf2pdioeleyjbmg5@builder.lan>
+References: <20220916121204.3880182-1-vkoul@kernel.org>
+ <20220916121204.3880182-7-vkoul@kernel.org>
+ <CAA8EJprcqrmHQCtYbOT=DWp-0iEWWVC0=-KZRz1DZqK6gE94qA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJprcqrmHQCtYbOT=DWp-0iEWWVC0=-KZRz1DZqK6gE94qA@mail.gmail.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -52,39 +57,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Fri, Sep 16, 2022 at 03:26:59PM +0300, Dmitry Baryshkov wrote:
+> On Fri, 16 Sept 2022 at 15:13, Vinod Koul <vkoul@kernel.org> wrote:
+> >
+> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >
+> > Introduce support for the Lenovo Flex 5G laptop, built on the Qualcomm
+> > SC8180X platform. Supported peripherals includes keyboard, touchpad,
+> > UFS storage, external USB and WiFi.
+> >
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >  .../boot/dts/qcom/sc8180x-lenovo-flex-5g.dts  | 590 ++++++++++++++++++
+> >  2 files changed, 591 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+> >
+> 
+> [skipped]
+> 
+> > +&gpu {
+> > +       status = "okay";
+> > +
+> > +       zap-shader {
+> > +               memory-region = <&gpu_mem>;
+> > +               firmware-name = "qcom/sc8180x/qcdxkmsuc8180.mbn";
+> 
+> Is the firmware signed with the test key or with the proper vendor
+> key? If the latter is true, the firmware should go to the subdir
+> inside the SoC (I'd suggest following the example and using
+> sc8180x/LENOVO/dmi_id/)
+> 
 
-Commit 5621d3977e29 ("dt-bindings: mfd: Add missing (unevaluated|
-additional)Properties on child nodes") exposed a flaw in the original
-binding, where "merged" versions of some regulators were missing,
-leading to warnings on the HiFive Unmatched Devicetree.
+Correct, this and the remoteprocs should be pointed to
+qcom/sc8180x/LENOVO/82AK/
 
-Add the missing patterns (and merge some of the trivial ones).
+Regards,
+Bjorn
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-I opted not to include a fixes tag for the conversion since it just
-converted what was already there. I figured the original text binding
-is just incomplete rather than "broken", but if you don't agree the
-fixes tag would be:
-Fixes: c7f15d43a5c5 ("mfd: devicetree: Add bindings for DA9063")
-
- Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-index 54b47bd4c6aa..e8e74e91070c 100644
---- a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-+++ b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-@@ -73,7 +73,7 @@ properties:
-     type: object
-     additionalProperties: false
-     patternProperties:
--      "^(ldo([1-9]|1[01])|bcore[1-2]|bpro|bmem|bio|bperi)$":
-+      "^(ldo([1-9]|1[01])|bcore([1-2]|s-merged)|b(pro|mem|io|peri)|bmem-bio-merged)$":
-         $ref: /schemas/regulator/regulator.yaml
-         unevaluatedProperties: false
- 
--- 
-2.37.3
-
+> > +       };
+> > +};
+> > +
+> 
+> -- 
+> With best wishes
+> Dmitry
