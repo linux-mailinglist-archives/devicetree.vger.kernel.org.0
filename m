@@ -2,94 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 357CD5BA941
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 11:19:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA85D5BA988
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 11:38:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbiIPJSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 05:18:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38542 "EHLO
+        id S229797AbiIPJgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 05:36:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbiIPJSO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 05:18:14 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11B3A3135E;
-        Fri, 16 Sep 2022 02:18:12 -0700 (PDT)
-Received: (Authenticated sender: foss@0leil.net)
-        by mail.gandi.net (Postfix) with ESMTPSA id 8B6692000E;
-        Fri, 16 Sep 2022 09:18:07 +0000 (UTC)
-From:   Quentin Schulz <foss+kernel@0leil.net>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, linus.walleij@linaro.org, david@ixit.cz,
-        jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        foss+kernel@0leil.net,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Subject: [PATCH] arm64: dts: rockchip: add i2s0 I2S/PDM/TDM 8ch controller to px30
-Date:   Fri, 16 Sep 2022 11:17:46 +0200
-Message-Id: <20220916091746.35108-1-foss+kernel@0leil.net>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S229872AbiIPJgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 05:36:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF3CCAA3DE;
+        Fri, 16 Sep 2022 02:36:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 36107621E5;
+        Fri, 16 Sep 2022 09:36:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88683C43143;
+        Fri, 16 Sep 2022 09:36:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663320969;
+        bh=IVjHaOIM3HZy969OILRoCV0ISsCsqX3ktwG2FYV37uA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=qmU+sRg6mfx6cwvpXkrov05K16C0UDnUtslGo6Stz8jfnS661fkkJBw3fkFyK+Hb3
+         n8LmRbuw1d5S8pXHipqda5QGPy3oKkwtDmpleQZmV1C8q76Zc2/jeyisTuZYNBwCQY
+         P0gOiRCZf6Hxw0E2W+dw0GTurgd2qfmwbEnk0Q87LPUvUEB4hJkfWQY7C7Pgcs16Vw
+         HhZG/LTc8uaUTGNtoyyfaPdzgmcO3JY/wNAgV6aPJXOvuNpBjnwcEpWGJdrkrzMXue
+         KKyxSaLmIBcmY2nQ62z66BKLMsAiQujEmSVQ0Pxcrby1SnNz9OLHn5PHfK7wzSaSul
+         6tK2D5gBytQjQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1oZ7ld-0006JW-Nv; Fri, 16 Sep 2022 11:36:14 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sm8350: fix UFS PHY serdes size
+Date:   Fri, 16 Sep 2022 11:36:03 +0200
+Message-Id: <20220916093603.24263-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+The size of the UFS PHY serdes register region is 0x1c4 and the
+corresponding 'reg' property should specifically not include the
+adjacent regions that are defined in the child node (e.g. tx and rx).
 
-The Rockchip PX30 SoC has three I2S controllers, i2s1 and i2s2 are
-2-channel I2S/PCM controllers handled by the same controller driver, and
-i2s0 a 8-channel I2S/PCM/TDM controller handled by another controller
-driver.
-
-This adds the device tree node required to enable I2S0 on PX30.
-
-This was tested in a 2-channel I2S with TX BCLK/LRCK for both TX and RX
-(rockchip,trcm-sync-tx-only) setup on a soon-to-be-released board.
-
-Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Fixes: 59c7cf814783 ("arm64: dts: qcom: sm8350: Add UFS nodes")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/px30.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index 214f94fea3dc..bfa3580429d1 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -365,6 +365,28 @@ uart0: serial@ff030000 {
- 		status = "disabled";
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index e72a04411888..d9b08dfc2980 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -2128,7 +2128,7 @@ ufs_mem_hc: ufshc@1d84000 {
  
-+	i2s0_8ch: i2s@ff060000 {
-+		compatible = "rockchip,px30-i2s-tdm";
-+		reg = <0x0 0xff060000 0x0 0x1000>;
-+		interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru SCLK_I2S0_TX>, <&cru SCLK_I2S0_RX>, <&cru HCLK_I2S0>;
-+		clock-names = "mclk_tx", "mclk_rx", "hclk";
-+		dmas = <&dmac 16>, <&dmac 17>;
-+		dma-names = "tx", "rx";
-+		rockchip,grf = <&grf>;
-+		resets = <&cru SRST_I2S0_TX>, <&cru SRST_I2S0_RX>;
-+		reset-names = "tx-m", "rx-m";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&i2s0_8ch_sclktx &i2s0_8ch_sclkrx
-+			     &i2s0_8ch_lrcktx &i2s0_8ch_lrckrx
-+			     &i2s0_8ch_sdo0 &i2s0_8ch_sdi0
-+			     &i2s0_8ch_sdo1 &i2s0_8ch_sdi1
-+			     &i2s0_8ch_sdo2 &i2s0_8ch_sdi2
-+			     &i2s0_8ch_sdo3 &i2s0_8ch_sdi3>;
-+		#sound-dai-cells = <0>;
-+		status = "disabled";
-+	};
-+
- 	i2s1_2ch: i2s@ff070000 {
- 		compatible = "rockchip,px30-i2s", "rockchip,rk3066-i2s";
- 		reg = <0x0 0xff070000 0x0 0x1000>;
+ 		ufs_mem_phy: phy@1d87000 {
+ 			compatible = "qcom,sm8350-qmp-ufs-phy";
+-			reg = <0 0x01d87000 0 0xe10>;
++			reg = <0 0x01d87000 0 0x1c4>;
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+ 			ranges;
 -- 
-2.37.3
+2.35.1
 
