@@ -2,280 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D5215BAD65
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 14:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65B6E5BAD68
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 14:27:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbiIPM1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 08:27:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36318 "EHLO
+        id S231419AbiIPM1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 08:27:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229849AbiIPM1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 08:27:11 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB34B1B8A;
-        Fri, 16 Sep 2022 05:27:08 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id z12so17462321wrp.9;
-        Fri, 16 Sep 2022 05:27:08 -0700 (PDT)
+        with ESMTP id S231169AbiIPM1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 08:27:12 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2B7B24AE
+        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 05:27:11 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id b136so32338634yba.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 05:27:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=cOLkxoeEOWsmKRIP09yUrkjvL+lO7P1sPAoxG0Opak0=;
-        b=F/33OAmXVFY6GdizxmzDMSvne95cc6qnIZcaAkfLFupBOFbXPD5A2AjjjsPy7w6T28
-         5GkxOzFcKnc5RTOmpVgnjRB5Mwx23PaScOmafpIE52OBmlTPnfYPmwwuwx9F99wJTMZX
-         q0TIokMpL9pS7b8ekKFGi9b/ybUHLkbjcngOCm6v+QwrcIZx6ykVRuyMcSoibxyUKqOE
-         g3uKfQShRBcBjqbVFnBQATVshjzPUXum8PMKZTX0g8WAOhAbgCNZZvJqGL3qQwFmK51H
-         aduJ4i8eAFl5z0AymZMcI2d8KvYFwkoMR0tGyyCv9LeZyEcTaiY//56amgnyZCRjRwUL
-         N/OA==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=qBkP79CdibdL0KXmDwvIhKSe/JzNo6nfeWqbrVhoNo0=;
+        b=dzbYY0vlZ7i6Yr8v8Apr+D9xXAqxbRmUiJughxVFjAL6TOyk0vSgprK09vqNX/Je3N
+         o66NEofmPmhKHxB0QvanN8/hcYj7BoCdnyOOHbarUZQ08ZSimNs1jPhugBLpKAcU+1Zu
+         qJU0yAkFA7SgxiyFxQdFXgejHUAAhlboD/x2MLsegN7gspeKAZuoIiNaVS0DE5P9CYX9
+         tn3tYlmiCauzVqoPx2W/yWzIDcJ5ke+fk3kanAKcQ3LRiK8Tmiyts9lAsXtTJWSxLsYT
+         3OYhkupOoIQwwcbmZJak7hQR3xGaapN6GqjO3gZ+W3+7qyAmFiuzbWfFtzoK8QiNW5o/
+         HgYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=cOLkxoeEOWsmKRIP09yUrkjvL+lO7P1sPAoxG0Opak0=;
-        b=w8GDWyo866uDpkjf6C9Jd2WlOwecUGIalphh6j3U8PPxdoYJInKcU0cqkg0M0V0CMy
-         vM7lZx6j93J4FXmpB26Y5odZaxGVm+2CpzMjcA3rfBiVAr8w8qzs5tpZgrSAAczpmSB8
-         iG6G8RCqcnauXsv9aLG/XrWIcjpipj9rQdVMx9MH4SpxgHc49jM+/lFxxbbjRxEMTxxW
-         GChP45lUVTN6q4sWEOSx/uPSSLuaXFtZEF1D1KMyvrlJQdnhvNPJUX6JIJ30H4KU9UbL
-         kk9aBkPehfoxzyJiEoRlfovXlvNrILYijjbGfBQlvoUBBlgbJf3i+ESfvd/hlLuEbnml
-         WTEw==
-X-Gm-Message-State: ACrzQf0t3vX+lo5CCGRdfT6l0zOcPQ9nFccCM7kKjTSt4ciNt5eJAS2p
-        RbEZ1bymRQ+7KszOrLX7eug=
-X-Google-Smtp-Source: AMsMyM5XezU9M4L8+g8Uc93Xn3ozTgnRpyFbM7mpK8F51Pqg0neivoLbr+p0V1rkBkop0LNt0xPPkw==
-X-Received: by 2002:adf:eb89:0:b0:22a:c7fc:27c8 with SMTP id t9-20020adfeb89000000b0022ac7fc27c8mr2790605wrn.397.1663331226810;
-        Fri, 16 Sep 2022 05:27:06 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:453:ec29:bd55:6b15])
-        by smtp.gmail.com with ESMTPSA id g3-20020a5d46c3000000b0022acb7195aesm4788510wrs.33.2022.09.16.05.27.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Sep 2022 05:27:05 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=qBkP79CdibdL0KXmDwvIhKSe/JzNo6nfeWqbrVhoNo0=;
+        b=oBc2edg5vKnmGRPDtzX5wAcET7vbwGFYtqmer/FMBoRBSU0ra89L0v9oQhMTHt3whi
+         s+wgMrEA9C9J0iKMxxFNZEJtqly4hkC9NAWEY+tEwQ2xfxOyl97sJvJf0n7T875cMvU6
+         eVMAUh0FglJ1gL21Tl3fmWKPwaFgDN8492QMNq/poX6W5BmHdf9+FBaeEVyJpbQ7AI9C
+         p2/fwgogVIxAfPBVBQW419BLWyG6k+vIp5I85dhyhPVayIpCGBGZZPI9z/b/P0j9N05g
+         0dDUAmwEq/zhnfr+8kOqoppBGjdcErT7xyb4Yk4Hc6d43H3ewlxGA5nKFv9kRTlTnFmh
+         ZbFw==
+X-Gm-Message-State: ACrzQf1kGzgySNgDCZPx6ZQz66zgKV3+UaY4+PZBCMVlkEO5ZoAVMbal
+        HX+NN4lfz2mF8+JcW1ZFJleh8zsvRuXVbZ/EwFLNQw==
+X-Google-Smtp-Source: AMsMyM7exBoaSPI97ztz9uzm41FgmreUvtJV9LBBNHgaf3EvM9E/3gry+tdHRjk0JGUiZrtkyBEPOBNexhun2Afb8vs=
+X-Received: by 2002:a25:ba45:0:b0:67a:6298:7bac with SMTP id
+ z5-20020a25ba45000000b0067a62987bacmr4566691ybj.194.1663331230592; Fri, 16
+ Sep 2022 05:27:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220916121204.3880182-1-vkoul@kernel.org> <20220916121204.3880182-7-vkoul@kernel.org>
+In-Reply-To: <20220916121204.3880182-7-vkoul@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 16 Sep 2022 15:26:59 +0300
+Message-ID: <CAA8EJprcqrmHQCtYbOT=DWp-0iEWWVC0=-KZRz1DZqK6gE94qA@mail.gmail.com>
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: sc8180x: Introduce Lenovo Flex 5G
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2] media: dt-bindings: ov5645: Convert OV5645 binding to a schema
-Date:   Fri, 16 Sep 2022 13:26:27 +0100
-Message-Id: <20220916122627.28461-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Fri, 16 Sept 2022 at 15:13, Vinod Koul <vkoul@kernel.org> wrote:
+>
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+>
+> Introduce support for the Lenovo Flex 5G laptop, built on the Qualcomm
+> SC8180X platform. Supported peripherals includes keyboard, touchpad,
+> UFS storage, external USB and WiFi.
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../boot/dts/qcom/sc8180x-lenovo-flex-5g.dts  | 590 ++++++++++++++++++
+>  2 files changed, 591 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+>
 
-Convert the simple OV5645 Device Tree binding to json-schema.
+[skipped]
 
-The previous binding marked the below properties as required which was a
-driver requirement and not the device requirement so just drop them from
-the required list during the conversion.
-- clock-names
-- clock-frequency
-- vdda-supply
-- vddd-supply
-- vdddo-supply
-- enable-gpios
-- reset-gpios
+> +&gpu {
+> +       status = "okay";
+> +
+> +       zap-shader {
+> +               memory-region = <&gpu_mem>;
+> +               firmware-name = "qcom/sc8180x/qcdxkmsuc8180.mbn";
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2
-* Dropped ref to video-interface-devices.yaml#
-* Dropped driver specific required items from the list
-* Updated commit message
-* Dropped clock-lanes and bus-type from the port and example node
-* Marked data-lanes as required in port node
----
- .../devicetree/bindings/media/i2c/ov5645.txt  |  54 ---------
- .../bindings/media/i2c/ovti,ov5645.yaml       | 105 ++++++++++++++++++
- 2 files changed, 105 insertions(+), 54 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+Is the firmware signed with the test key or with the proper vendor
+key? If the latter is true, the firmware should go to the subdir
+inside the SoC (I'd suggest following the example and using
+sc8180x/LENOVO/dmi_id/)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-deleted file mode 100644
-index 72ad992f77be..000000000000
---- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-+++ /dev/null
-@@ -1,54 +0,0 @@
--* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
--
--The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
--an active array size of 2592H x 1944V. It is programmable through a serial I2C
--interface.
--
--Required Properties:
--- compatible: Value should be "ovti,ov5645".
--- clocks: Reference to the xclk clock.
--- clock-names: Should be "xclk".
--- clock-frequency: Frequency of the xclk clock.
--- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
--  to the hardware pin PWDNB which is physically active low.
--- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
--  the hardware pin RESETB.
--- vdddo-supply: Chip digital IO regulator.
--- vdda-supply: Chip analog regulator.
--- vddd-supply: Chip digital core regulator.
--
--The device node must contain one 'port' child node for its digital output
--video port, in accordance with the video interface bindings defined in
--Documentation/devicetree/bindings/media/video-interfaces.txt.
--
--Example:
--
--	&i2c1 {
--		...
--
--		ov5645: ov5645@3c {
--			compatible = "ovti,ov5645";
--			reg = <0x3c>;
--
--			enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
--			reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
--			pinctrl-names = "default";
--			pinctrl-0 = <&camera_rear_default>;
--
--			clocks = <&clks 200>;
--			clock-names = "xclk";
--			clock-frequency = <24000000>;
--
--			vdddo-supply = <&camera_dovdd_1v8>;
--			vdda-supply = <&camera_avdd_2v8>;
--			vddd-supply = <&camera_dvdd_1v2>;
--
--			port {
--				ov5645_ep: endpoint {
--					clock-lanes = <1>;
--					data-lanes = <0 2>;
--					remote-endpoint = <&csi0_ep>;
--				};
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
-new file mode 100644
-index 000000000000..22e685729bcf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov5645.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OmniVision OV5645 Image Sensor Device Tree Bindings
-+
-+maintainers:
-+  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-+
-+properties:
-+  compatible:
-+    const: ovti,ov5645
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description: XCLK Input Clock
-+
-+  clock-names:
-+    const: xclk
-+
-+  clock-frequency:
-+    description: Frequency of the xclk clock in Hz.
-+
-+  vdda-supply:
-+    description: Analog voltage supply, 2.8 volts
-+
-+  vddd-supply:
-+    description: Digital core voltage supply, 1.5 volts
-+
-+  vdddo-supply:
-+    description: Digital I/O voltage supply, 1.8 volts
-+
-+  enable-gpios:
-+    maxItems: 1
-+    description:
-+      Reference to the GPIO connected to the PWDNB pin, if any.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      Reference to the GPIO connected to the RESETB pin, if any.
-+
-+  port:
-+    description: Digital Output Port
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 2
-+            items:
-+              enum: [1, 2]
-+
-+        required:
-+          - data-lanes
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+      #include <dt-bindings/gpio/gpio.h>
-+
-+      i2c {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          camera@3c {
-+              compatible = "ovti,ov5645";
-+              pinctrl-names = "default";
-+              pinctrl-0 = <&pinctrl_ov5645>;
-+              reg = <0x3c>;
-+              clocks = <&clks 1>;
-+              clock-names = "xclk";
-+              clock-frequency = <24000000>;
-+              vdddo-supply = <&ov5645_vdddo_1v8>; /* 1.8v */
-+              vdda-supply = <&ov5645_vdda_2v8>;  /* 2.8v */
-+              vddd-supply = <&ov5645_vddd_1v5>;  /* 1.5v */
-+              enable-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-+              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
-+
-+              port {
-+                  ov5645_ep: endpoint {
-+                      remote-endpoint = <&csi0_ep>;
-+                      data-lanes = <1 2>;
-+                  };
-+              };
-+          };
-+      };
-+...
+> +       };
+> +};
+> +
+
 -- 
-2.25.1
-
+With best wishes
+Dmitry
