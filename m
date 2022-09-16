@@ -2,97 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EB105BB419
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 23:48:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0101D5BB422
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 23:51:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbiIPVso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 17:48:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43808 "EHLO
+        id S229749AbiIPVvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 17:51:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbiIPVso (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 17:48:44 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF984BB684;
-        Fri, 16 Sep 2022 14:48:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1663364891; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=JLDt2/kFU7PEotggDN6j70oCTJcAHSNiwJtnJ1rZreVe/BBDf5r+1CV56T1eNKPU5d9NAH6+M7hl/yI+IMt3H1vlDspeZkffUpMV85tUqjpahNVK75vSlnPJPhdHEsr/CictAMNkcmgUyss2Wxodr1WwPbHNBfSjyIw2fJ3jpyw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1663364891; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=4GuRfMhQm5Rn+M8LeHVMrehMbznHw6jGuLiFJ01zG90=; 
-        b=dJakwSFQqzlM+viBJlYBIek0BmV9zBFURPWIoqrwq+zimAd/A4aJEQT+rrF31JZbRq3PAcQZu7TCHX7n155j3507EvDOw5lk1OaXxdAr9n348QoblStf5kS73xGOn6w4Eo8IfZ++piDDlUH7WbtmBonWuU9aRDFX6HQn7OtmlOU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1663364891;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=4GuRfMhQm5Rn+M8LeHVMrehMbznHw6jGuLiFJ01zG90=;
-        b=LQoYNqy7ViPr/6u6w5K5bvlvGOtK8xyG6VcNvYCqeoLe11wbFdwuCn2ZqvlHTCpn
-        hRzyOKvjoj1NnsK3vwvEdPem9Z+rJvDJy86QqmUuNVswWyAZXsHxmLAwA/1D0eVChvp
-        kqXB4x6YxoKx1529sEx75tRjnZJoa6M1lQO7xa6g=
-Received: from [10.10.10.122] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1663364890239371.4567564648436; Fri, 16 Sep 2022 14:48:10 -0700 (PDT)
-Message-ID: <bc066578-e229-7f08-d6c0-5dc2fede6be7@arinc9.com>
-Date:   Sat, 17 Sep 2022 00:48:00 +0300
+        with ESMTP id S229657AbiIPVvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 17:51:48 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43299BA9FC;
+        Fri, 16 Sep 2022 14:51:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663365107; x=1694901107;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8c8cWwwOXKYrrI8tz7xN0EBWhqw3oubByMkTEjiFBn8=;
+  b=WR6duLpJydt7lLhVmXVXF5kjSJqunBCfJPouHN7MKFO87p6jjlNouWRM
+   0X4h5SFBer1Wc2RBylYLlkd3rpOVNfWH4ivtORs6KBVnlPDzBUK6nzXr8
+   glr3DbUxM37/zpD2wEbzyTSTDiiJ/xObRZLzSeWD5q7tGiLZcoS2sHIAQ
+   1ZvFu0U9Ygb1Hwndr0bZ/wtROw66t95MtybnwB+vfwM8lGGFqp3LveEsd
+   zo7xbcQhZkJCFBDVg1a5n779sUGXauu3gomHZuwakMXlqNGLtwlp5nSYD
+   AIfJIuslGHgG3+Sun/HnmjAt7rYTEs80vHJrOLcV34KJ4cVxH/h1EGlhf
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10472"; a="299908613"
+X-IronPort-AV: E=Sophos;i="5.93,321,1654585200"; 
+   d="scan'208";a="299908613"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2022 14:51:46 -0700
+X-IronPort-AV: E=Sophos;i="5.93,321,1654585200"; 
+   d="scan'208";a="743478235"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2022 14:51:42 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 810BB2022B;
+        Sat, 17 Sep 2022 00:51:40 +0300 (EEST)
+Date:   Fri, 16 Sep 2022 21:51:40 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Christian Hemp <c.hemp@phytec.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] media: i2c: add support for ov4689
+Message-ID: <YyTv7CPytnvl05Ms@paasikivi.fi.intel.com>
+References: <20220911200147.375198-1-mike.rudenko@gmail.com>
+ <20220911200147.375198-3-mike.rudenko@gmail.com>
+ <e3c0bafe-394c-e8cc-aba0-6eb480dc5b43@linaro.org>
+ <87o7vgpa50.fsf@gmail.com>
+ <c92f67a0-52f5-b5d1-8f65-d28b761d2620@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 net-next 04/10] dt-bindings: memory: mt7621: add syscon
- as compatible string
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20220915065542.13150-1-arinc.unal@arinc9.com>
- <20220915065542.13150-5-arinc.unal@arinc9.com>
- <20220916194127.GA1139257-robh@kernel.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20220916194127.GA1139257-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c92f67a0-52f5-b5d1-8f65-d28b761d2620@linaro.org>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.09.2022 22:41, Rob Herring wrote:
-> On Thu, Sep 15, 2022 at 09:55:36AM +0300, Arınç ÜNAL wrote:
->> Add syscon as a constant string on the compatible property as it's required
->> for the SoC to work. Update the example accordingly.
-> 
-> I read this and start to give you the same reply as v1. Then I remember
-> saying this already...
-> 
-> Update the commit message such that it answers my question and I don't
-> think you just ignored me and have to go find v1. The fact that this
-> change makes the binding match what is already in use in dts files is an
-> important detail.
+Hi Krzysztof, Mikhail,
 
-Sure Rob, will do.
+On Fri, Sep 16, 2022 at 10:43:11AM +0100, Krzysztof Kozlowski wrote:
+> On 15/09/2022 21:40, Mikhail Rudenko wrote:
+> > 
+> > Hi Krzysztof,
+> > 
+> > On 2022-09-12 at 12:56 +02, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >> On 11/09/2022 22:01, Mikhail Rudenko wrote:
+> >>> +static const struct i2c_device_id ov4689_id[] = {
+> >>> +	{ "ov4689", 0 },
+> >>> +	{},
+> >>> +};
+> >>> +MODULE_DEVICE_TABLE(i2c, ov4689_id);
+> >>> +
+> >>> +static const struct of_device_id ov4689_of_match[] = {
+> >>> +	{ .compatible = "ovti,ov4689" },
+> >>> +	{},
+> >>> +};
+> >>> +MODULE_DEVICE_TABLE(of, ov4689_of_match);
+> >>> +
+> >>> +static struct i2c_driver ov4689_i2c_driver = {
+> >>> +	.driver = {
+> >>> +		.name = "ov4689",
+> >>> +		.pm = &ov4689_pm_ops,
+> >>> +		.of_match_table = of_match_ptr(ov4689_of_match),
+> >>
+> >> of_match_ptr is usually paired with maybe_unused, otherwise you will
+> >> have compile test warnings.
+> > 
+> > I see. I think we could also use `#if IS_ENABLED(CONFIG_OF)` around
+> > `ov4689_of_match` and the corresponding `MODULE_DEVICE_TABLE`. Is it
+> > appropriate here?
+> 
+> Would work, but ifdefs are not nice. Just use maybe_unused. Warnings
+> should disappear.
 
-Arınç
+Neither is needed. Just drop of_match_ptr().
+
+Apart from clock handling, it would probably work on ACPI, too. No need to
+address that though.
+
+-- 
+Regards,
+
+Sakari Ailus
