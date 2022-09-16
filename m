@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B94625BA3F6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 03:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73A4A5BA3FC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 03:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbiIPBZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Sep 2022 21:25:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43364 "EHLO
+        id S229487AbiIPB2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Sep 2022 21:28:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbiIPBZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 21:25:19 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995A152FE3;
-        Thu, 15 Sep 2022 18:25:17 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-12803ac8113so50004825fac.8;
-        Thu, 15 Sep 2022 18:25:17 -0700 (PDT)
+        with ESMTP id S229479AbiIPB2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Sep 2022 21:28:39 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED6671BFB;
+        Thu, 15 Sep 2022 18:28:38 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-11eab59db71so49994323fac.11;
+        Thu, 15 Sep 2022 18:28:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=we/qDjsEEkRmB9uRokHCLu2f8y3YPtpNWkqYAj/IL98=;
-        b=f8i35YrWhB0or5muFx5oxkQzENiuEKEXDc5ZHWoxhKbi5qXXW76jxZqhxUp7FYx8f2
-         6bPI58cjBHJo/KAbMcqX7njm+QCwec+ovmhwK1Rs6gogjFkaznpbGtxTCWi5rZS/gKNo
-         Qbq1nkjii3S9vN1rnU609oCG+DCxWxIBsMrDWCz+c7GOp3U7CHhGUQus6FE/fQG3P1/S
-         aUrfc1VLGiwqlID1o/QM4XbC61mcH/jbFZu7JLGSk/TNZhEdMm3Lr/VW72rYWZLkI25Z
-         B8p6el1JuRN0f/Gs03EvoJ2aqzR9xwiMK1Xwy6H8qM6PzgJHDGsXf1QOXknerWnL5xzz
-         XAOg==
-X-Gm-Message-State: ACgBeo0BYoyTVMrO1JRq0WxGw3eRf0B1EiRrik9vYkWfZ3YlYrAN1cGj
-        AR/DGq7Z4fewFG6gVeer2g==
-X-Google-Smtp-Source: AA6agR74FXyXUTi7l5UGPuM/qMCgePdrF2GBBhtCUwsTv5ymPHxdQD0p3cQoMVOmVMJOdbdfMEK2yg==
-X-Received: by 2002:a05:6870:2418:b0:101:9461:787c with SMTP id n24-20020a056870241800b001019461787cmr6892531oap.196.1663291516113;
-        Thu, 15 Sep 2022 18:25:16 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.googlemail.com with ESMTPSA id ca6-20020a056830610600b00655bb503564sm9242321otb.50.2022.09.15.18.25.15
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=UkEDuL7RkJje1ybCpvMuHrhS0RikUQWzoLzozh6GvAM=;
+        b=3YuY9GI2EG8De6z9qbLP5wEXhLLSQSkX10yGl9ydO6QEp2e6Q8HJV1pMw/+JdOn01J
+         CKIPzYOIhcodvdnyfiJHpEZozkif5VnGLXsqC98tFdtmK5w8LIlBfmDxW4IZXiGTdq5s
+         UO9eaNBm0YBSr/bTG/yKkDO0ypgdYm9omMA1N3WN7VAjx0IDrAkgO6PjJyJl/iiWf94Y
+         HztYvy9oKaQYl2yzUMB0XVxLOtJdQF+Cv3X907CSl3ioBcwhrj2HDQZdm9Xd+xJt5p8h
+         gYY6/89/JvQgVVfX5dL2SyNRyMjnydmhwn5xbcQMpdyv3tn950nQ7VAyRfZcvi131owA
+         vGUg==
+X-Gm-Message-State: ACgBeo26E1KBOFNvbu1yymB+XFl35KiFt8vZ3pAMSll7bi7YfJ4EojY2
+        r3k4bnIy7eVKYQBJyPoSuw==
+X-Google-Smtp-Source: AA6agR7iDIbG5iuuyYzEX3sYvdifMDH/GOPsdSZMCWjyv/+6aHZMgdVrdi2DHFpBMf9sIVl9KyXaFA==
+X-Received: by 2002:a05:6870:c34e:b0:127:a3df:8ff with SMTP id e14-20020a056870c34e00b00127a3df08ffmr6921135oak.186.1663291717570;
+        Thu, 15 Sep 2022 18:28:37 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x30-20020a056870331e00b00127a91041a9sm2078500oae.38.2022.09.15.18.28.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Sep 2022 18:25:15 -0700 (PDT)
+        Thu, 15 Sep 2022 18:28:37 -0700 (PDT)
+Received: (nullmailer pid 2725214 invoked by uid 1000);
+        Fri, 16 Sep 2022 01:28:36 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org
-Subject: [PATCH] dt: Add a check for undocumented compatible strings in kernel
-Date:   Thu, 15 Sep 2022 20:25:09 -0500
-Message-Id: <20220916012510.2718170-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        houlong.wei@mediatek.com, linux-mediatek@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, jassisinghbrar@gmail.com,
+        matthias.bgg@gmail.com
+In-Reply-To: <20220915101716.70225-1-angelogioacchino.delregno@collabora.com>
+References: <20220915101716.70225-1-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH] dt-bindings: mailbox: Convert mtk-gce to DT schema
+Date:   Thu, 15 Sep 2022 20:28:36 -0500
+Message-Id: <1663291716.321839.2725213.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -61,128 +62,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a make target, dt_compatible_check, to extract compatible strings
-from kernel sources and check if they are documented by a schema.
-At least version v2022.08 of dtschema with dt-check-compatible is
-required.
+On Thu, 15 Sep 2022 12:17:16 +0200, AngeloGioacchino Del Regno wrote:
+> Convert the mtk-gce mailbox binding to DT schema format.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../mailbox/mediatek,gce-mailbox.yaml         | 104 ++++++++++++++++++
+>  .../devicetree/bindings/mailbox/mtk-gce.txt   |  82 --------------
+>  2 files changed, 104 insertions(+), 82 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> 
 
-This check can also be run manually on specific files or directories:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-scripts/dtc/dt-extract-compatibles drivers/clk/ | \
-  xargs dt-check-compatible -v -s Documentation/devicetree/bindings/processed-schema.json
+yamllint warnings/errors:
 
-Currently, there are about 3800 undocumented compatible strings. Most of
-these are cases where the binding is not yet converted (given there
-are 1900 .txt binding files remaining).
+dtschema/dtc warnings/errors:
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/Makefile |  3 +
- Makefile                                   |  4 ++
- scripts/dtc/dt-extract-compatibles         | 68 ++++++++++++++++++++++
- 3 files changed, 75 insertions(+)
- create mode 100755 scripts/dtc/dt-extract-compatibles
 
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index 1eaccf135b30..bf2d8a8ced77 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -75,3 +75,6 @@ always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dtb,
- # build artifacts here before they are processed by scripts/Makefile.clean
- clean-files = $(shell find $(obj) \( -name '*.example.dts' -o \
- 			-name '*.example.dtb' \) -delete 2>/dev/null)
-+
-+dt_compatible_check: $(obj)/processed-schema.json
-+	$(Q)$(srctree)/scripts/dtc/dt-extract-compatibles $(srctree) | xargs dt-check-compatible -v -s $<
-diff --git a/Makefile b/Makefile
-index f09673b6c11d..7f19e1725b2f 100644
---- a/Makefile
-+++ b/Makefile
-@@ -1419,6 +1419,10 @@ PHONY += dt_binding_check
- dt_binding_check: scripts_dtc
- 	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
- 
-+PHONY += dt_compatible_check
-+dt_compatible_check: dt_binding_check
-+	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings $@
-+
- # ---------------------------------------------------------------------------
- # Modules
- 
-diff --git a/scripts/dtc/dt-extract-compatibles b/scripts/dtc/dt-extract-compatibles
-new file mode 100755
-index 000000000000..3a6dd3c40ac1
---- /dev/null
-+++ b/scripts/dtc/dt-extract-compatibles
-@@ -0,0 +1,68 @@
-+#!/usr/bin/env python3
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+import os
-+import glob
-+import re
-+import argparse
-+
-+
-+def parse_of_declare_macros(data):
-+	""" Find all compatible strings in OF_DECLARE() style macros """
-+	compat_list = []
-+	for m in re.finditer(r'(IRQCHIP|OF)_(DECLARE|MATCH)(_DRIVER)?\(.*?\)', data):
-+		try:
-+			compat = re.search(r'"(.*?)"', m[0])[1]
-+		except:
-+			# Fails on compatible strings in #define, so just skip
-+			continue
-+		compat_list += [compat]
-+
-+	return compat_list
-+
-+
-+def parse_of_device_id(data):
-+	""" Find all compatible strings in of_device_id structs """
-+	compat_list = []
-+	for m in re.finditer(r'of_device_id\s+[a-zA-Z0-9_]+\[\]\s*=\s*({.*?);', data):
-+		compat_list += re.findall(r'\.compatible\s+=\s+"([a-zA-Z0-9_\-,]+)"', m[1])
-+
-+	return compat_list
-+
-+
-+def parse_compatibles(file):
-+	with open(file, 'r', encoding='utf-8') as f:
-+		data = f.read().replace('\n', '')
-+
-+	compat_list = parse_of_declare_macros(data)
-+	compat_list += parse_of_device_id(data)
-+
-+	return compat_list
-+
-+def print_compat(filename, compatibles):
-+	if not compatibles:
-+		return
-+	if show_filename:
-+		compat_str = ' '.join(compatibles)
-+		print(filename + ": compatible(s): " + compat_str)
-+	else:
-+		print(*compatibles, sep='\n')
-+
-+show_filename = False
-+
-+if __name__ == "__main__":
-+	ap = argparse.ArgumentParser()
-+	ap.add_argument("cfile", type=str, nargs='*', help="C source files or directories to parse")
-+	ap.add_argument('-H', '--with-filename', help="Print filename with compatibles", action="store_true")
-+	args = ap.parse_args()
-+
-+	show_filename = args.with_filename
-+
-+	for f in args.cfile:
-+		if os.path.isdir(f):
-+			for filename in glob.iglob(f + "/**/*.c", recursive=True):
-+				compat_list = parse_compatibles(filename)
-+				print_compat(filename, compat_list)
-+		else:
-+			compat_list = parse_compatibles(f)
-+			print_compat(f, compat_list)
--- 
-2.34.1
+doc reference errors (make refcheckdocs):
+Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml: Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
