@@ -2,280 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 390105BACC7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 13:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 506E95BACE5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 14:00:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230266AbiIPLw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 07:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37868 "EHLO
+        id S229614AbiIPMAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 08:00:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbiIPLw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 07:52:56 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B62AEAE9FC;
-        Fri, 16 Sep 2022 04:52:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663329175; x=1694865175;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ymRcD4SMNJ2Wskv31fxwW5RgjmCxw86sr/wur9dJFcg=;
-  b=gVbmxKKLN1rrk3zw/H4FgFrJuBJepJc9YpkScbWhTTqZdIHA/TOQvS0y
-   7qUMmc/2lzcGnpDNY4cHd5EdJPXZtgu+FL4Z7L944YzSyVPQx9SD1MKvW
-   SKzjf57YJMmma3MDWARp7nHVJ5POL497sPY1K+o8waT+bHMqI8tY9QNGd
-   wqWtfVIooehPlLqPIOSzDpX801uAxJWoGl92xfl9gn7TXw2zPAp+dBVYP
-   okWMFmZjkdFPuU4UTPCQOaDkt7O/BCMaeSPUlhUqUMH9KkgaswrkHprf4
-   3vQpQn1LXuMdeBo0gDZZxFcLWJuXNZyQOeQ2DIX8vvT6N8jbzdFXWLH8h
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10471"; a="362938151"
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; 
-   d="scan'208";a="362938151"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2022 04:52:55 -0700
-X-IronPort-AV: E=Sophos;i="5.93,320,1654585200"; 
-   d="scan'208";a="595226961"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2022 04:52:43 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 5C6812010E;
-        Fri, 16 Sep 2022 14:52:41 +0300 (EEST)
-Date:   Fri, 16 Sep 2022 11:52:41 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH] media: dt-bindings: ov5645: Convert OV5645 binding to a
- schema
-Message-ID: <YyRjiY5XRPglSHuN@paasikivi.fi.intel.com>
-References: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S229557AbiIPMAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 08:00:05 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E228C2E9E5;
+        Fri, 16 Sep 2022 04:59:59 -0700 (PDT)
+X-UUID: af663d45d92c4ba1a42c524ddf8e21a2-20220916
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=TYyYRhoJq7fWtmZNRUDZ326SnABMO3rCDovRyIC+c2k=;
+        b=kncM31WKnOLsgTEKsKE/RJkyDjYVEa2dPq9mKhAREVtlkwJYUSfwiR8ftWlIFGLUYMbALORkQEhe7LN3fj3cHlmc76KGL8/PlMpII6kHck8iqjzBGs7wZ+tz9Le0FFeOuIWwz2Hp56Ah186dUazIBSRGKIsw7ledlw75W6H60/M=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:b9341035-ea49-4508-98d5-94a38cd617c2,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:39a5ff1,CLOUDID:68faa8f6-6e85-48d9-afd8-0504bbfe04cb,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: af663d45d92c4ba1a42c524ddf8e21a2-20220916
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 846511512; Fri, 16 Sep 2022 19:59:52 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 16 Sep 2022 19:59:50 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 16 Sep 2022 19:59:50 +0800
+Message-ID: <a5ecd1dd567ca58807b289f2488d933f27e087dd.camel@mediatek.com>
+Subject: Re: [PATCH v2 4/9] remoteproc: mediatek: Support probing for the
+ 2nd core of dual-core SCP
+From:   TingHan Shen <tinghan.shen@mediatek.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <bjorn.andersson@linaro.org>, <bleung@chromium.org>,
+        <chrome-platform@lists.linux.dev>, <devicetree@vger.kernel.org>,
+        <dnojiri@chromium.org>, <enric.balletbo@collabora.com>,
+        <groeck@chromium.org>, <gustavoars@kernel.org>,
+        <keescook@chromium.org>, <krzk+dt@kernel.org>,
+        <lee.jones@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <matthias.bgg@gmail.com>,
+        <pmalani@chromium.org>, <robh+dt@kernel.org>,
+        <sebastian.reichel@collabora.com>, <weishunc@google.com>
+Date:   Fri, 16 Sep 2022 19:59:50 +0800
+In-Reply-To: <CANLsYkx6kXk8u_ajFbnhdWTkZBLtrq_z02jryLBSVH0x--_ZFw@mail.gmail.com>
+References: <20220829194247.GC2264818@p14s>
+         <20220908111757.14633-1-tinghan.shen@mediatek.com>
+         <CANLsYkx6kXk8u_ajFbnhdWTkZBLtrq_z02jryLBSVH0x--_ZFw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-On Tue, Sep 13, 2022 at 05:02:24PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, 2022-09-08 at 14:58 -0600, Mathieu Poirier wrote:
+> On Thu, 8 Sept 2022 at 05:21, Tinghan Shen <tinghan.shen@mediatek.com>
+> wrote:
 > 
-> Convert the simple OV5645 Device Tree binding to json-schema.
+> > Hi Mathieu,
+> > 
+> > > > The mtk_scp.c driver only supports the single core SCP and the
+> > > > 1st core of a dual-core SCP. This patch extends it for the 2nd core.
+> > > > 
+> > > > MT8195 SCP is a dual-core MCU. Both cores are housed in the same
+> > 
+> > subsys.
+> > > 
+> > > s/subsys/subsystem
+> > > 
+> > > > They have the same viewpoint of registers and memory.
+> > > > 
+> > > > Core 1 of the SCP features its own set of core configuration registers,
+> > > > interrupt controller, timers, and DMAs. The rest of the peripherals
+> > > > in this subsystem are shared by core 0 and core 1.
+> > > > 
+> > > > As for memory, core 1 has its own cache memory. the SCP SRAM is shared
+> > > 
+> > > /the/The
+> > > 
+> > > > by core 0 and core 1.
+> > > > 
+> > > > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> > > > ---
+> > > >  drivers/remoteproc/mtk_scp.c | 22 ++++++++++++++++++++--
+> > > >  1 file changed, 20 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/remoteproc/mtk_scp.c
+> > 
+> > b/drivers/remoteproc/mtk_scp.c
+> > > > index 3510c6d0bbc8..91b4aefde4ac 100644
+> > > > --- a/drivers/remoteproc/mtk_scp.c
+> > > > +++ b/drivers/remoteproc/mtk_scp.c
+> > > > @@ -23,6 +23,10 @@
+> > > >  #define MAX_CODE_SIZE 0x500000
+> > > >  #define SECTION_NAME_IPI_BUFFER ".ipi_buffer"
+> > > > 
+> > > > +#define SCP_CORE_0 0
+> > > > +#define SCP_CORE_1 1
+> > > > +#define SCP_CORE_SINGLE 0xF
+> > > > +
+> > > >  /**
+> > > >   * scp_get() - get a reference to SCP.
+> > > >   *
+> > > > @@ -836,6 +840,7 @@ static int scp_probe(struct platform_device *pdev)
+> > > >     struct resource *res;
+> > > >     const char *fw_name = "scp.img";
+> > > >     int ret, i;
+> > > > +   u32 core_id = SCP_CORE_SINGLE;
+> > > > 
+> > > >     ret = rproc_of_parse_firmware(dev, 0, &fw_name);
+> > > >     if (ret < 0 && ret != -EINVAL)
+> > > > @@ -851,8 +856,16 @@ static int scp_probe(struct platform_device *pdev)
+> > > >     scp->data = of_device_get_match_data(dev);
+> > > >     platform_set_drvdata(pdev, scp);
+> > > > 
+> > > > +   ret = of_property_read_u32_index(dev->of_node,
+> > 
+> > "mediatek,scp-core", 1, &core_id);
+> > > > +   if (ret == 0)
+> > > > +           dev_info(dev, "Boot SCP dual core %u\n", core_id);
+> > > 
+> > > Why is the DT property "mediatek,scp-core" needed at all?  Since the
+> > 
+> > compatible
+> > > "mediatek,mt8195-scp-dual" has already been defined previously in this
+> > 
+> > patchset,
+> > > initialising the second core, if present, is a matter of looking at the
+> > > compatile string.
+> > 
+> > This idea of identify cores by the compatible looks workable.
+> > I'll update this series at next version.
+> > Thanks!
+> > 
+> > > 
+> > > > +
+> > > >     res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sram");
+> > > > -   scp->sram_base = devm_ioremap_resource(dev, res);
+> > > > +   if (core_id == SCP_CORE_1)
+> > > > +           scp->sram_base = devm_ioremap(dev, res->start,
+> > 
+> > resource_size(res));
+> > > > +   else
+> > > > +           scp->sram_base = devm_ioremap_resource(dev, res);
+> > > > +
+> > > 
+> > > This looks very broken...  For this to work you would need to have two DT
+> > > entries with the "mediatek,mt8195-scp-dual" compatible properly, one with
+> > > "mediatek,scp-core = <&scp_dual1 0>;" and another one with
+> > 
+> > "mediatek,scp-core = <&scp_dual0 1>;".
+> > > 
+> > > Which is also very broken...  Here you have a binding whose first
+> > 
+> > argument is a
+> > > reference to the core sibling while the second argument is a
+> > 
+> > characteristic of
+> > > the current core, which is highly confusing.
+> > > 
+> > > I suggest what when you see the compatible binding
+> > 
+> > "mediatek,mt8195-scp", a
+> > > single core is initialized.  If you see "mediatek,mt8195-scp-dual", both
+> > 
+> > cores
+> > > are initialized as part of the _same_ probe.
+> > > 
+> > > If the above analysis is not correct it means I misinterpreted your
+> > > work and if so, a serious amount of comments is needed _and_ a very
+> > 
+> > detailed
+> > > example in "mtk,scp.yaml" that leaves no room for interpretation.
+> > > 
+> > > I will stop reviewing this patchset until you have clarified how this
+> > 
+> > works.
+> > > 
+> > > Thanks,
+> > > Mathieu
+> > 
+> > There's one problem of initializng the CORE1 using the same probe flow.
+> > The register space of CORE0 and CORE1 are overlapped in the device node.
+> > Both cores need to use the 'cfg' registers defined in scp yaml.
+> > The devm_ioremap_resource catches address overlapping and returns error
+> > when
+> > probing CORE1 driver.
+> > 
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 --------
->  .../bindings/media/i2c/ovti,ov5645.yaml       | 119 ++++++++++++++++++
->  2 files changed, 119 insertions(+), 54 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> That is exactly why I suggest to initialise both cores within the same
+> probe() function.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-> deleted file mode 100644
-> index 72ad992f77be..000000000000
-> --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
-> +++ /dev/null
-> @@ -1,54 +0,0 @@
-> -* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
-> -
-> -The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
-> -an active array size of 2592H x 1944V. It is programmable through a serial I2C
-> -interface.
-> -
-> -Required Properties:
-> -- compatible: Value should be "ovti,ov5645".
-> -- clocks: Reference to the xclk clock.
-> -- clock-names: Should be "xclk".
-> -- clock-frequency: Frequency of the xclk clock.
-> -- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
-> -  to the hardware pin PWDNB which is physically active low.
-> -- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
-> -  the hardware pin RESETB.
-> -- vdddo-supply: Chip digital IO regulator.
-> -- vdda-supply: Chip analog regulator.
-> -- vddd-supply: Chip digital core regulator.
-> -
-> -The device node must contain one 'port' child node for its digital output
-> -video port, in accordance with the video interface bindings defined in
-> -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> -
-> -Example:
-> -
-> -	&i2c1 {
-> -		...
-> -
-> -		ov5645: ov5645@3c {
-> -			compatible = "ovti,ov5645";
-> -			reg = <0x3c>;
-> -
-> -			enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
-> -			reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
-> -			pinctrl-names = "default";
-> -			pinctrl-0 = <&camera_rear_default>;
-> -
-> -			clocks = <&clks 200>;
-> -			clock-names = "xclk";
-> -			clock-frequency = <24000000>;
-> -
-> -			vdddo-supply = <&camera_dovdd_1v8>;
-> -			vdda-supply = <&camera_avdd_2v8>;
-> -			vddd-supply = <&camera_dvdd_1v2>;
-> -
-> -			port {
-> -				ov5645_ep: endpoint {
-> -					clock-lanes = <1>;
-> -					data-lanes = <0 2>;
-> -					remote-endpoint = <&csi0_ep>;
-> -				};
-> -			};
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
-> new file mode 100644
-> index 000000000000..7f407c988f87
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5645.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OV5645 Image Sensor Device Tree Bindings
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov5645
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: XCLK Input Clock
-> +
-> +  clock-names:
-> +    const: xclk
-> +
-> +  clock-frequency:
-> +    description: Frequency of the xclk clock in Hz.
-> +
-> +  vdda-supply:
-> +    description: Analog voltage supply, 2.8 volts
-> +
-> +  vddd-supply:
-> +    description: Digital core voltage supply, 1.5 volts
-> +
-> +  vdddo-supply:
-> +    description: Digital I/O voltage supply, 1.8 volts
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Reference to the GPIO connected to the PWDNB pin, if any.
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Reference to the GPIO connected to the RESETB pin, if any.
-> +
-> +  port:
-> +    description: Digital Output Port
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          clock-lanes:
-> +            const: 0
-> +
-> +          bus-type:
-> +            const: 4
 
-Please drop the two, they provide no information to the driver that already
-knows this. (Unless of course, the driver supports other bus types these
-bindings do not document. Some OV sensors do.) clock-lanes needs to go in
-any case, and data-lanes are dependent on bus-type being 4 I presume.
+Hi Mathieu,
 
-bus-type is also not present in the example.
+I'm thinking about how to initialise in the same probe() function.
+I'm wondering if this implies that using one scp driver to initialize 2 cores?
+If it is, I assume the dts descriptions for both cores should be contained in one node.
 
-> +
-> +          data-lanes:
-> +            minItems: 1
-> +            maxItems: 2
-> +            items:
-> +              enum: [1, 2]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - clock-frequency
-> +  - vdda-supply
-> +  - vddd-supply
-> +  - vdddo-supply
-> +  - enable-gpios
-> +  - reset-gpios
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +      #include <dt-bindings/gpio/gpio.h>
-> +
-> +      i2c {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          camera@3c {
-> +              compatible = "ovti,ov5645";
-> +              pinctrl-names = "default";
-> +              pinctrl-0 = <&pinctrl_ov5645>;
-> +              reg = <0x3c>;
-> +              clocks = <&clks 1>;
-> +              clock-names = "xclk";
-> +              clock-frequency = <24000000>;
-> +              vdddo-supply = <&ov5645_vdddo_1v8>; /* 1.8v */
-> +              vdda-supply = <&ov5645_vdda_2v8>;  /* 2.8v */
-> +              vddd-supply = <&ov5645_vddd_1v5>;  /* 1.5v */
-> +              enable-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-> +              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
-> +
-> +              port {
-> +                  ov5645_ep: endpoint {
-> +                      remote-endpoint = <&csi0_ep>;
-> +                      clock-lanes = <0>;
-> +                      data-lanes = <1 2>;
-> +                  };
-> +              };
-> +          };
-> +      };
-> +...
+When there's one node for both cores, it looks like that there is a problem of 
+using dma_allocate_coherent(). Each core has its own reserved memory region. 
+When there's only one device for both cores, it's not able to identify the memory region 
+by the device parameter of dma_allocate_coherent().
 
--- 
-Kind regards,
+Is it acceptable to consider manually allocating core 1 device in the probe() when probing core 0?
 
-Sakari Ailus
+
+Best regards,
+TingHan
+
+
+
+
+
+
+
+
