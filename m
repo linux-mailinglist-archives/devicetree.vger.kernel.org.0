@@ -2,67 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33ECF5BAC14
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 13:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F5715BAC41
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 13:23:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231690AbiIPLLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 07:11:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54456 "EHLO
+        id S229892AbiIPLXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 07:23:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231187AbiIPLLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 07:11:18 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3973E80;
-        Fri, 16 Sep 2022 04:10:20 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id t14so35479714wrx.8;
-        Fri, 16 Sep 2022 04:10:20 -0700 (PDT)
+        with ESMTP id S229861AbiIPLXI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 07:23:08 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1DC7859D;
+        Fri, 16 Sep 2022 04:23:04 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id l14so48724620eja.7;
+        Fri, 16 Sep 2022 04:23:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=7Jiy9Z4SJ5cNBRsxm2AaeKN84NRRpfl9TETV1EliQY0=;
-        b=cVmemc1dWQooaSXE42w3lLujnnYWM4LnNs1xICO9X2/TuKkAJcv3oJuHS6YWM1sjfv
-         Sir3OOXMW4CzzdEd7nGi1zSML9SyJhN9VhFVLsg4sIAqU50vxXvgj0N9VM/okB2JMMqb
-         F5UVIwazQ9N5/MUP+4cPemPaWhe2AIGOui0JRDfy2WPYG42N894d2Q3OfbVRzs3tCYQU
-         cTVAnfxE5nuALegum6xXN2gjJnq4bfCKdHIhWYmPhWwWcN1atXYcL/eE9mLD3f/nTful
-         0ymZYnWdEhq0ZI9mtT/mF+3xQLyC5pC3ENR0vQyA4ac38hVl8FRJ8rcM2PNV+2+LPgaa
-         MH0g==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=DU5KF0Ljto1qqKaaYep+gSPj1bvw9HckQSDSnz55RRQ=;
+        b=UGAvmqpx6gdqMSAr0/ahrhiyIeHbl/GU2JEWzNQophHjbTExwEBIkmGmcPZFoS6d0V
+         EXjzMGsnw3sfwW5IP7i62O7Q5bHSeUGkVKaN8U5gY5ZAw6xpWJE73KhmDshOOGezbZc5
+         IlXpUu4szSBWK3lETDE5zGrrIeAn9YW1EBa2nQVzpz2aSbnKjVDAPZW9QIZjoK6hglJp
+         r4iC9yJ3Qv/Pf+7lYUYROHV5+xuQCHo65m8jqLtaopEeksRdwRewfPWp0tu+Fgy4eM5h
+         wCBJXcDs+zbEQQHtOp+JHEZWzLh/O9J+vQfSxkLQ4sDMkrvVjmmLkQXOtZ54TUxX9ocR
+         wdLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=7Jiy9Z4SJ5cNBRsxm2AaeKN84NRRpfl9TETV1EliQY0=;
-        b=TqCWdZmBt2yDf+RmsywAe8RsANYHr/5HE1h+4jwvVGXlC4qAayA2PvsRPCR8XLvjDY
-         TPSDoRe2Z+1XImlY4+dVj31cV0e4PPbsEgjZISaNx+SPGiR+pKPuSCAFhXkQJbz4gYBJ
-         cY+pZzrykeuF15VYmos/aJEDe+m4Em/lz7GZnQHq24cahjFHbc/kfljywIrfhmnt9Lns
-         RE+pzivhqO3sNuFktI5op7W2CLRKjgVBvZLSH9O8YG8g1WfwOs3HiXJ1Vaf6Q2zLuFWj
-         xCkwfq/zp8ExY3k+WPo2op90N+vbFMgvTzZTXrCuGOe3qBccAp0Jiuj0Leq3YSxBWwtd
-         x/BA==
-X-Gm-Message-State: ACrzQf3GQtIc4oGWlqakYCGFh8dE0dlcK78G3RF/V82DSHrOQCPSYWDZ
-        9pYgGnqtGsUrsePX5az0nE0=
-X-Google-Smtp-Source: AMsMyM5uYYboPdipnTAjvzRjZ63f8BKibpPBYysbOFcFHpjdCslmV3qxSI+WUHChDv6QqbC9cZKT8w==
-X-Received: by 2002:a5d:64a8:0:b0:226:f3f3:9914 with SMTP id m8-20020a5d64a8000000b00226f3f39914mr2401583wrp.343.1663326619194;
-        Fri, 16 Sep 2022 04:10:19 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:453:ec29:bd55:6b15])
-        by smtp.gmail.com with ESMTPSA id v13-20020adfebcd000000b0022a403954c3sm4910975wrn.42.2022.09.16.04.10.17
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=DU5KF0Ljto1qqKaaYep+gSPj1bvw9HckQSDSnz55RRQ=;
+        b=8CJ/cvPym3PB1Wd+qEWurgoG56HxO4kJOpQs56Ue0LUQPthcHBb47LeqijR1Fk8csX
+         mzEugMXkbRfbVgD10we40BXNuqlEiHFIHiRddY806avYM0RY8uReZQDn9Y5STLZ5Twfn
+         hlGGS814dxdfcVF6XDZDg36z7U/tpAmsfy24diE4/virVGdYhBn6DnaJSbYMvCOaIiCj
+         roC992Hyf5CRuk35NgFeME8zETRuPqMzIiI9220lSF59vXtzgvAFdYanhVBI5mWyf6Q2
+         /3trXcizYHkm6HmS9l8v2LoMMZqQ795QrPJ0zmrwHhxxncoxerNYjDsaJi3IRzUpO2vc
+         FeNA==
+X-Gm-Message-State: ACrzQf1MqhwXPZeCRQ+T8IeN/Mup0uUFMMvaiaRBnwZNII5LAAab0xyD
+        y3Xl+Zjou+CYPDvnoj9nalI=
+X-Google-Smtp-Source: AMsMyM7A42U9OhgxYi+DBc3R1EShECp5+w1553csnq/jqH05bw3yyNynycc9pAcJzQ1WfLXjMiUXyQ==
+X-Received: by 2002:a17:906:5d0a:b0:780:3c42:990f with SMTP id g10-20020a1709065d0a00b007803c42990fmr3254128ejt.9.1663327383181;
+        Fri, 16 Sep 2022 04:23:03 -0700 (PDT)
+Received: from lab.hqhome163.com ([194.183.10.152])
+        by smtp.gmail.com with ESMTPSA id c19-20020a056402121300b0044f0f51f813sm13193643edw.83.2022.09.16.04.23.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Sep 2022 04:10:18 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Fri, 16 Sep 2022 04:23:02 -0700 (PDT)
+Date:   Fri, 16 Sep 2022 11:18:15 +0000
+From:   Alessandro Carminati <alessandro.carminati@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] media: dt-bindings: media: i2c: Rename ov8856.yaml
-Date:   Fri, 16 Sep 2022 12:09:55 +0100
-Message-Id: <20220916110955.23757-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Changes phy configuration to expose sata in place of
+ usb3 on quartz64-a board
+Message-ID: <YyRbd0vaAwu0DI7n@lab.hqhome163.com>
+References: <YyIyo42QWvgJTBjL@lab.hqhome163.com>
+ <c46fd424-3517-9f66-dc8c-ed10ca3ef622@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c46fd424-3517-9f66-dc8c-ed10ca3ef622@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -73,50 +74,324 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hello, I'm reviewing the notes you made me on the review.
+To tell all the truth, I derived the DTS from an existing one by modifying a small portion of it. 
+In the end, your notes are for the already existing DTS.
+To address the notes in your message and spare future work, I decided to refactor the rk3566-quartz64-a DTS.
+I will post another patch briefly with the new version. 
+For the moment, thank you for the review.
+Regards
+Alessandro
 
-Rename 'ov8856.yaml' as 'ovti,ov8856.yaml' and update the MAINTAINERS
-file entry accordingly.
-
-All the Omnivision sensor DT bindings have vendor prefix "ovti," to
-their file name hence this renaming.
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- .../bindings/media/i2c/{ov8856.yaml => ovti,ov8856.yaml}        | 2 +-
- MAINTAINERS                                                     | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
- rename Documentation/devicetree/bindings/media/i2c/{ov8856.yaml => ovti,ov8856.yaml} (98%)
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
-similarity index 98%
-rename from Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-rename to Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
-index baf92aaaf049..342b3158bd28 100644
---- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
-@@ -2,7 +2,7 @@
- # Copyright (c) 2019 MediaTek Inc.
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/media/i2c/ov8856.yaml#
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov8856.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Omnivision OV8856 CMOS Sensor Device Tree Bindings
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 99483c13b91c..22381a43aa26 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15191,7 +15191,7 @@ M:	Dongchun Zhu <dongchun.zhu@mediatek.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media_tree.git
--F:	Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-+F:	Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
- F:	drivers/media/i2c/ov8856.c
- 
- OMNIVISION OV9282 SENSOR DRIVER
--- 
-2.25.1
-
+On Thu, Sep 15, 2022 at 04:07:54PM +0100, Krzysztof Kozlowski wrote:
+> On 14/09/2022 20:59, Alessandro Carminati wrote:
+> > The Quartz64 board is built upon Rockchip RK3566.
+> > Rockchip RK3566 has two combo phys.
+> > The first connects USB3 and SATA ctrl1, and the second PCIe lane and SATA
+> > ctrl2.
+> > The second combo phy is hardwired to the PCIe slot, where for the first,
+> > the hardware on the board provides both the USB3 connector and the SATA
+> > connector.
+> > This DT allows the users to switch the combo phy to the SATA connector.
+> > 
+> > Signed-off-by: Alessandro Carminati <alessandro.carminati@gmail.com>
+> > ---
+> >  .../dts/rockchip/rk3566-quartz64-a.sata.dts   | 839 ++++++++++++++++++
+> >  1 file changed, 839 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.sata.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.sata.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.sata.dts
+> > new file mode 100644
+> > index 000000000000..6ac21b729be7
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.sata.dts
+> > @@ -0,0 +1,839 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/pinctrl/rockchip.h>
+> > +#include <dt-bindings/soc/rockchip,vop2.h>
+> > +#include "rk3566.dtsi"
+> > +
+> > +/ {
+> > +	model = "Pine64 RK3566 Quartz64-A Board";
+> > +	compatible = "pine64,quartz64-a", "rockchip,rk3566";
+> > +
+> > +	aliases {
+> > +		ethernet0 = &gmac1;
+> > +		mmc0 = &sdmmc0;
+> > +		mmc1 = &sdhci;
+> > +	};
+> > +
+> > +	chosen: chosen {
+> > +		stdout-path = "serial2:1500000n8";
+> > +	};
+> > +
+> > +	gmac1_clkin: external-gmac1-clock {
+> > +		compatible = "fixed-clock";
+> > +		clock-frequency = <125000000>;
+> > +		clock-output-names = "gmac1_clkin";
+> > +		#clock-cells = <0>;
+> > +	};
+> > +
+> > +	fan: gpio_fan {
+> 
+> No underscores in node names. Node name just "fan"
+> 
+> > +		compatible = "gpio-fan";
+> > +		gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
+> > +		gpio-fan,speed-map = <0    0
+> > +				      4500 1>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&fan_en_h>;
+> > +		#cooling-cells = <2>;
+> > +	};
+> > +
+> > +	hdmi-con {
+> 
+> Node name: connector
+> 
+> > +		compatible = "hdmi-connector";
+> > +		type = "a";
+> > +
+> > +		port {
+> > +			hdmi_con_in: endpoint {
+> > +				remote-endpoint = <&hdmi_out_con>;
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	leds {
+> > +		compatible = "gpio-leds";
+> > +
+> > +		led-work {
+> > +			label = "work-led";
+> > +			default-state = "off";
+> > +			gpios = <&gpio0 RK_PD3 GPIO_ACTIVE_HIGH>;
+> > +			pinctrl-names = "default";
+> > +			pinctrl-0 = <&work_led_enable_h>;
+> > +			retain-state-suspended;
+> > +		};
+> > +
+> > +		led-diy {
+> > +			label = "diy-led";
+> > +			default-state = "on";
+> > +			gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
+> > +			linux,default-trigger = "heartbeat";
+> > +			pinctrl-names = "default";
+> > +			pinctrl-0 = <&diy_led_enable_h>;
+> > +			retain-state-suspended;
+> > +		};
+> > +	};
+> > +
+> > +	rk817-sound {
+> > +		compatible = "simple-audio-card";
+> > +		simple-audio-card,format = "i2s";
+> > +		simple-audio-card,name = "Analog RK817";
+> > +		simple-audio-card,mclk-fs = <256>;
+> > +
+> > +		simple-audio-card,cpu {
+> > +			sound-dai = <&i2s1_8ch>;
+> > +		};
+> > +
+> > +		simple-audio-card,codec {
+> > +			sound-dai = <&rk817>;
+> > +		};
+> > +	};
+> > +
+> > +	sdio_pwrseq: sdio-pwrseq {
+> > +		compatible = "mmc-pwrseq-simple";
+> > +		clocks = <&rk817 1>;
+> > +		clock-names = "ext_clock";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&wifi_enable_h>;
+> > +		post-power-on-delay-ms = <100>;
+> > +		power-off-delay-us = <5000000>;
+> > +		reset-gpios = <&gpio2 RK_PC2 GPIO_ACTIVE_LOW>;
+> > +	};
+> > +
+> > +	spdif_dit: spdif-dit {
+> > +		compatible = "linux,spdif-dit";
+> > +		#sound-dai-cells = <0>;
+> > +	};
+> > +
+> > +	spdif_sound: spdif-sound {
+> > +		compatible = "simple-audio-card";
+> > +		simple-audio-card,name = "SPDIF";
+> > +
+> > +		simple-audio-card,cpu {
+> > +			sound-dai = <&spdif>;
+> > +		};
+> > +
+> > +		simple-audio-card,codec {
+> > +			sound-dai = <&spdif_dit>;
+> > +		};
+> > +	};
+> > +
+> > +	vcc12v_dcin: vcc12v_dcin {
+> 
+> No underscores in node names, generic node name, so at least with
+> regulator prefix or suffix.
+> 
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "vcc12v_dcin";
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +		regulator-min-microvolt = <12000000>;
+> > +		regulator-max-microvolt = <12000000>;
+> > +	};
+> > +
+> > +	/* vbus feeds the rk817 usb input.
+> > +	 * With no battery attached, also feeds vcc_bat+
+> > +	 * via ON/OFF_BAT jumper
+> > +	 */
+> > +	vbus: vbus {
+> 
+> Ditto
+> 
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "vbus";
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +		regulator-min-microvolt = <5000000>;
+> > +		regulator-max-microvolt = <5000000>;
+> > +		vin-supply = <&vcc12v_dcin>;
+> > +	};
+> > +
+> > +	vcc3v3_pcie_p: vcc3v3-pcie-p-regulator {
+> 
+> And here you have suffix...
+> 
+> > +		compatible = "regulator-fixed";
+> > +		enable-active-high;
+> > +		gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pcie_enable_h>;
+> > +		regulator-name = "vcc3v3_pcie_p";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		vin-supply = <&vcc_3v3>;
+> > +	};
+> > +
+> > +	vcc5v0_usb: vcc5v0_usb {
+> 
+> Ditto
+> 
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "vcc5v0_usb";
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +		regulator-min-microvolt = <5000000>;
+> > +		regulator-max-microvolt = <5000000>;
+> > +		vin-supply = <&vcc12v_dcin>;
+> > +	};
+> > +
+> > +	/* all four ports are controlled by one gpio
+> > +	 * the host ports are sourced from vcc5v0_usb
+> > +	 * the otg port is sourced from vcc5v0_midu
+> > +	 */
+> > +	vcc5v0_usb20_host: vcc5v0_usb20_host {
+> 
+> and in other places as well
+> 
+> 
+> 
+> > +		compatible = "regulator-fixed";
+> > +		enable-active-high;
+> > +		gpio = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&vcc5v0_usb20_host_en>;
+> > +		regulator-name = "vcc5v0_usb20_host";
+> > +		regulator-min-microvolt = <5000000>;
+> > +		regulator-max-microvolt = <5000000>;
+> > +		vin-supply = <&vcc5v0_usb>;
+> > +	};
+> > +
+> > +	vcc5v0_usb20_otg: vcc5v0_usb20_otg {
+> > +		compatible = "regulator-fixed";
+> > +		enable-active-high;
+> > +		gpio = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
+> > +		regulator-name = "vcc5v0_usb20_otg";
+> > +		regulator-min-microvolt = <5000000>;
+> > +		regulator-max-microvolt = <5000000>;
+> > +		vin-supply = <&dcdc_boost>;
+> > +	};
+> > +
+> > +	vcc3v3_sd: vcc3v3_sd {
+> > +		compatible = "regulator-fixed";
+> > +		enable-active-low;
+> > +		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_LOW>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&vcc_sd_h>;
+> > +		regulator-boot-on;
+> > +		regulator-name = "vcc3v3_sd";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		vin-supply = <&vcc_3v3>;
+> > +	};
+> > +
+> > +	/* sourced from vbus and vcc_bat+ via rk817 sw5 */
+> > +	vcc_sys: vcc_sys {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "vcc_sys";
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +		regulator-min-microvolt = <4400000>;
+> > +		regulator-max-microvolt = <4400000>;
+> > +		vin-supply = <&vbus>;
+> > +	};
+> > +
+> > +	/* sourced from vcc_sys, sdio module operates internally at 3.3v */
+> > +	vcc_wl: vcc_wl {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "vcc_wl";
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		vin-supply = <&vcc_sys>;
+> > +	};
+> > +};
+> > +
+> > +&combphy1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&combphy2 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&cpu0 {
+> > +	cpu-supply = <&vdd_cpu>;
+> > +};
+> > +
+> > +&cpu1 {
+> > +	cpu-supply = <&vdd_cpu>;
+> > +};
+> > +
+> > +&cpu2 {
+> > +	cpu-supply = <&vdd_cpu>;
+> > +};
+> > +
+> > +&cpu3 {
+> > +	cpu-supply = <&vdd_cpu>;
+> > +};
+> > +
+> > +&cpu_thermal {
+> > +	trips {
+> > +		cpu_hot: cpu_hot {
+> 
+> No underscores in node names. Are you sure bindings/schema do not expect
+> some specific name?
+> 
+> > +			temperature = <55000>;
+> > +			hysteresis = <2000>;
+> > +			type = "active";
+> > +		};
+> > +	};
+> 
+> 
+> Best regards,
+> Krzysztof
