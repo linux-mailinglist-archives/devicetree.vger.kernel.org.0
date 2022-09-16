@@ -2,140 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE265BAB18
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 12:34:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA7F25BAAE7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 12:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230435AbiIPKOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 06:14:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48862 "EHLO
+        id S232170AbiIPKbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 06:31:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231318AbiIPKNd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 06:13:33 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23D6CADCE2
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 03:10:28 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id z6so2724734wrq.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 03:10:28 -0700 (PDT)
+        with ESMTP id S231876AbiIPKaw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 06:30:52 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C26B5A43;
+        Fri, 16 Sep 2022 03:18:21 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id 130so31798235ybw.8;
+        Fri, 16 Sep 2022 03:18:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=eVpP3B8Yd3GGlXs2s7bOVxeOJGC3gSkrPxMOLUAsWP4=;
-        b=wvLUctE9te+Df6XtYkm6JJ8C6mOGaMhUfG/JkmfPOw1XJPaOpx1wN4YYB9sfAxbIyB
-         BrgUODZIsHB+9isoBcG9XjRjDCIKvfbFv3FnKYG3RbE2GF7Z6QCYCratzr6QqUo8iilf
-         OZ+lli2lOFVDHcZvX5elHc+C6k53IHe3ApuIYkoBsf9/2QR/4TTAtmFQ483YTn4gA423
-         JKrdGrTUyn0ZrpFfzCb4p2pSwAQeDnYIMDb2o1IvIOMki0aqUoRwH1xxDENhiqOR1rGs
-         D5KoaVl0p0kfaA6qe+lnbawEnq8uc5QXsNPsQeQqw5meBaRebtsSKIU+hZJyYwQ4mB/J
-         WbRw==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=JeqBUIL5Q3gilj1ggDIfyx5qaL/olub3pv2t1oiDKOU=;
+        b=ln3rWLSKaB6VusyovUiKD6ahSQrzeiB3ECQYdGt88pI/k9YFVYM7kaH02KhwQF/Era
+         MlJFiVQ7/M8fu1zTPe7xioVTujWQ4Jmod9rHnfrwMTWgVtU3sBXSQMdk9vFOaQYnYpnk
+         6VJgEtbFYyklTPUTpX0XQJLkQcw/VAu+24iIFmW4sOJylYlbi/zGlUAdBfg0Y+R+xlNB
+         b4gTNTSEaY9KUsmeOXPboVAhz0J8RLwPCnRprPKmIzpgThWuhho2Q/4QkoKQXMtDa7RY
+         B5AT3GFmE9bNrRb0pod02OjJezpYseMW4XN4xUGANtrF04M/oLr18eJpWvKa7Al/Ke4e
+         puig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=eVpP3B8Yd3GGlXs2s7bOVxeOJGC3gSkrPxMOLUAsWP4=;
-        b=nfCoZl7nixLI9IDkrfZ8oVs2aaTxph63BfQEcfKuKrFcGTHgjZ5I6iWJDuvTi36SLX
-         hBjkalFRo8TbrrhW2MrWb5PLdw/HXcpbAj6wDnC9agchAqenqeEg+lv8aUi6f6n+3z5l
-         q5keoJWieAatyI1+FBofTIGFP3ssOsQUGCWoWUzmBSENRdS4bWGjI+jLUk3erY6kVtWo
-         8zlQcMfULtI14dqMgfR8tXE2Nn4MOigoW9/FND/tothVR+mC0VjV4uNW8PL+G1V/Lk0Q
-         boKrNbG7I9G7ZPfhrDGM6MMxVM9XDgE31Vll5sHwWt+lfzbbdT9K16aWl+Y+0TcFZfJa
-         u0YA==
-X-Gm-Message-State: ACrzQf2JTvx2bgPjfqWhvbI2GXi+d3hJFWhD2IqdLInnp+ei+uJHcQRI
-        x9fJD4Lf1ODHz8XGZc5mADz03g==
-X-Google-Smtp-Source: AMsMyM6u2LHVqC2nJe9wN0MgBRE3VSw6iSwbOSX3d4vZDY2O2WPYHqKaSndMHVlMJGTCvTgSyitPQg==
-X-Received: by 2002:adf:df82:0:b0:228:e2cf:d20f with SMTP id z2-20020adfdf82000000b00228e2cfd20fmr2522431wrl.356.1663323013991;
-        Fri, 16 Sep 2022 03:10:13 -0700 (PDT)
-Received: from [10.119.22.201] ([89.101.193.73])
-        by smtp.gmail.com with ESMTPSA id c2-20020a1c3502000000b003b4935f04a4sm2205155wma.5.2022.09.16.03.10.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Sep 2022 03:10:13 -0700 (PDT)
-Message-ID: <00368da8-bf24-da5a-15da-dbc1a6a716e8@linaro.org>
-Date:   Fri, 16 Sep 2022 11:10:12 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=JeqBUIL5Q3gilj1ggDIfyx5qaL/olub3pv2t1oiDKOU=;
+        b=2+Wob/dODrsL6ojebK8a4XaWemOxkUejyyTRsw2hZkLhmlMjYBjxEWxyOcntIVqORz
+         7QjgAovzZEV+VvwPTGL4zV//aAfjhTXm+EdSuteLrMxDzM9FXWGlo3HQuxraXXABvc60
+         ri3sURthEG8k0BRHBS78XfSmD1iq7EtKFUNzNBfl259DEe6k2L6WX3Fu5coLFtolKfDk
+         vGkqbeMc+N+/TjRWvOXj/o2IRv5ezKjLeLiU0BT7HKEHgDkPskXtHOFdeup4ogfGniZZ
+         daF5k2BknqmJgfy3mHsUn7gjjkqrc7Zo9i9xKhHVTK0mGx2cHC2Uoj75e05SWgSQEari
+         xjug==
+X-Gm-Message-State: ACrzQf1fcjvFhRX6juhBRPIpk6k3QCLQXAAcHo4ZycQ6UUhL5cb9drsY
+        8eBeM2AgH6F4Gz6/aDjDJV9XU3iP0yxlcElOLuU=
+X-Google-Smtp-Source: AMsMyM6KKWpmTT+3967gp0w0iTjppjIVs4dzGIiballbtWjO+1p+Rxm+vdYhdtBOPbvM6HN3pqfV7lj6943osxtks7A=
+X-Received: by 2002:a05:6902:1007:b0:6ae:6cd5:4b0b with SMTP id
+ w7-20020a056902100700b006ae6cd54b0bmr3827198ybt.354.1663323446656; Fri, 16
+ Sep 2022 03:17:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH] dt-bindings: usb: dwc3: Add interrupt-names to include
- hibernation interrupt
-Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>,
-        "Mehta, Piyush" <piyush.mehta@amd.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "balbi@kernel.org" <balbi@kernel.org>
-Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Paladugu, Siva Durga Prasad" <siva.durga.prasad.paladugu@amd.com>,
-        Manish Narani <manish.narani@xilinx.com>
-References: <20220912085730.390555-1-piyush.mehta@amd.com>
- <4cc7a6d2-64ef-c176-21ad-4c3e66f664f7@linaro.org>
- <MN2PR12MB43330B57F5CFBEC35105665188469@MN2PR12MB4333.namprd12.prod.outlook.com>
- <05ce5c7c-c7e2-cac1-341a-5461804f96ea@linaro.org>
- <46b9bb31-efb5-1e1f-9d01-3841661293dc@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <46b9bb31-efb5-1e1f-9d01-3841661293dc@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220913160224.14951-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220914141655.GA2131586-robh@kernel.org>
+In-Reply-To: <20220914141655.GA2131586-robh@kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 16 Sep 2022 11:16:59 +0100
+Message-ID: <CA+V-a8vDu_JJ4x+R-a+cLthjWRtdYD=aqnRfCYQYYR4QOUO_kQ@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: ov5645: Convert OV5645 binding to a schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2022 10:04, Michal Simek wrote:
-> 
-> 
-> On 9/15/22 10:44, Krzysztof Kozlowski wrote:
->> On 14/09/2022 14:15, Mehta, Piyush wrote:
->>>   
->>>> Where is the user (DTS) and implementation of this change? If this is specific
->>>> to Xilinx, why you do not have device specific compatible?
->>> [Piyush]:
->>> We have dedicated irq line for hibernation feature,  "hiber" irq line triggers hibernation interrupt.
->>> DWC3 core supports the hibernation feature, we have a dedicated code which is yet to be upstreamed.
->>> As the hibernation feature provided by dwc3-core, so this will be supported by other SOC/vendors.
->>
->> But is hiber irq line present in other vendors? What confuses me is
->> adding not only "hiber" irq but also otg in completely new enum.
-> 
-> I will let Piyush to comment hiber IRQ. But I expect we don't have visibility 
-> what others are doing but this is line is not Xilinx invention that's why I 
-> expect IP from Synopsys have it by default but it is up to soc vendor if 
-> hibernation feature is enabled or not.
-> 
-> otg is already listed in
-> Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> 
-> It is only about order.
-> Driver is already using
-> platform_get_irq_byname..() functions
+Hi Rob,
 
-Linux driver yes, but other platforms (bootloaders, operating systems)
-might be doing things differently. Therefore the order and items are
-usually strict. If they cannot be strict, it is nice to know why or it
-is nice to restrict it to some specific variant (if it is applicable).
+Thank you for the review.
 
-This is why I asked whether the line is specific to Xilinx or to others.
+On Wed, Sep 14, 2022 at 3:16 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Sep 13, 2022 at 05:02:24PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Convert the simple OV5645 Device Tree binding to json-schema.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 --------
+> >  .../bindings/media/i2c/ovti,ov5645.yaml       | 119 ++++++++++++++++++
+> >  2 files changed, 119 insertions(+), 54 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > deleted file mode 100644
+> > index 72ad992f77be..000000000000
+> > --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> > +++ /dev/null
+> > @@ -1,54 +0,0 @@
+> > -* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
+> > -
+> > -The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
+> > -an active array size of 2592H x 1944V. It is programmable through a serial I2C
+> > -interface.
+> > -
+> > -Required Properties:
+> > -- compatible: Value should be "ovti,ov5645".
+> > -- clocks: Reference to the xclk clock.
+> > -- clock-names: Should be "xclk".
+> > -- clock-frequency: Frequency of the xclk clock.
+> > -- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
+> > -  to the hardware pin PWDNB which is physically active low.
+> > -- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
+> > -  the hardware pin RESETB.
+> > -- vdddo-supply: Chip digital IO regulator.
+> > -- vdda-supply: Chip analog regulator.
+> > -- vddd-supply: Chip digital core regulator.
+> > -
+> > -The device node must contain one 'port' child node for its digital output
+> > -video port, in accordance with the video interface bindings defined in
+> > -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > -
+> > -Example:
+> > -
+> > -     &i2c1 {
+> > -             ...
+> > -
+> > -             ov5645: ov5645@3c {
+> > -                     compatible = "ovti,ov5645";
+> > -                     reg = <0x3c>;
+> > -
+> > -                     enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
+> > -                     reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
+> > -                     pinctrl-names = "default";
+> > -                     pinctrl-0 = <&camera_rear_default>;
+> > -
+> > -                     clocks = <&clks 200>;
+> > -                     clock-names = "xclk";
+> > -                     clock-frequency = <24000000>;
+> > -
+> > -                     vdddo-supply = <&camera_dovdd_1v8>;
+> > -                     vdda-supply = <&camera_avdd_2v8>;
+> > -                     vddd-supply = <&camera_dvdd_1v2>;
+> > -
+> > -                     port {
+> > -                             ov5645_ep: endpoint {
+> > -                                     clock-lanes = <1>;
+> > -                                     data-lanes = <0 2>;
+> > -                                     remote-endpoint = <&csi0_ep>;
+> > -                             };
+> > -                     };
+> > -             };
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> > new file mode 100644
+> > index 000000000000..7f407c988f87
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> > @@ -0,0 +1,119 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5645.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: OmniVision OV5645 Image Sensor Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
+>
+> What are you using from here?
+>
+> (Answer below)
+>
+> > +
+> > +properties:
+<snip>
+> > +  - port
+> > +
+> > +additionalProperties: false
+>
+> You are not because this prevents it. Either remove the ref or use
+> unevaluatedProperties.
+>
+I'll drop the ref while sending the v2.
 
-> 
-> I think any combination should be fine. Do we need to record used order or there 
-> is way in yaml to support any combination with dwc_usb3, host, peripheral, otg 
-> should be working (ignoring that hiber which should be likely there too).
-
-What confuses me here more, is having otg. I understand that dwc_usb3 is
-the single interrupt for all the modes, so my naive approach would be:
-oneOf:
- - dwc_usb3
- - enum [dwc_usb3, hiber]
- - enum [host, peripheral, otg]
- - enum [host, peripheral, otg, hiber]
-
-However here Piyush adds not only hiber but also otg...
-
-Best regards,
-Krzysztof
+Cheers,
+Prabhakar
