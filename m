@@ -2,144 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7F05BB272
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 20:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ECD65BB27D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 20:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbiIPSux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 14:50:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53236 "EHLO
+        id S230247AbiIPSx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 14:53:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbiIPSux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 14:50:53 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 257159F1A3;
-        Fri, 16 Sep 2022 11:50:50 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id n83so7202271oif.11;
-        Fri, 16 Sep 2022 11:50:50 -0700 (PDT)
+        with ESMTP id S229532AbiIPSx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 14:53:27 -0400
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F249B8F0B;
+        Fri, 16 Sep 2022 11:53:27 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-1274ec87ad5so53469096fac.0;
+        Fri, 16 Sep 2022 11:53:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=3UB7ATwI4jkvN5dfzXoHTLYFFznwA2fYTP5Sp8m3D6A=;
-        b=OQ8O5lkpEKmOWYYgc3nYKFBFtxvpveFS/h5fXf1Zg9iAEzHJJJKXA4G6KbQFijtTT0
-         ZnRpX1UTTqvHM5H1plrAxhmoY6XGk9PpHb7xmGYrLVnS7eSDrCGDszPR7uiPHOVXByiu
-         +b62jVC6/7DCYx1nGzp8f+L4m6m82tLeLaodZFsLMofP1MDh5SnRk7E+matKUyQzGqI/
-         hyocPuaNrkaAwQI5yYGerfboPtCvceBVJowGkIL93X5tnkJVUqvZcp8U5WFv34oPHn6n
-         D38aUR/trCWRYNXYyyyKC7wuRvgCj17Zqy3ge1vHF73j1Tqoh23JHaaXV6/yDyKbkgK0
-         86ew==
-X-Gm-Message-State: ACgBeo1IoDlqdZuvAaA3m5Cs+UBmk3vwCAiUmLnfm/HKXIwn5HYrBTFP
-        PnrtPb2xHCpn1aVfalbAKg==
-X-Google-Smtp-Source: AA6agR710WjH2qECtnOYp/b/ibt2BmM7PlV30E4FBE3nldt1uSx9BidvH6yyuvSYQNT0OEBJvdRZbw==
-X-Received: by 2002:a05:6808:1148:b0:344:e58d:7449 with SMTP id u8-20020a056808114800b00344e58d7449mr7495734oiu.209.1663354249346;
-        Fri, 16 Sep 2022 11:50:49 -0700 (PDT)
+        bh=B60NenXBTreMWS0WrcdwyfZ2Y6hoAUEkgmMhGFVHd+Q=;
+        b=X+tAGx80qGTJpM+Q58J6OgRSEa+y6o/tpxEEERo8nkSlLVyTKw0sECsWBFgcBoY65G
+         vbt7ynH/qz7zDynsXyen8+w7dGGrhKFmKjcqKO0MaoSnB/dEu3akipKwxjmmLLiVpE+O
+         oct0jHP/QiL9fr05zr846yn6gwjeH0ThGyLSZ/ESx7xya2ynSmcSEUC7Otieu1PQeOEw
+         J538gkDKom1Hamw4Z/WQPMnzIhoFhDBA4RcnY1Q+t86SKMa5pW2NK+QEyfkn7Jmd4C4f
+         sN7lRzN2PAsqcB/8v7uzmWaXa9BPwR4ti7IMWdxBpQHBq5MlbDuIi/uen5VGWb+T1h9w
+         oyew==
+X-Gm-Message-State: ACrzQf3kDauK1nV6pg/Vnqd6IBLCnKphF9Ksbz6Tp9oifS0wG/4FsOME
+        DGVcWLvEzIloPvzpDRVZVg==
+X-Google-Smtp-Source: AMsMyM47dSuF84kEziYxdlHfDrjyVqaZalLHvej7kfRHbVl9g72LP5BOHuYtnGVR9KF/ehC9uUXIng==
+X-Received: by 2002:a05:6870:2049:b0:127:927a:bf40 with SMTP id l9-20020a056870204900b00127927abf40mr3675203oad.248.1663354406322;
+        Fri, 16 Sep 2022 11:53:26 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k26-20020a056808069a00b0033a11fcb23bsm9346668oig.27.2022.09.16.11.50.48
+        by smtp.gmail.com with ESMTPSA id j187-20020acab9c4000000b003502783c454sm3184177oif.0.2022.09.16.11.53.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Sep 2022 11:50:48 -0700 (PDT)
-Received: (nullmailer pid 1065156 invoked by uid 1000);
-        Fri, 16 Sep 2022 18:50:48 -0000
-Date:   Fri, 16 Sep 2022 13:50:48 -0500
+        Fri, 16 Sep 2022 11:53:26 -0700 (PDT)
+Received: (nullmailer pid 1069995 invoked by uid 1000);
+        Fri, 16 Sep 2022 18:53:25 -0000
+Date:   Fri, 16 Sep 2022 13:53:25 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Chancel Liu <chancel.liu@nxp.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shengjiu.wang@gmail.com,
-        shengjiu.wang@nxp.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        nicoleotsuka@gmail.com, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v2 1/7] ASoC: dt-bindings: fsl_rpmsg: Add a property to
- assign the rpmsg channel
-Message-ID: <20220916185048.GA1061412-robh@kernel.org>
-References: <20220914105145.2543646-1-chancel.liu@nxp.com>
- <20220914105145.2543646-2-chancel.liu@nxp.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: dma: rework qcom,adm Documentation
+ to yaml schema
+Message-ID: <20220916185325.GA1069954-robh@kernel.org>
+References: <20220914140426.7609-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220914105145.2543646-2-chancel.liu@nxp.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220914140426.7609-1-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 06:51:39PM +0800, Chancel Liu wrote:
-> Add a string property to assign the rpmsg channel this sound card sits
-> on. It also represents the name of ASoC platform driver. This property
-> can be omitted if there is only one sound card and it sits on
-> "rpmsg-audio-channel".
+On Wed, 14 Sep 2022 16:04:25 +0200, Christian Marangi wrote:
+> Rework the qcom,adm Documentation to yaml schema.
+> This is not a pure conversion since originally the driver has changed
+> implementation for the #dma-cells and was wrong from the start.
+> Also the driver now handles the common DMA clients implementation with
+> the first cell that denotes the channel number and nothing else since
+> the client will have to provide the crci information via other means.
 > 
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 37 ++++++++++++++++++-
->  1 file changed, 35 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/dma/qcom,adm.yaml     | 96 +++++++++++++++++++
+>  .../devicetree/bindings/dma/qcom_adm.txt      | 61 ------------
+>  2 files changed, 96 insertions(+), 61 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/qcom,adm.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/qcom_adm.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
-> index d370c98a62c7..3744ae794c00 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
-> @@ -11,8 +11,11 @@ maintainers:
->  
->  description: |
->    fsl_rpmsg is a virtual audio device. Mapping to real hardware devices
-> -  are SAI, DMA controlled by Cortex M core. What we see from Linux
-> -  side is a device which provides audio service by rpmsg channel.
-> +  are SAI, MICFIL, DMA controlled by Cortex M core. What we see from
-> +  Linux side is a device which provides audio service by rpmsg channel.
-> +  We can create different sound cards which access different hardwares
-> +  such as SAI, MICFIL, .etc through building rpmsg channels between
-> +  Cortex-A and Cortex-M.
->  
->  properties:
->    compatible:
-> @@ -85,6 +88,17 @@ properties:
->        This is a boolean property. If present, the receiving function
->        will be enabled.
->  
-> +  fsl,rpmsg-channel-name:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: |
-> +      A string property to assign rpmsg channel this sound card sits on.
-> +      It also represents the name of ASoC platform driver. This property
 
-That's a Linux detail which doesn't belong in DT.
-
-> +      can be omitted if there is only one sound card and it sits on
-> +      "rpmsg-audio-channel".
-> +    enum:
-> +      - rpmsg-audio-channel
-> +      - rpmsg-micfil-channel
-> +
->  required:
->    - compatible
->    - model
-> @@ -107,3 +121,22 @@ examples:
->                   <&clk IMX8MN_AUDIO_PLL2_OUT>;
->          clock-names = "ipg", "mclk", "dma", "pll8k", "pll11k";
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/clock/imx8mm-clock.h>
-> +
-> +    rpmsg_micfil: audio-controller {
-> +        compatible = "fsl,imx8mm-rpmsg-audio";
-> +        model = "micfil-audio";
-> +        fsl,rpmsg-channel-name = "rpmsg-micfil-channel";
-> +        fsl,enable-lpa;
-> +        fsl,rpmsg-in;
-> +        clocks = <&clk IMX8MM_CLK_PDM_IPG>,
-> +                 <&clk IMX8MM_CLK_PDM_ROOT>,
-> +                 <&clk IMX8MM_CLK_SDMA3_ROOT>,
-> +                 <&clk IMX8MM_AUDIO_PLL1_OUT>,
-> +                 <&clk IMX8MM_AUDIO_PLL2_OUT>;
-> +        clock-names = "ipg", "mclk", "dma", "pll8k", "pll11k";
-> +    };
-> +
-> +...
-> -- 
-> 2.25.1
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
