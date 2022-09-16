@@ -2,118 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 243205BB4C4
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 01:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 057D45BB54B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 03:19:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229784AbiIPXU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 19:20:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40052 "EHLO
+        id S229774AbiIQBTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 21:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229769AbiIPXU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 19:20:56 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F554AE9F2;
-        Fri, 16 Sep 2022 16:20:54 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id g23so12559855qtu.2;
-        Fri, 16 Sep 2022 16:20:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=funh6DJxWPKQkGfqUouZIN3Ckh5ufZaw1R0aisyo43c=;
-        b=l328SO8TvVV7UOhz1dOPe/bmFOmHvWUkrjVaJ0F+GwdsDP9wYS2oYd9MHN5CT8x/rB
-         syWkCxANnXOc2rELuAzgablk5E4p6BNFm0CPmEYWY8DmwmBI0A0HZL3Vk7TgBdJKiSBJ
-         YJ/I7CYHd75D24Wdti8hQPslJKIpTk/28AWSqIt96mFCPlkrE9XieXfJdH0JZbsA22v5
-         ER1OfvGZARJK0aidVc/4zhtH5Rbl+jO6hrYm8uy9AlHJDucPWZcbDos2UtZUNzSPBo6Y
-         hxIe1p4Rlp73HP48R9EK74OdoG16Xx5e8404+ELuZsyuwZy+gDLdR9mhl0bCoaH18dfQ
-         L+8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=funh6DJxWPKQkGfqUouZIN3Ckh5ufZaw1R0aisyo43c=;
-        b=xAq//KuCmUzpekyGytY4l28RpZSpJ9OOTNXnt9pVEF+UEDNeBydT+XkaPKxivI02mb
-         mnF4cb7IslQ7QFBoPt7rIXhfaziPnVFVjN9rD6202CvwtengDA0dYF4h/I/P8sIsgIpZ
-         O7I57b7sx01s+h1QY2spIUGal9lk0nWGE6uC7oecs56eckvEPlo9GY/skMCliKcJjKgT
-         y094KT649ZvdMXKD1Uscrpb5AUHqnHJvzDgUiyrlSRFTU0ZWuJchGyBza+o1YFCIRu2i
-         2wRb4KUT0ywiI2tql76YeWp1q9YCY+jwX2a8eMjZh6LbGxsdXoI1LfELTk9g5FeXup3I
-         1//w==
-X-Gm-Message-State: ACrzQf3f0hUWQIdAUZMPpdtGN9qYB9hdUOL+jT5sFg4eBywI4fqESHAV
-        pSV/oJt862rgRsu80FP7kZI=
-X-Google-Smtp-Source: AMsMyM4J7SATRwEjRfc/V0Dc1cogL1hJjn0iSCjjwp7Qe/DFPqAU16QehsKCVvs3nobNbaBaW+iRmg==
-X-Received: by 2002:a05:622a:141:b0:35c:d7b7:62c1 with SMTP id v1-20020a05622a014100b0035cd7b762c1mr3179178qtw.376.1663370453665;
-        Fri, 16 Sep 2022 16:20:53 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:90c9:b1c1:5c9e:9030? ([2600:1700:2442:6db0:90c9:b1c1:5c9e:9030])
-        by smtp.gmail.com with ESMTPSA id f12-20020a05620a408c00b006bb78d095c5sm7916099qko.79.2022.09.16.16.20.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Sep 2022 16:20:53 -0700 (PDT)
-Message-ID: <1a4381ea-53a6-1ed0-100f-e622457ccc87@gmail.com>
-Date:   Fri, 16 Sep 2022 18:20:52 -0500
+        with ESMTP id S229450AbiIQBTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 21:19:40 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00ACBE0F5;
+        Fri, 16 Sep 2022 18:19:36 -0700 (PDT)
+Received: from mercury (dyndsl-095-033-170-064.ewe-ip-backbone.de [95.33.170.64])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D35F7660204C;
+        Sat, 17 Sep 2022 02:19:34 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663377574;
+        bh=IsuXn3QptS+dxxrin6TxULXzoMk1Gf4+cQTcLgbCwmw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bpdI9QuGAegny+PcB1Lyr+xDl3mlldCBg20Q1qjxiqgRleQnsj8g4ABqRNU3+bMsA
+         N6y138Rg9o6kSKT+Cflq3SN9EEZwt/HjzZ6wrby5eahIpZOUF34/Cpb90i9KTxhprK
+         9YlExzv3QIrbA45DpgmdH/zLE84awO5MYZjUkBG8b9EvaLeRAqRz79wzcMVWWEyNEk
+         WRQb8uS1vr+oYpJKmxhoNexQsHNXxHSfzEvyxud9KqzWKsS00gEZxEOACXNTjXXryP
+         Ruv/T1IlB1BPrU3hRtQQl4c+zN02gpBCmlyYxFr7MGo0eM7fcf3D41OWOttTD6qGK6
+         DFtere756kpSQ==
+Received: by mercury (Postfix, from userid 1000)
+        id 752CE1060849; Fri, 16 Sep 2022 20:08:23 +0200 (CEST)
+Date:   Fri, 16 Sep 2022 20:08:23 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mazziesaccount@gmail.com, alina_yu@richtek.com,
+        cy_huang@richtek.com, alinayu829@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] Documentation: power: rt9471: Document exported
+ sysfs entries
+Message-ID: <20220916180823.p672rojsrjbpy4ft@mercury.elektranox.org>
+References: <1663173015-7934-1-git-send-email-u0084500@gmail.com>
+ <1663173015-7934-4-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH RFC 2/2] pci: create device tree node for selected devices
-Content-Language: en-US
-From:   Frank Rowand <frowand.list@gmail.com>
-To:     Rob Herring <robh@kernel.org>, Lizhi Hou <lizhi.hou@amd.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, helgaas@kernel.org,
-        clement.leger@bootlin.com, max.zhen@amd.com, sonal.santan@amd.com,
-        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
-        trix@redhat.com
-References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
- <1661809417-11370-3-git-send-email-lizhi.hou@amd.com>
- <20220902185403.GA173255-robh@kernel.org>
- <dd823b9c-fe7f-7c47-520c-bad5a798efc2@gmail.com>
- <63c31198-ac4d-f3c7-9259-ea7dc6373b23@gmail.com>
-In-Reply-To: <63c31198-ac4d-f3c7-9259-ea7dc6373b23@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="g5wty46coo2wjhpl"
+Content-Disposition: inline
+In-Reply-To: <1663173015-7934-4-git-send-email-u0084500@gmail.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/13/22 02:03, Frank Rowand wrote:
-> On 9/12/22 01:33, Frank Rowand wrote:
->> On 9/2/22 13:54, Rob Herring wrote:
->>> On Mon, Aug 29, 2022 at 02:43:37PM -0700, Lizhi Hou wrote:
->>>> The PCI endpoint device such as Xilinx Alveo PCI card maps the register
->>>> spaces from multiple hardware peripherals to its PCI BAR. Normally,
->>>> the PCI core discovers devices and BARs using the PCI enumeration process.
->>>> And the process does not provide a way to discover the hardware peripherals
->>>> been mapped to PCI BARs.
->>
->> < snip >
->>
->>>
->>> The above bits aren't really particular to PCI, so they probably 
->>> belong in the DT core code. Frank will probably have thoughts on what 
->>> this should look like.
->>
->> < snip >
->>
->> I will try to look through this patch series later today (Monday 9/12
->> USA time - I will not be in Dublin for the conferences this week.)
->>
->> -Frank
-> 
-> I have collected nearly 500 emails on the history behind this patch and
-> also another set of patch series that has been trying to achieve some
-> somewhat similar functionality.  Expect me to take a while to wade through
-> all of this.
 
-I'm still working at understanding the full picture of patch 2/2.
+--g5wty46coo2wjhpl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--Frank
+Hi,
 
-> 
-> -Frank
+On Thu, Sep 15, 2022 at 12:30:15AM +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+>=20
+> Document the settings exported by rt9471 charger driver through sysfs ent=
+ries:
+> - sysoff_enable
+> - port_detect_enable
+>=20
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+> Since v5:
+> - Recover all the change in sysfs-class-power.
+> - New a sysfs-class-power-rt9471 file.
+> - Remove 'charge_term_enable' sysfs entry, directly integrate it in
+>   'charge_term_current' power supply property control.
+>=20
+> ---
+>  Documentation/ABI/testing/sysfs-class-power-rt9471 | 29 ++++++++++++++++=
+++++++
+>  1 file changed, 29 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9471
+>=20
+> diff --git a/Documentation/ABI/testing/sysfs-class-power-rt9471 b/Documen=
+tation/ABI/testing/sysfs-class-power-rt9471
+> new file mode 100644
+> index 00000000..ad5b049
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-class-power-rt9471
+> @@ -0,0 +1,29 @@
+> +What:		/sys/class/power_supply/rt9471-*/sysoff_enable
+> +Date:		Oct 2022
+> +KernelVersion:	6.1
+> +Contact:	ChiYuan Huang <cy_huang@richtek.com>
+> +Description:
+> +		This entry allows enabling the sysoff mode of rt9471 charger devices.
+> +		If enabled and the input is removed, the internal battery FET is turned
+> +		off to reduce the leakage from the BAT pin. See device datasheet for d=
+etails.
+> +		It's commonly used when the product enter shipping stage.
+> +
+> +		Access: Read, Write
+> +		Valid values:
+> +		- 1: enabled
+> +		- 0: disabled
 
+I still fail to see why this needs to be controllable at runtime.
+This looks like a hardware property. Are there any known products,
+which need this disabled?
+
+> +What:		/sys/class/power_supply/rt9471-*/port_detect_enable
+> +Date:		Oct 2022
+> +KernelVersion:	6.1
+> +Contact:	ChiYuan Huang <cy_huang@richtek.com>
+> +Description:
+> +		This entry allows enabling the USB BC12 port detect function of rt9471=
+ charger
+> +		devices. If enabled and VBUS is inserted, device will start to do the =
+BC12
+> +		port detect and report the usb port type when port detect is done. See
+> +		datasheet for details. Normally controlled when TypeC/USBPD port integ=
+rated.
+> +
+> +		Access: Read, Write
+> +		Valid values:
+> +		- 1: enabled
+> +		- 0: disabled
+
+So basically this depends on the hardware integration (e.g. it
+should be disabled when power source is a DC barrel jack instead
+of USB) and is not supposed to change at all during runtime? Then
+the information wether it needs to be enabled should be derived
+=66rom the device tree.
+
+-- Sebastian
+
+--g5wty46coo2wjhpl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmMku4wACgkQ2O7X88g7
++ppIIQ//UtV9sEuUQW1evu3Xg9UgdWAbELRCg6IJI5rkE/6z8dy1y0u6jTz93BzP
+G/AV4jY8Lk1agbW0SpwXONH//7DHqv7b2EQvOB+SmY2IlDIBxFQYYBkI5oXJ9HO4
+gvBX6xWN/khnQEUuA075AlzUKzL0l9MSTjHbx1bHbuq3jHoAj6Oo+jduofD8OAfI
+hGFyq2icRuJoUGeUREoTc0vIApTjSyWANLwBM1P1sQ0ivJG3R6acPUJQgznQo+W+
+2CKfCZ+QWCyjTAisfTvfPdM+F0mxgpaF2QHHnwa6gP9F5yycxYPEciYq/sNTdL43
+v2aX6A34enMOpMr4BCpieS/bXoPTqxiA1sHE60ZYQNUV4azFkyFw9SMATSAzKYnE
+N9yMthiUuV4TWFTQKdCSPYsf79foJqeDi2UZaSnc92mcTtqMLgT5Lgmairjp/xpw
+QxNDVxRzd9gLeeYU4HTYCpLwxxvilWtXa4pUyR1W+NT+Aaa9o+IMrXSIfOEB2wBU
+YTBrCaH3XVu4l85W5tA3VuSH0KUTkq5kNfNaX8cbZY844aZCcX6NAh1BLm7S3r5i
+msA1hioHCD1OBxh0e7Jt6yL8AIMuJm14Gc7LPa2rRzS9X9slKhFsD8+/VKGdDh+v
+Lztv+jlo/yE6cE+T9mGW6aJddY6zLwldGCQ+THIFHcGRWbLoivw=
+=kE+V
+-----END PGP SIGNATURE-----
+
+--g5wty46coo2wjhpl--
