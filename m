@@ -2,171 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B58555BAF7D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 16:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7C3E5BB031
+	for <lists+devicetree@lfdr.de>; Fri, 16 Sep 2022 17:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231372AbiIPOiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 10:38:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37904 "EHLO
+        id S230398AbiIPP2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 11:28:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbiIPOiq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 10:38:46 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5290EB3B2E
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 07:38:45 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id go34so49908722ejc.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 07:38:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=2hekt6nHmDXb09svRYspIovCwUxYyIVHgZSXoQyIl+k=;
-        b=SFH1piZ1wl+dYjTFfiOzjwm5fI+/WSD0vBB9yBMmjrbolDnWC/6U9TVbGpDPit/0ES
-         UUWUzIMXDJswTFPpUSs2bQz1HKHAlff4k2OO982m7E2ogYAaAlCcz+v6pL6YXHn7JZ09
-         263HOyhB9k8djHzypKXBiHPWGswf9IMrrY0odun/7GVSrmRHrtorYPkfRwkXf79IOyhU
-         rsTJO7Kie/UsasSir2ML+YdjREDVgRnjk1VSA1ZA7xpfUu60Xu2CKXq5NELJHbDCB2To
-         IoR0qoMNN7IOJY031zmLjTFaKb1fNbBHf+e6M0wKl30ktbsDQdlx9EZwtUk9ydlQK7Qu
-         myEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=2hekt6nHmDXb09svRYspIovCwUxYyIVHgZSXoQyIl+k=;
-        b=WHWCedysZAdsOsHR6KYnvNJLbvaiSwEdCpw3CGyvB0Ym8CY19UsVFbaEMhOrDnvJ89
-         Ns2U8sgf79NTgYYm+s7rwIJk6mp2Fq8xvAQbgl4pkiUTF9FfgvLSWDJKKSKUMSiaZ8YC
-         F7bL8sh9BkkePrvgZEAYJzGXoKMBJ2SncY843LXcY/0Mi4SzECrkC0yWwKGDiNyqzRmq
-         +N1AFcVWMqatvjpLi9hvmo9mKO7RZHDlbrWdT0T/y3gRNdmm6H7KvUxaxTqywkP3FGLQ
-         7bNKE7Aa8Uszt6uYwYe1Oxe5ypq0wfEaEiavEAD/atAJbb/TGsCpN6MpRNBlFuUxwgJm
-         o0eA==
-X-Gm-Message-State: ACrzQf1Vk3RYJVx4Khe52XErOx+C/29Dn8W27zR62wjJhkF9BxAdsI7J
-        fMRlNsBgN/45dhb6n9MicJgdIw==
-X-Google-Smtp-Source: AMsMyM520XIqN6p3HKYAlwE92zHeNJJ+Fe5xeWMnuVrGvp0QrtwA4dQnKiX2weHwOi8VZ2B4Q7JoXw==
-X-Received: by 2002:a17:906:7944:b0:73c:838:ac3d with SMTP id l4-20020a170906794400b0073c0838ac3dmr3824004ejo.242.1663339123786;
-        Fri, 16 Sep 2022 07:38:43 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id p21-20020a170906499500b0078082f95e5csm1393062eju.204.2022.09.16.07.38.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Sep 2022 07:38:41 -0700 (PDT)
-Date:   Fri, 16 Sep 2022 17:38:40 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ekansh Gupta <ekangupt@qti.qualcomm.com>,
-        Bharath Kumar <bkumar@qti.qualcomm.com>,
-        Himateja Reddy <hmreddy@quicinc.com>,
-        Anirudh Raghavendra <araghave@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        with ESMTP id S229827AbiIPP2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 11:28:48 -0400
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4339A8CF7;
+        Fri, 16 Sep 2022 08:28:47 -0700 (PDT)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1oZDGg-00GiqM-Ue; Fri, 16 Sep 2022 15:28:39 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 08/10] misc: fastrpc: Safekeep mmaps on interrupted
- invoke
-Message-ID: <YySKcI3dwv9b4ri0@linaro.org>
-References: <20220909133938.3518520-1-abel.vesa@linaro.org>
- <20220909133938.3518520-9-abel.vesa@linaro.org>
- <a71b5f36-8a81-3aa6-6aee-655878b5d4af@linaro.org>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH v2] ARM: dts: imx6qdl-gw52xx: add CAN regulator
+Date:   Fri, 16 Sep 2022 08:28:36 -0700
+Message-Id: <20220916152836.1801233-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a71b5f36-8a81-3aa6-6aee-655878b5d4af@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-16 13:58:35, Srinivas Kandagatla wrote:
-> 
-> 
-> On 09/09/2022 14:39, Abel Vesa wrote:
-> > If the userspace daemon is killed in the middle of an invoke (e.g.
-> > audiopd listerner invoke), we need to skip the unmapping on device
-> > release, otherwise the DSP will crash. So lets safekeep all the maps
-> > only if there is in invoke interrupted, by attaching them to the channel
-> > context (which is resident until RPMSG driver is removed), and free them
-> > on RPMSG driver remove.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >   drivers/misc/fastrpc.c | 15 +++++++++++++++
-> >   1 file changed, 15 insertions(+)
-> > 
-> > diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-> > index 6b2a552dbdba..bc1e8f003d7a 100644
-> > --- a/drivers/misc/fastrpc.c
-> > +++ b/drivers/misc/fastrpc.c
-> > @@ -275,6 +275,7 @@ struct fastrpc_channel_ctx {
-> >   	struct fastrpc_device *secure_fdevice;
-> >   	struct fastrpc_device *fdevice;
-> >   	struct fastrpc_buf *remote_heap;
-> > +	struct list_head invoke_interrupted_mmaps;
-> >   	bool secure;
-> >   	bool unsigned_support;
-> >   };
-> > @@ -1119,6 +1120,8 @@ static int fastrpc_internal_invoke(struct fastrpc_user *fl,  u32 kernel,
-> >   				   struct fastrpc_invoke_args *args)
-> >   {
-> >   	struct fastrpc_invoke_ctx *ctx = NULL;
-> > +	struct fastrpc_buf *buf, *b;
-> > +
-> >   	int err = 0;
-> >   	if (!fl->sctx)
-> > @@ -1182,6 +1185,13 @@ static int fastrpc_internal_invoke(struct fastrpc_user *fl,  u32 kernel,
-> >   		fastrpc_context_put(ctx);
-> >   	}
-> > +	if (err == -ERESTARTSYS) {
-> > +		list_for_each_entry_safe(buf, b, &fl->mmaps, node) {
-> > +			list_del(&buf->node);
-> > +			list_add_tail(&buf->node, &fl->cctx->invoke_interrupted_mmaps);
-> > +		}
-> > +	}
-> > +
-> >   	if (err)
-> >   		dev_dbg(fl->sctx->dev, "Error: Invoke Failed %d\n", err);
-> > @@ -2277,6 +2287,7 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
-> >   	dev_set_drvdata(&rpdev->dev, data);
-> >   	dma_set_mask_and_coherent(rdev, DMA_BIT_MASK(32));
-> >   	INIT_LIST_HEAD(&data->users);
-> > +	INIT_LIST_HEAD(&data->invoke_interrupted_mmaps);
-> >   	spin_lock_init(&data->lock);
-> >   	idr_init(&data->ctx_idr);
-> >   	data->domain_id = domain_id;
-> > @@ -2301,6 +2312,7 @@ static void fastrpc_notify_users(struct fastrpc_user *user)
-> >   static void fastrpc_rpmsg_remove(struct rpmsg_device *rpdev)
-> >   {
-> >   	struct fastrpc_channel_ctx *cctx = dev_get_drvdata(&rpdev->dev);
-> > +	struct fastrpc_buf *buf, *b;
-> >   	struct fastrpc_user *user;
-> >   	unsigned long flags;
-> > @@ -2315,6 +2327,9 @@ static void fastrpc_rpmsg_remove(struct rpmsg_device *rpdev)
-> >   	if (cctx->secure_fdevice)
-> >   		misc_deregister(&cctx->secure_fdevice->miscdev);
-> > +	list_for_each_entry_safe(buf, b, &cctx->invoke_interrupted_mmaps, node)
-> > +		list_del(&buf->node);
-> > +
-> When would you free these?
-> looks like we are leaking even after dsp is down..
-> Should we not do fastrpc_buf_free() here?
+The GW52xx has a transceiver with a STBY pin connected to an IMX6 GPIO.
+Configure this as a regulator to drive it low when CAN is in use.
 
-Yes, we should. I forgot to add it.
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+v2:
+- move compatible to start of child node
+- fix typo in commit log
+---
+ arch/arm/boot/dts/imx6qdl-gw52xx.dtsi | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-Will send a new version.
+diff --git a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
+index b1df2beb2832..728810b9d677 100644
+--- a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
+@@ -137,6 +137,16 @@ reg_5p0v: regulator-5p0v {
+ 		regulator-always-on;
+ 	};
+ 
++	reg_can1_stby: regulator-can1-stby {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_reg_can1>;
++		regulator-name = "can1_stby";
++		gpio = <&gpio1 9 GPIO_ACTIVE_LOW>;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
+ 	reg_usb_otg_vbus: regulator-usb-otg-vbus {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "usb_otg_vbus";
+@@ -170,6 +180,7 @@ &audmux {
+ &can1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_flexcan1>;
++	xceiver-supply = <&reg_can1_stby>;
+ 	status = "okay";
+ };
+ 
+@@ -612,7 +623,6 @@ pinctrl_flexcan1: flexcan1grp {
+ 		fsl,pins = <
+ 			MX6QDL_PAD_KEY_ROW2__FLEXCAN1_RX	0x1b0b1
+ 			MX6QDL_PAD_KEY_COL2__FLEXCAN1_TX	0x1b0b1
+-			MX6QDL_PAD_GPIO_9__GPIO1_IO09		0x4001b0b0 /* CAN_STBY */
+ 		>;
+ 	};
+ 
+@@ -702,6 +712,12 @@ MX6QDL_PAD_SD1_CMD__PWM4_OUT		0x1b0b1
+ 		>;
+ 	};
+ 
++	pinctrl_reg_can1: regcan1grp {
++		fsl,pins = <
++			MX6QDL_PAD_GPIO_9__GPIO1_IO09		0x4001b0b0 /* CAN_STBY */
++		>;
++	};
++
+ 	pinctrl_uart1: uart1grp {
+ 		fsl,pins = <
+ 			MX6QDL_PAD_SD3_DAT7__UART1_TX_DATA	0x1b0b1
+-- 
+2.25.1
 
-Thanks.
-
-> 
-> 
-> 
-> --srini
-> 
-> >   	if (cctx->remote_heap)
-> >   		fastrpc_buf_free(cctx->remote_heap);
