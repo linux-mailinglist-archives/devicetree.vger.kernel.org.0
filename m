@@ -2,92 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E895BB8CE
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 16:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6CCF5BB912
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 17:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229593AbiIQOh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 10:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37698 "EHLO
+        id S229528AbiIQP2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 11:28:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiIQOh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 10:37:58 -0400
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF09E2B1A0
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 07:37:56 -0700 (PDT)
-Received: by mail-il1-x132.google.com with SMTP id s11so12735773ilt.7
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 07:37:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=/pyCf9jgr/gGLY5r0aV5BLXgg8Gpjv3LW/5/ohZeuhg=;
-        b=WisMG0jTPnP2xdXMdZZKE7prG5yw34poCEF9EhWlVdGz1PeMBcJbECUVE6G8+RLuj/
-         EPkblAEwusha1AZqAIXaFmeR4kvpqbreatZZZCEXVXdSXrhS38yGSWL7iS2gu7AiCxqT
-         WpON/F0q/S/umIu0uLKl4hG1zUfTDTW5CYz2GKmp8OmsmEq7D2uDTXMctZd1SpmQEP2G
-         5OiNZs9ChDQyMY62VyLH2FuPEUmC5g4PKlMjjjulcIOnh177XJJwhyMNEIe174AbfGgn
-         ofClY0ecEUHgMF2ZxgV+BtK0dQXLE13U6Om33EDQbtslVqzITn3pnHvcOQ3xRTJLAqH+
-         KHAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=/pyCf9jgr/gGLY5r0aV5BLXgg8Gpjv3LW/5/ohZeuhg=;
-        b=o45ILP8+8wiLEnf4JzaavLu53SmeUy9y7OQ0Sl5iokiId7wiKpWTxm/6grzH16gfoB
-         uk9hGGh7vyiy6SSMLYKRqOzb+Pm+C1iV1s3qAWU9UHtBrUHDKOrJANgfVsrd2WtMToZW
-         teffcvxMZC75jeKw8EsS/y/+olEfYuFBLN5CPLNUmsI3B8xsP2N5RIxINvWLes0Gv6Bq
-         qyX+hkvTGF2FWYhC7nKfGIy6KQ9GF8zIOE82RFAd65yAtqDLYd6WBNyuvJTj9n2S0yUV
-         J3Y1PBWkaCqlYB2zsJy15Zd3BAvUW1/bA5ooORW6h5uOhe/5UeSi4L1lnbXDVPOel6G1
-         rH6Q==
-X-Gm-Message-State: ACrzQf1j5I/ZpivlEAS9bi14510pWypmCVDnEwpoNsBPnE50Qpf5TlJ+
-        GtgVnpdLtUj28xSwprLqZ4G+wd25qc5xugrSnpdjIQ==
-X-Google-Smtp-Source: AMsMyM4ZgNMoeoCFz916osy451rmg4TnXsBY5Y/SoavT/6MipQjgjKRhbbfF5AFIdTVZyS7qoN/M9H19kXEMr2SDa7Q=
-X-Received: by 2002:a92:cc51:0:b0:2f1:4eca:9a17 with SMTP id
- t17-20020a92cc51000000b002f14eca9a17mr4305307ilq.82.1663425476125; Sat, 17
- Sep 2022 07:37:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220915163947.1922183-1-jagan@edgeble.ai> <20220915163947.1922183-6-jagan@edgeble.ai>
- <3182731.oiGErgHkdL@phil>
-In-Reply-To: <3182731.oiGErgHkdL@phil>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Sat, 17 Sep 2022 20:07:45 +0530
-Message-ID: <CA+VMnFwb0bmvsmAqbfEN12BGsTXfxPs2UimjNf9cAvayKBLrbQ@mail.gmail.com>
-Subject: Re: [PATCH v5 5/6] ARM: dts: rockchip: Add Rockchip RV1126 pinctrl
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229462AbiIQP2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 11:28:48 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CEDA2ED54;
+        Sat, 17 Sep 2022 08:28:46 -0700 (PDT)
+Received: from g550jk.fritz.box (212095005231.public.telering.at [212.95.5.231])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 7BE77C7098;
+        Sat, 17 Sep 2022 15:28:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1663428523; bh=v4asV90wfFlCyQF8JuVoPDzWUKYRlq+5P7xnjrMbPDc=;
+        h=From:To:Cc:Subject:Date;
+        b=JopfQzyH6z+17y3+lHqHjd8eUQpnV9BDtlC2p5GanmpkB0M6XDR/ef9iTPpFmiEfy
+         k4yO45ZWM8pZEroGdJr3yrG5p2UQ76r+SjydlGQkRdUQ925u3ZsY0N8wcOVYx0/LoV
+         7ihp6oWXejLQU95MNlxKyd8EjcONBK5sRRLPOqPs=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm: qcom: Document huawei,sturgeon device
+Date:   Sat, 17 Sep 2022 17:28:27 +0200
+Message-Id: <20220917152829.23568-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        FROM_SUSPICIOUS_NTLD_FP,SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+Document the Huawei Watch ("sturgeon") which is a smartwatch based on
+Snapdragon 400 SoC.
 
-On Sat, 17 Sept 2022 at 19:56, Heiko Stuebner <heiko@sntech.de> wrote:
->
-> Hi Jagan,
->
-> Am Donnerstag, 15. September 2022, 18:39:46 CEST schrieb Jagan Teki:
-> > Add pinctrl definitions for Rockchip RV1126 and the pinctrl
-> > conf's are included it from arm64 rockchip devicetree path.
->
-> I'm not sure I remember the cause. So could you tell me
-> why they are needed in the arm64-space as well?
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-From RK3568 on-wards pinctrl configurations are maintained in common
-conf file rockchip-pinconf.dtsi and it is available in arm64 path
-(arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi). So even for
-RV1126 this patch uses that common conf file as these are common
-across all rockchip platforms.
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index b6257683a700..67ff967ea3ad 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -114,6 +114,7 @@ properties:
+       - items:
+           - enum:
+               - asus,sparrow
++              - huawei,sturgeon
+               - lg,lenok
+           - const: qcom,apq8026
+ 
+-- 
+2.37.3
 
-Let me know if I'm missing anything?
-
-Thanks,
-Jagan.
