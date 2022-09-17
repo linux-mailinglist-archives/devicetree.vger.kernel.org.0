@@ -2,96 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFBB25BBA32
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 22:07:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 676535BBA67
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 22:34:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbiIQUHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 16:07:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58716 "EHLO
+        id S229498AbiIQUeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 16:34:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbiIQUHX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 16:07:23 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE47621243
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 13:07:20 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id lh5so14630291ejb.10
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 13:07:20 -0700 (PDT)
+        with ESMTP id S229593AbiIQUeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 16:34:21 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9622F00C
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 13:34:19 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id p5so29633148ljc.13
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 13:34:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:from:content-language:reply-to
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date;
-        bh=aoqh50oqiL5ZcgiDwqmVe6gC0OWNMY6V/NXa77MNboo=;
-        b=jPoWOv+tfqF48ALqMIhoOC/6g5Rj6Fm342A0DuAaC3aw9UI5asygoVPZaEcY/aeanX
-         B4THgxnIrArx2bPXG16VPsnKpH/EwEDCVsCUC0qWbcUQ6+fzvQOXkk39rb+HBj+DvB7S
-         1q1dxLn+A4Ct6IAcjPpu7rkWFNcUULhhFWkRZHSqRPtWzfykVO5T8HQFYKsA67rQJuld
-         p58AUyrHpZzxBWNy4b7Y2+zP1MH+s4jtwi9y9UkBfi9lVJGjdJ5CKva3/8MPJPaJCejO
-         AfingdvDdRYgeHistUHWa+rMkuJKFnaa4HLgMxLvJu9MTH70TruDZ8jFsKL1+KzkKl5h
-         0npQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date;
+        bh=2Y1O5W5ZK28eg1neor+oaEXrSqDR7BOdeg/qxT29wqY=;
+        b=jtIrDJ7Eyvm/ojEtYCR7rZTmenqjMJwE/dO6p0M8Y0WJ1ZyqMVriL67OwAZ6uRpFtE
+         e1RilQzbJhIAO2RcGotuo9ficZJPXHOW87Asz9OEOH3nXxKIGCcl8B/fh8owUoBecvTs
+         HUBEUDUwNmudRspSl3l4yQbn4KceZFMs8phcmQKG9RbAQLDdQAjzZ+t6DkpahoWYknR4
+         DB6fK1px8Mm+9oSGJrnQbcEvSZQSki7FdzNJ6bPZL4qxmhlHt6BNahto7eiPKuPL4FPb
+         6kf/KgdidMru6MPjGpKZM4CjQF9BC1uk0iLnF86zOu/ORBw2lxHEQ1eyaEE6QJF1LF0S
+         IicQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:from:content-language:reply-to
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date;
-        bh=aoqh50oqiL5ZcgiDwqmVe6gC0OWNMY6V/NXa77MNboo=;
-        b=Yw+gR8glgXFeReJIaY68sz4r6rPKWmAPPd5xjQ7uzMIF2RxA4Mw8FKuNpR4epju07N
-         /6E3D8KlbUTx8eOYbUE39Mg5S7uf90w7Ar/Ef81WLuP9DmATswmDKX9MgTctqHk4XIsU
-         y9Xh39XKiaDVr+vv4nlryQgZtjzfnCIPbI37EEUYuoqQt5dXdQ5azw3F993cJG8VSav/
-         OdSP6Hx4/z9ce2+f/QCTI/Tyts9HLteJRDaXlL9l8914+HCSxnr6fUtG3O3s0Cj672Ok
-         wkiEtuTNUeAptjTQSZx0hX/G3h4zlynRzqhfOdj00tnnbWwO1AIMgQBeHJit2hlt3fRy
-         hz8w==
-X-Gm-Message-State: ACrzQf1dIDAUbLjQo5jznrjqjWmUxg7vkx/4MxJ8PcI1SFGXDmWtD3AG
-        0aH6+ojErTdwcSHruSzwv9M=
-X-Google-Smtp-Source: AMsMyM7WTX/nCHfbIuOKuucEM5zu3z4bxc64Tm6oXKP0lo0HKRPW3Z2Uw1bofWerRPECRFV8o8hpyw==
-X-Received: by 2002:a17:907:2721:b0:77f:d471:47b3 with SMTP id d1-20020a170907272100b0077fd47147b3mr7622570ejl.591.1663445239291;
-        Sat, 17 Sep 2022 13:07:19 -0700 (PDT)
-Received: from [192.168.43.107] ([197.191.3.169])
-        by smtp.gmail.com with ESMTPSA id h5-20020a0564020e0500b00450f338b9c8sm16034568edh.69.2022.09.17.13.07.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Sep 2022 13:07:18 -0700 (PDT)
-Message-ID: <3eee2f3b-54c0-fec3-88ee-6fef90b9053c@gmail.com>
-Date:   Sat, 17 Sep 2022 13:06:53 -0700
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=2Y1O5W5ZK28eg1neor+oaEXrSqDR7BOdeg/qxT29wqY=;
+        b=L5nGKfcy60hRFlundeS2WPgsyj5Ut/YU+LTUF+KSzOEHbbCUQCd4PubN1Vmnl9tjd/
+         eAslX8u6GioW90AQs9GFfTeMl6NeAfSkapovh8H1SCHj3MBavKCPr9Awq0cRMUDu3vbf
+         ucUVXab2+ClJ8ZwpmyjsLD/6bRnk6BmxmjZQGnUqtY/vzmYNOyYDTbmOBD2uuMJLTs9z
+         aZMia/85oMRKa8GMIN52uFlhVC1+w4uPkPlxOVEFePleUEl9b0GZ8A5m1bPfu56/oEPZ
+         ixiEF/gipxpXK5c6ouzbuD5U7VsUbPw4eR2c1bD37SkK6KfSqk3yssAuwt0DJpqka9yB
+         woGg==
+X-Gm-Message-State: ACrzQf0QZRAoLXbpKXwGF6wYO1g3ECrJ8NS5tcHdzT9F7PsAeAFUk7QJ
+        IbMU0lDWKBZoJEjVpbmIeoZvPw==
+X-Google-Smtp-Source: AMsMyM7bnnopvuZP6zJTx1BTPUhAP8xR75gy0SpMz4s0r6XB6jt8bxUkXllqVPKyhuIvxYFrnuqctw==
+X-Received: by 2002:a2e:bba2:0:b0:26b:e2d6:fe44 with SMTP id y34-20020a2ebba2000000b0026be2d6fe44mr3061475lje.286.1663446858141;
+        Sat, 17 Sep 2022 13:34:18 -0700 (PDT)
+Received: from [127.0.0.1] ([188.162.64.169])
+        by smtp.gmail.com with ESMTPSA id z27-20020a0565120c1b00b0049a6a9bc0dcsm3836790lfu.134.2022.09.17.13.34.17
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 17 Sep 2022 13:34:17 -0700 (PDT)
+Date:   Sat, 17 Sep 2022 23:33:09 +0300
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 5/7] arm64: qcom: dts: sagami: correct firmware paths
+User-Agent: K-9 Mail for Android
+In-Reply-To: <5c701a7f-14cb-a11c-d822-6a89c4ca903c@somainline.org>
+References: <20220915152630.133528-1-dmitry.baryshkov@linaro.org> <20220915152630.133528-6-dmitry.baryshkov@linaro.org> <5c701a7f-14cb-a11c-d822-6a89c4ca903c@somainline.org>
+Message-ID: <710F2BE9-F2A6-4931-9856-FE81293D1929@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Reply-To: infogencharlesflyn@gmail.com
-Content-Language: en-US
-From:   Charles Flynn <jeffriealbert@gmail.com>
-Subject: HELLO
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: Yes, score=7.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        LOTS_OF_MONEY,MONEY_FRAUD_3,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM,UNDISC_MONEY autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:644 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [jeffriealbert[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        *  3.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-        *  1.5 MONEY_FREEMAIL_REPTO Lots of money from someone using free
-        *      email?
-        *  0.0 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-        *  1.4 MONEY_FRAUD_3 Lots of money and several fraud phrases
-X-Spam-Level: *******
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -99,17 +77,96 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
--- 
-Hello Sir/Madam,
 
-Greetings to you, I am Charles Flynn from the United States, A North Atlantic Treaty Organization(NATO) military here in Yemen. I found a suitcase containing $100 US bills in the secret coffers of a CORONA-VIRUS victim.
+On 17 September 2022 16:07:13 GMT+03:00, Konrad Dybcio <konrad=2Edybcio@so=
+mainline=2Eorg> wrote:
+>
+>
+>On 15=2E09=2E2022 17:26, Dmitry Baryshkov wrote:
+>> Correct firmware paths for the Sony Xperia Sagami devices to include th=
+e
+>> SoC name=2E
+>>=20
+>> Signed-off-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
+>> ---
+>>  =2E=2E=2E/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami=2Edtsi | 10 ++=
++++-----
+>>  1 file changed, 5 insertions(+), 5 deletions(-)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami=2Edtsi =
+b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami=2Edtsi
+>> index b3c9952ac173=2E=2Ee0940cb58681 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami=2Edtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami=2Edtsi
+>> @@ -77,12 +77,12 @@ ramoops@ffc00000 {
+>> =20
+>>  &adsp {
+>>  	status =3D "okay";
+>> -	firmware-name =3D "qcom/adsp=2Embn";
+>> +	firmware-name =3D "qcom/sdm8350/sagami/adsp=2Embn";
+>sm8350 ;)
+>
+>I think it would be cleaner to follow with what's currently in linux-firm=
+ware [1],
+>so "qcom/socname/vendor/platform-or-device"=2E Xperias have a single key =
+per SoC, so
+>per-platform is fine here=2E Should be the same for other vendors, but no=
+ guarantees=2E
+>
+>In this particular case, I think qcom/sm8350/SOMC/sagami would be appropr=
+iate, as
+>it seems like SONY is still internally using that name [2] (SOny Mobile C=
+ommunications)
+>(sidenote: they are still using the legacy SEMC / Sony Ericsson Mobile
+>Communications in some places if you dig deep enough :D), buuuut they can=
+'t seem
+>to decide, might as well make it PlayStation at this point haha
 
-The suitcase contains USD11.7 million in total. I have kept the suitcase safe in a security firm here in Yemen. Please, partner with me by receiving it and we share the funds 55% and 45% accordingly.
+I'd vote for plain Sony=2E Both SOMC and SEMC are non-obvious and too cryp=
+tic=2E
 
-Please get back to me immediately and let me know if you intend to partner or not for further communication with you.
+>
+>
+>Konrad
+>
+>[1] https://git=2Ekernel=2Eorg/pub/scm/linux/kernel/git/firmware/linux-fi=
+rmware=2Egit/tree/qcom/sc8280xp/LENOVO
+>[2] https://github=2Ecom/sonyxperiadev/kernel-copyleft-dts/blob/64=2E0=2E=
+A=2E2=2Exxx/devicetree/qcom/waipio-nagara-pdx223_generic=2Edts#L10
+>>  };
+>> =20
+>>  &cdsp {
+>>  	status =3D "okay";
+>> -	firmware-name =3D "qcom/cdsp=2Embn";
+>> +	firmware-name =3D "qcom/sdm8350/sagami/cdsp=2Embn";
+>>  };
+>> =20
+>>  &i2c1 {
+>> @@ -175,12 +175,12 @@ &i2c17 {
+>>  &ipa {
+>>  	status =3D "okay";
+>>  	memory-region =3D <&pil_ipa_fw_mem>;
+>> -	firmware-name =3D "qcom/ipa_fws=2Embn";
+>> +	firmware-name =3D "qcom/sdm8350/sagami/ipa_fws=2Embn";
+>>  };
+>> =20
+>>  &mpss {
+>>  	status =3D "okay";
+>> -	firmware-name =3D "qcom/modem=2Embn";
+>> +	firmware-name =3D "qcom/sdm8350/sagami/modem=2Embn";
+>>  };
+>> =20
+>>  &pmk8350_rtc {
+>> @@ -210,7 +210,7 @@ &qupv3_id_2 {
+>> =20
+>>  &slpi {
+>>  	status =3D "okay";
+>> -	firmware-name =3D "qcom/slpi=2Embn";
+>> +	firmware-name =3D "qcom/sdm8350/sagami/slpi=2Embn";
+>>  };
+>> =20
+>>  &spi14 {
 
-Please do not disclose this transaction to anyone unless to a trusted person who may be interested. Strictly confidential. Waiting for your response.
-Thanks
-Best regards
-Charles Flynn
-
+--=20
+With best wishes
+Dmitry
