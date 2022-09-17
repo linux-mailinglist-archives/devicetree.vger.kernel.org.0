@@ -2,126 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BADD5BB6DA
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 09:03:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B36845BB71F
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 10:14:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbiIQHDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 03:03:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60698 "EHLO
+        id S229568AbiIQIOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 04:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbiIQHDA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 03:03:00 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 247382D1DB
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 00:02:59 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28H72id5110573;
-        Sat, 17 Sep 2022 02:02:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663398164;
-        bh=Cct0YlwFArM1tnneO4GYnC+a8BAU8ztIJEAQseK/cpA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=ILccVyy2zKMm8XPSz+4JQ6ZyHoNsuorE/T1KJMXcxw9cSksWNd2veup13CC0ZqfzZ
-         64Yn0Nmz1dArPisYtuzkzhpqkm16me5BwSl23L38LIvaNOGQfzN/8jTLy1mY62M7G0
-         6mI9IkZzYrechORCFHG7UYQinf7teXLWHJp2dlaQ=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28H72iDr053882
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 17 Sep 2022 02:02:44 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Sat, 17
- Sep 2022 02:02:44 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Sat, 17 Sep 2022 02:02:44 -0500
-Received: from [10.250.233.53] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28H72eXP119485;
-        Sat, 17 Sep 2022 02:02:41 -0500
-Message-ID: <5ac6eddb-d77c-113b-d4eb-9b04108e073c@ti.com>
-Date:   Sat, 17 Sep 2022 12:32:40 +0530
+        with ESMTP id S229591AbiIQIOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 04:14:17 -0400
+Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14CC93E740;
+        Sat, 17 Sep 2022 01:14:15 -0700 (PDT)
+Received: from pro2.mail.ovh.net (unknown [10.109.156.240])
+        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id DED98128726EB;
+        Sat, 17 Sep 2022 10:13:54 +0200 (CEST)
+Received: from localhost.localdomain (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12; Sat, 17 Sep
+ 2022 10:13:54 +0200
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+To:     <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <sven.schwermer@disruptive-technologies.com>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <johan+linaro@kernel.org>, <marijn.suijten@somainline.org>,
+        <bjorn.andersson@linaro.org>, <andy.shevchenko@gmail.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sha@pengutronix.de>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Subject: [RESEND PATCH v3 0/4] Add a multicolor LED driver for groups of monochromatic LEDs
+Date:   Sat, 17 Sep 2022 10:13:35 +0200
+Message-ID: <20220917081339.3354075-1-jjhiblot@traphandler.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62: Add general purpose timers
- for am62
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Keerthy <j-keerthy@ti.com>
-References: <20220914074224.44786-1-tony@atomide.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20220914074224.44786-1-tony@atomide.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: DAG1EX2.emp2.local (172.16.2.2) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 9350317254453311767
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrfedvvddgtddvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvfevufffkffoggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeejuefhkeelgffhlefhtefhgeektdevvdfgkeeltdehgeeujeeutdehkeeuhffftdenucfkpheptddrtddrtddrtddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtohepshhhrgesphgvnhhguhhtrhhonhhigidruggvpdfovfetjfhoshhtpehmohehvdek
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+Resending this series with only a minor modification in the binding
+example after the comments from Sascha Hauer.
+
+Thanks,
+JJ
 
 
-On 14/09/22 1:12 pm, Tony Lindgren wrote:
-> There are 8 general purpose timers on am65 that can be used for things
-> like PWM using pwm-omap-dmtimer driver. There are also additional four
-> timers in the MCU domain that do not have interrupts routable for Linux.
-> 
-> We configure the timers with the 25 MHz input clock by default as the
-> 32.768 kHz clock may not be wired on the device. We leave the MCU domain
-> timers clock mux unconfigured, and mark the MCU domain timers reserved.
-> The MCU domain timers are likely reserved by the software for the ESM
-> module.
-> 
-> Compared to am65, the timers on am62 do not have a dedicated IO mux for
-> the timers. On am62, the timers have different interrupts, clocks and
-> power domains compared to am65, and the MCU timers are at a different
-> IO address.
-> 
-> Cc: Keerthy <j-keerthy@ti.com>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 97 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi  | 45 +++++++++++
->  2 files changed, 142 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -186,6 +186,103 @@ main_pmx0: pinctrl@f4000 {
->  		pinctrl-single,function-mask = <0xffffffff>;
->  	};
->  
-> +	main_timer0: timer@2400000 {
-> +		compatible = "ti,am654-timer";
-> +		reg = <0x00 0x2400000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&k3_clks 36 2>;
-> +		clock-names = "fck";
-> +		assigned-clocks = <&k3_clks 36 2>;
-> +		assigned-clock-parents = <&k3_clks 36 3>;
-> +		power-domains = <&k3_pds 36 TI_SCI_PD_EXCLUSIVE>;
+Original v3 message:
 
-I end up with
+Some HW design implement multicolor LEDs with several monochromatic LEDs.
+Grouping the monochromatic LEDs allows to configure them in sync and use
+the triggers.
+The PWM multicolor LED driver implements such grouping but only for
+PWM-based LEDs. As this feature is also desirable for the other types of
+LEDs, this series implements it for any kind of LED device.
 
-make dtbs_check
+changes v2->v3, only minor changes:
+ - rephrased the Kconfig descritpion
+ - make the sysfs interface of underlying LEDs read-only only if the probe
+   is successful.
+ - sanitize the header files
+ - removed the useless call to dev_set_drvdata()
+ - use dev_fwnode() to get the fwnode to the device.
 
-+/workdir/arch/arm64/boot/dts/ti/k3-am625-sk.dtb: timer@4800000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-+/workdir/arch/arm64/boot/dts/ti/k3-am625-sk.dtb: timer@4810000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-+/workdir/arch/arm64/boot/dts/ti/k3-am625-sk.dtb: timer@4820000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-+/workdir/arch/arm64/boot/dts/ti/k3-am625-sk.dtb: timer@4830000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+changes v1->v2:
+ - Followed Rob Herrings's suggestion to make the dt binding much simpler.
+ - Added a patch to store the color property of a LED in its class
+   structure (struct led_classdev).
 
-Looks like schema does not describe power-domains :(
+Jean-Jacques Hiblot (4):
+  leds: class: simplify the implementation of devm_of_led_get()
+  leds: class: store the color index in struct led_classdev
+  dt-bindings: leds: Add binding for a multicolor group of LEDs
+  leds: Add a multicolor LED driver to group monochromatic LEDs
 
-[...]
+ .../bindings/leds/leds-group-multicolor.yaml  |  64 ++++++++
+ drivers/leds/led-class.c                      |  27 ++--
+ drivers/leds/rgb/Kconfig                      |   6 +
+ drivers/leds/rgb/Makefile                     |   1 +
+ drivers/leds/rgb/leds-group-multicolor.c      | 153 ++++++++++++++++++
+ include/linux/leds.h                          |   1 +
+ 6 files changed, 238 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+ create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
 
-Regards
-Vignesh
+-- 
+2.25.1
+
