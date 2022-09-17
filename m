@@ -2,127 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07FC65BB7E4
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 12:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC6F75BB7FB
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 13:23:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbiIQKpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 06:45:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44096 "EHLO
+        id S229471AbiIQLX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 07:23:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiIQKpK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 06:45:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B9E28E35;
-        Sat, 17 Sep 2022 03:45:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0C777613E9;
-        Sat, 17 Sep 2022 10:45:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19650C433C1;
-        Sat, 17 Sep 2022 10:45:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663411507;
-        bh=fbo6apx3/5y9z8h4zv5NpW0vWKx/Ba2cv7UD5PP7tic=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LZ7EAXSIN3pXGIvEpuKusxkCKbCML12xjHmSfj6OFPqNcEHGz5BoVxgi8OTGcA7Lh
-         hjcoWkOTCslDK7Ygr0jolsgEeoREienl1bcXF8svjlAsz9592ICCWBuTgiIjwzEG7k
-         BuV4aizjkw+UaVHKjke73bsJKBUnvwbomaJ4c1xd72W1SI2RbO/91gCplGXBFgwOqE
-         psKK8nsGPDHtc0HzXmvt9WLMvwHsNhy/gMmU4jSg2roWP9alLM8OEfOHVAb5Z5Jq5N
-         E9/iqjM0SO0nh2ogdrQuV87gvCG6RGR8JNH9MXixQXt9yRE1DCqixl5SOcpESYj2F/
-         PjzyaYTcX886Q==
-Date:   Sat, 17 Sep 2022 12:44:58 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robin.murphy@arm.com,
-        willmcvicker@google.com
-Subject: Re: [PATCH v5 20/20] PCI: dwc: Add Baikal-T1 PCIe controller support
-Message-ID: <YyWlKs03F9EhyXxy@lpieralisi>
-References: <20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru>
- <20220822184701.25246-21-Sergey.Semin@baikalelectronics.ru>
- <YwzbARMkb/69+l2d@lpieralisi>
- <20220912000211.ct6asuhhmnatje5e@mobilestation>
+        with ESMTP id S229473AbiIQLXz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 07:23:55 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB58729C82;
+        Sat, 17 Sep 2022 04:23:51 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id h8so32938435wrf.3;
+        Sat, 17 Sep 2022 04:23:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=BLaZsI5cHIlw7RVl5F8MBLXrX/g4UKCzX1CL0avGDbA=;
+        b=d0K6CztBq5gRQLYp4DDG2Mlix0A/5s/oWvW19VjAaWyceu4IANY1RW+rCcgOZYTvYr
+         XqeEwLTRjXYXediwKovvIMz4DltaXuzOxU148WbLacW8solEY56bdil+cBqnSssDgv4G
+         e3n0dokQ6pl0m2M4jVAFi0KrVQ6GdCYPWbyfnYbEuNW5PaW4Rklwg6psnfwmIxxQHAWf
+         QcvPaWrMxHlAL4tRgHmBmBymzna10Gcvc95Ny7qnpl3k5qwsWB0H5c39xgIKDtRik3HH
+         6/OR7AOgaG5xweuPbZSjPrvL/GX9dBoy4I0UWTjqhogXPJPzevKi2uEefiUgSHaG8/0s
+         Wq9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=BLaZsI5cHIlw7RVl5F8MBLXrX/g4UKCzX1CL0avGDbA=;
+        b=RMsO16x6I5Pe5ZnUzN0EjB5ng5n4fro951V/FfqFYNy0wez/PE7Rt1Cjy4efBayixz
+         aFNWzCYnHw4Gqryg2ZFjZpHJkaSfK2BJ7YKXUpAD/HTY1ycYrIyivJmPIdMy/TvMlsMW
+         4JS81pQsYfXuOtN6BMJygYXt2olIS2CUGHQt4j6IXijZMo9532/YhzlkoDQaNV2OX00N
+         /izKY8kB4rHzTLid+M8ylpALSUnzjeT60fUiyBZWvgvr89urZvANYEkgyNHmTEj02PYT
+         a7wVbDjj1c1nbmcGrqLeCVEmTmfyehZ98xg7MBVKoQIT7+o1SBMuX9foY8wjWKnODQYO
+         tADQ==
+X-Gm-Message-State: ACrzQf3ixrl2y7sqPaNZFI+rRVnZNdOm6jvxSgfi/FaBd5Z+GYV1L08q
+        REYNEZ3RiTTtquk8k2Alz/rBPO2QwzysCrk5B5+xfIc0KIg=
+X-Google-Smtp-Source: AMsMyM4G6Rwfjo82H5KT2z/QKbJZY4Yd5IU+QdU93M2HfI/3kfSMUgjqS6/NG3y7+nRyTw6QE0jw40pFqFl2ZxbazYg=
+X-Received: by 2002:adf:e806:0:b0:22a:f5c6:6954 with SMTP id
+ o6-20020adfe806000000b0022af5c66954mr310007wrm.539.1663413830274; Sat, 17 Sep
+ 2022 04:23:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220912000211.ct6asuhhmnatje5e@mobilestation>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <YySdhiqZgXpl0q/g@lab.hqhome163.com> <CAMdYzYovjSMZgpWd+ATWsv2piNc2ZtnKfB1cTBukvsnfG41g_w@mail.gmail.com>
+ <14722513.tv2OnDr8pf@phil>
+In-Reply-To: <14722513.tv2OnDr8pf@phil>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Sat, 17 Sep 2022 07:23:39 -0400
+Message-ID: <CAMdYzYp1SYVCxOKwHspvDXoqkAxUj1hTY6J7EeRabKxD5Nrj1w@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: k3566-quartz64-a: adds sata variant
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Alessandro Carminati <alessandro.carminati@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 03:02:11AM +0300, Serge Semin wrote:
+On Sat, Sep 17, 2022 at 2:42 AM Heiko Stuebner <heiko@sntech.de> wrote:
 
-[...]
+Good Morning Heiko,
 
-> I prefer splitting the probe method up into a set of small and
-> coherent methods. It IMO improves the code readability for just no
-> price since the compiler will embed the single-time used static
-> methods anyway.
 
-I will get back to this thread at -rc7 - we will decide a merge
-strategy then.
+>
+> Hi Peter,
+>
+> Am Samstag, 17. September 2022, 03:40:07 CEST schrieb Peter Geis:
+> > On Fri, Sep 16, 2022 at 12:06 PM Alessandro Carminati
+> > <alessandro.carminati@gmail.com> wrote:
+> > >
+> > > The Quartz64 board is built upon Rockchip RK3566.
+> > > Rockchip RK3566 has two combo phys.
+> > > The first connects USB3 and SATA ctrl1, and the second PCIe lane and SATA
+> > > ctrl2.
+> > > The second combo phy is hardwired to the PCIe slot, where for the first,
+> > > the hardware on the board provides both the USB3 connector and the SATA
+> > > connector.
+> > > This DT allows the users to switch the combo phy to the SATA connector.
+> >
+> > Good Evening,
+> >
+> > NACK to this whole series. Neither works correctly in the hardware as
+> > is,
+>
+> Just for my understanding for the future, sata not working is that a bug
+> in the soc or the board?
 
-Lorenzo
+This is a board level problem. Attempting to build a device that had
+both ports electrically connected without a switch chip created a
+device where neither worked correctly. The SATA controllers themselves
+are amazing. I've used both nvme and sata m2 drives on the model b for
+example.
 
-> -Sergey
-> 
-> > 
-> > Thanks,
-> > Lorenzo
-> > 
-> > > +	if (IS_ERR(btpci))
-> > > +		return PTR_ERR(btpci);
+>
+> > and USB3 was decided to be left enabled as the SATA port will be
+> > removed completely in the next revision.
+>
+> That is good to know. Thanks for the heads up :-)
+
+In regards to this sort of stuff in the future, we're working on
+fragment overlay support in U-Boot to work around the kernel's lack of
+support. If I remember correctly EDK2 will be implementing the switch
+in firmware as well. Devices that support both (at least ones I
+maintain) will have both in the dts, with the less likely use case
+left disabled. End users can simply switch which one is enabled if
+they want.
+
+Very Respectfully,
+Peter
+
+>
+> Heiko
+>
+>
+> > > Signed-off-by: Alessandro Carminati <alessandro.carminati@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/Makefile                   | 1 +
+> > >  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts | 9 +++++++++
+> > >  2 files changed, 10 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
+> > >
+> > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> > > index 8c843f6fc3cc..1d5dd91d1a34 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > > @@ -60,6 +60,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
+> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
+> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
+> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a-usb3.dts
+> > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a-sata.dts
+> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
+> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-roc-pc.dtb
+> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-cm4.dtb
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
+> > > new file mode 100644
+> > > index 000000000000..8620df7ec01e
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
+> > > @@ -0,0 +1,9 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > > > +
-> > > +	return bt1_pcie_add_port(btpci);
-> > > +}
+> > > +/dts-v1/;
 > > > +
-> > > +static int bt1_pcie_remove(struct platform_device *pdev)
-> > > +{
-> > > +	struct bt1_pcie *btpci = platform_get_drvdata(pdev);
+> > > +#include "rk3566-quartz64-a.dtsi"
 > > > +
-> > > +	bt1_pcie_del_port(btpci);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct of_device_id bt1_pcie_of_match[] = {
-> > > +	{ .compatible = "baikal,bt1-pcie" },
-> > > +	{},
+> > > +&sata1 {
+> > > +       status = "okay";
 > > > +};
-> > > +MODULE_DEVICE_TABLE(of, bt1_pcie_of_match);
-> > > +
-> > > +static struct platform_driver bt1_pcie_driver = {
-> > > +	.probe = bt1_pcie_probe,
-> > > +	.remove = bt1_pcie_remove,
-> > > +	.driver = {
-> > > +		.name	= "bt1-pcie",
-> > > +		.of_match_table = bt1_pcie_of_match,
-> > > +	},
-> > > +};
-> > > +module_platform_driver(bt1_pcie_driver);
-> > > +
-> > > +MODULE_AUTHOR("Serge Semin <Sergey.Semin@baikalelectronics.ru>");
-> > > +MODULE_DESCRIPTION("Baikal-T1 PCIe driver");
-> > > +MODULE_LICENSE("GPL");
-> > > -- 
-> > > 2.35.1
-> > > 
+> > > --
+> > > 2.34.1
+> > >
+> > >
+> > > _______________________________________________
+> > > Linux-rockchip mailing list
+> > > Linux-rockchip@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> >
+>
+>
+>
+>
