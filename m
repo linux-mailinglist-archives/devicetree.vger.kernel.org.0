@@ -2,85 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2935C5BB9EF
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 20:36:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59E945BB9FA
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 20:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbiIQSgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 14:36:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38986 "EHLO
+        id S229623AbiIQSsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 14:48:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiIQSgc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 14:36:32 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E23D32CC94
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 11:36:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1663439790;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=+n8SJZe8uB4QaDOI1Ue/9OpslwzYJQJM56ST428MYiw=;
-        b=ZU3s1iND95R1xjk97asfXPezFBitz/dShMzWAsNazS62o3vkGssP7rSSbKToUFWqZJWaaa
-        anQD2kwroFOpLTVsxTa+lRdvf4xUr621yhuEwW+e/ucWZujImTq+NWFa0xlt7uo+6wHw8R
-        snQVMqTVnszqn81umJTf6iJWoCRY6X8=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-655-wKdX6nutPUGidn-efbDTDA-1; Sat, 17 Sep 2022 14:36:29 -0400
-X-MC-Unique: wKdX6nutPUGidn-efbDTDA-1
-Received: by mail-qv1-f71.google.com with SMTP id k10-20020ad4450a000000b004aa116eebe8so16814475qvu.5
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 11:36:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-language:content-transfer-encoding:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=+n8SJZe8uB4QaDOI1Ue/9OpslwzYJQJM56ST428MYiw=;
-        b=wgW3HSs77gLhnkSpmPo2SfaiSs0cAnFRqcsoK26OuasViJejmuYHL64uLfF721dFIe
-         E4Fh4SGz/Of3w/Se92WdCUBQLNDK8KiQ1A3waSLQKXvvK/5og+3U0wrskqwjTfqGcZS9
-         yePbIeMe35JhWVr62tAJsYjBOEKnDtDgkHv6+1KcErEZuTuHf4Bo3nlfFa71P1ov0cOe
-         mbvwhoCR4ihk9uPbKN7sE/+pbh1OypPkxnuCVSUfKCL0tegMYNHuCZgyuWCBjwl5ixpu
-         ALsbM6eLSAnuRgz1b2imh8jYcuXSIWTfFj96HsVUdXFonUdoMk7U5CNvgBo5YKcR2mvF
-         QX3g==
-X-Gm-Message-State: ACrzQf0i8eaSmWJpur+jrYKk/x3/TeQ8YTNp9KFJyrpT/T5jVl+zffuR
-        kLX7RaoLDTtrbgijv7rwg8wloNk40pSaZg4UWU2lvwvmMF3To2weAvKRWX9AZhwn25eHM0GuSmM
-        JGfw1KZ6NJ4xk4Eqr0QlCcQ==
-X-Received: by 2002:a05:622a:1356:b0:35b:b0d3:71e5 with SMTP id w22-20020a05622a135600b0035bb0d371e5mr9023372qtk.51.1663439788230;
-        Sat, 17 Sep 2022 11:36:28 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM6iXCGJzCiIwsuXZvMA1Lf1v01gZfDeTBvykk0rQMaifG1jT6oD78p8z9ClJxPKtJNvN/h0Zg==
-X-Received: by 2002:a05:622a:1356:b0:35b:b0d3:71e5 with SMTP id w22-20020a05622a135600b0035bb0d371e5mr9023345qtk.51.1663439787935;
-        Sat, 17 Sep 2022 11:36:27 -0700 (PDT)
-Received: from localhost.localdomain (024-205-208-113.res.spectrum.com. [24.205.208.113])
-        by smtp.gmail.com with ESMTPSA id bs14-20020a05620a470e00b006b58d8f6181sm8727073qkb.72.2022.09.17.11.36.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Sep 2022 11:36:27 -0700 (PDT)
-Subject: Re: [PATCH RFC 0/2] Generate device tree node for pci devices
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org, helgaas@kernel.org
-Cc:     clement.leger@bootlin.com, max.zhen@amd.com, sonal.santan@amd.com,
-        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com
-References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com>
- <1d9faa2e-e3fc-d104-c85f-4035233848d6@gmail.com>
- <ca35a14d-501d-265e-b196-a87e1e994cd0@amd.com>
- <78211af5-171c-ef4f-a8c2-17f63dc479bc@gmail.com>
- <8bee1ddd-0a84-62cd-9beb-3bbb09d83de1@amd.com>
- <f042a8d7-fa2b-3e75-a2f2-6e6ba28a9b38@gmail.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <7393f2f3-3af5-edf9-4afb-8acc0a8db1e7@redhat.com>
-Date:   Sat, 17 Sep 2022 11:36:24 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
-MIME-Version: 1.0
-In-Reply-To: <f042a8d7-fa2b-3e75-a2f2-6e6ba28a9b38@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        with ESMTP id S229632AbiIQSsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 14:48:01 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D3C2B1B9;
+        Sat, 17 Sep 2022 11:48:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 18914B80C94;
+        Sat, 17 Sep 2022 18:47:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B161DC433D6;
+        Sat, 17 Sep 2022 18:47:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663440476;
+        bh=he5mmwC82r4pXuqJjWuYbjHr1LVIrfZ/VIoQhX53oEU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=BNFWkpgmN/WUKXEz6GzHXIU7igDURvYF5yxqlZbUNCTPOHhtoqYRJZ+PGuEJTCpg9
+         QnKg/jkcBzU7TlA0urvWk+QbNtpJ5calUkxACWLydAlYUO1ZTEweQzVuzoO6iCZvxb
+         VB5hlxuT1PbKHiHPnA6fFDfSMyyvtQLgDSp8dj6Bjid9vWYwo57oJMrpwTGsXnJ7Te
+         YLxcLmWZo8P4rvje9bLPLxpWfpxIeJixDoHHO8Wx55svg2oVw5vJIoGex53T3Pj0KA
+         Yax7Du07sj3wP/cRO5xF46aXl+aXDnYQgnYzKQ/yE/EgCIZVlk1busHSR54+JeDURJ
+         ATb/C2gwpxyYA==
+Received: from 185-176-101-241.host.sccbroadband.ie ([185.176.101.241] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oZcr4-00AodO-Do;
+        Sat, 17 Sep 2022 19:47:54 +0100
+Date:   Sat, 17 Sep 2022 19:47:53 +0100
+Message-ID: <87mtaxltwm.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: Add QEMU compatible strings
+In-Reply-To: <0acc2a21-27c2-ec85-0335-263d70c24469@linaro.org>
+References: <20220916132959.1910374-1-jean-philippe@linaro.org>
+        <0acc2a21-27c2-ec85-0335-263d70c24469@linaro.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.176.101.241
+X-SA-Exim-Rcpt-To: krzysztof.kozlowski@linaro.org, jean-philippe@linaro.org, mark.rutland@arm.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,174 +68,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Frank,
+On Sat, 17 Sep 2022 17:51:20 +0100,
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+> On 16/09/2022 14:30, Jean-Philippe Brucker wrote:
+> > QEMU uses both "arm,armv8-timer" and "arm,armv7-timer" as compatible
+> > string. Although it is unlikely that any guest relies on this, we can't
+> > be certain of that. Therefore, add these to the schema. Clean up the
+> > compatible list a little while at it.
+> > 
+> > Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> 
+> I guess you wanted to say QEMU uses "arm,armv8-timer" followed by
+> "arm,armv7-timer", because otherwise I would understand it that either
+> that or that. Anyway, is it a valid (virtualized) hardware? Is ARMv8
+> timer really, really compatible with ARMv7 one?
 
-On 9/16/22 7:23 PM, Frank Rowand wrote:
-> On 9/13/22 16:02, Lizhi Hou wrote:
->> On 9/13/22 10:41, Frank Rowand wrote:
->>> On 9/13/22 12:10, Lizhi Hou wrote:
->>>> On 9/13/22 00:00, Frank Rowand wrote:
->>>>> On 8/29/22 16:43, Lizhi Hou wrote:
->>>>>> This patch series introduces OF overlay support for PCI devices which
->>>>>> primarily addresses two use cases. First, it provides a data driven method
->>>>>> to describe hardware peripherals that are present in a PCI endpoint and
->>>>>> hence can be accessed by the PCI host. An example device is Xilinx/AMD
->>>>>> Alveo PCIe accelerators. Second, it allows reuse of a OF compatible
->>>>>> driver -- often used in SoC platforms -- in a PCI host based system. An
->>>>>> example device is Microchip LAN9662 Ethernet Controller.
->>>>>>
->>>>>> This patch series consolidates previous efforts to define such an
->>>>>> infrastructure:
->>>>>> https://lore.kernel.org/lkml/20220305052304.726050-1-lizhi.hou@xilinx.com/
->>>>>> https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
->>>>>>
->>>>>> Normally, the PCI core discovers PCI devices and their BARs using the
->>>>>> PCI enumeration process. However, the process does not provide a way to
->>>>>> discover the hardware peripherals that are present in a PCI device, and
->>>>>> which can be accessed through the PCI BARs. Also, the enumeration process
->>>>>> does not provide a way to associate MSI-X vectors of a PCI device with the
->>>>>> hardware peripherals that are present in the device. PCI device drivers
->>>>>> often use header files to describe the hardware peripherals and their
->>>>>> resources as there is no standard data driven way to do so. This patch
->>>>>> series proposes to use flattened device tree blob to describe the
->>>>>> peripherals in a data driven way. Based on previous discussion, using
->>>>>> device tree overlay is the best way to unflatten the blob and populate
->>>>>> platform devices. To use device tree overlay, there are three obvious
->>>>>> problems that need to be resolved.
->>>>>>
->>>>>> First, we need to create a base tree for non-DT system such as x86_64. A
->>>>>> patch series has been submitted for this:
->>>>>> https://lore.kernel.org/lkml/20220624034327.2542112-1-frowand.list@gmail.com/
->>>>>> https://lore.kernel.org/lkml/20220216050056.311496-1-lizhi.hou@xilinx.com/
->>>>>>
->>>>>> Second, a device tree node corresponding to the PCI endpoint is required
->>>>>> for overlaying the flattened device tree blob for that PCI endpoint.
->>>>>> Because PCI is a self-discoverable bus, a device tree node is usually not
->>>>>> created for PCI devices. This series adds support to generate a device
->>>>>> tree node for a PCI device which advertises itself using PCI quirks
->>>>>> infrastructure.
->>>>>>
->>>>>> Third, we need to generate device tree nodes for PCI bridges since a child
->>>>>> PCI endpoint may choose to have a device tree node created.
->>>>>>
->>>>>> This patch series is made up of two patches.
->>>>>>
->>>>>> The first patch is adding OF interface to allocate an OF node. It is copied
->>>>>> from:
->>>>>> https://lore.kernel.org/lkml/20220620104123.341054-5-clement.leger@bootlin.com/
->>>>>>
->>>>>> The second patch introduces a kernel option, CONFIG_PCI_OF. When the option
->>>>>> is turned on, the kernel will generate device tree nodes for all PCI
->>>>>> bridges unconditionally. The patch also shows how to use the PCI quirks
->>>>>> infrastructure, DECLARE_PCI_FIXUP_FINAL to generate a device tree node for
->>>>>> a device. Specifically, the patch generates a device tree node for Xilinx
->>>>>> Alveo U50 PCIe accelerator device. The generated device tree nodes do not
->>>>>> have any property. Future patches will add the necessary properties.
->>>>>>
->>>>>> Clément Léger (1):
->>>>>>      of: dynamic: add of_node_alloc()
->>>>>>
->>>>>> Lizhi Hou (1):
->>>>>>      pci: create device tree node for selected devices
->>>>>>
->>>>>>     drivers/of/dynamic.c        |  50 +++++++++++++----
->>>>>>     drivers/pci/Kconfig         |  11 ++++
->>>>>>     drivers/pci/bus.c           |   2 +
->>>>>>     drivers/pci/msi/irqdomain.c |   6 +-
->>>>>>     drivers/pci/of.c            | 106 ++++++++++++++++++++++++++++++++++++
->>>>>>     drivers/pci/pci-driver.c    |   3 +-
->>>>>>     drivers/pci/pci.h           |  16 ++++++
->>>>>>     drivers/pci/quirks.c        |  11 ++++
->>>>>>     drivers/pci/remove.c        |   1 +
->>>>>>     include/linux/of.h          |   7 +++
->>>>>>     10 files changed, 200 insertions(+), 13 deletions(-)
->>>>>>
->>>>> The patch description leaves out the most important piece of information.
->>>>>
->>>>> The device located at the PCI endpoint is implemented via FPGA
->>>>>       - which is programmed after Linux boots (or somewhere late in the boot process)
->>>>>          - (A) and thus can not be described by static data available pre-boot because
->>>>>                it is dynamic (and the FPGA program will often change while the Linux
->>>>>                kernel is already booted
->>>>>          - (B) can be described by static data available pre-boot because the FPGA
->>>>>                program will always be the same for this device on this system
->>>>>
->>>>> I am not positive what part of what I wrote above is correct and would appreciate
->>>>> some confirmation of what is correct or incorrect.
->>>> There are 2 series devices rely on this patch:
->>>>
->>>>       1) Xilinx Alveo Accelerator cards (FPGA based device)
->>>>
->>>>       2) lan9662 PCIe card
->>>>
->>>>             please see: https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
->>> Thanks.  Please include this information in future versions of the patch series.
->>>
->>> For device 2 I have strongly recommended using pre-boot apply of the overlay to the base
->>> device tree.  I realize that this suggestion is only a partial solution if one wants to
->>> use hotplug to change system configuration (as opposed to using hotplug only to replace
->>> an existing device (eg a broken device) with another instance of the same device).  I
->>> also realize that this increased the system administration overhead.  On the other hand
->>> an overlay based solution is likely to be fragile and possibly flaky.
->> Can you clarify the pre-boot apply approach? How will it work for PCI devices?
->>>> For Xilinx Alveo device, it is (A). The FPGA partitions can be programmed dynamically after boot.
->>> I looked at the Xilinx Alveo web page, and there are a variety of types of Alveo cards
->>> available.  So the answer to my next question may vary by type of card.
->>>
->>> Is it expected that the fpga program on a given card will change frequently (eg multiple
->>> times per day), where the changed program results in a new device that would require a
->>> different hardware description in the device tree?
->> Different images may be loaded to a FPGA partition several times a
->> day. The PCI topology (Device IDs, BARs, MSIx, etc) does not change.
->> New IPs may appear (and old IPs may disappear) on the BARs when a new
->> image is loaded. We would like to use flattened device tree to
->> describe the IPs on the BARs.
-> That was kind of a non-answer.  I know that images _may_ change at
-> some frequency.  I was trying to get a sense of whether the images
-> were _likely_ to be changing on a frequent basis for these types
-> of boards, or whether frequent image changes are likely to be a
-> rare edge use case.
->
-> If there is a good design for the 99.999% use case that does not
-> support the 0.001% use case then it may be better to not create
-> an inferior design that also supports the 0.001% use case.
->
-> I hope that gives a better idea of the reason why I was asking the
-> question and how the answer could impact design and implementation
-> decisions.
->
-> As a point of reference, some other fpga users have indicated a
-> desire to change images many times per second.  The current driver
-> and overlay architecture did not seem to me to be a good match to
-> that use case (depending on the definition of "many").
+Yes. There isn't a shred of difference between the two in the earlier
+revisions of the ARMv8 architecture, and none of the differences
+introduced in later revisions are exposed to DT anyway.
 
-I would rather we cover 99.999% now.
+> I don't think we should document invalid setups out-of-tree, just
+> because they are there, and something like this was also expressed by Rob:
+> https://lore.kernel.org/all/20220518163255.GE3302100-robh@kernel.org/
 
-My understanding is that the subdevices are flexible but fairly static 
-and the frequency Lizhi mentions would cover development uses.
+This is, on the contrary, something that is perfectly valid. For
+example, a system running a 32bit OS on a 64bit system is perfectly
+entitled to expose both (v8 because that's what the HW is, v7 because
+that's what the OS is the most likely to understand).
 
-In production I would expect the image to change about once a year with 
-the same order of magnitude as firmware.
+You may find it odd, but that:
 
-Can you point me to a reference of a user case with high frequency 
-images changing that also depends on pci io device changing?
+- expresses something that is actually required
 
-Tom
+- is what I, as the original author of this binding, have always
+  considered valid
 
-> -Frank
->
->> Thanks,
->>
->> Lizhi
->>
->>> Or is the fpga program expected to change on an infrequent basis (eg monthly, quarterly,
->>> annually), in the same way as device firmware and operating systems are updated on a regular
->>> basis for bug fixes and new functionality?
->>>
->>>
->>>> Thanks,
->>>>
->>>> Lzhi
->>>>
->>>>> -Frank
+- has been valid for a long time (10+ years) before you decided it
+  suddenly wasn't
 
+I understand that the "DT police" has high standards, but this has
+been around for much longer, and it isn't because the conversion to
+schema is imperfect that you can rewrite history.
+
+As for the patch, I'd remove the QEMU reference and the deprecation.
+This format is perfectly allowed, and is in use in most VMMs out
+there. Yes, DT is an ABI.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
