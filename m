@@ -2,268 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ADE05BBB02
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 01:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 393E35BBAE8
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 01:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbiIQX7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 19:59:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52376 "EHLO
+        id S229540AbiIQXGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 19:06:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiIQX7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 19:59:17 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F3C62A712;
-        Sat, 17 Sep 2022 16:59:16 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id t14so41653148wrx.8;
-        Sat, 17 Sep 2022 16:59:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date;
-        bh=xcj3QHZVq7X3o4/R+MjpHzJBysypAsFYDAvh1iyPhso=;
-        b=NvAcuQOv67JAuTun7VqDsmHeJSDveVovdoFB9UA7GoxPq4sRg49IMc5ijZJfcv80Ki
-         L13NhoujjeKE1UEmasCLSY8QQgX3ATckb2sIp20puVrY4DqlGqT1gjKMwN84UPBe2f7+
-         yZkxwMUrK04PQw13RedER79pEfUCfYGXV9Qik/tR/MERf4sk1JP9FYNQWqYA2J9yL01y
-         ozseHjVaDCF1NedbqvgClCN2JmtF2Hb59JuokXBklArFQi+j68mUoGz3BIBcYcYtW7uG
-         h+7m9SRW7MNN93xOVl3GuXiUQBiEiPbt6ELMlidVFmnZ8beKN7C/+nTVXtIWoTVDJHcN
-         665Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=xcj3QHZVq7X3o4/R+MjpHzJBysypAsFYDAvh1iyPhso=;
-        b=4ssTQlb+AeiOEpVTCC5B5MDnbqqCR8jAfaBSLMIxG6ZQJKTPyL65LoNC5V9gt4LWEb
-         UuNK77I7CeMAkhkYxNjm+xAMpHIY3zuRIWjfurl0Wk7WFVcT0c05ZtfUxsVnI+DvwV6n
-         ZSvTD4c2VClBy38gmujrWcE28Txrx39CGCcCEjjIhJZe7wmFOP0vQVD41PQkrgIUC7cd
-         BnXMWfJue3g+3OtHn6cvLMQ3xV37pPUNhuU39XpK4i/brVak98W6gruWOfjfBP0RCAMn
-         lacutGAPK4z4996njvnSmkhqR/bhkK+xEqyuOYlH3S2OKKBQ1dkO1cXvO4w5eAZvCpP0
-         fZ1w==
-X-Gm-Message-State: ACrzQf3yAPLvAnmqlfYTyw9DJuaSBDFFq8vEKvYUKy+eptrCtmLd+gHk
-        HTMQ7V9moNnu3IzRrBpkEZ89SIwfTJU=
-X-Google-Smtp-Source: AMsMyM48rllysIhiO0I2d5kH2MMIQDSzGD2ebCEgXFCtuEI7dZ9sZKpzGxAiCxDqwO4UjPEAymzvIQ==
-X-Received: by 2002:a5d:65c2:0:b0:228:68b7:e7b2 with SMTP id e2-20020a5d65c2000000b0022868b7e7b2mr6615005wrw.440.1663459154655;
-        Sat, 17 Sep 2022 16:59:14 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-134.ip85.fastwebnet.it. [93.42.70.134])
-        by smtp.gmail.com with ESMTPSA id v11-20020a05600c444b00b003b49bd61b19sm2455055wmn.15.2022.09.17.16.59.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Sep 2022 16:59:14 -0700 (PDT)
-Message-ID: <63265f52.050a0220.93255.3a4c@mx.google.com>
-X-Google-Original-Message-ID: <YyY04tNY4I1FJhOY@Ansuel-xps.>
-Date:   Sat, 17 Sep 2022 22:58:10 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
+        with ESMTP id S229483AbiIQXGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 19:06:11 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60EB25588;
+        Sat, 17 Sep 2022 16:06:09 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 60FA4415;
+        Sun, 18 Sep 2022 01:06:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1663455966;
+        bh=RrQUrtNeS7OUE/zc5hdTRgV7WSdRcO52HUFIAEn7eP4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ub12U5Ta94VP3y1EllAetDZUdtW4djfxmlvohJTJdBbhYLYmIyrBIp+4RkvxlnpqE
+         S+MBdRX/B3Io61OWPrtTkXyf7Oq2xkYqlWpmBNF6LM5tmjpVxvRkZJ0gfit9kpa3tg
+         lzupI3/1wz+tkI+6TgcvFlT2qBOM4nXZOlz8+k0E=
+Date:   Sun, 18 Sep 2022 02:05:53 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Alexey Dobriyan <adobriyan@gmail.com>,
-        Takashi Iwai <tiwai@suse.de>,
-        Christian Brauner <brauner@kernel.org>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Marc Herbert <marc.herbert@intel.com>,
-        James Smart <jsmart2021@gmail.com>,
-        Justin Tee <justin.tee@broadcom.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 2/5] dt-bindings: arm: msm: Convert kpss-acc driver
- Documentation to yaml
-References: <CAA8EJprEQOsm4TxGWJYZo04D1PagT3QmhDdYQkEid-KSP-tpTw@mail.gmail.com>
- <6324d8e1.170a0220.aba35.ba4f@mx.google.com>
- <CAA8EJpowLvkuiYupqS0WEhnMR8q=R1YUUFgdFVCAx1PXyoo1xw@mail.gmail.com>
- <6324dc1b.df0a0220.97787.083c@mx.google.com>
- <CAA8EJpo08WoQ_LYOtg5C2BB=Q6GR_cftLjaWHWjYD6BjfDZcsg@mail.gmail.com>
- <6324f087.1c0a0220.7123d.8665@mx.google.com>
- <CAA8EJprhLUybqmPhFmit6LGaNOxz=-9+8xADXowJuzU5BtjjtA@mail.gmail.com>
- <632618ac.050a0220.bda86.d7a8@mx.google.com>
- <63262383.df0a0220.27cbb.1c41@mx.google.com>
- <7F54CF10-F2EF-46C6-B291-9339FE5D10E4@linaro.org>
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2] media: dt-bindings: ov5645: Convert OV5645 binding to
+ a schema
+Message-ID: <YyZS0VeXNki3CDSv@pendragon.ideasonboard.com>
+References: <20220916122627.28461-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <7F54CF10-F2EF-46C6-B291-9339FE5D10E4@linaro.org>
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220916122627.28461-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 17, 2022 at 11:46:23PM +0300, Dmitry Baryshkov wrote:
-> 
-> 
-> On 17 September 2022 22:44:00 GMT+03:00, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> >On Sat, Sep 17, 2022 at 08:57:44PM +0200, Christian Marangi wrote:
-> >> On Sat, Sep 17, 2022 at 04:45:21PM +0300, Dmitry Baryshkov wrote:
-> >> > On Sat, 17 Sept 2022 at 00:54, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> >> > >
-> >> > > On Fri, Sep 16, 2022 at 11:31:49PM +0300, Dmitry Baryshkov wrote:
-> >> > > > On Fri, 16 Sept 2022 at 23:27, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> >> > > > >
-> >> > > > > On Fri, Sep 16, 2022 at 11:22:17PM +0300, Dmitry Baryshkov wrote:
-> >> > > > > > On Fri, 16 Sept 2022 at 23:13, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> >> > > > > > >
-> >> > > > > > > On Fri, Sep 16, 2022 at 11:06:35PM +0300, Dmitry Baryshkov wrote:
-> >> > > > > > > > On Fri, 16 Sept 2022 at 22:43, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> >> > > > > > > > >
-> >> > > > > > > > > On Fri, Sep 16, 2022 at 02:17:15PM -0500, Rob Herring wrote:
-> >> > > > > > > > > > On Wed, Sep 14, 2022 at 04:22:53PM +0200, Christian Marangi wrote:
-> >> > > > > > > > > > > Convert kpss-acc driver Documentation to yaml.
-> >> > > > > > > > > > > The original Documentation was wrong all along. Fix it while we are
-> >> > > > > > > > > > > converting it.
-> >> > > > > > > > > > > The example was wrong as kpss-acc-v2 should only expose the regs but we
-> >> > > > > > > > > > > don't have any driver that expose additional clocks. The kpss-acc driver
-> >> > > > > > > > > > > is only specific to v1. For this exact reason, limit all the additional
-> >> > > > > > > > > > > bindings (clocks, clock-names, clock-output-names and #clock-cells) to
-> >> > > > > > > > > > > v1 and also flag that these bindings should NOT be used for v2.
-> >> > > > > > > > > >
-> >> > > > > > > > > > Odd that a clock controller has no clocks, but okay.
-> >> > > > > > > > > >
-> >> > > > > > > > >
-> >> > > > > > > > > As said in the commit v2 is only used for regs. v2 it's only used in
-> >> > > > > > > > > arch/arm/mach-qcom/platsmp.c to setup stuff cpu hotplug and bringup.
-> >> > > > > > > > >
-> >> > > > > > > > > Should we split the 2 driver? To me the acc naming seems to be just
-> >> > > > > > > > > recycled for v2 and it's not really a clk controller.
-> >> > > > > > > > >
-> >> > > > > > > > > So keeping v2 in arm/msm/qcom,kpss-acc-v2.yaml and v1 moved to clock?
-> >> > > > > > > >
-> >> > > > > > > > I suspect that qcom,kpss-acc-v2 is misnamed as the "clock-controller".
-> >> > > > > > > > According to msm-3.10, these regions are used by the Krait core
-> >> > > > > > > > regulators.
-> >> > > > > > > >
-> >> > > > > > >
-> >> > > > > > > Well we need to understand how to handle this... change the compatible
-> >> > > > > > > it's a nono for sure. In platsmp.c they are used for cpu power control
-> >> > > > > > > so could be that they are actually used to regulators. I would honestly
-> >> > > > > > > move v1 to clock and leave v2 to arm/msm but I'm not cetain on what name
-> >> > > > > > > to assign to the 2 yaml.
-> >> > > > > > >
-> >> > > > > > > What do you think?
-> >> > > > > >
-> >> > > > > > This is fine for me. If somebody gets better understanding of
-> >> > > > > > underlying hardware and works on actually using these blocks, he will
-> >> > > > > > update the bindings.
-> >> > > > > >
-> >> > > > > > My only suggestion would be to rename kpss-acc-v2 nodes to
-> >> > > > > > 'power-controller@address' and document them so.
-> >> > > > > >
-> >> > > > >
-> >> > > > > Ok so something like this?
-> >> > > > >
-> >> > > > >     power-controller@f9088000 {
-> >> > > > >       compatible = "qcom,kpss-acc-v2";
-> >> > > > >       reg = <0xf9088000 0x1000>,
-> >> > > > >             <0xf9008000 0x1000>;
-> >> > > > >     };
-> >> > > > >
-> >> > > > > (and I will have to fix dtbs warning as they will be unmatched I think.)
-> >> > > > > Yaml naming:
-> >> > > > > qcom,kpss-acc-v1.yaml
-> >> > > > > qcom,kpss-acc-v2.yaml
-> >> > > > > Right?
-> >> > > >
-> >> > > > Sounds good to me.
-> >> > > >
-> >> > > > I'd even say clock/qcom,kpss-acc-v1.yaml and
-> >> > > > arm/msm/qcom,kpss-acc-v2.yaml or maybe power/qcom,kpss-acc-v2.yaml
-> >> > > >
-> >> > >
-> >> > > Wonder if the gcc driver should have the same tretement? It's also a
-> >> > > clock-controller driver that doesn't use clock at all... Do you have
-> >> > > some info about it?
-> >> > 
-> >> > As far as I understand, the kpss-gcc is a normal clock controller,
-> >> > isn't it? It provides clocks to other devices.
-> >> > 
-> >> 
-> >> Hi again... Having acc-v2 as power-controller would require to set
-> >> #power-domain-cells = <0>;
-> 
-> Why? I don't think so. Rob/Krzysztof, please correct me if I'm wrong.
-> 
+Hi Prabhakar,
 
-make dtbs_check and dt_binding_check complains about that.
+Thank you for the patch.
 
-> >> 
-> >> Would that be acceptable? Considering it wouldn't expose any PM domain?
-> >> 
-> >> About kpss-gcc we have some device that for some reason doesn't have the
-> >> required clocks defined in the dts. I checked the related gcc and no PXO
-> >> defined and no pll8_vote clock defined. (the affected dts are all listed
-> >> in the related Documentation)
-> >> 
-> >> No idea how they currently work with the kpss-gcc driver as these
-> >> parents are missing. Guess the driver just fails to probe?
-> >> So this was the question if you had more info about it... since to me it
-> >> seems just another gcc v2 that doesn't expose clocks but it's just a
-> >> power-controller just like acc-v2. 
-> >> 
-> >> -- 
-> >> 	Ansuel
-> >
-> >(Also sorry for the double email)
-> >I'm checking the regs for apq8084 for example (from the dtsi)
-> >Are we really sure they are power-controller?
+On Fri, Sep 16, 2022 at 01:26:27PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> It looks like it's a regularor on steroids. See krait-regulator.c and corresponding bindings in msm-3.10/3.14. So I'd use either the regulator or the power-controller (with significant bias towards controller)
+> Convert the simple OV5645 Device Tree binding to json-schema.
 > 
+> The previous binding marked the below properties as required which was a
+> driver requirement and not the device requirement so just drop them from
+> the required list during the conversion.
+> - clock-names
 
-Ok so on that platform they are both power-controller(saw and acc)...
-Think we only need to understand about the binding power-domain-cells
-binding...
+Should we then drop clock-names completely, as there's a single clock
+and there will never be more ?
 
-Will check the driver and binding on msm-3.10
+> - clock-frequency
+> - vdda-supply
+> - vddd-supply
+> - vdddo-supply
 
-> >Checking the regs it seems they just changed the location and they
-> >placed clock-controller and right after the power-controller.
-> >So one can get confused and say that 0xf9... can be all related to power
-> >controller. I posted the regs for reference.
-> >
-> >acc0 0xf9088000 0x1000
-> >saw0 0xf9089000 0x1000
-> >
-> >acc1 0xf9098000 0x1000
-> >saw1 0xf9099000 0x1000
-> >
-> >acc2 0xf90a8000 0x1000
-> >saw2 0xf90b9000 0x1000
-> >
-> >Anyway while at it there seems to be a bit of confusion about the naming
-> >here... We have on ipq8064 and ipq4019 the saw node set as regulator and
-> >with the regulator binding but on msm8974 and apq8084 the saw node set
-> >as power-controller (with the l2 node with the regulator binding).
-> >
-> >Think we should chose a name and fix every dts.
-> >So the main question here is...
-> >Should we keep acc as clock-controller or change it to power-controller
-> >(for v2)?
-> >
-> >Should we change saw node to regulator or power-controller?
-> >
-> >From what I know acc are used to enable the cpu so it seems sane to keep
-> >them as clock-controller (even if v2 doesn't export clock)
-> >Saw node handle power (and in theory even low power state) so it seems
-> >sane to change them to power-controller.
-> >
-> >Currently we have no warning for saw node as they are not converted to
-> >yaml but as soon as someone convert the txt to yaml then we will have
-> >all sort of inconsistency so better take a decision now instead of
-> >convert saw to yaml and then change acc node again to fix them for good.
+The power supplies should remain mandatory, the sensor can't operate
+without them.
+
+> - enable-gpios
+> - reset-gpios
+
+These can become optional indeed as they can be hardwired.
+
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> * Dropped ref to video-interface-devices.yaml#
+> * Dropped driver specific required items from the list
+> * Updated commit message
+> * Dropped clock-lanes and bus-type from the port and example node
+> * Marked data-lanes as required in port node
+> ---
+>  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 ---------
+>  .../bindings/media/i2c/ovti,ov5645.yaml       | 105 ++++++++++++++++++
+>  2 files changed, 105 insertions(+), 54 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
 > 
-> 
-> The saw is definitely a bigger thing than just a regularor (or a set of them). It is used to control pmics, it handles low-power states, so `power-controller'.
-> 
-> -- 
-> With best wishes
-> Dmitry
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5645.txt b/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> deleted file mode 100644
+> index 72ad992f77be..000000000000
+> --- a/Documentation/devicetree/bindings/media/i2c/ov5645.txt
+> +++ /dev/null
+> @@ -1,54 +0,0 @@
+> -* Omnivision 1/4-Inch 5Mp CMOS Digital Image Sensor
+> -
+> -The Omnivision OV5645 is a 1/4-Inch CMOS active pixel digital image sensor with
+> -an active array size of 2592H x 1944V. It is programmable through a serial I2C
+> -interface.
+> -
+> -Required Properties:
+> -- compatible: Value should be "ovti,ov5645".
+> -- clocks: Reference to the xclk clock.
+> -- clock-names: Should be "xclk".
+> -- clock-frequency: Frequency of the xclk clock.
+> -- enable-gpios: Chip enable GPIO. Polarity is GPIO_ACTIVE_HIGH. This corresponds
+> -  to the hardware pin PWDNB which is physically active low.
+> -- reset-gpios: Chip reset GPIO. Polarity is GPIO_ACTIVE_LOW. This corresponds to
+> -  the hardware pin RESETB.
+> -- vdddo-supply: Chip digital IO regulator.
+> -- vdda-supply: Chip analog regulator.
+> -- vddd-supply: Chip digital core regulator.
+> -
+> -The device node must contain one 'port' child node for its digital output
+> -video port, in accordance with the video interface bindings defined in
+> -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> -
+> -Example:
+> -
+> -	&i2c1 {
+> -		...
+> -
+> -		ov5645: ov5645@3c {
+> -			compatible = "ovti,ov5645";
+> -			reg = <0x3c>;
+> -
+> -			enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
+> -			reset-gpios = <&gpio5 20 GPIO_ACTIVE_LOW>;
+> -			pinctrl-names = "default";
+> -			pinctrl-0 = <&camera_rear_default>;
+> -
+> -			clocks = <&clks 200>;
+> -			clock-names = "xclk";
+> -			clock-frequency = <24000000>;
+> -
+> -			vdddo-supply = <&camera_dovdd_1v8>;
+> -			vdda-supply = <&camera_avdd_2v8>;
+> -			vddd-supply = <&camera_dvdd_1v2>;
+> -
+> -			port {
+> -				ov5645_ep: endpoint {
+> -					clock-lanes = <1>;
+> -					data-lanes = <0 2>;
+> -					remote-endpoint = <&csi0_ep>;
+> -				};
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> new file mode 100644
+> index 000000000000..22e685729bcf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5645.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OmniVision OV5645 Image Sensor Device Tree Bindings
+> +
+> +maintainers:
+> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov5645
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: XCLK Input Clock
+> +
+> +  clock-names:
+> +    const: xclk
+> +
+> +  clock-frequency:
+> +    description: Frequency of the xclk clock in Hz.
+> +
+> +  vdda-supply:
+> +    description: Analog voltage supply, 2.8 volts
+> +
+> +  vddd-supply:
+> +    description: Digital core voltage supply, 1.5 volts
+> +
+> +  vdddo-supply:
+> +    description: Digital I/O voltage supply, 1.8 volts
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Reference to the GPIO connected to the PWDNB pin, if any.
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Reference to the GPIO connected to the RESETB pin, if any.
+> +
+> +  port:
+> +    description: Digital Output Port
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 2
+> +            items:
+> +              enum: [1, 2]
+> +
+> +        required:
+> +          - data-lanes
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +      #include <dt-bindings/gpio/gpio.h>
+> +
+> +      i2c {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          camera@3c {
+> +              compatible = "ovti,ov5645";
+> +              pinctrl-names = "default";
+> +              pinctrl-0 = <&pinctrl_ov5645>;
+> +              reg = <0x3c>;
+> +              clocks = <&clks 1>;
+> +              clock-names = "xclk";
+> +              clock-frequency = <24000000>;
+> +              vdddo-supply = <&ov5645_vdddo_1v8>; /* 1.8v */
+> +              vdda-supply = <&ov5645_vdda_2v8>;  /* 2.8v */
+> +              vddd-supply = <&ov5645_vddd_1v5>;  /* 1.5v */
+
+I'd drop the comments as the voltages are listed in the label name. Up
+to you.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +              enable-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
+> +              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
+> +
+> +              port {
+> +                  ov5645_ep: endpoint {
+> +                      remote-endpoint = <&csi0_ep>;
+> +                      data-lanes = <1 2>;
+> +                  };
+> +              };
+> +          };
+> +      };
+> +...
 
 -- 
-	Ansuel
+Regards,
+
+Laurent Pinchart
