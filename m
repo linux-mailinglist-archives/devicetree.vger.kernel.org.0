@@ -2,75 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D24605BB991
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 18:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F87C5BB99B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 18:51:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbiIQQsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 12:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50172 "EHLO
+        id S229452AbiIQQv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 12:51:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbiIQQsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 12:48:00 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7470E1582C
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 09:47:59 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id l9so2715160lji.4
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 09:47:59 -0700 (PDT)
+        with ESMTP id S229494AbiIQQvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 12:51:24 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20FE030F4F
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 09:51:23 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id a2so16305890lfb.6
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 09:51:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=W5ITQm8Ly79yOis0DGm5sinpsbqXJ5om11eayITaMFY=;
-        b=Ms3fu3/5E0cICaPnr2YEt2RxJS8MbEHoBdcJVDo/4VIWe8Mh0PpPgurP7ivv5yPPqp
-         0RnLAtFJm3WiKJ1l1hwiUaUQJQJFh0+R34r6qOi6LgBF7BbwuYJ87MHF8G189Sp0WGpJ
-         3uyDQDB9pvI1aO4lon7UunRzQU/DTVQVi1K/E+pHTysePq8JqOHSM0RmWwZxGXzfnV/c
-         nyNOAETrs2meIoLywp+lUt4e4ebB2aVFVpG3hVre1EKHsFW1uciz8J3d/BIIe6bDV5tB
-         Vm5714yeY/h6rONeQrC8YFJNOJMW7e5Wo8FWIqBc7IqMLG1ZB8UtntEgyfV10Ya3ZSFu
-         884w==
+        bh=JB7VcdZNOyYWQNZ1BkIcQmygtJWZ+h+MiYm8PghZbnY=;
+        b=eXK/bv8SbOfAX2+3pTgVI4uBbg+TyXJJGmt5a5eTiXX6sSHYFX7A6PcKyrWwvLmQBe
+         8ky2ydDfK8e9yres7dbONOG7Dp8hg9HMah5dfxz3gd1PQr7Lz7vwRrY9oHOFHSs5XRRi
+         buCLfojYjmtQr0+1+XEIvwJCD7tOp5tjtHkncCIGzlkhmazPZfpzs3zcxBgYBCnIWZMu
+         /szpakfe7J1MqXJQUp/S8GPBzCd5lpyxCe1U2cxQMXpst391wouSWDFDDeHiIYhOwz4H
+         vEU11VhP6KiFqkMsJtfawSWRn1tBiXXFBngxoibZ5TdgH+c6Et1ufX9VQe4fDR9I8rY8
+         epKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=W5ITQm8Ly79yOis0DGm5sinpsbqXJ5om11eayITaMFY=;
-        b=C6wxww1TjcX3aTuLUu/E2RomnEKzFiFhcpHgJ5JoC7DcwhRv+SSKfLp6XHuf+wBSMy
-         EFqtkDwChnOqHNP4MKPzZobVvSjAF8sZS+jICNSU8feW0Cthsp2l4qs/lF/LK524Vdpf
-         Br3xw0TUODTiUDNNlgrLhe3S1jnbuKMi7zQUTCZoXRd9fqlvMrPYhZnP1zRhsrTilo5d
-         LHokRATnFFOyCBDOBl1+jNy0LwkJx+Cs1EjiQmRvaToNG0Yd5Vf8aQ0M+FjlmbfnuMZ1
-         BEVqdg+PQK98SlfdGmist5Dc/mfvzAI7sIE07dB9U/q68juSwlJGPdTZkQIO8uB08kKJ
-         Moug==
-X-Gm-Message-State: ACrzQf1HObMEgk6REbW58m9kAy0CYW8G+XleqrJfMplbKnri9plmHHC9
-        2OthXGdUOTP/VlWwv4Gg3OZo2g==
-X-Google-Smtp-Source: AMsMyM5/QVv7lIPIliMSbe8S2oA/B80sG+dW4sZDnC4PEWW3P1+exHuooHn5iDaC56s8d/cuSTui3g==
-X-Received: by 2002:a05:651c:238e:b0:26c:17ce:fa3 with SMTP id bk14-20020a05651c238e00b0026c17ce0fa3mr2801777ljb.529.1663433277884;
-        Sat, 17 Sep 2022 09:47:57 -0700 (PDT)
+        bh=JB7VcdZNOyYWQNZ1BkIcQmygtJWZ+h+MiYm8PghZbnY=;
+        b=3sG6Y1Hdg6+feUgIvp2hE6QL8yufYHia5A1WcUFH6nqNEldN7/mDF0hCp9FPn+twAX
+         Y7beSZI23LV/hTwbtM4x0+he64TdJG/o1B3N2AqfRycHslFaoqBwvqS0G4U5Ejdx7DSP
+         +JDT8k/m9vkriSzIzCz6W+93WY4iNPZH6kQMyWFsF/hGU4FIsmoscB7tYpVSDng/7IH9
+         Vrf56cwD/BQ4Eau1c5ycatrqyiM3T/yH7ziUL8sv1GKJSTWiB6NnYNP7hKciQWBvkWLf
+         wTpQNxGUf5vQnDaL9H4MIoEX4bq/3lk2a0eGWWzh9hyD2MoY80j+a3nBBKPVUIGo1xxg
+         chKw==
+X-Gm-Message-State: ACrzQf2oZhU8FC+p3ZRSmm2gOwGctZQTsYAowkEFpersizl55bu/KBcW
+        S3+sBh0MfTZvPATPr+65KOBQcg==
+X-Google-Smtp-Source: AMsMyM7WYL6eLqW83RaG931NdCOAjenLqk87bLS8GSD1VDRAdlclqYyrJyYRSBYEobkwv3kYAq2Ijw==
+X-Received: by 2002:a05:6512:c1:b0:497:acd3:10cf with SMTP id c1-20020a05651200c100b00497acd310cfmr3570118lfp.484.1663433481431;
+        Sat, 17 Sep 2022 09:51:21 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t2-20020a2e8e62000000b0026a92616cd2sm1566609ljk.35.2022.09.17.09.47.56
+        by smtp.gmail.com with ESMTPSA id z2-20020ac24182000000b004948497e07esm4199484lfh.15.2022.09.17.09.51.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Sep 2022 09:47:57 -0700 (PDT)
-Message-ID: <2b549080-7ce4-bae1-d85a-a56946f055f5@linaro.org>
-Date:   Sat, 17 Sep 2022 17:47:56 +0100
+        Sat, 17 Sep 2022 09:51:20 -0700 (PDT)
+Message-ID: <0acc2a21-27c2-ec85-0335-263d70c24469@linaro.org>
+Date:   Sat, 17 Sep 2022 17:51:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] media: dt-bindings: i2c: ovti,ov5640: Drop ref to
- video-interface-devices.yaml
+Subject: Re: [PATCH] dt-bindings: timer: Add QEMU compatible strings
 Content-Language: en-US
-To:     Prabhakar <prabhakar.csengg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220916133521.73183-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, maz@kernel.org,
+        mark.rutland@arm.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220916132959.1910374-1-jean-philippe@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220916133521.73183-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220916132959.1910374-1-jean-philippe@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,16 +74,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/09/2022 14:35, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 16/09/2022 14:30, Jean-Philippe Brucker wrote:
+> QEMU uses both "arm,armv8-timer" and "arm,armv7-timer" as compatible
+> string. Although it is unlikely that any guest relies on this, we can't
+> be certain of that. Therefore, add these to the schema. Clean up the
+> compatible list a little while at it.
 > 
-> video-interface-devices.yaml isn't used so just drop it from the
-> DT binding doc.
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 
-Same question - the schema is used - you can see it with your own eyes,
-so please explain in commit msg what exactly is not used.
+I guess you wanted to say QEMU uses "arm,armv8-timer" followed by
+"arm,armv7-timer", because otherwise I would understand it that either
+that or that. Anyway, is it a valid (virtualized) hardware? Is ARMv8
+timer really, really compatible with ARMv7 one?
 
-
+I don't think we should document invalid setups out-of-tree, just
+because they are there, and something like this was also expressed by Rob:
+https://lore.kernel.org/all/20220518163255.GE3302100-robh@kernel.org/
 
 Best regards,
 Krzysztof
