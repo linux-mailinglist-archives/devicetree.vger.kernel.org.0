@@ -2,93 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C415BB89B
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 16:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B38B05BB8BD
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 16:25:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbiIQOA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 10:00:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60046 "EHLO
+        id S229688AbiIQOZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 10:25:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbiIQOA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 10:00:58 -0400
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8605727DD0;
-        Sat, 17 Sep 2022 07:00:54 -0700 (PDT)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4MVCJd19r6z9sSl;
-        Sat, 17 Sep 2022 16:00:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gorani.run; s=MBO0001;
-        t=1663423249;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=6DcmRe0LF0MU+4e2ppiRLqDmTlbfSLqTxFtL2uF+s9U=;
-        b=B6D7zWPq4RveuzvhLcn58lD/iQM9co7uL0yfSGedLxZ4d2HlF0oP7IRi02oYHih7I9vfIZ
-        IKKpk8LIVOqCmtG8FxXG9QqMB7PcdJ/b9n6H7ely6Pxh5l5/Ro6kjXQAxJYdR8o3/rmizh
-        mVaCzJk9GaDK9lwI1enWKwHMeT80+UD9xFzAxv41yk8BmuJ37Jhwaa1A+4WpeDlhOB9rOV
-        Ucz5kkDBYPKZ4MDspUqpOG3GnnbdAiaqU7Bunr1+iGM4doEcvxUUypcQeuM2+3E+AuPT6u
-        DRryxn97n2D3VT/VlWWweoNlyH5R1CzJkgsnQ9YzZ88sD5aU910OuBKXgPGcaw==
-Message-ID: <d756107b-5cc5-53ba-b420-d4664e3a9bb7@gorani.run>
-Date:   Sat, 17 Sep 2022 23:00:40 +0900
+        with ESMTP id S229681AbiIQOZj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 10:25:39 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FEE73335F;
+        Sat, 17 Sep 2022 07:25:29 -0700 (PDT)
+Received: from [88.128.88.164] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oZYkz-0001LQ-HZ; Sat, 17 Sep 2022 16:25:21 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Finley Xiao <finley.xiao@rock-chips.com>
+Subject: Re: [PATCH v5 4/6] clk: rockchip: Add clock controller support for RV1126 SoC.
+Date:   Sat, 17 Sep 2022 16:25:20 +0200
+Message-ID: <1760564.3VsfAaAtOV@phil>
+In-Reply-To: <CA+VMnFxy5QsoQ=0=qDxhPE=9KxDr_OKSWi9_7tONk0EA12NLFQ@mail.gmail.com>
+References: <20220915163947.1922183-1-jagan@edgeble.ai> <2597191.BddDVKsqQX@phil> <CA+VMnFxy5QsoQ=0=qDxhPE=9KxDr_OKSWi9_7tONk0EA12NLFQ@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/2] gpio: pca9570: add slg7xl45106 support
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc:     linux-gpio@vger.kernel.org, git@amd.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, brgl@bgdev.pl, linus.walleij@linaro.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-References: <20220915114803.26185-1-shubhrajyoti.datta@amd.com>
- <20220915114803.26185-3-shubhrajyoti.datta@amd.com>
-From:   Sungbo Eo <mans0n@gorani.run>
-In-Reply-To: <20220915114803.26185-3-shubhrajyoti.datta@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Jagan,
 
-Thanks for the update.
-I was thinking I should reply to your patch in the last month, but I was
-a little busy at the time and I forgot to do so...
-
-On 2022-09-15 20:48, Shubhrajyoti Datta wrote:
-> slg7xl45106 is a I2C GPO expander.
-> Add a compatible string for the same. Also update the
-> driver to write and read from it.
+Am Samstag, 17. September 2022, 13:58:43 CEST schrieben Sie:
+> On Sat, 17 Sept 2022 at 12:25, Heiko Stuebner <heiko@sntech.de> wrote:
+> >
+> > Am Donnerstag, 15. September 2022, 18:39:45 CEST schrieb Jagan Teki:
+> > > Clock & Reset Unit (CRU) in RV1126 support clocks for CRU
+> > > and CRU_PMU blocks.
+> > >
+> > > This patch is trying to add minimal Clock-Architecture Diagram's
+> > > inferred from [1] authored by Finley Xiao.
+> > >
+> > > [1] https://github.com/rockchip-linux/kernel/blob/develop-4.19/drivers/clk/rockchip/clk-rv1126.c
+> > >
+> > > Cc: linux-clk@vger.kernel.org
+> > > Cc: Michael Turquette <mturquette@baylibre.com>
+> > > Cc: Stephen Boyd <sboyd@kernel.org>
+> > > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> > > ---
+> > > Changes for v5:
+> > > - add platform-drivers
+> >
+> > [...]
+> >
+> > > +static void __init rv1126_pmu_clk_init(struct device_node *np)
+> > > +{
+> > > +     struct rockchip_clk_provider *ctx;
+> > > +     void __iomem *reg_base;
+> > > +
+> > > +     reg_base = of_iomap(np, 0);
+> > > +     if (!reg_base) {
+> > > +             pr_err("%s: could not map cru pmu region\n", __func__);
+> > > +             return;
+> > > +     }
+> > > +
+> > > +     ctx = rockchip_clk_init(np, reg_base, CLKPMU_NR_CLKS);
+> > > +     if (IS_ERR(ctx)) {
+> > > +             pr_err("%s: rockchip pmu clk init failed\n", __func__);
+> > > +             return;
+> > > +     }
+> > > +
+> > > +     rockchip_clk_register_plls(ctx, rv1126_pmu_pll_clks,
+> > > +                                ARRAY_SIZE(rv1126_pmu_pll_clks),
+> > > +                                RV1126_GRF_SOC_STATUS0);
+> > > +
+> > > +     rockchip_clk_register_branches(ctx, rv1126_clk_pmu_branches,
+> > > +                                    ARRAY_SIZE(rv1126_clk_pmu_branches));
+> > > +
+> > > +     rockchip_register_softrst(np, 2, reg_base + RV1126_PMU_SOFTRST_CON(0),
+> > > +                               ROCKCHIP_SOFTRST_HIWORD_MASK);
+> > > +
+> > > +     rockchip_clk_of_add_provider(np, ctx);
+> > > +}
+> > > +
+> > > +CLK_OF_DECLARE(rv1126_cru_pmu, "rockchip,rv1126-pmucru", rv1126_pmu_clk_init);
+> >
+> > this one and the one below should go away I think.
+> >
+> > Can you check if that is the case, then I can just drop the two
+> > CLK_OF_DECLARE lines.
 > 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
-> v2:
-> Use platform data insted of compatible
+> I think these are unneeded, it worked w/o these when I built a static.
 
-Moving the command property into the new platform structure is nice.
-And please add more description about the device in the commit message.
-We don't even know the full name of the vendor from your patch.
-I like the older version of your patch in that perspective.
-https://lore.kernel.org/all/1656426829-1008-3-git-send-email-shubhrajyoti.datta@xilinx.com/
-And a link to the device datasheet would be also nice (if possible).
+great to hear that, then I'll drop those 
 
-> 
->  drivers/gpio/gpio-pca9570.c | 39 +++++++++++++++++++++++++++++++++----
->  1 file changed, 35 insertions(+), 4 deletions(-)
 
-And I was also thinking that tpic2810 driver might be more appropriate
-then this pca9570 driver for a device with one command byte.
-Actually I had forked tpic2810 to create pca9570 to support a device
-without any command byte.
-Come to think of it, the two drivers may even be consolidated into a
-single generic one... What do you think?
+> but others are still included.
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/clk/rockchip/clk-rk3568.c#n1636
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/clk/rockchip/clk-rk3568.c#n1679
 
-Thanks,
-Sungbo
+very likely. As I want to test such changes on hardware, I'm not
+removing them just now but will try to look at that once I'm back
+home from LPC/ELCE.
+
+Heiko
+
+
