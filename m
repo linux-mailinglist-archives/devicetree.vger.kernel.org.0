@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC6F75BB7FB
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 13:23:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C2D15BB80A
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 13:59:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbiIQLX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 07:23:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50194 "EHLO
+        id S229484AbiIQL67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 07:58:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbiIQLXz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 07:23:55 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB58729C82;
-        Sat, 17 Sep 2022 04:23:51 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id h8so32938435wrf.3;
-        Sat, 17 Sep 2022 04:23:51 -0700 (PDT)
+        with ESMTP id S229498AbiIQL65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 07:58:57 -0400
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD6CF39B9C
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 04:58:55 -0700 (PDT)
+Received: by mail-io1-xd29.google.com with SMTP id d8so16425643iof.11
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 04:58:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=BLaZsI5cHIlw7RVl5F8MBLXrX/g4UKCzX1CL0avGDbA=;
-        b=d0K6CztBq5gRQLYp4DDG2Mlix0A/5s/oWvW19VjAaWyceu4IANY1RW+rCcgOZYTvYr
-         XqeEwLTRjXYXediwKovvIMz4DltaXuzOxU148WbLacW8solEY56bdil+cBqnSssDgv4G
-         e3n0dokQ6pl0m2M4jVAFi0KrVQ6GdCYPWbyfnYbEuNW5PaW4Rklwg6psnfwmIxxQHAWf
-         QcvPaWrMxHlAL4tRgHmBmBymzna10Gcvc95Ny7qnpl3k5qwsWB0H5c39xgIKDtRik3HH
-         6/OR7AOgaG5xweuPbZSjPrvL/GX9dBoy4I0UWTjqhogXPJPzevKi2uEefiUgSHaG8/0s
-         Wq9Q==
+        bh=XZ1Uh1+5dTaLUb0vMwEMEszjMWYRNaJYiRkr2CgeSSA=;
+        b=V3+LYjFN77EFt5eECaZ95tU8gQSMYKzwNHiMq/3i/3hbynjfzMUe3cEMHKA96CWTKP
+         FouV6l78t0MrZk/BWOeOSYi67SfCo2Qq7sLQv5BD4+yJAVJFLNiVCGt8TJn3mq/jBWjn
+         Z2pgO43IpqNBzVDXD/yCFcRBxHqQ2/xKtp2oh7axzkHSm9h1zz+q9qXk3O/LFwTZtden
+         GA/TZxhB62mN86mFvXJ9uH0tsWxi2OBQ1CDKp94x36ZzMcRjTQKGv4gXmwTsmiu/mlDQ
+         1K3BSc7GqAc3dk2xGgT4AtkXuiPTFMQBm/LAgbVeyl5jW+etU2P4oTkJ8pSgv9lVjbIk
+         ORFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=BLaZsI5cHIlw7RVl5F8MBLXrX/g4UKCzX1CL0avGDbA=;
-        b=RMsO16x6I5Pe5ZnUzN0EjB5ng5n4fro951V/FfqFYNy0wez/PE7Rt1Cjy4efBayixz
-         aFNWzCYnHw4Gqryg2ZFjZpHJkaSfK2BJ7YKXUpAD/HTY1ycYrIyivJmPIdMy/TvMlsMW
-         4JS81pQsYfXuOtN6BMJygYXt2olIS2CUGHQt4j6IXijZMo9532/YhzlkoDQaNV2OX00N
-         /izKY8kB4rHzTLid+M8ylpALSUnzjeT60fUiyBZWvgvr89urZvANYEkgyNHmTEj02PYT
-         a7wVbDjj1c1nbmcGrqLeCVEmTmfyehZ98xg7MBVKoQIT7+o1SBMuX9foY8wjWKnODQYO
-         tADQ==
-X-Gm-Message-State: ACrzQf3ixrl2y7sqPaNZFI+rRVnZNdOm6jvxSgfi/FaBd5Z+GYV1L08q
-        REYNEZ3RiTTtquk8k2Alz/rBPO2QwzysCrk5B5+xfIc0KIg=
-X-Google-Smtp-Source: AMsMyM4G6Rwfjo82H5KT2z/QKbJZY4Yd5IU+QdU93M2HfI/3kfSMUgjqS6/NG3y7+nRyTw6QE0jw40pFqFl2ZxbazYg=
-X-Received: by 2002:adf:e806:0:b0:22a:f5c6:6954 with SMTP id
- o6-20020adfe806000000b0022af5c66954mr310007wrm.539.1663413830274; Sat, 17 Sep
- 2022 04:23:50 -0700 (PDT)
+        bh=XZ1Uh1+5dTaLUb0vMwEMEszjMWYRNaJYiRkr2CgeSSA=;
+        b=Wh3n1bHh0CRyc+sMCFfNgRl/B3peqdDM9ILJoHumN4Nkk9uPIO1bdbD2QwnstB1BY2
+         kLS+y3ucAMFoH4JUcWdXsHYDyLmHyhtLk4cg65QOl2+AXF4Z0KfT3qcLNP9q5Dl5P0uK
+         Q6AUs3jcCFsydHsms0w+D5/us7hg8cqYqExKHGpxH6JVY6k57w0ydpwyp21HwCUJSioH
+         uoHuH1Z/2WaUsQd/dQsqDkyd9J/RQJQc+J/DLRTpDN1plYiZ3NEKJOos7DsmSK7Jg80U
+         eLvPFf4APgMEa3YhZmT9wUJXnovr0ysps8yjYdNBCU4cUnX3yIxCP8KmADa9DzxINI/h
+         H4oA==
+X-Gm-Message-State: ACrzQf1EI+JI7ic/VfNKL1CMNwxLQruldQu6j8iIShdYkfW5PlmrVvzl
+        C9cmGVjGIIAIBGpvnzJBPCV01J9pq0pGT3aBVorFXQ==
+X-Google-Smtp-Source: AMsMyM5KUKpYHWJDJD9OvDgdx2SuCgV5lD4PYjboe3umSXshDobbChgVmv5S4e6ctrLJzIER5UVKwHAx2uqJXhXYQ2k=
+X-Received: by 2002:a05:6638:3d09:b0:357:34bc:7ec8 with SMTP id
+ cl9-20020a0566383d0900b0035734bc7ec8mr4422053jab.238.1663415934842; Sat, 17
+ Sep 2022 04:58:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <YySdhiqZgXpl0q/g@lab.hqhome163.com> <CAMdYzYovjSMZgpWd+ATWsv2piNc2ZtnKfB1cTBukvsnfG41g_w@mail.gmail.com>
- <14722513.tv2OnDr8pf@phil>
-In-Reply-To: <14722513.tv2OnDr8pf@phil>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Sat, 17 Sep 2022 07:23:39 -0400
-Message-ID: <CAMdYzYp1SYVCxOKwHspvDXoqkAxUj1hTY6J7EeRabKxD5Nrj1w@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: k3566-quartz64-a: adds sata variant
+References: <20220915163947.1922183-1-jagan@edgeble.ai> <20220915163947.1922183-5-jagan@edgeble.ai>
+ <2597191.BddDVKsqQX@phil>
+In-Reply-To: <2597191.BddDVKsqQX@phil>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Sat, 17 Sep 2022 17:28:43 +0530
+Message-ID: <CA+VMnFxy5QsoQ=0=qDxhPE=9KxDr_OKSWi9_7tONk0EA12NLFQ@mail.gmail.com>
+Subject: Re: [PATCH v5 4/6] clk: rockchip: Add clock controller support for
+ RV1126 SoC.
 To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Alessandro Carminati <alessandro.carminati@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Finley Xiao <finley.xiao@rock-chips.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,106 +73,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 17, 2022 at 2:42 AM Heiko Stuebner <heiko@sntech.de> wrote:
-
-Good Morning Heiko,
-
-
+On Sat, 17 Sept 2022 at 12:25, Heiko Stuebner <heiko@sntech.de> wrote:
 >
-> Hi Peter,
->
-> Am Samstag, 17. September 2022, 03:40:07 CEST schrieb Peter Geis:
-> > On Fri, Sep 16, 2022 at 12:06 PM Alessandro Carminati
-> > <alessandro.carminati@gmail.com> wrote:
-> > >
-> > > The Quartz64 board is built upon Rockchip RK3566.
-> > > Rockchip RK3566 has two combo phys.
-> > > The first connects USB3 and SATA ctrl1, and the second PCIe lane and SATA
-> > > ctrl2.
-> > > The second combo phy is hardwired to the PCIe slot, where for the first,
-> > > the hardware on the board provides both the USB3 connector and the SATA
-> > > connector.
-> > > This DT allows the users to switch the combo phy to the SATA connector.
+> Am Donnerstag, 15. September 2022, 18:39:45 CEST schrieb Jagan Teki:
+> > Clock & Reset Unit (CRU) in RV1126 support clocks for CRU
+> > and CRU_PMU blocks.
 > >
-> > Good Evening,
+> > This patch is trying to add minimal Clock-Architecture Diagram's
+> > inferred from [1] authored by Finley Xiao.
 > >
-> > NACK to this whole series. Neither works correctly in the hardware as
-> > is,
->
-> Just for my understanding for the future, sata not working is that a bug
-> in the soc or the board?
-
-This is a board level problem. Attempting to build a device that had
-both ports electrically connected without a switch chip created a
-device where neither worked correctly. The SATA controllers themselves
-are amazing. I've used both nvme and sata m2 drives on the model b for
-example.
-
->
-> > and USB3 was decided to be left enabled as the SATA port will be
-> > removed completely in the next revision.
->
-> That is good to know. Thanks for the heads up :-)
-
-In regards to this sort of stuff in the future, we're working on
-fragment overlay support in U-Boot to work around the kernel's lack of
-support. If I remember correctly EDK2 will be implementing the switch
-in firmware as well. Devices that support both (at least ones I
-maintain) will have both in the dts, with the less likely use case
-left disabled. End users can simply switch which one is enabled if
-they want.
-
-Very Respectfully,
-Peter
-
->
-> Heiko
->
->
-> > > Signed-off-by: Alessandro Carminati <alessandro.carminati@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/rockchip/Makefile                   | 1 +
-> > >  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts | 9 +++++++++
-> > >  2 files changed, 10 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
-> > >
-> > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> > > index 8c843f6fc3cc..1d5dd91d1a34 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > > @@ -60,6 +60,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a-usb3.dts
-> > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a-sata.dts
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-roc-pc.dtb
-> > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-cm4.dtb
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
-> > > new file mode 100644
-> > > index 000000000000..8620df7ec01e
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
-> > > @@ -0,0 +1,9 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > +
-> > > +/dts-v1/;
-> > > +
-> > > +#include "rk3566-quartz64-a.dtsi"
-> > > +
-> > > +&sata1 {
-> > > +       status = "okay";
-> > > +};
-> > > --
-> > > 2.34.1
-> > >
-> > >
-> > > _______________________________________________
-> > > Linux-rockchip mailing list
-> > > Linux-rockchip@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> > [1] https://github.com/rockchip-linux/kernel/blob/develop-4.19/drivers/clk/rockchip/clk-rv1126.c
 > >
+> > Cc: linux-clk@vger.kernel.org
+> > Cc: Michael Turquette <mturquette@baylibre.com>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> > ---
+> > Changes for v5:
+> > - add platform-drivers
 >
+> [...]
 >
+> > +static void __init rv1126_pmu_clk_init(struct device_node *np)
+> > +{
+> > +     struct rockchip_clk_provider *ctx;
+> > +     void __iomem *reg_base;
+> > +
+> > +     reg_base = of_iomap(np, 0);
+> > +     if (!reg_base) {
+> > +             pr_err("%s: could not map cru pmu region\n", __func__);
+> > +             return;
+> > +     }
+> > +
+> > +     ctx = rockchip_clk_init(np, reg_base, CLKPMU_NR_CLKS);
+> > +     if (IS_ERR(ctx)) {
+> > +             pr_err("%s: rockchip pmu clk init failed\n", __func__);
+> > +             return;
+> > +     }
+> > +
+> > +     rockchip_clk_register_plls(ctx, rv1126_pmu_pll_clks,
+> > +                                ARRAY_SIZE(rv1126_pmu_pll_clks),
+> > +                                RV1126_GRF_SOC_STATUS0);
+> > +
+> > +     rockchip_clk_register_branches(ctx, rv1126_clk_pmu_branches,
+> > +                                    ARRAY_SIZE(rv1126_clk_pmu_branches));
+> > +
+> > +     rockchip_register_softrst(np, 2, reg_base + RV1126_PMU_SOFTRST_CON(0),
+> > +                               ROCKCHIP_SOFTRST_HIWORD_MASK);
+> > +
+> > +     rockchip_clk_of_add_provider(np, ctx);
+> > +}
+> > +
+> > +CLK_OF_DECLARE(rv1126_cru_pmu, "rockchip,rv1126-pmucru", rv1126_pmu_clk_init);
 >
+> this one and the one below should go away I think.
 >
+> Can you check if that is the case, then I can just drop the two
+> CLK_OF_DECLARE lines.
+
+I think these are unneeded, it worked w/o these when I built a static.
+but others are still included.
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/clk/rockchip/clk-rk3568.c#n1636
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/clk/rockchip/clk-rk3568.c#n1679
+
+Jagan.
