@@ -2,66 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02AC75BB5A0
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 04:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D2105BB5E5
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 05:26:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbiIQCrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 22:47:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58234 "EHLO
+        id S229492AbiIQD0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Sep 2022 23:26:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbiIQCrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 22:47:22 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F973BAD8D;
-        Fri, 16 Sep 2022 19:47:21 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id d15so17082890qka.9;
-        Fri, 16 Sep 2022 19:47:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=90zw/hXCi4Lualj1G3WPNVCGMP42ucL6n83ggKg1jec=;
-        b=GURJcQLEVCa/Qx6sLOQG9JqUPk172By8NbCLIiB/p3ZodyOFJBLa2Z4Jt0GQOyH8oj
-         25uACn2E7LDKWds2XW0TZy0nab0Fi67kcthInqMoXKhJlyKND5P+wWflkQ2OQpqB1H8S
-         fC+E44xVUs+PtpHByc9wMgrxf+dwXh5lJMToIZrywgGLYmQgOmD2yK0nzAOQdOPNFNmN
-         FQrMSddrpzORZbvYQMHZ5oRtwhGzxQQlD582f+48HvGP5eSQBqAMjrYoQwqFykweOyYf
-         +QX5v56mG5x8rukElKquOyMjENiqdJYm2ONdD5qO3Kzhm2uAnWPqMZftigXK1ma4E31D
-         nh0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=90zw/hXCi4Lualj1G3WPNVCGMP42ucL6n83ggKg1jec=;
-        b=AshwEojiMhAY4n7aKkIa8hXVF+MYek8Kj/GQQWGPvYWlMgXBC6M1VmJBf+ItFjfFm2
-         E5KEl/o10J5AzeUeuEIO5+7zVKcqvl5+yKxUonRtFa+Z48goKTTHLwh6pcS6pztjLA5A
-         cCpL10XbxeZ/Q5GabKxZDdXu+azzahpyvRfH0X9TeP6k1dCuGv+npaXvRQ2Nig+p90lx
-         M4nbt6hgykcFq3GdOv5CPLA6MrnrAx7l8dEA97uXhOZOqslrIO0OHKPTLQiuhvgOoOd5
-         dDNDcTWfQrr7qlJcrnTb9RHDOGFEwLZ2OmSX9ZZ5uV+huwS+/jMIFvLSx4kuzfBLbi6A
-         DhqA==
-X-Gm-Message-State: ACrzQf20xQBFJbNXe0QFELlVzcF1laWmuSZAqGuLgKWCzaO0kzmz17IJ
-        33KtNZPI1geyQ4Fgp1ZaRAM=
-X-Google-Smtp-Source: AMsMyM7+KHN7F20gbYbTJSVaakJI/6w2k0n4Au2gaGejO+tDqLRvgq7csScqmDMV7hJPvT03aia48w==
-X-Received: by 2002:a05:620a:170d:b0:6ce:9bad:13c6 with SMTP id az13-20020a05620a170d00b006ce9bad13c6mr6066782qkb.683.1663382840489;
-        Fri, 16 Sep 2022 19:47:20 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:90c9:b1c1:5c9e:9030? ([2600:1700:2442:6db0:90c9:b1c1:5c9e:9030])
-        by smtp.gmail.com with ESMTPSA id bq16-20020a05620a469000b006ce611aef61sm7287745qkb.95.2022.09.16.19.47.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Sep 2022 19:47:20 -0700 (PDT)
-Message-ID: <b6a43df4-e5d8-06d2-a6b9-3626f2677161@gmail.com>
-Date:   Fri, 16 Sep 2022 21:47:19 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] driver: of: overlay: demote message to warning
-Content-Language: en-US
-To:     Daniel Walker <danielwa@cisco.com>
+        with ESMTP id S229379AbiIQD0T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 23:26:19 -0400
+Received: from rcdn-iport-9.cisco.com (rcdn-iport-9.cisco.com [173.37.86.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F989AA374;
+        Fri, 16 Sep 2022 20:26:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=1990; q=dns/txt; s=iport;
+  t=1663385177; x=1664594777;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZQ67lmBemx5MvvGEfsScTKcejlbMkSnwr5EpEXpZvMw=;
+  b=gbV0SRtcIlNe1rYoMMq7BF12eyqfYEkoE/3NvXCM6JdpX6i6NihmAKR1
+   0CwifDs5bKQFfXp8CEu55z+Byk+Zj9EXiH/BXbbdpPlk/w7JUyr4a45Y6
+   J6hSA5CebQRbzW95i9ACzyg245PybL+Uy2MDum50LcJyjDd2EAzzvM7dp
+   8=;
+IronPort-Data: =?us-ascii?q?A9a23=3A72pbo6v79hAFZ23LkVpVEqfvEefnVN5cMUV32?=
+ =?us-ascii?q?f8akzHdYApBsoF/qtZmKWqFb6zYY2SjeIgiYYzkoEgFscDXnYJnHQY4riwyR?=
+ =?us-ascii?q?CNHgMeUXt7xwmUckM+xwmwvdK/shiknQoGowPscEzmN/39BDpC79SMmjfzRG?=
+ =?us-ascii?q?OKlYAL5EnkZqTFMGX9JZS1Lw4bVsqYw6TSIK1vlVeHa+qUzC3f9s9JACV/43?=
+ =?us-ascii?q?orYwP9ZUFsejxtD1rA2TagjUFYzDBD5BrpHTU26ByOQroW5goeHq+j/ILGRp?=
+ =?us-ascii?q?gs1/j83Ad+j1738aEBPHPjZPBOFjTxdXK3Kbhpq/3NplP1kcqtHLx4K1F1ln?=
+ =?us-ascii?q?PgpoDlJnZC5TwYkOrLFsO8cSBJfVSp5OMWq/ZeWcSHl6JPOlBOun3zEhq8G4?=
+ =?us-ascii?q?FsNFYkZ/PtnRGJD7/oVLBgTYR2ZweG72rS2Tq9rnMtLBMXmIoIUt216wDzxE?=
+ =?us-ascii?q?/krW9bATr/M6Nse2y0/7uhUGvzeJMYFQTlidhLNZ1tIIFh/IIo3mvulgnjkN?=
+ =?us-ascii?q?TRetFWTpK0qy2vUyhds1LvqdtHSf7SiS99SgU+eqiTC/n/lKh4fPd2bjzGC9?=
+ =?us-ascii?q?xqRakXn9c/gcJgZGLv9/flwjRjNgGcSExYRE1C8pJGEZoeFc4o3AyQpFuAG9?=
+ =?us-ascii?q?MDeLHCWc+Q=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3A/94Ja6txklqy1qiBrlXxcxJT7skDTdV00z?=
+ =?us-ascii?q?EX/kB9WHVpmwKj+PxGuM5rsCMc6QxhOk3I9urrBEDtex7hHNtOkO0s1NSZLW?=
+ =?us-ascii?q?rbUQmTTb2KhLGKq1bd8m/FltK1vp0PT0ERMrHN5HFB/KHHCM3SKadY/DFBm5?=
+ =?us-ascii?q?rY49vj8w=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0DgDADea4Ji/51dJa1aHAEBATwBAQQ?=
+ =?us-ascii?q?EAQECAQEHAQEVgU8CgimBSz2Td4IlA5FHix0UgWgLAQEBDQEBEjAEAQGBToM?=
+ =?us-ascii?q?0AoU+AiU0CQ4BAgQBAQESAQEFAQEBAgEHBIEJE4V1hkMBBScTPxALDgQGLkk?=
+ =?us-ascii?q?OBoYoq1Z4gQEygQGIGYFlFBCBGAGOXyccgUlEhAg3PoQqhlUElWM7A1SBBRK?=
+ =?us-ascii?q?BIXEBCAYGBwoFMgYCDBgUBAITElMeAhMMChwOVBkMDwMSAxEBBwILEggVLAg?=
+ =?us-ascii?q?DAgMIAwIDIwsCAxgJBwoDHQgKHBIQFAIEBg0fCwgDGh8tCQIEDgNDCAsKAxE?=
+ =?us-ascii?q?EAxMYCxYIEAQGAwkvDSgLAxQPAQYDBgIFBQEDIAMUAwUnBwMhBwsmDQ0EHAc?=
+ =?us-ascii?q?dAwMFJgMCAhsHAgIDAgYXBgICcQooDQgECAQcHiUTBQIHMQUELwIeBAUGEQk?=
+ =?us-ascii?q?CFgIGBAUCBAQWAgISCAIIJxsHFjYZAQVdBgsJIxwsCwYFBhYDJlIGIgGXXh8?=
+ =?us-ascii?q?Cel8CWQpgGKM2niqDVoFDjCGSDEsRg2SkYpZmoiWEWQIEBgUCFoFhPIFZMxo?=
+ =?us-ascii?q?IGxWDJFAZD44sFo5OJGwCBgsBAQMJkRoBAQ?=
+X-IronPort-AV: E=Sophos;i="5.91,230,1647302400"; 
+   d="scan'208";a="981217536"
+Received: from rcdn-core-6.cisco.com ([173.37.93.157])
+  by rcdn-iport-9.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 17 Sep 2022 03:26:13 +0000
+Received: from zorba ([10.25.129.98])
+        by rcdn-core-6.cisco.com (8.15.2/8.15.2) with ESMTPS id 28H3QAFI010600
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Sat, 17 Sep 2022 03:26:12 GMT
+Date:   Fri, 16 Sep 2022 20:26:10 -0700
+From:   Daniel Walker <danielwa@cisco.com>
+To:     Frank Rowand <frowand.list@gmail.com>
 Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
         Rob Herring <robh+dt@kernel.org>, xe-linux-external@cisco.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220907230709.271889-1-danielwa@cisco.com>
- <973f7127-8165-45f6-071f-04360046b7d7@gmail.com>
+Subject: Re: [PATCH] driver: of: overlay: demote message to warning
+Message-ID: <20220917032610.GM4320@zorba>
+References: <973f7127-8165-45f6-071f-04360046b7d7@gmail.com>
  <20220908003510.GE4320@zorba>
  <c0c66918-f55e-83e4-edea-b2d32fdb27a7@gmail.com>
  <3fcea82c-f5cf-f066-67b9-08669c44a9c6@gmail.com>
@@ -70,53 +77,66 @@ References: <20220907230709.271889-1-danielwa@cisco.com>
  <20220913005153.GZ4320@zorba>
  <00850627-7ada-3a02-158c-30f3b8334d51@gmail.com>
  <20220916225646.GK4320@zorba>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20220916225646.GK4320@zorba>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+ <b6a43df4-e5d8-06d2-a6b9-3626f2677161@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b6a43df4-e5d8-06d2-a6b9-3626f2677161@gmail.com>
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-Outbound-SMTP-Client: 10.25.129.98, [10.25.129.98]
+X-Outbound-Node: rcdn-core-6.cisco.com
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_NONE,USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/16/22 17:56, Daniel Walker wrote:
-> On Fri, Sep 16, 2022 at 05:47:54PM -0500, Frank Rowand wrote:
->>>
->>> Maybe you could add a flag or other indicator which would indicate the overlay will never be
->>> removed. Then your code could rely on this property to inform on if the author
->>> has consider the removal issues related to overlays.
->>
->> No.  I guess I wasn't clear enough above, where I said:
->>
->>    "And I will not accept a
->>     change that suppresses the message if there is no expectation to remove the
->>     overlay."
->>
->> There are multiple reasons for this, but the most fundamental is that if a
->> new overlay is not removable, then any overlay already applied can not be
->> removed (because overlays must be removed in the reverse order that they
->> are applied).  It would be incredibly bad architecture to allow an overlay
->> to block another overlay from being removed.
+On Fri, Sep 16, 2022 at 09:47:19PM -0500, Frank Rowand wrote:
+> On 9/16/22 17:56, Daniel Walker wrote:
+> > On Fri, Sep 16, 2022 at 05:47:54PM -0500, Frank Rowand wrote:
+> >>>
+> >>> Maybe you could add a flag or other indicator which would indicate the overlay will never be
+> >>> removed. Then your code could rely on this property to inform on if the author
+> >>> has consider the removal issues related to overlays.
+> >>
+> >> No.  I guess I wasn't clear enough above, where I said:
+> >>
+> >>    "And I will not accept a
+> >>     change that suppresses the message if there is no expectation to remove the
+> >>     overlay."
+> >>
+> >> There are multiple reasons for this, but the most fundamental is that if a
+> >> new overlay is not removable, then any overlay already applied can not be
+> >> removed (because overlays must be removed in the reverse order that they
+> >> are applied).  It would be incredibly bad architecture to allow an overlay
+> >> to block another overlay from being removed.
+> > 
+> > So how about an option to turn off removable overlays entirely? As far as I can
+> > tell it's not used currently by the tiny number of implementation I've seen.
+> > 
+> > Cisco doesn't need it, and we could have a smaller kernel without it.
+> > 
+> > The issue is that the error log on blast is log level abuse in my opinion. If
+> > there's no way to fix it, it should not be an error.
 > 
-> So how about an option to turn off removable overlays entirely? As far as I can
-> tell it's not used currently by the tiny number of implementation I've seen.
+> The way to fix it is to not have a construct in the overlay that triggers the
+> message.  In other words, do not add a property to a pre-existing node.  (At
+> least I think that is what is the underlying cause, if I recall correctly.)
 > 
-> Cisco doesn't need it, and we could have a smaller kernel without it.
-> 
-> The issue is that the error log on blast is log level abuse in my opinion. If
-> there's no way to fix it, it should not be an error.
+> -Frank
 
-The way to fix it is to not have a construct in the overlay that triggers the
-message.  In other words, do not add a property to a pre-existing node.  (At
-least I think that is what is the underlying cause, if I recall correctly.)
+Here's the check,
 
--Frank
+ if (!of_node_check_flag(target->np, OF_OVERLAY))
 
-> 
-> Daniel
+If the print shows when the modifications is made to a non-overlay, I'm not
+sure how you could construct a device tree where you only modify other overlays.
 
+It seems like this should print on the vast majority of overlays.
+
+Daniel
