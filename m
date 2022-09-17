@@ -2,141 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D2105BB5E5
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 05:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB9345BB600
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 06:11:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbiIQD0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Sep 2022 23:26:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42908 "EHLO
+        id S229528AbiIQELn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 00:11:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiIQD0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Sep 2022 23:26:19 -0400
-Received: from rcdn-iport-9.cisco.com (rcdn-iport-9.cisco.com [173.37.86.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F989AA374;
-        Fri, 16 Sep 2022 20:26:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=1990; q=dns/txt; s=iport;
-  t=1663385177; x=1664594777;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZQ67lmBemx5MvvGEfsScTKcejlbMkSnwr5EpEXpZvMw=;
-  b=gbV0SRtcIlNe1rYoMMq7BF12eyqfYEkoE/3NvXCM6JdpX6i6NihmAKR1
-   0CwifDs5bKQFfXp8CEu55z+Byk+Zj9EXiH/BXbbdpPlk/w7JUyr4a45Y6
-   J6hSA5CebQRbzW95i9ACzyg245PybL+Uy2MDum50LcJyjDd2EAzzvM7dp
-   8=;
-IronPort-Data: =?us-ascii?q?A9a23=3A72pbo6v79hAFZ23LkVpVEqfvEefnVN5cMUV32?=
- =?us-ascii?q?f8akzHdYApBsoF/qtZmKWqFb6zYY2SjeIgiYYzkoEgFscDXnYJnHQY4riwyR?=
- =?us-ascii?q?CNHgMeUXt7xwmUckM+xwmwvdK/shiknQoGowPscEzmN/39BDpC79SMmjfzRG?=
- =?us-ascii?q?OKlYAL5EnkZqTFMGX9JZS1Lw4bVsqYw6TSIK1vlVeHa+qUzC3f9s9JACV/43?=
- =?us-ascii?q?orYwP9ZUFsejxtD1rA2TagjUFYzDBD5BrpHTU26ByOQroW5goeHq+j/ILGRp?=
- =?us-ascii?q?gs1/j83Ad+j1738aEBPHPjZPBOFjTxdXK3Kbhpq/3NplP1kcqtHLx4K1F1ln?=
- =?us-ascii?q?PgpoDlJnZC5TwYkOrLFsO8cSBJfVSp5OMWq/ZeWcSHl6JPOlBOun3zEhq8G4?=
- =?us-ascii?q?FsNFYkZ/PtnRGJD7/oVLBgTYR2ZweG72rS2Tq9rnMtLBMXmIoIUt216wDzxE?=
- =?us-ascii?q?/krW9bATr/M6Nse2y0/7uhUGvzeJMYFQTlidhLNZ1tIIFh/IIo3mvulgnjkN?=
- =?us-ascii?q?TRetFWTpK0qy2vUyhds1LvqdtHSf7SiS99SgU+eqiTC/n/lKh4fPd2bjzGC9?=
- =?us-ascii?q?xqRakXn9c/gcJgZGLv9/flwjRjNgGcSExYRE1C8pJGEZoeFc4o3AyQpFuAG9?=
- =?us-ascii?q?MDeLHCWc+Q=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3A/94Ja6txklqy1qiBrlXxcxJT7skDTdV00z?=
- =?us-ascii?q?EX/kB9WHVpmwKj+PxGuM5rsCMc6QxhOk3I9urrBEDtex7hHNtOkO0s1NSZLW?=
- =?us-ascii?q?rbUQmTTb2KhLGKq1bd8m/FltK1vp0PT0ERMrHN5HFB/KHHCM3SKadY/DFBm5?=
- =?us-ascii?q?rY49vj8w=3D=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0DgDADea4Ji/51dJa1aHAEBATwBAQQ?=
- =?us-ascii?q?EAQECAQEHAQEVgU8CgimBSz2Td4IlA5FHix0UgWgLAQEBDQEBEjAEAQGBToM?=
- =?us-ascii?q?0AoU+AiU0CQ4BAgQBAQESAQEFAQEBAgEHBIEJE4V1hkMBBScTPxALDgQGLkk?=
- =?us-ascii?q?OBoYoq1Z4gQEygQGIGYFlFBCBGAGOXyccgUlEhAg3PoQqhlUElWM7A1SBBRK?=
- =?us-ascii?q?BIXEBCAYGBwoFMgYCDBgUBAITElMeAhMMChwOVBkMDwMSAxEBBwILEggVLAg?=
- =?us-ascii?q?DAgMIAwIDIwsCAxgJBwoDHQgKHBIQFAIEBg0fCwgDGh8tCQIEDgNDCAsKAxE?=
- =?us-ascii?q?EAxMYCxYIEAQGAwkvDSgLAxQPAQYDBgIFBQEDIAMUAwUnBwMhBwsmDQ0EHAc?=
- =?us-ascii?q?dAwMFJgMCAhsHAgIDAgYXBgICcQooDQgECAQcHiUTBQIHMQUELwIeBAUGEQk?=
- =?us-ascii?q?CFgIGBAUCBAQWAgISCAIIJxsHFjYZAQVdBgsJIxwsCwYFBhYDJlIGIgGXXh8?=
- =?us-ascii?q?Cel8CWQpgGKM2niqDVoFDjCGSDEsRg2SkYpZmoiWEWQIEBgUCFoFhPIFZMxo?=
- =?us-ascii?q?IGxWDJFAZD44sFo5OJGwCBgsBAQMJkRoBAQ?=
-X-IronPort-AV: E=Sophos;i="5.91,230,1647302400"; 
-   d="scan'208";a="981217536"
-Received: from rcdn-core-6.cisco.com ([173.37.93.157])
-  by rcdn-iport-9.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 17 Sep 2022 03:26:13 +0000
-Received: from zorba ([10.25.129.98])
-        by rcdn-core-6.cisco.com (8.15.2/8.15.2) with ESMTPS id 28H3QAFI010600
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Sat, 17 Sep 2022 03:26:12 GMT
-Date:   Fri, 16 Sep 2022 20:26:10 -0700
-From:   Daniel Walker <danielwa@cisco.com>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>, xe-linux-external@cisco.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] driver: of: overlay: demote message to warning
-Message-ID: <20220917032610.GM4320@zorba>
-References: <973f7127-8165-45f6-071f-04360046b7d7@gmail.com>
- <20220908003510.GE4320@zorba>
- <c0c66918-f55e-83e4-edea-b2d32fdb27a7@gmail.com>
- <3fcea82c-f5cf-f066-67b9-08669c44a9c6@gmail.com>
- <20220912170524.GX4320@zorba>
- <75e803f8-2b25-22c8-0831-e90d0c889da1@gmail.com>
- <20220913005153.GZ4320@zorba>
- <00850627-7ada-3a02-158c-30f3b8334d51@gmail.com>
- <20220916225646.GK4320@zorba>
- <b6a43df4-e5d8-06d2-a6b9-3626f2677161@gmail.com>
+        with ESMTP id S229495AbiIQELm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 00:11:42 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC48679634
+        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 21:11:40 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id d2so3363040wrq.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 21:11:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=QAI/foqzLEXHZd5jZrgE/n2XZnVTrZam+SjXq++haqk=;
+        b=Rj7H5/mS/OwpEMI49uZpixzzVsKR6NFFotdrhgk84AwQu10jRPvmEtjQW0c6Y2wE3v
+         TbE0ESpZvH55KHApcL/zgAsbztg1enOX0R/VHvtiZxaveDE8+bFOwEL3mSO7lY1QUmJ8
+         98iFsr/8uNN5+e4QqkJ8mLwPmyu6Mu/bUBaF1RQd0baanavp3lyyVTNu02IJ5NobY2Q0
+         v2Zrr1Q9lcnwXLWIXU9sxeUh+sT/JwATLjGPVxNeoer2cG91JYQZhO0GmWhD+7WmBjLH
+         ATF0UjDlEIr4HQFKTQF2Rf2VEzFEVuzQqeHxoWLvLvyQZqvYOx8RMZMLCxD/FoUkqHBH
+         frvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=QAI/foqzLEXHZd5jZrgE/n2XZnVTrZam+SjXq++haqk=;
+        b=My99kPno/Yr1i5SpCw7QYEKkSUKUWbhOctl47FkTiXTesxfoPXXkC1Ypfa94SKtCGw
+         0MYp5s6FvVG0bhOD+BaHT9aZbOKkeIUX3IWlRhhf8tnt8RDuONV0sG5uX1+KfRdN0eVu
+         cyw+7oShV0tlegDNh1BqU4thQRlgkBaPR01Y9daREZPmHkhLj2knSSuKwpFeSTET9mda
+         5XE4uQleQg9vG6pjIYZPzLEvFQImfxFzP/vexaQx+3zJDyG+SV99POTInkSx+xcxjKh7
+         p6s2GUve1WekuQOC/+s/Or+D+E494kZfg36uyiCn00t/KFK/zwlDxWY3NyzVKZBaHW3s
+         CsPw==
+X-Gm-Message-State: ACrzQf1SeNM8eLCQveRfSxn16nSSwyRRyUqi/12oONp7VombVGoyMQaK
+        5ALwQSpAmim2zTjUdQ5j3MwZL+gtuMGYIA==
+X-Google-Smtp-Source: AMsMyM6LCTxYaRjYvtzANr4i2Ei0X39EADmwMTwQ8gYLQO72/ksUsxZkgMMRo+IVbDD5t+2za34O3w==
+X-Received: by 2002:adf:d1e1:0:b0:22a:cd3e:e98b with SMTP id g1-20020adfd1e1000000b0022acd3ee98bmr4860266wrd.510.1663387898950;
+        Fri, 16 Sep 2022 21:11:38 -0700 (PDT)
+Received: from localhost.localdomain (188.red-88-10-59.dynamicip.rima-tde.net. [88.10.59.188])
+        by smtp.gmail.com with ESMTPSA id bn20-20020a056000061400b0022aeba020casm915142wrb.83.2022.09.16.21.11.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Sep 2022 21:11:38 -0700 (PDT)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org, krzk+dt@kernel.org,
+        arinc.unal@arinc9.com
+Subject: [PATCH v2] dt-bindings: mips: add CPU bindings for MIPS architecture
+Date:   Sat, 17 Sep 2022 06:11:36 +0200
+Message-Id: <20220917041136.526446-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b6a43df4-e5d8-06d2-a6b9-3626f2677161@gmail.com>
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.25.129.98, [10.25.129.98]
-X-Outbound-Node: rcdn-core-6.cisco.com
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_NONE,USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 16, 2022 at 09:47:19PM -0500, Frank Rowand wrote:
-> On 9/16/22 17:56, Daniel Walker wrote:
-> > On Fri, Sep 16, 2022 at 05:47:54PM -0500, Frank Rowand wrote:
-> >>>
-> >>> Maybe you could add a flag or other indicator which would indicate the overlay will never be
-> >>> removed. Then your code could rely on this property to inform on if the author
-> >>> has consider the removal issues related to overlays.
-> >>
-> >> No.  I guess I wasn't clear enough above, where I said:
-> >>
-> >>    "And I will not accept a
-> >>     change that suppresses the message if there is no expectation to remove the
-> >>     overlay."
-> >>
-> >> There are multiple reasons for this, but the most fundamental is that if a
-> >> new overlay is not removable, then any overlay already applied can not be
-> >> removed (because overlays must be removed in the reverse order that they
-> >> are applied).  It would be incredibly bad architecture to allow an overlay
-> >> to block another overlay from being removed.
-> > 
-> > So how about an option to turn off removable overlays entirely? As far as I can
-> > tell it's not used currently by the tiny number of implementation I've seen.
-> > 
-> > Cisco doesn't need it, and we could have a smaller kernel without it.
-> > 
-> > The issue is that the error log on blast is log level abuse in my opinion. If
-> > there's no way to fix it, it should not be an error.
-> 
-> The way to fix it is to not have a construct in the overlay that triggers the
-> message.  In other words, do not add a property to a pre-existing node.  (At
-> least I think that is what is the underlying cause, if I recall correctly.)
-> 
-> -Frank
+Add the yaml binding for available CPUs in MIPS architecture.
 
-Here's the check,
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+Changes in v2:
+ - Remove 'bindings/mips/brcm/brcm,bmips.txt'
+ - Include 'mips-hpt-frequency' in cpus YAML schema for bmips CPUS's
+ - Add a BMIPS CPU node sample
 
- if (!of_node_check_flag(target->np, OF_OVERLAY))
+ .../bindings/mips/brcm/brcm,bmips.txt         |   8 --
+ .../devicetree/bindings/mips/cpus.yaml        | 100 ++++++++++++++++++
+ 2 files changed, 100 insertions(+), 8 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
+ create mode 100644 Documentation/devicetree/bindings/mips/cpus.yaml
 
-If the print shows when the modifications is made to a non-overlay, I'm not
-sure how you could construct a device tree where you only modify other overlays.
+diff --git a/Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt b/Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
+deleted file mode 100644
+index 8ef71b4085ca..000000000000
+--- a/Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
++++ /dev/null
+@@ -1,8 +0,0 @@
+-* Broadcom MIPS (BMIPS) CPUs
+-
+-Required properties:
+-- compatible: "brcm,bmips3300", "brcm,bmips4350", "brcm,bmips4380",
+-  "brcm,bmips5000"
+-
+-- mips-hpt-frequency: This is common to all CPUs in the system so it lives
+-  under the "cpus" node.
+diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentation/devicetree/bindings/mips/cpus.yaml
+new file mode 100644
+index 000000000000..361afde8ce0a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mips/cpus.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mips/cpus.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MIPS CPUs bindings
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++description: |+
++  The device tree allows to describe the layout of CPUs in a system through
++  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
++  defining properties for every cpu.
++
++properties:
++  reg:
++    maxItems: 1
++
++  compatible:
++    enum:
++      - brcm,bmips3300
++      - brcm,bmips4350
++      - brcm,bmips4380
++      - brcm,bmips5000
++      - brcm,bmips5200
++      - ingenic,xburst-mxu1.0
++      - ingenic,xburst-fpu1.0-mxu1.1
++      - ingenic,xburst-fpu2.0-mxu2.0
++      - loongson,gs264
++      - mips,mips1004Kc
++      - mips,m14Kc
++      - mips,mips24KEc
++      - mips,mips4KEc
++      - mips,mips74Kc
++      - mips,mips24Kc
++      - mti,mips24KEc
++      - mti,mips14KEc
++      - mti,mips14Kc
++      - mti,interaptiv
++
++if:
++  properties:
++    compatible:
++      enum:
++        - brcm,bmips3300
++        - brcm,bmips4350
++        - brcm,bmips4380
++        - brcm,bmips5000
++        - brcm,bmips5200
++then:
++  patternProperties:
++    mips-hpt-frequency:
++      $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++
++additionalProperties: true
++
++examples:
++  - |
++    cpus {
++      #size-cells = <0>;
++      #address-cells = <1>;
++
++      cpu@0 {
++        device_type = "cpu";
++        compatible = "mips,mips1004Kc";
++        reg = <0>;
++      };
++
++      cpu@1 {
++        device_type = "cpu";
++        compatible = "mips,mips1004Kc";
++        reg = <1>;
++      };
++    };
++
++  - |
++    // Example 2 (BMIPS CPU)
++    cpus {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      mips-hpt-frequency = <150000000>;
++
++      cpu@0 {
++        compatible = "brcm,bmips4350";
++        device_type = "cpu";
++        reg = <0>;
++      };
++
++      cpu@1 {
++        compatible = "brcm,bmips4350";
++        device_type = "cpu";
++        reg = <1>;
++      };
++    };
+-- 
+2.25.1
 
-It seems like this should print on the vast majority of overlays.
-
-Daniel
