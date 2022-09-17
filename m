@@ -2,100 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 691F85BB9A7
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 19:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F6695BB9AD
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 19:03:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbiIQRDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 13:03:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38558 "EHLO
+        id S229697AbiIQRD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 13:03:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbiIQRDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 13:03:31 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4342CDCD
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 10:03:30 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id z25so40389957lfr.2
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 10:03:30 -0700 (PDT)
+        with ESMTP id S229533AbiIQRDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 13:03:54 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA2E42F382
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 10:03:52 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id j9so6358824ljg.2
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 10:03:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=CNlP4WjQ5gD2dVZdm851YFALcjCKHtccpYUpR8J49Z4=;
-        b=DfnUDIDLdqg6CeGSnomPiIyWPl9FGL/z455mP7Ly354UMsEwXqUKDKNMZTgG8qHPNL
-         iYgOdL6YvessQlDBOFRxqA4bb52EMcOfI7IjvDpiKNGcCgell5vLizFbrqkTxA6LAmpN
-         qunDNkWcVGUT239u2rrhYWET0wfCLC6hpQfu40QpY05Jn2N8W5oMsUNDpd172nBVbxQQ
-         sSZBNH6QGp/r4D11puhNqSYCnilEK3vW7hgZdg5B8+snXYHDuq86Oa2l4r+0idQ5uRVt
-         c0HOzShWNXIGDjGn1duIXbU1UpvEFx1ELV3bpMNem8ZLM0VCr/KoCLahPTxP8BA7nqmX
-         mXCA==
+        bh=HxlvNOXZLDG+QAIKe3QTAJIirgGJ27Umf7SxlY8og3I=;
+        b=wzvdrzIqrI+LUTbx/MmJddxco13vT4hEIDk9erf0mNozNVKNgWDArVxjCVTq73waN3
+         B/Wot8PS0C1rCYL6ZTDvG0akTSU/Mu/hmKXsq5BfzRufeqrVtoLdsXym940Vq2Hqhrff
+         MCYBSvrddc2I8xRM1/gzbzP2qHxTll2w+fRHwuXYdxE0zLKYlJWh5RFIiuQNKalDvlhd
+         qFi9lhlTs7Fa/ZO+OdHk4BPCd7n9WJODCxeMLXyvs8cALKsqqE6YVg6dA/3ITuarAzA/
+         v+OMZBeaPicHjW+emkdndPjqXGT5sOPkkiWbgVr+MI2dDrzH68l5fn4HtHi9U7kIK25s
+         98hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=CNlP4WjQ5gD2dVZdm851YFALcjCKHtccpYUpR8J49Z4=;
-        b=jxLyjPqnYpyWPOlbiIWYLSsd+DkEDXZyEru3CodjtzXdA14SX0OSeekSbZsLgjJ58l
-         cQlv8cmHMtJJCctTD9AYCFYhk3lfIGqbwdNGJgw6f1Mbejr06WeJAwsZ5CRXlZFHVxsP
-         K/DCb38qJU+jLDn7GCDND9viD+ixy6R+fwfnc9r0BkWPO1OzOnGYZGzNgiX2oO4mwxUg
-         6sG2v93FMGiED60HbRNfhGXEiUxkDKddbFNMd7wEF/1SxKnrIzjXRHEQD4TPvnQh2er2
-         PjTikdV4hMGAc7/fP2bSpCxvvb1Qbx/KXXPUsQS56U+yaD6OpLI1c2AjV007eYDWQoQt
-         O9OA==
-X-Gm-Message-State: ACrzQf184WD7EERwyOlBA+BvRr+F1PtxGa7RFiWytpUmeC60FHJ1IgGU
-        WslkY42r61sJGDT4kzlJCPfpCw==
-X-Google-Smtp-Source: AMsMyM6yCCGGK54OXLJ5OP/agtg//cmMTA3Jc3j8bIg9aGqi9wiv0UUto5VjD5mRdOjt7u8CLVTYig==
-X-Received: by 2002:a05:6512:230f:b0:499:dcd:2fd2 with SMTP id o15-20020a056512230f00b004990dcd2fd2mr3715968lfu.677.1663434209040;
-        Sat, 17 Sep 2022 10:03:29 -0700 (PDT)
+        bh=HxlvNOXZLDG+QAIKe3QTAJIirgGJ27Umf7SxlY8og3I=;
+        b=GsVbgdlYA2gEE7u868ZQ0Pbb0okjq5JGT6MFTe2zZWnxr346gOAL0Bk77+uo4Q/wnf
+         et6rBTeRi3paasCfKLI4oLDOKr0Nkolvm4xn+hmNm8OptfQHuGFc4ACzkntVAlDBQszw
+         N4r/3VwIyCpy12zrq9GctfPnJxckbQ0r0ihrTqWWmxLQDXOX24hcN/LM8Z0LDlEjYsKv
+         V4jgLbtRufWWnOirk3LFnWeM2gPCi6SXJm275Nf6eNGGTpp/f9TPpIzJZDmAO1mkGRZc
+         F7/7qCRijNBJfomfmeh9TNWTO0QfM3+FcnPpaByWSIOdSgd/ynkhlaPTOXRjzxuY7lkN
+         DO1A==
+X-Gm-Message-State: ACrzQf2MJYtu/a3JM9xaa0tiB+yXrY5nJtbTZ30krWAKrNVRbnNFNNlH
+        cSh48ePklDbCEbJIp9X2wCgPXA==
+X-Google-Smtp-Source: AMsMyM7E3ohSRcsc0DEgiFc7auF3agQpdAzdPLS7MkWX0g6/rZVD0aNMJrIwBQNIa2mXTpRMcRNH4A==
+X-Received: by 2002:a2e:be2b:0:b0:261:c0d4:8264 with SMTP id z43-20020a2ebe2b000000b00261c0d48264mr2765511ljq.16.1663434231131;
+        Sat, 17 Sep 2022 10:03:51 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z1-20020a05651c11c100b0026c3975f488sm951701ljo.26.2022.09.17.10.03.27
+        by smtp.gmail.com with ESMTPSA id f34-20020a0565123b2200b0049f54a976efsm975945lfv.29.2022.09.17.10.03.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Sep 2022 10:03:28 -0700 (PDT)
-Message-ID: <1641e41c-08c7-859b-644a-28d966fb00f3@linaro.org>
-Date:   Sat, 17 Sep 2022 18:03:27 +0100
+        Sat, 17 Sep 2022 10:03:50 -0700 (PDT)
+Message-ID: <38335ade-d993-c2ee-0921-7a4655e612dd@linaro.org>
+Date:   Sat, 17 Sep 2022 18:03:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/7] dt-bindings: msm/dp: Add SDM845 and SC8280XP
- compatibles
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document huawei,sturgeon
+ device
 Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220916200028.25009-1-quic_bjorande@quicinc.com>
- <20220916200028.25009-2-quic_bjorande@quicinc.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220917152829.23568-1-luca@z3ntu.xyz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220916200028.25009-2-quic_bjorande@quicinc.com>
+In-Reply-To: <20220917152829.23568-1-luca@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/09/2022 21:00, Bjorn Andersson wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+On 17/09/2022 16:28, Luca Weiss wrote:
+> Document the Huawei Watch ("sturgeon") which is a smartwatch based on
+> Snapdragon 400 SoC.
 > 
-> Add compatibles for the DisplayPort and Embedded DisplayPort blocks in
-> Qualcomm SDM845 and SC8280XP platforms.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 
-No need for quicinc SoB (unless you also take ownership).
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>\
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
