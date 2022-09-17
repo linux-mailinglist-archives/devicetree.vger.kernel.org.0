@@ -1,242 +1,115 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F185BBA28
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 21:44:30 +0200 (CEST)
+Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id EFBB25BBA32
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 22:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiIQToI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 15:44:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39182 "EHLO
+        id S229436AbiIQUHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 16:07:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbiIQToH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 15:44:07 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C5852BB24;
-        Sat, 17 Sep 2022 12:44:05 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id az24-20020a05600c601800b003a842e4983cso1833268wmb.0;
-        Sat, 17 Sep 2022 12:44:05 -0700 (PDT)
+        with ESMTP id S229494AbiIQUHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 16:07:23 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE47621243
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 13:07:20 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id lh5so14630291ejb.10
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 13:07:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date;
-        bh=9MOtt1g/rm8xaea/35yg7P6pO/gnunYbV8isjRoBVdg=;
-        b=e8xu9MRfatjxNk6m/3A+pZqn221lwHNckzcTpWFacpW/cj9zvojW+ULn/yJYpIJmYD
-         sdqEUdqDUaIf7gOXWUfvuzyyoyaor5eYTUxivJZ4taNd4L2DL7vrbkPIm0RdaO/eDXnT
-         rNDfMaFC9uoe7mYu801u/WrRONvaih/K3xE1u7UdIRNB2f/XezkCkDuL4BdDVrADgTcT
-         eqFTw2MwNf411fiuva/KErGnIKRvTuYrnc73JZjPCtvlGfQFGVAVEyiX6IjLFSegXIMp
-         mJRFCJa9ANG3ID63U1cIQjO9RQQsLBZLRXlHRRHRIonAE0qgIUiXHxm584tPCfY1NUbm
-         YlEA==
+        h=content-transfer-encoding:to:subject:from:content-language:reply-to
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date;
+        bh=aoqh50oqiL5ZcgiDwqmVe6gC0OWNMY6V/NXa77MNboo=;
+        b=jPoWOv+tfqF48ALqMIhoOC/6g5Rj6Fm342A0DuAaC3aw9UI5asygoVPZaEcY/aeanX
+         B4THgxnIrArx2bPXG16VPsnKpH/EwEDCVsCUC0qWbcUQ6+fzvQOXkk39rb+HBj+DvB7S
+         1q1dxLn+A4Ct6IAcjPpu7rkWFNcUULhhFWkRZHSqRPtWzfykVO5T8HQFYKsA67rQJuld
+         p58AUyrHpZzxBWNy4b7Y2+zP1MH+s4jtwi9y9UkBfi9lVJGjdJ5CKva3/8MPJPaJCejO
+         AfingdvDdRYgeHistUHWa+rMkuJKFnaa4HLgMxLvJu9MTH70TruDZ8jFsKL1+KzkKl5h
+         0npQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=9MOtt1g/rm8xaea/35yg7P6pO/gnunYbV8isjRoBVdg=;
-        b=gd8U2mHsQyx4FmACixfVJaxnoNNWZRPYdUQZpZiCQj51do37i5ugePjW72O2e1QEwH
-         wlB8bLyo6omSuzWs3+kQErLK77jOsPdASzeHH6gMEMIKh5aP3aX10wmpTUoUL2nPk2rA
-         6bfNbPKpFCQxfsL4r1LjUoxCpKizRuf3JGpLC44shKW8+GzeWBvh7wdfKZ8hEOeHkxhd
-         1xvhXhdf5+fvzbXXfCcmOEdPTdxenZnj6fgw+1OqSJsfH9nvNobeC80BvodXo51bicdV
-         fw/EeZYhLYlqrIVtsu5wybNgp3+QlPOrnu9e1c1z1Z2/1g9nRtmriTPf9gbagXOqYzsR
-         KYtA==
-X-Gm-Message-State: ACrzQf2osQR7ZBbV0LgWyI17lVye3MR/u6T9KoB8yxB1F0lZpCzGIHAX
-        9ga8qPR4cuD3Dy2MFGhheDk=
-X-Google-Smtp-Source: AMsMyM6yF5xqGZYQUON3LyUEhYWCuF4gl3rbiaAjHSdxKZsmF+LTWXIcg40eqORnx77JZRP0tf8njA==
-X-Received: by 2002:a7b:c2a2:0:b0:3a8:4959:a327 with SMTP id c2-20020a7bc2a2000000b003a84959a327mr7329658wmk.50.1663443844289;
-        Sat, 17 Sep 2022 12:44:04 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-134.ip85.fastwebnet.it. [93.42.70.134])
-        by smtp.gmail.com with ESMTPSA id d8-20020adfef88000000b002250c35826dsm8604667wro.104.2022.09.17.12.44.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Sep 2022 12:44:03 -0700 (PDT)
-Message-ID: <63262383.df0a0220.27cbb.1c41@mx.google.com>
-X-Google-Original-Message-ID: <YyYjgPeHn6nvaFcV@Ansuel-xps.>
-Date:   Sat, 17 Sep 2022 21:44:00 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Alexey Dobriyan <adobriyan@gmail.com>,
-        Takashi Iwai <tiwai@suse.de>,
-        Christian Brauner <brauner@kernel.org>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Marc Herbert <marc.herbert@intel.com>,
-        James Smart <jsmart2021@gmail.com>,
-        Justin Tee <justin.tee@broadcom.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 2/5] dt-bindings: arm: msm: Convert kpss-acc driver
- Documentation to yaml
-References: <20220916191715.GA1079300-robh@kernel.org>
- <6324d1be.050a0220.9d842.7b47@mx.google.com>
- <CAA8EJprEQOsm4TxGWJYZo04D1PagT3QmhDdYQkEid-KSP-tpTw@mail.gmail.com>
- <6324d8e1.170a0220.aba35.ba4f@mx.google.com>
- <CAA8EJpowLvkuiYupqS0WEhnMR8q=R1YUUFgdFVCAx1PXyoo1xw@mail.gmail.com>
- <6324dc1b.df0a0220.97787.083c@mx.google.com>
- <CAA8EJpo08WoQ_LYOtg5C2BB=Q6GR_cftLjaWHWjYD6BjfDZcsg@mail.gmail.com>
- <6324f087.1c0a0220.7123d.8665@mx.google.com>
- <CAA8EJprhLUybqmPhFmit6LGaNOxz=-9+8xADXowJuzU5BtjjtA@mail.gmail.com>
- <632618ac.050a0220.bda86.d7a8@mx.google.com>
+        h=content-transfer-encoding:to:subject:from:content-language:reply-to
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date;
+        bh=aoqh50oqiL5ZcgiDwqmVe6gC0OWNMY6V/NXa77MNboo=;
+        b=Yw+gR8glgXFeReJIaY68sz4r6rPKWmAPPd5xjQ7uzMIF2RxA4Mw8FKuNpR4epju07N
+         /6E3D8KlbUTx8eOYbUE39Mg5S7uf90w7Ar/Ef81WLuP9DmATswmDKX9MgTctqHk4XIsU
+         y9Xh39XKiaDVr+vv4nlryQgZtjzfnCIPbI37EEUYuoqQt5dXdQ5azw3F993cJG8VSav/
+         OdSP6Hx4/z9ce2+f/QCTI/Tyts9HLteJRDaXlL9l8914+HCSxnr6fUtG3O3s0Cj672Ok
+         wkiEtuTNUeAptjTQSZx0hX/G3h4zlynRzqhfOdj00tnnbWwO1AIMgQBeHJit2hlt3fRy
+         hz8w==
+X-Gm-Message-State: ACrzQf1dIDAUbLjQo5jznrjqjWmUxg7vkx/4MxJ8PcI1SFGXDmWtD3AG
+        0aH6+ojErTdwcSHruSzwv9M=
+X-Google-Smtp-Source: AMsMyM7WTX/nCHfbIuOKuucEM5zu3z4bxc64Tm6oXKP0lo0HKRPW3Z2Uw1bofWerRPECRFV8o8hpyw==
+X-Received: by 2002:a17:907:2721:b0:77f:d471:47b3 with SMTP id d1-20020a170907272100b0077fd47147b3mr7622570ejl.591.1663445239291;
+        Sat, 17 Sep 2022 13:07:19 -0700 (PDT)
+Received: from [192.168.43.107] ([197.191.3.169])
+        by smtp.gmail.com with ESMTPSA id h5-20020a0564020e0500b00450f338b9c8sm16034568edh.69.2022.09.17.13.07.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Sep 2022 13:07:18 -0700 (PDT)
+Message-ID: <3eee2f3b-54c0-fec3-88ee-6fef90b9053c@gmail.com>
+Date:   Sat, 17 Sep 2022 13:06:53 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <632618ac.050a0220.bda86.d7a8@mx.google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Reply-To: infogencharlesflyn@gmail.com
+Content-Language: en-US
+From:   Charles Flynn <jeffriealbert@gmail.com>
+Subject: HELLO
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: Yes, score=7.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        LOTS_OF_MONEY,MONEY_FRAUD_3,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM,UNDISC_MONEY autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2a00:1450:4864:20:0:0:0:644 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [jeffriealbert[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        *  3.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+        *  1.5 MONEY_FREEMAIL_REPTO Lots of money from someone using free
+        *      email?
+        *  0.0 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+        *  1.4 MONEY_FRAUD_3 Lots of money and several fraud phrases
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 17, 2022 at 08:57:44PM +0200, Christian Marangi wrote:
-> On Sat, Sep 17, 2022 at 04:45:21PM +0300, Dmitry Baryshkov wrote:
-> > On Sat, 17 Sept 2022 at 00:54, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > >
-> > > On Fri, Sep 16, 2022 at 11:31:49PM +0300, Dmitry Baryshkov wrote:
-> > > > On Fri, 16 Sept 2022 at 23:27, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > > > >
-> > > > > On Fri, Sep 16, 2022 at 11:22:17PM +0300, Dmitry Baryshkov wrote:
-> > > > > > On Fri, 16 Sept 2022 at 23:13, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > > > > > >
-> > > > > > > On Fri, Sep 16, 2022 at 11:06:35PM +0300, Dmitry Baryshkov wrote:
-> > > > > > > > On Fri, 16 Sept 2022 at 22:43, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > > > > > > > >
-> > > > > > > > > On Fri, Sep 16, 2022 at 02:17:15PM -0500, Rob Herring wrote:
-> > > > > > > > > > On Wed, Sep 14, 2022 at 04:22:53PM +0200, Christian Marangi wrote:
-> > > > > > > > > > > Convert kpss-acc driver Documentation to yaml.
-> > > > > > > > > > > The original Documentation was wrong all along. Fix it while we are
-> > > > > > > > > > > converting it.
-> > > > > > > > > > > The example was wrong as kpss-acc-v2 should only expose the regs but we
-> > > > > > > > > > > don't have any driver that expose additional clocks. The kpss-acc driver
-> > > > > > > > > > > is only specific to v1. For this exact reason, limit all the additional
-> > > > > > > > > > > bindings (clocks, clock-names, clock-output-names and #clock-cells) to
-> > > > > > > > > > > v1 and also flag that these bindings should NOT be used for v2.
-> > > > > > > > > >
-> > > > > > > > > > Odd that a clock controller has no clocks, but okay.
-> > > > > > > > > >
-> > > > > > > > >
-> > > > > > > > > As said in the commit v2 is only used for regs. v2 it's only used in
-> > > > > > > > > arch/arm/mach-qcom/platsmp.c to setup stuff cpu hotplug and bringup.
-> > > > > > > > >
-> > > > > > > > > Should we split the 2 driver? To me the acc naming seems to be just
-> > > > > > > > > recycled for v2 and it's not really a clk controller.
-> > > > > > > > >
-> > > > > > > > > So keeping v2 in arm/msm/qcom,kpss-acc-v2.yaml and v1 moved to clock?
-> > > > > > > >
-> > > > > > > > I suspect that qcom,kpss-acc-v2 is misnamed as the "clock-controller".
-> > > > > > > > According to msm-3.10, these regions are used by the Krait core
-> > > > > > > > regulators.
-> > > > > > > >
-> > > > > > >
-> > > > > > > Well we need to understand how to handle this... change the compatible
-> > > > > > > it's a nono for sure. In platsmp.c they are used for cpu power control
-> > > > > > > so could be that they are actually used to regulators. I would honestly
-> > > > > > > move v1 to clock and leave v2 to arm/msm but I'm not cetain on what name
-> > > > > > > to assign to the 2 yaml.
-> > > > > > >
-> > > > > > > What do you think?
-> > > > > >
-> > > > > > This is fine for me. If somebody gets better understanding of
-> > > > > > underlying hardware and works on actually using these blocks, he will
-> > > > > > update the bindings.
-> > > > > >
-> > > > > > My only suggestion would be to rename kpss-acc-v2 nodes to
-> > > > > > 'power-controller@address' and document them so.
-> > > > > >
-> > > > >
-> > > > > Ok so something like this?
-> > > > >
-> > > > >     power-controller@f9088000 {
-> > > > >       compatible = "qcom,kpss-acc-v2";
-> > > > >       reg = <0xf9088000 0x1000>,
-> > > > >             <0xf9008000 0x1000>;
-> > > > >     };
-> > > > >
-> > > > > (and I will have to fix dtbs warning as they will be unmatched I think.)
-> > > > > Yaml naming:
-> > > > > qcom,kpss-acc-v1.yaml
-> > > > > qcom,kpss-acc-v2.yaml
-> > > > > Right?
-> > > >
-> > > > Sounds good to me.
-> > > >
-> > > > I'd even say clock/qcom,kpss-acc-v1.yaml and
-> > > > arm/msm/qcom,kpss-acc-v2.yaml or maybe power/qcom,kpss-acc-v2.yaml
-> > > >
-> > >
-> > > Wonder if the gcc driver should have the same tretement? It's also a
-> > > clock-controller driver that doesn't use clock at all... Do you have
-> > > some info about it?
-> > 
-> > As far as I understand, the kpss-gcc is a normal clock controller,
-> > isn't it? It provides clocks to other devices.
-> > 
-> 
-> Hi again... Having acc-v2 as power-controller would require to set
-> #power-domain-cells = <0>;
-> 
-> Would that be acceptable? Considering it wouldn't expose any PM domain?
-> 
-> About kpss-gcc we have some device that for some reason doesn't have the
-> required clocks defined in the dts. I checked the related gcc and no PXO
-> defined and no pll8_vote clock defined. (the affected dts are all listed
-> in the related Documentation)
-> 
-> No idea how they currently work with the kpss-gcc driver as these
-> parents are missing. Guess the driver just fails to probe?
-> So this was the question if you had more info about it... since to me it
-> seems just another gcc v2 that doesn't expose clocks but it's just a
-> power-controller just like acc-v2. 
-> 
-> -- 
-> 	Ansuel
-
-(Also sorry for the double email)
-I'm checking the regs for apq8084 for example (from the dtsi)
-Are we really sure they are power-controller?
-Checking the regs it seems they just changed the location and they
-placed clock-controller and right after the power-controller.
-So one can get confused and say that 0xf9... can be all related to power
-controller. I posted the regs for reference.
-
-acc0 0xf9088000 0x1000
-saw0 0xf9089000 0x1000
-
-acc1 0xf9098000 0x1000
-saw1 0xf9099000 0x1000
-
-acc2 0xf90a8000 0x1000
-saw2 0xf90b9000 0x1000
-
-Anyway while at it there seems to be a bit of confusion about the naming
-here... We have on ipq8064 and ipq4019 the saw node set as regulator and
-with the regulator binding but on msm8974 and apq8084 the saw node set
-as power-controller (with the l2 node with the regulator binding).
-
-Think we should chose a name and fix every dts.
-So the main question here is...
-Should we keep acc as clock-controller or change it to power-controller
-(for v2)?
-
-Should we change saw node to regulator or power-controller?
-
-From what I know acc are used to enable the cpu so it seems sane to keep
-them as clock-controller (even if v2 doesn't export clock)
-Saw node handle power (and in theory even low power state) so it seems
-sane to change them to power-controller.
-
-Currently we have no warning for saw node as they are not converted to
-yaml but as soon as someone convert the txt to yaml then we will have
-all sort of inconsistency so better take a decision now instead of
-convert saw to yaml and then change acc node again to fix them for good.
 
 -- 
-	Ansuel
+Hello Sir/Madam,
+
+Greetings to you, I am Charles Flynn from the United States, A North Atlantic Treaty Organization(NATO) military here in Yemen. I found a suitcase containing $100 US bills in the secret coffers of a CORONA-VIRUS victim.
+
+The suitcase contains USD11.7 million in total. I have kept the suitcase safe in a security firm here in Yemen. Please, partner with me by receiving it and we share the funds 55% and 45% accordingly.
+
+Please get back to me immediately and let me know if you intend to partner or not for further communication with you.
+
+Please do not disclose this transaction to anyone unless to a trusted person who may be interested. Strictly confidential. Waiting for your response.
+Thanks
+Best regards
+Charles Flynn
+
