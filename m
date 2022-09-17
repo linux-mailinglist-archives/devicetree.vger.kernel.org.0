@@ -2,302 +2,616 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 568FE5BB7B2
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 12:18:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 045065BB7E1
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 12:41:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbiIQKSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 06:18:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38182 "EHLO
+        id S229733AbiIQKlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 06:41:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbiIQKSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 06:18:48 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE241C93C;
-        Sat, 17 Sep 2022 03:18:46 -0700 (PDT)
-Received: from [192.168.1.138] ([37.4.248.23]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MsqMq-1pSPqD2nXM-00tCDJ; Sat, 17 Sep 2022 12:18:25 +0200
-Message-ID: <e2c081b0-080e-fd96-c277-deec63c5f822@i2se.com>
-Date:   Sat, 17 Sep 2022 12:18:24 +0200
+        with ESMTP id S229735AbiIQKlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 06:41:01 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F9CA326DD;
+        Sat, 17 Sep 2022 03:40:10 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id f20so30377471edf.6;
+        Sat, 17 Sep 2022 03:40:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=ppESI1uIffBAbAMxv1wwlCCRXUz2yUrHEc/rExHz54E=;
+        b=H7eAakVd6MvVrPev6ZDvXlE3Hbh3AMJGA2nEtr+vr9/YvZiZeQO3WIBC0pu4ol9Ix/
+         R2JuqyDVkoXUDDlF0Et46nCsR4Mj+R5Q2/pzqtynL2LoCVeSMdGStWlN+Glk7AJAZ1Hc
+         RO1yhVWgDlDyrYBBskRmd9mHs8aWBB7Q4IuKohkIhT5AdpkBatumJ+O3Fd9L+fKxZATu
+         VkmoBiqVUjmYThEkgCtHCVdaThlczrSLYB2uUx7uGG445RHYsZJzsrp9bm1UPOXAEwsM
+         JwV6opy+SFGMIBMzaMWL90aX7tYgKq9X20KzdFaMsB+JHfrClyb9iBL3Kh6oyVucSNJY
+         F30w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=ppESI1uIffBAbAMxv1wwlCCRXUz2yUrHEc/rExHz54E=;
+        b=S5HRjDjhTM6e0nbuQ0a63L/Exoi2ZyYGaFVdw1sg2sDERuV0GJi/NPqlnZvesc5ngg
+         4BWINfmlMa1KCHVwfudbTC+fmpQjMS+/LZUP2HVDsF0Vn8peVd0O44yfwNcWYGRP1bmo
+         MfcpcZSEeUwSKhueY2mLI8bVQln+luwR/m0PyMJnOJbY8yyWBZgXpUCQCDvBWfm1smKt
+         vGM5hM7+0/Wg6A/b74yxf0qaSl6qY8EWLfOCstXwUIBszix1v7a0gJFV2vpASCzDiK+5
+         85Eko3onShOWqeOrXNqvmdmrEbr9t7viygPPY8dpFTeC1nQN4Q+BhzeOpF5H2fOPoZT4
+         IMng==
+X-Gm-Message-State: ACrzQf05N4DpQ5ckRqID1y+FW9UsGqb1lY1+Ns8FTCWG4dI8mnQwiM3X
+        hXJ89+yUuFd+6/TUnchSPLCGpwpkTgStWDr8wfI=
+X-Google-Smtp-Source: AMsMyM4uzSHUS/KpCinoTepsKZ3xNeCgZMb54nJPClY+hEuXAothEPFcYQgLS0QD5NMv3nhMUTuFlH1HR68gySMs5H0=
+X-Received: by 2002:a05:6402:43cc:b0:451:129e:1b1e with SMTP id
+ p12-20020a05640243cc00b00451129e1b1emr7367350edc.258.1663411207044; Sat, 17
+ Sep 2022 03:40:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] ARM: dts: Add Raspberry Pi Compute Module 4 CANOPi Board
-Content-Language: en-US
-To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Cc:     arnd@arndb.de, f.fainelli@gmail.com,
-        krzyszccf.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        olof@lixom.net, robh+dt@kernel.org, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org, william.zhang@broadcom.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220916153156.30412-1-ariel.dalessandro@collabora.com>
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <20220916153156.30412-1-ariel.dalessandro@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:bWgkOWAUfG9XTpNhMLKrOflaI6yMpSZR0LRfPFf41oxosY9/8OU
- ys5xr3J1ogBEP/EcWQamHJT9n8H3avVgEV65M+4QkcS5fXDx/DXE1G1TBkhDO66KO/W8p5v
- E5qM7utfqsxvnWt5XukzdGnUjlyCKcJHQUryCgQFwZFfmve7OvNWbqt9TaRmgh5eaXDE3nI
- t5ptC24JJP0M0cCIXX1nA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:oCsjlzjt2YM=:x4ztgspVp6Sc/Qo2O56PKU
- 5R9pXpN3eWR4o0xGEz6atj1AdhCHT8Em9AG9oOz/rNfawuXyLgdnwrKVcnEpJwI8o9ZjAt162
- 7Vt4M1vY1XxcgNB9Ps7ANjM1282kyj4wk82CCm+lkWaX26NjEkWt5LcRcyF77aQyNEL9S57hl
- yeYgiHrT4Zd4AKU8IAQs0d7e1SJQyxzzFgshGkfpxUca6s+mO+oI1IfcQ1zcrhVTrKPpYU6j3
- 1Cj7/sKNAnjHQqJvukk1jkBpk8xfQrFf7/eYFyAZrUVRLThGmYfuYNR1roHqvnV/l3Zz+oeDu
- JzjMqiU4T3UOcgEZWZvvSEc9KeUydGGS+f9zooa89v7n07xDEbXFUT7I9OuFHXbMKI1ANjzUz
- Omk79VKpuphegWSg8kW8XMYisgxHZwxI19KhPCkyURmnvFwqATvn4TUGSCz/jBxJ45ZulPcmz
- vnF75rI827O/DvOKGvnbChM6AhTRBMDi1ZiXuPBzPlq6+DaeUcsSej6BqfSaNyfq5kYB82Ecz
- aYlBdmu6hU49hYwIcnztOkdTCDtV4HxLWh3LLAmC0uThVB3s3bixzd8tQXBIaHFgl9lJsA3OF
- FAHCWzmwe6t9qBvCUN3YJ7pJauxykoknwaTzF9PXqY+FTqJRNSDbdzFyS0Lki6GuG29I1zmHK
- Az7BOslEbUmWCvv0rHTjdDRnjJo4s3AQcDcaU4DzfR43A6xBwVVed3mF2jy81kE1doIuRY+Bs
- oQFXqM1NQo+gv7HI8ARpvshw9CDwDbqMcD7QFip3486/oWCx7l/7ft3Y09Xc7215jJHCwQrE4
- nqxsRJE
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220912190753.10158-1-jagathjog1996@gmail.com>
+ <20220912190753.10158-3-jagathjog1996@gmail.com> <YyHBKNC/YHbvIn40@mail.local>
+In-Reply-To: <YyHBKNC/YHbvIn40@mail.local>
+From:   Jagath Jog J <jagathjog1996@gmail.com>
+Date:   Sat, 17 Sep 2022 16:09:54 +0530
+Message-ID: <CAM+2Eu+jCA9yJma2UtD736opw0=_uCz4Zbiem89ehexTEU7mQw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] rtc: maxim: Add Maxim max31329 real time clock
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ariel,
+ Hello Alexandre,
 
-Am 16.09.22 um 17:31 schrieb Ariel D'Alessandro:
-> The Eclipse KUKSA CANOPi [0] is a baseboard for the Raspberry Compute
-> Module 4 (CM4). It contains a VIA VL805 4 Port USB controller and two
-> MCP251xFD based CAN-FD interfaces.
+Thank you for reviewing.
 
-this is a cool piece of hardware :-)
+On Wed, Sep 14, 2022 at 5:25 PM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
+>
+> Hello,
+>
+> On 13/09/2022 00:37:53+0530, Jagath Jog J wrote:
+> > +static int max31329_get_osc_status(struct device *dev)
+> > +{
+> > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
+> > +     unsigned int status;
+> > +     int ret;
+> > +
+> > +     ret = regmap_read(max31329->regmap, MAX31329_STATUS_REG, &status);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     if (status & MAX31329_STATUS_OSF) {
+> > +             dev_err(dev, "Oscillator has stopped\n");
+>
+> I would drop this message there is probably nothing specific the user
+> can do once it appears in the kernel log.
+>
+> > +             return -EINVAL;
+> > +     }
+> > +     return 0;
+> > +}
+> > +
+> > +static int max31329_alarm_irq_enable(struct device *dev, unsigned int enable)
+> > +{
+> > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
+> > +
+> > +     return regmap_update_bits(max31329->regmap, MAX31329_INT_EN_REG,
+> > +                               MAX31329_INT_EN_A1IE,
+> > +                               enable ? MAX31329_INT_EN_A1IE : 0);
+> > +}
+> > +
+> > +static int max31329_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
+> > +{
+> > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
+> > +     struct rtc_time *const tm = &alarm->time;
+> > +     unsigned int aie_en, aie_flag;
+> > +     int ret;
+> > +     u8 regs[6];
+> > +
+> > +     ret = max31329_get_osc_status(dev);
+> > +     if (ret)
+> > +             return ret;
+> > +
+>
+> The oscillator being stopped doesn't mean the alarm is not correct so
+> you don't need to check here.
 
-Is it correct this baseboard is only intended for Compute Modules 
-without Wifi/BT? Otherwise we get conflicts with UART0. The 
-bcm2711-rpi-cm4.dtsi is currently written for all Compute Module 
-variants. A possible solution is to use delete-node, another cleaner 
-ones is to split bcm2711-rpi-cm4 into wifi and non-wifi variants and 
-include the non-wifi one in your case.
+Sure, I will remove this check.
 
 >
-> [0] https://github.com/boschresearch/kuksa.hardware
+> > +     ret = regmap_bulk_read(max31329->regmap, MAX31329_ALM1_SEC_REG, regs,
+> > +                            MAX31329_ALM1_SEC_LEN);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret = regmap_read(max31329->regmap, MAX31329_INT_EN_REG, &aie_en);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret = regmap_read(max31329->regmap, MAX31329_STATUS_REG, &aie_flag);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     tm->tm_sec = bcd2bin(regs[REG_TO_OFFSET(MAX31329_SECONDS_REG)] & 0x7f);
+> > +     tm->tm_min = bcd2bin(regs[REG_TO_OFFSET(MAX31329_MINUTES_REG)] & 0x7f);
+> > +     tm->tm_hour = bcd2bin(regs[REG_TO_OFFSET(MAX31329_HOURS_REG)] & 0x3f);
+> > +     tm->tm_mday = bcd2bin(regs[REG_TO_OFFSET(MAX31329_DATE_REG) - 1] & 0x3f);
+> > +     tm->tm_mon = bcd2bin(regs[REG_TO_OFFSET(MAX31329_MONTH_REG) - 1] &
+> > +                          0x1f) - 1;
+> > +     tm->tm_year = bcd2bin(regs[REG_TO_OFFSET(MAX31329_YEAR_REG) - 1]) + 200;
+> > +
+> > +     alarm->enabled = FIELD_GET(MAX31329_INT_EN_A1IE, aie_en);
+> > +     alarm->pending = FIELD_GET(MAX31329_STATUS_A1F, aie_flag) &&
+> > +                                alarm->enabled;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int max31329_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
+> > +{
+> > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
+> > +     const struct rtc_time *tm = &alrm->time;
+> > +     u8 regs[6], year;
+> > +     int ret;
+> > +
+> > +     ret = max31329_get_osc_status(dev);
+> > +     if (ret)
+> > +             return ret;
 >
-> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> ---
->   arch/arm/boot/dts/Makefile                    |   1 +
->   arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts  | 139 ++++++++++++++++++
->   arch/arm64/boot/dts/broadcom/Makefile         |   1 +
->   .../dts/broadcom/bcm2711-rpi-cm4-canopi.dts   |   2 +
->   4 files changed, 143 insertions(+)
->   create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
->   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
+> It is fine to set the alarm while the oscillator is stopped. The usual
+> userspace tools will anyway prevent you from doing that because they
+> first read the time and that call will check.
 >
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 05d8aef6e5d2..8930ab2c132c 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -98,6 +98,7 @@ dtb-$(CONFIG_ARCH_BCM2835) += \
->   	bcm2837-rpi-zero-2-w.dtb \
->   	bcm2711-rpi-400.dtb \
->   	bcm2711-rpi-4-b.dtb \
-> +	bcm2711-rpi-cm4-canopi.dtb \
->   	bcm2711-rpi-cm4-io.dtb \
->   	bcm2835-rpi-zero.dtb \
->   	bcm2835-rpi-zero-w.dtb
-> diff --git a/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts b/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
-> new file mode 100644
-> index 000000000000..52ec5908883c
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
-> @@ -0,0 +1,139 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/dts-v1/;
-> +#include "bcm2711-rpi-cm4.dtsi"
-> +
-> +/ {
-> +	model = "Raspberry Pi Compute Module 4 CANOPi Board";
-> +
-> +	clocks {
-> +		clk_mcp251xfd_osc: mcp251xfd-osc {
-> +			#clock-cells = <0>;
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <20000000>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		led-act {
-> +			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led-pwr {
-> +			label = "PWR";
-> +			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
-> +			default-state = "keep";
-> +			linux,default-trigger = "default-on";
-> +		};
-> +	};
-are these LEDs really populated and wired to the BCM2711? The schematics 
-suggests that they are connected to the STN2120.
-> +};
-> +
-> +&ddc0 {
-> +	status = "okay";
-> +};
-> +
-> +&ddc1 {
-> +	status = "okay";
-> +};
-> +
-> +&hdmi0 {
-> +	status = "okay";
-> +};
-> +
-> +&hdmi1 {
-> +	status = "okay";
-> +};
-I cannot see any graphical interface in the schematics. So why they are 
-enabled?
-> +
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0_gpio44>;
-> +	status = "okay";
-> +	clock-frequency = <100000>;
-> +
-> +	pcf85063a@51 {
-Please use the actual function for the node name like rtc@51
-> +		compatible = "nxp,pcf85063a";
-> +		reg = <0x51>;
-> +	};
-> +};
-> +
-> +&pcie0 {
-> +	pci@0,0 {
-> +		device_type = "pci";
-> +		#address-cells = <3>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		reg = <0 0 0 0 0>;
-> +
-> +		usb@0,0 {
-> +			reg = <0 0 0 0 0>;
-> +			resets = <&reset RASPBERRYPI_FIRMWARE_RESET_ID_USB>;
-> +		};
-> +	};
-> +};
-> +
-> +&pixelvalve0 {
-> +	status = "okay";
-> +};
-> +
-> +&pixelvalve1 {
-> +	status = "okay";
-> +};
-> +
-> +&pixelvalve2 {
-> +	status = "okay";
-> +};
-> +
-> +&pixelvalve4 {
-> +	status = "okay";
-> +};
-Without a graphical interface they shouldn't be necessary?
-> +
-> +&spi {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi0_gpio7>;
-> +	cs-gpios = <&gpio 8 1>, <&gpio 7 1>;
-> +	dmas = <&dma 6>, <&dma 7>;
-> +	dma-names = "tx", "rx";
-> +
-> +	mcp251xfd0: mcp251xfd@0 {
-mcp251xfd0: can@0
-> +		compatible = "microchip,mcp251xfd";
-> +		reg = <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mcp251xfd0_pins>;
-> +		spi-max-frequency = <20000000>;
+> > +
+> > +     regs[REG_TO_OFFSET(MAX31329_SECONDS_REG)] = bin2bcd(tm->tm_sec) & 0x7F;
+> > +     regs[REG_TO_OFFSET(MAX31329_MINUTES_REG)] = bin2bcd(tm->tm_min) & 0x7f;
+> > +     regs[REG_TO_OFFSET(MAX31329_HOURS_REG)] = bin2bcd(tm->tm_hour) & 0x3f;
+> > +     regs[REG_TO_OFFSET(MAX31329_DATE_REG) - 1] = bin2bcd(tm->tm_mday) & 0x3f;
+> > +     regs[REG_TO_OFFSET(MAX31329_MONTH_REG) - 1] = bin2bcd(tm->tm_mon + 1) & 0x1f;
+> > +
+> > +     if (tm->tm_year >= 200)
+> > +             year = bin2bcd(tm->tm_year - 200);
+> > +     else
+> > +             year = bin2bcd(tm->tm_year - 100);
+>
+> This doesn't feel right, doesn't that break start-year?
+>
+> What is the actual time range supported by this RTC? Shouldn't you set
+> the century?
 
-I wasn't good at physics, but having spi-max-frequency equal to the 
-oscillator frequency seems wrong. Is it because of the hack in the 
-downstream kernel which halves the SPI frequency?
+The time range supported by RTC is 2000 to 2199.
+The alarm registers don't have a century bit.
+I have tested the alarm for
+2122-09-17T01:22:00
+2142-09-17T01:22:00
+2160-02-29T00:00:00
+2196-02-29T00:00:00 etc
 
-Just guessing because imx6qp-prtwd3.dts uses 10 MHz.
+I will add another condition such that if the century bit
+from the time register is not set then configuring the
+alarm for the next century is not allowed.
+...
+        if (tm->tm_year >= 200) {
+                year = bin2bcd(tm->tm_year - 200);
+                ret = regmap_read(max31329->regmap, MAX31329_MONTH_REG, &month);
+                if (ret)
+                        return ret;
 
-> +		interrupt-parent = <&gpio>;
-> +		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&clk_mcp251xfd_osc>;
-> +	};
-> +
-> +	mcp251xfd1: mcp251xfd@1 {
-mcp251xfd1: can@1
-> +		compatible = "microchip,mcp251xfd";
-> +		reg = <1>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mcp251xfd1_pins>;
-> +		spi-max-frequency = <20000000>;
-> +		interrupt-parent = <&gpio>;
-> +		interrupts = <22 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&clk_mcp251xfd_osc>;
-> +	};
-> +};
-> +
-> +&gpio {
+                if (!FIELD_GET(MAX31329_MONTH_CENTURY, month))
+                        return -EINVAL;
+        } else {
+                year = bin2bcd(tm->tm_year - 100);
+         }
+...
+>
+> > +     regs[REG_TO_OFFSET(MAX31329_YEAR_REG) - 1] = year;
+> > +
+> > +     ret = regmap_bulk_write(max31329->regmap, MAX31329_ALM1_SEC_REG, regs,
+> > +                             MAX31329_ALM1_SEC_LEN);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     return max31329_alarm_irq_enable(dev, alrm->enabled);
+> > +}
+> > +
+> > +static int max31329_read_time(struct device *dev, struct rtc_time *tm)
+> > +{
+> > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
+> > +     u8 data[7], century = 0;
+> > +     int ret;
+> > +
+> > +     ret = max31329_get_osc_status(dev);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret = regmap_bulk_read(max31329->regmap, MAX31329_SECONDS_REG, data,
+> > +                            sizeof(data));
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     tm->tm_sec = bcd2bin(data[REG_TO_OFFSET(MAX31329_SECONDS_REG)] & 0x7f);
+> > +     tm->tm_min = bcd2bin(data[REG_TO_OFFSET(MAX31329_MINUTES_REG)] & 0x7f);
+> > +     tm->tm_hour = bcd2bin(data[REG_TO_OFFSET(MAX31329_HOURS_REG)] & 0x3f);
+> > +     /* Day of the week in linux range is 0~6 while 1~7 in RTC chip */
+> > +     tm->tm_wday = bcd2bin(data[REG_TO_OFFSET(MAX31329_DAY_REG)] & 0x07) - 1;
+> > +     tm->tm_mday = bcd2bin(data[REG_TO_OFFSET(MAX31329_DATE_REG)] & 0x3f);
+> > +     /* linux tm_mon range:0~11, while month range is 1~12 in RTC chip */
+> > +     tm->tm_mon = bcd2bin(data[REG_TO_OFFSET(MAX31329_MONTH_REG)] & 0x1f) - 1;
+> > +
+> > +     century = data[REG_TO_OFFSET(MAX31329_MONTH_REG)] & MAX31329_MONTH_CENTURY;
+> > +     tm->tm_year = bcd2bin(data[REG_TO_OFFSET(MAX31329_YEAR_REG)]) +
+> > +                          (century ? 200 : 100);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int max31329_set_time(struct device *dev, struct rtc_time *tm)
+> > +{
+> > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
+> > +     u8 regs[7];
+> > +     int ret;
+> > +
+> > +     ret = max31329_get_osc_status(dev);
+> > +     if (ret)
+> > +             return ret;
+> > +
+>
+> Checking the oscillator is not needed here but resetting the status is.
 
-In case there are any GPIOs which should be controlled via user space 
-(like LTE or FAN control), it would be nice to describe them via 
-gpio-line-names.
+Resetting the device will resets the digital block,
+I2C-programmable registers and oscillator also,
+The oscillator is taking some time around 80 milli sec
+to be back as usual.
 
-> +	mcp251xfd0_pins: mcp251xfd0_pins {
-> +		brcm,pins = <27>;
-> +		brcm,function = <BCM2835_FSEL_GPIO_IN>;
-> +	};
+Is it required to reset every time during the time setting?
 
-The vendor specific pin properties are deprecated for BCM2711. We have 
-generic ones for this:
+>
+> > +     regs[REG_TO_OFFSET(MAX31329_SECONDS_REG)] = bin2bcd(tm->tm_sec);
+> > +     regs[REG_TO_OFFSET(MAX31329_MINUTES_REG)] = bin2bcd(tm->tm_min);
+> > +     regs[REG_TO_OFFSET(MAX31329_HOURS_REG)] = bin2bcd(tm->tm_hour);
+> > +     regs[REG_TO_OFFSET(MAX31329_DAY_REG)] = bin2bcd(tm->tm_wday + 1);
+> > +     regs[REG_TO_OFFSET(MAX31329_DATE_REG)] = bin2bcd(tm->tm_mday);
+> > +     regs[REG_TO_OFFSET(MAX31329_MONTH_REG)] = bin2bcd(tm->tm_mon + 1);
+> > +
+> > +     if (tm->tm_year >= 200)
+> > +             regs[REG_TO_OFFSET(MAX31329_MONTH_REG)] |= MAX31329_MONTH_CENTURY;
+> > +     regs[REG_TO_OFFSET(MAX31329_YEAR_REG)] = bin2bcd(tm->tm_year % 100);
+> > +
+> > +     return regmap_bulk_write(max31329->regmap, MAX31329_SECONDS_REG, regs,
+> > +                              MAX31329_WATCH_SEC_LEN);
+> > +}
+> > +
+> > +static const struct rtc_class_ops max31329_rtc_ops = {
+> > +     .read_time = max31329_read_time,
+> > +     .set_time = max31329_set_time,
+> > +     .read_alarm = max31329_read_alarm,
+> > +     .set_alarm = max31329_set_alarm,
+> > +     .alarm_irq_enable = max31329_alarm_irq_enable,
+> > +};
+> > +
+> > +static irqreturn_t max31329_irq_handler(int irq, void *dev_id)
+> > +{
+> > +     struct device *dev = dev_id;
+> > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
+> > +     unsigned int flags, controls;
+> > +     unsigned long events = 0;
+> > +     int ret;
+> > +
+> > +     ret = regmap_read(max31329->regmap, MAX31329_INT_EN_REG, &controls);
+> > +     if (ret) {
+> > +             dev_warn(dev, "Read IRQ control register error %d\n", ret);
+>
+> Drop all of those messages please.
 
-mcp251xfd0_pins: mcp251xfd0_pins {
-         pin-irq {
-             pins = "gpio27";
-             function = "gpio_in";
-         };
-     };
+Sure I will drop all messages.
 
-> +
-> +	mcp251xfd1_pins: mcp251xfd1_pins {
-> +		brcm,pins = <22>;
-> +		brcm,function = <BCM2835_FSEL_GPIO_IN>;
-> +	};
-dito
-> +};
-> +
-> +&vc4 {
-> +	status = "okay";
-> +};
-I think this is also not necessary for a headless device.
-> +
-> +&vec {
-> +	status = "disabled";
-> +};
-> diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
-> index e8584d3b698f..7cd88b8c0345 100644
-> --- a/arch/arm64/boot/dts/broadcom/Makefile
-> +++ b/arch/arm64/boot/dts/broadcom/Makefile
-> @@ -1,6 +1,7 @@
->   # SPDX-License-Identifier: GPL-2.0
->   dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
->   			      bcm2711-rpi-4-b.dtb \
-> +			      bcm2711-rpi-cm4-canopi.dtb \
->   			      bcm2711-rpi-cm4-io.dtb \
->   			      bcm2837-rpi-3-a-plus.dtb \
->   			      bcm2837-rpi-3-b.dtb \
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts b/arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
-> new file mode 100644
-> index 000000000000..e9369aa0eb39
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
-> @@ -0,0 +1,2 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +#include "arm/bcm2711-rpi-cm4-canopi.dts"
+>
+> > +             return IRQ_NONE;
+> > +     }
+> > +
+> > +     ret = regmap_read(max31329->regmap, MAX31329_STATUS_REG, &flags);
+> > +     if (ret) {
+> > +             dev_warn(dev, "Read IRQ flags register error %d\n", ret);
+> > +             return IRQ_NONE;
+> > +     }
+> > +
+> > +     if (flags & MAX31329_STATUS_A1F) {
+> > +             flags &= ~MAX31329_STATUS_A1F;
+> > +             controls &= ~MAX31329_INT_EN_A1IE;
+> > +             events = RTC_AF | RTC_IRQF;
+> > +     }
+> > +
+> > +     if (events) {
+> > +             rtc_update_irq(max31329->rtc, 1, events);
+> > +             regmap_write(max31329->regmap, MAX31329_STATUS_REG, flags);
+> > +             regmap_write(max31329->regmap, MAX31329_INT_EN_REG, controls);
+> > +             return IRQ_HANDLED;
+> > +     }
+> > +
+> > +     return IRQ_NONE;
+> > +}
+> > +
+> > +static void max31329_trickle_config(struct device *dev)
+> > +{
+> > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
+> > +     u8 trickle_reg;
+> > +     int ret, i;
+> > +     u32 ohms;
+> > +
+> > +     /* Configure the trickle charger. */
+> > +     ret = device_property_read_u32(dev, "trickle-resistor-ohms", &ohms);
+> > +     if (ret)
+> > +             return;
+> > +
+> > +     trickle_reg = MAX31329_TRICKLE_EN;
+> > +     for (i = 1; i <= ARRAY_SIZE(max31329_trickle_ohms); i++) {
+> > +             if (max31329_trickle_ohms[i - 1] == ohms) {
+> > +                     trickle_reg |= i;
+> > +                     regmap_write(max31329->regmap, MAX31329_TRICKLE_REG,
+> > +                                  trickle_reg);
+> > +             }
+> > +     }
+> > +}
+> > +
+> > +static int max31329_nvram_write(void *priv, unsigned int offset, void *val,
+> > +                             size_t bytes)
+> > +{
+> > +     struct regmap *max31329_regmap = (struct regmap *)priv;
+> > +
+> > +     return regmap_bulk_write(max31329_regmap,
+> > +                              MAX31329_RAM0_START_REG + offset,
+> > +                              val, bytes);
+> > +}
+> > +
+> > +static int max31329_nvram_read(void *priv, unsigned int offset, void *val,
+> > +                            size_t bytes)
+> > +{
+> > +     struct regmap *max31329_regmap = (struct regmap *)priv;
+> > +
+> > +     return regmap_bulk_read(max31329_regmap,
+> > +                             MAX31329_RAM0_START_REG + offset,
+> > +                             val, bytes);
+> > +}
+> > +
+> > +#ifdef CONFIG_COMMON_CLK
+> > +#define clkout_hw_to_max31329(hw) container_of(hw, struct max31329_data, clkout_hw)
+> > +
+> > +static int clkout_rates[] = {
+> > +     1,
+> > +     4096,
+> > +     8192,
+> > +     32768
+> > +};
+> > +
+> > +static unsigned long max31329_clkout_recalc_rate(struct clk_hw *hw,
+> > +                                              unsigned long parent_rate)
+> > +{
+> > +     struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> > +     int clkout, ret;
+> > +
+> > +     ret = regmap_read(max31329->regmap, MAX31329_RTC_CONFIG2_REG, &clkout);
+> > +     if (ret)
+> > +             return 0;
+> > +
+> > +     return clkout_rates[FIELD_GET(MAX31329_RTC_CFG2_CLKOHZ_MSK, clkout)];
+> > +}
+> > +
+> > +static long max31329_clkout_round_rate(struct clk_hw *hw, unsigned long rate,
+> > +                                    unsigned long *prate)
+> > +{
+> > +     int i;
+> > +
+> > +     for (i = 0; i < ARRAY_SIZE(clkout_rates); i++)
+> > +             if (clkout_rates[i] >= rate)
+> > +                     return clkout_rates[i];
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int max31329_clkout_set_rate(struct clk_hw *hw, unsigned long rate,
+> > +                                 unsigned long parent_rate)
+> > +{
+> > +     struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> > +     int i;
+> > +
+> > +     for (i = 0; i < ARRAY_SIZE(clkout_rates); i++)
+> > +             if (rate == clkout_rates[i])
+> > +                     return regmap_update_bits(max31329->regmap,
+> > +                                               MAX31329_RTC_CONFIG2_REG,
+> > +                                               MAX31329_RTC_CFG2_CLKOHZ_MSK,
+> > +                                               FIELD_PREP(MAX31329_RTC_CFG2_CLKOHZ_MSK,
+> > +                                                          i));
+> > +     return -EINVAL;
+> > +}
+> > +
+> > +static int max31329_clkout_prepare(struct clk_hw *hw)
+> > +{
+> > +     struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> > +
+> > +     return regmap_update_bits(max31329->regmap, MAX31329_RTC_CONFIG2_REG,
+> > +                               MAX31329_RTC_CONFIG2_ENCLKO,
+> > +                               MAX31329_RTC_CONFIG2_ENCLKO);
+> > +}
+> > +
+> > +static void max31329_clkout_unprepare(struct clk_hw *hw)
+> > +{
+> > +     struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> > +
+> > +     regmap_update_bits(max31329->regmap, MAX31329_RTC_CONFIG2_REG,
+> > +                        MAX31329_RTC_CONFIG2_ENCLKO,
+> > +                        FIELD_PREP(MAX31329_RTC_CONFIG2_ENCLKO, 0));
+> > +}
+> > +
+> > +static int max31329_clkout_is_prepared(struct clk_hw *hw)
+> > +{
+> > +     struct max31329_data *max31329 = clkout_hw_to_max31329(hw);
+> > +     int clkout, ret;
+> > +
+> > +     ret = regmap_read(max31329->regmap, MAX31329_RTC_CONFIG2_REG, &clkout);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     return !!(clkout & MAX31329_RTC_CONFIG2_ENCLKO);
+> > +}
+> > +
+> > +static const struct clk_ops max31329_clkout_ops = {
+> > +     .prepare = max31329_clkout_prepare,
+> > +     .unprepare = max31329_clkout_unprepare,
+> > +     .is_prepared = max31329_clkout_is_prepared,
+> > +     .recalc_rate = max31329_clkout_recalc_rate,
+> > +     .round_rate = max31329_clkout_round_rate,
+> > +     .set_rate = max31329_clkout_set_rate,
+> > +};
+> > +
+> > +static int max31329_clkout_register_clk(struct max31329_data *max31329,
+> > +                                     struct i2c_client *client)
+> > +{
+> > +     struct device_node *node = client->dev.of_node;
+> > +     struct clk_init_data init;
+> > +     struct clk *clk;
+> > +
+> > +     init.name = "max31329-clkout";
+> > +     init.ops = &max31329_clkout_ops;
+> > +     init.flags = 0;
+> > +     init.parent_names = NULL;
+> > +     init.num_parents = 0;
+> > +     max31329->clkout_hw.init = &init;
+> > +
+> > +     /* optional override of the clockname */
+> > +     of_property_read_string(node, "clock-output-names", &init.name);
+> > +
+> > +     clk = devm_clk_register(&client->dev, &max31329->clkout_hw);
+> > +     if (!IS_ERR(clk))
+> > +             of_clk_add_provider(node, of_clk_src_simple_get, clk);
+> > +
+> > +     return PTR_ERR(clk);
+> > +}
+> > +#endif
+> > +
+> > +static int max31329_probe(struct i2c_client *client,
+> > +                       const struct i2c_device_id *id)
+> > +{
+> > +     struct max31329_data *max31329;
+> > +     int ret;
+> > +     struct nvmem_config nvmem_cfg = {
+> > +             .name = "max31329_nvram",
+> > +             .word_size = 1,
+> > +             .stride = 1,
+> > +             .size = 64,
+> > +             .type = NVMEM_TYPE_BATTERY_BACKED,
+> > +             .reg_read = max31329_nvram_read,
+> > +             .reg_write = max31329_nvram_write,
+> > +     };
+> > +
+> > +     max31329 = devm_kzalloc(&client->dev, sizeof(*max31329), GFP_KERNEL);
+> > +     if (!max31329)
+> > +             return -ENOMEM;
+> > +
+> > +     max31329->regmap = devm_regmap_init_i2c(client, &config);
+> > +     if (IS_ERR(max31329->regmap)) {
+> > +             dev_err(&client->dev, "regmap init failed\n");
+> > +             return PTR_ERR(max31329->regmap);
+> > +     }
+> > +
+> > +     dev_set_drvdata(&client->dev, max31329);
+> > +
+> > +     max31329->rtc = devm_rtc_allocate_device(&client->dev);
+> > +     if (IS_ERR(max31329->rtc))
+> > +             return PTR_ERR(max31329->rtc);
+> > +
+> > +     max31329->rtc->ops = &max31329_rtc_ops;
+> > +     max31329->irq = client->irq;
+> > +     max31329->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
+> > +     max31329->rtc->range_max = RTC_TIMESTAMP_END_2199;
+> > +
+> > +     if (max31329->irq) {
+> > +             ret = devm_request_threaded_irq(&client->dev, max31329->irq,
+> > +                                             NULL, max31329_irq_handler,
+> > +                                             IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+> > +                                             "max31329", &client->dev);
+> > +             if (ret) {
+> > +                     dev_err(&client->dev, "unable to request IRQ\n");
+>
+> This message can be dropped.
+>
+> > +                     return ret;
+> > +             }
+> > +
+> > +             ret = regmap_write(max31329->regmap, MAX31329_RTC_CONFIG2_REG,
+> > +                                MAX31329_RTC_CONFIG2_ENCLKO);
+>
+> Can you explain what this does because if you are changing a default
+> register value, we will be stuck with that forever and I feel like this
+> is something that should be configurable.
+
+Yeah, I missed this, I shouldn't have set this as default.
+I will remove this since it is already configurable in _clkout_prepare and
+_clkout_unprepare.
+
+
+>
+> > +             if (ret) {
+> > +                     dev_err(&client->dev, "unable to configure INT pin");
+> > +                     return ret;
+> > +             }
+> > +
+> > +             if (device_property_read_bool(&client->dev, "wakeup-source"))
+> > +                     device_init_wakeup(&client->dev, true);
+>
+> wakeup-source should be used when no interrupt is available. When there
+> is a interrupt, we assume the RTC can wake up the device.
+>
+> > +     } else {
+> > +             clear_bit(RTC_FEATURE_ALARM, max31329->rtc->features);
+> > +             clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, max31329->rtc->features);
+> > +     }
+> > +
+> > +     ret = devm_rtc_register_device(max31329->rtc);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     max31329_trickle_config(&client->dev);
+> > +
+> > +     nvmem_cfg.priv = max31329->regmap;
+> > +     devm_rtc_nvmem_register(max31329->rtc, &nvmem_cfg);
+> > +
+> > +#ifdef CONFIG_COMMON_CLK
+> > +     max31329_clkout_register_clk(max31329, client);
+> > +#endif
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static const __maybe_unused struct of_device_id max31329_of_match[] = {
+> > +     { .compatible = "maxim,max31329", },
+> > +     { }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, max31329_of_match);
+> > +
+> > +static struct i2c_driver max31329_driver = {
+> > +     .driver = {
+> > +             .name = "rtc-max31329",
+> > +             .of_match_table = of_match_ptr(max31329_of_match),
+> > +     },
+> > +     .probe = max31329_probe,
+> > +};
+> > +module_i2c_driver(max31329_driver);
+> > +
+> > +MODULE_AUTHOR("Jagath Jog J <jagathjog1996@gmail.com>");
+> > +MODULE_DESCRIPTION("Maxim MAX31329 RTC driver");
+> > +MODULE_LICENSE("GPL");
+> > --
+> > 2.17.1
+> >
+>
+> --
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
