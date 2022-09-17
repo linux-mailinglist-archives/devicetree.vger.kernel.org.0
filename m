@@ -2,39 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B38B05BB8BD
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 16:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 144AC5BB8BF
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 16:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbiIQOZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 10:25:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54594 "EHLO
+        id S229674AbiIQO06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 10:26:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbiIQOZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 10:25:39 -0400
+        with ESMTP id S229447AbiIQO05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 10:26:57 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FEE73335F;
-        Sat, 17 Sep 2022 07:25:29 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F4933A38
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 07:26:55 -0700 (PDT)
 Received: from [88.128.88.164] (helo=phil.localnet)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1oZYkz-0001LQ-HZ; Sat, 17 Sep 2022 16:25:21 +0200
+        id 1oZYmP-0001MV-VK; Sat, 17 Sep 2022 16:26:49 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
+        Jagan Teki <jagan@edgeble.ai>
+Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Finley Xiao <finley.xiao@rock-chips.com>
-Subject: Re: [PATCH v5 4/6] clk: rockchip: Add clock controller support for RV1126 SoC.
-Date:   Sat, 17 Sep 2022 16:25:20 +0200
-Message-ID: <1760564.3VsfAaAtOV@phil>
-In-Reply-To: <CA+VMnFxy5QsoQ=0=qDxhPE=9KxDr_OKSWi9_7tONk0EA12NLFQ@mail.gmail.com>
-References: <20220915163947.1922183-1-jagan@edgeble.ai> <2597191.BddDVKsqQX@phil> <CA+VMnFxy5QsoQ=0=qDxhPE=9KxDr_OKSWi9_7tONk0EA12NLFQ@mail.gmail.com>
+        Jagan Teki <jagan@edgeble.ai>
+Subject: Re: [PATCH v5 5/6] ARM: dts: rockchip: Add Rockchip RV1126 pinctrl
+Date:   Sat, 17 Sep 2022 16:26:48 +0200
+Message-ID: <3182731.oiGErgHkdL@phil>
+In-Reply-To: <20220915163947.1922183-6-jagan@edgeble.ai>
+References: <20220915163947.1922183-1-jagan@edgeble.ai> <20220915163947.1922183-6-jagan@edgeble.ai>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -48,79 +45,269 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Jagan,
 
-Am Samstag, 17. September 2022, 13:58:43 CEST schrieben Sie:
-> On Sat, 17 Sept 2022 at 12:25, Heiko Stuebner <heiko@sntech.de> wrote:
-> >
-> > Am Donnerstag, 15. September 2022, 18:39:45 CEST schrieb Jagan Teki:
-> > > Clock & Reset Unit (CRU) in RV1126 support clocks for CRU
-> > > and CRU_PMU blocks.
-> > >
-> > > This patch is trying to add minimal Clock-Architecture Diagram's
-> > > inferred from [1] authored by Finley Xiao.
-> > >
-> > > [1] https://github.com/rockchip-linux/kernel/blob/develop-4.19/drivers/clk/rockchip/clk-rv1126.c
-> > >
-> > > Cc: linux-clk@vger.kernel.org
-> > > Cc: Michael Turquette <mturquette@baylibre.com>
-> > > Cc: Stephen Boyd <sboyd@kernel.org>
-> > > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > > ---
-> > > Changes for v5:
-> > > - add platform-drivers
-> >
-> > [...]
-> >
-> > > +static void __init rv1126_pmu_clk_init(struct device_node *np)
-> > > +{
-> > > +     struct rockchip_clk_provider *ctx;
-> > > +     void __iomem *reg_base;
-> > > +
-> > > +     reg_base = of_iomap(np, 0);
-> > > +     if (!reg_base) {
-> > > +             pr_err("%s: could not map cru pmu region\n", __func__);
-> > > +             return;
-> > > +     }
-> > > +
-> > > +     ctx = rockchip_clk_init(np, reg_base, CLKPMU_NR_CLKS);
-> > > +     if (IS_ERR(ctx)) {
-> > > +             pr_err("%s: rockchip pmu clk init failed\n", __func__);
-> > > +             return;
-> > > +     }
-> > > +
-> > > +     rockchip_clk_register_plls(ctx, rv1126_pmu_pll_clks,
-> > > +                                ARRAY_SIZE(rv1126_pmu_pll_clks),
-> > > +                                RV1126_GRF_SOC_STATUS0);
-> > > +
-> > > +     rockchip_clk_register_branches(ctx, rv1126_clk_pmu_branches,
-> > > +                                    ARRAY_SIZE(rv1126_clk_pmu_branches));
-> > > +
-> > > +     rockchip_register_softrst(np, 2, reg_base + RV1126_PMU_SOFTRST_CON(0),
-> > > +                               ROCKCHIP_SOFTRST_HIWORD_MASK);
-> > > +
-> > > +     rockchip_clk_of_add_provider(np, ctx);
-> > > +}
-> > > +
-> > > +CLK_OF_DECLARE(rv1126_cru_pmu, "rockchip,rv1126-pmucru", rv1126_pmu_clk_init);
-> >
-> > this one and the one below should go away I think.
-> >
-> > Can you check if that is the case, then I can just drop the two
-> > CLK_OF_DECLARE lines.
-> 
-> I think these are unneeded, it worked w/o these when I built a static.
+Am Donnerstag, 15. September 2022, 18:39:46 CEST schrieb Jagan Teki:
+> Add pinctrl definitions for Rockchip RV1126 and the pinctrl
+> conf's are included it from arm64 rockchip devicetree path.
 
-great to hear that, then I'll drop those 
+I'm not sure I remember the cause. So could you tell me
+why they are needed in the arm64-space as well?
 
 
-> but others are still included.
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/clk/rockchip/clk-rk3568.c#n1636
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/clk/rockchip/clk-rk3568.c#n1679
-
-very likely. As I want to test such changes on hardware, I'm not
-removing them just now but will try to look at that once I'm back
-home from LPC/ELCE.
-
+Thanks
 Heiko
+
+
+
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> ---
+> Changes for v5:
+> - none
+> Changes for v4:
+> - update i2c pins
+> - rebase on -next
+> Changes for v3:
+> - none
+> Changes for v2:
+> - spilt pinctrl as separate patch 
+> 
+>  MAINTAINERS                           |   2 +-
+>  arch/arm/boot/dts/rv1126-pinctrl.dtsi | 212 ++++++++++++++++++++++++++
+>  2 files changed, 213 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/rv1126-pinctrl.dtsi
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 9d7f64dc0efe..9ddb45285676 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2690,7 +2690,7 @@ F:	Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
+>  F:	Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+>  F:	Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>  F:	arch/arm/boot/dts/rk3*
+> -F:	arch/arm/boot/dts/rv1108*
+> +F:	arch/arm/boot/dts/rv11*
+>  F:	arch/arm/mach-rockchip/
+>  F:	drivers/*/*/*rockchip*
+>  F:	drivers/*/*rockchip*
+> diff --git a/arch/arm/boot/dts/rv1126-pinctrl.dtsi b/arch/arm/boot/dts/rv1126-pinctrl.dtsi
+> new file mode 100644
+> index 000000000000..8d660d7c81ba
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/rv1126-pinctrl.dtsi
+> @@ -0,0 +1,212 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2020 Fuzhou Rockchip Electronics Co., Ltd
+> + * Copyright (c) 2022 Edgeble AI Technologies Pvt. Ltd.
+> + */
+> +
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <arm64/rockchip/rockchip-pinconf.dtsi>
+> +
+> +/*
+> + * This file is auto generated by pin2dts tool, please keep these code
+> + * by adding changes at end of this file.
+> + */
+> +&pinctrl {
+> +	emmc {
+> +		/omit-if-no-ref/
+> +		emmc_rstnout: emmc-rstnout {
+> +			rockchip,pins =
+> +				/* emmc_rstn */
+> +				<1 RK_PA3 2 &pcfg_pull_none>;
+> +		};
+> +		/omit-if-no-ref/
+> +		emmc_bus8: emmc-bus8 {
+> +			rockchip,pins =
+> +				/* emmc_d0 */
+> +				<0 RK_PC4 2 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d1 */
+> +				<0 RK_PC5 2 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d2 */
+> +				<0 RK_PC6 2 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d3 */
+> +				<0 RK_PC7 2 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d4 */
+> +				<0 RK_PD0 2 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d5 */
+> +				<0 RK_PD1 2 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d6 */
+> +				<0 RK_PD2 2 &pcfg_pull_up_drv_level_2>,
+> +				/* emmc_d7 */
+> +				<0 RK_PD3 2 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		/omit-if-no-ref/
+> +		emmc_clk: emmc-clk {
+> +			rockchip,pins =
+> +				/* emmc_clko */
+> +				<0 RK_PD7 2 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		/omit-if-no-ref/
+> +		emmc_cmd: emmc-cmd {
+> +			rockchip,pins =
+> +				/* emmc_cmd */
+> +				<0 RK_PD5 2 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +	};
+> +	i2c0 {
+> +		/omit-if-no-ref/
+> +		i2c0_xfer: i2c0-xfer {
+> +			rockchip,pins =
+> +				/* i2c0_scl */
+> +				<0 RK_PB4 1 &pcfg_pull_none_drv_level_0_smt>,
+> +				/* i2c0_sda */
+> +				<0 RK_PB5 1 &pcfg_pull_none_drv_level_0_smt>;
+> +		};
+> +	};
+> +	sdmmc0 {
+> +		/omit-if-no-ref/
+> +		sdmmc0_bus4: sdmmc0-bus4 {
+> +			rockchip,pins =
+> +				/* sdmmc0_d0 */
+> +				<1 RK_PA4 1 &pcfg_pull_up_drv_level_2>,
+> +				/* sdmmc0_d1 */
+> +				<1 RK_PA5 1 &pcfg_pull_up_drv_level_2>,
+> +				/* sdmmc0_d2 */
+> +				<1 RK_PA6 1 &pcfg_pull_up_drv_level_2>,
+> +				/* sdmmc0_d3 */
+> +				<1 RK_PA7 1 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		/omit-if-no-ref/
+> +		sdmmc0_clk: sdmmc0-clk {
+> +			rockchip,pins =
+> +				/* sdmmc0_clk */
+> +				<1 RK_PB0 1 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		/omit-if-no-ref/
+> +		sdmmc0_cmd: sdmmc0-cmd {
+> +			rockchip,pins =
+> +				/* sdmmc0_cmd */
+> +				<1 RK_PB1 1 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		/omit-if-no-ref/
+> +		sdmmc0_det: sdmmc0-det {
+> +			rockchip,pins =
+> +				<0 RK_PA3 1 &pcfg_pull_none>;
+> +		};
+> +		/omit-if-no-ref/
+> +		sdmmc0_pwr: sdmmc0-pwr {
+> +			rockchip,pins =
+> +				<0 RK_PC0 1 &pcfg_pull_none>;
+> +		};
+> +	};
+> +	sdmmc1 {
+> +		/omit-if-no-ref/
+> +		sdmmc1_bus4: sdmmc1-bus4 {
+> +			rockchip,pins =
+> +				/* sdmmc1_d0 */
+> +				<1 RK_PB4 1 &pcfg_pull_up_drv_level_2>,
+> +				/* sdmmc1_d1 */
+> +				<1 RK_PB5 1 &pcfg_pull_up_drv_level_2>,
+> +				/* sdmmc1_d2 */
+> +				<1 RK_PB6 1 &pcfg_pull_up_drv_level_2>,
+> +				/* sdmmc1_d3 */
+> +				<1 RK_PB7 1 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		/omit-if-no-ref/
+> +		sdmmc1_clk: sdmmc1-clk {
+> +			rockchip,pins =
+> +				/* sdmmc1_clk */
+> +				<1 RK_PB2 1 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		/omit-if-no-ref/
+> +		sdmmc1_cmd: sdmmc1-cmd {
+> +			rockchip,pins =
+> +				/* sdmmc1_cmd */
+> +				<1 RK_PB3 1 &pcfg_pull_up_drv_level_2>;
+> +		};
+> +		/omit-if-no-ref/
+> +		sdmmc1_det: sdmmc1-det {
+> +			rockchip,pins =
+> +				<1 RK_PD0 2 &pcfg_pull_none>;
+> +		};
+> +		/omit-if-no-ref/
+> +		sdmmc1_pwr: sdmmc1-pwr {
+> +			rockchip,pins =
+> +				<1 RK_PD1 2 &pcfg_pull_none>;
+> +		};
+> +	};
+> +	uart0 {
+> +		/omit-if-no-ref/
+> +		uart0_xfer: uart0-xfer {
+> +			rockchip,pins =
+> +				/* uart0_rx */
+> +				<1 RK_PC2 1 &pcfg_pull_up>,
+> +				/* uart0_tx */
+> +				<1 RK_PC3 1 &pcfg_pull_up>;
+> +		};
+> +		/omit-if-no-ref/
+> +		uart0_ctsn: uart0-ctsn {
+> +			rockchip,pins =
+> +				<1 RK_PC1 1 &pcfg_pull_none>;
+> +		};
+> +		/omit-if-no-ref/
+> +		uart0_rtsn: uart0-rtsn {
+> +			rockchip,pins =
+> +				<1 RK_PC0 1 &pcfg_pull_none>;
+> +		};
+> +		/omit-if-no-ref/
+> +		uart0_rtsn_gpio: uart0-rts-pin {
+> +			rockchip,pins =
+> +				<1 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +	uart1 {
+> +		/omit-if-no-ref/
+> +		uart1m0_xfer: uart1m0-xfer {
+> +			rockchip,pins =
+> +				/* uart1_rx_m0 */
+> +				<0 RK_PB7 2 &pcfg_pull_up>,
+> +				/* uart1_tx_m0 */
+> +				<0 RK_PB6 2 &pcfg_pull_up>;
+> +		};
+> +	};
+> +	uart2 {
+> +		/omit-if-no-ref/
+> +		uart2m1_xfer: uart2m1-xfer {
+> +			rockchip,pins =
+> +				/* uart2_rx_m1 */
+> +				<3 RK_PA3 1 &pcfg_pull_up>,
+> +				/* uart2_tx_m1 */
+> +				<3 RK_PA2 1 &pcfg_pull_up>;
+> +		};
+> +	};
+> +	uart3 {
+> +		/omit-if-no-ref/
+> +		uart3m0_xfer: uart3m0-xfer {
+> +			rockchip,pins =
+> +				/* uart3_rx_m0 */
+> +				<3 RK_PC7 4 &pcfg_pull_up>,
+> +				/* uart3_tx_m0 */
+> +				<3 RK_PC6 4 &pcfg_pull_up>;
+> +		};
+> +	};
+> +	uart4 {
+> +		/omit-if-no-ref/
+> +		uart4m0_xfer: uart4m0-xfer {
+> +			rockchip,pins =
+> +				/* uart4_rx_m0 */
+> +				<3 RK_PA5 4 &pcfg_pull_up>,
+> +				/* uart4_tx_m0 */
+> +				<3 RK_PA4 4 &pcfg_pull_up>;
+> +		};
+> +	};
+> +	uart5 {
+> +		/omit-if-no-ref/
+> +		uart5m0_xfer: uart5m0-xfer {
+> +			rockchip,pins =
+> +				/* uart5_rx_m0 */
+> +				<3 RK_PA7 4 &pcfg_pull_up>,
+> +				/* uart5_tx_m0 */
+> +				<3 RK_PA6 4 &pcfg_pull_up>;
+> +		};
+> +	};
+> +};
+> 
+
+
 
 
