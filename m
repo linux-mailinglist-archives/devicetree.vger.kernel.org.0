@@ -2,312 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 144AC5BB8BF
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 16:27:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28E895BB8CE
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 16:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbiIQO06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 10:26:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55820 "EHLO
+        id S229593AbiIQOh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 10:37:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiIQO05 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 10:26:57 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F4933A38
-        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 07:26:55 -0700 (PDT)
-Received: from [88.128.88.164] (helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oZYmP-0001MV-VK; Sat, 17 Sep 2022 16:26:49 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229454AbiIQOh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 10:37:58 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF09E2B1A0
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 07:37:56 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id s11so12735773ilt.7
+        for <devicetree@vger.kernel.org>; Sat, 17 Sep 2022 07:37:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=/pyCf9jgr/gGLY5r0aV5BLXgg8Gpjv3LW/5/ohZeuhg=;
+        b=WisMG0jTPnP2xdXMdZZKE7prG5yw34poCEF9EhWlVdGz1PeMBcJbECUVE6G8+RLuj/
+         EPkblAEwusha1AZqAIXaFmeR4kvpqbreatZZZCEXVXdSXrhS38yGSWL7iS2gu7AiCxqT
+         WpON/F0q/S/umIu0uLKl4hG1zUfTDTW5CYz2GKmp8OmsmEq7D2uDTXMctZd1SpmQEP2G
+         5OiNZs9ChDQyMY62VyLH2FuPEUmC5g4PKlMjjjulcIOnh177XJJwhyMNEIe174AbfGgn
+         ofClY0ecEUHgMF2ZxgV+BtK0dQXLE13U6Om33EDQbtslVqzITn3pnHvcOQ3xRTJLAqH+
+         KHAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=/pyCf9jgr/gGLY5r0aV5BLXgg8Gpjv3LW/5/ohZeuhg=;
+        b=o45ILP8+8wiLEnf4JzaavLu53SmeUy9y7OQ0Sl5iokiId7wiKpWTxm/6grzH16gfoB
+         uk9hGGh7vyiy6SSMLYKRqOzb+Pm+C1iV1s3qAWU9UHtBrUHDKOrJANgfVsrd2WtMToZW
+         teffcvxMZC75jeKw8EsS/y/+olEfYuFBLN5CPLNUmsI3B8xsP2N5RIxINvWLes0Gv6Bq
+         qyX+hkvTGF2FWYhC7nKfGIy6KQ9GF8zIOE82RFAd65yAtqDLYd6WBNyuvJTj9n2S0yUV
+         J3Y1PBWkaCqlYB2zsJy15Zd3BAvUW1/bA5ooORW6h5uOhe/5UeSi4L1lnbXDVPOel6G1
+         rH6Q==
+X-Gm-Message-State: ACrzQf1j5I/ZpivlEAS9bi14510pWypmCVDnEwpoNsBPnE50Qpf5TlJ+
+        GtgVnpdLtUj28xSwprLqZ4G+wd25qc5xugrSnpdjIQ==
+X-Google-Smtp-Source: AMsMyM4ZgNMoeoCFz916osy451rmg4TnXsBY5Y/SoavT/6MipQjgjKRhbbfF5AFIdTVZyS7qoN/M9H19kXEMr2SDa7Q=
+X-Received: by 2002:a92:cc51:0:b0:2f1:4eca:9a17 with SMTP id
+ t17-20020a92cc51000000b002f14eca9a17mr4305307ilq.82.1663425476125; Sat, 17
+ Sep 2022 07:37:56 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220915163947.1922183-1-jagan@edgeble.ai> <20220915163947.1922183-6-jagan@edgeble.ai>
+ <3182731.oiGErgHkdL@phil>
+In-Reply-To: <3182731.oiGErgHkdL@phil>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Sat, 17 Sep 2022 20:07:45 +0530
+Message-ID: <CA+VMnFwb0bmvsmAqbfEN12BGsTXfxPs2UimjNf9cAvayKBLrbQ@mail.gmail.com>
+Subject: Re: [PATCH v5 5/6] ARM: dts: rockchip: Add Rockchip RV1126 pinctrl
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kever Yang <kever.yang@rock-chips.com>,
-        Jagan Teki <jagan@edgeble.ai>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Jagan Teki <jagan@edgeble.ai>
-Subject: Re: [PATCH v5 5/6] ARM: dts: rockchip: Add Rockchip RV1126 pinctrl
-Date:   Sat, 17 Sep 2022 16:26:48 +0200
-Message-ID: <3182731.oiGErgHkdL@phil>
-In-Reply-To: <20220915163947.1922183-6-jagan@edgeble.ai>
-References: <20220915163947.1922183-1-jagan@edgeble.ai> <20220915163947.1922183-6-jagan@edgeble.ai>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
+Hi Heiko,
 
-Am Donnerstag, 15. September 2022, 18:39:46 CEST schrieb Jagan Teki:
-> Add pinctrl definitions for Rockchip RV1126 and the pinctrl
-> conf's are included it from arm64 rockchip devicetree path.
+On Sat, 17 Sept 2022 at 19:56, Heiko Stuebner <heiko@sntech.de> wrote:
+>
+> Hi Jagan,
+>
+> Am Donnerstag, 15. September 2022, 18:39:46 CEST schrieb Jagan Teki:
+> > Add pinctrl definitions for Rockchip RV1126 and the pinctrl
+> > conf's are included it from arm64 rockchip devicetree path.
+>
+> I'm not sure I remember the cause. So could you tell me
+> why they are needed in the arm64-space as well?
 
-I'm not sure I remember the cause. So could you tell me
-why they are needed in the arm64-space as well?
+From RK3568 on-wards pinctrl configurations are maintained in common
+conf file rockchip-pinconf.dtsi and it is available in arm64 path
+(arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi). So even for
+RV1126 this patch uses that common conf file as these are common
+across all rockchip platforms.
 
+Let me know if I'm missing anything?
 
-Thanks
-Heiko
-
-
-
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> ---
-> Changes for v5:
-> - none
-> Changes for v4:
-> - update i2c pins
-> - rebase on -next
-> Changes for v3:
-> - none
-> Changes for v2:
-> - spilt pinctrl as separate patch 
-> 
->  MAINTAINERS                           |   2 +-
->  arch/arm/boot/dts/rv1126-pinctrl.dtsi | 212 ++++++++++++++++++++++++++
->  2 files changed, 213 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/rv1126-pinctrl.dtsi
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 9d7f64dc0efe..9ddb45285676 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2690,7 +2690,7 @@ F:	Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
->  F:	Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
->  F:	Documentation/devicetree/bindings/spi/spi-rockchip.yaml
->  F:	arch/arm/boot/dts/rk3*
-> -F:	arch/arm/boot/dts/rv1108*
-> +F:	arch/arm/boot/dts/rv11*
->  F:	arch/arm/mach-rockchip/
->  F:	drivers/*/*/*rockchip*
->  F:	drivers/*/*rockchip*
-> diff --git a/arch/arm/boot/dts/rv1126-pinctrl.dtsi b/arch/arm/boot/dts/rv1126-pinctrl.dtsi
-> new file mode 100644
-> index 000000000000..8d660d7c81ba
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/rv1126-pinctrl.dtsi
-> @@ -0,0 +1,212 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2020 Fuzhou Rockchip Electronics Co., Ltd
-> + * Copyright (c) 2022 Edgeble AI Technologies Pvt. Ltd.
-> + */
-> +
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include <arm64/rockchip/rockchip-pinconf.dtsi>
-> +
-> +/*
-> + * This file is auto generated by pin2dts tool, please keep these code
-> + * by adding changes at end of this file.
-> + */
-> +&pinctrl {
-> +	emmc {
-> +		/omit-if-no-ref/
-> +		emmc_rstnout: emmc-rstnout {
-> +			rockchip,pins =
-> +				/* emmc_rstn */
-> +				<1 RK_PA3 2 &pcfg_pull_none>;
-> +		};
-> +		/omit-if-no-ref/
-> +		emmc_bus8: emmc-bus8 {
-> +			rockchip,pins =
-> +				/* emmc_d0 */
-> +				<0 RK_PC4 2 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d1 */
-> +				<0 RK_PC5 2 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d2 */
-> +				<0 RK_PC6 2 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d3 */
-> +				<0 RK_PC7 2 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d4 */
-> +				<0 RK_PD0 2 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d5 */
-> +				<0 RK_PD1 2 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d6 */
-> +				<0 RK_PD2 2 &pcfg_pull_up_drv_level_2>,
-> +				/* emmc_d7 */
-> +				<0 RK_PD3 2 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		/omit-if-no-ref/
-> +		emmc_clk: emmc-clk {
-> +			rockchip,pins =
-> +				/* emmc_clko */
-> +				<0 RK_PD7 2 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		/omit-if-no-ref/
-> +		emmc_cmd: emmc-cmd {
-> +			rockchip,pins =
-> +				/* emmc_cmd */
-> +				<0 RK_PD5 2 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +	};
-> +	i2c0 {
-> +		/omit-if-no-ref/
-> +		i2c0_xfer: i2c0-xfer {
-> +			rockchip,pins =
-> +				/* i2c0_scl */
-> +				<0 RK_PB4 1 &pcfg_pull_none_drv_level_0_smt>,
-> +				/* i2c0_sda */
-> +				<0 RK_PB5 1 &pcfg_pull_none_drv_level_0_smt>;
-> +		};
-> +	};
-> +	sdmmc0 {
-> +		/omit-if-no-ref/
-> +		sdmmc0_bus4: sdmmc0-bus4 {
-> +			rockchip,pins =
-> +				/* sdmmc0_d0 */
-> +				<1 RK_PA4 1 &pcfg_pull_up_drv_level_2>,
-> +				/* sdmmc0_d1 */
-> +				<1 RK_PA5 1 &pcfg_pull_up_drv_level_2>,
-> +				/* sdmmc0_d2 */
-> +				<1 RK_PA6 1 &pcfg_pull_up_drv_level_2>,
-> +				/* sdmmc0_d3 */
-> +				<1 RK_PA7 1 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		/omit-if-no-ref/
-> +		sdmmc0_clk: sdmmc0-clk {
-> +			rockchip,pins =
-> +				/* sdmmc0_clk */
-> +				<1 RK_PB0 1 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		/omit-if-no-ref/
-> +		sdmmc0_cmd: sdmmc0-cmd {
-> +			rockchip,pins =
-> +				/* sdmmc0_cmd */
-> +				<1 RK_PB1 1 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		/omit-if-no-ref/
-> +		sdmmc0_det: sdmmc0-det {
-> +			rockchip,pins =
-> +				<0 RK_PA3 1 &pcfg_pull_none>;
-> +		};
-> +		/omit-if-no-ref/
-> +		sdmmc0_pwr: sdmmc0-pwr {
-> +			rockchip,pins =
-> +				<0 RK_PC0 1 &pcfg_pull_none>;
-> +		};
-> +	};
-> +	sdmmc1 {
-> +		/omit-if-no-ref/
-> +		sdmmc1_bus4: sdmmc1-bus4 {
-> +			rockchip,pins =
-> +				/* sdmmc1_d0 */
-> +				<1 RK_PB4 1 &pcfg_pull_up_drv_level_2>,
-> +				/* sdmmc1_d1 */
-> +				<1 RK_PB5 1 &pcfg_pull_up_drv_level_2>,
-> +				/* sdmmc1_d2 */
-> +				<1 RK_PB6 1 &pcfg_pull_up_drv_level_2>,
-> +				/* sdmmc1_d3 */
-> +				<1 RK_PB7 1 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		/omit-if-no-ref/
-> +		sdmmc1_clk: sdmmc1-clk {
-> +			rockchip,pins =
-> +				/* sdmmc1_clk */
-> +				<1 RK_PB2 1 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		/omit-if-no-ref/
-> +		sdmmc1_cmd: sdmmc1-cmd {
-> +			rockchip,pins =
-> +				/* sdmmc1_cmd */
-> +				<1 RK_PB3 1 &pcfg_pull_up_drv_level_2>;
-> +		};
-> +		/omit-if-no-ref/
-> +		sdmmc1_det: sdmmc1-det {
-> +			rockchip,pins =
-> +				<1 RK_PD0 2 &pcfg_pull_none>;
-> +		};
-> +		/omit-if-no-ref/
-> +		sdmmc1_pwr: sdmmc1-pwr {
-> +			rockchip,pins =
-> +				<1 RK_PD1 2 &pcfg_pull_none>;
-> +		};
-> +	};
-> +	uart0 {
-> +		/omit-if-no-ref/
-> +		uart0_xfer: uart0-xfer {
-> +			rockchip,pins =
-> +				/* uart0_rx */
-> +				<1 RK_PC2 1 &pcfg_pull_up>,
-> +				/* uart0_tx */
-> +				<1 RK_PC3 1 &pcfg_pull_up>;
-> +		};
-> +		/omit-if-no-ref/
-> +		uart0_ctsn: uart0-ctsn {
-> +			rockchip,pins =
-> +				<1 RK_PC1 1 &pcfg_pull_none>;
-> +		};
-> +		/omit-if-no-ref/
-> +		uart0_rtsn: uart0-rtsn {
-> +			rockchip,pins =
-> +				<1 RK_PC0 1 &pcfg_pull_none>;
-> +		};
-> +		/omit-if-no-ref/
-> +		uart0_rtsn_gpio: uart0-rts-pin {
-> +			rockchip,pins =
-> +				<1 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +	uart1 {
-> +		/omit-if-no-ref/
-> +		uart1m0_xfer: uart1m0-xfer {
-> +			rockchip,pins =
-> +				/* uart1_rx_m0 */
-> +				<0 RK_PB7 2 &pcfg_pull_up>,
-> +				/* uart1_tx_m0 */
-> +				<0 RK_PB6 2 &pcfg_pull_up>;
-> +		};
-> +	};
-> +	uart2 {
-> +		/omit-if-no-ref/
-> +		uart2m1_xfer: uart2m1-xfer {
-> +			rockchip,pins =
-> +				/* uart2_rx_m1 */
-> +				<3 RK_PA3 1 &pcfg_pull_up>,
-> +				/* uart2_tx_m1 */
-> +				<3 RK_PA2 1 &pcfg_pull_up>;
-> +		};
-> +	};
-> +	uart3 {
-> +		/omit-if-no-ref/
-> +		uart3m0_xfer: uart3m0-xfer {
-> +			rockchip,pins =
-> +				/* uart3_rx_m0 */
-> +				<3 RK_PC7 4 &pcfg_pull_up>,
-> +				/* uart3_tx_m0 */
-> +				<3 RK_PC6 4 &pcfg_pull_up>;
-> +		};
-> +	};
-> +	uart4 {
-> +		/omit-if-no-ref/
-> +		uart4m0_xfer: uart4m0-xfer {
-> +			rockchip,pins =
-> +				/* uart4_rx_m0 */
-> +				<3 RK_PA5 4 &pcfg_pull_up>,
-> +				/* uart4_tx_m0 */
-> +				<3 RK_PA4 4 &pcfg_pull_up>;
-> +		};
-> +	};
-> +	uart5 {
-> +		/omit-if-no-ref/
-> +		uart5m0_xfer: uart5m0-xfer {
-> +			rockchip,pins =
-> +				/* uart5_rx_m0 */
-> +				<3 RK_PA7 4 &pcfg_pull_up>,
-> +				/* uart5_tx_m0 */
-> +				<3 RK_PA6 4 &pcfg_pull_up>;
-> +		};
-> +	};
-> +};
-> 
-
-
-
-
+Thanks,
+Jagan.
