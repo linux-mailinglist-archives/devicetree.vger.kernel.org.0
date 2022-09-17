@@ -2,99 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C9F35BB649
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 06:27:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E66555BB6B8
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 08:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229495AbiIQE1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 00:27:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48444 "EHLO
+        id S229457AbiIQGmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 02:42:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbiIQE13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 00:27:29 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6998BAF4BB
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 21:27:26 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id d2so3394983wrq.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Sep 2022 21:27:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=pbHsl2tECTTTzDSCKLbepPPr8s/lKAQ1KAUQEzxdQJg=;
-        b=MzV9zV00zl/KkAyJYTFQdTmLpFCqYCbGs0jcuIdMfgyEn92ABOk503ECbJDEtTteiD
-         DvKecI9GONB1glucZmbmtizUPdp50rv+bwj7VL4TmRPOKqiR5ChTwTKycAMAiTEG/Ep4
-         t4BUK7V07QDo/ULNude7qdDcqJ/pFF/wcbihekuZ3L5XHb7clk9dvZpXkIkPBGddUTc4
-         pwgnZ4Fe+0ktcNOq9Pq79L89GvhJ7jWKBWHjHPTpIgHElYPsjVzQ71MfRVuo1Moama+h
-         dQ6RVmH2z4kM/LwRZhfDMTgZ/KRAYjblAai9hdK40yfrrA30RSBJ6QfXRB/+xpAVrHzG
-         muCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=pbHsl2tECTTTzDSCKLbepPPr8s/lKAQ1KAUQEzxdQJg=;
-        b=8MCl76rpBinHdlHKETH/4BUUMUO8BbcoEBahaXFApd9Sz3XW2SRTQXInwzn6f1inrF
-         1LeOA41EGpHH7fTr2DvnrUz0rhw7zJT+Qv3EUYSMIH9LIwuqN4HtDFEqzyqEnOSOKuTk
-         vrHIVh44B3c8h6qpkYmHo+L0aiJDBHhj2na9m51tGiN/5RDXa+s8uR7VqLwCpKZQ8VUO
-         CX4Ch51ubpcDTS4KXCnQjVeg2JJ9bBYJKLbTtyASl6Gmprs+y68UbLInxENGntD4tA3j
-         wKRdrQ61L/MexQY6Y7ecrxvAucR4HK5UcaI9n/UDbXHGNwHtd69PZPK8nY+g4IXwAXTD
-         vZ1Q==
-X-Gm-Message-State: ACrzQf0VbZriCya8fV6Py0GPiNa7BBxn4mvH0KE2jFbxN10zE5o8Srto
-        Ygi5uDBvEZnr1OpohjguVR7i5rqNRJFWxA==
-X-Google-Smtp-Source: AMsMyM7wAVebTEGhBzlOkQiINkcqOCXRcPuXuKJx40riOJwXBtPjhInX6kPJ7Lc3KPe6cz6zg2NmTw==
-X-Received: by 2002:a5d:424a:0:b0:228:811f:c1a2 with SMTP id s10-20020a5d424a000000b00228811fc1a2mr4497341wrr.262.1663388843900;
-        Fri, 16 Sep 2022 21:27:23 -0700 (PDT)
-Received: from localhost.localdomain (188.red-88-10-59.dynamicip.rima-tde.net. [88.10.59.188])
-        by smtp.gmail.com with ESMTPSA id d7-20020a05600c34c700b003b4ac05a8a4sm5169159wmq.27.2022.09.16.21.27.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Sep 2022 21:27:23 -0700 (PDT)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org, krzk+dt@kernel.org,
-        arinc.unal@arinc9.com, sr@denx.de
-Subject: [PATCH v2 2/2] MAINTAINERS: update Mediatek MT7621/28/88 i2c driver doc file
-Date:   Sat, 17 Sep 2022 06:27:21 +0200
-Message-Id: <20220917042721.527345-2-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220917042721.527345-1-sergio.paracuellos@gmail.com>
-References: <20220917042721.527345-1-sergio.paracuellos@gmail.com>
+        with ESMTP id S229379AbiIQGmj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 02:42:39 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECCD41D0E3;
+        Fri, 16 Sep 2022 23:42:36 -0700 (PDT)
+Received: from [167.98.135.4] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oZRWy-0007CE-Mc; Sat, 17 Sep 2022 08:42:24 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Alessandro Carminati <alessandro.carminati@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: k3566-quartz64-a: adds sata variant
+Date:   Sat, 17 Sep 2022 08:42:23 +0200
+Message-ID: <14722513.tv2OnDr8pf@phil>
+In-Reply-To: <CAMdYzYovjSMZgpWd+ATWsv2piNc2ZtnKfB1cTBukvsnfG41g_w@mail.gmail.com>
+References: <YySdhiqZgXpl0q/g@lab.hqhome163.com> <CAMdYzYovjSMZgpWd+ATWsv2piNc2ZtnKfB1cTBukvsnfG41g_w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mediatek MT7621 i2c driver Bindings have been migrated from text
-to YAML. Hence, properly update this file accordingly.
+Hi Peter,
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
-Changes in v2:
-- Add this new patch to the series to align MAINTAINERS files
-  with new YAML doc
+Am Samstag, 17. September 2022, 03:40:07 CEST schrieb Peter Geis:
+> On Fri, Sep 16, 2022 at 12:06 PM Alessandro Carminati
+> <alessandro.carminati@gmail.com> wrote:
+> >
+> > The Quartz64 board is built upon Rockchip RK3566.
+> > Rockchip RK3566 has two combo phys.
+> > The first connects USB3 and SATA ctrl1, and the second PCIe lane and SATA
+> > ctrl2.
+> > The second combo phy is hardwired to the PCIe slot, where for the first,
+> > the hardware on the board provides both the USB3 connector and the SATA
+> > connector.
+> > This DT allows the users to switch the combo phy to the SATA connector.
+> 
+> Good Evening,
+> 
+> NACK to this whole series. Neither works correctly in the hardware as
+> is,
 
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Just for my understanding for the future, sata not working is that a bug
+in the soc or the board?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 08620b9a44fc..bac21d599181 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12669,7 +12669,7 @@ MEDIATEK MT7621/28/88 I2C DRIVER
- M:	Stefan Roese <sr@denx.de>
- L:	linux-i2c@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/i2c/i2c-mt7621.txt
-+F:	Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
- F:	drivers/i2c/busses/i2c-mt7621.c
- 
- MEDIATEK MT7621 PCIE CONTROLLER DRIVER
--- 
-2.25.1
+> and USB3 was decided to be left enabled as the SATA port will be
+> removed completely in the next revision.
+
+That is good to know. Thanks for the heads up :-)
+
+Heiko
+
+
+> > Signed-off-by: Alessandro Carminati <alessandro.carminati@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/Makefile                   | 1 +
+> >  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts | 9 +++++++++
+> >  2 files changed, 10 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> > index 8c843f6fc3cc..1d5dd91d1a34 100644
+> > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > @@ -60,6 +60,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a-usb3.dts
+> > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a-sata.dts
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-roc-pc.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-cm4.dtb
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
+> > new file mode 100644
+> > index 000000000000..8620df7ec01e
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
+> > @@ -0,0 +1,9 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "rk3566-quartz64-a.dtsi"
+> > +
+> > +&sata1 {
+> > +       status = "okay";
+> > +};
+> > --
+> > 2.34.1
+> >
+> >
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> 
+
+
+
 
