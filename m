@@ -2,89 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AED1E5BB762
-	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 11:02:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7E715BB77E
+	for <lists+devicetree@lfdr.de>; Sat, 17 Sep 2022 11:17:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiIQJCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 05:02:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46048 "EHLO
+        id S229591AbiIQJR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 05:17:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229743AbiIQJCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 05:02:09 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E53A53ED7F;
-        Sat, 17 Sep 2022 02:02:07 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 069F0E000C;
-        Sat, 17 Sep 2022 09:02:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1663405326;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=J3n+5d6gN7wXx4G9cQ9iXiYL0yv1UNBqbWeZnd/o/68=;
-        b=RXzA6qIFzDsgsg5h2XBhvb1k+H7xEflBwJVZ45xk8mKLVkl4d0MnquXtROW6Ek34DjR87e
-        UovNg3uk1IHuVysoPnNV+mpIYm0oMskblt34T8WvqEVpa3mGd4gHAPP7zBvPdKn3AqSN/v
-        mlg5WbKcJVyv7JNz5GT3UnKElGa0lNHFKN6h19KOXLvhXVN/I+vUy5q5EcTfUjoKlZVg2c
-        Lr8fn6u2WKWcOr+SOF2ao+kD59noR7JjXmboeZ53626tXvXJBxLo41pLM6M5aew6B/bkEG
-        nLj44Kdx/HUESXy3u0NpFV3Ufuvt9wlWqIDwXskVnxww0e3zUcQiYdWLnBtWqA==
-Date:   Sat, 17 Sep 2022 11:02:02 +0200
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        with ESMTP id S229510AbiIQJR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 05:17:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9618F45980;
+        Sat, 17 Sep 2022 02:17:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2FDD661325;
+        Sat, 17 Sep 2022 09:17:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79D24C433D6;
+        Sat, 17 Sep 2022 09:17:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663406244;
+        bh=PmSUO1q26n8MEHPMpIYDhyZ/koyt1KmDorHa9IO2m/0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=HA5DdpxrG2ueLj2osB/uvUxmx4+XW5pRkJWkoiyoAXPNlifZ41iDMJ0rSlMVAlY+y
+         fDj++YypuEDBTFhddLNqYs5BPW734ykOeV6rQ7jNfWyJSu8a8YntqFB+gXNzwLdMRx
+         XiBGmw5oFRpNn0jpUAzSwj0dAV0rwEEkSrBsaZT1zL7tvgA3GYqKt2wWJ6Bz9AxLh9
+         VuPLckmtgNiuBPR/X1g97i7b/wmqq22dRr8L1nIKnAg1qbSuUKHqkvea7MWOAR9LrU
+         wrCv2491ajVxmY16LHkli/YpW7Mzs1s1nVwLvmpnEzpUO9UNxx0sMHksDQYvYLKonq
+         RVX7TpWvNAh/w==
+Received: from 185-176-101-241.host.sccbroadband.ie ([185.176.101.241] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oZTww-00AlgE-0k;
+        Sat, 17 Sep 2022 10:17:22 +0100
+Date:   Sat, 17 Sep 2022 10:17:19 +0100
+Message-ID: <87pmful5r4.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Janne Grunau <j@jannau.net>
+Cc:     asahi@lists.linux.dev, Mark Kettenis <kettenis@openbsd.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin =?UTF-8?B?UG92acWhZXI=?= <povik+lin@cutebit.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: Re: [PATCH net-next v4 0/5] net: ipqess: introduce Qualcomm IPQESS
- driver
-Message-ID: <20220917110202.1b8562bf@fedora>
-In-Reply-To: <20220917002031.f7jddzi7ppciusie@skbuf>
-References: <20220909152454.7462-1-maxime.chevallier@bootlin.com>
-        <20220917002031.f7jddzi7ppciusie@skbuf>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
+        Sven Peter <sven@svenpeter.dev>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 00/10] Apple M1 Pro/Max/Ultra device trees
+In-Reply-To: <20220916142550.269905-1-j@jannau.net>
+References: <20220916142550.269905-1-j@jannau.net>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 185.176.101.241
+X-SA-Exim-Rcpt-To: j@jannau.net, asahi@lists.linux.dev, kettenis@openbsd.org, alyssa@rosenzweig.io, marcan@marcan.st, krzysztof.kozlowski+dt@linaro.org, povik+lin@cutebit.org, robh+dt@kernel.org, sven@svenpeter.dev, tglx@linutronix.de, vkoul@kernel.org, devicetree@vger.kernel.org, dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 17 Sep 2022 00:20:31 +0000
-Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
-
-> On Fri, Sep 09, 2022 at 05:24:49PM +0200, Maxime Chevallier wrote:
-> > The DSA out-of-band tagging is still using the skb->headroom part,
-> > but there doesn't seem to be any better way for now without adding
-> > fields to struct sk_buff.  
+On Fri, 16 Sep 2022 15:25:40 +0100,
+Janne Grunau <j@jannau.net> wrote:
 > 
-> Are we on the same page about what is meant by "skb extensions"? See
-> what is provided by CONFIG_SKB_EXTENSIONS, I did not mean it as in
-> "extend struct sk_buff with new fields".
+> Hej,
+> 
+> this series contains device trees for Apple's M1 Pro, Max and Ultra SoCs
+> and devices based on these SoCs.
+> 
+> Quoting from the main commit:
+> 
+> | These SoCs are found in Apple devices with M1 Pro (t6000), M1 Max
+> | (t6001) and M1 Ultra (t6002).
+> |
+> | t6000 is a cut-down version of t6001, so the former just includes the
+> | latter and disables the missing bits (This is currently just one PMGR
+> | node and all of its domains.
+> |
+> | t6002 is two connected t6001 dies. The implementation seems to use
+> | t6001 with blocks disabled (mostly on the second die). MMIO addresses on
+> | the second die have a constant offset. The interrupt controller is
+> | multi-die aware. This setup can be represented in the device tree with
+> | two top level "soc" nodes. The MMIO offset is applied via "ranges" and
+> | devices are included with preproceesor macros to make the node labels
+> | unique and to specify the die number for the interrupt definition.
+> |
+> | Device nodes are distributed over dtsi files based on whether they are
+> | present on both dies or just on the first die. The only execption is the
+> | NVMe controller which resides on the second die. Its nodes are in a
+> | separate file.
+> 
+> This series depends for full functionality on t600x dart support (latest
+> version at
+> https://lore.kernel.org/linux-iommu/20220916094152.87137-1-j@jannau.net/T/#t
+> expected to be picked up for 6.1). This is the usual device tree /
+> driver changes runtime dependency.
+> 
+> Even with the t6000-dart support t600x devices are not terribly useful
+> in upstream. There is no input device support. The laptop's keyboard
+> and touchpad are missing SPI and HID over SPI drivers. The dwc3
+> USB-C ports are not yet added since they require special handling
+> after disconnect. The PCIe based USB xhci controller in the Mac Studio
+> requires firmware downloaded in a similar way as USB_XHCI_PCI_RENESAS.
+> 
+> To simplify dependency handling this series carries mostly identical
+> device tree additions for M1 and M1 Pro/Max/Ultra as part of the in
+> development audio support.
+> 
+> The series passes dtbs_check with 3 additional dt bindings changes:
+> - "dt-bindings: apple,aic: Fix required item "apple,fiq-index" in
+>   affinity description" (merged as da3b1c294d47 in Linus' repo)
+> - "ASoC: Add Apple MCA I2S transceiver bindings" (6ed462d1c11675)
+>   in sound/for-next
+> - "dt-bindings: iommu: dart: add t6000 compatible"
+>   https://lore.kernel.org/linux-iommu/20220901012519.7167-2-j@jannau.net/
+> 
+> New bindings passes dt_binding_check.
 
-Yep, that was one of the other approaches I had in mind, and I've
-submitted a series adding fields to sk_buff in the past which was
-rejected (for good reasons). But indeed that comment on the cover-letter
-was misleading...
+For the whole series:
 
-Thanks,
+Acked-by: Marc Zyngier <maz@kernel.org>
 
-Maxime
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
