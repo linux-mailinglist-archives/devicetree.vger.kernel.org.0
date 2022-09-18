@@ -2,91 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D8CF5BBCB3
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31EDB5BBCB9
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:17:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbiIRJPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 05:15:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43774 "EHLO
+        id S229628AbiIRJR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 05:17:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbiIRJPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:15:20 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C2A521822
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:15:19 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id b24so675597ljk.6
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:15:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=YAmWSRe5Gq0WUlezroDaVszGCMPa6MPQZqhM455jkZs=;
-        b=yWULXnlzzU9J9JFAeAFHcF4ohsKBDJNPio3e5WVpj7TeY7ISuhXGsB1YUVhTFR1kL6
-         PA7lrJ+I9T76dxdfG/Qr0jn0xmX5+ELWU4NKDmek9LNGmJI+nEc4g2t3xioT6ZFFA4Xn
-         ephNeXdxFl2Ppd5TXOeWykGJeg1WKXBA0l1aMssxavcPQYnBNxfXVts0WqNRVyCtG+M9
-         lf3CnmJ6f40dabdeO9YEydoIxvZX7hBgVq6GZaJKdJKq6xKLIqu5FoqhDZ+uK/abu5SP
-         1hZVXt1KuZJqH5Sx9IDishvXBFA6U+0HVmqNof7RYbCOmnNLZhJ8acuAySvjyE176M88
-         ULvg==
+        with ESMTP id S229511AbiIRJR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:17:27 -0400
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9262611A02;
+        Sun, 18 Sep 2022 02:17:26 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id h21so18830850qta.3;
+        Sun, 18 Sep 2022 02:17:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=YAmWSRe5Gq0WUlezroDaVszGCMPa6MPQZqhM455jkZs=;
-        b=c+SkRZWU5VepBJhWqSwaX5xFa4oT4hnkcXChE2wQVATWd3nwLn9Hk2td948P/f+jZv
-         +HjjsC896SC9+w1iIExZmwGtUEYD/GOfGi0lbwr0pWX0fRkuS7Y5QQ8N/jkpswVpyNG7
-         ZwYx1T4O/wnaXjz/U6wi1pldhA8jjM0fZh3bl56xN5e1HlYsTwQja1LTkUeQM+anav4X
-         w9JC+UoQlvelHiQqqn8JKKCG1c9RonhX7Mvrascqysia+F1pwOot1HAoltJCXL5bMGVd
-         Il7KDFGSzxbgGVcnKVjDgzeVykhK6BnUPeSQNODuHCiyquAGzCuKQHrr+jwa+arayMYg
-         0dPQ==
-X-Gm-Message-State: ACrzQf3AZM7U/lKa+O21Z6kUQijXt2O+DttZaricVtkTKBbPgzkb9WK8
-        Jqw1EnQMqGk5CEOoaU9H139ocw==
-X-Google-Smtp-Source: AMsMyM5FhRow4sbIo6dhZeJi0VQSwzplmq2oYHdLZ1viQXHQIF0nIoRivXMABx3g4iq92/PvNdreVA==
-X-Received: by 2002:a2e:9ec3:0:b0:261:c893:679c with SMTP id h3-20020a2e9ec3000000b00261c893679cmr3516027ljk.378.1663492517667;
-        Sun, 18 Sep 2022 02:15:17 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v17-20020ac258f1000000b00499b1873d6dsm4486157lfo.269.2022.09.18.02.15.16
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=OeRjUs/DtBMtRezCJLCKN2z1axmYn75dDl7PJ/c3mYk=;
+        b=U+1t0kcTiEhJw/d/UpLjsLEQnkbd7c7eF5tB1uu1O4KGIkYmc6T0QzPY9+xHFaSauo
+         dhvpNpftpRJaQkwh8B29I1cn/n/QfuRoIuD1obMaXTs/NavTK0BmQTvnSE9omOzwiUFL
+         5pxVU5M7H0cc45wnURS7ROBd3FyYio/Nd7IShVt2kfomL/aw9kJYJGXaFvXib0iIue3K
+         cwSFJ/SgeiRLKeHxN85cP3ZCi9ltRURpKenx1VVmy5qqN0pmq8+MxtwD8sphdqQnGfHq
+         UcitS6k6w2OAhHVOqmKrBc1iokiFyVczHrUtUmkjSivU2afk3a7Qt+8OXYdiQ4+dulHk
+         2Z5g==
+X-Gm-Message-State: ACrzQf2nYzpgpWYIF5Kd92n+mo22XbN5r2jwdOEqeHoVHm86Zl5C2vDK
+        S9SLjU6nH8Y+Pi7CoG1s5+A2b4gl0g0yog==
+X-Google-Smtp-Source: AMsMyM6mSX4WJgoDG6M6gv7UH678zwjqWzj/q/liZ8/me/MICR9hbWSgPe23I38WvMoQ7+CXi7MT7A==
+X-Received: by 2002:ac8:5d49:0:b0:35b:b660:161f with SMTP id g9-20020ac85d49000000b0035bb660161fmr10942161qtx.678.1663492645328;
+        Sun, 18 Sep 2022 02:17:25 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id l20-20020a05620a28d400b006ce1bfbd603sm10463755qkp.124.2022.09.18.02.17.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 02:15:17 -0700 (PDT)
-Message-ID: <d8950be7-7b8b-6ad0-5825-c090e0c9b04d@linaro.org>
-Date:   Sun, 18 Sep 2022 10:15:16 +0100
+        Sun, 18 Sep 2022 02:17:24 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-3457bc84d53so308944197b3.0;
+        Sun, 18 Sep 2022 02:17:24 -0700 (PDT)
+X-Received: by 2002:a81:1691:0:b0:345:17df:4fc6 with SMTP id
+ 139-20020a811691000000b0034517df4fc6mr10064527yww.502.1663492644443; Sun, 18
+ Sep 2022 02:17:24 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v5 2/5] ASoC: dt-bindings: qcom: sort compatible strings
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, bgoswami@quicinc.com,
-        perex@perex.cz, tiwai@suse.com, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220916132427.1845-1-srinivas.kandagatla@linaro.org>
- <20220916132427.1845-3-srinivas.kandagatla@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220916132427.1845-3-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220916100251.20329-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220916100251.20329-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sun, 18 Sep 2022 11:17:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWyD1AZmg1TZ+V9f6AeW5FtzYim828UQO2UhKdag3NbVw@mail.gmail.com>
+Message-ID: <CAMuHMdWyD1AZmg1TZ+V9f6AeW5FtzYim828UQO2UhKdag3NbVw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Adjust whitespace around '{'
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/09/2022 14:24, Srinivas Kandagatla wrote:
-> Sort compatible strings for consistency reasons.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
+On Fri, Sep 16, 2022 at 12:03 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Drop extra space around the '{' sign. No functional changes (same DTB).
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.1.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Gr{oetje,eeting}s,
 
+                        Geert
 
-Best regards,
-Krzysztof
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
