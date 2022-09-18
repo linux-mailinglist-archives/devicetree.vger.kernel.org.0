@@ -2,238 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F72D5BBC99
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 10:57:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB2575BBCA2
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:04:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiIRI5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 04:57:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54288 "EHLO
+        id S229556AbiIRJEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 05:04:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiIRI5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 04:57:30 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F91248DE
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 01:57:27 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id a3so30183004lfk.9
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 01:57:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=46be7+fgoPh3F2vUA+v6CaFGB18NuU1007HMexTsdZc=;
-        b=d/+Iwp31+uK4FmbJRJOghfhKJAdpgGxKWO3MtL8c399NhLzYdlLUpt/h1KqTMD2XXO
-         nx0xd0tHd8Q1Svefzogb1vtuOYbM52sT7AB76G7hs/PMHkSk8hYVhVlq+/WkOlBUfcf+
-         Ur2EsK/4tmnL12/R+gJ7sPOWe7wALzeIn/WcNYLC+0fEF0JSowjLVE6j7k6nL7M1f5XQ
-         2b1/a5ZZjTnXJpqTvOQHfye61LANBfto7eFzLXNpEVrxTdhCMwiBjj9k+8y/frXOrIHB
-         Bip2sGGO31piszPjYzFDGJbRMPb4XgF7TzAKOTsX+i9P2Aku+MdxWJPyQcncE5hrlje7
-         pA1g==
+        with ESMTP id S229532AbiIRJEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:04:47 -0400
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D7D14D32;
+        Sun, 18 Sep 2022 02:04:44 -0700 (PDT)
+Received: by mail-qv1-f48.google.com with SMTP id i15so19875682qvp.5;
+        Sun, 18 Sep 2022 02:04:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=46be7+fgoPh3F2vUA+v6CaFGB18NuU1007HMexTsdZc=;
-        b=dUC6t0kCqi/w0BV9y+iLp/58NAxGgCSsSQfImXyWsPG1HDjz6a60RHXFYG9K3J+LUX
-         nqFdPyTzmo+d+0UVs6STGbwbj4nlHcXdRfyc5DoV6hFFxf6mOym6Pb9lYO9Vf6VcjJE9
-         REEvWm6DSRFN9wcbJrqzL1NIqgLWER/S5KPReA9wGD5E9g/MacdzlKpdGbM/cFiOGxLS
-         9A2ki+eP9UONPOrPtTKIMeIpBIDEwVmK9Cp5huNKdqunOeSF1F+sECjuRZvHQKNJO2MU
-         RN6/CPVkNiZ2+2tVmwIzjfLwQ06IxM2RaaRzf9TSCAFb3cdvNJQHGW7Bwg+ovsDnlmeB
-         3KJQ==
-X-Gm-Message-State: ACrzQf0II+JiHIaMC+GNU03h/14xNdv6Ht/Hs+3ec9JweCaPbWTLSh8N
-        fFVVt9EniuFasBuDxco9C83fCw==
-X-Google-Smtp-Source: AMsMyM7uxpivTqiWMZ3ywvCFvxTHYSEcnXcqpXgkMFAzjLkrdR/hx3NYZjF4hK2SpZ/F39DwFAKqhQ==
-X-Received: by 2002:a05:6512:304d:b0:498:9d7b:43f with SMTP id b13-20020a056512304d00b004989d7b043fmr4073203lfb.48.1663491445524;
-        Sun, 18 Sep 2022 01:57:25 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q16-20020a194310000000b004946aef1814sm4570117lfa.137.2022.09.18.01.57.24
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=9HmDwTA+Ka4IaCuWDPqivTWZiZTApC1d/LLCMUMnlps=;
+        b=PtoD9Ee6oaPlFx9GDCF20opk89Z/wCKlqKLcnpC3xOtCB9XLhLU7E0C0oTcWyUm9ng
+         o27FYsKrqVW5rkgp0oxDY69J+V6sVSCCO5zCQ1uASmbCVklDsujlrYeD2Q+iZ0l7xza6
+         sgZB/PrfgbE+nERPbagoTkChhZzQJXkIY2OT8xxE0EgGl6m7Ppy2F8N8oZ/QEuda5BLN
+         5LIzzE4pj4gWNsEj5Jv4m4+fj2iIebOzEHmsw4qjNSLZ+CSHWmHrMRIWd7Cew+8tRTnz
+         3atwf+LkbZZjSVFfBUx0opBkp9ETX01aaQHKOw77dn/bu8UpUWkdaGEFjkN3u9nqGHA4
+         X+ng==
+X-Gm-Message-State: ACrzQf2D/jkDNcBPf4tqPmz6yB07H5Tf5hlq88vDCrixuA4rc7uGQyvi
+        NxI7K/Wbhh87Cj5VdaxkekUZC5b+eF7RzA==
+X-Google-Smtp-Source: AMsMyM7j8NVk9Y8j94VUu6wZEdZoEcKHYCEM/bmzb/OsbI656ZtLYj41BjeRSEUksxBtUSyQYvlPbg==
+X-Received: by 2002:ad4:5f47:0:b0:4ac:b8de:1484 with SMTP id p7-20020ad45f47000000b004acb8de1484mr10440905qvg.77.1663491883347;
+        Sun, 18 Sep 2022 02:04:43 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id s11-20020a05620a254b00b006cbd92ca141sm10348969qko.133.2022.09.18.02.04.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 01:57:24 -0700 (PDT)
-Message-ID: <83144092-42bf-c6f7-e5d0-3153388ad143@linaro.org>
-Date:   Sun, 18 Sep 2022 09:57:23 +0100
+        Sun, 18 Sep 2022 02:04:42 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-3454e58fe53so308392857b3.2;
+        Sun, 18 Sep 2022 02:04:42 -0700 (PDT)
+X-Received: by 2002:a81:758a:0:b0:345:450b:6668 with SMTP id
+ q132-20020a81758a000000b00345450b6668mr10195037ywc.316.1663491882463; Sun, 18
+ Sep 2022 02:04:42 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: qcom: add sdm670 pinctrl
-Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+References: <20220914134211.199631-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220914134211.199631-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sun, 18 Sep 2022 11:04:31 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVRmuQm5xRgpQurCJTu7goqNi5zj+Q9cLLz_s_p=znbbA@mail.gmail.com>
+Message-ID: <CAMuHMdVRmuQm5xRgpQurCJTu7goqNi5zj+Q9cLLz_s_p=znbbA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: rzg2ul-smarc-som: Drop enabling wdt2
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20220917210915.194840-1-mailingradian@gmail.com>
- <20220917210915.194840-2-mailingradian@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220917210915.194840-2-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/09/2022 22:09, Richard Acayan wrote:
-> There is a new driver for the Snapdragon 670 TLMM (Top-Level Mode
-> Multiplexer). Document it.
-> 
-> Adapted from qcom,sm6350-pinctrl.yaml in the same directory at
-> commit c09acbc499e8 ("dt-bindings: pinctrl: use pinctrl.yaml").
+On Wed, Sep 14, 2022 at 3:43 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> WDT CH2 is specifically to check the operation of Cortex-M33 CPU so
+> don't enable WDT2 by default.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Thank you for your patch. There is something to discuss/improve.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.1.
 
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  .../bindings/pinctrl/qcom,sdm670-tlmm.yaml    | 135 ++++++++++++++++++
->  1 file changed, 135 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
-> new file mode 100644
-> index 000000000000..3b6c381a2148
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-tlmm.yaml
-> @@ -0,0 +1,135 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sdm670-tlmm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. SDM670 TLMM block
-> +
-> +maintainers:
-> +  - Richard Acayan <mailingradian@gmail.com>
-> +
-> +description: |
-> +  This binding describes the Top Level Mode Multiplexer (TLMM) block found
-> +  in the SDM670 platform.
-> +
-> +allOf:
-> +  - $ref: "pinctrl.yaml#"
+Gr{oetje,eeting}s,
 
-Drop quotes/
+                        Geert
 
-> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sdm670-tlmm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts: true
-> +  interrupt-controller: true
-> +  '#interrupt-cells': true
-> +  gpio-controller: true
-> +  gpio-reserved-ranges: true
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Add constraints (minItems: 1, maxItems: half of GPIOs rounded up, so 75
-I guess)
-
-> +  '#gpio-cells': true
-> +  gpio-ranges: true
-> +  wakeup-parent: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +patternProperties:
-> +  '-state$':
-> +    oneOf:
-> +      - $ref: "#/$defs/qcom-sdm670-tlmm-state"
-> +      - patternProperties:
-> +          "-pins$":
-> +            $ref: "#/$defs/qcom-sdm670-tlmm-state"
-> +        additionalProperties: false
-> +
-> +$defs:
-> +  qcom-sdm670-tlmm-state:
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-4][0-9])$"
-> +            - enum: [ ufs_reset, sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data,
-> +                      sdc2_clk, sdc2_cmd, sdc2_data ]
-> +        minItems: 1
-> +        maxItems: 36
-> +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +
-> +        enum: [ adsp_ext, agera_pll, atest_char, atest_tsens, atest_tsens2, atest_usb1, atest_usb10,
-> +                atest_usb11, atest_usb12, atest_usb13, atest_usb2, atest_usb20, atest_usb21,
-> +                atest_usb22, atest_usb23, cam_mclk, cci_async, cci_i2c, cci_timer0, cci_timer1,
-> +                cci_timer2, cci_timer3, cci_timer4, copy_gp, copy_phase, dbg_out, ddr_bist,
-> +                ddr_pxi0, ddr_pxi1, ddr_pxi2, ddr_pxi3, edp_hot, edp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
-> +                gp_pdm0, gp_pdm1, gp_pdm2, gpio, gps_tx, jitter_bist, ldo_en, ldo_update,
-> +                lpass_slimbus, m_voc, mdp_vsync, mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3,
-> +                mss_lte, nav_pps, pa_indicator, pci_e0, pci_e1, phase_flag, pll_bist, pll_bypassnl,
-> +                pll_reset, pri_mi2s, pri_mi2s_ws, prng_rosc, qdss_cti, qdss, qlink_enable,
-> +                qlink_request, qua_mi2s, qup0, qup1, qup10, qup11, qup12, qup13, qup14, qup15, qup2,
-> +                qup3, qup4, qup5, qup6, qup7, qup8, qup9, qup_l4, qup_l5, qup_l6, sdc4_clk,
-> +                sdc4_cmd, sdc4_data, sd_write, sec_mi2s, ter_mi2s, tgu_ch0, tgu_ch1, tgu_ch2,
-> +                tgu_ch3, tsif1_clk, tsif1_data, tsif1_en, tsif1_error, tsif1_sync, tsif2_clk,
-> +                tsif2_data, tsif2_en, tsif2_error, tsif2_sync, uim1_clk, uim1_data, uim1_present,
-> +                uim1_reset, uim2_clk, uim2_data, uim2_present, uim2_reset, uim_batt, usb_phy, vfr_1,
-> +                vsense_trigger, wlan1_adc0, wlan1_adc1, wlan2_adc0, wlan2_adc1, wsa_clk, wsa_data, ]
-> +
-> +
-> +      bias-disable: true
-> +      bias-pull-down: true
-> +      bias-pull-up: true
-> +      drive-strength: true
-> +      input-enable: true
-> +      output-high: true
-> +      output-low: true
-> +
-> +    required:
-> +      - pins
-> +
-> +    allOf:
-> +      - $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-> +      - if:
-> +          properties:
-> +            pins:
-> +              pattern: "^gpio([0-9]|[1-9][0-9]|1[0-4][0-9])$"
-> +        then:
-> +          required:
-> +            - function
-> +
-> +    additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        pinctrl@3400000 {
-
-Use 4 spaces for example indentation.
-
-
-Best regards,
-Krzysztof
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
