@@ -2,81 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8665BBCD0
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 419A45BBCDB
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:38:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229678AbiIRJcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 05:32:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59518 "EHLO
+        id S229558AbiIRJi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 05:38:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbiIRJcJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:32:09 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3506F20BEA
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:32:07 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id i26so42246576lfp.11
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:32:07 -0700 (PDT)
+        with ESMTP id S229495AbiIRJiz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:38:55 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0964C22B14
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:38:54 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id h3so22204614lja.1
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:38:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=jRfTWemLr6NthIORn54hYU2A7/v8x5DzAcs7HxCHtt0=;
-        b=HlQfxtbd4p2nTCd2bPVs6NsfI6/NyeGnjwrBFoVcpxotPfhSAArkhB95zEL3SJtwWH
-         nKbU4i7D1uWa0VIcmsocgNOI5j8nLCBZeesbCENXDcF1i6MGeEqbcwLCu72DtueKZqsm
-         jtkIvLKRSDVLwnehbuBQeENj+01OD3cTC/GTvlQ8NWhUTKnIKSq3joVtgXqUBWsU35eG
-         8GAyHNqI66NlF1adLSwmfxgrsIDk6gpy6BeEZJES5OgsCf1ltuAFyYbOI/UrGoY/Wy2S
-         Lvc2yBC6CQFbYwovKYL5FZiGyHbyy5C9XdT0VYvSIocFky8Z5TafaSdfv0sqLpGilJBS
-         08Lw==
+        bh=HEB1dZFh6VkoKbzfje7Er0GM6QVtyW+eiZmJagi107g=;
+        b=CzWhBYgYvdFJIunEEBf+SPmuuK9hsQ016YhNMThGUC1fP7UuRwT0WUerzIK+bGwtWn
+         rx0EoU3vzqdAk0F6dwu/7wFhmkiL/r/lq5wLOqqhJ+WFgHCrECPjZsZJsQ5DlcWCEsoE
+         Mgk4G8KiJVXrrnpDPXSwsa56ydIVmtscGEZrh8cIZS/Aw38jOc8rPyuBZWF7/5nRKMM2
+         hfhJTEzy+H2u03ypmvbKay5BzZ8ps3mal6V2TCzMe0up67YNraNZGxMl0j5fW45nEZac
+         ESt5v/NVCbSgMmy7UEkfI8BkyWlvPvEFp3iacwh1U8pMzuuzCLZkyNGRWqQldaRSjFfs
+         URKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=jRfTWemLr6NthIORn54hYU2A7/v8x5DzAcs7HxCHtt0=;
-        b=T97dKFU0LSXxPKar44sBNOQrTfctnPsAk4SwXcFJATGSFImQ/mZKdzpI6Xzvuqq8dU
-         XOz8RuLrI6sSAaxSBq1szMJnBKXtu5UdlJMXhkDAojNMwBoVrQNLFO9qKo4qceFZhpJk
-         v8IQNWKlg7lm2IDMYHNDIguNqIfzZ7ayAZh6RE9BvjZboPSOd+eZwA+gVH3fhh1VLe6x
-         FiQJeX9B84zq0we5A44gIauU2O3Ltp/D7eO21Hm8/EFdML/ymOmW1pP/O6CI76wLkJbp
-         kWaUtikgNo0uRcUj7GmzelE/X5ngMCIih9v99b1a80wCFRzu8ZPYrhQPBRTS8FVW71ys
-         3MwQ==
-X-Gm-Message-State: ACrzQf17svPq+nMkIFECltZt0S8xUViGynXW5Zv3n24DihJWVRMIE9dp
-        iqnxfzh5I3s793hi0pWRzQUNew==
-X-Google-Smtp-Source: AMsMyM6LutjsjtgHTG/aA+H1yVQ7fmKsKsJ2x+CnLGCMnrdlR7RpV6+ZVk1d7/e5+0oAOutW6nNuGg==
-X-Received: by 2002:a19:7619:0:b0:49f:6cd7:45c2 with SMTP id c25-20020a197619000000b0049f6cd745c2mr1769336lff.7.1663493525421;
-        Sun, 18 Sep 2022 02:32:05 -0700 (PDT)
+        bh=HEB1dZFh6VkoKbzfje7Er0GM6QVtyW+eiZmJagi107g=;
+        b=GD7al3Z7c0LoSURM6f4BhnJQkrxChowngRsH3VfGcUlE/QuwMphZJTfy4WbuNwAuTA
+         i14Tu6m/JhbMva+hr0Adbjsc2PnNI6rn55pFcZdElGhi8OpzmB7SJIMlC+wYg1JMOq8S
+         4r8W1whmDnBIMYw/gIMxBuUwz/8TTCEFlxxmYswDlI2XSKpMmXo8shBjHbkZ/0XtxVNv
+         DaT1jflfl4so9QNePSXUutxR7Ly+WZ/hz7exwvmwEOlToSBuResnU9qlP2p9+VdVeQbU
+         ppPrATaXUv+/ffbiZZ36G5EYsoRHRkE3jRNXjaD3+Pn6DtBsJTuJlGnhNiA9VEf7j490
+         72bQ==
+X-Gm-Message-State: ACrzQf3gsEyC0Z9bE9DWb7yxEmS/CxSD8x8BHTrg8pkon2lL8WlTiZ7I
+        4uTMmjcqUB/P7Yfk3hwv10IPlQ==
+X-Google-Smtp-Source: AMsMyM59+gIAACAOz0Pj09IsVP4jC7D3hEx4CoPctx8Y09MgJhm0bBnlHW0nHkX1c/5BtZ5lHJLm3Q==
+X-Received: by 2002:a2e:a4b1:0:b0:26c:521:76b5 with SMTP id g17-20020a2ea4b1000000b0026c052176b5mr3629219ljm.258.1663493932400;
+        Sun, 18 Sep 2022 02:38:52 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b20-20020a2ebc14000000b0026c15d60ad1sm78103ljf.132.2022.09.18.02.32.04
+        by smtp.gmail.com with ESMTPSA id p14-20020a2e93ce000000b0026c446918acsm537430ljh.134.2022.09.18.02.38.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 02:32:04 -0700 (PDT)
-Message-ID: <17cacc6f-173f-ad6c-9056-1b17635c984d@linaro.org>
-Date:   Sun, 18 Sep 2022 10:31:55 +0100
+        Sun, 18 Sep 2022 02:38:51 -0700 (PDT)
+Message-ID: <78a0e713-2691-677b-e749-fde609944a7e@linaro.org>
+Date:   Sun, 18 Sep 2022 10:38:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/6] dt-bindings: arm: mediatek: mmsys: change
- compatible for MT8195
+Subject: Re: [PATCH v2 2/4] dt-bindings: arm: mediatek: Add new bindings of
+ MediaTek frequency hopping
 Content-Language: en-US
-To:     Jason-JH Lin <jason-jh.lin@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220915161817.10307-1-jason-jh.lin@mediatek.com>
- <20220915161817.10307-2-jason-jh.lin@mediatek.com>
- <e6921ed7-a14c-aadb-abd4-1e7ee0a63be9@gmail.com>
- <f30bd382eb8923256d6f39342ec7832774c0f547.camel@mediatek.com>
+To:     Johnson Wang <johnson.wang@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        angelogioacchino.delregno@collabora.com, sboyd@kernel.org
+Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Edward-JW Yang <edward-jw.yang@mediatek.com>
+References: <20220914124552.16964-1-johnson.wang@mediatek.com>
+ <20220914124552.16964-3-johnson.wang@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f30bd382eb8923256d6f39342ec7832774c0f547.camel@mediatek.com>
+In-Reply-To: <20220914124552.16964-3-johnson.wang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,91 +80,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/09/2022 04:34, Jason-JH Lin wrote:
-> Hi Matthias,
+On 14/09/2022 13:45, Johnson Wang wrote:
+> Add the new binding documentation for MediaTek frequency hopping
+> and spread spectrum clocking control.
 > 
-> Thanks for the review.
+> Co-developed-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
+> Signed-off-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
+> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+> ---
+>  .../bindings/arm/mediatek/mediatek,fhctl.yaml | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
 > 
-> On Fri, 2022-09-16 at 00:05 +0200, Matthias Brugger wrote:
->>
->> On 15/09/2022 18:18, Jason-JH.Lin wrote:
->>> For previous MediaTek SoCs, such as MT8173, there are 2 display HW
->>> pipelines binding to 1 mmsys with the same power domain, the same
->>> clock driver and the same mediatek-drm driver.
->>>
->>> For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines binding
->>> to
->>> 2 different power domains, different clock drivers and different
->>> mediatek-drm drivers.
->>>
->>> Moreover, Hardware pipeline of VDOSYS0 has these components: COLOR,
->>> CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture
->>> Quality)
->>> and they makes VDOSYS0 supports PQ function while they are not
->>> including in VDOSYS1.
->>>
->>> Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
->>> component). It makes VDOSYS1 supports the HDR function while it's
->>> not
->>> including in VDOSYS0.
->>>
->>> To summarize0:
->>> Only VDOSYS0 can support PQ adjustment.
->>> Only VDOSYS1 can support HDR adjustment.
->>>
->>> Therefore, we need to separate these two different mmsys hardwares
->>> to
->>> 2 different compatibles for MT8195.
->>>
->>> Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add mt8195
->>> SoC binding")
->>> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
->>> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
->>> ---
->>>   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        |
->>> 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
->>> l
->>> b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
->>> l
->>> index 6ad023eec193..0e267428eaa6 100644
->>> ---
->>> a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
->>> l
->>> +++
->>> b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
->>> l
->>> @@ -31,7 +31,7 @@ properties:
->>>                 - mediatek,mt8183-mmsys
->>>                 - mediatek,mt8186-mmsys
->>>                 - mediatek,mt8192-mmsys
->>> -              - mediatek,mt8195-mmsys
->>> +              - mediatek,mt8195-vdosys0
->>
->> Nack, we miss the fallback compatible, as I already said twice.
->>
->> Regards,
->> Matthias
-> 
-> I'm sorry this happened again.
-> I'll keep the compatible "mediatek,mt8195-mmsys" at next version.
-> 
-> The patch "dt-bindings: arm: mediatek: mmsys: remove the unused
-> compatible for mt8195" should be sent after accepting the vdosys1
-> series, right?
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
+> new file mode 100644
+> index 000000000000..7b0fd0889bb6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
 
-I don't think there will be no such patch...
+Name of file matching compatible.
 
-You need to add a bindings change which will accept device nodes like:
-foo {
-  compatible = "mediatek,mt8195-vdosys0", "mediatek,mt8195-mmsys";
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,fhctl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek frequency hopping and spread spectrum clocking control
+> +
+> +maintainers:
+> +  - Edward-JW Yang <edward-jw.yang@mediatek.com>
+> +
+> +description: |
+> +  Frequency hopping control (FHCTL) is a piece of hardware that control
+> +  some PLLs to adopt "hopping" mechanism to adjust their frequency.
+> +  Spread spectrum clocking (SSC) is another function provided by this hardware.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8186-fhctl
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: Phandles of the PLL with FHCTL hardware capability.
 
-}
+You need constraints here.
 
-Example-schema shows how to do it.
+> +
+> +  mediatek,hopping-ssc-percents:
+
+That's not the correct unit suffix name.
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+
+
+> +    description: The percentage of spread spectrum clocking for one PLL.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
 Best regards,
 Krzysztof
