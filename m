@@ -2,272 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7CE25BBAF1
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 01:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 927975BBB54
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 05:44:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbiIQXHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 19:07:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40846 "EHLO
+        id S229564AbiIRDoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Sep 2022 23:44:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbiIQXHG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 19:07:06 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43FBC1C920;
-        Sat, 17 Sep 2022 16:07:05 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B672E415;
-        Sun, 18 Sep 2022 01:07:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1663456023;
-        bh=xXOC9Hvy+1yChMtVh2/44Mg49dOFOxxcHPt9npGQ08M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Soo4FPc3wECDlBOI8P2GWP5sLnVRSoZKcZFGcYc1W3wgr0v/Za9x49js23N3dSnCq
-         UhjDRIAS5/4460a59oHrFkdK7EBaclAxJD+FWP+B+zQHI1lSsuuU57NdOdW6d1oXBd
-         3Y85dlhnTC6vRbL7xGAgSl8nX1FVc4IdoIBugSMM=
-Date:   Sun, 18 Sep 2022 02:06:50 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil@xs4all.nl,
-        jacopo@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v2 3/4] media: dt-bindings: add bindings for Toshiba
- TC358746
-Message-ID: <YyZTCsflWtUbo2ld@pendragon.ideasonboard.com>
-References: <20220916134535.128131-1-m.felsch@pengutronix.de>
- <20220916134535.128131-4-m.felsch@pengutronix.de>
+        with ESMTP id S229498AbiIRDod (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 23:44:33 -0400
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C6720B;
+        Sat, 17 Sep 2022 20:44:27 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id D5193320099A;
+        Sat, 17 Sep 2022 23:44:23 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Sat, 17 Sep 2022 23:44:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxfierke.com;
+         h=cc:cc:content-transfer-encoding:date:date:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1663472663; x=1663559063; bh=qyQljdV9br
+        pQJ7X55JsdBpi3YH2RlBhC12hsk3NzNdM=; b=tliP6Vx6i4qWtfuv1MT5mY58wF
+        VprFpjMbV2maKU4X7ev5oWu1FPwRARQvELBwizF9bWGy1XTuhZi4BMld27/og7M4
+        M8b1nfr0wpUfHhP/w23HiyZGI7QeaUKkrp5GNe8DzlaTTZcxl//rSMVST/wusLwS
+        n5okqhk6qqdIhGDQhx/ZstMfypHzSwS10JcSjko5bmLJbmRduuc34YoxDAqM6AQS
+        MmDe0iUjCs3R1izHsv7iL0/jGxoV62ekczfjq3qJ9VR3eIVKRXRUSzSLBUEOqv/U
+        +bnl+ci5zNFr0lCHl+o202eG4OohVvy8JHwPajB4Or7lXXTEIgg3z39PL2Vw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+        1663472663; x=1663559063; bh=qyQljdV9brpQJ7X55JsdBpi3YH2RlBhC12h
+        sk3NzNdM=; b=JnPzx/8N42/1t3r7Guau990PpqWPol35q2YGHlKhEzdM+u7PysY
+        EsHXiz4p999PZCFm1s9sc4yVCRgtJYhAmkiOmZEZ4Qq8vH+yKhiEodq+K9fzzYHW
+        q/6wxgIlG60CoNiZprlNQbHTp78WjCoYbAKJQcGUelOhHT6i2z7tVwx8skBTJeBe
+        v48L7jpHFycevc6lhd7XVE5zUqCOLE5ccHtsTvSpBAFBDAOGgL3tGpftDBL5vKuN
+        2YmdrNOa43xDVFGkOT1U/Vp8iVNmlXtyiHBKY6LAoU+QG+XbpxoZ/6IpVlZmgSv6
+        a/AZlfgx0QXOuShWkITRS57dv1S8jYdzWQQ==
+X-ME-Sender: <xms:FpQmY0MMBkdOqIYk2IL01KuYGVZckUEU_FsMxR-apwWocZKqUhg_JQ>
+    <xme:FpQmY6-GUVxyyhE8SQSaIa3OhzJKjL-kYBip0WTuNYYlbGHIP9EfUliMnrfoPG_Dc
+    srP-kgk-KA7XXIuXRw>
+X-ME-Received: <xmr:FpQmY7Tqa3AlediiJBdsXrBT3AObmSG7AWyCHRpiJRh6mlCCRuI67m2lKW4jXi3MZWkktLVY9Fnu4Ew9MfzGRcqB6uzO2yxW3gU7LvpGfBOmmt05Sg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedvfedgjeehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevufffkffoggfgsedtkeertd
+    ertddtnecuhfhrohhmpeforgigucfhihgvrhhkvgcuoehmrgigsehmrgigfhhivghrkhgv
+    rdgtohhmqeenucggtffrrghtthgvrhhnpedvtdffffegvdejheehudegkeefgffggffgge
+    dutdeiheduheehhfefgeekgfektdenucffohhmrghinhepghhithhhuhgsrdgtohhmnecu
+    vehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgiesmh
+    grgihfihgvrhhkvgdrtghomh
+X-ME-Proxy: <xmx:FpQmY8sSpI24hC4OFJGyBEEa0D6-3mrgTrh67NmuTl9Wv52-YBqqHg>
+    <xmx:FpQmY8cmJlEc3iqIKNGTnTCqH82nWnhvk99bov-DAS1IseUZYN6HIw>
+    <xmx:FpQmYw3pb6ZDZ-iKGeHBy_2WrdaSv1AYCb_8M_FyIc6SDCfn6wZf2Q>
+    <xmx:F5QmYy0cbDpwLTiGekHw04CJnEfU-MybNImgVBLoa32b0FZC2zncOA>
+Feedback-ID: idee9475d:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 17 Sep 2022 23:44:22 -0400 (EDT)
+From:   Max Fierke <max@maxfierke.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Max Fierke <max@maxfierke.com>
+Subject: [PATCH v3 0/4] Introduce ClockworkPi CWD686 DRM panel driver
+Date:   Sat, 17 Sep 2022 22:44:11 -0500
+Message-Id: <20220918034415.74641-1-max@maxfierke.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220916134535.128131-4-m.felsch@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+The ClockworkPi DevTerm (all models) uses a 6.86" IPS display
+of unknown provenance, which uses the Chipone ICNL9707 IC driver[1].
 
-Thank you for the patch.
+The display panel I have has two model numbers: TXW686001 and WTL068601G,
+but cannot find any manufacturer associated with either, so opting for the
+ClockworkPi model number.
 
-On Fri, Sep 16, 2022 at 03:45:34PM +0200, Marco Felsch wrote:
-> Add the bindings for the Toshiba TC358746 Parallel <-> MIPI-CSI bridge
-> driver.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> Changelog:
-> 
-> v2:
-> - addded Robs r-b
-> - s/than/then/
-> - added hsync/vsync/bus-type, make hsync/vsync required
-> - fix example indent
-> 
->  .../bindings/media/i2c/toshiba,tc358746.yaml  | 179 ++++++++++++++++++
->  1 file changed, 179 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
-> new file mode 100644
-> index 000000000000..1fa574400bc2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
-> @@ -0,0 +1,179 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/toshiba,tc358746.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba TC358746 Parallel to MIPI CSI2 Bridge
-> +
-> +maintainers:
-> +  - Marco Felsch <kernel@pengutronix.de>
-> +
-> +description: |-
-> +  The Toshiba TC358746 converts a parallel video stream into a MIPI CSI-2
-> +  stream. The direction can be either parallel-in -> csi-out or csi-in ->
-> +  parallel-out The chip is programmable trough I2C and SPI but the SPI
-> +  interface is only supported in parallel-in -> csi-out mode.
-> +
-> +  Note that the current device tree bindings only support the
-> +  parallel-in -> csi-out path.
-> +
-> +properties:
-> +  compatible:
-> +    const: toshiba,tc358746
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      The phandle to the reference clock source. This corresponds to the
-> +      hardware pin REFCLK.
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: refclk
-> +
-> +# The bridge can act as clock provider for the sensor. To enable this support
-> +# #clock-cells must be specified. Attention if this feature is used then the
-> +# mclk rate must be at least: (2 * link-frequency) / 8
-> +#                             `------------------´   ^
-> +#                             internal PLL rate   smallest possible mclk-div
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clock-output-names:
-> +    description:
-> +      The clock name of the MCLK output, the default name is tc358746-mclk.
-> +    maxItems: 1
-> +
-> +  vddc-supply:
-> +    description: Digital core voltage supply, 1.2 volts
-> +
-> +  vddio-supply:
-> +    description: Digital I/O voltage supply, 1.8 volts
-> +
-> +  vddmipi-supply:
-> +    description: MIPI CSI phy voltage supply, 1.2 volts
-> +
-> +  reset-gpios:
-> +    description:
-> +      The phandle and specifier for the GPIO that controls the chip reset.
-> +      This corresponds to the hardware pin RESX which is physically active low.
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        description: Input port
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              hsync-active:
-> +                enum:
-> +                  - 0 # Hvalid active high
-> +              vsync-active:
-> +                enum:
-> +                  - 0 # Vvalid active high
-> +              bus-type:
-> +                enum:
-> +                  - 5 # Parallel
-> +
-> +            required:
-> +              - hsync-active
-> +              - vsync-active
+This driver is based on the GPL-licensed driver released by ClockworkPi[1],
+authored by Pinfan Zhu, with some additional cleanup, rotation support,
+and display sleep re-enabling done by me.
 
-Let's make bus-type required too, to prepare for BT.656 support.
+[1] https://github.com/clockworkpi/DevTerm/blob/main/Schematics/ICNL9707_Datasheet.pdf
+[2] https://github.com/clockworkpi/DevTerm/blob/main/Code/patch/armbian_build_a06/patch/kernel-004-panel.patch
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Thanks to Krzysztof Kozlowski, Rob Herring, and Sam Ravnborg for their
+prior reviews and apologies for the long delay between patch set versions.
 
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        description: Output port
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              clock-noncontinuous: true
-> +              link-frequencies: true
-> +
-> +            required:
-> +              - data-lanes
-> +              - link-frequencies
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - vddc-supply
-> +  - vddio-supply
-> +  - vddmipi-supply
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      csi-bridge@e {
-> +        compatible = "toshiba,tc358746";
-> +        reg = <0xe>;
-> +
-> +        clocks = <&refclk>;
-> +        clock-names = "refclk";
-> +
-> +        reset-gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
-> +
-> +        vddc-supply = <&v1_2d>;
-> +        vddio-supply = <&v1_8d>;
-> +        vddmipi-supply = <&v1_2d>;
-> +
-> +        /* sensor mclk provider */
-> +        #clock-cells = <0>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          /* Input */
-> +          port@0 {
-> +            reg = <0>;
-> +            tc358746_in: endpoint {
-> +              remote-endpoint = <&sensor_out>;
-> +              hsync-active = <0>;
-> +              vsync-active = <0>;
-> +            };
-> +          };
-> +
-> +          /* Output */
-> +          port@1 {
-> +            reg = <1>;
-> +            tc358746_out: endpoint {
-> +              remote-endpoint = <&mipi_csi2_in>;
-> +              data-lanes = <1 2>;
-> +              clock-noncontinuous;
-> +              link-frequencies = /bits/ 64 <216000000>;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
+Changes in v3:
+ - dt-bindings: add missing lines for spacing
+
+Changes in v2:
+ - dt-bindings: remove redundant backlight example
+ - add missing regulators
+ - remove some unused properties from definition (e.g. enable_gpio, supply)
+ - reorder includes
+ - remove redundant ctx->backlight in favor of backlight through drm_panel_of_backlight
+ - remove now-unneeded ctx->enabled and enable/disable hooks
+ - replace ICNL9707_DCS macro with mipi_dsi_dcs_write_seq
+ - use dev_err_probe instead of checking EPROBE_DEFER
+ - fixed return type of cwd686_remove to be void following changes to mipi_dsi_driver
+ - add .get_orientation callback
+
+Max Fierke (4):
+  dt-bindings: vendor-prefixes: Add prefix for ClockworkPi
+  dt-bindings: display: Add ClockworkPi CWD686 panel
+  drm: panel: Add driver for ClockworkPi cwd686 panel
+  drm/panel: clockworkpi-cwd686: Implement .get_orientation callback
+
+ .../display/panel/clockworkpi,cwd686.yaml     |  65 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/gpu/drm/panel/Kconfig                 |  12 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-clockworkpi-cwd686.c  | 456 ++++++++++++++++++
+ 5 files changed, 536 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/clockworkpi,cwd686.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-clockworkpi-cwd686.c
 
 -- 
-Regards,
-
-Laurent Pinchart
+2.37.2
