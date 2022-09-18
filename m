@@ -2,75 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CE105BBCE6
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E2B5BBCEC
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:49:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiIRJqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 05:46:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45362 "EHLO
+        id S229495AbiIRJtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 05:49:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiIRJqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:46:51 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B93C23BCD
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:46:50 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id f9so41566593lfr.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:46:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=21aUxLHH4VXgjMlvV9m7Z7/X0EZG+kNnGLJcXXOrK0w=;
-        b=ojsFkgiYK/Dv76eEBErG7KtJ8odVR/65kpeulrSdhhYWX8kIEKYdw5PNfb7Dp7Dq2a
-         q928bdTuwJXy1iq3uNQJ3TAFOb1fq6dbvQMFHpi4SyJ8bVibWpHoor+IaDi7s6hIQzP7
-         q69+wQaFjy7Lo36CyBOINyK6v0nCl1lnh/b5CD7DfrupZA40VycjdoJ656EvloixrPXE
-         Er5Js45KbtqSR6zdYWlPOmBr+ajUBQUqe05VQO7/NoC2WKsKoz6juWmP1tS5P8BezEm9
-         yYEL6ZFUbEiioffY/CdwB7/B+vY35D4FrZog2CJ8LpXBtgfLVUWlcY0PUVPpiggXQ5zU
-         quDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=21aUxLHH4VXgjMlvV9m7Z7/X0EZG+kNnGLJcXXOrK0w=;
-        b=js69U2v0HyNOhwD9olrBXzY2cafohoG+GL5DCFVnBEcm7C9z46p4Ybo60k+Bfc/Wu9
-         7s9l8E6Dtdp2a8SWrV1Ra0fVA4EV2Cr95K9NoJ95fNvQP372ygsTnJtpuKOHDjTm7w4G
-         brNAbjcTM3SGXj8jSpkVWtNZhoaHuhtdPSoltgvgyiHYeD6PQPyOSOQZHKR8FSZiEKcG
-         ABNM5dJdJxppWWwwuu6KshYP1RH92uJY1Xf1U+zNwPCIHAiIxeom6T7Z7SylVF9GIlBd
-         +RrUftObHWKZsWIy7hokXv2MhW7gsh3cqrIDizMQohNcymBprnXCJvZeScvc7hyoHtga
-         o66w==
-X-Gm-Message-State: ACrzQf25oj90F0CBFvFmmqQxNQHEe3bh4MelsPCfphj3JrisHImfPGzt
-        gUCjkL9MSz5Fe4YIfuCGVrWIwWXltcgkBA==
-X-Google-Smtp-Source: AMsMyM77GnrmytRKpKeUnNWN3mHl280lQHxGajtZZSoJ7Z4ejAWff2bBcL4vI9nA4/cAbc9husyHnA==
-X-Received: by 2002:a05:6512:3502:b0:496:272:6258 with SMTP id h2-20020a056512350200b0049602726258mr3985166lfs.429.1663494408681;
-        Sun, 18 Sep 2022 02:46:48 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y27-20020a056512045b00b00499019c34a3sm4577639lfk.184.2022.09.18.02.46.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 02:46:48 -0700 (PDT)
-Message-ID: <66c6349e-c841-e895-2c42-4e341abbe525@linaro.org>
-Date:   Sun, 18 Sep 2022 10:46:47 +0100
+        with ESMTP id S229633AbiIRJtb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:49:31 -0400
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.221.58])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BC861C4;
+        Sun, 18 Sep 2022 02:49:27 -0700 (PDT)
+X-QQ-mid: bizesmtp64t1663494563tqmiobyb
+Received: from localhost.localdomain ( [125.70.163.64])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Sun, 18 Sep 2022 17:49:22 +0800 (CST)
+X-QQ-SSF: 01000000002000E0G000B00A0000000
+X-QQ-FEAT: 96VJ2VzXm/o4MkgZbjD89crh9aBQbuvCzUolp+8kUKNEvhOMv10Dyo7/pNjwR
+        pLif67YN4n8mLYl5wnI0JMpHgTAoAZ2iX8LxVraCIFrYu+keDGZF391HWmfDCw06Va8Ogsp
+        HG3IyH9t83T912bhiPkvP34gUEkwbzC5Xr6SEgwShh5wvT31DndxNHUVw/WHFHASrKieXdh
+        SzWkpBuKOurLStBPq1uy4bzxhDjoYn/sSpob4iZdPOo15mX7zF01s4G1FsKVyiWyCMxPSXl
+        5dWe2UCNjcomoZtyYaFjWVfzKRghVJ2p0ob5tpgzFg2x/sRq4xtTzzdqVkkpg1rY6OYYAXB
+        yjS0cvtBIaG8EFjbgWaDgKmreneaV+bGupYL9mfYytQG7ZrrmnnrjhH22XePQ==
+X-QQ-GoodBg: 0
+From:   Jilin Yuan <yuanjilin@cdjrlc.com>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jilin Yuan <yuanjilin@cdjrlc.com>
+Subject: [PATCH] of: device: fix repeated words in comments
+Date:   Sun, 18 Sep 2022 17:49:15 +0800
+Message-Id: <20220918094915.19567-1-yuanjilin@cdjrlc.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 6/7] dt-bindings: spi: spi-zynqmp-qspi: Add support for
- Xilinx Versal QSPI
-Content-Language: en-US
-To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     git@amd.com, michal.simek@amd.com, linux-spi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, akumarma@amd.com
-References: <20220915120750.1424984-1-amit.kumar-mahapatra@xilinx.com>
- <20220915120750.1424984-7-amit.kumar-mahapatra@xilinx.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220915120750.1424984-7-amit.kumar-mahapatra@xilinx.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:cdjrlc.com:qybglogicsvr:qybglogicsvr4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,31 +46,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2022 13:07, Amit Kumar Mahapatra wrote:
-> Add new compatible to support QSPI controller on Xilinx Versal SoCs.
-> 
-> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+Delete the redundant word 'of'.
 
-Use subject prefixes matching the subsystem (git log --oneline -- ...).
+Signed-off-by: Jilin Yuan <yuanjilin@cdjrlc.com>
+---
+ drivers/of/device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> ---
->  Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> index ea72c8001256..37108bfdcd81 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> @@ -14,7 +14,9 @@ allOf:
->  
->  properties:
->    compatible:
-> -    const: xlnx,zynqmp-qspi-1.0
-> +    enum:
-> +      - xlnx,zynqmp-qspi-1.0
-> +      - xlnx,versal-qspi-1.0
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index 75b6cbffa755..6158173b92ad 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -19,7 +19,7 @@
+ 
+ /**
+  * of_match_device - Tell if a struct device matches an of_device_id list
+- * @matches: array of of device match structures to search in
++ * @matches: array of device match structures to search in
+  * @dev: the of device structure to match against
+  *
+  * Used by a driver to check whether an platform_device present in the
+-- 
+2.36.1
 
-Alphabetical order please.
-
-Best regards,
-Krzysztof
