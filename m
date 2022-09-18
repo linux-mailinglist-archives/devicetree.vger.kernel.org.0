@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72DC05BBD2D
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:55:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCDD95BBD2F
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229923AbiIRJzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 05:55:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52384 "EHLO
+        id S229985AbiIRJ46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 05:56:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbiIRJyd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:54:33 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2934928735
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:51:14 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id z25so42327028lfr.2
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:51:14 -0700 (PDT)
+        with ESMTP id S230006AbiIRJ4O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:56:14 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 044FB2B24A
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:53:01 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id z25so42329182lfr.2
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:53:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=PKBg5ng7PnWT5G7IkXOVZef3/wyXg4tjFKeAtGbo5Lk=;
-        b=Wp0ZjomX491U2rtytMCDb+CR94gy+1DIlxKK12p7ND8SR/hx3X3hdiRuZ1MbpphJTq
-         txKv40nzT3myoEkSuZB1SCD7vGdILwv6DZ4hzYb4gxbV4wsNef/3Lx435X7KZ3k1YIvH
-         y1EQPXAGFXLS1Q2xdTZJLGMegi4lSAkwQ+UHP9fasg0ftekSOBRryTwXZYncYwsfLJru
-         Nm+ipzZAl93L75RmHQ006JdD2JgzIkpfYFjLjLJQ01dkevVf59iASAz0N5YS9fFD+4uG
-         uUQ7oznjf8vQ+duVO8RWaXxjbVZGU93lGdI8uvCgaJyiwqfxZ1GmxfMwH2DI65MlGw1S
-         9++g==
+        bh=QDWJzJ5lOaQpmmHjTfXtnrSgkhZoBRswnPcVPm00MkA=;
+        b=KbFOyRvQj0ncFWAI//huMSQy3AYbmIwXMzjUXhQ+9/suNPuG65Ztv+nihSdZtzKMGk
+         IQ54DNEe4uVVL6aADC0zr3+Pt/mDK0s6OFpmTjcHYuCUil8Gb1GdDQpZ8Ddam2KoopX7
+         9IejLqPh4M1FsmETpKvkrO3C2fBOuy9GZ6oFJ236F3gcManACpaKt4xlBJOMv59c2lLi
+         /zORYq7VSe0KrUkmxYsVwdDOcVlpLZNuDLJosyg+ajuLWMSLAnfjvorkC+btwzBCQa+Z
+         kWXXPxQngcDpAUd/GaEt3+FSO7PL7m0cRdxE8oY8uK+6ul+4sIRQ2rGjZjh+Xp7pDz5I
+         sPDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=PKBg5ng7PnWT5G7IkXOVZef3/wyXg4tjFKeAtGbo5Lk=;
-        b=gINK2l2n8uHELO+qr7xVoL/ImOgtSDLPV+KBQI8RoqR8X7ZokuLODNwnCto5012Llp
-         Na+o9wpc4qunTUSf0vs3LACM8gUTKFEws0f3tQlLXPNT+9dKgDpjC12EzHtbB6Caf1Rr
-         2YO+1IVLYeFh6MDkmVXfmYQwpjCnxhCXYP9jGbHVo1js7syBMYwQzBmyxMrD2hC4fca4
-         +7TfWYDpuCWJ9/TSlIGi1NTWy/chZSaCaPZ4Y0KZED8k7nYuPngOQWG+vabJfjnm8VWH
-         /P2LeMKADbTaEI9gPD+52+ygRAzAM4gpDUsxSorr7GziGPZA54PN69LGRWoRETNnn0a0
-         3JRQ==
-X-Gm-Message-State: ACrzQf3/julDicpdJJegiS8fitflHwVJ7uSpfUyH2SQiDrZUJsWiyFQ3
-        lhuq3kjo2C5Hb4zCa2B/N2TIUA==
-X-Google-Smtp-Source: AMsMyM5fLqyeOXxhQHdX+OOxELBYD3ckReSg83MxwbqlwSMZaQyVVpAnIOHc9SP/XraIp0pF3FQnyQ==
-X-Received: by 2002:a19:6b05:0:b0:49f:53b9:abb0 with SMTP id d5-20020a196b05000000b0049f53b9abb0mr3821048lfa.166.1663494648565;
-        Sun, 18 Sep 2022 02:50:48 -0700 (PDT)
+        bh=QDWJzJ5lOaQpmmHjTfXtnrSgkhZoBRswnPcVPm00MkA=;
+        b=iuHapbWDcGn83/OtsqG5E52TJBdR8lqLvetj+NXb3yTCDTtHSo4/u/JJGmLwJwnqHv
+         o10/sN6fGpQg5zMubrurfefvRA3QTJUr6Lm56uiFdo11uwxs32Ce8jAY7GPf2w4RDp4L
+         oQZ8c7wNIPIA1y3LhdFfZd0O+fuvi4Kvgi1kR5qDLLB4qsfp/C2bL1JlfScoZfNjbiq7
+         nmRfvgiOfiY2+7YT8Zm1qfSo9k0+mEap1CT1oUmaeLCKA3V0jwKxGaWGW4NQEo2SsGfF
+         2BgDw9O6FwVtbKfh9yZjrXuXOL+0v4smgvTvxFcG06AVJRxKNgRvsCg0j+QgF21ESE38
+         om+Q==
+X-Gm-Message-State: ACrzQf1oaRBGQpsUTyFX6/87TJi5Gx54Xkhn7U8JwpG99X7Z6B4FgOR0
+        9+dk9f+DEkiBSi6YOQej2Su4Fg==
+X-Google-Smtp-Source: AMsMyM7c07FRjcZpKxTq1oEq3imUr70ESSilmyj+j19JPwmumypPu6CuZ1jOc7lYzYyjNHtpCQoPtg==
+X-Received: by 2002:a05:6512:2308:b0:497:a290:cef6 with SMTP id o8-20020a056512230800b00497a290cef6mr4563377lfu.488.1663494717767;
+        Sun, 18 Sep 2022 02:51:57 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z15-20020a056512308f00b004977e865220sm4574286lfd.55.2022.09.18.02.50.47
+        by smtp.gmail.com with ESMTPSA id be32-20020a05651c172000b00261b175f9c4sm4461189ljb.37.2022.09.18.02.51.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 02:50:47 -0700 (PDT)
-Message-ID: <d264ff4f-3aa3-8dd4-26fc-9cffe950f386@linaro.org>
-Date:   Sun, 18 Sep 2022 10:50:46 +0100
+        Sun, 18 Sep 2022 02:51:57 -0700 (PDT)
+Message-ID: <cb86f0e0-700f-872a-1e58-9111a96ec5b8@linaro.org>
+Date:   Sun, 18 Sep 2022 10:51:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: sound: ts3a227e: convert to yaml
+Subject: Re: [PATCH v2 2/3] dt-bindings: sound: ts3a227e: add control of
+ debounce times
 Content-Language: en-US
 To:     Astrid Rost <astrid.rost@axis.com>,
         Mark Brown <broonie@kernel.org>,
@@ -66,14 +67,15 @@ Cc:     kernel@axis.c, alsa-devel@alsa-project.org,
         linux-kernel@vger.kernel.org, Astrid Rost <astridr@axis.com>,
         devicetree@vger.kernel.org
 References: <20220915113955.22521-1-astrid.rost@axis.com>
- <20220915113955.22521-2-astrid.rost@axis.com>
+ <20220915113955.22521-3-astrid.rost@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220915113955.22521-2-astrid.rost@axis.com>
+In-Reply-To: <20220915113955.22521-3-astrid.rost@axis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,119 +83,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 15/09/2022 12:39, Astrid Rost wrote:
-> Convert from ts3a227e.txt to yaml.
+> Add devicetree parameters to control the insertion, release and press
+> debounce times.
 > 
-> Signed-off-by: Astrid Rost <astrid.rost@axis.com>
 
 Thank you for your patch. There is something to discuss/improve.
 
+> Signed-off-by: Astrid Rost <astrid.rost@axis.com>
 > ---
->  .../devicetree/bindings/sound/ts3a227e.txt    | 30 --------
->  .../devicetree/bindings/sound/ts3a227e.yaml   | 69 +++++++++++++++++++
->  2 files changed, 69 insertions(+), 30 deletions(-)
-
-
-> --- /dev/null
+>  .../devicetree/bindings/sound/ts3a227e.yaml   | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/ts3a227e.yaml b/Documentation/devicetree/bindings/sound/ts3a227e.yaml
+> index 3512b1f1e32b..8c27f298733a 100644
+> --- a/Documentation/devicetree/bindings/sound/ts3a227e.yaml
 > +++ b/Documentation/devicetree/bindings/sound/ts3a227e.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/sound/ts3a227e.yaml#"
-
-
-Filename based on compatible, so ti,ts3a227e.yaml
-
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-
-Drop quotes from both lines above.
-
-> +
-> +title: Texas Instruments TS3A227E
-> +  Autonomous Audio Accessory Detection and Configuration Switch
-> +
-> +maintainers:
-> +  - Dylan Reid <dgreid@chromium.org>
-> +
-> +description: |
-> +  The TS3A227E detect headsets of 3-ring and 4-ring standards and
-> +  switches automatically to route the microphone correctly. It also
-> +  handles key press detection in accordance with the Android audio
-> +  headset specification v1.0.
-> +
-> +properties:
-> +  compatible:
+> @@ -44,6 +44,35 @@ properties:
+>        - 7 # 2.8 V
+>      default: 2
+>  
+> +  ti,debounce-release-ms:
+> +    description: key release debounce time in ms (datasheet section 9.6.7).
 > +    enum:
-> +      - ti,ts3a227e
-> +
-> +  reg:
-> +    description: I2C address of the device.
+> +      - 0  #  0 ms (0)
+> +      - 20 # 20 ms (1)
 
-Skip description, it's obvious.
+Skip comments. The values are in ms, so they are not helping.
 
-> +    const: 0x3b
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: |
-> +      Interrupt number for /INT pin from the ts3a227e.
+Same in all other places.
 
-Skip description
+> +    default: 20
 
-> +
-> +  ti,micbias:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Intended MICBIAS voltage (datasheet section 9.6.7).
-> +    enum:
-> +      - 0 # 2.1 V
-> +      - 1 # 2.2 V
-> +      - 2 # 2.3 V
-> +      - 3 # 2.4 V
-> +      - 4 # 2.5 V
-> +      - 5 # 2.6 V
-> +      - 6 # 2.7 V
-> +      - 7 # 2.8 V
-> +    default: 2
-
-Old bindings said default is 1. It this was intended, please mention in
-commit msg deviations from pure conversion.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-
-This header is not used.
-
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c0 {
-
-Node name just "i2c"
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        codec: ts3a227e@3b {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-audio-controller? audio-switch?
-
-> +            compatible = "ti,ts3a227e";
-> +            reg = <0x3b>;
-> +            interrupt-parent = <&gpio1>;
-> +            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> +        };
-> +    };
-> +
-> +...
+Except that looks ok, thanks for the changes. Appreciated!
 
 
 Best regards,
