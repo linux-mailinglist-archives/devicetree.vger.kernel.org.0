@@ -2,141 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09C0B5BBE3B
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 16:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ED435BBE5F
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 16:29:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbiIRODw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 10:03:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48160 "EHLO
+        id S229663AbiIRO3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 10:29:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbiIRODv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 10:03:51 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADB923BEF;
-        Sun, 18 Sep 2022 07:03:51 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id c24so24548966pgg.11;
-        Sun, 18 Sep 2022 07:03:51 -0700 (PDT)
+        with ESMTP id S229682AbiIRO3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 10:29:46 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A3BA65C9;
+        Sun, 18 Sep 2022 07:29:44 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id y17so54036431ejo.6;
+        Sun, 18 Sep 2022 07:29:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=NRTsRoZq68Mxvcc0uJgWyB8RLpcLxxtOeb25FXO5W8w=;
-        b=GMcReAOx9b7ZPOdRgBNpKaRoeKWDGu7XyqHIC8z9tIit3E9TGN8dCfPG7UbYZ4TPIS
-         VEVbcRKB/siCz1OmxdGa710+xs/Hra9JoSKxsIy0tWfqRzpQbbp+82MplF69GmKGQ5kC
-         YIP7QQJcD3x8hMbH8TO6hJmxiXktsZXD5q4YKwqQ5AK745jfPBY14xDowthTW05ZkOzw
-         56clZxN13oYVRbqMQ4QUae3bkm6jlBntYUSjDeDkMNhmanIVi9R3MOhq/NihYS0/buO5
-         X1r0sB7kxblfUT6jtjkdMLdU7rS/CnHXFxL3HfNO8mkCc6c++/vmk9j92IDqqM6M48e0
-         1c+Q==
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date;
+        bh=FveU6nkoo+81cQCfrUzlLL5Yuhu16gBocdqQxDEMQCg=;
+        b=BjP83lXkZjyctfT4Np2yzmqYCVKRXxOheLYomYNmMgc8IhvR9Xi8NRF02psi6zyRd5
+         SVQ/RB60dZ5K5qRIE5XrEDuvSRBmOUAYJfJWLMvg4DYoxas+31zMn0MpBOyKne2V2hSv
+         EHiXc1PkJcwGqGbwbyn+PEyRxqluJDlxdcfFuHoWrGljanCkrW4Fu37J566t2uFD4o4G
+         KxEO1VjyJ0OM0kt+hsl1tSIDJtX0WjSMad0gkVWHfvmImMfOTv3mzkCfF6NR9mSA8a49
+         Y+LAdYbFJGUR82P5RnkO5TA6Q3FXy22t7PjowGD86kVIlsqIKGh94UuGx2ov72170M57
+         YCtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=NRTsRoZq68Mxvcc0uJgWyB8RLpcLxxtOeb25FXO5W8w=;
-        b=HVe7CSKgmRabV/x9tqpU87+soYLZjMZz/gO0dD5FlLP0Q/fIo45eOpzk19OO8OaTfO
-         V8RGyd8M4s4E3W34ANMX3sfgEdpdhxAmLKH7cd3fJY8DtTNWs4zJevNmnZgyOs54AE9P
-         vHm6oDF3ymF9b6hjIHoq+3YtsC1Z9E2W5koo7A1pt0gCOnX/qRUDMWFn9muyhBhQXJrZ
-         RsAr5ndCUxHCI2uPksMJruHf5tDVanZ8jg4WcUPVGgNSVL57hNgDIiC+GYT/kYIMHb21
-         2NctVwpjsJh065z5HBDeclZ1RAGTxPl/s8AYWox7Sh9YzRH03AfpRa7qCBZJcr2aUGI8
-         HAGA==
-X-Gm-Message-State: ACrzQf3al0xfv8vQEgV9vSZ6qcorRAtGAzWA/Ap2ZFkugsp/rnajT3VH
-        g+SbaLwWkIGxtU8LwwX2ax0=
-X-Google-Smtp-Source: AMsMyM7qgSJdqhKgz1PblDV6bKrAm9ziTxsEmmGfkaWkNBt7muaFASEzLIO9ts5AW4HZKq8vSuu8yw==
-X-Received: by 2002:a05:6a00:4206:b0:545:68f2:292e with SMTP id cd6-20020a056a00420600b0054568f2292emr13697451pfb.76.1663509830518;
-        Sun, 18 Sep 2022 07:03:50 -0700 (PDT)
-Received: from debian.me (subs32-116-206-28-51.three.co.id. [116.206.28.51])
-        by smtp.gmail.com with ESMTPSA id x4-20020a170902ea8400b0016f975be2e7sm18573030plb.139.2022.09.18.07.03.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Sep 2022 07:03:50 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id 4230F103B70; Sun, 18 Sep 2022 21:03:46 +0700 (WIB)
-Date:   Sun, 18 Sep 2022 21:03:46 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Jilin Yuan <yuanjilin@cdjrlc.com>
-Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: base: fix repeated words in comments
-Message-ID: <YyclQlws9d7vheDk@debian.me>
-References: <20220918095957.24537-1-yuanjilin@cdjrlc.com>
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date;
+        bh=FveU6nkoo+81cQCfrUzlLL5Yuhu16gBocdqQxDEMQCg=;
+        b=57mmMi6mnX4mjKoAw6ZcygYmnkdo4J8TEcoNT3zeYwgJ1vc1MaR4ZXY/SVqem5Lyz3
+         x3MGN82GwvCKBmGQ0n4L521LBDvGxof7csvMUByX64V4DOlq94YULnpJa1XUtwf9oY/i
+         ej25FMs2EnjuRKPOMkMzRr9sP2mGAoXTuc5xi9A6nFj47gF74T/HvFZmeq+Zof44G6+Z
+         9PntOZEUE35TAUfu6iFBNPOfXYgfWu7cKsbcV229oAjL2/D2y2uxfDkRIdpjfeoN38PD
+         4gxQJ1yRxy0p3NImZs/dYfxFC+/FKiCq4sB7F5bPTx+MlndnUJasm41PpqDkCeGVkyH9
+         BxIg==
+X-Gm-Message-State: ACrzQf2/unm9DXvQPadV+fSOlgR3Cb2FpBIFzJiTq+nSVWXy2BT6rzuH
+        96k5qUbuCLoxj1panmOxxb4=
+X-Google-Smtp-Source: AMsMyM7QTZ+2BOwNQu7fsiBYvlATBN/hD+pJTQiXqKGORiTZFqY5hh9qjZPO+ns5wlWpD7gRqFySWA==
+X-Received: by 2002:a17:907:2d0d:b0:77c:d528:70b8 with SMTP id gs13-20020a1709072d0d00b0077cd52870b8mr9559188ejc.681.1663511383259;
+        Sun, 18 Sep 2022 07:29:43 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id h19-20020a1709063b5300b0074134543f82sm13961670ejf.90.2022.09.18.07.29.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Sep 2022 07:29:42 -0700 (PDT)
+Message-ID: <4e69a06d-7b53-ab48-1e50-2b29ff3a54e6@gmail.com>
+Date:   Sun, 18 Sep 2022 16:29:41 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7yCBxU7llMplZvup"
-Content-Disposition: inline
-In-Reply-To: <20220918095957.24537-1-yuanjilin@cdjrlc.com>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v3] dt-bindings: clock: convert rockchip,rk3128-cru.txt to
+ YAML
+To:     heiko@sntech.de
+Cc:     zhangqing@rock-chips.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert rockchip,rk3128-cru.txt to YAML.
 
---7yCBxU7llMplZvup
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
 
-On Sun, Sep 18, 2022 at 05:59:57PM +0800, Jilin Yuan wrote:
->  /**
->   * of_match_node - Tell if a device_node has a matching of_match structu=
-re
-> - * @matches:	array of of device match structures to search in
-> + * @matches:	array of device match structures to search in
->   * @node:	the of device structure to match against
->   *
->   * Low level utility function used by device matching.
-> @@ -1175,7 +1175,7 @@ EXPORT_SYMBOL(of_match_node);
->   *		you pass will not be searched, only the next one
->   *		will; typically, you pass what the previous call
->   *		returned. of_node_put() will be called on it
-> - * @matches:	array of of device match structures to search in
-> + * @matches:	array of device match structures to search in
->   * @match:	Updated to point at the matches entry which matched
+Changed V3:
+  Fix xin24m clock-names position
 
-That second "of" is the device, so the fix doesn't make sense.
+Changed V2:
+  Use SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+  Add more clocks
 
-Also, PLEASE stop sending these mindless redundant word-stripping patches
-as byproduct of whatever automated tool you use.
+---
 
-As Edward Cree said to one of your colleague [1]:
+Rockchip recently replied on other clock-patches to dual-license the
+binding.
 
-> #ifdef RANT
-> NGL, getting kinda sick of these bogus comment text 'fixes' from people
->  who clearly don't have enough mastery of English to copyedit it.
-> (Previous one from this author was actually wrong too but I didn't catch
->  it at the time.)
-> English is a tricksy language, why would someone with a limited
->  understanding of it think that grammar fixes are the best use of their
->  time and energy?
-> I can't help suspecting that this is a box-ticking exercise, where a
->  certain corporate culture has a standard requirement that engineers
->  must get X number of Linux / opensource commits in order to get
->  promoted, and this kind of mindless patch is the easiest way for them
->  to achieve that.
-> #endif
+https://lore.kernel.org/all/510d1180-bc8e-7820-c772-ed7f35447087@rock-chips.com/
+From Finley with an  @rock-chips.com address, so this should be ok.
 
-If you really want to do real cleanup, consider joining kernel-janitors lis=
-t.
+Document history:
 
-Learn from above, thanks.
+git log Documentation/devicetree/bindings/clock/*rk312*.txt
 
-[1]: https://lore.kernel.org/netdev/30f2488d-9af3-fe8d-6e6f-713a7d38800b@gm=
-ail.com/
+Author: Elaine Zhang <zhangqing@rock-chips.com>
+    dt-bindings: add documentation for rk3126 clock
+Author: Elaine Zhang <zhangqing@rock-chips.com>
+    dt-bindings: add bindings for rk3128 clock controller
+---
+ .../bindings/clock/rockchip,rk3128-cru.txt    | 58 --------------
+ .../bindings/clock/rockchip,rk3128-cru.yaml   | 76 +++++++++++++++++++
+ 2 files changed, 76 insertions(+), 58 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
 
---=20
-An old man doll... just what I always wanted! - Clara
+diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.txt b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.txt
+deleted file mode 100644
+index 6f8744fd301b..000000000000
+--- a/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.txt
++++ /dev/null
+@@ -1,58 +0,0 @@
+-* Rockchip RK3126/RK3128 Clock and Reset Unit
+-
+-The RK3126/RK3128 clock controller generates and supplies clock to various
+-controllers within the SoC and also implements a reset controller for SoC
+-peripherals.
+-
+-Required Properties:
+-
+-- compatible: should be "rockchip,rk3126-cru" or "rockchip,rk3128-cru"
+-  "rockchip,rk3126-cru" - controller compatible with RK3126 SoC.
+-  "rockchip,rk3128-cru" - controller compatible with RK3128 SoC.
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- #clock-cells: should be 1.
+-- #reset-cells: should be 1.
+-
+-Optional Properties:
+-
+-- rockchip,grf: phandle to the syscon managing the "general register files"
+-  If missing pll rates are not changeable, due to the missing pll lock status.
+-
+-Each clock is assigned an identifier and client nodes can use this identifier
+-to specify the clock which they consume. All available clocks are defined as
+-preprocessor macros in the dt-bindings/clock/rk3128-cru.h headers and can be
+-used in device tree sources. Similar macros exist for the reset sources in
+-these files.
+-
+-External clocks:
+-
+-There are several clocks that are generated outside the SoC. It is expected
+-that they are defined using standard clock bindings with following
+-clock-output-names:
+- - "xin24m" - crystal input - required,
+- - "ext_i2s" - external I2S clock - optional,
+- - "gmac_clkin" - external GMAC clock - optional
+-
+-Example: Clock controller node:
+-
+-	cru: cru@20000000 {
+-		compatible = "rockchip,rk3128-cru";
+-		reg = <0x20000000 0x1000>;
+-		rockchip,grf = <&grf>;
+-
+-		#clock-cells = <1>;
+-		#reset-cells = <1>;
+-	};
+-
+-Example: UART controller node that consumes the clock generated by the clock
+-  controller:
+-
+-	uart2: serial@20068000 {
+-		compatible = "rockchip,serial";
+-		reg = <0x20068000 0x100>;
+-		interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
+-		clock-frequency = <24000000>;
+-		clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
+-		clock-names = "sclk_uart", "pclk_uart";
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
+new file mode 100644
+index 000000000000..b3d9c8eca989
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/rockchip,rk3128-cru.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/rockchip,rk3128-cru.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip RK3126/RK3128 Clock and Reset Unit (CRU)
++
++maintainers:
++  - Elaine Zhang <zhangqing@rock-chips.com>
++  - Heiko Stuebner <heiko@sntech.de>
++
++description: |
++  The RK3126/RK3128 clock controller generates and supplies clock to various
++  controllers within the SoC and also implements a reset controller for SoC
++  peripherals.
++  Each clock is assigned an identifier and client nodes can use this identifier
++  to specify the clock which they consume. All available clocks are defined as
++  preprocessor macros in the dt-bindings/clock/rk3128-cru.h headers and can be
++  used in device tree sources. Similar macros exist for the reset sources in
++  these files.
++
++properties:
++  compatible:
++    enum:
++      - rockchip,rk3126-cru
++      - rockchip,rk3128-cru
++
++  reg:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 1
++
++  "#reset-cells":
++    const: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 3
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: xin24m
++      - enum:
++          - ext_i2s
++          - gmac_clkin
++      - enum:
++          - ext_i2s
++          - gmac_clkin
++
++  rockchip,grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the syscon managing the "general register files" (GRF),
++      if missing pll rates are not changeable, due to the missing pll
++      lock status.
++
++required:
++  - compatible
++  - reg
++  - "#clock-cells"
++  - "#reset-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    cru: clock-controller@20000000 {
++      compatible = "rockchip,rk3128-cru";
++      reg = <0x20000000 0x1000>;
++      rockchip,grf = <&grf>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++    };
+-- 
+2.20.1
 
---7yCBxU7llMplZvup
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCYyclOgAKCRD2uYlJVVFO
-o4ueAP9rOkS3/cc61IFsELqltLUWs+gQLDZrhG3lOmPXT1DkJwEAtQKtChFrPySL
-n/Op1oMwsl+TgNxGjw/TNhQ1U/+tFwk=
-=NZ1v
------END PGP SIGNATURE-----
-
---7yCBxU7llMplZvup--
