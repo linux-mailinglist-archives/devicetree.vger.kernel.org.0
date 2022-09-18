@@ -2,75 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E89D45BBD51
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 12:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E4065BBD6B
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 12:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbiIRKBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 06:01:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39858 "EHLO
+        id S229674AbiIRK3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 06:29:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbiIRKAe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 06:00:34 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8AA2124A
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 03:00:04 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id z25so42344936lfr.2
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 03:00:04 -0700 (PDT)
+        with ESMTP id S229564AbiIRK3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 06:29:03 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97388252B8
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 03:29:00 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id f14so41407230lfg.5
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 03:29:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=D49UgMj+t87LgS/4bcGKgpE48pEQHg+Cu+6eMlqeAA8=;
-        b=RAZ3vj7xukzV9r44PtwBleffFDhf3EFi6dmCkiQQBnfWjv/mE3J7Vz7zJY4DzijppX
-         WkuKm9E45919XlsWPbMKbHoDxNY/euUiBUI+lcb2QPAUJMXZKbzWTMMPKe+f3OOrs2tS
-         5ONDxtLznbxGn+DC/2FAI7XfbO5YjTCHX7ahVeyseXxsXj9Ydn9h1k4L8oWv6x0Ym5VS
-         iTYLA38gLA5P9LNl0ee6WlOPCh3sr11qek8UmQmB1o7+6OHsj/LN4cAy3CfM0bCkKxeO
-         mNpIabD9rFQbUWWLtp8qsGWCZUxntWNiqnc13cxUzVsPoOKLG8xN86GdIQVrdEKiSjWq
-         Pfzw==
+        bh=OsZQPKQaz+WzIBFuI25jrhG0FjOY9BOgLej5kVHDvTI=;
+        b=qfYP8NJ9MGAgLRKQ3ySC18r4clkbQdaitJceDmvdq3BhcYeeSss9hKng/zkOa5gdcR
+         UPp4PyKbpPG+vgkOEeyssP3+VF/E+Im7vEH8psuJUgOxGlvMx/E1TYUvsxfNQB7ZthxJ
+         CY3INKNKrk0F52OZm1t23e1I+wUZHM1akde96O1UiQC/xBjM0nhjRj7OI/Ok66ToNgJT
+         pkyVVDjpd/OG9NpMmfQCx1eD78GjbVLBMChdVChnIQo3DxxK3PxJx2KVw+4d5RlMGm5E
+         dWfid0CTaDag2OK+CsrLw3nS9CHFYe0ZQR0nZ//aasmb9hgF/QCLnXboHCzKa3R+hcOM
+         Z0xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=D49UgMj+t87LgS/4bcGKgpE48pEQHg+Cu+6eMlqeAA8=;
-        b=NGCbzNznOp4iR3aVSdRvBoHg4qGAgjrWN3/K2zYyDItHeR+DkSmhM+9ExNceeiKa1K
-         6QuGAZPlP56FP7e5IrxMVg1pQRIOVc5KqxXV+VYLx2IDo9MivIoxLXG/CT65/F5P5+se
-         xIMpsTJu8fGVv2K5P+4YAAYt8vMcRwxl7JfaIF7rRWqsMt3CbA0VBi55A6VjYNj+GJjD
-         PoYxWpocNqAnBgJcD8zROxFMouqbp7DNSzvDFYjPAg2HBpUjbYlAQuwOnizkm+Fqf1B/
-         Y6t2fcXEcY07DR60gBWiOE7fi1bJnbNe26rbluZ/QHtCCnjzAhQaolmlk2ErH+Nrm8ea
-         cgCw==
-X-Gm-Message-State: ACrzQf1GIz8IxTo1Q71nzSDdBQO2X7LePdzTdRYQBokZl1tpwjbGQFH2
-        k2VQC8J5opkhpyr6Rc3OA/V9+w==
-X-Google-Smtp-Source: AMsMyM7dUaica1z2s7VHjcYy5p7JpDnUrAku3pntnLE2RZEmAA9KsuzBdrQp7naZ7/zhHi9Kpyh0kg==
-X-Received: by 2002:a05:6512:2521:b0:497:a6e4:4e1 with SMTP id be33-20020a056512252100b00497a6e404e1mr4497708lfb.320.1663495202223;
-        Sun, 18 Sep 2022 03:00:02 -0700 (PDT)
+        bh=OsZQPKQaz+WzIBFuI25jrhG0FjOY9BOgLej5kVHDvTI=;
+        b=tH9TY86LJ0q65wQa4Uyg8Qq1m4y1nRCOySg7s5OjyM4i1Km4ZctEm73lTutNjjedCs
+         LJ27mtPTW8tG0K8jkCpCIzNwjkAKcfchqyzlAaIU20srigPVh2utvjE7fxgNL85BO6Mj
+         squibDCuuG5cnIy7iehWUfi7VhkbTGOgf6ygaBHMvS1WYEWh0hPBZgX1AbQOUPDORPGI
+         86gVX4KQxSizjMb5hxqnOTKzun9eziXeAa3vtawNPyBHaJhQIzppDiiHLu1AnYwblfxA
+         +fHYMyCC2HQ4dQtO3faszj3vJfqL+KrO+iGn+yj0Q+/cN28gIu9ZKjbjHOguH0aFpI9o
+         Uh9A==
+X-Gm-Message-State: ACrzQf23CliHSRdPKOKJfYWC+f8F2Dkph13DoUKlgeHRYXzU2W0rhXvU
+        gN6alPCU/RtlwZ6NdKa3lN4aKg==
+X-Google-Smtp-Source: AMsMyM7MooLPj97JicuQwYk0U5nKh2lKm409lDS2J4kkGuwS+B4r472TNMcve8L4AVdjPmIM5L+1dg==
+X-Received: by 2002:a05:6512:2283:b0:49f:490c:8636 with SMTP id f3-20020a056512228300b0049f490c8636mr4251773lfu.273.1663496938983;
+        Sun, 18 Sep 2022 03:28:58 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h1-20020a2ea481000000b00261cc85c32fsm1006240lji.31.2022.09.18.03.00.01
+        by smtp.gmail.com with ESMTPSA id i25-20020a2ea239000000b0026c17415c11sm3266754ljm.99.2022.09.18.03.28.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 03:00:01 -0700 (PDT)
-Message-ID: <750fe07f-aeb7-32ca-3ac2-15758a4d40f0@linaro.org>
-Date:   Sun, 18 Sep 2022 11:00:00 +0100
+        Sun, 18 Sep 2022 03:28:58 -0700 (PDT)
+Message-ID: <be75776d-c55a-ddce-81f3-aeacc2f29592@linaro.org>
+Date:   Sun, 18 Sep 2022 11:28:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/4] dt-bindings: dma: apple,admac: Add reset
+Subject: Re: [PATCH 16/21] dt-bindings: reserved-memory: introduce
+ designated-movable-block
 Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Doug Berger <opendmb@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220918095845.68860-1-povik+lin@cutebit.org>
- <20220918095845.68860-2-povik+lin@cutebit.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Mike Kravetz <mike.kravetz@oracle.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Borislav Petkov <bp@suse.de>,
+        "Paul E. McKenney" <paulmck@kernel.org>,
+        Neeraj Upadhyay <quic_neeraju@quicinc.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        David Hildenbrand <david@redhat.com>, Zi Yan <ziy@nvidia.com>,
+        Oscar Salvador <osalvador@suse.de>,
+        Hari Bathini <hbathini@linux.ibm.com>,
+        Kees Cook <keescook@chromium.org>,
+        - <devicetree-spec@vger.kernel.org>,
+        KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>,
+        Mel Gorman <mgorman@suse.de>, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mm@kvack.org, iommu@lists.linux.dev
+References: <20220913195508.3511038-1-opendmb@gmail.com>
+ <20220913195508.3511038-17-opendmb@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220918095845.68860-2-povik+lin@cutebit.org>
+In-Reply-To: <20220913195508.3511038-17-opendmb@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -81,16 +99,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/09/2022 10:58, Martin Povišer wrote:
-> On the SoCs there is usually a shared audio reset line, so add
-> a property for that.
+On 13/09/2022 20:55, Doug Berger wrote:
+> Introduce designated-movable-block.yaml to document the
+> devicetree binding for Designated Movable Block children of the
+> reserved-memory node.
 > 
-> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
+> Signed-off-by: Doug Berger <opendmb@gmail.com>
 > ---
->  Documentation/devicetree/bindings/dma/apple,admac.yaml | 3 +++
+>  .../designated-movable-block.yaml             | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/designated-movable-block.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/designated-movable-block.yaml b/Documentation/devicetree/bindings/reserved-memory/designated-movable-block.yaml
+> new file mode 100644
+> index 000000000000..42f846069a2e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reserved-memory/designated-movable-block.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reserved-memory/designated-movable-block.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: /reserved-memory Designated Movable Block node binding
 
+Drop "binding"
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +maintainers:
+> +  - devicetree-spec@vger.kernel.org
+> +
+> +allOf:
+> +  - $ref: "reserved-memory.yaml"
+
+Skip quotes
+
+> +
+> +properties:
+> +  compatible:
+> +    const: designated-movable-block
+> +    description:
+> +      This indicates a region of memory meant to be placed into
+> +      ZONE_MOVABLE.
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reusable
+> +
+> +examples:
+> +  - |
+> +      reserved-memory {
+
+Use 4 spaces for example indentation.
+
+> +          #address-cells = <0x2>;
+> +          #size-cells = <0x2>;
+> +
+> +          DMB0@10800000 {
+
+The convention for node names is to use lowercase and generic node
+names, so just "dmb".
+
 
 
 Best regards,
