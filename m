@@ -2,91 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 130E95BBCE2
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CE105BBCE6
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 11:46:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbiIRJnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 05:43:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41014 "EHLO
+        id S229557AbiIRJqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 05:46:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiIRJnE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:43:04 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46BBB237F5
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:43:03 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id z20so30603869ljq.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:43:03 -0700 (PDT)
+        with ESMTP id S229479AbiIRJqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 05:46:51 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B93C23BCD
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:46:50 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id f9so41566593lfr.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 02:46:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=bymflm0cWcyCTcdpDuivzckUWs78vF1VXtEIBmc274U=;
-        b=TI0J/rsC/B5GyVft25Qvkb3DYyVwMDmddjhpplWK+hlHUTclerDLmDiCsjcmUzSTjq
-         WDZa7usVHWlBmPh+0lAUg6l8VMWF1fib95uSb+FJyS/sq7R66K/2fq0BVLERFkYVs7CM
-         Fc5avno0PhJKEaw9xoUMVhNMb+CZF2J6Dr/4nV2OCegSKH8vafgCy18voZtuyq0wTKvc
-         YVaV3p0gDQHoEsxP4Z6Z+DPuoE2Cv6wX8WWojV4ni2kNJmSGbBXeXE4x3ZFzQ7FhXrdO
-         3TFC0XTKG6pVompPgIugtC8kChWJ+hb16XieXjhEm2qRQBOihMeRohAgq56bHQEABvMv
-         Mghg==
+        bh=21aUxLHH4VXgjMlvV9m7Z7/X0EZG+kNnGLJcXXOrK0w=;
+        b=ojsFkgiYK/Dv76eEBErG7KtJ8odVR/65kpeulrSdhhYWX8kIEKYdw5PNfb7Dp7Dq2a
+         q928bdTuwJXy1iq3uNQJ3TAFOb1fq6dbvQMFHpi4SyJ8bVibWpHoor+IaDi7s6hIQzP7
+         q69+wQaFjy7Lo36CyBOINyK6v0nCl1lnh/b5CD7DfrupZA40VycjdoJ656EvloixrPXE
+         Er5Js45KbtqSR6zdYWlPOmBr+ajUBQUqe05VQO7/NoC2WKsKoz6juWmP1tS5P8BezEm9
+         yYEL6ZFUbEiioffY/CdwB7/B+vY35D4FrZog2CJ8LpXBtgfLVUWlcY0PUVPpiggXQ5zU
+         quDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=bymflm0cWcyCTcdpDuivzckUWs78vF1VXtEIBmc274U=;
-        b=HKWZpxyWqqpOZ/9e+g+pOvdViRr2SyfE93u2ieUxe6/3pmkhLlnwWBgB5vL0PI75KD
-         VQSyFKhZpLzNMM6NPWadkQpuJALPjXNW/KE2Q0+fnsQ3eW9eSTm5grSwRXFp8e68bp80
-         CAQ8jcvn6wRpMFJ0DNHau1UZQfGZodUMaqdXjFZ9w0XU9luYOqjk33Mfhj1l7fm53auo
-         ydOwCy7T9Y+zvx3UlMvzLyfzjYrIqRXb8DKQRxDAvpoJMIvOHab7qvTI34vGRKaHDTz2
-         WUvcEnDH62GBQl+PC1UKzYz/VZfj0SJppocx5Q/2ntnMhdB1BHnHFHUVB94EO3ctGkXf
-         qBgg==
-X-Gm-Message-State: ACrzQf10mloVJDRvU94RVh/1bkj1P3PLU3DCtqD6R/BoT4FUJHFsYyB9
-        JFLUjhTxcfNq+M5KmY44+caeXg==
-X-Google-Smtp-Source: AMsMyM5oa1+BlsQvoBLSHJ7qg8UbLPA6SYwqWrNJ6NOOwZcdHftell11JoXnHhdlBiSB7vRm2amj0g==
-X-Received: by 2002:a2e:9cda:0:b0:26b:e930:6f7d with SMTP id g26-20020a2e9cda000000b0026be9306f7dmr3860677ljj.436.1663494181646;
-        Sun, 18 Sep 2022 02:43:01 -0700 (PDT)
+        bh=21aUxLHH4VXgjMlvV9m7Z7/X0EZG+kNnGLJcXXOrK0w=;
+        b=js69U2v0HyNOhwD9olrBXzY2cafohoG+GL5DCFVnBEcm7C9z46p4Ybo60k+Bfc/Wu9
+         7s9l8E6Dtdp2a8SWrV1Ra0fVA4EV2Cr95K9NoJ95fNvQP372ygsTnJtpuKOHDjTm7w4G
+         brNAbjcTM3SGXj8jSpkVWtNZhoaHuhtdPSoltgvgyiHYeD6PQPyOSOQZHKR8FSZiEKcG
+         ABNM5dJdJxppWWwwuu6KshYP1RH92uJY1Xf1U+zNwPCIHAiIxeom6T7Z7SylVF9GIlBd
+         +RrUftObHWKZsWIy7hokXv2MhW7gsh3cqrIDizMQohNcymBprnXCJvZeScvc7hyoHtga
+         o66w==
+X-Gm-Message-State: ACrzQf25oj90F0CBFvFmmqQxNQHEe3bh4MelsPCfphj3JrisHImfPGzt
+        gUCjkL9MSz5Fe4YIfuCGVrWIwWXltcgkBA==
+X-Google-Smtp-Source: AMsMyM77GnrmytRKpKeUnNWN3mHl280lQHxGajtZZSoJ7Z4ejAWff2bBcL4vI9nA4/cAbc9husyHnA==
+X-Received: by 2002:a05:6512:3502:b0:496:272:6258 with SMTP id h2-20020a056512350200b0049602726258mr3985166lfs.429.1663494408681;
+        Sun, 18 Sep 2022 02:46:48 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v17-20020a056512349100b0049d3614463dsm2805245lfr.77.2022.09.18.02.43.00
+        by smtp.gmail.com with ESMTPSA id y27-20020a056512045b00b00499019c34a3sm4577639lfk.184.2022.09.18.02.46.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 02:43:01 -0700 (PDT)
-Message-ID: <46046974-78a5-1aa5-6d39-d6e41645148b@linaro.org>
-Date:   Sun, 18 Sep 2022 10:42:58 +0100
+        Sun, 18 Sep 2022 02:46:48 -0700 (PDT)
+Message-ID: <66c6349e-c841-e895-2c42-4e341abbe525@linaro.org>
+Date:   Sun, 18 Sep 2022 10:46:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: power: Add MT8188 power domains
+Subject: Re: [PATCH v2 6/7] dt-bindings: spi: spi-zynqmp-qspi: Add support for
+ Xilinx Versal QSPI
 Content-Language: en-US
-To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20220916055216.20139-1-Garmin.Chang@mediatek.com>
- <20220916055216.20139-2-Garmin.Chang@mediatek.com>
+To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     git@amd.com, michal.simek@amd.com, linux-spi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, akumarma@amd.com
+References: <20220915120750.1424984-1-amit.kumar-mahapatra@xilinx.com>
+ <20220915120750.1424984-7-amit.kumar-mahapatra@xilinx.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220916055216.20139-2-Garmin.Chang@mediatek.com>
+In-Reply-To: <20220915120750.1424984-7-amit.kumar-mahapatra@xilinx.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/09/2022 06:52, Garmin.Chang wrote:
-> Add power domains dt-bindings for MT8188.
+On 15/09/2022 13:07, Amit Kumar Mahapatra wrote:
+> Add new compatible to support QSPI controller on Xilinx Versal SoCs.
 > 
-> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
-> Change-Id: I62dff8af2bd74d6148712bfaa1caafc0b49e4b0c
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
 
-Run chechpatch before sending any patch.
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
 
+> ---
+>  Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+> index ea72c8001256..37108bfdcd81 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+> @@ -14,7 +14,9 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    const: xlnx,zynqmp-qspi-1.0
+> +    enum:
+> +      - xlnx,zynqmp-qspi-1.0
+> +      - xlnx,versal-qspi-1.0
+
+Alphabetical order please.
 
 Best regards,
 Krzysztof
