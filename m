@@ -2,102 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA2E15BBE67
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 16:33:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 644DF5BBE84
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 16:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiIROda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 10:33:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45540 "EHLO
+        id S229744AbiIROyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 10:54:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbiIROd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 10:33:29 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38F401F602;
-        Sun, 18 Sep 2022 07:33:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A0B84CE08CB;
-        Sun, 18 Sep 2022 14:33:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5447C433D6;
-        Sun, 18 Sep 2022 14:33:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663511600;
-        bh=XEQaAbKO4JRklsuepue2nJS2tct/eD81nhfKowWer48=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ThbV+GEMWA4Ad8gJP1Oec6m/KJ1ip9vFgxxkC0LElKhZqveB8OTOvYiLQKyJEz93Q
-         HJNYRa+JyPsSfjv3Xsra7aYnZoRpf2zY4Z8c3HEDzbgHubPL6PcBzBnY9+9UswYrQk
-         oFmIpURLsK+0js1LJwXpeCTed+bsCZ62bdP6schcoSd533WeJ4Y534scHRwkzka2kv
-         A2O0CrNv0PAJx70KZqzaCTIKQMvsg9qC5avjYoFKWJLpW+9cTB8knfriqps9Cq8GlL
-         F93p4tiz0z7oVcPm8zYBgmtEnExp5ZotLDU1IQRlJxaBWKSy2FtSEpfNZLjUblNVDS
-         n8grGziPVX91Q==
-Date:   Sun, 18 Sep 2022 15:33:25 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Ciprian Regus <ciprian.regus@analog.com>
-Cc:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/5] Add support for LTC2499 ADC
-Message-ID: <20220918153325.2c8d0d6c@jic23-huawei>
-In-Reply-To: <20220916140922.2506248-1-ciprian.regus@analog.com>
-References: <20220916140922.2506248-1-ciprian.regus@analog.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S229731AbiIROyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 10:54:50 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4771DF46;
+        Sun, 18 Sep 2022 07:54:47 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id y14so624502ljn.7;
+        Sun, 18 Sep 2022 07:54:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=X2nL2KSAwhN1N7oGYh/hnKQufvm9ZPqZy+bXK3ObVHM=;
+        b=ClzgvkyH0BqkP439F5KhDeznP1N4fFbQs5ryZmWESU/E3OEZUGC5of87P1GGKty4Vt
+         XhGSBiBt4hG+G3ciuvISp6E7n51cangaWthcbRPQRTrA71GMYCRgP0KFu2BlgOnqNT9m
+         9uxqUKuUIR60ED0CArmsHFzFy9/VUYSK2YkYT7ompESn44C0MmZK3sObVy6FT4wQ7Azu
+         FEXEdTl9NetWwYSMMVHSb5kk2436U5RIbLUcCWMkZHDMMsaTBeUPr8I3wxmz0fKFeBth
+         mtpzmA9pbNfT2Nwyiagv5IEJooVma8vOBJNNptKzvF/OBHFfwNiMjTxtzTEmVorWGiVt
+         iqFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=X2nL2KSAwhN1N7oGYh/hnKQufvm9ZPqZy+bXK3ObVHM=;
+        b=kDFZ3GGlvkKFv14FyEGKLYTPio0xtmxMMVov2Sw7lFZbSrpRPLzDFUDkjKGGEH3Z03
+         hg657WqB2xVF2Kq1mZVgINUUW1Nf6xofswIW4MyLS4Nz0NUwh2xqetvhWjY2I8+wOBgZ
+         wMjSwW2rm+KeQzIvOF2QZdX7iKzW3YR1O46gPGI9SDJ3hTOvKtK25rEhy9Io4/K3q+A2
+         a+2FJsh9CDYBVWxd0ctjYtyYId37b/YORjEppwWUNNzd6DP6ztxi1kP+iGK9qjR/FVOM
+         tpoq/gbE4pSsJlKjxD70WZKIZlRNsout3WpUNfNTmEq0sdcgUidTB1b9o96Ah5eHx81E
+         PLRg==
+X-Gm-Message-State: ACrzQf0lf0IbJoG06Pfi+ZL34VScEYsr8N4f/kOPZ0DS43p3iYz1Iiia
+        bz4wIPSyJs3inZXA+QEDQ3I=
+X-Google-Smtp-Source: AMsMyM7uA3CWTWmt1O3cdC03BzBUTtWxj0ZcmkjKblWh3hHzDgsxnJmBmL1SwUeqm7S1uABQ7D/Vqw==
+X-Received: by 2002:a2e:9c93:0:b0:26c:2fec:2f31 with SMTP id x19-20020a2e9c93000000b0026c2fec2f31mr4164254lji.369.1663512885712;
+        Sun, 18 Sep 2022 07:54:45 -0700 (PDT)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id a14-20020a05651c030e00b0026bf0d71b1esm4456077ljp.93.2022.09.18.07.54.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Sep 2022 07:54:44 -0700 (PDT)
+Message-ID: <6f8e986d-6835-ae9a-bba7-074e822c25f5@gmail.com>
+Date:   Sun, 18 Sep 2022 16:54:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [RESEND PATCH v3 4/4] leds: Add a multicolor LED driver to group
+ monochromatic LEDs
+Content-Language: en-US
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>, pavel@ucw.cz,
+        robh+dt@kernel.org, sven.schwermer@disruptive-technologies.com,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     johan+linaro@kernel.org, marijn.suijten@somainline.org,
+        bjorn.andersson@linaro.org, andy.shevchenko@gmail.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sha@pengutronix.de
+References: <20220917081339.3354075-1-jjhiblot@traphandler.com>
+ <20220917081339.3354075-5-jjhiblot@traphandler.com>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <20220917081339.3354075-5-jjhiblot@traphandler.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Sep 2022 17:09:17 +0300
-Ciprian Regus <ciprian.regus@analog.com> wrote:
+Hi Jean,
 
-> The LTC2499 is a 16-channel (eight differential), 24-bit,
-> ADC with Easy Drive technology and a 2-wire, I2C interface.
+General question to this driver: since it seems that it is allowed to
+have duplicate LEDs of the same color, then it will be impossible to
+distinguish which of the two same colors in multi_index file will refer
+to which physical LED. Are you aware of this shortcoming?
+
+Besides that I have two remarks below.
+
+On 9/17/22 10:13, Jean-Jacques Hiblot wrote:
+> By allowing to group multiple monochrome LED into multicolor LEDs,
+> all involved LEDs can be controlled in-sync. This enables using effects
+> using triggers, etc.
 > 
-> This adds support for the LTC2499 ADC by extending the LTC2497
-> driver.
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> ---
+>   drivers/leds/rgb/Kconfig                 |   6 +
+>   drivers/leds/rgb/Makefile                |   1 +
+>   drivers/leds/rgb/leds-group-multicolor.c | 153 +++++++++++++++++++++++
+>   3 files changed, 160 insertions(+)
+>   create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
 > 
-> There is also a removal of a MAINTAINERS entry duplicate.
-> 
-> Note: This fix is required to be applied first:
-> https://patchwork.kernel.org/project/linux-iio/patch/20220815091647.1523532-1-dzagorui@cisco.com
+> diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
+> index 204cf470beae..c2610c47a82d 100644
+> --- a/drivers/leds/rgb/Kconfig
+> +++ b/drivers/leds/rgb/Kconfig
+> @@ -2,6 +2,12 @@
+>   
+>   if LEDS_CLASS_MULTICOLOR
+>   
+> +config LEDS_GRP_MULTICOLOR
+> +	tristate "Multi-color LED grouping support"
+> +	help
+> +	  This option enables support for monochrome LEDs that are
+> +	  grouped into multicolor LEDs.
+> +
+>   config LEDS_PWM_MULTICOLOR
+>   	tristate "PWM driven multi-color LED Support"
+>   	depends on PWM
+> diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
+> index 0675bc0f6e18..4de087ad79bc 100644
+> --- a/drivers/leds/rgb/Makefile
+> +++ b/drivers/leds/rgb/Makefile
+> @@ -1,4 +1,5 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   
+> +obj-$(CONFIG_LEDS_GRP_MULTICOLOR)	+= leds-group-multicolor.o
+>   obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
+>   obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
+> diff --git a/drivers/leds/rgb/leds-group-multicolor.c b/drivers/leds/rgb/leds-group-multicolor.c
+> new file mode 100644
+> index 000000000000..61f9e1954fc4
+> --- /dev/null
+> +++ b/drivers/leds/rgb/leds-group-multicolor.c
+> @@ -0,0 +1,153 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * multi-color LED built with monochromatic LED devices
+> + *
+> + * Copyright 2022 Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/leds.h>
+> +#include <linux/led-class-multicolor.h>
+> +#include <linux/math.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +
+> +struct led_mcg_priv {
+> +	struct led_classdev_mc mc_cdev;
+> +	struct led_classdev **monochromatics;
+> +};
+> +
+> +static int led_mcg_set(struct led_classdev *cdev,
+> +			  enum led_brightness brightness)
+> +{
+> +	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
+> +	struct led_mcg_priv *priv =
+> +		container_of(mc_cdev, struct led_mcg_priv, mc_cdev);
+> +	int i;
+> +
+> +	led_mc_calc_color_components(mc_cdev, brightness);
+> +
+> +	for (i = 0; i < mc_cdev->num_colors; i++) {
+> +		struct led_classdev *mono = priv->monochromatics[i];
+> +		int actual_led_brightness;
+> +
+> +		/*
+> +		 * Scale the intensity according the max brightness of the
+> +		 * monochromatic LED
+s/according the/according to the/
 
-Hi Ciprian,
+> +		 */
+> +		actual_led_brightness = DIV_ROUND_CLOSEST(
+> +			mono->max_brightness * mc_cdev->subled_info[i].brightness,
+> +			mc_cdev->led_cdev.max_brightness);
 
-This lost it's version number which may confuse some scripts etc.
-Anyhow, I think b4 found the right versions.
+How about dropping above usage of led_mc_calc_color_components()
+helper in favour of doing all required calculations here?
+It would be easier for the reader to grasp the idea then.
 
-Applied to the togreg branch of iio.git and pushed out as testing for 0-day
-to take a look.
+> +
+> +		led_set_brightness(mono, actual_led_brightness);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int led_mcg_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct led_init_data init_data = {};
+> +	struct led_classdev *cdev;
+> +	struct mc_subled *subled;
+> +	struct led_mcg_priv *priv;
+> +	int i, count, ret;
+> +	unsigned int max_brightness;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	count = 0;
+> +	max_brightness = 0;
+> +	for (;;) {
+> +		struct led_classdev *led_cdev;
+> +
+> +		led_cdev = devm_of_led_get(dev, count);
+> +		if (IS_ERR(led_cdev)) {
+> +			/* Reached the end of the list ? */
+> +			if (PTR_ERR(led_cdev) == -ENOENT)
+> +				break;
+> +			return dev_err_probe(dev, PTR_ERR(led_cdev),
+> +					     "Unable to get led #%d", count);
+> +		}
+> +		count++;
+> +
+> +		priv->monochromatics = devm_krealloc(dev, priv->monochromatics,
+> +					count * sizeof(*priv->monochromatics),
+> +					GFP_KERNEL);
+> +		if (!priv->monochromatics)
+> +			return -ENOMEM;
+> +
+> +		priv->monochromatics[count - 1] = led_cdev;
+> +
+> +		max_brightness = max(max_brightness, led_cdev->max_brightness);
+> +	}
+> +
+> +	subled = devm_kzalloc(dev, count * sizeof(*subled), GFP_KERNEL);
+> +	if (!subled)
+> +		return -ENOMEM;
+> +	priv->mc_cdev.subled_info = subled;
+> +
+> +	for (i = 0; i < count; i++) {
+> +		struct led_classdev *led_cdev = priv->monochromatics[i];
+> +
+> +		subled[i].color_index = led_cdev->color;
+> +		/* configure the LED intensity to its maximum */
+> +		subled[i].intensity = max_brightness;
+> +	}
+> +
+> +	/* init the multicolor's LED class device */
+> +	cdev = &priv->mc_cdev.led_cdev;
+> +	cdev->flags = LED_CORE_SUSPENDRESUME;
+> +	cdev->brightness_set_blocking = led_mcg_set;
+> +	cdev->max_brightness = max_brightness;
+> +	cdev->color = LED_COLOR_ID_MULTI;
+> +	priv->mc_cdev.num_colors = count;
+> +
+> +	init_data.fwnode = dev_fwnode(dev);
+> +	ret = devm_led_classdev_multicolor_register_ext(dev, &priv->mc_cdev,
+> +							&init_data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +			"failed to register multicolor led for %s.\n",
+> +			cdev->name);
+> +
+> +	ret = led_mcg_set(cdev, cdev->brightness);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to set led value for %s.",
+> +				     cdev->name);
+> +
+> +	for (i = 0; i < count; i++) {
+> +		struct led_classdev *led_cdev = priv->monochromatics[i];
+> +
+> +		/* Make the sysfs of the monochromatic LED read-only */
+> +		led_cdev->flags |= LED_SYSFS_DISABLE;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id of_led_mcg_match[] = {
+> +	{ .compatible = "leds-group-multicolor" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, of_led_mcg_match);
+> +
+> +static struct platform_driver led_mcg_driver = {
+> +	.probe		= led_mcg_probe,
+> +	.driver		= {
+> +		.name	= "leds_group_multicolor",
+> +		.of_match_table = of_led_mcg_match,
+> +	}
+> +};
+> +module_platform_driver(led_mcg_driver);
+> +
+> +MODULE_AUTHOR("Jean-Jacques Hiblot <jjhiblot@traphandler.com>");
+> +MODULE_DESCRIPTION("multi-color LED group driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:leds-group-multicolor");
 
-Note I plan to rebase that tree sometime this week so don't use it
-as a stable base.
-
-I tweaked a few patch descriptions to make it clearer what driver was involved
-and wrapped long lines whilst applying.
-
-Thanks,
-
-Jonathan
-> 
-> Ciprian Regus (5):
->   Remove duplicate matching entry
->   dt-bindings: iio: adc: Add docs for LTC2499
->   Add MAINTAINERS entries for LTC2497 and LTC2496
->   drivers: iio: adc: LTC2499 support
->   drivers: iio: adc: Rename the LTC2499 iio device
-> 
->  .../bindings/iio/adc/lltc,ltc2497.yaml        |  8 ++-
->  MAINTAINERS                                   |  3 +-
->  drivers/iio/adc/ltc2496.c                     |  9 ++-
->  drivers/iio/adc/ltc2497-core.c                | 12 +++-
->  drivers/iio/adc/ltc2497.c                     | 63 +++++++++++++++++--
->  drivers/iio/adc/ltc2497.h                     |  6 ++
->  6 files changed, 90 insertions(+), 11 deletions(-)
-> 
-
+-- 
+Best regards,
+Jacek Anaszewski
