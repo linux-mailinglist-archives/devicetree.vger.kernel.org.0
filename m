@@ -2,137 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 234F05BBDF5
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 15:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C1795BBE03
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 15:42:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiIRNTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 09:19:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36696 "EHLO
+        id S229648AbiIRNmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 09:42:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiIRNTb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 09:19:31 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB0CE1DA5D;
-        Sun, 18 Sep 2022 06:19:25 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id a14so28791829ljj.8;
-        Sun, 18 Sep 2022 06:19:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=xAdSK4zu9i7/4F3vbyt9vJTdO/EeNs3jhLAC5qAxHlM=;
-        b=W0D4NJHj4WhKsQEzfkFQzsjqbNtHK5nprPPQ+ayEUqtUV/MO5kpVFT3Nz0PxmDJjdS
-         kO4m1nhyrrrr5knXRbnLQ+Fum1Oepae5/VyBa+tpX679skZH3oMhJQoMV2ULpweJKMio
-         IiIr+ysJK/gm2CDVEjAtOj5OF1DrlNHJtcSWtC5F9J4FScEYGDiY9AEBxry7x2DPH9wo
-         M/F7m5gVA1lxfoXBo/VwPfN6826kEu3caZx8M1cNRByB3QG8x7nuO9AkWuiT1dMtOOA+
-         YOP4lyYbgYgy9dr9V/jXvcc4zIOX3aK9rMBmuLLOuBt6UuL8daDtkdAJgUaP3O1stUDE
-         8sJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=xAdSK4zu9i7/4F3vbyt9vJTdO/EeNs3jhLAC5qAxHlM=;
-        b=qNxRHXfQrbFMRbcAUCuDNfqDVTfHwZwyn/Ge5WYb/g4mwxSCatPakqFUUyLMeVmRMd
-         tP4U9wp9kumVeyqMC/SWBeQaLZXm0SJ40XOqDrnnfMEAaIvEhpPCh1AFMui9yzD5a2+k
-         W34xd3FXZImTu3FYKX843H1+o2IHUn0Ng6w177BB7EVsVRlTefL8BxgeiqWsc0fkfyus
-         S4sPGebRFYCiHVE/e/VHrMDjvn6kFs/oZxInMf5yQ+lOnnEI1thdIPukl3G3B6Gee3EM
-         kxjph6zjP69GrEKS3oZpOfbM1UIqUpxP3AmtS+XUSZLIRkFSCmywNcYKpOvWGntUGulY
-         yftw==
-X-Gm-Message-State: ACrzQf1Ik9EFfDjpVChObkCPSkF0bTIR7TCLrrEm62sooig4w4oAGhib
-        yxHXABayoy5eOpqCZfC3Ook=
-X-Google-Smtp-Source: AMsMyM6x6U00y3HV9+Di6Pr9U/lk2StLpSXfImiA89LyVdUJDE/Jg33zDeiLl0j1RLU7l+yS5Y/eIQ==
-X-Received: by 2002:a2e:9a88:0:b0:26a:c4d2:3418 with SMTP id p8-20020a2e9a88000000b0026ac4d23418mr4028141lji.81.1663507164056;
-        Sun, 18 Sep 2022 06:19:24 -0700 (PDT)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id 2-20020ac25f02000000b00499a6ef78a7sm4623969lfq.66.2022.09.18.06.19.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 06:19:23 -0700 (PDT)
-Message-ID: <57b8c30f-08be-b34d-d85c-6545af8b0338@gmail.com>
-Date:   Sun, 18 Sep 2022 15:19:21 +0200
+        with ESMTP id S229501AbiIRNmJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 09:42:09 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C77041A06D;
+        Sun, 18 Sep 2022 06:42:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1663508490; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=GVKSPJUcaA9oLt++jl9IhOWXwwLFdMOS4TeMOgfbhHpfpfUQW7AdY1xnV3j9SuGmaMdNWDBJQQzRi8n9S8RrHxh2olkORapD4pUqA5z4u5cTloSmu5NKIkQrw3nfhZQ2TNub6euU+Yc949Mvltsa9Mf4wZ/CSh6/kDPAm9TGsnQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1663508490; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=+eb7e0aJeyPR0BKrEk9LBgDrr9YKbj4RLnuWgu/XeKs=; 
+        b=nAZ9yMpzz6Bf+fYqs7ZzNjP9323hsdfqNKcslstERLDINCIAoheKr9LUtAtB6EOtAAk+1TZd0mTOJ/nUc5273ZxI92KbE1FaMqW2Nc3ADi3kGNUdqi4pHZl6CyoTt0MlUq+RiqEf/MSXKDo6C3l99VcziJepxrheL10hbKlqv30=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1663508490;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+        bh=+eb7e0aJeyPR0BKrEk9LBgDrr9YKbj4RLnuWgu/XeKs=;
+        b=KKG7c+AkpmM8xCJ8TuXkdUC1OVT0TkFMeeekpsisUYKLPyZA9FuwoVp5MWElAYsW
+        ZQC2f6KyEF/ZncRC3XV3zCZEHpXKpxCebhgp5ARBENkK9B43EpRMu5lHbFa3E69u1PG
+        gcmTe2gQiksVYfQtGjC6WyL+ECn25c3y4mZlKN+w=
+Received: from arinc9-PC.lan (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1663508488779135.16534528844454; Sun, 18 Sep 2022 06:41:28 -0700 (PDT)
+From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        erkin.bozoglu@xeront.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+Subject: [PATCH v3 net-next 00/10] dt-bindings and mt7621 devicetree changes
+Date:   Sun, 18 Sep 2022 16:41:08 +0300
+Message-Id: <20220918134118.554813-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [RESEND PATCH v3 2/4] leds: class: store the color index in
- struct led_classdev
-Content-Language: en-US
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>, pavel@ucw.cz,
-        robh+dt@kernel.org, sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     johan+linaro@kernel.org, marijn.suijten@somainline.org,
-        bjorn.andersson@linaro.org, andy.shevchenko@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sha@pengutronix.de
-References: <20220917081339.3354075-1-jjhiblot@traphandler.com>
- <20220917081339.3354075-3-jjhiblot@traphandler.com>
- <0f6e0dc0-7101-ff17-09ce-14bd2a0189fb@gmail.com>
-In-Reply-To: <0f6e0dc0-7101-ff17-09ce-14bd2a0189fb@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/18/22 13:25, Jacek Anaszewski wrote:
-> Hi Jean,
-> 
-> On 9/17/22 10:13, Jean-Jacques Hiblot wrote:
->> This information might be useful for more than only deriving the led's
->> name.
->>
->> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
->> ---
->>   drivers/leds/led-class.c | 7 +++++++
->>   include/linux/leds.h     | 1 +
->>   2 files changed, 8 insertions(+)
->>
->> diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
->> index 2c0d979d0c8a..537379f09801 100644
->> --- a/drivers/leds/led-class.c
->> +++ b/drivers/leds/led-class.c
->> @@ -350,6 +350,10 @@ int led_classdev_register_ext(struct device *parent,
->>               if (fwnode_property_present(init_data->fwnode,
->>                               "retain-state-shutdown"))
->>                   led_cdev->flags |= LED_RETAIN_AT_SHUTDOWN;
->> +
->> +            if (fwnode_property_present(init_data->fwnode, "color"))
->> +                fwnode_property_read_u32(init_data->fwnode, "color",
->> +                             &led_cdev->color);
->>           }
->>       } else {
->>           proposed_name = led_cdev->name;
->> @@ -359,6 +363,9 @@ int led_classdev_register_ext(struct device *parent,
->>       if (ret < 0)
->>           return ret;
->> +    if (led_cdev->color >= LED_COLOR_ID_MAX)
->> +        dev_warn(parent, "LED %s color identifier out of range\n", 
->> final_name);
->> +
->>       mutex_init(&led_cdev->led_access);
->>       mutex_lock(&led_cdev->led_access);
->>       led_cdev->dev = device_create_with_groups(leds_class, parent, 0,
->> diff --git a/include/linux/leds.h b/include/linux/leds.h
->> index ba4861ec73d3..fe6346604e36 100644
->> --- a/include/linux/leds.h
->> +++ b/include/linux/leds.h
->> @@ -71,6 +71,7 @@ struct led_classdev {
->>       const char        *name;
->>       unsigned int brightness;
->>       unsigned int max_brightness;
->> +    unsigned int color;
-> 
-> We have color_index in struct mc_subled. What would this serve for?
+Hello there!
 
-OK, I missed that you're using it leds-group-multicolor.c.
+This patch series removes old MediaTek bindings, improves mediatek,mt7530
+and mt7621 memory controller bindings and improves mt7621 DTs.
 
--- 
-Best regards,
-Jacek Anaszewski
+v3:
+- Explain the mt7621 memory controller binding change in more details.
+- Remove explaining the remaining DTC warnings from the patch log as there
+are new schemas submitted for them.
+
+v2:
+- Change memory controller node name to syscon on the schema example.
+- Keep cpu compatible string and syscon on the memory controller node.
+- Add Rob and Sergio's tags.
+
+Arınç ÜNAL (10):
+  dt-bindings: net: drop old mediatek bindings
+  dt-bindings: net: dsa: mediatek,mt7530: change mt7530 switch address
+  dt-bindings: net: dsa: mediatek,mt7530: expand gpio-controller
+    description
+  dt-bindings: memory: mt7621: add syscon as compatible string
+  mips: dts: ralink: mt7621: fix some dtc warnings
+  mips: dts: ralink: mt7621: remove interrupt-parent from switch node
+  mips: dts: ralink: mt7621: change phy-mode of gmac1 to rgmii
+  mips: dts: ralink: mt7621: change mt7530 switch address
+  mips: dts: ralink: mt7621: fix external phy on GB-PC2
+  mips: dts: ralink: mt7621: add GB-PC2 LEDs
+
+ .../mediatek,mt7621-memc.yaml                   |  8 ++-
+ .../bindings/net/dsa/mediatek,mt7530.yaml       | 34 ++++++-----
+ .../bindings/net/mediatek,mt7620-gsw.txt        | 24 --------
+ .../bindings/net/ralink,rt2880-net.txt          | 59 --------------------
+ .../bindings/net/ralink,rt3050-esw.txt          | 30 ----------
+ .../boot/dts/ralink/mt7621-gnubee-gb-pc1.dts    |  8 +--
+ .../boot/dts/ralink/mt7621-gnubee-gb-pc2.dts    | 50 +++++++++++++----
+ arch/mips/boot/dts/ralink/mt7621.dtsi           | 33 +++++------
+ 8 files changed, 80 insertions(+), 166 deletions(-)
+
+
