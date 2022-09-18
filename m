@@ -2,134 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C8D5BBB57
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 05:44:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 180EC5BBC7D
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 10:11:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbiIRDop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Sep 2022 23:44:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56228 "EHLO
+        id S229517AbiIRILs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 04:11:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbiIRDoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Sep 2022 23:44:39 -0400
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC09DE5;
-        Sat, 17 Sep 2022 20:44:35 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 65E3E320099D;
-        Sat, 17 Sep 2022 23:44:34 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Sat, 17 Sep 2022 23:44:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxfierke.com;
-         h=cc:cc:content-transfer-encoding:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1663472673; x=
-        1663559073; bh=8wNDwyLQbgh81ChXcvRCrOfZSMYHUfqbm6VtNor6UYg=; b=H
-        iK9aXgKuFmUKaI6ZN4N3f5myS4E4mhlvVzlZVAwcvD6uwh6pkAsJTsbe7++WG0dr
-        2GjO5v3i5mX5VuSr2TwjNUBazpGHaCydInc9SbV/O6MgYf8yaJ6gHsYuQcGhO1fs
-        fPD4nr64XAgKxNPwEk2jzhCq6j2TPgorYs4qxpgYJlzV/6XCAMFR/lLdd1IJwble
-        k6XtUKf7V2HORts+kbErUON9Pd+irzueKLy8BQV3u0LJGqKws6JTllk0BwFXxDD8
-        xIeCfceL4e3SPpYMKOUzTK+ECIDdt3uE9a6JsY/5rfaPQWUKE5s6cbAX2BSFcsGt
-        LVTAKZIf5JpTRghueBALg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1663472673; x=1663559073; bh=8wNDwyLQbgh81
-        ChXcvRCrOfZSMYHUfqbm6VtNor6UYg=; b=Vidop8vR4F9cxeIw/vSe8s/RiGZMD
-        nDav1iwzMhhb7Ws27soSKaI0pn/AeqxRNk9WNeIwX9dCOxhxDKuVh/9T5kVwXYaW
-        rv6DgsflqI6q8IB+EPvkviC61Cr7wICWeHuP37meiLEHR/eTbAFrO6sED25mUwj6
-        wwFHPyvt+7Koz+BHo6IKcBPTgpATFpPhuZz+2UZQwcqfGAOqaIBDD7q9j6KXdBz0
-        eTKo1vPGUX5ESHeWOzpcl+RzOr3DTtGog5qXSjIRYZWlIlEEzA36wMrZyuVOKebD
-        /1X52pfJzuKggr31hONhv+7Q2fu6E5MSDQbMHAsdpWc20lE/M3dSFGimA==
-X-ME-Sender: <xms:IZQmYzDd2LVBXbe-X-Gru7txf4hrflapjX_hKQRqIS6Z0KLrzVSfSw>
-    <xme:IZQmY5hpRRSuW2j8VPisdIxtLcFNUd0TSymZFz8Ehu1j7xkFb-AZG3oZYKzlw9PIp
-    FLBqnea7IKvCdo_jX4>
-X-ME-Received: <xmr:IZQmY-nd7B2v6_rJPOyom5kaQmiKzC8PGFrr5DYdE1r_r6KFDtp1oan618mbdY_KwOPbt30UaNIIGJqFbLvRD3n_TFu-4JOYxoahPY-ydRPiMfQamA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedvfedgjeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevufffkffojghfggfgsedtke
-    ertdertddtnecuhfhrohhmpeforgigucfhihgvrhhkvgcuoehmrgigsehmrgigfhhivghr
-    khgvrdgtohhmqeenucggtffrrghtthgvrhhnpeduleevvddtfffhuefgleeiveevvdehgf
-    evtdetfeekvedvhfeikeduueetfeegkeenucevlhhushhtvghrufhiiigvpedtnecurfgr
-    rhgrmhepmhgrihhlfhhrohhmpehmrgigsehmrgigfhhivghrkhgvrdgtohhm
-X-ME-Proxy: <xmx:IZQmY1w-6XLzHEtou-XAgLZep2X8scE6uIVahJ8sjqCREfL1Oco3kg>
-    <xmx:IZQmY4T5afwKfS7SSxafuCP2-EsTF0RRfDnJ5PzKWlO_iGOvxRTPZQ>
-    <xmx:IZQmY4Zx4q1JJ_O4f3H1loBQ1zvlRWMh84boW5vkUegl2F2G0GMi6A>
-    <xmx:IZQmY_JYdK-PB8Tkj_QpFAMca7VPPxmKFGyk66ekjY6uoNyklEIxlQ>
-Feedback-ID: idee9475d:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 17 Sep 2022 23:44:33 -0400 (EDT)
-From:   Max Fierke <max@maxfierke.com>
-To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Max Fierke <max@maxfierke.com>
-Subject: [PATCH v3 4/4] drm/panel: clockworkpi-cwd686: Implement .get_orientation callback
-Date:   Sat, 17 Sep 2022 22:44:15 -0500
-Message-Id: <20220918034415.74641-5-max@maxfierke.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220918034415.74641-1-max@maxfierke.com>
-References: <20220918034415.74641-1-max@maxfierke.com>
+        with ESMTP id S229527AbiIRILq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 04:11:46 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C2431F2FE
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 01:11:35 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id y11so8028442pjv.4
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 01:11:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=cIRY+VRqALb4vEHaHBDDtY15l5f9Vz43K52fRmFtiwU=;
+        b=XbzktqWZbBO3vuz+FO9itbrCAcsxrsZEGIJxnBkuxQwBM5NecKenUNbzxMTDF7CCJa
+         6h+q1l1nihH1IbhCZgdmvKM7CAIqMysiDln3BPCt5Ec85bwAWxXssgKiH+TlVo5N9dGo
+         FFouc0fcuNeRBmXBVGZEe/I5Zdf2BPLSx4scJ7Xr6PdfVasDVj/6WJ7SvxEfadKf6yQx
+         eFDc/c7QX0w4X+H5icD50QFhZQ4RcIDYJ6Bk/vQJk66f5jTekDLG7lCQWReFfeGWjtig
+         f9M2MgOv3jZmq2l8bLdSkm4zl74Jw7qTPRVISG3lger/zuvzOPdli6zOAQb0C2dAhi/U
+         Ck1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=cIRY+VRqALb4vEHaHBDDtY15l5f9Vz43K52fRmFtiwU=;
+        b=aTu6a1WoxT6XwN7hvR9QtJ3twYXHxM9BSGbAMtyf/eSUZ4BQojNLq1A9p9FLuDAwS6
+         rhGLg6vNGJAQio19/w97hS99LmUnSXHR/Ah2NcvqtX9TOe77F+Km6ZtsFLUALIcKuBeh
+         ht6O/lt720oNuFjf0dUOa8tXbtj81RTSIk1pRtCWYPfL4MGKiCQVafpGX6gUrvwP4Rib
+         w3wiXWLvuVn+BTEiMjsAVJyZ8CxLJF1WhlVLOmzmUFqVhvrSJw0uAltqv8JfD0NejAr5
+         csATL3hD+2X1JPdUUfmgky9QhegeIPvIkZeWTagqhOa7p+DA42jJkgdaH1O9EUA+KiYk
+         4RPA==
+X-Gm-Message-State: ACrzQf1K9AEcgWBF0aJM3codip3WlltA8zHKkVafGDIjPN3eBpiOyg/v
+        H4BjmCWww5q8XLQuXKNG+DUXjucetf6s8w==
+X-Google-Smtp-Source: AMsMyM5XOWO0tuvHPZ8b2m/5XqlmKf32SySgNDZrfYEsflHmGqkiSGI/l9ZZ5xllTHmfulUj7TeZkQ==
+X-Received: by 2002:a17:90b:4b03:b0:202:a7e1:2c9a with SMTP id lx3-20020a17090b4b0300b00202a7e12c9amr13544715pjb.195.1663488694587;
+        Sun, 18 Sep 2022 01:11:34 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c61:6535:ca5f:67d1:670d:e188])
+        by smtp.gmail.com with ESMTPSA id n17-20020a170902e55100b001752cb111e0sm18244781plf.69.2022.09.18.01.11.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Sep 2022 01:11:34 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.sharma@linaro.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        vkoul@kernel.org, agross@kernel.org, dmaengine@vger.kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        andersson@kernel.org, krzysztof.kozlowski@linaro.org
+Subject: [PATCH] dt-bindings: dma: Make minor fixes to qcom,bam-dma binding doc
+Date:   Sun, 18 Sep 2022 13:41:19 +0530
+Message-Id: <20220918081119.295364-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Returns the panel's configured orientation
+As a user recently noted, the qcom,bam-dma binding document
+describes the BAM DMA node incorrectly. Fix the same by making
+it consistent with the node present inside 'qcom-msm8974' dts
+file.
 
-Signed-off-by: Max Fierke <max@maxfierke.com>
+While at it also make two minor cleanups:
+ - mention Bjorn's new email ID in the document, and
+ - add SDM845 in the comment line for the SoCs on which
+   qcom,bam-v1.7.0 version is supported.
+
+Fixes: 4f46cc1b88b3 ("dt-bindings: dma: Convert Qualcomm BAM DMA binding to json format")
+Cc: konrad.dybcio@somainline.org
+Cc: robh+dt@kernel.org
+Cc: andersson@kernel.org
+Cc: krzysztof.kozlowski@linaro.org
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
-Changes in v3:
- - no changes
+ Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Changes in v2:
- - this was added as .get_orientation is now available in drm-misc-next since v1
-
- drivers/gpu/drm/panel/panel-clockworkpi-cwd686.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/panel/panel-clockworkpi-cwd686.c b/drivers/gpu/drm/panel/panel-clockworkpi-cwd686.c
-index 87d20d784596..2c433a458c8b 100644
---- a/drivers/gpu/drm/panel/panel-clockworkpi-cwd686.c
-+++ b/drivers/gpu/drm/panel/panel-clockworkpi-cwd686.c
-@@ -340,7 +340,10 @@ static int cwd686_get_modes(struct drm_panel *panel, struct drm_connector *conne
- 	drm_mode_set_name(mode);
- 	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+index 9bf3a1b164f1..003098caf709 100644
+--- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
++++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+@@ -8,7 +8,7 @@ title: Qualcomm Technologies Inc BAM DMA controller
  
--	/* Set up connector's "panel orientation" property */
-+	/*
-+	 * TODO: Remove once all drm drivers call
-+	 * drm_connector_set_orientation_from_panel()
-+	 */
- 	drm_connector_set_panel_orientation(connector, ctx->orientation);
+ maintainers:
+   - Andy Gross <agross@kernel.org>
+-  - Bjorn Andersson <bjorn.andersson@linaro.org>
++  - Bjorn Andersson <andersson@kernel.org>
  
- 	drm_mode_probed_add(connector, mode);
-@@ -348,10 +351,18 @@ static int cwd686_get_modes(struct drm_panel *panel, struct drm_connector *conne
- 	return 1; /* Number of modes */
- }
+ allOf:
+   - $ref: "dma-controller.yaml#"
+@@ -20,7 +20,7 @@ properties:
+       - qcom,bam-v1.3.0
+         # MSM8974, APQ8074 and APQ8084
+       - qcom,bam-v1.4.0
+-        # MSM8916
++        # MSM8916 and SDM845
+       - qcom,bam-v1.7.0
  
-+static enum drm_panel_orientation cwd686_get_orientation(struct drm_panel *panel)
-+{
-+	struct cwd686 *ctx = panel_to_cwd686(panel);
-+
-+	return ctx->orientation;
-+}
-+
- static const struct drm_panel_funcs cwd686_drm_funcs = {
- 	.unprepare = cwd686_unprepare,
- 	.prepare = cwd686_prepare,
- 	.get_modes = cwd686_get_modes,
-+	.get_orientation = cwd686_get_orientation,
- };
+   clocks:
+@@ -90,8 +90,8 @@ examples:
  
- static int cwd686_probe(struct mipi_dsi_device *dsi)
+     dma-controller@f9944000 {
+         compatible = "qcom,bam-v1.4.0";
+-        reg = <0xf9944000 0x15000>;
+-        interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
++        reg = <0xf9944000 0x19000>;
++        interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
+         clocks = <&gcc GCC_BLSP2_AHB_CLK>;
+         clock-names = "bam_clk";
+         #dma-cells = <1>;
 -- 
-2.37.2
+2.37.1
+
