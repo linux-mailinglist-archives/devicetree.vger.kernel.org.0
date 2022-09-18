@@ -2,76 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C8B15BBD96
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 13:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3309A5BBDCD
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 14:40:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbiIRLZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 07:25:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58648 "EHLO
+        id S229538AbiIRMkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 08:40:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiIRLZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 07:25:39 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F357122BFB;
-        Sun, 18 Sep 2022 04:25:37 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id u18so42475395lfo.8;
-        Sun, 18 Sep 2022 04:25:37 -0700 (PDT)
+        with ESMTP id S229473AbiIRMke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 08:40:34 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4FA205FE;
+        Sun, 18 Sep 2022 05:40:32 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id e18so12724970wmq.3;
+        Sun, 18 Sep 2022 05:40:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=AFDUSyQgNlFhUnX6gC0TWQYVHNBF5uk8WMp2yAC/xFA=;
-        b=FPQHZTTO1ue6JTGT3mFVZIiMOFrpR87Kpb3MHD8fWNx8m9CgWcjzw5vyu8QvV3EZj1
-         Vin3tJChC2YmCYJqN4bqoEywtPFkY4CkzD6Ze6o/Rsd4OKP1AdaqJ4xB0vFO6dHrd6ab
-         Dt1MlOnS99/ZVP2FXgF0mIsxRF/q38+cTu7jgEAA4IKKpuIepQ8pEHWI6eDUtSRSov3P
-         O4LEoMqLwHl1b4E9XQmgetc2giVxyLgTZ9ez/CBkYGAw6U3ANp1HSscGuQIqtriMY0k/
-         sch86g+H7N2smTRkyLn5GQWoxgx6ul8IhI+w7jpxbhI50PmRyg/BtuPjITR/FfFAy0ty
-         UpDg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=kZN6GVMIS455JRGRpYDZw5MCrxQYeuEnGBclnyLhYxw=;
+        b=UyKWNZjjvl5fgx8wA4aQekKjkps9nQyFoijyZ9xqkMjVZip3H9XGHQ7M7sqeeIeGOF
+         Sz1gArsZ5FHYEoMmjYATclaz5MgDIjmk02Eih0JADuCERXkKeF1urOO5K/us+1wJV25Q
+         UzkB9+JzI8Mlfb2nm3yvCtsvxlFw5fJegn+Mox+1tgZfwb1q+9r5weaGZ9LsvjMNg21n
+         zIWVSh5Nwa9jxgN3gBQGQ0a3sim2df6TjO8kg64XbOVzYC8zJdpJ9wRQAylb5KUj2pJa
+         60Q/kytiS70KNfLuFWYqFHHjLrjA0qusp9CmPcofHeYNsLyPg0S6NeHhDwsS6e1y18yX
+         bvnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=AFDUSyQgNlFhUnX6gC0TWQYVHNBF5uk8WMp2yAC/xFA=;
-        b=hUSgvJnhK4yTqPuMpuWH/l9dr2JCke15LztgbB52IM7H147CpA7PL+vNWPskgEnEy9
-         zQI5CE1oq0O7vy4FSv6YTNxR74N+0iigPiHRLoVbxGK/VNoHd6DIjRL0x5deEcLOuTBM
-         9WNDdFNZM9SffbvYK/5mFgLJOEvKXDqH/UtsqktiljTTQ0t+FlAZ3KX0quDNKroYKXVh
-         u3hHqJiyJ0NCtzURG7JilWQ6T5RlKQtdFQNQdpJAspZnwLQmgmWAl9pzMrRy6uOEzChV
-         0Rtn5Umsopvh3NPVRKBZc0pPJ99uafIvPReUh1hvqysvE8u46fj9eekrMP5vznFiNYIl
-         po2w==
-X-Gm-Message-State: ACrzQf3bHwpEFfb2zuSU/cJGLZr0r4pQjULEEKDJglsUGauYlyWypFmn
-        qVzTpfiHLAh6EmMnxNdjjpTYmbU66Hw=
-X-Google-Smtp-Source: AMsMyM6oj784v1TWWqszkZAASkrkb5fG5c6QKGWkpDAsrbvctOQzYE2CS0n4WcUAlu1esLaN9ccLsA==
-X-Received: by 2002:a05:6512:2215:b0:49e:ac45:22e1 with SMTP id h21-20020a056512221500b0049eac4522e1mr4805851lfu.33.1663500336249;
-        Sun, 18 Sep 2022 04:25:36 -0700 (PDT)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id q8-20020a2eb4a8000000b00266af46abccsm4473742ljm.72.2022.09.18.04.25.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 04:25:35 -0700 (PDT)
-Message-ID: <0f6e0dc0-7101-ff17-09ce-14bd2a0189fb@gmail.com>
-Date:   Sun, 18 Sep 2022 13:25:33 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=kZN6GVMIS455JRGRpYDZw5MCrxQYeuEnGBclnyLhYxw=;
+        b=Q2Vngmavn4/ZburHFUzNFTpiH9llcTuyNJNRRXdKnkcGwFtvtWfVRBaxzaRZMI9Oso
+         438s28GomRJYJhdPcnQ18LVcgTGHbNTHKQTbUCaueSwQbq5Ya2Dvgq6l7npHyUB5+9Ks
+         rYXcFdKp8qEEC3bRDfnkpCDerW5U2GlatX3nLL3AQs9G7/TBsKpTAKF76QpaL4qEofU5
+         aYMy4kVwYUGU1hrHmI8jgG8FCCxuDHOv7bkFZzh3x2lyzwlN5Xu38Yv1Z43NljGfZIPO
+         fp8E89liGP8aDzDF4sxSVrRrIqCeGPKV8WAq93AIVAkXYXaTuDvOB/n+hUacbrR8PDMF
+         HSGA==
+X-Gm-Message-State: ACgBeo3pNmCc7ZH5u7l1kYMQw6HGsACn6V9X1cLh5IKIG22aaFHXfriH
+        7ZfVsNLtcm07YSXXH40aPbqadAxd5ytRk8YhLOjrMcbgFQd4uQ==
+X-Google-Smtp-Source: AA6agR4DU4zptHavTMpPgSa1VB76Ujpo1JbVrGgJw9IBTk2oXqz8qbhDNAsfsKFN0qURMYuHHUMC3IMit+T+TvrBdAU=
+X-Received: by 2002:a05:600c:2191:b0:3b4:868a:aad3 with SMTP id
+ e17-20020a05600c219100b003b4868aaad3mr16171249wme.112.1663504830665; Sun, 18
+ Sep 2022 05:40:30 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [RESEND PATCH v3 2/4] leds: class: store the color index in
- struct led_classdev
-Content-Language: en-US
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>, pavel@ucw.cz,
-        robh+dt@kernel.org, sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     johan+linaro@kernel.org, marijn.suijten@somainline.org,
-        bjorn.andersson@linaro.org, andy.shevchenko@gmail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sha@pengutronix.de
-References: <20220917081339.3354075-1-jjhiblot@traphandler.com>
- <20220917081339.3354075-3-jjhiblot@traphandler.com>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-In-Reply-To: <20220917081339.3354075-3-jjhiblot@traphandler.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+References: <YySdhiqZgXpl0q/g@lab.hqhome163.com> <CAMdYzYovjSMZgpWd+ATWsv2piNc2ZtnKfB1cTBukvsnfG41g_w@mail.gmail.com>
+ <14722513.tv2OnDr8pf@phil> <CAMdYzYp1SYVCxOKwHspvDXoqkAxUj1hTY6J7EeRabKxD5Nrj1w@mail.gmail.com>
+ <YyXQi9wfudMvUkgU@lab.hqhome163.com>
+In-Reply-To: <YyXQi9wfudMvUkgU@lab.hqhome163.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Sun, 18 Sep 2022 08:40:19 -0400
+Message-ID: <CAMdYzYoohyKq5dOk+_vQ8Q+kPm6YOS+_E=DmpORxKabxH4QjTw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: k3566-quartz64-a: adds sata variant
+To:     Alessandro Carminati <alessandro.carminati@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,59 +69,229 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean,
+On Sat, Sep 17, 2022 at 9:54 AM Alessandro Carminati
+<alessandro.carminati@gmail.com> wrote:
+>
+> Hello Peter,
 
-On 9/17/22 10:13, Jean-Jacques Hiblot wrote:
-> This information might be useful for more than only deriving the led's
-> name.
-> 
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-> ---
->   drivers/leds/led-class.c | 7 +++++++
->   include/linux/leds.h     | 1 +
->   2 files changed, 8 insertions(+)
-> 
-> diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-> index 2c0d979d0c8a..537379f09801 100644
-> --- a/drivers/leds/led-class.c
-> +++ b/drivers/leds/led-class.c
-> @@ -350,6 +350,10 @@ int led_classdev_register_ext(struct device *parent,
->   			if (fwnode_property_present(init_data->fwnode,
->   						    "retain-state-shutdown"))
->   				led_cdev->flags |= LED_RETAIN_AT_SHUTDOWN;
-> +
-> +			if (fwnode_property_present(init_data->fwnode, "color"))
-> +				fwnode_property_read_u32(init_data->fwnode, "color",
-> +							 &led_cdev->color);
->   		}
->   	} else {
->   		proposed_name = led_cdev->name;
-> @@ -359,6 +363,9 @@ int led_classdev_register_ext(struct device *parent,
->   	if (ret < 0)
->   		return ret;
->   
-> +	if (led_cdev->color >= LED_COLOR_ID_MAX)
-> +		dev_warn(parent, "LED %s color identifier out of range\n", final_name);
-> +
->   	mutex_init(&led_cdev->led_access);
->   	mutex_lock(&led_cdev->led_access);
->   	led_cdev->dev = device_create_with_groups(leds_class, parent, 0,
-> diff --git a/include/linux/leds.h b/include/linux/leds.h
-> index ba4861ec73d3..fe6346604e36 100644
-> --- a/include/linux/leds.h
-> +++ b/include/linux/leds.h
-> @@ -71,6 +71,7 @@ struct led_classdev {
->   	const char		*name;
->   	unsigned int brightness;
->   	unsigned int max_brightness;
-> +	unsigned int color;
+Good Morning,
 
-We have color_index in struct mc_subled. What would this serve for?
+>
+> Thank you for the valuable details you added to this thread.
+>
+> If I understand correctly, the SATA controller has hardware-related
+> issues if some electrical conditions are met by devices connected to
+> the two SoC ports.
 
->   	int			 flags;
->   
->   	/* Lower 16 bits reflect status */
+No, the issue stems from having both ports electrically connected in
+parallel. This creates impedance and capacitance issues that cause
+ringing on the data lines when either is used. This sort of design
+would work perfectly fine if a gpio controlled high speed data switch
+was installed to isolate the ports. The USB3 port can be restored to
+near full functionality by permanently destroying the SATA port, but
+there's no way to easily do something similar to the USB3 port in
+order to fix SATA.
 
--- 
-Best regards,
-Jacek Anaszewski
+>
+> Here an example of a faulty device layout would be helpful.
+>
+> But I guess this is not such common situation if you just connect a
+> SATA device to the board.
+>
+>
+>
+> On Sat, Sep 17, 2022 at 07:23:39AM -0400, Peter Geis wrote:
+> > On Sat, Sep 17, 2022 at 2:42 AM Heiko Stuebner <heiko@sntech.de> wrote:
+> >
+> > Good Morning Heiko,
+> >
+> >
+> > >
+> > > Hi Peter,
+> > >
+> > > Am Samstag, 17. September 2022, 03:40:07 CEST schrieb Peter Geis:
+> > > > On Fri, Sep 16, 2022 at 12:06 PM Alessandro Carminati
+> > > > <alessandro.carminati@gmail.com> wrote:
+> > > > >
+> > > > > The Quartz64 board is built upon Rockchip RK3566.
+> > > > > Rockchip RK3566 has two combo phys.
+> > > > > The first connects USB3 and SATA ctrl1, and the second PCIe lane and SATA
+> > > > > ctrl2.
+> > > > > The second combo phy is hardwired to the PCIe slot, where for the first,
+> > > > > the hardware on the board provides both the USB3 connector and the SATA
+> > > > > connector.
+> > > > > This DT allows the users to switch the combo phy to the SATA connector.
+> > > >
+> > > > Good Evening,
+> > > >
+> > > > NACK to this whole series. Neither works correctly in the hardware as
+> > > > is,
+> > >
+> > > Just for my understanding for the future, sata not working is that a bug
+> > > in the soc or the board?
+> >
+> > This is a board level problem. Attempting to build a device that had
+> > both ports electrically connected without a switch chip created a
+> > device where neither worked correctly. The SATA controllers themselves
+> > are amazing. I've used both nvme and sata m2 drives on the model b for
+> > example.
+> >
+> > >
+> > > > and USB3 was decided to be left enabled as the SATA port will be
+> > > > removed completely in the next revision.
+> > >
+> > > That is good to know. Thanks for the heads up :-)
+> >
+> > In regards to this sort of stuff in the future, we're working on
+> > fragment overlay support in U-Boot to work around the kernel's lack of
+> > support. If I remember correctly EDK2 will be implementing the switch
+> > in firmware as well. Devices that support both (at least ones I
+> > maintain) will have both in the dts, with the less likely use case
+> > left disabled. End users can simply switch which one is enabled if
+> > they want.
+>
+> Reading through your message, I have the impression that you are trying
+> to solve the problem on the firmware side.
+> I want to express my admiration for this effort.
+> I think that this is the right approach to solve this kind of problem,
+> and that the more appropriate place to be for device trees is on the
+> firmware and not in the kernel.
+> Currently, the kernel includes a considerable amount of device trees,
+> and the Quarttz64-a device tree is already upstream.
+
+The problem we are trying to solve in firmware is the end user
+switching modes problem, not a device specific problem. The issue with
+the SATA/USB port is a board level design problem that cannot be
+solved in software.
+
+>
+> As I understand, there's currently an effort to standardize the already
+> existing device trees and give direction to the newcomers.
+> In a recent interaction with Krzysztof Kozlowski, I learned the already
+> existing device trees are likely not to respond to these regulations.
+
+This is simply not true. As the dt-bindings are improved blanket
+updates are being applied to the existing trees. As of 5.19,
+Quartz64-A had no dt-bindings check failures that didn't stem from
+legacy dt-bindings that haven't been updated to yaml. I am aware of
+the fixed-regulator not enforcing _regulator as a tail, as well as the
+other deficiencies with the Quartz64-A dts. They are on my long list
+of things to work on once I'm done moving.
+
+>
+> Sooner or later, each upstream device tree will need to be adjusted,
+> and the currently upstreamed quartz64-a DTS is one of these.
+>
+> I understand you are working on the u-boot side, possibly the EDK2.
+> They alone are more than 80% of all the firmware running at this moment,
+> but there's still a non-neglectable number of boots that use something
+> else.
+
+Aside from EDK2, pretty much every other boot mechanism for rk356x is
+either U-Boot or something based on U-Boot. Any fixes we apply to
+U-Boot can easily trickle down to the others. EDK2 on the other hand
+renders the dts moot as for the time being everything will be using
+acpi and generic drivers.
+
+>
+> All these words to say:
+>
+> * Krzysztof confirmed the upstreamed device tree for the quartz64 needs
+>   to be adjusted to meet the device trees node name regulation.
+
+The dt-bindings for fixed-regulator should be fixed as part of this. I
+certainly wouldn't complain about that being done standalone.
+
+>
+> * The work needed to add the SATA support is minimal.
+
+This adds a second dts configuration to an already growing folder, and
+will force a third configuration when the final hardware revision that
+*isn't fundamentally broken* lands. If you want to add the SATA port
+disabled to both phys I would be alright with that, as they work great
+with simple conversion cables on every device I've tested. For the
+record, my main problem with this series is the physical SATA port
+will not exist in the final hardware revision of the Quartz64-A.
+
+>
+> * Having this SATA DTS is not completely useless since numerous SATA
+>   configurations work smoothly.
+
+There are many configurations that do not downshift correctly as well
+and require manual intervention to work. Unfortunately you won't be
+the one answering the angry end users that don't understand this
+situation.
+
+>
+> I am willing to work on this patch to make it suitable to be upstreamed.
+
+There is significantly more work that needs to happen in order for
+rk356x (and rk3588 when the time comes) to be first class citizens.
+For example, almost everyone booting rk356x is either using some
+variation of the awful bsp u-boot or my hacked together mainline
+u-boot. The edk2 port shows a lot of promise, but it's not even close
+to fully functional. I won't complain about assistance with these
+endeavors either.
+
+Very Respectfully,
+Peter
+
+>
+> Regards
+> Alessandro
+>
+> >
+> > Very Respectfully,
+> > Peter
+> >
+> > >
+> > > Heiko
+> > >
+> > >
+> > > > > Signed-off-by: Alessandro Carminati <alessandro.carminati@gmail.com>
+> > > > > ---
+> > > > >  arch/arm64/boot/dts/rockchip/Makefile                   | 1 +
+> > > > >  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts | 9 +++++++++
+> > > > >  2 files changed, 10 insertions(+)
+> > > > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
+> > > > >
+> > > > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> > > > > index 8c843f6fc3cc..1d5dd91d1a34 100644
+> > > > > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > > > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > > > > @@ -60,6 +60,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
+> > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
+> > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
+> > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a-usb3.dts
+> > > > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a-sata.dts
+> > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
+> > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-roc-pc.dtb
+> > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-soquartz-cm4.dtb
+> > > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
+> > > > > new file mode 100644
+> > > > > index 000000000000..8620df7ec01e
+> > > > > --- /dev/null
+> > > > > +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a-sata.dts
+> > > > > @@ -0,0 +1,9 @@
+> > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > > +
+> > > > > +/dts-v1/;
+> > > > > +
+> > > > > +#include "rk3566-quartz64-a.dtsi"
+> > > > > +
+> > > > > +&sata1 {
+> > > > > +       status = "okay";
+> > > > > +};
+> > > > > --
+> > > > > 2.34.1
+> > > > >
+> > > > >
+> > > > > _______________________________________________
+> > > > > Linux-rockchip mailing list
+> > > > > Linux-rockchip@lists.infradead.org
+> > > > > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> > > >
+> > >
+> > >
+> > >
+> > >
