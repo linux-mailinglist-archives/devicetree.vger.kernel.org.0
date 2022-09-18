@@ -2,48 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4305BBEA7
-	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 17:29:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBB495BBEB2
+	for <lists+devicetree@lfdr.de>; Sun, 18 Sep 2022 17:33:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229821AbiIRP3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 11:29:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36478 "EHLO
+        id S229639AbiIRPdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 11:33:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiIRP3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 11:29:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3FF711810;
-        Sun, 18 Sep 2022 08:29:22 -0700 (PDT)
+        with ESMTP id S229497AbiIRPds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 11:33:48 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BE51AF0D;
+        Sun, 18 Sep 2022 08:33:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9816C61531;
-        Sun, 18 Sep 2022 15:29:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E137C433C1;
-        Sun, 18 Sep 2022 15:29:20 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 76AD3B80E4F;
+        Sun, 18 Sep 2022 15:33:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2A6AC433D6;
+        Sun, 18 Sep 2022 15:33:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663514962;
-        bh=SqII8RWmHqTCuhy0RR1lgr/BKN5AZ4j2RKrCloAyvL0=;
+        s=k20201202; t=1663515225;
+        bh=yTfmFSAnZLXn9BbwGI+IzTH627rEDnJKQQ7GjV3lwEA=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Kv0uyYXLoUQG960i8vSa4xEEPOh3+g92UppdM1uqJMkieJ/RVsWtt1IYFl6ByQ0na
-         yCUoLDeOjB8NIu9erY6gY5zKqkxWDN9jUb2l9PDS6UAMzndYWtf8Mf5zLPsXvH34id
-         0yBA69Dg8bm7Ind6WIE408p+XPksOaOit+91OnAAq2cx8qfvca67++KvxOL/0c5aTw
-         jj29NKkWqQxUVisoYDFETN+CQaMX+GQi4tuqf3kHL7CiZ9V9hzuUKh8MQOYIoQZTwC
-         Dqcn5MxDuZxnJXSZf2SryDHU4RwdfdIiQ0f9H9OKWSRrRvRPBWnwucO0n50hd4C0+x
-         3LWIVHmko9G+w==
-Date:   Sun, 18 Sep 2022 16:29:25 +0100
+        b=GJCOJOs8N0qh3RAysLC0xJ9Zh/Vq2lwBjvnaDUUSnGNpytymmdqZ67aaxLgw2aphX
+         bocqCvvIPGcR11ccAoj2Bz2suDS43+xfMmlrVzKwlcv/4gL3nVz+uwy11RLpocCZcv
+         gVGiEPLsMTwEmZa3B8SH42dmnA0xH+Dwv8fO+s5gKptLPMNhuJVbxQZcQT+NTanykR
+         570BdQh+JWIaLPksJzEKYIwLhI9USQmnsTKvf2AyB8nuQ4QXnsPUK4vfBE/bakzqPB
+         yUlDbSnvE+Q/o/SJXxeetv7vibwkZUCifzHL+p8jCRrgam9lBqU0gCk17g0tjcosvH
+         mY1CwoQPux7hQ==
+Date:   Sun, 18 Sep 2022 16:33:48 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, robh@kernel.org
-Subject: Re: [PATCH 0/2] add support for LSM6DSTX
-Message-ID: <20220918162925.3c4f5e09@jic23-huawei>
-In-Reply-To: <cover.1663262890.git.lorenzo@kernel.org>
-References: <cover.1663262890.git.lorenzo@kernel.org>
+To:     Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
+Cc:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 0/3] ad7923 fixes and full range support
+Message-ID: <20220918163348.6b681e57@jic23-huawei>
+In-Reply-To: <20220912081223.173584-1-nuno.sa@analog.com>
+References: <20220912081223.173584-1-nuno.sa@analog.com>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -53,35 +56,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Sep 2022 19:34:58 +0200
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+On Mon, 12 Sep 2022 10:12:20 +0200
+Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
 
-> Add support for LSM6DSTX IMU mems sensor
-> https://www.st.com/resource/en/datasheet/lsm6dstx.pdf
+> This patchset adds important fixes for some of the variants supported by =
+the
+> driver with respect with raw and buffered reads. On top of this way, adds
+> a new firmware property to be able to support all the scales supported by
+> the hardware.
 
-Looks trivial enough that I've queued it up on my togreg branch and
-pushed out as testing for 0-day to take a look.
-
-I will be rebasing that tree shortly for other reasons, so a bit 
-of time for reviews to still come in before this hits a non rebasing
-tree.
+Applied.
 
 Thanks,
 
 Jonathan
 
-> 
-> Lorenzo Bianconi (2):
->   iio: imu: st_lsm6dsx: add support to LSM6DSTX
->   dt-bindings: iio: imu: st_lsm6dsx: add lsm6dstx device bindings
-> 
->  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
->  drivers/iio/imu/st_lsm6dsx/Kconfig                        | 2 +-
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h                   | 2 ++
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c            | 2 +-
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c              | 7 ++++++-
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c               | 5 +++++
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c               | 5 +++++
->  7 files changed, 23 insertions(+), 3 deletions(-)
-> 
+>=20
+> v2:
+>=20
+> [1/3]
+>  * Calculate shift using 12 - realbits.
+>=20
+> [2/3]
+>  * Use a boolean property and change the code accordingly.
+>=20
+> [3/3]
+>  * Use a boolean property (adi,range-double).
+>=20
+> Nuno S=C3=A1 (3):
+>   iio: adc: ad7923: fix channel readings for some variants
+>   iio: adc: ad7923: support extended range
+>   dt-bindings: iio: adi,ad7923: add adi,range-double property
+>=20
+>  .../devicetree/bindings/iio/adc/adi,ad7923.yaml       |  4 ++++
+>  drivers/iio/adc/ad7923.c                              | 11 +++++++++--
+>  2 files changed, 13 insertions(+), 2 deletions(-)
+>=20
 
