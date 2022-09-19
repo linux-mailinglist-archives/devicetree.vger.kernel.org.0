@@ -2,166 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 663D05BCE39
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 16:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE36D5BCE47
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 16:15:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229937AbiISOMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 10:12:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32950 "EHLO
+        id S229800AbiISOPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 10:15:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbiISOMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 10:12:25 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEC7D326C7;
-        Mon, 19 Sep 2022 07:12:23 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28JD0LIm026593;
-        Mon, 19 Sep 2022 14:11:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Kq2XjCH5pBFqKo3+tPJDUzJyaRgTqIk3/SbrE2nYFeQ=;
- b=pWqEGCYL9pNp2Wh6hAqZInGV8MV/f+4iFpTIusRqFJSjCb1Wy/XQlYBWp6Q8Xgq+0Fqa
- 3ZO/rpSymdxlJqC/dgD3uhANIuFT7V76mKU72JC0ce+TB4YskjT2n8BVjW/gFKdyrSu2
- T4MUe2PdvkEQycJ393PuS0KfjqlwWo5umTYlxvU29Ak3LA99gqBnu9Ijb+rwMtDqADlT
- /1D6UCauugis7gg+6G5hQ7GtFPf1KtvZO9ZMZexptvKe2sX45Ge99v3yOqjaE5qWuFSh
- NzHgw/0UujD2L5NjVvcitoNf+uh9wWLoOoRupENVX+17hG4TNc5DgckE2e8brQrlMQle 7Q== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jprv7r6b3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 19 Sep 2022 14:11:43 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28JEBgV2001227
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 19 Sep 2022 14:11:42 GMT
-Received: from [10.216.41.172] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+        with ESMTP id S229725AbiISOPL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 10:15:11 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2084.outbound.protection.outlook.com [40.107.223.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B014319038;
+        Mon, 19 Sep 2022 07:15:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NabqM4ng1K3LYPs1HC7Rfo/EjRBGJi3gfeaKan1JUPbkFPo/7Ddw7lNhp7Mfta89Tg3ty1EvKV2heGg3p98nUPZaHEzk4eEW2HBb7q+Y8hv1ae0m+5qDTEj3xq5eod2TWCTlbqtK+2TXb/bK2mJ1jq28uWzGZH+KY47WG1z1UG1llXd+RtBHGYIRWHnjIWH1BQU+0zajzyqheNopOoawfZTXfKne9YhKzpQNIUNuQvk32X6xhN/W4QC2iu2HKifDJl/AEX0iPiuByqkn3h9QwnjtUGk41JggeAPWd77km0Cc7ibNdzSTMO5SxpxiR0CNnsWAuVB+SEJ9+Fxn8R4uXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7FYHRGw5enJ5DTaHU2GbtEt7EgqyeURoQtlqyRV4Xsk=;
+ b=Fgg+dh8Qg+tUuM/2bpqIC5j11ciAyh/o6L9b2qxrVdN7upg3iCZJ6d84NGr8LhXBar6WjPJFVevLQyL51PyLtoA8reQBtPnztItQRQT/I70nQZ/tMccTYmB3llVCgtgiHR9gl/Co6zDgacy6/MtHHyy57F+z6fgRc5g2IdwUHrnTOXCjN6aTbzmVXuD+KeoeSCRREubiBjC5M18VPG6SQ1RtepyIGCD6PQMcJueCmMDLH2fwAMKsiDWBjfxcwOr6rzQQYEGl7cvVTjdhOoCUIj6+W6Ds614dSHwR7BaqRdBPdFFkf/ujSpNy5kqYpzx34DEKHvxx54jJY0JPwhAhjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7FYHRGw5enJ5DTaHU2GbtEt7EgqyeURoQtlqyRV4Xsk=;
+ b=cc88azsLaS+xkTq5Oovqht2LL3VXyeceloizUisi9/F0XxxOxBXrtE6W/zT/tW7zOiVbQmuR4e8lccVxDgV/HmWaLLTSDq4f0xyMyMUtToDw+jxz6es79XEybo1EBa9Wh51W8DN1vQVUX9X8rmqczXOERkhArneTzE34i2/n69uMNlFmmD4ChkxmcF0K1BXTQvzq4bTpU8dhUyNdJSAmynpNTO4HMjH42R0iIl71U1Tm+lgelCcSVGx06YCBAFNEBvbDJ8mnwOjz7fmTw90xkA3CSGVO5y7Yyf6lXZQc1Yzedgx4kVwE/kMmiKRKWiWKHeWwWq6GhzeyFAAWZ64tBw==
+Received: from BN9PR03CA0765.namprd03.prod.outlook.com (2603:10b6:408:13a::20)
+ by CY5PR12MB6105.namprd12.prod.outlook.com (2603:10b6:930:2a::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.15; Mon, 19 Sep
+ 2022 14:15:08 +0000
+Received: from BN8NAM11FT092.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13a:cafe::ab) by BN9PR03CA0765.outlook.office365.com
+ (2603:10b6:408:13a::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21 via Frontend
+ Transport; Mon, 19 Sep 2022 14:15:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ BN8NAM11FT092.mail.protection.outlook.com (10.13.176.180) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5632.12 via Frontend Transport; Mon, 19 Sep 2022 14:15:07 +0000
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Mon, 19 Sep
+ 2022 07:15:00 -0700
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail202.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 19 Sep
- 2022 07:11:35 -0700
-Message-ID: <b7260131-a4ff-4cc4-7500-188f92b811a6@quicinc.com>
-Date:   Mon, 19 Sep 2022 19:41:32 +0530
+ 2022 07:15:00 -0700
+Received: from sandipan-pc.nvidia.com (10.127.8.12) by mail.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server id 15.2.986.29 via Frontend
+ Transport; Mon, 19 Sep 2022 07:14:57 -0700
+From:   Sandipan Patra <spatra@nvidia.com>
+To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <bbasu@nvidia.com>, <kyarlagadda@nvidia.com>,
+        Sandipan Patra <spatra@nvidia.com>
+Subject: [PATCH v5 1/3] dt-bindings: pwm: tegra: Document Tegra234 pwm binding
+Date:   Mon, 19 Sep 2022 19:44:53 +0530
+Message-ID: <20220919141455.31084-1-spatra@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v6 3/8] remoteproc: qcom: Add compatible name for SC7280
- ADSP
-Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>,
-        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
-References: <1662643422-14909-1-git-send-email-quic_srivasam@quicinc.com>
- <1662643422-14909-4-git-send-email-quic_srivasam@quicinc.com>
- <cd745794-6325-e291-042d-f53f72abc5bf@quicinc.com>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <cd745794-6325-e291-042d-f53f72abc5bf@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tQ76g2ajNsju_ZazZRzGJq6v8EVa6pdz
-X-Proofpoint-ORIG-GUID: tQ76g2ajNsju_ZazZRzGJq6v8EVa6pdz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-19_05,2022-09-16_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
- mlxlogscore=999 spamscore=0 clxscore=1015 malwarescore=0 phishscore=0
- lowpriorityscore=0 impostorscore=0 priorityscore=1501 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209190095
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT092:EE_|CY5PR12MB6105:EE_
+X-MS-Office365-Filtering-Correlation-Id: c68832b1-a365-4b7e-556a-08da9a495b4e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PnaMGTbYEUZUGF1iti+CYpycJQkTGf780X4gR6yipvcJnz7sPfpZf0FwGceSPcUBP8dfx+Cxk9w+4wB+7V2UL6bxyr1TMatrX8ton+KGprir6cCHA1ssiEreRT/Jwmy3jRp/Tb+IR6nPRVO9j7f9hdRkW3b3ekmVB9yS72VQvWH2wdyK+jp7s/dOrhmuMzYtL/o4XOhmKmiI2JFeA+mpHjec4eJ9v0gXCqokoTEibAhgD3+LdLEuyyGYPFrPxnPl/FhEvmQW/3Tw8bLNl5evDPLFjPTPfMAb6yNXVDPye1raatVBFeyEPKnm8qFYVeHUjM3v0hIfsP3/v8PCoMo7IgTEXXqcscLraS9MTAPfW6gxVBGgghildoW7zSHToqEm1iUrVA6Cnh9h72/PGF7mWafJ9yL6HPKCajZ0vQ3vBBmVDuBaHqYWmiH4gUdMJzCocVzX3qpv1hykxOiUA2RllQuk56DYU/reIS5KR3yoS/ACUfQPbtVYy2zmaApspIWyFvwwq9lkD1tlH7gKHBj6kjC44hcXIg4qcX0l+AyabX6L9lVMNP7j436a4Coa65LYoY9D6oKWutVBIZ5IqxYMiYnY1760tc+iNvd9Gwn443VkKbrAjBXRGaHjMNcDRdP7kkUagc5Onddh5qHe9HAaX/ZjimKNt3BAQIYYR9Wb7Px1pWx0z73VtbDvauWGZoDGjmKcLXQV2IPcUtIrXpGAp/FRxwv37HuErLuFdji1dRJpo2zbdZC6orkq67y8n6Nh8xoMYpH9O3TbICPS82DFesSSJ5RlcedmsiYOOY6zXbweXAD7zA7J0pBDybiKmmSw
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(136003)(39860400002)(396003)(451199015)(36840700001)(40470700004)(46966006)(2616005)(316002)(54906003)(110136005)(186003)(1076003)(8936002)(478600001)(6666004)(36756003)(40460700003)(2906002)(7696005)(107886003)(4326008)(5660300002)(41300700001)(8676002)(70206006)(70586007)(86362001)(336012)(40480700001)(26005)(82740400003)(47076005)(426003)(82310400005)(356005)(7636003)(36860700001)(83380400001)(16060500005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2022 14:15:07.9309
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c68832b1-a365-4b7e-556a-08da9a495b4e
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT092.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6105
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add compatible for nvidia,tegra234-pwm with nvidia,tegra194-pwm as a
+fallback.
+The PWM controller blocks are identical to ones found on the
+Tegra194 SoC. No driver changes are required and compatible string
+"nvidia,tegra194-pwm" will be used as a fallback.
 
-On 9/14/2022 2:52 PM, Sibi Sankar wrote:
-Thanks for Your time Sibi Sankar!!!
->
-> On 9/8/22 6:53 PM, Srinivasa Rao Mandadapu wrote:
->> Update adsp pil data and compatible name for loading ADSP
->> binary on SC7280 based platforms.
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> ---
->> Changes since V5:
->>     -- Rename adsp_sandbox_needed to has_iommu.
->>     -- Change adsp binary extention name.
->> Changes since V3:
->>     -- Rename is_adsp_sb_needed to adsp_sandbox_needed.
->>     -- Update sc7280 compatible name entry in sorted order.
->> Changes since V2:
->>     -- Initialize is_adsp_sb_needed flag.
->>     -- Remove empty proxy pds array.
->>
->>   drivers/remoteproc/qcom_q6v5_adsp.c | 16 ++++++++++++++++
->>   1 file changed, 16 insertions(+)
->>
->> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c 
->> b/drivers/remoteproc/qcom_q6v5_adsp.c
->> index fa2ccac..02d17b4 100644
->> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
->> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
->> @@ -702,6 +702,21 @@ static const struct adsp_pil_data 
->> adsp_resource_init = {
->>       },
->>   };
->>   +static const struct adsp_pil_data adsp_sc7280_resource_init = {
->> +    .crash_reason_smem = 423,
->> +    .firmware_name = "adsp.pbn",
->> +    .load_state = "adsp",
->
-> given that you mention load_state info please make sure you
-> mention qcom,qmp as a required property in the bindings.
-Okay. Will add it in the bindings.
->
->> +    .ssr_name = "lpass",
->> +    .sysmon_name = "adsp",
->> +    .ssctl_id = 0x14,
->> +    .has_iommu = true,
->> +    .auto_boot = true,
->> +    .clk_ids = (const char*[]) {
->> +        "gcc_cfg_noc_lpass", NULL
->> +    },
->> +    .num_clks = 1,
->
-> bindings seem to mention 6 other required clocks any reason why
-> they were skipped?
-Actually all other clocks are being enabled locally, without using clock 
-framework, as the memory space conflict with other module occurred.
->
-> AFAIK you'll also need lmx so you'll have to mention proxy_pd_names
-> as well.
-So far we didn't see any issue without LMX PD.
->
->> +};
->> +
->>   static const struct adsp_pil_data cdsp_resource_init = {
->>       .crash_reason_smem = 601,
->>       .firmware_name = "cdsp.mdt",
->> @@ -740,6 +755,7 @@ static const struct adsp_pil_data 
->> wpss_resource_init = {
->>     static const struct of_device_id adsp_of_match[] = {
->>       { .compatible = "qcom,qcs404-cdsp-pil", .data = 
->> &cdsp_resource_init },
->> +    { .compatible = "qcom,sc7280-adsp-pil", .data = 
->> &adsp_sc7280_resource_init },
->>       { .compatible = "qcom,sc7280-wpss-pil", .data = 
->> &wpss_resource_init },
->>       { .compatible = "qcom,sdm845-adsp-pil", .data = 
->> &adsp_resource_init },
->>       { },
->>
+Signed-off-by: Sandipan Patra <spatra@nvidia.com>
+---
+V3 -> V4: Mention fallback compatible
+V4 -> V5: Update Compatible with both Tegra234 and fallback
+
+ Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
+index 74c41e34c3b6..47f1abf20118 100644
+--- a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
++++ b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
+@@ -10,6 +10,7 @@ Required properties:
+   - "nvidia,tegra210-pwm", "nvidia,tegra20-pwm": for Tegra210
+   - "nvidia,tegra186-pwm": for Tegra186
+   - "nvidia,tegra194-pwm": for Tegra194
++  - "nvidia,tegra234-pwm", "nvidia,tegra194-pwm": for Tegra234
+ - reg: physical base address and length of the controller's registers
+ - #pwm-cells: should be 2. See pwm.yaml in this directory for a description of
+   the cells format.
+-- 
+2.17.1
+
