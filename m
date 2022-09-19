@@ -2,91 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA51B5BC444
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:26:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC89E5BC44C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:29:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbiISI0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 04:26:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45290 "EHLO
+        id S229849AbiISI3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 04:29:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbiISI0N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:26:13 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 943B2192B8
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 01:26:12 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id s10so32323142ljp.5
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 01:26:12 -0700 (PDT)
+        with ESMTP id S229778AbiISI3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:29:04 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 802682019B;
+        Mon, 19 Sep 2022 01:29:02 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id sb3so33076261ejb.9;
+        Mon, 19 Sep 2022 01:29:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=O2MgMIBBQEimoJdZbXcMWrscXFrilAA+hSe/6tn94n0=;
-        b=MnzF7R+IGhfKCspZo8gZeidv6vRNzFRZYpqvo1Q5kocJ07LiCnYhoOlT/LOAsqz/Ba
-         Bfbl45vt14+WGz48V514izOMO9xu73v34/ecgQZZQc+aPO2haWgfmAG62N2w7Efmw0cu
-         iG7WpGkiUyWKViispqUf3trIREmDG9iDmwq/Naf+dLaBZCJ8qH0AeYO4O0jfQ8CJWd1I
-         1OXNOskQ5sPzzOnYLx5iijG+Xxt6eawPcUU7FpQGA1CBg/FDyiVixQKlxopOJ+/boZ4m
-         BAHQagAWzXoZEWGwqJiapGsTf1Szg+L8klu9jpsDxmEpOeUveZnldkSIwSDxK4lC4bbG
-         XIMQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=4zcyc92OG48ogsdYCIfTilNt+HWdmHS2QUl5rmdNbKQ=;
+        b=Mbyaea9joV5Z04uUaXOey5blWnFhyLpUFH2zbj0XzeuPVaY1YxWOI312oZxAKd4+p3
+         ZIPeUaS6OVmp86SoVDJvEmkuClmMWPbjAS0wH85ZLnSFOMvLwKynBbenF7Dg2MZbxoLy
+         PK33G9xHWSSX5o6dP6S3kazUralBCJ1ZBqSSAZDkQneZP2+gHZih8sPfbP9O8wDVpdO1
+         lu1T+HudfjVIZg0EdahYT3MCknBf1CyG3yIEkYfueC/2DwWP+kSVvayWpT2vDmlvLIw/
+         FQkaVRUP0WcZ9OlO2vp7hSK8X7veOqJlv3vapU/WJcDqMEX06WIc2bz7tNGNJMqJEmdU
+         pYaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=O2MgMIBBQEimoJdZbXcMWrscXFrilAA+hSe/6tn94n0=;
-        b=Kc3s6j1pa+a878HrfPdUmcL0SGcRM56A5wp8n0dp3WPodi+o7nk8F7JkkoneCocxNc
-         09v96sGtFFTJ+EUteOGmz5VSK/1/4YnCy4Po9zjLPrbzqglUjpajVEmluVp/Nd6kaFlp
-         ZXhP3u/nCSkhr1O3lUkxOKtyq+oOUfMT5n+pp3WIObj6s7tfQN1mi7fH4TSPXA5uq4lF
-         yvMKadl7cpEAY6UF1Y0meqpAev0LzVMraqlkmrDC3w+UZqnahsJD0UEre5F+lpjVc3dK
-         eVyJCBgtXnnpPv6cXFuPkTm+vIzZGFS4l+eGrdwnxVFI7f1Z16A9IlqDez3Rmp1VZJg8
-         e4dg==
-X-Gm-Message-State: ACrzQf2+FHd6FcDCAFWjDt7uUds/KJPVqXTb3YZ2q5ZtYJwc/mljnlnl
-        wSH73K8fPJlZdcgddfaAoCpP/w==
-X-Google-Smtp-Source: AMsMyM6R0ZkLgcMBtQPLr262w44WE2V1Xm7RMzUhBE1s99vWW45VnpQoNJYie7PdXEyCe8MY/aekDA==
-X-Received: by 2002:a05:651c:1795:b0:261:af46:9d12 with SMTP id bn21-20020a05651c179500b00261af469d12mr4837011ljb.122.1663575970979;
-        Mon, 19 Sep 2022 01:26:10 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 15-20020ac25f4f000000b00492e3c8a986sm5082846lfz.264.2022.09.19.01.26.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Sep 2022 01:26:10 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     mchehab@kernel.org, alim.akhtar@samsung.com,
-        dmitry.torokhov@gmail.com, linus.walleij@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH 1/2] ARM: dts: exynos: correct s5k6a3 reset polarity on Midas family
-Date:   Mon, 19 Sep 2022 10:26:09 +0200
-Message-Id: <166357596576.15357.16775014746077893385.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220913164104.203957-1-dmitry.torokhov@gmail.com>
-References: <20220913164104.203957-1-dmitry.torokhov@gmail.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=4zcyc92OG48ogsdYCIfTilNt+HWdmHS2QUl5rmdNbKQ=;
+        b=nanR2Ds1A7pGN21HdF/+iVVV1+eolqdi8yfmOmIVWMtRHQHmOVXUiL4VQUoGPZ8+qK
+         tX47PqjdUrPClER0+/IcyWoHv04PXBYRsozYldcjui+7NWiLRTw9iA7SkiSm/7eFAv2X
+         UtvbceSSwQ6Aj571HzrvMbCM4csJ9sGbz6QIPl1furkt8VhLxv8IAmCPveEl8hOP5QoQ
+         f96BLIgixmBy7DbT9Jicqr+LVbW9I1TRKPFOhtI+FXZc6hKRgnyN5ivimJ30Wla49P7N
+         9bgpGpSC8/SVaDOLICzHYTWZFoks0j6sdD4Egc8VApyd7FhYDwZVms95vE5VrDjx6YMo
+         gzog==
+X-Gm-Message-State: ACrzQf3bEO5oF88/Fu8bqNS6Rdh6Lh3JdJEjeqn+wo3c5RGcxKtWPNgr
+        AgYyK4ZRJ93QaCto3GhpZPBCYrAjhCdlPCdZE3Q=
+X-Google-Smtp-Source: AMsMyM7/hjerL0W6LJrp0rFq9iZ0Mgo7LX65TfbIFF5E+HnImfL99FE74Bd+G9W3/XFCs/bEjpv84UribM8ShNF3JjA=
+X-Received: by 2002:a17:906:591:b0:73d:c3ef:84ae with SMTP id
+ 17-20020a170906059100b0073dc3ef84aemr12149565ejn.155.1663576141043; Mon, 19
+ Sep 2022 01:29:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20220915165256.352843-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220915165256.352843-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVKYqHu-mmviwO5oLS-F8nEg5wynLmy=+tJrQ26=VfV2g@mail.gmail.com>
+In-Reply-To: <CAMuHMdVKYqHu-mmviwO5oLS-F8nEg5wynLmy=+tJrQ26=VfV2g@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 19 Sep 2022 09:28:33 +0100
+Message-ID: <CA+V-a8ut=bNA_tD5n+Gv-w6=o0EDcKL+QRDaH42kBini-Kybug@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: rzg2ul-smarc: Include SoM DTSI
+ into board DTS
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Sep 2022 09:41:03 -0700, Dmitry Torokhov wrote:
-> According to s5k6a3 driver code, the reset line for the chip appears to
-> be active low. This also matches the typical polarity of reset lines in
-> general. Let's fix it up as having correct polarity in DTS is important
-> when the driver will be switched over to gpiod API.
-> 
-> 
+Hi Geert,
 
-Applied, thanks!
+Thank you for the review.
 
-[1/2] ARM: dts: exynos: correct s5k6a3 reset polarity on Midas family
-      https://git.kernel.org/krzk/linux/c/f539422ddaff0680dd1d4ad94df11be4703ccc93
+On Sun, Sep 18, 2022 at 10:21 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Thu, Sep 15, 2022 at 6:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Move including the rzg2ul-smarc-som.dtsi from the carrier board
+> > rzg2ul-smarc.dtsi to the actual RZ/G2UL SMARC EVK board dts
+> > r9a07g043u11-smarc.dts. Also move the SW_SW0_DEV_SEL and
+> > SW_ET0_EN_N macros to board dts as they are used by SoM and carrier
+> > board DTS/I.
+> >
+> > This is in preparation of re-using the SoM and carrier board DTSIs
+> > for RZ/Five SMARC EVK.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.1.
+>
+> For consistency, you may want to do the same with rzg2lc-smarc-som.dtsi.
+>
+Agreed, will do.
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cheers,
+Prabhakar
