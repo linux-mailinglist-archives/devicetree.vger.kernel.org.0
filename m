@@ -2,172 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0B825BC350
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 09:03:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4136D5BC35A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 09:08:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229821AbiISHDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 03:03:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
+        id S229863AbiISHIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 03:08:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229815AbiISHDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 03:03:22 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9123A1D316
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 00:03:20 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id p5so32738784ljc.13
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 00:03:20 -0700 (PDT)
+        with ESMTP id S229719AbiISHIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 03:08:19 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2960915FC7
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 00:08:18 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id n10so15417274wrw.12
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 00:08:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=9xFTk4OMhZkRlhAaanDFcs7HM/NhpRYI6iz828j2ZeA=;
-        b=wJ7qP0XlQU6l+wwCv1ayWHDuWf6ip3NMJLAJNXT5z7UomUh+jpD6eFLmTPkxo6V5QJ
-         yuNT3vObCNly/555xWdO1u9e9H4wobqR5iNkDDUKCshgxhdlZJOWGwBytHHwQPBdkqfD
-         ik1jdaFy0j70Gms28/12tPl/jTDeexSVoCuM6CrR3uIhDPsuVTQVevE3pTrWHNVsEwcS
-         vsbHyKqnD02gMF1Tmnp9E+17THTx6ohIRmORnSxE1iM77YuY8eRT5yU39BYNiDr4+7WY
-         id+OggelsrRjY6tbJgu59PQBV/ZQ46dtB0cCcu6Es+2vPCSGzmDABBNa5xkrvbFwDGNE
-         FsAg==
+        d=amarulasolutions.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=wEdLDJgFEyr3Rx0kdQrhspWlZowoghD3V/H8ktxN3TY=;
+        b=OgBqv3IZzdUFqvuLhn6EFV4R9bDvxhESon8U4vW40j+TSLmigg9qsdpoGxMi5BPLLg
+         0unGK3NEoyGanilR3J1V/VKvExTq6SrFYMDXmYaiIPnSEozEMMSwmhzdYDM+gIrOaaMg
+         Ji3IDXFgdCSA73EiM4w021yuoCXfNAJVAHRUc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=9xFTk4OMhZkRlhAaanDFcs7HM/NhpRYI6iz828j2ZeA=;
-        b=gM/6+8/DRYm80Yq2g/+XM+NGG/y7685GbV4L9pUTfvId+HnGUr54muyHXtLg9iFRRw
-         hZ12uR6ltDyKl1Loa5DAAyJlRNO3vGEnp2i8j2h6KHSMVex4rpm2XQsnyFbK7cVWOGCk
-         vwGIOBFjG3IMc/c8zkL+JRaVJdPKnC6twvYxof1KeYQylfZzcovujHEPW0UQSQsnvXgv
-         C6Eq5U0r5c9WijI5JGjlFb8UA+qO8ywzA5xKO97SSVlCICdKm+rbJB/gLAYVqSBFmegB
-         eCHmY0k1Ce3zZNM86DxJB4Qq3jefSA7lrMfe2EWkEItFThiHNLxziu+5o0KNdOv0RZUg
-         9oOw==
-X-Gm-Message-State: ACrzQf0KJqAyvDYPd9HOn39ANjX/vmdNg3B75ExW6/HgbR4ah1gGN4K/
-        ivmtiMsdsnPGcpAgGlRi+gXSDA==
-X-Google-Smtp-Source: AMsMyM7LeebYro7ACkENxHGy30ekGSA6BGvSNxYWMK2+W2evg4h1dugZbL9Q6/4Tq74QNm2Jh8U2TA==
-X-Received: by 2002:a2e:9cf:0:b0:26c:3973:ec1f with SMTP id 198-20020a2e09cf000000b0026c3973ec1fmr4624171ljj.322.1663570998645;
-        Mon, 19 Sep 2022 00:03:18 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r13-20020a2e994d000000b0026c3b68c8b0sm1443633ljj.74.2022.09.19.00.03.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 00:03:18 -0700 (PDT)
-Message-ID: <25c6693c-a57f-8ea2-71e8-fda9646fd7f1@linaro.org>
-Date:   Mon, 19 Sep 2022 09:03:17 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: thermal: Convert ls2k to json-schema
-Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=wEdLDJgFEyr3Rx0kdQrhspWlZowoghD3V/H8ktxN3TY=;
+        b=ZI9ZpsDs9hHLWwBaWRgyg2sh5aIBzMl6n0GlDLhwBFE502svOxU1j94jIn6r6nU13s
+         EjDQgn7sUGg/S/b2nG1MaVC9l/GHefFusJvwykLN2naaKbdSATSPu6EW7FUfbfQmIYRF
+         oxd1D/nkeOCJsc04lImmKJfSjuYPbNnajYTX3ltvDM5nW6BxQHcLt9sqOb2dAOskI4g1
+         TCr/qfnwyWokrgWAD/Z87XQW12zqaPc08A2npMePFb9TpbU0OuC1oIamc+0MkXPay63v
+         9CDB5LZM7xKOueVR51xALCL/+KCBSvyF1RwACa7huF+tx9wvyd8CTNKoiRcyprKAWqbZ
+         5eUg==
+X-Gm-Message-State: ACrzQf3b/U7K7yxVEOwad6mgKqdsjaz9lgoxfI/x9s+uy8/ocY12toQO
+        NF1JP+pGhXvY/qcPoqFOm9qiDw==
+X-Google-Smtp-Source: AMsMyM5WuE0u/PpMDPiqFT5hqYfJFSqTAYnpfKtBn+3NHLlEFItVukIyZebdE5bJbyYXtyGz31yIfg==
+X-Received: by 2002:adf:f3d2:0:b0:22a:e5d2:5c with SMTP id g18-20020adff3d2000000b0022ae5d2005cmr6872977wrp.131.1663571296615;
+        Mon, 19 Sep 2022 00:08:16 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-56-12.cust.vodafonedsl.it. [188.217.56.12])
+        by smtp.gmail.com with ESMTPSA id bk23-20020a0560001d9700b0022b014fb0b7sm2088897wrb.110.2022.09.19.00.08.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 00:08:16 -0700 (PDT)
+Date:   Mon, 19 Sep 2022 09:08:13 +0200
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     Mikhail Rudenko <mike.rudenko@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     zhanghongchen <zhanghongchen@loongson.cn>
-References: <20220919034915.26912-1-zhuyinbo@loongson.cn>
- <20220919034915.26912-2-zhuyinbo@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919034915.26912-2-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Christian Hemp <c.hemp@phytec.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] media: i2c: add support for ov4689
+Message-ID: <20220919070813.GA3958@tom-ThinkPad-T14s-Gen-2i>
+References: <20220911200147.375198-1-mike.rudenko@gmail.com>
+ <20220911200147.375198-3-mike.rudenko@gmail.com>
+ <20220914155122.GA9874@tom-ThinkPad-T14s-Gen-2i>
+ <87k064pa2v.fsf@gmail.com>
+ <20220916133401.GB2701@tom-ThinkPad-T14s-Gen-2i>
+ <87r10bo1k5.fsf@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87r10bo1k5.fsf@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 05:49, Yinbo Zhu wrote:
-> Convert the ls2k thermal binding to DT schema format using json-schema
+Hi Mikhail,
+
+On Fri, Sep 16, 2022 at 04:44:31PM +0300, Mikhail Rudenko wrote:
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-
-FYI, All your patches were marked as spam, unfortunately.
-
-> ---
->  .../bindings/thermal/ls2k-thermal.yaml        | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml
+> On 2022-09-16 at 15:34 +02, Tommaso Merciai <tommaso.merciai@amarulasolutions.com> wrote:
+> > Hi Mikhail,
+> >
+> > On Thu, Sep 15, 2022 at 11:50:23PM +0300, Mikhail Rudenko wrote:
+> >>
+> >> Hi Tommaso,
+> >>
+> >> On 2022-09-14 at 17:51 +02, Tommaso Merciai <tommaso.merciai@amarulasolutions.com> wrote:
+> >> > Hi Mikhail,
+> >> > I do a first round on reviewing your driver :)
+> >> >
+> >> > On Sun, Sep 11, 2022 at 11:01:35PM +0300, Mikhail Rudenko wrote:
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml b/Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml
-> new file mode 100644
-> index 000000000000..44bc5d4626d1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml
+> <snip>
+> 
+> >> >> +
+> >> >> +	ov4689->xvclk = devm_clk_get(dev, "xvclk");
+> >> >> +	if (IS_ERR(ov4689->xvclk)) {
+> >> >> +		dev_err(dev, "Failed to get xvclk\n");
+> >> >> +		return -EINVAL;
+> >> >> +	}
+> >> >
+> >> > ^ I think is better to use devm_clk_get_optional instead of clck_get.
+> >> > clck_get can fail in CPU's that use ACPI
+> >> >
+> >> >> +
+> >> >> +	ret = clk_set_rate(ov4689->xvclk, OV4689_XVCLK_FREQ);
+> >> >> +	if (ret < 0) {
+> >> >> +		dev_err(dev, "Failed to set xvclk rate (24MHz)\n");
+> >> >> +		return ret;
+> >> >> +	}
+> >> >> +	if (clk_get_rate(ov4689->xvclk) != OV4689_XVCLK_FREQ)
+> >> >> +		dev_warn(dev, "xvclk mismatched, modes are based on 24MHz\n");
+> >> >
+> >> >
+> >> > What do you think about?
+> >> > Thanks.
+> >>
+> >> Unfortunately, I have no experience with ACPI-based devices. :(
+> >>
+> >> Do you mean that in the case of an ACPI device and devm_clk_get_optional
+> >> returning NULL we should assume that the clock is already enabled and
+> >> will stay enabled during sensor operation? How should we distinguish it
+> >> from the case of an OF-based system and clock just missing from device
+> >> tree?
+> >
+> > Not exaclty :)
+> >
+> > I copy comment from [1]
+> >
+> > if you use ov5693->xvclk to identify the ACPI vs OF use case shouldn't
+> > you use the get_optionl() version ? Otherwise in the ACPI case you will have
+> > -ENOENT if there's not 'xvclk' property and bail out.
+> >
+> > Unless my understanding is wrong on ACPI we have "clock-frequency" and
+> > on OF "xvclk" with an "assigned-clock-rates",
+> >
+> > [1] https://patchwork.linuxtv.org/project/linux-media/patch/20220627150453.220292-5-tommaso.merciai@amarulasolutions.com/
+> >
+> > Let me know if you need more details.
+> 
+> Thanks for the pointer! I'll try to implement something along the lines
+> of your ov5693 series.
+> 
+> But I'm not sure that will be enough to support ACPI systems
+> correctly. What about lanes number and link frequency checks? Should
+> they be made conditional on CONFIG_OF? Anything else I don't know?
 
-Filename based on compatible.
+In my opinion, lanes number and link frequency checks are ok :)
+We don't need conditional CONFIG_OF.
 
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/ls2k-thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Thermal sensors on loongson 2k SoCs
-> +
-> +maintainers:
-> +  - zhanghongchen <zhanghongchen@loongson.cn>
-> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
-> +
-> +properties:
-> +  compatible:
-> +    const: loongson,2k-thermal
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  id:
-> +    const: 0
+fwnode* function support both ACPI and dts.
 
-Why? What is this? No description, no type (is there such standard
-property?), no vendor prefix... and always equal to 0?
+Thanks,
+Tommaso
 
-> +
-> +  interrupt-parent:
-> +    maxItems: 1
+> 
+> >
+> > Regards,
+> > Tommaso
+> >
+> --
+> Best regards,
+> Mikhail Rudenko
 
-That's not needed, I think.
+-- 
+Tommaso Merciai
+Embedded Linux Engineer
+tommaso.merciai@amarulasolutions.com
+__________________________________
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#thermal-sensor-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - id
-> +  - interrupt-parent
-> +  - interrupts
-> +  - '#thermal-sensor-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    tsensor: tsensor@1fe01500 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-Use names used by other examples.
-
-> +        compatible = "loongson,2k-tsensor";
-> +        reg = <0 0x1fe01500 0 0x30>;
-> +        id = <0>;
-> +        interrupt-parent = <&icu>;
-> +        interrupts = <7>;
-> +        #thermal-sensor-cells = <1>;
-> +    };
-
-
-Best regards,
-Krzysztof
+Amarula Solutions SRL
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+T. +39 042 243 5310
+info@amarulasolutions.com
+www.amarulasolutions.com
