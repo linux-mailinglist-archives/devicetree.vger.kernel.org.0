@@ -2,187 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 339335BC0F1
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 03:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACF3F5BC0FB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 03:27:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbiISBLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Sep 2022 21:11:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47574 "EHLO
+        id S229618AbiISB07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Sep 2022 21:26:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiISBLY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 21:11:24 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB3D13F61;
-        Sun, 18 Sep 2022 18:11:22 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id n10so14544669wrw.12;
-        Sun, 18 Sep 2022 18:11:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=pzIUOyVLtSPMVDAuIWcWbNx/UCTO3gkibWwLDlz6q7A=;
-        b=cao8a9Up8/LvLn/kMNo36sXtO7qaFWcdSlkGPMSrYBy37o7qTsznlDbqCTVsct4Heo
-         Q2+7mS45l0mgmsxPxzRxHM5QrqZTLVqZu02/DPqZNilFw5fQIGHudkKnQwtPRvyGasWy
-         DDsG92tOzLCcTzPG18vysLRYasAa01J8/j4rS4DC566CZa+6uY59Bhjr5lNiN6ZhU9+q
-         +BbX5f8InGK0PX4zsShysNiAjT+rqIjHCQXWgs4gexnvkztYFVVopIKftKDWSBipXXvo
-         ZUN1Vht5oEv153jgVkLPwM+cm+fqgQ/L+PbAj4TvpqJTG/XKpWvsSxa7qsV6SyifDk3S
-         hHpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=pzIUOyVLtSPMVDAuIWcWbNx/UCTO3gkibWwLDlz6q7A=;
-        b=oO1Fu3U2AJtqtS6RMJ72d5M+Br06xLb7hJ80K5Yl+Pi4aohCVKz4EY2+NWyScxgDRQ
-         nGIaP4ZBH7c3oIIQ9802b5l1a/Tsa2FdycLfORPz2XrIFV5z32xZMJE0yOdg9L7HQ5z0
-         gB1hamvOwn01vJO/m3wVB06Yf3Zj90oUD1bCG6oYycwM7I9KmNgNx68c9lynf/Bkksqu
-         zA0UGBhdKb5XcOG6Vl1x+G6TstRjFs40HoKM9RTdiw1fMnZ4SJWsp2KBYq+nga4V6X81
-         IjgnovD6UL1dfPvVVVza5lHEvVaqS/T61orGxY0aB/nkcEm5z0DHs6PN1uQPjnXtG1GC
-         ghxA==
-X-Gm-Message-State: ACrzQf3jM/O8zOTphz9Oo7Cy/odkkxIyLip0Nbx9rtsq0vMHF9eZmOkj
-        fRvZ/SN9U6PCYWCzpodVB0aePS8T7BTUpbKrX0o=
-X-Google-Smtp-Source: AMsMyM7WN5f8Ug1Ea5BJazc/zVFEK63qxwuMQkKLG07ooIeW8e9cHYmbfFciRTCRePjVa9epNTYJofgLT1gKli0YupU=
-X-Received: by 2002:a05:6000:1f8e:b0:22a:ff55:ea48 with SMTP id
- bw14-20020a0560001f8e00b0022aff55ea48mr1287516wrb.121.1663549881082; Sun, 18
- Sep 2022 18:11:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <1663173015-7934-1-git-send-email-u0084500@gmail.com>
- <1663173015-7934-4-git-send-email-u0084500@gmail.com> <20220916180823.p672rojsrjbpy4ft@mercury.elektranox.org>
-In-Reply-To: <20220916180823.p672rojsrjbpy4ft@mercury.elektranox.org>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Mon, 19 Sep 2022 09:11:09 +0800
-Message-ID: <CADiBU39FMkDOrMHXTQF+0JGX2tDn_iVXCb19jM6MopnKmaXOpQ@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] Documentation: power: rt9471: Document exported
- sysfs entries
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mazziesaccount@gmail.com, alina_yu@richtek.com,
-        cy_huang@richtek.com, alinayu829@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        with ESMTP id S229562AbiISB05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Sep 2022 21:26:57 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1FF18383;
+        Sun, 18 Sep 2022 18:26:49 -0700 (PDT)
+X-UUID: 35544346aa4344c4aaffec1f52702330-20220919
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=s3/mQJDAI8RaGvwS50/sSfM3dEzv5HFd1WDBKbk/QrE=;
+        b=RbZFb2KOPK+WwjuvFG4JxLna+rt5kZNqAuQcbOeDV+6sE0EWr9wdNH8mZjoOpT1Q/6iSSK56onFlz0QMx0SsWTLr4w3iDjpIUWApLmDOBgO7VjsEnNFjQxhjcEAWAC17vJrvSnsNv+iSo/tJsz3PLLcJ5k9uNCRNVK24C0zjoC0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:cbf665b8-85a3-48b8-807a-56898a6583b8,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:28,RULE:Release_Ham,ACTIO
+        N:release,TS:73
+X-CID-INFO: VERSION:1.1.11,REQID:cbf665b8-85a3-48b8-807a-56898a6583b8,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:28,RULE:Spam_GS981B3D,ACTIO
+        N:quarantine,TS:73
+X-CID-META: VersionHash:39a5ff1,CLOUDID:d610d0f6-6e85-48d9-afd8-0504bbfe04cb,B
+        ulkID:2209160605436LY6U0LQ,BulkQuantity:208,Recheck:0,SF:28|17|19|48|823|8
+        24,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40|20,QS:nil,BEC:nil
+        ,COL:0
+X-UUID: 35544346aa4344c4aaffec1f52702330-20220919
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1177479252; Mon, 19 Sep 2022 09:26:37 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Mon, 19 Sep 2022 09:26:35 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Mon, 19 Sep 2022 09:26:35 +0800
+Message-ID: <871b6996647bdc71723569a56e7f238f325fa9c7.camel@mediatek.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: arm: mediatek: mmsys: change
+ compatible for MT8195
+From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 19 Sep 2022 09:26:35 +0800
+In-Reply-To: <17cacc6f-173f-ad6c-9056-1b17635c984d@linaro.org>
+References: <20220915161817.10307-1-jason-jh.lin@mediatek.com>
+         <20220915161817.10307-2-jason-jh.lin@mediatek.com>
+         <e6921ed7-a14c-aadb-abd4-1e7ee0a63be9@gmail.com>
+         <f30bd382eb8923256d6f39342ec7832774c0f547.camel@mediatek.com>
+         <17cacc6f-173f-ad6c-9056-1b17635c984d@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,SPF_PASS,
+        UNPARSEABLE_RELAY,URIBL_CSS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sebastian Reichel <sebastian.reichel@collabora.com> =E6=96=BC 2022=E5=B9=B4=
-9=E6=9C=8817=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=889:19=E5=AF=AB=E9=
-=81=93=EF=BC=9A
->
-> Hi,
->
-> On Thu, Sep 15, 2022 at 12:30:15AM +0800, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > Document the settings exported by rt9471 charger driver through sysfs e=
-ntries:
-> > - sysoff_enable
-> > - port_detect_enable
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> > Since v5:
-> > - Recover all the change in sysfs-class-power.
-> > - New a sysfs-class-power-rt9471 file.
-> > - Remove 'charge_term_enable' sysfs entry, directly integrate it in
-> >   'charge_term_current' power supply property control.
-> >
-> > ---
-> >  Documentation/ABI/testing/sysfs-class-power-rt9471 | 29 ++++++++++++++=
-++++++++
-> >  1 file changed, 29 insertions(+)
-> >  create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9471
-> >
-> > diff --git a/Documentation/ABI/testing/sysfs-class-power-rt9471 b/Docum=
-entation/ABI/testing/sysfs-class-power-rt9471
-> > new file mode 100644
-> > index 00000000..ad5b049
-> > --- /dev/null
-> > +++ b/Documentation/ABI/testing/sysfs-class-power-rt9471
-> > @@ -0,0 +1,29 @@
-> > +What:                /sys/class/power_supply/rt9471-*/sysoff_enable
-> > +Date:                Oct 2022
-> > +KernelVersion:       6.1
-> > +Contact:     ChiYuan Huang <cy_huang@richtek.com>
-> > +Description:
-> > +             This entry allows enabling the sysoff mode of rt9471 char=
-ger devices.
-> > +             If enabled and the input is removed, the internal battery=
- FET is turned
-> > +             off to reduce the leakage from the BAT pin. See device da=
-tasheet for details.
-> > +             It's commonly used when the product enter shipping stage.
-> > +
-> > +             Access: Read, Write
-> > +             Valid values:
-> > +             - 1: enabled
-> > +             - 0: disabled
->
-> I still fail to see why this needs to be controllable at runtime.
-> This looks like a hardware property. Are there any known products,
-> which need this disabled?
-It's just a switch, actually 'disabled' is not needed.
-For the enabled case, mostly used in below scenarios
-1. Online testing, USB IN -> Factory testing -> write 1 to enable ->
-USB out -> immediately VSYS off -> pack
-2. Offline testing no vbus -> Factory testing -> write 1 to enable ->
-immediately VSYS off -> pack
+Hi Krzysztof,
 
-The 'disable" can use to cancel the shipping mode in case 1 before USB out.
-It's more like the testing.
+Thanks for the reviews.
 
-Like as you said, shipping BATFET_OFF is all the hardware behavior.
-To leave this mode after VSYS off, there're three ways
-1. power key pressed
-2. VBUS IN
-3. control BATFET_OFF to 0 (But it need SOC to be alive, at the time,
-VSYS off, no one can execute this I2C command)
+On Sun, 2022-09-18 at 10:31 +0100, Krzysztof Kozlowski wrote:
+> On 16/09/2022 04:34, Jason-JH Lin wrote:
+> > Hi Matthias,
+> > 
+> > Thanks for the review.
+> > 
+> > On Fri, 2022-09-16 at 00:05 +0200, Matthias Brugger wrote:
+> > > 
+> > > On 15/09/2022 18:18, Jason-JH.Lin wrote:
+> > > > For previous MediaTek SoCs, such as MT8173, there are 2 display
+> > > > HW
+> > > > pipelines binding to 1 mmsys with the same power domain, the
+> > > > same
+> > > > clock driver and the same mediatek-drm driver.
+> > > > 
+> > > > For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines
+> > > > binding
+> > > > to
+> > > > 2 different power domains, different clock drivers and
+> > > > different
+> > > > mediatek-drm drivers.
+> > > > 
+> > > > Moreover, Hardware pipeline of VDOSYS0 has these components:
+> > > > COLOR,
+> > > > CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture
+> > > > Quality)
+> > > > and they makes VDOSYS0 supports PQ function while they are not
+> > > > including in VDOSYS1.
+> > > > 
+> > > > Hardware pipeline of VDOSYS1 has the component ETHDR (HDR
+> > > > related
+> > > > component). It makes VDOSYS1 supports the HDR function while
+> > > > it's
+> > > > not
+> > > > including in VDOSYS0.
+> > > > 
+> > > > To summarize0:
+> > > > Only VDOSYS0 can support PQ adjustment.
+> > > > Only VDOSYS1 can support HDR adjustment.
+> > > > 
+> > > > Therefore, we need to separate these two different mmsys
+> > > > hardwares
+> > > > to
+> > > > 2 different compatibles for MT8195.
+> > > > 
+> > > > Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add
+> > > > mt8195
+> > > > SoC binding")
+> > > > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> > > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > > > ---
+> > > >  
+> > > > .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml       
+> > > >  |
+> > > > 2 +-
+> > > >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+> > > > .yam
+> > > > l
+> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+> > > > .yam
+> > > > l
+> > > > index 6ad023eec193..0e267428eaa6 100644
+> > > > ---
+> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+> > > > .yam
+> > > > l
+> > > > +++
+> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+> > > > .yam
+> > > > l
+> > > > @@ -31,7 +31,7 @@ properties:
+> > > >                 - mediatek,mt8183-mmsys
+> > > >                 - mediatek,mt8186-mmsys
+> > > >                 - mediatek,mt8192-mmsys
+> > > > -              - mediatek,mt8195-mmsys
+> > > > +              - mediatek,mt8195-vdosys0
+> > > 
+> > > Nack, we miss the fallback compatible, as I already said twice.
+> > > 
+> > > Regards,
+> > > Matthias
+> > 
+> > I'm sorry this happened again.
+> > I'll keep the compatible "mediatek,mt8195-mmsys" at next version.
+> > 
+> > The patch "dt-bindings: arm: mediatek: mmsys: remove the unused
+> > compatible for mt8195" should be sent after accepting the vdosys1
+> > series, right?
+> 
+> I don't think there will be no such patch...
+> 
+> You need to add a bindings change which will accept device nodes
+> like:
+> foo {
+>   compatible = "mediatek,mt8195-vdosys0", "mediatek,mt8195-mmsys";
+> 
+> }
+> 
+> Example-schema shows how to do it.
 
-If what you care is no need to mention 'disable', then just remove it.
-It's fine.
->
-> > +What:                /sys/class/power_supply/rt9471-*/port_detect_enab=
-le
-> > +Date:                Oct 2022
-> > +KernelVersion:       6.1
-> > +Contact:     ChiYuan Huang <cy_huang@richtek.com>
-> > +Description:
-> > +             This entry allows enabling the USB BC12 port detect funct=
-ion of rt9471 charger
-> > +             devices. If enabled and VBUS is inserted, device will sta=
-rt to do the BC12
-> > +             port detect and report the usb port type when port detect=
- is done. See
-> > +             datasheet for details. Normally controlled when TypeC/USB=
-PD port integrated.
-> > +
-> > +             Access: Read, Write
-> > +             Valid values:
-> > +             - 1: enabled
-> > +             - 0: disabled
->
-> So basically this depends on the hardware integration (e.g. it
-> should be disabled when power source is a DC barrel jack instead
-> of USB) and is not supposed to change at all during runtime? Then
-> the information wether it needs to be enabled should be derived
-> from the device tree.
-It's a switching charger integrates OTG boost.
-For the case 'DC Jack', there's no need to use this kind of product.
+OK, I got the point!
+I'll fix it at the next version.
+Thank you very much!
 
-With typec integration, at most time, it still need bc12 to be enabled
-by default.
-Just in some case, like as power role swap (SNK -> SRC -> SNK), to
-automatically identify the USB port,
-this may interrupt USB communication.
+Regards,
+Jason-JH.Lin
 
-So as my understanding, keep it enabled by default, just in some case,
-it my need to control at runtime.
->
-> -- Sebastian
+> 
+> Best regards,
+> Krzysztof
+-- 
+Jason-JH Lin <jason-jh.lin@mediatek.com>
+
