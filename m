@@ -2,162 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96F7F5BCD36
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF2755BCD6A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:41:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbiISN3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 09:29:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35078 "EHLO
+        id S229847AbiISNll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 09:41:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbiISN3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:29:39 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80042.outbound.protection.outlook.com [40.107.8.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D736FCE07;
-        Mon, 19 Sep 2022 06:29:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eADOohsVzrRnoNUmtiKcRMHsUQUFp68qLgwFSzp/uh507a+mSgI1x5l+62SQ0Gjjnu9l6a008W6imrlrY6WK7L6NfWEhcP99zo9g/HVZ03q8j3iRJ4xjBUwQe4Tj9WFhnElVnWVa0yrP/R+EXF3LLOp0DR8h6XLF3R1SFhybq8go7oCHtiai/CvGhekphvdkV5xQePIVbKWJdUN7JYL8WsdrLzt3vwPkX5Nhn35YcxnOuGjnjHuEGwdIY41SDM8A+XyAy6jDJbNBdZ369vuu65Qsn6s04vLcEOfzPF91h13U3EqmcjJWzmk8RX8qC0I/aljKx9/G4anK3i5JTeYtkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gMgAw/uhVeWiunbwOzByN67++oT5+3UzD7UPcC1cg0M=;
- b=FAkdzFkQ6iPeR2Fn1/fFa/sWf2lUewZTj3aUDHZ69G+iGICrStrA2ZhKIvMTv9QR1deGOjEPNq+4On0HaPTefc4oB9zBVPr0UC49u1byQL0ofHBSf9xX+QHz9M/stm/SIjR7P6vIcDV6KOMnHlFMBi0upPV5+sj1czCLMWxNWWfAAGZe6AzWJIB5hCIX6882F6eek8u6DKyEFf2gntYuI32HvtQqgfU1VcLNTe7jX80+qZ6jx3sAys9bIlCp0gDulxVAG+4+LXPddq+0H4MP2vAwjB9yDf1fbFu7/V21vl5SJqGLInzol0VwOqMGAru4f/jxT/+5lzv5vSVKCOnC+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gMgAw/uhVeWiunbwOzByN67++oT5+3UzD7UPcC1cg0M=;
- b=M2XlvI4xEOxQSfKv0M6TiqxT3IUppteD7F720gLeUr4Q5FX5eYA41oZVy6IQ6AlsEUEBI4ikvKuzOlqGXJY0B0/O41wNG/QuNQeKFMXkCvnTAXU3YFAY3jYyO7z4yWgltQqaOhoUWTeVr80QStmUZulgJRBuTWKD7gmkuvlKGEY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR04MB5005.eurprd04.prod.outlook.com (2603:10a6:803:57::30)
- by AS8PR04MB7974.eurprd04.prod.outlook.com (2603:10a6:20b:2a1::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21; Mon, 19 Sep
- 2022 13:29:33 +0000
-Received: from VI1PR04MB5005.eurprd04.prod.outlook.com
- ([fe80::9466:d44b:804:72ef]) by VI1PR04MB5005.eurprd04.prod.outlook.com
- ([fe80::9466:d44b:804:72ef%5]) with mapi id 15.20.5632.018; Mon, 19 Sep 2022
- 13:29:33 +0000
-Date:   Mon, 19 Sep 2022 16:29:23 +0300
-From:   Viorel Suman <viorel.suman@oss.nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Abel Vesa <abelvesa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: firmware: imx: sync with SCFW kit v1.13.0
-Message-ID: <20220919132923.qsai4ijitvvto3g4@fsr-ub1664-116>
-References: <20220919113715.243910-1-viorel.suman@oss.nxp.com>
- <ab9154fd-26e9-2d8e-c638-860e716ca8e8@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ab9154fd-26e9-2d8e-c638-860e716ca8e8@linaro.org>
-X-ClientProxiedBy: AS4P191CA0014.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d5::20) To VI1PR04MB5005.eurprd04.prod.outlook.com
- (2603:10a6:803:57::30)
+        with ESMTP id S229824AbiISNlk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:41:40 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EB6D11C22
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 06:41:39 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-127dca21a7dso61835890fac.12
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 06:41:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=91pvTaNcNj42HAnDz73qIWnrbTG4IgbL5/BErsir4bk=;
+        b=fGPoDDPYmkh+M2Ahgxb1u2EaHulWfN10h+Cws6QR6bc+kYtyjV8g1iOmi4XLwhoeAq
+         vGYjDMIfLntXvQnvgs+LYlYB0jN6uqfEhkm5Ct/8kzfvCU7Uial8EtJS0BkYzTBWcv0G
+         JVuQmHr9oiAswYnswCOqiWSUDDvIVzduEpMA5XdCIV9pwFx6tYkmeoCcF5ukiK1OAY9k
+         +1paaHDes0ruxlCTPxybhh9hU0ZSK+atiewLmknzXE2G/KvZEAxLC3/kTZ5LyJEqfxnV
+         TeGFr9vMM9MBbQxjeCgGgS5JyLGDLq9H+mMXbCmlb8dBexoZ3xpc0o1bk2sszSXefY+g
+         ojwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=91pvTaNcNj42HAnDz73qIWnrbTG4IgbL5/BErsir4bk=;
+        b=Fg9l+X4UO9RNVWmIBiLIbbF8CGN/04R9JR3RdvSL/yGtZLSsgSZo49950JDgoh9npr
+         vm/luiwVDT+didioZiWyDAh5tuYsjllUL3C9g8zYHYYH3kxFPqKJpuppmUFxbn0I1h0F
+         tJLOnP2aLrYErMVFgb3OVxHJ5dOpQBoA4Ko4/0zTpJPyMIQzTNwXQ1caBp35ZWQGayuM
+         Jeo6Xpu52qiRoP+OEYqgfkwy7Y2wsU8vVd77fl1zH8bOyCPGj7hqbBgnDS1zt8q2Q3Xo
+         F7YOxqvzz7j+tRb7CYBsxyGa00/DyQQU0KhjxDtaZJ9HJsW75Hfg5wiRVy4WOou4SMbz
+         UhRg==
+X-Gm-Message-State: ACrzQf18U57oHFPnlTboFbVIcbo0lWFja9nG5ao8WLKIwxJwO8JxPrUZ
+        re/Xj51gPoLAeP7PsmOX7YdH+t7Dkz7yYRblNRQOxDEbAwThLw==
+X-Google-Smtp-Source: AMsMyM7xR4UMsIrbf8MIu0aFz67k+Ku9BlC8P//9aEPWlubpxI3fxxbGgTFQFqXsqMJH7UYPzQFUuG8AOkRQJ37lsno=
+X-Received: by 2002:a05:6870:d18e:b0:12d:3bac:ab21 with SMTP id
+ a14-20020a056870d18e00b0012d3bacab21mr628775oac.83.1663594898224; Mon, 19 Sep
+ 2022 06:41:38 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5005:EE_|AS8PR04MB7974:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c67508f-aeeb-4d30-c9cd-08da9a42fd05
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8sIHvyPPvrin1Q1lftmK7+UVNfKlfAQC4xfDcUqBf2a1Grd+lvSxM6iZ2sEWqsVmEuDHkUPp3Y/0TaNmVblyYuChwdFFRuwQ1gFor5LhVh0bUYwe9DcFfTb8V2Zhjq68sTd3co+hnnH4hBK7IMqKvz3WeLXr+/K+xqztIbYyvGHP0zvqpolMnRXs/Nr6/fWgXnCcdPlxfxoFApK9TJZAQIPL31RSvu//+EQBd/OKYl0JnadOgakcmfSqMs1oZG0JQXHLTqkkkhdu8xOlvw52u71P8JoADlJYisKkMKUrvKdYUqol/i46AqYrYt2vb+sanX6igOCceFJ0t2/gDSdC5JiGhm5gxhgb3beuFfLXLSTvgYY5QZAbGXKfuw0K+IdUKB1lXCZE2oEUYNyknM44bNRPv3THeFgCZLgkusoKvXVTkZ1HriMvn006zs7Ed9T5Rq4GkVcZJd3ferFgQ5SAqq68zH/tg7r8iu0F+nqlQ6mxNLQYBireGYNqGXEt5F8wcYOXMtHaN8LGJ3YksRmQ99g+dntQwyA9+/mA3ld+GK0dKGVfCosNpOY6F08qY3C/3SC6ofiBL6C4pSNnGW4Pvx+fM2AXD1i6j+tPG6tNsZ6lGuYgVHcOq8/UUSOUjbK0wyxOmh/FF8MTfptwikXxQ1Zp+rsVRoLzmXu7ZIdv5rOV+OFCv1cY0BEAHugaCIuksFDxcxL8eG42tHJe510Ly66D7V03UE1QXwIZS/Ob1QECt5L+olmJxxV20w075uTxY5m9FsgixCYleNs+EWzJQufyFl8QyonXCIevZ/YlK24=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5005.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(7916004)(346002)(396003)(366004)(39860400002)(136003)(376002)(451199015)(44832011)(33716001)(2906002)(316002)(38350700002)(38100700002)(66556008)(8676002)(5660300002)(4326008)(66476007)(7416002)(66946007)(54906003)(6916009)(8936002)(86362001)(1076003)(186003)(478600001)(9686003)(6512007)(26005)(83380400001)(6666004)(6506007)(966005)(6486002)(53546011)(41300700001)(52116002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nx+j17YpJA//LUPTk81U6o+6qTdlZsZ3gMwaV1yi3EfxjP0XJbG3cbPt2b2y?=
- =?us-ascii?Q?/VSewFH+mAKrtXjuIpfA8y5QmnVxBa10Lcr3Y2V9ImJoFv6U6/VvbK/lZQw5?=
- =?us-ascii?Q?J7u700Lp/CHr4TPYL98xiGo9WGXeitILtS1+KCNYixIqB4pBaoYWMvN4qbXj?=
- =?us-ascii?Q?QWHX/gDvfRMWz6xKPQILrff2gCzW330zGiAv8sXlMNx3pV/XDXu+WHgyZBaa?=
- =?us-ascii?Q?jqdB4bYGKx9UnX94X/aRL3W/bo7Ruxbv+bQwA1p2b0ZQTBfzeaCQh471gkbp?=
- =?us-ascii?Q?ww54mV9X9dytkqWVzc8/INLSmEIt1dsJXX9srL0sUguh+CCGBP/7nPYCuaex?=
- =?us-ascii?Q?2rKy5IZAZ1hdoqCulh9nQ04viJMFrzfhufRCszKdKh3ZFhIrd6y3wqiUFIuZ?=
- =?us-ascii?Q?cvbAUV5aCe61NKQW8jX5bq0iytNsbCgQr3WuzCP8mfngTGHAkr+K7VM2B5JD?=
- =?us-ascii?Q?oqwPCPC0W0Ax1wX1xpgZsvpQ/2UpWzZeavvJFcTm77BEtLeW6zFWiqQhr33H?=
- =?us-ascii?Q?l6U+wZ/UkkQDjL/d2PvQc0+Q2LVThXKwxfPtL4asyWcKHGdjxWs+JTwwId0k?=
- =?us-ascii?Q?1/79ymru1emKdEYnXfrc5zt3bVE9z05O4jZv/FWonvAhpF6QkokumHjFk2ZK?=
- =?us-ascii?Q?FVUarBy5N9XHZyiUMqfeK7N0ZqGevwnM1jQQq4A+JVY3BYaDyDSQ7TMsmrYJ?=
- =?us-ascii?Q?59V/0SdP3liwhv8Lttk5dhzwuHJgJG3ZlbvC5UQINt5Iqn7awgFqupz2GJMx?=
- =?us-ascii?Q?jN0dXwk1EDsZNu0z0LHnwxJbZcJ0OZneaTERlXtZ3qjZZC3vOxat6HX1MpqI?=
- =?us-ascii?Q?NcstRtKA6hYiHl0T/22HCiDNv75rgYjXrrDHzawG9vPNN//stgbYiMiJca/O?=
- =?us-ascii?Q?X/8qluJjY/8gklq/aH53Kga2gklfiJ6dxrUekh8rvyo3NwgCwrhGvg6phCB0?=
- =?us-ascii?Q?u4j43snW1lnvO6/4seRnro8D1sa6COnBaSdfOIfy7DAK/nfytessb/RGgPwt?=
- =?us-ascii?Q?uxl/FR9rE0xME+Bebt5SP9drihCmeTgGNFlt9kb2fZhXwMRlfFZZgFqKOW7H?=
- =?us-ascii?Q?fkGvXdQFwMnRwRTiyzJYjflOaE7jYFRrLW6SJ1ajip7UJYhgL0ddcf2mTI+/?=
- =?us-ascii?Q?NB3C2RSenqQsH4K5UuAuELVApW9Q/0U0JoIGSZOlWgNEgutM8whwt6UWmn3c?=
- =?us-ascii?Q?sSNkwOhdfM2coIJoPmzmebJmXCNGU67xLT3JJUTrOOpNR8teSLLeopmRFV4Y?=
- =?us-ascii?Q?jUtnpAnaXiFMZek/ZOHbcGtP7Ivs1aPvLF+OZ07GwRztTvRcHdwa/I1m9NSR?=
- =?us-ascii?Q?/5z3Tp6c8iq3Tb4kUEOKVMMmfNKLgDABTi+lxne1pBKluLyN9vvBTM3J2H4x?=
- =?us-ascii?Q?pbnCCanB3XS099I9W55TO8XhtnyhntwXygq65vzu5tvooagAhQnPw+/pTa6+?=
- =?us-ascii?Q?T7fSgQqpgwLc+60jhFDLD+9CXH5bEG0ggi28yETEo4yO3J0CxUhRa4RjzxMx?=
- =?us-ascii?Q?J1OvzAep5daCCEiWpKbAjpxkssAkXU8ksmcJfvFhWZwU21YBAKypZhhBqcQf?=
- =?us-ascii?Q?08PN4PFLIRtCV+IRGTKSXUQibPH4MR4TpGy79Wil?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c67508f-aeeb-4d30-c9cd-08da9a42fd05
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5005.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2022 13:29:33.1599
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qed5ZXaAMW+eIhS83Iw+2mYyu03qbNzR9i1PArgx1ke3yoO+jkmu5vEKh9jq+u6mHlGeptkQx2kQ8Qv9edMM+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7974
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220917041136.526446-1-sergio.paracuellos@gmail.com>
+ <285f80ef-5f5c-e68d-b514-a3e3341841c5@linaro.org> <CAMhs-H92i6vFJWCBrpaQnQzA3-+6_ROb9_+zD4yBMB1FLJoKeQ@mail.gmail.com>
+ <71b50383-0fc3-f834-11e0-8fbc17c123d0@linaro.org>
+In-Reply-To: <71b50383-0fc3-f834-11e0-8fbc17c123d0@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Mon, 19 Sep 2022 15:41:26 +0200
+Message-ID: <CAMhs-H-JokHX+XNNE0TQf78ORQbNz2fTd9hfgmv_s6OPT=Wh0w@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mips: add CPU bindings for MIPS architecture
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-19 13:40:18, Krzysztof Kozlowski wrote:
-> On 19/09/2022 13:37, Viorel Suman (OSS) wrote:
-> > From: Viorel Suman <viorel.suman@nxp.com>
-> > 
-> > Sync defines with the latest available SCFW kit version 1.13.0,
-> > may be found at the URL below:
-> > 
-> > https://www.nxp.com/webapp/Download?colCode=L5.15.32_2.0.0_SCFWKIT-1.13.0&appType=license
-> > 
-> > Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
-> > ---
-> >  drivers/clk/imx/clk-imx8qm-rsrc.c       |   4 +-
-> >  include/dt-bindings/firmware/imx/rsrc.h | 292 ++++++++++++++++--------
-> 
-> Bindings cannot be squashed with driver change.
-> 
-> >  2 files changed, 198 insertions(+), 98 deletions(-)
-> > 
-> > Changes since v1:
-> > 	Two patches squashed into one in order to keep changes bissectable
-> > 	and compilable as suggested by Alexander Stein.
-> 
-> That's not the solution. Solution is to make driver behaving correctly,
-> not squash patches which must not be together.
-> 
-> This is proof of an ABI break, so NAK unless described why it is OK to
-> break the ABI/users/boards.
-
 Hi Krzysztof,
 
-In v3 I've added two more defines in backward compatibility section in order to
-avoid breaking ABI, so there is no need to change the driver anymore.
+On Mon, Sep 19, 2022 at 2:48 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 19/09/2022 14:29, Sergio Paracuellos wrote:
+> >>
+> >> else mips-hpt-frequency: false
+> >>
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +
+> >>> +additionalProperties: true
+> >>
+> >> and this is why you did not notice errors...
+> >
+> > Current arch/mips/boot/dts folder dts files are a mess for cpu nodes,
+> > so I set additionalProperties to true and only make required for
+> > 'compatible'. What should be the correct approach?
+>
+> This is okay, but it caused you did not notice errors...
+>
+> >
+> >>
+> >>> +
+> >>> +examples:
+> >>> +  - |
+> >>> +    cpus {
+> >>> +      #size-cells = <0>;
+> >>> +      #address-cells = <1>;
+> >>> +
+> >>> +      cpu@0 {
+> >>> +        device_type = "cpu";
+> >>> +        compatible = "mips,mips1004Kc";
+> >>> +        reg = <0>;
+> >>> +      };
+> >>> +
+> >>> +      cpu@1 {
+> >>> +        device_type = "cpu";
+> >>> +        compatible = "mips,mips1004Kc";
+> >>> +        reg = <1>;
+> >>> +      };
+> >>> +    };
+> >>> +
+> >>> +  - |
+> >>> +    // Example 2 (BMIPS CPU)
+> >>> +    cpus {
+> >>> +      #address-cells = <1>;
+> >>> +      #size-cells = <0>;
+> >>> +
+> >>> +      mips-hpt-frequency = <150000000>;
+> >>
+> >> Does not match your bindings. Are you sure you tested the patches?
+> >
+> > Yes I did:
+> >
+> > $ make dt_binding_check
+> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/mips/cpus.yaml
+> >   LINT    Documentation/devicetree/bindings
+> >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> >   DTEX    Documentation/devicetree/bindings/mips/cpus.example.dts
+> >   DTC     Documentation/devicetree/bindings/mips/cpus.example.dtb
+> > ' CHECK   Documentation/devicetree/bindings/mips/cpus.example.dtb
+> >
+> > Can you please point me to a sample of how to make required in a
+> > parent node of cpu@X property 'mips-hpt-frequency' only for some
+> > compatible strings inside the node? What can this be properly
+> > expressed using schema??
+> > I was looking and testing different things for a while without success at all.
+>
+> You either define new schema for /cpus node (and match by name, define
+> children etc) or include it in schema for top-level properties. The
+> first is tricky, because the cpus node does not have compatible (like
+> nvidia,tegra194-ccplex.yaml).
+>
+> The second should work, but then it's a bit cluttered (top-level mixed
+> with cpus).
 
-Regards,
-Viorel
+I don't know if I am understanding you but maybe it is because my
+explanation about the requirement was not good at all. So let me
+explain a bit better.
+
+This is the normal way of definition of cpus for BMIPS:
+
+cpus {
+      #address-cells = <1>;
+      #size-cells = <0>;
+
+      mips-hpt-frequency = <150000000>;
+
+      cpu@0 {
+        compatible = "brcm,bmips4350";
+        device_type = "cpu";
+        reg = <0>;
+      };
+
+      cpu@1 {
+        compatible = "brcm,bmips4350";
+        device_type = "cpu";
+        reg = <1>;
+      };
+    };
+
+What I need to say in schema is that 'mips-hpt-frequency' must be only
+present if cpu@0 and cpu@1 nodes contain a compatible matching
+brcm,bmips*. In the same cpu@0 or cpu@1 node
+the following below will be sufficient. How can I express the same but
+referring that 'mips-hpt-frequency' must be on the parent node?
+Because as it is below the validator complains because
+'mips-hpt-frequency'
+is not present in cpu@0 and cpu@1 nodes:
+
+allOf:
+   - if:
+        properties:
+           compatible:
+               enum:
+                   - brcm,bmips3300
+                   - brcm,bmips4350
+                   - brcm,bmips4380
+                   - brcm,bmips5000
+                   - brcm,bmips5200
+     then:
+        required:
+           - mips-hpt-frequency
+     else:
+        properties:
+           mips-hpt-frequency: false
+
+Thanks,
+    Sergio Paracuellos
+>
+> Best regards,
+> Krzysztof
