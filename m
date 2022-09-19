@@ -2,129 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 515245BC90B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 12:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46DBD5BC99A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 12:34:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbiISKXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 06:23:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49478 "EHLO
+        id S229773AbiISKeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 06:34:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230251AbiISKRT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 06:17:19 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECFAD12D1D
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 03:17:17 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id j16so19097395lfg.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 03:17:17 -0700 (PDT)
+        with ESMTP id S230177AbiISKbv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 06:31:51 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E01AC2B607
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 03:20:27 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id t14so46762142wrx.8
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 03:20:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=XOtH2ITlshpecI6bnBjoAK2o/4UpsZgaomPe58WTFa0=;
-        b=GwFABzsbegV66LxbaPP4YDrsxec94wyru8Hz9FS4rgvjS8oOOS858m8qxYp3aMSxnC
-         VCu+vHzF3xlEnnlwmtjkWjY+lrkVKYGVwBVDLgqBVoYi/xwkMUf5+tHzj7F4Ecx8Kx4v
-         H1l9byIZ3wYm6YoXcvgkDLoPJr6kia7fdUOpXgKWjcUJgUfCJuNwGHQOwTfkTKz977CJ
-         PH6G8IeN8iIZ9pkSFILb/BrGWyPv2dhyMr7raDJztLo+oUeIGgN9hzmESOwJHfO9116S
-         Cmm3gwS1dlFMYQAvHt0/97W73qQ6md0kHnBaE6ezK2NFV519DV1U53TwBkEfsFz9IT/T
-         FAYQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date;
+        bh=OKFjDcIVuDMM00qktRXs83Gxno16woQBBpqscCyHyns=;
+        b=kkgJw0fkdtj0n+LSS7dAu9YuZRA/J/iA0g5HJnPpEAOZNar8ic03sgHPy/orHIjqps
+         oLVhqwtCRh/5rmAOfas7QnH6PBPBIavEDTmJ0HearwFh22n6IeMy7VZpybDepOYKVJwm
+         1yssqqza5jehMkl2XaE08COCg8lnj8rP6OyWPQrljfdClgxKE9O8jwoJBOh5Fubufjti
+         mG8oiPtZ1uFj93l1/o6CcSthTEgYebeLP6Q+o9CFBGfswkfGRiK2cuDc4L3A6XrXnNAR
+         5ZOtGxAl+wq8jVgwgmMRmE5IuHAkrOON4AM6vYXPrUHrHMcZurQoRcZQel39AFvnAify
+         XllA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=XOtH2ITlshpecI6bnBjoAK2o/4UpsZgaomPe58WTFa0=;
-        b=gLgiayt3mQeURsHyn4GdzjNSvc39MRHSX7Yszt4Pn+sn/LDnPCz3m5Ix6EwO8sSC42
-         3hshbuReKvzXhrAVyB/N1jh1IqtdGuADOFK4MVPANRlzE/6CdlsH6VVlXHcD4b73Nf8X
-         T85v4Iec4w9deywyueQiyXGziRAKMo8oj6jhW/rrNpRy+cBxwQwk8kINBiiO2NAJHDFk
-         WgvNed0/bjmFGeVOd6T+JE6fwMdxEyT+o3wLvQ7yQP9C1de5bJa4DQD2S3qaCwQENNQh
-         XV60718EdTYwoB0b3zWsrXNBd8bj9ZZ932bPafL19RnoFTt7OUcM068xuU6uNxjS6xjy
-         tXZQ==
-X-Gm-Message-State: ACrzQf3qaFwl9yiq+XKTldbz5nVQbFiyUXR7S09UbxjdM58Sr9p5srjH
-        60z1fcoDRAhkizqzr+H3vvmq1w==
-X-Google-Smtp-Source: AMsMyM6c/cgEmUbMwNS+ktAG5NYNyqQf7jmXokYFYJBjSFcX8SUSKTqHBQ0nwJnCUhV0rlKmUK8rUw==
-X-Received: by 2002:a05:6512:1283:b0:499:d0a3:3ca8 with SMTP id u3-20020a056512128300b00499d0a33ca8mr5781548lfs.665.1663582636171;
-        Mon, 19 Sep 2022 03:17:16 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o20-20020ac24bd4000000b0049c29292250sm3847835lfq.149.2022.09.19.03.17.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 03:17:15 -0700 (PDT)
-Message-ID: <31028736-ba81-122e-b630-b66e9d9d491a@linaro.org>
-Date:   Mon, 19 Sep 2022 12:17:14 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date;
+        bh=OKFjDcIVuDMM00qktRXs83Gxno16woQBBpqscCyHyns=;
+        b=Ke47QOknprDEpMdyRjADDrFHjtU0EogsJVmZIuUVJW6DoFhuguKwQCAWh7doU4Jpa0
+         e7ZJJ/ObI0kdm9XR2ZZJ9NPUr7fZGMjLBP1VFN3sZ3nGv5JI7XNRIFhw5e9HeO8mhAwd
+         +doeL7gsc/jw+cD+SUC6DtlBf6EbP53cleBvh+07Gd8B4QM8MP7l+WU0in4J1KfLSbKW
+         Q2CbCxXwfTByr9A+suHnF93GwdNBWVSeM699rdfGaF+ijcIfFuYuW8vxjCHMqzJIC9JU
+         KemAOSeZEoHg9qz0Jh+abtV0S4+dRGNXLa+7JnDx/h/uP2ar0Crlu8jJZT/CZo10MbeL
+         g+9A==
+X-Gm-Message-State: ACrzQf1RcbLkX6SXgKE/q6IYbDBGpScPJwJB1GjVVaUQoJIcgmMHo8Vp
+        tbhFYl64XGDMLHJP+uNX9RDOjw==
+X-Google-Smtp-Source: AMsMyM7J2GPRlgBpa27pYpfKQeFahCST83hgYOX05xRTCOBrvevQWc5pVDP9jzEubm1iUSZiEmM0sw==
+X-Received: by 2002:adf:dccf:0:b0:228:635f:90b8 with SMTP id x15-20020adfdccf000000b00228635f90b8mr10101217wrm.703.1663582818824;
+        Mon, 19 Sep 2022 03:20:18 -0700 (PDT)
+Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
+        by smtp.gmail.com with ESMTPSA id m2-20020a7bce02000000b003b483000583sm12784245wmc.48.2022.09.19.03.20.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 03:20:18 -0700 (PDT)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
+        daniel@ffwll.ch, dianders@chromium.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] Fix chrontel-ch7033 reversion
+Date:   Mon, 19 Sep 2022 12:20:07 +0200
+Message-Id: <20220919102009.150503-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/6] dt-bindings: phy: ti: phy-gmii-sel: Add bindings for
- J721e
-Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     lee.jones@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        kishon@ti.com, vkoul@kernel.org, dan.carpenter@oracle.com,
-        grygorii.strashko@ti.com, rogerq@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sjakhade@cadence.com
-References: <20220914093911.187764-1-s-vadapalli@ti.com>
- <20220914093911.187764-2-s-vadapalli@ti.com>
- <20220914161527.GA2269201-robh@kernel.org>
- <d48e5ef4-6d5b-0977-ed45-de810e42356c@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d48e5ef4-6d5b-0977-ed45-de810e42356c@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2022 07:28, Siddharth Vadapalli wrote:
->>> @@ -65,12 +66,19 @@ properties:
->>>      description: |
->>>        Required only for QSGMII mode. Array to select the port for
->>>        QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
->>> -      ports automatically. Any one of the 4 CPSW5G ports can act as the
->>> -      main port with the rest of them being the QSGMII_SUB ports.
->>> -    maxItems: 1
->>> -    items:
->>> -      minimum: 1
->>> -      maximum: 4
->>> +      ports automatically. For J7200 CPSW5G with the compatible:
->>> +      ti,j7200-cpsw5g-phy-gmii-sel, ti,qsgmii-main-ports is an
->>> +      array of only one element, which is the port number ranging from
->>> +      1 to 4. For J721e CPSW9G with the compatible:
->>> +      ti,j721e-cpsw9g-phy-gmii-sel, ti,qsgmii-main-ports is an array
->>> +      of two elements, which corresponds to two potential QSGMII main
->>> +      ports. The first element and second element of the array can both
->>> +      range from 1 to 8 each, corresponding to two QSGMII main ports.
->>> +      For J721e CPSW9G, to configure port 2 as the first QSGMII main
->>> +      port and port 7 as the second QSGMII main port, we specify:
->>> +      ti,qsgmii-main-ports = <2>, <7>;
->>> +      If only one QSGMII main port is desired, mention the same main
->>> +      port twice.
->>
->> Two different forms for the same property name is not great. Just make a 
->> new property if you need something different.
-> 
-> Thank you for reviewing the patch. Based on the discussion for the
-> previous series at [1], I had planned to reuse the same property
-> "ti,qsgmii-main-ports" for TI's J721e device too. The reason for this is
-> that the property represents the same feature on both devices which is
-> that of the QSGMII main port. The only difference between the two of
-> them is that J7200's CPSW5G has 4 external ports while J721e's CPSW9G
-> has 8 external ports. Thus, J7200 can have at most one QSGMII main port
-> while J721e can have up to two. Adding a new property which describes
-> the same feature appears to be redundant to me. Please let me know.
-> 
+When the chrontel-ch7033 series from Chris Morgan was reverted[1], I made mistake.
 
-The trouble is that you wrote the description like it were two different
-properties (for xx this is one element, for yy this is something else).
-You need to describe the property in unified way.
+Patch 2/2 in this[1] series reverts [2] when it should have reverted [3].
+
+This series fixes this mistake.
 
 
-Best regards,
-Krzysztof
+[1] https://lore.kernel.org/all/20220912113856.817188-1-robert.foss@linaro.org/
+[2] c312b0df3b13 - drm/bridge: ti-sn65dsi86: Implement bridge connector operations for DP
+[3] ce9564cfc9ae - drm/bridge: chrontel-ch7033: Add byteswap order setting
+
+
+Changes since v1:
+ - Add Fixes tag (Laurent)
+
+Robert Foss (2):
+  Revert "Revert "drm/bridge: ti-sn65dsi86: Implement bridge connector
+    operations for DP""
+  Revert "drm/bridge: chrontel-ch7033: Add byteswap order setting"
+
+ drivers/gpu/drm/bridge/chrontel-ch7033.c | 15 ++-----------
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c    | 28 ++++++++++++++++++++++++
+ 2 files changed, 30 insertions(+), 13 deletions(-)
+
+-- 
+2.34.1
+
