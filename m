@@ -2,145 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3066B5BCCCB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C62A5BCCCE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230119AbiISNS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 09:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42672 "EHLO
+        id S230341AbiISNTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 09:19:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230389AbiISNSt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:18:49 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77DE427CCF
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 06:18:47 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id dv25so64324278ejb.12
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 06:18:47 -0700 (PDT)
+        with ESMTP id S230368AbiISNTI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:19:08 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9A1129818;
+        Mon, 19 Sep 2022 06:19:06 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id q35-20020a17090a752600b002038d8a68fbso3132473pjk.0;
+        Mon, 19 Sep 2022 06:19:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=gzjER0yDfgC7AM3XY5AmZTUcIYvTw+ZPBU8Ab6kCF1A=;
-        b=oCvGpuKao+NdPHOlaIZDp2egAgLgEPw3IteIyQ/QvfEJdQUKlHPnCEr7GlPg6HpfMP
-         dVIYPSycLDoCGucAf+dgMukqSqMyU3sljxWQZ1C5O5yfErbYxOR/x/hLQhMP1mEdw4ZP
-         cjQShEMYMP250cAvjyqZ3M7U0yaSNoDJxB29kW3qQNCnN9wZ6HHS9CpdNaD1iAy1Amm6
-         gVn2aO/yPFwPoa6zCOyAX5D7hY17WUsONgau+7fxInzn7dXZ/1MMZnIFhfYkr+cyrua5
-         /goX39eWj/ydD63FYnlELFczwPrC7UW1fTB8T8fcSpjbmA2N/YhqWfH3jlgQhzHeyDdn
-         kgyg==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date;
+        bh=6sojfB0EzarM+k/PZBtiMXpeN1oQ0x+sgKh5POxkET4=;
+        b=pC9aUZj8uxvkyE0WOYKlTkPDbfsZME97W5me+CBvNLN5DoZ7d0OO6m8KZbAq5XQswC
+         m20L97rAYXd0dUEotuALnX9fu6eMHwsu0MZIezud5fQxn2/nZMGNy6gZu7YijbGAJZ2p
+         8ySqyYEtnfxeh+A38Kj2arg73xMIUZnPQ8KgcehtCkfzy4VN3SfRet6cxTrsfrMEp0Lm
+         S3z0ZEg3NYP5taWsmyR7xuBIQv/ilisWSuuEfQFpPyTh+972V8WW+vIRK8dAwDEloz8l
+         yd23IDQTnv3tL9+oCvLybm59w7PLpIieRwPIB2rNILHHnXrFuChPONRZHkOtGVo9phUH
+         0sQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=gzjER0yDfgC7AM3XY5AmZTUcIYvTw+ZPBU8Ab6kCF1A=;
-        b=nFjskzYhoZeMknPMOoBvpscjIcCJJATfNIdN8BP2FYm0uOyJU62VDQN2Wb7eZHR21Y
-         goLlHg2Wj6BSgGxCEDqmQSqjOgknycCUpDxSWmVEJ3yjOJaEGvjXaH5VAXrG7jKuZbcQ
-         5hrDCumTdNO1vvUuVVwxtqQMc5zAe5C2ZUFioVWTPfhbcZCPChAyfOcwLhLwfhJoH/eZ
-         D53u3WI8aJfQE9qQcNCdPFEaGqzpxTVkJm67qZjlLF+64NECerRlEfwLxfmSo3OfQHkB
-         fRD3E52nVziGtQ3z45Gawhl9snjxi017O515O4f2AXNhyEyNFksNAcZSBgAF++WmtOlL
-         9g7Q==
-X-Gm-Message-State: ACrzQf24d3pLCBEULkUKN+/6UiYTuYEoiuy0FUA6/UpKAQkk1gaiPLhy
-        Di0CPt4IoQ8Ygz4+G5EadY7KtOorky7iVciI/JHR5g==
-X-Google-Smtp-Source: AMsMyM44eZwNFcm9nbCPeKjoB6bDjAqdr1WQR9kY74b4PjDUbuCLEI1O22R9NLQqBpz/Q33j8Sm+v+qscaBv2lxtl/o=
-X-Received: by 2002:a17:906:9beb:b0:773:db0f:d53a with SMTP id
- de43-20020a1709069beb00b00773db0fd53amr13173696ejc.580.1663593525988; Mon, 19
- Sep 2022 06:18:45 -0700 (PDT)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=6sojfB0EzarM+k/PZBtiMXpeN1oQ0x+sgKh5POxkET4=;
+        b=lKtHLToyWALXTbHvHZ2RE2eotQOJLRASGQFJZOebfwO052kfOVL+ju5iV9FsYlzD0o
+         pcn8tM5VSjDfLILHTLSF7E3S2Qg+CjHn1EtnErk2vvRIyXBtWkYNZsaXCO4cDf6HLoQH
+         QYNa6lK8BjnjzrqSxn/YoAybPK6ehRSHczFXJ8mOZaiTUy8fBRKJRCxyBRn9jOIpWFlb
+         Ln7Kdu738IEuDbtQXnU1KP153JfBbD7k5WIUijldHr4OnAlefVPvxHx4mFUWPjWWWWcr
+         oO+O1Ozqb+a+36h7efzpdDlg0BRylNsaHOfexWuWgbsKYA6IO8Z8wQ0V8IyH/U4puXLq
+         tVWQ==
+X-Gm-Message-State: ACrzQf0KQH1rCZDIKiD+JpsXuw3gUf6nOfawRp/Ybg2P779gUiU4BC5H
+        xzNecnPzxxsexM+TYGc+ujs=
+X-Google-Smtp-Source: AMsMyM6JaSPlEVM4mfSkdT3DBrLxFCCWZoBo/g1FoEpLYVeyAGh7ayjz3yx9xdtULFqJd1HLIgMYuA==
+X-Received: by 2002:a17:902:db0a:b0:178:2636:b6de with SMTP id m10-20020a170902db0a00b001782636b6demr13047042plx.58.1663593546222;
+        Mon, 19 Sep 2022 06:19:06 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id j15-20020a170903024f00b00176e8f85147sm20042216plh.83.2022.09.19.06.19.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 06:19:05 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 19 Sep 2022 06:19:04 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Eliav Farber <farbere@amazon.com>
+Cc:     jdelvare@suse.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
+        rtanwar@maxlinear.com, andriy.shevchenko@intel.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v5 17/21] hwmon: (mr75203) add support for series 6
+ temperature equation
+Message-ID: <20220919131904.GA3547146@roeck-us.net>
+References: <20220908152449.35457-1-farbere@amazon.com>
+ <20220908152449.35457-18-farbere@amazon.com>
 MIME-Version: 1.0
-References: <20220919102009.150503-1-robert.foss@linaro.org>
- <20220919102009.150503-3-robert.foss@linaro.org> <YyhI0/aG97cCB8DB@pendragon.ideasonboard.com>
-In-Reply-To: <YyhI0/aG97cCB8DB@pendragon.ideasonboard.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Mon, 19 Sep 2022 15:18:35 +0200
-Message-ID: <CAG3jFysr3VCgU_sjR-Dd0pn_VK0HpDb2=pQuH+Did9giCYGZLw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] Revert "drm/bridge: chrontel-ch7033: Add byteswap
- order setting"
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        dianders@chromium.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220908152449.35457-18-farbere@amazon.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Sept 2022 at 12:48, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Rob,
->
-> Thank you for the patch.
->
-> On Mon, Sep 19, 2022 at 12:20:09PM +0200, Robert Foss wrote:
-> > Revert this patch since it depends on devicetree functionality that
-> > previously has been reverted in the below commit.
-> >
-> > commit e798ba3374a1 ("Revert "dt-bindings: Add byteswap order to chrontel ch7033"")
-> >
-> > This reverts commit ce9564cfc9aea65e68eb343c599317633bc2321a.
-> >
-> > Fixes: 8c9c40ec8344 ("Revert "drm/bridge: ti-sn65dsi86: Implement bridge connector operations for DP"")
->
-> I'm not sure this Fixes tag is meaningful here. Apart from that,
+On Thu, Sep 08, 2022 at 03:24:45PM +0000, Eliav Farber wrote:
+> The current equation used in code is aligned to series 5:
+> T = G + H * (n / cal5 - 0.5) + J * F
+> Where:
+> G = 60, H = 200, cal5 = 4094, J = -0.1, F = frequency clock in MHz
+> 
+> Series 6 has a slightly different equation:
+> T = G + H * (n / cal5 - 0.5)
+> and a different set of coefficients:
+> G = 57.4, H = 249.4, cal5 = 4096
+> 
+> This change supports equation and coefficients for both series.
+> (for series 6, J is set to 0).
+> 
+> The series is determined according to “moortec,ts-series” property in
+> the device tree.
+> If absent, series 5 is assumed to be the default.
+> 
+> Signed-off-by: Eliav Farber <farbere@amazon.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Ack.
+Applied to hwmon-next.
 
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> > ---
-> >  drivers/gpu/drm/bridge/chrontel-ch7033.c | 15 ++-------------
-> >  1 file changed, 2 insertions(+), 13 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/bridge/chrontel-ch7033.c b/drivers/gpu/drm/bridge/chrontel-ch7033.c
-> > index c5719908ce2d..ba060277c3fd 100644
-> > --- a/drivers/gpu/drm/bridge/chrontel-ch7033.c
-> > +++ b/drivers/gpu/drm/bridge/chrontel-ch7033.c
-> > @@ -68,7 +68,6 @@ enum {
-> >       BYTE_SWAP_GBR   = 3,
-> >       BYTE_SWAP_BRG   = 4,
-> >       BYTE_SWAP_BGR   = 5,
-> > -     BYTE_SWAP_MAX   = 6,
-> >  };
-> >
-> >  /* Page 0, Register 0x19 */
-> > @@ -356,8 +355,6 @@ static void ch7033_bridge_mode_set(struct drm_bridge *bridge,
-> >       int hsynclen = mode->hsync_end - mode->hsync_start;
-> >       int vbporch = mode->vsync_start - mode->vdisplay;
-> >       int vsynclen = mode->vsync_end - mode->vsync_start;
-> > -     u8 byte_swap;
-> > -     int ret;
-> >
-> >       /*
-> >        * Page 4
-> > @@ -401,16 +398,8 @@ static void ch7033_bridge_mode_set(struct drm_bridge *bridge,
-> >       regmap_write(priv->regmap, 0x15, vbporch);
-> >       regmap_write(priv->regmap, 0x16, vsynclen);
-> >
-> > -     /* Input color swap. Byte order is optional and will default to
-> > -      * BYTE_SWAP_BGR to preserve backwards compatibility with existing
-> > -      * driver.
-> > -      */
-> > -     ret = of_property_read_u8(priv->bridge.of_node, "chrontel,byteswap",
-> > -                               &byte_swap);
-> > -     if (!ret && byte_swap < BYTE_SWAP_MAX)
-> > -             regmap_update_bits(priv->regmap, 0x18, SWAP, byte_swap);
-> > -     else
-> > -             regmap_update_bits(priv->regmap, 0x18, SWAP, BYTE_SWAP_BGR);
-> > +     /* Input color swap. */
-> > +     regmap_update_bits(priv->regmap, 0x18, SWAP, BYTE_SWAP_BGR);
-> >
-> >       /* Input clock and sync polarity. */
-> >       regmap_update_bits(priv->regmap, 0x19, 0x1, mode->clock >> 16);
->
-> --
-> Regards,
->
-> Laurent Pinchart
+Thanks,
+Guenter
