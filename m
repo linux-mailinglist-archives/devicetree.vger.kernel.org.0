@@ -2,114 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9455BC58B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 11:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FD285BC591
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 11:38:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbiISJhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 05:37:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55498 "EHLO
+        id S230257AbiISJio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 05:38:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230147AbiISJhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 05:37:31 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D351425E83;
-        Mon, 19 Sep 2022 02:37:29 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1F652415;
-        Mon, 19 Sep 2022 11:37:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1663580247;
-        bh=w1XptG6gnWG5qMJFr8lQ2cZDdLHVlAvcC5cflznsxfo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bNisYN/YVkoeYHIoAQ0NUs+nZb62EV63JbAzylzbuFNQkQTpIcIjM6MHoS7qxh3yO
-         /RxA4jWl/GpiNRyMxh3ndQ6F+GoC8ISkP+lDWXO+y4Lcu0wr7Azda5gKAb4CmkZcTY
-         WVpKGR1oJZMg3W5KFFUbl3wCHZVU5NpfH6FmLGbg=
-Date:   Mon, 19 Sep 2022 12:37:13 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH] media: dt-bindings: i2c: ovti,ov5640: Drop ref to
- video-interface-devices.yaml
-Message-ID: <Yyg4SU7D5mClOvP/@pendragon.ideasonboard.com>
-References: <20220916133521.73183-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <YyZS38Wo7rDsNRm2@pendragon.ideasonboard.com>
- <CA+V-a8vvNHFt818wryyuhWxPtay4czjWXiH=AWEKiJ1AzB46mA@mail.gmail.com>
- <fc1c075d-e20d-9395-d168-8cfe530f77ad@linaro.org>
- <CA+V-a8uMyU89rufmqWiGFqpVjFPvHBeVeSd1Wt07eWZo1X+Bgw@mail.gmail.com>
+        with ESMTP id S229906AbiISJin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 05:38:43 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBEAA1E3E7
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 02:38:41 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id f9so45267166lfr.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 02:38:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=VJimzBdVCtfgS8uCmHW6ptZG5H95UCJL58R73+bcUzo=;
+        b=ggetqmZugjx7COrp1WBrIR/W6P8NW8I7XMS+drsAeLOzArF90aIiNVOy7zgeflf70t
+         YjQqhV5GjyLWWWN6KlSfg0hDxeKDhNmTqSstIwDSkbdx975ejBJILtJUdYcOcj2cIVBv
+         MJjlZWhbE1tvDtAeoDKQHtni5nwHPv4F+J2VOxukj18BWMbt1oedyjFDVkQIR2pMoX3W
+         GZWDhsSqmPp1x6djWwokuTIut+t5kp7YghckXPrYU9uVifCmyoIEcQQCGIg0sDV60LU5
+         TbuYUEsayCesJhKvvf1uQntnJzCEcs6kW1CuC3Fx8bROjGpXfxvGa2fN9evufcmekgo9
+         +pAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=VJimzBdVCtfgS8uCmHW6ptZG5H95UCJL58R73+bcUzo=;
+        b=N+UlPbsFa2OL9PRhC9103egnA5dxcVQxT434Vs6TdguBUuMASqpEu5mjvLJgSjGbpc
+         dM5DVvzv4LWbu9Hnma4Cq7H6qOIYAv8X+FHulrLys9ahX/Al/7hslp+3TvTeCw8pYMSI
+         G15DE7ZsYkX6splzCTKQCiH4awFZ9RKikzVWsSz/sk4KpHZJAH5CC0f1kty/4nCGatT/
+         FY4a7Wxp3499OtJnJNyzUOKUgHnj4s6DjGbzVFx8ev3gvANd1a5Ss0eT0XJhIjwHAKuS
+         /JW/4OTVwHqrZDUdYKh4wBP6oTf5CE62Gfxrff6NiWE5wke5pgMINKdLm9tA3jun/Bdm
+         ct0w==
+X-Gm-Message-State: ACrzQf2Y/Fz+h8h6xR4eZ8hTY8RKstKCcnm+31WQmO6+sp4tk81JyFRt
+        Lai4COLYGFFHaQEyTo5xA242jCHefOPuAg==
+X-Google-Smtp-Source: AMsMyM5TaSJssuJzH24HVBt1+dktVcXRxMnTBik6Q6/oKgURMUa6pRcdLnmtl1pzarraziayZ505UQ==
+X-Received: by 2002:ac2:5f1a:0:b0:497:e106:e597 with SMTP id 26-20020ac25f1a000000b00497e106e597mr6157114lfq.135.1663580319883;
+        Mon, 19 Sep 2022 02:38:39 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id b4-20020a056512070400b004946c99e78asm5103217lfs.277.2022.09.19.02.38.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Sep 2022 02:38:39 -0700 (PDT)
+Message-ID: <6dd3d41b-eb75-3754-8a17-a8cb4bc838a8@linaro.org>
+Date:   Mon, 19 Sep 2022 11:38:38 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8uMyU89rufmqWiGFqpVjFPvHBeVeSd1Wt07eWZo1X+Bgw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v5 2/3] memory: omap-gpmc: add support for wait pin
+ polarity
+Content-Language: en-US
+To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     rogerq@kernel.org, tony@atomide.com, robh+dt@kernel.org
+References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
+ <20220916120749.2517727-3-benedikt.niedermayr@siemens.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220916120749.2517727-3-benedikt.niedermayr@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 19, 2022 at 10:35:21AM +0100, Lad, Prabhakar wrote:
-> On Mon, Sep 19, 2022 at 9:19 AM Krzysztof Kozlowski wrote:
-> > On 19/09/2022 10:08, Lad, Prabhakar wrote:
-> > > On Sun, Sep 18, 2022 at 12:06 AM Laurent Pinchart wrote:
-> > >> On Fri, Sep 16, 2022 at 02:35:21PM +0100, Prabhakar wrote:
-> > >>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >>>
-> > >>> video-interface-devices.yaml isn't used so just drop it from the
-> > >>> DT binding doc.
-> > >>>
-> > >>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >>> ---
-> > >>>  Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml | 3 ---
-> > >>>  1 file changed, 3 deletions(-)
-> > >>>
-> > >>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-> > >>> index 540fd69ac39f..ce99aada75ad 100644
-> > >>> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-> > >>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-> > >>> @@ -9,9 +9,6 @@ title: OmniVision OV5640 Image Sensor Device Tree Bindings
-> > >>>  maintainers:
-> > >>>    - Steve Longerbeam <slongerbeam@gmail.com>
-> > >>>
-> > >>> -allOf:
-> > >>> -  - $ref: /schemas/media/video-interface-devices.yaml#
-> > >>> -
-> > >>
-> > >> The rotation property listed in this binding uses the definition from
-> > >> video-interface-devices.yaml. I don't think just dropping this is the
-> > >> right solution. Changing additionaProperties to unevaluatedProperties
-> > >> seems a better option.
-> > >
-> > > Agreed, I missed rotation was used from video-interface-devices.yaml.
-> > > Agreed the changing additionaProperties to unevaluatedProperties seems
-> > > a better option.
-> >
-> > The meaning of unevaluatedProperties:false would be here - accept other
-> > properties (not mentioned here explicitly) from referenced schema. If
-> > this is your actual intention for this binding, it makes sense. But if
-> > the intention in this binding was to disallow these other properties,
-> > then it would be wrong to change to unevaluatedProperties.
-> >
-> Thank you for the clarification. The intention is to disallow the property.
+On 16/09/2022 14:07, B. Niedermayr wrote:
+> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+> 
+> The waitpin polarity can be configured via the WAITPIN<X>POLARITY bits
+> in the GPMC_CONFIG register. This is currently not supported by the
+> driver. This patch adds support for setting the required register bits
+> with the "gpmc,wait-pin-polarity" dt-property.
+> 
+> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+> ---
+>  drivers/memory/omap-gpmc.c              | 27 +++++++++++++++++++++++++
+>  include/linux/platform_data/gpmc-omap.h |  6 ++++++
+>  2 files changed, 33 insertions(+)
+> 
+> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
+> index ea495e93766b..2853fc28bccc 100644
+> --- a/drivers/memory/omap-gpmc.c
+> +++ b/drivers/memory/omap-gpmc.c
+> @@ -132,6 +132,7 @@
+>  #define GPMC_CONFIG_DEV_SIZE	0x00000002
+>  #define GPMC_CONFIG_DEV_TYPE	0x00000003
+>  
+> +#define GPMC_CONFIG_WAITPINPOLARITY(pin)	(BIT(pin) << 8)
+>  #define GPMC_CONFIG1_WRAPBURST_SUPP     (1 << 31)
+>  #define GPMC_CONFIG1_READMULTIPLE_SUPP  (1 << 30)
+>  #define GPMC_CONFIG1_READTYPE_ASYNC     (0 << 29)
+> @@ -1882,6 +1883,17 @@ int gpmc_cs_program_settings(int cs, struct gpmc_settings *p)
+>  
+>  	gpmc_cs_write_reg(cs, GPMC_CS_CONFIG1, config1);
+>  
+> +	if (p->wait_pin_polarity != WAITPINPOLARITY_DEFAULT) {
+> +		config1 = gpmc_read_reg(GPMC_CONFIG);
+> +
+> +		if (p->wait_pin_polarity == WAITPINPOLARITY_ACTIVE_LOW)
+> +			config1 &= ~GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
+> +		else if (p->wait_pin_polarity == WAITPINPOLARITY_ACTIVE_HIGH)
+> +			config1 |= GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
+> +
+> +		gpmc_write_reg(GPMC_CONFIG, config1);
 
-Why should they be disallowed ?
+What happens if wait pin is shared and you have different polarities in
+both of devices?
 
-> > Therefore before sending patches and calling something better or not,
-> > please instead focus on that aspect of referenced schema.
->
-> Sure will do, sorry for the noise.
+> +	}
+> +
+>  	return 0;
+>  }
+>  
+> @@ -1981,7 +1993,22 @@ void gpmc_read_settings_dt(struct device_node *np, struct gpmc_settings *p)
+>  				__func__);
+>  	}
+>  
+> +	p->wait_pin_polarity = WAITPINPOLARITY_DEFAULT;
+> +
+>  	if (!of_property_read_u32(np, "gpmc,wait-pin", &p->wait_pin)) {
+> +		if (!of_property_read_u32(np, "gpmc,wait-pin-polarity",
+> +					  &p->wait_pin_polarity)) {
+> +			if (p->wait_pin_polarity != WAITPINPOLARITY_ACTIVE_HIGH &&
+> +			    p->wait_pin_polarity != WAITPINPOLARITY_ACTIVE_LOW &&
+> +			    p->wait_pin_polarity != WAITPINPOLARITY_DEFAULT) {
 
--- 
-Regards,
+WAITPINPOLARITY_DEFAULT is not allowed in DT, so you can skip it.
 
-Laurent Pinchart
+> +				pr_err("%s: Invalid wait-pin-polarity (pin: %d, pol: %d)\n",
+
+dev_err, not pr_err
+
+> +				       __func__, p->wait_pin, p->wait_pin_polarity);
+
+Skip __func__
+
+> +				p->wait_pin_polarity = WAITPINPOLARITY_DEFAULT;
+> +			}
+> +		} else {
+> +			pr_err("%s: Failed to read gpmc,wait-pin-polarity\n", __func__);
+
+Ditto.
+
+> +		}
+> +
+>  		p->wait_on_read = of_property_read_bool(np,
+>  							"gpmc,wait-on-read");
+>  		p->wait_on_write = of_property_read_bool(np,
+> diff --git a/include/linux/platform_data/gpmc-omap.h b/include/linux/platform_data/gpmc-omap.h
+> index c9cc4e32435d..c46c28069c31 100644
+> --- a/include/linux/platform_data/gpmc-omap.h
+> +++ b/include/linux/platform_data/gpmc-omap.h
+> @@ -136,6 +136,11 @@ struct gpmc_device_timings {
+>  #define GPMC_MUX_AAD			1	/* Addr-Addr-Data multiplex */
+>  #define GPMC_MUX_AD			2	/* Addr-Data multiplex */
+>  
+> +/* Wait pin polarity values */
+> +#define WAITPINPOLARITY_DEFAULT -1
+
+Missing prefix. This is a global header.
+
+> +#define WAITPINPOLARITY_ACTIVE_LOW 0
+> +#define WAITPINPOLARITY_ACTIVE_HIGH 1
+> +
+>  struct gpmc_settings {
+>  	bool burst_wrap;	/* enables wrap bursting */
+>  	bool burst_read;	/* enables read page/burst mode */
+> @@ -149,6 +154,7 @@ struct gpmc_settings {
+>  	u32 device_width;	/* device bus width (8 or 16 bit) */
+>  	u32 mux_add_data;	/* multiplex address & data */
+>  	u32 wait_pin;		/* wait-pin to be used */
+> +	u32 wait_pin_polarity;	/* wait-pin polarity */
+
+Skip the comment. You just copied the name of variable. Such comments
+are useless.
+
+We do not have KPIs in kernel to achieve some comment-ratio...
+
+Best regards,
+Krzysztof
