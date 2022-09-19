@@ -2,160 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D4B75BCD99
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D16395BCD9C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230416AbiISNtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 09:49:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58712 "EHLO
+        id S230523AbiISNte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 09:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbiISNtb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:49:31 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E3AD2C650;
-        Mon, 19 Sep 2022 06:49:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=M4xO9IqxnWbsC4nyc5lGTD297hCkmftCcGG9wBbB0gQ=;
-        b=d3btCep1Cc1NeTJBNhIARli1t53lbEQSnd6rznhDrRvHP5FPnvTxr9XTT7b7/PnstVtjtxQb59tyS
-         L9K81D3CGPAeEJv0QuT1yuTJwV0RXdtPn9oa+L5zqgSYFwsndGczSpjXtBNthYQLmpGJDJeYx8cllV
-         3eIPoNQAspQDGqn8WulyS1X+RUBgAeIuPE+sgfmJ3KCiL2djOWSKDsr/8mVL9MalJtB44+b+baaPx5
-         7cRQ9SMajPT4xhlbndwhG3EerXCw7WmJ1Y4JTPCGpWheg0jM7yKRwkT77UuoKnnOc6rBT3PBHFlBDb
-         UiiK27zSVnvb+PmaYlhMF8tvTM9XBLQ==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000013,0.013009)], BW: [Enabled, t: (0.000018,0.000001)], RTDA: [Enabled, t: (0.135779), Hit: No, Details: v2.41.0; Id: 15.52k9ij.1gdb057vj.3chm; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Mon, 19 Sep 2022 16:49:15 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, dg@emlix.com, j.zink@pengutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        system@metrotek.ru,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v12 2/2] dt-bindings: fpga: document Lattice sysCONFIG FPGA manager
-Date:   Mon, 19 Sep 2022 16:47:50 +0300
-Message-Id: <20220919134750.25197-3-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220919134750.25197-1-i.bornyakov@metrotek.ru>
-References: <20220919134750.25197-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S230154AbiISNtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:49:32 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3CF2DAA3;
+        Mon, 19 Sep 2022 06:49:23 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3E06D9BA;
+        Mon, 19 Sep 2022 15:49:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1663595360;
+        bh=N1LVG0MXObEOzn3wAb8ucps7CX6MhaStUY9Gll/LMYI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZrZP6r3x5Ai0F1Y3DZPRAorq0kuyTi7Kphb86o1+MgIxakQCZFkLY35TYczLuZbcX
+         JnTDMYDaja2NkwTvQsJfcqLsa7wdr39DLxlbkXjG+trokP2E+JZxQBt41t3wJ21zin
+         5WcZ4H3K9RFp1OXDokRGtuVubRBWxyZibbHd77JI=
+Date:   Mon, 19 Sep 2022 16:49:06 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Shawn Tu <shawnx.tu@intel.com>, Jimmy Su <jimmy.su@intel.com>,
+        Arnd Bergmann <arnd@arndb.de>, Arec Kao <arec.kao@intel.com>,
+        Marek Vasut <marex@denx.de>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Add Omnivision OV4689 image sensor driver
+Message-ID: <YyhzUvu0Ky8+VohC@pendragon.ideasonboard.com>
+References: <20220911200147.375198-1-mike.rudenko@gmail.com>
+ <CAPY8ntCA3jbpBOiNfoft58sHPeTFSLoLop0VUmkOCWP3cX_rdw@mail.gmail.com>
+ <87czbwp9xx.fsf@gmail.com>
+ <YygOzWAHyoP+KwTv@paasikivi.fi.intel.com>
+ <87wn9zreic.fsf@gmail.com>
+ <YyhE5voxRz7gEYHY@paasikivi.fi.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YyhE5voxRz7gEYHY@paasikivi.fi.intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for configuring Lattice ECP5 FPGA over
-Slave SPI sysCONFIG interface.
+Hello,
 
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/fpga/lattice,sysconfig.yaml      | 81 +++++++++++++++++++
- 1 file changed, 81 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+On Mon, Sep 19, 2022 at 10:31:02AM +0000, Sakari Ailus wrote:
+> On Mon, Sep 19, 2022 at 10:01:06AM +0300, Mikhail Rudenko wrote:
+> > On 2022-09-19 at 06:40 GMT, Sakari Ailus wrote:
+> > > On Fri, Sep 16, 2022 at 12:27:42AM +0300, Mikhail Rudenko wrote:
+> > >> On 2022-09-14 at 10:58 +01, Dave Stevenson wrote:
+> > >> > On Sun, 11 Sept 2022 at 21:02, Mikhail Rudenko wrote:
+> > >> >>
+> > >> >> Hello,
+> > >> >>
+> > >> >> this series implements support for Omnivision OV4689 image
+> > >> >> sensor. The Omnivision OV4689 is a high performance, 1/3-inch, 4
+> > >> >> megapixel image sensor. Ihis chip supports high frame rate speeds up
+> > >> >> to 90 fps at 2688x1520 resolution. It is programmable through an I2C
+> > >> >> interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
+> > >> >> connection.
+> > >> >>
+> > >> >> The driver is based on Rockchip BSP kernel [1]. It implements 4-lane CSI-2
+> > >> >> and single 2688x1520 @ 30 fps mode. The driver was tested on Rockchip
+> > >> >> 3399-based FriendlyElec NanoPi M4 board with MCAM400 camera
+> > >> >> module.
+> > >> >> While porting the driver, I stumbled upon two issues:
+> > 
+> > [snip]
+> > 
+> > >> >> (2) The original driver exposes analog gain range 0x0 - 0x7ff, but the
+> > >> >> gain is not linear across that range. Instead, it is piecewise linear
+> > >> >> (and discontinuous). 0x0-0xff register values result in 0x-2x gain,
+> > >> >> 0x100-0x1ff to 0x-4x, 0x300-0x3ff to 0x-8x, and 0x700-0x7ff to 0x-16x,
+> > >> >> with more linear segments in between. Rockchip's camera engine code
+> > >> >> chooses one of the above segments depenging on the desired gain
+> > >> >> value. The question is, how should we proceed keeping in mind
+> > >> >> libcamera use case? Should the whole 0x0-0x7ff be exposed as-is and
+> > >> >> libcamera will do the mapping, or the driver will do the mapping
+> > >> >> itself and expose some logical gain units not tied to the actual gain
+> > >> >> register value? Meanwhile, this driver conservatively exposes only
+> > >> >> 0x0-0xf8 gain register range.
+> > >> >
+> > >> > The datasheet linked above says "for the gain formula, please contact
+> > >> > your local OmniVision FAE" :-(
+> > >> > I would assume that the range is from 1x rather than 0x - people
+> > >> > rarely want a totally black image that 0x would give. Or is it ranges
+> > >> > of 1x - 2x, 2x - 4x, 4x - 8x, and 8x - 16x?
+> > >>
+> > >> A picture is worth a thousand words, so I've attached the results of my
+> > >> experimentation with the gain register. They were obtained with Rockchip
+> > >> 3399, with AEC, AGC and black level subtraction disabled. The image was
+> > >> converted from 10-bit RGGB to 8-bit YUV 4:2:0 by the Rockchip ISP.
 
-diff --git a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-new file mode 100644
-index 000000000000..4fb05eb84e2a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/lattice,sysconfig.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lattice Slave SPI sysCONFIG FPGA manager
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description: |
-+  Lattice sysCONFIG port, which is used for FPGA configuration, among others,
-+  have Slave Serial Peripheral Interface. Only full reconfiguration is
-+  supported.
-+
-+  Programming of ECP5 is done by writing uncompressed bitstream image in .bit
-+  format into FPGA's SRAM configuration memory.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lattice,sysconfig-ecp5
-+
-+  reg:
-+    maxItems: 1
-+
-+  program-gpios:
-+    description:
-+      A GPIO line connected to PROGRAMN (active low) pin of the device.
-+      Initiates configuration sequence.
-+    maxItems: 1
-+
-+  init-gpios:
-+    description:
-+      A GPIO line connected to INITN (active low) pin of the device.
-+      Indicates that the FPGA is ready to be configured.
-+    maxItems: 1
-+
-+  done-gpios:
-+    description:
-+      A GPIO line connected to DONE (active high) pin of the device.
-+      Indicates that the configuration sequence is complete.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: lattice,sysconfig-ecp5
-+    then:
-+      properties:
-+        spi-max-frequency:
-+          maximum: 60000000
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        fpga-mgr@0 {
-+            compatible = "lattice,sysconfig-ecp5";
-+            reg = <0>;
-+            spi-max-frequency = <20000000>;
-+            program-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
-+            init-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
-+            done-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
+Is that full or limited range YUV ?
+
+> > > Based on that it looks like their medication may have been a little too
+> > > strong.
+> > >
+> > > Could this be implemented so that the control value would be linear linear
+> > > but its range would correspond 1x--16x values?
+> > >
+> > > libcamera will be able to cope with that.
+> > 
+> > According to the following fragment of the Rockchip camera engine sensor
+> > configuration file for ov4689 [1]
+> > 
+> >     <Linear index="1" type="double" size="[4 7]">
+> >        [1 2 128 0 1 128 255
+> >         2 4 64 -248 1 376 504
+> >         4 8 32 -756 1 884 1012
+> >         8 16 16 -1784 1 1912 2040]
+> >     </Linear>,
+> > 
+> > it uses gain register value range 128-255 for gain 1x-2x, 376-504 for
+> > gain 2x-4x, 884-1024 for 4x-8x, and 1912-2040 for 8x-16x. Do you suggest
+
+That looks *really* weird. I would have understood [384, 511], [896,
+1023] and [1920, 2047], but not those intervals.
+
+The driver hardcodes bit 0x3503[2] to 1, which means "sensor gain
+format". Maybe setting it to 0 ("real gain format") would produce saner
+results ?
+
+> > to implement this calculation in the sensor driver and expose some
+> > linear "logical" gain to userspace (ranging, e.g., 128-2048 for gains
+> > 1x-16x)?
+> 
+> Yes. This way the user space can somehow work without knowing this special
+> implementation, even though the granularity changes over the range. I guess
+> the granularity would need to be known in libcamera but that's a separate
+> issue.
+
+I can live with that.
+
 -- 
-2.37.3
+Regards,
 
-
+Laurent Pinchart
