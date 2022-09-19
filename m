@@ -2,188 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E25255BC34A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 09:02:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0B825BC350
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 09:03:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbiISHC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 03:02:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41924 "EHLO
+        id S229821AbiISHDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 03:03:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbiISHC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 03:02:27 -0400
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2086.outbound.protection.outlook.com [40.107.95.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AB6F1D0E7;
-        Mon, 19 Sep 2022 00:02:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LTGLYaeeauTYicAHkNMgzJWKqktAM2BrynSe4o2Ewt6Pv/TBT+cdws4RwPaayRbMPKE68Atesto1IvvPRXVytVt/4B2TyaT1NLoX7dijl8BvBpfHUpv/4DBj92YGiE22qs7Dg9ZBSzQB45J9A/XpW7ukOt5G5ndrFhUCwyZZMAd/LcfUnkPlnSWTkBlIK/pNuFQ8Q6ZeT+Tja7j3Ueqf91IeqygKEm3g0fJq+BJzZiS473IpDDQyAuULnzkvIYVmYjpEZJqHJdqEUX71HCbFYaaxgXBu0GRsFxG3XUA+FUDMb+38YLWWD7SRiQ9iXv8qrwcvl7tT5ZpKcLkduhOP/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Cuf72fCzheVTr/GYcHh2Qegj6jlajYShG2rVUj6n53s=;
- b=QYv5p8m5+C/pdzUBgHCD3EvcYJCkWQdNTh1RkHLsaOjSFVgYpTcpgPtPoGrvVnVqLXhvviZ8IPyxJHDF7NxVd8FMLy6G44Hnz2kV+pqF0cYDqDnI08BG49DTs4VvfRMEfy+Fag7TYkGIl5BjVHspMLsW+P3yzPMbcWHYe35/HSvGaI3h5iUu2rp4Pm2IP5xVDBDnlu5uFKJzlEM5wp+e8LrT0pNdw8J69MLcOSOr1ehtfCQeDjghlgE+4w65z6sSxZ4Ll8l5l9zCoUHOX6wF1/xzbOhdzLl5VpwIYIIguZvw7B79FvNFNbKNpYrD0l6wXai/ALRLfh2KGheB2pD0hw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=gorani.run smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Cuf72fCzheVTr/GYcHh2Qegj6jlajYShG2rVUj6n53s=;
- b=dRQdacxMB9nutvA0vYxLsN66jflvjyKCrex0iQ2JYqhJARVoL/0ohPVclMNE0FHsNsc6V6CcDZGtMk/z6H6bzxVcyKpb0FSy6xMOrv99ETcvpHlVX2rYSt96RrMJRZ8kWdVLz+aqTm/SHGDXqTxz9pigJ4sXghS72DzNyP+2jZE=
-Received: from DS7P222CA0007.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::24) by
- DM4PR12MB6493.namprd12.prod.outlook.com (2603:10b6:8:b6::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5632.19; Mon, 19 Sep 2022 07:02:24 +0000
-Received: from DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2e:cafe::82) by DS7P222CA0007.outlook.office365.com
- (2603:10b6:8:2e::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.15 via Frontend
- Transport; Mon, 19 Sep 2022 07:02:24 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT047.mail.protection.outlook.com (10.13.172.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5632.12 via Frontend Transport; Mon, 19 Sep 2022 07:02:23 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 19 Sep
- 2022 02:02:18 -0500
-Message-ID: <31bf7452-5f1d-2590-58de-3b9b73c132f9@amd.com>
-Date:   Mon, 19 Sep 2022 09:01:53 +0200
+        with ESMTP id S229815AbiISHDW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 03:03:22 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9123A1D316
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 00:03:20 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id p5so32738784ljc.13
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 00:03:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=9xFTk4OMhZkRlhAaanDFcs7HM/NhpRYI6iz828j2ZeA=;
+        b=wJ7qP0XlQU6l+wwCv1ayWHDuWf6ip3NMJLAJNXT5z7UomUh+jpD6eFLmTPkxo6V5QJ
+         yuNT3vObCNly/555xWdO1u9e9H4wobqR5iNkDDUKCshgxhdlZJOWGwBytHHwQPBdkqfD
+         ik1jdaFy0j70Gms28/12tPl/jTDeexSVoCuM6CrR3uIhDPsuVTQVevE3pTrWHNVsEwcS
+         vsbHyKqnD02gMF1Tmnp9E+17THTx6ohIRmORnSxE1iM77YuY8eRT5yU39BYNiDr4+7WY
+         id+OggelsrRjY6tbJgu59PQBV/ZQ46dtB0cCcu6Es+2vPCSGzmDABBNa5xkrvbFwDGNE
+         FsAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=9xFTk4OMhZkRlhAaanDFcs7HM/NhpRYI6iz828j2ZeA=;
+        b=gM/6+8/DRYm80Yq2g/+XM+NGG/y7685GbV4L9pUTfvId+HnGUr54muyHXtLg9iFRRw
+         hZ12uR6ltDyKl1Loa5DAAyJlRNO3vGEnp2i8j2h6KHSMVex4rpm2XQsnyFbK7cVWOGCk
+         vwGIOBFjG3IMc/c8zkL+JRaVJdPKnC6twvYxof1KeYQylfZzcovujHEPW0UQSQsnvXgv
+         C6Eq5U0r5c9WijI5JGjlFb8UA+qO8ywzA5xKO97SSVlCICdKm+rbJB/gLAYVqSBFmegB
+         eCHmY0k1Ce3zZNM86DxJB4Qq3jefSA7lrMfe2EWkEItFThiHNLxziu+5o0KNdOv0RZUg
+         9oOw==
+X-Gm-Message-State: ACrzQf0KJqAyvDYPd9HOn39ANjX/vmdNg3B75ExW6/HgbR4ah1gGN4K/
+        ivmtiMsdsnPGcpAgGlRi+gXSDA==
+X-Google-Smtp-Source: AMsMyM7LeebYro7ACkENxHGy30ekGSA6BGvSNxYWMK2+W2evg4h1dugZbL9Q6/4Tq74QNm2Jh8U2TA==
+X-Received: by 2002:a2e:9cf:0:b0:26c:3973:ec1f with SMTP id 198-20020a2e09cf000000b0026c3973ec1fmr4624171ljj.322.1663570998645;
+        Mon, 19 Sep 2022 00:03:18 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id r13-20020a2e994d000000b0026c3b68c8b0sm1443633ljj.74.2022.09.19.00.03.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Sep 2022 00:03:18 -0700 (PDT)
+Message-ID: <25c6693c-a57f-8ea2-71e8-fda9646fd7f1@linaro.org>
+Date:   Mon, 19 Sep 2022 09:03:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/2] gpio: pca9570: add slg7xl45106 support
+Subject: Re: [PATCH v1 2/3] dt-bindings: thermal: Convert ls2k to json-schema
 Content-Language: en-US
-To:     "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-        Sungbo Eo <mans0n@gorani.run>
-CC:     "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-References: <20220915114803.26185-1-shubhrajyoti.datta@amd.com>
- <20220915114803.26185-3-shubhrajyoti.datta@amd.com>
- <d756107b-5cc5-53ba-b420-d4664e3a9bb7@gorani.run>
- <BY5PR12MB49027576A8D06800293630FE814D9@BY5PR12MB4902.namprd12.prod.outlook.com>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <BY5PR12MB49027576A8D06800293630FE814D9@BY5PR12MB4902.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>
+References: <20220919034915.26912-1-zhuyinbo@loongson.cn>
+ <20220919034915.26912-2-zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220919034915.26912-2-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT047:EE_|DM4PR12MB6493:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2030463f-8656-458a-07d6-08da9a0ce731
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gad5b3OzuUBNXInwUu2yVwD+s7IWwDG3HTt+r/s1FvJzJFGaeU/UdObAv0REEbjyiXxOWHJobL3y5jtoXluIh7dIBM6EB1FuKc4aEiGM5Vs3e0GdlkdZV65S9YgfHG5lz2q+ldYzfvEv6jYSbXx5dyGPF082t5q49HeckZRkw7z7j6+g3vU37iEV8xKAhllrtBcJvomHd6ftgkhauxFJWEaMNPSoQDNewGZ52Hap9y5PinB6d6Mn/2bWtEQcazLzGovCpGGd0SgQYDlUHYMKtikjlJDQKu/m6S3mM2aBQ3ObqcOALcyh7r1nH93HZBIhLPS07WTG8roXA06vAcvKcquz1K2KkiFWFjyCEClVEquxA2CB8Ln6cL2Fm/lY5ti0vtQCLEDpdviVU5wD1LV11DzBZVHUesnw9lEmG9hsZOKGm+sRsVUyc38e7Hxzt1CS0wfa2re2acmEFCsTaeDibBHcDJ968opQ3rFw78WCEHIUAGMe+vhLJatjn1poo9zs0w7PUHSxSui7hHdAUYfJuUEQ5iMx3Lp2xWR6YfhtZZHlt4H2+l7PkmgJ6B6rLtIGD7avbMvqQIF7oq5B+w/0unbxfZU9px8t+UTudFThOIfk4hgMT4ZFWsvhNkwU7jb9n6VkMsmPOzSb0RW93f5zu2ghiMCUhgtpLceXWTUAs8fHMfNdw8QjdnHbSBQxQd2CsM69VEYewkCSl28+XyaEBMJJ3vqd8/MjeSxMEeH2hSVMOqVzLLiniWV9Gs4c0Jl9zzHpdB78bWbQiXUGPs7SOqiWOW5MuHdJZCkS82qn0IjvkwOHlooPyN/nwq6LTCoM6kwtPkvZqQpSXM7WVaC9aAgETjRtvdZpSfWeXxDbLVs=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(376002)(396003)(346002)(136003)(451199015)(40470700004)(46966006)(36840700001)(53546011)(26005)(2616005)(31686004)(45080400002)(81166007)(356005)(44832011)(478600001)(966005)(2906002)(5660300002)(36860700001)(82310400005)(82740400003)(36756003)(31696002)(86362001)(40460700003)(336012)(186003)(16526019)(426003)(47076005)(6666004)(40480700001)(83380400001)(41300700001)(4326008)(316002)(54906003)(16576012)(8676002)(110136005)(70586007)(70206006)(8936002)(36900700001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2022 07:02:23.4444
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2030463f-8656-458a-07d6-08da9a0ce731
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6493
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 19/09/2022 05:49, Yinbo Zhu wrote:
+> Convert the ls2k thermal binding to DT schema format using json-schema
+> 
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 
-On 9/19/22 08:32, Datta, Shubhrajyoti wrote:
-> [AMD Official Use Only - General]
-> 
-> Hi Sunbo,
-> 
->> -----Original Message-----
->> From: Sungbo Eo <mans0n@gorani.run>
->> Sent: Saturday, September 17, 2022 7:31 PM
->> To: Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>
->> Cc: linux-gpio@vger.kernel.org; git (AMD-Xilinx) <git@amd.com>;
->> devicetree@vger.kernel.org; krzysztof.kozlowski+dt@linaro.org;
->> robh+dt@kernel.org; brgl@bgdev.pl; linus.walleij@linaro.org; Andy
->> Shevchenko <andy.shevchenko@gmail.com>
->> Subject: Re: [PATCH v2 2/2] gpio: pca9570: add slg7xl45106 support
->>
->> Caution: This message originated from an External Source. Use proper
->> caution when opening attachments, clicking links, or responding.
->>
->>
->> Hi,
->>
->> Thanks for the update.
->> I was thinking I should reply to your patch in the last month, but I was a little
->> busy at the time and I forgot to do so...
->>
->> On 2022-09-15 20:48, Shubhrajyoti Datta wrote:
->>> slg7xl45106 is a I2C GPO expander.
->>> Add a compatible string for the same. Also update the driver to write
->>> and read from it.
->>>
->>> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
->>> ---
->>> v2:
->>> Use platform data insted of compatible
->>
->> Moving the command property into the new platform structure is nice.
->> And please add more description about the device in the commit message.
->> We don't even know the full name of the vendor from your patch.
->> I like the older version of your patch in that perspective.
->> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.
->> kernel.org%2Fall%2F1656426829-1008-3-git-send-email-
->> shubhrajyoti.datta%40xilinx.com%2F&amp;data=05%7C01%7Cshubhrajyoti.d
->> atta%40amd.com%7C9758241b75fc461113b608da98b50869%7C3dd8961fe488
->> 4e608e11a82d994e183d%7C0%7C0%7C637990201003357055%7CUnknown%7
->> CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwi
->> LCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=x0RHFhr9X0L3VBzTRyRy
->> VfLhm74gx7jBqUs2NEFhKcI%3D&amp;reserved=0
->> And a link to the device datasheet would be also nice (if possible).
->>
-> 
-> Will update the description.
-> 
->>>
->>>   drivers/gpio/gpio-pca9570.c | 39
->>> +++++++++++++++++++++++++++++++++----
->>>   1 file changed, 35 insertions(+), 4 deletions(-)
->>
->> And I was also thinking that tpic2810 driver might be more appropriate then
->> this pca9570 driver for a device with one command byte.
->> Actually I had forked tpic2810 to create pca9570 to support a device without
->> any command byte.
->> Come to think of it, the two drivers may even be consolidated into a single
->> generic one... What do you think?
-> 
-> I agree.
-> It looks to me that the current driver should work for the tpic2810 also by adding the compatible.
-> Do you agree?
+FYI, All your patches were marked as spam, unfortunately.
 
-You will have to solve issue with Kconfig symbols. Anyway if you want to merge 
-these two drivers together it has to be done on the top of this series anyway. 
-It means get this first part merged and then another device can be on the top of 
-this series.
+> ---
+>  .../bindings/thermal/ls2k-thermal.yaml        | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml b/Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml
+> new file mode 100644
+> index 000000000000..44bc5d4626d1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml
 
-Thanks,
-Michal
+Filename based on compatible.
+
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/ls2k-thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Thermal sensors on loongson 2k SoCs
+> +
+> +maintainers:
+> +  - zhanghongchen <zhanghongchen@loongson.cn>
+> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+> +
+> +properties:
+> +  compatible:
+> +    const: loongson,2k-thermal
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  id:
+> +    const: 0
+
+Why? What is this? No description, no type (is there such standard
+property?), no vendor prefix... and always equal to 0?
+
+> +
+> +  interrupt-parent:
+> +    maxItems: 1
+
+That's not needed, I think.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - id
+> +  - interrupt-parent
+> +  - interrupts
+> +  - '#thermal-sensor-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    tsensor: tsensor@1fe01500 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Use names used by other examples.
+
+> +        compatible = "loongson,2k-tsensor";
+> +        reg = <0 0x1fe01500 0 0x30>;
+> +        id = <0>;
+> +        interrupt-parent = <&icu>;
+> +        interrupts = <7>;
+> +        #thermal-sensor-cells = <1>;
+> +    };
+
+
+Best regards,
+Krzysztof
