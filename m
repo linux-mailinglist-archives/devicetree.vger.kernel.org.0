@@ -2,108 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 345855BC403
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D4A25BC40E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:11:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiISIIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 04:08:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50988 "EHLO
+        id S229624AbiISILg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 04:11:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiISIIj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:08:39 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B053AE5C
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 01:08:38 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oaBpR-00024Z-23; Mon, 19 Sep 2022 10:08:33 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oaBpQ-001cYn-Um; Mon, 19 Sep 2022 10:08:31 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oaBpO-001tgj-NS; Mon, 19 Sep 2022 10:08:30 +0200
-Date:   Mon, 19 Sep 2022 10:08:30 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     xinlei.lee@mediatek.com
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jitao.shi@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH] dt-bindings: pwm: Add compatible for Mediatek MT8188
-Message-ID: <20220919080830.cmuzuuk5h564ouz6@pengutronix.de>
-References: <1661744916-15441-1-git-send-email-xinlei.lee@mediatek.com>
+        with ESMTP id S229577AbiISILf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:11:35 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C656412AA2;
+        Mon, 19 Sep 2022 01:11:33 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id bj12so62535309ejb.13;
+        Mon, 19 Sep 2022 01:11:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=uaaC5NpEP5M16o9EvNJUMGgKA5Dn5bLVJkmIuFDo+u4=;
+        b=CQDfUDBxETlR3Pihlmgw3n0a9kbhgTkpSYYUmy2rRc9rx/Inqq7TJC6HLVCftKcBUK
+         fi6iPV75xqW5cWcV1PHPPQT3NQ1hlfUP1BuAqFOlbpTzsfMvCk1tPqPVu4SmD/I0HpDw
+         CT7enZnU185EME9FQNUAmHpPmClbTufnxXOVJUeWeHMuIWOETmBB3zdcuMqAjIEq/o+3
+         pZFfcgt4cCOEhT0oNwwMpKyC/GQ2BL950DGrRGGEckFg9AZB1Z+7aogTPPLfIMhkPacJ
+         AZMU4XfaTcwAv8CmsAZkvwtxYUXmyaBvvi7ZSglh019n3JWuHxum0M7b19GeJuwnk5xf
+         lDBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=uaaC5NpEP5M16o9EvNJUMGgKA5Dn5bLVJkmIuFDo+u4=;
+        b=UqTuCHr8dTikYbEsdzynMsyR+0Hx/k/yjzz4TMtvWsAqY37Og8ZfsfeBlBavya8pXa
+         Duuk+ZjArijrVt4RLI4B5GO1Nlzs2UzGdz2A9G0LJxC7rhx7BEdBQh2uzP7akT2P5LJ7
+         6G249QSXZ71AEAnHM4Efwri3wy3xvpIiz9IJ7QeyLEyRn+fBaZzJZlA8Aeh1myk4M3/Z
+         2BE3QEeuqM13FVaEP2os46ViovcjcLr+FzlCSrcL2W1j5wv7sYcExFatw40j/zhAQuu3
+         4EW1N6B8rjFD+lzmuRa7O98qou76DjN/FwOq1F5J0d58nxk6Q4jwxP+5lQv/kRX4Nxu1
+         rDhw==
+X-Gm-Message-State: ACrzQf0YzuJShSPj9hJoc+M0KSqwtKskCDJwcWnC98/t1mw/fersNcKU
+        SaRA9oHm+CMPh+I0iRKQWvRz8qNvnFXB7b/4Nxo=
+X-Google-Smtp-Source: AMsMyM68dOWdxMNbmWOqc1XBClupZWRdFa0XaXBH+lSIVajtZhqKQnBhTqPco96NumkI2fkVoG6OYnkcvU/FoBM46AI=
+X-Received: by 2002:a17:906:591:b0:73d:c3ef:84ae with SMTP id
+ 17-20020a170906059100b0073dc3ef84aemr12112023ejn.155.1663575092296; Mon, 19
+ Sep 2022 01:11:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="axihye5zdoc3qesl"
-Content-Disposition: inline
-In-Reply-To: <1661744916-15441-1-git-send-email-xinlei.lee@mediatek.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220916133521.73183-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <2b549080-7ce4-bae1-d85a-a56946f055f5@linaro.org>
+In-Reply-To: <2b549080-7ce4-bae1-d85a-a56946f055f5@linaro.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 19 Sep 2022 09:11:04 +0100
+Message-ID: <CA+V-a8t3rbxD7o14ZhAfYSyAzdNhDCKQ7U5WX3i4j0es8mvYEA@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: i2c: ovti,ov5640: Drop ref to video-interface-devices.yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---axihye5zdoc3qesl
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for the review.
 
-On Mon, Aug 29, 2022 at 11:48:36AM +0800, xinlei.lee@mediatek.com wrote:
-> From: xinlei lee <xinlei.lee@mediatek.com>
->=20
-> Base on the branch of Linux-next/master.
-> Split from series [1].
-> [1] https://patchwork.kernel.org/project/linux-mediatek/cover/1661239875-=
-19841-1-git-send-email-xinlei.lee@mediatek.com/
->=20
-> Add dt-binding documentation of pwm for MediaTek MT8188 SoC.
->=20
-> Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Sat, Sep 17, 2022 at 5:47 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 16/09/2022 14:35, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > video-interface-devices.yaml isn't used so just drop it from the
+> > DT binding doc.
+>
+> Same question - the schema is used - you can see it with your own eyes,
+> so please explain in commit msg what exactly is not used.
+>
+As Laurent pointed out I need to additionaProperties to
+unevaluatedProperties instead of dropping this reference. I'll update
+the commit message with this change and send a v2 (and also similarly
+for the ov02a10 binding)
 
-The change looks fine, the commit log isn't that informative. I'd just
-write:
-
-	Subject: dt-bindings: pwm/mediatek: Add compatible for Mediatek MT8188
-
-	Add dt-binding documentation for PWM found on MediaTek MT8188 SoC.
-
-	Signed-off-by: ...
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---axihye5zdoc3qesl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmMoI3sACgkQwfwUeK3K
-7AmQLggAn7bjuR94Q+/jw6sBzjXrsF/ycisR1aBRBuWDMeG7mNOXhsX/VkNdcxg/
-7dO9DsVR1a+3uYfvmaJuRYfygimAizemmBw2xeWohdl6lUXykVU9kkp55iIJEEaQ
-wRIjD1xH2tpTLODGTRWM7LCVRsDO/DHOgs2MY2axGybI4X+DR6ya9ss5neU4V3WF
-QCqOU/9vy74I0FzsxRF+pRNqFxDh/2ZLFN/2Jmp6If3NGi3rRtH1EfVL/pm1t+kj
-d+XvXny1oDY5cJa4rcAX5oSHUAcOeoVqXUkfCOmGEe8FNxBWi1UJIELu+c8/DQhF
-G3DEwhZAfgzPsxAaiCW4NOuRNhqazQ==
-=I8Y5
------END PGP SIGNATURE-----
-
---axihye5zdoc3qesl--
+Cheers,
+Prabhakar
