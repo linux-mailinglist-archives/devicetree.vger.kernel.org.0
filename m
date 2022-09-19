@@ -2,229 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B94B5BCA4E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 13:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84E465BCA75
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 13:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbiISLKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 07:10:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47466 "EHLO
+        id S229800AbiISLNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 07:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbiISLKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 07:10:12 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3754613CEB
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 04:10:10 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id b6so1097008ljr.10
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 04:10:10 -0700 (PDT)
+        with ESMTP id S229704AbiISLNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 07:13:08 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56DA513F7D;
+        Mon, 19 Sep 2022 04:13:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=leo8if+OXZNXConjLSxBiC1xHNu7f4uf6YaQSrfQ6dM=;
-        b=kQBGYCFbFe6wxHvIBprzXylP266QJBmQBKTPtFJF6xfpA7dNNVp2NVu5LXeuwpBvgy
-         l5k/JAFZ98MY6FDpsUW3e5dZHM2ZWh4Yxb1qv8CppcHqsdGvNbVWkAEySYEj3/Zi+u9Y
-         5XyDB/TsBmM2hzMmOqfOF6qACe0zp6rRXoUxq8fbsNlzYX2prPs8sYRyqpmR+Mx4j1/g
-         V/eQldgqKxJyu+AO9amS94pi6tJ0qPAMJToYQE2irKNrklCZdtPrpQETappTE0nn+thr
-         JqPLKwaI8MN72Q+CHA+HsjmeQhFC8aXi5cgTHTropui/k6VFjCggFjtH9v4X0sJzrCas
-         wCfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=leo8if+OXZNXConjLSxBiC1xHNu7f4uf6YaQSrfQ6dM=;
-        b=IAFlJN1LODTEXIBoOLCjuVrmxROeZN6Oy5R5uCjOBmeEB/nzTbEP7OFr7rYhDoVykF
-         BSFsWRK4WKIBLLHfyp8z8VZoCnX1JExgjGcEjbgyXnT/UXYFqA/LxOgK0Dd+WjiV3x/6
-         jmAzXjvYGXndGCtN6N8H3AUtXtE+w0ylupfCJA9IpxrlcbP5zmczBU8RNPBpLaz9gTp+
-         W4sXDcjE1GZMAtmIFoindx05w8tFof7n0/8ea7w+K2CwqOgu1VeGybPpZt0HYi4TgUwh
-         Bsbh47U+6adtX97SEa2eEBvgrcGw1lCSK0i5J3D+hquf1mJoxYVUYqo9vwF/a38z02Ul
-         97Ew==
-X-Gm-Message-State: ACrzQf3KjFoxAiel2fNGqftw7/3jUpIaaFEjfBGyXaRERqWP2VQ788gP
-        FJ1YDuf2iHb5sDwnWVpxXB7PRg==
-X-Google-Smtp-Source: AMsMyM5pnZQbHW1dGGT8W+qa05FG5zVzym9N5KK1TyZUexybR53b4r/JPum/Pl510FYRuhjxCbODGw==
-X-Received: by 2002:a2e:2d0a:0:b0:26c:a1c:cdf with SMTP id t10-20020a2e2d0a000000b0026c0a1c0cdfmr5518902ljt.352.1663585808514;
-        Mon, 19 Sep 2022 04:10:08 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id du4-20020a056512298400b00499b0f5bc0fsm332116lfb.36.2022.09.19.04.10.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 04:10:08 -0700 (PDT)
-Message-ID: <018b6df6-2337-3b6d-1936-b61ce250c1c9@linaro.org>
-Date:   Mon, 19 Sep 2022 13:10:07 +0200
+  d=axis.com; q=dns/txt; s=axis-central1; t=1663585986;
+  x=1695121986;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=w8KzUewuszzBRNR3DKM4RdYTDxQmFGm6YO23DI5b+0I=;
+  b=oGtsfIhPDp3triA2iIVJf1ksiz9+MP8PLdTfi6h3JlYvM1x+qAPXPbyY
+   e0TjI+2ICpAUxfCvAXwfSer3xTCYA6k2tNyTeIdL0vSvpZo5/eMrNzE1p
+   BaApGdaBtppzV6UdZWSoKW0Bh99dFDLc+FdvcoYS2FDdImqDN5YjQeREv
+   tpTbkF/YFiwi5bdopQCVXjdXbydebOv42u4HAVJ/ZjMPMFp8qxnUDZfRN
+   5VbBaVL96hFnzibeZr317dU+F1dRkEF8pqKyS2Ro393HJwXV5tZUtN5Vb
+   cIHLuHdVPRuqtOW8Kjtf3/5lq70t10E3HP9LSBdJaSbrVx1h6HH08R6OE
+   w==;
+From:   Astrid Rost <astrid.rost@axis.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dylan Reid <dgreid@chromium.org>
+CC:     <kernel@axis.com>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, Astrid Rost <astridr@axis.com>,
+        Astrid Rost <astrid.rost@axis.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v3 1/3] dt-bindings: sound: ti,ts3a227e: convert to yaml
+Date:   Mon, 19 Sep 2022 13:12:56 +0200
+Message-ID: <20220919111258.3774-2-astrid.rost@axis.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20220919111258.3774-1-astrid.rost@axis.com>
+References: <20220919111258.3774-1-astrid.rost@axis.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v3] dt-bindings: mailbox: Convert mtk-gce to DT schema
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
-Cc:     jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220919081333.15678-1-angelogioacchino.delregno@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919081333.15678-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 10:13, AngeloGioacchino Del Regno wrote:
-> Convert the mtk-gce mailbox binding to DT schema format.
-> 
+Convert from ts3a227e.txt to yaml.
 
-Mention any deviations from conversion in the commit msg.
+Signed-off-by: Astrid Rost <astrid.rost@axis.com>
+---
+ .../bindings/sound/ti,ts3a227e.yaml           | 65 +++++++++++++++++++
+ .../devicetree/bindings/sound/ts3a227e.txt    | 30 ---------
+ 2 files changed, 65 insertions(+), 30 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,ts3a227e.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/ts3a227e.txt
 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
-> 
-> Changes in v3:
->  - Removed '|' from description
->  - Removed mbox client examples
->  - Squashed patch dt-bindings: arm: mediatek:
->    mmsys: Reference to mediatek,gce-mailbox.yaml
-> 
-> Changes in v2:
->  - Changed mtk-gce.txt references to new yaml file
-> 
-> 
-> A previous attempt for this was made at [1], but it was changing
-> the way of getting clocks (by name for all).
-> Keeping clock-names not required for the multi-gce case makes this
-> binding simpler, hence I chose to abandon the change at [1] and go
-> for this one instead.
-> 
-> Any Reviewed-by or Acked-by tag was dropped, as this conversion was
-> completely redone from scratch and differs from [1] for the
-> aforementioned reasons.
-> 
-> [1]: https://lore.kernel.org/all/20220524151512.247435-1-angelogioacchino.delregno@collabora.com/
-> 
->  .../bindings/arm/mediatek/mediatek,mmsys.yaml |  3 +-
->  .../mailbox/mediatek,gce-mailbox.yaml         | 80 ++++++++++++++++++
->  .../devicetree/bindings/mailbox/mtk-gce.txt   | 82 -------------------
->  3 files changed, 82 insertions(+), 83 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> index 6ad023eec193..85e6f4f621fc 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> @@ -52,7 +52,8 @@ properties:
->      description:
->        Using mailbox to communicate with GCE, it should have this
->        property and list of phandle, mailbox specifiers. See
-> -      Documentation/devicetree/bindings/mailbox/mtk-gce.txt for details.
-> +      Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
-> +      for details.
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->  
->    mediatek,gce-client-reg:
-> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
-> new file mode 100644
-> index 000000000000..fff8fd2e984a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek Global Command Engine Mailbox
-> +
-> +maintainers:
-> +  - Houlong Wei <houlong.wei@mediatek.com>
-> +
-> +description:
-> +  The Global Command Engine (GCE) is used to help read/write registers with
-> +  critical time limitation, such as updating display configuration during the
-> +  vblank. The GCE can be used to implement the Command Queue (CMDQ) driver.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt6779-gce
-> +      - mediatek,mt8173-gce
-> +      - mediatek,mt8183-gce
-> +      - mediatek,mt8186-gce
-> +      - mediatek,mt8192-gce
-> +      - mediatek,mt8195-gce
-> +
-> +  "#mbox-cells":
-> +    const: 2
-> +    description:
-> +      The first cell describes the Thread ID of the GCE,
-> +      the second cell describes the priority of the GCE thread
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Global Command Engine clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: gce
-> +
-> +required:
-> +  - compatible
-> +  - "#mbox-cells"
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +if:
+diff --git a/Documentation/devicetree/bindings/sound/ti,ts3a227e.yaml b/Documentation/devicetree/bindings/sound/ti,ts3a227e.yaml
+new file mode 100644
+index 000000000000..327d204cf957
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,ts3a227e.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,ts3a227e.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TS3A227E
++  Autonomous Audio Accessory Detection and Configuration Switch
++
++maintainers:
++  - Dylan Reid <dgreid@chromium.org>
++
++description: |
++  The TS3A227E detect headsets of 3-ring and 4-ring standards and
++  switches automatically to route the microphone correctly. It also
++  handles key press detection in accordance with the Android audio
++  headset specification v1.0.
++
++properties:
++  compatible:
++    enum:
++      - ti,ts3a227e
++
++  reg:
++    const: 0x3b
++
++  interrupts:
++    maxItems: 1
++
++  ti,micbias:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Intended MICBIAS voltage (datasheet section 9.6.7).
++    enum:
++      - 0 # 2.1 V
++      - 1 # 2.2 V
++      - 2 # 2.3 V
++      - 3 # 2.4 V
++      - 4 # 2.5 V
++      - 5 # 2.6 V
++      - 6 # 2.7 V
++      - 7 # 2.8 V
++    default: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec: audio-controller@3b {
++            compatible = "ti,ts3a227e";
++            reg = <0x3b>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
++        };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/sound/ts3a227e.txt b/Documentation/devicetree/bindings/sound/ts3a227e.txt
+deleted file mode 100644
+index 21ab45bc7e8f..000000000000
+--- a/Documentation/devicetree/bindings/sound/ts3a227e.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-Texas Instruments TS3A227E
+-Autonomous Audio Accessory Detection and Configuration Switch
+-
+-The TS3A227E detect headsets of 3-ring and 4-ring standards and
+-switches automatically to route the microphone correctly.  It also
+-handles key press detection in accordance with the Android audio
+-headset specification v1.0.
+-
+-Required properties:
+-
+- - compatible:		Should contain "ti,ts3a227e".
+- - reg:			The i2c address. Should contain <0x3b>.
+- - interrupts:		Interrupt number for /INT pin from the 227e
+-
+-Optional properies:
+- - ti,micbias:   Intended MICBIAS voltage (datasheet section 9.6.7).
+-      Select 0/1/2/3/4/5/6/7 to specify MICBIAS voltage
+-      2.1V/2.2V/2.3V/2.4V/2.5V/2.6V/2.7V/2.8V
+-      Default value is "1" (2.2V).
+-
+-Examples:
+-
+-	i2c {
+-		ts3a227e@3b {
+-			compatible = "ti,ts3a227e";
+-			reg = <0x3b>;
+-			interrupt-parent = <&gpio>;
+-			interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+-		};
+-	};
+-- 
+2.20.1
 
-Put it in allOf block
-
-> +  not:
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          const: mediatek,mt8195-gce
-> +then:
-> +  required:
-> +    - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Example for a device client and for a MediaTek mutex client
-
-I think comment is no longer relevant.
-
-> +  - |
-> +    #include <dt-bindings/clock/mt8173-clk.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    gce: mailbox@12120000 {
-> +        compatible = "mediatek,mt8173-gce";
-> +        reg = <0x10816000 0x1000>;
-
-Didn't you have warnings here?
-
-> +        interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
-> +        #mbox-cells = <2>;
-> +        clocks = <&infracfg CLK_INFRA_GCE>;
-> +        clock-names = "gce";
-> +    };
-
-Best regards,
-Krzysztof
