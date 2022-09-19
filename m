@@ -2,127 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 482A05BC42D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AF9B5BC43E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:24:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbiISIUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 04:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37172 "EHLO
+        id S229679AbiISIYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 04:24:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbiISIU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:20:28 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818A3205FE
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 01:20:27 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id s6so34481487lfo.7
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 01:20:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=SGgxv53dHIjXJ3+5OtXDvsxDbiwWOA/yeZMOpVwR9sE=;
-        b=jqS5qrHT/lRc6Hd8Kbl/qm5idbOkccwmou4G3VZ3mR4iMvxTumgDH8KiaZsKZJlE88
-         q51YgHccPdTyAs/+I/bA9U5CVUtRRohAdW/yXUyhAM9z4iwUWqtT7JYJTMzOLLdNokti
-         KasoRZzYn00duGVXg+mjiMrf4GbL44XCpolWNVRtKzcSmgGt9P4XOnkWwcsRIXxATC9/
-         PU53AZt1Nx4wTaXiVsWA1PGqGPcstEQQIKmgC3Ew1I/Q/3XVuZN+QNt1Wi56auoWpRkb
-         S/5Ddn5C1q/1zp8r4mEgZaAmNUtt2co86VF+mk1aayC9X5SUcyQaHU60Uqkjl4HYcITQ
-         vbAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=SGgxv53dHIjXJ3+5OtXDvsxDbiwWOA/yeZMOpVwR9sE=;
-        b=b01yaRkexVVTb0VFAqEuVfb1Z7/4m5K+/bpz1or0mHuQAA2jnhnJi6NNeNNpdPJzrd
-         S1My/QsIUXhEQHQXOLvvR2CoT69f2l79BrwJphHQ41BQVIS5ujcxkcX8h3ctTdrOaHXv
-         AdEPbFf/Mr8eONm2n5hTaUxOObOt0nVvWumZA9oEmrEyl7aoUHApA8PECNwNtpAkGkOo
-         HDDJvx5HvMt9tCdVRZqcm6BSeOx74nN8568dV3vJGwl5dHd9Pdke0Py55PpgH6wWdxjW
-         klZ0Fb3OLie/i636eEK+6mKB/vio4FO3S0RrJISvSHwCB41n+ZTADXkqk6oyBbi7A2vE
-         H30w==
-X-Gm-Message-State: ACrzQf12pjlN3z6N7syseSkN4sG6IOQhrFT5FBkWbDYjOfnRtbIDkm8c
-        wdsngRhJKaUd9zSbBPVWjH7FMg==
-X-Google-Smtp-Source: AMsMyM6bRBZ8G+CT95Fr4CW65i9CBuQ4s3d0bl7vfeGsSGeNKYX/SQ6P9xpSr5c0nP9T6YIDzbL4bg==
-X-Received: by 2002:a05:6512:c1:b0:497:a63d:563a with SMTP id c1-20020a05651200c100b00497a63d563amr5680113lfp.366.1663575625819;
-        Mon, 19 Sep 2022 01:20:25 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t2-20020ac243a2000000b00497a8f04905sm5088615lfl.251.2022.09.19.01.20.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 01:20:25 -0700 (PDT)
-Message-ID: <49d6adae-7c44-b349-419c-dcd099374354@linaro.org>
-Date:   Mon, 19 Sep 2022 10:20:24 +0200
+        with ESMTP id S229577AbiISIYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:24:42 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6CF4645B
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 01:24:40 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oaC51-0004H3-0n; Mon, 19 Sep 2022 10:24:39 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oaC51-001czb-PE; Mon, 19 Sep 2022 10:24:38 +0200
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oaC4z-005FEB-2X; Mon, 19 Sep 2022 10:24:37 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v3 0/3] arm64: dts: Add InnoComm WB15-EVK support
+Date:   Mon, 19 Sep 2022 10:24:31 +0200
+Message-Id: <20220919082434.1184673-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 2/2] net: dt-bindings: dwmac: add support for mt8188
-Content-Language: en-US
-To:     Jianguo Zhang <jianguo.zhang@mediatek.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220919080410.11270-1-jianguo.zhang@mediatek.com>
- <20220919080410.11270-3-jianguo.zhang@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919080410.11270-3-jianguo.zhang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 10:04, Jianguo Zhang wrote:
-> Add binding document for the ethernet on mt8188
-> 
-> Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/net/mediatek-dwmac.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> index 61b2fb9e141b..b7d4f956f92e 100644
-> --- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> @@ -20,6 +20,7 @@ select:
->          enum:
->            - mediatek,mt2712-gmac
->            - mediatek,mt8195-gmac
-> +          - mediatek,mt8188-gmac
+The InnoComm WB15-EVK [1] board is a Eval base board for the WB15 SoM
+[2] which is based on the NXP i.MX8MM. This series adds InnoComm as a
+vendor prefix and the necessary dts/dtsi files.
 
-Won't be needed after comment below.
+[1] https://www.innocomm.com/product_inner.aspx?num=2233
+[2] https://www.innocomm.com/product_inner.aspx?num=2232
 
->    required:
->      - compatible
->  
-> @@ -36,6 +37,7 @@ properties:
->        - items:
->            - enum:
->                - mediatek,mt8195-gmac
-> +              - mediatek,mt8188-gmac
+Changes since v2:
+- Fix another remaining s/innocom/innocomm/
+- Don't use underscores in node names
+- Use IRQ_TYPE_LEVEL_LOW to specify interrupt polarity
 
-That's not what your driver change is saying. They are the same or
-compatible according to your patch #1.
+Changes since v1:
+- Fix spelling of InnoComm:
+  s/innocom/innocomm/
+  s/Innocom/InnoComm/
 
+Sascha Hauer (3):
+  dt-bindings: vendor-prefixes: Add prefix for InnoComm
+  dt-bindings: arm: fsl: Add InnoComm WB15 EVK
+  arm64: dts: freescale: Add InnoComm i.MX8MM based WB15 SoM and EVK
 
->            - const: snps,dwmac-5.10a
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx8mm-innocomm-wb15-evk.dts    | 147 ++++++
+ .../dts/freescale/imx8mm-innocomm-wb15.dtsi   | 480 ++++++++++++++++++
+ 5 files changed, 631 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15.dtsi
 
-Best regards,
-Krzysztof
+-- 
+2.30.2
+
