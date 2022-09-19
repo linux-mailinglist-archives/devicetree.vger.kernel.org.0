@@ -2,76 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E33765BD217
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 18:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A7A75BD223
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 18:25:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229838AbiISQUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 12:20:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51542 "EHLO
+        id S229947AbiISQZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 12:25:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229861AbiISQUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:20:43 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E0C2FFD8;
-        Mon, 19 Sep 2022 09:20:38 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id DDB72240007;
-        Mon, 19 Sep 2022 16:20:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1663604437;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=5IUMqLbULQGbkIxRFBE/MsSYr16nbj1/byQGJmLuwso=;
-        b=WVABEvgJBcNLslhplq1oL+SjAr23CTx3KssJggxY2hm/Y7i0I9yIBEblZPt2ig14/tvwG2
-        uskvuK9GwOEs8xzwXsGANn+dKpPs6ads6KlPo0ZCeZcUvhm9RbDrcLq/k6jfxprFUWMEDK
-        dqRjgIDmRE9VR8yh9RvAhBzjnUdAF2wXlXuUHYh6M4X+oC++2fsUS3mDWgH6XJLkvMTIqm
-        h8xJj5ACiPAAf3QLhavm3qF6NK1GlAg4E39oipAr0rIVzsmZJfqMvYFtWU5VYm/Z15tVSv
-        srhDiuzqcBWZt0kYn7n6W4n86hiyiJQjPFnn3jlnkECstMMX5SIOX7r39GIpUQ==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229938AbiISQY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:24:58 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824C929CB4
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:24:57 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id a3so35788845lfk.9
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:24:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=eAOafVCNVmR9N9v0Yvq51YsgQAP+hB4f5u0L/4nUBKA=;
+        b=ethu0EynC43p9UpiI84ruyAXrMRMdZfuiof4jGWO3COHQkx9EjPMb0Llez11+BLPKc
+         5EqefT79o5oAfWdTFyJjgnxiKXiq84VSTx1yMZv0TukcBhrSE770dxQz5AgwGe1/wdX2
+         cUJsrSok2ZwMke4mNjZjszTcRrHhEleMa2aQSfFC8yHWRZB04kXsxZz6CdO77YeDIaKv
+         W7FxT0sb23ogGQ7pc/WVP0aKVEqqH7TJDENRj5695hxAabD43bspb6BjFX+2A2W7QhTc
+         h3skjS9SO/0P+2xMjVxsZpwoqFCCIKq/pCYKaq7GoKibRjTOB+55a8piA4ChmXfjbqDC
+         To3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=eAOafVCNVmR9N9v0Yvq51YsgQAP+hB4f5u0L/4nUBKA=;
+        b=ZuCfCBC9yUhIyVoEZ5K7F/rawsjoVxAxsPSo7JAyjN6I9E/+rzh2Xbz75+BgNGIHqj
+         UqNY9PzZYhf9M7PNc80at+i+2d17z2gKWGJWlJ+UqIJ7OcR296FwLCFMw7HSq19Td1ov
+         z/Ji5Ry36K2sQvOpoSANNlszjLyKHS42lB/MbQaDmO+Y546hw6Zju9nbrEokelTPAFwE
+         3hAeYwCY1S1uubVefV6SrHEoitmD6X/VXoILuskNsWsXGftbD1iynGo1s8jQ3y+Isx6N
+         DR12iLfM1HZEdwCtJBkPImKCFi7w60PYqxEh+Hhw5NYnecrocEZMVM3E7+YudfrGEKsA
+         ogaQ==
+X-Gm-Message-State: ACrzQf1KHqf26MqB4sbYsKPSE2jen/tJHqPcQZNLQhhWRuoqfR+PBIrB
+        4La2EjEfZvwC4FNqqYqP3g78wQ==
+X-Google-Smtp-Source: AMsMyM7Q5L1McMMFqSUa7fGLN03YMRs0ciA4N40x8PHN9GOTdAWbWDoQN39MejGALAtGiMvhd/RDEg==
+X-Received: by 2002:ac2:4e0d:0:b0:49c:d593:9d6c with SMTP id e13-20020ac24e0d000000b0049cd5939d6cmr6740730lfr.37.1663604695831;
+        Mon, 19 Sep 2022 09:24:55 -0700 (PDT)
+Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id v23-20020a056512349700b00499d70c0310sm5061842lfr.3.2022.09.19.09.24.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 09:24:55 -0700 (PDT)
+Date:   Mon, 19 Sep 2022 18:24:53 +0200
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Jianguo Zhang <jianguo.zhang@mediatek.com>
+Cc:     netdev@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/2] dt-bindings: mtd: partitions: add binding for U-Boot bootloader
-Date:   Mon, 19 Sep 2022 18:20:34 +0200
-Message-Id: <20220919162034.226938-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220711153041.6036-1-zajec5@gmail.com>
-References: 
+        Biao Huang <biao.huang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Jose Abreu <joabreu@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Eric Dumazet <edumazet@google.com>
+Subject: Re: [PATCH 2/2] net: dt-bindings: dwmac: add support for mt8188
+Message-ID: <20220919162453.4kkphzhc2tu6wzou@krzk-bin>
+References: <20220919080410.11270-1-jianguo.zhang@mediatek.com>
+ <20220919080410.11270-3-jianguo.zhang@mediatek.com>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'27bfb201b2c03c8a033b60e5ad80cbf3aaa52b94'
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220919080410.11270-3-jianguo.zhang@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-07-11 at 15:30:40 UTC, =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, 19 Sep 2022 16:04:10 +0800, Jianguo Zhang wrote:
+> Add binding document for the ethernet on mt8188
 > 
-> Right now there is no (known) real reason for a custom binding for
-> standard U-Boot partitions. Broadcom's U-Boot however requires extra
-> handling - looking for environment variables subblocks. This commit adds
-> Broadcom specific binding.
+> Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/net/mediatek-dwmac.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Miquel
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+ethernet@1101c000: Unevaluated properties are not allowed ('clk_csr' was unexpected)
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dtb
