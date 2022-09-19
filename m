@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 280215BD2D4
+	by mail.lfdr.de (Postfix) with ESMTP id 7306D5BD2D5
 	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 19:00:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbiISQ7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 12:59:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43138 "EHLO
+        id S230301AbiISRAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 13:00:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230054AbiISQ7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:59:49 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE7512A90
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:59:48 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id q21so103876edc.9
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:59:48 -0700 (PDT)
+        with ESMTP id S230172AbiISQ7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:59:53 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA83F13F2C
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:59:50 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id x94so88624ede.11
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:59:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date;
-        bh=pe51xvlTzoxvP1PkLEmQi5YJGHaBQkqHjYX/h+KRrX4=;
-        b=B+X1p1fH4JpGs34rfSwYzzSHzwu5qnL83GcremhYxa34LPTfzyuT54Qx4NkUrP80pu
-         pQuuF2QUVoy7vzZV3h6TrERow//gfDL5XfrnuPPuhc+B4RHI2qc+3ex/jWKQ63RA0DfF
-         hBB0zWcx0Lk6XvWHsF7Jch4RHJgIiSY2LK6gxuWKN/rgLWdkiQ6mLPjpWh4cz4AHHPtT
-         pC4zGQhthMR+WPSyxbXBMc3qQw3YfboFI7Q7Yy9Bgo6ddHWkCSfutvSn4/NE2FUgXx1e
-         NM29wYa2a+PX3vs2XgVJk1y+K5rnO2tGCxRjBGuogh3F3cFoZXeNpiG1Tcq1hcgaNJxd
-         w1+w==
+        bh=7xDk5BrXibXgfT99ckwNvMekh76xOPeNv/4FsaCfh58=;
+        b=CEZJ9TEVferg0ulxXwdUEbWib2zYhw9Tir5LaamEXUe9UQabtpHUZ7t39RbS4S85HC
+         x9PFzpX7wALrVEGjd5qyae6tIH2bK+BZxA3AsOGG5SLe8GtLeXrWR5PdxeYfhkGL8zz6
+         4aQbHNr7a6hYGMtek5NqaK1fsiK/TphfUjeSfIXBdpM51CKKKEWyLmeQpmyv0FJfOOKB
+         18XYmYWBK0IEwGn7H7CTG9n/4b/wl9y9Ex4FAUHaHxrhTxfMVImS7y1QRGtXw5/va7SX
+         FYVEq7OHlcwL2JOG2/A0K17XMaMH2dmNtlQw3PM5ptekzTUaKbzqovvSlmYzThYg57/r
+         AsXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=pe51xvlTzoxvP1PkLEmQi5YJGHaBQkqHjYX/h+KRrX4=;
-        b=E82ExQb9GNtaT133paq1fhBWttqcmm7OdxuvsyUstpHVxwDj93/wlQJSoJWUU+pnUP
-         bxfnfKsUVdpwebRSS5zBTci209r0FRjDbXkqGPa/urjF1ul+lkGnx17E9dYomHRsI5vH
-         WWHGUepfZ5LrFT2EBmvhpcfyBJ5s5tT7HKBw764XB6pD1ZNh7RiT8JEFBEfIJ3mmtAqC
-         0bNQq81QiiQSmzor7Af7MiNYvRyYTBqckElaccy5TkDdEYdM3Cty3CDgY7u98GOFucwb
-         QAcDkowBBLCsvsVQuo8AA5hLH1g5IGJhgaYpP9zYs/VTKRbfuclQX5lJ4vAO6M3vVSST
-         TYTg==
-X-Gm-Message-State: ACrzQf3vFdaYWlU7VHQ+OTGE6LqoIQCKtiKXYomaC77Y6sr7hHn+A/pb
-        rne70nmxyiKwFbETT+sqgS++YA==
-X-Google-Smtp-Source: AMsMyM4Kcqj7iaeTFSgnPboPDJcmYDvSGBzBAfopbwGlsGHAlwhMCX86GfBtADSsZGEx5aSm5j7eEQ==
-X-Received: by 2002:a05:6402:2b8b:b0:43a:5475:f1ae with SMTP id fj11-20020a0564022b8b00b0043a5475f1aemr16246555edb.363.1663606787204;
-        Mon, 19 Sep 2022 09:59:47 -0700 (PDT)
+        bh=7xDk5BrXibXgfT99ckwNvMekh76xOPeNv/4FsaCfh58=;
+        b=YP/cZdpm1CbKlC2tuMGKtZINs56iOC4XMuBBn5Z0QYloHoN2FqEnJdUiNjjkpQ4C0/
+         67Ixcmpznspu6Te7IQEg8xYqyveBR49ntkw0kG69IG49jC7rlQy+lK87UY9QWUfNO9Nl
+         dGEbgRZyc45KXg17K7kq0ofRHZHGXVvW42OLQNcpzlPv3sRKGxAbAOi2Tq5DCMfov8fs
+         /6gM+3QOnnC8w7ePwXUS2ZFSqiaq0iI0UfAvYjdvCx1oZQN80DOpvBxUXljiAm4mJyox
+         SiBiKG/hTdDueXdYYv5EGOyjzsIlDuQ2tjpE7EEsUuzznTll71E3pzfEOv9Z+x1Wl6ks
+         LiLA==
+X-Gm-Message-State: ACrzQf0yCivjLNsyhROWyLE0yLCTk9MagCEvvhJ/YoEmAB37zM/SvxD1
+        c1Pqr3Knv9l3hUNkkTWQuNZ/TQ==
+X-Google-Smtp-Source: AMsMyM5gxGj7vc60+sBilG3OlczkPRO2uGjBc+la49BQKMmf9aIyceQBVlL/fz7uc0yOaSZjotbdPQ==
+X-Received: by 2002:a05:6402:493:b0:445:b5f0:7a0f with SMTP id k19-20020a056402049300b00445b5f07a0fmr16348159edv.120.1663606789339;
+        Mon, 19 Sep 2022 09:59:49 -0700 (PDT)
 Received: from [127.0.0.1] (2a02-8440-6340-f287-3074-96af-9642-0003.rev.sfr.net. [2a02:8440:6340:f287:3074:96af:9642:3])
-        by smtp.gmail.com with ESMTPSA id cf16-20020a0564020b9000b0044fc3c0930csm20424246edb.16.2022.09.19.09.59.45
+        by smtp.gmail.com with ESMTPSA id cf16-20020a0564020b9000b0044fc3c0930csm20424246edb.16.2022.09.19.09.59.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Sep 2022 09:59:46 -0700 (PDT)
+        Mon, 19 Sep 2022 09:59:49 -0700 (PDT)
 From:   Guillaume Ranquet <granquet@baylibre.com>
-Date:   Mon, 19 Sep 2022 18:56:00 +0200
-Subject: [PATCH v1 02/17] clk: mediatek: add VDOSYS1 clock
+Date:   Mon, 19 Sep 2022 18:56:01 +0200
+Subject: [PATCH v1 03/17] dt-bindings: phy: mediatek: hdmi-phy: Add mt8195 compatible
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20220919-v1-2-4844816c9808@baylibre.com>
+Message-Id: <20220919-v1-3-4844816c9808@baylibre.com>
 References: <20220919-v1-0-4844816c9808@baylibre.com>
 In-Reply-To: <20220919-v1-0-4844816c9808@baylibre.com>
 To:     Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
@@ -88,53 +88,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Pablo Sun <pablo.sun@mediatek.com>
+Add a compatible for the HDMI PHY on MT8195
 
-Add the clock gate definition for the DPI1 hardware
-in VDOSYS1.
-
-The parent clock "hdmi_txpll" is already defined in
-`mt8195.dtsi`.
-
-Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
 Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 
-diff --git a/drivers/clk/mediatek/clk-mt8195-vdo1.c b/drivers/clk/mediatek/clk-mt8195-vdo1.c
-index d54d7726d186..835335b9d87b 100644
---- a/drivers/clk/mediatek/clk-mt8195-vdo1.c
-+++ b/drivers/clk/mediatek/clk-mt8195-vdo1.c
-@@ -34,6 +34,12 @@ static const struct mtk_gate_regs vdo1_3_cg_regs = {
- 	.sta_ofs = 0x140,
- };
+diff --git a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
+index 0d94950b84ca..71c75a11e189 100644
+--- a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
+@@ -28,6 +28,7 @@ properties:
+           - const: mediatek,mt2701-hdmi-phy
+       - const: mediatek,mt2701-hdmi-phy
+       - const: mediatek,mt8173-hdmi-phy
++      - const: mediatek,mt8195-hdmi-phy
  
-+static const struct mtk_gate_regs vdo1_4_cg_regs = {
-+	.set_ofs = 0x400,
-+	.clr_ofs = 0x400,
-+	.sta_ofs = 0x400,
-+};
-+
- #define GATE_VDO1_0(_id, _name, _parent, _shift)			\
- 	GATE_MTK(_id, _name, _parent, &vdo1_0_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
- 
-@@ -50,6 +56,9 @@ static const struct mtk_gate_regs vdo1_3_cg_regs = {
- #define GATE_VDO1_3(_id, _name, _parent, _shift)			\
- 	GATE_MTK(_id, _name, _parent, &vdo1_3_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
- 
-+#define GATE_VDO1_4(_id, _name, _parent, _shift)			\
-+	GATE_MTK(_id, _name, _parent, &vdo1_4_cg_regs, _shift, &mtk_clk_gate_ops_no_setclr_inv)
-+
- static const struct mtk_gate vdo1_clks[] = {
- 	/* VDO1_0 */
- 	GATE_VDO1_0(CLK_VDO1_SMI_LARB2, "vdo1_smi_larb2", "top_vpp", 0),
-@@ -107,6 +116,8 @@ static const struct mtk_gate vdo1_clks[] = {
- 	GATE_VDO1_2(CLK_VDO1_DISP_MONITOR_DPINTF, "vdo1_disp_monitor_dpintf", "top_vpp", 17),
- 	/* VDO1_3 */
- 	GATE_VDO1_3(CLK_VDO1_26M_SLOW, "vdo1_26m_slow", "clk26m", 8),
-+	/* VDO1_4 */
-+	GATE_VDO1_4(CLK_VDO1_DPI1_HDMI, "vdo1_dpi1_hdmi", "hdmi_txpll", 0),
- };
- 
- static int clk_mt8195_vdo1_probe(struct platform_device *pdev)
+   reg:
+     maxItems: 1
 
 -- 
 b4 0.10.0-dev
