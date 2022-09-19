@@ -2,140 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 284865BC9DF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 12:50:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45F615BC9E2
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 12:50:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbiISKuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 06:50:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41050 "EHLO
+        id S229946AbiISKus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 06:50:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbiISKtg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 06:49:36 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E53E55FC2;
-        Mon, 19 Sep 2022 03:43:44 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CC227D02;
-        Mon, 19 Sep 2022 12:43:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1663584223;
-        bh=2VN+lPUU0HWbPH3ReA2VR1zfuu9H6VNxiwqm2QgC0mM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GdOIsFJcS9bsIBQ/sE4of5jJpLh8y+E3c9Ul83JUFLZEqJXT7J41HBu0724QreAZ1
-         wy/nIeiy4T73bkWipU6xcAHJzY49ewB0kRIFsUof/xdNoPLrndEPNOOcf0K+v9rf44
-         9FHeL/kI1woSGQ2PJa1hhjaoUV4C/MPOquhB6mBk=
-Date:   Mon, 19 Sep 2022 13:43:29 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        dianders@chromium.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] Revert "Revert "drm/bridge: ti-sn65dsi86:
- Implement bridge connector operations for DP""
-Message-ID: <YyhH0cENOBZfeu64@pendragon.ideasonboard.com>
-References: <20220919102009.150503-1-robert.foss@linaro.org>
- <20220919102009.150503-2-robert.foss@linaro.org>
+        with ESMTP id S229969AbiISKuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 06:50:07 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B64BE12D18;
+        Mon, 19 Sep 2022 03:44:07 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2804:14c:485:4b69:2a6e:b0f9:99bf:c8bc])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: festevam@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id A228B84AE7;
+        Mon, 19 Sep 2022 12:44:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1663584245;
+        bh=lH/uRbIw05FOmVOPLzcOceui4hGfkEEBVDR3C3l1YQ4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=xKw7C0mrrqK0nlKs+QjxebGZcfReJZBzlrXNhZaKEv/emNkj3RtxLuZ10sbVQZbtM
+         gmPgCxeV8hnUvaNE7W4deXThSSkJx6rVdehomeiQnwQxZrKd+mIH4mdjWw/MLF80Vz
+         KyzLW+BPhSfO5g4XbQkHrA42xU9w+iNOdJylJg2OipNCBmp3EIkf4WZHMLXHju/RcJ
+         Lfa7wOFWJ5pwQL08ID8mpXg6F8X6VuR6BIiJT7KqO9+MV+Bue62w293GuzAabBkQnI
+         wIiQApK3G+9Z/Ixa7JD8DlvEX20q5UazwsEK7kDgqgpAQmT9oeVfIua5qsknmBrCOl
+         vihI1AIyD5hUA==
+From:   Fabio Estevam <festevam@denx.de>
+To:     thierry.reding@gmail.com
+Cc:     vidyas@nvidia.com, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] arm64: dts: tegra234-p3701-0000: Remove 'enable-active-low'
+Date:   Mon, 19 Sep 2022 07:43:50 -0300
+Message-Id: <20220919104350.834777-1-festevam@denx.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220919102009.150503-2-robert.foss@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The 'enable-active-low' property is not a valid one. 
 
-Thank you for the patch.
+Only 'enable-active-high' is valid, and when this property is absent
+the gpio regulator will act as active low by default.
 
-On Mon, Sep 19, 2022 at 12:20:08PM +0200, Robert Foss wrote:
-> This commit was accidentally reverted instead of another commit, and
-> therefore needs to be reinstated.
-> 
-> This reverts commit 8c9c40ec83445b188fb6b59e119bf5c2de81b02d.
-> 
-> Fixes: 8c9c40ec8344 ("Revert "drm/bridge: ti-sn65dsi86: Implement bridge connector operations for DP"")
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+Remove the invalid 'enable-active-low' property.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-> ---
->  drivers/gpu/drm/bridge/ti-sn65dsi86.c | 28 +++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi86.c b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-> index 6e053e2af229..3c3561942eb6 100644
-> --- a/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-> @@ -29,6 +29,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
->  #include <drm/drm_bridge_connector.h>
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_mipi_dsi.h>
->  #include <drm/drm_of.h>
->  #include <drm/drm_panel.h>
-> @@ -68,6 +69,7 @@
->  #define  BPP_18_RGB				BIT(0)
->  #define SN_HPD_DISABLE_REG			0x5C
->  #define  HPD_DISABLE				BIT(0)
-> +#define  HPD_DEBOUNCED_STATE			BIT(4)
->  #define SN_GPIO_IO_REG				0x5E
->  #define  SN_GPIO_INPUT_SHIFT			4
->  #define  SN_GPIO_OUTPUT_SHIFT			0
-> @@ -1158,10 +1160,33 @@ static void ti_sn_bridge_atomic_post_disable(struct drm_bridge *bridge,
->  	pm_runtime_put_sync(pdata->dev);
->  }
->  
-> +static enum drm_connector_status ti_sn_bridge_detect(struct drm_bridge *bridge)
-> +{
-> +	struct ti_sn65dsi86 *pdata = bridge_to_ti_sn65dsi86(bridge);
-> +	int val = 0;
-> +
-> +	pm_runtime_get_sync(pdata->dev);
-> +	regmap_read(pdata->regmap, SN_HPD_DISABLE_REG, &val);
-> +	pm_runtime_put_autosuspend(pdata->dev);
-> +
-> +	return val & HPD_DEBOUNCED_STATE ? connector_status_connected
-> +					 : connector_status_disconnected;
-> +}
-> +
-> +static struct edid *ti_sn_bridge_get_edid(struct drm_bridge *bridge,
-> +					  struct drm_connector *connector)
-> +{
-> +	struct ti_sn65dsi86 *pdata = bridge_to_ti_sn65dsi86(bridge);
-> +
-> +	return drm_get_edid(connector, &pdata->aux.ddc);
-> +}
-> +
->  static const struct drm_bridge_funcs ti_sn_bridge_funcs = {
->  	.attach = ti_sn_bridge_attach,
->  	.detach = ti_sn_bridge_detach,
->  	.mode_valid = ti_sn_bridge_mode_valid,
-> +	.get_edid = ti_sn_bridge_get_edid,
-> +	.detect = ti_sn_bridge_detect,
->  	.atomic_pre_enable = ti_sn_bridge_atomic_pre_enable,
->  	.atomic_enable = ti_sn_bridge_atomic_enable,
->  	.atomic_disable = ti_sn_bridge_atomic_disable,
-> @@ -1257,6 +1282,9 @@ static int ti_sn_bridge_probe(struct auxiliary_device *adev,
->  	pdata->bridge.type = pdata->next_bridge->type == DRM_MODE_CONNECTOR_DisplayPort
->  			   ? DRM_MODE_CONNECTOR_DisplayPort : DRM_MODE_CONNECTOR_eDP;
->  
-> +	if (pdata->bridge.type == DRM_MODE_CONNECTOR_DisplayPort)
-> +		pdata->bridge.ops = DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_DETECT;
-> +
->  	drm_bridge_add(&pdata->bridge);
->  
->  	ret = ti_sn_attach_host(pdata);
-
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
+index 9e4d72cfa69f..d472f9d30b3e 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
+@@ -39,7 +39,6 @@ vdd_12v_pcie: regulator-vdd-12v-pcie {
+ 		regulator-max-microvolt = <12000000>;
+ 		gpio = <&gpio TEGRA234_MAIN_GPIO(A, 1) GPIO_ACTIVE_LOW>;
+ 		regulator-boot-on;
+-		enable-active-low;
+ 	};
+ 
+ 	bus@0 {
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
