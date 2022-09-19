@@ -2,128 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D85465BC572
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 11:34:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF2B5BC580
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 11:36:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230051AbiISJer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 05:34:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50810 "EHLO
+        id S229797AbiISJgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 05:36:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbiISJeo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 05:34:44 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499B36424
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 02:34:42 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id z20so33142784ljq.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 02:34:42 -0700 (PDT)
+        with ESMTP id S230181AbiISJgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 05:36:13 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DA0E26ACD;
+        Mon, 19 Sep 2022 02:36:01 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id z2so4369778edi.1;
+        Mon, 19 Sep 2022 02:36:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=FTO4xkFBPcb9bkHA3D6SXnppwQjXCtQZXKOlomcgrAk=;
-        b=eVjkluKs/rylrd2SQ4adyExMc49NPWBdXvdUrnNaf/b/xoVD6A+vjiX+rRyQwLjZlR
-         bc6gcBqwKgov0ihhYEuz4aYElsMk8MTvdLl2Xhk421uXtk1/4dTBWp7ZaJl848ga8l7K
-         oz1kocjIZkYhM727tbSBEVe9lyQjM3ndwf6NqSgq4rAP5W/lpYWB8KmtLzzjwrXCXuCF
-         2Xz5GIl2GPTPd0BsxxuSJlmKKRFNwu5skY77QP6AFA7yDoyN89XN24U21ARiw7DpXKS0
-         EItL2mUHgUdONellW/I5Be5qEtYTkBnQVSR14lf13od3mLcKWOZPn5nnXjw654GmhIqt
-         FQ3Q==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=LowgVzMAhXEseWsSPSLE6xnKe/5h9hZUiv086pOwDOg=;
+        b=KWcb2nQMaXD6QS861AGNWZJ6euiUaAe6srfhrZZl0rAbS2vm83XM9hmcvvWfyYEbPv
+         /0n4VNQ6bt3KqYInns/I+jirwnZ7RGbjixRadIld1bqH+SrMo2JMoItnBRYWyb57WiOP
+         EncnGo4l7i/l/dHhDRvJo6zV9KKjIgptiDh46aUTsCOwkbpn0zP4NWy+335/SWQ+SnhF
+         NNs0StD8ilZTurta9KRBFlc8OJrrwURv0d+jMJ24fkAUNUlD/o3pPf7azGoNQnXuWf9W
+         rk0m6k4/rfWxdkUA95Ffg5J3ywNDl+XnsrwNYdlaZqWX/mOvu7PbuPV6lB/2j7Q20j1S
+         TLtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=FTO4xkFBPcb9bkHA3D6SXnppwQjXCtQZXKOlomcgrAk=;
-        b=kv94JFU9TRk6jz4peCMvsPUpe/iLO0InIQL81M+jtEH6w58ymo0/174FW9+TDAzoVe
-         GHpW6uF0qzkFd0Gjsw7cGklHOwrmBP49mpowVIzQwSXW3cLp/4LKbzr/18RaqvFwtfOG
-         3dbO+vQCUHuQsoR8Z6xOdo+WEcZIEeVJMecMtnYyBe5Zgb9jcHqVbgqnv58o13S23seQ
-         cmGtBpEo6fGcXkKJmS6wIfrJKr8CEnzfE27tlQp/DO8PPqhoiqXsSsAZy5lodcsbAvzi
-         dL9ff3io0pIJKpal/3hEPgieLk9bNjA1XWxK6tuklyZnL9Xmif6v/llp/snnqvJFx9lK
-         HpLQ==
-X-Gm-Message-State: ACrzQf3lKkc4QRNgdZrf0DzleN4vsHdgpLYuwCKkXGizi+L2qtOZTWTJ
-        GmnKAjbY7d21Mh79V8S8GOT7A1pb5u4eug==
-X-Google-Smtp-Source: AMsMyM4TbZ3FGhqOfzaGNia+xVWSc5lybYfSCEesK4NE9CksMo2FcZAzVtb0gT4NDS3RbZOUPgNCPg==
-X-Received: by 2002:a05:651c:305:b0:26a:915f:45e8 with SMTP id a5-20020a05651c030500b0026a915f45e8mr4936704ljp.6.1663580080599;
-        Mon, 19 Sep 2022 02:34:40 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o1-20020a2ebd81000000b0026c0158b87csm4330841ljq.29.2022.09.19.02.34.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 02:34:40 -0700 (PDT)
-Message-ID: <5d4d9412-6445-f3a3-0f86-6c41a37dca70@linaro.org>
-Date:   Mon, 19 Sep 2022 11:34:39 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=LowgVzMAhXEseWsSPSLE6xnKe/5h9hZUiv086pOwDOg=;
+        b=ckP23qRjSomGNuT9aBCWR4KGAfzyhcOirljMa/w40jH5YG+TUKNSIU497yNOcgPj6n
+         jLxIk4o1eOd+7L4NkQiTpPefoAHXaNB8kH3Fd23S5LmbjaBcbbG7TPcpCRRNV3exaRYE
+         zrKtpewU27ngSKVGmnfLeB07HwQeCbOmqJ4+W+x3x5p3x5qR9p0xH5am8IFEGrRO6HV5
+         +dNVylIB2GDTt6QBMWxyG+nBebEfPWn5EBh6jlqqqE/ctEuWN1GLRj7+/NYIgBI3gKkl
+         sW0wPSBZ1LaTrUG21Jk8YyPbpBKN+SKxKdiXVxgrEPgUryXYdkoUekWrscoiOpy/EOn/
+         oe5g==
+X-Gm-Message-State: ACrzQf0WKEG1ST7NICgeh8pofkU+nfJXi6aQqLsujbDC4K/rjGxF++Az
+        394zCWuNiPyJ1l+labnh2rd/fcz7v2yWc2wtsc4=
+X-Google-Smtp-Source: AMsMyM52kCAO9ZvYqLe9i7KLJErRhymAU+D4dUkjgi56Je3DvLFjzIEeiiPCf6wYXBoYo0V00UR1JKXqle/BDrNDb+g=
+X-Received: by 2002:a05:6402:35c1:b0:451:e1aa:e66e with SMTP id
+ z1-20020a05640235c100b00451e1aae66emr14056073edc.275.1663580149759; Mon, 19
+ Sep 2022 02:35:49 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v5 1/3] memory: omap-gpmc: allow shared wait pins
-Content-Language: en-US
-To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     rogerq@kernel.org, tony@atomide.com, robh+dt@kernel.org
-References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
- <20220916120749.2517727-2-benedikt.niedermayr@siemens.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220916120749.2517727-2-benedikt.niedermayr@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220916133521.73183-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <YyZS38Wo7rDsNRm2@pendragon.ideasonboard.com> <CA+V-a8vvNHFt818wryyuhWxPtay4czjWXiH=AWEKiJ1AzB46mA@mail.gmail.com>
+ <fc1c075d-e20d-9395-d168-8cfe530f77ad@linaro.org>
+In-Reply-To: <fc1c075d-e20d-9395-d168-8cfe530f77ad@linaro.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 19 Sep 2022 10:35:21 +0100
+Message-ID: <CA+V-a8uMyU89rufmqWiGFqpVjFPvHBeVeSd1Wt07eWZo1X+Bgw@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: i2c: ovti,ov5640: Drop ref to video-interface-devices.yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/09/2022 14:07, B. Niedermayr wrote:
-> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-> 
-> Newer kernels refuse to probe when using the same wait pin for
-> different chipselect regions.
-> But this may be a usecase when connecting for example FPGA or ASIC
-> modules to the gpmc, which only got one wait pin installed.
-> 
-> The wait-pin allocation is now tracked by the gpmc driver in order
-> to be sure that the wait pin has been indeed requested by gpmc.
-> Therefore the "wait_pin_alloc_mask" has been introduced.
-> 
-> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-> ---
->  drivers/memory/omap-gpmc.c | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
-> index d9bf1c2ac319..ea495e93766b 100644
-> --- a/drivers/memory/omap-gpmc.c
-> +++ b/drivers/memory/omap-gpmc.c
-> @@ -232,6 +232,7 @@ struct gpmc_device {
->  	int irq;
->  	struct irq_chip irq_chip;
->  	struct gpio_chip gpio_chip;
-> +	unsigned long wait_pin_alloc_mask;
->  	int nirqs;
->  	struct resource *data;
->  };
-> @@ -2221,9 +2222,16 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->  							 GPIO_ACTIVE_HIGH,
->  							 GPIOD_IN);
->  		if (IS_ERR(waitpin_desc)) {
-> -			dev_err(&pdev->dev, "invalid wait-pin: %d\n", wait_pin);
->  			ret = PTR_ERR(waitpin_desc);
-> -			goto err;
-> +			if (ret == -EBUSY &&
-> +			    test_bit(wait_pin, &gpmc->wait_pin_alloc_mask)) {
-> +				dev_info(&pdev->dev, "shared wait-pin: %d\n", wait_pin);
-> +			} else {
-> +				dev_err(&pdev->dev, "invalid wait-pin: %d\n", wait_pin);
-> +				goto err;
-> +			}
-> +		} else {
-> +			set_bit(wait_pin, &gpmc->wait_pin_alloc_mask);
->  		}
+Hi Krzysztof,
 
-And how do you handle shared pin when the original owner unbinds?
+On Mon, Sep 19, 2022 at 9:19 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 19/09/2022 10:08, Lad, Prabhakar wrote:
+> > Hi Laurent,
+> >
+> > Thank you for the review.
+> >
+> > On Sun, Sep 18, 2022 at 12:06 AM Laurent Pinchart
+> > <laurent.pinchart@ideasonboard.com> wrote:
+> >>
+> >> Hi Prabhakar,
+> >>
+> >> Thank you for the patch.
+> >>
+> >> On Fri, Sep 16, 2022 at 02:35:21PM +0100, Prabhakar wrote:
+> >>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >>>
+> >>> video-interface-devices.yaml isn't used so just drop it from the
+> >>> DT binding doc.
+> >>>
+> >>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml | 3 ---
+> >>>  1 file changed, 3 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> >>> index 540fd69ac39f..ce99aada75ad 100644
+> >>> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> >>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> >>> @@ -9,9 +9,6 @@ title: OmniVision OV5640 Image Sensor Device Tree Bindings
+> >>>  maintainers:
+> >>>    - Steve Longerbeam <slongerbeam@gmail.com>
+> >>>
+> >>> -allOf:
+> >>> -  - $ref: /schemas/media/video-interface-devices.yaml#
+> >>> -
+> >>
+> >> The rotation property listed in this binding uses the definition from
+> >> video-interface-devices.yaml. I don't think just dropping this is the
+> >> right solution. Changing additionaProperties to unevaluatedProperties
+> >> seems a better option.
+> >>
+> > Agreed, I missed rotation was used from video-interface-devices.yaml.
+> > Agreed the changing additionaProperties to unevaluatedProperties seems
+> > a better option.
+>
+> The meaning of unevaluatedProperties:false would be here - accept other
+> properties (not mentioned here explicitly) from referenced schema. If
+> this is your actual intention for this binding, it makes sense. But if
+> the intention in this binding was to disallow these other properties,
+> then it would be wrong to change to unevaluatedProperties.
+>
+Thank you for the clarification. The intention is to disallow the property.
 
+> Therefore before sending patches and calling something better or not,
+> please instead focus on that aspect of referenced schema.
+>
+Sure will do, sorry for the noise.
 
-Best regards,
-Krzysztof
+Cheers,
+Prabhakar
