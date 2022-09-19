@@ -2,208 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF2755BCD6A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:41:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 202195BCD98
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:49:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229847AbiISNll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 09:41:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50004 "EHLO
+        id S229923AbiISNtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 09:49:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229824AbiISNlk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:41:40 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EB6D11C22
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 06:41:39 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-127dca21a7dso61835890fac.12
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 06:41:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=91pvTaNcNj42HAnDz73qIWnrbTG4IgbL5/BErsir4bk=;
-        b=fGPoDDPYmkh+M2Ahgxb1u2EaHulWfN10h+Cws6QR6bc+kYtyjV8g1iOmi4XLwhoeAq
-         vGYjDMIfLntXvQnvgs+LYlYB0jN6uqfEhkm5Ct/8kzfvCU7Uial8EtJS0BkYzTBWcv0G
-         JVuQmHr9oiAswYnswCOqiWSUDDvIVzduEpMA5XdCIV9pwFx6tYkmeoCcF5ukiK1OAY9k
-         +1paaHDes0ruxlCTPxybhh9hU0ZSK+atiewLmknzXE2G/KvZEAxLC3/kTZ5LyJEqfxnV
-         TeGFr9vMM9MBbQxjeCgGgS5JyLGDLq9H+mMXbCmlb8dBexoZ3xpc0o1bk2sszSXefY+g
-         ojwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=91pvTaNcNj42HAnDz73qIWnrbTG4IgbL5/BErsir4bk=;
-        b=Fg9l+X4UO9RNVWmIBiLIbbF8CGN/04R9JR3RdvSL/yGtZLSsgSZo49950JDgoh9npr
-         vm/luiwVDT+didioZiWyDAh5tuYsjllUL3C9g8zYHYYH3kxFPqKJpuppmUFxbn0I1h0F
-         tJLOnP2aLrYErMVFgb3OVxHJ5dOpQBoA4Ko4/0zTpJPyMIQzTNwXQ1caBp35ZWQGayuM
-         Jeo6Xpu52qiRoP+OEYqgfkwy7Y2wsU8vVd77fl1zH8bOyCPGj7hqbBgnDS1zt8q2Q3Xo
-         F7YOxqvzz7j+tRb7CYBsxyGa00/DyQQU0KhjxDtaZJ9HJsW75Hfg5wiRVy4WOou4SMbz
-         UhRg==
-X-Gm-Message-State: ACrzQf18U57oHFPnlTboFbVIcbo0lWFja9nG5ao8WLKIwxJwO8JxPrUZ
-        re/Xj51gPoLAeP7PsmOX7YdH+t7Dkz7yYRblNRQOxDEbAwThLw==
-X-Google-Smtp-Source: AMsMyM7xR4UMsIrbf8MIu0aFz67k+Ku9BlC8P//9aEPWlubpxI3fxxbGgTFQFqXsqMJH7UYPzQFUuG8AOkRQJ37lsno=
-X-Received: by 2002:a05:6870:d18e:b0:12d:3bac:ab21 with SMTP id
- a14-20020a056870d18e00b0012d3bacab21mr628775oac.83.1663594898224; Mon, 19 Sep
- 2022 06:41:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220917041136.526446-1-sergio.paracuellos@gmail.com>
- <285f80ef-5f5c-e68d-b514-a3e3341841c5@linaro.org> <CAMhs-H92i6vFJWCBrpaQnQzA3-+6_ROb9_+zD4yBMB1FLJoKeQ@mail.gmail.com>
- <71b50383-0fc3-f834-11e0-8fbc17c123d0@linaro.org>
-In-Reply-To: <71b50383-0fc3-f834-11e0-8fbc17c123d0@linaro.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Mon, 19 Sep 2022 15:41:26 +0200
-Message-ID: <CAMhs-H-JokHX+XNNE0TQf78ORQbNz2fTd9hfgmv_s6OPT=Wh0w@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mips: add CPU bindings for MIPS architecture
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S229580AbiISNtb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:49:31 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B6F2FFD8;
+        Mon, 19 Sep 2022 06:49:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=phcN5G2W4NgGKL7zC1yzBaojnuY/jDS0EdSG5LS1Meg=;
+        b=CsHXQnABNJgUQDJn3Rc7dqN2HVwj5DY6X5zUI77q6ecww67IJQWYbg1RM5lJEdbP2HtLI/QWhXJ8s
+         8jESZGeiFeHsWozJITGKbHl2jZUVt1uEZRc9fybolkvxzkwm/UgYXvebjf32fdasOV0xKiaAo8ICyW
+         ezBd0ZKncNde7mSFLOrMb4sFRZZvwV5xpPEYF3hIrEQ3vael5uLyaSz/4Gmpn4TxrwheSThfMsM2IW
+         eLcXvAD6+2jHcqeGyh1ZbFyDSlzzpot6xmLzxFdMGqXN5eBPLjkVnFutPLCealAfgBpL6X34sDnE4s
+         fvhRB+umhi5vS5Dxipm8edviDDy41KQ==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000010,0.021412)], BW: [Enabled, t: (0.000023,0.000001)], RTDA: [Enabled, t: (0.075608), Hit: No, Details: v2.41.0; Id: 15.52kb0k.1gdb055vp.7sk6; mclb], total: 0(700)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Mon, 19 Sep 2022 16:49:12 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, dg@emlix.com, j.zink@pengutronix.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        system@metrotek.ru
+Subject: [PATCH v12 0/2] Lattice sysCONFIG SPI FPGA manager
+Date:   Mon, 19 Sep 2022 16:47:48 +0300
+Message-Id: <20220919134750.25197-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Add support to the FPGA manager for programming Lattice ECP5 FPGA over
+slave SPI sysCONFIG interface.
 
-On Mon, Sep 19, 2022 at 2:48 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 19/09/2022 14:29, Sergio Paracuellos wrote:
-> >>
-> >> else mips-hpt-frequency: false
-> >>
-> >>> +
-> >>> +required:
-> >>> +  - compatible
-> >>> +
-> >>> +additionalProperties: true
-> >>
-> >> and this is why you did not notice errors...
-> >
-> > Current arch/mips/boot/dts folder dts files are a mess for cpu nodes,
-> > so I set additionalProperties to true and only make required for
-> > 'compatible'. What should be the correct approach?
->
-> This is okay, but it caused you did not notice errors...
->
-> >
-> >>
-> >>> +
-> >>> +examples:
-> >>> +  - |
-> >>> +    cpus {
-> >>> +      #size-cells = <0>;
-> >>> +      #address-cells = <1>;
-> >>> +
-> >>> +      cpu@0 {
-> >>> +        device_type = "cpu";
-> >>> +        compatible = "mips,mips1004Kc";
-> >>> +        reg = <0>;
-> >>> +      };
-> >>> +
-> >>> +      cpu@1 {
-> >>> +        device_type = "cpu";
-> >>> +        compatible = "mips,mips1004Kc";
-> >>> +        reg = <1>;
-> >>> +      };
-> >>> +    };
-> >>> +
-> >>> +  - |
-> >>> +    // Example 2 (BMIPS CPU)
-> >>> +    cpus {
-> >>> +      #address-cells = <1>;
-> >>> +      #size-cells = <0>;
-> >>> +
-> >>> +      mips-hpt-frequency = <150000000>;
-> >>
-> >> Does not match your bindings. Are you sure you tested the patches?
-> >
-> > Yes I did:
-> >
-> > $ make dt_binding_check
-> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/mips/cpus.yaml
-> >   LINT    Documentation/devicetree/bindings
-> >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> >   DTEX    Documentation/devicetree/bindings/mips/cpus.example.dts
-> >   DTC     Documentation/devicetree/bindings/mips/cpus.example.dtb
-> > ' CHECK   Documentation/devicetree/bindings/mips/cpus.example.dtb
-> >
-> > Can you please point me to a sample of how to make required in a
-> > parent node of cpu@X property 'mips-hpt-frequency' only for some
-> > compatible strings inside the node? What can this be properly
-> > expressed using schema??
-> > I was looking and testing different things for a while without success at all.
->
-> You either define new schema for /cpus node (and match by name, define
-> children etc) or include it in schema for top-level properties. The
-> first is tricky, because the cpus node does not have compatible (like
-> nvidia,tegra194-ccplex.yaml).
->
-> The second should work, but then it's a bit cluttered (top-level mixed
-> with cpus).
+ChangeLog:
+  v1 -> v2:
+    * remove "spi" from compatible string
+    * reword description in dt-bindings doc
+    * add reference to spi-peripheral-props.yaml in dt-binding doc
+    * fix DTS example in dt-bindings doc: 4-spaces indentations, no
+      undersores in node names.
+  v2 -> v3:
+    * fix typo "##size-cells" -> "#size-cells" in dt-bindings example
+  v3 -> v4:
+    * dt-bindings: reword description
+    * dt-bindings: revert props order
+  v4 -> v5:
+    * dt-bindings: remove trailing dot from title
+    * dt-bindings: reword description to avoid driver reference
+    * dt-bindings: add "Reviewed-by: Krzysztof Kozlowski" tag
+  v5 -> v6:
+    * ecp5-spi: lock SPI bus for exclusive usage in
+      ecp5_ops_write_init(), release in ecp5_ops_write_complete()
+      or on error
+  v6 -> v7:
+    * ecp5-spi.c -> lattice-sysconfig-spi.c. Reworked to represent
+      generalized sysCONFIG port with implementations for ECP5 and
+      MachXO2
+    * lattice,ecp5-fpga-mgr.yaml -> lattice,sysconfig.yaml. Reworked to
+      document both ECP5 and MachXO2 sysCONFIG.
+    * dt-bindings: remove "Reviewed-by: Krzysztof Kozlowski" tag as doc
+      was rewritten by a considerable amount.
+  v7 -> v8:
+    * dt-bindings: move "program-gpios", "init-gpios" and "done-gpios"
+      to top-level properties and disallow them for MachXO2 variant.
+  v8 -> v9:
+    * dt-bindings: "program-gpios", "init-gpios" and "done-gpios" are
+      now optional for both ECP5 and MachXO2
+    * lattice-sysconfig-spi.c -> sysconfig-spi.c + sysconfig.c +
+      sysconfig.h
+        ** reworked to be one sysCONFIG FPGA Manager rather than two
+	   distinct ECP5 and MachXO2 managers
+	** splitted to port type agnostic sysconfig.c and SPI-specific
+	   sysconfig-spi.c
+	** command transfer function moved to callback for ease of
+	   adding another port type, such as I2C
+  v9 -> v10:
+    * split sysconfig_transfer() callback into separate command_write()
+      and command_write_then_read(). There are too many transfers
+      without readback.
+    * add command_write_with_data() callback which performs single
+      transfer of command + data. It's needed for better abstraction of
+      paged bitstream write routine.
+    * move sysconfig_lsc_burst_init() to bitstream_burst_write_init()
+      callback to break dependence of sysconfig.c from sysconfig-spi.c
+    * move sysconfig_lsc_burst_complete() to bitstream_burst_write_complete()
+      callback to break dependence of sysconfig.c from sysconfig-spi.c
+    * add bitstream_burst_write() to abstract fpga_manager_ops->write()
+      from bus type
+    * remove struct spi_device from struct sysconfig_priv, use
+      to_spi_device()
+    * move fpga_manager_ops initialization to sysconfig.c
+  v10 -> v11:
+    * rename sysconfig_lsc_burst_init() to sysconfig_spi_lsc_burst_init()
+    * rename sysconfig_bitstream_burst_write() to
+      sysconfig_spi_bitstream_burst_write()
+    * rename sysconfig_lsc_burst_complete() to
+      sysconfig_spi_lsc_burst_complete()
+    * rename "ecp5-fpga-mgr" to "sysconfig-ecp5"
+    * rename "machxo2-fpga-mgr" to "sysconfig-machxo2"
+    * move spi_max_speed_hz from struct sysconfig_fpga_priv to
+      struct sysconfig_spi_fpga_priv, which is local to sysconfig-spi.c
+    * remove SPI bus unlock on write error form
+      sysconfig_spi_bitstream_burst_write(), call
+      sysconfig_burst_write_complete() on error in
+      sysconfig_bitstream_burst_write() instead.
+  v11 -> v12:
+    * build sysconfig core as separate module to prevent duplication of
+      common code segments across different binaries
+    * rename sysconfig.c to lattice-sysconfig.c
+    * rename sysconfig.h to lattice-sysconfig.h
+    * rename sysconfig-spi.c to lattice-sysconfig-spi.c
+    * rename sysconfig_spi_cmd_write_then_read() to
+      sysconfig_spi_cmd_read()
+    * rename command_write_then_read() callback to command_read()
+    * rename sysconfig_cmd_write_then_read() to sysconfig_cmd_read()
+    * rename sysconfig_spi_lsc_burst_init() to
+      sysconfig_spi_bitstream_burst_init()
+    * rename sysconfig_spi_lsc_burst_complete() to
+      sysconfig_spi_bitstream_burst_complete()
+    * remove excessive !spi check from sysconfig_spi_cmd_write(),
+      sysconfig_spi_cmd_read(), sysconfig_spi_bitstream_burst_init(),
+      sysconfig_spi_bitstream_burst_write() and
+      sysconfig_spi_bitstream_burst_complete()
+    * drop MachXO2 support
+        ** drop struct sysconfig_fpga_priv
+        ** drop paged write
+        ** drop command_write_with_data() and friends
+        ** drop ISC_PROGRAM_DONE routine
+        ** drop refresh from sysconfig_isc_finish()
+        ** sysconfig_isc_erase() only erase SRAM
+	** drop MachXO2 mentions from DT bindings doc
 
-I don't know if I am understanding you but maybe it is because my
-explanation about the requirement was not good at all. So let me
-explain a bit better.
+Ivan Bornyakov (2):
+  fpga: lattice-sysconfig-spi: add Lattice sysCONFIG FPGA manager
+  dt-bindings: fpga: document Lattice sysCONFIG FPGA manager
 
-This is the normal way of definition of cpus for BMIPS:
+ .../bindings/fpga/lattice,sysconfig.yaml      |  81 ++++
+ drivers/fpga/Kconfig                          |  11 +
+ drivers/fpga/Makefile                         |   2 +
+ drivers/fpga/lattice-sysconfig-spi.c          | 153 +++++++
+ drivers/fpga/lattice-sysconfig.c              | 408 ++++++++++++++++++
+ drivers/fpga/lattice-sysconfig.h              |  40 ++
+ 6 files changed, 695 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+ create mode 100644 drivers/fpga/lattice-sysconfig-spi.c
+ create mode 100644 drivers/fpga/lattice-sysconfig.c
+ create mode 100644 drivers/fpga/lattice-sysconfig.h
 
-cpus {
-      #address-cells = <1>;
-      #size-cells = <0>;
+-- 
+2.37.3
 
-      mips-hpt-frequency = <150000000>;
 
-      cpu@0 {
-        compatible = "brcm,bmips4350";
-        device_type = "cpu";
-        reg = <0>;
-      };
-
-      cpu@1 {
-        compatible = "brcm,bmips4350";
-        device_type = "cpu";
-        reg = <1>;
-      };
-    };
-
-What I need to say in schema is that 'mips-hpt-frequency' must be only
-present if cpu@0 and cpu@1 nodes contain a compatible matching
-brcm,bmips*. In the same cpu@0 or cpu@1 node
-the following below will be sufficient. How can I express the same but
-referring that 'mips-hpt-frequency' must be on the parent node?
-Because as it is below the validator complains because
-'mips-hpt-frequency'
-is not present in cpu@0 and cpu@1 nodes:
-
-allOf:
-   - if:
-        properties:
-           compatible:
-               enum:
-                   - brcm,bmips3300
-                   - brcm,bmips4350
-                   - brcm,bmips4380
-                   - brcm,bmips5000
-                   - brcm,bmips5200
-     then:
-        required:
-           - mips-hpt-frequency
-     else:
-        properties:
-           mips-hpt-frequency: false
-
-Thanks,
-    Sergio Paracuellos
->
-> Best regards,
-> Krzysztof
