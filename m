@@ -2,144 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7450A5BD544
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 21:39:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 110205BD563
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 21:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbiISTjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 15:39:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37382 "EHLO
+        id S229776AbiISTyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 15:54:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbiISTjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 15:39:53 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB66415727;
-        Mon, 19 Sep 2022 12:39:50 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id a41so744790edf.4;
-        Mon, 19 Sep 2022 12:39:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=XFv8/s07GWCJPcBdBdWUf3TF+ajCiKTrMdsn8auNwkw=;
-        b=f0DIRu0cqDxg5c/CwpkHebVvvJ0PzpsnxQJECBvzLov876B4CbJwMeNmxF5At7uNE5
-         zNcmi/nLJljwJMSGY3Q/PyG4HdodW/GJm+tO44bauRTke3EbRSBuG5smK480Fphp7wee
-         Jex8inaCvwds8GMO/hZql6j9RkMY0VO3Ds0zDwKk8+KfO/jV4bCrxrUZd0d5p/pjJX/e
-         wK3+ijWqiV6atwOrNaDU4LblXv/2Nlybdg/H5OrxtQ7w8ww6UIiF19TEWSCdy1mSlBnn
-         08ffeAuGNGOEMF29M9rxRWaj/EuZ5PZH9Wrn+cibHrx7+CHLp8PeGyxuBi6OHj2a8Zgd
-         zJIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=XFv8/s07GWCJPcBdBdWUf3TF+ajCiKTrMdsn8auNwkw=;
-        b=zDUJLVvqS8KF45oCLLpUn9FeHCBdS3Zb9mcfyQuAFtSptfj+9RX9c8kMwr0ETKJJz7
-         31vJLKIqs7Rl93z0RFf10qxNqlVWjqkwGtptIpRKCa0xYyXyfCfyCBA9Ti2DTeALYxXb
-         LpOzrqDw2V7fKJzkJvD8wKQY/krEszVo/0TAuKQ9KnRYGDknbbC2LisBqDDQ9AiXoZIe
-         OvuhK2pxBfO++vMeFA3rq080ooQYbW9I3nCOysOFUfAGFR6G2DtdXsVD45mv9/EOYo75
-         9CkBiA8yMSyCBGQvkuwJFBbbkQ6S1RAJrr1+TqnIyiyf32QtVXeN8YjnXO+KppCH6t6e
-         hVAQ==
-X-Gm-Message-State: ACrzQf2lC+XmI9u3/0jdNHJmbYI/wlVPgFIJr5J0/Ip2VmCxVfBp8wRB
-        W2rrloUr1q1FKnDrsvAVcdAgTdBqX1NvFVCCULs=
-X-Google-Smtp-Source: AMsMyM4L1GIyrF0ae2p/Z4ebbcDAMumtOsb/cmTWhLlp0KuDpgU3Q8HgwUQF78eWvNWWUggwhb1u5vt657lMECzavOw=
-X-Received: by 2002:a05:6402:2789:b0:451:a578:74dd with SMTP id
- b9-20020a056402278900b00451a57874ddmr17033392ede.72.1663616389164; Mon, 19
- Sep 2022 12:39:49 -0700 (PDT)
+        with ESMTP id S229749AbiISTyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 15:54:44 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9DF1402D;
+        Mon, 19 Sep 2022 12:54:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663617282; x=1695153282;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TFylzeOIAdoKTrYXFOCkIxj91jitXePjqSvx77D6gYQ=;
+  b=VAm/VFgeATtp58tv83ToYGxb3sndvgWbMAx5yVKNYt3BOan8y+06td3C
+   y/SengAMrqjXLJOs2Bcd0vNtEN7DDJCAn6CxmvNsiRkx222K3eWzIpAWg
+   MejAzbyV7FF0oaJj2SAIhC947BsaCNbgn7nOFKMV0B8eNH9gLXjxIqBt9
+   L05V6E3faLxio9UZgFkUIcIDoBuDlQOLdtJRdx4XjxJFQVzzbrV+m98ic
+   vSiRSKw+q07PGfSGR5OMsrC89/FEanVRxeXZybKfBoKxRHISjct+72TxU
+   WrTxT6QRXhqozU+1xk0mgrSDA3xnecY/oFVFJ4hyKXkljxidjSnmIHoDN
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="363466369"
+X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; 
+   d="scan'208";a="363466369"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2022 12:54:41 -0700
+X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; 
+   d="scan'208";a="722439432"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2022 12:54:38 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 0EF4020238;
+        Mon, 19 Sep 2022 22:54:36 +0300 (EEST)
+Date:   Mon, 19 Sep 2022 19:54:36 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kishon@ti.com, vkoul@kernel.org, hverkuil@xs4all.nl,
+        jacopo@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v2 4/4] media: tc358746: add Toshiba TC358746 Parallel to
+ CSI-2 bridge driver
+Message-ID: <YyjI/JOcryD8yKzT@paasikivi.fi.intel.com>
+References: <20220916134535.128131-1-m.felsch@pengutronix.de>
+ <20220916134535.128131-5-m.felsch@pengutronix.de>
+ <YyhktzmcgXKnrMFU@pendragon.ideasonboard.com>
+ <20220919171142.6av6ap5gwweldado@pengutronix.de>
+ <Yyio06jhK13BiNiP@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-References: <20220912190753.10158-1-jagathjog1996@gmail.com>
- <20220912190753.10158-3-jagathjog1996@gmail.com> <YyHBKNC/YHbvIn40@mail.local>
- <CAM+2Eu+jCA9yJma2UtD736opw0=_uCz4Zbiem89ehexTEU7mQw@mail.gmail.com> <YydoGsEU/UPkXvXn@mail.local>
-In-Reply-To: <YydoGsEU/UPkXvXn@mail.local>
-From:   Jagath Jog J <jagathjog1996@gmail.com>
-Date:   Tue, 20 Sep 2022 01:09:37 +0530
-Message-ID: <CAM+2EuJsz9NgEskhYapxFg7UrimB3Po97DZGHtBCHTc8+vx_1g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] rtc: maxim: Add Maxim max31329 real time clock
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yyio06jhK13BiNiP@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- Hi Alexandre,
+On Mon, Sep 19, 2022 at 08:37:23PM +0300, Laurent Pinchart wrote:
+> > > > +	ctrl = v4l2_ctrl_new_int_menu(&tc358746->ctrl_hdl, NULL,
+> > > > +				      V4L2_CID_LINK_FREQ, 0, 0,
+> > > 
+> > > Shouldn't the max argument be set to the number of items minus 1 ?
+> > 
+> > Right now I would keep it that way since the driver only supports one
+> > link-frequencies setting. So the ctrl don't let the userspace assume
+> > that there are more than one link-frequency.
+> 
+> Good point. Can you add a short comment above the call to explain this ?
 
-Before sending v3 I have one comment,
-Please see below.
+Wouldn't it be just easier to do what Laurent suggested originally? The end
+result is the same, isn't it, and no comment needed?
 
-On Mon, Sep 19, 2022 at 12:18 AM Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
->
-> On 17/09/2022 16:09:54+0530, Jagath Jog J wrote:
-> > > This doesn't feel right, doesn't that break start-year?
-> > >
-> > > What is the actual time range supported by this RTC? Shouldn't you set
-> > > the century?
-> >
-> > The time range supported by RTC is 2000 to 2199.
-> > The alarm registers don't have a century bit.
-> > I have tested the alarm for
-> > 2122-09-17T01:22:00
-> > 2142-09-17T01:22:00
-> > 2160-02-29T00:00:00
-> > 2196-02-29T00:00:00 etc
-> >
-> > I will add another condition such that if the century bit
-> > from the time register is not set then configuring the
-> > alarm for the next century is not allowed.
->
-> The actual check should be for the alarm to not exceed 100 years in the
-> future then. Else, this wouldn't work well with datetime offsetting.
+> 
+> > > > +				      link_frequencies);
+> > > > +	if (ctrl)
+> > > > +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
 
-Sure, I will add this check.
+Now that this is a bridge, this value presumably doesn't need to change.
+There will just be more blanking if the source sub-device pixel rate is
+slower, right?
 
->
-> > > > +static int max31329_set_time(struct device *dev, struct rtc_time *tm)
-> > > > +{
-> > > > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
-> > > > +     u8 regs[7];
-> > > > +     int ret;
-> > > > +
-> > > > +     ret = max31329_get_osc_status(dev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > >
-> > > Checking the oscillator is not needed here but resetting the status is.
-> >
-> > Resetting the device will resets the digital block,
-> > I2C-programmable registers and oscillator also,
-> > The oscillator is taking some time around 80 milli sec
-> > to be back as usual.
-> >
-> > Is it required to reset every time during the time setting?
-> >
->
-> Not but resetting the osc status is.
-
-Actually, the STATUS register which contains the Oscillator Stop
-Flag (OSF) bit is a read-only register. If the OSF bit is set, then
-reading the status register will not clear the OSF bit.
-
-Based on the oscillator disable and enable testing, I observed
-that the OSF bit is getting cleared automatically once the clock
-settles, which is taking around 80msec. The manual resetting
-option is not there for the OSC status bit.
-
-Can I set the time without resetting the OSC status?
-
-Thank you,
-Jagath
-
->
->
-> --
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+-- 
+Sakari Ailus
