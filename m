@@ -2,303 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C97525BCBCE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 14:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE4D35BCBE6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 14:37:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229690AbiISM3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 08:29:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33176 "EHLO
+        id S229676AbiISMhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 08:37:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229850AbiISM3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 08:29:41 -0400
-Received: from mail-oo1-xc2c.google.com (mail-oo1-xc2c.google.com [IPv6:2607:f8b0:4864:20::c2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BBD46355
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 05:29:37 -0700 (PDT)
-Received: by mail-oo1-xc2c.google.com with SMTP id v3-20020a4aad83000000b00475e04866e6so1350911oom.5
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 05:29:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=cnJlE/qzIkn8jzqri1RBH8DhxRPgC9LZvFVSuLx/jEY=;
-        b=TssstKU5PzV3u2fKFAmeG2ywghwm0Q0Br9d5GcVLUuWYk3sIRmT16ygRdUkkIscxKp
-         rBalaIDwSN4QYMha1wwImH+FHVf6pbz1HTazVVc1itD5mPgxbEu2RuICYQr1lAhF8vnm
-         8kyU4syyzKlxhC1U4/9GG5VYEJqK/iPjyCDNnBRgaku5fAyCtOQQRH0yJlENfKfvWqJz
-         lN3lDSJrMwhOnkWwlUnV9NREP1EbLLltHdiLEBaOIlMie5BlC+4HXlw6VmaFqZXRgh3o
-         9m2j7hHrUYOeSJb7QO6bj0HAuD7TlPCh/CGwAXrR/K4jv9omJqhCtH9hTpyMaBk/A/ku
-         D3tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=cnJlE/qzIkn8jzqri1RBH8DhxRPgC9LZvFVSuLx/jEY=;
-        b=3KZV1LbXsJZEU+JXMwnFaf3qzxq3Bqb8RoPZYu8qzUqhoWOlIcwvlQKCQSdJW9nlD0
-         T0pBqmboe6l5gTY9+LSBJGN/n+d393RgB2l3sZmTNxmQNN5RCUso0UzPcjMt3U9ip0CG
-         qAVKHdz0rNCOeQdm9FOA88CVd9iqODN45l6XxnYc9tETPenYWRWlcheFzeG/6zLuHyfN
-         /01ZAdG7YY1j3o2cuh+mK65N8+iZflGPBxevz8i/IOJ+JGHCx9rYUvr9qOQm7Q+dyI5e
-         yRqiUEJbYqVTI3of9ip+dqS3VlX2wFOY+u9eDy7nB8GUYXifK8hGx4RV1qC4zi6F3C8d
-         v0/A==
-X-Gm-Message-State: ACrzQf0N0DlV2Co6blukHJz1Jq1u3gCwGHa8kamZ6btr1jv9RA6uLh/x
-        VGGulDa1MBFsUfygdAN7NlFLgWNFXcsADD4ycM8=
-X-Google-Smtp-Source: AMsMyM4rZXX5R93g7HSDAEXgeBJxGn2ldOSROkUjI73++7EzImYu0B20W3MUPqObwoaffnito4ISxwU66/eoN8P1uaw=
-X-Received: by 2002:a4a:be06:0:b0:472:9d27:695e with SMTP id
- l6-20020a4abe06000000b004729d27695emr6624545oop.36.1663590576815; Mon, 19 Sep
- 2022 05:29:36 -0700 (PDT)
+        with ESMTP id S229690AbiISMhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 08:37:22 -0400
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com (mail-am5eur02on0608.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe07::608])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D25427FD6;
+        Mon, 19 Sep 2022 05:37:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BpdufQzjkI+NOqX1rab0ml+WzmN1HXtKVfuqyHu/omZvBp8F56YmjZY66ChgenQqfAte4Aozas4qGXqYsaGaxJwiuDQCttPnwltRlZyjWV3PYUvkVN+oCuLSyVNvSX9eqaIummRTekYCPwSX2n18zc5D96Wh4muqW0BDHYSfEfWp203m4wJrH5ScepAGrtCPfXGzGc07ckX4H5TiBKB+/9qSQ1sSPBQOqTZkn6E8E2zxL9ilvTaEWqDtws5AJC6oSeLQWEk6rEyct71umrmuOfomE8sWPzgK58RIRPsgnRgCI9iUbyVgYFjlP55nA3ULVCPOF/5j4MWGzjoMVKP+Hg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P+5IaRa33XWmHI1pR6qKRX4poGE1aJeAFyHiOXpq62E=;
+ b=kFZ7AcTZ2ght2I823o/ofQjjGupH+xRh/j58CKYtYHuy+A01sYhLGL5y7QN6VLOZu8p2jcFeVT9kB0yNy/tqB7rG/Zb180R2Mp86KIL0P6jsptYayeqbGYKtzQIc4Yoop8cV34i3JhoWQjgd7SQv8uEY0Fq8FWKbeakTq6R+uQv8WoSTzpQBSE+NdXBO15dp03u5Y0WHNOoTabSJ0vLAIEdXsGenjmmAIcsOTDan+iQ+sJC+4PdajM/Lqqi6vB+e2F1UNpb85j/3z4Qb1rLWdoC4Q67A+BhQUIOROrj9SEMppGD0PgGRj+pECgVq+rbbgC/Hdqz9KL9fl7/LJy+8ng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=P+5IaRa33XWmHI1pR6qKRX4poGE1aJeAFyHiOXpq62E=;
+ b=uStt7mHpraoxh3JlI4JzH+WXSW6UEXr6bALxd63biow6fXab31cLlv1QZof7lCxYW/w2reOz8fdstNE6hRaoNrNGXFtC1V6K6tSdYwabVj4U/XlADl0kM5dW5i05qN7mTnFbclkQgCe9fABhU7XjzVwdx2Qe7/pF5fDT2KYmcreMGo6wp8RrANfMDiqDr7vOQvUAKXKrxjYy1149WV8fqMyKtVf/3UQpRB+ht5Pq1fj2XohDFluydozdxjtV1J8W1iUAiQBqRbPRHG+jTgFdbS87OdQzyhZSaWexLpWTmvFEzHRnn7Cox7iI6bXlTIwVSOUtaA4kK1QYssMNbIDo1Q==
+Received: from PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:23e::20)
+ by DB4PR10MB6309.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:383::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.15; Mon, 19 Sep
+ 2022 12:37:15 +0000
+Received: from PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::25f6:de51:14d3:5656]) by PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::25f6:de51:14d3:5656%4]) with mapi id 15.20.5632.016; Mon, 19 Sep 2022
+ 12:37:15 +0000
+From:   "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+CC:     "rogerq@kernel.org" <rogerq@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 1/3] memory: omap-gpmc: allow shared wait pins
+Thread-Topic: [PATCH v5 1/3] memory: omap-gpmc: allow shared wait pins
+Thread-Index: AQHYzAsM6L4nQgqy4kyNrA5ZU3cEJK3msQKA
+Date:   Mon, 19 Sep 2022 12:37:15 +0000
+Message-ID: <7c13efa554d12324d402690753c27a8c0e803867.camel@siemens.com>
+References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
+         <20220916120749.2517727-2-benedikt.niedermayr@siemens.com>
+         <5d4d9412-6445-f3a3-0f86-6c41a37dca70@linaro.org>
+In-Reply-To: <5d4d9412-6445-f3a3-0f86-6c41a37dca70@linaro.org>
+Reply-To: "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR10MB5520:EE_|DB4PR10MB6309:EE_
+x-ms-office365-filtering-correlation-id: 7242cc72-d6ae-48bf-6e4f-08da9a3baf15
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: BwKQ9DbpstdTF2/yLVTgi4eZxgavX0CJ6Mz1I5qQiCFKGvcjYcEq3P+Elv1ShD6W9SJF3/F7Oaoj35kGM/HT4rJRsEIErVP4r5IfbcxCnTHOsGtHPGBiOY80jHk4I4n91aUAYhYLmdpeBwNusQSqEuq9pn5FezCyPVzKhFDJFIBBZh4Zubrc9ma5QyT04WBGESE5QEraprAKE1RcLAn/Itp8I4NMDyUB54X9oPNiWhVSrq1jelWHQhkh9HlJs63Q1RZQD7eKUU1gYVWTmgzfjryGuI3oQSZ7nkpBxz5lGBNxMwMhqAoXQAHO9EN9na0CFATT66TaE/u1v0yXj2HOLsIS14EyBbxJmdU56doWhj9Qw8MXmBAcv57MOWsXM81we4u4w+KIEZoz+w3dlGg+87M7xmi1i4kkH9DzQn9ha2PUxVzDc1QPQDtzGuuNyKThtX6E0DSpS0i0+cXSaUwMR8RnpYRxPZTipX4zvZmIKAasQ7LFhOJdqdJfClLah6iFYaCQ9rt21ogYGVN9pXXFtEqMb4/QytvpoRmuJtBPvtf9JeWqpE/FAPz7kr+KH9kXdO9NPbcC7z36FVoeLhoG7LygRXEQyOxCDkAZmldK6rlzA9lhVqgdItCBvRYXothWh/W2i8CRwJU9PPgJ1orzW1H2Es+500DkIC9+AE3G2HFgmWw3dxutdDwfeCvxTFi3MS83QMx4oFIV2G9kHxPRGexV3s9+FTjYuLy9QLKkB2Tuf7NFz2vIOwyqPZKPbkFV7YhAQ9Y0MP8jsqkFbeDQMg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(366004)(39860400002)(136003)(396003)(451199015)(54906003)(122000001)(41300700001)(53546011)(6512007)(6506007)(71200400001)(36756003)(38100700002)(66476007)(110136005)(64756008)(38070700005)(8676002)(66946007)(76116006)(4326008)(3450700001)(66556008)(82960400001)(66446008)(86362001)(316002)(83380400001)(478600001)(6486002)(186003)(8936002)(2616005)(91956017)(5660300002)(2906002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bjVBakNMdG9ONjJHbVlrV1BmT282OC9CbHFka0k0MEdqb1F2MGova0J3VFpJ?=
+ =?utf-8?B?ZGUvS1BpejRDVXc4Y2dXb1VFMjBCZW1wVisyUnVRdEphcG4rTWEvY3RCUnVY?=
+ =?utf-8?B?c1ZHU0NWdGtqcEFwSGVDb0UwWGw4RnBzb0NLSUpqRnJKVUNEbXk5TlF6OHEz?=
+ =?utf-8?B?T0tybW05M3ZVVUQ2WHhzZi9rWWQ3R3RzbDRjVnlBUTJxeGtMK3JFaHpHZHFC?=
+ =?utf-8?B?Q1oxT0FmOTBwdXJ0dTd1aHFyYVJiaEp6TWFaU1lIZFFuN0ZUQUNwbEZjTW92?=
+ =?utf-8?B?R2tMWTk2QkRyVXVPa3NBTkFNT1BvMVgzcmFXeE91R29WUE56NklvR1hEM3Bw?=
+ =?utf-8?B?NG5mcXFZVFJYUzdRenBiZXJhd0NQRGl5QnM0L0ZNZGp0RjU3b2Z1STZLYzNk?=
+ =?utf-8?B?NXhxQ1N3VWtsakhzMTBETzEwZUh3NnVGUVdIRWpQaUZUTnV6dUhwd2ZIZG1t?=
+ =?utf-8?B?UmgzMUp0SDFGRkl6L21PZXgraHBodHRoUElNcnhTcWoyRVljbHJwYW9lN2dI?=
+ =?utf-8?B?UnZJbURrWndNSnkxWGdJU1NmMFhlYkIzaWdLOFNPZWVEUUdVdjN5TGZuekNM?=
+ =?utf-8?B?Z0doWjFRdHRSU0ZvdVNmblNhanc1SjN1Z3Z2MjE5cGVTa0kzTVN4MTc2bHRQ?=
+ =?utf-8?B?S3RTOU1rVjNDakxob28rVzc1aTdqNVVPL0ZxMTMwbHRqeURyNW1KV1ZMWHhm?=
+ =?utf-8?B?SWFNZSs0RDBIM0VZZmxNQ2dxMmgxem1rMHJUdFI0bzVJd2p6aHp1S1FieGdQ?=
+ =?utf-8?B?dC9ad3U2WHFqQk1ZSEpIVFZZcGwrVDY2OEVObWVlSEM4aHFFS0FjYStqUzRz?=
+ =?utf-8?B?bjNnVnk1dTF1WUo5YXBCZG1yU3NjMkc2YmpYRkkyOSsway9uQlpaNW5DSXJC?=
+ =?utf-8?B?aFlja1pNMXBmb3h2RDlrN1JDeGVDdlZUck5zekNIbk52SUUyOXNIbzRjbG5t?=
+ =?utf-8?B?WWVJQXNncnZONjdBMmg5Nm9hQitTTlFHRlFwY0c0Qy9mcW1WcVdVWmxtRDh4?=
+ =?utf-8?B?Yi9Qa1pxSjlxQTVEQ1JLR0dMOWVjdmxWcFM1MGprNXZWbVFHbERtN2NFdmtj?=
+ =?utf-8?B?SEhNYno0MEFRZmhwUzZzTGllVHRRdnl2M2V3cUJRQnd5Q2NEd0k0RjEwdHor?=
+ =?utf-8?B?ZmJzT3pMVDNMb3ZaRnNUcnE2K2w3eTYzTTU1Y3ZIV3pNK29qbERWZUlwMURh?=
+ =?utf-8?B?OXhIaGR2aTVvbmFHYUVnanBBOEFzMWFrQnNYV3VvZ040c3Y1cWNqREpic0ox?=
+ =?utf-8?B?K0RzVzhjb2M4Ymo4RVEvOTN3ODZmYzRYV2FuZ0tHOHVOZ2FoaGhESk1uMmRZ?=
+ =?utf-8?B?VEtPeHYrbEhzZWFsZmExdTRtVlJ4WUU2MmxRSmRYWWMvNVVHTkRCc0JYS3Fy?=
+ =?utf-8?B?V016cTl6bzExQ1J2R0dGNHI2YnRxcEFFT215Yzd2RkJqak1XMnRaV2paTDlR?=
+ =?utf-8?B?dk5sMlkxOGpmVkVETWJKNWplVXZHdGJzUXFqK1FGT3I4U1RTMUtBN04vTEJi?=
+ =?utf-8?B?ajlISWdNSm1LVXBpL3dFWVdDWmk2RXFXSThFbVJNZEdmTlA3SWN4c01TU0xx?=
+ =?utf-8?B?TGs4ekxHc0RTdS9ZT0dXZ3hoc0FwU2ZJSGdwR1hHbEJZbmVaMFhIaGFmWVNZ?=
+ =?utf-8?B?TitxaVRpa0QzQjhHUzl0UGppU1JJT2xZWXdjaE5QdXZhNVk4SHdFWVhHZTZL?=
+ =?utf-8?B?REpmeHRlbWxCSHBnbUkwaVNXV0cyYlpOU3Y1UFdxVlBUWU1iVDFmTGZzVlZv?=
+ =?utf-8?B?RXBvQWVwQmUraDNESVU4VU85VlNyM1FERmpxRGRlRSt6bXZpUlFrb3FKTWlx?=
+ =?utf-8?B?MysxM0FhTThqVnExUXRtODB1ZzdBV2xydEh6YlI1bDN0ZXYxZlFXMUVaR2di?=
+ =?utf-8?B?N3MxQllPSGdla1FUdnVEUXB3YVNKUHdIZGZQMS9NMXRSU3J6SS9SRWMwWml6?=
+ =?utf-8?B?QlRWL09OSFZyOVVuQ3BMYUE3V0dKMlAvRVF2QXZKUkNmZmJiNDNXcFIxYjR1?=
+ =?utf-8?B?WDErTklnUUtIYStrQzhIZ3NteTdRT1pMYlZKYjdMemRIQTJWVHBVbWtpVmZM?=
+ =?utf-8?B?L3FxUDQra3k4ejBoRjdsU044c0JrMWFRS3pxT1VqbFp3MzQ2VEFLN0VaZkFM?=
+ =?utf-8?B?WlRPSCtWUUMxRzI0d1hsaHRRRmxkOTU1QU1UbWo5REpxQUdheU1GY056S1VO?=
+ =?utf-8?B?K0JKeGo2T2U2d21DT2JLV3Vma1FCZVhOMFJmTS9ERS9OVVRrMmUzM1BTM21F?=
+ =?utf-8?Q?ctQrBrZX2p/jGiLvRXPf8kmG+C1hGYZj9xAyu1vCRg=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <0E2B20FD88A56A478AE1A066FCD382E5@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20220917041136.526446-1-sergio.paracuellos@gmail.com> <285f80ef-5f5c-e68d-b514-a3e3341841c5@linaro.org>
-In-Reply-To: <285f80ef-5f5c-e68d-b514-a3e3341841c5@linaro.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Mon, 19 Sep 2022 14:29:25 +0200
-Message-ID: <CAMhs-H92i6vFJWCBrpaQnQzA3-+6_ROb9_+zD4yBMB1FLJoKeQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mips: add CPU bindings for MIPS architecture
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7242cc72-d6ae-48bf-6e4f-08da9a3baf15
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2022 12:37:15.7043
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bnjRgMau7SqkEleS3qt+nIghZ5NU6888AdvM8dzYsCMjz1fvtUXKKB8p3SezfgpqcjdYPlCUmpV+scM6pL0W+w9tTMYsV7uXqvjuL09UOhE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB4PR10MB6309
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        SPF_HELO_PASS,SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 19, 2022 at 1:17 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 17/09/2022 06:11, Sergio Paracuellos wrote:
-> > Add the yaml binding for available CPUs in MIPS architecture.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
->
-> Rebase on some recent Linux kernel tree and use scripts/get_maintainers.pl
-
-Understood.
-
->
->
-> > ---
-> > Changes in v2:
-> >  - Remove 'bindings/mips/brcm/brcm,bmips.txt'
-> >  - Include 'mips-hpt-frequency' in cpus YAML schema for bmips CPUS's
-> >  - Add a BMIPS CPU node sample
-> >
-> >  .../bindings/mips/brcm/brcm,bmips.txt         |   8 --
-> >  .../devicetree/bindings/mips/cpus.yaml        | 100 ++++++++++++++++++
-> >  2 files changed, 100 insertions(+), 8 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
-> >  create mode 100644 Documentation/devicetree/bindings/mips/cpus.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt b/Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
-> > deleted file mode 100644
-> > index 8ef71b4085ca..000000000000
-> > --- a/Documentation/devicetree/bindings/mips/brcm/brcm,bmips.txt
-> > +++ /dev/null
-> > @@ -1,8 +0,0 @@
-> > -* Broadcom MIPS (BMIPS) CPUs
-> > -
-> > -Required properties:
-> > -- compatible: "brcm,bmips3300", "brcm,bmips4350", "brcm,bmips4380",
-> > -  "brcm,bmips5000"
-> > -
-> > -- mips-hpt-frequency: This is common to all CPUs in the system so it lives
-> > -  under the "cpus" node.
-> > diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentation/devicetree/bindings/mips/cpus.yaml
-> > new file mode 100644
-> > index 000000000000..361afde8ce0a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
-> > @@ -0,0 +1,100 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mips/cpus.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MIPS CPUs bindings
-> > +
-> > +maintainers:
-> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
->
-> What about existing maintainers?
-
-Will add Thomas as maintainer, thanks.
-
->
->
->
-> > +
-> > +description: |+
->
-> |+ seems not needed
-
-Will drop.
-
->
->
-> > +  The device tree allows to describe the layout of CPUs in a system through
-> > +  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
-> > +  defining properties for every cpu.
->
-> s/cpu/CPU/
-
-Will change.
-
->
-> > +
-> > +properties:
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  compatible:
->
-> compatible goes first.
-
-Understood.
-
->
-> > +    enum:
-> > +      - brcm,bmips3300
-> > +      - brcm,bmips4350
-> > +      - brcm,bmips4380
-> > +      - brcm,bmips5000
-> > +      - brcm,bmips5200
-> > +      - ingenic,xburst-mxu1.0
-> > +      - ingenic,xburst-fpu1.0-mxu1.1
-> > +      - ingenic,xburst-fpu2.0-mxu2.0
-> > +      - loongson,gs264
-> > +      - mips,mips1004Kc
-> > +      - mips,m14Kc
->
-> Maybe keep alphabetical order?
-
-Ok.
-
->
-> > +      - mips,mips24KEc
-> > +      - mips,mips4KEc
-> > +      - mips,mips74Kc
-> > +      - mips,mips24Kc
-> > +      - mti,mips24KEc
-> > +      - mti,mips14KEc
-> > +      - mti,mips14Kc
-> > +      - mti,interaptiv
-> > +
-> > +if:
->
-> Out it in allOf block
-
-Understood.
-
->
-> > +  properties:
-> > +    compatible:
-> > +      enum:
-> > +        - brcm,bmips3300
-> > +        - brcm,bmips4350
-> > +        - brcm,bmips4380
-> > +        - brcm,bmips5000
-> > +        - brcm,bmips5200
-> > +then:
-> > +  patternProperties:
-> > +    mips-hpt-frequency:
->
-> It's not a pattern. Did you test the bindings?
->
-> > +      $ref: /schemas/types.yaml#/definitions/uint32
->
-> Missing description.
-
-Will add it.
-
->
-> else mips-hpt-frequency: false
->
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: true
->
-> and this is why you did not notice errors...
-
-Current arch/mips/boot/dts folder dts files are a mess for cpu nodes,
-so I set additionalProperties to true and only make required for
-'compatible'. What should be the correct approach?
-
->
-> > +
-> > +examples:
-> > +  - |
-> > +    cpus {
-> > +      #size-cells = <0>;
-> > +      #address-cells = <1>;
-> > +
-> > +      cpu@0 {
-> > +        device_type = "cpu";
-> > +        compatible = "mips,mips1004Kc";
-> > +        reg = <0>;
-> > +      };
-> > +
-> > +      cpu@1 {
-> > +        device_type = "cpu";
-> > +        compatible = "mips,mips1004Kc";
-> > +        reg = <1>;
-> > +      };
-> > +    };
-> > +
-> > +  - |
-> > +    // Example 2 (BMIPS CPU)
-> > +    cpus {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      mips-hpt-frequency = <150000000>;
->
-> Does not match your bindings. Are you sure you tested the patches?
-
-Yes I did:
-
-$ make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/mips/cpus.yaml
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  DTEX    Documentation/devicetree/bindings/mips/cpus.example.dts
-  DTC     Documentation/devicetree/bindings/mips/cpus.example.dtb
-' CHECK   Documentation/devicetree/bindings/mips/cpus.example.dtb
-
-Can you please point me to a sample of how to make required in a
-parent node of cpu@X property 'mips-hpt-frequency' only for some
-compatible strings inside the node? What can this be properly
-expressed using schema??
-I was looking and testing different things for a while without success at all.
-
-Thanks in advance for your time.
-
-Best regards,
-    Sergio Paracuellos
->
-> > +
-> > +      cpu@0 {
-> > +        compatible = "brcm,bmips4350";
-> > +        device_type = "cpu";
-> > +        reg = <0>;
-> > +      };
-> > +
-> > +      cpu@1 {
-> > +        compatible = "brcm,bmips4350";
-> > +        device_type = "cpu";
-> > +        reg = <1>;
-> > +      };
-> > +    };
->
->
-> Best regards,
-> Krzysztof
+SGkgS3J6eXN6dG9mLA0KDQpPbiBNb24sIDIwMjItMDktMTkgYXQgMTE6MzQgKzAyMDAsIEtyenlz
+enRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIDE2LzA5LzIwMjIgMTQ6MDcsIEIuIE5pZWRlcm1h
+eXIgd3JvdGU6DQo+ID4gRnJvbTogQmVuZWRpa3QgTmllZGVybWF5ciA8YmVuZWRpa3QubmllZGVy
+bWF5ckBzaWVtZW5zLmNvbT4NCj4gPiANCj4gPiBOZXdlciBrZXJuZWxzIHJlZnVzZSB0byBwcm9i
+ZSB3aGVuIHVzaW5nIHRoZSBzYW1lIHdhaXQgcGluIGZvcg0KPiA+IGRpZmZlcmVudCBjaGlwc2Vs
+ZWN0IHJlZ2lvbnMuDQo+ID4gQnV0IHRoaXMgbWF5IGJlIGEgdXNlY2FzZSB3aGVuIGNvbm5lY3Rp
+bmcgZm9yIGV4YW1wbGUgRlBHQSBvciBBU0lDDQo+ID4gbW9kdWxlcyB0byB0aGUgZ3BtYywgd2hp
+Y2ggb25seSBnb3Qgb25lIHdhaXQgcGluIGluc3RhbGxlZC4NCj4gPiANCj4gPiBUaGUgd2FpdC1w
+aW4gYWxsb2NhdGlvbiBpcyBub3cgdHJhY2tlZCBieSB0aGUgZ3BtYyBkcml2ZXIgaW4gb3JkZXIN
+Cj4gPiB0byBiZSBzdXJlIHRoYXQgdGhlIHdhaXQgcGluIGhhcyBiZWVuIGluZGVlZCByZXF1ZXN0
+ZWQgYnkgZ3BtYy4NCj4gPiBUaGVyZWZvcmUgdGhlICJ3YWl0X3Bpbl9hbGxvY19tYXNrIiBoYXMg
+YmVlbiBpbnRyb2R1Y2VkLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEJlbmVkaWt0IE5pZWRl
+cm1heXIgPGJlbmVkaWt0Lm5pZWRlcm1heXJAc2llbWVucy5jb20+DQo+ID4gLS0tDQo+ID4gIGRy
+aXZlcnMvbWVtb3J5L29tYXAtZ3BtYy5jIHwgMTIgKysrKysrKysrKy0tDQo+ID4gIDEgZmlsZSBj
+aGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL21lbW9yeS9vbWFwLWdwbWMuYyBiL2RyaXZlcnMvbWVtb3J5L29tYXAt
+Z3BtYy5jDQo+ID4gaW5kZXggZDliZjFjMmFjMzE5Li5lYTQ5NWU5Mzc2NmIgMTAwNjQ0DQo+ID4g
+LS0tIGEvZHJpdmVycy9tZW1vcnkvb21hcC1ncG1jLmMNCj4gPiArKysgYi9kcml2ZXJzL21lbW9y
+eS9vbWFwLWdwbWMuYw0KPiA+IEBAIC0yMzIsNiArMjMyLDcgQEAgc3RydWN0IGdwbWNfZGV2aWNl
+IHsNCj4gPiAgCWludCBpcnE7DQo+ID4gIAlzdHJ1Y3QgaXJxX2NoaXAgaXJxX2NoaXA7DQo+ID4g
+IAlzdHJ1Y3QgZ3Bpb19jaGlwIGdwaW9fY2hpcDsNCj4gPiArCXVuc2lnbmVkIGxvbmcgd2FpdF9w
+aW5fYWxsb2NfbWFzazsNCj4gPiAgCWludCBuaXJxczsNCj4gPiAgCXN0cnVjdCByZXNvdXJjZSAq
+ZGF0YTsNCj4gPiAgfTsNCj4gPiBAQCAtMjIyMSw5ICsyMjIyLDE2IEBAIHN0YXRpYyBpbnQgZ3Bt
+Y19wcm9iZV9nZW5lcmljX2NoaWxkKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYsDQo+ID4g
+IAkJCQkJCQkgR1BJT19BQ1RJVkVfSElHSCwNCj4gPiAgCQkJCQkJCSBHUElPRF9JTik7DQo+ID4g
+IAkJaWYgKElTX0VSUih3YWl0cGluX2Rlc2MpKSB7DQo+ID4gLQkJCWRldl9lcnIoJnBkZXYtPmRl
+diwgImludmFsaWQgd2FpdC1waW46ICVkXG4iLCB3YWl0X3Bpbik7DQo+ID4gIAkJCXJldCA9IFBU
+Ul9FUlIod2FpdHBpbl9kZXNjKTsNCj4gPiAtCQkJZ290byBlcnI7DQo+ID4gKwkJCWlmIChyZXQg
+PT0gLUVCVVNZICYmDQo+ID4gKwkJCSAgICB0ZXN0X2JpdCh3YWl0X3BpbiwgJmdwbWMtPndhaXRf
+cGluX2FsbG9jX21hc2spKSB7DQo+ID4gKwkJCQlkZXZfaW5mbygmcGRldi0+ZGV2LCAic2hhcmVk
+IHdhaXQtcGluOiAlZFxuIiwgd2FpdF9waW4pOw0KPiA+ICsJCQl9IGVsc2Ugew0KPiA+ICsJCQkJ
+ZGV2X2VycigmcGRldi0+ZGV2LCAiaW52YWxpZCB3YWl0LXBpbjogJWRcbiIsIHdhaXRfcGluKTsN
+Cj4gPiArCQkJCWdvdG8gZXJyOw0KPiA+ICsJCQl9DQo+ID4gKwkJfSBlbHNlIHsNCj4gPiArCQkJ
+c2V0X2JpdCh3YWl0X3BpbiwgJmdwbWMtPndhaXRfcGluX2FsbG9jX21hc2spOw0KPiA+ICAJCX0N
+Cj4gDQo+IEFuZCBob3cgZG8geW91IGhhbmRsZSBzaGFyZWQgcGluIHdoZW4gdGhlIG9yaWdpbmFs
+IG93bmVyIHVuYmluZHM/DQpTbyBmaXJzdCBvZiBhbGwgdGhpcyBjb2RlIG9ubHkga2VlcHMgdHJh
+Y2sgb2YgdGhlIHdhaXRfcGluIGFsbG9jYXRpb24gZnJvbSB3aXRoaW4gdGhlIGdwbWMuIElmIGFu
+eSBvdGhlciBkcml2ZXIvY29kZQ0KYWxsb2NhdGVkIHRoaXMgcGluIHRoYW4gdGhlIGV2YWx1YXRp
+b24gZ3Bpb2NoaXBfcmVxdWVzdF9vd25fZGVzYygpIHdvdWxkIGZhaWwgc2luY2UgdGhlIHBpbiBo
+YXNuJ3QgYmVlbiByZXF1ZXN0ZWQgYnkgdGhlIGdwbWMgaXRzZWxmLg0KVGhlIHRlc3RiaXQoKSBv
+bmx5IGNoZWNrcyBpZiB0aGlzIHBpbiBoYXMgYmVlbiBhbGxvY2F0ZWQgYnkgdGhlIGdwbWMgaXRz
+ZWxmLiBJZiB5ZXMsIHRoZW4gdGhlIHdhaXRwaW4gY2FuIGJlIHRyZWF0ZWQgYXMgc2hhcmVkIHdh
+aXQgcGluLiBJZiBubywNCnRoZW4gYW5vdGhlciBkcml2ZXIgYWxsb2NhdGVkIHRoZSBwaW4gYmVm
+b3JlIGFuZCB3ZSByZXR1cm4gYW4gZXJyb3IuDQoNClRoZSBncG1jIG11c3QgYmUgYWJsZSB0byBy
+ZWxlYXNlIHRoZSB3YWl0X3BpbiBpbiB0aGUgd2FpdF9waW5fYWxsb2NfbWFzaywgdGhhdCdzIHRy
+dWUuIFRoZSBvbmx5IHNlY3Rpb24gd2hlcmUgdGhlIHdhaXRwaW5fZGVzYyBpcyByZWxlYXNlZCAN
+CmNhbiBiZSBmb3VuZCBmdXJ0aGVyIGRvd24gaW4gdGhpcyBmdW5jdGlvbjoNCg0KZXJyX2NzOg0K
+CWdwaW9jaGlwX2ZyZWVfb3duX2Rlc2Mod2FpdHBpbl9kZXNjKTsNCg0KWW91J3JlIHJpZ2h0LiBJ
+IG11c3QgYWRkIHRoZSByZWxhc2UgbG9naWMgaGVyZSBhcyB3ZWxsLg0KDQoNCg0KIA0KPiANCj4g
+DQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNCg==
