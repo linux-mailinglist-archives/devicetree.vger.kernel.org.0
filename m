@@ -2,96 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79F615BCC6F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:03:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9F105BCC76
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:04:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbiISNDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 09:03:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51744 "EHLO
+        id S229735AbiISNED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 09:04:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbiISNDe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:03:34 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A89FD26136;
-        Mon, 19 Sep 2022 06:03:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663592613; x=1695128613;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=G1P3+TIjxdWvSQeptpPpiJ2C7v1Rhk5VtMylTJBmLH4=;
-  b=j137+3JutDu/onX05E9/tSbwYmZeZZtgDI66j96/K/WdsDtVI6Cye8XS
-   bDG1Qbp8f3JmtRqm18k0U9IkBaTPnli2+z3uy6Vo0tJhuDLT5GgCqYIz8
-   FxIKxjj/hWMrFnCLtK5kCcwydsIfOVI9p+m0q/CxhjyHGCX8yJWr8z/u/
-   2Q0edU8vi4lMzBAI5f47U0owYfhD5vKTWm/4+fNI/yJcGQq+MpwLitNBQ
-   dsi/ynBZyUeabD/WnIXKf8P2MFzFZQO6+zY+m9ZRV2OLkxEI+Q/2Ar/3v
-   XRHhdWBxrgmCrVYQvUkUrjbgiKwwYxS34r6/yilY/quXxMrz38dx5mbc4
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="298120477"
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; 
-   d="scan'208";a="298120477"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2022 06:03:33 -0700
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; 
-   d="scan'208";a="863551826"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2022 06:03:29 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id DEE94202D2;
-        Mon, 19 Sep 2022 16:03:27 +0300 (EEST)
-Date:   Mon, 19 Sep 2022 13:03:27 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kishon@ti.com, vkoul@kernel.org, hverkuil@xs4all.nl,
-        jacopo@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v2 4/4] media: tc358746: add Toshiba TC358746 Parallel to
- CSI-2 bridge driver
-Message-ID: <Yyhonw7SEjkAPivN@paasikivi.fi.intel.com>
-References: <20220916134535.128131-1-m.felsch@pengutronix.de>
- <20220916134535.128131-5-m.felsch@pengutronix.de>
- <YyhjB+RbLokmBKPx@paasikivi.fi.intel.com>
- <YyhlQPhezmLG8ZCn@pendragon.ideasonboard.com>
+        with ESMTP id S229636AbiISNEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:04:00 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36B62F3B8;
+        Mon, 19 Sep 2022 06:03:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 68D1FCE1071;
+        Mon, 19 Sep 2022 13:03:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84C01C433C1;
+        Mon, 19 Sep 2022 13:03:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663592627;
+        bh=qWWYH4oPxyt4F2eriRjE9L3xJK1Sgu6Hh4lXFLgL9Qk=;
+        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+        b=mBpLPFFduAlWGGSlQRK3Fc61BwoOQCcM3HCIC7Rcuvp/hhFoCP8JmALrdOJOSxc1e
+         VR4yx619kKwBGfeeLYv7NnjJ8rYYMlUsK0uBUivdPRSmz7zxIr+ClBJUOiCwPSxGcq
+         7JueOKyXSzPgziiyfCM7sQsBfx6xyul109Uk6A+UXx2UtY7z0ha5rLV0a83KLa5MSk
+         QmFi2DroHZYwMm6JUQdkQuXJGzrudZfXAvk0O29rKD0jH6Y2+yRtbjaY02U+UBG9C/
+         3WXi6o+mEn2xZI4HS8Sl2G0NYblnXP1p3o46n4om3u7cMldnNQlMqzWG2iS4AgNnX4
+         z5sMUXiJJPzuw==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YyhlQPhezmLG8ZCn@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v3 1/2] dt: bindings: net: add bindings to add WoW support
+ on
+ WCN6750
+From:   Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220902112520.24804-2-quic_mpubbise@quicinc.com>
+References: <20220902112520.24804-2-quic_mpubbise@quicinc.com>
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc:     <ath11k@lists.infradead.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <166359262191.25311.8343606005325253163.kvalo@kernel.org>
+Date:   Mon, 19 Sep 2022 13:03:45 +0000 (UTC)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 19, 2022 at 03:49:04PM +0300, Laurent Pinchart wrote:
-> On Mon, Sep 19, 2022 at 12:39:35PM +0000, Sakari Ailus wrote:
-> > > +	dev_set_drvdata(dev, tc358746);
-> > > +	pm_runtime_set_autosuspend_delay(dev, 200);
-> > > +	pm_runtime_use_autosuspend(dev);
-> > > +	pm_runtime_enable(dev);
-> > > +
-> > > +	err = tc358746_init_hw(tc358746);
-> > 
-> > The driver depends on runtime PM being enabled but does not depend on
-> > CONFIG_PM. I'd suggest to power the device on and only then enable runtime
-> > PM. See
-> > <URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera-sensor.html#power-management>.
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
+
+> Add required bindings to support WoW (Wake on Wireless) on
+> WCN6750 which is based on ath11k driver.
 > 
-> Or simply depend on CONFIG_PM :-)
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-The user can still disable runtime PM.
+2 patches applied to ath-next branch of ath.git, thanks.
 
-I guess few do though. This should be addressed separately from this
-driver, it'd be good to be able to deny that. In fact, no-one has ever
-probably tested this for a large number of drivers and I guess it exists
-just to have a way to disable runtime PM support in drivers that do not
-work with it...
+957f60273af8 dt: bindings: net: add bindings to add WoW support on WCN6750
+69ccee619a38 wifi: ath11k: Add WoW support for WCN6750
 
 -- 
-Sakari Ailus
+https://patchwork.kernel.org/project/linux-wireless/patch/20220902112520.24804-2-quic_mpubbise@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
