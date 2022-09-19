@@ -2,289 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACADC5BD73E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 00:25:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30EFC5BD753
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 00:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229912AbiISWZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 18:25:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45990 "EHLO
+        id S229831AbiISWav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 18:30:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229918AbiISWZN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 18:25:13 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9728513E97;
-        Mon, 19 Sep 2022 15:25:11 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id e18so1265163edj.3;
-        Mon, 19 Sep 2022 15:25:11 -0700 (PDT)
+        with ESMTP id S229917AbiISWas (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 18:30:48 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 633094F68C
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 15:30:44 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id l8so546935wmi.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 15:30:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date;
-        bh=krzfWY+U+C68iDb788Ps/isqFlp7Jns624VMj/Zic0w=;
-        b=fO8nIdegJnYZSRDU3a+VlcKRlEqWcPuKtYKcsYbLbVVbbLpAAJj12c0L6u2WrWWn4m
-         e4RgFEpnzIhLolF1MB10MsulZCjHG52OJM40NUQ6rS15bsMgPcPymwCvRvdf0U2FWGGE
-         iWnrFt4cOhDi4Xy0cRsNeFDhg96YxBmgbHQTTMr2MxspWaVf/IvLvJW1H6D6nvY4S7b9
-         zVtn3JMob54SIJ5CW5FA7qLuJK54S8vSfGizvauuJ7/iiF7AqDVB0xTknKcUK5Ja9D6d
-         CJvWv5I4VX+L3X16kgy+B7+R0a9Jz/WwBeM3PVJBFBlNQu+lNuEfw42BTpzFB+LVP5kx
-         ni0Q==
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=H64L7pxloe6ABjQPB6dOZxxjzAKfBLX2WzxDmXIAW9k=;
+        b=h6hdPIuuXe/NvoMHtntpj69O9G+CzBzEIubkbH2eD3iogfL2/4jClFnCSNBob1GlbG
+         1BLs4fDDqrW6KF18dFxr15CuEee6qnNOoO8z6rvHWf5e+1W2nHhYvZ/ka8AI+GfSK9hC
+         QLmfZtPIogBXCS7MLwijj2Qq5LU9CmllsqYXIliveBUKwMisqFS83sCEm6yjvk2vZnI2
+         d+BH9ApZUt04jn/7AVMFz38gfRupRSDRDuXuqxvX5HYFkSy/p/i5Zqqe6E6LpJeuxAA8
+         HCHK5ae9CptsbVx/vTnWBPL1bQoxPDnSk6bjkXGYMrsHyOYRRLDgpaFw8kKhVPAOhUC3
+         YR/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date;
-        bh=krzfWY+U+C68iDb788Ps/isqFlp7Jns624VMj/Zic0w=;
-        b=3JUbV3zlcwRenvPM5TcS2Ug3MZc8wgwIXNdRMMIaWjwvxm/5baSJ+CcQnqatYfF+Je
-         D1uWI8ERB+KY1FBLrAerqD2gKOW52bcnprbyiZhYzadHniiOeuGMvxCAwTQf0QBJScfJ
-         yPzg5WBsgIg/K4dwvtb0D+A+d6fYC7Hw7/CRRCoQ1EFWbaZ1S0nn8LSEkmGHUlpLgkF7
-         u6YRE+03yY9B4SPK1Vi7eO9ActOk0kcQjHtkzAIH+4U6y8+4Uc3R2HsrcqPSXeSlYPYH
-         lS0hEvSDkA3FIFzxQJEaHMBg3Jr75VCQuo/9XzshhKs+AiuZurXIy2vxdnFhS5TkQSzR
-         b+Sw==
-X-Gm-Message-State: ACrzQf2fqvD0vJnMAvOykvXZJwYLAaqPfRynb+CpISEZ53iWwAWJBmTn
-        L2voTd98RIOIWUUervtGCR/yYhl38xE=
-X-Google-Smtp-Source: AMsMyM7aMIM27Gmv/KDNMjmjSw8seFcCELcWjbwpbxYL4wAjDBR/TRExa/X0MA2mps43ZhhKg1k2QA==
-X-Received: by 2002:aa7:c7d3:0:b0:44f:2776:31b with SMTP id o19-20020aa7c7d3000000b0044f2776031bmr17736474eds.251.1663626309950;
-        Mon, 19 Sep 2022 15:25:09 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id e19-20020a50ec93000000b004528a535b44sm13694319edr.32.2022.09.19.15.25.08
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=H64L7pxloe6ABjQPB6dOZxxjzAKfBLX2WzxDmXIAW9k=;
+        b=fVG7nCqXED90ZITZblx6oxJFgiiGIiEiLA7Y3fUsu0ESwg9qrqko11bIJ2H8tP4j9p
+         RYtBRv7afB421ChehZN3t0ndej/w8/6ZG32QHggxFUTPYxrJLZCgDHkRpPr1gFKix6tJ
+         HrsFEnUGGchv/++ZrTXSFQg46D8/DtAENiG4Zo05QwS9iyBNY44tHr9uVHgJl8zG/YXZ
+         SG513WJUKvbpztGKJvVv4zZy8rKsmmpt9THUgpX/+zG7QCA/xC4iLf14icilzU6MXpmG
+         xj/3Osi41MLw1SyiFH+uCMewMWPBui0WzCrci9ZEizt4mb3m4lEc0Z/T79ktf9VqP9AH
+         /onw==
+X-Gm-Message-State: ACrzQf2mQMFo137bVObrSKopCSJjBJjZduANo+DwOSMNMt+ZznL0x5kV
+        /63VRCtgfkKdacpOWNyUw7lv4Q==
+X-Google-Smtp-Source: AMsMyM4rhC/gFJIckxCkKzWYA+1S2wvnQLDFWaaAHKzLCWW53xSA/CpQVaBpxQp/saH/1X3R3XoI+g==
+X-Received: by 2002:a05:600c:27d1:b0:3b4:5e9c:23ed with SMTP id l17-20020a05600c27d100b003b45e9c23edmr237361wmb.180.1663626642884;
+        Mon, 19 Sep 2022 15:30:42 -0700 (PDT)
+Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id l16-20020a05600c1d1000b003a601a1c2f7sm16407376wms.19.2022.09.19.15.30.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 15:25:09 -0700 (PDT)
-Message-ID: <20c6a502-2ff5-bdb1-fb4f-0741f3a2c19c@gmail.com>
-Date:   Tue, 20 Sep 2022 00:25:07 +0200
+        Mon, 19 Sep 2022 15:30:42 -0700 (PDT)
+Message-ID: <193bf7d7-ac7c-5bcd-1f2b-f95dc3621f61@sifive.com>
+Date:   Mon, 19 Sep 2022 23:30:41 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-From:   Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v2] dt-bindings: clock: rockchip: change
- SPDX-License-Identifier
-To:     heiko@sntech.de, zhangqing@rock-chips.com,
-        finley.xiao@rock-chips.com, shawn.lin@rock-chips.com,
-        zhengxing@rock-chips.com, jeffy.chen@rock-chips.com,
-        andy.yan@rock-chips.com, mylene.josserand@collabora.com,
-        nfraprado@collabora.com, eric@engestrom.ch
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sboyd@kernel.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [RFC v4 08/10] pwm: dwc: add of/platform support
+Content-Language: en-GB
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+References: <20220816211454.237751-1-ben.dooks@sifive.com>
+ <20220816211454.237751-9-ben.dooks@sifive.com>
+ <20220914164720.bjh6tqw6zb66vsyz@pengutronix.de>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <20220914164720.bjh6tqw6zb66vsyz@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change SPDX-License-Identifier to (GPL-2.0+ OR MIT)
-for Rockchip clock bindings.
+On 14/09/2022 17:47, Uwe Kleine-König wrote:
+> On Tue, Aug 16, 2022 at 10:14:52PM +0100, Ben Dooks wrote:
+>> The dwc pwm controller can be used in non-PCI systems, so allow
+>> either platform or OF based probing.
+>>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>> ---
+>> v4:
+>>   - split the of code out of the core
+>>   - moved the compile test code earlier
+>>   - fixed review comments
+>>    - used NS_PER_SEC
+>>    - use devm_clk_get_enabled
+>> v3:
+>>   - changed compatible name
+>> ---
+>>   drivers/pwm/Kconfig      |  9 +++++
+>>   drivers/pwm/Makefile     |  1 +
+>>   drivers/pwm/pwm-dwc-of.c | 78 ++++++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 88 insertions(+)
+>>   create mode 100644 drivers/pwm/pwm-dwc-of.c
+>>
+>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+>> index a9f1c554db2b..f1735653365f 100644
+>> --- a/drivers/pwm/Kconfig
+>> +++ b/drivers/pwm/Kconfig
+>> @@ -192,6 +192,15 @@ config PWM_DWC_PCI
+>>   	  To compile this driver as a module, choose M here: the module
+>>   	  will be called pwm-dwc-pci.
+>>   
+>> +config PWM_DWC_OF
+>> +	tristate "DesignWare PWM Controller (OF bus)
+>> +	depends on PWM_DWC && OF
+>> +	help
+>> +	  PWM driver for Synopsys DWC PWM Controller on an OF bus.
+>> +
+>> +	  To compile this driver as a module, choose M here: the module
+>> +	  will be called pwm-dwc-of.
+>> +
+>>   config PWM_EP93XX
+>>   	tristate "Cirrus Logic EP93xx PWM support"
+>>   	depends on ARCH_EP93XX || COMPILE_TEST
+>> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+>> index a70d36623129..d1fd1641f077 100644
+>> --- a/drivers/pwm/Makefile
+>> +++ b/drivers/pwm/Makefile
+>> @@ -15,6 +15,7 @@ obj-$(CONFIG_PWM_CLPS711X)	+= pwm-clps711x.o
+>>   obj-$(CONFIG_PWM_CRC)		+= pwm-crc.o
+>>   obj-$(CONFIG_PWM_CROS_EC)	+= pwm-cros-ec.o
+>>   obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
+>> +obj-$(CONFIG_PWM_DWC_OF)	+= pwm-dwc-of.o
+>>   obj-$(CONFIG_PWM_DWC_PCI)	+= pwm-dwc-pci.o
+>>   obj-$(CONFIG_PWM_EP93XX)	+= pwm-ep93xx.o
+>>   obj-$(CONFIG_PWM_FSL_FTM)	+= pwm-fsl-ftm.o
+>> diff --git a/drivers/pwm/pwm-dwc-of.c b/drivers/pwm/pwm-dwc-of.c
+>> new file mode 100644
+>> index 000000000000..d18fac287325
+>> --- /dev/null
+>> +++ b/drivers/pwm/pwm-dwc-of.c
+>> @@ -0,0 +1,78 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * DesignWare PWM Controller driver OF
+>> + *
+>> + * Copyright (C) 2022 SiFive, Inc.
+>> + */
+>> +
+>> +#include <linux/bitops.h>
+>> +#include <linux/export.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/pm_runtime.h>
+>> +#include <linux/pwm.h>
+>> +#include <linux/io.h>
+>> +
+>> +#include "pwm-dwc.h"
+>> +
+>> +static int dwc_pwm_plat_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct dwc_pwm *dwc;
+>> +	int ret;
+>> +
+>> +	dwc = dwc_pwm_alloc(dev);
+>> +	if (!dwc)
+>> +		return -ENOMEM;
+>> +
+>> +	dwc->base = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(dwc->base))
+>> +		return dev_err_probe(dev, PTR_ERR(dwc->base),
+>> +				     "failed to map IO\n");
+> 
+> devm_platform_ioremap_resource() already emits an error message.
 
-Cc: Heiko Stübner <heiko@sntech.de>
-Cc: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: Xing Zheng <zhengxing@rock-chips.com>
-Cc: Jeffy Chen <jeffy.chen@rock-chips.com>
-Cc: Finley Xiao <finley.xiao@rock-chips.com>
-Cc: Andy Yan <andy.yan@rock-chips.com>
-Cc: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Eric Engestrom <eric@engestrom.ch>
-Cc: Mylène Josserand <mylene.josserand@collabora.com>
-Cc: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
+ok, fixed
 
-Request for copyright holder approval.
-Rockchip recently replied on other clock-patches to dual-license the
-binding.
 
-https://lore.kernel.org/all/510d1180-bc8e-7820-c772-ed7f35447087@rock-chips.com/
-From Finley with an  @rock-chips.com address, so this should be ok.
+>> +
+>> +	dwc->clk = devm_clk_get_enabled(dev, "timer");
+>> +	if (IS_ERR(dwc->clk))
+>> +		return dev_err_probe(dev, PTR_ERR(dwc->clk),
+>> +				     "failed to get timer clock\n");
+>> +
+>> +	clk_prepare_enable(dwc->clk);
+> 
+> You don't need clk_prepare_enable() as you used devm_clk_get_enabled().
+> 
+> (Otherwise, when keeping clk_prepare_enable() you need to check the
+> return value.)
 
----
+ok, fixed. I didn't notice that when changing to devm_
 
-Changed V2:
-  Use GPL-2.0+ OR MIT license
-  Add more CC
+> 
+>> +	dwc->clk_ns = NSEC_PER_SEC / clk_get_rate(dwc->clk);
+> 
+> I think I already pointed out this is non-optimal.
+> 
+> Later you use clk_ns in __dwc_pwm_configure_timer():
+> 
+> 	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
+> 
+> So what you really want here is:
+> 
+> 	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle * clk_get_rate(dwc->clk), NSEC_PER_SEC);
+> 
+> With for example clk_get_rate(dwc->clk) = 201171875 and duty_cycle =
+> 4096 you now get clk_ns = 4 (while the exact value is 4.97087..), tmp =
+> 1024, while the exact value is 824.
+> 
+> So the idea is to add a clkrate member to the private driver struct, let
+> it default to 100000000 for the pci case and use the line I suggested
+> above.
 
----
+ok, will consider keeping the rate in hz and modifiying the pci
+version to use 10 * NSEC_PER_SEC for the rate.
 
-git log Documentation/devicetree/bindings/clock/*px30*.txt
+I've been trying to avoid changing the pci case, but I think for
+anything with a clk pointer we should be doing clk_get_rate in the
+calc code
 
-Author: Heiko Stuebner <heiko@sntech.de>
-    arm64: dts: rockchip: document explicit px30 cru dependencies
+> 
+>> +
+>> +	ret = devm_pwmchip_add(dev, &dwc->chip);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return 0;
+> 
+> This is equivalent to
+> 
+> 	return ret;
 
-Author: Elaine Zhang <zhangqing@rock-chips.com>
-    dt-bindings: add bindings for px30 clock controller
+Will sort that out.
 
-===
 
-git log Documentation/devicetree/bindings/clock/*rk3036*.txt
+>> +}
+>> +
+>> +static int dwc_pwm_plat_remove(struct platform_device *pdev)
+>> +{
+>> +	struct dwc_pwm *dwc = platform_get_drvdata(pdev);
+>> +
+>> +	clk_disable_unprepare(dwc->clk);
+>> +	return 0;
+>> +}
+> 
+> When dropping clk_prepare_enable() the .remove callback can go away,
+> too.
 
-Author: Xing Zheng <zhengxing@rock-chips.com>
-    clk: rockchip: rk3036: rename emac ext source clock
+thanks, spotted that one a while ago.
 
-Author: Xing Zheng <zhengxing@rock-chips.com>
-    dt-bindings: add documentation of rk3036 clock controller
-
-===
-
-git log Documentation/devicetree/bindings/clock/*rk3188*.txt
-
-Author: Eric Engestrom <eric@engestrom.ch>
-    Documentation: dt: clock: fix spelling mistakes
-
-Author: Heiko Stübner <heiko@sntech.de>
-    dt-bindings: add documentation for rk3188 clock and reset unit
-
-===
-
-git log Documentation/devicetree/bindings/clock/*rk3228*.txt
-
-Author: Jeffy Chen <jeffy.chen@rock-chips.com>
-    dt-bindings: add documentation of rk3228 clock controller
-
-===
-
-git log Documentation/devicetree/bindings/clock/*rk3288*.txt
-
-Author: Mylène Josserand <mylene.josserand@collabora.com>
-    dt-bindings: clocks: add rk3288w variant compatible
-
-Author: Eric Engestrom <eric@engestrom.ch>
-    Documentation: dt: clock: fix spelling mistakes
-
-Author: Heiko Stübner <heiko@sntech.de>
-    dt-bindings: add documentation for rk3288 cru
-
-===
-
-git log Documentation/devicetree/bindings/clock/*rk3308*.txt
-
-Author: Finley Xiao <finley.xiao@rock-chips.com>
-    dt-bindings: Add bindings for rk3308 clock controller
-
-===
-
-git log Documentation/devicetree/bindings/clock/*rk3368*.txt
-
-Author: Heiko Stuebner <heiko@sntech.de>
-    dt-bindings: add documentation of rk3668 clock controller
-
-===
-
-git log Documentation/devicetree/bindings/clock/*rk3399*.txt
-
-Author: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-    dt-bindings: clk: Convert rockchip,rk3399-cru to DT schema
-
-Author: Xing Zheng <zhengxing@rock-chips.com>
-    dt-bindings: clk: add rockchip,grf property for RK3399
-
-Author: Xing Zheng <zhengxing@rock-chips.com>
-    dt-bindings: add bindings for rk3399 clock controller
-
-===
-
-git log Documentation/devicetree/bindings/clock/*rk11*.txt
-
-Author: Andy Yan <andy.yan@rock-chips.com>
-    dt-bindings: rk1108-cru: rename RK1108 to RV1108
-
-Author: Shawn Lin <shawn.lin@rock-chips.com>
-    dt-bindings: add documentation for rk1108 cru
----
- Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml  | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3036-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3228-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3288-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3308-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3368-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rk3399-cru.yaml          | 2 +-
- .../devicetree/bindings/clock/rockchip,rv1108-cru.yaml          | 2 +-
- 8 files changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
-index 3eec381c7cf5..0f0f64b6f8cb 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,px30-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
-index 1376230fede6..ba5b45464315 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3036-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml
-index cf7dc01d9478..1050fff72ade 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3228-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml
-index 96bc05749e1a..6655e97d52e4 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3288-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.yaml
-index 523ee578a586..fec37f5b80f6 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3308-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.yaml
-index adb67877720d..90af242b41c1 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3368-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
-index 54da1e31ea73..0b758e015ee3 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only
-+# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rk3399-cru.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
-index 20421c22f184..4611d920b8df 100644
---- a/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/rockchip,rv1108-cru.yaml#
--- 
-2.20.1
+>> +
+>> +static const struct of_device_id dwc_pwm_dt_ids[] = {
+>> +	{ .compatible = "snps,dw-apb-timers-pwm2" },
+>> +	{ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, dwc_pwm_dt_ids);
+>> +
+>> +static struct platform_driver dwc_pwm_plat_driver = {
+>> +	.driver = {
+>> +		.name		= "dwc-pwm",
+>> +		.of_match_table  = dwc_pwm_dt_ids,
+>> +	},
+>> +	.probe	= dwc_pwm_plat_probe,
+>> +	.remove	= dwc_pwm_plat_remove,
+>> +};
+>> +
+>> +module_platform_driver(dwc_pwm_plat_driver);
+>> +
+>> +MODULE_ALIAS("platform:dwc-pwm-of");
+>> +MODULE_AUTHOR("Ben Dooks <ben.dooks@sifive.com>");
+>> +MODULE_DESCRIPTION("DesignWare PWM Controller");
+>> +MODULE_LICENSE("GPL");
+> 
+> Best regards
+> Uwe
+> 
 
