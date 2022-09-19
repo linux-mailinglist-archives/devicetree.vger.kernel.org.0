@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 893F85BC5EE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 12:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6DBC5BC5FB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 12:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbiISKBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 06:01:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60108 "EHLO
+        id S229918AbiISKEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 06:04:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229929AbiISKBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 06:01:07 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FCF722BE4
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 03:01:01 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id s6so34851344lfo.7
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 03:01:01 -0700 (PDT)
+        with ESMTP id S230109AbiISKEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 06:04:53 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE1B2DDA
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 03:04:51 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id f14so45122371lfg.5
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 03:04:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=WdUkk7yGHQTnyhcNnJU1k388XLuhNOGvfweCAo6fMwc=;
-        b=vO5LqzsAPrNDUjoRs+Misssc19PKq07vxhSzWwiWX2rQBxBfHnl5cK5doEQlcGwsNo
-         tpuIe+soZwbo9WrOfPLjHBRQLqxBai1/tefMKYyMMoUIm3aPUQ/LDmqq5bK9VNANZd+s
-         5Bv/LNRTDaSVhS6cTrW/YVyyMABkP4IqzfJraJzxUzQgYREEPdhMOLV7VsjaG4xm6flK
-         O1LbBk4DGuFEMFzlqru7LzCIfvfCJw5Sf7IxxUOuA2A1ukhkQNtODC7GK4FJ3Ei0qNG2
-         fewGakFqr1vkSi2B7jIGEenqrICWcDmYozv+G3xm9HyfgjX4dRUu901g0ZFT2BUfQukr
-         TPag==
+        bh=yNE2cp1RD1RoFuEYU5xwyQsBh6VbTtl5xLpOIA56rKU=;
+        b=qL4HPMcfptSWQnmD3iCMUCdb7qVYUg0OJMQvjunISVwVid3qG9+fclUGpBJKtuRDfT
+         7TO7gODJE3ezG0+ABlxs3nWZAfJDaFp/WEdcinjMOA4dK4mE19fWrAFTC8ZSYcFQSqC7
+         z2882o9IRCJ3M62jsAlwbxfCAOdyrZ+Lcrxn7HoY1/ydvoo4jV3/1SF8PRQZdn8OwUZf
+         PG529g6LcMpWf0NG7YSV9GUztHoVPTHwtxnsdNPD4bP3P2TkXg1fLycKtW2hu5O+AQ48
+         KUK6rD9UMJgxPsmx8ZkVK6W2PE5rY+M1+ZS70rrtxv/VT4RS3RK6pQCIgb4vzq44kYsB
+         9jCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=WdUkk7yGHQTnyhcNnJU1k388XLuhNOGvfweCAo6fMwc=;
-        b=yBcKdKWG3kuR/zVAb6gpy2B9lvGD3zfbMCjXDfTqFBGXrCA5F18hfvTiQsHPnSYFfz
-         fwjbjdgugt5wEjmBu5XDl7qsnzdW5ISOkWMUkAwMu4X5HRgQxltCiYp418KPK1WNLKes
-         85CX4d+slWHkevYpO1mKfd7PGqfHbhBZ4ZiVsh4CJhg340lnqjH54+IiG3F/RYUEW3v7
-         6e5ujaMxq89Dxjs2U3rGjPEKUskaBpUbFgH9e5efs2Zj8cGdW6Qc1JvdnjY46ua97AEH
-         GOf6tbJQRuWAfUn1OlmRvC1G+NMdvCIlRYXmGsjuiEvYEdcklT/xGJVayWi2MSOKbsIT
-         lqEQ==
-X-Gm-Message-State: ACrzQf1PJbT0nKFPl7WcWKD+V3VunDrIK3vq85L+kwEbS2O3iq9aFZaE
-        iAsdx49vS0ytmfHD+SBx5kS3/g==
-X-Google-Smtp-Source: AMsMyM6eTy9aLeRLLZfdd4mdrF4tOggHU+zSg3FhAvy4BMGppFAdGafMSo4oN8UwzI1bejZNfSFlOQ==
-X-Received: by 2002:a05:6512:3da9:b0:49f:1742:c692 with SMTP id k41-20020a0565123da900b0049f1742c692mr6498107lfv.313.1663581659821;
-        Mon, 19 Sep 2022 03:00:59 -0700 (PDT)
+        bh=yNE2cp1RD1RoFuEYU5xwyQsBh6VbTtl5xLpOIA56rKU=;
+        b=7Ff6WzpCrGntgq9Tbz7Ytzw4VIGSFbFWX//9sZtNfYH68x2XF//X6cmXlPcLGe/kQe
+         zzcB8/SkF0DPisEnBTqdAguaH/39KXV/U06dHVf8xnoTlitGSef8sKJlka3tZJDZvwrw
+         /RsbgMoOTu5xyTFbd+M8fBR5XBc26TWvilg+yZByjDyZDHjeoC92syqbJicQLsJpj7EG
+         dX56NskP5WRr4+Q3Jc9kEpv/J3bWS9edg5Oy/VBv8SqrSw9o0+185VrjvPVvc3IYwNqZ
+         FO4If88rho8H/t67Tzrp9T4xTUUfl9TxFOvVjIdW6fOL1RKAWX1seSVampY9M8xjuJZa
+         fCZQ==
+X-Gm-Message-State: ACrzQf10bb7hnSPrwSAvlKIjAvXzfDRomyrxTM3NHc9tpA/JhFM6OuhB
+        wMruMMwkIGhbfqGiKOgXTvjxjRFt1LhS5A==
+X-Google-Smtp-Source: AMsMyM64syZOKjIOi9iMOVhXz1gn4ACZcGEmVgxFTnQUH4zzM/GgVRcz3QHUBXYJ4FUtBMIK6Y9Wgg==
+X-Received: by 2002:a05:6512:1320:b0:488:8fcc:e196 with SMTP id x32-20020a056512132000b004888fcce196mr5759696lfu.602.1663581889926;
+        Mon, 19 Sep 2022 03:04:49 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id be19-20020a056512251300b0049f53d53235sm1952699lfb.50.2022.09.19.03.00.58
+        by smtp.gmail.com with ESMTPSA id q14-20020a056512210e00b00492cfecf1c0sm5136819lfr.245.2022.09.19.03.04.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 03:00:59 -0700 (PDT)
-Message-ID: <7a24c242-0fc8-ded1-37c9-ec279996a4c8@linaro.org>
-Date:   Mon, 19 Sep 2022 12:00:58 +0200
+        Mon, 19 Sep 2022 03:04:49 -0700 (PDT)
+Message-ID: <54d22a77-5db7-e44b-176f-755e80e44c25@linaro.org>
+Date:   Mon, 19 Sep 2022 12:04:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] media: dt-bindings: i2c: ovti,ov5640: Drop ref to
- video-interface-devices.yaml
+Subject: Re: [PATCH V3] dt-bindings: clock: add i.MX8M Anatop
 Content-Language: en-US
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220916133521.73183-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <YyZS38Wo7rDsNRm2@pendragon.ideasonboard.com>
- <CA+V-a8vvNHFt818wryyuhWxPtay4czjWXiH=AWEKiJ1AzB46mA@mail.gmail.com>
- <fc1c075d-e20d-9395-d168-8cfe530f77ad@linaro.org>
- <CA+V-a8uMyU89rufmqWiGFqpVjFPvHBeVeSd1Wt07eWZo1X+Bgw@mail.gmail.com>
+To:     Peng Fan <peng.fan@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "abelvesa@kernel.org" <abelvesa@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>
+References: <20220919055904.1659124-1-peng.fan@oss.nxp.com>
+ <20220919065820.fk3ppcdoioubqfbg@krzk-bin>
+ <DU0PR04MB9417BF9DF3BB65B859BBB676884D9@DU0PR04MB9417.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CA+V-a8uMyU89rufmqWiGFqpVjFPvHBeVeSd1Wt07eWZo1X+Bgw@mail.gmail.com>
+In-Reply-To: <DU0PR04MB9417BF9DF3BB65B859BBB676884D9@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,26 +90,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 11:35, Lad, Prabhakar wrote:
->>>> The rotation property listed in this binding uses the definition from
->>>> video-interface-devices.yaml. I don't think just dropping this is the
->>>> right solution. Changing additionaProperties to unevaluatedProperties
->>>> seems a better option.
->>>>
->>> Agreed, I missed rotation was used from video-interface-devices.yaml.
->>> Agreed the changing additionaProperties to unevaluatedProperties seems
->>> a better option.
+On 19/09/2022 11:28, Peng Fan wrote:
+>>> V2:
+>>>  Drop syscon, use clock-controller
+>>>  Add fsl vendor prefix
+>>>  Add interrupt property
+>>>
+>>>  dts update not included, so there will be dtbs_check fail.
+>>>
+>>>  .../bindings/clock/fsl,imx8m-anatop.yaml      | 51 +++++++++++++++++++
+>>>  1 file changed, 51 insertions(+)
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
+>>>
 >>
->> The meaning of unevaluatedProperties:false would be here - accept other
->> properties (not mentioned here explicitly) from referenced schema. If
->> this is your actual intention for this binding, it makes sense. But if
->> the intention in this binding was to disallow these other properties,
->> then it would be wrong to change to unevaluatedProperties.
->>
-> Thank you for the clarification. The intention is to disallow the property.
+>> Running 'make dtbs_check' with the schema in this patch gives the following
+>> warnings. Consider if they are expected or the schema is incorrect. These
+>> may not be new warnings.
+> 
+> As I wrote in cover letter, dts patches are not included. Should I post V4
+> to include dts fix? I planned to do that after this yaml got reviewed.
+> 
 
-Which property? Can you be specific?
-
+Yes, better to include both DT schema and the DTS changes together.
 
 Best regards,
 Krzysztof
