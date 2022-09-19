@@ -2,124 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A90FF5BC3E2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:04:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1FB65BC404
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiISIEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 04:04:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44358 "EHLO
+        id S229886AbiISIIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 04:08:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbiISIEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:04:33 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3867ED50;
-        Mon, 19 Sep 2022 01:04:30 -0700 (PDT)
-X-UUID: 667c0a0a460b4fe1bd0a501d0d35474a-20220919
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=zomgoDcevkyalLuChXLfMkw/317A5gA90XYKcja6oWY=;
-        b=mO9WvJJL66A+ZYiJe1O2xhF3j7FYbohrUqUqvhRiniRoosvLKdaX6RlFgtBjIAeGXqo58Dwu46VTFEAcitzqrLe8ezCFEP08bLaqP0HGlR2FcwT+W6nliVyrImktUS3lFF7VngMhs2C9K1Fqiboj7KKmb5fodR4BGsHATnWUeG0=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:626f2ee3-4e49-4ac5-8672-c64ec725f9af,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:5798dff6-6e85-48d9-afd8-0504bbfe04cb,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 667c0a0a460b4fe1bd0a501d0d35474a-20220919
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <jianguo.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1724415599; Mon, 19 Sep 2022 16:04:22 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 19 Sep 2022 16:04:22 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 19 Sep 2022 16:04:20 +0800
-From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Biao Huang" <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Jianguo Zhang <jianguo.zhang@mediatek.com>
-Subject: [PATCH 2/2] net: dt-bindings: dwmac: add support for mt8188
-Date:   Mon, 19 Sep 2022 16:04:10 +0800
-Message-ID: <20220919080410.11270-3-jianguo.zhang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220919080410.11270-1-jianguo.zhang@mediatek.com>
-References: <20220919080410.11270-1-jianguo.zhang@mediatek.com>
+        with ESMTP id S229911AbiISIIs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:08:48 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60E4AE5C;
+        Mon, 19 Sep 2022 01:08:46 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id lc7so62685922ejb.0;
+        Mon, 19 Sep 2022 01:08:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=ChpUK8RSwNQblLECjo619xEoogvtragMFjPnBad9ZaU=;
+        b=FMzLWCE7rLj2pgkd68HYS/SItV62aOhHh72mwmlPFqrj4eO9IX65qn3Zh4HDfO9k5e
+         PUBwQjlj3VkA+GmSGy6CZGBvcR63+5gTUjfr5jfChj5HkhlBOX8sW6nS1g5YTxypi51J
+         F6q1Mh7uL5yIS+6JYhuLQDED634sMj/+l5jke0fhGXXn8PWpt+lCZdf9v9+gX0mKGGz6
+         +nH8cRN/fbxRO7DTksMtKsLaPPc9cRX+i9r46/Sw+Z6o3QsqcSmIm3lN0yjVWb35uEV3
+         vg0/yGUCpuQl/AYj1Zxa3uiYyz4WOCF7KIZCSY0/1ImtprpiVSkoi9cuUbO5NTiPM/Qt
+         re9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=ChpUK8RSwNQblLECjo619xEoogvtragMFjPnBad9ZaU=;
+        b=IqAVUfAqbu9t1pGZ79+jboXZ/SLufmE3ulSC6y+d8W1BMSEKA6AfW+xoJjRYFpEKj7
+         8JOs92QhJ4sz5KNxJcFT4jXbKKRMf+veKr9zr9tgXD6JUHjw4FvofkWWkpe6n/Anxuvj
+         Zh9eS1gp30CM669cbsR8uNGFcHOzxWWArxAJCOiipzmuRBcpxwf+IwLpFEZNsSg367lO
+         ppRPD7D8sOqa1NEMu9PD6usU35oxrhD1HVknpQw9bGbfe8BdGHvGVSg87EHhpfIEhm+s
+         ZOPvtc3lN7MIEOUdg9AdhibQ4lhPnRDRvoAN+R+ieVspgxTNwVhPP5oDrUsxB3A80rJ1
+         79fw==
+X-Gm-Message-State: ACrzQf3HV0ilzORLgkeDLunaShm//L8qttteR4VrxkNt5pwy9dQaNmCf
+        iJeitg+SAr3ux5f39mlCdpY/fDzxc0574//USYg=
+X-Google-Smtp-Source: AMsMyM5242Sp3awy87MF1zpXSy90hM10NPZ7trT1hjEMEGgJXs96bbayN5mV0CoPsW2kwA51bNRbAoVIo3ZNiig6AhU=
+X-Received: by 2002:a17:907:847:b0:77f:f489:cc25 with SMTP id
+ ww7-20020a170907084700b0077ff489cc25mr11844533ejb.80.1663574925462; Mon, 19
+ Sep 2022 01:08:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
+References: <20220916133521.73183-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <YyZS38Wo7rDsNRm2@pendragon.ideasonboard.com>
+In-Reply-To: <YyZS38Wo7rDsNRm2@pendragon.ideasonboard.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 19 Sep 2022 09:08:18 +0100
+Message-ID: <CA+V-a8vvNHFt818wryyuhWxPtay4czjWXiH=AWEKiJ1AzB46mA@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: i2c: ovti,ov5640: Drop ref to video-interface-devices.yaml
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding document for the ethernet on mt8188
+Hi Laurent,
 
-Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
----
- Documentation/devicetree/bindings/net/mediatek-dwmac.yaml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Thank you for the review.
 
-diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-index 61b2fb9e141b..b7d4f956f92e 100644
---- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-@@ -20,6 +20,7 @@ select:
-         enum:
-           - mediatek,mt2712-gmac
-           - mediatek,mt8195-gmac
-+          - mediatek,mt8188-gmac
-   required:
-     - compatible
- 
-@@ -36,6 +37,7 @@ properties:
-       - items:
-           - enum:
-               - mediatek,mt8195-gmac
-+              - mediatek,mt8188-gmac
-           - const: snps,dwmac-5.10a
- 
-   clocks:
-@@ -74,7 +76,7 @@ properties:
-       or will round down. Range 0~31*170.
-       For MT2712 RMII/MII interface, Allowed value need to be a multiple of 550,
-       or will round down. Range 0~31*550.
--      For MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple of 290,
-+      For MT8195/MT8188 RGMII/RMII/MII interface, Allowed value need to be a multiple of 290,
-       or will round down. Range 0~31*290.
- 
-   mediatek,rx-delay-ps:
-@@ -84,7 +86,7 @@ properties:
-       or will round down. Range 0~31*170.
-       For MT2712 RMII/MII interface, Allowed value need to be a multiple of 550,
-       or will round down. Range 0~31*550.
--      For MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple
-+      For MT8195/MT8188 RGMII/RMII/MII interface, Allowed value need to be a multiple
-       of 290, or will round down. Range 0~31*290.
- 
-   mediatek,rmii-rxc:
--- 
-2.25.1
+On Sun, Sep 18, 2022 at 12:06 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Prabhakar,
+>
+> Thank you for the patch.
+>
+> On Fri, Sep 16, 2022 at 02:35:21PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > video-interface-devices.yaml isn't used so just drop it from the
+> > DT binding doc.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml | 3 ---
+> >  1 file changed, 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> > index 540fd69ac39f..ce99aada75ad 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+> > @@ -9,9 +9,6 @@ title: OmniVision OV5640 Image Sensor Device Tree Bindings
+> >  maintainers:
+> >    - Steve Longerbeam <slongerbeam@gmail.com>
+> >
+> > -allOf:
+> > -  - $ref: /schemas/media/video-interface-devices.yaml#
+> > -
+>
+> The rotation property listed in this binding uses the definition from
+> video-interface-devices.yaml. I don't think just dropping this is the
+> right solution. Changing additionaProperties to unevaluatedProperties
+> seems a better option.
+>
+Agreed, I missed rotation was used from video-interface-devices.yaml.
+Agreed the changing additionaProperties to unevaluatedProperties seems
+a better option.
 
+Cheers,
+Prabhakar
