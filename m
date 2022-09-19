@@ -2,229 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01B025BC336
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 08:58:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDBE15BC342
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 08:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbiISG63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 02:58:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35480 "EHLO
+        id S229810AbiISG66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 02:58:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbiISG61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 02:58:27 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CC71D0CF
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 23:58:24 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id b24so2852186ljk.6
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 23:58:24 -0700 (PDT)
+        with ESMTP id S229915AbiISG6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 02:58:51 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D73C61D32E
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 23:58:48 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id l12so32750999ljg.9
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 23:58:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=g9C/MfJJjbB+wgNXrWuFEljn9V5vmIb3VWjPOKyg+Qk=;
-        b=Z42z23jl9F2ZGgqCmaNN3Vn6ZgHPRQ1r8XP/PXPB+4BoAxNuO7bObcFNA+36cUuc2d
-         uMvE08GYPkrl/ZC38D+BgPQTNfodEb9BfjUr2ksZ2e4B61uxzhaa8WwtPZlkexCDIB4P
-         oid56rg0BIUzktbzASPCex9B0pfwIfTIpc6cV5cjJJ0EG9rym9VO4hJI0OZKLh+jmd74
-         lFOt/S2BmQln0Tjj7obSB33poreZ4BcTo2C5qSPbFPXFalGgRkQ0dihGgUYaCDHQj9it
-         EBOp7PMci3ccDNrvnOAzXhi3wNcf2ZTj89yCVtbil8VJui0+XHJQwFHUQQTFA432F0Aw
-         WcXA==
+        bh=UXvzNY9WWFT1v7vAfbxWfr9qr5ssnDrbFnxCDWveRyQ=;
+        b=UU45yYL68ivM+qw9w8N9YhmGzkm5v0qu7kGADmPxdb0xhywN1VMrAmsNwRjx2dadO1
+         O0tQTmdaMTLgsA+vVW+s3XqHJqCyrycEXh7AKfk5UrT1RVmo58KxQ//AzXzjtkWvc34y
+         th6BMBWBviuo6syks5HwfZcdk2ZQApkv5z0yFzYHANX2sW5kxTX20mq4aEXPz3ccwsrW
+         QSnqNL2tilihrik7qk7yntR+ZI0eJYfesH40IDRcg0fmz1nNdnYiiuq6UHRDCxQZQ8jp
+         mHDW5VQotpo0YGRsiVnp6ApaNVPUx2XIYwLGOKKnNUQK+4PzQa3pwASICQJJ8ZXrgrdj
+         rsOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=g9C/MfJJjbB+wgNXrWuFEljn9V5vmIb3VWjPOKyg+Qk=;
-        b=3DCWdqiYP1NVNr5chD5toQahuc/T/N1+WCOwMi56V7tsuUNPX5LJloxcbDU6kf7wDq
-         1HIXX6ret7AbMEHi2O4XtfolytM129Ovr1SpNYifcnQctjklEO+fwKH5iOnpZ7uZ9arU
-         OZ9ovCB+pK4tynlEX4ZDCgIYvj1lZMz3lq5F+OVtvqd77UL4WkohTH85JxvQCiMoge41
-         wlUgqWo1XohmmZ74plho0Rodee/3QqObXGKYK65BXksifInA+r/Mfcp86VOhgAu9OsbF
-         OAb4iPpw2XWIwjHXqtYDm1MvvvrjlOes/UU3ZmFdTUKsDfdZZaMrRFAA7dM3CIaRrfOs
-         nwUQ==
-X-Gm-Message-State: ACrzQf0otWzXb0DGXgfe4whkfOxpvpaTi2IGKhISHKp43nqD0i17qJzc
-        ViabQ1XvJJp2bbfHg+fBXelKpQ==
-X-Google-Smtp-Source: AMsMyM5uT+h9wE808Mt6XOAxUiRCj800HStbb7MsveGE9HAmuED6l+yUP18GZgu19hnYM7bPSiTznA==
-X-Received: by 2002:a2e:bf23:0:b0:26c:83e:b4d3 with SMTP id c35-20020a2ebf23000000b0026c083eb4d3mr4789082ljr.282.1663570702649;
-        Sun, 18 Sep 2022 23:58:22 -0700 (PDT)
+        bh=UXvzNY9WWFT1v7vAfbxWfr9qr5ssnDrbFnxCDWveRyQ=;
+        b=chUWV0asRB++FbqnizxxWVjzD8gg1SqYKYshAO2b1K9dFZ2mTHttzm1Taxl5olFdVF
+         p0eAvOwptXUC21y9a0+SoYiePSYFimNvsjMXbje5ts3vAM+ydvhdYH9no6IQai76UaNH
+         hIRzHktSYHURqQN7J9v28aJfsOokTRs6Pknk4kHwigbqcvUGNdHNi58qXaCDGCOMz5Cy
+         a5tmOT79UthPTHzY62qrKOfXsksZTZZqO8CzV0q2rC7YutUR7n13ZLtBmJxD2hxWCcp8
+         3/cn4aQcu1wPBd2eVas3kL+I6xj8C042kR2hp7DrtXrIn7pjYkz3rLxHIAgeONNWHWcK
+         At9g==
+X-Gm-Message-State: ACrzQf282j1WDkOBFgHB2dzu2oM86+FaKem+mPTvmMHa6FFSqY3f87EC
+        RE/OJuR/B6vz3uf0kjip919cwQ==
+X-Google-Smtp-Source: AMsMyM7Qh/83u/LK4ogM1Bxeq4ntIDeo+3CCpkxbVjK1fcSeFAztCrA2iCJdT7aw1zzUsTxpnNlq1Q==
+X-Received: by 2002:a2e:bc11:0:b0:26c:565:12f6 with SMTP id b17-20020a2ebc11000000b0026c056512f6mr4528557ljf.91.1663570726912;
+        Sun, 18 Sep 2022 23:58:46 -0700 (PDT)
 Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac25f48000000b004945c1c5cccsm5067936lfz.268.2022.09.18.23.58.21
+        by smtp.gmail.com with ESMTPSA id f36-20020a0565123b2400b0049f530939aasm1904249lfv.126.2022.09.18.23.58.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Sep 2022 23:58:21 -0700 (PDT)
-Date:   Mon, 19 Sep 2022 08:58:20 +0200
+        Sun, 18 Sep 2022 23:58:46 -0700 (PDT)
+Date:   Mon, 19 Sep 2022 08:58:44 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     linux-imx@nxp.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        devicetree@vger.kernel.org, abelvesa@kernel.org,
-        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
-        linux-clk@vger.kernel.org, abel.vesa@linaro.org, sboyd@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kernel@pengutronix.de,
-        s.hauer@pengutronix.de, festevam@gmail.com
-Subject: Re: [PATCH V3] dt-bindings: clock: add i.MX8M Anatop
-Message-ID: <20220919065820.fk3ppcdoioubqfbg@krzk-bin>
-References: <20220919055904.1659124-1-peng.fan@oss.nxp.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Amit Kucheria <amitk@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-pm@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        devicetree@vger.kernel.org,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] dt-bindings: thermal: Convert ls2k to json-schema
+Message-ID: <20220919065844.su3hpqbwzdqmzzw5@krzk-bin>
+References: <20220919034915.26912-1-zhuyinbo@loongson.cn>
+ <20220919034915.26912-2-zhuyinbo@loongson.cn>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220919055904.1659124-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20220919034915.26912-2-zhuyinbo@loongson.cn>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Sep 2022 13:59:04 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Mon, 19 Sep 2022 11:49:14 +0800, Yinbo Zhu wrote:
+> Convert the ls2k thermal binding to DT schema format using json-schema
 > 
-> i.MX8M Family features an anatop module the produces PLL to clock
-> control module(CCM) root clock. Add the missing yaml file.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 > ---
-> 
-> V3:
->  Add #clock-cells property
-> 
-> V2:
->  Drop syscon, use clock-controller
->  Add fsl vendor prefix
->  Add interrupt property
-> 
->  dts update not included, so there will be dtbs_check fail.
-> 
->  .../bindings/clock/fsl,imx8m-anatop.yaml      | 51 +++++++++++++++++++
+>  .../bindings/thermal/ls2k-thermal.yaml        | 51 +++++++++++++++++++
 >  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
+>  create mode 100644 Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml: properties:interrupt-parent: False schema does not allow {'maxItems': 1}
+	from schema $id: http://devicetree.org/meta-schemas/interrupts.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/ls2k-thermal.yaml: ignoring, error in schema: properties: interrupt-parent
+Documentation/devicetree/bindings/thermal/ls2k-thermal.example.dtb:0:0: /example-0/tsensor@1fe01500: failed to match any schema with compatible: ['loongson,2k-tsensor']
 
+doc reference errors (make refcheckdocs):
 
-anatop@30360000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-beacon-kit.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-ddr3l-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
+See https://patchwork.ozlabs.org/patch/
 
-anatop@30360000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-ddr4-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-nitrogen-r2.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx-0x.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-venice-gw7903.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-beacon-kit.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-ddr3l-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dtb
-	arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-syscon@30360000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-phanbell.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-syscon@30360000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/freescale/imx8mq-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-hummingboard-pulse.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-phanbell.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb
-	arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
