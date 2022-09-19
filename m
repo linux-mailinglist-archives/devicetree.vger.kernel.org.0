@@ -2,224 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC95D5BCCBC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31CF55BCCC4
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:18:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbiISNRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 09:17:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40878 "EHLO
+        id S230161AbiISNSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 09:18:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbiISNRC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:17:02 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8424322296;
-        Mon, 19 Sep 2022 06:17:00 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8C31C9BA;
-        Mon, 19 Sep 2022 15:16:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1663593418;
-        bh=71F5KpgKduHF4LiWxCxD2paonkF4Ns+cMuHk7M7pdVU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AgfeBRhHiNP0CXcuzerKIcvFEOvNaiDSVPpnziwJb1mqSYrxqx7HHdviMdXFY4oqn
-         kXWtItrJ6JjCYGoTGQWWm2vu8WrVqLl77eF45qenwK8WRye8rpRVRl/CQVgLq8XRzV
-         /iP3lDgofg1yKTyPQZsxRGPSLpajpKlyRPjKuNTc=
-Date:   Mon, 19 Sep 2022 16:16:45 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Mikhail Rudenko <mike.rudenko@gmail.com>
-Cc:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Christian Hemp <c.hemp@phytec.de>,
-        Arec Kao <arec.kao@intel.com>, Arnd Bergmann <arnd@arndb.de>,
-        Daniel Scally <djrscally@gmail.com>,
-        Jimmy Su <jimmy.su@intel.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: document OV4689
- DT bindings
-Message-ID: <Yyhrva5VH3ERgI8L@pendragon.ideasonboard.com>
-References: <20220911200147.375198-1-mike.rudenko@gmail.com>
- <20220911200147.375198-2-mike.rudenko@gmail.com>
- <20220913140553.GA2735@tom-ThinkPad-T14s-Gen-2i>
- <87sfkspa6b.fsf@gmail.com>
- <20220916131544.GA2701@tom-ThinkPad-T14s-Gen-2i>
- <871qsbph75.fsf@gmail.com>
+        with ESMTP id S230041AbiISNSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:18:15 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A4424082;
+        Mon, 19 Sep 2022 06:18:14 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id fs14so27807798pjb.5;
+        Mon, 19 Sep 2022 06:18:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
+        bh=G5PIQAim5D/NGZ1Hfe4AxnReb1kPVNN7aiFtqcVOFts=;
+        b=JI//1M4tK3EtoIgkARNb77ijPKU7BETT+Z+Zf4xaqK0aOzOyL8QGMgez4cc4s5EzNG
+         AmPR3yZV0ER71nH5d6HmxCKOVgBAuCBKWPVBq0tPWpZ0ANlSN44aw/5poVCsmD1oYv72
+         DZfpHaZ4xNldTsyft7LDxfBY2kjoYkdOs44NAxdeV/Ngj99UP0nqscfq89Wzxl6OBX/g
+         a68YGfbQHjkp7Z7JeOO6zhKsq97RUu4NAAF6kYVcSdoxYEFsfXDNURTb+bXNqmTq0Cvi
+         cY+9D+VztKeKhgIH9k9DpC3wY6XxRX/Lb1g7ni30C0z693vQ29avszhB76rKbrZEpo/x
+         osXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=G5PIQAim5D/NGZ1Hfe4AxnReb1kPVNN7aiFtqcVOFts=;
+        b=redEdwUcOb2LOP1RUEgixayguE8L9oDJdUs6HcDgIgqYbOpHa0agCZScr1/6gdAfpM
+         BsYl/peENUen04NGhEIyN0fkyHYb4icFikQ51pj3CrSoKg+R3Z4QtrLrS17LJn1hDPY/
+         aFAbRaeDDFA/tncOve5DKEWs4O9wtPWFVYp4zypb48L7kFCnXfjFr5dBh169xkwceTDj
+         HDninFwqcSpnfcykpYCh/v1K+e1s10abTf6VLVB7z03Rr3LR41vc1ZAqHYVkdE2kOIjM
+         blG8VXKGnQ4kUMlldAQLYHZN3SUg0MNc5E6d3kbkLWwtrz4VA2CeJuD1Yqz7Ato62uYC
+         62Ug==
+X-Gm-Message-State: ACrzQf1cO2CqP++FICfEygTv61RtLUeIJyIoIQg8fcklud2z1NtPd3Mc
+        BqHaQxjRwmdB5ljeu7sU3Ds=
+X-Google-Smtp-Source: AMsMyM5D6K7xXJi89SdzXmJep5uZFcYUH297ecSp2h7WYUdyo6NNgw6/J7zE4aF+owPSDnYnKkInIg==
+X-Received: by 2002:a17:90b:350a:b0:200:a7b4:64f7 with SMTP id ls10-20020a17090b350a00b00200a7b464f7mr31347346pjb.113.1663593494354;
+        Mon, 19 Sep 2022 06:18:14 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x15-20020a170902a38f00b001785dddc703sm11554321pla.120.2022.09.19.06.18.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 06:18:13 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 19 Sep 2022 06:18:12 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Eliav Farber <farbere@amazon.com>
+Cc:     jdelvare@suse.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
+        rtanwar@maxlinear.com, andriy.shevchenko@intel.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com
+Subject: Re: [PATCH v5 16/21] dt-bindings: hwmon: (mr75203) add
+ "moortec,ts-series" property
+Message-ID: <20220919131812.GA3547013@roeck-us.net>
+References: <20220908152449.35457-1-farbere@amazon.com>
+ <20220908152449.35457-17-farbere@amazon.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <871qsbph75.fsf@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220908152449.35457-17-farbere@amazon.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CC'ing Liam and Mark.
-
-On Fri, Sep 16, 2022 at 04:42:25PM +0300, Mikhail Rudenko wrote:
-> On 2022-09-16 at 15:15 +02, Tommaso Merciai <tommaso.merciai@amarulasolutions.com> wrote:
-> > On Thu, Sep 15, 2022 at 11:11:57PM +0300, Mikhail Rudenko wrote:
-> >> On 2022-09-13 at 16:05 +02, Tommaso Merciai <tommaso.merciai@amarulasolutions.com> wrote:
-> >> > On Sun, Sep 11, 2022 at 11:01:34PM +0300, Mikhail Rudenko wrote:
-> >> >> Add device-tree binding documentation for OV4689 image sensor driver,
-> >> >> and the relevant MAINTAINERS entries.
-> >> >>
-> >> >> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
-> >> >> ---
-> >> >>  .../bindings/media/i2c/ovti,ov4689.yaml       | 141 ++++++++++++++++++
-> >> >>  MAINTAINERS                                   |   7 +
-> >> >>  2 files changed, 148 insertions(+)
-> >> >>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
-> >> >>
-> >> >> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
-> >> >> new file mode 100644
-> >> >> index 000000000000..376330b5572a
-> >> >> --- /dev/null
-> >> >> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
-> >> >> @@ -0,0 +1,141 @@
-> >> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >> >> +%YAML 1.2
-> >> >> +---
-> >> >> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov4689.yaml#
-> >> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> >> +
-> >> >> +title: Omnivision OV4689 CMOS
-> >> >> +
-> >> >> +maintainers:
-> >> >> +  - Mikhail Rudenko <mike.rudenko@gmail.com>
-> >> >> +
-> >> >> +description: |
-> >> >> +  The Omnivision OV4689 is a high performance, 1/3-inch, 4 megapixel
-> >> >> +  image sensor. Ihis chip supports high frame rate speeds up to 90 fps
-> >> >> +  at 2688x1520 resolution. It is programmable through an I2C
-> >> >> +  interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
-> >> >> +  connection.
-> >> >> +
-> >> >> +allOf:
-> >> >> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> >> >> +
-> >> >> +properties:
-> >> >> +  compatible:
-> >> >> +    const: ovti,ov4689
-> >> >> +
-> >> >> +  reg:
-> >> >> +    maxItems: 1
-> >> >> +
-> >> >> +  clocks:
-> >> >> +    description:
-> >> >> +      External clock (XVCLK) for the sensor, 6-64 MHz
-> >> >> +    maxItems: 1
-> >> >> +
-> >> >> +  clock-names: true
-> >> >> +
-> >> >> +  dovdd-supply:
-> >> >> +    description:
-> >> >> +      Digital I/O voltage supply, 1.7-3.0 V
-> >> >> +
-> >> >> +  avdd-supply:
-> >> >> +    description:
-> >> >> +      Analog voltage supply, 2.6-3.0 V
-> >> >> +
-> >> >> +  dvdd-supply:
-> >> >> +    description:
-> >> >> +      Digital core voltage supply, 1.1-1.3 V
-> >> >> +
-> >> >> +  powerdown-gpios:
-> >> >> +    maxItems: 1
-> >> >> +    description:
-> >> >> +      GPIO connected to the powerdown pin (active low)
-> >> >> +
-> >> >> +  reset-gpios:
-> >> >> +    maxItems: 1
-> >> >> +    description:
-> >> >> +      GPIO connected to the reset pin (active low)
-> >> >> +
-> >> >> +  orientation: true
-> >> >> +
-> >> >> +  rotation: true
-> >> >> +
-> >> >> +  port:
-> >> >> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> >> >> +    additionalProperties: false
-> >> >> +    description:
-> >> >> +      Output port node, single endpoint describing the CSI-2 transmitter
-> >> >> +
-> >> >> +    properties:
-> >> >> +      endpoint:
-> >> >> +        $ref: /schemas/media/video-interfaces.yaml#
-> >> >> +        unevaluatedProperties: false
-> >> >> +
-> >> >> +        properties:
-> >> >> +          data-lanes:
-> >> >> +            oneOf:
-> >> >> +              - items:
-> >> >> +                  - const: 1
-> >> >> +                  - const: 2
-> >> >> +                  - const: 3
-> >> >> +                  - const: 4
-> >> >> +              - items:
-> >> >> +                  - const: 1
-> >> >> +                  - const: 2
-> >> >> +              - items:
-> >> >> +                  - const: 1
-> >> >> +          link-frequencies: true
-> >> >> +
-> >> >> +        required:
-> >> >> +          - data-lanes
-> >> >> +          - link-frequencies
-> >> >> +
-> >> >> +required:
-> >> >> +  - compatible
-> >> >> +  - reg
-> >> >> +  - clocks
-> >> >> +  - clock-names
-> >> >> +  - dovdd-supply
-> >> >> +  - avdd-supply
-> >> >> +  - dvdd-supply
-> >> >> +  - powerdown-gpios
-> >> >> +  - reset-gpios
-> >> >> +  - port
-> >> >
-> >> > I think we don't need all of these entries as required.
-> >> > The only let me say "really" required are:
-> >> >
-> >> > - compatible
-> >> > - reg
-> >> > - clocks
-> >> > - port
-> >>
-> >> Thanks for the review! I agree that the driver may be modified to work
-> >> without powerdown and reset gpios and they are not required for sensor
-> >> operation. On contrary, supplies are obviously required. Of course, linux
-> >> provides dummy regulators if supplies are missing from device tree, but
-> >> I though the intention was to document hardware, not implementation
-> >> details. What do think of this?
-> >
-> > We have already discuss on this on the following thread sometimes ago :)
-> >
-> > https://www.patchwork.linux-fancy.com/project/linux-fancy/patch/20220630134835.592521-6-tommaso.merciai@amarulasolutions.com/
-> >
-> > Take a look and let me know.
+On Thu, Sep 08, 2022 at 03:24:44PM +0000, Eliav Farber wrote:
+> Add optional "moortec,ts-series" property to define the temperature
+> equation and coefficients that shall be used to convert the digital
+> output to value in milli-Celsius.
+> Supported series: 5 (default) and 6.
 > 
-> Okay, if there already is a consensus regarding this matter, I'll make
-> the regulators optional in v3.
+> Series 5:
+>   T = G + H * (n / cal5 - 0.5) + J * F
+> Where: G = 60, H = 200, cal5 = 4094, J = -0.1, F = frequency clock in MHz
+> 
+> Series 6:
+>    T = G + H * (n / cal5 - 0.5)
+> Where: G = 57.4, H = 249.4, cal5 = 4096
+> 
+> Signed-off-by: Eliav Farber <farbere@amazon.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-I always request the opposite during reviews :-)
+Applied to hwmon-next.
 
-Could we get an authoritative answer from the maintainers of the
-regulator framework on this question, and document it somewhere ?
-
--- 
-Regards,
-
-Laurent Pinchart
+Thanks,
+Guenter
