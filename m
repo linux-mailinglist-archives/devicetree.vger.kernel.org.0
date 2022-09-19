@@ -2,103 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E066F5BCCA1
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC95D5BCCBC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 15:17:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229578AbiISNLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 09:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33162 "EHLO
+        id S229853AbiISNRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 09:17:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbiISNLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:11:37 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B896315FE4;
-        Mon, 19 Sep 2022 06:11:31 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id h188so26701674pgc.12;
-        Mon, 19 Sep 2022 06:11:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
-        bh=oYdAyRVCB8IiQtsMexPF/KZiyEIejrHZQnzChkAD9Xk=;
-        b=fL4889UXtvXQUkR8X8LJNh0I/r8tO2TzBZP86JK7zXbg/xPaTq2vJugwGeQ4x/bzka
-         /qjXCUH2Ry+uZo6xNbkL/PWYJos2jcxJPKz9A8fNtu1eby7H1jTky4m41dpFwkuTyK6i
-         1pQeEiWWX7SnewNCGBUd7iBPjkjaBB82VmDUV6WZCeIJyaLO9r+xADJuLVWgDPltyrP7
-         /O3BYQEVYccCvPeG7HjBnEMxd9Fzu5KH3YtqzQyxRkutSsgy3u0U87RYQiXlvOYl/B8D
-         a+frBgKgtvaj1R6Q2PMMZMks/3a436daSdzx8FSukifrOAaJAfH6padeQKEcRhDOuJhX
-         VTnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=oYdAyRVCB8IiQtsMexPF/KZiyEIejrHZQnzChkAD9Xk=;
-        b=lo1mcDfZbvObywvOg8Nj5Gg30Qn9mw7bN9RnCNmzH0szFd2b49qJ+4Dx9BC6B+orN8
-         KKtxRXP6FCZaARHjpwA1G8dPQl2icdvSWmjnrs+jaSenjhrlY67uXiYWY2xzdxSF/dFa
-         dr9G+zcZgBomcJ6DjGBemQDhoFTHkkkgER+SusGxdxghKaMhiy0QweajTcRLD02C5Mtb
-         2I953saxDr9zwVopKHQzOKyzxaOH1t0SXAwVjvEP1LNpmqiIEBVqZNm0q/wKgX85C9Rz
-         H8bvvanDhMjWdT+pm3OPkYSRDhoGwkZm4CRYBXgQht3OFiwal6mHBGYx5iC8p/hfv+4a
-         9C0g==
-X-Gm-Message-State: ACrzQf06CrFw66EZy1Bw8H1at4+RLGp5MsXK/UXUzsyLImpQRU5MJtD8
-        rQlMkiX5ttKdArk3YC94fMo=
-X-Google-Smtp-Source: AMsMyM4IqfVf1cdtB4Fk70f44o+IkdRtFuz3fCPZjAvkcbMP60kYfg+PoLj+Q16Gw9abKGjMHt+TwQ==
-X-Received: by 2002:a05:6a00:22cf:b0:545:90f3:8b96 with SMTP id f15-20020a056a0022cf00b0054590f38b96mr18678836pfj.58.1663593091289;
-        Mon, 19 Sep 2022 06:11:31 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id i7-20020a17090332c700b00177e263303dsm19688881plr.183.2022.09.19.06.11.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Sep 2022 06:11:30 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 19 Sep 2022 06:11:29 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Eliav Farber <farbere@amazon.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
-        rtanwar@maxlinear.com, andriy.shevchenko@intel.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v5 15/21] hwmon: (mr75203) modify the temperature
- equation according to series 5 datasheet
-Message-ID: <20220919131129.GA3545737@roeck-us.net>
-References: <20220908152449.35457-1-farbere@amazon.com>
- <20220908152449.35457-16-farbere@amazon.com>
+        with ESMTP id S229741AbiISNRC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 09:17:02 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8424322296;
+        Mon, 19 Sep 2022 06:17:00 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8C31C9BA;
+        Mon, 19 Sep 2022 15:16:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1663593418;
+        bh=71F5KpgKduHF4LiWxCxD2paonkF4Ns+cMuHk7M7pdVU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AgfeBRhHiNP0CXcuzerKIcvFEOvNaiDSVPpnziwJb1mqSYrxqx7HHdviMdXFY4oqn
+         kXWtItrJ6JjCYGoTGQWWm2vu8WrVqLl77eF45qenwK8WRye8rpRVRl/CQVgLq8XRzV
+         /iP3lDgofg1yKTyPQZsxRGPSLpajpKlyRPjKuNTc=
+Date:   Mon, 19 Sep 2022 16:16:45 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Mikhail Rudenko <mike.rudenko@gmail.com>
+Cc:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Christian Hemp <c.hemp@phytec.de>,
+        Arec Kao <arec.kao@intel.com>, Arnd Bergmann <arnd@arndb.de>,
+        Daniel Scally <djrscally@gmail.com>,
+        Jimmy Su <jimmy.su@intel.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: document OV4689
+ DT bindings
+Message-ID: <Yyhrva5VH3ERgI8L@pendragon.ideasonboard.com>
+References: <20220911200147.375198-1-mike.rudenko@gmail.com>
+ <20220911200147.375198-2-mike.rudenko@gmail.com>
+ <20220913140553.GA2735@tom-ThinkPad-T14s-Gen-2i>
+ <87sfkspa6b.fsf@gmail.com>
+ <20220916131544.GA2701@tom-ThinkPad-T14s-Gen-2i>
+ <871qsbph75.fsf@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220908152449.35457-16-farbere@amazon.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <871qsbph75.fsf@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 08, 2022 at 03:24:43PM +0000, Eliav Farber wrote:
-> Modify the equation and coefficients used to convert the digital output
-> to temperature according to series 5 of the Moortec Embedded Temperature
-> Sensor (METS) datasheet:
-> T = G + H * (n / cal5 - 0.5) + J * F
-> 
-> Where:
-> *) G = 60, H = 200, cal5 = 4094, J = -0.1.
-> *) F = frequency clock in MHz.
-> *) n is the digital output.
-> 
-> In code, the G, H and J coefficients are multiplied by a factor of 1000
-> to get the temperature in milli-Celsius.
-> Final result is clamped in case it exceeds min/max thresholds.
-> 
-> Change is done since it is unclear where the current equation and
-> coefficients came from.
-> 
-> Signed-off-by: Eliav Farber <farbere@amazon.com>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC'ing Liam and Mark.
 
-Applied to hwmon-next.
+On Fri, Sep 16, 2022 at 04:42:25PM +0300, Mikhail Rudenko wrote:
+> On 2022-09-16 at 15:15 +02, Tommaso Merciai <tommaso.merciai@amarulasolutions.com> wrote:
+> > On Thu, Sep 15, 2022 at 11:11:57PM +0300, Mikhail Rudenko wrote:
+> >> On 2022-09-13 at 16:05 +02, Tommaso Merciai <tommaso.merciai@amarulasolutions.com> wrote:
+> >> > On Sun, Sep 11, 2022 at 11:01:34PM +0300, Mikhail Rudenko wrote:
+> >> >> Add device-tree binding documentation for OV4689 image sensor driver,
+> >> >> and the relevant MAINTAINERS entries.
+> >> >>
+> >> >> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
+> >> >> ---
+> >> >>  .../bindings/media/i2c/ovti,ov4689.yaml       | 141 ++++++++++++++++++
+> >> >>  MAINTAINERS                                   |   7 +
+> >> >>  2 files changed, 148 insertions(+)
+> >> >>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> >> >>
+> >> >> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> >> >> new file mode 100644
+> >> >> index 000000000000..376330b5572a
+> >> >> --- /dev/null
+> >> >> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> >> >> @@ -0,0 +1,141 @@
+> >> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> >> +%YAML 1.2
+> >> >> +---
+> >> >> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov4689.yaml#
+> >> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> >> +
+> >> >> +title: Omnivision OV4689 CMOS
+> >> >> +
+> >> >> +maintainers:
+> >> >> +  - Mikhail Rudenko <mike.rudenko@gmail.com>
+> >> >> +
+> >> >> +description: |
+> >> >> +  The Omnivision OV4689 is a high performance, 1/3-inch, 4 megapixel
+> >> >> +  image sensor. Ihis chip supports high frame rate speeds up to 90 fps
+> >> >> +  at 2688x1520 resolution. It is programmable through an I2C
+> >> >> +  interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
+> >> >> +  connection.
+> >> >> +
+> >> >> +allOf:
+> >> >> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> >> >> +
+> >> >> +properties:
+> >> >> +  compatible:
+> >> >> +    const: ovti,ov4689
+> >> >> +
+> >> >> +  reg:
+> >> >> +    maxItems: 1
+> >> >> +
+> >> >> +  clocks:
+> >> >> +    description:
+> >> >> +      External clock (XVCLK) for the sensor, 6-64 MHz
+> >> >> +    maxItems: 1
+> >> >> +
+> >> >> +  clock-names: true
+> >> >> +
+> >> >> +  dovdd-supply:
+> >> >> +    description:
+> >> >> +      Digital I/O voltage supply, 1.7-3.0 V
+> >> >> +
+> >> >> +  avdd-supply:
+> >> >> +    description:
+> >> >> +      Analog voltage supply, 2.6-3.0 V
+> >> >> +
+> >> >> +  dvdd-supply:
+> >> >> +    description:
+> >> >> +      Digital core voltage supply, 1.1-1.3 V
+> >> >> +
+> >> >> +  powerdown-gpios:
+> >> >> +    maxItems: 1
+> >> >> +    description:
+> >> >> +      GPIO connected to the powerdown pin (active low)
+> >> >> +
+> >> >> +  reset-gpios:
+> >> >> +    maxItems: 1
+> >> >> +    description:
+> >> >> +      GPIO connected to the reset pin (active low)
+> >> >> +
+> >> >> +  orientation: true
+> >> >> +
+> >> >> +  rotation: true
+> >> >> +
+> >> >> +  port:
+> >> >> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> >> >> +    additionalProperties: false
+> >> >> +    description:
+> >> >> +      Output port node, single endpoint describing the CSI-2 transmitter
+> >> >> +
+> >> >> +    properties:
+> >> >> +      endpoint:
+> >> >> +        $ref: /schemas/media/video-interfaces.yaml#
+> >> >> +        unevaluatedProperties: false
+> >> >> +
+> >> >> +        properties:
+> >> >> +          data-lanes:
+> >> >> +            oneOf:
+> >> >> +              - items:
+> >> >> +                  - const: 1
+> >> >> +                  - const: 2
+> >> >> +                  - const: 3
+> >> >> +                  - const: 4
+> >> >> +              - items:
+> >> >> +                  - const: 1
+> >> >> +                  - const: 2
+> >> >> +              - items:
+> >> >> +                  - const: 1
+> >> >> +          link-frequencies: true
+> >> >> +
+> >> >> +        required:
+> >> >> +          - data-lanes
+> >> >> +          - link-frequencies
+> >> >> +
+> >> >> +required:
+> >> >> +  - compatible
+> >> >> +  - reg
+> >> >> +  - clocks
+> >> >> +  - clock-names
+> >> >> +  - dovdd-supply
+> >> >> +  - avdd-supply
+> >> >> +  - dvdd-supply
+> >> >> +  - powerdown-gpios
+> >> >> +  - reset-gpios
+> >> >> +  - port
+> >> >
+> >> > I think we don't need all of these entries as required.
+> >> > The only let me say "really" required are:
+> >> >
+> >> > - compatible
+> >> > - reg
+> >> > - clocks
+> >> > - port
+> >>
+> >> Thanks for the review! I agree that the driver may be modified to work
+> >> without powerdown and reset gpios and they are not required for sensor
+> >> operation. On contrary, supplies are obviously required. Of course, linux
+> >> provides dummy regulators if supplies are missing from device tree, but
+> >> I though the intention was to document hardware, not implementation
+> >> details. What do think of this?
+> >
+> > We have already discuss on this on the following thread sometimes ago :)
+> >
+> > https://www.patchwork.linux-fancy.com/project/linux-fancy/patch/20220630134835.592521-6-tommaso.merciai@amarulasolutions.com/
+> >
+> > Take a look and let me know.
+> 
+> Okay, if there already is a consensus regarding this matter, I'll make
+> the regulators optional in v3.
 
-Thanks,
-Guenter
+I always request the opposite during reviews :-)
+
+Could we get an authoritative answer from the maintainers of the
+regulator framework on this question, and document it somewhere ?
+
+-- 
+Regards,
+
+Laurent Pinchart
