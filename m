@@ -2,181 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 623385BC538
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 11:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 310DE5BC555
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 11:28:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbiISJWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 05:22:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33706 "EHLO
+        id S229735AbiISJ17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 05:27:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiISJWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 05:22:33 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D972AE037;
-        Mon, 19 Sep 2022 02:22:31 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id ay36so10872677wmb.0;
-        Mon, 19 Sep 2022 02:22:31 -0700 (PDT)
+        with ESMTP id S229688AbiISJ1v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 05:27:51 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04FF49FD0
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 02:27:49 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id f9so45226148lfr.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 02:27:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=X5muVDkWOVxzQ6wgkwwpHxHDBdSd+oJ93yCiJ8+DBQw=;
-        b=HAX/dADWDZnTXUpTu/pQ+0WnU9zf9XN2Rc0kpp1WmMVD2FtKYyQSVU/DRDMHBXlVM1
-         fNBbtk4MdopD+Od5m9CjSFDnr85R+eQnNl7eTiHFJTST1NEAh2NmApGajRYYxeleGvS4
-         /CdtHATfRVomTOjbvDgInUiiJyCXcDwuFwvvFrkpsafO9rpGNF+Zjc0EAgmbb5ridkOB
-         7USX84qp4IV3tHNyZXDEzQo/E+Xq34BHfpgWPlQNBplrYcEtw7EggBB7zKRKsV0RZ+PI
-         CkAaD/joVq4TU3NORFd+jkOqfO9ZvqlZaI6+sn9+OfsRAqyodpxG1lDYZX5Yw/jM1svq
-         eh8w==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=Ni5vNsO8umndiniabq8C5W9eiIXqQqotBmgaNWkkLK0=;
+        b=kdGdpmpEChbWIseVkCKVEvUwIFi0MK0B4sNLWcpeEmqU9CRrk2WTj+kKzfKYObMR7m
+         mXTvLyiMeNthhWAu8GagmQ82H8Edn+6gSumV048FtoC17iw9TJG+Nh8+R1WLThAaMurM
+         I4jkZovZ1fuU/0VMZHnBMNWlfWfcv/QYfv1fFbL3meE0eOr1n0zwvocmGc66XdkeMEBe
+         TKiE8eEBKPICnX7K946jxfyP1rPCdO61qSJ6GmKPYeZAgKW0E2f6lQcRIvjugfQDHnTl
+         XcBY+5NOBufJa4x37aCbFok8afQLMXl8ISv2RjLCIgw54pRiwlYDAyoNcT7P6tP8NWZ8
+         ximQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=X5muVDkWOVxzQ6wgkwwpHxHDBdSd+oJ93yCiJ8+DBQw=;
-        b=2IkG1UlzcY22rB/FgTkPsw7hCCI1nffft10hHYDoiIV9fEszSHp56neGM0txw3e7vw
-         SxvOrOKvUR4ZN4nySzCx02hdE4w7NzwICPNqUBq6R+LBcq39Wo/9xd9gWOqSLNCifLBY
-         LeyGUnVyrwROSi9l9gMvatMV/MgEvrPekmQw8DqZjXhylYZzo1fKhTmKkQ5cC57YK7T9
-         Y0oh4PuVX1SB2AvbS6xNJgckotMO8WAOYkJOROPY9fe4cRUNKFUuOTAaQxBKcW0B8m3Z
-         Pj6PLjK6cJgMcAlxDjE3W7njt6+VT63+ZhxmJw5jXT3Agzu3Dk0PqEvRiF65ktBVtkYu
-         tq0w==
-X-Gm-Message-State: ACrzQf3bdtp98Ee4rBzyrwBsPFkTEeWlJz0DfR7XqJEv934/No3Lyhvy
-        N0vVJIQrM7OfVmpejbxNdCg=
-X-Google-Smtp-Source: AMsMyM5mgfLPwqf2mn6UC7ZoonhS/2BI8Ibv0grWvch38W4Mz8Vz/TOc8EqiKkvCDCcF3afXSbK/xA==
-X-Received: by 2002:a7b:cc15:0:b0:3b4:ca90:970d with SMTP id f21-20020a7bcc15000000b003b4ca90970dmr6257630wmh.198.1663579350336;
-        Mon, 19 Sep 2022 02:22:30 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:453:ec29:bd55:6b15])
-        by smtp.gmail.com with ESMTPSA id b11-20020adfd1cb000000b00225239d9265sm7754130wrd.74.2022.09.19.02.22.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Sep 2022 02:22:29 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: rzg2lc-smarc: Include SoM DTSI into board DTS
-Date:   Mon, 19 Sep 2022 10:21:30 +0100
-Message-Id: <20220919092130.93074-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=Ni5vNsO8umndiniabq8C5W9eiIXqQqotBmgaNWkkLK0=;
+        b=lneGKqLymQpFBmQQ5Fbg+kKl4aTFGl7v3/KEyyYL8Mc3jE/W3EKHMvKZGfxCxvyyw6
+         r5NS+1pYZUAjHdE1EHrppVDKL6jHGh+V5uufz4ZLKWT48Trm9+GV5/tzPayltrWqYjmL
+         TPpizQHGf8MW56UOMYmOpg1gPiNSAdVZ0Bt8KRPFhmc9J/2zolnR4ga4vYsYHAtXzZos
+         NTo7LR/xrSuUhyNiGR4p3RWZ22mVMnntJZ6+aIONRMAw1y6+EoMkx0tPyF2DIpCQooCS
+         I3j9vxaCoanHYb83LveRpUZ9epRUkhBhjxRor4Wz1L8PfhwWHpAnXJ1OycPMx0GhZhCY
+         UfYg==
+X-Gm-Message-State: ACrzQf0PHE4H26Nv2hk/2jVsDoiwkk3bkF+QaiC4QftKRfWwU3LcgXzk
+        vKlk9QlLN2uyqAm+5WEk524Dj1t+LQUnxw==
+X-Google-Smtp-Source: AMsMyM7lxiuvbds2FRZKDW9lrUwIuvpGFw0m9oRIkcp0QON8mh5L72dtCjDGDIjOi83tFBanr+gAeA==
+X-Received: by 2002:a05:6512:3d1c:b0:49d:87fc:f63 with SMTP id d28-20020a0565123d1c00b0049d87fc0f63mr5950005lfv.327.1663579667364;
+        Mon, 19 Sep 2022 02:27:47 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id q16-20020a194310000000b004946aef1814sm5112366lfa.137.2022.09.19.02.27.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Sep 2022 02:27:46 -0700 (PDT)
+Message-ID: <88412fcc-96be-cd9d-8805-086c7f09c03b@linaro.org>
+Date:   Mon, 19 Sep 2022 11:27:45 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 1/2] stmmac: dwmac-mediatek: add support for mt8188
+Content-Language: en-US
+To:     Jianguo Zhang <jianguo.zhang@mediatek.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220919080410.11270-1-jianguo.zhang@mediatek.com>
+ <20220919080410.11270-2-jianguo.zhang@mediatek.com>
+ <d28ce676-ed6e-98da-9761-ed46f2fa4a95@linaro.org>
+ <4c537b63f609ae974dfb468ebc31225d45f785e8.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4c537b63f609ae974dfb468ebc31225d45f785e8.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 19/09/2022 10:37, Jianguo Zhang wrote:
+> Dear Krzysztof,
+> 
+> 	Thanks for your comments.
+> 
+> 
+> On Mon, 2022-09-19 at 10:19 +0200, Krzysztof Kozlowski wrote:
+>> On 19/09/2022 10:04, Jianguo Zhang wrote:
+>>> Add ethernet support for MediaTek SoCs from mt8188 family.
+>>> As mt8188 and mt8195 have same ethernet design, so private data
+>>> "mt8195_gmac_variant" can be reused for mt8188.
+>>>
+>>> Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
+>>> ---
+>>>  drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+>>> b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+>>> index d42e1afb6521..f45be440b6d0 100644
+>>> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+>>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+>>> @@ -720,6 +720,8 @@ static const struct of_device_id
+>>> mediatek_dwmac_match[] = {
+>>>  	  .data = &mt2712_gmac_variant },
+>>>  	{ .compatible = "mediatek,mt8195-gmac",
+>>>  	  .data = &mt8195_gmac_variant },
+>>> +	{ .compatible = "mediatek,mt8188-gmac",
+>>> +	  .data = &mt8195_gmac_variant },
+>>
+>> It's the same. No need for new entry.
+>>
+> mt8188 and mt8195 are different SoCs and we need to distinguish mt8188
+> from mt8195, so I think a new entry is needed for mt8188 with the
+> specific "compatiable".
 
-Move including the rzg2lc-smarc-som.dtsi from the carrier board
-rzg2lc-smarc.dtsi to the actual RZ/G2LC SMARC EVK board dts
-r9a07g044c2-smarc.dts. Also move the SW1 related macros along with
-PMOD1_SER0 to board dts so that we have all the configuration options
-in the same file.
+No, this does not justify new entry. You need specific compatible, but
+not new entry.
 
-This patch is to keep consistency with other SMARC EVKs (RZ/G2L, RZ/G2UL)
-and it makes sense not include the SoM into the carrier board as we might
-in future have a different carrier board with the same SoM.
+> On the other hand, mt8188 and mt8195 have same ethernet design, so the
+> private data "mt8195_gmac_variant" can be resued to reduce redundant
+> info in driver.
 
-Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- .../boot/dts/renesas/r9a07g044c2-smarc.dts    | 30 +++++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 28 -----------------
- 2 files changed, 30 insertions(+), 28 deletions(-)
+And you do not need new entry in the driver.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index fc34058002e2..f67a6f125d9c 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -6,7 +6,37 @@
-  */
- 
- /dts-v1/;
-+
-+/*
-+ * DIP-Switch SW1 setting on SoM
-+ * 1 : High; 0: Low
-+ * SW1-2 : SW_SD0_DEV_SEL	(1: eMMC; 0: uSD)
-+ * SW1-3 : SW_SCIF_CAN		(1: CAN1; 0: SCIF1)
-+ * SW1-4 : SW_RSPI_CAN		(1: CAN1; 0: RSPI1)
-+ * SW1-5 : SW_I2S0_I2S1		(1: I2S2 (HDMI audio); 0: I2S0)
-+ * Please change below macros according to SW1 setting
-+ */
-+
-+#define SW_SD0_DEV_SEL	1
-+
-+#define SW_SCIF_CAN	0
-+#if (SW_SCIF_CAN)
-+/* Due to HW routing, SW_RSPI_CAN is always 0 when SW_SCIF_CAN is set to 1 */
-+#define SW_RSPI_CAN	0
-+#else
-+/* Please set SW_RSPI_CAN. Default value is 1 */
-+#define SW_RSPI_CAN	1
-+#endif
-+
-+#if (SW_SCIF_CAN && SW_RSPI_CAN)
-+#error "Can not set 1 to both SW_SCIF_CAN and SW_RSPI_CAN due to HW routing"
-+#endif
-+
-+/* comment the #define statement to disable SCIF1 (SER0) on PMOD1 (CN7) */
-+#define PMOD1_SER0	1
-+
- #include "r9a07g044c2.dtsi"
-+#include "rzg2lc-smarc-som.dtsi"
- #include "rzg2lc-smarc.dtsi"
- 
- / {
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 6be25a8a28db..b6bd27196d88 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -8,37 +8,9 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
- 
--/*
-- * DIP-Switch SW1 setting on SoM
-- * 1 : High; 0: Low
-- * SW1-2 : SW_SD0_DEV_SEL	(1: eMMC; 0: uSD)
-- * SW1-3 : SW_SCIF_CAN		(1: CAN1; 0: SCIF1)
-- * SW1-4 : SW_RSPI_CAN		(1: CAN1; 0: RSPI1)
-- * SW1-5 : SW_I2S0_I2S1		(1: I2S2 (HDMI audio); 0: I2S0)
-- * Please change below macros according to SW1 setting
-- */
--
--#define SW_SD0_DEV_SEL	1
--
--#define SW_SCIF_CAN	0
--#if (SW_SCIF_CAN)
--/* Due to HW routing, SW_RSPI_CAN is always 0 when SW_SCIF_CAN is set to 1 */
--#define SW_RSPI_CAN	0
--#else
--/* Please set SW_RSPI_CAN. Default value is 1 */
--#define SW_RSPI_CAN	1
--#endif
--
--#if (SW_SCIF_CAN && SW_RSPI_CAN)
--#error "Can not set 1 to both SW_SCIF_CAN and SW_RSPI_CAN due to HW routing"
--#endif
--
--#include "rzg2lc-smarc-som.dtsi"
- #include "rzg2lc-smarc-pinfunction.dtsi"
- #include "rz-smarc-common.dtsi"
- 
--/* comment the #define statement to disable SCIF1 (SER0) on PMOD1 (CN7) */
--#define PMOD1_SER0	1
- 
- / {
- 	aliases {
--- 
-2.25.1
-
+Best regards,
+Krzysztof
