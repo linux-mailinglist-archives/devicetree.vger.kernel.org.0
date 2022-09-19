@@ -2,184 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B84AC5BD1EA
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 18:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00B6D5BD215
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 18:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229727AbiISQK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 12:10:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38338 "EHLO
+        id S229709AbiISQUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 12:20:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229676AbiISQK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:10:56 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4BCA25F1
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:10:54 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id f14so46773301lfg.5
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:10:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=Vz0a4w2GFyT8m3ACo8Kto1JVNekh6584R9ZYJZE84xM=;
-        b=jlllRahwq5fc/r6/tku2rInirf9zZga93Nq37DaOGeFJUI4dV4I9Lk/rgL8Mdca/DH
-         AmXKnMKE7/gIsU2zd38Z6Mcqx2oAAj31a5ORAeDnz35kmEgEUBonzaA7FZDPlzBgce7x
-         B5w2pY6XOkuCWyUsMkJkjBO347uFPpDE3RweGZZoaBdp/5WZksRo/C6eIhUaC/Ka/XWh
-         0tGSwl85xfE105VYQW4vT058ZAORdp8KM6ddqVTi6sXv7k+4BX2uBb2R5lRkjTIp4pXA
-         gpVH/rrVvylPRObiHwtDkfTf5tTJ3lZFxTvAvIrDpHbOc9s8PW0am3CVF972M+GBV3qi
-         E4Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=Vz0a4w2GFyT8m3ACo8Kto1JVNekh6584R9ZYJZE84xM=;
-        b=azEd5d5Iqm4aEGpRTrmCiQnHIdtQY7ulIKhgyGCCahQ6MeJFy+VzSoCmOkm4ea8H24
-         jgAAFQce0HppCxc7+Vq7sPtEyr/d5AJvrnuKE31igZ7h1/21GOn8g/qihxNJn0XwT9mP
-         EMCVdTfF0EgNSCORcbHYmFWcEWwgx3cMCgj2tx2S3lR22nPdJ4PR9BHYnE6QUdkZSYOS
-         Nf1CttoftYRA3DCCyjaaFapU9a+ZIrEW3yUAcWXjo+jmwJPXsSb36k9AYd0brePrg6/Z
-         2XboqqC3ejxQ+hOHB7rsJ3aPzAkgPThEtYYd2DDMtg2dk9WiTLkbgoySz91KSpky3AI5
-         ZWSw==
-X-Gm-Message-State: ACrzQf2XrrxswvWgmvYdcDj5V8JD03Ug3AP9pR7KV4GLUTPoQ6m50B2O
-        FaT5Jqe58KJU41zZpDQLOEtboA==
-X-Google-Smtp-Source: AMsMyM6ylOdKvZEqrEGFhsZKZwJOdBplQOBp04bfw2KEi8u6CdxHAaSC0nZm4kIsZzecInY8x4LHtg==
-X-Received: by 2002:a05:6512:409:b0:49a:e44a:c6b1 with SMTP id u9-20020a056512040900b0049ae44ac6b1mr6405446lfk.222.1663603853087;
-        Mon, 19 Sep 2022 09:10:53 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w10-20020a05651c118a00b0026c4c1a0b4dsm684148ljo.126.2022.09.19.09.10.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 09:10:52 -0700 (PDT)
-Message-ID: <c86d39c9-82d2-0f9f-9836-76ad3b6d8ede@linaro.org>
-Date:   Mon, 19 Sep 2022 18:10:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v3] dt-bindings: firmware: imx: sync with SCFW kit v1.13.0
-Content-Language: en-US
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>,
+        with ESMTP id S229496AbiISQUa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:20:30 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1D942ED68;
+        Mon, 19 Sep 2022 09:20:29 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 675E71BF210;
+        Mon, 19 Sep 2022 16:20:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1663604428;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=D/WWVqeJupWT2ywLPBm04EuaC91yQX/e14a2dYD83AM=;
+        b=JyMF9ETN18pv+gUBpIQ0cTScLnJuH80XNggbluA8S3MRgyoxfRL7H8MPMXdTY3nSkkc+oG
+        iGiY9hw7zhg4aosG+NKI+0LkTh+goR+1Dtn/zhrTWz74rxKEenuN1MIsJKOE+YwQv9/xRT
+        r9j1jEK4h0KTLNG9Q6pyQ9qKUfltu/Y+5QBEcGu88Si7PKTzb7mwiKzZEBe3hrut5SFiSe
+        3olqte9b8I6tpENmRKfWyBuJ16KXbzEue4n2qx/pFD6KD+UNpVeRS6ZVqBovDWbABCmBjH
+        0pu9YTxuoYKiF0GbwPNo0Ngpn1j37yju4G9k0K9k80slAwybql7ML9svF66g4A==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220919132236.264382-1-viorel.suman@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919132236.264382-1-viorel.suman@oss.nxp.com>
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 2/2] mtd: parsers: add Broadcom's U-Boot parser
+Date:   Mon, 19 Sep 2022 18:20:25 +0200
+Message-Id: <20220919162025.226628-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220711153041.6036-2-zajec5@gmail.com>
+References: 
+MIME-Version: 1.0
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'002181f5b150e60c77f21de7ad4dd10e4614cd91'
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 15:22, Viorel Suman (OSS) wrote:
-> From: Viorel Suman <viorel.suman@nxp.com>
+On Mon, 2022-07-11 at 15:30:41 UTC, =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Sync defines with the latest available SCFW kit version 1.13.0,
-> may be found at the address below:
+> Broadcom stores environment variables blocks inside U-Boot partition
+> itself. This driver finds & registers them.
 > 
-> https://www.nxp.com/webapp/Download?colCode=L5.15.32_2.0.0_SCFWKIT-1.13.0&appType=license
-> 
-> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
-> ---
->  include/dt-bindings/firmware/imx/rsrc.h | 294 ++++++++++++++++--------
->  1 file changed, 198 insertions(+), 96 deletions(-)
-> 
-> Changes since v1: https://lore.kernel.org/all/20220915181805.424670-1-viorel.suman@oss.nxp.com/
-> 	Two patches squashed into one in order to keep changes bissectable
-> 	and compilable as suggested by Alexander Stein.
-> 
-> Changes since v2: https://lore.kernel.org/all/20220919113715.243910-1-viorel.suman@oss.nxp.com/
-> 	Added two more defines in backward compatibility section in order to
-> 	to avoid breaking ABI, so there is no need to change the driver
-> 	anymore.
-> 
-> diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
-> index 1675de05ad33..ed33869f184e 100644
-> --- a/include/dt-bindings/firmware/imx/rsrc.h
-> +++ b/include/dt-bindings/firmware/imx/rsrc.h
-> @@ -13,30 +13,30 @@
->   * never be changed or removed (only added to at the end of the list).
->   */
->  
-> -#define IMX_SC_R_A53			0
-> -#define IMX_SC_R_A53_0			1
-> -#define IMX_SC_R_A53_1			2
-> -#define IMX_SC_R_A53_2			3
-> -#define IMX_SC_R_A53_3			4
-> -#define IMX_SC_R_A72			5
-> -#define IMX_SC_R_A72_0			6
-> -#define IMX_SC_R_A72_1			7
-> -#define IMX_SC_R_A72_2			8
-> -#define IMX_SC_R_A72_3			9
-> +#define IMX_SC_R_AP_0			0
-> +#define IMX_SC_R_AP_0_0			1
-> +#define IMX_SC_R_AP_0_1			2
-> +#define IMX_SC_R_AP_0_2			3
-> +#define IMX_SC_R_AP_0_3			4
-> +#define IMX_SC_R_AP_1			5
-> +#define IMX_SC_R_AP_1_0			6
-> +#define IMX_SC_R_AP_1_1			7
-> +#define IMX_SC_R_AP_1_2			8
-> +#define IMX_SC_R_AP_1_3			9
->  #define IMX_SC_R_CCI			10
->  #define IMX_SC_R_DB			11
->  #define IMX_SC_R_DRC_0			12
->  #define IMX_SC_R_DRC_1			13
->  #define IMX_SC_R_GIC_SMMU		14
-> -#define IMX_SC_R_IRQSTR_M4_0		15
-> -#define IMX_SC_R_IRQSTR_M4_1		16
-> -#define IMX_SC_R_SMMU			17
-> -#define IMX_SC_R_GIC			18
-> +#define IMX_SC_R_IRQSTR_MCU_0		15
-> +#define IMX_SC_R_IRQSTR_MCU_1		16
-> +#define IMX_SC_R_SMMU_0			17
-> +#define IMX_SC_R_GIC_0			18
->  #define IMX_SC_R_DC_0_BLIT0		19
->  #define IMX_SC_R_DC_0_BLIT1		20
->  #define IMX_SC_R_DC_0_BLIT2		21
->  #define IMX_SC_R_DC_0_BLIT_OUT		22
-> -#define IMX_SC_R_PERF			23
-> +#define IMX_SC_R_PERF_0			23
->  #define IMX_SC_R_USB_1_PHY		24
->  #define IMX_SC_R_DC_0_WARP		25
->  #define IMX_SC_R_V2X_MU_0		26
-> @@ -56,11 +56,14 @@
->  #define IMX_SC_R_V2X_MU_3		40
->  #define IMX_SC_R_V2X_MU_4		41
->  #define IMX_SC_R_DC_1_WARP		42
-> +#define IMX_SC_R_STM			43
->  #define IMX_SC_R_SECVIO			44
->  #define IMX_SC_R_DC_1_VIDEO0		45
->  #define IMX_SC_R_DC_1_VIDEO1		46
->  #define IMX_SC_R_DC_1_FRAC0		47
-> +#define IMX_SC_R_V2X			48
->  #define IMX_SC_R_DC_1			49
-> +#define IMX_SC_R_UNUSED14		50
->  #define IMX_SC_R_DC_1_PLL_0		51
->  #define IMX_SC_R_DC_1_PLL_1		52
->  #define IMX_SC_R_SPI_0			53
-> @@ -151,10 +154,10 @@
->  #define IMX_SC_R_DMA_1_CH29		137
->  #define IMX_SC_R_DMA_1_CH30		138
->  #define IMX_SC_R_DMA_1_CH31		139
-> -#define IMX_SC_R_UNUSED1		140
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-This one disappears...
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
 
-> -#define IMX_SC_R_UNUSED2		141
-> -#define IMX_SC_R_UNUSED3		142
-> -#define IMX_SC_R_UNUSED4		143
-
-Best regards,
-Krzysztof
+Miquel
