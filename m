@@ -2,356 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18CB55BD23E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 18:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AD225BD263
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 18:46:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230033AbiISQdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 12:33:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35408 "EHLO
+        id S229936AbiISQqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 12:46:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229861AbiISQdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:33:38 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C3537F80
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:33:36 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id z20so34525724ljq.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:33:36 -0700 (PDT)
+        with ESMTP id S229529AbiISQqV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:46:21 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5603E240BF
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:46:20 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1279948d93dso195484fac.10
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:46:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date;
-        bh=defqrUNEvG4bqkKB1gVSiJ34xF9WDZALwjbZ1clCYn8=;
-        b=gwgb7Ee3X2GnNkAKQt20mMDAAvkQhhW+K5/IkDLGRwbuHHgLs7LalQJoy0lUubxVDM
-         jUW7jUFlVYVrZ1ZyaRsKdfEhZ6fetjTremEoxiuLLMeqeqpn/OjqMEFvoVgOXfvJf3mi
-         J+ec9gkM30ZOnFX1ivKXe1i7LMQntCxmbhJ17soRsMnuWVyESLd784mRxRdw4Mb5LjjB
-         7ShaofOahIs3ELU+L7jg2PVN860zUJitRcLNRByrmN2V+syKbCAMwv8Nu69cBsZuj3nz
-         yLqbua6r8Yw8RDTnJ1CpQyty1B/ii7oixRwMWTrjAiTDeFTsvLmgXh/NS8qhVoERh795
-         1j5A==
+        bh=/ahDqGGSHn1fbR6JYXP2YTpJsA0sQ8WptbQeeX8LyoE=;
+        b=bGAa5ry3jbeJzV0CCXNdwALLHeaUite3bB/Fh8UqCc/lh+z/3KqrQwBguYy0/ZzmCm
+         d9k0w81Ai6rHKA2ag3DPfG15EFYyEUC+3lveIhCejPPccY1DjTI9hYY4mJP3JfeFRpTD
+         EE8Al4X8brCmltxJ4qdhINYzTmjmWUI45LjqoVZPKu5okk2xEPs4KktUNviVeCv1G/vc
+         g3bpC278UkGGTbKgCegI7eVTp2N2bBnsbsRToNRn4QUxB+KsfxcrVyPa0spEcaFjzZq9
+         3qTK64RpGV0MvBDIRYTkCj6b2vtk6RiGPrxFY3I7YlPqRaXzKoCfJDL/5z8P3YjP6wCe
+         yheg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=defqrUNEvG4bqkKB1gVSiJ34xF9WDZALwjbZ1clCYn8=;
-        b=c+gQJBy9BWyFO4hyhInTmgm6ORekn5Ic/U4GpVOsm7mozVdPbofA5ktd9nGEnAS/a0
-         HXEt5pLOBg1ZKvmPGfvwuOWKhMnSlRC6VJlgXb+MY6IMh+z9zk+4aRLgX57AsXEypGYi
-         dMdTM6nW0zMVVotcU4guoiGsgwP5z0VVZGRBVZJVIfNV02gN6+JmDKpDRz8BrN6Wy2q3
-         UNttmRCpjb6LhpiwAZj+obQK3qyidF8hPUgXjcIn4V3TlvlIRw0CA4D8oARsk/PCfe2B
-         ZoVX+ZDHpF6mR20CkkZ45MUK5yJ1xJ9gYMMeXYbwOhxEaH9lNDdyQ3rG76leWH9OGk3y
-         RhQQ==
-X-Gm-Message-State: ACrzQf1cQY/TVncXAKcIYfYCsGpWjb3165fQrfaBvBI+DDmp5DdHIiMG
-        jU6fmEQbKlI3wogqss1IG1V50Q==
-X-Google-Smtp-Source: AMsMyM7rr3C1nw8vqmYa1ZnQn8ctVmWSYwb7aWn+DMjJkWd7yEP/GJ89KLP+cOjdOg3CaMqr0UWK+A==
-X-Received: by 2002:a2e:bc11:0:b0:26c:565:12f6 with SMTP id b17-20020a2ebc11000000b0026c056512f6mr5259650ljf.91.1663605215900;
-        Mon, 19 Sep 2022 09:33:35 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 11-20020a05651c128b00b0026c35c4720esm1883010ljc.24.2022.09.19.09.33.35
+        bh=/ahDqGGSHn1fbR6JYXP2YTpJsA0sQ8WptbQeeX8LyoE=;
+        b=Ie460xDCN79yQ51lVrI9gifOO05QtnmaQ/y069juBZHfMYwVhGHOLc9xcoLKT7qRew
+         ifCqDHA89Pp16P6m2ptuqZ8O9IELib0Awx9Md6B/sDAZIneI96hG/hBwgqJPkL2U9gwt
+         cA3R+6x23DO7bqSzodOpwMn4OdP8Y/dCL5d34POeL2Oa/G9Lc4pSMzWENe2aQcRpRPAr
+         n311EhGo6m1yt2WCwQKghRyghFtHLq0/NmoGnUxk+cKvRfRULElbBLf1T+4QNnCw/5/2
+         cHVEtnfmQQsCCqTmkV4ZBYIRObT7hgv75XuXcFvwsZ61ub0HrFiHlaHjXnm0h2Mu+sXf
+         HgpA==
+X-Gm-Message-State: ACgBeo0gILDFAAThjxi+GJOfnIFOMsgqvr7wAb+DU6UvbwnWWqIZ1pGv
+        UgX+JHcZho2HFtScX6BJK6k=
+X-Google-Smtp-Source: AA6agR6ZJb6i/TMmPB53pvo6fX5TLRPP/OHrDPArq4pYLsDTgXA4JsngOviB7XDpUCP7sWR80nxgJA==
+X-Received: by 2002:a05:6870:3392:b0:128:828:5ec4 with SMTP id w18-20020a056870339200b0012808285ec4mr16001302oae.99.1663605978735;
+        Mon, 19 Sep 2022 09:46:18 -0700 (PDT)
+Received: from wintermute.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id t184-20020a4a54c1000000b0044b0465bd07sm12501610ooa.20.2022.09.19.09.46.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Sep 2022 09:33:35 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: correct white-space before {
-Date:   Mon, 19 Sep 2022 18:33:33 +0200
-Message-Id: <20220919163333.129989-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Mon, 19 Sep 2022 09:46:18 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        jbx6244@gmail.com, cl@rock-chips.com, frank-w@public-files.de,
+        s.hauer@pengutronix.de, michael.riesch@wolfvision.net,
+        pgwipeout@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        vkoul@kernel.org, kishon@ti.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v4 0/3] rockchip-dsi for rk3568
+Date:   Mon, 19 Sep 2022 11:46:13 -0500
+Message-Id: <20220919164616.12492-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing space or remove redundant one before opening {.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi                 | 2 +-
- arch/arm64/boot/dts/qcom/msm8998.dtsi                 | 8 ++++----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts              | 4 ++--
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi   | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi          | 8 ++++----
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi            | 6 +++---
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts            | 8 ++++----
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts  | 4 ++--
- arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts      | 6 +++---
- 10 files changed, 25 insertions(+), 25 deletions(-)
+This series adds support for the dsi and dphy controllers on the
+Rockchip RK3568.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 1e6b70582866..6a0420c079f5 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -1498,7 +1498,7 @@ blsp2_i2c3_sleep: blsp2-i2c3-sleep {
- 				bias-disable;
- 			};
- 
--			wcd_intr_default: wcd-intr-default{
-+			wcd_intr_default: wcd-intr-default {
- 				pins = "gpio54";
- 				function = "gpio";
- 				drive-strength = <2>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index d463a66715ea..7e2a8b168d91 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -1903,7 +1903,7 @@ etm5: etm@7c40000 {
- 
- 			cpu = <&CPU4>;
- 
--			port{
-+			port {
- 				etm4_out: endpoint {
- 					remote-endpoint = <&apss_funnel_in4>;
- 				};
-@@ -1920,7 +1920,7 @@ etm6: etm@7d40000 {
- 
- 			cpu = <&CPU5>;
- 
--			port{
-+			port {
- 				etm5_out: endpoint {
- 					remote-endpoint = <&apss_funnel_in5>;
- 				};
-@@ -1937,7 +1937,7 @@ etm7: etm@7e40000 {
- 
- 			cpu = <&CPU6>;
- 
--			port{
-+			port {
- 				etm6_out: endpoint {
- 					remote-endpoint = <&apss_funnel_in6>;
- 				};
-@@ -1954,7 +1954,7 @@ etm8: etm@7f40000 {
- 
- 			cpu = <&CPU7>;
- 
--			port{
-+			port {
- 				etm7_out: endpoint {
- 					remote-endpoint = <&apss_funnel_in7>;
- 				};
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index bf8077a1cf9a..3d1bd8e3fc73 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -1007,7 +1007,7 @@ can@0 {
- };
- 
- &swr0 {
--	left_spkr: wsa8810-left{
-+	left_spkr: wsa8810-left {
- 		compatible = "sdw10217211000";
- 		reg = <0 3>;
- 		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
-@@ -1016,7 +1016,7 @@ left_spkr: wsa8810-left{
- 		#sound-dai-cells = <0>;
- 	};
- 
--	right_spkr: wsa8810-right{
-+	right_spkr: wsa8810-right {
- 		compatible = "sdw10217211000";
- 		reg = <0 4>;
- 		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index 7ee407f7b6bb..1ce73187a562 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -181,7 +181,7 @@ &sound_multimedia0_codec {
- /* PINCTRL - modifications to sc7180-trogdor.dtsi */
- 
- &en_pp3300_dx_edp {
--	pinmux  {
-+	pinmux {
- 		pins = "gpio67";
- 	};
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-index 1bd6c7dcd9e9..7fcff4eddd3a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-@@ -189,7 +189,7 @@ pinconf {
- 	};
- };
- 
--&sec_mi2s_active{
-+&sec_mi2s_active {
- 	pinmux {
- 		pins = "gpio49", "gpio50", "gpio51", "gpio52";
- 		function = "mi2s_1";
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index b5f534db135a..6ea62ce138ce 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -1220,7 +1220,7 @@ pinconf {
- 	};
- 
- 	ap_suspend_l_neuter: ap-suspend-l-neuter {
--		pinmux  {
-+		pinmux {
- 			pins = "gpio27";
- 			function = "gpio";
- 		};
-@@ -1365,7 +1365,7 @@ pinconf {
- 	};
- 
- 	pen_rst_odl: pen-rst-odl {
--		pinmux  {
-+		pinmux {
- 			pins = "gpio18";
- 			function = "gpio";
- 		};
-@@ -1489,7 +1489,7 @@ pinconf {
- 	};
- 
- 	ts_int_l: ts-int-l {
--		pinmux  {
-+		pinmux {
- 			pins = "gpio9";
- 			function = "gpio";
- 		};
-@@ -1501,7 +1501,7 @@ pinconf {
- 	};
- 
- 	ts_reset_l: ts-reset-l {
--		pinmux  {
-+		pinmux {
- 			pins = "gpio8";
- 			function = "gpio";
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index b5eb8f7eca1d..d46a6d2a7912 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -1341,7 +1341,7 @@ pinconf {
- 	};
- 
- 	pen_rst_l: pen-rst-l {
--		pinmux  {
-+		pinmux {
- 			pins = "gpio23";
- 			function = "gpio";
- 		};
-@@ -1408,7 +1408,7 @@ pinconf {
- 	};
- 
- 	ts_int_l: ts-int-l {
--		pinmux  {
-+		pinmux {
- 			pins = "gpio125";
- 			function = "gpio";
- 		};
-@@ -1420,7 +1420,7 @@ pinconf {
- 	};
- 
- 	ts_reset_l: ts-reset-l {
--		pinmux  {
-+		pinmux {
- 			pins = "gpio118";
- 			function = "gpio";
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 132417e2d11e..feb1396fadb6 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -1076,7 +1076,7 @@ &venus {
- 	status = "okay";
- };
- 
--&wcd9340{
-+&wcd9340 {
- 	pinctrl-0 = <&wcd_intr_default>;
- 	pinctrl-names = "default";
- 	clock-names = "extclk";
-@@ -1089,7 +1089,7 @@ &wcd9340{
- 	vdd-io-supply = <&vreg_s4a_1p8>;
- 
- 	swm: swm@c85 {
--		left_spkr: wsa8810-left{
-+		left_spkr: wsa8810-left {
- 			compatible = "sdw10217201000";
- 			reg = <0 1>;
- 			powerdown-gpios = <&wcdgpio 1 GPIO_ACTIVE_HIGH>;
-@@ -1098,7 +1098,7 @@ left_spkr: wsa8810-left{
- 			#sound-dai-cells = <0>;
- 		};
- 
--		right_spkr: wsa8810-right{
-+		right_spkr: wsa8810-right {
- 			compatible = "sdw10217201000";
- 			powerdown-gpios = <&wcdgpio 1 GPIO_ACTIVE_HIGH>;
- 			reg = <0 2>;
-@@ -1126,7 +1126,7 @@ &qup_spi2_default {
- 	drive-strength = <16>;
- };
- 
--&qup_uart3_default{
-+&qup_uart3_default {
- 	pinmux {
- 		pins = "gpio41", "gpio42", "gpio43", "gpio44";
- 		function = "qup3";
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index be59a8ba9c1f..761927535778 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -783,7 +783,7 @@ &wcd9340{
- 	qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
- 
- 	swm: swm@c85 {
--		left_spkr: wsa8810-left{
-+		left_spkr: wsa8810-left {
- 			compatible = "sdw10217211000";
- 			reg = <0 3>;
- 			powerdown-gpios = <&wcdgpio 1 GPIO_ACTIVE_HIGH>;
-@@ -792,7 +792,7 @@ left_spkr: wsa8810-left{
- 			#sound-dai-cells = <0>;
- 		};
- 
--		right_spkr: wsa8810-right{
-+		right_spkr: wsa8810-right {
- 			compatible = "sdw10217211000";
- 			powerdown-gpios = <&wcdgpio 2 GPIO_ACTIVE_HIGH>;
- 			reg = <0 4>;
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-index f954fe5cb61a..7e92438034e8 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-@@ -574,7 +574,7 @@ pinconf {
- 	};
- 
- 	pen_rst_l: pen-rst-l {
--		pinmux  {
-+		pinmux {
- 			pins = "gpio21";
- 			function = "gpio";
- 		};
-@@ -715,7 +715,7 @@ &wcd9340{
- 	qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
- 
- 	swm: swm@c85 {
--		left_spkr: wsa8810-left{
-+		left_spkr: wsa8810-left {
- 			compatible = "sdw10217211000";
- 			reg = <0 3>;
- 			powerdown-gpios = <&wcdgpio 1 GPIO_ACTIVE_HIGH>;
-@@ -724,7 +724,7 @@ left_spkr: wsa8810-left{
- 			#sound-dai-cells = <0>;
- 		};
- 
--		right_spkr: wsa8810-right{
-+		right_spkr: wsa8810-right {
- 			compatible = "sdw10217211000";
- 			powerdown-gpios = <&wcdgpio 2 GPIO_ACTIVE_HIGH>;
- 			reg = <0 4>;
+Tested on an Anbernic RG503, Anbernic RG353P, and Odroid Go Advance.
+
+Changes since V3:
+ - Added labels to bindings in rk356x.dtsi file to make it easier to
+   reference in board dts files.
+
+Changes since V2:
+ - Removed dsi controller patches, as those have been merged upstream.
+ - Removed notes about rolling back clock drivers. If I set the parent
+   clock of the VOP port I'm using to VPLL and set the clock rate of
+   PLL_VPLL to 500MHz this series works correctly for my panels without
+   rolling anything back (per Heiko this is the correct way).
+ - Added additional details about refactoring DPHY driver to add
+   2.5GHz for rk356x. All other devices still have a max speed of 1GHz.
+ - Notified Heiko that the BIT(5) for both PLL_POST_DIV_ENABLE and
+   PLL_POST_DIV_ENABLE_MASK is deliberate, because of how the
+   phy_update_bits() works.
+
+Changes since RFCv1:
+ - Identified cause of image shift (clock changes).
+ - Noted that driver works now.
+ - Added devicetree nodes for rk356x.dtsi.
+
+Chris Morgan (3):
+  dt-bindings: phy-rockchip-inno-dsidphy: add compatible  for rk3568
+  phy/rockchip: inno-dsidphy: Add support for rk3568
+  arm64: dts: rockchip: Add DSI and DSI-DPHY nodes to  rk356x
+
+ .../bindings/phy/rockchip,px30-dsi-dphy.yaml  |   1 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  80 +++++++
+ .../phy/rockchip/phy-rockchip-inno-dsidphy.c  | 204 ++++++++++++++----
+ 3 files changed, 239 insertions(+), 46 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
