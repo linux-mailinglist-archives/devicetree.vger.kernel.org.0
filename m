@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F0F05BD1D2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 18:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB0F85BD1DD
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 18:08:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229588AbiISQGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 12:06:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60142 "EHLO
+        id S229822AbiISQIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 12:08:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiISQGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:06:41 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BB52B1E
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:06:40 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id z25so47759372lfr.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:06:40 -0700 (PDT)
+        with ESMTP id S229870AbiISQIL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:08:11 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1BE760DE
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:08:09 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id a8so47642550lff.13
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:08:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=iE9nxQEFInaL7XSikMpoXTZbHYoCnjZKoSz4CSYOZnA=;
-        b=UAOja/FfrymFuV0xvicbL7PMXuUl4mPyof1Okb0o4luFMO529ZM+SZDfwGKYf+HTMf
-         a/WaNIKZH+CCwzmVfwGBHNgDh6tyEE/4RCYW3s7Xy7CUDsPExVi8yVgN77oSpkFy1wP0
-         EZDoTz0wXXRlHxsk4U6dtvkL2742ktOiuNpmr9RmscpZCU5Du2ez6apYChpa26SOBuxd
-         8D5LRWj2h5/EJlkgEmYbAKihkayVc39iPARINK4Y7nQn0Yf6r8U/fwVO+POZ4Tm3kQed
-         Czy0pCZbVQwwyLBIv33YaafZbPlkHahN7hk1BWUO99D62XnnMEsRLm6WG1yXMAoUug8l
-         tELg==
+        bh=HSB/B/g/VYr82RJWI+Z6LEt8n4afHbzsCgSAp+rZ5Q4=;
+        b=RurmZF0UBQpsf51Oe3Ut2zQzpCDXr/fXq6lLm7sRtBjJOPHoXhLPF6fRZ8hNTsruSq
+         cZL1ZixVn8mH9CXR0WKYbqZviAPxyB5HB/JQkBvxpjXaNLthm2GuRFa9FqlxasBIoIBA
+         K6BQJpzvnddlVLdRX3VvDJ1LQsu+53srLUak+iOAqk72JfZHFh6ZHFGlkluxQY64IoKI
+         ArWMZmIN73poVs1W6PnAezWLlZ55OomgG/35OS8ohHeAo+Z8Tmmd1XzGQwrReqRwxOpa
+         gr5jQrx1lO9q343z/A2uo6EGmW8HiGlFR87KOVrtKjYmXA13swMELtVEfm6XKXlROVPH
+         XVQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=iE9nxQEFInaL7XSikMpoXTZbHYoCnjZKoSz4CSYOZnA=;
-        b=hzqqqac4xYaSMfNobQNZ8mRJ2XVOyUFCjBrmncTV/S1jHAuDwSxldGoiy8CiKz3LUb
-         0j7LVrBYeEUA/oqBM9ldwXyx7ZEP3wiXp3rr5umM2jNx2uzr5rJeRLc1XmATWqscxM46
-         bBoy31u36+lJOdB4YawPGuYhkgVCxe3b90Sapk4n1YLRs9COUtomQVMP2e8tZKViHEEJ
-         qYNu5Q4lUh/B43OKqidfS7ZR7QlT7Bh4y/88MZPm6v6Qy7pStzT/0zr2YOVYljDaC5GY
-         l4SVp2+/OU0jFTQM1Fc9VGyDMKc185sNDl6nox2Q+2nje1wMWgLescFR8hHDsx3rosfp
-         8XuA==
-X-Gm-Message-State: ACrzQf3wBHbFqrBNMF6NkOC17CoQXLeLaNYnxlZi7+yToiVT0VM3zBz6
-        RjOTXdIYs+tLDnx8B/Y35Qe5Aw==
-X-Google-Smtp-Source: AMsMyM65h0pq/i+FvwWdh8cUN9HdV6WWDFVY+wFWguOob0zVZcboRCwsVykWpVj97GAsCtp0S9YpTw==
-X-Received: by 2002:ac2:4bc7:0:b0:49a:dbf7:73e9 with SMTP id o7-20020ac24bc7000000b0049adbf773e9mr5964150lfq.529.1663603598864;
-        Mon, 19 Sep 2022 09:06:38 -0700 (PDT)
+        bh=HSB/B/g/VYr82RJWI+Z6LEt8n4afHbzsCgSAp+rZ5Q4=;
+        b=PdGo71JlKAE7NgkD3PG82SfFMcSAA4ITOWzQD39ToPwXm2YZgWpukrooO+kw4zINKM
+         JVdTt5QQpUZ/xJbUFvBzhqK1NTyeLsQHeV2gBlISvUhFSzvFZcOIFCyoBKScO4iKvEFz
+         MU0l24Tra4n9UNnV/IMmWTUrCAhjhgO0s/w/H7PHvu4e6wpktWdOZ7a5k8Vh7uxzux+K
+         13hB4IufiST59g+8vZHcUsPxDhHW8buPoZ7oo0g+FCPPhWeTnW3XwwqMJ97YFAoL9KeH
+         n6OAXrgPjmIDrhfMKnyzXNXutKNHyLNa4e2Gi7Xdhyrg5Il6UkwaKQE0fow+qLljJNoo
+         vkZw==
+X-Gm-Message-State: ACrzQf26WtoJey+9IBDJaqz9ws67N063LopQtuvtklN31HMB+nk6uV6G
+        D9TIUQUc8sWRbJbUucRFQpNu6Q==
+X-Google-Smtp-Source: AMsMyM6LPwE0FvDdc9OwIXQDL/6wasLY+75q7B1MpODDBOjtx87UMeeQS2Fh9wbNEknxEgrqUOOllg==
+X-Received: by 2002:a05:6512:2803:b0:49f:979c:cc53 with SMTP id cf3-20020a056512280300b0049f979ccc53mr2814547lfb.76.1663603688145;
+        Mon, 19 Sep 2022 09:08:08 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t22-20020a2e5356000000b00268b85321eesm3787302ljd.113.2022.09.19.09.06.37
+        by smtp.gmail.com with ESMTPSA id o1-20020a2ebd81000000b0026c0158b87csm4471861ljq.29.2022.09.19.09.08.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 09:06:38 -0700 (PDT)
-Message-ID: <bfca0379-7346-13e7-a18f-66740c5871b3@linaro.org>
-Date:   Mon, 19 Sep 2022 18:06:37 +0200
+        Mon, 19 Sep 2022 09:08:07 -0700 (PDT)
+Message-ID: <c04461c0-e16a-6dcc-4fc0-f6c80263bd71@linaro.org>
+Date:   Mon, 19 Sep 2022 18:08:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO
- documentation
+Subject: Re: [PATCH v2] dt-bindings: mips: add CPU bindings for MIPS
+ architecture
 Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-References: <20220714122322.63663-1-tmaimon77@gmail.com>
- <20220714122322.63663-2-tmaimon77@gmail.com>
- <20220718211046.GA3547663-robh@kernel.org>
- <CAP6Zq1hQ5m2kkQOKaYsKhPQhCW+vdsdyPRxxb_yRGMB=gJCPdw@mail.gmail.com>
- <3981e6e8-d4bb-b13d-7aaa-7aea83ffaad9@linaro.org>
- <CAP6Zq1gp1ph1wixgb6nL+2R8We2YJ2HQM2iC05itq_XWd2Cwig@mail.gmail.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+References: <20220917041136.526446-1-sergio.paracuellos@gmail.com>
+ <285f80ef-5f5c-e68d-b514-a3e3341841c5@linaro.org>
+ <CAMhs-H92i6vFJWCBrpaQnQzA3-+6_ROb9_+zD4yBMB1FLJoKeQ@mail.gmail.com>
+ <71b50383-0fc3-f834-11e0-8fbc17c123d0@linaro.org>
+ <CAMhs-H-JokHX+XNNE0TQf78ORQbNz2fTd9hfgmv_s6OPT=Wh0w@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1gp1ph1wixgb6nL+2R8We2YJ2HQM2iC05itq_XWd2Cwig@mail.gmail.com>
+In-Reply-To: <CAMhs-H-JokHX+XNNE0TQf78ORQbNz2fTd9hfgmv_s6OPT=Wh0w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,46 +82,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 16:31, Tomer Maimon wrote:
+On 19/09/2022 15:41, Sergio Paracuellos wrote:
+> Hi Krzysztof,
+> 
+> On Mon, Sep 19, 2022 at 2:48 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 19/09/2022 14:29, Sergio Paracuellos wrote:
+>>>>
+>>>> else mips-hpt-frequency: false
+>>>>
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +
+>>>>> +additionalProperties: true
+>>>>
+>>>> and this is why you did not notice errors...
+>>>
+>>> Current arch/mips/boot/dts folder dts files are a mess for cpu nodes,
+>>> so I set additionalProperties to true and only make required for
+>>> 'compatible'. What should be the correct approach?
+>>
+>> This is okay, but it caused you did not notice errors...
+>>
+>>>
+>>>>
+>>>>> +
 >>>>> +examples:
 >>>>> +  - |
->>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>> +    #include <dt-bindings/gpio/gpio.h>
+>>>>> +    cpus {
+>>>>> +      #size-cells = <0>;
+>>>>> +      #address-cells = <1>;
 >>>>> +
->>>>> +    soc {
->>>>> +      #address-cells = <2>;
->>>>> +      #size-cells = <2>;
+>>>>> +      cpu@0 {
+>>>>> +        device_type = "cpu";
+>>>>> +        compatible = "mips,mips1004Kc";
+>>>>> +        reg = <0>;
+>>>>> +      };
 >>>>> +
->>>>> +      pinctrl: pinctrl@f0800000 {
->>>>> +        compatible = "nuvoton,npcm845-pinctrl";
->>>>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
->>>>> +        #address-cells = <1>;
->>>>> +        #size-cells = <1>;
->>>>> +        nuvoton,sysgcr = <&gcr>;
+>>>>> +      cpu@1 {
+>>>>> +        device_type = "cpu";
+>>>>> +        compatible = "mips,mips1004Kc";
+>>>>> +        reg = <1>;
+>>>>> +      };
+>>>>> +    };
 >>>>> +
->>>>> +        gpio0: gpio@f0010000 {
+>>>>> +  - |
+>>>>> +    // Example 2 (BMIPS CPU)
+>>>>> +    cpus {
+>>>>> +      #address-cells = <1>;
+>>>>> +      #size-cells = <0>;
+>>>>> +
+>>>>> +      mips-hpt-frequency = <150000000>;
 >>>>
->>>> gpio@0
->>>>
->>>> Is this really a child block of the pinctrl? Doesn't really look like it
->>>> based on addressess. Where are the pinctrl registers? In the sysgcr? If
->>>> so, then pinctrl should be a child of it. But that doesn't really work
->>>> too well with gpio child nodes...
->>> the pin controller mux is handled by sysgcr this is why the sysgcr in
->>> the mother node,
->>> and the pin configuration are handled by the GPIO registers.  each
->>> GPIO bank (child) contains 32 GPIO.
->>> this is why the GPIO is the child node.
+>>>> Does not match your bindings. Are you sure you tested the patches?
+>>>
+>>> Yes I did:
+>>>
+>>> $ make dt_binding_check
+>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mips/cpus.yaml
+>>>   LINT    Documentation/devicetree/bindings
+>>>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>>>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>>>   DTEX    Documentation/devicetree/bindings/mips/cpus.example.dts
+>>>   DTC     Documentation/devicetree/bindings/mips/cpus.example.dtb
+>>> ' CHECK   Documentation/devicetree/bindings/mips/cpus.example.dtb
+>>>
+>>> Can you please point me to a sample of how to make required in a
+>>> parent node of cpu@X property 'mips-hpt-frequency' only for some
+>>> compatible strings inside the node? What can this be properly
+>>> expressed using schema??
+>>> I was looking and testing different things for a while without success at all.
 >>
->> Then maybe pinctrl should be the sysgcr and expose regmap for other devices?
-> The pin controller using the sysgcr to handle the pinmux, this is why
-> the sysgcr is in the mother node, is it problematic?
+>> You either define new schema for /cpus node (and match by name, define
+>> children etc) or include it in schema for top-level properties. The
+>> first is tricky, because the cpus node does not have compatible (like
+>> nvidia,tegra194-ccplex.yaml).
+>>
+>> The second should work, but then it's a bit cluttered (top-level mixed
+>> with cpus).
+> 
+> I don't know if I am understanding you but maybe it is because my
+> explanation about the requirement was not good at all. So let me
+> explain a bit better.
+> 
+> This is the normal way of definition of cpus for BMIPS:
 
-You said pin-controller mux registers are in sysgcr, so it should not be
-used via syscon.
+I know, I checked the DTS.
 
-Please provide address map description to convince us that this is
-correct HW representation.
+> 
+> cpus {
+>       #address-cells = <1>;
+>       #size-cells = <0>;
+> 
+>       mips-hpt-frequency = <150000000>;
+> 
+>       cpu@0 {
+>         compatible = "brcm,bmips4350";
+>         device_type = "cpu";
+>         reg = <0>;
+>       };
+> 
+>       cpu@1 {
+>         compatible = "brcm,bmips4350";
+>         device_type = "cpu";
+>         reg = <1>;
+>       };
+>     };
+> 
+> What I need to say in schema is that 'mips-hpt-frequency' must be only
+> present if cpu@0 and cpu@1 nodes contain a compatible matching
+> brcm,bmips*. In the same cpu@0 or cpu@1 node
+> the following below will be sufficient. How can I express the same but
+> referring that 'mips-hpt-frequency' must be on the parent node?
+
+As I said you had two ways. In your current patch, I think you cannot.
+
+> Because as it is below the validator complains because
+> 'mips-hpt-frequency'
+> is not present in cpu@0 and cpu@1 nodes:
+> 
+> allOf:
+>    - if:
+>         properties:
+>            compatible:
+>                enum:
+>                    - brcm,bmips3300
+>                    - brcm,bmips4350
+>                    - brcm,bmips4380
+>                    - brcm,bmips5000
+>                    - brcm,bmips5200
+>      then:
+>         required:
+>            - mips-hpt-frequency
+>      else:
+>         properties:
+>            mips-hpt-frequency: false
+> 
 
 Best regards,
 Krzysztof
