@@ -2,58 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEE185BCB9C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 14:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F0F95BCB9D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 14:16:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbiISMPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 08:15:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49066 "EHLO
+        id S229652AbiISMQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 08:16:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbiISMPa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 08:15:30 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E00B3BF57
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 05:15:29 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id o184so14357318oif.13
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 05:15:29 -0700 (PDT)
+        with ESMTP id S229567AbiISMQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 08:16:35 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F9DEDF12
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 05:16:34 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id r13-20020a056830418d00b0065601df69c0so14230002otu.7
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 05:16:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=UnlCmsEZJ8lxkFtwvGKDp8pOpVaR2HEI7RmcoLPHkpU=;
-        b=cplwCt/UF93xGfSJqVX2Cm4bWa71ttMXERcSgLXbFYeV7YxwPhv3t+PA0ilgmzfgfJ
-         VNLto92ZVY9WGRXtaXEuSDwGcvYS7ZLSvNRKImkMGitnerwH2qf6S5+yZG8guS38MdsG
-         LI8iGWEN5Y2iHePFW06FjT9NOmudZA0qt7aYIoP+RX1ilOUrY/dMiNqLxaTkFn0qO27a
-         Ra5QEpWLImXW8AwayxpOiQhFqBNnWVQFDlpKVxW0mNzyv8M96iZtF+ckMRttnYpBk5An
-         LpEdMApbsK2op8Coy2OReOOchS91oXttUZ3PVgB0TmzPLIYHTIZE14tjyA2j9Yd7WKbY
-         gpGw==
+        bh=d60Znzhgguy7LOlxPsmIHzGOr1MPJ+CgWm3LsmxBCUE=;
+        b=q2hjwJ5AeUeAhberEVvE2wW9A6bSCPbPR//9AC4oe4C6wM/GdIzJU0FfR3LxbCVRPb
+         XFV1W9/gtLCMxTElVh+BXevgOvFUs3LK+BfR605lDuK4zgWLg0Wd5XpW1JleGy4Amg+j
+         B3qDJLGNeJeryAZPUpVr2Vv9m1xY/njtpyv5/ruFiOyrcVH0mddGTXoXXNswwjc8Y3f1
+         lQNBz8htMfcTohQVt1/A7Cl8Ttr+P3lXVXPYSroizh+xGNJW+5kympuyKGa8HBYhqEqT
+         vLrSY2R/my5W9cdnVSf5r5mb0fc46IdMlXp3omcrPXe2wIhaTpO3p17e13jt0S8LyCKY
+         Wi9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=UnlCmsEZJ8lxkFtwvGKDp8pOpVaR2HEI7RmcoLPHkpU=;
-        b=ldRR97ohxJSet8t2XjNC5tvfOO4b2SwfsDd0OrKPNS+yzpgHk4EJnX4GE+U9P8aN6j
-         XlA5BSHo/yfidKKRKYY/huzHb2JnjGnWFzh22CxIRbzDIxub7BnkHAJy783kx2lTFPI9
-         p75Vyqp9pFRfGyKfShmBQsLDr0ZGPgC/APNZZonv8ZKPwlPgFyXwqxBqgvp4pxsP7Pgf
-         1jnNXIqTKdVoLhSHZZHV6UMT6ZAZVHdEySXKnPCE8W86g4nzcfkk9f3d/M/3ctcjJP8r
-         RX+YbUrcSfAYZVYfzd99SX049LHlw8dq3L9V6QcrT/g96A1SneA8M1coz20SyOuH4zTY
-         cMyg==
-X-Gm-Message-State: ACrzQf2EL+ja5fNmZWSEf27QkO8Ou+mfrGgc5gWCvRPU3860D7LeSjpX
-        +cgHDacnRaMVijt4+p4sVmdAfKsziK+yPiBuO+Qf9cpO2kc=
-X-Google-Smtp-Source: AMsMyM7QaNySQMA7PvNNbsefu8192p7kQrC8NQkBwIoQfRU0Uaw+EAbIJu6NqPkLQIM6rNG8xzHAGkZdOOZpXMepuBY=
-X-Received: by 2002:a05:6808:181e:b0:350:7776:9059 with SMTP id
- bh30-20020a056808181e00b0035077769059mr5236532oib.83.1663589729252; Mon, 19
- Sep 2022 05:15:29 -0700 (PDT)
+        bh=d60Znzhgguy7LOlxPsmIHzGOr1MPJ+CgWm3LsmxBCUE=;
+        b=qTFvsEr1wllkpnkmsLKnFS0vjUGNNImHD6EX/4rjkNUzexDOtDKx8iZJzj/hB8UtH7
+         hn3rPeE3dWiGJweKvhLY42PXwM03jGMXm5s9MzAO6cu5cqEA9gOv4hC0zNJRQ+jJwa2v
+         C4wSytGvlPjNkN5GCO/c3Y6juz58sYv98XC7MeOlCcXeoqdwfXR0Hu5Vt4f2Road1QTe
+         p7OAu400X032GG8ugxQ+9Khu2wksR8eHH0wuPL6ZUXNlfsu8B+mfNd/dE+iZt5qdFf/g
+         rmusLnU50ncO86xw9FkhEijfNqobNoumfDqCuABChmRcrLEL15Wc2DMJ6Izx871uEIB/
+         IEGQ==
+X-Gm-Message-State: ACrzQf3U0bwA+3FQuGV1IPMxDHVYswOSkrqmgVRjAnJowFCBevyMaV1w
+        vTKpOXBec4RTObNkoqpTqQfKzIx+MLZ5zOqVRmI=
+X-Google-Smtp-Source: AMsMyM7dKR+45OpquqsemJTJr2eTkn+192AhMSaZ9UICNPDoyo9J3F8IDXTmvj06NHqTd+zVCKhufQfHqjCT5EjeSAA=
+X-Received: by 2002:a05:6830:150e:b0:655:bc7d:1e5d with SMTP id
+ k14-20020a056830150e00b00655bc7d1e5dmr7793624otp.272.1663589793414; Mon, 19
+ Sep 2022 05:16:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220916040044.487748-1-sergio.paracuellos@gmail.com> <67080aaa-3cfb-9190-4b5e-99a793677c7d@linaro.org>
-In-Reply-To: <67080aaa-3cfb-9190-4b5e-99a793677c7d@linaro.org>
+References: <20220916043415.489179-1-sergio.paracuellos@gmail.com>
+ <b5fe0746-44d9-9513-8190-b55ec984b603@linaro.org> <CAMhs-H_91RJ0thPP_RXKKPk4WihcfH=t2ww01Sk1K8ono+UF=A@mail.gmail.com>
+ <cd978975-5da3-661a-1eeb-f45e32f0e484@linaro.org>
+In-Reply-To: <cd978975-5da3-661a-1eeb-f45e32f0e484@linaro.org>
 From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Mon, 19 Sep 2022 14:15:18 +0200
-Message-ID: <CAMhs-H-1dFyJ3cQ1pEi6U4kpExSt1qhph1Tpac6fGifKJfMipQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: spi: migrate mt7621 text bindings to YAML
+Date:   Mon, 19 Sep 2022 14:16:22 +0200
+Message-ID: <CAMhs-H_eE9fMF8cuxX4adBjmNRqfkJJAA5MMNV3=DD7B+H4XOg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: migrate MIPS CPU
+ interrupt controller text bindings to YAML
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
 Content-Type: text/plain; charset="UTF-8"
@@ -67,117 +72,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 19, 2022 at 1:31 PM Krzysztof Kozlowski
+On Mon, Sep 19, 2022 at 1:57 PM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 16/09/2022 06:00, Sergio Paracuellos wrote:
-> > SoC MT7621 SPI bindings used text format, so migrate them to YAML.
+> On 19/09/2022 13:55, Sergio Paracuellos wrote:
+> >>> +maintainers:
+> >>> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> >>
+> >> What about existing maintainers?
+> >
+> > Understood. I search for files in the MAINTAINERS file and not for
+> > directories. Will properly maintain original maintainers in the next
+> > version.
+>
+> This is looks like architecture device, so I expect architecture
+> maintainers to be listed here.
+
+Ok, I will add Thomas as maintainer for this, thanks.
+
+>
 > >
 >
-> Rebase your patch on recent Linux kernel.
-
-Understood.
-
+> (...)
 >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > ---
-> >  .../bindings/spi/ralink,mt7621-spi.yaml       | 68 +++++++++++++++++++
-> >  .../devicetree/bindings/spi/spi-mt7621.txt    | 26 -------
-> >  2 files changed, 68 insertions(+), 26 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/spi/spi-mt7621.txt
+> >>
+> >>> +  - interrupt-controller
+> >>> +
+> >>> +examples:
+> >>> +  - |
+> >>> +    cpuintc {
+> >>
+> >> Node names should be generic.
+> >> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 > >
-> > diff --git a/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml b/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
-> > new file mode 100644
-> > index 000000000000..a602406e2669
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
-> > @@ -0,0 +1,68 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/spi/ralink,mt7621-spi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +maintainers:
-> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > +
-> > +title: Mediatek MT7621/MT7628 SPI controller
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/spi/spi-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ralink,mt7621-spi
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
+> > This is the name used in most of the dts files in the
+> > 'arch/mips/boot/dts' folder of the kernel tree... I guess I can change
+> > only the name in the binding example or should this match with real
+> > dts files?
 >
-> Aren't these coming from spi-controller?
+> Change only in the example. Interrupt controllers are named
+> "interrupt-controller".
 
-Yes, you are right. Will drop address-cells and size-cells in the next version.
+Understood!
 
 >
-> > +
-> > +  clocks:
-> > +    maxItems: 1
->
-> You need to describe changes done. This does not look like pure conversion.
->
-> > +
-> > +  clock-names:
-> > +    const: spi
->
-> Why?
-
-To match current nodes in dts files. Will drop.
-
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  reset-names:
-> > +    const: spi
->
-> Why?
-
-Ditto.
-
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - resets
-> > +  - reset-names
->
-> Why?
-
-Will drop reset-names.
-
->
-> > +  - "#address-cells"
-> > +  - "#size-cells"
->
-> Use same style of quotes.
-
-Will do.
-
->
-> > +
-> > +unevaluatedProperties: false
-> > +
 >
 >
 > Best regards,
 > Krzysztof
 
-Thanks,
+Best regards,
     Sergio Paracuellos
