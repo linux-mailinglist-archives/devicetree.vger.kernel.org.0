@@ -2,282 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B9925BC416
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5BD05BC426
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 10:19:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbiISIOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 04:14:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56696 "EHLO
+        id S229929AbiISITP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 04:19:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbiISIOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:14:08 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7BC012AA2;
-        Mon, 19 Sep 2022 01:14:06 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 014D26601AAA;
-        Mon, 19 Sep 2022 09:14:04 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663575245;
-        bh=FlE2q42xksiG1lAKxhBiXSO5wbdVHlDFDRFE/WJ7fW8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=OTdTNd8zholm61yWT9HJMFa2xDGOUXxVua2OR72+fMFiSKMlNyT8yoClIMHAt/+7x
-         iT0xl8119/lVDy2HCiAGqNsjA6gd9GMvDU6Trya1EYVCW8WYDM/HwKTO/4JVCFgyGZ
-         IPi8/dXH3qgTMn14qYfZadJrqnshnF8Xf1J874d51LjudVvcrn7qLtDKeSFl1gVZ7G
-         s5+1saexqLJmeUEBjvmAn7WWsh6rrdRyCESsQH8sYo1qedq4u/1uC3CnMFPsSImpp/
-         4uEOP6DGBDB2NHl24h0ZN9Twi+/HRrvUc0UmqeAp/4X3gLGJH6/9OrR/qx/xcO5UgT
-         lqFKVluKkiBAg==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v3] dt-bindings: mailbox: Convert mtk-gce to DT schema
-Date:   Mon, 19 Sep 2022 10:13:33 +0200
-Message-Id: <20220919081333.15678-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.37.2
+        with ESMTP id S229939AbiISITM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 04:19:12 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F5DA20BDD
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 01:19:10 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id x29so720702ljq.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 01:19:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=UkEI6Wgy4k9VtOrM7WdWbzd7EfHqK85lNcyzLrqA37o=;
+        b=FPsoXJw7FBanwzpf+Nt7c7P93iaUzEZIt6GHy7fz2C1Fazs7THwMWRaJjX5mpYhb1L
+         g3UbE358gq6RnaK0F2yPwBYQdL2c7nVl8VXHLcryRfPH2X/tfXuFHVbNgdAG6Xez22XJ
+         /qwi8/MvK1NyPpLsde0KNGTN5knosmuGMNwWKHZkHZ1nRIGwC6jKH56oB4mOjjRkfI8b
+         /ngy5aoUzI1QAvKY3nGcFLopU2NIzEsv+qzHYKGUi0q6ZMv1eIYaFyscFQqSgZQSEcEe
+         HB+kvg7BN4KOcJjGMfZ9odA5DHHq7EasSPqq4wpubPedsejps/9oPiliGsMGrowb6t7y
+         swIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=UkEI6Wgy4k9VtOrM7WdWbzd7EfHqK85lNcyzLrqA37o=;
+        b=hOCwz6Cf6SEarubAVRTLda+8Hawh5XFI6IjPcsmvd+ZzFiVK/13KflcyzjcJzxJ2B4
+         /vw9uNiXvgpPdx9UD8HlGtpX8CxzxvzQtiiLCx7Ou8iVsD1cXz3qE/ATQUHZ+dgp1mra
+         7FJ2CTznJWX7yURI/yUw1WuboGjDAUIbE0v9mHUNFeqdCF4ejrf6PLqRUjYvuBJC6Szl
+         mF1SsXcerkWc1mIqoyBXS6VZuzkeX6F2/BZL2boooI3+6+Ysp+33gt7ibD6CnQhJY/7a
+         al5QbdQPNLs2dguMMfEqGsXt/d3r1scMxdlSZCiTYi4bWcnvqxOBagpbpm07pOCXdWd9
+         OzAw==
+X-Gm-Message-State: ACrzQf02klPjb4L8kUQINqtMJdZ4OkoV+2HO+45JOdsFpNkYetb+o5T/
+        3yL9szXIu2bgwghcpVm2m7supg==
+X-Google-Smtp-Source: AMsMyM46UQAXva4/n5G0JyybDDnqLzhtGsEjIMky24uSv0afcZHXph6nsCJwHu42ZILKQdrrpHprRg==
+X-Received: by 2002:a2e:9d88:0:b0:26a:95c1:218f with SMTP id c8-20020a2e9d88000000b0026a95c1218fmr4824159ljj.223.1663575548744;
+        Mon, 19 Sep 2022 01:19:08 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c37-20020a05651223a500b0048b3926351bsm5079034lfv.56.2022.09.19.01.19.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Sep 2022 01:19:08 -0700 (PDT)
+Message-ID: <fc1c075d-e20d-9395-d168-8cfe530f77ad@linaro.org>
+Date:   Mon, 19 Sep 2022 10:19:07 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] media: dt-bindings: i2c: ovti,ov5640: Drop ref to
+ video-interface-devices.yaml
+Content-Language: en-US
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220916133521.73183-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <YyZS38Wo7rDsNRm2@pendragon.ideasonboard.com>
+ <CA+V-a8vvNHFt818wryyuhWxPtay4czjWXiH=AWEKiJ1AzB46mA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CA+V-a8vvNHFt818wryyuhWxPtay4czjWXiH=AWEKiJ1AzB46mA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the mtk-gce mailbox binding to DT schema format.
+On 19/09/2022 10:08, Lad, Prabhakar wrote:
+> Hi Laurent,
+> 
+> Thank you for the review.
+> 
+> On Sun, Sep 18, 2022 at 12:06 AM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+>>
+>> Hi Prabhakar,
+>>
+>> Thank you for the patch.
+>>
+>> On Fri, Sep 16, 2022 at 02:35:21PM +0100, Prabhakar wrote:
+>>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>>
+>>> video-interface-devices.yaml isn't used so just drop it from the
+>>> DT binding doc.
+>>>
+>>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml | 3 ---
+>>>  1 file changed, 3 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+>>> index 540fd69ac39f..ce99aada75ad 100644
+>>> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+>>> @@ -9,9 +9,6 @@ title: OmniVision OV5640 Image Sensor Device Tree Bindings
+>>>  maintainers:
+>>>    - Steve Longerbeam <slongerbeam@gmail.com>
+>>>
+>>> -allOf:
+>>> -  - $ref: /schemas/media/video-interface-devices.yaml#
+>>> -
+>>
+>> The rotation property listed in this binding uses the definition from
+>> video-interface-devices.yaml. I don't think just dropping this is the
+>> right solution. Changing additionaProperties to unevaluatedProperties
+>> seems a better option.
+>>
+> Agreed, I missed rotation was used from video-interface-devices.yaml.
+> Agreed the changing additionaProperties to unevaluatedProperties seems
+> a better option.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
+The meaning of unevaluatedProperties:false would be here - accept other
+properties (not mentioned here explicitly) from referenced schema. If
+this is your actual intention for this binding, it makes sense. But if
+the intention in this binding was to disallow these other properties,
+then it would be wrong to change to unevaluatedProperties.
 
-Changes in v3:
- - Removed '|' from description
- - Removed mbox client examples
- - Squashed patch dt-bindings: arm: mediatek:
-   mmsys: Reference to mediatek,gce-mailbox.yaml
-
-Changes in v2:
- - Changed mtk-gce.txt references to new yaml file
+Therefore before sending patches and calling something better or not,
+please instead focus on that aspect of referenced schema.
 
 
-A previous attempt for this was made at [1], but it was changing
-the way of getting clocks (by name for all).
-Keeping clock-names not required for the multi-gce case makes this
-binding simpler, hence I chose to abandon the change at [1] and go
-for this one instead.
-
-Any Reviewed-by or Acked-by tag was dropped, as this conversion was
-completely redone from scratch and differs from [1] for the
-aforementioned reasons.
-
-[1]: https://lore.kernel.org/all/20220524151512.247435-1-angelogioacchino.delregno@collabora.com/
-
- .../bindings/arm/mediatek/mediatek,mmsys.yaml |  3 +-
- .../mailbox/mediatek,gce-mailbox.yaml         | 80 ++++++++++++++++++
- .../devicetree/bindings/mailbox/mtk-gce.txt   | 82 -------------------
- 3 files changed, 82 insertions(+), 83 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
- delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-index 6ad023eec193..85e6f4f621fc 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-@@ -52,7 +52,8 @@ properties:
-     description:
-       Using mailbox to communicate with GCE, it should have this
-       property and list of phandle, mailbox specifiers. See
--      Documentation/devicetree/bindings/mailbox/mtk-gce.txt for details.
-+      Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
-+      for details.
-     $ref: /schemas/types.yaml#/definitions/phandle-array
- 
-   mediatek,gce-client-reg:
-diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
-new file mode 100644
-index 000000000000..fff8fd2e984a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
-@@ -0,0 +1,80 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek Global Command Engine Mailbox
-+
-+maintainers:
-+  - Houlong Wei <houlong.wei@mediatek.com>
-+
-+description:
-+  The Global Command Engine (GCE) is used to help read/write registers with
-+  critical time limitation, such as updating display configuration during the
-+  vblank. The GCE can be used to implement the Command Queue (CMDQ) driver.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt6779-gce
-+      - mediatek,mt8173-gce
-+      - mediatek,mt8183-gce
-+      - mediatek,mt8186-gce
-+      - mediatek,mt8192-gce
-+      - mediatek,mt8195-gce
-+
-+  "#mbox-cells":
-+    const: 2
-+    description:
-+      The first cell describes the Thread ID of the GCE,
-+      the second cell describes the priority of the GCE thread
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Global Command Engine clock
-+
-+  clock-names:
-+    items:
-+      - const: gce
-+
-+required:
-+  - compatible
-+  - "#mbox-cells"
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+if:
-+  not:
-+    properties:
-+      compatible:
-+        contains:
-+          const: mediatek,mt8195-gce
-+then:
-+  required:
-+    - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  # Example for a device client and for a MediaTek mutex client
-+  - |
-+    #include <dt-bindings/clock/mt8173-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    gce: mailbox@12120000 {
-+        compatible = "mediatek,mt8173-gce";
-+        reg = <0x10816000 0x1000>;
-+        interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
-+        #mbox-cells = <2>;
-+        clocks = <&infracfg CLK_INFRA_GCE>;
-+        clock-names = "gce";
-+    };
-diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-deleted file mode 100644
-index c2aeba63bd47..000000000000
---- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-+++ /dev/null
-@@ -1,82 +0,0 @@
--MediaTek GCE
--===============
--
--The Global Command Engine (GCE) is used to help read/write registers with
--critical time limitation, such as updating display configuration during the
--vblank. The GCE can be used to implement the Command Queue (CMDQ) driver.
--
--CMDQ driver uses mailbox framework for communication. Please refer to
--mailbox.txt for generic information about mailbox device-tree bindings.
--
--Required properties:
--- compatible: can be "mediatek,mt8173-gce", "mediatek,mt8183-gce",
--  "mediatek,mt8186-gce", "mediatek,mt8192-gce", "mediatek,mt8195-gce" or
--  "mediatek,mt6779-gce".
--- reg: Address range of the GCE unit
--- interrupts: The interrupt signal from the GCE block
--- clock: Clocks according to the common clock binding
--- clock-names: Must be "gce" to stand for GCE clock
--- #mbox-cells: Should be 2.
--	<&phandle channel priority>
--	phandle: Label name of a gce node.
--	channel: Channel of mailbox. Be equal to the thread id of GCE.
--	priority: Priority of GCE thread.
--
--Required properties for a client device:
--- mboxes: Client use mailbox to communicate with GCE, it should have this
--  property and list of phandle, mailbox specifiers.
--Optional properties for a client device:
--- mediatek,gce-client-reg: Specify the sub-system id which is corresponding
--  to the register address, it should have this property and list of phandle,
--  sub-system specifiers.
--  <&phandle subsys_number start_offset size>
--  phandle: Label name of a gce node.
--  subsys_number: specify the sub-system id which is corresponding
--                 to the register address.
--  start_offset: the start offset of register address that GCE can access.
--  size: the total size of register address that GCE can access.
--
--Optional properties for a client mutex node:
--- mediatek,gce-events: GCE events used by clients. The event numbers are
--  defined in 'dt-bindings/gce/<chip>-gce.h'.
--
--Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h',
--'dt-bindings/gce/mt8183-gce.h', 'dt-bindings/gce/mt8186-gce.h'
--'dt-bindings/gce/mt8192-gce.h', 'dt-bindings/gce/mt8195-gce.h' or
--'dt-bindings/gce/mt6779-gce.h'.
--Such as sub-system ids, thread priority, event ids.
--
--Example:
--
--	gce: gce@10212000 {
--		compatible = "mediatek,mt8173-gce";
--		reg = <0 0x10212000 0 0x1000>;
--		interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
--		clocks = <&infracfg CLK_INFRA_GCE>;
--		clock-names = "gce";
--		#mbox-cells = <2>;
--	};
--
--Example for a client device:
--
--	mmsys: clock-controller@14000000 {
--		compatible = "mediatek,mt8173-mmsys";
--		mboxes = <&gce 0 CMDQ_THR_PRIO_LOWEST>,
--			 <&gce 1 CMDQ_THR_PRIO_LOWEST>;
--		mutex-event-eof = <CMDQ_EVENT_MUTEX0_STREAM_EOF
--				CMDQ_EVENT_MUTEX1_STREAM_EOF>;
--		mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>,
--					  <&gce SUBSYS_1401XXXX 0x2000 0x100>;
--		...
--	};
--
--Example for a client mutex node:
--	mutex: mutex@14020000 {
--		compatible = "mediatek,mt8173-disp-mutex";
--		reg = <0 0x14020000 0 0x1000>;
--		interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--		clocks = <&mmsys CLK_MM_MUTEX_32K>;
--		mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
--				      <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
--	};
--- 
-2.37.2
-
+Best regards,
+Krzysztof
