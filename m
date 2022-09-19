@@ -2,88 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 904C35BC5BF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 11:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F46C5BC5E1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 11:56:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbiISJsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 05:48:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44162 "EHLO
+        id S230122AbiISJ4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 05:56:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbiISJsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 05:48:21 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A93C912AFD;
-        Mon, 19 Sep 2022 02:48:20 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id y3so63212351ejc.1;
-        Mon, 19 Sep 2022 02:48:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=kSzXHO4r9aLTZbu0HWFtQT6MR1swYs8Ir+cNV0IOQfo=;
-        b=jEgDZlWLM1zjSQF2MtVuLNjDpnsgPQXkhtAowdbRu2e2BZNSYbLFRNJI/0xTpwwmtn
-         asfLCk6j7tmw3dzYzotj5fQCJUCCFEOJOHnnlaogTryms++arNfj2pCE3m/YRzHwJ8zL
-         /LLABhr0k4JYF8RoMnxCi2wZcz+r8as0c3WUeB9Gs1r5t5154PO86g27HuVs/TaB/iDM
-         Hqqp4zUZ0Ddc3dF/UIHiYtYMlV2UhpdoAHkt3O9KtwtoON7HU7qjkRkq1pXLU9QlhEaC
-         Kat3I4oupiZ0FV47IQA2Ut6wrBEPzyLI3bOnoCyPbNVypCzMDVrUV8ifvnaOiB4IvuQ6
-         a21A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=kSzXHO4r9aLTZbu0HWFtQT6MR1swYs8Ir+cNV0IOQfo=;
-        b=4PcqwSaMP35mWvJZ3i6yAyBA9npxNZhaEeKg3ZSJBpbUXzbAO/eCIPe0IYvSRFyBn/
-         cmVdZrdPbNfKtwAI/L+lpo8yxqtSJZ0kb+MRnfJoDBkxd5r1zCqXV72bBjtjqrCfwGme
-         zHGn9iNJZftbbgnZ0zI2IC9wSz5VtRZvAMiKbjbcE8gekT0jblBSYe8ONR16s/Mzry3U
-         8M4Zt9zVdVB6TPgl5KHpyMSupKbpnrj18XQMwQQdn0Pk3PKHqQ6MbCuJzlNc7UeLSfog
-         idcPYhKONYuU2FOfufXyYzDP4zPX3RFm9Z0b+X2+LEFPfjo990m0juTZUci+2cKLGUGk
-         JJig==
-X-Gm-Message-State: ACrzQf05huo3hqXqfFa2GTODX9pEC4k3eEKUgP0coNBD9ROjgd/FyRf7
-        JZZ4/UaQxPY+fNPpVEYIyhke66eUlxt3RwYn5ZQ=
-X-Google-Smtp-Source: AMsMyM41WS0z7Q+C9EkEd35uB6rMtaV5C2bzXz0+TJcbwQBodw38hZWq67v/Gi0DfRyW20XD+4I71EriUfD1MTSIsmA=
-X-Received: by 2002:a17:907:847:b0:77f:f489:cc25 with SMTP id
- ww7-20020a170907084700b0077ff489cc25mr12072416ejb.80.1663580899150; Mon, 19
- Sep 2022 02:48:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220914134211.199631-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVRmuQm5xRgpQurCJTu7goqNi5zj+Q9cLLz_s_p=znbbA@mail.gmail.com>
-In-Reply-To: <CAMuHMdVRmuQm5xRgpQurCJTu7goqNi5zj+Q9cLLz_s_p=znbbA@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 19 Sep 2022 10:47:51 +0100
-Message-ID: <CA+V-a8vDMFKJb0wDOR8LZifRDBa0hju-YgL_BDb0chVjpef98w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg2ul-smarc-som: Drop enabling wdt2
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230098AbiISJ4p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 05:56:45 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABE7A30B;
+        Mon, 19 Sep 2022 02:56:37 -0700 (PDT)
+X-UUID: 101d3b21a1dc457199d685683f194011-20220919
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=dPMTiREpH/Df3NZCKHTlKTh2R54/xEmjH9I8g+NM+/4=;
+        b=KE0V/xRyxbGADXlo3T21L8BshSv1CfdKR5VJRseYYDa4VRdcgdwxJryrF8WI9mAPfbKjzSJXhHAB9ZRxJzVJ6MmJKSBMGRepnJYO6uAVf7rW1NPhRmNqp54v5PCjguDf5Pz/qLba533JCqcNGGWC7EBiQqgwwDPfi8AGWf5Y+Mk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:5b87dbec-6f38-4589-8e94-6d8670d076a5,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:22,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:22
+X-CID-INFO: VERSION:1.1.11,REQID:5b87dbec-6f38-4589-8e94-6d8670d076a5,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:22,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:22
+X-CID-META: VersionHash:39a5ff1,CLOUDID:915bdc18-0314-4ae7-b2d1-7295be49255e,B
+        ulkID:220919161938HV8SMIES,BulkQuantity:277,Recheck:0,SF:28|100|17|19|48|1
+        01|823|824,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BE
+        C:nil,COL:0
+X-UUID: 101d3b21a1dc457199d685683f194011-20220919
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <jianguo.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1207044010; Mon, 19 Sep 2022 17:56:33 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 19 Sep 2022 17:56:31 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 19 Sep 2022 17:56:31 +0800
+Message-ID: <f72e133e9aec70724702054e5f6a8712b649d34f.camel@mediatek.com>
+Subject: Re: [PATCH 1/2] stmmac: dwmac-mediatek: add support for mt8188
+From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Biao Huang" <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Mon, 19 Sep 2022 17:56:30 +0800
+In-Reply-To: <88412fcc-96be-cd9d-8805-086c7f09c03b@linaro.org>
+References: <20220919080410.11270-1-jianguo.zhang@mediatek.com>
+         <20220919080410.11270-2-jianguo.zhang@mediatek.com>
+         <d28ce676-ed6e-98da-9761-ed46f2fa4a95@linaro.org>
+         <4c537b63f609ae974dfb468ebc31225d45f785e8.camel@mediatek.com>
+         <88412fcc-96be-cd9d-8805-086c7f09c03b@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,MAY_BE_FORGED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Dear Krzysztof,
 
-Thank you for the review.
+On Mon, 2022-09-19 at 11:27 +0200, Krzysztof Kozlowski wrote:
+> On 19/09/2022 10:37, Jianguo Zhang wrote:
+> > Dear Krzysztof,
+> > 
+> > 	Thanks for your comments.
+> > 
+> > 
+> > On Mon, 2022-09-19 at 10:19 +0200, Krzysztof Kozlowski wrote:
+> > > On 19/09/2022 10:04, Jianguo Zhang wrote:
+> > > > Add ethernet support for MediaTek SoCs from mt8188 family.
+> > > > As mt8188 and mt8195 have same ethernet design, so private data
+> > > > "mt8195_gmac_variant" can be reused for mt8188.
+> > > > 
+> > > > Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
+> > > > ---
+> > > >  drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c | 2 ++
+> > > >  1 file changed, 2 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-
+> > > > mediatek.c
+> > > > b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> > > > index d42e1afb6521..f45be440b6d0 100644
+> > > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> > > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> > > > @@ -720,6 +720,8 @@ static const struct of_device_id
+> > > > mediatek_dwmac_match[] = {
+> > > >  	  .data = &mt2712_gmac_variant },
+> > > >  	{ .compatible = "mediatek,mt8195-gmac",
+> > > >  	  .data = &mt8195_gmac_variant },
+> > > > +	{ .compatible = "mediatek,mt8188-gmac",
+> > > > +	  .data = &mt8195_gmac_variant },
+> > > 
+> > > It's the same. No need for new entry.
+> > > 
+> > 
+> > mt8188 and mt8195 are different SoCs and we need to distinguish
+> > mt8188
+> > from mt8195, so I think a new entry is needed for mt8188 with the
+> > specific "compatiable".
+> 
+> No, this does not justify new entry. You need specific compatible,
+> but
+> not new entry.
+> 
+> > On the other hand, mt8188 and mt8195 have same ethernet design, so
+> > the
+> > private data "mt8195_gmac_variant" can be resued to reduce
+> > redundant
+> > info in driver.
+> 
+> And you do not need new entry in the driver.
+Do you mean that I can use "mediatek,mt8195-gmac" as compatible for
+ethernet in mt8188 DTS file?
+> 
+> Best regards,
+> Krzysztof
 
-On Sun, Sep 18, 2022 at 10:04 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> On Wed, Sep 14, 2022 at 3:43 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > WDT CH2 is specifically to check the operation of Cortex-M33 CPU so
-> > don't enable WDT2 by default.
-> >
-For consistency I'll drop enabling WDT2 from the RZ/G2L{C} too.
+BRS
+Jianguo
 
-Cheers,
-Prabhakar
