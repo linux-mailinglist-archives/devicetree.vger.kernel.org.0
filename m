@@ -2,276 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BFA25BC364
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 09:11:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38A255BC3A2
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 09:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbiISHLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 03:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52158 "EHLO
+        id S229725AbiISHsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 03:48:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbiISHLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 03:11:23 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3A591D323
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 00:11:21 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id a2so21447101lfb.6
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 00:11:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=OkybTE66mfrvnk07mJhb8uDsL9ZCbDV0hOsy6isKbWw=;
-        b=D/nRppMBq0YAnoEhINH3Z0P9TRgG1BXuZTIwyQM0dyZDLVwNJwi8aESkUvM73QHl+5
-         F9QYMQK/xtCsTHVDZ19PN2TwvyZXD05vkPJLCzo4Ij2OttCP2NEl2aoqD5jAYDbq3iU+
-         KMUaAnNPVXtKyV3LT4gSDILkBs/SV/ucd3Qn9u0YMqrvozsJ7A3DfDbt+kbzoAgfUtjg
-         p5foBSLRm97TnkizKOVfpI3StsmQB5lQkCbUulHvRy8qRJOEjo9cDhs4oTEK6/38kmbq
-         SNdleQ5QVzc6nSfF+j4drb/f4gEA0xgqkpxOEtIr6BUhfXcP1m3I1Ql11/vwTZUXU6Ri
-         2qnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=OkybTE66mfrvnk07mJhb8uDsL9ZCbDV0hOsy6isKbWw=;
-        b=CF/rlMzrs1LK+Hj7nKk36jovn4KZf9QlQ7fnN0ylu1ydK5UYcBrBZDnl2fjt4IRLlU
-         sUzWqaYetntGAl+cQB1YMJik6seofecKfPTIDNADLI0YiWN8MbNtrNTulkKSlqyWJulH
-         yFRS6WKi6Hza7+dBODp95lLvd5jyzKBvMNJFbo45XVh5YxYDRyXxCOgGaD1s9tn9rMxp
-         scAx3+PbYmaYg7hXXHxCys/+5nlmIou/tCwOU1D//PvNhpxMXtMh0lGfIQdermWNxyIw
-         EkA3WO5ckgmj0hFi9NW+b88i8ySrop5RzOjAPkjHKhCrs5SMR1qk7E+PsGBjLzrY07ae
-         OqVw==
-X-Gm-Message-State: ACrzQf3J7Kre9DIlxDM0VwgXVF5nefcKa71GKJlU3Wg/JRI4LOJKFqKq
-        M2T1LuNK2xYHBBwsfPrG4HO31w==
-X-Google-Smtp-Source: AMsMyM69FgTlQ/RA3kiV+ul8Cu2ZVr0C81M5qS5BMPwpGr3XxoadcKtBJkR9DBcKrshWMwkdmydh/w==
-X-Received: by 2002:a05:6512:3da9:b0:49f:1742:c692 with SMTP id k41-20020a0565123da900b0049f1742c692mr6275517lfv.313.1663571479878;
-        Mon, 19 Sep 2022 00:11:19 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b20-20020a056512071400b00492b494c4e8sm5049666lfs.298.2022.09.19.00.11.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 00:11:19 -0700 (PDT)
-Message-ID: <b5578e0f-ac41-9889-a6bb-4b1d74197ec0@linaro.org>
-Date:   Mon, 19 Sep 2022 09:11:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v1 3/3] thermal: ls2k: add thermal management support
-Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     zhanghongchen <zhanghongchen@loongson.cn>
-References: <20220919034915.26912-1-zhuyinbo@loongson.cn>
- <20220919034915.26912-3-zhuyinbo@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919034915.26912-3-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229621AbiISHsG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 03:48:06 -0400
+Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD99E1E3EC;
+        Mon, 19 Sep 2022 00:48:04 -0700 (PDT)
+Date:   Mon, 19 Sep 2022 09:47:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=default;
+        t=1663573681;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
+         references:references; bh=FUzULdujfHx+XvOmBlWfZijqfqCB/CCQSJMlgY6iG5Y=;
+        b=tpTfDwTjK2BYAl86UxbpwNKaCvkAwbKnoWS41DW6jVTx+bkTzxuA1uavAPUKpkV+dKKTPW
+        AWIhS9jjCQE8N0swDmVqflFPZLQ2dSnSfCH7VLrx/uTgrGWLEqvtnRtOhcGrE5NvSywMks
+        gZvYU5LE8L2ZESUcS0+uj5DXz93UlCX4N1x6p1dE5zSYL33I5ADAJt7jogtTtWDLp33EmM
+        BObH+OqIIoKUAFKR5T9Od5ve5AyoClqwaZgqRo1i7wsj71g3FXlW/8LPUaeA2w/v02Gbp5
+        2mxpW0bJ6SzMAg5R9Bvwp5qEJIE4efS6fPVrVHgDoaxxnlR/xgxpbbb+sZ8e2g==
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, arnd@arndb.de,
+        f.fainelli@gmail.com, krzyszccf.kozlowski+dt@linaro.org,
+        nsaenz@kernel.org, olof@lixom.net, robh+dt@kernel.org,
+        soc@kernel.org, stefan.wahren@i2se.com, william.zhang@broadcom.com
+Subject: Re: [PATCH] ARM: dts: Add Raspberry Pi Compute Module 4 CANOPi Board
+Message-ID: <YygeqySPtiAEN8EH@ada.ifak-system.com>
+Mail-Followup-To: Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, arnd@arndb.de,
+        f.fainelli@gmail.com, krzyszccf.kozlowski+dt@linaro.org,
+        nsaenz@kernel.org, olof@lixom.net, robh+dt@kernel.org,
+        soc@kernel.org, stefan.wahren@i2se.com, william.zhang@broadcom.com
+References: <20220916153156.30412-1-ariel.dalessandro@collabora.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220916153156.30412-1-ariel.dalessandro@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 05:49, Yinbo Zhu wrote:
-> This patch adds the support for loongson2k thermal sensor controller,
-> which can support maximum 3 sensors.
+Hei hei,
+
+Am Fri, Sep 16, 2022 at 12:31:56PM -0300 schrieb Ariel D'Alessandro:
+> The Eclipse KUKSA CANOPi [0] is a baseboard for the Raspberry Compute
+> Module 4 (CM4). It contains a VIA VL805 4 Port USB controller and two
+> MCP251xFD based CAN-FD interfaces.
 > 
-> It's based on thermal of framework:
->  - Trip points defined in device tree.
->  - Cpufreq as cooling device registered in loongson2k cpufreq driver.
->  - Pwm fan as cooling device registered in hwmon pwm-fan driver.
+> [0] https://github.com/boschresearch/kuksa.hardware
 > 
-> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 > ---
->  drivers/thermal/Kconfig        |  10 ++
->  drivers/thermal/Makefile       |   1 +
->  drivers/thermal/ls2k_thermal.c | 244 +++++++++++++++++++++++++++++++++
->  3 files changed, 255 insertions(+)
->  create mode 100644 drivers/thermal/ls2k_thermal.c
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts  | 139 ++++++++++++++++++
+>  arch/arm64/boot/dts/broadcom/Makefile         |   1 +
+>  .../dts/broadcom/bcm2711-rpi-cm4-canopi.dts   |   2 +
+>  4 files changed, 143 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
+>  create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
 > 
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index e052dae614eb..04f5c044bc94 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -504,4 +504,14 @@ config KHADAS_MCU_FAN_THERMAL
->  	  If you say yes here you get support for the FAN controlled
->  	  by the Microcontroller found on the Khadas VIM boards.
->  
-> +config LOONGSON2K_THERMAL
-> +	tristate "Loongson 2K SOC series thermal driver"
-> +	depends on OF
-> +	default m
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 05d8aef6e5d2..8930ab2c132c 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -98,6 +98,7 @@ dtb-$(CONFIG_ARCH_BCM2835) += \
+>  	bcm2837-rpi-zero-2-w.dtb \
+>  	bcm2711-rpi-400.dtb \
+>  	bcm2711-rpi-4-b.dtb \
+> +	bcm2711-rpi-cm4-canopi.dtb \
+>  	bcm2711-rpi-cm4-io.dtb \
+>  	bcm2835-rpi-zero.dtb \
+>  	bcm2835-rpi-zero-w.dtb
+> diff --git a/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts b/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
+> new file mode 100644
+> index 000000000000..52ec5908883c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
+> @@ -0,0 +1,139 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/dts-v1/;
+> +#include "bcm2711-rpi-cm4.dtsi"
+> +
+> +/ {
+> +	model = "Raspberry Pi Compute Module 4 CANOPi Board";
+> +
+> +	clocks {
+> +		clk_mcp251xfd_osc: mcp251xfd-osc {
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <20000000>;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		led-act {
+> +			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		led-pwr {
+> +			label = "PWR";
+> +			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
+> +			default-state = "keep";
+> +			linux,default-trigger = "default-on";
+> +		};
+> +	};
 
-Why should it be module by default on x86 or ARM? See how other drivers
-do it.
+This looks like using the node name and the deprecated "label"
+property for LED naming.  Please see
+Documentation/devicetree/bindings/leds/common.yaml and use the
+properties "function" and "color" instead.  Also check the node names
+itself, see the example in that binding or the leds-gpio binding for
+reference.
 
-> +	help
-> +	  Support for Thermal driver found on Loongson 2K SOC series platforms.
-> +	  It supports one critical trip point and one passive trip point. The
-> +	  cpufreq and the pwm fan is used as the cooling device to throttle CPUs
-> +	  when the passive trip is crossed.
-> +
->  endif
+Greets
+Alex
 
-(...)
-
-> +
-> +static int ls2k_thermal_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct resource *res;
-> +	struct ls2k_thermal_data *data;
-> +	int ret;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->pdev = pdev;
-> +	platform_set_drvdata(pdev, data);
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	data->regs = devm_ioremap(dev, res->start, resource_size(res));
-
-There is a helper combining these two.
-
-> +	if (IS_ERR(data->regs)) {
-> +		dev_err(dev, "failed to get io address\n");
-
-I think error msg can be skipped in such case. Core should print it.
-
-> +		return PTR_ERR(data->regs);
-> +	}
-> +
-> +	/* get irq */
-> +	data->irq = platform_get_irq(pdev, 0);
-> +	if (data->irq < 0)
-> +		return data->irq;
-> +
-> +	/* get id */
-> +	if (of_property_read_u32(dev->of_node, "id", &data->id)) {
-> +		dev_err(dev, "not found id property!\n");
-> +		data->id = LS2K_SOC_DEFAULT_SENSOR;
-> +	}
-> +
-> +	if (data->id > LS2K_SOC_MAX_SENSOR_NUM) {
-> +		dev_err(dev, "sensor id error,must be in <0 ~ %d>\n",
-> +				LS2K_SOC_MAX_SENSOR_NUM);
-> +		return -EINVAL;
-> +	}
-> +
-> +	writeb(0xff, data->regs + LS2K_TSENSOR_STATUS);
-> +
-> +	ls2k_tsensor_set(data, 0, 0, false);
-> +
-> +	data->tzd = devm_thermal_zone_of_sensor_register(&pdev->dev,
-> +							   data->id, data,
-> +							   &ls2k_of_thermal_ops);
-> +	if (IS_ERR(data->tzd)) {
-> +		ret = PTR_ERR(data->tzd);
-> +		data->tzd = NULL;
-> +		dev_err(&pdev->dev, "failed to register %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_request_threaded_irq(dev, data->irq,
-> +			ls2k_thermal_alarm_irq, ls2k_thermal_irq_thread,
-> +			IRQF_ONESHOT, "ls2k_thermal", data);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to request alarm irq: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * Thermal_zone doesn't enable hwmon as default,
-> +	 * enable it here
-> +	 */
-> +	data->tzd->tzp->no_hwmon = false;
-> +	ret = thermal_add_hwmon_sysfs(data->tzd);
-> +	if (ret) {
-> +		dev_err(dev, "failed to add hwmon sysfs interface %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +int ls2k_thermal_remove(struct platform_device *pdev)
-> +{
-> +	struct ls2k_thermal_data *data = platform_get_drvdata(pdev);
-> +	int reg_off = data->id * 2;
-> +
-> +	/* disable interrupt */
-> +	writew(0, data->regs + LS2K_TSENSOR_CTRL_LO + reg_off);
-> +	writew(0, data->regs + LS2K_TSENSOR_CTRL_HI + reg_off);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id of_ls2k_thermal_match[] = {
-> +	{ .compatible = "loongson,2k-tsensor",},
-> +	{ /* end */ }
 > +};
-> +MODULE_DEVICE_TABLE(of, of_ls2k_thermal_match);
 > +
-> +#ifdef CONFIG_PM_SLEEP
-> +static int ls2k_thermal_suspend(struct device *dev)
-> +{
-> +	struct ls2k_thermal_data *data = dev_get_drvdata(dev);
-> +	int reg_off = data->id * 2;
-> +
-> +	data->ctrl_low_val = readw(data->regs + LS2K_TSENSOR_CTRL_LO + reg_off);
-> +	data->ctrl_hi_val = readw(data->regs + LS2K_TSENSOR_CTRL_HI + reg_off);
-> +
-> +	writew(0, data->regs + LS2K_TSENSOR_CTRL_LO + reg_off);
-> +	writew(0, data->regs + LS2K_TSENSOR_CTRL_HI + reg_off);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ls2k_thermal_resume(struct device *dev)
-> +{
-> +	struct ls2k_thermal_data *data = dev_get_drvdata(dev);
-> +	int reg_off = data->id * 2;
-> +
-> +	writew(data->ctrl_low_val, data->regs + LS2K_TSENSOR_CTRL_LO + reg_off);
-> +	writew(data->ctrl_hi_val, data->regs + LS2K_TSENSOR_CTRL_HI + reg_off);
-> +
-> +	return 0;
-> +}
-> +
-> +static SIMPLE_DEV_PM_OPS(ls2k_thermal_pm_ops,
-> +			 ls2k_thermal_suspend, ls2k_thermal_resume);
-> +#endif
-> +
-> +static struct platform_driver ls2k_thermal_driver = {
-> +	.driver = {
-> +		.name		= "ls2k_thermal",
-> +#ifdef CONFIG_PM_SLEEP
-
-pm_ptr() (and use same approach as its users - no need for ifdefs,
-DEFINE_SIMPLE_DEV_PM_OPS)
-
-
-> +		.pm = &ls2k_thermal_pm_ops,
-> +#endif
-> +		.of_match_table = of_ls2k_thermal_match,
-> +	},
-> +	.probe	= ls2k_thermal_probe,
-> +	.remove	= ls2k_thermal_remove,
+> +&ddc0 {
+> +	status = "okay";
 > +};
-> +module_platform_driver(ls2k_thermal_driver);
-
-
-Best regards,
-Krzysztof
+> +
+> +&ddc1 {
+> +	status = "okay";
+> +};
+> +
+> +&hdmi0 {
+> +	status = "okay";
+> +};
+> +
+> +&hdmi1 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c0_gpio44>;
+> +	status = "okay";
+> +	clock-frequency = <100000>;
+> +
+> +	pcf85063a@51 {
+> +		compatible = "nxp,pcf85063a";
+> +		reg = <0x51>;
+> +	};
+> +};
+> +
+> +&pcie0 {
+> +	pci@0,0 {
+> +		device_type = "pci";
+> +		#address-cells = <3>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		reg = <0 0 0 0 0>;
+> +
+> +		usb@0,0 {
+> +			reg = <0 0 0 0 0>;
+> +			resets = <&reset RASPBERRYPI_FIRMWARE_RESET_ID_USB>;
+> +		};
+> +	};
+> +};
+> +
+> +&pixelvalve0 {
+> +	status = "okay";
+> +};
+> +
+> +&pixelvalve1 {
+> +	status = "okay";
+> +};
+> +
+> +&pixelvalve2 {
+> +	status = "okay";
+> +};
+> +
+> +&pixelvalve4 {
+> +	status = "okay";
+> +};
+> +
+> +&spi {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi0_gpio7>;
+> +	cs-gpios = <&gpio 8 1>, <&gpio 7 1>;
+> +	dmas = <&dma 6>, <&dma 7>;
+> +	dma-names = "tx", "rx";
+> +
+> +	mcp251xfd0: mcp251xfd@0 {
+> +		compatible = "microchip,mcp251xfd";
+> +		reg = <0>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&mcp251xfd0_pins>;
+> +		spi-max-frequency = <20000000>;
+> +		interrupt-parent = <&gpio>;
+> +		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
+> +		clocks = <&clk_mcp251xfd_osc>;
+> +	};
+> +
+> +	mcp251xfd1: mcp251xfd@1 {
+> +		compatible = "microchip,mcp251xfd";
+> +		reg = <1>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&mcp251xfd1_pins>;
+> +		spi-max-frequency = <20000000>;
+> +		interrupt-parent = <&gpio>;
+> +		interrupts = <22 IRQ_TYPE_LEVEL_LOW>;
+> +		clocks = <&clk_mcp251xfd_osc>;
+> +	};
+> +};
+> +
+> +&gpio {
+> +	mcp251xfd0_pins: mcp251xfd0_pins {
+> +		brcm,pins = <27>;
+> +		brcm,function = <BCM2835_FSEL_GPIO_IN>;
+> +	};
+> +
+> +	mcp251xfd1_pins: mcp251xfd1_pins {
+> +		brcm,pins = <22>;
+> +		brcm,function = <BCM2835_FSEL_GPIO_IN>;
+> +	};
+> +};
+> +
+> +&vc4 {
+> +	status = "okay";
+> +};
+> +
+> +&vec {
+> +	status = "disabled";
+> +};
+> diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
+> index e8584d3b698f..7cd88b8c0345 100644
+> --- a/arch/arm64/boot/dts/broadcom/Makefile
+> +++ b/arch/arm64/boot/dts/broadcom/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
+>  			      bcm2711-rpi-4-b.dtb \
+> +			      bcm2711-rpi-cm4-canopi.dtb \
+>  			      bcm2711-rpi-cm4-io.dtb \
+>  			      bcm2837-rpi-3-a-plus.dtb \
+>  			      bcm2837-rpi-3-b.dtb \
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts b/arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
+> new file mode 100644
+> index 000000000000..e9369aa0eb39
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
+> @@ -0,0 +1,2 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +#include "arm/bcm2711-rpi-cm4-canopi.dts"
+> -- 
+> 2.37.2
+> 
