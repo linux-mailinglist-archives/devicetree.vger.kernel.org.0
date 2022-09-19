@@ -2,88 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0F445BC317
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 08:50:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57AF65BC32C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 08:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229844AbiISGuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 02:50:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56954 "EHLO
+        id S229635AbiISG4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 02:56:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbiISGuS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 02:50:18 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6618FBC3A
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 23:50:16 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id q17so18836683lji.11
-        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 23:50:16 -0700 (PDT)
+        with ESMTP id S229587AbiISG4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 02:56:15 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4794A13F00
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 23:56:14 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id x27so12181183lfu.0
+        for <devicetree@vger.kernel.org>; Sun, 18 Sep 2022 23:56:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=AgUTiKhBujn05TxXhChEqalF/68tJs4eQO8QBl9KDLA=;
-        b=u/00MNl+D+cPo1LMA53PEjTlV1YyUFDISGSKO7fmcY8jJtG4osxrevg1ir2oZrMlAY
-         KGoplI+L/szE5gXN1gy6tWxgb8djvpTAMpmzrd85685XR5XmIEHg4wzs8n1hyba1cAQk
-         I/x2ASViQlamzdlRcYMvL1kVNN2fiTRnVIwyf36fPouyWZxzGeAwbiX6xvyKcUqMTiyr
-         RgCU7a8Q/7D4dzss6xuN1oQgVs1t96f98DmNZyqKy9boypscFwNBnl21DO23cIHuGuCt
-         mJKe7X0zl5pd2YP1NseYOlHYs0mFIa1OSPjuL8I7Xd00n2kdRHhVVDg6/Ec8n3zf+Oq1
-         9Fgw==
+        bh=bKbN1I3cs9nIBHXs3yK9lgtbTnTo8V/szSejEq/+Fh8=;
+        b=abmE5BPvSBlnQ/1wpJYNvjkXHwjnf4/jKgTtS0LkWH821XELN32YCjHut3FUlPWpqO
+         LbKfyXvQQ1rf4qE7EuXL872ArsIK2IJJIZINK9jwftM04Bjk3YywUeHICS0YAuYmYwK5
+         f1+9Hyus6T56BP3Hb3VTW/GIWjXxzKsaoDJwy+nFtho23otI6cODCNjsLCo3MWJcTnjF
+         nFhq7guNhl4dgHHNbOchlKuImhD/ixbIdsnj1K8bJ+0V8/dJNejOUbjxyF8LIXs9pfCS
+         RHpb2SemaG7VIyMOtHoEkk+0OUBahM1/T/iSHgCQGRuoLjIooScvZRxKWtMHkpBL6ZHY
+         pwqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=AgUTiKhBujn05TxXhChEqalF/68tJs4eQO8QBl9KDLA=;
-        b=R8Svzk6r3L+0Lcx+Tq/Y9IrEUYhk20nk/FW4YJCKoW6rJ/1eogSQGCA3aw6l6AbITM
-         11d5RNYMGj6vHrEyjkSvQ7M5TRbYZbOHx5dBldWe9+lr2DHtbMGigiV972de864+0R/i
-         rtHApZV2QQ1W24k4c7SrpLCAgzLlFHxAVz2X+JAoxGcgtj49mL8CdYZG1L4jN1eGj93n
-         Id1iao7hK3+zeKmwb1zPAwKKTwloB3Ll3waQvhpa8uY8d0x5fTHUeRpj0DK2CTTCyhfz
-         O6paNrPt++gcAAZCq8DCv7/DxV929tvp5SieWggFnfcNHeIX8qQqovOSq2kYaq/GAxn1
-         gyhQ==
-X-Gm-Message-State: ACrzQf0ROYZZPn1frILHs3UI82m+gMGma/c8IVWC2H4aZUfFSzMHTMrB
-        a7rusosiDhlZlF9lpMsER5MtKQ==
-X-Google-Smtp-Source: AMsMyM5BXYEND5jV85kw4nwQ041fTS/U3XG4Jie4d8jTejwhbLVGJErLR5uyBRT4JJIIgVqcoO6YPw==
-X-Received: by 2002:a2e:9d88:0:b0:26a:95c1:218f with SMTP id c8-20020a2e9d88000000b0026a95c1218fmr4722063ljj.223.1663570214700;
-        Sun, 18 Sep 2022 23:50:14 -0700 (PDT)
+        bh=bKbN1I3cs9nIBHXs3yK9lgtbTnTo8V/szSejEq/+Fh8=;
+        b=P+PurNdHiq/P7b1SfwllsIvtc2yPULKZ5T3GLgs4nG5oytIC3tjitpteFOhJ/A6vfD
+         AOVI7l0cpJdZueEkKka1TZSZmk4/t7jgq9LfHx7+b+JDZVIG258kxMmgspKDyyfh8I6m
+         tDdKJ80PNVuA5Iud+9Ob5BpWScAmqkUUBqAtFkyFEiH9EfKe2JbBkVTEMwxBQ3Jqvba9
+         8FaIvd4g2guHy6HlZCjFcdgr6doqYmpcYhfITcTndvUAj3C+LCYyA0xZMU5FvJ8J4zRB
+         hOl1D2ZRQqDebFsA370BedGePnwy1k2Wd43mlXxLSd+NwFaY3P0ppbxAPJ0tjNCMaqK5
+         n+sg==
+X-Gm-Message-State: ACrzQf1pRs8//M5y/AbOuyt4k7nqal8MX3xdtXdz3pbKoxYrNQh4oepd
+        nxpAAoWvDSv5lIeGtUYUKAVLzg==
+X-Google-Smtp-Source: AMsMyM7pmT02HbMvT2Z9EbsCYNa431X5QazL/wY5I4IaRn1ay6AOpAdg2MDEBDBbE+AsP8u0MCUl1w==
+X-Received: by 2002:a05:6512:10ce:b0:49e:ad1f:3d7 with SMTP id k14-20020a05651210ce00b0049ead1f03d7mr5364814lfg.609.1663570572634;
+        Sun, 18 Sep 2022 23:56:12 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id m7-20020a056512114700b0048960b581e3sm5049900lfg.8.2022.09.18.23.50.13
+        by smtp.gmail.com with ESMTPSA id be7-20020a056512250700b00492c463526dsm5066078lfb.186.2022.09.18.23.56.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Sep 2022 23:50:14 -0700 (PDT)
-Message-ID: <d0630c9e-22c6-48a8-35ed-024949782cbd@linaro.org>
-Date:   Mon, 19 Sep 2022 08:50:13 +0200
+        Sun, 18 Sep 2022 23:56:12 -0700 (PDT)
+Message-ID: <3981e6e8-d4bb-b13d-7aaa-7aea83ffaad9@linaro.org>
+Date:   Mon, 19 Sep 2022 08:56:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v3 net-next 00/10] dt-bindings and mt7621 devicetree
- changes
+Subject: Re: [PATCH v2 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO
+ documentation
 Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        erkin.bozoglu@xeront.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20220918134118.554813-1-arinc.unal@arinc9.com>
+To:     Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh@kernel.org>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20220714122322.63663-1-tmaimon77@gmail.com>
+ <20220714122322.63663-2-tmaimon77@gmail.com>
+ <20220718211046.GA3547663-robh@kernel.org>
+ <CAP6Zq1hQ5m2kkQOKaYsKhPQhCW+vdsdyPRxxb_yRGMB=gJCPdw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220918134118.554813-1-arinc.unal@arinc9.com>
+In-Reply-To: <CAP6Zq1hQ5m2kkQOKaYsKhPQhCW+vdsdyPRxxb_yRGMB=gJCPdw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -94,19 +89,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/09/2022 15:41, Arınç ÜNAL wrote:
-> Hello there!
+On 18/09/2022 20:28, Tomer Maimon wrote:
+> Hi Rob,
 > 
-> This patch series removes old MediaTek bindings, improves mediatek,mt7530
-> and mt7621 memory controller bindings and improves mt7621 DTs.
-> 
-> v3:
-> - Explain the mt7621 memory controller binding change in more details.
-> - Remove explaining the remaining DTC warnings from the patch log as there
-> are new schemas submitted for them.
+> Thanks for your comment and sorry for the late reply.
 
-Please always describe dependencies. Otherwise I am free to take memory
-controllers patch and I expect it will not hurt bisectability.
+Two months... we are out of the context and this will not help your
+patchset.
+
+> 
+> On Tue, 19 Jul 2022 at 00:10, Rob Herring <robh@kernel.org> wrote:
+>>
+
+(...)
+
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +    #include <dt-bindings/gpio/gpio.h>
+>>> +
+>>> +    soc {
+>>> +      #address-cells = <2>;
+>>> +      #size-cells = <2>;
+>>> +
+>>> +      pinctrl: pinctrl@f0800000 {
+>>> +        compatible = "nuvoton,npcm845-pinctrl";
+>>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <1>;
+>>> +        nuvoton,sysgcr = <&gcr>;
+>>> +
+>>> +        gpio0: gpio@f0010000 {
+>>
+>> gpio@0
+>>
+>> Is this really a child block of the pinctrl? Doesn't really look like it
+>> based on addressess. Where are the pinctrl registers? In the sysgcr? If
+>> so, then pinctrl should be a child of it. But that doesn't really work
+>> too well with gpio child nodes...
+> the pin controller mux is handled by sysgcr this is why the sysgcr in
+> the mother node,
+> and the pin configuration are handled by the GPIO registers.  each
+> GPIO bank (child) contains 32 GPIO.
+> this is why the GPIO is the child node.
+
+Then maybe pinctrl should be the sysgcr and expose regmap for other devices?
+
 
 Best regards,
 Krzysztof
