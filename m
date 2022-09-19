@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43F2B5BD2CA
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 18:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 280215BD2D4
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 19:00:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbiISQ7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 12:59:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43040 "EHLO
+        id S230214AbiISQ7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 12:59:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229760AbiISQ7r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:59:47 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85DD612A90
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:59:46 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id z97so112587ede.8
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:59:46 -0700 (PDT)
+        with ESMTP id S230054AbiISQ7t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 12:59:49 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE7512A90
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:59:48 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id q21so103876edc.9
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 09:59:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date;
-        bh=VIAi0nNwF0EQ4Ycv099voA35UIwgAD/zCbxE9L3eFBQ=;
-        b=R+qQPnPqizqQy0t3jkiLKwfr4K4/dgarwPfFttzlNb43E4o78izHqlKaHUTtF5L0aX
-         U2rW7VDjsEC3GyuX7FFwe1iKr1B4FC7xjZcFh06+y0ryXl2F/GrkLLm1obnIhZPXlqL7
-         hPJoE+3Rb00pJAWDNwRcizomgd5BsFP4RIF3WmuztmNQRO3lPH435EjKkezKb6JjjiFm
-         +D7J3psGA0bhm1mdY2z/1oZ4WG2QYmi+YfIloXmbs1HtYN7LY1dMPOfFPG5+1SH3EjLd
-         6WQPNGdX5ebzgk8mDgJXkf0TTio5UuUFR8R/cQCrHXJKjw3iFhqEji1Adg9w2agMIAih
-         tkmA==
+        bh=pe51xvlTzoxvP1PkLEmQi5YJGHaBQkqHjYX/h+KRrX4=;
+        b=B+X1p1fH4JpGs34rfSwYzzSHzwu5qnL83GcremhYxa34LPTfzyuT54Qx4NkUrP80pu
+         pQuuF2QUVoy7vzZV3h6TrERow//gfDL5XfrnuPPuhc+B4RHI2qc+3ex/jWKQ63RA0DfF
+         hBB0zWcx0Lk6XvWHsF7Jch4RHJgIiSY2LK6gxuWKN/rgLWdkiQ6mLPjpWh4cz4AHHPtT
+         pC4zGQhthMR+WPSyxbXBMc3qQw3YfboFI7Q7Yy9Bgo6ddHWkCSfutvSn4/NE2FUgXx1e
+         NM29wYa2a+PX3vs2XgVJk1y+K5rnO2tGCxRjBGuogh3F3cFoZXeNpiG1Tcq1hcgaNJxd
+         w1+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=VIAi0nNwF0EQ4Ycv099voA35UIwgAD/zCbxE9L3eFBQ=;
-        b=SX1hVNijKR3XMvC/TR/QqaJCDjwjJEHXZgNB+50wxO31yphrsoe9vWmZgZc1NHY1Ni
-         qsbfIFJS+U4dam/cNQTZsXan58aOp+ZIMNzvnyxPoOOQf98kDBSpoO7ZV7g5TJcBXP4k
-         CnGA2SCkrPHZzy2LmJ+AtLdsu19NLrPaO8WyET8WkRco72FwBocLa3N/kCnD7Ic4nyhe
-         kVyS4P7HKKDxnamhObhz7xVQ6yvWn53EbrCwl1LQZuIUh3chBfAMyBRtnBdPMSoUTf0B
-         HTR0WcuAFYu51K7o0ZEr0pfVQP7S6VR82gOM34Vtdo66uvnelCflQkKFzmWs7GziJobu
-         35Gg==
-X-Gm-Message-State: ACrzQf1364gH8sowsSlT7lLmGowixsaCbSxFl6wNpbC3r78A8bMbrsOA
-        VnVFCq5vMoalgQKdJWgkGuLiMQ==
-X-Google-Smtp-Source: AMsMyM4FWcGqIb04fz++aRLharY4kKuVTi0otIV+l0WpEp9ORTAl2Z/yp1vEqg/lPBMW1Gcd0sxy3w==
-X-Received: by 2002:aa7:c585:0:b0:453:e1c6:7dc6 with SMTP id g5-20020aa7c585000000b00453e1c67dc6mr6810316edq.245.1663606785020;
-        Mon, 19 Sep 2022 09:59:45 -0700 (PDT)
+        bh=pe51xvlTzoxvP1PkLEmQi5YJGHaBQkqHjYX/h+KRrX4=;
+        b=E82ExQb9GNtaT133paq1fhBWttqcmm7OdxuvsyUstpHVxwDj93/wlQJSoJWUU+pnUP
+         bxfnfKsUVdpwebRSS5zBTci209r0FRjDbXkqGPa/urjF1ul+lkGnx17E9dYomHRsI5vH
+         WWHGUepfZ5LrFT2EBmvhpcfyBJ5s5tT7HKBw764XB6pD1ZNh7RiT8JEFBEfIJ3mmtAqC
+         0bNQq81QiiQSmzor7Af7MiNYvRyYTBqckElaccy5TkDdEYdM3Cty3CDgY7u98GOFucwb
+         QAcDkowBBLCsvsVQuo8AA5hLH1g5IGJhgaYpP9zYs/VTKRbfuclQX5lJ4vAO6M3vVSST
+         TYTg==
+X-Gm-Message-State: ACrzQf3vFdaYWlU7VHQ+OTGE6LqoIQCKtiKXYomaC77Y6sr7hHn+A/pb
+        rne70nmxyiKwFbETT+sqgS++YA==
+X-Google-Smtp-Source: AMsMyM4Kcqj7iaeTFSgnPboPDJcmYDvSGBzBAfopbwGlsGHAlwhMCX86GfBtADSsZGEx5aSm5j7eEQ==
+X-Received: by 2002:a05:6402:2b8b:b0:43a:5475:f1ae with SMTP id fj11-20020a0564022b8b00b0043a5475f1aemr16246555edb.363.1663606787204;
+        Mon, 19 Sep 2022 09:59:47 -0700 (PDT)
 Received: from [127.0.0.1] (2a02-8440-6340-f287-3074-96af-9642-0003.rev.sfr.net. [2a02:8440:6340:f287:3074:96af:9642:3])
-        by smtp.gmail.com with ESMTPSA id cf16-20020a0564020b9000b0044fc3c0930csm20424246edb.16.2022.09.19.09.59.42
+        by smtp.gmail.com with ESMTPSA id cf16-20020a0564020b9000b0044fc3c0930csm20424246edb.16.2022.09.19.09.59.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Sep 2022 09:59:44 -0700 (PDT)
+        Mon, 19 Sep 2022 09:59:46 -0700 (PDT)
 From:   Guillaume Ranquet <granquet@baylibre.com>
-Date:   Mon, 19 Sep 2022 18:55:59 +0200
-Subject: [PATCH v1 01/17] dt-bindings: clk: mediatek: Add MT8195 DPI clocks
+Date:   Mon, 19 Sep 2022 18:56:00 +0200
+Subject: [PATCH v1 02/17] clk: mediatek: add VDOSYS1 clock
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20220919-v1-1-4844816c9808@baylibre.com>
+Message-Id: <20220919-v1-2-4844816c9808@baylibre.com>
 References: <20220919-v1-0-4844816c9808@baylibre.com>
 In-Reply-To: <20220919-v1-0-4844816c9808@baylibre.com>
 To:     Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
@@ -80,8 +80,8 @@ Cc:     linux-mediatek@lists.infradead.org,
         devicetree@vger.kernel.org
 X-Mailer: b4 0.10.0-dev
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,28 +90,51 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Pablo Sun <pablo.sun@mediatek.com>
 
-Expand dt-bindings slot for VDOSYS1 of MT8195.
-This clock is required by the DPI1 hardware
-and is a downstream of the HDMI pixel clock.
+Add the clock gate definition for the DPI1 hardware
+in VDOSYS1.
+
+The parent clock "hdmi_txpll" is already defined in
+`mt8195.dtsi`.
 
 Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
 Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
-diff --git a/include/dt-bindings/clock/mt8195-clk.h b/include/dt-bindings/clock/mt8195-clk.h
-index 95cf812a0b37..d70d017ad69c 100644
---- a/include/dt-bindings/clock/mt8195-clk.h
-+++ b/include/dt-bindings/clock/mt8195-clk.h
-@@ -859,6 +859,8 @@
- #define CLK_VDO1_DPINTF				47
- #define CLK_VDO1_DISP_MONITOR_DPINTF		48
- #define CLK_VDO1_26M_SLOW			49
--#define CLK_VDO1_NR_CLK				50
-+#define CLK_VDO1_DPI1_HDMI			50
-+#define CLK_VDO1_NR_CLK				51
-+
+diff --git a/drivers/clk/mediatek/clk-mt8195-vdo1.c b/drivers/clk/mediatek/clk-mt8195-vdo1.c
+index d54d7726d186..835335b9d87b 100644
+--- a/drivers/clk/mediatek/clk-mt8195-vdo1.c
++++ b/drivers/clk/mediatek/clk-mt8195-vdo1.c
+@@ -34,6 +34,12 @@ static const struct mtk_gate_regs vdo1_3_cg_regs = {
+ 	.sta_ofs = 0x140,
+ };
  
- #endif /* _DT_BINDINGS_CLK_MT8195_H */
++static const struct mtk_gate_regs vdo1_4_cg_regs = {
++	.set_ofs = 0x400,
++	.clr_ofs = 0x400,
++	.sta_ofs = 0x400,
++};
++
+ #define GATE_VDO1_0(_id, _name, _parent, _shift)			\
+ 	GATE_MTK(_id, _name, _parent, &vdo1_0_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+ 
+@@ -50,6 +56,9 @@ static const struct mtk_gate_regs vdo1_3_cg_regs = {
+ #define GATE_VDO1_3(_id, _name, _parent, _shift)			\
+ 	GATE_MTK(_id, _name, _parent, &vdo1_3_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+ 
++#define GATE_VDO1_4(_id, _name, _parent, _shift)			\
++	GATE_MTK(_id, _name, _parent, &vdo1_4_cg_regs, _shift, &mtk_clk_gate_ops_no_setclr_inv)
++
+ static const struct mtk_gate vdo1_clks[] = {
+ 	/* VDO1_0 */
+ 	GATE_VDO1_0(CLK_VDO1_SMI_LARB2, "vdo1_smi_larb2", "top_vpp", 0),
+@@ -107,6 +116,8 @@ static const struct mtk_gate vdo1_clks[] = {
+ 	GATE_VDO1_2(CLK_VDO1_DISP_MONITOR_DPINTF, "vdo1_disp_monitor_dpintf", "top_vpp", 17),
+ 	/* VDO1_3 */
+ 	GATE_VDO1_3(CLK_VDO1_26M_SLOW, "vdo1_26m_slow", "clk26m", 8),
++	/* VDO1_4 */
++	GATE_VDO1_4(CLK_VDO1_DPI1_HDMI, "vdo1_dpi1_hdmi", "hdmi_txpll", 0),
+ };
+ 
+ static int clk_mt8195_vdo1_probe(struct platform_device *pdev)
 
 -- 
 b4 0.10.0-dev
