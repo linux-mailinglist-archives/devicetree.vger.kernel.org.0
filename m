@@ -2,662 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C1CF5BCA2B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 13:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BF7A5BCA32
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 13:04:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbiISLAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 07:00:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57692 "EHLO
+        id S229839AbiISLD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 07:03:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230109AbiISK7q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 06:59:46 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CB4B7EC;
-        Mon, 19 Sep 2022 03:58:15 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EB6099BA;
-        Mon, 19 Sep 2022 12:58:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1663585093;
-        bh=gw5vwt/5P303AZo0B3arBflIQfP67i6RXDCi4+BKuIQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lpOmwgEPUvOSNYy5BQ0n0ZWLpfZY9Q9JxN/2xLZrlYHsu+UZkvKr9JLX5qXbZv3lr
-         Fgy4kvZwWqSTVYarAXXEy+jFR92q5Q3hyEJIc33KzmVOLa3b+a8bx6JQrGbW//ztLl
-         UjjxJxtUG/31G/RPZSzGD2L9pwd4pSG9sA2DLFNE=
-Date:   Mon, 19 Sep 2022 13:57:59 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org, kishon@ti.com,
-        sakari.ailus@linux.intel.com, hverkuil@xs4all.nl,
-        jacopo@jmondi.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 4/4] media: tc358746: add Toshiba TC358746 Parallel to
- CSI-2 bridge driver
-Message-ID: <YyhLN/avpDXKhqRq@pendragon.ideasonboard.com>
-References: <20220818143307.967150-1-m.felsch@pengutronix.de>
- <20220818143307.967150-5-m.felsch@pengutronix.de>
- <YxZWB3mE1Mk4JV/c@pendragon.ideasonboard.com>
- <20220915165404.ghcjntxom7kzqyuy@pengutronix.de>
- <YySJKFdB+a8zxRLS@pendragon.ideasonboard.com>
- <20220919084038.v352xtuoxp7wghp5@pengutronix.de>
+        with ESMTP id S229875AbiISLDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 07:03:52 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21516D95
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 04:03:50 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id c7so22005978ljm.12
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 04:03:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=TcbEHO2M1Vn7869vpthKt1PADnZwIS+iJq0ZGvm2ISU=;
+        b=eCgAMNR0/oNYqUNLjWGvDumqw2QiynIm6mZWzzKGu8A6nUQFWlfAojCCn04+7s1PNP
+         kFrK/0r9SLLWN+D5XksTCe3ZX1uhmpZuNKZa7bwM2kNFWt5qS5PiZGcTlY1XhJreiw5P
+         SJJLfgaolJXDlxo2Fz2pOMASibdZJRfJG/8pI0uiUlmdXAboZigmyqe236MZC/Blduvn
+         v8j4HXPXFi2tea2082grXHIvE8p2hzHgYBEffBpWASuaD9gIuEORS8QeKe25TzYYL9A1
+         ut5w945Z/HWY+KpJdbSFHFK7cFwvpTKadENcsO68367MD0bQYhrS1FADSoVFVXiwv5Wa
+         FNLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=TcbEHO2M1Vn7869vpthKt1PADnZwIS+iJq0ZGvm2ISU=;
+        b=pxfmtWyxkqQSruRcuJ0t6D5nPue/KTsa/QLY4Dss8pk6wX/1iLG/qinfbFOLNjU++3
+         qyMh07KVC6NdMoD8sfTk95Ed4s+UQrPNobHMrXRWsJ5klUxvT3Fbi0m4uwa8zptmxIzH
+         RLZmzmuhPcWkZi3EFckBAyfVVjhATtYi86RlxYNbeOgcoUCceT6J66F0xCbmEOXnU9dU
+         Ju5ikzkj/viu4EgI9vr5k4/SAmnODn9YxLRnh5g8bacdlCDd5g+FZZrD+pQO7VuWMpI7
+         bowN7ynRk58hs6rcqMzshhRtwKpOCStzOiNkV4+xlEeYur0EV125zpsBB0g0ZARsYHKj
+         Q1ZA==
+X-Gm-Message-State: ACrzQf3QbHqrzyziOMl3FU0p8cxFiQ2XrsO948xwn+9SYXgHgj54keev
+        E247+Dk03jtp4BFmVwMF9TZqsA==
+X-Google-Smtp-Source: AMsMyM6ehRBDTKsqy6n6LtYJaToBW7Kz4lBTJZvNjeGA2Sv6mgDRd/UJeVtCu0piJ8hcO0aLPDOfew==
+X-Received: by 2002:a2e:9608:0:b0:26a:a73b:b8c1 with SMTP id v8-20020a2e9608000000b0026aa73bb8c1mr5203413ljh.328.1663585428366;
+        Mon, 19 Sep 2022 04:03:48 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s2-20020a056512314200b0048b08e25979sm5132313lfi.199.2022.09.19.04.03.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Sep 2022 04:03:47 -0700 (PDT)
+Message-ID: <e0e043aa-0f79-59a8-05ab-e48046860524@linaro.org>
+Date:   Mon, 19 Sep 2022 13:03:46 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220919084038.v352xtuoxp7wghp5@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 16/21] dt-bindings: reserved-memory: introduce
+ designated-movable-block
+Content-Language: en-US
+To:     Doug Berger <opendmb@gmail.com>, Rob Herring <robh@kernel.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mike Kravetz <mike.kravetz@oracle.com>,
+        Muchun Song <songmuchun@bytedance.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Borislav Petkov <bp@suse.de>,
+        "Paul E. McKenney" <paulmck@kernel.org>,
+        Neeraj Upadhyay <quic_neeraju@quicinc.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        David Hildenbrand <david@redhat.com>, Zi Yan <ziy@nvidia.com>,
+        Oscar Salvador <osalvador@suse.de>,
+        Hari Bathini <hbathini@linux.ibm.com>,
+        Kees Cook <keescook@chromium.org>,
+        - <devicetree-spec@vger.kernel.org>,
+        KOSAKI Motohiro <kosaki.motohiro@jp.fujitsu.com>,
+        Mel Gorman <mgorman@suse.de>, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mm@kvack.org, iommu@lists.linux.dev
+References: <20220913195508.3511038-1-opendmb@gmail.com>
+ <20220913195508.3511038-17-opendmb@gmail.com>
+ <20220914145506.GA2149379-robh@kernel.org>
+ <57f19774-39a1-03a6-fe68-83d7e4b16521@gmail.com>
+ <07d87203-6fe1-c612-cb79-9080e1988454@linaro.org>
+ <b4b2b4c6-52b6-80f0-5db3-7f7b751989c3@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b4b2b4c6-52b6-80f0-5db3-7f7b751989c3@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+On 19/09/2022 01:12, Doug Berger wrote:
+> On 9/18/2022 3:31 AM, Krzysztof Kozlowski wrote:
+>> On 14/09/2022 18:13, Doug Berger wrote:
+>>> On 9/14/2022 7:55 AM, Rob Herring wrote:
+>>>> On Tue, Sep 13, 2022 at 12:55:03PM -0700, Doug Berger wrote:
+>>>>> Introduce designated-movable-block.yaml to document the
+>>>>> devicetree binding for Designated Movable Block children of the
+>>>>> reserved-memory node.
+>>>>
+>>>> What is a Designated Movable Block? This patch needs to stand on its
+>>>> own.
+>>> As noted in my reply to your [PATCH 00/21] comment, my intention in
+>>> submitting the entire patch set (and specifically PATCH 00/21]) was to
+>>> communicate this context. Now that I believe I understand that only this
+>>> patch should have been submitted to the devicetree-spec mailing list, I
+>>> will strive harder to make it more self contained.
+>>
+>> The submission of entire thread was ok. What is missing is the
+>> explanation in this commit. This commit must be self-explanatory (e.g.
+>> in explaining "Why are you doing it?"), not rely on other commits for
+>> such explanation.
+>>
+>>>
+>>>>
+>>>> Why does this belong or need to be in DT?
+>>> While my preferred method of declaring Designated Movable Blocks is
+>>> through the movablecore kernel parameter, I can conceive that others may
+>>> wish to take advantage of the reserved-memory DT nodes. In particular,
+>>> it has the advantage that a device can claim ownership of the
+>>> reserved-memory via device tree, which is something that has yet to be
+>>> implemented for DMBs defined with movablecore.
+>>
+>> Rephrasing the question: why OS memory layout and OS behavior is a
+>> property of hardware (DTS)?
+> I would say the premise is fundamentally the same as the existing 
+> reserved-memory child node.
 
-On Mon, Sep 19, 2022 at 10:40:38AM +0200, Marco Felsch wrote:
-> On 22-09-16, Laurent Pinchart wrote:
-> > On Thu, Sep 15, 2022 at 06:54:04PM +0200, Marco Felsch wrote:
-> > > On 22-09-05, Laurent Pinchart wrote:
-> > > > On Thu, Aug 18, 2022 at 04:33:07PM +0200, Marco Felsch wrote:
-> > > > > Adding support for the TC358746 parallel <-> MIPI CSI bridge. This chip
-> > > > > supports two operating modes:
-> > > > >   1st) parallel-in -> mipi-csi out
-> > > > >   2nd) mipi-csi in -> parallel out
-> > > > > 
-> > > > > This patch only adds the support for the 1st mode.
-> > > > > 
-> > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > > > ---
-> > > > >  drivers/media/i2c/Kconfig    |   17 +
-> > > > >  drivers/media/i2c/Makefile   |    1 +
-> > > > >  drivers/media/i2c/tc358746.c | 1645 ++++++++++++++++++++++++++++++++++
-> > > > >  3 files changed, 1663 insertions(+)
-> > > > >  create mode 100644 drivers/media/i2c/tc358746.c
-> > 
-> > [snip]
-> > 
-> > > > > diff --git a/drivers/media/i2c/tc358746.c b/drivers/media/i2c/tc358746.c
-> > > > > new file mode 100644
-> > > > > index 000000000000..7b71d0cf72a9
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/media/i2c/tc358746.c
-> > 
-> > [snip]
-> > 
-> > > > > +struct tc358746 {
-> > > > > +	struct v4l2_subdev		sd;
-> > > > > +	struct media_pad		pads[TC358746_NR_PADS];
-> > > > > +	struct v4l2_async_notifier	notifier;
-> > > > > +	struct v4l2_mbus_framefmt	mbusfmt;
-> > > > 
-> > > > Could you use the active state API instead of manually storing mbusfmt
-> > > > here ? It involves
-> > > 
-> > > I will do that, thanks for the hint and it also elimates a few basic
-> > > checks like the pad-num check.
-> > 
-> > Even nicer :-)
-> > 
-> > > > - Implementing the .init_cfg() operation
-> > > > - Calling v4l2_subdev_init_finalize() in probe
-> > > > - Replacing calls to __tc358746_get_pad_format() with
-> > > >   v4l2_subdev_get_pad_format()
-> > > > - Propagating the format from sink to source in tc358746_set_fmt()
-> > > > - Dropping tc358746_src_mbus_code() from tc358746_get_fmt() and simply
-> > > >   retrieving the format using v4l2_subdev_get_pad_format() there
-> > > > - Dropping this field
-> > > > 
-> > > > The formats for both the ACTIVE and TRY states will then be stored in
-> > > > the subdev state, unconditionally. You can retrieve the active state
-> > > > with v4l2_subdev_get_locked_active_state() in tc358746_s_stream().
-> > > > 
-> > > > > +	struct v4l2_fwnode_endpoint	csi_vep;
-> > > > > +
-> > > > > +	struct v4l2_ctrl_handler	ctrl_hdl;
-> > > > > +
-> > > > > +	struct regmap			*regmap;
-> > > > > +	struct clk			*refclk;
-> > > > > +	struct gpio_desc		*reset_gpio;
-> > > > > +	struct regulator_bulk_data	supplies[ARRAY_SIZE(tc358746_supplies)];
-> > > > > +
-> > > > > +	struct clk_hw			mclk_hw;
-> > > > > +	unsigned long			mclk_rate;
-> > > > > +	u8				mclk_prediv;
-> > > > > +	u16				mclk_postdiv;
-> > > > > +
-> > > > > +	unsigned long			pll_rate;
-> > > > > +	u8				pll_post_div;
-> > > > > +	u16				pll_pre_div;
-> > > > > +	u16				pll_mul;
-> > > > > +
-> > > > > +	struct v4l2_ctrl		*sensor_pclk_ctrl;
-> > > > > +
-> > > > > +#define TC358746_VB_MAX_SIZE		(511 * 32)
-> > > > > +#define TC358746_VB_DEFAULT_SIZE	  (1 * 32)
-> > > > > +	unsigned int			vb_size; /* Video buffer size in bits */
-> > > > > +
-> > > > > +	struct phy_configure_opts_mipi_dphy dphy_cfg;
-> > > > > +};
-> > 
-> > [snip]
-> > 
-> > > > > +#ifndef MHZ
-> > > > 
-> > > > Where would it be previously defined ? This sounds like asking for
-> > > > trouble later.
-> > > 
-> > > Sorry I don't get that, do you mean that I should define it at the very
-> > > beginning?
-> > 
-> > I mean that either MHZ is defined somewhere in the kernel already, in
-> > case we should include the corresponding header, or it's not, and I
-> > wouldn't add an #ifndev here. Otherwise, if someone adds a MHZ macro
-> > later that gets pulled in through one of the kernel headers used by the
-> > driver, it may cause subtle bugs if the definition is different. Of
-> > course nobody will
-> > 
-> > #define MHZ		42
-> > 
-> > but we could get
-> > 
-> > #define MHZ		1000 * 1000
-> > 
-> > and something could break here. I'd drop the #ifndef to get the compiler
-> > to complain if there's a redefinition.
-> 
-> Argh.. sorry, now I see what you meant. I have read it like "I'm asking
-> for troubles" because I'm defining it. Didn't saw that your comment was
-> only related to the ifndef guard, sure I can drop it.
-> 
-> > > > > +#define MHZ		(1000 * 1000)
-> > > > > +#endif
-> > 
-> > [snip]
-> > 
-> > > > > +static int
-> > > > > +tc358746_link_validate(struct v4l2_subdev *sd, struct media_link *link,
-> > > > > +		       struct v4l2_subdev_format *source_fmt,
-> > > > > +		       struct v4l2_subdev_format *sink_fmt)
-> > > > > +{
-> > > > > +	struct tc358746 *tc358746 = to_tc358746(sd);
-> > > > > +	unsigned long csi_bitrate, sensor_bitrate;
-> > > > > +	const struct tc358746_format *fmt;
-> > > > > +	unsigned int fifo_sz, tmp, n;
-> > > > > +	s64 sensor_pclk_rate;
-> > > > > +
-> > > > > +	/* Check the FIFO settings */
-> > > > > +	fmt = tc358746_get_format_by_code(TC358746_SINK, tc358746->mbusfmt.code);
-> > > > > +	if (IS_ERR(fmt))
-> > > > > +		return PTR_ERR(fmt);
-> > > > > +
-> > > > > +	sensor_pclk_rate = v4l2_ctrl_g_ctrl_int64(tc358746->sensor_pclk_ctrl);
-> > > > > +	sensor_bitrate = sensor_pclk_rate * fmt->bus_width;
-> > > > > +
-> > > > > +	csi_bitrate = tc358746->dphy_cfg.lanes * tc358746->pll_rate;
-> > > > > +
-> > > > > +	dev_dbg(tc358746->sd.dev,
-> > > > > +		"Fifo settings params: sensor-bitrate:%lu csi-bitrate:%lu",
-> > > > > +		sensor_bitrate, csi_bitrate);
-> > > > > +
-> > > > > +	/* Avoid possible FIFO overflows */
-> > > > > +	if (csi_bitrate < sensor_bitrate) {
-> > > > > +		dev_err(sd->dev,
-> > > > > +			"Link validation failed csi-bitrate:%lu < sensor-bitrate:%lu\n",
-> > > > > +			csi_bitrate, sensor_bitrate);
-> > > > > +		return -EINVAL;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* Best case */
-> > > > > +	if (csi_bitrate == sensor_bitrate) {
-> > > > > +		tc358746->vb_size = TC358746_VB_DEFAULT_SIZE;
-> > > > > +		goto out;
-> > > > > +	}
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Avoid possible FIFO underflow in case of
-> > > > > +	 * csi_bitrate > sensor_bitrate. For such case the chip has a internal
-> > > > > +	 * fifo which can be used to delay the line output.
-> > > > > +	 *
-> > > > > +	 * Fifo size calculation:
-> > > > > +	 *
-> > > > > +	 * fifo-sz, image-width - in bits
-> > > > > +	 * sbr                  - sensor_bitrate in bits/s
-> > > > > +	 * csir                 - csi_bitrate in bits/s
-> > > > > +	 *
-> > > > > +	 *                1             1      1
-> > > > > +	 * image-width * --- + fifo-sz --- >= ---- * image-width
-> > > > > +	 *               sbr           sbr    csir
-> > > > > +	 *
-> > > > > +	 * fifo-sz >= abs(sbr/csir * image-width - image-width)
-> > > > > +	 *                `-----´
-> > > > > +	 *                   n
-> > > > > +	 *
-> > > > > +	 */
-> > > > > +
-> > > > > +	sensor_bitrate /= TC358746_PRECISION;
-> > > > > +	n = csi_bitrate / sensor_bitrate;
-> > > > > +	tmp = (tc358746->mbusfmt.width * TC358746_PRECISION) / n;
-> > > > > +	fifo_sz = tc358746->mbusfmt.width - tmp;
-> > > > > +	fifo_sz *= fmt->bpp;
-> > > > > +	tc358746->vb_size = round_up(fifo_sz, 32);
-> > > > > +
-> > > > 
-> > > > Please also call v4l2_subdev_link_validate_default() here.
-> > > 
-> > > Did it in my internal prepared v2 ^^ I call it now at the very
-> > > beginning of this function.
-> > > 
-> > > > I wonder if the above calculation wouldn't be better performed in
-> > > > .s_stream() (or rather in a function being called by .s_stream()) when
-> > > > enabling streaming.
-> > > 
-> > > No I wouldn't shift that, since the link validation is in IMHO the
-> > > correct place to inform the user that the pipeline can't negotiate if
-> > > the fifo can't be configured correctly. Therefore I placed it here.
-> > 
-> > The issue is that the user could enable the link first, and then change
-> > the V4L2_CID_LINK_FREQ of the sensor and push the pixel rate above what
-> > the TC358746 can support. Given the model that configures subdevs
-> > independently, you can only validate the pipeline at stream on time.
-> 
-> The .link_validate() gets called during the media-pipeline
-> .link_validate() call which is called by __media_pipeline_start(). The
-> function description for this function is: "Mark a pipeline as
-> streaming". So I assume that it is called right in front of the
-> .s_stream() call and there are no further adaptions on the
-> V4L2_CID_LINK_FREQ allowed.
+I don't think it is fundamentally the same.
 
-You're right, I mistook link validation for link setup. It should be
-fine then, although the subdev core currently doesn't correctly enforce
-that the link frequency won't change. This needs to be addressed in the
-core (and will likely then require changes in drivers), but that's not
-an issue for this patch.
+The existing reserved-memory node describes memory used by hardware - by
+other devices. The OS way of handling this memory - movable, reclaimable
+etc - is not part of it.
 
-> > > > > +out:
-> > > > > +	dev_dbg(tc358746->sd.dev,
-> > > > > +		"Found FIFO size[bits]:%u -> aligned to size[bits]:%u\n",
-> > > > > +		fifo_sz, tc358746->vb_size);
-> > > > > +
-> > > > > +	return tc358746->vb_size > TC358746_VB_MAX_SIZE ? -EINVAL : 0;
-> > > > > +}
-> > 
-> > [snip]
-> > 
-> > > > > +static int tc358746_probe(struct i2c_client *client)
-> > > > > +{
-> > > > > +	struct clk_init_data mclk_initdata = { };
-> > > > > +	struct device *dev = &client->dev;
-> > > > > +	struct v4l2_fwnode_endpoint *vep;
-> > > > > +	unsigned long csi_link_rate;
-> > > > > +	struct tc358746 *tc358746;
-> > > > > +	struct fwnode_handle *ep;
-> > > > > +	unsigned char csi_lanes;
-> > > > > +	struct v4l2_subdev *sd;
-> > > > > +	struct v4l2_ctrl *ctrl;
-> > > > > +	unsigned long refclk;
-> > > > > +	unsigned int i;
-> > > > > +	int err;
-> > > > > +	u32 val;
-> > > > > +
-> > > > > +	tc358746 = devm_kzalloc(&client->dev, sizeof(*tc358746), GFP_KERNEL);
-> > > > > +	if (!tc358746)
-> > > > > +		return -ENOMEM;
-> > > > > +
-> > > > > +	tc358746->regmap = devm_regmap_init_i2c(client, &tc358746_regmap_config);
-> > > > > +	if (IS_ERR(tc358746->regmap))
-> > > > > +		return dev_err_probe(dev, PTR_ERR(tc358746->regmap),
-> > > > > +				     "Failed to init regmap\n");
-> > > > > +
-> > > > > +	tc358746->refclk = devm_clk_get(dev, "refclk");
-> > > > > +	if (IS_ERR(tc358746->refclk))
-> > > > > +		return dev_err_probe(dev, PTR_ERR(tc358746->refclk),
-> > > > > +				     "Failed to get refclk\n");
-> > > > > +
-> > > > > +	err = clk_prepare_enable(tc358746->refclk);
-> > > > > +	if (err)
-> > > > > +		return dev_err_probe(dev, err,
-> > > > > +				     "Failed to enable refclk\n");
-> > > > > +
-> > > > > +	refclk = clk_get_rate(tc358746->refclk);
-> > > > > +	clk_disable_unprepare(tc358746->refclk);
-> > > > > +
-> > > > > +	if (refclk < 6 * MHZ || refclk > 40 * MHZ)
-> > > > > +		return dev_err_probe(dev, -EINVAL, "Invalid refclk range\n");
-> > > > > +
-> > > > > +	for (i = 0; i < ARRAY_SIZE(tc358746_supplies); i++)
-> > > > > +		tc358746->supplies[i].supply = tc358746_supplies[i];
-> > > > > +
-> > > > > +	err = devm_regulator_bulk_get(dev, ARRAY_SIZE(tc358746_supplies),
-> > > > > +				      tc358746->supplies);
-> > > > > +	if (err)
-> > > > > +		return dev_err_probe(dev, err, "Failed to get supplies\n");
-> > > > > +
-> > > > > +	tc358746->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-> > > > > +						       GPIOD_OUT_HIGH);
-> > > > > +	if (IS_ERR(tc358746->reset_gpio))
-> > > > > +		return dev_err_probe(dev, PTR_ERR(tc358746->reset_gpio),
-> > > > > +				     "Failed to get reset-gpios\n");
-> > > > > +
-> > > > > +	sd = &tc358746->sd;
-> > > > > +	v4l2_i2c_subdev_init(sd, client, &tc358746_ops);
-> > > > > +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> > > > > +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
-> > > > > +	sd->entity.ops = &tc358746_entity_ops;
-> > > > > +
-> > > > > +	tc358746->pads[TC358746_SINK].flags = MEDIA_PAD_FL_SINK;
-> > > > > +	tc358746->pads[TC358746_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
-> > > > > +	err = media_entity_pads_init(&sd->entity, TC358746_NR_PADS,
-> > > > > +				     tc358746->pads);
-> > > > > +	if (err)
-> > > > > +		return dev_err_probe(dev, err,
-> > > > > +				     "Failed to setup media-entity pads\n");
-> > > > > +
-> > > > > +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), TC358746_SOURCE,
-> > > > > +					     0, 0);
-> > > > > +	if (!ep) {
-> > > > > +		dev_err(dev, "Missing endpoint node\n");
-> > > > > +		err = -EINVAL;
-> > > > > +		goto err_mc;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* Currently we only support 'parallel in' -> 'csi out' */
-> > > > > +	vep = &tc358746->csi_vep;
-> > > > > +	vep->bus_type = V4L2_MBUS_CSI2_DPHY;
-> > > > > +	err = v4l2_fwnode_endpoint_alloc_parse(ep, vep);
-> > > > > +	fwnode_handle_put(ep);
-> > > > > +	if (err) {
-> > > > > +		dev_err(dev, "Failed to parse source endpoint\n");
-> > > > > +		goto err_mc;
-> > > > > +	}
-> > > > > +
-> > > > > +	csi_lanes = vep->bus.mipi_csi2.num_data_lanes;
-> > > > > +	if (csi_lanes == 0 || csi_lanes > 4 ||
-> > > > > +	    vep->nr_of_link_frequencies == 0) {
-> > > > > +		dev_err(dev, "error: Invalid CSI-2 settings\n");
-> > > > > +		err = -EINVAL;
-> > > > > +		goto err_vep;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* TODO: Add support to handle multiple link frequencies */
-> > > > > +	csi_link_rate = (unsigned long)vep->link_frequencies[0];
-> > > > > +	tc358746->pll_rate = tc358746_find_pll_settings(tc358746, refclk,
-> > > > > +							csi_link_rate * 2);
-> > > > > +	if (!tc358746->pll_rate) {
-> > > > > +		err = -EINVAL;
-> > > > > +		goto err_vep;
-> > > > > +	}
-> > > > > +
-> > > > > +	err = phy_mipi_dphy_get_default_config_for_hsclk(tc358746->pll_rate,
-> > > > > +							 csi_lanes,
-> > > > > +							 &tc358746->dphy_cfg);
-> > > > > +	if (err)
-> > > > > +		goto err_vep;
-> > > > > +
-> > > > > +	tc358746->mbusfmt = tc358746_def_fmt;
-> > > > > +	tc358746->vb_size = TC358746_VB_DEFAULT_SIZE;
-> > > > > +
-> > > > > +	dev_set_drvdata(dev, tc358746);
-> > > > > +	pm_runtime_set_autosuspend_delay(dev, 200);
-> > > > > +	pm_runtime_use_autosuspend(dev);
-> > > > > +	pm_runtime_enable(dev);
-> > > > > +
-> > > > > +	err = pm_runtime_resume_and_get(dev);
-> > > > > +	if (err < 0) {
-> > > > > +		dev_err(dev, "Failed to resume the device\n");
-> > > > > +		goto err_vep;
-> > > > > +	}
-> > > > > +
-> > > > > +	 /* Ensure that CSI interface is put into LP-11 state */
-> > > > > +	err = tc358746_sw_reset(tc358746);
-> > > > > +	if (err) {
-> > > > > +		pm_runtime_put_noidle(dev);
-> > > > > +		dev_err(dev, "Failed to reset the device\n");
-> > > > > +		goto err_pm;
-> > > > > +	}
-> > > > > +
-> > > > > +	err = tc358746_read(tc358746, CHIPID_REG, &val);
-> > > > > +	pm_runtime_mark_last_busy(dev);
-> > > > > +	pm_runtime_put_sync_autosuspend(dev);
-> > > > > +	if (err) {
-> > > > > +		dev_err(dev, "Failed to read chipid\n");
-> > > > > +		err = -ENODEV;
-> > > > > +		goto err_pm;
-> > > > > +	}
-> > > > > +
-> > > > > +	if (FIELD_GET(CHIPID, val) != 0x44) {
-> > > > > +		dev_err(dev, "Invalid chipid 0x%02x\n",
-> > > > > +			(u32)FIELD_GET(CHIPID, val));
-> > > > > +		err = -ENODEV;
-> > > > > +		goto err_pm;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* Optional MCLK provider support */
-> > > > > +	if (device_property_present(dev, "#clock-cells")) {
-> > > > > +		const char *mclk_name;
-> > > > > +
-> > > > > +		/* Init to highest possibel MCLK */
-> > > > > +		tc358746->mclk_postdiv = 512;
-> > > > > +		tc358746->mclk_prediv = 8;
-> > > > > +
-> > > > > +		mclk_name = "tc358746-mclk";
-> > > > > +		device_property_read_string(dev, "clock-output-names",
-> > > > > +					    &mclk_name);
-> > > > > +
-> > > > > +		mclk_initdata.name = mclk_name;
-> > > > > +		mclk_initdata.ops = &tc358746_mclk_ops;
-> > > > > +		tc358746->mclk_hw.init = &mclk_initdata;
-> > > > > +
-> > > > > +		err = devm_clk_hw_register(dev, &tc358746->mclk_hw);
-> > > > > +		if (err) {
-> > > > > +			dev_err(dev, "Failed to register mclk provider\n");
-> > > > > +			goto err_pm;
-> > > > > +		}
-> > > > > +
-> > > > > +		err = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-> > > > > +						  &tc358746->mclk_hw);
-> > > > > +		if (err) {
-> > > > > +			dev_err(dev, "Failed to add mclk provider\n");
-> > > > > +			goto err_pm;
-> > > > > +		}
-> > > > > +	}
-> > > > > +
-> > > > > +	v4l2_ctrl_handler_init(&tc358746->ctrl_hdl, 1);
-> > > > > +
-> > > > > +	ctrl = v4l2_ctrl_new_int_menu(&tc358746->ctrl_hdl, NULL,
-> > > > > +				      V4L2_CID_LINK_FREQ, 0, 0,
-> > > > > +				      vep->link_frequencies);
-> > > > > +	if (ctrl)
-> > > > > +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> > > > > +
-> > > > > +	tc358746->sd.ctrl_handler = &tc358746->ctrl_hdl;
-> > > > > +	if (tc358746->ctrl_hdl.error) {
-> > > > > +		err = tc358746->ctrl_hdl.error;
-> > > > > +		goto err_pm;
-> > > > > +	}
-> > > > > +
-> > > > > +	v4l2_ctrl_handler_setup(&tc358746->ctrl_hdl);
-> > > > > +
-> > > > > +	err = tc358746_async_register(tc358746);
-> > > > > +	if (err < 0)
-> > > > > +		goto err_ctrl;
-> > > > > +
-> > > > > +	dev_info(dev, "%s found @ 0x%x (%s)\n", client->name,
-> > > > > +		  client->addr, client->adapter->name);
-> > > > 
-> > > > I'd skip this to avoid adding noise to the kernel log at boot time. I
-> > > > would also probably split some of the code out of the probe function as
-> > > > it's fairly large. Up to you.
-> > > 
-> > > Yes it is large but most of it is just requesting stuff and so..
-> > > Therefore I kept it here since I don't need it elsewhere. What about
-> > > setting it to dev_dbg()? Sometimes it can be useful e.g. to find the
-> > > problem why /dev/media is not comming up..
-> > 
-> > I find that enabling dev_dbg() messages from drivers/base/dd.c are
-> > helpful for that, but a dev_dbg() message here is fine too.
-> 
-> Ah okay, didn't checked that deep. I can remove it if you want, in my v2
-> I changed it to dev_dbg().
-> 
-> > > > > +
-> > > > > +	return 0;
-> > > > > +
-> > > > > +err_ctrl:
-> > > > > +	v4l2_ctrl_handler_free(&tc358746->ctrl_hdl);
-> > > > > +err_pm:
-> > > > > +	pm_runtime_disable(dev);
-> > > > > +	pm_runtime_set_suspended(dev);
-> > > > > +	pm_runtime_dont_use_autosuspend(dev);
-> > > > > +err_vep:
-> > > > > +	v4l2_fwnode_endpoint_free(vep);
-> > > > > +err_mc:
-> > > > > +	media_entity_cleanup(&sd->entity);
-> > > > > +
-> > > > > +	return err;
-> > > > > +}
-> > > > > +
-> > > > > +static int tc358746_remove(struct i2c_client *client)
-> > > > > +{
-> > > > > +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> > > > > +	struct tc358746 *tc358746 = to_tc358746(sd);
-> > > > > +
-> > > > > +	v4l2_ctrl_handler_free(&tc358746->ctrl_hdl);
-> > > > > +	v4l2_fwnode_endpoint_free(&tc358746->csi_vep);
-> > > > > +	v4l2_async_nf_unregister(&tc358746->notifier);
-> > > > > +	v4l2_async_nf_cleanup(&tc358746->notifier);
-> > > > > +	v4l2_async_unregister_subdev(sd);
-> > > > > +	v4l2_device_unregister_subdev(sd);
-> > > > 
-> > > > This shouldn't be needed v4l2_async_unregister_subdev() should be
-> > > > enough.
-> > > 
-> > > Okay, thanks. There are a lot of unregister helpers in the v4l2 space..
-> > 
-> > Too many of them indeed. I'd like to simplify all that.
-> 
-> *Thumbs up*
-> 
-> I already pushed my v2 which needs little rework due to
-> kernel-test-robot findings so I will send a v3. So if there are any
-> further findings let's move on to the v2.
-> 
-> > > > > +	media_entity_cleanup(&sd->entity);
-> > > > > +
-> > > > > +	pm_runtime_disable(sd->dev);
-> > > > > +	pm_runtime_set_suspended(sd->dev);
-> > > > > +	pm_runtime_dont_use_autosuspend(sd->dev);
-> > > > > +
-> > > > > +	return 0;
-> > > > > +}
-> > > > > +
-> > > > > +static int tc358746_suspend(struct device *dev)
-> > > > > +{
-> > > > > +	struct tc358746 *tc358746 = dev_get_drvdata(dev);
-> > > > > +
-> > > > > +	clk_disable_unprepare(tc358746->refclk);
-> > > > > +
-> > > > > +	return regulator_bulk_disable(ARRAY_SIZE(tc358746_supplies),
-> > > > > +				      tc358746->supplies);
-> > > > 
-> > > > Shouldn't you reenable the clock if this fails ?
-> > > 
-> > > Hm.. if this fails I could end in a undefined chip state. But I got the
-> > > point that the framework would be in a bad state if it tries again to
-> > > suspend the device.
-> > 
-> > It would be, and without a way to recover, so that could be an issue.
-> > 
-> > > > > +}
-> > > > > +
-> > > > > +static int tc358746_resume(struct device *dev)
-> > > > > +{
-> > > > > +	struct tc358746 *tc358746 = dev_get_drvdata(dev);
-> > > > > +	int err;
-> > > > > +
-> > > > > +	gpiod_set_value(tc358746->reset_gpio, 1);
-> > > > > +
-> > > > > +	err = regulator_bulk_enable(ARRAY_SIZE(tc358746_supplies),
-> > > > > +				    tc358746->supplies);
-> > > > > +	if (err)
-> > > > > +		return err;
-> > > > > +
-> > > > > +	/* min. 200ns */
-> > > > > +	usleep_range(10, 20);
-> > > > > +
-> > > > > +	gpiod_set_value(tc358746->reset_gpio, 0);
-> > > > > +
-> > > > > +	err = clk_prepare_enable(tc358746->refclk);
-> > > > > +	if (err)
-> > > > > +		return err;
-> > > > 
-> > > > The regulators need to be disabled in case of failure here and below
-> > > > (and so does the clock below).
-> > > 
-> > > Yes, you're right.
-> > > 
-> > > > > +
-> > > > > +	/* min. 700us ... 1ms */
-> > > > > +	usleep_range(1000, 1500);
-> > > > > +
-> > > > > +	/* Sync state */
-> > > > > +	err = tc358746_apply_pll_config(tc358746);
-> > > > > +	if (err)
-> > > > > +		return err;
-> > > > > +
-> > > > > +	err = tc358746_apply_dphy_config(tc358746);
-> > > > > +	if (err)
-> > > > > +		return err;
-> > > > > +
-> > > > > +	return tc358746_apply_misc_config(tc358746);
-> > > > 
-> > > > Does all this belong to the PM resume handler ? It seems configuration
-> > > > could be handled in .s_stream() instead.
-> > > 
-> > > This gets called by the s_stream() during getting the power state but I
-> > > can move the dphy/misc_config to the .s_stream() of course.
-> > 
-> > That would be nice, thanks.
-> > 
-> > > The pll
-> > > needs to be there since the device can be a clock provider e.g. for the
-> > > sensor.
-> > 
-> > OK.
-> > 
-> > > Thanks for the review :)
-> > > 
-> > > > > +}
-> > > > > +
-> > > > > +DEFINE_RUNTIME_DEV_PM_OPS(tc358746_pm_ops, tc358746_suspend,
-> > > > > +			  tc358746_resume, NULL);
-> > > > > +
-> > > > > +static const struct of_device_id __maybe_unused tc358746_of_match[] = {
-> > > > > +	{ .compatible = "toshiba,tc358746" },
-> > > > > +	{ },
-> > > > > +};
-> > > > > +MODULE_DEVICE_TABLE(of, tc358746_of_match);
-> > > > > +
-> > > > > +static struct i2c_driver tc358746_driver = {
-> > > > > +	.driver = {
-> > > > > +		.name = "tc358746",
-> > > > > +		.pm = pm_ptr(&tc358746_pm_ops),
-> > > > > +		.of_match_table = tc358746_of_match,
-> > > > > +	},
-> > > > > +	.probe_new = tc358746_probe,
-> > > > > +	.remove = tc358746_remove,
-> > > > > +};
-> > > > > +
-> > > > > +module_i2c_driver(tc358746_driver);
-> > > > > +
-> > > > > +MODULE_DESCRIPTION("Toshiba TC358746 Parallel to CSI-2 bridge driver");
-> > > > > +MODULE_AUTHOR("Marco Felsch <kernel@pengutronix.de>");
-> > > > > +MODULE_LICENSE("GPL");
+So no, it is not the same.
 
--- 
-Regards,
+> 
+> I've been rethinking how this should be specified. I am now thinking 
+> that it may be better to introduce a new Reserved Memory property that 
+> serves as a modifier to the 'reusable' property. The 'reusable' property 
+> allows the OS to use memory that has been reserved for a device and 
+> therefore requires the device driver to reclaim the memory prior to its 
+> use. However, an OS may have multiple ways of implementing such reuse 
+> and reclamation.
 
-Laurent Pinchart
+... and I repeat the question - why OS way of implementing reuse and
+reclamation is relevant to DT?
+
+> I am considering introducing the vendor specific 'linux,dmb' property 
+> that is dependent on the 'reusable' property to allow both the OS and 
+> the device driver to identify the method used by the Linux OS to support 
+> reuse and reclamation of the reserved-memory child node.
+
+Sure, but why? Why OS and Linux driver specific pieces should be in DT?
+> Such a property would remove any need for new compatible strings to the 
+> device tree. Does that approach seem reasonable to you?
+
+No, because you did not explain original question. At all.
+
+Best regards,
+Krzysztof
