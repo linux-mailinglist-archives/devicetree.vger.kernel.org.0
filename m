@@ -2,70 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ADC65BD4F7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 20:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A7055BD4FA
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 21:00:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiISS6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 14:58:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58206 "EHLO
+        id S229734AbiISTAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 15:00:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbiISS6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 14:58:17 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA179326FE;
-        Mon, 19 Sep 2022 11:58:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9B9A6B80A07;
-        Mon, 19 Sep 2022 18:58:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 989C1C433D6;
-        Mon, 19 Sep 2022 18:58:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663613894;
-        bh=e66b2uQnaC4+5BG8+ZrFCQhRMwPA0fSmIpCCQsV1mkY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Goh8Zi7Q65rrxP63D7sY5xY4+lE6K8goou+SD+BxqMCkOMeAqZYjT+iJrCIdoR1J3
-         pnEpWRh/X1yEyuSIRg2FMjaCL/nE/ZQqh36r3O+kSgys0CBp+yclXbUVQhs3CMJfvP
-         JXAfwszYOuyY58sMUiXsOHeHC2UhNM7NUPUBWay6Sa04toKcdUScrL8VAY/+DctDu8
-         rfzAejF32aFJqUjccBOQv71aTSmTUhteaLTXUWCSi1ErCuDAWFio1r1xur5YGm3zwl
-         xqFFnN06glwhSbDx3at75/jOyvLnpHuvrgQX7p4iKzRDamDgdhjJ9mroQ0DM1A/eXe
-         PwDphK358GdBA==
-Date:   Mon, 19 Sep 2022 11:58:12 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Anand Moon <anand@edgeble.ai>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229619AbiISTAn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 15:00:43 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 922D02E9DF
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 12:00:41 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id o2so13718lfc.10
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 12:00:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=PtYAXaw7SqXRsF0uwP9fA2Gkxd8ErzzPCvmWtCq6/A0=;
+        b=acimAWdbWmYxhkcIOBj1+ysSQfFCwBDSq3t4w2xxuXa0GaTxpEkJkIHhvhTzZu8IMW
+         jT+bn5GUuIo2be/l814kDMUyU3lCybsj5Ru+P30JY5YGZU/5JtHBiP5SMIWydExQQFp4
+         wlSIX5BWfhaeCl11h7gQ0P5vBKLpZXfQ/GIA3ogvI59guWrJyQj0IgPJC1uV5sj6qECo
+         TZtNRxfV4TA1Ar7KQMTunlIje/5q9ZdNV7KJ+ilCd6Oj8SuHH3/JJg8V+zMoobR9Bmfz
+         SLelg09s/Q0JksbM84MJfGP0fDQlxNOGaX7ojT/ouQRlF2cD3A7kAgVB+mTBR0eeEi5e
+         cPgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=PtYAXaw7SqXRsF0uwP9fA2Gkxd8ErzzPCvmWtCq6/A0=;
+        b=m/YkQobwnHFkA64XQurNctmJfH5WTMkAHKOLlZfOSBNWUZc6R8CfRpWo/8x/3UgBjN
+         9C7vCjZr8xAn9I/3yzephiojgGRQfJZ7zaORzjNiAVE89+VR3fpduFPCuEyuClV3uRh1
+         KevSLvKzaxrJK0/2HX+nRdRtZ3Gd2+Iv9lM8LW7dY9xGGd0LZDS8Y8jBAzRRu/xfUxdY
+         bJD73XDKhLK8/grbVyuHbGlskD4KzKmILFVtXs8pLxZ+pniOepdMCEtXENBM9t0WBWJO
+         ZLLHv1dd+NdNTXnpXP0xmJCQBi/pVSSLmvY3nHiPOVlajkNFoshD9jcPAFyi7rhPMy+N
+         +Wxw==
+X-Gm-Message-State: ACrzQf10ufnziPhrShV+lYqMD0VAdDTVQk/iSiKOa/1I5NWUeV/ZX/rW
+        ucsJWrtKPo08hZodCwop5k5Igg==
+X-Google-Smtp-Source: AMsMyM45wO46AL62Hf9EOzcGg/IvCrqbB4TUCPdNFf7UOY9d41/ZpA33ObxzxN5m/koNyMLpF0mv8g==
+X-Received: by 2002:a05:6512:3408:b0:49a:b195:7ab5 with SMTP id i8-20020a056512340800b0049ab1957ab5mr6392943lfr.92.1663614039395;
+        Mon, 19 Sep 2022 12:00:39 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id u12-20020a05651220cc00b0049a747d6156sm4878907lfr.287.2022.09.19.12.00.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 12:00:38 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        David Wu <david.wu@rock-chips.com>,
-        Jagan Teki <jagan@edgeble.ai>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [v2 1/2] dt-bindings: net: rockchip-dwmac: add rv1126
- compatible
-Message-ID: <20220919115812.6cc61a8e@kernel.org>
-In-Reply-To: <20220907210649.12447-1-anand@edgeble.ai>
-References: <20220907210649.12447-1-anand@edgeble.ai>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v1 0/6] arm64: qcom: dts: correct firmware paths
+Date:   Mon, 19 Sep 2022 22:00:31 +0300
+Message-Id: <20220919190037.2122284-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  7 Sep 2022 21:06:45 +0000 Anand Moon wrote:
-> Add compatible string for RV1126 gmac, and constrain it to
-> be compatible with Synopsys dwmac 4.20a.
+This patchset corrects firmware paths for several Qualcomm-based devices
+to include the SoC name.
 
-Hi, these patches don't seem to apply cleanly to net-next, a 3-way
-merge is needed. Please rebase and repost. Please put [PATCH net-next
-v3] in the subject as you expect them to be applied to the networking
-trees.
+Changes since RFC:
+ - Fixed firmware paths for Sony devices according to the discussion
+   with Konrad (added Sony, renamed pdx223 to nagara).
+ - Changed ifc6560 to use SoC-generic firmware since the board doesn't
+   seem to be fused to particular PKI.
+
+Dmitry Baryshkov (6):
+  arm64: qcom: dts: w737: correct firmware paths
+  arm64: qcom: dts: miix-630: correct firmware paths
+  arm64: qcom: dts: ifc6560: correct firmware paths
+  arm64: qcom: dts: sagami: correct firmware paths
+  arm64: qcom: dts: pdx223: correct firmware paths
+  arm64: qcom: dts: nile: correct firmware paths
+
+ arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts   |  4 ++--
+ arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts    |  2 +-
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi  |  2 +-
+ arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts       | 10 +++++-----
+ .../arm64/boot/dts/qcom/sm8350-sony-xperia-sagami.dtsi | 10 +++++-----
+ .../boot/dts/qcom/sm8450-sony-xperia-nagara-pdx223.dts |  6 +++---
+ 6 files changed, 17 insertions(+), 17 deletions(-)
+
+-- 
+2.35.1
+
