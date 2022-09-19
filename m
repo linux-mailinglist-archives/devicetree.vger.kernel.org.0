@@ -2,67 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DE535BCC02
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 14:40:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51E225BCC1E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 14:47:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbiISMkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 08:40:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44110 "EHLO
+        id S230000AbiISMrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 08:47:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230190AbiISMkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 08:40:06 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96F08D51;
-        Mon, 19 Sep 2022 05:39:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663591183; x=1695127183;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=ynfFP5CgbKwvln4nW5qb7uTX9PbR6ZwZflN8jqKWBTs=;
-  b=oEeKnMpODVjewMkZa9rHA03ZQ2D2phIxshqExjj2OfGQ/aCNIfWcto1n
-   NTOs9e8kCbR3uvAqDzzweK6lgOd27lIirj8+ixmgQLzbzlOe8Tqy1StUW
-   L90r3kL7Li1Ay2bRXZ46wDgOBGCS2LhayvHQclq7hLH0xNHArTkhpsU0G
-   pQeHXSwUJdwGHBuQnl7TUy12HseQUTszDG/Ltj2yvAUjZtW4qqnfkdMXt
-   tJHq1xlw9aY35M4PN3eCK8yFheVJ/7dghM+I9Jar133YtvU4sh/qXC00f
-   9XZgEvRTqWcBA5YmIcvPHkX665mxUBREQrFVNGoOKwTjsrkDwKKG0zuyF
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="361126100"
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; 
-   d="scan'208";a="361126100"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2022 05:39:42 -0700
-X-IronPort-AV: E=Sophos;i="5.93,327,1654585200"; 
-   d="scan'208";a="651665741"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2022 05:39:38 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with ESMTP id 8E7AE202D2;
-        Mon, 19 Sep 2022 15:39:35 +0300 (EEST)
-Date:   Mon, 19 Sep 2022 12:39:35 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+        with ESMTP id S229921AbiISMrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 08:47:07 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8F0A2A952;
+        Mon, 19 Sep 2022 05:47:03 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BDED49BA;
+        Mon, 19 Sep 2022 14:47:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1663591621;
+        bh=TwUp+8KWmgwOI8QKSRKGTHiDKisfHhbX8WMOGDa+3Rw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=t6NJcAHYc9ddKpvqlM2Yy91XWbBVixnaKe+2oIY0v4wZBh9CLdtPylfZdHmLVAXm+
+         NcuRznHQZNfQpahSOTAeETmOBxb63+ply8qKd0oW589eQAoTCJFPVA0bUlFKq7X0io
+         YHH1FkapH/fFKhUErTTENiBQ7RIOSxb5A+67aQMQ=
+Date:   Mon, 19 Sep 2022 15:46:47 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     Marco Felsch <m.felsch@pengutronix.de>
 Cc:     mchehab@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
-        hverkuil@xs4all.nl, jacopo@jmondi.org,
-        laurent.pinchart+renesas@ideasonboard.com,
-        kieran.bingham+renesas@ideasonboard.com,
+        sakari.ailus@linux.intel.com, hverkuil@xs4all.nl,
+        jacopo@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
         linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
         kernel@pengutronix.de
 Subject: Re: [PATCH v2 4/4] media: tc358746: add Toshiba TC358746 Parallel to
  CSI-2 bridge driver
-Message-ID: <YyhjB+RbLokmBKPx@paasikivi.fi.intel.com>
+Message-ID: <YyhktzmcgXKnrMFU@pendragon.ideasonboard.com>
 References: <20220916134535.128131-1-m.felsch@pengutronix.de>
  <20220916134535.128131-5-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 In-Reply-To: <20220916134535.128131-5-m.felsch@pengutronix.de>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,7 +55,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Marco,
 
-Looks good, a few comments below...
+Thank you for the patch.
 
 On Fri, Sep 16, 2022 at 03:45:35PM +0200, Marco Felsch wrote:
 > Adding support for the TC358746 parallel <-> MIPI CSI bridge. This chip
@@ -460,9 +444,6 @@ On Fri, Sep 16, 2022 at 03:45:35PM +0200, Marco Felsch wrote:
 > +		return false;
 > +	}
 > +}
-
-Please use the same function for both. Maybe tc358746_valid_reg()?
-
 > +
 > +static const struct regmap_config tc358746_regmap_config = {
 > +	.name = "tc358746",
@@ -566,9 +547,6 @@ Please use the same function for both. Maybe tc358746_valid_reg()?
 > +		return err;
 > +
 > +	udelay(1000);
-
-Maybe usleep_range()?
-
 > +
 > +	return tc358746_set_bits(tc358746, PLLCTL1_REG, CKEN);
 > +}
@@ -578,6 +556,9 @@ Maybe usleep_range()?
 > +	struct v4l2_subdev *sd = &tc358746->sd;
 > +	struct v4l2_subdev_state *sink_state;
 > +	struct v4l2_mbus_framefmt *mbusfmt;
+
+This can be const.
+
 > +	const struct tc358746_format *fmt;
 > +	struct device *dev = sd->dev;
 > +	u32 val;
@@ -586,6 +567,10 @@ Maybe usleep_range()?
 > +	sink_state = v4l2_subdev_lock_and_get_active_state(sd);
 > +	mbusfmt = v4l2_subdev_get_pad_format(sd, sink_state, TC358746_SINK);
 > +	v4l2_subdev_unlock_state(sink_state);
+
+You should keep the state locked until the end of this function,
+otherwise the format could change.
+
 > +
 > +	fmt = tc358746_get_format_by_code(TC358746_SINK, mbusfmt->code);
 > +
@@ -616,9 +601,6 @@ Maybe usleep_range()?
 > +
 > +#ifndef MHZ
 > +#define MHZ		(1000 * 1000)
-
-MEGA is defined in linux/units.h . Yo ucould use that instead.
-
 > +#endif
 > +
 > +/* Use MHz as base so the div needs no u64 */
@@ -881,12 +863,6 @@ MEGA is defined in linux/units.h . Yo ucould use that instead.
 > +	 * Lane disable trigger state change from LP-11 to LP-00
 > +	 * therefore it must happen before the CSI modile is disabled.
 > +	 */
-
-I'm not quite sure I understand the comment.
-
-The LP-11 state would be ideally set in pre_streamon callback. A number of
-(old?) CSI-2 receivers require that.
-
 > +	err = tc358746_enable_csi_lanes(tc358746, 0);
 > +	if (err)
 > +		return err;
@@ -945,6 +921,11 @@ The LP-11 state would be ideally set in pre_streamon callback. A number of
 > +	/* Source follows the sink */
 > +	if (format->pad == TC358746_SOURCE)
 > +		return 0;
+
+You need to get the source pad format here and copy it to format,
+otherwise userspace will think whatever format it has passed has been
+accepted.
+
 > +
 > +	sink_fmt = v4l2_subdev_get_pad_format(sd, sd_state, TC358746_SINK);
 > +
@@ -955,6 +936,11 @@ The LP-11 state would be ideally set in pre_streamon callback. A number of
 > +	format->format.code = fmt->code;
 > +	format->format.field = V4L2_FIELD_NONE;
 > +
+
+Is there no constraint at all on the width and height ? I would expect
+zero width or height to be invalid for instance, and the width to be
+required to be a multiple of 2 for YUV 4:2:2 formats.
+
 > +	dev_dbg(sd->dev, "Update format: %ux%u code:0x%x -> %ux%u code:0x%x",
 > +		sink_fmt->width, sink_fmt->height, sink_fmt->code,
 > +		format->format.width, format->format.height, format->format.code);
@@ -986,6 +972,10 @@ The LP-11 state would be ideally set in pre_streamon callback. A number of
 > +		dev_err(dev, "HS-Clock above 1 Ghz are not supported\n");
 > +		return 0;
 > +	} else if (fout >= 500 * MHZ)
+
+If one branch of an if uses curly braces, all should. You can work
+around this by turning this else if into an if.
+
 > +		postdiv = 1;
 > +	else if (fout >= 250 * MHZ)
 > +		postdiv = 2;
@@ -1064,19 +1054,36 @@ The LP-11 state would be ideally set in pre_streamon callback. A number of
 > +		return err;
 > +
 > +	sink_state = v4l2_subdev_lock_and_get_active_state(sd);
+
+This makes me thinkg we should pass the state to this function. Not
+something that needs to be addressed in this patch of course.
+
 > +	mbusfmt = v4l2_subdev_get_pad_format(sd, sink_state, TC358746_SINK);
 > +	v4l2_subdev_unlock_state(sink_state);
 
-You should only call this once you're done accessing mbusfmt.
+I'd release the lock at the end of the function, to make sure the format
+won't change during validation. This is also a race condition in the
+subdev core and should be fixed there, I'd be fine if you ignored it
+here for now.
 
 > +
 > +	/* Check the FIFO settings */
 > +	fmt = tc358746_get_format_by_code(TC358746_SINK, mbusfmt->code);
 > +	if (IS_ERR(fmt))
 > +		return PTR_ERR(fmt);
+
+Can this happen if the format has been validate at set_fmt time ?
+
 > +
 > +	sensor = media_entity_to_v4l2_subdev(link->source->entity);
 > +	sensor_pclk_rate = v4l2_get_link_freq(sensor->ctrl_handler, 0, 0);
+
+Shouldn't you set the last two arguments to non-zero values, to support
+sources that only implement the V4L2_CID_PIXEL_RATE control ?
+
+I'd also name the variable source_link_freq, as it may not be a sensor,
+and it's a link frequency, not a pixel clock rate.
+
 > +	if (sensor_pclk_rate <= 0) {
 > +		dev_err(tc358746->sd.dev,
 > +			"Failed to query or invalid sensor link frequency\n");
@@ -1096,6 +1103,9 @@ You should only call this once you're done accessing mbusfmt.
 > +		dev_err(sd->dev,
 > +			"Link validation failed csi-bitrate:%lu < sensor-bitrate:%lu\n",
 > +			csi_bitrate, sensor_bitrate);
+
+As this can be triggered by userspace, I'd make it a dev_dbg().
+
 > +		return -EINVAL;
 > +	}
 > +
@@ -1119,10 +1129,21 @@ You should only call this once you're done accessing mbusfmt.
 > +	 *                1             1      1
 > +	 * image-width * --- + fifo-sz --- >= ---- * image-width
 > +	 *               sbr           sbr    csir
+
+Given that csir > sbr, 1/csir < 1 sbr, so this will always be true,
+even with fifo-sz set to 0. Am I missing something ?
+
 > +	 *
 > +	 * fifo-sz >= abs(sbr/csir * image-width - image-width)
-> +	 *                `-----´
+> +	 *                `-----Â´
 > +	 *                   n
+
+The n variable doesn't store sbr/csir but csir/sbr (multiplied by a
+precision factor). And do I understand correctly that, as sbr < csir,
+this would be equal to the following ?
+
+	 * fifo-sz >= image-width - sbr/csir * image-width
+
 > +	 *
 > +	 */
 > +
@@ -1156,6 +1177,9 @@ You should only call this once you're done accessing mbusfmt.
 > +}
 > +
 > +int __maybe_unused
+
+As reported by the buildbot, this should be static. Same for s_register.
+
 > +tc358746_g_register(struct v4l2_subdev *sd, struct v4l2_dbg_register *reg)
 > +{
 > +	struct tc358746 *tc358746 = to_tc358746(sd);
@@ -1167,6 +1191,11 @@ You should only call this once you're done accessing mbusfmt.
 > +		dev_err(sd->dev, "Failed to resume the device\n");
 > +		return 0;
 > +	}
+
+Is there a point in powering the hardware on here if it's off, in order
+to read a register that will have been reset due to the power cycle ?
+pm_runtime_get_if_in_use() seems better. Same in .s_register().
+
 > +
 > +	tc358746_read(tc358746, reg->reg, (u32 *)&reg->val);
 > +
@@ -1270,8 +1299,8 @@ You should only call this once you're done accessing mbusfmt.
 > +
 > +	/*
 > +	 *                          MCLK-Div
-> +	 *           -------------------´`---------------------
-> +	 *          ´                                          `
+> +	 *           -------------------Â´`---------------------
+> +	 *          Â´                                          `
 > +	 *         +-------------+     +------------------------+
 > +	 *         | MCLK-PreDiv |     |       MCLK-PostDiv     |
 > +	 * PLL --> |   (2/4/8)   | --> | (mclk_low + mclk_high) | --> MCLK
@@ -1412,6 +1441,9 @@ You should only call this once you're done accessing mbusfmt.
 > +	int err;
 > +
 > +	sd = &tc358746->sd;
+
+You could initialize the variable when declaring it.
+
 > +	v4l2_i2c_subdev_init(sd, client, &tc358746_ops);
 > +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
 > +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
@@ -1508,8 +1540,9 @@ You should only call this once you're done accessing mbusfmt.
 > +	if (err) {
 > +		pm_runtime_put_noidle(dev);
 
-This needs to be pm_runtime_put(). Otherwise you decrease usage_count but
-leave the device powered on.
+Don't you need a regular put (possibly with autosuspend) here ?
+Otherwise a reset failure will decrement the runtime PM use count but
+leave the decide powered.
 
 > +		dev_err(dev, "Failed to reset the device\n");
 > +		return err;
@@ -1520,6 +1553,12 @@ leave the device powered on.
 > +	pm_runtime_put_sync_autosuspend(dev);
 > +	if (err) {
 > +		dev_err(dev, "Failed to read chipid\n");
+
+How about moving the read failure message to tc358746_read() ? It's
+useful to get error messages for all failures, not just this one. Or do
+we get a message from regmap already ? If we do, then we could just drop
+this.
+
 > +		return -ENODEV;
 > +	}
 > +
@@ -1533,6 +1572,9 @@ leave the device powered on.
 > +}
 > +
 > +static int tc358746_setup_mclk_provider(struct tc358746 *tc358746)
+
+I'd move this right after tc358746_mclk_ops as they're related.
+
 > +{
 > +	struct clk_init_data mclk_initdata = { };
 > +	struct device *dev = tc358746->sd.dev;
@@ -1550,6 +1592,9 @@ leave the device powered on.
 > +	mclk_name = "tc358746-mclk";
 > +	device_property_read_string(dev, "clock-output-names",
 > +				    &mclk_name);
+
+This holds on a single line.
+
 > +
 > +	mclk_initdata.name = mclk_name;
 > +	mclk_initdata.ops = &tc358746_mclk_ops;
@@ -1581,6 +1626,9 @@ leave the device powered on.
 > +
 > +	ctrl = v4l2_ctrl_new_int_menu(&tc358746->ctrl_hdl, NULL,
 > +				      V4L2_CID_LINK_FREQ, 0, 0,
+
+Shouldn't the max argument be set to the number of items minus 1 ?
+
 > +				      link_frequencies);
 > +	if (ctrl)
 > +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
@@ -1588,8 +1636,14 @@ leave the device powered on.
 > +	tc358746->sd.ctrl_handler = &tc358746->ctrl_hdl;
 > +	if (tc358746->ctrl_hdl.error)
 > +		return tc358746->ctrl_hdl.error;
+
+You need to call v4l2_ctrl_handler_free() in the failure paths.
+
 > +
 > +	return v4l2_ctrl_handler_setup(&tc358746->ctrl_hdl);
+
+This can be skipped I think, as the only supported control is read-only.
+
 > +}
 > +
 > +static int tc358746_notify_bound(struct v4l2_async_notifier *notifier,
@@ -1601,6 +1655,9 @@ leave the device powered on.
 > +	struct media_pad *sink = &tc358746->pads[TC358746_SINK];
 > +
 > +	return v4l2_create_fwnode_links_to_pad(sd, sink, MEDIA_LNK_FL_ENABLED);
+
+I'd make the link immutable too, as only one source subdev is supported.
+
 > +}
 > +
 > +static const struct v4l2_async_notifier_operations tc358746_notify_ops = {
@@ -1632,7 +1689,13 @@ leave the device powered on.
 > +					      struct v4l2_async_subdev);
 > +	if (IS_ERR(asd)) {
 > +		fwnode_handle_put(ep);
+
+You can move this before the error check and drop the next one.
+
 > +		return PTR_ERR(asd);
+
+Shouldn't v4l2_async_nf_cleanup() be called here ?
+
 > +	}
 > +
 > +	fwnode_handle_put(ep);
@@ -1647,6 +1710,9 @@ leave the device powered on.
 > +
 > +	tc358746->sd.fwnode = fwnode_graph_get_endpoint_by_id(
 > +		dev_fwnode(tc358746->sd.dev), TC358746_SOURCE, 0, 0);
+
+Where is this reference dropped ?
+
 > +
 > +	err = v4l2_async_register_subdev(&tc358746->sd);
 > +	if (err) {
@@ -1655,6 +1721,9 @@ leave the device powered on.
 > +	}
 > +
 > +	return err;
+
+	return 0;
+
 > +}
 > +
 > +static int tc358746_probe(struct i2c_client *client)
@@ -1722,16 +1791,14 @@ leave the device powered on.
 > +
 > +	dev_set_drvdata(dev, tc358746);
 > +	pm_runtime_set_autosuspend_delay(dev, 200);
+
+200ms may be a bit short for a complete stop/restart cycle. How about
+1s ?
+
 > +	pm_runtime_use_autosuspend(dev);
 > +	pm_runtime_enable(dev);
 > +
 > +	err = tc358746_init_hw(tc358746);
-
-The driver depends on runtime PM being enabled but does not depend on
-CONFIG_PM. I'd suggest to power the device on and only then enable runtime
-PM. See
-<URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera-sensor.html#power-management>.
-
 > +	if (err)
 > +		goto err_pm;
 > +
@@ -1865,6 +1932,6 @@ PM. See
 > +MODULE_LICENSE("GPL");
 
 -- 
-Kind regards,
+Regards,
 
-Sakari Ailus
+Laurent Pinchart
