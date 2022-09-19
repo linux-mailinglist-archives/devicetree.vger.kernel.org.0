@@ -2,78 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 399985BD6CD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 00:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 429C55BD6D5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 00:08:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbiISWG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 18:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48834 "EHLO
+        id S229578AbiISWIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 18:08:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbiISWG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 18:06:26 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7C6B1115A
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 15:06:23 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id t7so1231974wrm.10
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 15:06:23 -0700 (PDT)
+        with ESMTP id S229456AbiISWIR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 18:08:17 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC0D4DB26
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 15:08:16 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id s90-20020a17090a2f6300b00203a685a1aaso585197pjd.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 15:08:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=ixw7chpePOC+MLhrlMTpQHvviDIReReYqRXhDHS+LsE=;
-        b=MTU+cL6hp6f9T9hHZK1qtBuS4UE3E75gmwhW8YWLDfnyfkP1ZKR7ntjgL9f0ZWI1Bq
-         h4h6f8vzgNpa2NCsEFmvTDW7Kq/T1u03RvC+tw7QqBTnX7Z0nDH5FAm+U6asPpf8w2WS
-         OBXDbSBf8oEB5Vjyp5az62OxCA9OfmgUUcmDFCXBC9wDo3r8XMj8N+6EX4IHYQu5Cj5S
-         4vBKLvNSGuldmPRo6coz7S7mCgTq40Sni6ak5grfz2ir3PaPyjm5BcbMiA02hEJVU8tq
-         dEFV87LXthpwMdUgc63el5Lf4vRgJM6Tmkw8YnCLpTmX3iU/seH7aJ6FCVAQF+98caCj
-         UnFw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=gz59VWx5nz0YJXzmCogPNEDPJtcNnH5l3T4l3SeJhzY=;
+        b=OuJs8yBRQWHb2NNqUrbybvk2KaJ1FDQfcfkl1NAvGr9+CfaVcOx/3meKK+mdxorsAu
+         0+iy9Yg+b1sX53SW6lGS/rvME6GBW/dMU5TuA9ru5JBGfGsXnRcgRtwIjpAumbAyauSH
+         2D1bZ0qe7uhLduo8ieOEvXolioYAnEeK7Z6XarRJFoUymkbXrfGJcXAgxRIlckUp6cBF
+         pka+XnDagpnMKezgG37TW8+jElG8UY1K/kWWrY5sHW/rI5/SLJou/zZbOUPPfHBJmvq/
+         mehkinxDWq/KhvF3t3ExhSi0vVQnDYiP3xfyxaijJKEdWep8nK1lwbvaOL3w8hS77Xl3
+         Yntw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ixw7chpePOC+MLhrlMTpQHvviDIReReYqRXhDHS+LsE=;
-        b=pMAwv3+gFNSYYWLnUYCBnNFFHhK0mMCH2TiFBMwIwkHXyRtZy0eN6ElmhBWNgaiJj6
-         AxMQVrLnKc2X69p1SlE4sEmiZQYS5KLaLgy4dnAnqIhZx0FxpXYmoCf1EtpPj++xZjaq
-         eqO34Z5kojSMM4o0lQnnI2+WGckVk/SbTp8xUpTgo/yyN+UwBASV6a5xOUXUTUyD/W2f
-         fsOiXssn/J28hvut51cMff5ar1V10kIKwC7++FpRmlTvIsI+GA+t5SXEiL3xgwOGr+/7
-         v7Mx40cr/Gf2WhRkNYyc5VcnXxQgjcXAuTGCmRnScIL/7fj0sUSOfQs8xS2SbQoJ2cVU
-         zZtQ==
-X-Gm-Message-State: ACrzQf32yGFGszj9PyDBe0FiA6YUVidzWtvZQiHz2Trw9LCebfMgssyP
-        MhXMwF+0WU9U1sVdI6sORLYXng==
-X-Google-Smtp-Source: AMsMyM6xghtZubWcuL/UbtqUKWsZPmma3Wxd7oe7RWho2DnwtH1o58uPfquQMMN7QbsOio3L8ivREA==
-X-Received: by 2002:adf:d206:0:b0:228:64c1:c3fb with SMTP id j6-20020adfd206000000b0022864c1c3fbmr12014163wrh.260.1663625182237;
-        Mon, 19 Sep 2022 15:06:22 -0700 (PDT)
-Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
-        by smtp.gmail.com with ESMTPSA id h21-20020a05600c351500b003b491f99a25sm16756983wmq.22.2022.09.19.15.06.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 15:06:21 -0700 (PDT)
-Message-ID: <9d021e83-774f-3524-a65d-0ef0f74c8545@sifive.com>
-Date:   Mon, 19 Sep 2022 23:06:20 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=gz59VWx5nz0YJXzmCogPNEDPJtcNnH5l3T4l3SeJhzY=;
+        b=mzGC25ckkAjuBHIB2VD8ddibvK2pGV49TWoyMK0GQbO0WigjBhl3nonvlZX6/MjfRH
+         JEgd47kTl0rVmitQ1q5pqZGLWtScDxInM79CZdxHSpDQ3By8DK4BDdk4Qip50o8jQGfl
+         YF++4nh8GduK8tANHK6gj5hhVpcv7ViiTmOrdcYulYRpMDx9l94djZTPnFEJSVWOj2a5
+         4knXxCx8AmeAP7PUfPAS7md+15D7osFcm6T1myJbtPkUvtBMJOH8ZBB8bRJLvutlEtBE
+         vdmIzx85fuif6Ukk4bL7Qr2wHzPv1hMhfWOEXS9yQuuxjy5rc4q8tsk2b/Cy4we5vcVz
+         4cEw==
+X-Gm-Message-State: ACrzQf1p1cOkpc3udOaYh7EEAGZhjYUbTAlCTP/bgQJQ0AayuC7Jl9SL
+        GNxUVTDGqmN6qYGYzUyrZAgKyw==
+X-Google-Smtp-Source: AMsMyM4pSjyZ5qg7zSrfTDX5bHgJiiwtzrg6V1QbSsP0WB2GdJV0uFPLZit4s/1EDdY19ktUMClZFw==
+X-Received: by 2002:a17:903:1c4:b0:176:e348:c386 with SMTP id e4-20020a17090301c400b00176e348c386mr1804453plh.3.1663625295495;
+        Mon, 19 Sep 2022 15:08:15 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c61:6535:ca5f:67d1:670d:e188])
+        by smtp.gmail.com with ESMTPSA id u2-20020a17090a6a8200b001eee8998f2esm7068167pjj.17.2022.09.19.15.08.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 15:08:15 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, thara.gopinath@gmail.com,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, andersson@kernel.org,
+        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        Jordan Crouse <jorcrous@amazon.com>
+Subject: [PATCH v6 0/4] dt-bindings: qcom-qce: Convert bindings to yaml & related changes 
+Date:   Tue, 20 Sep 2022 03:38:00 +0530
+Message-Id: <20220919220804.1047292-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [RFC v4 08/10] pwm: dwc: add of/platform support
-Content-Language: en-GB
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-References: <20220816211454.237751-1-ben.dooks@sifive.com>
- <20220816211454.237751-9-ben.dooks@sifive.com>
- <20220915072430.bhpwk6iyqmyz6oie@pengutronix.de>
-From:   Ben Dooks <ben.dooks@sifive.com>
-In-Reply-To: <20220915072430.bhpwk6iyqmyz6oie@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,47 +71,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2022 08:24, Uwe Kleine-König wrote:
-> Hello,
-> 
-> On Tue, Aug 16, 2022 at 10:14:52PM +0100, Ben Dooks wrote:
->> The dwc pwm controller can be used in non-PCI systems, so allow
->> either platform or OF based probing.
->>
->> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
->> ---
->> v4:
->>   - split the of code out of the core
->>   - moved the compile test code earlier
->>   - fixed review comments
->>    - used NS_PER_SEC
->>    - use devm_clk_get_enabled
->> v3:
->>   - changed compatible name
->> ---
->>   drivers/pwm/Kconfig      |  9 +++++
->>   drivers/pwm/Makefile     |  1 +
->>   drivers/pwm/pwm-dwc-of.c | 78 ++++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 88 insertions(+)
->>   create mode 100644 drivers/pwm/pwm-dwc-of.c
->>
->> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
->> index a9f1c554db2b..f1735653365f 100644
->> --- a/drivers/pwm/Kconfig
->> +++ b/drivers/pwm/Kconfig
->> @@ -192,6 +192,15 @@ config PWM_DWC_PCI
->>   	  To compile this driver as a module, choose M here: the module
->>   	  will be called pwm-dwc-pci.
->>   
->> +config PWM_DWC_OF
->> +	tristate "DesignWare PWM Controller (OF bus)
-> 
-> There is a missing " which results in:
-> 
-> 	drivers/pwm/Kconfig:196:warning: multi-line strings not supported
-> 
-> Best regards
-> Uwe
+Changes since v5:
+=================
+- v5 can be seen here: https://lore.kernel.org/lkml/20211110105922.217895-1-bhupesh.sharma@linaro.org/
+- As per Bjorn's suggestion on irc, broke down the patchset into 4
+  separate patchsets, one each for the following areas to allow easier
+  review and handling from the respective maintainer(s):
+        'arm-msm', 'crypto', 'dma' and 'devicetree'
+  This patchset is directed for the 'arm-msm' tree / area.
+- Addressed Rob's, Vladimir's and Bjorn's review comments on v5.
+- Added Tested-by from Jordan received on the v5.
+- Also added a 'defconfig' change where I enabled the QCE block as a module.
 
-Thanks, fixed.
+Changes since v4:
+=================
+- v4 for sm8250 can be seen here: https://lore.kernel.org/linux-arm-msm/20211013105541.68045-1-bhupesh.sharma@linaro.org/
+- v1 for sm8150 qce enablement can be seen here: https://lore.kernel.org/linux-arm-msm/20211013165823.88123-1-bhupesh.sharma@linaro.org/
+- Merged the sm8150 and sm8250 enablement patches in the same patchset,
+  as per suggestions from Bjorn.
+- Dropped a couple of patches from v4, as these have been picked by
+  Bjorn already via his tree.
+- Addressed review comments from Vladimir, Thara and Rob.
+- Collect Reviewed-by from Rob and Thara on some of the patches from the
+  v4 patchset.
+
+Changes since v3:
+=================
+- v3 can be seen here: https://lore.kernel.org/linux-arm-msm/20210519143700.27392-1-bhupesh.sharma@linaro.org/
+- Dropped a couple of patches from v3, on basis of the review comments:
+   ~ [PATCH 13/17] crypto: qce: core: Make clocks optional
+   ~ [PATCH 15/17] crypto: qce: Convert the device found dev_dbg() to dev_info()
+- Addressed review comments from Thara, Rob and Stephan Gerhold.
+- Collect Reviewed-by from Rob and Thara on some of the patches from the
+  v3 patchset.
+
+Changes since v2:
+=================
+- v2 can be seen here: https://lore.kernel.org/dmaengine/20210505213731.538612-1-bhupesh.sharma@linaro.org/
+- Drop a couple of patches from v1, which tried to address the defered
+  probing of qce driver in case bam dma driver is not yet probed.
+  Replace it instead with a single (simpler) patch [PATCH 16/17].
+- Convert bam dma and qce crypto dt-bindings to YAML.
+- Addressed review comments from Thara, Bjorn, Vinod and Rob.
+
+Changes since v1:
+=================
+- v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20210310052503.3618486-1-bhupesh.sharma@linaro.org/ 
+- v1 did not work well as reported earlier by Dmitry, so v2 contains the following
+  changes/fixes:
+  ~ Enable the interconnect path b/w BAM DMA and main memory first
+    before trying to access the BAM DMA registers.
+  ~ Enable the interconnect path b/w qce crytpo and main memory first
+    before trying to access the qce crypto registers.
+  ~ Make sure to document the required and optional properties for both
+    BAM DMA and qce crypto drivers.
+  ~ Add a few debug related print messages in case the qce crypto driver
+    passes or fails to probe.
+  ~ Convert the qce crypto driver probe to a defered one in case the BAM DMA
+    or the interconnect driver(s) (needed on specific Qualcomm parts) are not
+    yet probed.
+
+Qualcomm crypto engine (qce) is available on several Snapdragon SoCs.
+The qce block supports hardware accelerated algorithms for encryption
+and authentication. It also provides support for aes, des, 3des
+encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
+authentication algorithms.
+
+Note that this patchset is dependent on the dt-bindings patchset (see [1]) sent to devicetree list.
+
+[1]. https://lore.kernel.org/linux-arm-msm/20220919195618.926227-1-bhupesh.sharma@linaro.org/
+
+Cc: thara.gopinath@gmail.com
+Cc: robh@kernel.org
+Cc: andersson@kernel.org
+Tested-by: Jordan Crouse <jorcrous@amazon.com>
+
+Bhupesh Sharma (4):
+  ARM: dts: qcom: Use new compatibles for crypto nodes
+  arm64: dts: qcom: sm8250: Add dt entries to support crypto engine.
+  arm64: dts: qcom: sm8150: Add dt entries to support crypto engine.
+  arm64: defconfig: Enable Qualcomm QCE crypto
+
+ arch/arm/boot/dts/qcom-ipq4019.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi |  2 +-
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi |  2 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi |  2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi  |  2 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi  | 28 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi  | 28 +++++++++++++++++++++++++++
+ arch/arm64/configs/defconfig          |  1 +
+ 8 files changed, 62 insertions(+), 5 deletions(-)
+
+-- 
+2.37.1
 
