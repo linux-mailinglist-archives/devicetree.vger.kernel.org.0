@@ -2,152 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 787F55BD6A1
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 23:50:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 399985BD6CD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 00:06:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbiISVuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 17:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33564 "EHLO
+        id S229706AbiISWG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 18:06:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229709AbiISVuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 17:50:19 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF65043E64;
-        Mon, 19 Sep 2022 14:50:17 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id y136so914801pfb.3;
-        Mon, 19 Sep 2022 14:50:17 -0700 (PDT)
+        with ESMTP id S229590AbiISWG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 18:06:26 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7C6B1115A
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 15:06:23 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id t7so1231974wrm.10
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 15:06:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
-        bh=kk7J0kbmWOo0ElCJGaFd9+RljsQo/irob0nXHRUh9g4=;
-        b=S5nLy3TPw7ILmHNMx1jaAOARf0AyNjNd2mXDIfB0S9mQVlHCa1B+dQxa3QQxTRKljE
-         5IcUAjXgPyr1AzCH2r11GZBERiGm71sfcw9M96NJGoY/D1N58ftnabjaqkEchNUZp1ax
-         YkNWr2B3x73QVIgDhkjptcFT7pw/MUspxnNzPysC3de7CAbK4TIKnKkQkjmJT8OOGd6r
-         ILp7s4AegZ/w0ZY7uOel1bPwlBMSKElixjKtA+6WS8TDEz0h0/N/wPu6VSTfopRAtF2R
-         LreLT/NcoyAeAy8ZrMGP3FsOVaMh79HiCK8n4isvbC+afGgXaYSXSSVanVBYk0uI4uHX
-         Pj1w==
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=ixw7chpePOC+MLhrlMTpQHvviDIReReYqRXhDHS+LsE=;
+        b=MTU+cL6hp6f9T9hHZK1qtBuS4UE3E75gmwhW8YWLDfnyfkP1ZKR7ntjgL9f0ZWI1Bq
+         h4h6f8vzgNpa2NCsEFmvTDW7Kq/T1u03RvC+tw7QqBTnX7Z0nDH5FAm+U6asPpf8w2WS
+         OBXDbSBf8oEB5Vjyp5az62OxCA9OfmgUUcmDFCXBC9wDo3r8XMj8N+6EX4IHYQu5Cj5S
+         4vBKLvNSGuldmPRo6coz7S7mCgTq40Sni6ak5grfz2ir3PaPyjm5BcbMiA02hEJVU8tq
+         dEFV87LXthpwMdUgc63el5Lf4vRgJM6Tmkw8YnCLpTmX3iU/seH7aJ6FCVAQF+98caCj
+         UnFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=kk7J0kbmWOo0ElCJGaFd9+RljsQo/irob0nXHRUh9g4=;
-        b=Y9vcvljuhNxon6dgGLLrHUlHtUogbhtdcm9EhtmGpj5BRTYiNy6Nf1R5X8geqtonww
-         KsvrpXJ7zAPa8ASnQ7SoEtTn4KNZmvYuDd2kRn+rfSzrldWW2aK1vtClG6PZuwoV4A1k
-         q8Iy9LgKwEJYmWc7qdZyp72qwQD8R/E43MdhXfzdmFUWPwff43P7JbvjWZdiRrYNXdiY
-         x7OTGFs/f0erfnewDoJ7aAtqZ1MDq239SFyyXTYUOkvWl/ca/T3jKjwapYQ1ZAyH2FdL
-         h4PcRhrzb5I8A329VQa7FQze/yjwZWjG9fZH6E6u8Mapac50k+yEz8oUKXX7854qAiQ0
-         N2iw==
-X-Gm-Message-State: ACrzQf3g1z7GULEmaElNtOgKQEwcKIynZGf4Hf7XqwX3Ng9LfaXt766v
-        i5MSf9iaLg52H0N/lx3VSoY=
-X-Google-Smtp-Source: AMsMyM6iftGnRzY+31jrAofx44FXCGKCcoJx9qjkQXDrx/KzZF6TV12z7StjR9+X2ADJmT4QVhfY6A==
-X-Received: by 2002:aa7:8607:0:b0:53b:13b5:2b6a with SMTP id p7-20020aa78607000000b0053b13b52b6amr21041435pfn.52.1663624217009;
-        Mon, 19 Sep 2022 14:50:17 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e11-20020a17090301cb00b00172a670607asm20560809plh.300.2022.09.19.14.50.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Sep 2022 14:50:15 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 19 Sep 2022 14:50:14 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v8 09/23] ata: libahci_platform: Parse ports-implemented
- property in resources getter
-Message-ID: <20220919215014.GA336081@roeck-us.net>
-References: <20220909193621.17380-1-Sergey.Semin@baikalelectronics.ru>
- <20220909193621.17380-10-Sergey.Semin@baikalelectronics.ru>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=ixw7chpePOC+MLhrlMTpQHvviDIReReYqRXhDHS+LsE=;
+        b=pMAwv3+gFNSYYWLnUYCBnNFFHhK0mMCH2TiFBMwIwkHXyRtZy0eN6ElmhBWNgaiJj6
+         AxMQVrLnKc2X69p1SlE4sEmiZQYS5KLaLgy4dnAnqIhZx0FxpXYmoCf1EtpPj++xZjaq
+         eqO34Z5kojSMM4o0lQnnI2+WGckVk/SbTp8xUpTgo/yyN+UwBASV6a5xOUXUTUyD/W2f
+         fsOiXssn/J28hvut51cMff5ar1V10kIKwC7++FpRmlTvIsI+GA+t5SXEiL3xgwOGr+/7
+         v7Mx40cr/Gf2WhRkNYyc5VcnXxQgjcXAuTGCmRnScIL/7fj0sUSOfQs8xS2SbQoJ2cVU
+         zZtQ==
+X-Gm-Message-State: ACrzQf32yGFGszj9PyDBe0FiA6YUVidzWtvZQiHz2Trw9LCebfMgssyP
+        MhXMwF+0WU9U1sVdI6sORLYXng==
+X-Google-Smtp-Source: AMsMyM6xghtZubWcuL/UbtqUKWsZPmma3Wxd7oe7RWho2DnwtH1o58uPfquQMMN7QbsOio3L8ivREA==
+X-Received: by 2002:adf:d206:0:b0:228:64c1:c3fb with SMTP id j6-20020adfd206000000b0022864c1c3fbmr12014163wrh.260.1663625182237;
+        Mon, 19 Sep 2022 15:06:22 -0700 (PDT)
+Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id h21-20020a05600c351500b003b491f99a25sm16756983wmq.22.2022.09.19.15.06.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Sep 2022 15:06:21 -0700 (PDT)
+Message-ID: <9d021e83-774f-3524-a65d-0ef0f74c8545@sifive.com>
+Date:   Mon, 19 Sep 2022 23:06:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220909193621.17380-10-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [RFC v4 08/10] pwm: dwc: add of/platform support
+Content-Language: en-GB
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+References: <20220816211454.237751-1-ben.dooks@sifive.com>
+ <20220816211454.237751-9-ben.dooks@sifive.com>
+ <20220915072430.bhpwk6iyqmyz6oie@pengutronix.de>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <20220915072430.bhpwk6iyqmyz6oie@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 09, 2022 at 10:36:07PM +0300, Serge Semin wrote:
-> The ports-implemented property is mainly used on the OF-based platforms
-> with no ports mapping initialized by a bootloader/BIOS firmware. Seeing
-> the same of_property_read_u32()-based pattern has already been implemented
-> in the generic AHCI LLDD (glue) driver and in the Mediatek, St AHCI
-> drivers let's move the property read procedure to the generic
-> ahci_platform_get_resources() method. Thus we'll have the forced ports
-> mapping feature supported for each OF-based platform which requires that,
-> and stop re-implementing the same pattern in there a bit simplifying the
-> code.
+On 15/09/2022 08:24, Uwe Kleine-König wrote:
+> Hello,
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> ---
->  drivers/ata/ahci_mtk.c         | 2 --
->  drivers/ata/ahci_platform.c    | 3 ---
->  drivers/ata/ahci_st.c          | 3 ---
->  drivers/ata/libahci_platform.c | 3 +++
->  4 files changed, 3 insertions(+), 8 deletions(-)
+> On Tue, Aug 16, 2022 at 10:14:52PM +0100, Ben Dooks wrote:
+>> The dwc pwm controller can be used in non-PCI systems, so allow
+>> either platform or OF based probing.
+>>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>> ---
+>> v4:
+>>   - split the of code out of the core
+>>   - moved the compile test code earlier
+>>   - fixed review comments
+>>    - used NS_PER_SEC
+>>    - use devm_clk_get_enabled
+>> v3:
+>>   - changed compatible name
+>> ---
+>>   drivers/pwm/Kconfig      |  9 +++++
+>>   drivers/pwm/Makefile     |  1 +
+>>   drivers/pwm/pwm-dwc-of.c | 78 ++++++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 88 insertions(+)
+>>   create mode 100644 drivers/pwm/pwm-dwc-of.c
+>>
+>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+>> index a9f1c554db2b..f1735653365f 100644
+>> --- a/drivers/pwm/Kconfig
+>> +++ b/drivers/pwm/Kconfig
+>> @@ -192,6 +192,15 @@ config PWM_DWC_PCI
+>>   	  To compile this driver as a module, choose M here: the module
+>>   	  will be called pwm-dwc-pci.
+>>   
+>> +config PWM_DWC_OF
+>> +	tristate "DesignWare PWM Controller (OF bus)
 > 
-> diff --git a/drivers/ata/ahci_mtk.c b/drivers/ata/ahci_mtk.c
-> index 1f6c85fde983..c056378e3e72 100644
-> --- a/drivers/ata/ahci_mtk.c
-> +++ b/drivers/ata/ahci_mtk.c
-> @@ -118,8 +118,6 @@ static int mtk_ahci_parse_property(struct ahci_host_priv *hpriv,
->  				   SYS_CFG_SATA_EN);
->  	}
->  
-> -	of_property_read_u32(np, "ports-implemented", &hpriv->force_port_map);
-> -
->  	return 0;
->  }
->  
-> diff --git a/drivers/ata/ahci_platform.c b/drivers/ata/ahci_platform.c
-> index 28a8de5b48b9..9b56490ecbc3 100644
-> --- a/drivers/ata/ahci_platform.c
-> +++ b/drivers/ata/ahci_platform.c
-> @@ -56,9 +56,6 @@ static int ahci_probe(struct platform_device *pdev)
->  	if (rc)
->  		return rc;
->  
-> -	of_property_read_u32(dev->of_node,
-> -			     "ports-implemented", &hpriv->force_port_map);
-> -
->  	if (of_device_is_compatible(dev->of_node, "hisilicon,hisi-ahci"))
->  		hpriv->flags |= AHCI_HFLAG_NO_FBS | AHCI_HFLAG_NO_NCQ;
->  
-> diff --git a/drivers/ata/ahci_st.c b/drivers/ata/ahci_st.c
-> index 7526653c843b..068621099c00 100644
-> --- a/drivers/ata/ahci_st.c
-> +++ b/drivers/ata/ahci_st.c
-> @@ -168,9 +168,6 @@ static int st_ahci_probe(struct platform_device *pdev)
->  
->  	st_ahci_configure_oob(hpriv->mmio);
->  
-> -	of_property_read_u32(dev->of_node,
-> -			     "ports-implemented", &hpriv->force_port_map);
-> -
+> There is a missing " which results in:
+> 
+> 	drivers/pwm/Kconfig:196:warning: multi-line strings not supported
+> 
+> Best regards
+> Uwe
 
-With arm:allmodconfig, this results in:
+Thanks, fixed.
 
-  CC [M]  drivers/ata/ahci_st.o
-drivers/ata/ahci_st.c: In function 'st_ahci_probe':
-drivers/ata/ahci_st.c:147:24: error: unused variable 'dev' [-Werror=unused-variable]
-  147 |         struct device *dev = &pdev->dev;
-
-Guenter
