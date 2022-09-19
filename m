@@ -2,94 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6639F5BD691
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 23:41:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A7285BD667
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 23:34:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229449AbiISVlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 17:41:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54608 "EHLO
+        id S229824AbiISVem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 17:34:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiISVlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 17:41:18 -0400
-X-Greylist: delayed 400 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 19 Sep 2022 14:41:17 PDT
-Received: from mellanox.co.il (mail-il-dmz.mellanox.com [193.47.165.129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 938BD3F1C7
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 14:41:17 -0700 (PDT)
-Received: from Internal Mail-Server by MTLPINE1 (envelope-from asmaa@mellanox.com)
-        with SMTP; 20 Sep 2022 00:34:35 +0300
-Received: from bu-vnc02.mtbu.labs.mlnx (bu-vnc02.mtbu.labs.mlnx [10.15.2.65])
-        by mtbu-labmailer.labs.mlnx (8.14.4/8.14.4) with ESMTP id 28JLYYLT023058;
-        Mon, 19 Sep 2022 17:34:34 -0400
-Received: (from asmaa@localhost)
-        by bu-vnc02.mtbu.labs.mlnx (8.14.7/8.13.8/Submit) id 28JLYXaH008124;
-        Mon, 19 Sep 2022 17:34:33 -0400
-From:   Asmaa Mnebhi <asmaa@nvidia.com>
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>, robh@kernel.org,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Asmaa Mnebhi <asmaa@nvidia.com>
-Subject: [PATCH v4 0/8] i2c: i2c-mlxbf.c: bug fixes and new feature support
-Date:   Mon, 19 Sep 2022 17:34:23 -0400
-Message-Id: <20220919213431.8045-1-asmaa@nvidia.com>
-X-Mailer: git-send-email 2.30.1
+        with ESMTP id S229587AbiISVek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 17:34:40 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376EA266A
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 14:34:36 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id f20-20020a9d7b54000000b006574e21f1b6so466916oto.5
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 14:34:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=GhlGF570/fMNse4ofDbeyEClP1h1fR6cANBtjl25epI=;
+        b=8GxuPNefYMuf0/s1o3Lvazl4obZV+mdgoLuUVPHKSFPb5+OMNRtsRkh8UKu7v3hfKz
+         92F8kDyd6gXFmQB7CeE2mSO2fV9poOXWrqAhsXrCxjSAQI08c2E9A+h0RcJhAjihLtg5
+         J4aH5ChFDHac+oIGo3rN3TS58JT5MfEhiFho41BHoL2BdvZ288OEJRaZl+R4VoCFCU74
+         gCM7/82clFkHSI0t4ZmGqs7c6loI2O2jpigZxDpMXTQ0vN1o1mfxG6fkM1g44StZq1yW
+         tYgGrKZ8vppf09969n4WSgt/WTGWmpoBEyDXmGuLX/6IDsFytV9IKnJJuNI7U5f6OYww
+         SE2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=GhlGF570/fMNse4ofDbeyEClP1h1fR6cANBtjl25epI=;
+        b=MIXaEa9bNSV6KZ1iPEedyMnrsbkFrkHq5/XnB9hpKgunrTYgA6IsFpxoBRFZ5fJ7qx
+         /BML/ulIwy3+HpcS9YJI5djMl6p+C6EncvZmYo10glNsrz43aDHWCgXJFdq2x1MnLkR5
+         qkGUxBnmN75QJqSk0DNkG02xcKIPFv8tHcK4dnMlhQs+bXiis7j1KxJvaTm7tyQXOMPy
+         +4CVvT5FZ5yG+pWnlL8u08L5g74nYjCxR0KB3Qz90e/Xg/VtyAqUTerfEssBweSFLrkY
+         m27r2dlxAKNzc5ueDam4PEdac2Dx9mXcAPlRIW0lX3JTVcZ2u8dobJQ2MxsKN1VqZVTY
+         V/TA==
+X-Gm-Message-State: ACrzQf12R9d7+qos6Li4TzqYlqSJWJvKtwjjT5CtU7DAZBv4uNH7q+WS
+        t/EnOjLePLds9qKtY+X8BfSJshilLRvlcO/cu59s1S+fdF16JA==
+X-Google-Smtp-Source: AMsMyM42FduJa4ir+xXvwJjSd6HCgTrvxI4AfniM3y4TROVlTPge2JWGcA4981o487r0XCFOOeFWnYrBwJu2uVReeLk=
+X-Received: by 2002:a9d:12a1:0:b0:658:5c77:d547 with SMTP id
+ g30-20020a9d12a1000000b006585c77d547mr9105264otg.48.1663623275484; Mon, 19
+ Sep 2022 14:34:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+References: <1662109086-15881-1-git-send-email-hongxing.zhu@nxp.com>
+ <1662109086-15881-4-git-send-email-hongxing.zhu@nxp.com> <ec59c235f11664a0a90f14b86bd63f74fb7f6d27.camel@toradex.com>
+In-Reply-To: <ec59c235f11664a0a90f14b86bd63f74fb7f6d27.camel@toradex.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Mon, 19 Sep 2022 14:34:23 -0700
+Message-ID: <CAJ+vNU3tV1NSNT8R-QNTxEhe+oxR=Fz9zHKGbf_MSBgr9dQ10g@mail.gmail.com>
+Subject: Re: [PATCH v7 3/7] arm64: dts: imx8mp-evk: Add PCIe support
+To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc:     "vkoul@kernel.org" <vkoul@kernel.org>,
+        "richard.leitner@linux.dev" <richard.leitner@linux.dev>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "hongxing.zhu@nxp.com" <hongxing.zhu@nxp.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "marex@denx.de" <marex@denx.de>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a series of patches fixing several bugs and implementing
-new features.
+On Mon, Sep 19, 2022 at 8:22 AM Marcel Ziswiler
+<marcel.ziswiler@toradex.com> wrote:
+>
+> Hi Richard et. al.
+>
+> Thank you very much for the i.MX 8MP PCIe support work.
+>
+> On Fri, 2022-09-02 at 16:58 +0800, Richard Zhu wrote:
+> > Add PCIe support on i.MX8MP EVK board.
+> >
+> > Signed-off-by: Richard Zhu <hongxing.zhu-3arQi8VN3Tc@public.gmane.org>
+> > Tested-by: Marek Vasut <marex-ynQEQJNshbs@public.gmane.org>
+> > Tested-by: Richard Leitner <richard.leitner-WcANXNA0UjBBDgjK7y7TUQ@public.gmane.org>
+> > Tested-by: Alexander Stein <alexander.stein-W3o+9BuWjQaZox4op4iWzw@public.gmane.org>
+> > Reviewed-by: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 53 ++++++++++++++++++++
+> >  1 file changed, 53 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > index f6b017ab5f53..9f1469db554d 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > @@ -5,6 +5,7 @@
+> >
+> >  /dts-v1/;
+> >
+> > +#include <dt-bindings/phy/phy-imx8-pcie.h>
+> >  #include "imx8mp.dtsi"
+> >
+> >  / {
+> > @@ -33,6 +34,12 @@ memory@40000000 {
+> >                       <0x1 0x00000000 0 0xc0000000>;
+> >         };
+> >
+> > +       pcie0_refclk: pcie0-refclk {
+> > +               compatible = "fixed-clock";
+> > +                       #clock-cells = <0>;
+> > +                       clock-frequency = <100000000>;
+> > +       };
+> > +
+> >         reg_can1_stby: regulator-can1-stby {
+> >                 compatible = "regulator-fixed";
+> >                 regulator-name = "can1-stby";
+> > @@ -55,6 +62,17 @@ reg_can2_stby: regulator-can2-stby {
+> >                 enable-active-high;
+> >         };
+> >
+> > +       reg_pcie0: regulator-pcie {
+> > +               compatible = "regulator-fixed";
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&pinctrl_pcie0_reg>;
+> > +               regulator-name = "MPCIE_3V3";
+> > +               regulator-min-microvolt = <3300000>;
+> > +               regulator-max-microvolt = <3300000>;
+> > +               gpio = <&gpio2 6 GPIO_ACTIVE_HIGH>;
+> > +               enable-active-high;
+> > +       };
+> > +
+> >         reg_usdhc2_vmmc: regulator-usdhc2 {
+> >                 compatible = "regulator-fixed";
+> >                 pinctrl-names = "default";
+> > @@ -350,6 +368,28 @@ &i2c5 {
+> >          */
+> >  };
+> >
+> > +&pcie_phy {
+> > +       fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
+>
+> While this indeed works on the EVK so far I failed to get this to work on our Verdin iMX8M Plus which requires
+> the fsl,refclk-pad-mode to be IMX8_PCIE_REFCLK_PAD_OUTPUT. It is not quite clear to me what kind of clocks I
+> would need specifying in that case.
+>
+> Has anybody by any chance tried on any such HW design?
+>
+> For reference [1] on the Verdin iMX8M Mini the same works very well but the clocking seems rather different.
+>
 
-Bug fixes:
-1) Fix the frequency calculation
-2) Fix incorrect base address passed during io write
-3) prevent stack overflow in mlxbf_i2c_smbus_start_transaction()
-4) Support lock mechanism to avoid race condition between entities
-   using the i2c bus
+Marcel,
 
-Cleanup:
-5) remove IRQF_ONESHOT flag as it is no longer needed.
+Do you have all the patches in Richard's series applied [1]? They got
+picked up in different trees so make sure you have them all. I just
+tested this series on top of 6.0-rc6 with imx8mp-venice-gw74xx and it
+works fine. This board however does have IMX8_PCIE_REFCLK_PAD_INPUT.
 
-Features:
-6) Support multi slave functionality
-7) Support BlueField-3 SoC
-8) Update binding devicetree
+Do you by chance have CLKREQ not hooked up? If so make sure you add a
+'fsl,clkreq-unsupported' probe to pcie_phy.
 
-What has changed from v3->v4:
-- moved the patch related to updating the SPDX licence out of this series.
-  This will be submitted as a separate patch later and will need approval
-  from all contributors.
-- fixed build error in the frequency calculation patch. The name
-  of the frequency functions changed but that was not reflected
-  when they were called.
-- Fixed the prefix in $subject as "i2c: <driver>:"
-- Use kernel multiline comment style in the "support lock mechanism" patch
-- instead of calling mlxbf_i2c_smbus_master_unlock multiple times, use the
-  "goto out_unlock" style.
-- Added the devicetree reviewers
+Best Regards,
 
-Asmaa Mnebhi (8):
-  i2c: i2c-mlxbf.c: Fix frequency calculation
-  i2c: i2c-mlxbf.c: remove IRQF_ONESHOT
-  i2c: i2c-mlxbf.c: incorrect base address passed during io write
-  i2c: i2c-mlxbf: prevent stack overflow in
-    mlxbf_i2c_smbus_start_transaction()
-  i2c: i2c-mlxbf.c: support lock mechanism
-  i2c: i2c-mlxbf: add multi slave functionality
-  i2c: i2c-mlxbf.c: support BlueField-3 SoC
-  i2c: i2c-mlxbf.c: Update binding devicetree
-
- .../bindings/i2c/mellanox,i2c-mlxbf.yaml      |  49 +-
- MAINTAINERS                                   |   1 +
- drivers/i2c/busses/i2c-mlxbf.c                | 862 ++++++++++--------
- 3 files changed, 522 insertions(+), 390 deletions(-)
-
--- 
-2.30.1
-
+Tim
+[1] https://patchwork.kernel.org/project/linux-pci/list/?series=673548&state=*
