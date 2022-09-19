@@ -2,51 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7DEE5BD7E4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 01:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43F975BD827
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 01:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbiISXLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 19:11:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34284 "EHLO
+        id S230149AbiISXUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 19:20:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230105AbiISXK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 19:10:56 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4ED50732;
-        Mon, 19 Sep 2022 16:10:44 -0700 (PDT)
+        with ESMTP id S229658AbiISXUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 19:20:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F122FFD6;
+        Mon, 19 Sep 2022 16:19:49 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 39AC4B821D6;
-        Mon, 19 Sep 2022 23:10:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08E82C43470;
-        Mon, 19 Sep 2022 23:10:38 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7160361F5B;
+        Mon, 19 Sep 2022 23:19:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A552EC433D6;
+        Mon, 19 Sep 2022 23:19:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663629041;
-        bh=b1MqEh6B42D87J4TSbATtghLyrLWxYN99xDJ54qoJjU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=KI1qtB8dtbf2FWe6H6nRxplkR+NFVCp3Fa07+UpVQle4opGMzGzwsl7MKYGYnmQs+
-         Mhk9JCWW2EDm3w8V7xI5QXHzf2VwBS/dWd03/tgajaTxJ8+ToxR9MtEPf4YlPxR/j8
-         U3MBfXV0vt73WHMLljw6baL9kynOtDE2Zxv/x/BrgsDrauzgreTminioG5Sxr2vaqL
-         XJe2gEuEHNlsgfBoNnN6DoYtWh4FBx2yZsHcDFP25wNeR1Qp734KFoGd3554cLOX02
-         xgqopEYOSK6Zaa+SuYAl173l9b8QhlIFPf4P2UJQr92xIdOrzKWbkF3pGaQh6GK3y6
-         1sMPXQ+BtELVQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Ban Tao <fengzheng923@gmail.com>, robh+dt@kernel.org,
-        jernej.skrabec@gmail.com, wens@csie.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, krzysztof.kozlowski+dt@linaro.org,
-        samuel@sholland.org
-Cc:     devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <1662966333-18000-1-git-send-email-fengzheng923@gmail.com>
-References: <1662966333-18000-1-git-send-email-fengzheng923@gmail.com>
-Subject: Re: [PATCH v10 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings for DMIC controller
-Message-Id: <166362903874.3419825.606503427543635077.b4-ty@kernel.org>
-Date:   Tue, 20 Sep 2022 00:10:38 +0100
+        s=k20201202; t=1663629587;
+        bh=CtUBuu/Umy2olZpL4pXDlTOg0LYoEUfDZxH5fn/WxDc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=P/vL51iDKs3OZhRJ6BmLOq6I90vgV+JTPtV1YO/5kehBej5jad8rR68d7NlNe4Hwl
+         kNAJymRjvM9Miw4xShk/6MIjzyLHIqaWIgpouRIlNDjvzbAYraorl0ZhZBkoZIqheO
+         wpzV03GnWqF4ZOu0DRXsIjKOu5+YiKZmdipgB5xE9P6ZP0ievWzWUpgw3qJXW+QtSu
+         gAFeHvNwMPYFkwms7Rli6eJrpBT+U4WfRHmeW2ojix8epM7g8ZwGeb/UCgvKLhm/pM
+         CDC216TygjszKnBWE619zkj3f2MATa4pERigRHq72Z/0VHm4GHiwy5eKIUYH6i//1x
+         t+CvjnyW0+mFQ==
+Received: by pali.im (Postfix)
+        id 9BB797DA; Tue, 20 Sep 2022 01:19:44 +0200 (CEST)
+Date:   Tue, 20 Sep 2022 01:19:44 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: Fix compatible strings for Armada
+ 3720 boards
+Message-ID: <20220919231944.oge6zctr5uxme6ej@pali>
+References: <20220713125644.3117-1-pali@kernel.org>
+ <20220808202456.lpwvhq22edb56ptf@pali>
+ <YvFzGhBRPTXgdCd8@lunn.ch>
+ <20220902223110.ob2uepbjzubdf4d3@pali>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.11.0-dev-8af31
+In-Reply-To: <20220902223110.ob2uepbjzubdf4d3@pali>
+User-Agent: NeoMutt/20180716
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -56,35 +64,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Sep 2022 00:05:33 -0700, Ban Tao wrote:
-> DT binding documentation for this new ASoC driver.
+On Saturday 03 September 2022 00:31:10 Pali Rohár wrote:
+> On Monday 08 August 2022 22:33:30 Andrew Lunn wrote:
+> > On Mon, Aug 08, 2022 at 10:24:56PM +0200, Pali Rohár wrote:
+> > > PING?
+> > 
+> > It is too late for the merge window.
 > 
-> 
+> So, now for the next?
 
-Applied to
+PING?
 
-   broonie/sound.git for-next
-
-Thanks!
-
-[2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings for DMIC controller
-      commit: 5cf934e84659ca2f03db6254978d56f053745366
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> > > > diff --git a/arch/arm64/boot/dts/marvell/armada-372x.dtsi b/arch/arm64/boot/dts/marvell/armada-372x.dtsi
+> > > > index 5ce55bdbb995..02ae1e153288 100644
+> > > > --- a/arch/arm64/boot/dts/marvell/armada-372x.dtsi
+> > > > +++ b/arch/arm64/boot/dts/marvell/armada-372x.dtsi
+> > > > @@ -13,7 +13,7 @@
+> > > >  
+> > > >  / {
+> > > >  	model = "Marvell Armada 3720 SoC";
+> > > > -	compatible = "marvell,armada3720", "marvell,armada3710";
+> > > > +	compatible = "marvell,armada3720", "marvell,armada3700";
+> > 
+> > Does it make sense to have a compatible here? The board .dts should
+> > provide it. And if the board does not provide it, we probably want the
+> > board to not boot because it does not have a compatible.
+> > 
+> >    Andrew
