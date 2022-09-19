@@ -2,222 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1C935BD041
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 17:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 623855BD049
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 17:16:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229885AbiISPPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 11:15:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33690 "EHLO
+        id S229839AbiISPQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 11:16:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbiISPOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 11:14:47 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20245357D8;
-        Mon, 19 Sep 2022 08:14:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1663600460; x=1695136460;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=c870c32AhfgZVg4pwd9ZMePlL4mjnVCOQA4N7lzg7uk=;
-  b=k60+i5P5Mqyl8vfrc1i+E1GdVv6KyNK+2bguKeMU95I3ACooU2eHHgkd
-   U2FUrfHj+dkYm7W3mLRABpD/Mh8XRGgIjtbUYeOeQ/9JE+fIXcVb8GVT4
-   Fw/qzGqFNIy4KlA7VSJLqXIw614mloVUq6kmbaF19zFcqTK7vl8E5Pnh0
-   JQqijtCIUzB/+YLNky7fiYYPepD2z2cKyZvIk/9YrZDbwXfGWHeQ9oTx8
-   TfthvTR+nY/ysH1UYups6CpvsO21qmDUFW8wK5/ofYzR3iR3kojrtNfIs
-   54jLBMeF2SFzhvrz8gRZsiDcn65t13Wv+0ZKkFXxjB65sMCa5IoatevgV
-   w==;
-X-IronPort-AV: E=Sophos;i="5.93,328,1654585200"; 
-   d="scan'208";a="114368422"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Sep 2022 08:14:19 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 19 Sep 2022 08:14:17 -0700
-Received: from ROB-ULT-M68701.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.12 via Frontend Transport; Mon, 19 Sep 2022 08:14:13 -0700
-From:   Sergiu Moga <sergiu.moga@microchip.com>
-To:     <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        <radu_nicolae.pirea@upb.ro>, <richard.genoud@gmail.com>,
-        <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
-        <kavyasree.kotagiri@microchip.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>,
-        Sergiu Moga <sergiu.moga@microchip.com>
-Subject: [PATCH v4 9/9] tty: serial: atmel: Make the driver aware of the existence of GCLK
-Date:   Mon, 19 Sep 2022 18:08:47 +0300
-Message-ID: <20220919150846.1148783-10-sergiu.moga@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220919150846.1148783-1-sergiu.moga@microchip.com>
-References: <20220919150846.1148783-1-sergiu.moga@microchip.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229592AbiISPQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 11:16:32 -0400
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com [66.111.4.224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F6B38696;
+        Mon, 19 Sep 2022 08:15:47 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 11DFC58012A;
+        Mon, 19 Sep 2022 11:15:46 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute2.internal (MEProxy); Mon, 19 Sep 2022 11:15:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1663600546; x=1663607746; bh=V2
+        NHp03LEGFatOiT5SjFLIfjK3Dfgn5PwWj8407qQ9U=; b=sL0wAf4fnlz910F4Vz
+        odUFag9auWhR/JyQhsLSE2hhs2iaOmseZ2lH4k1AI6HmHq43B6Os0UKYrwZtTeOX
+        3s6ldQyHOblUK8qk1b+gAXaPyQlPiQkA4uwasunUQ2yj1TUlzVnEwEbVHsx00zRE
+        kM3JXx7k+m6N2TPkCtLZ6VKUb7mu1xgy9r/LIog9I7rdaHflnXmE8FYjKJiCsRxO
+        Uh4ZPnTHM6MahoycLN32BjqQSsl9MubT1fF8Yyl42/N5Gg+LUbNxudFDwthhbdk8
+        Z4Wm3tGF+eRhPigVD+N9/sS5/nutzPX0rC5gxa4njw9m1geXcFCOono28a5UAs7H
+        MiJA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1663600546; x=1663607746; bh=V2NHp03LEGFatOiT5SjFLIfjK3Df
+        gn5PwWj8407qQ9U=; b=0T3K43FVWjJFjss+Dr0RpPQff86JEiZ/mtijgFEbUr/l
+        V1wb621rNSwI4xv7bWmNSm3tVuNlCf1JR8T49wMQJtNMmbmGIxrPwPrpEbAdrp6+
+        XssX+ZjvHat2nIGd+3gCBFOkNmK4JZW0369RrKyfF4khiD8NzXoybiJM3g2QqiLA
+        6hWugCya3tqgP/uFNzfKAHFe0vakoFK9nS96AFLXQsnjquOyaNNMc/f/pMNVNBZ6
+        orD0qmkHv/0GjynpRJAvkXhTW+m8MRFmrgfhFuk/YN2Wnd1S8I/+sbvznRorZbUy
+        NO431d1qd1FTaT9qoiKMeckANp7jhSiq3JiJuRLkig==
+X-ME-Sender: <xms:n4coY4w3oVzkvr77PB1H4fmBb40ZfQZy2NPF_wgQPMfKT_UHaIdYBg>
+    <xme:n4coY8SKki3oKPC9hfhlcZPz5VA3fXj7KTW57FsLva5PyKbe-mf9IPkv4NNRGtd0Y
+    SAbxqDZb8ytBlKk-FI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfedvjedgkeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedfufhv
+    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
+    grthhtvghrnhepfeegudfghfejvdffgffgkeetuddtteeuheduiedtgfdufedvudeitddv
+    leeivdfgnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgv
+    thgvrhdruggvvh
+X-ME-Proxy: <xmx:n4coY6WFIew5Sc41BNZQRbuHJ6iDGtkghtY6vE2WG9w9A2UjvI4pnA>
+    <xmx:n4coY2iRVzdGAhuC6fa-__H6wK_f2H5UR-DQhjwLL0c0IMnCDFe5Xw>
+    <xmx:n4coY6AdELWjRb6eLemIUP2tTRNz8fz4-rgm_i1QEoe-z4Jsf_HbeA>
+    <xmx:oocoY04cLhYi_fAbiGr4SEo2BotTLrK9LYGTnOoJWrSydn28MXNgNQ>
+Feedback-ID: i51094778:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id C7BA1A6007C; Mon, 19 Sep 2022 11:15:43 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-935-ge4ccd4c47b-fm-20220914.001-ge4ccd4c4
+Mime-Version: 1.0
+Message-Id: <c7c1e2a8-2293-4060-b17f-dcfce98ee219@app.fastmail.com>
+In-Reply-To: <35722313-6585-1748-6821-aebe0859ef6e@linaro.org>
+References: <20220907170935.11757-1-sven@svenpeter.dev>
+ <20220907170935.11757-2-sven@svenpeter.dev>
+ <35722313-6585-1748-6821-aebe0859ef6e@linaro.org>
+Date:   Mon, 19 Sep 2022 17:15:43 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Marcel Holtmann" <marcel@holtmann.org>,
+        "Johan Hedberg" <johan.hedberg@gmail.com>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
+        "Balakrishna Godavarthi" <bgodavar@codeaurora.org>,
+        "Rocky Liao" <rjliao@codeaurora.org>, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: net: Add generic Bluetooth controller
 Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Previously, the atmel serial driver did not take into account the
-possibility of using the more customizable generic clock as its
-baudrate generator. Unless there is a Fractional Part available to
-increase accuracy, there is a high chance that we may be able to
-generate a baudrate closer to the desired one by using the GCLK as the
-clock source. Now, depending on the error rate between
-the desired baudrate and the actual baudrate, the serial driver will
-fallback on the generic clock. The generic clock must be provided
-in the DT node of the serial that may need a more flexible clock source.
+Hi,
 
-Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
----
+On Thu, Sep 8, 2022, at 13:16, Krzysztof Kozlowski wrote:
+> On 07/09/2022 19:09, Sven Peter wrote:
+>> 
+>> Bluetooth controllers share the common local-bd-address property.
+>> Add a generic YAML schema to replace bluetooth.txt for those.
+>> 
+>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+>> ---
+>> changes from v1:
+>>   - removed blueetooth.txt instead of just replacing it with a
+>>     deprecation note
+>>   - replaced references to bluetooth.txt
+>> 
+>> checkpatch complains here because it thinks I do to many things at once,
+>> I think it's better to replace bluetooth.txt in single commit though.
+>> Let me know if you prefer this to be split into multiple commits
+>> instead.
+>> 
+>> .../bindings/net/bluetooth-controller.yaml    | 30 +++++++++++++++++++
+>
+> I propose to keep it in net/bluetooth subdirectory. In next patch you
+> can move there other files.
+
+Sure, I can also already move net/qualcomm-bluetooth.yaml to the new
+subdirectory since I need to touch it in this commit anyway.
+
+>
+>>  .../devicetree/bindings/net/bluetooth.txt     |  5 ----
+>>  .../bindings/net/qualcomm-bluetooth.yaml      |  4 +--
+>>  .../bindings/soc/qcom/qcom,wcnss.yaml         |  8 ++---
+>>  4 files changed, 35 insertions(+), 12 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/net/bluetooth-controller.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/net/bluetooth.txt
+>> 
+>> diff --git a/Documentation/devicetree/bindings/net/bluetooth-controller.yaml b/Documentation/devicetree/bindings/net/bluetooth-controller.yaml
+>> new file mode 100644
+>> index 000000000000..0ea8a20e30f9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/bluetooth-controller.yaml
+>> @@ -0,0 +1,30 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/bluetooth-controller.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Bluetooth Controller Generic Binding
+>> +
+>> +maintainers:
+>> +  - Marcel Holtmann <marcel@holtmann.org>
+>> +  - Johan Hedberg <johan.hedberg@gmail.com>
+>> +  - Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^bluetooth(@.*)?$"
+>> +
+>> +  local-bd-address:
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    minItems: 6
+>
+> No need for minitems.
+
+Ok, dropped.
 
 
-v1 -> v2:
-- take into account the different placement of the baudrate clock source
-into the IP's Mode Register (USART vs UART)
-- don't check for atmel_port->gclk != NULL
-- use clk_round_rate instead of clk_set_rate + clk_get_rate
-- remove clk_disable_unprepare from the end of the probe method
+Best,
 
 
-
-v2 -> v3:
-- add the error rate calculation function as an inline function instead of
-a macro definition
-- add `gclk_fail` goto
-- replace `goto err` with `goto err_clk_disable_unprepare;`
-
-
-
-v3 -> v4:
-- Nothing, this was previously [PATCH 14]
-
-
- drivers/tty/serial/atmel_serial.c | 59 ++++++++++++++++++++++++++++++-
- 1 file changed, 58 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/tty/serial/atmel_serial.c b/drivers/tty/serial/atmel_serial.c
-index c983798a4ab2..426f9d4f9a5a 100644
---- a/drivers/tty/serial/atmel_serial.c
-+++ b/drivers/tty/serial/atmel_serial.c
-@@ -15,6 +15,7 @@
- #include <linux/init.h>
- #include <linux/serial.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/console.h>
- #include <linux/sysrq.h>
- #include <linux/tty_flip.h>
-@@ -110,6 +111,7 @@ struct atmel_uart_char {
- struct atmel_uart_port {
- 	struct uart_port	uart;		/* uart */
- 	struct clk		*clk;		/* uart clock */
-+	struct clk		*gclk;		/* uart generic clock */
- 	int			may_wakeup;	/* cached value of device_may_wakeup for times we need to disable it */
- 	u32			backup_imr;	/* IMR saved during suspend */
- 	int			break_active;	/* break being received */
-@@ -229,6 +231,11 @@ static inline int atmel_uart_is_half_duplex(struct uart_port *port)
- 		(port->iso7816.flags & SER_ISO7816_ENABLED);
- }
- 
-+static inline int atmel_error_rate(int desired_value, int actual_value)
-+{
-+	return 100 - (desired_value * 100) / actual_value;
-+}
-+
- #ifdef CONFIG_SERIAL_ATMEL_PDC
- static bool atmel_use_pdc_rx(struct uart_port *port)
- {
-@@ -2117,6 +2124,8 @@ static void atmel_serial_pm(struct uart_port *port, unsigned int state,
- 		 * This is called on uart_close() or a suspend event.
- 		 */
- 		clk_disable_unprepare(atmel_port->clk);
-+		if (__clk_is_enabled(atmel_port->gclk))
-+			clk_disable_unprepare(atmel_port->gclk);
- 		break;
- 	default:
- 		dev_err(port->dev, "atmel_serial: unknown pm %d\n", state);
-@@ -2132,7 +2141,9 @@ static void atmel_set_termios(struct uart_port *port,
- {
- 	struct atmel_uart_port *atmel_port = to_atmel_uart_port(port);
- 	unsigned long flags;
--	unsigned int old_mode, mode, imr, quot, baud, div, cd, fp = 0;
-+	unsigned int old_mode, mode, imr, quot, div, cd, fp = 0;
-+	unsigned int baud, actual_baud, gclk_rate;
-+	int ret;
- 
- 	/* save the current mode register */
- 	mode = old_mode = atmel_uart_readl(port, ATMEL_US_MR);
-@@ -2302,6 +2313,46 @@ static void atmel_set_termios(struct uart_port *port,
- 		cd = min_t(unsigned int, cd, ATMEL_US_CD);
- 	}
- 
-+	/*
-+	 * If there is no Fractional Part, there is a high chance that
-+	 * we may be able to generate a baudrate closer to the desired one
-+	 * if we use the GCLK as the clock source driving the baudrate
-+	 * generator.
-+	 */
-+	if (!atmel_port->has_frac_baudrate) {
-+		if (__clk_is_enabled(atmel_port->gclk))
-+			clk_disable_unprepare(atmel_port->gclk);
-+		gclk_rate = clk_round_rate(atmel_port->gclk, 16 * baud);
-+		actual_baud = clk_get_rate(atmel_port->clk) / (16 * cd);
-+		if (gclk_rate && abs(atmel_error_rate(baud, actual_baud)) >
-+		    abs(atmel_error_rate(baud, gclk_rate / 16))) {
-+			clk_set_rate(atmel_port->gclk, 16 * baud);
-+			ret = clk_prepare_enable(atmel_port->gclk);
-+			if (ret)
-+				goto gclk_fail;
-+
-+			if (atmel_port->is_usart) {
-+				mode &= ~ATMEL_US_USCLKS;
-+				mode |= ATMEL_US_USCLKS_GCLK;
-+			} else {
-+				mode &= ~ATMEL_UA_BRSRCCK;
-+				mode |= ATMEL_UA_BRSRCCK_GCLK;
-+			}
-+
-+			/*
-+			 * Set the Clock Divisor for GCLK to 1.
-+			 * Since we were able to generate the smallest
-+			 * multiple of the desired baudrate times 16,
-+			 * then we surely can generate a bigger multiple
-+			 * with the exact error rate for an equally increased
-+			 * CD. Thus no need to take into account
-+			 * a higher value for CD.
-+			 */
-+			cd = 1;
-+		}
-+	}
-+
-+gclk_fail:
- 	quot = cd | fp << ATMEL_US_FP_OFFSET;
- 
- 	if (!(port->iso7816.flags & SER_ISO7816_ENABLED))
-@@ -2897,6 +2948,12 @@ static int atmel_serial_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err;
- 
-+	atmel_port->gclk = devm_clk_get_optional(&pdev->dev, "gclk");
-+	if (IS_ERR(atmel_port->gclk)) {
-+		ret = PTR_ERR(atmel_port->gclk);
-+		goto err_clk_disable_unprepare;
-+	}
-+
- 	ret = atmel_init_port(atmel_port, pdev);
- 	if (ret)
- 		goto err_clk_disable_unprepare;
--- 
-2.34.1
-
+Sven
