@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 055145BCB50
-	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 13:57:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A53165BCB58
+	for <lists+devicetree@lfdr.de>; Mon, 19 Sep 2022 14:00:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229807AbiISL5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 07:57:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45696 "EHLO
+        id S229927AbiISMAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 08:00:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229927AbiISL5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 07:57:25 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4251163
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 04:57:12 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id f14so45559534lfg.5
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 04:57:12 -0700 (PDT)
+        with ESMTP id S229959AbiISMAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 08:00:16 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52883A464
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 05:00:15 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id k10so46505252lfm.4
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 05:00:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=1drbddor9/rvI43PNp1IDQw4Ub673Fz3uY0a2MUnS7o=;
-        b=se2XQ0xUMydb2Ak4GS4bZwjOyjFsz88DqRFQmTD9VvNkepbV4oGYnIqk0hJYqCnmRD
-         NAeK51YpIs1S88fR2WFiarwOqKHlAvtWFsz3mFxAsfmVpapVQItzAmKV/+M7cJZXqo+Y
-         smNxmZs9O4YyRuEPf9TGH7UqvPnvVhYWXb6h4XLdPTHLVIvOg5OWeFhwUGz8xIpFSTIa
-         RcPIj7CNLYxt3UG4lpOENa+CMVyxuWqGxWgFt9AUNCcVXyIxGckgobLbGvUbD/3x6GQa
-         6K79jAvsdEyvcvz+2pjfS8tuiVQtZmJ8k6xUdAgLLnEc+dv7Tq+i+CnJkxdeLOv4XT22
-         uvdQ==
+        bh=BXA1S0OHZDiqLxo5rCfev/jbKQNLQJ64NaCQy7L3c5Y=;
+        b=aFKD8Ist0LhFZijNg3Xuu49VB7U21+NeHemKjpjq1jXtBvA52h3hKUxC4xte7hNo41
+         NIR5WJmT74Qqbmyh83VA/dBPzhLMQmr32+s7UXkBqyOTOCY+MxsZzdcaEl3r5QEzj7Qj
+         kNCrRc0HBZzl4bsrnYMiz6LBKSUOiCueQQz++5up8K2NysdABqfNMzx5JPE7Cu+OgP6M
+         hJZdLCA8uExhKK1LghqCqooZfUhOBQp1ENtmnRszJsVCOkhEnDhmI7l5Bpq65n7O8CnA
+         abcoY3lQbZwy97eZx/qCbwPQIy/n/8FUioLPC+0AFij09wa5DlDxZ7lsmmCIUl76M9M/
+         7OYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=1drbddor9/rvI43PNp1IDQw4Ub673Fz3uY0a2MUnS7o=;
-        b=QFzf3p/TyJulZ5XRit0OJaZhO92llMHoDZiHYO8Sjgnh5jKhg1X3PUuL8gj4ivAGgh
-         D89yt4LsUppVNRqxNOw2R4AOyrOKvbrvGEES0raDFPenq1XVO8o2d9Ou1lBk+pb/tqa+
-         e+bMIxkyv/tGHGqwUM6Q0ySjd7gAsO2uFYou+wtq7SnfXNYSfrTOR/rhCVQ1VMtEnM1n
-         o52MKs31SAvdhn3c4h1vQ3eTibnqHjq42800v2/shjAKqdhvjgSZOWdLs3q1JbrTbb9U
-         3NXDw2Wo5y5MUakCA/SArltX7cb7S7Hjbiabh2+MGFNpnqwCelEUe/43v3a7fuQsFh/N
-         rHKw==
-X-Gm-Message-State: ACrzQf3u4CFCeFCryIsOgkFBdmn0lpPvW8aLoflu3EenbwzCv0O/bEWA
-        DoPZbLMEyjBxipgrnADCb+ZF+ZTl9YXFgA==
-X-Google-Smtp-Source: AMsMyM6oT5L08xQr60qOtfkIRBGHWz2F9Ho4FeaQ7pwwDyN7p7ThSjwi+PsDOdHf0SxAvNkXqtr76g==
-X-Received: by 2002:a05:6512:e91:b0:49d:7850:d512 with SMTP id bi17-20020a0565120e9100b0049d7850d512mr6551885lfb.482.1663588630403;
-        Mon, 19 Sep 2022 04:57:10 -0700 (PDT)
+        bh=BXA1S0OHZDiqLxo5rCfev/jbKQNLQJ64NaCQy7L3c5Y=;
+        b=g4CMGqY+OmksyyY5PrSwVNyVv4tyJWH9vdwBh6KQJuJovrBzmKmMW3kA2PNlliWBe0
+         KWc81dH0UVdJnve2ldyqK2xY46XxSPG0PajvuX1xySaxXwH8FJgw8zxqYBpYHRYfCAJ8
+         cBGeDyoewyljcqM1yHCGXMsoWJ2YkczFEg4gvbFVzqjyXwfPeTkaiMReP3erp7Q6GqPz
+         Fwc/NPYS+nXG0TU0K2J1Qb8XQj4zSxjPN/Rpp/QW0CGSjhvllorXBmi3Lohq5vZD67bF
+         Q/u/H17xedYF0eNQn5Uwf1spGEB8MzZzJU0yG29BfVEZHB+af940lTO0RoJKCmuM5gZK
+         nVPw==
+X-Gm-Message-State: ACrzQf0vDr2snWbm0VMYkrA8XQsGNclVqfL4c8h36kmYuFDB1ek0JvQF
+        69qE4AbXkZmQK5ar/xP+xVxLVw==
+X-Google-Smtp-Source: AMsMyM6GU83pvFZhQwbfGPnq17fPZAvClP2s9swUcmYL3YDe15DIzyoTaJsmhqC+guU7Xo6lRKz6mQ==
+X-Received: by 2002:a05:6512:1095:b0:49d:1241:a314 with SMTP id j21-20020a056512109500b0049d1241a314mr6655841lfg.595.1663588813678;
+        Mon, 19 Sep 2022 05:00:13 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r12-20020a2e94cc000000b0026be23f24efsm4393784ljh.18.2022.09.19.04.57.09
+        by smtp.gmail.com with ESMTPSA id b13-20020a056512070d00b0049464d89e40sm5157930lfs.72.2022.09.19.05.00.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Sep 2022 04:57:09 -0700 (PDT)
-Message-ID: <cd978975-5da3-661a-1eeb-f45e32f0e484@linaro.org>
-Date:   Mon, 19 Sep 2022 13:57:09 +0200
+        Mon, 19 Sep 2022 05:00:13 -0700 (PDT)
+Message-ID: <036a6aa7-43f6-409a-38d5-098b838dc2ca@linaro.org>
+Date:   Mon, 19 Sep 2022 14:00:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: migrate MIPS CPU
- interrupt controller text bindings to YAML
+Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: migrate mt7621 text bindings to
+ YAML
 Content-Language: en-US
 To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
 Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
@@ -63,12 +63,13 @@ Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
         Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-References: <20220916043415.489179-1-sergio.paracuellos@gmail.com>
- <b5fe0746-44d9-9513-8190-b55ec984b603@linaro.org>
- <CAMhs-H_91RJ0thPP_RXKKPk4WihcfH=t2ww01Sk1K8ono+UF=A@mail.gmail.com>
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        sr@denx.de
+References: <20220917042721.527345-1-sergio.paracuellos@gmail.com>
+ <41c7a2a1-86b2-289b-8507-6f3d462aa1ed@linaro.org>
+ <CAMhs-H9aT1+BNR6fudMiZ+6xWevqkMm=XMjgwHDD6c6YXwn-Ng@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMhs-H_91RJ0thPP_RXKKPk4WihcfH=t2ww01Sk1K8ono+UF=A@mail.gmail.com>
+In-Reply-To: <CAMhs-H9aT1+BNR6fudMiZ+6xWevqkMm=XMjgwHDD6c6YXwn-Ng@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,42 +81,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 13:55, Sergio Paracuellos wrote:
->>> +maintainers:
->>> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+On 19/09/2022 13:49, Sergio Paracuellos wrote:
+> Hi Krzysztof,
+> 
+> Thanks for the review.
+> 
+> On Mon, Sep 19, 2022 at 1:20 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> What about existing maintainers?
+>> On 17/09/2022 06:27, Sergio Paracuellos wrote:
+>>> SoC MT7621 I2C bindings used text format, so migrate them to YAML.
+>>>
+>>> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>>> ---
+>>
+>> Again, do not base your patches on something old.
 > 
-> Understood. I search for files in the MAINTAINERS file and not for
-> directories. Will properly maintain original maintainers in the next
-> version.
+> I will take it into account from now on. Since it was just an addition
+> and removal of a file I thought it was not important. So, I guess some
+> address I am using in CC is not listed in the MAINTAINERS file now??
 
-This is looks like architecture device, so I expect architecture
-maintainers to be listed here.
+You keep cc-ing my address which was changed in mainline around half a
+year ago. Patches end up in different mailbox.
 
-> 
 
 (...)
 
 >>
->>> +  - interrupt-controller
 >>> +
->>> +examples:
->>> +  - |
->>> +    cpuintc {
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-names:
+>>> +    const: i2c
 >>
->> Node names should be generic.
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>> Why adding this?
+>>
+>> You need to describe in commit msg all deviations from pure conversion.
 > 
-> This is the name used in most of the dts files in the
-> 'arch/mips/boot/dts' folder of the kernel tree... I guess I can change
-> only the name in the binding example or should this match with real
-> dts files?
+> Looking into the users of this binding I added all the stuff I found
+> in dts nodes. So I think it is preferred to just make a pure
+> conversion and set unevaluatedProperties to true?
 
-Change only in the example. Interrupt controllers are named
-"interrupt-controller".
+No, unevaluatedProperties must stay false. As I said:
+"You need to describe in commit msg all deviations from pure conversion."
 
-
+I did not say preferred is to make pure conversion...
 
 Best regards,
 Krzysztof
