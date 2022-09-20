@@ -2,131 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58EBA5BE448
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 050AC5BE44F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230325AbiITLQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 07:16:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33042 "EHLO
+        id S229727AbiITLVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 07:21:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbiITLQx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:16:53 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0081071711
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:16:51 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id b6so2539725ljr.10
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:16:51 -0700 (PDT)
+        with ESMTP id S229590AbiITLVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:21:31 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B738E5EDC8
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:21:29 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id b24so2573139ljk.6
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:21:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=3m0zn687CrWQICkOz4B+QmmOgC0jhiX0DZAFZTb8GwE=;
-        b=X9UbCGZsQngixftsgl1qm6yRncthznVeEjGW2Sv5QLSpvL4K7bTWBHV1o/8AHj23sv
-         ZznznF4eCuSC3wLfTWVYZIvhpgBqdac4GQqGGN8Hm7/jtbTv2++alWhUcNKXBEfBXj0g
-         JZGlIomKoYD1gPr7bFhzG9Uqgp/jYZUa08zeheuwx/gaxtckBkIGm40+xOHqsi1tpcdn
-         diyqL3relNgu5PpLvtqQcEmJnIHgbeT43LPudTLUlz2QMB9X4ZA0PRyEUf9HU1A3NxM5
-         pMUew92T184GnVwJvadSdb4qFdQtAkFnEq3r1YtYzgQQ8vflHS5Mo+nw1QZQBfaSRCnS
-         GXUA==
+        bh=h0VIMBFQoGRoKWJ6PWntUd1+ZCIkDbf89Bc+ni5OqVQ=;
+        b=zF1mKouO/y2VQk7yt32W7IKd+diC4VOHrkHUCuKW31hivrsmN1DWJtIrQtHGNdF0xQ
+         xYsuS5CNi6uXVs/qsyvUlN2sokU6cDYlRGDQUvEArs97D4CbBVwr/wUYY5yqWu9oaC/y
+         eVrQwzIBGisP3TYw55O4mePSO7CgMIt9dWo0GAhZ/kjOU1jSghyyX2MEsCnfq1ao1+Jh
+         /uarrZVlIz2Ha8AX/RzcYMlggmbPJx4f2efGmJ1CGgN3bupP7Nr8SOUbMUS7Ve6c2HJ9
+         BFpXFHeq+0y1LXPaMAykzhE+tZsUX8vrYwdZexD/LNopqvH9qdzW9cnbN1LpMCzEjRzt
+         cCdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=3m0zn687CrWQICkOz4B+QmmOgC0jhiX0DZAFZTb8GwE=;
-        b=AqJir78ZQiAWx13VmThghT5MH7gsx3LsP8A58ZAjkjCm96U9EP+Xxw8SFRaeVWrj+K
-         I3HI9b0WC9CAfOxpSYSVJb6U+NrCHRBvDRT4iAlepu4Zx4t8LgdZrXjkymeODu8HH7HY
-         EFHxyyzt73YHrzmYNOA6WgatgYRNJ0xTVx1tUoXsHDgmzC7xfXuZ8YQCCcpbnE89ou3Q
-         q+GaCr8czrD86bjiIm8QjzE+SjPq6b6tEBtKR0DIDLFeU0epk/0ATKvKuzESsaERnQb7
-         +aVzGlrybS5+g6mtDo98viU5rsyH22X89Keqqt3AoIr+csl3pKdk0cd/tEPzLLSzgAmT
-         U9hQ==
-X-Gm-Message-State: ACrzQf1Nq+orFzQ++V0LHspncOzBlpKr4LY4fsYzZ6DLYl4i3O7DGYem
-        aow/0OzqVHsMwGQAtZo1uc66TQ==
-X-Google-Smtp-Source: AMsMyM5qNzWF6Nwqo/fPKyOhxXE6zl6oW3wEpFzKUxsAv4uaccqK+vxJxRUl3kDmcQACkD9iHllaPA==
-X-Received: by 2002:a2e:940d:0:b0:261:c5c8:3403 with SMTP id i13-20020a2e940d000000b00261c5c83403mr7213596ljh.86.1663672610229;
-        Tue, 20 Sep 2022 04:16:50 -0700 (PDT)
+        bh=h0VIMBFQoGRoKWJ6PWntUd1+ZCIkDbf89Bc+ni5OqVQ=;
+        b=ri9tPi62HpQzJysHL3PmeBT4qjex71dFH6LlGv56x00baL3LrhIsbY5ZMlQ5s0muKx
+         yqtW3wykV6SQAWDeEXNfmZpyIunFqdHpvUSfifWI4jd00vkdK40FmfhgSmhdgMUx1GHE
+         pp4/QdpBn1mIPs4B2n+pkDhhXMR/KdWUm0Y6sh4RBE1PEwiRv2r0cPolxmYjabW/SubR
+         WCzx2N1EggzGxXayx7rVqga7gtrIcVQ+mPRjurdTOb4ogXyf3qO+nL+ZyANynZgyCz1f
+         irPGZRqvEVJhSFCePuyf5nFMqzLw/FoZRWa3Qz4wmRVvFi7Q66FE2/szk2ZhRG3prF++
+         lV3w==
+X-Gm-Message-State: ACrzQf0hSa1gM26f9HI3k8zNqyjzPAhtjON/5zxlBgiT66BsZI5OE2KC
+        UUdZbJYcdEstDHa/6ojGoMfURA==
+X-Google-Smtp-Source: AMsMyM6BHc4RC3MDeHpHqVD5bxnmkicmFCT8iWMLZzYHWLgcSNa733vHWJu9KLwyHeb0jy1KQaRIYg==
+X-Received: by 2002:a05:651c:4ca:b0:26c:50e6:a9d3 with SMTP id e10-20020a05651c04ca00b0026c50e6a9d3mr3030605lji.318.1663672888083;
+        Tue, 20 Sep 2022 04:21:28 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w22-20020a2e9596000000b0026ab83298d6sm217873ljh.77.2022.09.20.04.16.49
+        by smtp.gmail.com with ESMTPSA id b14-20020a05651c032e00b00261e2aab7c2sm220678ljp.58.2022.09.20.04.21.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 04:16:49 -0700 (PDT)
-Message-ID: <a8077058-5493-7b57-0530-c7221a03a799@linaro.org>
-Date:   Tue, 20 Sep 2022 13:16:48 +0200
+        Tue, 20 Sep 2022 04:21:27 -0700 (PDT)
+Message-ID: <d17d2eb3-2030-935d-728b-60d9e1c66cea@linaro.org>
+Date:   Tue, 20 Sep 2022 13:21:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v6 1/4 RESEND] ARM: dts: qcom: Use new compatibles for
- crypto nodes
+Subject: Re: [PATCH v5 3/3] dt-bindings: memory-controllers: gpmc-child: add
+ wait-pin polarity
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        thara.gopinath@gmail.com, devicetree@vger.kernel.org,
-        robh@kernel.org, andersson@kernel.org, bhupesh.linux@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-        Jordan Crouse <jorcrous@amazon.com>
-References: <20220919221509.1057574-1-bhupesh.sharma@linaro.org>
- <20220919221509.1057574-2-bhupesh.sharma@linaro.org>
- <bb577304-f048-8fd5-fc7a-47a0897ba792@linaro.org>
- <00dd028f-d636-0cda-40ce-01d5addcbec9@linaro.org>
- <ccc318c0-ee1b-d538-6d2b-bf85a3c9c6fd@linaro.org>
- <CAH=2Ntys+JSurmZn5qN2Kuphi_5q6Ge7cZgd9KMTvAyLnd6JSA@mail.gmail.com>
+To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     rogerq@kernel.org, tony@atomide.com, robh+dt@kernel.org
+References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
+ <20220916120749.2517727-4-benedikt.niedermayr@siemens.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAH=2Ntys+JSurmZn5qN2Kuphi_5q6Ge7cZgd9KMTvAyLnd6JSA@mail.gmail.com>
+In-Reply-To: <20220916120749.2517727-4-benedikt.niedermayr@siemens.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 12:48, Bhupesh Sharma wrote:
-> On Tue, 20 Sept 2022 at 15:09, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 20/09/2022 10:57, Bhupesh Sharma wrote:
->>>>>             crypto: crypto@8e3a000 {
->>>>> -                   compatible = "qcom,crypto-v5.1";
->>>>> +                   compatible = "qcom,ipq4019-qce";
->>>>
->>>> There are few issues here:
->>>> 1. Compatible is not documented.
->>>
->>> Its documented here:
->>> https://lore.kernel.org/linux-arm-msm/30756e6f-952f-ccf2-b493-e515ba4f0a64@linaro.org/
->>>
->>> [as mentioned in the dependency section in the cover letter :)]
->>>
->>>> 2. Compatible is not supported by old kernel - ABI break.
->>
->> You cannot fix this with dependencies/ordering.
->>
->>>> 3. Everything won't be bisectable...
->>>
->>> I think its a question of dependencies b/w the patchsets intended for
->>> separate areas. Let me think more on how, I can resolve it in newer
->>> versions.
->>
->> DTS always goes separately so this also cannot be fixed with ordering or
->> dependencies. However if Bjorn is fine with it, it's good.
+On 16/09/2022 14:07, B. Niedermayr wrote:
+> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
 > 
-> Sure, I get your point. SInce I haven't sent out the crypto driver and
-> DMA driver subsets yet, let me stop and respin the series with the
-> dt-bindings changes clubbed with the crypto driver patches in a single
-> patchset. I can keep the DMA and dts patchsets separate and send them
-> out separately.
+> The GPMC controller has the ability to configure the polarity for the
+> wait pin. The current properties do not allow this configuration.
+> This binding directly configures the WAITPIN<X>POLARITY bit
+> in the GPMC_CONFIG register by setting the gpmc,wait-pin-polarity
+> dt-property.
 > 
-> I think that should help maintain the ABI and backward compatibility.
-> Please let me know if you think otherwise.
+> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+> ---
+>  .../bindings/memory-controllers/ti,gpmc-child.yaml         | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
+> index 6e3995bb1630..8e541acdb1ff 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
+> @@ -230,6 +230,13 @@ properties:
+>        Wait-pin used by client. Must be less than "gpmc,num-waitpins".
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>  
+> +  gpmc,wait-pin-polarity:
+> +    description: |
+> +      Set the desired polarity for the selected wait pin.
+> +      0 for active low, 1 for active high.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
 
-I actually don't know what's in the drivers, so maybe there is no ABI
-break by kernel... but you are changing the compatibles in DTS thus any
-other project using them will be still broken.
+I propose to keep the same value as GPIO flags. Not that it matters, but
+maybe one day you will unify it.
 
 Best regards,
 Krzysztof
