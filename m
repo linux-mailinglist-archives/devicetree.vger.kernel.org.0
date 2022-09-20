@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F595BE4CB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:42:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 459895BE4CD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:42:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbiITLmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 07:42:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33460 "EHLO
+        id S230365AbiITLmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 07:42:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230253AbiITLl6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:41:58 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC67C74BB1
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:41:45 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id a80so2485165pfa.4
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:41:45 -0700 (PDT)
+        with ESMTP id S231152AbiITLmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:42:04 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B62D37435C
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:41:50 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id e68so2502900pfe.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:41:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=qd2IXiZw2jwRUpHxd32tqfwz1B+E7DKiO+54KjyF/gQ=;
-        b=VV8jV3nPo+b7UGWdD7Wlux2emmW1As27kGXAgJyTfhBOE3nAQHpVg15Oe8WYn2tdph
-         48wINZwWqxmMWh75ASTe0M2ST547v3hVuLCMPT35XHiGl4zZrJnTNtKBequUQd/4q/LB
-         XVdH0IMC6I/9KXS8b608goIbynbVIi5Jv0ZsQij98bAFTuFuvdWnfOs/p6KFxUgPKBIO
-         U4M42yHsKvMxFtLezKvhCn0CU4ZVWB+DZ0myG/67shL20VDYqY2YzwTvFMtggds3fEhQ
-         SfJGFc1ZQsLx+aM16cZlUkMk4Sp6w+/bQeBMQ4y+yrSDlnqb0jdcC5Cwmu17qyIZr975
-         ObRg==
+        bh=f1jyoMzYrt7oW3ZWE+v01VrggZfcgZodlLjAeFXHMeI=;
+        b=fs7gdTeOnh6ajT0yIBSWXYT4L2N3b4oPI9fdr6NeMuRnaU2VkFM0XPnXpJIdeR8O+e
+         kZu6hYqU/o9vRacABqPnwhkoUpbz0jMgf1ALcVRubrxJj2jsydG8IWxizoMCO+EtXdC2
+         trvFye6XTiVanq/1aBOn/53bG1OHC8bjNkhYsHOc5sQzNTyuoKsCbUz0fFXct3R8e+45
+         0GUjjXp0x4kTuOrIsmBslPQxt3KgCEIPDUUpgEnd4HQ8TP+rPOKplxljq+cdJY2BhhnR
+         umjKU0ViLgSz5GKHAqv+/4HjHg66/OpU9SpwDoeCdTauhrpVXfCh8PNj9X04jBBfiEAV
+         V+EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=qd2IXiZw2jwRUpHxd32tqfwz1B+E7DKiO+54KjyF/gQ=;
-        b=mZrpwTfQqb2bRuXJo+nSyvYIZNRt2ghNk+ckwUy7IrGPOkJT2Al3dddx4vPPrwajmZ
-         z1u6amZU19RTgc+f8OZLIjM6KzMe4ABZQwN5pUrO8C25NinpKDdKLtD2Cc/ten78HZr1
-         b+CyiteFM0oWdF+5nay1EZ68KLWsvXcDaaXtp2TY2qd4Fq0ly4Bz5XzSHgwunSRiwELA
-         VJNcQuVZmQDut2K3pWkG/EOmZV2LFSu2MlE0kgmsoSewKIRcqTNB92uzdrSUtRlaYXNT
-         QGJajuElFX9OnteDF7sMl8+wDd1XSYDbXf8YjUxoNY6lzNO8SC5QsMn32B2iD1P+0f5e
-         T3kQ==
-X-Gm-Message-State: ACrzQf3sXIn2/2Ueauid1uWAq8bmfP2NfcpQ/eL/yZ/y1Iy/eHuJb1Np
-        2vPWjbDbDjWexR5qaAHd6GWukQ==
-X-Google-Smtp-Source: AMsMyM4o0y4qWlSHNKXPawwFNGW7b/tX/gubEX/Jmnv/md4j1p4Bz+/Xz5zMvHOaezT60aMgxKeHpA==
-X-Received: by 2002:a63:5916:0:b0:41d:2c8c:7492 with SMTP id n22-20020a635916000000b0041d2c8c7492mr19737689pgb.81.1663674105160;
-        Tue, 20 Sep 2022 04:41:45 -0700 (PDT)
+        bh=f1jyoMzYrt7oW3ZWE+v01VrggZfcgZodlLjAeFXHMeI=;
+        b=p8qxLxWIqcLpLHFjNO4m6VTYSjY695TA3oLdhbi28jPVh1fjTpSEqKW7k48eDJ675j
+         mMpjyvCbTgo9+dOSSBpGjPAOazFxxjjRP+negSRaRYy8Wov1eB1vDavQ4x/FBjrL9RF9
+         zZdgIPg7jTsfKbNj4S6wrdAlnK0FJ/INz585hKHvrrQcaFCSSKHKxpJh34JuKTFyjkmt
+         iZ/5ztRQjxLyp2d+Yb+nsUmwCNQOp3iA4ml71O/a9WeHidsrTkurFdp/quAOv9yHR58H
+         IRwyACG0c7zCokUxKu4L3PxvQAAsw68EheQhUYBdE2GmmSHv99QI5Kg/BrCirR93Xsgu
+         Wt0g==
+X-Gm-Message-State: ACrzQf3HiPH+ruNAs/0VnslGNnBZ7x0yJR45YurRUGU8ZUzeuyNQ556I
+        g2Rtu1nKeZ9D06uDzes05pCGoQ==
+X-Google-Smtp-Source: AMsMyM5ZD2aJk5iuQA6y0NmBUSdwRh7Wc1Io0QWIX9d73pd6IVTCE1fZfBRd+zTbW5U4KgT11NenvA==
+X-Received: by 2002:a63:4c50:0:b0:429:983d:22f1 with SMTP id m16-20020a634c50000000b00429983d22f1mr20123611pgl.213.1663674110301;
+        Tue, 20 Sep 2022 04:41:50 -0700 (PDT)
 Received: from localhost.localdomain ([2401:4900:1c61:6535:ca5f:67d1:670d:e188])
-        by smtp.gmail.com with ESMTPSA id p30-20020a63741e000000b00434e57bfc6csm1348793pgc.56.2022.09.20.04.41.40
+        by smtp.gmail.com with ESMTPSA id p30-20020a63741e000000b00434e57bfc6csm1348793pgc.56.2022.09.20.04.41.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 04:41:44 -0700 (PDT)
+        Tue, 20 Sep 2022 04:41:49 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     agross@kernel.org, herbert@gondor.apana.org.au,
@@ -56,9 +56,9 @@ Cc:     agross@kernel.org, herbert@gondor.apana.org.au,
         robh@kernel.org, krzysztof.kozlowski@linaro.org,
         andersson@kernel.org, bhupesh.sharma@linaro.org,
         bhupesh.linux@gmail.com, davem@davemloft.net
-Subject: [PATCH v7 8/9] MAINTAINERS: Add qcom-qce dt-binding file to QUALCOMM CRYPTO DRIVERS section
-Date:   Tue, 20 Sep 2022 17:10:50 +0530
-Message-Id: <20220920114051.1116441-9-bhupesh.sharma@linaro.org>
+Subject: [PATCH v7 9/9] MAINTAINERS: Add myself as a co-maintainer for Qualcomm Crypto Drivers
+Date:   Tue, 20 Sep 2022 17:10:51 +0530
+Message-Id: <20220920114051.1116441-10-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220920114051.1116441-1-bhupesh.sharma@linaro.org>
 References: <20220920114051.1116441-1-bhupesh.sharma@linaro.org>
@@ -66,17 +66,17 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the entry for 'Documentation/devicetree/bindings/crypto/qcom-qce.yaml'
-to the appropriate section for 'QUALCOMM CRYPTO DRIVERS' in
-MAINTAINERS file.
+Add myself as a co-maintainer of Qualcomm Crypto drivers.
+As I will be working on enabling crypto block on newer
+Qualcomm SoCs, I will also help review and co-maintain
+the same.
 
 Cc: Bjorn Andersson <andersson@kernel.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
@@ -85,17 +85,17 @@ Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 94e40d05cc83..b0556cd21f86 100644
+index b0556cd21f86..df5724cf608c 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -16948,6 +16948,7 @@ M:	Thara Gopinath <thara.gopinath@gmail.com>
+@@ -16945,6 +16945,7 @@ F:	drivers/cpufreq/qcom-cpufreq-nvmem.c
+ 
+ QUALCOMM CRYPTO DRIVERS
+ M:	Thara Gopinath <thara.gopinath@gmail.com>
++M:	Bhupesh Sharma <bhupesh.sharma@linaro.org>
  L:	linux-crypto@vger.kernel.org
  L:	linux-arm-msm@vger.kernel.org
  S:	Maintained
-+F:	Documentation/devicetree/bindings/crypto/qcom-qce.yaml
- F:	drivers/crypto/qce/
- 
- QUALCOMM EMAC GIGABIT ETHERNET DRIVER
 -- 
 2.37.1
 
