@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF7B5BE0B5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:49:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D4BB5BE0B8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:49:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231459AbiITIsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:48:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36732 "EHLO
+        id S231474AbiITItF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:49:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231414AbiITIsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:48:12 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C4E3ED4C
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:48:10 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id q15-20020a17090a304f00b002002ac83485so1823305pjl.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:48:10 -0700 (PDT)
+        with ESMTP id S231592AbiITIsk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:48:40 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9CF86BCC8
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:48:37 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id s6so2603563lfo.7
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:48:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=Z0CIYBJ59VmXnMF6RrKkrGfbMLVUY9u6d9zW/w1YKxo=;
-        b=stBcYq0P2qVspyhXBudCWuspwYMnLkloEBnRu8iZ9njhsuEMVyBWG2fkR4PHagZDC5
-         jBRA/os+bhGrQ04IvNzfb3LoFCptK4WY2kXICFr1hrlGDZ5ZbEDND0i2M2r/K+hRnvSY
-         qUdo72zMXsdohLzgSusZQlOwsKYHwkmAzIYEMUxWoUtBs3PkLtjR0saDQ94exHT/BEnd
-         ehgACbwfl8w6MHCwR0TOR8BEcBxzauCd5A4+Rirw8IwLF7oQVtr6n+/Hq+Nl3atD+AWU
-         wq9OCsmAQ1KVXb8tCspn6hi7/25HWmeUhWx11WcK4mT8O4SSTxjEZXdbmQXWOH2OkqMO
-         926Q==
+        bh=MyK7g5vOt7OLNZ8qZikUV2n8eSBwV/+RgPlkSyOJlKI=;
+        b=n/UjAlwCSuThsJKKdbs2h4vv8GLHsHMTYgyrAp5/4CeWmEus9mtzwZtUUMTROOzmp5
+         6xtIHEiZMgovisgg2vJFXUMud6mDs+AU8tOCxKCIROBHbqwgB66I0HHRSJY6NI2XzRvq
+         QqIxnmXwTNwU5kBSrc7OzHJQapF8z9fbnBww/IRm5yi1svTM8aX7+LJnBSRlvqZVhXUx
+         OWlvYkOMIEmgl3lPMi/NhX9tYFJs7e7BwHbF++GwsBhcOQmlSF3IKYN5BesDVUYgUIg0
+         AzVxnB8sfEj3z9NEY/f3P7YoGMyfyH45GjMUefEWnZj3krhfNfeLvhD+qZNNvrlhc+tY
+         oKyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=Z0CIYBJ59VmXnMF6RrKkrGfbMLVUY9u6d9zW/w1YKxo=;
-        b=Iga0cPZ01KCvHgvtB1ApyFAFrJT7vgW/tNjlMeCmt+quTy482i/CFLrAW338VMbQa7
-         sWjNUQWY1KZaSeSNZWwrTJJD2i7d2vOONeJ4jge3OkiGiDbS7MeRZCn3F4OjiRyQpQ8v
-         e/TMHI5PqHWns+ETZeVGyeNyUvYoH9l/GWdt0W0HD/0A8bQlpxHQkiiDiOR6HeufjEFT
-         AK5P+wElxjJ+ItVS8sihztkRb1Z6nyj8J39JIEhYv5W+QykhNoO9Q8I2pnrb9foRcQB2
-         JooC7Uz+Hgv2JiEqLv19T7DKJoGhCqP0OaIP/10NGTA1Sg2Gz4HwId1j8f6+5zG+P878
-         BPFQ==
-X-Gm-Message-State: ACrzQf1LC/KKZRs9tyKa9TU7wtBQxLwt+MqjmULgDBueCzoE5Tsjk/nN
-        IA/fKeWgswS6MAMRi19GWOuCOQ==
-X-Google-Smtp-Source: AMsMyM7hdUJkdrTz4X/rM3IM3DquC6pUyCuxVg3nCWn2zWTFvFTXxao5FHWqy4n/oFtApFlunAGQ0g==
-X-Received: by 2002:a17:90b:38cb:b0:200:aaa6:6428 with SMTP id nn11-20020a17090b38cb00b00200aaa66428mr2768505pjb.47.1663663689720;
-        Tue, 20 Sep 2022 01:48:09 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1c61:6535:ca5f:67d1:670d:e188? ([2401:4900:1c61:6535:ca5f:67d1:670d:e188])
-        by smtp.gmail.com with ESMTPSA id e11-20020a17090301cb00b0016be834d54asm824491plh.306.2022.09.20.01.48.05
+        bh=MyK7g5vOt7OLNZ8qZikUV2n8eSBwV/+RgPlkSyOJlKI=;
+        b=wV55Zm3Fe2XToLQA7rKx0JosIW2Uyn3evn9rq44YNXuFxSPd4GeOGtY2Zhnj5j9mEn
+         dEp3fyX8v1hVqVNugyfvdSeTjHpIGlRmGERC2cHOpPdjxVepCzy6uZd5ewwsLzc8bDRX
+         DQTXsbF1plhHueeYHV8rqrH+mcFgvGk3FUAMCWkd7EM5Kxr+166/tp2x91oNpNSroEVF
+         2RshbwBrSesy09TjE9m1HmEwyVPsA6dhyk5ZRDqorLVBWBrh3zjJGsdWedjYFS+cRVdY
+         7xoLCSybTcpboL8mhYKsi6EGVCHocS+JVITiP19KHdXbxccYfP+GDE0tULnJhpISuhjx
+         e/aA==
+X-Gm-Message-State: ACrzQf1bSeDvDW9QeaX5yIMf8SF8i00OpoAS6GICtpjAyeSROMjOVLPk
+        HihnXmsGvKJGAOffUXZmezke8g==
+X-Google-Smtp-Source: AMsMyM4s1Z4R8q7MGFJxL0cNejD2laGiWwLxGTaJpzkdN6zhcqwchYVGsbhrVkzvakZIx9RmE+H7rg==
+X-Received: by 2002:a05:6512:3b22:b0:49a:d302:ae04 with SMTP id f34-20020a0565123b2200b0049ad302ae04mr8223966lfv.72.1663663715822;
+        Tue, 20 Sep 2022 01:48:35 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id v17-20020a2e9f51000000b0026c3975f488sm157414ljk.26.2022.09.20.01.48.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 01:48:08 -0700 (PDT)
-Message-ID: <dfe1bc9e-2ab9-d2dd-7daa-dddb8d66fd77@linaro.org>
-Date:   Tue, 20 Sep 2022 14:18:03 +0530
+        Tue, 20 Sep 2022 01:48:35 -0700 (PDT)
+Message-ID: <1a03bcd4-02af-3b2a-59ac-f8d776c37b43@linaro.org>
+Date:   Tue, 20 Sep 2022 10:48:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v6 0/4] dt-bindings: qcom-qce: Convert bindings to yaml &
- related changes
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: power: rpmpd: add sdm670 power domains
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, thara.gopinath@gmail.com,
-        devicetree@vger.kernel.org, robh@kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, Jordan Crouse <jorcrous@amazon.com>
-References: <20220919220804.1047292-1-bhupesh.sharma@linaro.org>
- <36bd1c19-8fbd-0903-704d-447117b2007a@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <36bd1c19-8fbd-0903-704d-447117b2007a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Richard Acayan <mailingradian@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20220920021927.2489-1-mailingradian@gmail.com>
+ <20220920021927.2489-2-mailingradian@gmail.com>
+ <20220920081739.eh3qzohw74elqyfm@krzk-bin>
+In-Reply-To: <20220920081739.eh3qzohw74elqyfm@krzk-bin>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -79,42 +79,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 9/20/22 12:58 PM, Krzysztof Kozlowski wrote:
-> On 20/09/2022 00:08, Bhupesh Sharma wrote:
-> 
-> (...)
-> 
-> 
+On 20/09/2022 10:17, Krzysztof Kozlowski wrote:
+> On Mon, 19 Sep 2022 22:19:27 -0400, Richard Acayan wrote:
+>> Add the RPMh power domain IDs and compatible string for Snapdragon 670 to
+>> make SDM670 power domains accessible to the device trees.
 >>
->> Qualcomm crypto engine (qce) is available on several Snapdragon SoCs.
->> The qce block supports hardware accelerated algorithms for encryption
->> and authentication. It also provides support for aes, des, 3des
->> encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
->> authentication algorithms.
+>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+>> ---
+>>  .../devicetree/bindings/power/qcom,rpmpd.yaml          |  1 +
+>>  include/dt-bindings/power/qcom-rpmpd.h                 | 10 ++++++++++
+>>  2 files changed, 11 insertions(+)
 >>
->> Note that this patchset is dependent on the dt-bindings patchset (see [1]) sent to devicetree list.
->>
->> [1]. https://lore.kernel.org/linux-arm-msm/20220919195618.926227-1-bhupesh.sharma@linaro.org/
 > 
-> If it is dependent on the bindings only, keep them together. However I
-> don't think this is the only dependency. You add here several
-> compatibles which are not supported.
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
+> 
+> 
+> power-controller: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dtb
 
+This might be unrelated to your patch.
 
-Please go through the cover letter where I mentioned that:
-   'As per Bjorn's suggestion on irc, broke down the patchset into 4
-   separate patchsets, one each for the following areas to allow easier
-   review and handling from the respective maintainer(s):
-         'arm-msm', 'crypto', 'dma' and 'devicetree'
-   This patchset is directed for the 'devicetree' tree / area.'
-
-Basically now the patchset which had around 23 patches in v5 will send 
-out as 4 separate patchsets one each for 'arm-msm', 'crypto', 'dma' and 
-'devicetree' trees.
-
-So when all the respective subsets are picked up, all the compatibles 
-are in place.
-
-Thanks,
-Bhupesh
+Best regards,
+Krzysztof
