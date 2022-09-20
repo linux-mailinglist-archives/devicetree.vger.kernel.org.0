@@ -2,110 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 301A95BDB17
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 05:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5DB5BDB9F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 06:26:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbiITD72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 23:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38302 "EHLO
+        id S230094AbiITE03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 00:26:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbiITD7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 23:59:16 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A075A3D5;
-        Mon, 19 Sep 2022 20:58:48 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28K2QDng031558;
-        Tue, 20 Sep 2022 03:58:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=jgWfAwXuuu0RIdbapJx7yHndhKxVFwzMF8fPwOYRIh4=;
- b=V98QEKTGLVs4XWgo0zI+PzcQfyY8V/psh+JiDkV/uOKEV59uWt86RKF+ARn4jgxB7gyj
- cqzH0E2dztGVk+UQ4/cbP8Ym2xWK9LFf5CcisJPg0BQmTqfakCFVSUtl/t/ZTCJaFbPc
- rvYlxxidDhBv0VS0f9l9vAWIZrawmiefw16sAqTtvPgbQO9XlPROdJw7+ogBi35aI6XD
- L9wpsRizgL3Gcn1E6D6y3i/6srtAFfCvds2sgUM/8ZRwR99eS+THatYm49E5t5XV+vvX
- aUon8qRMlS6us760KveLI4sKUjpP9PZiersB4OKvZEV+X3v1hepX2aer1m2zXZt/kwsT YQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jpxaeh1e4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 20 Sep 2022 03:58:43 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28K3wgar018766
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 20 Sep 2022 03:58:42 GMT
-Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Mon, 19 Sep 2022 20:58:38 -0700
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Sai Prakash Ranjan" <quic_saipraka@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>, <vkoul@kernel.org>,
-        "Souradeep Chowdhury" <quic_schowdhu@quicinc.com>
-Subject: [PATCH V13 7/7] arm64: dts: qcom: sdm845: Add Data Capture and Compare(DCC) support node
-Date:   Tue, 20 Sep 2022 09:27:04 +0530
-Message-ID: <9f910db668caf9840117977e0231dc9a50432a8f.1663642052.git.quic_schowdhu@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1663642051.git.quic_schowdhu@quicinc.com>
-References: <cover.1663642051.git.quic_schowdhu@quicinc.com>
+        with ESMTP id S229972AbiITE0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 00:26:23 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6929558F9;
+        Mon, 19 Sep 2022 21:26:13 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id c198so1562644pfc.13;
+        Mon, 19 Sep 2022 21:26:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=uVqkXrKh/BOL72z7RBz/jXCRaf0wbeq1TN40XiN2ST0=;
+        b=H7mdcLBDJJDfrxDeMtiv1gAHhc5Y2zNKH7rxB7L+cveN7GFkfxN8M2aNCkirA8GhXW
+         Ld3PRMtg4mssDLcXHoQuSbuy6is2/3kYaa9XOZUu1cH244uF5CRW1y0L7m9B0BSevky0
+         DQBGpm2omE6vdTc60XiHsonxzCyL3VYzjKgeAZsEgcWsXk/wmT4t3OOUBF2gWF9HjykU
+         FWCfho+uCzumfXk0mlQNO4NstAZWFG/sgbtt61dye+6EkRe8I3GfZHZzpCg66i3ykxZX
+         6dXf5PNzXHUA1M+65bNIijKbc+NL3oahfccTZt+30DNUyywpcj2KC12r317P+3Oyb8fk
+         yK1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=uVqkXrKh/BOL72z7RBz/jXCRaf0wbeq1TN40XiN2ST0=;
+        b=TOnAEWI8l4Bs3pNq3lepS+jdYQXgiseAOqgxUa/d5QH368xcobbXpwytFmb09WAluu
+         3A9yfrhJF1SsjlHzXaHznLy8mp2uQzckjhgCNZzsI2zpTRZUPSqGP0M9b7oVfEUTH0Oq
+         oOUUISq9wLcpBQ2F5c6GmYUKEa89ls29MYHW8+kym0fngZPQUTU05sgdXaUifeRK8+dT
+         F/nD8jZaWKNIf5yAanPw48r5WTU+E2p28ltwG6jUqI9Hshaa6Sqn9jJ6DBT09fpoangr
+         XuH7tJq/lJjgDaPSDa23PR2NH24zG55+Nm6s4gaFaMGsk0dLvUHzOeVbJB1VtsKQCDg/
+         VMow==
+X-Gm-Message-State: ACrzQf2AyFiH8+79bJh918voHsOfLl+j4fUbSWyPcBivS2sZrh2n1vyF
+        4nf4luLjsPlskwU4b0rNsgo=
+X-Google-Smtp-Source: AMsMyM6weMjGDsVYFkcghzfNlMx4UQ6aeMIYIS6GGO8IPN7xgqg7/XhpJJz54LI2DSqMInhnpw23wA==
+X-Received: by 2002:a63:9041:0:b0:438:8ed0:8470 with SMTP id a62-20020a639041000000b004388ed08470mr17979059pge.25.1663647972762;
+        Mon, 19 Sep 2022 21:26:12 -0700 (PDT)
+Received: from dtor-ws.mtv.corp.google.com ([2620:15c:202:201:b095:5d5d:4c28:8088])
+        by smtp.gmail.com with ESMTPSA id t15-20020a17090a024f00b001fab208523esm337518pje.3.2022.09.19.21.26.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 21:26:12 -0700 (PDT)
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-input@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] ARM: dts: imx6qdl-sabre*: fix Egalax touchscreen properties
+Date:   Mon, 19 Sep 2022 21:26:05 -0700
+Message-Id: <20220920042608.1865560-1-dmitry.torokhov@gmail.com>
+X-Mailer: git-send-email 2.37.3.968.ga6b4b080e4-goog
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: CzLilTSsPHaF1VNbd-NEz24jXlUlpNzZ
-X-Proofpoint-ORIG-GUID: CzLilTSsPHaF1VNbd-NEz24jXlUlpNzZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-19_13,2022-09-16_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 suspectscore=0 lowpriorityscore=0 mlxlogscore=815
- adultscore=0 clxscore=1015 malwarescore=0 phishscore=0 impostorscore=0
- mlxscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209200022
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DCC(Data Capture and Compare) device tree node entry along with
-the address of the register region.
+This patch fixes interrupt trigger (should be level low as that is what the
+driver is always using), the GPIO that is the interrupt source that is also
+used to wake up chip by driving the line low.
 
-Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+The proper polarity is be needed for converting the driver to gpiod API.
+
+Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm/boot/dts/imx6qdl-sabreauto.dtsi | 4 ++--
+ arch/arm/boot/dts/imx6qdl-sabresd.dtsi   | 8 ++++----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index ff6bda1..ee13b5f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -1968,6 +1968,12 @@
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
- 		};
+diff --git a/arch/arm/boot/dts/imx6qdl-sabreauto.dtsi b/arch/arm/boot/dts/imx6qdl-sabreauto.dtsi
+index 1368a4762037..1883350d004e 100644
+--- a/arch/arm/boot/dts/imx6qdl-sabreauto.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-sabreauto.dtsi
+@@ -451,8 +451,8 @@ touchscreen@4 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_egalax_int>;
+ 		interrupt-parent = <&gpio2>;
+-		interrupts = <28 IRQ_TYPE_EDGE_FALLING>;
+-		wakeup-gpios = <&gpio2 28 GPIO_ACTIVE_HIGH>;
++		interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
++		wakeup-gpios = <&gpio2 28 GPIO_ACTIVE_LOW>;
+ 	};
+ };
  
-+		dma@10a2000 {
-+			compatible = "qcom,sdm845-dcc", "qcom,dcc";
-+			reg = <0x0 0x010a2000 0x0 0x1000>,
-+			      <0x0 0x010ae000 0x0 0x2000>;
-+		};
-+
- 		pcie0: pci@1c00000 {
- 			compatible = "qcom,pcie-sdm845", "snps,dw-pcie";
- 			reg = <0 0x01c00000 0 0x2000>,
+diff --git a/arch/arm/boot/dts/imx6qdl-sabresd.dtsi b/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
+index 37482a9023fc..09f4c2fa3ad6 100644
+--- a/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
+@@ -311,8 +311,8 @@ touchscreen@4 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_i2c2_egalax_int>;
+ 		interrupt-parent = <&gpio6>;
+-		interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
+-		wakeup-gpios = <&gpio6 8 GPIO_ACTIVE_HIGH>;
++		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
++		wakeup-gpios = <&gpio6 8 GPIO_ACTIVE_LOW>;
+ 	};
+ 
+ 	ov5640: camera@3c {
+@@ -450,8 +450,8 @@ egalax_ts@4 {
+ 		compatible = "eeti,egalax_ts";
+ 		reg = <0x04>;
+ 		interrupt-parent = <&gpio6>;
+-		interrupts = <7 2>;
+-		wakeup-gpios = <&gpio6 7 0>;
++		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++		wakeup-gpios = <&gpio6 7 GPIO_ACTIVE_LOW>;
+ 	};
+ 
+ 	magnetometer@e {
 -- 
-2.7.4
+2.37.3.968.ga6b4b080e4-goog
 
