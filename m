@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D6245BE45F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF9AA5BE492
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:35:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229845AbiITL1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 07:27:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44436 "EHLO
+        id S230232AbiITLfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 07:35:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbiITL1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:27:38 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC7335F7F4;
-        Tue, 20 Sep 2022 04:27:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 795E3B81D8B;
-        Tue, 20 Sep 2022 11:27:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60EDFC433D6;
-        Tue, 20 Sep 2022 11:27:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663673254;
-        bh=WdzZGXEytt0PPm4g3TwrmXy6TK0VHyA/hs9By4NFYQk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BsfwkzcRhJvcU9X5zcNx9fyzgcy+YMt8vgjkBA5x4kioU21pcZiNhPDN0L2RjbW0/
-         I1AFl3bpBeQWwW9+tC3k5xeuMXZrro+fhh99xRa1Uu2gyCklKqCVVPHdGwJHFDWCCr
-         BGmEFkPIjzNIzNs2bOTVGrlVVI171oy3U9iSYILabxaDl2q+sIHwC5xjvmaq/ZUUuv
-         PvfMMTn3SNmmsf6SyQ+V5MWTNQTWtW/PmwUYaM1RMGzUbTn7ZNy91WZLVSqNbOLz9J
-         JFvmS4fBgGh9dWCEXBFwyciiHd0SGqP0N+X86xc1Wo1qlEdjYYasJdzmSXDcpJxmE2
-         S/avBTqkcs3Ug==
-Date:   Tue, 20 Sep 2022 16:57:29 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lars@metafoo.de, adrianml@alumnos.upm.es,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        michal.simek@amd.com, radhey.shyam.pandey@amd.com,
-        anirudha.sarangi@amd.com, harini.katakam@amd.com, git@xilinx.com,
-        git@amd.com
-Subject: Re: [RFC V3 PATCH 0/8] Xilinx DMA enhancements and optimization
-Message-ID: <YymjofmCECa3iF20@matsya>
-References: <20220920055119.12634-1-sarath.babu.naidu.gaddam@amd.com>
+        with ESMTP id S230221AbiITLfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:35:40 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F1B6D554
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:35:39 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oabXC-0008TL-5B; Tue, 20 Sep 2022 13:35:26 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oabXA-000335-Om; Tue, 20 Sep 2022 13:35:24 +0200
+Date:   Tue, 20 Sep 2022 13:35:24 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
+        hverkuil@xs4all.nl, jacopo@jmondi.org,
+        kieran.bingham+renesas@ideasonboard.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v2 4/4] media: tc358746: add Toshiba TC358746 Parallel to
+ CSI-2 bridge driver
+Message-ID: <20220920113524.yq2abqbunvfipnb2@pengutronix.de>
+References: <20220916134535.128131-1-m.felsch@pengutronix.de>
+ <20220916134535.128131-5-m.felsch@pengutronix.de>
+ <YyhjB+RbLokmBKPx@paasikivi.fi.intel.com>
+ <YyhlQPhezmLG8ZCn@pendragon.ideasonboard.com>
+ <Yyhonw7SEjkAPivN@paasikivi.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220920055119.12634-1-sarath.babu.naidu.gaddam@amd.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <Yyhonw7SEjkAPivN@paasikivi.fi.intel.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,59 +58,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-09-22, 11:21, Sarath Babu Naidu Gaddam wrote:
-> Some background about the patch series: Xilinx Axi Ethernet device driver
-> (xilinx_axienet_main.c) currently has axi-dma code inside it. The goal is
-> to refactor axiethernet driver and use existing AXI DMA driver using
-> DMAEngine API.
+On 22-09-19, Sakari Ailus wrote:
+> On Mon, Sep 19, 2022 at 03:49:04PM +0300, Laurent Pinchart wrote:
+> > On Mon, Sep 19, 2022 at 12:39:35PM +0000, Sakari Ailus wrote:
+> > > > +	dev_set_drvdata(dev, tc358746);
+> > > > +	pm_runtime_set_autosuspend_delay(dev, 200);
+> > > > +	pm_runtime_use_autosuspend(dev);
+> > > > +	pm_runtime_enable(dev);
+> > > > +
+> > > > +	err = tc358746_init_hw(tc358746);
+> > > 
+> > > The driver depends on runtime PM being enabled but does not depend on
+> > > CONFIG_PM. I'd suggest to power the device on and only then enable runtime
+> > > PM. See
+> > > <URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera-sensor.html#power-management>.
+> > 
+> > Or simply depend on CONFIG_PM :-)
 > 
-> This patchset does feature addition and optimization to support axidma
-> integration with axiethernet network driver. Once axidma version is
-> accepted mcdma specific changes will be added in followup version.
+> The user can still disable runtime PM.
 
-why is this tagged RFC? Is it not ready for merge?
+You mean by user-space? If I read the runtime.c code correctly in such
+case the core handles this enabling if one forbid it by increasing the
+usage-counter and calling the resume callback. So it is powered as you
+want. To fix the PM Kconfig, I will add "depends on PM".
 
-> 
-> Changes for V2:
-> - Use metadata API[1] for passing metadata from dma to netdev client.
-> - Read irq-delay from DT.
-> - Remove desc_callback_valid check.
-> - Addressed RFC v1 comments[2].
-> - Minor code refactoring.
-> 
-> Changes for V3:
-> - Add device_config support for passing any dma client data.
-> - Address RFC v2 comments.
->     - remove hardcoding for axidma_tx_segment.
->     - Below review comment is in pipeline. We are facing a race issue when
->       addressing it. we will fix it in the next version.
->       "chan->idle = true; in xilinx_dma_irq_handler() needs to be gated on
->        the active_list being empty".
-> 
-> Comments, suggestions are very welcome
-> 
-> Radhey Shyam Pandey (7):
->   dt-bindings: dmaengine: xilinx_dma: Add xlnx,axistream-connected
->     property
->   dt-bindings: dmaengine: xilinx_dma: Add xlnx,irq-delay property
->   dmaengine: xilinx_dma: Pass AXI4-Stream control words to dma client
->   dmaengine: xilinx_dma: Increase AXI DMA transaction segment count
->   dmaengine: xilinx_dma: Freeup active list based on descriptor
->     completion bit
->   dmaengine: xilinx_dma: Use tasklet_hi_schedule for timing critical
->     usecase
->   dmaengine: xilinx_dma: Program interrupt delay timeout
-> 
-> Sarath Babu Naidu Gaddam (1):
->   dmaengine: xilinx_dma: Add device_config support
-> 
->  .../bindings/dma/xilinx/xilinx_dma.txt        |   4 +
->  drivers/dma/xilinx/xilinx_dma.c               | 107 ++++++++++++++++--
->  include/linux/dma/xilinx_dma.h                |  16 +++
->  3 files changed, 115 insertions(+), 12 deletions(-)
+Regards,
+  Marco
+
+> I guess few do though. This should be addressed separately from this
+> driver, it'd be good to be able to deny that. In fact, no-one has ever
+> probably tested this for a large number of drivers and I guess it exists
+> just to have a way to disable runtime PM support in drivers that do not
+> work with it...
 > 
 > -- 
-> 2.25.1
-
--- 
-~Vinod
+> Sakari Ailus
+> 
