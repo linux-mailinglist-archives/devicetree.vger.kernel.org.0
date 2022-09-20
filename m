@@ -2,72 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFFE15BDBE4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 06:57:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECCF85BDC2C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 07:16:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbiITE5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 00:57:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39542 "EHLO
+        id S229652AbiITFQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 01:16:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbiITE5D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 00:57:03 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B12958DC9;
-        Mon, 19 Sep 2022 21:57:02 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28K4ufqe003851;
-        Mon, 19 Sep 2022 23:56:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663649801;
-        bh=8KOilXQeO0JEZa4fCJ5Ej6qxCCZNlBHDegq2hXI2lMM=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=lgHGL0PoyBAOscAKWonYb66zAR6WfTpF6PjNmVbU0Y1Swaf6bdxHCMmKLYXMw4g7q
-         od+p3RW3XWkK4cs/94mD58EA8pff77fPdAKiLnKbiVOeyfZIYDmVfnW2w9W0PT1n/S
-         jkAt8YqtQSdT3lp8GJFTCjEME3zDeOW/vcdAuab4=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28K4ufYW009288
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 19 Sep 2022 23:56:41 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 19
- Sep 2022 23:56:41 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Mon, 19 Sep 2022 23:56:41 -0500
-Received: from [10.24.69.241] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28K4uaHc034689;
-        Mon, 19 Sep 2022 23:56:37 -0500
-Message-ID: <2f830a26-c9f0-2902-302c-371c59994a6f@ti.com>
-Date:   Tue, 20 Sep 2022 10:26:36 +0530
+        with ESMTP id S229546AbiITFQX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 01:16:23 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E50784B0D2
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 22:16:21 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id z6so2432568wrq.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 22:16:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=NHRgm29Le8iu9nvn+rnc4QlUDNLlR20YAjmk4HmegVw=;
+        b=LqRWapZ3OD8ujRG6GF9z5HU6YDrQIgGFEp1LCRcPYxjEAdbPhXLsu29nNu8rwaKmTn
+         9q+HzK7nMYI8YQll+gF0aGxeRCmB2N6KrP/qKeqBdiFQLKUI3mr7FBUfYFJNMJg3Tzuy
+         iA32UWS9fi0iNuB6xvEg6bsQH5IL5eNslNNt0krIwZYzVpjHzAeel9ZJiEgN3CE4ImfE
+         9Otxo47hhRLhLT6vJJ/dPSZgzKoQ+DSJNyC3iNbL3boRitDns0eKEy83n4c3HURwXnG+
+         u39Dpv0KTg403uc261r5vOzufNaUkOKYxJBxT1biPii3hanLSY19tukYN70+71jNAxlt
+         LyJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=NHRgm29Le8iu9nvn+rnc4QlUDNLlR20YAjmk4HmegVw=;
+        b=QGZEGOv2CnBB50UZRMQR2UXZpEYySFd6gmHHX0qOUcpk2w+1jA7uUmjAI7MRs/4AD6
+         IvzDHOLEG39yHugRfYwG8mElZz3A6a438EyMSVBhxY1HNGSPuJHVa1XVW+viB8tVIFcr
+         45i77jelGtynrUlNrtf8wgptDVpqmkgYgj7rXtW4NmLSZ6Hm0JeusZRSwnJUQLg6BX2Y
+         EpaSshURtCfMw5udjO0kyXmTr7LpskAC7nZ06mvaZR3EoFd0b4EZn66ykYwuvUCAYnvp
+         mB3kCgBnwKN2zT6UqI3za9EZqDyEzeADcsLFRiurLcYSheQ/Iz/q+iG06LxP5/IOEUq5
+         EZVQ==
+X-Gm-Message-State: ACrzQf1CEUyvmxtLKwZkE+WrPLSvo1Q8LeKnJynDo+r0h1SnvmDVy8p2
+        bOXN9Kxv8oWFEu5sluuhpE7r28Uy3xTgUw==
+X-Google-Smtp-Source: AMsMyM7qUwzKLUwA/+CtqJdXtF4iQv9jh8w+WZpzq251X2LdKsrWIoBzqgdRkWzn4KYwI9Q6Uqcq3w==
+X-Received: by 2002:a5d:4284:0:b0:22a:291e:fa8f with SMTP id k4-20020a5d4284000000b0022a291efa8fmr12864318wrq.553.1663650980044;
+        Mon, 19 Sep 2022 22:16:20 -0700 (PDT)
+Received: from localhost.localdomain (188.red-88-10-59.dynamicip.rima-tde.net. [88.10.59.188])
+        by smtp.gmail.com with ESMTPSA id b17-20020a5d6351000000b0022ac672654dsm443965wrw.58.2022.09.19.22.16.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 22:16:19 -0700 (PDT)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, arinc.unal@arinc9.com,
+        sr@denx.de, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: watchdog: migrate mt7621 text bindings to YAML
+Date:   Tue, 20 Sep 2022 07:16:17 +0200
+Message-Id: <20220920051617.582025-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-CC:     <lee.jones@linaro.org>, <kishon@ti.com>, <vkoul@kernel.org>,
-        <dan.carpenter@oracle.com>, <rogerq@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <sjakhade@cadence.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH 1/6] dt-bindings: phy: ti: phy-gmii-sel: Add bindings for
- J721e
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh@kernel.org>
-References: <20220914093911.187764-1-s-vadapalli@ti.com>
- <20220914093911.187764-2-s-vadapalli@ti.com>
- <20220914161527.GA2269201-robh@kernel.org>
- <d48e5ef4-6d5b-0977-ed45-de810e42356c@ti.com>
- <31028736-ba81-122e-b630-b66e9d9d491a@linaro.org>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <31028736-ba81-122e-b630-b66e9d9d491a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,67 +68,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+Soc Mt7621 Watchdog bindings used text format, so migrate them to YAML.
 
-On 19/09/22 15:47, Krzysztof Kozlowski wrote:
-> On 15/09/2022 07:28, Siddharth Vadapalli wrote:
->>>> @@ -65,12 +66,19 @@ properties:
->>>>      description: |
->>>>        Required only for QSGMII mode. Array to select the port for
->>>>        QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
->>>> -      ports automatically. Any one of the 4 CPSW5G ports can act as the
->>>> -      main port with the rest of them being the QSGMII_SUB ports.
->>>> -    maxItems: 1
->>>> -    items:
->>>> -      minimum: 1
->>>> -      maximum: 4
->>>> +      ports automatically. For J7200 CPSW5G with the compatible:
->>>> +      ti,j7200-cpsw5g-phy-gmii-sel, ti,qsgmii-main-ports is an
->>>> +      array of only one element, which is the port number ranging from
->>>> +      1 to 4. For J721e CPSW9G with the compatible:
->>>> +      ti,j721e-cpsw9g-phy-gmii-sel, ti,qsgmii-main-ports is an array
->>>> +      of two elements, which corresponds to two potential QSGMII main
->>>> +      ports. The first element and second element of the array can both
->>>> +      range from 1 to 8 each, corresponding to two QSGMII main ports.
->>>> +      For J721e CPSW9G, to configure port 2 as the first QSGMII main
->>>> +      port and port 7 as the second QSGMII main port, we specify:
->>>> +      ti,qsgmii-main-ports = <2>, <7>;
->>>> +      If only one QSGMII main port is desired, mention the same main
->>>> +      port twice.
->>>
->>> Two different forms for the same property name is not great. Just make a 
->>> new property if you need something different.
->>
->> Thank you for reviewing the patch. Based on the discussion for the
->> previous series at [1], I had planned to reuse the same property
->> "ti,qsgmii-main-ports" for TI's J721e device too. The reason for this is
->> that the property represents the same feature on both devices which is
->> that of the QSGMII main port. The only difference between the two of
->> them is that J7200's CPSW5G has 4 external ports while J721e's CPSW9G
->> has 8 external ports. Thus, J7200 can have at most one QSGMII main port
->> while J721e can have up to two. Adding a new property which describes
->> the same feature appears to be redundant to me. Please let me know.
->>
-> 
-> The trouble is that you wrote the description like it were two different
-> properties (for xx this is one element, for yy this is something else).
-> You need to describe the property in unified way.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+Changes in v2:
+- Rebase onto last kernel version.
+- Add Krzysztof Reviewed-by tag.
 
-Thank you for reviewing the patch. I plan to update the description to
-the following:
-"Required only for QSGMII mode. Array to select the port/s for QSGMII
-main mode. The size of the array corresponds to the number of QSGMII
-interfaces and thus, the number of distinct QSGMII main ports, supported
-by the device. If the device supports two QSGMII interfaces but only one
-QSGMII interface is desired, repeat the QSGMII main port value
-corresponding to the QSGMII interface in the array."
+ .../watchdog/mediatek,mt7621-wdt.yaml         | 33 +++++++++++++++++++
+ .../bindings/watchdog/mt7621-wdt.txt          | 12 -------
+ 2 files changed, 33 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
 
-I intend to describe the property in detail to help users understand the
-property and its usage better. In the process, I might have
-unintentionally made it appear as two different properties in the
-previous description. I hope the new description shows that the property
-describes the same feature across devices while making its usage clear
-to the users at the same time. Please let me know if this is fine.
+diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml
+new file mode 100644
+index 000000000000..b2b17fdf4e39
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml
+@@ -0,0 +1,33 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/mediatek,mt7621-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Ralink Watchdog Timers
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    const: mediatek,mt7621-wdt
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    watchdog@100 {
++      compatible = "mediatek,mt7621-wdt";
++      reg = <0x100 0x100>;
++    };
+diff --git a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt b/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
+deleted file mode 100644
+index c15ef0ef609f..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
++++ /dev/null
+@@ -1,12 +0,0 @@
+-Ralink Watchdog Timers
+-
+-Required properties:
+-- compatible: must be "mediatek,mt7621-wdt"
+-- reg: physical base address of the controller and length of the register range
+-
+-Example:
+-
+-	watchdog@100 {
+-		compatible = "mediatek,mt7621-wdt";
+-		reg = <0x100 0x10>;
+-	};
+-- 
+2.25.1
 
-Regards,
-Siddharth.
