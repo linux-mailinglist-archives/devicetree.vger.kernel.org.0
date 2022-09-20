@@ -2,45 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CD5F5BDE08
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B677C5BDE15
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:26:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230086AbiITHUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 03:20:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51538 "EHLO
+        id S230212AbiITH0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 03:26:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230039AbiITHUk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:20:40 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 102B53F1EC;
-        Tue, 20 Sep 2022 00:20:39 -0700 (PDT)
-Received: from canpemm500004.china.huawei.com (unknown [172.30.72.53])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MWtB31HmfzMmw1;
-        Tue, 20 Sep 2022 15:15:55 +0800 (CST)
-Received: from localhost (10.175.101.6) by canpemm500004.china.huawei.com
- (7.192.104.92) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 20 Sep
- 2022 15:20:35 +0800
-From:   Weilong Chen <chenweilong@huawei.com>
-To:     <chenweilong@huawei.com>, <yangyicong@hisilicon.com>,
-        <xuwei5@huawei.com>, <wsa@kernel.org>, <robh+dt@kernel.org>,
-        <robh@kernel.org>
-CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH next v5 2/2] dt-bindings: i2c: add entry for hisilicon,hisi-i2c
-Date:   Tue, 20 Sep 2022 15:22:15 +0800
-Message-ID: <20220920072215.161331-2-chenweilong@huawei.com>
-X-Mailer: git-send-email 2.31.GIT
-In-Reply-To: <20220920072215.161331-1-chenweilong@huawei.com>
-References: <20220920072215.161331-1-chenweilong@huawei.com>
+        with ESMTP id S230153AbiITHZ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:25:56 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E24043337
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:25:55 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id s6so2306782lfo.7
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:25:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=TMSVmhoNQ+EVx6VuvGV7GoC7OCus+JONwHUFK5MPIiA=;
+        b=PThj4PJ6jYkYYO9TZGLcFdngNjOP/nQjGMvwuQMKbc+bmRqAjWWHuOCGxyKACZ57yy
+         91HPR0Tj+Mfd3Ep6uHTXJwrXdIHVrNfi/EkS3mYq4PeFDkzJOtPrL/lQPfacI96vsLwm
+         AWRYw1Ep78RQaBX/wfXExS/ENl56JVLTNgt7kkSxNTn5Db1J/5pnyfwHVIrT8g+8b10M
+         aNZUAgQ9albYsIjDRvsXnclJXSyYsV6hJr9cdESh/PuU7Bbo+ozsk7Uc9/668jziUlwW
+         mHjAK4NB33WRUTUn4YIi82gK62JS3GEVMzU8yhfwK4MvNBKzbD7yQwaVwbBm7JGXKVrP
+         qhZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=TMSVmhoNQ+EVx6VuvGV7GoC7OCus+JONwHUFK5MPIiA=;
+        b=CXYlBYaskj2YCOjD2iWBoYeFPif52CR+0YWO0nqmZtYyiKGUbonpX5VIGq9Gk9b3An
+         1JL8Hl5dZmnRCTenqfJjV1yRQMFYZDq/I3+LUi/d+LsG+NumzVvKcxCA2mK2h5w3zPyf
+         CAVh+ATmK85x7xeMylV+rd6zkA/VzVHC22Ckgal/4d+iwR+6N+FFL8vlQvGovBfY4zY7
+         DewObvNkwBMt1gPV7Ovb9XXQf4dRYUWsyipEjatJEqhDSXpokZwvHw3EPhkTDIaXS4E2
+         hbPyOBMR/bTzLwg+DdEz7XJiS3aJ1zehtptZlkRq6LLUU3TpYrzHrwIvLy4iJO8+ChVv
+         8CBA==
+X-Gm-Message-State: ACrzQf13M9IOdQ6dQrsq+3OqRnNZf1wdnM6Q7kCe90DNwbp6Mbs4p40T
+        e0oELTWdjP+JjDhRWct7AGk9Fg==
+X-Google-Smtp-Source: AMsMyM5EHjB+cTmf8WPbUI9j9R50LpVkSqhwQo5FmkPm/75jGLSQhXhUgF3Nxxfh7Ed/mLF+o2/nNw==
+X-Received: by 2002:a05:6512:3608:b0:49a:75c0:5146 with SMTP id f8-20020a056512360800b0049a75c05146mr7958042lfs.398.1663658753671;
+        Tue, 20 Sep 2022 00:25:53 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id x16-20020a056512079000b00497a2815d8dsm169165lfr.195.2022.09.20.00.25.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Sep 2022 00:25:52 -0700 (PDT)
+Message-ID: <bb577304-f048-8fd5-fc7a-47a0897ba792@linaro.org>
+Date:   Tue, 20 Sep 2022 09:25:50 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.175.101.6]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- canpemm500004.china.huawei.com (7.192.104.92)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v6 1/4 RESEND] ARM: dts: qcom: Use new compatibles for
+ crypto nodes
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, thara.gopinath@gmail.com,
+        devicetree@vger.kernel.org, robh@kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        arnd@arndb.de, Jordan Crouse <jorcrous@amazon.com>
+References: <20220919221509.1057574-1-bhupesh.sharma@linaro.org>
+ <20220919221509.1057574-2-bhupesh.sharma@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220919221509.1057574-2-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,111 +79,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the new compatible for HiSilicon common i2c.
+On 20/09/2022 00:15, Bhupesh Sharma wrote:
+> Since we are using soc specific qce crypto IP compatibles
+> in the bindings now, use the same in the device tree files
+> which include the crypto nodes.
+> 
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Tested-by: Jordan Crouse <jorcrous@amazon.com>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  arch/arm/boot/dts/qcom-ipq4019.dtsi   | 2 +-
+>  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 +-
+>  5 files changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+> index b23591110bd2..9c40714562d5 100644
+> --- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
+> +++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+> @@ -314,7 +314,7 @@ cryptobam: dma-controller@8e04000 {
+>  		};
+>  
+>  		crypto: crypto@8e3a000 {
+> -			compatible = "qcom,crypto-v5.1";
+> +			compatible = "qcom,ipq4019-qce";
 
-Signed-off-by: Weilong Chen <chenweilong@huawei.com>
----
-Change since v4:
-- Add description for SoC specific compatibles.
-- Use the clock binding.
-- Fix decimal, space, case, unused labels.
-Link: https://lore.kernel.org/lkml/20220909074842.281232-1-chenweilong@huawei.com/T/#m4e1c915ead04f4e2e48d69131053a966801625db
+There are few issues here:
+1. Compatible is not documented.
+2. Compatible is not supported by old kernel - ABI break.
+3. Everything won't be bisectable...
 
- .../bindings/i2c/hisilicon,hisi-i2c.yaml      | 72 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+The same in other places.
 
-diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
-new file mode 100644
-index 000000000000..b06eb8cb88bc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/i2c/hisilicon,hisi-i2c.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: HiSilicon common IIC controller Device Tree Bindings
-+
-+maintainers:
-+  - yangyicong@huawei.com
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: hisilicon,hisi-i2c
-+    description:
-+      The HiSilicon common IIC controller can be used for many different
-+      types of SoC such as Huawei Ascend AI series chips. We use the common
-+      string (hisi) for specific compatibles to avoid confusion caused by a
-+      lot of different names.
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    default: 400000
-+
-+  i2c-sda-falling-time-ns:
-+    default: 343
-+
-+  i2c-scl-falling-time-ns:
-+    default: 203
-+
-+  i2c-sda-hold-time-ns:
-+    default: 830
-+
-+  i2c-scl-rising-time-ns:
-+    default: 365
-+
-+  i2c-digital-filter-width-ns:
-+    default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c@5038b0000 {
-+      compatible = "hisilicon,hisi-i2c";
-+      reg = <0x38b0000 0x10000>;
-+      interrupts = <0x0 120 0x4>;
-+      i2c-sda-falling-time-ns = <56>;
-+      i2c-scl-falling-time-ns = <56>;
-+      i2c-sda-hold-time-ns = <56>;
-+      i2c-scl-rising-time-ns = <56>;
-+      i2c-digital-filter;
-+      i2c-digital-filter-width-ns = <0x0>;
-+      clocks = <&alg_clk>;
-+      clock-frequency = <400000>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d213a831133f..4c928a444e4b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9155,6 +9155,7 @@ L:	linux-i2c@vger.kernel.org
- S:	Maintained
- W:	https://www.hisilicon.com
- F:	drivers/i2c/busses/i2c-hisi.c
-+F:	Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
- 
- HISILICON LPC BUS DRIVER
- M:	john.garry@huawei.com
--- 
-2.31.GIT
-
+Best regards,
+Krzysztof
