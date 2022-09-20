@@ -2,134 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C18B5BE9A4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:05:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A18225BE9A7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:06:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231700AbiITPFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 11:05:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40858 "EHLO
+        id S230153AbiITPGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 11:06:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231704AbiITPEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:04:44 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E278BC23
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:04:29 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id a3so4249879lfk.9
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:04:29 -0700 (PDT)
+        with ESMTP id S229684AbiITPG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:06:29 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1613EE08
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:06:27 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id x27so4380058lfu.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:06:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=uGVId7ajaDqTRILJwbUDyK1M1OoEGlOt7PBKotR6xVM=;
-        b=rTCouT/5+rTbr/qoDH2r9+QQP1b0txBsTuK1g62F+FkXrWnr7by0oFOiC4rV+vZozh
-         GjQGX0wVvO8kEVgop5xW2KblCelmgTncdFZ/EZH5dOl1S/w7H/hBDxkkBEQ+bKi3JUcp
-         fd6HSpY6dg5GWbqVe5b2uELdK3zV+TR+Ex6vS4U2sdhAfJEtZR8+X8wAQpl41d5sFBBE
-         qML3MdKvhxaH97IEh+C6oVDRNGbf2DZpr92JSAtM3w7mEQkLI8Edlc5oD3W+xUrlLlk4
-         7lMrjDguImusQaJH+WaRXF6sVh2OfronV4ZIV/vs/jUv163QAIN4fpEg+i7hvAIESkrx
-         OFJw==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=p4P0NeQ+Hs0UhBCJIe2tPG1fmTf8Df505EFaHwu7878=;
+        b=NDTTn3LJdGo55R3e01AcgjrRXfHlQQm0T3o9ZEjVZ5hJvJd5cgDrOpjtPQ+GT9oBzd
+         domJ+l5Aqw8+AoTPiZg2c9wwWuiVn15QKaE97F69i/knxCLqmswttrvL7UQ8/y9SZ44X
+         DyDXo9cdOnKqW0z2bj0KnZAusB31jfwWS13thxjyHiEb+J22KBg/7ge6fbuL7BMDnOQo
+         uVpPqQtEuojB8oSA068Qasf9FSnnUx6QMzqWOA8IT6OZwwSJ8IA33UTJc58tgJ4KUY0D
+         a2ChbpPFpcu3PlWRQMDtT9u0jC350YcCBVo/8Zcym69E25pKih7UHltEQrMiuYo/68q1
+         Ch6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=uGVId7ajaDqTRILJwbUDyK1M1OoEGlOt7PBKotR6xVM=;
-        b=oI1v70LDjk9G5RVDHsFt7475ydIXSXg7xD8w+fH5CUY5NiN5tNWzUBg8fKYysGUB0u
-         JYpFEYg+A94ZvCiJRZGtR9+lW4WenzXVE2x6k6t20YBOmuTX9sgY8pTz86RSnxF9e3nJ
-         SApzxS1iXTyWrM2HYV2BuoAm2EUUKZi91IuncQFuo3IIHl6f5ZJuYTWjVmYjV+QID7+3
-         F4VPfloVs+T1E3Lmyr5t3OPebc5kO9vUbHO1Rm8r8xzIYMpC2RXG69FNJLM89qYGcvCq
-         IoYUnE9t+HT54UzJRmAQd+w9YJGlua4a/0PjJPtW8U0WikqPkJtPgY+rbHv57EtVBmIv
-         V3/w==
-X-Gm-Message-State: ACrzQf3B8Of+jSNGfePAEspHIo6qa1AYQcGfFu1GmoWPVnWf5vrn2Eft
-        Q7qDO1r/4A9odLzpf2F18zEWbQ==
-X-Google-Smtp-Source: AMsMyM4KZDnbUtIxrgZe74ARw4Teo3eNN5N0ZL8MWZrI3hDx/FYuj2pOhfDr9WHVD11ZLqbMRW07Ag==
-X-Received: by 2002:a05:6512:36c1:b0:497:abef:cce5 with SMTP id e1-20020a05651236c100b00497abefcce5mr8578939lfs.472.1663686261140;
-        Tue, 20 Sep 2022 08:04:21 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p10-20020ac246ca000000b0049f54a976e3sm8294lfo.58.2022.09.20.08.04.20
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=p4P0NeQ+Hs0UhBCJIe2tPG1fmTf8Df505EFaHwu7878=;
+        b=ZWsjApIWo5bzAuD814lna3jJlggJy2pT8ss5XCIG6sMlnN3/i3hEnwXwCyoWLd/Ynv
+         D89y4Y0fxpO7c6061msTMgwKq3j7uZXmlZX8tWSNxpIhC7Kc+OxKVXzW75N37pgUi9SA
+         tgqz9ZoLikC2KbWTQ3eKyIAaBND9CqOMAO/Re3rm9zYF/519SClMIHCUjc2f4dxGFYTX
+         chltjsQKbm5DKRc+dMETxOgI2Hp9Rrqiw+QtmelJhoSzv/z4pQUXrkwZRJ+mCBtH8bi3
+         66YbRQA+IyRWYNTteiI/DQVswqTUHviemiisK7QLGDz6Ht8jf6aR7y25qNtydRv1CO6F
+         DnfQ==
+X-Gm-Message-State: ACrzQf1tslzjt/Jlad9KB7L7TUyt2Y+8dUSBn1zz8FA16ZGa1WgE4Ab8
+        rf9zvdv/TD5a3LOg3hf3CNXs1g==
+X-Google-Smtp-Source: AMsMyM5ATrQusUgyRLPhm8i+Xxz0V5beQbLVoUmOUwfeMSPV01vAXnRs9x5CHLxEWRXyIl5pvXZzww==
+X-Received: by 2002:a19:7406:0:b0:49d:d448:59c3 with SMTP id v6-20020a197406000000b0049dd44859c3mr7932629lfe.300.1663686385856;
+        Tue, 20 Sep 2022 08:06:25 -0700 (PDT)
+Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s9-20020a056512202900b00493014c3d7csm339824lfs.309.2022.09.20.08.06.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 08:04:20 -0700 (PDT)
+        Tue, 20 Sep 2022 08:06:25 -0700 (PDT)
+Date:   Tue, 20 Sep 2022 17:06:23 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 3/3] ARM: dts: qcom: msm8974: switch TCSR mutex to MMIO
-Date:   Tue, 20 Sep 2022 17:04:14 +0200
-Message-Id: <20220920150414.637634-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220920150414.637634-1-krzysztof.kozlowski@linaro.org>
-References: <20220920150414.637634-1-krzysztof.kozlowski@linaro.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     quic_plai@quicinc.com, agross@kernel.org,
+        quic_rohkumar@quicinc.com, swboyd@chromium.org, tiwai@suse.com,
+        broonie@kernel.org, bgoswami@quicinc.com, perex@perex.cz,
+        devicetree@vger.kernel.org, srinivas.kandagatla@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, lgirdwood@gmail.com, andersson@kernel.org,
+        judyhsiao@chromium.org, linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH v7 1/8] dt-bindings: remoteproc: qcom: Add SC7280 ADSP
+ support
+Message-ID: <20220920150623.rhpeizf7ufkwqz2i@krzk-bin>
+References: <1663655359-1402-1-git-send-email-quic_srivasam@quicinc.com>
+ <1663655359-1402-2-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1663655359-1402-2-git-send-email-quic_srivasam@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The TCSR mutex bindings allow device to be described only with address
-space (so it uses MMIO, not syscon regmap).  This seems reasonable, as
-TCSR mutex is actually a dedicated IO address space, and it also fixes
-DT schema checks:
+On Tue, 20 Sep 2022 11:59:12 +0530, Srinivasa Rao Mandadapu wrote:
+> Add ADSP PIL loading support for SC7280 SoCs.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+> Changes since V6:
+> 	-- Update glink-edge property.
+> 	-- Add qcom,qmp property.
+> Changes since V5:
+> 	-- Remove qcom,adsp-memory-regions property.
+> Changes since V4:
+> 	-- Update halt registers description in dt bindings.
+>  .../bindings/remoteproc/qcom,sc7280-adsp-pil.yaml  | 226 +++++++++++++++++++++
+>  1 file changed, 226 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
+> 
 
-  qcom-msm8974-sony-xperia-rhine-amami.dtb: tcsr-mutex: 'reg' is a required property
-  qcom-msm8974-sony-xperia-rhine-amami.dtb: tcsr-mutex: 'syscon' does not match any of the regexes: 'pinctrl-[0-9]+'
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/qcom-msm8974.dtsi | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+yamllint warnings/errors:
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-index a4e12daf3eeb..7bc19b5375f6 100644
---- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-@@ -1194,7 +1194,7 @@ remoteproc_mss: remoteproc@fc880000 {
- 			resets = <&gcc GCC_MSS_RESTART>;
- 			reset-names = "mss_restart";
- 
--			qcom,halt-regs = <&tcsr_mutex_block 0x1180 0x1200 0x1280>;
-+			qcom,halt-regs = <&tcsr_mutex 0x1180 0x1200 0x1280>;
- 
- 			qcom,smem-states = <&modem_smp2p_out 0>;
- 			qcom,smem-state-names = "stop";
-@@ -1233,9 +1233,10 @@ smd-edge {
- 			};
- 		};
- 
--		tcsr_mutex_block: syscon@fd484000 {
--			compatible = "syscon";
-+		tcsr_mutex: hwlock@fd484000 {
-+			compatible = "qcom,msm8974-tcsr-mutex", "qcom,tcsr-mutex", "syscon";
- 			reg = <0xfd484000 0x2000>;
-+			#hwlock-cells = <1>;
- 		};
- 
- 		tcsr: syscon@fd4a0000 {
-@@ -1719,13 +1720,6 @@ reboot-mode {
- 		};
- 	};
- 
--	tcsr_mutex: tcsr-mutex {
--		compatible = "qcom,tcsr-mutex";
--		syscon = <&tcsr_mutex_block 0 0x80>;
--
--		#hwlock-cells = <1>;
--	};
--
- 	thermal-zones {
- 		cpu0-thermal {
- 			polling-delay-passive = <250>;
--- 
-2.34.1
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml: properties:glink-edge:properties:qcom,remote-pid:maxItems: False schema does not allow 1
+	hint: Scalar properties should not have array keywords
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml: ignoring, error in schema: properties: glink-edge: properties: qcom,remote-pid: maxItems
+Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.example.dtb:0:0: /example-0/remoteproc@3000000: failed to match any schema with compatible: ['qcom,sc7280-adsp-pil']
 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
