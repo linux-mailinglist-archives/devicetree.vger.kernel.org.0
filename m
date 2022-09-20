@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC5685BDDC6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFE385BDDD3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229669AbiITHGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 03:06:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33140 "EHLO
+        id S230197AbiITHJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 03:09:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbiITHGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:06:50 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23EB44D4C3
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:06:49 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id a2so2255456lfb.6
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:06:49 -0700 (PDT)
+        with ESMTP id S230156AbiITHJR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:09:17 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4171E5F20B
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:09:16 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id g20so677174ljg.7
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:09:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=BpGibXFgS0C/8+QW13M1OlsPel1EQHzKXdhl+DKxo08=;
-        b=HPT/6Gjgl4SGIytwzUcr3sYP2ohP3kgKY6hkpB3irXCTIxpy/JZERpkhxabAiTD6PM
-         JPoD0D24wIcG83ptsDEsJrx79haAbkb+ktr/KxcNEFhDBqlNoKetTEEtK6mNpnfg5cWi
-         zTRMF9FeN+iOx7g1zheSFkh6CtR43QtgJvAzb1iKgswKJL2VNE9GODHQ4bUM/fAxV2co
-         Wq0xuhIegzSTISXDNoadzzEgeib8bnQG3F/qiJDFUcswKZv1Naqu/oe7V9AcFscUywHL
-         XYYTHDipmu7HeoZhRWf99LSdm1FjrO4rOq/anaDb9z9us9v/Lqlne2diVY2I+MPzAz5v
-         uqlQ==
+        bh=Wo8uP5ffgZyZWYK9afaO+p/W/5Kwf864osF/ckvXkRg=;
+        b=grzro9B7+WgfVf2xBiNjkxTYALekfROadRmRfJuBoGy5IpiijPZGNUGpa2HgNc+O52
+         gtc0da8IZopEEne89hAZlYzfr9DGVMejFi1IJejkP23YUHixyjYVebTZDFQo8nQhHwvY
+         U1UnDmZbIGF/4WgyGLcWn/7vwina3T/z4WzHdVWwdL1T8AaIiS3kx8NSnqq8P4nkdVp+
+         KkxzpFx3UUa91XTE0ZHVaevoiZtw3FkGLvHJBr4qv9jK16plWRc0jy+tfyul0TuMMqRa
+         X3jz1lCo0/Hl8QGGXedKkpK7GCjKz5VX1Cfpc4Y0jB3phALjZWKNg/ucfpHL+H6jrVkZ
+         6ctA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=BpGibXFgS0C/8+QW13M1OlsPel1EQHzKXdhl+DKxo08=;
-        b=Y8KRGD8sStvp1d1DysITelC7R3ZQAdmFUqXuKyYIWo1feLWqEO1rLXDy4778AOnC6J
-         RxpIZj34ZLBgcED01E9S20cad0PmYyfh7fnO79V7CbHIJTfedHYXsIIos51TOHrDA0N2
-         9aN5LhYcVLkR791aR1jE5WeWbHPoFrU40s2nApzv7jl3nEcQuwCLn8UgF+UbTVwH216R
-         4II4UF4Y75wWgcbALsKTz4bR6ZnnMlC9fpue5WmtImca24u2Jh7qrjw8mGm1tHAhk7GJ
-         JavvxkZA4+L/flzoO+Z7ojuPHdYGhURS/nKMzFcGOIvHtaK/T8+/zFCEDrWLk1P3H8J9
-         4Aog==
-X-Gm-Message-State: ACrzQf3wJ+VjiDkpCgOgITNw9SbnF/9cxXSiNsCgoKK8YvbCeRQcOkZW
-        2VXyI8Ekk/Uh+sWpNTrAzwQEBw==
-X-Google-Smtp-Source: AMsMyM5ppkFWKFY0q7coi2ylM45dStSfuK7WNLNglTVeYJNwKlA0P10H0k8wQBoC6MA5O/rI6AMKvg==
-X-Received: by 2002:a05:6512:400d:b0:499:d9e:e04c with SMTP id br13-20020a056512400d00b004990d9ee04cmr7127207lfb.400.1663657607344;
-        Tue, 20 Sep 2022 00:06:47 -0700 (PDT)
+        bh=Wo8uP5ffgZyZWYK9afaO+p/W/5Kwf864osF/ckvXkRg=;
+        b=TGa3zGqil+N3T/z5YdEAdNQQHn5/X5FYp68Ty3WzQLfh/5snMUA/cxQhp92EIwY5Au
+         y94UZs6o3IHi+nFoSyI7mkSFG56qPBT53nA85esqd5tKzfk6mZVWPOCqjhbvaSNKVfb8
+         vQsDXOVCbEpyXhcHDEEu+EwC82Eg70X6HkfZLLYpkbkSz6z999pYEJpzWsS8xtQgG7Md
+         Z8Q0kj1hC5n1x3B1TZLriC33uk99DcIZokdaWbJ5RCbFwipdbN1f0vj2dJkk1uCEN0nI
+         Lp3DRP4Qhu+cnaJkiekTn5t+AHk77bVhbWVuCUIyH7bSpVkOhLbA630iRfiFqdNKjKND
+         M0ug==
+X-Gm-Message-State: ACrzQf0FJhDc9z2sKLrhXER8oomHjiOOOolvs6aKPW0RmuLa2jC+ZPkw
+        2MAqjOu1EtAo6JAYa8JAFvyW/Q==
+X-Google-Smtp-Source: AMsMyM5k368tciyRffIEz9KEI7TXQB6utOD+AnJuFSrX4KDaWv/fY/Ol3hSX1jO8ZUTskHXRihVDqg==
+X-Received: by 2002:a05:651c:50b:b0:26c:2962:bf1e with SMTP id o11-20020a05651c050b00b0026c2962bf1emr6119083ljp.343.1663657754595;
+        Tue, 20 Sep 2022 00:09:14 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v11-20020a2e9f4b000000b00261eb75fa5dsm113836ljk.41.2022.09.20.00.06.46
+        by smtp.gmail.com with ESMTPSA id i189-20020a2e22c6000000b0026c1b85d8b3sm113960lji.34.2022.09.20.00.09.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 00:06:46 -0700 (PDT)
-Message-ID: <1b03d24e-7bd3-f912-b59b-f2199770e9d8@linaro.org>
-Date:   Tue, 20 Sep 2022 09:06:45 +0200
+        Tue, 20 Sep 2022 00:09:13 -0700 (PDT)
+Message-ID: <6b242b44-b657-c7a6-63ca-465c7031376f@linaro.org>
+Date:   Tue, 20 Sep 2022 09:09:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] ARM: dts: aspeed: greatlakes: Add Facebook greatlakes
- (AST2600) BMC
+Subject: Re: [PATCH v2 1/7] dt-bindings: msm/dp: Add SDM845 and SC8280XP
+ compatibles
 Content-Language: en-US
-To:     Bonnie Lo <Bonnie_Lo@Wiwynn.com>
-Cc:     patrick@stwcx.xyz, garnermic@fb.com, Delphine_Chiu@Wiwynn.com,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-References: <20220920023042.19244-1-Bonnie_Lo@Wiwynn.com>
+        Stephen Boyd <swboyd@chromium.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220916200028.25009-1-quic_bjorande@quicinc.com>
+ <20220916200028.25009-2-quic_bjorande@quicinc.com>
+ <1641e41c-08c7-859b-644a-28d966fb00f3@linaro.org>
+ <20220919211832.6b3buqxrnfp6yjjg@builder.lan>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220920023042.19244-1-Bonnie_Lo@Wiwynn.com>
+In-Reply-To: <20220919211832.6b3buqxrnfp6yjjg@builder.lan>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,27 +87,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 04:30, Bonnie Lo wrote:
-> From: Bonnie Lo <Bonnie_Lo@wiwynn.com>
+On 19/09/2022 23:18, Bjorn Andersson wrote:
+> On Sat, Sep 17, 2022 at 06:03:27PM +0100, Krzysztof Kozlowski wrote:
+>> On 16/09/2022 21:00, Bjorn Andersson wrote:
+>>> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>>
+>>> Add compatibles for the DisplayPort and Embedded DisplayPort blocks in
+>>> Qualcomm SDM845 and SC8280XP platforms.
+>>>
+>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+>>
+>> No need for quicinc SoB (unless you also take ownership).
+>>
 > 
-> Add linux device tree entry related to
-> greatlakes specific devices connected to BMC SoC.
+> It's my understanding that both needs to be there. Bjorn @ Linaro
+> authored the patch and the author must certify its origin, but as the
+> submitter I must certify its origin.
+
+It's the same person. There are no two Bjorns (unless there are :) ), so
+you certify with old email. SoB chain is coming from people, not email
+addresses.
+
+And it is not only my understanding of SoB chain.
+https://lore.kernel.org/all/YuKcBO5JatwRYQJ3@kroah.com/
+
 > 
-> Signed-off-by: Bonnie Lo <Bonnie_Lo@wiwynn.com>
+> I'm not entirely sure what you mean about taking ownership, 
 
-Do not ignore comments, but either implement them or keep discussion
-going. If something is not clear, feel free to ask for clarifications.
+I meant you to be the author of the commit.
 
-Since there are no changes and you resubmit the same patch - NAK.
+> I am going
+> to pursue getting these patches landed. But it wouldn't be correct for
+> new me to claim I authored them.
 
-(...)
+Yeah, that's true.
 
-> 
-> WIWYNN PROPRIETARY
-> This email (and any attachments) contains proprietary or confidential information and is for the sole use of its intended recipient. Any unauthorized review, use, copying or distribution of this email or the content of this email is strictly prohibited. If you are not the intended recipient, please notify the sender and delete this email immediately.
-
-This means we have to remove the email because I was not authorized to
-copy/distribute it.
 
 Best regards,
 Krzysztof
