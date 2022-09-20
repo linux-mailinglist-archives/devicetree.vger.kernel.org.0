@@ -2,253 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DD7D5BDDBE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:04:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC5685BDDC6
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbiITHD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 03:03:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
+        id S229669AbiITHGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 03:06:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229813AbiITHDx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:03:53 -0400
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2041.outbound.protection.outlook.com [40.107.105.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD32D5F238
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:03:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sd/3SP+tozsSMp8XEPiIqYH3Ae6b4My9DLf9XPU+eykZXNvjRBW7MFqghZ/Nynd2rHHFyucza1flDlz3YSbQ6akpEs+FpkzxfPn1c1ysCeU0fcYj30waVT8oivmjFVM5Hy8PBWxho+5Un6F6tee38Xj4Fu70TK1PsufjT+IFwnqGCbEFWBn2rl7ezhWQ5C7scriZbuOGQu0lDSzRyBsuqYdg70LqGxbergxC3ED4v1jm4LMghajoSaABKMc379SYg0aGbRV/0KCSM5J+JCmvP2hAaMubUjg4ka3frAnaep3yhFUbmY7UnEFphU/ooOmZ7k6jNKNVcMjwImQSl1iBgA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r9VKX4jM7So95zeIO8Z4x+fK0kffvapoEWygtRFcx6U=;
- b=nIq9o3jKmDD35jMqQ9YrimNXZdJasc58XKGFZNhBwhYnijZ+eCR8DHIHAJX00LEvKBiuffZ9rGKY+MO5ik+v7rteLRmSPZ13zhP1wsPgjr8UU5W/f4E4R7IvjobawGkP8VKT8NwKxX1EVSa5ZR+5RiFKHOk8wZCZMtvdxZKSgQ7O7+KEx3vMcA9r5FmnACw3y92A9proX6CBHF+qnErIBhnijIsRbqj2+Am9ZrI7hTw8q3D0eb8JVs6I/b25A3XVuQASMggXMNYbYkyP/ftiv/jPPrFBQNC2welkJLqu3TLWaskIkUS3iOBohvwdsXxJ8xDEruD+DVpIuEdWoaZQOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r9VKX4jM7So95zeIO8Z4x+fK0kffvapoEWygtRFcx6U=;
- b=kTkWDmmjeOv1Tzd9EP/xtWaJ5tJHokkrl/ilY+fZok9af8YSl6sVq5bRDoPXGqo0qZn82p+DfKCR59so3iY4uOzfYdzaS1ULvHlj3O/or8GIKnKxqL+8RLaaDZVixKm1CuD/qYGFKrlp2R5paKACbg6Hvf0pvJmC805YnLEKuNU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
- by GV1PR08MB7348.eurprd08.prod.outlook.com (2603:10a6:150:23::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.15; Tue, 20 Sep
- 2022 07:03:38 +0000
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::30bd:5198:8936:b796]) by DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::30bd:5198:8936:b796%6]) with mapi id 15.20.5632.017; Tue, 20 Sep 2022
- 07:03:38 +0000
-Message-ID: <52913420-8cda-a1dc-1169-9d66b62ffe89@wolfvision.net>
-Date:   Tue, 20 Sep 2022 09:03:32 +0200
+        with ESMTP id S229793AbiITHGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:06:50 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23EB44D4C3
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:06:49 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id a2so2255456lfb.6
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:06:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=BpGibXFgS0C/8+QW13M1OlsPel1EQHzKXdhl+DKxo08=;
+        b=HPT/6Gjgl4SGIytwzUcr3sYP2ohP3kgKY6hkpB3irXCTIxpy/JZERpkhxabAiTD6PM
+         JPoD0D24wIcG83ptsDEsJrx79haAbkb+ktr/KxcNEFhDBqlNoKetTEEtK6mNpnfg5cWi
+         zTRMF9FeN+iOx7g1zheSFkh6CtR43QtgJvAzb1iKgswKJL2VNE9GODHQ4bUM/fAxV2co
+         Wq0xuhIegzSTISXDNoadzzEgeib8bnQG3F/qiJDFUcswKZv1Naqu/oe7V9AcFscUywHL
+         XYYTHDipmu7HeoZhRWf99LSdm1FjrO4rOq/anaDb9z9us9v/Lqlne2diVY2I+MPzAz5v
+         uqlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=BpGibXFgS0C/8+QW13M1OlsPel1EQHzKXdhl+DKxo08=;
+        b=Y8KRGD8sStvp1d1DysITelC7R3ZQAdmFUqXuKyYIWo1feLWqEO1rLXDy4778AOnC6J
+         RxpIZj34ZLBgcED01E9S20cad0PmYyfh7fnO79V7CbHIJTfedHYXsIIos51TOHrDA0N2
+         9aN5LhYcVLkR791aR1jE5WeWbHPoFrU40s2nApzv7jl3nEcQuwCLn8UgF+UbTVwH216R
+         4II4UF4Y75wWgcbALsKTz4bR6ZnnMlC9fpue5WmtImca24u2Jh7qrjw8mGm1tHAhk7GJ
+         JavvxkZA4+L/flzoO+Z7ojuPHdYGhURS/nKMzFcGOIvHtaK/T8+/zFCEDrWLk1P3H8J9
+         4Aog==
+X-Gm-Message-State: ACrzQf3wJ+VjiDkpCgOgITNw9SbnF/9cxXSiNsCgoKK8YvbCeRQcOkZW
+        2VXyI8Ekk/Uh+sWpNTrAzwQEBw==
+X-Google-Smtp-Source: AMsMyM5ppkFWKFY0q7coi2ylM45dStSfuK7WNLNglTVeYJNwKlA0P10H0k8wQBoC6MA5O/rI6AMKvg==
+X-Received: by 2002:a05:6512:400d:b0:499:d9e:e04c with SMTP id br13-20020a056512400d00b004990d9ee04cmr7127207lfb.400.1663657607344;
+        Tue, 20 Sep 2022 00:06:47 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id v11-20020a2e9f4b000000b00261eb75fa5dsm113836ljk.41.2022.09.20.00.06.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Sep 2022 00:06:46 -0700 (PDT)
+Message-ID: <1b03d24e-7bd3-f912-b59b-f2199770e9d8@linaro.org>
+Date:   Tue, 20 Sep 2022 09:06:45 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH V4 3/3] arm64: dts: rockchip: Add DSI and DSI-DPHY nodes
- to rk356x
+Subject: Re: [PATCH] ARM: dts: aspeed: greatlakes: Add Facebook greatlakes
+ (AST2600) BMC
 Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>,
-        linux-rockchip@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        jbx6244@gmail.com, cl@rock-chips.com, frank-w@public-files.de,
-        s.hauer@pengutronix.de, pgwipeout@gmail.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        vkoul@kernel.org, kishon@ti.com,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20220919164616.12492-1-macroalpha82@gmail.com>
- <20220919164616.12492-4-macroalpha82@gmail.com>
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-Organization: WolfVision GmbH
-In-Reply-To: <20220919164616.12492-4-macroalpha82@gmail.com>
+To:     Bonnie Lo <Bonnie_Lo@Wiwynn.com>
+Cc:     patrick@stwcx.xyz, garnermic@fb.com, Delphine_Chiu@Wiwynn.com,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org
+References: <20220920023042.19244-1-Bonnie_Lo@Wiwynn.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220920023042.19244-1-Bonnie_Lo@Wiwynn.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR06CA0169.eurprd06.prod.outlook.com
- (2603:10a6:803:c8::26) To DU0PR08MB9155.eurprd08.prod.outlook.com
- (2603:10a6:10:416::5)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|GV1PR08MB7348:EE_
-X-MS-Office365-Filtering-Correlation-Id: f738e73d-2b3b-4fc6-78e5-08da9ad63e20
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0Fn66a6ScBH0AqTg3rTZUS0v2WO3oTDxbHa8wu4PejfKJp4itsL2NyiGcdBkgJal7WytjPNiIcRZ78prqnB0nFquyG6N54+jx4YtQqVJ57K7+64MYUVyZ1UVvmrKIbgYyIz4XIe8Icz2Rde+Ot87R5d69dNUKB0JgwdFvqXZN7goyHUYvLnv2LgfTNajiXqfDxJ2VVR5LAfj5RoOqWtWJ8dWlTuUlkhbFRkhC5K3aLQbY+6xpYMKPdLQmNuK/6r7tdDSFZDbSI3qJltcWBTZltqIRqfn1mlVjRJ24vYKuRR5+La80BoHi8ttEdCdqXT2Kt9lfxWx3rigfyw9lSrzAsP9ciMF1MpGCIw3rsvotV4WoT5eK6fk5DJHP9xCn3apvIjRiE/yUl8bpLcwYo6MKgHfsfWIyHo4CgdntqolmXGlcFgfUC5Y/C/F5aDVK6iNZ98kXWkjLCb+3hJHViXKD+49ad14DU/gBJUubofXh1R3fho8HXz1CkvKc0fk8eSRYqkTaDF6uD3Xs0482BgBqgxaKN4+CHSntqIyzWRYbwDddL/XhbVIKoD0mk0l1R6WZEvICTVvcR3vsDn6mgH39YiRDiHiOCk+UlksLvuWf66uUuR/sKpCv6bFBHm8uCNEJKC3TNVg3QZSpurzXxrEBNaCXWn4QW1GkW75pjvkd3NGXKhE5djHotr2CPUvpmoXSAQBf2CQPgdqmzKduNynWAcdMIDiLrqCmQC2m7a2aD62UxBu+MyQysZQhoQLGSQMcfGJDhU/JRgpRwNs8UzKn9MuxG+Q+1MIVNuMGADlQw/q9b6Dj40BbvRuHR+hY8uN
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(39850400004)(396003)(136003)(366004)(451199015)(41300700001)(8936002)(2906002)(5660300002)(7416002)(6666004)(83380400001)(478600001)(44832011)(6486002)(186003)(26005)(36756003)(6506007)(6512007)(53546011)(38350700002)(36916002)(86362001)(31696002)(2616005)(52116002)(38100700002)(31686004)(316002)(8676002)(66476007)(4326008)(45080400002)(66946007)(66556008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmIxT21hMEYwcGJiTk94ZEdlTW5TOFV3TTBpUGlaQUdSVWtJN0xkYXFFYUNQ?=
- =?utf-8?B?V2E1UDdjVG5FWEhNTzYreW43bDV6a1hTT2h3eVp3QnlKZHBFQWtBd3lRVmhw?=
- =?utf-8?B?Q2R2c0VHc3lVb1cwdWhRenlLSWh5L296Qkt0SVRRcTFWei8zK0ZXYXJjRFFq?=
- =?utf-8?B?dEwxejJQb0RmWFRJMnlzQ210YUVuM1NKTTFhOGJFNzZRcW44cXIzWDAxRklt?=
- =?utf-8?B?V2x5dWFkTi93WThwclpzTHNPOEdrTDVpRGc0Y3hEMk1QaVpQb3lpSGJyaWZB?=
- =?utf-8?B?akN0S0lqdmtYNlBCOThwUktMQlVzeFg3TGh6aEx2cnJWN2loU0cySzdidmph?=
- =?utf-8?B?SmljMVg0ZFE0cUg3VjJDQ0hvM1l1MGRiTzlFUzNwTWh6bisrd3dJM2V2eDIv?=
- =?utf-8?B?UTE4cHQ5dHgxcFF5U1N1RmNFMk1rRTRBRkFibi90QWxPWlN1WDVUZThXRnVi?=
- =?utf-8?B?MnUxajFJcm9JUVF6VHhXditKQVNKcFRxWllhTGJMZEsrWjBBejNrWm9ia3BP?=
- =?utf-8?B?MHBTTVhoZzZ3VGo3TUZJaWJoTCtDYiswRWRuM0krT0pVRkZtVUc0anloZW51?=
- =?utf-8?B?NWNSakNhM2QwNGxJc3FJMVpMc1dkTmJrbWp3dDFCazdvbExycHpDZnd0dGx2?=
- =?utf-8?B?a2VTZm1YUzdCSUIweGticXhmZ0tWd1FLbXRobFNTYklWY1RHazRTTkRWRHdV?=
- =?utf-8?B?ZkE0eVB1Y0ZaUXpLWVZ2MHZhSjh6VkRPTVI5eHp3UUpMcHNpN25qL0VxZG1J?=
- =?utf-8?B?MnZkSkMybVJvVE1NZWJIcFd3aGxkZE5yRnJqbUx5RDBLQk4wbGp4Z2NTTW5w?=
- =?utf-8?B?RVozTW9ZMjd6RDV4dWZ1R0t1U1lyNHBRMzBaK09aUFExdk04YWJTZm96cDg0?=
- =?utf-8?B?MmcwQzFZa09Ed2JGY05OWjV6UHMvUUNNLzVXNTNvOXRWaDF2UUs4TkdxRWU0?=
- =?utf-8?B?Y3V3Nm9sQyttTzVjN3liaVcyeWpOeFZ2QjVnZjJlQVJHNW9HZUFKZUl2RGxY?=
- =?utf-8?B?U3ZzUHN1K2NudWZLYzdNT3dLc3RKQ2tlRy91VDh2ZmlYTjFYU054NTY4N3lW?=
- =?utf-8?B?cnpNdWhZQUZwbWVuR2loakl5T0RLUjNFSDM4WXpXSDJ5SVVVU2dwSjVnZnZp?=
- =?utf-8?B?d1Awb2d1emhOcXdXcUs0bHhNbUxUaXF1TVp6a1ROaUhlRlkxQ3R0NmFZamt0?=
- =?utf-8?B?RjlrbVczQVdhenNBNmZiMVdqY0pnOUpPRlVtYVVCYnZuNEp2aEtyWU9keFRz?=
- =?utf-8?B?SmRCaEJNaWNmVHlFQUpBMkwzeHI3SnNidzkrRkRGaGQxdTFxdTd2aFlEOTQ5?=
- =?utf-8?B?VUEyVXZKNGhPaHdPL0tZMjFqaW1sSDcydk15bG9uMkU4STRYb3ZjS2R4MWpJ?=
- =?utf-8?B?YjE2cE02SnpKMjE1eDRScElNZVhCcnE0eDJTUE1FUTVUcUNpOHJaekUzNjlD?=
- =?utf-8?B?SEhncUpVREI2ZEtJeDAwTko4MU1RdThGNlNNSXhmclpyTllkSGY0Q1ZkRXho?=
- =?utf-8?B?MHExTGllMHd2bWZ0ZWUycU9LdnVIcWNmWHJIK3cyT1MzaSt0eWFGcEhmOFRC?=
- =?utf-8?B?bS9DcEd5OG45emFpeGFyMmtZREE1R21HeDJETVNQVWFwVXZUOWU3Z1I4bE4x?=
- =?utf-8?B?NG1ocyt6OHRlT0FPWEtpMmZiMkM3amJXTnpoZ2xQWHB4bmZxZTBmWW14WTMr?=
- =?utf-8?B?KzhsZC9TcndPakZEZVB0MjQ1ZkNQWmdLMWk1ZkI3L1ZqaXhzMzVzYXhuanNu?=
- =?utf-8?B?M2wyd2t1bnNpd21hWGRpZk1ZUHNoeG1wc3ZGRlBSaitGd0wydXV5RXluQTFs?=
- =?utf-8?B?VFIzUXZHbGJmUVBCd0ZqQ3BzZWtIdTZaVjRDcFdzVjZQQU1vM1lUbmlKcU1F?=
- =?utf-8?B?UitHaU5uWHpCcXRFOVRLQzFJcWt1YUtyS2dpS1o0N3RXUi92dVZJK0FhWHlM?=
- =?utf-8?B?S0g4Q3ErMjlpcE9DY3lzc0lzd3B6YjlmWFFwaW5NcGFnbzVnamxuN1l2dGJ2?=
- =?utf-8?B?MlZyWUp6a2lacUZCemNFRVd5Uk85YUlZZDNzekZkRWY3RDJPZkRtTjhYOVgv?=
- =?utf-8?B?cDRibFZtdEZIakp1RXhzc2crMDFiYXlLNDFodkpQMDdDZG9XMU11dHk0ZmQ3?=
- =?utf-8?B?d1c5MnlkQnZlZllyWEE5bVlhay83dG9WbTI2dUxad2lhMFQzL1FSOEhEMitl?=
- =?utf-8?B?VHc9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: f738e73d-2b3b-4fc6-78e5-08da9ad63e20
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2022 07:03:38.3278
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mCUlNMaGvi/ygwevM7p6D1cvpI/2r8FywvHPglQ+jII0i9iLxQbJt4d52MJC4GJIQmJ8PfKMTsQF+1lKdSgPzRFKuQlBMuDM3KthNbHW+EM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR08MB7348
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
-
-Thanks for my comments into account!
-
-On 9/19/22 18:46, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 20/09/2022 04:30, Bonnie Lo wrote:
+> From: Bonnie Lo <Bonnie_Lo@wiwynn.com>
 > 
-> This adds the DSI controller nodes and DSI-DPHY controller nodes to the
-> rk356x device tree.
+> Add linux device tree entry related to
+> greatlakes specific devices connected to BMC SoC.
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Bonnie Lo <Bonnie_Lo@wiwynn.com>
 
-Acked-by: Michael Riesch <michael.riesch@wolfvision.net>
+Do not ignore comments, but either implement them or keep discussion
+going. If something is not clear, feel free to ask for clarifications.
+
+Since there are no changes and you resubmit the same patch - NAK.
+
+(...)
+
+> 
+> WIWYNN PROPRIETARY
+> This email (and any attachments) contains proprietary or confidential information and is for the sole use of its intended recipient. Any unauthorized review, use, copying or distribution of this email or the content of this email is strictly prohibited. If you are not the intended recipient, please notify the sender and delete this email immediately.
+
+This means we have to remove the email because I was not authorized to
+copy/distribute it.
 
 Best regards,
-Michael
-
-> ---
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 80 ++++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index 319981c3e9f7..0473d7ee2668 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -699,6 +699,62 @@ vop_mmu: iommu@fe043e00 {
->  		status = "disabled";
->  	};
->  
-> +	dsi0: dsi@fe060000 {
-> +		compatible = "rockchip,rk3568-mipi-dsi", "snps,dw-mipi-dsi";
-> +		reg = <0x00 0xfe060000 0x00 0x10000>;
-> +		interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
-> +		clock-names = "pclk", "hclk";
-> +		clocks = <&cru PCLK_DSITX_0>, <&cru HCLK_VO>;
-> +		phy-names = "dphy";
-> +		phys = <&dsi_dphy0>;
-> +		power-domains = <&power RK3568_PD_VO>;
-> +		reset-names = "apb";
-> +		resets = <&cru SRST_P_DSITX_0>;
-> +		rockchip,grf = <&grf>;
-> +		status = "disabled";
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			dsi0_in: port@0 {
-> +				reg = <0>;
-> +			};
-> +
-> +			dsi0_out: port@1 {
-> +				reg = <1>;
-> +			};
-> +		};
-> +	};
-> +
-> +	dsi1: dsi@fe070000 {
-> +		compatible = "rockchip,rk3568-mipi-dsi", "snps,dw-mipi-dsi";
-> +		reg = <0x0 0xfe070000 0x0 0x10000>;
-> +		interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-> +		clock-names = "pclk", "hclk";
-> +		clocks = <&cru PCLK_DSITX_1>, <&cru HCLK_VO>;
-> +		phy-names = "dphy";
-> +		phys = <&dsi_dphy1>;
-> +		power-domains = <&power RK3568_PD_VO>;
-> +		reset-names = "apb";
-> +		resets = <&cru SRST_P_DSITX_1>;
-> +		rockchip,grf = <&grf>;
-> +		status = "disabled";
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			dsi1_in: port@0 {
-> +				reg = <0>;
-> +			};
-> +
-> +			dsi1_out: port@1 {
-> +				reg = <1>;
-> +			};
-> +		};
-> +	};
-> +
->  	hdmi: hdmi@fe0a0000 {
->  		compatible = "rockchip,rk3568-dw-hdmi";
->  		reg = <0x0 0xfe0a0000 0x0 0x20000>;
-> @@ -1594,6 +1650,30 @@ combphy2: phy@fe840000 {
->  		status = "disabled";
->  	};
->  
-> +	dsi_dphy0: mipi-dphy@fe850000 {
-> +		compatible = "rockchip,rk3568-dsi-dphy";
-> +		reg = <0x0 0xfe850000 0x0 0x10000>;
-> +		clock-names = "ref", "pclk";
-> +		clocks = <&pmucru CLK_MIPIDSIPHY0_REF>, <&cru PCLK_MIPIDSIPHY0>;
-> +		#phy-cells = <0>;
-> +		power-domains = <&power RK3568_PD_VO>;
-> +		reset-names = "apb";
-> +		resets = <&cru SRST_P_MIPIDSIPHY0>;
-> +		status = "disabled";
-> +	};
-> +
-> +	dsi_dphy1: mipi-dphy@fe860000 {
-> +		compatible = "rockchip,rk3568-dsi-dphy";
-> +		reg = <0x0 0xfe860000 0x0 0x10000>;
-> +		clock-names = "ref", "pclk";
-> +		clocks = <&pmucru CLK_MIPIDSIPHY1_REF>, <&cru PCLK_MIPIDSIPHY1>;
-> +		#phy-cells = <0>;
-> +		power-domains = <&power RK3568_PD_VO>;
-> +		reset-names = "apb";
-> +		resets = <&cru SRST_P_MIPIDSIPHY1>;
-> +		status = "disabled";
-> +	};
-> +
->  	usb2phy0: usb2phy@fe8a0000 {
->  		compatible = "rockchip,rk3568-usb2phy";
->  		reg = <0x0 0xfe8a0000 0x0 0x10000>;
+Krzysztof
