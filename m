@@ -2,109 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3B265BE70C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 15:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 648965BE745
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 15:39:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231245AbiITN1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 09:27:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35986 "EHLO
+        id S229828AbiITNjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 09:39:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbiITN1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 09:27:38 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233DE49B5B;
-        Tue, 20 Sep 2022 06:27:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id C7B9DCE17D1;
-        Tue, 20 Sep 2022 13:27:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74AF0C4347C;
-        Tue, 20 Sep 2022 13:27:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663680451;
-        bh=1fcbXZeScQcLotv0gPiS1nNUsEdY9jyJFjsJdQHPPQI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=n+FRQAnxkPyOxYuPptioo1CnZfLJ4GXyMQm14RjccLhABRTQZ/A1kp9/IfxmH1QIM
-         HG2yNpVQwu8TxZwklm8QhHfhzEO0kSPlHsHCEa5fWQ20oO+Gnga7PCnkb1kWWPbPwK
-         1UbDtg9j+k6ac0FRy2E6FZyQiOLzjLEfklchKHFEE3s1ydrQy4YhRkD2jXrGOpgOiw
-         L/rHEZtYF71vffBn2KBUkCQLnypLGNzZNWF1eKiDe6xTZRKYVX9917hKJPFlszNmcZ
-         iZVfNgqq7qIBxFC5oRyVZ/u7kgNFLhrPLKU2+2571HDR4sH42Z6OIh3VQC9IFG7orb
-         tbgofw/Ivi1fA==
-Received: by pali.im (Postfix)
-        id E25DB2E12; Tue, 20 Sep 2022 15:27:29 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        with ESMTP id S230428AbiITNja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 09:39:30 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED138B1A;
+        Tue, 20 Sep 2022 06:39:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=3pIjUlJA919B9lQ4aUcTZDjl/ToQpR3Iu1q2qExlc+0=; b=RZSS9O3GRyd5jXE3KqsVzp/6ja
+        w4m8lGQbeA2elwVVGEM4FwtLGj41wsYTWJU01DB3/dGo7oz+mIiJ307vyc0rZZf6FUXW6nV/IK3ih
+        pWNCaYVxkQanbkWV34A7U42jndu60DeFADkyspOOmRFIy0w+IJ1b7pPZ9aKgoBWH4Ouk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oadT4-00HH5w-0s; Tue, 20 Sep 2022 15:39:18 +0200
+Date:   Tue, 20 Sep 2022 15:39:18 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Gregory Clement <gregory.clement@bootlin.com>,
         Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Marcin Wojtas <mw@semihalf.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] ARM: dts: turris-omnia: Define S/PDIF audio card
-Date:   Tue, 20 Sep 2022 15:26:48 +0200
-Message-Id: <20220920132648.2008-6-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220920132648.2008-1-pali@kernel.org>
+        Marcin Wojtas <mw@semihalf.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/5] ASoC: kirkwood: enable Kirkwood driver for Armada
+ 38x platforms
+Message-ID: <YynChnIJe3SZUUW5@lunn.ch>
 References: <20220920132648.2008-1-pali@kernel.org>
+ <20220920132648.2008-2-pali@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220920132648.2008-2-pali@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Turris Omnia has GPIO51 exported on pin header U16, which works in S/PDIF
-output mode. So define S/PDIF audio output card for this pin.
+> +	if (of_device_is_compatible(np, "marvell,armada-380-audio")) {
+> +		err = armada_38x_i2s_init_quirk(pdev, priv, soc_dai);
+> +		/* Set initial pll frequency */
+> +		if (priv->pll_config)
+> +			armada_38x_set_pll(priv->pll_config, 44100);
+> +		if (err < 0)
+> +			return err;
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
----
- arch/arm/boot/dts/armada-385-turris-omnia.dts | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+A nitpick: It would be better to do the test for err before calling
+armada_38x_set_pll(), and then there is no need for the NULL check.
 
-diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-index d1e0db6e5730..fd0960157589 100644
---- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
-+++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-@@ -105,6 +105,33 @@
- 		 */
- 		status = "disabled";
- 	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "SPDIF";
-+		simple-audio-card,format = "i2s";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&audio_controller 1>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&spdif_out>;
-+		};
-+	};
-+
-+	spdif_out: spdif-out {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+	};
-+};
-+
-+&audio_controller {
-+	/* Pin header U16, GPIO51 in SPDIFO mode */
-+	pinctrl-0 = <&spdif_pins>;
-+	pinctrl-names = "default";
-+	spdif-mode;
-+	status = "okay";
- };
- 
- &bm {
--- 
-2.20.1
-
+      Andrew
