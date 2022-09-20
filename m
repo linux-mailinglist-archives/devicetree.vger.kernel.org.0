@@ -2,297 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ED225BDEEA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23AC35BDE8C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:41:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230112AbiITH5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 03:57:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52582 "EHLO
+        id S231178AbiITHku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 03:40:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbiITH5S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:57:18 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928292A43F;
-        Tue, 20 Sep 2022 00:57:14 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3D138225F70;
-        Tue, 20 Sep 2022 09:57:13 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A9CDE225F6A;
-        Tue, 20 Sep 2022 09:57:12 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 8CD89181D0CB;
-        Tue, 20 Sep 2022 15:57:07 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     p.zabel@pengutronix.de, l.stach@pengutronix.de,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
-        shawnguo@kernel.org, vkoul@kernel.org,
-        alexander.stein@ew.tq-group.com, marex@denx.de,
-        richard.leitner@linux.dev
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [PATCH v8 2/2] phy: freescale: imx8m-pcie: Add i.MX8MP PCIe PHY support
-Date:   Tue, 20 Sep 2022 15:38:18 +0800
-Message-Id: <1663659498-5180-3-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1663659498-5180-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1663659498-5180-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231274AbiITHkF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:40:05 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E7B205FC
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:39:40 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id a3so2340231lfk.9
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:39:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=nc7FAnhJslPM3aj8fWk0BlLztY57x3kAnKtRYymnzVI=;
+        b=ICSaCjJ3Z8yhjSzU+1bRQzjF0WCTMASmaRiTYwnitYObRN75qRZIIA8ZVATkwocZZp
+         AhjWbIFIMOT6ipm8byi1mjkZRnfYIfonS/bf5VQxVm7JJ6EUMnkR+WEma24pjyjXeCaP
+         LD9Brlb5/wV008y2JHDHXh7nNSVsWCLaSutxM98QMuSa0bUi0u5RJxaKsC+mHS7Ka0Uj
+         HrYqxWjrXgnsmflDmI94iZovBIQhoWyiAiR1mcDsuf1E4BTk0PAGVGnKiZfcDwQaMk6b
+         vZJqAcy4kGE6qktNgm5LMGSSjrNaIhe4zBZEKcK/8sInVniaJ5el6HiKznA+lCz5UPJW
+         uoHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=nc7FAnhJslPM3aj8fWk0BlLztY57x3kAnKtRYymnzVI=;
+        b=Ol0L1oGeEMHXdsIbMjh5rnrPqZOWHyy7gYNDAaMyhfUotga59pBE5ZXTIIL8CqOZFw
+         8TLNKTo+2rCVZcffnOb1IIFhjVfNNJoz4v8Cn567ZHyqwaIGmdZ/AgamNx5Iyz/nOiQH
+         dlTM3zll1RhzOnYTZz1IJH16KYHgYivMNlMPpoGtqJdPFu7GorNBRfOwSzzDjGmC7j/y
+         WTSSg/3NlUyIJSBH2w+Mgz9mFgVWn2m/ZIlarB2IulsMuCnPqHhnuN+3eb99xpzyajHm
+         o0xlZwwlKDrCMvAjVMXda1GgvYzRR3huzadLdwzxYpx8DYM0EFnqFxlCnH6tw7TI7OR7
+         EdDw==
+X-Gm-Message-State: ACrzQf1zW+o9rpfjks5kFxuwv4IkfJ967teWx2DkV/WPcHOEGzbyJ26H
+        Sfo01k+mkTLUsa2JscEcrmIeVElHVYX0fg==
+X-Google-Smtp-Source: AMsMyM6O5nk67vvEFT3y/FNnvEcEBbKYpUGpV1HXphGrKS4OuRoCLdsYouFN4hpTbbe5q3pxiG0dEw==
+X-Received: by 2002:a19:5e50:0:b0:497:a331:91d9 with SMTP id z16-20020a195e50000000b00497a33191d9mr7855037lfi.162.1663659578265;
+        Tue, 20 Sep 2022 00:39:38 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id 1-20020ac25f01000000b0049f5358062dsm180311lfq.98.2022.09.20.00.39.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Sep 2022 00:39:37 -0700 (PDT)
+Message-ID: <cdc59072-648c-ce53-b9a5-b796d379e575@linaro.org>
+Date:   Tue, 20 Sep 2022 09:39:36 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v5 2/3] memory: omap-gpmc: add support for wait pin
+ polarity
+Content-Language: en-US
+To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+Cc:     "rogerq@kernel.org" <rogerq@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
+ <20220916120749.2517727-3-benedikt.niedermayr@siemens.com>
+ <6dd3d41b-eb75-3754-8a17-a8cb4bc838a8@linaro.org>
+ <f6f59421ac9b0e2c0b85918282c33f325726c4bd.camel@siemens.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <f6f59421ac9b0e2c0b85918282c33f325726c4bd.camel@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add i.MX8MP PCIe PHY support.
+On 19/09/2022 15:25, Niedermayr, BENEDIKT wrote:
+> Hi Krzysztof,
+> 
+> On Mon, 2022-09-19 at 11:38 +0200, Krzysztof Kozlowski wrote:
+>> On 16/09/2022 14:07, B. Niedermayr wrote:
+>>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+>>>
+>>> The waitpin polarity can be configured via the WAITPIN<X>POLARITY bits
+>>> in the GPMC_CONFIG register. This is currently not supported by the
+>>> driver. This patch adds support for setting the required register bits
+>>> with the "gpmc,wait-pin-polarity" dt-property.
+>>>
+>>> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+>>> ---
+>>>  drivers/memory/omap-gpmc.c              | 27 +++++++++++++++++++++++++
+>>>  include/linux/platform_data/gpmc-omap.h |  6 ++++++
+>>>  2 files changed, 33 insertions(+)
+>>>
+>>> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
+>>> index ea495e93766b..2853fc28bccc 100644
+>>> --- a/drivers/memory/omap-gpmc.c
+>>> +++ b/drivers/memory/omap-gpmc.c
+>>> @@ -132,6 +132,7 @@
+>>>  #define GPMC_CONFIG_DEV_SIZE	0x00000002
+>>>  #define GPMC_CONFIG_DEV_TYPE	0x00000003
+>>>  
+>>> +#define GPMC_CONFIG_WAITPINPOLARITY(pin)	(BIT(pin) << 8)
+>>>  #define GPMC_CONFIG1_WRAPBURST_SUPP     (1 << 31)
+>>>  #define GPMC_CONFIG1_READMULTIPLE_SUPP  (1 << 30)
+>>>  #define GPMC_CONFIG1_READTYPE_ASYNC     (0 << 29)
+>>> @@ -1882,6 +1883,17 @@ int gpmc_cs_program_settings(int cs, struct gpmc_settings *p)
+>>>  
+>>>  	gpmc_cs_write_reg(cs, GPMC_CS_CONFIG1, config1);
+>>>  
+>>> +	if (p->wait_pin_polarity != WAITPINPOLARITY_DEFAULT) {
+>>> +		config1 = gpmc_read_reg(GPMC_CONFIG);
+>>> +
+>>> +		if (p->wait_pin_polarity == WAITPINPOLARITY_ACTIVE_LOW)
+>>> +			config1 &= ~GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
+>>> +		else if (p->wait_pin_polarity == WAITPINPOLARITY_ACTIVE_HIGH)
+>>> +			config1 |= GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
+>>> +
+>>> +		gpmc_write_reg(GPMC_CONFIG, config1);
+>>
+>> What happens if wait pin is shared and you have different polarities in
+>> both of devices?
+> In this case the second one wins and will overwrite the polarity of the first one.
+> But that would be the result of a misconfiguration in the DT.
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Tested-by: Marek Vasut <marex@denx.de>
-Tested-by: Richard Leitner <richard.leitner@skidata.com>
-Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
----
- drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 144 ++++++++++++++-------
- 1 file changed, 97 insertions(+), 47 deletions(-)
+In many cases drivers do not accept blindly a DT, but perform some basic
+sanity on it, especially if mistake is easy to make (e.g. with
+overlays). Such design of DT is just fragile. Schema cannot validate it,
+driver does not care, mistake is quite possible.
 
-diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-index ad7d2edfc414..bef0e9d64244 100644
---- a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-+++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-@@ -11,6 +11,9 @@
- #include <linux/mfd/syscon.h>
- #include <linux/mfd/syscon/imx7-iomuxc-gpr.h>
- #include <linux/module.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/of_device.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
-@@ -31,12 +34,10 @@
- #define IMX8MM_PCIE_PHY_CMN_REG065	0x194
- #define  ANA_AUX_RX_TERM		(BIT(7) | BIT(4))
- #define  ANA_AUX_TX_LVL			GENMASK(3, 0)
--#define IMX8MM_PCIE_PHY_CMN_REG75	0x1D4
--#define  PCIE_PHY_CMN_REG75_PLL_DONE	0x3
-+#define IMX8MM_PCIE_PHY_CMN_REG075	0x1D4
-+#define  ANA_PLL_DONE			0x3
- #define PCIE_PHY_TRSV_REG5		0x414
--#define  PCIE_PHY_TRSV_REG5_GEN1_DEEMP	0x2D
- #define PCIE_PHY_TRSV_REG6		0x418
--#define  PCIE_PHY_TRSV_REG6_GEN2_DEEMP	0xF
- 
- #define IMX8MM_GPR_PCIE_REF_CLK_SEL	GENMASK(25, 24)
- #define IMX8MM_GPR_PCIE_REF_CLK_PLL	FIELD_PREP(IMX8MM_GPR_PCIE_REF_CLK_SEL, 0x3)
-@@ -47,16 +48,28 @@
- #define IMX8MM_GPR_PCIE_SSC_EN		BIT(16)
- #define IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE	BIT(9)
- 
-+enum imx8_pcie_phy_type {
-+	IMX8MM,
-+	IMX8MP,
-+};
-+
-+struct imx8_pcie_phy_drvdata {
-+	enum		imx8_pcie_phy_type variant;
-+	const char	*gpr;
-+};
-+
- struct imx8_pcie_phy {
- 	void __iomem		*base;
- 	struct clk		*clk;
- 	struct phy		*phy;
- 	struct regmap		*iomuxc_gpr;
- 	struct reset_control	*reset;
-+	struct reset_control	*perst;
- 	u32			refclk_pad_mode;
- 	u32			tx_deemph_gen1;
- 	u32			tx_deemph_gen2;
- 	bool			clkreq_unused;
-+	const struct imx8_pcie_phy_drvdata	*drvdata;
- };
- 
- static int imx8_pcie_phy_init(struct phy *phy)
-@@ -68,31 +81,20 @@ static int imx8_pcie_phy_init(struct phy *phy)
- 	reset_control_assert(imx8_phy->reset);
- 
- 	pad_mode = imx8_phy->refclk_pad_mode;
--	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
--	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
--			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
--			   imx8_phy->clkreq_unused ?
--			   0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
--	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
--			   IMX8MM_GPR_PCIE_AUX_EN,
--			   IMX8MM_GPR_PCIE_AUX_EN);
--	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
--			   IMX8MM_GPR_PCIE_POWER_OFF, 0);
--	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
--			   IMX8MM_GPR_PCIE_SSC_EN, 0);
--
--	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
--			   IMX8MM_GPR_PCIE_REF_CLK_SEL,
--			   pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ?
--			   IMX8MM_GPR_PCIE_REF_CLK_EXT :
--			   IMX8MM_GPR_PCIE_REF_CLK_PLL);
--	usleep_range(100, 200);
--
--	/* Do the PHY common block reset */
--	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
--			   IMX8MM_GPR_PCIE_CMN_RST,
--			   IMX8MM_GPR_PCIE_CMN_RST);
--	usleep_range(200, 500);
-+	switch (imx8_phy->drvdata->variant) {
-+	case IMX8MM:
-+		/* Tune PHY de-emphasis setting to pass PCIe compliance. */
-+		if (imx8_phy->tx_deemph_gen1)
-+			writel(imx8_phy->tx_deemph_gen1,
-+			       imx8_phy->base + PCIE_PHY_TRSV_REG5);
-+		if (imx8_phy->tx_deemph_gen2)
-+			writel(imx8_phy->tx_deemph_gen2,
-+			       imx8_phy->base + PCIE_PHY_TRSV_REG6);
-+		break;
-+	case IMX8MP:
-+		reset_control_assert(imx8_phy->perst);
-+		break;
-+	}
- 
- 	if (pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ||
- 	    pad_mode == IMX8_PCIE_REFCLK_PAD_UNUSED) {
-@@ -120,20 +122,44 @@ static int imx8_pcie_phy_init(struct phy *phy)
- 		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG065);
- 	}
- 
--	/* Tune PHY de-emphasis setting to pass PCIe compliance. */
--	if (imx8_phy->tx_deemph_gen1)
--		writel(imx8_phy->tx_deemph_gen1,
--		       imx8_phy->base + PCIE_PHY_TRSV_REG5);
--	if (imx8_phy->tx_deemph_gen2)
--		writel(imx8_phy->tx_deemph_gen2,
--		       imx8_phy->base + PCIE_PHY_TRSV_REG6);
-+	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
-+	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-+			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
-+			   imx8_phy->clkreq_unused ?
-+			   0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
-+	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-+			   IMX8MM_GPR_PCIE_AUX_EN,
-+			   IMX8MM_GPR_PCIE_AUX_EN);
-+	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-+			   IMX8MM_GPR_PCIE_POWER_OFF, 0);
-+	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-+			   IMX8MM_GPR_PCIE_SSC_EN, 0);
-+
-+	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-+			   IMX8MM_GPR_PCIE_REF_CLK_SEL,
-+			   pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ?
-+			   IMX8MM_GPR_PCIE_REF_CLK_EXT :
-+			   IMX8MM_GPR_PCIE_REF_CLK_PLL);
-+	usleep_range(100, 200);
- 
--	reset_control_deassert(imx8_phy->reset);
-+	/* Do the PHY common block reset */
-+	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-+			   IMX8MM_GPR_PCIE_CMN_RST,
-+			   IMX8MM_GPR_PCIE_CMN_RST);
-+
-+	switch (imx8_phy->drvdata->variant) {
-+	case IMX8MP:
-+		reset_control_deassert(imx8_phy->perst);
-+		fallthrough;
-+	case IMX8MM:
-+		reset_control_deassert(imx8_phy->reset);
-+		usleep_range(200, 500);
-+		break;
-+	}
- 
- 	/* Polling to check the phy is ready or not. */
--	ret = readl_poll_timeout(imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG75,
--				 val, val == PCIE_PHY_CMN_REG75_PLL_DONE,
--				 10, 20000);
-+	ret = readl_poll_timeout(imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG075,
-+				 val, val == ANA_PLL_DONE, 10, 20000);
- 	return ret;
- }
- 
-@@ -160,6 +186,25 @@ static const struct phy_ops imx8_pcie_phy_ops = {
- 	.owner		= THIS_MODULE,
- };
- 
-+static const struct imx8_pcie_phy_drvdata drvdata[] = {
-+	[IMX8MM] = {
-+		.variant = IMX8MM,
-+		.gpr = "fsl,imx8mm-iomuxc-gpr",
-+	},
-+
-+	[IMX8MP] = {
-+		.variant = IMX8MP,
-+		.gpr = "fsl,imx8mp-iomuxc-gpr",
-+	},
-+};
-+
-+static const struct of_device_id imx8_pcie_phy_of_match[] = {
-+	{.compatible = "fsl,imx8mm-pcie-phy", .data = &drvdata[IMX8MM], },
-+	{.compatible = "fsl,imx8mp-pcie-phy", .data = &drvdata[IMX8MP], },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
-+
- static int imx8_pcie_phy_probe(struct platform_device *pdev)
- {
- 	struct phy_provider *phy_provider;
-@@ -172,6 +217,8 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
- 	if (!imx8_phy)
- 		return -ENOMEM;
- 
-+	imx8_phy->drvdata = of_device_get_match_data(dev);
-+
- 	/* get PHY refclk pad mode */
- 	of_property_read_u32(np, "fsl,refclk-pad-mode",
- 			     &imx8_phy->refclk_pad_mode);
-@@ -197,7 +244,7 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
- 
- 	/* Grab GPR config register range */
- 	imx8_phy->iomuxc_gpr =
--		 syscon_regmap_lookup_by_compatible("fsl,imx6q-iomuxc-gpr");
-+		 syscon_regmap_lookup_by_compatible(imx8_phy->drvdata->gpr);
- 	if (IS_ERR(imx8_phy->iomuxc_gpr)) {
- 		dev_err(dev, "unable to find iomuxc registers\n");
- 		return PTR_ERR(imx8_phy->iomuxc_gpr);
-@@ -209,6 +256,15 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
- 		return PTR_ERR(imx8_phy->reset);
- 	}
- 
-+	if (imx8_phy->drvdata->variant == IMX8MP) {
-+		imx8_phy->perst =
-+			devm_reset_control_get_exclusive(dev, "perst");
-+		if (IS_ERR(imx8_phy->perst)) {
-+			dev_err(dev, "Failed to get PCIE PHY PERST control\n");
-+			return PTR_ERR(imx8_phy->perst);
-+		}
-+	}
-+
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	imx8_phy->base = devm_ioremap_resource(dev, res);
- 	if (IS_ERR(imx8_phy->base))
-@@ -225,12 +281,6 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
- 	return PTR_ERR_OR_ZERO(phy_provider);
- }
- 
--static const struct of_device_id imx8_pcie_phy_of_match[] = {
--	{.compatible = "fsl,imx8mm-pcie-phy",},
--	{ },
--};
--MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
--
- static struct platform_driver imx8_pcie_phy_driver = {
- 	.probe	= imx8_pcie_phy_probe,
- 	.driver = {
--- 
-2.25.1
+> 
+> I'm not sure how to proceed here? Does it make sense to add a check for different 
+> waitpin polarities?
 
+I don't know. I would just disallow such sharing entirely or disallow
+sharing if DT is misconfigured.
+
+
+> 
+> 
+>>
+>>> +	}
+>>> +
+>>>  	return 0;
+>>>  }
+>>>  
+>>> @@ -1981,7 +1993,22 @@ void gpmc_read_settings_dt(struct device_node *np, struct gpmc_settings *p)
+>>>  				__func__);
+>>>  	}
+>>>  
+>>> +	p->wait_pin_polarity = WAITPINPOLARITY_DEFAULT;
+>>> +
+>>>  	if (!of_property_read_u32(np, "gpmc,wait-pin", &p->wait_pin)) {
+>>> +		if (!of_property_read_u32(np, "gpmc,wait-pin-polarity",
+>>> +					  &p->wait_pin_polarity)) {
+>>> +			if (p->wait_pin_polarity != WAITPINPOLARITY_ACTIVE_HIGH &&
+>>> +			    p->wait_pin_polarity != WAITPINPOLARITY_ACTIVE_LOW &&
+>>> +			    p->wait_pin_polarity != WAITPINPOLARITY_DEFAULT) {
+>>
+>> WAITPINPOLARITY_DEFAULT is not allowed in DT, so you can skip it.
+> This value is not assigned from the DT. It is only assigned within the GPMC and serves as a init
+> value (right before the if clause). This helps in case no configuration from DT is done where the 
+> GPMC registers should stay untouched.
+
+I don't see it. Your code is:
+
+p->wait_pin_polarity = WAITPINPOLARITY_DEFAULT;
+# and DT has WAITPINPOLARITY_DEFAULT
+if (....) {
+  pr_err
+  p->wait_pin_polarity = WAITPINPOLARITY_DEFAULT;
+} else {
+  pr_err
+}
+
+so how this helps in case no configuration from DT is done?
+
+Best regards,
+Krzysztof
