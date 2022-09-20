@@ -2,98 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF8C15BE5F2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 14:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D33F35BE6A2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 15:04:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiITMew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 08:34:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51974 "EHLO
+        id S230287AbiITNEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 09:04:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbiITMeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 08:34:50 -0400
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 545FF19018;
-        Tue, 20 Sep 2022 05:34:49 -0700 (PDT)
-Received: by mail-qv1-f47.google.com with SMTP id w4so1892514qvp.2;
-        Tue, 20 Sep 2022 05:34:49 -0700 (PDT)
+        with ESMTP id S230269AbiITNEm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 09:04:42 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75B8BDFBD
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 06:04:40 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id a10so2983672ljq.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 06:04:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=mygucZLIIUq2+FCsjFkyMMlDK+CJ9xh7zLzeZeK2yZg=;
+        b=WsxTjmjjR5He1obnmT81IpfHGF3TAtQwEqHc9G5ZqUrFs2kbImGYXtBE/xJo9lJWJE
+         W2TazRt+bt2n5AWiU1ukRCVo5TNGXC566ucLppTnHSuPW0MP0YvlovfNFKnTb6skx2aS
+         mFLuiC9VSf2F3yeK/uMlAHPnbgGU3EjqCDChKYlbVl9NMxHgNWhZNusMNGJ2VAHqWeaS
+         7Wv2polvLKRw4rSxP65KinAT2KfRSMogHr1ERuG96Nw8pHE1xbuykZeCidiKoOXdzeAe
+         Sn62ybtz34tDJ1SG8HonleKGLwlnDmSt7gc2LEKo7QcXmvG9/OVHn4pkTPHLRsQIyfYK
+         +/rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=DScy5TK0GP5AqTqFl701GW46IDwtxGgy76xOd2cvfOc=;
-        b=rAedqHJCKUz1FFJmPMPtQFFJzRU95uT9J02jZeqB0yClI3gMUlERSieH5tMqeYTq3X
-         j13bqfPAEi0FKuYgeODQpVHxKHaHj8eyDPRfjqWiMWqNf7oHTRdS24hktUqLnV55TSl7
-         T99b783aEo710bqQdKV0qY2JDgLulYuuWrOMXMM+WgCZ/FKyN5K/V2LVFJfuxG9pw5Hp
-         7N2M6PayLrTdUVA5geCetTQtnv5PNdBqo1ttgXc7QaQu4Y9TsNpL9ZHUCobv0NyKmpfa
-         LAWGZK1D8uA6mSTWG85u8DIpdTAlEjrcdKLKZsb6bpywT7ufS7z45gPcGhD6T2esAG9n
-         6XGQ==
-X-Gm-Message-State: ACrzQf21txhdIgMOGLaX8ZWfivTVMiGQOlKT2rXlR4EwzxDYs1HMfsul
-        QCyHbRorxQ8zN0zoMMQmtV9TU87+9PfOFA==
-X-Google-Smtp-Source: AMsMyM6C+shd7dihay6XlWt6Es6bG/q9Kks5AstAoKM8ZXJJCPjKFCXaa2i2xJf3lz6Jx9zqjfT3Gw==
-X-Received: by 2002:a0c:8d85:0:b0:497:8b1:d372 with SMTP id t5-20020a0c8d85000000b0049708b1d372mr18938386qvb.68.1663677288043;
-        Tue, 20 Sep 2022 05:34:48 -0700 (PDT)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id i11-20020a05622a08cb00b00342f844e30fsm875816qte.31.2022.09.20.05.34.46
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=mygucZLIIUq2+FCsjFkyMMlDK+CJ9xh7zLzeZeK2yZg=;
+        b=R7ByJmYPhYvBIsOOs1lzTDES5o3xDbeHBYtrwcvlKxezNks7vs0y31cxciCS0C7F+8
+         JMnDkGkyStsBz8MY16eBp4N0hm1O5cyIJLd0139wZd5mab7c2iJHGlkUv7bo6UVYFuN9
+         686bu51wKsWdbW6u1Xo9GVggjpPPmpnr/tZipqBIM4UCcRFfFc5dFB8+hzCTUtB9nkYD
+         A5+xerGE7Yw2CI0KUxU8jqV17EpfqTVdW4vahj2OavuAiELo/9KITE+Eoou7XN4OW9h6
+         qvlrZXWokMeQTlQLcs2MPuIBW80FueFwH6pbr5rzI5/1BMMdwkfpxhIsClZuxCNXeRsG
+         qNKA==
+X-Gm-Message-State: ACrzQf0o7+IDL8kru1ND9o66cC7jxkhE54LlIfsw7zVnTKnJzb87T68g
+        N44is6+WIrkJLjAwyn4g0gF+qA==
+X-Google-Smtp-Source: AMsMyM5iwAJVadIwLWzNsycVIha+pQHWZEUDNZq7PgtHVR0W04+wybhIyzQLVLqGmQPd6wdqR+xJfA==
+X-Received: by 2002:a2e:98c:0:b0:26a:9b25:b76f with SMTP id 134-20020a2e098c000000b0026a9b25b76fmr6869396ljj.256.1663679078764;
+        Tue, 20 Sep 2022 06:04:38 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id y20-20020ac24214000000b0049f54a976efsm312567lfh.29.2022.09.20.06.04.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 05:34:47 -0700 (PDT)
-Received: by mail-yb1-f176.google.com with SMTP id p69so3233938yba.0;
-        Tue, 20 Sep 2022 05:34:46 -0700 (PDT)
-X-Received: by 2002:a25:3746:0:b0:6b1:4a12:b2d5 with SMTP id
- e67-20020a253746000000b006b14a12b2d5mr16262084yba.89.1663677286562; Tue, 20
- Sep 2022 05:34:46 -0700 (PDT)
+        Tue, 20 Sep 2022 06:04:38 -0700 (PDT)
+Message-ID: <b4b61b0a-25a2-b435-4154-2ec2db2c289e@linaro.org>
+Date:   Tue, 20 Sep 2022 15:04:37 +0200
 MIME-Version: 1.0
-References: <20220915181558.354737-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220915181558.354737-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220915181558.354737-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 20 Sep 2022 14:34:35 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUWOGRpdG5=GLHc=fySqn7ErHtO0c91bJsgOO+Bp1ZUoA@mail.gmail.com>
-Message-ID: <CAMuHMdUWOGRpdG5=GLHc=fySqn7ErHtO0c91bJsgOO+Bp1ZUoA@mail.gmail.com>
-Subject: Re: [PATCH v3 09/10] MAINTAINERS: Add entry for Renesas RISC-V architecture
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v3 08/15] arm64: dts: qcom: msm8996: add missing TCSR
+ syscon compatible
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Atish Patra <atishp@rivosinc.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220909092035.223915-1-krzysztof.kozlowski@linaro.org>
+ <20220909092035.223915-9-krzysztof.kozlowski@linaro.org>
+ <9f47ef0f-6e73-9ed4-55db-491d22c55c76@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9f47ef0f-6e73-9ed4-55db-491d22c55c76@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 15, 2022 at 8:17 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add RISC-V architecture as part of ARM/Renesas architecture, as they have
-> the same maintainers, use the same development collaboration
-> infrastructure, and share many files.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2->v3
-> * Merged as part of ARM
+On 20/09/2022 00:13, Dmitry Baryshkov wrote:
+> On 09/09/2022 12:20, Krzysztof Kozlowski wrote:
+>> TCSR syscon node should come with dedicated compatible.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>> index 166374566a49..5f45d0589265 100644
+>> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>> @@ -3499,7 +3499,7 @@ frame@98c0000 {
+>>   		};
+>>   
+>>   		saw3: syscon@9a10000 {
+>> -			compatible = "syscon";
+>> +			compatible = "qcom,tcsr-msm8996", "syscon";
+> 
+> No! saw3 is not a TCSR. It is a separate region, which should be managed 
+> by the SPM driver.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Indeed. Thanks for checking this.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
