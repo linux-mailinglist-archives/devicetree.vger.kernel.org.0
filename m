@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13F225BE2ED
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4A8C5BE316
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230187AbiITKUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 06:20:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53324 "EHLO
+        id S229582AbiITKZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 06:25:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiITKT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:19:58 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 625B026561;
-        Tue, 20 Sep 2022 03:19:57 -0700 (PDT)
+        with ESMTP id S229505AbiITKZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:25:51 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E4335E674;
+        Tue, 20 Sep 2022 03:25:50 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B68D56600368;
-        Tue, 20 Sep 2022 11:19:54 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id F07716600368;
+        Tue, 20 Sep 2022 11:25:47 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663669195;
-        bh=iUq+6SOQiYHg6R9Dqd5eD1XyHyTrpOd2jfDvPJ7B3OE=;
+        s=mail; t=1663669549;
+        bh=pJFt8yhuO+61RNQoKu/PstmWS0PBWMsonGq/dnFhPCY=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=oXSviiEBnEb3mN3mSMGpsPl5quu0E8RjJ8pK+7UR4nmiguSAC3BKIxhr4B0r7G7m/
-         gxrjVyyCLhyOVvWAYc7mxNppd2ejo3UTlHSYgyX3q35Lz1AqTkSFhkYgOppJBUp6TD
-         sd/fccKGgLgRZ+4/BDTBH+UlMHnJmlUd24csAq+M2FOWrbUh1NMgpybwVHNvFe0vy+
-         BkGSpxH1eutjiyi9sFAPUN8ede0nPu5WZY/hQVw5wQIb7ohatSElbpcyA8xXL/vlOU
-         4tbm9gxUcce6pYYgCpKeGLnqqotChSWHRn5jwuXQUhpa+5b/o95AeWBVHQLW4C7v6H
-         iWaZykJzDms6w==
-Message-ID: <5071cc60-313e-bd01-228f-f0a0f2ce99a8@collabora.com>
-Date:   Tue, 20 Sep 2022 12:19:52 +0200
+        b=R2oc5TOvtqehwVdIVv4+ZI4lKyrDIUceJdbxMi/4V4X4XDvk3e3SdGay/LYNOYzrC
+         DXxdJO5MyIrCLEkMrhjlY1u96S1/affuMfe8RaXDP7nFTXFnZ4MWC3M1xOzBDeK5m8
+         lEuvNw5Aggj73VIO/CLscBO+EUrcp+7eCblSGS1sIssmA6ELNjdJebtJWOjsFVDR/j
+         uyJbu45SEV9y71RXViboId+7Z/hCjzmzlJV1enTIUR5hQfvCVBwLXemvji4sqsnqRl
+         11BEWGHHH9GsllzQ/+5YTNdKLeZ4jQHIN3tTk5EKUrTsggQa9wzRKM5YpE1h9seXu4
+         qpub0SjqOUUWg==
+Message-ID: <153dcb4f-4583-427e-83c7-bdd33e3b11aa@collabora.com>
+Date:   Tue, 20 Sep 2022 12:25:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.0
-Subject: Re: [PATCH v1 06/17] dt-bindings: mediatek: set the hdmi to be
- compatible with syscon
+Subject: Re: [PATCH v1 07/17] drm/mediatek: extract common functions from the
+ mtk hdmi driver
 Content-Language: en-US
 To:     Guillaume Ranquet <granquet@baylibre.com>,
         Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
@@ -60,10 +60,10 @@ Cc:     linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
         linux-phy@lists.infradead.org, devicetree@vger.kernel.org
 References: <20220919-v1-0-4844816c9808@baylibre.com>
- <20220919-v1-6-4844816c9808@baylibre.com>
+ <20220919-v1-7-4844816c9808@baylibre.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220919-v1-6-4844816c9808@baylibre.com>
+In-Reply-To: <20220919-v1-7-4844816c9808@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,35 +76,62 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Il 19/09/22 18:56, Guillaume Ranquet ha scritto:
-> In order to share register with a dedicated ddc driver, set the hdmi
-> compatible to syscon.
+> Create a common "framework" that can be used to add support for
+> different hdmi IPs within the mediatek range of products.
 > 
 > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
-> index abb231a0694b..86297b7eb7f7 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
-> @@ -16,12 +16,14 @@ description: |
+> diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
+> index d4d193f60271..008ec69da67b 100644
+> --- a/drivers/gpu/drm/mediatek/Makefile
+> +++ b/drivers/gpu/drm/mediatek/Makefile
+> @@ -22,7 +22,8 @@ obj-$(CONFIG_DRM_MEDIATEK) += mediatek-drm.o
 >   
->   properties:
->     compatible:
-> -    enum:
-> -      - mediatek,mt2701-hdmi
-> -      - mediatek,mt7623-hdmi
-> -      - mediatek,mt8167-hdmi
-> -      - mediatek,mt8173-hdmi
-> -      - mediatek,mt8195-hdmi
-> +    items:
-> +      - enum:
-> +          - mediatek,mt2701-hdmi
-> +          - mediatek,mt7623-hdmi
-> +          - mediatek,mt8167-hdmi
-> +          - mediatek,mt8173-hdmi
-> +      - const: syscon
-> +
+>   mediatek-drm-hdmi-objs := mtk_cec.o \
+>   			  mtk_hdmi.o \
 
-This is an ABI breakage, you can't do that.
+abcd ... mtk_hdmi_common.o goes here :-)
+
+> -			  mtk_hdmi_ddc.o
+> +			  mtk_hdmi_ddc.o \
+> +			  mtk_hdmi_common.o \
+>   
+>   obj-$(CONFIG_DRM_MEDIATEK_HDMI) += mediatek-drm-hdmi.o
+>   
+> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> index 5cd05d4fe1a9..837d36ec4d64 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> @@ -32,187 +32,18 @@
+>   #include <drm/drm_probe_helper.h>
+>   
+>   #include "mtk_cec.h"
+> -#include "mtk_hdmi.h"
+>   #include "mtk_hdmi_regs.h"
+> +#include "mtk_hdmi_common.h"
+>   
+>   #define NCTS_BYTES	7
+>   
+> -enum mtk_hdmi_clk_id {
+> -	MTK_HDMI_CLK_HDMI_PIXEL,
+> -	MTK_HDMI_CLK_HDMI_PLL,
+> -	MTK_HDMI_CLK_AUD_BCLK,
+> -	MTK_HDMI_CLK_AUD_SPDIF,
+> -	MTK_HDMI_CLK_COUNT
+> +const char * const mtk_hdmi_clk_names_mt8183[MTK_MT8183_HDMI_CLK_COUNT] = {
+
+Why MT8183? This can be either MT8167 or MT2701... or, IMO more appropriately, you
+should name the IP version.
+Example: MTK_HDMIV123_CLK_COUNT (I don't know what IP version would that be!).
+
+> +	[MTK_MT8183_HDMI_CLK_HDMI_PIXEL] = "pixel",
+> +	[MTK_MT8183_HDMI_CLK_HDMI_PLL] = "pll",
+> +	[MTK_MT8183_HDMI_CLK_AUD_BCLK] = "bclk",
+> +	[MTK_MT8183_HDMI_CLK_AUD_SPDIF] = "spdif",
+>   };
+>   
 
 Regards,
 Angelo
+
+
