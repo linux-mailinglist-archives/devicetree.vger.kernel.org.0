@@ -2,164 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D084D5BE0AD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDF7B5BE0B5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:49:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbiITIsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36478 "EHLO
+        id S231459AbiITIsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:48:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231135AbiITIru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:47:50 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 775AA40BE7
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:47:42 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id j16so2640736lfg.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:47:42 -0700 (PDT)
+        with ESMTP id S231414AbiITIsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:48:12 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C4E3ED4C
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:48:10 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id q15-20020a17090a304f00b002002ac83485so1823305pjl.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:48:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=bPC0wOWHS3IfkpyiNHTrPOKy7lllIftEAhOiSZ57lWE=;
-        b=xx1IH7gi6vuXdqBC8gCyQHJnBpx94OKrk8RWttmSL7BTYXLGZYOAlUaOt5XuevZRnI
-         9mSoFEAlQNRW61/D2d1n/yX+9Dpz8Yu6GH3mETVc/M1epxE3yWY+B1QVJSFOqmmDrR7T
-         xRXFcc8j6PJmvvPziypomGMvbLcSUw8Zw5j+9gguuGJHRlf4aLbzn6XIoIFLgN/F8c8z
-         HJfRm3xT9jZxkfNdJxEZKyb6cZJ+UA0/c8SRFXYiowtu1Vmx4Y8RhqEbIf57ZdIwtSv/
-         G9u7MDQwRP+0LWtaOjq1H5EGhEDOJU0yCBXB261I5VwDV7N3/ApG/rF8WseQw7wYCd4q
-         JIbA==
+        bh=Z0CIYBJ59VmXnMF6RrKkrGfbMLVUY9u6d9zW/w1YKxo=;
+        b=stBcYq0P2qVspyhXBudCWuspwYMnLkloEBnRu8iZ9njhsuEMVyBWG2fkR4PHagZDC5
+         jBRA/os+bhGrQ04IvNzfb3LoFCptK4WY2kXICFr1hrlGDZ5ZbEDND0i2M2r/K+hRnvSY
+         qUdo72zMXsdohLzgSusZQlOwsKYHwkmAzIYEMUxWoUtBs3PkLtjR0saDQ94exHT/BEnd
+         ehgACbwfl8w6MHCwR0TOR8BEcBxzauCd5A4+Rirw8IwLF7oQVtr6n+/Hq+Nl3atD+AWU
+         wq9OCsmAQ1KVXb8tCspn6hi7/25HWmeUhWx11WcK4mT8O4SSTxjEZXdbmQXWOH2OkqMO
+         926Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=bPC0wOWHS3IfkpyiNHTrPOKy7lllIftEAhOiSZ57lWE=;
-        b=OKimIynbeahmRI6YTRa3HKke3gpt4whCh1xH737swKQ0wNJiRbfDp9a/WqQCmTEIOG
-         ZkxXUwMtxHDxSqb3ijGtM5m8uebg7DUGdzvTVCByC/Hv97IWRt07E8ViTifoj4jFupiN
-         RB0/R77s3RaOVovaK5+kZuQ4qimSIn72ore0EWpSMdH+YctbZIUejqeDJHrCXdOYL3GR
-         fGYQkHWj4+Ei+Pnz434oqbuqxbW6KGNU0NVGSOvNzTimMrkita/4WMRrLwc7UqRQWsCU
-         p400WGfj6neiplIs5bLRNc8feZ4y3FGivmQ/hrFw2kjU1lGfguqv8GQ4UiNjlbJVK0od
-         5EsA==
-X-Gm-Message-State: ACrzQf1EJtBtobgg3KLVlbsfS9sqSVfZ97SAEwvfCRFCmZ2vV6FptQcn
-        prnnkh3flIoc92cZsoqB9lb6lw==
-X-Google-Smtp-Source: AMsMyM5H098ZyPcH4hQiK06tnggqiLZI22yq2+Z+n6Ilu5uMR/fxGiIdZGjRfa+iAg143TZk4rwxyw==
-X-Received: by 2002:a05:6512:3c9f:b0:49d:d486:96d7 with SMTP id h31-20020a0565123c9f00b0049dd48696d7mr7980206lfv.596.1663663660813;
-        Tue, 20 Sep 2022 01:47:40 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q9-20020ac246e9000000b0049486c66140sm205437lfo.119.2022.09.20.01.47.39
+        bh=Z0CIYBJ59VmXnMF6RrKkrGfbMLVUY9u6d9zW/w1YKxo=;
+        b=Iga0cPZ01KCvHgvtB1ApyFAFrJT7vgW/tNjlMeCmt+quTy482i/CFLrAW338VMbQa7
+         sWjNUQWY1KZaSeSNZWwrTJJD2i7d2vOONeJ4jge3OkiGiDbS7MeRZCn3F4OjiRyQpQ8v
+         e/TMHI5PqHWns+ETZeVGyeNyUvYoH9l/GWdt0W0HD/0A8bQlpxHQkiiDiOR6HeufjEFT
+         AK5P+wElxjJ+ItVS8sihztkRb1Z6nyj8J39JIEhYv5W+QykhNoO9Q8I2pnrb9foRcQB2
+         JooC7Uz+Hgv2JiEqLv19T7DKJoGhCqP0OaIP/10NGTA1Sg2Gz4HwId1j8f6+5zG+P878
+         BPFQ==
+X-Gm-Message-State: ACrzQf1LC/KKZRs9tyKa9TU7wtBQxLwt+MqjmULgDBueCzoE5Tsjk/nN
+        IA/fKeWgswS6MAMRi19GWOuCOQ==
+X-Google-Smtp-Source: AMsMyM7hdUJkdrTz4X/rM3IM3DquC6pUyCuxVg3nCWn2zWTFvFTXxao5FHWqy4n/oFtApFlunAGQ0g==
+X-Received: by 2002:a17:90b:38cb:b0:200:aaa6:6428 with SMTP id nn11-20020a17090b38cb00b00200aaa66428mr2768505pjb.47.1663663689720;
+        Tue, 20 Sep 2022 01:48:09 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1c61:6535:ca5f:67d1:670d:e188? ([2401:4900:1c61:6535:ca5f:67d1:670d:e188])
+        by smtp.gmail.com with ESMTPSA id e11-20020a17090301cb00b0016be834d54asm824491plh.306.2022.09.20.01.48.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 01:47:40 -0700 (PDT)
-Message-ID: <6f1ad082-74e4-e4e7-9304-5cdd95cc9f66@linaro.org>
-Date:   Tue, 20 Sep 2022 10:47:39 +0200
+        Tue, 20 Sep 2022 01:48:08 -0700 (PDT)
+Message-ID: <dfe1bc9e-2ab9-d2dd-7daa-dddb8d66fd77@linaro.org>
+Date:   Tue, 20 Sep 2022 14:18:03 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO
- documentation
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v6 0/4] dt-bindings: qcom-qce: Convert bindings to yaml &
+ related changes
 Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-References: <20220714122322.63663-1-tmaimon77@gmail.com>
- <20220714122322.63663-2-tmaimon77@gmail.com>
- <20220718211046.GA3547663-robh@kernel.org>
- <CAP6Zq1hQ5m2kkQOKaYsKhPQhCW+vdsdyPRxxb_yRGMB=gJCPdw@mail.gmail.com>
- <3981e6e8-d4bb-b13d-7aaa-7aea83ffaad9@linaro.org>
- <CAP6Zq1gp1ph1wixgb6nL+2R8We2YJ2HQM2iC05itq_XWd2Cwig@mail.gmail.com>
- <bfca0379-7346-13e7-a18f-66740c5871b3@linaro.org>
- <CAP6Zq1gyDW8ZwwAZ1jyfNEZa09WN-biZZJY8tBmW_gzMzpj3ZA@mail.gmail.com>
- <2b0e6e33-ef76-4bd4-8894-53f9a3fe68b4@linaro.org>
- <CAP6Zq1iwW6HvvfM684VLG0ZT-0OLKT0udW4bHxsZsTMEypo2sg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1iwW6HvvfM684VLG0ZT-0OLKT0udW4bHxsZsTMEypo2sg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, thara.gopinath@gmail.com,
+        devicetree@vger.kernel.org, robh@kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, Jordan Crouse <jorcrous@amazon.com>
+References: <20220919220804.1047292-1-bhupesh.sharma@linaro.org>
+ <36bd1c19-8fbd-0903-704d-447117b2007a@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <36bd1c19-8fbd-0903-704d-447117b2007a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 10:32, Tomer Maimon wrote:
-> On Tue, 20 Sept 2022 at 11:21, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+
+On 9/20/22 12:58 PM, Krzysztof Kozlowski wrote:
+> On 20/09/2022 00:08, Bhupesh Sharma wrote:
+> 
+> (...)
+> 
+> 
 >>
->> On 20/09/2022 09:59, Tomer Maimon wrote:
->>>>>>>>> +      pinctrl: pinctrl@f0800000 {
->>>>>>>>> +        compatible = "nuvoton,npcm845-pinctrl";
->>>>>>>>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
->>>>>>>>> +        #address-cells = <1>;
->>>>>>>>> +        #size-cells = <1>;
->>>>>>>>> +        nuvoton,sysgcr = <&gcr>;
->>>>>>>>> +
->>>>>>>>> +        gpio0: gpio@f0010000 {
->>>>>>>>
->>>>>>>> gpio@0
->>>>>>>>
->>>>>>>> Is this really a child block of the pinctrl? Doesn't really look like it
->>>>>>>> based on addressess. Where are the pinctrl registers? In the sysgcr? If
->>>>>>>> so, then pinctrl should be a child of it. But that doesn't really work
->>>>>>>> too well with gpio child nodes...
->>>>>>> the pin controller mux is handled by sysgcr this is why the sysgcr in
->>>>>>> the mother node,
->>>>>>> and the pin configuration are handled by the GPIO registers.  each
->>>>>>> GPIO bank (child) contains 32 GPIO.
->>>>>>> this is why the GPIO is the child node.
->>>>>>
->>>>>> Then maybe pinctrl should be the sysgcr and expose regmap for other devices?
->>>>> The pin controller using the sysgcr to handle the pinmux, this is why
->>>>> the sysgcr is in the mother node, is it problematic?
->>>>
->>>> You said pin-controller mux registers are in sysgcr, so it should not be
->>>> used via syscon.
->>> Sorry but maybe I missed something.
->>> the sysgcr is used for miscellaneous features and not only for the pin
->>> controller mux, this is why it used syscon and defined in the dtsi:
->>>                 gcr: system-controller@f0800000 {
->>>                         compatible = "nuvoton,npcm845-gcr", "syscon";
->>>                         reg = <0x0 0xf0800000 0x0 0x1000>;
->>>                 };
->>>>
->>>> Please provide address map description to convince us that this is
->>>> correct HW representation.
->>> GCR (sysgcr) registers 0xf0800000-0xf0801000 - used for miscellaneous
->>> features, not only pin mux.
->>> GPIO0 0xf0010000-0xf0011000
->>> GPIO1 0xf0011000-0xf0012000
->>> ...
->>> GPIO7 0xf0017000-0xf0018000
->>>>
+>> Qualcomm crypto engine (qce) is available on several Snapdragon SoCs.
+>> The qce block supports hardware accelerated algorithms for encryption
+>> and authentication. It also provides support for aes, des, 3des
+>> encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
+>> authentication algorithms.
 >>
->> Then why your pinctrl is in sysgcr IO range? (pinctrl@f0800000)
-> you suggest using pinctrl@0 or pinctrl@f0010000 and not
-> pinctrl@f0800000 because 0xf0800000 is the GCR address that serve
-> miscellaneous features and not only pinmux controller ?
+>> Note that this patchset is dependent on the dt-bindings patchset (see [1]) sent to devicetree list.
+>>
+>> [1]. https://lore.kernel.org/linux-arm-msm/20220919195618.926227-1-bhupesh.sharma@linaro.org/
+> 
+> If it is dependent on the bindings only, keep them together. However I
+> don't think this is the only dependency. You add here several
+> compatibles which are not supported.
 
-If you have a map like you pasted, then DTS like this:
 
-syscon@f0800000 {}
-pinctrl@f0800000 {
-  gpio@f0010000 {}
-}
+Please go through the cover letter where I mentioned that:
+   'As per Bjorn's suggestion on irc, broke down the patchset into 4
+   separate patchsets, one each for the following areas to allow easier
+   review and handling from the respective maintainer(s):
+         'arm-msm', 'crypto', 'dma' and 'devicetree'
+   This patchset is directed for the 'devicetree' tree / area.'
 
-Is quite weird, don't you think? You have two devices on the same unit
-address which is not allowed. You have child of pinctrl with entirely
-different unit address, so how is it its child?
+Basically now the patchset which had around 23 patches in v5 will send 
+out as 4 separate patchsets one each for 'arm-msm', 'crypto', 'dma' and 
+'devicetree' trees.
 
-Best regards,
-Krzysztof
+So when all the respective subsets are picked up, all the compatibles 
+are in place.
+
+Thanks,
+Bhupesh
