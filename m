@@ -2,136 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A8C5BE316
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D8735BE32E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:28:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbiITKZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 06:25:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
+        id S230337AbiITK2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 06:28:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbiITKZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:25:51 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E4335E674;
-        Tue, 20 Sep 2022 03:25:50 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id F07716600368;
-        Tue, 20 Sep 2022 11:25:47 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663669549;
-        bh=pJFt8yhuO+61RNQoKu/PstmWS0PBWMsonGq/dnFhPCY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=R2oc5TOvtqehwVdIVv4+ZI4lKyrDIUceJdbxMi/4V4X4XDvk3e3SdGay/LYNOYzrC
-         DXxdJO5MyIrCLEkMrhjlY1u96S1/affuMfe8RaXDP7nFTXFnZ4MWC3M1xOzBDeK5m8
-         lEuvNw5Aggj73VIO/CLscBO+EUrcp+7eCblSGS1sIssmA6ELNjdJebtJWOjsFVDR/j
-         uyJbu45SEV9y71RXViboId+7Z/hCjzmzlJV1enTIUR5hQfvCVBwLXemvji4sqsnqRl
-         11BEWGHHH9GsllzQ/+5YTNdKLeZ4jQHIN3tTk5EKUrTsggQa9wzRKM5YpE1h9seXu4
-         qpub0SjqOUUWg==
-Message-ID: <153dcb4f-4583-427e-83c7-bdd33e3b11aa@collabora.com>
-Date:   Tue, 20 Sep 2022 12:25:45 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v1 07/17] drm/mediatek: extract common functions from the
- mtk hdmi driver
-Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        with ESMTP id S230005AbiITK2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:28:10 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5291F71725
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 03:28:08 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id b75so2314112pfb.7
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 03:28:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=TcKUfJUCCOHTt6fn38EmcwoVIyI3UzCr5ChNl1GM+/4=;
+        b=H09M6qwa+9VSmywU31/7TR0CMSMpMjxVwKxascARmgmZH5aTqDvkCcYQ6dCKtuXnDZ
+         3P9q7oCP1POU+EuA0XJlffC8rU8PXBey2Cj9HBklpwC1YN3K4PGpMNeMv5IPCjY7GZgw
+         dYVEA7+3EYio0butF+EJ+cMNCY2Ga583g+uFLn9EfvYAVXqqf2DRudZPQo1Uop1RUnEn
+         sVMZCVkgaRb2zDVuSEdwuhjq2kZmxm9lOWSF7Mp/e2fM8SfK79vnMRsnTnDMZpMGSupr
+         pbDkRAv6+TuSp6cu5VYw1uEksDZXIkXAS1d5s0ucavEmWhP041aq5jA9ggap6X9jSgSf
+         HiVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=TcKUfJUCCOHTt6fn38EmcwoVIyI3UzCr5ChNl1GM+/4=;
+        b=nVJtsQsGiUaTI75aUW13sJDwf9/gVJv9CBWwbeCfLmJDE9E3aSNi+jL1aR4wZNFJ/W
+         0hB08Wb9Ji09HDlTGd5Q44IaC6j0iU50q/Y5ek0v5aJmEbAyWUP/C1nlI/a4TXbMVzMY
+         6zJZO8a2JUmSioMtNh1UFxE9Hehw3hSJwrM+WGDsZADyVfbqS8ejoA8uWr4I+0jMjJ5O
+         Y3e9iaUyc1jnQh9hlRyXf7Gvscnwe6GbWhHOXWveQUDwlnBhr1hXFJ3HOSAW3b4tl92a
+         ZFlgJX9RDo2snwVhHikzw0TYHt2t1AE4ScqHxmgtcsd7sPgcCto1oST6c7eicIMVjr3Q
+         EhAA==
+X-Gm-Message-State: ACrzQf2KncykV4XqrtVD6+q5FOAC095P75bhJbQ4LN52uY2HTrWntbUF
+        dvDAGiJacOJx2mh56cuu1fZj/g==
+X-Google-Smtp-Source: AMsMyM760oD16hXPs+4JP05QAFv5/6I/Juk3967sI0Zs6Yd78edT73FvzRS2x3JB8oI+CSc0kKkYgA==
+X-Received: by 2002:a05:6a00:158f:b0:546:b777:af17 with SMTP id u15-20020a056a00158f00b00546b777af17mr22701543pfk.51.1663669687117;
+        Tue, 20 Sep 2022 03:28:07 -0700 (PDT)
+Received: from localhost ([122.171.20.238])
+        by smtp.gmail.com with ESMTPSA id s17-20020a17090302d100b0016c9e5f290esm1089268plk.10.2022.09.20.03.28.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Sep 2022 03:28:06 -0700 (PDT)
+Date:   Tue, 20 Sep 2022 15:58:03 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Manivannan Sadhasivam <mani@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220919-v1-0-4844816c9808@baylibre.com>
- <20220919-v1-7-4844816c9808@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220919-v1-7-4844816c9808@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [RFC PATCH 0/4] cpufreq: qcom-hw: Move clocks to CPU node
+Message-ID: <20220920102803.rqj44xrz2szj3tqi@vireshk-i7>
+References: <cover.1657695140.git.viresh.kumar@linaro.org>
+ <20220715160933.GD12197@workstation>
+ <20220718015742.uwskqo55qd67jx2w@vireshk-i7>
+ <20220801023756.76jswkbwivuntqof@vireshk-i7>
+ <20220830032456.z4olnogsyg32vhiz@builder.lan>
+ <20220830054042.akj7pf366inelvpo@vireshk-i7>
+ <20220830062050.GA7066@workstation>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220830062050.GA7066@workstation>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 19/09/22 18:56, Guillaume Ranquet ha scritto:
-> Create a common "framework" that can be used to add support for
-> different hdmi IPs within the mediatek range of products.
+On 30-08-22, 11:50, Manivannan Sadhasivam wrote:
+> On Tue, Aug 30, 2022 at 11:10:42AM +0530, Viresh Kumar wrote:
+> > On 29-08-22, 22:24, Bjorn Andersson wrote:
+> > > Conceptually, it sounds like a good idea to express the clock feeding
+> > > the CPU clusters, which is controlled by the OSM/EPSS.  But do you
+> > > expect the OPP framework to actually do something with the clock, or
+> > > just to ensure that the relationship is properly described?
+> > 
+> > No, the OPP core will never try to set the clock rate in your case,
+> > though it will do clk_get().
+> > 
 > 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Okay. Then I think it is a fair argument to make qcom-cpufreq-hw as the
+> clock provider for CPUs.
 > 
-> diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
-> index d4d193f60271..008ec69da67b 100644
-> --- a/drivers/gpu/drm/mediatek/Makefile
-> +++ b/drivers/gpu/drm/mediatek/Makefile
-> @@ -22,7 +22,8 @@ obj-$(CONFIG_DRM_MEDIATEK) += mediatek-drm.o
->   
->   mediatek-drm-hdmi-objs := mtk_cec.o \
->   			  mtk_hdmi.o \
+> I will send the RFC soon.
 
-abcd ... mtk_hdmi_common.o goes here :-)
+Ping.
 
-> -			  mtk_hdmi_ddc.o
-> +			  mtk_hdmi_ddc.o \
-> +			  mtk_hdmi_common.o \
->   
->   obj-$(CONFIG_DRM_MEDIATEK_HDMI) += mediatek-drm-hdmi.o
->   
-> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> index 5cd05d4fe1a9..837d36ec4d64 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-> @@ -32,187 +32,18 @@
->   #include <drm/drm_probe_helper.h>
->   
->   #include "mtk_cec.h"
-> -#include "mtk_hdmi.h"
->   #include "mtk_hdmi_regs.h"
-> +#include "mtk_hdmi_common.h"
->   
->   #define NCTS_BYTES	7
->   
-> -enum mtk_hdmi_clk_id {
-> -	MTK_HDMI_CLK_HDMI_PIXEL,
-> -	MTK_HDMI_CLK_HDMI_PLL,
-> -	MTK_HDMI_CLK_AUD_BCLK,
-> -	MTK_HDMI_CLK_AUD_SPDIF,
-> -	MTK_HDMI_CLK_COUNT
-> +const char * const mtk_hdmi_clk_names_mt8183[MTK_MT8183_HDMI_CLK_COUNT] = {
-
-Why MT8183? This can be either MT8167 or MT2701... or, IMO more appropriately, you
-should name the IP version.
-Example: MTK_HDMIV123_CLK_COUNT (I don't know what IP version would that be!).
-
-> +	[MTK_MT8183_HDMI_CLK_HDMI_PIXEL] = "pixel",
-> +	[MTK_MT8183_HDMI_CLK_HDMI_PLL] = "pll",
-> +	[MTK_MT8183_HDMI_CLK_AUD_BCLK] = "bclk",
-> +	[MTK_MT8183_HDMI_CLK_AUD_SPDIF] = "spdif",
->   };
->   
-
-Regards,
-Angelo
-
-
+-- 
+viresh
