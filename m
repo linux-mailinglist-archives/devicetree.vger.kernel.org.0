@@ -2,118 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 244535BDA29
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 04:33:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD3945BDA35
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 04:37:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230188AbiITCdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Sep 2022 22:33:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34306 "EHLO
+        id S229838AbiITChV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Sep 2022 22:37:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbiITCdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 22:33:22 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFDD25727D;
-        Mon, 19 Sep 2022 19:33:13 -0700 (PDT)
-X-UUID: f3b6d518f97e4a13a09733edc49a259b-20220920
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=t2S3HXzQLfmjdW8BymUDlC5D8EiXYe43lcRmSAgqZFE=;
-        b=pS0GVsS0y0ICPgIcK0uLVFHXY64eh8VvmrXJiU+tCEX56//YEGnq+clhfQgCx07WQ/1NkEWtinThnXtkbG5A1k2MzrMEeOOTle0f+4v5nOPkeV1EzKV7k8SnUCIAWIj/L/VzPj5lejI66ayMdLE16hbAzslQq3j8kPiRhhQCk28=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:292d0791-03e7-42f7-b45b-2a16da7e7d47,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:22,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:22
-X-CID-INFO: VERSION:1.1.11,REQID:292d0791-03e7-42f7-b45b-2a16da7e7d47,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:22,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-        elease,TS:22
-X-CID-META: VersionHash:39a5ff1,CLOUDID:fcb8355e-5ed4-4e28-8b00-66ed9f042fbd,B
-        ulkID:220919161938HV8SMIES,BulkQuantity:416,Recheck:0,SF:28|100|17|19|48|1
-        01|823|824,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BE
-        C:nil,COL:0
-X-UUID: f3b6d518f97e4a13a09733edc49a259b-20220920
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <jianguo.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 526819015; Tue, 20 Sep 2022 10:33:09 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 20 Sep 2022 10:33:08 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Tue, 20 Sep 2022 10:33:07 +0800
-Message-ID: <20c47bd6742c08912c7b35e75c032c5b853fccde.camel@mediatek.com>
-Subject: Re: [PATCH 1/2] stmmac: dwmac-mediatek: add support for mt8188
-From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229619AbiITChV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Sep 2022 22:37:21 -0400
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D8E847B94;
+        Mon, 19 Sep 2022 19:37:20 -0700 (PDT)
+Received: by mail-il1-x129.google.com with SMTP id x13so696417ilp.3;
+        Mon, 19 Sep 2022 19:37:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=T6Bc82z40BHWQf4QIPmDTMbTTv/alemCOLcqzv8oHg4=;
+        b=CWonZ132sQRpUFVvRamub4wrJhQyq+YCoDlqhfGAkAdROBYLw/cenOn6o8Ls50aKbz
+         VVnAl1A1LO8EPuz6vbRi1qus/973e5F12PMEAz7ZItaTeL3prF2i8PcASsNrWR/M2pBV
+         P35N+F29aJh+/Sla8BDrCBFPhfzgBsXrxPWZCoYSRTRqUMIOwiL1x26lxLcwZ6nDIVja
+         /76+yI07yKTA25HWlv3cHlIKSaGxSVl+tZA44dQ1/aLnlsdqvh2t2PsQ0juJp/zfTSxB
+         kFtJjdYErjWrSzj6yRqqAlo0gtT50WOj5WsqxRLT2iGwrPlf7u7lpctcJ9B99v56MDHn
+         6XiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=T6Bc82z40BHWQf4QIPmDTMbTTv/alemCOLcqzv8oHg4=;
+        b=KxtCvxnjTz9C78ES8IlHzXdvHC9LYks1F1QnfmXN1886aLNnZTJtGj/uesE0b3Zzcx
+         mkjQnwe6UvCLEJUuX/hEdITbgWszXAyFYAWGnT4CEzQH51CB3tR9oD8wkC8WA+YZk4A2
+         keK+mKrDwXTyKZVPtWUl2PLJGOaVhB9yOWhHLqEbxNnL3myAoqaymcU/8HBM3M4fXO8P
+         rVhm8dIolsa7tjmknuskZXxaJV0rHoitKMB1/XghFtLY3/HXRxFC/B6uJq4T/9KJPkc9
+         zw0FPPbOpxKRoYb9FwXw3g7YSICATCj+HYAUm/XZ2HxJJVdoCJ0Q3vBZo7BFDg82O5GO
+         JQ/w==
+X-Gm-Message-State: ACrzQf2NPMcdGjjgANJeMTMVHyi72OioTwWSKZmnTZ3SGXfKmxCv8l8p
+        +3YzKgkRxRA7aHBSU3cTtPawsWmiid8=
+X-Google-Smtp-Source: AMsMyM7UI4AgxcVDOP9RfP0al2XR1nGD0ur6FErKe+nwNhmS1Sz3Cln83qkQFeHW/g2aefXKWUGtPQ==
+X-Received: by 2002:a05:6e02:1d17:b0:2f1:4cae:df88 with SMTP id i23-20020a056e021d1700b002f14caedf88mr8650656ila.198.1663641439658;
+        Mon, 19 Sep 2022 19:37:19 -0700 (PDT)
+Received: from localhost ([2607:fea8:a2e2:2d00::58d4])
+        by smtp.gmail.com with UTF8SMTPSA id g15-20020a05660226cf00b0068a235db030sm128966ioo.27.2022.09.19.19.37.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Sep 2022 19:37:19 -0700 (PDT)
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Biao Huang" <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Tue, 20 Sep 2022 10:33:07 +0800
-In-Reply-To: <b343e4c7-a247-28b8-3d16-cb7cea7ba36b@linaro.org>
-References: <20220919080410.11270-1-jianguo.zhang@mediatek.com>
-         <20220919080410.11270-2-jianguo.zhang@mediatek.com>
-         <d28ce676-ed6e-98da-9761-ed46f2fa4a95@linaro.org>
-         <4c537b63f609ae974dfb468ebc31225d45f785e8.camel@mediatek.com>
-         <88412fcc-96be-cd9d-8805-086c7f09c03b@linaro.org>
-         <f72e133e9aec70724702054e5f6a8712b649d34f.camel@mediatek.com>
-         <b343e4c7-a247-28b8-3d16-cb7cea7ba36b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/2] SDM670 RPMh Clocks (real)
+Date:   Mon, 19 Sep 2022 22:37:07 -0400
+Message-Id: <20220920023709.4865-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,
-        URIBL_CSS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Krzysztof,
+This patch series adds clocks controlled by RPMh for Snapdragon 670.
 
-	Thanks for your comment.
+Note that these patches add the actual clocks, and is not a duplicate of
+the regulators series which I mislabeled by accident.
 
-On Mon, 2022-09-19 at 12:06 +0200, Krzysztof Kozlowski wrote:
-> On 19/09/2022 11:56, Jianguo Zhang wrote:
-> > > No, this does not justify new entry. You need specific
-> > > compatible,
-> > > but
-> > > not new entry.
-> > > 
-> > > > On the other hand, mt8188 and mt8195 have same ethernet design,
-> > > > so
-> > > > the
-> > > > private data "mt8195_gmac_variant" can be resued to reduce
-> > > > redundant
-> > > > info in driver.
-> > > 
-> > > And you do not need new entry in the driver.
-> > 
-> > Do you mean that I can use "mediatek,mt8195-gmac" as compatible for
-> > ethernet in mt8188 DTS file?
-> 
-> Yes, as a fallback. Example schema describes such case.
-> 
-OK, we will drop the changes in patch #1 and add MT8188 related info in
-binding document in next version patches.
-> Best regards,
-> Krzysztof
-> 
-BRS
-Jianguo
+ .../devicetree/bindings/clock/qcom,rpmhcc.yaml      |  1 +
+ drivers/clk/qcom/clk-rpmh.c                         | 21 +++++++++++++++++++++
+ 2 files changed, 22 insertions(+)
+
 
