@@ -2,166 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B075BE521
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 14:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A335BE527
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 14:02:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbiITMB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 08:01:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60342 "EHLO
+        id S229845AbiITMCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 08:02:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229928AbiITMBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 08:01:54 -0400
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140045.outbound.protection.outlook.com [40.107.14.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAB1422B18;
-        Tue, 20 Sep 2022 05:01:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Iv3x+FbDLv5iUOwEbdaIGM7poB6j82wN8E6NiMlFAHewHK8QU4pOZiqpp5BHdWtvwmjMA+O8a57vZOp/3Cl/Q7xnGbj2zrDhhtWrZGSLwGVIdxLYoVVKxxjRZvxJcoguy2KM1OZha0C+AXY4s0Op+nEJgu3KY+UhTV5Ty1M7dMmupM+E4Lk5fHqdM7giwFgdm+VtBUBAY80Fc1rywayhW6CjusnrMmJ4depDqT5i8rpahdcZn/q4B38EdRAVwcoZDeM5DEcvPE98gZZKlKt3WQwKmK42+xQmuQKragQKsc3/aIdTOWmqq2xdto6c5gcMTeFUZsQbC39AKetskc5cQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mDFQZ8R/yQKX+uffQkhm+ye2QEwzg8SGxkH/ymUNBw8=;
- b=LxYjtRtsfJXO8XI9eA7vCGENTtd+SEkhKUrcMMvStr5DmZ/ndZXS8Q6CHRQQA9ab+51FOTuNQ92b5HzrAL3kTAPQwAioJ3QC6imsIMXn9T3Uj8e7cAGARilDcjrszqZCcG5bjGJB1jlfkGaOoFPcqbS3mHvGsoj8qjaa+JCwkpFS0SO2NcJ7zeFMRKW1q/WVCYzBGY0XqqfgCuUwM0dJ7/+dKGIvdDH6FFEFFcmFK9VL7Mx86TJp4phzLTmwYUqYx+y6vWKWcnAV+Z/0bsWthZbF2trmln9e8Tln49zfGpNhkgKSV/wAmtj+sx5P2sitI1J7iiyqYnhkLjviL6qUYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mDFQZ8R/yQKX+uffQkhm+ye2QEwzg8SGxkH/ymUNBw8=;
- b=i0OP9rGsUL2AEp+SYzIDEaLo7RIMSe8UseFoPcYndE5gU4fLpxKNU3N875FleukxsGm4za9zXhc3td45Yci9aW8Bi4wGyqACsk4JvbYMpe1SgY/2cPUOBOS5vLPS7jxe7ivTfv85I7N28nfbws4I2jUXfo4OS9viWaOkSd71qV8JopJiJDc3dMNgo2megy8BPm0G4mEWcJEHDSrvRWyGILJdWNMjqUMjZxPaWClFKWmbDEltM50worwDWbTjWCTTP31vXYMzKZ+n9Komskg0MtQgxuJMg9YhCOodQFJGQgIT/7ktJez6oIW75ybQbooit4MvB4qT89dJ57UEDYsWog==
-Received: from AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:47d::15)
- by GV2PR10MB6623.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:b3::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21; Tue, 20 Sep
- 2022 12:01:50 +0000
-Received: from AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::5da0:3f4f:28d7:dd79]) by AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::5da0:3f4f:28d7:dd79%7]) with mapi id 15.20.5654.014; Tue, 20 Sep 2022
- 12:01:50 +0000
-From:   "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-CC:     "rogerq@kernel.org" <rogerq@kernel.org>,
-        "tony@atomide.com" <tony@atomide.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 3/3] dt-bindings: memory-controllers: gpmc-child: add
- wait-pin polarity
-Thread-Topic: [PATCH v5 3/3] dt-bindings: memory-controllers: gpmc-child: add
- wait-pin polarity
-Thread-Index: AQHYzOMhRzSqkDnQLEemID7XNdK1bK3oN8CA
-Date:   Tue, 20 Sep 2022 12:01:50 +0000
-Message-ID: <f82939a1adec0c1b7278081c2576bbbfee8a5510.camel@siemens.com>
-References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
-         <20220916120749.2517727-4-benedikt.niedermayr@siemens.com>
-         <d17d2eb3-2030-935d-728b-60d9e1c66cea@linaro.org>
-In-Reply-To: <d17d2eb3-2030-935d-728b-60d9e1c66cea@linaro.org>
-Reply-To: "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS1PR10MB5507:EE_|GV2PR10MB6623:EE_
-x-ms-office365-filtering-correlation-id: 942580aa-d89d-4a17-50d4-08da9affe694
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Knp8ZKZz0rcQkBNjN/fimCh34/P6lF4E4Eol/Hz7suThogTzHgim9gB+gCePfpV28rFRJAzz9wX+Elg7rzRvKCPaGkyvWNGVTSVnd2va9JRiG0TKuIGgVJZBfjosGFwDd5woxl0vtbn4/snEvODomzHSMc+fIFt5TXCw7XnFMGKdnFdhnYBBx65qIImRagdfblrkl12XubO3KlOQ27Tu0SMooqItiT13yGhACCa32a9JT78iLhQaNebnzqixqdtE8ZvwdYKo8pdXC35tCY1hF4bHQvwydQeXHEhmNKT2u6AyYkgEfyBADptzUrrytPHRKSK9KFBRIz7QUVEa5NBH+YO5jWUKxg1dsM3E3WqUBfM/Np2L7hirmrECojLVkoG5nZB8HGBWNZtSV0eDbPSTdnx9vurB21QOkEQ2t3Nvc2NReVUCuPOR4Y+99aeXM4ZEGVHEpWTZvb6bpWnJ7aCmZSIoofv5NA73Opxj0DZzvnjvJCQ54wpZnjU/+pIWhH7APcQVMvDvtihe4U2gWk12f2m0e1V86lZoSefz1Mk/1hwBSimU5gu4jt5bXfrLv0fbA7z58RmZJiFdDntkgbJNegbHgzAOYJoRCin4STRcqw7dtKX52MUysuppRzdTZQHjVy8e8IpihPbLP8BuULw99hUipi8dOV4duKUduao2Ude/BGZqhqDWnNMruNLCS5HLqOA75xKvtjUaPBX/5jryC6X3eWdH4FCw2E9nY3ctzoW2nDYPJKjC6YI201gM9JUBsqJnjiXripkbqs4EBj43wQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(346002)(376002)(396003)(366004)(451199015)(71200400001)(41300700001)(110136005)(478600001)(6486002)(5660300002)(36756003)(8936002)(54906003)(316002)(66946007)(66556008)(66476007)(66446008)(64756008)(8676002)(4326008)(76116006)(91956017)(86362001)(38070700005)(82960400001)(122000001)(38100700002)(2616005)(186003)(6512007)(6506007)(53546011)(3450700001)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?L0lIYW1jSlA2VkRkTml4YXQ3SUFPNi9JTmQ0eG05RHdXRnRUOHFmalNVRzha?=
- =?utf-8?B?VWdOdkw5N3NKZTdFcFhoc3NkZExFTjc1NmdZdzlHUFZrQndoUzduWkYxTVZa?=
- =?utf-8?B?ZytNdFF1OE5IcEVPakV5czhJeVVQT0doSm5DOVFjZFF3MHpHLy9VbXhBVFk4?=
- =?utf-8?B?L01iZnA4U25XQnhiRG43MHliWkhpb1NtbFlxWUZYTFlWUWF0amRqa0VrSTMz?=
- =?utf-8?B?ZjlCNzdoOUY3eVdyM0x5S21FbTRtblFOQ29rbGNBZU1hckc2UzAra1hhcUpi?=
- =?utf-8?B?NTJNTmZtenFHOXgyMWx2ejdETjBnTG5nYmxzbStjN2ViTnlxakdIRGVERVdQ?=
- =?utf-8?B?dE5lZkUySk0zVGZ6SnBudC9XZlRJaVoya2x0VUtWakYzNm1ndkgzRmZ6Sy9U?=
- =?utf-8?B?MzN0TGtMWnU1MXo5RmRVQkRCNUxHS3dlME1SNkkwQUYyMVF0akQ1blUxck5Y?=
- =?utf-8?B?b2xldEJycXVqd285N0Y5KzEveXg0WWVSbjd3MUlwYUpXTFh0OHRlbDVWK0Nh?=
- =?utf-8?B?eTgxclZBUnJaM201c2EvWE9XNXVPODd2SldGUCtodUtDUUJEcXRCbmZwUHlP?=
- =?utf-8?B?eGlDUHMwVHVkdmVHV2pCSjFDaS9id2pUc1h5VloyeGd1bHAxdjl1L0xHRFRL?=
- =?utf-8?B?NE9vTWNnNUNLQ1QrdTFKUEwyT1c5MVIwaEVMaXhOTyt6emdUalFkNG5oU21F?=
- =?utf-8?B?dVdiZC8wdDBWSVNKMU9WeW0vZzRQajFXQzVsQ2lpZWpsNG9veCtRRXMyYlc1?=
- =?utf-8?B?Mk5vRDVhQmx0a0hkaFN1NXVhODMreVhlbG84Q2tVM000ZXlRWFYrcXkvQTZG?=
- =?utf-8?B?Qys5b1RmTi80WlkxY1IwbHN5dUlBMGhqaWVTQW1VeUR1a25WOExmWGRDSGIy?=
- =?utf-8?B?cXNIbmVBZWxjRWwySmQ1Z3JRVVFBN0tTNkNnVnhuVW80OEJVYUpWSTNqQlB6?=
- =?utf-8?B?WkRsYVBoclpkSWNoOWErT20xVHV1Q2R1VnpUczRhYTNnaUhzZ2lqMmdzNng3?=
- =?utf-8?B?aFJ3NEJsWkVsTEQ3SkNiV0ltdERMdm5TRGRldnIrd0N2TWd1MDlLb1hjRTVM?=
- =?utf-8?B?ZHRMbE9aYWR4RFEzazZ0SXRpYmF6eXpCdjRiNHhCdk5kZEpnRWxlNHhYSnQr?=
- =?utf-8?B?RVVXT1FMc3dYZVF4alRBc3FaSWg1NUx4aTR0OUdoZXU2YXNSamJRR2ZFZHpw?=
- =?utf-8?B?YWh0QUxyR0wwZlBHSTM5anNmWEdwMmNad2h0cXpUMnNFOGdIeDhWYTBIK3dM?=
- =?utf-8?B?NnZKQXIrZ2NXQ0NEemNNVEZJSlRBN1dEZHNXdytqQkxkUGFsTURTYk1KZTdE?=
- =?utf-8?B?K3FXblROKzgxVmpNQmVKTE41Y3pWL3k5WUVJYXh3V1VSUHVDcUg0aS9ySkwz?=
- =?utf-8?B?N3hFcWJEbEJTOGVvdUYvUU9VN2xKczFDdGhCSSsxN25ySWQ0NHJRTUdDdGM4?=
- =?utf-8?B?R0M2TXJJL0VrTmJXa1hIdVlUZm84bE1XU3hLMk9iWmgxYXBtWjU5NmdBL1cx?=
- =?utf-8?B?S1BUby9YOUxFT1ZMNGR4clVFQUQ1WkRMWktzM204YnVTRzZSbTVHdklvTnVP?=
- =?utf-8?B?SXkveEZUbHU4Q2ZnNy9uVHBpVW9tS3dvRHlEWUFxK3pNTHNhcnYyUnJDMEQw?=
- =?utf-8?B?dzRsVXdvL2Y3cDhuMUZ3S0wvR3FQRnkrdG9vaFdoU1czT3B0UU0zeG80VFM1?=
- =?utf-8?B?eEJITE9wL2pKRDdvcVRXZmMvd0NqYW5ONkRiUEUrM3NmRUVUMjdLaXZUVFJu?=
- =?utf-8?B?ajkzMm01NithVVRqMkJTTUY5K0pBdkp2WDQ5SGd5U0tkRUR1QXJvTitUQm1n?=
- =?utf-8?B?S3RHUlU1dEQyTWM3bGJyajVyNWdqTVcvV2E3RjVmKzhxdkVmRWUrVDJjYlFi?=
- =?utf-8?B?MkkrZzRkUWthd25oNkxQSHBZMngyY2M4T0FlTEtXMUE0MndGYnU1cEs4Z1ZX?=
- =?utf-8?B?QkFkajNBaGFMcVFiVk5jbGlNeFdsT3lPRHA2S3Z3eTVqVjBSNm5TY25OQ0Zk?=
- =?utf-8?B?UG5XUldseDhoWDhMOTVzTFNvUFlTSkpHeUZjTksrMVJVd25JRFhORFJaM2tx?=
- =?utf-8?B?cmZhb1RPTjZIYTlUUTJ1V0lMU1pGeUVJRnNybXZ2c3ovQ3c2ejF5Zzc2b3ZY?=
- =?utf-8?B?bGp1bUdmL1JHYWU0TW91WEFGZ2pidVB2UDVlY1piRjlvem1kRXdhV1lwODNJ?=
- =?utf-8?B?ZWdzdkg1Snp3R2cwaG44aXExQmg1V1FLMGx0bExvd0E2QWxWbE95aHdpODFi?=
- =?utf-8?Q?E3VhUzAleIXzin6oEGHbitJTfJ6Eq3PlC/4MuxeFNw=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DAA5E0D7FBD2E9428E571623613D4F2A@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229838AbiITMCs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 08:02:48 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C2D8E0A1
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 05:02:46 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id y17so5577627ejo.6
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 05:02:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=MkcK4zK+tjbZZvzTepuJ6OrH+0JrK/IcroIHFcHOeiA=;
+        b=TXzYpl61qpkkKwlh/oMApLrqEMNnGSWfkSHv0+InNoji1gpsl0gMOiAyhcKF0wFNmZ
+         RBgSEUTAByWFS9T4kYxCgIkEukPXPM9XZOobBUKmUZtZX8EdT/e7sTHvpNZfoZhvxAvt
+         Y55cPndWrEIw3sMeT5WGZi6Br2k4G4Lc0UwJ5PpND1kKQX5JLWCxUEDuIUsTnUhKMEzw
+         EJgejT77D02sRv/iH5WrOd0ua/D/eyzjD3Qt0Q/xNxo6cB+hTVrAixJNRP7HwS0I08bm
+         kU7+yRdQ67KXMx4iGioTpuIFMMjSZmKWEDz0DsMqM7ci10aCD3M1pmRahuFKVCPCc0sY
+         1f5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=MkcK4zK+tjbZZvzTepuJ6OrH+0JrK/IcroIHFcHOeiA=;
+        b=Dq9D/1t190hJmCglz7lsDDPkEphSwRJ0cqQ1Llu16VDFPxKVFZFRgWpKE711AWchui
+         TjO9DrnSPX7wcjm8TaoZQYwcVYR69zNGd68IfLN0rIuD5ItvpVZNJEY9vSuzEZvqehH8
+         LaL2HWtYfOVH4JgkyLzFlEG8bDiMeIq8uQ6kqV1xxxhyonwLPDZki/ITnYP1oxZYUAsh
+         0HWGq4CGaAHGPJCYBa3GYCIZvNdFizqb7oV+vdFQq7Bjx2jIM3U83fSGy2+3S6luY/n6
+         ZuJydeSQgeIrnlCuRw7GZTnSbnqaWH1t5DIT3f8I6zAOx58b/+ndtpA9iV6Y5FUvbs3M
+         5PYg==
+X-Gm-Message-State: ACrzQf0cFpFsd/2cVeji05E9iN+WHz3yUSiXDd1m0oz6AytwrA2ATk2I
+        nKfJc7LdjcLmI+Br0rBXMyJh71n4Bwwk2Q33uA0llg==
+X-Google-Smtp-Source: AMsMyM59qNJxAT+EW6Bax/KhZRBtSKiJwgOGBu9PBMmRtuF4aEP0GfsoYN425U/jmViNSEzZcZy6XkYdfSesv/S4VBY=
+X-Received: by 2002:a17:907:3da3:b0:780:3d46:cbe3 with SMTP id
+ he35-20020a1709073da300b007803d46cbe3mr17063761ejc.175.1663675364874; Tue, 20
+ Sep 2022 05:02:44 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 942580aa-d89d-4a17-50d4-08da9affe694
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Sep 2022 12:01:50.1851
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2DdbEfSd/8gBAct/kOlV26LoliM7U52b0EnJwjk0ftCrgquOdlAHRnbP7Ii/ksXtFhWSyWfOTkw5rqRSROyv4mtpGykVQRlI6bodzC/KEEg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR10MB6623
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220916134535.128131-1-m.felsch@pengutronix.de>
+ <20220916134535.128131-5-m.felsch@pengutronix.de> <YyhktzmcgXKnrMFU@pendragon.ideasonboard.com>
+ <20220919171142.6av6ap5gwweldado@pengutronix.de> <Yyio06jhK13BiNiP@pendragon.ideasonboard.com>
+ <20220920104854.2wugqxffkf4qeib6@pengutronix.de> <Yymgr3pdbNWq6hn0@pendragon.ideasonboard.com>
+In-Reply-To: <Yymgr3pdbNWq6hn0@pendragon.ideasonboard.com>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Tue, 20 Sep 2022 13:02:30 +0100
+Message-ID: <CAPY8ntCde+0ib_T2XNfyZ4EG0-wAc_16HLEMmdCj=-M=hLVTaw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] media: tc358746: add Toshiba TC358746 Parallel to
+ CSI-2 bridge driver
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kishon@ti.com, vkoul@kernel.org, sakari.ailus@linux.intel.com,
+        hverkuil@xs4all.nl, jacopo@jmondi.org,
+        kieran.bingham+renesas@ideasonboard.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        kernel@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mLA0KDQpPbiBUdWUsIDIwMjItMDktMjAgYXQgMTM6MjEgKzAyMDAsIEtyenlz
-enRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIDE2LzA5LzIwMjIgMTQ6MDcsIEIuIE5pZWRlcm1h
-eXIgd3JvdGU6DQo+ID4gRnJvbTogQmVuZWRpa3QgTmllZGVybWF5ciA8YmVuZWRpa3QubmllZGVy
-bWF5ckBzaWVtZW5zLmNvbT4NCj4gPiANCj4gPiBUaGUgR1BNQyBjb250cm9sbGVyIGhhcyB0aGUg
-YWJpbGl0eSB0byBjb25maWd1cmUgdGhlIHBvbGFyaXR5IGZvciB0aGUNCj4gPiB3YWl0IHBpbi4g
-VGhlIGN1cnJlbnQgcHJvcGVydGllcyBkbyBub3QgYWxsb3cgdGhpcyBjb25maWd1cmF0aW9uLg0K
-PiA+IFRoaXMgYmluZGluZyBkaXJlY3RseSBjb25maWd1cmVzIHRoZSBXQUlUUElOPFg+UE9MQVJJ
-VFkgYml0DQo+ID4gaW4gdGhlIEdQTUNfQ09ORklHIHJlZ2lzdGVyIGJ5IHNldHRpbmcgdGhlIGdw
-bWMsd2FpdC1waW4tcG9sYXJpdHkNCj4gPiBkdC1wcm9wZXJ0eS4NCj4gPiANCj4gPiBTaWduZWQt
-b2ZmLWJ5OiBCZW5lZGlrdCBOaWVkZXJtYXlyIDxiZW5lZGlrdC5uaWVkZXJtYXlyQHNpZW1lbnMu
-Y29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL3RpLGdw
-bWMtY2hpbGQueWFtbCAgICAgICAgIHwgNyArKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA3
-IGluc2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL21lbW9yeS1jb250cm9sbGVycy90aSxncG1jLWNoaWxkLnlhbWwgYi9E
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL3RpLGdw
-bWMtDQo+ID4gY2hpbGQueWFtbA0KPiA+IGluZGV4IDZlMzk5NWJiMTYzMC4uOGU1NDFhY2RiMWZm
-IDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZW1v
-cnktY29udHJvbGxlcnMvdGksZ3BtYy1jaGlsZC55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lbW9yeS1jb250cm9sbGVycy90aSxncG1jLWNoaWxkLnlh
-bWwNCj4gPiBAQCAtMjMwLDYgKzIzMCwxMyBAQCBwcm9wZXJ0aWVzOg0KPiA+ICAgICAgICBXYWl0
-LXBpbiB1c2VkIGJ5IGNsaWVudC4gTXVzdCBiZSBsZXNzIHRoYW4gImdwbWMsbnVtLXdhaXRwaW5z
-Ii4NCj4gPiAgICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQz
-Mg0KPiA+ICANCj4gPiArICBncG1jLHdhaXQtcGluLXBvbGFyaXR5Og0KPiA+ICsgICAgZGVzY3Jp
-cHRpb246IHwNCj4gPiArICAgICAgU2V0IHRoZSBkZXNpcmVkIHBvbGFyaXR5IGZvciB0aGUgc2Vs
-ZWN0ZWQgd2FpdCBwaW4uDQo+ID4gKyAgICAgIDAgZm9yIGFjdGl2ZSBsb3csIDEgZm9yIGFjdGl2
-ZSBoaWdoLg0KPiA+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMv
-dWludDMyDQo+ID4gKyAgICBlbnVtOiBbMCwgMV0NCj4gDQo+IEkgcHJvcG9zZSB0byBrZWVwIHRo
-ZSBzYW1lIHZhbHVlIGFzIEdQSU8gZmxhZ3MuIE5vdCB0aGF0IGl0IG1hdHRlcnMsIGJ1dA0KPiBt
-YXliZSBvbmUgZGF5IHlvdSB3aWxsIHVuaWZ5IGl0Lg0KQWggeWVzLiBNYWtlcyBzZW5zZSENCg0K
-PiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KQ2hlZXJzLA0KYmVuZWRpa3QgDQo=
+Hi Laurent & Marco
+
+On Tue, 20 Sept 2022 at 12:15, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Marco,
+>
+> On Tue, Sep 20, 2022 at 12:48:54PM +0200, Marco Felsch wrote:
+> > On 22-09-19, Laurent Pinchart wrote:
+> > > On Mon, Sep 19, 2022 at 07:11:42PM +0200, Marco Felsch wrote:
+> > > > On 22-09-19, Laurent Pinchart wrote:
+> > > > > On Fri, Sep 16, 2022 at 03:45:35PM +0200, Marco Felsch wrote:
+> > > > > > Adding support for the TC358746 parallel <-> MIPI CSI bridge. This chip
+> > > > > > supports two operating modes:
+> > > > > >   1st) parallel-in -> mipi-csi out
+> > > > > >   2nd) mipi-csi in -> parallel out
+> > > > > >
+> > > > > > This patch only adds the support for the 1st mode.
+> > > > > >
+> > > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > > > > ---
+> > > > > > Changelog:
+> > > > > >
+> > > > > > v2:
+> > > > > > - use the correct CID_LINK_FREQ control to query the sensor_pclk_rate
+> > > > > > - remove now not needed tc358746_link_setup() and
+> > > > > >   struct v4l2_ctrl sensor_pclk_ctrl
+> > > > > > - call v4l2_subdev_link_validate_default() during link validation
+> > > > > > - remove MEDIA_BUS_FMT_GBR888_1X24/YUV444 format support
+> > > > > > - use subdev active_state API
+> > > > > > - replace own .get_fmt with v4l2_subdev_get_fmt
+> > > > > > - remove unnecessary pad checks
+> > > > > > - restructure tc358746_get_format_by_code() if-case
+> > > > > > - move apply_dphy_config|apply_misc_config from resume intos s_stream
+> > > > > > - use goto in s_stream enable case
+> > > > > > - fix error handling in suspend/resume
+> > > > > > - split probe() into more sub-functions
+> > > > > > - use dev_dbg() for printing successful probe
+> > > > > >
+> > > > > >  drivers/media/i2c/Kconfig    |   17 +
+> > > > > >  drivers/media/i2c/Makefile   |    1 +
+> > > > > >  drivers/media/i2c/tc358746.c | 1682 ++++++++++++++++++++++++++++++++++
+<snip>
+> > > > > > +
+> > > > > > +     sensor = media_entity_to_v4l2_subdev(link->source->entity);
+> > > > > > +     sensor_pclk_rate = v4l2_get_link_freq(sensor->ctrl_handler, 0, 0);
+> > > > >
+> > > > > Shouldn't you set the last two arguments to non-zero values, to support
+> > > > > sources that only implement the V4L2_CID_PIXEL_RATE control ?
+> > > >
+> > > > Nope, I don't wanna support PIXEL_RATE right now. This can be changed
+> > > > later I think.
+> > >
+> > > Would it be hard to support it already, given that the
+> > > v4l2_get_link_freq() should make it easier ? That would avoid having to
+> > > come back to this code later.
+> >
+> > I had the pixel-rate first, then Jacobo mentioned (correctly) that my
+> > usage of pixel-rate was wrong. Supporting PIXEL_RATE as well would add
+> > more complexity because we need to take core of the mbus format to get
+> > the correct mul/div settings.
+>
+> That's right, but the required information could be stored in the
+> tc358746_format structure, can't it ?
+>
+> > Also I think that only a few drivers
+> > implementing the PIXEL_RATE correctly in case of parallel sensors _and_
+> > this is just a fallback which will print a warning if triggered. All I
+> > want to do here is: "give me the link frequence" :) If there are drivers
+> > not supporting this but support PIXEL_RATE it shouldn't be that hard for
+> > those driver to add the LINK_FREQ ctrl. This would also improve the
+> > kernel quality since there are now heuristics and no warnings printed.
+> >
+> > Is it okay, to keep it simple and just go with LINK_FREQ. for now?
+>
+> OK, I won't insist much.
+>
+> > > > > I'd also name the variable source_link_freq, as it may not be a sensor,
+> > > > > and it's a link frequency, not a pixel clock rate.
+> > > >
+> > > > In parallel case (which is the only supported right now) the pclk is the
+> > > > link_freq. but I can change it of course.
+> > >
+> > > I read "pclk" as "pixel clock". That makes me think of
+> > > V4L2_CID_PIXEL_RATE, which indicates the number of pixels per second.
+> > > With YUV 4:2:2 2X8 media bus formats, the link frequency will be twice
+> > > the pixel rate.
+> >
+> > Hm.. the link frequency is the frequency on the physical parallel bus,
+> > as far as I understood the ctrl. In parallel use-case this is pixelclk.
+> >
+> > Also according PIXEL_RATE documentation, it is defined as
+> > pixel-per-second. For YUV 4:2:2 those this mean mean:
+> >  - y1 == 1st pixel,
+> >  - u1 == 2nd pixel,
+> >  - y2 == 3rd pixel,
+> >  - ...
+>
+> YUYV8_2X8 transfers Y0, U0, Y1, V0, Y2, U2, Y3, V2, ... You need two
+> cycles per pixel. That's why sensor_pclk_rate can be misleading, as it
+> may refer to the sensor pixel sampling clock, or the parallel bus clock,
+> and those two are different. It's just a variable naming issue to avoid
+> confusion.
+>
+> > All I want is to get the rate/frequency of the physical bus from the
+> > input device :) According my above explanation, could we please go with
+> > "the LINK_FREQ ctrl only" since this would avoid possible kernel
+> > warnings and is the most accurate one.
+
+This is a bridge, so surely PIXEL_RATE is a property and control on
+the source to the bridge, not on the bridge itself.
+PIXEL_RATE isn't going to tell you much without HBLANK and VBLANK as
+well, and those also belong to the source.
+
+LINK_FREQ is a property that is only relevant for the output of the
+bridge, and therefore it makes sense to be a control on the bridge (it
+can't be represented elsewhere).
+
+Just my 2p.
+  Dave
