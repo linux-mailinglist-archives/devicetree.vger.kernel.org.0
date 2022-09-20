@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E4225BEA50
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:35:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CF125BEA5A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231244AbiITPfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 11:35:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35562 "EHLO
+        id S230060AbiITPjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 11:39:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230146AbiITPfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:35:18 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76431186EB;
-        Tue, 20 Sep 2022 08:35:17 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id k10so4442721lfm.4;
-        Tue, 20 Sep 2022 08:35:17 -0700 (PDT)
+        with ESMTP id S230448AbiITPjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:39:39 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601B26437;
+        Tue, 20 Sep 2022 08:39:37 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id b24so3471448ljk.6;
+        Tue, 20 Sep 2022 08:39:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date;
-        bh=Ecl+PWLDeZRsl3HvJzzHIyYVRQuW/pyjkIJTbZd04H8=;
-        b=RNlHVAjfkoyBRu0CwzveM4sC8XOt7QdKhURZQmrGi9sDmLvnDaukL9mWZ6T/B99XzQ
-         4thoznu8SkHt7oJsk7e9m99Yx0jEAnjYbhZdyTMkGbMmEC1vItv1iYR3Jeu79aaJMFlf
-         m5BoiRws36L4oQQFl1nO85lhvoaIENxmubWqSPBkMOPmUCJbswVeCM0xPDLcnv8vbAXP
-         KGn8XBcDM6wno37VibaVvXKMWzLdFECNrDugOcs/KAVCPPQgP2JMK2cTBjr0tc4aFH8P
-         99Hwdex0iehySTrmGBDpd7kepLRjKD5oAA/xR8x5jDqIC3Rwixy6Jhj5Etol+y3q8jOG
-         wD1g==
+        bh=0mIUpg849MzBV+X66Bb81RCZlV8Kq/NjqMnhqZGN04E=;
+        b=d3mQDc6cklh29PFwTTqZzD7EHVGVN2PjDILc0jVBHDy/IoXXcMUGgb/SNs4sA1DZSj
+         e0hZY0hcbXviXJFpoiXZJd682YvmNL/WbxzlPBUfXpbBwMtffNudH/TgnSG9pSckS0bQ
+         sku+3HtqBhcE7b9C34oelOGMDV0kGsoocQmzFKEreCcsF+sy2GKNw9zEWmH764nLpHSF
+         KolE/O6R4XPKAsR7dAxbLfWIt9lTjqN3OnBVUilXv9WguDh87alW6fYMm1xgOwke867E
+         8K3BEQhUwHotA43JL4ke9zEVntpup6h4e2vMIR27qhAknzaZqWtd7jlAaQIEwE0NhLty
+         bLLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=Ecl+PWLDeZRsl3HvJzzHIyYVRQuW/pyjkIJTbZd04H8=;
-        b=EWPGGnOj5PWaWvWhLLejkKoe1fEsW1gOTgk8lGxl/o74uBsBW82iM5Se8GshwD4uIz
-         APsBlBgRsSl3eNEfWbKeNEe7BjmVTpeNdKR66iB0UFXsb4o2I+7aDmVXQeJLhc1MVxYy
-         RhuWn2rM85bq4tE7NUJ2AnKEIwxBtK7uThy5oFcbwGw01dwPyHsdfaURZEwAYdU4RM54
-         VpH1cYsqyh3casN0XuU+eEvmiIN4s51uiqiZI3y1Ak1IryvgNkf9zisV/yMBaJJ0KLcI
-         1W45mtWXc49RQhPnNafLsAHlDtf0bhcllXbRHMTYkJzK2+anIVYbRe4Lu92Ob2Gjhr8H
-         uwqQ==
-X-Gm-Message-State: ACrzQf3GSMkcaB3aCm1P1hvb3iuMPNWAQ2o+FjLczsYbcpdRkQV+RXlu
-        X2abMCj+9btqZ4O77ugCGnY=
-X-Google-Smtp-Source: AMsMyM5ln4dVFz2FBFN9t5bsti+KvFWOTbsMIIZKTLUUE+kGN0MohjETWnEfiIu3TOxgZQTcIF1oCQ==
-X-Received: by 2002:ac2:5d26:0:b0:49e:cc05:cc4b with SMTP id i6-20020ac25d26000000b0049ecc05cc4bmr7970690lfb.621.1663688115657;
-        Tue, 20 Sep 2022 08:35:15 -0700 (PDT)
+        bh=0mIUpg849MzBV+X66Bb81RCZlV8Kq/NjqMnhqZGN04E=;
+        b=MGNjblyiKHNC6urODwe1N360pb8HU6vJlZ0mDVrfLcMpCxu7yAe4WYJXgulQ0uLDqD
+         QvdeZWU9qvN2dukIAfet9qSJdkOu49y86fKx4A5staGqqG6aDRJCGJL9K/5h8hVtKTCJ
+         sRITJwsl6rSiTrFS+ovJiOd8B/0HxlzW97VPckIeCoRijVeR3N9CHtCJsv/MZkN1bVte
+         CRwY4Sx+eiuv4MKifuvf1CeyeedXtf0tpI5lZ5dy+6yO1lajzaCWON9622V1Itn/H6fL
+         rQTfY0v9evW+r9yYUdHvR55/rlfqS5Ku1B1T97qsOXv7PsWScbb1ypTSyvIjz6OoKVWT
+         86Zw==
+X-Gm-Message-State: ACrzQf1gdjkGh+0AHPhDn052DeJERyhsPjRrhgun2gjt+fwcIYZ5WY6x
+        lEm4N3Q0MMCnijiMSxCSyyc=
+X-Google-Smtp-Source: AMsMyM5djkogT0KcIWxhM1PPxL+fYM+++yX0dFg+uiqXVjwtniIqt1K9nZVgdRSDnwL3iPBDQ/G+Jg==
+X-Received: by 2002:a2e:9650:0:b0:26b:ef42:7168 with SMTP id z16-20020a2e9650000000b0026bef427168mr6865212ljh.346.1663688375664;
+        Tue, 20 Sep 2022 08:39:35 -0700 (PDT)
 Received: from DESKTOP-GSFPEC9.localdomain (broadband-46-242-10-176.ip.moscow.rt.ru. [46.242.10.176])
-        by smtp.gmail.com with ESMTPSA id b22-20020a05651c033600b00268bfa6ffacsm6248ljp.108.2022.09.20.08.35.14
+        by smtp.gmail.com with ESMTPSA id u24-20020ac24c38000000b0048afbe8a6a1sm9402lfq.241.2022.09.20.08.39.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 08:35:15 -0700 (PDT)
+        Tue, 20 Sep 2022 08:39:35 -0700 (PDT)
 From:   Konstantin Aladyshev <aladyshev22@gmail.com>
 Cc:     Konstantin Aladyshev <aladyshev22@gmail.com>,
         Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
@@ -56,9 +56,9 @@ Cc:     Konstantin Aladyshev <aladyshev22@gmail.com>,
         Andrew Jeffery <andrew@aj.id.au>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-Subject: [PATCH] ARM: dts: aspeed: Add AMD DaytonaX BMC
-Date:   Tue, 20 Sep 2022 18:34:07 +0300
-Message-Id: <20220920153409.6288-1-aladyshev22@gmail.com>
+Subject: [PATCH v2] ARM: dts: aspeed: Add AMD DaytonaX BMC
+Date:   Tue, 20 Sep 2022 18:39:26 +0300
+Message-Id: <20220920153928.6454-1-aladyshev22@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -83,8 +83,7 @@ Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
 ---
  arch/arm/boot/dts/Makefile                    |   1 +
  arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts | 320 ++++++++++++++++++
- arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts |  14 +-
- 3 files changed, 333 insertions(+), 2 deletions(-)
+ 2 files changed, 321 insertions(+)
  create mode 100644 arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts
 
 diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
@@ -425,59 +424,6 @@ index 000000000000..0e066b5ae0fb
 +	status = "okay";
 +};
 +
-diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-index 6406a0f080ee..90feac5ec628 100644
---- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-@@ -5,6 +5,7 @@
- 
- #include "aspeed-g5.dtsi"
- #include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
- 
- / {
- 	model = "AMD EthanolX BMC";
-@@ -58,6 +59,7 @@ &fmc {
- 	flash@0 {
- 		status = "okay";
- 		m25p,fast-read;
-+		label = "bmc";
- 		#include "openbmc-flash-layout.dtsi"
- 	};
- };
-@@ -78,7 +80,9 @@ &uart1 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_txd1_default
--		     &pinctrl_rxd1_default>;
-+		     &pinctrl_rxd1_default
-+		     &pinctrl_nrts1_default
-+		     &pinctrl_ncts1_default>;
- };
- 
- &uart5 {
-@@ -160,7 +164,7 @@ &i2c2 {
- &i2c3 {
- 	status = "okay";
- 	eeprom@50 {
--		compatible = "atmel,24c256";
-+		compatible = "atmel,24c128";
- 		reg = <0x50>;
- 		pagesize = <64>;
- 	};
-@@ -261,6 +265,12 @@ &lpc_ctrl {
- 	status = "okay";
- };
- 
-+&vuart {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0x3f8>;
-+	aspeed,lpc-interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
- &pwm_tacho {
- 	status = "okay";
- 	pinctrl-names = "default";
 -- 
 2.25.1
 
