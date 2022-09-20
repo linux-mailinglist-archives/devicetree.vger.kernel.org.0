@@ -2,105 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8735BE32E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:28:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BB345BE36C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:37:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230337AbiITK2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 06:28:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38510 "EHLO
+        id S231313AbiITKha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 06:37:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230005AbiITK2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:28:10 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5291F71725
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 03:28:08 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id b75so2314112pfb.7
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 03:28:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=TcKUfJUCCOHTt6fn38EmcwoVIyI3UzCr5ChNl1GM+/4=;
-        b=H09M6qwa+9VSmywU31/7TR0CMSMpMjxVwKxascARmgmZH5aTqDvkCcYQ6dCKtuXnDZ
-         3P9q7oCP1POU+EuA0XJlffC8rU8PXBey2Cj9HBklpwC1YN3K4PGpMNeMv5IPCjY7GZgw
-         dYVEA7+3EYio0butF+EJ+cMNCY2Ga583g+uFLn9EfvYAVXqqf2DRudZPQo1Uop1RUnEn
-         sVMZCVkgaRb2zDVuSEdwuhjq2kZmxm9lOWSF7Mp/e2fM8SfK79vnMRsnTnDMZpMGSupr
-         pbDkRAv6+TuSp6cu5VYw1uEksDZXIkXAS1d5s0ucavEmWhP041aq5jA9ggap6X9jSgSf
-         HiVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=TcKUfJUCCOHTt6fn38EmcwoVIyI3UzCr5ChNl1GM+/4=;
-        b=nVJtsQsGiUaTI75aUW13sJDwf9/gVJv9CBWwbeCfLmJDE9E3aSNi+jL1aR4wZNFJ/W
-         0hB08Wb9Ji09HDlTGd5Q44IaC6j0iU50q/Y5ek0v5aJmEbAyWUP/C1nlI/a4TXbMVzMY
-         6zJZO8a2JUmSioMtNh1UFxE9Hehw3hSJwrM+WGDsZADyVfbqS8ejoA8uWr4I+0jMjJ5O
-         Y3e9iaUyc1jnQh9hlRyXf7Gvscnwe6GbWhHOXWveQUDwlnBhr1hXFJ3HOSAW3b4tl92a
-         ZFlgJX9RDo2snwVhHikzw0TYHt2t1AE4ScqHxmgtcsd7sPgcCto1oST6c7eicIMVjr3Q
-         EhAA==
-X-Gm-Message-State: ACrzQf2KncykV4XqrtVD6+q5FOAC095P75bhJbQ4LN52uY2HTrWntbUF
-        dvDAGiJacOJx2mh56cuu1fZj/g==
-X-Google-Smtp-Source: AMsMyM760oD16hXPs+4JP05QAFv5/6I/Juk3967sI0Zs6Yd78edT73FvzRS2x3JB8oI+CSc0kKkYgA==
-X-Received: by 2002:a05:6a00:158f:b0:546:b777:af17 with SMTP id u15-20020a056a00158f00b00546b777af17mr22701543pfk.51.1663669687117;
-        Tue, 20 Sep 2022 03:28:07 -0700 (PDT)
-Received: from localhost ([122.171.20.238])
-        by smtp.gmail.com with ESMTPSA id s17-20020a17090302d100b0016c9e5f290esm1089268plk.10.2022.09.20.03.28.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 03:28:06 -0700 (PDT)
-Date:   Tue, 20 Sep 2022 15:58:03 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [RFC PATCH 0/4] cpufreq: qcom-hw: Move clocks to CPU node
-Message-ID: <20220920102803.rqj44xrz2szj3tqi@vireshk-i7>
-References: <cover.1657695140.git.viresh.kumar@linaro.org>
- <20220715160933.GD12197@workstation>
- <20220718015742.uwskqo55qd67jx2w@vireshk-i7>
- <20220801023756.76jswkbwivuntqof@vireshk-i7>
- <20220830032456.z4olnogsyg32vhiz@builder.lan>
- <20220830054042.akj7pf366inelvpo@vireshk-i7>
- <20220830062050.GA7066@workstation>
+        with ESMTP id S230096AbiITKgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:36:07 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6F7F0E;
+        Tue, 20 Sep 2022 03:34:33 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 640596601F3B;
+        Tue, 20 Sep 2022 11:34:30 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663670071;
+        bh=Ly/Gd/BN8cZIA8HYYtUp7eyC8GP8ws7pSAuEwyx/X5o=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=XUSr6mTZd0KrAR17T81pA/3sXiF88jPHisabDNPtgK3vjBm3IG4jNbju3JvH2nZ1P
+         vkjCshGNakNla1CP5FeOMLER2lO0EdPtfRbeeSz0m3uuA0H9MF7x+cF668zOxeur3g
+         PcYf0wAG6mA/uVRZ9WLVy1aK+cop7Auxnv7zaV9k5znPLe/5wKf60oDe4b62eBspxM
+         +gh5SAN6aq7CYRHpff/mvhCcNF4ORhPVxJ1/AbSYaNx066mGNdqXuGC+nMLRqi+Z9G
+         6FwhjDGNmmvMgSZ0AjrScXDd+7tP+yWpAeEQCOPBpUdv24dBszOkTV0H/462MD0Jpd
+         WHNRBP8jig7xA==
+Message-ID: <b2ab259b-404d-a267-6fef-913c4514b078@collabora.com>
+Date:   Tue, 20 Sep 2022 12:34:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220830062050.GA7066@workstation>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v1 08/17] drm/mediatek: hdmi: add cec flag
+Content-Language: en-US
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20220919-v1-0-4844816c9808@baylibre.com>
+ <20220919-v1-8-4844816c9808@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220919-v1-8-4844816c9808@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-08-22, 11:50, Manivannan Sadhasivam wrote:
-> On Tue, Aug 30, 2022 at 11:10:42AM +0530, Viresh Kumar wrote:
-> > On 29-08-22, 22:24, Bjorn Andersson wrote:
-> > > Conceptually, it sounds like a good idea to express the clock feeding
-> > > the CPU clusters, which is controlled by the OSM/EPSS.  But do you
-> > > expect the OPP framework to actually do something with the clock, or
-> > > just to ensure that the relationship is properly described?
-> > 
-> > No, the OPP core will never try to set the clock rate in your case,
-> > though it will do clk_get().
-> > 
+Il 19/09/22 18:56, Guillaume Ranquet ha scritto:
+> Add a flag to indicate support for cec.
 > 
-> Okay. Then I think it is a fair argument to make qcom-cpufreq-hw as the
-> clock provider for CPUs.
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 > 
-> I will send the RFC soon.
+> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+> index bfcca6f8b839..86653ebaacfd 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+> @@ -154,35 +154,38 @@ int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi, struct platform_device *pdev,
+>   		return ret;
+>   	}
+>   
+> -	/* The CEC module handles HDMI hotplug detection */
+> -	cec_np = of_get_compatible_child(np->parent, "mediatek,mt8173-cec");
+> -	if (!cec_np) {
+> -		dev_err(dev, "Failed to find CEC node\n");
+> -		return -EINVAL;
+> -	}
+> +	if (hdmi->conf->has_cec) {
 
-Ping.
+I think that's a pointless overcomplication: I know why you're doing this but I'm
+not sure that this is a good solution.
 
--- 
-viresh
+I would simply disable CEC support if there is no CEC child node and that's it...
+
+Regards,
+Angelo
