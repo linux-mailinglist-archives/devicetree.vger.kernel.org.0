@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21B8E5BDC67
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 07:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18D675BDC6D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 07:27:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230266AbiITFZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 01:25:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45862 "EHLO
+        id S230137AbiITF1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 01:27:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230207AbiITFZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 01:25:26 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2CD55A89F
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 22:25:09 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id s14so452758wro.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 22:25:09 -0700 (PDT)
+        with ESMTP id S229543AbiITF1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 01:27:47 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92A6300
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 22:27:39 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id g3so2341913wrq.13
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 22:27:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date;
-        bh=Btu1ztR3RNS7yGwse7tt56AH1XmmucvrpacPilF1ViI=;
-        b=AVkhKBDBE4753ufHk0cJDEb3iU7R5wpQqWg3AsmAZ58SlqsWexMzYCzlj4bqd9A1vo
-         PMXtbzcrSOba98jdH9A72z2SEjZ8wo4PPFjPWOqrCdMF4N2b/9x+FQlCGbb/uIqnEaiv
-         VwOcANLHfeGs1kANF4+tKCIBV2gPz4xAGNt6mGLb0wFc0H3t0mKFT1yqQxEzI1Pm9xxd
-         ZWAGU1bCpjefCFwzw24O9daNLySq6v/5aqto35ahf1tvO0nWxoL/DZWW0LG2Jr14uGmp
-         MQlo72QkT/le2Z7JaZ3Zuj4VI3IGhgOzf5LDaBfQaD7lUeziZFIZyf7IeGJUlUFnnepd
-         xhzA==
+        bh=Qd2vIaTaU8FXpoD0loqfPqjcfrHuvjdaiYj9iARSth8=;
+        b=KmPrFrywgwmVRWDFFDjcFy6pKgJ2nBRleZx+FyMYSo8S/FOKwIKfSupdD4mOgUVYO6
+         k8im8DvNRNMjMoirwHiprBVmVM98wvUdTNAKER63zr1hzjZmE2fzdt7lbJRDSK8X4lla
+         O7Do31gmrme0xJTvD1ESsuHwNRb3u54OFv9i6BPy8BemLgoqBiwm2ZHcAZsrMsUPpQH+
+         1VHgRB6+9LlMbjlejrd/+wGJGzhnGyo34hP2Z+sZv/w/q6hUzEzJSI7BhQ3jyi/2Hnfa
+         H3JGAVd03RVNYk2wTYRcL14OOPqisw+9Mt3ZI/GoNPu293ff9aoYg1KgvrFlY0RXR5FW
+         i04Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=Btu1ztR3RNS7yGwse7tt56AH1XmmucvrpacPilF1ViI=;
-        b=Z6YG7g4cIDpHElLDrJzXOOz8DMwGZI40xQpCgy9LxKGa0V2leI1x6lcWZckeq1yAAx
-         zgUClRODI3yFHKmDGcnu3gHz8w3MapI5gVT9wpx0moe5RoNl6JTaBmVD9rR0rHBRBwZW
-         QIbd/iDN57SU7OHdOyY/j64O1awgSJW1FFTtr+DHz//jGBmjl1FNxYxtie24L+y2eOdM
-         q6LNTv0qWnInGc/y5Vgo4ffbR5Rq3KyBtEhC+rZBLZKKIZ7W2T6QmDiobhUoeLqphlim
-         QWniqCiH8uDY6C3lu4jTSX1sQCtpCs4K7ug9ADAKaVWfbIW43woKusAyi//PEKwsXoxF
-         AZiA==
-X-Gm-Message-State: ACrzQf0v3LZSrKoGMYgesyjdZJS9U8IQEEDRRJaYLSJGLUHJwo4U9Usi
-        r/6ichqBdeFYdsKVifuc4kjQp/DSvWEvDA==
-X-Google-Smtp-Source: AMsMyM5zBrcCeuPDx+yNYE5U9IBma+Ow+P6dsKF1ePkXY2pckFngA5gbQujKTdXzDcmzCo7C1R99TQ==
-X-Received: by 2002:adf:fb86:0:b0:21e:3cc8:a917 with SMTP id a6-20020adffb86000000b0021e3cc8a917mr13423282wrr.538.1663651497651;
-        Mon, 19 Sep 2022 22:24:57 -0700 (PDT)
+        bh=Qd2vIaTaU8FXpoD0loqfPqjcfrHuvjdaiYj9iARSth8=;
+        b=73a5HgDsulQvu0jIXz5KYo1PrGRXzmOp4vjOyCloGU2mi8NyUtGQtGbSKErixJtO/Y
+         HaOGAOsjKnsgWPvcQxW14MHFkutY7rv70RkZ0phYQ+5It4ReGEGDZJl/BnefiLwP+kFh
+         xpOClvfmP+1QuoJjT/48fFYnMgjLTFVwAFmo6cMNydIcBjzMVreGg+t5Fc5Wb24qSXsH
+         kvdxnx7+tN9I1PT7lOE0h27voKGLPOKzUpsT34bpD/eTRQ3Yox0hKsv0i8XZ2FrisIFY
+         6/mB73i7E8BQIBPFL6Wlk8LeTdV4ujT3KPjiZaXhM66SaNhvwAWg2F7kQK4gQmWZ/hH7
+         +urw==
+X-Gm-Message-State: ACrzQf3aSq7/n87UEHm48ummltuQGN4Ufhah4+uvdq5fYwpKIj214i0Y
+        MLzDUPQ+Dy8mKez8jPiXnASiJU2GPr5KiA==
+X-Google-Smtp-Source: AMsMyM6rL81Um64xAbk3Rsm49Hie3Qz3sDP0MdQ+LVIfMYK+V9G/06r1hETn+TGco08lDEGqMkqmVg==
+X-Received: by 2002:adf:f94a:0:b0:225:7383:d755 with SMTP id q10-20020adff94a000000b002257383d755mr12749719wrr.348.1663651658134;
+        Mon, 19 Sep 2022 22:27:38 -0700 (PDT)
 Received: from localhost.localdomain (188.red-88-10-59.dynamicip.rima-tde.net. [88.10.59.188])
-        by smtp.gmail.com with ESMTPSA id p19-20020a05600c1d9300b003b47ff3807fsm16656639wms.5.2022.09.19.22.24.56
+        by smtp.gmail.com with ESMTPSA id ay9-20020a05600c1e0900b003a5c7a942edsm16237241wmb.28.2022.09.19.22.27.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Sep 2022 22:24:57 -0700 (PDT)
+        Mon, 19 Sep 2022 22:27:37 -0700 (PDT)
 From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
 To:     devicetree@vger.kernel.org
 Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, arinc.unal@arinc9.com
-Subject: [PATCH v2] dt-bindings: interrupt-controller: migrate MIPS CPU interrupt controller text bindings to YAML
-Date:   Tue, 20 Sep 2022 07:24:55 +0200
-Message-Id: <20220920052455.582565-1-sergio.paracuellos@gmail.com>
+Subject: [PATCH v2] dt-bindings: spi: migrate mt7621 text bindings to YAML
+Date:   Tue, 20 Sep 2022 07:27:35 +0200
+Message-Id: <20220920052735.582768-1-sergio.paracuellos@gmail.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -67,129 +67,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MIPS CPU interrupt controller bindings used text format, so migrate them
-to YAML.
+SoC MT7621 SPI bindings used text format, so migrate them to YAML.
+There are some additions to the binding that were not in the original
+file. This binding is used in MT7621 and MT7628a Ralink SoCs. To
+properly match both dts nodes in tree we need to add to the schema
+'clocks', 'clock-names' and 'reset-names'. Both 'clock-names' and
+'reset-names' use 'spi' as string so maintain that as const in
+the schema.
 
 Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 ---
 Changes in v2:
 - Address review comment from Krzysztof:
     - Rebase onto last kernel version.
-    - Add Thomas Bogendoerfer as maintainer since this is arch stuff.
-    - Change compatible to go first as property and required.
-    - Change sample node name to be generic. Use 'interrupt-controller'.
+    - Drop address-cells and size-cells.
+    - Explain deviations from the original file in commit message.
+    - Drop reset-names as required property.
 
- .../mti,cpu-interrupt-controller.yaml         | 46 ++++++++++++++++++
- .../devicetree/bindings/mips/cpu_irq.txt      | 47 -------------------
- 2 files changed, 46 insertions(+), 47 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml
- delete mode 100644 Documentation/devicetree/bindings/mips/cpu_irq.txt
+ .../bindings/spi/ralink,mt7621-spi.yaml       | 61 +++++++++++++++++++
+ .../devicetree/bindings/spi/spi-mt7621.txt    | 26 --------
+ 2 files changed, 61 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-mt7621.txt
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml b/Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml
+diff --git a/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml b/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
 new file mode 100644
-index 000000000000..06dc65f0bbd2
+index 000000000000..22879f7dcb77
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++++ b/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/interrupt-controller/mti,cpu-interrupt-controller.yaml#
++$id: http://devicetree.org/schemas/spi/ralink,mt7621-spi.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: MIPS CPU Interrupt Controller bindings
-+
-+description: >
-+   On MIPS the mips_cpu_irq_of_init() helper can be used to initialize the 8 CPU
-+   IRQs from a devicetree file and create a irq_domain for IRQ controller.
-+
-+   With the irq_domain in place we can describe how the 8 IRQs are wired to the
-+   platforms internal interrupt controller cascade.
-+
 +maintainers:
-+  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++title: Mediatek MT7621/MT7628 SPI controller
++
++allOf:
++  - $ref: /schemas/spi/spi-controller.yaml#
 +
 +properties:
 +  compatible:
-+    const: mti,cpu-interrupt-controller
++    const: ralink,mt7621-spi
 +
-+  '#interrupt-cells':
-+    const: 1
++  reg:
++    maxItems: 1
 +
-+  '#address-cells':
-+    const: 0
++  clocks:
++    maxItems: 1
 +
-+  interrupt-controller: true
++  clock-names:
++    const: spi
 +
-+additionalProperties: false
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: spi
 +
 +required:
 +  - compatible
-+  - '#interrupt-cells'
-+  - '#address-cells'
-+  - interrupt-controller
++  - reg
++  - resets
++  - "#address-cells"
++  - "#size-cells"
++
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    interrupt-controller {
-+      #address-cells = <0>;
-+      #interrupt-cells = <1>;
-+      interrupt-controller;
-+      compatible = "mti,cpu-interrupt-controller";
++    #include <dt-bindings/clock/mt7621-clk.h>
++    #include <dt-bindings/reset/mt7621-reset.h>
++
++    spi@b00 {
++      compatible = "ralink,mt7621-spi";
++      reg = <0xb00 0x100>;
++      clocks = <&sysc MT7621_CLK_SPI>;
++      clock-names = "spi";
++      resets = <&sysc MT7621_RST_SPI>;
++      reset-names = "spi";
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      pinctrl-names = "default";
++      pinctrl-0 = <&spi_pins>;
 +    };
-diff --git a/Documentation/devicetree/bindings/mips/cpu_irq.txt b/Documentation/devicetree/bindings/mips/cpu_irq.txt
+diff --git a/Documentation/devicetree/bindings/spi/spi-mt7621.txt b/Documentation/devicetree/bindings/spi/spi-mt7621.txt
 deleted file mode 100644
-index f080f06da6d8..000000000000
---- a/Documentation/devicetree/bindings/mips/cpu_irq.txt
+index d5baec0fa56e..000000000000
+--- a/Documentation/devicetree/bindings/spi/spi-mt7621.txt
 +++ /dev/null
-@@ -1,47 +0,0 @@
--MIPS CPU interrupt controller
--
--On MIPS the mips_cpu_irq_of_init() helper can be used to initialize the 8 CPU
--IRQs from a devicetree file and create a irq_domain for IRQ controller.
--
--With the irq_domain in place we can describe how the 8 IRQs are wired to the
--platforms internal interrupt controller cascade.
--
--Below is an example of a platform describing the cascade inside the devicetree
--and the code used to load it inside arch_init_irq().
+@@ -1,26 +0,0 @@
+-Binding for MTK SPI controller (MT7621 MIPS)
 -
 -Required properties:
--- compatible : Should be "mti,cpu-interrupt-controller"
+-- compatible: Should be one of the following:
+-  - "ralink,mt7621-spi": for mt7621/mt7628/mt7688 platforms
+-- #address-cells: should be 1.
+-- #size-cells: should be 0.
+-- reg: Address and length of the register set for the device
+-- resets: phandle to the reset controller asserting this device in
+-          reset
+-  See ../reset/reset.txt for details.
 -
--Example devicetree:
--	cpu-irq: cpu-irq {
--		#address-cells = <0>;
+-Optional properties:
+-- cs-gpios: see spi-bus.txt.
 -
--		interrupt-controller;
--		#interrupt-cells = <1>;
+-Example:
 -
--		compatible = "mti,cpu-interrupt-controller";
--	};
--
--	intc: intc@200 {
--		compatible = "ralink,rt2880-intc";
--		reg = <0x200 0x100>;
--
--		interrupt-controller;
--		#interrupt-cells = <1>;
--
--		interrupt-parent = <&cpu-irq>;
--		interrupts = <2>;
--	};
--
--
--Example platform irq.c:
--static struct of_device_id __initdata of_irq_ids[] = {
--	{ .compatible = "mti,cpu-interrupt-controller", .data = mips_cpu_irq_of_init },
--	{ .compatible = "ralink,rt2880-intc", .data = intc_of_init },
--	{},
+-- SoC Specific Portion:
+-spi0: spi@b00 {
+-	compatible = "ralink,mt7621-spi";
+-	reg = <0xb00 0x100>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	resets = <&rstctrl 18>;
+-	reset-names = "spi";
 -};
--
--void __init arch_init_irq(void)
--{
--	of_irq_init(of_irq_ids);
--}
 -- 
 2.25.1
 
