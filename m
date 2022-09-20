@@ -2,95 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF9AA5BE492
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ED385BE4A5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:40:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbiITLfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 07:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55336 "EHLO
+        id S229518AbiITLkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 07:40:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230221AbiITLfk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:35:40 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F1B6D554
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:35:39 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1oabXC-0008TL-5B; Tue, 20 Sep 2022 13:35:26 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1oabXA-000335-Om; Tue, 20 Sep 2022 13:35:24 +0200
-Date:   Tue, 20 Sep 2022 13:35:24 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
-        hverkuil@xs4all.nl, jacopo@jmondi.org,
-        kieran.bingham+renesas@ideasonboard.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v2 4/4] media: tc358746: add Toshiba TC358746 Parallel to
- CSI-2 bridge driver
-Message-ID: <20220920113524.yq2abqbunvfipnb2@pengutronix.de>
-References: <20220916134535.128131-1-m.felsch@pengutronix.de>
- <20220916134535.128131-5-m.felsch@pengutronix.de>
- <YyhjB+RbLokmBKPx@paasikivi.fi.intel.com>
- <YyhlQPhezmLG8ZCn@pendragon.ideasonboard.com>
- <Yyhonw7SEjkAPivN@paasikivi.fi.intel.com>
+        with ESMTP id S229596AbiITLkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:40:46 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F24456DFA0
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:40:44 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id fv3so2789659pjb.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:40:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=0lnlyjG9F2tldy9kaULLQnBUx9Q4MWzH14af6yb3ESA=;
+        b=r5DQwNXbYFUO5IGE+VU44m+ULFynmVB/hv/PQAz9SWPpZov933+sutBPOa3sQBewqz
+         4zcBFNAFLXdRD3EH8v1hjiJwPScTU3TLj1D3kS18faAv14r+16vfhxMokJf6nNboiqzD
+         ZCDDK71+VdlzjIfXYZxZsbrN7ClgZiwyUSz6QNx8pRWzKULtKbOcwLg6HtJ/WfleSBN1
+         MDOWp/WPq34T7URZqmb1HVDf+HToNBlpzyA77O34gG+qBsJscYk+Cb427jn2pp3f23/p
+         DEofB8VxtCWTzQwYNBzTrAnKJH30htGOp3fo/kBjSSUZSLaH2jaFnapYkLVpEFQ0Xn7U
+         dvJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=0lnlyjG9F2tldy9kaULLQnBUx9Q4MWzH14af6yb3ESA=;
+        b=CPAgeWrnO/oXFiPiyZy1cPHbG/4h6iHxphuHX5tO1X8/C2d4cn4AriBxchQzCxsylY
+         WCOzawdJFcw53OFZTBvbDEQ1M4aFNyvy7JRpgr+ROyv4OFcy5Rg6E4dyuhZd3qwnSYw5
+         pB/8ECyZ6HnBl2h/ZB1SvsDrrmwPLazhesVtB3GrrfUKxLVqvlGCiQglW3qaEn8VE3e2
+         gZs8zb1r2pC4EWdv5p2S79JVlZE6n97SWnuLhlI9HWHnu8imTtwAFOzAlrgrD+FfS7+B
+         +AEKulwsLVWHVJ0NptiDbFFXqalOLrY1TZdNqWnzNTDVnApj6hfoQSrqyRlP2krZVuVR
+         1S/g==
+X-Gm-Message-State: ACrzQf0uunIfqs+0mxO8RYlpeZV8IBa4js1zHRSB1LfSBQSfucW11u8V
+        ilu8bGbMdzj/2Jo5kTjGlRsR2A==
+X-Google-Smtp-Source: AMsMyM5MGkMU3EnSjEHGtL+qbiCmHr1BVo9Vst+MoGVh/3fqN3HoT88v1m++RqzbPZdMT8hCnORLTw==
+X-Received: by 2002:a17:902:ef82:b0:178:72bc:983b with SMTP id iz2-20020a170902ef8200b0017872bc983bmr4477829plb.0.1663674044480;
+        Tue, 20 Sep 2022 04:40:44 -0700 (PDT)
+Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
+        by smtp.gmail.com with ESMTPSA id e8-20020a17090301c800b00174fa8cbf31sm1192425plh.303.2022.09.20.04.40.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Sep 2022 04:40:42 -0700 (PDT)
+From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+To:     dianders@chromium.org
+Cc:     agross@kernel.org, andersson@kernel.org,
+        devicetree@vger.kernel.org, konrad.dybcio@somainline.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mka@chromium.org,
+        quic_sibis@quicinc.com, robh+dt@kernel.org,
+        sheng-liang.pan@quanta.corp-partner.google.com, swboyd@chromium.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: All current evoker boards are LTE
+Date:   Tue, 20 Sep 2022 19:40:20 +0800
+Message-Id: <20220920114020.2185607-1-sheng-liang.pan@quanta.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220919165808.1.Idfb956ebc035c3bd0d682f4697c297c7a975c50d@changeid>
+References: <20220919165808.1.Idfb956ebc035c3bd0d682f4697c297c7a975c50d@changeid>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yyhonw7SEjkAPivN@paasikivi.fi.intel.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-19, Sakari Ailus wrote:
-> On Mon, Sep 19, 2022 at 03:49:04PM +0300, Laurent Pinchart wrote:
-> > On Mon, Sep 19, 2022 at 12:39:35PM +0000, Sakari Ailus wrote:
-> > > > +	dev_set_drvdata(dev, tc358746);
-> > > > +	pm_runtime_set_autosuspend_delay(dev, 200);
-> > > > +	pm_runtime_use_autosuspend(dev);
-> > > > +	pm_runtime_enable(dev);
-> > > > +
-> > > > +	err = tc358746_init_hw(tc358746);
-> > > 
-> > > The driver depends on runtime PM being enabled but does not depend on
-> > > CONFIG_PM. I'd suggest to power the device on and only then enable runtime
-> > > PM. See
-> > > <URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera-sensor.html#power-management>.
-> > 
-> > Or simply depend on CONFIG_PM :-)
-> 
-> The user can still disable runtime PM.
-
-You mean by user-space? If I read the runtime.c code correctly in such
-case the core handles this enabling if one forbid it by increasing the
-usage-counter and calling the resume callback. So it is powered as you
-want. To fix the PM Kconfig, I will add "depends on PM".
-
-Regards,
-  Marco
-
-> I guess few do though. This should be addressed separately from this
-> driver, it'd be good to be able to deny that. In fact, no-one has ever
-> probably tested this for a large number of drivers and I guess it exists
-> just to have a way to disable runtime PM support in drivers that do not
-> work with it...
-> 
-> -- 
-> Sakari Ailus
-> 
+> At the time that commit 2abf6b6b9429 ("arm64: dts: qcom: sc7280: Add
+> device tree for herobrine evoker") was posted, all herobrine SKUs were
+> LTE.
+>
+> At the time that commit d42fae738f3a ("arm64: dts: qcom: Add LTE SKUs
+> for sc7280-villager family"), the evoker board device tree hadn't yet
+> landed.
+>
+> I belive that the above two facts mean that the evoker boards ought to
+> be setup for LTE but currently aren't. Let's fix that.
+Evoker should also have wifi/lte SKU, 
+I think we need to follow villager to create evoker.dtsi then separate wifi/lte dts.
