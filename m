@@ -2,167 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 520BD5BE980
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88AAA5BE987
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231367AbiITPBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 11:01:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
+        id S231407AbiITPDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 11:03:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbiITPBJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:01:09 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2251356FE
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:01:07 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id z13so4200165edb.13
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:01:07 -0700 (PDT)
+        with ESMTP id S230040AbiITPDx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:03:53 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E910436DC0
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:03:51 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id n10so4699923wrw.12
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:03:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=bgEx5Kq7VOtgOD4buse7/uZ+x/Y62IUaR73vqEIPjzY=;
-        b=cTVeOnTCemK2eDtJ48pOWoYFEU595KeXCZLrFWFtGsVITlGRdvZds+c5nNbbI8rj6M
-         2u1nbBOGh718+CaQ2CgFoQqVOhezMg2ARLOyfFbUhVnpnSyuz/ToLYbVuaIrkfsClTDb
-         IF9bBTAX/ESuuaxx750IS7TnhoSL3/F32uS+M=
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date;
+        bh=uqh2dUbJoe0czrli6Kd224HI22Ux46FPe3M+hCU7TSM=;
+        b=DXJVo1kZdhTaLHixoiyKqUBvm4HdflY4OsRIzLyHV4lW717MrOMbIq4EGZ0xOzT389
+         PCprPBKzPHmgAy781JFqC5+s1HsvkFwvP8AHPzHE8FrmFG+Ep3w6tK09z5oiUIo04u6s
+         QpsCkrrwcdC4jTvmM+zUCcjyhnKqYhkN0jou9sXbP9wGbz2hnWqxmHIEo9YhMhAKz83c
+         ZVsGAXRsZIe7mCbWVuBOwfmRlwq3AOTkVD5135EGU1qIHWivegHi/VH3PP0xY2dC9BVt
+         aoIrdkEZ7hG/o7ldH00g/HjNnrcafYhO0HGI06DixwaDSizyZqZSsmvJzm4k3uuI47gp
+         oftg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=bgEx5Kq7VOtgOD4buse7/uZ+x/Y62IUaR73vqEIPjzY=;
-        b=nnU1k2HET6x9KEylHRNlu79F2bIAi4j4x4AJNGiTuLvNwLd0hb+aCjJ6OusBGyCdh/
-         /8D7exW4RhdLAOfWJmHLEFNjU5K2Ohl+COMXSunJ6+YdqT88NeYRJyfI6OraUjprT+tJ
-         7fb2Xfqit4czqSMWz6rNA9sj8CXb91lHmZKKjhTWhO1Ael2PQQR7xvvWzfOZvaaQ2+/A
-         XLhD+zOFHVGGadw2oSBcMJJHn9kHORVfKWrDr+evUeFBekV5xjhJX4MYlOitV7ckBf/C
-         wfkQgkkhFk6BcabiA/Oh6HztQe7yTRumDTJBptE9XAK+4xcQgEI/s4lNiTKy2fgbsEap
-         /enA==
-X-Gm-Message-State: ACrzQf2zDvpvFMUnRENB/rWSvEF0mtfmCI3nTGcUHSm5mb1mpcJDZqSd
-        jm5+yZCkEaH6y5O95uFY+ceNjoZWbZ+b3t1O
-X-Google-Smtp-Source: AMsMyM7kGhwNfeig/LTII4bJZye7/A5RaM6wTni/fqme0esmiuVmVsOhGUSdih49pG9jOVLuR9L4+w==
-X-Received: by 2002:a05:6402:40d1:b0:44f:e974:f981 with SMTP id z17-20020a05640240d100b0044fe974f981mr21185288edb.222.1663686065963;
-        Tue, 20 Sep 2022 08:01:05 -0700 (PDT)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
-        by smtp.gmail.com with ESMTPSA id f12-20020a17090631cc00b0073d7ab84375sm985072ejf.92.2022.09.20.08.01.02
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 08:01:03 -0700 (PDT)
-Received: by mail-wr1-f53.google.com with SMTP id cc5so4757258wrb.6
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:01:02 -0700 (PDT)
-X-Received: by 2002:a5d:522f:0:b0:228:dc7f:b9a8 with SMTP id
- i15-20020a5d522f000000b00228dc7fb9a8mr15014256wra.617.1663686062063; Tue, 20
- Sep 2022 08:01:02 -0700 (PDT)
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date;
+        bh=uqh2dUbJoe0czrli6Kd224HI22Ux46FPe3M+hCU7TSM=;
+        b=q7MTQ5aQIM4Qh99NSyIIpRlVIC531DCirGQ2u5mSOtodGUTHQCIoR/e46cNhL0hVU5
+         t+5teVoD9OW68DTaUKUO3FMUvei5d/kzLY0XsSUYk7e3PlPXYPJAA7WMq742V1L+SZ45
+         PT+77DbmaN3wdqo91+DNvv4m4eZYJ5Yi/26vGroJXiSFEMXQGXlxZqsL/yhn5ovwCsj+
+         0H2Ez+smw8iaJRHDudtQ7hgu+lEsyvMbnNer5zlIdtxG9W7jGhgftrupqidU8a/mYqP9
+         TxRVh8BiO8Onz9idHnGUol3RcnDMrRZHek7B0Oy7lu4oSTtsbsAAntXZcan+Gqp1NivN
+         t+aw==
+X-Gm-Message-State: ACrzQf3ukd+ZmGy+kWULsh9iIUgoQhQgL6VKN06oc/MHw/JXPGz1K+Cx
+        Lo5vwFlRFyB9s+tfuiCgSlyXBg==
+X-Google-Smtp-Source: AMsMyM4N3YyCHurPDYZZtnr9E0TUg9Sv7/xmEAaHI2ynKZ4GFkBWucudF/uupLgrSQ0U9mOQa4DTtQ==
+X-Received: by 2002:adf:d0d2:0:b0:22a:daf4:87e8 with SMTP id z18-20020adfd0d2000000b0022adaf487e8mr14283790wrh.167.1663686229972;
+        Tue, 20 Sep 2022 08:03:49 -0700 (PDT)
+Received: from [127.0.1.1] (210.145.15.109.rev.sfr.net. [109.15.145.210])
+        by smtp.googlemail.com with ESMTPSA id u3-20020a5d4683000000b00225239d9265sm242056wrq.74.2022.09.20.08.03.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Sep 2022 08:03:49 -0700 (PDT)
+Subject: [PATCH v5 0/4] thermal: mediatek: Add support for MT8365 SoC
 MIME-Version: 1.0
-References: <20220916040330.1.Ia3be91283bd937d08e7321140c89e4a0e2b78cf6@changeid>
-In-Reply-To: <20220916040330.1.Ia3be91283bd937d08e7321140c89e4a0e2b78cf6@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 20 Sep 2022 08:00:50 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XMmF2J-DQwa+o3aMUtajDtPkNfQEeruwL8cO1Nfv=hhA@mail.gmail.com>
-Message-ID: <CAD=FV=XMmF2J-DQwa+o3aMUtajDtPkNfQEeruwL8cO1Nfv=hhA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: Add touchscreen for pazquel360
-To:     Yunlong Jia <ecs.beijing2022@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Henry Sun <henrysun@google.com>,
-        Yunlong Jia <yunlong.jia@ecs.com.tw>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Dmitry Torokhov <dtor@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIAFPWKWMC/w3LQQqAIBAAwK/EnluwlQL7jdqWC2ah2UX6ex7nMA0KZ+EC69Ag8ytFrtQxjwP4YN
+ PBKFs3kCJShhSKnhU+gfNpI9YbSfPG+6SNWxz05WxhdNkmH/pLNcbv+wFekBRVZgAAAA==
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Date:   Tue, 20 Sep 2022 17:03:47 +0200
+Message-Id: <20220920-i350-thermal-up-v5-0-123bc852d199@baylibre.com>
+To:     Amit Kucheria <amitk@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-pm@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Kao <michael.kao@mediatek.com>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.10.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1663686228; l=928;
+ i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
+ bh=ZDTa/tO2w1q5PgHHJH+pnlRiuHKoLh+P+DGPwBVzPgQ=;
+ b=P9O/bhuGn1v+GUuvjvPBQVRiw0A/n7SOtf6jGT64bGiMkH7KDObNF9pLdTQ8KkFK77EYyL5gAOHA
+ Au3g1oCCBWraOD/6z1bud2qipvaOG0SPzh5+3xrzGknI5+HRm6JI
+X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
+ pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patchset adds thermal support for MT8365 SoC which contains three
+thermal sensors.
 
-On Thu, Sep 15, 2022 at 9:04 PM Yunlong Jia <ecs.beijing2022@gmail.com> wrote:
->
-> The model used is elan ekth3915, compatible with ekth3500.
+Changes in V5:
+- rebased on thermal/linux-next
 
-If I wanted to be very purist about this I'd probably argue that we
-should include both compatibles, the true one and the fallback one,
-AKA:
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+---
+Amjad Ouled-Ameur (1):
+      thermal: mediatek: add another get_temp ops for thermal sensors
 
-compatible = "elan,ekth3915", "elan,ekth3500";
+Fabien Parent (2):
+      dt-bindings: thermal: mediatek: add binding documentation for MT8365 SoC
+      thermal: mediatek: add support for MT8365 SoC
 
-...which would, of course, require a bindings update as well. In
-practice everyone that uses the ekth3500 compatible is ignoring this
-and it seems unlikely to make a huge difference. As long as the power
-sequencing is fine then the elan driver can discover and account for
-any differences at runtime. Thus, I won't insist.
+Markus Schneider-Pargmann (1):
+      thermal: mediatek: control buffer enablement tweaks
 
+ .../bindings/thermal/mediatek-thermal.txt          |   1 +
+ drivers/thermal/mtk_thermal.c                      | 197 +++++++++++++++++----
+ 2 files changed, 166 insertions(+), 32 deletions(-)
+---
+base-commit: 64b269c002273cac4c41fb69572f3684dd1e3284
+change-id: 20220920-i350-thermal-up-23edef139b6b
 
-> Signed-off-by: Yunlong Jia <ecs.beijing2022@gmail.com>
->
-> ---
->
->  .../dts/qcom/sc7180-trogdor-pazquel360.dtsi   | 22 +++++++++++++++++++
-
-The file you're modifying doesn't exist yet. Bjorn landed a bunch of
-patches recently but he seems to have missed yours, AKA the two
-patches that include:
-
-https://lore.kernel.org/r/20220901024827.v3.2.Iea2d2918adfff2825b87d428b5732717425c196f@changeid/
-
-You should have mentioned this dependency "after the cut". Since you
-use patman that would involve using "Commit-notes:" to mention the
-dependency.
-
-Another (probably better) option would have just been to send a v4 of
-your unlanded series and add the touchscreen in there.
-
-
->  1 file changed, 22 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-> index 5702325d0c7b..14ea94ce90c1 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-> @@ -14,6 +14,28 @@
->         realtek,dmic-clk-rate-hz = <2048000>;
->  };
->
-> +ap_ts_pen_1v8: &i2c4 {
-> +       status = "okay";
-> +       clock-frequency = <400000>;
-> +
-> +       ap_ts: touchscreen@10 {
-> +               compatible = "elan,ekth3500";
-> +               reg = <0x10>;
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-> +
-> +               interrupt-parent = <&tlmm>;
-> +               interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +               hid-descr-addr = <0x0001>;
-> +
-> +               vcc33-supply = <&pp3300_ts>;
-> +               vccio-supply = <&pp1800_l10a>;
-> +               reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-> +       };
-> +};
-> +
-> +
->  &keyboard_controller {
-
-nit: Only one blank line between nodes here, not two. Please spin the
-patch for this. Once you do then feel free to add my Reviewed-by tag.
-
-So in summary you have two options and I'm OK with either:
-
-1. Spin a v4 of your original "pazquel360" patch series and just
-squash this one into it.
-
-2. Leave the original "pazquel360" patch series alone and send a v2 of
-this patch series. In your v2 you'd remove the extra blank line and
-use "Commit-notes:" to mention your dependency on the other series.
-
-I suspect Bjorn would prefer #1 but he's free to correct me.
+Best regards,
+-- 
+Amjad Ouled-Ameur <aouledameur@baylibre.com>
