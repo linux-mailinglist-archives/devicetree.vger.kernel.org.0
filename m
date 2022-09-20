@@ -2,105 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D39105BDF59
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FD225BDF84
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:15:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231282AbiITIKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:10:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41414 "EHLO
+        id S230308AbiITIOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:14:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbiITIJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:09:33 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B561F66110;
-        Tue, 20 Sep 2022 01:06:10 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 721FF6601DE8;
-        Tue, 20 Sep 2022 09:06:08 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663661169;
-        bh=E4xgn82nowPPg/tY31Ni/V7rLzv4IGvHVRj9gtDO5gE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=U6XrFV4nnDsjHfDBcBiGbEp2VWBpJhrMWvlYcdN4MjW9ZdHwJhV89KoyZuCw11sU2
-         j8Jmo5/6YUJ0p7DHxgppLqMIPG1rkn13zSMz78XsW6uchKqgDkzaJC6gtxNa0aB11u
-         0UiM4M1rYN1hx3AxyGfC/vHKxjzPXDz4sWFJKdl0VkLFTOz1t2ttgQu4MXWmAoH/4f
-         LlM1c63DwXyHjQkW5jIUQJDbNL/M6xJDyovgq/X1GqXvFWfQ4Ds/n33LEmC/t1CQ1t
-         aq2ARKq6odfL9zI5pSELMQsl266YfeZsHzj4MntQbH2t1nYo+Y5m9F1izclwibi/iD
-         7cByLZ5eyhMOQ==
-Message-ID: <4c425cf8-f9ca-969c-f8ed-688410bfb922@collabora.com>
-Date:   Tue, 20 Sep 2022 10:06:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Combine MediaTek MT67xx pinctrl
- binding docs
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S231443AbiITINr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:13:47 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C09659D1;
+        Tue, 20 Sep 2022 01:12:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+        s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=i07klbgsIEyz4TZEZjEogdkUwm59S629X4PHLfl+5sc=; b=Dz+Pk7iTuXiQMawj44MfoF6E20
+        wZlasygQGJgaqaI1Hj9Z/KWpYmPL6O9K1TZohEX1Ne5S46sTXdPS8zKLgnx4GklgiDyeONj9R5qnT
+        GkMrIUsTf4/pS2D6+pLVHEeRpZ2r2J1NWCIh5ywkozW1eN2oJAgOXrsuLr+EzaNc2mUgqnh1WY/1j
+        bhawVPCIqt0s2N75Dkx9wD6KXobMp5LhXwUiOR6UESjFG4wADALxPrT4PxJdM2F7YNbn84DzpcICi
+        3cZbx7Bk/gW5pmJ9H1LC72EiQN3GpYgcPooIM8J3FWYresy8HArx3p5cdzOtQVL9oXc1UsIOdhaoa
+        ohDBUjWw==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1oaYMn-0017q3-Sg; Tue, 20 Sep 2022 11:12:29 +0300
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220919170115.94873-1-y.oudjana@protonmail.com>
- <20220919170115.94873-2-y.oudjana@protonmail.com>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220919170115.94873-2-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/8] Support for NVDEC on Tegra234
+Date:   Tue, 20 Sep 2022 11:11:55 +0300
+Message-Id: <20220920081203.3237744-1-cyndis@kapsi.fi>
+X-Mailer: git-send-email 2.37.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 19/09/22 19:01, Yassine Oudjana ha scritto:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> Documents for MT6779, MT6795 and MT6797 that currently exist share
-> most properties, and each one has slightly differently worded
-> descriptions for those properties. Combine all three documents into
-> one common document for all MT67xx SoC pin controllers, picking a few
-> parts from each and accounting for differences such as items in reg
-> and reg-names properties. Also document the MT6765 pin controller
-> which currently has a driver but no DT binding documentation. It should
-> be possible to also include bindings for MT8183 and MT8188, but these
-> have some additional properties that might complicate things a bit,
-> so they are left alone for now.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->   .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 207 ------------------
->   .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 176 ---------------
->   ...6795.yaml => mediatek,mt67xx-pinctrl.yaml} | 181 +++++++++++----
+From: Mikko Perttunen <mperttunen@nvidia.com>
 
-Hello Yassine,
-nice cleanup over here!
+v3:
+* Updated patch 3 based on comments
 
-There's a catch though: as far as I know, wildcards are not permitted... so you
-should, at this point, merge all of these in mediatek,mt6779-pinctrl.yaml instead.
+v2:
+* Updated patches 1,3 based on comments
+* Added Acked-by to patch 2
 
-Before jumping to that, though... Krzysztof, can you please confirm (or deny)?
+Original message:
 
-Regards,
-Angelo
+Hi all,
 
->   MAINTAINERS                                   |   2 +-
->   4 files changed, 135 insertions(+), 431 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
->   delete mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt6797-pinctrl.yaml
->   rename Documentation/devicetree/bindings/pinctrl/{mediatek,pinctrl-mt6795.yaml => mediatek,mt67xx-pinctrl.yaml} (65%)
-> 
+this series adds support for the HW video decoder, NVDEC,
+on Tegra234 (Orin). The main change is a switch from Falcon
+to RISC-V for the internal microcontroller, which brings along
+a change in how the engine is booted. Otherwise it is backwards
+compatible with earlier versions.
+
+In previous iterations, firmware was simply loaded from disk and
+written into engine internal memory. Now, the engine has a
+bootrom that loads the firmware from a carveout where it has been
+loaded by the system bootloader; however, we still need to tell it
+where that carveout is loaded and some offsets into it. For that,
+the first patch adds a new memory controller API to query the
+carveout address. The offsets are read from device tree -- the
+expectation is that at flashing time (when the firmware is also
+flashed), the flasher also delivers a device tree overlay with
+values corresponding to the flashed firmware.
+
+The currently available Linux for Tegra release doesn't yet
+include this device tree overlay flashing, and the firmware version
+it contains is incompatible with this series. The plan is to fix
+that for the next Linux for Tegra release, but if necessary, we
+can postpone merging of this series to once those changes are
+available.
+
+Thanks!
+Mikko
+
+Mikko Perttunen (8):
+  memory: tegra: Add API for retrieving carveout bounds
+  dt-bindings: Add headers for NVDEC on Tegra234
+  dt-bindings: Add bindings for Tegra234 NVDEC
+  arm64: tegra: Add NVDEC on Tegra234
+  gpu: host1x: Add stream ID register data for NVDEC on Tegra234
+  drm/tegra: nvdec: Support multiple clocks
+  drm/tegra: Add code for booting RISC-V based engines
+  drm/tegra: Add Tegra234 support to NVDEC driver
+
+ .../gpu/host1x/nvidia,tegra234-nvdec.yaml     | 156 ++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  27 +++
+ drivers/gpu/drm/tegra/Makefile                |   3 +-
+ drivers/gpu/drm/tegra/drm.c                   |   1 +
+ drivers/gpu/drm/tegra/nvdec.c                 | 171 +++++++++++++++---
+ drivers/gpu/drm/tegra/riscv.c                 | 106 +++++++++++
+ drivers/gpu/drm/tegra/riscv.h                 |  30 +++
+ drivers/gpu/host1x/dev.c                      |  12 ++
+ drivers/memory/tegra/mc.c                     |  25 +++
+ drivers/memory/tegra/tegra234.c               |   5 +
+ include/dt-bindings/clock/tegra234-clock.h    |   4 +
+ include/dt-bindings/memory/tegra234-mc.h      |   3 +
+ .../dt-bindings/power/tegra234-powergate.h    |   1 +
+ include/dt-bindings/reset/tegra234-reset.h    |   1 +
+ include/soc/tegra/mc.h                        |  11 ++
+ 15 files changed, 530 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra234-nvdec.yaml
+ create mode 100644 drivers/gpu/drm/tegra/riscv.c
+ create mode 100644 drivers/gpu/drm/tegra/riscv.h
+
+-- 
+2.37.0
 
