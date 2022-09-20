@@ -2,160 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 469105BE9D7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:14:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8267A5BE9E9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231239AbiITPOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 11:14:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55582 "EHLO
+        id S231282AbiITPRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 11:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230456AbiITPOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:14:22 -0400
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 096095A835;
-        Tue, 20 Sep 2022 08:14:20 -0700 (PDT)
+        with ESMTP id S231367AbiITPRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:17:11 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7918F642F0
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:16:54 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id i26so4294054lfp.11
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:16:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1663686861;
-  x=1695222861;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=PDXxWh6D8rkZ8qf1SR+LZVvNYgKTUnfKP/hI0dpGV9c=;
-  b=jUUPSUeLOl9bCrQ0GvQf63vr2Lo63CInGZfSU2UcJgAmAbqZ21CJEEqr
-   Q5SK6cc4gOg5sDC69dyG4R0FIdg76gd5iH7YzH10lANWtYFMr8iYn+y9K
-   U2Ucr086d40AnaR6LkvR7BTNtA15EkUf4R8Cg7PuFRfS1LKBP56PaSyJq
-   2nnM+96TUw1tYUXXt8PSzqMycOE7CrCr2W5BpeyCV0Ic1QO3aBwVy2cqa
-   0+LZx1FodJkkRH2nzvTIfSP/ya9hE2BtPQcN+5pcSqr700lVZhLdZxcPQ
-   YqGONF2Sz37f1fsh583ceXaOp2K3POcJFTYzO3yG0R20khIR8TIeCd2RS
-   g==;
-From:   Marcus Carlberg <marcus.carlberg@axis.com>
-To:     <lxu@maxlinear.com>, <andrew@lunn.ch>
-CC:     <linux-kernel@vger.kernel.org>, <kernel@axis.com>,
-        Marcus Carlberg <marcus.carlberg@axis.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        <devicetree@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, <netdev@vger.kernel.org>
-Subject: [PATCH net-next 2/2] net: phy: mxl-gpy: Add mode for 2 leds
-Date:   Tue, 20 Sep 2022 17:14:11 +0200
-Message-ID: <20220920151411.12523-3-marcus.carlberg@axis.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220920151411.12523-1-marcus.carlberg@axis.com>
-References: <20220920151411.12523-1-marcus.carlberg@axis.com>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=LBJXkuxhmse5P1lyWiiuBqBUGrfjJdoy9vn87fbJbbE=;
+        b=Z8+4YFNvQpl0pK3twnvrjV0GrnqkQyNjD4XoPyfhgQ0kMzL3xC1YdrNlobjz4u0q38
+         1ZHc3WI5zWPwRyPAiT0x3qVF0tfnsZTAPl0E+d1OgZqXQ1sQSBsb8MltMigMtSqt9p3l
+         QsqpQeQTJ3C+7vcxP9TNIxoorYesosdGLp4anmGPy9K+h4Jp71gIZk7o/nlBoZq0xciT
+         O8AbvGY+uai3Re7ZDT6d2D1Y8u1v3ARaMKpkcmjLFIXufIadSyB2BZmH3v6iok7QpoNd
+         H9NrPUwGlS84FnOGUy9iQiQ1++ZeS7x8yMwqeF+qNNI49iP1WpEohenKwgDWIb8kbr0g
+         bJZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=LBJXkuxhmse5P1lyWiiuBqBUGrfjJdoy9vn87fbJbbE=;
+        b=UOKmccHE//5Bgz2DOUUTQcg45yMVFtM3R+D7mh0EAd0sfQbuIt1g4ROPnnQN4LUhw+
+         bZ2GJsIh9QaQT325SUxroh9a1X+lizcK3mY+sfmsnxBvOpMeIA/sLSUgZmI14NYDOSOr
+         Gf402fILEFfZcbJE2fWR5Rw7X8h/XA5dApCLaPE0utY3FFRiV1oH7Yx2ez5CczLepztw
+         CXukFL/zIfEl2DjOMeBD6wSZE6R8PXNHHt4OSpCkllQISED2K5h0Fz53ws2i45OT3iCw
+         /Fhdj6mnxgoiRUkFTMjTdCVfOdKrYkdd3vDgaSf0mjMKbICcaznjyhtWbeabPfPGKBv5
+         A/wQ==
+X-Gm-Message-State: ACrzQf1vagsnFskFab3L2iy0afv8HmwlIBfASEgNMO5gqVwnhNGl/PMk
+        qAogJPkrgVDdDeUCfEBzhx67CQ==
+X-Google-Smtp-Source: AMsMyM6SQUnreP+sl7ZN5I5Dmk/k+y1Uh7VFe8XVZJXlGsEPqcb7RcbafqbaRJ+eNvNUYZ9pOjY5PQ==
+X-Received: by 2002:a05:6512:32c1:b0:49f:5c95:5146 with SMTP id f1-20020a05651232c100b0049f5c955146mr6050239lfg.469.1663687012826;
+        Tue, 20 Sep 2022 08:16:52 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id du8-20020a056512298800b00492f0f66956sm351627lfb.284.2022.09.20.08.16.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Sep 2022 08:16:52 -0700 (PDT)
+Message-ID: <d8b7fce1-99fa-584b-55e0-f4c3cbe500e2@linaro.org>
+Date:   Tue, 20 Sep 2022 17:16:51 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO
+ documentation
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20220714122322.63663-1-tmaimon77@gmail.com>
+ <20220714122322.63663-2-tmaimon77@gmail.com>
+ <20220718211046.GA3547663-robh@kernel.org>
+ <CAP6Zq1hQ5m2kkQOKaYsKhPQhCW+vdsdyPRxxb_yRGMB=gJCPdw@mail.gmail.com>
+ <3981e6e8-d4bb-b13d-7aaa-7aea83ffaad9@linaro.org>
+ <CAP6Zq1gp1ph1wixgb6nL+2R8We2YJ2HQM2iC05itq_XWd2Cwig@mail.gmail.com>
+ <bfca0379-7346-13e7-a18f-66740c5871b3@linaro.org>
+ <CAP6Zq1gyDW8ZwwAZ1jyfNEZa09WN-biZZJY8tBmW_gzMzpj3ZA@mail.gmail.com>
+ <2b0e6e33-ef76-4bd4-8894-53f9a3fe68b4@linaro.org>
+ <CAP6Zq1iwW6HvvfM684VLG0ZT-0OLKT0udW4bHxsZsTMEypo2sg@mail.gmail.com>
+ <6f1ad082-74e4-e4e7-9304-5cdd95cc9f66@linaro.org>
+ <CAP6Zq1hTS7mVWvYWfTwWvrZibKMpW5r7=wE6W9uETb=aS6MTuA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAP6Zq1hTS7mVWvYWfTwWvrZibKMpW5r7=wE6W9uETb=aS6MTuA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPY211 phy default to using all four led pins.
-Hardwares using only two leds where led0 is used as the high
-network speed led and led1 the low network speed led will not
-get the correct behaviour since 1Gbit and 2.5Gbit will not be
-represented at all in the existing leds.
+On 20/09/2022 11:27, Tomer Maimon wrote:
+> On Tue, 20 Sept 2022 at 11:47, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 20/09/2022 10:32, Tomer Maimon wrote:
+>>> On Tue, 20 Sept 2022 at 11:21, Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 20/09/2022 09:59, Tomer Maimon wrote:
+>>>>>>>>>>> +      pinctrl: pinctrl@f0800000 {
+>>>>>>>>>>> +        compatible = "nuvoton,npcm845-pinctrl";
+>>>>>>>>>>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
+>>>>>>>>>>> +        #address-cells = <1>;
+>>>>>>>>>>> +        #size-cells = <1>;
+>>>>>>>>>>> +        nuvoton,sysgcr = <&gcr>;
+>>>>>>>>>>> +
+>>>>>>>>>>> +        gpio0: gpio@f0010000 {
+>>>>>>>>>>
+>>>>>>>>>> gpio@0
+>>>>>>>>>>
+>>>>>>>>>> Is this really a child block of the pinctrl? Doesn't really look like it
+>>>>>>>>>> based on addressess. Where are the pinctrl registers? In the sysgcr? If
+>>>>>>>>>> so, then pinctrl should be a child of it. But that doesn't really work
+>>>>>>>>>> too well with gpio child nodes...
+>>>>>>>>> the pin controller mux is handled by sysgcr this is why the sysgcr in
+>>>>>>>>> the mother node,
+>>>>>>>>> and the pin configuration are handled by the GPIO registers.  each
+>>>>>>>>> GPIO bank (child) contains 32 GPIO.
+>>>>>>>>> this is why the GPIO is the child node.
+>>>>>>>>
+>>>>>>>> Then maybe pinctrl should be the sysgcr and expose regmap for other devices?
+>>>>>>> The pin controller using the sysgcr to handle the pinmux, this is why
+>>>>>>> the sysgcr is in the mother node, is it problematic?
+>>>>>>
+>>>>>> You said pin-controller mux registers are in sysgcr, so it should not be
+>>>>>> used via syscon.
+>>>>> Sorry but maybe I missed something.
+>>>>> the sysgcr is used for miscellaneous features and not only for the pin
+>>>>> controller mux, this is why it used syscon and defined in the dtsi:
+>>>>>                 gcr: system-controller@f0800000 {
+>>>>>                         compatible = "nuvoton,npcm845-gcr", "syscon";
+>>>>>                         reg = <0x0 0xf0800000 0x0 0x1000>;
+>>>>>                 };
+>>>>>>
+>>>>>> Please provide address map description to convince us that this is
+>>>>>> correct HW representation.
+>>>>> GCR (sysgcr) registers 0xf0800000-0xf0801000 - used for miscellaneous
+>>>>> features, not only pin mux.
+>>>>> GPIO0 0xf0010000-0xf0011000
+>>>>> GPIO1 0xf0011000-0xf0012000
+>>>>> ...
+>>>>> GPIO7 0xf0017000-0xf0018000
+>>>>>>
+>>>>
+>>>> Then why your pinctrl is in sysgcr IO range? (pinctrl@f0800000)
+>>> you suggest using pinctrl@0 or pinctrl@f0010000 and not
+>>> pinctrl@f0800000 because 0xf0800000 is the GCR address that serve
+>>> miscellaneous features and not only pinmux controller ?
+>>
+>> If you have a map like you pasted, then DTS like this:
+>>
+>> syscon@f0800000 {}
+>> pinctrl@f0800000 {
+>>   gpio@f0010000 {}
+>> }
+>>
+>> Is quite weird, don't you think? You have two devices on the same unit
+>> address which is not allowed. You have child of pinctrl with entirely
+> O.K.
+>> different unit address, so how is it its child?
+> The pinctrl node name will modify the pinctrl@f0010000 the same as the
+> range property and the start of the child registers,is it fine?
 
-This patch adds a property for switching to a two led mode as specified
-above.
+We are all busy, so I don't have that much bandwidth to review each of
+your many solutions and instead poking me with every possible solution,
+I would prefer if you think a bit how this all should work and look.
 
-Signed-off-by: Marcus Carlberg <marcus.carlberg@axis.com>
----
- drivers/net/phy/mxl-gpy.c | 45 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+I don't know if it is fine. Why you should have two devices like this:
+pinctrl@f0010000 {
+gpio@f0010000 {}
+}
 
-diff --git a/drivers/net/phy/mxl-gpy.c b/drivers/net/phy/mxl-gpy.c
-index 24bae27eedef..0886fa21c4ff 100644
---- a/drivers/net/phy/mxl-gpy.c
-+++ b/drivers/net/phy/mxl-gpy.c
-@@ -12,6 +12,7 @@
- #include <linux/phy.h>
- #include <linux/polynomial.h>
- #include <linux/netdevice.h>
-+#include <linux/of_platform.h>
+???
+Instead of one device? Answer such questions to yourself before asking
+me. Please come with reasonable DTS describing the hardware.
 
- /* PHY ID */
- #define PHY_ID_GPYx15B_MASK	0xFFFFFFFC
-@@ -32,6 +33,7 @@
- #define PHY_MIISTAT		0x18	/* MII state */
- #define PHY_IMASK		0x19	/* interrupt mask */
- #define PHY_ISTAT		0x1A	/* interrupt status */
-+#define PHY_LED			0x1B	/* LED control */
- #define PHY_FWV			0x1E	/* firmware version */
-
- #define PHY_MIISTAT_SPD_MASK	GENMASK(2, 0)
-@@ -59,6 +61,16 @@
- #define PHY_FWV_MAJOR_MASK	GENMASK(11, 8)
- #define PHY_FWV_MINOR_MASK	GENMASK(7, 0)
-
-+/* LED */
-+#define VSPEC1_LED0_CTRL	0x01
-+#define VSPEC1_LED1_CTRL	0x02
-+#define VSPEC1_LED2_CTRL	0x03
-+#define VSPEC1_LED3_CTRL	0x04
-+#define TWO_LED_CONFIG				0x0300
-+#define LED_BLINK_2500MBIT			0x0380
-+#define LED_BLINK_1000MBIT_100MBIT_10_MBIT	0x0370
-+#define LED_DUAL_MODE	2
-+
- /* SGMII */
- #define VSPEC1_SGMII_CTRL	0x08
- #define VSPEC1_SGMII_CTRL_ANEN	BIT(12)		/* Aneg enable */
-@@ -201,9 +213,34 @@ static int gpy_config_init(struct phy_device *phydev)
- 	return ret < 0 ? ret : 0;
- }
-
-+static int gpy_override_led_mode(struct phy_device
-+				*phydev, u32 led_mode)
-+{
-+	int ret;
-+
-+	if (led_mode == LED_DUAL_MODE) {
-+		ret = phy_write(phydev, PHY_LED, TWO_LED_CONFIG);
-+		if (ret < 0)
-+			return ret;
-+		ret = phy_write_mmd(phydev, MDIO_MMD_VEND1,
-+				    VSPEC1_LED0_CTRL,
-+				    LED_BLINK_2500MBIT);
-+		if (ret < 0)
-+			return ret;
-+		ret = phy_write_mmd(phydev, MDIO_MMD_VEND1,
-+				    VSPEC1_LED1_CTRL,
-+				    LED_BLINK_1000MBIT_100MBIT_10_MBIT);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int gpy_probe(struct phy_device *phydev)
- {
- 	struct device *dev = &phydev->mdio.dev;
-+	struct device_node *np = dev->of_node;
- 	struct gpy_priv *priv;
- 	int fw_version;
- 	int ret;
-@@ -234,6 +271,14 @@ static int gpy_probe(struct phy_device *phydev)
- 		    priv->fw_major, priv->fw_minor, fw_version,
- 		    fw_version & PHY_FWV_REL_MASK ? "" : " test version");
-
-+	/* Override led mode */
-+	ret  = of_property_read_bool(np, "mxl,dual-led-mode");
-+	if (ret) {
-+		ret = gpy_override_led_mode(phydev, LED_DUAL_MODE);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	return 0;
- }
-
---
-2.20.1
-
+Best regards,
+Krzysztof
