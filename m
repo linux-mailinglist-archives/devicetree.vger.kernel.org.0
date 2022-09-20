@@ -2,122 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C74A95BE0CE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B4585BE0D3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:55:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230466AbiITIyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:54:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45768 "EHLO
+        id S230469AbiITIzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:55:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230469AbiITIyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:54:05 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 196686B64E;
-        Tue, 20 Sep 2022 01:54:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663664045; x=1695200045;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bE7Qmiy6NhKs0sdl809v9zg8SKzJzql0subSBeUamVk=;
-  b=HrnEPjJ677FoXIU2d3z9K6U++X6aXVrotmUMGtyr+CdQSETZ5bpOHKjY
-   G42WF9iXRgJ8ypbCmlHJytvJk7hZPnrlWoIW0fFF/yWH1g8r6qIsjU0G5
-   mTpNlSJbcaFgQJMuq3TmcD3WphIbWnQ/f3r90mbTTOi4RQbIqdpHrYp6Y
-   kpwX3T5l7eyXqESQ8BjR7RGjRvgT9UsKZcBT4MJGKyF1d0JW/YV3N73no
-   I7w6ai0UhFVEgr9HOLn3dlgNpTSm5CwsFgCuCMgNTvqNR9kbwD8F6Fn0l
-   1AmsOnG3XVhqDMh1YAt8A1icmLU50GxVamNVBUeYDDYdR9Jo7xT+iGaOf
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10475"; a="298364557"
-X-IronPort-AV: E=Sophos;i="5.93,330,1654585200"; 
-   d="scan'208";a="298364557"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2022 01:54:00 -0700
-X-IronPort-AV: E=Sophos;i="5.93,330,1654585200"; 
-   d="scan'208";a="614317268"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2022 01:53:56 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id A54D1200DA;
-        Tue, 20 Sep 2022 11:53:54 +0300 (EEST)
-Date:   Tue, 20 Sep 2022 08:53:54 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
-        hverkuil@xs4all.nl, jacopo@jmondi.org,
-        kieran.bingham+renesas@ideasonboard.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v2 4/4] media: tc358746: add Toshiba TC358746 Parallel to
- CSI-2 bridge driver
-Message-ID: <Yyl/oqZwUUb1Z0qM@paasikivi.fi.intel.com>
-References: <20220916134535.128131-1-m.felsch@pengutronix.de>
- <20220916134535.128131-5-m.felsch@pengutronix.de>
- <YyhktzmcgXKnrMFU@pendragon.ideasonboard.com>
- <20220919171142.6av6ap5gwweldado@pengutronix.de>
- <Yyio06jhK13BiNiP@pendragon.ideasonboard.com>
- <YyjI/JOcryD8yKzT@paasikivi.fi.intel.com>
- <20220920083908.st4h3pb6usn4zavu@pengutronix.de>
+        with ESMTP id S230521AbiITIyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:54:50 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CFE529C9B
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:54:41 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id f9so2655697lfr.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:54:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=/R9hqooZ2WhPjRpl0VQUVEHIhAT+zabNTgearvK0bTY=;
+        b=QZxxvmqBSRxXPI03uhpH6teHa41fSx8Q25y66FPLTN/JTJtgg/dPVbcu14r12s0TGE
+         D3e8WTBxm6B9UviRF+ewiOjn0s/HqmLa1jr8hEffLXiR/ZqIjy4NHGyPzlMlZ6eqR+8U
+         vRpNjd4/22GLDHhu3/aKOdZ4GXgnvkax30g28yJoJjRBznK1GqtSkAERb+B8vG/7Caeu
+         xCBC/kxix+T+GSDahNZTGTEsfMyVTVOaNo6DShICRb3eT4Uy388jVS01k2P15orbHXih
+         9QpEWbu4Tc9BZsQIQD/qR5WQNICzKzdIipdSESjFeqniVRo9019+Mn3Hh871kIRZeSwW
+         GeQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=/R9hqooZ2WhPjRpl0VQUVEHIhAT+zabNTgearvK0bTY=;
+        b=LjBIplZot+T0lhAfjcYFgEWMV1wmhIGIrnY7gNjjFP00AaKE3HWcnXO/R5Ruy0X+Pb
+         CmUvDEzEQrTs8HtaS/8hnNxDq2Hpfhstx2vRI5ZC9o1WYL2xcJwUWWDuSlUeeRqdmR0t
+         bpgq+ZNqluMIc41q8Lkm1E7jSBZez9qhZ/gcRbJPSBkF2o5t4IQJw1FJlgg5AxXwSjCQ
+         dkc9NQ/bp/b9eX7akp7hURFsKEp+DM/lLCTBwh9XooJu/WL1N/iHxGNJVyBraLCkk0mY
+         LWOts5XENSBWw95fu2baIyLDW6bdyeEu89DIby9s9lW6MoXaZxasp1b9NRoLb1MKFN19
+         8WWw==
+X-Gm-Message-State: ACrzQf0yXKuPawrLhD88M40aP5PiiMDrNXUFe4sIZ0OrOgtCrj2RRenN
+        kk6/cNf2krWLOCdgrfXV0qwHgNPiy50XIQ==
+X-Google-Smtp-Source: AMsMyM5pioa34SQt+KAmG2EUQFfy9zDDTHSE8Z9k2mKkZ2Bf0+l/mvjxkzbKEMv0lXSeJrRzOYksJg==
+X-Received: by 2002:a05:6512:3b10:b0:498:fd40:51d2 with SMTP id f16-20020a0565123b1000b00498fd4051d2mr7546367lfv.11.1663664079033;
+        Tue, 20 Sep 2022 01:54:39 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id bu25-20020a056512169900b0048afbe8a6a1sm201785lfb.241.2022.09.20.01.54.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Sep 2022 01:54:38 -0700 (PDT)
+Message-ID: <2ad436c8-8b7a-80ed-9c91-d2293eff70ab@linaro.org>
+Date:   Tue, 20 Sep 2022 10:54:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220920083908.st4h3pb6usn4zavu@pengutronix.de>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v6 0/4] dt-bindings: qcom-qce: Convert bindings to yaml &
+ related changes
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, thara.gopinath@gmail.com,
+        devicetree@vger.kernel.org, robh@kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, Jordan Crouse <jorcrous@amazon.com>
+References: <20220919220804.1047292-1-bhupesh.sharma@linaro.org>
+ <36bd1c19-8fbd-0903-704d-447117b2007a@linaro.org>
+ <dfe1bc9e-2ab9-d2dd-7daa-dddb8d66fd77@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <dfe1bc9e-2ab9-d2dd-7daa-dddb8d66fd77@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
-
-On Tue, Sep 20, 2022 at 10:39:08AM +0200, Marco Felsch wrote:
-> Hi Sakari,
+On 20/09/2022 10:48, Bhupesh Sharma wrote:
 > 
-> On 22-09-19, Sakari Ailus wrote:
-> > On Mon, Sep 19, 2022 at 08:37:23PM +0300, Laurent Pinchart wrote:
-> > > > > > +	ctrl = v4l2_ctrl_new_int_menu(&tc358746->ctrl_hdl, NULL,
-> > > > > > +				      V4L2_CID_LINK_FREQ, 0, 0,
-> > > > > 
-> > > > > Shouldn't the max argument be set to the number of items minus 1 ?
-> > > > 
-> > > > Right now I would keep it that way since the driver only supports one
-> > > > link-frequencies setting. So the ctrl don't let the userspace assume
-> > > > that there are more than one link-frequency.
-> > > 
-> > > Good point. Can you add a short comment above the call to explain this ?
-> > 
-> > Wouldn't it be just easier to do what Laurent suggested originally? The end
-> > result is the same, isn't it, and no comment needed?
+> On 9/20/22 12:58 PM, Krzysztof Kozlowski wrote:
+>> On 20/09/2022 00:08, Bhupesh Sharma wrote:
+>>
+>> (...)
+>>
+>>
+>>>
+>>> Qualcomm crypto engine (qce) is available on several Snapdragon SoCs.
+>>> The qce block supports hardware accelerated algorithms for encryption
+>>> and authentication. It also provides support for aes, des, 3des
+>>> encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
+>>> authentication algorithms.
+>>>
+>>> Note that this patchset is dependent on the dt-bindings patchset (see [1]) sent to devicetree list.
+>>>
+>>> [1]. https://lore.kernel.org/linux-arm-msm/20220919195618.926227-1-bhupesh.sharma@linaro.org/
+>>
+>> If it is dependent on the bindings only, keep them together. However I
+>> don't think this is the only dependency. You add here several
+>> compatibles which are not supported.
 > 
-> The end result depends on the device-tree given "link-frequencies"
-> property. The driver currently takes only one frequency but the
-> system-integrator of course can specify many more. In such case the 1st
-> is used. If I go with Laurent's comment, all frequencies would be shown
-> to the user-space but IMHO this shouldn't be the case since the driver
-> supports only 1 frequency.
-
-Yes, indeed. The driver can later be amended to support this.
-
 > 
-> > > 
-> > > > > > +				      link_frequencies);
-> > > > > > +	if (ctrl)
-> > > > > > +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> > 
-> > Now that this is a bridge, this value presumably doesn't need to change.
+> Please go through the cover letter where I mentioned that:
+>    'As per Bjorn's suggestion on irc, broke down the patchset into 4
+>    separate patchsets, one each for the following areas to allow easier
+>    review and handling from the respective maintainer(s):
+>          'arm-msm', 'crypto', 'dma' and 'devicetree'
+>    This patchset is directed for the 'devicetree' tree / area.'
 > 
-> The value can change, e.g. if you have a few freq. to allow a wide range
-> of frame sizes. This can be the case to conform the emv tests. So there
-> can be a freq. for smaller frame sizes and one for larger frame sizes.
+> Basically now the patchset which had around 23 patches in v5 will send 
+> out as 4 separate patchsets one each for 'arm-msm', 'crypto', 'dma' and 
+> 'devicetree' trees.
+> 
+> So when all the respective subsets are picked up, all the compatibles 
+> are in place.
 
-Ack.
+and none of reviewers can find them, because you linked only bindings.
+Keeping bindings separate from everything is not good approach. Either
+they should be with DTS or with driver changes. Otherwise how can we
+even look that they are matching DTS?
 
--- 
-Regards,
+Keeping them separate even makes impression there are no ABI breaks and
+bisectability issues...
 
-Sakari Ailus
+
+Best regards,
+Krzysztof
