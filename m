@@ -2,117 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5BC35BE83C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 16:12:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B49AC5BE862
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 16:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231682AbiITOMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 10:12:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42658 "EHLO
+        id S231724AbiITOQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 10:16:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229684AbiITOLs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 10:11:48 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFD8D58B4F
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 07:10:16 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id iw17so2543190plb.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 07:10:16 -0700 (PDT)
+        with ESMTP id S231668AbiITOPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 10:15:38 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF0462A8F;
+        Tue, 20 Sep 2022 07:13:12 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id u132so2864096pfc.6;
+        Tue, 20 Sep 2022 07:13:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=QPxEn/eAqZz49dBAsNJltwqDSnOVtKaOrJil3gAFfRA=;
-        b=N1PWe3VdAKaEJkhr6bQzq/58UH5Sue2qiNbAqdjfQjsdDK6LY2n/NuEGkr/00VMU9W
-         xb2V3+oi7ydfMqeGmh+AvRKBE8TIPQ6nEH9I8fOfZQDKWGowIz+1QiAFw2YDXJ3LzOJi
-         kU+pCrBvp5GadVnVfjsDzKMhj3aO74rFJAWRpgoOM9SQl1JbH5y4V1oA2VedNqZfKpaP
-         zhn+ZJiPHPewpHqouU+UywK6VvaZAtVHPYtf2L91uMa5tSxfeoLtNjYdDL1BnqPu0qyU
-         JK+fYDH/iQQxc6Y8Zj6xvFjjxdi7TnKXWNEr1gGaXks9PeWD5iFfKc4jCWZZFUmG2bJS
-         OlAg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date;
+        bh=dqRGDbrWd1xgyDLxgRtjtXZqfquXEM+oB3Al0IMjKrA=;
+        b=TMHA2hi58ob+XHXca4odB/qBviWLDfb0sxV1tVJOB2RZJcRud6bIn2OaYIF9g4/sry
+         uHQ1fSobXvnvBfE8oVF7HpRrLmK4BkI8nqAI7fAmL8kNStPqjCe3nlRuI+h1kVnnIUuI
+         ixvA6oN5E5eme10i5NiE663yYgg/rOnFRuFObt0yzmrX5TrXerp2MM34t+RmMiN6shyy
+         LV2sEZNAp+6AMtH0bKvK0+pFF7eXnLKkgdfCtY3rvGGS44Px1E2721BiekKGfitlNgK1
+         XhPT2GeT9fmHGHURiHc2rYuk6iCQKtimuVik9VUozjmGZEByma00buY/HaowE5oJ7BpF
+         OtKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=QPxEn/eAqZz49dBAsNJltwqDSnOVtKaOrJil3gAFfRA=;
-        b=L5Z1TSzcz4axqUbi3Fg8zCFlomIsrxgLe9uKYBTg3t9O0xThdHOfHXWriSDhXVw/LY
-         XZ/6s6VKEPIWHYbaow0TqZ2w2WCjm1RHhTg4cCU4fZ7zI1Pst7Drl2NDtFua6aMFA4GC
-         xEYaLpahQo0h0BvvJZODxg9Ac4bvfdU16D/45eQEwzAM6c1oUp4kMbymCRAl6lRqwkVM
-         AafFXfNMOnJn8QapQYyzNIuxWAt/Oxoxsn2gjuRK8c6QJTzPNqYvIdjvC+1xJFDUAbDn
-         +jaTZRVS+lznrMwN7Dt4QOysmNoLm53tEJskrZ8g6zlF1gofHxsclqDzRlG8d/L5y6K/
-         D8SQ==
-X-Gm-Message-State: ACrzQf3aPHpr4VleYA4l42okB7K+LJd625+KdC9IUES/nZJYUr5Pnlvz
-        S3gDx+U4vNu9MJGXP0pI9EqxcA==
-X-Google-Smtp-Source: AMsMyM6lgdYkRh8kQx8SNnSS7OR+Dv+YX3GkVF950OMZj/IKhWpp/fejl4AeVrW6Ag60qZ6Iep6E7g==
-X-Received: by 2002:a17:90b:1c07:b0:200:9728:b8cd with SMTP id oc7-20020a17090b1c0700b002009728b8cdmr4212275pjb.139.1663683004240;
-        Tue, 20 Sep 2022 07:10:04 -0700 (PDT)
-Received: from archl-hc1b.. ([103.51.75.120])
-        by smtp.gmail.com with ESMTPSA id t9-20020a170902e84900b001782a0d3eeasm1499858plg.115.2022.09.20.07.09.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 07:10:03 -0700 (PDT)
-From:   Anand Moon <anand@edgeble.ai>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        David Wu <david.wu@rock-chips.com>
-Cc:     Anand Moon <anand@edgeble.ai>, linux-rockchip@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jagan Teki <jagan@edgeble.ai>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v3 1/2] dt-bindings: net: rockchip-dwmac: add rv1126 compatible
-Date:   Tue, 20 Sep 2022 14:09:40 +0000
-Message-Id: <20220920140944.2535-1-anand@edgeble.ai>
-X-Mailer: git-send-email 2.37.3
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date;
+        bh=dqRGDbrWd1xgyDLxgRtjtXZqfquXEM+oB3Al0IMjKrA=;
+        b=KDmKEc8sPNCJCh5njW601Fnl+Rv+OqbtFIS3CrFvZjR0x9ab/z+q58Apt2pWY308OB
+         Y2Abb7O6qU6+MD3g+wVMsEVv+wHZDG5ODhtvFt++9TFw0f0ql3RWFLPI8IbJCAob/dqK
+         1Mf0VUezV+x80GZImZQVKrYFhZomoA4WUXc+H6uJwGUaQtmcmX2rkNJ6VcAmB+4Sj93R
+         eUtjvK97PY1bwnABqnuqMR1x2D1M6d1VA0zhn44DDYujtyz5Hp8FoM7E/tLVzsYFnpzY
+         Ke4s+FpnYpwmo7ShfmTYPMCGA9RH0kjWUtKwky1EtZg0xeokpJ1Mlaxl/aMsHFXoY6NT
+         FfPQ==
+X-Gm-Message-State: ACrzQf1FJlY0SIGbb5Ri5fcyR7eSke9Maj8v2dYPYoeCBRNJ0xR9VLtS
+        NxVWRDc4a5hypNUn5fcCByI=
+X-Google-Smtp-Source: AMsMyM70KEqEoHJ4mv7vPlCEVgsAHwRdImX7fkMfPNVbbE9/z9Aw0x11B7tAOc/h0NxnnbXpssLRfA==
+X-Received: by 2002:a05:6a00:16d6:b0:53b:3e58:1c6f with SMTP id l22-20020a056a0016d600b0053b3e581c6fmr23836509pfc.7.1663683192034;
+        Tue, 20 Sep 2022 07:13:12 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u185-20020a6279c2000000b0053651308a1csm1773081pfc.195.2022.09.20.07.13.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Sep 2022 07:13:10 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <46c3fdc6-05bb-f67d-f199-1d9f2f1c332a@roeck-us.net>
+Date:   Tue, 20 Sep 2022 07:13:08 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v9 0/4] hwmon: Add max31760 fan speed controller
+Content-Language: en-US
+To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, jdelvare@suse.com
+Cc:     linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220910171945.48088-1-Ibrahim.Tilki@analog.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20220910171945.48088-1-Ibrahim.Tilki@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for RV1126 gmac, and constrain it to
-be compatible with Synopsys dwmac 4.20a.
+On 9/10/22 10:19, Ibrahim Tilki wrote:
+> changes in v9:
+>    - return -EINVAL when writing fan_enable and pwm_enable
+>    - fix dt-bindings errors
+> 
+> changes in v8:
+>    - use sizeof(*)
+>    - use DEFINE_SIMPLE_DEV_PM_OPS
+>    - remove __maybe_unused
+>    - remove of_match_ptr
+>    - dt-bindings: style fixes
+> 
+> changes in v7:
+>    - make max31760_read_string static
+> 
+> changes in v6:
+>    - update description of hwmon documentation
+>    - add hwmon documentation to index.rst
+> 
+> changes in v5:
+>    - add dt-bindings documentation
+>    - add maintainer
+> 
+> changes in v4:
+>    - use sysfs_emit instead of sprintf
+>    - use kstrtou8 for pwm
+>    - use closest match for pwm1_auto_point_temp_hyst
+> 
+> changes in v3:
+>    - add regmap cache
+>    - remove pwm1_auto_point[1-48]_{temp,temp_hyst} attributes
+>    - add pwm1_auto_point_temp_hyst attribute
+> 
+> changes in v2:
+>    - remove pulse_per_rev variable in tach_to_rpm
+>    - remove temperature max_hyst and crit_hyst
+>    - strict value checking for fan_enable and pwm_enable
+>    - do not clamp pwm value for Look-up table
+>    - add sysfs_attr_init call
+>    - add documentation
+> 
+> 
+> Ibrahim Tilki (4):
+>    drivers: hwmon: Add max31760 fan speed controller driver
+>    docs: hwmon: add max31760 documentation
+>    dt-bindings: hwmon: Add bindings for max31760
+>    MAINTAINERS: Add maintainer for hwmon/max31760
+> 
+>   .../bindings/hwmon/adi,max31760.yaml          |  42 ++
+>   Documentation/hwmon/index.rst                 |   1 +
+>   Documentation/hwmon/max31760.rst              |  77 +++
+>   MAINTAINERS                                   |   9 +
+>   drivers/hwmon/Kconfig                         |  12 +
+>   drivers/hwmon/Makefile                        |   1 +
+>   drivers/hwmon/max31760.c                      | 596 ++++++++++++++++++
+>   7 files changed, 738 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31760.yaml
+>   create mode 100644 Documentation/hwmon/max31760.rst
+>   create mode 100644 drivers/hwmon/max31760.c
+> 
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-Signed-off-by: Anand Moon <anand@edgeble.ai>
----
-v3: added reviewed by Krzysztof Kozlowski
-    rebased on linux-net-next
-v2: add missing compatible string to property
-    added reviewed by Heiko Stuebner.
----
----
- Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Series applied to hwmon-next.
 
-diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-index 3c8c3a907181..42fb72b6909d 100644
---- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-@@ -27,6 +27,7 @@ select:
-           - rockchip,rk3568-gmac
-           - rockchip,rk3588-gmac
-           - rockchip,rv1108-gmac
-+          - rockchip,rv1126-gmac
-   required:
-     - compatible
- 
-@@ -48,6 +49,7 @@ properties:
-               - rockchip,rk3368-gmac
-               - rockchip,rk3399-gmac
-               - rockchip,rv1108-gmac
-+              - rockchip,rv1126-gmac
-       - items:
-           - enum:
-               - rockchip,rk3568-gmac
--- 
-2.37.3
-
+Thanks,
+Guenter
