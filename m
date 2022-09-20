@@ -2,125 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE5DB5BE000
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:29:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0320C5BE00A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:31:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230039AbiITI3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:29:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52826 "EHLO
+        id S230306AbiITI3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:29:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231523AbiITI2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:28:36 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D59E64EC
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:27:18 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id a3so2509976lfk.9
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:27:18 -0700 (PDT)
+        with ESMTP id S231671AbiITI3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:29:05 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47BB2E6A1
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:28:51 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id a14so2069982ljj.8
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:28:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=rkPuKjWB8t4FYJYHNtyFAmh2TFPD2Tl5mYJFMngelcQ=;
-        b=dQ/DjRpyzJOPnWU9+cHPp5K1+NyJCZhOur3fr22c9+x8TZvCIw3Wcm0Ssp0uyu0tu3
-         yDDjrQf/390dPv2OjCBN9ar+Yslw5Vh0fVAQX8AlXvaY25n5382qD7bJM1e0241bf31K
-         t/RWa92e+NIVi73NA2XJEQ9gC5SHHY6OG3PNjNkBoaEQRWlqWeS2vfA0PLbAB5wMazJB
-         fHSWi3l/1HDzrc2oNVcqu+Sm13Pe3GWuxmuoytOGa0ws99C836uILRrzbUixZuOvSv/r
-         ls+HmEav2ZSNabJ8ZLCTc+r9snw3TKsTKsXXK3TDBlrt0paJ/WLA95C0Sj8dn6pC7OFx
-         a2uA==
+        bh=fw/SHkXwMkFKfWuM1sqn8CqRzURyBdIM50KT9clJT54=;
+        b=nJeWvr0d6HGaY7Rx+/e4ufvu9Hx8TyU31qtiGH02hsStlIWZGO1+2w+NYnfLbzx1pF
+         x6CboFt2zqRgj29ytiysh2dzIv5gxyJdHqdTW+va3LLp/PCsp8UWJ9NQ7ys0AUwsMdHS
+         yN9gHytHgqM7AerVvw5UlvVWkAuI7K/rwgt/+Hw/2xBOjbx+P2BWLy41sWBKRF1Jq0gH
+         j5PijGwYg6HhGKrY1/kgUUOcIR81mrABTDv0dZoI2VrfIJFsuDe+/d7jiVws9EyyZYSi
+         fY2SBk4jmsRFWSe0of/s91dqwRedg4rHJOfMMJL24CSR4sK2MgMZJ5W/hYKGs+CCl8Op
+         db3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=rkPuKjWB8t4FYJYHNtyFAmh2TFPD2Tl5mYJFMngelcQ=;
-        b=LJE66ejE4eE1cTyPX1z3fbYn8R8S75RAuGS/zbE5GakaMdPLWi3aLz3fPqWCO81NXw
-         EDbLAkrpRBS8u0f/ES6kqXKhsLAOQedWSohz1dAJpych2QpsQQZ3QNxPMfjjKZjBOYdq
-         mgvuZY9o+i9Na9KNRPhz9wc85l95obNAGVmtZEdIPwvD6WtQmukaV4M9zhpfBRER8C6m
-         DjjcXe/0vVRrxvuh2/o5Cc1VhEhUqY0jaV2sPM3obFgvWkVgdGvIBGFI+gqtR1iQ9sKg
-         AGc+iXNGdO+Ic+x2dhIlHb0Yi6wE7X/0/Utg+DJxPW3diXS88/QG7rY85HM1fEm/jwdx
-         5tNA==
-X-Gm-Message-State: ACrzQf1zljkP9ATi0N3cNc9Uu2VIjo9uEfa9NOIzmBxUyZto/9eEanRf
-        piui2M+aHNnmpTrtCcnzpasBUg==
-X-Google-Smtp-Source: AMsMyM4BFghKOOucFsHQ4S+QvuMdbzcePIG13Xz2ThhzLq10ft0xMOyHNHZhr6ZzPzppj24LyC566A==
-X-Received: by 2002:a05:6512:261e:b0:49e:e7dd:8912 with SMTP id bt30-20020a056512261e00b0049ee7dd8912mr7259070lfb.360.1663662436750;
-        Tue, 20 Sep 2022 01:27:16 -0700 (PDT)
+        bh=fw/SHkXwMkFKfWuM1sqn8CqRzURyBdIM50KT9clJT54=;
+        b=nO+gWCWxW/s9DEBF6c/CmgIbpRs1w2ZTBekj0+fPxHyGbGH/TznYmDuZutTEtQDEx0
+         7V5/kATuclbF3QA64ES9nLdw6vvpnReKu9zgIEUMBmjxGcv6va4hGx7l6BMUaY41h4DH
+         OLJoD3emYTP6AFklEutMWuTbFMVlaqpmBM326IpeEFH2XEVsIaA7J7bQyXyVaePG332A
+         cZ1fSTnXD0+tv9OTn0EjwLbEnBBU8f+jaYmqM/S7MY4OT+sCx0paFJApFbhdTx22QOa5
+         mDqAeRPvfaP5vmx4W7qEVZetPPFlLI3GgfaMONfh0z84gJIAVuoy5mnnyF3V3xXYxH+y
+         oWsg==
+X-Gm-Message-State: ACrzQf0FNVX42xx51tSOJvMTU+nuzrybczIl129YwTPYhndYvDj+RHGd
+        cX26lBw+Qi3tclFDbT8xMzXhtA==
+X-Google-Smtp-Source: AMsMyM4k5mvClZP+uOnzG27BVLGmAA6O22iRISymumTCjmPyl/oCtpyTB5PCAXP2f+0mwWSgJoaRmQ==
+X-Received: by 2002:a2e:a555:0:b0:26c:2f4c:f019 with SMTP id e21-20020a2ea555000000b0026c2f4cf019mr6653777ljn.245.1663662530224;
+        Tue, 20 Sep 2022 01:28:50 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id n22-20020a05651203f600b004978e51b691sm190279lfq.266.2022.09.20.01.27.14
+        by smtp.gmail.com with ESMTPSA id dt13-20020a0565122a8d00b004946c3cf53fsm201611lfb.59.2022.09.20.01.28.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 01:27:15 -0700 (PDT)
-Message-ID: <9d702646-3517-be57-dbdd-c5e5d803dd4a@linaro.org>
-Date:   Tue, 20 Sep 2022 10:27:14 +0200
+        Tue, 20 Sep 2022 01:28:49 -0700 (PDT)
+Message-ID: <7b7f7b59-03b9-3ad6-96ba-5b0b8a69ae01@linaro.org>
+Date:   Tue, 20 Sep 2022 10:28:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] ARM: dts: aspeed: greatlakes: Add Facebook greatlakes
- (AST2600) BMC
+Subject: Re: [PATCH 0/2] SDM670 RPMh Clocks
 Content-Language: en-US
-To:     Bonnie Lo/WYHQ/Wiwynn <Bonnie_Lo@wiwynn.com>
-Cc:     "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
-        "garnermic@fb.com" <garnermic@fb.com>,
-        Delphine Chiu/WYHQ/Wiwynn <DELPHINE_CHIU@wiwynn.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        "soc@kernel.org" <soc@kernel.org>,
+To:     Richard Acayan <mailingradian@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
-References: <20220920023042.19244-1-Bonnie_Lo@Wiwynn.com>
- <1b03d24e-7bd3-f912-b59b-f2199770e9d8@linaro.org>
- <HK0PR04MB3105362597B1E8CBF897D0E3F84C9@HK0PR04MB3105.apcprd04.prod.outlook.com>
+        devicetree@vger.kernel.org
+References: <20220920022251.3073-1-mailingradian@gmail.com>
+ <20220920023012.4433-1-mailingradian@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <HK0PR04MB3105362597B1E8CBF897D0E3F84C9@HK0PR04MB3105.apcprd04.prod.outlook.com>
+In-Reply-To: <20220920023012.4433-1-mailingradian@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 09:28, Bonnie Lo/WYHQ/Wiwynn wrote:
-> Hi Krzysztof,
+On 20/09/2022 04:30, Richard Acayan wrote:
+>> This patch series adds clocks controlled by RPMh for Snapdragon 670.
 > 
-> I am sorry.
-> I have revise the DTS according to your comment and revise the subject.
-
-You send again the same patch. If you intended to send a version 2,
-please indicate it. Git format-patch can help you. Our process also
-explains it.
-
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst
-
-> I would like to update the patch to you, so I use "git send email" again.
-> It seems like it doesn't reply the original mail but resubmit the patch.
-> Could you guide me how I can reply the original mail thread and update the patch but resubmit it.
-
-Resubmit same patch is not correct. You just did it. I expect new
-versions of your patch. Each new version should be appropriately marked
-with version number and changelog. Just take a look at other patches in
-the list.
-
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst
-
+> Oops, sorry. I added the wrong description. This was what I meant to send:
 > 
-> Thanks,
-> Bonnie
+> Subject: [PATCH 0/2] RPMh Support for PM660 and PM660L
 
-Do not top post.
-
-
-> This email (and any attachments) contains proprietary or confidential information and is for the sole use of its intended recipient. Any unauthorized review, use, copying or distribution of this email or the content of this email is strictly prohibited. If you are not the intended recipient, please notify the sender and delete this email immediately.
-
-I notify you that I am going to remove the email immediately.
+Send a v2.
 
 Best regards,
 Krzysztof
