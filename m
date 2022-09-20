@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34A955BE9A0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:05:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C18B5BE9A4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:05:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231772AbiITPFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 11:05:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42214 "EHLO
+        id S231700AbiITPFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 11:05:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231778AbiITPEk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:04:40 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7654B5D124
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:04:22 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id a2so4277971lfb.6
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:04:21 -0700 (PDT)
+        with ESMTP id S231704AbiITPEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:04:44 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E278BC23
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:04:29 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id a3so4249879lfk.9
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:04:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=1xM5SAgV2yOSXYHddecL2UZpF+0bVuts3JrhIOTJ0WI=;
-        b=vouRKThlJjw88OHq2SUh+XYt6pKT+FRXjASslnQxkvUrkMK2JWof/+EsBxutoatRyD
-         cTtjAVgcWuOzE7TElZ5bmvn3vjtcQn4kYe17sCop0M405bVp1L9nMLyXjA0KWkqu6LA9
-         Y7pKOGih9xsUtrVPPj0AwSNh7N0pWXWCx+4ZzXirQVmx7lqO9OrnPKnYBjdvjzmX37I0
-         nEjIg7pVhiBNyEmE9Iyucn4VJ9NyYAc8pmW4fJdK6QI8zQb2aAX5aXwopygaeEFjeMze
-         rD+ENmA2IUYFgO0Cd4pKFAlYPhh9srM0KkI5m/aCgrsCJrF0hNZPz+QCumb4aaEq6DW4
-         hcFg==
+        bh=uGVId7ajaDqTRILJwbUDyK1M1OoEGlOt7PBKotR6xVM=;
+        b=rTCouT/5+rTbr/qoDH2r9+QQP1b0txBsTuK1g62F+FkXrWnr7by0oFOiC4rV+vZozh
+         GjQGX0wVvO8kEVgop5xW2KblCelmgTncdFZ/EZH5dOl1S/w7H/hBDxkkBEQ+bKi3JUcp
+         fd6HSpY6dg5GWbqVe5b2uELdK3zV+TR+Ex6vS4U2sdhAfJEtZR8+X8wAQpl41d5sFBBE
+         qML3MdKvhxaH97IEh+C6oVDRNGbf2DZpr92JSAtM3w7mEQkLI8Edlc5oD3W+xUrlLlk4
+         7lMrjDguImusQaJH+WaRXF6sVh2OfronV4ZIV/vs/jUv163QAIN4fpEg+i7hvAIESkrx
+         OFJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=1xM5SAgV2yOSXYHddecL2UZpF+0bVuts3JrhIOTJ0WI=;
-        b=1b4vCT3vr9mwLWZja8+39Ty+J8oQcSBpaKrF7xm5qUo2ksNZam7/tWhzFkVoL/A/uS
-         kPGDaH38oHdqRIDiMXQl9b+waAnlC5SEiKwoRbTUzYazc9hRdE3C1aITY8ZyAoglaEaX
-         dCGHi972LegLl3mpHF4MBYWB2J3W33EjtuAqMGJ9tsEzRux7MwbpQbe02Q+0RL2Xg6Dm
-         T5LXPtQJdse/k+osYyIf362/oi8b4uM5w7JKj9TYcCbvoWzQ0c4w6MeLbefGB4Ss1ZBt
-         j67btoIyaZWQSmVacxLHWPl+E7RDvHVTq5XuNOYvig4bfpJit0upGmXddo7vCc3zWDti
-         WACA==
-X-Gm-Message-State: ACrzQf2bE0PtrR6ZlgkVgqnKgcGl/tp5521EZZq7OazzrMOYS8ncT8vY
-        18YKecUzTFE8S34R6eWYYAPJfA==
-X-Google-Smtp-Source: AMsMyM4d1SHbHak7lgC5YBSzGtwKUKMIgYEBZwk/Ap0BUknR0fGFQ8O88T8n+Rsceuoha+C8T08/5Q==
-X-Received: by 2002:a05:6512:3502:b0:493:e21:b77d with SMTP id h2-20020a056512350200b004930e21b77dmr8181149lfs.580.1663686260031;
-        Tue, 20 Sep 2022 08:04:20 -0700 (PDT)
+        bh=uGVId7ajaDqTRILJwbUDyK1M1OoEGlOt7PBKotR6xVM=;
+        b=oI1v70LDjk9G5RVDHsFt7475ydIXSXg7xD8w+fH5CUY5NiN5tNWzUBg8fKYysGUB0u
+         JYpFEYg+A94ZvCiJRZGtR9+lW4WenzXVE2x6k6t20YBOmuTX9sgY8pTz86RSnxF9e3nJ
+         SApzxS1iXTyWrM2HYV2BuoAm2EUUKZi91IuncQFuo3IIHl6f5ZJuYTWjVmYjV+QID7+3
+         F4VPfloVs+T1E3Lmyr5t3OPebc5kO9vUbHO1Rm8r8xzIYMpC2RXG69FNJLM89qYGcvCq
+         IoYUnE9t+HT54UzJRmAQd+w9YJGlua4a/0PjJPtW8U0WikqPkJtPgY+rbHv57EtVBmIv
+         V3/w==
+X-Gm-Message-State: ACrzQf3B8Of+jSNGfePAEspHIo6qa1AYQcGfFu1GmoWPVnWf5vrn2Eft
+        Q7qDO1r/4A9odLzpf2F18zEWbQ==
+X-Google-Smtp-Source: AMsMyM4KZDnbUtIxrgZe74ARw4Teo3eNN5N0ZL8MWZrI3hDx/FYuj2pOhfDr9WHVD11ZLqbMRW07Ag==
+X-Received: by 2002:a05:6512:36c1:b0:497:abef:cce5 with SMTP id e1-20020a05651236c100b00497abefcce5mr8578939lfs.472.1663686261140;
+        Tue, 20 Sep 2022 08:04:21 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p10-20020ac246ca000000b0049f54a976e3sm8294lfo.58.2022.09.20.08.04.19
+        by smtp.gmail.com with ESMTPSA id p10-20020ac246ca000000b0049f54a976e3sm8294lfo.58.2022.09.20.08.04.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 08:04:19 -0700 (PDT)
+        Tue, 20 Sep 2022 08:04:20 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 2/3] ARM: dts: qcom: msm8974: add missing TCSR syscon compatible
-Date:   Tue, 20 Sep 2022 17:04:13 +0200
-Message-Id: <20220920150414.637634-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 3/3] ARM: dts: qcom: msm8974: switch TCSR mutex to MMIO
+Date:   Tue, 20 Sep 2022 17:04:14 +0200
+Message-Id: <20220920150414.637634-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220920150414.637634-1-krzysztof.kozlowski@linaro.org>
 References: <20220920150414.637634-1-krzysztof.kozlowski@linaro.org>
@@ -77,26 +77,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TCSR syscon node should come with dedicated compatible.
+The TCSR mutex bindings allow device to be described only with address
+space (so it uses MMIO, not syscon regmap).  This seems reasonable, as
+TCSR mutex is actually a dedicated IO address space, and it also fixes
+DT schema checks:
+
+  qcom-msm8974-sony-xperia-rhine-amami.dtb: tcsr-mutex: 'reg' is a required property
+  qcom-msm8974-sony-xperia-rhine-amami.dtb: tcsr-mutex: 'syscon' does not match any of the regexes: 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/qcom-msm8974.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
 diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-index 7a9be0acf3f5..a4e12daf3eeb 100644
+index a4e12daf3eeb..7bc19b5375f6 100644
 --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
 +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-@@ -1239,7 +1239,7 @@ tcsr_mutex_block: syscon@fd484000 {
+@@ -1194,7 +1194,7 @@ remoteproc_mss: remoteproc@fc880000 {
+ 			resets = <&gcc GCC_MSS_RESTART>;
+ 			reset-names = "mss_restart";
+ 
+-			qcom,halt-regs = <&tcsr_mutex_block 0x1180 0x1200 0x1280>;
++			qcom,halt-regs = <&tcsr_mutex 0x1180 0x1200 0x1280>;
+ 
+ 			qcom,smem-states = <&modem_smp2p_out 0>;
+ 			qcom,smem-state-names = "stop";
+@@ -1233,9 +1233,10 @@ smd-edge {
+ 			};
+ 		};
+ 
+-		tcsr_mutex_block: syscon@fd484000 {
+-			compatible = "syscon";
++		tcsr_mutex: hwlock@fd484000 {
++			compatible = "qcom,msm8974-tcsr-mutex", "qcom,tcsr-mutex", "syscon";
+ 			reg = <0xfd484000 0x2000>;
++			#hwlock-cells = <1>;
  		};
  
  		tcsr: syscon@fd4a0000 {
--			compatible = "syscon";
-+			compatible = "qcom,tcsr-msm8974", "syscon";
- 			reg = <0xfd4a0000 0x10000>;
+@@ -1719,13 +1720,6 @@ reboot-mode {
  		};
+ 	};
  
+-	tcsr_mutex: tcsr-mutex {
+-		compatible = "qcom,tcsr-mutex";
+-		syscon = <&tcsr_mutex_block 0 0x80>;
+-
+-		#hwlock-cells = <1>;
+-	};
+-
+ 	thermal-zones {
+ 		cpu0-thermal {
+ 			polling-delay-passive = <250>;
 -- 
 2.34.1
 
