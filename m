@@ -2,67 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70D0D5BDFC5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3767F5BDFD6
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:21:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231341AbiITIUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:20:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33254 "EHLO
+        id S231379AbiITIUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:20:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230284AbiITITu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:19:50 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2A265260;
-        Tue, 20 Sep 2022 01:16:22 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id CFE1840006;
-        Tue, 20 Sep 2022 08:16:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1663661781;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=4lJLYtNdnYyxGkQOr2/EKomoBqLaYzUWakFfl52hdZs=;
-        b=FtZPgkxfKqhHuH/hHTgESkkTb0Rvid23Lr7g8ftlSnIC8ZbmBWAFV2lKKi8GH/MQ+M5AN1
-        u6A3N280Yk8XU3ZvCN9ncAvAcRjyne7rtujGalpc7Xj6w4Gv3+IstML4peVTyLibefuQK9
-        xFcq6bienaNUsfe5OvfJ85201Ulu+J9xUAA9IyWm3lrpJITrcJHH1J24qZON9kPRloidjd
-        yckV/ATNXtTvKqdq/xiHR/mGodD0dIWM+OqXvrAvYgt8/dZGja3AnzW5JCvI3EzND7ijVQ
-        t7J2knbtcEHy3c0t6iT3Rp6wZ1LUzHOyvnCVg42BqN2mLm0lA7cObPRaIVfeug==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-kernel@vger.kernel.org, tlanger@maxlinear.com,
-        rtanwar@maxlinear.com, richard@nod.at, vigneshr@ti.com
-Subject: Re: [PATCH v3 1/8] dt-bindings: mtd: intel: lgm-nand: Fix compatible string
-Date:   Tue, 20 Sep 2022 10:16:19 +0200
-Message-Id: <20220920081619.598320-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220702231227.1579176-2-martin.blumenstingl@googlemail.com>
-References: 
+        with ESMTP id S230470AbiITIT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:19:59 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC39AC38
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:17:43 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id z20so2077278ljq.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:17:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=x4MAfY1VGIYMXUmdsJlOqMmZnmClXuiEwgPZwceqLLw=;
+        b=jGs9b6WlGRmlKRGXCccRnBMJaM6tqKS38Eo0BuFIY2xu70iewskfsl571XW5edge4N
+         x4ZIOFDJLXcuApuVO4LA41tlaCw6K+j8I9CSSA6kbe0trvb4YWwpPS+Eil3e6ZnfxENs
+         0iiGFup9Znm172Ls+P+zrE2TSqztojsFpXLkPBNquzBxFugh8ze8yxsDkQhUUSyozGb7
+         CWFZV3s5om1iS+DLXAlCcoEw3GXYN3WWzvQdJC+TWJ5BAXao6wg5f42VZTfc/C8vDKSl
+         //6Z947daPYXDIoSi3HvYDmp2fiq2Q7d/3ukr+Y3Ty0CUfR1Euzm0G4Kop05X+qMAGx1
+         nqnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=x4MAfY1VGIYMXUmdsJlOqMmZnmClXuiEwgPZwceqLLw=;
+        b=AfWhEtvSCvvBkZuLPi6fVMDfCLWMQ+8PjONCtad2oj+UKPfcliq/nQhf86vbBfeeWx
+         qRPGxkuYsF8CjEgW2EHp3MWA6PqSAdRMQ9v6TYuimYutGI6zd/jUoWG0x0BHGrDeKerU
+         Ty9913TXx7LdjZi7OcDBvFWwwF6Me/IPF03Dsoac0prbwHptEIyKAozbU5MgX1zWysO/
+         XOjwUO20WYXlX06jRKCFqdjKG1ph/vhfvPXiqt6eUEd5ZEA7IQ4rwswsY86TcAu7JBvj
+         JeLjgMGPMXTpx/OutLqxueGB9OffXC7R8apka4xwbyqegbNx/IHfsrfvk5NSMOyDnes1
+         9ViA==
+X-Gm-Message-State: ACrzQf1eabTQppG7hCtUFCJnC3vJN/DrvocEUwh4TOh9AEz6RNXlKy0u
+        1IfhC5wufY+evAfXbVvlIWGAHby75Qqquw==
+X-Google-Smtp-Source: AMsMyM5g2iUvFDFjem7icSO9UxkfWSOZkvkZYXBGjv/AHbErp0fN++5z186PQlzCoss79lkvxOHTVw==
+X-Received: by 2002:a05:651c:4cf:b0:26b:dc6f:26c6 with SMTP id e15-20020a05651c04cf00b0026bdc6f26c6mr6780359lji.41.1663661862197;
+        Tue, 20 Sep 2022 01:17:42 -0700 (PDT)
+Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id bq5-20020a056512150500b0049f5c71f1c4sm189858lfb.198.2022.09.20.01.17.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Sep 2022 01:17:41 -0700 (PDT)
+Date:   Tue, 20 Sep 2022 10:17:39 +0200
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Richard Acayan <mailingradian@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH 1/2] dt-bindings: power: rpmpd: add sdm670 power domains
+Message-ID: <20220920081739.eh3qzohw74elqyfm@krzk-bin>
+References: <20220920021927.2489-1-mailingradian@gmail.com>
+ <20220920021927.2489-2-mailingradian@gmail.com>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'c6d7ce0a7e0562846431dc3c7c390dde7d0c0c42'
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220920021927.2489-2-mailingradian@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2022-07-02 at 23:12:20 UTC, Martin Blumenstingl wrote:
-> The driver which was added at the same time as the dt-bindings uses the
-> compatible string "intel,lgm-ebunand". Use the same compatible string
-> also in the dt-bindings and rename the bindings file accordingly.
+On Mon, 19 Sep 2022 22:19:27 -0400, Richard Acayan wrote:
+> Add the RPMh power domain IDs and compatible string for Snapdragon 670 to
+> make SDM670 power domains accessible to the device trees.
 > 
-> Fixes: 2f9cea8eae44f5 ("dt-bindings: mtd: Add Nand Flash Controller support for Intel LGM SoC")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  .../devicetree/bindings/power/qcom,rpmpd.yaml          |  1 +
+>  include/dt-bindings/power/qcom-rpmpd.h                 | 10 ++++++++++
+>  2 files changed, 11 insertions(+)
+> 
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Miquel
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+power-controller: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dtb
