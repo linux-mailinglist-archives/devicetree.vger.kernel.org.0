@@ -2,51 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DB15BE16A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E29225BE173
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:11:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231635AbiITJJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 05:09:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48832 "EHLO
+        id S229872AbiITJLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 05:11:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231823AbiITJJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:09:07 -0400
-X-Greylist: delayed 385 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 20 Sep 2022 02:09:04 PDT
-Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [IPv6:2001:4b7a:2000:18::170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC037A468
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:09:04 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229561AbiITJLF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:11:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091D41D5;
+        Tue, 20 Sep 2022 02:11:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id D27691F9CD;
-        Tue, 20 Sep 2022 11:02:22 +0200 (CEST)
-Message-ID: <0bf9602b-0e25-9280-8664-9ec6ee6ca4cc@somainline.org>
-Date:   Tue, 20 Sep 2022 11:02:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v3 3/3] iommu/mediatek: Add MT8188 IOMMU Support
-Content-Language: en-US
-To:     "Chengci.Xu" <chengci.xu@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9682761CEB;
+        Tue, 20 Sep 2022 09:11:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D93CBC43141;
+        Tue, 20 Sep 2022 09:10:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663665062;
+        bh=vgp1hqroueELOf0HkLsZXn6WvdIxgVzLklJz+ZBpoRk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N2vx/1BZEUEFyHcXFU0FOb4XiQwvOA9C3kxkqTvhol6D3Dj2WCFT2hRw3rxT9fj26
+         v4NgQJKpCYQZiGa3lbvChp+TgXs35AIHxGd6Cwzib/CpKzxNj0DKARW1/l49dfO1bT
+         M/iAUidqdDNkcFSUpsjKdQ/OiENvWCIHTHGt5sunwdzIm5cNJhx8iS74LOfDtP5pD0
+         3XpS3RLIgaS/fnNB9sZce+KOboB2MLHWA+dn7dms+6BtY/QG2YKEW4yt+X5om4dRkB
+         PyDFBrfeioCDPIFNaTDqdWk4qVAElgNc28I/g/+9vun4fbV31RYwQzXmopaPBpHDZm
+         At+3+uUzs5ZnQ==
+Date:   Tue, 20 Sep 2022 10:10:55 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Matthias Brugger <mbrugger@suse.com>
+Cc:     matthias.bgg@kernel.org, robh+dt@kernel.org,
+        angelogioacchino.delregno@collabora.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220919082611.19824-1-chengci.xu@mediatek.com>
- <20220919082611.19824-4-chengci.xu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-In-Reply-To: <20220919082611.19824-4-chengci.xu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        linux-mediatek@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        mandyjh.liu@mediatek.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: mfd: Rename mediatek,mt8195-scpsys.yaml
+Message-ID: <YymDn+ZEIFUqpIEb@google.com>
+References: <20220830091110.27857-1-matthias.bgg@kernel.org>
+ <YxnGBN4QEb1yMrGw@google.com>
+ <336cb80f-8f58-92ba-aa92-1bb57a75f0fb@suse.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <336cb80f-8f58-92ba-aa92-1bb57a75f0fb@suse.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,12 +59,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 19/09/22 10:26, Chengci.Xu ha scritto:
-> MT8188 has 3 IOMMU, containing 2 MM IOMMUs, one is for vdo, the other
-> is for vpp. and 1 INFRA IOMMU.
+On Tue, 13 Sep 2022, Matthias Brugger wrote:
+> On 08/09/2022 12:37, Lee Jones wrote:
+> > On Tue, 30 Aug 2022, matthias.bgg@kernel.org wrote:
+> > 
+> > > From: Matthias Brugger <mbrugger@suse.com>
+> > > 
+> > > The file describes the scpsys node for all SoCs and not only the mt8195.
+> > > Rename it to reflect this fact.
+> > 
+> > Actually, this is fairly typical.  Same with actual drivers.
+> > 
+> > Both tend to adopt the name of the module first supported.
+> > 
 > 
-> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
+> Well I think that's unfortunate as it can create confusion for people
+> searching for the binding as well as people adding a new compatible as they
+> might think each SoC should have a independent yaml file. For that I reason
+> I think it makes sense to fix the naming.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+I'm not keen to open those flood-gates right now, sorry.
 
-
+-- 
+Lee Jones [李琼斯]
