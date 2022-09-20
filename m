@@ -2,83 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75CFC5BE4D1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F23F5BE4D9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230326AbiITLnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 07:43:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34216 "EHLO
+        id S229559AbiITLo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 07:44:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230335AbiITLmW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:42:22 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC6374361;
-        Tue, 20 Sep 2022 04:41:58 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 139D06601F88;
-        Tue, 20 Sep 2022 12:41:54 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663674116;
-        bh=A2riqMDL+e6uXEzLF8Z0oYqGsIpSvXIapKZhlgz+MLE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=D1JPK3PB/rETwddxkJo+ir808mHSZkg1lQAK95Xn08P8K4jDZWkQ6+LJNYMLJmBgG
-         cwxZUkGgM2dTL4OHRfY31FWcYMWq9MpEO5kkgwCoQMjY5NJaCxuwNO4QMahHdVn9MY
-         6PJcJDRAutMYp+pLUhdp/gfHIgCWHytfIPfarSWnliBchAcyBJiTiNZlp4ITxk4OV+
-         jWlmgmKgRSOTBw7La8G87wJibOJyInxdy5Rdww0e/HAowGr7ojq2gCCPtckQ0YfHJ5
-         jbauLmui0LDUiy3c8heWBA4dGdh/36TvQhQDedU0UAaITF19fNe278Slsp/D2y7Xiv
-         2M0Vo4ij7ontA==
-Message-ID: <ef56a05e-c575-2515-0e00-a22a854b52a0@collabora.com>
-Date:   Tue, 20 Sep 2022 13:41:52 +0200
+        with ESMTP id S230428AbiITLoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:44:04 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 413F874358
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:43:52 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id f9so3318814lfr.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:43:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=/0Ndn+NlDdssGkzqLaRqbOpdIWEheyXaXTlI3yhLY30=;
+        b=c6cFS2OdCtcAaac9snrBgj/g9rqNTclDUaVWthxoYVT6YzoHV42Z9Sk+5aYsIWRfAU
+         4kAngnc1/q0Y2dWlSkS0JjJ0ayw7dQ4fOjmbhT/IbAhfnx/jP3RqhcnLoxzSidhBVkA+
+         eTMijuVuTqmrA2yrnxJX8fZOypXGHIqjxXuQIJcZd/A6GAyOVVCNixNr5PglTohNoDXH
+         FTgvn4phqMGQldmfggdUOgR7cPllwj5GUkPDsOqI/1PvdC4SBG2MEJVZigR0GoRMRdWc
+         A6Q2wYFOIi+cl/Yk8cMnApy7As0ucfIITfHDb//g1e79XS8pdHlsUx0o07J14jHn19wc
+         I3qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=/0Ndn+NlDdssGkzqLaRqbOpdIWEheyXaXTlI3yhLY30=;
+        b=aUfECBA6hz6gRJAinHqHKpLf/EZEGORSVKN/EYV/DHxmY12yDxrbfT235w79lixSgS
+         qyUy4yea/gdAn9pvAyS3KG4lAlbyPl44zlj834DNPzDM8Ci9tMjbbiweswz7kJ18MLjA
+         pSIw1cs9Uh1McbRGUU+4NPSnzD5K+6+re2eruys1XFAp+I6OjGsoxdQbZ/rVTIUk6Oj7
+         0EyIUQKMkza1RrfrwdvLgxkmfgRzVxzF9Mz6KCjPbAucbMxWNIJ4h4WzqO+cdeWFWar5
+         PsdO/9qkDkmNX5dtcoIEZitk0tAJZPTGQtvhRUVDiZuK02R7uprtmopzXb4QhQxWgY/G
+         sfVA==
+X-Gm-Message-State: ACrzQf0/ayQ6/XH/PWSj9uyRirQIJPvw+htt9VKrJKxXvg5P7W6O8VgZ
+        r5nv0Xuu+B9rvtBrBej/vOoy4+eLLCBS1jqTuH/slA==
+X-Google-Smtp-Source: AMsMyM48be/YU4xcy+Id6lduQHEoJJB939r65gfNY5HefhFYNQzgsT/f/AW/lnjxjRQwxXpis/dgWZjNj02u4AnyjwA=
+X-Received: by 2002:a05:6512:3e10:b0:498:f317:e57e with SMTP id
+ i16-20020a0565123e1000b00498f317e57emr8364693lfv.328.1663674230091; Tue, 20
+ Sep 2022 04:43:50 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v1 13/17] phy: phy-mtk-hdmi: Add generic phy configure
- callback
-Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220919-v1-0-4844816c9808@baylibre.com>
- <20220919-v1-13-4844816c9808@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220919-v1-13-4844816c9808@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220919221509.1057574-1-bhupesh.sharma@linaro.org>
+ <20220919221509.1057574-2-bhupesh.sharma@linaro.org> <bb577304-f048-8fd5-fc7a-47a0897ba792@linaro.org>
+ <00dd028f-d636-0cda-40ce-01d5addcbec9@linaro.org> <ccc318c0-ee1b-d538-6d2b-bf85a3c9c6fd@linaro.org>
+ <CAH=2Ntys+JSurmZn5qN2Kuphi_5q6Ge7cZgd9KMTvAyLnd6JSA@mail.gmail.com> <a8077058-5493-7b57-0530-c7221a03a799@linaro.org>
+In-Reply-To: <a8077058-5493-7b57-0530-c7221a03a799@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Tue, 20 Sep 2022 17:13:37 +0530
+Message-ID: <CAH=2Ntxhdf2KhGcLLCbwo7vpkH2ofpnGGGJhXNVsqpuDCtqY5Q@mail.gmail.com>
+Subject: Re: [PATCH v6 1/4 RESEND] ARM: dts: qcom: Use new compatibles for
+ crypto nodes
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        thara.gopinath@gmail.com, devicetree@vger.kernel.org,
+        robh@kernel.org, andersson@kernel.org, bhupesh.linux@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+        Jordan Crouse <jorcrous@amazon.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 19/09/22 18:56, Guillaume Ranquet ha scritto:
-> Some phys, such as mt8195, needs to have a configure callback defined.
-> 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+On Tue, 20 Sept 2022 at 16:46, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/09/2022 12:48, Bhupesh Sharma wrote:
+> > On Tue, 20 Sept 2022 at 15:09, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 20/09/2022 10:57, Bhupesh Sharma wrote:
+> >>>>>             crypto: crypto@8e3a000 {
+> >>>>> -                   compatible = "qcom,crypto-v5.1";
+> >>>>> +                   compatible = "qcom,ipq4019-qce";
+> >>>>
+> >>>> There are few issues here:
+> >>>> 1. Compatible is not documented.
+> >>>
+> >>> Its documented here:
+> >>> https://lore.kernel.org/linux-arm-msm/30756e6f-952f-ccf2-b493-e515ba4f0a64@linaro.org/
+> >>>
+> >>> [as mentioned in the dependency section in the cover letter :)]
+> >>>
+> >>>> 2. Compatible is not supported by old kernel - ABI break.
+> >>
+> >> You cannot fix this with dependencies/ordering.
+> >>
+> >>>> 3. Everything won't be bisectable...
+> >>>
+> >>> I think its a question of dependencies b/w the patchsets intended for
+> >>> separate areas. Let me think more on how, I can resolve it in newer
+> >>> versions.
+> >>
+> >> DTS always goes separately so this also cannot be fixed with ordering or
+> >> dependencies. However if Bjorn is fine with it, it's good.
+> >
+> > Sure, I get your point. SInce I haven't sent out the crypto driver and
+> > DMA driver subsets yet, let me stop and respin the series with the
+> > dt-bindings changes clubbed with the crypto driver patches in a single
+> > patchset. I can keep the DMA and dts patchsets separate and send them
+> > out separately.
+> >
+> > I think that should help maintain the ABI and backward compatibility.
+> > Please let me know if you think otherwise.
+>
+> I actually don't know what's in the drivers, so maybe there is no ABI
+> break by kernel... but you are changing the compatibles in DTS thus any
+> other project using them will be still broken.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+I have sent out the crypto and dt-bindings clubbed together as one
+patchset in the v7 version (see [1]).
 
+[1]. https://lore.kernel.org/linux-arm-msm/20220920114051.1116441-1-bhupesh.sharma@linaro.org/
+
+Thanks,
+Bhupesh
