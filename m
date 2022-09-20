@@ -2,160 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 760C45BE1DF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5294D5BE224
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbiITJ1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 05:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56912 "EHLO
+        id S229590AbiITJdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 05:33:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229812AbiITJ1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:27:41 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05F536B160;
-        Tue, 20 Sep 2022 02:27:40 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id u18so2746807lfo.8;
-        Tue, 20 Sep 2022 02:27:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=pbBbo0wS9RefiKHJAHea5Z+uUoKrx1Fu0kwL/SMeV7A=;
-        b=dbQD2A90p/pP5WBHjfMv0TH9z9lfoSt8o998wRryLQ//wjxln1WnlY2wsOldM0mqoV
-         Jyv0ntKQKJKv7ASQtHmJcrpdj+VMjDHbJVe0pu0DBWoZ47b0GzUimsdDwStoWScTm+oJ
-         1h4KXWswd31nsQvElNONF2ft8gf9PHmAHp1+2p8utzLECIFqYsmfT5BxDrx/BkY9pGJD
-         rmUZ02vWWN1ceRA6Y1a04QrTk03JLD5TZYga5wdsgpROTIZk2esKRtM8GHEAR6Nw2mPl
-         mOyOVbeLXHjjs8jSjR16d6NYYXk6dNQlrj/a4mDFSy3IUUDm4G1Z9vUZMriPL/cXSXgS
-         KHuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=pbBbo0wS9RefiKHJAHea5Z+uUoKrx1Fu0kwL/SMeV7A=;
-        b=WCsDrfuSTa5NlEY16s/UMc60rAR81HLsLLPpDCX1XcuxeZbEPIUzHV82i8VCB0RMUL
-         Z52lzXHOZp05k0uUAXiIuuxguFVnAB2SITqYTmaBi3RWIfTgYnodNKxtVWUKRBfFXGjr
-         MC/KvLe71Fbwrh0/448epW7+/1LkcGOpE+CieVa7TuTcCdGnlkyddOCAmRv5fvumnNGp
-         2KB3Nst0HmUKSyEeOV7sEBUAvRBvQtcAI6fttUmNlXCLehyWG01Gv8GFm08s2U7LjXVa
-         cjaZU9MLHC0QjhyyrS9OeNZBHKKoFb18La3qiX9jI9u66n/ULW5F2WeYhIgDr+SKRhBS
-         y5JQ==
-X-Gm-Message-State: ACrzQf3kDy9wMTnlukDq9qeC4EUAMRcJw4xRYJciBBCxg/5Wc5VqIroN
-        zeaPbckk/Y2o6zeNcUnxcyTB5RLAVKZ2uPkSgcI=
-X-Google-Smtp-Source: AMsMyM70HRwyDNrlVbW7+24P1AAAdcmQVe1pXn7jxUKJU8FIZ1qCXCRkPEcX29c+JjYMwTHerlG/q4VaiNhf4j5TjAE=
-X-Received: by 2002:a05:6512:2592:b0:49c:53de:7eb8 with SMTP id
- bf18-20020a056512259200b0049c53de7eb8mr7346350lfb.401.1663666058396; Tue, 20
- Sep 2022 02:27:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220714122322.63663-1-tmaimon77@gmail.com> <20220714122322.63663-2-tmaimon77@gmail.com>
- <20220718211046.GA3547663-robh@kernel.org> <CAP6Zq1hQ5m2kkQOKaYsKhPQhCW+vdsdyPRxxb_yRGMB=gJCPdw@mail.gmail.com>
- <3981e6e8-d4bb-b13d-7aaa-7aea83ffaad9@linaro.org> <CAP6Zq1gp1ph1wixgb6nL+2R8We2YJ2HQM2iC05itq_XWd2Cwig@mail.gmail.com>
- <bfca0379-7346-13e7-a18f-66740c5871b3@linaro.org> <CAP6Zq1gyDW8ZwwAZ1jyfNEZa09WN-biZZJY8tBmW_gzMzpj3ZA@mail.gmail.com>
- <2b0e6e33-ef76-4bd4-8894-53f9a3fe68b4@linaro.org> <CAP6Zq1iwW6HvvfM684VLG0ZT-0OLKT0udW4bHxsZsTMEypo2sg@mail.gmail.com>
- <6f1ad082-74e4-e4e7-9304-5cdd95cc9f66@linaro.org>
-In-Reply-To: <6f1ad082-74e4-e4e7-9304-5cdd95cc9f66@linaro.org>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Tue, 20 Sep 2022 12:27:26 +0300
-Message-ID: <CAP6Zq1hTS7mVWvYWfTwWvrZibKMpW5r7=wE6W9uETb=aS6MTuA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO documentation
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S231246AbiITJdo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:33:44 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF1D13F3F
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:33:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1663666424; x=1695202424;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=K5iROaqmuZTrCp2cKiKRvhaSPdddfMNU1rnN4ZgvctY=;
+  b=Dg6njZYBr3ndbY6njEahXYbVr/EvixTxqZ6YP83DMKHZvlvt/i5QSkxM
+   Q4dwqQKyAGH+L9NdO77RLqPvorpBWW5ZBhu3D1Ih1eQqkKniZKAeVLoJe
+   2CWCABB7rCVL2lTwYu1HQwcHd6j08SywR0MdMyiwNUN/OwavPbz5XR6QP
+   ycj8LmKyGyMppTL3WFYLsiuHhJx5oWPkW1ww4l6xMsPGc/UEUmSKevW73
+   ovlDgVwMLqwtxFPEB9fG6gzqp+E75u3+/nPxexK31djLA4vTxIEglJ29H
+   DLjfMGm4bjwVYRHR+3Z4PhIyBsiuH3c/KgHAW6veilRwng2XMx9rNcZBS
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,330,1654585200"; 
+   d="scan'208";a="174700575"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Sep 2022 02:33:44 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 20 Sep 2022 02:33:39 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
+ Transport; Tue, 20 Sep 2022 02:33:38 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>
+CC:     <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v6] riscv: dts: microchip: add the mpfs' fabric clock control
+Date:   Tue, 20 Sep 2022 10:31:55 +0100
+Message-ID: <20220920093154.24765-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Sept 2022 at 11:47, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/09/2022 10:32, Tomer Maimon wrote:
-> > On Tue, 20 Sept 2022 at 11:21, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 20/09/2022 09:59, Tomer Maimon wrote:
-> >>>>>>>>> +      pinctrl: pinctrl@f0800000 {
-> >>>>>>>>> +        compatible = "nuvoton,npcm845-pinctrl";
-> >>>>>>>>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
-> >>>>>>>>> +        #address-cells = <1>;
-> >>>>>>>>> +        #size-cells = <1>;
-> >>>>>>>>> +        nuvoton,sysgcr = <&gcr>;
-> >>>>>>>>> +
-> >>>>>>>>> +        gpio0: gpio@f0010000 {
-> >>>>>>>>
-> >>>>>>>> gpio@0
-> >>>>>>>>
-> >>>>>>>> Is this really a child block of the pinctrl? Doesn't really look like it
-> >>>>>>>> based on addressess. Where are the pinctrl registers? In the sysgcr? If
-> >>>>>>>> so, then pinctrl should be a child of it. But that doesn't really work
-> >>>>>>>> too well with gpio child nodes...
-> >>>>>>> the pin controller mux is handled by sysgcr this is why the sysgcr in
-> >>>>>>> the mother node,
-> >>>>>>> and the pin configuration are handled by the GPIO registers.  each
-> >>>>>>> GPIO bank (child) contains 32 GPIO.
-> >>>>>>> this is why the GPIO is the child node.
-> >>>>>>
-> >>>>>> Then maybe pinctrl should be the sysgcr and expose regmap for other devices?
-> >>>>> The pin controller using the sysgcr to handle the pinmux, this is why
-> >>>>> the sysgcr is in the mother node, is it problematic?
-> >>>>
-> >>>> You said pin-controller mux registers are in sysgcr, so it should not be
-> >>>> used via syscon.
-> >>> Sorry but maybe I missed something.
-> >>> the sysgcr is used for miscellaneous features and not only for the pin
-> >>> controller mux, this is why it used syscon and defined in the dtsi:
-> >>>                 gcr: system-controller@f0800000 {
-> >>>                         compatible = "nuvoton,npcm845-gcr", "syscon";
-> >>>                         reg = <0x0 0xf0800000 0x0 0x1000>;
-> >>>                 };
-> >>>>
-> >>>> Please provide address map description to convince us that this is
-> >>>> correct HW representation.
-> >>> GCR (sysgcr) registers 0xf0800000-0xf0801000 - used for miscellaneous
-> >>> features, not only pin mux.
-> >>> GPIO0 0xf0010000-0xf0011000
-> >>> GPIO1 0xf0011000-0xf0012000
-> >>> ...
-> >>> GPIO7 0xf0017000-0xf0018000
-> >>>>
-> >>
-> >> Then why your pinctrl is in sysgcr IO range? (pinctrl@f0800000)
-> > you suggest using pinctrl@0 or pinctrl@f0010000 and not
-> > pinctrl@f0800000 because 0xf0800000 is the GCR address that serve
-> > miscellaneous features and not only pinmux controller ?
->
-> If you have a map like you pasted, then DTS like this:
->
-> syscon@f0800000 {}
-> pinctrl@f0800000 {
->   gpio@f0010000 {}
-> }
->
-> Is quite weird, don't you think? You have two devices on the same unit
-> address which is not allowed. You have child of pinctrl with entirely
-O.K.
-> different unit address, so how is it its child?
-The pinctrl node name will modify the pinctrl@f0010000 the same as the
-range property and the start of the child registers,is it fine?
-> Best regards,
-> Krzysztof
+The "fabric clocks" in current PolarFire SoC device trees are not
+really fixed clocks. Their frequency is set by the bitstream, so having
+them located in -fabric.dtsi is not a problem - they're just as "fixed"
+as the IP blocks etc used in the FPGA fabric.
+However, their configuration can be read at runtime (and to an extent
+they can be controlled, although the intended usage is static
+configurations set by the bitstream) through the system controller bus.
 
-Best regards,
+In the v2022.09 icicle kit reference design a single CCC (north-west
+corner) is enabled, using a 50 MHz off-chip oscillator as its reference.
 
-Tomer
+Updating to the v2022.09 icicle kit reference design is required, as
+prior to this release, the CCC was not fixed & could change for any
+given run of the synthesis tool.
+
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Claudiu has applied the rest of the series & sent a PR to Stephen for
+it. Since v5, I've rebased this on top of the 2022.09 memory map
+changes & made the PWM use the correct clock.
+
+ .../dts/microchip/mpfs-icicle-kit-fabric.dtsi | 31 +++++++++---------
+ .../boot/dts/microchip/mpfs-icicle-kit.dts    |  4 +++
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       | 32 +++++++++++++++++++
+ 3 files changed, 52 insertions(+), 15 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
+index c2aac1a7e862..c196bbfc0c24 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
++++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
+@@ -11,7 +11,7 @@ core_pwm0: pwm@40000000 {
+ 		reg = <0x0 0x40000000 0x0 0xF0>;
+ 		microchip,sync-update-mask = /bits/ 32 <0>;
+ 		#pwm-cells = <2>;
+-		clocks = <&fabric_clk3>;
++		clocks = <&ccc_nw CLK_CCC_PLL0_OUT3>;
+ 		status = "disabled";
+ 	};
+ 
+@@ -20,25 +20,13 @@ i2c2: i2c@40000200 {
+ 		reg = <0x0 0x40000200 0x0 0x1000>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		clocks = <&fabric_clk3>;
++		clocks = <&ccc_nw CLK_CCC_PLL0_OUT3>;
+ 		interrupt-parent = <&plic>;
+ 		interrupts = <122>;
+ 		clock-frequency = <100000>;
+ 		status = "disabled";
+ 	};
+ 
+-	fabric_clk3: fabric-clk3 {
+-		compatible = "fixed-clock";
+-		#clock-cells = <0>;
+-		clock-frequency = <50000000>;
+-	};
+-
+-	fabric_clk1: fabric-clk1 {
+-		compatible = "fixed-clock";
+-		#clock-cells = <0>;
+-		clock-frequency = <125000000>;
+-	};
+-
+ 	pcie: pcie@3000000000 {
+ 		compatible = "microchip,pcie-host-1.0";
+ 		#address-cells = <0x3>;
+@@ -55,7 +43,7 @@ pcie: pcie@3000000000 {
+ 				<0 0 0 3 &pcie_intc 2>,
+ 				<0 0 0 4 &pcie_intc 3>;
+ 		interrupt-map-mask = <0 0 0 7>;
+-		clocks = <&fabric_clk1>, <&fabric_clk3>;
++		clocks = <&ccc_nw CLK_CCC_PLL0_OUT1>, <&ccc_nw CLK_CCC_PLL0_OUT3>;
+ 		clock-names = "fic1", "fic3";
+ 		ranges = <0x3000000 0x0 0x8000000 0x30 0x8000000 0x0 0x80000000>;
+ 		dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000 0x1 0x00000000>;
+@@ -68,4 +56,17 @@ pcie_intc: interrupt-controller {
+ 			interrupt-controller;
+ 		};
+ 	};
++
++	refclk_ccc: cccrefclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++	};
++};
++
++&ccc_nw {
++	clocks = <&refclk_ccc>, <&refclk_ccc>, <&refclk_ccc>, <&refclk_ccc>,
++		 <&refclk_ccc>, <&refclk_ccc>;
++	clock-names = "pll0_ref0", "pll0_ref1", "pll1_ref0", "pll1_ref1",
++		      "dll0_ref", "dll1_ref";
++	status = "okay";
+ };
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+index 5e2b8aa2ff64..bc3621df2e15 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+@@ -138,6 +138,10 @@ &refclk {
+ 	clock-frequency = <125000000>;
+ };
+ 
++&refclk_ccc {
++	clock-frequency = <50000000>;
++};
++
+ &rtc {
+ 	status = "okay";
+ };
+diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+index 8f463399a568..0a9bb84af438 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
++++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+@@ -236,6 +236,38 @@ clkcfg: clkcfg@20002000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
++		ccc_se: clock-controller@38010000 {
++			compatible = "microchip,mpfs-ccc";
++			reg = <0x0 0x38010000 0x0 0x1000>, <0x0 0x38020000 0x0 0x1000>,
++			      <0x0 0x39010000 0x0 0x1000>, <0x0 0x39020000 0x0 0x1000>;
++			#clock-cells = <1>;
++			status = "disabled";
++		};
++
++		ccc_ne: clock-controller@38040000 {
++			compatible = "microchip,mpfs-ccc";
++			reg = <0x0 0x38040000 0x0 0x1000>, <0x0 0x38080000 0x0 0x1000>,
++			      <0x0 0x39040000 0x0 0x1000>, <0x0 0x39080000 0x0 0x1000>;
++			#clock-cells = <1>;
++			status = "disabled";
++		};
++
++		ccc_nw: clock-controller@38100000 {
++			compatible = "microchip,mpfs-ccc";
++			reg = <0x0 0x38100000 0x0 0x1000>, <0x0 0x38200000 0x0 0x1000>,
++			      <0x0 0x39100000 0x0 0x1000>, <0x0 0x39200000 0x0 0x1000>;
++			#clock-cells = <1>;
++			status = "disabled";
++		};
++
++		ccc_sw: clock-controller@38400000 {
++			compatible = "microchip,mpfs-ccc";
++			reg = <0x0 0x38400000 0x0 0x1000>, <0x0 0x38800000 0x0 0x1000>,
++			      <0x0 0x39400000 0x0 0x1000>, <0x0 0x39800000 0x0 0x1000>;
++			#clock-cells = <1>;
++			status = "disabled";
++		};
++
+ 		mmuart0: serial@20000000 {
+ 			compatible = "ns16550a";
+ 			reg = <0x0 0x20000000 0x0 0x400>;
+-- 
+2.37.3
+
