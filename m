@@ -2,62 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F4A55BE24F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A32965BE258
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:48:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230392AbiITJrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 05:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59156 "EHLO
+        id S231200AbiITJs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 05:48:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230313AbiITJrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:47:42 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C97DE6E2DC;
-        Tue, 20 Sep 2022 02:47:36 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28K9lNrQ063608;
-        Tue, 20 Sep 2022 04:47:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663667244;
-        bh=tZoKZu70jYLeuAoYabNntehjn0gfTbbdj58tD/NyA5g=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=E81EbaIIOhzzUYHCVQNAdAqmjJYY3OWZx+DsBFaUf+Er6cmnrCUOs1N73dsRv10qC
-         bzGbZFewWiv8vtgv/K4CzqJQjKqtXZHoNqUQDLm23eKV8c52igrSkKx/zKT8Kin+Rl
-         deS46geOS5olhLBKYv+HVTgJyzBHsAnbZrKkPXW4=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28K9lNgf078341
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 20 Sep 2022 04:47:23 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 20
- Sep 2022 04:47:23 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 20 Sep 2022 04:47:23 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28K9lMJA100432;
-        Tue, 20 Sep 2022 04:47:23 -0500
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     <nm@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <r-ravikumar@ti.com>, <jkridner@gmail.com>
-Subject: [PATCH v5 2/2] arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi Header
-Date:   Tue, 20 Sep 2022 15:17:13 +0530
-Message-ID: <20220920094713.18950-3-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220920094713.18950-1-r-ravikumar@ti.com>
-References: <20220920094713.18950-1-r-ravikumar@ti.com>
+        with ESMTP id S231208AbiITJsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:48:05 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47FB06E8BD
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:48:01 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id k10so2850362lfm.4
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:48:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=M5WxUofFBoJGfewHDqk33FaOZhqYQWwaYYDWCY1yPeM=;
+        b=pkbvSiJnTxNSDnIs0YANOzMkL0jrhfjohngvVNEK4zUhkdlLCdg0OY9QOT24Sq13pp
+         QdDar2j7J4TX8RlyDyDwqWSMzBbX8MBry4Spju+CU0UeVF4nGfM3oCUAqorARKpYbZN7
+         rUFha05CwNwJD8aqOQqKCQi/phTaGC1qJ9P0hcmFl/TcpoIcbWepXzXoPf8ZqakhMp3m
+         x2h2l6uekM3txJvgC9wDe91+Gqm6jpPidoP0PMB4MZKSvCWpXVta+FtpAFeiauxy2p6B
+         rcxN23D8lhKnm7+loheKYyWMhCFnujW63kYsZxHzXb+kJy5jfX4+GJ6Re+XZBvcHh51H
+         ubbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=M5WxUofFBoJGfewHDqk33FaOZhqYQWwaYYDWCY1yPeM=;
+        b=14jpKrrogFfYhbBZGxo2z9HougWPeulR3a/I5BM+LJsNEmFFVe/1cRwvslnYsIFmwd
+         L2zfZu8H184YIXD1sEqpo47nKOhtZnIG4F/ynxTiwlIToDGDTHqDBFTmaP1DEO0OAkq8
+         7hSzeb1LJhp+mm5wNdW2tFrI/2ziorqjcwax/Xt2Co9KY9DvZAHkwIcOgxR2JLAgFNvK
+         WM1qTEgOVZyxZ/+7Jv+Y8sXvTUog4L/V6ym7dIjOQYI82G9QxEuiDqcJVJtKx+pwfolc
+         DsEcOjTdr4EgwyVKKxQhq1vG8vmi03PiLU7ZCmby4KUfWITIkJM7xoCWnL+or2MRcbli
+         Y0Yg==
+X-Gm-Message-State: ACrzQf3YclJ0hNc9dhpRLhppOrLd4Z1OO6dkk9y+f064Yhp4ihAJ0JaB
+        y9rmVN+/GkTe+1ia10WAocdZsvwUruOJZw==
+X-Google-Smtp-Source: AMsMyM6qdaOps+CLLadhvSGUjgNrQf17CgzUUetIXjsWF2aZi36wEY0NaE1WEj8RUpjFvTs57ZGLyQ==
+X-Received: by 2002:a05:6512:3daa:b0:49f:966f:254a with SMTP id k42-20020a0565123daa00b0049f966f254amr4579474lfv.73.1663667279350;
+        Tue, 20 Sep 2022 02:47:59 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id k12-20020a192d0c000000b004984ab5956dsm224516lfj.202.2022.09.20.02.47.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Sep 2022 02:47:58 -0700 (PDT)
+Message-ID: <0afa173f-9f7f-b2c8-7abc-2384ee46429d@linaro.org>
+Date:   Tue, 20 Sep 2022 11:47:58 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v5 2/3] memory: omap-gpmc: add support for wait pin
+ polarity
+Content-Language: en-US
+To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+Cc:     "rogerq@kernel.org" <rogerq@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
+ <20220916120749.2517727-3-benedikt.niedermayr@siemens.com>
+ <6dd3d41b-eb75-3754-8a17-a8cb4bc838a8@linaro.org>
+ <f6f59421ac9b0e2c0b85918282c33f325726c4bd.camel@siemens.com>
+ <cdc59072-648c-ce53-b9a5-b796d379e575@linaro.org>
+ <24e5fa6065f68a25226b4aee02b8f900b630befa.camel@siemens.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <24e5fa6065f68a25226b4aee02b8f900b630befa.camel@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,94 +82,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+On 20/09/2022 11:13, Niedermayr, BENEDIKT wrote:
+> Hi Krzysztof,
+> 
+> On Tue, 2022-09-20 at 09:39 +0200, Krzysztof Kozlowski wrote:
+>> On 19/09/2022 15:25, Niedermayr, BENEDIKT wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On Mon, 2022-09-19 at 11:38 +0200, Krzysztof Kozlowski wrote:
+>>>> On 16/09/2022 14:07, B. Niedermayr wrote:
+>>>>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+>>>>>
+>>>>> The waitpin polarity can be configured via the WAITPIN<X>POLARITY bits
+>>>>> in the GPMC_CONFIG register. This is currently not supported by the
+>>>>> driver. This patch adds support for setting the required register bits
+>>>>> with the "gpmc,wait-pin-polarity" dt-property.
+>>>>>
+>>>>> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+>>>>> ---
+>>>>>  drivers/memory/omap-gpmc.c              | 27 +++++++++++++++++++++++++
+>>>>>  include/linux/platform_data/gpmc-omap.h |  6 ++++++
+>>>>>  2 files changed, 33 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
+>>>>> index ea495e93766b..2853fc28bccc 100644
+>>>>> --- a/drivers/memory/omap-gpmc.c
+>>>>> +++ b/drivers/memory/omap-gpmc.c
+>>>>> @@ -132,6 +132,7 @@
+>>>>>  #define GPMC_CONFIG_DEV_SIZE	0x00000002
+>>>>>  #define GPMC_CONFIG_DEV_TYPE	0x00000003
+>>>>>  
+>>>>> +#define GPMC_CONFIG_WAITPINPOLARITY(pin)	(BIT(pin) << 8)
+>>>>>  #define GPMC_CONFIG1_WRAPBURST_SUPP     (1 << 31)
+>>>>>  #define GPMC_CONFIG1_READMULTIPLE_SUPP  (1 << 30)
+>>>>>  #define GPMC_CONFIG1_READTYPE_ASYNC     (0 << 29)
+>>>>> @@ -1882,6 +1883,17 @@ int gpmc_cs_program_settings(int cs, struct gpmc_settings *p)
+>>>>>  
+>>>>>  	gpmc_cs_write_reg(cs, GPMC_CS_CONFIG1, config1);
+>>>>>  
+>>>>> +	if (p->wait_pin_polarity != WAITPINPOLARITY_DEFAULT) {
+>>>>> +		config1 = gpmc_read_reg(GPMC_CONFIG);
+>>>>> +
+>>>>> +		if (p->wait_pin_polarity == WAITPINPOLARITY_ACTIVE_LOW)
+>>>>> +			config1 &= ~GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
+>>>>> +		else if (p->wait_pin_polarity == WAITPINPOLARITY_ACTIVE_HIGH)
+>>>>> +			config1 |= GPMC_CONFIG_WAITPINPOLARITY(p->wait_pin);
+>>>>> +
+>>>>> +		gpmc_write_reg(GPMC_CONFIG, config1);
+>>>>
+>>>> What happens if wait pin is shared and you have different polarities in
+>>>> both of devices?
+>>> In this case the second one wins and will overwrite the polarity of the first one.
+>>> But that would be the result of a misconfiguration in the DT.
+>>
+>> In many cases drivers do not accept blindly a DT, but perform some basic
+>> sanity on it, especially if mistake is easy to make (e.g. with
+>> overlays). Such design of DT is just fragile. Schema cannot validate it,
+>> driver does not care, mistake is quite possible.
+> 
+> Ok, that makes sense. I'm going to implement this in v6.
+>>
+>>> I'm not sure how to proceed here? Does it make sense to add a check for different 
+>>> waitpin polarities?
+>>
+>> I don't know. I would just disallow such sharing entirely or disallow
+>> sharing if DT is misconfigured.
+>>
+>>
+>>>
+>>>>> +	}
+>>>>> +
+>>>>>  	return 0;
+>>>>>  }
+>>>>>  
+>>>>> @@ -1981,7 +1993,22 @@ void gpmc_read_settings_dt(struct device_node *np, struct gpmc_settings *p)
+>>>>>  				__func__);
+>>>>>  	}
+>>>>>  
+>>>>> +	p->wait_pin_polarity = WAITPINPOLARITY_DEFAULT;
+>>>>> +
+>>>>>  	if (!of_property_read_u32(np, "gpmc,wait-pin", &p->wait_pin)) {
+>>>>> +		if (!of_property_read_u32(np, "gpmc,wait-pin-polarity",
+>>>>> +					  &p->wait_pin_polarity)) {
+>>>>> +			if (p->wait_pin_polarity != WAITPINPOLARITY_ACTIVE_HIGH &&
+>>>>> +			    p->wait_pin_polarity != WAITPINPOLARITY_ACTIVE_LOW &&
+>>>>> +			    p->wait_pin_polarity != WAITPINPOLARITY_DEFAULT) {
+>>>>
+>>>> WAITPINPOLARITY_DEFAULT is not allowed in DT, so you can skip it.
+>>> This value is not assigned from the DT. It is only assigned within the GPMC and serves as a init
+>>> value (right before the if clause). This helps in case no configuration from DT is done where the 
+>>> GPMC registers should stay untouched.
+>>
+>> I don't see it. Your code is:
+>>
+>> p->wait_pin_polarity = WAITPINPOLARITY_DEFAULT;
+>> # and DT has WAITPINPOLARITY_DEFAULT
+>> if (....) {
+>>   pr_err
+>>   p->wait_pin_polarity = WAITPINPOLARITY_DEFAULT;
+>> } else {
+>>   pr_err
+>> }
+>>
+> Maybe I dont't get what you mean with DT in this context.
+> 
+> What I meant is that the value WAITPINPOLARITY_DEFAULT is not directly extracted from the DT but is assigned in case
+> "gpmc,wait-pin-polarity" is not set or has an invalid value. In any case the p->wait_pin_polarity should have
+> at least the init value assigned so we can make proper decisions in gpmc_cs_program_settings().
+> 
+> Maybe I need some clarification what exatly is forbidden here.
 
-Add pinmux required to bring out i2c5 and gpios on
-40 pin RPi header on sk board
+I commented exactly below the line which I question. I don't question
+other lines. So let me be a bit more specific:
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 55 +++++++++++++++++++++++++-
- 1 file changed, 54 insertions(+), 1 deletion(-)
+Why do you need
+"p->wait_pin_polarity != WAITPINPOLARITY_DEFAULT"
+? Can you write a scenario where this is useful?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index 98a55778f3fe..a418494d1fd6 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -400,6 +400,47 @@ ekey_reset_pins_default: ekey-reset-pns-pins-default {
- 			J721E_IOPAD(0x124, PIN_INPUT, 7) /* (Y24) PRG0_PRU1_GPO9.GPIO0_72 */
- 		>;
- 	};
-+
-+	main_i2c5_pins_default: main-i2c5-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
-+			J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
-+		>;
-+	};
-+
-+	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x01C, PIN_INPUT, 7) /* (AD22) PRG1_PRU0_GPO6.GPIO0_7 */
-+			J721E_IOPAD(0x120, PIN_INPUT, 7) /* (AA28) PRG0_PRU1_GPO8.GPIO0_71 */
-+			J721E_IOPAD(0x14C, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
-+			J721E_IOPAD(0x02C, PIN_INPUT, 7) /* (AD21) PRG1_PRU0_GPO10.GPIO0_11 */
-+			J721E_IOPAD(0x198, PIN_INPUT, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
-+			J721E_IOPAD(0x1B0, PIN_INPUT, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
-+			J721E_IOPAD(0x1A0, PIN_INPUT, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
-+			J721E_IOPAD(0x008, PIN_INPUT, 7) /* (AG22) PRG1_PRU0_GPO1.GPIO0_2 */
-+			J721E_IOPAD(0x1D0, PIN_INPUT, 7) /* (AA3) SPI0_D1.GPIO0_115 */
-+			J721E_IOPAD(0x11C, PIN_INPUT, 7) /* (AA24) PRG0_PRU1_GPO7.GPIO0_70 */
-+			J721E_IOPAD(0x148, PIN_INPUT, 7) /* (AA26) PRG0_PRU1_GPO18.GPIO0_81 */
-+			J721E_IOPAD(0x004, PIN_INPUT, 7) /* (AC23) PRG1_PRU0_GPO0.GPIO0_1 */
-+			J721E_IOPAD(0x014, PIN_INPUT, 7) /* (AH23) PRG1_PRU0_GPO4.GPIO0_5 */
-+			J721E_IOPAD(0x020, PIN_INPUT, 7) /* (AE20) PRG1_PRU0_GPO7.GPIO0_8 */
-+			J721E_IOPAD(0x19C, PIN_INPUT, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
-+			J721E_IOPAD(0x1B4, PIN_INPUT, 7) /* (W25) RGMII6_RD0.GPIO0_108 */
-+			J721E_IOPAD(0x188, PIN_INPUT, 7) /* (Y28) RGMII6_TX_CTL.GPIO0_97 */
-+			J721E_IOPAD(0x00C, PIN_INPUT, 7) /* (AF22) PRG1_PRU0_GPO2.GPIO0_3 */
-+			J721E_IOPAD(0x010, PIN_INPUT, 7) /* (AJ23) PRG1_PRU0_GPO3.GPIO0_4 */
-+			J721E_IOPAD(0x178, PIN_INPUT, 7) /* (U27) RGMII5_RD3.GPIO0_93 */
-+			J721E_IOPAD(0x17C, PIN_INPUT, 7) /* (U24) RGMII5_RD2.GPIO0_94 */
-+			J721E_IOPAD(0x190, PIN_INPUT, 7) /* (W23) RGMII6_TD3.GPIO0_99 */
-+			J721E_IOPAD(0x18C, PIN_INPUT, 7) /* (V23) RGMII6_RX_CTL.GPIO0_98 */
-+		>;
-+	};
-+
-+	rpi_header_gpio1_pins_default: rpi-header-gpio1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x234, PIN_INPUT, 7) /* (U3) EXT_REFCLK1.GPIO1_12 */
-+		>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -633,7 +674,9 @@ &main_i2c4 {
- 
- &main_i2c5 {
- 	/* Brought out on RPi Header */
--	status = "disabled";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c5_pins_default>;
-+	clock-frequency = <400000>;
- };
- 
- &main_i2c6 {
-@@ -1153,3 +1196,13 @@ &main_ehrpwm4 {
- &main_ehrpwm5 {
- 	status = "disabled";
- };
-+
-+&main_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
-+};
-+
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio1_pins_default>;
-+};
--- 
-2.37.3
-
+Best regards,
+Krzysztof
