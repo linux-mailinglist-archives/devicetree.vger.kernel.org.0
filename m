@@ -2,135 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09AF55BE167
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDC5C5BE14B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231616AbiITJHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 05:07:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48876 "EHLO
+        id S230457AbiITJEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 05:04:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231627AbiITJHY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:07:24 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 846436D9EA;
-        Tue, 20 Sep 2022 02:05:20 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-12803ac8113so3255045fac.8;
-        Tue, 20 Sep 2022 02:05:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=gd/npqLKLd3AnTSH/+RFKBsH5iJOqAjM5MsAjYDhe+E=;
-        b=fnnscz7VljZQXX4AixFOtwmwMOrI/KAwQLCKpiQh8OhcYn5izhpN9Zvsty/7viGJOr
-         vhXpc+UbScB838RJc351Feaq3UtMF1UHspCiIGfe/TDn/FA5s92Sp1cFpa8LaKJm7yaI
-         vKG5ZmYckBkv6lEw5lBv95dMaUZxEwcEMHe7RqlbBiPO2UtNDk/QKUN4QHTnKgJATcbt
-         +DhU/ZhBfRtntbS1kAL7iC2fJA5GLoy1KZf8lAehqEK0anz7sX3FFwMsm9CV6Pr8oP9P
-         iBfH6d3/ltRzOdhPV46jhSeUIlFVsCjBeZHa8gEUj1+B9lmFPIXWtoG85XbL93JTU8U1
-         WUFA==
-X-Gm-Message-State: ACrzQf0yjvF9W0GHrSqggifXSOnqB3CNLCUnos4+2aje5k16BEjmcQ3l
-        gJWMqILQC5oFQMQa0P6YeMTGjDd6BCOrgw==
-X-Google-Smtp-Source: AMsMyM7QLzvaKy5B9ZvgsD8MrO3Uf4lxdYxGoNsNfAzFQTpSDv2Ia8WjBbfwzQiHNJHP4DS1zqqiZQ==
-X-Received: by 2002:a05:6870:f20b:b0:12d:29e4:df2e with SMTP id t11-20020a056870f20b00b0012d29e4df2emr1542655oao.262.1663664719430;
-        Tue, 20 Sep 2022 02:05:19 -0700 (PDT)
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com. [209.85.210.45])
-        by smtp.gmail.com with ESMTPSA id ep36-20020a056870a9a400b00118281a1227sm679779oab.39.2022.09.20.02.05.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 02:05:19 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id r13-20020a056830418d00b0065601df69c0so1279933otu.7;
-        Tue, 20 Sep 2022 02:05:19 -0700 (PDT)
-X-Received: by 2002:a0d:dd09:0:b0:344:fca5:9b44 with SMTP id
- g9-20020a0ddd09000000b00344fca59b44mr18154946ywe.358.1663664299984; Tue, 20
- Sep 2022 01:58:19 -0700 (PDT)
+        with ESMTP id S231496AbiITJC6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:02:58 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C84546CD16;
+        Tue, 20 Sep 2022 02:02:17 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id EFF556601F65;
+        Tue, 20 Sep 2022 10:01:58 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663664519;
+        bh=+3Eho6vznxN6lcZbJbVvkS5KJYsPvu5pctKzlZPKMUo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LJclHzWWXsCnozr4D6rWp6q57rPuakEPkNWPH4x5OppazabiA3wjTGmtPFWcgEgIj
+         GR4sP0iuussi0aap1SwEamN3AIHInnQt4Y1crvC44KcN+0rKVSTNkt68tCFtcAFgHP
+         HS3TRs3QGz4pde4u0r/jmuJIccKVgD1Y/4o3hls04T98y6fFdWjuThZAW7qN0rGcIc
+         OkU750ey5Tj9vwjKlDYO//swC6zIN/iq6EUNiD3n5mCmT6OWvc4/WLatlhkVtbeK+s
+         MqjnrDydHispgrfrj0N6PWPcfxJ5yGR6xzIIQIlFVoxfFGL1qS81oMdjy95Z24kSXU
+         xwFUg1uwDjb7w==
+Message-ID: <3a0ac49f-2245-fb64-aa60-e3b1a1d4afcd@collabora.com>
+Date:   Tue, 20 Sep 2022 11:01:56 +0200
 MIME-Version: 1.0
-References: <20220503211954.1428919-1-frowand.list@gmail.com>
- <CAMuHMdWhn8cY4usyqao-osEcSCcmkU+NYg21co+GxVfvg5+dhw@mail.gmail.com> <725f870b-b927-352d-85ab-675b91b7c75a@gmail.com>
-In-Reply-To: <725f870b-b927-352d-85ab-675b91b7c75a@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 20 Sep 2022 10:58:08 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX52_pnJPDuYoqOxwxsiC_+Zecg4kyWU94zAg1NRYHyDQ@mail.gmail.com>
-Message-ID: <CAMuHMdX52_pnJPDuYoqOxwxsiC_+Zecg4kyWU94zAg1NRYHyDQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] of: overlay: rename overlay source files from .dts
- to .dtso
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Alex Marginean <alexandru.marginean@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Jason Liu <jason.hui.liu@nxp.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-pci <linux-pci@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v3 2/3] iommu/mediatek: Add enable IOMMU SMC command for
+ INFRA master
+Content-Language: en-US
+To:     "Chengci.Xu" <chengci.xu@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220919082611.19824-1-chengci.xu@mediatek.com>
+ <20220919082611.19824-3-chengci.xu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220919082611.19824-3-chengci.xu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+Il 19/09/22 10:26, Chengci.Xu ha scritto:
+> The register which can enable IOMMU for INFRA master should be setted
+> in secure world for security concerns. Therefore, we add a SMC command
+> for INFRA master to enable/disable INFRA IOMMU in ATF. This function is
+> prepared for MT8188.
+> 
+> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
+> ---
+>   drivers/iommu/mtk_iommu.c  | 21 +++++++++++++++++++--
+>   include/soc/mediatek/smi.h |  1 +
+>   2 files changed, 20 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index 552e4eb8c610..8b8a289bab2c 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -3,6 +3,7 @@
+>    * Copyright (c) 2015-2016 MediaTek Inc.
+>    * Author: Yong Wu <yong.wu@mediatek.com>
+>    */
+> +#include <linux/arm-smccc.h>
+>   #include <linux/bitfield.h>
+>   #include <linux/bug.h>
+>   #include <linux/clk.h>
+> @@ -28,6 +29,7 @@
+>   #include <linux/slab.h>
+>   #include <linux/spinlock.h>
+>   #include <linux/soc/mediatek/infracfg.h>
+> +#include <linux/soc/mediatek/mtk_sip_svc.h>
+>   #include <asm/barrier.h>
+>   #include <soc/mediatek/smi.h>
+>   
+> @@ -138,6 +140,7 @@
+>   #define PM_CLK_AO			BIT(15)
+>   #define IFA_IOMMU_PCIE_SUPPORT		BIT(16)
+>   #define PGTABLE_PA_35_EN		BIT(17)
+> +#define CFG_IFA_MASTER_IN_ATF		BIT(18)
+>   
+>   #define MTK_IOMMU_HAS_FLAG_MASK(pdata, _x, mask)	\
+>   				((((pdata)->flags) & (mask)) == (_x))
+> @@ -553,7 +556,20 @@ static int mtk_iommu_config(struct mtk_iommu_data *data, struct device *dev,
+>   				larb_mmu->mmu |= MTK_SMI_MMU_EN(portid);
+>   			else
+>   				larb_mmu->mmu &= ~MTK_SMI_MMU_EN(portid);
+> -		} else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA)) {
+> +		} else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA) &&
+> +			   MTK_IOMMU_HAS_FLAG(data->plat_data, CFG_IFA_MASTER_IN_ATF)) {
+> +			struct arm_smccc_res res;
+> +
+> +			arm_smccc_smc(MTK_SIP_KERNEL_IOMMU_CONTROL,
+> +				      IOMMU_ATF_CMD_CONFIG_INFRA_IOMMU,
+> +				      portid, enable, 0, 0, 0, 0, &res);
+> +			if (res.a0 != 0) {
+> +				dev_err(dev, "%s iommu(%s) inframaster %d fail(%ld).\n",
+> +					enable ? "enable" : "disable",
+> +					dev_name(data->dev), portid, res.a0);
+> +				ret = -EINVAL;
+> +			}
+> +		} else {
 
-Pity you couldn't make it to Dublin. We've been missing you!
+This one is opening a big window for future mistakes.
 
-On Tue, Jul 19, 2022 at 1:44 AM Frank Rowand <frowand.list@gmail.com> wrote:
-> On 7/7/22 02:21, Geert Uytterhoeven wrote:
-> > On Tue, May 3, 2022 at 11:20 PM <frowand.list@gmail.com> wrote:
-> >> From: Frank Rowand <frank.rowand@sony.com>
-> >>
-> >> In drivers/of/unittest-data/:
-> >>    - Rename .dts overlay source files to use .dtso suffix.
-> >>    - Add Makefile rule to build .dtbo.o assembly file from overlay
-> >>      .dtso source file.
-> >>    - Update Makefile to build .dtbo.o objects instead of .dtb.o from
-> >>      unittest overlay source files.
-> >>
-> >> Modify driver/of/unitest.c to use .dtbo.o based symbols instead of
-> >> .dtb.o
-> >>
-> >> Modify scripts/Makefile.lib %.dtbo rule to depend upon %.dtso instead
-> >> of %.dts
-> >>
-> >> Rename .dts overlay source files to use .dtso suffix in:
-> >>    arch/arm64/boot/dts/freescale/
-> >>    arch/arm64/boot/dts/xilinx/
-> >>
-> >> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
-> >
-> > What is the status of this work?
-> > Thanks!
->
-> I'll work on this tomorrow after I test your overlay improvement patches.
+I think that the only way that you have to do this is...
 
-Any updates? We're again at rc6.
-Thanks!
+	} else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA)) {
+		if (MTK_IOMMU_HAS_FLAG(data->plat_data, CFG_IFA_MASTER_IN_ATF)) {
+			arm_smcc_smc ....
+		} else {
+			peri_mmuen_msk ....
+		}
+	}
 
-Gr{oetje,eeting}s,
+Otherwise, to reduce indentation, you'd have to do something like...
 
-                        Geert
+static int mtk_iommu_config_one(struct mtk_iommu_data *data, struct device *dev,
+				bool enable, u32 regionid, u32 larbid, u32 portid)
+{
+	struct mtk_smi_larb_iommu *larb_mmu;
+	............
+}
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+static int mtk_iommu_config(struct .............)
+{
+	vars, etc....
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+	for (i = 0; i < fwspec->num_ids; ++i)
+		mtk_iommu_config_one(data, dev, enable, regionid,
+				     MTK_M4U_TO_LARB(...), MTK_M4U_TO_PORT(...));
+}
+
+
+or....
+
+static int mtk_iommu_config_one_infra(struct ....)
+{
+	if (is atf) ....
+	else ....
+}
+
+Your choice.
+
+Regards,
+Angelo
+
+
