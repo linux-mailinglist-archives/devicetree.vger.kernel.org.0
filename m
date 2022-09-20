@@ -2,126 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD3955BEAA0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DFB15BEAAA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 18:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbiITP7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 11:59:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34960 "EHLO
+        id S229791AbiITQA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 12:00:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231502AbiITP7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:59:48 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585135FC1
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:59:47 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id f14so4566919lfg.5
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:59:47 -0700 (PDT)
+        with ESMTP id S231229AbiITQAg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 12:00:36 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF8E2DA9B
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 09:00:33 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id a10so3629262ljq.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 09:00:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=QMYsP28bPSxiuVehnUkq9TPK8zyTroEstE6jb5tgTaI=;
-        b=n+AtSohyyJIp32sHBo57AZXXa9T8x1CpBYXcbLur2iNqWsjX86/ihr9MnLKwNgYyMU
-         GX9N2pZkMEFhQPl5ZlxgTeHD1n8+BlFjeRBzYXYiZCKlcV8qGgCAS3d6oMd+EWQPrrhM
-         1GvoqjjI2oLhq7zDxpcx+A9APdo/yShIyhz0Lmt0q6zLIHsOu5Awg5HdG4Z5sMtO/U7u
-         ApAdEV+RKdeShp7eyK3o7adbqHxXJuU/0yG7rucfjVihMwKgdGSiXxju9YI8u6fAGHgm
-         3XIZl1mAlsVHRToObmHU9YsmdfsePs24ygAC7ZBi3+7hEUj0vBbSh7XPprr5QasfCBzr
-         L8cg==
+        bh=9j9hRD8VpJNy64eeH7PNa6VDujRwggkrHfXGdaQhmrg=;
+        b=Eg5YXUJ242I2k3dw88U7RH91TcQ4yM6RvhDanZxorb7IeRDZg9Df6+nBKiIChMz/9o
+         Ws9HTXkaDHSppwc6YAOjgZ6dpH3L388eNJiaDGjjynObXzy3bUCAXjQdZJry7LG80cR4
+         iHKd3594n9oX02ZXXV2sVYWjGVJI3igUkny/w4o/VatZhSgs4ta3wkjBeOWgN336Q84S
+         4kYrGSd/PR+HsDlYfVe3f1fB8aDZzosjUv+MJ/cv2mTiUcEdEJxYeS3DMUle62mokh53
+         pEB+RGnuwlsYTnt7HG7EESHpDv/tHFnepitHCgzYJ8cppnkPdLTM4TbJ+x+t10VH1n7Y
+         WbkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=QMYsP28bPSxiuVehnUkq9TPK8zyTroEstE6jb5tgTaI=;
-        b=GEy8nP2oxeNhZh9O9gEJ/0O5pw5VhHFGoEVEeOcG7Xx7Jd235JZCLj62ujYGK3oph6
-         T7PYoEAwG1POeLSlTI7jlVsFlBfEksXvwUQANQlwGXoRSdpOaAPNCvtQ1gLoS9JSCVeb
-         5aKerSHqM7xnoOC/5M19RCTGBSg+c7iSTWxTar6McqYR/BYTNZ3jb1aDAPMD0aeXSKZU
-         dajYP0Zff+l9/ssiBfqxWeRjklE0a7AqCst/YLDV3LtGGzp3/ByglD+6LwH0WweGbw11
-         TUHBK+C7Sbqp8BVSXy2r+G5Q8qYTM41/jQ1a/7dj3rFQM50v2c+oEAlJ+T0zjRfOBaEH
-         /ZBQ==
-X-Gm-Message-State: ACrzQf3O4sH0Y+tBxoNxeu4PXfGn/1ddxeNA9WeYSzh8LDwRT2CKwNbU
-        7lGN4YZb66hIOoJOhm8euJ8+7Q==
-X-Google-Smtp-Source: AMsMyM4wZ4bHQzY1QM+2MvHkJrH6aFzjE1xLqU7NFFllPA01l1cq/QNVqFQhjz6U4JGkLgammgllmQ==
-X-Received: by 2002:a05:6512:2210:b0:499:d710:9c0d with SMTP id h16-20020a056512221000b00499d7109c0dmr9097083lfu.325.1663689585682;
-        Tue, 20 Sep 2022 08:59:45 -0700 (PDT)
+        bh=9j9hRD8VpJNy64eeH7PNa6VDujRwggkrHfXGdaQhmrg=;
+        b=P0LtnIn0lMYYh0NhyIVpV/TmuTQ2Dkd7KAlXTR+tMCuwEO5XXmaG+gm0Yw12oQb5XP
+         A0u2ztrBfRKRP3KkkndZ1PL5bYBfeWevMYfX5mtVbO7GaffwrL/fUJoKBA6pUBl2tfqs
+         xZ5bZA1mt1Xao5LkXAmvHIytOoy6ThptABqkhCIt++hz0OetMemAWc9v1Dw5JrJgoIS8
+         t8axcNmrzQeKOpD/C5RCipc54F84v/JU+r61O0PeEMcaRvrHeHsi9nlDr20MnibcrqoV
+         K53YRdyfm5vY+SCx5PEX0T6iK9NdOza+ahDIVpS4KPZ5vQ4FCVlj5+3C1UAUMPIEsBEk
+         RE+A==
+X-Gm-Message-State: ACrzQf1UNS/Cx9hf2HXQHVI3KjoorVogCFYhxXie94kC0fF1WhdKrP/A
+        3Ohtho5rWD7rwnD7CrcVmp4/hg==
+X-Google-Smtp-Source: AMsMyM6R9UX8juD+DsbdEfe64qZRQNEUGAcKG+6QlhNsJW8FJc9I2A3RWsA6EWI1zsedGfa5XmMYOw==
+X-Received: by 2002:a05:651c:1611:b0:261:e11c:c2ef with SMTP id f17-20020a05651c161100b00261e11cc2efmr6942910ljq.340.1663689631376;
+        Tue, 20 Sep 2022 09:00:31 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id l17-20020a2e8691000000b0026b2094f6fcsm19677lji.73.2022.09.20.08.59.44
+        by smtp.gmail.com with ESMTPSA id u17-20020a05651220d100b00497abfd49fbsm16916lfr.249.2022.09.20.09.00.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 08:59:44 -0700 (PDT)
-Message-ID: <10bd1f39-3971-90ee-5fe4-c44005cdfcc8@linaro.org>
-Date:   Tue, 20 Sep 2022 17:59:43 +0200
+        Tue, 20 Sep 2022 09:00:30 -0700 (PDT)
+Message-ID: <69d78d93-ab98-a2d8-4a39-e31ec10cc334@linaro.org>
+Date:   Tue, 20 Sep 2022 18:00:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v3] dt-bindings: firmware: imx: sync with SCFW kit v1.13.0
+Subject: Re: [PATCH v5 1/3] dt-bindings: pwm: tegra: Document Tegra234 pwm
+ binding
 Content-Language: en-US
-To:     Viorel Suman <viorel.suman@oss.nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220919132236.264382-1-viorel.suman@oss.nxp.com>
- <c86d39c9-82d2-0f9f-9836-76ad3b6d8ede@linaro.org>
- <20220919180631.x2telgn6d7woggmz@fsr-ub1664-116>
+To:     Sandipan Patra <spatra@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     bbasu@nvidia.com, kyarlagadda@nvidia.com
+References: <20220919141455.31084-1-spatra@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919180631.x2telgn6d7woggmz@fsr-ub1664-116>
+In-Reply-To: <20220919141455.31084-1-spatra@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 20:06, Viorel Suman wrote:
-43
->>>  #define IMX_SC_R_SECVIO			44
->>>  #define IMX_SC_R_DC_1_VIDEO0		45
->>>  #define IMX_SC_R_DC_1_VIDEO1		46
->>>  #define IMX_SC_R_DC_1_FRAC0		47
->>> +#define IMX_SC_R_V2X			48
->>>  #define IMX_SC_R_DC_1			49
->>> +#define IMX_SC_R_UNUSED14		50
->>>  #define IMX_SC_R_DC_1_PLL_0		51
->>>  #define IMX_SC_R_DC_1_PLL_1		52
->>>  #define IMX_SC_R_SPI_0			53
->>> @@ -151,10 +154,10 @@
->>>  #define IMX_SC_R_DMA_1_CH29		137
->>>  #define IMX_SC_R_DMA_1_CH30		138
->>>  #define IMX_SC_R_DMA_1_CH31		139
->>> -#define IMX_SC_R_UNUSED1		140
->>
->> This one disappears...
+On 19/09/2022 16:14, Sandipan Patra wrote:
+> Add compatible for nvidia,tegra234-pwm with nvidia,tegra194-pwm as a
+> fallback.
+> The PWM controller blocks are identical to ones found on the
+> Tegra194 SoC. No driver changes are required and compatible string
+> "nvidia,tegra194-pwm" will be used as a fallback.
 > 
-> Hi Krzysztof,
-> 
-> Right, it was renamed in the subsequent SCFW kit
-> versions to IMX_SC_R_V2X_PID0, thus - this patch
-> rename it in include/dt-bindings/firmware/imx/rsrc.h
-> file in order to have this file and SCFW kit defines
-> synchronized.
-> 
-> IMX_SC_R_UNUSED1 is not referenced somehow in kernel,
-> thus - no compilation issues if renamed to IMX_SC_R_V2X_PID0,
-> IMHO it does not make sense to me to add the related
-> backward compatibility define like below:
-> 
-> #define IMX_SC_R_UNUSED1 IMX_SC_R_V2X_PID0
+> Signed-off-by: Sandipan Patra <spatra@nvidia.com>
 
-The bindings are used by other people (other Linux kernel forks) and by
-other projects (like bootloaders and other operating systems). This is
-why once set, we do not change them, with some exceptions.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
