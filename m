@@ -2,83 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E29225BE173
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:11:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A6085BE1AC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229872AbiITJLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 05:11:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55608 "EHLO
+        id S231652AbiITJPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 05:15:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiITJLF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:11:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091D41D5;
-        Tue, 20 Sep 2022 02:11:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9682761CEB;
-        Tue, 20 Sep 2022 09:11:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D93CBC43141;
-        Tue, 20 Sep 2022 09:10:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663665062;
-        bh=vgp1hqroueELOf0HkLsZXn6WvdIxgVzLklJz+ZBpoRk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=N2vx/1BZEUEFyHcXFU0FOb4XiQwvOA9C3kxkqTvhol6D3Dj2WCFT2hRw3rxT9fj26
-         v4NgQJKpCYQZiGa3lbvChp+TgXs35AIHxGd6Cwzib/CpKzxNj0DKARW1/l49dfO1bT
-         M/iAUidqdDNkcFSUpsjKdQ/OiENvWCIHTHGt5sunwdzIm5cNJhx8iS74LOfDtP5pD0
-         3XpS3RLIgaS/fnNB9sZce+KOboB2MLHWA+dn7dms+6BtY/QG2YKEW4yt+X5om4dRkB
-         PyDFBrfeioCDPIFNaTDqdWk4qVAElgNc28I/g/+9vun4fbV31RYwQzXmopaPBpHDZm
-         At+3+uUzs5ZnQ==
-Date:   Tue, 20 Sep 2022 10:10:55 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Matthias Brugger <mbrugger@suse.com>
-Cc:     matthias.bgg@kernel.org, robh+dt@kernel.org,
-        angelogioacchino.delregno@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        mandyjh.liu@mediatek.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: mfd: Rename mediatek,mt8195-scpsys.yaml
-Message-ID: <YymDn+ZEIFUqpIEb@google.com>
-References: <20220830091110.27857-1-matthias.bgg@kernel.org>
- <YxnGBN4QEb1yMrGw@google.com>
- <336cb80f-8f58-92ba-aa92-1bb57a75f0fb@suse.com>
+        with ESMTP id S231650AbiITJO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:14:59 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C266FA38
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:13:38 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id x29so2231097ljq.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:13:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=s6DaKp+q+N9t8jckxnbwiJ1uyOA1+2q0Un6B7SB1SKQ=;
+        b=qK8klLdIwLxJgPxTvR4NFqK/I1FiB/oIBLmyAZzqzXAGqtzI5o+VQ0s6PD0iq6krWp
+         bsRXBjF2RMCGnIsUII3/ggpc5iVI6uw7U31Hjq0pdWQPW0by9VmwsC1l/xdSrN3rCTzg
+         Ze33RmRHKKYk4Z4YX9sUnm5lPHZrp8nDdddxDOMHNSwXamViuyG+yrnRyJRayTEWZyrw
+         Jl6AI5wE8lHUYI6MkY473+IzqA5nzsDsNTSix9jvyj7WZF/YEH9pWE+KAn42h9kW+ECS
+         wLIbUReYSQ8SQexYIzExYFJoa2z0q5pQRYeoQ0rD/+rAnDHr3MwOErJIQ3yFqoKX30SR
+         w3uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=s6DaKp+q+N9t8jckxnbwiJ1uyOA1+2q0Un6B7SB1SKQ=;
+        b=CdXkTXv7i5SztvYVnvH4oZWOAwB801wSzBo7+tsotMPSVgWBia1kea4YUpzHCs9VQa
+         PY/jK0H++5wdBfIefw8gwjiitbGfm3i9yFX959DwFHmiUPmqXWnYki3hcI7wRlvlpjcp
+         LjJ04Lk3lDFPUxP+1PeROtsabzXp1rcnk8SMmjgeZP5pPdgahmewYoaWNDaobBAZCb1I
+         4x6Ba4+1suNirKJh+CK5mB1cLX4doWVtLPVMt/2UOWWzl37txT8NRd0r19x1v3vTfjDn
+         WBHgXcgvSk+hAC/Cu6P8KdV7qwo9sJ07v+25xNInNgY9txOw2GIC1ttp4en4G531lRTO
+         /e6g==
+X-Gm-Message-State: ACrzQf26EiNQD6OH1oPGJrqv2ihcTaLWPQxzlVYWmcHrK1h6BE5RERm7
+        U0PocTH68sz7iVaFMMfbBwo4KoyD3r8jdu19l8KiQA==
+X-Google-Smtp-Source: AMsMyM4G9ygVE9dect/jsAIWKGnyYwOumnSQWwCDYSSb9xGAipWNePq3qpEppYq8jH259Fyk5eN8xN8GFhN6neB0xR4=
+X-Received: by 2002:a2e:9b89:0:b0:26a:a004:ac3 with SMTP id
+ z9-20020a2e9b89000000b0026aa0040ac3mr6217102lji.104.1663665204948; Tue, 20
+ Sep 2022 02:13:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <336cb80f-8f58-92ba-aa92-1bb57a75f0fb@suse.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220919220804.1047292-1-bhupesh.sharma@linaro.org>
+ <36bd1c19-8fbd-0903-704d-447117b2007a@linaro.org> <dfe1bc9e-2ab9-d2dd-7daa-dddb8d66fd77@linaro.org>
+ <2ad436c8-8b7a-80ed-9c91-d2293eff70ab@linaro.org>
+In-Reply-To: <2ad436c8-8b7a-80ed-9c91-d2293eff70ab@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Tue, 20 Sep 2022 14:43:12 +0530
+Message-ID: <CAH=2NtxQh7T3CGrdJ=d+_Tj=46sJv5WapoSPbgZMq4yGrFiNwg@mail.gmail.com>
+Subject: Re: [PATCH v6 0/4] dt-bindings: qcom-qce: Convert bindings to yaml &
+ related changes
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        thara.gopinath@gmail.com, devicetree@vger.kernel.org,
+        robh@kernel.org, andersson@kernel.org, bhupesh.linux@gmail.com,
+        Jordan Crouse <jorcrous@amazon.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Sep 2022, Matthias Brugger wrote:
-> On 08/09/2022 12:37, Lee Jones wrote:
-> > On Tue, 30 Aug 2022, matthias.bgg@kernel.org wrote:
-> > 
-> > > From: Matthias Brugger <mbrugger@suse.com>
-> > > 
-> > > The file describes the scpsys node for all SoCs and not only the mt8195.
-> > > Rename it to reflect this fact.
-> > 
-> > Actually, this is fairly typical.  Same with actual drivers.
-> > 
-> > Both tend to adopt the name of the module first supported.
-> > 
-> 
-> Well I think that's unfortunate as it can create confusion for people
-> searching for the binding as well as people adding a new compatible as they
-> might think each SoC should have a independent yaml file. For that I reason
-> I think it makes sense to fix the naming.
+On Tue, 20 Sept 2022 at 14:24, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/09/2022 10:48, Bhupesh Sharma wrote:
+> >
+> > On 9/20/22 12:58 PM, Krzysztof Kozlowski wrote:
+> >> On 20/09/2022 00:08, Bhupesh Sharma wrote:
+> >>
+> >> (...)
+> >>
+> >>
+> >>>
+> >>> Qualcomm crypto engine (qce) is available on several Snapdragon SoCs.
+> >>> The qce block supports hardware accelerated algorithms for encryption
+> >>> and authentication. It also provides support for aes, des, 3des
+> >>> encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
+> >>> authentication algorithms.
+> >>>
+> >>> Note that this patchset is dependent on the dt-bindings patchset (see [1]) sent to devicetree list.
+> >>>
+> >>> [1]. https://lore.kernel.org/linux-arm-msm/20220919195618.926227-1-bhupesh.sharma@linaro.org/
+> >>
+> >> If it is dependent on the bindings only, keep them together. However I
+> >> don't think this is the only dependency. You add here several
+> >> compatibles which are not supported.
+> >
+> >
+> > Please go through the cover letter where I mentioned that:
+> >    'As per Bjorn's suggestion on irc, broke down the patchset into 4
+> >    separate patchsets, one each for the following areas to allow easier
+> >    review and handling from the respective maintainer(s):
+> >          'arm-msm', 'crypto', 'dma' and 'devicetree'
+> >    This patchset is directed for the 'devicetree' tree / area.'
+> >
+> > Basically now the patchset which had around 23 patches in v5 will send
+> > out as 4 separate patchsets one each for 'arm-msm', 'crypto', 'dma' and
+> > 'devicetree' trees.
+> >
+> > So when all the respective subsets are picked up, all the compatibles
+> > are in place.
+>
+> and none of reviewers can find them, because you linked only bindings.
+> Keeping bindings separate from everything is not good approach. Either
+> they should be with DTS or with driver changes. Otherwise how can we
+> even look that they are matching DTS?
+>
+> Keeping them separate even makes impression there are no ABI breaks and
+> bisectability issues...
 
-I'm not keen to open those flood-gates right now, sorry.
+I see your point, but as I mentioned this was as per suggestions from
+other maintainers only :)
+Perhaps a good topic for the next LPC maintainers meetup - i.e. would
+maintainers be more happy with subpatches for their specific area v/s
+being cc'ed on a single patchset which touches other areas as well
+(but are required for enabling a feature in its entirety).
 
--- 
-Lee Jones [李琼斯]
+Thanks,
+Bhupesh
