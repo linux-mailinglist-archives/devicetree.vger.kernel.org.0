@@ -2,946 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B072B5BE2CF
+	by mail.lfdr.de (Postfix) with ESMTP id 64CE35BE2CE
 	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbiITKMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 06:12:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40450 "EHLO
+        id S230124AbiITKMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 06:12:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230112AbiITKMj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:12:39 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363B45580;
-        Tue, 20 Sep 2022 03:12:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B8618617EA;
-        Tue, 20 Sep 2022 10:12:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A8CAC4347C;
-        Tue, 20 Sep 2022 10:12:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663668756;
-        bh=nLeIfqa1hZdtof/yfAlhIVwOJyzaRbdFRxiE/UV8pZ0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XTyvcXLfSi6scU3SVQSRN/mmdOQJprjv4sET8nA5s3r6pJbgWyLOH7996az28Kcr4
-         Z4l4RtcLcSJO6/4YMiWDhwNl5oWwwyHLbKhI3JAqCBGzbqnas8xGNiwyO/Dts/Ljlh
-         AE4zU3G1NQMEEwHyL2jbsr350lQ0CmOsDxd8/gQyf6olX9dOuSfmYu5G/gGYXrj5Rg
-         pB0YJkeC8H/vztteSXstz6ifOmPOAJ1q6MldBy0Z+Gc4gIPV3jiWIvGErDEnSWBNjN
-         biS7UqXTVDAlwLhmbuzu222oCcpMuSUI3v4QOYBKTvQJVQ3a3RSXNZNfTL1ohhdfLQ
-         5Rm6Wn3Ch1yzg==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     netdev@vger.kernel.org
-Cc:     nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
-        Mark-MC.Lee@mediatek.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
-        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
-        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
-        devicetree@vger.kernel.org, robh@kernel.org, daniel@makrotopia.org
-Subject: [PATCH v3 net-next 11/11] net: ethernet: mtk_eth_soc: introduce flow offloading support for mt7986
-Date:   Tue, 20 Sep 2022 12:11:23 +0200
-Message-Id: <ffedc92c2737906e4ead6490bbaf1eaa12726d01.1663668204.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <cover.1663668203.git.lorenzo@kernel.org>
-References: <cover.1663668203.git.lorenzo@kernel.org>
+        with ESMTP id S230081AbiITKMb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:12:31 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on0612.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe0e::612])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3829E5580;
+        Tue, 20 Sep 2022 03:12:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gD+pruj2YY9OkjIDjiep8GYUD29h8uLGW1fPSu0A0XJmWOkKNPzLnegzrt4CpGP8BMZuCSBFQrX7SK5geXXvu3rUkuROB7hSIOa7aSmOC2sT4oWLBcrJ+0MPRAFRpbzs93m2UB8HzEgsxXOuvZ2NRYOalCmDGonU4sVueAi/lHlS26nLlaCJHjqXXNNwzhk2GYFgJbytWnVTQzxl1SXXlFpre0vXiPUK7JnbF7Cdp5nCmQO+TzFsQ7KVfNFfvkmcnMWW1iSYz7vg+eeZxFqrxwbvwVmb7qxoz4hiX7fzIQVr+UfZyL8PEBgN9w8zbbYSDynvOS1ZUUwh+lYBUjS6eA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GdhdZYyP0DwWiwpopuFhYMaWvLm49EYU4O4+wvRyh3w=;
+ b=oTDxFKiBJ6Wtlhu9wyyU86wFHTAQYs7So24gYO9/Y3/4PsggI7hBlAbdIl1xUdySz1ONBwmINM2ZwMWXelAJTlNa2U7yGlFbX5YscW0iF87/VY2Y0/0awOMUegA+k3osLrGp5Gs0QIvNfY1f1drr2c87wGwATkFR+T3ay7AwwSPUYTAGjtj0ab90qn/mQH5Pi9Rc1lGTdC4vdfJPMq/CLOXFEKo/Wxuiip+4wilLn9QIi3iP090m7jZtCNt1MRTXBmZVNPweWapeJUyLhQ2FzZiCyHlu1kfF4uz1YAoqJ+Qnf63mnCVfh+WXZMFnacQ8d+Jao7XYWOiQvZ8Fiiw9Ew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GdhdZYyP0DwWiwpopuFhYMaWvLm49EYU4O4+wvRyh3w=;
+ b=Ep6lDzWr8F29WHrEpFggmPkBaHtPN7kf1fnWvaD4Yt1KjY5B+5klWtUPwstDY6SovcNbbWSAhkIQze7Bm+HXLYWtWTXu6ZbFAb2V1VC4+UDl6vXSEpC62ognLatHGTJDOlkjC4+4Vjh/6tH8c34eGJKA/VQGsddwzVXaitKx/geG4sY6bsJMjIsgdKfE7lDqhHN2I6/3Yl7kGpdCAVWi/+bKe2dGf+F+es1Hqt8wY4fX3zzDXz0UWOXo88JePkry7VaLykXidtsB6G5Gf/0xgEMWR08mZgkGpr2lE0q1h/085dMyXHPSiLr24upVOyd0f3hoRJsPoy2NpmQAqbLknA==
+Received: from AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:47d::15)
+ by DB8PR10MB3628.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:134::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21; Tue, 20 Sep
+ 2022 10:12:25 +0000
+Received: from AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::5da0:3f4f:28d7:dd79]) by AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::5da0:3f4f:28d7:dd79%7]) with mapi id 15.20.5654.014; Tue, 20 Sep 2022
+ 10:12:25 +0000
+From:   "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+CC:     "rogerq@kernel.org" <rogerq@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 2/3] memory: omap-gpmc: add support for wait pin
+ polarity
+Thread-Topic: [PATCH v5 2/3] memory: omap-gpmc: add support for wait pin
+ polarity
+Thread-Index: AQHYzAuajWmeLYXeQ0i8d4Z1OtIEx63mvdaAgAEyVgCAABorAIAACbIAgAAG1AA=
+Date:   Tue, 20 Sep 2022 10:12:25 +0000
+Message-ID: <df05bbf214c92fcda6d7b003b49f20fd8755b97c.camel@siemens.com>
+References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
+         <20220916120749.2517727-3-benedikt.niedermayr@siemens.com>
+         <6dd3d41b-eb75-3754-8a17-a8cb4bc838a8@linaro.org>
+         <f6f59421ac9b0e2c0b85918282c33f325726c4bd.camel@siemens.com>
+         <cdc59072-648c-ce53-b9a5-b796d379e575@linaro.org>
+         <24e5fa6065f68a25226b4aee02b8f900b630befa.camel@siemens.com>
+         <0afa173f-9f7f-b2c8-7abc-2384ee46429d@linaro.org>
+In-Reply-To: <0afa173f-9f7f-b2c8-7abc-2384ee46429d@linaro.org>
+Reply-To: "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS1PR10MB5507:EE_|DB8PR10MB3628:EE_
+x-ms-office365-filtering-correlation-id: 24ef2f84-6920-4c7f-4bfc-08da9af09d7d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: lgurJk9hJ+2FAh21xyTPgScIu803dwdibg3PNQQOeNLtmjv9605oseWR/MkEHaKuFIBUWXNYLlDd19lS0Rx1sSNtTQzeYKqnk39wkN+uhYW7IBn07F0lvc5siLu0UloKUGWjA1uO+BM4JQb0BW9o+T+PSK3W4J93bPTrkBj0gyfCdlw07jtnlFBL019Vj4hhXN0hA4xLXkSpaAuz/DFzwDVABzyQvT6IiKEbkxujRYxO/M1fulhCadKc/xWmxWCvTTwxgJlL1KfMn/ZCYyjFoIfQkZ9bOgy2+9oiElDDxFPuyVOiKCzceWMWm7NVsFtnUIWCCUcuJsBFyjmyrzcwFHYAH+UG0PYIpULeDKo/u8uBrKnih5H0Est9wygb+MV3SgQn6gJRq4jVvrrJXEa2LZt9z+fkX0TgIe0nkYUOaG5T3u8+3jwrLzpSuvAHw6oKBXPCdu/AlR+if0b7Aw3N6b10z7ZqVWROmbw1/iDuJPzV7chRBmMcwBFcVyKZlC7Q7EoxoIaIpF2FZTkwOddWkcuyABJI/i6WrsuJ2rMXeAbSp50cPeVxG6t+9vRVtiQkGzKKxM36/PxH+yAict6zAbzZ1Xqfh4QHWHEp94uuWcEvJSHeU6v931mNhiYgpSk7jIQ7B9fca6Lcli0dyQ9L4CQhVuGMIyyUsEwBCEtJ6H4UrZa/BGPuDKlWPybKIIlB24ODRP8N9TBsiFzj9WVvwJfnv+9YMqa1GKJuMJOAK2s7RkZC90hk0iOt7UbOhuvwgr4Y5ERHG9mX9z9v+ZU1FA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(451199015)(110136005)(54906003)(2616005)(5660300002)(316002)(186003)(83380400001)(53546011)(8936002)(86362001)(3450700001)(6512007)(38100700002)(76116006)(4326008)(36756003)(6486002)(6506007)(2906002)(38070700005)(66446008)(71200400001)(82960400001)(478600001)(64756008)(66556008)(8676002)(66476007)(66946007)(122000001)(91956017)(41300700001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?anJ4ZzJWVHpaSUw2S0NaMG9IZ0p3Y3hOQ2IydXhybHlaWVdocndiejVlb2tj?=
+ =?utf-8?B?L2R2emlGakRvZTZ1dlNUM0VNTFR0eUVJbDNQM1NoTFZha0JxeXdZaHZJeDFW?=
+ =?utf-8?B?RnlreXdPUzU3K2J1ZkRkcXFIRHlLZVcvK0lwUHdBZXZVSTM0SnM4MlZoSnJE?=
+ =?utf-8?B?WDFzQytmQnBlcjNNeWhEekRVU0VCYTRJZkJETWUvWThMUkRVaVFQdkl4STJh?=
+ =?utf-8?B?d1d1Zkw5ZUM1QlZkVTNPQWNya0lHZVBxUGI4Wi9kZ3k0Q2hKejlYRk9ud3dZ?=
+ =?utf-8?B?YzlydngzelZTRE55RUV5N1BuN1VCNG9YYW04TnR6WEJDcDAyQmpLbXI5dlhK?=
+ =?utf-8?B?R0tKYmU4SnlncnZFdFJUQUxwRm1WaGNXVGZoTnE3Uy85QmFtS2tnbFhMdnFx?=
+ =?utf-8?B?bDhzdi9tWHNZQlJJajdGeHdsRHRwYUFLTk5BaUgvWFM2b1hENWJZR1Z1bXhL?=
+ =?utf-8?B?dXhlTlVuSjFWTU1WQTR4VnR1bWdGQ3VONURNS0JHOHlxTWpTT05vWkVsNlMx?=
+ =?utf-8?B?d1daZkZtNW91RjZQaUgzM29BYlBFeS9vY2tnem1DZmpSU1pSV1REcHZQWGMy?=
+ =?utf-8?B?Y1NnQnFmUXZHYVhUSnd6aXFtdDhXRm12VGs0b1BVZFpHVTgybnNpUFczTDBi?=
+ =?utf-8?B?ZGxpNisrM29qYW91UE5BeERQazNwTUxMaHRhMFk3OUM5dmRmNWhyVVh3QzVi?=
+ =?utf-8?B?ZlN6Wkl0OHl5bnhoemlMclRwRmpqUzNNSGNqLzFXcWUzaEx0TjJrcUUxWGFI?=
+ =?utf-8?B?WkRXZENkTk9hS3U1VWlMazg1NzZiM210RWcyK3dVYVZNM3Y0WUF4UEhlSFZU?=
+ =?utf-8?B?amNocStYNzJzdW5wRStLM3cvaEpWTGE4c256Mnc3UlU0SjhUaVU3MklYK05t?=
+ =?utf-8?B?WENqOWpMTDdNMjRPcHhHR01HZ0FSZzFmY1FOL21EN3UrYTBqbENLRnMzUzFQ?=
+ =?utf-8?B?dXE4RmZsQkE4WmF5bVpZTHVKNTN6aFBJaEJ4bVdnZ1l0QzRjZ0tFL0h1SHVq?=
+ =?utf-8?B?SVNuc3hzVjhqNjFyRFBOV0ZmUk9TQlR6NndUWWVnQjlUdGl1OFNyZVZpZ09n?=
+ =?utf-8?B?dWtlOEJqWGU2RGR2eVZ6Um81ZEpVL1g3VE5BQWxWcDFVYW9pV21sNW5BQWxn?=
+ =?utf-8?B?a3JvcUtFTERScllXeDgxSVN0clcvc25YcFRSOTk3Tzh3UStOSWU0SytDSHZv?=
+ =?utf-8?B?SUZGOWdzT3JiMk9KMS9JNW9QUDVITlpVcGVVYXo3dDN1eWhXc0RGRExuVmh6?=
+ =?utf-8?B?NlJIcUtBaG9BeE9hNDdvSkJSL291RnVwMi9GV0hkbjNLcGI1ZVhGUjdVMktJ?=
+ =?utf-8?B?N0NXRzNKWjE5aXlhalZ1Y1JlZExJS3BYNkFvU0s3TUdKc3VqUkVMU3ZZbXZp?=
+ =?utf-8?B?Y1FXSkFJK2VSbEExWFBWamlXQWZLWVdJM0xMd3NWbW9vbEV2aWNFRVR5Wmx4?=
+ =?utf-8?B?MmtnQkdRVzlCY2hOZk9DZWpTOEU4ampHMjNqYUZNdStQNGd1SmNocTFqbUwy?=
+ =?utf-8?B?Y0RNUjhUZW50MWs3Q09LbEt3dnlpb3FYUDNMc2FvYS9adzhlTXJIS0RxeUpK?=
+ =?utf-8?B?WmJxTVlJQS93cTBkdW85RUR3dzhXRGFXbmFKRXBMY1FnUDZFL1dsOWY0d3pO?=
+ =?utf-8?B?TWZjbXpsdmZ2TjR2V1p3R0xZQTh4WHdMN3dHQ3l0QWpVSllydDNYdUZGelkw?=
+ =?utf-8?B?OGJHU25jODFKNE5IZ3M3MjVZRVRGdFhWQXBzd2VzVENCT3ZDOUloYk01NHNx?=
+ =?utf-8?B?L2ZWY3hDT0FlN1doN3VWUnp2bHYyRHN4QWMzM3ozOXlSc0JHNzFkTXpLQjh0?=
+ =?utf-8?B?RlR5RnFjU2NnM1Y1ckZlUWtoZWF5V0U0bC9ac2VxWDRLTXdPS2dNYnM3ZFd3?=
+ =?utf-8?B?THBkeTNWSTFIbTEyZVNEMGM5UHdNOUpWZHB6VW9KamNwbG5mQWlCQXNZbjdY?=
+ =?utf-8?B?V1NvYmZnanhFRnh3Z1loK0hnRnk0cWtKM3FXb1VVWDVadDdxVDVUOStOeWo5?=
+ =?utf-8?B?dEI1SmZabU1zK1MyL0tjK09zUVFjV0pyNlp4TERiKzFoNjF3WnFURDdvY1U1?=
+ =?utf-8?B?UHNoVnQyYndPRDNJdmFhazJpVFUwTE1MdjJxY1IrQzRRY1ZkQmRiVGs1bW1j?=
+ =?utf-8?B?L2tuTitGbE4wL25QR08vUWsvdFFac1BhNENCdURveml6MnBlc3ByVWVIaEU4?=
+ =?utf-8?B?cGNmdzNoTEUwWXVMVVR1dGhlNC85VjVtVFMvVkVTU2ZUc1VXcFdEYzR3dk9v?=
+ =?utf-8?Q?MdmmJS5D9EO6tDsq7kTr1y2EZjk9U64W8LVkRWFoNE=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9F547AE947C1124EBF8E9F83AE3258DB@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS1PR10MB5507.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24ef2f84-6920-4c7f-4bfc-08da9af09d7d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Sep 2022 10:12:25.0940
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6IzeElEG52qVQI7z/vxcDjjSOxLe6pOJZmVKdwp57Im5i6WEvyHP8TjcXGNHIUOo8/cqVdijqhTkh+VJkKgC918rIjBQGYri++qHce5orQU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR10MB3628
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_NONE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce hw flow offload support for mt7986 chipset. PPE is not enabled
-yet in mt7986 since mt76 support is not available yet.
-
-Tested-by: Daniel Golle <daniel@makrotopia.org>
-Co-developed-by: Bo Jiao <Bo.Jiao@mediatek.com>
-Signed-off-by: Bo Jiao <Bo.Jiao@mediatek.com>
-Co-developed-by: Sujuan Chen <sujuan.chen@mediatek.com>
-Signed-off-by: Sujuan Chen <sujuan.chen@mediatek.com>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/net/ethernet/mediatek/mtk_eth_soc.c   |  11 +-
- drivers/net/ethernet/mediatek/mtk_eth_soc.h   |  72 ++++++
- drivers/net/ethernet/mediatek/mtk_ppe.c       | 213 +++++++++++-------
- drivers/net/ethernet/mediatek/mtk_ppe.h       |  52 ++++-
- .../net/ethernet/mediatek/mtk_ppe_offload.c   |  49 ++--
- drivers/net/ethernet/mediatek/mtk_ppe_regs.h  |   8 +
- 6 files changed, 289 insertions(+), 116 deletions(-)
-
-diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-index f706924b249b..516875cd698f 100644
---- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-+++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-@@ -1906,12 +1906,14 @@ static int mtk_poll_rx(struct napi_struct *napi, int budget,
- 		bytes += skb->len;
- 
- 		if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2)) {
-+			reason = FIELD_GET(MTK_RXD5_PPE_CPU_REASON, trxd.rxd5);
- 			hash = trxd.rxd5 & MTK_RXD5_FOE_ENTRY;
- 			if (hash != MTK_RXD5_FOE_ENTRY)
- 				skb_set_hash(skb, jhash_1word(hash, 0),
- 					     PKT_HASH_TYPE_L4);
- 			rxdcsum = &trxd.rxd3;
- 		} else {
-+			reason = FIELD_GET(MTK_RXD4_PPE_CPU_REASON, trxd.rxd4);
- 			hash = trxd.rxd4 & MTK_RXD4_FOE_ENTRY;
- 			if (hash != MTK_RXD4_FOE_ENTRY)
- 				skb_set_hash(skb, jhash_1word(hash, 0),
-@@ -1925,7 +1927,6 @@ static int mtk_poll_rx(struct napi_struct *napi, int budget,
- 			skb_checksum_none_assert(skb);
- 		skb->protocol = eth_type_trans(skb, netdev);
- 
--		reason = FIELD_GET(MTK_RXD4_PPE_CPU_REASON, trxd.rxd4);
- 		if (reason == MTK_PPE_CPU_REASON_HIT_UNBIND_RATE_REACHED)
- 			mtk_ppe_check_skb(eth->ppe[0], skb, hash);
- 
-@@ -4233,7 +4234,7 @@ static const struct mtk_soc_data mt7621_data = {
- 	.required_pctl = false,
- 	.offload_version = 2,
- 	.hash_offset = 2,
--	.foe_entry_size = sizeof(struct mtk_foe_entry),
-+	.foe_entry_size = sizeof(struct mtk_foe_entry) - 16,
- 	.txrx = {
- 		.txd_size = sizeof(struct mtk_tx_dma),
- 		.rxd_size = sizeof(struct mtk_rx_dma),
-@@ -4253,7 +4254,7 @@ static const struct mtk_soc_data mt7622_data = {
- 	.required_pctl = false,
- 	.offload_version = 2,
- 	.hash_offset = 2,
--	.foe_entry_size = sizeof(struct mtk_foe_entry),
-+	.foe_entry_size = sizeof(struct mtk_foe_entry) - 16,
- 	.txrx = {
- 		.txd_size = sizeof(struct mtk_tx_dma),
- 		.rxd_size = sizeof(struct mtk_rx_dma),
-@@ -4272,7 +4273,7 @@ static const struct mtk_soc_data mt7623_data = {
- 	.required_pctl = true,
- 	.offload_version = 2,
- 	.hash_offset = 2,
--	.foe_entry_size = sizeof(struct mtk_foe_entry),
-+	.foe_entry_size = sizeof(struct mtk_foe_entry) - 16,
- 	.txrx = {
- 		.txd_size = sizeof(struct mtk_tx_dma),
- 		.rxd_size = sizeof(struct mtk_rx_dma),
-@@ -4304,9 +4305,11 @@ static const struct mtk_soc_data mt7986_data = {
- 	.reg_map = &mt7986_reg_map,
- 	.ana_rgc3 = 0x128,
- 	.caps = MT7986_CAPS,
-+	.hw_features = MTK_HW_FEATURES,
- 	.required_clks = MT7986_CLKS_BITMAP,
- 	.required_pctl = false,
- 	.hash_offset = 4,
-+	.foe_entry_size = sizeof(struct mtk_foe_entry),
- 	.txrx = {
- 		.txd_size = sizeof(struct mtk_tx_dma_v2),
- 		.rxd_size = sizeof(struct mtk_rx_dma_v2),
-diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.h b/drivers/net/ethernet/mediatek/mtk_eth_soc.h
-index 08236e054616..1efaba5d4337 100644
---- a/drivers/net/ethernet/mediatek/mtk_eth_soc.h
-+++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.h
-@@ -1153,6 +1153,78 @@ mtk_foe_get_entry(struct mtk_ppe *ppe, u16 hash)
- 	return ppe->foe_table + hash * soc->foe_entry_size;
- }
- 
-+static inline u32 mtk_get_ib1_ts_mask(struct mtk_eth *eth)
-+{
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-+		return MTK_FOE_IB1_BIND_TIMESTAMP_V2;
-+
-+	return MTK_FOE_IB1_BIND_TIMESTAMP;
-+}
-+
-+static inline u32 mtk_get_ib1_ppoe_mask(struct mtk_eth *eth)
-+{
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-+		return MTK_FOE_IB1_BIND_PPPOE_V2;
-+
-+	return MTK_FOE_IB1_BIND_PPPOE;
-+}
-+
-+static inline u32 mtk_get_ib1_vlan_tag_mask(struct mtk_eth *eth)
-+{
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-+		return MTK_FOE_IB1_BIND_VLAN_TAG_V2;
-+
-+	return MTK_FOE_IB1_BIND_VLAN_TAG;
-+}
-+
-+static inline u32 mtk_get_ib1_vlan_layer_mask(struct mtk_eth *eth)
-+{
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-+		return MTK_FOE_IB1_BIND_VLAN_LAYER_V2;
-+
-+	return MTK_FOE_IB1_BIND_VLAN_LAYER;
-+}
-+
-+static inline u32 mtk_prep_ib1_vlan_layer(struct mtk_eth *eth, u32 val)
-+{
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-+		return FIELD_PREP(MTK_FOE_IB1_BIND_VLAN_LAYER_V2, val);
-+
-+	return FIELD_PREP(MTK_FOE_IB1_BIND_VLAN_LAYER, val);
-+}
-+
-+static inline u32 mtk_get_ib1_vlan_layer(struct mtk_eth *eth, u32 val)
-+{
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-+		return FIELD_GET(MTK_FOE_IB1_BIND_VLAN_LAYER_V2, val);
-+
-+	return FIELD_GET(MTK_FOE_IB1_BIND_VLAN_LAYER, val);
-+}
-+
-+static inline u32 mtk_get_ib1_pkt_type_mask(struct mtk_eth *eth)
-+{
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-+		return MTK_FOE_IB1_PACKET_TYPE_V2;
-+
-+	return MTK_FOE_IB1_PACKET_TYPE;
-+}
-+
-+static inline u32 mtk_get_ib1_pkt_type(struct mtk_eth *eth, u32 val)
-+{
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-+		return FIELD_GET(MTK_FOE_IB1_PACKET_TYPE_V2, val);
-+
-+	return FIELD_GET(MTK_FOE_IB1_PACKET_TYPE, val);
-+}
-+
-+static inline u32 mtk_get_ib2_multicast_mask(struct mtk_eth *eth)
-+{
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
-+		return MTK_FOE_IB2_MULTICAST_V2;
-+
-+	return MTK_FOE_IB2_MULTICAST;
-+}
-+
- /* read the hardware status register */
- void mtk_stats_update_mac(struct mtk_mac *mac);
- 
-diff --git a/drivers/net/ethernet/mediatek/mtk_ppe.c b/drivers/net/ethernet/mediatek/mtk_ppe.c
-index 8c52cfc7ce76..25f8738a062b 100644
---- a/drivers/net/ethernet/mediatek/mtk_ppe.c
-+++ b/drivers/net/ethernet/mediatek/mtk_ppe.c
-@@ -56,7 +56,7 @@ static u32 ppe_clear(struct mtk_ppe *ppe, u32 reg, u32 val)
- 
- static u32 mtk_eth_timestamp(struct mtk_eth *eth)
- {
--	return mtk_r32(eth, 0x0010) & MTK_FOE_IB1_BIND_TIMESTAMP;
-+	return mtk_r32(eth, 0x0010) & mtk_get_ib1_ts_mask(eth);
- }
- 
- static int mtk_ppe_wait_busy(struct mtk_ppe *ppe)
-@@ -93,7 +93,7 @@ static u32 mtk_ppe_hash_entry(struct mtk_eth *eth, struct mtk_foe_entry *e)
- 	u32 hv1, hv2, hv3;
- 	u32 hash;
- 
--	switch (FIELD_GET(MTK_FOE_IB1_PACKET_TYPE, e->ib1)) {
-+	switch (mtk_get_ib1_pkt_type(eth, e->ib1)) {
- 		case MTK_PPE_PKT_TYPE_IPV4_ROUTE:
- 		case MTK_PPE_PKT_TYPE_IPV4_HNAPT:
- 			hv1 = e->ipv4.orig.ports;
-@@ -129,9 +129,9 @@ static u32 mtk_ppe_hash_entry(struct mtk_eth *eth, struct mtk_foe_entry *e)
- }
- 
- static inline struct mtk_foe_mac_info *
--mtk_foe_entry_l2(struct mtk_foe_entry *entry)
-+mtk_foe_entry_l2(struct mtk_eth *eth, struct mtk_foe_entry *entry)
- {
--	int type = FIELD_GET(MTK_FOE_IB1_PACKET_TYPE, entry->ib1);
-+	int type = mtk_get_ib1_pkt_type(eth, entry->ib1);
- 
- 	if (type == MTK_PPE_PKT_TYPE_BRIDGE)
- 		return &entry->bridge.l2;
-@@ -143,9 +143,9 @@ mtk_foe_entry_l2(struct mtk_foe_entry *entry)
- }
- 
- static inline u32 *
--mtk_foe_entry_ib2(struct mtk_foe_entry *entry)
-+mtk_foe_entry_ib2(struct mtk_eth *eth, struct mtk_foe_entry *entry)
- {
--	int type = FIELD_GET(MTK_FOE_IB1_PACKET_TYPE, entry->ib1);
-+	int type = mtk_get_ib1_pkt_type(eth, entry->ib1);
- 
- 	if (type == MTK_PPE_PKT_TYPE_BRIDGE)
- 		return &entry->bridge.ib2;
-@@ -156,27 +156,38 @@ mtk_foe_entry_ib2(struct mtk_foe_entry *entry)
- 	return &entry->ipv4.ib2;
- }
- 
--int mtk_foe_entry_prepare(struct mtk_foe_entry *entry, int type, int l4proto,
--			  u8 pse_port, u8 *src_mac, u8 *dest_mac)
-+int mtk_foe_entry_prepare(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			  int type, int l4proto, u8 pse_port, u8 *src_mac,
-+			  u8 *dest_mac)
- {
- 	struct mtk_foe_mac_info *l2;
- 	u32 ports_pad, val;
- 
- 	memset(entry, 0, sizeof(*entry));
- 
--	val = FIELD_PREP(MTK_FOE_IB1_STATE, MTK_FOE_STATE_BIND) |
--	      FIELD_PREP(MTK_FOE_IB1_PACKET_TYPE, type) |
--	      FIELD_PREP(MTK_FOE_IB1_UDP, l4proto == IPPROTO_UDP) |
--	      MTK_FOE_IB1_BIND_TTL |
--	      MTK_FOE_IB1_BIND_CACHE;
--	entry->ib1 = val;
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2)) {
-+		val = FIELD_PREP(MTK_FOE_IB1_STATE, MTK_FOE_STATE_BIND) |
-+		      FIELD_PREP(MTK_FOE_IB1_PACKET_TYPE_V2, type) |
-+		      FIELD_PREP(MTK_FOE_IB1_UDP, l4proto == IPPROTO_UDP) |
-+		      MTK_FOE_IB1_BIND_CACHE_V2 | MTK_FOE_IB1_BIND_TTL_V2;
-+		entry->ib1 = val;
- 
--	val = FIELD_PREP(MTK_FOE_IB2_PORT_MG, 0x3f) |
--	      FIELD_PREP(MTK_FOE_IB2_PORT_AG, 0x1f) |
--	      FIELD_PREP(MTK_FOE_IB2_DEST_PORT, pse_port);
-+		val = FIELD_PREP(MTK_FOE_IB2_DEST_PORT_V2, pse_port) |
-+		      FIELD_PREP(MTK_FOE_IB2_PORT_AG_V2, 0xf);
-+	} else {
-+		val = FIELD_PREP(MTK_FOE_IB1_STATE, MTK_FOE_STATE_BIND) |
-+		      FIELD_PREP(MTK_FOE_IB1_PACKET_TYPE, type) |
-+		      FIELD_PREP(MTK_FOE_IB1_UDP, l4proto == IPPROTO_UDP) |
-+		      MTK_FOE_IB1_BIND_CACHE | MTK_FOE_IB1_BIND_TTL;
-+		entry->ib1 = val;
-+
-+		val = FIELD_PREP(MTK_FOE_IB2_DEST_PORT, pse_port) |
-+		      FIELD_PREP(MTK_FOE_IB2_PORT_MG, 0x3f) |
-+		      FIELD_PREP(MTK_FOE_IB2_PORT_AG, 0x1f);
-+	}
- 
- 	if (is_multicast_ether_addr(dest_mac))
--		val |= MTK_FOE_IB2_MULTICAST;
-+		val |= mtk_get_ib2_multicast_mask(eth);
- 
- 	ports_pad = 0xa5a5a500 | (l4proto & 0xff);
- 	if (type == MTK_PPE_PKT_TYPE_IPV4_ROUTE)
-@@ -210,24 +221,30 @@ int mtk_foe_entry_prepare(struct mtk_foe_entry *entry, int type, int l4proto,
- 	return 0;
- }
- 
--int mtk_foe_entry_set_pse_port(struct mtk_foe_entry *entry, u8 port)
-+int mtk_foe_entry_set_pse_port(struct mtk_eth *eth,
-+			       struct mtk_foe_entry *entry, u8 port)
- {
--	u32 *ib2 = mtk_foe_entry_ib2(entry);
--	u32 val;
-+	u32 *ib2 = mtk_foe_entry_ib2(eth, entry);
-+	u32 val = *ib2;
- 
--	val = *ib2;
--	val &= ~MTK_FOE_IB2_DEST_PORT;
--	val |= FIELD_PREP(MTK_FOE_IB2_DEST_PORT, port);
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2)) {
-+		val &= ~MTK_FOE_IB2_DEST_PORT_V2;
-+		val |= FIELD_PREP(MTK_FOE_IB2_DEST_PORT_V2, port);
-+	} else {
-+		val &= ~MTK_FOE_IB2_DEST_PORT;
-+		val |= FIELD_PREP(MTK_FOE_IB2_DEST_PORT, port);
-+	}
- 	*ib2 = val;
- 
- 	return 0;
- }
- 
--int mtk_foe_entry_set_ipv4_tuple(struct mtk_foe_entry *entry, bool egress,
-+int mtk_foe_entry_set_ipv4_tuple(struct mtk_eth *eth,
-+				 struct mtk_foe_entry *entry, bool egress,
- 				 __be32 src_addr, __be16 src_port,
- 				 __be32 dest_addr, __be16 dest_port)
- {
--	int type = FIELD_GET(MTK_FOE_IB1_PACKET_TYPE, entry->ib1);
-+	int type = mtk_get_ib1_pkt_type(eth, entry->ib1);
- 	struct mtk_ipv4_tuple *t;
- 
- 	switch (type) {
-@@ -262,11 +279,12 @@ int mtk_foe_entry_set_ipv4_tuple(struct mtk_foe_entry *entry, bool egress,
- 	return 0;
- }
- 
--int mtk_foe_entry_set_ipv6_tuple(struct mtk_foe_entry *entry,
-+int mtk_foe_entry_set_ipv6_tuple(struct mtk_eth *eth,
-+				 struct mtk_foe_entry *entry,
- 				 __be32 *src_addr, __be16 src_port,
- 				 __be32 *dest_addr, __be16 dest_port)
- {
--	int type = FIELD_GET(MTK_FOE_IB1_PACKET_TYPE, entry->ib1);
-+	int type = mtk_get_ib1_pkt_type(eth, entry->ib1);
- 	u32 *src, *dest;
- 	int i;
- 
-@@ -297,39 +315,41 @@ int mtk_foe_entry_set_ipv6_tuple(struct mtk_foe_entry *entry,
- 	return 0;
- }
- 
--int mtk_foe_entry_set_dsa(struct mtk_foe_entry *entry, int port)
-+int mtk_foe_entry_set_dsa(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			  int port)
- {
--	struct mtk_foe_mac_info *l2 = mtk_foe_entry_l2(entry);
-+	struct mtk_foe_mac_info *l2 = mtk_foe_entry_l2(eth, entry);
- 
- 	l2->etype = BIT(port);
- 
--	if (!(entry->ib1 & MTK_FOE_IB1_BIND_VLAN_LAYER))
--		entry->ib1 |= FIELD_PREP(MTK_FOE_IB1_BIND_VLAN_LAYER, 1);
-+	if (!(entry->ib1 & mtk_get_ib1_vlan_layer_mask(eth)))
-+		entry->ib1 |= mtk_prep_ib1_vlan_layer(eth, 1);
- 	else
- 		l2->etype |= BIT(8);
- 
--	entry->ib1 &= ~MTK_FOE_IB1_BIND_VLAN_TAG;
-+	entry->ib1 &= ~mtk_get_ib1_vlan_tag_mask(eth);
- 
- 	return 0;
- }
- 
--int mtk_foe_entry_set_vlan(struct mtk_foe_entry *entry, int vid)
-+int mtk_foe_entry_set_vlan(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			   int vid)
- {
--	struct mtk_foe_mac_info *l2 = mtk_foe_entry_l2(entry);
-+	struct mtk_foe_mac_info *l2 = mtk_foe_entry_l2(eth, entry);
- 
--	switch (FIELD_GET(MTK_FOE_IB1_BIND_VLAN_LAYER, entry->ib1)) {
-+	switch (mtk_prep_ib1_vlan_layer(eth, entry->ib1)) {
- 	case 0:
--		entry->ib1 |= MTK_FOE_IB1_BIND_VLAN_TAG |
--			      FIELD_PREP(MTK_FOE_IB1_BIND_VLAN_LAYER, 1);
-+		entry->ib1 |= mtk_get_ib1_vlan_tag_mask(eth) |
-+			      mtk_prep_ib1_vlan_layer(eth, 1);
- 		l2->vlan1 = vid;
- 		return 0;
- 	case 1:
--		if (!(entry->ib1 & MTK_FOE_IB1_BIND_VLAN_TAG)) {
-+		if (!(entry->ib1 & mtk_get_ib1_vlan_tag_mask(eth))) {
- 			l2->vlan1 = vid;
- 			l2->etype |= BIT(8);
- 		} else {
- 			l2->vlan2 = vid;
--			entry->ib1 += FIELD_PREP(MTK_FOE_IB1_BIND_VLAN_LAYER, 1);
-+			entry->ib1 += mtk_prep_ib1_vlan_layer(eth, 1);
- 		}
- 		return 0;
- 	default:
-@@ -337,34 +357,42 @@ int mtk_foe_entry_set_vlan(struct mtk_foe_entry *entry, int vid)
- 	}
- }
- 
--int mtk_foe_entry_set_pppoe(struct mtk_foe_entry *entry, int sid)
-+int mtk_foe_entry_set_pppoe(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			    int sid)
- {
--	struct mtk_foe_mac_info *l2 = mtk_foe_entry_l2(entry);
-+	struct mtk_foe_mac_info *l2 = mtk_foe_entry_l2(eth, entry);
- 
--	if (!(entry->ib1 & MTK_FOE_IB1_BIND_VLAN_LAYER) ||
--	    (entry->ib1 & MTK_FOE_IB1_BIND_VLAN_TAG))
-+	if (!(entry->ib1 & mtk_get_ib1_vlan_layer_mask(eth)) ||
-+	    (entry->ib1 & mtk_get_ib1_vlan_tag_mask(eth)))
- 		l2->etype = ETH_P_PPP_SES;
- 
--	entry->ib1 |= MTK_FOE_IB1_BIND_PPPOE;
-+	entry->ib1 |= mtk_get_ib1_ppoe_mask(eth);
- 	l2->pppoe_id = sid;
- 
- 	return 0;
- }
- 
--int mtk_foe_entry_set_wdma(struct mtk_foe_entry *entry, int wdma_idx, int txq,
--			   int bss, int wcid)
-+int mtk_foe_entry_set_wdma(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			   int wdma_idx, int txq, int bss, int wcid)
- {
--	struct mtk_foe_mac_info *l2 = mtk_foe_entry_l2(entry);
--	u32 *ib2 = mtk_foe_entry_ib2(entry);
--
--	*ib2 &= ~MTK_FOE_IB2_PORT_MG;
--	*ib2 |= MTK_FOE_IB2_WDMA_WINFO;
--	if (wdma_idx)
--		*ib2 |= MTK_FOE_IB2_WDMA_DEVIDX;
-+	struct mtk_foe_mac_info *l2 = mtk_foe_entry_l2(eth, entry);
-+	u32 *ib2 = mtk_foe_entry_ib2(eth, entry);
- 
--	l2->vlan2 = FIELD_PREP(MTK_FOE_VLAN2_WINFO_BSS, bss) |
--		    FIELD_PREP(MTK_FOE_VLAN2_WINFO_WCID, wcid) |
--		    FIELD_PREP(MTK_FOE_VLAN2_WINFO_RING, txq);
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2)) {
-+		*ib2 &= ~MTK_FOE_IB2_PORT_MG_V2;
-+		*ib2 |=  FIELD_PREP(MTK_FOE_IB2_RX_IDX, txq) |
-+			 MTK_FOE_IB2_WDMA_WINFO_V2;
-+		l2->winfo = FIELD_PREP(MTK_FOE_WINFO_WCID, wcid) |
-+			    FIELD_PREP(MTK_FOE_WINFO_BSS, bss);
-+	} else {
-+		*ib2 &= ~MTK_FOE_IB2_PORT_MG;
-+		*ib2 |= MTK_FOE_IB2_WDMA_WINFO;
-+		if (wdma_idx)
-+			*ib2 |= MTK_FOE_IB2_WDMA_DEVIDX;
-+		l2->vlan2 = FIELD_PREP(MTK_FOE_VLAN2_WINFO_BSS, bss) |
-+			    FIELD_PREP(MTK_FOE_VLAN2_WINFO_WCID, wcid) |
-+			    FIELD_PREP(MTK_FOE_VLAN2_WINFO_RING, txq);
-+	}
- 
- 	return 0;
- }
-@@ -376,14 +404,15 @@ static inline bool mtk_foe_entry_usable(struct mtk_foe_entry *entry)
- }
- 
- static bool
--mtk_flow_entry_match(struct mtk_flow_entry *entry, struct mtk_foe_entry *data)
-+mtk_flow_entry_match(struct mtk_eth *eth, struct mtk_flow_entry *entry,
-+		     struct mtk_foe_entry *data)
- {
- 	int type, len;
- 
- 	if ((data->ib1 ^ entry->data.ib1) & MTK_FOE_IB1_UDP)
- 		return false;
- 
--	type = FIELD_GET(MTK_FOE_IB1_PACKET_TYPE, entry->data.ib1);
-+	type = mtk_get_ib1_pkt_type(eth, entry->data.ib1);
- 	if (type > MTK_PPE_PKT_TYPE_IPV4_DSLITE)
- 		len = offsetof(struct mtk_foe_entry, ipv6._rsv);
- 	else
-@@ -427,14 +456,12 @@ __mtk_foe_entry_clear(struct mtk_ppe *ppe, struct mtk_flow_entry *entry)
- 
- static int __mtk_foe_entry_idle_time(struct mtk_ppe *ppe, u32 ib1)
- {
--	u16 timestamp;
--	u16 now;
--
--	now = mtk_eth_timestamp(ppe->eth) & MTK_FOE_IB1_BIND_TIMESTAMP;
--	timestamp = ib1 & MTK_FOE_IB1_BIND_TIMESTAMP;
-+	u32 ib1_ts_mask = mtk_get_ib1_ts_mask(ppe->eth);
-+	u16 now = mtk_eth_timestamp(ppe->eth);
-+	u16 timestamp = ib1 & ib1_ts_mask;
- 
- 	if (timestamp > now)
--		return MTK_FOE_IB1_BIND_TIMESTAMP + 1 - timestamp + now;
-+		return ib1_ts_mask + 1 - timestamp + now;
- 	else
- 		return now - timestamp;
- }
-@@ -442,6 +469,7 @@ static int __mtk_foe_entry_idle_time(struct mtk_ppe *ppe, u32 ib1)
- static void
- mtk_flow_entry_update_l2(struct mtk_ppe *ppe, struct mtk_flow_entry *entry)
- {
-+	u32 ib1_ts_mask = mtk_get_ib1_ts_mask(ppe->eth);
- 	struct mtk_flow_entry *cur;
- 	struct mtk_foe_entry *hwe;
- 	struct hlist_node *tmp;
-@@ -466,8 +494,8 @@ mtk_flow_entry_update_l2(struct mtk_ppe *ppe, struct mtk_flow_entry *entry)
- 			continue;
- 
- 		idle = cur_idle;
--		entry->data.ib1 &= ~MTK_FOE_IB1_BIND_TIMESTAMP;
--		entry->data.ib1 |= hwe->ib1 & MTK_FOE_IB1_BIND_TIMESTAMP;
-+		entry->data.ib1 &= ~ib1_ts_mask;
-+		entry->data.ib1 |= hwe->ib1 & ib1_ts_mask;
- 	}
- }
- 
-@@ -489,7 +517,7 @@ mtk_flow_entry_update(struct mtk_ppe *ppe, struct mtk_flow_entry *entry)
- 
- 	hwe = mtk_foe_get_entry(ppe, entry->hash);
- 	memcpy(&foe, hwe, ppe->eth->soc->foe_entry_size);
--	if (!mtk_flow_entry_match(entry, &foe)) {
-+	if (!mtk_flow_entry_match(ppe->eth, entry, &foe)) {
- 		entry->hash = 0xffff;
- 		goto out;
- 	}
-@@ -504,16 +532,22 @@ static void
- __mtk_foe_entry_commit(struct mtk_ppe *ppe, struct mtk_foe_entry *entry,
- 		       u16 hash)
- {
-+	struct mtk_eth *eth = ppe->eth;
-+	u16 timestamp = mtk_eth_timestamp(eth);
- 	struct mtk_foe_entry *hwe;
--	u16 timestamp;
- 
--	timestamp = mtk_eth_timestamp(ppe->eth);
--	timestamp &= MTK_FOE_IB1_BIND_TIMESTAMP;
--	entry->ib1 &= ~MTK_FOE_IB1_BIND_TIMESTAMP;
--	entry->ib1 |= FIELD_PREP(MTK_FOE_IB1_BIND_TIMESTAMP, timestamp);
-+	if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2)) {
-+		entry->ib1 &= ~MTK_FOE_IB1_BIND_TIMESTAMP_V2;
-+		entry->ib1 |= FIELD_PREP(MTK_FOE_IB1_BIND_TIMESTAMP_V2,
-+					 timestamp);
-+	} else {
-+		entry->ib1 &= ~MTK_FOE_IB1_BIND_TIMESTAMP;
-+		entry->ib1 |= FIELD_PREP(MTK_FOE_IB1_BIND_TIMESTAMP,
-+					 timestamp);
-+	}
- 
- 	hwe = mtk_foe_get_entry(ppe, hash);
--	memcpy(&hwe->data, &entry->data, ppe->eth->soc->foe_entry_size);
-+	memcpy(&hwe->data, &entry->data, eth->soc->foe_entry_size);
- 	wmb();
- 	hwe->ib1 = entry->ib1;
- 
-@@ -540,8 +574,8 @@ mtk_foe_entry_commit_l2(struct mtk_ppe *ppe, struct mtk_flow_entry *entry)
- 
- int mtk_foe_entry_commit(struct mtk_ppe *ppe, struct mtk_flow_entry *entry)
- {
--	int type = FIELD_GET(MTK_FOE_IB1_PACKET_TYPE, entry->data.ib1);
- 	const struct mtk_soc_data *soc = ppe->eth->soc;
-+	int type = mtk_get_ib1_pkt_type(ppe->eth, entry->data.ib1);
- 	u32 hash;
- 
- 	if (type == MTK_PPE_PKT_TYPE_BRIDGE)
-@@ -564,7 +598,7 @@ mtk_foe_entry_commit_subflow(struct mtk_ppe *ppe, struct mtk_flow_entry *entry,
- 	struct mtk_flow_entry *flow_info;
- 	struct mtk_foe_entry foe = {}, *hwe;
- 	struct mtk_foe_mac_info *l2;
--	u32 ib1_mask = MTK_FOE_IB1_PACKET_TYPE | MTK_FOE_IB1_UDP;
-+	u32 ib1_mask = mtk_get_ib1_pkt_type_mask(ppe->eth) | MTK_FOE_IB1_UDP;
- 	int type;
- 
- 	flow_info = kzalloc(offsetof(struct mtk_flow_entry, l2_data.end),
-@@ -584,16 +618,16 @@ mtk_foe_entry_commit_subflow(struct mtk_ppe *ppe, struct mtk_flow_entry *entry,
- 	foe.ib1 &= ib1_mask;
- 	foe.ib1 |= entry->data.ib1 & ~ib1_mask;
- 
--	l2 = mtk_foe_entry_l2(&foe);
-+	l2 = mtk_foe_entry_l2(ppe->eth, &foe);
- 	memcpy(l2, &entry->data.bridge.l2, sizeof(*l2));
- 
--	type = FIELD_GET(MTK_FOE_IB1_PACKET_TYPE, foe.ib1);
-+	type = mtk_get_ib1_pkt_type(ppe->eth, foe.ib1);
- 	if (type == MTK_PPE_PKT_TYPE_IPV4_HNAPT)
- 		memcpy(&foe.ipv4.new, &foe.ipv4.orig, sizeof(foe.ipv4.new));
- 	else if (type >= MTK_PPE_PKT_TYPE_IPV6_ROUTE_3T && l2->etype == ETH_P_IP)
- 		l2->etype = ETH_P_IPV6;
- 
--	*mtk_foe_entry_ib2(&foe) = entry->data.bridge.ib2;
-+	*mtk_foe_entry_ib2(ppe->eth, &foe) = entry->data.bridge.ib2;
- 
- 	__mtk_foe_entry_commit(ppe, &foe, hash);
- }
-@@ -626,7 +660,7 @@ void __mtk_ppe_check_skb(struct mtk_ppe *ppe, struct sk_buff *skb, u16 hash)
- 			continue;
- 		}
- 
--		if (found || !mtk_flow_entry_match(entry, hwe)) {
-+		if (found || !mtk_flow_entry_match(ppe->eth, entry, hwe)) {
- 			if (entry->hash != 0xffff)
- 				entry->hash = 0xffff;
- 			continue;
-@@ -771,6 +805,8 @@ void mtk_ppe_start(struct mtk_ppe *ppe)
- 			 MTK_PPE_SCAN_MODE_KEEPALIVE_AGE) |
- 	      FIELD_PREP(MTK_PPE_TB_CFG_ENTRY_NUM,
- 			 MTK_PPE_ENTRIES_SHIFT);
-+	if (MTK_HAS_CAPS(ppe->eth->soc->caps, MTK_NETSYS_V2))
-+		val |= MTK_PPE_TB_CFG_INFO_SEL;
- 	ppe_w32(ppe, MTK_PPE_TB_CFG, val);
- 
- 	ppe_w32(ppe, MTK_PPE_IP_PROTO_CHK,
-@@ -778,15 +814,21 @@ void mtk_ppe_start(struct mtk_ppe *ppe)
- 
- 	mtk_ppe_cache_enable(ppe, true);
- 
--	val = MTK_PPE_FLOW_CFG_IP4_TCP_FRAG |
--	      MTK_PPE_FLOW_CFG_IP4_UDP_FRAG |
--	      MTK_PPE_FLOW_CFG_IP6_3T_ROUTE |
-+	val = MTK_PPE_FLOW_CFG_IP6_3T_ROUTE |
- 	      MTK_PPE_FLOW_CFG_IP6_5T_ROUTE |
- 	      MTK_PPE_FLOW_CFG_IP6_6RD |
- 	      MTK_PPE_FLOW_CFG_IP4_NAT |
- 	      MTK_PPE_FLOW_CFG_IP4_NAPT |
- 	      MTK_PPE_FLOW_CFG_IP4_DSLITE |
- 	      MTK_PPE_FLOW_CFG_IP4_NAT_FRAG;
-+	if (MTK_HAS_CAPS(ppe->eth->soc->caps, MTK_NETSYS_V2))
-+		val |= MTK_PPE_MD_TOAP_BYP_CRSN0 |
-+		       MTK_PPE_MD_TOAP_BYP_CRSN1 |
-+		       MTK_PPE_MD_TOAP_BYP_CRSN2 |
-+		       MTK_PPE_FLOW_CFG_IP4_HASH_GRE_KEY;
-+	else
-+		val |= MTK_PPE_FLOW_CFG_IP4_TCP_FRAG |
-+		       MTK_PPE_FLOW_CFG_IP4_UDP_FRAG;
- 	ppe_w32(ppe, MTK_PPE_FLOW_CFG, val);
- 
- 	val = FIELD_PREP(MTK_PPE_UNBIND_AGE_MIN_PACKETS, 1000) |
-@@ -820,6 +862,11 @@ void mtk_ppe_start(struct mtk_ppe *ppe)
- 	ppe_w32(ppe, MTK_PPE_GLO_CFG, val);
- 
- 	ppe_w32(ppe, MTK_PPE_DEFAULT_CPU_PORT, 0);
-+
-+	if (MTK_HAS_CAPS(ppe->eth->soc->caps, MTK_NETSYS_V2)) {
-+		ppe_w32(ppe, MTK_PPE_DEFAULT_CPU_PORT1, 0xcb777);
-+		ppe_w32(ppe, MTK_PPE_SBW_CTRL, 0x7f);
-+	}
- }
- 
- int mtk_ppe_stop(struct mtk_ppe *ppe)
-diff --git a/drivers/net/ethernet/mediatek/mtk_ppe.h b/drivers/net/ethernet/mediatek/mtk_ppe.h
-index 6d4c91acd1a5..0b7a67a958e4 100644
---- a/drivers/net/ethernet/mediatek/mtk_ppe.h
-+++ b/drivers/net/ethernet/mediatek/mtk_ppe.h
-@@ -32,6 +32,15 @@
- #define MTK_FOE_IB1_UDP			BIT(30)
- #define MTK_FOE_IB1_STATIC		BIT(31)
- 
-+/* CONFIG_MEDIATEK_NETSYS_V2 */
-+#define MTK_FOE_IB1_BIND_TIMESTAMP_V2	GENMASK(7, 0)
-+#define MTK_FOE_IB1_BIND_VLAN_LAYER_V2	GENMASK(16, 14)
-+#define MTK_FOE_IB1_BIND_PPPOE_V2	BIT(17)
-+#define MTK_FOE_IB1_BIND_VLAN_TAG_V2	BIT(18)
-+#define MTK_FOE_IB1_BIND_CACHE_V2	BIT(20)
-+#define MTK_FOE_IB1_BIND_TTL_V2		BIT(22)
-+#define MTK_FOE_IB1_PACKET_TYPE_V2	GENMASK(27, 23)
-+
- enum {
- 	MTK_PPE_PKT_TYPE_IPV4_HNAPT = 0,
- 	MTK_PPE_PKT_TYPE_IPV4_ROUTE = 1,
-@@ -53,14 +62,25 @@ enum {
- 
- #define MTK_FOE_IB2_PORT_MG		GENMASK(17, 12)
- 
-+#define MTK_FOE_IB2_RX_IDX		GENMASK(18, 17)
- #define MTK_FOE_IB2_PORT_AG		GENMASK(23, 18)
- 
- #define MTK_FOE_IB2_DSCP		GENMASK(31, 24)
- 
-+/* CONFIG_MEDIATEK_NETSYS_V2 */
-+#define MTK_FOE_IB2_PORT_MG_V2		BIT(7)
-+#define MTK_FOE_IB2_DEST_PORT_V2	GENMASK(12, 9)
-+#define MTK_FOE_IB2_MULTICAST_V2	BIT(13)
-+#define MTK_FOE_IB2_WDMA_WINFO_V2	BIT(19)
-+#define MTK_FOE_IB2_PORT_AG_V2		GENMASK(23, 20)
-+
- #define MTK_FOE_VLAN2_WINFO_BSS		GENMASK(5, 0)
- #define MTK_FOE_VLAN2_WINFO_WCID	GENMASK(13, 6)
- #define MTK_FOE_VLAN2_WINFO_RING	GENMASK(15, 14)
- 
-+#define MTK_FOE_WINFO_BSS		GENMASK(5, 0)
-+#define MTK_FOE_WINFO_WCID		GENMASK(15, 6)
-+
- enum {
- 	MTK_FOE_STATE_INVALID,
- 	MTK_FOE_STATE_UNBIND,
-@@ -81,6 +101,9 @@ struct mtk_foe_mac_info {
- 
- 	u16 pppoe_id;
- 	u16 src_mac_lo;
-+
-+	u16 minfo;
-+	u16 winfo;
- };
- 
- /* software-only entry type */
-@@ -198,7 +221,7 @@ struct mtk_foe_entry {
- 		struct mtk_foe_ipv4_dslite dslite;
- 		struct mtk_foe_ipv6 ipv6;
- 		struct mtk_foe_ipv6_6rd ipv6_6rd;
--		u32 data[19];
-+		u32 data[23];
- 	};
- };
- 
-@@ -306,20 +329,27 @@ mtk_ppe_check_skb(struct mtk_ppe *ppe, struct sk_buff *skb, u16 hash)
- 	__mtk_ppe_check_skb(ppe, skb, hash);
- }
- 
--int mtk_foe_entry_prepare(struct mtk_foe_entry *entry, int type, int l4proto,
--			  u8 pse_port, u8 *src_mac, u8 *dest_mac);
--int mtk_foe_entry_set_pse_port(struct mtk_foe_entry *entry, u8 port);
--int mtk_foe_entry_set_ipv4_tuple(struct mtk_foe_entry *entry, bool orig,
-+int mtk_foe_entry_prepare(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			  int type, int l4proto, u8 pse_port, u8 *src_mac,
-+			  u8 *dest_mac);
-+int mtk_foe_entry_set_pse_port(struct mtk_eth *eth,
-+			       struct mtk_foe_entry *entry, u8 port);
-+int mtk_foe_entry_set_ipv4_tuple(struct mtk_eth *eth,
-+				 struct mtk_foe_entry *entry, bool orig,
- 				 __be32 src_addr, __be16 src_port,
- 				 __be32 dest_addr, __be16 dest_port);
--int mtk_foe_entry_set_ipv6_tuple(struct mtk_foe_entry *entry,
-+int mtk_foe_entry_set_ipv6_tuple(struct mtk_eth *eth,
-+				 struct mtk_foe_entry *entry,
- 				 __be32 *src_addr, __be16 src_port,
- 				 __be32 *dest_addr, __be16 dest_port);
--int mtk_foe_entry_set_dsa(struct mtk_foe_entry *entry, int port);
--int mtk_foe_entry_set_vlan(struct mtk_foe_entry *entry, int vid);
--int mtk_foe_entry_set_pppoe(struct mtk_foe_entry *entry, int sid);
--int mtk_foe_entry_set_wdma(struct mtk_foe_entry *entry, int wdma_idx, int txq,
--			   int bss, int wcid);
-+int mtk_foe_entry_set_dsa(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			  int port);
-+int mtk_foe_entry_set_vlan(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			   int vid);
-+int mtk_foe_entry_set_pppoe(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			    int sid);
-+int mtk_foe_entry_set_wdma(struct mtk_eth *eth, struct mtk_foe_entry *entry,
-+			   int wdma_idx, int txq, int bss, int wcid);
- int mtk_foe_entry_commit(struct mtk_ppe *ppe, struct mtk_flow_entry *entry);
- void mtk_foe_entry_clear(struct mtk_ppe *ppe, struct mtk_flow_entry *entry);
- int mtk_foe_entry_idle_time(struct mtk_ppe *ppe, struct mtk_flow_entry *entry);
-diff --git a/drivers/net/ethernet/mediatek/mtk_ppe_offload.c b/drivers/net/ethernet/mediatek/mtk_ppe_offload.c
-index 86c2100fd3d0..28bbd1df3e30 100644
---- a/drivers/net/ethernet/mediatek/mtk_ppe_offload.c
-+++ b/drivers/net/ethernet/mediatek/mtk_ppe_offload.c
-@@ -52,18 +52,19 @@ static const struct rhashtable_params mtk_flow_ht_params = {
- };
- 
- static int
--mtk_flow_set_ipv4_addr(struct mtk_foe_entry *foe, struct mtk_flow_data *data,
--		       bool egress)
-+mtk_flow_set_ipv4_addr(struct mtk_eth *eth, struct mtk_foe_entry *foe,
-+		       struct mtk_flow_data *data, bool egress)
- {
--	return mtk_foe_entry_set_ipv4_tuple(foe, egress,
-+	return mtk_foe_entry_set_ipv4_tuple(eth, foe, egress,
- 					    data->v4.src_addr, data->src_port,
- 					    data->v4.dst_addr, data->dst_port);
- }
- 
- static int
--mtk_flow_set_ipv6_addr(struct mtk_foe_entry *foe, struct mtk_flow_data *data)
-+mtk_flow_set_ipv6_addr(struct mtk_eth *eth, struct mtk_foe_entry *foe,
-+		       struct mtk_flow_data *data)
- {
--	return mtk_foe_entry_set_ipv6_tuple(foe,
-+	return mtk_foe_entry_set_ipv6_tuple(eth, foe,
- 					    data->v6.src_addr.s6_addr32, data->src_port,
- 					    data->v6.dst_addr.s6_addr32, data->dst_port);
- }
-@@ -190,16 +191,29 @@ mtk_flow_set_output_device(struct mtk_eth *eth, struct mtk_foe_entry *foe,
- 	int pse_port, dsa_port;
- 
- 	if (mtk_flow_get_wdma_info(dev, dest_mac, &info) == 0) {
--		mtk_foe_entry_set_wdma(foe, info.wdma_idx, info.queue, info.bss,
--				       info.wcid);
--		pse_port = 3;
-+		mtk_foe_entry_set_wdma(eth, foe, info.wdma_idx, info.queue,
-+				       info.bss, info.wcid);
-+		if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2)) {
-+			switch (info.wdma_idx) {
-+			case 0:
-+				pse_port = 8;
-+				break;
-+			case 1:
-+				pse_port = 9;
-+				break;
-+			default:
-+				return -EINVAL;
-+			}
-+		} else {
-+			pse_port = 3;
-+		}
- 		*wed_index = info.wdma_idx;
- 		goto out;
- 	}
- 
- 	dsa_port = mtk_flow_get_dsa_port(&dev);
- 	if (dsa_port >= 0)
--		mtk_foe_entry_set_dsa(foe, dsa_port);
-+		mtk_foe_entry_set_dsa(eth, foe, dsa_port);
- 
- 	if (dev == eth->netdev[0])
- 		pse_port = 1;
-@@ -209,7 +223,7 @@ mtk_flow_set_output_device(struct mtk_eth *eth, struct mtk_foe_entry *foe,
- 		return -EOPNOTSUPP;
- 
- out:
--	mtk_foe_entry_set_pse_port(foe, pse_port);
-+	mtk_foe_entry_set_pse_port(eth, foe, pse_port);
- 
- 	return 0;
- }
-@@ -333,9 +347,8 @@ mtk_flow_offload_replace(struct mtk_eth *eth, struct flow_cls_offload *f)
- 	    !is_valid_ether_addr(data.eth.h_dest))
- 		return -EINVAL;
- 
--	err = mtk_foe_entry_prepare(&foe, offload_type, l4proto, 0,
--				    data.eth.h_source,
--				    data.eth.h_dest);
-+	err = mtk_foe_entry_prepare(eth, &foe, offload_type, l4proto, 0,
-+				    data.eth.h_source, data.eth.h_dest);
- 	if (err)
- 		return err;
- 
-@@ -360,7 +373,7 @@ mtk_flow_offload_replace(struct mtk_eth *eth, struct flow_cls_offload *f)
- 		data.v4.src_addr = addrs.key->src;
- 		data.v4.dst_addr = addrs.key->dst;
- 
--		mtk_flow_set_ipv4_addr(&foe, &data, false);
-+		mtk_flow_set_ipv4_addr(eth, &foe, &data, false);
- 	}
- 
- 	if (addr_type == FLOW_DISSECTOR_KEY_IPV6_ADDRS) {
-@@ -371,7 +384,7 @@ mtk_flow_offload_replace(struct mtk_eth *eth, struct flow_cls_offload *f)
- 		data.v6.src_addr = addrs.key->src;
- 		data.v6.dst_addr = addrs.key->dst;
- 
--		mtk_flow_set_ipv6_addr(&foe, &data);
-+		mtk_flow_set_ipv6_addr(eth, &foe, &data);
- 	}
- 
- 	flow_action_for_each(i, act, &rule->action) {
-@@ -401,7 +414,7 @@ mtk_flow_offload_replace(struct mtk_eth *eth, struct flow_cls_offload *f)
- 	}
- 
- 	if (addr_type == FLOW_DISSECTOR_KEY_IPV4_ADDRS) {
--		err = mtk_flow_set_ipv4_addr(&foe, &data, true);
-+		err = mtk_flow_set_ipv4_addr(eth, &foe, &data, true);
- 		if (err)
- 			return err;
- 	}
-@@ -413,10 +426,10 @@ mtk_flow_offload_replace(struct mtk_eth *eth, struct flow_cls_offload *f)
- 		if (data.vlan.proto != htons(ETH_P_8021Q))
- 			return -EOPNOTSUPP;
- 
--		mtk_foe_entry_set_vlan(&foe, data.vlan.id);
-+		mtk_foe_entry_set_vlan(eth, &foe, data.vlan.id);
- 	}
- 	if (data.pppoe.num == 1)
--		mtk_foe_entry_set_pppoe(&foe, data.pppoe.sid);
-+		mtk_foe_entry_set_pppoe(eth, &foe, data.pppoe.sid);
- 
- 	err = mtk_flow_set_output_device(eth, &foe, odev, data.eth.h_dest,
- 					 &wed_index);
-diff --git a/drivers/net/ethernet/mediatek/mtk_ppe_regs.h b/drivers/net/ethernet/mediatek/mtk_ppe_regs.h
-index 0c45ea0900f1..59596d823d8b 100644
---- a/drivers/net/ethernet/mediatek/mtk_ppe_regs.h
-+++ b/drivers/net/ethernet/mediatek/mtk_ppe_regs.h
-@@ -21,6 +21,9 @@
- #define MTK_PPE_GLO_CFG_BUSY			BIT(31)
- 
- #define MTK_PPE_FLOW_CFG			0x204
-+#define MTK_PPE_MD_TOAP_BYP_CRSN0		BIT(1)
-+#define MTK_PPE_MD_TOAP_BYP_CRSN1		BIT(2)
-+#define MTK_PPE_MD_TOAP_BYP_CRSN2		BIT(3)
- #define MTK_PPE_FLOW_CFG_IP4_TCP_FRAG		BIT(6)
- #define MTK_PPE_FLOW_CFG_IP4_UDP_FRAG		BIT(7)
- #define MTK_PPE_FLOW_CFG_IP6_3T_ROUTE		BIT(8)
-@@ -54,6 +57,7 @@
- #define MTK_PPE_TB_CFG_HASH_MODE		GENMASK(15, 14)
- #define MTK_PPE_TB_CFG_SCAN_MODE		GENMASK(17, 16)
- #define MTK_PPE_TB_CFG_HASH_DEBUG		GENMASK(19, 18)
-+#define MTK_PPE_TB_CFG_INFO_SEL			BIT(20)
- 
- enum {
- 	MTK_PPE_SCAN_MODE_DISABLED,
-@@ -112,6 +116,8 @@ enum {
- #define MTK_PPE_DEFAULT_CPU_PORT		0x248
- #define MTK_PPE_DEFAULT_CPU_PORT_MASK(_n)	(GENMASK(2, 0) << ((_n) * 4))
- 
-+#define MTK_PPE_DEFAULT_CPU_PORT1		0x24c
-+
- #define MTK_PPE_MTU_DROP			0x308
- 
- #define MTK_PPE_VLAN_MTU0			0x30c
-@@ -141,4 +147,6 @@ enum {
- #define MTK_PPE_MIB_CACHE_CTL_EN		BIT(0)
- #define MTK_PPE_MIB_CACHE_CTL_FLUSH		BIT(2)
- 
-+#define MTK_PPE_SBW_CTRL			0x374
-+
- #endif
--- 
-2.37.3
-
+SGkgS3J6eXN6dG9mLA0KDQpPbiBUdWUsIDIwMjItMDktMjAgYXQgMTE6NDcgKzAyMDAsIEtyenlz
+enRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIDIwLzA5LzIwMjIgMTE6MTMsIE5pZWRlcm1heXIs
+IEJFTkVESUtUIHdyb3RlOg0KPiA+IEhpIEtyenlzenRvZiwNCj4gPiANCj4gPiBPbiBUdWUsIDIw
+MjItMDktMjAgYXQgMDk6MzkgKzAyMDAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+ID4g
+PiBPbiAxOS8wOS8yMDIyIDE1OjI1LCBOaWVkZXJtYXlyLCBCRU5FRElLVCB3cm90ZToNCj4gPiA+
+ID4gSGkgS3J6eXN6dG9mLA0KPiA+ID4gPiANCj4gPiA+ID4gT24gTW9uLCAyMDIyLTA5LTE5IGF0
+IDExOjM4ICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPiA+ID4gPiA+IE9uIDE2
+LzA5LzIwMjIgMTQ6MDcsIEIuIE5pZWRlcm1heXIgd3JvdGU6DQo+ID4gPiA+ID4gPiBGcm9tOiBC
+ZW5lZGlrdCBOaWVkZXJtYXlyIDxiZW5lZGlrdC5uaWVkZXJtYXlyQHNpZW1lbnMuY29tPg0KPiA+
+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiBUaGUgd2FpdHBpbiBwb2xhcml0eSBjYW4gYmUgY29uZmln
+dXJlZCB2aWEgdGhlIFdBSVRQSU48WD5QT0xBUklUWSBiaXRzDQo+ID4gPiA+ID4gPiBpbiB0aGUg
+R1BNQ19DT05GSUcgcmVnaXN0ZXIuIFRoaXMgaXMgY3VycmVudGx5IG5vdCBzdXBwb3J0ZWQgYnkg
+dGhlDQo+ID4gPiA+ID4gPiBkcml2ZXIuIFRoaXMgcGF0Y2ggYWRkcyBzdXBwb3J0IGZvciBzZXR0
+aW5nIHRoZSByZXF1aXJlZCByZWdpc3RlciBiaXRzDQo+ID4gPiA+ID4gPiB3aXRoIHRoZSAiZ3Bt
+Yyx3YWl0LXBpbi1wb2xhcml0eSIgZHQtcHJvcGVydHkuDQo+ID4gPiA+ID4gPiANCj4gPiA+ID4g
+PiA+IFNpZ25lZC1vZmYtYnk6IEJlbmVkaWt0IE5pZWRlcm1heXIgPGJlbmVkaWt0Lm5pZWRlcm1h
+eXJAc2llbWVucy5jb20+DQo+ID4gPiA+ID4gPiAtLS0NCj4gPiA+ID4gPiA+ICBkcml2ZXJzL21l
+bW9yeS9vbWFwLWdwbWMuYyAgICAgICAgICAgICAgfCAyNyArKysrKysrKysrKysrKysrKysrKysr
+KysrDQo+ID4gPiA+ID4gPiAgaW5jbHVkZS9saW51eC9wbGF0Zm9ybV9kYXRhL2dwbWMtb21hcC5o
+IHwgIDYgKysrKysrDQo+ID4gPiA+ID4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAzMyBpbnNlcnRpb25z
+KCspDQo+ID4gPiA+ID4gPiANCj4gPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21lbW9y
+eS9vbWFwLWdwbWMuYyBiL2RyaXZlcnMvbWVtb3J5L29tYXAtZ3BtYy5jDQo+ID4gPiA+ID4gPiBp
+bmRleCBlYTQ5NWU5Mzc2NmIuLjI4NTNmYzI4YmNjYyAxMDA2NDQNCj4gPiA+ID4gPiA+IC0tLSBh
+L2RyaXZlcnMvbWVtb3J5L29tYXAtZ3BtYy5jDQo+ID4gPiA+ID4gPiArKysgYi9kcml2ZXJzL21l
+bW9yeS9vbWFwLWdwbWMuYw0KPiA+ID4gPiA+ID4gQEAgLTEzMiw2ICsxMzIsNyBAQA0KPiA+ID4g
+PiA+ID4gICNkZWZpbmUgR1BNQ19DT05GSUdfREVWX1NJWkUJMHgwMDAwMDAwMg0KPiA+ID4gPiA+
+ID4gICNkZWZpbmUgR1BNQ19DT05GSUdfREVWX1RZUEUJMHgwMDAwMDAwMw0KPiA+ID4gPiA+ID4g
+IA0KPiA+ID4gPiA+ID4gKyNkZWZpbmUgR1BNQ19DT05GSUdfV0FJVFBJTlBPTEFSSVRZKHBpbikJ
+KEJJVChwaW4pIDw8IDgpDQo+ID4gPiA+ID4gPiAgI2RlZmluZSBHUE1DX0NPTkZJRzFfV1JBUEJV
+UlNUX1NVUFAgICAgICgxIDw8IDMxKQ0KPiA+ID4gPiA+ID4gICNkZWZpbmUgR1BNQ19DT05GSUcx
+X1JFQURNVUxUSVBMRV9TVVBQICAoMSA8PCAzMCkNCj4gPiA+ID4gPiA+ICAjZGVmaW5lIEdQTUNf
+Q09ORklHMV9SRUFEVFlQRV9BU1lOQyAgICAgKDAgPDwgMjkpDQo+ID4gPiA+ID4gPiBAQCAtMTg4
+Miw2ICsxODgzLDE3IEBAIGludCBncG1jX2NzX3Byb2dyYW1fc2V0dGluZ3MoaW50IGNzLCBzdHJ1
+Y3QgZ3BtY19zZXR0aW5ncyAqcCkNCj4gPiA+ID4gPiA+ICANCj4gPiA+ID4gPiA+ICAJZ3BtY19j
+c193cml0ZV9yZWcoY3MsIEdQTUNfQ1NfQ09ORklHMSwgY29uZmlnMSk7DQo+ID4gPiA+ID4gPiAg
+DQo+ID4gPiA+ID4gPiArCWlmIChwLT53YWl0X3Bpbl9wb2xhcml0eSAhPSBXQUlUUElOUE9MQVJJ
+VFlfREVGQVVMVCkgew0KPiA+ID4gPiA+ID4gKwkJY29uZmlnMSA9IGdwbWNfcmVhZF9yZWcoR1BN
+Q19DT05GSUcpOw0KPiA+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ID4gKwkJaWYgKHAtPndhaXRfcGlu
+X3BvbGFyaXR5ID09IFdBSVRQSU5QT0xBUklUWV9BQ1RJVkVfTE9XKQ0KPiA+ID4gPiA+ID4gKwkJ
+CWNvbmZpZzEgJj0gfkdQTUNfQ09ORklHX1dBSVRQSU5QT0xBUklUWShwLT53YWl0X3Bpbik7DQo+
+ID4gPiA+ID4gPiArCQllbHNlIGlmIChwLT53YWl0X3Bpbl9wb2xhcml0eSA9PSBXQUlUUElOUE9M
+QVJJVFlfQUNUSVZFX0hJR0gpDQo+ID4gPiA+ID4gPiArCQkJY29uZmlnMSB8PSBHUE1DX0NPTkZJ
+R19XQUlUUElOUE9MQVJJVFkocC0+d2FpdF9waW4pOw0KPiA+ID4gPiA+ID4gKw0KPiA+ID4gPiA+
+ID4gKwkJZ3BtY193cml0ZV9yZWcoR1BNQ19DT05GSUcsIGNvbmZpZzEpOw0KPiA+ID4gPiA+IA0K
+PiA+ID4gPiA+IFdoYXQgaGFwcGVucyBpZiB3YWl0IHBpbiBpcyBzaGFyZWQgYW5kIHlvdSBoYXZl
+IGRpZmZlcmVudCBwb2xhcml0aWVzIGluDQo+ID4gPiA+ID4gYm90aCBvZiBkZXZpY2VzPw0KPiA+
+ID4gPiBJbiB0aGlzIGNhc2UgdGhlIHNlY29uZCBvbmUgd2lucyBhbmQgd2lsbCBvdmVyd3JpdGUg
+dGhlIHBvbGFyaXR5IG9mIHRoZSBmaXJzdCBvbmUuDQo+ID4gPiA+IEJ1dCB0aGF0IHdvdWxkIGJl
+IHRoZSByZXN1bHQgb2YgYSBtaXNjb25maWd1cmF0aW9uIGluIHRoZSBEVC4NCj4gPiA+IA0KPiA+
+ID4gSW4gbWFueSBjYXNlcyBkcml2ZXJzIGRvIG5vdCBhY2NlcHQgYmxpbmRseSBhIERULCBidXQg
+cGVyZm9ybSBzb21lIGJhc2ljDQo+ID4gPiBzYW5pdHkgb24gaXQsIGVzcGVjaWFsbHkgaWYgbWlz
+dGFrZSBpcyBlYXN5IHRvIG1ha2UgKGUuZy4gd2l0aA0KPiA+ID4gb3ZlcmxheXMpLiBTdWNoIGRl
+c2lnbiBvZiBEVCBpcyBqdXN0IGZyYWdpbGUuIFNjaGVtYSBjYW5ub3QgdmFsaWRhdGUgaXQsDQo+
+ID4gPiBkcml2ZXIgZG9lcyBub3QgY2FyZSwgbWlzdGFrZSBpcyBxdWl0ZSBwb3NzaWJsZS4NCj4g
+PiANCj4gPiBPaywgdGhhdCBtYWtlcyBzZW5zZS4gSSdtIGdvaW5nIHRvIGltcGxlbWVudCB0aGlz
+IGluIHY2Lg0KPiA+ID4gPiBJJ20gbm90IHN1cmUgaG93IHRvIHByb2NlZWQgaGVyZT8gRG9lcyBp
+dCBtYWtlIHNlbnNlIHRvIGFkZCBhIGNoZWNrIGZvciBkaWZmZXJlbnQgDQo+ID4gPiA+IHdhaXRw
+aW4gcG9sYXJpdGllcz8NCj4gPiA+IA0KPiA+ID4gSSBkb24ndCBrbm93LiBJIHdvdWxkIGp1c3Qg
+ZGlzYWxsb3cgc3VjaCBzaGFyaW5nIGVudGlyZWx5IG9yIGRpc2FsbG93DQo+ID4gPiBzaGFyaW5n
+IGlmIERUIGlzIG1pc2NvbmZpZ3VyZWQuDQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gPiA+ID4gKwl9
+DQo+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiAgCXJldHVybiAwOw0KPiA+ID4gPiA+ID4gIH0N
+Cj4gPiA+ID4gPiA+ICANCj4gPiA+ID4gPiA+IEBAIC0xOTgxLDcgKzE5OTMsMjIgQEAgdm9pZCBn
+cG1jX3JlYWRfc2V0dGluZ3NfZHQoc3RydWN0IGRldmljZV9ub2RlICpucCwgc3RydWN0IGdwbWNf
+c2V0dGluZ3MgKnApDQo+ID4gPiA+ID4gPiAgCQkJCV9fZnVuY19fKTsNCj4gPiA+ID4gPiA+ICAJ
+fQ0KPiA+ID4gPiA+ID4gIA0KPiA+ID4gPiA+ID4gKwlwLT53YWl0X3Bpbl9wb2xhcml0eSA9IFdB
+SVRQSU5QT0xBUklUWV9ERUZBVUxUOw0KPiA+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ID4gIAlpZiAo
+IW9mX3Byb3BlcnR5X3JlYWRfdTMyKG5wLCAiZ3BtYyx3YWl0LXBpbiIsICZwLT53YWl0X3Bpbikp
+IHsNCj4gPiA+ID4gPiA+ICsJCWlmICghb2ZfcHJvcGVydHlfcmVhZF91MzIobnAsICJncG1jLHdh
+aXQtcGluLXBvbGFyaXR5IiwNCj4gPiA+ID4gPiA+ICsJCQkJCSAgJnAtPndhaXRfcGluX3BvbGFy
+aXR5KSkgew0KPiA+ID4gPiA+ID4gKwkJCWlmIChwLT53YWl0X3Bpbl9wb2xhcml0eSAhPSBXQUlU
+UElOUE9MQVJJVFlfQUNUSVZFX0hJR0ggJiYNCj4gPiA+ID4gPiA+ICsJCQkgICAgcC0+d2FpdF9w
+aW5fcG9sYXJpdHkgIT0gV0FJVFBJTlBPTEFSSVRZX0FDVElWRV9MT1cgJiYNCj4gPiA+ID4gPiA+
+ICsJCQkgICAgcC0+d2FpdF9waW5fcG9sYXJpdHkgIT0gV0FJVFBJTlBPTEFSSVRZX0RFRkFVTFQp
+IHsNCj4gPiA+ID4gPiANCj4gPiA+ID4gPiBXQUlUUElOUE9MQVJJVFlfREVGQVVMVCBpcyBub3Qg
+YWxsb3dlZCBpbiBEVCwgc28geW91IGNhbiBza2lwIGl0Lg0KPiA+ID4gPiBUaGlzIHZhbHVlIGlz
+IG5vdCBhc3NpZ25lZCBmcm9tIHRoZSBEVC4gSXQgaXMgb25seSBhc3NpZ25lZCB3aXRoaW4gdGhl
+IEdQTUMgYW5kIHNlcnZlcyBhcyBhIGluaXQNCj4gPiA+ID4gdmFsdWUgKHJpZ2h0IGJlZm9yZSB0
+aGUgaWYgY2xhdXNlKS4gVGhpcyBoZWxwcyBpbiBjYXNlIG5vIGNvbmZpZ3VyYXRpb24gZnJvbSBE
+VCBpcyBkb25lIHdoZXJlIHRoZSANCj4gPiA+ID4gR1BNQyByZWdpc3RlcnMgc2hvdWxkIHN0YXkg
+dW50b3VjaGVkLg0KPiA+ID4gDQo+ID4gPiBJIGRvbid0IHNlZSBpdC4gWW91ciBjb2RlIGlzOg0K
+PiA+ID4gDQo+ID4gPiBwLT53YWl0X3Bpbl9wb2xhcml0eSA9IFdBSVRQSU5QT0xBUklUWV9ERUZB
+VUxUOw0KPiA+ID4gIyBhbmQgRFQgaGFzIFdBSVRQSU5QT0xBUklUWV9ERUZBVUxUDQo+ID4gPiBp
+ZiAoLi4uLikgew0KPiA+ID4gICBwcl9lcnINCj4gPiA+ICAgcC0+d2FpdF9waW5fcG9sYXJpdHkg
+PSBXQUlUUElOUE9MQVJJVFlfREVGQVVMVDsNCj4gPiA+IH0gZWxzZSB7DQo+ID4gPiAgIHByX2Vy
+cg0KPiA+ID4gfQ0KPiA+ID4gDQo+ID4gTWF5YmUgSSBkb250J3QgZ2V0IHdoYXQgeW91IG1lYW4g
+d2l0aCBEVCBpbiB0aGlzIGNvbnRleHQuDQo+ID4gDQo+ID4gV2hhdCBJIG1lYW50IGlzIHRoYXQg
+dGhlIHZhbHVlIFdBSVRQSU5QT0xBUklUWV9ERUZBVUxUIGlzIG5vdCBkaXJlY3RseSBleHRyYWN0
+ZWQgZnJvbSB0aGUgRFQgYnV0IGlzIGFzc2lnbmVkIGluIGNhc2UNCj4gPiAiZ3BtYyx3YWl0LXBp
+bi1wb2xhcml0eSIgaXMgbm90IHNldCBvciBoYXMgYW4gaW52YWxpZCB2YWx1ZS4gSW4gYW55IGNh
+c2UgdGhlIHAtPndhaXRfcGluX3BvbGFyaXR5IHNob3VsZCBoYXZlDQo+ID4gYXQgbGVhc3QgdGhl
+IGluaXQgdmFsdWUgYXNzaWduZWQgc28gd2UgY2FuIG1ha2UgcHJvcGVyIGRlY2lzaW9ucyBpbiBn
+cG1jX2NzX3Byb2dyYW1fc2V0dGluZ3MoKS4NCj4gPiANCj4gPiBNYXliZSBJIG5lZWQgc29tZSBj
+bGFyaWZpY2F0aW9uIHdoYXQgZXhhdGx5IGlzIGZvcmJpZGRlbiBoZXJlLg0KPiANCj4gSSBjb21t
+ZW50ZWQgZXhhY3RseSBiZWxvdyB0aGUgbGluZSB3aGljaCBJIHF1ZXN0aW9uLiBJIGRvbid0IHF1
+ZXN0aW9uDQo+IG90aGVyIGxpbmVzLiBTbyBsZXQgbWUgYmUgYSBiaXQgbW9yZSBzcGVjaWZpYzoN
+Cj4gDQo+IFdoeSBkbyB5b3UgbmVlZA0KPiAicC0+d2FpdF9waW5fcG9sYXJpdHkgIT0gV0FJVFBJ
+TlBPTEFSSVRZX0RFRkFVTFQiDQo+ID8gQ2FuIHlvdSB3cml0ZSBhIHNjZW5hcmlvIHdoZXJlIHRo
+aXMgaXMgdXNlZnVsPw0KPiANCk9rLiBJIHRoaW5rIEkgZ290IHlvdSBub3cuIFNvcnJ5IEknbSBy
+ZWxhdGl2ZWx5IG5ldyB0byBPU1MgY29udHJpYnV0aW9ucywgc28gcGxlYXNlIGJlIHBhdGllbnQg
+d2l0aCBtZS4uLg0KDQpJZiBJIHJlbW92ZSB0aGF0IHBhcnQgb2YgdGhlIGlmIGNsYXVzZSwgdGhl
+biBhbiBlcnJvciBtZXNzYWdlIHdvdWxkIGJlIHByaW50ZWQgaW4gY2FzZSAicC0+d2FpdF9waW5f
+cG9sYXJpdHkgPT0gV0FJVFBJTlBPTEFSSVRZX0RFRkFVTFQiLg0KQnV0IHRoaXMgaXMgYSBub3Qg
+YW4gZXJyb3IgY2FzZS4gV0FJVFBJTlBPTEFSSVRZX0RFRkFVTFQgaXMgYSB2YWxpZCB2YWx1ZSwg
+aXMgYXNzaWduZWQgcmlnaHQgYmVmb3JlIHRoZSBpZiBjbGF1c2UgYXMgYW4gaW5pdCB2YWx1ZShu
+b3QgZXh0cmFjdGVkIGZyb20gRFQpLA0KYW5kIGxlYWRzIHRvIG5vdCB0b3VjaGluZyB0aGUgR1BN
+Q19DT05GSUcgcmVnaXN0ZXIgaW4gZ3BtY19jc19wcm9ncmFtX3NldHRpbmdzKCkuDQpTbyBpbiBn
+cG1jX2NzX3Byb2dyYW1fc2V0dGluZ3MoKSBpZjoNCiAgICBwLT53YWl0X3Bpbl9wb2xhcml0eSAh
+PSBXQUlUUElOUE9MQVJJVFlfQUNUSVZFX0hJR0ggLT4gSXNzdWUgYSB3cml0ZSB0byB0aGUgR1BN
+Q19DT05GSUcgcmVnaXN0ZXINCiAgICBwLT53YWl0X3Bpbl9wb2xhcml0eSAhPSBXQUlUUElOUE9M
+QVJJVFlfQUNUSVZFX0xPVyAgLT4gSXNzdWEgYSB3cml0ZSB0byB0aGUgR1BNQ19DT05GSUcgcmVn
+aXN0ZXINCiAgICBwLT53YWl0X3Bpbl9wb2xhcml0eSAhPSBXQUlUUElOUE9MQVJJVFlfREVGQVVM
+VCAgICAgLT4gRG8gbm90IHRvdWNoIHRoZSBHUE1DX0NPTkZJRyByZWdpc3Rlcg0KDQpXZSB3YW50
+IHRvIHByZXNlcnZlIHRoZSByZXNldCB2YWx1ZSBvZiB0aGUgR1BNQ19DT05GSUcgcmVnaXN0ZXIg
+aW4gY2FzZSB0aGUgRFQgZG9lcyBub3QgdXNlIHRoZSAiZ3BtYyx3YWl0LXBpbi1wb2xhcml0eSIg
+cHJvcGVydHkuIE90aGVyd2lzZQ0Kd2UgbWlnaHQgYnJlYWsgcGxhdGZvcm1zIHdoaWNoIHJlbHkg
+b24gdGhlc2UgcmVzZXQgdmFsdWVzLiANCg0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0K
+Q2hlZXJzLA0KYmVuZWRpa3QNCg==
