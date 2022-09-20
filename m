@@ -2,114 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8B5B5BE9EA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCE1D5BE9F8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 17:20:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231422AbiITPRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 11:17:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33292 "EHLO
+        id S231493AbiITPUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 11:20:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231593AbiITPRO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:17:14 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C191647EB
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:16:58 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id g3so4767077wrq.13
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 08:16:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=sTa1pbTVMPJ1tf0fbIJm6r4QEWbV/1sWEH4W85gfxdA=;
-        b=Y0I8B2b3LP+wzBoIwffHFhR8WfPrSkke8bPxBfdpa1N8AqQnjtUb7c4CmtN24qDDhp
-         qdL9Uud2I30izEuKxHpDkDIvQsHjjHSigXA8ob2zyPlsjdSDJEqyqPpzLn28QvWSy7KL
-         qQeFNIl2oWaknO+UzEWzpGs+d8ZNb2Cx/uKizP1/tOe+EHQFl93J0S8U18g/IvP7Y7F4
-         d6f4YSPMFnQYjUgtnRkeGD7bo7q0GU0CxKxamfwit1fq15nkLEYURNwTzCI/sJHwioVE
-         98Z217tzwyEGW4GGj3HG0mcmrgh37N5Ne8Nwz9cTvOGRaCoWzT7R1EwI6zs2gdSg2djQ
-         KQXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=sTa1pbTVMPJ1tf0fbIJm6r4QEWbV/1sWEH4W85gfxdA=;
-        b=acRIabLjONlA6er3rt2UBHp+FzTHIvddVs8LO2YydlXGMIJF8avIIMbhTfGMtHy4Qv
-         oV7sn+LOXprL+QWEYJx/VXJuYGNdae7N3d4T/hU3VWNvyjQcp0xPacdOoYg9bCtyVMfe
-         GjFwOMewVCk6WLY1qdWhrUrzMFO9P4Jq5jOJe+l9hdsmhHYIfWQZPMf5rMqK1F197wF4
-         M4o2M8koXxkraBPmXjcbrprQ5H7z5qP/Z4lNFMPi9eKKtC1tnvjzbeMrLOGQhi8ByHUM
-         0UPT07CiiTpx1HlCnAB0QY7Mn2P6323ErAbcpwfnnLYUNGbnbbcP1mrlTsJk7HOHYvd0
-         CUgQ==
-X-Gm-Message-State: ACrzQf3dvvD2RUyagaN+CrKtiInQJUDQizr07Tl86bTlfhc8JIVNjlAT
-        dt3wEOvcxqG9gYnCIKlFhy3TyQ==
-X-Google-Smtp-Source: AMsMyM4CnxN9VS5xftyuGqfVz/42sP79DDIp25KA4140PE5NmZBRvjW0ASBqI2gKS8NFBNgL+mI2tQ==
-X-Received: by 2002:a5d:6d46:0:b0:21f:8b7:4c1d with SMTP id k6-20020a5d6d46000000b0021f08b74c1dmr14533501wri.455.1663687016603;
-        Tue, 20 Sep 2022 08:16:56 -0700 (PDT)
-Received: from [192.168.0.20] (210.145.15.109.rev.sfr.net. [109.15.145.210])
-        by smtp.gmail.com with ESMTPSA id cc16-20020a5d5c10000000b0021e4829d359sm40298wrb.39.2022.09.20.08.16.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 08:16:56 -0700 (PDT)
-Message-ID: <bf4d4cdf-27a1-7e09-59dc-25a8646fad1f@baylibre.com>
-Date:   Tue, 20 Sep 2022 17:16:55 +0200
+        with ESMTP id S231497AbiITPUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 11:20:03 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A78453038;
+        Tue, 20 Sep 2022 08:19:57 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28KFJNh3022853;
+        Tue, 20 Sep 2022 10:19:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1663687163;
+        bh=ppUsWiAeOkmXONIsn/PtH1IaX3m56Al9gE7kqH30n/s=;
+        h=From:To:CC:Subject:Date;
+        b=aoZoFLoELZunK+HTzKlRu3w24WixCbOXFXq+IK6u1R1EjQ6zBGme2L96dAQqXoPQl
+         dusThLO2f/ZX9f1KdVwC7suE2Yqqc++QOwhW588ZZq/Vf6/FKeRNsuFp3sigZCTcb+
+         tUzrMAi4ELhmp4mqVzE9FxmM0fZq46g9Y2AaNhx4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28KFJNIS010575
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Sep 2022 10:19:23 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 20
+ Sep 2022 10:19:22 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 20 Sep 2022 10:19:22 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28KFJLG3061140;
+        Tue, 20 Sep 2022 10:19:22 -0500
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <dri-devel@lists.freedesktop.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <andrzej.hajda@intel.com>, <narmstrong@baylibre.com>,
+        <robert.foss@linaro.org>, <jonas@kwiboo.se>,
+        <jernej.skrabec@gmail.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <p.zabel@pengutronix.de>, <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>,
+        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
+        <sjakhade@cadence.com>, <mparab@cadence.com>, <a-bhatia1@ti.com>,
+        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
+        <lee.jones@linaro.org>, Rahul T R <r-ravikumar@ti.com>
+Subject: [PATCH v7 0/5] Add support for CDNS DSI J721E wrapper
+Date:   Tue, 20 Sep 2022 20:49:14 +0530
+Message-ID: <20220920151919.25658-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8183: remove thermal zones
- without trips.
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220914131339.18348-1-aouledameur@baylibre.com>
- <a8af4c54-12a2-a314-f190-f12859ef4ddd@gmail.com>
- <ca326ce8-3eee-8a7a-a522-9ffbdf7d8a82@linaro.org>
-Content-Language: en-US
-From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
-In-Reply-To: <ca326ce8-3eee-8a7a-a522-9ffbdf7d8a82@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Following series of patches adds supports for CDNS DSI
+bridge on j721e.
 
-On 9/15/22 17:50, Daniel Lezcano wrote:
-> On 14/09/2022 16:15, Matthias Brugger wrote:
->>
->>
->> On 14/09/2022 15:13, Amjad Ouled-Ameur wrote:
->>> Thermal zones without trip point are not registered by thermal core.
->>>
->>> tzts1 ~ tzts6 zones of mt8183 were intially introduced for test-purpose
->>> only but are not supposed to remain on DT.
->>>
->>> Remove the zones above and keep only cpu_thermal.
->>>
->>
->> My understanding is that this thermal zones exist but are not used. 
->> DTS should describe the HW as it is, so I propose to add
->> status = "disabled";
->> to the zones.
->>
->
-> At least the trip points must be declared as stated in the bindings
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/thermal/thermal-zones.yaml#n213 
->
->
-In the base case we should but there are no trip points for these 
-sensors according to MediaTek.
+v7:
+ - Rebased to next-20220920
+ - Accumulated the Reviewed-by acks
 
+v6:
+ - Dropped generic definations for properties like reg, resets etc..
+ - Fixed the defination for port@0 and port@1
+ - removed the ti,sn65dsi86 node from the example, which is not related
 
-Regards,
+v5:
+ - Remove power-domain property in the conversion commit
+ - Add power-domain only for j721e compatible
+ - Fix white space error in one of the commit
 
-Amjad
+v4:
+ - split conversion txt to yaml
+ - seperate commit for addinig new compatible
+ - conditionally limit the items for reg property, based on the compatible
+
+v3:
+ - Convert cdns-dsi.txt binding to yaml
+ - Move the bridge under display/bridge/cadence
+ - Add new compatible to enable the wrapper module
+
+v2:
+ - Moved setting DPI0 to bridge_enable, since it
+   should be done after pm_runtime_get
+
+Rahul T R (5):
+  dt-bindings: display: bridge: Convert cdns,dsi.txt to yaml
+  dt-bindings: display: bridge: cdns,dsi: Add compatible for dsi on
+    j721e
+  drm/bridge: cdns-dsi: Move to drm/bridge/cadence
+  drm/bridge: cdns-dsi: Create a header file
+  drm/bridge: cdns-dsi: Add support for J721E wrapper
+
+ .../bindings/display/bridge/cdns,dsi.txt      | 112 ----
+ .../bindings/display/bridge/cdns,dsi.yaml     | 180 +++++++
+ drivers/gpu/drm/bridge/Kconfig                |  11 -
+ drivers/gpu/drm/bridge/Makefile               |   1 -
+ drivers/gpu/drm/bridge/cadence/Kconfig        |  21 +
+ drivers/gpu/drm/bridge/cadence/Makefile       |   3 +
+ .../{cdns-dsi.c => cadence/cdns-dsi-core.c}   | 483 ++----------------
+ .../gpu/drm/bridge/cadence/cdns-dsi-core.h    | 471 +++++++++++++++++
+ .../gpu/drm/bridge/cadence/cdns-dsi-j721e.c   |  51 ++
+ .../gpu/drm/bridge/cadence/cdns-dsi-j721e.h   |  18 +
+ 10 files changed, 781 insertions(+), 570 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+ rename drivers/gpu/drm/bridge/{cdns-dsi.c => cadence/cdns-dsi-core.c} (65%)
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
+
+-- 
+2.37.3
 
