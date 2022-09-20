@@ -2,176 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DF2C5BEC06
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 19:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D95A35BEC0F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 19:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbiITRat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 13:30:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50550 "EHLO
+        id S230190AbiITRcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 13:32:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231325AbiITRab (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 13:30:31 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C8CD7170D
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 10:30:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1663694866; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=SXs2NNty6nAHGNb82MGcdFDT9tph4cnz0xB0CTD4tBMylQpe4l04b0xJtHhdiH2+1fdQ/quuNm/FgNW8oXhjmoeRwQ+bXGn1rWSd+r6ihXjha73i6Vg9KAuPXgh4QaRMcKusBqXqFaApyZiSghs4XRT/xjme+VNuCHU+x1pyO2A=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1663694866; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=8AjFH1BLUb+TXyGp2qTPrkMzOdVeStVDjagqGC2aBMo=; 
-        b=Sw1PseK+KmPrwX1AQ8dc6oOr/0M4HUVO17hk49JrmZA/7w0rZgxEIxV/HbC2xXmzN7u87ZkeCPtyhKuwqu5gQufo9sBoX+FTC+6KcGJYipe3tmp2sYt2cy9n+76DT/eE1jVnVf8Yf3a4IN6QxjV2yqLPeSIbmRZ/MTSmnUI9x94=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1663694866;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
-        bh=8AjFH1BLUb+TXyGp2qTPrkMzOdVeStVDjagqGC2aBMo=;
-        b=jLxb9ZGQDFo5AEsXVm/Qi+zoRrLLAGO8eYMrpSIdFKislJMVYN3SkdvolhR5jUwq
-        bEsPBHbK1lvICO2xBrHrVoO+t87QFKvSjV8FeN5JiVTSd2yGYEuSIbFKKi1wIQb6O51
-        qDS2mOGJjRu9It83qg61kpwuT2LSNM//Kdqo1gzk=
-Received: from arinc9-Xeront.fusolab.local (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1663694864308155.8970139669667; Tue, 20 Sep 2022 10:27:44 -0700 (PDT)
-From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        erkin.bozoglu@xeront.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        Petr Louda <petr.louda@outlook.cz>
-Subject: [PATCH v4 net-next 10/10] mips: dts: ralink: mt7621: add GB-PC2 LEDs
-Date:   Tue, 20 Sep 2022 20:25:56 +0300
-Message-Id: <20220920172556.16557-11-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220920172556.16557-1-arinc.unal@arinc9.com>
-References: <20220920172556.16557-1-arinc.unal@arinc9.com>
+        with ESMTP id S229599AbiITRcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 13:32:54 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17B321E4;
+        Tue, 20 Sep 2022 10:32:51 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 90D116BE;
+        Tue, 20 Sep 2022 19:32:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1663695168;
+        bh=GTSBmvXu6MwYsttsq8iSJ2hRGLX5hNS6AcRs9mwMNnQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aGF0rI0/re7PVkN8L6mGbYwUb5hPJbNQun+MBOSaop4r6uUNUUloH4USbX4nklWj/
+         MfwYq1ncq4CGokKu7gdR9p5DwDr2fM+PP3pO9ZAEiBaFs+je2VAcxtplaXEregSiCN
+         y8HKHhDYjTAH5BMsNWszUHygM+up4iVo38gO5PbU=
+Date:   Tue, 20 Sep 2022 20:32:34 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>, mchehab@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kishon@ti.com, vkoul@kernel.org, hverkuil@xs4all.nl,
+        jacopo@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v2 3/4] media: dt-bindings: add bindings for Toshiba
+ TC358746
+Message-ID: <Yyn5MqqKYH7VpFhw@pendragon.ideasonboard.com>
+References: <20220916134535.128131-1-m.felsch@pengutronix.de>
+ <20220916134535.128131-4-m.felsch@pengutronix.de>
+ <YyZTCsflWtUbo2ld@pendragon.ideasonboard.com>
+ <20220919100844.bb7tzbql2vpk76xz@pengutronix.de>
+ <YyhDO4ohv47uIij2@paasikivi.fi.intel.com>
+ <YyhKoDxFoobY9vBd@pendragon.ideasonboard.com>
+ <20220920152632.mjpgpmelvx4ya4k7@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+In-Reply-To: <20220920152632.mjpgpmelvx4ya4k7@pengutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing LEDs for GB-PC2. The ethblack-green, ethblue-green, power
-and system LEDs weren't added previously, because they don't exist on the
-device schematics. Tests on a GB-PC2 by me and Petr proved otherwise.
+Hi Marco,
 
-The i2c bus cannot be used on GB-PC2 as its pins are wired to LEDs instead,
-and GB-PC1 does not use it. Therefore, do not enable it on both devices.
+On Tue, Sep 20, 2022 at 05:26:32PM +0200, Marco Felsch wrote:
+> On 22-09-19, Laurent Pinchart wrote:
+> > On Mon, Sep 19, 2022 at 10:23:55AM +0000, Sakari Ailus wrote:
+> > > On Mon, Sep 19, 2022 at 12:08:44PM +0200, Marco Felsch wrote:
+> > > > On 22-09-18, Laurent Pinchart wrote:
+> > > > > On Fri, Sep 16, 2022 at 03:45:34PM +0200, Marco Felsch wrote:
+> > > > > > Add the bindings for the Toshiba TC358746 Parallel <-> MIPI-CSI bridge
+> > > > > > driver.
+> > > > > > 
+> > > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > > ---
+> > > > > > Changelog:
+> > > > > > 
+> > > > > > v2:
+> > > > > > - addded Robs r-b
+> > > > > > - s/than/then/
+> > > > > > - added hsync/vsync/bus-type, make hsync/vsync required
+> > > > > > - fix example indent
+> > > > > > 
+> > > > > >  .../bindings/media/i2c/toshiba,tc358746.yaml  | 179 ++++++++++++++++++
+> > > > > >  1 file changed, 179 insertions(+)
+> > > > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
+> > > > > > 
+> > > > > > diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..1fa574400bc2
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
+> > > > > > @@ -0,0 +1,179 @@
+> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id: http://devicetree.org/schemas/media/i2c/toshiba,tc358746.yaml#
+> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > +
+> > > > > > +title: Toshiba TC358746 Parallel to MIPI CSI2 Bridge
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +  - Marco Felsch <kernel@pengutronix.de>
+> > > > > > +
+> > > > > > +description: |-
+> > > > > > +  The Toshiba TC358746 converts a parallel video stream into a MIPI CSI-2
+> > > > > > +  stream. The direction can be either parallel-in -> csi-out or csi-in ->
+> > > > > > +  parallel-out The chip is programmable trough I2C and SPI but the SPI
+> > > > > > +  interface is only supported in parallel-in -> csi-out mode.
+> > > > > > +
+> > > > > > +  Note that the current device tree bindings only support the
+> > > > > > +  parallel-in -> csi-out path.
+> > > > > > +
+> > > > > > +properties:
+> > > > > > +  compatible:
+> > > > > > +    const: toshiba,tc358746
+> > > > > > +
+> > > > > > +  reg:
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  clocks:
+> > > > > > +    description:
+> > > > > > +      The phandle to the reference clock source. This corresponds to the
+> > > > > > +      hardware pin REFCLK.
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  clock-names:
+> > > > > > +    const: refclk
+> > > > > > +
+> > > > > > +# The bridge can act as clock provider for the sensor. To enable this support
+> > > > > > +# #clock-cells must be specified. Attention if this feature is used then the
+> > > > > > +# mclk rate must be at least: (2 * link-frequency) / 8
+> > > > > > +#                             `------------------´   ^
+> > > > > > +#                             internal PLL rate   smallest possible mclk-div
+> > > > > > +  "#clock-cells":
+> > > > > > +    const: 0
+> > > > > > +
+> > > > > > +  clock-output-names:
+> > > > > > +    description:
+> > > > > > +      The clock name of the MCLK output, the default name is tc358746-mclk.
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  vddc-supply:
+> > > > > > +    description: Digital core voltage supply, 1.2 volts
+> > > > > > +
+> > > > > > +  vddio-supply:
+> > > > > > +    description: Digital I/O voltage supply, 1.8 volts
+> > > > > > +
+> > > > > > +  vddmipi-supply:
+> > > > > > +    description: MIPI CSI phy voltage supply, 1.2 volts
+> > > > > > +
+> > > > > > +  reset-gpios:
+> > > > > > +    description:
+> > > > > > +      The phandle and specifier for the GPIO that controls the chip reset.
+> > > > > > +      This corresponds to the hardware pin RESX which is physically active low.
+> > > > > > +    maxItems: 1
+> > > > > > +
+> > > > > > +  ports:
+> > > > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > > > +    properties:
+> > > > > > +      port@0:
+> > > > > > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > > > +        description: Input port
+> > > > > > +
+> > > > > > +        properties:
+> > > > > > +          endpoint:
+> > > > > > +            $ref: /schemas/media/video-interfaces.yaml#
+> > > > > > +            unevaluatedProperties: false
+> > > > > > +
+> > > > > > +            properties:
+> > > > > > +              hsync-active:
+> > > > > > +                enum:
+> > > > > > +                  - 0 # Hvalid active high
+> > > > > > +              vsync-active:
+> > > > > > +                enum:
+> > > > > > +                  - 0 # Vvalid active high
+> > > > > > +              bus-type:
+> > > > > > +                enum:
+> > > > > > +                  - 5 # Parallel
+> > > > > > +
+> > > > > > +            required:
+> > > > > > +              - hsync-active
+> > > > > > +              - vsync-active
+> > > > > 
+> > > > > Let's make bus-type required too, to prepare for BT.656 support.
+> > > > 
+> > > > I would have done it when the BT.656 support is added. Since the BT.656
+> > > > don't require the sync signals I would have made a descision:
+> > > >  - either: hsync/vsync present -> parallel with external syncs, or
+> > > >  - bus-type present -> parallel bus with embedded syncs.
+> > > > 
+> > > > So we don't bother the system-integrator with specifying unnecessary
+> > > > properties. Also having v/hsync required in place with the bus-type (set
+> > > > to bt.656) can cause confusion about the final used mode.
+> > > 
+> > > The V4L2 fwnode framework can guess the type of the bus but it's not
+> > > recommended to use the feature.
+> > 
+> > Explicit bus types in DT indeed makes it easier for drivers, so if a
+> > device can support multiple bus types (even if not implemented yet in
+> > the corresponding drivers), the property should be there.
+> 
+> Okay, I will make it required.
+> 
+> > > Why do you have hsync-active and vsync-active if both are always zero? Can
+> > > the hardware not support other configuration?
+> 
+> Sure the device supports toggling the logic but it is not implemented.
+> So the bindings needs to enforce it to 0 right now. As soon as it is
+> implemented & tested, we can say that both is supported :)
 
-Link: https://github.com/ngiger/GnuBee_Docs/blob/master/GB-PCx/Documents/GB-PC2_V1.1_schematic.pdf
-Tested-by: Petr Louda <petr.louda@outlook.cz>
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-Reviewed-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- .../boot/dts/ralink/mt7621-gnubee-gb-pc1.dts  |  6 ---
- .../boot/dts/ralink/mt7621-gnubee-gb-pc2.dts  | 42 ++++++++++++++++---
- 2 files changed, 36 insertions(+), 12 deletions(-)
+Bindings are not supposed to be limited by the existing driver
+implementation, so you can already allow both polarities, and just
+reject the unsupported options in the driver at probe time. Future
+updates to the driver won't require a binding change.
 
-diff --git a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
-index 6ecb8165efe8..0128bd8fa7ed 100644
---- a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
-+++ b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
-@@ -20,12 +20,6 @@ chosen {
- 		bootargs = "console=ttyS0,57600";
- 	};
- 
--	palmbus: palmbus@1e000000 {
--		i2c@900 {
--			status = "okay";
--		};
--	};
--
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
-diff --git a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-index 5f52193a4c37..7515555388ae 100644
---- a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-+++ b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-@@ -20,12 +20,6 @@ chosen {
- 		bootargs = "console=ttyS0,57600";
- 	};
- 
--	palmbus: palmbus@1e000000 {
--		i2c@900 {
--			status = "okay";
--		};
--	};
--
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
-@@ -35,6 +29,42 @@ key-reset {
- 			linux,code = <KEY_RESTART>;
- 		};
- 	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		ethblack-green {
-+			label = "green:ethblack";
-+			gpios = <&gpio 3 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		ethblue-green {
-+			label = "green:ethblue";
-+			gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		ethyellow-green {
-+			label = "green:ethyellow";
-+			gpios = <&gpio 15 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		ethyellow-orange {
-+			label = "orange:ethyellow";
-+			gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		power {
-+			label = "green:power";
-+			gpios = <&gpio 6 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "default-on";
-+		};
-+
-+		system {
-+			label = "green:system";
-+			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "disk-activity";
-+		};
-+	};
- };
- 
- &mmc {
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
