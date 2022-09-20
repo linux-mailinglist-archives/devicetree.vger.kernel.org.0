@@ -2,103 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B03B95BDC5A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 07:24:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21B8E5BDC67
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 07:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230116AbiITFYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 01:24:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39538 "EHLO
+        id S230266AbiITFZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 01:25:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230172AbiITFYD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 01:24:03 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2069.outbound.protection.outlook.com [40.107.243.69])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28C5054C91;
-        Mon, 19 Sep 2022 22:23:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k/Uhx4bDHOgjr9mJWbJ6QtXnKspIeOyUXp/MdaqldamovAQWG13MfxCQvF8mzQAAsof/MDGvWYnBI5HaqIv8VasQ6CC9uIu2BrUhjyhcBm2rIZtuBTcca+mBtddS602NhJp1oaGruioO1pERdhqonZXDW8nvKaH2/YPIlq3h20dxltOjAfz6Lm/HbBE+tCBBeWrexAOVgAd2ZHgF2QD6oL1F0GZAPVgRcWyx4KeGlcj0QceIoFJOYMDLP7KHqMUPmiN2Qi8iDc7AGDeeFiMFh5osctignMYoVWDirPbyjw+khgQxsQndsfy9GlI1BzrwqzotAuGlIayQ3kpkckNkAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3IGDlEnFis5My9QBLKzdET6S/p0U0JXc5+PPFXV5xco=;
- b=k5ZGmrQUWJojI7/srDYooqk0oPokcg32p0OFsANNpqaJVsuCkdSA+cMQtz3NfaOK197YVpHEWQ+V9JkAioxBgD1A83iQA62hV5wjbHj4EnrFVEhlM2SE38XKzYzYfxrkRWMRLpy2OWuKLwlVMtDshgEm7FvOXZqg/FsvLxBneBy355uM7veK717tLtK+EXIX/cYXpvqUFNNmMV4/BXb3R40JTn7yqnnxGNiU7tD3quk1v0trpHEh7e28PRiO0KPr/6GLUojBke15q6pM8QLqHKiqvlG2J7fzCn1lj3U0/kM49MBzaxPG2FarLi6aiQ+5Uh0reM4GPdWdVxulJjeVEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3IGDlEnFis5My9QBLKzdET6S/p0U0JXc5+PPFXV5xco=;
- b=j7hbZHhPC0VjiTafJx4Xmqiun1SEz/ugx4nCZEoVU8REq7Zuk/LgaHbDMMrYtUPc7YeC8yF283nyGPkuFhW7PgcWbz6JIUoNXS6qIcwJwXtkTLoWt7mzWdISF7lt30WQ3sOanjLiXwC0fCWIKt31rbZuypjIdxJfahTZoOJf+Hs=
-Received: from DM6PR10CA0023.namprd10.prod.outlook.com (2603:10b6:5:60::36) by
- BY5PR12MB5015.namprd12.prod.outlook.com (2603:10b6:a03:1db::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21; Tue, 20 Sep
- 2022 05:23:13 +0000
-Received: from DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:60:cafe::df) by DM6PR10CA0023.outlook.office365.com
- (2603:10b6:5:60::36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21 via Frontend
- Transport; Tue, 20 Sep 2022 05:23:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT054.mail.protection.outlook.com (10.13.173.95) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5632.12 via Frontend Transport; Tue, 20 Sep 2022 05:23:13 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 20 Sep
- 2022 00:23:12 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 20 Sep
- 2022 00:23:12 -0500
-Received: from xhdnavam40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Tue, 20 Sep 2022 00:23:08 -0500
-From:   Piyush Mehta <piyush.mehta@amd.com>
-To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <balbi@kernel.org>,
-        <linux-usb@vger.kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <git@amd.com>, <michal.simek@amd.com>,
-        <siva.durga.prasad.paladugu@amd.com>,
-        Piyush Mehta <piyush.mehta@amd.com>
-Subject: [PATCH V3 2/2] usb: dwc3: core: Enable GUCTL1 bit 10 for fixing termination error after resume bug
-Date:   Tue, 20 Sep 2022 10:52:35 +0530
-Message-ID: <20220920052235.194272-3-piyush.mehta@amd.com>
+        with ESMTP id S230207AbiITFZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 01:25:26 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2CD55A89F
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 22:25:09 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id s14so452758wro.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Sep 2022 22:25:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Btu1ztR3RNS7yGwse7tt56AH1XmmucvrpacPilF1ViI=;
+        b=AVkhKBDBE4753ufHk0cJDEb3iU7R5wpQqWg3AsmAZ58SlqsWexMzYCzlj4bqd9A1vo
+         PMXtbzcrSOba98jdH9A72z2SEjZ8wo4PPFjPWOqrCdMF4N2b/9x+FQlCGbb/uIqnEaiv
+         VwOcANLHfeGs1kANF4+tKCIBV2gPz4xAGNt6mGLb0wFc0H3t0mKFT1yqQxEzI1Pm9xxd
+         ZWAGU1bCpjefCFwzw24O9daNLySq6v/5aqto35ahf1tvO0nWxoL/DZWW0LG2Jr14uGmp
+         MQlo72QkT/le2Z7JaZ3Zuj4VI3IGhgOzf5LDaBfQaD7lUeziZFIZyf7IeGJUlUFnnepd
+         xhzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Btu1ztR3RNS7yGwse7tt56AH1XmmucvrpacPilF1ViI=;
+        b=Z6YG7g4cIDpHElLDrJzXOOz8DMwGZI40xQpCgy9LxKGa0V2leI1x6lcWZckeq1yAAx
+         zgUClRODI3yFHKmDGcnu3gHz8w3MapI5gVT9wpx0moe5RoNl6JTaBmVD9rR0rHBRBwZW
+         QIbd/iDN57SU7OHdOyY/j64O1awgSJW1FFTtr+DHz//jGBmjl1FNxYxtie24L+y2eOdM
+         q6LNTv0qWnInGc/y5Vgo4ffbR5Rq3KyBtEhC+rZBLZKKIZ7W2T6QmDiobhUoeLqphlim
+         QWniqCiH8uDY6C3lu4jTSX1sQCtpCs4K7ug9ADAKaVWfbIW43woKusAyi//PEKwsXoxF
+         AZiA==
+X-Gm-Message-State: ACrzQf0v3LZSrKoGMYgesyjdZJS9U8IQEEDRRJaYLSJGLUHJwo4U9Usi
+        r/6ichqBdeFYdsKVifuc4kjQp/DSvWEvDA==
+X-Google-Smtp-Source: AMsMyM5zBrcCeuPDx+yNYE5U9IBma+Ow+P6dsKF1ePkXY2pckFngA5gbQujKTdXzDcmzCo7C1R99TQ==
+X-Received: by 2002:adf:fb86:0:b0:21e:3cc8:a917 with SMTP id a6-20020adffb86000000b0021e3cc8a917mr13423282wrr.538.1663651497651;
+        Mon, 19 Sep 2022 22:24:57 -0700 (PDT)
+Received: from localhost.localdomain (188.red-88-10-59.dynamicip.rima-tde.net. [88.10.59.188])
+        by smtp.gmail.com with ESMTPSA id p19-20020a05600c1d9300b003b47ff3807fsm16656639wms.5.2022.09.19.22.24.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Sep 2022 22:24:57 -0700 (PDT)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, arinc.unal@arinc9.com
+Subject: [PATCH v2] dt-bindings: interrupt-controller: migrate MIPS CPU interrupt controller text bindings to YAML
+Date:   Tue, 20 Sep 2022 07:24:55 +0200
+Message-Id: <20220920052455.582565-1-sergio.paracuellos@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220920052235.194272-1-piyush.mehta@amd.com>
-References: <20220920052235.194272-1-piyush.mehta@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT054:EE_|BY5PR12MB5015:EE_
-X-MS-Office365-Filtering-Correlation-Id: 035c3baf-3c28-43ce-ea5d-08da9ac8372c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ExIIJFZYmqB7OdL2yy3Gso7QztqJuTjYu+7nY7wpLOY3JryJIEgZXy12ZN1odITDhlgqO9iCpP1LkpSpcQf7/osJob225X0EFoRihP5gdwViBpUMAc4GBVoTAlOPaO+caCjvvvPNsnZAYmbS3ovsj1ohKs7bQpGeEmziiAZB6z1tPo9D66/R6xHGTSEc/k+HAW9J7Qu/ZITf6zKEwJwC24KA3gPYN0k1MinM9ieRIvWuRMRgpecwsytQgt9V9M5Y9qHQzB2R5h7Pd/koyF2nyy8UsRlHYHXSvl8q+MyJV51P+KhXVt61be8/Ng9pqZ1lVTPovPokwq6g6Dgmxd36P4KvmkWne+hcG05W10HQZRSdhDqTATg28niu7JCTSzi2hMC51NZ9RnzQabD2u7vMKidoJpPUv60nYsJDHJauM+wo0hYNLac5V4Edd1os6lLsYOPiEU5/UhjHl75nBDLCDOMl+I+bqJajV3/ih3bz9mfFpQqYS/TTi8Ai9AvCZbs32rC8KjiIZhMqGo4qWocBoB6RKGao8bmkjNm528ezWRVyY0tk7WgoVbZ1l9CFkWsccwxAiD/xWgCQDAfybTzxrAD8oAOVbjjOOidRFEL1hoTZVqJPq18ZUkToP7PytClaL4h7jRoyRLdTXcGkZ1iopTyENmaPwarR8L/sFHffhRea9F4y1IIXpQrRADr+PiLeWjnnkno+nNjTeWLqeOwp/E9XKu/j0adlPiWJ6iLcMb3XZC0/XHsj9zgwbA7Ggj99gagPR8S6AhTH20pvs/s7f9Uq95rToLQumSrD6JwE+9FP0iMmuxLwggAl290TOetF
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(136003)(346002)(39860400002)(451199015)(36840700001)(40470700004)(46966006)(70206006)(47076005)(44832011)(5660300002)(2906002)(426003)(83380400001)(40460700003)(41300700001)(110136005)(316002)(82310400005)(70586007)(186003)(8676002)(82740400003)(2616005)(1076003)(36756003)(8936002)(81166007)(356005)(26005)(478600001)(36860700001)(336012)(86362001)(54906003)(6666004)(40480700001)(4326008)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2022 05:23:13.5079
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 035c3baf-3c28-43ce-ea5d-08da9ac8372c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB5015
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -106,88 +67,129 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When configured in HOST mode, after issuing U3/L2 exit controller fails
-to send proper CRC checksum in CRC5 field. Because of this behavior
-Transaction Error is generated, resulting in reset and re-enumeration of
-usb device attached. Enabling chicken bit 10 of GUCTL1 will correct this
-problem.
+MIPS CPU interrupt controller bindings used text format, so migrate them
+to YAML.
 
-When this bit is set to '1', the UTMI/ULPI opmode will be changed to
-"normal" along with HS terminations, term, and xcvr signals after EOR.
-This option is to support certain legacy UTMI/ULPI PHYs.
-
-Added "snps,resume-hs-terminations" quirk to resolved the above issue.
-
-Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 ---
- drivers/usb/dwc3/core.c | 17 +++++++++++++++++
- drivers/usb/dwc3/core.h |  4 ++++
- 2 files changed, 21 insertions(+)
+Changes in v2:
+- Address review comment from Krzysztof:
+    - Rebase onto last kernel version.
+    - Add Thomas Bogendoerfer as maintainer since this is arch stuff.
+    - Change compatible to go first as property and required.
+    - Change sample node name to be generic. Use 'interrupt-controller'.
 
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index 8c8e32651473..7223074be6be 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -1180,6 +1180,21 @@ static int dwc3_core_init(struct dwc3 *dwc)
- 		dwc3_writel(dwc->regs, DWC3_GUCTL2, reg);
- 	}
- 
-+	/*
-+	 * When configured in HOST mode, after issuing U3/L2 exit controller
-+	 * fails to send proper CRC checksum in CRC5 feild. Because of this
-+	 * behaviour Transaction Error is generated, resulting in reset and
-+	 * re-enumeration of usb device attached. All the termsel, xcvrsel,
-+	 * opmode becomes 0 during end of resume. Enabling bit 10 of GUCTL1
-+	 * will correct this problem. This option is to support certain
-+	 * legacy ULPI PHYs.
-+	 */
-+	if (dwc->resume_hs_terminations) {
-+		reg = dwc3_readl(dwc->regs, DWC3_GUCTL1);
-+		reg |= DWC3_GUCTL1_RESUME_OPMODE_HS_HOST;
-+		dwc3_writel(dwc->regs, DWC3_GUCTL1, reg);
-+	}
+ .../mti,cpu-interrupt-controller.yaml         | 46 ++++++++++++++++++
+ .../devicetree/bindings/mips/cpu_irq.txt      | 47 -------------------
+ 2 files changed, 46 insertions(+), 47 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mips/cpu_irq.txt
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml b/Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml
+new file mode 100644
+index 000000000000..06dc65f0bbd2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/mti,cpu-interrupt-controller.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	if (!DWC3_VER_IS_PRIOR(DWC3, 250A)) {
- 		reg = dwc3_readl(dwc->regs, DWC3_GUCTL1);
- 
-@@ -1523,6 +1538,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
- 				"snps,dis-del-phy-power-chg-quirk");
- 	dwc->dis_tx_ipgap_linecheck_quirk = device_property_read_bool(dev,
- 				"snps,dis-tx-ipgap-linecheck-quirk");
-+	dwc->resume_hs_terminations = device_property_read_bool(dev,
-+				"snps,resume-hs-terminations");
- 	dwc->parkmode_disable_ss_quirk = device_property_read_bool(dev,
- 				"snps,parkmode-disable-ss-quirk");
- 
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index 4fe4287dc934..bc5ac4d0d61f 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -263,6 +263,7 @@
- #define DWC3_GUCTL1_DEV_FORCE_20_CLK_FOR_30_CLK	BIT(26)
- #define DWC3_GUCTL1_DEV_L1_EXIT_BY_HW		BIT(24)
- #define DWC3_GUCTL1_PARKMODE_DISABLE_SS		BIT(17)
-+#define DWC3_GUCTL1_RESUME_OPMODE_HS_HOST	BIT(10)
- 
- /* Global Status Register */
- #define DWC3_GSTS_OTG_IP	BIT(10)
-@@ -1096,6 +1097,8 @@ struct dwc3_scratchpad_array {
-  *			change quirk.
-  * @dis_tx_ipgap_linecheck_quirk: set if we disable u2mac linestate
-  *			check during HS transmit.
-+ * @resume-hs-terminations: Set if we enable quirk for fixing improper crc
-+ *			generation after resume from suspend.
-  * @parkmode_disable_ss_quirk: set if we need to disable all SuperSpeed
-  *			instances in park mode.
-  * @tx_de_emphasis_quirk: set if we enable Tx de-emphasis quirk
-@@ -1311,6 +1314,7 @@ struct dwc3 {
- 	unsigned		dis_u2_freeclk_exists_quirk:1;
- 	unsigned		dis_del_phy_power_chg_quirk:1;
- 	unsigned		dis_tx_ipgap_linecheck_quirk:1;
-+	unsigned		resume_hs_terminations:1;
- 	unsigned		parkmode_disable_ss_quirk:1;
- 
- 	unsigned		tx_de_emphasis_quirk:1;
++title: MIPS CPU Interrupt Controller bindings
++
++description: >
++   On MIPS the mips_cpu_irq_of_init() helper can be used to initialize the 8 CPU
++   IRQs from a devicetree file and create a irq_domain for IRQ controller.
++
++   With the irq_domain in place we can describe how the 8 IRQs are wired to the
++   platforms internal interrupt controller cascade.
++
++maintainers:
++  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
++
++properties:
++  compatible:
++    const: mti,cpu-interrupt-controller
++
++  '#interrupt-cells':
++    const: 1
++
++  '#address-cells':
++    const: 0
++
++  interrupt-controller: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - '#interrupt-cells'
++  - '#address-cells'
++  - interrupt-controller
++
++examples:
++  - |
++    interrupt-controller {
++      #address-cells = <0>;
++      #interrupt-cells = <1>;
++      interrupt-controller;
++      compatible = "mti,cpu-interrupt-controller";
++    };
+diff --git a/Documentation/devicetree/bindings/mips/cpu_irq.txt b/Documentation/devicetree/bindings/mips/cpu_irq.txt
+deleted file mode 100644
+index f080f06da6d8..000000000000
+--- a/Documentation/devicetree/bindings/mips/cpu_irq.txt
++++ /dev/null
+@@ -1,47 +0,0 @@
+-MIPS CPU interrupt controller
+-
+-On MIPS the mips_cpu_irq_of_init() helper can be used to initialize the 8 CPU
+-IRQs from a devicetree file and create a irq_domain for IRQ controller.
+-
+-With the irq_domain in place we can describe how the 8 IRQs are wired to the
+-platforms internal interrupt controller cascade.
+-
+-Below is an example of a platform describing the cascade inside the devicetree
+-and the code used to load it inside arch_init_irq().
+-
+-Required properties:
+-- compatible : Should be "mti,cpu-interrupt-controller"
+-
+-Example devicetree:
+-	cpu-irq: cpu-irq {
+-		#address-cells = <0>;
+-
+-		interrupt-controller;
+-		#interrupt-cells = <1>;
+-
+-		compatible = "mti,cpu-interrupt-controller";
+-	};
+-
+-	intc: intc@200 {
+-		compatible = "ralink,rt2880-intc";
+-		reg = <0x200 0x100>;
+-
+-		interrupt-controller;
+-		#interrupt-cells = <1>;
+-
+-		interrupt-parent = <&cpu-irq>;
+-		interrupts = <2>;
+-	};
+-
+-
+-Example platform irq.c:
+-static struct of_device_id __initdata of_irq_ids[] = {
+-	{ .compatible = "mti,cpu-interrupt-controller", .data = mips_cpu_irq_of_init },
+-	{ .compatible = "ralink,rt2880-intc", .data = intc_of_init },
+-	{},
+-};
+-
+-void __init arch_init_irq(void)
+-{
+-	of_irq_init(of_irq_ids);
+-}
 -- 
 2.25.1
 
