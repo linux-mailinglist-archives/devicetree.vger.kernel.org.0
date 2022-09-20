@@ -2,102 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F275BE00C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B845BE01C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:32:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231368AbiITIbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57586 "EHLO
+        id S229611AbiITIcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:32:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbiITIaf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:30:35 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F9332D8E
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:30:01 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id o2so2508629lfc.10
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:30:01 -0700 (PDT)
+        with ESMTP id S229905AbiITIb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:31:59 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D602C23BD3
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:31:22 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id n10so2961062wrw.12
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:31:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=agy8Tt80j/kRvFU4gLKj231EcFlYzic5Np99mPIQ+dE=;
-        b=yDdwc5dVZfa5Ye5xdoVmY3cDbvFbZB10xPeKDFXq7D41eQXxQdn6+pvq/+yVQUdrHu
-         DGcbAXGyGPQa+f0OPN16C12QivySbGeQ00/0p4ThY05fEH298++HY9ihEIaGxKFtPwsJ
-         rXOYCl+R+SVx11uwBbr1Nwfp8TfXXWT+NWFNZJwT71UPDP4Dr+/FTn2DvQLFVkdCHHjM
-         erEQh1kq4u/SxxmHs0X+Ndev7iZMw3iYiSfnnK90gS8yLxtcce07on6wj4UQAxkxFiXp
-         RWpP21ZwmZmda/4a86qVRjeJuQoZxoIZcVt0PTNZVuvqHtyvwF1ykr3V1ecooU4biu0l
-         iZTg==
+        bh=JevgRfzZajHh1ivJNGDpznKCTFD71WO98dSUBcXwKkQ=;
+        b=RX0Sh3F73nodOtMqcJB/O8rzrlHYjazqjbR0QpQCoECZr75KPLgR4sOLNwcFXQ/mb2
+         ocYdGlBdFq5gxdrmtwLlgKJx7CPj7DCcjt7O90xgAeId7bZD2NqxAGBNIZBI63+B6Gm6
+         5Mv/XsAAnBPMlXwZ4NvzJ/2+k7GfxdLo+hIDkr2yBCndqzhFwr1cQuxn8yiHHfbzVa70
+         p+hFmiJrEY5C8ExPWVKJuvCBr59i9oD+Iv1TBWW8n1ri7b1R1I3LAy3v1Dt5abozJCzL
+         pYzUesSsyGvIT93+sGO9TQ8kl2wz9sMUIw0OTLC20i7B2/Tlq7dQJjmaaYs84HSyGQLA
+         0x2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=agy8Tt80j/kRvFU4gLKj231EcFlYzic5Np99mPIQ+dE=;
-        b=maTvAHw4ZharEYzhHKWV7vDss+dw7J5bYqSH6aJyMtBldDXhyGxdGST9v6rJxGS0Tp
-         Lmo61PRSWCZ5hBWVH7C5vOlR1N2lfHGmgLL3WUhPDwJbuNF41jUDLGIXUm460VaFdxlX
-         veXCmTyOBJCg0RKyL8rchVJatkzdB7ziTXWAv+pRgvaynZO7/sZpQ50STy8k2101AXaC
-         8TvG1LTl32vja/o+0sKKsQrCy5pThOPFBiT/8W0nXBfD4AkL42x/iXqodxosrIwR8asE
-         zTJmILk2RPyEHxo4UpAIuw8ujsDVz41/1LSW31yzaoA7s6y5LTdZS1VwLBzhvFoanY4b
-         QPPQ==
-X-Gm-Message-State: ACrzQf3zQ6Lzd9uFaFK1aMxvT5vfcCgQtq0A+5A0S+2O7Ub9q4xDi2Ru
-        lc95sqdLqIrzXsXqiwVVBK6SfA==
-X-Google-Smtp-Source: AMsMyM4UKGyEa5JByvPQbjpNBv7kTtyqXSl4s2097VZx6dOP0gE0xHx1NyWr1NYhR8xB7Hu7ZxwB/Q==
-X-Received: by 2002:a05:6512:3c93:b0:48c:dc60:4786 with SMTP id h19-20020a0565123c9300b0048cdc604786mr7594820lfv.208.1663662599775;
-        Tue, 20 Sep 2022 01:29:59 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w4-20020a05651234c400b004948b667d95sm191945lfr.265.2022.09.20.01.29.58
+        bh=JevgRfzZajHh1ivJNGDpznKCTFD71WO98dSUBcXwKkQ=;
+        b=SBkaFmpNl2evnuhPfEubUYduY3heCdWTwltePO9eNohlK1l0vqpiZ9nmAEIgUPSP6A
+         2gcvskX2PwBOEUNucIlnavMllP/fr5SHQ9zl0PloVnsULx24N8HPbiKFO6s8OgcwxU7N
+         T1/A3Y5jHmwbOoL6lUV4xdFQORvN3e1tpXWuPjMHzdLnFJRSILKRMmUl2OqVmN5YnYyy
+         UTH0DzoyjwZZVz0aSfgaZ4T7lE/6Nd/Uihu2h3zyP/943znknmKVh0NFpvaZKRD+3tzL
+         hzQfOusiWla3TJy7QpxRHoc3rjBMCNSPhcXXpCO1OiD39gSLdyqGGftWv/e3exe7XmTr
+         aVrQ==
+X-Gm-Message-State: ACrzQf049RQpesdNvIT0mGS18YLdLWMeCt7cC9TF8JrKsh5CmGrCIela
+        3zqHCPK/1eoXr9roRqJ8TpDdyQ==
+X-Google-Smtp-Source: AMsMyM74xfiWSJJs+Nvny1x9cNy0Hheub/jdfRKhfI5KVZk44pOGzg1LeUSMI5Exgk7YsBAOw7rzgg==
+X-Received: by 2002:a5d:6388:0:b0:228:c792:aabe with SMTP id p8-20020a5d6388000000b00228c792aabemr13008936wru.689.1663662681325;
+        Tue, 20 Sep 2022 01:31:21 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id m19-20020a05600c3b1300b003a319b67f64sm2272271wms.0.2022.09.20.01.31.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 01:29:59 -0700 (PDT)
-Message-ID: <7d61568d-4fb7-a1fd-8418-cad65e2172cb@linaro.org>
-Date:   Tue, 20 Sep 2022 10:29:58 +0200
+        Tue, 20 Sep 2022 01:31:20 -0700 (PDT)
+Message-ID: <66e00dce-d9fe-efc6-1121-8e7f4001d655@linaro.org>
+Date:   Tue, 20 Sep 2022 10:31:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 2/2] clk: qcom: rpmhcc: add sdm670 clocks
+ Thunderbird/91.11.0
+Subject: Re: [PATCH RESEND] dt-bindings: timer: Add compatible for MediaTek
+ MT8188
 Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220920023709.4865-1-mailingradian@gmail.com>
- <20220920023709.4865-3-mailingradian@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220920023709.4865-3-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Johnson Wang <johnson.wang@mediatek.com>, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220818124602.20394-1-johnson.wang@mediatek.com>
+ <4a7e5e729f85c112a235e6bdd8bd337f90eabbf5.camel@mediatek.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <4a7e5e729f85c112a235e6bdd8bd337f90eabbf5.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 04:37, Richard Acayan wrote:
-> The Snapdragon 670 uses the RPMh mailbox for most of the clocks used in
-> SDM845 but omits two. Add clock data for SDM670 so the driver doesn't fail
-> to resolve a clock.
+On 20/09/2022 07:20, Johnson Wang wrote:
+> On Thu, 2022-08-18 at 20:46 +0800, Johnson Wang wrote:
+>> Add dt-binding documentation of timer for MediaTek MT8188 SoC
+>> platform.
+>>
+>> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/timer/mediatek,mtk-
+>> timer.txt b/Documentation/devicetree/bindings/timer/mediatek,mtk-
+>> timer.txt
+>> index f1c848af91d3..8bbb6e94508b 100644
+>> --- a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+>> +++ b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+>> @@ -25,6 +25,7 @@ Required properties:
+>>   	For those SoCs that use SYST
+>>   	* "mediatek,mt8183-timer" for MT8183 compatible timers (SYST)
+>>   	* "mediatek,mt8186-timer" for MT8186 compatible timers (SYST)
+>> +	* "mediatek,mt8188-timer" for MT8188 compatible timers (SYST)
+>>   	* "mediatek,mt8192-timer" for MT8192 compatible timers (SYST)
+>>   	* "mediatek,mt8195-timer" for MT8195 compatible timers (SYST)
+>>   	* "mediatek,mt7629-timer" for MT7629 compatible timers (SYST)
 > 
-> Link: https://android.googlesource.com/kernel/msm/+/444bd8d6e2cf54698234c752e6de97b4b8a528bd%5E%21/#F7
-
-NOT_FOUND: Requested entity was not found
-Do not add non-working links.
-
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  drivers/clk/qcom/clk-rpmh.c | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
+> Hi Daniel,
 > 
+> Just a gentle ping on this.
+> Could you please review this patch and give us some suggestion?
 
-Best regards,
-Krzysztof
+
+I've applied the patch
+
+Thanks
+
+   -- D.
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
