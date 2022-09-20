@@ -2,82 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79CA35BE067
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:40:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D64CD5BE06F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:41:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiITIjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:39:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34546 "EHLO
+        id S231403AbiITIlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:41:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231164AbiITIiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:38:02 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2BE6B8FA
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:36:36 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id f9so2587988lfr.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:36:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=ZbRFqzUyyPs/92M9rsG+H3wBK/tL2k42vf0PEe2H8lQ=;
-        b=akOhfTTZcbKEr04isFguHpEzcRFBLPTfducL1VfutUAj9lxobBnFV8hguHd/LqGIQ5
-         tDWvm30uFjsT0NEtvxvHgA1MhL+7P43IZ2WiaCmCa6SBr7MyIEZnsPcWiLE81Jgrilw+
-         I0lInYKr339PmYiTkLj/4yKnhw/mD7Ltv1U3JD8KL09TvwGWSP20Q4uz4vHQ5BwrwxES
-         A17QNu99EioWMi1wp3OhMtxlDagtoXEA/H1DBPfkrwzcsrpY8UwqD8x4kleUccThPMHP
-         UDM+FUKDx+jz8SHDZv4vOoNTJErIAwNCzxV8Usz6wsIkHi3OSr/x5op9YdZphGkKmyrL
-         q1Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ZbRFqzUyyPs/92M9rsG+H3wBK/tL2k42vf0PEe2H8lQ=;
-        b=ozDn7m1MpMMTU2P6W6dHHRM78cEyt0tsM6jz5R/YGs06cUnzuIgjwObtqQZYaY5buK
-         UxT7w1NdBmdKwA5VxdgScOv8xM2HuAWF4XaA3rTPBrpzTQlFn4ej2zPjPmljxZCsV1ZW
-         oYkQ9dmzYfS4QvcqcBaTbqIf+qKz0Th2mgutkdUVU58FO9mjKCx6CXtuRQO5J6T7caaw
-         rjYPzcuHUusJEFzf8TskS69i4eldYhWlCk07/v3Ub/C6i8vtkcrKJy1QktJx4e17suab
-         zM4QruheIcOOA7HnFMBZNMRE7mcVPcIj4j4c4kxPngcZQgekdRgr1wsiD3Qykx/2JyI5
-         5mqw==
-X-Gm-Message-State: ACrzQf1Qe36FcZLpcmhXQ1yECxVKPLQQak4/RNeLoc2SXm2/QkvjI4c/
-        f8HjFPHdBXBcr+AcIRF/P/aEeQ==
-X-Google-Smtp-Source: AMsMyM5tQWKY+m5B2U0jnpYXtMNrv+a87LiHZ0GcZGdQpCm5wTPGOdx59QJN77eY2oFR+FW0Y15+bQ==
-X-Received: by 2002:a05:6512:78e:b0:49a:d9ae:3051 with SMTP id x14-20020a056512078e00b0049ad9ae3051mr7294395lfr.203.1663662991823;
-        Tue, 20 Sep 2022 01:36:31 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d25-20020ac25ed9000000b00492e570e036sm205874lfq.54.2022.09.20.01.36.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 01:36:31 -0700 (PDT)
-Message-ID: <0ec65132-7d7a-2f8d-cc16-cb76efc343d6@linaro.org>
-Date:   Tue, 20 Sep 2022 10:36:30 +0200
+        with ESMTP id S231406AbiITIks (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:40:48 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9571F13DCD
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:39:35 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oaYmb-0005c5-NA; Tue, 20 Sep 2022 10:39:09 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oaYma-0001Ji-JI; Tue, 20 Sep 2022 10:39:08 +0200
+Date:   Tue, 20 Sep 2022 10:39:08 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
+        hverkuil@xs4all.nl, jacopo@jmondi.org,
+        kieran.bingham+renesas@ideasonboard.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v2 4/4] media: tc358746: add Toshiba TC358746 Parallel to
+ CSI-2 bridge driver
+Message-ID: <20220920083908.st4h3pb6usn4zavu@pengutronix.de>
+References: <20220916134535.128131-1-m.felsch@pengutronix.de>
+ <20220916134535.128131-5-m.felsch@pengutronix.de>
+ <YyhktzmcgXKnrMFU@pendragon.ideasonboard.com>
+ <20220919171142.6av6ap5gwweldado@pengutronix.de>
+ <Yyio06jhK13BiNiP@pendragon.ideasonboard.com>
+ <YyjI/JOcryD8yKzT@paasikivi.fi.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: qcom-spmi-pmic: Add pm6125
- compatible
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220919204826.215845-1-marijn.suijten@somainline.org>
- <20220919204826.215845-2-marijn.suijten@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919204826.215845-2-marijn.suijten@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YyjI/JOcryD8yKzT@paasikivi.fi.intel.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,14 +60,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 22:48, Marijn Suijten wrote:
-> Document support for the pm6125, typically paired with the sm6125 SoC.
+Hi Sakari,
+
+On 22-09-19, Sakari Ailus wrote:
+> On Mon, Sep 19, 2022 at 08:37:23PM +0300, Laurent Pinchart wrote:
+> > > > > +	ctrl = v4l2_ctrl_new_int_menu(&tc358746->ctrl_hdl, NULL,
+> > > > > +				      V4L2_CID_LINK_FREQ, 0, 0,
+> > > > 
+> > > > Shouldn't the max argument be set to the number of items minus 1 ?
+> > > 
+> > > Right now I would keep it that way since the driver only supports one
+> > > link-frequencies setting. So the ctrl don't let the userspace assume
+> > > that there are more than one link-frequency.
+> > 
+> > Good point. Can you add a short comment above the call to explain this ?
 > 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Wouldn't it be just easier to do what Laurent suggested originally? The end
+> result is the same, isn't it, and no comment needed?
 
+The end result depends on the device-tree given "link-frequencies"
+property. The driver currently takes only one frequency but the
+system-integrator of course can specify many more. In such case the 1st
+is used. If I go with Laurent's comment, all frequencies would be shown
+to the user-space but IMHO this shouldn't be the case since the driver
+supports only 1 frequency.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > > > > +				      link_frequencies);
+> > > > > +	if (ctrl)
+> > > > > +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> 
+> Now that this is a bridge, this value presumably doesn't need to change.
 
+The value can change, e.g. if you have a few freq. to allow a wide range
+of frame sizes. This can be the case to conform the emv tests. So there
+can be a freq. for smaller frame sizes and one for larger frame sizes.
 
-Best regards,
-Krzysztof
+> There will just be more blanking if the source sub-device pixel rate is
+> slower, right?
+
+Please see above.
+
+Regards,
+  Marco
