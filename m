@@ -2,123 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 065FF5BDE33
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:31:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A5835BDE45
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiITHbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 03:31:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36722 "EHLO
+        id S229503AbiITHdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 03:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229684AbiITHbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:31:47 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EDA95C9DC
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:31:45 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id a3so2312430lfk.9
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:31:45 -0700 (PDT)
+        with ESMTP id S229505AbiITHdS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:33:18 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7938F5FACE
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:33:17 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id a14so1920695ljj.8
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 00:33:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=jnQTMRJFYigIA33SCaz3qFtz2tTG96QP1qgq/1/BZcI=;
-        b=T0y+y6A1fvkqDFPe4IcALqvk6i6V6IeL/T42HmYnQ/iEvssRXvoGNXQK2QK2l9krs8
-         ylSJI39dQ1svBpruOpx9+f+Ti7Ty1xvoVCbTtSyd87OSudH/Dup9M1gCQNKxfjuCXBsy
-         ercJGw3wc4E+wz7EbEXGNAW6IKHGrRUMcA5bMbFoDcZN7drVoWGhZaAc9nZClDsM5iK1
-         +H/cnT2lvzgTLxqmC7dzTkaSeJ/SUIjZeDHmgWGe9FgFqwxbqcfAAUA70/5ZElnLMWEK
-         rtOlV7Zd86Ul81C3ho1Js8L556epC32JMPNCrD74SoiMxcBe1rQ0fY8ypwKrdXqi5DCq
-         F8fA==
+        bh=PPl4mpHHpnRstvj9PRcbnaluXmvv7htKw/1jIOn3Ff4=;
+        b=wbqVz5N0/fG0DlYdxK26xJ1g4MjRPTmojsGv9T++41W2N/vfL/DIefDUwnru1Nx2z3
+         QOw61PZlDwyKlphqlniGHOEaIQ63R2HdRwO8ZgetJvB6WBZl2yXADIBa6GDG8JjL7Vz0
+         Rb8MdkVrTp5yxVeMbhCEkJZUXSX7m42QCv+M1tY0yunUfTw5cH7f2PhXF93hhB1/tFXm
+         9HFNbDgGcxAZjo9pd9Q1SywauKAUuuVk6du/PJfATDtV0ioveU7yrvMRU9LzyvBc1rkQ
+         eHJ75UmfWq8K5JZGyta7QuUX6YLtq84LJs4YzlYzRATEBT1FQ3LihNx0HcyM/+IFH+uS
+         XuwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=jnQTMRJFYigIA33SCaz3qFtz2tTG96QP1qgq/1/BZcI=;
-        b=1DlVWh+gd7eRjnoH0z7AhmdupHwJY8qhX6dOyj+v6F/UuF047xZ8FAWi48+etk8gpR
-         p7JapG9SwKvzvfewBPo2zYYyUeBVEe2pJJ528EvFHLgxxUzmj5iKhxgx2Xsc3V9Fhz2b
-         OWo22xXk1KmEF54a82Xd7k1C2WT78r681+RRnMkyBOQPWOFl67+0mwgd9NuCYaGfCc2s
-         aWLWUjWZHna/DuYxi6kaL9cHSEzt95CDhvN6uO3jsvxNy3dlD41t2NqAeSoCHK4BXy+O
-         DjddCyzTjYDk6A8i4F6UUr/hlXMijE7290LXFugp3cxiMw7a6ZX0LA6R1Rnr5H1J6J1B
-         cIng==
-X-Gm-Message-State: ACrzQf1ejRRBRsnIx8Yp5aKqsDV4yrFAWn8ANgjTa+nXwuiZhnNFHR14
-        hU7lTg0Bm+8EwJ/5hjq6m+Uu3A==
-X-Google-Smtp-Source: AMsMyM5yIu9IkKRq6w5n9mdk+CKiqWTaJs++Wf9rCvN4lj2CHpn0F5WW7oZBBev+DaqYQIfxRg/R4Q==
-X-Received: by 2002:a05:6512:6d6:b0:499:27c:1aa0 with SMTP id u22-20020a05651206d600b00499027c1aa0mr7981676lff.88.1663659103935;
-        Tue, 20 Sep 2022 00:31:43 -0700 (PDT)
+        bh=PPl4mpHHpnRstvj9PRcbnaluXmvv7htKw/1jIOn3Ff4=;
+        b=CNHpAMqxzo2+zzgfcp2QPsqyb4PJPwUNHWGBa93jVukgRMJNh0mL90hWZogdJEQuuH
+         kuumzVSOwxkxhGG9XXOwupv0WgtPgOehHpAspbKrJ60JERyc7WMLSot7ZDBof6Ei34Cd
+         883vkbed3yTudzdXQ6f+z6KDD6mzgItp28qvbcFTEcVJ/dhDHQvHBgQFjPUU2Q12PwDB
+         pXMxUbY/I74L/4HQNVraY+sh1Slj2Xop5ippOP8ljpb+O0euo23F4osxN+h9cpgFxFMw
+         UJuKtih1J4IREnBNzaIvR/Rf/4ab0AK54am0S4KyveFYSbmrOK2rgU5GEzTYhP0g7zeN
+         L/UA==
+X-Gm-Message-State: ACrzQf0gGUtmFxGdihr/ZFAjwn5IKt1XhnmaffyShW55kpM/xKXZOTlX
+        H3SUCuKqM77lHsE4t1o0Pq+isQ==
+X-Google-Smtp-Source: AMsMyM7cLpvAM7G86NTRFt7n+ogv3pvaor+5hOBpggjJ8POwyvQfXQqCkZgVZLq1iUzj5nW2bYUZvw==
+X-Received: by 2002:a05:651c:1787:b0:261:c1ff:4407 with SMTP id bn7-20020a05651c178700b00261c1ff4407mr6325720ljb.257.1663659195867;
+        Tue, 20 Sep 2022 00:33:15 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q25-20020a2e8759000000b0026c2e0258bcsm125089ljj.42.2022.09.20.00.31.42
+        by smtp.gmail.com with ESMTPSA id v10-20020a2ea60a000000b0026ad753448fsm122448ljp.85.2022.09.20.00.33.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 00:31:42 -0700 (PDT)
-Message-ID: <30756e6f-952f-ccf2-b493-e515ba4f0a64@linaro.org>
-Date:   Tue, 20 Sep 2022 09:31:41 +0200
+        Tue, 20 Sep 2022 00:33:14 -0700 (PDT)
+Message-ID: <79cfab3d-6b86-8876-cde2-59e43610431a@linaro.org>
+Date:   Tue, 20 Sep 2022 09:33:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v6 4/4] dt-bindings: qcom-qce: Add new SoC compatible
- strings in dt-binding doc
+Subject: Re: [PATCH v5 1/3] memory: omap-gpmc: allow shared wait pins
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, thara.gopinath@gmail.com,
-        robh@kernel.org, andersson@kernel.org, bhupesh.linux@gmail.com,
-        Jordan Crouse <jorcrous@amazon.com>
-References: <20220919195618.926227-1-bhupesh.sharma@linaro.org>
- <20220919195618.926227-5-bhupesh.sharma@linaro.org>
+To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+Cc:     "rogerq@kernel.org" <rogerq@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20220916120749.2517727-1-benedikt.niedermayr@siemens.com>
+ <20220916120749.2517727-2-benedikt.niedermayr@siemens.com>
+ <5d4d9412-6445-f3a3-0f86-6c41a37dca70@linaro.org>
+ <7c13efa554d12324d402690753c27a8c0e803867.camel@siemens.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919195618.926227-5-bhupesh.sharma@linaro.org>
+In-Reply-To: <7c13efa554d12324d402690753c27a8c0e803867.camel@siemens.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 21:56, Bhupesh Sharma wrote:
-> Newer Qualcomm chips support newer versions of the qce crypto IP, so add
-> soc specific compatible strings for qcom-qce instead of using crypto
-> IP version specific ones.
+On 19/09/2022 14:37, Niedermayr, BENEDIKT wrote:
+>>
+>> And how do you handle shared pin when the original owner unbinds?
+> So first of all this code only keeps track of the wait_pin allocation from within the gpmc. If any other driver/code
+> allocated this pin than the evaluation gpiochip_request_own_desc() would fail since the pin hasn't been requested by the gpmc itself.
+> The testbit() only checks if this pin has been allocated by the gpmc itself. If yes, then the waitpin can be treated as shared wait pin. If no,
+> then another driver allocated the pin before and we return an error.
 > 
-> Keep the old strings for backward-compatibility, but mark them as
-> deprecated.
+> The gpmc must be able to release the wait_pin in the wait_pin_alloc_mask, that's true. The only section where the waitpin_desc is released 
+> can be found further down in this function:
 > 
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Tested-by: Jordan Crouse <jorcrous@amazon.com>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  .../devicetree/bindings/crypto/qcom-qce.yaml         | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
+> err_cs:
+> 	gpiochip_free_own_desc(waitpin_desc);
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> index 4e00e7925fed..aa2f676f5382 100644
-> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> @@ -15,7 +15,15 @@ description:
->  
->  properties:
->    compatible:
-> -    const: qcom,crypto-v5.1
-> +    enum:
-> +      - qcom,crypto-v5.1 # Deprecated. Kept only for backward compatibility
+> You're right. I must add the relase logic here as well.
 
-deprecated:true in its own oneOf entry (see other examples).
-
-> +      - qcom,ipq6018-qce
-> +      - qcom,ipq8074-qce
-> +      - qcom,msm8996-qce
-> +      - qcom,sdm845-qce
-> +      - qcom,sm8150-qce
-> +      - qcom,sm8250-qce
-> +      - qcom,sm8350-qce
-
-Entire change is not backwards compatible thus not bisectable and not
-ABI-safe.
+You wrote quite a lot but that was not explanation of how do you handle
+unbind... Last sentence was enough.
 
 Best regards,
 Krzysztof
