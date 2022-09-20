@@ -2,35 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A49A5BEC44
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 19:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 737695BEC49
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 19:48:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231248AbiITRr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 13:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45080 "EHLO
+        id S229885AbiITRr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 13:47:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230233AbiITRrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 13:47:51 -0400
+        with ESMTP id S231190AbiITRrz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 13:47:55 -0400
 Received: from mellanox.co.il (mail-il-dmz.mellanox.com [193.47.165.129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D62236E897
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 10:47:48 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C2E74642C1
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 10:47:53 -0700 (PDT)
 Received: from Internal Mail-Server by MTLPINE1 (envelope-from asmaa@mellanox.com)
-        with SMTP; 20 Sep 2022 20:47:44 +0300
+        with SMTP; 20 Sep 2022 20:47:49 +0300
 Received: from bu-vnc02.mtbu.labs.mlnx (bu-vnc02.mtbu.labs.mlnx [10.15.2.65])
-        by mtbu-labmailer.labs.mlnx (8.14.4/8.14.4) with ESMTP id 28KHlfvb015181;
-        Tue, 20 Sep 2022 13:47:41 -0400
+        by mtbu-labmailer.labs.mlnx (8.14.4/8.14.4) with ESMTP id 28KHlm84015205;
+        Tue, 20 Sep 2022 13:47:48 -0400
 Received: (from asmaa@localhost)
-        by bu-vnc02.mtbu.labs.mlnx (8.14.7/8.13.8/Submit) id 28KHlcLI009926;
-        Tue, 20 Sep 2022 13:47:38 -0400
+        by bu-vnc02.mtbu.labs.mlnx (8.14.7/8.13.8/Submit) id 28KHlmLC010006;
+        Tue, 20 Sep 2022 13:47:48 -0400
 From:   Asmaa Mnebhi <asmaa@nvidia.com>
 To:     Wolfram Sang <wsa+renesas@sang-engineering.com>, robh@kernel.org,
         linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Cc:     Asmaa Mnebhi <asmaa@nvidia.com>
-Subject: [PATCH v5 0/8] i2c: i2c-mlxbf.c: bug fixes and new feature support
-Date:   Tue, 20 Sep 2022 13:47:28 -0400
-Message-Id: <20220920174736.9766-1-asmaa@nvidia.com>
+Cc:     Asmaa Mnebhi <asmaa@nvidia.com>,
+        Khalil Blaiech <kblaiech@nvidia.com>
+Subject: [PATCH v5 8/8] i2c: i2c-mlxbf.c: Update binding devicetree
+Date:   Tue, 20 Sep 2022 13:47:36 -0400
+Message-Id: <20220920174736.9766-9-asmaa@nvidia.com>
 X-Mailer: git-send-email 2.30.1
+In-Reply-To: <20220920174736.9766-1-asmaa@nvidia.com>
+References: <20220920174736.9766-1-asmaa@nvidia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
@@ -42,43 +45,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a series of patches fixing several bugs and implementing
-new features.
+In the latest version of the i2c-mlxbf.c driver, the "Smbus block"
+resource was broken down to 3 separate resources "Smbus timer",
+"Smbus master" and "Smbus slave" to accommodate for BlueField-3
+SoC registers' changes.
 
-Bug fixes:
-1) Fix the frequency calculation
-2) Fix incorrect base address passed during io write
-3) prevent stack overflow in mlxbf_i2c_smbus_start_transaction()
-4) Support lock mechanism to avoid race condition between entities
-   using the i2c bus
+Reviewed-by: Khalil Blaiech <kblaiech@nvidia.com>
+Signed-off-by: Asmaa Mnebhi <asmaa@nvidia.com>
+---
+ .../bindings/i2c/mellanox,i2c-mlxbf.yaml      | 48 ++++++++++++++-----
+ 1 file changed, 36 insertions(+), 12 deletions(-)
 
-Cleanup:
-5) remove IRQF_ONESHOT flag as it is no longer needed.
-
-Features:
-6) Support multi slave functionality
-7) Support BlueField-3 SoC
-8) Update binding devicetree
-
-What has changed from v4->v5:
-Fix build error in the mellanox i2c device tree documentation
-
-Asmaa Mnebhi (8):
-  i2c: i2c-mlxbf.c: Fix frequency calculation
-  i2c: i2c-mlxbf.c: remove IRQF_ONESHOT
-  i2c: i2c-mlxbf.c: incorrect base address passed during io write
-  i2c: i2c-mlxbf: prevent stack overflow in
-    mlxbf_i2c_smbus_start_transaction()
-  i2c: i2c-mlxbf.c: support lock mechanism
-  i2c: i2c-mlxbf: add multi slave functionality
-  i2c: i2c-mlxbf.c: support BlueField-3 SoC
-  i2c: i2c-mlxbf.c: Update binding devicetree
-
- .../bindings/i2c/mellanox,i2c-mlxbf.yaml      |  48 +-
- MAINTAINERS                                   |   1 +
- drivers/i2c/busses/i2c-mlxbf.c                | 862 ++++++++++--------
- 3 files changed, 521 insertions(+), 390 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
+index 93198d5d43a6..24ab70c987fe 100644
+--- a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
++++ b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
+@@ -8,6 +8,7 @@ title: Mellanox I2C SMBus on BlueField SoCs
+ 
+ maintainers:
+   - Khalil Blaiech <kblaiech@nvidia.com>
++  - Asmaa Mnebhi <asmaa@nvidia.com>
+ 
+ allOf:
+   - $ref: /schemas/i2c/i2c-controller.yaml#
+@@ -17,6 +18,7 @@ properties:
+     enum:
+       - mellanox,i2c-mlxbf1
+       - mellanox,i2c-mlxbf2
++      - mellanox,i2c-mlxbf3
+ 
+   reg:
+     minItems: 3
+@@ -25,6 +27,9 @@ properties:
+       - description: Cause master registers
+       - description: Cause slave registers
+       - description: Cause coalesce registers
++      - description: Smbus timer registers
++      - description: Smbus master registers
++      - description: Smbus slave registers
+ 
+   interrupts:
+     maxItems: 1
+@@ -35,6 +40,13 @@ properties:
+       bus frequency used to configure timing registers;
+       The frequency is expressed in Hz. Default is 100000.
+ 
++  resource_version:
++    enum: [ 0, 1 ]
++    description:
++      Version of the device tree. resource_version = 0 when the driver uses
++      Smbus block resource. resource_version = 1 when the driver uses Smbus
++      timer, Smbus master and Smbus slave resources.
++
+ required:
+   - compatible
+   - reg
+@@ -42,18 +54,6 @@ required:
+ 
+ unevaluatedProperties: false
+ 
+-if:
+-  properties:
+-    compatible:
+-      contains:
+-        enum:
+-          - mellanox,i2c-mlxbf1
+-
+-then:
+-  properties:
+-    reg:
+-      maxItems: 3
+-
+ examples:
+   - |
+     i2c@2804000 {
+@@ -61,8 +61,13 @@ examples:
+         reg = <0x02804000 0x800>,
+               <0x02801200 0x020>,
+               <0x02801260 0x020>;
++              <0x00000001 0x1>;
++              <0x02804000 0x40>,
++              <0x02804200 0x200>,
++              <0x02804400 0x200>,
+         interrupts = <57>;
+         clock-frequency = <100000>;
++        resource_version = <1>;
+     };
+ 
+   - |
+@@ -72,6 +77,25 @@ examples:
+               <0x02808e00 0x020>,
+               <0x02808e20 0x020>,
+               <0x02808e40 0x010>;
++              <0x02808800 0x040>;
++              <0x02808a00 0x200>,
++              <0x02808c00 0x200>,
+         interrupts = <57>;
+         clock-frequency = <400000>;
++        resource_version = <1>;
++    };
++
++  - |
++    i2c@2808800 {
++        compatible = "mellanox,i2c-mlxbf3";
++        reg = <0x00000001 0x1>,
++              <0x13404400 0x020>,
++              <0x13404420 0x020>,
++              <0x13404440 0x010>;
++              <0x13404480 0x40>,
++              <0x13404200 0x200>,
++              <0x13404000 0x200>,
++        interrupts = <35>;
++        clock-frequency = <400000>;
++        resource_version = <1>;
+     };
 -- 
 2.30.1
 
