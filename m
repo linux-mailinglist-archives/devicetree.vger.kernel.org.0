@@ -2,81 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D33F35BE6A2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 15:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B9F5BE6E4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 15:20:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230287AbiITNEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 09:04:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37842 "EHLO
+        id S230415AbiITNU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 09:20:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230269AbiITNEm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 09:04:42 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75B8BDFBD
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 06:04:40 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id a10so2983672ljq.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 06:04:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=mygucZLIIUq2+FCsjFkyMMlDK+CJ9xh7zLzeZeK2yZg=;
-        b=WsxTjmjjR5He1obnmT81IpfHGF3TAtQwEqHc9G5ZqUrFs2kbImGYXtBE/xJo9lJWJE
-         W2TazRt+bt2n5AWiU1ukRCVo5TNGXC566ucLppTnHSuPW0MP0YvlovfNFKnTb6skx2aS
-         mFLuiC9VSf2F3yeK/uMlAHPnbgGU3EjqCDChKYlbVl9NMxHgNWhZNusMNGJ2VAHqWeaS
-         7Wv2polvLKRw4rSxP65KinAT2KfRSMogHr1ERuG96Nw8pHE1xbuykZeCidiKoOXdzeAe
-         Sn62ybtz34tDJ1SG8HonleKGLwlnDmSt7gc2LEKo7QcXmvG9/OVHn4pkTPHLRsQIyfYK
-         +/rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=mygucZLIIUq2+FCsjFkyMMlDK+CJ9xh7zLzeZeK2yZg=;
-        b=R7ByJmYPhYvBIsOOs1lzTDES5o3xDbeHBYtrwcvlKxezNks7vs0y31cxciCS0C7F+8
-         JMnDkGkyStsBz8MY16eBp4N0hm1O5cyIJLd0139wZd5mab7c2iJHGlkUv7bo6UVYFuN9
-         686bu51wKsWdbW6u1Xo9GVggjpPPmpnr/tZipqBIM4UCcRFfFc5dFB8+hzCTUtB9nkYD
-         A5+xerGE7Yw2CI0KUxU8jqV17EpfqTVdW4vahj2OavuAiELo/9KITE+Eoou7XN4OW9h6
-         qvlrZXWokMeQTlQLcs2MPuIBW80FueFwH6pbr5rzI5/1BMMdwkfpxhIsClZuxCNXeRsG
-         qNKA==
-X-Gm-Message-State: ACrzQf0o7+IDL8kru1ND9o66cC7jxkhE54LlIfsw7zVnTKnJzb87T68g
-        N44is6+WIrkJLjAwyn4g0gF+qA==
-X-Google-Smtp-Source: AMsMyM5iwAJVadIwLWzNsycVIha+pQHWZEUDNZq7PgtHVR0W04+wybhIyzQLVLqGmQPd6wdqR+xJfA==
-X-Received: by 2002:a2e:98c:0:b0:26a:9b25:b76f with SMTP id 134-20020a2e098c000000b0026a9b25b76fmr6869396ljj.256.1663679078764;
-        Tue, 20 Sep 2022 06:04:38 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y20-20020ac24214000000b0049f54a976efsm312567lfh.29.2022.09.20.06.04.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 06:04:38 -0700 (PDT)
-Message-ID: <b4b61b0a-25a2-b435-4154-2ec2db2c289e@linaro.org>
-Date:   Tue, 20 Sep 2022 15:04:37 +0200
+        with ESMTP id S231135AbiITNUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 09:20:20 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9215F474C3;
+        Tue, 20 Sep 2022 06:20:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3AF21B8292E;
+        Tue, 20 Sep 2022 13:20:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DCDC2C433D7;
+        Tue, 20 Sep 2022 13:20:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663680016;
+        bh=W9g+HSFSLz4wyNoN2myIF2p7ILoeXP4guBNOOyXgpIU=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=ZKiBxYcZwea6NE7I5f9GXfl0OSwQ02vtOVujeUGzwKiUAG5ew5Srg9shJNWT24uc8
+         Q9pYCwPgGqRzD50/ekP5tkt4hgZQZlfCOoncrPAOHwUyTGKc+S3bU+BlDieLiMcqPA
+         yHJB1EkiPSaHNx+u9j08OCRI6iIuDrL1Vz9srgYR808jdD8Sa2gayWWtogc2Wtj6cl
+         1uWWTBkRrNVClju+PNyi0HHZiTmPHwXwVr9s6s+XQ9I9v9OZwGtF6qljrqOK4QMDLw
+         J7LnRDIjqDa6pPOu2oiPJnfJDho7cRwryuEo24BI9AhMTnXe9ygKaE2Rn1sOs9aYH5
+         9EIhRmGhE5iOA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id BF597C43141;
+        Tue, 20 Sep 2022 13:20:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v3 08/15] arm64: dts: qcom: msm8996: add missing TCSR
- syscon compatible
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220909092035.223915-1-krzysztof.kozlowski@linaro.org>
- <20220909092035.223915-9-krzysztof.kozlowski@linaro.org>
- <9f47ef0f-6e73-9ed4-55db-491d22c55c76@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9f47ef0f-6e73-9ed4-55db-491d22c55c76@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+Subject: Re: [net-next v8 0/3] net: ethernet: adi: Add ADIN1110 support
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166368001677.22370.6651002479753262496.git-patchwork-notify@kernel.org>
+Date:   Tue, 20 Sep 2022 13:20:16 +0000
+References: <20220913122629.124546-1-andrei.tachici@stud.acs.upb.ro>
+In-Reply-To: <20220913122629.124546-1-andrei.tachici@stud.acs.upb.ro>
+To:     None <andrei.tachici@stud.acs.upb.ro>
+Cc:     linux-kernel@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, netdev@vger.kernel.org,
+        vegard.nossum@oracle.com, joel@jms.id.au, l.stelmach@samsung.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,30 +59,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 00:13, Dmitry Baryshkov wrote:
-> On 09/09/2022 12:20, Krzysztof Kozlowski wrote:
->> TCSR syscon node should come with dedicated compatible.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
->> index 166374566a49..5f45d0589265 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
->> @@ -3499,7 +3499,7 @@ frame@98c0000 {
->>   		};
->>   
->>   		saw3: syscon@9a10000 {
->> -			compatible = "syscon";
->> +			compatible = "qcom,tcsr-msm8996", "syscon";
+Hello:
+
+This series was applied to netdev/net-next.git (master)
+by Paolo Abeni <pabeni@redhat.com>:
+
+On Tue, 13 Sep 2022 15:26:26 +0300 you wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
 > 
-> No! saw3 is not a TCSR. It is a separate region, which should be managed 
-> by the SPM driver.
+> The ADIN1110 is a low power single port 10BASE-T1L MAC-PHY
+> designed for industrial Ethernet applications. It integrates
+> an Ethernet PHY core with a MAC and all the associated analog
+> circuitry, input and output clock buffering.
+> 
+> [...]
 
-Indeed. Thanks for checking this.
+Here is the summary with links:
+  - [net-next,v8,1/3] net: phy: adin1100: add PHY IDs of adin1110/adin2111
+    https://git.kernel.org/netdev/net-next/c/875b718ac380
+  - [net-next,v8,2/3] net: ethernet: adi: Add ADIN1110 support
+    https://git.kernel.org/netdev/net-next/c/bc93e19d088b
+  - [net-next,v8,3/3] dt-bindings: net: adin1110: Add docs
+    https://git.kernel.org/netdev/net-next/c/9fd12e869e17
 
-Best regards,
-Krzysztof
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
