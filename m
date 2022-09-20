@@ -2,297 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AD2A5BE266
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE4D5BE277
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 11:55:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229885AbiITJvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 05:51:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39326 "EHLO
+        id S230253AbiITJy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 05:54:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbiITJvX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:51:23 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B7815A2E8
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:51:22 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id a14so2297726ljj.8
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:51:22 -0700 (PDT)
+        with ESMTP id S230204AbiITJyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 05:54:54 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E325A27FD9
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:54:52 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id f9so2886021lfr.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 02:54:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=4YZaChHeeSl5ue8suN2DYTTCrZ14fROkH7O71ZVKHlU=;
-        b=N2rPOIKcNW5Ocr8T0tMK1LDXOC8E67wNe72msaFy1+AylQDcpLLYn10La3GaLx8/TR
-         PJ7Fz/hLS0w0EQTSG87nrgYP5+FDU4M08saC7u0qnm7cP9WUzjhs02kQimauv6Fj7W4x
-         Mp3ENnJEsN7q4OZeiDxCfaTkEF9wMB4RUKDxNm56QtSbbGq9ZOeBi8WmC30YN/VmdDU5
-         D9RVsWM8YPrTroVNtASagfSGikVDHPl9MEFHdCxnfxDieWcSRpt6Ee5PVCUXyyhFfgxP
-         GRfqN2SOhJGuyPxcPRog/0rls8sqVQqOauN7GnfB2a9Pl77k1yJK/U5VePLZsZqmxcS9
-         pJNg==
+        bh=zaiJOfQLVu73Ck1GD1MriF7Mol9UFK9xKfuzOqaBT4A=;
+        b=Jw/wO21Q4x/c5PtqYlxbn3TmvK1FXUJ7IayvEGytXCzNYKIVa8dlgeGHlu5l5ABHBl
+         nLCCNMdTPTpCDoL4ENYZ+mZl4nHu6cy2TIZDpx1ragarQdDHKmkjzZ1k2+ARO6YpLVRY
+         DzQaI0pxVkB05BXs5iIpatov7KhC1j+MaZKnNRx6MKfLIURTfMb2falryKInaCaMbZIh
+         8wsU3hacgoyCqPHcoWD0E0sKTN+5P05WnwvvEURHnxAUJI7ZsFDUi3yttSGeZEHaJV8I
+         4OPjhANihPng/LHLZQPi6AUfND/yovLT42sUAdw6rhA0VKwl0Kgj/4IDwAI51RYs72RH
+         vjng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=4YZaChHeeSl5ue8suN2DYTTCrZ14fROkH7O71ZVKHlU=;
-        b=4WvAwI3DEiT3EivCdgBC114XSlXKDFeuXfzoHaDq3rm7xEV9dbcodi+FAscBYzCDln
-         r8nXHvZUfBFDYRLh7Kb1ndD0Ny8Puf5/PTm3JkRJUX96Rr/8eqLfdeJ+qzM9YuFh9pzU
-         TtwE2Uw4+t7Wz45F2o0ppSxSIMeNnpWm/qKGop2nE+JwTnuNsMIaEj5EiIzurapdmlot
-         xXcWHWmrLDlkHRcs/FgcNB9BHVqTcHUlxf9VxfSlShtWs761jlbroaKATiPfnJ6j2SlT
-         4c5hqlSmk5abswdmXkOVbjMhuHsNbrMzox2Md+j5kmypDPmLhLeJgq5FgFOBbcYppY83
-         jc+w==
-X-Gm-Message-State: ACrzQf2cELyVYEpJn5QpxHn41cxKHlWpJiPXj/S1KWuihuyQZ4gCTLK4
-        WZsF5ZP0eUc/MTo1JK9ReZqtvA==
-X-Google-Smtp-Source: AMsMyM6MDM2aYy9UNnlR+d0zIw2bfmUyFUlNaQfbmgDrrKWY9icm0kOITf/Ghsv1MRokozOxET5DAw==
-X-Received: by 2002:a05:651c:2103:b0:25d:6478:2a57 with SMTP id a3-20020a05651c210300b0025d64782a57mr6600404ljq.496.1663667480744;
-        Tue, 20 Sep 2022 02:51:20 -0700 (PDT)
+        bh=zaiJOfQLVu73Ck1GD1MriF7Mol9UFK9xKfuzOqaBT4A=;
+        b=exYtdFJqBE2eUc1bvAkpRdWFK7TCPK3na7jKIal8juV0MzEC0DXuwux0AYlNswPf85
+         PcUw8vXBERM73Z3h3d0NC/cKMQmSltcEk+qFrvEoF/g9d4vUVj1W1fm1xI0/dyKiIbR8
+         J6+BDJViWFRtKo28Fu20OOER9lQhghmQw6LHY/OOphJC1S6+MWbJH+dGW8xbeOceoQsD
+         9LJp5ctje6J+RRM+2tuyIA8M67a5JBtE69Cq+5YXEbJTk8uhTfxLX398Cn+yZXbjN6UR
+         afsHSEtZbW5mog99wbdf7EP1MYW2ELaM7+T4t36FDo4nEBN5UaHP5zQnmieTGlsQnrqo
+         w3sQ==
+X-Gm-Message-State: ACrzQf3B0L14D5sr+SxivKF681jhOrnwAPiJ8vWcJVFw02R3JCqafnyM
+        93Gkb/eHkD7MrbTJIi1ousxe+A==
+X-Google-Smtp-Source: AMsMyM5CfftZngElwySLO5p8IGXRjK+YA25ghlxdDuiuHKTzdzeUgn57EGrNlet0OGabjvK1lKvOCA==
+X-Received: by 2002:a05:6512:234a:b0:49d:3155:45a7 with SMTP id p10-20020a056512234a00b0049d315545a7mr7259519lfu.245.1663667690971;
+        Tue, 20 Sep 2022 02:54:50 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v17-20020a2e9f51000000b0026c3975f488sm182845ljk.26.2022.09.20.02.51.19
+        by smtp.gmail.com with ESMTPSA id t2-20020a2e8e62000000b0026a92616cd2sm184276ljk.35.2022.09.20.02.54.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 02:51:20 -0700 (PDT)
-Message-ID: <e652ad18-3a35-e8a0-939c-5f2a59cfc3d0@linaro.org>
-Date:   Tue, 20 Sep 2022 11:51:19 +0200
+        Tue, 20 Sep 2022 02:54:50 -0700 (PDT)
+Message-ID: <a047f284-9af4-d5f3-4cb0-5c9955237fbc@linaro.org>
+Date:   Tue, 20 Sep 2022 11:54:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] ARM: dts: Add Raspberry Pi Compute Module 4 CANOPi Board
+Subject: Re: [PATCH v3 2/4] dt-bindings: remoteproc: qcom: Convert wcnss
+ documentation to YAML
 Content-Language: en-US
-To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org
-Cc:     arnd@arndb.de, f.fainelli@gmail.com,
-        krzyszccf.kozlowski+dt@linaro.org, nsaenz@kernel.org,
-        olof@lixom.net, robh+dt@kernel.org, soc@kernel.org,
-        stefan.wahren@i2se.com, william.zhang@broadcom.com
-References: <20220916153156.30412-1-ariel.dalessandro@collabora.com>
+To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     andersson@kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20220920030316.1619781-1-sireeshkodali1@gmail.com>
+ <20220920030316.1619781-3-sireeshkodali1@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220916153156.30412-1-ariel.dalessandro@collabora.com>
+In-Reply-To: <20220920030316.1619781-3-sireeshkodali1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/09/2022 17:31, Ariel D'Alessandro wrote:
-> The Eclipse KUKSA CANOPi [0] is a baseboard for the Raspberry Compute
-> Module 4 (CM4). It contains a VIA VL805 4 Port USB controller and two
-> MCP251xFD based CAN-FD interfaces.
+On 20/09/2022 05:03, Sireesh Kodali wrote:
+> This is a direct conversion of the existing txt documentation to YAML.
+> It is in preparation for the addition of pronto-v3 to the docs. This
+> patch doesn't document any of the existing subnodes/properties that are
+> not documented in the existing txt file. That is done in a separate
+> patch.
 > 
-> [0] https://github.com/boschresearch/kuksa.hardware
-> 
-> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts  | 139 ++++++++++++++++++
->  arch/arm64/boot/dts/broadcom/Makefile         |   1 +
->  .../dts/broadcom/bcm2711-rpi-cm4-canopi.dts   |   2 +
->  4 files changed, 143 insertions(+)
->  create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
->  create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-canopi.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 05d8aef6e5d2..8930ab2c132c 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -98,6 +98,7 @@ dtb-$(CONFIG_ARCH_BCM2835) += \
->  	bcm2837-rpi-zero-2-w.dtb \
->  	bcm2711-rpi-400.dtb \
->  	bcm2711-rpi-4-b.dtb \
-> +	bcm2711-rpi-cm4-canopi.dtb \
->  	bcm2711-rpi-cm4-io.dtb \
->  	bcm2835-rpi-zero.dtb \
->  	bcm2835-rpi-zero-w.dtb
-> diff --git a/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts b/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
-> new file mode 100644
-> index 000000000000..52ec5908883c
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/bcm2711-rpi-cm4-canopi.dts
-> @@ -0,0 +1,139 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/dts-v1/;
-> +#include "bcm2711-rpi-cm4.dtsi"
-> +
-> +/ {
-> +	model = "Raspberry Pi Compute Module 4 CANOPi Board";
+> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
 
-Where is the compatible?
+You did not CC me on cover letter. There is no changelog here.
 
-> +
-> +	clocks {
-> +		clk_mcp251xfd_osc: mcp251xfd-osc {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +			#clock-cells = <0>;
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <20000000>;
-> +		};
-> +	};
-> +
-> +	leds {
-
-This does not look valid.
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
-
-> +		led-act {
-> +			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
-
-What about the rest? Why only gpios? Does it pass dtbs_check?
-
-> +		};
-> +
-> +		led-pwr {
-> +			label = "PWR";
-> +			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
-> +			default-state = "keep";
-> +			linux,default-trigger = "default-on";
-> +		};
-> +	};
-> +};
-> +
-> +&ddc0 {
-> +	status = "okay";
-> +};
-> +
-> +&ddc1 {
-> +	status = "okay";
-> +};
-> +
-> +&hdmi0 {
-> +	status = "okay";
-> +};
-> +
-> +&hdmi1 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0_gpio44>;
-> +	status = "okay";
-> +	clock-frequency = <100000>;
-> +
-> +	pcf85063a@51 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +		compatible = "nxp,pcf85063a";
-> +		reg = <0x51>;
-> +	};
-> +};
-> +
-> +&pcie0 {
-> +	pci@0,0 {
-> +		device_type = "pci";
-> +		#address-cells = <3>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		reg = <0 0 0 0 0>;
-> +
-> +		usb@0,0 {
-> +			reg = <0 0 0 0 0>;
-> +			resets = <&reset RASPBERRYPI_FIRMWARE_RESET_ID_USB>;
-> +		};
-> +	};
-> +};
-> +
-> +&pixelvalve0 {
-> +	status = "okay";
-> +};
-> +
-> +&pixelvalve1 {
-> +	status = "okay";
-> +};
-> +
-> +&pixelvalve2 {
-> +	status = "okay";
-> +};
-> +
-> +&pixelvalve4 {
-> +	status = "okay";
-> +};
-> +
-> +&spi {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi0_gpio7>;
-> +	cs-gpios = <&gpio 8 1>, <&gpio 7 1>;
-
-Use GPIO flags/defines. This applies everywhere.
-
-
-> +	dmas = <&dma 6>, <&dma 7>;
-> +	dma-names = "tx", "rx";
-> +
-> +	mcp251xfd0: mcp251xfd@0 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +		compatible = "microchip,mcp251xfd";
-> +		reg = <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mcp251xfd0_pins>;
-> +		spi-max-frequency = <20000000>;
-> +		interrupt-parent = <&gpio>;
-> +		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&clk_mcp251xfd_osc>;
-> +	};
-> +
-> +	mcp251xfd1: mcp251xfd@1 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +		compatible = "microchip,mcp251xfd";
-> +		reg = <1>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&mcp251xfd1_pins>;
-> +		spi-max-frequency = <20000000>;
-> +		interrupt-parent = <&gpio>;
-> +		interrupts = <22 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&clk_mcp251xfd_osc>;
-> +	};
-> +};
-> +
-> +&gpio {
-> +	mcp251xfd0_pins: mcp251xfd0_pins {
-
-No underscores in node names.
-
-> +		brcm,pins = <27>;
-> +		brcm,function = <BCM2835_FSEL_GPIO_IN>;
-> +	};
-> +
-> +	mcp251xfd1_pins: mcp251xfd1_pins {
-
-Ditto
-
-> +		brcm,pins = <22>;
-> +		brcm,function = <BCM2835_FSEL_GPIO_IN>;
-> +	};
-> +};
-> +
-> +&vc4 {
-> +	status = "okay";
-> +};
-> +
-> +&vec {
-> +	status = "disabled";
-> +};
-
+Please resend following Linux kernel process, so be sure that people
+receive relevant patches, changelog and cover letter.
 
 Best regards,
 Krzysztof
