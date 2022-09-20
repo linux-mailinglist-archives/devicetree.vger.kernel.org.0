@@ -2,96 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3767F5BDFD6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:21:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 768C15BDFDA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:21:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231379AbiITIUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:20:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33090 "EHLO
+        id S231437AbiITIV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:21:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230470AbiITIT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:19:59 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC39AC38
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:17:43 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id z20so2077278ljq.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:17:43 -0700 (PDT)
+        with ESMTP id S231240AbiITIUQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:20:16 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25657CE28
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:18:44 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id b24so2049738ljk.6
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:18:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=x4MAfY1VGIYMXUmdsJlOqMmZnmClXuiEwgPZwceqLLw=;
-        b=jGs9b6WlGRmlKRGXCccRnBMJaM6tqKS38Eo0BuFIY2xu70iewskfsl571XW5edge4N
-         x4ZIOFDJLXcuApuVO4LA41tlaCw6K+j8I9CSSA6kbe0trvb4YWwpPS+Eil3e6ZnfxENs
-         0iiGFup9Znm172Ls+P+zrE2TSqztojsFpXLkPBNquzBxFugh8ze8yxsDkQhUUSyozGb7
-         CWFZV3s5om1iS+DLXAlCcoEw3GXYN3WWzvQdJC+TWJ5BAXao6wg5f42VZTfc/C8vDKSl
-         //6Z947daPYXDIoSi3HvYDmp2fiq2Q7d/3ukr+Y3Ty0CUfR1Euzm0G4Kop05X+qMAGx1
-         nqnw==
+        bh=VgLmEzPIecZSC3MjYpPVUH86WqTbJd8woh8yOpcfqDU=;
+        b=AT31RTdDAle87hJvO/3kTcU9kt9Lkl1u97mOBIhexbOrbmSq8D8sS2QeNLxbw/mhEd
+         3dLdonv/6owGqgz70lzL4ciz8RwBIqC4TsGBN9WbwvqYx3DbzOoHPLETd3/BHapHOCwq
+         vrzG128qYXTDJnbu/J0WuKhbmXDy9BxRKQ3BrOr6nV0kK0fKEDy/ldbKoW5wK0/jiy8x
+         gJK/Se0YMqWjiPWJa8RiQPVl6na9R8VKCqodtVj4ykcaZbtGgDa+hPJ1qA4ULwxC0pGg
+         iIV9a/yKOhqMOTf/G5KqVwcUMbza9u/lEz/R2MuC3mjfkIDAT2E7cVilCBP6Yat/0uhN
+         Bfbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=x4MAfY1VGIYMXUmdsJlOqMmZnmClXuiEwgPZwceqLLw=;
-        b=AfWhEtvSCvvBkZuLPi6fVMDfCLWMQ+8PjONCtad2oj+UKPfcliq/nQhf86vbBfeeWx
-         qRPGxkuYsF8CjEgW2EHp3MWA6PqSAdRMQ9v6TYuimYutGI6zd/jUoWG0x0BHGrDeKerU
-         Ty9913TXx7LdjZi7OcDBvFWwwF6Me/IPF03Dsoac0prbwHptEIyKAozbU5MgX1zWysO/
-         XOjwUO20WYXlX06jRKCFqdjKG1ph/vhfvPXiqt6eUEd5ZEA7IQ4rwswsY86TcAu7JBvj
-         JeLjgMGPMXTpx/OutLqxueGB9OffXC7R8apka4xwbyqegbNx/IHfsrfvk5NSMOyDnes1
-         9ViA==
-X-Gm-Message-State: ACrzQf1eabTQppG7hCtUFCJnC3vJN/DrvocEUwh4TOh9AEz6RNXlKy0u
-        1IfhC5wufY+evAfXbVvlIWGAHby75Qqquw==
-X-Google-Smtp-Source: AMsMyM5g2iUvFDFjem7icSO9UxkfWSOZkvkZYXBGjv/AHbErp0fN++5z186PQlzCoss79lkvxOHTVw==
-X-Received: by 2002:a05:651c:4cf:b0:26b:dc6f:26c6 with SMTP id e15-20020a05651c04cf00b0026bdc6f26c6mr6780359lji.41.1663661862197;
-        Tue, 20 Sep 2022 01:17:42 -0700 (PDT)
+        bh=VgLmEzPIecZSC3MjYpPVUH86WqTbJd8woh8yOpcfqDU=;
+        b=pg6Mm6OSqCnCIhP8ZVZAoN/UbcR7o4VUKlEQLh7GMcULTpKHSAhoyiHVe2ZWkPvUPk
+         3UMc5eWDli+FJL38YSPdLmzV9F56BBeWXZSRfF+6k5+OeWcJSObfczrow3JyrQiVzIKs
+         /s7CnokZTGAyM5/XtDz31+xfyv4OM6NnKBdNSvkcR0RlnSH7vIMt93PUHKArsSAIRyP6
+         P4uAh9ZGPTs99DMWKl0gAcS80t51ymwtC/RNtwZV8/Z9tnQtEjmj3JZvFlcj/hetbYVN
+         g9qDRHEyj2dR+T3wWNAjQ04/IZm/cEe9ej2bGTiBDinaEnjlYSbYFFEfnKnsSYc7HCXh
+         MpCA==
+X-Gm-Message-State: ACrzQf2mOMqgDgmQ3KddwUrZSf9cnZ2+aP2+oHp8iadWjNM1JXwzS0wV
+        iu64ubFHrtT7iJIR98gODa0IqA==
+X-Google-Smtp-Source: AMsMyM5zRjJJPYotMEvfsPRUR4vDhywoNUaKPLs5B7eMo1tU6DOqqU7rZDZOmHR+OcqE93aw/KaECQ==
+X-Received: by 2002:a2e:2e0b:0:b0:26b:f760:1c51 with SMTP id u11-20020a2e2e0b000000b0026bf7601c51mr6335172lju.494.1663661922472;
+        Tue, 20 Sep 2022 01:18:42 -0700 (PDT)
 Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id bq5-20020a056512150500b0049f5c71f1c4sm189858lfb.198.2022.09.20.01.17.40
+        by smtp.gmail.com with ESMTPSA id b4-20020a056512070400b0049464d89e40sm197345lfs.72.2022.09.20.01.18.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 01:17:41 -0700 (PDT)
-Date:   Tue, 20 Sep 2022 10:17:39 +0200
+        Tue, 20 Sep 2022 01:18:42 -0700 (PDT)
+Date:   Tue, 20 Sep 2022 10:18:39 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Richard Acayan <mailingradian@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH 1/2] dt-bindings: power: rpmpd: add sdm670 power domains
-Message-ID: <20220920081739.eh3qzohw74elqyfm@krzk-bin>
-References: <20220920021927.2489-1-mailingradian@gmail.com>
- <20220920021927.2489-2-mailingradian@gmail.com>
+To:     Asmaa Mnebhi <asmaa@nvidia.com>
+Cc:     Khalil Blaiech <kblaiech@nvidia.com>, robh@kernel.org,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v4 8/8] i2c: i2c-mlxbf.c: Update binding devicetree
+Message-ID: <20220920081839.2wq2h2vsodphaqh7@krzk-bin>
+References: <20220919213431.8045-1-asmaa@nvidia.com>
+ <20220919213431.8045-9-asmaa@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220920021927.2489-2-mailingradian@gmail.com>
+In-Reply-To: <20220919213431.8045-9-asmaa@nvidia.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Sep 2022 22:19:27 -0400, Richard Acayan wrote:
-> Add the RPMh power domain IDs and compatible string for Snapdragon 670 to
-> make SDM670 power domains accessible to the device trees.
+On Mon, 19 Sep 2022 17:34:31 -0400, Asmaa Mnebhi wrote:
+> In the latest version of the i2c-mlxbf.c driver, the "Smbus block"
+> resource was broken down to 3 separate resources "Smbus timer",
+> "Smbus master" and "Smbus slave" to accommodate for BlueField-3
+> SoC registers' changes.
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> Reviewed-by: Khalil Blaiech <kblaiech@nvidia.com>
+> Signed-off-by: Asmaa Mnebhi <asmaa@nvidia.com>
 > ---
->  .../devicetree/bindings/power/qcom,rpmpd.yaml          |  1 +
->  include/dt-bindings/power/qcom-rpmpd.h                 | 10 ++++++++++
->  2 files changed, 11 insertions(+)
+>  .../bindings/i2c/mellanox,i2c-mlxbf.yaml      | 49 ++++++++++++++-----
+>  1 file changed, 37 insertions(+), 12 deletions(-)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml: properties:reg: {'minItems': 3, 'maxItems': 6, 'items': [{'description': 'Smbus block registers'}, {'description': 'Cause master registers'}, {'description': 'Cause slave registers'}, {'description': 'Cause coalesce registers'}, {'description': 'Smbus timer registers'}, {'description': 'Smbus master registers'}, {'description': 'Smbus slave registers'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml: ignoring, error in schema: properties: reg
+Error: Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.example.dts:26.19-20 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1420: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-power-controller: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dtb
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
