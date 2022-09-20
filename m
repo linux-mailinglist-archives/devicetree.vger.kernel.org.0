@@ -2,287 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEFAC5BE3E1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA745BE3ED
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:56:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230204AbiITKzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 06:55:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60054 "EHLO
+        id S230133AbiITK4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 06:56:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230241AbiITKzR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:55:17 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D4898696CD;
-        Tue, 20 Sep 2022 03:55:15 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,330,1654527600"; 
-   d="scan'208";a="133399502"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 20 Sep 2022 19:55:15 +0900
-Received: from localhost.localdomain (unknown [10.226.92.28])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 66BF040078A8;
-        Tue, 20 Sep 2022 19:55:09 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v8 1/3] dt-bindings: display: bridge: Document RZ/G2L MIPI DSI TX bindings
-Date:   Tue, 20 Sep 2022 11:54:59 +0100
-Message-Id: <20220920105501.396999-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220920105501.396999-1-biju.das.jz@bp.renesas.com>
-References: <20220920105501.396999-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S230054AbiITK4a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:56:30 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CF186AA3F;
+        Tue, 20 Sep 2022 03:56:28 -0700 (PDT)
+X-UUID: a33a205bfce642fd864d6ff02e468282-20220920
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=KiwPmbDD1MhVA6n6KkWt9LbHMoM8EQb6aIvzu6stn04=;
+        b=PbVWBAikhUyI6gCikolaSz4t5fipeHG0hodD3wtHms18riQXGwvfjFbnUew1uy2VOB//f5t/vEdX6yazJrFRVDUt0cU09YvX15FQ+FLMwMCRxHGXaM1Q9hnd2eA0TootKoCO8Ev5XSl+Zpn1fQqTIqydDO7+5j+U8Rtgfaj0CrE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:fb96a03c-a984-4173-83d4-cc0f9515745b,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:100
+X-CID-INFO: VERSION:1.1.11,REQID:fb96a03c-a984-4173-83d4-cc0f9515745b,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
+        N:quarantine,TS:100
+X-CID-META: VersionHash:39a5ff1,CLOUDID:534c08f7-6e85-48d9-afd8-0504bbfe04cb,B
+        ulkID:220920185626JNN68HXU,BulkQuantity:0,Recheck:0,SF:28|17|19|48|823|824
+        ,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL
+        :0
+X-UUID: a33a205bfce642fd864d6ff02e468282-20220920
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <runyang.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 412915204; Tue, 20 Sep 2022 18:56:26 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 20 Sep 2022 18:56:25 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 20 Sep 2022 18:56:24 +0800
+From:   Runyang Chen <Runyang.Chen@mediatek.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <nfraprado@collabora.com>
+CC:     <angelogioacchino.delregno@collabora.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Runyang Chen <runyang.chen@mediatek.com>
+Subject: [PATCH v3 0/3] Add watchdog support for MT8188 Soc
+Date:   Tue, 20 Sep 2022 18:56:19 +0800
+Message-ID: <20220920105622.25666-1-Runyang.Chen@mediatek.com>
+X-Mailer: git-send-email 2.9.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's. It
-can operate in DSI mode, with up to four data lanes.
+From: Runyang Chen <runyang.chen@mediatek.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v7->v8:
- * No change.
-v6->v7:
- * No change.
-v5->v6:
- * No change.
-v4->v5:
- * No change.
-v3->v4:
- * No change.
-v2->v3:
- * Added Rb tag from Geert and Laurent
- * Fixed the typo "Receive" -> "transmit"
- * Added accepible values for data-lanes
- * Sorted Header file in the example
- * Added SoC specific compaible along with generic one.
-v1->v2:
- * Added full path for dsi-controller.yaml
- * Modeled DSI + D-PHY as single block and updated reg property
- * Fixed typo D_PHY->D-PHY
- * Updated description
- * Added interrupts and interrupt-names and updated the example 
-RFC->v1:
- * Added a ref to dsi-controller.yaml.
-RFC:-
- * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-22-biju.das.jz@bp.renesas.com/
----
- .../bindings/display/bridge/renesas,dsi.yaml  | 182 ++++++++++++++++++
- 1 file changed, 182 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+Based on tag: next-20220919, linux-next/master
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-new file mode 100644
-index 000000000000..131d5b63ec4f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-@@ -0,0 +1,182 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L MIPI DSI Encoder
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  This binding describes the MIPI DSI encoder embedded in the Renesas
-+  RZ/G2L alike family of SoC's. The encoder can operate in DSI mode, with
-+  up to four data lanes.
-+
-+allOf:
-+  - $ref: /schemas/display/dsi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
-+      - const: renesas,rzg2l-mipi-dsi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Sequence operation channel 0 interrupt
-+      - description: Sequence operation channel 1 interrupt
-+      - description: Video-Input operation channel 1 interrupt
-+      - description: DSI Packet Receive interrupt
-+      - description: DSI Fatal Error interrupt
-+      - description: DSI D-PHY PPI interrupt
-+      - description: Debug interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: seq0
-+      - const: seq1
-+      - const: vin1
-+      - const: rcv
-+      - const: ferr
-+      - const: ppi
-+      - const: debug
-+
-+  clocks:
-+    items:
-+      - description: DSI D-PHY PLL multiplied clock
-+      - description: DSI D-PHY system clock
-+      - description: DSI AXI bus clock
-+      - description: DSI Register access clock
-+      - description: DSI Video clock
-+      - description: DSI D-PHY Escape mode transmit clock
-+
-+  clock-names:
-+    items:
-+      - const: pllclk
-+      - const: sysclk
-+      - const: aclk
-+      - const: pclk
-+      - const: vclk
-+      - const: lpclk
-+
-+  resets:
-+    items:
-+      - description: MIPI_DSI_CMN_RSTB
-+      - description: MIPI_DSI_ARESET_N
-+      - description: MIPI_DSI_PRESET_N
-+
-+  reset-names:
-+    items:
-+      - const: rst
-+      - const: arst
-+      - const: prst
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Parallel input port
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: DSI output port
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes:
-+                description: array of physical DSI data lane indexes.
-+                minItems: 1
-+                items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+            required:
-+              - data-lanes
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - power-domains
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    dsi0: dsi@10850000 {
-+        compatible = "renesas,r9a07g044-mipi-dsi", "renesas,rzg2l-mipi-dsi";
-+        reg = <0x10850000 0x20000>;
-+        interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "seq0", "seq1", "vin1", "rcv",
-+                          "ferr", "ppi", "debug";
-+        clocks = <&cpg CPG_MOD R9A07G044_MIPI_DSI_PLLCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_SYSCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_ACLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_PCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_VCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_LPCLK>;
-+        clock-names = "pllclk", "sysclk", "aclk", "pclk", "vclk", "lpclk";
-+        resets = <&cpg R9A07G044_MIPI_DSI_CMN_RSTB>,
-+                 <&cpg R9A07G044_MIPI_DSI_ARESET_N>,
-+                 <&cpg R9A07G044_MIPI_DSI_PRESET_N>;
-+        reset-names = "rst", "arst", "prst";
-+        power-domains = <&cpg>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                dsi0_in: endpoint {
-+                    remote-endpoint = <&du_out_dsi0>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+                dsi0_out: endpoint {
-+                    data-lanes = <1 2 3 4>;
-+                    remote-endpoint = <&adv7535_in>;
-+                };
-+            };
-+        };
-+    };
-+...
+Refer to the discussion in the link:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220721014845.19044-2-allen-kh.cheng@mediatek.com/
+The other wdt compatible strings are unchanged.So, won't apply the
+series above
+
+v3:
+Rebase on 6.0-rc5 and add reviewed-by and acked-by tag.
+
+v2:
+Revert wdt compatible for MT8188.
+
+v1:
+1. Add mt8188-resets.h to define definition of reset bits.
+2. Add wdt compatible for MT8188.*
+
+Runyang Chen (3):
+  dt-bindings: watchdog: Add compatible for MediaTek MT8188
+  dt-bindings: reset: mt8188: add toprgu reset-controller header file
+  watchdog: mediatek: mt8188: add wdt support
+
+ .../devicetree/bindings/watchdog/mtk-wdt.txt  |  1 +
+ drivers/watchdog/mtk_wdt.c                    |  6 ++++
+ include/dt-bindings/reset/mt8188-resets.h     | 36 +++++++++++++++++++
+ 3 files changed, 43 insertions(+)
+ create mode 100644 include/dt-bindings/reset/mt8188-resets.h
+
+
+base-commit: 4c9ca5b1597e3222177ba2a94658f78fa5ef4f58
 -- 
-2.25.1
+2.18.0
 
