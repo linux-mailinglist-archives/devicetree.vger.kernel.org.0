@@ -2,110 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0AED5BE378
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C0025BE3BB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 12:48:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230323AbiITKkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 06:40:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59562 "EHLO
+        id S229766AbiITKsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 06:48:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231436AbiITKjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:39:39 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7292173309;
-        Tue, 20 Sep 2022 03:38:35 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6FF5F6601F3B;
-        Tue, 20 Sep 2022 11:38:32 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663670313;
-        bh=CPxTsxwwUNVTZuVWPCLD0D4xQtfZBz/Zni7nORIgDcQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=eTw9OQKFdxPnrguxbqFoyF1fV4CKVwuPAMQyMRgJuj+DgcKN1WIFBGD1ZHYBk6yIE
-         jZTpkwMJakGsN+IqRkGfy3++gp9bSfK3mVqkP8RIm1uIXVcwyLuQnP+85hn81XTlow
-         9mRz1PqsPAlZ6SBEAqK5twFvYSTwJvXzBmY+wTqKDwBuoRCnnjUIzGAAKwVMS5sP06
-         z7jE6JkaFMLkNGe2tVfuITbdu7JWfhrgFPJpiAKDFTlPyzhmhGD8T8b6JeZ/YXcRY7
-         csx15Vlm7Vl2z/uhn9HRswHDyT5pXPho4M6/FLRUuDTg4yo1zsvtvqntZ7/UycAnwL
-         dcf85iGHGCMGQ==
-Message-ID: <5920ba96-886c-1195-656a-a98d7b1f6623@collabora.com>
-Date:   Tue, 20 Sep 2022 12:38:29 +0200
+        with ESMTP id S229669AbiITKsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 06:48:23 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D666D33E0A
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 03:48:21 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id h3so2520704lja.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 03:48:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=rEGmknlYprbAXEKZt0aDiUeWs1wXNDCingS635ls9Fc=;
+        b=HyqCxNPj5NRGA1a7SPijTw1BTZjf9krt+Mi0HRZjs9kmt3FQY1aAdhBWC9UuffmJ9H
+         45ia3cDWPaAnBpdWUKG4FHblG2GDBKwA7SBc/OKHkI9fPc7ZgzMW0RkgTJD3OxeBC6ak
+         ZjuLM/QAGnBJOD5eKjncckAICt5FPjj62iY8IHZ6tmZCEffiA13mxyc3Sk+ZWiVh7Kjq
+         IugtQpJTs8mC58wTbTFN/v8J+GRVcrqUr2J1V5B9rMQhr2lGryjMnzbI+7pb/9uLLyau
+         0m6/PWWkRvrt6p7DUDvKFpJJCqjAD4XvDWk5Vqm1aYh+uOxhgCnkOEATQU+a5j9TWsIw
+         iWIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=rEGmknlYprbAXEKZt0aDiUeWs1wXNDCingS635ls9Fc=;
+        b=Klb18koQqYboNMWkI+WCH8o+zYoUyZXFC7wTUceV7W3QZO68BEGzSt2X67OC5dIR63
+         7ZaFJZtQpNQIc46JmDYBoL5QFRnBBfLl5dt00RkGaQxM9d924pZnILa0uoy1zv4wqmzi
+         pDjYJjxVZjvts23dyddSjuppijhvq24jp2b9t70NviKZd4CB13hd16P8dyKog88q8BaX
+         oH1qVfHhySUJ/AIV5PmiBXEqr0SjzZvjeJWzW3LUr4MzBsh5CR5zE6K/h8t2nR27jqQj
+         Z02bqQiv0Yttl8WE+L2Yj5dHHsK9e3vL+G/mtqMSq+OHx3wan/xi9XxkoNa7qCZ32tTw
+         onzQ==
+X-Gm-Message-State: ACrzQf18Ajbou/zqoT8aJSBNJ/AvY4ZOOO3vvehlV/lvT3FsTFmOca+4
+        OUViXBZ2SAPhF09A2aKhGpBb3E+lyxLThF+4F4XE6w==
+X-Google-Smtp-Source: AMsMyM6LRzJcHqKA484dpEdut/aXm2HrrwXEfE2I0p+wciPdizqSlOjLEHCiJMmPkNcVNC5h8NjCwvWrM5xWucnrY/o=
+X-Received: by 2002:a05:651c:1a29:b0:26c:2241:8aa0 with SMTP id
+ by41-20020a05651c1a2900b0026c22418aa0mr6562812ljb.96.1663670900075; Tue, 20
+ Sep 2022 03:48:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v1 09/17] drm/mediatek: hdmi: add connector flag
-Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220919-v1-0-4844816c9808@baylibre.com>
- <20220919-v1-9-4844816c9808@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220919-v1-9-4844816c9808@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220919221509.1057574-1-bhupesh.sharma@linaro.org>
+ <20220919221509.1057574-2-bhupesh.sharma@linaro.org> <bb577304-f048-8fd5-fc7a-47a0897ba792@linaro.org>
+ <00dd028f-d636-0cda-40ce-01d5addcbec9@linaro.org> <ccc318c0-ee1b-d538-6d2b-bf85a3c9c6fd@linaro.org>
+In-Reply-To: <ccc318c0-ee1b-d538-6d2b-bf85a3c9c6fd@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Tue, 20 Sep 2022 16:18:06 +0530
+Message-ID: <CAH=2Ntys+JSurmZn5qN2Kuphi_5q6Ge7cZgd9KMTvAyLnd6JSA@mail.gmail.com>
+Subject: Re: [PATCH v6 1/4 RESEND] ARM: dts: qcom: Use new compatibles for
+ crypto nodes
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        thara.gopinath@gmail.com, devicetree@vger.kernel.org,
+        robh@kernel.org, andersson@kernel.org, bhupesh.linux@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+        Jordan Crouse <jorcrous@amazon.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 19/09/22 18:56, Guillaume Ranquet ha scritto:
-> Add a flag to indicate support for an external connector
-> 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-> index 86653ebaacfd..30407603d693 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-> @@ -199,20 +199,22 @@ int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi, struct platform_device *pdev,
->   		goto put_device;
->   	}
->   
-> -	remote = of_graph_get_remote_node(np, 1, 0);
-> -	if (!remote) {
-> -		ret = -EINVAL;
-> -		goto put_device;
-> -	}
-> -
-> -	if (!of_device_is_compatible(remote, "hdmi-connector")) {
-> -		hdmi->next_bridge = of_drm_find_bridge(remote);
-> -		if (!hdmi->next_bridge) {
-> -			dev_err(dev, "Waiting for external bridge\n");
-> -			of_node_put(remote);
-> -			ret = -EPROBE_DEFER;
-> +	if (hdmi->conf->has_connector) {
+On Tue, 20 Sept 2022 at 15:09, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/09/2022 10:57, Bhupesh Sharma wrote:
+> >>>             crypto: crypto@8e3a000 {
+> >>> -                   compatible = "qcom,crypto-v5.1";
+> >>> +                   compatible = "qcom,ipq4019-qce";
+> >>
+> >> There are few issues here:
+> >> 1. Compatible is not documented.
+> >
+> > Its documented here:
+> > https://lore.kernel.org/linux-arm-msm/30756e6f-952f-ccf2-b493-e515ba4f0a64@linaro.org/
+> >
+> > [as mentioned in the dependency section in the cover letter :)]
+> >
+> >> 2. Compatible is not supported by old kernel - ABI break.
+>
+> You cannot fix this with dependencies/ordering.
+>
+> >> 3. Everything won't be bisectable...
+> >
+> > I think its a question of dependencies b/w the patchsets intended for
+> > separate areas. Let me think more on how, I can resolve it in newer
+> > versions.
+>
+> DTS always goes separately so this also cannot be fixed with ordering or
+> dependencies. However if Bjorn is fine with it, it's good.
 
-If MT8195's DPI uses the internal HDMI->DP converter, I say that the external
-DP has HDMI input and DP output.
-Logically, you can't have a HDMI port that's connected to nothing.
+Sure, I get your point. SInce I haven't sent out the crypto driver and
+DMA driver subsets yet, let me stop and respin the series with the
+dt-bindings changes clubbed with the crypto driver patches in a single
+patchset. I can keep the DMA and dts patchsets separate and send them
+out separately.
 
-Please, rethink this change.
+I think that should help maintain the ABI and backward compatibility.
+Please let me know if you think otherwise.
 
-Regards,
-Angelo
+Thanks,
+Bhupesh
