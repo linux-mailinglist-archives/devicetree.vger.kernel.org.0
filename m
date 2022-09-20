@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B4585BE0D3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7940E5BE0E1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 10:57:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbiITIzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 04:55:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46748 "EHLO
+        id S231387AbiITI5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 04:57:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230521AbiITIyu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:54:50 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CFE529C9B
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:54:41 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id f9so2655697lfr.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:54:40 -0700 (PDT)
+        with ESMTP id S230337AbiITI52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 04:57:28 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4555C28738
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:57:27 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id t190so1889210pgd.9
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 01:57:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=/R9hqooZ2WhPjRpl0VQUVEHIhAT+zabNTgearvK0bTY=;
-        b=QZxxvmqBSRxXPI03uhpH6teHa41fSx8Q25y66FPLTN/JTJtgg/dPVbcu14r12s0TGE
-         D3e8WTBxm6B9UviRF+ewiOjn0s/HqmLa1jr8hEffLXiR/ZqIjy4NHGyPzlMlZ6eqR+8U
-         vRpNjd4/22GLDHhu3/aKOdZ4GXgnvkax30g28yJoJjRBznK1GqtSkAERb+B8vG/7Caeu
-         xCBC/kxix+T+GSDahNZTGTEsfMyVTVOaNo6DShICRb3eT4Uy388jVS01k2P15orbHXih
-         9QpEWbu4Tc9BZsQIQD/qR5WQNICzKzdIipdSESjFeqniVRo9019+Mn3Hh871kIRZeSwW
-         GeQQ==
+        bh=62nVa40ZgGMYjJOOlAI4o87s1b9LqZFjm9xnCLFUbvc=;
+        b=NEMmqTq31r2QpI2ZRcIyZyhgXAHH9l4S3mGhKI8c/Q8b66B2u814setloKdYDaPIGc
+         WwLEgcDZNVlVJqsIo3Jopr29HIJJVDoKV/fAUtsyr3U9c2kkQW06VfQ9PojhS4KfnN6w
+         3zIUSUPQiVT3cbyoc74+eKYH86N/DH2iH4f/X7xHzid5td8ruG3joOR6eP3FF8G7Ij8x
+         rIjmth3R2ScdLU88OapbZC2e/u+RmoBH3jT6Q+pB9tbCpHqGTdqmY0OVslKMyW9l/caq
+         eY31xBb2B8w4RFGCnosC6lxthUstlQ/ctbkD0m5I8t727FBgJqodqdYZ2jg/sFNjeJ83
+         8OCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=/R9hqooZ2WhPjRpl0VQUVEHIhAT+zabNTgearvK0bTY=;
-        b=LjBIplZot+T0lhAfjcYFgEWMV1wmhIGIrnY7gNjjFP00AaKE3HWcnXO/R5Ruy0X+Pb
-         CmUvDEzEQrTs8HtaS/8hnNxDq2Hpfhstx2vRI5ZC9o1WYL2xcJwUWWDuSlUeeRqdmR0t
-         bpgq+ZNqluMIc41q8Lkm1E7jSBZez9qhZ/gcRbJPSBkF2o5t4IQJw1FJlgg5AxXwSjCQ
-         dkc9NQ/bp/b9eX7akp7hURFsKEp+DM/lLCTBwh9XooJu/WL1N/iHxGNJVyBraLCkk0mY
-         LWOts5XENSBWw95fu2baIyLDW6bdyeEu89DIby9s9lW6MoXaZxasp1b9NRoLb1MKFN19
-         8WWw==
-X-Gm-Message-State: ACrzQf0yXKuPawrLhD88M40aP5PiiMDrNXUFe4sIZ0OrOgtCrj2RRenN
-        kk6/cNf2krWLOCdgrfXV0qwHgNPiy50XIQ==
-X-Google-Smtp-Source: AMsMyM5pioa34SQt+KAmG2EUQFfy9zDDTHSE8Z9k2mKkZ2Bf0+l/mvjxkzbKEMv0lXSeJrRzOYksJg==
-X-Received: by 2002:a05:6512:3b10:b0:498:fd40:51d2 with SMTP id f16-20020a0565123b1000b00498fd4051d2mr7546367lfv.11.1663664079033;
-        Tue, 20 Sep 2022 01:54:39 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id bu25-20020a056512169900b0048afbe8a6a1sm201785lfb.241.2022.09.20.01.54.38
+        bh=62nVa40ZgGMYjJOOlAI4o87s1b9LqZFjm9xnCLFUbvc=;
+        b=tu3+hc5Ez1zzgnrGeEQ/B6UQrvVwmj2uEQGfWgDg24HAhf8yncSvtZW7AKB5TyxOGv
+         PEQLi1XFNKV2KZ8Ce4yLlHxJGRZPJ/CYWYo8dzBNY4BS3m1oRG+ADyRl0HwsO0elWDlQ
+         S6TFEXlAw5jP1LJ9UsvmOnuFgUb9NqL4tyLP1pSFap9/k1d7YDFDDVSkrVdCiUffILL5
+         +nk26OTfietf2cXLAB2z4kI2+Nz0aeaENezHS9im2qgMs1pamRGBwss8HFhxZoE0J53w
+         egriBZ7em/n2FAHOQ3oeO6THiHp9kCVD2/NNvpf0GzUxTm/b7X4PXSIS9cOAog1OVMvq
+         HcSQ==
+X-Gm-Message-State: ACrzQf1Na61Dytu/nRFPpj1QBKPjwm6akij2hLWcH/ac7kbpUoDdewsW
+        NNhLvu24mImWFdA7VuNj24WPAw==
+X-Google-Smtp-Source: AMsMyM7Rr/Tecs9HYOp6ZvDf4OofcbojhnBBOkN9Z0yk1HDWy8EfRKnztxVftinUplcBgYX4yC5UOw==
+X-Received: by 2002:a05:6a00:2290:b0:541:f19:5197 with SMTP id f16-20020a056a00229000b005410f195197mr22914753pfe.42.1663664246714;
+        Tue, 20 Sep 2022 01:57:26 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1c61:6535:ca5f:67d1:670d:e188? ([2401:4900:1c61:6535:ca5f:67d1:670d:e188])
+        by smtp.gmail.com with ESMTPSA id p22-20020a1709027ed600b0017837d30a8csm847720plb.254.2022.09.20.01.57.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 01:54:38 -0700 (PDT)
-Message-ID: <2ad436c8-8b7a-80ed-9c91-d2293eff70ab@linaro.org>
-Date:   Tue, 20 Sep 2022 10:54:37 +0200
+        Tue, 20 Sep 2022 01:57:26 -0700 (PDT)
+Message-ID: <00dd028f-d636-0cda-40ce-01d5addcbec9@linaro.org>
+Date:   Tue, 20 Sep 2022 14:27:20 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v6 0/4] dt-bindings: qcom-qce: Convert bindings to yaml &
- related changes
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v6 1/4 RESEND] ARM: dts: qcom: Use new compatibles for
+ crypto nodes
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
 Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
         robh+dt@kernel.org, thara.gopinath@gmail.com,
         devicetree@vger.kernel.org, robh@kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, Jordan Crouse <jorcrous@amazon.com>
-References: <20220919220804.1047292-1-bhupesh.sharma@linaro.org>
- <36bd1c19-8fbd-0903-704d-447117b2007a@linaro.org>
- <dfe1bc9e-2ab9-d2dd-7daa-dddb8d66fd77@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dfe1bc9e-2ab9-d2dd-7daa-dddb8d66fd77@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        bhupesh.linux@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        arnd@arndb.de, Jordan Crouse <jorcrous@amazon.com>
+References: <20220919221509.1057574-1-bhupesh.sharma@linaro.org>
+ <20220919221509.1057574-2-bhupesh.sharma@linaro.org>
+ <bb577304-f048-8fd5-fc7a-47a0897ba792@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <bb577304-f048-8fd5-fc7a-47a0897ba792@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -80,52 +81,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 10:48, Bhupesh Sharma wrote:
-> 
-> On 9/20/22 12:58 PM, Krzysztof Kozlowski wrote:
->> On 20/09/2022 00:08, Bhupesh Sharma wrote:
->>
->> (...)
->>
->>
->>>
->>> Qualcomm crypto engine (qce) is available on several Snapdragon SoCs.
->>> The qce block supports hardware accelerated algorithms for encryption
->>> and authentication. It also provides support for aes, des, 3des
->>> encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
->>> authentication algorithms.
->>>
->>> Note that this patchset is dependent on the dt-bindings patchset (see [1]) sent to devicetree list.
->>>
->>> [1]. https://lore.kernel.org/linux-arm-msm/20220919195618.926227-1-bhupesh.sharma@linaro.org/
->>
->> If it is dependent on the bindings only, keep them together. However I
->> don't think this is the only dependency. You add here several
->> compatibles which are not supported.
-> 
-> 
-> Please go through the cover letter where I mentioned that:
->    'As per Bjorn's suggestion on irc, broke down the patchset into 4
->    separate patchsets, one each for the following areas to allow easier
->    review and handling from the respective maintainer(s):
->          'arm-msm', 'crypto', 'dma' and 'devicetree'
->    This patchset is directed for the 'devicetree' tree / area.'
-> 
-> Basically now the patchset which had around 23 patches in v5 will send 
-> out as 4 separate patchsets one each for 'arm-msm', 'crypto', 'dma' and 
-> 'devicetree' trees.
-> 
-> So when all the respective subsets are picked up, all the compatibles 
-> are in place.
-
-and none of reviewers can find them, because you linked only bindings.
-Keeping bindings separate from everything is not good approach. Either
-they should be with DTS or with driver changes. Otherwise how can we
-even look that they are matching DTS?
-
-Keeping them separate even makes impression there are no ABI breaks and
-bisectability issues...
 
 
-Best regards,
-Krzysztof
+On 9/20/22 12:55 PM, Krzysztof Kozlowski wrote:
+> On 20/09/2022 00:15, Bhupesh Sharma wrote:
+>> Since we are using soc specific qce crypto IP compatibles
+>> in the bindings now, use the same in the device tree files
+>> which include the crypto nodes.
+>>
+>> Cc: Bjorn Andersson <andersson@kernel.org>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Tested-by: Jordan Crouse <jorcrous@amazon.com>
+>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>> ---
+>>   arch/arm/boot/dts/qcom-ipq4019.dtsi   | 2 +-
+>>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
+>>   arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
+>>   arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+>>   arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 +-
+>>   5 files changed, 5 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+>> index b23591110bd2..9c40714562d5 100644
+>> --- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
+>> +++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+>> @@ -314,7 +314,7 @@ cryptobam: dma-controller@8e04000 {
+>>   		};
+>>   
+>>   		crypto: crypto@8e3a000 {
+>> -			compatible = "qcom,crypto-v5.1";
+>> +			compatible = "qcom,ipq4019-qce";
+> 
+> There are few issues here:
+> 1. Compatible is not documented.
+
+Its documented here: 
+https://lore.kernel.org/linux-arm-msm/30756e6f-952f-ccf2-b493-e515ba4f0a64@linaro.org/
+
+[as mentioned in the dependency section in the cover letter :)]
+
+> 2. Compatible is not supported by old kernel - ABI break.
+> 3. Everything won't be bisectable...
+
+I think its a question of dependencies b/w the patchsets intended for
+separate areas. Let me think more on how, I can resolve it in newer
+versions.
+
+Thanks,
+Bhupesh
+
+
+
+> The same in other places.
+> 
+> Best regards,
+> Krzysztof
