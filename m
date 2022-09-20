@@ -2,739 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83C775BE4FA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 13:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EDEE5BE51D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 14:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbiITLxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 07:53:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50188 "EHLO
+        id S231143AbiITMAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 08:00:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbiITLxl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 07:53:41 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB417437E
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 04:53:38 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1oaboY-0002Zo-IA; Tue, 20 Sep 2022 13:53:22 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1oaboW-0003iQ-RR; Tue, 20 Sep 2022 13:53:20 +0200
-Date:   Tue, 20 Sep 2022 13:53:20 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil@xs4all.nl,
-        jacopo@jmondi.org, kieran.bingham+renesas@ideasonboard.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v2 4/4] media: tc358746: add Toshiba TC358746 Parallel to
- CSI-2 bridge driver
-Message-ID: <20220920115320.awkb5nir7b6d3j7j@pengutronix.de>
-References: <20220916134535.128131-1-m.felsch@pengutronix.de>
- <20220916134535.128131-5-m.felsch@pengutronix.de>
- <YyhktzmcgXKnrMFU@pendragon.ideasonboard.com>
- <20220919171142.6av6ap5gwweldado@pengutronix.de>
- <Yyio06jhK13BiNiP@pendragon.ideasonboard.com>
- <20220920104854.2wugqxffkf4qeib6@pengutronix.de>
- <Yymgr3pdbNWq6hn0@pendragon.ideasonboard.com>
+        with ESMTP id S231153AbiITMAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 08:00:13 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2069.outbound.protection.outlook.com [40.107.244.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDF81E0E6;
+        Tue, 20 Sep 2022 05:00:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KTwSxCfZRJ+Z5UyUCB9r1JpVae0nGa+xSKS90rxuW8jOk3ntxkS/Lr6Mi4ixvmuhZvnbMnH9+snVF3dU1ygFj2TT7Aw8XtP4h/OGTUkBcba7Z2Axga+KtnxGThKkvmRXbCe+kAJVw1n3Dssic+AlPmXqjIY96lvYsJyHM3e7rAdHdvtg0BvjxzOavY39FsNlszDiZlwc3f/IiW5CjDYbmZWynR26FUrXZk4BUTDwsHUX2tXNYE/hS2eWllrV1zc4PMu82sVxNCGRQ445rF56yHTTCmSdqnChJiyVRa+9vMk2K5CiroxjraYphjhNsYNdaHsKFlPYkWcbiHTHTZiNKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZqkVDCKy7SMesYjtJByJF2DG/ir/HMKyBwwurKQ8kec=;
+ b=RjdILrpWw8prfuF4cq0j8HhjBYJtWdekiR2l5GOweEhta+EwPaOlGTh1fuGJVm9jec5RqSZ50HjsHeQJXvrvfwDp5vX9lzkYgu/30f6/DcImVYC6je16yO7dY9UXihZ5xAt9NIil/wxT1Yx21CMFgIFEliODYysOknNPm0ZKXKx0znHo/FyvV9EbJMlerbT7tY1CesWOe9McmIQVI8Jc9SS5A9QPdxbS5YZbW46n3NMYBIajRsCJUsCPHnyGsCfFKvg+PgmaNNc8laR89b+ZUSDJJ2FKhk/YLtu3R1hxrcKtx+mycL0gFaBjPBoY2MD7e357LVF8orHBnYHwdot0Ag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZqkVDCKy7SMesYjtJByJF2DG/ir/HMKyBwwurKQ8kec=;
+ b=xvoTCyQInRiLzqIc4XczBheRCMbtyOXxwCafC7ZddUb+9wYFYUufsN0HB13Mc5Jr/SaNdTyBc7fZJ59/g7J2h0BMhWXunFdb+Nf/d/9uTJuI6PtD+2X6vYN9kjKnhLs/F71tXPDL+m76IiqfizW1ZnZLcNPQsZEKvf2P/HLyrUc=
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com (2603:10b6:208:37c::15)
+ by SA1PR12MB7294.namprd12.prod.outlook.com (2603:10b6:806:2b8::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.19; Tue, 20 Sep
+ 2022 12:00:04 +0000
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::8193:5c0c:4da8:7aad]) by MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::8193:5c0c:4da8:7aad%7]) with mapi id 15.20.5654.014; Tue, 20 Sep 2022
+ 12:00:03 +0000
+From:   "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        "Gaddam, Sarath Babu Naidu" <sarath.babu.naidu.gaddam@amd.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "adrianml@alumnos.upm.es" <adrianml@alumnos.upm.es>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "Sarangi, Anirudha" <anirudha.sarangi@amd.com>,
+        "Katakam, Harini" <harini.katakam@amd.com>,
+        "git@xilinx.com" <git@xilinx.com>, "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [RFC V3 PATCH 0/8] Xilinx DMA enhancements and optimization
+Thread-Topic: [RFC V3 PATCH 0/8] Xilinx DMA enhancements and optimization
+Thread-Index: AQHYzLUokPyXdBQ+zkGuk0IkXRyZp63oLoSAgAABReA=
+Date:   Tue, 20 Sep 2022 12:00:02 +0000
+Message-ID: <MN0PR12MB5953774B25AB9CA40A8BB43EB74C9@MN0PR12MB5953.namprd12.prod.outlook.com>
+References: <20220920055119.12634-1-sarath.babu.naidu.gaddam@amd.com>
+ <YymjofmCECa3iF20@matsya>
+In-Reply-To: <YymjofmCECa3iF20@matsya>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR12MB5953:EE_|SA1PR12MB7294:EE_
+x-ms-office365-filtering-correlation-id: d9031210-8a81-489f-8ca9-08da9affa6af
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: cbdYMNGLYsXOxSeD4U4U5mmoVtAkvGc3JB6JuD7XGu/7ozqTJhCm4worMo+wDncWLKo2Z0TUH25VXU2ATsE92BnFjHDdzpGjuM1haFxD2wKUUIU5d8gcydNsVKMUEIgOcGP5Z5FdxVQpLg2nU8hqRZWQWgBS6GYYtzquP53exOvzTipTxzDRgaGMnFOwBqsvzXscyhBNCVkbMIRIElln9nr/D467k+6klAZcqanGV61XZoP0nO4/j9nH/nocCuD47dalMiV0a3IBMxplG0a7yEgwqp2eKlSzCPfbe5VdlctOXakUCulOqRftlqNOV+lELoLY2I75dj5+1evLr5B4cFwOEJ2xe0ahzwzpacGT2Xg30ccCRA9hHGtzSCmalpLdXmRGhYdr8GP+7wTojwYdtvj49nKAQ9oANSwUMqO7kZaSJflTUX14TXqSyqQYCL3z/xPdSHx60yu1sAdlv8JeKTz8Q9rk1RQI/opBHK+dbmgXf7Jfaqi7ygc5WPeZ82cI8VRZMao0a6bAarotJ4VHl+uBl1AWxImNhvob3soPDjGJi0FxraMhzlebVIlLv2FG5XOIS0xrFf+vT7UZeessVC1p4i/JNjOGPrrBujvVsc6EIENBv9TQ8/AW0pJ8DKayuxHtB2N5/5ZjYKSWIsGOTauXe4ubBA0qWkCw4q1dRXLe+yECk3BU59oQG1OdimPLJfY7B7PmrrwOCq/5UxhktQucctWVI44ovhQkuA3mA9vdDWkcRiwy/7be/PyUT21DtjRTeU5aoHHuk7NQ9T9Fmg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5953.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(376002)(366004)(136003)(346002)(451199015)(9686003)(6506007)(7696005)(53546011)(38070700005)(7416002)(38100700002)(2906002)(478600001)(5660300002)(66446008)(64756008)(66476007)(122000001)(86362001)(33656002)(186003)(55016003)(71200400001)(41300700001)(83380400001)(66556008)(4326008)(110136005)(6636002)(8936002)(54906003)(66946007)(8676002)(316002)(52536014)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?tCwztYtqFXdhozUC5uTguGe4BNhv8pGA+diiIzlK+gxLwQOyGMwgTiYOB/0M?=
+ =?us-ascii?Q?TKxakstrj1gH25Fe14nerm2/OVx/s4ekdseBidDEQcnns3lSUwQQh606BYsh?=
+ =?us-ascii?Q?iwyuAridNzRX0LpyHIJa98VQe8a1p+8Wa4/X6TsNKmhOjT/f3dkv0C2Xypd7?=
+ =?us-ascii?Q?pxda0WQ7RsTwZh3uVhbgkgJeYR1KW9yGevXbPwyFjbTZvvY7K/hA6DQmQt+m?=
+ =?us-ascii?Q?sE3qdSBHqNmoB1uskMG+wawv+8NF5KRHPeJLpfBJSyjnxwARW/BRQGRF2GYg?=
+ =?us-ascii?Q?t68Dd11b0hq4DD9yK77xH8KCm8JUz0AJtG/hHX2MqQ2yT0xLABezZqV2OCro?=
+ =?us-ascii?Q?DiJSz5WbkCZn5/uBeSTLFeONe8ZFwYtIF3fdgdCpkEBt3FSWT55Kbm732GRi?=
+ =?us-ascii?Q?NhUtAFdhpdFqSywJHlg8IyUVBxd48pLWm6R8n6xS7yqpdWrQy+IqnOd4Texh?=
+ =?us-ascii?Q?0AytMBK0Vzt7VaybEnI1Uwl+TAFiwv3CIU8Qqvy7StvVR111IqauX1CiA3M5?=
+ =?us-ascii?Q?djzscmCy/mv3+8AUGt/rlVzTcCmxFrsDOkPiK/+9EqIjjQ3VNPG0zxveiTqn?=
+ =?us-ascii?Q?NN8IxDPgpti7tLoHVBiiWuxRehd/3RBXSGlLLRVtDC+nvxiy0AqYQNW9fItX?=
+ =?us-ascii?Q?MF9Rx/rs/m8tMpwSJ2zYvrK5zk+aSo2EoF8MPdQalaxqJhjr56Smme0u03dX?=
+ =?us-ascii?Q?8DznO39o0rkdWM8qXP/eJT56rjDW4qS5Zmny5SvPzsefHAEclLQY66tklUeU?=
+ =?us-ascii?Q?NBSsAa8ybywiAc4KvbXrt3oK4nIL/PfCJKag7H546eCCOByILQ23hb5r5w/K?=
+ =?us-ascii?Q?U9Cd8vi8I145xR2op/w6JAskb5Q1MHUlTJGIEivBHDwTzwOxY0FtKWteXOCI?=
+ =?us-ascii?Q?+LBV8T+QztCRjCq6wcQbzfU2JzitzqpVs0T1/F/tSzjiq268QfNZNfvCAwYG?=
+ =?us-ascii?Q?l44NvCdu37/wQb3xX2dbS/q6MYCR3D87JJ+1tRg01dj/uUI1DbfbcQe+N2Z5?=
+ =?us-ascii?Q?FG1Z6lAM0VoRndh/v/XCbW+11xut3dbNQn1WRIj5dmu6MvSa5BKJF0QqP9BT?=
+ =?us-ascii?Q?/yUZ9L/MYZI/EZt+6qx4EigxIhCUdJlR3DQX7RZJUFPehlu/laGBDzHIggmT?=
+ =?us-ascii?Q?HI6Tq4JDYZvoxSS6aRBE6HmD+lEb0C1s5HhSiDT9FThn3BCH+DOl7p5NmRqj?=
+ =?us-ascii?Q?zDpMPr5/bQZhPh0TuhmmvTUac5LDGSArXo3t3Re9yOfGInklralr02eGbx17?=
+ =?us-ascii?Q?mLVjmMNYrmsiaf7eFDIsJUtx9Q6s5xM8Y3bizbbrDzhvJUgnV9HAycNKGbG/?=
+ =?us-ascii?Q?a1rVrBoMTsvtB9HCW9iW43Afj4+CYczLoyOvVCrjCFkj7qLLmiyfr4ZWHVbu?=
+ =?us-ascii?Q?pM9PiJ1lpn8jLhvPkr5ou4c/wTFD/EMHQULyp7dKs5ywXl2k8nIzafgsgTBO?=
+ =?us-ascii?Q?xwOxqlmWZwWG0Zo8diACk0iHN8gW9rMCmBGgmlCLv92f7tCjJs1CPpFHOLLM?=
+ =?us-ascii?Q?q/7JOJnpuQAHVhst57+Z7AScnfksYPyBWLr2sMgccQM/Dxq5ruBNYaF3+A0A?=
+ =?us-ascii?Q?+fTyHhnLIpGROdXJscZFDqtv454XaijTIvd3dL6z30uNIByJoeDywnO3AUy2?=
+ =?us-ascii?Q?QSfaaACTGIZJhWCN+agsvjM=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yymgr3pdbNWq6hn0@pendragon.ideasonboard.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5953.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d9031210-8a81-489f-8ca9-08da9affa6af
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Sep 2022 12:00:03.0050
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AGMpkiVTmIgPxx7vzlKl++YUub2Nz35xZX+XVsG8JiRUasveHh/w7nAAhwUgEPF1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7294
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+> -----Original Message-----
+> From: Vinod Koul <vkoul@kernel.org>
+> Sent: Tuesday, September 20, 2022 4:57 PM
+> To: Gaddam, Sarath Babu Naidu <sarath.babu.naidu.gaddam@amd.com>
+> Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> lars@metafoo.de; adrianml@alumnos.upm.es; dmaengine@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; Simek, Michal <michal.simek@amd.com>; Pandey,
+> Radhey Shyam <radhey.shyam.pandey@amd.com>; Sarangi, Anirudha
+> <anirudha.sarangi@amd.com>; Katakam, Harini
+> <harini.katakam@amd.com>; git@xilinx.com; git (AMD-Xilinx)
+> <git@amd.com>
+> Subject: Re: [RFC V3 PATCH 0/8] Xilinx DMA enhancements and optimization
+>=20
+> On 20-09-22, 11:21, Sarath Babu Naidu Gaddam wrote:
+> > Some background about the patch series: Xilinx Axi Ethernet device
+> > driver
+> > (xilinx_axienet_main.c) currently has axi-dma code inside it. The goal
+> > is to refactor axiethernet driver and use existing AXI DMA driver
+> > using DMAEngine API.
+> >
+> > This patchset does feature addition and optimization to support axidma
+> > integration with axiethernet network driver. Once axidma version is
+> > accepted mcdma specific changes will be added in followup version.
+>=20
+> why is this tagged RFC? Is it not ready for merge?
 
-On 22-09-20, Laurent Pinchart wrote:
-> Hi Marco,
-> 
-> On Tue, Sep 20, 2022 at 12:48:54PM +0200, Marco Felsch wrote:
-> > On 22-09-19, Laurent Pinchart wrote:
-> > > On Mon, Sep 19, 2022 at 07:11:42PM +0200, Marco Felsch wrote:
-> > > > On 22-09-19, Laurent Pinchart wrote:
-> > > > > On Fri, Sep 16, 2022 at 03:45:35PM +0200, Marco Felsch wrote:
+To recap - In v3, the new addition is "[PATCH 8/8] dmaengine:=20
+xilinx_dma: Add device_config support" along with addressing=20
+RFC v2 comment.=20
 
-...
+8/8 is initial proposal on how to implement coalesce feature in
+dmaengine driver to support ethernet usecases. Thought was
+that it's better to have this idea reviewed as RFC before=20
+extending the logic for other IP variants and spin sanity test
+all usecases.=20
 
-> > > > > > +static int tc358746_apply_misc_config(struct tc358746 *tc358746)
-> > > > > > +{
-> > > > > > +	struct v4l2_subdev *sd = &tc358746->sd;
-> > > > > > +	struct v4l2_subdev_state *sink_state;
-> > > > > > +	struct v4l2_mbus_framefmt *mbusfmt;
-> > > > > 
-> > > > > This can be const.
-> > > > 
-> > > > Sure
-> > > > 
-> > > > > > +	const struct tc358746_format *fmt;
-> > > > > > +	struct device *dev = sd->dev;
-> > > > > > +	u32 val;
-> > > > > > +	int err;
-> > > > > > +
-> > > > > > +	sink_state = v4l2_subdev_lock_and_get_active_state(sd);
-> > > > > > +	mbusfmt = v4l2_subdev_get_pad_format(sd, sink_state, TC358746_SINK);
-> > > > > > +	v4l2_subdev_unlock_state(sink_state);
-> > > > > 
-> > > > > You should keep the state locked until the end of this function,
-> > > > > otherwise the format could change.
-> > > > 
-> > > > That couldn't be the case since this function is called during
-> > > > .s_stream(on) and my understanding was that it is not allowed to change
-> > > > the active format after calling .s_stream(on). But I can move it to the
-> > > > end.
-> > > 
-> > > You're right, my bad. I can't wait for the .enable_streams() and
-> > > .disable_streams() operations to replace .s_stream(), the state will
-> > > then be passed by the framework to the drivers, simplifying all this.
-> > 
-> > Ah.. there are changes coming :) Is there some roadmap or todo or so?
-> > Maybe we/I could support on some internal work.
-> 
-> The .enable_streams() and .disable_streams() operations are part of [1].
-> The first 16 patches should be in v6.1. Reviews of the rest of the
-> series would be appreciated.
+Fallback option is to split this series and send patches which are
+already reviewed in RFC v2 as PATCH and only 8/8 (which need=20
+more discussion/framework extension) as RFC?
+Let me know your thoughts.=20
 
-Ah :)
-
-> Further updates on top of that are just in my head for now :-) One idea
-> is to rework media_pipeline_start() to split it into multiple functions,
-> with a function that would lock all active states in the pipeline prior
-> to calling .enable_streams(). The details are still vague at this point,
-> but the goal is to move state locking out of drivers and pass it
-> explicitly to all subdev functions.
-
-Yes, that would be a lot easier since this are details which shouldn't
-be implemented within the driver. Also it would be more robust since it
-is handled in a central place.
-
-> If there's anything you dislike with the subdev API that could be solved
-> by increasing usage of the subdev state, let me know, we could cooperate
-> on development.
-
-Sure, for now I like that we finally get rid of the local
-try-fmt/selection handling. This was also something the subdev driver
-shouldn't care about.
-
-> [1] https://lore.kernel.org/linux-media/20220831141357.1396081-1-tomi.valkeinen@ideasonboard.com
-
-...
-
-> > > > > > +static int tc358746_set_fmt(struct v4l2_subdev *sd,
-> > > > > > +			    struct v4l2_subdev_state *sd_state,
-> > > > > > +			    struct v4l2_subdev_format *format)
-> > > > > > +{
-
-...
-
-> > > > > > +	sensor = media_entity_to_v4l2_subdev(link->source->entity);
-> > > > > > +	sensor_pclk_rate = v4l2_get_link_freq(sensor->ctrl_handler, 0, 0);
-> > > > > 
-> > > > > Shouldn't you set the last two arguments to non-zero values, to support
-> > > > > sources that only implement the V4L2_CID_PIXEL_RATE control ?
-> > > > 
-> > > > Nope, I don't wanna support PIXEL_RATE right now. This can be changed
-> > > > later I think.
-> > > 
-> > > Would it be hard to support it already, given that the
-> > > v4l2_get_link_freq() should make it easier ? That would avoid having to
-> > > come back to this code later.
-> > 
-> > I had the pixel-rate first, then Jacobo mentioned (correctly) that my
-> > usage of pixel-rate was wrong. Supporting PIXEL_RATE as well would add
-> > more complexity because we need to take core of the mbus format to get
-> > the correct mul/div settings.
-> 
-> That's right, but the required information could be stored in the
-> tc358746_format structure, can't it ?
-
-Sure.
-
-> > Also I think that only a few drivers
-> > implementing the PIXEL_RATE correctly in case of parallel sensors _and_
-> > this is just a fallback which will print a warning if triggered. All I
-> > want to do here is: "give me the link frequence" :) If there are drivers
-> > not supporting this but support PIXEL_RATE it shouldn't be that hard for
-> > those driver to add the LINK_FREQ ctrl. This would also improve the
-> > kernel quality since there are now heuristics and no warnings printed.
-> > 
-> > Is it okay, to keep it simple and just go with LINK_FREQ. for now?
-> 
-> OK, I won't insist much.
-> 
-> > > > > I'd also name the variable source_link_freq, as it may not be a sensor,
-> > > > > and it's a link frequency, not a pixel clock rate.
-> > > > 
-> > > > In parallel case (which is the only supported right now) the pclk is the
-> > > > link_freq. but I can change it of course.
-> > > 
-> > > I read "pclk" as "pixel clock". That makes me think of
-> > > V4L2_CID_PIXEL_RATE, which indicates the number of pixels per second.
-> > > With YUV 4:2:2 2X8 media bus formats, the link frequency will be twice
-> > > the pixel rate.
-> > 
-> > Hm.. the link frequency is the frequency on the physical parallel bus,
-> > as far as I understood the ctrl. In parallel use-case this is pixelclk.
-> > 
-> > Also according PIXEL_RATE documentation, it is defined as
-> > pixel-per-second. For YUV 4:2:2 those this mean mean:
-> >  - y1 == 1st pixel,
-> >  - u1 == 2nd pixel,
-> >  - y2 == 3rd pixel,
-> >  - ...
-> 
-> YUYV8_2X8 transfers Y0, U0, Y1, V0, Y2, U2, Y3, V2, ... 
-
-Of course, zero based ^^
-
-> You need two cycles per pixel. 
-
-To be even more precise: I need 4 cycles for 2 pixels.
-
-> That's why sensor_pclk_rate can be misleading, as it may refer to the
-> sensor pixel sampling clock, or the parallel bus clock, and those two
-> are different. It's just a variable naming issue to avoid confusion.
-
-You're right, i've changed it to source_link_freq as you suggested. I
-also dropped the complete sensor variables and used source instead.
-
-> > All I want is to get the rate/frequency of the physical bus from the
-> > input device :) According my above explanation, could we please go with
-> > "the LINK_FREQ ctrl only" since this would avoid possible kernel
-> > warnings and is the most accurate one.
-> > 
-> > > > > > +	if (sensor_pclk_rate <= 0) {
-> > > > > > +		dev_err(tc358746->sd.dev,
-> > > > > > +			"Failed to query or invalid sensor link frequency\n");
-> > > > > > +		/* Return -EINVAL in case of sensor_pclk_rate is 0 */
-> > > > > > +		return sensor_pclk_rate ? : -EINVAL;
-> > > > > > +	}
-> > > > > > +	sensor_bitrate = sensor_pclk_rate * fmt->bus_width;
-> > > > > > +
-> > > > > > +	csi_bitrate = tc358746->dphy_cfg.lanes * tc358746->pll_rate;
-> > > > > > +
-> > > > > > +	dev_dbg(tc358746->sd.dev,
-> > > > > > +		"Fifo settings params: sensor-bitrate:%lu csi-bitrate:%lu",
-> > > > > > +		sensor_bitrate, csi_bitrate);
-> > > > > > +
-> > > > > > +	/* Avoid possible FIFO overflows */
-> > > > > > +	if (csi_bitrate < sensor_bitrate) {
-> > > > > > +		dev_err(sd->dev,
-> > > > > > +			"Link validation failed csi-bitrate:%lu < sensor-bitrate:%lu\n",
-> > > > > > +			csi_bitrate, sensor_bitrate);
-> > > > > 
-> > > > > As this can be triggered by userspace, I'd make it a dev_dbg().
-> > > > 
-> > > > So you would rather fail silently without printing the reason? Is there
-> > > > a common kernel agreement when to use dev_err() or info() or dbg()?
-> > > 
-> > > It's not completely silent :-) The idea is that an error condition that
-> > > can be triggered by unpriviledged userspace shouldn't be able to flood
-> > > the kernel log. dev_dbg() will still allow debugging.
-> > 
-> > Okay, I droppped it completely since the dev_dbg() in front of this
-> > call.
-> > 
-> > > > > > +		return -EINVAL;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	/* Best case */
-> > > > > > +	if (csi_bitrate == sensor_bitrate) {
-> > > > > > +		tc358746->vb_size = TC358746_VB_DEFAULT_SIZE;
-> > > > > > +		goto out;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	/*
-> > > > > > +	 * Avoid possible FIFO underflow in case of
-> > > > > > +	 * csi_bitrate > sensor_bitrate. For such case the chip has a internal
-> > > > > > +	 * fifo which can be used to delay the line output.
-> > > > > > +	 *
-> > > > > > +	 * Fifo size calculation:
-> > > > > > +	 *
-> > > > > > +	 * fifo-sz, image-width - in bits
-> > > > > > +	 * sbr                  - sensor_bitrate in bits/s
-> > > > > > +	 * csir                 - csi_bitrate in bits/s
-> > > > > > +	 *
-> > > > > > +	 *                1             1      1
-> > > > > > +	 * image-width * --- + fifo-sz --- >= ---- * image-width
-> > > > > > +	 *               sbr           sbr    csir
-> > > > > 
-> > > > > Given that csir > sbr, 1/csir < 1 sbr, so this will always be true,
-> > > > > even with fifo-sz set to 0. Am I missing something ?
-> > > > 
-> > > > Nope, that is right. Didn't checked that while I was coding it.
-> > > > 
-> > > > > > +	 *
-> > > > > > +	 * fifo-sz >= abs(sbr/csir * image-width - image-width)
-> > > > > > +	 *                `-----´
-> > > > > > +	 *                   n
-> > > > > 
-> > > > > The n variable doesn't store sbr/csir but csir/sbr (multiplied by a
-> > > > > precision factor). And do I understand correctly that, as sbr < csir,
-> > > > > this would be equal to the following ?
-> > > > > 
-> > > > > 	 * fifo-sz >= image-width - sbr/csir * image-width
-> > > > 
-> > > > Exactly, my above comment and the below code is a bit of, you're right
-> > > > but the calc is still correct:
-> > > > 
-> > > >         (mbusfmt->width * precision)   (mbusfmt->width * precision)
-> > > >   tmp = ---------------------------- = ----------------------------
-> > > >                         n                    csi_bitrate
-> > > > 			                     --------------
-> > > > 					     sensor_bitrate
-> > > > 
-> > > > 					`---------------------------´
-> > > >    					   sbr/csir * image-width
-> > > > 
-> > > > maybe I should comment it like:
-> > > > 
-> > > > > * fifo-sz >= abs(sbr/csir * image-width - image-width)
-> > > > > *
-> > > > > * with n = 1/(sbr/csir) = csir/sbr
-> > > > > *
-> > > > > * fifo-sz >= abs(image-width / n - image-width)
-> > > > > *
-> > > > > *  or
-> > > > > *
-> > > > > *  fifo-sz >= image-width - image-width / n
-> > > > 
-> > > > > > +	 *
-> > > > > > +	 */
-> > > > > > +
-> > > > > > +	sensor_bitrate /= TC358746_PRECISION;
-> > > > > > +	n = csi_bitrate / sensor_bitrate;
-> > > > > > +	tmp = (mbusfmt->width * TC358746_PRECISION) / n;
-> > > > > > +	fifo_sz = mbusfmt->width - tmp;
-> > > > > > +	fifo_sz *= fmt->bpp;
-> > > > > > +	tc358746->vb_size = round_up(fifo_sz, 32);
-> > > > > > +
-> > > > > > +out:
-> > > > > > +	dev_dbg(tc358746->sd.dev,
-> > > > > > +		"Found FIFO size[bits]:%u -> aligned to size[bits]:%u\n",
-> > > > > > +		fifo_sz, tc358746->vb_size);
-> > > > > > +
-> > > > > > +	return tc358746->vb_size > TC358746_VB_MAX_SIZE ? -EINVAL : 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int tc358746_get_mbus_config(struct v4l2_subdev *sd, unsigned int pad,
-> > > > > > +				    struct v4l2_mbus_config *config)
-> > > > > > +{
-> > > > > > +	struct tc358746 *tc358746 = to_tc358746(sd);
-> > > > > > +
-> > > > > > +	if (pad != TC358746_SOURCE)
-> > > > > > +		return -EINVAL;
-> > > > > > +
-> > > > > > +	config->type = V4L2_MBUS_CSI2_DPHY;
-> > > > > > +	config->bus.mipi_csi2 = tc358746->csi_vep.bus.mipi_csi2;
-> > > > > > +
-> > > > > > +	return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +int __maybe_unused
-> > > > > 
-> > > > > As reported by the buildbot, this should be static. Same for s_register.
-> > > > 
-> > > > Yes.
-> > > > 
-> > > > > > +tc358746_g_register(struct v4l2_subdev *sd, struct v4l2_dbg_register *reg)
-> > > > > > +{
-> > > > > > +	struct tc358746 *tc358746 = to_tc358746(sd);
-> > > > > > +
-> > > > > > +	/* 32-bit registers starting from CLW_DPHYCONTTX */
-> > > > > > +	reg->size = reg->reg < CLW_DPHYCONTTX_REG ? 2 : 4;
-> > > > > > +
-> > > > > > +	if (pm_runtime_resume_and_get(sd->dev)) {
-> > > > > > +		dev_err(sd->dev, "Failed to resume the device\n");
-> > > > > > +		return 0;
-> > > > > > +	}
-> > > > > 
-> > > > > Is there a point in powering the hardware on here if it's off, in order
-> > > > > to read a register that will have been reset due to the power cycle ?
-> > > > > pm_runtime_get_if_in_use() seems better. Same in .s_register().
-> > > > 
-> > > > You're right, I will change that.
-> > > > 
-> > > > > > +	tc358746_read(tc358746, reg->reg, (u32 *)&reg->val);
-> > > > > > +
-> > > > > > +	pm_runtime_mark_last_busy(sd->dev);
-> > > > > > +	pm_runtime_put_sync_autosuspend(sd->dev);
-> > > > > > +
-> > > > > > +	return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +int __maybe_unused
-> > > > > > +tc358746_s_register(struct v4l2_subdev *sd, const struct v4l2_dbg_register *reg)
-> > > > > > +{
-> > > > > > +	struct tc358746 *tc358746 = to_tc358746(sd);
-> > > > > > +
-> > > > > > +	if (pm_runtime_resume_and_get(sd->dev)) {
-> > > > > > +		dev_err(sd->dev, "Failed to resume the device\n");
-> > > > > > +		return 0;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	tc358746_write(tc358746, (u32)reg->reg, (u32)reg->val);
-> > > > > > +
-> > > > > > +	pm_runtime_mark_last_busy(sd->dev);
-> > > > > > +	pm_runtime_put_sync_autosuspend(sd->dev);
-> > > > > > +
-> > > > > > +	return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct v4l2_subdev_core_ops tc358746_core_ops = {
-> > > > > > +#ifdef CONFIG_VIDEO_ADV_DEBUG
-> > > > > > +	.g_register = tc358746_g_register,
-> > > > > > +	.s_register = tc358746_s_register,
-> > > > > > +#endif
-> > > > > > +};
-> > > > > > +
-> > > > > > +static const struct v4l2_subdev_video_ops tc358746_video_ops = {
-> > > > > > +	.s_stream = tc358746_s_stream,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static const struct v4l2_subdev_pad_ops tc358746_pad_ops = {
-> > > > > > +	.init_cfg = tc358746_init_cfg,
-> > > > > > +	.enum_mbus_code = tc358746_enum_mbus_code,
-> > > > > > +	.set_fmt = tc358746_set_fmt,
-> > > > > > +	.get_fmt = v4l2_subdev_get_fmt,
-> > > > > > +	.link_validate = tc358746_link_validate,
-> > > > > > +	.get_mbus_config = tc358746_get_mbus_config,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static const struct v4l2_subdev_ops tc358746_ops = {
-> > > > > > +	.core = &tc358746_core_ops,
-> > > > > > +	.video = &tc358746_video_ops,
-> > > > > > +	.pad = &tc358746_pad_ops,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static const struct media_entity_operations tc358746_entity_ops = {
-> > > > > > +	.get_fwnode_pad = v4l2_subdev_get_fwnode_pad_1_to_1,
-> > > > > > +	.link_validate = v4l2_subdev_link_validate,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int tc358746_mclk_enable(struct clk_hw *hw)
-> > > > > > +{
-> > > > > > +	struct tc358746 *tc358746 = clk_hw_to_tc358746(hw);
-> > > > > > +	unsigned int div;
-> > > > > > +	u32 val;
-> > > > > > +	int err;
-> > > > > > +
-> > > > > > +	div = tc358746->mclk_postdiv / 2;
-> > > > > > +	val = MCLK_HIGH(div - 1) | MCLK_LOW(div - 1);
-> > > > > > +	dev_dbg(tc358746->sd.dev, "MCLKCTL: %u (0x%x)\n", val, val);
-> > > > > > +	err = tc358746_write(tc358746, MCLKCTL_REG, val);
-> > > > > > +	if (err)
-> > > > > > +		return err;
-> > > > > > +
-> > > > > > +	if (tc358746->mclk_prediv == 8)
-> > > > > > +		val = MCLKDIV(MCLKDIV_8);
-> > > > > > +	else if (tc358746->mclk_prediv == 4)
-> > > > > > +		val = MCLKDIV(MCLKDIV_4);
-> > > > > > +	else
-> > > > > > +		val = MCLKDIV(MCLKDIV_2);
-> > > > > > +
-> > > > > > +	dev_dbg(tc358746->sd.dev, "CLKCTL[MCLKDIV]: %u (0x%x)\n", val, val);
-> > > > > > +	return tc358746_update_bits(tc358746, CLKCTL_REG, MCLKDIV_MASK, val);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static void tc358746_mclk_disable(struct clk_hw *hw)
-> > > > > > +{
-> > > > > > +	struct tc358746 *tc358746 = clk_hw_to_tc358746(hw);
-> > > > > > +
-> > > > > > +	tc358746_write(tc358746, MCLKCTL_REG, 0);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static long
-> > > > > > +tc358746_find_mclk_settings(struct tc358746 *tc358746, unsigned long mclk_rate)
-> > > > > > +{
-> > > > > > +	unsigned long pll_rate = tc358746->pll_rate;
-> > > > > > +	const unsigned char prediv[] = { 2, 4, 8 };
-> > > > > > +	unsigned int mclk_prediv, mclk_postdiv;
-> > > > > > +	struct device *dev = tc358746->sd.dev;
-> > > > > > +	unsigned int postdiv, mclkdiv;
-> > > > > > +	unsigned long best_mclk_rate;
-> > > > > > +	unsigned int i;
-> > > > > > +
-> > > > > > +	/*
-> > > > > > +	 *                          MCLK-Div
-> > > > > > +	 *           -------------------´`---------------------
-> > > > > > +	 *          ´                                          `
-> > > > > > +	 *         +-------------+     +------------------------+
-> > > > > > +	 *         | MCLK-PreDiv |     |       MCLK-PostDiv     |
-> > > > > > +	 * PLL --> |   (2/4/8)   | --> | (mclk_low + mclk_high) | --> MCLK
-> > > > > > +	 *         +-------------+     +------------------------+
-> > > > > > +	 *
-> > > > > > +	 * The register value of mclk_low/high is mclk_low/high+1, i.e.:
-> > > > > > +	 *   mclk_low/high = 1   --> 2 MCLK-Ref Counts
-> > > > > > +	 *   mclk_low/high = 255 --> 256 MCLK-Ref Counts == max.
-> > > > > > +	 * If mclk_low and mclk_high are 0 then MCLK is disabled.
-> > > > > > +	 *
-> > > > > > +	 * Keep it simple and support 50/50 duty cycles only for now,
-> > > > > > +	 * so the calc will be:
-> > > > > > +	 *
-> > > > > > +	 *   MCLK = PLL / (MCLK-PreDiv * 2 * MCLK-PostDiv)
-> > > > > > +	 */
-> > > > > > +
-> > > > > > +	if (mclk_rate == tc358746->mclk_rate)
-> > > > > > +		return mclk_rate;
-> > > > > > +
-> > > > > > +	/* Highest possible rate */
-> > > > > > +	mclkdiv = pll_rate / mclk_rate;
-> > > > > > +	if (mclkdiv <= 8) {
-> > > > > > +		mclk_prediv = 2;
-> > > > > > +		mclk_postdiv = 4;
-> > > > > > +		best_mclk_rate = pll_rate / (2 * 4);
-> > > > > > +		goto out;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	/* First check the prediv */
-> > > > > > +	for (i = 0; i < ARRAY_SIZE(prediv); i++) {
-> > > > > > +		postdiv = mclkdiv / prediv[i];
-> > > > > > +
-> > > > > > +		if (postdiv % 2)
-> > > > > > +			continue;
-> > > > > > +
-> > > > > > +		if (postdiv >= 4 && postdiv <= 512) {
-> > > > > > +			mclk_prediv = prediv[i];
-> > > > > > +			mclk_postdiv = postdiv;
-> > > > > > +			best_mclk_rate = pll_rate / (prediv[i] * postdiv);
-> > > > > > +			goto out;
-> > > > > > +		}
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	/* No suitable prediv found, so try to adjust the postdiv */
-> > > > > > +	for (postdiv = 4; postdiv <= 512; postdiv += 2) {
-> > > > > > +		unsigned int pre;
-> > > > > > +
-> > > > > > +		pre = mclkdiv / postdiv;
-> > > > > > +		if (pre == 2 || pre == 4 || pre == 8) {
-> > > > > > +			mclk_prediv = pre;
-> > > > > > +			mclk_postdiv = postdiv;
-> > > > > > +			best_mclk_rate = pll_rate / (pre * postdiv);
-> > > > > > +			goto out;
-> > > > > > +		}
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	/* The MCLK <-> PLL gap is to high -> use largest possible div */
-> > > > > > +	mclk_prediv = 8;
-> > > > > > +	mclk_postdiv = 512;
-> > > > > > +	best_mclk_rate = pll_rate / (8 * 512);
-> > > > > > +
-> > > > > > +out:
-> > > > > > +	tc358746->mclk_prediv = mclk_prediv;
-> > > > > > +	tc358746->mclk_postdiv = mclk_postdiv;
-> > > > > > +	tc358746->mclk_rate = best_mclk_rate;
-> > > > > > +
-> > > > > > +	if (best_mclk_rate != mclk_rate)
-> > > > > > +		dev_warn(dev, "Request MCLK freq:%lu, found MCLK freq:%lu\n",
-> > > > > > +			 mclk_rate, best_mclk_rate);
-> > > > > > +
-> > > > > > +	dev_dbg(dev, "Found MCLK settings: freq:%lu prediv:%u postdiv:%u\n",
-> > > > > > +		best_mclk_rate, mclk_prediv, mclk_postdiv);
-> > > > > > +
-> > > > > > +	return best_mclk_rate;
-> > > > > > +}
-> > > > > > +
-> > > > > > +unsigned long tc358746_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
-> > > > > > +{
-> > > > > > +	struct tc358746 *tc358746 = clk_hw_to_tc358746(hw);
-> > > > > > +	unsigned int prediv, postdiv;
-> > > > > > +	u32 val;
-> > > > > > +	int err;
-> > > > > > +
-> > > > > > +	err = tc358746_read(tc358746, MCLKCTL_REG, &val);
-> > > > > > +	if (err)
-> > > > > > +		return 0;
-> > > > > > +
-> > > > > > +	postdiv = FIELD_GET(MCLK_LOW_MASK, val) + 1;
-> > > > > > +	postdiv += FIELD_GET(MCLK_HIGH_MASK, val) + 1;
-> > > > > > +
-> > > > > > +	err = tc358746_read(tc358746, CLKCTL_REG, &val);
-> > > > > > +	if (err)
-> > > > > > +		return 0;
-> > > > > > +
-> > > > > > +	prediv = FIELD_GET(MCLKDIV_MASK, val);
-> > > > > > +	if (prediv == MCLKDIV_8)
-> > > > > > +		prediv = 8;
-> > > > > > +	else if (prediv == MCLKDIV_4)
-> > > > > > +		prediv = 4;
-> > > > > > +	else
-> > > > > > +		prediv = 2;
-> > > > > > +
-> > > > > > +	return tc358746->pll_rate / (prediv * postdiv);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static long tc358746_mclk_round_rate(struct clk_hw *hw, unsigned long rate,
-> > > > > > +				     unsigned long *parent_rate)
-> > > > > > +{
-> > > > > > +	struct tc358746 *tc358746 = clk_hw_to_tc358746(hw);
-> > > > > > +
-> > > > > > +	*parent_rate = tc358746->pll_rate;
-> > > > > > +
-> > > > > > +	return tc358746_find_mclk_settings(tc358746, rate);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int tc358746_mclk_set_rate(struct clk_hw *hw, unsigned long rate,
-> > > > > > +				  unsigned long parent_rate)
-> > > > > > +{
-> > > > > > +	struct tc358746 *tc358746 = clk_hw_to_tc358746(hw);
-> > > > > > +
-> > > > > > +	tc358746_find_mclk_settings(tc358746, rate);
-> > > > > > +
-> > > > > > +	return tc358746_mclk_enable(hw);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct clk_ops tc358746_mclk_ops = {
-> > > > > > +	.enable = tc358746_mclk_enable,
-> > > > > > +	.disable = tc358746_mclk_disable,
-> > > > > > +	.recalc_rate = tc358746_recalc_rate,
-> > > > > > +	.round_rate = tc358746_mclk_round_rate,
-> > > > > > +	.set_rate = tc358746_mclk_set_rate,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int
-> > > > > > +tc358746_init_subdev(struct tc358746 *tc358746, struct i2c_client *client)
-> > > > > > +{
-> > > > > > +	struct v4l2_subdev *sd;
-> > > > > > +	int err;
-> > > > > > +
-> > > > > > +	sd = &tc358746->sd;
-> > > > > 
-> > > > > You could initialize the variable when declaring it.
-> > > > 
-> > > > Yes.
-> > > > 
-> > > > > > +	v4l2_i2c_subdev_init(sd, client, &tc358746_ops);
-> > > > > > +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> > > > > > +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
-> > > > > > +	sd->entity.ops = &tc358746_entity_ops;
-> > > > > > +
-> > > > > > +	tc358746->pads[TC358746_SINK].flags = MEDIA_PAD_FL_SINK;
-> > > > > > +	tc358746->pads[TC358746_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
-> > > > > > +	err = media_entity_pads_init(&sd->entity, TC358746_NR_PADS,
-> > > > > > +				     tc358746->pads);
-> > > > > > +	if (err)
-> > > > > > +		return err;
-> > > > > > +
-> > > > > > +	err = v4l2_subdev_init_finalize(sd);
-> > > > > > +	if (err)
-> > > > > > +		media_entity_cleanup(&sd->entity);
-> > > > > > +
-> > > > > > +	return err;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int
-> > > > > > +tc358746_init_output_port(struct tc358746 *tc358746, unsigned long refclk)
-> > > > > > +{
-> > > > > > +	struct device *dev = tc358746->sd.dev;
-> > > > > > +	struct v4l2_fwnode_endpoint *vep;
-> > > > > > +	unsigned long csi_link_rate;
-> > > > > > +	struct fwnode_handle *ep;
-> > > > > > +	unsigned char csi_lanes;
-> > > > > > +	int err;
-> > > > > > +
-> > > > > > +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), TC358746_SOURCE,
-> > > > > > +					     0, 0);
-> > > > > > +	if (!ep) {
-> > > > > > +		dev_err(dev, "Missing endpoint node\n");
-> > > > > > +		return -EINVAL;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	/* Currently we only support 'parallel in' -> 'csi out' */
-> > > > > > +	vep = &tc358746->csi_vep;
-> > > > > > +	vep->bus_type = V4L2_MBUS_CSI2_DPHY;
-> > > > > > +	err = v4l2_fwnode_endpoint_alloc_parse(ep, vep);
-> > > > > > +	fwnode_handle_put(ep);
-> > > > > > +	if (err) {
-> > > > > > +		dev_err(dev, "Failed to parse source endpoint\n");
-> > > > > > +		return err;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	csi_lanes = vep->bus.mipi_csi2.num_data_lanes;
-> > > > > > +	if (csi_lanes == 0 || csi_lanes > 4 ||
-> > > > > > +	    vep->nr_of_link_frequencies == 0) {
-> > > > > > +		dev_err(dev, "error: Invalid CSI-2 settings\n");
-> > > > > > +		err = -EINVAL;
-> > > > > > +		goto err;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	/* TODO: Add support to handle multiple link frequencies */
-> > > > > > +	csi_link_rate = (unsigned long)vep->link_frequencies[0];
-> > > > > > +	tc358746->pll_rate = tc358746_find_pll_settings(tc358746, refclk,
-> > > > > > +							csi_link_rate * 2);
-> > > > > > +	if (!tc358746->pll_rate) {
-> > > > > > +		err = -EINVAL;
-> > > > > > +		goto err;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	err = phy_mipi_dphy_get_default_config_for_hsclk(tc358746->pll_rate,
-> > > > > > +						csi_lanes, &tc358746->dphy_cfg);
-> > > > > > +	if (err)
-> > > > > > +		goto err;
-> > > > > > +
-> > > > > > +	tc358746->vb_size = TC358746_VB_DEFAULT_SIZE;
-> > > > > > +
-> > > > > > +	return 0;
-> > > > > > +
-> > > > > > +err:
-> > > > > > +	v4l2_fwnode_endpoint_free(vep);
-> > > > > > +
-> > > > > > +	return err;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int tc358746_init_hw(struct tc358746 *tc358746)
-> > > > > > +{
-> > > > > > +	struct device *dev = tc358746->sd.dev;
-> > > > > > +	unsigned int chipid;
-> > > > > > +	u32 val;
-> > > > > > +	int err;
-> > > > > > +
-> > > > > > +	err = pm_runtime_resume_and_get(dev);
-> > > > > > +	if (err < 0) {
-> > > > > > +		dev_err(dev, "Failed to resume the device\n");
-> > > > > > +		return err;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	 /* Ensure that CSI interface is put into LP-11 state */
-> > > > > > +	err = tc358746_sw_reset(tc358746);
-> > > > > > +	if (err) {
-> > > > > > +		pm_runtime_put_noidle(dev);
-> > > > > 
-> > > > > Don't you need a regular put (possibly with autosuspend) here ?
-> > > > > Otherwise a reset failure will decrement the runtime PM use count but
-> > > > > leave the decide powered.
-> > > > 
-> > > > The runtime_disable() will be called within the probe(). Please see
-> > > > the error path there for tc358746_init_hw().
-> > > 
-> > > Those are two different things, I don't think pm_runtime_disable() will
-> > > power the device off.
-> > 
-> > Arg.. Yes you're right. I will fix it by using the
-> > pm_runtime_put_sync_suspend() now. Thanks.
-> 
-> I think pm_runtime_put_sync() is enough, or even pm_runtime_put() if you
-> don't need the power to be turned off immediately.
-
-This will end in the same, but as you prefer. I used the sync version
-since the error handling will execute it anyways.
-
-Regards,
-  Marco
+Thanks,
+Radhey
+>=20
+> >
+> > Changes for V2:
+> > - Use metadata API[1] for passing metadata from dma to netdev client.
+> > - Read irq-delay from DT.
+> > - Remove desc_callback_valid check.
+> > - Addressed RFC v1 comments[2].
+> > - Minor code refactoring.
+> >
+> > Changes for V3:
+> > - Add device_config support for passing any dma client data.
+> > - Address RFC v2 comments.
+> >     - remove hardcoding for axidma_tx_segment.
+> >     - Below review comment is in pipeline. We are facing a race issue w=
+hen
+> >       addressing it. we will fix it in the next version.
+> >       "chan->idle =3D true; in xilinx_dma_irq_handler() needs to be gat=
+ed on
+> >        the active_list being empty".
+> >
+> > Comments, suggestions are very welcome
+> >
+> > Radhey Shyam Pandey (7):
+> >   dt-bindings: dmaengine: xilinx_dma: Add xlnx,axistream-connected
+> >     property
+> >   dt-bindings: dmaengine: xilinx_dma: Add xlnx,irq-delay property
+> >   dmaengine: xilinx_dma: Pass AXI4-Stream control words to dma client
+> >   dmaengine: xilinx_dma: Increase AXI DMA transaction segment count
+> >   dmaengine: xilinx_dma: Freeup active list based on descriptor
+> >     completion bit
+> >   dmaengine: xilinx_dma: Use tasklet_hi_schedule for timing critical
+> >     usecase
+> >   dmaengine: xilinx_dma: Program interrupt delay timeout
+> >
+> > Sarath Babu Naidu Gaddam (1):
+> >   dmaengine: xilinx_dma: Add device_config support
+> >
+> >  .../bindings/dma/xilinx/xilinx_dma.txt        |   4 +
+> >  drivers/dma/xilinx/xilinx_dma.c               | 107 ++++++++++++++++--
+> >  include/linux/dma/xilinx_dma.h                |  16 +++
+> >  3 files changed, 115 insertions(+), 12 deletions(-)
+> >
+> > --
+> > 2.25.1
+>=20
+> --
+> ~Vinod
