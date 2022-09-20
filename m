@@ -2,441 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6A455BEB65
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 18:54:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B2385BEB84
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 19:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229881AbiITQyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 12:54:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39962 "EHLO
+        id S230119AbiITRAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 13:00:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbiITQyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 12:54:13 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C0667CBD;
-        Tue, 20 Sep 2022 09:54:12 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id a10so3817087ljq.0;
-        Tue, 20 Sep 2022 09:54:12 -0700 (PDT)
+        with ESMTP id S229631AbiITRAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 13:00:30 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58DF34DB0D;
+        Tue, 20 Sep 2022 10:00:27 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id a14so3751088ljj.8;
+        Tue, 20 Sep 2022 10:00:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=G/3iq03jjXbDBDyYLNnAY3NjUgkDrIltGEid6oXr0v4=;
-        b=ByE+t9XNoqO7K5Nb/dznuxxX+f9U3rq7rpsuxtTJ7BRkjx/E2U8TAUzgYwvT9qItgi
-         /yhKWKzsVQ+0EE5CLGdGmY3d4Qb1hIcY7xq2G9HaZgBLPduZH//Z4crnjVhEdBjJquQQ
-         LlQzl3mfjYbrO+vJnMUAOQCzmWDgho55WVi+fP4aZaGvsFlAJvh387CBMEmwbtKwMWBx
-         cudgypEufDZc1vPIuiyy2IepL3wSjO62RUk0hUDACuVBXwXDGmJ1KdpLJ6oXdV5XNyZJ
-         Ghg1/ghZP7APMi6igqhA5NOY1lGyUq0N97QiU4a34stvByfRxidC/ocRAtnn8ZtMUx3E
-         zXow==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=a2XGN4ghAp94upVl0ROOioKKEQvmVvfjeJYYCE82DlI=;
+        b=QkeDWMthgVYljQxi+VewLxdQDK4p7UImT48XBWnQsaE5KYDeQ3NZ5/rSC4DtcdgOB2
+         xqRdYK3PqtXX2zjVOhPrExBptYAtmlvZjuNn/hRVhiePrbZlEBS/atJ62JWbMCPbGRPn
+         thjqDaPfnwH2liOB4UYTD3OjceQxSRLWkcbzIxhCTTBxh8Zjx1YmVe0sLhlI1r0+DU9M
+         Z828/mxxu1dd9vW9BBFcdtx7G6Yygx5oGujKUSwy5jXaBk/ElcjfXkG13Y2tPoKcdiT2
+         Z7OV+ZPjlk2h97K6BDXJSuJFYNNeXcFOvRMJVc77O49K57wqfEtc/suxQZNw/X5TGGip
+         vEkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=G/3iq03jjXbDBDyYLNnAY3NjUgkDrIltGEid6oXr0v4=;
-        b=vPYRFAcyQ4hgvgrhw2XUSy3pXbsxWaRsGRKloJbjQQDItUcPFTCzXMIiWj4a4lyEfq
-         hkLtPWMgfipMdJRUq7iDhxljsh/NbWBk3mWwaheGk2xsjBHGFcb6sCGfKE4/AsDggkyw
-         MLpbwrTqkj6jToZ66NYh1OLsj32jkoqI77+0cPLbf1AjQ79U7pcIKAwD4YVhzL4dw801
-         lZS4Sd4Jxlm4tgNWOb6hQ7jc7Ezvg6U2gnZp7YEEMYyZLZLOYGn0A54ndTYmEuJ4jDZ7
-         ho5LlCE1ngJqnDkWTdki6OcI1N9PjLsZPeINrLB+AVbyN5OlLnFV+91TIV1EUtFPdLsf
-         kSZg==
-X-Gm-Message-State: ACrzQf0L0AYDw7mSCVgNH1Pl3U8Bz4hk1BbVMCQ+Uau/4yU2uuFliF28
-        abOBfNJ4XyjsE+z9gYKCLWZGdAFJoDm/Lw==
-X-Google-Smtp-Source: AMsMyM4wNKu0YmXOJWXxTaSUYRX9P2Th1uxfS5/tTeY8ylg80YO2PWmvuVb7VLCqNPbU26mgaOhSWw==
-X-Received: by 2002:a2e:a587:0:b0:26c:510b:3cca with SMTP id m7-20020a2ea587000000b0026c510b3ccamr3448234ljp.452.1663692850436;
-        Tue, 20 Sep 2022 09:54:10 -0700 (PDT)
-Received: from DESKTOP-GSFPEC9.localdomain (broadband-46-242-10-176.ip.moscow.rt.ru. [46.242.10.176])
-        by smtp.gmail.com with ESMTPSA id s12-20020ac25fac000000b0049a747d6156sm34789lfe.287.2022.09.20.09.54.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 09:54:09 -0700 (PDT)
-From:   Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     Konstantin Aladyshev <aladyshev22@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] ARM: dts: aspeed: Add AMD DaytonaX BMC
-Date:   Tue, 20 Sep 2022 19:54:02 +0300
-Message-Id: <20220920165404.14099-1-aladyshev22@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=a2XGN4ghAp94upVl0ROOioKKEQvmVvfjeJYYCE82DlI=;
+        b=G4RNEe8+07lC1QJhcdzVohjzQ5QpNLjPoNu9+D3dFtjJVSpke2qQFPvNyw1rbHNLa8
+         Hlghrlfsyn/XFRpg+4keZgmcf5SeonAhoOZYqE2kfCKV10Mwl828XJto4jMHy55B9kKW
+         y/tTSrerY1/2afxCrwbEKUscP48wiXdv861k7ENwtonXXDhZuQ8spjx4CPG7LrjnyKmF
+         Sl6v5UfGNYbcnz8HyXSbBo1LsdMPaJc2KxTWtY59Qwd4kKqEoBHQ3nQuFfJ6GNZp93wA
+         sjuzSu1MYq82VQGuYuRPdDnV0ZQvRjgMwDmj3Ia3XcbO+0w6z3FTLSyl7A9ttpa/vpPJ
+         bidA==
+X-Gm-Message-State: ACrzQf124o+O4omyAjmhZpF0WocesVZdjiZoq1HpB1FGtPoKu6T3I6aY
+        1lkKqbsPZVjXvz5lUY2jlH/IjPEwOF5jIXqwKQw=
+X-Google-Smtp-Source: AMsMyM4StdJy1Lqc4K8wWvp/gUGEklUXu1pRP3Pe1Ldrxj3ElxV6BcEyJP3XIniFnzxjBAPeA097tJPMUUZLPRWeSGg=
+X-Received: by 2002:a2e:a587:0:b0:26c:510b:3cca with SMTP id
+ m7-20020a2ea587000000b0026c510b3ccamr3457801ljp.452.1663693225927; Tue, 20
+ Sep 2022 10:00:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220714122322.63663-1-tmaimon77@gmail.com> <20220714122322.63663-2-tmaimon77@gmail.com>
+ <20220718211046.GA3547663-robh@kernel.org> <CAP6Zq1hQ5m2kkQOKaYsKhPQhCW+vdsdyPRxxb_yRGMB=gJCPdw@mail.gmail.com>
+ <3981e6e8-d4bb-b13d-7aaa-7aea83ffaad9@linaro.org> <CAP6Zq1gp1ph1wixgb6nL+2R8We2YJ2HQM2iC05itq_XWd2Cwig@mail.gmail.com>
+ <bfca0379-7346-13e7-a18f-66740c5871b3@linaro.org> <CAP6Zq1gyDW8ZwwAZ1jyfNEZa09WN-biZZJY8tBmW_gzMzpj3ZA@mail.gmail.com>
+ <2b0e6e33-ef76-4bd4-8894-53f9a3fe68b4@linaro.org> <CAP6Zq1iwW6HvvfM684VLG0ZT-0OLKT0udW4bHxsZsTMEypo2sg@mail.gmail.com>
+ <6f1ad082-74e4-e4e7-9304-5cdd95cc9f66@linaro.org> <CAP6Zq1hTS7mVWvYWfTwWvrZibKMpW5r7=wE6W9uETb=aS6MTuA@mail.gmail.com>
+ <d8b7fce1-99fa-584b-55e0-f4c3cbe500e2@linaro.org>
+In-Reply-To: <d8b7fce1-99fa-584b-55e0-f4c3cbe500e2@linaro.org>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Tue, 20 Sep 2022 20:00:14 +0300
+Message-ID: <CAP6Zq1hEM67cZt-pcn95VpcPcOVnySb=3XV69irzdkuAuXgofw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO documentation
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        zhengbin13@huawei.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING
-        autolearn=ham autolearn_force=no version=3.4.6
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial version of device tree for the BMC in the AMD DaytonaX
-platform.
+On Tue, 20 Sept 2022 at 18:16, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/09/2022 11:27, Tomer Maimon wrote:
+> > On Tue, 20 Sept 2022 at 11:47, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 20/09/2022 10:32, Tomer Maimon wrote:
+> >>> On Tue, 20 Sept 2022 at 11:21, Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> On 20/09/2022 09:59, Tomer Maimon wrote:
+> >>>>>>>>>>> +      pinctrl: pinctrl@f0800000 {
+> >>>>>>>>>>> +        compatible = "nuvoton,npcm845-pinctrl";
+> >>>>>>>>>>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
+> >>>>>>>>>>> +        #address-cells = <1>;
+> >>>>>>>>>>> +        #size-cells = <1>;
+> >>>>>>>>>>> +        nuvoton,sysgcr = <&gcr>;
+> >>>>>>>>>>> +
+> >>>>>>>>>>> +        gpio0: gpio@f0010000 {
+> >>>>>>>>>>
+> >>>>>>>>>> gpio@0
+> >>>>>>>>>>
+> >>>>>>>>>> Is this really a child block of the pinctrl? Doesn't really look like it
+> >>>>>>>>>> based on addressess. Where are the pinctrl registers? In the sysgcr? If
+> >>>>>>>>>> so, then pinctrl should be a child of it. But that doesn't really work
+> >>>>>>>>>> too well with gpio child nodes...
+> >>>>>>>>> the pin controller mux is handled by sysgcr this is why the sysgcr in
+> >>>>>>>>> the mother node,
+> >>>>>>>>> and the pin configuration are handled by the GPIO registers.  each
+> >>>>>>>>> GPIO bank (child) contains 32 GPIO.
+> >>>>>>>>> this is why the GPIO is the child node.
+> >>>>>>>>
+> >>>>>>>> Then maybe pinctrl should be the sysgcr and expose regmap for other devices?
+> >>>>>>> The pin controller using the sysgcr to handle the pinmux, this is why
+> >>>>>>> the sysgcr is in the mother node, is it problematic?
+> >>>>>>
+> >>>>>> You said pin-controller mux registers are in sysgcr, so it should not be
+> >>>>>> used via syscon.
+> >>>>> Sorry but maybe I missed something.
+> >>>>> the sysgcr is used for miscellaneous features and not only for the pin
+> >>>>> controller mux, this is why it used syscon and defined in the dtsi:
+> >>>>>                 gcr: system-controller@f0800000 {
+> >>>>>                         compatible = "nuvoton,npcm845-gcr", "syscon";
+> >>>>>                         reg = <0x0 0xf0800000 0x0 0x1000>;
+> >>>>>                 };
+> >>>>>>
+> >>>>>> Please provide address map description to convince us that this is
+> >>>>>> correct HW representation.
+> >>>>> GCR (sysgcr) registers 0xf0800000-0xf0801000 - used for miscellaneous
+> >>>>> features, not only pin mux.
+> >>>>> GPIO0 0xf0010000-0xf0011000
+> >>>>> GPIO1 0xf0011000-0xf0012000
+> >>>>> ...
+> >>>>> GPIO7 0xf0017000-0xf0018000
+> >>>>>>
+> >>>>
+> >>>> Then why your pinctrl is in sysgcr IO range? (pinctrl@f0800000)
+> >>> you suggest using pinctrl@0 or pinctrl@f0010000 and not
+> >>> pinctrl@f0800000 because 0xf0800000 is the GCR address that serve
+> >>> miscellaneous features and not only pinmux controller ?
+> >>
+> >> If you have a map like you pasted, then DTS like this:
+> >>
+> >> syscon@f0800000 {}
+> >> pinctrl@f0800000 {
+> >>   gpio@f0010000 {}
+> >> }
+> >>
+> >> Is quite weird, don't you think? You have two devices on the same unit
+> >> address which is not allowed. You have child of pinctrl with entirely
+> > O.K.
+> >> different unit address, so how is it its child?
+> > The pinctrl node name will modify the pinctrl@f0010000 the same as the
+> > range property and the start of the child registers,is it fine?
+>
+> We are all busy, so I don't have that much bandwidth to review each of
+> your many solutions and instead poking me with every possible solution,
+> I would prefer if you think a bit how this all should work and look.
+>
+> I don't know if it is fine. Why you should have two devices like this:
+> pinctrl@f0010000 {
+> gpio@f0010000 {}
+> }
+>
+> ???
+> Instead of one device? Answer such questions to yourself before asking
+> me. Please come with reasonable DTS describing the hardware.
+>
+Will do, thanks.
+> Best regards,
+> Krzysztof
 
-AMD DaytonaX platform is a customer reference board (CRB) with an
-Aspeed ast2500 BMC manufactured by AMD.
+Best regards,
 
-Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
----
- .../bindings/arm/aspeed/aspeed.yaml           |   1 +
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts | 319 ++++++++++++++++++
- 3 files changed, 321 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts
-
-diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-index 1895ce9de461..191a52595fea 100644
---- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-+++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-@@ -30,6 +30,7 @@ properties:
-         items:
-           - enum:
-               - amd,ethanolx-bmc
-+              - amd,daytonax-bmc
-               - ampere,mtjade-bmc
-               - aspeed,ast2500-evb
-               - asrock,e3c246d4i-bmc
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 05d8aef6e5d2..9eff88d410aa 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1575,6 +1575,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-ast2600-evb-a1.dtb \
- 	aspeed-ast2600-evb.dtb \
- 	aspeed-bmc-amd-ethanolx.dtb \
-+	aspeed-bmc-amd-daytonax.dtb \
- 	aspeed-bmc-ampere-mtjade.dtb \
- 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
- 	aspeed-bmc-asrock-e3c246d4i.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts b/arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts
-new file mode 100644
-index 000000000000..89634dda8e5f
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts
-@@ -0,0 +1,319 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "aspeed-g5.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	model = "AMD DaytonaX BMC";
-+	compatible = "amd,daytonax-bmc", "aspeed,ast2500";
-+
-+	memory@80000000 {
-+		reg = <0x80000000 0x20000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		video_engine_memory: jpegbuffer {
-+			size = <0x02000000>;	/* 32M */
-+			alignment = <0x01000000>;
-+			compatible = "shared-dma-pool";
-+			reusable;
-+		};
-+	};
-+
-+	aliases {
-+		serial0 = &uart1;
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+		bootargs = "console=ttyS4,115200 earlycon";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		fault {
-+			gpios = <&gpio ASPEED_GPIO(A, 2) GPIO_ACTIVE_LOW>;
-+		};
-+
-+		identify {
-+			gpios = <&gpio ASPEED_GPIO(A, 3) GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
-+			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
-+			<&adc 10>, <&adc 11>, <&adc 12>, <&adc 13>, <&adc 14>,
-+			<&adc 15>;
-+	};
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		#include "openbmc-flash-layout.dtsi"
-+	};
-+};
-+
-+&mac0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
-+};
-+
-+&uart1 {
-+	//Host Console
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd1_default
-+		&pinctrl_rxd1_default
-+		&pinctrl_nrts1_default
-+		&pinctrl_ndtr1_default
-+		&pinctrl_ndsr1_default
-+		&pinctrl_ncts1_default
-+		&pinctrl_ndcd1_default
-+		&pinctrl_nri1_default>;
-+};
-+
-+&uart5 {
-+	//BMC Console
-+	status = "okay";
-+};
-+
-+&vuart {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0x3f8>;
-+	aspeed,lpc-interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
-+&adc {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default
-+		&pinctrl_adc1_default
-+		&pinctrl_adc2_default
-+		&pinctrl_adc3_default
-+		&pinctrl_adc4_default
-+		&pinctrl_adc5_default
-+		&pinctrl_adc6_default
-+		&pinctrl_adc7_default
-+		&pinctrl_adc8_default
-+		&pinctrl_adc9_default
-+		&pinctrl_adc10_default
-+		&pinctrl_adc11_default
-+		&pinctrl_adc12_default
-+		&pinctrl_adc13_default
-+		&pinctrl_adc14_default
-+		&pinctrl_adc15_default>;
-+};
-+
-+&gpio {
-+	status = "okay";
-+	gpio-line-names =
-+	/*A0-A7*/	"","","led-fault","led-identify","","","","",
-+	/*B0-B7*/	"","","","","","","","",
-+	/*C0-C7*/	"id-button","","","","","","","",
-+	/*D0-D7*/	"","","ASSERT_BMC_READY","","","","","",
-+	/*E0-E7*/	"reset-button","reset-control","power-button","power-control","",
-+			"power-good","power-ok","",
-+	/*F0-F7*/	"","","","","","","BATTERY_DETECT","",
-+	/*G0-G7*/	"","","","","","","","",
-+	/*H0-H7*/	"","","","","","","","",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"","","","","","","","",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","","","","",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","",
-+	/*AA0-AA7*/	"","","","","","","","",
-+	/*AB0-AB7*/	"FM_BMC_READ_SPD_TEMP","","","","","","","",
-+	/*AC0-AC7*/	"","","","","","","","";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&kcs3 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca2>;
-+};
-+
-+&lpc_snoop {
-+	status = "okay";
-+	snoop-ports = <0x80>, <0x81>;
-+};
-+
-+&lpc_ctrl {
-+	status = "okay";
-+};
-+
-+&pwm_tacho {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm0_default
-+		&pinctrl_pwm1_default
-+		&pinctrl_pwm2_default
-+		&pinctrl_pwm3_default
-+		&pinctrl_pwm4_default
-+		&pinctrl_pwm5_default
-+		&pinctrl_pwm6_default
-+		&pinctrl_pwm7_default>;
-+
-+	fan@0 {
-+		reg = <0x00>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
-+	};
-+
-+	fan@1 {
-+		reg = <0x00>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x01>;
-+	};
-+
-+	fan@2 {
-+		reg = <0x01>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x02>;
-+	};
-+
-+	fan@3 {
-+		reg = <0x01>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x03>;
-+	};
-+
-+	fan@4 {
-+		reg = <0x02>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x04>;
-+	};
-+
-+	fan@5 {
-+		reg = <0x02>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x05>;
-+	};
-+
-+	fan@6 {
-+		reg = <0x03>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x06>;
-+	};
-+
-+	fan@7 {
-+		reg = <0x03>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x07>;
-+	};
-+
-+	fan@8 {
-+		reg = <0x04>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x08>;
-+	};
-+
-+	fan@9 {
-+		reg = <0x04>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x09>;
-+	};
-+
-+	fan@10 {
-+		reg = <0x05>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0a>;
-+	};
-+
-+	fan@11 {
-+		reg = <0x05>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0b>;
-+	};
-+
-+	fan@12 {
-+		reg = <0x06>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0c>;
-+	};
-+
-+	fan@13 {
-+		reg = <0x06>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0d>;
-+	};
-+
-+	fan@14 {
-+		reg = <0x07>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0e>;
-+	};
-+
-+	fan@15 {
-+		reg = <0x07>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0f>;
-+	};
-+};
-+
-+&video {
-+	status = "okay";
-+	memory-region = <&video_engine_memory>;
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
--- 
-2.25.1
-
+Tomer
