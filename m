@@ -2,1095 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 972325BDEB3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A70645BDED5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 09:52:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229766AbiITHrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 03:47:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59276 "EHLO
+        id S230490AbiITHwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 03:52:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231256AbiITHqq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:46:46 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E6D8A184;
-        Tue, 20 Sep 2022 00:46:20 -0700 (PDT)
-X-UUID: 00548903b7f646a4afcb47057698f0a6-20220920
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=GbEIpZuieD+2WNCm0WpmFIf4/+cxXTIK/4SaaBOX7c0=;
-        b=fTr1/s6DA99jI4koj7TxmatzmFALsJNRjlCNaDFreDadax5cvXgP/Ds94s4K5sFCi+pj7CJl/PbRq6nb6b5G6InWjcD0zfFjgXPV13wwbWIGrPOp6bFr7y9E8j52I/eTM3GedG4ncI/HOCWejc5D6vECYrKf5OLN8vdhyom3FpQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:82fd22f2-594c-4688-8156-38b878a3b8bf,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:45
-X-CID-INFO: VERSION:1.1.11,REQID:82fd22f2-594c-4688-8156-38b878a3b8bf,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-        elease,TS:45
-X-CID-META: VersionHash:39a5ff1,CLOUDID:8ae76370-dafa-4a42-b716-cf2cd4845592,B
-        ulkID:220920154616J7BGHJEN,BulkQuantity:0,Recheck:0,SF:28|17|19|48|823|824
-        ,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL
-        :0
-X-UUID: 00548903b7f646a4afcb47057698f0a6-20220920
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 614271657; Tue, 20 Sep 2022 15:46:13 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 20 Sep 2022 15:46:12 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Tue, 20 Sep 2022 15:46:11 +0800
-Message-ID: <d1346dcf6b6906d153c13c086bf963dc89c5549b.camel@mediatek.com>
-Subject: Re: [PATCH v1 14/17] phy: mediatek: add support for
- phy-mtk-hdmi-mt8195
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-mediatek@lists.infradead.org>,
-        <dri-devel@lists.freedesktop.org>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>
-Date:   Tue, 20 Sep 2022 15:46:10 +0800
-In-Reply-To: <20220919-v1-14-4844816c9808@baylibre.com>
-References: <20220919-v1-0-4844816c9808@baylibre.com>
-         <20220919-v1-14-4844816c9808@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230197AbiITHvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 03:51:33 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B70B7DFF8;
+        Tue, 20 Sep 2022 00:51:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1663660280; x=1695196280;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=g773xQPj3XwdCCCny/fpYEhGkcmc9ggETKsDjd6iIc0=;
+  b=QBZjKqZuP1t16G1FZWfGeHU8ein7voGkH+zDAkoeg1s6Vi5fwCrLMqcH
+   tSGK2j5x92uTbDxJEIob9AMqCL/RxtQ+c0P8qfpY1KrBkPRUQYh6NGIDL
+   UnbQAfcl3DDCHRKnFaCmwIyR3h7Nc6HyuAhWyy0QJhE0V6Nd5jI83ED4t
+   Jy73cjR+lc6ayp9Nl9QWKh7LmVET6da5z3fryw/CSuQS0Svuq8pJRSRe2
+   Guor0bFJ+nUth6SKVEL1OJZq6znmkKOJRUxlldOuzoDbHKkcapHfH2GtK
+   XZKuRIBIWzigVvz2/ZDcnj+LGxnjeHI5Lo6tYa7IdIhxx4vXpuVgo3R9s
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,329,1654585200"; 
+   d="scan'208";a="181206604"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Sep 2022 00:51:19 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 20 Sep 2022 00:51:18 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12 via Frontend Transport; Tue, 20 Sep 2022 00:51:18 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dMswo2MuIhI04oQjepuukxrH84z6+9DP0h/+F5FaSR7LsAYHHt9LXtulYc0Y0qQr+PCG22PWUW5L920ScdDVj+k2Vtg6EU6sxTUJsppAC0sschwYnhuwbBPlfZjj0XeFJ0q3pKuc4unT5k1+TVqKCB61X93MLMd79a9gpkq0s2ZaIN/+j4swscDGBzad1ohYPyZc30B+aaGeXFAeeAlz2Stf9Cc9oWKlVe6NsfTf0AKRAU+2OYvciDlviH53Ol5QN2h0pFfG3ysuvC24iU/Y0eMuZUASHEezeib8/t1PDBWFvEU9fZTKuVaUcvwrd8TscfQEdm+yHBbNJ9LLDq01HA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=g773xQPj3XwdCCCny/fpYEhGkcmc9ggETKsDjd6iIc0=;
+ b=dccz6LJtU/GropDct23UpX89G8RNbx5p4N0lewjFxylTCV2rXYLb2Iow4rHdn5hC0/uzmm6st0M8OSHqa3EpPZraPuLBBROrGgQ7QQ1uu4emp/pBW2NrMctLpQx5KhLgDhdzKUdINqN2whEZQb43p5HC2E3v+B2Uf2gQgG+AkF9kB2zgokzOaF3HxMxOvRfDLoLfxcxSMEuBrz3b89miaSLaPDtWc0ydEzYskmubh1w5WAGUZxHvzh9jDFzUvZBy3nIMgvDu7K6hM1obX2H9jBJ9gRLPfvbfNBBApvj/M1rwpBpM7HLWJjbj/jDOHqEGrE64PkkxtuztmA8T0W3ZXg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g773xQPj3XwdCCCny/fpYEhGkcmc9ggETKsDjd6iIc0=;
+ b=Ko1h6bN2mu6XpfLhDlK54tOT1bsgxwwLRo4LxgTjwR46gvilSFe+uFe2b2V2RSnJUaZx+3ywKCjgPYIs64Z/tjE6uSzttZslEf8EwM1e6gXTnk31rmMtJCgsF23qUCzfTWOddKN2m6xgGPFEsm6m6STyNWVZnXSc2tL/0lolMYM=
+Received: from BYAPR11MB2758.namprd11.prod.outlook.com (2603:10b6:a02:c9::11)
+ by MW4PR11MB6763.namprd11.prod.outlook.com (2603:10b6:303:20b::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.21; Tue, 20 Sep
+ 2022 07:51:13 +0000
+Received: from BYAPR11MB2758.namprd11.prod.outlook.com
+ ([fe80::2cfd:fc73:ba36:ae64]) by BYAPR11MB2758.namprd11.prod.outlook.com
+ ([fe80::2cfd:fc73:ba36:ae64%4]) with mapi id 15.20.5632.021; Tue, 20 Sep 2022
+ 07:51:13 +0000
+From:   <Sergiu.Moga@microchip.com>
+To:     <krzysztof.kozlowski@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-serial@vger.kernel.org>, <alexandre.belloni@bootlin.com>,
+        <Nicolas.Ferre@microchip.com>, <richard.genoud@gmail.com>,
+        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <jirislaby@kernel.org>, <devicetree@vger.kernel.org>,
+        <Claudiu.Beznea@microchip.com>, <lee@kernel.org>,
+        <Kavyasree.Kotagiri@microchip.com>, <robh+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <radu_nicolae.pirea@upb.ro>,
+        <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v4 2/9] dt-bindings: serial: atmel,at91-usart: convert to
+ json-schema
+Thread-Topic: [PATCH v4 2/9] dt-bindings: serial: atmel,at91-usart: convert to
+ json-schema
+Thread-Index: AQHYzDqRiKemezkRUk6561ZpPVjdFa3m/FcAgAD2twA=
+Date:   Tue, 20 Sep 2022 07:51:13 +0000
+Message-ID: <d05e20a6-6c4b-4e72-1abf-8ea5c7dfdaf6@microchip.com>
+References: <20220919150846.1148783-1-sergiu.moga@microchip.com>
+ <20220919150846.1148783-3-sergiu.moga@microchip.com>
+ <20220919170812.l2sj7vyjks62ej44@krzk-bin>
+In-Reply-To: <20220919170812.l2sj7vyjks62ej44@krzk-bin>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BYAPR11MB2758:EE_|MW4PR11MB6763:EE_
+x-ms-office365-filtering-correlation-id: 5ffa34af-7405-4998-4ad4-08da9adce42a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wrP3Bv3UfUMNJvTxk0P0jfJUSZR+SyBl1tL0la7a6r9P6nMN7Ow+9Cxj8cVWafvdaqikss3hBSVLg0YmGpD7aOAtBiFSew5IOcdrI1duUm/Tw70rGPBWwYPkO0GekhoC58kIDDFJP58QtqDyseVhWMGiGDOpfRWrcHpHl3lwSPj2eJWgzBKWLhIfWvBiXH1IB8LXsfYRsmRm7PzQvsrFzR5y7FZT1mGVRU9ijVsIGKbKTa7UDcGh6E9gJN9BivgDeKhhNxJlaEeeP6pxzbC0TE8dt4jzOLJzieMtTnVWiATNInku0Ui2JuTza4imQGzaVaQ5ableOe6u/GNKfqnRNTGNhsuT7cKatHjX4mCfBNQZeU2/DO/dzqrt3VpYkwdCb/LYJ088u+rsbZvn5WvBHCnXb6O1By95lf1vBdeyC/ECxn1uYfpdcZf0wrN95ZQ25JqJDJyNnApD3p3Yv0PeTXmbaOlxX2jAiY9k/eDMVAZyzs1JLfCiMpkJWdXIeN7xe3GQNddUhMTUT31q5FHqNqKSeCIi2toHt5JAwKDbuDaxyOV5m+OFL474KBPUgamNwSITubagm+F4rEVtDjR6Te8fZXvkEbXcFr1XSCpF7gWPUBDKJ3z3kFVFiYoaK4SG79sKrCCUt5142h9J/jdL75PvulhNwRo9SZI4RQnw8nO4sU3ELCdYEiMo8v9GlZmnEMy16aLux8KiafjZy7U3Q3C9Or6TYzo224D8AxbLvBsQuV1uPuSXLBRDcILlermjr1WRdOLU0rWXC9FVceslZu/q9CGhDwkkE8ybkYyDEvoRZarW5q0sXUzHwGMlIrbClrzWdoHkblKwZ8k/nURIbAXEESWNf1OX70GzvRQ4eqSbL35iZquYGmas+Ut+TxDP
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB2758.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(366004)(376002)(396003)(136003)(39860400002)(346002)(451199015)(186003)(31686004)(38100700002)(5660300002)(26005)(8936002)(53546011)(6512007)(76116006)(66946007)(91956017)(66556008)(66446008)(64756008)(8676002)(4326008)(41300700001)(66476007)(31696002)(86362001)(122000001)(38070700005)(36756003)(2616005)(7416002)(2906002)(71200400001)(966005)(6486002)(6506007)(478600001)(54906003)(316002)(83380400001)(6916009)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dWU2SWJnNWhHZjAzMS9IVWUvZ3VmMVhBK3FhVEtVZklhWjNuSlhtNDhWZDl4?=
+ =?utf-8?B?RjFreDJaRXl1T0VGaldRRnduQlJiVGZ4WHFoQStnektTRjBzV2duTDhBZlgx?=
+ =?utf-8?B?TXF6SWNvejJDVDFJUTZuNUt1K0p5cGVibHBJVWxmUnppc1hnNkxvRVo0eklW?=
+ =?utf-8?B?OU0rVVhyR2RWRTM3YlB2ZVB0RVhUZDh3ODdBdjc1OWtNb1RoMUJJUHJoS3A5?=
+ =?utf-8?B?U3pxdlVvK2gxcGpTSmtYUXMxeVlsdmEzWkwwZ1pNa2pXb0xpVUVVMndrODds?=
+ =?utf-8?B?Uk0wUldxOW96R1lOK050bGhwYmUzTHoyb0hxeGloYnd4UmtEcmZBcDlUK2dU?=
+ =?utf-8?B?a3E0MHh4QUxMQTh6bTdUTENNaXphTDdxdnFvbExLL0dsYWo4WXQ1UjQvZFZE?=
+ =?utf-8?B?S1BWZXJlaFR0R0s4NGxxckZKTkM2Y3B1SGNUcnJTeEdFRWZVaVVIRDZlZXhQ?=
+ =?utf-8?B?byt0Ui9pYUZDaXBhcVhDL1ZRd3hwcWViUUNXRUlqcHJwVXN1VFl4cjhqaWFD?=
+ =?utf-8?B?MFNBWTEzSUhacmM0Q2s1T2Zid2RJbndkYU52cnY4OVc2VVNsd2dYWUJId2k5?=
+ =?utf-8?B?ejlKUzJTVkJ6TFBFV28xM1pZN0ZtaU1kSVlMY3dTUmNJa1gxRnJiRE4vQ2Yw?=
+ =?utf-8?B?K3JPejFTb1BjMlFHSDNETWFBR2ZFSi9CZGlxRzZ1SitTSmhQdjlQYk1NYmFh?=
+ =?utf-8?B?MmxhSzNpZzFTWWRFWkxiOHhzaENxdHBmSnRXalQ5bGlOU0tlZmZWZjNpMlAz?=
+ =?utf-8?B?ZDFJM3l0UUdjZzBEZndPa1hRdnZUNTljcnJRNE5vemNqSkJySWs5TXdkTTN4?=
+ =?utf-8?B?OXJDVFY5UDhCMXpWTHpHM1Q3OGJjMmR6WnlmMndBQ2FXNmpvSWFoM2ptbFlZ?=
+ =?utf-8?B?N2Zlc25GejRtaWF4VURoa29jb1Bvd005WkFIT1duYnpya3dpN3hNUE9jbzIz?=
+ =?utf-8?B?ZE44WEo5R3dMLzUrT0s1SzBtNkhHNkg5Y0ZtakFJSUhkdWl1UDFhbXV4V01k?=
+ =?utf-8?B?ZDBuQ25ra2xCR2UzbjdBb0N4VkNEeCtCeUYydE1BcXpXTEhGSlowMXp0eWJZ?=
+ =?utf-8?B?dGI4QllUMnVYVzRUQUNyZzJRdmdDT08rZDdKYkE2QXgwd1JTTUxuemswNGRw?=
+ =?utf-8?B?a01WMzhyWFE4VWt6MmtRaUMzZ0FaMjBBcXJsV1A4U1k5ZXF4eUg2ckRtSU85?=
+ =?utf-8?B?Vll1MjVmR3U2bFpCbVdCMWpzVEoxVlFyc1BST2dkZjE3aWZOVExSN1lzZk9S?=
+ =?utf-8?B?T0t4VjZ3WkZuZUt3K1l6MmU4bk1VZG0wVWdLejlXU2xtRStnZmZWRWN5MDZq?=
+ =?utf-8?B?YUpES2txQjViOTdUY0NXby9uQXZwaUNUcU1PMzJXOElRN1k2M0JVaXdjVHlJ?=
+ =?utf-8?B?NXd6b0R1V3g4QTFqdWFERTYwZDdYR0pjM2dFeENPbkt4ZW9VWUpybU5ucE5X?=
+ =?utf-8?B?SkFoNS8xYkI5STZMMVJlUnhJVjdTaW9yeFdPUUEvT3BHalJ4Ni9tTGdsbXpx?=
+ =?utf-8?B?bnplK3hWdU1sYnRBR0JURTBlRjVtbTNBZGFLS3Azc1ZSdktxZ0dBL2hENThw?=
+ =?utf-8?B?SXFiZk5LWUF4WnBsRXlXcGRodndzSWJiN3dpYWVTYklUa3hINC9la0pzbDkr?=
+ =?utf-8?B?SzJjVUVuMEhheVdrcFlvOGI1RWRrWlQ2d1pCa2xtTVlyaTRyZUZSWEp3MGtW?=
+ =?utf-8?B?b1p1U1dNc0l1a3IraDhWbkZCdlNacDhLQ3pHZk9tcDQ1V2hGT0tOVmRjb2lK?=
+ =?utf-8?B?b3BpUHVESDNORXllZGdtK3hCS01lOXU5S0U1M2ViSkR3d3JtU3RUbVNKVXZ0?=
+ =?utf-8?B?VVRjeG0wa05xc0VWQ1FZam1peGtCUG5zN2pCUm5iUE9LWUR4cU1COTcybWVU?=
+ =?utf-8?B?a3VqRHZoeC9JRU0vaTBWdEtUTE9tMXVUeXIrdEU5RGR2eWcwWTFhWjV5WXh2?=
+ =?utf-8?B?U0U4WHpHMHlBWm1CL3FvMXIyV1VNc1I0NzBHdU9CSlFhY0trZ0N1V3pOcnht?=
+ =?utf-8?B?MXVONDFsNFB3U25jbWE4bzRRVk04d1doUE5maXpwV0VkLzhWd3A4R0t3cGFn?=
+ =?utf-8?B?QmFzcUpLYUQ4a2xUcUpCY1NaWEg3SzI0ajBFUUZ3YWl0bTBVdkU5ckZJRXlB?=
+ =?utf-8?Q?P3WWEuZNfaIw3xHAO+vh+vdQS?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <2A0B0FBAEC58234DB4055F417348E21E@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY,URIBL_CSS autolearn=no autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2758.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ffa34af-7405-4998-4ad4-08da9adce42a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Sep 2022 07:51:13.7181
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GvvFHsBrYuEF/35ZqmQO0Us3XxJ0DZNeB4ZOsuBfkqPW85jnS3DA7Rr3OpqdcUxCmfeCs3wfcJz8V7JZQHdae13KHb4LrVij1Qsi68nj7+A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6763
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-09-19 at 18:56 +0200, Guillaume Ranquet wrote:
-> Add basic support for the mediatek hdmi phy on MT8195 SoC
-> 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_mt8195_hdmi.c
-> b/drivers/gpu/drm/mediatek/mtk_mt8195_hdmi.c
-> index bb7593ea4c86..0157acdce56c 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_mt8195_hdmi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_mt8195_hdmi.c
-> @@ -1344,6 +1344,8 @@ static void mtk_hdmi_bridge_disable(struct
-> drm_bridge *bridge,
->  	mtk_hdmi_disable_hdcp_encrypt(hdmi);
->  	usleep_range(50000, 50050);
->  
-> +	phy_power_off(hdmi->phy);
-> +
->  	hdmi->enabled = false;
->  }
->  
-> diff --git a/drivers/phy/mediatek/Makefile
-> b/drivers/phy/mediatek/Makefile
-> index fb1f8edaffa7..c9a50395533e 100644
-> --- a/drivers/phy/mediatek/Makefile
-> +++ b/drivers/phy/mediatek/Makefile
-> @@ -12,6 +12,7 @@ obj-$(CONFIG_PHY_MTK_XSPHY)		+= phy-mtk-
-> xsphy.o
->  phy-mtk-hdmi-drv-y			:= phy-mtk-hdmi.o
->  phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt2701.o
->  phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt8173.o
-> +phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt8195.o
->  obj-$(CONFIG_PHY_MTK_HDMI)		+= phy-mtk-hdmi-drv.o
->  
->  phy-mtk-mipi-dsi-drv-y			:= phy-mtk-mipi-dsi.o
-> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-> b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-> new file mode 100644
-> index 000000000000..149015b64c02
-> --- /dev/null
-> +++ b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-> @@ -0,0 +1,673 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2021 MediaTek Inc.
-> + * Copyright (c) 2021 BayLibre, SAS
-> + */
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/types.h>
-> +#include <linux/nvmem-consumer.h>
-> +
-> +#include "phy-mtk-hdmi.h"
-> +#include "phy-mtk-hdmi-mt8195.h"
-> +
-> +static void mtk_hdmi_ana_fifo_en(struct mtk_hdmi_phy *hdmi_phy)
-> +{
-> +	/* make data fifo writable for hdmi2.0 */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_ANA_CTL,
-> REG_ANA_HDMI20_FIFO_EN,
-> +			  REG_ANA_HDMI20_FIFO_EN);
-> +}
-> +
-> +static void
-> +mtk_mt8195_phy_tmds_high_bit_clk_ratio(struct mtk_hdmi_phy
-> *hdmi_phy,
-> +				       bool enable)
-> +{
-> +	mtk_hdmi_ana_fifo_en(hdmi_phy);
-> +
-> +	/* HDMI 2.0 specification, 3.4Gbps <= TMDS Bit Rate <= 6G,
-> +	 * clock bit ratio 1:40, under 3.4Gbps, clock bit ratio 1:10
-> +	 */
-> +	if (enable)
-> +		mtk_hdmi_phy_mask(hdmi_phy, HDMI20_CLK_CFG,
-> +				  0x2 << REG_TXC_DIV_SHIFT, 
-Use FIELD_PREP() macro, then no need define REG_TXC_DIV_SHIFT anymore.
-
-> REG_TXC_DIV);
-> +	else
-> +		mtk_hdmi_phy_mask(hdmi_phy, HDMI20_CLK_CFG, 0,
-> REG_TXC_DIV);
-> +}
-> +
-> +static void mtk_hdmi_pll_select_source(struct clk_hw *hw)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_CTL_3, 0x0,
-> REG_HDMITX_REF_XTAL_SEL);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_CTL_3, 0x0,
-> REG_HDMITX_REF_RESPLL_SEL);
-> +
-> +	/* DA_HDMITX21_REF_CK for TXPLL input source */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_10, 0x0,
-> +			  RG_HDMITXPLL_REF_CK_SEL);
-> +}
-> +
-> +static int mtk_hdmi_pll_performance_setting(struct clk_hw *hw)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +
-> +	/* BP2 */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_0,
-> +			  0x1 << RG_HDMITXPLL_BP2_SHIFT,
-> RG_HDMITXPLL_BP2);
-> +
-> +	/* BC */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_2,
-> +			  0x3 << RG_HDMITXPLL_BC_SHIFT,
-> RG_HDMITXPLL_BC);
-> +
-> +	/* IC */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_2,
-> +			  0x1 << RG_HDMITXPLL_IC_SHIFT,
-> RG_HDMITXPLL_IC);
-> +
-> +	/* BR */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_2,
-> +			  0x2 << RG_HDMITXPLL_BR_SHIFT,
-> RG_HDMITXPLL_BR);
-> +
-> +	/* IR */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_2,
-> +			  0x2 << RG_HDMITXPLL_IR_SHIFT,
-> RG_HDMITXPLL_IR);
-> +
-> +	/* BP */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_2,
-> +			  0xf << RG_HDMITXPLL_BP_SHIFT,
-> RG_HDMITXPLL_BP);
-> +
-> +	/* IBAND_FIX_EN, RESERVE[14] */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_0,
-> +			  0x0 << RG_HDMITXPLL_IBAND_FIX_EN_SHIFT,
-> +			  RG_HDMITXPLL_IBAND_FIX_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_1,
-> +			  0x0 << RG_HDMITXPLL_RESERVE_BIT14_SHIFT,
-> +			  RG_HDMITXPLL_RESERVE_BIT14);
-> +
-> +	/* HIKVCO */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_2,
-> +			  0x0 << RG_HDMITXPLL_HIKVCO_SHIFT,
-> +			  RG_HDMITXPLL_HIKVCO);
-> +
-> +	/* HREN */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_0,
-> +			  0x1 << RG_HDMITXPLL_HREN_SHIFT,
-> RG_HDMITXPLL_HREN);
-> +
-> +	/* LVR_SEL */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_0,
-> +			  0x1 << RG_HDMITXPLL_LVR_SEL_SHIFT,
-> +			  RG_HDMITXPLL_LVR_SEL);
-> +
-> +	/* RG_HDMITXPLL_RESERVE[12:11] */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_1,
-> +			  0x3 << RG_HDMITXPLL_RESERVE_BIT12_11_SHIFT,
-> +			  RG_HDMITXPLL_RESERVE_BIT12_11);
-> +
-> +	/* TCL_EN */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_0,
-> +			  0x1 << RG_HDMITXPLL_TCL_EN_SHIFT,
-> +			  RG_HDMITXPLL_TCL_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_hdmi_pll_set_hw(struct clk_hw *hw, unsigned char
-> prediv,
-> +			       unsigned char fbkdiv_high,
-> +			       unsigned long fbkdiv_low,
-> +			       unsigned char fbkdiv_hs3, unsigned char
-> posdiv1,
-> +			       unsigned char posdiv2, unsigned char
-> txprediv,
-> +			       unsigned char txposdiv,
-> +			       unsigned char digital_div)
-> +{
-> +	unsigned char txposdiv_value = 0;
-> +	unsigned char div3_ctrl_value = 0;
-> +	unsigned char posdiv_vallue = 0;
-> +	unsigned char div_ctrl_value = 0;
-> +	unsigned char reserve_3_2_value = 0;
-> +	unsigned char prediv_value = 0;
-> +	unsigned char reserve13_value = 0;
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +
-> +	mtk_hdmi_pll_select_source(hw);
-> +
-> +	mtk_hdmi_pll_performance_setting(hw);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_10,
-> +			  0x2 << RG_HDMITX21_BIAS_PE_BG_VREF_SEL_SHIFT,
-> +			  RG_HDMITX21_BIAS_PE_BG_VREF_SEL);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_10,
-> +			  0x0 << RG_HDMITX21_VREF_SEL_SHIFT,
-> +			  RG_HDMITX21_VREF_SEL);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_9,
-> +			  0x2 << RG_HDMITX21_SLDO_VREF_SEL_SHIFT,
-> +			  RG_HDMITX21_SLDO_VREF_SEL);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_10,
-> +			  0x0 << RG_HDMITX21_BIAS_PE_VREF_SELB_SHIFT,
-> +			  RG_HDMITX21_BIAS_PE_VREF_SELB);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_3,
-> +			  0x1 << RG_HDMITX21_SLDOLPF_EN_SHIFT,
-> +			  RG_HDMITX21_SLDOLPF_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x11 << RG_HDMITX21_INTR_CAL_SHIFT,
-> +			  RG_HDMITX21_INTR_CAL);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_2,
-> +			  0x1 << RG_HDMITXPLL_PWD_SHIFT,
-> RG_HDMITXPLL_PWD);
-> +
-> +	/* TXPOSDIV */
-> +	if (txposdiv == 1)
-> +		txposdiv_value = 0x0;
-> +	else if (txposdiv == 2)
-> +		txposdiv_value = 0x1;
-> +	else if (txposdiv == 4)
-> +		txposdiv_value = 0x2;
-> +	else if (txposdiv == 8)
-> +		txposdiv_value = 0x3;
-> +	else
-> +		return -EINVAL;
-use ilog2()?
-
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  txposdiv_value <<
-> RG_HDMITX21_TX_POSDIV_SHIFT,
-> +			  RG_HDMITX21_TX_POSDIV);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x1 << RG_HDMITX21_TX_POSDIV_EN_SHIFT,
-> +			  RG_HDMITX21_TX_POSDIV_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x0 << RG_HDMITX21_FRL_EN_SHIFT,
-> RG_HDMITX21_FRL_EN);
-> +
-> +	/* TXPREDIV */
-> +	if (txprediv == 2) {
-> +		div3_ctrl_value = 0x0;
-> +		posdiv_vallue = 0x0;
-> +	} else if (txprediv == 4) {
-> +		div3_ctrl_value = 0x0;
-> +		posdiv_vallue = 0x1;
-> +	} else if (txprediv == 6) {
-> +		div3_ctrl_value = 0x1;
-> +		posdiv_vallue = 0x0;
-> +	} else if (txprediv == 12) {
-> +		div3_ctrl_value = 0x1;
-> +		posdiv_vallue = 0x1;
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_4,
-> +			  div3_ctrl_value
-> +				  <<
-> RG_HDMITXPLL_POSDIV_DIV3_CTRL_SHIFT,
-> +			  RG_HDMITXPLL_POSDIV_DIV3_CTRL);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_4,
-> +			  posdiv_vallue << RG_HDMITXPLL_POSDIV_SHIFT,
-> +			  RG_HDMITXPLL_POSDIV);
-> +
-> +	/* POSDIV1 */
-> +	if (posdiv1 == 5)
-> +		div_ctrl_value = 0x0;
-> +	else if (posdiv1 == 10)
-> +		div_ctrl_value = 0x1;
-> +	else if (posdiv1 == (125 / 10))
-> +		div_ctrl_value = 0x2;
-> +	else if (posdiv1 == 15)
-> +		div_ctrl_value = 0x3;
-> +	else
-> +		return -EINVAL;
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_4,
-> +			  div_ctrl_value <<
-> RG_HDMITXPLL_DIV_CTRL_SHIFT,
-> +			  RG_HDMITXPLL_DIV_CTRL);
-> +
-> +	/* DE add new setting */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_1,
-> +			  0x0 << RG_HDMITXPLL_RESERVE_BIT14_SHIFT,
-> +			  RG_HDMITXPLL_RESERVE_BIT14);
-> +
-> +	/* POSDIV2 */
-> +	if (posdiv2 == 1)
-> +		reserve_3_2_value = 0x0;
-> +	else if (posdiv2 == 2)
-> +		reserve_3_2_value = 0x1;
-> +	else if (posdiv2 == 4)
-> +		reserve_3_2_value = 0x2;
-> +	else if (posdiv2 == 6)
-> +		reserve_3_2_value = 0x3;
-> +	else
-> +		return -EINVAL;
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_1,
-> +			  reserve_3_2_value
-> +				  << RG_HDMITXPLL_RESERVE_BIT3_2_SHIFT,
-> +			  RG_HDMITXPLL_RESERVE_BIT3_2);
-> +
-> +	/* DE add new setting */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_1,
-> +			  0x2 << RG_HDMITXPLL_RESERVE_BIT1_0_SHIFT,
-> +			  RG_HDMITXPLL_RESERVE_BIT1_0);
-> +
-> +	/* PREDIV */
-> +	if (prediv == 1)
-> +		prediv_value = 0x0;
-> +	else if (prediv == 2)
-> +		prediv_value = 0x1;
-> +	else if (prediv == 4)
-> +		prediv_value = 0x2;
-> +	else
-> +		return -EINVAL;
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_4,
-> +			  prediv_value << RG_HDMITXPLL_PREDIV_SHIFT,
-> +			  RG_HDMITXPLL_PREDIV);
-> +
-> +	/* FBKDIV_HS3 */
-> +	if (fbkdiv_hs3 == 1)
-> +		reserve13_value = 0x0;
-> +	else if (fbkdiv_hs3 == 2)
-> +		reserve13_value = 0x1;
-> +	else
-> +		return -EINVAL;
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_1,
-> +			  reserve13_value <<
-> RG_HDMITXPLL_RESERVE_BIT13_SHIFT,
-> +			  RG_HDMITXPLL_RESERVE_BIT13);
-> +
-> +	/* FBDIV */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_4,
-> +			  fbkdiv_high <<
-> RG_HDMITXPLL_FBKDIV_high_SHIFT,
-> +			  RG_HDMITXPLL_FBKDIV_HIGH);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_3,
-> +			  fbkdiv_low << RG_HDMITXPLL_FBKDIV_low_SHIFT,
-> +			  RG_HDMITXPLL_FBKDIV_low);
-> +
-> +	/* Digital DIVIDER */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_CTL_3,
-> +			  0x0 << REG_PIXEL_CLOCK_SEL_SHIFT,
-> +			  REG_PIXEL_CLOCK_SEL);
-> +
-> +	if (digital_div == 1) {
-> +		mtk_hdmi_phy_mask(hdmi_phy, HDMI_CTL_3,
-> +				  0x0 << REG_HDMITX_PIXEL_CLOCK_SHIFT,
-> +				  REG_HDMITX_PIXEL_CLOCK);
-> +	} else {
-> +		mtk_hdmi_phy_mask(hdmi_phy, HDMI_CTL_3,
-> +				  0x1 << REG_HDMITX_PIXEL_CLOCK_SHIFT,
-> +				  REG_HDMITX_PIXEL_CLOCK);
-> +		mtk_hdmi_phy_mask(hdmi_phy, HDMI_CTL_3,
-> +				  (digital_div - 1) <<
-> REG_HDMITXPLL_DIV_SHIFT,
-> +				  REG_HDMITXPLL_DIV);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +#define PCW_DECIMAL_WIDTH 24
-> +
-> +static int mtk_hdmi_pll_calculate_params(struct clk_hw *hw, unsigned
-> long rate,
-> +					 unsigned long parent_rate)
-> +{
-> +	int ret;
-> +	unsigned long long tmds_clk = 0;
-> +	unsigned long long pixel_clk = 0;
-> +	//pll input source frequency
-> +	unsigned long long da_hdmitx21_ref_ck = 0;
-> +	unsigned long long ns_hdmipll_ck = 0; //ICO output clk
-> +	//source clk for Display digital
-> +	unsigned long long ad_hdmipll_pixel_ck = 0;
-> +	unsigned char digital_div = 0;
-> +	unsigned long long pcw = 0; //FBDIV
-> +	unsigned char txprediv = 0;
-> +	unsigned char txposdiv = 0;
-> +	unsigned char fbkdiv_high = 0;
-> +	unsigned long fbkdiv_low = 0;
-> +	unsigned char posdiv1 = 0;
-> +	unsigned char posdiv2 = 0;
-> +	unsigned char prediv = 1; //prediv is always 1
-> +	unsigned char fbkdiv_hs3 = 1; //fbkdiv_hs3 is always 1
-> +	int i = 0;
-> +	unsigned char txpredivs[4] = { 2, 4, 6, 12 };
-> +
-> +	pixel_clk = rate;
-> +	tmds_clk = pixel_clk;
-> +
-> +	if (tmds_clk < 25000000 || tmds_clk > 594000000)
-> +		return -EINVAL;
-> +
-> +	da_hdmitx21_ref_ck = 26000000UL; //in HZ
-> +
-> +	/*  TXPOSDIV stage treatment:
-> +	 *	0M  <  TMDS clk  < 54M		  /8
-> +	 *	54M <= TMDS clk  < 148.35M    /4
-> +	 *	148.35M <=TMDS clk < 296.7M   /2
-> +	 *	296.7 <=TMDS clk <= 594M	  /1
-> +	 */
-> +	if (tmds_clk < 54000000UL)
-> +		txposdiv = 8;
-> +	else if (tmds_clk >= 54000000UL && tmds_clk < 148350000UL)
-> +		txposdiv = 4;
-> +	else if (tmds_clk >= 148350000UL && tmds_clk < 296700000UL)
-> +		txposdiv = 2;
-> +	else if (tmds_clk >= 296700000UL && tmds_clk <= 594000000UL)
-> +		txposdiv = 1;
-> +	else
-> +		return -EINVAL;
-> +
-> +	/* calculate txprediv: can be 2, 4, 6, 12
-> +	 * ICO clk = 5*TMDS_CLK*TXPOSDIV*TXPREDIV
-> +	 * ICO clk constraint: 5G =< ICO clk <= 12G
-> +	 */
-> +	for (i = 0; i < ARRAY_SIZE(txpredivs); i++) {
-> +		ns_hdmipll_ck = 5 * tmds_clk * txposdiv * txpredivs[i];
-> +		if (ns_hdmipll_ck >= 5000000000UL &&
-> +		    ns_hdmipll_ck <= 12000000000UL)
-> +			break;
-> +	}
-> +	if (i == (ARRAY_SIZE(txpredivs) - 1) &&
-> +	    (ns_hdmipll_ck < 5000000000UL || ns_hdmipll_ck >
-> 12000000000UL)) {
-> +		return -EINVAL;
-> +	}
-> +	if (i == ARRAY_SIZE(txpredivs))
-> +		return -EINVAL;
-> +
-> +	txprediv = txpredivs[i];
-> +
-> +	/* PCW calculation: FBKDIV
-> +	 * formula: pcw=(frequency_out*2^pcw_bit) / frequency_in /
-> FBKDIV_HS3;
-> +	 * RG_HDMITXPLL_FBKDIV[32:0]:
-> +	 * [32,24] 9bit integer, [23,0]:24bit fraction
-> +	 */
-> +	pcw = ns_hdmipll_ck;
-> +	pcw = pcw << PCW_DECIMAL_WIDTH;
-> +	pcw = pcw / da_hdmitx21_ref_ck;
-> +	pcw = pcw / fbkdiv_hs3;
-> +
-> +	if ((pcw / BIT(32)) > 1) {
-> +		return -EINVAL;
-> +	} else if ((pcw / BIT(32)) == 1) {
-> +		fbkdiv_high = 1;
-> +		fbkdiv_low = pcw % BIT(32);
-> +	} else {
-> +		fbkdiv_high = 0;
-> +		fbkdiv_low = pcw;
-> +	}
-> +
-> +	/* posdiv1:
-> +	 * posdiv1 stage treatment according to color_depth:
-> +	 * 24bit -> posdiv1 /10, 30bit -> posdiv1 /12.5,
-> +	 * 36bit -> posdiv1 /15, 48bit -> posdiv1 /10
-> +	 */
-> +	posdiv1 = 10; // div 10
-> +	posdiv2 = 1;
-> +	ad_hdmipll_pixel_ck = (ns_hdmipll_ck / 10) / 1;
-> +
-> +	/* Digital clk divider, max /32 */
-> +	digital_div = ad_hdmipll_pixel_ck / pixel_clk;
-> +	if (!(digital_div <= 32 && digital_div >= 1))
-> +		return -EINVAL;
-> +
-> +	ret = mtk_hdmi_pll_set_hw(hw, prediv, fbkdiv_high, fbkdiv_low,
-> +				  fbkdiv_hs3, posdiv1, posdiv2,
-> txprediv,
-> +				  txposdiv, digital_div);
-> +	if (ret)
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_hdmi_pll_drv_setting(struct clk_hw *hw)
-> +{
-> +	unsigned char data_channel_bias, clk_channel_bias;
-> +	unsigned char impedance, impedance_en;
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +	unsigned long tmds_clk;
-> +	unsigned long pixel_clk = hdmi_phy->pll_rate;
-> +
-> +	tmds_clk = pixel_clk;
-> +
-> +	/* bias & impedance setting:
-> +	 * 3G < data rate <= 6G: enable impedance 100ohm,
-> +	 *      data channel bias 24mA, clock channel bias 20mA
-> +	 * pixel clk >= HD,  74.175MHZ <= pixel clk <= 300MHZ:
-> +	 *      enalbe impedance 100ohm
-> +	 *      data channel 20mA, clock channel 16mA
-> +	 * 27M =< pixel clk < 74.175: disable impedance
-> +	 *      data channel & clock channel bias 10mA
-> +	 */
-> +
-> +	/* 3G < data rate <= 6G, 300M < tmds rate <= 594M */
-> +	if (tmds_clk > 300000000UL && tmds_clk <= 594000000UL) {
-> +		data_channel_bias = 0x3c; //24mA
-> +		clk_channel_bias = 0x34; //20mA
-> +		impedance_en = 0xf;
-> +		impedance = 0x36; //100ohm
-> +	} else if (pixel_clk >= 74175000UL && pixel_clk <= 300000000UL)
-> {
-> +		data_channel_bias = 0x34; //20mA
-> +		clk_channel_bias = 0x2c; //16mA
-> +		impedance_en = 0xf;
-> +		impedance = 0x36; //100ohm
-> +	} else if (pixel_clk >= 27000000UL && pixel_clk < 74175000UL) {
-> +		data_channel_bias = 0x14; //10mA
-> +		clk_channel_bias = 0x14; //10mA
-> +		impedance_en = 0x0;
-> +		impedance = 0x0;
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* bias */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_1,
-> +			  data_channel_bias <<
-> RG_HDMITX21_DRV_IBIAS_D0_SHIFT,
-> +			  RG_HDMITX21_DRV_IBIAS_D0);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_1,
-> +			  data_channel_bias <<
-> RG_HDMITX21_DRV_IBIAS_D1_SHIFT,
-> +			  RG_HDMITX21_DRV_IBIAS_D1);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_1,
-> +			  data_channel_bias <<
-> RG_HDMITX21_DRV_IBIAS_D2_SHIFT,
-> +			  RG_HDMITX21_DRV_IBIAS_D2);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_0,
-> +			  clk_channel_bias <<
-> RG_HDMITX21_DRV_IBIAS_CLK_SHIFT,
-> +			  RG_HDMITX21_DRV_IBIAS_CLK);
-> +
-> +	/* impedance */
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_0,
-> +			  impedance_en << RG_HDMITX21_DRV_IMP_EN_SHIFT,
-> +			  RG_HDMITX21_DRV_IMP_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_2,
-> +			  impedance <<
-> RG_HDMITX21_DRV_IMP_D0_EN1_SHIFT,
-> +			  RG_HDMITX21_DRV_IMP_D0_EN1);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_2,
-> +			  impedance <<
-> RG_HDMITX21_DRV_IMP_D1_EN1_SHIFT,
-> +			  RG_HDMITX21_DRV_IMP_D1_EN1);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_2,
-> +			  impedance <<
-> RG_HDMITX21_DRV_IMP_D2_EN1_SHIFT,
-> +			  RG_HDMITX21_DRV_IMP_D2_EN1);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_2,
-> +			  impedance <<
-> RG_HDMITX21_DRV_IMP_CLK_EN1_SHIFT,
-> +			  RG_HDMITX21_DRV_IMP_CLK_EN1);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_hdmi_pll_prepare(struct clk_hw *hw)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x1 << RG_HDMITX21_TX_POSDIV_EN_SHIFT,
-> +			  RG_HDMITX21_TX_POSDIV_EN);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_0,
-> +			  0xf << RG_HDMITX21_SER_EN_SHIFT,
-> RG_HDMITX21_SER_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x1 << RG_HDMITX21_D0_DRV_OP_EN_SHIFT,
-> +			  RG_HDMITX21_D0_DRV_OP_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x1 << RG_HDMITX21_D1_DRV_OP_EN_SHIFT,
-> +			  RG_HDMITX21_D1_DRV_OP_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x1 << RG_HDMITX21_D2_DRV_OP_EN_SHIFT,
-> +			  RG_HDMITX21_D2_DRV_OP_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x1 << RG_HDMITX21_CK_DRV_OP_EN_SHIFT,
-> +			  RG_HDMITX21_CK_DRV_OP_EN);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x0 << RG_HDMITX21_FRL_D0_EN_SHIFT,
-> +			  RG_HDMITX21_FRL_D0_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x0 << RG_HDMITX21_FRL_D1_EN_SHIFT,
-> +			  RG_HDMITX21_FRL_D1_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x0 << RG_HDMITX21_FRL_D2_EN_SHIFT,
-> +			  RG_HDMITX21_FRL_D2_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x0 << RG_HDMITX21_FRL_CK_EN_SHIFT,
-> +			  RG_HDMITX21_FRL_CK_EN);
-> +
-> +	mtk_hdmi_pll_drv_setting(hw);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_10,
-> +			  0x0 << RG_HDMITX21_BG_PWD_SHIFT,
-> RG_HDMITX21_BG_PWD);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x1 << RG_HDMITX21_BIAS_EN_SHIFT,
-> +			  RG_HDMITX21_BIAS_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_3,
-> +			  0x1 << RG_HDMITX21_CKLDO_EN_SHIFT,
-> +			  RG_HDMITX21_CKLDO_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_3,
-> +			  0xf << RG_HDMITX21_SLDO_EN_SHIFT,
-> +			  RG_HDMITX21_SLDO_EN);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_4,
-> +			  0x1 << DA_HDMITXPLL_PWR_ON_SHIFT,
-> +			  DA_HDMITXPLL_PWR_ON);
-> +	usleep_range(5, 10);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_4,
-> +			  0x0 << DA_HDMITXPLL_ISO_EN_SHIFT,
-> +			  DA_HDMITXPLL_ISO_EN);
-> +	usleep_range(5, 10);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_2,
-> +			  0x0 << RG_HDMITXPLL_PWD_SHIFT,
-> RG_HDMITXPLL_PWD);
-> +	usleep_range(30, 50);
-> +	return 0;
-> +}
-> +
-> +static void mtk_hdmi_pll_unprepare(struct clk_hw *hw)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_10,
-> +			  0x1 << RG_HDMITX21_BG_PWD_SHIFT,
-> RG_HDMITX21_BG_PWD);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_6,
-> +			  0x0 << RG_HDMITX21_BIAS_EN_SHIFT,
-> +			  RG_HDMITX21_BIAS_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_3,
-> +			  0x0 << RG_HDMITX21_CKLDO_EN_SHIFT,
-> +			  RG_HDMITX21_CKLDO_EN);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_3,
-> +			  0x0 << RG_HDMITX21_SLDO_EN_SHIFT,
-> +			  RG_HDMITX21_SLDO_EN);
-> +
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_2,
-> +			  0x1 << RG_HDMITXPLL_PWD_SHIFT,
-> RG_HDMITXPLL_PWD);
-> +	usleep_range(10, 20);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_4,
-> +			  0x1 << DA_HDMITXPLL_ISO_EN_SHIFT,
-> +			  DA_HDMITXPLL_ISO_EN);
-> +	usleep_range(10, 20);
-> +	mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_PLL_CFG_4,
-> +			  0x0 << DA_HDMITXPLL_PWR_ON_SHIFT,
-> +			  DA_HDMITXPLL_PWR_ON);
-> +}
-> +
-> +static int mtk_hdmi_pll_set_rate(struct clk_hw *hw, unsigned long
-> rate,
-> +				 unsigned long parent_rate)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +	int ret;
-> +
-> +	dev_dbg(hdmi_phy->dev, "%s: %lu Hz, parent: %lu Hz\n",
-> __func__, rate,
-> +		parent_rate);
-> +
-> +	ret = mtk_hdmi_pll_calculate_params(hw, rate, parent_rate);
-> +	if (ret != 0)
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static long mtk_hdmi_pll_round_rate(struct clk_hw *hw, unsigned long
-> rate,
-> +				    unsigned long *parent_rate)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +
-> +	hdmi_phy->pll_rate = rate;
-> +	return rate;
-> +}
-> +
-> +static unsigned long mtk_hdmi_pll_recalc_rate(struct clk_hw *hw,
-> +					      unsigned long
-> parent_rate)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +
-> +	return hdmi_phy->pll_rate;
-> +}
-> +
-> +static const struct clk_ops mtk_hdmi_pll_ops = {
-> +	.prepare = mtk_hdmi_pll_prepare,
-> +	.unprepare = mtk_hdmi_pll_unprepare,
-> +	.set_rate = mtk_hdmi_pll_set_rate,
-> +	.round_rate = mtk_hdmi_pll_round_rate,
-> +	.recalc_rate = mtk_hdmi_pll_recalc_rate,
-> +};
-> +
-> +static void vtx_signal_en(struct mtk_hdmi_phy *hdmi_phy, bool on)
-> +{
-> +	if (on)
-> +		mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_0,
-> RG_HDMITX21_DRV_EN,
-> +				  RG_HDMITX21_DRV_EN);
-> +	else
-> +		mtk_hdmi_phy_mask(hdmi_phy, HDMI_1_CFG_0,
-> +				  0x0 << RG_HDMITX21_DRV_EN_SHIFT,
-> +				  RG_HDMITX21_DRV_EN);
-> +}
-> +
-> +static void mtk_hdmi_phy_enable_tmds(struct mtk_hdmi_phy *hdmi_phy)
-> +{
-> +	vtx_signal_en(hdmi_phy, true);
-> +	usleep_range(100, 150);
-> +}
-> +
-> +static void mtk_hdmi_phy_disable_tmds(struct mtk_hdmi_phy *hdmi_phy)
-> +{
-> +	vtx_signal_en(hdmi_phy, false);
-> +}
-> +
-> +static int mtk_hdmi_phy_configure(struct phy *phy, union
-> phy_configure_opts *opts)
-> +{
-> +	struct phy_configure_opts_dp *dp_opts = &opts->dp;
-> +	struct mtk_hdmi_phy *hdmi_phy = phy_get_drvdata(phy);
-> +	int ret = 0;
-> +	bool enable = 0;
-> +
-> +	ret = clk_set_rate(hdmi_phy->pll, dp_opts->link_rate);
-> +
-> +	if (ret)
-> +		goto out;
-> +
-> +	mtk_mt8195_phy_tmds_high_bit_clk_ratio(hdmi_phy, enable);
-> +
-> +out:
-> +	return ret;
-> +}
-> +
-> +struct mtk_hdmi_phy_conf mtk_hdmi_phy_8195_conf = {
-> +	.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
-> +	.hdmi_phy_clk_ops = &mtk_hdmi_pll_ops,
-> +	.hdmi_phy_enable_tmds = mtk_hdmi_phy_enable_tmds,
-> +	.hdmi_phy_disable_tmds = mtk_hdmi_phy_disable_tmds,
-> +	.hdmi_phy_configure = mtk_hdmi_phy_configure,
-> +};
-> +
-> +MODULE_AUTHOR("Can Zeng <can.zeng@mediatek.com>");
-> +MODULE_DESCRIPTION("MediaTek MT8195 HDMI PHY Driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h
-> b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h
-> new file mode 100644
-> index 000000000000..3cc51d8a18a4
-> --- /dev/null
-> +++ b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h
-> @@ -0,0 +1,204 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2021 MediaTek Inc.
-> + * Copyright (c) 2021 BayLibre, SAS
-> + */
-> +
-> +#ifndef _MTK_HDMI_PHY_8195_H
-> +#define _MTK_HDMI_PHY_8195_H
-> +
-> +#include <linux/types.h>
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +
-> +#define DA_HDMITXPLL_ISO_EN BIT(1)
-> +#define DA_HDMITXPLL_ISO_EN_SHIFT (1)
-> +#define DA_HDMITXPLL_PWR_ON BIT(2)
-> +#define DA_HDMITXPLL_PWR_ON_SHIFT (2)
-> +
-> +#define HDMI20_CLK_CFG 0x70
-> +
-> +#define HDMI_1_CFG_0 0x00
-> +#define HDMI_1_CFG_1 0x04
-> +#define HDMI_1_CFG_10 0x40
-> +#define HDMI_1_CFG_2 0x08
-> +#define HDMI_1_CFG_21 0x84
-> +#define HDMI_1_CFG_22 0x88
-> +#define HDMI_1_CFG_3 0x0c
-> +#define HDMI_1_CFG_6 0x18
-> +#define HDMI_1_CFG_9 0x24
-> +#define HDMI_1_PLL_CFG_0 0x44
-> +#define HDMI_1_PLL_CFG_1 0x48
-> +#define HDMI_1_PLL_CFG_2 0x4c
-> +#define HDMI_1_PLL_CFG_3 0x50
-> +#define HDMI_1_PLL_CFG_4 0x54
-> +
-> +#define HDMI_ANA_CTL 0x7c
-> +
-> +#define HDMI_CTL_1 0xc4
-> +#define HDMI_CTL_3 0xcc
-> +
-> +#define REG_ANA_HDMI20_FIFO_EN BIT(16)
-> +
-> +#define REG_HDMITXPLL_DIV GENMASK(4, 0)
-> +#define REG_HDMITXPLL_DIV_SHIFT (0)
-No need define *_SHIFT macros, use FIELD_PREP() etc
-
-> +#define REG_HDMITX_PIXEL_CLOCK BIT(23)
-> +#define REG_HDMITX_PIXEL_CLOCK_SHIFT (23)
-> +#define REG_HDMITX_REF_RESPLL_SEL BIT(9)
-> +#define REG_HDMITX_REF_RESPLL_SEL_SHIFT (9)
-> +#define REG_HDMITX_REF_XTAL_SEL BIT(7)
-> +#define REG_HDMITX_REF_XTAL_SEL_SHIFT (7)
-> +
-> +#define REG_PIXEL_CLOCK_SEL BIT(10)
-> +#define REG_PIXEL_CLOCK_SEL_SHIFT (10)
-> +
-> +#define REG_TXC_DIV GENMASK(31, 30)
-> +#define REG_TXC_DIV_SHIFT (30)
-> +
-> +#define RG_HDMITX21_BG_PWD BIT(20)
-> +#define RG_HDMITX21_BG_PWD_SHIFT (20)
-> +
-> +#define RG_HDMITX21_BIAS_EN BIT(29)
-> +#define RG_HDMITX21_BIAS_EN_SHIFT (29)
-> +#define RG_HDMITX21_BIAS_PE_BG_VREF_SEL GENMASK(16, 15)
-> +#define RG_HDMITX21_BIAS_PE_BG_VREF_SEL_SHIFT (15)
-> +#define RG_HDMITX21_BIAS_PE_VREF_SELB GENMASK(10, 10)
-> +#define RG_HDMITX21_BIAS_PE_VREF_SELB_SHIFT (10)
-> +
-> +#define RG_HDMITX21_CKLDO_EN BIT(3)
-> +#define RG_HDMITX21_CKLDO_EN_SHIFT (3)
-> +
-> +#define RG_HDMITX21_CK_DRV_OP_EN BIT(11)
-> +#define RG_HDMITX21_CK_DRV_OP_EN_SHIFT (11)
-> +
-> +#define RG_HDMITX21_D0_DRV_OP_EN BIT(10)
-> +#define RG_HDMITX21_D0_DRV_OP_EN_SHIFT (10)
-> +
-> +#define RG_HDMITX21_D1_DRV_OP_EN BIT(9)
-> +#define RG_HDMITX21_D1_DRV_OP_EN_SHIFT (9)
-> +
-> +#define RG_HDMITX21_D2_DRV_OP_EN BIT(8)
-> +#define RG_HDMITX21_D2_DRV_OP_EN_SHIFT (8)
-> +
-> +#define RG_HDMITX21_DRV_EN GENMASK(27, 24)
-> +#define RG_HDMITX21_DRV_EN_SHIFT (24)
-> +#define RG_HDMITX21_DRV_IBIAS_CLK GENMASK(10, 5)
-> +#define RG_HDMITX21_DRV_IBIAS_CLK_SHIFT (5)
-> +#define RG_HDMITX21_DRV_IBIAS_D0 GENMASK(19, 14)
-> +#define RG_HDMITX21_DRV_IBIAS_D0_FFE1 GENMASK(21, 17)
-> +#define RG_HDMITX21_DRV_IBIAS_D0_FFE1_SHIFT (17)
-> +#define RG_HDMITX21_DRV_IBIAS_D0_FFE2 GENMASK(23, 20)
-> +#define RG_HDMITX21_DRV_IBIAS_D0_FFE2_SHIFT (20)
-> +#define RG_HDMITX21_DRV_IBIAS_D0_SHIFT (14)
-> +#define RG_HDMITX21_DRV_IBIAS_D1 GENMASK(25, 20)
-> +#define RG_HDMITX21_DRV_IBIAS_D1_FFE1 GENMASK(26, 22)
-> +#define RG_HDMITX21_DRV_IBIAS_D1_FFE1_SHIFT (22)
-> +#define RG_HDMITX21_DRV_IBIAS_D1_FFE2 GENMASK(27, 24)
-> +#define RG_HDMITX21_DRV_IBIAS_D1_FFE2_SHIFT (24)
-> +#define RG_HDMITX21_DRV_IBIAS_D1_SHIFT (20)
-> +#define RG_HDMITX21_DRV_IBIAS_D2 GENMASK(31, 26)
-> +#define RG_HDMITX21_DRV_IBIAS_D2_FFE1 GENMASK(31, 27)
-> +#define RG_HDMITX21_DRV_IBIAS_D2_FFE1_SHIFT (27)
-> +#define RG_HDMITX21_DRV_IBIAS_D2_FFE2 GENMASK(31, 28)
-> +#define RG_HDMITX21_DRV_IBIAS_D2_FFE2_SHIFT (28)
-> +#define RG_HDMITX21_DRV_IBIAS_D2_SHIFT (26)
-> +#define RG_HDMITX21_DRV_IMP_CLK_EN1 GENMASK(31, 26)
-> +#define RG_HDMITX21_DRV_IMP_CLK_EN1_SHIFT (26)
-> +#define RG_HDMITX21_DRV_IMP_D0_EN1 GENMASK(13, 8)
-> +#define RG_HDMITX21_DRV_IMP_D0_EN1_SHIFT (8)
-> +#define RG_HDMITX21_DRV_IMP_D1_EN1 GENMASK(19, 14)
-> +#define RG_HDMITX21_DRV_IMP_D1_EN1_SHIFT (14)
-> +#define RG_HDMITX21_DRV_IMP_D2_EN1 GENMASK(25, 20)
-> +#define RG_HDMITX21_DRV_IMP_D2_EN1_SHIFT (20)
-> +#define RG_HDMITX21_DRV_IMP_EN GENMASK(23, 20)
-> +#define RG_HDMITX21_DRV_IMP_EN_SHIFT (20)
-> +
-> +#define RG_HDMITX21_FRL_CK_EN BIT(13)
-> +#define RG_HDMITX21_FRL_CK_EN_SHIFT (13)
-> +#define RG_HDMITX21_FRL_D0_EN BIT(14)
-> +#define RG_HDMITX21_FRL_D0_EN_SHIFT (14)
-> +#define RG_HDMITX21_FRL_D1_EN BIT(15)
-> +#define RG_HDMITX21_FRL_D1_EN_SHIFT (15)
-> +#define RG_HDMITX21_FRL_D2_EN BIT(16)
-> +#define RG_HDMITX21_FRL_D2_EN_SHIFT (16)
-> +#define RG_HDMITX21_FRL_EN BIT(12)
-> +#define RG_HDMITX21_FRL_EN_SHIFT (12)
-> +
-> +#define RG_HDMITX21_INTR_CAL GENMASK(22, 18)
-> +#define RG_HDMITX21_INTR_CAL_READOUT GENMASK(22, 18)
-> +#define RG_HDMITX21_INTR_CAL_READOUT_SHIFT (18)
-> +#define RG_HDMITX21_INTR_CAL_SHIFT (18)
-> +
-> +#define RG_HDMITX21_SER_EN GENMASK(31, 28)
-> +#define RG_HDMITX21_SER_EN_SHIFT (28)
-> +
-> +#define RG_HDMITX21_SLDOLPF_EN BIT(7)
-> +#define RG_HDMITX21_SLDOLPF_EN_SHIFT (7)
-> +#define RG_HDMITX21_SLDO_EN GENMASK(11, 8)
-> +#define RG_HDMITX21_SLDO_EN_SHIFT (8)
-> +#define RG_HDMITX21_SLDO_VREF_SEL GENMASK(5, 4)
-> +#define RG_HDMITX21_SLDO_VREF_SEL_SHIFT (4)
-> +
-> +#define RG_HDMITX21_TX_POSDIV GENMASK(27, 26)
-> +#define RG_HDMITX21_TX_POSDIV_EN GENMASK(28, 28)
-> +#define RG_HDMITX21_TX_POSDIV_EN_SHIFT (28)
-> +#define RG_HDMITX21_TX_POSDIV_SHIFT (26)
-> +
-> +#define RG_HDMITX21_VREF_SEL BIT(4)
-> +#define RG_HDMITX21_VREF_SEL_SHIFT (4)
-> +
-> +#define RG_HDMITXPLL_BC GENMASK(28, 27)
-> +#define RG_HDMITXPLL_BC_SHIFT (27)
-> +#define RG_HDMITXPLL_BP GENMASK(13, 10)
-> +#define RG_HDMITXPLL_BP2 BIT(30)
-> +#define RG_HDMITXPLL_BP2_SHIFT (30)
-> +#define RG_HDMITXPLL_BP_SHIFT (10)
-> +#define RG_HDMITXPLL_BR GENMASK(21, 19)
-> +#define RG_HDMITXPLL_BR_SHIFT (19)
-> +#define RG_HDMITXPLL_DIV_CTRL GENMASK(25, 24)
-> +#define RG_HDMITXPLL_DIV_CTRL_SHIFT (24)
-> +#define RG_HDMITXPLL_FBKDIV_HIGH BIT(31)
-> +#define RG_HDMITXPLL_FBKDIV_high_SHIFT (31)
-> +#define RG_HDMITXPLL_FBKDIV_low (0xffffffff)
-> +#define RG_HDMITXPLL_FBKDIV_low_SHIFT (0)
-> +#define RG_HDMITXPLL_HIKVCO GENMASK(29, 29)
-> +#define RG_HDMITXPLL_HIKVCO_SHIFT (29)
-> +#define RG_HDMITXPLL_HREN GENMASK(13, 12)
-> +#define RG_HDMITXPLL_HREN_SHIFT (12)
-> +#define RG_HDMITXPLL_IBAND_FIX_EN GENMASK(24, 24)
-> +#define RG_HDMITXPLL_IBAND_FIX_EN_SHIFT (24)
-> +#define RG_HDMITXPLL_IC GENMASK(26, 22)
-> +#define RG_HDMITXPLL_IC_SHIFT (22)
-> +#define RG_HDMITXPLL_IR GENMASK(18, 14)
-> +#define RG_HDMITXPLL_IR_SHIFT (14)
-> +#define RG_HDMITXPLL_LVR_SEL GENMASK(27, 26)
-> +#define RG_HDMITXPLL_LVR_SEL_SHIFT (26)
-> +#define RG_HDMITXPLL_POSDIV GENMASK(23, 22)
-> +#define RG_HDMITXPLL_POSDIV_DIV3_CTRL BIT(21)
-> +#define RG_HDMITXPLL_POSDIV_DIV3_CTRL_SHIFT (21)
-> +#define RG_HDMITXPLL_POSDIV_SHIFT (22)
-> +#define RG_HDMITXPLL_PREDIV GENMASK(29, 28)
-> +#define RG_HDMITXPLL_PREDIV_SHIFT (28)
-> +#define RG_HDMITXPLL_PWD BIT(31)
-> +#define RG_HDMITXPLL_PWD_SHIFT (31)
-> +#define RG_HDMITXPLL_REF_CK_SEL GENMASK(2, 1)
-> +#define RG_HDMITXPLL_REF_CK_SEL_SHIFT (1)
-> +#define RG_HDMITXPLL_RESERVE GENMASK(15, 0)
-> +#define RG_HDMITXPLL_RESERVE_BIT12_11 GENMASK(12, 11)
-> +#define RG_HDMITXPLL_RESERVE_BIT12_11_SHIFT (11)
-> +#define RG_HDMITXPLL_RESERVE_BIT13 BIT(13)
-> +#define RG_HDMITXPLL_RESERVE_BIT13_SHIFT (13)
-> +#define RG_HDMITXPLL_RESERVE_BIT14 BIT(14)
-> +#define RG_HDMITXPLL_RESERVE_BIT14_SHIFT (14)
-> +#define RG_HDMITXPLL_RESERVE_BIT1_0 GENMASK(1, 0)
-> +#define RG_HDMITXPLL_RESERVE_BIT1_0_SHIFT (0)
-> +#define RG_HDMITXPLL_RESERVE_BIT3_2 GENMASK(3, 2)
-> +#define RG_HDMITXPLL_RESERVE_BIT3_2_SHIFT (2)
-> +#define RG_HDMITXPLL_RESERVE_SHIFT (0)
-> +#define RG_HDMITXPLL_TCL_EN BIT(31)
-> +#define RG_HDMITXPLL_TCL_EN_SHIFT (31)
-> +
-> +#define RG_INTR_IMP_RG_MODE GENMASK(7, 3)
-> +#define RG_INTR_IMP_RG_MODE_SHIFT (3)
-> +
-> +#endif /* MTK_HDMI_PHY_8195_H */
-> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.c
-> b/drivers/phy/mediatek/phy-mtk-hdmi.c
-> index af46472237e0..3fb60ab53668 100644
-> --- a/drivers/phy/mediatek/phy-mtk-hdmi.c
-> +++ b/drivers/phy/mediatek/phy-mtk-hdmi.c
-> @@ -194,6 +194,9 @@ static const struct of_device_id
-> mtk_hdmi_phy_match[] = {
->  	{ .compatible = "mediatek,mt8173-hdmi-phy",
->  	  .data = &mtk_hdmi_phy_8173_conf,
->  	},
-> +	{ .compatible = "mediatek,mt8195-hdmi-phy",
-> +	  .data = &mtk_hdmi_phy_8195_conf,
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, mtk_hdmi_phy_match);
-> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.h
-> b/drivers/phy/mediatek/phy-mtk-hdmi.h
-> index 05de93f63a61..9d6399be71e9 100644
-> --- a/drivers/phy/mediatek/phy-mtk-hdmi.h
-> +++ b/drivers/phy/mediatek/phy-mtk-hdmi.h
-> @@ -51,6 +51,7 @@ void mtk_hdmi_phy_mask(struct mtk_hdmi_phy
-> *hdmi_phy, u32 offset,
->  		       u32 val, u32 mask);
->  struct mtk_hdmi_phy *to_mtk_hdmi_phy(struct clk_hw *hw);
->  
-> +extern struct mtk_hdmi_phy_conf mtk_hdmi_phy_8195_conf;
->  extern struct mtk_hdmi_phy_conf mtk_hdmi_phy_8173_conf;
->  extern struct mtk_hdmi_phy_conf mtk_hdmi_phy_2701_conf;
->  
-> 
-
+T24gMTkuMDkuMjAyMiAyMDowOCwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gT24gTW9u
+LCAxOSBTZXAgMjAyMiAxODowODo0MCArMDMwMCwgU2VyZ2l1IE1vZ2Egd3JvdGU6DQo+PiBDb252
+ZXJ0IGF0OTEgVVNBUlQgRFQgQmluZGluZyBmb3IgQXRtZWwvTWljcm9jaGlwIFNvQ3MgdG8NCj4+
+IGpzb24tc2NoZW1hIGZvcm1hdC4gRnVydGhlcm1vcmUsIG1vdmUgdGhpcyBiaW5kaW5nIHRvIHRo
+ZQ0KPj4gc2VyaWFsIGRpcmVjdG9yeSwgc2luY2UgYmluZGluZyBkaXJlY3RvcmllcyBtYXRjaCBo
+YXJkd2FyZSwNCj4+IHVubGlrZSB0aGUgZHJpdmVyIHN1YnN5c3RlbXMgd2hpY2ggbWF0Y2ggTGlu
+dXggY29udmVudGlvbi4NCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBTZXJnaXUgTW9nYSA8c2VyZ2l1
+Lm1vZ2FAbWljcm9jaGlwLmNvbT4NCj4+IFJldmlld2VkLWJ5OiBLcnp5c3p0b2YgS296bG93c2tp
+IDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+PiAtLS0NCj4+DQo+Pg0KPj4gdjEg
+LT4gdjI6DQo+PiAtIG9ubHkgZG8gd2hhdCB0aGUgY29tbWl0IHNheXMsIHNwbGl0IHRoZSBhZGRp
+dGlvbiBvZiBvdGhlciBjb21wYXRpYmxlcyBhbmQNCj4+IHByb3BlcnRpZXMgaW4gb3RoZXIgcGF0
+Y2hlcw0KPj4gLSByZW1vdmUgdW5uZWNlc3NhcnkgInwiJ3MNCj4+IC0gbWVudGlvbiBoZWFkZXIg
+aW4gYGF0bWVsLHVzYXJ0LW1vZGVgJ3MgZGVzY3JpcHRpb24NCj4+IC0gcGxhY2UgYGlmOmAgdW5k
+ZXIgYGFsbE9mOmANCj4+IC0gcmVzcGVjdCBvcmRlciBvZiBzcGkwJ3MgRFQgcHJvcGVydGllczog
+Y29tcGF0aWJsZSwgdGhlbiByZWcgdGhlbiB0aGUgcmVzZXQgb2YgcHJvcGVydGllcw0KPj4NCj4+
+IHYyIC0+IHYzOg0KPj4gLSBQcmV2aW91c2x5IFtQQVRDSCA1XQ0KPj4gLSBDaGVjayB2YWx1ZSBv
+ZiBgYXRtZWwsdXNhcnQtbW9kZWAgaW5zdGVhZCBvZiB0aGUgbm9kZSByZWdleA0KPj4gLSBEZWZp
+bmUgYWxsIHByb3BlcnRpZXMgdG9wIGxldmVsIGFuZCBkaXNhbGxvdyB0aGVtIGV4cGxpY2l0bHkg
+Zm9yIG90aGVyIHR5cGUsDQo+PiBzaW5jZSBhZGRpdGlvbmFsUHJvcGVydGllczpmYWxzZSBjb25m
+bGljdHMgd2l0aCByZWZlcmVuY2luZyBvdGhlciBzY2hlbWFzDQo+PiAtIFJlbW92ZSB1c2VsZXNz
+IGVsc2UgaWY6IGFmdGVyIGVsc2U6DQo+Pg0KPj4NCj4+IHYzIC0+IHY0Og0KPj4gLSBhZGQgUi1i
+IHRhZywgdGhpcyB3YXMgcHJldmlvdXNseSBbUEFUQ0ggNl0NCj4+DQo+Pg0KPj4NCj4+DQo+PiAg
+IC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9hdG1lbC11c2FydC50eHQgICB8ICA5OCAtLS0t
+LS0tLS0tDQo+PiAgIC4uLi9iaW5kaW5ncy9zZXJpYWwvYXRtZWwsYXQ5MS11c2FydC55YW1sICAg
+ICB8IDE4MiArKysrKysrKysrKysrKysrKysNCj4+ICAgMiBmaWxlcyBjaGFuZ2VkLCAxODIgaW5z
+ZXJ0aW9ucygrKSwgOTggZGVsZXRpb25zKC0pDQo+PiAgIGRlbGV0ZSBtb2RlIDEwMDY0NCBEb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL2F0bWVsLXVzYXJ0LnR4dA0KPj4gICBj
+cmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Nlcmlh
+bC9hdG1lbCxhdDkxLXVzYXJ0LnlhbWwNCj4+DQo+IA0KPiBSdW5uaW5nICdtYWtlIGR0YnNfY2hl
+Y2snIHdpdGggdGhlIHNjaGVtYSBpbiB0aGlzIHBhdGNoIGdpdmVzIHRoZQ0KPiBmb2xsb3dpbmcg
+d2FybmluZ3MuIENvbnNpZGVyIGlmIHRoZXkgYXJlIGV4cGVjdGVkIG9yIHRoZSBzY2hlbWEgaXMN
+Cj4gaW5jb3JyZWN0LiBUaGVzZSBtYXkgbm90IGJlIG5ldyB3YXJuaW5ncy4NCj4gDQo+IE5vdGUg
+dGhhdCBpdCBpcyBub3QgeWV0IGEgcmVxdWlyZW1lbnQgdG8gaGF2ZSAwIHdhcm5pbmdzIGZvciBk
+dGJzX2NoZWNrLg0KPiBUaGlzIHdpbGwgY2hhbmdlIGluIHRoZSBmdXR1cmUuDQo+IA0KPiBGdWxs
+IGxvZyBpcyBhdmFpbGFibGUgaGVyZTogaHR0cHM6Ly9wYXRjaHdvcmsub3psYWJzLm9yZy9wYXRj
+aC8NCj4gDQo+IA0KDQpIZWxsbywgdGhhbmsgeW91IGZvciBjaGVja2luZyA6KS4gVGhlIGFib3Zl
+IGxpbmsgaXNzdWVzIGEgNDA0LiANCkV2ZXJ5dGhpbmcgc2hvdWxkIGJlIGZpbmUgdGhvdWdoIG9u
+Y2UgYWxsIG9mIHRoZSBiZWxvdyBhcmUgbWVyZ2VkOg0KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
+bGludXgtYXJtLWtlcm5lbC81M2U3MmU1ZC00N2ZjLTQwM2QtYzk2OS02MWIyNjdhOWZmMTVAbWlj
+cm9jaGlwLmNvbS8NCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LWFybS1rZXJuZWwvMWFl
+ODk4NTQtNzRmYS02MTk0LTMwNGYtZGIzMWQ1NmQzNjc0QG1pY3JvY2hpcC5jb20vDQoNCnRvZ2V0
+aGVyIHdpdGggdGhlIHBhdGNoIHNlcmllcyB0aGF0IEkgbGlua2VkIGludG8gdGhlIGNvdmVyIGxl
+dHRlciBhcyBhIA0KZGVwZW5kZW5jZToNCg0KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgt
+YXJtLWtlcm5lbC8yMDIyMDkxNjA3NTc0NC4xODc5NDI4LTEta2F2eWFzcmVlLmtvdGFnaXJpQG1p
+Y3JvY2hpcC5jb20vDQoNCg0KVGhhbmsgeW91LA0KCVNlcmdpdQ0K
