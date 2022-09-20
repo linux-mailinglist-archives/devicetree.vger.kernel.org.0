@@ -2,106 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F20745BE88D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 16:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D7085BE91F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Sep 2022 16:35:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229713AbiITOT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 10:19:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58246 "EHLO
+        id S229885AbiITOfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 10:35:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231810AbiITOSl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 10:18:41 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDF8865802
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 07:16:00 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a26so6545255ejc.4
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 07:16:00 -0700 (PDT)
+        with ESMTP id S230441AbiITOfD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 10:35:03 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89C415A0F;
+        Tue, 20 Sep 2022 07:35:01 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id h130-20020a1c2188000000b003b4cadadce7so5699644wmh.3;
+        Tue, 20 Sep 2022 07:35:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=BV+bMpM/fk2Fhnz6QLswtDiUmDEO+rj/bi3ZNDBFzjI=;
-        b=A9JCOD2EYEnLgHDjhV6RWfz1gM9YilfLikmnE5+Pir+vBmFKGDsLfb7YQPjevWqY0g
-         A1kAaV5v7wZ/QkdXwe2IKIKt1bzYlpAs+ilbD/zX2URREqonYlVGmaJklILYlgQMEUhw
-         q23d6OJTaNUybc6+WSVxbtCczs0LizrKzwrPA=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=+SuwuJGOg5KYd3WZxjux+NETV48IOgrGaRTD+kqFOac=;
+        b=T31GHaV6hRYu6t3ABhfgwPr8thM+xw3K6xfdFTO/nuL27pQ/9IbuyRoK+RhPpg8dl0
+         WeATDwRRoFm8h8dSlGJ19Zif0EBzDVeBu2HWmS0w4cdeUoJ0SmIiY8NMdoN9sK1QnOHw
+         rYTY/MH4pTXsH1MH5TA2DUrUrGzXOgWMC9WiJgzLF11ghavW9C1S0E/aFMps3Wuvhmih
+         R6XILSL1MjysD5YowPkAvg9IZrZKQwEO5KSqm6EQaQOP0MLhwHoxJMPw/t3CSsW2XQ2n
+         PbZmSZkeC+q1Tmp+DkvIxnThwl0kN5nP2PcSyrpLyyfXWpy8+RcqOk/m2fL7iqOCw5qU
+         3mCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=BV+bMpM/fk2Fhnz6QLswtDiUmDEO+rj/bi3ZNDBFzjI=;
-        b=17JVKDMqf3XM6EN+3SQj0N3dWIb4bzx8a/9ocxOB7xSK/KxJmGhw0cc7U/N95rYiK1
-         HQ5OI/yqyW+9RoaAYNp/5mly3l1vu80EflwbVTN/gFRiFm6iKovyLRk+x1uSN04duXTe
-         fwFQvQjkug1ZXT9DkeIJkvtvty7VqnlVzRUsu5yQkJErnWOMQmzkPbEfMb9fKdZBQfmP
-         EacX4qDV1hRmyj+t7yM0yale/dpnIyLzxBWKKylpZMZOrFRxiEAcqFauqhpXa7dYqRi6
-         sboh4DaziWnTRn/aPwv2f/tU5SuqiAu8RO2MiecMKRyTPXOxZDAaQgUoySCtmC2qB54A
-         c5CQ==
-X-Gm-Message-State: ACrzQf3jRKzwYhJ8Ov9s8iQMOFHSL68H5Jm2EkAhihrsoOBuj1KxoSiR
-        frXkOmXHCKdIcyA17JiRXnX288HLGbno6FAO
-X-Google-Smtp-Source: AMsMyM6ouljmiXH6Atkzb4YayuncJpa6xMS6dN0FnXZQgd6y4yh+wm5FfnNg3QIJEWnd2NmRXix+zg==
-X-Received: by 2002:a17:906:5d07:b0:781:c281:f6e4 with SMTP id g7-20020a1709065d0700b00781c281f6e4mr2531470ejt.744.1663683359281;
-        Tue, 20 Sep 2022 07:15:59 -0700 (PDT)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com. [209.85.221.47])
-        by smtp.gmail.com with ESMTPSA id p9-20020a17090653c900b0072b33e91f96sm919945ejo.190.2022.09.20.07.15.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 07:15:58 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id t7so4483551wrm.10
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 07:15:58 -0700 (PDT)
-X-Received: by 2002:a5d:522f:0:b0:228:dc7f:b9a8 with SMTP id
- i15-20020a5d522f000000b00228dc7fb9a8mr14878330wra.617.1663683357727; Tue, 20
- Sep 2022 07:15:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220919165808.1.Idfb956ebc035c3bd0d682f4697c297c7a975c50d@changeid>
- <20220920114020.2185607-1-sheng-liang.pan@quanta.corp-partner.google.com>
-In-Reply-To: <20220920114020.2185607-1-sheng-liang.pan@quanta.corp-partner.google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 20 Sep 2022 07:15:44 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WmeLSyziXXuOgkWUzhkOy7_wTyv=SF+JwnYh4NkYCa=Q@mail.gmail.com>
-Message-ID: <CAD=FV=WmeLSyziXXuOgkWUzhkOy7_wTyv=SF+JwnYh4NkYCa=Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: All current evoker boards are LTE
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=+SuwuJGOg5KYd3WZxjux+NETV48IOgrGaRTD+kqFOac=;
+        b=keOzohmMQ/eyXVHMm4xuVSO40I7uME+g9Afge4tq3bbMm0CzhOWYBfy+68h1/9ElGx
+         51GlBMelq2zv+xz+zKTna3JKuqOgRyAps2Ys2SRTY0Q/vglzNkWnbw5KwN5uTxfGunkE
+         SrKoa7u1EQFMx2nYltQVx7wPIkMdeIzJX9GANJSekf5QdIBsVAym2VO1jeVg9kzAX8yy
+         AyoRC1B6pt9Lk622RMuHGQLcQjAL2pyHTAU+fK+UXEkZpSJKUenefk/C+j82pwRXtfek
+         nV9Jf6b3SNuZBiNiHZB2USQcYnZImtbAIu6/n6YP7HPdoPqLGSjhoMzQETmtEpcRg6g4
+         LEnw==
+X-Gm-Message-State: ACrzQf3Wz21fORCqqvT821vGc2PH60c1IXPttYZbNS75DDYaAH3PQ+BM
+        3PAOWpQQPUPzkihesRvBklo=
+X-Google-Smtp-Source: AMsMyM7Qp41zb/aighXcTiRczuHKL26S02RSou6pBtVxadl2Tgx5gVWBRb7XnaigW16nV9LESOTBPg==
+X-Received: by 2002:a05:600c:33a8:b0:3b4:874c:f48f with SMTP id o40-20020a05600c33a800b003b4874cf48fmr2582646wmp.131.1663684500449;
+        Tue, 20 Sep 2022 07:35:00 -0700 (PDT)
+Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id y11-20020adffa4b000000b0021e43b4edf0sm226250wrr.20.2022.09.20.07.34.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Sep 2022 07:34:59 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Enable HDMI and GPU on quartz64-b
+Date:   Tue, 20 Sep 2022 16:34:46 +0200
+Message-Id: <20220920143446.633956-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This enables the GPU and HDMI output (including HDMI audio) on
+the PINE64 Quartz64 Model B single board computer.
 
-On Tue, Sep 20, 2022 at 4:40 AM Sheng-Liang Pan
-<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
->
-> > At the time that commit 2abf6b6b9429 ("arm64: dts: qcom: sc7280: Add
-> > device tree for herobrine evoker") was posted, all herobrine SKUs were
-> > LTE.
-> >
-> > At the time that commit d42fae738f3a ("arm64: dts: qcom: Add LTE SKUs
-> > for sc7280-villager family"), the evoker board device tree hadn't yet
-> > landed.
-> >
-> > I belive that the above two facts mean that the evoker boards ought to
-> > be setup for LTE but currently aren't. Let's fix that.
-> Evoker should also have wifi/lte SKU,
-> I think we need to follow villager to create evoker.dtsi then separate wifi/lte dts.
+Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+---
+ .../boot/dts/rockchip/rk3566-quartz64-b.dts   | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
-OK, sounds good. I'm happy if you want to post patches for that. If
-you need me to then let me know, but you probably know better what
-hardware exists and at what version.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+index 0f623198970f..77b179cd20e7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+@@ -4,6 +4,7 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/pinctrl/rockchip.h>
++#include <dt-bindings/soc/rockchip,vop2.h>
+ #include "rk3566.dtsi"
+ 
+ / {
+@@ -28,6 +29,17 @@ gmac1_clkin: external-gmac1-clock {
+ 		#clock-cells = <0>;
+ 	};
+ 
++	hdmi-con {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_con_in: endpoint {
++				remote-endpoint = <&hdmi_out_con>;
++			};
++		};
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -183,6 +195,33 @@ &gmac1m1_clkinout
+ 	status = "okay";
+ };
+ 
++&gpu {
++	mali-supply = <&vdd_gpu>;
++	status = "okay";
++};
++
++&hdmi {
++	avdd-0v9-supply = <&vdda0v9_image>;
++	avdd-1v8-supply = <&vcca1v8_image>;
++	status = "okay";
++};
++
++&hdmi_in {
++	hdmi_in_vp0: endpoint {
++		remote-endpoint = <&vp0_out_hdmi>;
++	};
++};
++
++&hdmi_out {
++	hdmi_out_con: endpoint {
++		remote-endpoint = <&hdmi_con_in>;
++	};
++};
++
++&hdmi_sound {
++	status = "okay";
++};
++
+ &i2c0 {
+ 	status = "okay";
+ 
+@@ -456,6 +495,10 @@ &i2c5 {
+ 	status = "disabled";
+ };
+ 
++&i2s0_8ch {
++	status = "okay";
++};
++
+ &i2s1_8ch {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2s1m0_sclktx
+@@ -677,3 +720,20 @@ &usb_host0_ehci {
+ &usb_host0_ohci {
+ 	status = "okay";
+ };
++
++&vop {
++	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
++	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
++	status = "okay";
++};
++
++&vop_mmu {
++	status = "okay";
++};
++
++&vp0 {
++	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
++		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
++		remote-endpoint = <&hdmi_in_vp0>;
++	};
++};
+-- 
+2.37.3
 
--Doug
