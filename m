@@ -2,125 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4FE5BF78E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:24:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68BF75BF78C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:23:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbiIUHYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:24:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40184 "EHLO
+        id S229521AbiIUHXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:23:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiIUHX6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:23:58 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B5528276D;
-        Wed, 21 Sep 2022 00:23:57 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28L7Nh3o103785;
-        Wed, 21 Sep 2022 02:23:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663745023;
-        bh=1tXXuTJUrFvjH2SvVXWV78/Emi2CIN9ra9cU3bjPyAc=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=yiQA4Lu1V02mwKjdpTgNHNkLTzV14czG3TRLwaxdKHWhvt1wF+tHdKoUiP7DcTT93
-         uQ9/xPKdsbopmU7c7aKNMPJ6GNVHpA9KDEpv3LCgSDRWtwOWzR+Ogh2X5G/aM0tqGX
-         dVDtuh0KknfzZA3jFu643ya0R9eem5A6Z7i4OjkA=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28L7Nhh4111593
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 21 Sep 2022 02:23:43 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 21
- Sep 2022 02:23:43 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 21 Sep 2022 02:23:43 -0500
-Received: from [10.24.69.241] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28L7Nc1Y056475;
-        Wed, 21 Sep 2022 02:23:39 -0500
-Message-ID: <e1422def-fab5-dad8-00a2-8977200e2146@ti.com>
-Date:   Wed, 21 Sep 2022 12:53:38 +0530
+        with ESMTP id S229437AbiIUHXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:23:50 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CEBA7CB48
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:23:49 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id z25so7771978lfr.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:23:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=zYXoXGYBs8EW5/2+PLZ8R95umDFslhQGS8LVrgnzPFo=;
+        b=amsovrYY/8Wc9eaJ9TUk8nv4JjiA70E2/qLdE6MZsxrIlKWiUx1u2X4GMzDQ2zttQg
+         tsxE0Mc2Wj2KCnXOCz89fzVsMKBhRZZsqSoOdfvhd739iuH3XqWisFhu98AjsFKILigX
+         GhXOj220Xx4eq58Dky2D7LSd7q0prsJ2hf5IwzP726flx9veRqYfy0Y5VNYJIz2A40Kb
+         D4hVUBWtZcX2n7pubXlj0911zJe02gg93BFcy42C3M4Xi9dkJ8HO7Qm5y7guaqJVuL9b
+         UiW0UOrs9kYynN3QrKVHMIJ73Buy5ccsgfzeSsKpYLrZV8N8S53sTwjF+gDu3qgvs5fZ
+         qCRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=zYXoXGYBs8EW5/2+PLZ8R95umDFslhQGS8LVrgnzPFo=;
+        b=cio7qIha3KrogjaNYlN42EapaV1/5moUvRaY8S3yOndzz2rk+xcY9dAgviR/FWpTl5
+         ZZf3rMQJL9JK/eCSwr6i2xceTKQdfX3uQB/ghZa9zE8WAmzbJbyynITf1jOqTv9UcIXv
+         TxO83KVPYfTePXgr7t8uE8aT+6COcohtcj4EP+S4Vg23kVXGHgOqSKtS/SP5usm+pQKS
+         WOoAGMzGL1me5mw1cFmBp8XqTGw5qeMJq6h05pp8V/8+jpZ6fVgiy7OIqMf0zf7WlwzY
+         vZpGOcd+yZeHMRsdmj1ZG6wEQlNSAEYLdwok07tZNndX0ryofMnFtyCtf305ZPv8vIN4
+         CODw==
+X-Gm-Message-State: ACrzQf0WqbyAfVmgkf5n0vh7Ii42D9XRn4UeRHdhGcsbL0LxDMsXG1zt
+        EryZPJ4qlLvDXpAY0CdF0KJ2hQ==
+X-Google-Smtp-Source: AMsMyM5PX4hhSKyC3P+OrU7Wo7Ik40hyrxTigVYCeDkKWLWOekLO5ZygKPrRGVHZWeJT3/WunLVoFA==
+X-Received: by 2002:a05:6512:1153:b0:49d:1d20:ea47 with SMTP id m19-20020a056512115300b0049d1d20ea47mr8999109lfg.342.1663745027686;
+        Wed, 21 Sep 2022 00:23:47 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id j10-20020a056512398a00b0049a0dec6e8esm313874lfu.139.2022.09.21.00.23.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Sep 2022 00:23:47 -0700 (PDT)
+Message-ID: <44899c2f-99c0-5f1a-38ad-a700269e18e8@linaro.org>
+Date:   Wed, 21 Sep 2022 09:23:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-CC:     <robh+dt@kernel.org>, <lee.jones@linaro.org>, <kishon@ti.com>,
-        <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
-        <rogerq@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <sjakhade@cadence.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH 1/6] dt-bindings: phy: ti: phy-gmii-sel: Add bindings for
- J721e
+ Thunderbird/91.13.0
+Subject: Re: [PATCH V2 1/2] dt-bindings: display: panel: Add Samsung
+ AMS495QA01 bindings
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-References: <20220914093911.187764-1-s-vadapalli@ti.com>
- <20220914093911.187764-2-s-vadapalli@ti.com>
- <2dfb57cd-d9d4-9a26-dd4c-f116894c9baf@linaro.org>
- <fdeb4f4f-2712-fe35-a5c2-935d3a4baf38@ti.com>
- <011ce9d2-ea39-9235-323a-eac453effb66@linaro.org>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <011ce9d2-ea39-9235-323a-eac453effb66@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
+        sam@ravnborg.org, thierry.reding@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20220920170937.14486-1-macroalpha82@gmail.com>
+ <20220920170937.14486-2-macroalpha82@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220920170937.14486-2-macroalpha82@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
-
-On 21/09/22 12:09, Krzysztof Kozlowski wrote:
-> On 20/09/2022 06:27, Siddharth Vadapalli wrote:
->> Hello Krzysztof,
->>
->>>> +    then:
->>>> +      properties:
->>>> +        ti,qsgmii-main-ports:
->>>> +          minItems: 2
->>>> +          maxItems: 2
->>>> +          items:
->>>> +            minimum: 1
->>>> +            maximum: 8
->>>> +
->>>>    - if:
->>>>        not:
->>>>          properties:
->>>> @@ -94,6 +133,7 @@ allOf:
->>>>              contains:
->>>>                enum:
->>>>                  - ti,j7200-cpsw5g-phy-gmii-sel
->>>> +                - ti,j721e-cpsw9g-phy-gmii-sel
->>>>      then:
->>>>        properties:
->>>>          ti,qsgmii-main-ports: false
->>>
->>> This is interesting here... Did you test the bindings with your DTS?
->>
->> Yes, I tried it out with different compatibles in the DTS file for the
->> node, making sure that the property "ti,qsgmii-main-ports" is allowed
->> only for the "ti,j7200-cpsw5g-phy-gmii-sel" and the
->> "ti,j721e-cpsw9g-phy-gmii-sel" compatibles. Additionally, I also tested
->> that the "minItems", "maxItems", "minimum" and "maximum" checks apply.
->> All of the rules within the "allOf", are enforced one after the other in
->> sequence, based on my testing. Please let me know in case of any
->> suggestions to implement it in a better way.
+On 20/09/2022 19:09, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Great! I think I see now what I missed previously. The last hunk with
-> "ti,qsgmii-main-ports: false" is in a if: with negation ("not:")?
+> Add documentation for the Samsung AMS495QA01 panel.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  .../display/panel/samsung,ams495qa01.yaml     | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml b/Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+> new file mode 100644
+> index 000000000000..08358cdad19c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,ams495qa01.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/samsung,ams495qa01.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung AMS495QA01 4.95in 960x544 DSI/SPI panel
+> +
+> +maintainers:
+> +  - Chris Morgan <macromorgan@hotmail.com>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: samsung,ams495qa01
 
-Yes, the newly added compatible "ti,j721e-cpsw9g-phy-gmii-sel" is placed
-within an "if:" followed by a "not:", along with the already existing
-"ti,j7200-cpsw5g-phy-gmii-sel" compatible. With this,
-"ti,qsgmii-main-ports" is allowed only for the aforementioned
-compatibles and disallowed for the rest.
+Blank line.
 
-Regards,
-Siddharth.
+
+> +  reg: true
+> +  reset-gpios: true
+> +  elvdd-supply:
+> +    description: regulator that supplies voltage to the panel display
+> +  enable-gpios: true
+> +  port: true
+> +  vdd-supply:
+> +    description: regulator that supplies voltage to panel logic
+
+
+Best regards,
+Krzysztof
