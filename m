@@ -2,126 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB2405BF742
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:11:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BAAE5BF75A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:15:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbiIUHLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:11:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51202 "EHLO
+        id S229942AbiIUHO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:14:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229699AbiIUHLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:11:17 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F10E813E86
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:11:15 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id a8so7629459lff.13
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:11:15 -0700 (PDT)
+        with ESMTP id S229873AbiIUHO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:14:57 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73F1D25EB7
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:14:55 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id g3so8241901wrq.13
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:14:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=wiXy5ZIaldVPRdkC0O1dXknFlmQtPsl+IQZh9q4Cgmo=;
-        b=BNWeozDy1dKboNi6UK9bXjuRFkSY55U3BDN4+3Qq9dKjQPYnJxKQzyMV9NS9gbfT0Z
-         7hjI0sUzfTo8iAhQ/mvIcUwuPsG5nfoDQ3bJXuUH7zUymrDAwlo3qF25z5yxuhnpkfQv
-         sz+JtUst9JhzKCNnpVaKaVZulJT8eVGh7IRKbJHjv2TZYOq7vK8lokKDyLFcDduKwBG5
-         gwznPs7AshqOMlIcUut0mCwUxZ+91gDbwVCrxaPq1JK6XH+zwfxhjXfXEO5HnoPbk73X
-         gc+ouQVeSVZ22tggHhOAtQqHHfxbsrp0m0ch5KqGK4RvqfvlZbFaSI4sv7nFlwKv2HuI
-         3SfQ==
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date;
+        bh=y+SX0O0sFK0RfCFKUk5e5HkLwS7qj6fJY7MYEdssToA=;
+        b=apm7jshLoEYBXPI75Tf8y4MR/NXL0fL9VSSam/7puniDvlDo7d73uthZ5UpxQ9L7ou
+         O+G79+RsG3rF/faM8KWlc48l3lovuOdl6U/AGb2YdD/M42u0zoDWP/e9rPiE07gdtVtc
+         LlSjY+bFoE9KC2mwC518e/fXU2iPFotbk56YbOD6F9D88eshMnrPuhiGTvp2se7ovMS8
+         h6puuTqM5jfA4ptEDbSqGlEc/aYGJ2CQqWvCUPa8IzoEcmNK0pxmZomjvwix7iokEntz
+         LrH+/2cWazCpbEWabBTg/lTsNEKpBseVS8OfQs8TWTcqaJkzS2/+6kMNeKF2664pwjX/
+         /+8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=wiXy5ZIaldVPRdkC0O1dXknFlmQtPsl+IQZh9q4Cgmo=;
-        b=LuGowC810wKZFVm+uvHWcSpnhT26FEzi04xOXBXfF5U5fZVGzGwItOp7c5h1yHEs3D
-         tMbM4Mbbd/O9l5Un2F3QDGFYvx/mH1daAl/DsMc9d7W0O5xWD/78s/0aHwNSYTgOyZuO
-         mqp/b1z0lzRf9TAcF3Lf7j1fdkY82AzXX4T2LDvwXs5nCCUXdW5494bUOJYluP5dQ6BH
-         kR3j/HVxz+KKcJSYRltfexDpx5Nakyvrryha1XIDIFHLJqqmKo56zoiQk8kRzQFvr9ay
-         CcRxDaXDflJhtKMej7ytqzR+b+PzJh71T53gMT9B0nXk1HxfAKtz3aobwgF4aznn9NZ1
-         VClQ==
-X-Gm-Message-State: ACrzQf0yvQ2OhNRjW6r85bZ6msMqTSrC/IMOwTXmMacNBn5tB8OKaDP/
-        ehnF7zJ4+u3FTxILxqDJZAfUbQ==
-X-Google-Smtp-Source: AMsMyM6S3qg1XzFgFQZ4Arx5bMNo57o7Uhkt5ibKjTwMAKsPl7xPucNJNMl7abyEQ7e0sR6YFidK7w==
-X-Received: by 2002:a05:6512:20d2:b0:497:a29f:cada with SMTP id u18-20020a05651220d200b00497a29fcadamr9075345lfr.45.1663744274292;
-        Wed, 21 Sep 2022 00:11:14 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w16-20020a05651c119000b0026c18aa8587sm309565ljo.75.2022.09.21.00.11.12
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=y+SX0O0sFK0RfCFKUk5e5HkLwS7qj6fJY7MYEdssToA=;
+        b=FBHefnnsUVYiEfJAOZHv9BLX4gjgMoVsMxLFifhc+pVTXHcOi+C5fMgtYIigsyhVpF
+         jIRr+upNRSbLyBWPJzaBTN4IvpIgKnOrIKc2I29O6sDLC4cWy36cBLQ5zdYak5EG9key
+         Vr9lHl2Nn9V46J70Ib4mjJuUXNLrKnvFg3yv9jb3564YPJOiCh1RH65G2XZXjN0K5799
+         9m+RW09USqCHl65YmQiNVEaW5BfFrzvhIfZeamBxjO5nB1/avkcSzd465RtheszvohQy
+         /K1YtlNsExf4MYB0mFioTN2UgA6aEZgFjUPJZopjpONADDJo8hseeGu6nL4aT02ipXjB
+         4a9A==
+X-Gm-Message-State: ACrzQf0pfX9ooe0kK7uZoq/ZbIG4StM3N/felmfK6/U9/HshdlmGN2/D
+        o24sv3qlP9t1oYBdKH94t4nICw==
+X-Google-Smtp-Source: AMsMyM6GU8QuI762MoyB+GX6M58iW8kKG3Dx7B0Wfj29BxWQh0BlsUPNqAanDdgJLa5YtJbhk4Jyiw==
+X-Received: by 2002:a5d:550c:0:b0:22b:1942:4bf6 with SMTP id b12-20020a5d550c000000b0022b19424bf6mr3558303wrv.520.1663744493986;
+        Wed, 21 Sep 2022 00:14:53 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3? ([2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3])
+        by smtp.gmail.com with ESMTPSA id o28-20020a05600c511c00b003a845fa1edfsm1473724wms.3.2022.09.21.00.14.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 00:11:13 -0700 (PDT)
-Message-ID: <1860b0ff-5544-5e74-ccfc-beda18824927@linaro.org>
-Date:   Wed, 21 Sep 2022 09:11:12 +0200
+        Wed, 21 Sep 2022 00:14:53 -0700 (PDT)
+Message-ID: <0f1cce61-b2f4-79f0-5432-9a5559e8bf5c@linaro.org>
+Date:   Wed, 21 Sep 2022 09:14:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Combine MediaTek MT67xx pinctrl
- binding docs
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] arm64: dts: qcom: msm8998-yoshino: Fix up SMD regulators
+ formatting
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220919170115.94873-1-y.oudjana@protonmail.com>
- <20220919170115.94873-2-y.oudjana@protonmail.com>
- <4c425cf8-f9ca-969c-f8ed-688410bfb922@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4c425cf8-f9ca-969c-f8ed-688410bfb922@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20220921004741.152765-1-konrad.dybcio@somainline.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro
+In-Reply-To: <20220921004741.152765-1-konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 10:06, AngeloGioacchino Del Regno wrote:
-> Il 19/09/22 19:01, Yassine Oudjana ha scritto:
->> From: Yassine Oudjana <y.oudjana@protonmail.com>
->>
->> Documents for MT6779, MT6795 and MT6797 that currently exist share
->> most properties, and each one has slightly differently worded
->> descriptions for those properties. Combine all three documents into
->> one common document for all MT67xx SoC pin controllers, picking a few
->> parts from each and accounting for differences such as items in reg
->> and reg-names properties. Also document the MT6765 pin controller
->> which currently has a driver but no DT binding documentation. It should
->> be possible to also include bindings for MT8183 and MT8188, but these
->> have some additional properties that might complicate things a bit,
->> so they are left alone for now.
->>
->> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->> ---
->>   .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 207 ------------------
->>   .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 176 ---------------
->>   ...6795.yaml => mediatek,mt67xx-pinctrl.yaml} | 181 +++++++++++----
+On 21/09/2022 02:47, Konrad Dybcio wrote:
+> Add a new line between each subnode and make the { } consistent.
 > 
-> Hello Yassine,
-> nice cleanup over here!
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>   .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 33 ++++++++++++++++++-
+>   1 file changed, 32 insertions(+), 1 deletion(-)
 > 
-> There's a catch though: as far as I know, wildcards are not permitted... so you
-> should, at this point, merge all of these in mediatek,mt6779-pinctrl.yaml instead.
-> 
-> Before jumping to that, though... Krzysztof, can you please confirm (or deny)?
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+> index d08639082247..862d859af885 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+> @@ -410,131 +410,162 @@ vreg_s3a_1p35: s3 {
+>   			regulator-min-microvolt = <1352000>;
+>   			regulator-max-microvolt = <1352000>;
+>   		};
+> +
+>   		vreg_s4a_1p8: s4 {
+>   			regulator-min-microvolt = <1800000>;
+>   			regulator-max-microvolt = <1800000>;
+>   			regulator-system-load = <100000>;
+>   			regulator-allow-set-load;
+>   		};
+> +
+>   		vreg_s5a_2p04: s5 {
+>   			regulator-min-microvolt = <1904000>;
+>   			regulator-max-microvolt = <2032000>;
+>   		};
+> +
+>   		vreg_s7a_1p025: s7 {
+>   			regulator-min-microvolt = <900000>;
+>   			regulator-max-microvolt = <1028000>;
+>   		};
+> +
+>   		vreg_l1a_0p875: l1 {
+>   			regulator-min-microvolt = <880000>;
+>   			regulator-max-microvolt = <880000>;
+>   			regulator-system-load = <73400>;
+>   			regulator-allow-set-load;
+>   		};
+> +
+>   		vreg_l2a_1p2: l2 {
+>   			regulator-min-microvolt = <1200000>;
+>   			regulator-max-microvolt = <1200000>;
+>   			regulator-system-load = <12560>;
+>   			regulator-allow-set-load;
+>   		};
+> +
+>   		vreg_l3a_1p0: l3 {
+>   			regulator-min-microvolt = <1000000>;
+>   			regulator-max-microvolt = <1000000>;
+>   		};
+> +
+>   		vreg_l5a_0p8: l5 {
+>   			regulator-min-microvolt = <800000>;
+>   			regulator-max-microvolt = <800000>;
+>   		};
+> +
+>   		vreg_l6a_1p8: l6 {
+>   			regulator-min-microvolt = <1800000>;
+>   			regulator-max-microvolt = <1800000>;
+>   		};
+> +
+>   		vreg_l7a_1p8: l7 {
+>   			regulator-min-microvolt = <1800000>;
+>   			regulator-max-microvolt = <1800000>;
+>   		};
+> +
+>   		vreg_l8a_1p2: l8 {
+>   			regulator-min-microvolt = <1200000>;
+>   			regulator-max-microvolt = <1200000>;
+>   		};
+> +
+>   		vreg_l9a_1p8: l9 {
+>   			regulator-min-microvolt = <1808000>;
+>   			regulator-max-microvolt = <2960000>;
+>   		};
+> +
+>   		vreg_l10a_1p8: l10 {
+>   			regulator-min-microvolt = <1808000>;
+>   			regulator-max-microvolt = <2960000>;
+>   		};
+> +
+>   		vreg_l11a_1p0: l11 {
+>   			regulator-min-microvolt = <1000000>;
+>   			regulator-max-microvolt = <1000000>;
+>   		};
+> +
+>   		vreg_l12a_1p8: l12 {
+>   			regulator-min-microvolt = <1800000>;
+>   			regulator-max-microvolt = <1800000>;
+>   		};
+> +
+>   		vreg_l13a_2p95: l13 {
+>   			regulator-min-microvolt = <1808000>;
+>   			regulator-max-microvolt = <2960000>;
+>   			regulator-allow-set-load;
+>   		};
+> +
+>   		vreg_l14a_1p85: l14 {
+>   			regulator-min-microvolt = <1848000>;
+>   			regulator-max-microvolt = <1856000>;
+>   			regulator-system-load = <32000>;
+>   			regulator-allow-set-load;
+>   		};
+> +
+>   		vreg_l15a_1p8: l15 {
+>   			regulator-min-microvolt = <1800000>;
+>   			regulator-max-microvolt = <1800000>;
+>   		};
+> +
+>   		vreg_l16a_2p7: l16 {
+>   			regulator-min-microvolt = <2704000>;
+>   			regulator-max-microvolt = <2704000>;
+>   		};
+> +
+>   		vreg_l17a_1p3: l17 {
+>   			regulator-min-microvolt = <1304000>;
+>   			regulator-max-microvolt = <1304000>;
+>   		};
+> -		vreg_l18a_2p85: l18 {};
+> +
+> +		vreg_l18a_2p85: l18 { };
+> +
+>   		vreg_l19a_2p7: l19 {
+>   			regulator-min-microvolt = <2696000>;
+>   			regulator-max-microvolt = <2704000>;
+>   		};
+> +
+>   		vreg_l20a_2p95: l20 {
+>   			regulator-min-microvolt = <2960000>;
+>   			regulator-max-microvolt = <2960000>;
+>   			regulator-system-load = <10000>;
+>   			regulator-allow-set-load;
+>   		};
+> +
+>   		vreg_l21a_2p95: l21 {
+>   			regulator-min-microvolt = <2960000>;
+>   			regulator-max-microvolt = <2960000>;
+>   			regulator-system-load = <800000>;
+>   			regulator-allow-set-load;
+>   		};
+> +
+>   		vreg_l22a_2p85: l22 { };
+> +
+>   		vreg_l23a_3p3: l23 {
+>   			regulator-min-microvolt = <3312000>;
+>   			regulator-max-microvolt = <3312000>;
+>   		};
+> +
+>   		vreg_l24a_3p075: l24 {
+>   			regulator-min-microvolt = <3088000>;
+>   			regulator-max-microvolt = <3088000>;
+>   		};
+> +
+>   		vreg_l25a_3p3: l25 {
+>   			regulator-min-microvolt = <3104000>;
+>   			regulator-max-microvolt = <3312000>;
+>   		};
+> +
+>   		vreg_l26a_1p2: l26 {
+>   			regulator-min-microvolt = <1200000>;
+>   			regulator-max-microvolt = <1200000>;
+>   			regulator-allow-set-load;
+>   		};
+> +
+>   		vreg_l28_3p0: l28 {
+>   			regulator-min-microvolt = <3000000>;
+>   			regulator-max-microvolt = <3000000>;
+>   		};
+> +
+>   		vreg_lvs1a_1p8: lvs1 { };
+> +
+>   		vreg_lvs2a_1p8: lvs2 { };
+>   	};
+>   
 
-Wildcards are not allowed in compatibles. In filename wildcards or
-family name could work if they are really going to match the devices. I
-have doubts here. 67xx is quite a lot of different devices, so I am not
-sure this will cover them all.
-
-I would prefer one name (oldest SoC or lowest number).
-
-Best regards,
-Krzysztof
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
