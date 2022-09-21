@@ -2,150 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F29A25BFB05
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:31:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D086B5BFB09
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:31:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbiIUJbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 05:31:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53278 "EHLO
+        id S231477AbiIUJbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 05:31:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231748AbiIUJax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:30:53 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E43B690C41;
-        Wed, 21 Sep 2022 02:30:50 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id hy2so8542429ejc.8;
-        Wed, 21 Sep 2022 02:30:50 -0700 (PDT)
+        with ESMTP id S230423AbiIUJbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:31:17 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DB643ED4E
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:31:15 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id s6so8193644lfo.7
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:31:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:from:to:cc:subject:date;
-        bh=Jr8oE61NhRIq5ZsnsT8b0rg0+Oxtl2j72+/LPlx4O9U=;
-        b=TMKQLD+XciKaaTQSYkvB3tJ8eNcp4xWvlqLGsi5r3tIQqHj2qxYrC0WoiDJfaWogCw
-         x33dXgcrIMpKRIp7/Zqrx8QlRwgFz+GZcQVN0ArhSdwUlXHpPGoshEaTjPOTcEvvVX6p
-         YbO1pHD7FxOCpqLTU8pg9+Xrcxqvp5/OG7MvB0QoFrKLoRnIyeIk8ogaUBdXF9lgpk1P
-         7k2Ihf04SW2jzsrcocHj5VWOKHFktP+0r4C1yM9PGmLUopDDE7bB4BF/iE1BrD479DNz
-         jq3JVoJC8QMPsPEcknhqMdWKUt8iIWUP4pK+Yk3o1ZH/KFKRHah129vMoQii8nA5I6AL
-         Y3yA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=aBTuL9SjMu+niu2bgdDeMZqV/Q884/XIIR11SbrmcQ4=;
+        b=ypNgFnyB98NxXieqEzulnH4MfVyFFiIn3iDSAj0gBR5UyA11Vmvv8nW7NgXLonPMEL
+         qTX7aD4L9czChoOwt0XfmZ5MKwx8gj2VMqXzpUZ8L+B5c5DBXgC+0TMbCYcPy9EoSTbj
+         OCfzvyYOZeZyw1qQCM84Xldfe9Ma/jyZdlPQrI9ivnS/mubY4wwdAIHLbVy4YbSVI6kF
+         nX5irG3S1Ozq+n7MmGKvCuIw7DYNuiHK/ny3ovicLZRrIpFcGx8gN7upUST6mOrzTpkD
+         pVA/gVzM9BrhfW2vxLxavO6spXiXCdjCYsrgiz4z9oLYYSXjwausooUChbgN6GSOO+EJ
+         E/Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Jr8oE61NhRIq5ZsnsT8b0rg0+Oxtl2j72+/LPlx4O9U=;
-        b=zMLFMdESeMcaQ7dl5PoeqmoddMp6wC6Id0CXeJC8fQJfeE/ExK3aiPMPjSpBZCigEE
-         KssAMWHKQt9Wrg/wOGKuQ/3jBewy6VnLPYBnFb3PWE13uvROSkgTfF0jgNkyCNxBnEvi
-         KCf3eVIqeT7ocb4CqHWEN8o+KPfy9CiOJFB1MNvoPfLR1ohgOGWVeFIA1pn9XlTOL/iz
-         iQLmXTuJmUjEXqh4O07RHN4JrV89Da9Y0eZXmDAz+TdRZqJA2As0Esfxr5zulhiwuCZ9
-         ei5PTtwxa7gFNpZ4+PVBKN7NjixmMfNzzXv/1eASr60JsfVL1wro2T6SCsUIsseAEKmP
-         XnCw==
-X-Gm-Message-State: ACrzQf1uoJ9xyvVFP0RpLnyvxrKnZNtkL/JsETur+tFunPrY2HNHk4MS
-        FnbYc46NOs1ZpCDJ3rVaH7o=
-X-Google-Smtp-Source: AMsMyM4NZ0hTTtsK2z2By1E+T/Uxaefrn9FUpIRfGRW+qR5bcdHeJBDFr5WP1T1tpANx/WVSreO0Jw==
-X-Received: by 2002:a17:907:7209:b0:778:e86e:568 with SMTP id dr9-20020a170907720900b00778e86e0568mr20854264ejc.659.1663752649092;
-        Wed, 21 Sep 2022 02:30:49 -0700 (PDT)
-Received: from [10.31.3.208] ([95.183.227.98])
-        by smtp.gmail.com with ESMTPSA id l9-20020a1709060cc900b0078175601630sm1057335ejh.79.2022.09.21.02.30.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Sep 2022 02:30:48 -0700 (PDT)
-Date:   Wed, 21 Sep 2022 12:30:34 +0300
-From:   yassine.oudjana@gmail.com
-Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Combine MediaTek MT67xx pinctrl
- binding docs
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Message-Id: <YQZJIR.QQOJU0071T1J1@gmail.com>
-In-Reply-To: <1860b0ff-5544-5e74-ccfc-beda18824927@linaro.org>
-References: <20220919170115.94873-1-y.oudjana@protonmail.com>
-        <20220919170115.94873-2-y.oudjana@protonmail.com>
-        <4c425cf8-f9ca-969c-f8ed-688410bfb922@collabora.com>
-        <1860b0ff-5544-5e74-ccfc-beda18824927@linaro.org>
-X-Mailer: geary/40.0
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=aBTuL9SjMu+niu2bgdDeMZqV/Q884/XIIR11SbrmcQ4=;
+        b=Jy8ws9H3yGlG6cAsQK8+5lYf/Fk2YObR+bVqgq/QHuL/zM75O9mKgpykIfVJwqSKBM
+         89RXL049+BSozjm5RUSyUFAeKLAQ54JLzoGQ+oDvN9X/vZ9KAOkMRgkZZWQb1b/T9tpA
+         nx9ouDEAL4onmAMmWcXuVBt6jPZr8hiiaT7M+++bYOUuxeEfrLbmuhAsc6ArnaSvzgWe
+         rucEYz8adheROUmcrDeRUlBgIR1ATs0uTGctCOyswIysEKBgQ0lu8aubD53Nf/q5BTLt
+         RgM/B8RM0lEv4MEIILQ1wRhUW2Lx8n1plHrgH90zd+cmrl7V+uj8f1hFzozd16MCuVz2
+         kgMA==
+X-Gm-Message-State: ACrzQf19LOiIW+YWpZJCVyr7NVRcmzFImD9Hcfrt2h5J9JiViyB93UXN
+        HM3n+z2gSFf1cLZOtIWVC9hGzg==
+X-Google-Smtp-Source: AMsMyM7imla2gyivn1Wxj+LUHqHrRTuV07wXEB/2fzo8MW/2iGvfoBHnCr/SNRGCBHvuUeSU4SLtVw==
+X-Received: by 2002:a05:6512:3502:b0:496:8e:9307 with SMTP id h2-20020a056512350200b00496008e9307mr9256516lfs.504.1663752673275;
+        Wed, 21 Sep 2022 02:31:13 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id d19-20020ac24c93000000b00497ab34bf5asm361815lfl.20.2022.09.21.02.31.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Sep 2022 02:31:12 -0700 (PDT)
+Message-ID: <a44244f2-fb96-0483-b529-d0f2b0b7e5d8@linaro.org>
+Date:   Wed, 21 Sep 2022 11:31:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to
+ json-schema
+Content-Language: en-US
+To:     =?UTF-8?B?5pyx6ZO25rOi?= <zhuyinbo@loongson.cn>
+Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>
+References: <20220921015605.17078-1-zhuyinbo@loongson.cn>
+ <20220921015605.17078-2-zhuyinbo@loongson.cn>
+ <fb901889-d769-ba56-d4cb-2d9d8b50f74f@linaro.org>
+ <28a78a10.a7dd.1835f5aaf90.Coremail.zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <28a78a10.a7dd.1835f5aaf90.Coremail.zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 21/09/2022 11:22, 朱银波 wrote:
+>> -----原始邮件-----
+>> 发件人: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+>> 发送时间:2022-09-21 15:05:00 (星期三)
+>> 收件人: "Yinbo Zhu" <zhuyinbo@loongson.cn>, "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+>> 抄送: zhanghongchen <zhanghongchen@loongson.cn>
+>> 主题: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
+>>
+>> On 21/09/2022 03:56, Yinbo Zhu wrote:
+>>> Convert the loongson2 thermal binding to DT schema format using
+>>> json-schema.
+>>
+>> Incorrect subject and incorrect commit msg. There is no conversion here.
+> Our soc architecture is the loongson2 series, so we will modify it accordingly.
 
-
-On Wed, Sep 21 2022 at 09:11:12 AM +0200, Krzysztof Kozlowski 
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 20/09/2022 10:06, AngeloGioacchino Del Regno wrote:
->>  Il 19/09/22 19:01, Yassine Oudjana ha scritto:
->>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
->>> 
->>>  Documents for MT6779, MT6795 and MT6797 that currently exist share
->>>  most properties, and each one has slightly differently worded
->>>  descriptions for those properties. Combine all three documents into
->>>  one common document for all MT67xx SoC pin controllers, picking a 
->>> few
->>>  parts from each and accounting for differences such as items in reg
->>>  and reg-names properties. Also document the MT6765 pin controller
->>>  which currently has a driver but no DT binding documentation. It 
->>> should
->>>  be possible to also include bindings for MT8183 and MT8188, but 
->>> these
->>>  have some additional properties that might complicate things a bit,
->>>  so they are left alone for now.
->>> 
->>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>>  ---
->>>    .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 207 
->>> ------------------
->>>    .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 176 
->>> ---------------
->>>    ...6795.yaml => mediatek,mt67xx-pinctrl.yaml} | 181 
->>> +++++++++++----
->> 
->>  Hello Yassine,
->>  nice cleanup over here!
->> 
->>  There's a catch though: as far as I know, wildcards are not 
->> permitted... so you
->>  should, at this point, merge all of these in 
->> mediatek,mt6779-pinctrl.yaml instead.
->> 
->>  Before jumping to that, though... Krzysztof, can you please confirm 
->> (or deny)?
-> 
-> Wildcards are not allowed in compatibles. In filename wildcards or
-> family name could work if they are really going to match the devices. 
-> I
-> have doubts here. 67xx is quite a lot of different devices, so I am 
-> not
-> sure this will cover them all.
-> 
-> I would prefer one name (oldest SoC or lowest number).
-
-Lowest number (and probably oldest too but not sure since mediatek 
-naming conventions are a bit weird) currently documented is mt6779, but 
-mt6765 gets documented in this patch and mt6735 (this one I know for 
-sure is older than the rest) in a following patch, so do I just stick 
-with mt6779 or do I change it in the following patches documenting 
-mt6765 and mt6735?
-
-Thanks,
-Yassine
+How the soc architecture is related to my comment that you do not
+perform conversion?
 
 > 
-> Best regards,
-> Krzysztof
+>>
+>>>
+>>> Signed-off-by: Yinbo Zhu <c>
+>>> ---
+>>> Change in v2:
+>>> 		1. Add description and type about the "id".	
+>>> 		2. Make the filename was based on compatible.
+>>>
+>>>  .../bindings/thermal/loongson2-thermal.yaml   | 52 +++++++++++++++++++
+>>>  1 file changed, 52 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+>>> new file mode 100644
+>>> index 000000000000..2994ae3a56aa
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+>>
+>>
+>> No improvements here. You ignore my comments, so I am going to NAK it.
+> I don't get your point, that dts compatible is "loongson,loongson2-thermal", so this driver file name is named
+> loongson2-thermal that according what you said about "Filename based on compatible."
+> If what I understand is not what you expect, please tell me how to modify it.
 
+
+Filename must match the compatible, so: loongson,loongson2-thermal.yaml
+
+>>
+>>
+>>> @@ -0,0 +1,52 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/thermal/loongson2-thermal.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Thermal sensors on loongson2 SoCs
+>>> +
+>>> +maintainers:
+>>> +  - zhanghongchen <zhanghongchen@loongson.cn>
+>>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: loongson,loongson2-thermal
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  id:
+>>> +    $ref: '//schemas/types.yaml#/definitions/uint32'
+>>
+>> No improvements here, so let me be specific - you need to really justify
+>> such property or it cannot go to schema.
+> The loongson2_thermal.c driver need parse this "id" property.
+
+This is not reason to add properties to DT. DT describes the hardware,
+not driver behavior.
+
+Why hardware needs arbitrary, additional addressing number instead of
+standard unit address?
+
+>>
+>>> +    description: |
+>>> +      Specify the thermal sensor id.
+>>> +    minimum: 0
+>>> +    maximum: 3
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  "#thermal-sensor-cells":
+>>> +    const: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - id
+>>> +  - interrupt-parent
+>>
+>> Why?
+> The interrupts of our dts do not specify an interrupt parent,
+> eg. interrupts = <7 IRQ_TYPE_LEVEL_LOW>
+> so we need to add an interrupt parent property.
+
+You can add but I am asking why is it required?
+
+>>
+>>> +  - interrupts
+>>> +  - '#thermal-sensor-cells'
+>>
+>> Use the same style of quote: ' or ".
+> okay, I will have a change.
+>>
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    thermal: thermal@1fe01500 {
+>>
+>> How other similar nodes are named (in other DTS files)?
+> I refer qoriq platform,
+>     tmu@f0000 {
+>         compatible = "fsl,qoriq-tmu";
+> 
+>  You mean to modify it like this
+> - thermal: thermal@1fe01500 {
+> + thermal@1fe01500 {
+> 
+
+No, just thermal-sensor@1fe01500
+
+
+Best regards,
+Krzysztof
 
