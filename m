@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8725BF6D1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F0E35BF6D3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229751AbiIUG5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 02:57:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35516 "EHLO
+        id S229602AbiIUG50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 02:57:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbiIUG5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:57:07 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274F479A41
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:57:06 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id s10so5815770ljp.5
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:57:06 -0700 (PDT)
+        with ESMTP id S230062AbiIUG5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:57:24 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B22380F61
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:57:23 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id q17so5784772lji.11
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:57:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=ST9LOdbD8b98u8DVosLruAc6e3OeQDMBIjH+I77FEAc=;
-        b=UVBobvtXONp5sEgR8szPLKrisdM9tw8wMEIIHlozjTfTtlIcAUDoqQKrewG2GMZkKu
-         orDz/31Ow+IGh0Va8POh4vixsmmfGzysUZPkSzLUWNqZCUVP01u8jB68iFDrouetJlQm
-         AdLLFUk9mqEFUAKAa/WlVzyDV+YL4TfewLmgEIK7Fs6Ppx9y2Ss9SWy0JMvlxae+SaB/
-         sVU/wVmA0ntOGryI4CJGmXZWWuq7Ate3SilFf6LeixFKU9ecAF+panDZ70GGCwrXY42a
-         BtGBnZp2ZYkYgtVL1MWYyQwWtccBCZiKO9/htt6Q3DLl6EcC659cG7JnIjgPICg/BLRz
-         mDLg==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=NK2N/b/QQywGXjYSUF1DR4DFgFeCcv8ay3tmMR7yQe4=;
+        b=zd9VKku7G1ak2cVyYOpEVge/UKl5/MrmOGUtOuV36rnH2moft2SkAC/9tMMOJjqevW
+         iij9gy5AkWzLqLBhcQtg1LjWDm4G7jMk8WimQOrNfN9u3qVCSv4AvFMcBkGlB/Z+DkrM
+         44pP9yln+ruBWW3bjLElOcV+dH5W1qdMRKI9bGT5lqT/8i3qKkxJAdDmOLkLgCbIHLdQ
+         yXDMxXv2Kyp4S00TH8ryrjxRPvWLMtROado73s+RWJl4EyKQFnQDrVSrFJ1qNp7NWebr
+         brEd1UtiG4Qv3mueTQn9TpQaUJVc7FuasEN6YvoZj72MynPHRGdqSqPndsNjRBMnNICy
+         zACg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ST9LOdbD8b98u8DVosLruAc6e3OeQDMBIjH+I77FEAc=;
-        b=tMq5DpktuVWAEGlel0OtbMvOQPgs4PDtK2kpPHhTHKvKW4oCVAN/I/WtVyUY6kqUri
-         kcicBvQqJw9spuKEx2EJgnyv2GjhDO9dm/KDOnfgz76kU9Sx/0S4Xa3VWIGfNa07YXll
-         MXWWUS/S4/yqRDez4vKtlT1WVEwysFezrbCLGlPgbJc7n+Qoi056Y+ug6kFTDWCfE+Kz
-         F7gF42CCYpT7+dMZwLZM5WmVZUU0IlDN8ikvda2XH3FPAFcHYtZSpS1Y765G0HEn0EAs
-         w5Zjn6tKcD7x48chT57kytrrqedh4Xf80/7x0Q9vYzUUAGgloc/GJSjRW1SGJYJuHJPh
-         8hCw==
-X-Gm-Message-State: ACrzQf1o27lEMMs2SlmiD59bEhlgLGyX/p94oCmALGWA9c8qjx711+Il
-        0/agEV/EaV7JUytZDu1R+S8JhQ==
-X-Google-Smtp-Source: AMsMyM6Lh8r3OYaAI/zAuEnTruNBaeAE4CPnkzf/pkZBfrvX2/sCoKDAKa4Mgf/qH6kcJJ478fb9ww==
-X-Received: by 2002:a05:651c:626:b0:26c:9cc:e094 with SMTP id k38-20020a05651c062600b0026c09cce094mr8584535lje.409.1663743424410;
-        Tue, 20 Sep 2022 23:57:04 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id x25-20020a0565123f9900b0048cf7e8145asm307753lfa.117.2022.09.20.23.57.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 23:57:03 -0700 (PDT)
-Message-ID: <f8495316-42f4-59f9-a824-7e944b7185fb@linaro.org>
-Date:   Wed, 21 Sep 2022 08:57:03 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v5 8/8] i2c: i2c-mlxbf.c: Update binding devicetree
-Content-Language: en-US
-To:     Asmaa Mnebhi <asmaa@nvidia.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        robh@kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Khalil Blaiech <kblaiech@nvidia.com>
-References: <20220920174736.9766-1-asmaa@nvidia.com>
- <20220920174736.9766-9-asmaa@nvidia.com>
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=NK2N/b/QQywGXjYSUF1DR4DFgFeCcv8ay3tmMR7yQe4=;
+        b=gGR0iu33+txzg0jyKKyQaE/Ovxw4dP3gZ1zLnEpke1yxX38q2BYzMJI7oXzxtQCGb1
+         2NuWGK9Rk3QuOdh9KctPESAfaSTUenWajSnqdPMp8CxHaEvXodMMNPviUzUYvRwRBiIH
+         H/Sa/H5tL+X5uHoEEVeVayRaQtYgqRYu6K43Ch5M3xS/bkIHw/UehPBreRxVUF7qOPzb
+         6wsltuiMJVXXscKRiKavQ0kOpQ2nRdC0rXlZYXF69F5vQefnNra5u/2IvIW8Jhr7vNXB
+         1Zf/ILPG55j//cmQQkw5rdr8svCGTVoaCApyqLcC3XIX1rv53p3BxcyOGBxelPwqk1bM
+         aq+Q==
+X-Gm-Message-State: ACrzQf3391eSkf22KwSJySL0wbSjs4WRa18cgDITe8riihHl4lGMX73S
+        /H2R3CK+QOA7NE9ThKeoXfHFMg==
+X-Google-Smtp-Source: AMsMyM4EcQa7KqdhM3o6+dyVA7n/gHX0GrxOqzZR52bpaVcu/jIZW6WrDc7SJVRTnVlFdh3dYeQywA==
+X-Received: by 2002:a2e:944a:0:b0:24f:10bd:b7e8 with SMTP id o10-20020a2e944a000000b0024f10bdb7e8mr8835541ljh.238.1663743441318;
+        Tue, 20 Sep 2022 23:57:21 -0700 (PDT)
+Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id p15-20020ac24ecf000000b00499cf3e3ebesm307999lfr.121.2022.09.20.23.57.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Sep 2022 23:57:20 -0700 (PDT)
+Date:   Wed, 21 Sep 2022 08:57:18 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220920174736.9766-9-asmaa@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linuxppc-dev@lists.ozlabs.org, Vinod Koul <vkoul@kernel.org>,
+        devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Rob Herring <robh@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v6 2/8] dt-bindings: phy: Add Lynx 10G phy binding
+Message-ID: <20220921065718.lafutkkgiium5ycu@krzk-bin>
+References: <20220920202356.1451033-1-sean.anderson@seco.com>
+ <20220920202356.1451033-3-sean.anderson@seco.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220920202356.1451033-3-sean.anderson@seco.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,23 +79,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 19:47, Asmaa Mnebhi wrote:
-> In the latest version of the i2c-mlxbf.c driver, the "Smbus block"
-> resource was broken down to 3 separate resources "Smbus timer",
-> "Smbus master" and "Smbus slave" to accommodate for BlueField-3
-> SoC registers' changes.
+On Tue, 20 Sep 2022 16:23:50 -0400, Sean Anderson wrote:
+> This adds a binding for the SerDes module found on QorIQ processors.
+> Each phy is a subnode of the top-level device, possibly supporting
+> multiple lanes and protocols. This "thick" #phy-cells is used due to
+> allow for better organization of parameters. Note that the particular
+> parameters necessary to select a protocol-controller/lane combination
+> vary across different SoCs, and even within different SerDes on the same
+> SoC.
 > 
-> Reviewed-by: Khalil Blaiech <kblaiech@nvidia.com>
-> Signed-off-by: Asmaa Mnebhi <asmaa@nvidia.com>
+> The driver is designed to be able to completely reconfigure lanes at
+> runtime. Generally, the phy consumer can select the appropriate
+> protocol using set_mode.
+> 
+> There are two PLLs, each of which can be used as the master clock for
+> each lane. Each PLL has its own reference. For the moment they are
+> required, because it simplifies the driver implementation. Absent
+> reference clocks can be modeled by a fixed-clock with a rate of 0.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> 
+> Changes in v6:
+> - fsl,type -> phy-type
+> 
+> Changes in v4:
+> - Use subnodes to describe lane configuration, instead of describing
+>   PCCRs. This is the same style used by phy-cadence-sierra et al.
+> 
+> Changes in v3:
+> - Manually expand yaml references
+> - Add mode configuration to device tree
+> 
+> Changes in v2:
+> - Rename to fsl,lynx-10g.yaml
+> - Refer to the device in the documentation, rather than the binding
+> - Move compatible first
+> - Document phy cells in the description
+> - Allow a value of 1 for phy-cells. This allows for compatibility with
+>   the similar (but according to Ioana Ciornei different enough) lynx-28g
+>   binding.
+> - Remove minItems
+> - Use list for clock-names
+> - Fix example binding having too many cells in regs
+> - Add #clock-cells. This will allow using assigned-clocks* to configure
+>   the PLLs.
+> - Document the structure of the compatible strings
+> 
+>  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 236 ++++++++++++++++++
+>  1 file changed, 236 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+> 
 
-Use scripts/get_maintainers.pl to CC all maintainers and relevant
-mailing lists.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-You keep cc-ing other addresses or you rebased your patch on some old
-tree (like 1 year old...). If this is the second case, please be sure it
-is rebased on LATEST kernel, maintainer's tree or linux-next.
+yamllint warnings/errors:
 
-By not-ccing people, you will not get reviews from maintainers.
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/phy/fsl,lynx-10g.example.dts:51.27-28 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/phy/fsl,lynx-10g.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1420: dt_binding_check] Error 2
 
-Best regards,
-Krzysztof
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
