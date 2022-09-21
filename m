@@ -2,55 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45BB15BF9FE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A0E5BFA07
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:02:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230103AbiIUJBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 05:01:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50244 "EHLO
+        id S229895AbiIUJCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 05:02:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbiIUJBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:01:08 -0400
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F07C83F2A;
-        Wed, 21 Sep 2022 02:01:06 -0700 (PDT)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Wed, 21 Sep
- 2022 17:01:03 +0800
-Message-ID: <0b621dfa-4ecd-a9a6-8681-8ab8b00d7841@amlogic.com>
-Date:   Wed, 21 Sep 2022 17:01:03 +0800
+        with ESMTP id S229675AbiIUJCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:02:54 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 333A3844E8
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:02:53 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id c7so6117193ljm.12
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:02:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=3xCz4q0j9yoz6w2ZGLfiKhRNy9JBFl03sZjC1rmOrJk=;
+        b=uVJhXf4EWfDG+gz3D+aljpy2FgqMANpRoAqAB5Lzl3SvDuNKqviBaVh8b1S9KVcN6N
+         ZlmjzRwPBpOGwcOdb0ivBAYKGliKBewDxiJPBUyhJfeDt/214OicWUGKraFxpioO5MkF
+         BeSPdUx+Ik6ZSWw5+3A9CLssLTCFxoj6H+CKhg1f2Fe3eQ89rIMEmh20ebeL65+RKg8q
+         4o6u4qLIZQKsCvA7euCBKmCdXHRFql+ZXXgOOg/frqSE+QJF6GtQpPL93B5MfL2DDifu
+         5VIuk5eLixeP506Bao6wf88rwvSgXpFd4SOXohYCWS/syVNZ13zlcAsyAczdKL/wZieu
+         KW3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=3xCz4q0j9yoz6w2ZGLfiKhRNy9JBFl03sZjC1rmOrJk=;
+        b=70Gul0uHkNFnhBdV0WO+IfjUHbLsvtgi4OXLuw97r6s7Qg+euDu88CiAAnc3WGYB25
+         p1bNemfMV6dUrafgs0TNJLlieK3rlCeX6yGZMFM+NiKxhydfKGjHvkHFSFcSSaMBKHGh
+         VqJjFbZkTL7gefG0/itELcs6J//U3Cn1qW/oiFGif4YndGshYjAm4x/zojgAAjhSekmn
+         jOUfOaaG8rtPxuWcqxtHxqkfJUsCVfv/IzdbRc943+GQPBhMCSbscmKzDJCEmY3Nr+Sa
+         4ZDkGPQxjENxPnPdBN/pS3S7YJ0ZEm3aDtFB8DE5IVH6l5xBBe/54gyFdHvZasm7XBVs
+         ITNA==
+X-Gm-Message-State: ACrzQf2R7AsI01kivTF18yW5luaCJ+IJj63tE04ZD70Y/gxNDOPfPC5I
+        2KxvNZR80TFcKzW1XSX2i+3/Mw==
+X-Google-Smtp-Source: AMsMyM4tviWw8+80BkqYHloTDtSGS0wOUXfwpqz51e1soVF7koref8SWge4uK74VdIKiW5LwXlkEdQ==
+X-Received: by 2002:a2e:9245:0:b0:26c:4e46:db1 with SMTP id v5-20020a2e9245000000b0026c4e460db1mr4744290ljg.65.1663750971436;
+        Wed, 21 Sep 2022 02:02:51 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c36-20020a05651223a400b004948ddb4e4dsm332729lfv.301.2022.09.21.02.02.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Sep 2022 02:02:50 -0700 (PDT)
+Message-ID: <08a55e06-498d-07e5-174a-ef3ca0f1a190@linaro.org>
+Date:   Wed, 21 Sep 2022 11:02:50 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH V3 6/6] clk: meson: s4: add s4 SoC peripheral clock
- controller driver
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [RFC PATCH 1/2] dt-bindings: Add the binding doc for xilinx APM
 Content-Language: en-US
-From:   Yu Tu <yu.tu@amlogic.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220805085716.5635-1-yu.tu@amlogic.com>
- <20220805085716.5635-7-yu.tu@amlogic.com>
- <1jedxlzxyz.fsf@starbuckisacylon.baylibre.com>
- <8f40cb49-fdc5-20cd-343b-8ce50e5d6d97@amlogic.com>
- <1j7d2rte33.fsf@starbuckisacylon.baylibre.com>
- <2b6035f3-8cbe-ab75-bed9-5751b141d3d6@amlogic.com>
-In-Reply-To: <2b6035f3-8cbe-ab75-bed9-5751b141d3d6@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     git@amd.com, devicetree@vger.kernel.org, michal.simek@xilinx.com,
+        mark.rutland@arm.com, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20220921080623.22077-1-shubhrajyoti.datta@amd.com>
+ <20220921080623.22077-2-shubhrajyoti.datta@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220921080623.22077-2-shubhrajyoti.datta@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,422 +76,208 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome,
+On 21/09/2022 10:06, Shubhrajyoti Datta wrote:
+> The LogiCORE™ IP AXI Performance Monitor core enables AXI system
+> performance measurement for multiple slots (AXI4/AXI3/AXI4-Stream/
+> AXI4-Lite) activity. Add the devicetree binding for xilinx APM.
+> 
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
+>  .../bindings/perf/xlnx-axi-perf-monitor.yaml  | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/xlnx-axi-perf-monitor.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/perf/xlnx-axi-perf-monitor.yaml b/Documentation/devicetree/bindings/perf/xlnx-axi-perf-monitor.yaml
+> new file mode 100644
+> index 000000000000..0b8ba96aa867
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/xlnx-axi-perf-monitor.yaml
 
-On 2022/8/30 16:20, Yu Tu wrote:
-> 
-> 
-> On 2022/8/29 20:19, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->>
->>
->> On Tue 16 Aug 2022 at 20:00, Yu Tu <yu.tu@amlogic.com> wrote:
->>
->> Please trim your replies
->>
->>>>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->>>>> index f4244edc7b28..ec6beb9284d3 100644
->>>>> --- a/drivers/clk/meson/Kconfig
->>>>> +++ b/drivers/clk/meson/Kconfig
->>>>> @@ -127,4 +127,17 @@ config COMMON_CLK_S4_PLL
->>>>>          Support for the pll clock controller on Amlogic S805X2 and 
->>>>> S905Y4 devices,
->>>>>          aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 
->>>>> and AQ229.
->>>>>          Say Y if you want peripherals and CPU frequency scaling to 
->>>>> work.
->>>>> +
->>>>> +config COMMON_CLK_S4
->>>>> +    tristate "S4 SoC Peripherals clock controllers support"
->>>>> +    depends on ARM64
->>>>> +    default y
->>>>> +    select COMMON_CLK_MESON_REGMAP
->>>>> +    select COMMON_CLK_MESON_DUALDIV
->>>>> +    select COMMON_CLK_MESON_VID_PLL_DIV
->>>>> +    select COMMON_CLK_S4_PLL
->>>> Do you really this ? your driver does not even include the related
->>>> header.
->>> If the PLL driver is not turned on in DTS, will it not cause an error?
->>>>
->>
->> I don't get the question.
->> Kconfig list compile deps. S4 PLL is not a compile dep of the peripheral
->> controller.
->>
->> If you really want to, you may use 'imply'.
-> 
-> V4 has been changed as you suggested.
+Filename based on compatible (the same as compatible).
 
-The next edition is being changed according to your requirements. Please 
-give us your valuable opinions.
+> @@ -0,0 +1,137 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/xilinx-apm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx Axi Performance Monitor device tree bindings
 
-> 
->>>>
->>>>> +static const struct clk_parent_data sys_ab_clk_parent_data[] = {
->>>>> +    { .fw_name = "xtal" },
->>>>> +    { .fw_name = "fclk_div2" },
->>>>> +    { .fw_name = "fclk_div3" },
->>>>> +    { .fw_name = "fclk_div4" },
->>>>> +    { .fw_name = "fclk_div5" },
->>>>> +    { .fw_name = "fclk_div7" },
->>>>> +    { .hw = &s4_rtc_clk.hw }
->>>>> +};
->>>>> +
->>>>> +static struct clk_regmap s4_sysclk_b_sel = {
->>>>> +    .data = &(struct clk_regmap_mux_data){
->>>>> +        .offset = CLKCTRL_SYS_CLK_CTRL0,
->>>>> +        .mask = 0x7,
->>>>> +        .shift = 26,
->>>>> +        .table = mux_table_sys_ab_clk_sel,
->>>>> +    },
->>>>> +    .hw.init = &(struct clk_init_data){
->>>>> +        .name = "sysclk_b_sel",
->>>>> +        .ops = &clk_regmap_mux_ro_ops,
->>>> Why is this using the RO ops ?
->>> Sys_clk is initialized during the Uboot phase and is fixed at
->>> 166.666MHz. So I'm going to change it to ro.
->>
->> That really much depends on the bootloader and is a pretty weak design.
->> The bootloader deps should be kept as minimal as possible.
->>
->> I see no reason for RO.
->>
->> You may cut rate propagation on the user if you need to and continue to
->> whatever you want in your u-boot
-> 
-> I think I know what you mean. But we let the user be in control and not 
-> set the frequency, which can be risky. If you insist, I will change it 
-> as you suggest.
+Drop "device tree bindings".
 
-It has been changed as you requested.
+> +
+> +maintainers:
+> +  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
 
-> 
->>
->>>>
->>>>> +        .parent_data = sys_ab_clk_parent_data,
->>>>> +        .num_parents = ARRAY_SIZE(sys_ab_clk_parent_data),
->>>>> +    },
->>>>> +};
->>>>> +
->>>>> +static struct clk_regmap s4_sysclk_b_div = {
->>>>> +    .data = &(struct clk_regmap_div_data){
->>>>> +        .offset = CLKCTRL_SYS_CLK_CTRL0,
->>>>> +        .shift = 16,
->>>>> +        .width = 10,
->>>>> +    },
->>>>> +    .hw.init = &(struct clk_init_data){
->>>>> +        .name = "sysclk_b_div",
->>>>> +        .ops = &clk_regmap_divider_ro_ops,
->>>> Same here and for the rest of the sys part
->>> Same above.
->>
->> We can play that game for a while
-> 
-> Ah, you're so funny.
-> 
->>
->>>>> +
->>>>> +/* Video Clocks */
->>>>> +static struct clk_regmap s4_vid_pll_div = {
->>>>> +    .data = &(struct meson_vid_pll_div_data){
->>>>> +        .val = {
->>>>> +            .reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->>>>> +            .shift   = 0,
->>>>> +            .width   = 15,
->>>>> +        },
->>>>> +        .sel = {
->>>>> +            .reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->>>>> +            .shift   = 16,
->>>>> +            .width   = 2,
->>>>> +        },
->>>>> +    },
->>>>> +    .hw.init = &(struct clk_init_data) {
->>>>> +        .name = "vid_pll_div",
->>>>> +        .ops = &meson_vid_pll_div_ro_ops,
->>>> Why RO ? applies to the rest of the video part.
->>> Because vid_pll_div parent is HDMI_PLL, and HDMI_PLL is a fixed
->>> frequency. Flags is CLK_SET_RATE_PARENT. So we use RO.
->>
->> If the HDMI_PLL is fixed somehow, that is not reason for this clock to
->> be RO
->>
->>> Can I remove RO and use CLK_SET_RATE_NO_REPARENT instead, which one 
->>> do you
->>> think is more reasonable?
->>
->> Neither. CLK_SET_RATE_NO_REPARENT makes no sense, it is not mux
->>
-> 
-> "drivers/clk/meson/vid-pll-div.c"
-> This file only provides ro_ops. Maybe the submission records will give 
-> us the answer.
-> 
-> In fact, our hardware design is the same as the G12 series.
+You have one item, so no "items".
 
-I don't know if you checked this commit, but there is only one 
-"ro_ops"in this place right now.
+> +      - enum:
+> +          - xlnx,axi-perf-monitor
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  xlnx,enable-profile:
+> +    allOf:
 
-The S4 SoC is consistent with the G12A/B and GX series.
+No need for allOf.
 
-> 
->>>
->>>>
->>>>> +        .parent_data = (const struct clk_parent_data []) {
->>>>> +            { .fw_name = "hdmi_pll", }
->>>>> +        },
->>>>> +        .num_parents = 1,
->>>>> +        .flags = CLK_SET_RATE_PARENT,
->>>>> +    },
->>>>> +};
->>>>> +
->>>>> +static struct clk_regmap s4_vid_pll_sel = {
->>>>> +    .data = &(struct clk_regmap_mux_data){
->>>>> +        .offset = CLKCTRL_VID_PLL_CLK_DIV,
->>>>> +        .mask = 0x1,
->>>>> +        .shift = 18,
->>>>> +    },
->>>>> +    .hw.init = &(struct clk_init_data){
->>>>> +        .name = "vid_pll_sel",
->>>>> +        .ops = &clk_regmap_mux_ops,
->>>>> +        /*
->>>>> +         * bit 18 selects from 2 possible parents:
->>>>> +         * vid_pll_div or hdmi_pll
->>>>> +         */
->>>>> +        .parent_data = (const struct clk_parent_data []) {
->>>>> +            { .hw = &s4_vid_pll_div.hw },
->>>>> +            { .fw_name = "hdmi_pll", }
->>>>> +        },
->>>>> +        .num_parents = 2,
->>>>> +        .flags = CLK_SET_RATE_NO_REPARENT,
->>>> Why ? are you planning to DT assigned clocks to statically set this ?
->>> Because vid_pll_sel one parent is HDMI_PLL, and HDMI_PLL is a fixed
->>> frequency. To prevent modification, use CLK_SET_RATE_NO_REPARENT.
->>
->> Again, this makes no sense.
-> 
-> Unfortunately you don't read V4, in fact I have corrected in V4.
-> 
-> ".flags = CLK_SET_RATE_PARENT," in V4. Is that okay with you?
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [0, 1]
 
-I don't know what you think?
+This is boolean.
 
-> 
->>
->>>>
->>>>> +    },
->>>>> +};
->>>>> +
->>>>> +static struct clk_regmap s4_vid_pll = {
->>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>> +        .offset = CLKCTRL_VID_PLL_CLK_DIV,
->>>>> +        .bit_idx = 19,
->>>>> +    },
->>>>> +    .hw.init = &(struct clk_init_data) {
->>>>> +        .name = "vid_pll",
->>>>> +        .ops = &clk_regmap_gate_ops,
->>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>> +            &s4_vid_pll_sel.hw
->>>>> +        },
->>>>> +        .num_parents = 1,
->>>>> +        .flags = CLK_SET_RATE_PARENT,
->>>>> +    },
->>>>> +};
->>>>> +
->>>>> +static const struct clk_parent_data s4_vclk_parent_data[] = {
->>>>> +    { .hw = &s4_vid_pll.hw },
->>>>> +    { .fw_name = "gp0_pll", },
->>>>> +    { .fw_name = "hifi_pll", },
->>>>> +    { .fw_name = "mpll1", },
->>>>> +    { .fw_name = "fclk_div3", },
->>>>> +    { .fw_name = "fclk_div4", },
->>>>> +    { .fw_name = "fclk_div5", },
->>>>> +    { .fw_name = "fclk_div7", },
->>>>> +};
->>>>> +
->>>>> +static struct clk_regmap s4_vclk_sel = {
->>>>> +    .data = &(struct clk_regmap_mux_data){
->>>>> +        .offset = CLKCTRL_VID_CLK_CTRL,
->>>>> +        .mask = 0x7,
->>>>> +        .shift = 16,
->>>>> +    },
->>>>> +    .hw.init = &(struct clk_init_data){
->>>>> +        .name = "vclk_sel",
->>>>> +        .ops = &clk_regmap_mux_ops,
->>>>> +        .parent_data = s4_vclk_parent_data,
->>>>> +        .num_parents = ARRAY_SIZE(s4_vclk_parent_data),
->>>>> +        .flags = CLK_SET_RATE_NO_REPARENT,
->>>> Same
->>> Since fclk_div* is a fixed frequency value, mplL1 and hifi_pll and 
->>> gp0_pll
->>> are used by other specialized modules, vid_pll has 
->>> CLK_SET_RATE_PARENT. The
->>> parent of vid_pll is that vid_pll_sel uses CLK_SET_RATE_NO_REPARENT.
->>
->> Still not good.
->>
->> You don't have CLK_SET_RATE, propagation is stopped and parent clock
->> will not changed. The best parent will be picked but not changed.
->>
->> If one parent MUST NOT be picked, just remove it from the list and add a
->> explaining why
->>
->> [...]
-> 
-> Okay.
+> +    description:
+> +      Enables the profile mode.
 
-In the next edition I will change it to ".flags = CLK_SET_RATE_PARENT".
+Explain what is "profile mode".
 
-> 
->>
->>>>> +
->>>>> +static struct clk_regmap s4_ts_clk_div = {
->>>>> +    .data = &(struct clk_regmap_div_data){
->>>>> +        .offset = CLKCTRL_TS_CLK_CTRL,
->>>>> +        .shift = 0,
->>>>> +        .width = 8,
->>>>> +    },
->>>>> +    .hw.init = &(struct clk_init_data){
->>>>> +        .name = "ts_clk_div",
->>>>> +        .ops = &clk_regmap_divider_ops,
->>>>> +        .parent_data = &(const struct clk_parent_data) {
->>>>> +            .fw_name = "xtal",
->>>>> +        },
->>>>> +        .num_parents = 1,
->>>> propagation stopped ?
->>> Its parent is xtal, so I should use CLK_SET_RATE_NO_REPARENT.
->>
->> Still no. You seem to have problem with the meaning of
->> CLK_SET_RATE_NO_REPARENT.
->>
->> * CLK_SET_RATE_NO_REPARENT: means the parent will no be changed, even if
->>    selecting another parent would result in a closer rate to the
->>    request. It makes sense only if the clock has several parents
->>
->> * CLK_SET_RATE_PARENT: means rate change may propagate the parent,
->>    meaning the rate of the parent may change if it help the child achieve
->>    a closer rate to the request
-> 
-> Thank you for explaining.I got it.
-> 
->>
->>>>
->>>>> +    },
->>>>> +};
->>>>> +
->>>>> +static struct clk_regmap s4_ts_clk_gate = {
->>>>> +    .data = &(struct clk_regmap_gate_data){
->>>>> +        .offset = CLKCTRL_TS_CLK_CTRL,
->>>>> +        .bit_idx = 8,
->>>>> +    },
->>>>> +    .hw.init = &(struct clk_init_data){
->>>>> +        .name = "ts_clk",
->>>>> +        .ops = &clk_regmap_gate_ops,
->>>>> +        .parent_hws = (const struct clk_hw *[]) {
->>>>> +            &s4_ts_clk_div.hw
->>>>> +        },
->>>>> +        .num_parents = 1,
->>>>> +    },
->>>> propagation stopped ?
->>> I will add CLK_SET_RATE_PARENT.
->>
->> [...]
->>
->>>>> +/* EMMC/NAND clock */
->>>>> +
->>>>> +static const struct clk_parent_data s4_sd_emmc_clk0_parent_data[] = {
->>>>> +    { .fw_name = "xtal", },
->>>>> +    { .fw_name = "fclk_div2", },
->>>>> +    { .fw_name = "fclk_div3", },
->>>>> +    { .fw_name = "hifi_pll", },
->>>>> +    { .fw_name = "fclk_div2p5", },
->>>>> +    /*
->>>>> +     * Following these parent clocks, we should also have had 
->>>>> mpll2, mpll3
->>>>> +     * and gp0_pll but these clocks are too precious to be used 
->>>>> here. All
->>>>> +     * the necessary rates for MMC and NAND operation can be 
->>>>> acheived using
->>>>> +     * hifi_pll or fclk_div clocks
->>>>> +     */
->>>> You don't want to list mplls but hifi_pll is fine ? seems dangerous.
->>> hifi pll is for EMMC and NAND on this SoC.
->>
->> That deserve a better explanation.
->> Why can't it use fdiv2 and xtal like the previous SoCs ?
->>
->> Which PLLs are you using for Audio then ?
->> Typical operation on these SoCs usually require 3 PLLs to acheive all 
->> rates
->>
-> 
-> I'll list all the clocks and let the driver itself select Parent as needed.
+> +    maxItems: 1
+> +
+> +  xlnx,enable-trace:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [0, 1]
 
-I don't know what you think?
+Ditto
 
-> 
->>>>
->>
->>
->>>>> +/*
->>>>> + * gen clk is designed for debug/monitor some internal clock 
->>>>> quality. Some of the
->>>>> + * corresponding clock sources are not described in the clock 
->>>>> tree, so they are skipped.
->>>>> + */
->>>> Still feels a bit light, don't you think ? Among all the clocks, can't
->>>> you add a bit more parents here ? It would certainly help debug down 
->>>> the road
->>> [16:12]    is gen_clk source select.All is:
->>> 0: cts_oscin_clk
->>> 1:cts_rtc_clk
->>> 2:sys_pll_div16 (internal clock)
->>> 3:ddr_pll_div32  (internal clock)
->>> 4: vid_pll
->>> 5: gp0_pll
->>> 7: hifi_pll
->>> 10:adc_dpll_clk_b3 (internal clock for debug)
->>> 11:adc_dpll_intclk (internal clock for debug)
->>> 12:clk_msr_src(select from all internal clock except PLLs);
->>> 16: no used
->>> 17: sys_cpu_clk_div16 (internal clock)
->>> 19: fclk_div2
->>> 20: fclk_div2p5
->>> 21: fclk_div3
->>> 22: fclk_div4
->>> 23: fclk_div5
->>> 24: fclk_div7
->>> 25: mpll0
->>> 26: mpll1
->>> 27: mpll2
->>> 28: mpll3
->>> So i only added the clocks that will actually be used, and some 
->>> debugging
->>> clock peripherals will not be used.
->>
->> you may at least add vid_pll
-> 
-> Okay.
+> +    description:
+> +      Enables trace mode.
 
-It has been changed as you suggested.
+Ditto
 
-> 
->>
->>>>
->>>>> +static u32 s4_gen_clk_mux_table[] = { 0, 5, 7, 19, 21, 22,
->>>>> +                      23, 24, 25, 26, 27, 28 };
->>>>> +static const struct clk_parent_data s4_gen_clk_parent_data[] = {
->>>>> +    { .fw_name = "xtal", },
->>>>> +    { .fw_name = "gp0_pll", },
->>>>> +    { .fw_name = "hifi_pll", },
->>>>> +    { .fw_name = "fclk_div2", },
->>>>> +    { .fw_name = "fclk_div3", },
->>>>> +    { .fw_name = "fclk_div4", },
->>>>> +    { .fw_name = "fclk_div5", },
->>>>> +    { .fw_name = "fclk_div7", },
->>>>> +    { .fw_name = "mpll0", },
->>>>> +    { .fw_name = "mpll1", },
->>>>> +    { .fw_name = "mpll2", },
->>>>> +    { .fw_name = "mpll3", },
->>>>> +};
->>
->> .
+> +    maxItems: 1
+> +
+> +  xlnx,num-monitor-slots:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - minimum: 1
+> +      - maximum: 8
+
+No allOf.
+
+
+All of such comments apply everywhere.
+
+> +    description:
+> +      Number of monitor slots.
+> +
+> +  xlnx,enable-event-count:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [0, 1]
+
+boolean
+
+> +    description:
+> +      Enable event count.
+> +
+> +  xlnx,enable-event-log:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [0, 1]
+
+boolean
+
+
+> +    description:
+> +      Enable event log.
+> +
+> +  xlnx,have-sampled-metric-cnt:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Sampled metric counters enabled in APM.
+
+Description says: boolean
+
+> +
+> +  xlnx,metric-count-width:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [32, 64]
+> +    description:
+> +      Metric Counter width.
+> +
+> +  xlnx,metric-count-scale:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [1, 2, 4, 8]
+> +    description:
+> +      Metric Counter scale factor.
+> +
+> +  xlnx,num-of-counters:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Number of counters in APM.
+> +
+> +  xlnx,metrics-sample-count-width:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [32, 64]
+> +    description:
+> +      Sampled metric counter width.
+> +
+> +  xlnx,global-count-width:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [32, 64]
+> +    description:
+> +      Global Clock counter width.
+> +
+> +  xlnx,id-filter-32bit:
+> +    description: APM is in 32-bit mode.
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    apm@44a00000 {
+
+Generic node names: pmu
+
+> +        compatible = "xlnx,axi-perf-monitor";
+> +        interrupt-parent = <&axi_intc_1>;
+> +        interrupts = <1 2>;
+
+
+Are these usual interrupt flags?
+
+> +        reg = <0x44a00000 0x1000>;
+> +        clocks = <&clkc 15>;
+> +        xlnx,enable-profile = <0>;
+> +        xlnx,enable-trace = <0>;
+> +        xlnx,num-monitor-slots = <4>;
+> +        xlnx,enable-event-count = <1>;
+> +        xlnx,enable-event-log = <1>;
+> +        xlnx,have-sampled-metric-cnt = <1>;
+> +        xlnx,num-of-counters = <8>;
+> +        xlnx,metric-count-width = <32>;
+> +        xlnx,metrics-sample-count-width = <32>;
+> +        xlnx,global-count-width = <32>;
+> +        xlnx,metric-count-scale = <1>;
+> +        xlnx,id-filter-32bit;
+> +    };
+
+Best regards,
+Krzysztof
+
