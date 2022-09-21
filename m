@@ -2,95 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06CF85BFCA2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 12:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 014E85BFCCB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 13:13:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229996AbiIUK4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 06:56:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38490 "EHLO
+        id S230127AbiIULNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 07:13:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbiIUK4L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 06:56:11 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFDAB8E0E4
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 03:56:10 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id BC5B71C0001; Wed, 21 Sep 2022 12:56:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1663757769;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=RZ510Miqi1t8ZvGMjGG267D8gsXmhJ29AGfIlli8t78=;
-        b=cmbNygxyhPXTArqehTaax/BBhnBuw75nTPfQOC3xRdpz2XKs4x1enUpYa1duDbUReY0Wuc
-        kwgNnozWJzG/yBE3JkM3V0QaJi8brNorYdtMcvBBozn/szSRpG1Ec8vfWBE2lcLqs7QF0G
-        IvqITzyxVJiInXzsFe1f0brpJKKq3OQ=
-Date:   Wed, 21 Sep 2022 12:56:09 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: leds: Document mmc trigger
-Message-ID: <20220921105609.GB22654@duo.ucw.cz>
-References: <20220217174357.13427-1-marex@denx.de>
- <YhgHWMU/aV8MLBq+@robh.at.kernel.org>
+        with ESMTP id S230037AbiIULNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 07:13:32 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A8C38B2E1
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 04:13:30 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id l12so6536670ljg.9
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 04:13:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=lfPaDvZl0fHH6rn8puMVcoMiT+eeT0X1tsZ/B7VR2+Y=;
+        b=G2+xdwC9HD2+kvdQGyPDiSqAq0a5ql/RG4RhF64ckQhU1iswOGuKQJlXFRlkhbgwPn
+         g26rB73GOqzN+HTCOFRhXfbUl4Vhc04oLQ1DdTwxEIVfyG0vB/aZ9DAb+9fJTp8CdzgX
+         fynLnGBNGODUtSo+2FA45rGELhmHidrkr6HDWPhCX6hO6bkz+K1/cMOkqK2/+80+TMKe
+         tqrZ5UplpDMshglktJZ8nKVIOv8ahj5zw4bWMq7WLEc0iMoV4On8gBmtipsSY7vFa3CJ
+         l0pbURYWfgEXX+OEOcUrknTyIPqkPQs9AFyLFswyuQenWnAL9oTeEAADyRzfjTYH7a+4
+         6lgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=lfPaDvZl0fHH6rn8puMVcoMiT+eeT0X1tsZ/B7VR2+Y=;
+        b=iek4zQPrJF5Ye2xgwpVMx8XjWovvmzordrsMwvghgKMAxGykum43Pq5iqQKQfKmVGa
+         bDUXXMc/puHnP4C718T05MSzCRm2kO/fNcSw/mc5qLB1WnGZaHz7i39s2tJqfB/PDS5Q
+         psyA3UtOknC0Rm9UiDurO6M49u+E3+waLfaHf1IK60hM+UUnzCfvyD3EF9hWgCeeFt7y
+         r+7NDAdKeFt6aaUVjiHQS9fJAOITZyph7Z9mmp5WsXtIhKUFA9g1IqCcngpnLhwTU0Bl
+         AjermtRjmDVRGXl78/Dt9386CUqXYnRVFf54PT0GOEemf/S0xyyzx7guQoP7GzEGdcdW
+         37Eg==
+X-Gm-Message-State: ACrzQf0qvvDwenHLl3LXF5Ig62WY3PQr4Ip1nPeYoJDjv1XuAqSv1MBp
+        b7LcxbOv19n1OMCKF00UC8NLHg==
+X-Google-Smtp-Source: AMsMyM6919xzTTe6YBgZrcwGlc/Z99NkHRzObKYS0ULfa5sASVNawEef9+XwoL8PP257YyWbRC8gJA==
+X-Received: by 2002:a2e:7314:0:b0:26a:ca18:60eb with SMTP id o20-20020a2e7314000000b0026aca1860ebmr8008812ljc.69.1663758808438;
+        Wed, 21 Sep 2022 04:13:28 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s16-20020a056512215000b0049493c14b17sm381439lfr.181.2022.09.21.04.13.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Sep 2022 04:13:27 -0700 (PDT)
+Message-ID: <74c9c011-b0db-c838-e9bb-d732361ff799@linaro.org>
+Date:   Wed, 21 Sep 2022 13:13:26 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="WYTEVAkct0FjGQmd"
-Content-Disposition: inline
-In-Reply-To: <YhgHWMU/aV8MLBq+@robh.at.kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 2/2] mmc: dw_mmc-pltfm: socfpga: add method to configure
+ clk-phase
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Dinh Nguyen <dinguyen@kernel.org>
+Cc:     jh80.chung@samsung.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220919181309.286611-1-dinguyen@kernel.org>
+ <20220919181309.286611-2-dinguyen@kernel.org>
+ <CAPDyKFoB7Z6kDOBd9rVLXU5yRQK7d5A-ut5CRroepbAfQpuByw@mail.gmail.com>
+ <50c7d35b-f395-6421-1422-56e30a580318@kernel.org>
+ <07c118cb-4daf-8e82-2969-1cff072ec52a@linaro.org>
+ <CAPDyKFoQJsf4EAoQRO9hoKWug+QTX2Hw1ukFqhr0sNQCCwR8Bg@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAPDyKFoQJsf4EAoQRO9hoKWug+QTX2Hw1ukFqhr0sNQCCwR8Bg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 21/09/2022 12:31, Ulf Hansson wrote:
+>> Not in next-20220919.
+> 
+> Dinh is right!
+> 
+> It seems like both me and Krzysztof missed the already documented
+> binding. Probably because the property is named like below and that I
+> did "git grep clk-phase-sd" :-)
+> 
+> "^clk-phase-(legacy|sd-hs|mmc-(hs|hs[24]00|ddr52)|uhs-(sdr(12|25|50|104)|ddr50))$":
 
---WYTEVAkct0FjGQmd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Too much trust in git grep. Thanks for finding it.
 
-On Thu 2022-02-24 16:31:52, Rob Herring wrote:
-> On Thu, 17 Feb 2022 18:43:57 +0100, Marek Vasut wrote:
-> > The mmc subsystem supports triggering leds on card activity, document
-> > the trigger value here. The value is a pattern in this case.
-> >=20
-> > Signed-off-by: Marek Vasut <marex@denx.de>
-> > Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> > Cc: Pavel Machek <pavel@ucw.cz>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > To: linux-leds@vger.kernel.org
-> > ---
-> > V2: Rebase on next-20220217
-> > ---
-> >  .../devicetree/bindings/leds/common.yaml      | 39 ++++++++++---------
-> >  1 file changed, 21 insertions(+), 18 deletions(-)
-> >=20
->=20
-> Reviewed-by: Rob Herring <robh@ke
+> 
+>>
+>>>
+>>> Should I create a specific documentation just for
+>>> "altr,socfpga-dw-mshc" and document "clk-phase-sd-hs"?
+>>
+>> All properties must be documented.
+> 
+> Yes, but as stated above, we should be okay in this case.
+> 
+>>
+>>>
+>>>>
+>>>>> +       if (rc) {
+>>>>> +               sys_mgr_base_addr =
+>>>>> +                       altr_sysmgr_regmap_lookup_by_phandle(np, "altr,sysmgr-syscon");
+>>>>
+>>>> DT bindings?
+>>>
+>>> "altr,sysmgr-syscon" has already been documented in
+>>> Documentation/devicetree/bindings/net/socfpga-dwmac.txt
+>>
+>> This is not documentation of nodes you are changing here and in patch 1.
+>>
+>> You linked altr,socfpga-stmmac and here you have altr,socfpga-dw-mshc...
+> 
+> Right.
+> 
+> I guess an option is to convert
+> Documentation/devicetree/bindings/net/socfpga-dwmac.txt into the yaml
+> based format and then reference that binding from
+> synopsys-dw-mshc-common.yaml?
 
-Thanks, applied.
+I did not look much inside, but isn't them entirely different devices
+(net vs mmc)? If they are different, then such vendor-custom property
+needs to appear in each bindings. The same as we have for other
+syscon-like properties.
 
-best regards,
-							Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
+Best regards,
+Krzysztof
 
---WYTEVAkct0FjGQmd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYyrtyQAKCRAw5/Bqldv6
-8hbNAKCw8a/vtzNckXoFYURpWSr5DN896gCeMUUzkfBp+RIOzoUjyYla3Ij6SrY=
-=vkGG
------END PGP SIGNATURE-----
-
---WYTEVAkct0FjGQmd--
