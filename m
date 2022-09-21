@@ -2,233 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D445BF776
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:18:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E7A5BF77B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbiIUHSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:18:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35158 "EHLO
+        id S229928AbiIUHTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:19:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbiIUHSd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:18:33 -0400
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F945EDEA
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:18:32 -0700 (PDT)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-127d10b4f19so7781974fac.9
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:18:32 -0700 (PDT)
+        with ESMTP id S229523AbiIUHTX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:19:23 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 812166E8A2
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:19:21 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id s14so6336184wro.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:19:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=sSbcb2VdV5UdqGpIzG4tkzZkXRTZ5sXj2Y/1FwX61Fo=;
-        b=q5d8RKmG0d49BmQ9YhGWwlyDiERTJO+cSMTx6lyPW7DLGr2+ZVUHQgZkOYREZPSKw5
-         bDJA5GIP7pKxEWuM8HU/3eWaYTX7eN6O4W34q5a6mvIDeEmoMG/OAIc2xIoo0wCec9k9
-         GBYsQve+Oq4MLrubWP2qV3iHHJ6HtUnfNe+tX9JrhhdbC515922DspWuz/gf9Tek8XdP
-         Krfszy6GcGeCeuAq9BYBod4QyEQkibcaQqOEDC9HEVbZAG3NXGm+TVk8TLRDHk12kuYt
-         QdhE2pss/1Nc68owPkvSR4iRXHfwUmJbgyRlGzVIvxabRVWC498ENjylONqKZXVzr/Tm
-         uClw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date;
+        bh=E6f+URSdOX05jCBtwcXT8Rm2Ummjdbd9pwKRLdE+3/Q=;
+        b=e6FCHYiWX/YiGw9hnCUu4ucp+blseaG8xhAH+iFbbu8fBpmcHIThynILwHqc3tglLW
+         bL8BzDFNpBk6dO0zUm1dsCGInrNRT8sPLnRWp5mMhOU32kL621xrgnfDHX1s+fo6rqxy
+         Y+U1YzodHWqNQPCRWs1WfG/BZWr3XsRLG1+JoEBmgnRS1oDr+Hn+twtbfojmqRPY1gYE
+         3h9cx7iHymtrjV7mY8z3UwMbq07Dktek0O8pDnTvJ7F/ThNP48b0fTAihyxDA6E0LDmv
+         /xo+yefKGLRtCNXNqs3gRhrov4Kg7KvRrgFWAa0whEEG7tdKecnDNnf9uXZGw48PB8U1
+         xN5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=sSbcb2VdV5UdqGpIzG4tkzZkXRTZ5sXj2Y/1FwX61Fo=;
-        b=pAP7BFpXcdmLbvKuw+erC83P6BobJd9awQxqugcUTqDe9J9Q+/qxuK34fxUpFexPKV
-         8jw+i+WttqI0odAtsxLOw4HjRf4W7FdM/SOtnAuGxQqlus4OjsDHLPGbhHQIFnFMAFZX
-         J7XX2OXHuExl1B6As+N2pUB7zZhDUG1FY2Fnk1cAgYveEircX1suGl0yer8pKrgXKqY3
-         VL+/MOrWoEAZVgmfsr/m1HbKZwBi0f8+GwkDR+/9uDaVVSoMpXP8pIZewaR+P8HNwIH2
-         jw2t01hTchrXAmbJw0p1GxRkYoEzonrgDbumYKfTA/BnnE/E/O6iD2rPPj+mgxroAmAD
-         qkNQ==
-X-Gm-Message-State: ACrzQf0KHLRUa5+xCdyEwWj80xh3S0QUR3HtskgCle1ETEKqXnbB+glM
-        NHsb34Ck74MwkxGKiQ1txfF806DUO8oA7KEDe/4=
-X-Google-Smtp-Source: AMsMyM6aUI5ktqLejDUSZoKwjhtk7PGDZe4Ye9HjEOGtOntBHpmKi2Z50oqPE7zbdfdJxYkHJzPv5YkpE09J3PNrSNs=
-X-Received: by 2002:a05:6870:c0c8:b0:101:b3c3:abc3 with SMTP id
- e8-20020a056870c0c800b00101b3c3abc3mr4212899oad.144.1663744711841; Wed, 21
- Sep 2022 00:18:31 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=E6f+URSdOX05jCBtwcXT8Rm2Ummjdbd9pwKRLdE+3/Q=;
+        b=k0DLOiPQggrH5c85u/mO9eIi5Dm77RXXLjOBRlWMleMrGbASj5rKfUn/H+lHwqZCK/
+         kTFMSClgV7BGGNEOCNai2Rc7Nu1QzlEIhr/kuDbkoQyM0m49FoTOc4l+4jIcvKdQEmM7
+         rs0pmRnJiY2fuhnmXW96pUpm2F8eHbwnN/52YTCWwdt4BXWi07O5l/KvC1Ek9OHEc9Ee
+         7GFApsicHc7ex37AVxRnCS6WM9QZqehEmBQmCgxnT7p47AFxNfLOa91sfRCX9iMirQEK
+         sLDYBFj0ZOx73iZtq4P0+TxQPG5jWbLHsOcVRd8qDSC5fEDGCppKcMC32geUihQU7GFJ
+         0kkw==
+X-Gm-Message-State: ACrzQf1rOovLufIZZt3u/Isxh/c527PfKGG47BBCFiI8uBlHrrRXvnMl
+        Xz+NhQ9hONykuF/i+TG9+IOnIg==
+X-Google-Smtp-Source: AMsMyM5hIRfNw0jpDUXcuH3Ju/IpGBuQ5fddogkkUOJUpeUZkCIeoi0sQ98v1nRtIfDZ/iAizXdVWg==
+X-Received: by 2002:a5d:4a48:0:b0:22a:e55d:535d with SMTP id v8-20020a5d4a48000000b0022ae55d535dmr13418791wrs.308.1663744760016;
+        Wed, 21 Sep 2022 00:19:20 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3? ([2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3])
+        by smtp.gmail.com with ESMTPSA id f12-20020a05600c154c00b003b4931eb435sm2044258wmg.26.2022.09.21.00.19.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Sep 2022 00:19:19 -0700 (PDT)
+Message-ID: <e012e586-286d-e553-8c13-97feba66c80c@linaro.org>
+Date:   Wed, 21 Sep 2022 09:19:18 +0200
 MIME-Version: 1.0
-References: <20220917041136.526446-1-sergio.paracuellos@gmail.com>
- <285f80ef-5f5c-e68d-b514-a3e3341841c5@linaro.org> <CAMhs-H92i6vFJWCBrpaQnQzA3-+6_ROb9_+zD4yBMB1FLJoKeQ@mail.gmail.com>
- <71b50383-0fc3-f834-11e0-8fbc17c123d0@linaro.org> <CAMhs-H-JokHX+XNNE0TQf78ORQbNz2fTd9hfgmv_s6OPT=Wh0w@mail.gmail.com>
- <c04461c0-e16a-6dcc-4fc0-f6c80263bd71@linaro.org> <CAMhs-H9HX4gmZn-ySWZZdhDiWJPazado=Vp6D1PpyxvV85ACsw@mail.gmail.com>
- <7436dcff-1648-e5e6-47e3-473ae5839e91@linaro.org>
-In-Reply-To: <7436dcff-1648-e5e6-47e3-473ae5839e91@linaro.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Wed, 21 Sep 2022 09:18:20 +0200
-Message-ID: <CAMhs-H-TATfafSJzqXFi-Q=AYYWj-EY1tJs-9y7phR-wu4n1Tg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mips: add CPU bindings for MIPS architecture
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 2/2] clk: qcom: rpmhcc: add sdm670 clocks
+Content-Language: en-US
+To:     Richard Acayan <mailingradian@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220920223734.151135-1-mailingradian@gmail.com>
+ <20220920223734.151135-3-mailingradian@gmail.com>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro
+In-Reply-To: <20220920223734.151135-3-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 21/09/2022 00:37, Richard Acayan wrote:
+> The Snapdragon 670 uses the RPMh mailbox for most of the clocks used in
+> SDM845 but omits two. Add clock data for SDM670 so the driver doesn't fail
+> to resolve a clock.
+> 
+> Link: https://android.googlesource.com/kernel/msm/+/443bd8d6e2cf54698234c752e6de97b4b8a528bd%5E%21/#F7
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>   drivers/clk/qcom/clk-rpmh.c | 21 +++++++++++++++++++++
+>   1 file changed, 21 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+> index c07cab6905cb..82d87a0602fe 100644
+> --- a/drivers/clk/qcom/clk-rpmh.c
+> +++ b/drivers/clk/qcom/clk-rpmh.c
+> @@ -382,6 +382,26 @@ static const struct clk_rpmh_desc clk_rpmh_sdm845 = {
+>   	.num_clks = ARRAY_SIZE(sdm845_rpmh_clocks),
+>   };
+>   
+> +static struct clk_hw *sdm670_rpmh_clocks[] = {
+> +	[RPMH_CXO_CLK]		= &sdm845_bi_tcxo.hw,
+> +	[RPMH_CXO_CLK_A]	= &sdm845_bi_tcxo_ao.hw,
+> +	[RPMH_LN_BB_CLK2]	= &sdm845_ln_bb_clk2.hw,
+> +	[RPMH_LN_BB_CLK2_A]	= &sdm845_ln_bb_clk2_ao.hw,
+> +	[RPMH_LN_BB_CLK3]	= &sdm845_ln_bb_clk3.hw,
+> +	[RPMH_LN_BB_CLK3_A]	= &sdm845_ln_bb_clk3_ao.hw,
+> +	[RPMH_RF_CLK1]		= &sdm845_rf_clk1.hw,
+> +	[RPMH_RF_CLK1_A]	= &sdm845_rf_clk1_ao.hw,
+> +	[RPMH_RF_CLK2]		= &sdm845_rf_clk2.hw,
+> +	[RPMH_RF_CLK2_A]	= &sdm845_rf_clk2_ao.hw,
+> +	[RPMH_IPA_CLK]		= &sdm845_ipa.hw,
+> +	[RPMH_CE_CLK]		= &sdm845_ce.hw,
+> +};
+> +
+> +static const struct clk_rpmh_desc clk_rpmh_sdm670 = {
+> +	.clks = sdm670_rpmh_clocks,
+> +	.num_clks = ARRAY_SIZE(sdm670_rpmh_clocks),
+> +};
+> +
+>   DEFINE_CLK_RPMH_VRM(sdx55, rf_clk1, rf_clk1_ao, "rfclkd1", 1);
+>   DEFINE_CLK_RPMH_VRM(sdx55, rf_clk2, rf_clk2_ao, "rfclkd2", 1);
+>   DEFINE_CLK_RPMH_BCM(sdx55, qpic_clk, "QP0");
+> @@ -715,6 +735,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
+>   	{ .compatible = "qcom,sc8180x-rpmh-clk", .data = &clk_rpmh_sc8180x},
+>   	{ .compatible = "qcom,sc8280xp-rpmh-clk", .data = &clk_rpmh_sc8280xp},
+>   	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
+> +	{ .compatible = "qcom,sdm670-rpmh-clk", .data = &clk_rpmh_sdm670},
+>   	{ .compatible = "qcom,sdx55-rpmh-clk",  .data = &clk_rpmh_sdx55},
+>   	{ .compatible = "qcom,sdx65-rpmh-clk",  .data = &clk_rpmh_sdx65},
+>   	{ .compatible = "qcom,sm6350-rpmh-clk", .data = &clk_rpmh_sm6350},
 
-On Wed, Sep 21, 2022 at 8:42 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/09/2022 07:51, Sergio Paracuellos wrote:
-> > Hi Krzysztof,
-> >
-> > On Mon, Sep 19, 2022 at 6:08 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 19/09/2022 15:41, Sergio Paracuellos wrote:
-> >>> Hi Krzysztof,
-> >>>
-> >>> On Mon, Sep 19, 2022 at 2:48 PM Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>>
-> >>>> On 19/09/2022 14:29, Sergio Paracuellos wrote:
-> >>>>>>
-> >>>>>> else mips-hpt-frequency: false
-> >>>>>>
-> >>>>>>> +
-> >>>>>>> +required:
-> >>>>>>> +  - compatible
-> >>>>>>> +
-> >>>>>>> +additionalProperties: true
-> >>>>>>
-> >>>>>> and this is why you did not notice errors...
-> >>>>>
-> >>>>> Current arch/mips/boot/dts folder dts files are a mess for cpu nodes,
-> >>>>> so I set additionalProperties to true and only make required for
-> >>>>> 'compatible'. What should be the correct approach?
-> >>>>
-> >>>> This is okay, but it caused you did not notice errors...
-> >>>>
-> >>>>>
-> >>>>>>
-> >>>>>>> +
-> >>>>>>> +examples:
-> >>>>>>> +  - |
-> >>>>>>> +    cpus {
-> >>>>>>> +      #size-cells = <0>;
-> >>>>>>> +      #address-cells = <1>;
-> >>>>>>> +
-> >>>>>>> +      cpu@0 {
-> >>>>>>> +        device_type = "cpu";
-> >>>>>>> +        compatible = "mips,mips1004Kc";
-> >>>>>>> +        reg = <0>;
-> >>>>>>> +      };
-> >>>>>>> +
-> >>>>>>> +      cpu@1 {
-> >>>>>>> +        device_type = "cpu";
-> >>>>>>> +        compatible = "mips,mips1004Kc";
-> >>>>>>> +        reg = <1>;
-> >>>>>>> +      };
-> >>>>>>> +    };
-> >>>>>>> +
-> >>>>>>> +  - |
-> >>>>>>> +    // Example 2 (BMIPS CPU)
-> >>>>>>> +    cpus {
-> >>>>>>> +      #address-cells = <1>;
-> >>>>>>> +      #size-cells = <0>;
-> >>>>>>> +
-> >>>>>>> +      mips-hpt-frequency = <150000000>;
-> >>>>>>
-> >>>>>> Does not match your bindings. Are you sure you tested the patches?
-> >>>>>
-> >>>>> Yes I did:
-> >>>>>
-> >>>>> $ make dt_binding_check
-> >>>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mips/cpus.yaml
-> >>>>>   LINT    Documentation/devicetree/bindings
-> >>>>>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> >>>>>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> >>>>>   DTEX    Documentation/devicetree/bindings/mips/cpus.example.dts
-> >>>>>   DTC     Documentation/devicetree/bindings/mips/cpus.example.dtb
-> >>>>> ' CHECK   Documentation/devicetree/bindings/mips/cpus.example.dtb
-> >>>>>
-> >>>>> Can you please point me to a sample of how to make required in a
-> >>>>> parent node of cpu@X property 'mips-hpt-frequency' only for some
-> >>>>> compatible strings inside the node? What can this be properly
-> >>>>> expressed using schema??
-> >>>>> I was looking and testing different things for a while without success at all.
-> >>>>
-> >>>> You either define new schema for /cpus node (and match by name, define
-> >>>> children etc) or include it in schema for top-level properties. The
-> >>>> first is tricky, because the cpus node does not have compatible (like
-> >>>> nvidia,tegra194-ccplex.yaml).
-> >
-> > Ok so if I am understanding correctly having two schemas is a way to go:
-> >
-> > One for brcm,bmips-cpus.yaml (since there is no compatible, should
-> > this be a valid name for this?) containing something like:
-> >
-> > properties:
-> >   $nodename:
-> >      const: cpus
-> >
-> >      mips-hpt-frequency:
-> >         $ref: /schemas/types.yaml#/definitions/uint32
-> >         description: |
-> >            This is common to all CPUs in the system so it lives
-> >             under the "cpus" node.
-> >
-> > additionalProperties: true
->
-> Almost. Such schema will allow mips-hpt-frequency in each cpus node,
-> everywhere. On every board and architecture.
-
-Yes, that is what I thought since no compatible to match this is
-included in current node.
-
->
-> You need to limit it per top-level compatibles.
-
-Any sample of how to do this? So this bmips SoCs use compatible
-strings that are described in:
-https://elixir.bootlin.com/linux/v6.0-rc5/source/Documentation/devicetree/bindings/mips/brcm/soc.txt
-
-Can the top level compatible string be used in some way to filter this
-easily from this new 'brcm,bmips-cpus.yaml'
-
->
-> You can also wait a week and maybe Rob will have some ideas.
-
-Ideas are always welcome :). Ok, we can wait to Rob and see what
-should be the correct approach to handle this.
-
-Thanks,
-    Sergio Paracuellos
->
-> >
-> > examples:
-> >   - |
-> >      cpus {
-> >        #address-cells = <1>;
-> >        #size-cells = <0>;
-> >
-> >         mips-hpt-frequency = <150000000>;
-> >
-> >         cpu@0 {
-> >           compatible = "brcm,bmips4350";
-> >           device_type = "cpu";
-> >            reg = <0>;
-> >         };
-> >
-> >          cpu@1 {
-> >            compatible = "brcm,bmips4350";
-> >            device_type = "cpu";
-> >            reg = <1>;
-> >         };
-> >   };
-> >
-> > And the other as 'cpus.yaml' having:
->
-> Yes.
->
-> Best regards,
-> Krzysztof
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
