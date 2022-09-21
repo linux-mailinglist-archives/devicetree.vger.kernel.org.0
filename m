@@ -2,173 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30A865BFEB5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 15:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BB0F5BFEC6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 15:16:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229841AbiIUNMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 09:12:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58912 "EHLO
+        id S229918AbiIUNQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 09:16:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbiIUNMX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 09:12:23 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 430CE82752;
-        Wed, 21 Sep 2022 06:12:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DcTjiH86M0HNQ7zxGyN0D2EiD1FoZU7E3df1tL66nqsp7fOxwWrNyxicIjTGYwDwq5oVgdxQvTsnmZ++zz+FXKE8sLnmjqV6RNblZawuEEBNXwAEyN9sWhM+X8WsUPm8HV8Y8vymEVMP5GXT+ClHHfD0dDFCkpHfxzmFSBUT37mTOvLWKcmg2kYRsC9mOZ5K5goazSRvHHJ1AzHwAE8IAzwHXyzYdZWZWk4xjbT4H0y5MRc57R8pmzGO27D3SG9r9FHo5uFp9py1xmU+ECJ1XEKxGPp3Qq4BLd/o6Mq4V+0aTMCMNNRDKyLTWtChBO6VwW8gv9+PxuDdi4To8+UzpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1XrtBwVMYTQjAqBtdkh/jRYNgM2zxKfEISRYKEpr+Bc=;
- b=HIEsUVotdFuDEqOlllbk0zLMQn8hiNrgQf8VdBFjAye+8N6DHdOEK4RUMJidar7KSO7GajymIxTIvg/ORO29Lic/ogWYK3aU3O69+OyHyK49U2zzWJ95NnykuZPOKLNnj+OLCf0w1QU979mJEFfl3ys5ufMe7PU9OuGPzaIVPeXpycql5tTPCDmynBVMqaj/aVzDEpjXrys+jRiB3llkJhqPzvSTZz591wXuVYqXE2OMEj5wCCFS6HfY9DIBCz/mXJOwdrFq5zFnSK4u2320q02ceSY/O0m+cNT9TKtF7TQYoeSQynSv1faNUU8Z3cjTINh4ADa+llt5Qus005Jxtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1XrtBwVMYTQjAqBtdkh/jRYNgM2zxKfEISRYKEpr+Bc=;
- b=IFKwGR+BPM/kL+0UGcENDG4hJFVhdVsNOeK+iSdgsXsyCJerZIoOKs4D6552PWJXHQsyX3dOmNpVpEQBXjLAw5r1K0OGQ42XaMMXQyDPBRYM5rYckLKCgV2Yb+j8vYAPgs2tlUDnPkoLu33p3fEIe9tHCZiU97lgUQautzRc2zosKymHElr+ebhx3YhgYFg83vYosR0nDtikz3aS8KAtSVEIOdnm8vQjznhNKiW3oehD+zQsQY+FyWFpHNSEwA6L+HJXb8uaUcGrgw09BC3WoECI9GjwEaDvmEVY3Irt1a7NPltUMft9p1V8+SdYMlKOr7S3IsbrtKbCSuIuG1xioA==
-Received: from CH2PR12MB3895.namprd12.prod.outlook.com (2603:10b6:610:2a::13)
- by CH2PR12MB4086.namprd12.prod.outlook.com (2603:10b6:610:7c::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.14; Wed, 21 Sep
- 2022 13:12:20 +0000
-Received: from CH2PR12MB3895.namprd12.prod.outlook.com
- ([fe80::7129:e05:131a:b109]) by CH2PR12MB3895.namprd12.prod.outlook.com
- ([fe80::7129:e05:131a:b109%5]) with mapi id 15.20.5654.017; Wed, 21 Sep 2022
- 13:12:19 +0000
-From:   Asmaa Mnebhi <asmaa@nvidia.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        Khalil Blaiech <kblaiech@nvidia.com>
-Subject: RE: [PATCH v5 8/8] i2c: i2c-mlxbf.c: Update binding devicetree
-Thread-Topic: [PATCH v5 8/8] i2c: i2c-mlxbf.c: Update binding devicetree
-Thread-Index: AQHYzRkuwHxVxW18Gkmk53vw2a7jHK3pc/cAgABn09A=
-Date:   Wed, 21 Sep 2022 13:12:19 +0000
-Message-ID: <CH2PR12MB3895572575B5BED5DAFFAA29D74F9@CH2PR12MB3895.namprd12.prod.outlook.com>
-References: <20220920174736.9766-1-asmaa@nvidia.com>
- <20220920174736.9766-9-asmaa@nvidia.com>
- <20220921065506.6cu6p2cpu3zfhtie@krzk-bin>
-In-Reply-To: <20220921065506.6cu6p2cpu3zfhtie@krzk-bin>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH2PR12MB3895:EE_|CH2PR12MB4086:EE_
-x-ms-office365-filtering-correlation-id: ef5fd468-147a-4b07-7d2f-08da9bd2ea1a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Y588ZLLR3v+upNixBwJDRhA5C+lDqjf5OupQPNgOHxI0xyH4GG5sVxtVmcWrbyoWiR0GgMF54ay23VBuU4McVFJXMJ/Roz5lsqShY9v3u87i+Q1nuMMSJ8ewW48SxEgba6SzdrKsxTqhuPmoPLTPhKDmkWAc1gzY6Jf6JxTk9QRSkquk+QJdpU5swOQJl3jS94NE+BEzyjgvCzMWJ0AW4uwc5rLRnuEtvak8O/yoec4HfaDFxlMq4cdkxqTB9AbSZPhBs2eTrzFvWD/JaoZ/sDg4k8Wf7NWjgKy05nas4QaP/WCYDUcmtorJ+lUHC1G1iZEn07WyQEVSgX7FfMzofixquoOWyZMlMaIUpAGlYWDT2MLVJ7c5E2bIhI+oz1dZiTZMUtXHx87MTjxET2OtxQnhzFdi2zLFUrGkELZeZiI+zvk5W6xcJhJ4EXNizQVKRxofhGAgWCjwljxOYOzx1nv/Z2HJS6d90lPx8HcPR/zuwHprZdaUHVnMbWV75cOb3EVoR0Dqy+EBDT1SUPZ4WOXvyp31nLO2oH/9EXM+LPheV0o9Owi5sJaMWD6Ie3xMnz7uLEX/sAEnaiKRzkck8qvyf5nc0pU7jS5T6nKi2lAzgF8l3KVOcLZ/pg3/izZeAnk01YTHooJlPLGoNPCBb7u7XinlanFJ91ShAmbpF1GabxFzi61HfBwKk4t14/8Q1QnNsvn6PER2xqtle7QM6st+edYInBpHOsAnznnnVUv3OKOEEJfbEJrJ93cADbZgXsjO6kShER3CH2F1kTzA/q3r+0yrUEnWDOZkJPF0a10INwNBM0kEkhHc1wTuhUecRcM3yccFPsqZzLpy+wcKxUlyZL69460xxBMGKQkWt8M=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3895.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(366004)(136003)(39860400002)(396003)(346002)(451199015)(186003)(83380400001)(26005)(9686003)(53546011)(33656002)(15650500001)(107886003)(86362001)(4326008)(66556008)(66476007)(66446008)(64756008)(8676002)(66946007)(54906003)(6916009)(316002)(122000001)(966005)(52536014)(2906002)(5660300002)(478600001)(38100700002)(8936002)(7696005)(76116006)(55016003)(38070700005)(41300700001)(71200400001)(6506007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZzNxM2dHQVpCNWJVQXgyMFVYTmU5cHlQWHVNMUJTYXg2dHQvRjZnSXVyc0Fy?=
- =?utf-8?B?T3p6cnFqZkEzaFdkTGVQQXlEUXV6U2gxNHlscGtqeUZCZ0c5SDZ5bCs5Szkv?=
- =?utf-8?B?SmY3Y2VVMHRLUTc2WklPTk5BRnRnUHFqS3cxbWNwckJvV2pOVHFYUUh0RGwx?=
- =?utf-8?B?Z3g4T2VFd0QyRVowVUVHRlFrV3lzNW82M0w5cUxsaENNK2ZRZEFYQkJDaFlK?=
- =?utf-8?B?OWZxc2I5OE1kOGVPQjRGVnhYMHY4Wm9UVExnVlJtclZ6WGthR21VUytNZnUx?=
- =?utf-8?B?MVZnOGNsMHdsNm5DSWg4ZThUM05HSTlVeFJKU2N0Y1pEbi9pak5PWEF0Tzl2?=
- =?utf-8?B?Q1VMMThFM1lJbml0cjNteHRWUERXdlpKNkYvWUROMEhhWWxtU0J2Y3M4ZDNH?=
- =?utf-8?B?ODU2K09SNDZJVk9hM1dyNE9aRDY0d3RaWDJtMkZSU255TFN4K0RpYm9DUU53?=
- =?utf-8?B?cTBGSUlNZS9NaXMyWHRkcXp2djBza3ZGVW02aEZucVd0aFQ4enYvWTFXSURY?=
- =?utf-8?B?NVdxSndGTFZxY2dFZ0dMUFhvMFNaYU9jSEIwV2lKbTBrekJSSTVWR3puTlFh?=
- =?utf-8?B?cHByNEcvSlZFaXRpZzJIM2ZvZGtnczdMODlnWTl5RFo4NVBjNElYU25pRTNP?=
- =?utf-8?B?dkFlWGdhdnNIMkp2WTFYbUxUQWREbm9obFdiTldCNGJsV0dMbXdiYndqUmtw?=
- =?utf-8?B?cmN3ZFVhRVM4NExqWnNpdTV5djZXRCtJQW5WamVxdU9mekVjb2N0VXFYZ0Fy?=
- =?utf-8?B?Z2FBMFNySWhUaFBQWVUvWTZyUE9vQnJ0RTAwdFA0aEJ5NjRYRWVoTnRBbjAw?=
- =?utf-8?B?L2s1Q29XUi95RU81eXF5eVlRZEpOd0lVSUszV3lreXhLTStWeHBETE5MRUdT?=
- =?utf-8?B?WnQ4MTFDVENJeUFveTR3REZQdUE1ck92ZmFXbXczeDB1eHJibXZ3emt3QnZI?=
- =?utf-8?B?NE41TldDTytUL3lOaXBMQ2ZubEcwZjFuM2J4bDlkenJhekxPMVRWZ3FuQTVK?=
- =?utf-8?B?MXNTeGZtTmlocHNLdnNjWW1ialU4WHdkNmlHb3NPemZiam9BYlRyQUQ5UDZQ?=
- =?utf-8?B?dVhiQVErSHZ2RDlOSFdXY0svbkRMTTFuNS9uTkhRdVRLYkJLQTBSZlpyRERJ?=
- =?utf-8?B?YW5DcHc2SlZvR2h6M3VtdHVhUENnK2E0VmYyNGZYM0d5bm5qUEp6K0d4RE01?=
- =?utf-8?B?MEE2TExSSERHVkltQm5ydEtQaDNFVTJSTVF1RzhqQ3NMSzZhblZ0OXVtZm9k?=
- =?utf-8?B?VU9vMjhPNVYwWkNuZ3NrQ0w1TmJ6M1Azbmd3cldsVnpqbitveUpSUnJ0TVQ5?=
- =?utf-8?B?OHZwOGdlVmtGM1dSVnRRS0JETnVHckdXN0Rsc3RiSEVFb2ViNEFueEEvVWhV?=
- =?utf-8?B?aHI3K3Q0L3NGQjJUZDA2ZXZJTzk0WEdwV3QxNFNzOEovWlhwRnFxbEhpSUh1?=
- =?utf-8?B?alZVV3N5SXB6SStzWWtCWHkzaXlpZHVwNTcxcndsdzhDa2NNSFIxRjVlYTJK?=
- =?utf-8?B?MEJpb013OTRNS2tZL3poVDhOZ2VhTjFBU05pSG9KUHlsOFp3MGZWY0pSWjRt?=
- =?utf-8?B?bk5CZWV4RnZXSnlaM3p4NEdUNmt5ZzdwSFlUbit2bmlBUGg0cm02WGI3K3o1?=
- =?utf-8?B?bWZxQkVyQk5xa2MrWEt2WTRYN2VwaXp3bzd4UW9BSnZ4WTBNUUxmSWtSTzVD?=
- =?utf-8?B?NUFoL3FYNlhEY0lKeXFKY05Pdy9SeGlGbUY4ck5mYXRITzZoSElOTnBxd0Ji?=
- =?utf-8?B?bmtneklVUXNUblhXQ0wyWCtpaUtsVmQyRU9xalZMUzdPVzBUQVVQKzJBWXpR?=
- =?utf-8?B?bzdnY0F4b2NnOG52S1BSMjdQZlNBcmZ4M1d2L0N2VCtKWm1SZFNOV29ZbUpR?=
- =?utf-8?B?b1QzY0xWb1NXOU5zR3YzamxmMzB2bVIxbVI3VncrZXRxWkx3VTEzQ0svcXZL?=
- =?utf-8?B?SnlqREFPM29FcWwxQUthdnUrU0ZON1hPR1g5VzErNVVud0FCc1JsVnlDK2tE?=
- =?utf-8?B?UUNoMFFpZkpCWXJ1dGdTTkZGREw0OVFuRSt4NUNhVlQvUDRmME5mdGVpVVEr?=
- =?utf-8?B?VWt2dTRQVWplZEptME9BOTYvOWhUeHJTYW9sTk1MOXRHQi9FRXpPMmo5WXNy?=
- =?utf-8?Q?kp2s=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229993AbiIUNQV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 09:16:21 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 906A88A1DD;
+        Wed, 21 Sep 2022 06:16:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663766180; x=1695302180;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=w4D1hy6/ConbgVe3GY3+9RnenGbVC1tZcfM3biXtUBA=;
+  b=LpXFeHgiyUjelKkCr2kJ2FfYkf+pu+NiexwTIKFd7EGazITVa9+LmOpn
+   zUCxVEY+gkjmr2UVgBwDIweCu+TCNZ9xQ0FkjGSbXE94VoJAKkX//vW5l
+   cLpjKKoiKX/JShzlLhus951wx2zi/JjoK5LjCrtI7wggzHp/wK7dlZfk7
+   ZJejKX1DJR/60PsG+Dw1T4jHpa6oPpOQYtzSXgkV399cYdaXU3/hwsTlr
+   jnM1VVOOEnEABlABnehPbgGRYd3oCLBL2ryBz2y2V3hr6Eg3eLEu7JppK
+   /tOv4pG8XJC4YkdOG+grqme/7BcySTWwH1uMbplAGqbtHmeAXnxRvGgtY
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="300835484"
+X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; 
+   d="scan'208";a="300835484"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2022 06:16:20 -0700
+X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; 
+   d="scan'208";a="687865725"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2022 06:16:15 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id B42B22055A;
+        Wed, 21 Sep 2022 16:16:13 +0300 (EEST)
+Date:   Wed, 21 Sep 2022 13:16:13 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Mikhail Rudenko <mike.rudenko@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Shawn Tu <shawnx.tu@intel.com>, Jimmy Su <jimmy.su@intel.com>,
+        Arnd Bergmann <arnd@arndb.de>, Arec Kao <arec.kao@intel.com>,
+        Marek Vasut <marex@denx.de>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Add Omnivision OV4689 image sensor driver
+Message-ID: <YysOnZt+yRGNw2CN@paasikivi.fi.intel.com>
+References: <20220911200147.375198-1-mike.rudenko@gmail.com>
+ <CAPY8ntCA3jbpBOiNfoft58sHPeTFSLoLop0VUmkOCWP3cX_rdw@mail.gmail.com>
+ <87czbwp9xx.fsf@gmail.com>
+ <YygOzWAHyoP+KwTv@paasikivi.fi.intel.com>
+ <87wn9zreic.fsf@gmail.com>
+ <YyhE5voxRz7gEYHY@paasikivi.fi.intel.com>
+ <YyhzUvu0Ky8+VohC@pendragon.ideasonboard.com>
+ <87leqdkcbm.fsf@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3895.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef5fd468-147a-4b07-7d2f-08da9bd2ea1a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2022 13:12:19.8763
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YRXUExbVPY4A5H5kCdbdFn/bzrUE9KEASJIaxsZwxhOXcSwNMgoeS1FAGzI+yw1+AjAb7jkvvWw+qOCy9O+HbQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4086
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87leqdkcbm.fsf@gmail.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SSBoYXZlIGEgcXVlc3Rpb24gZm9yIHlvdSBhbmQgV29sZnJhbSwgd2UgZG9u4oCZdCB1c2UgZGV2
-aWNlIHRyZWVzIGFuZCBhcmUgbm90IHBsYW5uaW5nIHRvIHVzZSBkZXZpY2UgdHJlZXM7IHdlIG9u
-bHkgdXNlIEFDUEkgdGFibGVzLiBCdXQgSSB0aGluayB3aGVuIEtoYWxpbCBzdWJtaXR0ZWQgdGhl
-IGZpcnN0IHZlcnNpb24gb2YgdGhlIGkyYy1tbHhiZi5jIGRyaXZlciwgaXQgd2FzIHJlcXVlc3Rl
-ZCBmcm9tIGhpbSB0byBhZGQgZGV2aWNldHJlZSBzdXBwb3J0LiBEbyB5b3Uga25vdyB3aHk/IElz
-IGl0IHBvc3NpYmxlIHRvIHJlbW92ZSB0aGUgZGV2aWNlIHRyZWUgc3VwcG9ydCBhbmQgc28gdGhp
-cyBkb2M/IG9yIGlzIGRldmljZXRyZWUgc3VwcG9ydCBhIHJlcXVpcmVtZW50IHJlZ2FyZGxlc3Mg
-b2YgdGhlIGFjdHVhbCBpbXBsZW1lbnRhdGlvbj8gDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
-LS0tDQpGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFy
-by5vcmc+IA0KU2VudDogV2VkbmVzZGF5LCBTZXB0ZW1iZXIgMjEsIDIwMjIgMjo1NSBBTQ0KVG86
-IEFzbWFhIE1uZWJoaSA8YXNtYWFAbnZpZGlhLmNvbT4NCkNjOiBXb2xmcmFtIFNhbmcgPHdzYSty
-ZW5lc2FzQHNhbmctZW5naW5lZXJpbmcuY29tPjsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9y
-Zzsgcm9iaEBrZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgtaTJj
-QHZnZXIua2VybmVsLm9yZzsgS2hhbGlsIEJsYWllY2ggPGtibGFpZWNoQG52aWRpYS5jb20+DQpT
-dWJqZWN0OiBSZTogW1BBVENIIHY1IDgvOF0gaTJjOiBpMmMtbWx4YmYuYzogVXBkYXRlIGJpbmRp
-bmcgZGV2aWNldHJlZQ0KDQpPbiBUdWUsIDIwIFNlcCAyMDIyIDEzOjQ3OjM2IC0wNDAwLCBBc21h
-YSBNbmViaGkgd3JvdGU6DQo+IEluIHRoZSBsYXRlc3QgdmVyc2lvbiBvZiB0aGUgaTJjLW1seGJm
-LmMgZHJpdmVyLCB0aGUgIlNtYnVzIGJsb2NrIg0KPiByZXNvdXJjZSB3YXMgYnJva2VuIGRvd24g
-dG8gMyBzZXBhcmF0ZSByZXNvdXJjZXMgIlNtYnVzIHRpbWVyIiwgIlNtYnVzIA0KPiBtYXN0ZXIi
-IGFuZCAiU21idXMgc2xhdmUiIHRvIGFjY29tbW9kYXRlIGZvciBCbHVlRmllbGQtMyBTb0MgDQo+
-IHJlZ2lzdGVycycgY2hhbmdlcy4NCj4gDQo+IFJldmlld2VkLWJ5OiBLaGFsaWwgQmxhaWVjaCA8
-a2JsYWllY2hAbnZpZGlhLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogQXNtYWEgTW5lYmhpIDxhc21h
-YUBudmlkaWEuY29tPg0KPiAtLS0NCj4gIC4uLi9iaW5kaW5ncy9pMmMvbWVsbGFub3gsaTJjLW1s
-eGJmLnlhbWwgICAgICB8IDQ4ICsrKysrKysrKysrKysrLS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2Vk
-LCAzNiBpbnNlcnRpb25zKCspLCAxMiBkZWxldGlvbnMoLSkNCj4gDQoNCk15IGJvdCBmb3VuZCBl
-cnJvcnMgcnVubmluZyAnbWFrZSBEVF9DSEVDS0VSX0ZMQUdTPS1tIGR0X2JpbmRpbmdfY2hlY2sn
-DQpvbiB5b3VyIHBhdGNoIChEVF9DSEVDS0VSX0ZMQUdTIGlzIG5ldyBpbiB2NS4xMyk6DQoNCnlh
-bWxsaW50IHdhcm5pbmdzL2Vycm9yczoNCg0KZHRzY2hlbWEvZHRjIHdhcm5pbmdzL2Vycm9yczoN
-CkVycm9yOiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL21lbGxhbm94LGky
-Yy1tbHhiZi5leGFtcGxlLmR0czoyNi4xOS0yMCBzeW50YXggZXJyb3IgRkFUQUwgRVJST1I6IFVu
-YWJsZSB0byBwYXJzZSBpbnB1dCB0cmVlDQptYWtlWzFdOiAqKiogW3NjcmlwdHMvTWFrZWZpbGUu
-bGliOjM4NDogRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9tZWxsYW5veCxp
-MmMtbWx4YmYuZXhhbXBsZS5kdGJdIEVycm9yIDENCm1ha2VbMV06ICoqKiBXYWl0aW5nIGZvciB1
-bmZpbmlzaGVkIGpvYnMuLi4uDQptYWtlOiAqKiogW01ha2VmaWxlOjE0MjA6IGR0X2JpbmRpbmdf
-Y2hlY2tdIEVycm9yIDINCg0KZG9jIHJlZmVyZW5jZSBlcnJvcnMgKG1ha2UgcmVmY2hlY2tkb2Nz
-KToNCg0KU2VlIGh0dHBzOi8vcGF0Y2h3b3JrLm96bGFicy5vcmcvcGF0Y2gvDQoNClRoaXMgY2hl
-Y2sgY2FuIGZhaWwgaWYgdGhlcmUgYXJlIGFueSBkZXBlbmRlbmNpZXMuIFRoZSBiYXNlIGZvciBh
-IHBhdGNoIHNlcmllcyBpcyBnZW5lcmFsbHkgdGhlIG1vc3QgcmVjZW50IHJjMS4NCg0KSWYgeW91
-IGFscmVhZHkgcmFuICdtYWtlIGR0X2JpbmRpbmdfY2hlY2snIGFuZCBkaWRuJ3Qgc2VlIHRoZSBh
-Ym92ZSBlcnJvcihzKSwgdGhlbiBtYWtlIHN1cmUgJ3lhbWxsaW50JyBpcyBpbnN0YWxsZWQgYW5k
-IGR0LXNjaGVtYSBpcyB1cCB0bw0KZGF0ZToNCg0KcGlwMyBpbnN0YWxsIGR0c2NoZW1hIC0tdXBn
-cmFkZQ0KDQpQbGVhc2UgY2hlY2sgYW5kIHJlLXN1Ym1pdC4NCg==
+Hi Mikhail,
+
+On Tue, Sep 20, 2022 at 11:31:01PM +0300, Mikhail Rudenko wrote:
+> 
+> Hi Laurent, Sakari,
+> 
+> On 2022-09-19 at 16:49 +03, Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
+> 
+> > Hello,
+> >
+> > On Mon, Sep 19, 2022 at 10:31:02AM +0000, Sakari Ailus wrote:
+> >> On Mon, Sep 19, 2022 at 10:01:06AM +0300, Mikhail Rudenko wrote:
+> >> > On 2022-09-19 at 06:40 GMT, Sakari Ailus wrote:
+> >> > > On Fri, Sep 16, 2022 at 12:27:42AM +0300, Mikhail Rudenko wrote:
+> >> > >> On 2022-09-14 at 10:58 +01, Dave Stevenson wrote:
+> >> > >> > On Sun, 11 Sept 2022 at 21:02, Mikhail Rudenko wrote:
+> >> > >> >>
+> >> > >> >> Hello,
+> >> > >> >>
+> >> > >> >> this series implements support for Omnivision OV4689 image
+> >> > >> >> sensor. The Omnivision OV4689 is a high performance, 1/3-inch, 4
+> >> > >> >> megapixel image sensor. Ihis chip supports high frame rate speeds up
+> >> > >> >> to 90 fps at 2688x1520 resolution. It is programmable through an I2C
+> >> > >> >> interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
+> >> > >> >> connection.
+> >> > >> >>
+> >> > >> >> The driver is based on Rockchip BSP kernel [1]. It implements 4-lane CSI-2
+> >> > >> >> and single 2688x1520 @ 30 fps mode. The driver was tested on Rockchip
+> >> > >> >> 3399-based FriendlyElec NanoPi M4 board with MCAM400 camera
+> >> > >> >> module.
+> >> > >> >> While porting the driver, I stumbled upon two issues:
+> >> >
+> >> > [snip]
+> >> >
+> >> > >> >> (2) The original driver exposes analog gain range 0x0 - 0x7ff, but the
+> >> > >> >> gain is not linear across that range. Instead, it is piecewise linear
+> >> > >> >> (and discontinuous). 0x0-0xff register values result in 0x-2x gain,
+> >> > >> >> 0x100-0x1ff to 0x-4x, 0x300-0x3ff to 0x-8x, and 0x700-0x7ff to 0x-16x,
+> >> > >> >> with more linear segments in between. Rockchip's camera engine code
+> >> > >> >> chooses one of the above segments depenging on the desired gain
+> >> > >> >> value. The question is, how should we proceed keeping in mind
+> >> > >> >> libcamera use case? Should the whole 0x0-0x7ff be exposed as-is and
+> >> > >> >> libcamera will do the mapping, or the driver will do the mapping
+> >> > >> >> itself and expose some logical gain units not tied to the actual gain
+> >> > >> >> register value? Meanwhile, this driver conservatively exposes only
+> >> > >> >> 0x0-0xf8 gain register range.
+> >> > >> >
+> >> > >> > The datasheet linked above says "for the gain formula, please contact
+> >> > >> > your local OmniVision FAE" :-(
+> >> > >> > I would assume that the range is from 1x rather than 0x - people
+> >> > >> > rarely want a totally black image that 0x would give. Or is it ranges
+> >> > >> > of 1x - 2x, 2x - 4x, 4x - 8x, and 8x - 16x?
+> >> > >>
+> >> > >> A picture is worth a thousand words, so I've attached the results of my
+> >> > >> experimentation with the gain register. They were obtained with Rockchip
+> >> > >> 3399, with AEC, AGC and black level subtraction disabled. The image was
+> >> > >> converted from 10-bit RGGB to 8-bit YUV 4:2:0 by the Rockchip ISP.
+> >
+> > Is that full or limited range YUV ?
+> >
+> >> > > Based on that it looks like their medication may have been a little too
+> >> > > strong.
+> >> > >
+> >> > > Could this be implemented so that the control value would be linear linear
+> >> > > but its range would correspond 1x--16x values?
+> >> > >
+> >> > > libcamera will be able to cope with that.
+> >> >
+> >> > According to the following fragment of the Rockchip camera engine sensor
+> >> > configuration file for ov4689 [1]
+> >> >
+> >> >     <Linear index="1" type="double" size="[4 7]">
+> >> >        [1 2 128 0 1 128 255
+> >> >         2 4 64 -248 1 376 504
+> >> >         4 8 32 -756 1 884 1012
+> >> >         8 16 16 -1784 1 1912 2040]
+> >> >     </Linear>,
+> >> >
+> >> > it uses gain register value range 128-255 for gain 1x-2x, 376-504 for
+> >> > gain 2x-4x, 884-1024 for 4x-8x, and 1912-2040 for 8x-16x. Do you suggest
+> >
+> > That looks *really* weird. I would have understood [384, 511], [896,
+> > 1023] and [1920, 2047], but not those intervals.
+> >
+> > The driver hardcodes bit 0x3503[2] to 1, which means "sensor gain
+> > format". Maybe setting it to 0 ("real gain format") would produce saner
+> > results ?
+> >
+> >> > to implement this calculation in the sensor driver and expose some
+> >> > linear "logical" gain to userspace (ranging, e.g., 128-2048 for gains
+> >> > 1x-16x)?
+> >>
+> >> Yes. This way the user space can somehow work without knowing this special
+> >> implementation, even though the granularity changes over the range. I guess
+> >> the granularity would need to be known in libcamera but that's a separate
+> >> issue.
+> >
+> > I can live with that.
+> 
+> I got some fresh data regarding gain setting, with gain register value
+> ranging from 0 to 4096, please check the attached plot. What is the best
+> way to expose this to userspace in your opinion?
+
+I know I requested this to be changed to be as linear as possible, but it
+would seem that the gain values do not seem to match exactly what is
+documented. So you'd need to experimentally find where you'd need to switch
+the range and you might arrive at better values after the initial
+implementation. There might be differences between units, too, and if there
+were tuning values, you'd find this in sensor EEPROM.
+
+Therefore I think this appears to fit less well for driver implementation.
+I'm fine with exposing this to the user space as-is although it doesn't
+make a great user space inteface. It's just a poor hardware implementation
+but there's nothing we can do about it.
+
+-- 
+Kind regards,
+
+Sakari Ailus
