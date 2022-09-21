@@ -2,129 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 927AD5BF85B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 165985BF862
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:57:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbiIUHy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:54:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58540 "EHLO
+        id S229977AbiIUH5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiIUHy0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:54:26 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2099.outbound.protection.outlook.com [40.107.114.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8763785FB1;
-        Wed, 21 Sep 2022 00:54:23 -0700 (PDT)
+        with ESMTP id S229437AbiIUH5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:57:43 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2134.outbound.protection.outlook.com [40.107.237.134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C94880F41;
+        Wed, 21 Sep 2022 00:57:42 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V1Fv3/kggnTc3jVgSJJaUGMyk41WIdYXQf3iaHl3SpR6oqesU4lDRUiflEF+6yQoUYgGUpKt/BWKUaEcO8oLpi103a+ObLu9PkfR4J5/tHXEFyTQMlbFw8XqlC5MRlPgFoho5NfpwqVmP5tAUANTKIOQA2wkC4wlPychRANoUxMOXSgiQteXi/Ca323jpOorY94zIVelq7ve8byGfMttjfZLVqcBesEcmjQDruz5dvjW+K9qQlSiPg595KKHkYoJJsvLfLt8tYNwoKkHN+taVnA9jFI1w/NgYPlvmOmJUghE47TCPgKD08KLDGWQ1F1wBSVNi9B2mePmIJi8QidnuQ==
+ b=HE75CypWTribnqpqbjfBLfWwuM+icRKFtU3xEXh7EcbqKmkVhnOKGyyiM+7lzNCbqG7hpvWCarhp2WImoUI9LYaW7U1JbOZZbRoWznAwG0dQw3Xh5u6Xquk3IgTcfIwZU76XDwl/buMUBEkCoFzoIjC7Mv+uh3IKFghoReTf+U26whZEd1t1p7khMD0UPKeyWOIqTllG1vMwe91ydjGN32sxgccFPbe9eXiXB0QFxfD4MR6A7AxULpLZ34QCH4FeTbLiDQrUoSFwHqTPhsEM1p+SORqcl4HKoZtctW8eepce7gOMf5Xd3vI3p7jJPCqqrfCTpvDb4OgwnmfqgbzXfg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jc+1h/MsZrGkfmuc8l4I1a9EYxQGa05oHLOdmfLGoEQ=;
- b=RsRzGSJM0BfUpGl8gmG6UFc3sPk82I/CxfvtJNzCB2Q9SxN/89QN7nvcss8YOWn4Dyu3Yntu4tHRz+MvfelnRU5RI/RdRTDtvzGPNAtvZ8HLnzTuI47Ob/Il30QlqlTmVuDo0U14cJmBsFHnjG903zjh1Ez4w99kWfcFMsYESibnrCZ7CfJfvh4vADORUTZADstHzYPscQ+Ib/SOoXErtjXeeSSqfWw9FLuyqPtODNoCkYZD1fK0onCft4Qml3uWmNwSIy3mNKNrMgfmxVvGcCi45LVryEEsN5FMGVJQK2gP0Tj2ol7zjBrFQzldYkiv3RrpYOsD+Mt8rpPn+B8wSg==
+ bh=Rcx6g1DAG5UQalUU7Y0ij/TS+EPCQDGlkJV517EIp+s=;
+ b=J23S8M38iEAM+5Z/riSVanzppj5ZqW243mUsQGFZ5zfrZwKkAh/gY2YKDUnAKJSVsLYOdZ5fEmOMYIdFmgYK3iJNkZNMnDROaRc4FOk5s9u8aiMyiDdXwaYaP4qEr6ahGGi2wxCaCnTce0Iiq/WNby9F7+YWSUh+gV3ILr74MtT593lPKy/3FM2oy8IV2/qGf0GHRyufaVgJn60HDHuJhfjZ04nYoHpxuND5X7em7slfOhJZMwkfLsf7j7dgazymszgpLIxGSjuleZqHN8Qjytk23YRnwqqYWNRKqG+dv1HvTz5Rq4WVlMF9WQdXwI9S8MMQXsZLd5yiPTgpeSeGNQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Jc+1h/MsZrGkfmuc8l4I1a9EYxQGa05oHLOdmfLGoEQ=;
- b=H69a2+E2ki9C6kk7SKKzgApfEP0Oj7Q2MfAXF+CbOXDii/f5QsiJivkwp9HSVayaqh0/uIYwaldqbKGUOEOaPCOlguzQMwWEgOu1mkRxARX0Mf6UiQkLGL2mMvyRC+YtWxlxcTUKhs8YwWvJO0iVi9lWkxLrY1KqhIAtV6iojYY=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OS3PR01MB5815.jpnprd01.prod.outlook.com
- (2603:1096:604:b5::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.16; Wed, 21 Sep
- 2022 07:54:21 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::2991:1e2d:e62c:37d0]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::2991:1e2d:e62c:37d0%3]) with mapi id 15.20.5654.016; Wed, 21 Sep 2022
- 07:54:21 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 5/5] arm64: dts: renesas: r8a779f0: spider: Enable
- Ethernet Switch
-Thread-Topic: [PATCH 5/5] arm64: dts: renesas: r8a779f0: spider: Enable
- Ethernet Switch
-Thread-Index: AQHYxE/KYBwY6XjQF0ijnvFAnT+7Rq3cg3qAgAHcCKCAAH7ogIAKtoSA
-Date:   Wed, 21 Sep 2022 07:54:21 +0000
-Message-ID: <TYBPR01MB534149AC78A0014DFCA587ABD84F9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20220909132614.1967276-1-yoshihiro.shimoda.uh@renesas.com>
- <20220909132614.1967276-6-yoshihiro.shimoda.uh@renesas.com>
- <Yx/L1VeVmR/QAErf@lunn.ch>
- <TYBPR01MB53414B8CA1157760148FACB9D8469@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <YyHFnZdGTJL8uLxn@lunn.ch>
-In-Reply-To: <YyHFnZdGTJL8uLxn@lunn.ch>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS3PR01MB5815:EE_
-x-ms-office365-filtering-correlation-id: c219bfc1-d45a-469f-9b48-08da9ba67e61
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: EuV706oPvZ2PuxD7UW934CTlOU2WnjqYIfBFTwS+HW57yz2ZyE3shjMB4GL6xlExz1tsGW0P6WeES0IKQPCLYzH7mLLBsCMACziLo60WE3O1oxQJRkGSMBr9z32hmavaCU+rQqc+hADhyRO5DfEQoYQqOg0oDY7rJ9SEOcqsy5cgH5jDtm9YLHdOwxaaqr1dGe8GdshWnxwFVDdCZriXeMY5U5+OXqlj4wPwXJONJZ6GfDSzxgBxJ1BpKXJ/ey8TiP9Ojf3umoLkCCcOgqKy4S73rlEFGrg0qq1EQo+45u3NCX1EOI34k5nkd3upJ84C80T2R9T0qnqtSUn9KRxxMaic2BpV2w4uWOVoENpDnu7VDznQzdx3jlUoin1FpLR7G/9DtARgqxM8z9SC4VALZ41tHKaoasu5r/DRR9D9gift/jDwlJZcwZzveuqpnAHqAojTUg5nTi2C09StLWeeP2qp+J2zoDWm2PZkY6LBv3fen77uHPzcgEVoRR97Ci8I625PFhvI6NzPzOFpNqUOx1A17r0/niDTj+CsiYXfiu++nStREMMKFvm1uCx7CSjhogIJBZ3K7lrhH5dKVyI31e76i9ojx1j06fj01HSDr6T7v4Pu9P5gaBlucbrxORCNuPaatjZwj9DCEZoKfFxl0e58v4f97Is72qTQekaHYws0xRyT2AwHeOY5DynYFYmnwGhC9JcVew80lwT6jkqmkZQbTEXZjHbeo1VygdT27REYQfjj/VNDHYh4JPmFSYnk69tvBIiilkXljL2ORat7DsYEI62FD8HLGjte/eKbRzg=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(396003)(366004)(346002)(136003)(376002)(451199015)(38100700002)(122000001)(4326008)(54906003)(76116006)(66556008)(66476007)(66446008)(8676002)(316002)(66946007)(55016003)(6916009)(33656002)(9686003)(186003)(6506007)(7696005)(86362001)(478600001)(83380400001)(71200400001)(5660300002)(64756008)(8936002)(2906002)(7416002)(52536014)(41300700001)(38070700005)(43134003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1pV/UC5DOaTe61g+O0UpUIvZr2eO93CRimXwCkh5D6xp5BvzYHvXosZTgzpY?=
- =?us-ascii?Q?qXPkYsJ0TGHSaptn7ADcoBOdZBGLXegAVHiv8XIlOh96rsGBldCCy2vlAf4f?=
- =?us-ascii?Q?QOwd7M6n267IbJgPVNTte6VPuz12S8PsX7lGXnobtgXWm84c0Nf2ajMV9vW9?=
- =?us-ascii?Q?YrLoDL3zj4Imglf/CCRrKqb39KyEQQ3IrAchCcaQ5fzD2Qkevyz/BVyKPNmH?=
- =?us-ascii?Q?kpiiaFZeRG1EKJcAGWhjvM3Rwco2DoW+B+ybf76E8T4BxG7sMkeRTMXJuW5I?=
- =?us-ascii?Q?x6q1dkEpDd4SD/YXjA/j/SurY3+llg1wLYLlawyPp4s0YsaBIEsOarqfVvsR?=
- =?us-ascii?Q?jI1sFwlm9OOkjEQ7/mI8HCBppudVoG197ZzTC/XDzgioiM6bAzBZ+pbCjTRA?=
- =?us-ascii?Q?/2pXyyVviP6NYXzo9aXZ6VGzZMiRWF2tZfOhvrdUAtn4PuX7v5ey7bJkd/kV?=
- =?us-ascii?Q?kCf2UIvJmiQRTWUXwr7ku58vfJHES1pQ/q+L4S6wzfQwfY8gXcphn0KHSX+S?=
- =?us-ascii?Q?mZ3SxNAsm969bDYPpW/o1eN/zAGbPepDYTHc4MjSyS7nFxraFcZEvF3IW8e0?=
- =?us-ascii?Q?SYmbB15/8PuGyUQsLd2wrZqDtR3jT3q+Hd03PYrphYa55YNwftSsAWYOOfA4?=
- =?us-ascii?Q?P4yHmDbsNA9ST5smtfkPRS1CjMRAjLN94yZlBAbSBuRkPeJnk4t+pMw4xqk/?=
- =?us-ascii?Q?L7iSIXygamIR+VNXba1F66AP6ZrJTnmrw3JHY8w+GlGZq95bYRO3aO6s3VxE?=
- =?us-ascii?Q?uxP4mEXpxDSNHHHoT7/S1aEVYV7Yo5ds53mLgQ7rMrjihCf4O99u9TEMIu7c?=
- =?us-ascii?Q?HL1X3Qd1RBAjMi8LwaqntOJ9J1Fv4tfdrjiM02+/S0WVZHMvs19r5GOCb2WL?=
- =?us-ascii?Q?5a3E+KXTbMDF0qgWu9zH6sONj/+h3OV/HdLTFy3LIHxt6jvt94PNObPy8UiB?=
- =?us-ascii?Q?zrOLRWT6vMdSkdOjfHGGLnKhG06jO2Nm6HaPeg+VWiCMAwmVu/3tb+xMpoRn?=
- =?us-ascii?Q?DLF+lrsQWfY0ndqmCFxodYYDwwvpiG1gHMSIOzMvpYBmbyu75b/mjW+3MBeN?=
- =?us-ascii?Q?stbi/LfndLDF7RpWTZ1lU69HvpZJtzlA+egAbYdQKgfE2PSqNsHaRjBXCpjs?=
- =?us-ascii?Q?cVnq/D79onUP+QTDouttdn3dOpCFPp6u5e89xdIMlqxQSmP3B4QxOrXYf43v?=
- =?us-ascii?Q?UacQUXK8oeSuDnOHl3+9k8uY8cziCq7WM7AdG85fc5sycnKR7wqY97d9cnrF?=
- =?us-ascii?Q?HefXruEcNhscJBOXHkGG9o6kbr87NH9otRZoFC3/VNDLZSquFrJ8MItjWHy1?=
- =?us-ascii?Q?qfcwxVI+LPhxFwL/Qo6PsGvEsHyUM+2ZHP2RP3wQNySbyZvObz8ZoEZlK5vz?=
- =?us-ascii?Q?d8CVkEZrB9P9XLvvaE8YUtq1OgqvH0LNmfrwoQDydd9jOQdj45brjSjSaSAj?=
- =?us-ascii?Q?5/ZOFlNH/EqILA5pk2mmB8/gcLq1+3sf/6x45WAioR/LV0zNpxXADuap8FTT?=
- =?us-ascii?Q?BveNCGtU6fxEAulUSauIeWq71cQeKtRiS+4yHiHuw1RTGlZyTMmxWslXazUB?=
- =?us-ascii?Q?HIMjHMlNAhvDw484UKNQy0NNSQnOZcyu/FadgdlgJcJZZWKQWITvzU/Z37yN?=
- =?us-ascii?Q?BdgosbL1CZH9zSYDBWfZl03gfRPWgcBc7cm99AB6AvxrGZl4zJMZK6uvgS70?=
- =?us-ascii?Q?zKrgFQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ bh=Rcx6g1DAG5UQalUU7Y0ij/TS+EPCQDGlkJV517EIp+s=;
+ b=LGLXnCsJwUIEn2MdxNHhCDwgIhCZ6wWpsFxPp8hiix7uZoU++T7E3Ch8JqYAlb7uEUNLE30UtMQxweeO7tWyQ8XKSFMjAgDc6fdeuiJHURlF3mmR2EebfRZVrRFWgVEkIqPgB1gZ0SgAUOwt6Wn1TcDkh32O/Sum6cFAIZxX6WY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ DM6PR01MB4377.prod.exchangelabs.com (2603:10b6:5:77::20) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5632.19; Wed, 21 Sep 2022 07:57:37 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7d50:e907:8e2e:1ff0]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7d50:e907:8e2e:1ff0%3]) with mapi id 15.20.5632.021; Wed, 21 Sep 2022
+ 07:57:37 +0000
+Message-ID: <60188017-8f96-0773-7eaf-43d877f876b2@os.amperecomputing.com>
+Date:   Wed, 21 Sep 2022 14:57:27 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.2.2
+Subject: Re: [PATCH v3 2/2] ARM: dts: aspeed: Add device tree for Ampere's Mt.
+ Mitchell BMC
+Content-Language: en-CA
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+To:     Arnd Bergmann <arnd@arndb.de>, Joel Stanley <joel@jms.id.au>
+Cc:     openbmc@lists.ozlabs.org, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com
+References: <20220817071539.176110-1-quan@os.amperecomputing.com>
+ <20220817071539.176110-3-quan@os.amperecomputing.com>
+ <CACPK8XdDpG3ONM1=-E6qvHL1FgMNWSMPoL_sVGJK6BmmnT3w_w@mail.gmail.com>
+ <CAK8P3a2LZKfZpdTQ-R4o9mJ6dk52VRF+Bxj=PJEx-1MA4yH8+w@mail.gmail.com>
+ <673e200f-f458-7866-f956-3d5bd7160a49@os.amperecomputing.com>
+ <CAK8P3a3MU7shuBpcpRNC5L6xxQmSy8FXCX1jvYXhv-NT3PMYOw@mail.gmail.com>
+ <396a3c24-2a86-0d1c-07f9-386a0de1d473@os.amperecomputing.com>
+ <b34ab4d0-c14f-caeb-afde-01655b35a236@os.amperecomputing.com>
+In-Reply-To: <b34ab4d0-c14f-caeb-afde-01655b35a236@os.amperecomputing.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR01CA0052.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::11) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR01MB7282:EE_|DM6PR01MB4377:EE_
+X-MS-Office365-Filtering-Correlation-Id: 42aa250e-6223-463a-1285-08da9ba6f30d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nltj+pcHittL5thjtioupy+JLVdCQnr27vEgNBZT+bYP2x3w6SoZLuAxRXRANCD9JulTzQNq2X+Br2o9hUKSogrMo6pcPFmDAQWZepYCtjGAYd9qRruyQeQIxpAyK8uAIBOQHdLHGmJ52SIE5yq+FpaO0Q3SBKV5a9wvN+NfIxnUCj1W3BopfREcIcyYmkVJcAFZ+uyineDs+jcwHGiMczHpPBLdDHjULe/OjjUx2aGjGazFyHAX6gAnTpIk8LloL7xi0zJZxyZ9eybYI/VhOQoxW/YhSVBbNnIwnijodDDzco04vbweSb6bekW/pXp5WJ+32J/y+mMV5f4GUv2dv+L2jN79y5MsESRRStwD+ThI2wCrYGhDlA0IB91G5qDBPux2jhZh6sC6eOuiZw9OMIWqugils93nmDKtABmb72Lp7tpBCi/7R4YSCItBIfxiyPoI8DdQhEbv097vlsNecJZatDJFNYdtYiw7q2iT04KSUkddGL3oprwRrSAwwVMtVf4VbbvDA9FE3v8VSWmxLMJbEAmJbh3Cn7D//5GSuWvLfnRv58/lZuxAb8MdQgh9QiAvGrbnIXtM/MqzmF3nPQUqUmEENn6jO5ZwgQaxgLHfXB5FERBnCjZpKFQ6a+2j6GOFHsucG25V40zJOKkpvkvbLNEEZG8gDE6o+BsgHTbIJ9jrXpUo/k/Mn81NkDiSp6VrHDh82Qjblb/p/HlaeaS2rC8IUC+SeHVV1NJ7WKQ1/cMhgtyRV7ld0yzc6jhEF3xGmy64QCwIjgp+prPVIsqUf1VnjsVJ5ud6Go49DNQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(376002)(396003)(39850400004)(346002)(451199015)(316002)(5660300002)(31696002)(31686004)(186003)(478600001)(54906003)(2616005)(110136005)(83380400001)(8936002)(7416002)(4326008)(53546011)(41300700001)(52116002)(38350700002)(107886003)(8676002)(38100700002)(2906002)(66476007)(6486002)(6506007)(66946007)(66556008)(6666004)(26005)(86362001)(6512007)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QWVmbWd3UkVzMDJ6eml5QVBYdWNuVUNZaXg2M0x2ZnhPekNWMnZ1ZW1OMXNV?=
+ =?utf-8?B?NU9xQVNuUHJRQ0czTTlNdGlrVDJaL01hUlZUZFF1STRiaDJWZVlLbUQ1QTFO?=
+ =?utf-8?B?Tm90SlNJQm5mWU9HVXNNVzFVMFdBdnFoV2s4R0htTFpRaVdsWDdiZHZuM1NG?=
+ =?utf-8?B?Tkg4L2ZXSnNZOVhYZHBjdXRJNG0reVg3LzJ4RDdMeSsybG0zWktvRis0RFBI?=
+ =?utf-8?B?TXZubm5DaTZWTW9uYk0zSEphcWVpVHRyak1EREZjendGYXRQSkdHRVo0YmpC?=
+ =?utf-8?B?TVk0dXBlVm9OYzNJSjYwaGw0djliVzZ5ZFNtUlcwUzdzeFNYUDIwMDM1QllR?=
+ =?utf-8?B?ekYzOTBqZEl0VEJHN3FSNDNTMTBZMTh0T0R5QzZLUWVIS2JjcHI5cmhTTVh6?=
+ =?utf-8?B?OW1KMEJoV24yVitnNmRDZVZnbUlPQ0EvbWxnMTJPdlA2YXJUdDEvUjN6alRO?=
+ =?utf-8?B?eW1COUN3ak8wNUhrN0F4aUh4MDU1ZHpZWlowS0FwZXAxSUd2OHV4M1g1QnlN?=
+ =?utf-8?B?bVExV3NPSEYvY3dZVjAzRWhqTVRwemV3bTZwcVNEQUZQZThPdkhNUlhtQXdC?=
+ =?utf-8?B?T2xYbUVGSmh3eVJWQU5Rb0FHNW83QVFvV0Z2aERtSjdIK0haTlRZaU1pYllV?=
+ =?utf-8?B?bkh3RUswdHFoeHVhK1R6RDZZVytpMHpSZzR2dkhDNERjakVnOWhTTDAyeCt1?=
+ =?utf-8?B?MlluRXJPTU9SVFZDWG9aemhZU0U3YUJXOFNDWTJveHNLMjZET0VzVUduemMz?=
+ =?utf-8?B?c1FDeWlhVFpLZDYwb2o0aGJWRzB4Q3F3SFZtMlgzSTFTc1VFOTVBWFplQjhI?=
+ =?utf-8?B?azdMaVQ4TzBVTEY1U2dOcndwZnlsbzBNL0lNRjFzeE5uS3owRmplTHpjMloz?=
+ =?utf-8?B?SmF2dFFHV0w0dDBNN20yTFJjY2tzMkFaUWE0cmJpRm92L2pHS2wzeE5aMVU2?=
+ =?utf-8?B?anlQbHQ4QXdhRGRBdUd2Q0RFdHVUQ1YzMCtVU0JWMFhjZi9uVC96NWFXK05K?=
+ =?utf-8?B?ZkNvZzdXcDBxZy83SGtZcW45SG5JS0p0aHgvSDU2bjJXTmdDZG45WXNsL3I0?=
+ =?utf-8?B?UTIyZndFaWVubGQ3bEVtd0RGK1dCRHpwV3ZmczJBNXByQllOUjNES1paanE3?=
+ =?utf-8?B?ZnA0aWdLQ3E1elZhVnlLdXVrTEg0T2FTWUFaRW9BT04rSWRFdjg0QUp4blpR?=
+ =?utf-8?B?SFB5akxNbW0zZkpidjcvR2ZjcE00QVV0c2ZXRE9JKy9wY2pGWHBTaEFuSFc4?=
+ =?utf-8?B?NityR0tRUjFmZ1JsT0ZNaHBCRnZEcFNvVkVGaTVpN2NzZnhRdTdueHNTQUpw?=
+ =?utf-8?B?Mk9KTDJxRHZjbEpTSGlRRkpqd2Rwb01RUk93andrSEcwLzZURG1WQTNCaTBp?=
+ =?utf-8?B?L2EweGdFbmMzZitQcGx1SnZydzZYYk9KUlUweFFaNnVzMXVNMWdNaE1tVkZG?=
+ =?utf-8?B?akNSM3dQQks0dzlPUW1QdlgwVnNqUGJ0ejB5eDZ2ZGdVQ21rV1p3QlpaNTd3?=
+ =?utf-8?B?RkpPNWZ6R2lBSjVOYUlTanhvdjNWWURZWUd0VTRMQW5lRTlkRUpRMnVPejVT?=
+ =?utf-8?B?WVA2azRFUFVIVEdURk5MZEZkQTNiSkcraDV4L1k4SmNRR1FQTU55emJzeWll?=
+ =?utf-8?B?T1JLSnB1b3piejZ0MWU2dlJsdThCL0lOMERybFNxOWxyRHZRcGNkU2ZvMmZo?=
+ =?utf-8?B?d2pRQ3Rqcm02ZmE2V2tNUW1ubjFjZUYzZDl3NWpPSGl4UnhmeFlzNm0vZ1Uw?=
+ =?utf-8?B?cktJQkJyVXVIenI1R09JOTVsS2xhRDE5S0xJUEdVRXd2b0tXVjJYS0FjcmRO?=
+ =?utf-8?B?RUM1K2gvVEUxZXdVVDY3c0ZCemNsK1JCUVdiaFhGTU0wNjIxN1RkV0NBRSts?=
+ =?utf-8?B?bTdSNG11Rm5TT3VGTlJsMVJLNzhEWnNhNGVibVJ2dnNLMzQ5L280SnpKcEY4?=
+ =?utf-8?B?ZGFTU0IyTThHS2lsY2lRYnVVTXBZdVVjWElhazIram05MHBGVktPR3FrcFBp?=
+ =?utf-8?B?ZW9UbGRZYkQzbzZqdVFSbHlUaVRxZlorN1RUZTNBeVB0Q3RMcDFlS0tpSmFX?=
+ =?utf-8?B?aUw1Mjcxb1hjR3ZxdU5xc2NncjRpZ25tdUV5WjhiNDdGZzljYk0rdTF5OHYv?=
+ =?utf-8?B?dGNmZ2FDZUxrL1JYL1pyQnVGMEJjOGFUcSs1c2VCeWpzYTkyNDJkcTFvRk5m?=
+ =?utf-8?Q?nqkKOJ01LnGodRQz/a/PbEA=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42aa250e-6223-463a-1285-08da9ba6f30d
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c219bfc1-d45a-469f-9b48-08da9ba67e61
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2022 07:54:21.2945
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2022 07:57:37.4536
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IWcAPw3jcpUSorW7T2vMEH3Fgh6Fo5AaC7q2WFMzRTQQib1+LjiuuSvXl2jX600ivbgQwf3YRIBKFT6s5QqPKtV/HHP+YrASomMhCpZpaSwpQppqtyoImWO2s8z+3hl6
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5815
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WXvF3sPGefCPKceNTvTr82nIKhfb62LiXaJvMzqxvwuOeh9czV8ak3dJNDd5ojuAnnRIT/blvk4Vf3EyOxIJmNNMeH63kBOvA46lWQr42X0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR01MB4377
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -133,52 +140,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hi Arnd,
 
-> From: Andrew Lunn, Sent: Wednesday, September 14, 2022 9:14 PM
->=20
-> > > > +		port@2 {
-> > > > +			reg =3D <2>;
-> > > > +			phy-handle =3D <&etha2>;
-> > > > +			phy-mode =3D "sgmii";
-> > > > +			#address-cells =3D <1>;
-> > > > +			#size-cells =3D <0>;
-> > > > +			etha2: ethernet-phy@2 {
-> > > > +				reg =3D <3>;
-> > > > +				compatible =3D "ethernet-phy-ieee802.3-c45";
-> > > > +			};
-> > > > +		};
-> > >
-> > > I find it interesting you have PHYs are address 1, 2, 3, even though
-> > > they are on individual busses. Why pay for the extra pullup/down
-> > > resistors when they could all have the same address?
-> >
-> > I don't know why. But, the board really configured such PHY addresses..=
-.
->=20
-> That is not wrong. It could be the hardware engineer is used to shared
-> MDIO busses, and just copy/pasted an existing design, but then
-> separated the busses?
+I'm really sorry but I have to ping you again as I'm confused and still 
+wonder if anything else could be updated to this patchset. Could you 
+share some suggestion on what to do next ? or should I resend it?
 
-It's possible.
+The only thing left is Joel's complaint about there is no output to test 
+with bootargs removed. I have tried and see it could be fixed by using 
+the -append option with qemu.
 
-> You might see actual customer boards putting all the PHYs on one MDIO
-> bus, to save pins. Linux has no problem with that, the phy-handle can
-> point anywhere.
+Besides, Joel also says it "looks ready to merge" and give a Reviewed-by 
+already.
 
-I see.
+Thank you and best regards,
+- Quan
 
-> One last thought. Is there anything in the data sheet about the switch
-> hardware directly talking the PHY?
 
-Yes, the switch hardware can talk the PHY directly.
-
-> Some of the Marvell switches can do
-> that, but we disable that feature. The hardware has no idea what the
-> PHY driver is doing, such as selecting different pages.
-
-That's interesting.
-
-Best regards,
-Yoshihiro Shimoda
-
+On 13/09/2022 14:42, Quan Nguyen wrote:
+> Hi,
+> 
+> Just a gentle ping on the patch.
+> 
+> Thanks and best regards,
+> - Quan
+> 
+> On 05/09/2022 16:45, Quan Nguyen wrote:
+>>
+>>
+>> On 25/08/2022 19:35, Arnd Bergmann wrote:
+>>> On Tue, Aug 23, 2022 at 10:27 AM Quan Nguyen
+>>> <quan@os.amperecomputing.com> wrote:
+>>>> On 18/08/2022 19:06, Arnd Bergmann wrote:
+>>>>
+>>>> Thanks Arnd for the comment.
+>>>>
+>>>> I think adding -append could solve the issue.
+>>>>
+>>>> But as the bootargs still exist in all other
+>>>> arch/arm/boot/dts/aspeed-bmc-*.dts should we still keep bootargs for
+>>>> this dts?
+>>>
+>>> I think it should still be removed. Only 238 of 2547 set the console 
+>>> using
+>>> bootargs, so that would make it more consistent with the other files.
+>>>
+>>> Changing the files that have the same issue is a separate matter.
+>>>
+>>
+>> Hi Joel,
+>>
+>> In the meantime, I'm just wonder if you could help to test the patch 
+>> with -append and get it merged.
+>>
+>> Thank you and best regards,
+>> - Quan
