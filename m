@@ -2,60 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A56CE5BFA9F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40FEE5BFAB7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:21:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231228AbiIUJTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 05:19:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50878 "EHLO
+        id S231623AbiIUJVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 05:21:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231774AbiIUJS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:18:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D680F915C8;
-        Wed, 21 Sep 2022 02:18:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 76F72622CA;
-        Wed, 21 Sep 2022 09:17:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1966C433D6;
-        Wed, 21 Sep 2022 09:17:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663751847;
-        bh=U2I2rOq/quTseGcL7DoJKHssxhvKxWZ6qbZ9HMmsUr8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=MMANVzFW/zdQo1U0bB0i/Nms58BzOuxVMG+5x1D4ML5Tkw20Vhw0oUVrTQjQAVnpH
-         BJ/L64eo/6IyMcffKvO8Ewcdt0PxjXDknoj9Waxlk+YNi9HbxabUvz94AI7Uh/Q2nw
-         k+uAwa+VU3/nkKIiJ1s0XMyuVkew6sI3Y6v8oPKyhM9a5Pco0Y+ef4x+B3XMhdlNlQ
-         rmJb9lqBFiH1xd+Tx5aEKPKCK4Nc/GREVndzeN117qo4v7GxTA0+mqPAeww3j1TVWa
-         XBxIzXWfMs+Z7cJqr5iFuw2dqDzVvFRybbHW0l7vMacU/KyMus14VkOW9nWfJGTygp
-         MBf0CaGG0YG2A==
-Message-ID: <eec6e8b9-f39f-425a-4217-9c15b52600af@kernel.org>
-Date:   Wed, 21 Sep 2022 11:17:20 +0200
+        with ESMTP id S231599AbiIUJVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:21:20 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3368E90C73;
+        Wed, 21 Sep 2022 02:20:16 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 22BC2139F;
+        Wed, 21 Sep 2022 02:20:23 -0700 (PDT)
+Received: from [10.57.18.118] (unknown [10.57.18.118])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 661D83F73D;
+        Wed, 21 Sep 2022 02:20:14 -0700 (PDT)
+Message-ID: <45d2e6c2-3b4b-5720-0431-002c74b1f9cc@arm.com>
+Date:   Wed, 21 Sep 2022 10:20:08 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v3 0/3] Add watchdog support for MT8188 Soc
-Content-Language: en-US
-To:     Runyang Chen <Runyang.Chen@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
-Cc:     angelogioacchino.delregno@collabora.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20220920105622.25666-1-Runyang.Chen@mediatek.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220920105622.25666-1-Runyang.Chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: Similar SoCs with different CPUs and interrupt bindings
+Content-Language: en-GB
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <CAMuHMdUPm36RsxHdVwspR3NCAR3C507AyB6R65W42N2gXWq0ag@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CAMuHMdUPm36RsxHdVwspR3NCAR3C507AyB6R65W42N2gXWq0ag@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-10.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-10.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,22 +57,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 12:56, Runyang Chen wrote:
-> From: Runyang Chen <runyang.chen@mediatek.com>
+On 2022-09-21 08:46, Geert Uytterhoeven wrote:
+>          Hi Rob, Krzysztof,
 > 
-> Based on tag: next-20220919, linux-next/master
+> This is a topic that came up at the RISC-V BoF at Plumbers, and it was
+> suggested to bring it up with you.
 > 
-> Refer to the discussion in the link:
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20220721014845.19044-2-allen-kh.cheng@mediatek.com/
-> The other wdt compatible strings are unchanged.So, won't apply the
-> series above
+> The same SoC may be available with either RISC-V or other (e.g. ARM) CPU
+> cores (an example of this are the Renesas RZ/Five and RZ/G2UL SoCs).
+> To avoid duplication, we would like to have:
+>    - <riscv-soc>.dtsi includes <base-soc>.dtsi,
+>    - <arm-soc>.dtsi includes <base-soc>.dtsi.
 > 
-> v3:
-> Rebase on 6.0-rc5 and add reviewed-by and acked-by tag.
+> Unfortunately RISC-V and ARM typically use different types of interrupt
+> controllers, using different bindings (e.g. 2-cell vs. 3-cell), and
+> possibly using different interrupt numbers.  Hence the interrupt-parent
+> and interrupts{-extended} properties should be different, too.
+> 
+> Possible solutions[1]:
+>    1. interrupt-map
+> 
+>    2. Use a SOC_PERIPHERAL_IRQ() macro in interrupts properties in
+>       <base-soc>.dtsi, with
+>         - #define SOC_PERIPHERAL_IRQ(nr, na) nr          // RISC-V
+>         - #define SOC_PERIPHERAL_IRQ(nr, na) GIC_SPI na  // ARM
+>       Note that the cpp/dtc combo does not support arithmetic, so even
+>       the simple case where nr = 32 + na cannot be simplified.
+> 
+>    3. Wrap inside RISCV() and ARM() macros, e.g.:
+> 
+>          RISCV(interrupts = <412 IRQ_TYPE_LEVEL_HIGH>;)
+>          ARM(interrupts = <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>;)
+> 
+>       Cfr. ARM() and THUMB() in arch/arm/include/asm/unified.h, as used
+>       to express the same operation using plain ARM or ARM Thumb
+>       instructions.
 
-If you rebased in, then why do you keep Ccing different address than one
-in scripts/get_maintainers.pl?
+4. Put all the "interrupts" properties in the SoC-specific DTSI at the 
+same level as the interrupt controller to which they correspond. Works 
+out of the box with no horrible mystery macros, and is really no more or 
+less error-prone than any other approach. Yes, it means replicating a 
+bit of structure and/or having labels for everything (many of which may 
+be wanted anyway), but that's not necessarily a bad thing for 
+readability anyway. Hierarchical definitions are standard FDT practice 
+and should be well understood, so this is arguably the simplest and 
+least surprising approach :)
 
-Best regards,
-Krzysztof
+Cheers,
+Robin.
 
+> Personally, I'm leaning towards the third solution, as it is the most
+> flexible, and allows us to extend to more than 2 interrupt controllers.
+> 
+> Note that this is actually not a new issue.  For years, ARM SoCs have
+> existed with multiple types of cores on the same die, using Cortex-A
+> cores for the application, and Cortex-R/SuperH/V850/... cores for
+> real-time and/or baseband operation.  So far this wasn't an issue, as
+> only the Cortex-A cores ran Linux, and we ignored the other cores (and
+> the related interrupt controllers and hierarchy) in DT.
+> 
+> What do you think?
+> Thanks for your comments!
+> 
+> [1] https://lore.kernel.org/lkml/20220815050815.22340-7-samuel@sholland.org
+> 
+> Gr{oetje,eeting}s,
+> 
+>                          Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                  -- Linus Torvalds
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
