@@ -2,173 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2D605BF6EF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:05:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7972E5BF6F2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:05:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbiIUHFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:05:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43212 "EHLO
+        id S229572AbiIUHFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:05:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbiIUHFF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:05:05 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F8DD27FF5
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:05:03 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id k10so7679219lfm.4
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:05:03 -0700 (PDT)
+        with ESMTP id S229774AbiIUHFt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:05:49 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B6F491E3
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:05:47 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id n124so6886471oih.7
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:05:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=sx/lrSth5nujqjHlbG4gs9XUHweVDL0pqpPRXfUkt5A=;
-        b=XPcKtyGyUjf2RRoiutLMnHiMqd5AUH19sxuidJt/2qc5pLMDNDASfB6fPPJIldseMd
-         p4PjEwovWFLPd5z0jUrCIrkqYk46fz32k1pFt0Uz8UXhXfBJrBgtizGMGc76kDu5Te+s
-         YH4FxBVLxlk3ITyMEtvkRIl9HWd3FWn6UKDRSyRSfSi6pBV1qhY0uTS5fDY5Zn6leIg9
-         Y6zL9VTSjE7Xnpmmqt9EH8vf7sepL+AS6Zzn8a93XiaYbSQvh9YVYxCnaPYevv7cD2YD
-         eFIzprDnZGD1yqMP9g3JasLYVVEeUTJqR+9xjKm+s+fXBKdIkjRxgs/j/QfolUNOquzC
-         I75g==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=vRD7RCw4AxN9EYO/NwZ6VqxDJVNR/icyfHqDUf/Ew8Q=;
+        b=EucMCq1AVvBxe2rGx9nc8Sdi7ebYTLTQ6GDbKtHOncAaDc9OIF4VWG9WU9rgQwrA2s
+         cMB/NfmBjTEHQEsSoZfxjUX88bHkITYLkrWGP0It7MV0ZnCiBPLh2DSp1JobIL/dRK38
+         PBvIBjSCNDMDdd+Kh4EpeTZ7WROPU77CUeNispv5oIYFXYJmnPD1XF+CrlM+zzT6+UhD
+         xBRr3SrEmskhWFgowUjOU77jbUXdIaTfFCswJSAVI8EXkGx1PQRLz2hyz5i07sbkcrJm
+         7e9iQi5yM50b9EdyhtFe4qlaAF//Hb6F2U+Q2dVTrYrFQ2eJu7n6uyevz/Nmm4Yuffu3
+         Vw7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=sx/lrSth5nujqjHlbG4gs9XUHweVDL0pqpPRXfUkt5A=;
-        b=ehpSGSYTZbddCunYFc4Ex32KMiL5uMHykyDfU3+NO9oEgl0wWOv9Z7Fv/rav/V+wAz
-         wAhQ2aOO9ml23wAeoIVMMArPWCvZ0nEdWRfgclvD/3iThdg2kHPRS+fNgS1aPZDk8PKG
-         t9aINxQTl8qosy6P66Qdy06Xid6tqhFlnOSmF7byAxilqGqcOw55uJPHisjFCPtjhHTd
-         DQC24OdxKAMGhTPanbMDoGKToB6TBYlBgo9V1KSjBgQcFyx6X0CSeDgUg5VEm8DRdaCc
-         RST5CF17ge6uDZ2yX4KDKHjutzcknYw4L6j0nUu32lw68+XEitugemI7FFJQEn+Erehm
-         gMHw==
-X-Gm-Message-State: ACrzQf3+jgKM1fiplcCQB8xj6jrCdY3P14tNjw2bfeH+WMMUdEJH6Dng
-        FLY5PXGlIBEGsA+rWVwXiCBwAQ==
-X-Google-Smtp-Source: AMsMyM69Jrp+m5vAD9HV9L/xj1HYJRmo29oV2zG6Ek0RJIXp7T9Z1DalUlYmUOiGpJgjupV7fVUDzQ==
-X-Received: by 2002:a05:6512:261f:b0:49f:eb39:4762 with SMTP id bt31-20020a056512261f00b0049feb394762mr2140806lfb.670.1663743901905;
-        Wed, 21 Sep 2022 00:05:01 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 5-20020a2e1445000000b0026be23f24efsm314442lju.18.2022.09.21.00.05.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 00:05:01 -0700 (PDT)
-Message-ID: <fb901889-d769-ba56-d4cb-2d9d8b50f74f@linaro.org>
-Date:   Wed, 21 Sep 2022 09:05:00 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=vRD7RCw4AxN9EYO/NwZ6VqxDJVNR/icyfHqDUf/Ew8Q=;
+        b=yzKfP9Hfh2lPnFw2RjhImtXGYCUtCOVm0D8js1zPiuhAF7h6LkvqxorxfInCqmcy01
+         e6cPa0vbBiZJ7G0AtGvp51k16ZCr2h5lVUrdsDfdo2DWw5aPCT7jLWAXl5fH/1IsD82w
+         GcH2UGQZFJ+Nt+4b53wy8pRFekfZmlNSh39gCrJQwl5ecQ3GqkCMiArqbtoo3yatuTl5
+         CpVpvZGNQYg53yEAovD1u/qRS9QYV03gJ7SkvpxGUC7Ssu53UBovU382wYdEwxViagQa
+         S8Fx3UNP2khT57UvfXX3tudVH19a+G776MFsOGkDQe/7UW6vlINB506RniQ4LW94TEMA
+         7Dpw==
+X-Gm-Message-State: ACrzQf2xoAEOzn8fMTOWDTI/pgh3QSOzoMlf8yfmpvIRxr2Ee1VIbUD5
+        n138eqdmaGc5GulmvJX4nBUza6tPFercQIaSUnw=
+X-Google-Smtp-Source: AMsMyM4rxmxfn2JAo8JB7woDQpCZe0w32DNihbZoyeArBY07nmQqsc//gKcOoXzj4SJ04Fs0hpdlBt8OZxkhwJxMiho=
+X-Received: by 2002:a05:6808:23ca:b0:350:92c4:3422 with SMTP id
+ bq10-20020a05680823ca00b0035092c43422mr3266515oib.144.1663743946600; Wed, 21
+ Sep 2022 00:05:46 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to
- json-schema
-Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+References: <20220920052735.582768-1-sergio.paracuellos@gmail.com> <4a6d5f62-a0af-3117-1dff-2dee955dded5@linaro.org>
+In-Reply-To: <4a6d5f62-a0af-3117-1dff-2dee955dded5@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 21 Sep 2022 09:05:35 +0200
+Message-ID: <CAMhs-H8BJDuN-py3eOX8dbH1YO0rz6UZR3PEgB3rbs3JxzXDzw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: spi: migrate mt7621 text bindings to YAML
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     zhanghongchen <zhanghongchen@loongson.cn>
-References: <20220921015605.17078-1-zhuyinbo@loongson.cn>
- <20220921015605.17078-2-zhuyinbo@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220921015605.17078-2-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 03:56, Yinbo Zhu wrote:
-> Convert the loongson2 thermal binding to DT schema format using
-> json-schema.
+Hi Krzysztof,
 
-Incorrect subject and incorrect commit msg. There is no conversion here.
+On Wed, Sep 21, 2022 at 8:44 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/09/2022 07:27, Sergio Paracuellos wrote:
+> > SoC MT7621 SPI bindings used text format, so migrate them to YAML.
+> > There are some additions to the binding that were not in the original
+> > file. This binding is used in MT7621 and MT7628a Ralink SoCs. To
+> > properly match both dts nodes in tree we need to add to the schema
+> > 'clocks', 'clock-names' and 'reset-names'. Both 'clock-names' and
+> > 'reset-names' use 'spi' as string so maintain that as const in
+> > the schema.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> 
-> Signed-off-by: Yinbo Zhu <c>
-> ---
-> Change in v2:
-> 		1. Add description and type about the "id".	
-> 		2. Make the filename was based on compatible.
-> 
->  .../bindings/thermal/loongson2-thermal.yaml   | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
-> new file mode 100644
-> index 000000000000..2994ae3a56aa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+Thanks!
 
+>
+> (plus one more comment)
+>
+> > ---
+> > Changes in v2:
+> > - Address review comment from Krzysztof:
+> >     - Rebase onto last kernel version.
+> >     - Drop address-cells and size-cells.
+> >     - Explain deviations from the original file in commit message.
+> >     - Drop reset-names as required property.
+> >
+> >  .../bindings/spi/ralink,mt7621-spi.yaml       | 61 +++++++++++++++++++
+> >  .../devicetree/bindings/spi/spi-mt7621.txt    | 26 --------
+> >  2 files changed, 61 insertions(+), 26 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/spi/spi-mt7621.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml b/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
+> > new file mode 100644
+> > index 000000000000..22879f7dcb77
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/spi/ralink,mt7621-spi.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +maintainers:
+> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > +
+> > +title: Mediatek MT7621/MT7628 SPI controller
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/spi/spi-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ralink,mt7621-spi
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    const: spi
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  reset-names:
+> > +    const: spi
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - resets
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+>
+> You could make clocks required, if you know that they are in fact
+> required for hardware to operate and they are always provided (e.g. not
+> hard-wired internally somehow).
 
-No improvements here. You ignore my comments, so I am going to NAK it.
+CLocks are required by MT7621 SoC but MT7628 is not using them in current DTS:
 
+https://elixir.bootlin.com/linux/v6.0-rc5/source/arch/mips/boot/dts/ralink/mt7628a.dtsi#L187
 
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/loongson2-thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Thermal sensors on loongson2 SoCs
-> +
-> +maintainers:
-> +  - zhanghongchen <zhanghongchen@loongson.cn>
-> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
-> +
-> +properties:
-> +  compatible:
-> +    const: loongson,loongson2-thermal
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  id:
-> +    $ref: '//schemas/types.yaml#/definitions/uint32'
+That is the reason to not include them as required.
 
-No improvements here, so let me be specific - you need to really justify
-such property or it cannot go to schema.
+Thanks,
+    Sergio Paracuellos
 
-> +    description: |
-> +      Specify the thermal sensor id.
-> +    minimum: 0
-> +    maximum: 3
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#thermal-sensor-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - id
-> +  - interrupt-parent
-
-Why?
-
-> +  - interrupts
-> +  - '#thermal-sensor-cells'
-
-Use the same style of quote: ' or ".
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    thermal: thermal@1fe01500 {
-
-How other similar nodes are named (in other DTS files)?
-
-
-
-Best regards,
-Krzysztof
+>
+> Best regards,
+> Krzysztof
