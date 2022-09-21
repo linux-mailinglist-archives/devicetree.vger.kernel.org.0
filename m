@@ -2,99 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCE845BFC74
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 12:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08C935BFC9E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 12:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230142AbiIUKh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 06:37:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43844 "EHLO
+        id S229728AbiIUKzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 06:55:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229911AbiIUKhy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 06:37:54 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABE08883F0;
-        Wed, 21 Sep 2022 03:37:52 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id D6A42240003;
-        Wed, 21 Sep 2022 10:37:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1663756671;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hRyV869MMgVK7tdzah/59H1NCr8I0pXUftnnb2Omlnw=;
-        b=BfwpWdFGgsgb6hcA0xwT4keRDMomtfabg9ZMIfH4FnLef2kMtqWK7Daop0sNNTzBuhLL8N
-        s23992Tiq5yUiGtoLj+i2TImgmcDkGg4sxoGmDZQxRA6N1FC4wIVpDveTeygb5Wju/9IHd
-        iG0Q3/wfT0RCQWF/PgHPqSsx49n+ymxi5MBdZ9NPH16LnpHkFwsrtbTCu2uoCUj3WthKLY
-        o5zszKzjLpYht9Nvp0bKhKvCFVZJ3T0lPxYC8EYToa0AZDn+fDLOuetKICQRKhgevkTWSx
-        IqJntZ5h0APBBEHjpxkEOhHhzPLGTLDFPcAz86Wxaa0895v6mCtLUXJAs/FEvg==
-Date:   Wed, 21 Sep 2022 12:37:45 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S229626AbiIUKzi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 06:55:38 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73A3990186;
+        Wed, 21 Sep 2022 03:55:37 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 874626602028;
+        Wed, 21 Sep 2022 11:55:35 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663757736;
+        bh=9ajDDjf4XIDJ5mfE/Ipbc+msyJHbTMeaxbL2UlQiUpo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=EelxG/lbMgLGqVhHOXY9iMKIoKj0+8g2oA2/04MqRuA+GZqvKcionDPdLdI7ftcBn
+         zFgGYu/xluP4hNHAnta2eIl4iglNpjIfi/lRg98OkwsjP1M29/49T4NxIiI9oMKJXw
+         LJ2741FYnxzNeUbycBCP+5H2ipdQ2G73MJF72kNbSu+Xa3nMUYHIH5SkjSqfQxkMBf
+         MW2G8d0BCpyASLjAYm6eR/weITAl72bAwmSuGRiQucpHSEctmrTluqfA/SdQ16XLlm
+         ya31QFweHxLpOp3sfoHGjwxtCjR8tRBR069YxAYZFaffi8moW0RQFoSwy//SqP9XR0
+         bkHCTuaYlyQNw==
+Message-ID: <3cab86eb-2c5d-f6ec-a326-e34e63eabb24@collabora.com>
+Date:   Wed, 21 Sep 2022 12:55:32 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Combine MediaTek MT67xx pinctrl
+ binding docs
+Content-Language: en-US
+To:     yassine.oudjana@gmail.com
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [RFC PATCH v2 19/20] nvmem: layouts: rewrite the u-boot-env
- driver as a NVMEM layout
-Message-ID: <20220921123745.61299d6a@xps-13>
-In-Reply-To: <20220901221857.2600340-20-michael@walle.cc>
-References: <20220901221857.2600340-1-michael@walle.cc>
-        <20220901221857.2600340-20-michael@walle.cc>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220919170115.94873-1-y.oudjana@protonmail.com>
+ <20220919170115.94873-2-y.oudjana@protonmail.com>
+ <4c425cf8-f9ca-969c-f8ed-688410bfb922@collabora.com>
+ <1860b0ff-5544-5e74-ccfc-beda18824927@linaro.org>
+ <YQZJIR.QQOJU0071T1J1@gmail.com>
+ <0c2ef56e-5dab-fb79-fead-adb4acef4cc6@collabora.com>
+ <H82KIR.LT5P242T2PJ72@gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <H82KIR.LT5P242T2PJ72@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+Il 21/09/22 12:24, yassine.oudjana@gmail.com ha scritto:
+> 
+> 
+> On Wed, Sep 21 2022 at 11:45:41 AM +0200, AngeloGioacchino Del Regno 
+> <angelogioacchino.delregno@collabora.com> wrote:
+>> Il 21/09/22 11:30, yassine.oudjana@gmail.com ha scritto:
+>>>
+>>>
+>>> On Wed, Sep 21 2022 at 09:11:12 AM +0200, Krzysztof Kozlowski 
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>> On 20/09/2022 10:06, AngeloGioacchino Del Regno wrote:
+>>>>>  Il 19/09/22 19:01, Yassine Oudjana ha scritto:
+>>>>>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>>>>
+>>>>>>  Documents for MT6779, MT6795 and MT6797 that currently exist share
+>>>>>>  most properties, and each one has slightly differently worded
+>>>>>>  descriptions for those properties. Combine all three documents into
+>>>>>>  one common document for all MT67xx SoC pin controllers, picking a few
+>>>>>>  parts from each and accounting for differences such as items in reg
+>>>>>>  and reg-names properties. Also document the MT6765 pin controller
+>>>>>>  which currently has a driver but no DT binding documentation. It should
+>>>>>>  be possible to also include bindings for MT8183 and MT8188, but these
+>>>>>>  have some additional properties that might complicate things a bit,
+>>>>>>  so they are left alone for now.
+>>>>>>
+>>>>>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>>>>  ---
+>>>>>>    .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 207 ------------------
+>>>>>>    .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 176 ---------------
+>>>>>>    ...6795.yaml => mediatek,mt67xx-pinctrl.yaml} | 181 +++++++++++----
+>>>>>
+>>>>>  Hello Yassine,
+>>>>>  nice cleanup over here!
+>>>>>
+>>>>>  There's a catch though: as far as I know, wildcards are not permitted... so you
+>>>>>  should, at this point, merge all of these in mediatek,mt6779-pinctrl.yaml 
+>>>>> instead.
+>>>>>
+>>>>>  Before jumping to that, though... Krzysztof, can you please confirm (or deny)?
+>>>>
+>>>> Wildcards are not allowed in compatibles. In filename wildcards or
+>>>> family name could work if they are really going to match the devices. I
+>>>> have doubts here. 67xx is quite a lot of different devices, so I am not
+>>>> sure this will cover them all.
+>>>>
+>>>> I would prefer one name (oldest SoC or lowest number).
+>>>
+>>> Lowest number (and probably oldest too but not sure since mediatek naming 
+>>> conventions are a bit weird) currently documented is mt6779, but mt6765 gets 
+>>> documented in this patch and mt6735 (this one I know for sure is older than the 
+>>> rest) in a following patch, so do I just stick with mt6779 or do I change it in 
+>>> the following patches documenting mt6765 and mt6735?
+>>>
+>>
+>> I see the sequence as:
+>>
+>> 1. You merge mediatek,mt6797-pinctrl.yaml into mediatek,mt6779-pinctrl.yaml; then
+> 
+> And mediatek,pinctrl-mt6795 gets merged here too I assume?
+> 
 
-michael@walle.cc wrote on Fri,  2 Sep 2022 00:18:56 +0200:
+Yeah sorry about forgetting that one. Anyway, obviously, do one merge operation
+per commit!
 
-> Instead of hardcoding the underlying access method mtd_read() and
-> duplicating all the error handling, rewrite the driver as a nvmem
-> layout which just uses nvmem_device_read() and thus works with any
-> NVMEM device.
->=20
-> But because this is now not a device anymore, the compatible string
-> will have to be changed so the device will still be probed:
->   compatible =3D "u-boot,env";
-> to
->   compatible =3D "u-boot,env", "nvmem-cells";
->=20
-> "nvmem-cells" will tell the mtd layer to register a nvmem_device().
-> "u-boot,env" will tell the NVMEM that it should apply the u-boot
-> environment layout to the NVMEM device.
->=20
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
-> changes since v1:
->  - none
->=20
->  drivers/nvmem/layouts/Kconfig      |   8 ++
->  drivers/nvmem/layouts/Makefile     |   1 +
->  drivers/nvmem/layouts/u-boot-env.c | 144 +++++++++++++++++++
->  drivers/nvmem/u-boot-env.c         | 218 -----------------------------
 
-Nit: IIRC there is a MAINTAINERS entry to update as well.
+>> 2. Adding MT6765 documentation to mediatek,mt6779-pinctrl.yaml; then
+>> 3. Adding support for MT6735, documentation goes again to 6779-pinctrl.
+>>
+>> This means that you're working with mediatek,mt6779-pinctrl.yaml :-)
+>>
+>> P.S.: That was also a suggestion about how to split things per-commit!
+>>
+>> Cheers,
+>> Angelo
+>>
+>>> Thanks,
+>>> Yassine
+>>>
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>>
+>>
+> 
+> 
 
-Thanks,
-Miqu=C3=A8l
+
