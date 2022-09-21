@@ -2,106 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 889885BF834
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:50:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67A775BF83B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:51:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230520AbiIUHua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:50:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52052 "EHLO
+        id S231145AbiIUHvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:51:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230506AbiIUHu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:50:28 -0400
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9873C67440;
-        Wed, 21 Sep 2022 00:50:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-        s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=yDU7cULxVdpJ/UBJp8aYy02w14Tx6aVcHKBJ/fAjBHk=; b=1j1J0Nfa6b+RwDngJH/QJ9P1Dd
-        8rUbvZzpqajDqRXZXukqpeO3bisSbhdTUWh3RndHaZGCB0jYWafxCOKyZkixUKMruSNt2o8iRv32U
-        +KXZ/B1mA7tgg8E9w/zA50K8p4do+dvOl4HAZ+0vi8Y5RUBBQGlWsWtnWVPiPCVoNgjniAa5C3YM2
-        y8KpvDE3p0637ZNGddh8z/vT1pfe46cpDil5aEIlr1XTJQXgkc7usijYJqTuxCvZze7vc5ezUMq7u
-        qxpxpUKYMGXNN3ZYUendoIxt1ZePaSzQeOKCYn+KldbLH2qmpL+Sp+a80eRyefnZ4memqD7LOrwbE
-        UgTlClQQ==;
-Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=[192.168.1.10])
-        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1oauUq-0076Jh-I3; Wed, 21 Sep 2022 10:50:16 +0300
-Message-ID: <de7f5e65-c939-558a-277d-01320f93eedc@kapsi.fi>
-Date:   Wed, 21 Sep 2022 10:50:15 +0300
+        with ESMTP id S231189AbiIUHvK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:51:10 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38A8085FBD
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:51:05 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id bq9so8464328wrb.4
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:51:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date;
+        bh=vHvPgyZXtdTUVL+2zbQ6BjAvak8aoLLPjJOxCcUCMJY=;
+        b=NAfBeUZlU5NMe8lfXlyDKEvEtXYBTQkPVnvGFLrOsUayOoVMVypK+gV9KjOlcM+Uii
+         19TOVKMjEtyFisv8oKgQkupSCgvPBW1lqTlWHIpWd8bE3S0pEb6UfhLweWgNDqYJAjI/
+         aquX5irubOve9rPG2wuoQ1KMMoTnd5RjGvWrAChDGWogMNkhrgviMBM6b9oX4/YFW0Qa
+         XeOWfXRmmJ/ngJLsUhqOm9DKAxJbt+V9LwhusidhcNrpH6YVbiciHf05eG4OVghadb2l
+         TK4NJfUK2O1bTVpjkIm2gXdz11GIOkxQfY1C6Ii45mLZm4jvqdydKzvDPA6YdrUOF2DJ
+         KuLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=vHvPgyZXtdTUVL+2zbQ6BjAvak8aoLLPjJOxCcUCMJY=;
+        b=n5+fJt8nNBnPsc+zFy9B165nXIWc/8h9kmYfztLCLKEuwcYQt8aIr7flqS/9/wpBeE
+         /bhZmFAeSVXsOzBysamlQOe1AQPuQQL6QfyaOjRMURfIshGoFRj9mLRyj9oMcjU0i+sG
+         7ENCV1qoBcwi8i10Lh4FZGvS2gJqNAhULWIrbKbSV3oYKikKMxd4nrGMl8gloo70C8kQ
+         Pt9Ab5azHcjrZmGbYn7qnLUyrr94ol3mYndD/O8qVi3WE4BFeh6FZjyZxNa/AZyWvma/
+         qTlUJtiNSBg8a0ey2UAcKF4FOC+OFaf0TWoqHXOFqC1a+oSyohzFJnVXCBAO15VuT4U9
+         O6rA==
+X-Gm-Message-State: ACrzQf0i9cg/ea2xCL+Rih3QllInv1rR4MPY0d/A4+mdw1MgeECVKhCH
+        z+sRd2XQEiUay4BH6hobY1rlgA==
+X-Google-Smtp-Source: AMsMyM4G+pLlHNhdvu/xC2xd5y7LgDyvtb3M56ZdAIFnfNAXsKeC/1SiLaT/H07cg39aGjnLLLD9Ow==
+X-Received: by 2002:a5d:6da2:0:b0:228:64cb:5333 with SMTP id u2-20020a5d6da2000000b0022864cb5333mr15543049wrs.428.1663746663752;
+        Wed, 21 Sep 2022 00:51:03 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3? ([2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3])
+        by smtp.gmail.com with ESMTPSA id f2-20020a5d6642000000b0022ac61ebb14sm1786885wrw.22.2022.09.21.00.51.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Sep 2022 00:51:03 -0700 (PDT)
+Message-ID: <36adf055-d963-1034-919a-97f3eeff02ef@linaro.org>
+Date:   Wed, 21 Sep 2022 09:51:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v3 0/8] Support for NVDEC on Tegra234
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add the reset reg for lpass
+ audiocc on SC7280
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220920081203.3237744-1-cyndis@kapsi.fi>
- <89d925ea-f550-6903-1c24-b320ae5a82c0@linaro.org>
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-In-Reply-To: <89d925ea-f550-6903-1c24-b320ae5a82c0@linaro.org>
+To:     Satya Priya <quic_c_skakit@quicinc.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@kernel.org>
+Cc:     mka@chromium.org, Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_tdas@quicinc.com, linux-clk@vger.kernel.org
+References: <1663674495-25748-1-git-send-email-quic_c_skakit@quicinc.com>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro
+In-Reply-To: <1663674495-25748-1-git-send-email-quic_c_skakit@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 91.158.25.70
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/21/22 10:26, Krzysztof Kozlowski wrote:
-> On 20/09/2022 10:11, Mikko Perttunen wrote:
->> From: Mikko Perttunen <mperttunen@nvidia.com>
->>
->> v3:
->> * Updated patch 3 based on comments
->>
->> v2:
->> * Updated patches 1,3 based on comments
->> * Added Acked-by to patch 2
->>
->> Original message:
->>
->> Hi all,
->>
->> this series adds support for the HW video decoder, NVDEC,
->> on Tegra234 (Orin). The main change is a switch from Falcon
->> to RISC-V for the internal microcontroller, which brings along
->> a change in how the engine is booted. Otherwise it is backwards
->> compatible with earlier versions.
+On 20/09/2022 13:48, Satya Priya wrote:
+> Add the reset register offset for clock gating.
 > 
-> I asked you to describe the dependencies and patch merging strategy.
-> It's still not here, so I assume there are no and I am taking patches
-> relevant to me.
+> Fixes: 9499240d15f2 ("arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio clock controllers")
+> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> Best regards,
-> Krzysztof
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 8d807b7..353c137 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -2295,7 +2295,8 @@
+>   
+>   		lpass_audiocc: clock-controller@3300000 {
+>   			compatible = "qcom,sc7280-lpassaudiocc";
+> -			reg = <0 0x03300000 0 0x30000>;
+> +			reg = <0 0x03300000 0 0x30000>,
+> +			      <0 0x032a9000 0 0x1000>;
+>   			clocks = <&rpmhcc RPMH_CXO_CLK>,
+>   			       <&lpass_aon LPASS_AON_CC_MAIN_RCG_CLK_SRC>;
+>   			clock-names = "bi_tcxo", "lpass_aon_cc_main_rcg_clk_src";
 
-Sorry, I described it in the earlier email and forgot to add it to the 
-cover letter..
+Checked against the already merged bindings change adding the reset reg (be9439df2353).
 
-Patch 8 does depend on patch 1 so it would be better to take the memory 
-patch with it, or however works best from maintainership point of view 
-(not my expertise).
-
-thanks,
-Mikko
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
