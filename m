@@ -2,431 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA8235E54F6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 23:10:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7FD35E5502
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 23:15:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbiIUVKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 17:10:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38948 "EHLO
+        id S229687AbiIUVPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 17:15:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229908AbiIUVKO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 17:10:14 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C7BE5A800;
-        Wed, 21 Sep 2022 14:10:11 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id x29so8595116ljq.2;
-        Wed, 21 Sep 2022 14:10:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=tXSUnGUBLFXfOgf8iNYD4niHvxte3rvXWwKqKi+jD3g=;
-        b=Clu9LI1lY0Ibub8/gX05u0rrvnfDsvzzkYrYOw4h/Dfry1IEylF2d03Hl/7Tw5QNtR
-         VtLw3DuuxYNE7YUmb945ecsXWfvVP+k/SyRozpJV73L3XM2LjTZzyEWqSFWY8lfvCave
-         pclA2RGuXdw8ApHC09AY9LQTFsenF0QP6S1bFj67Pii1CppeHZsun14t9vkZn4P/OMpb
-         Hm0GwXvsA+HEINbKMxTuhmptLUpdlA4xSyNPszMsm7mjbpa1d1ueE1rOqiwfaoSJJw4N
-         Vk931cUpNbS44T5uigE9syzrOKuBZ8o3xOWWhJX51dA1J9o0NyKVLKTtpsCuGOcVH92t
-         e2YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=tXSUnGUBLFXfOgf8iNYD4niHvxte3rvXWwKqKi+jD3g=;
-        b=YwNlUyun7Bu9RAZSZUzE+aQd7CIGoe+dQ/EU1fEaExxeQx5Nmeem3pyo+x4fCIrsbE
-         UOOD1y7zjB6VCrr21Fq+I3CaotPRX3Gr5wPcWuQ6V/M5oUp68xZT8ezny52efAmK7MuD
-         lfnaipWrN/0ltLaeuOhDLz7LpWHhZj0VScx3zGq2UObCqYzH6fCsdUmAf0L5FSroa/g2
-         sUBLyS2GZK3z7I9A/aEUjb533rciP4OoRLb/6AMVCX1c8MOhEfSA64Ud4KRjL5xddDOs
-         yrVa6wUhxrLQD+QtQ/xTEW6RfgQ39Kvrx483ntz7KUA0dN8BExWSWeICSkW53oM+7zl3
-         rwtA==
-X-Gm-Message-State: ACrzQf2GIhc8X+AKA1MrV7XGiGpumE855wm3PQQWKA9XhDDxOtf2WA/t
-        EUnIPxLN9K60L8NbTbMgNQg=
-X-Google-Smtp-Source: AMsMyM5FI5nHSAs8d1kf2MrFoG/UYbjPvabBkSm6I6sLCh8tC+6AKO+4tqgRRkw7EOYBcGKRe0FMEg==
-X-Received: by 2002:a2e:a887:0:b0:25e:3174:fb67 with SMTP id m7-20020a2ea887000000b0025e3174fb67mr9039654ljq.337.1663794609912;
-        Wed, 21 Sep 2022 14:10:09 -0700 (PDT)
-Received: from DESKTOP-GSFPEC9.localdomain (broadband-46-242-10-176.ip.moscow.rt.ru. [46.242.10.176])
-        by smtp.gmail.com with ESMTPSA id z18-20020a19f712000000b0049adbc24b99sm599260lfe.24.2022.09.21.14.10.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Sep 2022 14:10:09 -0700 (PDT)
-From:   Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     Konstantin Aladyshev <aladyshev22@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-Subject: [PATCH v4 2/2] ARM: dts: aspeed: Add AMD DaytonaX BMC
-Date:   Thu, 22 Sep 2022 00:09:47 +0300
-Message-Id: <20220921210950.10568-3-aladyshev22@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220921210950.10568-1-aladyshev22@gmail.com>
-References: <20220920165404.14099-1-aladyshev22@gmail.com>
- <20220921210950.10568-1-aladyshev22@gmail.com>
+        with ESMTP id S229578AbiIUVPC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 17:15:02 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F313481B29
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 14:14:59 -0700 (PDT)
+Received: from [192.168.1.101] (95.49.29.188.neoplus.adsl.tpnet.pl [95.49.29.188])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id B097E3F651;
+        Wed, 21 Sep 2022 23:14:56 +0200 (CEST)
+Message-ID: <5f629a95-8ee4-7cf8-f471-0b50e311d3b7@somainline.org>
+Date:   Wed, 21 Sep 2022 23:14:56 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 2/2] iommu: arm-smmu-qcom: add sdm670 compatible
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org
+References: <20220920223955.151507-1-mailingradian@gmail.com>
+ <20220920223955.151507-3-mailingradian@gmail.com>
+ <77b7d58f-ba85-86de-8635-6efbb1354a08@linaro.org>
+ <5c25dc95-d7a4-0b15-5514-6fe3a48e899c@somainline.org>
+ <f98ccf6b-34e7-d15f-63f9-928827b52eb8@somainline.org>
+ <30980ac8-1386-d284-8452-fdc5b7da8343@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <30980ac8-1386-d284-8452-fdc5b7da8343@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial version of device tree for the BMC in the AMD DaytonaX
-platform.
 
-AMD DaytonaX platform is a customer reference board (CRB) with an
-Aspeed ast2500 BMC manufactured by AMD.
 
-Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts | 319 ++++++++++++++++++
- 2 files changed, 320 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts
+On 21.09.2022 21:05, Krzysztof Kozlowski wrote:
+> On 21/09/2022 20:48, Konrad Dybcio wrote:
+>>
+>>
+>> On 21.09.2022 20:47, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 21.09.2022 09:31, Krzysztof Kozlowski wrote:
+>>>> On 21/09/2022 00:39, Richard Acayan wrote:
+>>>>> The Snapdragon 670 needs the IOMMU for GENI I2C. Add a compatible string to
+>>>>> support it.
+>>>>>
+>>>>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+>>>>> ---
+>>>>>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
+>>>>>  1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>>>> index b2708de25ea3..bf9653b9eb89 100644
+>>>>> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>>>> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>>>> @@ -431,6 +431,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
+>>>>>  	{ .compatible = "qcom,sc8180x-smmu-500" },
+>>>>>  	{ .compatible = "qcom,sc8280xp-smmu-500" },
+>>>>>  	{ .compatible = "qcom,sdm630-smmu-v2" },
+>>>>> +	{ .compatible = "qcom,sdm670-smmu-500" },
+>>>>
+>>>> Why do we keep adding compatibles to the driver for apparently
+>>>> compatible devices?
+>>>
+>>> Because Linux has not funny run on bare Qualcomm hardware ever since at least msm8x60 times and
+>> s/funny/fully
+>>
+>> unfortunate typo, this is not funny, quite the contrary..
+>>
+>> Konrad
+>>> we are not interacting with real hardware, only with Qualcomm's flawed virtual implementation
+>>> of it, that's abstracted to us through various generations of their saddening software stack. This
+>>> is also the case for many more standard components, even as far as the GIC on recent boards..
+> 
+> Unfortunately I don't get this explanation... you mean some other
+> firmware requires Linux drivers to use specific compatibles instead of
+> one fallback?
+No, perhaps I misunderstood you.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 05d8aef6e5d2..d81fe7ef5475 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1574,6 +1574,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-ast2500-evb.dtb \
- 	aspeed-ast2600-evb-a1.dtb \
- 	aspeed-ast2600-evb.dtb \
-+	aspeed-bmc-amd-daytonax.dtb \
- 	aspeed-bmc-amd-ethanolx.dtb \
- 	aspeed-bmc-ampere-mtjade.dtb \
- 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts b/arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts
-new file mode 100644
-index 000000000000..64bb9bf92de2
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-amd-daytonax.dts
-@@ -0,0 +1,319 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "aspeed-g5.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	model = "AMD DaytonaX BMC";
-+	compatible = "amd,daytonax-bmc", "aspeed,ast2500";
-+
-+	memory@80000000 {
-+		reg = <0x80000000 0x20000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		video_engine_memory: jpegbuffer {
-+			size = <0x02000000>;	/* 32M */
-+			alignment = <0x01000000>;
-+			compatible = "shared-dma-pool";
-+			reusable;
-+		};
-+	};
-+
-+	aliases {
-+		serial0 = &uart1;
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+		bootargs = "console=ttyS4,115200";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-fault {
-+			gpios = <&gpio ASPEED_GPIO(A, 2) GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-identify {
-+			gpios = <&gpio ASPEED_GPIO(A, 3) GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
-+			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
-+			<&adc 10>, <&adc 11>, <&adc 12>, <&adc 13>, <&adc 14>,
-+			<&adc 15>;
-+	};
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		#include "openbmc-flash-layout.dtsi"
-+	};
-+};
-+
-+&mac0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
-+};
-+
-+&uart1 {
-+	//Host Console
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd1_default
-+		&pinctrl_rxd1_default
-+		&pinctrl_nrts1_default
-+		&pinctrl_ndtr1_default
-+		&pinctrl_ndsr1_default
-+		&pinctrl_ncts1_default
-+		&pinctrl_ndcd1_default
-+		&pinctrl_nri1_default>;
-+};
-+
-+&uart5 {
-+	//BMC Console
-+	status = "okay";
-+};
-+
-+&vuart {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0x3f8>;
-+	aspeed,lpc-interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
-+&adc {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default
-+		&pinctrl_adc1_default
-+		&pinctrl_adc2_default
-+		&pinctrl_adc3_default
-+		&pinctrl_adc4_default
-+		&pinctrl_adc5_default
-+		&pinctrl_adc6_default
-+		&pinctrl_adc7_default
-+		&pinctrl_adc8_default
-+		&pinctrl_adc9_default
-+		&pinctrl_adc10_default
-+		&pinctrl_adc11_default
-+		&pinctrl_adc12_default
-+		&pinctrl_adc13_default
-+		&pinctrl_adc14_default
-+		&pinctrl_adc15_default>;
-+};
-+
-+&gpio {
-+	status = "okay";
-+	gpio-line-names =
-+	/*A0-A7*/	"","","led-fault","led-identify","","","","",
-+	/*B0-B7*/	"","","","","","","","",
-+	/*C0-C7*/	"id-button","","","","","","","",
-+	/*D0-D7*/	"","","ASSERT_BMC_READY","","","","","",
-+	/*E0-E7*/	"reset-button","reset-control","power-button","power-control","",
-+			"power-good","power-ok","",
-+	/*F0-F7*/	"","","","","","","BATTERY_DETECT","",
-+	/*G0-G7*/	"","","","","","","","",
-+	/*H0-H7*/	"","","","","","","","",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"","","","","","","","",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","","","","",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","",
-+	/*AA0-AA7*/	"","","","","","","","",
-+	/*AB0-AB7*/	"FM_BMC_READ_SPD_TEMP","","","","","","","",
-+	/*AC0-AC7*/	"","","","","","","","";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&kcs3 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca2>;
-+};
-+
-+&lpc_snoop {
-+	status = "okay";
-+	snoop-ports = <0x80>, <0x81>;
-+};
-+
-+&lpc_ctrl {
-+	status = "okay";
-+};
-+
-+&pwm_tacho {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm0_default
-+		&pinctrl_pwm1_default
-+		&pinctrl_pwm2_default
-+		&pinctrl_pwm3_default
-+		&pinctrl_pwm4_default
-+		&pinctrl_pwm5_default
-+		&pinctrl_pwm6_default
-+		&pinctrl_pwm7_default>;
-+
-+	fan@0 {
-+		reg = <0x00>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
-+	};
-+
-+	fan@1 {
-+		reg = <0x00>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x01>;
-+	};
-+
-+	fan@2 {
-+		reg = <0x01>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x02>;
-+	};
-+
-+	fan@3 {
-+		reg = <0x01>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x03>;
-+	};
-+
-+	fan@4 {
-+		reg = <0x02>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x04>;
-+	};
-+
-+	fan@5 {
-+		reg = <0x02>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x05>;
-+	};
-+
-+	fan@6 {
-+		reg = <0x03>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x06>;
-+	};
-+
-+	fan@7 {
-+		reg = <0x03>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x07>;
-+	};
-+
-+	fan@8 {
-+		reg = <0x04>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x08>;
-+	};
-+
-+	fan@9 {
-+		reg = <0x04>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x09>;
-+	};
-+
-+	fan@10 {
-+		reg = <0x05>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0a>;
-+	};
-+
-+	fan@11 {
-+		reg = <0x05>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0b>;
-+	};
-+
-+	fan@12 {
-+		reg = <0x06>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0c>;
-+	};
-+
-+	fan@13 {
-+		reg = <0x06>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0d>;
-+	};
-+
-+	fan@14 {
-+		reg = <0x07>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0e>;
-+	};
-+
-+	fan@15 {
-+		reg = <0x07>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x0f>;
-+	};
-+};
-+
-+&video {
-+	status = "okay";
-+	memory-region = <&video_engine_memory>;
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
--- 
-2.25.1
+> 
+> All of these do not have driver data, so they are essentially compatible
+> for Linux driver. Growing this list in the driver seems pointless. What
+> is the benefit of growing driver with same entries, except more patches?
+Compatible lists in smmu-impl files allow matching driver quirks for SMMUs themselves
+and consumer devices (such as MDSS). The situation is more complicated, because some
+qcom SMMUs also require more quirks than others (think 8974 vs 8994 vs 8996/pro&660&8998
+vs 845+ vs adreno smmu in various flavours), so all qcom SMMUs need to use
+`qcom_smmu_impl` and some others need even more quirks on top of that (that generally
+hurt performance or functionality, so we don't want them when they're unnecessary).
+If all generations of qcom SMMU implementation that bear the same name behaved anywhere
+near consistent, there would be no need for keeping this around, instead requiring only
+"qcom,broken-smmu" or something".
 
+Konrad
+> 
+> Best regards,
+> Krzysztof
+> 
