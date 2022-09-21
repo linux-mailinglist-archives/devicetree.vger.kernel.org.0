@@ -2,139 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70C55BFB9B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1C45BFBA3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:49:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231794AbiIUJsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 05:48:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44728 "EHLO
+        id S229686AbiIUJtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 05:49:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbiIUJr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:47:57 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A866E96FE1
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:45:31 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id l14so12304419eja.7
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:45:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=qcQnQhLaO6fGinlzAYyFGlxrfQHdXifdne2D0+nwBo8=;
-        b=BtZBIL1KHuomtHqRQXk7130LxJRBG6iEPPC108i/uUc1zv4vtgKCRLoo92bcByFpIF
-         vI0ROss4+TZ0r+d44NYvZKCBsnoPZuAaj06CgUJ7JbIbTHS5sVUVr4LxWDMIW18cS9Bl
-         pieAUjljj9sMT9Hasg62luiSjPpBOsazARnp17BOwJkZeYBc6tUKcrI+m7W7QL2jDWhp
-         nIJDgX1yQ527pxCDbpF1FQo+d5dPY+mc/sTH5NJtyfswXR39RJ+Snip4BC2SultPg1cT
-         pcqBmuDE3fTWldjF7WFhFQPW2KMdJTYPj+AwyAWjg0M1DT25+IKfP54wYaJJpaTXj8ph
-         E+dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=qcQnQhLaO6fGinlzAYyFGlxrfQHdXifdne2D0+nwBo8=;
-        b=z37+9InQqHj+UbfD8FHmDcXYRyiNGFNrE2Ij6RXPV//gIqdk3IDkZLVgVaWDaQU69C
-         tuTW7WnKWXRFVD8M15Fm/V5zL+AX6tbD/33xxybB3IC3otBqwDWumZW+dDaIB4lFnbC9
-         PnTz4MQ9ptjr5nLK8MLRIzIbHNOfy9CtKnE29jbfOQ5g2CMUNOSoSBYyuYh0+o0BRbtI
-         S6Lv5GhSe6tkOiKuqkVycR4UxQIxerGN8Zf4lYSsXMkfdEnkdkzu+GdklBSQGLQIgbRO
-         ThbBKLynkGGJzrgBudgT1vfaLgo3ktPC9+P4yBNSItRMOiJWP5njnQa11EhcAEE07eS6
-         Vxjw==
-X-Gm-Message-State: ACrzQf20HBWmRHCKTLlccvTpH33dbRNxM3nE0h9VvU2lTR1ye/bRbf4W
-        xwxGadH4ZfOwh0/u0pZ6+ztoDLSGdMPpuGq2Pvjz6w==
-X-Google-Smtp-Source: AMsMyM5SFTgTYiX8ufQU/7T9uAxbJb2nQtH8wwq24aVCveMh7Phf3u4mkG9wFMawfgPj/2o3XFsj+LE+O93wVevFl1c=
-X-Received: by 2002:a17:906:fd8b:b0:779:dcbe:3a9d with SMTP id
- xa11-20020a170906fd8b00b00779dcbe3a9dmr20557155ejb.235.1663753505689; Wed, 21
- Sep 2022 02:45:05 -0700 (PDT)
+        with ESMTP id S232000AbiIUJsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:48:55 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F65397D6B;
+        Wed, 21 Sep 2022 02:46:39 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C7FAC660202C;
+        Wed, 21 Sep 2022 10:45:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1663753544;
+        bh=9ji1SJvfdXYebHWHKsGj8bj+sMSEq74pzAp6Nbn4WWM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=CQ13WHYIS9frO3QW4TLXbP+zllrNOekCNYslUt32DxeL8LgiWbziNNxXOHW40TnBO
+         XQ8sMohQ/jRnrtvh234ZD1fLlLA+2pQ/3LI+46OCU4017X0ZpySHtGur4hjvy8+8Vk
+         SUJbnwzxy4+xYsuMbFm6Z2nktJsxF3/RM2/0Qhzee7rGywwOeTlLDdPapCez7P0K8s
+         cik6AH29MKZTU8r/gXBYI1/a+14po/EwWVQDGdIWR1Mh3EBODL19MxJz9YNZlF9Hvb
+         PyTpUr4CaziU6zYnWI4ErS5dsPYzyWhwRMQ6gMmaGH7dW5Vra8kpWAoIJPlZGhd4xG
+         JIz+KykszkSsw==
+Message-ID: <0c2ef56e-5dab-fb79-fead-adb4acef4cc6@collabora.com>
+Date:   Wed, 21 Sep 2022 11:45:41 +0200
 MIME-Version: 1.0
-References: <20220817080757.352021-1-bchihi@baylibre.com> <20220817080757.352021-3-bchihi@baylibre.com>
- <716d6471-f0e2-489e-5f9e-9e38e9e7953a@collabora.com> <CAGuA+orxfcycwcUMpLe+dkjnXPQkELQsz0vBggGKTQ04XRGc+g@mail.gmail.com>
- <2073b6bd-a4bd-4ab5-300d-2ce989e25d5f@linaro.org>
-In-Reply-To: <2073b6bd-a4bd-4ab5-300d-2ce989e25d5f@linaro.org>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Wed, 21 Sep 2022 11:44:29 +0200
-Message-ID: <CAGuA+or40GSH2QvVw033+KsGC-B9D6nRYj8zXvTs91iNDqgr8Q@mail.gmail.com>
-Subject: Re: [PATCH v9,2/7] dt-bindings: thermal: Add dt-binding document for
- LVTS thermal controllers
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, rafael@kernel.org,
-        rui.zhang@intel.com, daniel.lezcano@linaro.org, amitk@kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Combine MediaTek MT67xx pinctrl
+ binding docs
+To:     yassine.oudjana@gmail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-kernel@vger.kernel.org
+References: <20220919170115.94873-1-y.oudjana@protonmail.com>
+ <20220919170115.94873-2-y.oudjana@protonmail.com>
+ <4c425cf8-f9ca-969c-f8ed-688410bfb922@collabora.com>
+ <1860b0ff-5544-5e74-ccfc-beda18824927@linaro.org>
+ <YQZJIR.QQOJU0071T1J1@gmail.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <YQZJIR.QQOJU0071T1J1@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof, Angelo,
+Il 21/09/22 11:30, yassine.oudjana@gmail.com ha scritto:
+> 
+> 
+> On Wed, Sep 21 2022 at 09:11:12 AM +0200, Krzysztof Kozlowski 
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 20/09/2022 10:06, AngeloGioacchino Del Regno wrote:
+>>>  Il 19/09/22 19:01, Yassine Oudjana ha scritto:
+>>>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>>
+>>>>  Documents for MT6779, MT6795 and MT6797 that currently exist share
+>>>>  most properties, and each one has slightly differently worded
+>>>>  descriptions for those properties. Combine all three documents into
+>>>>  one common document for all MT67xx SoC pin controllers, picking a few
+>>>>  parts from each and accounting for differences such as items in reg
+>>>>  and reg-names properties. Also document the MT6765 pin controller
+>>>>  which currently has a driver but no DT binding documentation. It should
+>>>>  be possible to also include bindings for MT8183 and MT8188, but these
+>>>>  have some additional properties that might complicate things a bit,
+>>>>  so they are left alone for now.
+>>>>
+>>>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>>  ---
+>>>>    .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 207 ------------------
+>>>>    .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 176 ---------------
+>>>>    ...6795.yaml => mediatek,mt67xx-pinctrl.yaml} | 181 +++++++++++----
+>>>
+>>>  Hello Yassine,
+>>>  nice cleanup over here!
+>>>
+>>>  There's a catch though: as far as I know, wildcards are not permitted... so you
+>>>  should, at this point, merge all of these in mediatek,mt6779-pinctrl.yaml instead.
+>>>
+>>>  Before jumping to that, though... Krzysztof, can you please confirm (or deny)?
+>>
+>> Wildcards are not allowed in compatibles. In filename wildcards or
+>> family name could work if they are really going to match the devices. I
+>> have doubts here. 67xx is quite a lot of different devices, so I am not
+>> sure this will cover them all.
+>>
+>> I would prefer one name (oldest SoC or lowest number).
+> 
+> Lowest number (and probably oldest too but not sure since mediatek naming 
+> conventions are a bit weird) currently documented is mt6779, but mt6765 gets 
+> documented in this patch and mt6735 (this one I know for sure is older than the 
+> rest) in a following patch, so do I just stick with mt6779 or do I change it in the 
+> following patches documenting mt6765 and mt6735?
+> 
 
-Thank you for the suggestions.
+I see the sequence as:
 
-I tested this (below) and it worked without any problem.
-"make DT_CHECKER_FLAGS=-m dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml"
-"make dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml"
-Should I keep it like this and submit it in v10?
+1. You merge mediatek,mt6797-pinctrl.yaml into mediatek,mt6779-pinctrl.yaml; then
+2. Adding MT6765 documentation to mediatek,mt6779-pinctrl.yaml; then
+3. Adding support for MT6735, documentation goes again to 6779-pinctrl.
 
-[...]
-nvmem-cells:
-  minItems: 1
-  items:
-    - description: Calibration eFuse data 1 for LVTS
-    - description: Calibration eFuse data 2 for LVTS
+This means that you're working with mediatek,mt6779-pinctrl.yaml :-)
 
-nvmem-cell-names:
-  minItems: 1
-  items:
-    - const: lvts-calib-data-1
-    - const: lvts-calib-data-2
+P.S.: That was also a suggestion about how to split things per-commit!
 
-"#thermal-sensor-cells":
-  const: 1
+Cheers,
+Angelo
 
-allOf:
-  - $ref: thermal-sensor.yaml#
+> Thanks,
+> Yassine
+> 
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> 
 
-- if:
-  properties:
-    compatible:
-      contains:
-        enum:
-          - mediatek,mt8192-lvts-ap
-          - mediatek,mt8192-lvts-mcu
-  then:
-    properties:
-      nvmem-cells:
-        maxItems: 1
-
-     nvmem-cell-names:
-       maxItems: 1
-
-  - if:
-    properties:
-      compatible:
-        contains:
-          enum:
-           - mediatek,mt8195-lvts-ap
-           - mediatek,mt8195-lvts-mcu
-  then:
-    properties:
-      nvmem-cells:
-        maxItems: 2
-
-     nvmem-cell-names:
-       maxItems: 2
-[...]
-
-Best regards,
-Balsam
