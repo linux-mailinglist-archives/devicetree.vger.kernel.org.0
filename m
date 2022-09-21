@@ -2,154 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 685785BFF6A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 15:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB8115BFFC9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 16:23:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230419AbiIUN7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 09:59:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54228 "EHLO
+        id S229604AbiIUOXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 10:23:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230424AbiIUN64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 09:58:56 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1216885F81;
-        Wed, 21 Sep 2022 06:58:53 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 737D66602028;
-        Wed, 21 Sep 2022 14:58:51 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663768732;
-        bh=aNktZ6lpJ/y23RAV97OZGsJSTK5UAMeGZw4X2ENLfXE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=T3VNbt4RhdWVEG6k5a4izsy7xNSaxwmrgPuw+yNBQbmiV7LMdn2gGoozlgFPVs6Qk
-         dDUh9Xz8y/e/k1HiSgJqOHrVmJkjbRlQw9nf9uN2qu/5YoIqexOOSlK5AYM8ievFJm
-         +3iXSW4TDXCRmggad4XxjypL7iYgRTqqUtwc/rwpkPmG2xRHNi9Q1PbMutBCADmdAL
-         ON4ncaLWMPlbSY9niPdU4O32AAkCWX8ca7NJxMHzrq3CSpYyRMoAXQCGN+TpuP+UyC
-         FA9KUxfdqEdkpRgiN0MyMqy1FdBS/f8zun+0+Q6fo7dEIsO1PPJCHTjpn5bjE+dcpp
-         xX1l6cjLk+Dpw==
-Message-ID: <9234e731-8c2f-b599-39b1-bf5115a16931@collabora.com>
-Date:   Wed, 21 Sep 2022 15:58:46 +0200
+        with ESMTP id S229962AbiIUOXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 10:23:43 -0400
+X-Greylist: delayed 2645 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 21 Sep 2022 07:23:41 PDT
+Received: from sv12123.xserver.jp (sv12123.xserver.jp [103.3.2.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA8C876B6
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 07:23:40 -0700 (PDT)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/521/virusgw12001.xserver.jp)
+Received: from webmail.xserver.ne.jp (webmail.xserver.ne.jp [202.226.37.183])
+        by sv12123.xserver.jp (Postfix) with ESMTPA id 2C2A63045405BA;
+        Wed, 21 Sep 2022 22:33:47 +0900 (JST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 1/3] arm64: dts: mediatek: asurada: Add display regulators
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220908171153.670762-1-nfraprado@collabora.com>
- <20220908171153.670762-2-nfraprado@collabora.com>
- <ab2027b9-17e8-4fe8-3847-84c54d6f9d58@collabora.com>
- <20220921134806.lbg5meuy4fn6pifm@notapiano>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220921134806.lbg5meuy4fn6pifm@notapiano>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 21 Sep 2022 21:33:46 +0800
+From:   Marcus Hamper <info@kizuna-clinic.com>
+To:     undisclosed-recipients:;
+Subject: THIS IS VERY CONFIDENTIAL
+Reply-To: marcushamper147@gmail.com
+Mail-Reply-To: marcushamper147@gmail.com
+Message-ID: <838510df78dd7ec94f1e3c781c05ebc5@kizuna-clinic.com>
+X-Sender: info@kizuna-clinic.com
+User-Agent: Roundcube Webmail/1.2.0
+X-Spam-Status: Yes, score=7.3 required=5.0 tests=BAYES_50,
+        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,ODD_FREEM_REPTO,
+        RCVD_IN_VALIDITY_RPBL,SPF_HELO_PASS,SPF_PASS,SUBJ_ALL_CAPS
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  1.3 RCVD_IN_VALIDITY_RPBL RBL: Relay in Validity RPBL,
+        *      https://senderscore.org/blocklistlookup/
+        *      [103.3.2.124 listed in bl.score.senderscore.com]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [marcushamper147[at]gmail.com]
+        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
+        * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  2.4 ODD_FREEM_REPTO Has unusual reply-to header
+        *  2.1 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/09/22 15:48, Nícolas F. R. A. Prado ha scritto:
-> On Fri, Sep 09, 2022 at 09:46:33AM +0200, AngeloGioacchino Del Regno wrote:
->> Il 08/09/22 19:11, Nícolas F. R. A. Prado ha scritto:
->>> Add the regulators present on the Asurada platform that are used to
->>> power the internal and external displays.
->>>
->>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>>
->>> ---
->>>
->>>    .../boot/dts/mediatek/mt8192-asurada.dtsi     | 114 ++++++++++++++++++
->>>    1 file changed, 114 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>> index 4b314435f8fd..1d99e470ea1a 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>
->> ..snip..
->>
->>> @@ -56,6 +116,18 @@ pp3300_ldo_z: regulator-3v3-z {
->>>    		vin-supply = <&ppvar_sys>;
->>>    	};
->>
->> Can you please add a comment here advertising that this regulator
->> will not only provide power to the MIPI bridge, but *also* to the
->> display panel itself?
->>
->> This is to make sure that everyone understands what's going on, and
->> also that we ourselves don't forget about that.
->>
->> Probably something like:
->> /* pp3300_mipibrdg also enables pp3300_panel */
->>
->> I would then propose to add a "regulator-fixed" that has no GPIO
->> but with vin-supply as this one.
->>
->> pp3300_panel: regulator-3v3-panel {
->> 	compatible = "regulator-fixed";
->> 	regulator-name = "pp3300_panel";
->> 	regulator-min-microvolt = <3300000>;
->> 	regulator-max-microvolt = <3300000>;
->>
->> 	vin-supply = <&pp3300_mipibrdg>;
->> };
->>
->> I would also test assigning this regulator to the panel node, as this
->> will make sure to cover future corner cases (think about PM suspend/resume).
->>
->> P.S.: If you add the pp3300_panel regulator-fixed with that vin-supply,
->>        maybe the proposed comment would become a bit overkill. Your choice!
-> 
-> Hi Angelo,
-> 
-> thanks for the feedback.
-> 
-> I think the current layout makes more sense based on my understanding of the
-> power routing here: a single power line output by the pp3300_mipibrdg regulator
-> powers both the ANX chip as well as the panel. So I'm going to keep it the way
-> it is for now. If there are any other concerns please let me know.
-> 
 
-As we discussed, I agree on this decision. Please go on.
 
-Cheers!
+-- 
+Hello,
 
-> Thanks,
-> Nícolas
-> 
->>
->> Cheers,
->> Angelo
->>
->>> +	pp3300_mipibrdg: regulator-3v3-mipibrdg {
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "pp3300_mipibrdg";
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&pp3300_mipibrdg_en_pins>;
->>> +		regulator-min-microvolt = <3300000>;
->>> +		regulator-max-microvolt = <3300000>;
->>> +		enable-active-high;
->>> +		regulator-boot-on;
->>> +		gpio = <&pio 127 GPIO_ACTIVE_HIGH>;
->>> +	};
->>> +
->>>    	/* separately switched 3.3V power rail */
->>>    	pp3300_u: regulator-3v3-u {
->>>    		compatible = "regulator-fixed";
->>
+My name is Marcus Hamper
+I apologize to have contacted you this way without a direct 
+relationship. There is an opportunity to collaborate with me in the 
+sourcing of some materials needed by our company for production of the 
+different medicines we are researching.
+
+I'm aware that this might be totally outside your professional 
+specialization, but it will be a great source for generating extra 
+revenue. I  discovered a manufacturer who can supply us at a lower rate 
+than our company's previous purchases. I will give you more specific 
+details when/if I receive feedback from you showing interest.
+
+Warm Regards
+Marcus Hamper
+Production & Control Manager,
+Green Field Laboratories
+Gothic House, Barker Gate,
+Nottingham, NG1 1JU,
+United Kingdom.
