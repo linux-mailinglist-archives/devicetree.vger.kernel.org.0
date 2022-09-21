@@ -2,198 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 021005DC35E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 20:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F13075E4F77
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 20:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230478AbiIUSL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 14:11:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45024 "EHLO
+        id S229473AbiIUScq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 14:32:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230483AbiIUSLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 14:11:19 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52CFB80516;
-        Wed, 21 Sep 2022 11:11:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663783871; x=1695319871;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WckjFb8TNTyStYJTGw886rcvghznTu4Iq8hyPcV6+aA=;
-  b=BtU2tGR5gRM/dX86a2L4FZ8t4STOryFNG50H+tqO5UaeYZQXq0hGguyK
-   D9fpGkbyxk2T+eaeJHurdaYn2puwCGx3OVjZQpQlwsHffu19LjcPW47A9
-   e6Hh1fvBZ1XCmZEiz/aKlGDZu4S4yVF+of2n4kvSO+jNi+DCIWFPW/e8p
-   rmItMBa6S54yKajsVoOln7/wrMRf5SPb55uiga/8iU63LMTaAR6RwEPnK
-   SlbFMKUP8IOdzjDUyY5OZtffw4FEfyuuhR7Bt9KA17AxbaKtc7ZEg2ksB
-   kKHCb8yh4vCG1SjFRzG2wb1ycH1fyHbv2qIaG5cqAg0zHDE3OAWUC1wt/
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="300925913"
-X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; 
-   d="scan'208";a="300925913"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2022 11:10:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,333,1654585200"; 
-   d="scan'208";a="652641729"
-Received: from lkp-server01.sh.intel.com (HELO c0a60f19fe7e) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 21 Sep 2022 11:10:32 -0700
-Received: from kbuild by c0a60f19fe7e with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1ob4B5-0003pz-2H;
-        Wed, 21 Sep 2022 18:10:31 +0000
-Date:   Thu, 22 Sep 2022 02:10:19 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Julien Panis <jpanis@baylibre.com>, william.gray@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     kbuild-all@lists.01.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mranostay@ti.com
-Subject: Re: [PATCH v7 3/4] counter: ti-ecap-capture: capture driver support
- for ECAP
-Message-ID: <202209220145.SYlF1Xt8-lkp@intel.com>
-References: <20220921100627.124085-4-jpanis@baylibre.com>
+        with ESMTP id S229498AbiIUSco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 14:32:44 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BDCEA032C
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 11:32:43 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id u18so10638908lfo.8
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 11:32:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=KpQl/fpFQi0WzrdZvxEbMAul4LrjeiUgy45pvWtrUZw=;
+        b=Q6bV4x7B/wS2piLzjPI8S2AFFfG9OoXAoz3V3v4bpF4xnb1VnvqkFX0kWFxmcW33kk
+         3RGvOsyl9iAajpfumk4y4oeEgybafPVcVh4wyORBlzGRuY62MWX/OeukG0iIusGvSISd
+         u+eG4GO7M6ynNWYK8UqZmGnIDb7pIfV8kZE0MuXNLCvYWZ9D5/pdTHQbL3+LafTc+kXj
+         YtnQV5IsqsHNFw1HMcT6uZKLKJbosYTjSBJTA1RbDHejKYDWdRJoh2723MLBa25KkGpf
+         Q1CJRKnUOXrL1zgJ4HYozeS+lPU37iQ9hTOEVrgWNtwvc7YHDbaFhFJG4jKK058a1h2F
+         9aGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=KpQl/fpFQi0WzrdZvxEbMAul4LrjeiUgy45pvWtrUZw=;
+        b=Clvf6JuV2HU+n2Qi/k4b41rJYCLvUFil/yvI6D+lRObuzgoyjBxpaBGZ+uzJJfoJTQ
+         7de3vb54Y4CwxAuWcQMmrwtiTjwRaEb5PRm6+6nR4xMjmf70wkmfBzPIsKaoFgPo5zQU
+         JhbvPEpQt85kfUw1TI8KA/73wGuXMwFYbcQZ3QJzu/q/gHHnV+XFiSsGdD9sQIg+oIaj
+         YuCfvCVQZMuJ8BvHn75kBKnuXji9I3zpv7UCmibHCsEpkoWotiLrV5tC47z3R7OivE/F
+         oUOs8jcjfKksqe7enXB4p9halK3mviJPvKs/+FJa+Eq6t9tAfufdDDrAbuxn3t2q+J6b
+         JvzQ==
+X-Gm-Message-State: ACrzQf2gt/tQySbS8KVcpVpPtx34GsidAtKQHAquKMkkuewXSM6k1Ff7
+        HjwefSfEHbpdVkmUcY/Bf4aGyw==
+X-Google-Smtp-Source: AMsMyM7jjPC7hCTwA0n33gWBuiRoixZRhdPfpyrVT4SguIv08DybininZsm8klfDAHYdEizBbjvVGQ==
+X-Received: by 2002:a05:6512:32c7:b0:49f:53f2:a51a with SMTP id f7-20020a05651232c700b0049f53f2a51amr10927467lfg.236.1663785161772;
+        Wed, 21 Sep 2022 11:32:41 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id j12-20020a056512344c00b00494a1b242dasm551602lfr.14.2022.09.21.11.32.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Sep 2022 11:32:41 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     mchehab@kernel.org, robh+dt@kernel.org,
+        Tony Luck <tony.luck@intel.com>, michal.simek@xilinx.com,
+        Sergey.Semin@baikalelectronics.ru, manish.narani@xilinx.com,
+        krzysztof.kozlowski+dt@linaro.org, bp@alien8.de
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        punnaiah.choudary.kalluri@xilinx.com, krzk@kernel.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rric@kernel.org, james.morse@arm.com,
+        Alexey.Malahov@baikalelectronics.ru, dinguyen@kernel.org,
+        robh@kernel.org, Michail.Ivanov@baikalelectronics.ru,
+        devicetree@vger.kernel.org, Pavel.Parkhomenko@baikalelectronics.ru,
+        fancer.lancer@gmail.com
+Subject: Re: (subset) [PATCH v2 14/19] dt-bindings: memory: snps: Detach Zynq DDRC controller support
+Date:   Wed, 21 Sep 2022 20:32:36 +0200
+Message-Id: <166378514628.18111.5147960761937324813.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220910194237.10142-15-Sergey.Semin@baikalelectronics.ru>
+References: <20220910194237.10142-1-Sergey.Semin@baikalelectronics.ru> <20220910194237.10142-15-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220921100627.124085-4-jpanis@baylibre.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Julien,
+On Sat, 10 Sep 2022 22:42:32 +0300, Serge Semin wrote:
+> The Zynq A05 DDRC controller has nothing in common with DW uMCTL2 DDRC:
+> the CSRs layout is absolutely different and it doesn't support IRQs unlike
+> DW uMCTL2 DDR controller of all versions (v1.x, v2.x and v3.x). Thus there
+> is no any reason to have these controllers described in the same bindings.
+> Let's split the DT-schema up.
+> 
+> Note since the synopsys,ddrc-ecc.yaml schema describes the Synopsys DW
+> uMCTL2 DDR controller only, we need to accordingly fix the device
+> descriptions.
+> 
+> [...]
 
-Thank you for the patch! Perhaps something to improve:
+Applied, thanks!
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.0-rc6 next-20220921]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[14/19] dt-bindings: memory: snps: Detach Zynq DDRC controller support
+        https://git.kernel.org/krzk/linux-mem-ctrl/c/845081313632b6a27dff576cf102b4aecb4654cf
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Julien-Panis/ECAP-support-on-TI-AM62x-SoC/20220921-180742
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20220922/202209220145.SYlF1Xt8-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/f8a0bbe39ba2d6018559e92fb0c66b789387b293
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Julien-Panis/ECAP-support-on-TI-AM62x-SoC/20220921-180742
-        git checkout f8a0bbe39ba2d6018559e92fb0c66b789387b293
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash drivers/counter/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/counter/ti-ecap-capture.c: In function 'ecap_cnt_watch_validate':
-   drivers/counter/ti-ecap-capture.c:234:66: error: 'COUNTER_EVENT_CAPTURE' undeclared (first use in this function); did you mean 'COUNTER_EVENT_INDEX'?
-     234 |         if ((watch->channel <= ECAP_CEVT_LAST && watch->event == COUNTER_EVENT_CAPTURE) ||
-         |                                                                  ^~~~~~~~~~~~~~~~~~~~~
-         |                                                                  COUNTER_EVENT_INDEX
-   drivers/counter/ti-ecap-capture.c:234:66: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/counter/ti-ecap-capture.c: At top level:
->> drivers/counter/ti-ecap-capture.c:253:47: warning: 'enum counter_signal_polarity' declared inside parameter list will not be visible outside of this definition or declaration
-     253 |                              size_t idx, enum counter_signal_polarity *pol)
-         |                                               ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c: In function 'ecap_cnt_pol_read':
-   drivers/counter/ti-ecap-capture.c:259:16: error: 'COUNTER_SIGNAL_POLARITY_NEGATIVE' undeclared (first use in this function)
-     259 |                COUNTER_SIGNAL_POLARITY_NEGATIVE :
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c:260:16: error: 'COUNTER_SIGNAL_POLARITY_POSITIVE' undeclared (first use in this function)
-     260 |                COUNTER_SIGNAL_POLARITY_POSITIVE;
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c:258:14: error: invalid use of undefined type 'enum counter_signal_polarity'
-     258 |         *pol = regmap_test_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_CAPPOL_BIT(idx)) ?
-         |              ^
-   drivers/counter/ti-ecap-capture.c: At top level:
-   drivers/counter/ti-ecap-capture.c:268:48: warning: 'enum counter_signal_polarity' declared inside parameter list will not be visible outside of this definition or declaration
-     268 |                               size_t idx, enum counter_signal_polarity pol)
-         |                                                ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c:268:72: error: parameter 4 ('pol') has incomplete type
-     268 |                               size_t idx, enum counter_signal_polarity pol)
-         |                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
-   drivers/counter/ti-ecap-capture.c:266:12: error: function declaration isn't a prototype [-Werror=strict-prototypes]
-     266 | static int ecap_cnt_pol_write(struct counter_device *counter,
-         |            ^~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c: In function 'ecap_cnt_pol_write':
-   drivers/counter/ti-ecap-capture.c:276:20: error: 'COUNTER_SIGNAL_POLARITY_NEGATIVE' undeclared (first use in this function)
-     276 |         if (pol == COUNTER_SIGNAL_POLARITY_NEGATIVE)
-         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c: At top level:
-   drivers/counter/ti-ecap-capture.c:375:43: error: array type has incomplete element type 'enum counter_signal_polarity'
-     375 | static const enum counter_signal_polarity ecap_cnt_pol_avail[] = {
-         |                                           ^~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c:376:9: error: 'COUNTER_SIGNAL_POLARITY_POSITIVE' undeclared here (not in a function)
-     376 |         COUNTER_SIGNAL_POLARITY_POSITIVE,
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c:377:9: error: 'COUNTER_SIGNAL_POLARITY_NEGATIVE' undeclared here (not in a function)
-     377 |         COUNTER_SIGNAL_POLARITY_NEGATIVE,
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c:380:77: error: expected ')' before '(' token
-     380 | static DEFINE_COUNTER_ARRAY_POLARITY(ecap_cnt_pol_array, ecap_cnt_pol_avail, ECAP_NB_CEVT);
-         |                                                                             ^
-         |                                                                             )
-   drivers/counter/ti-ecap-capture.c:383:9: error: implicit declaration of function 'COUNTER_COMP_ARRAY_POLARITY' [-Werror=implicit-function-declaration]
-     383 |         COUNTER_COMP_ARRAY_POLARITY(ecap_cnt_pol_read, ecap_cnt_pol_write, ecap_cnt_pol_array),
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c:383:76: error: 'ecap_cnt_pol_array' undeclared here (not in a function); did you mean 'ecap_cnt_pol_read'?
-     383 |         COUNTER_COMP_ARRAY_POLARITY(ecap_cnt_pol_read, ecap_cnt_pol_write, ecap_cnt_pol_array),
-         |                                                                            ^~~~~~~~~~~~~~~~~~
-         |                                                                            ecap_cnt_pol_read
-   drivers/counter/ti-ecap-capture.c:414:52: error: expected ')' before '(' token
-     414 | static DEFINE_COUNTER_ARRAY_U64(ecap_cnt_cap_array, ECAP_NB_CEVT);
-         |                                                    ^
-         |                                                    )
-   drivers/counter/ti-ecap-capture.c:417:9: error: implicit declaration of function 'COUNTER_COMP_COUNT_ARRAY_U64'; did you mean 'COUNTER_COMP_COUNT_U64'? [-Werror=implicit-function-declaration]
-     417 |         COUNTER_COMP_COUNT_ARRAY_U64("capture", ecap_cnt_cap_read, NULL, ecap_cnt_cap_array),
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |         COUNTER_COMP_COUNT_U64
-   drivers/counter/ti-ecap-capture.c:417:74: error: 'ecap_cnt_cap_array' undeclared here (not in a function); did you mean 'ecap_cnt_cap_read'?
-     417 |         COUNTER_COMP_COUNT_ARRAY_U64("capture", ecap_cnt_cap_read, NULL, ecap_cnt_cap_array),
-         |                                                                          ^~~~~~~~~~~~~~~~~~
-         |                                                                          ecap_cnt_cap_read
-   drivers/counter/ti-ecap-capture.c: In function 'ecap_cnt_isr':
-   drivers/counter/ti-ecap-capture.c:449:57: error: 'COUNTER_EVENT_CAPTURE' undeclared (first use in this function); did you mean 'COUNTER_EVENT_INDEX'?
-     449 |                         counter_push_event(counter_dev, COUNTER_EVENT_CAPTURE, i);
-         |                                                         ^~~~~~~~~~~~~~~~~~~~~
-         |                                                         COUNTER_EVENT_INDEX
-   drivers/counter/ti-ecap-capture.c: At top level:
-   drivers/counter/ti-ecap-capture.c:375:43: warning: 'ecap_cnt_pol_avail' defined but not used [-Wunused-variable]
-     375 | static const enum counter_signal_polarity ecap_cnt_pol_avail[] = {
-         |                                           ^~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +253 drivers/counter/ti-ecap-capture.c
-
-   250	
-   251	static int ecap_cnt_pol_read(struct counter_device *counter,
-   252				     struct counter_signal *signal,
- > 253				     size_t idx, enum counter_signal_polarity *pol)
-   254	{
-   255		struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-   256	
-   257		pm_runtime_get_sync(counter->parent);
-   258		*pol = regmap_test_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_CAPPOL_BIT(idx)) ?
-   259		       COUNTER_SIGNAL_POLARITY_NEGATIVE :
-   260		       COUNTER_SIGNAL_POLARITY_POSITIVE;
-   261		pm_runtime_put_sync(counter->parent);
-   262	
-   263		return 0;
-   264	}
-   265	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
