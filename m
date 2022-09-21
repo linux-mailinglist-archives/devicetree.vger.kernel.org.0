@@ -2,69 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89FF85C025A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 17:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D22585C0293
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 17:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229880AbiIUPv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 11:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51762 "EHLO
+        id S230091AbiIUPyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 11:54:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbiIUPvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 11:51:19 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B16359AFC7
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:48:47 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id z25so9963590lfr.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:48:47 -0700 (PDT)
+        with ESMTP id S231925AbiIUPxo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 11:53:44 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825F6857EA
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:50:11 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id c7so7502868ljm.12
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:50:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=dfNfQ/WHHv5bx3D+RgTnUZ4fVKImMkLUwy9dSYsV4ZI=;
-        b=CDmDV9J3qN4i9riPSH+wIb8RFI/McE/mLSFmgYfB/gE5F7kdrl1NmF42wf9DSBeRwd
-         Ct19uqUuy2FLnAbCNp1CNMh4/330+XcctKS0V+I6PI+WFIOsKZvo5lCamy74KsczQFZS
-         3uKuIr/48msm5QHiZgpYrcT5MTXmmsjkYB6oaTVlrafKzHaWJ+uv8QFBGhPIYiRonj9w
-         8A7Rzs09sLCakpZTS6WRyB2bxIgExnCPqs6DkxUIwoEQSAn4C///Mygs7lqMZdHS3J8a
-         ds+no9LudlHEJMErjZyqkQk19Omjo8V4qRakUidEcKo2qvMYJbfnxGwbd4PB/n/eRlFr
-         wpbw==
+        bh=+AzyupcNcN5MuIw8piGTps3hiD8tmkzqA6nQdQZ9DjY=;
+        b=FwV7oDNnArDuxhIOhFqBat34cQb+EoRojBTGwR2rkJ3S81FjwoFeNRutUfKOWH8RPV
+         wr4RvDUwNQx4biKT0L0s2VDkjmIImIARlfB0QFTEzbqVLmbdwLoj9LO+Y7tcD818TyHh
+         twRAvQT47whaquKJXTnU2TeS1FnDgusH16qCkcVw8bCa9g/T61IBvWJLRsodL+g2Vs5M
+         b6wQnnMXGxizV6TXwPM6dQx8+nxv9DU9KGxVbYwfYrxvCSISkaFz5RpekAWfZdMesfRe
+         KY4vsZLJG9xezuceQK5USilaZK3wGrw6se4jJ1CZswdcSs5UQDbQomfkG0VzvjcP0cDc
+         yhuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=dfNfQ/WHHv5bx3D+RgTnUZ4fVKImMkLUwy9dSYsV4ZI=;
-        b=4MBIoj5nYbFhiTQ5J92MbuHF9JcqsWo0fz7oMZwUnw/i7lvnPiKnxLxkVxZ7U5iL9j
-         iJ4gQ9WXCnA2j++V+gD1EOcQxwAyusDISGEHhzi48KoU9/vhPaMgqT2oCGAISq3omJka
-         2eLQZb4NsViMB/V1M4TYiBa2Op+krwqiCotvcXqvoPm9r95FgFgv/aL7+cyk81Y/oGAh
-         i9gVu4aIqvza9rHUhiJO5w631JFI4CV4fkQcXTSdJnDM5Oj7eLwoQrW55VX+FZWSerSg
-         GIige1K2xbZrQ/ZY6r00TduEna/bzCde+lQEOPypODJex4NBMJ8EyjsK7HRYuKVns2FP
-         4v1w==
-X-Gm-Message-State: ACrzQf0dSL+I1w5DF7iJNxDBtkibt6NQS24oVy+qucxoZP1mj5B5soPi
-        hXNAAdhVdi8OTYbh0iKvqrQ41g==
-X-Google-Smtp-Source: AMsMyM52aQHhQGHg1+wR1Bdadj9kbl+E7s+T7WEcsWzkxcaODyaGUchTnGQ0q6iJgm1jXk7j1PT/UA==
-X-Received: by 2002:a05:6512:3503:b0:496:55d:a186 with SMTP id h3-20020a056512350300b00496055da186mr9957884lfs.340.1663775318470;
-        Wed, 21 Sep 2022 08:48:38 -0700 (PDT)
+        bh=+AzyupcNcN5MuIw8piGTps3hiD8tmkzqA6nQdQZ9DjY=;
+        b=GoAZ59NOq9TsmUzW83+TE9b+xOrWsNLjWz50qSdZUZo/aIjVLsTRkyLPEfqZTNG5HE
+         IgVhO+bFQhcSsX/s353eqTYDcVgeEm7FWpDwM2cMtMOXC+Eng7Z0F+YT9BA0YVO8I3K2
+         T17geUv4n2BIbDDQoPtuljKg9+ADmq5jRHGuuYbgBastmCDZRhMqTlvYZHjYkuNXsowX
+         ABEktBUkCguMsqykv3SqM3xe/j24nsZBhMuNGYgP2xYWUolI4FPMk2Xn+bzhRwzPQQdF
+         EuhJPmEais5dr8zOD00D6ECcZQ6ytl1rLNAh1FUcBLOrdFH0K9VFxmcvvtYD6FriavMF
+         yh0A==
+X-Gm-Message-State: ACrzQf1aeQUMBcS5O1uIAnhHZEA4X9KDClE9QtTLWDDZlrRdFj3iWad4
+        nbEmFG5EGMbH2iAT6VkQslvEjQ==
+X-Google-Smtp-Source: AMsMyM4XVPSoYlEMHI9YHOlR1MfJWaBYLiNgPJYRSS7Sd6sw+97LXpSFpbkAiJ4rGBTDeEPdvLEu1g==
+X-Received: by 2002:a05:651c:128d:b0:26c:37f9:c8d8 with SMTP id 13-20020a05651c128d00b0026c37f9c8d8mr8635831ljc.97.1663775381270;
+        Wed, 21 Sep 2022 08:49:41 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id be36-20020a05651c172400b0026bca725cd0sm496321ljb.39.2022.09.21.08.48.37
+        by smtp.gmail.com with ESMTPSA id x25-20020a056512131900b00498f3ebffb2sm492365lfu.25.2022.09.21.08.49.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 08:48:37 -0700 (PDT)
-Message-ID: <6ef8b2d9-2ffa-ff18-eb9a-9d7b9f293ced@linaro.org>
-Date:   Wed, 21 Sep 2022 17:48:36 +0200
+        Wed, 21 Sep 2022 08:49:40 -0700 (PDT)
+Message-ID: <a565b1d3-6fbb-515d-9af3-6ffc95f0e48e@linaro.org>
+Date:   Wed, 21 Sep 2022 17:49:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH] dt-bindings: clocks: qcom,gcc-sc8280xp: Fix typos
+Subject: Re: [PATCH v2 1/4] media: dt-bindings: Document Renesas RZ/G2L CSI-2
+ block
 Content-Language: en-US
-To:     Andrew Halaney <ahalaney@redhat.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220921153155.279182-1-ahalaney@redhat.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <961b4821-4111-b48e-1ae0-60da8c427fbb@linaro.org>
+ <CA+V-a8vrixnR2fXv8a8YS+tfK3KHmO1qJxE=RaFw4FPopubdBA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220921153155.279182-1-ahalaney@redhat.com>
+In-Reply-To: <CA+V-a8vrixnR2fXv8a8YS+tfK3KHmO1qJxE=RaFw4FPopubdBA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,13 +90,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 17:31, Andrew Halaney wrote:
-> pipegmux and SuperSpeed are the proper spelling for those terms.
+On 21/09/2022 14:31, Lad, Prabhakar wrote:
+>> One more: drop the "clk" suffixes. Remaining names could be made a bit
+>> more readable.
+>>
+> The clock names are coming from the clock-list document provided along
+> with the HW manual:
 > 
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> - CRU_SYSCLK
+> - CRU_VCLK
+> - CRU_PCLK
+> 
+> Ive dropped the CRU_ prefix, do you still want me to rename them?
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, that's the generic guideline, regardless how they are called in
+datasheet.
 
 Best regards,
 Krzysztof
