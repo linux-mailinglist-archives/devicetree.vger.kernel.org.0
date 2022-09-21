@@ -2,80 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 360485BF729
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB6D65BF72B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:11:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230016AbiIUHLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:11:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46770 "EHLO
+        id S229554AbiIUHLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:11:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229562AbiIUHKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:10:04 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919072B241
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:10:02 -0700 (PDT)
+        with ESMTP id S229861AbiIUHKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:10:18 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFA863D581
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:10:16 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id t62so6864998oie.10
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:10:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1663744202; x=1695280202;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Q7Et7Jy2iYmcHR8iWL6cqOKKLSXjrtRvh8L113undeU=;
-  b=I25Y0yCkm1JtQZrCukp9No+Dd1o55+fLU3HKXiv3XJPCLjDG5uA86GRc
-   tXbE2U/eC9+Ifzx3nEogP6734gH3HtEYRk4rUEAwCE7M7TM/nEgrGm6dy
-   qTwX6ik5EUSPcRNX0i3mqKotP3V1OBUUe3ONbfk6NLBuC9dnwQIeamEgU
-   mjnGOsodR5g0Z5VLOXwXdHISX2cl2N86zwDoX3QyM0GtHnHZnQ3iYryDC
-   a8RLRD8C6N6cATru+b8PfAGeLEZcXCQ/qx0HIMBcNgFiAJqU5hcst4Lzt
-   dHtt5RxXmgoUTtJO0UMmyCR0DLMQ0joKU8+/fvDR+DBsCr56BpjW4+aHo
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,332,1654552800"; 
-   d="scan'208";a="26300541"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 21 Sep 2022 09:10:00 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 21 Sep 2022 09:10:00 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 21 Sep 2022 09:10:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1663744200; x=1695280200;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Q7Et7Jy2iYmcHR8iWL6cqOKKLSXjrtRvh8L113undeU=;
-  b=hr4ggApPBiTW73oG/AoP0VfQGU7DuvxSf83903Bj42P8FzkXjF5eQ/Q6
-   +0oXT2e5U1QWdkW1v15bTviMH1xtU4cB04aHBbuvH6sEStiun2FE5TfQz
-   1+g6qa0e5EfizZ02Etrpznwc6ma/lvGbKyXRYHdQdGrZelswz8Z8ERApc
-   agbuR7MTfRIKSAgOS38bH6V+fbWdY6GWJortQvdvIvp6XTXU0tPVoN58Z
-   tNofcafh+s78c+QkmEf5D2CG+0PdFgy8K8gfrGxdW0lzdT0NX8S0GtMiR
-   46jHqIx1EBTrkUiPJ6uYmvf+mJ9HsO6XAGtzEAy1Dhd2/FAjR0PlzXpT6
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,332,1654552800"; 
-   d="scan'208";a="26300540"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 21 Sep 2022 09:10:00 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.11])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2D6C7280056;
-        Wed, 21 Sep 2022 09:10:00 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: tqma8mq-mba8mx: Add vcc supply to i2c eeproms
-Date:   Wed, 21 Sep 2022 09:08:33 +0200
-Message-Id: <20220921070833.3106592-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=UeV15dhrzSkJVSr8c8vflfr/94yUpadqysB6VWlfuQM=;
+        b=a6UfoxK+YJYxIUdvh4XbrjBYFr15esIJMD9d73qgxqbMd4r+PnLM3N4CCQVbAaWK5d
+         DD9GtWupC8c+AnUDBOAeVtXZR0QRnV+6msF/9Ozkek/En4SxZw8PrnWD74kwcKuV9DS9
+         QGi0bRDcXBXsy8oCz+I1ILUcg64JdldQKjLrE6M/rmj9RdR020TtjlO0WgFgyb7XgtAP
+         pU3TTOy6GfXy8qvoq32jOwscse2nNCOwxj1h41R/nuwaJaHEQcbjWimte9bPMmXP33OX
+         VoMsqjxMbxeLhcNUt4ZQ4CpYQxL5PFEzfa58pV3aDMJn6CW9kPpWCo0tEJChmVI+PDRN
+         0NgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=UeV15dhrzSkJVSr8c8vflfr/94yUpadqysB6VWlfuQM=;
+        b=Sikkq6I0/mlWyHYo5paOc3Av9LEY8QQMO969dgIaomjtHocCyO1J6O0CpqfxrnW95h
+         BzssQMicpJTrCxdkIO95fhG5jW9o0KTMasylxNO8JlLl4lzbRV58wiczlBuqM57rLMFf
+         n5wGuKUfARBkjaE+X5EwMhrsCcnonUWCDqhQXVW7yT3mQfFsp/Pl58MAI+BsJh+4U8o9
+         dfbA5ksb3xeFA9xzkUI6VDkUoHnK40P1cH55nf5Hm2WmPNwHhbbvBfA/E+K5Tda9UpRl
+         mqKrwGuhdv+CO6pUFXAN6wuzzeKKvyDjYcjsm6394+eyiXBiwlAOZZ/tEyBt2k9f2+eb
+         zbdQ==
+X-Gm-Message-State: ACrzQf2dp5SGsJrAXDqbABHU37EjMT2HlNUXCSzmaZSz88Wkea4PS2bJ
+        jZzZ/6IyLCcGl6sxMNo5RTnaTgLXkm+AiUXC30eu7xqaqDU=
+X-Google-Smtp-Source: AMsMyM78lEBROxqdH/36zAKFKOocUhZPbgiFprpz8iEC1U1Ph5HHCIR/UIPZSfxVVRykTILm6I5VN6O1wEcU0BvEp9Y=
+X-Received: by 2002:a05:6808:23ca:b0:350:92c4:3422 with SMTP id
+ bq10-20020a05680823ca00b0035092c43422mr3272313oib.144.1663744215398; Wed, 21
+ Sep 2022 00:10:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20220920052455.582565-1-sergio.paracuellos@gmail.com> <3763cfe7-972d-55a6-21ce-a45a7669a9df@linaro.org>
+In-Reply-To: <3763cfe7-972d-55a6-21ce-a45a7669a9df@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 21 Sep 2022 09:10:04 +0200
+Message-ID: <CAMhs-H_862_6i8sGb3TLcF7yRtUH9qqDjqpu=OcCzJ51uUU4bA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: migrate MIPS CPU
+ interrupt controller text bindings to YAML
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,48 +70,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes the warnings:
-at24 0-0053: supply vcc not found, using dummy regulator
-at24 0-0057: supply vcc not found, using dummy regulator
-at24 1-0057: supply vcc not found, using dummy regulator
+On Wed, Sep 21, 2022 at 8:45 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/09/2022 07:24, Sergio Paracuellos wrote:
+> > MIPS CPU interrupt controller bindings used text format, so migrate them
+> > to YAML.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> > Changes in v2:
+> > - Address review comment from Krzysztof:
+> >     - Rebase onto last kernel version.
+> >     - Add Thomas Bogendoerfer as maintainer since this is arch stuff.
+> >     - Change compatible to go first as property and required.
+> >     - Change sample node name to be generic. Use 'interrupt-controller'.
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+> >
+> >  .../mti,cpu-interrupt-controller.yaml         | 46 ++++++++++++++++++
+> >  .../devicetree/bindings/mips/cpu_irq.txt      | 47 -------------------
+> >  2 files changed, 46 insertions(+), 47 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/mips/cpu_irq.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml b/Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml
+> > new file mode 100644
+> > index 000000000000..06dc65f0bbd2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/mti,cpu-interrupt-controller.yaml
+> > @@ -0,0 +1,46 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/interrupt-controller/mti,cpu-interrupt-controller.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MIPS CPU Interrupt Controller bindings
+>
+> Drop bindings
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi | 2 ++
- arch/arm64/boot/dts/freescale/mba8mx.dtsi         | 1 +
- 2 files changed, 3 insertions(+)
+Understood, wil drop.
+>
+> > +
+> > +description: >
+> > +   On MIPS the mips_cpu_irq_of_init() helper can be used to initialize the 8 CPU
+> > +   IRQs from a devicetree file and create a irq_domain for IRQ controller.
+> > +
+> > +   With the irq_domain in place we can describe how the 8 IRQs are wired to the
+> > +   platforms internal interrupt controller cascade.
+> > +
+> > +maintainers:
+> > +  - Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: mti,cpu-interrupt-controller
+> > +
+> > +  '#interrupt-cells':
+> > +    const: 1
+> > +
+> > +  '#address-cells':
+> > +    const: 0
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - '#interrupt-cells'
+> > +  - '#address-cells'
+> > +  - interrupt-controller
+> > +
+> > +examples:
+> > +  - |
+> > +    interrupt-controller {
+> > +      #address-cells = <0>;
+> > +      #interrupt-cells = <1>;
+> > +      interrupt-controller;
+> > +      compatible = "mti,cpu-interrupt-controller";
+>
+> Put compatible first in list of properties. It's always first in DTS, by
+> convention.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
-index 802ad6e5cef6..9a95e30fb42d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
-@@ -220,12 +220,14 @@ eeprom1: eeprom@53 {
- 		reg = <0x53>;
- 		pagesize = <16>;
- 		read-only;
-+		vcc-supply = <&reg_vcc3v3>;
- 	};
- 
- 	eeprom0: eeprom@57 {
- 		compatible = "atmel,24c64";
- 		reg = <0x57>;
- 		pagesize = <32>;
-+		vcc-supply = <&reg_vcc3v3>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index f9ee4ad3534c..dd30082f0601 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -245,6 +245,7 @@ eeprom3: eeprom@57 {
- 		compatible = "nxp,se97b", "atmel,24c02";
- 		reg = <0x57>;
- 		pagesize = <16>;
-+		vcc-supply = <&reg_vcc_3v3>;
- 	};
- };
- 
--- 
-2.25.1
+Ok, I will put it first. Current dts files in arch/mips/boot/ using
+this do not follow this convention at all so my copy-paste for adding
+the sample here ended up in the same mistake :)
 
+Thanks,
+    Sergio Paracuellos
+
+>
+> > +    };
+>
+>
+>
+> Best regards,
+> Krzysztof
