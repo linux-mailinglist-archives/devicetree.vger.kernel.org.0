@@ -2,103 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE365BFC3F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 12:23:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B253D5BFC42
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 12:24:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbiIUKXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 06:23:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55454 "EHLO
+        id S229688AbiIUKYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 06:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229736AbiIUKXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 06:23:21 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29192D12A
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 03:23:20 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28LANCQ2013194;
-        Wed, 21 Sep 2022 05:23:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663755792;
-        bh=tXv35ZqAZhn+gOwxVqGghAHayH49f6j+Ks8T+Lvipis=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=eh4hmkta0+ZaloYtvB56udBsWGUzcGpFWi7flfroK1+c6BhLD3Q6C7TJOL/k3Dh8F
-         E6rUqKe0qkFfyWqS/hXHMHIYKAAZVX+sIcFhlOkCE1ZntnbGUJXPMIg9+8WJgHJDVj
-         xZMBS4y6w/d5WhOAs1aTV1BeW8+xyAeU10tqM2tw=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28LANCJw071980
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 21 Sep 2022 05:23:12 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 21
- Sep 2022 05:23:11 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 21 Sep 2022 05:23:11 -0500
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28LAN97M054781;
-        Wed, 21 Sep 2022 05:23:10 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     <nm@ti.com>, Matt Ranostay <mranostay@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j7200: fix main pinmux range
-Date:   Wed, 21 Sep 2022 15:53:07 +0530
-Message-ID: <166375577215.1126660.12635396035388901294.b4-ty@ti.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220919205723.8342-1-mranostay@ti.com>
-References: <20220919205723.8342-1-mranostay@ti.com>
+        with ESMTP id S229833AbiIUKYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 06:24:39 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C8AD6252;
+        Wed, 21 Sep 2022 03:24:34 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id sd10so4169909ejc.2;
+        Wed, 21 Sep 2022 03:24:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
+         :date:from:to:cc:subject:date;
+        bh=eIhhSNSnUwxjgTPYFm7S/0hwWM40o8GyyO97/j15IFg=;
+        b=G9WT/UQGubvNFxWnL/o0yleoSM08Bw5rZ4oh9Cq8Ws4o55wR8QFPHLGZ4OBwtduVI0
+         XuHnrt1+SQYDZldS/SUXodcrWAV8VoFl0Ls3Fyyw9e1IYCRgEcgJnXRKQgddXfzHo+uD
+         XHP46DejS8sOitBMxgt0bOF/fuYRJvPtdkT8C+lFeka4OzXVamcrsXCwHlhVdrpXcZdo
+         xlP6cWNEfYGat8SUOKeJmZri5hDkfNZr3Z1yICMNHkBwQeC5lE3M1ST84thcZg9sdPVl
+         CYRoerTu4l7icXsMiZ5wKUznCNpk6TeFnmzMSDUAP+eFeNmNhrP2Y4eMnBsKy97cWQ3U
+         q1FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
+         :date:x-gm-message-state:from:to:cc:subject:date;
+        bh=eIhhSNSnUwxjgTPYFm7S/0hwWM40o8GyyO97/j15IFg=;
+        b=QEIaJnS3CJ9exfBuUih3pRF28mJyudIFOjrPKaMoPFvy7feczar7XZyGlXjzOahX54
+         2/oFzaHOJTBSYJqM833KswEf9bVPHod+HTuSWQxhfN/7OjQWOefuITt88KBhHknc/MQ9
+         UsCOfkYdYHq12Nd53joL08zROya8UPs4NunFDNlxOaqcsBZtRaMDpzqyzbXKWbeWMPww
+         WRqkXQLpYNlPKt4Ys981CQMyyQdLYzVm5Yk13HaH65ogEsTKKYo+6+8zPGVCw3yhU15h
+         EGkMKZoRn/4HAuJrGRCvOxWt5iPB16WB9rPYzPOJ5R/OLKG7UQZy+bD1CuTia2oa0tmd
+         Xyww==
+X-Gm-Message-State: ACrzQf0wY0hXNa9STX6UAjgnVyM5fPShcy1rLodBWzrUXXlUgCehK+DD
+        ewzMeTpdORn4gx7/X4SCgL0=
+X-Google-Smtp-Source: AMsMyM4/tQ/3iyKx28lNFLOxL9B4PbS2w3ASNsuN7lnWPKZ9DR/VYhQRB6uyEMozzstJbV/bbVLkzA==
+X-Received: by 2002:a17:906:6a0b:b0:77d:2f20:69db with SMTP id qw11-20020a1709066a0b00b0077d2f2069dbmr19074694ejc.572.1663755872843;
+        Wed, 21 Sep 2022 03:24:32 -0700 (PDT)
+Received: from [10.34.6.160] ([95.183.227.98])
+        by smtp.gmail.com with ESMTPSA id fc24-20020a1709073a5800b0077b523d309asm1070024ejc.185.2022.09.21.03.24.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Sep 2022 03:24:32 -0700 (PDT)
+Date:   Wed, 21 Sep 2022 13:24:17 +0300
+From:   yassine.oudjana@gmail.com
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Combine MediaTek MT67xx pinctrl
+ binding docs
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <H82KIR.LT5P242T2PJ72@gmail.com>
+In-Reply-To: <0c2ef56e-5dab-fb79-fead-adb4acef4cc6@collabora.com>
+References: <20220919170115.94873-1-y.oudjana@protonmail.com>
+        <20220919170115.94873-2-y.oudjana@protonmail.com>
+        <4c425cf8-f9ca-969c-f8ed-688410bfb922@collabora.com>
+        <1860b0ff-5544-5e74-ccfc-beda18824927@linaro.org>
+        <YQZJIR.QQOJU0071T1J1@gmail.com>
+        <0c2ef56e-5dab-fb79-fead-adb4acef4cc6@collabora.com>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii; format=flowed
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matt Ranostay,
 
-On Mon, 19 Sep 2022 13:57:23 -0700, Matt Ranostay wrote:
-> Range size of 0x2b4 was incorrect since there isn't 173 configurable
-> pins for muxing. Additionally there is a non-addessable region in the
-> mapping which requires spliting into two ranges.
+
+On Wed, Sep 21 2022 at 11:45:41 AM +0200, AngeloGioacchino Del Regno 
+<angelogioacchino.delregno@collabora.com> wrote:
+> Il 21/09/22 11:30, yassine.oudjana@gmail.com ha scritto:
+>> 
+>> 
+>> On Wed, Sep 21 2022 at 09:11:12 AM +0200, Krzysztof Kozlowski 
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>> On 20/09/2022 10:06, AngeloGioacchino Del Regno wrote:
+>>>>  Il 19/09/22 19:01, Yassine Oudjana ha scritto:
+>>>>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>>> 
+>>>>>  Documents for MT6779, MT6795 and MT6797 that currently exist 
+>>>>> share
+>>>>>  most properties, and each one has slightly differently worded
+>>>>>  descriptions for those properties. Combine all three documents 
+>>>>> into
+>>>>>  one common document for all MT67xx SoC pin controllers, picking 
+>>>>> a few
+>>>>>  parts from each and accounting for differences such as items in 
+>>>>> reg
+>>>>>  and reg-names properties. Also document the MT6765 pin controller
+>>>>>  which currently has a driver but no DT binding documentation. It 
+>>>>> should
+>>>>>  be possible to also include bindings for MT8183 and MT8188, but 
+>>>>> these
+>>>>>  have some additional properties that might complicate things a 
+>>>>> bit,
+>>>>>  so they are left alone for now.
+>>>>> 
+>>>>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>>>  ---
+>>>>>    .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 207 
+>>>>> ------------------
+>>>>>    .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 176 
+>>>>> ---------------
+>>>>>    ...6795.yaml => mediatek,mt67xx-pinctrl.yaml} | 181 
+>>>>> +++++++++++----
+>>>> 
+>>>>  Hello Yassine,
+>>>>  nice cleanup over here!
+>>>> 
+>>>>  There's a catch though: as far as I know, wildcards are not 
+>>>> permitted... so you
+>>>>  should, at this point, merge all of these in 
+>>>> mediatek,mt6779-pinctrl.yaml instead.
+>>>> 
+>>>>  Before jumping to that, though... Krzysztof, can you please 
+>>>> confirm (or deny)?
+>>> 
+>>> Wildcards are not allowed in compatibles. In filename wildcards or
+>>> family name could work if they are really going to match the 
+>>> devices. I
+>>> have doubts here. 67xx is quite a lot of different devices, so I am 
+>>> not
+>>> sure this will cover them all.
+>>> 
+>>> I would prefer one name (oldest SoC or lowest number).
+>> 
+>> Lowest number (and probably oldest too but not sure since mediatek 
+>> naming conventions are a bit weird) currently documented is mt6779, 
+>> but mt6765 gets documented in this patch and mt6735 (this one I 
+>> know for sure is older than the rest) in a following patch, so do I 
+>> just stick with mt6779 or do I change it in the following patches 
+>> documenting mt6765 and mt6735?
+>> 
 > 
-> main_pmx0 -> 67 pins
-> main_pmx1 -> 3 pins
+> I see the sequence as:
 > 
-> [...]
+> 1. You merge mediatek,mt6797-pinctrl.yaml into 
+> mediatek,mt6779-pinctrl.yaml; then
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+And mediatek,pinctrl-mt6795 gets merged here too I assume?
 
-[1/1] arm64: dts: ti: k3-j7200: fix main pinmux range
-      commit: 0d0a0b4413460383331088b2203ba09a6971bc3a
+> 2. Adding MT6765 documentation to mediatek,mt6779-pinctrl.yaml; then
+> 3. Adding support for MT6735, documentation goes again to 
+> 6779-pinctrl.
+> 
+> This means that you're working with mediatek,mt6779-pinctrl.yaml :-)
+> 
+> P.S.: That was also a suggestion about how to split things per-commit!
+> 
+> Cheers,
+> Angelo
+> 
+>> Thanks,
+>> Yassine
+>> 
+>>> 
+>>> Best regards,
+>>> Krzysztof
+>> 
+>> 
+> 
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
 
