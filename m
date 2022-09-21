@@ -2,135 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C86195BF976
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 161BB5BF982
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:40:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231458AbiIUIgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 04:36:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42606 "EHLO
+        id S230389AbiIUIkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 04:40:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231327AbiIUIgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:36:43 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F42589908
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 01:36:30 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id h3so6110595lja.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 01:36:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=339+3mHOy+Q3FCaVFGj+b1oUEup7t5BZOT8tg60/J6w=;
-        b=OhxZFifxim9zPK0LacO5Qma5OLzssTw7hyLTZf55g8Yl576rZWbzHHGZxYl+BV8A1R
-         759NPU+SYX6JiEt8URE1Cwn9ek9ZIcBUPiCfXRXaj2n5IxnEefy1PGyKOjKqnrRJsqDN
-         Ki0oLjXgixi3nHfOSJXVIrBEvXbNkpYC55p0/Ixyhaaq9by2hJxCqiPzyxv1vjIomxTt
-         If15SNPjqOWCDeULCIVbHBBHk7ZUolgENnr8Rwy82TNhqy7kD6R62droTkYX1hn0a+Kw
-         UYQBcqJjdHod3ko8sYs9RuROTnvjt7EKh1nvI2YqInnEYq+u7CWezuYhek0PyCuk8H/I
-         mulg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=339+3mHOy+Q3FCaVFGj+b1oUEup7t5BZOT8tg60/J6w=;
-        b=3BGl2Njmj5+kz0xbaoRb1A8UupX5F/5z/X82MmLcvZIMZbEvHBKMXRZ1ndIWq3sz5V
-         q1NDM4kwUvWb0S1wz7deg/CIfpum/uTvSzoyyqke294mWVeLulZhhnhjIMR38qv61+gJ
-         XnTXgr5y0FlfuCu6rRchQ8pabThovSkAU8z+kZakDtDaQYU/DuJ+n7BIqePdloTSUsf6
-         g06Q0ZcMYzPjhW6p+SxE258UA56aWOMU6I0osPJtghqF5m/+6v77V/58befCRhb4HN/t
-         0GRZFXj+es79f510EE2WM84ojE67jrCP6cAnKocXGsl7ErWTbcH/5SLBRrtC2gtmzvRj
-         AYBQ==
-X-Gm-Message-State: ACrzQf0pQ9C9w0aVgu03Ecb5JN6kQEvZXs6Ytn4qXfNjyucr7UFoY5qf
-        8jzyx1N1yeR3enFVDyIk1802IA==
-X-Google-Smtp-Source: AMsMyM6b3yZpg7/i4MzSbXpTSPi/TUvJcWk9R7HkTuNplHg3c5LC8MYqw3z6tEzYJvxHGUzbYlMH0Q==
-X-Received: by 2002:a05:651c:10a:b0:26c:5d7a:74b2 with SMTP id a10-20020a05651c010a00b0026c5d7a74b2mr2256193ljb.193.1663749388364;
-        Wed, 21 Sep 2022 01:36:28 -0700 (PDT)
-Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q8-20020a056512210800b00499b726508csm328785lfr.250.2022.09.21.01.36.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Sep 2022 01:36:27 -0700 (PDT)
-Date:   Wed, 21 Sep 2022 10:36:26 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>
-Cc:     devicetree@vger.kernel.org, andersson@kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: remoteproc: qcom: Convert wcnss
- documentation to YAML
-Message-ID: <20220921083626.i7bqn45lvracp6by@krzk-bin>
-References: <20220921043648.2152725-1-sireeshkodali1@gmail.com>
- <20220921043648.2152725-3-sireeshkodali1@gmail.com>
+        with ESMTP id S229610AbiIUIkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:40:40 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32B9567CAD;
+        Wed, 21 Sep 2022 01:40:38 -0700 (PDT)
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Wed, 21 Sep
+ 2022 16:40:35 +0800
+Message-ID: <21e14cc1-6b34-e6b0-8da2-ad4b34dac149@amlogic.com>
+Date:   Wed, 21 Sep 2022 16:40:34 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220921043648.2152725-3-sireeshkodali1@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH V3 3/6] clk: meson: S4: add support for Amlogic S4 SoC PLL
+ clock driver
+Content-Language: en-US
+From:   Yu Tu <yu.tu@amlogic.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220805085716.5635-1-yu.tu@amlogic.com>
+ <20220805085716.5635-4-yu.tu@amlogic.com>
+ <1jiln0yzgj.fsf@starbuckisacylon.baylibre.com>
+ <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
+ <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
+ <1jsflftm1y.fsf@starbuckisacylon.baylibre.com>
+ <0c7e6d90-2ce3-25ab-84b6-026ce8a238a8@amlogic.com>
+ <1jtu5uz0ry.fsf@starbuckisacylon.baylibre.com>
+ <9f9cf980-c0c6-d5c3-ced8-8ab50e392470@amlogic.com>
+In-Reply-To: <9f9cf980-c0c6-d5c3-ced8-8ab50e392470@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Sep 2022 10:06:46 +0530, Sireesh Kodali wrote:
-> This is a direct conversion of the existing txt documentation to YAML.
-> It is in preparation for the addition of pronto-v3 to the docs. This
-> patch doesn't document any of the existing subnodes/properties that are
-> not documented in the existing txt file. That is done in a separate
-> patch.
+Hi Jerome，
+
+On 2022/8/30 15:37, Yu Tu wrote:
 > 
-> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
-> ---
->  .../bindings/remoteproc/qcom,wcnss-pil.txt    | 177 ------------
->  .../bindings/remoteproc/qcom,wcnss-pil.yaml   | 267 ++++++++++++++++++
->  2 files changed, 267 insertions(+), 177 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.txt
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
 > 
+> On 2022/8/30 14:44, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>>
+>> On Tue 30 Aug 2022 at 14:13, Yu Tu <yu.tu@amlogic.com> wrote:
+>>
+>>> On 2022/8/29 17:48, Jerome Brunet wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>> On Mon 15 Aug 2022 at 21:20, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>>
+>>>>>>>> +
+>>>>>>>> +static struct clk_regmap s4_hdmi_pll_dco = {
+>>>>>>>> +    .data = &(struct meson_clk_pll_data){
+>>>>>>>> +        .en = {
+>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>> +            .shift   = 28,
+>>>>>>>> +            .width   = 1,
+>>>>>>>> +        },
+>>>>>>>> +        .m = {
+>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>> +            .shift   = 0,
+>>>>>>>> +            .width   = 8,
+>>>>>>>> +        },
+>>>>>>>> +        .n = {
+>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>> +            .shift   = 10,
+>>>>>>>> +            .width   = 5,
+>>>>>>>> +        },
+>>>>>>>> +        .frac = {
+>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL1,
+>>>>>>>> +            .shift   = 0,
+>>>>>>>> +            .width   = 17,
+>>>>>>>> +        },
+>>>>>>>> +        .l = {
+>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>> +            .shift   = 31,
+>>>>>>>> +            .width   = 1,
+>>>>>>>> +        },
+>>>>>>>> +        .rst = {
+>>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
+>>>>>>>> +            .shift   = 29,
+>>>>>>>> +            .width   = 1,
+>>>>>>>> +        },
+>>>>>>>> +    },
+>>>>>>>> +    .hw.init = &(struct clk_init_data){
+>>>>>>>> +        .name = "hdmi_pll_dco",
+>>>>>>>> +        .ops = &meson_clk_pll_ro_ops,
+>>>>>>>> +        .parent_data = (const struct clk_parent_data []) {
+>>>>>>>> +            { .fw_name = "xtal", }
+>>>>>>>> +        },
+>>>>>>>> +        .num_parents = 1,
+>>>>>>>> +        /*
+>>>>>>>> +         * Display directly handle hdmi pll registers ATM, we need
+>>>>>>>> +         * NOCACHE to keep our view of the clock as accurate as
+>>>>>>>> +         * possible
+>>>>>>>> +         */
+>>>>>>>
+>>>>>>> Is it really ?
+>>>>>>>
+>>>>>>> Given that HDMI support for the s4 is there yet, the
+>>>>>>> addresses have changes and the region is no longer a syscon, it 
+>>>>>>> is time
+>>>>>>> for the HDMI driver to get fixed.
+>>>>> The HDMI PLL is configured in the Uboot phase and does not change the
+>>>>> frequency in the kernel phase. So we use the NOCACHE flag and
+>>>>> "ro_ops".
+>>>> That's no reason to put NOCACHE or ro-ops
+>>>> If you want the frequencies to be statically assinged, the correct way
+>>>> would be through assigned-rate in DT I guess.
+>>>
+>>> Okay. You're right. However, when registering with OPS, HDMI PLL will be
+>>> reset. It takes time for PLL to stabilize the output frequency, which 
+>>> will
+>>> lead to the startup screen flashing.
+>>>
+>>> I would like to know how to solve this problem if not using ro_ops.
+>>>
+>>>>
+>>
+>> You can add new ops or tweak the current init function.
+> 
+> HDMI PLL is not different from other PLLS, so I think adding OPS is weird.
+> 
+>>
+>> Safest would be to do the following :
+>>   * Check if the PLLs is already on.
+>>   * Check if the 'pll->init_regs' matches what is already set
+>>     - if so, you can skip the reset
+>>     - if not, you need to reset as usual
+> 
+> static int meson_clk_pll_init(struct clk_hw *hw)
+> {
+>          struct clk_regmap *clk = to_clk_regmap(hw);
+>          struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+> 
+> 
+>          if (pll->init_count) {
+>                  meson_parm_write(clk->map, &pll->rst, 1);
+>                  regmap_multi_reg_write(clk->map, pll->init_regs,
+>                                  |      pll->init_count);
+>                  meson_parm_write(clk->map, &pll->rst, 0);
+>          }
+> 
+> 
+>          return 0;
+> }
+> 
+> Because the init function looks like this. Therefore, HDMI PLL 
+> init_count is not given. Can I change it like this?
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+I don't know if this change meets your requirements? Please give us your 
+valuable advice.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/
-
-
-remoteproc@a21b000: compatible: ['qcom,pronto-v2-pil', 'qcom,pronto'] is too long
-	arch/arm64/boot/dts/qcom/apq8016-sbc.dtb
-	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dtb
-	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dtb
-	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dtb
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dtb
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dtb
-	arch/arm64/boot/dts/qcom/msm8916-mtp.dtb
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dtb
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dtb
-	arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dtb
-	arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dtb
-	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dtb
-	arch/arm/boot/dts/qcom-apq8016-sbc.dtb
-	arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dtb
-
-remoteproc@fb21b000: compatible: ['qcom,pronto-v2-pil', 'qcom,pronto'] is too long
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dtb
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dtb
-	arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dtb
-	arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dtb
-	arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dtb
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-amami.dtb
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-honami.dtb
-
-remoteproc@fb21b000: 'power-domain-names' is a required property
-	arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dtb
-
-remoteproc@fb21b000: 'power-domains' is a required property
-	arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dtb
