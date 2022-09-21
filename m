@@ -2,159 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F0E35BF6D3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 892385BF6D8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:59:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbiIUG50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 02:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35754 "EHLO
+        id S229993AbiIUG7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 02:59:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230062AbiIUG5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:57:24 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B22380F61
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:57:23 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id q17so5784772lji.11
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:57:22 -0700 (PDT)
+        with ESMTP id S229694AbiIUG7M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:59:12 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DED87C31D
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:59:10 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id u18so7634565lfo.8
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:59:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=NK2N/b/QQywGXjYSUF1DR4DFgFeCcv8ay3tmMR7yQe4=;
-        b=zd9VKku7G1ak2cVyYOpEVge/UKl5/MrmOGUtOuV36rnH2moft2SkAC/9tMMOJjqevW
-         iij9gy5AkWzLqLBhcQtg1LjWDm4G7jMk8WimQOrNfN9u3qVCSv4AvFMcBkGlB/Z+DkrM
-         44pP9yln+ruBWW3bjLElOcV+dH5W1qdMRKI9bGT5lqT/8i3qKkxJAdDmOLkLgCbIHLdQ
-         yXDMxXv2Kyp4S00TH8ryrjxRPvWLMtROado73s+RWJl4EyKQFnQDrVSrFJ1qNp7NWebr
-         brEd1UtiG4Qv3mueTQn9TpQaUJVc7FuasEN6YvoZj72MynPHRGdqSqPndsNjRBMnNICy
-         zACg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=HgFRLa6RZfxCSzyKzG51QeSheAMqgBptz4NFN1+wABA=;
+        b=yK8M5MqvestK5tuVqPXXMT4E3PSbxbGxQYxddSfYgkVNtGTRe2EJowMAWc7iZ8JTyk
+         FI8CR/ZY5FRxklQX5lxiWxXo1Str92tn4o6p9Cqt8QQuNsArRdG+g3y15GozaN86E6p0
+         G8GFt4yCtX65S6VOCO7bfjoHssnFqhwGvfmi0KAbgZTRFZPtN+0JlWbcXb2x7/l7Ozkb
+         9f/d1dIQBVbWdQLMkCIULJXNfcFq4Ikr1l/FC7Et397BKZ5/EjQpPaw93K9Cq6hBgEJl
+         0NZTnMyshBZMmcZSLN2ppzkGCPVFMTD9oRR3uVGMb4B/0qzGY7VrodhNkk5dc70AZ9f/
+         PDWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=NK2N/b/QQywGXjYSUF1DR4DFgFeCcv8ay3tmMR7yQe4=;
-        b=gGR0iu33+txzg0jyKKyQaE/Ovxw4dP3gZ1zLnEpke1yxX38q2BYzMJI7oXzxtQCGb1
-         2NuWGK9Rk3QuOdh9KctPESAfaSTUenWajSnqdPMp8CxHaEvXodMMNPviUzUYvRwRBiIH
-         H/Sa/H5tL+X5uHoEEVeVayRaQtYgqRYu6K43Ch5M3xS/bkIHw/UehPBreRxVUF7qOPzb
-         6wsltuiMJVXXscKRiKavQ0kOpQ2nRdC0rXlZYXF69F5vQefnNra5u/2IvIW8Jhr7vNXB
-         1Zf/ILPG55j//cmQQkw5rdr8svCGTVoaCApyqLcC3XIX1rv53p3BxcyOGBxelPwqk1bM
-         aq+Q==
-X-Gm-Message-State: ACrzQf3391eSkf22KwSJySL0wbSjs4WRa18cgDITe8riihHl4lGMX73S
-        /H2R3CK+QOA7NE9ThKeoXfHFMg==
-X-Google-Smtp-Source: AMsMyM4EcQa7KqdhM3o6+dyVA7n/gHX0GrxOqzZR52bpaVcu/jIZW6WrDc7SJVRTnVlFdh3dYeQywA==
-X-Received: by 2002:a2e:944a:0:b0:24f:10bd:b7e8 with SMTP id o10-20020a2e944a000000b0024f10bdb7e8mr8835541ljh.238.1663743441318;
-        Tue, 20 Sep 2022 23:57:21 -0700 (PDT)
-Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p15-20020ac24ecf000000b00499cf3e3ebesm307999lfr.121.2022.09.20.23.57.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 23:57:20 -0700 (PDT)
-Date:   Wed, 21 Sep 2022 08:57:18 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     linuxppc-dev@lists.ozlabs.org, Vinod Koul <vkoul@kernel.org>,
-        devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Rob Herring <robh@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v6 2/8] dt-bindings: phy: Add Lynx 10G phy binding
-Message-ID: <20220921065718.lafutkkgiium5ycu@krzk-bin>
-References: <20220920202356.1451033-1-sean.anderson@seco.com>
- <20220920202356.1451033-3-sean.anderson@seco.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=HgFRLa6RZfxCSzyKzG51QeSheAMqgBptz4NFN1+wABA=;
+        b=EkqTfMpHGtRHEcHS9H4V+rjZgxXpvG53SyDmdlx7q/RSmTcLX9O+jQjc91c/Fcg3nx
+         to2Lx0ag+Kl9O+UgpeyDreWgNmjA6S2HU/K/cIcHY/qQak4lliyuMTSWzIB7+D//qI8V
+         VJoZb3+e4Z77Tbgb4/TLEVjYz8W+iP21YUPp7Tye6z6ZK1L4eYvEQGmm35XcTQjshsbS
+         TjrSqJWwbBkZyEIScEZjtSLsuCaBmTbAPaI65zmtfaIk2SVEzuYlji0Jo7ruGzVW/Wvl
+         77at/pIHCRdH0FOp+rF9xcpwvSnzvC2JMaiRyPVQrBGNT5QaWnQ6AHvzz30TNyFJyuLn
+         rx6g==
+X-Gm-Message-State: ACrzQf2wtWSGH89lYI3J+F+rOCzSAb9ABrbwfBwXY/hQSZteGeXkZWgg
+        BYiKGBd0vEbyumfjsmHltmhnog==
+X-Google-Smtp-Source: AMsMyM7HnQKXnVoP9WXO58OKStdAy4yp8cOYJrfYs5ikswC1P3+8W8uEveKoGIX/yvZX+3kbHCVc9g==
+X-Received: by 2002:a05:6512:11c8:b0:497:c19e:c709 with SMTP id h8-20020a05651211c800b00497c19ec709mr10425195lfr.152.1663743548671;
+        Tue, 20 Sep 2022 23:59:08 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id z12-20020a2eb52c000000b00261e2aab7c2sm306813ljm.58.2022.09.20.23.59.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Sep 2022 23:59:08 -0700 (PDT)
+Message-ID: <b71a576b-170c-d596-a024-884223be44c6@linaro.org>
+Date:   Wed, 21 Sep 2022 08:59:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220920202356.1451033-3-sean.anderson@seco.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v5 8/8] i2c: i2c-mlxbf.c: Update binding devicetree
+Content-Language: en-US
+To:     Asmaa Mnebhi <asmaa@nvidia.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        robh@kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Khalil Blaiech <kblaiech@nvidia.com>
+References: <20220920174736.9766-1-asmaa@nvidia.com>
+ <20220920174736.9766-9-asmaa@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220920174736.9766-9-asmaa@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Sep 2022 16:23:50 -0400, Sean Anderson wrote:
-> This adds a binding for the SerDes module found on QorIQ processors.
-> Each phy is a subnode of the top-level device, possibly supporting
-> multiple lanes and protocols. This "thick" #phy-cells is used due to
-> allow for better organization of parameters. Note that the particular
-> parameters necessary to select a protocol-controller/lane combination
-> vary across different SoCs, and even within different SerDes on the same
-> SoC.
+On 20/09/2022 19:47, Asmaa Mnebhi wrote:
+> In the latest version of the i2c-mlxbf.c driver, the "Smbus block"
+> resource was broken down to 3 separate resources "Smbus timer",
+> "Smbus master" and "Smbus slave" to accommodate for BlueField-3
+> SoC registers' changes.
 > 
-> The driver is designed to be able to completely reconfigure lanes at
-> runtime. Generally, the phy consumer can select the appropriate
-> protocol using set_mode.
-> 
-> There are two PLLs, each of which can be used as the master clock for
-> each lane. Each PLL has its own reference. For the moment they are
-> required, because it simplifies the driver implementation. Absent
-> reference clocks can be modeled by a fixed-clock with a rate of 0.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Khalil Blaiech <kblaiech@nvidia.com>
+> Signed-off-by: Asmaa Mnebhi <asmaa@nvidia.com>
 > ---
-> 
-> Changes in v6:
-> - fsl,type -> phy-type
-> 
-> Changes in v4:
-> - Use subnodes to describe lane configuration, instead of describing
->   PCCRs. This is the same style used by phy-cadence-sierra et al.
-> 
-> Changes in v3:
-> - Manually expand yaml references
-> - Add mode configuration to device tree
-> 
-> Changes in v2:
-> - Rename to fsl,lynx-10g.yaml
-> - Refer to the device in the documentation, rather than the binding
-> - Move compatible first
-> - Document phy cells in the description
-> - Allow a value of 1 for phy-cells. This allows for compatibility with
->   the similar (but according to Ioana Ciornei different enough) lynx-28g
->   binding.
-> - Remove minItems
-> - Use list for clock-names
-> - Fix example binding having too many cells in regs
-> - Add #clock-cells. This will allow using assigned-clocks* to configure
->   the PLLs.
-> - Document the structure of the compatible strings
-> 
->  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 236 ++++++++++++++++++
->  1 file changed, 236 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-yamllint warnings/errors:
+>    reg:
+>      minItems: 3
+> @@ -25,6 +27,9 @@ properties:
+>        - description: Cause master registers
+>        - description: Cause slave registers
+>        - description: Cause coalesce registers
+> +      - description: Smbus timer registers
+> +      - description: Smbus master registers
+> +      - description: Smbus slave registers
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -35,6 +40,13 @@ properties:
+>        bus frequency used to configure timing registers;
+>        The frequency is expressed in Hz. Default is 100000.
+>  
+> +  resource_version:
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/phy/fsl,lynx-10g.example.dts:51.27-28 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/phy/fsl,lynx-10g.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1420: dt_binding_check] Error 2
+No underscores in names.
 
-doc reference errors (make refcheckdocs):
+> +    enum: [ 0, 1 ]
+> +    description:
+> +      Version of the device tree. resource_version = 0 when the driver uses
+> +      Smbus block resource. resource_version = 1 when the driver uses Smbus
+> +      timer, Smbus master and Smbus slave resources.
 
-See https://patchwork.ozlabs.org/patch/
+No way. That's not a DT property.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -42,18 +54,6 @@ required:
+>  
+>  unevaluatedProperties: false
+>  
+> -if:
+> -  properties:
+> -    compatible:
+> -      contains:
+> -        enum:
+> -          - mellanox,i2c-mlxbf1
+> -
+> -then:
+> -  properties:
+> -    reg:
+> -      maxItems: 3
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Why?
 
-pip3 install dtschema --upgrade
+> -
+>  examples:
+>    - |
+>      i2c@2804000 {
+> @@ -61,8 +61,13 @@ examples:
+>          reg = <0x02804000 0x800>,
+>                <0x02801200 0x020>,
+>                <0x02801260 0x020>;
+> +              <0x00000001 0x1>;
+> +              <0x02804000 0x40>,
+> +              <0x02804200 0x200>,
+> +              <0x02804400 0x200>,
+>          interrupts = <57>;
+>          clock-frequency = <100000>;
+> +        resource_version = <1>;
+>      };
+>  
+>    - |
+> @@ -72,6 +77,25 @@ examples:
+>                <0x02808e00 0x020>,
+>                <0x02808e20 0x020>,
+>                <0x02808e40 0x010>;
+> +              <0x02808800 0x040>;
+> +              <0x02808a00 0x200>,
+> +              <0x02808c00 0x200>,
+>          interrupts = <57>;
+>          clock-frequency = <400000>;
+> +        resource_version = <1>;
+> +    };
+> +
+> +  - |
+> +    i2c@2808800 {
+> +        compatible = "mellanox,i2c-mlxbf3";
+> +        reg = <0x00000001 0x1>,
+> +              <0x13404400 0x020>,
+> +              <0x13404420 0x020>,
+> +              <0x13404440 0x010>;
+> +              <0x13404480 0x40>,
+> +              <0x13404200 0x200>,
+> +              <0x13404000 0x200>,
 
-Please check and re-submit.
+No need for the same example.
+
+Best regards,
+Krzysztof
