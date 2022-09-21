@@ -2,103 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B045E5356
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 20:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCBF45E536C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 20:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiIUSss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 14:48:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
+        id S229723AbiIUSyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 14:54:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229841AbiIUSsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 14:48:47 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1F1A2A82
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 11:48:46 -0700 (PDT)
-Received: from [192.168.1.101] (95.49.29.188.neoplus.adsl.tpnet.pl [95.49.29.188])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 2BA0320202;
-        Wed, 21 Sep 2022 20:48:44 +0200 (CEST)
-Message-ID: <f98ccf6b-34e7-d15f-63f9-928827b52eb8@somainline.org>
-Date:   Wed, 21 Sep 2022 20:48:43 +0200
+        with ESMTP id S229900AbiIUSye (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 14:54:34 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06CCDDE;
+        Wed, 21 Sep 2022 11:54:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+        s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=XZ1oa7f8EL3olAkXpUq8dW6B30sw0XpQKvefKi5aaM4=; b=FtpDSyDp6BrAV8xD8zjEeyd6nD
+        fbf1Uj1izetdtCD4r1p/cvgRIU3pjunlGn7/IoFt1BqUAtF4mkIQYnhpYGa0qF0595jRc3I4xu7wQ
+        W3kCehoTQN6aPWIPhbpyLur0JquxPIUIJ8EJgeNeoxjF86S/OPB82beDFkqNjasmJlGW3lVFkeNpW
+        c8kM8FWtqYBuUEfZBYFnBBJvsvm/+GcKbJXErlfE5pazEy0UJT9yklA1WtJqomkfk8AbW+Qj4BduK
+        rZHm2xUCU7iDMkt9Rrqn3skfgYZHOcJFaj9PG9q4N/cbM9YooMl3O9gUJ31D9gk9jDOQ/fkfG/yTh
+        ZDEks7gA==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=[192.168.1.10])
+        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1ob4rV-00AChg-3L; Wed, 21 Sep 2022 21:54:21 +0300
+Message-ID: <a0ff28e6-47f2-63d5-47f5-a9376deec47a@kapsi.fi>
+Date:   Wed, 21 Sep 2022 21:54:20 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 2/2] iommu: arm-smmu-qcom: add sdm670 compatible
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH v3 1/8] memory: tegra: Add API for retrieving carveout
+ bounds
 Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Richard Acayan <mailingradian@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org
-References: <20220920223955.151507-1-mailingradian@gmail.com>
- <20220920223955.151507-3-mailingradian@gmail.com>
- <77b7d58f-ba85-86de-8635-6efbb1354a08@linaro.org>
- <5c25dc95-d7a4-0b15-5514-6fe3a48e899c@somainline.org>
-In-Reply-To: <5c25dc95-d7a4-0b15-5514-6fe3a48e899c@somainline.org>
-Content-Type: text/plain; charset=UTF-8
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220920081203.3237744-1-cyndis@kapsi.fi>
+ <20220920081203.3237744-2-cyndis@kapsi.fi>
+ <8cb14446-01ec-255a-5bf6-e16098628f60@linaro.org>
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+In-Reply-To: <8cb14446-01ec-255a-5bf6-e16098628f60@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 21.09.2022 20:47, Konrad Dybcio wrote:
-> 
-> 
-> On 21.09.2022 09:31, Krzysztof Kozlowski wrote:
->> On 21/09/2022 00:39, Richard Acayan wrote:
->>> The Snapdragon 670 needs the IOMMU for GENI I2C. Add a compatible string to
->>> support it.
->>>
->>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
->>> ---
->>>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
->>> index b2708de25ea3..bf9653b9eb89 100644
->>> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
->>> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
->>> @@ -431,6 +431,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
->>>  	{ .compatible = "qcom,sc8180x-smmu-500" },
->>>  	{ .compatible = "qcom,sc8280xp-smmu-500" },
->>>  	{ .compatible = "qcom,sdm630-smmu-v2" },
->>> +	{ .compatible = "qcom,sdm670-smmu-500" },
+On 9/21/22 21:37, Krzysztof Kozlowski wrote:
+> On 20/09/2022 10:11, Mikko Perttunen wrote:
+>> From: Mikko Perttunen <mperttunen@nvidia.com>
 >>
->> Why do we keep adding compatibles to the driver for apparently
->> compatible devices?
-> 
-> Because Linux has not funny run on bare Qualcomm hardware ever since at least msm8x60 times and
-s/funny/fully
-
-unfortunate typo, this is not funny, quite the contrary..
-
-Konrad
-> we are not interacting with real hardware, only with Qualcomm's flawed virtual implementation
-> of it, that's abstracted to us through various generations of their saddening software stack. This
-> is also the case for many more standard components, even as far as the GIC on recent boards..
-> 
-> Konrad
+>> On Tegra234 NVDEC firmware is loaded from a secure carveout, where it
+>> has been loaded by a bootloader. When booting NVDEC, we need to tell it
+>> the address of this firmware, which we can determine by checking the
+>> starting address of the carveout. As such, add an MC API to query the
+>> bounds of carveouts, and add related information on Tegra234.
 >>
->>
->> Best regards,
->> Krzysztof
+>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> 
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Thanks!
+
+Mikko
