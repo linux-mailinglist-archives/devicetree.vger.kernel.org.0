@@ -2,222 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1287D5BF26C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 02:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D9755BF29A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 03:15:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbiIUArw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 20:47:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57806 "EHLO
+        id S229716AbiIUBPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 21:15:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbiIUArt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 20:47:49 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643EA79A6E
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 17:47:48 -0700 (PDT)
-Received: from localhost.localdomain (95.49.29.188.neoplus.adsl.tpnet.pl [95.49.29.188])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 186683F218;
-        Wed, 21 Sep 2022 02:47:46 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229644AbiIUBPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 21:15:00 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB351A380;
+        Tue, 20 Sep 2022 18:14:52 -0700 (PDT)
+X-UUID: 00dbde89468e48c8980368407c5174c2-20220921
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ktfKjkuCSlQ6+XBcD3iNIlUZc9IseljbIXo3FqlLINs=;
+        b=ONomnynQNKYp/OtLRjDQSsdjunAulXc1ExepZW83eEyolFjTf/K2V4hU9q+NGLNwuri/TnbdNG4N7UITHO9xQ0jAi5EAWM4rEpM46EguIoWOcOXrFQDT0rfE8KMxckJJc0xDRl3ihTdZCjWQSkdl27exgzBUw3VjdEsdIrJ6j2k=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:a6447ef3-ae29-4966-8222-13df92a4bb1b,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:39a5ff1,CLOUDID:ffe915f7-6e85-48d9-afd8-0504bbfe04cb,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 00dbde89468e48c8980368407c5174c2-20220921
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <jianguo.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 423726621; Wed, 21 Sep 2022 09:14:47 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 21 Sep 2022 09:14:46 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 21 Sep 2022 09:14:45 +0800
+Message-ID: <63ca556b81bc2874d3f0a5b87ee0e2f7a4fdeb18.camel@mediatek.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: mediatek-dwmac: add support for
+ mt8188
+From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: msm8998-yoshino: Fix up SMD regulators formatting
-Date:   Wed, 21 Sep 2022 02:47:41 +0200
-Message-Id: <20220921004741.152765-1-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.37.3
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Wed, 21 Sep 2022 09:14:44 +0800
+In-Reply-To: <3ed55b0d-6c14-79a1-b4c1-5764c667d195@collabora.com>
+References: <20220920083617.4177-1-jianguo.zhang@mediatek.com>
+         <20220920083617.4177-2-jianguo.zhang@mediatek.com>
+         <3ed55b0d-6c14-79a1-b4c1-5764c667d195@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY,URIBL_CSS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new line between each subnode and make the { } consistent.
+Dear AngeloGioacchino
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
- .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 33 ++++++++++++++++++-
- 1 file changed, 32 insertions(+), 1 deletion(-)
+	Thanks for your comment.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-index d08639082247..862d859af885 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-@@ -410,131 +410,162 @@ vreg_s3a_1p35: s3 {
- 			regulator-min-microvolt = <1352000>;
- 			regulator-max-microvolt = <1352000>;
- 		};
-+
- 		vreg_s4a_1p8: s4 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 			regulator-system-load = <100000>;
- 			regulator-allow-set-load;
- 		};
-+
- 		vreg_s5a_2p04: s5 {
- 			regulator-min-microvolt = <1904000>;
- 			regulator-max-microvolt = <2032000>;
- 		};
-+
- 		vreg_s7a_1p025: s7 {
- 			regulator-min-microvolt = <900000>;
- 			regulator-max-microvolt = <1028000>;
- 		};
-+
- 		vreg_l1a_0p875: l1 {
- 			regulator-min-microvolt = <880000>;
- 			regulator-max-microvolt = <880000>;
- 			regulator-system-load = <73400>;
- 			regulator-allow-set-load;
- 		};
-+
- 		vreg_l2a_1p2: l2 {
- 			regulator-min-microvolt = <1200000>;
- 			regulator-max-microvolt = <1200000>;
- 			regulator-system-load = <12560>;
- 			regulator-allow-set-load;
- 		};
-+
- 		vreg_l3a_1p0: l3 {
- 			regulator-min-microvolt = <1000000>;
- 			regulator-max-microvolt = <1000000>;
- 		};
-+
- 		vreg_l5a_0p8: l5 {
- 			regulator-min-microvolt = <800000>;
- 			regulator-max-microvolt = <800000>;
- 		};
-+
- 		vreg_l6a_1p8: l6 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 		};
-+
- 		vreg_l7a_1p8: l7 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 		};
-+
- 		vreg_l8a_1p2: l8 {
- 			regulator-min-microvolt = <1200000>;
- 			regulator-max-microvolt = <1200000>;
- 		};
-+
- 		vreg_l9a_1p8: l9 {
- 			regulator-min-microvolt = <1808000>;
- 			regulator-max-microvolt = <2960000>;
- 		};
-+
- 		vreg_l10a_1p8: l10 {
- 			regulator-min-microvolt = <1808000>;
- 			regulator-max-microvolt = <2960000>;
- 		};
-+
- 		vreg_l11a_1p0: l11 {
- 			regulator-min-microvolt = <1000000>;
- 			regulator-max-microvolt = <1000000>;
- 		};
-+
- 		vreg_l12a_1p8: l12 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 		};
-+
- 		vreg_l13a_2p95: l13 {
- 			regulator-min-microvolt = <1808000>;
- 			regulator-max-microvolt = <2960000>;
- 			regulator-allow-set-load;
- 		};
-+
- 		vreg_l14a_1p85: l14 {
- 			regulator-min-microvolt = <1848000>;
- 			regulator-max-microvolt = <1856000>;
- 			regulator-system-load = <32000>;
- 			regulator-allow-set-load;
- 		};
-+
- 		vreg_l15a_1p8: l15 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 		};
-+
- 		vreg_l16a_2p7: l16 {
- 			regulator-min-microvolt = <2704000>;
- 			regulator-max-microvolt = <2704000>;
- 		};
-+
- 		vreg_l17a_1p3: l17 {
- 			regulator-min-microvolt = <1304000>;
- 			regulator-max-microvolt = <1304000>;
- 		};
--		vreg_l18a_2p85: l18 {};
-+
-+		vreg_l18a_2p85: l18 { };
-+
- 		vreg_l19a_2p7: l19 {
- 			regulator-min-microvolt = <2696000>;
- 			regulator-max-microvolt = <2704000>;
- 		};
-+
- 		vreg_l20a_2p95: l20 {
- 			regulator-min-microvolt = <2960000>;
- 			regulator-max-microvolt = <2960000>;
- 			regulator-system-load = <10000>;
- 			regulator-allow-set-load;
- 		};
-+
- 		vreg_l21a_2p95: l21 {
- 			regulator-min-microvolt = <2960000>;
- 			regulator-max-microvolt = <2960000>;
- 			regulator-system-load = <800000>;
- 			regulator-allow-set-load;
- 		};
-+
- 		vreg_l22a_2p85: l22 { };
-+
- 		vreg_l23a_3p3: l23 {
- 			regulator-min-microvolt = <3312000>;
- 			regulator-max-microvolt = <3312000>;
- 		};
-+
- 		vreg_l24a_3p075: l24 {
- 			regulator-min-microvolt = <3088000>;
- 			regulator-max-microvolt = <3088000>;
- 		};
-+
- 		vreg_l25a_3p3: l25 {
- 			regulator-min-microvolt = <3104000>;
- 			regulator-max-microvolt = <3312000>;
- 		};
-+
- 		vreg_l26a_1p2: l26 {
- 			regulator-min-microvolt = <1200000>;
- 			regulator-max-microvolt = <1200000>;
- 			regulator-allow-set-load;
- 		};
-+
- 		vreg_l28_3p0: l28 {
- 			regulator-min-microvolt = <3000000>;
- 			regulator-max-microvolt = <3000000>;
- 		};
-+
- 		vreg_lvs1a_1p8: lvs1 { };
-+
- 		vreg_lvs2a_1p8: lvs2 { };
- 	};
- 
--- 
-2.37.3
+On Tue, 2022-09-20 at 15:22 +0200, AngeloGioacchino Del Regno wrote:
+> Il 20/09/22 10:36, Jianguo Zhang ha scritto:
+> > Add binding document for the ethernet on mt8188
+> > 
+> > Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
+> > ---
+> >   .../devicetree/bindings/net/mediatek-dwmac.yaml        | 10
+> > ++++++++--
+> >   1 file changed, 8 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/mediatek-
+> > dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-
+> > dwmac.yaml
+> > index 61b2fb9e141b..eaf7e8d53432 100644
+> > --- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+> > @@ -20,6 +20,7 @@ select:
+> >           enum:
+> >             - mediatek,mt2712-gmac
+> 
+> Please keep the list ordered by name. MT8188 goes before 8195.
+> 
+We will adjust the order in next version patches.
+
+> >             - mediatek,mt8195-gmac
+> > +          - mediatek,mt8188-gmac
+> >     required:
+> >       - compatible
+> >   
+> > @@ -37,6 +38,11 @@ properties:
+> >             - enum:
+> >                 - mediatek,mt8195-gmac
+> >             - const: snps,dwmac-5.10a
+> > +      - items:
+> > +          - enum:
+> > +              - mediatek,mt8188-gmac
+> > +          - const: mediatek,mt8195-gmac
+> > +          - const: snps,dwmac-5.10a
+> >   
+> >     clocks:
+> >       minItems: 5
+> > @@ -74,7 +80,7 @@ properties:
+> >         or will round down. Range 0~31*170.
+> >         For MT2712 RMII/MII interface, Allowed value need to be a
+> > multiple of 550,
+> >         or will round down. Range 0~31*550.
+> > -      For MT8195 RGMII/RMII/MII interface, Allowed value need to
+> > be a multiple of 290,
+> > +      For MT8195/MT8188 RGMII/RMII/MII interface, Allowed value
+> > need to be a multiple of 290,
+> 
+> For MT8188/MT8195
+> 
+We will adjust the order in next version patches.
+
+> >         or will round down. Range 0~31*290.
+> >   
+> >     mediatek,rx-delay-ps:
+> > @@ -84,7 +90,7 @@ properties:
+> >         or will round down. Range 0~31*170.
+> >         For MT2712 RMII/MII interface, Allowed value need to be a
+> > multiple of 550,
+> >         or will round down. Range 0~31*550.
+> > -      For MT8195 RGMII/RMII/MII interface, Allowed value need to
+> > be a multiple
+> > +      For MT8195/MT8188 RGMII/RMII/MII interface, Allowed value
+> > need to be a multiple
+> 
+> For MT8188/MT8195
+> 
+We will adjust the order in next version patches.
+
+> >         of 290, or will round down. Range 0~31*290.
+> >   
+> >     mediatek,rmii-rxc:
+> 
+> 
+BRS
+Jianguo
 
