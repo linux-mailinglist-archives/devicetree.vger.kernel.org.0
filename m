@@ -2,123 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A99C65BF9A2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:46:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C9B75BF9B3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:48:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbiIUIqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 04:46:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
+        id S230078AbiIUIsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 04:48:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231466AbiIUIqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:46:23 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9DE8A1FE;
-        Wed, 21 Sep 2022 01:46:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663749977; x=1695285977;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WBh2EVZ4QSU9Dq3/ASp3Wt8vZVQtrj4URFPR++R12AM=;
-  b=C5z+id/WnD40LUksP0avuExMuGnjDk23BQ40N22KfuXK/dnnK7yg5715
-   xdKm3IwcxLzfTkWR+vdQfAMeLHj1hH3wg1qSQSmaftT+V5ZtKf109FMBi
-   8dlx5hCKqUxwc4uSel0ggjLFprifeC5t04aq0q+cQNLuhvr6XBH46zeVP
-   NRyj3K0jsnfVef3igm6WjvYY/PWf/Znic/Xjxo6+PftdXmHWehwYmXkin
-   HA12Byv+4DvGjI+qJ/r0mbf+s+xwBMcYtaB0otCrF1jlIDKmswOU272TB
-   8CHtwShp4WUZ2CKHJ7S8RWWcs9k24fSB06/lo6mRiukNBRvuDR914V1+H
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10476"; a="363918096"
-X-IronPort-AV: E=Sophos;i="5.93,332,1654585200"; 
-   d="scan'208";a="363918096"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2022 01:46:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,332,1654585200"; 
-   d="scan'208";a="570447933"
-Received: from lkp-server01.sh.intel.com (HELO c0a60f19fe7e) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 21 Sep 2022 01:46:13 -0700
-Received: from kbuild by c0a60f19fe7e with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oavMy-0003Qb-0t;
-        Wed, 21 Sep 2022 08:46:12 +0000
-Date:   Wed, 21 Sep 2022 16:45:53 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, zhanghongchen <zhanghongchen@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: Re: [PATCH v2 3/3] thermal: loongson2: add thermal management support
-Message-ID: <202209211644.16Ox1qeg-lkp@intel.com>
-References: <20220921015605.17078-3-zhuyinbo@loongson.cn>
+        with ESMTP id S231436AbiIUIsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:48:41 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7EC5B7FFA1;
+        Wed, 21 Sep 2022 01:48:39 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,332,1654527600"; 
+   d="scan'208";a="135683808"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 21 Sep 2022 17:48:38 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 5E0CB41D8A0E;
+        Wed, 21 Sep 2022 17:48:38 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     kishon@ti.com, vkoul@kernel.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        richardcochran@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be
+Cc:     andrew@lunn.ch, linux-phy@lists.infradead.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v2 0/8] treewide: Add R-Car S4-8 Ethernet Switch support
+Date:   Wed, 21 Sep 2022 17:47:37 +0900
+Message-Id: <20220921084745.3355107-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220921015605.17078-3-zhuyinbo@loongson.cn>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.5 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        KHOP_HELO_FCRDNS,SPF_HELO_NONE autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yinbo,
+This patch series is based on next-20220915.
+Add minimal support for R-Car S4-8 Etherent Switch. This hardware
+supports a lot of features. But, this driver only supports it as
+act as an ethernet controller for now.
 
-I love your patch! Perhaps something to improve:
+- patch [1/8] is for CCF.
+- patch [2/8] and [3/8] are for Generic PHY.
+- patch [4/8] through [6/8] are for Network Ethernet.
+- patch [7/8] and [8/8] are for Renesas ARM64 SoC.
 
-[auto build test WARNING on rafael-pm/thermal]
-[also build test WARNING on linus/master v6.0-rc6 next-20220920]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Changes from v1:
+ https://lore.kernel.org/all/20220909132614.1967276-1-yoshihiro.shimoda.uh@renesas.com/
+ - Separate Ethernet SERDES hardware block so that made a Generic PHY driver.
+ - Separate PTP support into a patch as patch [6/8].
+ - Fix dt-bindings of Ethernet Switch.
+ - Remove module parameters from Ethernet Switch driver.
+ - Wrote reverse christmas tree about local variables in all the code.
+ - Improve error path handlings.
+ - Add comment about the current hardware limitation.
+ - Add comment about magic numbers about SERDES settings.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yinbo-Zhu/MAINTAINERS-add-maintainer-for-thermal-driver-for-loongson2-SoCs/20220921-095737
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
-config: x86_64-randconfig-a011 (https://download.01.org/0day-ci/archive/20220921/202209211644.16Ox1qeg-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-5) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/c21dcaa77e2e7514efdb4c97c805b14c9a05ec35
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yinbo-Zhu/MAINTAINERS-add-maintainer-for-thermal-driver-for-loongson2-SoCs/20220921-095737
-        git checkout c21dcaa77e2e7514efdb4c97c805b14c9a05ec35
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/thermal/
+Yoshihiro Shimoda (8):
+  clk: renesas: r8a779f0: Add Ethernet Switch clocks
+  dt-bindings: phy: renesas: Document Renesas Ethernet SERDES
+  phy: renesas: Add Renesas Ethernet SERDES driver for R-Car S4-8
+  dt-bindings: net: renesas: Document Renesas Ethernet Switch
+  net: ethernet: renesas: Add Ethernet Switch driver
+  net: ethernet: renesas: rswitch: Add R-Car Gen4 gPTP support
+  arm64: dts: renesas: r8a779f0: Add Ethernet Switch and SERDES nodes
+  arm64: dts: renesas: r8a779f0: spider: Enable Ethernet Switch and
+    SERDES
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/thermal/loongson2_thermal.c:183:5: warning: no previous prototype for 'loongson2_thermal_remove' [-Wmissing-prototypes]
-     183 | int loongson2_thermal_remove(struct platform_device *pdev)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/loongson2_thermal_remove +183 drivers/thermal/loongson2_thermal.c
-
-   182	
- > 183	int loongson2_thermal_remove(struct platform_device *pdev)
-   184	{
-   185		struct loongson2_thermal_data *data = platform_get_drvdata(pdev);
-   186		int reg_off = data->id * 2;
-   187	
-   188		/* disable interrupt */
-   189		writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
-   190		writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
-   191	
-   192		return 0;
-   193	}
-   194	
+ .../bindings/net/renesas,etherswitch.yaml     |  286 +++
+ .../bindings/phy/renesas,ether-serdes.yaml    |   54 +
+ .../dts/renesas/r8a779f0-spider-ethernet.dtsi |   54 +
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi     |  111 +
+ drivers/clk/renesas/r8a779f0-cpg-mssr.c       |    2 +
+ drivers/net/ethernet/renesas/Kconfig          |   11 +
+ drivers/net/ethernet/renesas/Makefile         |    4 +
+ drivers/net/ethernet/renesas/rcar_gen4_ptp.c  |  151 ++
+ drivers/net/ethernet/renesas/rcar_gen4_ptp.h  |   71 +
+ drivers/net/ethernet/renesas/rswitch.c        | 1779 +++++++++++++++++
+ drivers/net/ethernet/renesas/rswitch.h        |  967 +++++++++
+ drivers/phy/renesas/Kconfig                   |    7 +
+ drivers/phy/renesas/Makefile                  |    2 +-
+ drivers/phy/renesas/r8a779f0-ether-serdes.c   |  303 +++
+ 14 files changed, 3801 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/renesas,etherswitch.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/renesas,ether-serdes.yaml
+ create mode 100644 drivers/net/ethernet/renesas/rcar_gen4_ptp.c
+ create mode 100644 drivers/net/ethernet/renesas/rcar_gen4_ptp.h
+ create mode 100644 drivers/net/ethernet/renesas/rswitch.c
+ create mode 100644 drivers/net/ethernet/renesas/rswitch.h
+ create mode 100644 drivers/phy/renesas/r8a779f0-ether-serdes.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.25.1
+
