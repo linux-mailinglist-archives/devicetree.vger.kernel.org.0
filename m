@@ -2,180 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 161BB5BF982
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:40:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A99C65BF9A2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:46:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230389AbiIUIkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 04:40:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49006 "EHLO
+        id S229675AbiIUIqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 04:46:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbiIUIkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:40:40 -0400
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32B9567CAD;
-        Wed, 21 Sep 2022 01:40:38 -0700 (PDT)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Wed, 21 Sep
- 2022 16:40:35 +0800
-Message-ID: <21e14cc1-6b34-e6b0-8da2-ad4b34dac149@amlogic.com>
-Date:   Wed, 21 Sep 2022 16:40:34 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH V3 3/6] clk: meson: S4: add support for Amlogic S4 SoC PLL
- clock driver
-Content-Language: en-US
-From:   Yu Tu <yu.tu@amlogic.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        with ESMTP id S231466AbiIUIqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:46:23 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9DE8A1FE;
+        Wed, 21 Sep 2022 01:46:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663749977; x=1695285977;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WBh2EVZ4QSU9Dq3/ASp3Wt8vZVQtrj4URFPR++R12AM=;
+  b=C5z+id/WnD40LUksP0avuExMuGnjDk23BQ40N22KfuXK/dnnK7yg5715
+   xdKm3IwcxLzfTkWR+vdQfAMeLHj1hH3wg1qSQSmaftT+V5ZtKf109FMBi
+   8dlx5hCKqUxwc4uSel0ggjLFprifeC5t04aq0q+cQNLuhvr6XBH46zeVP
+   NRyj3K0jsnfVef3igm6WjvYY/PWf/Znic/Xjxo6+PftdXmHWehwYmXkin
+   HA12Byv+4DvGjI+qJ/r0mbf+s+xwBMcYtaB0otCrF1jlIDKmswOU272TB
+   8CHtwShp4WUZ2CKHJ7S8RWWcs9k24fSB06/lo6mRiukNBRvuDR914V1+H
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10476"; a="363918096"
+X-IronPort-AV: E=Sophos;i="5.93,332,1654585200"; 
+   d="scan'208";a="363918096"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2022 01:46:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,332,1654585200"; 
+   d="scan'208";a="570447933"
+Received: from lkp-server01.sh.intel.com (HELO c0a60f19fe7e) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 21 Sep 2022 01:46:13 -0700
+Received: from kbuild by c0a60f19fe7e with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oavMy-0003Qb-0t;
+        Wed, 21 Sep 2022 08:46:12 +0000
+Date:   Wed, 21 Sep 2022 16:45:53 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220805085716.5635-1-yu.tu@amlogic.com>
- <20220805085716.5635-4-yu.tu@amlogic.com>
- <1jiln0yzgj.fsf@starbuckisacylon.baylibre.com>
- <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
- <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
- <1jsflftm1y.fsf@starbuckisacylon.baylibre.com>
- <0c7e6d90-2ce3-25ab-84b6-026ce8a238a8@amlogic.com>
- <1jtu5uz0ry.fsf@starbuckisacylon.baylibre.com>
- <9f9cf980-c0c6-d5c3-ced8-8ab50e392470@amlogic.com>
-In-Reply-To: <9f9cf980-c0c6-d5c3-ced8-8ab50e392470@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, zhanghongchen <zhanghongchen@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v2 3/3] thermal: loongson2: add thermal management support
+Message-ID: <202209211644.16Ox1qeg-lkp@intel.com>
+References: <20220921015605.17078-3-zhuyinbo@loongson.cn>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220921015605.17078-3-zhuyinbo@loongson.cn>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome，
+Hi Yinbo,
 
-On 2022/8/30 15:37, Yu Tu wrote:
-> 
-> 
-> On 2022/8/30 14:44, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->>
->>
->> On Tue 30 Aug 2022 at 14:13, Yu Tu <yu.tu@amlogic.com> wrote:
->>
->>> On 2022/8/29 17:48, Jerome Brunet wrote:
->>>> [ EXTERNAL EMAIL ]
->>>> On Mon 15 Aug 2022 at 21:20, Yu Tu <yu.tu@amlogic.com> wrote:
->>>>
->>>>>>>> +
->>>>>>>> +static struct clk_regmap s4_hdmi_pll_dco = {
->>>>>>>> +    .data = &(struct meson_clk_pll_data){
->>>>>>>> +        .en = {
->>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
->>>>>>>> +            .shift   = 28,
->>>>>>>> +            .width   = 1,
->>>>>>>> +        },
->>>>>>>> +        .m = {
->>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
->>>>>>>> +            .shift   = 0,
->>>>>>>> +            .width   = 8,
->>>>>>>> +        },
->>>>>>>> +        .n = {
->>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
->>>>>>>> +            .shift   = 10,
->>>>>>>> +            .width   = 5,
->>>>>>>> +        },
->>>>>>>> +        .frac = {
->>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL1,
->>>>>>>> +            .shift   = 0,
->>>>>>>> +            .width   = 17,
->>>>>>>> +        },
->>>>>>>> +        .l = {
->>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
->>>>>>>> +            .shift   = 31,
->>>>>>>> +            .width   = 1,
->>>>>>>> +        },
->>>>>>>> +        .rst = {
->>>>>>>> +            .reg_off = ANACTRL_HDMIPLL_CTRL0,
->>>>>>>> +            .shift   = 29,
->>>>>>>> +            .width   = 1,
->>>>>>>> +        },
->>>>>>>> +    },
->>>>>>>> +    .hw.init = &(struct clk_init_data){
->>>>>>>> +        .name = "hdmi_pll_dco",
->>>>>>>> +        .ops = &meson_clk_pll_ro_ops,
->>>>>>>> +        .parent_data = (const struct clk_parent_data []) {
->>>>>>>> +            { .fw_name = "xtal", }
->>>>>>>> +        },
->>>>>>>> +        .num_parents = 1,
->>>>>>>> +        /*
->>>>>>>> +         * Display directly handle hdmi pll registers ATM, we need
->>>>>>>> +         * NOCACHE to keep our view of the clock as accurate as
->>>>>>>> +         * possible
->>>>>>>> +         */
->>>>>>>
->>>>>>> Is it really ?
->>>>>>>
->>>>>>> Given that HDMI support for the s4 is there yet, the
->>>>>>> addresses have changes and the region is no longer a syscon, it 
->>>>>>> is time
->>>>>>> for the HDMI driver to get fixed.
->>>>> The HDMI PLL is configured in the Uboot phase and does not change the
->>>>> frequency in the kernel phase. So we use the NOCACHE flag and
->>>>> "ro_ops".
->>>> That's no reason to put NOCACHE or ro-ops
->>>> If you want the frequencies to be statically assinged, the correct way
->>>> would be through assigned-rate in DT I guess.
->>>
->>> Okay. You're right. However, when registering with OPS, HDMI PLL will be
->>> reset. It takes time for PLL to stabilize the output frequency, which 
->>> will
->>> lead to the startup screen flashing.
->>>
->>> I would like to know how to solve this problem if not using ro_ops.
->>>
->>>>
->>
->> You can add new ops or tweak the current init function.
-> 
-> HDMI PLL is not different from other PLLS, so I think adding OPS is weird.
-> 
->>
->> Safest would be to do the following :
->>   * Check if the PLLs is already on.
->>   * Check if the 'pll->init_regs' matches what is already set
->>     - if so, you can skip the reset
->>     - if not, you need to reset as usual
-> 
-> static int meson_clk_pll_init(struct clk_hw *hw)
-> {
->          struct clk_regmap *clk = to_clk_regmap(hw);
->          struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> 
-> 
->          if (pll->init_count) {
->                  meson_parm_write(clk->map, &pll->rst, 1);
->                  regmap_multi_reg_write(clk->map, pll->init_regs,
->                                  |      pll->init_count);
->                  meson_parm_write(clk->map, &pll->rst, 0);
->          }
-> 
-> 
->          return 0;
-> }
-> 
-> Because the init function looks like this. Therefore, HDMI PLL 
-> init_count is not given. Can I change it like this?
+I love your patch! Perhaps something to improve:
 
-I don't know if this change meets your requirements? Please give us your 
-valuable advice.
+[auto build test WARNING on rafael-pm/thermal]
+[also build test WARNING on linus/master v6.0-rc6 next-20220920]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Yinbo-Zhu/MAINTAINERS-add-maintainer-for-thermal-driver-for-loongson2-SoCs/20220921-095737
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
+config: x86_64-randconfig-a011 (https://download.01.org/0day-ci/archive/20220921/202209211644.16Ox1qeg-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-5) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/c21dcaa77e2e7514efdb4c97c805b14c9a05ec35
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yinbo-Zhu/MAINTAINERS-add-maintainer-for-thermal-driver-for-loongson2-SoCs/20220921-095737
+        git checkout c21dcaa77e2e7514efdb4c97c805b14c9a05ec35
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/thermal/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/thermal/loongson2_thermal.c:183:5: warning: no previous prototype for 'loongson2_thermal_remove' [-Wmissing-prototypes]
+     183 | int loongson2_thermal_remove(struct platform_device *pdev)
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/loongson2_thermal_remove +183 drivers/thermal/loongson2_thermal.c
+
+   182	
+ > 183	int loongson2_thermal_remove(struct platform_device *pdev)
+   184	{
+   185		struct loongson2_thermal_data *data = platform_get_drvdata(pdev);
+   186		int reg_off = data->id * 2;
+   187	
+   188		/* disable interrupt */
+   189		writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_LO + reg_off);
+   190		writew(0, data->regs + LOONGSON2_TSENSOR_CTRL_HI + reg_off);
+   191	
+   192		return 0;
+   193	}
+   194	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
