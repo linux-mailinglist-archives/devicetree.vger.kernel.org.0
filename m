@@ -2,96 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97EEB5BF70F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 360485BF729
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:11:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbiIUHII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:08:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45876 "EHLO
+        id S230016AbiIUHLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:11:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbiIUHH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:07:56 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F92491E3
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:07:55 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id u18so7665586lfo.8
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:07:55 -0700 (PDT)
+        with ESMTP id S229562AbiIUHKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:10:04 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919072B241
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:10:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=APb0/Hlj8PJfzMK/j/1WprkzmQ0RATqS+JRrEg6OtBI=;
-        b=sOX0bkzdu+sZDtr8Q5SphkdzB1/ROEzLAP17FzCDCvxf8Mv6GI+0wiGyJiPZkveZPx
-         kGgZlAEqiwFlJS4G9tdIXv9fLwfShJZI8QKDNOWEBiuKLUjRhXdMwPNhlSywjXG0+02V
-         zIWJI5L5MfL/o7sOXPQ+PFYJDYqZfnzqCjqpS7l68M20RJbdNMWshDtOfpo/4WJ2cIKA
-         VTdRiP7oHO//AJ902pphqDhUz3Z+rCc2FzkW7oDy1VvDNUY1dW2l24b5A4tsDf7R3hqO
-         gKSEc1w3Q9Ne9Fwkp+QI+bM4mZuPDRg3Qs9SgYXHX0Rc0bBBKTXL6mEtIgvDXaBuRoYj
-         LQMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=APb0/Hlj8PJfzMK/j/1WprkzmQ0RATqS+JRrEg6OtBI=;
-        b=p9Da9eBof09BFrDfFop0ZiVDFe1wnVw9elFE9Xhx930/1qX7eqeKbK+tp+PuuRBHYY
-         YhkjC9WBUmkpi7CasQLoOhqi45sblVFIwneKPxFEAzLfXfVo5HoHBWiO6wQEm+jsxC7M
-         4bV8UZLgSW5Wegm3IYhcDR5/vgYfHYp6Z/+tUNKvKszqyiHAbrCVCMIGY0qL9fQS/iYR
-         6/rgXMEQicI7uIt36Wn5apzzqU0QCloPcsy6+Fb281dGT4iHEaGLTiNpfW++n19VZYJE
-         wyGns05H4Orhw/9KZU+sagINof0xX+oDSem/9tNoDIV31aZIzy9ay7z87A3z6uihFpVW
-         Wjdg==
-X-Gm-Message-State: ACrzQf0Ii1nk05oUo+1kkEo4Uzq+LPaav9SxcQktzwCI1RvpDdxnb1X6
-        t6nQen2h4Jep/A88ou/A5Z+Shg==
-X-Google-Smtp-Source: AMsMyM4gqxAQvcV8ga0K7YyxcBClQ/kW2wmIe0eJRgZ9zQemRycPrYGF8vU2GgeKuVirXwB5Ah7e8w==
-X-Received: by 2002:a19:7619:0:b0:49f:6cd7:45c2 with SMTP id c25-20020a197619000000b0049f6cd745c2mr7191079lff.7.1663744073769;
-        Wed, 21 Sep 2022 00:07:53 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b15-20020a19644f000000b00499fe9ce5f2sm307613lfj.175.2022.09.21.00.07.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 00:07:53 -0700 (PDT)
-Message-ID: <95fb2bfb-6eb8-012d-88f8-c739d229ef70@linaro.org>
-Date:   Wed, 21 Sep 2022 09:07:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM6375 SCM
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1663744202; x=1695280202;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Q7Et7Jy2iYmcHR8iWL6cqOKKLSXjrtRvh8L113undeU=;
+  b=I25Y0yCkm1JtQZrCukp9No+Dd1o55+fLU3HKXiv3XJPCLjDG5uA86GRc
+   tXbE2U/eC9+Ifzx3nEogP6734gH3HtEYRk4rUEAwCE7M7TM/nEgrGm6dy
+   qTwX6ik5EUSPcRNX0i3mqKotP3V1OBUUe3ONbfk6NLBuC9dnwQIeamEgU
+   mjnGOsodR5g0Z5VLOXwXdHISX2cl2N86zwDoX3QyM0GtHnHZnQ3iYryDC
+   a8RLRD8C6N6cATru+b8PfAGeLEZcXCQ/qx0HIMBcNgFiAJqU5hcst4Lzt
+   dHtt5RxXmgoUTtJO0UMmyCR0DLMQ0joKU8+/fvDR+DBsCr56BpjW4+aHo
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,332,1654552800"; 
+   d="scan'208";a="26300541"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 21 Sep 2022 09:10:00 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 21 Sep 2022 09:10:00 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 21 Sep 2022 09:10:00 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1663744200; x=1695280200;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Q7Et7Jy2iYmcHR8iWL6cqOKKLSXjrtRvh8L113undeU=;
+  b=hr4ggApPBiTW73oG/AoP0VfQGU7DuvxSf83903Bj42P8FzkXjF5eQ/Q6
+   +0oXT2e5U1QWdkW1v15bTviMH1xtU4cB04aHBbuvH6sEStiun2FE5TfQz
+   1+g6qa0e5EfizZ02Etrpznwc6ma/lvGbKyXRYHdQdGrZelswz8Z8ERApc
+   agbuR7MTfRIKSAgOS38bH6V+fbWdY6GWJortQvdvIvp6XTXU0tPVoN58Z
+   tNofcafh+s78c+QkmEf5D2CG+0PdFgy8K8gfrGxdW0lzdT0NX8S0GtMiR
+   46jHqIx1EBTrkUiPJ6uYmvf+mJ9HsO6XAGtzEAy1Dhd2/FAjR0PlzXpT6
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,332,1654552800"; 
+   d="scan'208";a="26300540"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 21 Sep 2022 09:10:00 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2D6C7280056;
+        Wed, 21 Sep 2022 09:10:00 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220921001020.55307-1-konrad.dybcio@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220921001020.55307-1-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/1] arm64: dts: tqma8mq-mba8mx: Add vcc supply to i2c eeproms
+Date:   Wed, 21 Sep 2022 09:08:33 +0200
+Message-Id: <20220921070833.3106592-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 02:10, Konrad Dybcio wrote:
-> Document the compatible for Qualcomm SM6375 SCM.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
+Fixes the warnings:
+at24 0-0053: supply vcc not found, using dummy regulator
+at24 0-0057: supply vcc not found, using dummy regulator
+at24 1-0057: supply vcc not found, using dummy regulator
 
-allOf needs to be updated.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi | 2 ++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi         | 1 +
+ 2 files changed, 3 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
+index 802ad6e5cef6..9a95e30fb42d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
+@@ -220,12 +220,14 @@ eeprom1: eeprom@53 {
+ 		reg = <0x53>;
+ 		pagesize = <16>;
+ 		read-only;
++		vcc-supply = <&reg_vcc3v3>;
+ 	};
+ 
+ 	eeprom0: eeprom@57 {
+ 		compatible = "atmel,24c64";
+ 		reg = <0x57>;
+ 		pagesize = <32>;
++		vcc-supply = <&reg_vcc3v3>;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+index f9ee4ad3534c..dd30082f0601 100644
+--- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
++++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+@@ -245,6 +245,7 @@ eeprom3: eeprom@57 {
+ 		compatible = "nxp,se97b", "atmel,24c02";
+ 		reg = <0x57>;
+ 		pagesize = <16>;
++		vcc-supply = <&reg_vcc_3v3>;
+ 	};
+ };
+ 
+-- 
+2.25.1
 
-Best regards,
-Krzysztof
