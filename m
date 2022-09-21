@@ -2,101 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91EDA5BF7B6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:31:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 641AA5BF7B8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbiIUHbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:31:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51330 "EHLO
+        id S229519AbiIUHbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:31:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbiIUHbK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:31:10 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36CFC7CA80
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:31:09 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id f9so7775447lfr.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:31:09 -0700 (PDT)
+        with ESMTP id S229673AbiIUHbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:31:35 -0400
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D077644F
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:31:35 -0700 (PDT)
+Received: by mail-oo1-xc2d.google.com with SMTP id h1-20020a4aa741000000b004756c611188so759581oom.4
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:31:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=Y5vXOK0VmzHVXi9yS4v7tjY/hx6rNTPtAupQE8SpBw0=;
-        b=y/jcA++D/06UjV+5R2t4zQ4KPE9IH7YAmYxqFbAPoAd+MAhdrGgEYWXKznIcyAlzNi
-         F1RUbqGTUlPTy4mSeGRwr/T39XNIkBXVIs8PzkF9Mhc6XqqsXVcuhBqjs3HpL9OQyYfQ
-         RmxKNidzGOBnujf33nNRVVgM5XYZ71qu6AUxSsrndRvnXgeJ/KSFPIB+sTxnahx66FDP
-         4tlfaW3u8BkMYkoW1e2yI2Dg6OHWRhhuYqWPKlwNy6NX7Flkl8IBG9drokT4oHD/aumH
-         puf8HxHbutEeaJ8M5HbExspBV4uD+5l4ymude5oTaoYXh+qHqR+FiGhxsCw1hyQUhByg
-         1SIg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=JLaD/2XH7Q65O8RM76XiddYprLtEsWsnehUu/mQFLT8=;
+        b=m8p18imIzcYgUHEKEoFHFZpdoHv04FKv1z/i8TN81uate1do5EzgoVZNu6j1jtue+/
+         GoWCD2lnhBb9ug37Y1nZhUCEp6FRxjxCvM7pZSwPo9DKdA3Ldtdwz58UBDgG8jRInMx8
+         TRE5TA/aWd1kHX0u1JLYsbjy5ZqwbfuhoO99bXlbOPDiqP/QN3uhsAJm+s/LvK8ztD59
+         a3g1f9ECBTEuDyejC+brkrkuJvDY0Q5PdDsQBYT/DXsbkcF+GhN72340GUqfToTmhtU8
+         jC0VwVz5z4tC3cSiJ8LKf4ehkrYRuiMiMCoqz8p4z8lrNq5SRadvAVqBg4vBj3ACs0om
+         a4Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=Y5vXOK0VmzHVXi9yS4v7tjY/hx6rNTPtAupQE8SpBw0=;
-        b=ZmSdOWHbLmgJlcE9vJu78n/1J2cTd12Wu3iw7dq2ZP61rxfumTv9vbKFWH7zLkAMbM
-         QMGWh9o+IIUdPooUnjjqecxv9BEZkDOK7GHn5lUjNOj3Nf53CefvIp3+KvEm+xcWwBt+
-         bHmTroeKz3jfUQLvoqYR+bW2wJzRkqWgkzHq/RWgbvpg/AYo5Jcp3tMJIyAuy+JUaoYu
-         +0jBqn7fLu7HxaSwEQAZTEnsEFGTy1W4/t0JgfZ7//1BTu5dGkRIk69rvARQxJP6+2ag
-         z5yk3dfqr3y89nvWz+WzU0Wn1ZWMNeGcD1WhUDRDholh5RbVUAzf7RI/bbhfJimulrun
-         s++Q==
-X-Gm-Message-State: ACrzQf2xgD2+/MjaqaXrVmdk3bfApgNsHwr/yFnjbqN4ow7m7yZAKxq3
-        8T+ZAeq4Yt4pfM3lH4cdglA0vQ==
-X-Google-Smtp-Source: AMsMyM7RpErQl780CD4dVB+vh4re/DIllGACRaxt7BzIfp6fNvauT36ldNcu0qXeEYZ8JJqF5lZeSg==
-X-Received: by 2002:a05:6512:a8c:b0:49e:359f:5563 with SMTP id m12-20020a0565120a8c00b0049e359f5563mr9264642lfu.563.1663745467580;
-        Wed, 21 Sep 2022 00:31:07 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v7-20020a056512348700b00497a23cf2absm309960lfr.258.2022.09.21.00.31.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 00:31:07 -0700 (PDT)
-Message-ID: <88013406-6e07-2d3a-400e-5ec4ea83ee06@linaro.org>
-Date:   Wed, 21 Sep 2022 09:31:05 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=JLaD/2XH7Q65O8RM76XiddYprLtEsWsnehUu/mQFLT8=;
+        b=swDZFLhPDHwDyQi5xy7RvwsJUCqS1RWuejAF3YOEP2Ilfee05W4+M8sVr7tn5NWF75
+         OIgmHF0hdFn14pyTEfs7K7JQXGe3I0nzShW85gkqJWe1y1jR2VWuuzxVuyarRX1pD9nX
+         ssRMnvWxJYxuSUzJYFynMQh64/xv6a7Q0MrxkIrrroSNjgAaoyekfL6CbDKEAoIuqlBy
+         etwRGi0rc7Lhqqcix0ddB60Dk4cPRMGeM+DWGpvjT/Pew/04H2c0pyRPSv3F/t1AsCnc
+         MDB43ukR8byPu5/Bt7CfdFRR+4gpVHJM4nP10/Ekbo8Nv8iRJtqVS2EWFYHOOSw1Pkz3
+         BoaQ==
+X-Gm-Message-State: ACrzQf3Zlfd8KKvdv5ExIIi2gPUFoiRil/jG+s2anDvzOXJigKtZajnJ
+        hZyrprQG7NOT7ZlXwn909WrxaD3g/uWjaOP5PYg=
+X-Google-Smtp-Source: AMsMyM6oqxIuCP9cDonXHIZd1Dcwq+Rtr1EXM/PdxkjGeMmeBknPQ5Vt4r23e9hhVan64I9BpGqy5yHhNdy7MDcxGcs=
+X-Received: by 2002:a4a:be06:0:b0:472:9d27:695e with SMTP id
+ l6-20020a4abe06000000b004729d27695emr10015176oop.36.1663745494338; Wed, 21
+ Sep 2022 00:31:34 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: iommu: arm-smmu: add sdm670 compatible
-Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
+References: <20220921072817.611223-1-sergio.paracuellos@gmail.com> <2b5b2937-45ae-42dd-1d96-115898eb9c7f@linaro.org>
+In-Reply-To: <2b5b2937-45ae-42dd-1d96-115898eb9c7f@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 21 Sep 2022 09:31:22 +0200
+Message-ID: <CAMhs-H9oYY7k_fQT64BM5M5x6pwQkjM-bDuLCBYNk3EBoUrcDQ@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: spi: migrate mt7621 text bindings to YAML
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org
-References: <20220920223955.151507-1-mailingradian@gmail.com>
- <20220920223955.151507-2-mailingradian@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220920223955.151507-2-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 00:39, Richard Acayan wrote:
-> The Snapdragon 670 needs the IOMMU for GENI I2C. Add a compatible string in
-> the documentation to represent its support.
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+On Wed, Sep 21, 2022 at 9:29 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 21/09/2022 09:28, Sergio Paracuellos wrote:
+> > SoC MT7621 SPI bindings used text format, so migrate them to YAML.
+> > There are some additions to the binding that were not in the original
+> > file. This binding is used in MT7621 and MT7628a Ralink SoCs. To
+> > properly match both dts nodes in tree we need to add to the schema
+> > 'clocks', 'clock-names' and 'reset-names'. Both 'clock-names' and
+> > 'reset-names' use 'spi' as string so maintain that as const in
+> > the schema.
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> > Changes in v3:
+> > - Add Krzysztof's Reviewed-by tag.
+>
+> There's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Understood, thanks for letting me know :)
 
 Best regards,
-Krzysztof
+    Sergio Paracuellos
+
+>
+> Best regards,
+> Krzysztof
