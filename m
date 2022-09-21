@@ -2,155 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 960B65BFDD1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 14:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AABF85BFDDB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 14:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbiIUM2i convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Sep 2022 08:28:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55704 "EHLO
+        id S229991AbiIUMc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 08:32:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbiIUM2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 08:28:37 -0400
-Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45A1A4DB6A
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 05:28:35 -0700 (PDT)
-Received: from CHE01-ZR0-obe.outbound.protection.outlook.com
- (mail-zr0che01lp2109.outbound.protection.outlook.com [104.47.22.109]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-54-ACdG82exPDmw7D2lqQ5xdw-2; Wed, 21 Sep 2022 14:28:30 +0200
-X-MC-Unique: ACdG82exPDmw7D2lqQ5xdw-2
-Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8) by
- ZRAP278MB0128.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:13::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5654.16; Wed, 21 Sep 2022 12:28:28 +0000
-Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- ([fe80::6c6d:333:ab23:3f5b]) by ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- ([fe80::6c6d:333:ab23:3f5b%2]) with mapi id 15.20.5632.021; Wed, 21 Sep 2022
- 12:28:28 +0000
-Date:   Wed, 21 Sep 2022 14:28:27 +0200
-From:   Francesco Dolcini <francesco.dolcini@toradex.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Marcel Ziswiler <marcel@ziswiler.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 4/4] arm: dts: imx7-colibri: remove spurious debounce
- property
-Message-ID: <20220921122827.GB41442@francesco-nb.int.toradex.com>
-References: <20220920092227.286306-1-marcel@ziswiler.com>
- <20220920092227.286306-5-marcel@ziswiler.com>
- <20220921121505.GA41442@francesco-nb.int.toradex.com>
- <YysCNT2/qOi/BUC4@kroah.com>
-In-Reply-To: <YysCNT2/qOi/BUC4@kroah.com>
-X-ClientProxiedBy: ZR0P278CA0084.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:22::17) To ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:2e::8)
+        with ESMTP id S229985AbiIUMcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 08:32:21 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A76C475CE7;
+        Wed, 21 Sep 2022 05:32:20 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id f20so8433933edf.6;
+        Wed, 21 Sep 2022 05:32:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=hiqLbKca8k6bq2csBR6EohjwEjpvjpypWz+SdN+bVt4=;
+        b=emT9vTaCD7+oG6jkAJp0Dn3lwh2mDqMiYurK3U9c46Fpo30G2g3NOIehp1VNLJ17q8
+         jyyKS/PCt42kw8LyUwb3LHTVj/ziK/zWyTIJBQnPWfIQ0xXIaYXnNwOvULus0JAo5HZb
+         bhGav7kBsMR0v4wy0j3M1xz9k7LEXVhXqLoVwNmMG93KjVz6igYjjCeMtOxWgIxTTmvc
+         zHCGDEuwEr7NjBNYycHg9IVET+L5upk7STERCgz8BUlO1l546SjBI0IiPAWAViZObB2h
+         CwRCmpzSiNZArUw9PNLRGiiangQyANEA6lAmPYJ0GtDtqaZT9rPdlcvIhrjr7vU9TYn1
+         Ez5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=hiqLbKca8k6bq2csBR6EohjwEjpvjpypWz+SdN+bVt4=;
+        b=WU5S7f5iPer6ynvc3+bl4ep9vv9lf1DC9IVqLOPCP4zrJjHeCq7hW8VrYsxbDhcZlQ
+         PlNQvZ7o+EN6Li/9VJ0nw5tdTr8BkogfbZKuZ+ffvAfbJgIp+GMu2jqyU81juKTpjsRc
+         Bdlmv7xVqkOMydfUkIFKbQ0WLT/OYysSK9MarbiUfh+aVbjx+DtpTQJTmanuBUjDTBLw
+         HicuyQixUisAxh/F/Z/dDee1RtUaWMYWE9np1fb8/smAh/OBLKWLI24xaNP9ndoQ52VR
+         giN+I9GCNqO8vBbLDT7KYu3slm8hMNJTcNGOK74Lvl6y7l4a1bJgNptoX2E1ZI+HbNWs
+         UYuA==
+X-Gm-Message-State: ACrzQf1T8eDa2JPWE1nivts6heDzFxUl/j8+roFntF5r6O4P8kz33BqY
+        5mDF1Bd0jjw4oNX/uvxNY69YUAtpZKXiJngba/I=
+X-Google-Smtp-Source: AMsMyM4SN4E8Ngfb+QYCpcTmdG3S1tlw3imbL7osycTOyOh35D599SmTIqI4BpaF36WSCZMdWOSNDEX2Br5DvF7JJdw=
+X-Received: by 2002:a05:6402:50d1:b0:452:899e:77c with SMTP id
+ h17-20020a05640250d100b00452899e077cmr24591975edb.0.1663763538931; Wed, 21
+ Sep 2022 05:32:18 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ZRAP278MB0495:EE_|ZRAP278MB0128:EE_
-X-MS-Office365-Filtering-Correlation-Id: c17aa327-49e0-4d6d-f5bd-08da9bccc96b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0
-X-Microsoft-Antispam-Message-Info: RZ+F9U0g6GKz4PbPbGUqPpWToCYkLf+j5DZOSQb9PkMStWHnrNXdGhQkrSvmrxMfH+gPCd+zgW8L/xicDxjrBBVqV2q9DNfMp8Esn4jdN0mOmgYW2v84Hu1pTq3ksWXCFvdxpWVFWKvgefA9ZXnab5dmbA0bQEnW9EolCg3dDUDG15V4tSy4I9TsyYBUzwIE7Veqqj0d4KXVL+FM9FHrQCVJmlzxzVE+PyVwL4N7ivDyFfT4dSQ8JRJelG9tmP/5/Fcr1Stdj+u9smowOGPJ0p8bcQWp6dvruPmG88pD1PfGm0b8LXmqqaLkIgBjt0q/5/9hxy9qUmwUQjj8CUPA9FKQF0GAKG7BG5dQTZE7suM7dHJK34IFuws4bvPRQDdHxqu1ERk9vSQdgZuQIRMjM72Sc6z0euU2OKrCerIhFsTx7wNy9KDt0ghow1GnsPMK/7oXyiXPF0/Ra4uRKGluw5JJxpDokeMlBvWdPWsA7CpE+nC2yea3Vs/arw6Vtw+XYAT4txMp4ZONvw8OAZsOCVDEMW1Zx3Lvh0MOB4aYsyNys0oXaZ2wMWw1UL2WHbhjAJfl9OxUXd8ZdV1alkDvUzbUTWZ6eh/lR2FPCRxnLpj0jvI7H5hMQUfYfCFKPxpmrGieeavmJED/8hFcOV7zHA6rfCodfrYdJDXimBgLaRR0ExtJDf7SY6M2u0AaXIyq5uzUEkQ86ARobQmwljE/PKaBkf1/NZ5vUt7GMkpIPQ9BXG+rRsL909OfmsTfM5HQzzvcLpcOhum3lnyWJqFGdA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(366004)(39850400004)(376002)(346002)(396003)(451199015)(44832011)(186003)(33656002)(6916009)(8936002)(54906003)(7416002)(316002)(86362001)(66946007)(66476007)(8676002)(4326008)(66556008)(5660300002)(41300700001)(83380400001)(6486002)(6506007)(478600001)(1076003)(38100700002)(38350700002)(52116002)(6512007)(26005)(2906002);DIR:OUT;SFP:1102
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ym1LywUC6rcjPaK2JXP3E8Dfp8JHZKKn0weRUpxcnJ1mim2stR/wDLs9ZiA6?=
- =?us-ascii?Q?S1ScDs/d7huJ8w5SMSOALPzlCe2pFr0jim3l2+U+uCCB3VVTvHCiUdBc1vtv?=
- =?us-ascii?Q?rCwrE+vT9XGTR2wey/1tTgfd8ZUvzlnAtiOzl+4y2v4osMo5A3vdR7lHh/0O?=
- =?us-ascii?Q?OMw4WU8BY17WEX5P1bvrptV37drdxbFAR+OvARp5tVLsydt/qNaGxlZmGiPk?=
- =?us-ascii?Q?X8eKzGHqNDJsK6R9nV+uA5Eitfw5QJe0EEW4ZSaNZ1iYSzBMflPDEzHl9ySD?=
- =?us-ascii?Q?TNp9fS+fT784bfeGt0v1X6ibhjWuzTL6gDcqA7X/brx/KXbXHzQg9vL1Q3cP?=
- =?us-ascii?Q?GUnAYTRg+GTKFV1yde8OP2SSAwwV8H4yVzp4QiJ7C2qIrSs8L1ympkZurK0c?=
- =?us-ascii?Q?gvHzFNnbONEeafTh/FDIi8mt67NEN3KxFIHESGXUK5KYuUzn5i0Ou+t81/LE?=
- =?us-ascii?Q?CjZ7YSYfQOZNE3s2eac5DP+J/g1JNREzGaJZdOYM/c8cihvEphZsWjoqvBYF?=
- =?us-ascii?Q?h2FWUhpDFjWNUvnlt8tydgFHRL3zptJlmDMWSKZfjWfsqWqnWBCMb5c/90g7?=
- =?us-ascii?Q?h50ovSnMIjtdXeULrSxjhsw9FXIQ3Q/V5UiKwMeJSJD41iFREAYIzKpIZYYS?=
- =?us-ascii?Q?GK4J8O4w88iE/kcrERbmsN84k79ls8lJdV7P7GcYNCplXErlEIBqxAizelk9?=
- =?us-ascii?Q?09o0RIaghwXrsJmj/OPgisiIiZWLvua/VWSIcy2V0Q1qNE78bCsZHqLA0GdU?=
- =?us-ascii?Q?JVyjM+KuBKrjV7O5sJlhrm/eBfrkOX/e4Z8Qg3cEbvn1WZOwxxjlcyRaPsdR?=
- =?us-ascii?Q?woM6am2qRQp1fMLiqV/70NIorSogo1rmTK9ApBbRqhVaQCRoes6EA5Ci4PDn?=
- =?us-ascii?Q?DIaWBf36/pnQWHTLvmYmCYGvTzNU9M3Fc8rNT7V5ahSaMufDOHO76WRs5S2I?=
- =?us-ascii?Q?Z65uIrc4GzQCJ3Az1Cf+I2DHAqxeMqj/lV5TVtaxKbhWJrgWA7R/iV79/IXD?=
- =?us-ascii?Q?ziOcZiZwQjtwuSvZZErPdVXaN6hl/vNxeOJIVgfUq3n66KPxJjGabArZanPJ?=
- =?us-ascii?Q?fE6Etjs+aZtdFLA1wlw0oRx/c2R43dCdbI9kuxUxUa1DIowY9ocRCcCo2rlA?=
- =?us-ascii?Q?v3xoUiTshNvJKUu0XIOzZvAoRWYEO9gvpCIBdGeTIe8PHThx0YxXxY4ViPCB?=
- =?us-ascii?Q?uQiQaeXyA1EkczOy1lKHUImpiIOgWrsfHZuMaPxQApmVaPKYL2jr3d9cEhKV?=
- =?us-ascii?Q?MbzB9ElkU4VW3bwzyVHXiTo7vwMRr9NjMJse3uRPzP2qKvGcu9mpBlp57zFm?=
- =?us-ascii?Q?dn9xoK3u1V4gToUJYb9O/0+ti6S7GQ05Dm6/zDV5GOiLHz4LJwv8Zrava7Jc?=
- =?us-ascii?Q?urqDF1/325HK7vL6oKC2GUWlrjDAyPWn7aDzQya3tziT7LKXwHOsNyw5y5lU?=
- =?us-ascii?Q?JVwru/tAyXelnZ077IhOLDf8AzGW/y9I4Dob2GG95Lft2OTJ/WkXPJ63qiz4?=
- =?us-ascii?Q?Hh399GY9T9OL2Iv1Vv/soGVJ42quFmPGKXa2EXfc1yYJ7k9wCVe3BrGGOAGI?=
- =?us-ascii?Q?d37LO++pOR87JIPHe2STVeQNRVQheN2Q6gXI1yEkcfXwibzfcOq3obVqQQ8J?=
- =?us-ascii?Q?dGbfarn73/ko5ZqdfY1DrWQ=3D?=
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c17aa327-49e0-4d6d-f5bd-08da9bccc96b
-X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2022 12:28:28.2056
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dKdhZvh1WRHOrVektjnIgpnSrcuOgPPtlX8QgRhXoxp6SO1AbJPnFINjaZ5O08pBbBW3thmN/rQjSFEDiS8+zdpEw51fzWcZAppASzaHZUc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZRAP278MB0128
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <961b4821-4111-b48e-1ae0-60da8c427fbb@linaro.org>
+In-Reply-To: <961b4821-4111-b48e-1ae0-60da8c427fbb@linaro.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 21 Sep 2022 13:31:52 +0100
+Message-ID: <CA+V-a8vrixnR2fXv8a8YS+tfK3KHmO1qJxE=RaFw4FPopubdBA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] media: dt-bindings: Document Renesas RZ/G2L CSI-2 block
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 21, 2022 at 02:23:17PM +0200, Greg Kroah-Hartman wrote:
-> On Wed, Sep 21, 2022 at 02:15:05PM +0200, Francesco Dolcini wrote:
-> > +Greg, to get an opinion on the fixes tag.
-> > 
-> > On Tue, Sep 20, 2022 at 11:22:27AM +0200, Marcel Ziswiler wrote:
-> > > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > > 
-> > > Remove spurious debounce property from linux,extcon-usb-gpio.
-> > > 
-> > > Note that debouncing is hard-coded to 20 ms (USB_GPIO_DEBOUNCE_MS
-> > > define).
-> > > 
-> > > Fixes: 0ef1969ea569 ("ARM: dts: imx7-colibri: move aliases, chosen, extcon and gpio-keys")
-> > > Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > 
-> > Hello all,
-> > we did have some (internal) discussion if this patch should have the
-> > fixes tag or not.
-> > 
-> > I do personally think it should not have it and should not be backported
-> > to stable tree, since this is not fixing a real bug, it's just a
-> > cleanup.
-> 
-> If it's not a real bug, why would you have a Fixes: tag on the commit?
-> 
-> > On the other hand the original patch was not correct, and this change is
-> > making it right.
-> 
-> Ah, so it is a bugfix.
+Hi Krzysztof,
 
-The DTS file should not contain this unknown property, however having
-this property present does not change the behavior of the code.
+On Thu, Sep 8, 2022 at 12:39 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 06/09/2022 01:04, Lad Prabhakar wrote:
+> > Document the CSI-2 block which is part of CRU found in Renesas
+> > RZ/G2L (and alike) SoCs.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > ---
+> > v1 -> v2
+> > * Dropped media prefix from subject
+> > * Renamed node name csi20 -> csi
+> > * Used 4 spaces for indentation in example node
+> > * Dropped reset-names and interrupt-names properties
+> > * Dropped oneOf from compatible
+> > * Included RB tag from Laurent
+> >
+> > RFC v2 -> v1
+> > * Fixed review comments pointed by Rob and Jacopo.
+> >
+> > RFC v1 -> RFC v2
+> > * New patch
+> > ---
+> >  .../bindings/media/renesas,rzg2l-csi2.yaml    | 140 ++++++++++++++++++
+> >  1 file changed, 140 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+> > new file mode 100644
+> > index 000000000000..79beace4dec2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+> > @@ -0,0 +1,140 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright (C) 2022 Renesas Electronics Corp.
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/renesas,rzg2l-csi2.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas RZ/G2L (and alike SoC's) MIPI CSI-2 receiver
+> > +
+> > +maintainers:
+> > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > +
+> > +description:
+> > +  The CSI-2 receiver device provides MIPI CSI-2 capabilities for the Renesas RZ/G2L
+> > +  (and alike SoCs). MIPI CSI-2 is part of the CRU block which is used in conjunction
+> > +  with the Image Processing module, which provides the video capture capabilities.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - renesas,r9a07g044-csi2       # RZ/G2{L,LC}
+> > +          - renesas,r9a07g054-csi2       # RZ/V2L
+> > +      - const: renesas,rzg2l-csi2
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Internal clock for connecting CRU and MIPI
+> > +      - description: CRU Main clock
+> > +      - description: CPU Register access clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: sysclk
+> > +      - const: vclk
+> > +      - const: pclk
+>
+> One more: drop the "clk" suffixes. Remaining names could be made a bit
+> more readable.
+>
+The clock names are coming from the clock-list document provided along
+with the HW manual:
 
-It's more like an unused variable kind of error that could trigger a
-warning in the compiler.
+- CRU_SYSCLK
+- CRU_VCLK
+- CRU_PCLK
 
-Francesco
+Ive dropped the CRU_ prefix, do you still want me to rename them?
 
+Cheers,
+Prabhakar
