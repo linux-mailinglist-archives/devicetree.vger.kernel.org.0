@@ -2,118 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B18D95C03D4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 18:14:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1D55C03FA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 18:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbiIUQOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 12:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34166 "EHLO
+        id S232429AbiIUQWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 12:22:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232301AbiIUQN2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 12:13:28 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88E2021A3
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:59:31 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id i26so9919879lfp.11
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:59:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=KUDU0doBWvkSMsSeaP+OU5Myg0FSSIaMLAg/J6BRRrQ=;
-        b=slv4NKCqb/zqgJH7M3nKlgQg7LgbWHoZe5T/pPNeRXbgMm/Qwm1EpZb2Eg1Jj44imN
-         aOa5Z2jYm2HUsJlTUGffkoZY2uH5iN46QV2M9/WHIspQnZkFSzrq/J/A95E0j5u69Un9
-         WgekrImX8IUeP0badlm8CQdb6xr4nqTwSoFYDixJMtgXxxpiPsADqp2Zo87pO1ajmG7j
-         mwYzk0CdwztEBK7XiP8IJ25ILOtCQvPtQ2OuMn/A6UJBfH10AebW3WfFwz6AM+PpVLOf
-         EGug1gt+zgiIptzhs/ifeW479thnyoU/Ql+nl9lU5Jfs9jv0p/qf/UE8pmK1VP37MI7K
-         uq+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=KUDU0doBWvkSMsSeaP+OU5Myg0FSSIaMLAg/J6BRRrQ=;
-        b=KZo36ACE+wDPCujoTXbsECZIB9wgFGrKqxiERKJ8hD7MnUuPYUlkR4iSVsshZ/pnGK
-         fGMCPId+FnaKMAnDZ/x+98AKnPnlYb7hrYBZzu/yVhp0Y7pLLSxDahl237QMZt7qX1UK
-         BdyD6676+xLIR8w2TMBTYjORhrKSPPQhvX2QEr0J9nqrpj1mEr5dyt02ARYFgPKjezRJ
-         tOtMGhrfTgLqdAlavum9eBFnR7oUluPdhHdh8MnAuZMbC5nG7RDUwdetkeR7XCCaxuH/
-         Gksn7rlOOrNo2hv+MLVqPKbsSYNGM8OZ9rJGDFyNIqkjB1jVDk7JColqDdMi23fdGXaB
-         SzSg==
-X-Gm-Message-State: ACrzQf0fEhcHuS58chDe/05g59rn+kK62jAc2Nk0t06SfLI43YZwqOsn
-        5l+lK2Qg0ZscMi3o77Ar0K0hb5vk1M1Flw==
-X-Google-Smtp-Source: AMsMyM75m4N7MPBKvWthG+pu/YTa8pTbMdbwS4u/waTgyPE6eW8LRVa+KHqN6TUHDKl7neUPzVouXg==
-X-Received: by 2002:a05:6512:1153:b0:49e:805:b473 with SMTP id m19-20020a056512115300b0049e0805b473mr10515858lfg.450.1663775881892;
-        Wed, 21 Sep 2022 08:58:01 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h6-20020a19ca46000000b0048b26d4bb64sm494752lfj.40.2022.09.21.08.58.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 08:58:01 -0700 (PDT)
-Message-ID: <24190160-53f2-810d-bd23-c02958517c80@linaro.org>
-Date:   Wed, 21 Sep 2022 17:57:55 +0200
+        with ESMTP id S231883AbiIUQVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 12:21:48 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6284F9E2C8;
+        Wed, 21 Sep 2022 09:05:01 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28LCPv3x027037;
+        Wed, 21 Sep 2022 18:03:44 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=VE/i7b2eh/6J/jXAW29X53WRmJEGJUA8HEdrYLhNTa4=;
+ b=shEdFuI37aby2s90QNl/QTSqNEWzgirQzN8ckd3IIv62zzcNpMAWCpwAixSqFETaV7Jo
+ aQbkxehA4nv7M4FCyDTh7aIMn925T6G0UNzhTcI/MdwuympCT8ydpF6DWfq8lT/2q27y
+ 6Au5s5vnzxbkYzcDdM4wnF1PcI6eaTlsEEbCvVDgsDDPJ6g++Emlj3vrdQQzD2zz7/Eh
+ yZ7L8+5dzUdTe04alQC7WQBxvTlBFWOPabD/K4Hjwi5zFIS1U2pXEiH4LK66W2DFAFyi
+ k++R8MWAoSwCvF5gJi35Xyx7iG0ZVgZuuBWIUsAj1gd+ahvJJ8kuWWtUP6Tu2SfUo1+2 Zg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3jn6g5hhwa-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 21 Sep 2022 18:03:44 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 66FF510002A;
+        Wed, 21 Sep 2022 18:03:42 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6128F23C6AA;
+        Wed, 21 Sep 2022 18:03:42 +0200 (CEST)
+Received: from localhost (10.75.127.51) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Wed, 21 Sep
+ 2022 18:03:41 +0200
+From:   Yann Gautier <yann.gautier@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Yann Gautier <yann.gautier@foss.st.com>
+Subject: [PATCH] ARM: dts: stm32: add sdmmc cd-gpios for STM32MP135F-DK
+Date:   Wed, 21 Sep 2022 18:03:34 +0200
+Message-ID: <20220921160334.3227138-1-yann.gautier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH V2 2/3] dt-bindings: display: panel: Add NewVision NV3051D
- bindings
-Content-Language: en-US
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@linux.ie, sam@ravnborg.org,
-        thierry.reding@gmail.com
-References: <20220920145905.20595-1-macroalpha82@gmail.com>
- <20220920145905.20595-3-macroalpha82@gmail.com>
- <e5de0c74-3ece-56c6-6c31-042e1117c10a@linaro.org>
- <SN6PR06MB534220AB227AA3BC5DB58741A54F9@SN6PR06MB5342.namprd06.prod.outlook.com>
- <ff2ee392-0f78-37d4-56b5-443e6e998443@linaro.org>
- <SN6PR06MB53420E8B1245EDFCB7547C69A54F9@SN6PR06MB5342.namprd06.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SN6PR06MB53420E8B1245EDFCB7547C69A54F9@SN6PR06MB5342.namprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-21_09,2022-09-20_02,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 17:50, Chris Morgan wrote:
-> On Wed, Sep 21, 2022 at 05:21:19PM +0200, Krzysztof Kozlowski wrote:
->> On 21/09/2022 16:38, Chris Morgan wrote:
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - enum:
->>>>> +          - anbernic,rg353p-panel
->>>>
->>>> Are these vendor prefixs documented?
->>>
->>> Yes, they are in another patch series referenced in the cover letter.
->>> They were added for the Anbernic devicetrees and should (I believe)
->>> land in 6.1.
->>
->> OK... you still need to test your bindings. Your patch was clearly not
->> tested before sending. :(
-> 
-> I did: yamllint, make dt_binding_check (with DT_SCHEMA_FILES specified), and
-> make dtbs_check (with DT_SCHEMA_FILES specified again). 
+On STM32MP135F-DK, the SD card detect GPIO is GPIOH4.
 
-I have doubts. So if you say you did it, then you probably did not look
-at the results... or whatever other reason the test was not effective,
-because your binding cannot pass the dt_binding_check.
+Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
+---
+ arch/arm/boot/dts/stm32mp135f-dk.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> That's the proper
-> testing flow correct? In this case it's the pre-requisite that's causing
-> the issue as I see on a pristine master tree I'm warned about the missing
-> vendor prefix for anbernic. Should I wait for that to go upstream before
-> I submit this again?
-
-Not really. The testing fails on wrong compatible in example.
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
+index e6b8ffd332c7..52f86596ce12 100644
+--- a/arch/arm/boot/dts/stm32mp135f-dk.dts
++++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
+@@ -82,7 +82,7 @@ &sdmmc1 {
+ 	pinctrl-0 = <&sdmmc1_b4_pins_a &sdmmc1_clk_pins_a>;
+ 	pinctrl-1 = <&sdmmc1_b4_od_pins_a &sdmmc1_clk_pins_a>;
+ 	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
+-	broken-cd;
++	cd-gpios = <&gpioh 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+ 	disable-wp;
+ 	st,neg-edge;
+ 	bus-width = <4>;
+-- 
+2.25.1
 
