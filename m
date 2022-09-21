@@ -2,97 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B4025BFA1F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CE7A5BFA24
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:06:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbiIUJF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 05:05:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57360 "EHLO
+        id S230525AbiIUJGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 05:06:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbiIUJFX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:05:23 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B54550B9
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:05:11 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id w8so8046750lft.12
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:05:10 -0700 (PDT)
+        with ESMTP id S229886AbiIUJGF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:06:05 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58EA84454C
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:06:04 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id t7so8695459wrm.10
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:06:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=K0EY400lNINpKi/3vh9zQ7PdBSHN/a2P7LQEziSq8ac=;
-        b=V4C50jBDBFFbXj97QXg82sjDUXzb8n3tnPfvPQPQM7pGIHxOgwUClMev2c2bjK6PzZ
-         R0A+rJDyvdD0BkzwTeZb7UNnLYCrqzJDGK+er/20gvMOnAK6ymZi6wpJHV2yFhfBrYyw
-         sJ38xuD0MpC9zi1Xu48iMWtFwvk4YUoiW6CtT3YVdKIhwyXmm7jEJiEx31FiQkCoEwSr
-         nKPUc93zQGKJMMYqCehpLV7vslOjlKUYFA6TX1ZolDVSgOkQvAAa7T5nyCSYMpKlEoQX
-         0q1tT8W6rxNEOgM5M50pcDf+B17KEJM0Xn10Ecevl/Y8UYx43Tf2zidfyvncWc84Ar9w
-         8BFA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date;
+        bh=YlOaZ6C3yAJ/aS44zIKSNojaTSxqANNH+S78zy9aQaE=;
+        b=TuWsxRhKIorV+7QTvrJDsrcLrBFdKo92O6JaZd68/TjFSsk76qqTpKH/I/6k9IEduh
+         IJzMQAlm6SGgZruIFfzYIHAQAF1yaIasb0kcmFlRAdAHsQwfqXA2/n6f8iPeBmJxq9Rk
+         VHB907OKAn6fiOPHgA9cStNY29hVxrD98RxkuqZDtG2Iiafk1NGFxRqpd84JjYpwaD44
+         iGisoLE+/OOxf+BxmPI4HrLBdO4cRYeWuSz1U2RmZ0E7vx2+yAolwG/2bzHWO4S1VftB
+         HHywW/UW6m7s4PFCJzBbrOh0mAJ79avRiOgqbdXV/pY9NIKt0oQw6CkdSsvATRsDfAd1
+         7ghA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=K0EY400lNINpKi/3vh9zQ7PdBSHN/a2P7LQEziSq8ac=;
-        b=whBcIO+tx5Z2Ez5HeThb0FF1QRP6Oh7QsR1fj9wbz8TSW/9EBmZ61h8SQhDnMjYWat
-         zaflH49z8CHHLk2+8LzyrXt22A9Oewll30HQf/EU1cj3W1cHexTPVDTy6N3I8kNL4bpU
-         6XyJF15d9a0ULaY1Bxw3/uiHnyoUmdBGsAAcS3PabWDcEeWHHVQKTbkXE6UofdVEPTwo
-         A8rbyUDQkx652kOO/9aJgZklRV+swcv8uVSCIu8Yu1K5tMPCq8FApH4HSHKcqjfdp7l2
-         6ckAcmFoGCvH+Na6hMDPHW+KQOCzWNF2XfiYH2m5znpbvilzxk5U09nn/MfdgXAd+5D8
-         OvfA==
-X-Gm-Message-State: ACrzQf3Xo78TNf1Z6/iOfZNbUPE6WEQPgaMcuIhfvQjDl/g1KNx0+wt/
-        QAeMyQcRGlXQzwXYc+kIPup59w==
-X-Google-Smtp-Source: AMsMyM6S/+UjKqRB9gcERMQIY6V0MUV5IWTsASHaPynjtm2h2ymuCbPi2ffq6EIQEivukdiUX1oeng==
-X-Received: by 2002:a05:6512:1188:b0:499:6fbf:d751 with SMTP id g8-20020a056512118800b004996fbfd751mr10271401lfr.51.1663751108640;
-        Wed, 21 Sep 2022 02:05:08 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p20-20020a05651212d400b00492b0d23d24sm338704lfg.247.2022.09.21.02.05.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 02:05:08 -0700 (PDT)
-Message-ID: <f3bed1d2-8d10-e64f-3ade-edae772ed6d5@linaro.org>
-Date:   Wed, 21 Sep 2022 11:05:07 +0200
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date;
+        bh=YlOaZ6C3yAJ/aS44zIKSNojaTSxqANNH+S78zy9aQaE=;
+        b=RfsEjVSy8mQkdMPac9V5YKzXpbevt6N3a8Es0JEDIFjj5TFLdF5CvcRPjRdJjj8Sjc
+         3j6421C6Ypl8ZxMYBfGxMKiRKAOA/PCOAVKXMOhrxxw3CM7E+uWUKtRYLd0X9PkeTFsL
+         ZKGXlqTPchex/WJhrTa1Uff+zMA3qEHW/NH17YszAOrp39FGWp9XQvCRz0bipK+VrRMI
+         K+L95Vl5z4a1eOq8ljw7YrBf2YucbAQsj/tOMPDL98YRUlxJ9OgYfSJxAUnY4/f1j0L5
+         5zNERY+o/9RNITmYIHwS8Vmq0+p0M3lwx36gmbCBDAGQQqRCl+Oy7mtJDxa6o/PRkrgM
+         Y94A==
+X-Gm-Message-State: ACrzQf34tU6eprzO20t1FqHnCKicxHND8rRaQeleCb9OzNQ8iGj7QSK7
+        ChKAq1q+ERG7OuWYrCjphOp4POyop7dKHrH9
+X-Google-Smtp-Source: AMsMyM42NavANSTAghtyxj3MYsPr2GmPZ07dDOBdJPIoYd0shxRMkSBgdEVFh25V7jOgraUEmSjlMw==
+X-Received: by 2002:a5d:6d09:0:b0:228:d897:af3c with SMTP id e9-20020a5d6d09000000b00228d897af3cmr17030766wrq.78.1663751162644;
+        Wed, 21 Sep 2022 02:06:02 -0700 (PDT)
+Received: from [127.0.1.1] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id p10-20020a5d638a000000b0022b0064841esm1975482wru.59.2022.09.21.02.06.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Sep 2022 02:06:02 -0700 (PDT)
+Subject: [PATCH v2 0/1] arm64: dts: mediatek: mt8183: disable thermal zones without trips.
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] arm64: dts: qcom: msm8998-yoshino: Fix up SMD regulators
- formatting
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220921004741.152765-1-konrad.dybcio@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220921004741.152765-1-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIANzTKmMC/w3MwQ6CMAwA0F8hPdtklKDo33Rb45qMYlbwIOHf3fFd3gkuTcXhNZzQ5Kuum3XQbY
+ BU2N6CmruBAlF40ojrvozLhFmdYxXHvUhbueJvs67jg3dODwo8hTnP0JvILhgbWyo9sqPW6/oD5i+5 iXcAAAA=
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Date:   Wed, 21 Sep 2022 11:05:32 +0200
+Message-Id: <20220921-mt8183-disables-thermal-zones-up-v2-0-4a31a0b19e1e@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        daniel.lezcano@linaro.org
+X-Mailer: b4 0.10.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1663751161; l=665;
+ i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
+ bh=S7JAPzoUeXRvMPnCB2alosR6eDyieqz4xvRnHA5NCuY=;
+ b=odNUw+Emjf+xXwX3bR9Day0u1Ui6ErZ2Qcb7uwlnF81tAHCJZx3R4ZtBqJLKiJU5tfZf08tTiydr
+ o0p2IYTLDFg50ovDicFI4xTm7PUsH2cM+bcYaOje1HFyQOeK2Sns
+X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
+ pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 02:47, Konrad Dybcio wrote:
-> Add a new line between each subnode and make the { } consistent.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 33 ++++++++++++++++++-
+Thermal zones without trip point are not registered by thermal core.
 
+tzts1 ~ tzts6 zones of mt8183 were intially introduced for test-purpose
+only.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Disable the zones above and keep only cpu_thermal enabled.
+
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+---
+Amjad Ouled-Ameur (1):
+      arm64: dts: mediatek: mt8183: disable thermal zones without trips.
+
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
+---
+base-commit: 60891ec99e141b74544d11e897a245ef06263052
+change-id: 20220921-mt8183-disables-thermal-zones-up-6ac720a305d5
 
 Best regards,
-Krzysztof
-
+-- 
+Amjad Ouled-Ameur <aouledameur@baylibre.com>
