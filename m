@@ -2,170 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7972E5BF6F2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 721F85BF6F5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:06:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbiIUHFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44552 "EHLO
+        id S229688AbiIUHGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:06:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbiIUHFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:05:49 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B6F491E3
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:05:47 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id n124so6886471oih.7
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:05:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=vRD7RCw4AxN9EYO/NwZ6VqxDJVNR/icyfHqDUf/Ew8Q=;
-        b=EucMCq1AVvBxe2rGx9nc8Sdi7ebYTLTQ6GDbKtHOncAaDc9OIF4VWG9WU9rgQwrA2s
-         cMB/NfmBjTEHQEsSoZfxjUX88bHkITYLkrWGP0It7MV0ZnCiBPLh2DSp1JobIL/dRK38
-         PBvIBjSCNDMDdd+Kh4EpeTZ7WROPU77CUeNispv5oIYFXYJmnPD1XF+CrlM+zzT6+UhD
-         xBRr3SrEmskhWFgowUjOU77jbUXdIaTfFCswJSAVI8EXkGx1PQRLz2hyz5i07sbkcrJm
-         7e9iQi5yM50b9EdyhtFe4qlaAF//Hb6F2U+Q2dVTrYrFQ2eJu7n6uyevz/Nmm4Yuffu3
-         Vw7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=vRD7RCw4AxN9EYO/NwZ6VqxDJVNR/icyfHqDUf/Ew8Q=;
-        b=yzKfP9Hfh2lPnFw2RjhImtXGYCUtCOVm0D8js1zPiuhAF7h6LkvqxorxfInCqmcy01
-         e6cPa0vbBiZJ7G0AtGvp51k16ZCr2h5lVUrdsDfdo2DWw5aPCT7jLWAXl5fH/1IsD82w
-         GcH2UGQZFJ+Nt+4b53wy8pRFekfZmlNSh39gCrJQwl5ecQ3GqkCMiArqbtoo3yatuTl5
-         CpVpvZGNQYg53yEAovD1u/qRS9QYV03gJ7SkvpxGUC7Ssu53UBovU382wYdEwxViagQa
-         S8Fx3UNP2khT57UvfXX3tudVH19a+G776MFsOGkDQe/7UW6vlINB506RniQ4LW94TEMA
-         7Dpw==
-X-Gm-Message-State: ACrzQf2xoAEOzn8fMTOWDTI/pgh3QSOzoMlf8yfmpvIRxr2Ee1VIbUD5
-        n138eqdmaGc5GulmvJX4nBUza6tPFercQIaSUnw=
-X-Google-Smtp-Source: AMsMyM4rxmxfn2JAo8JB7woDQpCZe0w32DNihbZoyeArBY07nmQqsc//gKcOoXzj4SJ04Fs0hpdlBt8OZxkhwJxMiho=
-X-Received: by 2002:a05:6808:23ca:b0:350:92c4:3422 with SMTP id
- bq10-20020a05680823ca00b0035092c43422mr3266515oib.144.1663743946600; Wed, 21
- Sep 2022 00:05:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220920052735.582768-1-sergio.paracuellos@gmail.com> <4a6d5f62-a0af-3117-1dff-2dee955dded5@linaro.org>
-In-Reply-To: <4a6d5f62-a0af-3117-1dff-2dee955dded5@linaro.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Wed, 21 Sep 2022 09:05:35 +0200
-Message-ID: <CAMhs-H8BJDuN-py3eOX8dbH1YO0rz6UZR3PEgB3rbs3JxzXDzw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: spi: migrate mt7621 text bindings to YAML
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        with ESMTP id S229563AbiIUHGm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:06:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3552F491E3;
+        Wed, 21 Sep 2022 00:06:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C43C062F76;
+        Wed, 21 Sep 2022 07:06:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21FCBC433C1;
+        Wed, 21 Sep 2022 07:06:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663744000;
+        bh=Ao2IgbeJQHW+cfXH8akjw/H7pJL26xNuSr60HBNqO8c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fppbgRKzPp2ynnZBDf+LdLBFj+ss9Qmtf+rxjJta9qvPpS0SNaviDkNxnRlYwqWGj
+         6cgSIi8RcM8c1jtuaezPirKl05URpL7k1kWe27M0WZArS3OIOt7tyyUOANTHmbuDQc
+         MIF/GZ9GBmAHlUFsE3ZTnEhIC18812v9CkBnshmzgdpOD62uovbQfZ5WXoWEgz3nSR
+         MI7KUtLphqUizMAlBa9boFDX+9UwdR7PRisHhko8PuLtBaOgpy3wRTxZEEH/jzngJO
+         qYl2/1Meq0Hp7LAd40BkDrZmRqjoXIElIJWxc0Ko6uqpf2C2bW8Cb1B2vv79oc3L0B
+         +MUs1Mw7u1yxg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oatoh-0003iP-Ia; Wed, 21 Sep 2022 09:06:44 +0200
+Date:   Wed, 21 Sep 2022 09:06:43 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>
+Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: sa8295p: move common nodes to
+ dtsi
+Message-ID: <Yyq4AwAbk3nxNUAl@hovoldconsulting.com>
+References: <20220920120802.14321-1-quic_ppareek@quicinc.com>
+ <20220920120802.14321-3-quic_ppareek@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220920120802.14321-3-quic_ppareek@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+[ Resending with Bjorn's address updated. ]
 
-On Wed, Sep 21, 2022 at 8:44 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/09/2022 07:27, Sergio Paracuellos wrote:
-> > SoC MT7621 SPI bindings used text format, so migrate them to YAML.
-> > There are some additions to the binding that were not in the original
-> > file. This binding is used in MT7621 and MT7628a Ralink SoCs. To
-> > properly match both dts nodes in tree we need to add to the schema
-> > 'clocks', 'clock-names' and 'reset-names'. Both 'clock-names' and
-> > 'reset-names' use 'spi' as string so maintain that as const in
-> > the schema.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
->
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Tue, Sep 20, 2022 at 05:38:01PM +0530, Parikshit Pareek wrote:
+> There are many ADP boards with lot of common features. Move common
+> nodes to sa8540p-adp.dtsi file. This will be base for many ADP boards
+> to be introduced in near future.
 
-Thanks!
+I already asked you to include a description of those differences here
+in the commit message so that we can make a decision on whether this
+change makes sense or not.
 
->
-> (plus one more comment)
->
-> > ---
-> > Changes in v2:
-> > - Address review comment from Krzysztof:
-> >     - Rebase onto last kernel version.
-> >     - Drop address-cells and size-cells.
-> >     - Explain deviations from the original file in commit message.
-> >     - Drop reset-names as required property.
-> >
-> >  .../bindings/spi/ralink,mt7621-spi.yaml       | 61 +++++++++++++++++++
-> >  .../devicetree/bindings/spi/spi-mt7621.txt    | 26 --------
-> >  2 files changed, 61 insertions(+), 26 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/spi/spi-mt7621.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml b/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
-> > new file mode 100644
-> > index 000000000000..22879f7dcb77
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/spi/ralink,mt7621-spi.yaml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/spi/ralink,mt7621-spi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +maintainers:
-> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > +
-> > +title: Mediatek MT7621/MT7628 SPI controller
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/spi/spi-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ralink,mt7621-spi
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    const: spi
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  reset-names:
-> > +    const: spi
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - resets
-> > +  - "#address-cells"
-> > +  - "#size-cells"
->
-> You could make clocks required, if you know that they are in fact
-> required for hardware to operate and they are always provided (e.g. not
-> hard-wired internally somehow).
+This also needs to be documented for future changes. For example, when
+I'll be adding PCIe support to sa8295p-adp I'd need to know whether this
+should go in a shared dtsi or in the board file.
 
-CLocks are required by MT7621 SoC but MT7628 is not using them in current DTS:
+For reasons like this, I'm still not convinced that this is a good idea.
 
-https://elixir.bootlin.com/linux/v6.0-rc5/source/arch/mips/boot/dts/ralink/mt7628a.dtsi#L187
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      | 392 +-----------------
+>  .../{sa8295p-adp.dts => sa8540p-adp.dtsi}     |   0
+>  2 files changed, 14 insertions(+), 378 deletions(-)
+>  rewrite arch/arm64/boot/dts/qcom/sa8295p-adp.dts (96%)
+>  copy arch/arm64/boot/dts/qcom/{sa8295p-adp.dts => sa8540p-adp.dtsi} (100%)
 
-That is the reason to not include them as required.
-
-Thanks,
-    Sergio Paracuellos
-
->
-> Best regards,
-> Krzysztof
+Johan
