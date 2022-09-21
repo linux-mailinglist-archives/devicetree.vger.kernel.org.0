@@ -2,164 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC2785BF635
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6723A5BF63E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:27:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229819AbiIUGWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 02:22:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48456 "EHLO
+        id S229729AbiIUG1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 02:27:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbiIUGWP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:22:15 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D11F7FFA7
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:22:10 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id b24so5718902ljk.6
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:22:10 -0700 (PDT)
+        with ESMTP id S229563AbiIUG1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:27:15 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015D1804B3
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:27:04 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id z25so7582009lfr.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:27:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=zhbji4Tk5WgVjJes/0kJR9R4EHcIP/DlEhuECb0MLiw=;
-        b=U/lGPjq45+f+pnGj85u3/K4MSbowoXW2vz165u8utJHyE4IzAQ2qMLirrddp3tGAnr
-         N2Hlw2qJ+VsDZCHNnY8b3zi9G/riJKnCnJkPr0KChrOG3Gahbzklv+h6nYE2oqYEREeP
-         l9ROfJDLEtw6tyUm1AlYdnXslm6tHRq6wearprJuq12huaqkQWu26f/QxidtNBT3uyW7
-         7EtGoIz5ll7codDIZbr6ttmoxa6w8JrxwUtGE4NXy0UL+w26TMmpcOq69XA0U0bNd55c
-         HEu9oKX1dL5ChCRhO1QUzmBrWXWrY2H4Kahz35rIIKG+4jljJFxxu5jJsHMHAdYl3p01
-         tIjw==
+        bh=Ggttj0ip5WkBjYpw/WnMtLi+fMdRVX8SYzRnIBF97Go=;
+        b=gLNHjBBY/9pUni386AGpx3O5RYp5Fpj57LUMKRw4EAfeA4lfc8LwA9I0XXj+8DtbU1
+         ieiDGYfv4vNdKyxTVdTy9i5g6Uf9XI/b42ByyBRI1K1nnOn3gZ5fbutzNpgzVNpDK4dV
+         lPMOdtRLs9fOZaKkLq2Ux/QzwuzVwItSFKiSWhAtC2aYqYQ6wLz+OZWKP1tiM4SKeEWh
+         biYCSeyIAjOwT+78hvXPVLTxy1Glc/PlFuJCKt5HRzN3fbkLo4i8afe/xf1PfwXigjCV
+         QG+jsscYr65htWCnsNga28Uomb+ilWsJiNEZtxhLdVgHXRL3hfFvGE9ft1ZMNEKV7DZt
+         /uNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=zhbji4Tk5WgVjJes/0kJR9R4EHcIP/DlEhuECb0MLiw=;
-        b=U8SMGaHEm/yNs+jo+2K8UHSWJVT+DeN80V3f2wi28PIQ8qQS5Czbw7g6bBSsQkW15d
-         SEDlHjYvVmKrRGF6yeWGip/yTfOa/OMYmprIubverjBt8AAvsBvY5ojMMwr5oHSaAg8R
-         l7aXJTu9tlb4AzmIXZjdSBhs+CLcoIrk+c1W6O1OIW5ygjXyF5Cl7oobH0fifFHO1oLe
-         Qwvhnp/p8tonlxe3P38utOrbgf7LFRAwD8C2bBARaAc1eROz5lGSZaD7cbNQ0YMSu19K
-         3H002FZJVrQ7HNaW9lDYRx3JqmCfJlBfBSpgn0g98RI94Q4p7nwLqvrgsSa29ky29Tbp
-         uVbA==
-X-Gm-Message-State: ACrzQf3HNLYCa5yn+sro+MZFyNwpA31d9fJN1zkqlAC7VMg1v1U0VD6Y
-        3Ue6Wer1CiMhIRLuZfV9Vf2vIw==
-X-Google-Smtp-Source: AMsMyM4KDygZsCooVsICpXJbWHSpyCrr/E4Y0qSWrXdfaJi52JVI1jr/vzt5chRv+/jSZgC9/karqQ==
-X-Received: by 2002:a2e:a791:0:b0:26c:4fad:957 with SMTP id c17-20020a2ea791000000b0026c4fad0957mr4375664ljf.263.1663741328708;
-        Tue, 20 Sep 2022 23:22:08 -0700 (PDT)
+        bh=Ggttj0ip5WkBjYpw/WnMtLi+fMdRVX8SYzRnIBF97Go=;
+        b=KyPZroRtOFzYNKnE5xvP17J6LXYSNi8zGIPBO7zBZK6pyYRwjPfSehZzepmw5ZteFw
+         qSRUoHZz6Kqn8Y680TblDiVf1sSbhmu2681IC3s+wmM7xHUXpGD3VnQtsl/sKzmUHrFA
+         frdxjfy8L3o3kyGnXlrh79qaS6PmMm0U3OFhcGGPyBAYPLLgs4HIH41W1O/D4OVkEggk
+         NHPyvI0I/sz/JJxrvAxJlKU70YalvGC0rj62rnhEJtdW15mmECseeHnIj2fJfBonv7QT
+         5hkOgepti6hCuuv+SM4tfnyt24ibDpHLbhFd5u7lKcDZDCysVBxuHLxGGUqEaIlCrldF
+         xQmg==
+X-Gm-Message-State: ACrzQf1kHsiuJKk1awYWxxilIP4YmIZa5GXk/3xQCHiWuhB9+9S6xAbR
+        h+D57m6mXERRQ7NQ2BxrN+8lCQ==
+X-Google-Smtp-Source: AMsMyM4v+9XrSkx4lonMl2BGq54oTlZZAdiyICLhFmj2KBH2DN43yIwR/rXT2bvseQKlycSOMZUvNQ==
+X-Received: by 2002:a05:6512:4005:b0:49e:6f0a:b09e with SMTP id br5-20020a056512400500b0049e6f0ab09emr9123696lfb.330.1663741623117;
+        Tue, 20 Sep 2022 23:27:03 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b3-20020a056512070300b00498f51af149sm284354lfs.308.2022.09.20.23.22.07
+        by smtp.gmail.com with ESMTPSA id m3-20020a2ea883000000b0026c34bed71csm291411ljq.87.2022.09.20.23.27.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 23:22:08 -0700 (PDT)
-Message-ID: <2073b6bd-a4bd-4ab5-300d-2ce989e25d5f@linaro.org>
-Date:   Wed, 21 Sep 2022 08:22:07 +0200
+        Tue, 20 Sep 2022 23:27:02 -0700 (PDT)
+Message-ID: <37b509ff-4fc2-73f1-b135-c0930075ec29@linaro.org>
+Date:   Wed, 21 Sep 2022 08:27:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v9,2/7] dt-bindings: thermal: Add dt-binding document for
- LVTS thermal controllers
+Subject: Re: [PATCH v7 6/9] crypto: qce: core: Add new compatibles for qce
+ crypto driver
 Content-Language: en-US
-To:     Balsam CHIHI <bchihi@baylibre.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, khilman@baylibre.com,
-        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-References: <20220817080757.352021-1-bchihi@baylibre.com>
- <20220817080757.352021-3-bchihi@baylibre.com>
- <716d6471-f0e2-489e-5f9e-9e38e9e7953a@collabora.com>
- <CAGuA+orxfcycwcUMpLe+dkjnXPQkELQsz0vBggGKTQ04XRGc+g@mail.gmail.com>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, herbert@gondor.apana.org.au,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, thara.gopinath@gmail.com,
+        robh@kernel.org, andersson@kernel.org, bhupesh.linux@gmail.com,
+        davem@davemloft.net, Jordan Crouse <jorcrous@amazon.com>
+References: <20220920114051.1116441-1-bhupesh.sharma@linaro.org>
+ <20220920114051.1116441-7-bhupesh.sharma@linaro.org>
+ <b4016460-f43a-13f8-432e-47c27237e005@linaro.org>
+ <9b111583-519b-95a6-15b5-243e88dc8d39@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAGuA+orxfcycwcUMpLe+dkjnXPQkELQsz0vBggGKTQ04XRGc+g@mail.gmail.com>
+In-Reply-To: <9b111583-519b-95a6-15b5-243e88dc8d39@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/09/2022 16:01, Balsam CHIHI wrote:
-> Hi Angelo,
+On 21/09/2022 08:16, Bhupesh Sharma wrote:
 > 
-> I've got the following errors after implementing these changes :
-> [...]
->   nvmem-cells:
->     minItems: 1
->     description: Calibration eFuse data for LVTS
 > 
->   nvmem-cell-names:
->     minItems: 1
->     items:
->       pattern: 'lvts-calib-data[0-9]+$'
+> On 9/20/22 8:42 PM, Krzysztof Kozlowski wrote:
+>> On 20/09/2022 13:40, Bhupesh Sharma wrote:
+>>> Since we decided to use soc specific compatibles for describing
+>>> the qce crypto IP nodes in the device-trees, adapt the driver
+>>> now to handle the same.
+>>>
+>>> Keep the old deprecated compatible strings still in the driver,
+>>> to ensure backward compatibility.
+>>>
+>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>> Cc: Rob Herring <robh@kernel.org>
+>>> Cc: herbert@gondor.apana.org.au
+>>> Tested-by: Jordan Crouse <jorcrous@amazon.com>
+>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>> ---
+>>>   drivers/crypto/qce/core.c | 9 +++++++++
+>>>   1 file changed, 9 insertions(+)
+>>>
+>>> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+>>> index 63be06df5519..99ed540611ab 100644
+>>> --- a/drivers/crypto/qce/core.c
+>>> +++ b/drivers/crypto/qce/core.c
+>>> @@ -291,8 +291,17 @@ static int qce_crypto_remove(struct platform_device *pdev)
+>>>   }
+>>>   
+>>>   static const struct of_device_id qce_crypto_of_match[] = {
+>>> +	/* Following two entries are deprecated (kept only for backward compatibility) */
+>>>   	{ .compatible = "qcom,crypto-v5.1", },
+>>>   	{ .compatible = "qcom,crypto-v5.4", },
+>>
+>> This is okay, so there is no ABI break.
 > 
->   "#thermal-sensor-cells":
->     const: 1
+> Great. Thanks for the confirmation.
 > 
-> allOf:
->   - $ref: thermal-sensor.yaml#
+>>> +	/* Add compatible strings as per updated dt-bindings, here: */
+>>> +	{ .compatible = "qcom,ipq4019-qce", },
+>>> +	{ .compatible = "qcom,ipq6018-qce", },
+>>> +	{ .compatible = "qcom,ipq8074-qce", },
+>>> +	{ .compatible = "qcom,msm8996-qce", },
+>>> +	{ .compatible = "qcom,sdm845-qce", },
+>>> +	{ .compatible = "qcom,sm8150-qce", },
+>>> +	{ .compatible = "qcom,sm8250-qce", },
+>>
+>> This is a bit odd... you have 7 devices which are simply compatible or
+>> even the same. This should be instead one compatible.
+>>
+>> I don't really get why do you want to deprecate "qcom,crypto-v5.1".
+>> Commit msg only says "we decided" but I do not know who is "we" and "why
+>> we decided like this". If you want to deprecate it, perfectly fine by
+>> me, but please say in commit msg why you are doing it.
 > 
->   - if:
->       properties:
->         compatible:
->           contains:
->             enum:
->               - mediatek,mt8192-lvts-ap
->               - mediatek,mt8192-lvts-mcu
->     then:
->       properties:
->         nvmem-cells:
->           maxItems: 1
+> I understand. This patchset has been in flight for some time and hence I 
+> might have missed sharing some detailed information about the review 
+> comments and rework done along the way (in the cover letter for this 
+> series).
 > 
->         nvmem-cell-names:
->           maxItems: 1
+> Coming back to your concern, here is the relevant background:
+> - Please see: 
+> https://lore.kernel.org/linux-arm-msm/20210316222825.GA3792517@robh.at.kernel.org/
 > 
->   - if:
->       properties:
->         compatible:
->           contains:
->             enum:
->               - mediatek,mt8195-lvts-ap
->               - mediatek,mt8195-lvts-mcu
->     then:
->       properties:
->         nvmem-cells:
->           maxItems: 2
+> - Rob shared some comments on the v1 series regarding the soc-specific 
+> compatibles. He mentioned in the above thread that 'you should stick 
+> with SoC specific compatibles as *everyone* else does (including most 
+> QCom bindings).'
 > 
->         nvmem-cell-names:
->           maxItems: 2
-> [...]
-> 
-> $ make DT_CHECKER_FLAGS=-m dt_binding_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
->   LINT    Documentation/devicetree/bindings
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> /home/balsam/src/linux-mtk-lvts-newThermalOF/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml:
-> properties:nvmem-cell-names:items: {'pattern':
-> 'lvts-calib-data[0-9]+$'} is not of type 'array'
-> from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> /home/balsam/src/linux-mtk-lvts-newThermalOF/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml:
-> ignoring, error in schema: properties: nvmem-cell-names: items
->   DTEX    Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dts
->   DTC     Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dtb
->   CHECK   Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dtb
-> Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.example.dtb:0:0:
-> /example-0/soc/thermal-sensor@1100b000: failed to match any schema
-> with compatible: ['mediatek,mt8192-lvts-ap']
-> 
-> am I missing something?
+> - So, while I had proposed "qcom,crypto-v5.1" (for ipq6018) and 
+> "qcom,crypto-v5.4" (for sdm845, sm8150) etc. as the compatible(s) in the 
+> v1 series, I shifted to using the soc-specific compatibles from the v2 
+> series, onwards.
 
-Maybe maxItems: 2 in top-level property?
+Then the reason could be - Reviewers preferred SoC-based compatible
+instead of IP-block-version-based.
 
+What is confusing is the difference between that link and here. That
+link wanted to introduce 4 different compatibles... and here you have
+even 7 compatibles being the same.
+
+> 
+> - Basically, since we are going to have newer qce IP versions available 
+> in near future, e.g. "qcom,crypto-v5.5" etc, and we will have 2 or more 
+> SoCs also sharing 1 version, these compatibles would grow and become 
+> more confusing. IMO, having a soc-specific compatible in such cases is 
+> probably a much cleaner approach.
+> 
+> Hope this helps answer some of your concerns and provides some relevant 
+> background information.
+
+Sure, but I still think you should have only one compatible in the
+driver in such case. You don't have differences between them from the
+driver point of view, so the devices seem to be compatible.
+
+If not, what are the differences?
 
 Best regards,
 Krzysztof
