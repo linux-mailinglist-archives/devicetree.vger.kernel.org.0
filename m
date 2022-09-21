@@ -2,66 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75B5B5BFFC0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 16:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58B4B5BFFC4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 16:21:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbiIUOU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 10:20:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55774 "EHLO
+        id S230016AbiIUOVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 10:21:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbiIUOU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 10:20:57 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3537686FD5
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 07:20:56 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id y3so14057697ejc.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 07:20:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=+0L9+eR75Qih9B7js8i6qvLYG82sOJdIDqqwTjLBiIQ=;
-        b=gBI8Il0wjJ4k9W8uDcY2WywCdYlFRc1TCFvzuNI+feU6F5t0q+zxJE36hFlqju4hy2
-         K3hEiABSToSDcSynJH5Bz+GzyxT7TlJu8jRLKvTtesUiy/sbNFIpXCBFAWVDhjLJIIJH
-         GxCFpmeZ/71CS5p5Hm1xwpER1PCxCjh4/NqMY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=+0L9+eR75Qih9B7js8i6qvLYG82sOJdIDqqwTjLBiIQ=;
-        b=qKlQIgS6UjjkU5801LtRArkdovEfOqWPiZWUS4jlIcQXm1kAQkSZ9UC5M/Q7HaCIkR
-         e8Jxpa01HzXx1pcSt/sNg9NhluoF9osUYTPz6w54EY2xLIoPsehgNTka7HtwIDrMOfRV
-         wYwiFd4P1NBOeMsincVbYgiXTZRs6jCWgKBp6mOG3VGLNIFxD4n8zIj/0xmdZLoYaS05
-         RPs3CQZ+IdPX5rIDio9Y1vXKx1AbTCU+DA2Bk/TuHBRsvkj5W7mtmBQDhXQeuGA+zlMn
-         0+kE8DUdw0TCDpkvwkrrATwgL68gQHoX/+jCjtq6pnwwoAZiJvzysZScba9mSKH2HQqi
-         X/Aw==
-X-Gm-Message-State: ACrzQf1u6KEO8niTOSH6osDRGz7TZGyAS4z9PKZMn2U616Pu1PUwSSkE
-        96+old5tqekb1XoOH0k9yRufRDoWgieKhbQrFRJMMA==
-X-Google-Smtp-Source: AMsMyM5/L+7UhSWc2DAc+lhVwYvbNwvoBs8veYUQz8kxwfOWmWK0C/jE27btL5ZxCDIBgKX69XN3rLhPSpA/NJMdfzU=
-X-Received: by 2002:a17:907:7f93:b0:781:dbee:dece with SMTP id
- qk19-20020a1709077f9300b00781dbeedecemr5468821ejc.323.1663770054748; Wed, 21
- Sep 2022 07:20:54 -0700 (PDT)
+        with ESMTP id S230107AbiIUOVe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 10:21:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481233ED7C
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 07:21:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D763E63098
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 14:21:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E25EC433C1;
+        Wed, 21 Sep 2022 14:21:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663770091;
+        bh=sZuUg6MHLptQb1xH+y+4v8/pAIwRKYIeNBbcXlslgbI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Db6adK9H1qWDNCoP3x5e6eq5kaSMb403SagtmMWCT5UbHySzfBZh+UDq4mMbRaqk0
+         NVM921BmggbjZ6ZX7LK4ooi4yLHKld+x+4GIyqX23E/LHm/Y4Hr9AnQR9S1MF1YO+b
+         ohSPVFRe4wA/b8wCIR70IFxIAZQfd2NC6r6wd7+17sCQSBWND8Ivx7UP59nB2UkExa
+         ggBWpRWwOBVIOlShZ9xqssPiNl16SiIm/+EW3LgSikxgYGLWITkHQke9/ZT1vD1oyh
+         z6OAKZB3Xmjd/VhA1PiLqb8pgEDNwvHG7I2ZBbDuygbXf2+BRjuu8KVMyE8muyLofB
+         crsfW2AkPNfnA==
+Date:   Wed, 21 Sep 2022 22:21:23 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Li Jun <jun.li@nxp.com>, Abel Vesa <abelvesa@kernel.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
+        l.stach@pengutronix.de, marex@denx.de, peng.fan@nxp.com,
+        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
+        aford173@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3] arm64: dts: imx8mp: correct usb clocks
+Message-ID: <20220921142123.GT1728671@dragon>
+References: <1663565197-3961-1-git-send-email-jun.li@nxp.com>
 MIME-Version: 1.0
-References: <20220908171153.670762-1-nfraprado@collabora.com> <20220908171153.670762-2-nfraprado@collabora.com>
-In-Reply-To: <20220908171153.670762-2-nfraprado@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 21 Sep 2022 22:20:43 +0800
-Message-ID: <CAGXv+5FErSBT-t6vz_2naApuPoC4PympWft-9Gd_MMPUTN+CsQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: mediatek: asurada: Add display regulators
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1663565197-3961-1-git-send-email-jun.li@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,196 +57,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Added Abel.
 
-On Fri, Sep 9, 2022 at 1:12 AM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
-> Add the regulators present on the Asurada platform that are used to
-> power the internal and external displays.
->
-> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
->
+On Mon, Sep 19, 2022 at 01:26:37PM +0800, Li Jun wrote:
+> After commit cf7f3f4fa9e5 ("clk: imx8mp: fix usb_root_clk parent"),
+> usb_root_clk is no longer for suspend clock so update dts accordingly
+> to use right bus clock and suspend clock.
+> 
+> Fixes: fb8587a2c165 ("arm64: dtsi: imx8mp: add usb nodes")
+> Cc: stable@vger.kernel.org # v5.19+
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Li Jun <jun.li@nxp.com>
+
+I just realized this patch has a hard/build dependency on define
+IMX8MP_CLK_USB_SUSP.  So the patch needs to go upstream via the same
+tree that the define is applied.  I guess that's Abel's i.MX clk tree?
+In that case:
+
+Acked-by: Shawn Guo <shawnguo@kernel.org>
+
+Shawn
+
 > ---
->
->  .../boot/dts/mediatek/mt8192-asurada.dtsi     | 114 ++++++++++++++++++
->  1 file changed, 114 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm6=
-4/boot/dts/mediatek/mt8192-asurada.dtsi
-> index 4b314435f8fd..1d99e470ea1a 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-> @@ -23,6 +23,42 @@ memory@40000000 {
->                 reg =3D <0 0x40000000 0 0x80000000>;
->         };
->
-> +       pp1000_dpbrdg: regulator-1v0-dpbrdg {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "pp1000_dpbrdg";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&pp1000_dpbrdg_en_pins>;
-> +               regulator-min-microvolt =3D <1000000>;
-> +               regulator-max-microvolt =3D <1000000>;
-
-This is fed by a rail called PP1350_VS2, which is from the MT6359 PMIC.
-And this regulator is a proper LDO.
-
-> +               enable-active-high;
-> +               regulator-boot-on;
-> +               gpio =3D <&pio 19 GPIO_ACTIVE_HIGH>;
-> +       };
-> +
-> +       pp1000_mipibrdg: regulator-1v0-mipibrdg {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "pp1000_mipibrdg";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&pp1000_mipibrdg_en_pins>;
-> +               regulator-min-microvolt =3D <1000000>;
-> +               regulator-max-microvolt =3D <1000000>;
-
-This is fed by a rail called PP1350_VS2, which is from the MT6359 PMIC.
-And this regulator is a proper LDO.
-
-> +               enable-active-high;
-> +               regulator-boot-on;
-> +               gpio =3D <&pio 129 GPIO_ACTIVE_HIGH>;
-> +       };
-> +
-> +       pp1800_dpbrdg: regulator-1v8-dpbrdg {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "pp1800_dpbrdg";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&pp1800_dpbrdg_en_pins>;
-> +               regulator-min-microvolt =3D <1800000>;
-> +               regulator-max-microvolt =3D <1800000>;
-
-This regulator is only a power switch. Please drop the min/max properties.
-This is fed by a rail called PP1800_VIO18_U, which is from an LDO on the
-MT6359 PMIC.
-
-> +               enable-active-high;
-> +               regulator-boot-on;
-> +               gpio =3D <&pio 126 GPIO_ACTIVE_HIGH>;
-> +       };
-> +
->         /* system wide LDO 1.8V power rail */
->         pp1800_ldo_g: regulator-1v8-g {
->                 compatible =3D "regulator-fixed";
-> @@ -34,6 +70,30 @@ pp1800_ldo_g: regulator-1v8-g {
->                 vin-supply =3D <&pp3300_g>;
->         };
->
-> +       pp1800_mipibrdg: regulator-1v8-mipibrdg {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "pp1800_mipibrdg";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&pp1800_mipibrdg_en_pins>;
-> +               regulator-min-microvolt =3D <1800000>;
-> +               regulator-max-microvolt =3D <1800000>;
-
-This regulator is only a power switch. Please drop the min/max properties.
-This is fed by a rail called PP1800_VIO18_U, which is from an LDO on the
-MT6359 PMIC.
-
-> +               enable-active-high;
-> +               regulator-boot-on;
-> +               gpio =3D <&pio 128 GPIO_ACTIVE_HIGH>;
-> +       };
-> +
-> +       pp3300_dpbrdg: regulator-3v3-dpbrdg {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "pp3300_dpbrdg";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&pp3300_dpbrdg_en_pins>;
-> +               regulator-min-microvolt =3D <3300000>;
-> +               regulator-max-microvolt =3D <3300000>;
-
-This regulator is only a power switch. Please drop the min/max properties.
-This is fed by a rail called PP3300_G, which is already described below.
-
-> +               enable-active-high;
-> +               regulator-boot-on;
-> +               gpio =3D <&pio 26 GPIO_ACTIVE_HIGH>;
-> +       };
-> +
->         /* system wide switching 3.3V power rail */
->         pp3300_g: regulator-3v3-g {
->                 compatible =3D "regulator-fixed";
-> @@ -56,6 +116,18 @@ pp3300_ldo_z: regulator-3v3-z {
->                 vin-supply =3D <&ppvar_sys>;
->         };
->
-> +       pp3300_mipibrdg: regulator-3v3-mipibrdg {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "pp3300_mipibrdg";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&pp3300_mipibrdg_en_pins>;
-> +               regulator-min-microvolt =3D <3300000>;
-> +               regulator-max-microvolt =3D <3300000>;
-
-This regulator is only a power switch. Please drop the min/max properties.
-This is fed by a rail called PP3300_G, which is already described above.
-
-ChenYu
-
-> +               enable-active-high;
-> +               regulator-boot-on;
-> +               gpio =3D <&pio 127 GPIO_ACTIVE_HIGH>;
-> +       };
-> +
->         /* separately switched 3.3V power rail */
->         pp3300_u: regulator-3v3-u {
->                 compatible =3D "regulator-fixed";
-> @@ -719,6 +791,48 @@ pins-wifi-kill {
->                 };
->         };
->
-> +       pp1000_dpbrdg_en_pins: pp1000-dpbrdg-en-pins {
-> +               pins-en {
-> +                       pinmux =3D <PINMUX_GPIO19__FUNC_GPIO19>;
-> +                       output-low;
-> +               };
-> +       };
-> +
-> +       pp1000_mipibrdg_en_pins: pp1000-mipibrdg-en-pins {
-> +               pins-en {
-> +                       pinmux =3D <PINMUX_GPIO129__FUNC_GPIO129>;
-> +                       output-low;
-> +               };
-> +       };
-> +
-> +       pp1800_dpbrdg_en_pins: pp1800-dpbrdg-en-pins {
-> +               pins-en {
-> +                       pinmux =3D <PINMUX_GPIO126__FUNC_GPIO126>;
-> +                       output-low;
-> +               };
-> +       };
-> +
-> +       pp1800_mipibrdg_en_pins: pp1800-mipibrd-en-pins {
-> +               pins-en {
-> +                       pinmux =3D <PINMUX_GPIO128__FUNC_GPIO128>;
-> +                       output-low;
-> +               };
-> +       };
-> +
-> +       pp3300_dpbrdg_en_pins: pp3300-dpbrdg-en-pins {
-> +               pins-en {
-> +                       pinmux =3D <PINMUX_GPIO26__FUNC_GPIO26>;
-> +                       output-low;
-> +               };
-> +       };
-> +
-> +       pp3300_mipibrdg_en_pins: pp3300-mipibrdg-en-pins {
-> +               pins-en {
-> +                       pinmux =3D <PINMUX_GPIO127__FUNC_GPIO127>;
-> +                       output-low;
-> +               };
-> +       };
-> +
->         pp3300_wlan_pins: pp3300-wlan-pins {
->                 pins-pcie-en-pp3300-wlan {
->                         pinmux =3D <PINMUX_GPIO143__FUNC_GPIO143>;
-> --
-> 2.37.3
->
+> change for v3:
+> -  Add fixes tag, Alexander's T-b and Peng's R-b tages.
+> 
+> change for v2:
+> - Add stable tag to apply v5.19+
+> 
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index fe178b7d063c..2f18778a057f 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1169,7 +1169,7 @@ usb3_0: usb@32f10100 {
+>  			reg = <0x32f10100 0x8>,
+>  			      <0x381f0000 0x20>;
+>  			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
+> -				 <&clk IMX8MP_CLK_USB_ROOT>;
+> +				 <&clk IMX8MP_CLK_USB_SUSP>;
+>  			clock-names = "hsio", "suspend";
+>  			interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+>  			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
+> @@ -1182,9 +1182,9 @@ usb3_0: usb@32f10100 {
+>  			usb_dwc3_0: usb@38100000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x38100000 0x10000>;
+> -				clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
+> +				clocks = <&clk IMX8MP_CLK_USB_ROOT>,
+>  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+> -					 <&clk IMX8MP_CLK_USB_ROOT>;
+> +					 <&clk IMX8MP_CLK_USB_SUSP>;
+>  				clock-names = "bus_early", "ref", "suspend";
+>  				interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+>  				phys = <&usb3_phy0>, <&usb3_phy0>;
+> @@ -1211,7 +1211,7 @@ usb3_1: usb@32f10108 {
+>  			reg = <0x32f10108 0x8>,
+>  			      <0x382f0000 0x20>;
+>  			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
+> -				 <&clk IMX8MP_CLK_USB_ROOT>;
+> +				 <&clk IMX8MP_CLK_USB_SUSP>;
+>  			clock-names = "hsio", "suspend";
+>  			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
+>  			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
+> @@ -1224,9 +1224,9 @@ usb3_1: usb@32f10108 {
+>  			usb_dwc3_1: usb@38200000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x38200000 0x10000>;
+> -				clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
+> +				clocks = <&clk IMX8MP_CLK_USB_ROOT>,
+>  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+> -					 <&clk IMX8MP_CLK_USB_ROOT>;
+> +					 <&clk IMX8MP_CLK_USB_SUSP>;
+>  				clock-names = "bus_early", "ref", "suspend";
+>  				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+>  				phys = <&usb3_phy1>, <&usb3_phy1>;
+> -- 
+> 2.34.1
+> 
