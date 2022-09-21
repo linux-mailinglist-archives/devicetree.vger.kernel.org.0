@@ -2,94 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B5735BF95E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:35:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91C575BF963
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:36:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbiIUIfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 04:35:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41536 "EHLO
+        id S230087AbiIUIgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 04:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230192AbiIUIfb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:35:31 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C294C356F6
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 01:35:30 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1oavCN-0008WV-Eg; Wed, 21 Sep 2022 10:35:15 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1oavCL-0001H2-6Z; Wed, 21 Sep 2022 10:35:13 +0200
-Date:   Wed, 21 Sep 2022 10:35:13 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org, jacopo@jmondi.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        kieran.bingham+renesas@ideasonboard.com,
-        linux-kernel@vger.kernel.org, kishon@ti.com, hverkuil@xs4all.nl,
-        vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-phy@lists.infradead.org,
-        mchehab@kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] media: dt-bindings: add bindings for Toshiba
- TC358746
-Message-ID: <20220921083513.drt4rggqj7tpaygr@pengutronix.de>
-References: <20220916134535.128131-1-m.felsch@pengutronix.de>
- <20220916134535.128131-4-m.felsch@pengutronix.de>
- <YyZTCsflWtUbo2ld@pendragon.ideasonboard.com>
- <20220919100844.bb7tzbql2vpk76xz@pengutronix.de>
- <YyhDO4ohv47uIij2@paasikivi.fi.intel.com>
- <YyhKoDxFoobY9vBd@pendragon.ideasonboard.com>
- <20220920152632.mjpgpmelvx4ya4k7@pengutronix.de>
- <Yyn5MqqKYH7VpFhw@pendragon.ideasonboard.com>
- <74b6b670-747a-f326-44ea-7588c3989b0e@linaro.org>
+        with ESMTP id S230457AbiIUIf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:35:59 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF907FE7A
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 01:35:57 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id b6so6050667ljr.10
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 01:35:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=fCr8MwFtbbcSDSvMf2AcQISoeqvfzG7FR3I7vOSbQlM=;
+        b=wAeXEwMmcxP8dYzsCAJu8G0NMnxMRwO60uRgR9N9iiGOFayIzZwDJM2g380S0Lp+MY
+         uBXAz4orsz/bBwjRsRDuasi+pYMQSS45VabIyqiQbhXk4nNPLM7qc0IZ4OEg50do/rwj
+         iSTIRdX+w1T3dbcWGdI6ZBKWQQgtV2cSf/pR1oSgR6gXVshQ1Ilk8EVUXiDrOki6lRVF
+         cIG1nyrqMUSQyO3FxvhbkEk9eU+EI9baXpBk9bpayMn/Qa0gfFJBUU8PHa4AylhVqYRM
+         tOZ/yyJcBE7QVXf+0Z92YP9BSBa1BAbZ3j3IBoykz+p5HW0XYjdAws+ZZFbqWmlx6mCw
+         xXHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=fCr8MwFtbbcSDSvMf2AcQISoeqvfzG7FR3I7vOSbQlM=;
+        b=wviYVymnnFvebTrhq/rAIfUchkYIGoGBZuBsi9L4uqcv4RE1QdzYdnccfYwBWLltLy
+         ps8orsWJ6V4jyjWjykbEopSmb8ZO2ajDAjjhl8sTKqcKGlWLkMJQdkVqpJHus5e1lVGY
+         /hXstX6oYyy9tVSv/04XI64w6Yyt7Qa1Kh3DuJjj5f7A/LaXUStBa2lgS+TSYyXkAMEA
+         +4eY5QwxggUorP4UX/ylKEGe7mhjOJNyQykesYc+rNwWp7U8MglIXBYjvJ4J7eY8QSLT
+         +NjOurkQxtDvYI0e7BLAkLEIl9Wjp+4hECoT7NyziDvwHcgZ0vshYJTuXM0iMCf08LcA
+         OyrQ==
+X-Gm-Message-State: ACrzQf3XCjQ9XaTnqJM3OtHwUD8467g7VC7eh3PZ/EhpyTpHyq9z9tWy
+        F3niGYtd9h0xPeQqE8J8pnwsMQ==
+X-Google-Smtp-Source: AMsMyM5cQD2qKn16V2w8tpEVl6X83BD1sDdLGMgpXAhpSINiKNmYTE9cE/g9dYyZGiHAZHwKsIHvww==
+X-Received: by 2002:a2e:998b:0:b0:26c:4ef4:e4d7 with SMTP id w11-20020a2e998b000000b0026c4ef4e4d7mr4958579lji.42.1663749356227;
+        Wed, 21 Sep 2022 01:35:56 -0700 (PDT)
+Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id w11-20020a0565120b0b00b00498fd423cc3sm326358lfu.295.2022.09.21.01.35.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Sep 2022 01:35:55 -0700 (PDT)
+Date:   Wed, 21 Sep 2022 10:35:54 +0200
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Sireesh Kodali <sireeshkodali1@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-remoteproc@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        andersson@kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] dt-bindings: remoteproc: qcom: wcnss: Add
+ compatible for pronto v3
+Message-ID: <20220921083554.3zs7xdj6n3pv7zdq@krzk-bin>
+References: <20220921043648.2152725-1-sireeshkodali1@gmail.com>
+ <20220921043648.2152725-5-sireeshkodali1@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <74b6b670-747a-f326-44ea-7588c3989b0e@linaro.org>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220921043648.2152725-5-sireeshkodali1@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-21, Krzysztof Kozlowski wrote:
-> On 20/09/2022 19:32, Laurent Pinchart wrote:
-> >>>
-> >>> Explicit bus types in DT indeed makes it easier for drivers, so if a
-> >>> device can support multiple bus types (even if not implemented yet in
-> >>> the corresponding drivers), the property should be there.
-> >>
-> >> Okay, I will make it required.
-> >>
-> >>>> Why do you have hsync-active and vsync-active if both are always zero? Can
-> >>>> the hardware not support other configuration?
-> >>
-> >> Sure the device supports toggling the logic but it is not implemented.
-> >> So the bindings needs to enforce it to 0 right now. As soon as it is
-> >> implemented & tested, we can say that both is supported :)
-> > 
-> > Bindings are not supposed to be limited by the existing driver
-> > implementation, so you can already allow both polarities, and just
-> > reject the unsupported options in the driver at probe time. Future
-> > updates to the driver won't require a binding change.
-> > 
+On Wed, 21 Sep 2022 10:06:48 +0530, Sireesh Kodali wrote:
+> The pronto v3 remoteproc is similar to pronto v2. It is found on the
+> MSM8953 platform, which is used by SDM450, SDM625, SDM626, APQ8053 and
+> other SoCs. Since the configuration is same on all SoCs, a single
+> compatible is used.
 > 
-> +1
+> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+> ---
+>  .../bindings/remoteproc/qcom,wcnss-pil.yaml      | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
 
-I don't wanna do that because this let the binding user assume that
-this mode is already supported. Adapting a binding is just 1 commit and
-since the property is already existing, there is no breaking change.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Regards,
-  Marco
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+remoteproc@fb21b000: 'power-domain-names' is a required property
+	arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dtb
+
+remoteproc@fb21b000: 'power-domains' is a required property
+	arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dtb
