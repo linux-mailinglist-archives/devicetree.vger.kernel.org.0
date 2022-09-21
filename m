@@ -2,221 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F415BF688
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:42:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B14045BF68C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:43:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbiIUGmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 02:42:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43434 "EHLO
+        id S229669AbiIUGnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 02:43:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbiIUGmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:42:35 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5D780EBC
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:42:30 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id s10so5779820ljp.5
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:42:30 -0700 (PDT)
+        with ESMTP id S229580AbiIUGnQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:43:16 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3ABD796B5;
+        Tue, 20 Sep 2022 23:43:15 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id t70so4992790pgc.5;
+        Tue, 20 Sep 2022 23:43:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=MjIcNOYEaqnTNd3Vfl/6SM9O1Q7tJ/enPgdgY7sB+eY=;
-        b=CymI2Dq5RcOVimUI28vSZ+7pZczQKvHq7eBoZVXEjymas4hDp5JAocerp2vdZWNWCW
-         jsIQEWLDyuWMwP0GQvTsp9RV2Pw8dmNSy8km+/f5eKecEET/Bg/ELcrZ/4czOMLWHFkz
-         r0iMWyTEQBIinMFQkc0ZcpbhdBoZRvs/f2DrhdYTMvyRc/TdJ8TZVBdsd7RfbkNdBDXh
-         sAC9SB29UymXC1wt/tRxYv/dPN9KLDegXHKm7ATYqikLL49HLSpBwoSc4gSSYDouU6IF
-         fyf09cF3VjJ7TqTal0n+sqEpONv9l9KnbUx9AsN99ItDT0rwN/j2XIvt2bgwFrtnTyon
-         McMg==
+        d=gmail.com; s=20210112;
+        h=user-agent:content-disposition:mime-version:message-id:subject:to
+         :from:date:from:to:cc:subject:date;
+        bh=4OoemoqY03kwE/AES+O6nYI9GibmetWZKgTywgqbXVk=;
+        b=Cdlu9ugblpLjxtMTv8T1E0QgdC92dLmJ9eALZY+V+j70X7VvVQ0h59gr7+k976fRmM
+         t5HMxJbhR5kxqW9SYL0EQQrQjBMOuM/wFvm9WmQ5H0NSrGKQJNZY889998ILbRcdnR5U
+         SsMqJAB8JPaE23G7J7uHcOeruUH5JdOzZQuRG+o2vgmPVJUJ4v1KvXLasPdtZVDlNPtE
+         wjfGhEKc43K7nZajqD6AsyrLLxm3tw5XZBK5em/qj4e0zJLYPoZka2vVWlSut2UWO2mR
+         RNHkBHmzwNJt+4nm2QM5SdFmDz2PGUesIE2f5NahLaDQr/NMSFkyc+JqV9q6feZlHup+
+         qYRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=MjIcNOYEaqnTNd3Vfl/6SM9O1Q7tJ/enPgdgY7sB+eY=;
-        b=LfJzFpWAO/0xGJmHssnTSBzX6FySxfJ0TintM3x0WZTLBPwjcfytj+KrSY97xaePuj
-         rW5psLvAM+0pDIzIz+SNEzZKYifHsSVtC554wzKt7+n3deftb4iGIqb3hucHqvxzuMGA
-         YL1xLZSZy8PPDk8ey5DqBj444uAZycE5vRx76iN6eRg1No2Pc//JOCTgNa95Vf/e4NBH
-         Db2KdJZW2KLnDxb1tO3zG4NuB62LbIXcXa8Dq1bDW93RnALMeR47ETGXLAwVBS6z/PQj
-         cuBYWwYztcbB+aw7RC4rLZb0hT3Z+YG00E07ftjqsBMz6dYMcU58amFW2jpPbkaIzsfF
-         kOZA==
-X-Gm-Message-State: ACrzQf2xjnc9wgrHMpDwKAHPgPSCCCMbhOdBsAQF9r4o8oWHqHbIFrv6
-        PTJkxABi4rbEIo1z1+Ae8PzWOhHPGMXx1A==
-X-Google-Smtp-Source: AMsMyM63ADMb8qziTMt5zgrxs4c+IJ8zrlMMT/QKkYFGn4iPwXYFXr71wADcTKXstdDcMVwLQCCMcA==
-X-Received: by 2002:a05:651c:1504:b0:26c:6331:3463 with SMTP id e4-20020a05651c150400b0026c63313463mr1223003ljf.30.1663742548783;
-        Tue, 20 Sep 2022 23:42:28 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 11-20020ac25f4b000000b00494978b0caesm294173lfz.276.2022.09.20.23.42.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 23:42:28 -0700 (PDT)
-Message-ID: <7436dcff-1648-e5e6-47e3-473ae5839e91@linaro.org>
-Date:   Wed, 21 Sep 2022 08:42:27 +0200
+        h=user-agent:content-disposition:mime-version:message-id:subject:to
+         :from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=4OoemoqY03kwE/AES+O6nYI9GibmetWZKgTywgqbXVk=;
+        b=2eVD94VD0E/8CbLVN/rBTSTFOsQyBMmXJ87ImHYPQJokr8z4/OIAbdqs/4j6C+Ia4e
+         iN5T24RSl6fH4sRwSO3TIB6RZSfXGGPjh+iUOY+pJ0qAjT+9mS1F1OdhnxDSwnAPV605
+         JrbjbyNnAUFC/TdEqC1T458UPP2HwFrGDNIRl0Yzc00hqIwlZ1s6TLusdzleJIV5PqcG
+         grrEhRm8frLRmShdkv5dD9K3EPBjgyj/2xE7MJrYx4WZBUKbsrMM/caY150lhIzVN6um
+         gM+uS5PmvqkXsUswSOKoCnia410GUj/h/JAXAvwD3ne7enYq5zGEq43XQFNG/ON+R+Sz
+         f1ig==
+X-Gm-Message-State: ACrzQf3t8oGGr+c34dXGGEP3Bdi7QlV8lx8FAVfstZGENMHPEMagQKJ8
+        k1kgmxzeNweDjhYk3es64hk=
+X-Google-Smtp-Source: AMsMyM5GoiNadp9pZlmdf85gfN7sInYz4kz0i/l9s9SSP9mUaVvqWWPpOlwENy6IRXcjPmMG8qpYhQ==
+X-Received: by 2002:a63:8a4a:0:b0:438:6a17:f0bb with SMTP id y71-20020a638a4a000000b004386a17f0bbmr22722052pgd.267.1663742595348;
+        Tue, 20 Sep 2022 23:43:15 -0700 (PDT)
+Received: from hcl-ThinkPad-T495 ([2401:4900:1ce2:b8f9:48c4:2ac5:ccad:657d])
+        by smtp.gmail.com with ESMTPSA id jg11-20020a17090326cb00b001769ee307d8sm1117799plb.59.2022.09.20.23.43.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 20 Sep 2022 23:43:14 -0700 (PDT)
+Date:   Wed, 21 Sep 2022 12:13:09 +0530
+From:   Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, kernel test robot <lkp@intel.com>
+Subject: [PATCH v4] ARM: dts: aspeed: yosemit V2: Enable OCP debug card
+Message-ID: <20220921064309.GA18932@hcl-ThinkPad-T495>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2] dt-bindings: mips: add CPU bindings for MIPS
- architecture
-Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-References: <20220917041136.526446-1-sergio.paracuellos@gmail.com>
- <285f80ef-5f5c-e68d-b514-a3e3341841c5@linaro.org>
- <CAMhs-H92i6vFJWCBrpaQnQzA3-+6_ROb9_+zD4yBMB1FLJoKeQ@mail.gmail.com>
- <71b50383-0fc3-f834-11e0-8fbc17c123d0@linaro.org>
- <CAMhs-H-JokHX+XNNE0TQf78ORQbNz2fTd9hfgmv_s6OPT=Wh0w@mail.gmail.com>
- <c04461c0-e16a-6dcc-4fc0-f6c80263bd71@linaro.org>
- <CAMhs-H9HX4gmZn-ySWZZdhDiWJPazado=Vp6D1PpyxvV85ACsw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMhs-H9HX4gmZn-ySWZZdhDiWJPazado=Vp6D1PpyxvV85ACsw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 07:51, Sergio Paracuellos wrote:
-> Hi Krzysztof,
-> 
-> On Mon, Sep 19, 2022 at 6:08 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 19/09/2022 15:41, Sergio Paracuellos wrote:
->>> Hi Krzysztof,
->>>
->>> On Mon, Sep 19, 2022 at 2:48 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 19/09/2022 14:29, Sergio Paracuellos wrote:
->>>>>>
->>>>>> else mips-hpt-frequency: false
->>>>>>
->>>>>>> +
->>>>>>> +required:
->>>>>>> +  - compatible
->>>>>>> +
->>>>>>> +additionalProperties: true
->>>>>>
->>>>>> and this is why you did not notice errors...
->>>>>
->>>>> Current arch/mips/boot/dts folder dts files are a mess for cpu nodes,
->>>>> so I set additionalProperties to true and only make required for
->>>>> 'compatible'. What should be the correct approach?
->>>>
->>>> This is okay, but it caused you did not notice errors...
->>>>
->>>>>
->>>>>>
->>>>>>> +
->>>>>>> +examples:
->>>>>>> +  - |
->>>>>>> +    cpus {
->>>>>>> +      #size-cells = <0>;
->>>>>>> +      #address-cells = <1>;
->>>>>>> +
->>>>>>> +      cpu@0 {
->>>>>>> +        device_type = "cpu";
->>>>>>> +        compatible = "mips,mips1004Kc";
->>>>>>> +        reg = <0>;
->>>>>>> +      };
->>>>>>> +
->>>>>>> +      cpu@1 {
->>>>>>> +        device_type = "cpu";
->>>>>>> +        compatible = "mips,mips1004Kc";
->>>>>>> +        reg = <1>;
->>>>>>> +      };
->>>>>>> +    };
->>>>>>> +
->>>>>>> +  - |
->>>>>>> +    // Example 2 (BMIPS CPU)
->>>>>>> +    cpus {
->>>>>>> +      #address-cells = <1>;
->>>>>>> +      #size-cells = <0>;
->>>>>>> +
->>>>>>> +      mips-hpt-frequency = <150000000>;
->>>>>>
->>>>>> Does not match your bindings. Are you sure you tested the patches?
->>>>>
->>>>> Yes I did:
->>>>>
->>>>> $ make dt_binding_check
->>>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mips/cpus.yaml
->>>>>   LINT    Documentation/devicetree/bindings
->>>>>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->>>>>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->>>>>   DTEX    Documentation/devicetree/bindings/mips/cpus.example.dts
->>>>>   DTC     Documentation/devicetree/bindings/mips/cpus.example.dtb
->>>>> ' CHECK   Documentation/devicetree/bindings/mips/cpus.example.dtb
->>>>>
->>>>> Can you please point me to a sample of how to make required in a
->>>>> parent node of cpu@X property 'mips-hpt-frequency' only for some
->>>>> compatible strings inside the node? What can this be properly
->>>>> expressed using schema??
->>>>> I was looking and testing different things for a while without success at all.
->>>>
->>>> You either define new schema for /cpus node (and match by name, define
->>>> children etc) or include it in schema for top-level properties. The
->>>> first is tricky, because the cpus node does not have compatible (like
->>>> nvidia,tegra194-ccplex.yaml).
-> 
-> Ok so if I am understanding correctly having two schemas is a way to go:
-> 
-> One for brcm,bmips-cpus.yaml (since there is no compatible, should
-> this be a valid name for this?) containing something like:
-> 
-> properties:
->   $nodename:
->      const: cpus
-> 
->      mips-hpt-frequency:
->         $ref: /schemas/types.yaml#/definitions/uint32
->         description: |
->            This is common to all CPUs in the system so it lives
->             under the "cpus" node.
-> 
-> additionalProperties: true
+Added IPMB-13 channel for Debug Card communication.
+which improve the readability of the machine and makes
+easier to debug the server.  and it will display the some
+informations about the server like "system info",
+"Critical sensors" and "critical sel".
 
-Almost. Such schema will allow mips-hpt-frequency in each cpus node,
-everywhere. On every board and architecture.
+---
+--- v4- Resolved syntax error
+--- v3- Updated the title and commit
+--- v2- Updated the title
+--- v1- Initial draft
+---
 
-You need to limit it per top-level compatibles.
+Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+---
+ arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-You can also wait a week and maybe Rob will have some ideas.
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+index 8864e9c312a8..84236df522dc 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+@@ -215,6 +215,17 @@
+ 	};
+ };
+ 
++&i2c13 {
++	status = "okay";
++	// Debug Card
++	multi-master;
++	ipmb13@10 {
++		compatible = "ipmb-dev";
++		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++		i2c-protocol;
++	};
++};
++
+ &pwm_tacho {
+ 	status = "okay";
+ 	//FSC
+-- 
+2.17.1
 
-> 
-> examples:
->   - |
->      cpus {
->        #address-cells = <1>;
->        #size-cells = <0>;
-> 
->         mips-hpt-frequency = <150000000>;
-> 
->         cpu@0 {
->           compatible = "brcm,bmips4350";
->           device_type = "cpu";
->            reg = <0>;
->         };
-> 
->          cpu@1 {
->            compatible = "brcm,bmips4350";
->            device_type = "cpu";
->            reg = <1>;
->         };
->   };
-> 
-> And the other as 'cpus.yaml' having:
-
-Yes.
-
-Best regards,
-Krzysztof
