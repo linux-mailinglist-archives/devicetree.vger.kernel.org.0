@@ -2,100 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E9FF5BF5B8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 06:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C50A15BF5CA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 07:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231238AbiIUE5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 00:57:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34456 "EHLO
+        id S229669AbiIUFJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 01:09:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231244AbiIUE4h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 00:56:37 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 763987F244
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 21:56:36 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id w10so3626113pll.11
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 21:56:36 -0700 (PDT)
+        with ESMTP id S229525AbiIUFJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 01:09:18 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58D00422FC
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 22:09:17 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id x29so5601243ljq.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 22:09:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=LoDI0ur6KswVSmS1dZpuhQgtr92N8kLU7u6OZi8zwCM=;
-        b=CEOOQPH/UwDcKE4ATNK3ns/S+sq5jjUkFECPR0fs8BtFrA/Pn+tnePbWwsRLQzr6li
-         btc5piA0/YzAHXRW/4dDmBRkR2oKbYIHB7pJSBT/dYkLUACsoIfkKU3gNPt7Bk/T76Hv
-         Cmh5XdlGk/YfKtQiAANhneAeSbVrn94T59pC+2Wegt/6pT1OEJIIzfsHIABhEWEmLxmp
-         w/2/2QUzgOKTQewIHafYFfA59ctCPXNJXJjv7OMjhhMb4m1IxDS+Bwfky5VrHcO0hvZe
-         /+NSlrGr7HC6Ei9/P3DU7CrfNxNv1KL4OsDyLUBnENmNWDcNTezYuuefg0tlZSU7K36t
-         9nLw==
+        d=sifive.com; s=google;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date;
+        bh=TgTQReumepLDe4ov6CDHPrQQsIPWNDax0l8u9Rzrs0M=;
+        b=FNR4DfsImI34Tdj1kbATrXg+qWoJ2JGx2IvHCZwimcpkwPVtI+exf/w3P+sQiU4kRY
+         5x+aqYP5WCJlBUKUJzLq2GNaC0ZMWcL3rjTlBFT51m//vs15UHg8EhIKgKrr3WhLktZh
+         sQf8VKiiQFN+KuZ+UW5fL1h8m5SO42WnXuwM3K0e3JfVqjI5qLaY6gik5p9xs4cEK4cK
+         iFjnSkomxmOc4LiOSnKurQLLW+wRjyF5jZd+bPCZ/XTsuaey+bEqWnCBdpTFb+asFN9r
+         txZGautSqkGqoejgYOYGPhIo/pUbGwFIJboHg4uoi8u7wEYxOAiAb18FN6nGX0S+abzm
+         vDuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=LoDI0ur6KswVSmS1dZpuhQgtr92N8kLU7u6OZi8zwCM=;
-        b=YsVQ5N97xqJ8Xow3iNqrGgd87XeU4VhCX5HqZkSVfskbVnpTAEioAG+hkw9uHfZLz3
-         /uz67txXp93HnNYwsRfWlwMOD5AvvF8BmGTKXRalFL4Pe6Jzg5MNQur7uM0ACbsclp5W
-         gIzj/baRnTj8B1n5ZpgEaKghPLbpkMUSzen0kJKCajj52+TBauTS74lYCIEbtb2XlBkq
-         79chLJLw+WClVm+7hduoWysT4tB+LNnvTjCIPHSXQ53Dw49IjJSvqgRpE2IYT/PDhluv
-         HO+/pfWz5BKOpGzGD0ZV19vTLOO7mAG8Xi6GBgHdDAFZY1tmyn+JexqgNvNTjWqswPCA
-         nDhA==
-X-Gm-Message-State: ACrzQf37rvizxj/FZ9qWFjLFzJ79Z2w07Hvh1c4U9hedIoEiq4SWYDvs
-        OVoIqibCUCEhp6ZgT7Y5n7uydQ==
-X-Google-Smtp-Source: AMsMyM4K17OfYdOpmjB56NRvlVzaKj0xokoJS2k43dLAAUqhvGbyy2KJSu0jQWr4ovhOXzATrViaxg==
-X-Received: by 2002:a17:903:2343:b0:177:ebb1:3c62 with SMTP id c3-20020a170903234300b00177ebb13c62mr2995908plh.115.1663736195549;
-        Tue, 20 Sep 2022 21:56:35 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:1c61:8e50:8ba8:7ad7:f34c:2f5])
-        by smtp.gmail.com with ESMTPSA id p12-20020a170902e74c00b00176e2fa216csm871829plf.52.2022.09.20.21.56.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 21:56:34 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, thara.gopinath@gmail.com,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, andersson@kernel.org,
-        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de
-Subject: [PATCH v7 4/4] arm64: defconfig: Enable Qualcomm QCE crypto
-Date:   Wed, 21 Sep 2022 10:26:02 +0530
-Message-Id: <20220921045602.1462007-5-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220921045602.1462007-1-bhupesh.sharma@linaro.org>
-References: <20220921045602.1462007-1-bhupesh.sharma@linaro.org>
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=TgTQReumepLDe4ov6CDHPrQQsIPWNDax0l8u9Rzrs0M=;
+        b=u8hQGjDUQrIq2xHMG8vzcwIYcWXwyYr2OG4p6tZAmmSc6Adx3gmj1QQGa7XWDEUroe
+         uGIa1yOhByNAbKyG+uY2N6OdPrdtMamHSI6U37tum4vbTp/hq3/YRukT1KEfDcuKgUb0
+         tC7nXveK+tdSE9IzjwlGGxZ6zNnaDRZO445Y7jkV9SHXgbDgyoOJe/sWfL7nLZGhupCv
+         AffU7Af+yWiSrozn7+4dCsrGGkMzV47ldA693nSsK7dieqc6MVpZEQjm0b/2vHuq0wLP
+         9aSxazvn8kaa7qSaAF9xfK+H+A+4qW110bsaoITHhchUmYWQFdRFrERAqlmlqYcVkfWf
+         xIcQ==
+X-Gm-Message-State: ACrzQf36tcVwTxM8sRRv93znrUeJ8Jmiaj0VSuFVmKeXqVNnMY9RfogT
+        8qzxuqe2wOewV1WpdEm2epMDyQ3vj/zGv0aEUG8+TQ==
+X-Google-Smtp-Source: AMsMyM47NWYvjKJ/EBMRKSFdl0fTC0zOjyszTcSGJVSYFzud/66lHqmfYE77sEvbGyG3ANNIXiYNTN89bIxFqKpBLk0=
+X-Received: by 2002:a05:651c:1611:b0:261:e11c:c2ef with SMTP id
+ f17-20020a05651c161100b00261e11cc2efmr7794318ljq.340.1663736955640; Tue, 20
+ Sep 2022 22:09:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220913061817.22564-1-zong.li@sifive.com>
+In-Reply-To: <20220913061817.22564-1-zong.li@sifive.com>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Wed, 21 Sep 2022 13:09:04 +0800
+Message-ID: <CANXhq0qG-aEEHxWbtRgC+RO-wC36MtPUfu+eMpX89wOtqGJL0w@mail.gmail.com>
+Subject: Re: [PATCH v5 0/7] Use composable cache instead of L2 cache
+To:     Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Ben Dooks <ben.dooks@sifive.com>, bp@alien8.de,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-edac@vger.kernel.org,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that the QCE crypto block is supported on several
-Qualcomm SoCs upstream, enable the same as a module in the
-arm64 defconfig.
+On Tue, Sep 13, 2022 at 2:18 PM Zong Li <zong.li@sifive.com> wrote:
+>
+> Since composable cache may be L3 cache if private L2 cache exists, we
+> should use its original name "composable cache" to prevent confusion.
+>
+> This patchset contains the modification which is related to ccache, such
+> as DT binding and EDAC driver.
+>
+> The DT binding is based on top of Conor's patch, it has got ready for
+> merging, and it looks that it would be taken into the next few 6.0-rc
+> version. If there is any change, the next version of this series will be
+> posted as well.
+> https://lore.kernel.org/linux-riscv/20220825180417.1259360-2-mail@conchuod.ie/
+>
+> Change log in v5:
+>  - Add a patch to modify aux vector for sysconf
+>
+> Change log in v4:
+>  - Change the return value from from ENODEV to ENOENT
+>  - Apply pr_fmt refinement to all pr_err
+>
+> Change log in v3:
+>  - Merged the EDAC patch into L2 rename patch
+>  - Define the macro for register shift and refine the relative code
+>  - Fix some indent issues
+>
+> Change log in v2:
+>  - Separate the rename and diff to different patches
+>  - Rebase the dt-bindings based on Conor's modification
+>  - Include the patches of Ben for refinement of printing message
+>
+> Ben Dooks (2):
+>   soc: sifive: ccache: reduce printing on init
+>   soc: sifive: ccache: use pr_fmt() to remove CCACHE: prefixes
+>
+> Greentime Hu (2):
+>   soc: sifive: ccache: Rename SiFive L2 cache to Composable cache.
+>   riscv: Add cache information in AUX vector
+>
+> Zong Li (3):
+>   dt-bindings: sifive-ccache: change Sifive L2 cache to Composable cache
+>   soc: sifive: ccache: determine the cache level from dts
+>   soc: sifive: ccache: define the macro for the register shifts
+>
+>  ...five-l2-cache.yaml => sifive,ccache0.yaml} |  28 ++-
+>  arch/riscv/include/asm/elf.h                  |   4 +
+>  arch/riscv/include/uapi/asm/auxvec.h          |   4 +-
+>  drivers/edac/Kconfig                          |   2 +-
+>  drivers/edac/sifive_edac.c                    |  12 +-
+>  drivers/soc/sifive/Kconfig                    |   6 +-
+>  drivers/soc/sifive/Makefile                   |   2 +-
+>  .../{sifive_l2_cache.c => sifive_ccache.c}    | 200 ++++++++++--------
+>  .../{sifive_l2_cache.h => sifive_ccache.h}    |  16 +-
+>  9 files changed, 158 insertions(+), 116 deletions(-)
+>  rename Documentation/devicetree/bindings/riscv/{sifive-l2-cache.yaml => sifive,ccache0.yaml} (83%)
+>  rename drivers/soc/sifive/{sifive_l2_cache.c => sifive_ccache.c} (31%)
+>  rename include/soc/sifive/{sifive_l2_cache.h => sifive_ccache.h} (12%)
+>
+> --
+> 2.17.1
+>
 
-Cc: Bjorn Andersson <andersson@kernel.org>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5a4ba141d15c..46d6c95b8d25 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1321,6 +1321,7 @@ CONFIG_CRYPTO_USER_API_RNG=m
- CONFIG_CRYPTO_DEV_SUN8I_CE=m
- CONFIG_CRYPTO_DEV_FSL_CAAM=m
- CONFIG_CRYPTO_DEV_FSL_DPAA2_CAAM=m
-+CONFIG_CRYPTO_DEV_QCE=m
- CONFIG_CRYPTO_DEV_QCOM_RNG=m
- CONFIG_CRYPTO_DEV_CCREE=m
- CONFIG_CRYPTO_DEV_HISI_SEC2=m
--- 
-2.37.1
-
+Hi Palmer,
+I was wondering if this series looks good to you, and could you please
+help us to take it into riscv-tree?
+Thanks.
