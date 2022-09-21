@@ -2,75 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D4D5BF6B0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E58085BF6B2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:52:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbiIUGvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 02:51:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51496 "EHLO
+        id S229694AbiIUGv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 02:51:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230158AbiIUGvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:51:10 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9733B7
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:50:45 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id z25so7656351lfr.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:50:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=B4QGcwwfcd5nEBk1LZ1jhRTqW0+plYNmqD6gtk/kzXI=;
-        b=c18KG2gP8LFKNxUKRwMjOTpBf6C3XPqKcAokLtpt+wZ0WWB0XenCiCVkFI6o13v19d
-         pt4KiyTbatiaENZatvzYqTJubBuUO6dNUkgxHYBzz1jAW6BUwLDDYLwrp80q7MizCiJ9
-         x55Lanas9o0YZQ/8BehxS6gQ/n8wT27yMjCMNEnMSSlYUwaryGtIt8xB0PMAi17x0rVj
-         H3mfzefjy9Y/gYcg8JykszV53slrUPzUNBzK2g95+ZZ8VkEnCs1b89sxqh4Y/TJazhCP
-         p4a3GqvMamuYyeNltzBz+R0SXvi7SW0ud+++hATgjNqKSZm4yfnmROH//xm1gC/Aany0
-         PPtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=B4QGcwwfcd5nEBk1LZ1jhRTqW0+plYNmqD6gtk/kzXI=;
-        b=oTq64khHRd//ormOceLvs5zW+1XF5HYk7iiBgq2AYn/FRzprytyDhF1LhYfLjcvKEB
-         YFU6wV2OZ4GMlpj9AmZZ0j81G2ZZ+UltwLo98eyB2GJztJyW1NKwsrwdguthIwb8uhI9
-         /dg76eyUV699zo1BGFtQtzgMKRVtH32JxPP5zu6uhSCMr96EC1lM5v816qvCCvbfgB65
-         rGVhlA/M+lXhk68U4RzkaEx5w7m4gc/toTSDkWI8mehoG6QWbO2FIFJiJl1nXOlUoQuG
-         tjwO4NoXJUf7PpuGPzm3nAtXkwfBewTn48IeqP+bWSR/vPjauIYT7r/Hi8ZVoFBFHVYm
-         N9lA==
-X-Gm-Message-State: ACrzQf3jhLOiZzmhE8oyJFPuM8sSSrSWuTPSMruvXAYcR61RR0N7XBMi
-        16AMyY/M0VZEDEuspSpm8Q+eHg==
-X-Google-Smtp-Source: AMsMyM4ir3h1N37nTS6UTeTMVQ0MngI88i8qKzN921Vaj6amXbG4MaxmWT+wHUsI4dhq0o+IIVTf0A==
-X-Received: by 2002:a05:6512:3f05:b0:497:9e06:255b with SMTP id y5-20020a0565123f0500b004979e06255bmr9094767lfa.175.1663743033679;
-        Tue, 20 Sep 2022 23:50:33 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id j9-20020a056512108900b00492e6642937sm299670lfg.200.2022.09.20.23.50.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 23:50:32 -0700 (PDT)
-Message-ID: <b2ed17d2-5f7a-0173-63f3-1dabb181a632@linaro.org>
-Date:   Wed, 21 Sep 2022 08:50:32 +0200
+        with ESMTP id S229814AbiIUGvi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:51:38 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C8542A417;
+        Tue, 20 Sep 2022 23:51:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BAE4FB8236B;
+        Wed, 21 Sep 2022 06:51:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45609C433C1;
+        Wed, 21 Sep 2022 06:51:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663743094;
+        bh=uylYBidHXUKvld2mr2PA6RP6gS5s9VAMXhoLewWP3kM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VgSx/xXd6i1h++aAxUgPHuMIzPZcmtyT4N7R5ep3aFsdYZ62kxKSboqwe6YAckgM8
+         jplr33MT7pVin9s6JhVOJFc3E7HdDKl4cJCwnyRuljNqAtHkMcvfu9GsVpNPGlMVZ1
+         EcFc4gczAIpR2H8NIfoXPbqflrDiylMkjQiI87FxVE5oL4wjfnwZoSVfnLbi/7AAcS
+         lUf9q9L7YAtVSJy30HPNmvYcRtNLxfgyt219LNQPGVwAgO9VwESqxqnTdR8SHk3f43
+         ws1UXTkj98YD9OeTgT3LlJCiSZZZIg0A2lzlNUjvL5xJek2RYAOwV7K1wEG2QLEQsH
+         z4mzTM7kq7T+A==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oata0-0003c5-8o; Wed, 21 Sep 2022 08:51:32 +0200
+Date:   Wed, 21 Sep 2022 08:51:32 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: introduce sa8540p-ride dts
+Message-ID: <Yyq0dFvCI54QMqAl@hovoldconsulting.com>
+References: <20220920120802.14321-1-quic_ppareek@quicinc.com>
+ <20220920120802.14321-4-quic_ppareek@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH V2 1/3] dt-bindings: vendor-prefixes: add NewVision vendor
- prefix
-Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
-        sam@ravnborg.org, thierry.reding@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20220920145905.20595-1-macroalpha82@gmail.com>
- <20220920145905.20595-2-macroalpha82@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220920145905.20595-2-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220920120802.14321-4-quic_ppareek@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,19 +62,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 16:59, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Tue, Sep 20, 2022 at 05:38:02PM +0530, Parikshit Pareek wrote:
+> Create new dts file specific for Qdrive board based on sa8540p chipset.
+> Introduce common dtsi file sa8295p-adp.dtsi, to be included for adp and
+> Qdrive board.
 > 
-> NewVision (also sometimes written as New Vision) is a company based in
-> Shenzen that manufactures ICs for controlling LCD panels.
+> This is quite similar to sa8295 ADP development board. Main differences
+> are related to connectors, and interface cards, like USB external ports,
+> ethernet-switch, and PCIe switch etc.
 > 
-> https://www.newvisiondisplay.com/
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+> Reported-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+> ---
 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-adp-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-adp-ride.dts
+> new file mode 100644
+> index 000000000000..bd79866b80e1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sa8540p-adp-ride.dts
+> @@ -0,0 +1,31 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022, Linaro Limited
+> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sa8540p-adp.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm SA8540 ADP";
+> +	compatible = "qcom,sa8540p-adp-ride", "qcom,sa8540p";
+> +};
+> +
+> +&ufs_card_hc {
+> +	status = "disabled";
+> +};
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+What about the UFS phy, etc?
 
+This opt-out scheme seems quite fragile.
 
-Best regards,
-Krzysztof
+> +&usb_1 {
+> +	status = "disabled";
+> +};
+> +
+> +&usb_1_hsphy {
+> +	status = "disabled";
+> +};
+> +
+> +&usb_1_qmpphy {
+> +	status = "disabled";
+> +};
+
+Johan
