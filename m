@@ -2,70 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C815BF6E5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2D605BF6EF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230042AbiIUHBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:01:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40944 "EHLO
+        id S229993AbiIUHFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:05:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbiIUHBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:01:52 -0400
+        with ESMTP id S229729AbiIUHFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:05:05 -0400
 Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481167E02B
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:01:50 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id f14so7678160lfg.5
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:01:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F8DD27FF5
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:05:03 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id k10so7679219lfm.4
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:05:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=1QL0CFphpa83RgCH/2JlHwO3au2oWpkZ2fPFgCGnjOc=;
-        b=KAZEjvpg4g3daMXmcu3qg47mnxKlqaSfXVmskQZgCXz2x9t9/6yVCt4XgtUR7ju3k7
-         pHCNGz5rnqc+9JiK6yxn/P3z/ROBByrXfjt//78y/ZL5gdrkkPnrAKyHcPzNczZSCMvP
-         mIK4qaI/gYATNjWM8YVGttLVpPj14MjV8Ri5oNDfoFxaBoA9zP9uDfjKiX52bjo7l8s6
-         VhyT0//BHYWAvnPH8kkM00cFx61FifuU2buCNBsiRlv5+IN6OJetflIfygApUXkKKRGU
-         +SUEaAESyhzXO71rFH8J2vkqiY/qfzyfxCqU7MTQghE0EwKeLsmB6yTq9ysItki1T73L
-         MvqQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=sx/lrSth5nujqjHlbG4gs9XUHweVDL0pqpPRXfUkt5A=;
+        b=XPcKtyGyUjf2RRoiutLMnHiMqd5AUH19sxuidJt/2qc5pLMDNDASfB6fPPJIldseMd
+         p4PjEwovWFLPd5z0jUrCIrkqYk46fz32k1pFt0Uz8UXhXfBJrBgtizGMGc76kDu5Te+s
+         YH4FxBVLxlk3ITyMEtvkRIl9HWd3FWn6UKDRSyRSfSi6pBV1qhY0uTS5fDY5Zn6leIg9
+         Y6zL9VTSjE7Xnpmmqt9EH8vf7sepL+AS6Zzn8a93XiaYbSQvh9YVYxCnaPYevv7cD2YD
+         eFIzprDnZGD1yqMP9g3JasLYVVEeUTJqR+9xjKm+s+fXBKdIkjRxgs/j/QfolUNOquzC
+         I75g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=1QL0CFphpa83RgCH/2JlHwO3au2oWpkZ2fPFgCGnjOc=;
-        b=GUPOoX4b02w3LPlkDfEigdYGepNwUJWJNBvMwnKwnhOF0Q8wDYQUVNbLcgtHIIdumt
-         47Pg739g2Dhmh5Y+UMXbv9lTHFOLEbDcHk3ks6EKKxC28G4wD46Mlt9gDDaCfWY5qWE1
-         HxpxR8VFErNSgexl5NHW0Ata+croRfobmKMKsQ6/HiiyyTgB/jbJkukUymW2K2DDIUNJ
-         85QDjC6bf4RCb/n/0DM1kdJsZcj1y4Vds3wn1C3HoC7gsvP21fRrmXD8xZYZsIxs1/MX
-         b6aGoSadSQlKSGyLlvbGH3E7O5lo7CrqmxAZ0oYJUcyP7IQT817Y4oyFcMjARY0ZeVH4
-         PyIQ==
-X-Gm-Message-State: ACrzQf296O9aHfAUr1+kZ9apKgSAshB1J9xA/PLgLbrw/5moF5JFENeH
-        3x1+XsvWYpRNO0Bqq1xctviYGA==
-X-Google-Smtp-Source: AMsMyM4dVp6sdbuzr3mFJn+IpomFBs7OZPX8e+/6Km/Cj0w8XZZ8qr5FPUeXcg/zxiTMuLRHZ6ZhPQ==
-X-Received: by 2002:a05:6512:31c8:b0:49c:db9d:bb97 with SMTP id j8-20020a05651231c800b0049cdb9dbb97mr9281084lfe.12.1663743708470;
-        Wed, 21 Sep 2022 00:01:48 -0700 (PDT)
-Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k1-20020ac257c1000000b004947555dbc2sm311198lfo.100.2022.09.21.00.01.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Sep 2022 00:01:47 -0700 (PDT)
-Date:   Wed, 21 Sep 2022 09:01:46 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     devicetree@vger.kernel.org, thierry.reding@gmail.com,
-        robh+dt@kernel.org, sam@ravnborg.org,
-        Chris Morgan <macromorgan@hotmail.com>, daniel@ffwll.ch,
-        airlied@linux.ie, dri-devel@lists.freedesktop.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH V2 2/3] dt-bindings: display: panel: Add NewVision
- NV3051D bindings
-Message-ID: <20220921070146.bqtb7p2xyry3jwaw@krzk-bin>
-References: <20220920145905.20595-1-macroalpha82@gmail.com>
- <20220920145905.20595-3-macroalpha82@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=sx/lrSth5nujqjHlbG4gs9XUHweVDL0pqpPRXfUkt5A=;
+        b=ehpSGSYTZbddCunYFc4Ex32KMiL5uMHykyDfU3+NO9oEgl0wWOv9Z7Fv/rav/V+wAz
+         wAhQ2aOO9ml23wAeoIVMMArPWCvZ0nEdWRfgclvD/3iThdg2kHPRS+fNgS1aPZDk8PKG
+         t9aINxQTl8qosy6P66Qdy06Xid6tqhFlnOSmF7byAxilqGqcOw55uJPHisjFCPtjhHTd
+         DQC24OdxKAMGhTPanbMDoGKToB6TBYlBgo9V1KSjBgQcFyx6X0CSeDgUg5VEm8DRdaCc
+         RST5CF17ge6uDZ2yX4KDKHjutzcknYw4L6j0nUu32lw68+XEitugemI7FFJQEn+Erehm
+         gMHw==
+X-Gm-Message-State: ACrzQf3+jgKM1fiplcCQB8xj6jrCdY3P14tNjw2bfeH+WMMUdEJH6Dng
+        FLY5PXGlIBEGsA+rWVwXiCBwAQ==
+X-Google-Smtp-Source: AMsMyM69Jrp+m5vAD9HV9L/xj1HYJRmo29oV2zG6Ek0RJIXp7T9Z1DalUlYmUOiGpJgjupV7fVUDzQ==
+X-Received: by 2002:a05:6512:261f:b0:49f:eb39:4762 with SMTP id bt31-20020a056512261f00b0049feb394762mr2140806lfb.670.1663743901905;
+        Wed, 21 Sep 2022 00:05:01 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id 5-20020a2e1445000000b0026be23f24efsm314442lju.18.2022.09.21.00.05.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Sep 2022 00:05:01 -0700 (PDT)
+Message-ID: <fb901889-d769-ba56-d4cb-2d9d8b50f74f@linaro.org>
+Date:   Wed, 21 Sep 2022 09:05:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220920145905.20595-3-macroalpha82@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to
+ json-schema
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhanghongchen <zhanghongchen@loongson.cn>
+References: <20220921015605.17078-1-zhuyinbo@loongson.cn>
+ <20220921015605.17078-2-zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220921015605.17078-2-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,41 +82,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Sep 2022 09:59:04 -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 21/09/2022 03:56, Yinbo Zhu wrote:
+> Convert the loongson2 thermal binding to DT schema format using
+> json-schema.
+
+Incorrect subject and incorrect commit msg. There is no conversion here.
+
 > 
-> Add documentation for the NewVision NV3051D panel bindings.
-> Note that for the two expected consumers of this panel binding
-> the underlying LCD model is unknown. Name "anbernic,rg353p-panel"
-> is used because the hardware itself is known as "anbernic,rg353p".
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Yinbo Zhu <c>
 > ---
->  .../display/panel/newvision,nv3051d.yaml      | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> Change in v2:
+> 		1. Add description and type about the "id".	
+> 		2. Make the filename was based on compatible.
 > 
+>  .../bindings/thermal/loongson2-thermal.yaml   | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+> new file mode 100644
+> index 000000000000..2994ae3a56aa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-yamllint warnings/errors:
+No improvements here. You ignore my comments, so I am going to NAK it.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.example.dtb: panel@0: compatible: ['anbernic,rg353p-panel'] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
 
-doc reference errors (make refcheckdocs):
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/loongson2-thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Thermal sensors on loongson2 SoCs
+> +
+> +maintainers:
+> +  - zhanghongchen <zhanghongchen@loongson.cn>
+> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+> +
+> +properties:
+> +  compatible:
+> +    const: loongson,loongson2-thermal
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  id:
+> +    $ref: '//schemas/types.yaml#/definitions/uint32'
 
-See https://patchwork.ozlabs.org/patch/
+No improvements here, so let me be specific - you need to really justify
+such property or it cannot go to schema.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+> +    description: |
+> +      Specify the thermal sensor id.
+> +    minimum: 0
+> +    maximum: 3
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - id
+> +  - interrupt-parent
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Why?
 
-pip3 install dtschema --upgrade
+> +  - interrupts
+> +  - '#thermal-sensor-cells'
 
-Please check and re-submit.
+Use the same style of quote: ' or ".
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    thermal: thermal@1fe01500 {
+
+How other similar nodes are named (in other DTS files)?
+
+
+
+Best regards,
+Krzysztof
