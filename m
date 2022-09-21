@@ -2,136 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1E7A5BF77B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 374E65BF783
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbiIUHTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:19:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35338 "EHLO
+        id S229728AbiIUHU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:20:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbiIUHTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:19:23 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 812166E8A2
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:19:21 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id s14so6336184wro.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:19:21 -0700 (PDT)
+        with ESMTP id S229904AbiIUHUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:20:54 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3A37EFF2
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:20:46 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id z25so7761519lfr.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:20:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date;
-        bh=E6f+URSdOX05jCBtwcXT8Rm2Ummjdbd9pwKRLdE+3/Q=;
-        b=e6FCHYiWX/YiGw9hnCUu4ucp+blseaG8xhAH+iFbbu8fBpmcHIThynILwHqc3tglLW
-         bL8BzDFNpBk6dO0zUm1dsCGInrNRT8sPLnRWp5mMhOU32kL621xrgnfDHX1s+fo6rqxy
-         Y+U1YzodHWqNQPCRWs1WfG/BZWr3XsRLG1+JoEBmgnRS1oDr+Hn+twtbfojmqRPY1gYE
-         3h9cx7iHymtrjV7mY8z3UwMbq07Dktek0O8pDnTvJ7F/ThNP48b0fTAihyxDA6E0LDmv
-         /xo+yefKGLRtCNXNqs3gRhrov4Kg7KvRrgFWAa0whEEG7tdKecnDNnf9uXZGw48PB8U1
-         xN5A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=dSJK8K5vjWv2/GVOfRJhK9M2GBqzEVnIXuyUiGIt284=;
+        b=bRWGLyDSb/PlE+DBo6Ml2cCGQFGb73VnZHQptCvBpHFVDHi1H+j0AKvHi81YPWCKHy
+         8dgUkwrZsN4Z+JwcsD3KmM2dJptGLc4uZT/bYKplMl/UP68YIrtnrtN1cHdmRaiV9dXC
+         dqEwZ5uKmO5I8dzkQwA2EEKOVJvJc+uLjP6tO7G4VGZNzmF8zx56Nr38JXYOipaodfOb
+         eSkrx15C/N0wdGj7/sYHLYTDGA5ysiArV1gem+8mAXf4T2CaWeg66j82tTYdYin4uoTQ
+         rQnV7tX8ZKkOxeQ0yaEzmDpQPkLxHFioErtkcy9jUsYM0Ao3OB8tWjdKTMWa8MMWh51k
+         sdgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=E6f+URSdOX05jCBtwcXT8Rm2Ummjdbd9pwKRLdE+3/Q=;
-        b=k0DLOiPQggrH5c85u/mO9eIi5Dm77RXXLjOBRlWMleMrGbASj5rKfUn/H+lHwqZCK/
-         kTFMSClgV7BGGNEOCNai2Rc7Nu1QzlEIhr/kuDbkoQyM0m49FoTOc4l+4jIcvKdQEmM7
-         rs0pmRnJiY2fuhnmXW96pUpm2F8eHbwnN/52YTCWwdt4BXWi07O5l/KvC1Ek9OHEc9Ee
-         7GFApsicHc7ex37AVxRnCS6WM9QZqehEmBQmCgxnT7p47AFxNfLOa91sfRCX9iMirQEK
-         sLDYBFj0ZOx73iZtq4P0+TxQPG5jWbLHsOcVRd8qDSC5fEDGCppKcMC32geUihQU7GFJ
-         0kkw==
-X-Gm-Message-State: ACrzQf1rOovLufIZZt3u/Isxh/c527PfKGG47BBCFiI8uBlHrrRXvnMl
-        Xz+NhQ9hONykuF/i+TG9+IOnIg==
-X-Google-Smtp-Source: AMsMyM5hIRfNw0jpDUXcuH3Ju/IpGBuQ5fddogkkUOJUpeUZkCIeoi0sQ98v1nRtIfDZ/iAizXdVWg==
-X-Received: by 2002:a5d:4a48:0:b0:22a:e55d:535d with SMTP id v8-20020a5d4a48000000b0022ae55d535dmr13418791wrs.308.1663744760016;
-        Wed, 21 Sep 2022 00:19:20 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3? ([2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3])
-        by smtp.gmail.com with ESMTPSA id f12-20020a05600c154c00b003b4931eb435sm2044258wmg.26.2022.09.21.00.19.18
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=dSJK8K5vjWv2/GVOfRJhK9M2GBqzEVnIXuyUiGIt284=;
+        b=nw20/D+KQrpWno08LbxqShRLhQuZelzrprwVMFkFCbxFqPWvJ3r66HTm55vxNHwFLF
+         URIV/lJqqqykz0QVywXHh5G3tOaFkH7yHtR9/vpEkBkmZHSu8YE0s+Y4bV6DhWbEsJM3
+         DQwGSDuK9ev5fmWSn0ttMqt1pwFvWB9YdrlHQ/ltyaUSvSNjJm4DfgoX+91Xdg1E3F5W
+         CEcP9UxOAosjwoIdXfKWX3fU9CdPmqAbZVcxLYaHo2FEKLDo5InlqXiMtW6SIiK1MSAo
+         /FWo9rBUjdg42pUAiM6cNQipIoN0JuvALbG2bP+yBFb/L/7CRLFV9uTAJxg1tMaP6WVQ
+         nmYg==
+X-Gm-Message-State: ACrzQf3Wf2Mphf728fBxdYkJSA2QwtyHpj3Aj7BXyJq/uvIwLJMwAIkS
+        QcLs/FVlPLJHT3/zuxmHj6PN1FcjiDHgdQ==
+X-Google-Smtp-Source: AMsMyM4S4yZ8U/MIOwL+j8mA0A3teebN1FCRPSnVbHnyyu4VBkIkiZN/SjM8Nm9dCbve/ZamCN2K1Q==
+X-Received: by 2002:ac2:4bc1:0:b0:49f:3518:864a with SMTP id o1-20020ac24bc1000000b0049f3518864amr10496307lfq.155.1663744844975;
+        Wed, 21 Sep 2022 00:20:44 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id v12-20020a19740c000000b00497a2815d8dsm310371lfe.195.2022.09.21.00.20.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 00:19:19 -0700 (PDT)
-Message-ID: <e012e586-286d-e553-8c13-97feba66c80c@linaro.org>
-Date:   Wed, 21 Sep 2022 09:19:18 +0200
+        Wed, 21 Sep 2022 00:20:44 -0700 (PDT)
+Message-ID: <b567fb19-460c-ea1f-4c84-0724e73052fd@linaro.org>
+Date:   Wed, 21 Sep 2022 09:20:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/2] clk: qcom: rpmhcc: add sdm670 clocks
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Combine MediaTek MT67xx pinctrl
+ binding docs
 Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220920223734.151135-1-mailingradian@gmail.com>
- <20220920223734.151135-3-mailingradian@gmail.com>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro
-In-Reply-To: <20220920223734.151135-3-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220919170115.94873-1-y.oudjana@protonmail.com>
+ <20220919170115.94873-2-y.oudjana@protonmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220919170115.94873-2-y.oudjana@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 00:37, Richard Acayan wrote:
-> The Snapdragon 670 uses the RPMh mailbox for most of the clocks used in
-> SDM845 but omits two. Add clock data for SDM670 so the driver doesn't fail
-> to resolve a clock.
+On 19/09/2022 19:01, Yassine Oudjana wrote:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
 > 
-> Link: https://android.googlesource.com/kernel/msm/+/443bd8d6e2cf54698234c752e6de97b4b8a528bd%5E%21/#F7
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->   drivers/clk/qcom/clk-rpmh.c | 21 +++++++++++++++++++++
->   1 file changed, 21 insertions(+)
+> Documents for MT6779, MT6795 and MT6797 that currently exist share
+> most properties, and each one has slightly differently worded
+> descriptions for those properties. Combine all three documents into
+> one common document for all MT67xx SoC pin controllers, picking a few
+> parts from each and accounting for differences such as items in reg
+> and reg-names properties. Also document the MT6765 pin controller
+> which currently has a driver but no DT binding documentation. It should
+> be possible to also include bindings for MT8183 and MT8188, but these
+> have some additional properties that might complicate things a bit,
+> so they are left alone for now.
 > 
-> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-> index c07cab6905cb..82d87a0602fe 100644
-> --- a/drivers/clk/qcom/clk-rpmh.c
-> +++ b/drivers/clk/qcom/clk-rpmh.c
-> @@ -382,6 +382,26 @@ static const struct clk_rpmh_desc clk_rpmh_sdm845 = {
->   	.num_clks = ARRAY_SIZE(sdm845_rpmh_clocks),
->   };
->   
-> +static struct clk_hw *sdm670_rpmh_clocks[] = {
-> +	[RPMH_CXO_CLK]		= &sdm845_bi_tcxo.hw,
-> +	[RPMH_CXO_CLK_A]	= &sdm845_bi_tcxo_ao.hw,
-> +	[RPMH_LN_BB_CLK2]	= &sdm845_ln_bb_clk2.hw,
-> +	[RPMH_LN_BB_CLK2_A]	= &sdm845_ln_bb_clk2_ao.hw,
-> +	[RPMH_LN_BB_CLK3]	= &sdm845_ln_bb_clk3.hw,
-> +	[RPMH_LN_BB_CLK3_A]	= &sdm845_ln_bb_clk3_ao.hw,
-> +	[RPMH_RF_CLK1]		= &sdm845_rf_clk1.hw,
-> +	[RPMH_RF_CLK1_A]	= &sdm845_rf_clk1_ao.hw,
-> +	[RPMH_RF_CLK2]		= &sdm845_rf_clk2.hw,
-> +	[RPMH_RF_CLK2_A]	= &sdm845_rf_clk2_ao.hw,
-> +	[RPMH_IPA_CLK]		= &sdm845_ipa.hw,
-> +	[RPMH_CE_CLK]		= &sdm845_ce.hw,
-> +};
-> +
-> +static const struct clk_rpmh_desc clk_rpmh_sdm670 = {
-> +	.clks = sdm670_rpmh_clocks,
-> +	.num_clks = ARRAY_SIZE(sdm670_rpmh_clocks),
-> +};
-> +
->   DEFINE_CLK_RPMH_VRM(sdx55, rf_clk1, rf_clk1_ao, "rfclkd1", 1);
->   DEFINE_CLK_RPMH_VRM(sdx55, rf_clk2, rf_clk2_ao, "rfclkd2", 1);
->   DEFINE_CLK_RPMH_BCM(sdx55, qpic_clk, "QP0");
-> @@ -715,6 +735,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
->   	{ .compatible = "qcom,sc8180x-rpmh-clk", .data = &clk_rpmh_sc8180x},
->   	{ .compatible = "qcom,sc8280xp-rpmh-clk", .data = &clk_rpmh_sc8280xp},
->   	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
-> +	{ .compatible = "qcom,sdm670-rpmh-clk", .data = &clk_rpmh_sdm670},
->   	{ .compatible = "qcom,sdx55-rpmh-clk",  .data = &clk_rpmh_sdx55},
->   	{ .compatible = "qcom,sdx65-rpmh-clk",  .data = &clk_rpmh_sdx65},
->   	{ .compatible = "qcom,sm6350-rpmh-clk", .data = &clk_rpmh_sm6350},
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+>  properties:
+>    compatible:
+> -    const: mediatek,mt6795-pinctrl
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt6765-pinctrl
+> +          - mediatek,mt6795-pinctrl
+> +          - mediatek,mt6797-pinctrl
+> +      - items:
+> +          - const: mediatek,mt6779-pinctrl
+> +          - const: syscon
+
+No, this is not like old bindings at all. It's not merging, it's a
+change sneaked inside huge diff. Also - probably totally untested on DTS
+(or old bindings were broken).
+
+That's a no-go.
+
+Best regards,
+Krzysztof
