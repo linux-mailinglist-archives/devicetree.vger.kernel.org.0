@@ -2,104 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2A65BF427
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 05:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD28C5BF52C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 06:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230326AbiIUDOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 23:14:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42544 "EHLO
+        id S229862AbiIUERQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 00:17:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230368AbiIUDOH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 23:14:07 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB337E337;
-        Tue, 20 Sep 2022 20:14:06 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28L3E2Ox049781;
-        Tue, 20 Sep 2022 22:14:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663730042;
-        bh=y2al6hjZb8dqRZ9ZTNFs31cv/SPNzLg+OmGkDoiB1Mc=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=bfcEVE51XSLNEODtO5AlMOD8ZjzF5FYO5fMWtLU/qOR8I1p7Y7UHTmhhRgjMPD0aD
-         rNJMXqiCtBL1CqGy3QrB3qGFrSBi6jtWJCfPfuHY/LerX/B2Jc4IFvtjMCgloyciEs
-         bS9ogOGxOMXlxO7J/p2zMt/UbU2LVKzy4obMyNIw=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28L3E24I118124
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 20 Sep 2022 22:14:02 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 20
- Sep 2022 22:14:02 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 20 Sep 2022 22:14:02 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28L3Dx3N063245;
-        Tue, 20 Sep 2022 22:14:01 -0500
-From:   Matt Ranostay <mranostay@ti.com>
-To:     <vigneshr@ti.com>, <nm@ti.com>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
+        with ESMTP id S229687AbiIUERO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 00:17:14 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34210792FF;
+        Tue, 20 Sep 2022 21:17:07 -0700 (PDT)
+X-UUID: 910b89e2a7b34ea797d22ab679f8f4f2-20220921
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=6BCfGBsb7CSZYwJuH3WigjL/wLKPmkV6fORRrQKE4gM=;
+        b=Ejqr2ba5baV/MFNwriPiCLnRVedqvx3vJKkJNmQ67bGddq383BJrlgAWX0AGhQCAyucXiIsYE1J41+GSjhWlkxpvDN1Pkx1NRFzOq14ubp7qi0sD4x61XxyckQqht2JZXcFRhQaCN0sB21XDuSo3/EE8OpV/V1qtVC5mRCkamuk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:d36b8d69-fb7c-4ec3-b8e3-7eaada0f96cb,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:39a5ff1,CLOUDID:a4ee8a56-c0a1-41ff-b4ff-546b4275d2b8,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 910b89e2a7b34ea797d22ab679f8f4f2-20220921
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1114074286; Wed, 21 Sep 2022 12:17:00 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 21 Sep 2022 12:16:58 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 21 Sep 2022 12:16:58 +0800
+Message-ID: <8fba20bf37326504b871fb55ce171cd37720a9a0.camel@mediatek.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: arm: mediatek: mmsys: change
+ compatible for MT8195
+From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 9/9] arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
-Date:   Tue, 20 Sep 2022 20:13:27 -0700
-Message-ID: <20220921031327.4135-10-mranostay@ti.com>
-X-Mailer: git-send-email 2.38.0.rc0.52.gdda7228a83
-In-Reply-To: <20220921031327.4135-1-mranostay@ti.com>
-References: <20220921031327.4135-1-mranostay@ti.com>
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 21 Sep 2022 12:16:58 +0800
+In-Reply-To: <65c93c5d-941a-267b-408d-95be83dc2454@linaro.org>
+References: <20220920140145.19973-1-jason-jh.lin@mediatek.com>
+         <20220920140145.19973-2-jason-jh.lin@mediatek.com>
+         <65c93c5d-941a-267b-408d-95be83dc2454@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswath Govindraju <a-govindraju@ti.com>
+Hi Krzysztof,
 
-x1 lane PCIe slot in the common processor board is enabled and connected to
-J721S2 SOM. Add PCIe DT node in common processor board to reflect the
-same.
+Thanks for the reviews.
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- .../boot/dts/ti/k3-j721s2-common-proc-board.dts    | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+On Tue, 2022-09-20 at 17:25 +0200, Krzysztof Kozlowski wrote:
+> On 20/09/2022 16:01, Jason-JH.Lin wrote:
+> > For previous MediaTek SoCs, such as MT8173, there are 2 display HW
+> > pipelines binding to 1 mmsys with the same power domain, the same
+> > clock driver and the same mediatek-drm driver.
+> > 
+> > For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines binding
+> > to
+> > 2 different power domains, different clock drivers and different
+> > mediatek-drm drivers.
+> > 
+> > Moreover, Hardware pipeline of VDOSYS0 has these components: COLOR,
+> > CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture
+> > Quality)
+> > and they makes VDOSYS0 supports PQ function while they are not
+> > including in VDOSYS1.
+> > 
+> > Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
+> > component). It makes VDOSYS1 supports the HDR function while it's
+> > not
+> > including in VDOSYS0.
+> > 
+> > To summarize0:
+> > Only VDOSYS0 can support PQ adjustment.
+> > Only VDOSYS1 can support HDR adjustment.
+> > 
+> > Therefore, we need to separate these two different mmsys hardwares
+> > to
+> > 2 different compatibles for MT8195.
+> > 
+> > Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add mt8195
+> > SoC binding")
+> > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml      | 4
+> > ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > index 6ad023eec193..df9184b6772c 100644
+> > ---
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > +++
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > @@ -38,6 +38,10 @@ properties:
+> >            - const: mediatek,mt7623-mmsys
+> >            - const: mediatek,mt2701-mmsys
+> >            - const: syscon
+> > +      - items:
+> > +          - const: mediatek,mt8195-vdosys0
+> > +          - const: mediatek,mt8195-mmsys
+> > +          - const: syscon
+> 
+> and why mediatek,mt8195-mmsys is kept as non-deprecated?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index cb99a97af426..793ee77838f4 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -428,6 +428,20 @@ flash@0{
- 	};
- };
- 
-+&pcie1_rc {
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
-+&pcie1_ep {
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+	status = "disabled";
-+};
-+
- &mcu_mcan0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_mcan0_pins_default>;
+Shouldn't we keep this for fallback compatible?
+
+I think this items could support the device node like:
+foo {
+  compatible = "mediatek,mt8195-vdosys0", "mediatek,mt8195-mmsys", 
+	       "syscon";
+}
+
+
+Or should I change the items like this?
+- items:
+    - const: mediatek,mt8195-vdosys0
+    - enum:
+        - mediatek,mt8195-mmsys
+    - const: syscon
+
+
+Regards,
+Jason-JH.Lin
+
+> 
+> Best regards,
+> Krzysztof
+> 
 -- 
-2.37.2
+Jason-JH Lin <jason-jh.lin@mediatek.com>
 
