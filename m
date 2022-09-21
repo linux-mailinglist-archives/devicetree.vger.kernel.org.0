@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 044865BF6B5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D85AA5BF6BD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 08:52:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230062AbiIUGv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 02:51:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49712 "EHLO
+        id S230214AbiIUGwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 02:52:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbiIUGvi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:51:38 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 519F63205B
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:51:37 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id b6so5770602ljr.10
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:51:37 -0700 (PDT)
+        with ESMTP id S230271AbiIUGwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 02:52:13 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD42880F75
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:52:11 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id q3so5452625pjg.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 23:52:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=hziJiWlbeCYWICaodrhq4f1lj++HNSjMPQsWEPa+eOA=;
-        b=kCTf1MMrAex61yobwXGslBHLvi4vBqUY2QE00zM5Xy3EYYxMOL8lHR4g1zP3I6npCW
-         g5QnhB6EhLSJ6i9lvgTblYAMduwNTPKAcKYXti6awGegiHNFZKkGHVnaUrxUj+zPXs8f
-         rrlfyclVRC9+mJXhy1LH0K7BS+Y3xqXipHOIL3zyV+Tj/cy3bEKBmdpXRoYlA1+3y+2d
-         h5vt+2hSVfxZZtXibKiPP6rKc/Ez5yw+pNqF8y3uayhTR/5BJwIcNoLiNJBSSq5KZUbu
-         9TS3TZai9GS+sDsHBnQ2EjDbSdQ5UBF4C8Ga2mbZFV1Xr3rPW0h7elvydnB0zIji8zYx
-         tL9g==
+        bh=ZHM4glH/lLw2QOmsfReWSEKEYl56FKNM69zB9VOK1rU=;
+        b=tY2hfE4z9cjAj7K3+No2dsJRHekRr+JRTUJBWX9CNe1oI1llIeIM8yOgIkA7B5QsEl
+         +ILN5d7eOyD0n7k/fatsSdzFxhO+egnECvFe9ToWSNJ/H3mFPR7CbqYjSHGUhaIIvimE
+         /YtLrDmP+5+iha0gAGulvq+PYQM/nSltWsAp2B5wVQ2b4LOTPSYTkBTtZ9yWH9t9vQ5L
+         kwpL6Q+2/KUdA8pOIMmuCEh5HMkx3fk3fCs5LhL7QGvd1mBZuNQmwwcJBzRMifjBblkS
+         jKemUx05YzSgmruN7aYzZn/ytdLGM9fVBlKoaNi9HtghkiKDB8dMrbdLKJdan67PRwNN
+         LcQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=hziJiWlbeCYWICaodrhq4f1lj++HNSjMPQsWEPa+eOA=;
-        b=xoplF1visguQKj9DVwzTGb4e3OZMCPTVqqzYKRpzw8hle3TgC8T490IsU7t4O4MTrJ
-         3nGOJsAkX0X2upjyROuqAfcov2yDeOJD1uGPmyR7q896PLQEm5uiaddz2VLehrTzGk+X
-         1CpYH6Fjp5L1SUgsARnBvF4x34mlKpA77thQS2DqX9AbWUCQszW2T/GPycDyIeBYg7Qp
-         5yfblP7wJGCjOtdF37VSWnwDk9lFxOYuo0ViyQk9yXLJUIwTsKPoXrVEqI1FmKlj+KwX
-         Nstrnz6YAcniaEJQw8IB3mnD9fO83TkzGTDT9CWKUZ+WPwqVUrW+ARPqBnYpXlKW3Nik
-         GxBQ==
-X-Gm-Message-State: ACrzQf1o31zI1DYQ9oIViUPGPmOfTZNJIfOyTNvDRX3e0+j7TIdja2Fd
-        DXwQjTEqZray3umKDLyVVn4U2A==
-X-Google-Smtp-Source: AMsMyM4uSKYhrpYEdfKtFGQ4I85DvMwMEBxdptePTBLc/Ii+9JxJmgBnJrz7bOduw3W2oKr80pQjGQ==
-X-Received: by 2002:a05:651c:33a:b0:26a:a0de:d6e3 with SMTP id b26-20020a05651c033a00b0026aa0ded6e3mr8437660ljp.397.1663743095471;
-        Tue, 20 Sep 2022 23:51:35 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z12-20020a056512370c00b0048a8c907fe9sm304865lfr.167.2022.09.20.23.51.34
+        bh=ZHM4glH/lLw2QOmsfReWSEKEYl56FKNM69zB9VOK1rU=;
+        b=4aouNl5P+3/D3aoHf4KLvIcSMg7j4EFl2xy+e0KFxcEFAHv1+AiJyzodaw3WaSBegk
+         02AyKnW1ZyMetbMB62NUjg5yRGaxH42ht5d/V2m9dhCq2/+FPjje+8lGMx+opjg8Y4RU
+         g52ZHNG6NR0YdiNXKZ0TGse8wGaaWrXHIsPPCqD1HNFYCiha7IJf14/lOE1t4iAvlH6k
+         UpWQW4wbIfxkKOznupo/9y2i1IWXhJlDbPxAdMQlOt0dIcsptzpCQO64XirG5IwZyq55
+         DXLZJiJhxECHIy1YBh55+dvboZXTS1U2zBAO4PJQpYbL0HA8y/gEMMsXE4+1Bd2wtgnp
+         GV/w==
+X-Gm-Message-State: ACrzQf0+g/DS4OsyXbnHepX3KmCPsfij1ZBC8/PGCkLOcOs5ZNU03eNz
+        ryI22HNM72xb0qwIRlVWoPOXHw==
+X-Google-Smtp-Source: AMsMyM7xAOLC+XQo96Ct3mZkMVxCdnxUdM0LcQO6uekjtAf2NwpxQvbTE/ou+6FzPD0SKXFoHM5tDQ==
+X-Received: by 2002:a17:90b:3b43:b0:202:d053:d305 with SMTP id ot3-20020a17090b3b4300b00202d053d305mr7971031pjb.229.1663743130454;
+        Tue, 20 Sep 2022 23:52:10 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1c61:8e50:8ba8:7ad7:f34c:2f5? ([2401:4900:1c61:8e50:8ba8:7ad7:f34c:2f5])
+        by smtp.gmail.com with ESMTPSA id z11-20020a170903018b00b0016bf5557690sm1121028plg.4.2022.09.20.23.52.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Sep 2022 23:51:34 -0700 (PDT)
-Message-ID: <e5de0c74-3ece-56c6-6c31-042e1117c10a@linaro.org>
-Date:   Wed, 21 Sep 2022 08:51:34 +0200
+        Tue, 20 Sep 2022 23:52:09 -0700 (PDT)
+Message-ID: <94ff2006-0051-19be-5eee-a5f71a07e26b@linaro.org>
+Date:   Wed, 21 Sep 2022 12:22:03 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH V2 2/3] dt-bindings: display: panel: Add NewVision NV3051D
- bindings
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v7 6/9] crypto: qce: core: Add new compatibles for qce
+ crypto driver
 Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
-        sam@ravnborg.org, thierry.reding@gmail.com,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20220920145905.20595-1-macroalpha82@gmail.com>
- <20220920145905.20595-3-macroalpha82@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220920145905.20595-3-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, herbert@gondor.apana.org.au,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, thara.gopinath@gmail.com,
+        robh@kernel.org, andersson@kernel.org, bhupesh.linux@gmail.com,
+        davem@davemloft.net, Jordan Crouse <jorcrous@amazon.com>
+References: <20220920114051.1116441-1-bhupesh.sharma@linaro.org>
+ <20220920114051.1116441-7-bhupesh.sharma@linaro.org>
+ <b4016460-f43a-13f8-432e-47c27237e005@linaro.org>
+ <9b111583-519b-95a6-15b5-243e88dc8d39@linaro.org>
+ <37b509ff-4fc2-73f1-b135-c0930075ec29@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <37b509ff-4fc2-73f1-b135-c0930075ec29@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -78,73 +82,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 16:59, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 9/21/22 11:57 AM, Krzysztof Kozlowski wrote:
+> On 21/09/2022 08:16, Bhupesh Sharma wrote:
+>>
+>>
+>> On 9/20/22 8:42 PM, Krzysztof Kozlowski wrote:
+>>> On 20/09/2022 13:40, Bhupesh Sharma wrote:
+>>>> Since we decided to use soc specific compatibles for describing
+>>>> the qce crypto IP nodes in the device-trees, adapt the driver
+>>>> now to handle the same.
+>>>>
+>>>> Keep the old deprecated compatible strings still in the driver,
+>>>> to ensure backward compatibility.
+>>>>
+>>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>>> Cc: Rob Herring <robh@kernel.org>
+>>>> Cc: herbert@gondor.apana.org.au
+>>>> Tested-by: Jordan Crouse <jorcrous@amazon.com>
+>>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>>> ---
+>>>>    drivers/crypto/qce/core.c | 9 +++++++++
+>>>>    1 file changed, 9 insertions(+)
+>>>>
+>>>> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+>>>> index 63be06df5519..99ed540611ab 100644
+>>>> --- a/drivers/crypto/qce/core.c
+>>>> +++ b/drivers/crypto/qce/core.c
+>>>> @@ -291,8 +291,17 @@ static int qce_crypto_remove(struct platform_device *pdev)
+>>>>    }
+>>>>    
+>>>>    static const struct of_device_id qce_crypto_of_match[] = {
+>>>> +	/* Following two entries are deprecated (kept only for backward compatibility) */
+>>>>    	{ .compatible = "qcom,crypto-v5.1", },
+>>>>    	{ .compatible = "qcom,crypto-v5.4", },
+>>>
+>>> This is okay, so there is no ABI break.
+>>
+>> Great. Thanks for the confirmation.
+>>
+>>>> +	/* Add compatible strings as per updated dt-bindings, here: */
+>>>> +	{ .compatible = "qcom,ipq4019-qce", },
+>>>> +	{ .compatible = "qcom,ipq6018-qce", },
+>>>> +	{ .compatible = "qcom,ipq8074-qce", },
+>>>> +	{ .compatible = "qcom,msm8996-qce", },
+>>>> +	{ .compatible = "qcom,sdm845-qce", },
+>>>> +	{ .compatible = "qcom,sm8150-qce", },
+>>>> +	{ .compatible = "qcom,sm8250-qce", },
+>>>
+>>> This is a bit odd... you have 7 devices which are simply compatible or
+>>> even the same. This should be instead one compatible.
+>>>
+>>> I don't really get why do you want to deprecate "qcom,crypto-v5.1".
+>>> Commit msg only says "we decided" but I do not know who is "we" and "why
+>>> we decided like this". If you want to deprecate it, perfectly fine by
+>>> me, but please say in commit msg why you are doing it.
+>>
+>> I understand. This patchset has been in flight for some time and hence I
+>> might have missed sharing some detailed information about the review
+>> comments and rework done along the way (in the cover letter for this
+>> series).
+>>
+>> Coming back to your concern, here is the relevant background:
+>> - Please see:
+>> https://lore.kernel.org/linux-arm-msm/20210316222825.GA3792517@robh.at.kernel.org/
+>>
+>> - Rob shared some comments on the v1 series regarding the soc-specific
+>> compatibles. He mentioned in the above thread that 'you should stick
+>> with SoC specific compatibles as *everyone* else does (including most
+>> QCom bindings).'
+>>
+>> - So, while I had proposed "qcom,crypto-v5.1" (for ipq6018) and
+>> "qcom,crypto-v5.4" (for sdm845, sm8150) etc. as the compatible(s) in the
+>> v1 series, I shifted to using the soc-specific compatibles from the v2
+>> series, onwards.
 > 
-> Add documentation for the NewVision NV3051D panel bindings.
-> Note that for the two expected consumers of this panel binding
-> the underlying LCD model is unknown. Name "anbernic,rg353p-panel"
-> is used because the hardware itself is known as "anbernic,rg353p".
+> Then the reason could be - Reviewers preferred SoC-based compatible
+> instead of IP-block-version-based.
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../display/panel/newvision,nv3051d.yaml      | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> What is confusing is the difference between that link and here. That
+> link wanted to introduce 4 different compatibles... and here you have
+> even 7 compatibles being the same.
+
+The link points to v1 version and we are on v7 currently. So there have 
+been other comments and reworks along the way :)
+
+All of these have been referred to in the cover letter logs.
+
+Again please refer to Vladimir's comments on v5 version here, where he 
+suggested adding soc compatibles for 'ipq8074' and 'msm8996' as well.
+
+- 
+https://lore.kernel.org/lkml/7328ae17-1dc7-eaa1-5993-411b986e5e02@linaro.org/
+- 
+https://lore.kernel.org/lkml/f5b7c89c-3bdd-1e1e-772e-721aa5e95bbf@linaro.org/
+- 
+https://lore.kernel.org/lkml/7328ae17-1dc7-eaa1-5993-411b986e5e02@linaro.org/
+
+Also the 7 SoC compatibles do not point to the same crypto IP version. 
+We have two IP versions currently supported upstream, "qcom,crypto-v5.1" 
+and "qcom,crypto-v5.4" (with patches for support for newer versions 
+under work and can be expected to land upstream in near future).
+
+However, if you suggest, we can add some comments in the dt-binding doc
+to reflect which SoC supports which version.
+
+>> - Basically, since we are going to have newer qce IP versions available
+>> in near future, e.g. "qcom,crypto-v5.5" etc, and we will have 2 or more
+>> SoCs also sharing 1 version, these compatibles would grow and become
+>> more confusing. IMO, having a soc-specific compatible in such cases is
+>> probably a much cleaner approach.
+>>
+>> Hope this helps answer some of your concerns and provides some relevant
+>> background information.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-> new file mode 100644
-> index 000000000000..d90bca4171c2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/newvision,nv3051d.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NewVision NV3051D based LCD panel
-> +
-> +description: |
-> +  The NewVision NV3051D is a driver chip used to drive DSI panels. For now,
-> +  this driver only supports the 640x480 panels found in the Anbernic RG353
-> +  based devices.
-> +
-> +maintainers:
-> +  - Chris Morgan <macromorgan@hotmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - anbernic,rg353p-panel
+> Sure, but I still think you should have only one compatible in the
+> driver in such case. You don't have differences between them from the
+> driver point of view, so the devices seem to be compatible.
+> 
+> If not, what are the differences?
 
-Are these vendor prefixs documented?
+There can always be requirements for compatible specific handling done 
+in the driver. See Bjorn's comment here for example: 
+https://lore.kernel.org/lkml/YZKhqJuFlRVeQkCc@builder.lan/ , as an 
+example of 'clk_get' calls conditional based on the compatible instead.
 
-> +          - anbernic,rg353v-panel
-> +      - const: newvision,nv3051d
+This series is to get some early comments and might need some further 
+rework / rearrangement.
 
-Blank line.
+However, I would request Rob to share his views as well on the soc 
+specific compatibles, since it was originally his suggestion. I can 
+rework the patchset accordingly.
 
-> +  reg: true
-> +  backlight: true
-> +  port: true
-> +  reset-gpios: true
-> +  vdd-supply:
-> +    description: regulator that supplies the vdd voltage
-
-Skip description and make it just "true". It's kind of obvious.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - backlight
-> +  - vdd-supply
-
-Best regards,
-Krzysztof
+Thanks,
+Bhupesh
