@@ -2,192 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B2B5BF812
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A35A5BF815
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:46:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229819AbiIUHpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:45:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42728 "EHLO
+        id S229888AbiIUHqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:46:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230457AbiIUHpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:45:24 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 005BB844D5
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:45:21 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id x29so5958338ljq.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:45:21 -0700 (PDT)
+        with ESMTP id S230420AbiIUHq2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:46:28 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A9F6857C5
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:46:25 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id f9so7827431lfr.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:46:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=9movZw0O/E24Sq9jjEpuz0M8OZ4ZSE7oi+Dy0RWuqOo=;
-        b=VMU6hCT7GCWwiZCBIeb+Mg3XIWHqqAR6yyE4/9BHRE9RQg+Zh69VvedDsW4w9USQTd
-         jWwYJvJbr/oTsHYcirsEo127/KVSV0MKPi51pyl3Ke1m+GBcyVsIF8M8AdGQJTfgmNim
-         Fh2g2TyTvrNJOj2oEE3VocyZQ7UV2d/HnI0p2DFVrRkoXmBVfVK0i2mZa5+uZyVXN2Mk
-         fKfg/HHTJ1YaUPi8pnsAWEfLQA2DPpCahA9JvagTPnNiomPrjFDRxmyr1dd30bCb0iJW
-         cGRrNI95sWG6/blpYKWVEEnheRudSScpEF9fg5qELa7gMpo3zAT0tyqckmtwGuDWRRai
-         gXMg==
+        bh=9D7bDD5IsYa1A/Vx2jJMPHd/Qg5BZWWC8GEVe2BEhlI=;
+        b=RY666weFyC/j8op7hxJlffO19vIy+Gw2I6YsaPqoh/QlaV4IVmvFcPgScV7VQqHhhS
+         Cf6HijNngV+lgxYjzIPL/Hs5lhGs10EbYc31IUIUfCrYUTmbwpvttKv4HjBu5/jm3aYc
+         psxdMEOx+FllNPY5p2t/loCUnvI1CBI/RolfxUSon2iyny/RwHf2v/tO6ogow4feJN0B
+         ZU0XxgZU3JC7g8rTN9u33nQkG7ETVgLY9BFXzve2HXcgGQpq+aTu7j6SwMFywBdc+cNc
+         QInd/1KSVGDlsbEk3ZXxTme48hgCvYFmXS6n5/tX8QJX8ke6VMr8U8+vzwA3aHn9ZKG8
+         dsDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=9movZw0O/E24Sq9jjEpuz0M8OZ4ZSE7oi+Dy0RWuqOo=;
-        b=kvLrp/I8MzKvIeVmFKlJPAiu+/ooCyhp3M/afVQprpE/akSXwIAAylaXwk0VLHh826
-         Li0jikWv50NiXBDldrgkxO1mvigRfjBM2pA0EUK9kwc+adDFCq4CCt70ndE0nyTSF+wo
-         Y8tbsLQPIR6JwtEp85QS/Oodai9QpQ1ih4AuMvQLNNTmLGxELObKBT218yI3LNVCTMG4
-         Gk4cCr7ZiCjisMJA2izu/8E4YDO0klIqh1RUOU10guix0MYSdwNF1L5kOi/OhZmOYg/6
-         CBl7oQCIV5KY5pBG8VxlXX6GGEhvWi72zcACV37wu4AFGen4fxAq66F6xWodRCMNWk4A
-         TFMA==
-X-Gm-Message-State: ACrzQf1akHPPer54vG/lWt+f4JH/4C36G72uCojixsA8cwudFSHQm18m
-        LMEb+V5KVA72Xj+fSm+ZHLa/MK+JMgsszw==
-X-Google-Smtp-Source: AMsMyM7uSr9MZ8LVijuV2GTgPXryOCIqDkI2Cp+7R+GqxQnA+G0aJnSDW9s5Y+iMsoOUTcOrduqZ6g==
-X-Received: by 2002:a05:651c:1257:b0:26c:4e3b:6d98 with SMTP id h23-20020a05651c125700b0026c4e3b6d98mr4961428ljh.492.1663746319843;
-        Wed, 21 Sep 2022 00:45:19 -0700 (PDT)
+        bh=9D7bDD5IsYa1A/Vx2jJMPHd/Qg5BZWWC8GEVe2BEhlI=;
+        b=Xlt+rnlnR0ls+Jmzg8lXGt5i/hF3TO52TBZVxlxc1gVSF+yoRYd8J9C+JN+F/tTZOR
+         MxoN6g5FNcUx3m1+8/vxALQSq0cAHVqdnLfQenKgprIKsvEUhMkUM26eB8UEvMjwfveJ
+         4DQ+N+somtGXbAkPKAG8hN49P0eAG76UFOrTMESwUvzUvsIIrOEuZTmnc3Edl/IYIJRz
+         LyYoGR9bCfhQOjlZ7twinvH1o9AZ+iL4xVCcVTj5lK5VBsTSHuofFxvzPQYrKVuNNjFS
+         AfL4kdP2XD/v31l9pAg/xiA2GCvQA+rT1PLKz42Uh5OnYT6LdFAxfIGLBfbTpe7+ytyF
+         eyEw==
+X-Gm-Message-State: ACrzQf3p+F9rvmD1e24bemTWMfMkXCGIx7VYlIq7MJsOIR0oKNDCDBdA
+        TA381Ur+wSqzkk0QjaT7FIJrRw==
+X-Google-Smtp-Source: AMsMyM66kf3956i2XbFbpy7OT3k2wU+hqUrs2ZNlKHstJn09xuJZzWY2xE3R4glKx1ow1vpsMZCFmg==
+X-Received: by 2002:a05:6512:3f83:b0:49f:9a1f:15e with SMTP id x3-20020a0565123f8300b0049f9a1f015emr5863297lfa.86.1663746383539;
+        Wed, 21 Sep 2022 00:46:23 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z18-20020a19f712000000b0049adbc24b99sm329885lfe.24.2022.09.21.00.45.18
+        by smtp.gmail.com with ESMTPSA id f11-20020a05651c03cb00b0026aca137046sm309702ljp.120.2022.09.21.00.46.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 00:45:19 -0700 (PDT)
-Message-ID: <d179f987-6d3b-449f-8f48-4ab0fff43227@linaro.org>
-Date:   Wed, 21 Sep 2022 09:45:18 +0200
+        Wed, 21 Sep 2022 00:46:23 -0700 (PDT)
+Message-ID: <4359e978-af2c-62ed-13f5-b86a28c82896@linaro.org>
+Date:   Wed, 21 Sep 2022 09:46:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [RFC V2 PATCH 2/3] dt-bindings: net: xilinx_axienet: Introduce
- dmaengine binding support
+Subject: Re: [PATCH v3] dt-bindings: interrupt-controller: migrate MIPS CPU
+ interrupt controller text bindings to YAML
 Content-Language: en-US
-To:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        michal.simek@amd.com, radhey.shyam.pandey@amd.com,
-        anirudha.sarangi@amd.com, harini.katakam@amd.com, git@xilinx.com,
-        git@amd.com
-References: <20220920055703.13246-1-sarath.babu.naidu.gaddam@amd.com>
- <20220920055703.13246-3-sarath.babu.naidu.gaddam@amd.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, arinc.unal@arinc9.com
+References: <20220921072405.610739-1-sergio.paracuellos@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220920055703.13246-3-sarath.babu.naidu.gaddam@amd.com>
+In-Reply-To: <20220921072405.610739-1-sergio.paracuellos@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 07:57, Sarath Babu Naidu Gaddam wrote:
-> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+On 21/09/2022 09:24, Sergio Paracuellos wrote:
+> MIPS CPU interrupt controller bindings used text format, so migrate them
+> to YAML.
 > 
-> The axiethernet driver will now use dmaengine framework to communicate
-> with dma controller IP instead of built-in dma programming sequence.
-> 
-> To request dma transmit and receive channels the axiethernet driver uses
-> generic dmas, dma-names properties. It deprecates axistream-connected
-> property, remove axidma reg and interrupt properties from the ethernet
-> node. Just to highlight that these DT changes are not backward compatible
-> due to major driver restructuring/cleanup done in adopting the dmaengine
-> framework.
-> 
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-> Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 > ---
-> Changes in V2:
-> - None.
-> ---
->  .../devicetree/bindings/net/xlnx,axiethernet.yaml  |   39 ++++++++++++--------
->  1 files changed, 23 insertions(+), 16 deletions(-)
+> Changes in v3:
+> - Remmove 'bindings' keyword from title.
+> - Put 'compatible' the first also in node sample.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/xlnx,axiethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,axiethernet.yaml
-> index 780edf3..1dc1719 100644
-> --- a/Documentation/devicetree/bindings/net/xlnx,axiethernet.yaml
-> +++ b/Documentation/devicetree/bindings/net/xlnx,axiethernet.yaml
-> @@ -14,10 +14,8 @@ description: |
->    offloading TX/RX checksum calculation off the processor.
->  
->    Management configuration is done through the AXI interface, while payload is
-> -  sent and received through means of an AXI DMA controller. This driver
-> -  includes the DMA driver code, so this driver is incompatible with AXI DMA
-> -  driver.
-> -
-> +  sent and received through means of an AXI DMA controller using dmaengine
-> +  framework.
->  
->  allOf:
->    - $ref: "ethernet-controller.yaml#"
-> @@ -36,19 +34,13 @@ properties:
->  
->    reg:
->      description:
-> -      Address and length of the IO space, as well as the address
-> -      and length of the AXI DMA controller IO space, unless
-> -      axistream-connected is specified, in which case the reg
-> -      attribute of the node referenced by it is used.
-> -    maxItems: 2
-> +      Address and length of the IO space.
-> +    maxItems: 1
->  
->    interrupts:
->      description:
-> -      Can point to at most 3 interrupts. TX DMA, RX DMA, and optionally Ethernet
-> -      core. If axistream-connected is specified, the TX/RX DMA interrupts should
-> -      be on that node instead, and only the Ethernet core interrupt is optionally
-> -      specified here.
-> -    maxItems: 3
-> +      Ethernet core interrupt.
-> +    maxItems: 1
->  
->    phy-handle: true
->  
-> @@ -109,6 +101,7 @@ properties:
->        for the AXI DMA controller used by this device. If this is specified,
->        the DMA-related resources from that device (DMA registers and DMA
->        TX/RX interrupts) rather than this one will be used.
-> +    deprecated: true
->  
->    mdio: true
->  
-> @@ -118,12 +111,24 @@ properties:
->        and "phy-handle" should point to an external PHY if exists.
->      $ref: /schemas/types.yaml#/definitions/phandle
->  
-> +  dmas:
-> +    items:
-> +      - description: TX DMA Channel phandle and DMA request line number
-> +      - description: RX DMA Channel phandle and DMA request line number
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx_chan0
-> +      - const: rx_chan0
-> +
->  required:
->    - compatible
->    - interrupts
->    - reg
->    - xlnx,rxmem
->    - phy-handle
-> +  - dmas
-> +  - dma-names
->  
->  additionalProperties: false
->  
-> @@ -132,11 +137,13 @@ examples:
->      axi_ethernet_eth: ethernet@40c00000 {
->        compatible = "xlnx,axi-ethernet-1.00.a";
->        interrupt-parent = <&microblaze_0_axi_intc>;
-> -      interrupts = <2>, <0>, <1>;
-> +      interrupts = <1>;
 
-This looks like an ABI break. How do you handle old DTS? Oh wait... you
-do not handle it at all.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
