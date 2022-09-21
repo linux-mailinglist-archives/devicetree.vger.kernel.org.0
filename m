@@ -2,170 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA5455BF704
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97EEB5BF70F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:08:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbiIUHID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:08:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46082 "EHLO
+        id S230163AbiIUHII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:08:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230206AbiIUHHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:07:44 -0400
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F001881B32
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:07:37 -0700 (PDT)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-127d10b4f19so7750551fac.9
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:07:37 -0700 (PDT)
+        with ESMTP id S229818AbiIUHH4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:07:56 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F92491E3
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:07:55 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id u18so7665586lfo.8
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:07:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=MT1vV1IbEbenhlAf5Z82qjgkD4R/lNsQ9eKBy1+od7k=;
-        b=d+qkaj4qPum7uZaBtQmAxwh713fWBkjA3Hyr6z7h2BaoyV6hosaK70DeN9OYXMPGD6
-         LAGFgs2iWyYCcKC9jQxDaSZ5Nf26ZdhYOVs6qzdjYhZEEHZLYqH2k4LWyAgNmDQSVOYC
-         1mmUCtgNVfDJ/4gL7uuTK0qv4mQhZ7vg5vGrLjqObdRIOiSllRlZfjnFqHv/ZtMS08K5
-         0QQmGRcxVVyhLNchnFHbQ3B9Zaig4OA380+xNj5/YOX7WB1YSzWOmhW/+Sl+wkIxTS1D
-         qEWWZhecVsW8kT3z07rVh2Kont/AQomx6j0dZTstBlid3/k1peWBt+4kdIrc4Xl7qk4X
-         PqGA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=APb0/Hlj8PJfzMK/j/1WprkzmQ0RATqS+JRrEg6OtBI=;
+        b=sOX0bkzdu+sZDtr8Q5SphkdzB1/ROEzLAP17FzCDCvxf8Mv6GI+0wiGyJiPZkveZPx
+         kGgZlAEqiwFlJS4G9tdIXv9fLwfShJZI8QKDNOWEBiuKLUjRhXdMwPNhlSywjXG0+02V
+         zIWJI5L5MfL/o7sOXPQ+PFYJDYqZfnzqCjqpS7l68M20RJbdNMWshDtOfpo/4WJ2cIKA
+         VTdRiP7oHO//AJ902pphqDhUz3Z+rCc2FzkW7oDy1VvDNUY1dW2l24b5A4tsDf7R3hqO
+         gKSEc1w3Q9Ne9Fwkp+QI+bM4mZuPDRg3Qs9SgYXHX0Rc0bBBKTXL6mEtIgvDXaBuRoYj
+         LQMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=MT1vV1IbEbenhlAf5Z82qjgkD4R/lNsQ9eKBy1+od7k=;
-        b=6obZZoLmQ1uhi+Rs1HtExFSXBD605eGhOp5gIU+fmifPT1Qsh320y+J6JmOVZGvHkQ
-         OGkXh2vEY3gw4iOex75ZNSF4kXqSawOi26+KKei8yMPo4RRsixiwdHl5LqkarUHGEhPb
-         P/+mwmK9u0ACvdakkVyNGnT9YWsOG5DTI4GstDFXyul3PACyD/iQoOz87qN54EzZAE1r
-         e3DN179SGoZ6aHSPv864MaOz+qEoNz11QB+oXJdovyHAbSih2S+a62ypjY+6qrGP/+UR
-         uaJIsj5rS1yKSbFL6QdHV271XTx2V+H1rkfjN2thry7/WuAybDotKlXZTuzpxL8/j8su
-         71xA==
-X-Gm-Message-State: ACrzQf0DcPUqFRa6kadp8haoz1vsDtUTsngcYPReRwGpzDCZJWCwHyF0
-        9R85dtWwgFbnAFcQrKYnH4KynsmPHVl2Nh/7cWh8OCAWRC6aYQ==
-X-Google-Smtp-Source: AMsMyM7QD5vhZkg+SHqv56v0Mlb+lQ+8gBViwqQzgAvSZ5CDsBJECvvr0lIEOeIMvGcUSOEl0oq12YAPnAYS0ps8Exs=
-X-Received: by 2002:a05:6870:e615:b0:12d:943e:256a with SMTP id
- q21-20020a056870e61500b0012d943e256amr293048oag.83.1663744057348; Wed, 21 Sep
- 2022 00:07:37 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=APb0/Hlj8PJfzMK/j/1WprkzmQ0RATqS+JRrEg6OtBI=;
+        b=p9Da9eBof09BFrDfFop0ZiVDFe1wnVw9elFE9Xhx930/1qX7eqeKbK+tp+PuuRBHYY
+         YhkjC9WBUmkpi7CasQLoOhqi45sblVFIwneKPxFEAzLfXfVo5HoHBWiO6wQEm+jsxC7M
+         4bV8UZLgSW5Wegm3IYhcDR5/vgYfHYp6Z/+tUNKvKszqyiHAbrCVCMIGY0qL9fQS/iYR
+         6/rgXMEQicI7uIt36Wn5apzzqU0QCloPcsy6+Fb281dGT4iHEaGLTiNpfW++n19VZYJE
+         wyGns05H4Orhw/9KZU+sagINof0xX+oDSem/9tNoDIV31aZIzy9ay7z87A3z6uihFpVW
+         Wjdg==
+X-Gm-Message-State: ACrzQf0Ii1nk05oUo+1kkEo4Uzq+LPaav9SxcQktzwCI1RvpDdxnb1X6
+        t6nQen2h4Jep/A88ou/A5Z+Shg==
+X-Google-Smtp-Source: AMsMyM4gqxAQvcV8ga0K7YyxcBClQ/kW2wmIe0eJRgZ9zQemRycPrYGF8vU2GgeKuVirXwB5Ah7e8w==
+X-Received: by 2002:a19:7619:0:b0:49f:6cd7:45c2 with SMTP id c25-20020a197619000000b0049f6cd745c2mr7191079lff.7.1663744073769;
+        Wed, 21 Sep 2022 00:07:53 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id b15-20020a19644f000000b00499fe9ce5f2sm307613lfj.175.2022.09.21.00.07.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Sep 2022 00:07:53 -0700 (PDT)
+Message-ID: <95fb2bfb-6eb8-012d-88f8-c739d229ef70@linaro.org>
+Date:   Wed, 21 Sep 2022 09:07:52 +0200
 MIME-Version: 1.0
-References: <20220920052050.582321-1-sergio.paracuellos@gmail.com> <b21c4c3e-44b2-89d3-980b-13a9280137a2@linaro.org>
-In-Reply-To: <b21c4c3e-44b2-89d3-980b-13a9280137a2@linaro.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Wed, 21 Sep 2022 09:07:25 +0200
-Message-ID: <CAMhs-H_x1dmsaVn7Dt8zyhv2CWH9GQy3L-65O8WuJSatEzm6jg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: i2c: migrate mt7621 text bindings to YAML
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM6375 SCM
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        sr@denx.de
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220921001020.55307-1-konrad.dybcio@somainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220921001020.55307-1-konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 21, 2022 at 8:47 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/09/2022 07:20, Sergio Paracuellos wrote:
-> > SoC MT7621 I2C bindings used text format, so migrate them to YAML.
-> > There are some additions to the binding that were not in the original
-> > txt file. This binding is used in MT7621 and MT7628a Ralink SoCs. To
-> > properly match both dts nodes in tree we need to add to the schema
-> > 'clocks', 'clock-names' and 'reset-names'. Both 'clock-names' and
-> > 'reset-names' use 'i2c' as string so maintain that as const in
-> > the schema. Also, Properly update MAINTAINERS file to align the
-> > changes.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 21/09/2022 02:10, Konrad Dybcio wrote:
+> Document the compatible for Qualcomm SM6375 SCM.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
 
-Thanks!
+allOf needs to be updated.
 
->
-> plus two comments:
->
-> > ---
-> > Changes in v3:
-> > - Address review comment from Krzysztof:
-> >     - Rebase onto last kernel version.
-> >     - Drop address-cells and size-cells.
-> >     - Properly explain deviations from txt in commit message.
-> >     - Drop reset-names as required property.
-> >     - Squash previous series two commits in one to be bisectable.
-> >
->
-> (...)
->
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/i2c/mediatek,mt7621-i2c.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +maintainers:
-> > +  - Stefan Roese <sr@denx.de>
->
-> You can also add yourself if you have the interest, the hardware or the
-> datasheets.
 
-Ok, thanks.
-
->
-> > +
-> > +title: Mediatek MT7621/MT7628 I2C master controller
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt7621-i2c
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    const: i2c
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  reset-names:
-> > +    const: i2c
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - resets
-> > +  - "#address-cells"
-> > +  - "#size-cells"
->
-> Similarly to spi, the clocks might be added to required properties, if
-> they are really needed.
-
-CLocks are required by MT7621 SoC but MT7628 is not using them in current DTS:
-
-https://elixir.bootlin.com/linux/v6.0-rc5/source/arch/mips/boot/dts/ralink/mt7628a.dtsi#L203
-
-That is the reason to not include them as required.
-
-Thanks,
-    Sergio Paracuellos
-
->
-> Best regards,
-> Krzysztof
+Best regards,
+Krzysztof
