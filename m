@@ -2,100 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A1AF5E54CB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 22:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED85F5E54E5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 23:06:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbiIUUzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 16:55:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50846 "EHLO
+        id S229578AbiIUVGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 17:06:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbiIUUzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 16:55:20 -0400
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2AB2A2AE3B;
-        Wed, 21 Sep 2022 13:55:17 -0700 (PDT)
-Received: from [192.168.20.2] (unknown [77.239.252.99])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229437AbiIUVGH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 17:06:07 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35DC2A2230;
+        Wed, 21 Sep 2022 14:06:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 88F6B14023D;
-        Wed, 21 Sep 2022 20:55:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1663793715;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=nGYXTPOt3zCzwp92JW8LyqdaThQz7kjvGR8CDOfHJf0=;
-        b=khdERCMXn98k8bYp7rsHWjm6DOW67jNr8VfAlgsY+kvPG+JkChAH2wwgUKv2EcbPf9+ei2
-        E/rYR2CbZriDsixJ2oMihcGo8PMGaHW7alVasFOJRvRO+VzfAoNqMqeKBSAwPmxwOY4swh
-        QNL8g8wjbyPhbZWU//9qGeJ5aidaaD4=
-Message-ID: <37ebdd21-e46a-fac9-7e87-57042ab67d5c@postmarketos.org>
-Date:   Wed, 21 Sep 2022 23:55:13 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v4 3/3] ARM: dts: qcom: msm8974: switch TCSR mutex to MMIO
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        by ams.source.kernel.org (Postfix) with ESMTPS id C8A44B828EC;
+        Wed, 21 Sep 2022 21:06:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C545EC433C1;
+        Wed, 21 Sep 2022 21:05:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663794362;
+        bh=4pEno27AZYa4mJMVJgAgsAXTI/+40ZvutoCLEOhJzGM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sDQSjVHV+zbK4QkKWAC0QEE3eleBlrxAN/lUEQ5+rlQRQ8/bSOSzaqbLEQulF+nml
+         7s+TcuZGAnf/JkUt5g4ywB3NSBlS2B6tt/4DXjig42OddiO9OeK1x0zCdGCU8OM3sO
+         LUQ9IYbV+QND4jdV4/Gkhakzqz4ohno535eWT03xlFMdGj2mj2j0MaqRGwdaCMC63J
+         iCWm/AqP2rr6PVKVVoaq2SL+Cu5FwRhLjEyJ3PEqQMni6BL1zOpx9lLLHXxc4cP2wp
+         Gte9njqBesBn2vyIwu8t7Y4w/WzUIMXbmeMVGLK+XKgXIy5ESVh1xqu/P4GAFlEqjq
+         qCvJXSBwUD7bg==
+Date:   Wed, 21 Sep 2022 22:05:55 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220920150414.637634-1-krzysztof.kozlowski@linaro.org>
- <20220920150414.637634-4-krzysztof.kozlowski@linaro.org>
-From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
-In-Reply-To: <20220920150414.637634-4-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Andre Przywara <andre.przywara@arm.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
+Subject: Re: Similar SoCs with different CPUs and interrupt bindings
+Message-ID: <Yyt8s5+pyoysVNeC@spud>
+References: <CAMuHMdUPm36RsxHdVwspR3NCAR3C507AyB6R65W42N2gXWq0ag@mail.gmail.com>
+ <b0f2e13a-ff5d-5bfc-6dda-ca39bb57803e@linaro.org>
+ <CA+V-a8t3ukpa1PNz=5fP+BTjWkFJmwDo_EJJYjO9YctF2=K1Vg@mail.gmail.com>
+ <df9ff0bd-ad0e-4b5b-859d-dd913628edc8@linaro.org>
+ <CAMuHMdXaWz4zP-Zrc4drxwVmbMjmGZHABVbUtO91fZXKawathw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXaWz4zP-Zrc4drxwVmbMjmGZHABVbUtO91fZXKawathw@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Sep 21, 2022 at 12:08:11PM +0200, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+> > > This worked as expected, but couldn't get the arithmetic operation
+> > > working. Could you please provide an example?
+> >
+> > diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+> > index ff6aab388eb7..0ecca775fa3f 100644
+> > --- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+> > @@ -8,6 +8,8 @@
+> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >  #include <dt-bindings/clock/r9a07g043-cpg.h>
+> >
+> > +#define SOC_PERIPHERAL_IRQ_NUMBER(na)  (na + 32)
+> > +#define SOC_PERIPHERAL_IRQ(nr, na) GIC_SPI nr SOC_PERIPHERAL_IRQ_NUMBER(na)
+> 
+> #define SOC_PERIPHERAL_IRQ(nr, flags) GIC_SPI
+> SOC_PERIPHERAL_IRQ_NUMBER(nr) flags
+> 
+> >  / {
+> >         compatible = "renesas,r9a07g043";
+> >         #address-cells = <2>;
+> > @@ -128,7 +130,7 @@ ssi1: ssi@1004a000 {
+> >                         compatible = "renesas,r9a07g043-ssi",
+> >                                      "renesas,rz-ssi";
+> >                         reg = <0 0x1004a000 0 0x400>;
+> > -                       interrupts = <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
+> > +                       interrupts = <SOC_PERIPHERAL_IRQ(330, IRQ_TYPE_LEVEL_HIGH)>,
+> >
+> >
+> >
+> > Or any other method like that....
+> 
+> Oh cool, seems like arithmetic is supported.
+> No idea what I did wrong last time I tried...
 
-On 20.09.2022 18:04, Krzysztof Kozlowski wrote:
-
-> -	tcsr_mutex: tcsr-mutex {
-> -		compatible = "qcom,tcsr-mutex";
-> -		syscon = <&tcsr_mutex_block 0 0x80>;
-
-I'm looking and don't understand where does this information go, is it 
-lost in the conversion? I mean those "0 0x80" parameters to syscon 
-reference.
-
-Looking at the code of qcom_hwspinlock driver those seem to be read by 
-qcom_hwspinlock_probe_syscon() [1] using  of_property_read_u32_index() 
-as base and stride values and those would be 0 nad 0x80 respectively as 
-is now.
-
-But without syscon reference, in mmio mode, code goes through 
-qcom_hwspinlock_probe_mmio() few lines below, which says
-
-	/* All modern platform has offset 0 and stride of 4k */
-	*offset = 0;
-	*stride = 0x1000;
-
-So after this conversion stride value will jump from 0x80  to 0x1000, 
-which does not seem to be 1 to 1 identical conversion to me, unless I am 
-missing something.
-
-Perhaps msm8974 does not fall into category of "All modern platform"?
-
-
-[1] 
-https://elixir.bootlin.com/linux/latest/source/drivers/hwspinlock/qcom_hwspinlock.c#L73
-
--- 
-Regards
-Alexey Minnekhanov
+Oh sick, it does actually work??? So, am I missing something or is this
+sort of approach now a no-brainer?
