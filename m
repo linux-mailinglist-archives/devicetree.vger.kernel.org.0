@@ -2,133 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F21C45BF415
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 05:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B38105BF434
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 05:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230333AbiIUDHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Sep 2022 23:07:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36758 "EHLO
+        id S230204AbiIUDOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Sep 2022 23:14:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230287AbiIUDHL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 23:07:11 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 454997E029
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 20:07:10 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id c7so4594439pgt.11
-        for <devicetree@vger.kernel.org>; Tue, 20 Sep 2022 20:07:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=a1/JrpahI0MCnEJkWnZC0/MOqcEnsO92UJD6M/si+Ww=;
-        b=Nnn6Ba/dbQ5V/6rjJfnskHVktjzMORpcnUjkNu9n5iJxqbYbCD74gh+Vl8h8Sw0Xin
-         4+/0YH5zhTXKqdWdDovWnUZGjDfvcpcwCOOAvdTl47OubWyWOPyDujdoxasDjWegXGeo
-         mdPtr9E+Pl3+LOJHPSiHfJX5G3i2OBLfMY1FxcT2Gq4qeiUItiv47tL4grhjHjFpeTUe
-         PqP9FmX+22Bw2XwI9By4W6XFRHMwci54+lDsRDomDGqJZZ4W+JAQYxwbOGBSpCXWIGL/
-         sPJt/zhwtayCTtj9GHKNf9kzh8D6H1e+5i8wl9p9poM75H7Q6mk9njDhFYMRL+Yzgh49
-         Rt7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=a1/JrpahI0MCnEJkWnZC0/MOqcEnsO92UJD6M/si+Ww=;
-        b=nYlLUtmMbIKF+kDIp4tz2J7lb7AXGnh2f52P5LCCJbjVUQdY6XiSRHDTT1jNbeZfG6
-         ZRueJ/TQlaCr0q10S8yU2u0S1BXbA5l/pDvsLSrSOkhUB2F6JmKOHLilvS4BZsuxZFx4
-         IPrYlvjc+O3mA+Z2waOy6N5i0N+nceqrx6jQ95EHhgG2lcibmQPn8N5IckUDJ2lXg+O8
-         dopbGynTfhAYhghqefSu7PLQiD7BtGPBho5M75rO1elrqW1zWMZgLuDQOQ12sysR1q9m
-         0tKsK3vBLqFbXID57jL/9fMGa6dEJFaGT019+0y/H+NuK8bI2oFNrLSHg0XDCgn9lp7q
-         ETIQ==
-X-Gm-Message-State: ACrzQf2eS7HvjL7ApIC4+lLDC75e+gNE/E0I0TltqLNMZvAO97EurEPA
-        ljlwis9zAUj9zQ24YZ3LLJgJ8g==
-X-Google-Smtp-Source: AMsMyM4G4jXvDCpCygWYfcj2Gyr4NDg+7AKSdAIp6B8FKovCOLd0ki0bh4bLjKdwvO+FltlBR1y1gA==
-X-Received: by 2002:a63:8843:0:b0:439:3c8e:c2c0 with SMTP id l64-20020a638843000000b004393c8ec2c0mr23013880pgd.404.1663729629829;
-        Tue, 20 Sep 2022 20:07:09 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:1c61:8e50:8ba8:7ad7:f34c:2f5])
-        by smtp.gmail.com with ESMTPSA id y23-20020aa78f37000000b0053e61633057sm690846pfr.132.2022.09.20.20.07.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Sep 2022 20:07:09 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     dmaengine@vger.kernel.org
-Cc:     agross@kernel.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        thara.gopinath@gmail.com, devicetree@vger.kernel.org,
-        andersson@kernel.org, bhupesh.sharma@linaro.org,
-        bhupesh.linux@gmail.com, vkoul@kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 1/1] dma: qcom: bam_dma: Add support to initialize interconnect path
-Date:   Wed, 21 Sep 2022 08:36:49 +0530
-Message-Id: <20220921030649.1436434-2-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220921030649.1436434-1-bhupesh.sharma@linaro.org>
-References: <20220921030649.1436434-1-bhupesh.sharma@linaro.org>
+        with ESMTP id S230447AbiIUDNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Sep 2022 23:13:49 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C69F57E31B;
+        Tue, 20 Sep 2022 20:13:42 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28L3DUbG040797;
+        Tue, 20 Sep 2022 22:13:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1663730010;
+        bh=A32xkVisoVf18XigM6AiIasXIwgAdFCI2xBmBDjc8Yg=;
+        h=From:To:CC:Subject:Date;
+        b=O9BR7MjUO+Gwob/5a0LhTP4ZbrGHyAsg4qGAPbE96p9aWsFmuAX9Htv3OGDqg4n+W
+         kUKeONwaYrvpJf3LmlAcbstpShkfU/TYJ8wKS2+3/hmSdfIX85ZUINS02DUN7xnnP8
+         wbxJgGhgOpMrEFaqKt0jYjIWNRbRg98I8nTFRMyg=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28L3DU6c117897
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Sep 2022 22:13:30 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 20
+ Sep 2022 22:13:30 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 20 Sep 2022 22:13:30 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28L3DS7v062677;
+        Tue, 20 Sep 2022 22:13:29 -0500
+From:   Matt Ranostay <mranostay@ti.com>
+To:     <vigneshr@ti.com>, <nm@ti.com>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/9] J721S2: Add support for additional IPs
+Date:   Tue, 20 Sep 2022 20:13:18 -0700
+Message-ID: <20220921031327.4135-1-mranostay@ti.com>
+X-Mailer: git-send-email 2.38.0.rc0.52.gdda7228a83
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thara Gopinath <thara.gopinath@gmail.com>
+The following series of patches add support for the following
+on J721S2 common processor board,
 
-BAM dma engine associated with certain hardware blocks could require
-relevant interconnect pieces be initialized prior to the dma engine
-initialization. For e.g. crypto bam dma engine on sm8250. Such requirement
-is passed on to the bam dma driver from dt via the "interconnects"
-property. Add support in bam_dma driver to check whether the interconnect
-path is accessible/enabled prior to attempting driver intializations.
+- USB
+- SerDes
+- OSPI
+- PCIe
 
-If interconnects are not yet setup, defer the BAM DMA driver probe().
+Changes from v1:
+* Resolve issues with dt schema reporting
+* Minor changes related to consistency on node naming and value
 
-Cc: Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Thara Gopinath <thara.gopinath@gmail.com>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-[Bhupesh: Make header file inclusion alphabetical and use 'devm_of_icc_get()']
----
- drivers/dma/qcom/bam_dma.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Changes from v2:
+* Added PCIe RC + EP enablement patchsets
+* Added device-id for j722s2 PCIe host in dt documentation
+* Reworked SERDES + WIZ enablement patchset to use properies for clocks
+  defines versus entire devicetree nodes. Results in cleaner code that
+  doesn't break dt-schema or the driver functionality.
 
-diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
-index 2ff787df513e..a5b0cf28ffb7 100644
---- a/drivers/dma/qcom/bam_dma.c
-+++ b/drivers/dma/qcom/bam_dma.c
-@@ -26,6 +26,7 @@
- #include <linux/kernel.h>
- #include <linux/io.h>
- #include <linux/init.h>
-+#include <linux/interconnect.h>
- #include <linux/slab.h>
- #include <linux/module.h>
- #include <linux/interrupt.h>
-@@ -394,6 +395,7 @@ struct bam_device {
- 	const struct reg_offset_data *layout;
- 
- 	struct clk *bamclk;
-+	struct icc_path *mem_path;
- 	int irq;
- 
- 	/* dma start transaction tasklet */
-@@ -1294,6 +1296,14 @@ static int bam_dma_probe(struct platform_device *pdev)
- 	if (IS_ERR(bdev->bamclk))
- 		return PTR_ERR(bdev->bamclk);
- 
-+	/* Ensure that interconnects are initialized */
-+	bdev->mem_path = devm_of_icc_get(bdev->dev, "memory");
-+	if (IS_ERR(bdev->mem_path)) {
-+		ret = dev_err_probe(bdev->dev, PTR_ERR(bdev->mem_path),
-+				    "failed to acquire icc path\n");
-+		return ret;
-+	}
-+
- 	ret = clk_prepare_enable(bdev->bamclk);
- 	if (ret) {
- 		dev_err(bdev->dev, "failed to prepare/enable clock\n");
+Aswath Govindraju (7):
+  arm64: dts: ti: k3-j721s2-main: Add support for USB
+  arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support of OSPI
+  arm64: dts: ti: k3-j721s2-common-proc-board: Enable SERDES0
+  arm64: dts: ti: k3-j721s2-common-proc-board: Add USB support
+  arm64: dts: ti: k3-j721s2: Add support for OSPI Flashes
+  arm64: dts: ti: k3-j721s2-main: Add PCIe device tree node
+  arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
+
+Matt Ranostay (2):
+  arm64: dts: ti: k3-j721s2-main: Add SERDES and WIZ device tree node
+  dt-bindings: PCI: Add host mode device-id for j721s2 platform
+
+ .../bindings/pci/ti,j721e-pci-host.yaml       |   2 +
+ .../dts/ti/k3-j721s2-common-proc-board.dts    |  92 +++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 156 ++++++++++++++++++
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  40 +++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  |  42 +++++
+ 5 files changed, 332 insertions(+)
+
 -- 
-2.37.1
+2.37.2
 
