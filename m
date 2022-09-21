@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 894495BFD08
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 13:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81C245BFD0A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 13:41:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbiIULkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 07:40:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52162 "EHLO
+        id S229872AbiIULlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 07:41:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229820AbiIULkp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 07:40:45 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66BAB8E45E
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 04:40:44 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-1274ec87ad5so8702758fac.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 04:40:44 -0700 (PDT)
+        with ESMTP id S229528AbiIULlJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 07:41:09 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB4073FA09;
+        Wed, 21 Sep 2022 04:41:07 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id k10so8725504lfm.4;
+        Wed, 21 Sep 2022 04:41:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=jDHNRwe7Lcu94zQsRyXhfhtl6jqtop7eQ9RgH6SwZgw=;
-        b=mbFglyh1e6LpNHSXR5kXLqDZ+offxYAAVUvxjtL7IcdFtE4BPdg9vZ6f0u/UVEfj6C
-         qyqRBKKJy9PMxvEJUh/fRD1c8MzTH5oE1fun4UZPYHl97agyB3ZFPOaBpdkTWLTO+uW6
-         HswWtVVHhThCzk1jxkBOq61zk8Rf5vf4t561lxMAypA941FTnBbPBO0c6tHubHuO87eV
-         dYihC2dGwm8xNZivFgDXecxJ+kMnyhvcBVpFMwe7+qadXU3c7kXvg3v1hWMD+x9tCHSX
-         EQrZmHdHZ0JXuaFIN3B+Y0rgOrwc7XMFjCrz6L6VGbOa/h7mxCtJmcjT82vDWfzd7PSK
-         9gGg==
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date;
+        bh=86WCHSlEMusoGKw0NZFAnIdqU5oTHd5cwFDGXpyQVyw=;
+        b=gIxV95ew6909NSjTwq6elXTGLXbMVNr3z9Taos+ssn0KkKqswpNP7g8MUYDUYqU5j6
+         sZ2jJRECLxjLRmLX8sQKqLtnRsZGI8oK0MLjJBTBY+LEoWe+vL0Wl8DHTW+BDFnMOnzi
+         E2IPAmVMNaOaWxOm28Pz7QMNDZWfhjDHFB4C6iBR1IyEGLNIjUswAuvzGQCLqdr1yLEO
+         A2QSsDtwP4jaGt8ScpFbIfhvRKudXrsHzxY+YD7vqE9cH7GozWgKaenjOexqVTOF8WJz
+         R1eIbDK78ftJESX54HujxFP1oCvJweD0yeod8+CMYVrUU9tv+XgXYDsgBi9JXkFjibEU
+         RD4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=jDHNRwe7Lcu94zQsRyXhfhtl6jqtop7eQ9RgH6SwZgw=;
-        b=2bzGrh2I6oUQpwCejL0Lvn21+hmfZerXLaCFVBEiqWC7QIAJ7DAIFMra4H+nxdT3c+
-         dmRnSTVvEYJlFs+TDleU0v2hyba/VjBtyWl9kQ2vTIJ5wJRGnv651aWzMoywNOw6Id3E
-         nI8LA2ozmA/i0Aer5H909ss5ONsbU+HsKt2jiRyUjsXGIIa5qkxqCsSBYApHtD/8+A55
-         pUJf811ERHkBx7xSwEQmt2yXmlohKjLMhnowbDvqkDuwaYMN1Ku1gtcziWmNdpJWa+z3
-         2iLiU7rh6ALSApf1DDYRWd0UiidelwfSNqcBX9fxEipBI5dcy+Ynv4aFDIrCQfu4CzMc
-         G5mQ==
-X-Gm-Message-State: ACrzQf3z+zpk4aPLHCdPT6WOOnCPjnI/b5UXTBbQsMMr6EJIZD2ZUH+K
-        7cS3KE2bLpqeYRIzLjUqmSy+sxbEw3a2JFqakPY=
-X-Google-Smtp-Source: AMsMyM6Nq4LDGeOTZ12SarftVnuoKjBU093B2zsELPHKqXbEOBWuDBb/QEkqblQOCssRa735F3apxqpagCQg0m2MbCQ=
-X-Received: by 2002:a05:6870:e615:b0:12d:943e:256a with SMTP id
- q21-20020a056870e61500b0012d943e256amr830345oag.83.1663760443620; Wed, 21 Sep
- 2022 04:40:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220917041136.526446-1-sergio.paracuellos@gmail.com>
- <285f80ef-5f5c-e68d-b514-a3e3341841c5@linaro.org> <CAMhs-H92i6vFJWCBrpaQnQzA3-+6_ROb9_+zD4yBMB1FLJoKeQ@mail.gmail.com>
- <71b50383-0fc3-f834-11e0-8fbc17c123d0@linaro.org> <CAMhs-H-JokHX+XNNE0TQf78ORQbNz2fTd9hfgmv_s6OPT=Wh0w@mail.gmail.com>
- <c04461c0-e16a-6dcc-4fc0-f6c80263bd71@linaro.org> <CAMhs-H9HX4gmZn-ySWZZdhDiWJPazado=Vp6D1PpyxvV85ACsw@mail.gmail.com>
- <7436dcff-1648-e5e6-47e3-473ae5839e91@linaro.org> <CAMhs-H-TATfafSJzqXFi-Q=AYYWj-EY1tJs-9y7phR-wu4n1Tg@mail.gmail.com>
- <658248bd-fe6f-04c5-fe41-bd3210d6b52f@linaro.org> <CAMhs-H_43GQuxU0NTPWRsaL199+P2zG+BmNzq0p4iujw42HMEQ@mail.gmail.com>
-In-Reply-To: <CAMhs-H_43GQuxU0NTPWRsaL199+P2zG+BmNzq0p4iujw42HMEQ@mail.gmail.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Wed, 21 Sep 2022 13:40:31 +0200
-Message-ID: <CAMhs-H8gnh-gVUeDXVSvBAhw=6u8TiZBf+sHSuxVkSOQ5KON4g@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mips: add CPU bindings for MIPS architecture
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=86WCHSlEMusoGKw0NZFAnIdqU5oTHd5cwFDGXpyQVyw=;
+        b=n+ali3xj53rUpZczdMmjkIBwMy8nONabJuApLA7ENnCsTBHeClFh7q4u6JD9OTBUa5
+         afW1U24tLw9m68RPrb43B38TGPmD2dG7oUvRF7AIWO59vq8TWfy+wT030BsioWp3Ml4E
+         jEJsCWevTP2fII2BiF65nNpx53AFpE5IigbskGcx8UHXGuQvUNkXBmnDz4nrT9vA9LHT
+         BhxXtTgYurbASoCHM3tiEskvpiD0bxHo48/UzWPW24G+U1RLk+REcTm8Pxo3ctZ82Fdp
+         h/NFEBK3avTGg59VOIJA4v/19RvDyo6jRJ+FI4rzxeGsvijLQqVS4pB+KaZzpBMOXcPl
+         n4iw==
+X-Gm-Message-State: ACrzQf1upz8Q8fnCdZ63d3txIbRdsgWG4MHrZ4YW/nPZEFKm39DYdsfG
+        K2r5CVZ6M1FXTqt2Ws8njCE=
+X-Google-Smtp-Source: AMsMyM68inOfsUqdE0ZItjudPLNhLECQepLbDNrTvxhVZl9fi2Jvdbn3J7IC0KrZnxqLR2LeH8CQmQ==
+X-Received: by 2002:a19:ca57:0:b0:49f:52ce:d4b8 with SMTP id h23-20020a19ca57000000b0049f52ced4b8mr9171038lfj.491.1663760466079;
+        Wed, 21 Sep 2022 04:41:06 -0700 (PDT)
+Received: from dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id t27-20020ac2549b000000b00494603953b6sm402614lfk.6.2022.09.21.04.41.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Sep 2022 04:41:05 -0700 (PDT)
+Date:   Wed, 21 Sep 2022 14:40:33 +0300
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>, zajec5@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 0/5] iio: Support ROHM/Kionix kx022a
+Message-ID: <cover.1663760018.git.mazziesaccount@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="9hXad1v1HaqKVtDZ"
+Content-Disposition: inline
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -77,388 +78,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On Wed, Sep 21, 2022 at 10:11 AM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> Hi Krzysztof,
->
-> [cc: Hauke Mehrtens and Rafa=C5=82 Mi=C5=82ecki as maintainers for
-> 'Documentation/devicetree/bindings/mips/brcm/']
->
-> On Wed, Sep 21, 2022 at 9:51 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 21/09/2022 09:18, Sergio Paracuellos wrote:
-> > > Hi Krzysztof,
-> > >
-> > > On Wed, Sep 21, 2022 at 8:42 AM Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> wrote:
-> > >>
-> > >> On 20/09/2022 07:51, Sergio Paracuellos wrote:
-> > >>> Hi Krzysztof,
-> > >>>
-> > >>> On Mon, Sep 19, 2022 at 6:08 PM Krzysztof Kozlowski
-> > >>> <krzysztof.kozlowski@linaro.org> wrote:
-> > >>>>
-> > >>>> On 19/09/2022 15:41, Sergio Paracuellos wrote:
-> > >>>>> Hi Krzysztof,
-> > >>>>>
-> > >>>>> On Mon, Sep 19, 2022 at 2:48 PM Krzysztof Kozlowski
-> > >>>>> <krzysztof.kozlowski@linaro.org> wrote:
-> > >>>>>>
-> > >>>>>> On 19/09/2022 14:29, Sergio Paracuellos wrote:
-> > >>>>>>>>
-> > >>>>>>>> else mips-hpt-frequency: false
-> > >>>>>>>>
-> > >>>>>>>>> +
-> > >>>>>>>>> +required:
-> > >>>>>>>>> +  - compatible
-> > >>>>>>>>> +
-> > >>>>>>>>> +additionalProperties: true
-> > >>>>>>>>
-> > >>>>>>>> and this is why you did not notice errors...
-> > >>>>>>>
-> > >>>>>>> Current arch/mips/boot/dts folder dts files are a mess for cpu =
-nodes,
-> > >>>>>>> so I set additionalProperties to true and only make required fo=
-r
-> > >>>>>>> 'compatible'. What should be the correct approach?
-> > >>>>>>
-> > >>>>>> This is okay, but it caused you did not notice errors...
-> > >>>>>>
-> > >>>>>>>
-> > >>>>>>>>
-> > >>>>>>>>> +
-> > >>>>>>>>> +examples:
-> > >>>>>>>>> +  - |
-> > >>>>>>>>> +    cpus {
-> > >>>>>>>>> +      #size-cells =3D <0>;
-> > >>>>>>>>> +      #address-cells =3D <1>;
-> > >>>>>>>>> +
-> > >>>>>>>>> +      cpu@0 {
-> > >>>>>>>>> +        device_type =3D "cpu";
-> > >>>>>>>>> +        compatible =3D "mips,mips1004Kc";
-> > >>>>>>>>> +        reg =3D <0>;
-> > >>>>>>>>> +      };
-> > >>>>>>>>> +
-> > >>>>>>>>> +      cpu@1 {
-> > >>>>>>>>> +        device_type =3D "cpu";
-> > >>>>>>>>> +        compatible =3D "mips,mips1004Kc";
-> > >>>>>>>>> +        reg =3D <1>;
-> > >>>>>>>>> +      };
-> > >>>>>>>>> +    };
-> > >>>>>>>>> +
-> > >>>>>>>>> +  - |
-> > >>>>>>>>> +    // Example 2 (BMIPS CPU)
-> > >>>>>>>>> +    cpus {
-> > >>>>>>>>> +      #address-cells =3D <1>;
-> > >>>>>>>>> +      #size-cells =3D <0>;
-> > >>>>>>>>> +
-> > >>>>>>>>> +      mips-hpt-frequency =3D <150000000>;
-> > >>>>>>>>
-> > >>>>>>>> Does not match your bindings. Are you sure you tested the patc=
-hes?
-> > >>>>>>>
-> > >>>>>>> Yes I did:
-> > >>>>>>>
-> > >>>>>>> $ make dt_binding_check
-> > >>>>>>> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mips/cpus.y=
-aml
-> > >>>>>>>   LINT    Documentation/devicetree/bindings
-> > >>>>>>>   CHKDT   Documentation/devicetree/bindings/processed-schema.js=
-on
-> > >>>>>>>   SCHEMA  Documentation/devicetree/bindings/processed-schema.js=
-on
-> > >>>>>>>   DTEX    Documentation/devicetree/bindings/mips/cpus.example.d=
-ts
-> > >>>>>>>   DTC     Documentation/devicetree/bindings/mips/cpus.example.d=
-tb
-> > >>>>>>> ' CHECK   Documentation/devicetree/bindings/mips/cpus.example.d=
-tb
-> > >>>>>>>
-> > >>>>>>> Can you please point me to a sample of how to make required in =
-a
-> > >>>>>>> parent node of cpu@X property 'mips-hpt-frequency' only for som=
-e
-> > >>>>>>> compatible strings inside the node? What can this be properly
-> > >>>>>>> expressed using schema??
-> > >>>>>>> I was looking and testing different things for a while without =
-success at all.
-> > >>>>>>
-> > >>>>>> You either define new schema for /cpus node (and match by name, =
-define
-> > >>>>>> children etc) or include it in schema for top-level properties. =
-The
-> > >>>>>> first is tricky, because the cpus node does not have compatible =
-(like
-> > >>>>>> nvidia,tegra194-ccplex.yaml).
-> > >>>
-> > >>> Ok so if I am understanding correctly having two schemas is a way t=
-o go:
-> > >>>
-> > >>> One for brcm,bmips-cpus.yaml (since there is no compatible, should
-> > >>> this be a valid name for this?) containing something like:
-> > >>>
-> > >>> properties:
-> > >>>   $nodename:
-> > >>>      const: cpus
-> > >>>
-> > >>>      mips-hpt-frequency:
-> > >>>         $ref: /schemas/types.yaml#/definitions/uint32
-> > >>>         description: |
-> > >>>            This is common to all CPUs in the system so it lives
-> > >>>             under the "cpus" node.
-> > >>>
-> > >>> additionalProperties: true
-> > >>
-> > >> Almost. Such schema will allow mips-hpt-frequency in each cpus node,
-> > >> everywhere. On every board and architecture.
-> > >
-> > > Yes, that is what I thought since no compatible to match this is
-> > > included in current node.
-> > >
-> > >>
-> > >> You need to limit it per top-level compatibles.
-> > >
-> > > Any sample of how to do this? So this bmips SoCs use compatible
-> > > strings that are described in:
-> > > https://elixir.bootlin.com/linux/v6.0-rc5/source/Documentation/device=
-tree/bindings/mips/brcm/soc.txt
-> >
-> > Could be something like this:
-> > https://lore.kernel.org/all/20220830065744.161163-2-krzysztof.kozlowski=
-@linaro.org/
-> > which is a part of top-level schema or add a new one. The new one will
-> > duplicate the compatibles and parts from that one there, so maybe bette=
-r
-> > to keep it in top-level?
-> >
-> > I am not sure, any suggestions are welcome. Also platform/architecture
-> > maintainers might have their preference to organize it.
->
-> I am also not sure.
->
-> >
-> > Anyway, you did not Cc the actual platform maintainers (Rafa=C5=82 and =
-Hauke).
->
-> True, sorry for the inconvenience. Added now to CC list.
->
-> >
-> > >
-> > > Can the top level compatible string be used in some way to filter thi=
-s
-> > > easily from this new 'brcm,bmips-cpus.yaml'
-> >
-> > Yes. If schema matches the top level compatible, then in allOf:if:then
-> > you can add restriction to disallow it for other variants:
-> >
-> > For example:
-> > https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/=
-bindings/example-schema.yaml#L212
-> >
-> > https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/=
-bindings/mfd/google,cros-ec.yaml#L152
->
-> Thanks for the clue.
->
-> I'll try to do some tests and come back here later :)
+--9hXad1v1HaqKVtDZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-How about this?
+Add initial support for ROHM/Kionix kx022a accelerometer
 
-# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-%YAML 1.2
+This series is not ready for being merged as such. The first two patches
+in the series (the new regulator devm interfaces) are already merged to
+Mark's tree but have not yet found their way to the mainline. This is
+the reason I marked series as RFC. You can also skip the reviewing of
+first two patches as they are there just to make the series compile on
+top of the v6.0-rc4. I will re-spin the series without the patches 0001
+and 0002 and drop the RFC tag when the v6.1-rc1 is out.
+
+About the HW:
+KX022A accelerometer is a sensor which:
+	- supports G-ranges of (+/-) 2, 4, 8, and 16G
+	- can be connected to I2C or SPI
+	- has internal HW FIFO buffer
+	- supports various ODRs (output data rates)
+	- support detecting special events like double tap or motion
+	- can be configured to wake-up system when events are detected.
+
+About the series:
+
+This series adds support for only getting the accelerometer data and
+configuring the G-range / ODR via IIO. Motion detection or double-tap
+detection are not supported by the series. The other quite important but
+still missing piece is the runtime PM. Nevertheless, the driver should be
+usable and brings the basic support for getting accelerometer data.
+
 ---
-$id: http://devicetree.org/schemas/mips/brcm/brcm,bmips-cpus.yaml#
-$schema: http://devicetree.org/meta-schemas/core.yaml#
 
-title: BMIPS CPUs bindings
+Matti Vaittinen (5):
+  regulator: Add devm helpers for get and enable
+  regulator: Add devm helpers for get and enable
+  dt-bindings: iio: Add KX022A accelerometer
+  iio: accel: Support Kionix/ROHM KX022A accelerometer
+  MAINTAINERS: Add KX022A maintainer entry
 
-maintainers:
-  - Hauke Mehrtens <hauke@hauke-m.de>
-  - Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com>
+ .../bindings/iio/accel/kionix,kx022a.yaml     |   58 +
+ MAINTAINERS                                   |    5 +
+ drivers/iio/accel/Kconfig                     |   23 +
+ drivers/iio/accel/Makefile                    |    3 +
+ drivers/iio/accel/kionix-kx022a-i2c.c         |   52 +
+ drivers/iio/accel/kionix-kx022a-spi.c         |   50 +
+ drivers/iio/accel/kionix-kx022a.c             | 1149 +++++++++++++++++
+ drivers/iio/accel/kionix-kx022a.h             |   76 ++
+ drivers/regulator/devres.c                    |  164 +++
+ include/linux/regulator/consumer.h            |   27 +
+ 10 files changed, 1607 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/kionix,kx02=
+2a.yaml
+ create mode 100644 drivers/iio/accel/kionix-kx022a-i2c.c
+ create mode 100644 drivers/iio/accel/kionix-kx022a-spi.c
+ create mode 100644 drivers/iio/accel/kionix-kx022a.c
+ create mode 100644 drivers/iio/accel/kionix-kx022a.h
 
-description: |
-  The device tree allows to describe the layout of BMIPS CPUs.
-
-properties:
-  $nodename:
-    const: "/"
-
-  compatible:
-    enum:
-      - "brcm,bcm3368"
-      - "brcm,bcm3384"
-      - "brcm,bcm33843"
-      - "brcm,bcm3384-viper"
-      - "brcm,bcm33843-viper"
-      - "brcm,bcm6328"
-      - "brcm,bcm6358"
-      - "brcm,bcm6362"
-      - "brcm,bcm6368"
-      - "brcm,bcm63168"
-      - "brcm,bcm63268"
-      - "brcm,bcm7125"
-      - "brcm,bcm7346"
-      - "brcm,bcm7358"
-      - "brcm,bcm7360"
-      - "brcm,bcm7362"
-      - "brcm,bcm7420"
-      - "brcm,bcm7425"
-
-  cpus:
-    type: object
-    additionalProperties: true
-    properties:
-      '#address-cells':
-        const: 1
-
-      '#size-cells':
-        const: 0
-
-      mips-hpt-frequency:
-        description: This is common to all CPUs in the system so it lives
-          under the "cpus" node.
-        $ref: /schemas/types.yaml#/definitions/uint32
-
-    required:
-      - '#address-cells'
-      - '#size-cells'
-
-    allOf:
-      - if:
-          properties:
-            compatible:
-              contains:
-                enum:
-                  - "brcm,bcm3368"
-                  - "brcm,bcm3384"
-                  - "brcm,bcm33843"
-                  - "brcm,bcm3384-viper"
-                  - "brcm,bcm33843-viper"
-                  - "brcm,bcm6328"
-                  - "brcm,bcm6358"
-                  - "brcm,bcm6362"
-                  - "brcm,bcm6368"
-                  - "brcm,bcm63168"
-                  - "brcm,bcm63268"
-                  - "brcm,bcm7125"
-                  - "brcm,bcm7346"
-                  - "brcm,bcm7358"
-                  - "brcm,bcm7360"
-                  - "brcm,bcm7362"
-                  - "brcm,bcm7420"
-                  - "brcm,bcm7425"
-        then:
-          required:
-            - mips-hpt-frequency
-
-additionalProperties: true
-
-examples:
-  - |
-     / {
-         #address-cells =3D <1>;
-         #size-cells =3D <1>;
-         compatible =3D "brcm,bcm3368";
-
-         cpus {
-           #address-cells =3D <1>;
-           #size-cells =3D <0>;
-
-           mips-hpt-frequency =3D <150000000>;
-
-           cpu@0 {
-             compatible =3D "brcm,bmips4350";
-             device_type =3D "cpu";
-             reg =3D <0>;
-           };
-
-           cpu@1 {
-             compatible =3D "brcm,bmips4350";
-             device_type =3D "cpu";
-             reg =3D <1>;
-           };
-         };
-       };
-
-This seems to work as expected with this node:
-
- make dt_binding_check
-DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mips/brcm/brcm,bmips-cp=
-us.yaml
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  DTEX    Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.examp=
-le.dts
-  DTC     Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.examp=
-le.dtb
-  CHECK   Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.examp=
-le.dtb
-/home/sergio/GNUBEE-SERGIO-TEST/linux/Documentation/devicetree/bindings/mip=
-s/brcm/brcm,bmips-cpus.example.dtb:
-/: 'model' is a required property
-From schema: /home/sergio/.local/lib/python3.8/site-packages/dtschema/schem=
-as/root-node.yaml
-
-If I remove the property from the CPU nodes I get:
-
-make dt_binding_check
-DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mips/brcm/brcm,bmips-cp=
-us.yaml
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  DTEX    Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.examp=
-le.dts
-  DTC     Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.examp=
-le.dtb
-  CHECK   Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.examp=
-le.dtb
-/home/sergio/GNUBEE-SERGIO-TEST/linux/Documentation/devicetree/bindings/mip=
-s/brcm/brcm,bmips-cpus.example.dtb:
-/: cpus: 'mips-hpt-frequency' is a required property
-From schema: /home/sergio/GNUBEE-SERGIO-TEST/linux/Documentation/devicetree=
-/bindings/mips/brcm/brcm,bmips-cpus.yaml
-/home/sergio/GNUBEE-SERGIO-TEST/linux/Documentation/devicetree/bindings/mip=
-s/brcm/brcm,bmips-cpus.example.dtb:
-/: 'model' is a required property
-From schema: /home/sergio/.local/lib/python3.8/site-packages/dtschema/schem=
-as/root-node.yaml
-
-And if I change the top level compatible it does not complain also:
-
-make dt_binding_check
-DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mips/brcm/brcm,bmips-cp=
-us.yaml
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  DTEX    Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.examp=
-le.dts
-  DTC     Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.examp=
-le.dtb
-  CHECK   Documentation/devicetree/bindings/mips/brcm/brcm,bmips-cpus.examp=
-le.dtb
-/home/sergio/GNUBEE-SERGIO-TEST/linux/Documentation/devicetree/bindings/mip=
-s/brcm/brcm,bmips-cpus.example.dtb:
-/: 'model' is a required property
-
-However, the root-node schema requires 'model' as property and there
-is no model at all in any real DTS file. I don't know if can be added
-only in this sample to avoid the check fail.
-
-Thanks,
-    Sergio Paracuellos
+--=20
+2.37.1
 
 
->
-> Thanks,
->     Sergio Paracuellos
-> >
-> >
-> > Best regards,
-> > Krzysztof
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--9hXad1v1HaqKVtDZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmMq+A4ACgkQeFA3/03a
+ocVaCAgAhJI49AH0X8URK5kL0bqsz/aV47yH/+4E1sHpPojIK5Qz97XKjTadAvoj
+HUQevMG6/iyS3N5m36I0pDDTBiH9f1I8koBkX9hdB1LBeh9ST6aDuhUsqOpFa3yO
+p0gsgJ67Gjo7JGnl662dJkqKkKcr/se2fljbXgLSdcfYmPdOFM/YSqMrdp5sAgoZ
+kG/9DN40wcvn+Tv/ri5b7XYCui7IqH4hX8H8GGeWnHEUUDrAlb9ugJLltD0Vf5Kf
+Vm5R8TlMtcXkQli1dEaNaEKkgIEhp8oL3I1+SJFCV+KQ0U+4g42C8be6l6VUXLXd
+dTv3C8aUWJg8x8Ge0Fv8H8oVE/AwPA==
+=Mpuz
+-----END PGP SIGNATURE-----
+
+--9hXad1v1HaqKVtDZ--
