@@ -2,99 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E11265C0101
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 17:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 003735C01D8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 17:41:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbiIUPVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 11:21:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56008 "EHLO
+        id S231501AbiIUPlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 11:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbiIUPVX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 11:21:23 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EDAE8A1EE
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:21:22 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id j16so9816853lfg.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:21:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=zI0sKx0UEe070AULJ8R4m4a1MrYM/4BsYHYlCT/MqDc=;
-        b=cJpHA3s+9m7nhbi6PP2RsS0p1UHF9JMHzerR2N2SehVm13m7h2K0WbYjd/O3LTB0ZO
-         T3Y6YwcSQMw89WbKxxSCLyXR2o4FRtC3bngAOkSFUEd/X72nv/VfU68ZXsVTkWKJlTW+
-         6JcbiNn65X1e1dPAI/KAUDNNm2Un1+/A0G7QTTLAezSXqFWa4VOOeg+yEluuXeEmpAKU
-         rdvFz9YNDgO5Yz70uPRSI15vg3zGUqbSNEDVXWZcsnh6V5R61iPaxAyv8lgqNP7184rv
-         7m0120wsh8ffjiF6VDqIPCNlN/wqDhIu6/Vz2Z++EY1Sph3wL90Tjxc1AosbRqxw1z7o
-         pFng==
+        with ESMTP id S230526AbiIUPkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 11:40:43 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F7BA21B5
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:39:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1663774743;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=7+IfXo3QneUTvZNphDXYsfYPPsR08u+bVDwtrNeIpao=;
+        b=ETuq8bGKqbkiMH+XXQKPeUt2oUUbOhSww6uJSoD+kr7lRZ0yzUc9tCfePM2M3vw3alT56q
+        AUTe5wIAxrRYHreUgQC1Bq0xf20LsCx7oiiLKP7rTkr+/3tujwJJNAVQksNDJQbbyqOy+Q
+        5NdQSiweq86iWfTrFo3axic7S9/2AaA=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-594-j33WpXgCOXOBk1E5__PthQ-1; Wed, 21 Sep 2022 11:33:00 -0400
+X-MC-Unique: j33WpXgCOXOBk1E5__PthQ-1
+Received: by mail-qt1-f198.google.com with SMTP id u9-20020a05622a14c900b0035cc7e8cbaeso4415084qtx.19
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:33:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=zI0sKx0UEe070AULJ8R4m4a1MrYM/4BsYHYlCT/MqDc=;
-        b=MzFl+eVowrf3xhxlTrLBs+eI2VN0DJj5JvfazdkfgxRhdbR9AZf1n0NzpJ9ZJn/WWq
-         dcUQsDhLhG4btle+jNK0lxO1THOmySAcYZxrGAQqRpPtWdGoN2U02Mgt/0X7eMZYXlEg
-         KRdbds2BQ017XV1vN6UKG2L5qk6wvqk5vHTKXgVAQ+isF7fWX8qiuFrgP1jJYFW4Vyul
-         HBwfH8SliLsIwUpnkgR1inh6uW9YmJv+6aY190ppc1EKHjKUcgw/yhnqzpr/+yl+obpi
-         DKyONnUD43WhyPyJvXj58F8Nu48E0AgqO1ZVXbJD4T6X26MVErQJ1NLXeoGmh1+cCm5b
-         ZoBA==
-X-Gm-Message-State: ACrzQf0wzeVzcRzl9LeLxg4HzB6YV1gyddpNIHL0PkAMjKqMkhy1lsU5
-        OFDYBqf6kkehAb+QtLQkIzm2HQ==
-X-Google-Smtp-Source: AMsMyM5zbaCqzr/X1NNpLsOEjtmsn9LzPWp7Wz7OdNu9TNboh35NIhcQftkiqlUccdhVDxxxRz8CmA==
-X-Received: by 2002:a05:6512:310:b0:496:a0ca:1613 with SMTP id t16-20020a056512031000b00496a0ca1613mr11289260lfp.394.1663773680473;
-        Wed, 21 Sep 2022 08:21:20 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s10-20020a056512202a00b0049a148eb003sm471778lfs.178.2022.09.21.08.21.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 08:21:19 -0700 (PDT)
-Message-ID: <ff2ee392-0f78-37d4-56b5-443e6e998443@linaro.org>
-Date:   Wed, 21 Sep 2022 17:21:19 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=7+IfXo3QneUTvZNphDXYsfYPPsR08u+bVDwtrNeIpao=;
+        b=EJDQ/iNZ/vTdFciXUdw88uqgkXrbBUbc/5JSLLpk/D18sKnTPLWGLmjkE0eP7/vjwx
+         b5IXM4hBSppmWMQ9ZYo9aI7ZCKs9/SxDuordSd29JOKWlQKNub9xYu6N9bt4aJRi3PfJ
+         M2GGXysmTF/1iWaVAcbyvSeS5mfv2q9jPYZf+pR/gleFcGUaukp5+FwIrnZ6fVUwaxMO
+         a+uGLOl+flJUbN6FJ0ZRJdZYvYZ9HlMWjSSUQ+nnyJtTW7bCYM2K0oeTMBG/2JF5/G20
+         9p4/4qjoFMvc4dDHAdyXURhEECbmQOxE0YkSqBRQ+O7G86KBIar4tJw20XcgeDfBb3KV
+         CflQ==
+X-Gm-Message-State: ACrzQf00HOrtsE/IIO68ebT5LhVHOrR43ur81ztjKcI5MjeHGyyoFQbn
+        1EVgEIOhfP6NaATj+2Mqk3dmNqEGyALLoboBSTa5UIxQma65k2hiapZlZmFYB9BWoqUy+5ThACT
+        /M0fuUQzxaw3B+T6+MiVNoQ==
+X-Received: by 2002:ac8:5895:0:b0:35c:bd1e:aed2 with SMTP id t21-20020ac85895000000b0035cbd1eaed2mr24073971qta.618.1663774380014;
+        Wed, 21 Sep 2022 08:33:00 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM5x+IR5tky7En11b9XPJIO6r4GWLMl+xjgqJY4mIPE+hIi/vN1wx8EqtfecainIssiPt2yGDw==
+X-Received: by 2002:ac8:5895:0:b0:35c:bd1e:aed2 with SMTP id t21-20020ac85895000000b0035cbd1eaed2mr24073961qta.618.1663774379812;
+        Wed, 21 Sep 2022 08:32:59 -0700 (PDT)
+Received: from halaneylaptop.redhat.com ([2600:1700:1ff0:d0e0::46])
+        by smtp.gmail.com with ESMTPSA id u15-20020a05620a0c4f00b006cf19068261sm2100324qki.116.2022.09.21.08.32.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Sep 2022 08:32:59 -0700 (PDT)
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andrew Halaney <ahalaney@redhat.com>
+Subject: [PATCH] dt-bindings: clocks: qcom,gcc-sc8280xp: Fix typos
+Date:   Wed, 21 Sep 2022 10:31:56 -0500
+Message-Id: <20220921153155.279182-1-ahalaney@redhat.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH V2 2/3] dt-bindings: display: panel: Add NewVision NV3051D
- bindings
-Content-Language: en-US
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        daniel@ffwll.ch, airlied@linux.ie, sam@ravnborg.org,
-        thierry.reding@gmail.com
-References: <20220920145905.20595-1-macroalpha82@gmail.com>
- <20220920145905.20595-3-macroalpha82@gmail.com>
- <e5de0c74-3ece-56c6-6c31-042e1117c10a@linaro.org>
- <SN6PR06MB534220AB227AA3BC5DB58741A54F9@SN6PR06MB5342.namprd06.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SN6PR06MB534220AB227AA3BC5DB58741A54F9@SN6PR06MB5342.namprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 16:38, Chris Morgan wrote:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - anbernic,rg353p-panel
->>
->> Are these vendor prefixs documented?
-> 
-> Yes, they are in another patch series referenced in the cover letter.
-> They were added for the Anbernic devicetrees and should (I believe)
-> land in 6.1.
+pipegmux and SuperSpeed are the proper spelling for those terms.
 
-OK... you still need to test your bindings. Your patch was clearly not
-tested before sending. :(
+Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+---
+ .../devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml          | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
+index e33dea86fb9e..b1bf768530a3 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sc8280xp.yaml
+@@ -33,7 +33,7 @@ properties:
+       - description: Primary USB SuperSpeed pipe clock
+       - description: USB4 PHY pipegmux clock source
+       - description: USB4 PHY DP gmux clock source
+-      - description: USB4 PHY sys piegmux clock source
++      - description: USB4 PHY sys pipegmux clock source
+       - description: USB4 PHY PCIe pipe clock
+       - description: USB4 PHY router max pipe clock
+       - description: Primary USB4 RX0 clock
+@@ -46,7 +46,7 @@ properties:
+       - description: Second USB4 PHY router max pipe clock
+       - description: Secondary USB4 RX0 clock
+       - description: Secondary USB4 RX1 clock
+-      - description: Multiport USB first SupserSpeed pipe clock
++      - description: Multiport USB first SuperSpeed pipe clock
+       - description: Multiport USB second SuperSpeed pipe clock
+       - description: PCIe 2a pipe clock
+       - description: PCIe 2b pipe clock
+-- 
+2.37.3
 
