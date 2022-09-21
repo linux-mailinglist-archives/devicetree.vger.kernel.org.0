@@ -2,161 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08C935BFC9E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 12:55:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CF85BFCA2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 12:56:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbiIUKzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 06:55:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38074 "EHLO
+        id S229996AbiIUK4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 06:56:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbiIUKzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 06:55:38 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73A3990186;
-        Wed, 21 Sep 2022 03:55:37 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 874626602028;
-        Wed, 21 Sep 2022 11:55:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663757736;
-        bh=9ajDDjf4XIDJ5mfE/Ipbc+msyJHbTMeaxbL2UlQiUpo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=EelxG/lbMgLGqVhHOXY9iMKIoKj0+8g2oA2/04MqRuA+GZqvKcionDPdLdI7ftcBn
-         zFgGYu/xluP4hNHAnta2eIl4iglNpjIfi/lRg98OkwsjP1M29/49T4NxIiI9oMKJXw
-         LJ2741FYnxzNeUbycBCP+5H2ipdQ2G73MJF72kNbSu+Xa3nMUYHIH5SkjSqfQxkMBf
-         MW2G8d0BCpyASLjAYm6eR/weITAl72bAwmSuGRiQucpHSEctmrTluqfA/SdQ16XLlm
-         ya31QFweHxLpOp3sfoHGjwxtCjR8tRBR069YxAYZFaffi8moW0RQFoSwy//SqP9XR0
-         bkHCTuaYlyQNw==
-Message-ID: <3cab86eb-2c5d-f6ec-a326-e34e63eabb24@collabora.com>
-Date:   Wed, 21 Sep 2022 12:55:32 +0200
+        with ESMTP id S229785AbiIUK4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 06:56:11 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFDAB8E0E4
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 03:56:10 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id BC5B71C0001; Wed, 21 Sep 2022 12:56:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1663757769;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=RZ510Miqi1t8ZvGMjGG267D8gsXmhJ29AGfIlli8t78=;
+        b=cmbNygxyhPXTArqehTaax/BBhnBuw75nTPfQOC3xRdpz2XKs4x1enUpYa1duDbUReY0Wuc
+        kwgNnozWJzG/yBE3JkM3V0QaJi8brNorYdtMcvBBozn/szSRpG1Ec8vfWBE2lcLqs7QF0G
+        IvqITzyxVJiInXzsFe1f0brpJKKq3OQ=
+Date:   Wed, 21 Sep 2022 12:56:09 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document mmc trigger
+Message-ID: <20220921105609.GB22654@duo.ucw.cz>
+References: <20220217174357.13427-1-marex@denx.de>
+ <YhgHWMU/aV8MLBq+@robh.at.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Combine MediaTek MT67xx pinctrl
- binding docs
-Content-Language: en-US
-To:     yassine.oudjana@gmail.com
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220919170115.94873-1-y.oudjana@protonmail.com>
- <20220919170115.94873-2-y.oudjana@protonmail.com>
- <4c425cf8-f9ca-969c-f8ed-688410bfb922@collabora.com>
- <1860b0ff-5544-5e74-ccfc-beda18824927@linaro.org>
- <YQZJIR.QQOJU0071T1J1@gmail.com>
- <0c2ef56e-5dab-fb79-fead-adb4acef4cc6@collabora.com>
- <H82KIR.LT5P242T2PJ72@gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <H82KIR.LT5P242T2PJ72@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="WYTEVAkct0FjGQmd"
+Content-Disposition: inline
+In-Reply-To: <YhgHWMU/aV8MLBq+@robh.at.kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/09/22 12:24, yassine.oudjana@gmail.com ha scritto:
-> 
-> 
-> On Wed, Sep 21 2022 at 11:45:41 AM +0200, AngeloGioacchino Del Regno 
-> <angelogioacchino.delregno@collabora.com> wrote:
->> Il 21/09/22 11:30, yassine.oudjana@gmail.com ha scritto:
->>>
->>>
->>> On Wed, Sep 21 2022 at 09:11:12 AM +0200, Krzysztof Kozlowski 
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>> On 20/09/2022 10:06, AngeloGioacchino Del Regno wrote:
->>>>>  Il 19/09/22 19:01, Yassine Oudjana ha scritto:
->>>>>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
->>>>>>
->>>>>>  Documents for MT6779, MT6795 and MT6797 that currently exist share
->>>>>>  most properties, and each one has slightly differently worded
->>>>>>  descriptions for those properties. Combine all three documents into
->>>>>>  one common document for all MT67xx SoC pin controllers, picking a few
->>>>>>  parts from each and accounting for differences such as items in reg
->>>>>>  and reg-names properties. Also document the MT6765 pin controller
->>>>>>  which currently has a driver but no DT binding documentation. It should
->>>>>>  be possible to also include bindings for MT8183 and MT8188, but these
->>>>>>  have some additional properties that might complicate things a bit,
->>>>>>  so they are left alone for now.
->>>>>>
->>>>>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>>>>>  ---
->>>>>>    .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 207 ------------------
->>>>>>    .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 176 ---------------
->>>>>>    ...6795.yaml => mediatek,mt67xx-pinctrl.yaml} | 181 +++++++++++----
->>>>>
->>>>>  Hello Yassine,
->>>>>  nice cleanup over here!
->>>>>
->>>>>  There's a catch though: as far as I know, wildcards are not permitted... so you
->>>>>  should, at this point, merge all of these in mediatek,mt6779-pinctrl.yaml 
->>>>> instead.
->>>>>
->>>>>  Before jumping to that, though... Krzysztof, can you please confirm (or deny)?
->>>>
->>>> Wildcards are not allowed in compatibles. In filename wildcards or
->>>> family name could work if they are really going to match the devices. I
->>>> have doubts here. 67xx is quite a lot of different devices, so I am not
->>>> sure this will cover them all.
->>>>
->>>> I would prefer one name (oldest SoC or lowest number).
->>>
->>> Lowest number (and probably oldest too but not sure since mediatek naming 
->>> conventions are a bit weird) currently documented is mt6779, but mt6765 gets 
->>> documented in this patch and mt6735 (this one I know for sure is older than the 
->>> rest) in a following patch, so do I just stick with mt6779 or do I change it in 
->>> the following patches documenting mt6765 and mt6735?
->>>
->>
->> I see the sequence as:
->>
->> 1. You merge mediatek,mt6797-pinctrl.yaml into mediatek,mt6779-pinctrl.yaml; then
-> 
-> And mediatek,pinctrl-mt6795 gets merged here too I assume?
-> 
 
-Yeah sorry about forgetting that one. Anyway, obviously, do one merge operation
-per commit!
+--WYTEVAkct0FjGQmd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu 2022-02-24 16:31:52, Rob Herring wrote:
+> On Thu, 17 Feb 2022 18:43:57 +0100, Marek Vasut wrote:
+> > The mmc subsystem supports triggering leds on card activity, document
+> > the trigger value here. The value is a pattern in this case.
+> >=20
+> > Signed-off-by: Marek Vasut <marex@denx.de>
+> > Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> > Cc: Pavel Machek <pavel@ucw.cz>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > To: linux-leds@vger.kernel.org
+> > ---
+> > V2: Rebase on next-20220217
+> > ---
+> >  .../devicetree/bindings/leds/common.yaml      | 39 ++++++++++---------
+> >  1 file changed, 21 insertions(+), 18 deletions(-)
+> >=20
+>=20
+> Reviewed-by: Rob Herring <robh@ke
 
->> 2. Adding MT6765 documentation to mediatek,mt6779-pinctrl.yaml; then
->> 3. Adding support for MT6735, documentation goes again to 6779-pinctrl.
->>
->> This means that you're working with mediatek,mt6779-pinctrl.yaml :-)
->>
->> P.S.: That was also a suggestion about how to split things per-commit!
->>
->> Cheers,
->> Angelo
->>
->>> Thanks,
->>> Yassine
->>>
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>
->>>
->>
-> 
-> 
+Thanks, applied.
 
+best regards,
+							Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
 
+--WYTEVAkct0FjGQmd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYyrtyQAKCRAw5/Bqldv6
+8hbNAKCw8a/vtzNckXoFYURpWSr5DN896gCeMUUzkfBp+RIOzoUjyYla3Ij6SrY=
+=vkGG
+-----END PGP SIGNATURE-----
+
+--WYTEVAkct0FjGQmd--
