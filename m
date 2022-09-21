@@ -2,227 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE2915C04B0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 18:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58A965C0548
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 19:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231687AbiIUQwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 12:52:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34196 "EHLO
+        id S230424AbiIUR35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 13:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231715AbiIUQwD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 12:52:03 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26A112BD4;
-        Wed, 21 Sep 2022 09:47:25 -0700 (PDT)
-X-UUID: bf5d6c1f19ab4f1a859ed31f237b4d29-20220922
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=F2F19Vqk4oTeChl6tfimZoIWmEP62hPQK3JzSGtep98=;
-        b=E23Y54WTmCJxlqA2sbjDdjVOBjkFNYOsyc6SGBohpKvB6kBQQTvZNZamFOj/mu10XuYvacBRTO21XWRe3TABiZKHpoW672hyp2CDecSJvwr6QFg8QdgclKjlAtbXcR6v9zXQu5h3mTfG59VAAxjZSqeK9Ijq7B0mKtYVShnO8yc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:decbf236-6c9c-49ab-bf0b-b12fdd3828e0,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:a961705e-5ed4-4e28-8b00-66ed9f042fbd,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: bf5d6c1f19ab4f1a859ed31f237b4d29-20220922
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1851693329; Thu, 22 Sep 2022 00:47:19 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 22 Sep 2022 00:47:17 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 22 Sep 2022 00:47:17 +0800
-Message-ID: <4c9c9ad5b5ab8ce88c28c01832195d196b1ef964.camel@mediatek.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: arm: mediatek: mmsys: change
- compatible for MT8195
-From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S229691AbiIUR34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 13:29:56 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE1567EFEE;
+        Wed, 21 Sep 2022 10:29:51 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3BF562B3;
+        Wed, 21 Sep 2022 19:29:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1663781389;
+        bh=xPqHUNUFG+tIvsP/BcL8a2dVocDkJmX1/1xwEyvJHwU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=U8y/mjr2jud/ZjWrTt73gyYEqC8uMIQDNaWQFlbo/D/XfFcTfhzFwbzaHzWc+m7lG
+         mEXQqzHxzLc/HR00fLFyeJHlcLEE4i1sBQOya2wc9fK5uIqB9sLYyZ4j1ZmV1L2rpA
+         SrLQopUnBYvQDo91oTG8k1g7w4nPtSDMApvmv9D0=
+Date:   Wed, 21 Sep 2022 20:29:34 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 22 Sep 2022 00:47:17 +0800
-In-Reply-To: <29a06da0-ddf5-15eb-ac3d-0bc2e0006ae9@linaro.org>
-References: <20220920140145.19973-1-jason-jh.lin@mediatek.com>
-         <20220920140145.19973-2-jason-jh.lin@mediatek.com>
-         <65c93c5d-941a-267b-408d-95be83dc2454@linaro.org>
-         <8fba20bf37326504b871fb55ce171cd37720a9a0.camel@mediatek.com>
-         <29a06da0-ddf5-15eb-ac3d-0bc2e0006ae9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 2/4] media: dt-bindings: Document Renesas RZ/G2L CRU
+ block
+Message-ID: <YytJ/oJK9s2mfqPL@pendragon.ideasonboard.com>
+References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <29d456ed-620c-8dc9-01f0-54f96b670b94@linaro.org>
+ <YysHAkWBfTTAJF3E@pendragon.ideasonboard.com>
+ <ba436dd5-2ea2-b2e0-7056-5bae6b4c7bb4@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,
-        URIBL_CSS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ba436dd5-2ea2-b2e0-7056-5bae6b4c7bb4@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-09-21 at 08:28 +0200, Krzysztof Kozlowski wrote:
-> On 21/09/2022 06:16, Jason-JH Lin wrote:
-> > Hi Krzysztof,
+On Wed, Sep 21, 2022 at 05:51:29PM +0200, Krzysztof Kozlowski wrote:
+> On 21/09/2022 14:43, Laurent Pinchart wrote:
+> > On Thu, Sep 08, 2022 at 01:40:39PM +0200, Krzysztof Kozlowski wrote:
+> >> On 06/09/2022 01:04, Lad Prabhakar wrote:
+> >>> Document the CRU block found on Renesas RZ/G2L (and alike) SoCs.
+> >>>
+> >>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >>> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> >>
+> >> Thank you for your patch. There is something to discuss/improve.
+> >>
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    items:
+> >>> +      - enum:
+> >>> +          - renesas,r9a07g044-cru       # RZ/G2{L,LC}
+> >>> +          - renesas,r9a07g054-cru       # RZ/V2L
+> >>> +      - const: renesas,rzg2l-cru
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  interrupts:
+> >>> +    maxItems: 3
+> >>> +
+> >>> +  interrupt-names:
+> >>> +    items:
+> >>> +      - const: image_conv
+> >>> +      - const: image_conv_err
+> >>> +      - const: axi_mst_err
+> >>> +
+> >>> +  clocks:
+> >>> +    items:
+> >>> +      - description: CRU Main clock
+> >>> +      - description: CPU Register access clock
+> >>> +      - description: CRU image transfer clock
+> >>> +
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: vclk
+> >>> +      - const: pclk
+> >>> +      - const: aclk
+> >>
+> >> Drop the "clk" suffixes. Remaining names could be made a bit more readable.
 > > 
-> > Thanks for the reviews.
-> > 
-> > On Tue, 2022-09-20 at 17:25 +0200, Krzysztof Kozlowski wrote:
-> > > On 20/09/2022 16:01, Jason-JH.Lin wrote:
-> > > > For previous MediaTek SoCs, such as MT8173, there are 2 display
-> > > > HW
-> > > > pipelines binding to 1 mmsys with the same power domain, the
-> > > > same
-> > > > clock driver and the same mediatek-drm driver.
-> > > > 
-> > > > For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines
-> > > > binding
-> > > > to
-> > > > 2 different power domains, different clock drivers and
-> > > > different
-> > > > mediatek-drm drivers.
-> > > > 
-> > > > Moreover, Hardware pipeline of VDOSYS0 has these components:
-> > > > COLOR,
-> > > > CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture
-> > > > Quality)
-> > > > and they makes VDOSYS0 supports PQ function while they are not
-> > > > including in VDOSYS1.
-> > > > 
-> > > > Hardware pipeline of VDOSYS1 has the component ETHDR (HDR
-> > > > related
-> > > > component). It makes VDOSYS1 supports the HDR function while
-> > > > it's
-> > > > not
-> > > > including in VDOSYS0.
-> > > > 
-> > > > To summarize0:
-> > > > Only VDOSYS0 can support PQ adjustment.
-> > > > Only VDOSYS1 can support HDR adjustment.
-> > > > 
-> > > > Therefore, we need to separate these two different mmsys
-> > > > hardwares
-> > > > to
-> > > > 2 different compatibles for MT8195.
-> > > > 
-> > > > Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add
-> > > > mt8195
-> > > > SoC binding")
-> > > > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> > > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > > > ---
-> > > >  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml      
-> > > > | 4
-> > > > ++++
-> > > >  1 file changed, 4 insertions(+)
-> > > > 
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > index 6ad023eec193..df9184b6772c 100644
-> > > > ---
-> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > +++
-> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > @@ -38,6 +38,10 @@ properties:
-> > > >            - const: mediatek,mt7623-mmsys
-> > > >            - const: mediatek,mt2701-mmsys
-> > > >            - const: syscon
-> > > > +      - items:
-> > > > +          - const: mediatek,mt8195-vdosys0
-> > > > +          - const: mediatek,mt8195-mmsys
-> > > > +          - const: syscon
-> > > 
-> > > and why mediatek,mt8195-mmsys is kept as non-deprecated?
-> > 
-> > Shouldn't we keep this for fallback compatible?
+> > These names come from the documentation, isn't it better to match the
+> > datasheet ?
 > 
-> I am not talking about it.
+> If datasheet calls it "vclk_really_clk_it_is_clk_clk", it's not the
+> reason to use it. :)
 > 
-> > 
-> > I think this items could support the device node like:
-> > foo {
-> >   compatible = "mediatek,mt8195-vdosys0", "mediatek,mt8195-mmsys", 
-> > 	       "syscon";
-> > }
-> > 
+> The "clk" is redundant even if the hardware engineer thought different.
 > 
-> Yes, this one ok.
-> 
-> > 
-> > Or should I change the items like this?
-> > - items:
-> >     - const: mediatek,mt8195-vdosys0
-> >     - enum:
-> >         - mediatek,mt8195-mmsys
-> >     - const: syscon
-> > 
-> 
-> No, this does not look correct.
+> The same for IRQs ("tx" not "txirq"), for dmas ("tx" not "txdma").
 
-OK, I'll keep this one:
-- items:
-    - const: mediatek,mt8195-vdosys0
-    - const: mediatek,mt8195-mmsys
-    - const: syscon
+I'd argue that naming clocks "v", "p" and "a" would be less readable and
+more confusing. Is this a new rule ?
 
-Thanks for the reviews.
-
-> 
-> I asked why do you keep old mediatek,mt8195-mmsys compatible in the
-> same
-> place (the alone one), without making it deprecated?
-
- - items:
-          - enum:
-              - mediatek,mt2701-mmsys
-              - mediatek,mt2712-mmsys
-              - mediatek,mt6765-mmsys
-              - mediatek,mt6779-mmsys
-              - mediatek,mt6797-mmsys
-              - mediatek,mt8167-mmsys
-              - mediatek,mt8173-mmsys
-              - mediatek,mt8183-mmsys
-              - mediatek,mt8186-mmsys
-              - mediatek,mt8192-mmsys
-              - mediatek,mt8195-mmsys
-Do you mean this one can be deprecated?
-I'm not sure if I should keep this after adding the new item.
-If so, I can remove this at the next version.
-
-              - mediatek,mt8365-mmsys
-          - const: syscon
-
-Regards,
-Jason-JH.Lin
-
-> 
-> Best regards,
-> Krzysztof
 -- 
-Jason-JH Lin <jason-jh.lin@mediatek.com>
+Regards,
 
+Laurent Pinchart
