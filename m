@@ -2,141 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A1C45BFBA3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6799B5BFBBD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:55:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbiIUJtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 05:49:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59168 "EHLO
+        id S229804AbiIUJy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 05:54:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232000AbiIUJsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:48:55 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F65397D6B;
-        Wed, 21 Sep 2022 02:46:39 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C7FAC660202C;
-        Wed, 21 Sep 2022 10:45:43 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1663753544;
-        bh=9ji1SJvfdXYebHWHKsGj8bj+sMSEq74pzAp6Nbn4WWM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CQ13WHYIS9frO3QW4TLXbP+zllrNOekCNYslUt32DxeL8LgiWbziNNxXOHW40TnBO
-         XQ8sMohQ/jRnrtvh234ZD1fLlLA+2pQ/3LI+46OCU4017X0ZpySHtGur4hjvy8+8Vk
-         SUJbnwzxy4+xYsuMbFm6Z2nktJsxF3/RM2/0Qhzee7rGywwOeTlLDdPapCez7P0K8s
-         cik6AH29MKZTU8r/gXBYI1/a+14po/EwWVQDGdIWR1Mh3EBODL19MxJz9YNZlF9Hvb
-         PyTpUr4CaziU6zYnWI4ErS5dsPYzyWhwRMQ6gMmaGH7dW5Vra8kpWAoIJPlZGhd4xG
-         JIz+KykszkSsw==
-Message-ID: <0c2ef56e-5dab-fb79-fead-adb4acef4cc6@collabora.com>
-Date:   Wed, 21 Sep 2022 11:45:41 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Combine MediaTek MT67xx pinctrl
- binding docs
-To:     yassine.oudjana@gmail.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S231940AbiIUJxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:53:51 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 276525F80
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:53:01 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id x27so8390863lfu.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:53:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=HybsSNYSRccLavRmMCYeRgEaGHdyFC9lgC0pGHiT8HE=;
+        b=qIaToEIRN1GM5f90fj2sGInjUBethcEg0NFiuKSuFhkPPQSHrnMcFOwsim7maVoBiw
+         GU14VcCnXO45Rd07dTZkQONdVqrtkHQP0LEPg61NjgEJszMH8vMGSqCO2uJLyovd/lyd
+         6jFntX/cHmdRScXa0pHG2ZCCrZ1J448U/gOdjoobqP6Q/2h7aWsRVJmpGsrONG5f0Des
+         JTNlHYY5sxLa6GKa2ZOJ/oV3ZiYX1iZf9ofB3xwS3OrLKWdHocWTTbKVb/wwvNNm9QXy
+         KO7+iUw83jP8xSinebCNpQkFhKReQqcizD9jTiX0vq2MHuUWwGbPbSuZRv9YN7lrlCAL
+         hKwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=HybsSNYSRccLavRmMCYeRgEaGHdyFC9lgC0pGHiT8HE=;
+        b=fO6VPpfW5doIJaYB04XioV5zFxptPrFS3X7K2iYEa3/QB61VideHgEzvVULO8lRS+T
+         G+fV7vZJCvFk85r101RWwWOfj1qT84on5YQWB/y7+kuwk1Cx5bzWEAcAFneWGSmMj8Yd
+         ZrRnfm79Jrx/7gLPRicEzXv5/TLV707c4WJVeLQOi5o4VPlsLzOLtN407gTqWhtXjgDw
+         sl3mNf+bwHntjwnVOZMDfbP4bhgnnB1PYffBxwFmS8h1sgLJHDaVrGLRYeTzx9FvplFN
+         Om2rCBEsnHtxYWDyOjm0nXC5z/fd53fzC/5K+zktCh5Nwm/BdSa4IJ+3mObaq5XV6Qzo
+         hfzg==
+X-Gm-Message-State: ACrzQf38bDy8EhR6K7sq1Ls3KDOMOV+wDfHQ9z9OsnrS7/jK6SgYPrZn
+        o3Dn56CqmCnAvr13L4sXhDKI6Q==
+X-Google-Smtp-Source: AMsMyM76AMjIBJiLGczAVQGoYwviqaeF+80j2ARYXJwH4jcLAjoWE9VCKr/q5bTBgHAYHMYOb0BDhg==
+X-Received: by 2002:ac2:528c:0:b0:49f:53b7:937d with SMTP id q12-20020ac2528c000000b0049f53b7937dmr8884987lfm.5.1663753979489;
+        Wed, 21 Sep 2022 02:52:59 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id i11-20020ac2522b000000b0048a921664e8sm367694lfl.37.2022.09.21.02.52.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Sep 2022 02:52:59 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220919170115.94873-1-y.oudjana@protonmail.com>
- <20220919170115.94873-2-y.oudjana@protonmail.com>
- <4c425cf8-f9ca-969c-f8ed-688410bfb922@collabora.com>
- <1860b0ff-5544-5e74-ccfc-beda18824927@linaro.org>
- <YQZJIR.QQOJU0071T1J1@gmail.com>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <YQZJIR.QQOJU0071T1J1@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] Revert "arm64: dts: qcom: msm8996: add missing TCSR syscon compatible"
+Date:   Wed, 21 Sep 2022 12:52:58 +0300
+Message-Id: <20220921095258.2332568-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/09/22 11:30, yassine.oudjana@gmail.com ha scritto:
-> 
-> 
-> On Wed, Sep 21 2022 at 09:11:12 AM +0200, Krzysztof Kozlowski 
-> <krzysztof.kozlowski@linaro.org> wrote:
->> On 20/09/2022 10:06, AngeloGioacchino Del Regno wrote:
->>>  Il 19/09/22 19:01, Yassine Oudjana ha scritto:
->>>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
->>>>
->>>>  Documents for MT6779, MT6795 and MT6797 that currently exist share
->>>>  most properties, and each one has slightly differently worded
->>>>  descriptions for those properties. Combine all three documents into
->>>>  one common document for all MT67xx SoC pin controllers, picking a few
->>>>  parts from each and accounting for differences such as items in reg
->>>>  and reg-names properties. Also document the MT6765 pin controller
->>>>  which currently has a driver but no DT binding documentation. It should
->>>>  be possible to also include bindings for MT8183 and MT8188, but these
->>>>  have some additional properties that might complicate things a bit,
->>>>  so they are left alone for now.
->>>>
->>>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>>>  ---
->>>>    .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 207 ------------------
->>>>    .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 176 ---------------
->>>>    ...6795.yaml => mediatek,mt67xx-pinctrl.yaml} | 181 +++++++++++----
->>>
->>>  Hello Yassine,
->>>  nice cleanup over here!
->>>
->>>  There's a catch though: as far as I know, wildcards are not permitted... so you
->>>  should, at this point, merge all of these in mediatek,mt6779-pinctrl.yaml instead.
->>>
->>>  Before jumping to that, though... Krzysztof, can you please confirm (or deny)?
->>
->> Wildcards are not allowed in compatibles. In filename wildcards or
->> family name could work if they are really going to match the devices. I
->> have doubts here. 67xx is quite a lot of different devices, so I am not
->> sure this will cover them all.
->>
->> I would prefer one name (oldest SoC or lowest number).
-> 
-> Lowest number (and probably oldest too but not sure since mediatek naming 
-> conventions are a bit weird) currently documented is mt6779, but mt6765 gets 
-> documented in this patch and mt6735 (this one I know for sure is older than the 
-> rest) in a following patch, so do I just stick with mt6779 or do I change it in the 
-> following patches documenting mt6765 and mt6735?
-> 
+This reverts commit 8a99e0fc8bd3 ("arm64: dts: qcom: msm8996: add
+missing TCSR syscon compatible").
 
-I see the sequence as:
+This commit marked the saw3 (syscon@9a10000) node as compatible with
+qcom,tcsr-msm8996. However the mentioned device is not not a TCSR
+(system registers, hardware mutex). It is a CPU power
+controller/regulator, which is currently being handled as a syscon.
 
-1. You merge mediatek,mt6797-pinctrl.yaml into mediatek,mt6779-pinctrl.yaml; then
-2. Adding MT6765 documentation to mediatek,mt6779-pinctrl.yaml; then
-3. Adding support for MT6735, documentation goes again to 6779-pinctrl.
+Fixes: 8a99e0fc8bd3 ("arm64: dts: qcom: msm8996: add missing TCSR syscon compatible")
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This means that you're working with mediatek,mt6779-pinctrl.yaml :-)
-
-P.S.: That was also a suggestion about how to split things per-commit!
-
-Cheers,
-Angelo
-
-> Thanks,
-> Yassine
-> 
->>
->> Best regards,
->> Krzysztof
-> 
-> 
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index c0a2baffa49d..aba717644391 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -3504,7 +3504,7 @@ frame@98c0000 {
+ 		};
+ 
+ 		saw3: syscon@9a10000 {
+-			compatible = "qcom,tcsr-msm8996", "syscon";
++			compatible = "syscon";
+ 			reg = <0x09a10000 0x1000>;
+ 		};
+ 
+-- 
+2.35.1
 
