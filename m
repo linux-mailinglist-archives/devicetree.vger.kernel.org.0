@@ -2,88 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B17A05BFA95
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A56CE5BFA9F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 11:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231501AbiIUJRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 05:17:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50736 "EHLO
+        id S231228AbiIUJTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 05:19:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231564AbiIUJQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:16:41 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B4CF8F95D
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:16:13 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id s10so6200316ljp.5
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 02:16:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=IT6JEcqJI3DFzEaVJ8dSJBsLw90K5SbYBxlXjJR590E=;
-        b=kMnkMAlTVSRXaxa1CyAz/HMUDwRyD9U4BpEaaKikw6N4NJ1iFTDxrhjw7uboupkrL0
-         zLAqxDJlYkGjgglZI03IiCsv0IyUxo7phFVT84BzvEn7iKOn074+lxXiUkazAat0oow/
-         EONLl5dEsYjdj60KoZc/QV9RxDwW3/iLExNf5b8hecUY6iubCGG2mnYeTSZXSs0uastY
-         cR37koVvUkLR0gya6DMODh5PiGYFox50OEWzy+cmdeK2jmK6kBewt2aOucXg21o+NfBR
-         VFKoLyZvhZH9dqwmMF6jAT3sdXE2rBpN3iz0dl+WvfECQmYyjw98SGdzyPedHFawH7Xk
-         C/HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=IT6JEcqJI3DFzEaVJ8dSJBsLw90K5SbYBxlXjJR590E=;
-        b=LHOxZsxQoHSSGaB+I203cKXAa/xeyB4xgboUdBT418yhfmiegvGYfGaNtnm8aNsRP0
-         y1IssqDl8VbiX+y5ShJjZBkNb+M1WgzGkQNuDhtwpXYSO5HAIytQV/dfirW+EvkQKxQk
-         fjQ8l1595BFhfC9xjwKWBe+6/ZWvtjtM9AxPa7AhzXDy9NOUIfaIIU/noP183CRqzYuS
-         +WQxt583ZXw84PNdxYbJoXrlskAN85+byIxDll1uGFBNff14DOqcnFHhA1jeoc7zkJlj
-         H5AuYe4VjkzW73sdvixAk3uFMy3GkxaEhPvQu7uxbepg953C83JQ4u3GFktAI0AJo1GL
-         iG3w==
-X-Gm-Message-State: ACrzQf2WggMtbs0msrLcixIBvLOkWAFeZRzXdouBjPnD2UOyCgjaI4Mo
-        kSWme2VBvhPdCLba+4QzYJ7rVw==
-X-Google-Smtp-Source: AMsMyM6fQd5NKg7ykrHov7EGyXfZT0dNc0fXfDekipf+Hm9POrmEODvkwmJcIv4qRiu8KBlM0SsfVQ==
-X-Received: by 2002:a2e:bd12:0:b0:264:7373:3668 with SMTP id n18-20020a2ebd12000000b0026473733668mr7903000ljq.18.1663751766971;
-        Wed, 21 Sep 2022 02:16:06 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id i26-20020a056512007a00b00498f570aef2sm344276lfo.209.2022.09.21.02.16.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 02:16:06 -0700 (PDT)
-Message-ID: <c5f1b3dc-e407-a7b9-f55b-0683b0e63a62@linaro.org>
-Date:   Wed, 21 Sep 2022 11:16:05 +0200
+        with ESMTP id S231774AbiIUJS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 05:18:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D680F915C8;
+        Wed, 21 Sep 2022 02:18:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 76F72622CA;
+        Wed, 21 Sep 2022 09:17:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1966C433D6;
+        Wed, 21 Sep 2022 09:17:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663751847;
+        bh=U2I2rOq/quTseGcL7DoJKHssxhvKxWZ6qbZ9HMmsUr8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=MMANVzFW/zdQo1U0bB0i/Nms58BzOuxVMG+5x1D4ML5Tkw20Vhw0oUVrTQjQAVnpH
+         BJ/L64eo/6IyMcffKvO8Ewcdt0PxjXDknoj9Waxlk+YNi9HbxabUvz94AI7Uh/Q2nw
+         k+uAwa+VU3/nkKIiJ1s0XMyuVkew6sI3Y6v8oPKyhM9a5Pco0Y+ef4x+B3XMhdlNlQ
+         rmJb9lqBFiH1xd+Tx5aEKPKCK4Nc/GREVndzeN117qo4v7GxTA0+mqPAeww3j1TVWa
+         XBxIzXWfMs+Z7cJqr5iFuw2dqDzVvFRybbHW0l7vMacU/KyMus14VkOW9nWfJGTygp
+         MBf0CaGG0YG2A==
+Message-ID: <eec6e8b9-f39f-425a-4217-9c15b52600af@kernel.org>
+Date:   Wed, 21 Sep 2022 11:17:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v2 0/1] arm64: dts: mediatek: mt8183: disable thermal
- zones without trips.
+Subject: Re: [PATCH v3 0/3] Add watchdog support for MT8188 Soc
 Content-Language: en-US
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Runyang Chen <Runyang.Chen@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
+Cc:     angelogioacchino.delregno@collabora.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        daniel.lezcano@linaro.org
-References: <20220921-mt8183-disables-thermal-zones-up-v2-0-4a31a0b19e1e@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220921-mt8183-disables-thermal-zones-up-v2-0-4a31a0b19e1e@baylibre.com>
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20220920105622.25666-1-Runyang.Chen@mediatek.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220920105622.25666-1-Runyang.Chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-10.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 11:05, Amjad Ouled-Ameur wrote:
-> Thermal zones without trip point are not registered by thermal core.
+On 20/09/2022 12:56, Runyang Chen wrote:
+> From: Runyang Chen <runyang.chen@mediatek.com>
 > 
-> tzts1 ~ tzts6 zones of mt8183 were intially introduced for test-purpose
+> Based on tag: next-20220919, linux-next/master
+> 
+> Refer to the discussion in the link:
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220721014845.19044-2-allen-kh.cheng@mediatek.com/
+> The other wdt compatible strings are unchanged.So, won't apply the
+> series above
+> 
+> v3:
+> Rebase on 6.0-rc5 and add reviewed-by and acked-by tag.
 
-No need for cover letter for single patch.
+If you rebased in, then why do you keep Ccing different address than one
+in scripts/get_maintainers.pl?
 
 Best regards,
 Krzysztof
