@@ -2,147 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 230C95C0323
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 18:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B18D95C03D4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 18:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbiIUQAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 12:00:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55980 "EHLO
+        id S229645AbiIUQOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 12:14:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232271AbiIUP6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 11:58:54 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ABC6A1D17
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:52:32 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id z20so7570060ljq.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:52:32 -0700 (PDT)
+        with ESMTP id S232301AbiIUQN2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 12:13:28 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88E2021A3
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:59:31 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id i26so9919879lfp.11
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 08:59:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=5OG5SisV8+7i2AMwo/Sd4BMGPY2tVr/jGlwWZADlTZw=;
-        b=WxcWk76UCtI4moz+JlBbxvyDthZlRKJfHZICdSLfKoRbEnWODyIrJmNReWY/ekETj5
-         9Y5sxyo4j7/FuchDzZQ+JSgCTleMmfip2kury4TROdHIbQ4tF6kdJ3g9QYOYv7I+XoBU
-         W3LnjqR58xXJtXng2rQXzYX99EoFskQKaqC4vGmXjTreX9wFhY9J3ZYnuOLUQH7klHm7
-         jNSFDJpDpS4OQDSjYlwhBWtuqn1k0Y8LE6lbE1ywlJtushBY2Y6v2/KNSdpoT5UEMWjL
-         VqsBkm+bupHhHMlHdZkQifb3B2iMi3xTTQQd6k276xQap8PzSQl8IJjoPP7ToOqQqOYr
-         bHsw==
+        bh=KUDU0doBWvkSMsSeaP+OU5Myg0FSSIaMLAg/J6BRRrQ=;
+        b=slv4NKCqb/zqgJH7M3nKlgQg7LgbWHoZe5T/pPNeRXbgMm/Qwm1EpZb2Eg1Jj44imN
+         aOa5Z2jYm2HUsJlTUGffkoZY2uH5iN46QV2M9/WHIspQnZkFSzrq/J/A95E0j5u69Un9
+         WgekrImX8IUeP0badlm8CQdb6xr4nqTwSoFYDixJMtgXxxpiPsADqp2Zo87pO1ajmG7j
+         mwYzk0CdwztEBK7XiP8IJ25ILOtCQvPtQ2OuMn/A6UJBfH10AebW3WfFwz6AM+PpVLOf
+         EGug1gt+zgiIptzhs/ifeW479thnyoU/Ql+nl9lU5Jfs9jv0p/qf/UE8pmK1VP37MI7K
+         uq+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=5OG5SisV8+7i2AMwo/Sd4BMGPY2tVr/jGlwWZADlTZw=;
-        b=u51gDg4iSzJXyrqLxH3/rD4Mpi6uAiL08JSk9h/sVcTHDEByDE4wQ7S+t+nhywltg2
-         flifkB9eAOJ9gqYHxP2pV+IVrog243Y2ENTvOHyOvzP+eaCzVnbeO3cUZRIXQX5z/vh4
-         6cL5LwV2nmCwvUSkZ1fZWeM/Rp79Jr4dWD3OEvIUJWKLI/UgAzQYyWKvSDoBjfmUvUjC
-         HMLDHNDTvkFs58Qr+0ZoVejHk01mQ/xY2H5FXV8HpOKva2tp/LQxUWfXkBRF4SgKd7pu
-         wK0ExbJMVCH4ycllJQtALQvPWJP3IeE4zQX1jz3ywohxyp0PXhrTVr8GbVVCulFWmxMz
-         yh5g==
-X-Gm-Message-State: ACrzQf05oFD93CQSfNPqu+Oj0YOCzHfMaZOkLVDiqYtVmLrPNEBx3GbT
-        Ko+bIqh9WAFKZ+0kmsgxI648UYxLrf9AAQ==
-X-Google-Smtp-Source: AMsMyM7DOE0+aiBvnN7Btb1HXRYL1PZdW1uo8lmQH74Kpe8qQiE0hinGQyDTL65vVZvYXcN09FeVPg==
-X-Received: by 2002:a2e:2f03:0:b0:261:cb0e:c329 with SMTP id v3-20020a2e2f03000000b00261cb0ec329mr8602752ljv.106.1663775490874;
-        Wed, 21 Sep 2022 08:51:30 -0700 (PDT)
+        bh=KUDU0doBWvkSMsSeaP+OU5Myg0FSSIaMLAg/J6BRRrQ=;
+        b=KZo36ACE+wDPCujoTXbsECZIB9wgFGrKqxiERKJ8hD7MnUuPYUlkR4iSVsshZ/pnGK
+         fGMCPId+FnaKMAnDZ/x+98AKnPnlYb7hrYBZzu/yVhp0Y7pLLSxDahl237QMZt7qX1UK
+         BdyD6676+xLIR8w2TMBTYjORhrKSPPQhvX2QEr0J9nqrpj1mEr5dyt02ARYFgPKjezRJ
+         tOtMGhrfTgLqdAlavum9eBFnR7oUluPdhHdh8MnAuZMbC5nG7RDUwdetkeR7XCCaxuH/
+         Gksn7rlOOrNo2hv+MLVqPKbsSYNGM8OZ9rJGDFyNIqkjB1jVDk7JColqDdMi23fdGXaB
+         SzSg==
+X-Gm-Message-State: ACrzQf0fEhcHuS58chDe/05g59rn+kK62jAc2Nk0t06SfLI43YZwqOsn
+        5l+lK2Qg0ZscMi3o77Ar0K0hb5vk1M1Flw==
+X-Google-Smtp-Source: AMsMyM75m4N7MPBKvWthG+pu/YTa8pTbMdbwS4u/waTgyPE6eW8LRVa+KHqN6TUHDKl7neUPzVouXg==
+X-Received: by 2002:a05:6512:1153:b0:49e:805:b473 with SMTP id m19-20020a056512115300b0049e0805b473mr10515858lfg.450.1663775881892;
+        Wed, 21 Sep 2022 08:58:01 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o4-20020a198c04000000b0049f54a976efsm492085lfd.29.2022.09.21.08.51.29
+        by smtp.gmail.com with ESMTPSA id h6-20020a19ca46000000b0048b26d4bb64sm494752lfj.40.2022.09.21.08.58.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 08:51:30 -0700 (PDT)
-Message-ID: <ba436dd5-2ea2-b2e0-7056-5bae6b4c7bb4@linaro.org>
-Date:   Wed, 21 Sep 2022 17:51:29 +0200
+        Wed, 21 Sep 2022 08:58:01 -0700 (PDT)
+Message-ID: <24190160-53f2-810d-bd23-c02958517c80@linaro.org>
+Date:   Wed, 21 Sep 2022 17:57:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v2 2/4] media: dt-bindings: Document Renesas RZ/G2L CRU
- block
+Subject: Re: [PATCH V2 2/3] dt-bindings: display: panel: Add NewVision NV3051D
+ bindings
 Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund@ragnatech.se>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220905230406.30801-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <29d456ed-620c-8dc9-01f0-54f96b670b94@linaro.org>
- <YysHAkWBfTTAJF3E@pendragon.ideasonboard.com>
+To:     Chris Morgan <macromorgan@hotmail.com>
+Cc:     Chris Morgan <macroalpha82@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        daniel@ffwll.ch, airlied@linux.ie, sam@ravnborg.org,
+        thierry.reding@gmail.com
+References: <20220920145905.20595-1-macroalpha82@gmail.com>
+ <20220920145905.20595-3-macroalpha82@gmail.com>
+ <e5de0c74-3ece-56c6-6c31-042e1117c10a@linaro.org>
+ <SN6PR06MB534220AB227AA3BC5DB58741A54F9@SN6PR06MB5342.namprd06.prod.outlook.com>
+ <ff2ee392-0f78-37d4-56b5-443e6e998443@linaro.org>
+ <SN6PR06MB53420E8B1245EDFCB7547C69A54F9@SN6PR06MB5342.namprd06.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YysHAkWBfTTAJF3E@pendragon.ideasonboard.com>
+In-Reply-To: <SN6PR06MB53420E8B1245EDFCB7547C69A54F9@SN6PR06MB5342.namprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 14:43, Laurent Pinchart wrote:
-> On Thu, Sep 08, 2022 at 01:40:39PM +0200, Krzysztof Kozlowski wrote:
->> On 06/09/2022 01:04, Lad Prabhakar wrote:
->>> Document the CRU block found on Renesas RZ/G2L (and alike) SoCs.
+On 21/09/2022 17:50, Chris Morgan wrote:
+> On Wed, Sep 21, 2022 at 05:21:19PM +0200, Krzysztof Kozlowski wrote:
+>> On 21/09/2022 16:38, Chris Morgan wrote:
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - enum:
+>>>>> +          - anbernic,rg353p-panel
+>>>>
+>>>> Are these vendor prefixs documented?
 >>>
->>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+>>> Yes, they are in another patch series referenced in the cover letter.
+>>> They were added for the Anbernic devicetrees and should (I believe)
+>>> land in 6.1.
 >>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - renesas,r9a07g044-cru       # RZ/G2{L,LC}
->>> +          - renesas,r9a07g054-cru       # RZ/V2L
->>> +      - const: renesas,rzg2l-cru
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 3
->>> +
->>> +  interrupt-names:
->>> +    items:
->>> +      - const: image_conv
->>> +      - const: image_conv_err
->>> +      - const: axi_mst_err
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: CRU Main clock
->>> +      - description: CPU Register access clock
->>> +      - description: CRU image transfer clock
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: vclk
->>> +      - const: pclk
->>> +      - const: aclk
->>
->> Drop the "clk" suffixes. Remaining names could be made a bit more readable.
+>> OK... you still need to test your bindings. Your patch was clearly not
+>> tested before sending. :(
 > 
-> These names come from the documentation, isn't it better to match the
-> datasheet ?
+> I did: yamllint, make dt_binding_check (with DT_SCHEMA_FILES specified), and
+> make dtbs_check (with DT_SCHEMA_FILES specified again). 
 
-If datasheet calls it "vclk_really_clk_it_is_clk_clk", it's not the
-reason to use it. :)
+I have doubts. So if you say you did it, then you probably did not look
+at the results... or whatever other reason the test was not effective,
+because your binding cannot pass the dt_binding_check.
 
-The "clk" is redundant even if the hardware engineer thought different.
+> That's the proper
+> testing flow correct? In this case it's the pre-requisite that's causing
+> the issue as I see on a pristine master tree I'm warned about the missing
+> vendor prefix for anbernic. Should I wait for that to go upstream before
+> I submit this again?
 
-The same for IRQs ("tx" not "txirq"), for dmas ("tx" not "txdma").
+Not really. The testing fails on wrong compatible in example.
 
 Best regards,
 Krzysztof
