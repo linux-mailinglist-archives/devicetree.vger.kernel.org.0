@@ -2,262 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BAAE5BF75A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D445BF776
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:18:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229942AbiIUHO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:14:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57246 "EHLO
+        id S230079AbiIUHSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:18:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229873AbiIUHO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:14:57 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73F1D25EB7
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:14:55 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id g3so8241901wrq.13
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:14:55 -0700 (PDT)
+        with ESMTP id S229578AbiIUHSd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:18:33 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F945EDEA
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:18:32 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-127d10b4f19so7781974fac.9
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:18:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date;
-        bh=y+SX0O0sFK0RfCFKUk5e5HkLwS7qj6fJY7MYEdssToA=;
-        b=apm7jshLoEYBXPI75Tf8y4MR/NXL0fL9VSSam/7puniDvlDo7d73uthZ5UpxQ9L7ou
-         O+G79+RsG3rF/faM8KWlc48l3lovuOdl6U/AGb2YdD/M42u0zoDWP/e9rPiE07gdtVtc
-         LlSjY+bFoE9KC2mwC518e/fXU2iPFotbk56YbOD6F9D88eshMnrPuhiGTvp2se7ovMS8
-         h6puuTqM5jfA4ptEDbSqGlEc/aYGJ2CQqWvCUPa8IzoEcmNK0pxmZomjvwix7iokEntz
-         LrH+/2cWazCpbEWabBTg/lTsNEKpBseVS8OfQs8TWTcqaJkzS2/+6kMNeKF2664pwjX/
-         /+8g==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=sSbcb2VdV5UdqGpIzG4tkzZkXRTZ5sXj2Y/1FwX61Fo=;
+        b=q5d8RKmG0d49BmQ9YhGWwlyDiERTJO+cSMTx6lyPW7DLGr2+ZVUHQgZkOYREZPSKw5
+         bDJA5GIP7pKxEWuM8HU/3eWaYTX7eN6O4W34q5a6mvIDeEmoMG/OAIc2xIoo0wCec9k9
+         GBYsQve+Oq4MLrubWP2qV3iHHJ6HtUnfNe+tX9JrhhdbC515922DspWuz/gf9Tek8XdP
+         Krfszy6GcGeCeuAq9BYBod4QyEQkibcaQqOEDC9HEVbZAG3NXGm+TVk8TLRDHk12kuYt
+         QdhE2pss/1Nc68owPkvSR4iRXHfwUmJbgyRlGzVIvxabRVWC498ENjylONqKZXVzr/Tm
+         uClw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=y+SX0O0sFK0RfCFKUk5e5HkLwS7qj6fJY7MYEdssToA=;
-        b=FBHefnnsUVYiEfJAOZHv9BLX4gjgMoVsMxLFifhc+pVTXHcOi+C5fMgtYIigsyhVpF
-         jIRr+upNRSbLyBWPJzaBTN4IvpIgKnOrIKc2I29O6sDLC4cWy36cBLQ5zdYak5EG9key
-         Vr9lHl2Nn9V46J70Ib4mjJuUXNLrKnvFg3yv9jb3564YPJOiCh1RH65G2XZXjN0K5799
-         9m+RW09USqCHl65YmQiNVEaW5BfFrzvhIfZeamBxjO5nB1/avkcSzd465RtheszvohQy
-         /K1YtlNsExf4MYB0mFioTN2UgA6aEZgFjUPJZopjpONADDJo8hseeGu6nL4aT02ipXjB
-         4a9A==
-X-Gm-Message-State: ACrzQf0pfX9ooe0kK7uZoq/ZbIG4StM3N/felmfK6/U9/HshdlmGN2/D
-        o24sv3qlP9t1oYBdKH94t4nICw==
-X-Google-Smtp-Source: AMsMyM6GU8QuI762MoyB+GX6M58iW8kKG3Dx7B0Wfj29BxWQh0BlsUPNqAanDdgJLa5YtJbhk4Jyiw==
-X-Received: by 2002:a5d:550c:0:b0:22b:1942:4bf6 with SMTP id b12-20020a5d550c000000b0022b19424bf6mr3558303wrv.520.1663744493986;
-        Wed, 21 Sep 2022 00:14:53 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3? ([2a01:e0a:982:cbb0:8ce3:ff4e:ae9b:55f3])
-        by smtp.gmail.com with ESMTPSA id o28-20020a05600c511c00b003a845fa1edfsm1473724wms.3.2022.09.21.00.14.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 00:14:53 -0700 (PDT)
-Message-ID: <0f1cce61-b2f4-79f0-5432-9a5559e8bf5c@linaro.org>
-Date:   Wed, 21 Sep 2022 09:14:52 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=sSbcb2VdV5UdqGpIzG4tkzZkXRTZ5sXj2Y/1FwX61Fo=;
+        b=pAP7BFpXcdmLbvKuw+erC83P6BobJd9awQxqugcUTqDe9J9Q+/qxuK34fxUpFexPKV
+         8jw+i+WttqI0odAtsxLOw4HjRf4W7FdM/SOtnAuGxQqlus4OjsDHLPGbhHQIFnFMAFZX
+         J7XX2OXHuExl1B6As+N2pUB7zZhDUG1FY2Fnk1cAgYveEircX1suGl0yer8pKrgXKqY3
+         VL+/MOrWoEAZVgmfsr/m1HbKZwBi0f8+GwkDR+/9uDaVVSoMpXP8pIZewaR+P8HNwIH2
+         jw2t01hTchrXAmbJw0p1GxRkYoEzonrgDbumYKfTA/BnnE/E/O6iD2rPPj+mgxroAmAD
+         qkNQ==
+X-Gm-Message-State: ACrzQf0KHLRUa5+xCdyEwWj80xh3S0QUR3HtskgCle1ETEKqXnbB+glM
+        NHsb34Ck74MwkxGKiQ1txfF806DUO8oA7KEDe/4=
+X-Google-Smtp-Source: AMsMyM6aUI5ktqLejDUSZoKwjhtk7PGDZe4Ye9HjEOGtOntBHpmKi2Z50oqPE7zbdfdJxYkHJzPv5YkpE09J3PNrSNs=
+X-Received: by 2002:a05:6870:c0c8:b0:101:b3c3:abc3 with SMTP id
+ e8-20020a056870c0c800b00101b3c3abc3mr4212899oad.144.1663744711841; Wed, 21
+ Sep 2022 00:18:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: msm8998-yoshino: Fix up SMD regulators
- formatting
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20220917041136.526446-1-sergio.paracuellos@gmail.com>
+ <285f80ef-5f5c-e68d-b514-a3e3341841c5@linaro.org> <CAMhs-H92i6vFJWCBrpaQnQzA3-+6_ROb9_+zD4yBMB1FLJoKeQ@mail.gmail.com>
+ <71b50383-0fc3-f834-11e0-8fbc17c123d0@linaro.org> <CAMhs-H-JokHX+XNNE0TQf78ORQbNz2fTd9hfgmv_s6OPT=Wh0w@mail.gmail.com>
+ <c04461c0-e16a-6dcc-4fc0-f6c80263bd71@linaro.org> <CAMhs-H9HX4gmZn-ySWZZdhDiWJPazado=Vp6D1PpyxvV85ACsw@mail.gmail.com>
+ <7436dcff-1648-e5e6-47e3-473ae5839e91@linaro.org>
+In-Reply-To: <7436dcff-1648-e5e6-47e3-473ae5839e91@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 21 Sep 2022 09:18:20 +0200
+Message-ID: <CAMhs-H-TATfafSJzqXFi-Q=AYYWj-EY1tJs-9y7phR-wu4n1Tg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mips: add CPU bindings for MIPS architecture
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220921004741.152765-1-konrad.dybcio@somainline.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro
-In-Reply-To: <20220921004741.152765-1-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 02:47, Konrad Dybcio wrote:
-> Add a new line between each subnode and make the { } consistent.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->   .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 33 ++++++++++++++++++-
->   1 file changed, 32 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-> index d08639082247..862d859af885 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-> @@ -410,131 +410,162 @@ vreg_s3a_1p35: s3 {
->   			regulator-min-microvolt = <1352000>;
->   			regulator-max-microvolt = <1352000>;
->   		};
-> +
->   		vreg_s4a_1p8: s4 {
->   			regulator-min-microvolt = <1800000>;
->   			regulator-max-microvolt = <1800000>;
->   			regulator-system-load = <100000>;
->   			regulator-allow-set-load;
->   		};
-> +
->   		vreg_s5a_2p04: s5 {
->   			regulator-min-microvolt = <1904000>;
->   			regulator-max-microvolt = <2032000>;
->   		};
-> +
->   		vreg_s7a_1p025: s7 {
->   			regulator-min-microvolt = <900000>;
->   			regulator-max-microvolt = <1028000>;
->   		};
-> +
->   		vreg_l1a_0p875: l1 {
->   			regulator-min-microvolt = <880000>;
->   			regulator-max-microvolt = <880000>;
->   			regulator-system-load = <73400>;
->   			regulator-allow-set-load;
->   		};
-> +
->   		vreg_l2a_1p2: l2 {
->   			regulator-min-microvolt = <1200000>;
->   			regulator-max-microvolt = <1200000>;
->   			regulator-system-load = <12560>;
->   			regulator-allow-set-load;
->   		};
-> +
->   		vreg_l3a_1p0: l3 {
->   			regulator-min-microvolt = <1000000>;
->   			regulator-max-microvolt = <1000000>;
->   		};
-> +
->   		vreg_l5a_0p8: l5 {
->   			regulator-min-microvolt = <800000>;
->   			regulator-max-microvolt = <800000>;
->   		};
-> +
->   		vreg_l6a_1p8: l6 {
->   			regulator-min-microvolt = <1800000>;
->   			regulator-max-microvolt = <1800000>;
->   		};
-> +
->   		vreg_l7a_1p8: l7 {
->   			regulator-min-microvolt = <1800000>;
->   			regulator-max-microvolt = <1800000>;
->   		};
-> +
->   		vreg_l8a_1p2: l8 {
->   			regulator-min-microvolt = <1200000>;
->   			regulator-max-microvolt = <1200000>;
->   		};
-> +
->   		vreg_l9a_1p8: l9 {
->   			regulator-min-microvolt = <1808000>;
->   			regulator-max-microvolt = <2960000>;
->   		};
-> +
->   		vreg_l10a_1p8: l10 {
->   			regulator-min-microvolt = <1808000>;
->   			regulator-max-microvolt = <2960000>;
->   		};
-> +
->   		vreg_l11a_1p0: l11 {
->   			regulator-min-microvolt = <1000000>;
->   			regulator-max-microvolt = <1000000>;
->   		};
-> +
->   		vreg_l12a_1p8: l12 {
->   			regulator-min-microvolt = <1800000>;
->   			regulator-max-microvolt = <1800000>;
->   		};
-> +
->   		vreg_l13a_2p95: l13 {
->   			regulator-min-microvolt = <1808000>;
->   			regulator-max-microvolt = <2960000>;
->   			regulator-allow-set-load;
->   		};
-> +
->   		vreg_l14a_1p85: l14 {
->   			regulator-min-microvolt = <1848000>;
->   			regulator-max-microvolt = <1856000>;
->   			regulator-system-load = <32000>;
->   			regulator-allow-set-load;
->   		};
-> +
->   		vreg_l15a_1p8: l15 {
->   			regulator-min-microvolt = <1800000>;
->   			regulator-max-microvolt = <1800000>;
->   		};
-> +
->   		vreg_l16a_2p7: l16 {
->   			regulator-min-microvolt = <2704000>;
->   			regulator-max-microvolt = <2704000>;
->   		};
-> +
->   		vreg_l17a_1p3: l17 {
->   			regulator-min-microvolt = <1304000>;
->   			regulator-max-microvolt = <1304000>;
->   		};
-> -		vreg_l18a_2p85: l18 {};
-> +
-> +		vreg_l18a_2p85: l18 { };
-> +
->   		vreg_l19a_2p7: l19 {
->   			regulator-min-microvolt = <2696000>;
->   			regulator-max-microvolt = <2704000>;
->   		};
-> +
->   		vreg_l20a_2p95: l20 {
->   			regulator-min-microvolt = <2960000>;
->   			regulator-max-microvolt = <2960000>;
->   			regulator-system-load = <10000>;
->   			regulator-allow-set-load;
->   		};
-> +
->   		vreg_l21a_2p95: l21 {
->   			regulator-min-microvolt = <2960000>;
->   			regulator-max-microvolt = <2960000>;
->   			regulator-system-load = <800000>;
->   			regulator-allow-set-load;
->   		};
-> +
->   		vreg_l22a_2p85: l22 { };
-> +
->   		vreg_l23a_3p3: l23 {
->   			regulator-min-microvolt = <3312000>;
->   			regulator-max-microvolt = <3312000>;
->   		};
-> +
->   		vreg_l24a_3p075: l24 {
->   			regulator-min-microvolt = <3088000>;
->   			regulator-max-microvolt = <3088000>;
->   		};
-> +
->   		vreg_l25a_3p3: l25 {
->   			regulator-min-microvolt = <3104000>;
->   			regulator-max-microvolt = <3312000>;
->   		};
-> +
->   		vreg_l26a_1p2: l26 {
->   			regulator-min-microvolt = <1200000>;
->   			regulator-max-microvolt = <1200000>;
->   			regulator-allow-set-load;
->   		};
-> +
->   		vreg_l28_3p0: l28 {
->   			regulator-min-microvolt = <3000000>;
->   			regulator-max-microvolt = <3000000>;
->   		};
-> +
->   		vreg_lvs1a_1p8: lvs1 { };
-> +
->   		vreg_lvs2a_1p8: lvs2 { };
->   	};
->   
+Hi Krzysztof,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Wed, Sep 21, 2022 at 8:42 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/09/2022 07:51, Sergio Paracuellos wrote:
+> > Hi Krzysztof,
+> >
+> > On Mon, Sep 19, 2022 at 6:08 PM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 19/09/2022 15:41, Sergio Paracuellos wrote:
+> >>> Hi Krzysztof,
+> >>>
+> >>> On Mon, Sep 19, 2022 at 2:48 PM Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> On 19/09/2022 14:29, Sergio Paracuellos wrote:
+> >>>>>>
+> >>>>>> else mips-hpt-frequency: false
+> >>>>>>
+> >>>>>>> +
+> >>>>>>> +required:
+> >>>>>>> +  - compatible
+> >>>>>>> +
+> >>>>>>> +additionalProperties: true
+> >>>>>>
+> >>>>>> and this is why you did not notice errors...
+> >>>>>
+> >>>>> Current arch/mips/boot/dts folder dts files are a mess for cpu nodes,
+> >>>>> so I set additionalProperties to true and only make required for
+> >>>>> 'compatible'. What should be the correct approach?
+> >>>>
+> >>>> This is okay, but it caused you did not notice errors...
+> >>>>
+> >>>>>
+> >>>>>>
+> >>>>>>> +
+> >>>>>>> +examples:
+> >>>>>>> +  - |
+> >>>>>>> +    cpus {
+> >>>>>>> +      #size-cells = <0>;
+> >>>>>>> +      #address-cells = <1>;
+> >>>>>>> +
+> >>>>>>> +      cpu@0 {
+> >>>>>>> +        device_type = "cpu";
+> >>>>>>> +        compatible = "mips,mips1004Kc";
+> >>>>>>> +        reg = <0>;
+> >>>>>>> +      };
+> >>>>>>> +
+> >>>>>>> +      cpu@1 {
+> >>>>>>> +        device_type = "cpu";
+> >>>>>>> +        compatible = "mips,mips1004Kc";
+> >>>>>>> +        reg = <1>;
+> >>>>>>> +      };
+> >>>>>>> +    };
+> >>>>>>> +
+> >>>>>>> +  - |
+> >>>>>>> +    // Example 2 (BMIPS CPU)
+> >>>>>>> +    cpus {
+> >>>>>>> +      #address-cells = <1>;
+> >>>>>>> +      #size-cells = <0>;
+> >>>>>>> +
+> >>>>>>> +      mips-hpt-frequency = <150000000>;
+> >>>>>>
+> >>>>>> Does not match your bindings. Are you sure you tested the patches?
+> >>>>>
+> >>>>> Yes I did:
+> >>>>>
+> >>>>> $ make dt_binding_check
+> >>>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mips/cpus.yaml
+> >>>>>   LINT    Documentation/devicetree/bindings
+> >>>>>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+> >>>>>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> >>>>>   DTEX    Documentation/devicetree/bindings/mips/cpus.example.dts
+> >>>>>   DTC     Documentation/devicetree/bindings/mips/cpus.example.dtb
+> >>>>> ' CHECK   Documentation/devicetree/bindings/mips/cpus.example.dtb
+> >>>>>
+> >>>>> Can you please point me to a sample of how to make required in a
+> >>>>> parent node of cpu@X property 'mips-hpt-frequency' only for some
+> >>>>> compatible strings inside the node? What can this be properly
+> >>>>> expressed using schema??
+> >>>>> I was looking and testing different things for a while without success at all.
+> >>>>
+> >>>> You either define new schema for /cpus node (and match by name, define
+> >>>> children etc) or include it in schema for top-level properties. The
+> >>>> first is tricky, because the cpus node does not have compatible (like
+> >>>> nvidia,tegra194-ccplex.yaml).
+> >
+> > Ok so if I am understanding correctly having two schemas is a way to go:
+> >
+> > One for brcm,bmips-cpus.yaml (since there is no compatible, should
+> > this be a valid name for this?) containing something like:
+> >
+> > properties:
+> >   $nodename:
+> >      const: cpus
+> >
+> >      mips-hpt-frequency:
+> >         $ref: /schemas/types.yaml#/definitions/uint32
+> >         description: |
+> >            This is common to all CPUs in the system so it lives
+> >             under the "cpus" node.
+> >
+> > additionalProperties: true
+>
+> Almost. Such schema will allow mips-hpt-frequency in each cpus node,
+> everywhere. On every board and architecture.
+
+Yes, that is what I thought since no compatible to match this is
+included in current node.
+
+>
+> You need to limit it per top-level compatibles.
+
+Any sample of how to do this? So this bmips SoCs use compatible
+strings that are described in:
+https://elixir.bootlin.com/linux/v6.0-rc5/source/Documentation/devicetree/bindings/mips/brcm/soc.txt
+
+Can the top level compatible string be used in some way to filter this
+easily from this new 'brcm,bmips-cpus.yaml'
+
+>
+> You can also wait a week and maybe Rob will have some ideas.
+
+Ideas are always welcome :). Ok, we can wait to Rob and see what
+should be the correct approach to handle this.
+
+Thanks,
+    Sergio Paracuellos
+>
+> >
+> > examples:
+> >   - |
+> >      cpus {
+> >        #address-cells = <1>;
+> >        #size-cells = <0>;
+> >
+> >         mips-hpt-frequency = <150000000>;
+> >
+> >         cpu@0 {
+> >           compatible = "brcm,bmips4350";
+> >           device_type = "cpu";
+> >            reg = <0>;
+> >         };
+> >
+> >          cpu@1 {
+> >            compatible = "brcm,bmips4350";
+> >            device_type = "cpu";
+> >            reg = <1>;
+> >         };
+> >   };
+> >
+> > And the other as 'cpus.yaml' having:
+>
+> Yes.
+>
+> Best regards,
+> Krzysztof
