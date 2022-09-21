@@ -2,45 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1275BF930
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B5735BF95E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 10:35:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbiIUI1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 04:27:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55536 "EHLO
+        id S229612AbiIUIfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 04:35:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231424AbiIUI1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:27:20 -0400
+        with ESMTP id S230192AbiIUIfb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 04:35:31 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC5637B7BF
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 01:27:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C294C356F6
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 01:35:30 -0700 (PDT)
 Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1oav4X-0007Vg-Al; Wed, 21 Sep 2022 10:27:09 +0200
+        id 1oavCN-0008WV-Eg; Wed, 21 Sep 2022 10:35:15 +0200
 Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1oav4W-00012N-H9; Wed, 21 Sep 2022 10:27:08 +0200
-Date:   Wed, 21 Sep 2022 10:27:08 +0200
+        id 1oavCL-0001H2-6Z; Wed, 21 Sep 2022 10:35:13 +0200
+Date:   Wed, 21 Sep 2022 10:35:13 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] arm64: dts: tqma8mq-mba8mx: Add vcc supply to i2c
- eeproms
-Message-ID: <20220921082708.rdmlg7esjdtrv2bo@pengutronix.de>
-References: <20220921070833.3106592-1-alexander.stein@ew.tq-group.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org, jacopo@jmondi.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        kieran.bingham+renesas@ideasonboard.com,
+        linux-kernel@vger.kernel.org, kishon@ti.com, hverkuil@xs4all.nl,
+        vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-phy@lists.infradead.org,
+        mchehab@kernel.org, kernel@pengutronix.de,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] media: dt-bindings: add bindings for Toshiba
+ TC358746
+Message-ID: <20220921083513.drt4rggqj7tpaygr@pengutronix.de>
+References: <20220916134535.128131-1-m.felsch@pengutronix.de>
+ <20220916134535.128131-4-m.felsch@pengutronix.de>
+ <YyZTCsflWtUbo2ld@pendragon.ideasonboard.com>
+ <20220919100844.bb7tzbql2vpk76xz@pengutronix.de>
+ <YyhDO4ohv47uIij2@paasikivi.fi.intel.com>
+ <YyhKoDxFoobY9vBd@pendragon.ideasonboard.com>
+ <20220920152632.mjpgpmelvx4ya4k7@pengutronix.de>
+ <Yyn5MqqKYH7VpFhw@pendragon.ideasonboard.com>
+ <74b6b670-747a-f326-44ea-7588c3989b0e@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220921070833.3106592-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <74b6b670-747a-f326-44ea-7588c3989b0e@linaro.org>
 User-Agent: NeoMutt/20180716
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -54,14 +63,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-21, Alexander Stein wrote:
-> Fixes the warnings:
-> at24 0-0053: supply vcc not found, using dummy regulator
-> at24 0-0057: supply vcc not found, using dummy regulator
-> at24 1-0057: supply vcc not found, using dummy regulator
+On 22-09-21, Krzysztof Kozlowski wrote:
+> On 20/09/2022 19:32, Laurent Pinchart wrote:
+> >>>
+> >>> Explicit bus types in DT indeed makes it easier for drivers, so if a
+> >>> device can support multiple bus types (even if not implemented yet in
+> >>> the corresponding drivers), the property should be there.
+> >>
+> >> Okay, I will make it required.
+> >>
+> >>>> Why do you have hsync-active and vsync-active if both are always zero? Can
+> >>>> the hardware not support other configuration?
+> >>
+> >> Sure the device supports toggling the logic but it is not implemented.
+> >> So the bindings needs to enforce it to 0 right now. As soon as it is
+> >> implemented & tested, we can say that both is supported :)
+> > 
+> > Bindings are not supposed to be limited by the existing driver
+> > implementation, so you can already allow both polarities, and just
+> > reject the unsupported options in the driver at probe time. Future
+> > updates to the driver won't require a binding change.
+> > 
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> +1
 
-Looks good to me.
+I don't wanna do that because this let the binding user assume that
+this mode is already supported. Adapting a binding is just 1 commit and
+since the property is already existing, there is no breaking change.
 
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+Regards,
+  Marco
