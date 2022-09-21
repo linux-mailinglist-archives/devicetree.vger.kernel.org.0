@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 721F85BF6F5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 463365BF6F8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 09:07:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbiIUHGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 03:06:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44914 "EHLO
+        id S229563AbiIUHHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 03:07:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbiIUHGm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:06:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3552F491E3;
-        Wed, 21 Sep 2022 00:06:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C43C062F76;
-        Wed, 21 Sep 2022 07:06:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21FCBC433C1;
-        Wed, 21 Sep 2022 07:06:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663744000;
-        bh=Ao2IgbeJQHW+cfXH8akjw/H7pJL26xNuSr60HBNqO8c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fppbgRKzPp2ynnZBDf+LdLBFj+ss9Qmtf+rxjJta9qvPpS0SNaviDkNxnRlYwqWGj
-         6cgSIi8RcM8c1jtuaezPirKl05URpL7k1kWe27M0WZArS3OIOt7tyyUOANTHmbuDQc
-         MIF/GZ9GBmAHlUFsE3ZTnEhIC18812v9CkBnshmzgdpOD62uovbQfZ5WXoWEgz3nSR
-         MI7KUtLphqUizMAlBa9boFDX+9UwdR7PRisHhko8PuLtBaOgpy3wRTxZEEH/jzngJO
-         qYl2/1Meq0Hp7LAd40BkDrZmRqjoXIElIJWxc0Ko6uqpf2C2bW8Cb1B2vv79oc3L0B
-         +MUs1Mw7u1yxg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oatoh-0003iP-Ia; Wed, 21 Sep 2022 09:06:44 +0200
-Date:   Wed, 21 Sep 2022 09:06:43 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S230094AbiIUHHJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 03:07:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B90F796B6
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 00:07:07 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1oatop-0003As-K9; Wed, 21 Sep 2022 09:06:51 +0200
+Received: from pengutronix.de (hardanger-2.fritz.box [IPv6:2a03:f580:87bc:d400:f566:9915:77e6:ceb3])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 3EEF7E8203;
+        Wed, 21 Sep 2022 07:06:50 +0000 (UTC)
+Date:   Wed, 21 Sep 2022 09:06:49 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
+Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>
-Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: sa8295p: move common nodes to
- dtsi
-Message-ID: <Yyq4AwAbk3nxNUAl@hovoldconsulting.com>
-References: <20220920120802.14321-1-quic_ppareek@quicinc.com>
- <20220920120802.14321-3-quic_ppareek@quicinc.com>
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] can: ctucanfd: add HW timestamps to RX and error
+ CAN frames
+Message-ID: <20220920221450.poy5phzx564k36qn@pengutronix.de>
+References: <20220914233944.598298-1-matej.vasilevski@seznam.cz>
+ <20220914233944.598298-3-matej.vasilevski@seznam.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dvrixjtqc5qvlwxk"
 Content-Disposition: inline
-In-Reply-To: <20220920120802.14321-3-quic_ppareek@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20220914233944.598298-3-matej.vasilevski@seznam.cz>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,29 +62,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[ Resending with Bjorn's address updated. ]
 
-On Tue, Sep 20, 2022 at 05:38:01PM +0530, Parikshit Pareek wrote:
-> There are many ADP boards with lot of common features. Move common
-> nodes to sa8540p-adp.dtsi file. This will be base for many ADP boards
-> to be introduced in near future.
+--dvrixjtqc5qvlwxk
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s5pcgxzoguqlmlik"
+Content-Disposition: inline
 
-I already asked you to include a description of those differences here
-in the commit message so that we can make a decision on whether this
-change makes sense or not.
 
-This also needs to be documented for future changes. For example, when
-I'll be adding PCIe support to sa8295p-adp I'd need to know whether this
-should go in a shared dtsi or in the board file.
+--s5pcgxzoguqlmlik
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-For reasons like this, I'm still not convinced that this is a good idea.
+On 15.09.2022 01:39:43, Matej Vasilevski wrote:
+[...]
 
-> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      | 392 +-----------------
->  .../{sa8295p-adp.dts => sa8540p-adp.dtsi}     |   0
->  2 files changed, 14 insertions(+), 378 deletions(-)
->  rewrite arch/arm64/boot/dts/qcom/sa8295p-adp.dts (96%)
->  copy arch/arm64/boot/dts/qcom/{sa8295p-adp.dts => sa8540p-adp.dtsi} (100%)
+>  	/* Check for big-endianity and set according IO-accessors */
+>  	if ((ctucan_read32(priv, CTUCANFD_DEVICE_ID) & 0xFFFF) !=3D CTUCANFD_ID=
+) {
+> @@ -1425,6 +1582,49 @@ int ctucan_probe_common(struct device *dev, void _=
+_iomem *addr, int irq, unsigne
+> =20
+>  	priv->can.clock.freq =3D can_clk_rate;
+> =20
+> +	/* Obtain timestamping counter bit size */
+> +	timestamp_bit_size =3D FIELD_GET(REG_ERR_CAPT_TS_BITS,
+> +				       ctucan_read32(priv, CTUCANFD_ERR_CAPT));
+> +
+> +	/* The register value is actually bit_size - 1 */
+> +	if (timestamp_bit_size) {
+> +		timestamp_bit_size +=3D 1;
+> +	} else {
+> +		/* For 2.x versions of the IP core, we will assume 64-bit counter
+> +		 * if there was a 0 in the register.
+> +		 */
+> +		u32 version_reg =3D ctucan_read32(priv, CTUCANFD_DEVICE_ID);
+> +		u32 major =3D FIELD_GET(REG_DEVICE_ID_VER_MAJOR, version_reg);
+> +
+> +		if (major =3D=3D 2)
+> +			timestamp_bit_size =3D 64;
+> +		else
+> +			priv->timestamp_possible =3D false;
+> +	}
+> +
+> +	/* Setup conversion constants and work delay */
+> +	priv->cc.mask =3D CYCLECOUNTER_MASK(timestamp_bit_size);
+> +	if (priv->timestamp_possible) {
+> +		u64 max_cycles;
+> +		u64 work_delay_ns;
+> +		u32 maxsec =3D min_t(u32, CTUCANFD_MAX_WORK_DELAY_SEC,
+> +				   div_u64(priv->cc.mask, timestamp_freq));
+> +
+> +		priv->cc.read =3D ctucan_read_timestamp_cc_wrapper;
+> +		clocks_calc_mult_shift(&priv->cc.mult, &priv->cc.shift,
+> +				       timestamp_freq, NSEC_PER_SEC, maxsec);
+> +
+> +		/* shortened copy of clocks_calc_max_nsecs() */
+> +		max_cycles =3D div_u64(ULLONG_MAX, priv->cc.mult);
+> +		max_cycles =3D min(max_cycles, priv->cc.mask);
+> +		work_delay_ns =3D clocksource_cyc2ns(max_cycles, priv->cc.mult,
+> +						   priv->cc.shift) >> 1;
 
-Johan
+I just ported the code to another driver with dynamic frequency and
+width. I noticed that the shift of 1 is not enough. With 2 it works.
+
+regards,
+MArc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--s5pcgxzoguqlmlik--
+
+--dvrixjtqc5qvlwxk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmMquAcACgkQrX5LkNig
+012aPQf+P/mj/TEcAdI3Be4pkcF4qImtZF6LaZM5OrHc4iFbySunnpJHsg0FKrir
+0gai4uY2wGpxWkNc5yZri5B83wWMtQsBJP/+ct0Nju8VnQADAlgGBBBMwK77qWR9
+qfHRIQLL/MiWtZAQkxE/wLBGBQQhRHz1aZOv/wqn292wOMF81MS1e83AVHHHr/8E
+YQ/x5lrgtVd1+JtgoAPNvmpKNvIqwa8dUmrKHT18RBwkOE+lz6qsr8wYKMz6P5Ix
+ggULkhfKCqrGF9rx9Xbx8xBQGbxc12/qW6//E08UmcyXAJMEr6ljP5qz1pskDMCa
+TcwPwhXXkmKEh77CClksVGgjIUue+w==
+=mHOw
+-----END PGP SIGNATURE-----
+
+--dvrixjtqc5qvlwxk--
