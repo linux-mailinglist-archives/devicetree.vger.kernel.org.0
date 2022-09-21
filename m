@@ -2,113 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 098F45BFE20
-	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 14:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 367AA5BFE47
+	for <lists+devicetree@lfdr.de>; Wed, 21 Sep 2022 14:48:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbiIUMoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 08:44:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45866 "EHLO
+        id S230206AbiIUMs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 08:48:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbiIUMoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 08:44:04 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745A08688A;
-        Wed, 21 Sep 2022 05:44:03 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D18BD2B3;
-        Wed, 21 Sep 2022 14:44:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1663764241;
-        bh=hIY9NeY10mPIFhNf/7yysEh0nHb6PlfT2EppjthWmTY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=L0oh9H0/uct8ZXze2QfOE6KG3GhKarEcFlF299rQzholayfICHXI6C1Y+Qjo5tsdu
-         XfF2BcuKypEnvDCRvPqkV6fDZjl6t5YLF7biz985xhEMIvhlF4KTXBT7cndJIkssGM
-         f07OImIIu9E7rrhZXQWQsE2SaFTOPeLpCCYhrPEE=
-Date:   Wed, 21 Sep 2022 15:43:46 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229844AbiIUMsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 08:48:16 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C69578C440
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 05:48:15 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oaz8r-0001uO-Bg; Wed, 21 Sep 2022 14:47:53 +0200
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oaz8p-0023oB-Qi; Wed, 21 Sep 2022 14:47:50 +0200
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oaz8m-000J8P-SA; Wed, 21 Sep 2022 14:47:48 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 2/4] media: dt-bindings: Document Renesas RZ/G2L CRU
- block
-Message-ID: <YysHAkWBfTTAJF3E@pendragon.ideasonboard.com>
-References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220905230406.30801-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <29d456ed-620c-8dc9-01f0-54f96b670b94@linaro.org>
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        David Jander <david@protonic.nl>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH net-next v6 0/7] add generic PSE support 
+Date:   Wed, 21 Sep 2022 14:47:40 +0200
+Message-Id: <20220921124748.73495-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <29d456ed-620c-8dc9-01f0-54f96b670b94@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 08, 2022 at 01:40:39PM +0200, Krzysztof Kozlowski wrote:
-> On 06/09/2022 01:04, Lad Prabhakar wrote:
-> > Document the CRU block found on Renesas RZ/G2L (and alike) SoCs.
-> > 
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> 
-> Thank you for your patch. There is something to discuss/improve.
-> 
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - renesas,r9a07g044-cru       # RZ/G2{L,LC}
-> > +          - renesas,r9a07g054-cru       # RZ/V2L
-> > +      - const: renesas,rzg2l-cru
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 3
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: image_conv
-> > +      - const: image_conv_err
-> > +      - const: axi_mst_err
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: CRU Main clock
-> > +      - description: CPU Register access clock
-> > +      - description: CRU image transfer clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: vclk
-> > +      - const: pclk
-> > +      - const: aclk
-> 
-> Drop the "clk" suffixes. Remaining names could be made a bit more readable.
+Add generic support for the Ethernet Power Sourcing Equipment.
 
-These names come from the documentation, isn't it better to match the
-datasheet ?
+changes are listed within patches.
 
-> > +
+Oleksij Rempel (7):
+  dt-bindings: net: phy: add PoDL PSE property
+  net: add framework to support Ethernet PSE and PDs devices
+  net: mdiobus: fwnode_mdiobus_register_phy() rework error handling
+  net: mdiobus: search for PSE nodes by parsing PHY nodes.
+  ethtool: add interface to interact with Ethernet Power Equipment
+  dt-bindings: net: pse-dt: add bindings for regulator based PoDL PSE
+    controller
+  net: pse-pd: add regulator based PSE driver
+
+ .../devicetree/bindings/net/ethernet-phy.yaml |   6 +
+ .../net/pse-pd/podl-pse-regulator.yaml        |  40 ++
+ .../bindings/net/pse-pd/pse-controller.yaml   |  33 ++
+ Documentation/networking/ethtool-netlink.rst  |  59 +++
+ drivers/net/Kconfig                           |   2 +
+ drivers/net/Makefile                          |   1 +
+ drivers/net/mdio/fwnode_mdio.c                |  55 ++-
+ drivers/net/phy/phy_device.c                  |   2 +
+ drivers/net/pse-pd/Kconfig                    |  22 ++
+ drivers/net/pse-pd/Makefile                   |   6 +
+ drivers/net/pse-pd/pse_core.c                 | 351 ++++++++++++++++++
+ drivers/net/pse-pd/pse_regulator.c            | 147 ++++++++
+ include/linux/phy.h                           |   2 +
+ include/linux/pse-pd/pse.h                    | 156 ++++++++
+ include/uapi/linux/ethtool.h                  |  45 +++
+ include/uapi/linux/ethtool_netlink.h          |  16 +
+ net/ethtool/Makefile                          |   3 +-
+ net/ethtool/common.h                          |   1 +
+ net/ethtool/netlink.c                         |  17 +
+ net/ethtool/netlink.h                         |   4 +
+ net/ethtool/pse-pd.c                          | 185 +++++++++
+ 21 files changed, 1141 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml
+ create mode 100644 drivers/net/pse-pd/Kconfig
+ create mode 100644 drivers/net/pse-pd/Makefile
+ create mode 100644 drivers/net/pse-pd/pse_core.c
+ create mode 100644 drivers/net/pse-pd/pse_regulator.c
+ create mode 100644 include/linux/pse-pd/pse.h
+ create mode 100644 net/ethtool/pse-pd.c
 
 -- 
-Regards,
+2.30.2
 
-Laurent Pinchart
