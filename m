@@ -2,109 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE3605E5C74
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 09:31:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D7F35E5C7A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 09:33:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229519AbiIVHbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 03:31:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58286 "EHLO
+        id S229826AbiIVHdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 03:33:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231293AbiIVHak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 03:30:40 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A5E4A50E3;
-        Thu, 22 Sep 2022 00:30:27 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28M7U9Vf020473;
-        Thu, 22 Sep 2022 02:30:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663831809;
-        bh=aj/zfNjbhseVF5hz4JgkRF+U1n7Rvv8xDs/IFGCygyg=;
-        h=From:To:CC:Subject:Date;
-        b=bav5418VL9rrlaHU6C20TkVxI0LBnfM6JJVV88ougEsCQsTkJy2NHucB/AmllyiDC
-         u9dohYT4Q/kNodyTrr2E9FZTKcMLOijA8HY2DaO1GKJvUwzasbKOCRbYhYnRQTar4H
-         6R91k4EhZKIZDEF9Bi8f9IVt5Y9ey0ULDhCMDPzs=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28M7U95r056421
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 22 Sep 2022 02:30:09 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 22
- Sep 2022 02:30:08 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 22 Sep 2022 02:30:09 -0500
-Received: from keerthy.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28M7U55V032864;
-        Thu, 22 Sep 2022 02:30:06 -0500
-From:   Keerthy <j-keerthy@ti.com>
-To:     <vigneshr@ti.com>, <nm@ti.com>
-CC:     <j-keerthy@ti.com>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <kristo@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: ti: k3-j721s2: Fix the interrupt ranges property for main & wkup gpio intr
-Date:   Thu, 22 Sep 2022 12:59:50 +0530
-Message-ID: <20220922072950.9157-1-j-keerthy@ti.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S229617AbiIVHdL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 03:33:11 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B301A0247
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 00:33:08 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id s14so11500289ybe.7
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 00:33:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=vznxy9xqdRmX/+c1xfDYAdYiNLfodMVytirKxQVlqvU=;
+        b=19h0p9PeYDDwrzqyam5VPOXf99gXbD0aK5k8BfPEJenh2Jv/WjdzknPH0tUHmgiRHX
+         pggTcESbyFCz5wjPpmJSkcd/NQRRrZZiBSfJaMhq7Myfc7diCyDqoIkbuwR+vpE+NSyR
+         4tcuq0xXpQnSX0V8U1+heBDJXgld0tSC2LqBM4z3VUSaqRkZ06YHK7IIfBYqUtBTnOpH
+         8g3j2HwH0C6U9V4Dw6woPkeBBq7Y38GohOYuh8QKlknbOt7Pa+3U8VR0EHsy5/voiIZb
+         V9qFOtQMx6p07AjQGpO7hX3d+YsO1Jyuw006ghhAYb0bZNJ0/92AxLL4Vef3bOqkZOU6
+         FV4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=vznxy9xqdRmX/+c1xfDYAdYiNLfodMVytirKxQVlqvU=;
+        b=o78H2NNgzFPgCeON8T8gKmVfMVnWM0BBCKUX4+AlbWMOeGcmuIq3NbgHiZuHNB+1Dw
+         gbFDeErSm0MDRp4Xu0G9wUcv4YQB34W653HDoqc84O2QBiYOJk5ljecLdlNX20kRAkMn
+         umJwVazipEPPMhfcEk/vUNps6gV2MdIH+ZHeaw89l+EvFCQisTgcj0QjW71uMtKMNLun
+         vhMo9i1Utq3+qjrxLGlpdzkjIfHVgBXuc11l0E0zTR9XTiaxAApFi1IUSlm2qd94W7+d
+         UVsbicn4ICp2j761ErpGyAerWX4D48gi2xj5gkd5f13+gmn5ZPF7Ji5BUk6j4vJ5/+kM
+         JJIA==
+X-Gm-Message-State: ACrzQf0DpH6JhsyPNNg2zQnrtcvoJKOYiy/7Mf3M1FSqGpct1dwMC3y5
+        JV/V9m0AWuiqPKZGef88+4N45YZfOLvl8Y+/e+aoyw==
+X-Google-Smtp-Source: AMsMyM68mBRWPzgSHinmacDlTcXL0xgy38F9UZIPw2GA0HUhSgygjrtVbr+Xf6Xo2IYCzPizO8zkXxrLXkUa8C1413c=
+X-Received: by 2002:a05:6902:1146:b0:6ae:72f2:62cb with SMTP id
+ p6-20020a056902114600b006ae72f262cbmr2487652ybu.615.1663831987619; Thu, 22
+ Sep 2022 00:33:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220907210649.12447-1-anand@edgeble.ai> <20220919115812.6cc61a8e@kernel.org>
+In-Reply-To: <20220919115812.6cc61a8e@kernel.org>
+From:   Anand Moon <anand@edgeble.ai>
+Date:   Thu, 22 Sep 2022 13:02:58 +0530
+Message-ID: <CACF1qnd0Nq7Fzi83emR=-cDscCprt2h4gwquecLRyyrbSNsm5g@mail.gmail.com>
+Subject: Re: [v2 1/2] dt-bindings: net: rockchip-dwmac: add rv1126 compatible
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        David Wu <david.wu@rock-chips.com>,
+        Jagan Teki <jagan@edgeble.ai>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The parent's input irq number is wrongly subtracted with 32 instead of
-using the exact numbers in:
+Hi Jakub,
 
-https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721s2/interrupt_cfg.html
+On Tue, 20 Sept 2022 at 00:28, Jakub Kicinski <kuba@kernel.org> wrote:
+>
+> On Wed,  7 Sep 2022 21:06:45 +0000 Anand Moon wrote:
+> > Add compatible string for RV1126 gmac, and constrain it to
+> > be compatible with Synopsys dwmac 4.20a.
+>
+> Hi, these patches don't seem to apply cleanly to net-next, a 3-way
+> merge is needed. Please rebase and repost. Please put [PATCH net-next
+> v3] in the subject as you expect them to be applied to the networking
+> trees.
 
-The GPIO interrupts are not working because of that. The toggling works
-fine but interrupts are not firing. Fix the parent's input irq that
-specifies the base for parent irq.
+Thanks I have send the patches rebased on net-next,
+Please find the link below
 
-Tested for MAIN_GPIO0_6 interrupt on the j721s2 EVM.
+[0] https://lore.kernel.org/all/20220920140944.2535-1-anand@edgeble.ai/
 
-Fixes: b8545f9d3a542 ("arm64: dts: ti: Add initial support for J721S2 SoC")
-Signed-off-by: Keerthy <j-keerthy@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi       | 2 +-
- arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Beat Regards
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 34e7d577ae13..c89f28235812 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -60,7 +60,7 @@
- 		#interrupt-cells = <1>;
- 		ti,sci = <&sms>;
- 		ti,sci-dev-id = <148>;
--		ti,interrupt-ranges = <8 360 56>;
-+		ti,interrupt-ranges = <8 392 56>;
- 	};
- 
- 	main_pmx0: pinctrl@11c000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 4d1bfabd1313..f0644851602c 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -65,7 +65,7 @@
- 		#interrupt-cells = <1>;
- 		ti,sci = <&sms>;
- 		ti,sci-dev-id = <125>;
--		ti,interrupt-ranges = <16 928 16>;
-+		ti,interrupt-ranges = <16 960 16>;
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--- 
-2.17.1
-
+-Anand
