@@ -2,107 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D4155E6E76
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 23:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F75E5E6E8C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 23:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbiIVVh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 17:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33506 "EHLO
+        id S229595AbiIVVje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 17:39:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229920AbiIVVh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 17:37:58 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2092110251A
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 14:37:57 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id l8so7619711wmi.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 14:37:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=2mdfxOllYJwVRdzEV7h9el17e4oq172vAJjTd21Q7z0=;
-        b=jsfPIJmWOgZfaJX6kkecbpYVT/1oCuB6d2bdaRexbLb/x6ZUWnFB3t3sYqNaqd/QRn
-         twA0Cz8yNeUI2cFYUSI7Q2dIOvDV/cLhtcOSpPyGPtKXNqfEmpT3un7ZsRfO4eEvoffq
-         NkFLvBrGaOIQezdQZ6sryYUntZfyGe2j1ie573SsDI6XEyU7+anyGCd6AiDuEcWymr70
-         R/JSq4y3Nu7UJxdUvUONvbErsjD8EB/oQfWa+GfOKGVtKCD5KM+ZnE06ZCYWNZPp2kvI
-         6TMhIggWKCpS61tDDE+CAn0Y/Rv6nZLDWBkrhuQDvjWcuQQrgqPvbhxSjn328KwrzfiQ
-         xPmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=2mdfxOllYJwVRdzEV7h9el17e4oq172vAJjTd21Q7z0=;
-        b=ANO4hmQ2qBWk0cc5vf8U5KUQUoSVq3zVOh96amNGSX/ZAifWn8n2PXludTb+RJAIBW
-         yGY9S/6RZm0KCt2l2IQjcMf5OXt1rFvVTISW637O63wgynhB4dRNDXvw0DnHzUZecUpp
-         9G9VhA0gXSeEMKyMGhShB9pzaRCNUvETiSqgzb4ZknHwid9jC06Ho6m/JsVTkdO7st8+
-         BG3TmUldxKE6QusdcVf9Ox5DKbE4ad8Hkz3kJlcRmcWh019hTz7kD67QsARMTodFEPYK
-         BtWFWkFLZ5DHEpAwgboMdnp3lyY6LfpwSQwlbc2m11CvHcm9GoTlkOyaQizZQkSrd7dT
-         VS0A==
-X-Gm-Message-State: ACrzQf1s/a2r/7nT1/3hy9mQozjvUYNfQQ3QxkCkUTa2zxMzpodvsiet
-        z+tdiLvYs81S26r/mH0uRq8Ccg==
-X-Google-Smtp-Source: AMsMyM5S0UBX0Ghlfv1ywW39XJFlFa4Ly/6L2oQSfG7pgG47IWz7TPf/iD+5l8jZsgrO+iL7LlDfqg==
-X-Received: by 2002:a05:600c:4211:b0:3b4:6334:9940 with SMTP id x17-20020a05600c421100b003b463349940mr3807414wmh.166.1663882675578;
-        Thu, 22 Sep 2022 14:37:55 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id bv4-20020a0560001f0400b00228d6bc8450sm5926835wrb.108.2022.09.22.14.37.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Sep 2022 14:37:54 -0700 (PDT)
-Message-ID: <8672aa05-0269-f8c3-50d3-e23d3793baf4@linaro.org>
-Date:   Thu, 22 Sep 2022 23:37:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2] dt-bindings: timer: renesas,tmu: Add r8a779f0 support
-Content-Language: en-US
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220830104921.7532-1-wsa+renesas@sang-engineering.com>
- <YyzQFheOv2Lg0t6F@shikoro>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <YyzQFheOv2Lg0t6F@shikoro>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229635AbiIVVjd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 17:39:33 -0400
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02549CCE;
+        Thu, 22 Sep 2022 14:39:29 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 2A95C580C35;
+        Thu, 22 Sep 2022 17:39:29 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Thu, 22 Sep 2022 17:39:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1663882769; x=1663886369; bh=rpJ5dLDrBG
+        4RU2npy0gA4zAAD6oKp0YoLCGtrhyhwEM=; b=e4zS8LqI3yZPrJ+kkUrj70ZFD4
+        pLzwXvjt8XarDbM7nDHjDrD7qKf+KoQ89l/2laVX9UfwOXPt3/YPUGWwXyMmMpDY
+        2XK4dwJwerK/r9FjarhLLJ2871v0hh/j/OEG4Ow+IsQgFC+Sn/7y+ybfiCK/JUCT
+        W+0EXiKgYsqDF1r+yfmpdauELR4CTUn2CARYSL5LV00you2XTJBJZ2b7+jFh0raF
+        ut63oi8KRVmnAXp9/pVbIfm8cAPEP4DygOPIQW8js1uCFrcpsXkiC3m5LEOilV19
+        eH+3BvPoyBjZTUNWBN6BRmQggu6BtzcGmvuwWxU3MF9WZPt03BMwdD+s0kBA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1663882769; x=1663886369; bh=rpJ5dLDrBG4RU2npy0gA4zAAD6oK
+        p0YoLCGtrhyhwEM=; b=dohe/pkCtrPN9juvk7SNrhiPPryqGHwv/LuY11IO2HYP
+        P9UJUSIo0oGRPi9TTlZlevubxSpTYyd1nUJHHpqQghC7WXs7FEDry/zBif1kVWCI
+        uSBOrLO9RBYEYsEbupgqrcAKecqApNzp/CSR1+AO2ksCP0fZB65Rr/KQQPfPzwCa
+        5R+DWCsiaay6e0+4OB8gtYqDJRdjCx4WEpQo6pQmvKrsfEKSGLBN2wYpWZZkW3B8
+        /JJM9JoEPCjyH5BaOtkTDbUpu1o1TLZ/cU2d1CDOs2gHD3Y0U5zTY7MJIU/1G9eS
+        GQkvFOdSz7cmS0tAA0GqSpAYy4f8qZI3DnOlXz6nLw==
+X-ME-Sender: <xms:ENYsYyK6Yn_0rZJ8N40D4RClChiuYBU414b9pR_BXSE-v37oNKvAlA>
+    <xme:ENYsY6LokUsFw-r2xHrLdD34qu098uEJR1Ih5mViVAmt0hUptIikBIoOvoXbVSG0a
+    lq7_2Bmf5Ga4pjxc5M>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeefhedgtdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:ENYsYyvx2SxCsAwt62keXyaxxfbUJ0Sy_PqnAgQYhzWD9Pvqs8gJ1g>
+    <xmx:ENYsY3a9_8nKVIBF3aTNvCP2ld6b4i3_ZE1I2ApSK6Gl01r7BVaP6A>
+    <xmx:ENYsY5ZzJ_8Naxql2ueZcPSg0Q4qSiQRbwPrLVROH3asoaxUQ9dqQA>
+    <xmx:EdYsY7kn93-xv4nFI2RpnAyNrnFEJM17ZSBqDducZjim7q1EMUzwPw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 4ED65B60089; Thu, 22 Sep 2022 17:39:28 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-935-ge4ccd4c47b-fm-20220914.001-ge4ccd4c4
+Mime-Version: 1.0
+Message-Id: <89f85393-c767-4c0c-90db-d78a2927d465@www.fastmail.com>
+In-Reply-To: <20220922202458.7592-4-maukka@ext.kapsi.fi>
+References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
+ <20220922202458.7592-1-maukka@ext.kapsi.fi>
+ <20220922202458.7592-4-maukka@ext.kapsi.fi>
+Date:   Thu, 22 Sep 2022 23:39:07 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Mauri Sandberg" <maukka@ext.kapsi.fi>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        "Olof Johansson" <olof@lixom.net>, "Andrew Lunn" <andrew@lunn.ch>,
+        "Sebastian Hesselbarth" <sebastian.hesselbarth@gmail.com>,
+        "Gregory Clement" <gregory.clement@bootlin.com>,
+        "Russell King" <linux@armlinux.org.uk>
+Cc:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] ARM: orion5x: Add D-Link DNS-323 based on Device Tree
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 22, 2022, at 10:24 PM, Mauri Sandberg wrote:
+> +
+> +/* dns323_parse_hex_*() taken from tsx09-common.c; should a common 
+> copy of these
+> + * functions be kept somewhere?
+> + */
+> +static int __init dns323_parse_hex_nibble(char n)
+> +{
+> +	if (n >= '0' && n <= '9')
+> +		return n - '0';
+> +
+> +	if (n >= 'A' && n <= 'F')
+> +		return n - 'A' + 10;
+> +
+> +	if (n >= 'a' && n <= 'f')
+> +		return n - 'a' + 10;
+> +
+> +	return -1;
+> +}
+> +
+> +static int __init dns323_parse_hex_byte(const char *b)
+> +{
+> +	int hi;
+> +	int lo;
+> +
+> +	hi = dns323_parse_hex_nibble(b[0]);
+> +	lo = dns323_parse_hex_nibble(b[1]);
+> +
+> +	if (hi < 0 || lo < 0)
+> +		return -1;
+> +
+> +	return (hi << 4) | lo;
+> +}
+> +
 
-Hi Wolfram,
+Can you use simple_strntoull() to parse the address into a u64 instead?
 
-On 22/09/2022 23:13, Wolfram Sang wrote:
-> On Tue, Aug 30, 2022 at 12:49:21PM +0200, Wolfram Sang wrote:
->> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
->> Acked-by: Rob Herring <robh@kernel.org>
->> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->> ---
-> 
-> Can we have this simple patch in 6.1 please? Otherwise DT build warnings
-> will show up. Or is there something I could help with?
+> +static int __init dns323_read_mac_addr(u8 *addr)
+> +{
+> +	int i;
+> +	char *mac_page;
+> +
+> +	/* MAC address is stored as a regular ol' string in /dev/mtdblock4
+> +	 * (0x007d0000-0x00800000) starting at offset 196480 (0x2ff80).
+> +	 */
+> +	mac_page = ioremap(DNS323_NOR_BOOT_BASE + 0x7d0000 + 196480, 1024);
+> +	if (!mac_page)
+> +		return -ENOMEM;
 
-It is applied,
+It would be nicer to use of_iomap() on the nor device than a
+hardcoded physical address here, at least if that doesn't add
+too much extra complexity.
 
-https://git.linaro.org/people/daniel.lezcano/linux.git/commit/?h=timers/drivers/next&id=fa7fc5243f9e7d64ea7e73c247218f22499c3479
-
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+     Arnd
