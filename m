@@ -2,100 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F605E630F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:02:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A27A5E630E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:02:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231661AbiIVNCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 09:02:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46020 "EHLO
+        id S231325AbiIVNCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 09:02:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231651AbiIVNCU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:02:20 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B6FCE6A19;
-        Thu, 22 Sep 2022 06:02:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663851738; x=1695387738;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eoSHFPTIVV1AyhYemgSVhhNywqbp4RenvpD+BM9ByR0=;
-  b=KavOG/UTUggCL8K4/R/qCM3DOIpR/x94UHqdl/bBrMwNNHfHgV7uvpkW
-   TDEQTcpur1OgYCMU4aRnaEc3A3ev/43xGbU5l1a5icgsATxeP/xrOrqba
-   WcGntzqaR2/2JxcPYrPjeTOFaEghbaE6JI5QlpwgVCxVP2IQNEU+1jCv7
-   21A5Z5AmX3/5+lCZw70jNFDOSmSMhLSxNJG/elyljD3dnYnvtgFY8L4SA
-   EJJ1uUF2qiXaSUHT08MfPHSHINPEr+Yh/p5GY51Y7HC3U44Wm2oE3gG8j
-   5IpbQfCxwD09HexNXZjtLTmU78sgHF2xiU3aaOX3usLUEzFpOrjCa5nqv
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="386575951"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
-   d="scan'208";a="386575951"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2022 06:02:12 -0700
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
-   d="scan'208";a="745371975"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2022 06:02:07 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 75E2B20075;
-        Thu, 22 Sep 2022 16:02:05 +0300 (EEST)
-Date:   Thu, 22 Sep 2022 13:02:05 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 3/4] media: platform: Add Renesas RZ/G2L MIPI CSI-2
- receiver driver
-Message-ID: <YyxczbcHWF47FL8/@paasikivi.fi.intel.com>
-References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220905230406.30801-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <YyuDoaewe4AQBdsF@paasikivi.fi.intel.com>
- <CA+V-a8sa+gEwyGRNqbz04BZ3ZtGkokJn9YrZ+U5q0VcY1BDKSA@mail.gmail.com>
+        with ESMTP id S231599AbiIVNCO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:02:14 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0979AE85D
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 06:02:12 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id c7so10870254ljm.12
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 06:02:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=cVMg/fz1MNXQLv9CGzV1LCzFUMQRbxIm6yntQAZGhVw=;
+        b=IloRjzIYi1WAOC4+7kTmpectNfjfNTrQ+FtITVWS+4BFa/yFAYNuws4FJABwo71s/1
+         L4aT8L+JwBbdPCiT/scS4+D3J9JyEpWMRS2Ep+42Ye90EtEcC8qaW1+KGiUznyIGIhB+
+         bbFBdaMYmLBK7/6VxA6R7843tn3Psta806VG1+P+F8x0kvTppbrBL36geHvkfubl4Dv2
+         rPSmsRKTZkdShqivbEJyvWbbagZa7Jyxn2OxAibb6Ptl9kznoJLTH2gGiHymYxZnjzd3
+         zgnneEy92+S/LXcURNnW/iIM8Lc0KWR544EKqLbpuWd1Z9ym/Ll4Ly41Qp/kK8RlcBxY
+         TX9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=cVMg/fz1MNXQLv9CGzV1LCzFUMQRbxIm6yntQAZGhVw=;
+        b=4clCAYlof9aSX9vaReTfKAhyf8hKyzwPppxpDhjhbaBsTZCX70SM7oT7MbHYg/6IHf
+         2DwUyO7/+fV6NaYeLf5FYK9hmyJAKaMgulfTHYzC+jYqqxtzLWwvI+qYk7n3JUNir0b8
+         Ad5DLCnmTOflLZxbdPUxySY9rLBQO0bdyOMLLLsAtUJQYsrNsYyITV4SGWfxt32CMbm0
+         /l0F66mUWAzn8xpMhENubNV7J5/6CKIQFJmO289XShHCGEAbDnnmuSsce6aGIGPOw5HT
+         QFwHJU3Lqv+Ct7uO8Q4lWRdPMRSiKi67lvEGIPEx/Qx8QaclrPt4FgOBtPLc6lYgizXM
+         RMbA==
+X-Gm-Message-State: ACrzQf3qL2v2K1jT20JtPQhhV23K3dJZ3qhONlR5fhcGufswResucb12
+        0oU/OrW5ZE5sM6se45fVNxWJwKQFINdhlA==
+X-Google-Smtp-Source: AMsMyM6HelI2NtfIqzLSvZUhvzgCuffkovkkPzYADF6GSBPCNRoFOXrTzl51+2JRsZTpEGfITTu8EQ==
+X-Received: by 2002:a05:651c:221a:b0:26c:6fe2:c146 with SMTP id y26-20020a05651c221a00b0026c6fe2c146mr999484ljq.284.1663851730907;
+        Thu, 22 Sep 2022 06:02:10 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id n5-20020ac24905000000b0048a934168c0sm937083lfi.35.2022.09.22.06.02.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Sep 2022 06:02:10 -0700 (PDT)
+Message-ID: <af76128c-431a-6a90-495e-88693a4cdf7f@linaro.org>
+Date:   Thu, 22 Sep 2022 15:02:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8sa+gEwyGRNqbz04BZ3ZtGkokJn9YrZ+U5q0VcY1BDKSA@mail.gmail.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v4 3/3] arm64: dts: freescale: Add InnoComm i.MX8MM based
+ WB15 SoM and EVK
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>
+References: <20220922081347.3860008-1-s.hauer@pengutronix.de>
+ <20220922081347.3860008-4-s.hauer@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220922081347.3860008-4-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On 22/09/2022 10:13, Sascha Hauer wrote:
+> Add the InnoComm i.MX8MM based WB15 SoM and its EVK. The WB15 is a
+> half credit card sized board featuring:
+> 
+> - i.MX8MM CPU
+> - LPDDR4, 1GiB
+> - eMMC, 8GiB
+> - 1Gb Ethernet RGMII interface
+> - WiFi 802.11 a/b/g/n/ac, Bluetooth 4.2
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 
-On Thu, Sep 22, 2022 at 01:53:49PM +0100, Lad, Prabhakar wrote:
-> > > +int rzg2l_csi2_cmn_rstb_deassert(struct rzg2l_csi2 *csi2);
-> > > +int rzg2l_csi2_dphy_setting(struct rzg2l_csi2 *csi2, bool on);
-> > > +void rzg2l_csi2_mipi_link_setting(struct rzg2l_csi2 *csi2, bool on);
-> >
-> > Are these something that could be achieved using the standard interfaces,
-> > as I believe the other drivers are doing? The pre_streamon and
-> > post_streamon callbacks could be relevant for this.
-> >
-> Thanks for the pointer. I have now moved some code to pre_streamon ()
-> and rest to s_stream(). Is there any mandatory rule to have both
-> implemented? (as I wont be needing post_streamoff(), nothing complains
-> so for)
 
-In principle no.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-But if you e.g. resume the device in pre_streamon, you'll need to suspend
-it in post_streamon.
+Best regards,
+Krzysztof
 
--- 
-Sakari Ailus
