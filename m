@@ -2,66 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0555E5D09
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 10:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AA695E5D24
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 10:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230101AbiIVIHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 04:07:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
+        id S229919AbiIVIOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 04:14:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230023AbiIVIHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 04:07:12 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3AA5DB40DD;
-        Thu, 22 Sep 2022 01:07:10 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,335,1654527600"; 
-   d="scan'208";a="135810778"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 22 Sep 2022 17:07:07 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id D842A418538D;
-        Thu, 22 Sep 2022 17:07:07 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, krzk+dt@kernel.org
-Cc:     marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v6 10/10] MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
-Date:   Thu, 22 Sep 2022 17:06:47 +0900
-Message-Id: <20220922080647.3489791-11-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220922080647.3489791-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20220922080647.3489791-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S229924AbiIVIOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 04:14:01 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75CDECD1CE
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 01:14:00 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1obHLC-0001RM-PB; Thu, 22 Sep 2022 10:13:50 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1obHLD-002DCF-B4; Thu, 22 Sep 2022 10:13:49 +0200
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1obHLA-00GbAx-AM; Thu, 22 Sep 2022 10:13:48 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v4 0/3] arm64: dts: Add InnoComm WB15-EVK support
+Date:   Thu, 22 Sep 2022 10:13:44 +0200
+Message-Id: <20220922081347.3860008-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE autolearn=no autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update this entry for R-Car Gen4's source code.
+The InnoComm WB15-EVK [1] board is a Eval base board for the WB15 SoM
+[2] which is based on the NXP i.MX8MM. This series adds InnoComm as a
+vendor prefix and the necessary dts/dtsi files.
+														     [1] https://www.innocomm.com/product_inner.aspx?num=2233
+														     [2] https://www.innocomm.com/product_inner.aspx?num=2232
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+Changes since v3:
+- drop unnecessary status = "okay" from new node
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 41762df1be0c..badf376ab3df 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15704,6 +15704,7 @@ L:	linux-renesas-soc@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/pci/*rcar*
- F:	drivers/pci/controller/*rcar*
-+F:	drivers/pci/controller/dwc/*rcar*
- 
- PCI DRIVER FOR SAMSUNG EXYNOS
- M:	Jingoo Han <jingoohan1@gmail.com>
+Changes since v2:
+- Fix another remaining s/innocom/innocomm/
+- Don't use underscores in node names
+- Use IRQ_TYPE_LEVEL_LOW to specify interrupt polarity
+
+Changes since v1:
+- Fix spelling of InnoComm:
+  s/innocom/innocomm/
+  s/Innocom/InnoComm/
+
+Sascha Hauer (3):
+  dt-bindings: vendor-prefixes: Add prefix for InnoComm
+  dt-bindings: arm: fsl: Add InnoComm WB15 EVK
+  arm64: dts: freescale: Add InnoComm i.MX8MM based WB15 SoM and EVK
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx8mm-innocomm-wb15-evk.dts    | 146 ++++++
+ .../dts/freescale/imx8mm-innocomm-wb15.dtsi   | 480 ++++++++++++++++++
+ 5 files changed, 630 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocomm-wb15.dtsi
+
 -- 
-2.25.1
+2.30.2
 
