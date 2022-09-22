@@ -2,251 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8CBD5E642E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:50:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E705E6431
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:51:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231684AbiIVNuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 09:50:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35656 "EHLO
+        id S231593AbiIVNvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 09:51:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231737AbiIVNuZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:50:25 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EFC8E55
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 06:50:09 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id x18so9641949wrm.7
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 06:50:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=Z3sexyeyUJdURCD2OUYhtkAo269PZ5QlEsbN/k/uA2k=;
-        b=EJSgc6RwBPaKrSSKq9ogi4vGgcOXAmjG+KdpCjqOh0Y/OEllPIrpLEKZqRJeBbbpKC
-         priIyFKaZVg2m2KvndRX0twZB2hcFVIeP+OSZNQCPx+3LWdgAZSFX9vTCAjsGJgyRb/e
-         BUflfjC5VjyC6fLr1B0ZfvJURpsCi8iFj3gJ1Tq3flUeIoAZ2SjX6JSPOdyveJ8XL2ZE
-         pL0gZUTwhxKAKwWF3QT9iFb37pSl9/Vb5hW9Xh1d/MKkKY4tRZchaAwfs2QyzJr18qjr
-         gqz+pMvijAv0nElV4lVpzM6X6YXQRNoI/bgj5+WSE+RLo36pQDKx5+M438cCKSczFB+H
-         XrVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=Z3sexyeyUJdURCD2OUYhtkAo269PZ5QlEsbN/k/uA2k=;
-        b=fyuIu8NKIpJW5wbOcgpJFdy9S4yGd8UVeZfOpI1lW+5BrcJwYXbbqLqnLhahY+kkx3
-         QMTYUjROcFvRvwIv0ZJmEBXsRodJpn7vCrBiJ3Gd9PD68eVRdUZBtCuD62/u775D5x5r
-         ji6lGFDVJrb4/oo/IeW1qmUwvk6ihdM42xgCm/yiZXcuaS4ZZGGDp/ajIcUYe3IOLdNg
-         tRFcfzVVBtQmUT2IxZD1j0f8oEc4QnM6ayJMpondZiDMEpZ5biNDZ9obblHGoQ4yUJ/m
-         1bUwWMkf+fVq0cdhiRR7EIDOMEJ8PUata6GdjOhFtq3WZfTM/JrKY8cxUIgPNBvZ80lO
-         6vNQ==
-X-Gm-Message-State: ACrzQf2svPdc56e7F0QwvHOaLotZgYKk6OYAZ+YbiWRDmsQCldV9fwv5
-        +QF5biNrQlBBAxyx1D2JNWI4bst9ANvkmb83QsRUUg==
-X-Google-Smtp-Source: AMsMyM7SdBsyCznGI20l+F9gnW5c3o/BLK/I1RC+ONDHDo/OVst2OLbxyvWZLD+Zs00qr8W2jQsHoMi5m622ax9rIs8=
-X-Received: by 2002:a5d:6c6f:0:b0:22a:7778:6ea2 with SMTP id
- r15-20020a5d6c6f000000b0022a77786ea2mr2243789wrz.15.1663854607926; Thu, 22
- Sep 2022 06:50:07 -0700 (PDT)
+        with ESMTP id S231790AbiIVNug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:50:36 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BCF064D3;
+        Thu, 22 Sep 2022 06:50:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5CBE3B836F4;
+        Thu, 22 Sep 2022 13:50:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1AC12C433C1;
+        Thu, 22 Sep 2022 13:50:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663854619;
+        bh=baQKDRUVQgv1x/LBw1tm4rEGxWMZKXfz70Pb4TfnkgM=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=lvk521ZohHjjza20sQknVKi2/M8j9CA0L9vilLw45jb1EF12fQg3/vj8RmDpa3y4c
+         6KhV0zIzoeeURqOqPgFRo4K5f+PTjJgvZ2WAxzw4zYBcvsCU7XS2wS6IpKcdAkSoIx
+         koGLoKr9MILhuWulnptqVXzERhPudWdqkGWy5GSt1YQc0ydEU+bcuu/pF9CAjlwUws
+         4anojZiJSywE5jEhK7Ibu0LRHczsDErfMewfR6PNts6itDOKm+U3KbrRFWBhs1hYvQ
+         Q7bYjRmWrD92QOcl5fBrFuQzjfuIhTXqkzwIg3+jBRUdiii4DHXLo8FG+NqcNdPkds
+         6t7mlPnsFLIBw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id EFB20E4D03D;
+        Thu, 22 Sep 2022 13:50:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20220609150851.23084-1-max.oss.09@gmail.com> <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
- <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
- <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
- <20220726160337.GA41736@francesco-nb.int.toradex.com> <CAPDyKFqGFjywJ-Vmmn9=-NOzJX=24mH9A03H9djS=nJotKWK8A@mail.gmail.com>
- <20220728112146.GA97654@francesco-nb.int.toradex.com> <CAPDyKFqtCxrjALeCmhuqQ2VmmUHhi-DjXO30uHChTPFeDbp+JQ@mail.gmail.com>
- <20220909142247.GA238001@francesco-nb.int.toradex.com>
-In-Reply-To: <20220909142247.GA238001@francesco-nb.int.toradex.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 22 Sep 2022 15:49:31 +0200
-Message-ID: <CAPDyKFrwpz=gi3iY5YsO6k4o33eLQRp-wXvBx3nQ0q=G9YrqHA@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
- which controls
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 net-next 00/11] Add WED support for MT7986 chipset
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166385461897.22432.10510208615369821045.git-patchwork-notify@kernel.org>
+Date:   Thu, 22 Sep 2022 13:50:18 +0000
+References: <cover.1663668203.git.lorenzo@kernel.org>
+In-Reply-To: <cover.1663668203.git.lorenzo@kernel.org>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
+        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
+        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
+        devicetree@vger.kernel.org, robh@kernel.org, daniel@makrotopia.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 9 Sept 2022 at 16:22, Francesco Dolcini
-<francesco.dolcini@toradex.com> wrote:
->
-> Hello Ulf,
->
-> On Fri, Aug 26, 2022 at 03:50:46PM +0200, Ulf Hansson wrote:
-> > On Thu, 28 Jul 2022 at 13:21, Francesco Dolcini
-> > <francesco.dolcini@toradex.com> wrote:
-> > >
-> > > On Thu, Jul 28, 2022 at 11:37:07AM +0200, Ulf Hansson wrote:
-> > > > On Tue, 26 Jul 2022 at 18:03, Francesco Dolcini
-> > > > <francesco.dolcini@toradex.com> wrote:
-> > > > >
-> > > > > Hello Ulf and everybody,
-> > > > >
-> > > > > On Wed, Jul 13, 2022 at 01:43:28PM +0200, Ulf Hansson wrote:
-> > > > > > On Thu, 23 Jun 2022 at 18:14, Max Krummenacher <max.oss.09@gmail.com> wrote:
-> > > > > > > So our plan is to explicitly handle a (shared) regulator in every
-> > > > > > > driver involved, adding that regulator capability for drivers not
-> > > > > > > already having one.
-> > > > > >
-> > > > > > Please don't! I have recently rejected a similar approach for Tegra
-> > > > > > platforms, which now have been converted into using the power domain
-> > > > > > approach.
-> > > > >
-> > > > > Just to quickly re-iterate how our hardware design looks like, we do
-> > > > > have a single gpio that control the power of a whole board area that is
-> > > > > supposed to be powered-off in suspend mode, this area could contains
-> > > > > devices that have a proper Linux driver and some passive driver-less
-> > > > > components (e.g. level shifter) - the exact mix varies.
-> > > > >
-> > > > > Our proposal in this series was to model this as a power domain that
-> > > > > could be controlled with a regulator. Krzysztof, Robin and others
-> > > > > clearly argued against this idea.
-> > > >
-> > > > Well, historically we haven't modelled these kinds of power-rails
-> > > > other than through power-domains. And this is exactly what genpd and
-> > > > PM domains in Linux are there to help us with.
-> > > >
-> > > > Moreover, on another SoC/platform, maybe the power-rails are deployed
-> > > > differently and maybe those have the ability to scale performance too.
-> > > > Then it doesn't really fit well with the regulator model anymore.
-> > > >
-> > > > If we want to continue to keep drivers portable, I don't see any
-> > > > better option than continuing to model these power-rails as
-> > > > power-domains.
-> > > >
-> > > > >
-> > > > > The other approach would be to have a single regulator shared with the
-> > > > > multiple devices we have there (still not clear how that would work in
-> > > > > case we have only driver-less passive components). This is just a
-> > > > > device-tree matter, maybe we would need to add support for a supply to
-> > > > > some device drivers.
-> > > > >
-> > > > > Honestly my conclusion from this discussion is that the only viable
-> > > > > option is this second one, do I miss something?
-> > > >
-> > > > No thanks!
-> > > >
-> > > > Well, unless you can convince me there are benefits to this approach
-> > > > over the power-domain approach.
-> > >
-> > > I'm fine with our current power-domain proposal here, I do not need to
-> > > convince you, I have the other problem to convince someone to merge
-> > > it :-)
-> > >
-> > > Maybe Krzysztof, Robin or Mark can comment again after you explained
-> > > your view on this topic.
-> >
-> > To move things forward, I suggest you re-start with the power domain approach.
-> >
-> > Moreover, to avoid any churns, just implement it as another new SoC
-> > specific genpd provider and let the provider deal with the regulator.
-> I'm sorry, but I was not able to understand what you mean, can you
-> provide some additional hint on the topic? Some reference driver we can
-> look at?
+Hello:
 
-Typically, "git grep pm_genpd_init" will find genpd providers.
+This series was applied to netdev/net-next.git (master)
+by Paolo Abeni <pabeni@redhat.com>:
 
-There are a couple of examples where a regulator (among other things)
-is being controlled from the genpd's ->power_on|off() callbacks, such
-as:
+On Tue, 20 Sep 2022 12:11:12 +0200 you wrote:
+> Similar to MT7622, introduce Wireless Ethernet Dispatch (WED) support
+> for MT7986 chipset in order to offload to the hw packet engine traffic
+> received from LAN/WAN device to WLAN nic (MT7915E).
+> 
+> Changes since v2:
+> - fix build warnings in patch 9/11
+> 
+> [...]
 
-drivers/soc/mediatek/mtk-pm-domains.c
-drivers/soc/imx/gpc.c
+Here is the summary with links:
+  - [v3,net-next,01/11] arm64: dts: mediatek: mt7986: add support for Wireless Ethernet Dispatch
+    https://git.kernel.org/netdev/net-next/c/00b9903996b3
+  - [v3,net-next,02/11] dt-bindings: net: mediatek: add WED binding for MT7986 eth driver
+    https://git.kernel.org/netdev/net-next/c/22ecfce11034
+  - [v3,net-next,03/11] net: ethernet: mtk_eth_soc: move gdma_to_ppe and ppe_base definitions in mtk register map
+    https://git.kernel.org/netdev/net-next/c/329bce5139cf
+  - [v3,net-next,04/11] net: ethernet: mtk_eth_soc: move ppe table hash offset to mtk_soc_data structure
+    https://git.kernel.org/netdev/net-next/c/ba2fc48c5e1e
+  - [v3,net-next,05/11] net: ethernet: mtk_eth_soc: add the capability to run multiple ppe
+    https://git.kernel.org/netdev/net-next/c/4ff1a3fca766
+  - [v3,net-next,06/11] net: ethernet: mtk_eth_soc: move wdma_base definitions in mtk register map
+    https://git.kernel.org/netdev/net-next/c/0c1d3fb9c2b7
+  - [v3,net-next,07/11] net: ethernet: mtk_eth_soc: add foe_entry_size to mtk_eth_soc
+    https://git.kernel.org/netdev/net-next/c/9d8cb4c096ab
+  - [v3,net-next,08/11] net: ethernet: mtk_eth_wed: add mtk_wed_configure_irq and mtk_wed_dma_{enable/disable}
+    https://git.kernel.org/netdev/net-next/c/cf26df8833cc
+  - [v3,net-next,09/11] net: ethernet: mtk_eth_wed: add wed support for mt7986 chipset
+    https://git.kernel.org/netdev/net-next/c/de84a090d99a
+  - [v3,net-next,10/11] net: ethernet: mtk_eth_wed: add axi bus support
+    https://git.kernel.org/netdev/net-next/c/2b2ba3ecb241
+  - [v3,net-next,11/11] net: ethernet: mtk_eth_soc: introduce flow offloading support for mt7986
+    https://git.kernel.org/netdev/net-next/c/03a3180e5c09
 
->
-> The driver we implemented and proposed with this patch is just
-> connecting a power-domain to a regulator, it's something at the board
-> level, not at the SoC one.
-> We do not have a (existing) SoC driver were we could add the power
-> domain provider as an additional functionality.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Right, so you need to add a new SoC/platform driver for this.
 
->
-> > In this way, you don't need to invent any new types of DT bindings,
-> > but can re-use existing ones.
-> The only new binding would be a new "compatible" to have a place to
-> tie the regulator instance used in the device tree, but I do not think
-> that this is an issue at all.
-
-Yes, I agree.
-
->
-> The main concern that was raised on this topic was that we have to
-> somehow link the power-domain to the specific peripherals (the power
-> domain consumer) in the device tree.
-
-Yes, that is needed. Although, I don't see how that is a concern?
-
-We already have the valid bindings to use for this, see more below.
-
->
-> Adding the power-domain property there will trigger validation errors
-> unless we do explicitly add the power-domains to the schema for each
-> peripheral we need this. To me this does not really work, but maybe I'm
-> not understanding something.
->
-> This is what Rob wrote on the topic [1]:
->   > No. For 'power-domains' bindings have to define how many there are and
->   > what each one is.
->
-> Just as an example from patch [2]:
->
->   can1: can@0 {
->     compatible = "microchip,mcp251xfd";
->     power-domains = <&pd_sleep_moci>;
->   };
->
-> leads to:
->
->   imx8mm-verdin-nonwifi-dahlia.dtb: can@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
->           From schema: .../bindings/net/can/microchip,mcp251xfd.yaml
-
-I think it should be fine to just add the below line to the DT
-bindings, for each peripheral device to fix the above problem.
-
-power-domains: true
-
-That should be okay, right?
-
->
-> > If you post a new version, please keep me cced, then I will help to review it.
-> Thanks!
->
-> Francesco
->
-> [1] https://lore.kernel.org/all/20220613191549.GA4092455-robh@kernel.org/
-> [2] https://lore.kernel.org/all/20220609150851.23084-6-max.oss.09@gmail.com/
->
-
-Kind regards
-Uffe
