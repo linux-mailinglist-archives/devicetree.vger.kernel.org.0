@@ -2,111 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 687A75E640D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:47:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 252AC5E6414
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:48:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231840AbiIVNr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 09:47:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55172 "EHLO
+        id S231828AbiIVNsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 09:48:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231839AbiIVNq7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:46:59 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4866B2CF9;
-        Thu, 22 Sep 2022 06:46:32 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DAD356BE;
-        Thu, 22 Sep 2022 15:46:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1663854390;
-        bh=4PHTA7WJvRzkt2WYaKYBpZNp5g1S5sLG94TzQnuL42E=;
+        with ESMTP id S231833AbiIVNr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:47:56 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29ACF3933;
+        Thu, 22 Sep 2022 06:47:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 014E8B836EC;
+        Thu, 22 Sep 2022 13:47:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0624C433D6;
+        Thu, 22 Sep 2022 13:47:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1663854430;
+        bh=GHdswNwa2l6I7a9Y1aPqdGywYJbHnh4/1zLSt2sJKZo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b0CKFH/qiOdwbJ0Nkzn8UvIK+aiNAKkFrGvXtEM9+s9f6ZosHkHM6IRKCgSzlFr++
-         e2gbTTwZmgpsZK9Fcj7KI164PtJu4cSKqLHQ4GTbxA9y3g6H80Bq0njmSsuFUijbQn
-         O4wRK3mE4FMPpGha89+jx0AOJ+dUv0HWobaKNJX0=
-Date:   Thu, 22 Sep 2022 16:46:15 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        b=i+GJonRlXcgtZo99D8zxZCnqgRyctr7FVQfHZzpnKMgBzpoiZ2MRFrzxBRfn1ufhz
+         IWUdzwMAHWUO3Zty4tNp7/a5R3D0NDGp8DweWGpCZEuAw2A3SnZ0xZ0SPbkS4vv7Tp
+         F8TUNynX+wDwbK8QwfmSgKCJgM0BukGcs377BI1w=
+Date:   Thu, 22 Sep 2022 15:47:02 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 2/4] media: dt-bindings: Document Renesas RZ/G2L CRU
- block
-Message-ID: <YyxnJ/Ho5rZQzDDN@pendragon.ideasonboard.com>
-References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220905230406.30801-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <29d456ed-620c-8dc9-01f0-54f96b670b94@linaro.org>
- <YysHAkWBfTTAJF3E@pendragon.ideasonboard.com>
- <ba436dd5-2ea2-b2e0-7056-5bae6b4c7bb4@linaro.org>
- <YytJ/oJK9s2mfqPL@pendragon.ideasonboard.com>
- <bba1ed72-d691-b51c-dce8-ab9a2e45fe86@linaro.org>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>, Li Jun <jun.li@nxp.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: Re: [PATCH v2 4/4] arm64: dts: tqma8mpql: add support for 2nd
+ USB (host) interface
+Message-ID: <YyxnVicN/W/M2/ir@kroah.com>
+References: <20220915062855.751881-1-alexander.stein@ew.tq-group.com>
+ <20220915062855.751881-5-alexander.stein@ew.tq-group.com>
+ <YyxgUtT1gtyMIHeY@kroah.com>
+ <5606023.DvuYhMxLoT@steina-w>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bba1ed72-d691-b51c-dce8-ab9a2e45fe86@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <5606023.DvuYhMxLoT@steina-w>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 21, 2022 at 08:58:26PM +0200, Krzysztof Kozlowski wrote:
-> On 21/09/2022 19:29, Laurent Pinchart wrote:
-> >>>>> +  clock-names:
-> >>>>> +    items:
-> >>>>> +      - const: vclk
-> >>>>> +      - const: pclk
-> >>>>> +      - const: aclk
-> >>>>
-> >>>> Drop the "clk" suffixes. Remaining names could be made a bit more readable.
-> >>>
-> >>> These names come from the documentation, isn't it better to match the
-> >>> datasheet ?
-> >>
-> >> If datasheet calls it "vclk_really_clk_it_is_clk_clk", it's not the
-> >> reason to use it. :)
-> >>
-> >> The "clk" is redundant even if the hardware engineer thought different.
-> >>
-> >> The same for IRQs ("tx" not "txirq"), for dmas ("tx" not "txdma").
+On Thu, Sep 22, 2022 at 03:39:01PM +0200, Alexander Stein wrote:
+> Hi Greg,
+> 
+> Am Donnerstag, 22. September 2022, 15:17:06 CEST schrieb Greg Kroah-Hartman:
+> > On Thu, Sep 15, 2022 at 08:28:55AM +0200, Alexander Stein wrote:
+> > > The on-board USB hub has a single reset line which needs to be enabled.
+> > > 
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > > 
+> > >  .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 41 +++++++++++++++++++
+> > >  1 file changed, 41 insertions(+)
 > > 
-> > I'd argue that naming clocks "v", "p" and "a" would be less readable and
-> > more confusing. Is this a new rule ?
+> > This patch failed to apply, please rebase and resend.
 > 
-> Not really, but also it's only a style issue.
-> 
-> Indeed "v" and "p" are not much better... but still "vclk" does not
-> bring any additional information over "v". It's redundant.
-> 
-> You can also drop entire entry - unless it helps in particular
-> implementation.
+> If I rebase this one to usb-testing (or usb-next) this will conflict with 
+> additional patches for this file already in linux-next later on, especially 
+> fb4f0b69565e ("arm64: dts: tqma8mpql: add USB DR support"). So IMHO this might 
+> not the best idea.
+> How to proceed here? Maybe Shawn can take this one once the other 3 patches 
+> hit linux-next.
 
-There are multiple clocks, so I think names are better than indices. If
-you really insist we could name them "v", "p" and "a", but I think the
-clk suffix here improves readability. If those clocks were named
-"videoclk", "pixelclk" and "axiclk" I'd be fine dropping the suffix, but
-that's not the case here.
+Yeah, or just wait for 6.1-rc1 to come out?
 
-> https://lore.kernel.org/all/20220517175958.GA1321687-robh@kernel.org/
-> https://lore.kernel.org/all/20210815133926.22860-1-biju.das.jz@bp.renesas.com/
-> https://lore.kernel.org/all/YYFCaHI%2FDASUz+Vu@robh.at.kernel.org/
-> https://lore.kernel.org/all/20220830182540.GA1797396-robh@kernel.org/
+Your call,
 
--- 
-Regards,
-
-Laurent Pinchart
+greg k-h
