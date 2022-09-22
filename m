@@ -2,84 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A41E85E5C4C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 09:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 476AC5E5C65
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 09:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230444AbiIVHYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 03:24:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
+        id S230498AbiIVH3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 03:29:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229921AbiIVHYe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 03:24:34 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE1C2C2C
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 00:24:29 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id f14so13226780lfg.5
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 00:24:29 -0700 (PDT)
+        with ESMTP id S229728AbiIVH3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 03:29:05 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19F90D12E1
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 00:29:03 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id f9so13226462lfr.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 00:29:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=fVcE2reQEfaEop4WRxdK1mO72Ip3uJjJkJGgaluoDsM=;
-        b=MSlRGljboTuGCdg3YEgOuKZBwTHCYcmzhnbgNphcxRdZyyfnwC664T8n53L+7Kb5A1
-         cBjGVu/xWbq4oUq8SLl+K3rsUKIyb/pAPtYAe6Ak01fZY6SfyZEnTaLs/z3BMKPjkSgv
-         vjmGQIgs1lLjxNx/uTL+ut/giC8XhZcsQwMrTBvzpBex0lB1/0LvbylWJluy/Ic3INLQ
-         SjlutBZR81gnaEMn5Jc0oha2px1AkGagITF9BddZQkinMio1PuFwtZLaGSUmLItkLHzB
-         1LEDnf+uCMw/DTWJNW0akGZdDtngxnSDEMs68J10o1m+HzEjBBsp1pp6Xc4Uce8MuQ5O
-         YqVw==
+        bh=1507m4RgEB8G8apG9frqBRqsvM+IxF1zb1xDZKuTjik=;
+        b=C5nysh2zDZrg+jTjXaipq/RO2w0zQPTnCDjvCuDyJJ+rsaO+QfNTlyAIqLHWK9QVNh
+         jyGfsE8oMWxpqoeOcC4FmVpdgGrbbj8aSN80+1Z8Hi2XX8kvEShxE3V77B9k1aaEylKi
+         MWny/zmL5x8iUzR2/GYOwI5zsibW/S5TUw+A2HT6emYVJ/f12PnC4oQp5S7a2fj0M56F
+         GWmiqIInklUWbhinJRd9Wtg5vtvc0v5CpDefU7uxaXtEIEBFcyrUQlnUjSfW0tkUKmdu
+         R7ijOCMam3XdPHq96OFJMzeGjnYLprO3f28zHDCpq5EeuVTcpWrAc2pUoJjuw7LaELlK
+         iERQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=fVcE2reQEfaEop4WRxdK1mO72Ip3uJjJkJGgaluoDsM=;
-        b=NH60lwhx15H1SPAVLWVWY5/vydqZGXq2Veqll4yY+v7P9TsQCRURDPIpHLbsr45GnX
-         xym1htShdwExbErKKyKz2sP5gPaSgHSS7urNNJ0KNT2DXe4QCuQjBKdLa92M1PfW9JcC
-         LdbDsV4bFUvv7WlePf3/BVuTJnbbAA0ITYc8PJKx9OZ+QxeHjT+vtr+2FAYcE4Ij+PqV
-         +LCcSgT8x+yXfhelePMXL40XN1ocIKotlDpoUoCvsdAPZmVkhP+wDaoVRHNIRq5cfGrZ
-         LdpibuJfFlsff5jWA8FVypQ4kyvKS+07sEziWnyavJI+v93pBHUITQD0LZJVpbB9cHe8
-         hQpA==
-X-Gm-Message-State: ACrzQf3UXrJxfL7BVFaSxY8cjxXMzXaEX1CXslIKmozSPPgcnRcKLygD
-        2kis2M3Ut75hO6VSZN5zWOtspA==
-X-Google-Smtp-Source: AMsMyM5zA8VBFZmHafhekY2Y0dpCwQNF2kNCm9Hgz6tvQd/1QC+mRy8x/sO+uaHu1Mn31n8rO9wtGA==
-X-Received: by 2002:a05:6512:370c:b0:49f:c4fb:8706 with SMTP id z12-20020a056512370c00b0049fc4fb8706mr723544lfr.635.1663831468306;
-        Thu, 22 Sep 2022 00:24:28 -0700 (PDT)
+        bh=1507m4RgEB8G8apG9frqBRqsvM+IxF1zb1xDZKuTjik=;
+        b=67pgORNluTaaqu5Oz6qa9hMGh51heJyl4yJGINMDlamVGQmldP6ERQy2w/kzyRz6XT
+         fS+P+ANPUpnw5kXRL0rvQXjRgWH6BqfJn4l33x7A0n+cMlhI6n7XnakmQnX+G8BeoVeA
+         bUHq0kOvtmU2rJ76Oep4WbCBblGUhHQ4qKDvgsHMDS6KHJXgRnxy4aNifv7Qdlw221XN
+         nweMzKYPkt5lSLRJX8uAMBYVGY5Ds4MxILr4CgLqjfjZJjmA/j8biW9V72HFKi0jErJy
+         ZBHHF0K/xlJHte7WmlI+HcdMZ7+vzL6+WTP/qhiK0K8DGwwFqB0MUNaIzsWK2Rnv3L2X
+         +NRA==
+X-Gm-Message-State: ACrzQf0p+BmqKg4wzf1UOtkTDIVQslIchZz7L5W4ngV9y3vT52yIwxsn
+        DPfsilA+MjZlVg29glhnkx+ONA==
+X-Google-Smtp-Source: AMsMyM7xYIDEG5UyAZ6DpX1g+zu6IgAcOFUXs7lxj4Ju3vGUs2aYZBGzxzwpgrLobKb6kp/wgJtMvg==
+X-Received: by 2002:ac2:4db1:0:b0:497:838b:15d9 with SMTP id h17-20020ac24db1000000b00497838b15d9mr682181lfe.644.1663831741353;
+        Thu, 22 Sep 2022 00:29:01 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id j5-20020a2e6e05000000b0026c59d3f557sm769428ljc.33.2022.09.22.00.24.27
+        by smtp.gmail.com with ESMTPSA id q14-20020a056512210e00b004972b0bb426sm796625lfr.257.2022.09.22.00.28.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Sep 2022 00:24:27 -0700 (PDT)
-Message-ID: <c74b4ab7-e307-482b-c4fc-0a7a1e39d6d1@linaro.org>
-Date:   Thu, 22 Sep 2022 09:24:26 +0200
+        Thu, 22 Sep 2022 00:29:00 -0700 (PDT)
+Message-ID: <9b29ee3f-ed48-9d95-a262-7d9e23a20528@linaro.org>
+Date:   Thu, 22 Sep 2022 09:28:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v1 11/17] drm/mediatek: hdmi: add mt8195 support
+Subject: Re: [PATCH v2 2/8] dt-bindings: phy: renesas: Document Renesas
+ Ethernet SERDES
 Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220919-v1-0-4844816c9808@baylibre.com>
- <20220919-v1-11-4844816c9808@baylibre.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        kishon@ti.com, vkoul@kernel.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        richardcochran@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be
+Cc:     andrew@lunn.ch, linux-phy@lists.infradead.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20220921084745.3355107-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220921084745.3355107-3-yoshihiro.shimoda.uh@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919-v1-11-4844816c9808@baylibre.com>
+In-Reply-To: <20220921084745.3355107-3-yoshihiro.shimoda.uh@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,27 +81,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2022 18:56, Guillaume Ranquet wrote:
-> Adds hdmi and hdmi-ddc support for mt8195.
+On 21/09/2022 10:47, Yoshihiro Shimoda wrote:
+> Document Renesas Etherent SERDES for R-Car S4-8 (r8a779f0).
 > 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  .../bindings/phy/renesas,ether-serdes.yaml    | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/renesas,ether-serdes.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/renesas,ether-serdes.yaml b/Documentation/devicetree/bindings/phy/renesas,ether-serdes.yaml
+> new file mode 100644
+> index 000000000000..04d650244a6a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/renesas,ether-serdes.yaml
 
+Filename based on compatible, so renesas,r8a779f0-ether-serdes.yaml
 
-> +static int mtk_hdmi_ddc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct mtk_hdmi_ddc *ddc;
-> +	int ret;
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/renesas,ether-serdes.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	ddc = devm_kzalloc(dev, sizeof(struct mtk_hdmi_ddc), GFP_KERNEL);
-> +	if (!ddc)
-> +		return -ENOMEM;
+> +title: Renesas Ethernet SERDES
 > +
-> +	ddc->regs = syscon_regmap_lookup_by_compatible("mediatek,mt8195-hdmi");
+> +maintainers:
+> +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,r8a779f0-ether-serdes
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  '#phy-cells':
+> +    description: Port number of SERDES.
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - resets
+> +  - power-domains
+> +  - '#phy-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r8a779f0-cpg-mssr.h>
+> +    #include <dt-bindings/power/r8a779f0-sysc.h>
+> +
+> +    ethernet@e6880000 {
 
-That's not how you get regmaps. If you the driver grows, are you going
-to grow the list to e.g. 10 syscon_regmap_lookup_by_compatible() calls?
-This has to be by phandle.
+Hm, isn't this a phy?
+
+> +            compatible = "renesas,r8a779f0-ether-serdes";
+> +            reg = <0xe6444000 0xc00>;
+> +            clocks = <&cpg CPG_MOD 1506>;
+> +            power-domains = <&sysc R8A779F0_PD_ALWAYS_ON>;
+> +            resets = <&cpg 1506>;
+> +            #phy-cells = <1>;
+> +    };
 
 Best regards,
 Krzysztof
