@@ -2,179 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 866EA5E6982
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 19:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6439E5E698F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 19:24:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231654AbiIVRUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 13:20:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55590 "EHLO
+        id S231438AbiIVRYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 13:24:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230281AbiIVRUP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 13:20:15 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2042.outbound.protection.outlook.com [40.107.92.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39BC47FE5F;
-        Thu, 22 Sep 2022 10:20:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hpUdcwX0+JTI7+NVJtz99+TuiaFkcYtR6KEmsR9hdH4l97KToWtYCiI/8vp91wFLGC9gRzIZhGcGNZNbd5l/gvGBv8jvimz6JLQ3XSSjvwaJ4EjZ48U6E0QHWrBhJzo6duCZjdwEmDKK1QpmFP5ygn/HU4ffBwAVCOc7iO6GDnCeAD+C4RHm6HZX0juAQeVOauoQ48wbavAjkk/JbFA6ulsWoBb/TsdRSJAijt3yKi1UUHEmG0MKpWiJ6OfYBgioh8rolGK9XifqSlUF361OWTsFg0OP9vJIX7NUMg6sMJ2midwXprZb+0YD9I5KQ+PtuFn00ZLbR1ccszvYInyLVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hsz3hPgSRbQm5yitV+e0UVqtVHNnyb2jH/raRqfF9CU=;
- b=GLF/Eu3R+hJBZNiZK9nJhnv/tqHb0lAA/Ils4Exnq7rPdaWL5oMaNS1z+s8WUaoDV/qaCGdJLCCI/yogTddlRELZDC3WzwYxUYDEJL3MeuVFeK47zv3UYzZ7VTpjmJc+hOS04p7m+4F0aPNUCuKHjv4LA/ATViI29Qbz3l08hng9ajKEUPaWYzlvfFRGzFjJly5uIE5rt3TbgBljRCnrvSECHDZ+3VfzeN3NCtVEMOBAls5TCMMc1sGgml9rxWvye9u7nUcvFqjllux6RlW8Kns4S9lcdifYkwqL4chiCQ1mQeam58kVXpTfWyLctLrNYL2bpmuU0eNFV0c8zDAlpw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hsz3hPgSRbQm5yitV+e0UVqtVHNnyb2jH/raRqfF9CU=;
- b=hkLdLDMr/wdybEz8pZlNhTOHZs6lljKX7Wi8/qwVmlCJ7zYawyoTRojIiP3vEBHSmHUfaE4oHwDlcH45uU3uI0kdEAuU1wgdI2sYwGjmy3IFH8njgGhONOTLRQK2+5scsW3Ld3a2o5TEFep1Y+5GcLZskEoA2OagWCCiRVgLlUo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by SA2PR08MB6603.namprd08.prod.outlook.com
- (2603:10b6:806:11d::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.19; Thu, 22 Sep
- 2022 17:20:09 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::e9de:97f:447d:1cee]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::e9de:97f:447d:1cee%6]) with mapi id 15.20.5632.021; Thu, 22 Sep 2022
- 17:20:08 +0000
-Date:   Thu, 22 Sep 2022 12:20:06 -0500
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     Quentin Schulz <foss+kernel@0leil.net>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, dmitry.torokhov@gmail.com,
-        klaus.goger@theobroma-systems.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Subject: Re: [PATCH 1/3] Input: add `SW_BOOT_ALT`
-Message-ID: <YyyZRt5j180KzGqc@nixie71>
-References: <20220922101211.3215888-1-foss+kernel@0leil.net>
- <20220922101211.3215888-2-foss+kernel@0leil.net>
+        with ESMTP id S231444AbiIVRX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 13:23:58 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD51A101957;
+        Thu, 22 Sep 2022 10:23:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1663867430;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=hzB5tPXtis0lkIp+WeRUcHMUH8bgPsn6Zt43bWhWAaE=;
+    b=cVWaLrKk4h4B1X2B/gEhGqQvJWCeyAAQsd20fbsoI/xUiJ5Ju6op/tY/2NLJu0S2U+
+    6Mx4LzRjtIOhJtCExIohmSbjPC3e5Z6uTo+pXyWhp+dP5i21ZjW0cqWIIp95qTKk1ty2
+    IP7hxjtY6M6Pxk0i2oD9X4+NePNP9aHLhceszg+Ud19FtludGVSqbrexEyXr5S3GGphj
+    caOA4z13727zrXJyWiT0Kecw4STtOLbj04xLmmTq8CIxjRW7eF4FPIh06hYkoMW4rpmA
+    4xhF+km5pNePBNkOOsCAChiHwUUVWSgoFJtU1DcXI2NwAI3cQUH82gTLac55zunqV8Hz
+    e9sQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKY7lg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 48.1.1 AUTH)
+    with ESMTPSA id w49479y8MHNnEa5
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 22 Sep 2022 19:23:49 +0200 (CEST)
+Date:   Thu, 22 Sep 2022 19:23:43 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 00/10] thermal/drivers/tsens: specify nvmem cells in
+ DT rather than parsing them manually
+Message-ID: <YyyaH1ZXF9IvLpwd@gerhold.net>
+References: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220922101211.3215888-2-foss+kernel@0leil.net>
-X-ClientProxiedBy: SN4PR0501CA0010.namprd05.prod.outlook.com
- (2603:10b6:803:40::23) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|SA2PR08MB6603:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6cbd1e57-4511-4054-0caf-08da9cbeb300
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jmaBGR1LpUE8Fy4n7Qcl7SBSyaS4IQVly7hcG88yXxoWERkUmv2SYMLc7WLhjeiKBGB4eLkReStFbIJ8cL1roRJR/h57onIRzGZFGO6JaDbGaHs6CrGZtKxPUEkhlfRLrgyicFmWSslC8OGtwXSs8WcUnqigQp1pkqQezUsRZbOCIUa5hPvub4NaotH2xRtMKjwfJRntbbDRowuWxxVO4F2UdSKfb7zaETWukuXj4YashaGACF9KkPwsVXBAms5EYA77aQeHEtV8yTk37w0xzgxmcEUCDx8gsUfSJcM2ftOcLZIe3szCBLfmOCBOEsdHNAqoaV/83GROarUgKL+xpzmb90COIqgrNw6vLxBwKLvI2aKsbM8jIfdlf7KzRYIG5F9uWubxcg16npM2xRlndcEqmLBJykrU9UGs4G044hNMPJDJ/cV/Tz6tktEgy5MMlxTTu3znk6b8yxalerQgLS6Topp2mEAnq3b7lK6E3DgnAopKfsIomtCOKV09U4/V6Z7fyRzDWOO39o+FBwCri5dFJVQK7sdEFox7vyUHZ2OwVd1XKnq/pM471/GljbyHUv3gbaEvaaAdCvdhgYGbgJ8W3hDLc6m8SKOWt1IwqKG44ZklZqWQCnECjrFe0FnSaci8oomMQpxyXifPgquiILsTtVol1iWQdJ+/9FW3gwwiffv0sc9B0xhTzYVp3KZhnnLCXGZ7YDacmRmHDOr8l2fFE+unsRMBzZjkSNLQyms4F4nxtVTljIjQXLGkWY1I
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(396003)(376002)(39830400003)(366004)(136003)(346002)(451199015)(38100700002)(2906002)(9686003)(26005)(6512007)(478600001)(83380400001)(186003)(7416002)(8936002)(6506007)(5660300002)(86362001)(8676002)(6486002)(316002)(41300700001)(4326008)(66476007)(66556008)(66946007)(33716001)(81973001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bVY8WjxRKM2dST6jE40AQ974j5JUVSYFn2HjA2wIXrDM0wCg8P44pJcdBbF1?=
- =?us-ascii?Q?dYinTunXa4OeVON0bU9nBx1MYIo+D/hqL4Lpq+0ZWAG7bJoF0Wrkq5ScNVSC?=
- =?us-ascii?Q?YffNXh0vnR6hXng1bRX+sddhmJhjnqy7brDtk4Ca2Bn6jNx1RzlIw6lW7bg0?=
- =?us-ascii?Q?e7//Q7HqjArAiq72O2agdrRhG5nWEZGhsjdI621XLJvUTB1lf6izrdIppEbI?=
- =?us-ascii?Q?fe3pU4ilCy5e3d+uay4SnnWPS3KrGsnzoU8bhpJWhF+YgMlWkjpuXDjWGy2h?=
- =?us-ascii?Q?hZrjKYJUKA4SXRxUb1rWrgat//LUzdc2uIwBoQ5iqVaLab3/KzsoEa1vHMin?=
- =?us-ascii?Q?sMaKq9Qj0/PywMpV5UiJY6s4bX7hcTNaBscgkR9cN5NATMAFVkA29tqb3hLI?=
- =?us-ascii?Q?qIMLqEOtOlL1DK5i9Ckivv2O/grwpntO5lEWtUb/j3mwn5eWaeUr7SQPsF84?=
- =?us-ascii?Q?jd2MnD5s4sjZs4kUTpzDryf6QArTJyDx3gWcNo7FdgdaCbzo8nAIBsvQhd9x?=
- =?us-ascii?Q?HzSNdQLXh/cWRGjbhIr98jWB4ns/KTPkUCV3pv2yMvAcfK4IMNo6lCb6rWq1?=
- =?us-ascii?Q?UeyR+o5heW/06UM9TVwQ7X+ttGIA053OrFq4eGx2ls5oZ4mflvNHXX1yDMZk?=
- =?us-ascii?Q?0hxRTMby9Funs62jNCO/q5YKjtc8dOnYIHWMsVNVhr626mTQk921sIRMViaG?=
- =?us-ascii?Q?UeueBGtU07gMHPMl2m4r4HkUQ2llwbpYOGONm6oEAlQLTnFyvA4k5t7srBTV?=
- =?us-ascii?Q?3ZwRyvcoiMIZzYuJSueDemdAN2cCJiTDDUm2yUzJgDoS441s2EmfJ7hEbMoO?=
- =?us-ascii?Q?x7EmqVVYPmoUFL51W+iMA5rwOCUgXOKb07+tZbgX/exPZ9IwTd2C23HHScDe?=
- =?us-ascii?Q?dUukmRNE8pHYyBm47ZMSXNIOUFiQ90UVDP0TDz1ILtVCXUJnvbBSyrHqmNfi?=
- =?us-ascii?Q?TXABTRWfHQs0EUtnH1TVdHzg4zc+Z03KQiVgQLINdfkrROzHpX/EIuD5HO9p?=
- =?us-ascii?Q?iVkeEx8PT5x62wCjTk8NucEsak22ye+/hvlE028p6CHSx0e9xkVNbFNt22fc?=
- =?us-ascii?Q?QHkIaW9QRCTcmrPr1+CqXbb9/+yWrXhLXbHgVBZtIN6MEwbAWZXwkatDtS5Q?=
- =?us-ascii?Q?pQbsHjpjuT9OsRST527nm/XOwb0DwWIJX6MqinnNkUX6XLv6UmPVyv9Trxj0?=
- =?us-ascii?Q?KarKmFaIncllvzfd/EO94DfSBW9kIqr+5n6CyXPzPg1DWlZGgvnIYXgLRrE9?=
- =?us-ascii?Q?GXNCpYrwH93UxvgO0wsMXjNwYXIinL0yAYg1Kic7g9XZJRV24r8O+vX5W8Fv?=
- =?us-ascii?Q?z1x2Cr/ViwUKTtJ08WCMsBiWhbjzcLsJoPrmuEnOgAWdXWiwokf1A12wOuGR?=
- =?us-ascii?Q?RjyrjJrXeSrKF2WGWwyMagCev6ctWqukjICB+k/bIKWPpLTUpvsEQonXvHXd?=
- =?us-ascii?Q?2ZyA1hchYFwx+3TBUtGe+w6WmK/e2KxsaLEcWA8ehRsounN/4TqZj0AvOYfQ?=
- =?us-ascii?Q?YoIBN+4ck41CpT+kHhz8c86m2L5hr6NlL3DiInpv+iO6HjxEgCtt/vPpcQjT?=
- =?us-ascii?Q?OW1KNHNfyAvw4pkhTatQl7qiOUAs926WAHE375F7?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6cbd1e57-4511-4054-0caf-08da9cbeb300
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2022 17:20:08.8909
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zI/wjyRMxD+/OS6sLUti5fIB/B3a49Se+ws3W0cVsJUfOU37OTvoF+SVQPN+5Z+a1KGBUxWP9d4HOaDf4+7Eew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR08MB6603
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Quentin,
+Hi Dmitry,
 
-On Thu, Sep 22, 2022 at 12:12:09PM +0200, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+On Sat, Sep 10, 2022 at 03:46:51PM +0300, Dmitry Baryshkov wrote:
+> Historically the tsens driver fetches the calibration data as a blob and
+> then parses the blob on its own. This results in semi-duplicated code
+> spreading over the platform-specific functions.
 > 
-> This event code represents the firmware source to use at boot.
-> Value 0 means using "standard" firmware source, value 1 means using
-> "alternative" firmware source.
+> This patch series changes tsens calibration code to use pre-parsed nvmem
+> cells rather than parsing the blob in the driver. For backwards
+> compatibility the old code is left in place for msm8916 and qcs404, two
+> platforms which have in-tree DT files. For msm8974 the original function
+> is left intact, since it differs significantly (and I can not test the
+> code on msm8974). For all other affected platforms the old parsing code
+> has been dropped as a part of this RFC.
 > 
-> For example, some hardware has the ability to force the BOOTROM to load
-> the bootloader from a secondary firmware source (say SD card) instead of
-> trying with the standard first and then the secondary. This event allows
-> the userspace to know which firmware source was requested *in hardware*.
-> 
-> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-
-This does not seem like the right approach, especially since the switch
-can easily be flipped after the state is already latched.
-
-If the bootloader needs to pass information to the kernel (boot source or
-otherwise), a safer and more flexible approach is to share some variables
-in eMMC, or pass information using the kernel cmdline.
-
-> ---
->  include/linux/mod_devicetable.h        | 2 +-
->  include/uapi/linux/input-event-codes.h | 3 ++-
->  2 files changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/include/linux/mod_devicetable.h b/include/linux/mod_devicetable.h
-> index 549590e9c644..009e71376a61 100644
-> --- a/include/linux/mod_devicetable.h
-> +++ b/include/linux/mod_devicetable.h
-> @@ -326,7 +326,7 @@ struct pcmcia_device_id {
->  #define INPUT_DEVICE_ID_LED_MAX		0x0f
->  #define INPUT_DEVICE_ID_SND_MAX		0x07
->  #define INPUT_DEVICE_ID_FF_MAX		0x7f
-> -#define INPUT_DEVICE_ID_SW_MAX		0x10
-> +#define INPUT_DEVICE_ID_SW_MAX		0x11
->  #define INPUT_DEVICE_ID_PROP_MAX	0x1f
->  
->  #define INPUT_DEVICE_ID_MATCH_BUS	1
-> diff --git a/include/uapi/linux/input-event-codes.h b/include/uapi/linux/input-event-codes.h
-> index dff8e7f17074..8cd2b58c81d7 100644
-> --- a/include/uapi/linux/input-event-codes.h
-> +++ b/include/uapi/linux/input-event-codes.h
-> @@ -917,7 +917,8 @@
->  #define SW_MUTE_DEVICE		0x0e  /* set = device disabled */
->  #define SW_PEN_INSERTED		0x0f  /* set = pen inserted */
->  #define SW_MACHINE_COVER	0x10  /* set = cover closed */
-> -#define SW_MAX			0x10
-> +#define SW_BOOT_ALT		0x11  /* set = alternative boot firmware source */
-> +#define SW_MAX			0x11
->  #define SW_CNT			(SW_MAX+1)
->  
->  /*
-> -- 
-> 2.37.3
+> The code was tested on msm8916 and qcs404 only, thus it is being sent as
+> an RFC.
 > 
 
-Kind regards,
-Jeff LaBundy
+Thanks a lot for working on this!
+
+After thinking about this for a while I wonder if we can go even a step
+further: Can we drop SoC-specific code entirely for 8939 and 9607 and
+match the generic compatible (qcom,tsens-v0_1)? This would allow most
+v0.1 plaforms to use generic code like for qcom,tsens-v2.
+
+AFAICT with your changes only the following remains SoC-specific:
+
+  - hw_ids (actually only needed for 8939 since 9607 has standard IDs)
+
+While two other things are already handled:
+
+  - num_sensors (the driver supports "#qcom,sensors" in DT already)
+  - tsens_calibrate_nvmem() shift (AFAICT in downstream msm-tsens.c
+    everything except 8916 uses shift = 2. 8916 needs special handling
+    anyway for the backwards compatibility)
+
+Having the generic compatible would allow me to add MSM8909 without any
+code changes at all (just DT schema addition).
+
+For 8939 we could read the hw_ids from the DT with something like:
+
+	qcom,sensors = <0 1 2 3 5 6 7 8 9 10>;
+
+And actually there are two revisions of 8939, the older one has one
+sensor less (msm-3.10: msm8939-common.dtsi vs msm8939-v3.0.dtsi).
+This could also be easily handled from the DT without any code changes:
+
+	qcom,sensors = <0 1 2 3 5 6 7 8 9>;
+
+The diff could be something like the following (I did not test it yet).
+
+What do you think?
+
+Thanks,
+Stephan
+
+ drivers/thermal/qcom/tsens-v0_1.c | 32 +++++---------------------------
+ drivers/thermal/qcom/tsens.c      | 27 ++++++++++++++++++---------
+ drivers/thermal/qcom/tsens.h      |  2 +-
+ 3 files changed, 24 insertions(+), 37 deletions(-)
+
+diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
+index c3613b7ccc19..8bfa85b31146 100644
+--- a/drivers/thermal/qcom/tsens-v0_1.c
++++ b/drivers/thermal/qcom/tsens-v0_1.c
+@@ -194,11 +194,6 @@ static int calibrate_8916(struct tsens_priv *priv)
+ 	return 0;
+ }
+ 
+-static int calibrate_8939(struct tsens_priv *priv)
+-{
+-	return tsens_calibrate_nvmem(priv, 2);
+-}
+-
+ static int calibrate_8974(struct tsens_priv *priv)
+ {
+ 	int base1 = 0, base2 = 0, i;
+@@ -335,7 +330,7 @@ static int calibrate_8974(struct tsens_priv *priv)
+ 	return 0;
+ }
+ 
+-static int calibrate_9607(struct tsens_priv *priv)
++static int calibrate_dt(struct tsens_priv *priv)
+ {
+ 	return tsens_calibrate_nvmem(priv, 2);
+ }
+@@ -401,21 +396,6 @@ struct tsens_plat_data data_8916 = {
+ 	.fields	= tsens_v0_1_regfields,
+ };
+ 
+-static const struct tsens_ops ops_8939 = {
+-	.init		= init_common,
+-	.calibrate	= calibrate_8939,
+-	.get_temp	= get_temp_common,
+-};
+-
+-struct tsens_plat_data data_8939 = {
+-	.num_sensors	= 10,
+-	.ops		= &ops_8939,
+-	.hw_ids		= (unsigned int []){ 0, 1, 2, 4, 5, 6, 7, 8, 9, 10 },
+-
+-	.feat		= &tsens_v0_1_feat,
+-	.fields	= tsens_v0_1_regfields,
+-};
+-
+ static const struct tsens_ops ops_8974 = {
+ 	.init		= init_common,
+ 	.calibrate	= calibrate_8974,
+@@ -429,16 +409,14 @@ struct tsens_plat_data data_8974 = {
+ 	.fields	= tsens_v0_1_regfields,
+ };
+ 
+-static const struct tsens_ops ops_9607 = {
++static const struct tsens_ops ops_generic_v0_1 = {
+ 	.init		= init_common,
+-	.calibrate	= calibrate_9607,
++	.calibrate	= calibrate_dt,
+ 	.get_temp	= get_temp_common,
+ };
+ 
+-struct tsens_plat_data data_9607 = {
+-	.num_sensors	= 5,
+-	.ops		= &ops_9607,
+-	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 4 },
++struct tsens_plat_data data_tsens_v0_1 = {
++	.ops		= &ops_generic_v0_1
+ 	.feat		= &tsens_v0_1_feat,
+ 	.fields	= tsens_v0_1_regfields,
+ };
+diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+index e69134a6419a..c4772962fb94 100644
+--- a/drivers/thermal/qcom/tsens.c
++++ b/drivers/thermal/qcom/tsens.c
+@@ -1021,15 +1021,9 @@ static const struct of_device_id tsens_table[] = {
+ 	{
+ 		.compatible = "qcom,ipq8064-tsens",
+ 		.data = &data_8960,
+-	}, {
+-		.compatible = "qcom,mdm9607-tsens",
+-		.data = &data_9607,
+ 	}, {
+ 		.compatible = "qcom,msm8916-tsens",
+ 		.data = &data_8916,
+-	}, {
+-		.compatible = "qcom,msm8939-tsens",
+-		.data = &data_8939,
+ 	}, {
+ 		.compatible = "qcom,msm8960-tsens",
+ 		.data = &data_8960,
+@@ -1042,6 +1036,9 @@ static const struct of_device_id tsens_table[] = {
+ 	}, {
+ 		.compatible = "qcom,msm8996-tsens",
+ 		.data = &data_8996,
++	}, {
++		.compatible = "qcom,tsens-v0_1",
++		.data = &data_tsens_v0_1,
+ 	}, {
+ 		.compatible = "qcom,tsens-v1",
+ 		.data = &data_tsens_v1,
+@@ -1152,6 +1149,8 @@ static int tsens_probe(struct platform_device *pdev)
+ 	struct tsens_priv *priv;
+ 	const struct tsens_plat_data *data;
+ 	const struct of_device_id *id;
++	unsigned int *hw_ids;
++	unsigned int dt_hw_ids[MAX_SENSORS];
+ 	u32 num_sensors;
+ 
+ 	if (pdev->dev.of_node)
+@@ -1168,10 +1167,20 @@ static int tsens_probe(struct platform_device *pdev)
+ 		data = &data_8960;
+ 
+ 	num_sensors = data->num_sensors;
++	hw_ids = data->hw_ids;
+ 
+-	if (np)
++	if (np) {
+ 		of_property_read_u32(np, "#qcom,sensors", &num_sensors);
+ 
++		ret = of_property_read_variable_u32_array(np, "qcom,sensors",
++							  dt_hw_ids,
++							  1, MAX_SENSORS);
++		if (ret > 0) {
++			hw_ids = dt_hw_ids;
++			num_sensors = ret;
++		}
++	}
++
+ 	if (num_sensors <= 0) {
+ 		dev_err(dev, "%s: invalid number of sensors\n", __func__);
+ 		return -EINVAL;
+@@ -1187,8 +1196,8 @@ static int tsens_probe(struct platform_device *pdev)
+ 	priv->num_sensors = num_sensors;
+ 	priv->ops = data->ops;
+ 	for (i = 0;  i < priv->num_sensors; i++) {
+-		if (data->hw_ids)
+-			priv->sensor[i].hw_id = data->hw_ids[i];
++		if (hw_ids)
++			priv->sensor[i].hw_id = hw_ids[i];
+ 		else
+ 			priv->sensor[i].hw_id = i;
+ 	}
+diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
+index 504ed3394a79..439f356f0177 100644
+--- a/drivers/thermal/qcom/tsens.h
++++ b/drivers/thermal/qcom/tsens.h
+@@ -589,7 +589,7 @@ int get_temp_common(const struct tsens_sensor *s, int *temp);
+ extern struct tsens_plat_data data_8960;
+ 
+ /* TSENS v0.1 targets */
+-extern struct tsens_plat_data data_8916, data_8939, data_8974, data_9607;
++extern struct tsens_plat_data data_8916, data_8974, data_tsens_v0_1;
+ 
+ /* TSENS v1 targets */
+ extern struct tsens_plat_data data_tsens_v1, data_8976;
