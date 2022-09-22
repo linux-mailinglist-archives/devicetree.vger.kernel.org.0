@@ -2,100 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD2F35E5D98
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 10:37:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4EA05E5E43
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 11:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230119AbiIVIhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 04:37:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60278 "EHLO
+        id S229475AbiIVJRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 05:17:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbiIVIhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 04:37:18 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC457A61D1
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 01:37:15 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id dv25so19274229ejb.12
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 01:37:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=TwVaZJkLdwmom6Stee69RLiTEJKn72psfncdzouODpI=;
-        b=jdxAJwiTAFGS0B//ixBkSccbSUKqSmHlo7dcQGhPy0FAOjJQPeqG0s8qNE6vwXngsd
-         Sx18XH3h/nVh3UKgU0cvSlBmvr/z2TyRoG3ptmTNRK7o5QMLyfKSG0NMAN8+CNSnrysp
-         odOzxlwAzfZfZDBLxLhGiWXdSrZJuOD66dWxlnUOEowakrWXUjs19IsxP6WsH4kBGJqG
-         9oCdbtZkjfkKD8tEft8Dk1bslOuxZ0x30lce+IyVpKyg78G86X+4fShmiJEiUEdZ+48M
-         KUAc3k/KZ3oFWs8dBRycJQFgUM81d/pIrCLHY8xRG1UGlF2jkwaU2+2a5A95K9zxSfms
-         +j4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=TwVaZJkLdwmom6Stee69RLiTEJKn72psfncdzouODpI=;
-        b=8N4bQLhqdIFQOMRIFx0QkOHDVWIOvXEwX+LawPCkK7tsvEIOXuztWBeTiv4KHLEBbe
-         XYQ/nCj5+0owamJXXvrjU+L0Ft0qPhmkEqrvyUuTRgKJaOlWqtCJNxnDB83z42pQjFGg
-         7G/jnfrKzqk8FjU4/E1LJ53kBQwl9UixKt11cb1mEHvjEcweJcCP+XgWZ+PcuZEs4QMU
-         oZW+xt/wJsZlXt+mNyBEtY84cGS4NvU/M+Fu2aZHvp1A9Tsiv0jFKqMfsetYEQSWOEiZ
-         2+1kYxiueGKptTpDD2ctYxCII3M9Hd6pTC2B+dc3cVeYs2P8elonVK/Xa2Pi8/DpIjR/
-         MLjA==
-X-Gm-Message-State: ACrzQf3+U16Rfe62gbtyCExcpqX+Otzp92OKve5ii4dMc7rOyLps8Zn/
-        afjpPbhZqB+UcJVhHf82z5yEmEFoQpHCrh9jPAkAww==
-X-Google-Smtp-Source: AMsMyM70aN5WdtKZVMkYxt4MFoCnTTjO1UEouE/n+cIuMmbkZXDhle7VhmG91bHu0r0RObEWsdg/5pI21oePMCVrOm0=
-X-Received: by 2002:a17:907:9807:b0:781:feee:f87c with SMTP id
- ji7-20020a170907980700b00781feeef87cmr1812708ejc.101.1663835834350; Thu, 22
- Sep 2022 01:37:14 -0700 (PDT)
+        with ESMTP id S230095AbiIVJRJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 05:17:09 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17DA2D01DC;
+        Thu, 22 Sep 2022 02:17:07 -0700 (PDT)
+X-UUID: 07c2a1e7d85342d28750fa0b22cebae3-20220922
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=2j9f04ZQ1xFARTqgBbxH+EHFcjAKFMFMMJ41xXq6cEU=;
+        b=omjMLJsMTHOWBX6JAMX2uy//AqcaAwG1o+bA5bHqFnPCbyNckaQ9Uo0nIgr1Uw5lsCvJKR8j1BibsAe99BTX8PtB3yUkVunNyK5gY2UKWw+2vgsMc9j7XKH1Oi0uR6k9zeXIPYv83UOJhmhLbRQtvVBVrXbrEdEGSIf1JFPaqT4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:41beb4c5-e117-46d5-b96d-60e84052d880,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:39a5ff1,CLOUDID:794eb9a2-dc04-435c-b19b-71e131a5fc35,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 07c2a1e7d85342d28750fa0b22cebae3-20220922
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1764917018; Thu, 22 Sep 2022 17:17:02 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 22 Sep 2022 17:17:01 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 22 Sep 2022 17:17:01 +0800
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Miles Chen <miles.chen@mediatek.com>,
+        Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>, <linux-usb@vger.kernel.org>,
+        <stable@vger.kernel.org>
+Subject: [PATCH] arm64: dts: mediatek: mt8195-demo: fix the memory size of node secmon
+Date:   Thu, 22 Sep 2022 17:16:48 +0800
+Message-ID: <20220922091648.2821-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-References: <20220905145555.674800-1-etienne.carriere@linaro.org>
-In-Reply-To: <20220905145555.674800-1-etienne.carriere@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Thu, 22 Sep 2022 10:37:03 +0200
-Message-ID: <CAMRc=Mcq3u+1JjvXJ2X774vknq-LOeCfE7hLj2As7Q5A13tx0w@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-binding: gpio: publish binding IDs under dual license
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Stephen Warren <swarren@nvidia.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 5, 2022 at 4:57 PM Etienne Carriere
-<etienne.carriere@linaro.org> wrote:
->
-> Changes gpio.h DT binding header file to be published under GPLv2 or
-> BSD-2-Clause license terms. This change allows this GPIO generic
-> bindings header file to be used in software components as bootloaders
-> and OSes that are not published under GPLv2 terms.
->
-> All contributors to gpio.h file in copy.
->
-> Cc: Stephen Warren <swarren@nvidia.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Laxman Dewangan <ldewangan@nvidia.com>
-> Cc: Andrew Jeffery <andrew@aj.id.au>
-> Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-> Cc: Nuno S=C3=A1 <nuno.sa@analog.com>
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->
-> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
-> ---
+The size of device tree node secmon (bl31_secmon_reserved) was
+incorrect. It should be increased to 2MiB (0x200000).
 
-Applied, thanks!
+The origin setting will cause some abnormal behavior due to
+trusted-firmware-a and related firmware didn't load correctly.
+The incorrect behavior may vary because of different software stacks.
+For example, it will cause build error in some Yocto project because
+it will check if there was enough memory to load trusted-firmware-a
+to the reserved memory.
 
-Bart
+Cc: stable@vger.kernel.org      # v5.19
+Fixes: 6147314aeedc ("arm64: dts: mediatek: Add device-tree for MT8195 Demo board")
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+index 4fbd99eb496a..dec85d254838 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+@@ -56,10 +56,10 @@
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
++		/* 2 MiB reserved for ARM Trusted Firmware (BL31) */
+ 		bl31_secmon_reserved: secmon@54600000 {
+ 			no-map;
+-			reg = <0 0x54600000 0x0 0x30000>;
++			reg = <0 0x54600000 0x0 0x200000>;
+ 		};
+ 
+ 		/* 12 MiB reserved for OP-TEE (BL32)
+-- 
+2.18.0
+
