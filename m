@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9AE75E6C6B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 21:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B056F5E6C68
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 21:57:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232702AbiIVT5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 15:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59896 "EHLO
+        id S232608AbiIVT50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 15:57:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232374AbiIVT5N (ORCPT
+        with ESMTP id S232426AbiIVT5N (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 15:57:13 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF483E6A0A
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0E6F10D0C3
         for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 12:57:08 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id z25so16486074lfr.2
+Received: by mail-lj1-x22e.google.com with SMTP id j24so11774642lja.4
         for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 12:57:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=MnJiqKj/e0bK6O8HCkffXBhhqIr/MLQ5+XtNrwDGU98=;
-        b=Ld6UrZ2WvTW9uIl+6BjlF1IuBIIFiwde5YvP2eZTR/yhNMjs6Wl6ibHS+fz2WFkowo
-         kw3z/8VqxItyyXD4etJHBjsIpfz93GK7Npx6esi9aAGwNdiUf9fgxNTI6lcGV7+WTr86
-         TWS1HQ3rdF+7i9NWH5/3/Nerkp2uRlVTnV0jzc2l+vU8azNukkTFOgXKXySEmU2328R/
-         fD2a4srWJkp4K8nj90B+CdOoQMqoldg4SfBt+DfsfINQvXUeGYA08FbfBXvLaG4WuWmJ
-         lE3FmXc2uuuzfCnfV54MiJWKUp/5CI4z/oBivW0wRnIl6bnitivBmzriSXEQwuZL1JoB
-         d+cA==
+        bh=ZL3t03EQvl9mHvGpFybHkv480XEe974dhXgVTeybEX4=;
+        b=PxA5QBSKygBoXAEkyYLXLy14kPGP3Cl9s6viTGZHqDB+z5CQCiZeP01q6kv0gzUX+R
+         QBhSrvaklBjM5D3cohsvKEwi3tDUSLCQntM/ppCqDOgNMIfxeVxoYjhWJwL4rg4j2emN
+         YyQSDvX9hMMdV0st0/CpDlqkfrRCLbI+Isn9isG3mhZGJnl6GfBJa/V3TfLU+qw/xhyt
+         pnWqy8XS5R3RFh1PFjjtviH055W43s7hsLpuiia1WPU/c/lVad5rAsSojjUElXEI3m61
+         jELOaXKejW50OhvrOSurgKtjWFqnj5woW+WhnJQ6Aa/COcTilhXeGjPvbpveFGoGvzvl
+         txHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=MnJiqKj/e0bK6O8HCkffXBhhqIr/MLQ5+XtNrwDGU98=;
-        b=Adj+BurbtS+7wO+hiJFWqk7ojb0NDCHHFsOy9SMp76X7KMcBv9bM38Gkdw97kFwH8z
-         34KQnfbBvv2TcTiGKKrGwg3YDbsuOtNvAbzrIpDweSxr+M4/GJ+cEFymj5TDA0W197X5
-         9xXXwW+nhpzDShu25o5ln6SmwAIhdqS7MkoWtWZV2PU3nSdh9vSyTSE/tQJ/iTzqmU38
-         jEO0RU8LXJPk4nUrtLAAY+jC15oil8L3mz+4N4p9+LLIUOHanzz5WD8pPENbONMIG3TG
-         5EJi/Ks9Q/VODCFBeATGH+PBU59gwV22hiaDl4AW4mJpPYYxcpUDmLfgI6/NnAoJ3zeY
-         9/VQ==
-X-Gm-Message-State: ACrzQf332dI+VJ8U/bu3AX7t9F7jQt38v3etekuuH/9fgQKllSUvFBM6
-        CwdCDCiN9xKd7hXPyxuU9h5+Iw==
-X-Google-Smtp-Source: AMsMyM5Q7W16iXPI8jA3/nPDy35YnHEIlNe3uS13TbNOLPBTDNgmdH7+jkIlrcghKlaw7kGs82Kj4A==
-X-Received: by 2002:a05:6512:489:b0:49f:4da0:a023 with SMTP id v9-20020a056512048900b0049f4da0a023mr2029897lfq.599.1663876626876;
-        Thu, 22 Sep 2022 12:57:06 -0700 (PDT)
+        bh=ZL3t03EQvl9mHvGpFybHkv480XEe974dhXgVTeybEX4=;
+        b=OiObk45HtAtdfIOvm9JHU5HKEYJifRpQ8MdJOScWcVVJLmgxCwhbyqKUkJ+JqQo2AU
+         2eUYLUScXgT9N0W3ElvnWlsY/hOnCwgD7MWvDpSYovUaVECCIg4b8D60De0TSN/Vb8Jq
+         ud4Sp23FsCFX4TNALlse0V7KbaV49+E8A/Cv39dFpxB03fBI//ukyCIqreakXbOSigaS
+         TH7VcZgl6l20COK0ypd81oFD49KFQpM0T5C9Z+tIE+HDpJTCqqm8yrLRLYPrMcSP0J0W
+         q+kCwrrAKx17pfhHlGvbrdiizEgv4mP1+MgH3rY0u4tmPY7QEDUryqJeVAUX0gjeGeEY
+         69vA==
+X-Gm-Message-State: ACrzQf0dNd18IAnissxZ5Mu7aoS64t9pUlppOjblmRYoSVY0oFZ/2ZPz
+        RAflFlp2c4jkbU5j8r1G1BSCUQGzn7paIg==
+X-Google-Smtp-Source: AMsMyM7UC/G8p+d5MfztVEkIqi0QpWM+sSfc2ngV1gr8LL+ylW+w2TUpjQl6Dj5UaTWNCmKF7/VXQA==
+X-Received: by 2002:a2e:b016:0:b0:26b:f00b:a8cf with SMTP id y22-20020a2eb016000000b0026bf00ba8cfmr1636230ljk.24.1663876628272;
+        Thu, 22 Sep 2022 12:57:08 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id x15-20020a19e00f000000b00498fc3d4d15sm1079375lfg.190.2022.09.22.12.57.05
+        by smtp.gmail.com with ESMTPSA id x15-20020a19e00f000000b00498fc3d4d15sm1079375lfg.190.2022.09.22.12.57.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Sep 2022 12:57:06 -0700 (PDT)
+        Thu, 22 Sep 2022 12:57:07 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 08/12] dt-bindings: pinctrl: qcom,sm8250-lpass-lpi: add bias-bus-hold and input-enable
-Date:   Thu, 22 Sep 2022 21:56:47 +0200
-Message-Id: <20220922195651.345369-9-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 09/12] arm64: dts: qcom: sc7280: drop clock-cells from LPASS TLMM
+Date:   Thu, 22 Sep 2022 21:56:48 +0200
+Message-Id: <20220922195651.345369-10-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220922195651.345369-1-krzysztof.kozlowski@linaro.org>
 References: <20220922195651.345369-1-krzysztof.kozlowski@linaro.org>
@@ -77,34 +77,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The existing SC7280 LPASS pin controller nodes use bias-bus-hold and
-input-enable, so allow them.  Squash also blank lines for readability.
+The LPASS pin-controller is not a clock provider:
+
+  qcom/sc7280-herobrine-herobrine-r1.dtb: pinctrl@33c0000: '#clock-cells' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
-index 9640d1110fdd..2427da7c20d3 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
-@@ -96,13 +96,11 @@ $defs:
-             3: Reserved (No adjustments)
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 8d807b7bf66a..8823b75a6f1b 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2432,8 +2432,6 @@ lpass_tlmm: pinctrl@33c0000 {
+ 			#gpio-cells = <2>;
+ 			gpio-ranges = <&lpass_tlmm 0 0 15>;
  
-       bias-pull-down: true
+-			#clock-cells = <1>;
 -
-       bias-pull-up: true
--
-+      bias-bus-hold: true
-       bias-disable: true
--
-+      input-enable: true
-       output-high: true
--
-       output-low: true
- 
-     required:
+ 			lpass_dmic01_clk: dmic01-clk {
+ 				pins = "gpio6";
+ 				function = "dmic1_clk";
 -- 
 2.34.1
 
