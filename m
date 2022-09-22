@@ -2,108 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D645E5E69A6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 19:29:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C9005E69AB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 19:30:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231946AbiIVR3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 13:29:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40128 "EHLO
+        id S232066AbiIVRaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 13:30:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231966AbiIVR3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 13:29:36 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4874DDEF2
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:29:34 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id a10so11914685ljq.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:29:34 -0700 (PDT)
+        with ESMTP id S232017AbiIVRaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 13:30:13 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE8DB9C200
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:30:09 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id j24so11332166lja.4
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:30:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=+5ktU3TDpe3BHuTbwoZ764cAXObTROyDXShVbxkedjg=;
-        b=WTOkIz1x4ybGbAs8B/cWZxP4QvzdnlgE7FCibEM9pXldRAzbcaEDIstRmDAHw+YjNm
-         BXbx/lu11awGrUGl7Tlf5SbXmWj7WLXV3l3snFERdhhF5LViUFN5ssoDWYiOT4oy4zGI
-         qVd+pFrmxNkPaEfTitlmlZBlDJKUd+ZSryHLHjYeRnZef76RYm0Zhao4haRXI8SqnHbe
-         TsbpNlygaJ2++kfT0qeVw3z8nyyWsoci1UWTypk40t9PWx5sdPF6f7wBVolOXBSmoRXM
-         9yiPtC3rEwrCycOzSW8BSmY/bMx7hgZvLO/Uv2tnJP//qwc4Xh6B/yEZGAZkV5lNEgHE
-         geOg==
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=3d4XtRz1UVTn9UF6tNTg+CLRSot5BsaX/kpuz1aoWSk=;
+        b=gzyjrFUWv6sH5AP1pBpkvTbYf2jzgM5J6nmbzm5OLICG5oHqLOc42PB0JjTtgfVYQz
+         BF/uvdqnVUjIG0gUSDXOAGX43nM6ksXQIiY1tSzXR1SMOmRV5qUiDglZFJX41AHE3giu
+         tg/8D7PwcQb91U9TFbzIK7dI4g4owsWB+m2N+6yfrX+ZQdJ2gu9iY63t5Yq16lfgOhyE
+         0Dh288gd7F5g/9azqxGNWT9Vw9AZd7/KGEigtoukXStyVge9qfZvf9M4unSyF+lhL/Hs
+         AjpOOO/Vvn6DR5nNwV7Y3lC+pNxU9oAWVvO2ucAaZXVvRZzPcLjP7UaIuHmIFAASf5QE
+         O7ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=+5ktU3TDpe3BHuTbwoZ764cAXObTROyDXShVbxkedjg=;
-        b=XRCe3FMsc7LVH9kA1wn3agCDd6+W4yLQWch5UzYgwGaoJNE3N+27R7LkYfS6cfBkUa
-         0MnhRJcSP7k1aq8rlvmwIGe/sJWMXM1VLk6Coc+MjHS5AvcBynfLA8BOJoEJly3V58Dg
-         QJHLeaS5EE5vLCA8bQcyuTjJ24rFy464Qt2RV9Nd0FJL0HakrfPHaJptYSqwV9C2ZysY
-         UJBykMzm5kZBG7FQUPQZPZsp+nvlbpDdUGd1oDpYK6KCsINzBZO90PlmUoRrwDrhda5z
-         raeoQlCg87R3HRu3kgmzSKbz6vG+VzTDiWeQsc6kTlEoAJ1TMSXS3M9y9cADIASzL7r7
-         rr6Q==
-X-Gm-Message-State: ACrzQf32IQOxka7g/TmVPd1kJ7705dmm9Scz8T/G84d1KxdgaHlx/Z33
-        utouqlZm346x2dym8JAlcFX0ig==
-X-Google-Smtp-Source: AMsMyM7q+CRO6rvOlarBOiLCvoTHsA/CVxmXYPQcgm3Xy63aIchuZFS+ZWs5+S7YO+//DL44qYUztA==
-X-Received: by 2002:a2e:bd09:0:b0:264:6516:93f9 with SMTP id n9-20020a2ebd09000000b00264651693f9mr1503819ljq.127.1663867773771;
-        Thu, 22 Sep 2022 10:29:33 -0700 (PDT)
-Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r10-20020ac24d0a000000b0048af3c090f8sm1039477lfi.13.2022.09.22.10.29.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Sep 2022 10:29:33 -0700 (PDT)
-Date:   Thu, 22 Sep 2022 19:29:31 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, joel@jms.id.au, yuenn@google.com,
-        tali.perry1@gmail.com, benjaminfair@google.com,
-        krzysztof.kozlowski+dt@linaro.org, avifishman70@gmail.com,
-        devicetree@vger.kernel.org, venture@google.com,
-        linux-crypto@vger.kernel.org, olivia@selenic.com,
-        openbmc@lists.ozlabs.org, robh+dt@kernel.org,
-        herbert@gondor.apana.org.au
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=3d4XtRz1UVTn9UF6tNTg+CLRSot5BsaX/kpuz1aoWSk=;
+        b=qgmbDyj/J5a920WgO4p2EJzG4wc7c4nXIfj7JYSQD2mrXvaEhrJ4dk99Ra42+k0W0h
+         hH15JqnH/NrQi48RwP7EM+NtfM3h2BXOKJgb7d/+EuC342t+oobdPI1a8x3l+JkJzm7t
+         HgaU6eyqRxmHNNw2II2LG//77luVUNXdVKGUUEfQu1YOXxnG7kM8wovNao8KTD5Od5ZO
+         UxHezt6t54NDE28xZ6IqAkWbEX4sgeQ5FfxFOjmbZdruU7O+ej9IcVXIs5S1aTJGpMTh
+         Lex/x/ib8yNocjDdch1R/lyHCJ78G/4QrrZWaep255t2PzQ40+BOoVswkZGs2WZljnel
+         d0yg==
+X-Gm-Message-State: ACrzQf1KtWR7FyH0Q5WvagT0UNtrycyRgYXYJppLJGSGAkDLaE3QDD07
+        RtaUyZIcPjTij70IlsTL1SJDmQ==
+X-Google-Smtp-Source: AMsMyM6UoHvK8OQptpz3VhwCgTvbTRlcBxKMUrZWJW1n57MxTQw07sco9Ija42Do0y41A8n03+5iNQ==
+X-Received: by 2002:a2e:a54c:0:b0:26c:50c6:75c1 with SMTP id e12-20020a2ea54c000000b0026c50c675c1mr1540727ljn.408.1663867807861;
+        Thu, 22 Sep 2022 10:30:07 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id h14-20020a05651c124e00b00266af46abccsm1011655ljh.72.2022.09.22.10.30.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Sep 2022 10:30:07 -0700 (PDT)
+Message-ID: <14c980cf-314f-811f-98b8-18457625c2d6@linaro.org>
+Date:   Thu, 22 Sep 2022 19:30:06 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
 Subject: Re: [PATCH v1 1/2] dt-bindings: rng: nuvoton,npcm-rng: Add npcm845
  compatible string
-Message-ID: <20220922172931.rf37x4xig5znjvlu@krzk-bin>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, olivia@selenic.com,
+        herbert@gondor.apana.org.au, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     openbmc@lists.ozlabs.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220922142216.17581-1-tmaimon77@gmail.com>
  <20220922142216.17581-2-tmaimon77@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220922142216.17581-2-tmaimon77@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+ <29d54940-997a-865a-b9d0-c043a8c9ce99@linaro.org>
+In-Reply-To: <29d54940-997a-865a-b9d0-c043a8c9ce99@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Sep 2022 17:22:15 +0300, Tomer Maimon wrote:
-> Add a compatible string for Nuvoton BMC NPCM845 RNG.
+On 22/09/2022 17:08, Krzysztof Kozlowski wrote:
+> On 22/09/2022 16:22, Tomer Maimon wrote:
+>> Add a compatible string for Nuvoton BMC NPCM845 RNG.
+>>
+>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.yaml | 4 +++-
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+And un-acked. Test your patches.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.yaml:20:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
+Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-dtschema/dtc warnings/errors:
+Best regards,
+Krzysztof
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1681163
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
