@@ -2,265 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC94B5E6849
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 18:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D35D35E686B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 18:30:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231747AbiIVQUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 12:20:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52880 "EHLO
+        id S232079AbiIVQaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 12:30:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbiIVQUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 12:20:46 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7F13E1195
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 09:20:44 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id l8so7132423wmi.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 09:20:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=ikNsXWXU/bxgoF8rWbJPE8/lOHvhyE2xcZVDiYsxD3w=;
-        b=cNg49/8wtVekJsFl/kyO40gP2uw4vSef6Y0zG3Oe9TLF0SeeND6DMWYKBqheFIIPt2
-         /Uj/C5wsiZGk3tKdaXdaDehm+eMHU+tT6/Ud0khG95GkYriQRGO96QEyNHge+IjZCSeS
-         tLAPENCUrQvu5gDAb4U032KfrXGGcSgKrXnfx/2tSp9+vjPPJjDAmHAfUjsfFhXIPrg0
-         IvR/N2wp4ABC+CdcTB4Cqkwmq2+QdcCSnRqctDtTO2bBBt9KpN2dJ3epQQbuxWuzAUn7
-         TfJeT+Lq4UqhJXw0w8iei16hXkF5vPPRVgPTrylK2g4ZomZh06zUJAZekbxaIHpB/RFb
-         5Mdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=ikNsXWXU/bxgoF8rWbJPE8/lOHvhyE2xcZVDiYsxD3w=;
-        b=BTGOtrpXBy2Xw3Q7F5Y5kIQlvLnOlgN2tn4edhAc8Vua7RTX2xJIUVDVcNM4Ws0k55
-         +JOx+eaQpS/u3wNWNwBISQSE38OiRH8TA+rnEJM2xVX8jofktMIkZWJs9OyDbeHsr77R
-         pFuQl2FPPUQwvjQo7cczYIU1mzmGxklkitlQeETBXGeYLTHe4kYBhwtcCa423hzZD3OF
-         LArf5ufBBUirNHVCrTj8TK4u3493r4yaV0zfuM3ff4lUS8H2/u8IRHGlswWbDAzfizR/
-         pC865lVIjzU+tObHJqcqSVvQD1LoODeE19IpLYREc8cz6krlitd5U1PfUJDcvaAL+heP
-         mzIg==
-X-Gm-Message-State: ACrzQf0NuYRb/qpDw39fDKuXV0uA7x1DNPTHa2vduqvtBw1nkClbhRlm
-        91QBZXLcB38cfJSnCpt4sP2Ypw==
-X-Google-Smtp-Source: AMsMyM63wvCdfBqy1LUih00pnG9zl0EzimES3cDlucoVL4oQ4Muo7KEqFG5WkCVhvhJWODL4RQkeAg==
-X-Received: by 2002:a05:600c:a185:b0:3b4:ff33:9fc4 with SMTP id id5-20020a05600ca18500b003b4ff339fc4mr3841469wmb.2.1663863643268;
-        Thu, 22 Sep 2022 09:20:43 -0700 (PDT)
-Received: from localhost.localdomain (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
-        by smtp.gmail.com with ESMTPSA id e10-20020a5d6d0a000000b0022aeba020casm6600328wrq.83.2022.09.22.09.20.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Sep 2022 09:20:42 -0700 (PDT)
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: [PATCH v2] dt-bindings: virtio: Convert virtio,pci-iommu to DT schema
-Date:   Thu, 22 Sep 2022 17:16:45 +0100
-Message-Id: <20220922161644.372181-1-jean-philippe@linaro.org>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S232040AbiIVQaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 12:30:15 -0400
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE5845055;
+        Thu, 22 Sep 2022 09:30:04 -0700 (PDT)
+Received: from toolbox.toradex.int ([31.10.206.125]) by mrelay.perfora.net
+ (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1N9dHN-1pMx9W08WL-015XQB;
+ Thu, 22 Sep 2022 18:29:35 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/8] arm64: dts: verdin-imx8mm: verdin-imx8mp: pcie. et. al.
+Date:   Thu, 22 Sep 2022 18:29:17 +0200
+Message-Id: <20220922162925.2368577-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:4637eWeTPry5ikx6C4DgjsxAeXIpEEmMNpsVJznParNZVSKIiT/
+ ew87uBY8tqpIlhLljNJJg/VO2fAWfm+tjVy2zIAYZoI0Ug75iCIgBfEKW1h15uzDblrlHis
+ V8Qi8fKiQ8DU5OXAp5aH/Nks7KpSh0pZ92ItWoAqdzBSxrGWQqTF9EphPnUto/GWkgf3Yy3
+ qID0RFJHVf+Wz0Pzrc7Sw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:yezxiKWF5RU=:4+Nji9/75mJFEuzdiySFDZ
+ vl/7cu3pVzkat/1uTo95eX0PfR/OQSRxudjM7hQthYeiN9bEANdZK7OZYLa7tJ8sahXYWz/nP
+ 0q27iJRSDZpFMjFbZfGy+DESpuy838QhLhPxp+lGuf5kA3w+fgNfZKU2sbAIkzyXDRDjkJU/x
+ W/BxOM6h7U9MMU0FqtILklCUYShEfVsS2HWwXnvNxf6H0NL1y1VbEXAkVM8+OlC2MtIS5DYxj
+ eLUctXh14JUiW30iY4Uz8MJVw7+Z95DarBVA+K8XZ95lU7XK6E/oqvrUU4qF9vxn4wdHxxjvx
+ 7cMy1WxomP7vS7mVT28kAkrzm3RVMbSm89VT6O21dXE2stX408jyja13YEmea74z2kUAVIf45
+ 32OPW3qCgble6XR9REah31M36VKLR8WVIFiwRKw6gCWHVnhJ2yt2g73AbsKjsRdE1akHgf1x9
+ a14I0abk7QLYmFc38Lv01lCh+N+tfKZ8O3iBpQB1q2DlAzGkJWUFjZNaQjY4isc9T84hUh12m
+ 0cNAyL+aci8tfUnWpBlTcC9LhPFX5SoxDdRw0MaYg/F/G3H8uCxbBvIV7A35a1nnVQxNp449g
+ cRNdTqIcx+lx57TtVvX9iSCAIshStbXO+15bcrpo+HjkgvDhaz3mU/dII4eGLaJRpUXOTSNyM
+ eQc7aX7r1bzsBkn0KWM8FvOI72YamZGIzSMT2dMtVWDydzYl2UvIrmdwoCVfZw8iGlJtVm/lk
+ RaABPCgwKL0LC+bfrJSfZJd9tKRVcvx3yfJjPXk9k3e2jIIYuieIOOH6l6FWmVu1APDL7Uj/l
+ ZGnrW7G
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the binding that describes virtio-pci base IOMMU to DT schema.
-Change the compatible string to "pci<vendor>,<device>" which is defined
-by the PCI Bus Binding
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
----
-v2: Fix example, make compatible a required property
-v1: https://lore.kernel.org/all/20220916132229.1908841-1-jean-philippe@linaro.org/
----
- .../devicetree/bindings/virtio/iommu.txt      |  66 ------------
- .../devicetree/bindings/virtio/iommu.yaml     | 101 ++++++++++++++++++
- 2 files changed, 101 insertions(+), 66 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/virtio/iommu.txt
- create mode 100644 Documentation/devicetree/bindings/virtio/iommu.yaml
 
-diff --git a/Documentation/devicetree/bindings/virtio/iommu.txt b/Documentation/devicetree/bindings/virtio/iommu.txt
-deleted file mode 100644
-index 2407fea0651c..000000000000
---- a/Documentation/devicetree/bindings/virtio/iommu.txt
-+++ /dev/null
-@@ -1,66 +0,0 @@
--* virtio IOMMU PCI device
--
--When virtio-iommu uses the PCI transport, its programming interface is
--discovered dynamically by the PCI probing infrastructure. However the
--device tree statically describes the relation between IOMMU and DMA
--masters. Therefore, the PCI root complex that hosts the virtio-iommu
--contains a child node representing the IOMMU device explicitly.
--
--Required properties:
--
--- compatible:	Should be "virtio,pci-iommu"
--- reg:		PCI address of the IOMMU. As defined in the PCI Bus
--		Binding reference [1], the reg property is a five-cell
--		address encoded as (phys.hi phys.mid phys.lo size.hi
--		size.lo). phys.hi should contain the device's BDF as
--		0b00000000 bbbbbbbb dddddfff 00000000. The other cells
--		should be zero.
--- #iommu-cells:	Each platform DMA master managed by the IOMMU is assigned
--		an endpoint ID, described by the "iommus" property [2].
--		For virtio-iommu, #iommu-cells must be 1.
--
--Notes:
--
--- DMA from the IOMMU device isn't managed by another IOMMU. Therefore the
--  virtio-iommu node doesn't have an "iommus" property, and is omitted from
--  the iommu-map property of the root complex.
--
--Example:
--
--pcie@10000000 {
--	compatible = "pci-host-ecam-generic";
--	...
--
--	/* The IOMMU programming interface uses slot 00:01.0 */
--	iommu0: iommu@0008 {
--		compatible = "virtio,pci-iommu";
--		reg = <0x00000800 0 0 0 0>;
--		#iommu-cells = <1>;
--	};
--
--	/*
--	 * The IOMMU manages all functions in this PCI domain except
--	 * itself. Omit BDF 00:01.0.
--	 */
--	iommu-map = <0x0 &iommu0 0x0 0x8>
--		    <0x9 &iommu0 0x9 0xfff7>;
--};
--
--pcie@20000000 {
--	compatible = "pci-host-ecam-generic";
--	...
--	/*
--	 * The IOMMU also manages all functions from this domain,
--	 * with endpoint IDs 0x10000 - 0x1ffff
--	 */
--	iommu-map = <0x0 &iommu0 0x10000 0x10000>;
--};
--
--ethernet@fe001000 {
--	...
--	/* The IOMMU manages this platform device with endpoint ID 0x20000 */
--	iommus = <&iommu0 0x20000>;
--};
--
--[1] Documentation/devicetree/bindings/pci/pci.txt
--[2] Documentation/devicetree/bindings/iommu/iommu.txt
-diff --git a/Documentation/devicetree/bindings/virtio/iommu.yaml b/Documentation/devicetree/bindings/virtio/iommu.yaml
-new file mode 100644
-index 000000000000..ae8b670928d3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/virtio/iommu.yaml
-@@ -0,0 +1,101 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/virtio/iommu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: virtio-iommu device using the virtio-pci transport
-+
-+maintainers:
-+  - Jean-Philippe Brucker <jean-philippe@linaro.org>
-+
-+description: |
-+  When virtio-iommu uses the PCI transport, its programming interface is
-+  discovered dynamically by the PCI probing infrastructure. However the
-+  device tree statically describes the relation between IOMMU and DMA
-+  masters. Therefore, the PCI root complex that hosts the virtio-iommu
-+  contains a child node representing the IOMMU device explicitly.
-+
-+  DMA from the IOMMU device isn't managed by another IOMMU. Therefore the
-+  virtio-iommu node doesn't have an "iommus" property, and is omitted from
-+  the iommu-map property of the root complex.
-+
-+properties:
-+  # If compatible is present, it should contain the vendor and device ID
-+  # according to the PCI Bus Binding specification. Since PCI provides
-+  # built-in identification methods, compatible is not actually required.
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: virtio,pci-iommu
-+          - const: pci1af4,1057
-+      - items:
-+          - const: pci1af4,1057
-+
-+  reg:
-+    description: |
-+      PCI address of the IOMMU. As defined in the PCI Bus Binding
-+      reference, the reg property is a five-cell address encoded as (phys.hi
-+      phys.mid phys.lo size.hi size.lo). phys.hi should contain the device's
-+      BDF as 0b00000000 bbbbbbbb dddddfff 00000000. The other cells should be
-+      zero. See Documentation/devicetree/bindings/pci/pci.txt
-+
-+  '#iommu-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#iommu-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pcie@40000000 {
-+            device_type = "pci";
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            reg = <0x0 0x40000000  0x0 0x1000000>;
-+            ranges = <0x02000000 0x0 0x41000000  0x0 0x41000000  0x0 0x0f000000>;
-+
-+            /*
-+             * The IOMMU manages all functions in this PCI domain except
-+             * itself. Omit BDF 00:01.0.
-+             */
-+            iommu-map = <0x0 &iommu0 0x0 0x8
-+                         0x9 &iommu0 0x9 0xfff7>;
-+
-+            /* The IOMMU programming interface uses slot 00:01.0 */
-+            iommu0: iommu@1,0 {
-+                compatible = "pci1af4,1057";
-+                reg = <0x800 0 0 0 0>;
-+                #iommu-cells = <1>;
-+            };
-+        };
-+
-+        pcie@50000000 {
-+            device_type = "pci";
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            reg = <0x0 0x50000000  0x0 0x1000000>;
-+            ranges = <0x02000000 0x0 0x51000000  0x0 0x51000000  0x0 0x0f000000>;
-+
-+            /*
-+             * The IOMMU also manages all functions from this domain,
-+             * with endpoint IDs 0x10000 - 0x1ffff
-+             */
-+            iommu-map = <0x0 &iommu0 0x10000 0x10000>;
-+        };
-+
-+        ethernet {
-+            /* The IOMMU manages this platform device with endpoint ID 0x20000 */
-+            iommus = <&iommu0 0x20000>;
-+        };
-+    };
-+
-+...
+This series contains Verdin iMX8M Plus PCIe enablement and a few other
+improvements for the Verdin iMX8M Mini and Plus (and Colibri iMX8X for
+that matter).
+
+
+Marcel Ziswiler (7):
+  arm64: dts: verdin-imx8mm: verdin-imx8mp: improve include notation
+  arm64: dts: colibri-imx8x: improve include notation
+  arm64: dts: verdin-imx8mm: verdin-imx8mp: rename sn65dsi83 to
+    sn65dsi84
+  arm64: dts: verdin-imx8mm: improve pcie node
+  arm64: dts: verdin-imx8mp: add pcie support
+  arm64: defconfig: enable snvs lpgpr support
+  arm64: defconfig: enable i.mx 8m plus specific interconnect support
+
+Max Krummenacher (1):
+  arm64: dts: verdin-imx8mp: fix ctrl_sleep_moci
+
+ .../boot/dts/freescale/imx8mm-verdin.dtsi     | 10 ++--
+ .../dts/freescale/imx8mp-verdin-dahlia.dtsi   |  9 +++-
+ .../boot/dts/freescale/imx8mp-verdin.dtsi     | 51 +++++++++++++------
+ .../freescale/imx8qxp-colibri-eval-v3.dtsi    |  2 +-
+ arch/arm64/configs/defconfig                  |  2 +
+ 5 files changed, 53 insertions(+), 21 deletions(-)
+
 -- 
-2.37.3
+2.36.1
 
