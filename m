@@ -2,183 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49EED5E61F9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 14:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F9FA5E6206
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 14:12:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231184AbiIVMJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 08:09:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52822 "EHLO
+        id S229995AbiIVMMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 08:12:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231394AbiIVMJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 08:09:41 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD577641
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 05:09:36 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id a14so10718405ljj.8
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 05:09:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=CVENwWVGXac1UFUJqQbFq5yXNrjbR21/6YF9T4kc5Wc=;
-        b=vPq+7BDrfqEBq8z8P89npQ4zMs5pP4bDn5VJTLabSIN4rKGFfdArIOwcugCxNPgEW7
-         634140eokdLaJsJ9MSgoLNtcYnSQJ5wN6lSzr22PtpF28T6GNTokKDwATj3xaXrwI7DT
-         Ex9AAaIE2TQIpPBHEjknXd6aZU7V+ElIlno5mm1WgwzHqC+65YLH+y9D1XlpLv5UhEkB
-         2LmRTqRr2ZF80XkW4HdcYqDem/l6eS1SvrRHWg1MSuol1hUYvbSPh2bmxHrhRkvC7hV5
-         cADbRjH7vIWUIJAeS6tDBq/8Sj29MWYm9vjZDVwmj21ZyQNRTxKFBK5kfp9anJeKRaxU
-         bO/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=CVENwWVGXac1UFUJqQbFq5yXNrjbR21/6YF9T4kc5Wc=;
-        b=NIzVtT9rZqbNhIdUeqLDdJtQTEOOcHqL8IALrAjsFnsCAeqlqKRXTj0gaGENto/J0H
-         njzv8gZeX/ATN2qYdt6ooDnxrzi8EyVymWjplRS4KZdL++61DtDIu3dLwoVhhEORkKtc
-         OMoQKcTBK2Y62MN8iV/rABuJDuZn67cNIuKgil8oJeMj1i5/+cLN82G1uN28LIfja6H9
-         8dwj0+ApJdecd8Cd0FMz0bk/ZwczM88WHZpNThiYEN0mgmqZlGkm11s81h4AUBwVGx50
-         E0c28c2u6Cfp2XeE2uBWDyW/X0CEMEO6dijnqrmVkcT1QWE1YRngi5YuFoolBDYreIo2
-         eJ/Q==
-X-Gm-Message-State: ACrzQf2HaS/1COPBMfOm8Ep8mDRtEA3og/SHZhAu0juHSVcWR07kYBQv
-        X8ZoKmZQdN+7gyKbD1Tdgrqchw==
-X-Google-Smtp-Source: AMsMyM57MJocOschZ+RfLFJ7K5wcdH1+W5eO/p/+h7FJNXUmunysPu2cqAPrfAlbHq+cLi/zhZhpGw==
-X-Received: by 2002:a2e:3809:0:b0:26b:e124:4d43 with SMTP id f9-20020a2e3809000000b0026be1244d43mr980317lja.398.1663848574194;
-        Thu, 22 Sep 2022 05:09:34 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b14-20020a056512070e00b004949f7cbb6esm914128lfs.79.2022.09.22.05.09.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Sep 2022 05:09:33 -0700 (PDT)
-Message-ID: <54cb8024-b600-9c1d-a8b6-d56b534de5cf@linaro.org>
-Date:   Thu, 22 Sep 2022 14:09:32 +0200
+        with ESMTP id S229777AbiIVMMr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 08:12:47 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADAE89FAB5;
+        Thu, 22 Sep 2022 05:12:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663848766; x=1695384766;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=dV896P9KsrY/FhIaPaqfWulS1JdnBEHjNbRfyVsbuCw=;
+  b=k8/O8OBywCMNj0z9q8uFOC91qFtZeIBZPwXmSfJSXmEcIMrlyYnKMcV8
+   8xgBSekzeZQ9bc40gk1JKNTr4h7DmEdP3WsxGg32UjwiWjJJePeOBoC5K
+   lJ3GE0IBbykdCdLH3XyR8lptVFefQPvkqhDK7iEOKeyBqzVPfPjW9Ibmv
+   Lvz3CSBhzKK8WGHDT+JmYY+j+9ZFg3hIsRLVIKqHQZgA8t1cDX2M+CH67
+   VzSuXj7VXehTLKUc6rq4dHVAaPsfhlEUKXDSLToQAdIHAIRyAeL1prcBy
+   aLGtAQ6uwiHfWdf7BcX5R7hYcv4h9h1rzhwalVYTwrGSiPIMoiX4j79lI
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="287359950"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
+   d="scan'208";a="287359950"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2022 05:12:46 -0700
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
+   d="scan'208";a="650497637"
+Received: from lsundin-mobl.ger.corp.intel.com ([10.252.58.180])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2022 05:12:41 -0700
+Date:   Thu, 22 Sep 2022 15:12:35 +0300 (EEST)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Sergiu Moga <sergiu.moga@microchip.com>
+cc:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        LKML <linux-kernel@vger.kernel.org>, linux-spi@vger.kernel.org,
+        linux-serial <linux-serial@vger.kernel.org>
+Subject: Re: [PATCH v5 9/9] tty: serial: atmel: Use FIELD_PREP/FIELD_GET
+In-Reply-To: <20220922113347.144383-10-sergiu.moga@microchip.com>
+Message-ID: <a894518-4112-b99a-c2b7-657c23ee4974@linux.intel.com>
+References: <20220922113347.144383-1-sergiu.moga@microchip.com> <20220922113347.144383-10-sergiu.moga@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 3/4] media: dt-bindings: add bindings for Toshiba
- TC358746
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org, jacopo@jmondi.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        kieran.bingham+renesas@ideasonboard.com,
-        linux-kernel@vger.kernel.org, kishon@ti.com, hverkuil@xs4all.nl,
-        vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-phy@lists.infradead.org,
-        mchehab@kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-References: <20220916134535.128131-4-m.felsch@pengutronix.de>
- <YyZTCsflWtUbo2ld@pendragon.ideasonboard.com>
- <20220919100844.bb7tzbql2vpk76xz@pengutronix.de>
- <YyhDO4ohv47uIij2@paasikivi.fi.intel.com>
- <YyhKoDxFoobY9vBd@pendragon.ideasonboard.com>
- <20220920152632.mjpgpmelvx4ya4k7@pengutronix.de>
- <Yyn5MqqKYH7VpFhw@pendragon.ideasonboard.com>
- <74b6b670-747a-f326-44ea-7588c3989b0e@linaro.org>
- <20220921083513.drt4rggqj7tpaygr@pengutronix.de>
- <8e54e03e-105a-cf3e-242f-796bef77bfe1@linaro.org>
- <20220922110142.qnx6w3qbb6h6grvh@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220922110142.qnx6w3qbb6h6grvh@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/mixed; boundary="8323329-152948573-1663848765=:1702"
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 13:01, Marco Felsch wrote:
-> On 22-09-21, Krzysztof Kozlowski wrote:
->> On 21/09/2022 10:35, Marco Felsch wrote:
->>> On 22-09-21, Krzysztof Kozlowski wrote:
->>>> On 20/09/2022 19:32, Laurent Pinchart wrote:
->>>>>>>
->>>>>>> Explicit bus types in DT indeed makes it easier for drivers, so if a
->>>>>>> device can support multiple bus types (even if not implemented yet in
->>>>>>> the corresponding drivers), the property should be there.
->>>>>>
->>>>>> Okay, I will make it required.
->>>>>>
->>>>>>>> Why do you have hsync-active and vsync-active if both are always zero? Can
->>>>>>>> the hardware not support other configuration?
->>>>>>
->>>>>> Sure the device supports toggling the logic but it is not implemented.
->>>>>> So the bindings needs to enforce it to 0 right now. As soon as it is
->>>>>> implemented & tested, we can say that both is supported :)
->>>>>
->>>>> Bindings are not supposed to be limited by the existing driver
->>>>> implementation, so you can already allow both polarities, and just
->>>>> reject the unsupported options in the driver at probe time. Future
->>>>> updates to the driver won't require a binding change.
->>>>>
->>>>
->>>> +1
->>>
->>> I don't wanna do that because this let the binding user assume that
->>> this mode is already supported. 
->>
->> What do you mean by "not supported"? By which system? By which firmware
->> element? Bindings are used by several operating systems and several
->> projects.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--8323329-152948573-1663848765=:1702
+Content-Type: text/plain; charset=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
+
+On Thu, 22 Sep 2022, Sergiu Moga wrote:
+
+> Convert all open-coded instances of bitfields retrieval/setting
+> to FIELD_PREP/FIELD_GET where possible.
 > 
-> And they can use it and of course extend it, since the propery is
-> available.
-> 
->> That's not the argument.
->>
->> Bindings should be complete. Lack of knowledge and datasheets is a good
->> exception from this rule. Looking at Linux driver is not good exception.
-> 
-> So if I get you right, you are saying that the bindings should always be
-> complete and describe all ever possible combinations?
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
 
-Not necessarily all combinations, but in general be complete as in
-describe entire device. Pretty often we skip describing full device
-because our job does not include it and we need to move on. Fine. But
-the argument is not really one Linux implementation.
+Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 
-Especially that limiting binding to some subset might make it later
-non-extendable. Not possible to grow, because author did not think about
-these other features.
+With one caveat below which I leave up to you to decide as it might be
+more a matter of taste thing.
 
-> I am on your side
-> that the properties should be there from day one. But listing all
-> possible values regardless of the support.. I don't know and yes, I know
-> that other projects using these bindings as well. But if those other
-> projects support more than now, they can extend it and send patches.
-> Since this is a new binding, the only user is Linux and listing all
-> possible values can lead into erroneous assumption. 
+> @@ -82,7 +84,7 @@
+>  #define	ATMEL_US_INACK		BIT(20)	/* Inhibit Non Acknowledge */
+>  #define	ATMEL_US_DSNACK		BIT(21)	/* Disable Successive NACK */
+>  #define	ATMEL_US_MAX_ITER_MASK	GENMASK(26, 24)	/* Max Iterations */
+> -#define	ATMEL_US_MAX_ITER(n)	(((n) << 24) & ATMEL_US_MAX_ITER_MASK)
+> +#define	ATMEL_US_MAX_ITER(n)	FIELD_PREP(ATMEL_US_MAX_ITER_MASK, (n))
+>  #define	ATMEL_US_FILTER		BIT(28)	/* Infrared Receive Line Filter */
+>  
+>  #define ATMEL_US_IER		0x08	/* Interrupt Enable Register */
+> @@ -134,19 +136,19 @@
+>  
+>  #define ATMEL_US_CMPR		0x90	/* Comparaison Register */
+>  #define ATMEL_US_FMR		0xa0	/* FIFO Mode Register */
+> -#define	ATMEL_US_TXRDYM(data)	(((data) & 0x3) << 0)	/* TX Ready Mode */
+> -#define	ATMEL_US_RXRDYM(data)	(((data) & 0x3) << 4)	/* RX Ready Mode */
+> +#define	ATMEL_US_TXRDYM(data)	FIELD_PREP(GENMASK(1, 0), (data))	/* TX Ready Mode */
+> +#define	ATMEL_US_RXRDYM(data)	FIELD_PREP(GENMASK(5, 4), (data))	/* RX Ready Mode */
+>  #define		ATMEL_US_ONE_DATA	0x0
+>  #define		ATMEL_US_TWO_DATA	0x1
+>  #define		ATMEL_US_FOUR_DATA	0x2
+>  #define	ATMEL_US_FRTSC		BIT(7)	/* FIFO RTS pin Control */
+> -#define	ATMEL_US_TXFTHRES(thr)	(((thr) & 0x3f) << 8)	/* TX FIFO Threshold */
+> -#define	ATMEL_US_RXFTHRES(thr)	(((thr) & 0x3f) << 16)	/* RX FIFO Threshold */
+> -#define	ATMEL_US_RXFTHRES2(thr)	(((thr) & 0x3f) << 24)	/* RX FIFO Threshold2 */
+> +#define	ATMEL_US_TXFTHRES(thr)	FIELD_PREP(GENMASK(13, 8), (thr))	/* TX FIFO Threshold */
+> +#define	ATMEL_US_RXFTHRES(thr)	FIELD_PREP(GENMASK(21, 16), (thr))	/* RX FIFO Threshold */
+> +#define	ATMEL_US_RXFTHRES2(thr)	FIELD_PREP(GENMASK(29, 24), (thr))	/* RX FIFO Threshold2 */
+>  
+>  #define ATMEL_US_FLR		0xa4	/* FIFO Level Register */
+> -#define	ATMEL_US_TXFL(reg)	(((reg) >> 0) & 0x3f)	/* TX FIFO Level */
+> -#define	ATMEL_US_RXFL(reg)	(((reg) >> 16) & 0x3f)	/* RX FIFO Level */
+> +#define	ATMEL_US_TXFL(reg)	FIELD_GET(GENMASK(5, 0), (reg))		/* TX FIFO Level */
+> +#define	ATMEL_US_RXFL(reg)	FIELD_GET(GENMASK(21, 16), (reg))	/* RX FIFO Level */
 
-So let me rephrase the case - there is no such assumption that one,
-particular driver supports entire set of bindings. If anyone makes it,
-without actually checking, then it is his/hers mistake.
+I don't particularly like this kind of constructs. IMHO, all these would 
+be nice after removing the macro argument and moving the FIELD_PREP() to 
+.c file. That is,
 
-> No system-integrator
-> wants to check the driver why a listed property is not supported instead
-> most the time it is the other way. If it is listed, than it should be
-> supported.
+.h:
+#define ATMEL_US_RXFL	GENMASK(21, 16)
 
-Bindings are also not the tool for system integrator to figure out these
-things.
+.c:
+	... FIELD_PREP(ATMEL_US_RXFL, arg) ...
 
-> 
-> Anyway I don't wanna make a big deal out of it. I will add all possible
-> values to the binding if that is what you want :)
-> 
-> Regards,
->   Marco
-> 
->>> Adapting a binding is just 1 commit and
->>> since the property is already existing, there is no breaking change.
->> Best regards,
->> Krzysztof
->>
->>
+But I guess there might be differing opinions on it (and both are 
+correct from purely technical perspective).
 
-Best regards,
-Krzysztof
+-- 
+ i.
 
+--8323329-152948573-1663848765=:1702--
