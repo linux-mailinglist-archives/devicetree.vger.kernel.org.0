@@ -2,110 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EE635E643D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CB6E5E6481
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:59:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231903AbiIVNwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 09:52:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40512 "EHLO
+        id S229599AbiIVN7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 09:59:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231890AbiIVNv7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:51:59 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A2A8EFA68;
-        Thu, 22 Sep 2022 06:51:45 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D0DE36BE;
-        Thu, 22 Sep 2022 15:51:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1663854704;
-        bh=uDPuHKFlxyNd6c23deR/oha4FWKGGQOVT5JIulE83wk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GO0rSUPLZvMRR7gbcy6/hstYDPuIWntiCMcw1GZSzRrkv9DB5gXfGfLDnjLFFqlWX
-         VsRmUMNVY11ef9TxE4DkjVa4ZGRPT7hpwIkmQW6+hh5eK0lsuF/LtUNErzRUMVXad3
-         OOOJu/TafgOIH215k2TXIyqE/q8h9uVIBK1zAln4=
-Date:   Thu, 22 Sep 2022 16:51:29 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S230339AbiIVN7L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:59:11 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DD3EF089
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 06:59:10 -0700 (PDT)
+Received: from localhost.localdomain (95.49.29.188.neoplus.adsl.tpnet.pl [95.49.29.188])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id EBAC11FF07;
+        Thu, 22 Sep 2022 15:59:06 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 3/4] media: platform: Add Renesas RZ/G2L MIPI CSI-2
- receiver driver
-Message-ID: <YyxoYSnj9llox5l1@pendragon.ideasonboard.com>
-References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220905230406.30801-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Yys4CRNnKP3LXyAO@pendragon.ideasonboard.com>
- <CA+V-a8uiT9rV=T6LmFovRwULf3SO=JKdqr1yacAqN8gJmv9VPw@mail.gmail.com>
- <YyxWOuWOrYmMexNj@paasikivi.fi.intel.com>
- <CAMuHMdXKz56jxw56fXa7CMh_y4MVYiUT25dqRntJw6481s1FWw@mail.gmail.com>
- <CA+V-a8sW=a6auFH-1WqwK+o2MZGCQk+MAO4+cWKm1M+YrQE+CA@mail.gmail.com>
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: display/panel: Add Sony Tama TD4353 JDI display panel
+Date:   Thu, 22 Sep 2022 15:58:59 +0200
+Message-Id: <20220922135902.129760-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8sW=a6auFH-1WqwK+o2MZGCQk+MAO4+cWKm1M+YrQE+CA@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 22, 2022 at 02:27:15PM +0100, Lad, Prabhakar wrote:
-> On Thu, Sep 22, 2022 at 1:51 PM Geert Uytterhoeven wrote:
-> > On Thu, Sep 22, 2022 at 2:34 PM Sakari Ailus wrote:
-> > > On Thu, Sep 22, 2022 at 01:08:33PM +0100, Lad, Prabhakar wrote:
-> > > > > > * Switched to manually turn ON/OFF the clocks instead of pm_runtime so that
-> > > > > >   the mipi/dhpy initialization happens as per the HW manual
-> > > > >
-> > > > > That doesn't look right. The driver doesn't use runtime PM anymore, so
-> > > > > power domains may not be handled properly. What was the problem with
-> > > > > clock handling using runtime PM ?
-> > > > >
-> > > > If we use the runtime PM all the clocks will be turned ON when we call
-> > > > pm_runtime_resume_and_get() which I dont want to. As per the "Starting
-> > > > reception for MIPI CSI-2 Input" section 35.3.1 for example we first
-> > > > need to turn ON all the clocks and later further down the line we need
-> > > > to just turn OFF VCLK -> Enable Link -> turn ON VCLK. Due to such
-> > > > cases I have switched to individual clock handling.
-> > >
-> > > If that is the case, then you should control just that clock directly,
-> > > outside runtime PM callbacks.
-> > >
-> > > Runtime PM may be needed e.g. for resuming a parent device.
-> >
-> > Exactly.
-> > So probably you should not consider R9A07G044_CRU_VCLK a PM clock,
-> > i.e. you need changes to rzg2l_cpg_is_pm_clk() to exclude it.
-> 
-> Thanks for the pointer. In that case we will have to consider
-> R9A07G044_CRU_VCLK and R9A07G044_CRU_SYSCLK as not PM clocks.
+Add bindings for the display panel used on some Sony Xperia XZ2 and XZ2
+Compact smartphones.
 
-I like when patch review discussions continue on the list without my
-involvement, and the end result is exactly what I would have advised :-)
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+Changes since v1:
+- remove device-specific compatibles in favour of panel-common
+height/width-mm properties
+- fix indentation in the example
+ .../display/panel/sony,td4353-jdi.yaml        | 82 +++++++++++++++++++
+ 1 file changed, 82 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
 
-> Does the below sound good?
-> - DEF_NO_PM() macro
-> - bool is_pm_clk in struct rzg2l_mod_clk.
-> 
-> I still have to implement it, just wanted your opinion beforehand.
-
-Looks good to me, but I'm no expert in this area. I trust Geert's
-advice.
-
+diff --git a/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
+new file mode 100644
+index 000000000000..7915c993e83e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/sony,td4353-jdi.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/sony,td4353-jdi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sony TD4353 JDI 5 / 5.7" 2160x1080 MIPI-DSI Panel
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@somainline.org>
++
++description: |
++  The Sony TD4353 JDI is a 5 (XZ2c) / 5.7 (XZ2) inch 2160x1080
++  MIPI-DSI panel, used in Xperia XZ2 and XZ2 Compact smartphones.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: sony,td4353-jdi-tama
++
++  reg: true
++
++  backlight: true
++
++  vddio-supply:
++    description: VDDIO 1.8V supply
++
++  vsp-supply:
++    description: Positive 5.5V supply
++
++  vsn-supply:
++    description: Negative 5.5V supply
++
++  preset-gpios:
++    description: Display panel reset pin
++
++  treset-gpios:
++    description: Touch panel reset pin
++
++  port: true
++
++required:
++  - compatible
++  - reg
++  - vddio-supply
++  - vsp-supply
++  - vsn-supply
++  - preset-gpios
++  - treset-gpios
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel: panel@0 {
++            compatible = "sony,td4353-jdi-tama";
++            reg = <0>;
++
++            backlight = <&pmi8998_wled>;
++            vddio-supply = <&vreg_l14a_1p8>;
++            vsp-supply = <&lab>;
++            vsn-supply = <&ibb>;
++            preset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
++            treset-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
++
++            port {
++                panel_in: endpoint {
++                    remote-endpoint = <&dsi0_out>;
++                };
++            };
++        };
++    };
++...
 -- 
-Regards,
+2.37.3
 
-Laurent Pinchart
