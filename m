@@ -2,77 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7F9E5E61E3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 14:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AEED5E61ED
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 14:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231361AbiIVMAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 08:00:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43580 "EHLO
+        id S229492AbiIVMFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 08:05:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230329AbiIVMAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 08:00:35 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3940C88B8;
-        Thu, 22 Sep 2022 05:00:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=KR9CO/r+Bld8ABx+wrKc5lM1IMc5XbXdJo+8qkb2UfY=; b=r2zcc9GrWQ+/McK8zmT+G9R6qz
-        fe3tbyu8k9FSo3Qneu0G4AovXW6DA/29UXHicLoAjPqf3WPjZfQKYdBdB1+4TaWgg3tsYk7cX25KS
-        YNm6ry+TRYZdLHxtxScgxdZdzcxmbDD3WGgU3PZgV8STaIM1imHanGK22MC3Xk99lV+w=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1obKsG-00HWnd-5T; Thu, 22 Sep 2022 14:00:12 +0200
-Date:   Thu, 22 Sep 2022 14:00:12 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Michael Walle <michael@walle.cc>
-Cc:     marcus.carlberg@axis.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, edumazet@google.com,
-        hkallweit1@gmail.com, kernel@axis.com, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
-        lxu@maxlinear.com, netdev@vger.kernel.org, pabeni@redhat.com
-Subject: Re: [PATCH net-next 0/2] net: phy: mxl-gpy: Add mode for 2 leds
-Message-ID: <YyxOTKJ8OTxXgWcA@lunn.ch>
-References: <20220920151411.12523-1-marcus.carlberg@axis.com>
- <20220922080529.928823-1-michael@walle.cc>
+        with ESMTP id S229470AbiIVMFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 08:05:40 -0400
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E1A18983F;
+        Thu, 22 Sep 2022 05:05:37 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 1B1E541F72;
+        Thu, 22 Sep 2022 12:05:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1663848335; bh=4C8tp/J+vzOZn+IcAaj/31/YtIQ4NN2UYPR9Bjo1AeE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=CAfX13+M95AnsYhz9cVsQBzaOhx6+6ISasDwrrP3gj5STGV7rtNESHmOPgB6STuU8
+         53JKtUGFgFNIhqcCLQiERuC0dMjF/H4ABwFXSH/EpI7eXvXaD552fso8yPliiBQiiu
+         EHJ3gx6Lo8P3d29D28RCV8tI1FeUCBex2/WtcPuOCktjW/8Oz/dM+v+SFqvquCiQ93
+         cZNu0p1QGz/ABUCpPUmqo0h5TloLjosCIcoIMacPHLvWcog/e4mf7evxb6tdnWDdj4
+         6cXoMrfI5vS3WTvRsiFsJ72/pd3OZozBAeAqyGMzxaZiUTchpgFZQb5w7apCCN1Hki
+         vPbqTLYOmSXQQ==
+Message-ID: <0f2a1930-9d43-60e8-5f6e-55779248bee5@marcan.st>
+Date:   Thu, 22 Sep 2022 21:05:28 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220922080529.928823-1-michael@walle.cc>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 1/5] dt-bindings: iommu: dart: add t6000 compatible
+Content-Language: es-ES
+To:     Janne Grunau <j@jannau.net>, iommu@lists.linux.dev
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        asahi@lists.linux.dev, Sven Peter <sven@svenpeter.dev>,
+        Rob Herring <robh@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Joerg Roedel <joro@8bytes.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220916094152.87137-1-j@jannau.net>
+ <20220916094152.87137-2-j@jannau.net>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <20220916094152.87137-2-j@jannau.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 22, 2022 at 10:05:29AM +0200, Michael Walle wrote:
-> Hi,
+On 16/09/2022 18.41, Janne Grunau wrote:
+> From: Sven Peter <sven@svenpeter.dev>
 > 
-> > GPY211 phy default to using all four led pins.
-> > Hardwares using only two leds where led0 is used as the high
-> > network speed led and led1 the low network speed led will not
-> > get the correct behaviour since 1Gbit and 2.5Gbit will not be
-> > represented at all in the existing leds.
+> The M1 Max/Pro SoCs come with a new DART variant that is incompatible with
+> the previous one. Add a new compatible for those.
 > 
-> I might be wrong, but PHY LED bindings should be integrated with/using
-> the LED subsystem. Although I didn't see any development regarding this
-> for a long time.
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> Acked-by: Rob Herring <robh@kernel.org>
 > 
-> That being said, it seems you are adding a new (DT) property which
-> just matches your particular hardware design, no?
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> ---
+> 
+> (no changes since v2)
+> 
+> Changes in v2:
+> - added Rob's Acked-by:
+> 
+>  Documentation/devicetree/bindings/iommu/apple,dart.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/apple,dart.yaml b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+> index 82ad669feef7..06af2bacbe97 100644
+> --- a/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+> @@ -22,7 +22,9 @@ description: |+
+>  
+>  properties:
+>    compatible:
+> -    const: apple,t8103-dart
+> +    enum:
+> +      - apple,t8103-dart
+> +      - apple,t6000-dart
+>  
+>    reg:
+>      maxItems: 1
 
-Thanks Michael
+I'm taking this one via the Asahi-SoC tree, since it unblocks the t6000
+DT series and it is already reviewed and ready to go. Thanks!
 
-Replying to this was on my TODO list. We have NACKed patches like this
-for a few years now, wanting the Linux LED subsystem be used to
-configure PHY LEDs. The patches to implement the core of that
-sometimes makes some progress, then goes dormant for a while. The last
-effort was getting close to being ready. Maybe the needs for this
-driver can help get them finished?
-
-       Andrew
+- Hector
