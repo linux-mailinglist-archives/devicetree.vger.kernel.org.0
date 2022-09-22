@@ -2,117 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF6B35E5B80
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 08:39:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 385FC5E5B85
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 08:40:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbiIVGjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 02:39:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48038 "EHLO
+        id S229712AbiIVGkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 02:40:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbiIVGjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 02:39:45 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C3691EEEF
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 23:39:43 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id h3so9808845lja.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 23:39:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=Y9it4dxu8zLENQhpiztD0qTlsy9XVvm5wGeuzw4ftH8=;
-        b=OQ9KVALrZqkz/x7hew6GkzX4KKF13X8o5JJaAiZQ20KoDNp8yTjux3FBvRSA4rpDvO
-         xtJYChGki+NkDKgUMnk82VBSC1HYqGcUXFcjHtMxge/PNa8pvDZjFyqgSpeJ/NWv5h/v
-         39U7x2LhsYePSL3BTkCO5YSl2I3hAab2kw17MDECHgdp/FilQ50ZdmuKDf1Z+lvuYfDM
-         9WgAHT9EMrJHexeKuosW9Tqvknp+Ss7MB9BXTC7EtJrkfmJrcqgsjPEXV26hsa8Zodhr
-         eE4lP7HaIJLQRZFoKK5tdRUsdvA2dNnDX+m/+Gkrv9GDxEPa36hwd+rL4M0xypU9iADl
-         51Vw==
+        with ESMTP id S230081AbiIVGkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 02:40:20 -0400
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9961ACA2F;
+        Wed, 21 Sep 2022 23:40:18 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id c11so5670167qtw.8;
+        Wed, 21 Sep 2022 23:40:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=Y9it4dxu8zLENQhpiztD0qTlsy9XVvm5wGeuzw4ftH8=;
-        b=Pr+KFTot8g9B9taKuL2c5IbM6koBih04ycAyr9i3bIgRzP4Xt+uRrS5RDGpS1qWBXD
-         9RqYX2PDKIgLSfVNYRQwW5FyLkQLtIqnVokavIeuhiVW2VlxWC7SZ325TlDrv1REjfFQ
-         /Lu7rtF+D6oy6vQ8V/H6H60gzKjkhu/sXM0bWm7uc47N5DyUFUSWg6LzdRflen3Uato0
-         7SPhh+acLWoOeOyjFE5Xhp9bfjQFYiA8qBgMa0IU1Hmoe3x9XQCMWOxkS1eOxjl3SRC1
-         uGfyMUM+GQjTi/VUSLdVRU03puHkK3uSOk0BfIG4JfFvgeCQHo4Qwi5Xw9nXhmD22sSe
-         /J4g==
-X-Gm-Message-State: ACrzQf1yyY/8rCJKd0blde/iRojwDbjHygypPM7AJ4Zu67L4WN7sedow
-        jDQRgyDBjbw8ctJcqdXRwJnCNA==
-X-Google-Smtp-Source: AMsMyM4NcODEXdqj7wdcU9cj2VvWWAhTr0alCSdk3U0Cy+ArQQf1phMq6WHSoi06VLJ2WCKmFbVUug==
-X-Received: by 2002:a05:651c:239d:b0:26c:4eac:d64e with SMTP id bk29-20020a05651c239d00b0026c4eacd64emr610482ljb.167.1663828781456;
-        Wed, 21 Sep 2022 23:39:41 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t7-20020a05651c204700b0026acd11cd51sm749995ljo.59.2022.09.21.23.39.40
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=F/e1JPlHkuPobKR8svZ3nWeTTrTnp+M9ecDUY6t2TzI=;
+        b=1QtR7/Y4f7Az3e7b+CjKoI2Bk/8emyGvxs8Z1F6jeuMB77HwLCSdTzi+bFL4qjKTdG
+         MMmFaKNIvm7ROOfiedzq42s4luG3OibaJ5hmDTNDXtZsPWpPjmHOE5ezxN8aaTpOWyeR
+         3gmY/mbukmv4VWxxADpgDZIByyWY7JvWddR6qpzDuHxcjzKaPDmgNQNOz6xcogdEJw99
+         /cgY5+WNvHN9kBueBvuv7X9eV4K3qf3wKqkNsF2XkAEhHnqCOd/lRBz7PLL+wORbt1LQ
+         9CTRCYxf7UcdEXXhEl8elE4FW5U52biDJeJ7h7EHMbEmL9QhIgia9RA2x7Y+ABojX0Ex
+         G+3Q==
+X-Gm-Message-State: ACrzQf0Y5KRJRZg0yFQwI87T0PzbZM/0fDaLp+KE3ogLO0J39Yx75Ks0
+        gDgFlGhXpUmz0UvQGyVftwlw0O3B+Ce+jGDZ
+X-Google-Smtp-Source: AMsMyM7Ugw+5yC7bz6vGKMvjekspJJwwk5g7b6VqfRuZRGaonOgPXhY0IoAX/bsDdu9ZxO+Wn60t6Q==
+X-Received: by 2002:ac8:5c0b:0:b0:35c:e066:998d with SMTP id i11-20020ac85c0b000000b0035ce066998dmr1575511qti.336.1663828817401;
+        Wed, 21 Sep 2022 23:40:17 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id bl21-20020a05620a1a9500b006ce30a5f892sm3191406qkb.102.2022.09.21.23.40.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 23:39:40 -0700 (PDT)
-Message-ID: <26271806-df86-393c-bddf-75c82d54fe53@linaro.org>
-Date:   Thu, 22 Sep 2022 08:39:39 +0200
+        Wed, 21 Sep 2022 23:40:17 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-3450990b0aeso88276527b3.12;
+        Wed, 21 Sep 2022 23:40:16 -0700 (PDT)
+X-Received: by 2002:a0d:dd09:0:b0:344:fca5:9b44 with SMTP id
+ g9-20020a0ddd09000000b00344fca59b44mr1713044ywe.358.1663828816340; Wed, 21
+ Sep 2022 23:40:16 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 2/2] iommu: arm-smmu-qcom: add sdm670 compatible
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Richard Acayan <mailingradian@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
+References: <CAMuHMdUPm36RsxHdVwspR3NCAR3C507AyB6R65W42N2gXWq0ag@mail.gmail.com>
+ <45d2e6c2-3b4b-5720-0431-002c74b1f9cc@arm.com> <0603b2a5-6253-4c4b-8b30-aa0253ed0480@www.fastmail.com>
+In-Reply-To: <0603b2a5-6253-4c4b-8b30-aa0253ed0480@www.fastmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 22 Sep 2022 08:40:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXmzS5prd0Q2ee7NgWSULW_SMiJbG_EqcyN-rNXeFy-Rw@mail.gmail.com>
+Message-ID: <CAMuHMdXmzS5prd0Q2ee7NgWSULW_SMiJbG_EqcyN-rNXeFy-Rw@mail.gmail.com>
+Subject: Re: Similar SoCs with different CPUs and interrupt bindings
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org
-References: <20220920223955.151507-1-mailingradian@gmail.com>
- <20220920223955.151507-3-mailingradian@gmail.com>
- <77b7d58f-ba85-86de-8635-6efbb1354a08@linaro.org>
- <5c25dc95-d7a4-0b15-5514-6fe3a48e899c@somainline.org>
- <f98ccf6b-34e7-d15f-63f9-928827b52eb8@somainline.org>
- <30980ac8-1386-d284-8452-fdc5b7da8343@linaro.org>
- <5f629a95-8ee4-7cf8-f471-0b50e311d3b7@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5f629a95-8ee4-7cf8-f471-0b50e311d3b7@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Andre Przywara <andre.przywara@arm.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2022 23:14, Konrad Dybcio wrote:
->> Unfortunately I don't get this explanation... you mean some other
->> firmware requires Linux drivers to use specific compatibles instead of
->> one fallback?
-> No, perhaps I misunderstood you.
-> 
->>
->> All of these do not have driver data, so they are essentially compatible
->> for Linux driver. Growing this list in the driver seems pointless. What
->> is the benefit of growing driver with same entries, except more patches?
-> Compatible lists in smmu-impl files allow matching driver quirks for SMMUs themselves
-> and consumer devices (such as MDSS). The situation is more complicated, because some
-> qcom SMMUs also require more quirks than others (think 8974 vs 8994 vs 8996/pro&660&8998
-> vs 845+ vs adreno smmu in various flavours), so all qcom SMMUs need to use
-> `qcom_smmu_impl` and some others need even more quirks on top of that (that generally
-> hurt performance or functionality, so we don't want them when they're unnecessary).
-> If all generations of qcom SMMU implementation that bear the same name behaved anywhere
-> near consistent, there would be no need for keeping this around, instead requiring only
-> "qcom,broken-smmu" or something".
+Hi Arnd,
 
-So where are the quirks? Again: driver data is empty.
+On Thu, Sep 22, 2022 at 8:30 AM Arnd Bergmann <arnd@arndb.de> wrote:
+> On Wed, Sep 21, 2022, at 11:20 AM, Robin Murphy wrote:
+> > On 2022-09-21 08:46, Geert Uytterhoeven wrote:
+> >> This is a topic that came up at the RISC-V BoF at Plumbers, and it was
+> >> suggested to bring it up with you.
+> >>
+> >> The same SoC may be available with either RISC-V or other (e.g. ARM) CPU
+> >> cores (an example of this are the Renesas RZ/Five and RZ/G2UL SoCs).
+> >> To avoid duplication, we would like to have:
+> >>    - <riscv-soc>.dtsi includes <base-soc>.dtsi,
+> >>    - <arm-soc>.dtsi includes <base-soc>.dtsi.
+> >>
+> >> Unfortunately RISC-V and ARM typically use different types of interrupt
+> >> controllers, using different bindings (e.g. 2-cell vs. 3-cell), and
+> >> possibly using different interrupt numbers.  Hence the interrupt-parent
+> >> and interrupts{-extended} properties should be different, too.
+> >>
+> >> Possible solutions[1]:
+> >>    1. interrupt-map
+> >>
+> >>    2. Use a SOC_PERIPHERAL_IRQ() macro in interrupts properties in
+> >>       <base-soc>.dtsi, with
+> >>         - #define SOC_PERIPHERAL_IRQ(nr, na) nr          // RISC-V
+> >>         - #define SOC_PERIPHERAL_IRQ(nr, na) GIC_SPI na  // ARM
+> >>       Note that the cpp/dtc combo does not support arithmetic, so even
+> >>       the simple case where nr = 32 + na cannot be simplified.
+> >>
+> >>    3. Wrap inside RISCV() and ARM() macros, e.g.:
+> >>
+> >>          RISCV(interrupts = <412 IRQ_TYPE_LEVEL_HIGH>;)
+> >>          ARM(interrupts = <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>;)
+> >>
+> >>       Cfr. ARM() and THUMB() in arch/arm/include/asm/unified.h, as used
+> >>       to express the same operation using plain ARM or ARM Thumb
+> >>       instructions.
+> >
+> > 4. Put all the "interrupts" properties in the SoC-specific DTSI at the
+> > same level as the interrupt controller to which they correspond. Works
+> > out of the box with no horrible mystery macros, and is really no more or
+> > less error-prone than any other approach. Yes, it means replicating a
+> > bit of structure and/or having labels for everything (many of which may
+> > be wanted anyway), but that's not necessarily a bad thing for
+> > readability anyway. Hierarchical definitions are standard FDT practice
+> > and should be well understood, so this is arguably the simplest and
+> > least surprising approach :)
+>
+> FWIW, approaches 1, 2 and 4 all seem reasonable to me, but I don't
+> like number 3 if this is only about the IRQ definitions.
 
-Best regards,
-Krzysztof
+We also have to handle interrupt-parent at the /soc level.
+And of course you never know what pops up next ;-)
 
+> It sounds like we're already converging on #2, so just one more
+> idea from me: we could fold the IRQ type into the macro, and
+> make it just take a single argument for extra flexibility:
+>
+> #define SOC_PERIPHERAL_IRQ_LEVEL_HIGH(nr) \
+>         GIC_SPI (nr + offset) IRQ_TYPE_LEVEL_HIGH
+>
+> If all the irqs on the chip have the same type, the name
+> can be shorter of course.
+
+This is usually the case, but not always.
+And the numbering may be the same (modulo the offset), but
+not it really depends on the on-SoC wiring.
+
+> Either way, some variation of the macro sounds like a good enough
+> approach to me.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
