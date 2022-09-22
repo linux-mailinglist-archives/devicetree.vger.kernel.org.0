@@ -2,132 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8E5C5E6B8F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 21:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C5A85E6BB6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 21:31:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbiIVTNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 15:13:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57336 "EHLO
+        id S230458AbiIVTbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 15:31:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232636AbiIVTNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 15:13:37 -0400
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB44106A1D;
-        Thu, 22 Sep 2022 12:13:36 -0700 (PDT)
-Received: by mail-qv1-f48.google.com with SMTP id i15so7547060qvp.5;
-        Thu, 22 Sep 2022 12:13:36 -0700 (PDT)
+        with ESMTP id S230101AbiIVTbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 15:31:11 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 060C7D6922
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 12:31:08 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id g23so7062018qtu.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 12:31:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=NWcgMuOu/DRb30hVDSf+gjGKztVe28VznYCH2jRwr2w=;
+        b=Uv1U0RJbEpqFZrbA9uyr91kswnGSB3cjK6Aj9EXiOeZ7e0XWQub4bxwG+sbRw5QAA4
+         44JMp1BuOrUDUJ0uP0C6KSA8VHC/IuXF6Kqv6lVLWrpR8Nw200fkrYzWK0LLM3GfbgbA
+         NCqH1+i21BykwSS/x2OqgxCdNhFdsFfsXRuCs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=4SC2lpclsApuwnvv9v4FOQnC9TCXLCDA7rskDl0X8oQ=;
-        b=4RXJGxrGX5X5Z80FXXfTB9gbmLokUMJvd8alC6/0XfWmICYTcqzEKqUhKDU63HG+uc
-         Xh2SNIkoJDLmcbNgk+4paD5pP5Q16JQXUUBPx6p03cX2lUeF0a3/E1BpDibkazvDP1vT
-         ZnzF/yMnJ85+qSUUzOxu6gaXQgGrNtHTjORwAwsORxSQP1Sjl9IZ2+MIRmZ1YfpeKIkd
-         DRt36MPeav1kDaWMU1Gv5kP/L4gZ6dDc+20UPpv1CPjnrLLAZkUlFTrQunSXT/nLVjFP
-         Cvsyu1mqTMnAOA21hJLTc8TgyIvG5leDjHQbVhEuIGdnLMxPNDxQvc9AbeL9zEAVDS4Y
-         rlLA==
-X-Gm-Message-State: ACrzQf0d4SNx2D0P7U9URV7OxsIALOqiYcNhvvgO/5/HYQ8C2WAQ1yLO
-        vjrMeM6ySsLllCmKQx4pqN5GdhVVYIEyYg==
-X-Google-Smtp-Source: AMsMyM548HrAEqlLjyib+W1FVYo4U5HB+ZBnj1F3h2wYRCNU6LhpBN1knHIT6DJTM9syde57c2gJnQ==
-X-Received: by 2002:a0c:f445:0:b0:4a6:9f4a:9a66 with SMTP id h5-20020a0cf445000000b004a69f4a9a66mr4001052qvm.65.1663874015231;
-        Thu, 22 Sep 2022 12:13:35 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id o2-20020ae9f502000000b006b640efe6dasm4041930qkg.132.2022.09.22.12.13.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Sep 2022 12:13:33 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-3452214cec6so109751637b3.1;
-        Thu, 22 Sep 2022 12:13:33 -0700 (PDT)
-X-Received: by 2002:a0d:dd09:0:b0:344:fca5:9b44 with SMTP id
- g9-20020a0ddd09000000b00344fca59b44mr4793428ywe.358.1663874013318; Thu, 22
- Sep 2022 12:13:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220905230406.30801-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Yys4CRNnKP3LXyAO@pendragon.ideasonboard.com> <CA+V-a8uiT9rV=T6LmFovRwULf3SO=JKdqr1yacAqN8gJmv9VPw@mail.gmail.com>
- <YyxWOuWOrYmMexNj@paasikivi.fi.intel.com> <CAMuHMdXKz56jxw56fXa7CMh_y4MVYiUT25dqRntJw6481s1FWw@mail.gmail.com>
- <CA+V-a8sW=a6auFH-1WqwK+o2MZGCQk+MAO4+cWKm1M+YrQE+CA@mail.gmail.com>
-In-Reply-To: <CA+V-a8sW=a6auFH-1WqwK+o2MZGCQk+MAO4+cWKm1M+YrQE+CA@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 22 Sep 2022 21:13:21 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU9LpSQ9-M49JC+wKk9=fsvX=cxTZwSQxU=CKcCRRU0Sg@mail.gmail.com>
-Message-ID: <CAMuHMdU9LpSQ9-M49JC+wKk9=fsvX=cxTZwSQxU=CKcCRRU0Sg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] media: platform: Add Renesas RZ/G2L MIPI CSI-2
- receiver driver
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=NWcgMuOu/DRb30hVDSf+gjGKztVe28VznYCH2jRwr2w=;
+        b=0EzKCj1h1cbkB6LrEidekSUAluDITvZRE3xO58q4u+/PYfgds7WaSj/YIYtpv0KEzL
+         D3oKmyd4oAgwSxxkUBg1zM16FYQ9vRRro7i7JMdsh8ZkbMfk7cs8RdemWAlRZUblkLzM
+         qxkOgg0s3ILfkv5AR9fyFAJVDj09akSdwD1w5MXbtbbgaiM4wpKwBMpPEYWN6SYGTnhB
+         G/5I+wzh5fzr5wyvNXyrT7HcfX8YhqDxCoOYZOxqYObR8HpRxzU2RJLYvrKydUvQFQ4M
+         mdA0w1TexWpKSDgn5gGyjHbtVQwHR0LaBaucnQbe2JM2XFA2jH3ErNLNMMk7vhhiAbRy
+         KDug==
+X-Gm-Message-State: ACrzQf0JEOvUXLCXKsfDlYg4ucwiux0wm+kASrSPbsWBT0RowCib1cBY
+        2wbCjmf1TgAkEd9QbIL1o6JiHA==
+X-Google-Smtp-Source: AMsMyM5X3spJySOGhlhXn9TKeJ1vUC4PQaWa4xgYswhH4zjD3fT+v5idDUvkA6X33EHtGeHu/7U0ag==
+X-Received: by 2002:ac8:5c0b:0:b0:35c:e066:998d with SMTP id i11-20020ac85c0b000000b0035ce066998dmr4195776qti.336.1663875067117;
+        Thu, 22 Sep 2022 12:31:07 -0700 (PDT)
+Received: from meerkat.local (bras-base-mtrlpq5031w-grc-33-142-113-79-147.dsl.bell.ca. [142.113.79.147])
+        by smtp.gmail.com with ESMTPSA id i12-20020a05620a404c00b006b8d1914504sm5393430qko.22.2022.09.22.12.31.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Sep 2022 12:31:06 -0700 (PDT)
+Date:   Thu, 22 Sep 2022 15:31:04 -0400
+From:   Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Guillaume Ranquet <granquet@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Bo-Chen Chen <rex-bc.chen@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Pablo Sun <pablo.sun@mediatek.com>, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 01/17] dt-bindings: clk: mediatek: Add MT8195 DPI
+ clocks
+Message-ID: <20220922193104.4qminv6adrajkhw2@meerkat.local>
+References: <20220919-v1-0-4844816c9808@baylibre.com>
+ <20220919-v1-1-4844816c9808@baylibre.com>
+ <d01e4a03-1d6d-9616-45ca-1c927f2d8237@linaro.org>
+ <CABnWg9uZ=FrumgUzyUoUiS6T51nZTEf5JZ-1KF0-Ra9Ood5ufA@mail.gmail.com>
+ <6b24be8f-94d7-6973-6f35-18cb15fc8cd4@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <6b24be8f-94d7-6973-6f35-18cb15fc8cd4@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On Thu, Sep 22, 2022 at 02:51:00PM +0200, Krzysztof Kozlowski wrote:
+> Thanks for explanation! Probably your patches are perfectly fine and
+> should apply, although I must admit diffstat is often useful.
 
-On Thu, Sep 22, 2022 at 3:27 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Thu, Sep 22, 2022 at 1:51 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Thu, Sep 22, 2022 at 2:34 PM Sakari Ailus
-> > <sakari.ailus@linux.intel.com> wrote:
-> > > On Thu, Sep 22, 2022 at 01:08:33PM +0100, Lad, Prabhakar wrote:
-> > > > > > * Switched to manually turn ON/OFF the clocks instead of pm_runtime so that
-> > > > > >   the mipi/dhpy initialization happens as per the HW manual
-> > > > >
-> > > > > That doesn't look right. The driver doesn't use runtime PM anymore, so
-> > > > > power domains may not be handled properly. What was the problem with
-> > > > > clock handling using runtime PM ?
-> > > > >
-> > > > If we use the runtime PM all the clocks will be turned ON when we call
-> > > > pm_runtime_resume_and_get() which I dont want to. As per the "Starting
-> > > > reception for MIPI CSI-2 Input" section 35.3.1 for example we first
-> > > > need to turn ON all the clocks and later further down the line we need
-> > > > to just turn OFF VCLK -> Enable Link -> turn ON VCLK. Due to such
-> > > > cases I have switched to individual clock handling.
-> > >
-> > > If that is the case, then you should control just that clock directly,
-> > > outside runtime PM callbacks.
-> > >
-> > > Runtime PM may be needed e.g. for resuming a parent device.
-> >
-> > Exactly.
-> > So probably you should not consider R9A07G044_CRU_VCLK a PM clock,
-> > i.e. you need changes to rzg2l_cpg_is_pm_clk() to exclude it.
-> >
-> Thanks for the pointer. In that case we will have to consider
-> R9A07G044_CRU_VCLK and R9A07G044_CRU_SYSCLK as not PM clocks.
->
-> Does the below sound good?
-> - DEF_NO_PM() macro
-> - bool is_pm_clk in struct rzg2l_mod_clk.
->
-> I still have to implement it, just wanted your opinion beforehand.
+Krzysztof:
 
-LGTM. Thanks!
+The patches should indeed apply without problems and there's a fix for the
+missing diffstat already in place.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Konstantin
