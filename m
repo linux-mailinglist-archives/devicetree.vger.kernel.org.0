@@ -2,111 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC5DB5E5FE6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 12:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6420B5E5F85
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 12:12:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231519AbiIVKad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 06:30:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54460 "EHLO
+        id S230119AbiIVKMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 06:12:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231534AbiIVKab (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 06:30:31 -0400
-Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 860B6CD1E8
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 03:30:30 -0700 (PDT)
-Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1obJ4V-00Bx25-4A
-        for devicetree@vger.kernel.org; Thu, 22 Sep 2022 12:04:43 +0200
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8] (helo=sumner.biot.com)
-        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1obJ4J-00Bx1W-NE; Thu, 22 Sep 2022 12:04:31 +0200
-Received: from bert by sumner.biot.com with local (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1obJ4J-004cfU-4x; Thu, 22 Sep 2022 12:04:31 +0200
-From:   Bert Vermeulen <bert@biot.com>
-To:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Bert Vermeulen <bert@biot.com>, John Crispin <john@phrozen.org>,
-        Benjamin Larsson <benjamin.larsson@iopsys.eu>
-Subject: [PATCH 3/3] ARM: dts: en7523: Add SPI node
-Date:   Thu, 22 Sep 2022 12:04:10 +0200
-Message-Id: <20220922100410.1101874-4-bert@biot.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220922100410.1101874-1-bert@biot.com>
-References: <20220922100410.1101874-1-bert@biot.com>
+        with ESMTP id S230443AbiIVKMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 06:12:50 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F309AD62FA;
+        Thu, 22 Sep 2022 03:12:45 -0700 (PDT)
+Received: (Authenticated sender: foss@0leil.net)
+        by mail.gandi.net (Postfix) with ESMTPSA id BA06B40003;
+        Thu, 22 Sep 2022 10:12:41 +0000 (UTC)
+From:   Quentin Schulz <foss+kernel@0leil.net>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de, dmitry.torokhov@gmail.com,
+        klaus.goger@theobroma-systems.com, foss+kernel@0leil.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Subject: [PATCH 1/3] Input: add `SW_BOOT_ALT`
+Date:   Thu, 22 Sep 2022 12:12:09 +0200
+Message-Id: <20220922101211.3215888-2-foss+kernel@0leil.net>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220922101211.3215888-1-foss+kernel@0leil.net>
+References: <20220922101211.3215888-1-foss+kernel@0leil.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds an SPI node for the EN7523, so far only used for hooking up
-the NAND boot flash.
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-Signed-off-by: Bert Vermeulen <bert@biot.com>
+This event code represents the firmware source to use at boot.
+Value 0 means using "standard" firmware source, value 1 means using
+"alternative" firmware source.
+
+For example, some hardware has the ability to force the BOOTROM to load
+the bootloader from a secondary firmware source (say SD card) instead of
+trying with the standard first and then the secondary. This event allows
+the userspace to know which firmware source was requested *in hardware*.
+
+Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 ---
- arch/arm/boot/dts/en7523-evb.dts | 20 ++++++++++++++++++++
- arch/arm/boot/dts/en7523.dtsi    | 11 +++++++++++
- 2 files changed, 31 insertions(+)
+ include/linux/mod_devicetable.h        | 2 +-
+ include/uapi/linux/input-event-codes.h | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/en7523-evb.dts b/arch/arm/boot/dts/en7523-evb.dts
-index f23a25cce119..50ccd58b1672 100644
---- a/arch/arm/boot/dts/en7523-evb.dts
-+++ b/arch/arm/boot/dts/en7523-evb.dts
-@@ -26,6 +26,26 @@ memory@80000000 {
- 	};
- };
+diff --git a/include/linux/mod_devicetable.h b/include/linux/mod_devicetable.h
+index 549590e9c644..009e71376a61 100644
+--- a/include/linux/mod_devicetable.h
++++ b/include/linux/mod_devicetable.h
+@@ -326,7 +326,7 @@ struct pcmcia_device_id {
+ #define INPUT_DEVICE_ID_LED_MAX		0x0f
+ #define INPUT_DEVICE_ID_SND_MAX		0x07
+ #define INPUT_DEVICE_ID_FF_MAX		0x7f
+-#define INPUT_DEVICE_ID_SW_MAX		0x10
++#define INPUT_DEVICE_ID_SW_MAX		0x11
+ #define INPUT_DEVICE_ID_PROP_MAX	0x1f
  
-+&spi0 {
-+	nand: nand@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		nand-ecc-engine = <&nand>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "u-boot";
-+				reg = <0x0 0x80000>;
-+				read-only;
-+			};
-+		};
-+	};
-+};
-+
- &gpio0 {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/en7523.dtsi b/arch/arm/boot/dts/en7523.dtsi
-index 7f839331a777..2a61447f7b5c 100644
---- a/arch/arm/boot/dts/en7523.dtsi
-+++ b/arch/arm/boot/dts/en7523.dtsi
-@@ -201,4 +201,15 @@ pcie_intc1: interrupt-controller {
- 			#interrupt-cells = <1>;
- 		};
- 	};
-+
-+	spi0: spi@1fa10000 {
-+		compatible = "airoha,en7523-spi";
-+		reg = <0x1fa10000 0x10000>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		clocks = <&scu EN7523_CLK_SPI>;
-+		clock-names = "spi";
-+		spi-rx-bus-width = <2>;
-+		spi-tx-bus-width = <2>;
-+	};
- };
+ #define INPUT_DEVICE_ID_MATCH_BUS	1
+diff --git a/include/uapi/linux/input-event-codes.h b/include/uapi/linux/input-event-codes.h
+index dff8e7f17074..8cd2b58c81d7 100644
+--- a/include/uapi/linux/input-event-codes.h
++++ b/include/uapi/linux/input-event-codes.h
+@@ -917,7 +917,8 @@
+ #define SW_MUTE_DEVICE		0x0e  /* set = device disabled */
+ #define SW_PEN_INSERTED		0x0f  /* set = pen inserted */
+ #define SW_MACHINE_COVER	0x10  /* set = cover closed */
+-#define SW_MAX			0x10
++#define SW_BOOT_ALT		0x11  /* set = alternative boot firmware source */
++#define SW_MAX			0x11
+ #define SW_CNT			(SW_MAX+1)
+ 
+ /*
 -- 
-2.25.1
+2.37.3
 
