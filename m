@@ -2,130 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDC5B5E6055
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 13:02:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86A795E616A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 13:42:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229939AbiIVLCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 07:02:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35804 "EHLO
+        id S231428AbiIVLmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 07:42:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbiIVLCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 07:02:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF61F9DB51
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 04:02:03 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1obJxf-0000pp-8W; Thu, 22 Sep 2022 13:01:43 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1obJxe-0007J2-58; Thu, 22 Sep 2022 13:01:42 +0200
-Date:   Thu, 22 Sep 2022 13:01:42 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org, jacopo@jmondi.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        kieran.bingham+renesas@ideasonboard.com,
-        linux-kernel@vger.kernel.org, kishon@ti.com, hverkuil@xs4all.nl,
-        vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-phy@lists.infradead.org,
-        mchehab@kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] media: dt-bindings: add bindings for Toshiba
- TC358746
-Message-ID: <20220922110142.qnx6w3qbb6h6grvh@pengutronix.de>
-References: <20220916134535.128131-4-m.felsch@pengutronix.de>
- <YyZTCsflWtUbo2ld@pendragon.ideasonboard.com>
- <20220919100844.bb7tzbql2vpk76xz@pengutronix.de>
- <YyhDO4ohv47uIij2@paasikivi.fi.intel.com>
- <YyhKoDxFoobY9vBd@pendragon.ideasonboard.com>
- <20220920152632.mjpgpmelvx4ya4k7@pengutronix.de>
- <Yyn5MqqKYH7VpFhw@pendragon.ideasonboard.com>
- <74b6b670-747a-f326-44ea-7588c3989b0e@linaro.org>
- <20220921083513.drt4rggqj7tpaygr@pengutronix.de>
- <8e54e03e-105a-cf3e-242f-796bef77bfe1@linaro.org>
+        with ESMTP id S229936AbiIVLmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 07:42:16 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D81389B843;
+        Thu, 22 Sep 2022 04:42:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1663846934; x=1695382934;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=h4RtjIzXLWK5epTWueE8Vm3jsayEzVLuddfdK7Akvws=;
+  b=cCkd1B3oquXRKrsj+/aDEibpkdiB0flY7dnHH/hc8piTiVU7/w/DmsGe
+   ExecArRAfbZwFOTGhs598LEGjUglqqW0YOBWqFYtOcOqbiwSFsx0iQT4y
+   d6VCYkdxGzO1hJ4VSe48G2gxQFqBogq6r62xrD/T5Bg3EuTy0/PJFv2vP
+   sbHmsLChVvyW0O2GgKaEEdxhuY1hu+bh3RCZWwCBYabUoPEQCZGmp17k3
+   kZxKu5qDWSFJIaxuNZI3vd6R3R0JbR9GvrcYq0zD197EXBTkWeBUzgZZv
+   poQNCy7hx8ix6Nk5B88BZq149bqKCVCU6Oi7sY1Ex1eUFLHghZeEXgO7w
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
+   d="scan'208";a="114897412"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Sep 2022 04:42:14 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Thu, 22 Sep 2022 04:42:13 -0700
+Received: from ROB-ULT-M68701.amer.actel.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Thu, 22 Sep 2022 04:42:07 -0700
+From:   Sergiu Moga <sergiu.moga@microchip.com>
+To:     <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
+        <radu_nicolae.pirea@upb.ro>, <richard.genoud@gmail.com>,
+        <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
+        <kavyasree.kotagiri@microchip.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>,
+        Sergiu Moga <sergiu.moga@microchip.com>
+Subject: [PATCH v5 0/9] Make atmel serial driver aware of GCLK
+Date:   Thu, 22 Sep 2022 14:33:38 +0300
+Message-ID: <20220922113347.144383-1-sergiu.moga@microchip.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8e54e03e-105a-cf3e-242f-796bef77bfe1@linaro.org>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-21, Krzysztof Kozlowski wrote:
-> On 21/09/2022 10:35, Marco Felsch wrote:
-> > On 22-09-21, Krzysztof Kozlowski wrote:
-> >> On 20/09/2022 19:32, Laurent Pinchart wrote:
-> >>>>>
-> >>>>> Explicit bus types in DT indeed makes it easier for drivers, so if a
-> >>>>> device can support multiple bus types (even if not implemented yet in
-> >>>>> the corresponding drivers), the property should be there.
-> >>>>
-> >>>> Okay, I will make it required.
-> >>>>
-> >>>>>> Why do you have hsync-active and vsync-active if both are always zero? Can
-> >>>>>> the hardware not support other configuration?
-> >>>>
-> >>>> Sure the device supports toggling the logic but it is not implemented.
-> >>>> So the bindings needs to enforce it to 0 right now. As soon as it is
-> >>>> implemented & tested, we can say that both is supported :)
-> >>>
-> >>> Bindings are not supposed to be limited by the existing driver
-> >>> implementation, so you can already allow both polarities, and just
-> >>> reject the unsupported options in the driver at probe time. Future
-> >>> updates to the driver won't require a binding change.
-> >>>
-> >>
-> >> +1
-> > 
-> > I don't wanna do that because this let the binding user assume that
-> > this mode is already supported. 
-> 
-> What do you mean by "not supported"? By which system? By which firmware
-> element? Bindings are used by several operating systems and several
-> projects.
+This series of patches introduces the GCLK as a clock source for
+the baudrate generator of UART on sama5d2 SoCs. Unlike the serial mode of
+the USART offered by FLEXCOM, the UART does not provide a fractional part
+that can be added to the clock divisor to obtain a more accurate result,
+which greatly decreases the flexibility available for producing a higher
+variety of baudrates. Now, with the last patch of the series, the driver
+will check for a GCLK in the DT. If provided, whenever `atmel_set_termios`
+is called, unless there is a fractional part, the driver will compare the
+error rate between the desired baudrate and the actual baudrate obtained
+through each of the available clock sources and will choose the clock source
+with the lowest error rate. While at it, convert the DT binding
+for UART/USART to json-schema, update the FLEXCOM binding to reference the
+new UART/USART binding (while differentiating between the SPI of USART and the
+SPI of FLEXCOM), do some small DT related fixups and do some small driver
+cleanup.
 
-And they can use it and of course extend it, since the propery is
-available.
+The DT bindings related patches of this patch series depend on this patch
+series converting atmel-flexcom bindings to json-schema:
+https://lore.kernel.org/linux-arm-kernel/20220916075744.1879428-1-kavyasree.kotagiri@microchip.com/
 
-> That's not the argument.
-> 
-> Bindings should be complete. Lack of knowledge and datasheets is a good
-> exception from this rule. Looking at Linux driver is not good exception.
+v1 -> v2:
+- [PATCH 3] dt-bindings: mfd: atmel,sama5d2-flexcom: Add SPI child node ref
+    binding:
+	- use full schema paths
 
-So if I get you right, you are saying that the bindings should always be
-complete and describe all ever possible combinations? I am on your side
-that the properties should be there from day one. But listing all
-possible values regardless of the support.. I don't know and yes, I know
-that other projects using these bindings as well. But if those other
-projects support more than now, they can extend it and send patches.
-Since this is a new binding, the only user is Linux and listing all
-possible values can lead into erroneous assumption. No system-integrator
-wants to check the driver why a listed property is not supported instead
-most the time it is the other way. If it is listed, than it should be
-supported.
+- [PATCH 5] dt-bindings: serial: atmel,at91-usart: convert to json-schema
+	- only do what the commit says, split the addition of other compatibles
+	(PATCH 6) and properties (PATCH 13) in other patches
+	- remove unnecessary "|"'s
+	- mention header in `atmel,usart-mode`'s description
+	- place `if:` under `allOf:`
+	- respect order of spi0's DT properties: compatible, then reg then the
+	reset of properties
 
-Anyway I don't wanna make a big deal out of it. I will add all possible
-values to the binding if that is what you want :)
+- two new baudrate clock source related patches:
+  [PATCH 9] tty: serial: atmel: Add definition for GCLK as baudrate source clock
+			+
+  [PATCH 10] tty: serial: atmel: Define BRSRCCK bitmask of UART IP's Mode
+    Register:
+	- v1's bitfield definition of GCLK was wrong, so add two more patches:
+		- one for the definition of GCLK of USART IP's
+		- one for the definition of BRSRCCK bitmask and its bitfields
+		for UART IP's
 
-Regards,
-  Marco
+- a new cleanup related patch that introduces a new struct atmel_uart_port field:
+  [PATCH 11] tty: serial: atmel: Only divide Clock Divisor if the IP is USART:
+  	- this ensures a division by 8 which is unnecessary and unappliable to
+	UART IP's is only done for USART IP's
 
-> > Adapting a binding is just 1 commit and
-> > since the property is already existing, there is no breaking change.
-> Best regards,
-> Krzysztof
-> 
-> 
+- four new patches regarding DT fixes and a SPI binding update that I came
+upon:
+  [PATCH 1] spi: dt-bindings: atmel,at91rm9200-spi: Add DMA related properties
+  [PATCH 2] ARM: dts: at91: sama7g5: Swap rx and tx for spi11
+  [PATCH 4] ARM: dts: at91: sam9x60ek: Add DBGU compatibles to uart1
+  [PATCH 6] dt-bindings: serial: atmel,at91-usart: Highlight SAM9X60 incremental
+
+- [PATCH 12] tty: serial: atmel: Make the driver aware of the existence of GCLK
+	- take into account the different placement of the baudrate clock source
+	into the IP's Mode Register (USART vs UART)
+	- don't check for atmel_port->gclk != NULL
+	- use clk_round_rate instead of clk_set_rate + clk_get_rate
+	- remove clk_disable_unprepare from the end of the probe method
+
+v2 -> v3:
+- Re-order the patches as suggested by Krzysztof Kozlowski:
+1. DTS changes needed for aligning to schema.
+2. all bindings
+3. rest
+
+- New DT consistency related patch:
+  [PATCH 3] ARM: dts: at91: Add `atmel,usart-mode` required property to serial
+    nodes
+
+- [PATCH 6] dt-bindings: serial: atmel,at91-usart: convert to json-schema:
+  - Check value of `atmel,usart-mode` instead of the node regex
+  - Define all properties top level and disallow them explicitly for other type,
+  since additionalProperties:false conflicts with referencing other schemas
+  - Remove useless else if: after else:
+
+- [PATCH 7] dt-bindings: serial: atmel,at91-usart: add SAM9260 compatibles to
+  SAM9X60:
+  - Use the commit message suggested by Krzysztof Kozlowski
+
+- [PATCH 8] dt-bindings: mfd: atmel,sama5d2-flexcom: Add USART child node ref
+  binding
+  - Compare devices based on the compatible instead of the clock
+
+- [PATCH 12] tty: serial: atmel: Only divide Clock Divisor if the IP is USART
+  - Use ATMEL_US_CD instead of 65535
+
+- [PATCH 14] tty: serial: atmel: Make the driver aware of the existence of GCLK
+  - add `gclk_fail` goto
+  - replace `goto err` with `goto err_clk_disable_unprepare;`
+
+
+v3 -> v4:
+- Remove the first 4 patches as they have already been applied
+https://lore.kernel.org/linux-arm-kernel/b537bbcf-cb0f-551d-6dd0-cf50864bafa3@microchip.com/
+https://lore.kernel.org/linux-arm-kernel/53e72e5d-47fc-403d-c969-61b267a9ff15@microchip.com/
+https://lore.kernel.org/linux-arm-kernel/1ae89854-74fa-6194-304f-db31d56d3674@microchip.com/
+https://lore.kernel.org/linux-arm-kernel/3234cd79-65db-1210-50c1-e880ec6d87a0@microchip.com/
+- Remove the addition of gclk's to sama5d2 clock driver as it has already been applied
+https://lore.kernel.org/linux-arm-kernel/4b23db7d-d6b2-6c93-01f7-6a3b86f403d1@microchip.com/
+- [PATCH 2] -> [PATCH 5]
+  - add Acked-by/Reviewed-by tags to DT bindings
+- [PATCH 8]
+  - replace & with min_t
+
+
+
+v4 -> v5:
+- squash previous
+`[PATCH v4 7/9] tty: serial: atmel: Define BRSRCCK bitmask of UART IP's Mode Register`
+into a newly added
+`[PATCH v5 6/9] tty: serial: atmel: Separate mode clearing between UART and USART`
+whose role is mainly of cleanup and to make a clear separation between the
+clearing of the mode for UART vs USART and make BRSRCCK into a bitfield
+instead of a bitmask as it is only a bit.
+- squash previous
+`[PATCH v4 6/9] tty: serial: atmel: Define GCLK as USART baudrate source clock`
+into the current
+`[PATCH v5 8/9] tty: serial: atmel: Make the driver aware of the existence of GCLK`
+- new bitfield conversions to FIELD_PREP/FIELD_GET PATCH
+`[PATCH v5 9/9] tty: serial: atmel: Use FIELD_PREP/FIELD_GET`
+
+
+Sergiu Moga (9):
+  dt-bindings: mfd: atmel,sama5d2-flexcom: Add SPI child node ref
+    binding
+  dt-bindings: serial: atmel,at91-usart: convert to json-schema
+  dt-bindings: serial: atmel,at91-usart: Add SAM9260 compatibles to
+    SAM9X60
+  dt-bindings: mfd: atmel,sama5d2-flexcom: Add USART child node ref
+    binding
+  dt-bindings: serial: atmel,at91-usart: Add gclk as a possible USART
+    clock
+  tty: serial: atmel: Separate mode clearing between UART and USART
+  tty: serial: atmel: Only divide Clock Divisor if the IP is USART
+  tty: serial: atmel: Make the driver aware of the existence of GCLK
+  tty: serial: atmel: Use FIELD_PREP/FIELD_GET
+
+ .../bindings/mfd/atmel,sama5d2-flexcom.yaml   |  19 +-
+ .../devicetree/bindings/mfd/atmel-usart.txt   |  98 ---------
+ .../bindings/serial/atmel,at91-usart.yaml     | 190 ++++++++++++++++++
+ drivers/tty/serial/atmel_serial.c             |  82 +++++++-
+ drivers/tty/serial/atmel_serial.h             |  75 +++----
+ 5 files changed, 321 insertions(+), 143 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-usart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
+
+-- 
+2.34.1
+
