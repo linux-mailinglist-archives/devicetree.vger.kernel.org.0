@@ -2,62 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F9FA5E6206
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 14:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7AC5E620D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 14:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229995AbiIVMMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 08:12:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57412 "EHLO
+        id S230419AbiIVMN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 08:13:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbiIVMMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 08:12:47 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADAE89FAB5;
-        Thu, 22 Sep 2022 05:12:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663848766; x=1695384766;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=dV896P9KsrY/FhIaPaqfWulS1JdnBEHjNbRfyVsbuCw=;
-  b=k8/O8OBywCMNj0z9q8uFOC91qFtZeIBZPwXmSfJSXmEcIMrlyYnKMcV8
-   8xgBSekzeZQ9bc40gk1JKNTr4h7DmEdP3WsxGg32UjwiWjJJePeOBoC5K
-   lJ3GE0IBbykdCdLH3XyR8lptVFefQPvkqhDK7iEOKeyBqzVPfPjW9Ibmv
-   Lvz3CSBhzKK8WGHDT+JmYY+j+9ZFg3hIsRLVIKqHQZgA8t1cDX2M+CH67
-   VzSuXj7VXehTLKUc6rq4dHVAaPsfhlEUKXDSLToQAdIHAIRyAeL1prcBy
-   aLGtAQ6uwiHfWdf7BcX5R7hYcv4h9h1rzhwalVYTwrGSiPIMoiX4j79lI
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="287359950"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
-   d="scan'208";a="287359950"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2022 05:12:46 -0700
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
-   d="scan'208";a="650497637"
-Received: from lsundin-mobl.ger.corp.intel.com ([10.252.58.180])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2022 05:12:41 -0700
-Date:   Thu, 22 Sep 2022 15:12:35 +0300 (EEST)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Sergiu Moga <sergiu.moga@microchip.com>
-cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>, linux-spi@vger.kernel.org,
-        linux-serial <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v5 9/9] tty: serial: atmel: Use FIELD_PREP/FIELD_GET
-In-Reply-To: <20220922113347.144383-10-sergiu.moga@microchip.com>
-Message-ID: <a894518-4112-b99a-c2b7-657c23ee4974@linux.intel.com>
-References: <20220922113347.144383-1-sergiu.moga@microchip.com> <20220922113347.144383-10-sergiu.moga@microchip.com>
+        with ESMTP id S229873AbiIVMNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 08:13:55 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F40EE52E75;
+        Thu, 22 Sep 2022 05:13:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=aTzVrJjI9ejwxcCxS5DZxSJ5B/KvAH9Rb1NyhHF4XHw=; b=Qo1OQZ+qaf5FIk7J9JlqKwMbdD
+        kIhHM6T+9AZS4bt691O5YIZmH73WgmvPKnK9UWC5qmpqXsfyaG3ORCx0ylETx/YG1D5qltrd1cbvM
+        UKeZ3I9Kd5qFBZleBrxV7iEusMoWrnFxBnx7u1ChBCzG4R1221GG9qwW25XjfXflTlOs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1obL5E-00HWsr-7a; Thu, 22 Sep 2022 14:13:36 +0200
+Date:   Thu, 22 Sep 2022 14:13:36 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        kishon@ti.com, vkoul@kernel.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        richardcochran@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, geert+renesas@glider.be,
+        linux-phy@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 4/8] dt-bindings: net: renesas: Document Renesas
+ Ethernet Switch
+Message-ID: <YyxRcMdJ/AG0QtGB@lunn.ch>
+References: <20220921084745.3355107-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220921084745.3355107-5-yoshihiro.shimoda.uh@renesas.com>
+ <1aebd827-3ff4-8d13-ca85-acf4d3a82592@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-152948573-1663848765=:1702"
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1aebd827-3ff4-8d13-ca85-acf4d3a82592@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,73 +54,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-152948573-1663848765=:1702
-Content-Type: text/plain; charset=ISO-8859-15
-Content-Transfer-Encoding: 8BIT
-
-On Thu, 22 Sep 2022, Sergiu Moga wrote:
-
-> Convert all open-coded instances of bitfields retrieval/setting
-> to FIELD_PREP/FIELD_GET where possible.
+On Thu, Sep 22, 2022 at 09:37:28AM +0200, Krzysztof Kozlowski wrote:
+> On 21/09/2022 10:47, Yoshihiro Shimoda wrote:
+> > Document Renesas Etherent Switch for R-Car S4-8 (r8a779f0).
+> > 
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > ---
+> >  .../bindings/net/renesas,etherswitch.yaml     | 286 ++++++++++++++++++
+> >  1 file changed, 286 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/renesas,etherswitch.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/renesas,etherswitch.yaml b/Documentation/devicetree/bindings/net/renesas,etherswitch.yaml
+> > new file mode 100644
+> > index 000000000000..988d14f5c54e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/renesas,etherswitch.yaml
 > 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> Isn't dsa directory for this?
 
-Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+This is not a DSA driver, but a pure switchdev driver. It is similar
+to prestera, lan966x, sparx5, which put there binding in net.
 
-With one caveat below which I leave up to you to decide as it might be
-more a matter of taste thing.
+   Andrew
 
-> @@ -82,7 +84,7 @@
->  #define	ATMEL_US_INACK		BIT(20)	/* Inhibit Non Acknowledge */
->  #define	ATMEL_US_DSNACK		BIT(21)	/* Disable Successive NACK */
->  #define	ATMEL_US_MAX_ITER_MASK	GENMASK(26, 24)	/* Max Iterations */
-> -#define	ATMEL_US_MAX_ITER(n)	(((n) << 24) & ATMEL_US_MAX_ITER_MASK)
-> +#define	ATMEL_US_MAX_ITER(n)	FIELD_PREP(ATMEL_US_MAX_ITER_MASK, (n))
->  #define	ATMEL_US_FILTER		BIT(28)	/* Infrared Receive Line Filter */
->  
->  #define ATMEL_US_IER		0x08	/* Interrupt Enable Register */
-> @@ -134,19 +136,19 @@
->  
->  #define ATMEL_US_CMPR		0x90	/* Comparaison Register */
->  #define ATMEL_US_FMR		0xa0	/* FIFO Mode Register */
-> -#define	ATMEL_US_TXRDYM(data)	(((data) & 0x3) << 0)	/* TX Ready Mode */
-> -#define	ATMEL_US_RXRDYM(data)	(((data) & 0x3) << 4)	/* RX Ready Mode */
-> +#define	ATMEL_US_TXRDYM(data)	FIELD_PREP(GENMASK(1, 0), (data))	/* TX Ready Mode */
-> +#define	ATMEL_US_RXRDYM(data)	FIELD_PREP(GENMASK(5, 4), (data))	/* RX Ready Mode */
->  #define		ATMEL_US_ONE_DATA	0x0
->  #define		ATMEL_US_TWO_DATA	0x1
->  #define		ATMEL_US_FOUR_DATA	0x2
->  #define	ATMEL_US_FRTSC		BIT(7)	/* FIFO RTS pin Control */
-> -#define	ATMEL_US_TXFTHRES(thr)	(((thr) & 0x3f) << 8)	/* TX FIFO Threshold */
-> -#define	ATMEL_US_RXFTHRES(thr)	(((thr) & 0x3f) << 16)	/* RX FIFO Threshold */
-> -#define	ATMEL_US_RXFTHRES2(thr)	(((thr) & 0x3f) << 24)	/* RX FIFO Threshold2 */
-> +#define	ATMEL_US_TXFTHRES(thr)	FIELD_PREP(GENMASK(13, 8), (thr))	/* TX FIFO Threshold */
-> +#define	ATMEL_US_RXFTHRES(thr)	FIELD_PREP(GENMASK(21, 16), (thr))	/* RX FIFO Threshold */
-> +#define	ATMEL_US_RXFTHRES2(thr)	FIELD_PREP(GENMASK(29, 24), (thr))	/* RX FIFO Threshold2 */
->  
->  #define ATMEL_US_FLR		0xa4	/* FIFO Level Register */
-> -#define	ATMEL_US_TXFL(reg)	(((reg) >> 0) & 0x3f)	/* TX FIFO Level */
-> -#define	ATMEL_US_RXFL(reg)	(((reg) >> 16) & 0x3f)	/* RX FIFO Level */
-> +#define	ATMEL_US_TXFL(reg)	FIELD_GET(GENMASK(5, 0), (reg))		/* TX FIFO Level */
-> +#define	ATMEL_US_RXFL(reg)	FIELD_GET(GENMASK(21, 16), (reg))	/* RX FIFO Level */
-
-I don't particularly like this kind of constructs. IMHO, all these would 
-be nice after removing the macro argument and moving the FIELD_PREP() to 
-.c file. That is,
-
-.h:
-#define ATMEL_US_RXFL	GENMASK(21, 16)
-
-.c:
-	... FIELD_PREP(ATMEL_US_RXFL, arg) ...
-
-But I guess there might be differing opinions on it (and both are 
-correct from purely technical perspective).
-
--- 
- i.
-
---8323329-152948573-1663848765=:1702--
+   
