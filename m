@@ -2,107 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05E705E6431
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:51:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE635E643D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:52:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231593AbiIVNvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 09:51:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34818 "EHLO
+        id S231903AbiIVNwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 09:52:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231790AbiIVNug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:50:36 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BCF064D3;
-        Thu, 22 Sep 2022 06:50:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5CBE3B836F4;
-        Thu, 22 Sep 2022 13:50:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1AC12C433C1;
-        Thu, 22 Sep 2022 13:50:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663854619;
-        bh=baQKDRUVQgv1x/LBw1tm4rEGxWMZKXfz70Pb4TfnkgM=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=lvk521ZohHjjza20sQknVKi2/M8j9CA0L9vilLw45jb1EF12fQg3/vj8RmDpa3y4c
-         6KhV0zIzoeeURqOqPgFRo4K5f+PTjJgvZ2WAxzw4zYBcvsCU7XS2wS6IpKcdAkSoIx
-         koGLoKr9MILhuWulnptqVXzERhPudWdqkGWy5GSt1YQc0ydEU+bcuu/pF9CAjlwUws
-         4anojZiJSywE5jEhK7Ibu0LRHczsDErfMewfR6PNts6itDOKm+U3KbrRFWBhs1hYvQ
-         Q7bYjRmWrD92QOcl5fBrFuQzjfuIhTXqkzwIg3+jBRUdiii4DHXLo8FG+NqcNdPkds
-         6t7mlPnsFLIBw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id EFB20E4D03D;
-        Thu, 22 Sep 2022 13:50:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231890AbiIVNv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:51:59 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A2A8EFA68;
+        Thu, 22 Sep 2022 06:51:45 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D0DE36BE;
+        Thu, 22 Sep 2022 15:51:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1663854704;
+        bh=uDPuHKFlxyNd6c23deR/oha4FWKGGQOVT5JIulE83wk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GO0rSUPLZvMRR7gbcy6/hstYDPuIWntiCMcw1GZSzRrkv9DB5gXfGfLDnjLFFqlWX
+         VsRmUMNVY11ef9TxE4DkjVa4ZGRPT7hpwIkmQW6+hh5eK0lsuF/LtUNErzRUMVXad3
+         OOOJu/TafgOIH215k2TXIyqE/q8h9uVIBK1zAln4=
+Date:   Thu, 22 Sep 2022 16:51:29 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 3/4] media: platform: Add Renesas RZ/G2L MIPI CSI-2
+ receiver driver
+Message-ID: <YyxoYSnj9llox5l1@pendragon.ideasonboard.com>
+References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Yys4CRNnKP3LXyAO@pendragon.ideasonboard.com>
+ <CA+V-a8uiT9rV=T6LmFovRwULf3SO=JKdqr1yacAqN8gJmv9VPw@mail.gmail.com>
+ <YyxWOuWOrYmMexNj@paasikivi.fi.intel.com>
+ <CAMuHMdXKz56jxw56fXa7CMh_y4MVYiUT25dqRntJw6481s1FWw@mail.gmail.com>
+ <CA+V-a8sW=a6auFH-1WqwK+o2MZGCQk+MAO4+cWKm1M+YrQE+CA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 net-next 00/11] Add WED support for MT7986 chipset
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166385461897.22432.10510208615369821045.git-patchwork-notify@kernel.org>
-Date:   Thu, 22 Sep 2022 13:50:18 +0000
-References: <cover.1663668203.git.lorenzo@kernel.org>
-In-Reply-To: <cover.1663668203.git.lorenzo@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
-        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
-        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
-        devicetree@vger.kernel.org, robh@kernel.org, daniel@makrotopia.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8sW=a6auFH-1WqwK+o2MZGCQk+MAO4+cWKm1M+YrQE+CA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by Paolo Abeni <pabeni@redhat.com>:
-
-On Tue, 20 Sep 2022 12:11:12 +0200 you wrote:
-> Similar to MT7622, introduce Wireless Ethernet Dispatch (WED) support
-> for MT7986 chipset in order to offload to the hw packet engine traffic
-> received from LAN/WAN device to WLAN nic (MT7915E).
+On Thu, Sep 22, 2022 at 02:27:15PM +0100, Lad, Prabhakar wrote:
+> On Thu, Sep 22, 2022 at 1:51 PM Geert Uytterhoeven wrote:
+> > On Thu, Sep 22, 2022 at 2:34 PM Sakari Ailus wrote:
+> > > On Thu, Sep 22, 2022 at 01:08:33PM +0100, Lad, Prabhakar wrote:
+> > > > > > * Switched to manually turn ON/OFF the clocks instead of pm_runtime so that
+> > > > > >   the mipi/dhpy initialization happens as per the HW manual
+> > > > >
+> > > > > That doesn't look right. The driver doesn't use runtime PM anymore, so
+> > > > > power domains may not be handled properly. What was the problem with
+> > > > > clock handling using runtime PM ?
+> > > > >
+> > > > If we use the runtime PM all the clocks will be turned ON when we call
+> > > > pm_runtime_resume_and_get() which I dont want to. As per the "Starting
+> > > > reception for MIPI CSI-2 Input" section 35.3.1 for example we first
+> > > > need to turn ON all the clocks and later further down the line we need
+> > > > to just turn OFF VCLK -> Enable Link -> turn ON VCLK. Due to such
+> > > > cases I have switched to individual clock handling.
+> > >
+> > > If that is the case, then you should control just that clock directly,
+> > > outside runtime PM callbacks.
+> > >
+> > > Runtime PM may be needed e.g. for resuming a parent device.
+> >
+> > Exactly.
+> > So probably you should not consider R9A07G044_CRU_VCLK a PM clock,
+> > i.e. you need changes to rzg2l_cpg_is_pm_clk() to exclude it.
 > 
-> Changes since v2:
-> - fix build warnings in patch 9/11
+> Thanks for the pointer. In that case we will have to consider
+> R9A07G044_CRU_VCLK and R9A07G044_CRU_SYSCLK as not PM clocks.
+
+I like when patch review discussions continue on the list without my
+involvement, and the end result is exactly what I would have advised :-)
+
+> Does the below sound good?
+> - DEF_NO_PM() macro
+> - bool is_pm_clk in struct rzg2l_mod_clk.
 > 
-> [...]
+> I still have to implement it, just wanted your opinion beforehand.
 
-Here is the summary with links:
-  - [v3,net-next,01/11] arm64: dts: mediatek: mt7986: add support for Wireless Ethernet Dispatch
-    https://git.kernel.org/netdev/net-next/c/00b9903996b3
-  - [v3,net-next,02/11] dt-bindings: net: mediatek: add WED binding for MT7986 eth driver
-    https://git.kernel.org/netdev/net-next/c/22ecfce11034
-  - [v3,net-next,03/11] net: ethernet: mtk_eth_soc: move gdma_to_ppe and ppe_base definitions in mtk register map
-    https://git.kernel.org/netdev/net-next/c/329bce5139cf
-  - [v3,net-next,04/11] net: ethernet: mtk_eth_soc: move ppe table hash offset to mtk_soc_data structure
-    https://git.kernel.org/netdev/net-next/c/ba2fc48c5e1e
-  - [v3,net-next,05/11] net: ethernet: mtk_eth_soc: add the capability to run multiple ppe
-    https://git.kernel.org/netdev/net-next/c/4ff1a3fca766
-  - [v3,net-next,06/11] net: ethernet: mtk_eth_soc: move wdma_base definitions in mtk register map
-    https://git.kernel.org/netdev/net-next/c/0c1d3fb9c2b7
-  - [v3,net-next,07/11] net: ethernet: mtk_eth_soc: add foe_entry_size to mtk_eth_soc
-    https://git.kernel.org/netdev/net-next/c/9d8cb4c096ab
-  - [v3,net-next,08/11] net: ethernet: mtk_eth_wed: add mtk_wed_configure_irq and mtk_wed_dma_{enable/disable}
-    https://git.kernel.org/netdev/net-next/c/cf26df8833cc
-  - [v3,net-next,09/11] net: ethernet: mtk_eth_wed: add wed support for mt7986 chipset
-    https://git.kernel.org/netdev/net-next/c/de84a090d99a
-  - [v3,net-next,10/11] net: ethernet: mtk_eth_wed: add axi bus support
-    https://git.kernel.org/netdev/net-next/c/2b2ba3ecb241
-  - [v3,net-next,11/11] net: ethernet: mtk_eth_soc: introduce flow offloading support for mt7986
-    https://git.kernel.org/netdev/net-next/c/03a3180e5c09
+Looks good to me, but I'm no expert in this area. I trust Geert's
+advice.
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Regards,
 
-
+Laurent Pinchart
