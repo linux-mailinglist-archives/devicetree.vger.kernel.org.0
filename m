@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A67DD5E691D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 19:04:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD30F5E6920
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 19:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231789AbiIVREP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 13:04:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54798 "EHLO
+        id S231564AbiIVREQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 13:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231703AbiIVREK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 13:04:10 -0400
+        with ESMTP id S231715AbiIVREL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 13:04:11 -0400
 Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D00AFF3D1
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:04:07 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id z13-20020a7bc7cd000000b003b5054c6f9bso1229081wmk.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:04:07 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65FAF8C36
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:04:08 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id fn7-20020a05600c688700b003b4fb113b86so1783642wmb.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:04:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=XKH4BzMgDzrWHlzYeBaOGmh1hYA825wk6UyMQwxMx4g=;
-        b=FRWCdjtLlOGIxGaDYH3EHK28wvDXCjtIMZv2ZI9SP6aCVOqcjK7U50+vnfX9myaLLl
-         n+o/ITbPlvFyPWBL47CD9B+k0a0qvgPdoBH7jBxIIE9fniH1X498Qo7yPYXN6b/6yNXU
-         IrHmb47VuRGpk5hPFXAdVhfcmBkxkIq0VwM4DX31Z1JlQ6erPGTD6Xv5aYewU8hTIF7z
-         sd8mpvBNxXW19CpJoY7cmyiFIgmbSJF0YLhvBc2hmJfa0QPgkGj3TnuFHhVGpYBY+u4H
-         +/OYxzE6sUtR/9JUqC/CZPF+H7x21EAVRDgP9Kp4loH9Oga6j3HgghO/1N6LMJA+i1lX
-         XASg==
+        bh=aZ9inPx/SpVp/+EGUIHCzXQtKEo6kGOnnJXHLc8UgwM=;
+        b=qoNSKQMejX00EtTaTz0JNlc0S+M1KbIjAJ0TSBb5XkNtZ+0wU2Nu3/Y7+2cBJMRmrA
+         8v4nhvIjM4eQV4QPuE3cuArfYi/OUff+q7GHHLd37yhF8J9wJaHQyZPuQkzI24dCi5Bf
+         PdxQj+ki8kGvMPwaobfraCZrSCDHGjgmSCskmrn/nnC+2maPkdsJwE9yLhW8hHI5burL
+         xP4grPNFx7zAW/McwSAeQGAbRTcNwrP4DY4/pPEVX/cDXTvaJrKV1DOo4WmxkRzg98qO
+         4r/9t5ipFD4Bm4yBaclIR2rRmYON44bJhC8A1+rBNVbXBCNGAJlplfEpRB1bC+iHg8QF
+         rPyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=XKH4BzMgDzrWHlzYeBaOGmh1hYA825wk6UyMQwxMx4g=;
-        b=I+j+uU2oqL6jVBJjJs2e/BA0LNJLQj8VNrgpw3XCoilgXBy3GX6InedP/Tp/Hu+iKy
-         faq55Sd930hZkBEXpnlffL+U3odBkxCtURAyxoiL1/pUGuJi+m79xJEfqLZKTFmkx/t9
-         o/Qi/VpEj9Azc9Vdbicw8Xc5EcvqASb1wWbRgjS8Cch8lTsCe1X7UCkdbd982JwRVufr
-         UPI3yeumFGiU2H4BObh+RwnZRwWcuDSYvNsZ4PvYMFYAPMId2LOD0Jn6D5rITEJi6rBi
-         Bycv/0gCSaNlk75YuXmx/C2J0sOYsHdvBOud0jaK/CqpWdM0fU1vM29jOOXV2ZGOkqJH
-         dXrw==
-X-Gm-Message-State: ACrzQf0uT+7X39TyqVwDLoU3hJ2N6hIJncCL+53EQ7mvc5i51MqbFR0T
-        dLVLUJ4t37khfzYFLk5+COvLpg==
-X-Google-Smtp-Source: AMsMyM4iuNElzHUByLPzE48k93z65t2TR+exTM1Fz6+PlLqA+gBagzkUl/oN2uYRGqilZ8qskW5SVA==
-X-Received: by 2002:a05:600c:3781:b0:3a6:804a:afc with SMTP id o1-20020a05600c378100b003a6804a0afcmr10081311wmr.27.1663866245784;
-        Thu, 22 Sep 2022 10:04:05 -0700 (PDT)
+        bh=aZ9inPx/SpVp/+EGUIHCzXQtKEo6kGOnnJXHLc8UgwM=;
+        b=V/CxV3j5Jc06mWMTvEmg+txWYgrJfiQR+0U/xtdeguzyUTqLnw7efd/VrRvWewYJMf
+         TeIlB+yf7gpL2Nb/jLWWMEZpULy55jnC9kVDDj/KYTM9954wQLb9fcmTh/v5C0l5ZJt7
+         Qmr075bT6SV8Ervm7pZr8eiT/OTi/8giHVxCntX9EU/24nyGPoJLyJqnjmi8lcUIGbxC
+         PMTEaVbYXg3XR9fAr1fn/w9c8r3v0/TH0PcynCuRUQ/MwtowHGMII/W9shJD+aYaO26w
+         jRZA86sbgYKeqaALMIdneKgHQlTHu2QOT7eMExrU3AooYHxdsBHZ1TJ21pQwUE7e6/Lk
+         3OxQ==
+X-Gm-Message-State: ACrzQf3gQRGLQCuXHHqYS2GCWZZWn3+1g/JE3Nu5xdfQRfQfFe7RwX2J
+        eDkDOdo7rWXdyZq/AqGkNkzcAw==
+X-Google-Smtp-Source: AMsMyM4Z+RZJw5g2dvKC/JXo0Pp2/JiTnLr5XTIjBhyqBu9eEZKsrPFc0ztHabMZj98mru6u4v0EVw==
+X-Received: by 2002:a05:600c:2949:b0:3b4:85b2:c1d7 with SMTP id n9-20020a05600c294900b003b485b2c1d7mr10111807wmd.183.1663866246979;
+        Thu, 22 Sep 2022 10:04:06 -0700 (PDT)
 Received: from baylibre-ThinkPad-T14s-Gen-2i.. (32.31.102.84.rev.sfr.net. [84.102.31.32])
-        by smtp.gmail.com with ESMTPSA id w21-20020a1cf615000000b003a604a29a34sm20334wmc.35.2022.09.22.10.04.04
+        by smtp.gmail.com with ESMTPSA id w21-20020a1cf615000000b003a604a29a34sm20334wmc.35.2022.09.22.10.04.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Sep 2022 10:04:05 -0700 (PDT)
+        Thu, 22 Sep 2022 10:04:06 -0700 (PDT)
 From:   Julien Panis <jpanis@baylibre.com>
 To:     william.gray@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org
 Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, mranostay@ti.com
-Subject: [PATCH v8 1/4] dt-bindings: counter: add ti,am62-ecap-capture.yaml
-Date:   Thu, 22 Sep 2022 19:03:59 +0200
-Message-Id: <20220922170402.403683-2-jpanis@baylibre.com>
+Subject: [PATCH v8 2/4] Documentation: ABI: sysfs-bus-counter: add frequency & num_overflows items
+Date:   Thu, 22 Sep 2022 19:04:00 +0200
+Message-Id: <20220922170402.403683-3-jpanis@baylibre.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220922170402.403683-1-jpanis@baylibre.com>
 References: <20220922170402.403683-1-jpanis@baylibre.com>
@@ -70,82 +70,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds a YAML binding for TI ECAP used in capture operating mode.
+This commit adds frequency and num_overflows items to counter ABI file
+(e.g. for TI ECAP hardware used in capture operating mode).
 
 Signed-off-by: Julien Panis <jpanis@baylibre.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../counter/ti,am62-ecap-capture.yaml         | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
+ Documentation/ABI/testing/sysfs-bus-counter | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml b/Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
-new file mode 100644
-index 000000000000..4e0b2d2b303e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/counter/ti,am62-ecap-capture.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/ABI/testing/sysfs-bus-counter b/Documentation/ABI/testing/sysfs-bus-counter
+index 30b6e1faa6f6..e177c6128236 100644
+--- a/Documentation/ABI/testing/sysfs-bus-counter
++++ b/Documentation/ABI/testing/sysfs-bus-counter
+@@ -209,6 +209,12 @@ Description:
+ 		both edges:
+ 			Any state transition.
+ 
++What:		/sys/bus/counter/devices/counterX/countY/num_overflows
++KernelVersion:	6.1
++Contact:	linux-iio@vger.kernel.org
++Description:
++		This attribute indicates the number of overflows of count Y.
 +
-+title: Texas Instruments Enhanced Capture (eCAP) Module
+ What:		/sys/bus/counter/devices/counterX/countY/ceiling_component_id
+ What:		/sys/bus/counter/devices/counterX/countY/floor_component_id
+ What:		/sys/bus/counter/devices/counterX/countY/count_mode_component_id
+@@ -219,11 +225,13 @@ What:		/sys/bus/counter/devices/counterX/countY/prescaler_component_id
+ What:		/sys/bus/counter/devices/counterX/countY/preset_component_id
+ What:		/sys/bus/counter/devices/counterX/countY/preset_enable_component_id
+ What:		/sys/bus/counter/devices/counterX/countY/signalZ_action_component_id
++What:		/sys/bus/counter/devices/counterX/countY/num_overflows_component_id
+ What:		/sys/bus/counter/devices/counterX/signalY/cable_fault_component_id
+ What:		/sys/bus/counter/devices/counterX/signalY/cable_fault_enable_component_id
+ What:		/sys/bus/counter/devices/counterX/signalY/filter_clock_prescaler_component_id
+ What:		/sys/bus/counter/devices/counterX/signalY/index_polarity_component_id
+ What:		/sys/bus/counter/devices/counterX/signalY/synchronous_mode_component_id
++What:		/sys/bus/counter/devices/counterX/signalY/frequency_component_id
+ KernelVersion:	5.16
+ Contact:	linux-iio@vger.kernel.org
+ Description:
+@@ -364,3 +372,9 @@ Description:
+ 			via index_polarity. The index function (as enabled via
+ 			preset_enable) is performed synchronously with the
+ 			quadrature clock on the active level of the index input.
 +
-+maintainers:
-+  - Julien Panis <jpanis@baylibre.com>
-+
-+description: |
-+  The eCAP module resources can be used to capture timestamps
-+  on input signal events (falling/rising edges).
-+
-+properties:
-+  compatible:
-+    const: ti,am62-ecap-capture
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: fck
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        capture@23100000 { /* eCAP in capture mode on am62x */
-+            compatible = "ti,am62-ecap-capture";
-+            reg = <0x00 0x23100000 0x00 0x100>;
-+            interrupts = <GIC_SPI 113 IRQ_TYPE_EDGE_RISING>;
-+            power-domains = <&k3_pds 51 TI_SCI_PD_EXCLUSIVE>;
-+            clocks = <&k3_clks 51 0>;
-+            clock-names = "fck";
-+        };
-+    };
++What:		/sys/bus/counter/devices/counterX/signalY/frequency
++KernelVersion:	6.1
++Contact:	linux-iio@vger.kernel.org
++Description:
++		Read-only attribute that indicates the signal Y frequency, in Hz.
 -- 
 2.37.3
 
