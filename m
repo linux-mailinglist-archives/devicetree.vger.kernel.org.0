@@ -2,177 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DB0C5E601F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 12:43:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2A0B5E602C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 12:48:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230268AbiIVKnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 06:43:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41848 "EHLO
+        id S230038AbiIVKsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 06:48:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbiIVKnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 06:43:31 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE19AA4E9
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 03:43:30 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id z97so12926445ede.8
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 03:43:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date;
-        bh=M77z27YzoHva29g50eo0MmW6ov3kpDSkgNX8RUaZz24=;
-        b=LMF5ySSYa/Qj5IKr07ythRHHbr4z5pcF3vCGB0uPOuVqQa+HA37deRxW/au5v7TG3p
-         QHkRu2RaRLhNn7ENhVJ7ZjOt60ObyRY8zosbnGCtrMIv1F5zAVe2fzNbsRb6c6lxPRs/
-         VC0OHCEKlGUBRK86RmpjxWhFmQafWPtHkRw8dmluIoS8wYy7oRsoe/+ND40n3aKfszE3
-         q+ADWYfGDY4LKg4ICZY9RqOmMKTtKbvJcvSF7UvcwxxjFZecpoy45dofNht838BFmdRu
-         Xm03dF/NxNCFGJ1DFzrQQCD/fsyo6zfVbmAadO51zxgBwHVHp5zLgAedFBjYoXtNyd9b
-         kibQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=M77z27YzoHva29g50eo0MmW6ov3kpDSkgNX8RUaZz24=;
-        b=7yY1E86G37Y/7C2CvxD52txeHQI1CsbkYQUjzSK7iWLGBjjP5io370AsGWW7Df0d69
-         H/9ptPlgrzg2c2MBPkFSn+nxWwDVUEFjxuNyLzqyKuUacn2VOChmM05eUyUdeGIMbt/h
-         Ln058f/q82nykdyMTa0iwdRigiZDYqI9Sciidd35G0X0QBzcKEGA/xoVj0GhD2KhSkQa
-         a0luKv8nYPHhSzfBljDSs68F116BkAGDBVDzyybeET0s2GxBMwBsIkrIM+jQpyaquG75
-         lE2L84oPYfhwoSVOyYugSDooQChMFwvFzU6mdx5mFaTMliwnRKEnE4aJ2xdGKJBf/gE4
-         y9YQ==
-X-Gm-Message-State: ACrzQf3+hLh7Fh/fTsyO8WURYWWe7gudU+joaq+jJ5Hhw0CKRr1iY/pY
-        BqUrJThFoJyA4/k2Ju1NcbXImBtlWI1yN+RpZERY5w==
-X-Google-Smtp-Source: AMsMyM5Gk59rUXAPqkCR3ymGPxm/zOnlAZM2u6xAwmJhSmjTYY+cItxeUecq5NeMhcnq1GISbRzoOL5jYhGrY9URSu0=
-X-Received: by 2002:a05:6402:5210:b0:451:d4ff:ab02 with SMTP id
- s16-20020a056402521000b00451d4ffab02mr2601116edd.345.1663843408745; Thu, 22
- Sep 2022 03:43:28 -0700 (PDT)
+        with ESMTP id S230262AbiIVKsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 06:48:41 -0400
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B65A5CD1E7;
+        Thu, 22 Sep 2022 03:48:39 -0700 (PDT)
+Received: from [192.168.1.101] (95.49.29.188.neoplus.adsl.tpnet.pl [95.49.29.188])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 3295A3F77C;
+        Thu, 22 Sep 2022 12:48:36 +0200 (CEST)
+Message-ID: <22acebd5-b900-9abd-67e6-522c351da342@somainline.org>
+Date:   Thu, 22 Sep 2022 12:48:35 +0200
 MIME-Version: 1.0
-References: <20220911200147.375198-1-mike.rudenko@gmail.com> <YywwqFi+2Nah2RpY@paasikivi.fi.intel.com>
-In-Reply-To: <YywwqFi+2Nah2RpY@paasikivi.fi.intel.com>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Thu, 22 Sep 2022 11:43:14 +0100
-Message-ID: <CAPY8ntAvos4Et4c5mAiw=6Wb4b53p2PLRX_Jw03bHckpD+e-sg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Add Omnivision OV4689 image sensor driver
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 2/2] iommu: arm-smmu-qcom: add sdm670 compatible
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Richard Acayan <mailingradian@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Shawn Tu <shawnx.tu@intel.com>, Jimmy Su <jimmy.su@intel.com>,
-        Arnd Bergmann <arnd@arndb.de>, Arec Kao <arec.kao@intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Marek Vasut <marex@denx.de>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org
+References: <5f629a95-8ee4-7cf8-f471-0b50e311d3b7@somainline.org>
+ <20220922023833.178076-1-mailingradian@gmail.com>
+ <be7a2f12-d6bb-8193-2a56-c31e57f11ce6@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <be7a2f12-d6bb-8193-2a56-c31e57f11ce6@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mikhail & Sakari
-
-On Thu, 22 Sept 2022 at 10:55, Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> Hi Mikhail,
->
-> On Sun, Sep 11, 2022 at 11:01:33PM +0300, Mikhail Rudenko wrote:
-> > Hello,
-> >
-> > this series implements support for Omnivision OV4689 image
-> > sensor. The Omnivision OV4689 is a high performance, 1/3-inch, 4
-> > megapixel image sensor. Ihis chip supports high frame rate speeds up
-> > to 90 fps at 2688x1520 resolution. It is programmable through an I2C
-> > interface, and sensor output is sent via 1/2/4 lane MIPI CSI-2
-> > connection.
-> >
-> > The driver is based on Rockchip BSP kernel [1]. It implements 4-lane CS=
-I-2
-> > and single 2688x1520 @ 30 fps mode. The driver was tested on Rockchip
-> > 3399-based FriendlyElec NanoPi M4 board with MCAM400 camera module.
-> >
-> > While porting the driver, I stumbled upon two issues:
-> >
-> > (1) In the original driver, horizontal total size (HTS) was set to a
-> > value (2584) lower then the frame width (2688), resulting in negative
-> > hblank. In this driver, I increased HTS to 2688, but fps dropped from
-> > 29.88 to 28.73. What is the preferred way to handle this?
->
-> If horizontal total size is less than the frame width, something is
-> certainly wrong there. You can't have negative horizontal blanking. Neith=
-er
-> it can be zero.
-
-Something certainly seems odd.
-
-To continue my thoughts from earlier in this patch set, Omnivision's
-Product Brief [1] states:
-The 1/3-inch OV4689 can capture full-resolution 4-megapixel high
-definition (HD) video at 90 frames per second (fps), 1080p HD at 120
-fps, and binned 720p HD at 180 fps
-
-The datasheet section 2.1 states:
-The OV4689 color image sensor is a high performance, 4 megapixel RAW
-image sensor that delivers 2688x1520 at 90 fps using OmniBSI-2=E2=84=A2 pix=
-el
-technology.
-
-So 4MP 90fps or 1080p120 should be achievable somehow.
-
-2688x1520 @ 90fps is 367.7MPix/s, and that tallies quite nicely with
-table 2-9 listing the DAC PLL speed limitation of 360-378MHz. Exactly
-how that is then converted into PCLK or SCLK is unclear.
-Ideally you'd be able to contact an Omnivision FAE to confirm, but
-that means you need to be buying modules directly from them or
-otherwise have a business relationship.
-I do note that there is an NVidia Tegra driver for OV4689 at [2]. I
-wonder if analysis of that would reveal anything.
-
-I have just been looking at the ov9282 driver and the timings don't
-tally there either - configure it for 60fps and you get 30fps. The
-TIMING_HTS register appears to be in units of 2 pixels. The default is
-0x2d8 (728 decimal) on a 1280x720 mode, but consider it as units of 2
-pixels and HTS of 1456 (1280 active and hblank of 176) does match up.
-It works in the general case too.
-
-Looking at the OV4689 datasheet again, the default for TIMING_HTS
-(0x380c/d) is 0x5f8 (1528 decimal) when HOUTPUT_SIZE (0x3808/9) is
-0x1200 (4608 decimal). Whilst there are no guarantees that default
-register settings will stream in any sensible form, it does imply
-TIMING_HTS is not in units of 1 pixel, and potentially 4 pixels.
-From the Rockchip BSP driver it plainly does stream at 30 (or 29.88)
-fps with TIMING_HTS < HOUTPUT_SIZE, so a quick test of reducing it
-further would be worthwhile. What does the default of 0x2d8 give you
-as a frame rate, and are the images correct?
-
-Just some thoughts.
-  Dave
-
-[1] https://www.ovt.com/wp-content/uploads/2022/01/OV4689-PB-v1.7-WEB.pdf
-[2] https://github.com/bogsen/STLinux-Kernel/blob/master/drivers/media/plat=
-form/tegra/ov4689.c
 
 
-> >
-> > (2) The original driver exposes analog gain range 0x0 - 0x7ff, but the
-> > gain is not linear across that range. Instead, it is piecewise linear
-> > (and discontinuous). 0x0-0xff register values result in 0x-2x gain,
-> > 0x100-0x1ff to 0x-4x, 0x300-0x3ff to 0x-8x, and 0x700-0x7ff to 0x-16x,
-> > with more linear segments in between. Rockchip's camera engine code
-> > chooses one of the above segments depenging on the desired gain
-> > value. The question is, how should we proceed keeping in mind
-> > libcamera use case? Should the whole 0x0-0x7ff be exposed as-is and
-> > libcamera will do the mapping, or the driver will do the mapping
-> > itself and expose some logical gain units not tied to the actual gain
-> > register value? Meanwhile, this driver conservatively exposes only
-> > 0x0-0xf8 gain register range.
->
-> --
-> Sakari Ailus
+On 22.09.2022 08:41, Krzysztof Kozlowski wrote:
+> On 22/09/2022 04:38, Richard Acayan wrote:
+>>> On 21.09.2022 21:05, Krzysztof Kozlowski wrote:
+>>>> On 21/09/2022 20:48, Konrad Dybcio wrote:
+>>>>>
+>>>>>
+>>>>> On 21.09.2022 20:47, Konrad Dybcio wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 21.09.2022 09:31, Krzysztof Kozlowski wrote:
+>>>>>>> On 21/09/2022 00:39, Richard Acayan wrote:
+>>>>>>>> The Snapdragon 670 needs the IOMMU for GENI I2C. Add a compatible string to
+>>>>>>>> support it.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+>>>>>>>> ---
+>>>>>>>>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
+>>>>>>>>  1 file changed, 1 insertion(+)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>>>>>>> index b2708de25ea3..bf9653b9eb89 100644
+>>>>>>>> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>>>>>>> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>>>>>>> @@ -431,6 +431,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
+>>>>>>>>  	{ .compatible = "qcom,sc8180x-smmu-500" },
+>>>>>>>>  	{ .compatible = "qcom,sc8280xp-smmu-500" },
+>>>>>>>>  	{ .compatible = "qcom,sdm630-smmu-v2" },
+>>>>>>>> +	{ .compatible = "qcom,sdm670-smmu-500" },
+>>>>>>>
+>>>>>>> Why do we keep adding compatibles to the driver for apparently
+>>>>>>> compatible devices?
+>>>>>>
+>>>>>> Because Linux has not funny run on bare Qualcomm hardware ever since at least msm8x60 times and
+>>>>> s/funny/fully
+>>>>>
+>>>>> unfortunate typo, this is not funny, quite the contrary..
+>>>>>
+>>>>> Konrad
+>>>>>> we are not interacting with real hardware, only with Qualcomm's flawed virtual implementation
+>>>>>> of it, that's abstracted to us through various generations of their saddening software stack. This
+>>>>>> is also the case for many more standard components, even as far as the GIC on recent boards..
+>>>>
+>>>> Unfortunately I don't get this explanation... you mean some other
+>>>> firmware requires Linux drivers to use specific compatibles instead of
+>>>> one fallback?
+>>> No, perhaps I misunderstood you.
+>>>
+>>>>
+>>>> All of these do not have driver data, so they are essentially compatible
+>>>> for Linux driver. Growing this list in the driver seems pointless. What
+>>>> is the benefit of growing driver with same entries, except more patches?
+>>> Compatible lists in smmu-impl files allow matching driver quirks for SMMUs themselves
+>>> and consumer devices (such as MDSS). The situation is more complicated, because some
+>>> qcom SMMUs also require more quirks than others (think 8974 vs 8994 vs 8996/pro&660&8998
+>>> vs 845+ vs adreno smmu in various flavours), so all qcom SMMUs need to use
+>>> `qcom_smmu_impl` and some others need even more quirks on top of that (that generally
+>>> hurt performance or functionality, so we don't want them when they're unnecessary).
+>>> If all generations of qcom SMMU implementation that bear the same name behaved anywhere
+>>> near consistent, there would be no need for keeping this around, instead requiring only
+>>> "qcom,broken-smmu" or something".
+>>
+>> Hi, just stopping by to share my own thoughts.
+>>
+>> First, I don't mind if this series doesn't get applied as-is. After seeing
+>> the eMMC driver in its current state:
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mmc/host/sdhci-msm.c?h=v6.0-rc6#n2437
+>>
+>> I can understand that the devicetree maintainers don't want to see new SoCs
+>> touching drivers unnecessarily. Second, I don't see enough quirks to
+>> justify needing all compatible strings in the driver (2 quirky SoCs
+>> compared to 16 total not counting adreno iommu):
+>>
+>>     $ grep qcom, drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+>>     	if (of_device_is_compatible(np, "qcom,msm8996-smmu-v2"))
+>>     	* All targets that use the qcom,adreno-smmu compatible string *should*
+>>     	{ .compatible = "qcom,adreno" },
+>>     	{ .compatible = "qcom,mdp4" },
+>>     	{ .compatible = "qcom,mdss" },
+>>     	{ .compatible = "qcom,sc7180-mdss" },
+>>     	{ .compatible = "qcom,sc7180-mss-pil" },
+>>     	{ .compatible = "qcom,sc7280-mdss" },
+>>     	{ .compatible = "qcom,sc7280-mss-pil" },
+>>     	{ .compatible = "qcom,sc8180x-mdss" },
+>>     	{ .compatible = "qcom,sm8250-mdss" },
+>>     	{ .compatible = "qcom,sdm845-mdss" },
+>>     	{ .compatible = "qcom,sdm845-mss-pil" },
+>>     	if (of_device_is_compatible(np, "qcom,sdm845-smmu-500"))
+>>     	{ .compatible = "qcom,msm8998-smmu-v2" },
+>>     	{ .compatible = "qcom,qcm2290-smmu-500" },
+>>     	{ .compatible = "qcom,sc7180-smmu-500" },
+>>     	{ .compatible = "qcom,sc7280-smmu-500" },
+>>     	{ .compatible = "qcom,sc8180x-smmu-500" },
+>>     	{ .compatible = "qcom,sc8280xp-smmu-500" },
+>>     	{ .compatible = "qcom,sdm630-smmu-v2" },
+>>     	{ .compatible = "qcom,sdm670-smmu-500" },
+>>     	{ .compatible = "qcom,sdm845-smmu-500" },
+>>     	{ .compatible = "qcom,sm6125-smmu-500" },
+>>     	{ .compatible = "qcom,sm6350-smmu-500" },
+>>     	{ .compatible = "qcom,sm6375-smmu-500" },
+>>     	{ .compatible = "qcom,sm8150-smmu-500" },
+>>     	{ .compatible = "qcom,sm8250-smmu-500" },
+>>     	{ .compatible = "qcom,sm8350-smmu-500" },
+>>     	{ .compatible = "qcom,sm8450-smmu-500" },
+>>     	if (of_device_is_compatible(np, "qcom,adreno-smmu"))
+>>
+>> I don't know if it's better to get myself involved in fixing this, though.
+>> There is no fallback that encompasses qcom devices but not all arm devices.
+>> Either way, I'll have to add a new compatible string to the driver.
+>>
+>> If something like this is fine for now, I'll format it properly tomorrow:
+> 
+> Please wait till we reach some conclusion otherwise your work might be
+> wasted.
+> 
+>>
+>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> @@ -48,6 +48,13 @@ properties:
+>>                - qcom,sm8350-smmu-500
+>>                - qcom,sm8450-smmu-500
+>>            - const: arm,mmu-500
+>> +
+>> +      - description: Qcom SoCs implementing "qcom,smmu-500"
+>> +        items:
+>> +          - enum:
+>> +              - qcom,sdm670-smmu-500
+>> +          - const: qcom,smmu-500
+>> +
+> 
+> Someone would have to confirm that smmu-500 is a real device
+> spec/version. Otherwise this should be device-specific compatible (e.g.
+> earliest in family).
+In my view it's hard to name it, downstream uses bool properties for enabling/disabling
+certain quirks and on different generations there are different combinations of that.
+Interestingly enough, I vaguely remember that the same quirk names can mean different
+things on different msm-X.Y versions.. Add to that, different msm-X.Y versions can have
+different assumptions on what's the default (aka without taking the bool properties into
+account) behaviour for a given compatible. So I suppose "first in the family" would be
+the best way to go for mainline, though there are still quite a few families:
+
+<earlier ones used qcom_iommu>
+- 8996 with quirks that are already accounted for (or one may also say it works by miracle,
+just like msm8916 - downstream adds more special handling, but looks like the fw is not as
+restrictive)
+
+- 8996pro + 660 + 8998 with serious unmerged ones [1]
+
+- 845 which seems to be aok
+
+- special case of chromebooks where they only have qcom TZ/XPUs and not the hypervisor to
+fight with, so ma-a-aybe (no downstream reference & I don't have the hw to confirm) they
+can get away with less things
+
+- 8[1234]50 which seem to be a mix-and-match of less serious (read: not accounting for them
+may hurt performance but will not make your device sepuku at SMMU probe) minor quirks
+[2][3][4][5] (big warning: these may be overriden somewhere in other device tree fragments,
+the surest option would be to take a compiled dtb and decompile it to be sure about it)
+
+- 4xxx/6xxx series that mostly align with "whatever was there on the flagship soc released
+a year before"
+
+
+Konrad
+
+[1] https://github.com/SoMainline/linux/commits/marijn/v5.19-ninges/drivers/iommu
+[2] https://github.com/TeamWin/android_kernel_samsung_d2q/blob/master/arch/arm64/boot/dts/qcom/msm-arm-smmu-sm8150-v2.dtsi
+[3] https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/tags/android-11.0.0_r0.56/qcom/msm-arm-smmu-kona.dtsi
+[4] https://github.com/sonyxperiadev/kernel-copyleft-dts/blob/61.0.A.11.xxx/qcom/msm-arm-smmu-lahaina.dtsi
+[5] https://github.com/sonyxperiadev/kernel-copyleft-dts/blob/64.0.A.2.xxx/devicetree/qcom/msm-arm-smmu-waipio.dtsi
+> 
+> Best regards,
+> Krzysztof
+> 
