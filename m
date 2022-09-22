@@ -2,155 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 400FD5E59BB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 05:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C802E5E59CA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 06:01:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbiIVDta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 23:49:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59462 "EHLO
+        id S229667AbiIVEBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 00:01:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbiIVDt2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 23:49:28 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E169AB07B;
-        Wed, 21 Sep 2022 20:49:27 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id z25so12619376lfr.2;
-        Wed, 21 Sep 2022 20:49:27 -0700 (PDT)
+        with ESMTP id S229475AbiIVEBV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 00:01:21 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2093.outbound.protection.outlook.com [40.107.94.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA87ABD5C;
+        Wed, 21 Sep 2022 21:01:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EfzSe4ytVZn/eSCpSBb0yAVy9WMnqUIg2SDVRSBPdKiswd50VJaxIkUpBLXaS3oFnosfUKwSZPcGQDNTk1dUgih6EscefPqJtwbWXpG6PWj2Ls3ZDdVCUqp7b6Ah4YI9xTXspQtIpYIy4vVPUrAp0VhhiLS5yvvFwCzvzQ3AI/Ywg+crwlwxZqtybjMglO6HsPPF2zrAdfKDKt52aPi+I7CFW+/koSRGWdIHtCwOKFhKqcLEIFic97ddfHXS7/ZhenOigzpljv4WAn9WFTNoJ/RR9q3bWzfOsEGA6cfQjJXPaVg3pkZ/Mz0bnbjdTUm9UgAWoRyfav5Li7KNTOqMPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a8iyaZuIxTSg8OafM+duo7JoUFHHVXaLqQJx58Ld5ss=;
+ b=C6csy2xZzuAVoOxulmMKk0qeNfSuTLsZbKFLWFXHqcdbR5C3++CoENL+m0MFyS8GSxXM5+9lw0sQ+U6dGjxBUFRmg81kpQkAB/5Dvd8PD1IM1o2qFoOpObsCDTdzJnJBj5M0yiqdElRIdrGnoppWPSDnYkPgFfyYjsHvJxRKuBYZx3cz2lRYg7OqiLI/eN3eWLiX7dOjo/ip1LLLjm4D5M56rcyZCBbTL9ubSyPdlLol1wbnFjP6rSBlsTCoCmHPrF//wa4OXalo2uYWFraTUEzZiR/okEVqZsd11C//vYJ82FfT02d3xG0y/rvz2vFMHmZKQx0Y1J/u2sq8qj9uTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=hM/hPj2kErZVrLGH7HE2a6ky1BHulbnUraRG0cUBVMk=;
-        b=TzoWMMC8U0DFHzke8NjSpVyLZdyZ5LwjDljBMbxDAWWE/irzfM4z96QbpxpEOH92DD
-         aWuzk3z7b5dZh6tBpiujL18vVh7PSzeHlVHSxvCrjr8AlhTyWGnfn3tFJ4v2IOiB6HSk
-         O7CtFfNIt9vPFjRtwFFyCgJkU+/3m06oCc/iqCi/7CXWV6bkox5c1HB6EAswtddVTi0t
-         74gU2qwOAB4rAea8VLByL9YMHBAoZyn7i1yV0ju2wUTTmQmsQ/ot/mbNwHn08MaE+als
-         DdV0M2GnH4/xZyjejzN/x589q/mkYzwLgpDr3so1+8k+Sqcw+aJrOqD+gFfogEwzHHEp
-         axGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=hM/hPj2kErZVrLGH7HE2a6ky1BHulbnUraRG0cUBVMk=;
-        b=e1EeSHjnMf4RmTbChxMAnxV+I0pAQojF2SkXA8+i5JxCgTPkXHIjGTnBREUTiZYi55
-         O2kxWCEn95r6sJKudG0vlthF7yEYXqiNucwTH7ZVB+VxmSOaUujltnWIGd3xf2BV8AzN
-         9CXeaXQwjWBnktFSFa2qLnW/t65AlJPXxYzDail2btaipDCsNN5SZMMt19a0wKaxZLkm
-         KpDOal/xXPyrif0yB2thM8QeyHqHFoi3S/Y9Ey7i3FpTU9F1zKafKyMULgQ4NNQXRNLs
-         uqJjy8FMGwP0oFQPc8MFqsCQ5BEzapkNcMksAQ1gYadkPVfeFQJWATWv5BNR9mDi5Fzl
-         wUvA==
-X-Gm-Message-State: ACrzQf0V6wziVq45ewk/Y+lvYuRQIhJ+f0hL2IoQOdQz2NZS2kj+co7T
-        +V4ziLMfgbCRrWkafn+HgzPmsJokyb4=
-X-Google-Smtp-Source: AMsMyM6A5PIxfDn/wEagUwjlvZ9u62A05fHnju8MzATQqaH+iIG8Z/wN9qS4UI+u2lUMNrDAmAI+dQ==
-X-Received: by 2002:a19:6909:0:b0:498:f6d4:c5b8 with SMTP id e9-20020a196909000000b00498f6d4c5b8mr502325lfc.647.1663818565321;
-        Wed, 21 Sep 2022 20:49:25 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
-        by smtp.gmail.com with ESMTPSA id o23-20020ac25e37000000b0048a83336343sm709743lfg.252.2022.09.21.20.49.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 20:49:24 -0700 (PDT)
-Message-ID: <e3ccfc4e-e1b1-252f-cf46-7385dcd21dfd@gmail.com>
-Date:   Thu, 22 Sep 2022 06:49:23 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [RFC PATCH 3/5] dt-bindings: iio: Add KX022A accelerometer
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a8iyaZuIxTSg8OafM+duo7JoUFHHVXaLqQJx58Ld5ss=;
+ b=tvZAu5UQkC0HD1dWzSRvAKP6WlikG54FCbZmZxk+JiDYWmXZZf+xHyAwSD1JdHww651M6Kexbn6D2OEhGGcekzkOwxmOvnwo0sGzQ+H5FZD54Se5axGQg6tjVXBSDVeR4jc6HKcStorcUZzY4QXQouF8nMS2PACfdxmBBpU44ZM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from DM5PR1001MB2345.namprd10.prod.outlook.com (2603:10b6:4:2d::31)
+ by BN0PR10MB5158.namprd10.prod.outlook.com (2603:10b6:408:120::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.17; Thu, 22 Sep
+ 2022 04:01:16 +0000
+Received: from DM5PR1001MB2345.namprd10.prod.outlook.com
+ ([fe80::b594:405e:50f0:468e]) by DM5PR1001MB2345.namprd10.prod.outlook.com
+ ([fe80::b594:405e:50f0:468e%5]) with mapi id 15.20.5654.014; Thu, 22 Sep 2022
+ 04:01:16 +0000
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <cover.1663760018.git.mazziesaccount@gmail.com>
- <eb3edbb63c117f93e8ec534f50d8e3cf91ab3041.1663760018.git.mazziesaccount@gmail.com>
- <482c5a54-3d53-5760-fc8e-8aa3b9341707@linaro.org>
- <7582e9e9-4558-ac33-a0f8-cb4e69d0628e@fi.rohmeurope.com>
- <1e9b83f5-67a9-c5ee-3ede-b26a6bde2263@linaro.org>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <1e9b83f5-67a9-c5ee-3ede-b26a6bde2263@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: [PATCH v2 net-next 00/14] add support for the the vsc7512 internal copper phys
+Date:   Wed, 21 Sep 2022 21:00:48 -0700
+Message-Id: <20220922040102.1554459-1-colin.foster@in-advantage.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR05CA0009.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::22) To DM5PR1001MB2345.namprd10.prod.outlook.com
+ (2603:10b6:4:2d::31)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM5PR1001MB2345:EE_|BN0PR10MB5158:EE_
+X-MS-Office365-Filtering-Correlation-Id: f1363fa9-4d34-4d55-5a06-08da9c4f18e6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6M2xF9EQvETmH+8sqaKgN8Lz/pSoO1zmrrcKqviV+/4k1wtE6eGvfFPgxp8BaHkQEFjOA21gq3WMK7y54kCDc+D6lgnyD5foozHkC29YRrym8OZpDsdwhaGc3bQhPnMBI0IhhAIVrsV5sQiajWhGdsAInP2D7iKTTexafMYI4IM7ptsBHNHNuaTXfzkEW2r6EkaMZLD0mNs+8nV6G55rhVjyQxWu88Wj+17MB2KBdZVjB5VYAvhOwkul0pxBObT1iXl9V1AV1/LKmE2U8qV3HjvrUHzG2tMe5vkoyQ/qy5cMvJFERSapNnIVrvBVLp15Jz1+aX/y/qfpVWlx4KJ7ozYM454kAMu0PC3Dvfybum7DIf+cGWWLHWhNnLCEtnmatyqZ9/WCDnCi+2kHp8fD2KZQNtYKMhK/zwfJww+T8BEp5N3mLZJ8UqpSB6EIUvOxs38k2dKnRTpA9HA/stO2qF6735aYRcqo5lTxBaGoZBRp4Vn1K9Gc07HqW2ziTnQJwZ5GmgHNqTc3Gywk1MZex3MhAuuxVAo1Wa6nQy52GK7b7ehrRbzL1hYrkKHzN2zk0og7AdL4VPcK9LYh++vyFRktSlz/XO8o8EdIrCsYbR7fSUdKPafw5ULT1zmHd0lSt3rfRCaEKmGn0Ba25Va0mA8FtNxYBJoJRclsPiS31Dnl1CLeHZ5OOzb+SllmCK3bEaFoXyxsPeSvQbbTmqgOXffO5o0rGdwSlm/MkUWS9/paSmpA1beutam5knbzljbR2VdUuUf9mVcdnbD4iH1CKQ3WvzU9WvLX8TVljAhPyS0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR1001MB2345.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(376002)(396003)(39840400004)(366004)(136003)(346002)(451199015)(6666004)(36756003)(41300700001)(8936002)(44832011)(26005)(6512007)(7416002)(6506007)(5660300002)(316002)(478600001)(54906003)(6486002)(38100700002)(8676002)(66476007)(66556008)(38350700002)(4326008)(66946007)(83380400001)(966005)(52116002)(1076003)(186003)(2616005)(86362001)(2906002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LgLWHbOC1MZImdX6L+De0wu61oQstD4KFEC0EH0/gjIbqUR31E34LS5kXSDj?=
+ =?us-ascii?Q?Fj03uZmp/l4of57WLgPKeua3NvsyUCTMVmk6BDL2wm4W6i1xpl2Y3ADUhxhg?=
+ =?us-ascii?Q?i17zrXKueTGC5VfyOe+1RQOhD47Qoi7UG8VNW+Xc6s7oUStn+k/xDurY/4yo?=
+ =?us-ascii?Q?RUK+/4rmXNUO4pRqAf0EeNzPPMEj+6Gxo7MySJ8Lxvq2HKAE0w5HKje+w3HF?=
+ =?us-ascii?Q?k0G8E3Lv58GLU0ATKLDKgIYrpwfoaZGATJvi8r7hhsi1PdHeh7p1XBmqjupM?=
+ =?us-ascii?Q?TSicKqPKvg7lGwmDvf4y4VKQhbT1qQ1bebpnrq5SeoRmbpHdFzQSLOlBFYgP?=
+ =?us-ascii?Q?lJD+q2xYSXTtVlDqgyfwrxC/U8CaJlrS5uRwK7tNtBOuHOGT3KKf56e6YvlV?=
+ =?us-ascii?Q?VjoOfemNXOmcPAvM7D2imEDVO6iQMR+lTpx7RHgJLBoWfV/YSYev1REhEhyl?=
+ =?us-ascii?Q?DcDZB7z9U4hW+Z6zGG6pVZbZbWxUJmyUEguT7wGoOBRjKL4/RiFh+6OoNAhZ?=
+ =?us-ascii?Q?UbphrVqYQD8Rt+gED/VqSgCX7P14CQKj3gy9IfRiYgBoHB/0PhTx9zmupvZV?=
+ =?us-ascii?Q?44URSaQ5rsB3xYNpTDM5R961v1rtiLuIqhaggHQyVw7kTBpwa9aKD8QaW36f?=
+ =?us-ascii?Q?zeW+BS+EFjRBfBv/VbvFdozlgA4fce6a4L5CYuGmY51PvZaqHqx40FGGb0QS?=
+ =?us-ascii?Q?d/z7Ah42o7WfRqCqfL7qm6eXTkcIaFUQl447BbxINqEJXsPh7vhXX2e7Mxib?=
+ =?us-ascii?Q?lCJGATOSr/FYWAujF42CPGX1hbW3laplFC0i28xOipc9s6H+w6nTA7QK85N0?=
+ =?us-ascii?Q?jGPodBA9r6vC3RuZuKNkD+gakatLhFP8cOr9p1LV2rKn6q5helUmMdS0TvsD?=
+ =?us-ascii?Q?i3saSg8ZeQPIuiG09kX3+NwhYVCxwPjqZ/5Vy6Ry8yRPLAzLQhscb8H6dLhv?=
+ =?us-ascii?Q?1Rt+MpV5F01/TFmmnO0LO5fdUbAH2Qz7b7Mgln4wqRmBQIgwCedF9QrfzSyo?=
+ =?us-ascii?Q?/CuJmPuEnRJiYetK6SD3syFN55j+25AS7LtOsFT4P1cwIm7Zya2YzfbmFtaY?=
+ =?us-ascii?Q?XOah7Cy9UR+BoPOcenpz6J3fMiBe26/8vPM8HRat30c6DTmvS0n7TE82cxm6?=
+ =?us-ascii?Q?x8BckbzsZMjRHf+EsOwEP9Vdb3dmwSHmLzXfeD6u7JXbSLMk9akRxSla+g7j?=
+ =?us-ascii?Q?mXFC47fPtIOVmyRCv9ZAgSg90SKkUMCn5+ji8X2b/8mYlab7eYpWf8lD3srR?=
+ =?us-ascii?Q?OCJDNzEUYsD9b7FjinaMWQm3d1k192B4sDrfN2eRsxDOdsbXxknYWh2CV+wM?=
+ =?us-ascii?Q?YqUW3mj9nGOKE5TRmjovt3GsD+ZthYIJEFcJvuLWnRUSXZ647It6J+abkBRG?=
+ =?us-ascii?Q?ijpV/Wmf3VmbNNmT8XpabnxnFFFwIOFTIyOSOeNVhw/BJnwldutM7EEUT99u?=
+ =?us-ascii?Q?uoWP8FXrjmnpKoWHtsgk62pvic88IGvCYOHzjf0KP3k7q0xRW+5CcvSBxpih?=
+ =?us-ascii?Q?U3vX4va00m37Bs+e7sNVgTR0H2tEV3a2+p7LseNjS45pWvxJlMhmiTJTeJ53?=
+ =?us-ascii?Q?3mVOzkvsgLv4k8fpe2lc0mBr7qWg1TCHujLJ3bRR9UVR9JFRuKaJBfsxsLC8?=
+ =?us-ascii?Q?8Q=3D=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1363fa9-4d34-4d55-5a06-08da9c4f18e6
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR1001MB2345.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2022 04:01:16.2164
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: x4b/KIjm6wjE1pfh1WLCzLpErhoSxJtC7xSJD/VaFzZtmwoOwh+OQAkM25GxJR6MLhomjMxwU9j1gdJL6ck8o9Uoix1XicaoJ6ZBRSDQUes=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB5158
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good Morning Krzysztof,
+This patch series is a continuation to add support for the VSC7512:
+https://patchwork.kernel.org/project/netdevbpf/list/?series=674168&state=*
 
-On 9/21/22 22:56, Krzysztof Kozlowski wrote:
-> On 21/09/2022 21:30, Vaittinen, Matti wrote:
->> Hi dee Ho Krzysztof,
->>
->> Thanks for looking through this!
->>
->> On 9/21/22 22:11, Krzysztof Kozlowski wrote:
->>> On 21/09/2022 13:45, Matti Vaittinen wrote:
->>>> KX022A is a 3-axis Accelerometer from ROHM/Kionix. The senor features
->>>> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
->>>> +
->>>> +maintainers:
->>>> +  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
->>
->> My own comment - switch the email to the gmail-one. Company mail is
->> unreliable at best..
->>
->>>> +
->>>> +description: |
->>>> +  KX022A is a 3-axis accelerometer supporting +/- 2G, 4G, 8G and 16G ranges,
->>>> +  output data-rates from 0.78Hz to 1600Hz and a hardware-fifo buffering.
->>>> +  KX022A can be accessed either via I2C or SPI.
->>>> +
->>>> +properties:
->>>> +  compatible: kionix,kx022a
->>>
->>> Missing const. I wonder how did it pass testing...
->>
->> I originally had
->> oneOf:
->>    items const ...
->> construct here as I had separate compatibles for *-spi and *-i2c. I am
->> unsure if I remembered to run the tests after dropping the extra
->> compatibles :| - Sorry! I'll fix this.
-> 
-> This should be just:
->    compatible:
->      const: foo,bar
-> 
->>
->>>> +  io_vdd-supply: true
->>>
->>> No underscores, so io-vdd-supply
->>
->> The rationale behind the underscore is that the data-sheet uses terms
->> vdd and vdd_io (with underscore). I wanted to match the supply name to
->> what is used in the data-sheet. Not a big thing but I'd rather kept if
->> same as the data-sheet if the requirement of "no-underscores" is not
->> "hard". (If it is, then I'll drop the underscore).
-> 
-> Underscores trigger warnings at some dtc W level (W=1 or W=2) so they
-> are not allowed.
+That series added the framework and initial functionality for the
+VSC7512 chip. Several of these patches grew during the initial
+development of the framework, which is why v1 will include changelogs.
+It was during v9 of that original MFD patch set that these were dropped.
 
-Thanks for the explanation. I'll change this too.
+With that out of the way, the VSC7512 is mainly a subset of the VSC7514
+chip. The 7512 lacks an internal MIPS processor, but otherwise many of
+the register definitions are identical. That is why several of these
+patches are simply to expose common resources from
+drivers/net/ethernet/mscc/*.
 
-Yours,
-	-- Matti
+This patch only adds support for the first four ports (swp0-swp3). The
+remaining ports require more significant changes to the felix driver,
+and will be handled in the future.
+
+
+v2
+    * Utilize common ocelot_reset routine (new patch 5, modified patch 13)
+    * Change init_regmap() routine to be string-based (new patch 8)
+    * Split patches where necessary (patches 9 and 14)
+    * Add documentation (patch 12) and MAINTAINERS (patch 13)
+    * Upgrade to PATCH status
+
+v1 (from RFC v8 suggested above):
+    * Utilize the MFD framework for creating regmaps, as well as
+      dev_get_regmap() (patches 7 and 8 of this series)
+
+Colin Foster (14):
+  net: mscc: ocelot: expose ocelot wm functions
+  net: mscc: ocelot: expose regfield definition to be used by other
+    drivers
+  net: mscc: ocelot: expose stats layout definition to be used by other
+    drivers
+  net: mscc: ocelot: expose vcap_props structure
+  net: mscc: ocelot: expose ocelot_reset routine
+  net: dsa: felix: add configurable device quirks
+  net: dsa: felix: populate mac_capabilities for all ports
+  net: dsa: felix: update init_regmap to be string-based
+  pinctrl: ocelot: avoid macro redefinition
+  mfd: ocelot: prepend resource size macros to be 32-bit
+  mfd: ocelot: add regmaps for ocelot_ext
+  dt-bindings: net: dsa: ocelot: add ocelot-ext documentation
+  net: dsa: ocelot: add external ocelot switch control
+  mfd: ocelot: add external ocelot switch control
+
+ .../bindings/net/dsa/mscc,ocelot.yaml         |  58 ++++++
+ MAINTAINERS                                   |   1 +
+ drivers/mfd/ocelot-core.c                     |  98 ++++++++-
+ drivers/net/dsa/ocelot/Kconfig                |  19 ++
+ drivers/net/dsa/ocelot/Makefile               |   5 +
+ drivers/net/dsa/ocelot/felix.c                |  69 +++++--
+ drivers/net/dsa/ocelot/felix.h                |   5 +-
+ drivers/net/dsa/ocelot/felix_vsc9959.c        |   3 +-
+ drivers/net/dsa/ocelot/ocelot_ext.c           | 194 ++++++++++++++++++
+ drivers/net/dsa/ocelot/seville_vsc9953.c      |   3 +-
+ drivers/net/ethernet/mscc/ocelot.c            |  48 ++++-
+ drivers/net/ethernet/mscc/ocelot_devlink.c    |  31 +++
+ drivers/net/ethernet/mscc/ocelot_vsc7514.c    | 181 +---------------
+ drivers/net/ethernet/mscc/vsc7514_regs.c      | 108 ++++++++++
+ drivers/pinctrl/pinctrl-ocelot.c              |   1 +
+ include/linux/mfd/ocelot.h                    |   5 +
+ include/soc/mscc/ocelot.h                     |   6 +
+ include/soc/mscc/vsc7514_regs.h               |   6 +
+ 18 files changed, 637 insertions(+), 204 deletions(-)
+ create mode 100644 drivers/net/dsa/ocelot/ocelot_ext.c
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+2.25.1
