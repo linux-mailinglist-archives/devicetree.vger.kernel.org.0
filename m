@@ -2,97 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A2325E699B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 19:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 193E95E69A4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 19:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231220AbiIVR0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 13:26:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37200 "EHLO
+        id S231869AbiIVR30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 13:29:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230143AbiIVR0j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 13:26:39 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22D49F0C9
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:26:38 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id b6so11802465ljr.10
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:26:38 -0700 (PDT)
+        with ESMTP id S231618AbiIVR3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 13:29:24 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64A90105D50
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:29:22 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id a10so11914055ljq.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 10:29:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=NNU0iak8ifcJbLJaqeSlylthUL+6NyYhyDMHO2Uy9To=;
-        b=KQ0jyGs+2KecOqLYzn93kiETHKZ4CzUzrcwjQSv6EcP1yYIJ4iCn+gb+NgClC9Jp0f
-         X+XMHXLZCGTM86i9+9v6Kgm8SvzU6fjdT/7lYkmlPh250Wv9PzfEsuWrVnWQIcmJhii9
-         Lx2NQQWNNUQqPchsphsqORTv+ehOwrMasTz7WTUSJvIoFSr6OGcXRfwEKMDiNWGkF67H
-         u3WBucI6qpRlwO0xXQ7fVY8y1wgekeObjz6WmGOs/hu7o5nn2P7e/lpSNt1PlK0uamMr
-         H5Oktw9eKQ44Gn4rCoXlYYM/sZKi9IMXMWuWne/ndHmDLl9dQ6+vV6DihM2TZr+oDPx6
-         YkDw==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=CvZGODSHXfe2qDQBF8M0YqQ7IJQUTtK3MjZMfL5pJoU=;
+        b=wyxLufnOxJgOp9zOszeHuEx4JwfK3vKMV8AkSc+h4Vn5LHGX7nt31zfR9uA48gGZX1
+         aO/ZnG2uDhDAIXqL/XDfngkbXbLa7XJbwR71f5rkcq9rICmzHxWg2vo/ccATfw4iPYTm
+         iBAs4JQ492Si5hZGH5hfwmNRpk7lpnz+c4/2MkXScoqRDxipV+CeMFFbFUvzR1v9QWea
+         N8v7BJfkQ9N+ykvby0qiLGlD3mPqiS0TQepb6ZXsXxPz/XBZoMBmYPBYzVAhXEFvH8uP
+         GfC08+c6tTRKnPJxBBfhoZzUuUPeIklTSqLrFiMZvVkLxJrFkdtgH43x+t3AvGII4YC1
+         1tSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=NNU0iak8ifcJbLJaqeSlylthUL+6NyYhyDMHO2Uy9To=;
-        b=NaAB1lFV8XJMRd2I5gnkVGW2hDxLNhBmRV4DXMOzAdKfytPxHiIt1qMWWDsN3lCLV1
-         jombD5zhWGRIV/HQgMK762dayRPCeAaVDQy9eXezSUsfrR25trTONavZtP7D2ZnwbE7e
-         aMTvyDSSVkQWIIx0u291D18CQ2xfX0xQN5VxjZVtPZgicMRNKHkXmNpF7b0eZIhMMRZ6
-         7MBxJOZPbNy/XVc4fIHF3FWLGbvOEPVvWP3pdhClnBueI8zKqXThzSoYgdO/xnujJtq2
-         UdRPp7nNCjptkst+w5wMZUttR4C+XOUQHxEXnmugv7EFqtaYuBkp6SLspDN/JlmrfQBm
-         nZCg==
-X-Gm-Message-State: ACrzQf1pjR3lkni0KcI1Kw7SbUezfDtfHcPkC44VQ2xWAR4/BV8O4ixk
-        WbOyU8oHL1ou22e1P/UOSTFlfw==
-X-Google-Smtp-Source: AMsMyM7KEWWPebb5wahwM0sTczlYzznz+dDsA8GGo5vdceIOBRj48oim0VWv+N3DrH91VgT3QO+GVg==
-X-Received: by 2002:a2e:894e:0:b0:26c:5434:e62b with SMTP id b14-20020a2e894e000000b0026c5434e62bmr1472822ljk.180.1663867596929;
-        Thu, 22 Sep 2022 10:26:36 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a3-20020a2eb543000000b0026bda31c10fsm974042ljn.61.2022.09.22.10.26.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Sep 2022 10:26:35 -0700 (PDT)
-Message-ID: <2b7c1b90-c484-74e2-5664-f2bdd08d2849@linaro.org>
-Date:   Thu, 22 Sep 2022 19:26:35 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2] dt-bindings: virtio: Convert virtio,pci-iommu to DT
- schema
-Content-Language: en-US
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220922161644.372181-1-jean-philippe@linaro.org>
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=CvZGODSHXfe2qDQBF8M0YqQ7IJQUTtK3MjZMfL5pJoU=;
+        b=npGE83UYYuOk6h5nBOf+7vqNH9dQHW9mu11ibn8v7WmFTd4zI52MHkJlPbq54rh3Ma
+         NLSB2v/47u28JdgQ82d9j300xCQhoZKcQsQKASGkhi0dtAWiZs3kIyOCxm0ZTy+JvNAN
+         JadKzLeRmjgflB22ac/9jJWJ7/oHR9MrX4WMn9qLAdDQZPjGKVZPn/hjWY6EFuB4KBsa
+         ORNJXUkcVPgWB2tWJjXlFgrxD+o32gOW6ZVVK7zCbxF0SBcOwrpuXC8I24pnKD2w+oI7
+         HT/1T+6pXcXbzTdTjBhyoJ9uEkciHG8vsAckOGuinUMrMiNDSUTGO29fjEvxhXOJGBvT
+         iAxw==
+X-Gm-Message-State: ACrzQf1Fp0/yzjgNQEHj+SipBmrZIkSvWqr1aZNfKWaYhmOYxB5xDS5k
+        uRU6Autenifodi6aUr1NHTeclQ==
+X-Google-Smtp-Source: AMsMyM47meZ9OSO5xTf8YhjmWCydR+psTRg8aw/prbjr/EGxY8a51Szfl1ryDQSMv61sDC5b9YA5iQ==
+X-Received: by 2002:a2e:bc04:0:b0:26c:5e:c186 with SMTP id b4-20020a2ebc04000000b0026c005ec186mr1564145ljf.118.1663867760677;
+        Thu, 22 Sep 2022 10:29:20 -0700 (PDT)
+Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u16-20020ac248b0000000b00498f871f33fsm1032905lfg.86.2022.09.22.10.29.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Sep 2022 10:29:20 -0700 (PDT)
+Date:   Thu, 22 Sep 2022 19:29:18 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220922161644.372181-1-jean-philippe@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Jerry Ray <jerry.ray@microchip.com>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>
+Subject: Re: [internal][PATCH] dt-bindings: dsa: lan9303: Add lan9303 yaml
+Message-ID: <20220922172918.hsvqgiipj5wiuz5k@krzk-bin>
+References: <20220922152438.350-1-jerry.ray@microchip.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220922152438.350-1-jerry.ray@microchip.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 18:16, Jean-Philippe Brucker wrote:
-> -
-> -[1] Documentation/devicetree/bindings/pci/pci.txt
-> -[2] Documentation/devicetree/bindings/iommu/iommu.txt
-> diff --git a/Documentation/devicetree/bindings/virtio/iommu.yaml b/Documentation/devicetree/bindings/virtio/iommu.yaml
-> new file mode 100644
-> index 000000000000..ae8b670928d3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/virtio/iommu.yaml
-> @@ -0,0 +1,101 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/virtio/iommu.yaml#
+On Thu, 22 Sep 2022 10:24:38 -0500, Jerry Ray wrote:
+> Adding the dt binding yaml for the lan9303 3-port ethernet switch.
+> The microchip lan9354 3-port ethernet switch will also use the
+> same binding.
+> 
+> Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
+> ---
+>  .../devicetree/bindings/net/dsa/lan9303.txt   | 100 +-----------
+>  .../bindings/net/dsa/microchip,lan9303.yaml   | 143 ++++++++++++++++++
+>  MAINTAINERS                                   |   8 +
+>  3 files changed, 152 insertions(+), 99 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
+> 
 
-I noticed it now - filename and ID do not match compatible, so this
-should be "pci-iommu.yaml"
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/microchip,lan9303.example.dtb: switch@0: Unevaluated properties are not allowed ('mdio' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/microchip,lan9303.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1681194
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
