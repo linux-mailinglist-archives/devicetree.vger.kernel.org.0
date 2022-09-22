@@ -2,84 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 742FE5E6166
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 13:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D765C5E618E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 13:44:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231179AbiIVLmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 07:42:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45152 "EHLO
+        id S231665AbiIVLoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 07:44:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231615AbiIVLmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 07:42:09 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05DA19B874
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 04:42:02 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id p5so10579787ljc.13
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 04:42:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=+1WSPKWPrsc/qCB3+vUopjI5nZ0YDPu4pJY+FLQ9d2g=;
-        b=MFSvPboCRq4R6FIggkWWQ3DXdLdL9n5qZDgoEkrudLezY2MDKnJP4wtJs7ttGBOZSc
-         BcdF0QP+wa6Flm4LNfPX3OZBlIlLdLWhJx4s5tb0gNyTDo0/xMRuI4cf7EOMULCWT8aO
-         lqtu4MCYdNwM3f6e3vI5RjMCTyVE/e5u7MXcIP9LlzTxFdL+1KwnDby1EQznZJ+kRDUl
-         0SyGrD4Mw2fjA99PNwqxVkcfKqY0g/0ul9z6SO3MhKPlEnfC26Hy+6waB8P0a+ruU77y
-         QxCiDdSN/WPOVNDjIwRB9dhBf7Y2V/cV8+FsolgnsRUuLuP/FOlcir5kLI5xK1c2M8lH
-         jH3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=+1WSPKWPrsc/qCB3+vUopjI5nZ0YDPu4pJY+FLQ9d2g=;
-        b=UCJQN0SqLQ/tCtErbvJcJ3e7+TW/xBvRu4TRedrxSMguke6nXu0R/myXNGYSeqLHGB
-         PUqfgNnDGe3X2VqMPIj+e5tqMu9lMD6Y4Fjr1M57N/vs0wMEHRNJvLzpOVJZeYVIeeG1
-         ZgzwzczQSQQ+qZDPvRooZk4jTheIQ6qJ1rMqJZtuZUXlSMPEpGFy5n/+wsX5MlnzeSOn
-         bKFgfw4PYmtyQnk8Q/CpCIW5BY/ZC2pODrY5ttu59UTyaLrcVQIji9+L1jgQppdbZPeQ
-         tnP3VjYZH06YzNjSpU3aTG89oK2+Z9x9Q/N29YLyiIMgkv9dMpuI0JOzhyY9I7OdL4In
-         kVLg==
-X-Gm-Message-State: ACrzQf0k74KX5LVmc7Tyk16fyPDDeDIdrLlJtrktAjlI8tVQbcmnUD6r
-        3IccldHnFTg0sCSN395DLDlY8Q==
-X-Google-Smtp-Source: AMsMyM6zHeMHrlIuqY4/28l8FLxG/78F98uMeprX3YAgBNuR2l6PU1cveCKQz16copA4pZIFLZZisw==
-X-Received: by 2002:a2e:940f:0:b0:261:b9ca:6207 with SMTP id i15-20020a2e940f000000b00261b9ca6207mr955616ljh.192.1663846920252;
-        Thu, 22 Sep 2022 04:42:00 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d2-20020a056512368200b00494a603953dsm902628lfs.89.2022.09.22.04.41.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Sep 2022 04:41:59 -0700 (PDT)
-Message-ID: <4841c705-0944-9e94-1ade-47ad2f462303@linaro.org>
-Date:   Thu, 22 Sep 2022 13:41:58 +0200
+        with ESMTP id S231668AbiIVLnd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 07:43:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 257DD9B84A;
+        Thu, 22 Sep 2022 04:43:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B061762D10;
+        Thu, 22 Sep 2022 11:43:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53630C433D7;
+        Thu, 22 Sep 2022 11:43:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663846990;
+        bh=Mt1LmaPy1kmdHUWpVIaEnQs3jZ8cHI0aSQlLWzzmn6U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W/vDVHh6CcVgYhTaXIubIoJmnHhH47qzbaDmu6X5ThWAYku/IosBbrHeMKtAK7x3K
+         peS2ZrRVyPKten45dPEqXY4MpRJBKPVF1Q09bk4HNGtMgMrt6sWV4RhKQriINvCSpN
+         gAVcAKxeNfbjeHlKEIImumAE7M2OzGtHnXZCCHej0zmS+NUj7L5DfUhLZ2BehrjdXd
+         hDN0VtZyMvF0we7VWMvJ0Ez7P+W2YWBpmvoBqgfdsWKmpf3duwGUc95uFFmGg8LLVn
+         TsLGrH2UnmM+Tq7rGXC9jZ4YxKr0FwEVwO7nFajtMXvJtGJgXyUkbQkM6te7kkcNKO
+         7qQVF6r0OXozQ==
+Date:   Thu, 22 Sep 2022 12:43:06 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Chunyan Zhang <zhang.lyra@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>, Lee Jones <lee@kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: regulator: Add bindings for Unisoc's
+ SC2730 regulator
+Message-ID: <YyxKSjMPlGPfegpJ@sirena.org.uk>
+References: <20211008031953.339461-1-zhang.lyra@gmail.com>
+ <20211008031953.339461-3-zhang.lyra@gmail.com>
+ <YY5wPh0rwRvFjSRG@sirena.org.uk>
+ <CAAfSe-uA3iowafC25zRqoTSaub1PbOzUvQgukLm=szEge_abvw@mail.gmail.com>
+ <Yyw2nAAjN6NxmS09@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v7 04/12] dt-bindings: display/msm: move common DPU
- properties to dpu-common.yaml
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220915133742.115218-1-dmitry.baryshkov@linaro.org>
- <20220915133742.115218-5-dmitry.baryshkov@linaro.org>
- <2c7769ae-79af-dab5-ebe3-31ccca0bd9a4@linaro.org>
- <CAA8EJppRdrfy5vPuLxH0+=DAELdadK4h6X0xmHA01rySoBFN7g@mail.gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJppRdrfy5vPuLxH0+=DAELdadK4h6X0xmHA01rySoBFN7g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="udX+hJO9s5cT5HSG"
+Content-Disposition: inline
+In-Reply-To: <Yyw2nAAjN6NxmS09@google.com>
+X-Cookie: One FISHWICH coming up!!
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,30 +64,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 09:50, Dmitry Baryshkov wrote:
-> On Thu, 22 Sept 2022 at 10:02, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 15/09/2022 15:37, Dmitry Baryshkov wrote:
->>> Move properties common to all DPU DT nodes to the dpu-common.yaml.
->>>
->>> Note, this removes description of individual DPU port@ nodes. However
->>> such definitions add no additional value. The reg values do not
->>> correspond to hardware INTF indices. The driver discovers and binds
->>> these ports not paying any care for the order of these items. Thus just
->>> leave the reference to graph.yaml#/properties/ports and the description.
->>
->> This is okay, but you loose required:ports@[01].
-> 
-> This is fine for me. The ports do not have 1:1 correspondence to
-> intfs. Usually platforms add ports as new sinks are added. For example
-> a platform can start with a single DSI node and later get second DSI,
-> DP, eDP, etc. as they are receiving support/required by end-user
-> devices.
 
-Then at least port@0 would be required. Node without ports does not look
-correct.
+--udX+hJO9s5cT5HSG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Thu, Sep 22, 2022 at 11:19:08AM +0100, Lee Jones wrote:
+> On Thu, 22 Sep 2022, Chunyan Zhang wrote:
 
+> > I understand your point. But like I described previously [1], if we
+> > still use the current solution (i.e. use devm_of_platform_populate()
+> > to register MFD subdevices), a compatible string is required. I'm open
+> > to switching to other solutions, do you have some suggestions?
+>=20
+> Many IPs encompassing multiple functions are described that way in
+> DT.  I don't have the details for *this* device to hand, so my
+> comments here aren't specific to this use-case, but describing each
+> function individually does describe the H/W accurately, which is all
+> DT calls for.
+
+If people want to describe the individual regulators that'd be
+less of an issue, it's mainly when you're nesting what's
+effectively another MFD within a parent MFD that it's just noise
+that's being added to the DT.
+
+> Can you imagine describing an SoC, which can be considered as a huge
+> MFD, with only a single node?
+
+Honestly we should be arranging things so they're more like that,
+at least using overlays for the internals of the SoC so you don't
+have to rebuild the whole DT for updates to the SoC internals.
+
+--udX+hJO9s5cT5HSG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMsSkkACgkQJNaLcl1U
+h9ADIgf/XyrCnfbvHQW+GuVjIQWh4YtsBqREfURkbTJq/thjgMK2mxMdQSZCgC5V
++eS59XsXPUaJlJTyfiY71s67Ebow79uicYK7OlSvc+fHJOBwo77E3b1a4dOl4wlJ
+K2UY3K/kNhEz6kFDusdiOZHejTP2EJMZznojRfbFE+WcljCIj+1V9BhDTg1UkjxM
+fHquLPs2O91UyDJdbjJ9K63UVgh2erco3aAsJDECltUezGHxE0qEa83pgZjABDFj
+KUcHne6v8xRsbmNNNG/K1EgAyqhAlcdRkx2xpKhzpR7jSsVH4j/RHm8Zzat0cZAJ
+jbDt2QBb4yMKHQwBiyo9actml29DwQ==
+=xOVL
+-----END PGP SIGNATURE-----
+
+--udX+hJO9s5cT5HSG--
