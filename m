@@ -2,71 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1FE5E6E6E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 23:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D4155E6E76
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 23:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbiIVVc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 17:32:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57244 "EHLO
+        id S230197AbiIVVh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 17:37:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbiIVVc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 17:32:58 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3838D10E5D2;
-        Thu, 22 Sep 2022 14:32:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=e5T5IZ2kW4KLNa3EeXF0wiTvE72Xg517TN+86OQ2OK8=; b=fI
-        RONZsrFiCsYnQcrDmmSjrRxxYhnRULyR0kCamV89ao9AeYAI4pso/wfPTlxKgpssHRIXPWTQfT8MY
-        WgibB/Fk7CQFz/t0iRzTMqG9SnTabYU+LAvmuOGwNFBQE1WWd+aYBuR8leTKLob7tBgWN+ZdqvJj3
-        iHUTKQvgzlayv0Q=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1obToM-00HZb9-6y; Thu, 22 Sep 2022 23:32:46 +0200
-Date:   Thu, 22 Sep 2022 23:32:46 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Mauri Sandberg <maukka@ext.kapsi.fi>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, arnd@arndb.de, olof@lixom.net,
-        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
-        linux@armlinux.org.uk, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] ARM: dts: orion5x: Add D-Link DNS-323 Device Tree
-Message-ID: <YyzUfs4u2z3jjiU7@lunn.ch>
-References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
- <20220922202458.7592-1-maukka@ext.kapsi.fi>
- <20220922202458.7592-3-maukka@ext.kapsi.fi>
- <YyzJe9+S83vByosb@lunn.ch>
- <20220922211408.56num4k6r746kzht@pali>
+        with ESMTP id S229920AbiIVVh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 17:37:58 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2092110251A
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 14:37:57 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id l8so7619711wmi.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 14:37:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=2mdfxOllYJwVRdzEV7h9el17e4oq172vAJjTd21Q7z0=;
+        b=jsfPIJmWOgZfaJX6kkecbpYVT/1oCuB6d2bdaRexbLb/x6ZUWnFB3t3sYqNaqd/QRn
+         twA0Cz8yNeUI2cFYUSI7Q2dIOvDV/cLhtcOSpPyGPtKXNqfEmpT3un7ZsRfO4eEvoffq
+         NkFLvBrGaOIQezdQZ6sryYUntZfyGe2j1ie573SsDI6XEyU7+anyGCd6AiDuEcWymr70
+         R/JSq4y3Nu7UJxdUvUONvbErsjD8EB/oQfWa+GfOKGVtKCD5KM+ZnE06ZCYWNZPp2kvI
+         6TMhIggWKCpS61tDDE+CAn0Y/Rv6nZLDWBkrhuQDvjWcuQQrgqPvbhxSjn328KwrzfiQ
+         xPmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=2mdfxOllYJwVRdzEV7h9el17e4oq172vAJjTd21Q7z0=;
+        b=ANO4hmQ2qBWk0cc5vf8U5KUQUoSVq3zVOh96amNGSX/ZAifWn8n2PXludTb+RJAIBW
+         yGY9S/6RZm0KCt2l2IQjcMf5OXt1rFvVTISW637O63wgynhB4dRNDXvw0DnHzUZecUpp
+         9G9VhA0gXSeEMKyMGhShB9pzaRCNUvETiSqgzb4ZknHwid9jC06Ho6m/JsVTkdO7st8+
+         BG3TmUldxKE6QusdcVf9Ox5DKbE4ad8Hkz3kJlcRmcWh019hTz7kD67QsARMTodFEPYK
+         BtWFWkFLZ5DHEpAwgboMdnp3lyY6LfpwSQwlbc2m11CvHcm9GoTlkOyaQizZQkSrd7dT
+         VS0A==
+X-Gm-Message-State: ACrzQf1s/a2r/7nT1/3hy9mQozjvUYNfQQ3QxkCkUTa2zxMzpodvsiet
+        z+tdiLvYs81S26r/mH0uRq8Ccg==
+X-Google-Smtp-Source: AMsMyM5S0UBX0Ghlfv1ywW39XJFlFa4Ly/6L2oQSfG7pgG47IWz7TPf/iD+5l8jZsgrO+iL7LlDfqg==
+X-Received: by 2002:a05:600c:4211:b0:3b4:6334:9940 with SMTP id x17-20020a05600c421100b003b463349940mr3807414wmh.166.1663882675578;
+        Thu, 22 Sep 2022 14:37:55 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id bv4-20020a0560001f0400b00228d6bc8450sm5926835wrb.108.2022.09.22.14.37.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Sep 2022 14:37:54 -0700 (PDT)
+Message-ID: <8672aa05-0269-f8c3-50d3-e23d3793baf4@linaro.org>
+Date:   Thu, 22 Sep 2022 23:37:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2] dt-bindings: timer: renesas,tmu: Add r8a779f0 support
+Content-Language: en-US
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220830104921.7532-1-wsa+renesas@sang-engineering.com>
+ <YyzQFheOv2Lg0t6F@shikoro>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <YyzQFheOv2Lg0t6F@shikoro>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220922211408.56num4k6r746kzht@pali>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 22, 2022 at 11:14:08PM +0200, Pali Rohár wrote:
-> On Thursday 22 September 2022 22:45:47 Andrew Lunn wrote:
-> > > +&mdio {
-> > > +	status = "okay";
-> > > +
-> > > +	ethphy: ethernet-phy {
-> > > +		reg = <8>;
-> > 
-> > Since you have a reg value, this should be ethernet-phy@9
+
+Hi Wolfram,
+
+On 22/09/2022 23:13, Wolfram Sang wrote:
+> On Tue, Aug 30, 2022 at 12:49:21PM +0200, Wolfram Sang wrote:
+>> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>> Acked-by: Rob Herring <robh@kernel.org>
+>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>> ---
 > 
-> ethernet-phy@8 no?
+> Can we have this simple patch in 6.1 please? Otherwise DT build warnings
+> will show up. Or is there something I could help with?
 
-Yes, @8. Sorry.
+It is applied,
 
-     Andrew
+https://git.linaro.org/people/daniel.lezcano/linux.git/commit/?h=timers/drivers/next&id=fa7fc5243f9e7d64ea7e73c247218f22499c3479
+
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org â”‚ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
