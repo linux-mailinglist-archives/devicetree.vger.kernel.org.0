@@ -2,112 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D8C85E625A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 14:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 161DD5E6275
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 14:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbiIVM2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 08:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50946 "EHLO
+        id S229621AbiIVMeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 08:34:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230402AbiIVM2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 08:28:21 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3C7E6A21
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 05:28:19 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id o2so14377442lfc.10
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 05:28:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=5SZRoMWkj7sPPK68CLRRPVikyUUuj8SEQiwVkaQJlWY=;
-        b=MCQN23xBoz2SKYpzjoltuC8QA9SC1+5Ru6OFQsdFc14JZGlqhxRsf909vKHzjWm1Te
-         WT/D/0SCsUz22VN1J1zOME7omOBRfg6yj8dwWUt21xjBwbWkwhOK8HZomv/ua9Oh7Wo4
-         pBrfkYSh38qHgM+TIIimvhBy4xQS+eoy6+HJbXUBcXlrAQwum58MLvFoN77AfQJqhTli
-         d6bnIsmj93xjXmdBNpLsQSKJ3oJJ/eb7Tl9wH4qhk17EXNDGTELUd8BDh2NChQUhb5oN
-         vY4rWE+23sodZwklNhN3f38s1F+LNzFfuvWaK8+P48Kl6kHfAnuXAnYU5YzsuY4chov5
-         aKKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=5SZRoMWkj7sPPK68CLRRPVikyUUuj8SEQiwVkaQJlWY=;
-        b=NtRf4AYj7AL/ox9A0gZ6WAl0YMwNbq2a5mqoSWa6xsHFUI3rK4Wqt44UKbWIZQfOvL
-         OjIu81nN6gnL8Yj3ieTQYDAIDCL4+XYvDIORN+uygtGPzkmxWMm+IBpo5/iKzw68kQOH
-         2kLIqlCn836OQErplKp9xlOe5jWBy7bjLKo/H1nxMPwbWuIbrc1SIsUo19OpLf9GbLIA
-         RPKhbSBk7MFq8nz8psWxEAoN72s7SvQynAuLZ0Q90dsv21sbQDdoeX7vZIpZCHDya6eE
-         GciOWdK9gygR1MN369WXmQaXIMFCZQiHG+X8yMGHvZjeq2QN+joKam0LKvKZpyJrW03b
-         eksg==
-X-Gm-Message-State: ACrzQf31QsNC+SAroZa9RgJpCDCxy7VUvXbfSet5H1QGF8vFif/5NKO/
-        2tdBK0kUIz2hrBV4S322WWQinA==
-X-Google-Smtp-Source: AMsMyM4wVKJ79xhrEwFdmhQEp5YX56Nc1TUep7BTcnzG89LQeXIsYvp7rQ2cqzc+hSndw9i+usfS6A==
-X-Received: by 2002:a05:6512:401d:b0:496:9971:78c5 with SMTP id br29-20020a056512401d00b00496997178c5mr1054971lfb.337.1663849698142;
-        Thu, 22 Sep 2022 05:28:18 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a7-20020ac25e67000000b00499b57032c1sm916120lfr.144.2022.09.22.05.28.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Sep 2022 05:28:17 -0700 (PDT)
-Message-ID: <d2af0a8e-63fe-221f-1c53-9fe1c43fa04d@linaro.org>
-Date:   Thu, 22 Sep 2022 14:28:16 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v7 05/12] dt-bindings: display/msm: move common MDSS
- properties to mdss-common.yaml
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        with ESMTP id S231499AbiIVMeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 08:34:10 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 301D1E720F;
+        Thu, 22 Sep 2022 05:34:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663850049; x=1695386049;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=X+QFuCDurRscvZ+T+naQ/Ko/Utvu3qN+BEERVqLzVg8=;
+  b=ND99VllimLoUoviMcBH+XqBn0Of2xcFN+5WpifSOzJzh/LbYsmzfz/Jg
+   A3IJJSZzMKuMYGaTa3vQmL6V+mYX++rCmDMzi/sMwCmvctjC93Bg+TiwM
+   CSjSB4Bnh/mt2PY3mKnYO0lXqNzqnT4eEM/4oImrHPISJk5o2yDybz3Bg
+   6h8jIbPjxe0khiheRE2DBED4FSGj2WqCU52M/sPOKpt2luqX8Nt9O72pA
+   SIh+gqqOIURTQzXz/cVa4BnOVg8XIU64p8MKF80Yde0PgasS+nKVd9v8y
+   o89/s/u0dRj5TxpRfb8Qsg+6PhrOngxhKVwv4DGIyhe291bSoJ2Powk1E
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10478"; a="362050305"
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
+   d="scan'208";a="362050305"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2022 05:34:08 -0700
+X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
+   d="scan'208";a="864836418"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2022 05:34:04 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 23EEF20075;
+        Thu, 22 Sep 2022 15:34:02 +0300 (EEST)
+Date:   Thu, 22 Sep 2022 12:34:02 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220915133742.115218-1-dmitry.baryshkov@linaro.org>
- <20220915133742.115218-6-dmitry.baryshkov@linaro.org>
- <02b60bf8-70ac-eb7b-33d7-1c9b7a6f0a54@linaro.org>
- <168a46c3-2c0e-cd5c-e6f1-1e072c67d162@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <168a46c3-2c0e-cd5c-e6f1-1e072c67d162@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 3/4] media: platform: Add Renesas RZ/G2L MIPI CSI-2
+ receiver driver
+Message-ID: <YyxWOuWOrYmMexNj@paasikivi.fi.intel.com>
+References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Yys4CRNnKP3LXyAO@pendragon.ideasonboard.com>
+ <CA+V-a8uiT9rV=T6LmFovRwULf3SO=JKdqr1yacAqN8gJmv9VPw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8uiT9rV=T6LmFovRwULf3SO=JKdqr1yacAqN8gJmv9VPw@mail.gmail.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 13:46, Dmitry Baryshkov wrote:
->>> -  ranges: true
->>> +    maxItems: 2
->>>   
->>>     interconnects:
->>> -    items:
->>> -      - description: Interconnect path from mdp0 port to the data bus
->>> -      - description: Interconnect path from mdp1 port to the data bus
->>> +    maxItems: 2
->>
->> I think this is not equivalent now, because you have in total minItems:1
->> and maxItems:2, while in past minItems was 2.
-> 
-> This means that I should have minItems:2, maxItems:2, which, if I got it 
-> right, is frowned upon. Let me doublecheck though if it works as expected.
+Hi Prabhakar,
 
-It is frowned upon only if it is alone, because for missing minItems,
-maxItems implies minItems. Here you have minItems in other schema, so
-there is no such case
+On Thu, Sep 22, 2022 at 01:08:33PM +0100, Lad, Prabhakar wrote:
+> > > * Switched to manually turn ON/OFF the clocks instead of pm_runtime so that
+> > >   the mipi/dhpy initialization happens as per the HW manual
+> >
+> > That doesn't look right. The driver doesn't use runtime PM anymore, so
+> > power domains may not be handled properly. What was the problem with
+> > clock handling using runtime PM ?
+> >
+> If we use the runtime PM all the clocks will be turned ON when we call
+> pm_runtime_resume_and_get() which I dont want to. As per the "Starting
+> reception for MIPI CSI-2 Input" section 35.3.1 for example we first
+> need to turn ON all the clocks and later further down the line we need
+> to just turn OFF VCLK -> Enable Link -> turn ON VCLK. Due to such
+> cases I have switched to individual clock handling.
 
-Best regards,
-Krzysztof
+If that is the case, then you should control just that clock directly,
+outside runtime PM callbacks.
 
+Runtime PM may be needed e.g. for resuming a parent device.
+
+-- 
+Regards,
+
+Sakari Ailus
