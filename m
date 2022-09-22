@@ -2,61 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D765C5E618E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 13:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA5F5E619B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 13:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231665AbiIVLoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 07:44:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46028 "EHLO
+        id S231753AbiIVLoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 07:44:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231668AbiIVLnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 07:43:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 257DD9B84A;
-        Thu, 22 Sep 2022 04:43:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B061762D10;
-        Thu, 22 Sep 2022 11:43:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53630C433D7;
-        Thu, 22 Sep 2022 11:43:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663846990;
-        bh=Mt1LmaPy1kmdHUWpVIaEnQs3jZ8cHI0aSQlLWzzmn6U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=W/vDVHh6CcVgYhTaXIubIoJmnHhH47qzbaDmu6X5ThWAYku/IosBbrHeMKtAK7x3K
-         peS2ZrRVyPKten45dPEqXY4MpRJBKPVF1Q09bk4HNGtMgMrt6sWV4RhKQriINvCSpN
-         gAVcAKxeNfbjeHlKEIImumAE7M2OzGtHnXZCCHej0zmS+NUj7L5DfUhLZ2BehrjdXd
-         hDN0VtZyMvF0we7VWMvJ0Ez7P+W2YWBpmvoBqgfdsWKmpf3duwGUc95uFFmGg8LLVn
-         TsLGrH2UnmM+Tq7rGXC9jZ4YxKr0FwEVwO7nFajtMXvJtGJgXyUkbQkM6te7kkcNKO
-         7qQVF6r0OXozQ==
-Date:   Thu, 22 Sep 2022 12:43:06 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Chunyan Zhang <zhang.lyra@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>, Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: regulator: Add bindings for Unisoc's
- SC2730 regulator
-Message-ID: <YyxKSjMPlGPfegpJ@sirena.org.uk>
-References: <20211008031953.339461-1-zhang.lyra@gmail.com>
- <20211008031953.339461-3-zhang.lyra@gmail.com>
- <YY5wPh0rwRvFjSRG@sirena.org.uk>
- <CAAfSe-uA3iowafC25zRqoTSaub1PbOzUvQgukLm=szEge_abvw@mail.gmail.com>
- <Yyw2nAAjN6NxmS09@google.com>
+        with ESMTP id S231768AbiIVLnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 07:43:40 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B7079B846
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 04:43:23 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id j16so14229506lfg.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 04:43:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=1lx7xaWN/VMT8/i11YzeCiwWdLaukKExWKWlWB5fc9Q=;
+        b=Q1uZ08uW8GXrVjelhj6kNsxoS7+Tru8zfZNaf32otIOdeavcgrNWUq202SV4j99Ce2
+         oxI9WGirhH/Wm3M6waJTC4RfaHwnOm0mOnIfRTJYsDGyr/SLUZRPz5xMb+b9IiW6PT91
+         vAxuX1hLXb62hrN6uYe52WCR2hUPOCHSdJpx1mDbzOCpHdm1G4l9nKRMOqh7ykgFdfkG
+         BJACWbDBbpdZo2F2JIvE24LBIAvQr6H+jUxv37rw8JLawmb3I592Ra/wC/EH8W0iraju
+         qHf/mHh63xpRVfckZ5UbWnyoPEnmgkgcTHCP1R0PJsc59LQwA9rQS0GNlPy7rJbcZXqQ
+         sDvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=1lx7xaWN/VMT8/i11YzeCiwWdLaukKExWKWlWB5fc9Q=;
+        b=E2I7oLuRNM+f6Opt9o96hbyR8BNFuJDwPeBc5AIdzCgos6LX0+00WZAVWDCYVzBi6+
+         ml7oH1rlG+YylSlNdWbpuh8euz3SqxhWpiHEUmSLA+Y75KhFQnQ0fIAIfGP6CCciYnc6
+         BdakkqnGdDgtZRtrFUFT7ZBkRmNlwkf/lv3U31FSCvARM4Qyu6gLQBTPqr3WcpjQdxCS
+         QXHM96VpnNYTB8qufHEYUEaA6ZDUs1DnygtyEFHdf+0fF2CFqQfnBYIzlEPi6aPvnFK6
+         YIwNB6FJ0dtLsZZXHCx9apNCNzsMV58avqXyZUxJ7whJoFMrsFRhANnSXW/tX2SY0pdx
+         1d+Q==
+X-Gm-Message-State: ACrzQf2Bc2l1cUQGX4PlEIJ1UeXTa1hMSNPInFND73VUn7lMn5raq20d
+        X91RVnbMgGzZzfQoqXn0I81szA==
+X-Google-Smtp-Source: AMsMyM46dIlSnT/FPiZ4S2E2DFV1GZWwJCBpSvCVWpvp9jDqnOzHv2fDk5DIuwCTyqM/D5NNOBSN9w==
+X-Received: by 2002:a05:6512:3295:b0:497:a156:795a with SMTP id p21-20020a056512329500b00497a156795amr998895lfe.345.1663847001671;
+        Thu, 22 Sep 2022 04:43:21 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id b20-20020a05651c033400b00261ccf566e3sm848937ljp.65.2022.09.22.04.43.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Sep 2022 04:43:21 -0700 (PDT)
+Message-ID: <01baf27b-8257-aa08-d61f-a427c5056715@linaro.org>
+Date:   Thu, 22 Sep 2022 13:43:20 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="udX+hJO9s5cT5HSG"
-Content-Disposition: inline
-In-Reply-To: <Yyw2nAAjN6NxmS09@google.com>
-X-Cookie: One FISHWICH coming up!!
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v7 05/12] dt-bindings: display/msm: move common MDSS
+ properties to mdss-common.yaml
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20220915133742.115218-1-dmitry.baryshkov@linaro.org>
+ <20220915133742.115218-6-dmitry.baryshkov@linaro.org>
+ <84c599c7-421a-78ed-b33e-ce1a4bd4356e@linaro.org>
+ <CAA8EJpoZbNEiThZMaSCSML-x=TtXc8t8L-yvLZYDbR4hpvigXg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAA8EJpoZbNEiThZMaSCSML-x=TtXc8t8L-yvLZYDbR4hpvigXg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,51 +87,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22/09/2022 09:53, Dmitry Baryshkov wrote:
+> On Thu, 22 Sept 2022 at 10:05, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 15/09/2022 15:37, Dmitry Baryshkov wrote:
+>>> Move properties common to all MDSS DT nodes to the mdss-common.yaml.
+>>>
+>>> This extends qcom,msm8998-mdss schema to allow interconnect nodes, which
+>>> will be added later, once msm8998 gains interconnect support.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>  .../bindings/display/msm/dpu-msm8998.yaml     | 41 +--------
+>>>  .../bindings/display/msm/dpu-qcm2290.yaml     | 51 ++----------
+>>>  .../bindings/display/msm/dpu-sc7180.yaml      | 50 ++---------
+>>>  .../bindings/display/msm/dpu-sc7280.yaml      | 50 ++---------
+>>>  .../bindings/display/msm/dpu-sdm845.yaml      | 54 ++----------
+>>>  .../bindings/display/msm/mdss-common.yaml     | 83 +++++++++++++++++++
+>>>  6 files changed, 111 insertions(+), 218 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml b/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
+>>> index 200eeace1c71..67791dbc3b5d 100644
+>>> --- a/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
+>>> @@ -14,20 +14,13 @@ description: |
+>>>    sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
+>>>    bindings of MDSS and DPU are mentioned for MSM8998 target.
+>>>
+>>
+>> missing allOf
+> 
+> Rob asked to remove this while reviewing v6 ([1]). And indeed the
+> allOf's around a single $ref do not seem to be necessary
 
---udX+hJO9s5cT5HSG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+He commented on one of properties, not top-level, maybe it is different
+case for dtschema. In the past it was required, so are you sure
+something changed in dtschema?
 
-On Thu, Sep 22, 2022 at 11:19:08AM +0100, Lee Jones wrote:
-> On Thu, 22 Sep 2022, Chunyan Zhang wrote:
+Best regards,
+Krzysztof
 
-> > I understand your point. But like I described previously [1], if we
-> > still use the current solution (i.e. use devm_of_platform_populate()
-> > to register MFD subdevices), a compatible string is required. I'm open
-> > to switching to other solutions, do you have some suggestions?
->=20
-> Many IPs encompassing multiple functions are described that way in
-> DT.  I don't have the details for *this* device to hand, so my
-> comments here aren't specific to this use-case, but describing each
-> function individually does describe the H/W accurately, which is all
-> DT calls for.
-
-If people want to describe the individual regulators that'd be
-less of an issue, it's mainly when you're nesting what's
-effectively another MFD within a parent MFD that it's just noise
-that's being added to the DT.
-
-> Can you imagine describing an SoC, which can be considered as a huge
-> MFD, with only a single node?
-
-Honestly we should be arranging things so they're more like that,
-at least using overlays for the internals of the SoC so you don't
-have to rebuild the whole DT for updates to the SoC internals.
-
---udX+hJO9s5cT5HSG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMsSkkACgkQJNaLcl1U
-h9ADIgf/XyrCnfbvHQW+GuVjIQWh4YtsBqREfURkbTJq/thjgMK2mxMdQSZCgC5V
-+eS59XsXPUaJlJTyfiY71s67Ebow79uicYK7OlSvc+fHJOBwo77E3b1a4dOl4wlJ
-K2UY3K/kNhEz6kFDusdiOZHejTP2EJMZznojRfbFE+WcljCIj+1V9BhDTg1UkjxM
-fHquLPs2O91UyDJdbjJ9K63UVgh2erco3aAsJDECltUezGHxE0qEa83pgZjABDFj
-KUcHne6v8xRsbmNNNG/K1EgAyqhAlcdRkx2xpKhzpR7jSsVH4j/RHm8Zzat0cZAJ
-jbDt2QBb4yMKHQwBiyo9actml29DwQ==
-=xOVL
------END PGP SIGNATURE-----
-
---udX+hJO9s5cT5HSG--
