@@ -2,117 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 499A75E5FB0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 12:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 708FD5E5FBD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 12:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbiIVKTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 06:19:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35272 "EHLO
+        id S231418AbiIVKVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 06:21:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229743AbiIVKTQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 06:19:16 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2883EDCCE4
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 03:19:12 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id o5so6464862wms.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 03:19:12 -0700 (PDT)
+        with ESMTP id S229928AbiIVKVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 06:21:44 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F59CDCCDE;
+        Thu, 22 Sep 2022 03:21:43 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id j6-20020a17090a694600b00200bba67dadso1633883pjm.5;
+        Thu, 22 Sep 2022 03:21:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=Ju6BSMep2KJyGnXzsed5+vjZslhWJvx3S4Wq5/v4xCw=;
-        b=SUzZ8/4LQ4z00agprzqQeqMQLmjUXi2wsNvMkS8ormVPl6wY8bqlkFmPrSOEZLelmN
-         Qz7hfA5Me6aZW1tPo3cjvgDzPdn94oBcjCv3CCyOO8iVWqve6ksrMFi4slrgPXRK+1PZ
-         +u3ITed68JlvQLhmeUkCjPh4qYLfkzNsyk8BZyWNo6qii9435XtirTue6McBo9COeZTe
-         XAG1B0zphCcLCRCXNmFUYjWKppoQ3zdqPcXpnd3etpE8iY3PzVE1lGn7m0xRAox5B1rj
-         zOep1puhY+R4piUYjcxzwW9UeyQqtnbtu4U6+scj0oED1JQk4uofgsAggHeNDVcV3l9d
-         Dohg==
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=o6xu+yl0sAoM0tROMdtxNdIeDGHcI2f+bbEErZwZj5k=;
+        b=IiRY7xBSerH4oG2/5gl5RfurmRCkG7EozhwqshvaukwjvvbrwxgaBAEUwyO8gCac20
+         fMcgiPTNDbDAaaVo9+D/XCG+hKjWFS8uvhIuj44xOPc6hoU3xM7ayAUJ7GFuWpyUEzQP
+         BaI4l8ApTqqJlrCxcNnf30RIkNuVPZRos6uWrHqYk6UuuHeV+h+emt0qtxkNCGTWz074
+         bzCl4pUrEemi2jDZxwuFdtp3TJrzwLTY4s+JHH/zwHpXClh3OswlWn/RPbuia/Gu0DUp
+         fL3Ko8rqt/xOr6DCvY/ccBioOTngiqhezWIASvtjQHeZSvhUvpgr4XOee0bQRVfXQ+2V
+         xffw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Ju6BSMep2KJyGnXzsed5+vjZslhWJvx3S4Wq5/v4xCw=;
-        b=U9rbQe71vVIYtL9lTdesnzXZqnmwOyl3mhXAOpdIJkfWGnu6ED7PV//OvxDxws+QFc
-         b62X47r/Q0p0NWhpBuWGqKluOkb7/PvGLinv93TxVrNqd046bl9or7LNhqwyll+xsHR4
-         KQXgnu40FsiF+GJuihTgozBs7P51/pauFANitzccuvpE6LQ9PEgL3IvdftsvyP3+NJ9R
-         INvHwyFx3z1B1cDIqz/1zHslsl48/L8ZMFfmq5zGr/ygb32sjrFdhZxtohPFiPqiQFjU
-         ZM/FGhzZNFOHSGBAhjOj9gy0cRNtBe4KK5WKM+WMl8HKi70JneQTy/4j96JplSZdLwYx
-         6EbQ==
-X-Gm-Message-State: ACrzQf36MQxZBpdx3VNh0kVVApmaOoDRfZThsSTZJUl2mLAUivZ9YyP9
-        pdaVxWA5yxHa6og6j9mxLCoroQ==
-X-Google-Smtp-Source: AMsMyM4OscS0C1jykeo4QICxF2cHBCMYygPB7nFReh7fcMsWjdX9Dluta8CohpeAWrA95czQeAow/w==
-X-Received: by 2002:a05:600c:42d4:b0:3b3:3de1:7564 with SMTP id j20-20020a05600c42d400b003b33de17564mr1831131wme.152.1663841950631;
-        Thu, 22 Sep 2022 03:19:10 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id c17-20020a7bc851000000b003b47575d304sm6500817wml.32.2022.09.22.03.19.09
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=o6xu+yl0sAoM0tROMdtxNdIeDGHcI2f+bbEErZwZj5k=;
+        b=ISMeZoqhwADSo8+L6wBXkGaJb6WC0Enuv+6EotsgM6ASpsBYLLftqTJplycsiTHVj+
+         m5454vk4t+xn4LwoQmMCzV9Cg4OAnBXXyegqifndyPGUueNX+Gaigqc7KQgyyXHTt4Up
+         nL16Mt/htztJiYtzVBcdhj5xOdrCxnmdojzFpaZdAjedexOJC91jERnAHrfybOt4RLX0
+         Q9hiw4DmOufLZt3mH6jJDv2mhQoj/CHUJBOCDN1lT1B0LHjkHoL3cEOKwFD6SiibqSMs
+         7qZnEgv8PfRj6/HUTLP2JuLpXudkQ+nSWO6rOK6gJmtQiafwcEdAf8kRMkElzrNsdcg6
+         MvwA==
+X-Gm-Message-State: ACrzQf0Uhr3FJx/5vqQO4pkNa/QE9pueQHBMaKtCy2rd5CaLyBzCmQBL
+        GN3T7hmLpfYOi/L37DgQnw2qSp9ymO0=
+X-Google-Smtp-Source: AMsMyM4o+BLOAYQBRVwflYZ5fZDO+TfbqJJEUkDC+pp5usm36ZmOecq199mq6USlbpFvNiLVpq47Hw==
+X-Received: by 2002:a17:902:7fc8:b0:176:8bc0:3809 with SMTP id t8-20020a1709027fc800b001768bc03809mr2560652plb.21.1663842102422;
+        Thu, 22 Sep 2022 03:21:42 -0700 (PDT)
+Received: from localhost.localdomain ([103.104.171.43])
+        by smtp.gmail.com with ESMTPSA id v16-20020a63f210000000b0042a713dd68csm3422050pgh.53.2022.09.22.03.21.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Sep 2022 03:19:10 -0700 (PDT)
-Date:   Thu, 22 Sep 2022 11:19:08 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>, Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: regulator: Add bindings for Unisoc's
- SC2730 regulator
-Message-ID: <Yyw2nAAjN6NxmS09@google.com>
-References: <20211008031953.339461-1-zhang.lyra@gmail.com>
- <20211008031953.339461-3-zhang.lyra@gmail.com>
- <YY5wPh0rwRvFjSRG@sirena.org.uk>
- <CAAfSe-uA3iowafC25zRqoTSaub1PbOzUvQgukLm=szEge_abvw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAAfSe-uA3iowafC25zRqoTSaub1PbOzUvQgukLm=szEge_abvw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Thu, 22 Sep 2022 03:21:41 -0700 (PDT)
+From:   Yunlong Jia <ecs.beijing2022@gmail.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Yunlong Jia <yunlong.jia@ecs.com.tw>,
+        Henry Sun <henrysun@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Yunlong Jia <ecs.beijing2022@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v4 1/4] dt-bindings: arm: qcom: Document additional skus for  sc7180 pazquel360
+Date:   Thu, 22 Sep 2022 10:21:17 +0000
+Message-Id: <20220922101813.v4.1.I3aa360986c0e7377ea5e96c116f014ff1ab8c968@changeid>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Sep 2022, Chunyan Zhang wrote:
+pazquel360 is an extension project based on pazquel.
+We create 3 sku on pazquel360:
+   sku 20 for LTE with physical SIM _and_ eSIM and WiFi
+   sku 21 for WiFi only
+   sku 22 for LTE with only a physical SIM
+ Both sku20 and sku22 are LTE SKUs.
+ One has the eSIM stuffed and one doesn't.
+ There is a single shared device tree for the two.
 
-> Hi Mark,
-> 
-> Sorry for the late response.
-> [1] is the v1 on which we had some discussion. I hope that can help
-> recall the issue below.
-> 
-> On Fri, 12 Nov 2021 at 21:46, Mark Brown <broonie@kernel.org> wrote:
-> >
-> > On Fri, Oct 08, 2021 at 11:19:53AM +0800, Chunyan Zhang wrote:
-> >
-> > > +properties:
-> > > +  compatible:
-> > > +    const: sprd,sc2730-regulator
-> >
-> > I still don't understand why this MFD subfunction for a specific device
-> > is a separate binding with a separate compatible string, the issues I
-> > mentioned previously with this just encoding current Linux internals
-> > into the DT rather than describing the device still apply.
-> 
-> I understand your point. But like I described previously [1], if we
-> still use the current solution (i.e. use devm_of_platform_populate()
-> to register MFD subdevices), a compatible string is required. I'm open
-> to switching to other solutions, do you have some suggestions?
+Signed-off-by: Yunlong Jia <ecs.beijing2022@gmail.com>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-Many IPs encompassing multiple functions are described that way in
-DT.  I don't have the details for *this* device to hand, so my
-comments here aren't specific to this use-case, but describing each
-function individually does describe the H/W accurately, which is all
-DT calls for.
+---
 
-Can you imagine describing an SoC, which can be considered as a huge
-MFD, with only a single node?
+Changes in v4:
+ 1. Adjust the 'Signed-off-by'.
 
-Does the regulator functionality have it's own bank of registers?
+Changes in v3:
+ 1. Adjust the format of the changelog.
 
+ Documentation/devicetree/bindings/arm/qcom.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 944b364bed12a..8060c35d003b4 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -390,6 +390,17 @@ properties:
+           - const: google,pazquel-sku2
+           - const: qcom,sc7180
+ 
++      - description: Google Pazquel360 with LTE (newest rev)
++        items:
++          - const: google,pazquel-sku22
++          - const: google,pazquel-sku20
++          - const: qcom,sc7180
++
++      - description: Google Pazquel360 with WiFi (newest rev)
++        items:
++          - const: google,pazquel-sku21
++          - const: qcom,sc7180
++
+       - description: Sharp Dynabook Chromebook C1 (rev1)
+         items:
+           - const: google,pompom-rev1
 -- 
-DEPRECATED: Please use lee@kernel.org
+2.17.1
+
