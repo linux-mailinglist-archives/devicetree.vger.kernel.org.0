@@ -2,225 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C049A5E5B5D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 08:26:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 344025E5B67
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 08:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230147AbiIVG0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 02:26:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56324 "EHLO
+        id S229598AbiIVGax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 02:30:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230163AbiIVG00 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 02:26:26 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6305CB6578
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 23:26:04 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id s6so13011232lfo.7
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 23:26:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=j9o4S3xAPFpmBmxWsJ5oAgRxe68Y0HDCIkMi/9Ynf0E=;
-        b=KnhHr0NmUiWCiVlkPmJPCSvk/WwvJ/NRpVNv1DrdMycHjYqRCYm3BXiT9WBf1znGww
-         5sw/niP3mcHaSFXVIRl5MFu/wFko0ETxyVO5jBqbZgoMePBChPhCDnxFHkM3oGzc7+Zr
-         uRDRP9r4pGB6A3OPL7caTh9eD+Q1lYzffSZ+DU2zBo95rsi7rC9Vj/8GSjYf9BeXnQpZ
-         gMyZAdlA1qxB2rOGBlYJFuumPOLptcKyXLzFpNMX0GLVSCkZo8P9Sq6FWJHjLDcj+Ogr
-         xMMDg6bw8aSDO7ZMk+0zlw0sCYtw0rksxZChpvaZrGYj1WSC6m7V/ID8aZXyRcBx5k7N
-         AJaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=j9o4S3xAPFpmBmxWsJ5oAgRxe68Y0HDCIkMi/9Ynf0E=;
-        b=nLEqYYlyvVQOPsC9uBcTy1L+HEHEwaC2oVMyjBTGsR3pASwGHbb73U8IlMyGgdABzw
-         0PteF2SUVNJG84HGxnQEby7glnmkh+XeVhEEHw2u83prYspbdYqKFlSFXZJz0ZFgQQ98
-         3jOUvrqtREr0xJBrdv+t3+Bdj9QkrYUmRXvNdlLHqt501aaXkl6KyI4Ze23hNqCoLXlt
-         yLIAw9wo6d/tknyHEflBsiNVEl70eBdAm9I3lz84I22VTFxsJeC/myQemmPJ02pjn6eb
-         A8K41OhKZAKO8KdFvJi89oyq1LdGCyp13V8evRPHLljJhB1Yrn8uuYNjC58LxD14UOpx
-         BANw==
-X-Gm-Message-State: ACrzQf02pjXKbyDcm54+S4PqFWbQQ9wPjZCUDCe4ybl2cXVUrgd5E61m
-        4iPvtgks8erq0Ox8LJhIoW9fkQ==
-X-Google-Smtp-Source: AMsMyM7KiveS5KCOAc2WDOmn5Dl9stufRrBsuoO4rforSU4OhRZ+XqVxTff1BIdobYEfi8fFzuNKQA==
-X-Received: by 2002:a05:6512:224b:b0:49f:9e09:584e with SMTP id i11-20020a056512224b00b0049f9e09584emr654473lfu.524.1663827961590;
-        Wed, 21 Sep 2022 23:26:01 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b24-20020ac24118000000b00497a879e552sm763315lfi.291.2022.09.21.23.26.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 23:26:00 -0700 (PDT)
-Message-ID: <0d2fce98-6744-69af-44a2-702f4927b626@linaro.org>
-Date:   Thu, 22 Sep 2022 08:25:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to
- json-schema
-Content-Language: en-US
-To:     =?UTF-8?B?5pyx6ZO25rOi?= <zhuyinbo@loongson.cn>
-Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        zhanghongchen <zhanghongchen@loongson.cn>
-References: <20220921015605.17078-1-zhuyinbo@loongson.cn>
- <20220921015605.17078-2-zhuyinbo@loongson.cn>
- <fb901889-d769-ba56-d4cb-2d9d8b50f74f@linaro.org>
- <28a78a10.a7dd.1835f5aaf90.Coremail.zhuyinbo@loongson.cn>
- <a44244f2-fb96-0483-b529-d0f2b0b7e5d8@linaro.org>
- <4febe7e4.a96c.18362d997e3.Coremail.zhuyinbo@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4febe7e4.a96c.18362d997e3.Coremail.zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229448AbiIVGav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 02:30:51 -0400
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com [64.147.123.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25D70B028D;
+        Wed, 21 Sep 2022 23:30:51 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.west.internal (Postfix) with ESMTP id 3C5BD2B05A35;
+        Thu, 22 Sep 2022 02:30:49 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Thu, 22 Sep 2022 02:30:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1663828248; x=1663831848; bh=pc9XPISpbS
+        GrSKClTsjUCQ3s2OvkC6s9yKH7w3Lu38w=; b=miw7MxLGEJQDH02KamYjGaBbiA
+        emyhzmC2EjDpet3ByxNekE7xindVb/WHDb3wTpbOC9YIZR7qEarMip0ihFkqsWNU
+        8HSI7RyowUNdY9FsYjflIHm9DkmYuY/BK/fHDxkisX/5iBedQh3en2LmJl2WUY5f
+        U+c7Z6A2DhcC5OJ9/EP+Xh/Pm3/Sd6x2x6/tjzlPWR1CAb/DyhUaKYnGx5A0N5LD
+        NvH9Z+TREmWr3XKKM8SHxd50nGe++IEy/zDh41rK5HhuTAFDo5P+ZMm6KhGkVhOD
+        +7rlumViEP5y/M4IbNs9nppV1sc2UyFHRs7PLXswCr1vsYlvn1aXzCmWplJw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1663828248; x=1663831848; bh=pc9XPISpbSGrSKClTsjUCQ3s2Ovk
+        C6s9yKH7w3Lu38w=; b=guIp/zmwVEwZGVF57nii8FIBbPPPFdH0hWSewC8RF/GD
+        CfBFXRipj5CPq+WVz7t/UNjtpHKOExLG30qkdYRjV02SW43mlzZIEbvPOscHjVzt
+        XXIYsiNQgMjk1yTf5WNfwH5Zqqewa2LbK1JJKIenSG+A1l3ARsFr5AViqPlmJg77
+        XkGoaxF4MhDOxHW3WZiaPQCiBapN0vKkcR5fnkRxDzdNnIvFEKCxrT8NEXRJiWVe
+        niHVCMyuV0xwkBaWwND+hrc1rOQV3LD6SYhUQoVlX4WSZFw2pauqMqho8EVpW7xX
+        6BMGD5rDz9w9ERVZpZeGDigIU46MeZq/tEu9Sjfi/w==
+X-ME-Sender: <xms:FwEsY8wj6vcZG2cZDpk9ULz2v63SZgfdnGDoiCnwrR7dGjXN3WQU3Q>
+    <xme:FwEsYwSi4BpZZc1RI6iZHgW6ljYPysQmKfnZ7vFzEXuevzMDXedTUOfjNPQKQukdj
+    biP8-q2T2JqNrch9ok>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeefvddguddtlecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:FwEsY-XrRA58tJ8ZrxzyCNW0BhiniHqVZjChIBGai3aCiuHaAS4dZg>
+    <xmx:FwEsY6iaR1GGHoetlcdSHzJ45bbZkfuMk82tWolbwT8k6svlQUs89w>
+    <xmx:FwEsY-CNk2_xOfMsErQ0RAtKvRN1vDrTf8wsnUGoEyUctsEz38NKOg>
+    <xmx:GAEsY6x2sBKkcrwzCCQKH5y37jmHkKdWmErZZ6bKGJ4-eLFh6xUmm4Q5fj8>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id C0B47B60086; Thu, 22 Sep 2022 02:30:47 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-935-ge4ccd4c47b-fm-20220914.001-ge4ccd4c4
+Mime-Version: 1.0
+Message-Id: <0603b2a5-6253-4c4b-8b30-aa0253ed0480@www.fastmail.com>
+In-Reply-To: <45d2e6c2-3b4b-5720-0431-002c74b1f9cc@arm.com>
+References: <CAMuHMdUPm36RsxHdVwspR3NCAR3C507AyB6R65W42N2gXWq0ag@mail.gmail.com>
+ <45d2e6c2-3b4b-5720-0431-002c74b1f9cc@arm.com>
+Date:   Thu, 22 Sep 2022 08:30:26 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Robin Murphy" <robin.murphy@arm.com>,
+        "Geert Uytterhoeven" <geert@linux-m68k.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "Andre Przywara" <andre.przywara@arm.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        "Samuel Holland" <samuel@sholland.org>,
+        "Biju Das" <biju.das.jz@bp.renesas.com>,
+        "Chris Paterson" <Chris.Paterson2@renesas.com>,
+        "Atish Patra" <atishp@atishpatra.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>
+Subject: Re: Similar SoCs with different CPUs and interrupt bindings
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 03:39, 朱银波 wrote:
-> 
-> 
-> 
->> -----原始邮件-----
->> 发件人: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
->> 发送时间:2022-09-21 17:31:11 (星期三)
->> 收件人: "朱银波" <zhuyinbo@loongson.cn>
->> 抄送: "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, zhanghongchen <zhanghongchen@loongson.cn>
->> 主题: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
->>
->> On 21/09/2022 11:22, 朱银波 wrote:
->>>> -----原始邮件-----
->>>> 发件人: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
->>>> 发送时间:2022-09-21 15:05:00 (星期三)
->>>> 收件人: "Yinbo Zhu" <zhuyinbo@loongson.cn>, "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
->>>> 抄送: zhanghongchen <zhanghongchen@loongson.cn>
->>>> 主题: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
->>>>
->>>> On 21/09/2022 03:56, Yinbo Zhu wrote:
->>>>> Convert the loongson2 thermal binding to DT schema format using
->>>>> json-schema.
->>>>
->>>> Incorrect subject and incorrect commit msg. There is no conversion here.
->>> Our soc architecture is the loongson2 series, so we will modify it accordingly.
->>
->> How the soc architecture is related to my comment that you do not
->> perform conversion?
-> I got it, and I will aad a conversion.
->>
->>>
->>>>
->>>>>
->>>>> Signed-off-by: Yinbo Zhu <c>
->>>>> ---
->>>>> Change in v2:
->>>>> 		1. Add description and type about the "id".	
->>>>> 		2. Make the filename was based on compatible.
->>>>>
->>>>>  .../bindings/thermal/loongson2-thermal.yaml   | 52 +++++++++++++++++++
->>>>>  1 file changed, 52 insertions(+)
->>>>>  create mode 100644 Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..2994ae3a56aa
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
->>>>
->>>>
->>>> No improvements here. You ignore my comments, so I am going to NAK it.
->>> I don't get your point, that dts compatible is "loongson,loongson2-thermal", so this driver file name is named
->>> loongson2-thermal that according what you said about "Filename based on compatible."
->>> If what I understand is not what you expect, please tell me how to modify it.
->>
->>
->> Filename must match the compatible, so: loongson,loongson2-thermal.yaml
-> I got it, and I will add a conversion.
->>
->>>>
->>>>
->>>>> @@ -0,0 +1,52 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/thermal/loongson2-thermal.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Thermal sensors on loongson2 SoCs
->>>>> +
->>>>> +maintainers:
->>>>> +  - zhanghongchen <zhanghongchen@loongson.cn>
->>>>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: loongson,loongson2-thermal
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  id:
->>>>> +    $ref: '//schemas/types.yaml#/definitions/uint32'
->>>>
->>>> No improvements here, so let me be specific - you need to really justify
->>>> such property or it cannot go to schema.
->>> The loongson2_thermal.c driver need parse this "id" property.
->>
->> This is not reason to add properties to DT. DT describes the hardware,
->> not driver behavior.
->>
->> Why hardware needs arbitrary, additional addressing number instead of
->> standard unit address?
-> The loongson2 series soc supports up to four sensors, but the 2K1000 has only one sensor, so the ID must be 0. 
-> For the 2K1000, in order to distinguish the differences between different hardware in the Loongson2 SoC series,
-> the ID is added to the dts
+On Wed, Sep 21, 2022, at 11:20 AM, Robin Murphy wrote:
+> On 2022-09-21 08:46, Geert Uytterhoeven wrote:
+>>          Hi Rob, Krzysztof,
+>> 
+>> This is a topic that came up at the RISC-V BoF at Plumbers, and it was
+>> suggested to bring it up with you.
+>> 
+>> The same SoC may be available with either RISC-V or other (e.g. ARM) CPU
+>> cores (an example of this are the Renesas RZ/Five and RZ/G2UL SoCs).
+>> To avoid duplication, we would like to have:
+>>    - <riscv-soc>.dtsi includes <base-soc>.dtsi,
+>>    - <arm-soc>.dtsi includes <base-soc>.dtsi.
+>> 
+>> Unfortunately RISC-V and ARM typically use different types of interrupt
+>> controllers, using different bindings (e.g. 2-cell vs. 3-cell), and
+>> possibly using different interrupt numbers.  Hence the interrupt-parent
+>> and interrupts{-extended} properties should be different, too.
+>> 
+>> Possible solutions[1]:
+>>    1. interrupt-map
+>> 
+>>    2. Use a SOC_PERIPHERAL_IRQ() macro in interrupts properties in
+>>       <base-soc>.dtsi, with
+>>         - #define SOC_PERIPHERAL_IRQ(nr, na) nr          // RISC-V
+>>         - #define SOC_PERIPHERAL_IRQ(nr, na) GIC_SPI na  // ARM
+>>       Note that the cpp/dtc combo does not support arithmetic, so even
+>>       the simple case where nr = 32 + na cannot be simplified.
+>> 
+>>    3. Wrap inside RISCV() and ARM() macros, e.g.:
+>> 
+>>          RISCV(interrupts = <412 IRQ_TYPE_LEVEL_HIGH>;)
+>>          ARM(interrupts = <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>;)
+>> 
+>>       Cfr. ARM() and THUMB() in arch/arm/include/asm/unified.h, as used
+>>       to express the same operation using plain ARM or ARM Thumb
+>>       instructions.
+>
+> 4. Put all the "interrupts" properties in the SoC-specific DTSI at the 
+> same level as the interrupt controller to which they correspond. Works 
+> out of the box with no horrible mystery macros, and is really no more or 
+> less error-prone than any other approach. Yes, it means replicating a 
+> bit of structure and/or having labels for everything (many of which may 
+> be wanted anyway), but that's not necessarily a bad thing for 
+> readability anyway. Hierarchical definitions are standard FDT practice 
+> and should be well understood, so this is arguably the simplest and 
+> least surprising approach :)
 
-That's not an explanation at all. All other SoCs have multiple sensors
-and we do not have such "id" fields.
+FWIW, approaches 1, 2 and 4 all seem reasonable to me, but I don't
+like number 3 if this is only about the IRQ definitions.
 
->>
->>>>
->>>>> +    description: |
->>>>> +      Specify the thermal sensor id.
->>>>> +    minimum: 0
->>>>> +    maximum: 3
->>>>> +
->>>>> +  interrupts:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  "#thermal-sensor-cells":
->>>>> +    const: 1
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +  - id
->>>>> +  - interrupt-parent
->>>>
->>>> Why?
->>> The interrupts of our dts do not specify an interrupt parent,
->>> eg. interrupts = <7 IRQ_TYPE_LEVEL_LOW>
->>> so we need to add an interrupt parent property.
->>
->> You can add but I am asking why is it required?
-> Since there is more than one interrupt controller in the Loongson2 series soc, that need to specify the interrupt 
-> controller in the dts, that is, the interrupt parent.   If different interrupt parents are used in dts, the interrupt 
-> numbers are different.
+It sounds like we're already converging on #2, so just one more
+idea from me: we could fold the IRQ type into the macro, and
+make it just take a single argument for extra flexibility:
 
-You describe now the overall SoC, but this is a schema for a device, not
-entire SoC. I still do not see why interrupt-parent is necessary for
-this device.
+#define SOC_PERIPHERAL_IRQ_LEVEL_HIGH(nr) \
+        GIC_SPI (nr + offset) IRQ_TYPE_LEVEL_HIGH
 
-> This email and its attachments contain confidential information from Loongson Technology , which is intended only for the person or entity whose address is listed above. Any use of the information contained herein in any way (including, but not limited to, total or partial disclosure, reproduction or dissemination) by persons other than the intended recipient(s) is prohibited. If you receive this email in error, please notify the sender by phone or email immediately and delete it. 
+If all the irqs on the chip have the same type, the name
+can be shorter of course.
 
-You keep ignoring this one.
+Either way, some variation of the macro sounds like a good enough
+approach to me.
 
-Best regards,
-Krzysztof
-
+     Arnd
