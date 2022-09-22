@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 561CA5E6C6D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 21:57:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 594395E6C75
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 21:57:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232726AbiIVT5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 15:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60024 "EHLO
+        id S232573AbiIVT5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 15:57:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232629AbiIVT5Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 15:57:16 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C00910D0F2
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 12:57:10 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id m22so1736676lfg.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 12:57:10 -0700 (PDT)
+        with ESMTP id S232648AbiIVT5U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 15:57:20 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2721A10D652
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 12:57:13 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id a2so16449296lfb.6
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 12:57:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=adnw/70iR35kRw0Wjt+Tvx+wL5mop5CypxFcUPW7oIA=;
-        b=BpqxE9ItlwUiXUv8kaKwd5NO9ITWdydQOedR5fOnb32t6UKyJ/S6B4EEfJMTbJ4e6h
-         iVwL/D0Y6EX11zpqdKe0OieMXbcEyhNFaXob84KqNuM3YyObsZs91WRGlfxB4EBqSTGY
-         edg8yJimYgfM5Pi1AdvUIRwq//mMPNePJ8jv9kbkfA3fmDItbMSswuzoEMDjViBMknSS
-         Z/WaQrysyqxnnkvAm5UT0FYL2/0VUKc6G0dfEhKLppgpYcpX/B5NTHRIskm3fOwPnzyO
-         vURF11AGKlcjwL9/mD3tPWAplsfAkpStiZXFK+oP45BKnkmI2nEAb8S5nLuK3YkYu9h8
-         0sJg==
+        bh=b/USyE2rZeGybRiRERaxxJ71NRPvCslQr07H+7bxxRI=;
+        b=KFywZhJVgPcV5Yte6p0VwcDQXo65tmv1k9UjUi6vZPSzS+XYKutopzrkx3hrw+omnw
+         5PdSQ8KduABZ8NyX6B4CbFOWKdZE464GOWmcI1NJV9IEhGypwJjhpBIA29zLEKKwM1Wk
+         LuT5cWzaskiPKye3cHlSM6QdGjSsp63qqbf55XmxPe8kRRZ5uYa4KHPzOrayQK8CxB+T
+         q01SpQoRik847dgdK5BiKDYvvidXk6OVBvp200Nv797vZPnTSmp4ZGrkgXfE3p+8SCb2
+         mNvjxqqTUG4eAtCQfKaq7tESIAfaLORR7168ADpPm2Tlm6SAZyzvIPV9HFjTrLabHRJe
+         qe2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=adnw/70iR35kRw0Wjt+Tvx+wL5mop5CypxFcUPW7oIA=;
-        b=SkvXzcYZ1jIq7I5EhPBIdTURda/DMhEyZHCxuFU+BQa/jj2yKrTNmdg41wA/T6603Y
-         LUq+EBlTt0TkJ3/IRoRYee0fO8uCdHyuQSDxldaU14H7mHhJSRqjY8k0EOSvP8B58smE
-         uo6Az14LbIMS6xpNJR+t5kOKiyKhxzDLJSxhs9OXraacbCaPbc2ISvSLg2DT5V2a/MjV
-         siFwn2wh3yfXn9+GeCOhSkyGSgV4WaaTpjV6YiOvdrkacGFLleCGG6R1PsiJgwlXAom+
-         Mauq6OqErPba43sHMmdnYw/wx8bJKBUtUlvJb4kgdy7atM9Mt5bPhETfR7gFOfRCfHEh
-         hN1A==
-X-Gm-Message-State: ACrzQf2JgQ20RMRN+1x6gf6HCxGfN5LLzBJr7+JnpvYBXWTx0xjAga0w
-        lTAqQO4l6lZTfGJBgnVXctDNQA==
-X-Google-Smtp-Source: AMsMyM7o6+0RwzlMM2SwkWERkarFeg309xO1vAEp9DohhQp6lsYJfOfvl/2lQj5z+TifA9h5hkOmJA==
-X-Received: by 2002:a05:6512:3b22:b0:49a:d302:ae04 with SMTP id f34-20020a0565123b2200b0049ad302ae04mr1992785lfv.72.1663876629769;
-        Thu, 22 Sep 2022 12:57:09 -0700 (PDT)
+        bh=b/USyE2rZeGybRiRERaxxJ71NRPvCslQr07H+7bxxRI=;
+        b=JMWOTgL2rdtgIuTP01bnUiDSZ//hbVW6kwD3sUxpHYag63OxRi9Vs/eI40fN4/Tqav
+         ldSKrNckfqPbuwD+2mYUr26f+7T14D6u5VAfeJGOb31ctsvnoJMrEoJOX9nKzCN0jPfX
+         dIe6H5eiyDdS4xyQYe8MHbpqYFrvpWPCRfGJcYZRiDBxK3ss+OG3e37BnEyr0fI/P69T
+         3WK7nHjRL9Iz0xXaluyE+g/EpYITX+y5auQO5cc0jnGs8YdhuY3uha8nW3LFEaMSfjBc
+         8EljFvp6JOrhatYgiAC1dK1/8vzTIs56F9a/GCT71ilIeZ6LCHZYYrkVjtCm4l0XE3Qd
+         Riug==
+X-Gm-Message-State: ACrzQf2YA8hzrULNbSm45k43qX5tZQnrN400vL2QcJ4quN8KWhXQktx6
+        9xGnlnkCtRZvyWO5RhxtfpYOzQ==
+X-Google-Smtp-Source: AMsMyM7qkvIhBMWXvHBVnRpwmk1gO51YhvvcPKetygQntWVB2FemKftpJxcvgaXuaXvqZb9eH+zi6A==
+X-Received: by 2002:a05:6512:308e:b0:49b:9015:e76e with SMTP id z14-20020a056512308e00b0049b9015e76emr2007191lfd.393.1663876630882;
+        Thu, 22 Sep 2022 12:57:10 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id x15-20020a19e00f000000b00498fc3d4d15sm1079375lfg.190.2022.09.22.12.57.08
+        by smtp.gmail.com with ESMTPSA id x15-20020a19e00f000000b00498fc3d4d15sm1079375lfg.190.2022.09.22.12.57.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Sep 2022 12:57:09 -0700 (PDT)
+        Thu, 22 Sep 2022 12:57:10 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 10/12] arm64: dts: qcom: sc7280: align LPASS pin configuration with DT schema
-Date:   Thu, 22 Sep 2022 21:56:49 +0200
-Message-Id: <20220922195651.345369-11-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 11/12] arm64: dts: qcom: sm8250: correct LPASS pin pull down
+Date:   Thu, 22 Sep 2022 21:56:50 +0200
+Message-Id: <20220922195651.345369-12-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220922195651.345369-1-krzysztof.kozlowski@linaro.org>
 References: <20220922195651.345369-1-krzysztof.kozlowski@linaro.org>
@@ -77,116 +77,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT schema expects LPASS pin configuration nodes to be named with
-'-state' suffix and their optional children with '-pins' suffix.
+The pull-down property is actually bias-pull-down.
 
+Fixes: 3160c1b894d9 ("arm64: dts: qcom: sm8250: add lpass lpi pin controller node")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 32 ++++++++++++++--------------
- 1 file changed, 16 insertions(+), 16 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 8823b75a6f1b..28e3fb9992d9 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2432,82 +2432,82 @@ lpass_tlmm: pinctrl@33c0000 {
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&lpass_tlmm 0 0 15>;
- 
--			lpass_dmic01_clk: dmic01-clk {
-+			lpass_dmic01_clk: dmic01-clk-state {
- 				pins = "gpio6";
- 				function = "dmic1_clk";
- 			};
- 
--			lpass_dmic01_clk_sleep: dmic01-clk-sleep {
-+			lpass_dmic01_clk_sleep: dmic01-clk-sleep-state {
- 				pins = "gpio6";
- 				function = "dmic1_clk";
- 			};
- 
--			lpass_dmic01_data: dmic01-data {
-+			lpass_dmic01_data: dmic01-data-state {
- 				pins = "gpio7";
- 				function = "dmic1_data";
- 			};
- 
--			lpass_dmic01_data_sleep: dmic01-data-sleep {
-+			lpass_dmic01_data_sleep: dmic01-data-sleep-state {
- 				pins = "gpio7";
- 				function = "dmic1_data";
- 			};
- 
--			lpass_dmic23_clk: dmic23-clk {
-+			lpass_dmic23_clk: dmic23-clk-state {
- 				pins = "gpio8";
- 				function = "dmic2_clk";
- 			};
- 
--			lpass_dmic23_clk_sleep: dmic23-clk-sleep {
-+			lpass_dmic23_clk_sleep: dmic23-clk-sleep-state {
- 				pins = "gpio8";
- 				function = "dmic2_clk";
- 			};
- 
--			lpass_dmic23_data: dmic23-data {
-+			lpass_dmic23_data: dmic23-data-state {
- 				pins = "gpio9";
- 				function = "dmic2_data";
- 			};
- 
--			lpass_dmic23_data_sleep: dmic23-data-sleep {
-+			lpass_dmic23_data_sleep: dmic23-data-sleep-state {
- 				pins = "gpio9";
- 				function = "dmic2_data";
- 			};
- 
--			lpass_rx_swr_clk: rx-swr-clk {
-+			lpass_rx_swr_clk: rx-swr-clk-state {
- 				pins = "gpio3";
- 				function = "swr_rx_clk";
- 			};
- 
--			lpass_rx_swr_clk_sleep: rx-swr-clk-sleep {
-+			lpass_rx_swr_clk_sleep: rx-swr-clk-sleep-state {
- 				pins = "gpio3";
- 				function = "swr_rx_clk";
- 			};
- 
--			lpass_rx_swr_data: rx-swr-data {
-+			lpass_rx_swr_data: rx-swr-data-state {
- 				pins = "gpio4", "gpio5";
- 				function = "swr_rx_data";
- 			};
- 
--			lpass_rx_swr_data_sleep: rx-swr-data-sleep {
-+			lpass_rx_swr_data_sleep: rx-swr-data-sleep-state {
- 				pins = "gpio4", "gpio5";
- 				function = "swr_rx_data";
- 			};
- 
--			lpass_tx_swr_clk: tx-swr-clk {
-+			lpass_tx_swr_clk: tx-swr-clk-state {
- 				pins = "gpio0";
- 				function = "swr_tx_clk";
- 			};
- 
--			lpass_tx_swr_clk_sleep: tx-swr-clk-sleep {
-+			lpass_tx_swr_clk_sleep: tx-swr-clk-sleep-state {
- 				pins = "gpio0";
- 				function = "swr_tx_clk";
- 			};
- 
--			lpass_tx_swr_data: tx-swr-data {
-+			lpass_tx_swr_data: tx-swr-data-state {
- 				pins = "gpio1", "gpio2", "gpio14";
- 				function = "swr_tx_data";
- 			};
- 
--			lpass_tx_swr_data_sleep: tx-swr-data-sleep {
-+			lpass_tx_swr_data_sleep: tx-swr-data-sleep-state {
- 				pins = "gpio1", "gpio2", "gpio14";
- 				function = "swr_tx_data";
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index a5b62cadb129..8f402b912c62 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -2454,7 +2454,7 @@ data {
+ 					pins = "gpio7";
+ 					function = "dmic1_data";
+ 					drive-strength = <2>;
+-					pull-down;
++					bias-pull-down;
+ 					input-enable;
+ 				};
  			};
 -- 
 2.34.1
