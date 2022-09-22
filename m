@@ -2,375 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3483A5E5813
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 03:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C7FB5E5824
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 03:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbiIVBeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 21:34:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56550 "EHLO
+        id S230483AbiIVBjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 21:39:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230398AbiIVBd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 21:33:59 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E4F39F196;
-        Wed, 21 Sep 2022 18:33:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663810437; x=1695346437;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FrDh1OS4EVJBcx7SCQU7WUXcIVjBz/R2zKglWq3IDts=;
-  b=S1tgTsZ8lQfj8r7nElw1oUuLQOPETOAaJi0tphzQYSukSspjxC8/DPTN
-   xJH2NMxUIUI0iE6Izg0SC2ex31M4/VI3eRoYnnOs0e1AH7Iwns0qR53nJ
-   wOI7moMskNsVRP7pXtMlZN8vMDxI57HVfudCW7O2u7SWyvYpq5TEPpAJ5
-   8CemUiiLHj15caeZRNE/w70YAWL7xjxr8zXiihcrDf2jumnJddqPks4NN
-   /bVVd77kPmGKLuOuhjZMWOa3V0U6X3ZJaVb2lUStsoqBMAXW4D5aMVseh
-   c+DWf6p7jrL4d70BfeNzZ3M7Y9EWAF5np6cM1icLE4zL5ek77WYzZTFYq
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10477"; a="301012759"
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
-   d="scan'208";a="301012759"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2022 18:33:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,335,1654585200"; 
-   d="scan'208";a="650317244"
-Received: from lkp-server01.sh.intel.com (HELO c0a60f19fe7e) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 21 Sep 2022 18:33:53 -0700
-Received: from kbuild by c0a60f19fe7e with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1obB69-00049n-0w;
-        Thu, 22 Sep 2022 01:33:53 +0000
-Date:   Thu, 22 Sep 2022 09:33:32 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Julien Panis <jpanis@baylibre.com>, william.gray@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     kbuild-all@lists.01.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mranostay@ti.com
-Subject: Re: [PATCH v7 3/4] counter: ti-ecap-capture: capture driver support
- for ECAP
-Message-ID: <202209220938.I4JYSpmy-lkp@intel.com>
-References: <20220921100627.124085-4-jpanis@baylibre.com>
+        with ESMTP id S230484AbiIVBjn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 21:39:43 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CE1C91BE9D;
+        Wed, 21 Sep 2022 18:39:36 -0700 (PDT)
+Received: from zhuyinbo$loongson.cn ( [10.180.13.64] ) by
+ ajax-webmail-localhost.localdomain (Coremail) ; Thu, 22 Sep 2022 09:39:30
+ +0800 (GMT+08:00)
+X-Originating-IP: [10.180.13.64]
+Date:   Thu, 22 Sep 2022 09:39:30 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From:   =?UTF-8?B?5pyx6ZO25rOi?= <zhuyinbo@loongson.cn>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+        "Amit Kucheria" <amitk@kernel.org>,
+        "Zhang Rui" <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>
+Subject: Re: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to
+ json-schema
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20220411(feba7c69)
+ Copyright (c) 2002-2022 www.mailtech.cn .loongson.cn
+In-Reply-To: <a44244f2-fb96-0483-b529-d0f2b0b7e5d8@linaro.org>
+References: <20220921015605.17078-1-zhuyinbo@loongson.cn>
+ <20220921015605.17078-2-zhuyinbo@loongson.cn>
+ <fb901889-d769-ba56-d4cb-2d9d8b50f74f@linaro.org>
+ <28a78a10.a7dd.1835f5aaf90.Coremail.zhuyinbo@loongson.cn>
+ <a44244f2-fb96-0483-b529-d0f2b0b7e5d8@linaro.org>
+Content-Transfer-Encoding: base64
+X-CM-CTRLDATA: AUo0w2Zvb3Rlcl90eHQ9NTYwNjo2MTI=
+Content-Type: text/plain; charset=UTF-8
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220921100627.124085-4-jpanis@baylibre.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Message-ID: <4febe7e4.a96c.18362d997e3.Coremail.zhuyinbo@loongson.cn>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: AQAAf8BxJeLSvCtjg9MfAA--.6621W
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/1tbiAQARDGMq-t0NvwAAsE
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+        CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+        daVFxhVjvjDU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Julien,
-
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.0-rc6 next-20220921]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Julien-Panis/ECAP-support-on-TI-AM62x-SoC/20220921-180742
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20220922/202209220938.I4JYSpmy-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/f8a0bbe39ba2d6018559e92fb0c66b789387b293
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Julien-Panis/ECAP-support-on-TI-AM62x-SoC/20220921-180742
-        git checkout f8a0bbe39ba2d6018559e92fb0c66b789387b293
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash drivers/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   drivers/counter/ti-ecap-capture.c: In function 'ecap_cnt_watch_validate':
->> drivers/counter/ti-ecap-capture.c:234:66: error: 'COUNTER_EVENT_CAPTURE' undeclared (first use in this function); did you mean 'COUNTER_EVENT_INDEX'?
-     234 |         if ((watch->channel <= ECAP_CEVT_LAST && watch->event == COUNTER_EVENT_CAPTURE) ||
-         |                                                                  ^~~~~~~~~~~~~~~~~~~~~
-         |                                                                  COUNTER_EVENT_INDEX
-   drivers/counter/ti-ecap-capture.c:234:66: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/counter/ti-ecap-capture.c: At top level:
-   drivers/counter/ti-ecap-capture.c:253:47: warning: 'enum counter_signal_polarity' declared inside parameter list will not be visible outside of this definition or declaration
-     253 |                              size_t idx, enum counter_signal_polarity *pol)
-         |                                               ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c: In function 'ecap_cnt_pol_read':
->> drivers/counter/ti-ecap-capture.c:259:16: error: 'COUNTER_SIGNAL_POLARITY_NEGATIVE' undeclared (first use in this function)
-     259 |                COUNTER_SIGNAL_POLARITY_NEGATIVE :
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/counter/ti-ecap-capture.c:260:16: error: 'COUNTER_SIGNAL_POLARITY_POSITIVE' undeclared (first use in this function)
-     260 |                COUNTER_SIGNAL_POLARITY_POSITIVE;
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/counter/ti-ecap-capture.c:258:14: error: invalid use of undefined type 'enum counter_signal_polarity'
-     258 |         *pol = regmap_test_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_CAPPOL_BIT(idx)) ?
-         |              ^
-   drivers/counter/ti-ecap-capture.c: At top level:
-   drivers/counter/ti-ecap-capture.c:268:48: warning: 'enum counter_signal_polarity' declared inside parameter list will not be visible outside of this definition or declaration
-     268 |                               size_t idx, enum counter_signal_polarity pol)
-         |                                                ^~~~~~~~~~~~~~~~~~~~~~~
->> drivers/counter/ti-ecap-capture.c:268:72: error: parameter 4 ('pol') has incomplete type
-     268 |                               size_t idx, enum counter_signal_polarity pol)
-         |                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
->> drivers/counter/ti-ecap-capture.c:266:12: error: function declaration isn't a prototype [-Werror=strict-prototypes]
-     266 | static int ecap_cnt_pol_write(struct counter_device *counter,
-         |            ^~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c: In function 'ecap_cnt_pol_write':
-   drivers/counter/ti-ecap-capture.c:276:20: error: 'COUNTER_SIGNAL_POLARITY_NEGATIVE' undeclared (first use in this function)
-     276 |         if (pol == COUNTER_SIGNAL_POLARITY_NEGATIVE)
-         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/counter/ti-ecap-capture.c: At top level:
->> drivers/counter/ti-ecap-capture.c:375:43: error: array type has incomplete element type 'enum counter_signal_polarity'
-     375 | static const enum counter_signal_polarity ecap_cnt_pol_avail[] = {
-         |                                           ^~~~~~~~~~~~~~~~~~
->> drivers/counter/ti-ecap-capture.c:376:9: error: 'COUNTER_SIGNAL_POLARITY_POSITIVE' undeclared here (not in a function)
-     376 |         COUNTER_SIGNAL_POLARITY_POSITIVE,
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/counter/ti-ecap-capture.c:377:9: error: 'COUNTER_SIGNAL_POLARITY_NEGATIVE' undeclared here (not in a function)
-     377 |         COUNTER_SIGNAL_POLARITY_NEGATIVE,
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/counter/ti-ecap-capture.c:380:77: error: expected ')' before '(' token
-     380 | static DEFINE_COUNTER_ARRAY_POLARITY(ecap_cnt_pol_array, ecap_cnt_pol_avail, ECAP_NB_CEVT);
-         |                                                                             ^
-         |                                                                             )
->> drivers/counter/ti-ecap-capture.c:383:9: error: implicit declaration of function 'COUNTER_COMP_ARRAY_POLARITY' [-Werror=implicit-function-declaration]
-     383 |         COUNTER_COMP_ARRAY_POLARITY(ecap_cnt_pol_read, ecap_cnt_pol_write, ecap_cnt_pol_array),
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/counter/ti-ecap-capture.c:383:76: error: 'ecap_cnt_pol_array' undeclared here (not in a function); did you mean 'ecap_cnt_pol_read'?
-     383 |         COUNTER_COMP_ARRAY_POLARITY(ecap_cnt_pol_read, ecap_cnt_pol_write, ecap_cnt_pol_array),
-         |                                                                            ^~~~~~~~~~~~~~~~~~
-         |                                                                            ecap_cnt_pol_read
-   drivers/counter/ti-ecap-capture.c:414:52: error: expected ')' before '(' token
-     414 | static DEFINE_COUNTER_ARRAY_U64(ecap_cnt_cap_array, ECAP_NB_CEVT);
-         |                                                    ^
-         |                                                    )
->> drivers/counter/ti-ecap-capture.c:417:9: error: implicit declaration of function 'COUNTER_COMP_COUNT_ARRAY_U64'; did you mean 'COUNTER_COMP_COUNT_U64'? [-Werror=implicit-function-declaration]
-     417 |         COUNTER_COMP_COUNT_ARRAY_U64("capture", ecap_cnt_cap_read, NULL, ecap_cnt_cap_array),
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |         COUNTER_COMP_COUNT_U64
->> drivers/counter/ti-ecap-capture.c:417:74: error: 'ecap_cnt_cap_array' undeclared here (not in a function); did you mean 'ecap_cnt_cap_read'?
-     417 |         COUNTER_COMP_COUNT_ARRAY_U64("capture", ecap_cnt_cap_read, NULL, ecap_cnt_cap_array),
-         |                                                                          ^~~~~~~~~~~~~~~~~~
-         |                                                                          ecap_cnt_cap_read
-   drivers/counter/ti-ecap-capture.c: In function 'ecap_cnt_isr':
-   drivers/counter/ti-ecap-capture.c:449:57: error: 'COUNTER_EVENT_CAPTURE' undeclared (first use in this function); did you mean 'COUNTER_EVENT_INDEX'?
-     449 |                         counter_push_event(counter_dev, COUNTER_EVENT_CAPTURE, i);
-         |                                                         ^~~~~~~~~~~~~~~~~~~~~
-         |                                                         COUNTER_EVENT_INDEX
-   drivers/counter/ti-ecap-capture.c: At top level:
-   drivers/counter/ti-ecap-capture.c:375:43: warning: 'ecap_cnt_pol_avail' defined but not used [-Wunused-variable]
-     375 | static const enum counter_signal_polarity ecap_cnt_pol_avail[] = {
-         |                                           ^~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +234 drivers/counter/ti-ecap-capture.c
-
-   230	
-   231	static int ecap_cnt_watch_validate(struct counter_device *counter,
-   232					   const struct counter_watch *watch)
-   233	{
- > 234		if ((watch->channel <= ECAP_CEVT_LAST && watch->event == COUNTER_EVENT_CAPTURE) ||
-   235		    (watch->channel == ECAP_CNTOVF && watch->event == COUNTER_EVENT_OVERFLOW))
-   236			return 0;
-   237	
-   238		return -EINVAL;
-   239	}
-   240	
-   241	static int ecap_cnt_clk_get_freq(struct counter_device *counter,
-   242					 struct counter_signal *signal, u64 *freq)
-   243	{
-   244		struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-   245	
-   246		*freq = clk_get_rate(ecap_dev->clk);
-   247	
-   248		return 0;
-   249	}
-   250	
-   251	static int ecap_cnt_pol_read(struct counter_device *counter,
-   252				     struct counter_signal *signal,
-   253				     size_t idx, enum counter_signal_polarity *pol)
-   254	{
-   255		struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-   256	
-   257		pm_runtime_get_sync(counter->parent);
- > 258		*pol = regmap_test_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_CAPPOL_BIT(idx)) ?
- > 259		       COUNTER_SIGNAL_POLARITY_NEGATIVE :
- > 260		       COUNTER_SIGNAL_POLARITY_POSITIVE;
-   261		pm_runtime_put_sync(counter->parent);
-   262	
-   263		return 0;
-   264	}
-   265	
- > 266	static int ecap_cnt_pol_write(struct counter_device *counter,
-   267				      struct counter_signal *signal,
- > 268				      size_t idx, enum counter_signal_polarity pol)
-   269	{
-   270		struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-   271	
-   272		if (ecap_dev->enabled)
-   273			return -EBUSY;
-   274	
-   275		pm_runtime_get_sync(counter->parent);
-   276		if (pol == COUNTER_SIGNAL_POLARITY_NEGATIVE)
-   277			regmap_set_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_CAPPOL_BIT(idx));
-   278		else
-   279			regmap_clear_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_CAPPOL_BIT(idx));
-   280		pm_runtime_put_sync(counter->parent);
-   281	
-   282		return 0;
-   283	}
-   284	
-   285	static inline int ecap_cnt_cap_read(struct counter_device *counter,
-   286					    struct counter_count *count,
-   287					    size_t idx, u64 *cap)
-   288	{
-   289		return ecap_cnt_count_get_val(counter, ECAP_CAP_REG(idx), cap);
-   290	}
-   291	
-   292	static int ecap_cnt_nb_ovf_read(struct counter_device *counter,
-   293					struct counter_count *count, u64 *val)
-   294	{
-   295		struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-   296	
-   297		*val = atomic_read(&ecap_dev->nb_ovf);
-   298	
-   299		return 0;
-   300	}
-   301	
-   302	static int ecap_cnt_nb_ovf_write(struct counter_device *counter,
-   303					 struct counter_count *count, u64 val)
-   304	{
-   305		struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-   306	
-   307		if (ecap_dev->enabled)
-   308			return -EBUSY;
-   309		if (val > 0)
-   310			return -EINVAL;
-   311	
-   312		atomic_set(&ecap_dev->nb_ovf, val);
-   313	
-   314		return 0;
-   315	}
-   316	
-   317	static int ecap_cnt_ceiling_read(struct counter_device *counter,
-   318					 struct counter_count *count, u64 *val)
-   319	{
-   320		*val = U32_MAX;
-   321	
-   322		return 0;
-   323	}
-   324	
-   325	static int ecap_cnt_enable_read(struct counter_device *counter,
-   326					struct counter_count *count, u8 *enable)
-   327	{
-   328		struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-   329	
-   330		*enable = ecap_dev->enabled;
-   331	
-   332		return 0;
-   333	}
-   334	
-   335	static int ecap_cnt_enable_write(struct counter_device *counter,
-   336					 struct counter_count *count, u8 enable)
-   337	{
-   338		struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-   339	
-   340		if (enable == ecap_dev->enabled)
-   341			return 0;
-   342		if (enable)
-   343			ecap_cnt_capture_enable(counter);
-   344		else
-   345			ecap_cnt_capture_disable(counter);
-   346		ecap_dev->enabled = enable;
-   347	
-   348		return 0;
-   349	}
-   350	
-   351	static const struct counter_ops ecap_cnt_ops = {
-   352		.count_read = ecap_cnt_count_read,
-   353		.count_write = ecap_cnt_count_write,
-   354		.function_read = ecap_cnt_function_read,
-   355		.action_read = ecap_cnt_action_read,
-   356		.watch_validate = ecap_cnt_watch_validate,
-   357	};
-   358	
-   359	static const enum counter_function ecap_cnt_functions[] = {
-   360		COUNTER_FUNCTION_INCREASE,
-   361	};
-   362	
-   363	static const enum counter_synapse_action ecap_cnt_clock_actions[] = {
-   364		COUNTER_SYNAPSE_ACTION_RISING_EDGE,
-   365	};
-   366	
-   367	static const enum counter_synapse_action ecap_cnt_input_actions[] = {
-   368		COUNTER_SYNAPSE_ACTION_NONE,
-   369	};
-   370	
-   371	static struct counter_comp ecap_cnt_clock_ext[] = {
-   372		COUNTER_COMP_SIGNAL_U64("frequency", ecap_cnt_clk_get_freq, NULL),
-   373	};
-   374	
- > 375	static const enum counter_signal_polarity ecap_cnt_pol_avail[] = {
- > 376		COUNTER_SIGNAL_POLARITY_POSITIVE,
- > 377		COUNTER_SIGNAL_POLARITY_NEGATIVE,
-   378	};
-   379	
- > 380	static DEFINE_COUNTER_ARRAY_POLARITY(ecap_cnt_pol_array, ecap_cnt_pol_avail, ECAP_NB_CEVT);
-   381	
-   382	static struct counter_comp ecap_cnt_signal_ext[] = {
- > 383		COUNTER_COMP_ARRAY_POLARITY(ecap_cnt_pol_read, ecap_cnt_pol_write, ecap_cnt_pol_array),
-   384	};
-   385	
-   386	static struct counter_signal ecap_cnt_signals[] = {
-   387		{
-   388			.id = ECAP_CLOCK_SIG,
-   389			.name = "Clock Signal",
-   390			.ext = ecap_cnt_clock_ext,
-   391			.num_ext = ARRAY_SIZE(ecap_cnt_clock_ext),
-   392		},
-   393		{
-   394			.id = ECAP_INPUT_SIG,
-   395			.name = "Input Signal",
-   396			.ext = ecap_cnt_signal_ext,
-   397			.num_ext = ARRAY_SIZE(ecap_cnt_signal_ext),
-   398		},
-   399	};
-   400	
-   401	static struct counter_synapse ecap_cnt_synapses[] = {
-   402		{
-   403			.actions_list = ecap_cnt_clock_actions,
-   404			.num_actions = ARRAY_SIZE(ecap_cnt_clock_actions),
-   405			.signal = &ecap_cnt_signals[ECAP_CLOCK_SIG],
-   406		},
-   407		{
-   408			.actions_list = ecap_cnt_input_actions,
-   409			.num_actions = ARRAY_SIZE(ecap_cnt_input_actions),
-   410			.signal = &ecap_cnt_signals[ECAP_INPUT_SIG],
-   411		},
-   412	};
-   413	
-   414	static DEFINE_COUNTER_ARRAY_U64(ecap_cnt_cap_array, ECAP_NB_CEVT);
-   415	
-   416	static struct counter_comp ecap_cnt_count_ext[] = {
- > 417		COUNTER_COMP_COUNT_ARRAY_U64("capture", ecap_cnt_cap_read, NULL, ecap_cnt_cap_array),
-   418		COUNTER_COMP_COUNT_U64("num_overflows", ecap_cnt_nb_ovf_read, ecap_cnt_nb_ovf_write),
-   419		COUNTER_COMP_CEILING(ecap_cnt_ceiling_read, NULL),
-   420		COUNTER_COMP_ENABLE(ecap_cnt_enable_read, ecap_cnt_enable_write),
-   421	};
-   422	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+CgoKPiAtLS0tLeWOn+Wni+mCruS7ti0tLS0tCj4g5Y+R5Lu25Lq6OiAiS3J6eXN6dG9mIEtvemxv
+d3NraSIgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4KPiDlj5HpgIHml7bpl7Q6MjAy
+Mi0wOS0yMSAxNzozMToxMSAo5pif5pyf5LiJKQo+IOaUtuS7tuS6ujogIuacsemTtuazoiIgPHpo
+dXlpbmJvQGxvb25nc29uLmNuPgo+IOaKhOmAgTogIlJhZmFlbCBKIC4gV3lzb2NraSIgPHJhZmFl
+bEBrZXJuZWwub3JnPiwgIkRhbmllbCBMZXpjYW5vIiA8ZGFuaWVsLmxlemNhbm9AbGluYXJvLm9y
+Zz4sICJBbWl0IEt1Y2hlcmlhIiA8YW1pdGtAa2VybmVsLm9yZz4sICJaaGFuZyBSdWkiIDxydWku
+emhhbmdAaW50ZWwuY29tPiwgbGludXgtcG1Admdlci5rZXJuZWwub3JnLCBkZXZpY2V0cmVlQHZn
+ZXIua2VybmVsLm9yZywgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZywgemhhbmdob25nY2hl
+biA8emhhbmdob25nY2hlbkBsb29uZ3Nvbi5jbj4KPiDkuLvpopg6IFJlOiBbUEFUQ0ggdjIgMi8z
+XSBkdC1iaW5kaW5nczogdGhlcm1hbDogQ29udmVydCBsb29uZ3NvbjIgdG8ganNvbi1zY2hlbWEK
+PiAKPiBPbiAyMS8wOS8yMDIyIDExOjIyLCDmnLHpk7bms6Igd3JvdGU6Cj4gPj4gLS0tLS3ljp/l
+p4vpgq7ku7YtLS0tLQo+ID4+IOWPkeS7tuS6ujogIktyenlzenRvZiBLb3psb3dza2kiIDxrcnp5
+c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+Cj4gPj4g5Y+R6YCB5pe26Ze0OjIwMjItMDktMjEg
+MTU6MDU6MDAgKOaYn+acn+S4iSkKPiA+PiDmlLbku7bkuro6ICJZaW5ibyBaaHUiIDx6aHV5aW5i
+b0Bsb29uZ3Nvbi5jbj4sICJSYWZhZWwgSiAuIFd5c29ja2kiIDxyYWZhZWxAa2VybmVsLm9yZz4s
+ICJEYW5pZWwgTGV6Y2FubyIgPGRhbmllbC5sZXpjYW5vQGxpbmFyby5vcmc+LCAiQW1pdCBLdWNo
+ZXJpYSIgPGFtaXRrQGtlcm5lbC5vcmc+LCAiWmhhbmcgUnVpIiA8cnVpLnpoYW5nQGludGVsLmNv
+bT4sICJSb2IgSGVycmluZyIgPHJvYmgrZHRAa2VybmVsLm9yZz4sICJLcnp5c3p0b2YgS296bG93
+c2tpIiA8a3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnPiwgbGludXgtcG1Admdlci5r
+ZXJuZWwub3JnLCBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZywgbGludXgta2VybmVsQHZnZXIu
+a2VybmVsLm9yZwo+ID4+IOaKhOmAgTogemhhbmdob25nY2hlbiA8emhhbmdob25nY2hlbkBsb29u
+Z3Nvbi5jbj4KPiA+PiDkuLvpopg6IFJlOiBbUEFUQ0ggdjIgMi8zXSBkdC1iaW5kaW5nczogdGhl
+cm1hbDogQ29udmVydCBsb29uZ3NvbjIgdG8ganNvbi1zY2hlbWEKPiA+Pgo+ID4+IE9uIDIxLzA5
+LzIwMjIgMDM6NTYsIFlpbmJvIFpodSB3cm90ZToKPiA+Pj4gQ29udmVydCB0aGUgbG9vbmdzb24y
+IHRoZXJtYWwgYmluZGluZyB0byBEVCBzY2hlbWEgZm9ybWF0IHVzaW5nCj4gPj4+IGpzb24tc2No
+ZW1hLgo+ID4+Cj4gPj4gSW5jb3JyZWN0IHN1YmplY3QgYW5kIGluY29ycmVjdCBjb21taXQgbXNn
+LiBUaGVyZSBpcyBubyBjb252ZXJzaW9uIGhlcmUuCj4gPiBPdXIgc29jIGFyY2hpdGVjdHVyZSBp
+cyB0aGUgbG9vbmdzb24yIHNlcmllcywgc28gd2Ugd2lsbCBtb2RpZnkgaXQgYWNjb3JkaW5nbHku
+Cj4gCj4gSG93IHRoZSBzb2MgYXJjaGl0ZWN0dXJlIGlzIHJlbGF0ZWQgdG8gbXkgY29tbWVudCB0
+aGF0IHlvdSBkbyBub3QKPiBwZXJmb3JtIGNvbnZlcnNpb24/CkkgZ290IGl0LCBhbmQgSSB3aWxs
+IGFhZCBhIGNvbnZlcnNpb24uCj4gCj4gPiAKPiA+Pgo+ID4+Pgo+ID4+PiBTaWduZWQtb2ZmLWJ5
+OiBZaW5ibyBaaHUgPGM+Cj4gPj4+IC0tLQo+ID4+PiBDaGFuZ2UgaW4gdjI6Cj4gPj4+IAkJMS4g
+QWRkIGRlc2NyaXB0aW9uIGFuZCB0eXBlIGFib3V0IHRoZSAiaWQiLgkKPiA+Pj4gCQkyLiBNYWtl
+IHRoZSBmaWxlbmFtZSB3YXMgYmFzZWQgb24gY29tcGF0aWJsZS4KPiA+Pj4KPiA+Pj4gIC4uLi9i
+aW5kaW5ncy90aGVybWFsL2xvb25nc29uMi10aGVybWFsLnlhbWwgICB8IDUyICsrKysrKysrKysr
+KysrKysrKysKPiA+Pj4gIDEgZmlsZSBjaGFuZ2VkLCA1MiBpbnNlcnRpb25zKCspCj4gPj4+ICBj
+cmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3RoZXJt
+YWwvbG9vbmdzb24yLXRoZXJtYWwueWFtbAo+ID4+Pgo+ID4+PiBkaWZmIC0tZ2l0IGEvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3RoZXJtYWwvbG9vbmdzb24yLXRoZXJtYWwueWFt
+bCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy90aGVybWFsL2xvb25nc29uMi10
+aGVybWFsLnlhbWwKPiA+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPiA+Pj4gaW5kZXggMDAwMDAw
+MDAwMDAwLi4yOTk0YWUzYTU2YWEKPiA+Pj4gLS0tIC9kZXYvbnVsbAo+ID4+PiArKysgYi9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdGhlcm1hbC9sb29uZ3NvbjItdGhlcm1hbC55
+YW1sCj4gPj4KPiA+Pgo+ID4+IE5vIGltcHJvdmVtZW50cyBoZXJlLiBZb3UgaWdub3JlIG15IGNv
+bW1lbnRzLCBzbyBJIGFtIGdvaW5nIHRvIE5BSyBpdC4KPiA+IEkgZG9uJ3QgZ2V0IHlvdXIgcG9p
+bnQsIHRoYXQgZHRzIGNvbXBhdGlibGUgaXMgImxvb25nc29uLGxvb25nc29uMi10aGVybWFsIiwg
+c28gdGhpcyBkcml2ZXIgZmlsZSBuYW1lIGlzIG5hbWVkCj4gPiBsb29uZ3NvbjItdGhlcm1hbCB0
+aGF0IGFjY29yZGluZyB3aGF0IHlvdSBzYWlkIGFib3V0ICJGaWxlbmFtZSBiYXNlZCBvbiBjb21w
+YXRpYmxlLiIKPiA+IElmIHdoYXQgSSB1bmRlcnN0YW5kIGlzIG5vdCB3aGF0IHlvdSBleHBlY3Qs
+IHBsZWFzZSB0ZWxsIG1lIGhvdyB0byBtb2RpZnkgaXQuCj4gCj4gCj4gRmlsZW5hbWUgbXVzdCBt
+YXRjaCB0aGUgY29tcGF0aWJsZSwgc286IGxvb25nc29uLGxvb25nc29uMi10aGVybWFsLnlhbWwK
+SSBnb3QgaXQsIGFuZCBJIHdpbGwgYWRkIGEgY29udmVyc2lvbi4KPiAKPiA+Pgo+ID4+Cj4gPj4+
+IEBAIC0wLDAgKzEsNTIgQEAKPiA+Pj4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwt
+Mi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQo+ID4+PiArJVlBTUwgMS4yCj4gPj4+ICstLS0KPiA+
+Pj4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvdGhlcm1hbC9sb29uZ3NvbjIt
+dGhlcm1hbC55YW1sIwo+ID4+PiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEt
+c2NoZW1hcy9jb3JlLnlhbWwjCj4gPj4+ICsKPiA+Pj4gK3RpdGxlOiBUaGVybWFsIHNlbnNvcnMg
+b24gbG9vbmdzb24yIFNvQ3MKPiA+Pj4gKwo+ID4+PiArbWFpbnRhaW5lcnM6Cj4gPj4+ICsgIC0g
+emhhbmdob25nY2hlbiA8emhhbmdob25nY2hlbkBsb29uZ3Nvbi5jbj4KPiA+Pj4gKyAgLSBZaW5i
+byBaaHUgPHpodXlpbmJvQGxvb25nc29uLmNuPgo+ID4+PiArCj4gPj4+ICtwcm9wZXJ0aWVzOgo+
+ID4+PiArICBjb21wYXRpYmxlOgo+ID4+PiArICAgIGNvbnN0OiBsb29uZ3Nvbixsb29uZ3NvbjIt
+dGhlcm1hbAo+ID4+PiArCj4gPj4+ICsgIHJlZzoKPiA+Pj4gKyAgICBtYXhJdGVtczogMQo+ID4+
+PiArCj4gPj4+ICsgIGlkOgo+ID4+PiArICAgICRyZWY6ICcvL3NjaGVtYXMvdHlwZXMueWFtbCMv
+ZGVmaW5pdGlvbnMvdWludDMyJwo+ID4+Cj4gPj4gTm8gaW1wcm92ZW1lbnRzIGhlcmUsIHNvIGxl
+dCBtZSBiZSBzcGVjaWZpYyAtIHlvdSBuZWVkIHRvIHJlYWxseSBqdXN0aWZ5Cj4gPj4gc3VjaCBw
+cm9wZXJ0eSBvciBpdCBjYW5ub3QgZ28gdG8gc2NoZW1hLgo+ID4gVGhlIGxvb25nc29uMl90aGVy
+bWFsLmMgZHJpdmVyIG5lZWQgcGFyc2UgdGhpcyAiaWQiIHByb3BlcnR5Lgo+IAo+IFRoaXMgaXMg
+bm90IHJlYXNvbiB0byBhZGQgcHJvcGVydGllcyB0byBEVC4gRFQgZGVzY3JpYmVzIHRoZSBoYXJk
+d2FyZSwKPiBub3QgZHJpdmVyIGJlaGF2aW9yLgo+IAo+IFdoeSBoYXJkd2FyZSBuZWVkcyBhcmJp
+dHJhcnksIGFkZGl0aW9uYWwgYWRkcmVzc2luZyBudW1iZXIgaW5zdGVhZCBvZgo+IHN0YW5kYXJk
+IHVuaXQgYWRkcmVzcz8KVGhlIGxvb25nc29uMiBzZXJpZXMgc29jIHN1cHBvcnRzIHVwIHRvIGZv
+dXIgc2Vuc29ycywgYnV0IHRoZSAySzEwMDAgaGFzIG9ubHkgb25lIHNlbnNvciwgc28gdGhlIElE
+IG11c3QgYmUgMC4gCkZvciB0aGUgMksxMDAwLCBpbiBvcmRlciB0byBkaXN0aW5ndWlzaCB0aGUg
+ZGlmZmVyZW5jZXMgYmV0d2VlbiBkaWZmZXJlbnQgaGFyZHdhcmUgaW4gdGhlIExvb25nc29uMiBT
+b0Mgc2VyaWVzLAp0aGUgSUQgaXMgYWRkZWQgdG8gdGhlIGR0cwo+IAo+ID4+Cj4gPj4+ICsgICAg
+ZGVzY3JpcHRpb246IHwKPiA+Pj4gKyAgICAgIFNwZWNpZnkgdGhlIHRoZXJtYWwgc2Vuc29yIGlk
+Lgo+ID4+PiArICAgIG1pbmltdW06IDAKPiA+Pj4gKyAgICBtYXhpbXVtOiAzCj4gPj4+ICsKPiA+
+Pj4gKyAgaW50ZXJydXB0czoKPiA+Pj4gKyAgICBtYXhJdGVtczogMQo+ID4+PiArCj4gPj4+ICsg
+ICIjdGhlcm1hbC1zZW5zb3ItY2VsbHMiOgo+ID4+PiArICAgIGNvbnN0OiAxCj4gPj4+ICsKPiA+
+Pj4gK3JlcXVpcmVkOgo+ID4+PiArICAtIGNvbXBhdGlibGUKPiA+Pj4gKyAgLSByZWcKPiA+Pj4g
+KyAgLSBpZAo+ID4+PiArICAtIGludGVycnVwdC1wYXJlbnQKPiA+Pgo+ID4+IFdoeT8KPiA+IFRo
+ZSBpbnRlcnJ1cHRzIG9mIG91ciBkdHMgZG8gbm90IHNwZWNpZnkgYW4gaW50ZXJydXB0IHBhcmVu
+dCwKPiA+IGVnLiBpbnRlcnJ1cHRzID0gPDcgSVJRX1RZUEVfTEVWRUxfTE9XPgo+ID4gc28gd2Ug
+bmVlZCB0byBhZGQgYW4gaW50ZXJydXB0IHBhcmVudCBwcm9wZXJ0eS4KPiAKPiBZb3UgY2FuIGFk
+ZCBidXQgSSBhbSBhc2tpbmcgd2h5IGlzIGl0IHJlcXVpcmVkPwpTaW5jZSB0aGVyZSBpcyBtb3Jl
+IHRoYW4gb25lIGludGVycnVwdCBjb250cm9sbGVyIGluIHRoZSBMb29uZ3NvbjIgc2VyaWVzIHNv
+YywgdGhhdCBuZWVkIHRvIHNwZWNpZnkgdGhlIGludGVycnVwdCAKY29udHJvbGxlciBpbiB0aGUg
+ZHRzLCB0aGF0IGlzLCB0aGUgaW50ZXJydXB0IHBhcmVudC4gICBJZiBkaWZmZXJlbnQgaW50ZXJy
+dXB0IHBhcmVudHMgYXJlIHVzZWQgaW4gZHRzLCB0aGUgaW50ZXJydXB0IApudW1iZXJzIGFyZSBk
+aWZmZXJlbnQuCj4gCj4gPj4KPiA+Pj4gKyAgLSBpbnRlcnJ1cHRzCj4gPj4+ICsgIC0gJyN0aGVy
+bWFsLXNlbnNvci1jZWxscycKPiA+Pgo+ID4+IFVzZSB0aGUgc2FtZSBzdHlsZSBvZiBxdW90ZTog
+JyBvciAiLgo+ID4gb2theSwgSSB3aWxsIGhhdmUgYSBjaGFuZ2UuCj4gPj4KPiA+Pj4gKwo+ID4+
+PiArYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlCj4gPj4+ICsKPiA+Pj4gK2V4YW1wbGVzOgo+
+ID4+PiArICAtIHwKPiA+Pj4gKyAgICB0aGVybWFsOiB0aGVybWFsQDFmZTAxNTAwIHsKPiA+Pgo+
+ID4+IEhvdyBvdGhlciBzaW1pbGFyIG5vZGVzIGFyZSBuYW1lZCAoaW4gb3RoZXIgRFRTIGZpbGVz
+KT8KPiA+IEkgcmVmZXIgcW9yaXEgcGxhdGZvcm0sCj4gPiAgICAgdG11QGYwMDAwIHsKPiA+ICAg
+ICAgICAgY29tcGF0aWJsZSA9ICJmc2wscW9yaXEtdG11IjsKPiA+IAo+ID4gIFlvdSBtZWFuIHRv
+IG1vZGlmeSBpdCBsaWtlIHRoaXMKPiA+IC0gdGhlcm1hbDogdGhlcm1hbEAxZmUwMTUwMCB7Cj4g
+PiArIHRoZXJtYWxAMWZlMDE1MDAgewo+ID4gCj4gCj4gTm8sIGp1c3QgdGhlcm1hbC1zZW5zb3JA
+MWZlMDE1MDAKb2theSwgSSBnb3QgaXQuCj4gCj4gCj4gQmVzdCByZWdhcmRzLAo+IEtyenlzenRv
+ZgoNCg0K5pys6YKu5Lu25Y+K5YW26ZmE5Lu25ZCr5pyJ6b6Z6Iqv5Lit56eR55qE5ZWG5Lia56eY
+5a+G5L+h5oGv77yM5LuF6ZmQ5LqO5Y+R6YCB57uZ5LiK6Z2i5Zyw5Z2A5Lit5YiX5Ye655qE5Liq
+5Lq65oiW576k57uE44CC56aB5q2i5Lu75L2V5YW25LuW5Lq65Lul5Lu75L2V5b2i5byP5L2/55So
+77yI5YyF5ous5L2G5LiN6ZmQ5LqO5YWo6YOo5oiW6YOo5YiG5Zyw5rOE6Zyy44CB5aSN5Yi25oiW
+5pWj5Y+R77yJ5pys6YKu5Lu25Y+K5YW26ZmE5Lu25Lit55qE5L+h5oGv44CC5aaC5p6c5oKo6ZSZ
+5pS25pys6YKu5Lu277yM6K+35oKo56uL5Y2z55S16K+d5oiW6YKu5Lu26YCa55+l5Y+R5Lu25Lq6
+5bm25Yig6Zmk5pys6YKu5Lu244CCIA0KVGhpcyBlbWFpbCBhbmQgaXRzIGF0dGFjaG1lbnRzIGNv
+bnRhaW4gY29uZmlkZW50aWFsIGluZm9ybWF0aW9uIGZyb20gTG9vbmdzb24gVGVjaG5vbG9neSAs
+IHdoaWNoIGlzIGludGVuZGVkIG9ubHkgZm9yIHRoZSBwZXJzb24gb3IgZW50aXR5IHdob3NlIGFk
+ZHJlc3MgaXMgbGlzdGVkIGFib3ZlLiBBbnkgdXNlIG9mIHRoZSBpbmZvcm1hdGlvbiBjb250YWlu
+ZWQgaGVyZWluIGluIGFueSB3YXkgKGluY2x1ZGluZywgYnV0IG5vdCBsaW1pdGVkIHRvLCB0b3Rh
+bCBvciBwYXJ0aWFsIGRpc2Nsb3N1cmUsIHJlcHJvZHVjdGlvbiBvciBkaXNzZW1pbmF0aW9uKSBi
+eSBwZXJzb25zIG90aGVyIHRoYW4gdGhlIGludGVuZGVkIHJlY2lwaWVudChzKSBpcyBwcm9oaWJp
+dGVkLiBJZiB5b3UgcmVjZWl2ZSB0aGlzIGVtYWlsIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5IHRo
+ZSBzZW5kZXIgYnkgcGhvbmUgb3IgZW1haWwgaW1tZWRpYXRlbHkgYW5kIGRlbGV0ZSBpdC4g
