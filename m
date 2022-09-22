@@ -2,73 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF8E75E5CE3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 10:06:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2BB85E5CEB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 10:07:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbiIVIGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 04:06:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42584 "EHLO
+        id S229888AbiIVIHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 04:07:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229783AbiIVIFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 04:05:44 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A654D47B9F;
-        Thu, 22 Sep 2022 01:05:36 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 6FDB4124B;
-        Thu, 22 Sep 2022 10:05:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1663833934;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=TpzBNG5UwdogbiC6mYdoQl1YRb9gRLtmngkK9Bob73I=;
-        b=HMHyK+0h27R4POjRSpnqWkXxQIhda7BTUJ9xT4KhdmGDBspERK4EvFkuAMoVqz+13+ygt1
-        B98WODZj4WNACvX2jh0KDkLeHg1swxTjk/6m4k/rZf00AoIVrOqEQUwI18KOFzE2OiNyZw
-        lOi95CvwGNU0MaUqy0nXX4vhq9uYyss9nv972GTI6Ejt88UX4HL8q8aok7vc15mlJ8FxO9
-        AXiJzzW+ix6W7JwThYh8+GyTc2PKfxEPyJ9wriFC3IO0CAE4t87MavkDAFZysqBSFb+7sd
-        q/rU0LcWLoA6cvHvUYcC4e+3yZrrUNLJyPJfobh5nR++WYfx7iRiq9usy1ZghQ==
-From:   Michael Walle <michael@walle.cc>
-To:     marcus.carlberg@axis.com
-Cc:     andrew@lunn.ch, davem@davemloft.net, devicetree@vger.kernel.org,
-        edumazet@google.com, hkallweit1@gmail.com, kernel@axis.com,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        linux@armlinux.org.uk, lxu@maxlinear.com, netdev@vger.kernel.org,
-        pabeni@redhat.com, Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH net-next 0/2] net: phy: mxl-gpy: Add mode for 2 leds
-Date:   Thu, 22 Sep 2022 10:05:29 +0200
-Message-Id: <20220922080529.928823-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220920151411.12523-1-marcus.carlberg@axis.com>
-References: <20220920151411.12523-1-marcus.carlberg@axis.com>
+        with ESMTP id S229797AbiIVIHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 04:07:08 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 484DDB40D9;
+        Thu, 22 Sep 2022 01:07:07 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,335,1654527600"; 
+   d="scan'208";a="135810761"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 22 Sep 2022 17:07:06 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id A84084185388;
+        Thu, 22 Sep 2022 17:07:06 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, krzk+dt@kernel.org
+Cc:     marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v6 00/10] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
+Date:   Thu, 22 Sep 2022 17:06:37 +0900
+Message-Id: <20220922080647.3489791-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.5 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        KHOP_HELO_FCRDNS,SPF_HELO_NONE autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
+To support them, modify PCIe DesignWare common codes.
+Base kernel is the same as v5.
 
-> GPY211 phy default to using all four led pins.
-> Hardwares using only two leds where led0 is used as the high
-> network speed led and led1 the low network speed led will not
-> get the correct behaviour since 1Gbit and 2.5Gbit will not be
-> represented at all in the existing leds.
+Changes from v5:
+ https://lore.kernel.org/all/20220905071257.1059436-1-yoshihiro.shimoda.uh@renesas.com/
+ - No treewide patches.
+ - Drop PCI_EXP_LNKCAP_MLW_X32 in patch [03/10].
+ - Add Acked-by in patch [03/10].
+ - Fix subject prefix in patch [04/10], [05/10], [08/10] and [09/10].
+ - Fix typo in patch [05/10] and [07/10].
 
-I might be wrong, but PHY LED bindings should be integrated with/using
-the LED subsystem. Although I didn't see any development regarding this
-for a long time.
+Changes from v4:
+ https://lore.kernel.org/all/20220722110744.2274466-1-yoshihiro.shimoda.uh@renesas.com/
+ - Rebased on next-20220901.
+ -- And based on the following patches:
+    [PATCH v5 00/20] PCI: dwc: Add generic resources and Baikal-T1 support
+    https://lore.kernel.org/linux-pci/20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru/
+    [PATCH RESEND v5 00/24] dmaengine: dw-edma: Add RP/EP local DMA controllers support
+    https://lore.kernel.org/dmaengine/20220822185332.26149-1-Sergey.Semin@baikalelectronics.ru/
+ - Notes that snps,dw-pcie-common.yaml modification seems under construction
+   so that dt-bindings of R-Car Gen4 is based on next-20220901.
 
-That being said, it seems you are adding a new (DT) property which
-just matches your particular hardware design, no?
+Yoshihiro Shimoda (10):
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+  PCI: Add PCI_EXP_LNKCAP_MLW macros
+  PCI: designware-ep: Expose dw_pcie_ep_exit() to module
+  PCI: designware-ep: Add ep_pre_init() callback to dw_pcie_ep_ops
+  PCI: dwc: Add reset_all_bars flag
+  PCI: dwc: Avoid reading a register to detect whether eDMA exists
+  PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
+  PCI: rcar-gen4-ep: Add R-Car Gen4 PCIe Endpoint support
+  MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
 
--michael
+ .../bindings/pci/rcar-gen4-pci-ep.yaml        |  99 +++++++++
+ .../bindings/pci/rcar-gen4-pci-host.yaml      |  97 +++++++++
+ MAINTAINERS                                   |   1 +
+ drivers/pci/controller/dwc/Kconfig            |  18 ++
+ drivers/pci/controller/dwc/Makefile           |   4 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |  14 ++
+ drivers/pci/controller/dwc/pcie-designware.c  |   4 +-
+ drivers/pci/controller/dwc/pcie-designware.h  |   2 +
+ .../pci/controller/dwc/pcie-rcar-gen4-ep.c    | 182 ++++++++++++++++
+ .../pci/controller/dwc/pcie-rcar-gen4-host.c  | 195 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 181 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  63 ++++++
+ include/uapi/linux/pci_regs.h                 |   6 +
+ 13 files changed, 864 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
+
+-- 
+2.25.1
+
