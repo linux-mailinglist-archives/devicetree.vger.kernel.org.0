@@ -2,421 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F2A75E6663
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 17:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49CC85E666A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 17:05:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbiIVPDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 11:03:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48630 "EHLO
+        id S229599AbiIVPFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 11:05:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbiIVPDt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 11:03:49 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E801ABD78;
-        Thu, 22 Sep 2022 08:03:47 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id z25so15191000lfr.2;
-        Thu, 22 Sep 2022 08:03:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date;
-        bh=FqJTTa0040pz4+zDEMMVMjYX693hU3+TskBo25nD1Vg=;
-        b=pzASvSpau+ZVDPtkMcK/X3/2vgwJLDcKLysSpf1Qgs4mv2dl5QM53QEjWeDKQKfdem
-         HnJTSofg6eFl7kY+YnytctI2IzhvIDwLBuWYwGHejdu6y6ZxTxbiLuhl30KJ8BDpQZfi
-         LPuNj4wF9CYnpVEUT1MN0/4Rum9seT4/8fPS2CkhBky8bp3oKL1e7n0uHrIbJdznSjqm
-         YidobCNCx4WWtM5DX+s3AJBCvpsEkf3CdDA7kSLaT7vVH1ACK1tD8lKFLGnE6gZAfjXT
-         gCTXCqOTbgWblrlHbrg7Wt6ZoK9v6uHUq9Vwrxfu6QwdjqYf0r2zu+sJj821q8SGXbHO
-         pReQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date;
-        bh=FqJTTa0040pz4+zDEMMVMjYX693hU3+TskBo25nD1Vg=;
-        b=qCkHSnnXEGsVMDjZcvnMZSZEZVS83O1bBGHbuccJxTbHcD5R9bwpDmdofXI6DMoDT7
-         LAcKd+O5Uf8qPadx98h69fTHXoLWOQ96ChTViozV7MdtQsF9XzM29zZP0as9k96IjzuE
-         TZTiJoR0pqFiJAP3m2sSkriDF2JsVN1t21uAppd/af25I5mxnQZ/VTFxsfqVb7hjgzKk
-         JzXeEyiCtDttFEextJ++YEeMRStas/+T0wM6NjEUrkUVQP1dVadmsSfjlEog/6TflT0z
-         ftSpmF6j9STwaGE0cfVPNbfUKvi3PqvMfgC5rf0r9esJ/fOu/dkLC6m23AevY5ZEpQMZ
-         d78Q==
-X-Gm-Message-State: ACrzQf3ZRAjcUZW92gj1TsKZDgIkqigQBPd6e5JZD68svr4del1FR44n
-        7k2kPuAzaLvOV5B/wsKMKGkSwH0k92GUdA==
-X-Google-Smtp-Source: AMsMyM6Fk1BQFwcQIaEzEk1/fhnAE82qw8yCYAl3hj+/rZxSUzqMftVEDpI/RMGORWY7qQeqH3gd5Q==
-X-Received: by 2002:a05:6512:b17:b0:4a0:13c:9b3f with SMTP id w23-20020a0565120b1700b004a0013c9b3fmr1371583lfu.91.1663859025100;
-        Thu, 22 Sep 2022 08:03:45 -0700 (PDT)
-Received: from razdolb (95-31-185-216.broadband.corbina.ru. [95.31.185.216])
-        by smtp.gmail.com with ESMTPSA id f16-20020a05651232d000b0048b365176d9sm966359lfg.286.2022.09.22.08.03.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Sep 2022 08:03:42 -0700 (PDT)
-References: <20220911200147.375198-1-mike.rudenko@gmail.com>
- <20220911200147.375198-3-mike.rudenko@gmail.com>
- <CAPY8ntAqCR_OJOX7qbZcsj55SXnB7K4aLCYY4vbTJWKGYoTX6w@mail.gmail.com>
-User-agent: mu4e 1.9.0; emacs 28.2
-From:   Mikhail Rudenko <mike.rudenko@gmail.com>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230304AbiIVPFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 11:05:33 -0400
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1anam02on2059.outbound.protection.outlook.com [40.107.96.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 547E59018D;
+        Thu, 22 Sep 2022 08:05:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fIGHpZBpi/wA9EiNM/6Wt42LBeC7Iz8g2aSf7q7pbqxydvWZzzOAMEgJuYMz1z6PevNSJBJHtzFF8IJ+ejQignEJfyaGa/pLMhLAVJQJAWcc7mqh0z+TDVlWo6eOPdvLXB71FUhmkKLMLVCkROKRp0tegrAG5HigyA2qaGqWdv9QN8xG49PbMNLcmw4sSS/wDNdLppKes2cV3iZHZQHUH8A1j3NnExcvq34todRuTQ0ABesyJwPVXu2xfYWkK9MGX4wSlFWu/PmlqZIJdE0ZDDyRetXGr0VR1wzaGD2RLdq+mnJNY/2XfBKSibmyFKz9dNCx1T37MVOEUB8DmFBZrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6+NmHWpx0cQrVBdb6t7FlRgawM6egpAEgwH+J5S69XA=;
+ b=Z9rodHMSxQGV2f0Ps1oZK3utvC46YeMhNEl/oSvlen80kpvx4gIJ/YVz783bOLyjN8gMhw7vbEgtk0HZidSFC9nImb26OGsglkyUTwV1QK5rwUJv/ZFwCXy3rICwAt0qcA2xC7y8NEc9WJZtNm64GFMp1WvUcdldNFrUr2uC67O91hzZGXVqJvjirQW8N4eC/kRQh/F2GqtL6BXDZ84F6r39aWjWBKQbygMGPL4qJTbBTxgDXaR3kKukjvYyjvFSvaXjjo1gV0XNGvQCdL9u+hkSzXEbBLWhMb54ohftzJD8JUpGr1akwglneZZdxbFc/MVtwypFgnhC729EIfV6OA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6+NmHWpx0cQrVBdb6t7FlRgawM6egpAEgwH+J5S69XA=;
+ b=hTJ2DdKbGfWmqHwHT6gMenghx+9t9JZDZCfxu/D+QIFOVPJJHS4A5JsVXA7M0cw5LqQTxTn9D4w1VxUK8vYW77sAUJFkkfdJo5ja9XLtkx+xtm8qPLT1wbeA8uNrjieJWnzrYrreOv/wsz3sJsyMYGoY8WfhF7eyee0pG47x7yfETPMEVTxJlE6G/CIeE2P3s2/J1vDMza8qNSHW2QH0I9+x5jx4/pNake/gU4b9+Ygk/Y5iEIyD9iHf868s01OgqW8ojm8ZmeDfaKX8UX0MFHBQi09Erca1niMDzg2KaWF9DkNR3HTC/E2yInGPy8QCF5e7bUa7rOKYah7/L3FAHQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ MN2PR12MB4518.namprd12.prod.outlook.com (2603:10b6:208:266::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.19; Thu, 22 Sep
+ 2022 15:05:29 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::b07f:53b1:426e:a29d]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::b07f:53b1:426e:a29d%5]) with mapi id 15.20.5654.019; Thu, 22 Sep 2022
+ 15:05:29 +0000
+Message-ID: <64414eac-fa09-732e-6582-408cfb9d41dd@nvidia.com>
+Date:   Thu, 22 Sep 2022 16:05:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH net-next v4 9/9] stmmac: tegra: Add MGBE support
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Christian Hemp <c.hemp@phytec.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Marek Vasut <marex@denx.de>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] media: i2c: add support for ov4689
-Date:   Thu, 22 Sep 2022 17:56:02 +0300
-In-reply-to: <CAPY8ntAqCR_OJOX7qbZcsj55SXnB7K4aLCYY4vbTJWKGYoTX6w@mail.gmail.com>
-Message-ID: <87h70zjvsk.fsf@gmail.com>
+        Bhadram Varka <vbhadram@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20220707074818.1481776-1-thierry.reding@gmail.com>
+ <20220707074818.1481776-10-thierry.reding@gmail.com> <YxjIj1kr0mrdoWcd@orome>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <YxjIj1kr0mrdoWcd@orome>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LNXP265CA0059.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:5d::23) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|MN2PR12MB4518:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0c8cd146-fdbd-450d-92b5-08da9cabe353
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Hl4TkN8MIpQY3zuF498oR/LsrwyOvRHevkLYF/rhKqVOiz16jy7NIyrd1i6mnGNhBiIhzsg/T+S5iJVMtOBm3qN6iqQBiSxJ89luRI8vfsMarPSiS8pikYvTZ49ZgUSA6gPmVAv+miFGVohj3Tfu/o5z7WH3ZcVagLhsrh6GoqcwrxT5IyW9/iTnoBhh6pfkoWaVPcAcW0o6FH/0y99OjyErghVOJt1IKUXAxhmFlHmf0rMXFtZJMXcs+WqiLjiZlT9fUBZ9GPNJFb4eo0fV3OoRcyWnfTd6r1Z/bRp4oatSXn9N53HqHNCI1eTBm7CuKkSeLLrQ/17LiSnKVySp44QLqnrdck6R69DEo7sI4K7y2pdd7j7p1eS9f806z4DlGIAaSZl6iLok9DTXPDhi0Gj9EdoUgFZMCidwPzzq1Lrq868hKx2zPpQJ1ppnS/qbcJF56gTt2mtN3cTcgnTHkGxg2+kHS5ADeenm4AugwMk9T/AidcJtuRjsYdKxoTApYdeYhVXCzXchhxLwee+nenN9Gxlrp5P1dCkBXVzc8ZfiieU0w/Mi/2d9fzKTcl1VAmqXgmuV7GEdYLZ0toMh//bAflBJF3WlRrAPjFcY2ObiNQnXupLf6f+m3hz4CgaTSyKsIXQ3kapZiI2JqvaeWmDZVntPSOhGktx7WklzqdDAgKmtCzkZU86A6zyWVpDpSr0wAir2iaWgnDouezJd3hMqhwzH3ZfxccNWZX31mTrSiHo3bGvwu4n8tp5ct0UUWzQFZYOK/G+IuqRrNxr6vpofzk4rFQ02plAVpR+BImM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(346002)(39860400002)(376002)(136003)(366004)(451199015)(8936002)(66476007)(7416002)(110136005)(54906003)(5660300002)(86362001)(316002)(66556008)(66946007)(8676002)(31696002)(4326008)(186003)(38100700002)(6666004)(41300700001)(6506007)(53546011)(6486002)(2616005)(6512007)(478600001)(2906002)(36756003)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aEI1UG4zbDRuUzNEUG9mVDB1UllabEJQZWhGaFBiSXVUSnRHaXI5N3hzVWw3?=
+ =?utf-8?B?TE90RTdGelZ4ZmhsNzNHcHExU1FUcStYYmlRODdVWWJtZjRYY0lHVStkSkpG?=
+ =?utf-8?B?TmwxeVdWWUluclhud3pBSjh2MlpXcko4MjlzZlBxWFA1dzFXb0lxd0E3QWth?=
+ =?utf-8?B?a2Fza2g5R3AvQyt6UlJuUWtLRDlybkI4MTVwMGRCNFUrUndCV3dpUmJJbTNy?=
+ =?utf-8?B?QlFGR1R6c2pRVkpnd0F0bHBqZlczTVlvUXJmM1ZVYjltQnF0WDc5d1FXd1Rk?=
+ =?utf-8?B?SzNjcTFjVnZwVjVzUEFrb1d0RXdxaDVEdHJIMUZ0dlpaZHNGUzJidndmci9p?=
+ =?utf-8?B?amdPRHJZWTF1NVZuSUZqSnZTOTZTaXY2ZUpmak5ZUDdUTUVLeHFNS2RGRURl?=
+ =?utf-8?B?YmpZWThWYjJlbGJTa3JKSHJmTkEvNDlzaGtDQVhDaWIrNW45S2phK3Exd2Ez?=
+ =?utf-8?B?cnVwQ1VXYngraElTaXBnWlJWVmJQcmNCWjNWRUZNb215ZEZLRHgzZVVNNXN5?=
+ =?utf-8?B?RWlOQWFvOVVBczJvQ01IdUxLTWQ2aHgvNHlONXJxaU40bFZzbUdvU2xjWXNk?=
+ =?utf-8?B?TVpKc3k4RHhwYWRDZHlSdStoRTRRSkEvWW9aRWhDbXY4ZlN1ekxOKzRySGdB?=
+ =?utf-8?B?c1A4eW1JOXd1SjRmTmc3SVhVN3BHQmhVMTVRUWdPM0ZwL2RNT3llSlAxQ21X?=
+ =?utf-8?B?QnVTSEFEZUs0OXJDZFhNMlVqaHhWOUg5TjMwS1pQRFRBRWI1dXpDVnZKS3ly?=
+ =?utf-8?B?K1QrYkduVEkxTk4rQzR6cWlhaWpCc1lXMzhrWG5MN01YTk1mQW1ES1p6SXRH?=
+ =?utf-8?B?bDh5eWNIdlNIbjhDVExUZjYzMHlESFlzbjlEeDA1SjBVRVlqT3o2cGN1WDYw?=
+ =?utf-8?B?VVhGMWZZUWpWMytqV3RtU1RYOVFOTm5lUXNTdzVuSVErNXlINTUrc1ZhbmN6?=
+ =?utf-8?B?bFVQcDBvZzBodG10bnBPL1paeFdYZFhOZ1VQUExHKzU3dW9KY0tVQXllYUR1?=
+ =?utf-8?B?c0tncS9aR3JXRkErZFZnRWpQY3N6cG12aTJkRC8xcGF2YTYzdG41UWttMTN1?=
+ =?utf-8?B?WjU5dkZaTEdLakdHanZ2VHlZSlFoNTIyekVMZWVmYkc0ZWNHdGNoa2dRNDFz?=
+ =?utf-8?B?dWY2enU3aUN0K2FJekovL09DTnVBOHVwMnI2cFRCRzVWTmEzMy93bndlb3hL?=
+ =?utf-8?B?dytTMmtkRGoyU2hDWFgzTHNudFA5bGRCL3Iya2lKMHB6aGk1aWUzZGQ2RHUw?=
+ =?utf-8?B?ZllacnlpdW50KzFGOGlSS3AwRjBhbUJJYWhDNUNjbXlRUkY1OXcyeUlrU1VD?=
+ =?utf-8?B?TTJlYjIyVkgyVTRlT2cvcHh4SHl1UzB5UEFVMythMW5sZDIvdkUyay83VDVH?=
+ =?utf-8?B?ZGZzWml4VnQrNDlNVHBYSU1GbVJBT2ozdFpSaWtVak1JcEVtZ2RGNWVlTFpS?=
+ =?utf-8?B?MDJ0TFU5NVZUN0dkV1ZxS1MxREdRQVdyZ0k3RTBacWVLUTdrWXVPT2xKWHhK?=
+ =?utf-8?B?RGlvdTJRbTZlT2g4aFJvME8xZDFOQmJCNnpJTHZ6aTFtSkxUV0RjUi8rV0s3?=
+ =?utf-8?B?S1RuNjFWWWFPYkEzTWdxdG11RHdoV2hrdmo3ZDQ4aFcvdWJ5ZFRld0tsQUJs?=
+ =?utf-8?B?VG9iV01xNWlWR3NYL1N4aHdkOWE4T01SSkhONjdOUDhNVWsrcSs3VkZ1ZjRB?=
+ =?utf-8?B?UzhHVkk0eG1tYWl5VVVXL05zWm5nb0J4WHJtVldhV3FvRFJnbmVTaU9JbndS?=
+ =?utf-8?B?aTJRRDRld0xGYnRoZHYxMGhLZFErWDBzdWhMN0tsUGpQc2FWOVhOYU1VQjVv?=
+ =?utf-8?B?U3pPdStwZDlablcram1tYlZIN3ZzeHpKdEJlSCs4SE5LSFZMcDR2c1lEQ2Rz?=
+ =?utf-8?B?K0VPZnlDYzF4QVE3OHRndmZ1UzR4VEtTUDA0Vm1TODNZSTZScXMzK3B4NWVn?=
+ =?utf-8?B?cGFvQ1ZVNzRlZ09xUlI5bXUzakt6elg4NGhxY0l3OCsvYUdqTkdLazQ5NFl3?=
+ =?utf-8?B?a1EyM2p0b2JhUHhFT1lYWU42Q0l2c285bjQyL0xEYmIvdWx1RUJpUzFObGwr?=
+ =?utf-8?B?T21MQmFZQzhDMzYyTmExNGpGVkRnU1BTL0YvVHkvVWN2UHFIeWN4TnlJODh2?=
+ =?utf-8?B?Y1pvYmhnTTVrNFNMODF0bENxNDV2clhpVVBzSlcrUkdGNFhLZWFCdm5qVFhF?=
+ =?utf-8?B?cFRyRlBzangrcHpDYUZNeWluRzdLS3NDTm5vZElLdTltdXIzQXUvOGxnM1N4?=
+ =?utf-8?B?aEswcTV2cXZ0K1A3SGNtV2t5Z2tRPT0=?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c8cd146-fdbd-450d-92b5-08da9cabe353
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2022 15:05:29.6416
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YpZGZ1uT4wqumyxidma3iSbxxEzUjJr/Qy3jYXT/PcHzzahlA60+tq6s4vaYwYPtPsDoMFVyx0QKYjkE+/Q3lg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4518
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dave,
+Hi David, Jakub,
 
-and thanks for reviewing this!
-
-On 2022-09-22 at 11:54 +01, Dave Stevenson <dave.stevenson@raspberrypi.com> wrote:
-
-> Hi Mikhail
->
-> On Sun, 11 Sept 2022 at 21:02, Mikhail Rudenko <mike.rudenko@gmail.com> wrote:
+On 07/09/2022 17:36, Thierry Reding wrote:
+> On Thu, Jul 07, 2022 at 09:48:18AM +0200, Thierry Reding wrote:
+>> From: Bhadram Varka <vbhadram@nvidia.com>
 >>
->> Add a V4L2 sub-device driver for OmniVision OV4689 image sensor. This
->> is a 4 Mpx image sensor using the I2C bus for control and the CSI-2
->> bus for data.
+>> Add support for the Multi-Gigabit Ethernet (MGBE/XPCS) IP found on
+>> NVIDIA Tegra234 SoCs.
 >>
->> This driver supports following features:
->> - manual exposure and analog gain control support
->> - test pattern support
->> - media controller support
->> - runtime PM support
->> - support following resolutions:
->>   + 2688x1520 at 30 fps
->>
->> The driver provides all mandatory V4L2 controls for compatibility with
->> libcamera. The sensor supports 1/2/4-lane CSI-2 modes, but the driver
->> implements 4 lane mode only at this moment.
->>
->> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
+>> Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
+>> Signed-off-by: Thierry Reding <treding@nvidia.com>
 >> ---
->>  MAINTAINERS                |   1 +
->>  drivers/media/i2c/Kconfig  |  14 +
->>  drivers/media/i2c/Makefile |   1 +
->>  drivers/media/i2c/ov4689.c | 951 +++++++++++++++++++++++++++++++++++++
->>  4 files changed, 967 insertions(+)
->>  create mode 100644 drivers/media/i2c/ov4689.c
+>> Note that this doesn't have any dependencies on any of the patches
+>> earlier in the series, so this can be applied independently.
 >>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 63c4844f26e6..1857f3864e1b 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -14529,6 +14529,7 @@ L:      linux-media@vger.kernel.org
->>  S:     Maintained
->>  T:     git git://linuxtv.org/media_tree.git
->>  F:     Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
->> +F:     drivers/media/i2c/ov5647.c
->>
->>  OMNIVISION OV5640 SENSOR DRIVER
->>  M:     Steve Longerbeam <slongerbeam@gmail.com>
->> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
->> index fae2baabb773..4993e1ae2ea8 100644
->> --- a/drivers/media/i2c/Kconfig
->> +++ b/drivers/media/i2c/Kconfig
->> @@ -429,6 +429,20 @@ config VIDEO_OV2740
->>           To compile this driver as a module, choose M here: the
->>           module will be called ov2740.
->>
->> +config VIDEO_OV4689
->> +       tristate "OmniVision OV4689 sensor support"
->> +       depends on OF
->> +       depends on GPIOLIB && VIDEO_DEV && I2C
->> +       select MEDIA_CONTROLLER
->> +       select VIDEO_V4L2_SUBDEV_API
->> +       select V4L2_FWNODE
->> +       help
->> +         This is a Video4Linux2 sensor-level driver for the OmniVision
->> +         OV4689 camera.
->> +
->> +         To compile this driver as a module, choose M here: the
->> +         module will be called ov4689.
->> +
->>  config VIDEO_OV5640
->>         tristate "OmniVision OV5640 sensor support"
->>         depends on OF
->> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
->> index 3e1696963e7f..7446c0a1eed0 100644
->> --- a/drivers/media/i2c/Makefile
->> +++ b/drivers/media/i2c/Makefile
->> @@ -78,6 +78,7 @@ obj-$(CONFIG_VIDEO_OV2659) += ov2659.o
->>  obj-$(CONFIG_VIDEO_OV2680) += ov2680.o
->>  obj-$(CONFIG_VIDEO_OV2685) += ov2685.o
->>  obj-$(CONFIG_VIDEO_OV2740) += ov2740.o
->> +obj-$(CONFIG_VIDEO_OV4689) += ov4689.o
->>  obj-$(CONFIG_VIDEO_OV5640) += ov5640.o
->>  obj-$(CONFIG_VIDEO_OV5645) += ov5645.o
->>  obj-$(CONFIG_VIDEO_OV5647) += ov5647.o
->> diff --git a/drivers/media/i2c/ov4689.c b/drivers/media/i2c/ov4689.c
->> new file mode 100644
->> index 000000000000..9f05e812acf8
->> --- /dev/null
->> +++ b/drivers/media/i2c/ov4689.c
->> @@ -0,0 +1,951 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * ov4689 driver
->> + *
->> + * Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd.
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/device.h>
->> +#include <linux/delay.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/i2c.h>
->> +#include <linux/module.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/regulator/consumer.h>
->> +#include <media/media-entity.h>
->> +#include <media/v4l2-async.h>
->> +#include <media/v4l2-ctrls.h>
->> +#include <media/v4l2-subdev.h>
->> +#include <media/v4l2-fwnode.h>
->> +
->> +#define CHIP_ID                                0x004688
->> +#define OV4689_REG_CHIP_ID             0x300a
->> +
->> +#define OV4689_XVCLK_FREQ              24000000
->> +
->> +#define OV4689_REG_CTRL_MODE           0x0100
->> +#define OV4689_MODE_SW_STANDBY         0x0
->> +#define OV4689_MODE_STREAMING          BIT(0)
->> +
->> +#define OV4689_REG_EXPOSURE            0x3500
->> +#define OV4689_EXPOSURE_MIN            4
->> +#define OV4689_EXPOSURE_STEP           1
->> +#define OV4689_VTS_MAX                 0x7fff
->> +
->> +#define OV4689_REG_GAIN_H              0x3508
->> +#define OV4689_REG_GAIN_L              0x3509
->> +#define OV4689_GAIN_H_MASK             0x07
->> +#define OV4689_GAIN_H_SHIFT            8
->> +#define OV4689_GAIN_L_MASK             0xff
->> +#define OV4689_GAIN_MIN                        0x10
->> +#define OV4689_GAIN_MAX                        0xf8
->> +#define OV4689_GAIN_STEP               1
->> +#define OV4689_GAIN_DEFAULT            0x10
->> +
->> +#define OV4689_REG_TEST_PATTERN                0x5040
->> +#define OV4689_TEST_PATTERN_ENABLE     0x80
->> +#define OV4689_TEST_PATTERN_DISABLE    0x0
->> +
->> +#define OV4689_REG_VTS                 0x380e
->> +
->> +#define REG_NULL                       0xFFFF
->> +
->> +#define OV4689_REG_VALUE_08BIT         1
->> +#define OV4689_REG_VALUE_16BIT         2
->> +#define OV4689_REG_VALUE_24BIT         3
->> +
->> +#define OV4689_LANES                   4
->> +#define OV4689_BITS_PER_SAMPLE         10
->> +
->> +static const char *const ov4689_supply_names[] = {
->> +       "avdd", /* Analog power */
->> +       "dovdd", /* Digital I/O power */
->> +       "dvdd", /* Digital core power */
->> +};
->> +
->> +#define OV4689_NUM_SUPPLIES ARRAY_SIZE(ov4689_supply_names)
->> +
->> +struct regval {
->> +       u16 addr;
->> +       u8 val;
->> +};
->> +
->> +struct ov4689_mode {
->> +       u32 width;
->> +       u32 height;
->> +       u32 max_fps;
->> +       u32 hts_def;
->> +       u32 vts_def;
->> +       u32 exp_def;
->> +       const struct regval *reg_list;
->> +};
->> +
->> +struct ov4689 {
->> +       struct i2c_client *client;
->> +       struct clk *xvclk;
->> +       struct gpio_desc *reset_gpio;
->> +       struct gpio_desc *pwdn_gpio;
->> +       struct regulator_bulk_data supplies[OV4689_NUM_SUPPLIES];
->> +
->> +       struct v4l2_subdev subdev;
->> +       struct media_pad pad;
->> +
->> +       struct mutex mutex; /* lock to protect streaming, ctrls and cur_mode */
->> +       bool streaming;
->> +       struct v4l2_ctrl_handler ctrl_handler;
->> +       struct v4l2_ctrl *exposure;
->> +       struct v4l2_ctrl *anal_gain;
->> +       struct v4l2_ctrl *digi_gain;
->> +       struct v4l2_ctrl *hblank;
->> +       struct v4l2_ctrl *vblank;
->> +       struct v4l2_ctrl *test_pattern;
->> +
->> +       const struct ov4689_mode *cur_mode;
->> +};
->> +
->> +#define to_ov4689(sd) container_of(sd, struct ov4689, subdev)
->> +
->> +/*
->> + * Xclk 24Mhz
->> + */
->> +static const struct regval ov4689_global_regs[] = {
->> +       { REG_NULL, 0x00 },
->> +};
->> +
->> +/*
->> + * Xclk 24Mhz
->> + * max_framerate 30fps
->> + * mipi_datarate per lane 1008Mbps
->
-> Data rate stated as 1008Mbps here....
->
->> + */
->> +static const struct regval ov4689_2688x1520_regs[] = {
->> +       {0x0103, 0x01}, {0x3638, 0x00}, {0x0300, 0x00},
->> +       {0x0302, 0x2a}, {0x0303, 0x00}, {0x0304, 0x03},
->> +       {0x030b, 0x00}, {0x030d, 0x1e}, {0x030e, 0x04},
->> +       {0x030f, 0x01}, {0x0312, 0x01}, {0x031e, 0x00},
->> +       {0x3000, 0x20}, {0x3002, 0x00}, {0x3018, 0x72},
->> +       {0x3020, 0x93}, {0x3021, 0x03}, {0x3022, 0x01},
->> +       {0x3031, 0x0a}, {0x303f, 0x0c}, {0x3305, 0xf1},
->> +       {0x3307, 0x04}, {0x3309, 0x29}, {0x3500, 0x00},
->> +       {0x3501, 0x60}, {0x3502, 0x00}, {0x3503, 0x04},
->> +       {0x3504, 0x00}, {0x3505, 0x00}, {0x3506, 0x00},
->> +       {0x3507, 0x00}, {0x3508, 0x00}, {0x3509, 0x80},
->> +       {0x350a, 0x00}, {0x350b, 0x00}, {0x350c, 0x00},
->> +       {0x350d, 0x00}, {0x350e, 0x00}, {0x350f, 0x80},
->> +       {0x3510, 0x00}, {0x3511, 0x00}, {0x3512, 0x00},
->> +       {0x3513, 0x00}, {0x3514, 0x00}, {0x3515, 0x80},
->> +       {0x3516, 0x00}, {0x3517, 0x00}, {0x3518, 0x00},
->> +       {0x3519, 0x00}, {0x351a, 0x00}, {0x351b, 0x80},
->> +       {0x351c, 0x00}, {0x351d, 0x00}, {0x351e, 0x00},
->> +       {0x351f, 0x00}, {0x3520, 0x00}, {0x3521, 0x80},
->> +       {0x3522, 0x08}, {0x3524, 0x08}, {0x3526, 0x08},
->> +       {0x3528, 0x08}, {0x352a, 0x08}, {0x3602, 0x00},
->> +       {0x3603, 0x40}, {0x3604, 0x02}, {0x3605, 0x00},
->> +       {0x3606, 0x00}, {0x3607, 0x00}, {0x3609, 0x12},
->> +       {0x360a, 0x40}, {0x360c, 0x08}, {0x360f, 0xe5},
->> +       {0x3608, 0x8f}, {0x3611, 0x00}, {0x3613, 0xf7},
->> +       {0x3616, 0x58}, {0x3619, 0x99}, {0x361b, 0x60},
->> +       {0x361c, 0x7a}, {0x361e, 0x79}, {0x361f, 0x02},
->> +       {0x3632, 0x00}, {0x3633, 0x10}, {0x3634, 0x10},
->> +       {0x3635, 0x10}, {0x3636, 0x15}, {0x3646, 0x86},
->> +       {0x364a, 0x0b}, {0x3700, 0x17}, {0x3701, 0x22},
->> +       {0x3703, 0x10}, {0x370a, 0x37}, {0x3705, 0x00},
->> +       {0x3706, 0x63}, {0x3709, 0x3c}, {0x370b, 0x01},
->> +       {0x370c, 0x30}, {0x3710, 0x24}, {0x3711, 0x0c},
->> +       {0x3716, 0x00}, {0x3720, 0x28}, {0x3729, 0x7b},
->> +       {0x372a, 0x84}, {0x372b, 0xbd}, {0x372c, 0xbc},
->> +       {0x372e, 0x52}, {0x373c, 0x0e}, {0x373e, 0x33},
->> +       {0x3743, 0x10}, {0x3744, 0x88}, {0x3745, 0xc0},
->> +       {0x374a, 0x43}, {0x374c, 0x00}, {0x374e, 0x23},
->> +       {0x3751, 0x7b}, {0x3752, 0x84}, {0x3753, 0xbd},
->> +       {0x3754, 0xbc}, {0x3756, 0x52}, {0x375c, 0x00},
->> +       {0x3760, 0x00}, {0x3761, 0x00}, {0x3762, 0x00},
->> +       {0x3763, 0x00}, {0x3764, 0x00}, {0x3767, 0x04},
->> +       {0x3768, 0x04}, {0x3769, 0x08}, {0x376a, 0x08},
->> +       {0x376b, 0x20}, {0x376c, 0x00}, {0x376d, 0x00},
->> +       {0x376e, 0x00}, {0x3773, 0x00}, {0x3774, 0x51},
->> +       {0x3776, 0xbd}, {0x3777, 0xbd}, {0x3781, 0x18},
->> +       {0x3783, 0x25}, {0x3798, 0x1b}, {0x3800, 0x00},
->> +       {0x3801, 0x08}, {0x3802, 0x00}, {0x3803, 0x04},
->> +       {0x3804, 0x0a}, {0x3805, 0x97}, {0x3806, 0x05},
->> +       {0x3807, 0xfb}, {0x3808, 0x0a}, {0x3809, 0x80},
->> +       {0x380a, 0x05}, {0x380b, 0xf0}, {0x380c, 0x0a},
->> +       {0x380d, 0x80}, {0x380e, 0x06}, {0x380f, 0x12},
->> +       {0x3810, 0x00}, {0x3811, 0x08}, {0x3812, 0x00},
->> +       {0x3813, 0x04}, {0x3814, 0x01}, {0x3815, 0x01},
->> +       {0x3819, 0x01}, {0x3820, 0x00}, {0x3821, 0x06},
->> +       {0x3829, 0x00}, {0x382a, 0x01}, {0x382b, 0x01},
->> +       {0x382d, 0x7f}, {0x3830, 0x04}, {0x3836, 0x01},
->> +       {0x3837, 0x00}, {0x3841, 0x02}, {0x3846, 0x08},
->> +       {0x3847, 0x07}, {0x3d85, 0x36}, {0x3d8c, 0x71},
->> +       {0x3d8d, 0xcb}, {0x3f0a, 0x00}, {0x4000, 0xf1},
->> +       {0x4001, 0x40}, {0x4002, 0x04}, {0x4003, 0x14},
->> +       {0x400e, 0x00}, {0x4011, 0x00}, {0x401a, 0x00},
->> +       {0x401b, 0x00}, {0x401c, 0x00}, {0x401d, 0x00},
->> +       {0x401f, 0x00}, {0x4020, 0x00}, {0x4021, 0x10},
->> +       {0x4022, 0x07}, {0x4023, 0xcf}, {0x4024, 0x09},
->> +       {0x4025, 0x60}, {0x4026, 0x09}, {0x4027, 0x6f},
->> +       {0x4028, 0x00}, {0x4029, 0x02}, {0x402a, 0x06},
->> +       {0x402b, 0x04}, {0x402c, 0x02}, {0x402d, 0x02},
->> +       {0x402e, 0x0e}, {0x402f, 0x04}, {0x4302, 0xff},
->> +       {0x4303, 0xff}, {0x4304, 0x00}, {0x4305, 0x00},
->> +       {0x4306, 0x00}, {0x4308, 0x02}, {0x4500, 0x6c},
->> +       {0x4501, 0xc4}, {0x4502, 0x40}, {0x4503, 0x01},
->> +       {0x4601, 0xa7}, {0x4800, 0x04}, {0x4813, 0x08},
->> +       {0x481f, 0x40}, {0x4829, 0x78}, {0x4837, 0x10},
->> +       {0x4b00, 0x2a}, {0x4b0d, 0x00}, {0x4d00, 0x04},
->> +       {0x4d01, 0x42}, {0x4d02, 0xd1}, {0x4d03, 0x93},
->> +       {0x4d04, 0xf5}, {0x4d05, 0xc1}, {0x5000, 0xf3},
->> +       {0x5001, 0x11}, {0x5004, 0x00}, {0x500a, 0x00},
->> +       {0x500b, 0x00}, {0x5032, 0x00}, {0x5040, 0x00},
->> +       {0x5050, 0x0c}, {0x5500, 0x00}, {0x5501, 0x10},
->> +       {0x5502, 0x01}, {0x5503, 0x0f}, {0x8000, 0x00},
->> +       {0x8001, 0x00}, {0x8002, 0x00}, {0x8003, 0x00},
->> +       {0x8004, 0x00}, {0x8005, 0x00}, {0x8006, 0x00},
->> +       {0x8007, 0x00}, {0x8008, 0x00}, {0x3638, 0x00},
->> +       {REG_NULL, 0x00},
->> +};
->> +
->> +static const struct ov4689_mode supported_modes[] = {
->> +       {
->> +               .width = 2688,
->> +               .height = 1520,
->> +               .max_fps = 30,
->> +               .exp_def = 0x0600,
->> +               .hts_def = 0x0a80,
->> +               .vts_def = 0x0612,
->> +               .reg_list = ov4689_2688x1520_regs,
->> +       },
->> +};
->> +
->> +#define OV4689_LINK_FREQ_500MHZ 500000000
->> +static const s64 link_freq_menu_items[] = { OV4689_LINK_FREQ_500MHZ };
->
-> ... but a link frequency of 500MHz (ie 1000Mbit/s) here.
-> Seeing as you compute the pixel rate based on the link frequency,
-> that's going to mean that the pixel rate is incorrect.
-> Link frequency should be 504MHz.
->
-> Your PLL settings appear to match the 24MHz configuration in table
-> 2-11 "sample PLL configuration" of the datasheet, so it would confirm
-> that MIPI_SCLK is 1008MHz and MIPI_PCLK is 126MHz (at 1008/8 seems to
-> be more byte clock than pixel (10bpp) clock).
+>>   drivers/net/ethernet/stmicro/stmmac/Kconfig   |   6 +
+>>   drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+>>   .../net/ethernet/stmicro/stmmac/dwmac-tegra.c | 290 ++++++++++++++++++
+>>   3 files changed, 297 insertions(+)
+>>   create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-tegra.c
+> 
+> Patches 1-8 of this have already been applied to the Tegra tree. Are
+> there any more comments on this or can this be merged as well?
+> 
+>  From a Tegra point of view this looks good, so:
+> 
+> Acked-by: Thierry Reding <treding@nvidia.com>
 
-Those are leftovers from the bsp driver, and they will be definitely
-changed in v3. Recovering correct pixel clock, hblank and vblank
-matching the observed fps needs some experimentation, which I hope to
-carry out over the weekend.
+	
+Acked-by: Jon Hunter <jonathanh@nvidia.com>
 
->
->   Dave
->
+Please can we queue this for v6.1? I have added the stmmac maintainers 
+to the email, but not sure if you can pick this up?
 
---
-Best regards,
-Mikhail
+Thanks!
+Jon
+
+-- 
+nvpublic
