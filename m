@@ -2,94 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7F35E5C7A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 09:33:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB2745E5C89
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 09:37:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbiIVHdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 03:33:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
+        id S229577AbiIVHhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 03:37:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbiIVHdL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 03:33:11 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B301A0247
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 00:33:08 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id s14so11500289ybe.7
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 00:33:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=vznxy9xqdRmX/+c1xfDYAdYiNLfodMVytirKxQVlqvU=;
-        b=19h0p9PeYDDwrzqyam5VPOXf99gXbD0aK5k8BfPEJenh2Jv/WjdzknPH0tUHmgiRHX
-         pggTcESbyFCz5wjPpmJSkcd/NQRRrZZiBSfJaMhq7Myfc7diCyDqoIkbuwR+vpE+NSyR
-         4tcuq0xXpQnSX0V8U1+heBDJXgld0tSC2LqBM4z3VUSaqRkZ06YHK7IIfBYqUtBTnOpH
-         8g3j2HwH0C6U9V4Dw6woPkeBBq7Y38GohOYuh8QKlknbOt7Pa+3U8VR0EHsy5/voiIZb
-         V9qFOtQMx6p07AjQGpO7hX3d+YsO1Jyuw006ghhAYb0bZNJ0/92AxLL4Vef3bOqkZOU6
-         FV4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=vznxy9xqdRmX/+c1xfDYAdYiNLfodMVytirKxQVlqvU=;
-        b=o78H2NNgzFPgCeON8T8gKmVfMVnWM0BBCKUX4+AlbWMOeGcmuIq3NbgHiZuHNB+1Dw
-         gbFDeErSm0MDRp4Xu0G9wUcv4YQB34W653HDoqc84O2QBiYOJk5ljecLdlNX20kRAkMn
-         umJwVazipEPPMhfcEk/vUNps6gV2MdIH+ZHeaw89l+EvFCQisTgcj0QjW71uMtKMNLun
-         vhMo9i1Utq3+qjrxLGlpdzkjIfHVgBXuc11l0E0zTR9XTiaxAApFi1IUSlm2qd94W7+d
-         UVsbicn4ICp2j761ErpGyAerWX4D48gi2xj5gkd5f13+gmn5ZPF7Ji5BUk6j4vJ5/+kM
-         JJIA==
-X-Gm-Message-State: ACrzQf0DpH6JhsyPNNg2zQnrtcvoJKOYiy/7Mf3M1FSqGpct1dwMC3y5
-        JV/V9m0AWuiqPKZGef88+4N45YZfOLvl8Y+/e+aoyw==
-X-Google-Smtp-Source: AMsMyM68mBRWPzgSHinmacDlTcXL0xgy38F9UZIPw2GA0HUhSgygjrtVbr+Xf6Xo2IYCzPizO8zkXxrLXkUa8C1413c=
-X-Received: by 2002:a05:6902:1146:b0:6ae:72f2:62cb with SMTP id
- p6-20020a056902114600b006ae72f262cbmr2487652ybu.615.1663831987619; Thu, 22
- Sep 2022 00:33:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220907210649.12447-1-anand@edgeble.ai> <20220919115812.6cc61a8e@kernel.org>
-In-Reply-To: <20220919115812.6cc61a8e@kernel.org>
-From:   Anand Moon <anand@edgeble.ai>
-Date:   Thu, 22 Sep 2022 13:02:58 +0530
-Message-ID: <CACF1qnd0Nq7Fzi83emR=-cDscCprt2h4gwquecLRyyrbSNsm5g@mail.gmail.com>
-Subject: Re: [v2 1/2] dt-bindings: net: rockchip-dwmac: add rv1126 compatible
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229470AbiIVHhJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 03:37:09 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 457E7CDCE7;
+        Thu, 22 Sep 2022 00:37:05 -0700 (PDT)
+X-UUID: 76aa0398248148a1934e81a715d2cef8-20220922
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=/6bsX4RBcjvTUrrlX0LGHcO1IxWp0f22mVXpMN7I5ks=;
+        b=ar6zWAYYBLJkZehh1Rk+l9JxNQIrLSyVL2GQNAbvS3Wk2n3eoU8VOOMLDhy95+P8CTZs8U+SX9xX2t7GqghmgsdwQqE+GWxqjGzCoMQrym2Ni6jhgvVhluDc3sFgJBo5mrDrnKDxI4Xa2h6ilprOxwznIxr3rjJGyXMNvEkp4nA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:81abf139-2e85-4b13-8fe3-165e62a61f9f,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:45
+X-CID-INFO: VERSION:1.1.11,REQID:81abf139-2e85-4b13-8fe3-165e62a61f9f,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:45
+X-CID-META: VersionHash:39a5ff1,CLOUDID:a244dce3-87f9-4bb0-97b6-34957dc0fbbe,B
+        ulkID:220921162412WQNVHANJ,BulkQuantity:205,Recheck:0,SF:28|17|19|48|823|8
+        24,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BEC:nil,CO
+        L:0
+X-UUID: 76aa0398248148a1934e81a715d2cef8-20220922
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <jianguo.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 175818648; Thu, 22 Sep 2022 15:36:59 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 22 Sep 2022 15:36:57 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 22 Sep 2022 15:36:56 +0800
+Message-ID: <9c28de4cef86d706baf92813f5d32cfd1630852e.camel@mediatek.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: net: snps,dwmac: add clk_csr
+ property
+From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        David Wu <david.wu@rock-chips.com>,
-        Jagan Teki <jagan@edgeble.ai>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Thu, 22 Sep 2022 15:36:56 +0800
+In-Reply-To: <821b3c30-6f1f-17c1-061c-8d3b3add0238@linaro.org>
+References: <20220921070721.19516-1-jianguo.zhang@mediatek.com>
+         <20220921070721.19516-3-jianguo.zhang@mediatek.com>
+         <bd460cfd-7114-b200-ab99-16fa3e2cff50@linaro.org>
+         <d231f64e494f4badf8bbe23130b25594376c9882.camel@mediatek.com>
+         <821b3c30-6f1f-17c1-061c-8d3b3add0238@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jakub,
+Dear Krzysztof,
 
-On Tue, 20 Sept 2022 at 00:28, Jakub Kicinski <kuba@kernel.org> wrote:
->
-> On Wed,  7 Sep 2022 21:06:45 +0000 Anand Moon wrote:
-> > Add compatible string for RV1126 gmac, and constrain it to
-> > be compatible with Synopsys dwmac 4.20a.
->
-> Hi, these patches don't seem to apply cleanly to net-next, a 3-way
-> merge is needed. Please rebase and repost. Please put [PATCH net-next
-> v3] in the subject as you expect them to be applied to the networking
-> trees.
+On Thu, 2022-09-22 at 08:38 +0200, Krzysztof Kozlowski wrote:
+> On 22/09/2022 04:15, Jianguo Zhang wrote:
+> > Dear Krzysztof,
+> > 
+> > 	Thanks for your comment.
+> > 
+> > On Wed, 2022-09-21 at 10:24 +0200, Krzysztof Kozlowski wrote:
+> > > On 21/09/2022 09:07, Jianguo Zhang wrote:
+> > > > Add clk_csr property for snps,dwmac
+> > > > 
+> > > > Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 5
+> > > > +++++
+> > > >  1 file changed, 5 insertions(+)
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > index 491597c02edf..8cff30a8125d 100644
+> > > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > @@ -288,6 +288,11 @@ properties:
+> > > >        is supported. For example, this is used in case of SGMII
+> > > > and
+> > > >        MAC2MAC connection.
+> > > >  
+> > > > +  clk_csr:
+> > > 
+> > > No underscores in node names. Missing vendor prefix.
+> > > 
+> > 
+> > We will remane the property name 'clk_csr' as 'snps,clk-csr' and
+> > another driver patch is needed to align the name used in driver
+> > with
+> > the new name. 
+> 
+> You did not say anything that you document existing property. Commit
+> msg
+> *must* explain why you are doing stuff in commit body.
+> 
+> We should not be asking for this and for reason of clk_csr.
 
-Thanks I have send the patches rebased on net-next,
-Please find the link below
+We will explain the background that why we document 'clk_csr' property
+in binding file in commit message in next version patches.
+> 
+> Best regards,
+> Krzysztof
+> 
+BRS
+Jianguo
 
-[0] https://lore.kernel.org/all/20220920140944.2535-1-anand@edgeble.ai/
-
-Beat Regards
-
--Anand
