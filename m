@@ -2,103 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2B245E6DD0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 23:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E47A5E6E59
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 23:22:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230482AbiIVVPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 17:15:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36882 "EHLO
+        id S229595AbiIVVWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 17:22:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230258AbiIVVPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 17:15:50 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 612F9C995A
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 14:15:49 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id d64-20020a17090a6f4600b00202ce056566so3723126pjk.4
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 14:15:49 -0700 (PDT)
+        with ESMTP id S229716AbiIVVWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 17:22:24 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D2D10F729
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 14:22:22 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id t14so17471735wrx.8
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 14:22:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gimpelevich-san-francisco-ca-us.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:disposition-notification-to
-         :references:in-reply-to:date:cc:to:from:subject:message-id:from:to
-         :cc:subject:date;
-        bh=F/fSD3tiHwAEumeXG+qiH5G3ZfY9Y6LXUkEueVgh6Fk=;
-        b=tGeOq2JWiIBsL3jWhqw00ZY4tOCMc7IQwKuz2NBmLdlz6nI72CPqI5nvU4wYA7wrSK
-         4ZtSaaYV2fWWtkk6v6ylkQsxeFK/GpQhc5Kroq/oD899bc22M7UnBHR9Kf264D7iCyFg
-         NPoBZnxVotT//5zKC5GKwBGbCnKU2NoIe0/OJHqWzMDG0yR4UwOL74fYkFPbPFTM/EZy
-         2FWS/hle0d47gTgQgX7IgjjsLEVfb3z04geb4y98if+3dNiERqjRRvZk0HyzSwRUfTWQ
-         BRQKsTwaWXeqkdmv1qnX1MPytI/80wucocrAmC2XiQFJs11GsU5g6AGI7NkC7/vFD3PI
-         B1fw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=js/5oTRugoQUYKiAkaMc0Wr4v083F951SM+zFeysBRc=;
+        b=kOmpyQR0sC0aLPXqU/SaAlZvRiczPLKEvueA69by3IY5Iq3flK830ktzUfIgf4JQTE
+         e9DziPS/vdUnv9DtWtr6PROybAMNwm+GP639aoDgYLNMEUpqIke+2n5J6sPXEghstq4E
+         VGxzZCDn9V8W8zABUZ+Zm5PAu6AO3oBhXfQ/zjAueeR3MpN5W/TuDexdjNBR7jB3ohKi
+         ysvcQy7IHRFS3ZKWztHLJ3RumbkqsL072exPD2C3ZrjlZGXkUjMeIrUlK4IUdqt/2elO
+         /+ubFvnkyLhWNCQiy5aRuylFG4FiAwxs4HVzyT20DbJUwurfG1dougBZjdgaS4dwY6JB
+         AnSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:disposition-notification-to
-         :references:in-reply-to:date:cc:to:from:subject:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=F/fSD3tiHwAEumeXG+qiH5G3ZfY9Y6LXUkEueVgh6Fk=;
-        b=5T+bvUFZ6vpPcKBoaLp82uDVcEwybCu8AQIeW8IDWUZt6KFHTMN+lCmzD9eX9uWW7Y
-         oxI6Rlx0PbItoci1gkyM9HsomNLiGr1sU3XxQ6DHcKg/6bNhWlLQTr25yE7LR+WvpJCf
-         K9uoGpgRZNyJLR9nZB1bAHAFj8JLHJtQ2GrS5skQNFc1l1/ZEAK1PWBYEhWrcSsv52OG
-         6KAHZGPxFx9v4jYH8dLlWuQBh7tLgejSilEzyb5FOeqM/PrrubdJkZWHcvMEItPcOgOd
-         zHb1sF4rUKlFajp1EWO5FkX4fZsOdGKjt/dGOqbsXuuedl9gyN4jYkLOJqTqXMyUNxpp
-         HahA==
-X-Gm-Message-State: ACrzQf11hnmo7wsjbl4HfjyiFgmXwaejpjbTn4Kzi47TcbYTNh8nXnqS
-        WHU171gqU6DYke1QUIyZL8Q07A==
-X-Google-Smtp-Source: AMsMyM5ldt2VrAPEWUNgs13BVkUvJnBv9O5XNfcE5ETCAxNGwR13fNpzdtYlY5dOXChaPEyxe5tV+Q==
-X-Received: by 2002:a17:902:7897:b0:178:9292:57b9 with SMTP id q23-20020a170902789700b00178929257b9mr5370369pll.102.1663881348801;
-        Thu, 22 Sep 2022 14:15:48 -0700 (PDT)
-Received: from [192.168.72.152] (157-131-203-68.fiber.dynamic.sonic.net. [157.131.203.68])
-        by smtp.gmail.com with ESMTPSA id d6-20020a170902b70600b00173368e9dedsm4485709pls.252.2022.09.22.14.15.47
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 22 Sep 2022 14:15:48 -0700 (PDT)
-Message-ID: <1663881344.25129.23.camel@chimera>
-Subject: Re: [PATCH 0/8] generic command line v4
-From:   Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>
-To:     Daniel Walker <danielwa@cisco.com>
-Cc:     Sean Anderson <sean.anderson@seco.com>,
-        Will Deacon <will@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Rob Herring <robh@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-efi@vger.kernel.org
-Date:   Thu, 22 Sep 2022 14:15:44 -0700
-In-Reply-To: <20220922211026.GW4320@zorba>
-References: <20210416040924.2882771-1-danielwa@cisco.com>
-         <b517fac5-2fdc-a8c9-75d0-174c67f5a2de@seco.com>
-         <20220922205334.GV4320@zorba>
-         <dcff9b0f-82c8-5aa7-0fff-b749a05fcb20@seco.com>
-         <20220922211026.GW4320@zorba>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-Mime-Version: 1.0
+        bh=js/5oTRugoQUYKiAkaMc0Wr4v083F951SM+zFeysBRc=;
+        b=JoDVHNzNlWMpET7b9CGkwHFPwJSFiS8dC96ZONUKl/3QUatb+SVbNTXpXWQz2nHhyx
+         A7uWH7SMKCVdpNUTFlh4bM+LChRaCEikq0P1xnuFe7+4fmjp4E8d9ZejowySsoSjxssR
+         1iQRGIUlPkuoDVf4ZYwIOZeHdc+5CZEoG6v0CpjxcpqhFwcwmPy551ruiSo+R/d6W+6t
+         ugz4toHYl9gQdONvsgcPNq3jL63EkCJx3LzN6+6h9ZZvU0388pYOI+Fwqzy5bqi03mbn
+         LR9+XpVT/ftG/XtYTq0rwALyV5poCrOZeLwR2LwT/x8/xJO59BB58D+T6ht0Xfd4VIur
+         wBvg==
+X-Gm-Message-State: ACrzQf24ja7klRTW4chnguxuRG03YvBLuJ3jUaLlixvhq5atSooqRdH4
+        sZCqAr0PUHooLG4bhXH2wMyPPw==
+X-Google-Smtp-Source: AMsMyM7WdWinUK+JlpX9DEv0QsSlne/dIOCkLeNnQqueMPqOPMiLhB+SfIDWl6uCJmTendCxS37cdg==
+X-Received: by 2002:adf:e4cc:0:b0:22a:d755:aaf7 with SMTP id v12-20020adfe4cc000000b0022ad755aaf7mr3231150wrm.692.1663881740992;
+        Thu, 22 Sep 2022 14:22:20 -0700 (PDT)
+Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id r14-20020a0560001b8e00b0022afcc11f65sm5813935wru.47.2022.09.22.14.22.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Sep 2022 14:22:20 -0700 (PDT)
+Message-ID: <1dca4a7f-f4d7-9fd7-69f0-5b0aec51bdef@linaro.org>
+Date:   Thu, 22 Sep 2022 22:22:17 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 00/20] nvmem: core: introduce NVMEM layouts
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Michael Walle <michael@walle.cc>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Robert Marko <robert.marko@sartura.hr>
+References: <20220901221857.2600340-1-michael@walle.cc>
+ <20220921115813.208ff789@xps-13>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220921115813.208ff789@xps-13>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-09-22 at 14:10 -0700, Daniel Walker wrote:
-> On Thu, Sep 22, 2022 at 05:03:46PM -0400, Sean Anderson wrote:
-[snip]
-> > As recently as last month, someone's patch to add such support was
-> > rejected for this reason [1].
-> > 
-> > --Sean
-> > 
-> > [1] https://lore.kernel.org/linux-arm-kernel/20220812084613.GA3107@willie-the-truck/
-> 
-> 
-> I had no idea.. Thanks for pointing that out. I guess I will re-submit in that
-> case.
-> 
-> Daniel
 
-This has been happening repeatedly since circa 2014, on multiple
-architectures. It's quite frustrating, really.
 
+On 21/09/2022 10:58, Miquel Raynal wrote:
+> 
+> Srinivas, can you give us an update on what you think about this
+> series (not a commitment, just how you feel it overall)?
+> 
+Overall this is going in right direction, there are few bindings related 
+comments once those are sorted out it should be good to go.
+
+ From NVMEM side am happy with this feature, which has been a long 
+pending one.
+
+We have few discussions on ONIE standard before, layouts would fit in 
+nicely.
+
+
+--srini
+
+> Michael, is there a v3 in preparation? I'll try to write something on
+> top of your v2 otherwise.
