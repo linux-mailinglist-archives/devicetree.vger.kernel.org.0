@@ -2,100 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8C75E639E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:31:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 025695E63CE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbiIVNbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 09:31:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58076 "EHLO
+        id S231552AbiIVNiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 09:38:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230512AbiIVNbJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:31:09 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24519D4DE0
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 06:31:08 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1obMIE-0005Jr-0M; Thu, 22 Sep 2022 15:31:06 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1obMID-00072j-AZ; Thu, 22 Sep 2022 15:31:05 +0200
-Date:   Thu, 22 Sep 2022 15:31:05 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, kernel@pengutronix.de
-Subject: Re: [PATCH v3 1/2] gpio: Add gpio latch driver
-Message-ID: <20220922133105.GN986@pengutronix.de>
-References: <20220914071306.3254881-1-s.hauer@pengutronix.de>
- <20220914071306.3254881-2-s.hauer@pengutronix.de>
- <20220914140310.5ffrnsy63piegdyr@mobilestation>
+        with ESMTP id S230365AbiIVNho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:37:44 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C6759A9DB;
+        Thu, 22 Sep 2022 06:36:47 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28MDaWXr091816;
+        Thu, 22 Sep 2022 08:36:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1663853792;
+        bh=6kmBmAVlkt/Mi0PvHgIZQfvoGckTsPf0cL19QEOW6hs=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=c3pIRIIu3Tebm1PKfVLhPTqohY6NJfcwlmThCFkMKuZPPu3sBF5dQ8/iEmaftyF5e
+         sbdiGcbXlzEyXitW6UVzF/3C/yI7xppMETd6NJK0PJH3ibtytl9mcflRgmds4ZZgmH
+         ynumT/bIttUxkGVonnSgor19EbPfsVNPPqC2VYOA=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28MDaW6T124114
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 22 Sep 2022 08:36:32 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 22
+ Sep 2022 08:36:30 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 22 Sep 2022 08:36:31 -0500
+Received: from [10.250.234.27] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28MDaSVf043427;
+        Thu, 22 Sep 2022 08:36:29 -0500
+Message-ID: <2629221f-5ec9-4e14-69cb-7ae021d5a02d@ti.com>
+Date:   Thu, 22 Sep 2022 19:06:27 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220914140310.5ffrnsy63piegdyr@mobilestation>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: ti: Add bindings for BeagleBone
+ AI-64
+Content-Language: en-US
+To:     Robert Nelson <robertcnelson@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Drew Fustini <drew@beagleboard.org>
+References: <20220921021300.4111283-1-robertcnelson@gmail.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20220921021300.4111283-1-robertcnelson@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 14, 2022 at 05:03:10PM +0300, Serge Semin wrote:
-> > +				    unsigned int offset, bool val)
-> > +{
-> > +	int latch = offset / priv->n_latched_gpios;
-> > +	int i;
-> > +
-> > +	assign_bit(offset, priv->shadow, val);
-> > +
-> 
-> > +	for (i = 0; i < priv->n_latched_gpios; i++)
-> > +		set(priv->latched_gpios->desc[i],
-> > +		    test_bit(latch * priv->n_latched_gpios + i, priv->shadow));
-> 
-> -> duration?
-> 
-> > +
-> > +	set(priv->clk_gpios->desc[latch], 1);
-> 
-> -> duration?
-> 
-> > +	set(priv->clk_gpios->desc[latch], 0);
-> 
-> I am pretty much sure there must be some duration between the actions
-> above *. See for instance the tw and (tsu + th) timing requirements in
-> the next edge-triggered flip-flops:
-> https://www.ti.com/lit/ds/symlink/sn74lv74a.pdf?ts=1663163389954&ref_url=https%253A%252F%252Fwww.google.com%252F
-> 
-> The durations are normally small (ns or a bit smaller) but still need
-> to be added anyway.
-> 
-> Note since the durations are device-specific an additional DT-property array
-> with durations should be added too.
 
-Do you think a fixed udelay(1) would be enough for now? Bigger delays
-shouldn't be needed and smaller delays expand to udelay(1) anyway on
-architectures not providing an architecture specific ndelay().
 
-Sascha
+On 21/09/22 7:42 am, Robert Nelson wrote:
+> This board is based on the ti,j721e
+> 
+> https://beagleboard.org/ai-64
+> https://git.beagleboard.org/beagleboard/beaglebone-ai-64
+> 
+> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+> CC: Rob Herring <robh@kernel.org>
+> CC: Nishanth Menon <nm@ti.com>
+> CC: Jason Kridner <jkridner@beagleboard.org>
+> CC: Drew Fustini <drew@beagleboard.org>
+> ---
+> Changes since v2:
+>  - rebased on next after k3.yaml alphabetical sort
+> Changes since v1:
+>  - added documenation links
+>  - add board in alphabetical order
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> index 28b8232e1c5b..09e6845ff243 100644
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -61,6 +61,7 @@ properties:
+>            - const: ti,j721e
+>            - items:
+>                - enum:
+> +                  - beagle,j721e-beagleboneai64
+>                    - ti,j721e-evm
+>                    - ti,j721e-sk
+>                - const: ti,j721e
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+You seem to have forgotten to include Ack from Rob on v2: 
+
+https://lore.kernel.org/linux-arm-kernel/20220830180058.GA1764859-robh@kernel.org/
