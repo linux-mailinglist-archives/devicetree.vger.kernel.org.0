@@ -2,106 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5088D5E5BA0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 08:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D31725E5BA8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 08:52:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229919AbiIVGtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 02:49:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58416 "EHLO
+        id S230004AbiIVGwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 02:52:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbiIVGtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 02:49:12 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D1DB729B
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 23:49:08 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id f14so13106368lfg.5
-        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 23:49:08 -0700 (PDT)
+        with ESMTP id S229973AbiIVGwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 02:52:14 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 319C3B3B0E
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 23:52:13 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id a2so13091782lfb.6
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 23:52:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=kivIBO0juD/4ymQdgeIQKWbZZAbTDNdx8uwuKAi1JwQ=;
-        b=kMRtMXiEbrRFe3n2fOiOzKCO/dOQKqmUGDb/4vkD61IY5CPk0zUwAbkildFaGnxYac
-         6Bb2B2CDW1RNXQVeEF/O2wmxfX9laLgXa4CveanPLqRDfru0nDxSCJTynsO+W4B9hKG/
-         aS/BkKGxB+qii8DACTyyvRVhli6DysxYWBguALi94yE/PqL3zrOjIvZhTH8ceDhK1H66
-         59W84lUkWmg8aJA3x8jk/vR5wRmBRXjOIFTx/lx13t1ZM0wWrKCmGHNFv6IkwWKcNHi3
-         uCmupZtN6jkygjegr9iJKrdgyPjGLZGEA7+Inm0gsyHxGwQ9y+uGoqwLo2rG3nmZTsMw
-         QMJw==
+        bh=R4By1A4vsqkhsX1zQ9Pp9D5cDY7oXVIoxYX95+DT5PE=;
+        b=tTATpAtRVwjlDYTCT7pL1pRJbq5m1acku+1Ba7Zt53sySs6UkSNrUaB0GLEOrrFETm
+         9G+iZtHyPR6SvFXlXV2hcpvCw5gr9fSriZL7EMWe9I5UyUJ4cHdctXvAQHMWiwYS6uEk
+         Qxel41eu2KSTH4QJp9KIBjN6mZz8rZYGYZxRNlURYri7cxs4SptLwa7H2ncezI86NorG
+         wrAWseYtHfxWGryE/asWzRiw8bohgI3b3IRIAch0x6RE4u4C1c5u3TX2ZAr8s1rreqrG
+         cET7sqTGbNafXUKexSsxYPGdCVE8O1ZtqH79YslvG1W5Jj+aDQcuBnB+eJ3VpzbGAQQ5
+         w85A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=kivIBO0juD/4ymQdgeIQKWbZZAbTDNdx8uwuKAi1JwQ=;
-        b=QZcA15QpnByXOFmDIGxFuVKpDlj6Xj9AZAN70BqUV0oFAlOTJdWZ5Hpv8mzsVZa83b
-         x2bgHlUrS6+1e3eOtreETyRX8yceVbibI9mha9XD5UJcgBymyWjlOXiMTGEvK3LPNRC/
-         nLwA9mlXBKhIQTfd6dmFDiBBXDBKlkxvYbnBe5650sBX9dAYimQ3orqb+no6MS805Nde
-         /eTtLA6M2tJM4cECmcUKWO8aGPUyX133nTKV1wjeEsZ0tZyJqP/Kz6m8LtGqBOWGOTAl
-         5zdiitri7MP902U9WWStW/0FQ5Em+/MXxbb6nbwWXJNq423Xr0wEbI8cR8XhhhzV4/3G
-         Xs6g==
-X-Gm-Message-State: ACrzQf3LwN59mz3RZKFqoQVoQs64TnQw0MOPw4BekutrGuBn1jNQlvCU
-        U7GYyAqWIuGDP9YQnTGrHbciOg==
-X-Google-Smtp-Source: AMsMyM7s6qfEd5T3ZhNN1ZdqiLbx+dvO8AHetJr7BtwPbvytPmPn9zEVC1j5F/16ObgOnVzQV5PJhg==
-X-Received: by 2002:a05:6512:3a8e:b0:49a:e5ed:d6aa with SMTP id q14-20020a0565123a8e00b0049ae5edd6aamr699253lfu.271.1663829347013;
-        Wed, 21 Sep 2022 23:49:07 -0700 (PDT)
+        bh=R4By1A4vsqkhsX1zQ9Pp9D5cDY7oXVIoxYX95+DT5PE=;
+        b=2V6bVxk34xCSegALZsHCzd1caFgXUPOjCApHJ7CJGDQw/Q0o7Q1Sro4kvcZkUFtJmY
+         K+Pywvq94Y8yPak7HyEc5yHo8M7UuxYBO+vgya3YUQEi32fDg/AB3j6w6gG+HG6gs8o3
+         /6MvJr2sjBXRzwg75n8VJ1bOrPC4eKd8bFHGd6IXI0fbGaH8T1Bx3MugO3Xor6uQdOGz
+         WuZGNp8P/7TiTEERSCA1UcLdDbPb5vaxhP/eTrClFiPwYn4EDM2iOX6lUyKhc2U4jrx3
+         tbjobl4587jLmoLhLlVC+U+VoM8vpEpcX+dEt5RpeCL+XeKkw4ZMeoKifzAX8/CfN5+c
+         Jshg==
+X-Gm-Message-State: ACrzQf2FN4j2Pmltr/eWJ3vnCAJHsUDSZvbFwqEYHDrbW5eP/sUx/pzl
+        0Xr3EWq23jri23s/kjh4zbSQNg==
+X-Google-Smtp-Source: AMsMyM44wyfp1zLUX8FNiyQhFVz7FEelPJEjwbKiOGbAcJVd0bCqI3GEzVjpnk4pR++aYr0d+UdfqA==
+X-Received: by 2002:a05:6512:3183:b0:498:fa29:35fe with SMTP id i3-20020a056512318300b00498fa2935femr645077lfe.523.1663829531533;
+        Wed, 21 Sep 2022 23:52:11 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b27-20020ac247fb000000b00492f5ad0ae7sm795809lfp.43.2022.09.21.23.49.06
+        by smtp.gmail.com with ESMTPSA id 1-20020ac25f01000000b0049f5358062dsm786705lfq.98.2022.09.21.23.52.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Sep 2022 23:49:06 -0700 (PDT)
-Message-ID: <1c33bf6d-b458-b2bb-3116-ed20b9cadc0e@linaro.org>
-Date:   Thu, 22 Sep 2022 08:49:05 +0200
+        Wed, 21 Sep 2022 23:52:11 -0700 (PDT)
+Message-ID: <6f727f9b-aa1a-3eba-87ec-3e36eeb15351@linaro.org>
+Date:   Thu, 22 Sep 2022 08:52:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v3] dt-bindings: arm: aspeed: adjust qcom,dc-scm-v1-bmc
- compatible after rename
+Subject: Re: [PATCH v4 2/2] ARM: dts: aspeed: Add AMD DaytonaX BMC
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Konstantin Aladyshev <aladyshev22@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, linux-aspeed@lists.ozlabs.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jae Hyun Yoo <quic_jaehyoo@quicinc.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org
-References: <20220811062953.5976-1-krzysztof.kozlowski@linaro.org>
+        Andrew Jeffery <andrew@aj.id.au>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>
+References: <20220920165404.14099-1-aladyshev22@gmail.com>
+ <20220921210950.10568-1-aladyshev22@gmail.com>
+ <20220921210950.10568-3-aladyshev22@gmail.com>
+ <CACSj6VWg+QfSYqeeUR5vtgJFLJg5us5-=D_Esj5NK-uvtH2B3g@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220811062953.5976-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CACSj6VWg+QfSYqeeUR5vtgJFLJg5us5-=D_Esj5NK-uvtH2B3g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2022 08:29, Krzysztof Kozlowski wrote:
-> The Nuvia DC-SCM BMC board compatible was renamed in commit
-> 7f058112873e ("ARM: dts: aspeed: nuvia: rename vendor nuvia to qcom"),
-> so adjust the bindings as well.
+On 21/09/2022 23:15, Konstantin Aladyshev wrote:
+> Sorry, I still have some questions, can you please help me?
 > 
-> Fixes: f77024c80147 ("dt-bindings: arm: aspeed: document board compatibles")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
-> ---
-> 
-> Changes since v2:
-> 1. Fix typo in commit msg.
-> 2. Add Acks.
-> 
-> Changes since v1:
-> 1. Use proper qcom compatible.
+> I work with kernel in the context of the OpenBMC project, and it is
+> not possible to run 'make dtbs_check' in the linux kernel devshell
+> (Yocto). So I've tried to download upstream kernel and have performed
+> the following commands to make the dtbs_check:
+> ```
+> $ make ARCH=arm aspeed_g5_defconfig && make ARCH=arm dtbs_check
+> ```
+> This gave me a ton of output regarding all the problems in all of the
+> aspeed boards. 'wc -l' says that the log file is about 7080 lines
+> long. Is it possible to get the output only for my target DTS? The
+> article that you've referred to
+> (https://www.kernel.org/doc/Documentation/devicetree/writing-schema.rst)
+> only have the information about how to run checks against one schema
+> (DT_SCHEMA_FILES), but it is not the same thing.
 
-Andrew, Joel,
+You can limit it per target. See slide 11:
+https://osseu2022.sched.com/event/15z0W
 
-Do you have any more comments on this patch? Do you plan to pick it up?
-5 weeks passed..
+This might miss some warnings, so better way is to:
+make ARCH=arm dtbs_check
+touch your-dts
+make ARCH=arm dtbs_check
+
+You will get only your errors.
+
+> 
+> I've manually tried to split the output regarding my DTS file, but
+> even so the output is overwhelming - https://pastebin.com/b92rnBt0. I
+> just don't understand if the mentioned things are about the common
+> "aspeed-g5.dtsi" file that I should ignore or the things regarding
+> errors in my submitted DTS file. Can you give me some advice on that?
+
+Yes, you can ignore errors from dtsi.
 
 Best regards,
 Krzysztof
