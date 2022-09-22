@@ -2,73 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9EAF5E5F88
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 12:13:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499A75E5FB0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 12:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231310AbiIVKMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 06:12:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52782 "EHLO
+        id S230329AbiIVKTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 06:19:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231274AbiIVKMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 06:12:52 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581CE17E21;
-        Thu, 22 Sep 2022 03:12:50 -0700 (PDT)
-Received: (Authenticated sender: foss@0leil.net)
-        by mail.gandi.net (Postfix) with ESMTPSA id 8625A4000F;
-        Thu, 22 Sep 2022 10:12:46 +0000 (UTC)
-From:   Quentin Schulz <foss+kernel@0leil.net>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, dmitry.torokhov@gmail.com,
-        klaus.goger@theobroma-systems.com, foss+kernel@0leil.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Subject: [PATCH 3/3] =?UTF-8?q?dt-bindings:=20arm:=20rockchip:=20add=20The?= =?UTF-8?q?obroma=20Systems=20PX30-=C2=B5Q7=20(Ringneck)=20with=20Haikou?=
-Date:   Thu, 22 Sep 2022 12:12:11 +0200
-Message-Id: <20220922101211.3215888-4-foss+kernel@0leil.net>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220922101211.3215888-1-foss+kernel@0leil.net>
-References: <20220922101211.3215888-1-foss+kernel@0leil.net>
+        with ESMTP id S229743AbiIVKTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 06:19:16 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2883EDCCE4
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 03:19:12 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id o5so6464862wms.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 03:19:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=Ju6BSMep2KJyGnXzsed5+vjZslhWJvx3S4Wq5/v4xCw=;
+        b=SUzZ8/4LQ4z00agprzqQeqMQLmjUXi2wsNvMkS8ormVPl6wY8bqlkFmPrSOEZLelmN
+         Qz7hfA5Me6aZW1tPo3cjvgDzPdn94oBcjCv3CCyOO8iVWqve6ksrMFi4slrgPXRK+1PZ
+         +u3ITed68JlvQLhmeUkCjPh4qYLfkzNsyk8BZyWNo6qii9435XtirTue6McBo9COeZTe
+         XAG1B0zphCcLCRCXNmFUYjWKppoQ3zdqPcXpnd3etpE8iY3PzVE1lGn7m0xRAox5B1rj
+         zOep1puhY+R4piUYjcxzwW9UeyQqtnbtu4U6+scj0oED1JQk4uofgsAggHeNDVcV3l9d
+         Dohg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=Ju6BSMep2KJyGnXzsed5+vjZslhWJvx3S4Wq5/v4xCw=;
+        b=U9rbQe71vVIYtL9lTdesnzXZqnmwOyl3mhXAOpdIJkfWGnu6ED7PV//OvxDxws+QFc
+         b62X47r/Q0p0NWhpBuWGqKluOkb7/PvGLinv93TxVrNqd046bl9or7LNhqwyll+xsHR4
+         KQXgnu40FsiF+GJuihTgozBs7P51/pauFANitzccuvpE6LQ9PEgL3IvdftsvyP3+NJ9R
+         INvHwyFx3z1B1cDIqz/1zHslsl48/L8ZMFfmq5zGr/ygb32sjrFdhZxtohPFiPqiQFjU
+         ZM/FGhzZNFOHSGBAhjOj9gy0cRNtBe4KK5WKM+WMl8HKi70JneQTy/4j96JplSZdLwYx
+         6EbQ==
+X-Gm-Message-State: ACrzQf36MQxZBpdx3VNh0kVVApmaOoDRfZThsSTZJUl2mLAUivZ9YyP9
+        pdaVxWA5yxHa6og6j9mxLCoroQ==
+X-Google-Smtp-Source: AMsMyM4OscS0C1jykeo4QICxF2cHBCMYygPB7nFReh7fcMsWjdX9Dluta8CohpeAWrA95czQeAow/w==
+X-Received: by 2002:a05:600c:42d4:b0:3b3:3de1:7564 with SMTP id j20-20020a05600c42d400b003b33de17564mr1831131wme.152.1663841950631;
+        Thu, 22 Sep 2022 03:19:10 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id c17-20020a7bc851000000b003b47575d304sm6500817wml.32.2022.09.22.03.19.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Sep 2022 03:19:10 -0700 (PDT)
+Date:   Thu, 22 Sep 2022 11:19:08 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>, Lee Jones <lee@kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: regulator: Add bindings for Unisoc's
+ SC2730 regulator
+Message-ID: <Yyw2nAAjN6NxmS09@google.com>
+References: <20211008031953.339461-1-zhang.lyra@gmail.com>
+ <20211008031953.339461-3-zhang.lyra@gmail.com>
+ <YY5wPh0rwRvFjSRG@sirena.org.uk>
+ <CAAfSe-uA3iowafC25zRqoTSaub1PbOzUvQgukLm=szEge_abvw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAAfSe-uA3iowafC25zRqoTSaub1PbOzUvQgukLm=szEge_abvw@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+On Thu, 22 Sep 2022, Chunyan Zhang wrote:
 
-Add entry for the Theobroma Systems PX30-µQ7 (Ringneck) with Haikou
-devkit.
+> Hi Mark,
+> 
+> Sorry for the late response.
+> [1] is the v1 on which we had some discussion. I hope that can help
+> recall the issue below.
+> 
+> On Fri, 12 Nov 2021 at 21:46, Mark Brown <broonie@kernel.org> wrote:
+> >
+> > On Fri, Oct 08, 2021 at 11:19:53AM +0800, Chunyan Zhang wrote:
+> >
+> > > +properties:
+> > > +  compatible:
+> > > +    const: sprd,sc2730-regulator
+> >
+> > I still don't understand why this MFD subfunction for a specific device
+> > is a separate binding with a separate compatible string, the issues I
+> > mentioned previously with this just encoding current Linux internals
+> > into the DT rather than describing the device still apply.
+> 
+> I understand your point. But like I described previously [1], if we
+> still use the current solution (i.e. use devm_of_platform_populate()
+> to register MFD subdevices), a compatible string is required. I'm open
+> to switching to other solutions, do you have some suggestions?
 
-Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
----
- Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+Many IPs encompassing multiple functions are described that way in
+DT.  I don't have the details for *this* device to hand, so my
+comments here aren't specific to this use-case, but describing each
+function individually does describe the H/W accurately, which is all
+DT calls for.
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 7811ba64149c..f2aa5ddb76d2 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -658,6 +658,11 @@ properties:
-           - const: rockchip,rv1108-evb
-           - const: rockchip,rv1108
- 
-+      - description: Theobroma Systems PX30-µQ7 with Haikou baseboard
-+        items:
-+          - const: tsd,px30-ringneck-haikou
-+          - const: rockchip,px30
-+
-       - description: Theobroma Systems RK3368-uQ7 with Haikou baseboard
-         items:
-           - const: tsd,rk3368-lion-haikou
+Can you imagine describing an SoC, which can be considered as a huge
+MFD, with only a single node?
+
+Does the regulator functionality have it's own bank of registers?
+
 -- 
-2.37.3
-
+DEPRECATED: Please use lee@kernel.org
