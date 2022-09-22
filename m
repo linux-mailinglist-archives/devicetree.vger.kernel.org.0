@@ -2,95 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 750E55E6EF0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 23:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7751F5E6F47
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 00:03:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbiIVV6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 17:58:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35334 "EHLO
+        id S229595AbiIVWDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 18:03:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiIVV6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 17:58:13 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E153109779
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 14:58:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=myXRgbifa/hnzUH8EJNQ61gteUFK
-        O52ECTqp4X3tL+w=; b=l1EbvM2BeA6s7XlinyMbFqPlhhBc45ErLA1LQ+9sW3GA
-        vZwcpHNdvvLVkOx3BBFxFp1LPiBfOsiOyiwG3VNpdnarrP2NwvY+Kd8yArlMx+iG
-        /EbDqpaovt6q+clzdWQ8ZJf0dmr8KDG/Pw/0V7cdvZTrj3tYjE7itP0sBAuKBDs=
-Received: (qmail 1793391 invoked from network); 22 Sep 2022 23:58:10 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Sep 2022 23:58:10 +0200
-X-UD-Smtp-Session: l3s3148p1@npk0KEvpcOQgAwDtxwncAPgJb5TsabMI
-Date:   Thu, 22 Sep 2022 23:58:09 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        with ESMTP id S229706AbiIVWDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 18:03:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3446F8C01;
+        Thu, 22 Sep 2022 15:03:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A3238B8361C;
+        Thu, 22 Sep 2022 22:03:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AAF0C433D6;
+        Thu, 22 Sep 2022 22:03:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663884195;
+        bh=nT5iFuX8ZK8R+77l1ynrssOj6kSp85P9Cz0rwUSNG2o=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ImgIa4LELFyaJ9GPe9yDK4qZYwHWk+q4aX65Fk/UwZMMfEOanwB9f6N6OUeIWWXyz
+         45STjCSv0vzjVc3YfsjevMGRG5og6+OE4PVPHdV05sMP+4aOrZyJ3pwwiVzcc1RJgU
+         ByOCmwGlJUcAqPcGKJh5LHCoM4jVZUGSAfApviZ5pmqUXf9laAreQiNvEvZZHTektB
+         aLans1rs6BenJC35tm0HnDIItlLe0TVToq5nQ/OltK7vXXQfLqrTePVnQm9NBYePf2
+         DnZMaYzQX8VnJ+eOkgd+b3dpLUbTcWJAHSinxipb4mGemBWKQhy5ylVPl4WTiEApxD
+         4c0iuLzgp7I5g==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     jh80.chung@samsung.com
+Cc:     dinguyen@kernel.org, ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: timer: renesas,tmu: Add r8a779f0 support
-Message-ID: <YyzacQv61ga4+WkC@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220830104921.7532-1-wsa+renesas@sang-engineering.com>
- <YyzQFheOv2Lg0t6F@shikoro>
- <8672aa05-0269-f8c3-50d3-e23d3793baf4@linaro.org>
+Subject: [PATCHv2 0/3] mmc: socfpga: add method to configure clk-phase
+Date:   Thu, 22 Sep 2022 17:03:05 -0500
+Message-Id: <20220922220308.609422-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8l5HS+T+m8MEHXhc"
-Content-Disposition: inline
-In-Reply-To: <8672aa05-0269-f8c3-50d3-e23d3793baf4@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---8l5HS+T+m8MEHXhc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This is version 2 of the patchset to configure the clk-phase for the
+SDMMC controller on SoCFPGA platforms.
 
+Updates from v1:
+- Documented "altr,sysmgr-syscon" binding
+- Cleaned up dw_mci_socfpga_priv_init() to get the "clk-phase-sd-hs"
+  from the DTS. Ulf Hanson recommended using mmc_of_parse_clk_phase() in
+  this function, however, I found that using mmc_of_parse_clk_phase() is a
+  bit more complicated than just reading the "clk-phase-sd-hs" from the
+  DTS. Here are the reasons:
+ 	- The call to mmc_of_parse_clk_phase() takes the struct mmc_host
+ 	  *host structure, and in the dw_mmc driver, and this structure
+	  does not get populated until at the very end of the dw_mci_probe
+	  function, after dw_mci_init_slot() gets called.
+	- Also, in order to correctly extract the
+	  phase_map.phase[timing], we need to wait until set_ios() is
+	  called in order to get the host->timing parameter so it can be used for
+	  the clock phase array.
 
-> https://git.linaro.org/people/daniel.lezcano/linux.git/commit/?h=timers/drivers/next&id=fa7fc5243f9e7d64ea7e73c247218f22499c3479
+Dinh Nguyen (3):
+  dt-bindings: mmc: synopsys-dw-mshc: document "altr,sysmgr-syscon"
+  arm64: dts: socfpga: Add clk-phase-sd-hs property to the sdmmc node
+  mmc: dw_mmc-pltfm: socfpga: add method to configure clk-phase
 
-Cool, thanks a lot!
+ .../bindings/mmc/synopsys-dw-mshc.yaml        |  8 ++++
+ .../boot/dts/altera/socfpga_stratix10.dtsi    |  1 +
+ .../dts/altera/socfpga_stratix10_socdk.dts    |  1 +
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  1 +
+ .../boot/dts/intel/socfpga_agilex_socdk.dts   |  1 +
+ .../boot/dts/intel/socfpga_n5x_socdk.dts      |  1 +
+ drivers/mmc/host/dw_mmc-pltfm.c               | 41 ++++++++++++++++++-
+ 7 files changed, 53 insertions(+), 1 deletion(-)
 
+-- 
+2.25.1
 
---8l5HS+T+m8MEHXhc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMs2m4ACgkQFA3kzBSg
-KbaihBAAjgxWDd9NSOsMLC2ef7JHXQGlaqy5ApHKsQjmBadbx1G1Uw+jQseHRuaM
-tmZ600zwup9I74n0rArVb1CwxqYbufKA7HcAUfG8fLLoCj9SSTU+A364t8BkGz4D
-PBbepiELSqw1ORM8s6zfTbL9VtaIgjUuUlSTNzZJzyLe553kyXRUS5n7NVnGHVYr
-Ens7exvsDQxyUhVvsVVGoHoxzsZYZVJp0BBOPHn8sMjWt2JXGgb91l8wXrv9sY/s
-V/yqi85zGE8EiYYPFpG45yyZBywiEh4VcM94b1/ImBV8EZVfHjEemgzLcYwZFZDI
-Q7EFXOlD92LUN5ypoFIP0WDnOPbC4GhyXl0iNoY1n5nff+Ikv3oxI1ge2n0fMmEs
-EmyliHNBL31FedXaxJbN7asRzeglyE/nBP4LYmxtZka4QDj4Qc6ckFZ9LjdPsE0u
-/urtNgvoS4EGfvreqE0UjEPByPD5DBq2kF4xnfc5Z7PTJDpn2AvYaMCKKIn2HWE4
-d69AmmiKRDsgdbOgFz2LgKrJCfEp8DcSYZVorizmIyViGz03lKXgAGAhOFscbOnX
-tdoGRrZYxH+xCRRLG+5o+cfoKmLNPT+lr2/AE3ygl4Hlu2VhHJk15e53hm1AGA0I
-BNTozGFgSOtT12ic39KPPSTVlXEExHbBGmDwKd23UI2IZCUOGQk=
-=8NWN
------END PGP SIGNATURE-----
-
---8l5HS+T+m8MEHXhc--
