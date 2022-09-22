@@ -2,46 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E1415E57B1
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 03:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D9095E57B3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 03:02:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbiIVBAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 21:00:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45032 "EHLO
+        id S229704AbiIVBB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 21:01:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbiIVBAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 21:00:48 -0400
+        with ESMTP id S229471AbiIVBB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 21:01:56 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95404832C5;
-        Wed, 21 Sep 2022 18:00:46 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3417686710;
+        Wed, 21 Sep 2022 18:01:56 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4163DB82573;
-        Thu, 22 Sep 2022 01:00:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFDBEC433C1;
-        Thu, 22 Sep 2022 01:00:43 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E1008B8337F;
+        Thu, 22 Sep 2022 01:01:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D280C433D6;
+        Thu, 22 Sep 2022 01:01:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663808444;
-        bh=lrVfXnt54IohalTXJ56+6lp4MX9EPl3Ech4umzOq22g=;
+        s=k20201202; t=1663808513;
+        bh=mt6Efzdk+la/shXr+HkzyhobECVNYxpLZbiK6qvyBDE=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=TIt68Gl9Sv7pXI0EwOkLVQMTKM+Xyo3B9TBcIVJMpMXzldNX7toKB+6S6+SP2VACE
-         sDqCB7yQ3db/YXJDufmnjfnn5oBrM4Av1TzdbBWoasG9CnpgbUB9olFJgVVtlTLmTW
-         X6qXMCmkDsP9HJyiWbyC4IDAzrLtZe1bACjU3YA5zFJ8JumX+OmGt0nlr3jSrX+iEX
-         OFzGfzkMrGxqQq3dRjxS/rTR1PxzZA/Qt2OrKbZOCQhDd8GSh2fTPe07+i2edacv9p
-         IaJZKpqZ34wKJDXm1Ckzo45OXlcmzYw9tB4EplmZUEFT9dajJV+eLaFKB8qLNHuPHp
-         VLo1D/zAmTcjw==
-Date:   Wed, 21 Sep 2022 18:00:42 -0700
+        b=Z1lnH4+zrROmy34woIUSIwutdzO5u3p06eqOflbF0mlCH3DpRXjNIRNK49zV4yMKh
+         MIsSsK82iSCmCjMuJ9lY7pdmHF4F8XAc+3fd39aj2Z1XGizr0Ly7s/rXkjeFsVunkk
+         uiVdeIdd+kUyrWbEXo38qw1CmdGzJhql0f1+jfeQjxDsBLQ/V3Y5wGCmHVGi2CMYSY
+         XR73fLqmQeP5gg1YFbH6WtxQpx11Ce5QZ18ijstMParmdlwmkqoRjygQjXfP+uSGnA
+         BI0r6XmtSOn6F7kEYDqNNCx290YZ4o0x0JcojfpyVk29tn4GUVkxd8HPTSFWqtApnT
+         i72PCTbOmSTJA==
+Date:   Wed, 21 Sep 2022 18:01:52 -0700
 From:   Jakub Kicinski <kuba@kernel.org>
 To:     Gerhard Engleder <gerhard@engleder-embedded.com>
 Cc:     davem@davemloft.net, robh+dt@kernel.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 5/7] tsnep: Add EtherType RX flow
- classification support
-Message-ID: <20220921180042.440a8b65@kernel.org>
-In-Reply-To: <20220915203638.42917-6-gerhard@engleder-embedded.com>
+Subject: Re: [PATCH net-next 7/7] tsnep: Rework RX buffer allocation
+Message-ID: <20220921180152.002dea73@kernel.org>
+In-Reply-To: <20220915203638.42917-8-gerhard@engleder-embedded.com>
 References: <20220915203638.42917-1-gerhard@engleder-embedded.com>
-        <20220915203638.42917-6-gerhard@engleder-embedded.com>
+        <20220915203638.42917-8-gerhard@engleder-embedded.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
@@ -54,24 +53,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Sep 2022 22:36:35 +0200 Gerhard Engleder wrote:
-> +static int tsnep_add_rule(struct tsnep_adapter *adapter,
-> +			  struct tsnep_rxnfc_rule *rule)
-> +{
-> +	struct tsnep_rxnfc_rule *pred, *cur;
-> +
-> +	tsnep_enable_rule(adapter, rule);
-> +
-> +	pred = NULL;
-> +	list_for_each_entry(cur, &adapter->rxnfc_rules, list) {
-> +		if (cur->location >= rule->location)
-> +			break;
-> +		pred = cur;
-> +	}
-> +
-> +	list_add(&rule->list, pred ? &pred->list : &adapter->rxnfc_rules);
-> +	adapter->rxnfc_count++;
-> +
-> +	return 0;
+On Thu, 15 Sep 2022 22:36:37 +0200 Gerhard Engleder wrote:
+> Try to refill RX queue continously instead of dropping frames if
+> allocation fails. This seems to be the more common pattern for network
+> drivers and makes future XDP support simpler.
 
-This never fails, perhaps the return code is unnecessary
+Is there anything preventing the queue from becoming completely empty
+and potentially never getting refilled?
+
+The lazy refill usually comes with some form of a watchdog / periodic
+depletion check.
