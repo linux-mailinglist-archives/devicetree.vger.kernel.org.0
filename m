@@ -2,103 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E0C5E6C8A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 22:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFF775E6D5E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 22:50:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232681AbiIVUBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 16:01:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37074 "EHLO
+        id S230005AbiIVUu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 16:50:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232699AbiIVUBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 16:01:16 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1855D33E1
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 13:00:20 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id f9so16471443lfr.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 13:00:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=bCiwncdJqpgb7P5S0TpB+XoxsRbwUn8DYxI3YMSkMYo=;
-        b=Oz3qvEbImSq37OahCNhMXoxa17l4RsmfMka4I2qV64tzP8WMpgSsGh72D0pIjj8qSF
-         epTs/qEwjjLK6Zqqm6KlRzSPs+FiADmskRniIqzPqOfJGDDwMlqPf6obSYCyJcjjFHTi
-         VD87fkCuSSYgU7DuWaBoNUB215GKhzk1voxijgADgLZu8KHTS0lxNLsGcMl/XbnjY4PD
-         uSbi5wxR2U3Qdjn+TN0c/lxFtSL1lGkYi335LE/hFEwA+ZnYscH+io8O7fqBl7SWTO08
-         c+HpyZdId6Qiptr4HUADDosiWM1leoJ5N+bnJ9J81/4d382SPX2f1oiqwG5p5d5PJ7sY
-         czeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=bCiwncdJqpgb7P5S0TpB+XoxsRbwUn8DYxI3YMSkMYo=;
-        b=gidtvwGdv50Bnb359VtqV5ic9ElniTBjAa5xRu2cjlAGewSvC5eZyqCWJV2Qho9uDo
-         QHQLtb8TBsiY0mYj7f6A7uieKuJ6pAGeCv/B0w7SQG66igP4EgoeukAuT4ImTlpphGV5
-         RZinO+bTumZBxPMgGiVCS8xqP27dVgQ2NURhbt5H2BexiWks0pRZQl8H2LfdDnQPeGVa
-         l4lfOGBJt8EdPIBGy8SYhYfqZ8Xd/scUkfwQr1/kumUru6b+w3U+COkevFtOBtrrfu/2
-         3IJBYqGAZfHC+kvHHpKE0bhsSJ4Zs00MBaYx+BPWE07pfyVBmQJplTRRReYb31wzDx5B
-         5xgw==
-X-Gm-Message-State: ACrzQf2lYeOWyhXDUGYe9u63j72wmPhx1A3ZjW4POFSfAc9wNnWQ7Lpg
-        472iJtaA7Gg9++8oCm0Jzhsfrg==
-X-Google-Smtp-Source: AMsMyM6kYBsTTyEGQHfEM6Eu0F5XL/gHvYhJKxDc+Ge+NexsZ7VIKkmMofK72J3j3lDrnsrv3KGXRA==
-X-Received: by 2002:a05:6512:6c9:b0:49a:51d4:d517 with SMTP id u9-20020a05651206c900b0049a51d4d517mr1972732lff.329.1663876818804;
-        Thu, 22 Sep 2022 13:00:18 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id j16-20020ac253b0000000b004948378080csm1074393lfh.290.2022.09.22.13.00.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Sep 2022 13:00:17 -0700 (PDT)
-Message-ID: <a34d9ee8-8bf8-3158-7fe6-cbde513aa1a7@linaro.org>
-Date:   Thu, 22 Sep 2022 22:00:16 +0200
+        with ESMTP id S230097AbiIVUu1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 16:50:27 -0400
+Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA308B6D18
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 13:50:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:MIME-Version:
+        References:In-Reply-To:Message-Id:Date:Cc:To:From:Sender:Reply-To:
+        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=yVy+nR6iXhD6u+bbxJixDExEhHFsLTq2CFI0hZ7hb5w=; b=cpPjoiN8iUl4ZISRGpUPapQbYb
+        Ti2jVM3R0mM8YAPGi1PIx7TL80RAkQvuhnSGSYcHcJ8G3VQZp+oXAbFHdoQ0keFWKnMek5QtZAjyi
+        4ihtse90ir/SPzHlzkq7Eh2kgyo7iBxZyY+0rQtpnudYk7JufE3HzUHXFiDeMAnfewNZLCCS0OXUX
+        lTFMB5JL7+sWu3cZNHdmi5NvL3BqVuahSSAdn4xAsoChegJGVHuQiraP9V09Y+6oqCZxGkv4Dg3of
+        NERZHzsQNFosHYyLSi4TFiUNls/oN3e30slne0nAI4zSFZyAlMuhNDQ6XnByjmLGW0s93W/GYSyOn
+        kQuDDusQ==;
+Received: from a88-85-156-139.mpynet.fi ([88.85.156.139]:50261 helo=localhost)
+        by mailserv1.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maukka@ext.kapsi.fi>)
+        id 1obSlS-008pZ9-OO; Thu, 22 Sep 2022 23:25:44 +0300
+Received: by localhost (sSMTP sendmail emulation); Thu, 22 Sep 2022 23:25:39 +0300
+From:   Mauri Sandberg <maukka@ext.kapsi.fi>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        arnd@arndb.de, olof@lixom.net, andrew@lunn.ch,
+        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
+        linux@armlinux.org.uk
+Cc:     pali@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mauri Sandberg <maukka@ext.kapsi.fi>
+Date:   Thu, 22 Sep 2022 23:24:55 +0300
+Message-Id: <20220922202458.7592-1-maukka@ext.kapsi.fi>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220427162123.110458-1-maukka@ext.kapsi.fi>
+References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v7] iio: adc: mcp3911: add support to set PGA
-To:     Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220922194639.1118971-1-marcus.folkesson@gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220922194639.1118971-1-marcus.folkesson@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 88.85.156.139
+X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: [PATCH v2 0/3] ARM: orion5x: add D-Link DNS323 based on device treee
+X-SA-Exim-Version: 4.2.1 (built Sat, 13 Feb 2021 17:57:42 +0000)
+X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 21:46, Marcus Folkesson wrote:
-> Add support for setting the Programmable Gain Amplifiers by adjust the
-> scale value.
-> 
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> ---
-> 
-> Notes:
->     Based on
->     Link: https://lore.kernel.org/all/20220815061625.35568-1-marcus.folkesson@gmail.com/
->     
->     But with tmp0, tmp1 and tmp2 removed as those are not needed.
->     Link: https://lore.kernel.org/all/202209220648.Wb6EtPat-lkp@intel.com/
-> 
->  drivers/iio/adc/mcp3911.c | 104 +++++++++++++++++++++++++++++---------
+Hello all,
 
-No need to cc-us. Use scripts/get_maintainers.pl.
+This is the second iteration of my series to add D-Link DNS323 devices,
+which are based on a device tree. It adds the bindings, the device tree
+source files and a new board file to take care of initialising what little
+remains that cannot be done via device tree. The initialisation of MAC address
+will be neater once method for passing ASCII string based address is agreed on.
 
-Best regards,
-Krzysztof
+Functionally this series has a dependency to Pali's mvebu pci series, which
+adds support for Orion PCIe and which should be scheduled for a merge window
+any time soon:
+https://lore.kernel.org/linux-pci/20220905192310.22786-1-pali@kernel.org/
 
+What currently is tested and works in rev A1
+ - leds
+ - keys
+ - fan
+ - temperature sensor
+ - shutdown
+ - reboot
+ - mtd partitions
+ - ethernet
+ - PCIe and with that sata_mv
+
+And the variants B1 and C1 need testing still.
+
+Thanks,
+Mauri
+
+Mauri Sandberg (3):
+  dt-bindings: arm: add DT binding for D-Link DNS-323
+  ARM: dts: orion5x: Add D-Link DNS-323 Device Tree
+  ARM: orion5x: Add D-Link DNS-323 based on Device Tree
+
+ .../bindings/arm/marvell/marvell,orion5x.txt  |  12 +
+ arch/arm/boot/dts/Makefile                    |   3 +
+ arch/arm/boot/dts/orion5x-dlink-dns323.dtsi   | 215 ++++++++++++++++++
+ arch/arm/boot/dts/orion5x-dlink-dns323a1.dts  |  44 ++++
+ arch/arm/boot/dts/orion5x-dlink-dns323b1.dts  |  39 ++++
+ arch/arm/boot/dts/orion5x-dlink-dns323c1.dts  |  81 +++++++
+ arch/arm/mach-orion5x/Kconfig                 |   7 +
+ arch/arm/mach-orion5x/Makefile                |   1 +
+ arch/arm/mach-orion5x/board-dns323.c          | 208 +++++++++++++++++
+ arch/arm/mach-orion5x/board-dt.c              |   3 +
+ arch/arm/mach-orion5x/common.h                |   6 +
+ 11 files changed, 619 insertions(+)
+ create mode 100644 arch/arm/boot/dts/orion5x-dlink-dns323.dtsi
+ create mode 100644 arch/arm/boot/dts/orion5x-dlink-dns323a1.dts
+ create mode 100644 arch/arm/boot/dts/orion5x-dlink-dns323b1.dts
+ create mode 100644 arch/arm/boot/dts/orion5x-dlink-dns323c1.dts
+ create mode 100644 arch/arm/mach-orion5x/board-dns323.c
+
+
+base-commit: c69cf88cda5faca0e411babb67ac0d8bfd8b4646
+--
+2.25.1
