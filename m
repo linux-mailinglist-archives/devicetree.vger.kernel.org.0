@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E737C5E586C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 04:15:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8271B5E588E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 04:27:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229738AbiIVCPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Sep 2022 22:15:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44902 "EHLO
+        id S229907AbiIVC1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Sep 2022 22:27:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbiIVCPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 22:15:38 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B8D24D81F;
-        Wed, 21 Sep 2022 19:15:29 -0700 (PDT)
-X-UUID: 9b8d627815ab4ea886bbf3e4b68af9d5-20220922
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=jSyECJmHSA/82hGI9rjL6xr8zQtVBlH0c/3uRbHeI0I=;
-        b=p+lf44+Lio1fo5R0xsSI1aO1zk+It3e1WbfJLnCdI6QJBcdjStsbwMdGKuzdWkvAOgWy6YUE3NqpH58xbWFd+r3h6LSehecE9dYYRe/Zv26JQGpu1+6S2aRVXvjh3WXJjNthAT7sbpkquuGHNPhBuye7sVc90Vzg3/HAUENerKQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:0a4cf8f8-7e6b-4b1d-b486-22acb43fa813,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:97a739f7-6e85-48d9-afd8-0504bbfe04cb,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 9b8d627815ab4ea886bbf3e4b68af9d5-20220922
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <jianguo.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1125236732; Thu, 22 Sep 2022 10:15:24 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 22 Sep 2022 10:15:23 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 22 Sep 2022 10:15:22 +0800
-Message-ID: <d231f64e494f4badf8bbe23130b25594376c9882.camel@mediatek.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: net: snps,dwmac: add clk_csr
- property
-From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 22 Sep 2022 10:15:22 +0800
-In-Reply-To: <bd460cfd-7114-b200-ab99-16fa3e2cff50@linaro.org>
-References: <20220921070721.19516-1-jianguo.zhang@mediatek.com>
-         <20220921070721.19516-3-jianguo.zhang@mediatek.com>
-         <bd460cfd-7114-b200-ab99-16fa3e2cff50@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229779AbiIVC1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Sep 2022 22:27:49 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC008ABF27
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 19:27:47 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id h28so5362438qka.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Sep 2022 19:27:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=ty4PinqrzTrMwfXfFSwnwSe5AmVNGOOjp1shLYbbf04=;
+        b=Iyhr/gkp1eLOUDpvKWEfkIYzrC45QnnjQGpAKyfT5B5ol/KBYKsO9p8gZyI4X82wps
+         HP9Q2D/Brw9YCCUdNo0QTwyFj4gEkIpTMXduYrIz0xg9yXJusw5DcCcbBckUn+F39+jq
+         ryi1rfX4I2iY+YhVZ4baeWJSHfJFjWK3XyhOe+VltfnIUuGjizoIYz0tRQ3ggebEBzIp
+         ccbRug/n5fNDSlq2WSLBu7c0x1SxjPzU6vCeqefzWjjlMTMaK3tPlhA/cTvMCuSBAUEJ
+         RQKOz8/sdXlN0TRuHvP2Xl6hbv5ECtJobb74J4B7xb4nQwxjLoGZ8e2+4f6bTbcUCKXD
+         QpBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=ty4PinqrzTrMwfXfFSwnwSe5AmVNGOOjp1shLYbbf04=;
+        b=eQWW/26ze/xyy+ciTuSvqUN0kGhbovQe4CI+JgTGSB1zPRdRGII1O3PsHzmO0L3OaN
+         FOnqFBBmJ1IXhSaS+ftUpt7wJCGg9uxGF65iOsvI9Lmy42b74RAy1qMQrwXDfk3sUGSr
+         PgjT4Ya8iDavEUSx9qFQZYMMmNJw3YxRkGrVoAAljepmDmS3h8B6R99HS6mGkkFaX7cd
+         ykTNWYLsctrDGQ89AtVpdBZAxTX5k2yyBkBJuEM5g1+2OaE1xhhS7bdDKH5w3uTR2VEH
+         froC2vjLAT5Qre7oYBJ/S2lTHEXfXFM84+zHZ+aTmqrxH7YDd0NEw53TjRiWQCmHE+0e
+         Jd5g==
+X-Gm-Message-State: ACrzQf1NaWWxx93rN+uLPzuBZZ2e1BhQcWWIDyM7iQKCMgbK+9YLyGpI
+        Sv5hBXXv3hhjXVY0iBe69olccg==
+X-Google-Smtp-Source: AMsMyM6/mPZWzaV368lIzEXjCUOL5beXwuLjqbU4xesZ3BwBSr8blaMdZAs73XFI/XO8nFukxJ+hlw==
+X-Received: by 2002:a05:620a:2683:b0:6cf:3a7e:e006 with SMTP id c3-20020a05620a268300b006cf3a7ee006mr746948qkp.474.1663813666851;
+        Wed, 21 Sep 2022 19:27:46 -0700 (PDT)
+Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
+        by smtp.gmail.com with ESMTPSA id x17-20020a05620a449100b006b9264191b5sm3114533qkp.32.2022.09.21.19.27.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Sep 2022 19:27:46 -0700 (PDT)
+Date:   Wed, 21 Sep 2022 22:27:44 -0400
+From:   William Breathitt Gray <william.gray@linaro.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mranostay@ti.com
+Subject: Re: [PATCH v7 2/4] Documentation: ABI: sysfs-bus-counter: add
+ frequency & num_overflows items
+Message-ID: <YyvIINj7RFy6/LM7@fedora>
+References: <20220921100627.124085-1-jpanis@baylibre.com>
+ <20220921100627.124085-3-jpanis@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY,URIBL_CSS autolearn=no autolearn_force=no
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="NhJALy4zGia5d0tl"
+Content-Disposition: inline
+In-Reply-To: <20220921100627.124085-3-jpanis@baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,48 +73,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Krzysztof,
 
-	Thanks for your comment.
+--NhJALy4zGia5d0tl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2022-09-21 at 10:24 +0200, Krzysztof Kozlowski wrote:
-> On 21/09/2022 09:07, Jianguo Zhang wrote:
-> > Add clk_csr property for snps,dwmac
-> > 
-> > Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > index 491597c02edf..8cff30a8125d 100644
-> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > @@ -288,6 +288,11 @@ properties:
-> >        is supported. For example, this is used in case of SGMII and
-> >        MAC2MAC connection.
-> >  
-> > +  clk_csr:
-> 
-> No underscores in node names. Missing vendor prefix.
-> 
-We will remane the property name 'clk_csr' as 'snps,clk-csr' and
-another driver patch is needed to align the name used in driver with
-the new name. 
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Frequency division factor for MDC clock.
-> 
-> Can't common clock framework do the job? What is the MDC clock?
-> 
-MDC clock is used for ethernet MAC accessing PHY register by MDIO bus.
-There is frequency divider designed in ethernet internal HW to ensure
-that ethernet can get correct frequency of MDC colck and the vlaue of
-frequency divider can be got from DTS.
-> Best regards,
-> Krzysztof
+On Wed, Sep 21, 2022 at 12:06:25PM +0200, Julien Panis wrote:
+> This commit adds frequency and num_overflows items to counter ABI file
+> (e.g. for TI ECAP hardware used in capture operating mode).
+>=20
+> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> ---
+>  Documentation/ABI/testing/sysfs-bus-counter | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>=20
+> diff --git a/Documentation/ABI/testing/sysfs-bus-counter b/Documentation/=
+ABI/testing/sysfs-bus-counter
+> index 30b6e1faa6f6..aea0adc3938f 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-counter
+> +++ b/Documentation/ABI/testing/sysfs-bus-counter
+> @@ -209,6 +209,12 @@ Description:
+>  		both edges:
+>  			Any state transition.
+> =20
+> +What:		/sys/bus/counter/devices/counterX/countY/num_overflows
+> +KernelVersion:	6.0
+> +Contact:	jpanis@baylibre.com
+> +Description:
+> +		This attribute indicates the number of overflows since count Y start.
+> +
 
-BRS
-Jianguo
+Update KernelVersion to "6.1" because that is the next merge target.
+Change Contact to "linux-iio@vger.kernel.org" since this ABI is
+available for all Counter drivers.
 
+Since num_overflows can be reset, replace the "since count Y start"
+phrase with "of Count Y" instead.
+
+>  What:		/sys/bus/counter/devices/counterX/countY/ceiling_component_id
+>  What:		/sys/bus/counter/devices/counterX/countY/floor_component_id
+>  What:		/sys/bus/counter/devices/counterX/countY/count_mode_component_id
+> @@ -219,11 +225,13 @@ What:		/sys/bus/counter/devices/counterX/countY/pre=
+scaler_component_id
+>  What:		/sys/bus/counter/devices/counterX/countY/preset_component_id
+>  What:		/sys/bus/counter/devices/counterX/countY/preset_enable_component_=
+id
+>  What:		/sys/bus/counter/devices/counterX/countY/signalZ_action_component=
+_id
+> +What:		/sys/bus/counter/devices/counterX/countY/num_overflows_component_=
+id
+>  What:		/sys/bus/counter/devices/counterX/signalY/cable_fault_component_id
+>  What:		/sys/bus/counter/devices/counterX/signalY/cable_fault_enable_comp=
+onent_id
+>  What:		/sys/bus/counter/devices/counterX/signalY/filter_clock_prescaler_=
+component_id
+>  What:		/sys/bus/counter/devices/counterX/signalY/index_polarity_componen=
+t_id
+>  What:		/sys/bus/counter/devices/counterX/signalY/synchronous_mode_compon=
+ent_id
+> +What:		/sys/bus/counter/devices/counterX/signalY/frequency_component_id
+>  KernelVersion:	5.16
+>  Contact:	linux-iio@vger.kernel.org
+>  Description:
+> @@ -364,3 +372,9 @@ Description:
+>  			via index_polarity. The index function (as enabled via
+>  			preset_enable) is performed synchronously with the
+>  			quadrature clock on the active level of the index input.
+> +
+> +What:		/sys/bus/counter/devices/counterX/signalY/frequency
+> +KernelVersion:	6.0
+> +Contact:	jpanis@baylibre.com
+
+Same changes for  KernelVersion and Contact here as above.
+
+William Breathitt Gray
+
+--NhJALy4zGia5d0tl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYyvIIAAKCRC1SFbKvhIj
+K8J1AP9nM1HjVIT1zvrvAVBMEc4rYkWHj+NAJ1xMtA4Ru5vkfAEA61lcnOCUTPhj
+Af/9fsODaYA5aTWfpKRD8bln8iVP5QQ=
+=N8ey
+-----END PGP SIGNATURE-----
+
+--NhJALy4zGia5d0tl--
