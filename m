@@ -2,66 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 025695E63CE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F545E63D7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 15:39:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231552AbiIVNiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 09:38:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35850 "EHLO
+        id S231465AbiIVNjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 09:39:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230365AbiIVNho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:37:44 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C6759A9DB;
-        Thu, 22 Sep 2022 06:36:47 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28MDaWXr091816;
-        Thu, 22 Sep 2022 08:36:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1663853792;
-        bh=6kmBmAVlkt/Mi0PvHgIZQfvoGckTsPf0cL19QEOW6hs=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=c3pIRIIu3Tebm1PKfVLhPTqohY6NJfcwlmThCFkMKuZPPu3sBF5dQ8/iEmaftyF5e
-         sbdiGcbXlzEyXitW6UVzF/3C/yI7xppMETd6NJK0PJH3ibtytl9mcflRgmds4ZZgmH
-         ynumT/bIttUxkGVonnSgor19EbPfsVNPPqC2VYOA=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28MDaW6T124114
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 22 Sep 2022 08:36:32 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 22
- Sep 2022 08:36:30 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 22 Sep 2022 08:36:31 -0500
-Received: from [10.250.234.27] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28MDaSVf043427;
-        Thu, 22 Sep 2022 08:36:29 -0500
-Message-ID: <2629221f-5ec9-4e14-69cb-7ae021d5a02d@ti.com>
-Date:   Thu, 22 Sep 2022 19:06:27 +0530
+        with ESMTP id S231544AbiIVNjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 09:39:18 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C670883D9;
+        Thu, 22 Sep 2022 06:39:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1663853946; x=1695389946;
+  h=subject:from:to:cc:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=CvNGXgqzeE+QXCg49n3Dh9W15AC3+5BUxUFylLugfkY=;
+  b=RUAJLQ6ICVrEDsj1lXooZ8oeEld4ON+vhu522EmMsPp3nyUE/SLV0gK3
+   Azvq9u4uwnSLDeCmGwCsblaVpml/zqdfERDA9SqmX658OoQCRukX30FQr
+   CwT67fftb/5I5l8UEBEVITj4/aOQCIybKlzeyi3+lOVnXcBHwaGfEfkWI
+   +CNhNs0Iax+RJmGFCn8RabJ8bi1DJqUPr2V1Vm5aQmEcxFIuUMZsYeymU
+   U2t6Dy43TWZqdPH2DIUual3DrGnHdNvATzvm1gfyh7Y5iwR8lRqFr6MvA
+   aDUPg6HdMTS9wsiv347ikbSODGd+K+5uuFqnO9XMkL67GP67OHyM7Fe7m
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,335,1654552800"; 
+   d="scan'208";a="26339193"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 22 Sep 2022 15:39:04 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 22 Sep 2022 15:39:04 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 22 Sep 2022 15:39:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1663853944; x=1695389944;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=CvNGXgqzeE+QXCg49n3Dh9W15AC3+5BUxUFylLugfkY=;
+  b=c7DZenHHYRGr2lVSyapJ4pLRCazWnuagwlY6sswvrVT56tX+qeuAt06e
+   LXUs9zT5qmjXUmp3HJfcgIxyHWFkyOv+fmfTFtT5dcv3Ce22Uvf3p42KT
+   tzJCgUxGST3vE2Fqvid9IshwKjFX3/KyMLM3sR8nVGv/NEXXMsNEGRB6R
+   oa7DUhkjl5BEEvILm5PoBedNq4BhFMx2visXdxl16qOne2FELsNTMQWiY
+   5WKQQQAUgO4ETHTZCkSPGfG5JsW10S00jNP5M+hEI8h3RjAuzl8QfzMHz
+   LCT5z4iSc7iyWLfUwOOrABDKbrAHIJewp1e1Vz69Tv0XBpPMWeXJD+up+
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,335,1654552800"; 
+   d="scan'208";a="26339192"
+Subject: Re: Re: [PATCH v2 4/4] arm64: dts: tqma8mpql: add support for 2nd USB (host)
+ interface
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 22 Sep 2022 15:39:04 +0200
+Received: from steina-w.localnet (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D247B280056;
+        Thu, 22 Sep 2022 15:39:03 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>, Li Jun <jun.li@nxp.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Date:   Thu, 22 Sep 2022 15:39:01 +0200
+Message-ID: <5606023.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <YyxgUtT1gtyMIHeY@kroah.com>
+References: <20220915062855.751881-1-alexander.stein@ew.tq-group.com> <20220915062855.751881-5-alexander.stein@ew.tq-group.com> <YyxgUtT1gtyMIHeY@kroah.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: ti: Add bindings for BeagleBone
- AI-64
-Content-Language: en-US
-To:     Robert Nelson <robertcnelson@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Drew Fustini <drew@beagleboard.org>
-References: <20220921021300.4111283-1-robertcnelson@gmail.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20220921021300.4111283-1-robertcnelson@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,42 +88,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Greg,
 
-
-On 21/09/22 7:42 am, Robert Nelson wrote:
-> This board is based on the ti,j721e
+Am Donnerstag, 22. September 2022, 15:17:06 CEST schrieb Greg Kroah-Hartman:
+> On Thu, Sep 15, 2022 at 08:28:55AM +0200, Alexander Stein wrote:
+> > The on-board USB hub has a single reset line which needs to be enabled.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > 
+> >  .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 41 +++++++++++++++++++
+> >  1 file changed, 41 insertions(+)
 > 
-> https://beagleboard.org/ai-64
-> https://git.beagleboard.org/beagleboard/beaglebone-ai-64
-> 
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Nishanth Menon <nm@ti.com>
-> CC: Jason Kridner <jkridner@beagleboard.org>
-> CC: Drew Fustini <drew@beagleboard.org>
-> ---
-> Changes since v2:
->  - rebased on next after k3.yaml alphabetical sort
-> Changes since v1:
->  - added documenation links
->  - add board in alphabetical order
-> ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index 28b8232e1c5b..09e6845ff243 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -61,6 +61,7 @@ properties:
->            - const: ti,j721e
->            - items:
->                - enum:
-> +                  - beagle,j721e-beagleboneai64
->                    - ti,j721e-evm
->                    - ti,j721e-sk
->                - const: ti,j721e
+> This patch failed to apply, please rebase and resend.
 
-You seem to have forgotten to include Ack from Rob on v2: 
+If I rebase this one to usb-testing (or usb-next) this will conflict with 
+additional patches for this file already in linux-next later on, especially 
+fb4f0b69565e ("arm64: dts: tqma8mpql: add USB DR support"). So IMHO this might 
+not the best idea.
+How to proceed here? Maybe Shawn can take this one once the other 3 patches 
+hit linux-next.
 
-https://lore.kernel.org/linux-arm-kernel/20220830180058.GA1764859-robh@kernel.org/
+Best regards,
+Alexander
+
+
+
