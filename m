@@ -2,140 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8869F5E65B6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 16:33:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E4455E65AA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Sep 2022 16:32:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230101AbiIVOds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 10:33:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53164 "EHLO
+        id S231724AbiIVOcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 10:32:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231524AbiIVOd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 10:33:29 -0400
-Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1F0A3F50BA;
-        Thu, 22 Sep 2022 07:33:24 -0700 (PDT)
-Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
-        by maillog.nuvoton.com (Postfix) with ESMTP id E86811C8116A;
-        Thu, 22 Sep 2022 22:22:21 +0800 (CST)
-Received: from NTHCML01B.nuvoton.com (10.1.8.178) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 22
- Sep 2022 22:22:21 +0800
-Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCML01B.nuvoton.com
- (10.1.8.178) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Thu, 22 Sep
- 2022 22:22:21 +0800
-Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
- (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Thu, 22 Sep 2022 22:22:21 +0800
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id 8489E637C4; Thu, 22 Sep 2022 17:22:20 +0300 (IDT)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
-        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
-        <benjaminfair@google.com>, <olivia@selenic.com>,
-        <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <openbmc@lists.ozlabs.org>, <linux-crypto@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v1 2/2] hwrng: npcm: Add NPCM8XX support
-Date:   Thu, 22 Sep 2022 17:22:16 +0300
-Message-ID: <20220922142216.17581-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220922142216.17581-1-tmaimon77@gmail.com>
-References: <20220922142216.17581-1-tmaimon77@gmail.com>
+        with ESMTP id S231745AbiIVOcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 10:32:08 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F27D2F6F42
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 07:32:04 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id z25so15035611lfr.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 07:32:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:to:subject:from:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date;
+        bh=TXgMZTgUVSuafB8VbCgazZM3eaExExRVllyUFdWCsmA=;
+        b=idMrzerYAyV0Q5sfdOA3smahm4TImyBM/H+d02ZkVX3v40KH52bJM35iFql9AokDIL
+         YlCOZqeoAOtvUtMS/MzoFvxWjXzWsxz/IdsT5gySMs2FXUoiAdLECJWjVsLCmOuf4SsP
+         +XRyNm6o0Td416kmNKjZMuSLytVlwZWaZo5E/arCl7PI2AVpX6jEhgzVrsLHHmCBEjKs
+         6t3PzGoFIAajVDCETqZJrIUEMdgDIlf11tZiabc2c5dY77NfzOAV2b2d9ma5jodu6Dcg
+         4u0YEIxTK2X9JooMfsGX+uBG6nHtLAXTX00M076Oirv2/8dPPnr90XYnxFKzEtylv6yy
+         C0lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:to:subject:from:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date;
+        bh=TXgMZTgUVSuafB8VbCgazZM3eaExExRVllyUFdWCsmA=;
+        b=R8Mr59DNWVS37bTjeMlrPbB5siR29fTTOJ7P/BLvPFAbMZxYurrdzBGuFXaehzN4lH
+         QvO2mhIVcniKSY1kp6Ok2CZZFXo9LTB7jvcRr4MsoxEU2bR0j5vBZ4DnPvgIflwWoHtL
+         CCijDv9NG7ghXY4IZP/bB+mscV2+CvRfjQylKObEfYYzeArxqPWhVDa/lqfQf8sxM4Hk
+         D6pSo+y1kPNNH0nUn8Ar5ZglAhfL/8d+O/gDdMnrIWwY5AjWOite7kQuqtn8SZqRIrJ4
+         d4ifx+MwCKo8GzapTPUwMBF/H8fqWZXhjVltGLPqnJDz41mVuD2sSHUMszRNbVuzmvsv
+         DuRw==
+X-Gm-Message-State: ACrzQf0+CfK+yVB302DHm0/VyHH3nQUOZcHXPAMVItAMvsUjoV4+KyrT
+        gCFr7nPC9pfVIhp01dCt0yvy3EbzGZTMog==
+X-Google-Smtp-Source: AMsMyM4oiWRrdKAZkGCMIH8T+W4nBZRuZlTo4kFawD9xMuVD9qfAwQ9dHspVVFjIRPZ37x0gREiuaQ==
+X-Received: by 2002:a05:6512:706:b0:498:b7ea:f2e8 with SMTP id b6-20020a056512070600b00498b7eaf2e8mr1363361lfs.570.1663857122470;
+        Thu, 22 Sep 2022 07:32:02 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u17-20020a2eb811000000b00261ca0f940esm915856ljo.62.2022.09.22.07.32.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Sep 2022 07:32:01 -0700 (PDT)
+Message-ID: <62e95ea6-6b72-a159-56ab-8bb11a5800c8@linaro.org>
+Date:   Thu, 22 Sep 2022 16:32:00 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Qualcomm DT bindings and DTS cleanups - tracking community wide
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Alex Elder <elder@linaro.org>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Vinod Koul <vinod.koul@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Caleb Connolly <kc@postmarketos.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding RNG NPCM8XX support to NPCM RNG driver.
-RNG NPCM8XX uses a different clock prescaler.
+Hi everyone,
 
-As part of adding NPCM8XX support:
-- Add NPCM8XX specific compatible string.
-- Add NPCM8XX specific clock prescaler.
+Quite a lot of people are working on Qualcomm DT bindings conversion
+(TXT->YAML) and fixups to Qualcomm DTS. We track a bit of this effort
+internally in Linaro, but that has many shortcomings and we would like
+to track it rather community-wide with the support and contributions
+from the community.
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/char/hw_random/npcm-rng.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+What to track:
+1. Which bindings to convert to YAML,
+2. Missing compatibles (either entirely or because of missing conversion),
+3. `dt_binding_check` warnings (usually connected with 1-2),
+4. `dtbs_check` warnings.
 
-diff --git a/drivers/char/hw_random/npcm-rng.c b/drivers/char/hw_random/npcm-rng.c
-index 1ec5f267a656..705be9ccae31 100644
---- a/drivers/char/hw_random/npcm-rng.c
-+++ b/drivers/char/hw_random/npcm-rng.c
-@@ -18,10 +18,11 @@
- #define NPCM_RNGD_REG		0x04	/* Data register */
- #define NPCM_RNGMODE_REG	0x08	/* Mode register */
- 
--#define NPCM_RNG_CLK_SET_25MHZ	GENMASK(4, 3) /* 20-25 MHz */
--#define NPCM_RNG_DATA_VALID	BIT(1)
--#define NPCM_RNG_ENABLE		BIT(0)
--#define NPCM_RNG_M1ROSEL	BIT(1)
-+#define NPCM_RNG_CLK_SET_25MHZ		GENMASK(4, 3) /* 20-25 MHz */
-+#define NPCM_RNG_CLK_SET_62_5MHZ	BIT(2) /* 60-80 MHz */
-+#define NPCM_RNG_DATA_VALID		BIT(1)
-+#define NPCM_RNG_ENABLE			BIT(0)
-+#define NPCM_RNG_M1ROSEL		BIT(1)
- 
- #define NPCM_RNG_TIMEOUT_USEC	20000
- #define NPCM_RNG_POLL_USEC	1000
-@@ -31,14 +32,14 @@
- struct npcm_rng {
- 	void __iomem *base;
- 	struct hwrng rng;
-+	u32 clkp;
- };
- 
- static int npcm_rng_init(struct hwrng *rng)
- {
- 	struct npcm_rng *priv = to_npcm_rng(rng);
- 
--	writel(NPCM_RNG_CLK_SET_25MHZ | NPCM_RNG_ENABLE,
--	       priv->base + NPCM_RNGCS_REG);
-+	writel(priv->clkp | NPCM_RNG_ENABLE, priv->base + NPCM_RNGCS_REG);
- 
- 	return 0;
- }
-@@ -47,7 +48,7 @@ static void npcm_rng_cleanup(struct hwrng *rng)
- {
- 	struct npcm_rng *priv = to_npcm_rng(rng);
- 
--	writel(NPCM_RNG_CLK_SET_25MHZ, priv->base + NPCM_RNGCS_REG);
-+	writel(priv->clkp, priv->base + NPCM_RNGCS_REG);
- }
- 
- static int npcm_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
-@@ -102,6 +103,11 @@ static int npcm_rng_probe(struct platform_device *pdev)
- 	pm_runtime_use_autosuspend(&pdev->dev);
- 	pm_runtime_enable(&pdev->dev);
- 
-+	if (of_device_is_compatible(pdev->dev.of_node, "nuvoton,npcm750-rng"))
-+		priv->clkp = NPCM_RNG_CLK_SET_25MHZ;
-+	if (of_device_is_compatible(pdev->dev.of_node, "nuvoton,npcm845-rng"))
-+		priv->clkp = NPCM_RNG_CLK_SET_62_5MHZ;
-+
- #ifndef CONFIG_PM
- 	priv->rng.init = npcm_rng_init;
- 	priv->rng.cleanup = npcm_rng_cleanup;
-@@ -163,6 +169,7 @@ static const struct dev_pm_ops npcm_rng_pm_ops = {
- 
- static const struct of_device_id rng_dt_id[] __maybe_unused = {
- 	{ .compatible = "nuvoton,npcm750-rng",  },
-+	{ .compatible = "nuvoton,npcm845-rng",  },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, rng_dt_id);
--- 
-2.33.0
+Rob's bot gives us daily output for 1-4, but how can we track current
+efforts to avoid duplication of work? Also it would allow people to find
+tasks for them to get contributions to Linux kernel :). Is anyone in
+community interested in tracking it together, in a public way?
 
+If so, where?
+A. elinux.org (needs some formatting when pasting the output from tools)
+B. gitlab pages/wiki (maybe scripts could parse tools and create the page?)
+C. gitlab dedicated repo - some text file
+D. Linux kernel TODO file (might be difficult to keep updated)
+E. kernel.org wiki (requires LF accounts, AFAIK, a bit pain to edit; I
+have it for Exynos but I don't find it usable -
+https://exynos.wiki.kernel.org/todo_tasks)
+
+I am leaning towards Gitlab pages because they could be quite automated
+- with CI or with scripts.
+
+The point would be to list all of tasks (1-4 from the first list), keep
+it updated with new results, pick/assign tasks and mark as done.
+
+References:
+https://gitlab.com/robherring/linux-dt/-/jobs/3066878011
+https://gitlab.com/robherring/linux-dt/-/jobs/3066878006
+https://gitlab.com/robherring/linux-dt/-/jobs/3066877999
+
+Best regards,
+Krzysztof
