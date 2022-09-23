@@ -2,137 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E093D5E7B8A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 15:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 683225E7B97
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 15:14:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232348AbiIWNMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 09:12:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40080 "EHLO
+        id S231841AbiIWNO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 09:14:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232301AbiIWNME (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 09:12:04 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2493252BB;
-        Fri, 23 Sep 2022 06:12:00 -0700 (PDT)
-X-UUID: a9d9e826f4e24c4eb38ca8a305cc181e-20220923
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=EAepj9xDcBT7+/oknT8+PQeRJWAYHEbCWQjHMWNe4Ek=;
-        b=QNV7a1kvMWpCrE7N8pvgb7kDENIMR3cOLbAXMpSlMHLU9Jys71VXWVvWU0KGDX3jPnzHHGMTpqfTdS4R7rqL2ohnVWYrQp2haWq0ujUhLooBwxgLAF4b8ZuRcBcgaRuIE22lNuK32WyNWtWrWs4IfEjbLvSirEsdMAoj7yIwC9U=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:022fc46d-f8fb-42c5-a9d1-a49881d1a095,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:b923dea2-dc04-435c-b19b-71e131a5fc35,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: a9d9e826f4e24c4eb38ca8a305cc181e-20220923
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1150637332; Fri, 23 Sep 2022 21:11:55 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 23 Sep 2022 21:11:53 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Fri, 23 Sep 2022 21:11:53 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Lee Jones <lee@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S231685AbiIWNO1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 09:14:27 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFA89AB060;
+        Fri, 23 Sep 2022 06:14:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 832A1B83466;
+        Fri, 23 Sep 2022 13:14:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45AACC433D6;
+        Fri, 23 Sep 2022 13:14:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663938864;
+        bh=JFdIBNAZD4RHRhDOZo1MsEw5mh8HKk/wCX1HXVg0M7o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=i7ZQKIn54EzgbXv6pLdt9e+mX9QboN+1vzVBIT0di9eHDhtfbfB8Ci8X/1D18uXA2
+         i/oA+/cNOxZIKuZQEVKYTel+nxzrZw4HAxZJhv1gh8jKb/8K37eKE6I5QDtHU3EhzA
+         051jnEO77O7L7ZTEroCQjKK+EzUbmw9M4INOOX1hxhB1QW7hqG/++d2HQyguK3fFP9
+         iuD0qxYKSIwkmuQZc9FLoBPoyNuPerc4VNq+0w4Tf2SWQzj/L9apxYyo+S0oOCnK7H
+         eAZOiLnm/QREMAAs2mfDW+6wTTeQTI6JAiXDN3IglE9+2DPhoVi/ASpk8vs/TyEZtA
+         Dt8JjY5ejcLXg==
+Date:   Fri, 23 Sep 2022 14:14:18 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Richard Acayan <mailingradian@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH 5/5] arm64: dts: mt8186: Add xhci nodes
-Date:   Fri, 23 Sep 2022 21:11:48 +0800
-Message-ID: <20220923131148.6678-6-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220923131148.6678-1-allen-kh.cheng@mediatek.com>
-References: <20220923131148.6678-1-allen-kh.cheng@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: qcom,rpmh: add pm660 and
+ pm660l pmics
+Message-ID: <Yy2xKsyEDCkfxnI1@sirena.org.uk>
+References: <20220920223331.150635-1-mailingradian@gmail.com>
+ <20220920223331.150635-2-mailingradian@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+0DGd3iPoJrAwrKc"
+Content-Disposition: inline
+In-Reply-To: <20220920223331.150635-2-mailingradian@gmail.com>
+X-Cookie: Heisenberg may have been here.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add xhci nodes for mt8186 SoC.
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 41 ++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+--+0DGd3iPoJrAwrKc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index c6809fdc7d15..b08af431e525 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -845,6 +845,26 @@
- 			status = "disabled";
- 		};
- 
-+		xhci0: usb@11200000 {
-+			compatible = "mediatek,mt8186-xhci",
-+				     "mediatek,mtk-xhci";
-+			reg = <0 0x11200000 0 0x1000>,
-+			      <0 0x11203e00 0 0x0100>;
-+			reg-names = "mac", "ippc";
-+			interrupts = <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH 0>;
-+			phys = <&u2port0 PHY_TYPE_USB2>;
-+			clocks = <&topckgen CLK_TOP_USB_TOP>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_REF>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_HCLK>,
-+				 <&infracfg_ao CLK_INFRA_AO_ICUSB>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>;
-+			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
-+			power-domains = <&spm MT8186_POWER_DOMAIN_SSUSB>;
-+			mediatek,syscon-wakeup = <&pericfg 0x420 2>;
-+			wakeup-source;
-+			status = "disabled";
-+		};
-+
- 		mmc0: mmc@11230000 {
- 			compatible = "mediatek,mt8186-mmc",
- 				     "mediatek,mt8183-mmc";
-@@ -875,6 +895,27 @@
- 			status = "disabled";
- 		};
- 
-+		xhci1: usb@11280000 {
-+			compatible = "mediatek,mt8186-xhci",
-+				     "mediatek,mtk-xhci";
-+			reg = <0 0x11280000 0 0x1000>,
-+			      <0 0x11283e00 0 0x0100>;
-+			reg-names = "mac", "ippc";
-+			interrupts = <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH 0>;
-+			phys = <&u2port1 PHY_TYPE_USB2>,
-+			       <&u3port1 PHY_TYPE_USB3>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_SYS>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_REF>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_HCLK>,
-+				 <&clk26m>,
-+				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_XHCI>;
-+			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck","xhci_ck";
-+			power-domains = <&spm MT8186_POWER_DOMAIN_SSUSB_P1>;
-+			mediatek,syscon-wakeup = <&pericfg 0x424 2>;
-+			wakeup-source;
-+			status = "disabled";
-+		};
-+
- 		u3phy0: t-phy@11c80000 {
- 			compatible = "mediatek,mt8186-tphy",
- 				     "mediatek,generic-tphy-v2";
--- 
-2.18.0
+On Tue, Sep 20, 2022 at 06:33:30PM -0400, Richard Acayan wrote:
+> The SDM670 uses RPMh for managing the PM660 and PM660L. Document RPMh
+> support for the PMIC.
 
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--+0DGd3iPoJrAwrKc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMtsSoACgkQJNaLcl1U
+h9BN2wf8Cboe8Tm6dISPpdxG7LpUkKXuEPtOxHwUnz2cEmkFuaU97SYt+RqZTMGI
+Kkm7MOeyNVAh9Kt0lJo/yWFIhxxR8eJ3bc5l6i55CrJ2CDb7MOQFLEAtkAg/dDqO
+fWFouYQRtCU7tHGgxHekfFhvj0y4bj9ccgfGBTX0dPNmp1/+HxpHORgInY5dVh9J
+IgLg7ZtFHRYxAA+YlQTSURZ13rhObRTq4qbGZAGENdTU+qlSZxndbvi7OlLqgoIo
+3dw52j1NpNUZKjb24MMaeq3Hep1lhjAj5AP4plTPf5IHiRE+h+4EfDTjy28Hm2N+
+q3Hr3jypPQx6vWRsUPmeq+jtty/sxA==
+=1Fr2
+-----END PGP SIGNATURE-----
+
+--+0DGd3iPoJrAwrKc--
