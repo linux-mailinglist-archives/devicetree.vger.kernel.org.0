@@ -2,266 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFE9C5E7534
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 09:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 438895E7523
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 09:48:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229844AbiIWHwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 03:52:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42816 "EHLO
+        id S229794AbiIWHsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 03:48:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230341AbiIWHwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 03:52:18 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4ED812BD96
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 00:52:16 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id n10so19061317wrw.12
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 00:52:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=5OTJLPTHaCGUvxTLzQpX9KkfWgyXUXuxIB5BfRQ2its=;
-        b=x1m7c9FB2/aG357kotIOofarUV5AJycibbv0fUUoWZJeVTfnQH/MIzMT6EXnNi2ctJ
-         jUv3wFiTpjQ5VhjFEzPJTDC/FvoEDtjSMiMamcK6YYkyJnW8+EN9atDCEJqROh5/YX/N
-         WCLc3fI5mKElNSS/XwD2pYU9mcOZ4e9nU3HLHfOJSoKjfcwpV9e99NRTc8UjNxTZSQ1f
-         cnmNn0yPoZ25IW49lgPPjQAkkYbdr7f52IX2BMgXYX2ZS9v312aucw3Kiw4a+uyScsZ9
-         otiHlWNHW60WGy+9nCrv8kEQoVpEt+SexqvjZNIJnd6Wj7hZBD2wiIj5Igjd/ebYlC6T
-         OhEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=5OTJLPTHaCGUvxTLzQpX9KkfWgyXUXuxIB5BfRQ2its=;
-        b=UTseSk07dL3mVKdCA/K2SeUuLqZB+AjryoysvaNsWEP8l01h8PhwdVgKEHNPCMy5Pk
-         mtLmvm1VGP9x1lq9pRNfu+4nRvIf8D8hCNH/NaTMZQIUxz9pxADosm6rngm+JeQ50Msn
-         2AePABsR1iUyD4j5epnc7/IOvJcpWjtoGuIzIIEXH0kHsSOgvcMTyZXoa+3OXqGeQP0S
-         bQAkdNhTvSXdXm8XEG3nMAe+vlfFSO3LQKIv4VRuLlyP1SeE9TeI9K0a4l+EGJlm5FYK
-         jKDiz/RkHEcTOzN7wqJVDcYukMfGKD2rMChMz6Vugilh9zfueXRl9TRTSPmcHAxIkwTq
-         rn3Q==
-X-Gm-Message-State: ACrzQf0+ekuOuVZ7woW39VG+Ew2Jw+WJ1AssOGnRhZXVRullsa+HUpUZ
-        aEhtxtS2j6C+MCw1hEeIuwppIQ==
-X-Google-Smtp-Source: AMsMyM5K0BL3MUCQCX1SoMJdGVMS00+U0AY6LIti26t6MQPtQ9C3GKO8ZB2URqjLBBsBFou6vC/jIw==
-X-Received: by 2002:a05:6000:80a:b0:229:4632:d1d1 with SMTP id bt10-20020a056000080a00b002294632d1d1mr4510716wrb.73.1663919534600;
-        Fri, 23 Sep 2022 00:52:14 -0700 (PDT)
-Received: from localhost.localdomain (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
-        by smtp.gmail.com with ESMTPSA id u15-20020a05600c19cf00b003a2f2bb72d5sm2089319wmq.45.2022.09.23.00.52.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Sep 2022 00:52:14 -0700 (PDT)
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: [PATCH v3] dt-bindings: virtio: Convert virtio,pci-iommu to DT schema
-Date:   Fri, 23 Sep 2022 08:44:38 +0100
-Message-Id: <20220923074435.420531-1-jean-philippe@linaro.org>
-X-Mailer: git-send-email 2.37.3
-MIME-Version: 1.0
+        with ESMTP id S229436AbiIWHsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 03:48:17 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2078.outbound.protection.outlook.com [40.107.20.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F257AC16;
+        Fri, 23 Sep 2022 00:48:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VLencc+zdRWmfPmA5TA8JhWl/C25cx08YCPbcuwKAsqITau4qoVerpBA5FnXxiPwzSfWaUKH/NsmSy70uNrTcjmU6yD+ma2jdYW+coMefZ3ZF/p721n9YRjUZ+LKU/eNxfb8Lh+KpP5nEZKi38ek56oPd+X1mq7cKKdZRxmALF3LcY0eJathwMGH1f3LMOe9NogRhECyZ99xtIeTfowB37Q3jj9K0XUsJHU3pu6qGg3M7wJ4M3xJ4UM3Wz8CbcAh4sOmpKPRt/4YKqJ+bv1ltF8WEvHqYWLA4QQkc7JMlq6LvUrH+9QFH/Wpnn7zp9YtiajwxiXykAsfuA91uVKYsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uYS52H5B+AJvYV5ma3ZyICzUL2m/mT3W346klMC2gCc=;
+ b=UzMTOXPmTPHHQTpcVLW7LO9irrg9hA+0WSGR9udQfgxbFCcSTp/It/2gZDv2xDRwqLSFK7mkgdDUgmlRGrVw+s7lrcXb0XHanpOX/aOH51WfKluzYm4Heh5+3HxiznkQmKjS9vS9LgFgJbi4nKrqxZ47f/IeNePdtghIfX45xmu34zoABKqIAebZIC03FRiuQdc07I5CKYvivqt2KTh3V/r3MdUH+S/Hz/ecFZqRITQLpAv/HAmR25DYd5kh+SYo03tFuMOv4hMHGDwa4v1yPI0f4lSydvW6GDSa4rrLQ56N/Oq6ijD+ySGllx3u27r8/bJTJBRNNusmDcRpRspDRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uYS52H5B+AJvYV5ma3ZyICzUL2m/mT3W346klMC2gCc=;
+ b=kmePl0nLbzOk0Pwx3UHYWuVNhIER4e8iL3PSh+Xoj++pSe2Og9Le6V2PqeMoxv+dDAK58WDCLEYUywBBflFxHBzYxVBZTCK7OuVhte+9FAUJQzJH7K1aDF6EwE5PGEw16VnFKljIO62s1scgqyMHIOb+iJrUNsb3HSpuLniO8gg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM8PR04MB7203.eurprd04.prod.outlook.com (2603:10a6:20b:1d5::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.20; Fri, 23 Sep
+ 2022 07:48:12 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::1eb:dcf:8fd7:867]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::1eb:dcf:8fd7:867%5]) with mapi id 15.20.5654.018; Fri, 23 Sep 2022
+ 07:48:12 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        abelvesa@kernel.org, abel.vesa@linaro.org, sboyd@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V4 0/2] add anatop bindings and correct dts node
+Date:   Fri, 23 Sep 2022 15:49:41 +0800
+Message-Id: <20220923074943.981127-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR04CA0003.apcprd04.prod.outlook.com
+ (2603:1096:4:197::23) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AM8PR04MB7203:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0417b3e3-7fe8-404f-d4a0-08da9d37f74f
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7XGgfGzt9xZDWXtF7QwCv8uKosJxWPlRk0FIQo4LBhgMGUM5/x2E1UlKXjpXgbm4T+GXn0ZvM9Z2dhgbJ41EweaOzmdZ4YoN89XRHotyCTuPcvkshyc1jaX/M9IGbYxg1XuM1IUau7CmqfNgeAIxETcEGRjPW5QTjjGvwEuiKi2l0r0WTWT0BUrkYeOIaIe2pHzMNILWQkP8nEMYrEXbF7hldQxEZJq2BJLz2tPySK6C9jX3ibdnPiJkJrUbt6532seiH5S0NaRb1M2HAESwnqCEdYXGVirFds/dS6Na2kaca4gLshYsOpJXv7vSKPoyvPAXh7PwUXtzwkHZu6i/fWYovZd8+iO/a85lBdMcLF8Nv/h6X3X9Opl60ix2zJZfo4vPouReduV2ZY0c10ORXoxFaRztuEI0ra7NqxzAOkSml1fOgxg9LJb+1vFr13U2YsthfVdXSHTq87iFtOSSjElyryeyZv1Zmsn1jMcF+reFA/kGmKcrnucKT8sjHn4VADGbuR62yehQQOnshVrrltP6uXrR//lgvZQonOb9+/65VmtGHfxCgIUkaiyomR+YdzPm/Aw+I9Ptfi9DTZVSQzAAyw3vhxPhgci0/FjmE2jhnZbgMuEYOYJ9NBYBFcYbBhfwbMP3LRk7RNEYFxFZYF2HyaKK9VsqljNbS1tXMxJzjttCv/pLHkM/OpbIeiRp59eYxoCY2NA2+dAYWH8V0m2I2ofvdEgGEBpfnEPWX8V3dxs7fXVWGWPtT2s2TisFjWNNVHUxrggMT+OzcfjRlgyLLkAQyZJtSrONyiCO1kU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(376002)(39860400002)(346002)(396003)(366004)(451199015)(2616005)(186003)(1076003)(41300700001)(6512007)(26005)(2906002)(52116002)(6506007)(4744005)(5660300002)(7416002)(8936002)(6666004)(38350700002)(38100700002)(86362001)(83380400001)(966005)(6486002)(478600001)(316002)(4326008)(8676002)(66946007)(66556008)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?f82OXu9WEBAhDEHlsoG2z0wzUNlEcq1tu6g/9rKDWaP+MYdEWnUjiZ5oBnZR?=
+ =?us-ascii?Q?zj+yzzaqOBnhhxhIwVJ07jViUTx8c0gww4JoflsAbGJttrWfFN0qay3Tf/j7?=
+ =?us-ascii?Q?0HXzW2xeqThFCQsbktg8gv5JS7bFowF3+YhWPxtRpuYJQkQg8owJlUu+LLXU?=
+ =?us-ascii?Q?/BkrIq3u4CdiRWcL8K+6yLU2HTwko/eblWJvEadQW5uxYrcdbVzHlVCTD7A+?=
+ =?us-ascii?Q?TckthfMKMNWKQ2j2U3wQHB0zYhcIl+RUOgi+DZk7tPiEvaKHVAc8KYgYv+gP?=
+ =?us-ascii?Q?EsOkPqtwCNM4XP8xUP3/wA9jKwquHFzlLt0G1NFjRXpvJM2eaAiktUGcmaIH?=
+ =?us-ascii?Q?aXZoN1T+/aq8EW0sbbIN+oV0ce5Z5VZe2+gtq3Wagfu1p1F/rsKsLhvBeqhh?=
+ =?us-ascii?Q?NclgueUN8UmT3/4qaUBkUg3DC1kXGC038+hEuNgM9GUclFNQfJHWvtjveJkR?=
+ =?us-ascii?Q?x9LOBC/OBllO8LGqyNxgBzIhkgnOtiWC8qxMR6E22WcVi6Z2iuOqb8IY5Vw/?=
+ =?us-ascii?Q?Dtp8vGosLbw2SaZfPERLQpOJRStrSmbyvdllnJJJfXiBHJrFQBqXRjsSuFH7?=
+ =?us-ascii?Q?I0uhFvR9FdPY0JYA9Hz1OE212XYriU/TwJwYpm1wbp4TBFrRg5bl1xH5W2kP?=
+ =?us-ascii?Q?EAG5OrZQLTTmB2fZH3HwL4GLnYPyswdKIq6X0kg2rvyvYGJdCR/SGJp71fcZ?=
+ =?us-ascii?Q?8wy0ziq+AE+d6isGEiF6AZH5JqrDQjAafRPTK7NuXilOW4NF0XLqC/hxnGB7?=
+ =?us-ascii?Q?CjnYefKpvVwfVHIaleiVLsyoA9y60VbtTTa/RRnm5k3d+BNvFjULBx7ZNGnV?=
+ =?us-ascii?Q?OBovMxGm1Ile4RfCDrvPexGDoCieuinOOx081cJexEDtUnV8UB9Y+vrUNpIK?=
+ =?us-ascii?Q?IDbbRDV197PzPOQYapiq8HUhzdcg5bCPDB79RaEGTWqoAenu7cfvmlzZF5AT?=
+ =?us-ascii?Q?2i4o9vjgiIsj+z0Soqhad2c0WcC5FH8DHRWi9nbSDq8hcE4J5r7S4QalC82R?=
+ =?us-ascii?Q?zKDmFec4dTNLGHI+lUjJnU8i/aoHebElT6j0SSr6pUhhNyJyrdZyqLHUY+SO?=
+ =?us-ascii?Q?b871zhVBHOv3siVhmeSuBvAhIwoAFIJR3dyHH65TPrDajj/mtq5y0tJz2r01?=
+ =?us-ascii?Q?bHuQbAt3NqsT+1i6psmFUI8++NVkA0iKumZ2ETcorIXDWNf4H81/kY1p26QD?=
+ =?us-ascii?Q?lbM/3irqm+WSip1waoHj+27Zah1iL2wWP4p5CZo+EztSbhxsysljYRh1cX6v?=
+ =?us-ascii?Q?j2Fsa589ShPT3SgdoogaFRLBpiPGZVPXd8SW5IH65qe61xvABqh22e+x0W8J?=
+ =?us-ascii?Q?DrRXOSHR3xq5C+M/Pz3/2TaPDIfJyI6bVgMROHC8b5tq+GtdcgfmSxuff6Up?=
+ =?us-ascii?Q?ztgMxf0f+B49M3OtO2NOR9vv8PkVLzf0zL89loOVxZh4PKR0R0If6MyifLEN?=
+ =?us-ascii?Q?ESnwRIe2Flao2gN+oUtL33aGl98drorWaCpVQ/KYfOHW8fTdw4PKWSocQG4h?=
+ =?us-ascii?Q?V2DKxROluRM817pmS9tic1xkmoHUt6J8367eQXYnaxxFzLfs2sat0c8Vpi5c?=
+ =?us-ascii?Q?lwYEC+ICL7Pjm0yh1job8Pen9s3i8CMjRbd/aWbc?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0417b3e3-7fe8-404f-d4a0-08da9d37f74f
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2022 07:48:12.9144
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Vlz8UtMnptzeL4VdAfkadANR9ilzw6GauqpraVLzhBelD0cjB/QIzlbCowWBO4g98+SCgLOWFNEsWgYh2yORiA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7203
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the binding that describes the virtio-pci based IOMMU to DT
-schema. Change the compatible string to "pci<vendor>,<device>", which is
-defined by the PCI Bus Binding, but keep "virtio,pci-iommu" as an option
-for backward compatibility.
+From: Peng Fan <peng.fan@nxp.com>
 
-Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
----
-v3: Renamed file and type to pci-iommu
-v2: https://lore.kernel.org/linux-devicetree/20220922161644.372181-1-jean-philippe@linaro.org/
----
- .../devicetree/bindings/virtio/iommu.txt      |  66 ------------
- .../devicetree/bindings/virtio/pci-iommu.yaml | 101 ++++++++++++++++++
- 2 files changed, 101 insertions(+), 66 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/virtio/iommu.txt
- create mode 100644 Documentation/devicetree/bindings/virtio/pci-iommu.yaml
+V4:
+ Add R-b from DT maintainer
+ Include dts change
 
-diff --git a/Documentation/devicetree/bindings/virtio/iommu.txt b/Documentation/devicetree/bindings/virtio/iommu.txt
-deleted file mode 100644
-index 2407fea0651c..000000000000
---- a/Documentation/devicetree/bindings/virtio/iommu.txt
-+++ /dev/null
-@@ -1,66 +0,0 @@
--* virtio IOMMU PCI device
--
--When virtio-iommu uses the PCI transport, its programming interface is
--discovered dynamically by the PCI probing infrastructure. However the
--device tree statically describes the relation between IOMMU and DMA
--masters. Therefore, the PCI root complex that hosts the virtio-iommu
--contains a child node representing the IOMMU device explicitly.
--
--Required properties:
--
--- compatible:	Should be "virtio,pci-iommu"
--- reg:		PCI address of the IOMMU. As defined in the PCI Bus
--		Binding reference [1], the reg property is a five-cell
--		address encoded as (phys.hi phys.mid phys.lo size.hi
--		size.lo). phys.hi should contain the device's BDF as
--		0b00000000 bbbbbbbb dddddfff 00000000. The other cells
--		should be zero.
--- #iommu-cells:	Each platform DMA master managed by the IOMMU is assigned
--		an endpoint ID, described by the "iommus" property [2].
--		For virtio-iommu, #iommu-cells must be 1.
--
--Notes:
--
--- DMA from the IOMMU device isn't managed by another IOMMU. Therefore the
--  virtio-iommu node doesn't have an "iommus" property, and is omitted from
--  the iommu-map property of the root complex.
--
--Example:
--
--pcie@10000000 {
--	compatible = "pci-host-ecam-generic";
--	...
--
--	/* The IOMMU programming interface uses slot 00:01.0 */
--	iommu0: iommu@0008 {
--		compatible = "virtio,pci-iommu";
--		reg = <0x00000800 0 0 0 0>;
--		#iommu-cells = <1>;
--	};
--
--	/*
--	 * The IOMMU manages all functions in this PCI domain except
--	 * itself. Omit BDF 00:01.0.
--	 */
--	iommu-map = <0x0 &iommu0 0x0 0x8>
--		    <0x9 &iommu0 0x9 0xfff7>;
--};
--
--pcie@20000000 {
--	compatible = "pci-host-ecam-generic";
--	...
--	/*
--	 * The IOMMU also manages all functions from this domain,
--	 * with endpoint IDs 0x10000 - 0x1ffff
--	 */
--	iommu-map = <0x0 &iommu0 0x10000 0x10000>;
--};
--
--ethernet@fe001000 {
--	...
--	/* The IOMMU manages this platform device with endpoint ID 0x20000 */
--	iommus = <&iommu0 0x20000>;
--};
--
--[1] Documentation/devicetree/bindings/pci/pci.txt
--[2] Documentation/devicetree/bindings/iommu/iommu.txt
-diff --git a/Documentation/devicetree/bindings/virtio/pci-iommu.yaml b/Documentation/devicetree/bindings/virtio/pci-iommu.yaml
-new file mode 100644
-index 000000000000..972a785a42de
---- /dev/null
-+++ b/Documentation/devicetree/bindings/virtio/pci-iommu.yaml
-@@ -0,0 +1,101 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/virtio/pci-iommu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: virtio-iommu device using the virtio-pci transport
-+
-+maintainers:
-+  - Jean-Philippe Brucker <jean-philippe@linaro.org>
-+
-+description: |
-+  When virtio-iommu uses the PCI transport, its programming interface is
-+  discovered dynamically by the PCI probing infrastructure. However the
-+  device tree statically describes the relation between IOMMU and DMA
-+  masters. Therefore, the PCI root complex that hosts the virtio-iommu
-+  contains a child node representing the IOMMU device explicitly.
-+
-+  DMA from the IOMMU device isn't managed by another IOMMU. Therefore the
-+  virtio-iommu node doesn't have an "iommus" property, and is omitted from
-+  the iommu-map property of the root complex.
-+
-+properties:
-+  # If compatible is present, it should contain the vendor and device ID
-+  # according to the PCI Bus Binding specification. Since PCI provides
-+  # built-in identification methods, compatible is not actually required.
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: virtio,pci-iommu
-+          - const: pci1af4,1057
-+      - items:
-+          - const: pci1af4,1057
-+
-+  reg:
-+    description: |
-+      PCI address of the IOMMU. As defined in the PCI Bus Binding
-+      reference, the reg property is a five-cell address encoded as (phys.hi
-+      phys.mid phys.lo size.hi size.lo). phys.hi should contain the device's
-+      BDF as 0b00000000 bbbbbbbb dddddfff 00000000. The other cells should be
-+      zero. See Documentation/devicetree/bindings/pci/pci.txt
-+
-+  '#iommu-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#iommu-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pcie@40000000 {
-+            device_type = "pci";
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            reg = <0x0 0x40000000  0x0 0x1000000>;
-+            ranges = <0x02000000 0x0 0x41000000  0x0 0x41000000  0x0 0x0f000000>;
-+
-+            /*
-+             * The IOMMU manages all functions in this PCI domain except
-+             * itself. Omit BDF 00:01.0.
-+             */
-+            iommu-map = <0x0 &iommu0 0x0 0x8
-+                         0x9 &iommu0 0x9 0xfff7>;
-+
-+            /* The IOMMU programming interface uses slot 00:01.0 */
-+            iommu0: iommu@1,0 {
-+                compatible = "pci1af4,1057";
-+                reg = <0x800 0 0 0 0>;
-+                #iommu-cells = <1>;
-+            };
-+        };
-+
-+        pcie@50000000 {
-+            device_type = "pci";
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            reg = <0x0 0x50000000  0x0 0x1000000>;
-+            ranges = <0x02000000 0x0 0x51000000  0x0 0x51000000  0x0 0x0f000000>;
-+
-+            /*
-+             * The IOMMU also manages all functions from this domain,
-+             * with endpoint IDs 0x10000 - 0x1ffff
-+             */
-+            iommu-map = <0x0 &iommu0 0x10000 0x10000>;
-+        };
-+
-+        ethernet {
-+            /* The IOMMU manages this platform device with endpoint ID 0x20000 */
-+            iommus = <&iommu0 0x20000>;
-+        };
-+    };
-+
-+...
+V3:
+https://lore.kernel.org/linux-arm-kernel/20220919055904.1659124-1-peng.fa
+n@oss.nxp.com/t/
+ Add #clock-cells property
+
+V2:
+ Drop syscon, use clock-controller
+ Add fsl vendor prefix
+ Add interrupt property
+
+Peng Fan (2):
+  dt-bindings: clock: add i.MX8M Anatop
+  arm64: dts: imx8m: align anatop with bindings
+
+ .../bindings/clock/fsl,imx8m-anatop.yaml      | 51 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  5 +-
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     |  6 +--
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  6 +--
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  5 +-
+ 5 files changed, 63 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
+
 -- 
-2.37.3
+2.37.1
 
