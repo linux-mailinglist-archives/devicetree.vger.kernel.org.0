@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A2155E7F5E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 18:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C29585E7F62
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 18:16:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232496AbiIWQQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 12:16:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40428 "EHLO
+        id S232650AbiIWQQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 12:16:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232165AbiIWQQL (ORCPT
+        with ESMTP id S232336AbiIWQQL (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 12:16:11 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8656412E407
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 09:16:08 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id a2so1054634lfb.6
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 09:16:08 -0700 (PDT)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6EEE130BD6
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 09:16:09 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id o2so1024143lfc.10
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 09:16:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=4ZxFhAtlkmVi+zyjgne0H/PaIcc4S2ELDkPdgjxjFQI=;
-        b=qqV26RwCK1Rl2eHTO4j/EIi2hWLVPqcd6bL061LH0aVd0FEdQOjsCOPHBaiBLaEXv7
-         f18WO40/a17eQX9Z2uvUZkpbqN5j0q5B5Nixg5PokmYn9Dy4JeIy/YXUEu5FzX92L/9f
-         qwGg+jamXznw56s4ta4p1k3j0F7pElYUNcbQDO7IdCoWCqGGLvGtKAYRBVqziF7jGn7f
-         jVtGVC6XktFQnD0IuFB7xLzp4eja/6GuaHgrrFM6aWxihT3VhPrD+YjUlPkmXnI3sxJD
-         V4UJZLVkZJCHth2oq0doFxfFBxLErNzGuipIYBnm/uHqrhB63Ysy64xmFr9ZEF2/iBmV
-         V5WQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=l9KPENs01rvOOXjLT8Qa2HzJChvcWGtJ+M/KMDgaQo4=;
+        b=igysk/LPGN7CPrkOpx0dO63HrJb3ebNd0gJo1lZ5TJcPAcefsFTL9IZfTCzLNzjo/K
+         rqsaFrfXWLOvH7yX4HvVvNAN5alEEy53JtMpRwAKeZkGltThuKe/EmkM+HqvW5rVV/Td
+         4KRI8EkRoebtGcUsva89IoR8F1mujKAAXt6oTrpRvEGf8tAoQUMiNprYKI4jHrHuYH8T
+         jQH5gO0S7VgoKmhr04SF6o1GCR8zw4W5pmF8/hY9VjgFFqt9oALu8x+AvOfFWHll8uOG
+         3lXjfpZ8KBEs3uE1I7aJTq18aUaRywiitC+BdjzU7iS+NtWwTtzF7ZM/HgnTGKYawHO5
+         ye5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=4ZxFhAtlkmVi+zyjgne0H/PaIcc4S2ELDkPdgjxjFQI=;
-        b=AHU9GL0gZyxZ/exjRRou2IoAkpvbTTGPCd9+T6Nrt/Q8MZw+h9rVv/ToC0YiBzu8wE
-         eMlNk96m1hx2dRdSESUbxrOB6UwTuzBJsWUIuqHM9ncuEAQ1j5WID5TEQ9i+K4qpS0YU
-         qFhaAQkclfbn7OPf9s3msvly99n0G4EweAkjNhPBGntUSrQHS0Zng927o7V+iblbDi/u
-         lg3UeS9Pd+A79OOpa98hAcCpw5F7DM2H74P5WqMsNK36J9ROA09c8jj/xXkDewMGHF0x
-         yq+HDaXg4Gz/MXXSySDqw/74NCkyRlZ6htJ/5uK4GBqiu1TOosWNS3GZl2zdjO0GRqRW
-         Rv3A==
-X-Gm-Message-State: ACrzQf30Gv9iRoIZBDmKVIAwOW7q+taEi24W8NhL09JHZo86CGqNiETK
-        CT8nI5ZRoGcJjUmk8KDxlYlt5g==
-X-Google-Smtp-Source: AMsMyM6RJAQLHoe8yznAY7iJUvmbip9ShKX8pvPR2ghx8rYTi8cfMFRZI5+EFgBrkzxtHjbVox0GXw==
-X-Received: by 2002:ac2:5469:0:b0:497:ed1:97c6 with SMTP id e9-20020ac25469000000b004970ed197c6mr3344005lfn.248.1663949766969;
-        Fri, 23 Sep 2022 09:16:06 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=l9KPENs01rvOOXjLT8Qa2HzJChvcWGtJ+M/KMDgaQo4=;
+        b=HFm05vF3TXe8rqvqvF32YpzqlY5ZGJgnjWBCr4uIORKep6rfFrY0XfEuyclI5W/vqc
+         dvWAEF9DyVH7wiN1tJ5ZCiZ3YM8dHnKMakrpFT5zRvYXRIKooBJaH5LQxEA45One3we+
+         TumouluyKc0KjmFzCmbwdkK3QD8b0WFGaVT8pXBlaQRmt1F0cw3iXrE5FkcxH2LUMTB2
+         cdaGZUAwH7n+ZAJ3FF0oW/2mLBTu3PyY5cm8afFfRX4QkBXhccHNk2y9BVf5NCKs59q3
+         m/DHMtp7ER7Wv8jRWNX957dZZcRQ2H0UZXGpzo6+/R5XFZ78X7HyxywvKD4H2AgJZAkj
+         beWg==
+X-Gm-Message-State: ACrzQf2IhRqbTdEZxdj2E5HTjx6Ex5GyGW1N3pSxak2PLBmjMpj+XOs/
+        u3MdMe8OKU8UlUU77G+DYKflbg==
+X-Google-Smtp-Source: AMsMyM6tObYbcMIu84HwB72ICqPwolfxLPi+i1ky6mlQCNrwwyRzMbsebQ95K4JP3IV2pVVm2iM3fQ==
+X-Received: by 2002:a05:6512:32c8:b0:49a:91d7:1bbf with SMTP id f8-20020a05651232c800b0049a91d71bbfmr3459943lfg.560.1663949768051;
+        Fri, 23 Sep 2022 09:16:08 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f9-20020ac25cc9000000b00492f45cbbfcsm1493491lfq.302.2022.09.23.09.16.06
+        by smtp.gmail.com with ESMTPSA id f9-20020ac25cc9000000b00492f45cbbfcsm1493491lfq.302.2022.09.23.09.16.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Sep 2022 09:16:06 -0700 (PDT)
+        Fri, 23 Sep 2022 09:16:07 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -57,10 +58,12 @@ To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 00/11] arm64/slimbus/dt-bindings: convert to DT Schema, minor cleanups
-Date:   Fri, 23 Sep 2022 18:14:42 +0200
-Message-Id: <20220923161453.469179-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 01/11] arm64: dts: qcom: sdm845: drop unused slimbus properties
+Date:   Fri, 23 Sep 2022 18:14:43 +0200
+Message-Id: <20220923161453.469179-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220923161453.469179-1-krzysztof.kozlowski@linaro.org>
+References: <20220923161453.469179-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,46 +75,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Drop properties from slimbus node: unneeded status and
+downstream-related qcom,apps-ch-pipes/qcom,ea-pc (not documented, not
+used).
 
-Shall slimbus.yaml go to dtschema repo?
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
 
-Dependencies
-============
-1. Binding patches are independent from DTS.
-
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (11):
-  arm64: dts: qcom: sdm845: drop unused slimbus properties
-  arm64: dts: qcom: msm8996: drop unused slimbus reg-mames
-  arm64: dts: qcom: sdm845: correct slimbus children unit addresses
-  arm64: dts: qcom: mms8996: correct slimbus children unit addresses
-  arm64: dts: qcom: sdm845: drop unused slimbus dmas
-  arm64: dts: qcom: msm8996: drop unused slimbus dmas
-  arm64: dts: qcom: sdm8458: align node names with DT schema
-  arm64: dts: qcom: msm8996: align node names with DT schema
-  dt-bindings: slimbus: convert bus description to DT schema
-  dt-bindings: slimbus: qcom,slim: convert to DT schema
-  dt-bindings: slimbus: qcom,slim-ngd: convert to DT schema
-
- .../devicetree/bindings/slimbus/bus.txt       |  60 ---------
- .../bindings/slimbus/qcom,slim-ngd.yaml       | 120 ++++++++++++++++++
- .../bindings/slimbus/qcom,slim.yaml           |  86 +++++++++++++
- .../bindings/slimbus/slim-ngd-qcom-ctrl.txt   |  84 ------------
- .../bindings/slimbus/slim-qcom-ctrl.txt       |  39 ------
- .../devicetree/bindings/slimbus/slimbus.yaml  |  95 ++++++++++++++
- arch/arm64/boot/dts/qcom/msm8996.dtsi         |  18 ++-
- arch/arm64/boot/dts/qcom/sdm845.dtsi          |  16 +--
- 8 files changed, 315 insertions(+), 203 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/slimbus/bus.txt
- create mode 100644 Documentation/devicetree/bindings/slimbus/qcom,slim-ngd.yaml
- create mode 100644 Documentation/devicetree/bindings/slimbus/qcom,slim.yaml
- delete mode 100644 Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt
- delete mode 100644 Documentation/devicetree/bindings/slimbus/slim-qcom-ctrl.txt
- create mode 100644 Documentation/devicetree/bindings/slimbus/slimbus.yaml
-
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index d761da47220d..9db1fce6b198 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -3828,9 +3828,6 @@ slim: slim@171c0000 {
+ 			reg = <0 0x171c0000 0 0x2c000>;
+ 			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
+ 
+-			qcom,apps-ch-pipes = <0x780000>;
+-			qcom,ea-pc = <0x270>;
+-			status = "okay";
+ 			dmas = <&slimbam 3>, <&slimbam 4>,
+ 				<&slimbam 5>, <&slimbam 6>;
+ 			dma-names = "rx", "tx", "tx2", "rx2";
 -- 
 2.34.1
 
