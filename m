@@ -2,68 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68A355E7C8F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 16:10:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC3835E7CA3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 16:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232511AbiIWOKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 10:10:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37178 "EHLO
+        id S232437AbiIWOPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 10:15:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232369AbiIWOJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 10:09:58 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5005F7F3
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:09:54 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id a80so266476pfa.4
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:09:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=LPYKbguZc/KYKDAy5XVdCd4nJdkVt/SEkrsrImBpX8M=;
-        b=EAjhOdvgjArw8sNIzQ0hUGUR5C0UY0fiqJfiosuEyKMIz+iThn3vm7sx98wNmV/jxa
-         GdQAjsSLhEsVaxKT6+c1FsvRYbY76gLPkreqY9O41/mllSkEtyxhn8HuNPmNGPZe9lTy
-         AdJFFWbMZpy93pAnlgHBGTx9rsCKFAnjBUug8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=LPYKbguZc/KYKDAy5XVdCd4nJdkVt/SEkrsrImBpX8M=;
-        b=P1Q0dvkPo0xNXo0h8TjjnV9uc1Q8kvG0YT3V+kgnhCitco5i/RAzy4uGOpn2DFOuUN
-         SThYmi7UGNXs3w+WG9eRMLqg8fGbJd1hs4mrAvT35ODbbE6/q2n7SWYJ/1mIvHju2x/V
-         BmTHlZy4Q1vgSYygEBE7e4CxrdZ67wueriAUHU92zJwNmbY2n6He0a3eFbt2lOXn0iDq
-         1tYgBfuCW/64Fv2AEpYz4i8ZLdY+3ZVes5PJdheCST2ZXnmb3JgCLGD6ioy2/Fnltyj8
-         +9ba798jIBABXIQlj52mrkRd7OVoJ+Zwhcnv+KBo6sANYpb7WMI5N04NT4EwmxLmiGcg
-         hicg==
-X-Gm-Message-State: ACrzQf1MPXMKsfOPb1LkNBGlP5ArcGVV/4UjWPU6erhyXcPqoTIEzw14
-        z0QiwtmjE/S20pKDD1PlzLNV2w==
-X-Google-Smtp-Source: AMsMyM6PLPe54eIdKclOEZNjNZ5iwV7lzwMpeVGCZ0MgnUzMuC6AN9cMLx1aHKnMYqF/oMDRjlEgAQ==
-X-Received: by 2002:a63:90:0:b0:439:befb:fdab with SMTP id 138-20020a630090000000b00439befbfdabmr7481048pga.341.1663942194478;
-        Fri, 23 Sep 2022 07:09:54 -0700 (PDT)
-Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
-        by smtp.gmail.com with ESMTPSA id l14-20020a17090a408e00b001fd8316db51sm1645318pjg.7.2022.09.23.07.09.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Sep 2022 07:09:53 -0700 (PDT)
-From:   Judy Hsiao <judyhsiao@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
-        judyhsiao@google.com, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>
-Subject: [PATCH v5 3/3] arm64: dts: qcom: sc7280: Include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1 and villager-r0
-Date:   Fri, 23 Sep 2022 14:09:18 +0000
-Message-Id: <20220923140918.2825043-4-judyhsiao@chromium.org>
-X-Mailer: git-send-email 2.37.3.998.g577e59143f-goog
-In-Reply-To: <20220923140918.2825043-1-judyhsiao@chromium.org>
-References: <20220923140918.2825043-1-judyhsiao@chromium.org>
+        with ESMTP id S232133AbiIWOPc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 10:15:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD134109638;
+        Fri, 23 Sep 2022 07:15:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 689A9B8360F;
+        Fri, 23 Sep 2022 14:15:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1778C433D6;
+        Fri, 23 Sep 2022 14:15:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663942528;
+        bh=1AEcv2sMJqybL3a/melDfwWejdXEdqsvn6UZFqQXk0w=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=KO/FydUZ6XN6vBhLT7QRnwB5Xe/lkshw7359t/XGWUVY3nZ6Brhtd/b4mj51hk5Ya
+         teE0g2+L/r9SpFkcVnl9ISTxozo4Ew6R6BpfAd9LsOETTzQj/jZQKis2PH3fMjV266
+         QcJwIELCFD9UNnWUnlmMUWV7qNNk97IsP7CHEwppi2meC3pMzKQwOUx6KKV0IjcnOl
+         dms4TAusM5nqHJk8tPVe03Z0yfOUZMocomBgW1lNMyAT6jKUmzMsFKapsS4AXPKBmk
+         86g55mvkOHVPvxjNW79d8LFrtmT0T6fVf9Kq8y4BbVvr1sryoDbx43j8LXgutChbIB
+         We6XJ/zOy1iBw==
+Date:   Fri, 23 Sep 2022 09:15:26 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, bhelgaas@google.com, robh+dt@kernel.org,
+        lorenzo.pieralisi@arm.com, shawnguo@kernel.org, kishon@ti.com,
+        kw@linux.com, frank.li@nxp.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: Re: [PATCH v3 04/14] PCI: dwc: Kconfig: Add iMX PCIe EP mode support
+Message-ID: <20220923141526.GA1388290@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1663913220-9523-5-git-send-email-hongxing.zhu@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,41 +55,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1
-and villager-r0 as they use rt5682 codec.
+On Fri, Sep 23, 2022 at 02:06:50PM +0800, Richard Zhu wrote:
+> Since i.MX PCIe is one dual mode PCIe controller.
 
-Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
- arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts | 1 +
- arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts  | 1 +
- 2 files changed, 2 insertions(+)
+This is not a sentence.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-index c1a671968725..c569d7a5edb7 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-@@ -9,6 +9,7 @@
- 
- #include "sc7280-herobrine.dtsi"
- #include "sc7280-herobrine-lte-sku.dtsi"
-+#include "sc7280-herobrine-audio-rt5682.dtsi"
- 
- / {
- 	model = "Google Herobrine (rev1+)";
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-index 73e24cc55a09..31a57ae5af57 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-@@ -9,6 +9,7 @@
- 
- #include "sc7280-herobrine-villager.dtsi"
- #include "sc7280-herobrine-lte-sku.dtsi"
-+#include "sc7280-herobrine-audio-rt5682.dtsi"
- 
- / {
- 	model = "Google Villager (rev0)";
--- 
-2.37.3.998.g577e59143f-goog
+> Add i.MX PCIe EP mode support, and split the PCIe modes to the Root
+> Complex mode and Endpoint mode.
 
+Add blank lines between paragraphs or rewrap into a single paragraph
+that fills 75 columns.
+
+I think you should split "[12/14] PCI: imx6: Add iMX8MM PCIe EP mode"
+into:
+
+  - A patch that adds the generic endpoint infrastructure, e.g.,
+    imx6_pcie_ep_init(), imx6_pcie_ep_raise_irq(), imx6_add_pcie_ep().
+
+  - A second patch that adds the i.MX8MM identifiers.
+
+That way the i.MX8MM patch will be analogous to the i.MX8MQ and
+i.MX8MP patches.
+
+Then you could squash this Kconfig patch into the generic endpoint
+infrastructure patch because this patch is what selects PCIE_DW_EP,
+which is what ensures that dw_pcie_ep_reset_bar(),
+dw_pcie_ep_raise_legacy_irq(), etc., are available.
+
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -92,10 +92,33 @@ config PCI_EXYNOS
+>  	  functions to implement the driver.
+>  
+>  config PCI_IMX6
+> -	bool "Freescale i.MX6/7/8 PCIe controller"
+> +	bool
+> +
+> +config PCI_IMX6_HOST
+> +	bool "Freescale i.MX6/7/8 PCIe controller host mode"
+>  	depends on ARCH_MXC || COMPILE_TEST
+>  	depends on PCI_MSI_IRQ_DOMAIN
+>  	select PCIE_DW_HOST
+> +	select PCI_IMX6
+> +	help
+> +	  Enables support for the PCIe controller Root Complex mode in the
+> +	  iMX6/7/8 SoCs.
+
+> +	  This controller can work either as EP or RC. In order to enable
+> +	  host-specific features PCIE_DW_HOST must be selected and in order
+> +	  to enable device-specific features PCIE_DW_EP must be selected.
+
+I don't think these three lines are useful to the user.  They only
+describe what Kconfig does when PCI_IMX6_HOST is enabled, which is
+really an internal implementation detail.
+
+> +config PCI_IMX6_EP
+> +	bool "Freescale i.MX6/7/8 PCIe controller endpoint mode"
+> +	depends on ARCH_MXC || COMPILE_TEST
+> +	depends on PCI_ENDPOINT
+> +	select PCIE_DW_EP
+> +	select PCI_IMX6
+> +	help
+> +	  Enables support for the PCIe controller endpoint mode in the
+> +	  iMX6/7/8 SoCs.
+> +	  This controller can work either as EP or RC. In order to enable
+> +	  host-specific features PCIE_DW_HOST must be selected and in order
+> +	  to enable device-specific features PCIE_DW_EP must be selected.
+
+Ditto.
+
+>  config PCIE_SPEAR13XX
+>  	bool "STMicroelectronics SPEAr PCIe controller"
+> -- 
+> 2.25.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
