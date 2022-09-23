@@ -2,110 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CD7C5E82E2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 22:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E8CD5E8376
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 22:19:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231218AbiIWUDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 16:03:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55028 "EHLO
+        id S233008AbiIWUTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 16:19:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232641AbiIWUDl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 16:03:41 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75973121E48
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 13:03:40 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id sd10so2911506ejc.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 13:03:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=QMROfvwPaQqqwGBxEwGan/jO/nMMkjUtia8DhAnWKNY=;
-        b=C8KMtT7teJco1xJOXhJGd4+IdEHjTvW90OBnWsyCdahJQVKnVt1Za1E8XxlPzWkdz4
-         0Ku7TrQdCY3z8n7hRCmX98D5jLxxm6qAXGFqCCXwMg+pUpVbs+bkHpr6982D2vZ6tLuD
-         BHMfzA98bLHPgQtyKF5WBsQCQHtN3/L2PkZxc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=QMROfvwPaQqqwGBxEwGan/jO/nMMkjUtia8DhAnWKNY=;
-        b=B7FnqmHMDB4ijUU476BgZeuRdl5uaYi9PyhsOmwN4i5o8asJThuMo8ly9Vn0XqJOjC
-         TQQjEVU8gvecJjzK4pNm4OG22BllcBQbbulU6R9+St2onaRjfbTyePw5blKGm6eJlKTr
-         d6EVgpwY2GdIpT92zlPIsxKv6bdQJ0HwtEAk2HDt6TmCDooe6ggWodrm30H5nBqjD+4a
-         AihJtNcbzDbUkn27u60gc3X2TMu4M1zRIOQM3vV0dsMRRc/l9vjDGBGvIAhqvFJ0n1HR
-         V4iHu1B6cR0myHR0p4ei9fszAgsE/fLEXY47ZJHeeHB31DDjhFzqoRhR0gkZPTuOrtlm
-         68lw==
-X-Gm-Message-State: ACrzQf0b5r66L5Txg+qbTRMQwPXEZPXWuExGpxT98qEz6dQFG3N7/eRY
-        GxMed8tqEWp93D4vBqZjOmZv2ldhNkgzlvlI
-X-Google-Smtp-Source: AMsMyM705nX/87Ued45E2xrMzuH4qO35WdPLRoi5ZlP+3idiHKJu5zi+FBLhsyHU/fKcbR3+2ewbOA==
-X-Received: by 2002:a17:906:3a15:b0:73d:80bf:542c with SMTP id z21-20020a1709063a1500b0073d80bf542cmr8662157eje.633.1663963418805;
-        Fri, 23 Sep 2022 13:03:38 -0700 (PDT)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
-        by smtp.gmail.com with ESMTPSA id h6-20020a170906260600b0077ce503bd77sm4339983ejc.129.2022.09.23.13.03.38
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 13:03:38 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id z6so1564402wrq.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 13:03:38 -0700 (PDT)
-X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id
- b13-20020adff90d000000b0020cde324d35mr6186264wrr.583.1663963418082; Fri, 23
- Sep 2022 13:03:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220923094242.4361-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20220923174224.v3.1.Ide53082044aac56877c4ff5725777769e377476a@changeid> <3cadff28-197a-5e6c-cbb8-eb9e816e5166@linaro.org>
-In-Reply-To: <3cadff28-197a-5e6c-cbb8-eb9e816e5166@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 23 Sep 2022 13:03:26 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UAw0sSvDpH0e5yKyXLnYiGnxxs_BTWSO5ozKqH0UswWQ@mail.gmail.com>
-Message-ID: <CAD=FV=UAw0sSvDpH0e5yKyXLnYiGnxxs_BTWSO5ozKqH0UswWQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: qcom: Separete LTE/WIFI SKU for sc7280-evoker
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S232723AbiIWURv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 16:17:51 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A229C7D1FA;
+        Fri, 23 Sep 2022 13:14:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1663964099; x=1695500099;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Z4Ap7/60tpjYs9kb1z44MtzSE1l13TDa4jGX5dZVwRg=;
+  b=kU3WeIa1UdfDlb4cc9Hs5UE5ILJbpjWMtfRCg4L9GF6B0xh/mC6bHfhY
+   n9RmSKR7Es7j4X48ovtokLrSD4PnL8TnuQZrZp/Hh0DiAoPNT0Jv8z14S
+   2amO+xMQhjnTAvdWK0p/jME0LfSWNgYfQIOIm28ICBj2jBDuptfi1/DPO
+   3gpk8qpZ2AVjlw87K3pQwIXTCYnS6XRz0bokbkrQaiSoY54kS7rCI0/SB
+   oynIahcPu2WI5EPP2DFd35NHldiyI6l3ERCLOm1zkZcUVhRJ2PVQIWd5M
+   3chNIFfG870YZV4D7WTPDSJIcapNKpRw+jKFSS7b7hY4yxubk4bNMtNi6
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10479"; a="281051925"
+X-IronPort-AV: E=Sophos;i="5.93,340,1654585200"; 
+   d="scan'208";a="281051925"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Sep 2022 13:14:53 -0700
+X-IronPort-AV: E=Sophos;i="5.93,340,1654585200"; 
+   d="scan'208";a="724272569"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Sep 2022 13:14:50 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id CBA192030E;
+        Fri, 23 Sep 2022 23:14:47 +0300 (EEST)
+Date:   Fri, 23 Sep 2022 20:14:47 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 4/4] media: platform: Add Renesas RZ/G2L CRU driver
+Message-ID: <Yy4TtzPtSN9qiiQS@paasikivi.fi.intel.com>
+References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220905230406.30801-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Prabhakar,
 
-On Fri, Sep 23, 2022 at 5:15 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 23/09/2022 11:42, Sheng-Liang Pan wrote:
-> > evoker will have WIFI/LTE SKU, separete it for each different setting.
-> >
-> > Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-> > ---
-> >
-> > Changes in v3:
-> > - none
->
-> Don't sent the same version. Either fix what I asked for or keep
-> discussing the topic.
->
-> Ignoring comments will not get the patch merged.
+On Tue, Sep 06, 2022 at 12:04:06AM +0100, Lad Prabhakar wrote:
+...
 
-I agree with Krzysztof here. I can't see any difference between v2 and
-v3, so I assume that you meant to fix his comment (spell "separete"
-correctly in the commit message _and_ ${SUBJECT}) but somehow did
-something wrong when sending v3.
+> +#define to_buf_list(vb2_buffer) (&container_of(vb2_buffer, \
+> +						struct rzg2l_cru_buffer, \
+> +						vb)->list)
 
-In any case, other than the typo this looks fine to me. Feel free to
-add my Reviewed-by when the typo is fixed.
+#define to_buf_list(vb2_buffer) \
+	(&container_of(vb2_buffer, struct rzg2l_cru_buffer, vb)->list)
 
 
--Doug
+...
+
+> +static int rzg2l_cru_open(struct file *file)
+> +{
+> +	struct rzg2l_cru_dev *cru = video_drvdata(file);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(cru->pclk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = clk_prepare_enable(cru->vclk);
+> +	if (ret)
+> +		goto disable_pclk;
+> +
+> +	ret = clk_prepare_enable(cru->aclk);
+> +	if (ret)
+> +		goto disable_vclk;
+> +
+> +	ret = mutex_lock_interruptible(&cru->lock);
+> +	if (ret)
+> +		goto disable_aclk;
+> +
+> +	file->private_data = cru;
+> +	ret = v4l2_fh_open(file);
+> +	if (ret)
+> +		goto err_unlock;
+> +
+> +	ret = v4l2_pipeline_pm_get(&cru->vdev.entity);
+
+Please use runtime PM instead in sensor drivers, we're trying to get rid of
+this function.
+
+It'd be nice to have it in this one as well.
+
+> +	if (ret < 0)
+> +		goto err_open;
+> +
+> +	mutex_unlock(&cru->lock);
+> +
+> +	return 0;
+> +err_open:
+> +	v4l2_fh_release(file);
+> +err_unlock:
+> +	mutex_unlock(&cru->lock);
+> +disable_aclk:
+> +	clk_disable_unprepare(cru->aclk);
+> +disable_vclk:
+> +	clk_disable_unprepare(cru->vclk);
+> +disable_pclk:
+> +	clk_disable_unprepare(cru->pclk);
+> +
+> +	return ret;
+> +}
+
+...
+
+> +void rzg2l_cru_v4l2_unregister(struct rzg2l_cru_dev *cru)
+> +{
+> +	if (!video_is_registered(&cru->vdev))
+> +		return;
+> +
+> +	v4l2_info(&cru->v4l2_dev, "Removed %s\n",
+> +		  video_device_node_name(&cru->vdev));
+
+I'd just leave this out. Same for the similar message on registration.
+
+-- 
+Kind regards,
+
+Sakari Ailus
