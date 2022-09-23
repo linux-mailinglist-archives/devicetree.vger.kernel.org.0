@@ -2,118 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B314E5E718C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 03:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58CA75E719B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 03:55:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232202AbiIWBsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 21:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49304 "EHLO
+        id S229977AbiIWBy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 21:54:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232154AbiIWBsf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 21:48:35 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C611166FD;
-        Thu, 22 Sep 2022 18:48:34 -0700 (PDT)
-X-UUID: 7639ba8871e34b4ba20f8ed1059ca1ea-20220923
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=1k5TOoyEcepapXTo6DfuMdGwBHBkldYi/XOn9F6EwJA=;
-        b=cJ+ZvhgPTPLkgEOCChkcJUHphHkjgYfz96qfeW7o/jPDakKFTB4u+XkKL7Ki+WC+OsuSY9WZUdSuVsoAspOsCCebkCS6gcXce88rNvRGNfkmKmk9uKtVpLmK5m1xjA/Z6RdrMIPI86VQszdEMMH6EuJ8FRCMeUus1lU+lDrAprA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:6f70596c-f29d-47e5-ac1e-feb7cbb33b87,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:39a5ff1,CLOUDID:f8d4f0e3-87f9-4bb0-97b6-34957dc0fbbe,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 7639ba8871e34b4ba20f8ed1059ca1ea-20220923
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <jianguo.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1205604914; Fri, 23 Sep 2022 09:48:30 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 23 Sep 2022 09:48:29 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 23 Sep 2022 09:48:28 +0800
-Message-ID: <8007b455dd18837c06ab099a6009505e7dddc124.camel@mediatek.com>
-Subject: Re: [resend PATCH v4 2/2] dt-bindings: net: snps,dwmac: add clk_csr
- property
-From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
+        with ESMTP id S230042AbiIWBy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 21:54:56 -0400
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C78F3B966;
+        Thu, 22 Sep 2022 18:54:54 -0700 (PDT)
+Received: by mail-io1-xd30.google.com with SMTP id q83so9258303iod.7;
+        Thu, 22 Sep 2022 18:54:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=qsPvYmg7jnOoMPiYWFtL2rAhyiJL8CXDGyIJq8ULqQA=;
+        b=E8tyZ6ZvnVdOLsPdvkpBkA4DbpCZYoZloBmC6p4KxUZ9Uvs4zVqZnpvVmBF0X+F3xV
+         Ogu/Isi4MEySiMoXRU+P2q53e8zYtjSWk90TVG5fpTq+vOqanxorGFAKjjZZteHDulSs
+         thUdOM+OZ1VVy6Ayr1orZKyb0kMro8UYs9Jjxut53bSbV/G1kmPH0c4o0xSKsLaweK1/
+         kwFu2eP313ghBHszZc74DZjZ7hXEXdH0EcsTxaGYpX7fnDnIMslUwoO7LV0ffNTG3BHJ
+         QwBkXpq8PAnJpmcvZRUo82DSenAkOzdCB9XY+n8WpInsRcPSru3YCsFXtj6a9u3HbaXI
+         Yt8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=qsPvYmg7jnOoMPiYWFtL2rAhyiJL8CXDGyIJq8ULqQA=;
+        b=EGu6L7JQfjhwO0Q9rgFMMTldKtuLSG0/gKIqqbioc0QnKOXOHt1N0wuhjmX7hcO6La
+         5/EfLg5zEIWlVnijs7RMbjfQ4Md8HaxUTGQ3D9WD7RlNHgw8Nm+hNfPzIZv/5Xt3jhsX
+         vSby8sO/wtmzq0UAhCevix/HTVwGTchP6VHOlN7I5lzgqp4RKNkgiZ+6p9CkoQTLqOe5
+         5iAqVr7DvE1RszMIGB3JAD+EIhIEPoufQKeDFCdzBI8eAMQEUA9kaGw7bFXN4jrOj6ps
+         C2rGVt/WLh9eO9I/HRiNLjsJseUVY5lmBLhbJC793AasCzHlodAJZ7a1PowWt8bfoMuA
+         fo9A==
+X-Gm-Message-State: ACrzQf29Ea8b+Bn8cY1jOunvn/U96cGqFgSUsotlAj0+BqvA0AcblVLH
+        WX6/tCGZTeZBFJsRIvmOd9/Qz4OdqPY=
+X-Google-Smtp-Source: AMsMyM6ESV0dXEcAAT0QxgvBMs/LmbX/0UYVefuO7ZmeyfKXtahfIwWdQOYDzr/KNoBB8SQfCskz4w==
+X-Received: by 2002:a05:6638:f83:b0:35a:d85:ab65 with SMTP id h3-20020a0566380f8300b0035a0d85ab65mr3636064jal.240.1663898093295;
+        Thu, 22 Sep 2022 18:54:53 -0700 (PDT)
+Received: from localhost ([2607:fea8:a2e2:2d00::1e16])
+        by smtp.gmail.com with UTF8SMTPSA id n17-20020a056e02101100b002f5447b47f8sm2626286ilj.33.2022.09.22.18.54.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Sep 2022 18:54:52 -0700 (PDT)
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Christophe Roullier <christophe.roullier@st.com>
-Date:   Fri, 23 Sep 2022 09:48:28 +0800
-In-Reply-To: <04b9e5ef-f3c7-3400-f9df-2f585a084c5d@linaro.org>
-References: <20220922092743.22824-1-jianguo.zhang@mediatek.com>
-         <20220922092743.22824-3-jianguo.zhang@mediatek.com>
-         <04b9e5ef-f3c7-3400-f9df-2f585a084c5d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH 0/2] SDM670 GPI DMA support
+Date:   Thu, 22 Sep 2022 21:54:24 -0400
+Message-Id: <20220923015426.38119-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Krzysztof,
+This patch series adds the compatible string for GPI DMA, needed for the
+GENI interface, on Snapdragon 670.
 
-	Thanks for your comment.
+ Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
+ drivers/dma/qcom/gpi.c                              | 1 +
+ 2 files changed, 2 insertions(+)
 
-On Thu, 2022-09-22 at 17:07 +0200, Krzysztof Kozlowski wrote:
-> On 22/09/2022 11:27, Jianguo Zhang wrote:
-> > The clk_csr property is parsed in driver for generating MDC clock
-> > with correct frequency. A warning('clk_csr' was unexpeted) is
-> > reported
-> > when runing 'make_dtbs_check' because the clk_csr property
-> > has been not documented in the binding file.
-> > 
-> 
-> You did not describe the case, but apparently this came with
-> 81311c03ab4d ("net: ethernet: stmmac: add management of clk_csr
-> property") which never brought the bindings change.
-> 
-> Therefore the property was never part of bindings documentation and
-> bringing them via driver is not the correct process. It bypasses the
-> review and such bypass cannot be an argument to bring the property to
-> bindings. It's not how new properties can be added.
-> 
-> Therefore I don't agree. Please make it a property matching bindings,
-> so
-> vendor prefix, no underscores in node names.
-> 
-> Driver and DTS need updates.
-> 
-We will rename the property 'clk_csr' as 'snps,clk-csr' and update DTS
-& driver to align with the new name in next versions patches.
-> Best regards,
-> Krzysztof
-> 
-BRS
-Jianguo
 
