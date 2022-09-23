@@ -2,67 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C13255E7344
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 07:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4CDD5E735F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 07:28:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbiIWFKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 01:10:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44042 "EHLO
+        id S229725AbiIWF2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 01:28:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiIWFKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 01:10:50 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F547D588E
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 22:10:45 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id s10so13367859ljp.5
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 22:10:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=H2c0hv2ieCNxSdEWPXcGPXlDZHUdAO9roxe+nCV0M+o=;
-        b=ko4KXGf7o8DpC3HGaGgL8EZUrFhgruem/OTHR+zk5XP8Z9NzBjUwwhiTAPpeVc64Ks
-         bHnMcC6EQeiVV/0HLEIfxbqTFBFqv4EENzJNG1i4XKvYOb4dovp7tIvKYIjwxHMvyY+z
-         RVwkE/+hshgTmLCtJDhsJU/12p9JA2GNXrugHeJeG5BmW6OCtVuhrtYFx6QOxHGG/4WM
-         dfMaeCuZE26qBF2JLZk7yQM5gNYB0Av2YfqkbKLYJNIR+VP8jIKDSHc0tO4h8EOaO/CD
-         paVtkciaLEHG8aT5VSXB6MtTwHMluMQ/MFKZGqKv72tyE4wGtrKJhYULEg26v518hAum
-         4PBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=H2c0hv2ieCNxSdEWPXcGPXlDZHUdAO9roxe+nCV0M+o=;
-        b=baw+tbNI+jWeQ/IjfaE3PMuzzj4+frlSZnENgs44AjaCU57quyirQ4XVJTQFi6RjjR
-         29k4dYk7QUWcWfNDOkdzMRWQx90znutH62GjHpsPfVgqKvpl6y8E7v/W0kzjKVtGh4WU
-         RK08jY6N4qX0Tk4Zg0P2cOYhFzf+qzTqH1fPhojXH3Zbu5uSsu4ArNJ5OnI4IZDxO8Y3
-         UWywdpGXDEZxs1N8fP8EP67WsV09cUkugbx1EKe/ze2ZuGngdugAQtZz9tEDAggq7l+3
-         Xgo6WhkPrGs1sGBjn0DxEx8jfvR49/BFxcFTi5AZ8+MIYuRnFSyLnrMr337N6HgjSHF1
-         Mm3w==
-X-Gm-Message-State: ACrzQf1QHBbDH2ItfF8v5pXfa2pL7pA4TrbSznmWMnU6d02NAaP7UbnS
-        8frmNKbDkF93GDt2ryFNABNpuYtWflpnTKxJo2xuZw==
-X-Google-Smtp-Source: AMsMyM5NBbA1p/O8C5SwbGi0AcNeVinFyL/KvMFQATCH2yesGZ3o6N44PPDjykmrW36mq7lV/cjzxXT8f9+ADa/ddQo=
-X-Received: by 2002:a2e:9606:0:b0:26c:442a:40c2 with SMTP id
- v6-20020a2e9606000000b0026c442a40c2mr2302429ljh.458.1663909843228; Thu, 22
- Sep 2022 22:10:43 -0700 (PDT)
+        with ESMTP id S229582AbiIWF2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 01:28:49 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412EE11C176;
+        Thu, 22 Sep 2022 22:28:48 -0700 (PDT)
+X-UUID: b79eb344d15345f4802a7e158998c4c9-20220923
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=7a6TXtGwrN+ddyunijlRltrO1PPqJO136ORbWQvPVUM=;
+        b=uKRdN+7Azt0Fii6zp3G2U46TkWyi8KCXLSSeKh+5R16g0IbWXu4k6v3h0Rja2bCnWsP61W/9WAONQ3pOczgmbkbfwflKDo8x0egaWTANJDX4S58RaJ5GANky/eqBxiwx7cvlEZSXPzgiBnGSNzzObuFtgIzGLtSwNFoAzOWE6EE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.11,REQID:cbcf1e5f-7d2e-4300-bf4a-ed45a1b91123,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:39a5ff1,CLOUDID:f296d1a2-dc04-435c-b19b-71e131a5fc35,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: b79eb344d15345f4802a7e158998c4c9-20220923
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <jianguo.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 744889863; Fri, 23 Sep 2022 13:28:43 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 23 Sep 2022 13:28:41 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 23 Sep 2022 13:28:41 +0800
+From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Jianguo Zhang <jianguo.zhang@mediatek.com>
+Subject: [PATCH v5 0/4]  Mediatek ethernet patches for mt8188
+Date:   Fri, 23 Sep 2022 13:28:24 +0800
+Message-ID: <20220923052828.16581-1-jianguo.zhang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220921030649.1436434-1-bhupesh.sharma@linaro.org>
- <20220921030649.1436434-2-bhupesh.sharma@linaro.org> <YyvKlWgaPVV3su8f@matsya>
-In-Reply-To: <YyvKlWgaPVV3su8f@matsya>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Fri, 23 Sep 2022 10:40:31 +0530
-Message-ID: <CAH=2Ntzi=R9B5rMODfzvriDmxu+7PvRS9f0oT0EYbT8AQkJo0Q@mail.gmail.com>
-Subject: Re: [PATCH v7 1/1] dma: qcom: bam_dma: Add support to initialize
- interconnect path
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     dmaengine@vger.kernel.org, agross@kernel.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, thara.gopinath@gmail.com,
-        devicetree@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,78 +75,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Sept 2022 at 08:08, Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 21-09-22, 08:36, Bhupesh Sharma wrote:
-> > From: Thara Gopinath <thara.gopinath@gmail.com>
-> >
-> > BAM dma engine associated with certain hardware blocks could require
-> > relevant interconnect pieces be initialized prior to the dma engine
-> > initialization. For e.g. crypto bam dma engine on sm8250. Such requirement
-> > is passed on to the bam dma driver from dt via the "interconnects"
-> > property. Add support in bam_dma driver to check whether the interconnect
-> > path is accessible/enabled prior to attempting driver intializations.
-> >
-> > If interconnects are not yet setup, defer the BAM DMA driver probe().
-> >
-> > Cc: Bjorn Andersson <andersson@kernel.org>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Thara Gopinath <thara.gopinath@gmail.com>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > [Bhupesh: Make header file inclusion alphabetical and use 'devm_of_icc_get()']
-> > ---
-> >  drivers/dma/qcom/bam_dma.c | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >
-> > diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
-> > index 2ff787df513e..a5b0cf28ffb7 100644
-> > --- a/drivers/dma/qcom/bam_dma.c
-> > +++ b/drivers/dma/qcom/bam_dma.c
-> > @@ -26,6 +26,7 @@
-> >  #include <linux/kernel.h>
-> >  #include <linux/io.h>
-> >  #include <linux/init.h>
-> > +#include <linux/interconnect.h>
-> >  #include <linux/slab.h>
-> >  #include <linux/module.h>
-> >  #include <linux/interrupt.h>
-> > @@ -394,6 +395,7 @@ struct bam_device {
-> >       const struct reg_offset_data *layout;
-> >
-> >       struct clk *bamclk;
-> > +     struct icc_path *mem_path;
-> >       int irq;
-> >
-> >       /* dma start transaction tasklet */
-> > @@ -1294,6 +1296,14 @@ static int bam_dma_probe(struct platform_device *pdev)
-> >       if (IS_ERR(bdev->bamclk))
-> >               return PTR_ERR(bdev->bamclk);
-> >
-> > +     /* Ensure that interconnects are initialized */
-> > +     bdev->mem_path = devm_of_icc_get(bdev->dev, "memory");
-> > +     if (IS_ERR(bdev->mem_path)) {
-> > +             ret = dev_err_probe(bdev->dev, PTR_ERR(bdev->mem_path),
-> > +                                 "failed to acquire icc path\n");
-> > +             return ret;
-> > +     }
->
-> So this makes us fail on older DT where icc path may not be present.
-> Should this not be an optional thing?
+Changes in v5:
 
-That's a good point. I am not sure if Thara tried this on platforms
-which don't have the icc path available.
+v5:
+1) Rename the property 'clk_csr' as 'snps,clk-csr' in binding
+file as Krzysztof Kozlowski'comment.
+2) Add DTS patch 'arm64: dts: mediatek: mt2712e: Update the name of property 'clk_csr''
+as Krzysztof Kozlowski'comment.
+3) Add driver patch 'net: stmmac: Update the name of property 'clk_csr''
+as Krzysztof Kozlowski'comment.
 
-I will fix this in v8.
+v4:
+1) Update the commit message of patch 'dt-bindings: net: snps,dwmac: add clk_csr property'
+as Krzysztof Kozlowski'comment.
 
-Thanks,
-Bhupesh
+v3:
+1) List the names of SoCs mt8188 and mt8195 in correct order as
+AngeloGioacchino Del Regno's comment.
+2) Add patch version info as Krzysztof Kozlowski'comment.
 
-> > +
-> >       ret = clk_prepare_enable(bdev->bamclk);
-> >       if (ret) {
-> >               dev_err(bdev->dev, "failed to prepare/enable clock\n");
-> > --
-> > 2.37.1
->
-> --
-> ~Vinod
+v2:
+1) Delete patch 'stmmac: dwmac-mediatek: add support for mt8188' as
+Krzysztof Kozlowski's comment.
+2) Update patch 'dt-bindings: net: mediatek-dwmac: add support for
+mt8188' as Krzysztof Kozlowski's comment.
+3) Add clk_csr property to fix warning ('clk_csr' was unexpected) when
+runnig 'make dtbs_check'.
+
+v1:
+1) Add ethernet driver entry for mt8188.
+2) Add binding document for ethernet on mt8188.
+
+Jianguo Zhang (4):
+  dt-bindings: net: mediatek-dwmac: add support for mt8188
+  dt-bindings: net: snps,dwmac: add clk_csr property
+  arm64: dts: mediatek: mt2712e: Update the name of property 'clk_csr'
+  net: stmmac: Update the name of property 'clk_csr'
+
+ .../devicetree/bindings/net/mediatek-dwmac.yaml        | 10 ++++++++--
+ Documentation/devicetree/bindings/net/snps,dwmac.yaml  |  5 +++++
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi              |  2 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c  |  2 +-
+ 4 files changed, 15 insertions(+), 4 deletions(-)
+
+-- 
+2.25.1
+
+
