@@ -2,100 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 320B65E80AA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 19:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 382FC5E80B1
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 19:28:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230054AbiIWR0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 13:26:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38408 "EHLO
+        id S230282AbiIWR2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 13:28:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231641AbiIWR0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 13:26:33 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 352EA14F299
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 10:26:32 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id d42so1420999lfv.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 10:26:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=d2aMGH6UHNRKejwJPNEF8etSbQwBB3RTv4C2uFoQ+hQ=;
-        b=Rxm2qRqAZnLWxG+kWDcYrS34l/7LustMqorREHAh37L7BpSVEAe75br2Cga0STKUHa
-         mBzvUCgSYj1AXSH8JrCJ/PyICy+z6sDl4alwbLljG5XhYTcUSTYIZz00wGLa9XAAO1MY
-         HX/IEuup1VLNDKZl23dFQFmkzWB3LE0UwMJ3ptrhrJaHjLKRy/1He8PUQt/J6g84y5e8
-         CCcrlnPmk+Wpuu9YJrqd7aj151JMn1O8BQl1DT9E4j6p+xfFDgfP2OY/PRLYsQXsjxEb
-         X7NcAO75+UgZr0VdTFCL9mXE0fuXMZhP03tWOBXSS/RXDMgIxg3UwfnyuQsEP5QaimcI
-         qbkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=d2aMGH6UHNRKejwJPNEF8etSbQwBB3RTv4C2uFoQ+hQ=;
-        b=5PoKdkbI3ZiBwEmZnUQLYhcPDP6x6+2JlHds8mzHkXl+0ZE2fFhnm4JEd2gLg7nNDa
-         ekdNJ0DEHlQCZrUzDRH4JBKIJ9euztr5O5NCpykNiUTTBvAhuyewl5Orw0mWZAd0d/Aq
-         oHxQW9kAQVAK6v//EXK1rB611icXvhnoK1zpwk6EbygD6yr0fuHBZFjt1wpvVbkO5mKX
-         LAftp3LsviN+luiojrlMTQ94NHpoXK40U5euAtDqb2gg8igG8g9+QzH9fkIcxqJF0bcY
-         5zG9ac2tmouIKDIUWSwdX0uUKCutNOLEwtuVNKPCBKT0qPJVoZjd8I5ZvaKa8o2aQ0ud
-         jSOw==
-X-Gm-Message-State: ACrzQf0m2w4aF7eK5FTpxuKc2vYBzd2DFDWkrTKWaIyT9/nZs5OTh/9K
-        WW5Fd/HCjlPRWH/jLRa2WWe6tQ==
-X-Google-Smtp-Source: AMsMyM6RSipJh6L8w0HLJBu4EMBCoIT3+KEpfBtSapvzTG4RRLReX34X6mW4Pz3ej2J0UKIzYk7uBg==
-X-Received: by 2002:a19:650f:0:b0:494:827e:5ef5 with SMTP id z15-20020a19650f000000b00494827e5ef5mr3487893lfb.411.1663953990513;
-        Fri, 23 Sep 2022 10:26:30 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p9-20020a2eba09000000b0026c037747bfsm1481226lja.3.2022.09.23.10.26.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 10:26:30 -0700 (PDT)
-Message-ID: <a15fa97e-de7d-c2a6-e39a-2dd7ba8caf31@linaro.org>
-Date:   Fri, 23 Sep 2022 19:26:29 +0200
+        with ESMTP id S230495AbiIWR2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 13:28:49 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D5A14F28B;
+        Fri, 23 Sep 2022 10:28:48 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 050A41250;
+        Fri, 23 Sep 2022 19:28:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1663954126;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=eHn7dUEakYs6EqU0H1lIKA8WzZRAHG8KE3zOYOsxZq8=;
+        b=Ov+iQUNVotABs01Sc1gLX+z8jfuca90pkWpVb7jbIBKu8YCorG8EVj19b//AeaE0Dq5bEz
+        /Kaz6B5fyMmwdDOL0Xsj+w2mpOEup4KmYkEbPBwgBg7H5UsBM6e6ihgwlUj7vF6ZcqWS3e
+        MY2776cd5nKhhXQALckyeWMWS77QDonO6o1Ootf55Zll7rwfH2Ot+StdKHH/VbUnlR3VGa
+        yS3KbCTIy7zP2BCweyeY1973HEe0XILvuyebFTG3DMEGkiF1VI6c75Qo97xQ5kp2HQwtRW
+        1QXBRrBPWzmVjI0oGZVOErPfWbZ1HsAM0iTL6WpVVE2L9LoJzToH+xMJKKvzIg==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v8 7/7] remoteproc: qcom: Add support for memory sandbox
-Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        linux-remoteproc@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, devicetree@vger.kernel.org
-References: <1663938340-24345-1-git-send-email-quic_srivasam@quicinc.com>
- <1663938340-24345-8-git-send-email-quic_srivasam@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1663938340-24345-8-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 23 Sep 2022 19:28:45 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 00/20] nvmem: core: introduce NVMEM layouts
+In-Reply-To: <20220923174759.299e504e@xps-13>
+References: <20220901221857.2600340-1-michael@walle.cc>
+ <20220923174759.299e504e@xps-13>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <0c0522a2c7e4b2401955acf5bcd4eb8e@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_FILL_THIS_FORM_SHORT autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 15:05, Srinivasa Rao Mandadapu wrote:
-> Update pil driver with SMMU mapping for allowing authorised
-> memory access to ADSP firmware, by carveout reserved adsp memory
-> region from device tree file.
+Hi,
+
+Am 2022-09-23 17:47, schrieb Miquel Raynal:
+> I have a few additional questions regarding the bindings.
 > 
+> michael@walle.cc wrote on Fri,  2 Sep 2022 00:18:37 +0200:
+> 
+>> This is now the third attempt to fetch the MAC addresses from the VPD
+>> for the Kontron sl28 boards. Previous discussions can be found here:
+>> https://lore.kernel.org/lkml/20211228142549.1275412-1-michael@walle.cc/
+>> 
+>> 
+>> NVMEM cells are typically added by board code or by the devicetree. 
+>> But
+>> as the cells get more complex, there is (valid) push back from the
+>> devicetree maintainers to not put that handling in the devicetree.
+>> 
+>> Therefore, introduce NVMEM layouts. They operate on the NVMEM device 
+>> and
+>> can add cells during runtime. That way it is possible to add more 
+>> complex
+>> cells than it is possible right now with the offset/length/bits
+>> description in the device tree. For example, you can have post 
+>> processing
+>> for individual cells (think of endian swapping, or ethernet offset
+>> handling).
+>> 
+>> The imx-ocotp driver is the only user of the global post processing 
+>> hook,
+>> convert it to nvmem layouts and drop the global post pocessing hook. 
+>> Please
+>> note, that this change is only compile-time tested.
+>> 
+>> You can also have cells which have no static offset, like the
+>> ones in an u-boot environment. The last patches will convert the 
+>> current
+>> u-boot environment driver to a NVMEM layout and lifting the 
+>> restriction
+>> that it only works with mtd devices. But as it will change the 
+>> required
+>> compatible strings, it is marked as RFC for now. It also needs to have
+>> its device tree schema update which is left out here. These two 
+>> patches
+>> are not expected to be applied, but rather to show another example of
+>> how to use the layouts.
+>> 
+>> For now, the layouts are selected by a specific compatible string in a
+>> device tree. E.g. the VPD on the kontron sl28 do (within a SPI flash 
+>> node):
+>>   compatible = "kontron,sl28-vpd", "user-otp";
+>> or if you'd use the u-boot environment (within an MTD patition):
+>>   compatible = "u-boot,env", "nvmem";
+>> 
+>> The "user-otp" (or "nvmem") will lead to a NVMEM device, the
+>> "kontron,sl28-vpd" (or "u-boot,env") will then apply the specific 
+>> layout
+>> on top of the NVMEM device.
+> 
+> So if I understand correctly, there should be:
+> - one DT node defining the storage medium eeprom/mtd/whatever,
+> - another DT node defining the nvmem device with two compatibles, the
+>   "nvmem" (or "user-otp") and the layout.
+> Is this correct? Actually I was a bit surprised because generally
+> speaking, DT maintainers (rightfully) do not want to describe how we
+> use devices, the nvmem abstraction looks like a Linux thing when on top
+> of mtd devices for instance, so I just wanted to confirm this point.
 
+What do you mean by two nodes? Two separate ones or one being a
+subnode of the other?
 
-Thank you for your patch. There is something to discuss/improve.
+There is only one (storage) node and nvmem cells as subnodes.
+The two compatibles aren't strictly needed. But it will simplify
+the drivers in linux greatly. Otherwise the storage driver would
+need to know for which compatibles it needs to register a
+nvmem device. E.g. MTD devices determine that by the "nvmem"
+compatible. The OTP driver will probe by "{user,factory}-otp".
+If you'd only have one compatible, the storage driver would need
+a list of all the layouts so it can register a nvmem device.
 
-> +	if (!rproc->domain)
-> +		return -EINVAL;
-> +
-> +	ret = of_parse_phandle_with_args(adsp->dev->of_node, "iommus", "#iommu-cells", 0, &args);
+But also from a device tree POV this makes sense IMHO because
+the second compatible is a more specific one. With only
+the more generic compatible you just get a nvmem device without
+any cells - or only the cells described in the device tree.
 
-I think your bindings do not allow iommus property.
+Regarding "describe how the devices are used": then there shouldn't
+be nvmem (cell) bindings at all, because you are actually describing
+how you are using the nvmem provider. So IMHO having for example
+the compatible "kontron,sl28-vpd" is actually fits more than having
+a nvmem provider compatible with cells subnodes.
 
-Best regards,
-Krzysztof
+> Then, as we have an nvmem device described in the DT, why not just
+> pointing at the nvmem device from the cell consumer, rather than still
+> having the need to define all the cells that the nvmem device will
+> produce in the DT?
 
+See also
+https://lore.kernel.org/linux-devicetree/4bf16e18-1591-8bc9-7c46-649391de3761@linaro.org/
+
+> Maybe an example to show what I mean. Here is the current way:
+> 
+> nvmem_provider: nvmem-provider {
+> 	properties;
+> 
+> 	mycell: my_cell {
+> 		[properties;]
+> 	};
+> };
+> 
+> And we point to a cell with:
+> 
+> 	nvmem-cells = <&mycell>;
+> 
+> But, as for the tlv tables, there are many cells that will be produced,
+> and the driver may anyway just ask for the cell name (eg. performing a
+> lookup of the "mac-address" cell name), so why bothering to describe 
+> all
+> the cells in the DT, like:
+> 
+> 	nvmem-cells-providers = <&nvmem_provider>;
+> 
+> What do you think?
+
+Ok, you even go one step further and even removing the argument
+of the phandle and you are proposing to use the nvmem-cell-name,
+right? That might work with simple cells created by a layout. But
+what if there are two consumers with different names for the same
+cell? Consumer bindings might already be present, e.g. the ethernet
+bindings will use "mac-address". What if there is another binding
+which want to use that cell but doesn't name it "mac-address"?
+IMHO to reference a nvmem cell you shouldn't rely on the consumer.
+
+Also keep in mind, that the number of arguments is fixed and given
+by the "#.*-cells" property found on the target node. Therefore,
+that won't work if you have cells where one has an argument and
+another don't.
+
+> Maybe for the mac addresses this is a bit limiting as, in practice, we
+> often have base mac addresses available and using:
+> 
+> 	nvmem-cells = <&mycell INDEX>;
+> 
+> allows to dynamically create many different mac addresses, but I wonder
+> if the approach would be interesting for other cell types. Just an open
+> question.
+
+So how would your idea work with that? Maybe we could support both?
+But again, I'm not sure if it is a good idea to mix the consumer
+with the provider.
+
+-michael
