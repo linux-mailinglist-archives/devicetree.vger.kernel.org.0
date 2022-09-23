@@ -2,326 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7C055E7954
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 13:21:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 167215E7992
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 13:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbiIWLVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 07:21:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46918 "EHLO
+        id S229808AbiIWL3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 07:29:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231416AbiIWLVK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 07:21:10 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A460213572C
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 04:21:06 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id i26so19243080lfp.11
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 04:21:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=rCHuExPyw34E49pRLOmhVp4keZrznuThXnXRZMaWCCg=;
-        b=ZQd7rxG9iEDwOsocem0C/3t0VsE0KCJVYhftLV0TGGmQ9+0enEqM8lrABD1DgiArNx
-         QThG6exTX6toUTXFb9m+SWCEtWwS/0sCxapWIIN9UNRw7qzcjg0WRYRDiDQ+RTbdYpFh
-         /YQXUh6SVU3iGD9DnhqtLhSHSKXHqJmYnJlIUVJnNtJwmGmYDm2MGaNDvOmw6mIa6821
-         sSiiXfUIL9I6EP+C6nV1dQpBEV88/Xqg3ldRJVd4e/UGeW6qQYibasQfssvhkm2u8HxN
-         y+U2S9Cg/Rz9iZJK4ufO0WN08A7S55wJvGmSnbp4S1KsVwKoYQu0RvUXwxL3cmcoBc1V
-         bQZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=rCHuExPyw34E49pRLOmhVp4keZrznuThXnXRZMaWCCg=;
-        b=nVZr6o5aSAlLY4ZnNemMIgdzboq5tUQb/pAqISc6Ll11/ecjwTQ3eW8hTw6LB6nOCa
-         HNLStlZu8gld8FOLLqlZi2avABqMbzR6274t8JofSvs5H65WPv7+pWr9Uv8QYEXZZ7eu
-         /Cw7TLQCGzMFW9GIIAProXUl8z5tOu4Z2B3vbP+52yrPo+2h6GG/Q3+P4w0La8qF/tVw
-         HZOsWy9cFh4C7MnDCLsQa6oj7Mh+ejo3RVOqo+LgX0q3QWbuIaSVc8v0O5pz6pkJaSZk
-         TR+fpi1LHBrR+HufOTywRPFjhfgGtOeckW8KBqU610DKdIhZOv6F0pe4gTyhEQ+5wcHa
-         XkFQ==
-X-Gm-Message-State: ACrzQf1pi+Zb7kMmJRNlWJUtPlCL6Ku2tuNt5et5VLpbz2F4O60oUjjb
-        krug0NkGop5atI10BpfEsE+IcQ==
-X-Google-Smtp-Source: AMsMyM66ZBHC4h0SEgXf3jOTu/Lfs2tP185KjXaslJjWK0qEoSuOeg/RQHaj34Vp8XvoyNzQYc0ohg==
-X-Received: by 2002:a05:6512:2286:b0:49e:eb:ea19 with SMTP id f6-20020a056512228600b0049e00ebea19mr3122982lfu.645.1663932064944;
-        Fri, 23 Sep 2022 04:21:04 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t3-20020ac25483000000b0049a5a59aa68sm1408105lfk.10.2022.09.23.04.21.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 04:21:04 -0700 (PDT)
-Message-ID: <29fb0a59-8685-89b2-74de-2ccdce1c925c@linaro.org>
-Date:   Fri, 23 Sep 2022 13:21:03 +0200
+        with ESMTP id S229624AbiIWL3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 07:29:06 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2017183AE;
+        Fri, 23 Sep 2022 04:29:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7DF41B82289;
+        Fri, 23 Sep 2022 11:29:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71C17C433D6;
+        Fri, 23 Sep 2022 11:28:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663932542;
+        bh=bMYt1/N3KNrv0i41IENSYS+pss/KJGw9J8JCAluJZe4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=mtNpKxd1lGQnHI5nG3P2zGAtV6XMmlokHgE/SVoqu0TriQbTz+abC3DxNjhX6waeg
+         kJmhxsJpW9KtW0Uu9l0o4PEajLuS22INuxkqTgYvgRTwk8DmtobAJUTE5nhQK5Kjh8
+         66wKro/NQtoRl96QDWkMy4Za0Mnw2WowaVo3WtrqqlB3NaK3HcLKEIgonO0IYR+vD4
+         OLK148heaY+Ls5+ii+KOc7ayVyIAhHBaPpUdcSSpuFXtxternihO4madYiZauN07nF
+         iDFdvFw9eGM/txPBfDzWmzQkoz49yrGiaDMCMtW2jpxKUTicjLU/B6S9H/mJTnq3v+
+         dDN6KuFoTqLOQ==
+Message-ID: <3bbdfb31-2ba2-7345-54c7-82a67d95e30f@kernel.org>
+Date:   Fri, 23 Sep 2022 13:28:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [net-next PATCH] dt-bindings: net: marvell,pp2: convert to
- json-schema
+ Thunderbird/102.3.0
+Subject: Re: [V14,08/15] dt-bindings: mediatek: Add mediatek,mt8195-jpgdec
+ compatible
+To:     Irui Wang <irui.wang@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        angelogioacchino.delregno@collabora.com,
+        nicolas.dufresne@collabora.com, wenst@chromium.org,
+        kyrie wu <kyrie.wu@mediatek.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, Rob Herring <robh@kernel.org>
+References: <20220915064337.2686-1-irui.wang@mediatek.com>
+ <20220915064337.2686-9-irui.wang@mediatek.com>
 Content-Language: en-US
-To:     =?UTF-8?Q?Micha=c5=82_Grzelak?= <mig@semihalf.com>,
-        devicetree@vger.kernel.org
-Cc:     mw@semihalf.com, linux@armlinux.org.uk, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        upstream@semihalf.com
-References: <20220922211026.34462-1-mig@semihalf.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220922211026.34462-1-mig@semihalf.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220915064337.2686-9-irui.wang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 23:10, Michał Grzelak wrote:
-> This converts the marvell,pp2 bindings from text to proper schema.
+On 15/09/2022 08:43, Irui Wang wrote:
+> From: kyrie wu <kyrie.wu@mediatek.com>
 > 
-> Move 'marvell,system-controller' and 'dma-coherent' properties from
-> port up to the controller node, to match what is actually done in DT.
+> Add mediatek,mt8195-jpgdec compatible to binding document.
+
+Use scripts/get_maintainers.pl to CC all maintainers and relevant
+mailing lists.
+
 > 
-> Signed-off-by: Michał Grzelak <mig@semihalf.com>
+> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> Signed-off-by: irui wang <irui.wang@mediatek.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../devicetree/bindings/net/marvell,pp2.yaml  | 292 ++++++++++++++++++
->  .../devicetree/bindings/net/marvell-pp2.txt   | 141 ---------
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 293 insertions(+), 142 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/marvell,pp2.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/marvell-pp2.txt
+>  .../media/mediatek,mt8195-jpegdec.yaml        | 169 ++++++++++++++++++
+>  1 file changed, 169 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/net/marvell,pp2.yaml b/Documentation/devicetree/bindings/net/marvell,pp2.yaml
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
 > new file mode 100644
-> index 000000000000..b4589594a0cc
+> index 000000000000..9135cf889d1e
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/marvell,pp2.yaml
-> @@ -0,0 +1,292 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+> @@ -0,0 +1,169 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/net/marvell,pp2.yaml#
+> +$id: http://devicetree.org/schemas/media/mediatek,mt8195-jpegdec.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Marvell CN913X / Marvell Armada 375, 7K, 8K Ethernet Controller
+> +title: MediaTek JPEG Encoder Device Tree Bindings
 > +
 > +maintainers:
-> +  - Marcin Wojtas <mw@semihalf.com>
-> +  - Russell King <linux@armlinux.org>
+> +  - kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>
 > +
-> +description: |
-> +  Marvell Armada 375 Ethernet Controller (PPv2.1)
-> +  Marvell Armada 7K/8K Ethernet Controller (PPv2.2)
-> +  Marvell CN913X Ethernet Controller (PPv2.3)
-> +
-
-properties go first.
-
-> +patternProperties:
-> +
-
-no need for blank line.
-
-> +  '^interrupt': true
-
-This is not a pattern..
-
-> +  '^#.*-cells$': true
-
-??? Nope. Please start from scratch either from recent similar bindings
-or from example-schema.
-
-> +
-> +  '^eth[0-9a-f]*(@.*)?$':
-> +    type: object
-> +    properties:
-> +
-> +      interrupts:
-> +        minItems: 1
-> +        maxItems: 10
-> +        description: interrupt(s) for the port
-> +
-> +      interrupt-names:
-> +        minItems: 1
-> +        maxItems: 10
-> +
-> +        items:
-> +          oneOf:
-> +            - pattern: "^hif[0-8]$"
-> +            - pattern: "^tx-cpu[0-3]$"
-> +              deprecated: true
-> +            - const: link
-> +            - const: rx-shared
-> +              deprecated: true
-
-List hast to be specific.
-
-> +
-> +        description: >
-> +          if more than a single interrupt for is given, must be the
-> +          name associated to the interrupts listed. Valid names are:
-> +          "hifX", with X in [0..8], and "link". The names "tx-cpu0",
-> +          "tx-cpu1", "tx-cpu2", "tx-cpu3" and "rx-shared" are supported
-> +          for backward compatibility but shouldn't be used for new
-> +          additions.
-> +
-> +      port-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: ID of the port from the MAC point of view.
-> +
-> +      phy-mode:
-> +        $ref: "ethernet-controller.yaml#/properties/phy-mode"
-> +
-> +      marvell,loopback:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description: port is loopback mode.
-> +
-> +      phy:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: >
-> +          a phandle to a phy node defining the PHY address
-> +          (as the reg property, a single integer).
-> +
-> +    required:
-> +      - interrupts
-> +      - port-id
-> +      - phy-mode
+> +description:
+> +  MediaTek JPEG Decoder is the JPEG decode hardware present in MediaTek SoCs
 > +
 > +properties:
-> +
-> +  dma-coherent: true
-> +
 > +  compatible:
+> +    items:
 
-This goes first.
+You do not have more than one item. Skip items.
 
-> +    enum:
-> +      - marvell,armada-375-pp2
-> +      - marvell,armada-7k-pp2
+> +      - const: mediatek,mt8195-jpgdec
 > +
-> +  reg:
-> +    minItems: 3
-> +    maxItems: 4
+> +  power-domains:
+> +    maxItems: 1
 > +
-> +  marvell,system-controller:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: a phandle to the system controller.
+> +  iommus:
+> +    maxItems: 6
+> +    description:
+> +      Points to the respective IOMMU block with master port as argument, see
+> +      Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for details.
+> +      Ports are according to the HW.
+> +
+> +  dma-ranges:
+> +    maxItems: 1
+> +    description: |
+> +      Describes the physical address space of IOMMU maps to memory.
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 2
+> +
+> +  ranges: true
+> +
+> +# Required child node:
+> +patternProperties:
+> +  "^jpgdec@[0-9a-f]+$":
+> +    type: object
+> +    description:
+> +      The jpeg decoder hardware device node which should be added as subnodes to
+> +      the main jpeg node.
+> +
+> +    properties:
+> +      compatible:
+> +        const: mediatek,mt8195-jpgdec-hw
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      iommus:
+> +        minItems: 1
+> +        maxItems: 32
+> +        description:
+> +          List of the hardware port in respective IOMMU block for current Socs.
+> +          Refer to bindings/iommu/mediatek,iommu.yaml.
+> +
+> +      interrupts:
+> +        maxItems: 1
+> +
+> +      clocks:
+> +        maxItems: 1
+> +
+> +      clock-names:
+> +        items:
+> +          - const: jpgdec
+> +
+> +      power-domains:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - iommus
+> +      - interrupts
+> +      - clocks
+> +      - clock-names
+> +      - power-domains
+> +
+> +    additionalProperties: false
 > +
 > +required:
 > +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
+> +  - power-domains
+> +  - iommus
+> +  - dma-ranges
+> +  - ranges
 > +
-> +allOf:
+> +additionalProperties: false
 > +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/mt8195-memory-port.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/power/mt8195-power.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        jpgdec_master {
 
-No need for blank line.
+No underscores in node names.
 
-> +  - $ref: ethernet-controller.yaml#
-> +
-> +  - if:
-> +      not:
-> +        patternProperties:
-> +          '^eth[0-9a-f]*(@.*)?$':
-> +            properties:
-> +              interrupts:
-> +                maxItems: 1
-> +
-> +    then:
-> +      patternProperties:
-> +        '^eth[0-9a-f]*(@.*)?$':
-> +          required:
-> +            - interrupt-names
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Skip this.
+> +                compatible = "mediatek,mt8195-jpgdec";
+> +                power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
+> +                iommus = <&iommu_vpp M4U_PORT_L19_JPGDEC_WDMA0>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_BSDMA0>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_WDMA1>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_BSDMA1>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_BUFF_OFFSET1>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_BUFF_OFFSET0>;
+> +                dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> +                #address-cells = <2>;
+> +                #size-cells = <2>;
+> +                ranges;
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: marvell,armada-375-pp2
-> +
-> +    then:
-> +      properties:
-> +
+Mess up indentation.
 
-Skip the blank lines after each new block.
-
-> +        clocks:
-> +          items:
-> +            - description: main controller clock
-> +            - description: GOP clock
-> +
-> +        clock-names:
-> +          minItems: 2
-> +          maxItems: 2
-> +          items:
-> +            enum:
-> +              - pp_clk
-> +              - gop_clk
-> +
-> +        reg:
-> +          description: |
-> +            For "marvell,armada-375-pp2", must contain the following register sets:
-> +              - common controller registers
-> +              - LMS registers
-> +              - one register area per Ethernet port
-> +
-> +    else:
-> +
-> +      patternProperties:
-> +        '^eth[0-9a-f]*(@.*)?$':
-> +          properties:
-> +            gop-port-id:
-> +              $ref: /schemas/types.yaml#/definitions/uint32
-> +              description: >
-> +                only for marvell,armada-7k-pp2, ID of the port from the
-> +                GOP (Group Of Ports) point of view. This ID is used to index the
-> +                per-port registers in the second register area.
-> +
-> +          required:
-> +            - gop-port-id
-> +
-> +      properties:
-> +
-> +        clocks:
-> +          items:
-> +            - description: main controller clock
-> +            - description: GOP clock
-> +            - description: MG clock
-> +            - description: MG Core clock
-> +            - description: AXI clock
-
-Why clocks appear only here? All devices require clocks, so this should
-be in top level.
-
-> +
-> +        clock-names:
-> +          minItems: 5
-> +          maxItems: 5
-> +          items:
-> +            enum:
-> +              - gop_clk
-> +              - pp_clk
-> +              - mg_clk
-> +              - mg_core_clk
-> +              - axi_clk
-> +
-> +        reg:
-> +          description: |
-> +            For "marvell,armada-7k-pp2" used by 7K/8K and CN913X, must contain the following register sets:
-> +              - packet processor registers
-> +              - networking interfaces registers
-> +              - CM3 address space used for TX Flow Control
-
-Do not define properties in allOf:if:then, but in top-level place.
-
-Really, start with example-schema. This deviates too much from existing
-coding style.
 
 Best regards,
 Krzysztof
