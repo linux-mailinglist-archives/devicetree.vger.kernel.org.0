@@ -2,207 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4154E5E77AD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8722F5E77B0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:54:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231402AbiIWJx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 05:53:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54420 "EHLO
+        id S231447AbiIWJy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 05:54:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231263AbiIWJx4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:53:56 -0400
-X-Greylist: delayed 45074 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 23 Sep 2022 02:53:55 PDT
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46B39B5159;
-        Fri, 23 Sep 2022 02:53:55 -0700 (PDT)
-Message-ID: <ad36710b-af7d-f9ca-fa04-cbb9acb5f123@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-        t=1663926833;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Gn6QZKyXCWPIw+IVFSiZn7BPyYuukt8qvGTzGCzdE74=;
-        b=qGx+rQKBiZpQYiOOhw61gYJMEMTi5KCbHoaWhDkr8vvIBNKNPnxaoxwdnqIMz7BiK75/LB
-        d/fIsv1MGiK821W8tNH1KTVnWTxvTLxoaOMxxciy1BcRQDgUZECRxdYcoPFnLhi6qgwAo5
-        mzycAHBmVztNl0D/toxAwxgnrnkqFu7frIeULSHDFfRI0RTeAxrwo9QifB1Aj0Zx167u4Z
-        3ai99uAdNtazNwCi+Mahi8vWwTGkiHfQ4UBgwI6x6TuXZZyGY0QGjii0B0vvFiNFyGvRu/
-        WSkn35dqslVd7O+qL/0TUWL4teDlXBK5DC1glHcIgdCkni6YjiJdVYxDF+urHg==
-Date:   Fri, 23 Sep 2022 11:53:52 +0200
+        with ESMTP id S231561AbiIWJyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:54:25 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50996CD1F0
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:54:24 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id a10so14110681ljq.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:54:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=d+dhTVJjoRfXkweI2ODgjN4brtTS+mqkr11acUYRy+o=;
+        b=AqfqLkalasjPXlJMliDnpawDs0/V5gehiT9mJ/k+PTkAD7yPIU6j8tWhTtYnD66SLW
+         6cgoXml4LHuyDp1DAgkIEUAgcDe2Iz3UgZOKykM+xDF4EB9FVeQHZIhcmgfLhCKWLRL/
+         f75d9lacQG6qW2KBgW9ln5jdBj53ia6ZmdlXHy2aQlD2ipkZM/gvs9WpIqV8s7jimDPu
+         kGiDwwPA+K/SVKf0qxl6vuti7eOHkgtUH1KSlquZsIhZKH+o5kBjo42tDH0OKPgbIqSU
+         gAIqvO2GFBwtGRwAXyRI1v1ck8225jgKGUQrlyk4qLX3zpYsoGSYSFHxQ03MLTaqkATc
+         F/uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=d+dhTVJjoRfXkweI2ODgjN4brtTS+mqkr11acUYRy+o=;
+        b=eiDAOYlTchrvMqXH4WM0Ts7v63bn7PyYC1Oi2GjK8pMWpFW3Xd/FcyUzbV3mUMS41B
+         eg1E+uLQqcw3v8LtUmpK9UGRZ6AJh2yVetKeZ6BM8dib171FHtyoLvxo1NiQlgldcC5c
+         Gf319avY2SXVpzn+SPVBJZ8V2no9epvwGbmzYkB1cXDfzZexYVjj8qeg6lIO/LRQ2yuP
+         bvki5E3omXD5izHmEWFoMCV4CPdhWKecMOx0woqD9NuK5Ejs1FUbaieR+mjohanrFQlX
+         nYm5pAIDANtSGvajMG0O+ak48s56inef7KCL2mvFUB96JC+75DbHG1CVzSo/drWPVwJB
+         Vtkw==
+X-Gm-Message-State: ACrzQf0JzSJXoxgUUttWusOXKsicOGLicOlzCnE9gE3EdOGIvvMl/dgr
+        l9HSdlEc1Nh5And9+AFjijZFwQ==
+X-Google-Smtp-Source: AMsMyM6DjYfSdWJUKKd7cwNauVT/Wzxte0XwqIGfp4RMIt0KBUIgQ51H/crXBHaf4Wt34ZHhKS12tA==
+X-Received: by 2002:a2e:9bcf:0:b0:26c:5a9d:531f with SMTP id w15-20020a2e9bcf000000b0026c5a9d531fmr2410116ljj.144.1663926862673;
+        Fri, 23 Sep 2022 02:54:22 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id o10-20020a2e9b4a000000b002637c04b472sm1302188ljj.83.2022.09.23.02.54.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Sep 2022 02:54:22 -0700 (PDT)
+Message-ID: <e3bfa28a-ecbc-7a57-a996-042650043514@linaro.org>
+Date:   Fri, 23 Sep 2022 11:54:21 +0200
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable HDMI and GPU on quartz64-b
-Content-Language: da-DK
-To:     Heiko Stuebner <heiko@sntech.de>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 1/2] dt-bindings: dma: qcom: gpi: add compatible for
+ sdm670
+Content-Language: en-US
+To:     Richard Acayan <mailingradian@gmail.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220920143446.633956-1-frattaroli.nicolas@gmail.com>
- <659fc2fe-f820-04ad-8a4f-224b4d4bd97b@manjaro.org> <2198677.PYKUYFuaPT@phil>
-From:   Dan Johansen <strit@manjaro.org>
-Organization: Manjaro ARM
-In-Reply-To: <2198677.PYKUYFuaPT@phil>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220923015426.38119-1-mailingradian@gmail.com>
+ <20220923015426.38119-2-mailingradian@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220923015426.38119-2-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-        auth=pass smtp.auth=strit@manjaro.org smtp.mailfrom=strit@manjaro.org
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23/09/2022 03:54, Richard Acayan wrote:
+> The Snapdragon 670 uses GPI DMA for its GENI interface. Add a compatible
+> string for it in the documentation.
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+> index eabf8a76d3a0..cabe6a51db07 100644
+> --- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+> +++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+> @@ -20,6 +20,7 @@ properties:
+>    compatible:
+>      enum:
+>        - qcom,sc7280-gpi-dma
+> +      - qcom,sdm670-gpi-dma
+>        - qcom,sdm845-gpi-dma
 
-Den 23.09.2022 kl. 11.45 skrev Heiko Stuebner:
-> Hi,
->
-> Am Donnerstag, 22. September 2022, 23:22:37 CEST schrieb Dan Johansen:
->> This seems to be based against linux-next and not mainline. It fails to
->> apply on mainline for me.
-> I would not expect things any other way though :-) .
-> I.e. in the current cycle everything new is of course targetting
-> v6.1 and the Quartz boards already saw some other changes.
+SDM670, SDM854, SM8150 have all the same xPU3 block. They are
+compatible. Are we sure we want to keep growing the list in the driver?
 
-Ah okay. I have misunderstood the submitting process then.
+Best regards,
+Krzysztof
 
-I was under the impression that a patch should always target the latest 
--rc1, in this case 6.0-rc1.
-
-I did not know that when you are at rc6/rc7 it's okay to target 
-linux-next without
-mentioning it.
-
-Sorry for my noise.
-
->
->
->> Den 20.09.2022 kl. 16.34 skrev Nicolas Frattaroli:
->>> This enables the GPU and HDMI output (including HDMI audio) on
->>> the PINE64 Quartz64 Model B single board computer.
->>>
->>> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
->>> ---
->>>    .../boot/dts/rockchip/rk3566-quartz64-b.dts   | 60 +++++++++++++++++++
->>>    1 file changed, 60 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
->>> index 0f623198970f..77b179cd20e7 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
->>> @@ -4,6 +4,7 @@
->>>    
->>>    #include <dt-bindings/gpio/gpio.h>
->>>    #include <dt-bindings/pinctrl/rockchip.h>
->>> +#include <dt-bindings/soc/rockchip,vop2.h>
->>>    #include "rk3566.dtsi"
->>>    
->>>    / {
->>> @@ -28,6 +29,17 @@ gmac1_clkin: external-gmac1-clock {
->>>    		#clock-cells = <0>;
->>>    	};
->>>    
->>> +	hdmi-con {
->>> +		compatible = "hdmi-connector";
->>> +		type = "a";
->>> +
->>> +		port {
->>> +			hdmi_con_in: endpoint {
->>> +				remote-endpoint = <&hdmi_out_con>;
->>> +			};
->>> +		};
->>> +	};
->>> +
->>>    	leds {
->>>    		compatible = "gpio-leds";
->>>    
->>> @@ -183,6 +195,33 @@ &gmac1m1_clkinout
->>>    	status = "okay";
->>>    };
->>>    
->>> +&gpu {
->>> +	mali-supply = <&vdd_gpu>;
->>> +	status = "okay";
->>> +};
->>> +
->>> +&hdmi {
->>> +	avdd-0v9-supply = <&vdda0v9_image>;
->>> +	avdd-1v8-supply = <&vcca1v8_image>;
->>> +	status = "okay";
->>> +};
->>> +
->>> +&hdmi_in {
->>> +	hdmi_in_vp0: endpoint {
->>> +		remote-endpoint = <&vp0_out_hdmi>;
->>> +	};
->>> +};
->>> +
->>> +&hdmi_out {
->>> +	hdmi_out_con: endpoint {
->>> +		remote-endpoint = <&hdmi_con_in>;
->>> +	};
->>> +};
->>> +
->>> +&hdmi_sound {
->>> +	status = "okay";
->>> +};
->>> +
->>>    &i2c0 {
->>>    	status = "okay";
->>>    
->>> @@ -456,6 +495,10 @@ &i2c5 {
->>>    	status = "disabled";
->>>    };
->>>    
->>> +&i2s0_8ch {
->>> +	status = "okay";
->>> +};
->>> +
->>>    &i2s1_8ch {
->>>    	pinctrl-names = "default";
->>>    	pinctrl-0 = <&i2s1m0_sclktx
->> The above part does not seem to exist in the current mainline (rc6) git
->> repo.
-> which is of course already in linux-next, so this
-> patch just applied nicely.
->
->
-> Heiko
->
->>> @@ -677,3 +720,20 @@ &usb_host0_ehci {
->>>    &usb_host0_ohci {
->>>    	status = "okay";
->>>    };
->>> +
->>> +&vop {
->>> +	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
->>> +	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
->>> +	status = "okay";
->>> +};
->>> +
->>> +&vop_mmu {
->>> +	status = "okay";
->>> +};
->>> +
->>> +&vp0 {
->>> +	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
->>> +		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
->>> +		remote-endpoint = <&hdmi_in_vp0>;
->>> +	};
->>> +};
->
->
->
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
--- 
-Kind regards
-*Dan Johansen*
-Project lead of the *Manjaro ARM* project
-Manjaro-ARM <https://manjaro.org>
