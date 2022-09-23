@@ -2,132 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C6E5E8187
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 20:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D335E8191
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 20:11:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232819AbiIWSJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 14:09:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51882 "EHLO
+        id S230369AbiIWSLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 14:11:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233111AbiIWSJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 14:09:05 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DD023C8F0
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:08:57 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id w8so1449832lft.12
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:08:57 -0700 (PDT)
+        with ESMTP id S232165AbiIWSLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 14:11:37 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5BAF6F77
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:11:35 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id h3so968073lja.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:11:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=KZ+EFd4Uequ+4Kg8YiyMpa28NY8WAdiksQzAfDThIwA=;
-        b=XHNoV3mJT1N0BANJ7QLqKDqvKZ+yDnRdBgqW5km0/zQejO1TlWy0CRFWye53Tx3PMM
-         Pj+UMphOMsZSyzZmYNuHUO2ZNSAFHSLpLrSfHjzPKXbslBv0fUtvIArX51B9659GJwAR
-         rj+lMrX751a+bbFM8mLCVP7v5Ok9G61A7oTwstyZgj2333Kr/X8qgDpFoPCAtBIHM7ay
-         +VOEOmnNknVgce/O4hFLfwKa2f31JElWwt2u6NrSyaMu847AT7T3QPbgmYi6znfmANHF
-         SCOxQlLZUJ618UA2j0H3euIkkXRRL1UoPucSrVamad6r+mEuS0Ge8QsEajSMZ4Y7EbIt
-         Jw2g==
+        bh=bEsiJd/ABJ6GfZVhG9n8srep4jX5Ng0oqWanjXKMf3M=;
+        b=wdf0UoY5ODBa65zXyvuXU6004RbmRtmAQtzkUjBFxlpQtsXPB6f8/sO1rqC0ZGgLp3
+         4AMdVPtt9QHPuyI0VxvgIs+5MrEOgv6JoAB8AlLpxgFsMBIOnfWGqJCA6iLMwm3A9N5n
+         ZIWhGGwWdLofl2d7Oa0JdtvK+ek0ZFgho+IdjF9Zua3H6P1m8VRuu/tO9eMrcsVF5l11
+         CyOBznGHDjwORKYgfJR/Q4p4MPPirUKwQt2U7ZUq1syBcfAYIi47L3cQLBCIvD7tuIti
+         xsWsttC3skEp4jaqH1xDk+E1USMXKtinN/Kps+8JXhGImmHsdG5MDsPXMIDqjiMzGcPq
+         zmMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=KZ+EFd4Uequ+4Kg8YiyMpa28NY8WAdiksQzAfDThIwA=;
-        b=wspmLki1tW9qRcqMI6qjyMoafDkrAVeS1sJh8YBrVY1XOgSMVNGTXt2uRGuqkycSgn
-         JW9O8P46gDlsjk/Irb3l+ZwWKu5Khro1+zC/v6ZPtBPteIbHwA9r8w9Hab52I5uzbURK
-         52a2ctypFFVf25gNi1UNFPRawncOIhEuzCdXUVjCW6i0AlgFWlLmWuKSRgTqgpC/UzQA
-         pvf92ABjkzXf6netBLTjZozlkt/649PUjQSIsVetiG+2nr8HIPCHP0EvFPGFPmYwgGAT
-         sMEAx9lnTBKPFVqnMe9C77mGmb3FNkV61d4mMdiRrlNLpk/LA3ACTKnFg+vo5wDsSctg
-         EZ+g==
-X-Gm-Message-State: ACrzQf0pZ4W+2a7TDx68U1IY6cTMl9aHpbhPUGg0JeQj03aadh+p3siA
-        0CQuuVOXU2eAXxnCjyHiNQotbY3Kt5Werg==
-X-Google-Smtp-Source: AMsMyM6XnQCLZn79Ex6u3TeQ/biX1F1DQcco9bSC+KZdAFtPUu3j54k0CR5KzT17qZ6tRg7dYO3lLg==
-X-Received: by 2002:a05:6512:1590:b0:49a:9db4:5a31 with SMTP id bp16-20020a056512159000b0049a9db45a31mr3586377lfb.667.1663956535429;
-        Fri, 23 Sep 2022 11:08:55 -0700 (PDT)
+        bh=bEsiJd/ABJ6GfZVhG9n8srep4jX5Ng0oqWanjXKMf3M=;
+        b=M8G4GI1LBYMYsSSru+nVMSt2p4wAtaTb7vQaXTV0xKnYdAD7PaAgyqkAU+f2/C+/9s
+         s4/RUF6PSahKYhG2/T13FezxOPOhm71y39rmxF3NYEp2Dvk8ohEDWy5qVPjcQSQJED3L
+         Lmhr4Ypk9b9KcPv2tHEGlRtnybDFa3+Mze8+gbGmzWoV+nM5/C6/iXPrSoDisHuXGe91
+         o6RHy59hYvqBPZ7slqJ9oZVqdw/o6xzbqmxBSckcfPO9xRTEfmzE4CoAeyadPv37KPZz
+         hHd3Ea2h6dhyT7oCo1z3DLdz1kMjvYclPJb28sf9mqqyMmd7sxTjjOTGD4C3fzw8N2Ii
+         tWVg==
+X-Gm-Message-State: ACrzQf0fo1/zC3AuxFjTc6pMgNsPhlDAQ+NT91ML1eEigXdnH/rvCSQb
+        xgO4l5CWZNNPCQsxlYUxba3njg==
+X-Google-Smtp-Source: AMsMyM5zQjSLuWsd99Ofx6D2TOw4gAeQDb4AO5KB8bpsuR/rhKVETepxlLfDTlGOKwf2sWnZ2pYplA==
+X-Received: by 2002:a2e:92c8:0:b0:25d:6ddf:e71d with SMTP id k8-20020a2e92c8000000b0025d6ddfe71dmr3229734ljh.170.1663956694123;
+        Fri, 23 Sep 2022 11:11:34 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id g15-20020a19e04f000000b0048b0099f40fsm1545218lfj.216.2022.09.23.11.08.54
+        by smtp.gmail.com with ESMTPSA id z12-20020a2eb52c000000b00261e2aab7c2sm1491057ljm.58.2022.09.23.11.11.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 11:08:55 -0700 (PDT)
-Message-ID: <35ba126d-be10-2566-63df-3c474cdc8887@linaro.org>
-Date:   Fri, 23 Sep 2022 20:08:53 +0200
+        Fri, 23 Sep 2022 11:11:33 -0700 (PDT)
+Message-ID: <a215ae81-10de-7880-1a15-b7b08d0d80d7@linaro.org>
+Date:   Fri, 23 Sep 2022 20:11:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2 net-next 12/14] dt-bindings: net: dsa: ocelot: add
- ocelot-ext documentation
+Subject: Re: [PATCH v5 2/4] dt-bindings: net: snps,dwmac: add clk_csr property
 Content-Language: en-US
-To:     Colin Foster <colin.foster@in-advantage.com>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Jianguo Zhang <jianguo.zhang@mediatek.com>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-References: <20220922040102.1554459-1-colin.foster@in-advantage.com>
- <20220922040102.1554459-13-colin.foster@in-advantage.com>
+        Paolo Abeni <pabeni@redhat.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220923052828.16581-1-jianguo.zhang@mediatek.com>
+ <20220923052828.16581-3-jianguo.zhang@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220922040102.1554459-13-colin.foster@in-advantage.com>
+In-Reply-To: <20220923052828.16581-3-jianguo.zhang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 06:01, Colin Foster wrote:
-> The ocelot-ext driver is another sub-device of the Ocelot / Felix driver
-> system, which currently supports the four internal copper phys.
-> 
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> ---
-> 
-> v2
->     * New patch
-> 
-> ---
->  .../bindings/net/dsa/mscc,ocelot.yaml         | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml b/Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml
-> index 8d93ed9c172c..bed575236261 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml
-> @@ -54,9 +54,21 @@ description: |
->        - phy-mode = "1000base-x": on ports 0, 1, 2, 3
->        - phy-mode = "2500base-x": on ports 0, 1, 2, 3
->  
-> +  VSC7412 (Ocelot-Ext):
-> +
-> +    The Ocelot family consists of four devices, the VSC7511, VSC7512, VSC7513,
-> +    and the VSC7514. The VSC7513 and VSC7514 both have an internal MIPS
-> +    processor that natively support Linux. Additionally, all four devices
-> +    support control over external interfaces, SPI and PCIe. The Ocelot-Ext
-> +    driver is for the external control portion.
-> +
-> +    The following PHY interface type are currently supported:
-> +      - phy-mode = "internal": on ports 0, 1, 2, 3
+On 23/09/2022 07:28, Jianguo Zhang wrote:
+> The clk_csr property is parsed in driver for generating MDC clock
+> with correct frequency. A warning('clk_csr' was unexpeted) is reported
+> when runing 'make_dtbs_check' because the clk_csr property
+> has been not documented in the binding file.
 
-"Currently supported" by hardware or by some specific, chosen
-implementation? If the latter, drop it. If the former, maybe this should
-be constrained in allOf:if:then.
+Your subject is not accurate anymore. Maybe mention that instead of
+existing clk_csr, you add a different property.
+
+With commit msg fixes:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
