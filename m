@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0235B5E8118
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 19:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6A275E8124
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 19:52:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232406AbiIWRt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 13:49:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44748 "EHLO
+        id S231340AbiIWRwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 13:52:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232105AbiIWRt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 13:49:26 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE40614F82D
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 10:49:24 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id d42so1504627lfv.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 10:49:24 -0700 (PDT)
+        with ESMTP id S232284AbiIWRwx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 13:52:53 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3C7612C6A1
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 10:52:51 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id a3so1408464lfk.9
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 10:52:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=HdvrftlRyQqTQoTlDeBTdBmMcZfxBFXOHDyKHrW5BYo=;
-        b=gEbo9/6Ij4ZqttNQUIKlqqcit/PgIMUSwwYj9Gn1owZSH3635JkSkfvBkRro5AHsgu
-         0vafFE4rhOHyLPgUGGZCHjWJa/IvHPn+M1TBiT3pagA4U92lm9V+mqLjP59R9BCNSoOA
-         wuiudFiEQZdf41trVSTP/0eMDO1wA0m/Z2UyYxB56yr2/7rB0QzoWhCFbOseuaGOAZvS
-         P8TCLzSTVwitVbSrpUIoNlbnoaU4cklnxJ6myXAxVGXE6EwJEznopZ7tF/LZPqqoZ8Nx
-         OJ+jJNVO0yY8/yRn/1n0eT3ddZ9CacZmAjUNRO7SnSj2J2uQMOQPKesFVLzDLNaGBV5C
-         OoUQ==
+        bh=WLQdaK0gT7iFIkMGG2NMmKLaRu6A337CioiY0oTqO2E=;
+        b=dUkWHMuMmDgAf2vkZVtzFOS+JLlED/B066IP5RzSUvCf/2aFRmvtM05vuUDsDVXzlJ
+         APKFud9ZtMhWd0Lt/ChVvQPkV+5K+U1/elv6+PXCzEbBXow5JjQR6WvLeBAJ29A7ZsTA
+         m9SNpoDkcYwUcsb/r65zOSs8UfWWWpY6hyxx02uL8+/loZH2OvCr4h91vQ4z1tbvuOs7
+         s/nl7DxGezKkrsj4GdRq5A3t21wdRiQioiLtSPxSRru/gpKfwM6sDyQTfK+FeQay9S4B
+         6DKJII8QMc5UxXkCQy5Orkj4wlGQbOraDlPEgWcKk/v0w0u7x2JGqzKpvxNyUNVEitmX
+         ZN3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=HdvrftlRyQqTQoTlDeBTdBmMcZfxBFXOHDyKHrW5BYo=;
-        b=0OapwEgeEY8oOx2JAH5c9I2zvPssyS4CTVnK3tRYNROsGiZlb6/+9yPFIH31bGOhVp
-         BtojvWklzx3T2lUIl3oDkNfiqp6gIDfkA9rYmFDGz2rd1QJcrEbJuEy5pO+J3d+bRUBA
-         OVEbw1rBSEHuXfk9DuaU5VGIUZxUx4GaShTRPTtxs1KOEGUqB7VKjIIa1XLq06T89TAN
-         ZX98EPxJ9CVwt+fjGmaSbsyerRDY9CAUsKp2tI7pT+eyxwaOpCOvPSBPMfDXSpYukBJB
-         f4QW10GtE4Ab9IupdCMZ2B/OjoJW1B3/LvJa0PeFrSpk/gEjRLfMOFk/hQSJBYr8Zys+
-         f5fg==
-X-Gm-Message-State: ACrzQf22YwajXOi+JfNT8Ay/XEw/ny+cVco4EGizptMBy1BLaezjs0vC
-        pudUIfXQEDfAhPHVBL7WJ4yqyjHtRyAZdw==
-X-Google-Smtp-Source: AMsMyM6fZ4WmmpIgtCAsa/zZUpZ4zWz5j4kJhqdHx6NUyFzaAoYpQPSOKNeOTiJWV0RMcGh/h7uEsw==
-X-Received: by 2002:a05:6512:3e14:b0:499:1f71:1680 with SMTP id i20-20020a0565123e1400b004991f711680mr3737503lfv.114.1663955363194;
-        Fri, 23 Sep 2022 10:49:23 -0700 (PDT)
+        bh=WLQdaK0gT7iFIkMGG2NMmKLaRu6A337CioiY0oTqO2E=;
+        b=mZRH4KFXyR2s58MJdME+9XqptWGzPV61LACGe1tyPZApzB4qg0m/tNm8wUizmXWQjj
+         3zBnXgwyR1VKqOmC7IRW3LfJi7xi4L6BHmZPUQN5IZJw0NK1C6dDUwr0xumBRxap4ZjP
+         KTCafyZugwu2DX8aWRPjSh9pv8UM8FTmAwun5OVpmfAVpnflmLR0+PHiXKi3pm/yPGHt
+         pWx9c7KTJ1RJ1PjQDg0bHA7eYLy7AMfiSh2fkPih9jsCq25el6AkCDDS2zMXH4Dsu6JN
+         1xbRRI5wQKy9zRiVgupzn+hayQbI4xWud9mDz/z+YK832Sgwgqkj3Shfu2P+cjYUt1uh
+         wF8Q==
+X-Gm-Message-State: ACrzQf3oJY7ZL7MdtVTf48rRhFiflqBiXKHnQ5dYpJ+qBqD7VGZ73/zX
+        K8OUZ0c16DUe8ZVHUls4yGG86Q==
+X-Google-Smtp-Source: AMsMyM59xNDc63uKxqgHdn3zrL6X9DlwBW8qQ1eHQUJLbaKFVW8Qca/GcAlOeB3NAoyilxmKWNYGZA==
+X-Received: by 2002:a05:6512:1114:b0:49f:d13e:25b6 with SMTP id l20-20020a056512111400b0049fd13e25b6mr3855353lfg.483.1663955570345;
+        Fri, 23 Sep 2022 10:52:50 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a8-20020a05651c010800b0026c3975f488sm1479001ljb.26.2022.09.23.10.49.22
+        by smtp.gmail.com with ESMTPSA id c8-20020a05651200c800b0049a0832ffc9sm1542596lfp.211.2022.09.23.10.52.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 10:49:22 -0700 (PDT)
-Message-ID: <966b46f5-ed3b-9daa-4cfb-602a534a8bfc@linaro.org>
-Date:   Fri, 23 Sep 2022 19:49:22 +0200
+        Fri, 23 Sep 2022 10:52:49 -0700 (PDT)
+Message-ID: <c9c11931-7193-ebee-51f0-df863dd7377b@linaro.org>
+Date:   Fri, 23 Sep 2022 19:52:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCHv2 1/3] dt-bindings: mmc: synopsys-dw-mshc: document
- "altr,sysmgr-syscon"
+Subject: Re: [PATCHv2 3/3] mmc: dw_mmc-pltfm: socfpga: add method to configure
+ clk-phase
 Content-Language: en-US
 To:     Dinh Nguyen <dinguyen@kernel.org>, jh80.chung@samsung.com
 Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220922220308.609422-1-dinguyen@kernel.org>
- <20220922220308.609422-2-dinguyen@kernel.org>
+ <20220922220308.609422-4-dinguyen@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220922220308.609422-2-dinguyen@kernel.org>
+In-Reply-To: <20220922220308.609422-4-dinguyen@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,43 +78,93 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 23/09/2022 00:03, Dinh Nguyen wrote:
-> Document the optional "altr,sysmgr-syscon" binding that is used to
-> access the System Manager register that controls the SDMMC clock
-> phase.
+> The clock-phase settings for the SDMMC controller in the SoCFPGA
+> Strarix10/Agilex/N5X platforms reside in a register in the System
+> Manager. Add a method to access that register through the syscon
+> interface.
 > 
 > Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-
-Thank you for your patch. There is something to discuss/improve.
-
 > ---
-> v2: added
+> v2: simplify clk-phase calculations
 > ---
->  .../devicetree/bindings/mmc/synopsys-dw-mshc.yaml    | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  drivers/mmc/host/dw_mmc-pltfm.c | 41 ++++++++++++++++++++++++++++++++-
+>  1 file changed, 40 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-> index ae6d6fca79e2..aece6a337262 100644
-> --- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-> @@ -38,6 +38,18 @@ properties:
->        - const: biu
->        - const: ciu
+> diff --git a/drivers/mmc/host/dw_mmc-pltfm.c b/drivers/mmc/host/dw_mmc-pltfm.c
+> index 9901208be797..5d64984d382f 100644
+> --- a/drivers/mmc/host/dw_mmc-pltfm.c
+> +++ b/drivers/mmc/host/dw_mmc-pltfm.c
+> @@ -17,10 +17,16 @@
+>  #include <linux/mmc/host.h>
+>  #include <linux/mmc/mmc.h>
+>  #include <linux/of.h>
+> +#include <linux/mfd/altera-sysmgr.h>
+> +#include <linux/regmap.h>
 >  
-> +  altr,sysmgr-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to the sysmgr node
-> +          - description: register offset that controls the SDMMC clock phase
-> +    description:
-> +      Contains the phandle to System Manager block that contains
-> +      the SDMMC clock-phase control register. The first value is the pointer
-> +      to the sysmgr and the 2nd value is the register offset for the SDMMC
-> +      clock phase register.
+>  #include "dw_mmc.h"
+>  #include "dw_mmc-pltfm.h"
+>  
+> +#define SOCFPGA_DW_MMC_CLK_PHASE_STEP	45
+> +#define SYSMGR_SDMMC_CTRL_SET(smplsel, drvsel) \
+> +	((((smplsel) & 0x7) << 4) | (((drvsel) & 0x7) << 0))
+> +
+>  int dw_mci_pltfm_register(struct platform_device *pdev,
+>  			  const struct dw_mci_drv_data *drv_data)
+>  {
+> @@ -62,9 +68,42 @@ const struct dev_pm_ops dw_mci_pltfm_pmops = {
+>  };
+>  EXPORT_SYMBOL_GPL(dw_mci_pltfm_pmops);
+>  
+> +static int dw_mci_socfpga_priv_init(struct dw_mci *host)
+> +{
+> +	struct device_node *np = host->dev->of_node;
+> +	struct regmap *sys_mgr_base_addr;
+> +	u32 clk_phase[2] = {0}, reg_offset;
+> +	int i, rc, hs_timing;
+> +
+> +	rc = of_property_read_variable_u32_array(np, "clk-phase-sd-hs", &clk_phase[0], 2, 0);
+> +	if (rc) {
+> +		sys_mgr_base_addr =
+> +			altr_sysmgr_regmap_lookup_by_phandle(np, "altr,sysmgr-syscon");
 
-You need to restrict it per variant (altera). Move the allOf from top of
-the file to place above unevaluatedProperties and add if:then: making it
-false for other variants.
+I don't see the reason why this is conditional. Just creates unnecessary
+indentation.
+
+> +		if (IS_ERR(sys_mgr_base_addr)) {
+> +			pr_err("%s: failed to find altr,sys-mgr regmap!\n", __func__);
+> +			return 1;
+> +		}
+> +	} else
+> +		return 1;
+
+Why not -ERRNO (or rc)?
+
+> +
+> +	of_property_read_u32_index(np, "altr,sysmgr-syscon", 1, &reg_offset);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(clk_phase); i++)
+> +		clk_phase[i] /= SOCFPGA_DW_MMC_CLK_PHASE_STEP;
+> +
+> +	hs_timing = SYSMGR_SDMMC_CTRL_SET(clk_phase[0], clk_phase[1]);
+> +	regmap_write(sys_mgr_base_addr, reg_offset, hs_timing);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dw_mci_drv_data socfpga_drv_data = {
+> +	.init		= dw_mci_socfpga_priv_init,
+> +};
+> +
+>  static const struct of_device_id dw_mci_pltfm_match[] = {
+>  	{ .compatible = "snps,dw-mshc", },
+> -	{ .compatible = "altr,socfpga-dw-mshc", },
+> +	{ .compatible = "altr,socfpga-dw-mshc", .data =&socfpga_drv_data, },
+
+Missing space before &
+
+>  	{ .compatible = "img,pistachio-dw-mshc", },
+>  	{},
+>  };
 
 Best regards,
 Krzysztof
