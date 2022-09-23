@@ -2,167 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3DFD5E785E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 12:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4435C5E786C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 12:32:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231374AbiIWKbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 06:31:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53860 "EHLO
+        id S231501AbiIWKcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 06:32:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231261AbiIWKad (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 06:30:33 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F4CD39B9C
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 03:30:31 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id b24so14130778ljk.6
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 03:30:31 -0700 (PDT)
+        with ESMTP id S231753AbiIWKcQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 06:32:16 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6865811E979
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 03:31:59 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id j24so13630689lja.4
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 03:31:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=I7e7inRGZJBBrCxWPf4VaG+f6kEpOQsdfxaR6MXxAk4=;
-        b=PiyEHGgCKoygApaBJYQHYg/kBKkhs9/+zycl/WsVJbpxF9ZqAtwPwgNbbc8rir7qvc
-         S2EQXUP0LwJVFyS/1ewNiUVYBwQJPeNlmWq7XUp74KDxEiJ3ZMqUciOiFX4dqVFPjvPZ
-         0kPJnpgaECDcVhKiRpzU2qcIan4qzQ8a/cUdm5m2mGzvungWfpPllAtMfQ8fgKUeyVj0
-         OU0rpxHHtmuUfMqvx/C1mJ2vZz4+nEzDKXFx9G9TqfZVoP4ZdZoiGHPq2VTpgrIIdhV0
-         gB8LUCZlYZIBQxyOi2dYxTx96QfoVomXj6Ul83rLvBCCBiyaDss3j3GmVRguX68z+By5
-         RvfA==
+        bh=JYMmhfkFM4ANd32GEEelSBV88bdLE1Ja446ByYHiaXA=;
+        b=NeRn+B9WRWOsoR9LzOGZJy5GxoiA1NB6ylwd4hE/tqg/RSCDyuM/KHVHuT2kA9FRSK
+         c7V57vIhgWsR8e0J1Jdr+U55ja/VyEJweGVSiL+1p3uxK8TvSRR4uTIzM9IjHxZ4i5ce
+         ToIM2tljUC+ybVzXLHI/fbp56eaQ02XsoXGvWZmzgg9nQYuCH1ehvArcYsRfsbibCvQW
+         rmITz0AAswRXChWK02oxfHFwpBNAU2EC66YRrCzRa9a1ZK59kgOWkYBLdtH87rFLd7c+
+         o6PDI/Hw8gqTJhu4BuPT3UZFTB/6OxwpVs9wbvQ59udQs/pNlJLckxTsDpu41MRWpIZv
+         kv1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=I7e7inRGZJBBrCxWPf4VaG+f6kEpOQsdfxaR6MXxAk4=;
-        b=yTCjml9FpLUXW9cwyJoITlk49xuodbjY6zcDpb10UYr3il/QhP/4YPbUtdUWTLWP+r
-         ttNbDoKdrzmj/hE6zub3l3jUC8UWF95Z7GRZKxbRQIZ1vxVIybE9jNewXIjMZ9XjIEA5
-         5lVO8LhYzwhes9KhbKsdkErYj+CIautS9CTliBuw6tIPZsEmROGvKjG1567pUhBGBpo2
-         hW8ehL2gKC6iPghOfLB5tGmunHASxTSA26DR6SAjrAgq8yojTLz+o8hKeF3jgpTA495o
-         ybdfMonqGi8LYNmZ8k6K5wIgzKDRRnuZvVC6SPAAIfCB8txkgE2lE0C37eS1n7AB3aVL
-         KJJg==
-X-Gm-Message-State: ACrzQf3XHuUuPyAedD8clWGznzBDsDPtKXACb3iD2/FgWankFxzgOuk2
-        1z7JuPaL56v1mmWBF//PNKAVsA==
-X-Google-Smtp-Source: AMsMyM4qX9eM1McoAFz/vkeBKtYPlXtNk3BWIHaS4QHrJQN/+tsnpIR0MUKpVPKb4Wfv3WTnHNtCjQ==
-X-Received: by 2002:a05:651c:a05:b0:26c:5010:39d1 with SMTP id k5-20020a05651c0a0500b0026c501039d1mr2768953ljq.115.1663929029776;
-        Fri, 23 Sep 2022 03:30:29 -0700 (PDT)
+        bh=JYMmhfkFM4ANd32GEEelSBV88bdLE1Ja446ByYHiaXA=;
+        b=HZGPe0htqrfNiJIrYxc6kg8ZAO7mIv07gTtLQaPIGBOWk4c6gWEHFkf9uZPflRXJIA
+         blfb14xqBVLOuodPHhfpbxQl0aHYT7YUXo/9qvQ07OPMrmST4g3+5d1tptM0Vgkcj0sL
+         pdISYpHeLWJFGo8pIKCvO2VHc4ro4p/g9KPGVFsyRjAMKwoXn/VWmvTKCxy/RqEVgpNl
+         308l/vylGyyP1G3QXuA+Jn5NhaaBGTKL2+Wtucx9Zv2K6bY4q1HrAxFzwnJ/0rcbBtDO
+         h+t6z3uanqII4F/fD7v33qUgtxUaYpyErjHcW6rsa0fb/eKANqqnKD4bxhIRjIt1AAMG
+         8R7w==
+X-Gm-Message-State: ACrzQf3mN9Go1RW57GAvq3Myv2trK9tAWRXAIuPWoeD8IjgxxtFKedKl
+        gvmGdJkkyq2i5LwxrndxPzYRhg==
+X-Google-Smtp-Source: AMsMyM4cV+jFFO9JIbh1AGxjnaC9WhvCSEcPo5m/X4um5ZzZvU4UL9Tx52cV06TLSinxTNc7/bU5Rg==
+X-Received: by 2002:a05:651c:11cc:b0:26c:14c5:5b8f with SMTP id z12-20020a05651c11cc00b0026c14c55b8fmr2658081ljo.450.1663929117731;
+        Fri, 23 Sep 2022 03:31:57 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f16-20020a2ea0d0000000b00268335eaa8asm1317133ljm.51.2022.09.23.03.30.28
+        by smtp.gmail.com with ESMTPSA id v4-20020a2e9f44000000b0026ac7cd51afsm1316687ljk.57.2022.09.23.03.31.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 03:30:29 -0700 (PDT)
-Message-ID: <eba9df27-cf91-b20d-bdc1-5acc5f02753a@linaro.org>
-Date:   Fri, 23 Sep 2022 12:30:28 +0200
+        Fri, 23 Sep 2022 03:31:57 -0700 (PDT)
+Message-ID: <cfd55866-0fd1-e819-75bb-31eff15bf984@linaro.org>
+Date:   Fri, 23 Sep 2022 12:31:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v2 1/7] ASoC: dt-bindings: fsl_rpmsg: Add a property to
- assign the rpmsg channel
+Subject: Re: [PATCH 08/12] dt-bindings: pinctrl: qcom,sm8250-lpass-lpi: add
+ bias-bus-hold and input-enable
 Content-Language: en-US
-To:     Chancel Liu <chancel.liu@nxp.com>, Rob Herring <robh@kernel.org>
-Cc:     "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
-        "S.J. Wang" <shengjiu.wang@nxp.com>,
-        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-References: <20220914105145.2543646-1-chancel.liu@nxp.com>
- <20220914105145.2543646-2-chancel.liu@nxp.com>
- <20220916185048.GA1061412-robh@kernel.org>
- <VI1PR04MB4222BDB1378A01E99DFC6211E3519@VI1PR04MB4222.eurprd04.prod.outlook.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20220922195651.345369-1-krzysztof.kozlowski@linaro.org>
+ <20220922195651.345369-9-krzysztof.kozlowski@linaro.org>
+ <20220923093131.5fb5co5i3f4eybcs@krzk-bin>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <VI1PR04MB4222BDB1378A01E99DFC6211E3519@VI1PR04MB4222.eurprd04.prod.outlook.com>
+In-Reply-To: <20220923093131.5fb5co5i3f4eybcs@krzk-bin>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MISSING_HEADERS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 11:56, Chancel Liu wrote:
->>> Add a string property to assign the rpmsg channel this sound card sits
->>> on. It also represents the name of ASoC platform driver. This property
->>> can be omitted if there is only one sound card and it sits on
->>> "rpmsg-audio-channel".
->>>
->>> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
->>> ---
->>>  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 37 ++++++++++++++++++-
->>>  1 file changed, 35 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
->> b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
->>> index d370c98a62c7..3744ae794c00 100644
->>> --- a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
->>> +++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
->>> @@ -11,8 +11,11 @@ maintainers:
->>>
->>>  description: |
->>>    fsl_rpmsg is a virtual audio device. Mapping to real hardware devices
->>> -  are SAI, DMA controlled by Cortex M core. What we see from Linux
->>> -  side is a device which provides audio service by rpmsg channel.
->>> +  are SAI, MICFIL, DMA controlled by Cortex M core. What we see from
->>> +  Linux side is a device which provides audio service by rpmsg channel.
->>> +  We can create different sound cards which access different hardwares
->>> +  such as SAI, MICFIL, .etc through building rpmsg channels between
->>> +  Cortex-A and Cortex-M.
->>>
->>>  properties:
->>>    compatible:
->>> @@ -85,6 +88,17 @@ properties:
->>>        This is a boolean property. If present, the receiving function
->>>        will be enabled.
->>>
->>> +  fsl,rpmsg-channel-name:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +    description: |
->>> +      A string property to assign rpmsg channel this sound card sits on.
->>> +      It also represents the name of ASoC platform driver. This property
+On 23/09/2022 11:31, Krzysztof Kozlowski wrote:
+> On Thu, 22 Sep 2022 21:56:47 +0200, Krzysztof Kozlowski wrote:
+>> The existing SC7280 LPASS pin controller nodes use bias-bus-hold and
+>> input-enable, so allow them.  Squash also blank lines for readability.
 >>
->> That's a Linux detail which doesn't belong in DT.
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 6 ++----
+>>  1 file changed, 2 insertions(+), 4 deletions(-)
 >>
 > 
-> We pass hardware parameters in dts node to set up clocks or other
-> configurations. These configurations are finally sent to Cortex-M by
-> rpmsg channel because Cortex-M actually controls real hardware devices.
-> If there's only one sound card sits on one rpmsg channel we will not
-> need this property. But if there are several sound cards we need to
-> specify correct rpmsg channel. Thus hardware configurations can be
-> properly sent to Cortex-M. From this level to speak, this property is
-> hardware-related since rpmsg channel represents the real hardware audio
-> controller.
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
 > 
-> Here I attach the discussion in version 1 patches for your information:
-> ---
-> This property aims to tell the ASoC driver which rpmsg channel the
-> sound card depends on. If there are several sound cards sit on rpmsg,
-> we should pass correct information in dts node to specify the name of
-> rpmsg channel. That is why I meant to add this property. 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
 > 
-> Actually this property is hardware-related. As we discussed before,
-> this kind of sound card based on rpmsg works under this mechanism
-> Cortex-A core tells the Cortex-M core configuration of the PCM
-> parameters then Cortex-M controls real hardware devices. This property
-> specifying rpmsg channel represents the real hardware audio controller.
-> ---
+> Full log is available here: https://patchwork.ozlabs.org/patch/1681325
 > 
-> That's my idea adding this property. Do you have any suggstion?
+> 
+> pinctrl@33c0000: 'dmic01-active-pins', 'dmic01-sleep-pins', 'rx_swr-active-pins', 'tx_swr-active-pins', 'tx_swr-sleep-pins', 'wsa-swr-active-pins', 'wsa-swr-sleep-pins' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
 
-I think you misunderstood the comment. Rob's comment was directly below
-a line which he referred to. That line contained a statement referring
-to Linux drivers. Anything related to Linux drivers does not belong to DT.
-
+This is being fixed in next DTS patches. I'll reorganize them if there
+is going to be a resubmit.
 
 Best regards,
 Krzysztof
