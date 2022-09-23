@@ -2,100 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4032C5E71A0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 03:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5004E5E71F3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 04:39:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231845AbiIWBzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 21:55:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
+        id S231761AbiIWCjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 22:39:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231526AbiIWBy7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 21:54:59 -0400
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C05F941980;
-        Thu, 22 Sep 2022 18:54:58 -0700 (PDT)
-Received: by mail-io1-xd30.google.com with SMTP id q83so9258406iod.7;
-        Thu, 22 Sep 2022 18:54:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=mW8s+qE2+PwiW8Hix8DWVqRMl3AzSFEjSxAF23tGUY8=;
-        b=TjFHpFqES2r2mVynq7XsYrt3agVUBuifUpdkQfonrme9LHyEUBPt34KrIN5axEbbMJ
-         RMIg+F5kk7Ikr367Ei/nDUa1RjAvTklRUj2Ife8nzPqVHXU4DBR8PAgJ3/u7uW2NUm0O
-         CRHPKnvBjuemZGo2CMuPvnITg9yiUTTvHNhouhZexi1vcZ7OGUllRLtLB8qPJ1WSgdcU
-         J52wNNh/wd7hmuBqU6A+Y8xEv3Y+dvRHWsueUDNKXZxUQw3ys3sVbqkprNntT0FrzVx8
-         czSt6RqfiX24xp0uuV+mQOYNfPtI4tMVDANC+26BA7da3sYS5eO2BYpxFBGD5ePC+F26
-         Gd6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=mW8s+qE2+PwiW8Hix8DWVqRMl3AzSFEjSxAF23tGUY8=;
-        b=I1ViYas4+7ckDEwqo4gJ6Cihw0uesDb6rBECm4wb2gXES6fr3qIGFm3WvtTEUjzMW+
-         I78S8A5Qiy07cuE0zB1xiPpTsjRC+SD4mzLhkSf44F8KjV5tA8Y+iruC5ZCHGHpNiAOu
-         Re8nyXnpOhEwlH/O/gBDSmwMU4SMJmwicg65nlF5k1jOYW3kXHxlhpvmWQo0FHZTHxAB
-         SOy0eZmAuVHB/sVEDlflqyrP4Cz0HkTqI3hR+GrlTaCXqvunZ8to4O4QGvFvnf17I5ms
-         A8Sma+JO/L+Gp+MGkNH86FvjbHascl4RwNBoilGODP3uyJhqJidoA1i0cI/0XhSD0uMF
-         49/w==
-X-Gm-Message-State: ACrzQf1drbRKDRUHy2tcYMIqkO2MNxErLTWoa7FGo39EShYvntB8RzSh
-        KwJeRMy48/yRXl+2X8sAk7lJA6wm3VI=
-X-Google-Smtp-Source: AMsMyM7sZxd5nPOCs59XV8m+x9XtHd9Qk493E9JbC/Tz8JwzedajoccvvRiIV+7P4ALuiBKPx+gerA==
-X-Received: by 2002:a05:6638:16d6:b0:358:31d8:65d8 with SMTP id g22-20020a05663816d600b0035831d865d8mr3786532jat.137.1663898098323;
-        Thu, 22 Sep 2022 18:54:58 -0700 (PDT)
-Received: from localhost ([2607:fea8:a2e2:2d00::1e16])
-        by smtp.gmail.com with UTF8SMTPSA id r10-20020a02b10a000000b003583d27d258sm2847885jah.105.2022.09.22.18.54.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Sep 2022 18:54:57 -0700 (PDT)
-From:   Richard Acayan <mailingradian@gmail.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231127AbiIWCjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 22:39:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B6D1176C0;
+        Thu, 22 Sep 2022 19:39:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8E200B829B1;
+        Fri, 23 Sep 2022 02:39:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65602C433C1;
+        Fri, 23 Sep 2022 02:39:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1663900748;
+        bh=PNdU7fNduRcQhJm7dcaxtTTE0/w4p67D22t7Qk/4oIA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=RlDbgsfq9WocF3wv6oF3qp73BIG8bHWeNk8PDwpZzFyg5h74slf5WDAh2IkvqquF5
+         a0TXN3X0phG6rRZfZH7GWE7xvyxgalMrUQq7zjEnC30AjuEXlINniM98vU6pI2IGyt
+         T1gcseg2K/OHlYESk1uWMWnczVAtoN7s2hUBKLAeGC12Xmlr75PPLDPgK7kdzyTl9N
+         9gWaWA1+L6huRq62WFeYgFYWeiu4ITFeoml+vzRfq4iSJy4ozqIK5hyquXHhWg7EO1
+         xvxfqPS/Vzs4pJK36zMnONOW8KQjS87Z7ZXNKW6KmEzDpKdZ/8gaiTtyiQ5rSEThO/
+         av9VMydDhIwQA==
+Date:   Thu, 22 Sep 2022 19:39:06 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 2/2] dmaengine: qcom: gpi: add sdm670 support
-Date:   Thu, 22 Sep 2022 21:54:26 -0400
-Message-Id: <20220923015426.38119-3-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220923015426.38119-1-mailingradian@gmail.com>
-References: <20220923015426.38119-1-mailingradian@gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v2 net-next 08/14] net: dsa: felix: update init_regmap
+ to be string-based
+Message-ID: <20220922193906.7ab18960@kernel.org>
+In-Reply-To: <20220922040102.1554459-9-colin.foster@in-advantage.com>
+References: <20220922040102.1554459-1-colin.foster@in-advantage.com>
+        <20220922040102.1554459-9-colin.foster@in-advantage.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Snapdragon 670 uses GPI DMA for its GENI interface. Add support for
-it.
+On Wed, 21 Sep 2022 21:00:56 -0700 Colin Foster wrote:
+> During development, it was believed that a wrapper for ocelot_regmap_init()
+> would be sufficient for the felix driver to work in non-mmio scenarios.
+> This was merged in during commit 242bd0c10bbd ("net: dsa: ocelot: felix:
+> add interface for custom regmaps")
+> 
+> As the external ocelot DSA driver grew closer to an acceptable state, it
+> was realized that most of the parameters that were passed in from struct
+> resource *res were useless and ignored. This is due to the fact that the
+> external ocelot DSA driver utilizes dev_get_regmap(dev, resource->name).
+> 
+> Instead of simply ignoring those parameters, refactor the API to only
+> require the name as an argument. MMIO scenarios this will reconstruct the
+> struct resource before calling ocelot_regmap_init(ocelot, resource). MFD
+> scenarios need only call dev_get_regmap(dev, name).
+> 
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- drivers/dma/qcom/gpi.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/dma/qcom/gpi.c b/drivers/dma/qcom/gpi.c
-index 89839864b4ec..9634be23e46b 100644
---- a/drivers/dma/qcom/gpi.c
-+++ b/drivers/dma/qcom/gpi.c
-@@ -2287,6 +2287,7 @@ static int gpi_probe(struct platform_device *pdev)
- 
- static const struct of_device_id gpi_of_match[] = {
- 	{ .compatible = "qcom,sc7280-gpi-dma", .data = (void *)0x10000 },
-+	{ .compatible = "qcom,sdm670-gpi-dma", .data = (void *)0x0 },
- 	{ .compatible = "qcom,sdm845-gpi-dma", .data = (void *)0x0 },
- 	{ .compatible = "qcom,sm6350-gpi-dma", .data = (void *)0x10000 },
- 	{ .compatible = "qcom,sm8150-gpi-dma", .data = (void *)0x0 },
--- 
-2.37.3
-
+drivers/net/dsa/ocelot/felix.c:1328:14: warning: variable 'match' is used uninitialized whenever 'for' loop exits because its condition is false [-Wsometimes-uninitialized]
+        for (i = 0; i < TARGET_MAX; i++) {
+                    ^~~~~~~~~~~~~~
+drivers/net/dsa/ocelot/felix.c:1338:7: note: uninitialized use occurs here
+        if (!match) {
+             ^~~~~
+drivers/net/dsa/ocelot/felix.c:1328:14: note: remove the condition if it is always true
+        for (i = 0; i < TARGET_MAX; i++) {
+                    ^~~~~~~~~~~~~~
+drivers/net/dsa/ocelot/felix.c:1324:30: note: initialize the variable 'match' to silence this warning
+        const struct resource *match;
+                                    ^
+                                     = NULL
