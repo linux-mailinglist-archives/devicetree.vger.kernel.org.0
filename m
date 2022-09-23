@@ -2,102 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6EC35E736C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 07:29:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4DAA5E738B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 07:58:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229961AbiIWF26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 01:28:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60112 "EHLO
+        id S229686AbiIWF62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 01:58:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229938AbiIWF24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 01:28:56 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03906126B53;
-        Thu, 22 Sep 2022 22:28:54 -0700 (PDT)
-X-UUID: 420be362c7604414a902e98855331c6a-20220923
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=mPUNeuHmFD5RX1kbnI4DWe/4FjFXHC90WwyKHQQWviY=;
-        b=WTSdLqYRReKaLLSjnrtg87wrm2EQsf1NiNm9J2cNiYj5K9MDXi+0L6BRpoDn830vygd8WqjZOE0AnEl91f/iuWfaMhYjNx/HGMK7RdJfRQJbKEgYEXjhLhA2dxUmzo7dwW9Pbu9//eR770/r4B+1hSM0YqKotPFSvyxSy9ZLy5M=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:d7edda5c-e81c-4a6a-9190-72db16b454c1,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-5
-X-CID-META: VersionHash:39a5ff1,CLOUDID:7d97d1a2-dc04-435c-b19b-71e131a5fc35,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 420be362c7604414a902e98855331c6a-20220923
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <jianguo.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1819676316; Fri, 23 Sep 2022 13:28:47 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 23 Sep 2022 13:28:46 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 23 Sep 2022 13:28:45 +0800
-From:   Jianguo Zhang <jianguo.zhang@mediatek.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229656AbiIWF61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 01:58:27 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1185D122614
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 22:58:26 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id u69so11320645pgd.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 22:58:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=+2iEYbm4WgWRcksL/NgD6V8Qgsl3K7rBVbxhls3Qag4=;
+        b=Fgt2C0aXPLjW9f9Hw8Lb+d2KztyhJzO6sSLfHh8dibEEXJCu1pG5IN818Dam82kH7B
+         DAka+TL9kZmEiFKVth9PqBpQ8oULEeFapcAp10rWD40vz7AWiU+VV9wgheFtrppj+xKW
+         GQg4DQF0akanQenbtHfz9bIm7AVGbxw5xKnV8fhIBhnqEjqRdJQw8voTzVM3YAA+7H8y
+         dMKedRB1mMsNC4ZxhgJi8AUHpHjwBNNCL8J0+QJUaboK9hrw03h+HUQfepAld6q2nF3i
+         7eV/J6LEdSOuOlWb55oxMQE9cXAtArMXu2ujGcVccuFukx4CZlOf27wlsSAweIv1+Sfm
+         Q2XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=+2iEYbm4WgWRcksL/NgD6V8Qgsl3K7rBVbxhls3Qag4=;
+        b=uz/u09tZMn24i0xwlV3G32+GOostZEuUXVAeUQBMFcRVHS7mTZPiLT7km8riHTXwbT
+         zcP7Je1cvpUg3IaehtT4+2Pks3HysCrYshVryFZuDbh+9/vsqarQwnZb+dN/GfSZ+lcO
+         9q5dbP6fUIM7sj1bGZMKWqCVHm9dapw2uQ132V6WLUn9bXIBGmweDsyukaW5eC1Lttde
+         jA+Ca6bSh1/FUj8TzflGL+zq6RNfCDJEOBVipZ9t4rsE+onuD9Ms5pOQdSaz3O3ZYshm
+         V8AUvEW3h/mCLnzColwpoejca//1VtXSi/wsuUMtiQFhPZjqI/nz+KiybLLR9YDEbb68
+         wnfg==
+X-Gm-Message-State: ACrzQf3zIznwSk3QYIgcvvkiCdDExMmrB0kxk+IswVSx5mSRudQ46JML
+        XM7Igh1eDGw00NKIANAFRle/yQ==
+X-Google-Smtp-Source: AMsMyM7LtxzI5Ylnx2f8GMwk4fVhQEHRiAZiuGM/fI3m/4T8Fw30VXSloFP7lsylj92oBcfPfNlUFQ==
+X-Received: by 2002:a05:6a00:194f:b0:54d:d12e:93aa with SMTP id s15-20020a056a00194f00b0054dd12e93aamr7244579pfk.34.1663912705448;
+        Thu, 22 Sep 2022 22:58:25 -0700 (PDT)
+Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
+        by smtp.gmail.com with ESMTPSA id l10-20020a170903244a00b0017532e01e3fsm5075638pls.276.2022.09.22.22.58.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Sep 2022 22:58:24 -0700 (PDT)
+From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org,
+        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Jianguo Zhang <jianguo.zhang@mediatek.com>
-Subject: [PATCH v5 4/4] net: stmmac: Update the name of property 'clk_csr'
-Date:   Fri, 23 Sep 2022 13:28:28 +0800
-Message-ID: <20220923052828.16581-5-jianguo.zhang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220923052828.16581-1-jianguo.zhang@mediatek.com>
-References: <20220923052828.16581-1-jianguo.zhang@mediatek.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH 0/2] This patch add common dtsi and WIFI/LTE dts for evoker.
+Date:   Fri, 23 Sep 2022 13:58:04 +0800
+Message-Id: <20220923055806.2556746-1-sheng-liang.pan@quanta.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the name of property 'clk_csr' as 'snps,clk-csr' to align with
-the property name in the binding file.
 
-Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 9f5cac4000da..18f9952d667f 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -444,7 +444,7 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
- 	 * or get clk_csr from device tree.
- 	 */
- 	plat->clk_csr = -1;
--	of_property_read_u32(np, "clk_csr", &plat->clk_csr);
-+	of_property_read_u32(np, "snps,clk-csr", &plat->clk_csr);
- 
- 	/* "snps,phy-addr" is not a standard property. Mark it as deprecated
- 	 * and warn of its use. Remove this when phy node support is added.
+
+Sheng-Liang Pan (2):
+  dt-bindings: arm: qcom: Separete LTE/WIFI SKU for sc7280-evoker
+  arm64: dts: qcom: Add LTE SKU for sc7280-evoker family
+
+ .../devicetree/bindings/arm/qcom.yaml         |  5 ++++
+ arch/arm64/boot/dts/qcom/Makefile             |  3 ++-
+ .../dts/qcom/sc7280-herobrine-evoker-lte.dts  | 14 ++++++++++
+ .../boot/dts/qcom/sc7280-herobrine-evoker.dts | 16 ++++++++++++
+ ...er-r0.dts => sc7280-herobrine-evoker.dtsi} | 26 +++++--------------
+ 5 files changed, 44 insertions(+), 20 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
+ rename arch/arm64/boot/dts/qcom/{sc7280-herobrine-evoker-r0.dts => sc7280-herobrine-evoker.dtsi} (93%)
+
 -- 
-2.25.1
+2.34.1
 
