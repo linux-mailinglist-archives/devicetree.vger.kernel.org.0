@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1D335E8191
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 20:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD7C65E819A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 20:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230369AbiIWSLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 14:11:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57820 "EHLO
+        id S232338AbiIWSON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 14:14:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232165AbiIWSLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 14:11:37 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5BAF6F77
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:11:35 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id h3so968073lja.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:11:35 -0700 (PDT)
+        with ESMTP id S229517AbiIWSOM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 14:14:12 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED1EF8C15
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:14:10 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id b6so921576ljr.10
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:14:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=bEsiJd/ABJ6GfZVhG9n8srep4jX5Ng0oqWanjXKMf3M=;
-        b=wdf0UoY5ODBa65zXyvuXU6004RbmRtmAQtzkUjBFxlpQtsXPB6f8/sO1rqC0ZGgLp3
-         4AMdVPtt9QHPuyI0VxvgIs+5MrEOgv6JoAB8AlLpxgFsMBIOnfWGqJCA6iLMwm3A9N5n
-         ZIWhGGwWdLofl2d7Oa0JdtvK+ek0ZFgho+IdjF9Zua3H6P1m8VRuu/tO9eMrcsVF5l11
-         CyOBznGHDjwORKYgfJR/Q4p4MPPirUKwQt2U7ZUq1syBcfAYIi47L3cQLBCIvD7tuIti
-         xsWsttC3skEp4jaqH1xDk+E1USMXKtinN/Kps+8JXhGImmHsdG5MDsPXMIDqjiMzGcPq
-         zmMA==
+        bh=oMvGRyf6B1xSW6jldiB/4L2hCW2oiTVar6DgwfxZevA=;
+        b=joMXbDUN23NrSPuFVRuQxyZ18+85jHWvFlgB5rHkyQB6MuTQv+11Blst3Emk2PKY+n
+         nQnCehdvxQMvsQA4btPpAyPP7A2rskO/wpWNTd326VLi8qNLiaxtGTsbjoX+ObpiCpJm
+         J0XwvrZycGuZOZVovoupWtzvwrgXa8V/+Stgj+L2zVD5+vIf8S8/dQGNT4ECX7/na9dK
+         5ZrHOBzj5+T0zFen0C0YlgJjDGjqrrYvSllJnoBgLL1qLQEjpVVCO3efy9H6SOOqBcm7
+         TV+wstyMe4wWuqQKw6QpkQHV2tLOj0lk3tSZefrxu3+P5luZKiLRGS3ChfdurG1sEBAZ
+         2YfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=bEsiJd/ABJ6GfZVhG9n8srep4jX5Ng0oqWanjXKMf3M=;
-        b=M8G4GI1LBYMYsSSru+nVMSt2p4wAtaTb7vQaXTV0xKnYdAD7PaAgyqkAU+f2/C+/9s
-         s4/RUF6PSahKYhG2/T13FezxOPOhm71y39rmxF3NYEp2Dvk8ohEDWy5qVPjcQSQJED3L
-         Lmhr4Ypk9b9KcPv2tHEGlRtnybDFa3+Mze8+gbGmzWoV+nM5/C6/iXPrSoDisHuXGe91
-         o6RHy59hYvqBPZ7slqJ9oZVqdw/o6xzbqmxBSckcfPO9xRTEfmzE4CoAeyadPv37KPZz
-         hHd3Ea2h6dhyT7oCo1z3DLdz1kMjvYclPJb28sf9mqqyMmd7sxTjjOTGD4C3fzw8N2Ii
-         tWVg==
-X-Gm-Message-State: ACrzQf0fo1/zC3AuxFjTc6pMgNsPhlDAQ+NT91ML1eEigXdnH/rvCSQb
-        xgO4l5CWZNNPCQsxlYUxba3njg==
-X-Google-Smtp-Source: AMsMyM5zQjSLuWsd99Ofx6D2TOw4gAeQDb4AO5KB8bpsuR/rhKVETepxlLfDTlGOKwf2sWnZ2pYplA==
-X-Received: by 2002:a2e:92c8:0:b0:25d:6ddf:e71d with SMTP id k8-20020a2e92c8000000b0025d6ddfe71dmr3229734ljh.170.1663956694123;
-        Fri, 23 Sep 2022 11:11:34 -0700 (PDT)
+        bh=oMvGRyf6B1xSW6jldiB/4L2hCW2oiTVar6DgwfxZevA=;
+        b=RtlJ4rhFeYEduOjoYfg3Lnhe2sa4dHQj5b3ggD1wdQW8hDYObniotzakMolW9ccwB1
+         EyieKMAodP5aKK3RlmbMH7ZxHWulocMxbXYrTkOHJa1zbQaxjXzXtmP3i8Y8MYhjAIch
+         1Aie7kDWCgI37qriSaqVwjQOwFEBUSx9fRqBim3gdV6ehsH0jI6fP3bhndoJzhy0Qyxj
+         hzBqVkPsEKmol9b1s3hdzG2gI4ehslTrFPf6SfOQ0P5FLq1oOBdR4enH0BAQCQTv1tBf
+         LzdkDuPbn/ufn8cCrqJwJ8fvFpFqBGmr/YuHTq167AqMOAPjYGnEvABGIq8A7UhKwAwZ
+         rAQg==
+X-Gm-Message-State: ACrzQf3FQNBw8BZ4E0kq00jVpdev1b5NXmDpgVWCJrNnTkd/YDZlsvyr
+        r7OEulTQBTRnInUAqkzn3eoGbA==
+X-Google-Smtp-Source: AMsMyM6ZNkXX2AkLZWL390O0wf6Nou5HbOXvCjEuUZ/Qb6dNDl3VBmNR01p6Z/h5HcJXrDEEqprZhA==
+X-Received: by 2002:a05:651c:19a6:b0:26c:4a66:aa42 with SMTP id bx38-20020a05651c19a600b0026c4a66aa42mr3624111ljb.231.1663956849278;
+        Fri, 23 Sep 2022 11:14:09 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id z12-20020a2eb52c000000b00261e2aab7c2sm1491057ljm.58.2022.09.23.11.11.32
+        by smtp.gmail.com with ESMTPSA id d8-20020a056512368800b004a0526b11ffsm415225lfs.133.2022.09.23.11.14.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 11:11:33 -0700 (PDT)
-Message-ID: <a215ae81-10de-7880-1a15-b7b08d0d80d7@linaro.org>
-Date:   Fri, 23 Sep 2022 20:11:32 +0200
+        Fri, 23 Sep 2022 11:14:08 -0700 (PDT)
+Message-ID: <ac24dc0f-0038-5068-3ce6-bbace55c7027@linaro.org>
+Date:   Fri, 23 Sep 2022 20:14:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v5 2/4] dt-bindings: net: snps,dwmac: add clk_csr property
+Subject: Re: [PATCH v5 4/4] net: stmmac: Update the name of property 'clk_csr'
 Content-Language: en-US
-To:     Jianguo Zhang <jianguo.zhang@mediatek.com>,
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jianguo Zhang <jianguo.zhang@mediatek.com>,
         "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
@@ -76,32 +76,56 @@ Cc:     Eric Dumazet <edumazet@google.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 References: <20220923052828.16581-1-jianguo.zhang@mediatek.com>
- <20220923052828.16581-3-jianguo.zhang@mediatek.com>
+ <20220923052828.16581-5-jianguo.zhang@mediatek.com>
+ <e0fa3ddf-575d-9e25-73d8-e0858782b73f@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220923052828.16581-3-jianguo.zhang@mediatek.com>
+In-Reply-To: <e0fa3ddf-575d-9e25-73d8-e0858782b73f@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 07:28, Jianguo Zhang wrote:
-> The clk_csr property is parsed in driver for generating MDC clock
-> with correct frequency. A warning('clk_csr' was unexpeted) is reported
-> when runing 'make_dtbs_check' because the clk_csr property
-> has been not documented in the binding file.
+On 23/09/2022 11:10, AngeloGioacchino Del Regno wrote:
+> Il 23/09/22 07:28, Jianguo Zhang ha scritto:
+>> Update the name of property 'clk_csr' as 'snps,clk-csr' to align with
+>> the property name in the binding file.
+>>
+>> Signed-off-by: Jianguo Zhang <jianguo.zhang@mediatek.com>
+>> ---
+>>   drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> index 9f5cac4000da..18f9952d667f 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> @@ -444,7 +444,7 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+>>   	 * or get clk_csr from device tree.
+>>   	 */
+>>   	plat->clk_csr = -1;
+>> -	of_property_read_u32(np, "clk_csr", &plat->clk_csr);
+>> +	of_property_read_u32(np, "snps,clk-csr", &plat->clk_csr);
+> 
+> This is going to break MT2712e on old devicetrees.
+> 
+> The right way of doing that is to check the return value of of_property_read_u32()
+> for "snps,clk-csr": if the property is not found, fall back to the old "clk_csr".
 
-Your subject is not accurate anymore. Maybe mention that instead of
-existing clk_csr, you add a different property.
+I must admit - I don't care. That's the effect when submitter bypasses
+DT bindings review (81311c03ab4d ("net: ethernet: stmmac: add management
+of clk_csr property")).
 
-With commit msg fixes:
+If anyone wants ABI, please document the properties.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If out-of-tree users complain, please upstream your DTS or do not use
+undocumented features...
 
 Best regards,
 Krzysztof
