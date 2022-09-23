@@ -2,106 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7570E5E74DB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 09:28:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFE9C5E7534
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 09:52:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229571AbiIWH2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 03:28:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40292 "EHLO
+        id S229844AbiIWHwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 03:52:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230410AbiIWH2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 03:28:32 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3E0C12B5C0
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 00:28:31 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1obd6m-0001Cg-UD; Fri, 23 Sep 2022 09:28:24 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1obd6l-002PwT-Ts; Fri, 23 Sep 2022 09:28:22 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1obd6j-002x7p-Iu; Fri, 23 Sep 2022 09:28:21 +0200
-Date:   Fri, 23 Sep 2022 09:28:21 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     xinlei.lee@mediatek.com
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        jitao.shi@mediatek.com, linux-pwm@vger.kernel.org,
+        with ESMTP id S230341AbiIWHwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 03:52:18 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4ED812BD96
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 00:52:16 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id n10so19061317wrw.12
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 00:52:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=5OTJLPTHaCGUvxTLzQpX9KkfWgyXUXuxIB5BfRQ2its=;
+        b=x1m7c9FB2/aG357kotIOofarUV5AJycibbv0fUUoWZJeVTfnQH/MIzMT6EXnNi2ctJ
+         jUv3wFiTpjQ5VhjFEzPJTDC/FvoEDtjSMiMamcK6YYkyJnW8+EN9atDCEJqROh5/YX/N
+         WCLc3fI5mKElNSS/XwD2pYU9mcOZ4e9nU3HLHfOJSoKjfcwpV9e99NRTc8UjNxTZSQ1f
+         cnmNn0yPoZ25IW49lgPPjQAkkYbdr7f52IX2BMgXYX2ZS9v312aucw3Kiw4a+uyScsZ9
+         otiHlWNHW60WGy+9nCrv8kEQoVpEt+SexqvjZNIJnd6Wj7hZBD2wiIj5Igjd/ebYlC6T
+         OhEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=5OTJLPTHaCGUvxTLzQpX9KkfWgyXUXuxIB5BfRQ2its=;
+        b=UTseSk07dL3mVKdCA/K2SeUuLqZB+AjryoysvaNsWEP8l01h8PhwdVgKEHNPCMy5Pk
+         mtLmvm1VGP9x1lq9pRNfu+4nRvIf8D8hCNH/NaTMZQIUxz9pxADosm6rngm+JeQ50Msn
+         2AePABsR1iUyD4j5epnc7/IOvJcpWjtoGuIzIIEXH0kHsSOgvcMTyZXoa+3OXqGeQP0S
+         bQAkdNhTvSXdXm8XEG3nMAe+vlfFSO3LQKIv4VRuLlyP1SeE9TeI9K0a4l+EGJlm5FYK
+         jKDiz/RkHEcTOzN7wqJVDcYukMfGKD2rMChMz6Vugilh9zfueXRl9TRTSPmcHAxIkwTq
+         rn3Q==
+X-Gm-Message-State: ACrzQf0+ekuOuVZ7woW39VG+Ew2Jw+WJ1AssOGnRhZXVRullsa+HUpUZ
+        aEhtxtS2j6C+MCw1hEeIuwppIQ==
+X-Google-Smtp-Source: AMsMyM5K0BL3MUCQCX1SoMJdGVMS00+U0AY6LIti26t6MQPtQ9C3GKO8ZB2URqjLBBsBFou6vC/jIw==
+X-Received: by 2002:a05:6000:80a:b0:229:4632:d1d1 with SMTP id bt10-20020a056000080a00b002294632d1d1mr4510716wrb.73.1663919534600;
+        Fri, 23 Sep 2022 00:52:14 -0700 (PDT)
+Received: from localhost.localdomain (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
+        by smtp.gmail.com with ESMTPSA id u15-20020a05600c19cf00b003a2f2bb72d5sm2089319wmq.45.2022.09.23.00.52.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Sep 2022 00:52:14 -0700 (PDT)
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     virtualization@lists.linux-foundation.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@list.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH,v2] dt-bindings: pwm: Add compatible for Mediatek MT8188
-Message-ID: <20220923072821.fy732jaayqdyfeht@pengutronix.de>
-References: <1663915394-30091-1-git-send-email-xinlei.lee@mediatek.com>
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v3] dt-bindings: virtio: Convert virtio,pci-iommu to DT schema
+Date:   Fri, 23 Sep 2022 08:44:38 +0100
+Message-Id: <20220923074435.420531-1-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7db7yim5if2sboqg"
-Content-Disposition: inline
-In-Reply-To: <1663915394-30091-1-git-send-email-xinlei.lee@mediatek.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the binding that describes the virtio-pci based IOMMU to DT
+schema. Change the compatible string to "pci<vendor>,<device>", which is
+defined by the PCI Bus Binding, but keep "virtio,pci-iommu" as an option
+for backward compatibility.
 
---7db7yim5if2sboqg
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+---
+v3: Renamed file and type to pci-iommu
+v2: https://lore.kernel.org/linux-devicetree/20220922161644.372181-1-jean-philippe@linaro.org/
+---
+ .../devicetree/bindings/virtio/iommu.txt      |  66 ------------
+ .../devicetree/bindings/virtio/pci-iommu.yaml | 101 ++++++++++++++++++
+ 2 files changed, 101 insertions(+), 66 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/virtio/iommu.txt
+ create mode 100644 Documentation/devicetree/bindings/virtio/pci-iommu.yaml
 
-Hello,
+diff --git a/Documentation/devicetree/bindings/virtio/iommu.txt b/Documentation/devicetree/bindings/virtio/iommu.txt
+deleted file mode 100644
+index 2407fea0651c..000000000000
+--- a/Documentation/devicetree/bindings/virtio/iommu.txt
++++ /dev/null
+@@ -1,66 +0,0 @@
+-* virtio IOMMU PCI device
+-
+-When virtio-iommu uses the PCI transport, its programming interface is
+-discovered dynamically by the PCI probing infrastructure. However the
+-device tree statically describes the relation between IOMMU and DMA
+-masters. Therefore, the PCI root complex that hosts the virtio-iommu
+-contains a child node representing the IOMMU device explicitly.
+-
+-Required properties:
+-
+-- compatible:	Should be "virtio,pci-iommu"
+-- reg:		PCI address of the IOMMU. As defined in the PCI Bus
+-		Binding reference [1], the reg property is a five-cell
+-		address encoded as (phys.hi phys.mid phys.lo size.hi
+-		size.lo). phys.hi should contain the device's BDF as
+-		0b00000000 bbbbbbbb dddddfff 00000000. The other cells
+-		should be zero.
+-- #iommu-cells:	Each platform DMA master managed by the IOMMU is assigned
+-		an endpoint ID, described by the "iommus" property [2].
+-		For virtio-iommu, #iommu-cells must be 1.
+-
+-Notes:
+-
+-- DMA from the IOMMU device isn't managed by another IOMMU. Therefore the
+-  virtio-iommu node doesn't have an "iommus" property, and is omitted from
+-  the iommu-map property of the root complex.
+-
+-Example:
+-
+-pcie@10000000 {
+-	compatible = "pci-host-ecam-generic";
+-	...
+-
+-	/* The IOMMU programming interface uses slot 00:01.0 */
+-	iommu0: iommu@0008 {
+-		compatible = "virtio,pci-iommu";
+-		reg = <0x00000800 0 0 0 0>;
+-		#iommu-cells = <1>;
+-	};
+-
+-	/*
+-	 * The IOMMU manages all functions in this PCI domain except
+-	 * itself. Omit BDF 00:01.0.
+-	 */
+-	iommu-map = <0x0 &iommu0 0x0 0x8>
+-		    <0x9 &iommu0 0x9 0xfff7>;
+-};
+-
+-pcie@20000000 {
+-	compatible = "pci-host-ecam-generic";
+-	...
+-	/*
+-	 * The IOMMU also manages all functions from this domain,
+-	 * with endpoint IDs 0x10000 - 0x1ffff
+-	 */
+-	iommu-map = <0x0 &iommu0 0x10000 0x10000>;
+-};
+-
+-ethernet@fe001000 {
+-	...
+-	/* The IOMMU manages this platform device with endpoint ID 0x20000 */
+-	iommus = <&iommu0 0x20000>;
+-};
+-
+-[1] Documentation/devicetree/bindings/pci/pci.txt
+-[2] Documentation/devicetree/bindings/iommu/iommu.txt
+diff --git a/Documentation/devicetree/bindings/virtio/pci-iommu.yaml b/Documentation/devicetree/bindings/virtio/pci-iommu.yaml
+new file mode 100644
+index 000000000000..972a785a42de
+--- /dev/null
++++ b/Documentation/devicetree/bindings/virtio/pci-iommu.yaml
+@@ -0,0 +1,101 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/virtio/pci-iommu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: virtio-iommu device using the virtio-pci transport
++
++maintainers:
++  - Jean-Philippe Brucker <jean-philippe@linaro.org>
++
++description: |
++  When virtio-iommu uses the PCI transport, its programming interface is
++  discovered dynamically by the PCI probing infrastructure. However the
++  device tree statically describes the relation between IOMMU and DMA
++  masters. Therefore, the PCI root complex that hosts the virtio-iommu
++  contains a child node representing the IOMMU device explicitly.
++
++  DMA from the IOMMU device isn't managed by another IOMMU. Therefore the
++  virtio-iommu node doesn't have an "iommus" property, and is omitted from
++  the iommu-map property of the root complex.
++
++properties:
++  # If compatible is present, it should contain the vendor and device ID
++  # according to the PCI Bus Binding specification. Since PCI provides
++  # built-in identification methods, compatible is not actually required.
++  compatible:
++    oneOf:
++      - items:
++          - const: virtio,pci-iommu
++          - const: pci1af4,1057
++      - items:
++          - const: pci1af4,1057
++
++  reg:
++    description: |
++      PCI address of the IOMMU. As defined in the PCI Bus Binding
++      reference, the reg property is a five-cell address encoded as (phys.hi
++      phys.mid phys.lo size.hi size.lo). phys.hi should contain the device's
++      BDF as 0b00000000 bbbbbbbb dddddfff 00000000. The other cells should be
++      zero. See Documentation/devicetree/bindings/pci/pci.txt
++
++  '#iommu-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - '#iommu-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    bus {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        pcie@40000000 {
++            device_type = "pci";
++            #address-cells = <3>;
++            #size-cells = <2>;
++            reg = <0x0 0x40000000  0x0 0x1000000>;
++            ranges = <0x02000000 0x0 0x41000000  0x0 0x41000000  0x0 0x0f000000>;
++
++            /*
++             * The IOMMU manages all functions in this PCI domain except
++             * itself. Omit BDF 00:01.0.
++             */
++            iommu-map = <0x0 &iommu0 0x0 0x8
++                         0x9 &iommu0 0x9 0xfff7>;
++
++            /* The IOMMU programming interface uses slot 00:01.0 */
++            iommu0: iommu@1,0 {
++                compatible = "pci1af4,1057";
++                reg = <0x800 0 0 0 0>;
++                #iommu-cells = <1>;
++            };
++        };
++
++        pcie@50000000 {
++            device_type = "pci";
++            #address-cells = <3>;
++            #size-cells = <2>;
++            reg = <0x0 0x50000000  0x0 0x1000000>;
++            ranges = <0x02000000 0x0 0x51000000  0x0 0x51000000  0x0 0x0f000000>;
++
++            /*
++             * The IOMMU also manages all functions from this domain,
++             * with endpoint IDs 0x10000 - 0x1ffff
++             */
++            iommu-map = <0x0 &iommu0 0x10000 0x10000>;
++        };
++
++        ethernet {
++            /* The IOMMU manages this platform device with endpoint ID 0x20000 */
++            iommus = <&iommu0 0x20000>;
++        };
++    };
++
++...
+-- 
+2.37.3
 
-hint: You don't seem to know about git send-email -v2. (Or git
-format-patch -v2)
-
-On Fri, Sep 23, 2022 at 02:43:14PM +0800, xinlei.lee@mediatek.com wrote:
-> From: xinlei lee <xinlei.lee@mediatek.com>
->=20
-> Add dt-binding documentation of pwm for MediaTek MT8188 SoC.
->=20
-> Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
-> ---
-
-It is usually helpful to note what changed since v1 here. I looked it up
-myself now: Only the commit log changed, it was shortend not to mention
-development details about how this patch was created.
-
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---7db7yim5if2sboqg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmMtYBIACgkQwfwUeK3K
-7AkYGgf/U4i3QfL+sMDHS1hzBnjl2JNNEFmxOmB6Llcg+aW+9/nfQrKvTv+s9qOD
-iIppkKLXrPDwN2P7wprRzLOXTPLooQkXV6N0yIIefGbVu6fX8s8mYBeUW58vBVSE
-lEfuiKF8kNqCSesxSYohnRbh+A1J3eokuDp7W/2hFuzn0nFEEt0Ec2UDjtf7fmhD
-+Cqq/ivOFiD9oiUQxMiarcfqy7PEahD/yRlElg8jHT5ZO9deo+NnLqSead/OqogI
-Xlz7YShR2VPQpLdnRLg6tochWd+N9HGIp7QL6BD4n459dxCmJoJQzuUD1Lw1Ft2m
-K6vpS1bvwC0CkLKGbTGQY59MLZ79BA==
-=wTGz
------END PGP SIGNATURE-----
-
---7db7yim5if2sboqg--
