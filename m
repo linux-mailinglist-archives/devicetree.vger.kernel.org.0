@@ -2,243 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D937D5E77BC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC4C55E77DC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 12:02:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231590AbiIWJ4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 05:56:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59524 "EHLO
+        id S230089AbiIWKCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 06:02:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231796AbiIWJ4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:56:17 -0400
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2079.outbound.protection.outlook.com [40.107.104.79])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74CB212387F;
-        Fri, 23 Sep 2022 02:56:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=na0kSsRuKOPX9caXV+XlFo1ZF55hoxAVZIBr3+AsoETV84T5nMuACdoK1U+jbDEvkFwGGAFMIYsyG1ihQiGlEA9qdNa1VYdNkfMjwIKn90UTFR35uH97yjUV9maunXYpGB3z7Xb9Epc21G6kk+SdcLvROGqLk21MUo3VMMfVFtAbp3KvIXzEpfsLurPfLv2XuNv2kM7Oug0O/mmo8Ysss/PwCx1S8TM/tqBD9iPYonq0dF6EDdFE65qGB1ur9EdYu3YSneq2i86k/qldEEg8dUFZKA5sRg1iVcIb9762hgyDKFQgBvsiKfgmm1iw8JNZNfOurxx8x1z8+zPQ2WjBbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A07iPSt4dr7WZn0qJ5FzweBarro6FnzJbDXu/QiTapw=;
- b=oBcaV1qkBo0eyN0r0Gbw5PpgN/mSjGk+9oOx1UwNy/NVWDU/vB6ClSKHVeZ3+Yy/724nd5DW81hWaKbVIxSEgocb9UCs1DOc44B9I+HC69/zADDs4H/5giZEyyj6dKbkF+gYM0IQR6My+cIv/Qmichg8MhSbEREF37kcY3fUqfW8C6WA4JT3/du6SivNY0C+cNuFlMBqzv3XDfeAhnrk9MaikY5qDYw9I4cnzLRylwQj9/VLsGQPxqPp9hUbyt0cKL00c1E2v0pACEYA8cbcJkrbmlcXKzaG5F2BuHMBGcdf5KHSBTk6Lp9gnCVvPABpiriAB4ZMaCVmvb667IpK9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A07iPSt4dr7WZn0qJ5FzweBarro6FnzJbDXu/QiTapw=;
- b=fy0snUTpGDD7Mu1weidtKHqn/HiMxut1K187oRATgMMqq35r241KYQGi+TdDO7xPVYmwZlUtiokD/MbuVTSyq8HSLmYsuBjc4vRNBke1NMcVn4zF9geQo0m4AZgQdWuYx9Yj2MwEAVlC5tj0yXUL2//ceckFHNTa1XF1oxMm2kw=
-Received: from VI1PR04MB4222.eurprd04.prod.outlook.com (2603:10a6:803:46::19)
- by VI1PR04MB6863.eurprd04.prod.outlook.com (2603:10a6:803:12f::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.20; Fri, 23 Sep
- 2022 09:56:07 +0000
-Received: from VI1PR04MB4222.eurprd04.prod.outlook.com
- ([fe80::7008:1596:bb4:d904]) by VI1PR04MB4222.eurprd04.prod.outlook.com
- ([fe80::7008:1596:bb4:d904%4]) with mapi id 15.20.5654.020; Fri, 23 Sep 2022
- 09:56:07 +0000
-From:   Chancel Liu <chancel.liu@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
-        "S.J. Wang" <shengjiu.wang@nxp.com>,
-        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Subject: RE: Re: [PATCH v2 1/7] ASoC: dt-bindings: fsl_rpmsg: Add a property
- to assign the rpmsg channel
-Thread-Topic: Re: [PATCH v2 1/7] ASoC: dt-bindings: fsl_rpmsg: Add a property
- to assign the rpmsg channel
-Thread-Index: AQHYzzKzIRcLJ21/30SyeFStqUuMIg==
-Date:   Fri, 23 Sep 2022 09:56:07 +0000
-Message-ID: <VI1PR04MB4222BDB1378A01E99DFC6211E3519@VI1PR04MB4222.eurprd04.prod.outlook.com>
-References: <20220914105145.2543646-1-chancel.liu@nxp.com>
- <20220914105145.2543646-2-chancel.liu@nxp.com>
- <20220916185048.GA1061412-robh@kernel.org>
-In-Reply-To: <20220916185048.GA1061412-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI1PR04MB4222:EE_|VI1PR04MB6863:EE_
-x-ms-office365-filtering-correlation-id: 8eeb9b13-ffbc-407c-d2ce-08da9d49d619
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dm0r35HEz6QkYvyHee9QY1RpZSMiwIkQEY/FjrbvLJ0DhR7BVDKaUVyekT4lJ18v7VmV4bhFVHa1xf08Wb/uwMrkj1O8TFkvo19LkA90x01JV2aUVibOAUA66CGTKfznXMTUEwUBvy7qD8j4ql/ufGWlV2MxtAG7Zdejhj7EULTGDIUqJUSxqoWH38uYlzGufTmZ1vIN9wigSGhFGPZ2eTQXR8sXHIrg2Ekbtwa+UhgRyX/I2ge0K+ixczeNh+jJWmggAXe2J5lWRc4PPQF+VOG+EFmuLRvPKrWeu71rb3FFMQUL4F4x/xkipPMHTPXHfRr9kbQfk7QzUAAUINU5OSdCNqVC0LFS/9LDv0oENLuHW1gojTeamn76FdWyHpoWMo7f+R0dK8/DBe2NsaE4QpPjf6EpIgxnEhBaKy53LZhkUy19VLQiaNwM6Erva73Yv8HfEEjn3r0xZh6mb6pkDlY3WeqQkcZDYHebdyhofskreB6gCcwBkgCYcqFbVvIzc5r+aUAWeEiAiiLpiKfJn19dEB9+ks0pMMEdkTZ9bO5YZCx3zW8QgB4UHDq+mKmHzzhzym6uO4v+RFr9lsJ4FAy8N09u9vekfnhh+YuY+Xhwsy8wWv0Xhh1WE5Xl+E8mX4c54nSli1jf8rCQHWuEmaNASn9ceStEUKIzBXy1DI8UqsulXEOSyU943Vo0w5LaRBdCjoVbaV53GAf/Xf9drzPhmS2Q/YEOVfiJKRSkyQJknNtTEKasEQDKWAMCs8qb6pp2RX8E974kWdsVuENcVQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4222.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(366004)(346002)(39860400002)(396003)(136003)(451199015)(54906003)(26005)(6916009)(9686003)(2906002)(6506007)(7696005)(76116006)(186003)(66446008)(86362001)(66476007)(66946007)(4326008)(66556008)(64756008)(83380400001)(316002)(33656002)(55016003)(41300700001)(122000001)(8936002)(5660300002)(8676002)(7416002)(52536014)(38100700002)(44832011)(478600001)(38070700005)(71200400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zhFPTHMvrad2d+w3NV++4YtpTl+XtURLF2N4aw5A8/6L1Mz5rik24aw+nxFL?=
- =?us-ascii?Q?H8X+BKbWxOZl/+w4+/EwUNJTcq30GYs27oi+Jv3xs45jfRDv5hdOKfInZoVe?=
- =?us-ascii?Q?4+cD6m/6Np/+NHPWWg7IqFFm7momVhXoVLFzCxq/oitX3RihQtpwifdkU04E?=
- =?us-ascii?Q?F/C41EQZo+MevfL7871S64dSOAlkI9JnqVK8Od+h0MvCaApAHGxwBexHF6FN?=
- =?us-ascii?Q?1Dfu1VoU+wsn/6mJf3G5a7J9s5O2YJxnXssbHngrUxP4YdQEvOXiEtEAjPwP?=
- =?us-ascii?Q?vrTOFLaRLUjSL1GJE3QvsbOWrqxg6wpJqaR+ep2agVAXRFbLSc1FaZhtZtdD?=
- =?us-ascii?Q?jO5xFQuwpEABAlwNVEc6UxhF49e4Z/71Xcm1Tn0sla44qWLMuPKXUNDdehUs?=
- =?us-ascii?Q?gsmKKBbyX6sc4JknEATb9LHF/+pu2GSh8cnkfH6YXuq2avfroPnUj7CYxxrC?=
- =?us-ascii?Q?GgJFarNEKOvS5LZ6hgRmBTURXZINAL5gL+xUnys0O2eTLyRui3MQHCA7cOhF?=
- =?us-ascii?Q?4NWhHE3yfALJvaHPbwhaquE3i9BOXAf6C0AGcjHTHuasVz8O1a18FFfyVKjc?=
- =?us-ascii?Q?wLgsCv2DZVN7qfBb5VYF9cjCnfD1TLw+bXHLH1e0ye4VQ8i1DOUsPYMEVF6E?=
- =?us-ascii?Q?Ph1kgoGQ3wTDGe7Uq7ISkWmtnpP7h0MtuqL8jPs+C6WPOlaaspghUN7Ignxu?=
- =?us-ascii?Q?y8MnT3dU2jAujw+IYOZcpBiPz+w0s2ZFV74Q3WiOdMWg0cN+1oRUtMJEIDh9?=
- =?us-ascii?Q?IKQTnXkn0TTFAA/Y0m1fmdxitqGIb7mrtsVZRC9cxvt3vcMlhiJJhghDJx72?=
- =?us-ascii?Q?MGS5yp9hq3x+fur17nFiZejEjSyRRQbUgq/AP2F1kXy74z6J1dCH6DhCuWPT?=
- =?us-ascii?Q?YzsEiy44faogLj6I2Hax3ehYB3e/v+F+aS/a7ddr/kRylRP63Tn3YAHeUnxJ?=
- =?us-ascii?Q?AQPKwiRzD99RhSymIgYjj/M55Ixq6KmKX7vJk9MLUoI6E6+ZodJQ54I+E3Xy?=
- =?us-ascii?Q?kJq11peSNkPj5pFn88+zBBI2q94f5aEYqLoPwjYYEN7md91wI/rDYNodjogh?=
- =?us-ascii?Q?UVAJuc6HCdnANmbmLg8dnEyiJe3D2gA48ibBUSsXo3MpoF7Uf4OUcSU5rYDm?=
- =?us-ascii?Q?f6M6ZTHSVeUTnElzxUtl6eS2qAKQD+SmliYzmoywre082eGk6naLoeeIfAjO?=
- =?us-ascii?Q?8ojY51tkHfnyJKR2r/H8eFqqU+L2wAtrCeTK/EG2CCb7oWnDHTRHmb4Z4Ltl?=
- =?us-ascii?Q?L8J5HOpBMiuAB1lrvSEwIp7qBtj8aHzMFB3LV/Bl7SUXtMC7mObuI3ULwOLv?=
- =?us-ascii?Q?UDZ6M6oHl2SRJxyjNZTPYDpY95hPNLF58o0xSfWOaT9UIn7t7+HJYUwu59E4?=
- =?us-ascii?Q?bXXqamtTefE/K7W+ZPKBnh/1ey37yhn8p7x5vL2AqO1IMiUwmh9i7YUlyvAb?=
- =?us-ascii?Q?6kRlCzVbSBxnMVBGZISaFBec7tze1q0GYwY8i1lGyeVWSyRqzDzK11nfcSdq?=
- =?us-ascii?Q?vVrE+Xm+kZE9Pz2QDRU3RwTk4D5KzBm3FrwjJyrzWtxm1a5gEqqQQJxYEl+v?=
- =?us-ascii?Q?Vb0eskD4twcFNXDOklbGaOWyQx0FcaUTLx0YbUA4?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S230294AbiIWKC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 06:02:28 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A296B1280CC;
+        Fri, 23 Sep 2022 03:02:25 -0700 (PDT)
+Received: from p508fdb48.dip0.t-ipconnect.de ([80.143.219.72] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1obfVi-0005d7-QY; Fri, 23 Sep 2022 12:02:18 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dan Johansen <strit@manjaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable HDMI and GPU on quartz64-b
+Date:   Fri, 23 Sep 2022 12:02:18 +0200
+Message-ID: <2218487.usQuhbGJ8B@phil>
+In-Reply-To: <ad36710b-af7d-f9ca-fa04-cbb9acb5f123@manjaro.org>
+References: <20220920143446.633956-1-frattaroli.nicolas@gmail.com> <2198677.PYKUYFuaPT@phil> <ad36710b-af7d-f9ca-fa04-cbb9acb5f123@manjaro.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4222.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8eeb9b13-ffbc-407c-d2ce-08da9d49d619
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2022 09:56:07.5911
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8qhR0PxfqGbm24lmD/5jz/C6Nbp2Drp3VGAshCDL3I2McdvCTSws264A+QSEn2oe4LEoJ6LPM2fgH49WIustzg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6863
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Add a string property to assign the rpmsg channel this sound card sits
-> > on. It also represents the name of ASoC platform driver. This property
-> > can be omitted if there is only one sound card and it sits on
-> > "rpmsg-audio-channel".
-> >
-> > Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
-> > ---
-> >  .../devicetree/bindings/sound/fsl,rpmsg.yaml  | 37 ++++++++++++++++++-
-> >  1 file changed, 35 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
-> b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
-> > index d370c98a62c7..3744ae794c00 100644
-> > --- a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
-> > @@ -11,8 +11,11 @@ maintainers:
-> >
-> >  description: |
-> >    fsl_rpmsg is a virtual audio device. Mapping to real hardware device=
-s
-> > -  are SAI, DMA controlled by Cortex M core. What we see from Linux
-> > -  side is a device which provides audio service by rpmsg channel.
-> > +  are SAI, MICFIL, DMA controlled by Cortex M core. What we see from
-> > +  Linux side is a device which provides audio service by rpmsg channel=
-.
-> > +  We can create different sound cards which access different hardwares
-> > +  such as SAI, MICFIL, .etc through building rpmsg channels between
-> > +  Cortex-A and Cortex-M.
-> >
-> >  properties:
-> >    compatible:
-> > @@ -85,6 +88,17 @@ properties:
-> >        This is a boolean property. If present, the receiving function
-> >        will be enabled.
-> >
-> > +  fsl,rpmsg-channel-name:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: |
-> > +      A string property to assign rpmsg channel this sound card sits o=
-n.
-> > +      It also represents the name of ASoC platform driver. This proper=
-ty
->=20
-> That's a Linux detail which doesn't belong in DT.
->=20
+Hi,
 
-We pass hardware parameters in dts node to set up clocks or other
-configurations. These configurations are finally sent to Cortex-M by
-rpmsg channel because Cortex-M actually controls real hardware devices.
-If there's only one sound card sits on one rpmsg channel we will not
-need this property. But if there are several sound cards we need to
-specify correct rpmsg channel. Thus hardware configurations can be
-properly sent to Cortex-M. From this level to speak, this property is
-hardware-related since rpmsg channel represents the real hardware audio
-controller.
+Am Freitag, 23. September 2022, 11:53:52 CEST schrieb Dan Johansen:
+> 
+> Den 23.09.2022 kl. 11.45 skrev Heiko Stuebner:
+> > Hi,
+> >
+> > Am Donnerstag, 22. September 2022, 23:22:37 CEST schrieb Dan Johansen:
+> >> This seems to be based against linux-next and not mainline. It fails to
+> >> apply on mainline for me.
+> > I would not expect things any other way though :-) .
+> > I.e. in the current cycle everything new is of course targetting
+> > v6.1 and the Quartz boards already saw some other changes.
+> 
+> Ah okay. I have misunderstood the submitting process then.
+> 
+> I was under the impression that a patch should always target the latest 
+> -rc1, in this case 6.0-rc1.
+> 
+> I did not know that when you are at rc6/rc7 it's okay to target 
+> linux-next without
+> mentioning it.
+> 
+> Sorry for my noise.
 
-Here I attach the discussion in version 1 patches for your information:
----
-This property aims to tell the ASoC driver which rpmsg channel the
-sound card depends on. If there are several sound cards sit on rpmsg,
-we should pass correct information in dts node to specify the name of
-rpmsg channel. That is why I meant to add this property.=20
+no worries - just to clarify a bit more, the issue gets slightly
+more complex :-) .
 
-Actually this property is hardware-related. As we discussed before,
-this kind of sound card based on rpmsg works under this mechanism
-Cortex-A core tells the Cortex-M core configuration of the PCM
-parameters then Cortex-M controls real hardware devices. This property
-specifying rpmsg channel represents the real hardware audio controller.
----
+I.e. patches should always target the maintainer-branch you're expecting
+them getting applied to. During the whole development cycle there is a
+lot of movement happening in each maintainer tree, so targetting some
+completely separate rc-kernel won't really make sense.
 
-That's my idea adding this property. Do you have any suggstion?
+Most of the time targetting -rc1 might work in the beginning, but when
+there are other changes already applied you need to take these into
+account too.
 
-Regards,=20
-Chancel Liu
+Heiko
 
-> > +      can be omitted if there is only one sound card and it sits on
-> > +      "rpmsg-audio-channel".
-> > +    enum:
-> > +      - rpmsg-audio-channel
-> > +      - rpmsg-micfil-channel
-> > +
-> >  required:
-> >    - compatible
-> >    - model
-> > @@ -107,3 +121,22 @@ examples:
-> >                   <&clk IMX8MN_AUDIO_PLL2_OUT>;
-> >          clock-names =3D "ipg", "mclk", "dma", "pll8k", "pll11k";
-> >      };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/clock/imx8mm-clock.h>
-> > +
-> > +    rpmsg_micfil: audio-controller {
-> > +        compatible =3D "fsl,imx8mm-rpmsg-audio";
-> > +        model =3D "micfil-audio";
-> > +        fsl,rpmsg-channel-name =3D "rpmsg-micfil-channel";
-> > +        fsl,enable-lpa;
-> > +        fsl,rpmsg-in;
-> > +        clocks =3D <&clk IMX8MM_CLK_PDM_IPG>,
-> > +                 <&clk IMX8MM_CLK_PDM_ROOT>,
-> > +                 <&clk IMX8MM_CLK_SDMA3_ROOT>,
-> > +                 <&clk IMX8MM_AUDIO_PLL1_OUT>,
-> > +                 <&clk IMX8MM_AUDIO_PLL2_OUT>;
-> > +        clock-names =3D "ipg", "mclk", "dma", "pll8k", "pll11k";
-> > +    };
-> > +
-> > +...
-> > --
-> > 2.25.1
+
+> >> Den 20.09.2022 kl. 16.34 skrev Nicolas Frattaroli:
+> >>> This enables the GPU and HDMI output (including HDMI audio) on
+> >>> the PINE64 Quartz64 Model B single board computer.
+> >>>
+> >>> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> >>> ---
+> >>>    .../boot/dts/rockchip/rk3566-quartz64-b.dts   | 60 +++++++++++++++++++
+> >>>    1 file changed, 60 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> >>> index 0f623198970f..77b179cd20e7 100644
+> >>> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> >>> @@ -4,6 +4,7 @@
+> >>>    
+> >>>    #include <dt-bindings/gpio/gpio.h>
+> >>>    #include <dt-bindings/pinctrl/rockchip.h>
+> >>> +#include <dt-bindings/soc/rockchip,vop2.h>
+> >>>    #include "rk3566.dtsi"
+> >>>    
+> >>>    / {
+> >>> @@ -28,6 +29,17 @@ gmac1_clkin: external-gmac1-clock {
+> >>>    		#clock-cells = <0>;
+> >>>    	};
+> >>>    
+> >>> +	hdmi-con {
+> >>> +		compatible = "hdmi-connector";
+> >>> +		type = "a";
+> >>> +
+> >>> +		port {
+> >>> +			hdmi_con_in: endpoint {
+> >>> +				remote-endpoint = <&hdmi_out_con>;
+> >>> +			};
+> >>> +		};
+> >>> +	};
+> >>> +
+> >>>    	leds {
+> >>>    		compatible = "gpio-leds";
+> >>>    
+> >>> @@ -183,6 +195,33 @@ &gmac1m1_clkinout
+> >>>    	status = "okay";
+> >>>    };
+> >>>    
+> >>> +&gpu {
+> >>> +	mali-supply = <&vdd_gpu>;
+> >>> +	status = "okay";
+> >>> +};
+> >>> +
+> >>> +&hdmi {
+> >>> +	avdd-0v9-supply = <&vdda0v9_image>;
+> >>> +	avdd-1v8-supply = <&vcca1v8_image>;
+> >>> +	status = "okay";
+> >>> +};
+> >>> +
+> >>> +&hdmi_in {
+> >>> +	hdmi_in_vp0: endpoint {
+> >>> +		remote-endpoint = <&vp0_out_hdmi>;
+> >>> +	};
+> >>> +};
+> >>> +
+> >>> +&hdmi_out {
+> >>> +	hdmi_out_con: endpoint {
+> >>> +		remote-endpoint = <&hdmi_con_in>;
+> >>> +	};
+> >>> +};
+> >>> +
+> >>> +&hdmi_sound {
+> >>> +	status = "okay";
+> >>> +};
+> >>> +
+> >>>    &i2c0 {
+> >>>    	status = "okay";
+> >>>    
+> >>> @@ -456,6 +495,10 @@ &i2c5 {
+> >>>    	status = "disabled";
+> >>>    };
+> >>>    
+> >>> +&i2s0_8ch {
+> >>> +	status = "okay";
+> >>> +};
+> >>> +
+> >>>    &i2s1_8ch {
+> >>>    	pinctrl-names = "default";
+> >>>    	pinctrl-0 = <&i2s1m0_sclktx
+> >> The above part does not seem to exist in the current mainline (rc6) git
+> >> repo.
+> > which is of course already in linux-next, so this
+> > patch just applied nicely.
 > >
 > >
+> > Heiko
+> >
+> >>> @@ -677,3 +720,20 @@ &usb_host0_ehci {
+> >>>    &usb_host0_ohci {
+> >>>    	status = "okay";
+> >>>    };
+> >>> +
+> >>> +&vop {
+> >>> +	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
+> >>> +	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
+> >>> +	status = "okay";
+> >>> +};
+> >>> +
+> >>> +&vop_mmu {
+> >>> +	status = "okay";
+> >>> +};
+> >>> +
+> >>> +&vp0 {
+> >>> +	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+> >>> +		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
+> >>> +		remote-endpoint = <&hdmi_in_vp0>;
+> >>> +	};
+> >>> +};
+> >
+> >
+> >
+> >
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> 
+
+
+
+
