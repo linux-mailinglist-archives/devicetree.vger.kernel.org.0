@@ -2,225 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E3CC5E778C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A67F5E7796
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:47:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231809AbiIWJnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 05:43:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59760 "EHLO
+        id S231673AbiIWJrT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 05:47:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230055AbiIWJnB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:43:01 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88406F187E
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:42:59 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id jm5so10277524plb.13
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:42:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=k1Ok2pKp1PJzTuNyx2UWy/icamUoRGaVMBaasc2ZnkA=;
-        b=s/q3vB56Uajdp7BC3IV/UnCmHK6HC1NSdtPVFRbgAuKl0wYnpgap19teG1ljTzLlxh
-         69jn3z4r6DHYphiQlS6BRJ2ud7spGX+3ZdBZve9rOLFsZGSihatF6GFZgahEJc18ddQx
-         sD+Cdddu9WCoiiU41Th81TfElQH6vvIYrrAp1iPSMgFWRJHhfnlAfpwlztVOIbkVZ30Q
-         sxEv9DuDufNhD7WbyqcEtmxVSxXcbudCkKt/S7x3wdxj7AXpHzz2PXfYf1AvkxRIcud+
-         Pxc2isL96rr6m6g3xaUl0txxL0GHBjq/A5Ieirprn8C5kNrY961nh1U5SHRVTb8wu/1V
-         d3xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=k1Ok2pKp1PJzTuNyx2UWy/icamUoRGaVMBaasc2ZnkA=;
-        b=6A2XNrKRvlW7ChcedLz9MAUaOLLl+A1H7NBiCFKbJf6H9pvPLVx62+369cjZpSgubo
-         i/H8zBTMvThbCU5XvKKCusAfAg+YEAYLJZLXvmwkDsne8v2Z8gJm2hmwJ6Pl90tW6BUH
-         jAh5+s7yNZz5OsqnjZRZ7lLf21t8AnmlSSyhzisI2YDIW83cYXXPYZuP8Pmo0JYKK1UB
-         fC6pVLhv+Gj1Taz13ItEeolHq0Ctzx8k8cUr4TdgRaWOOHTBRYU7A8biWJ/xEAvWPtWv
-         hLMHh+dxsxEIOnAV6LJ25pfDrWc+gvALgslQ5NJ9A55x950kWANRmLxSfFmNS59Ag4Cl
-         uNyw==
-X-Gm-Message-State: ACrzQf0PLbfdJ70SO0qZ9dQ0J6KFtwKMT8bYc13KcS56R3qa800/CHXA
-        wm6aH7WY2OxhnrmTfLvLsH5B7MqT9A1ZCQ==
-X-Google-Smtp-Source: AMsMyM5oASv/0MBhygZVy2/E/2TwFmvA6bjdpXDKMDNl+M9hfwFFapHakDeCoO5ujNPF4qlPTOIJsA==
-X-Received: by 2002:a17:90b:3910:b0:203:dd3d:5f8a with SMTP id ob16-20020a17090b391000b00203dd3d5f8amr11121086pjb.210.1663926179026;
-        Fri, 23 Sep 2022 02:42:59 -0700 (PDT)
-Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
-        by smtp.gmail.com with ESMTPSA id q8-20020a170902eb8800b0017515e598c5sm5512855plg.40.2022.09.23.02.42.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Sep 2022 02:42:58 -0700 (PDT)
-From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org,
-        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S230055AbiIWJqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:46:38 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31833E3680;
+        Fri, 23 Sep 2022 02:45:44 -0700 (PDT)
+Received: from p508fdb48.dip0.t-ipconnect.de ([80.143.219.72] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1obfFV-0005Wv-T2; Fri, 23 Sep 2022 11:45:33 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v3 2/2] arm64: dts: qcom: Add LTE SKU for sc7280-evoker family
-Date:   Fri, 23 Sep 2022 17:42:42 +0800
-Message-Id: <20220923174224.v3.2.I1454364ac3d8ecc64677884d6b7d2f3e334e4b4a@changeid>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220923094242.4361-1-sheng-liang.pan@quanta.corp-partner.google.com>
-References: <20220923094242.4361-1-sheng-liang.pan@quanta.corp-partner.google.com>
+        Dan Johansen <strit@manjaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable HDMI and GPU on quartz64-b
+Date:   Fri, 23 Sep 2022 11:45:33 +0200
+Message-ID: <2198677.PYKUYFuaPT@phil>
+In-Reply-To: <659fc2fe-f820-04ad-8a4f-224b4d4bd97b@manjaro.org>
+References: <20220920143446.633956-1-frattaroli.nicolas@gmail.com> <659fc2fe-f820-04ad-8a4f-224b4d4bd97b@manjaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-evoker have wifi/lte sku, add different dts for each sku.
+Hi,
 
-Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
----
+Am Donnerstag, 22. September 2022, 23:22:37 CEST schrieb Dan Johansen:
+> This seems to be based against linux-next and not mainline. It fails to 
+> apply on mainline for me.
 
-(no changes since v1)
+I would not expect things any other way though :-) .
+I.e. in the current cycle everything new is of course targetting
+v6.1 and the Quartz boards already saw some other changes.
 
- arch/arm64/boot/dts/qcom/Makefile             |  3 ++-
- .../dts/qcom/sc7280-herobrine-evoker-lte.dts  | 14 ++++++++++
- .../boot/dts/qcom/sc7280-herobrine-evoker.dts | 16 ++++++++++++
- ...er-r0.dts => sc7280-herobrine-evoker.dtsi} | 26 +++++--------------
- 4 files changed, 39 insertions(+), 20 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
- rename arch/arm64/boot/dts/qcom/{sc7280-herobrine-evoker-r0.dts => sc7280-herobrine-evoker.dtsi} (93%)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index d7669a7cee9f7..76390301a76c0 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -104,7 +104,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd.dtb
--dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-evoker-r0.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-evoker.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-evoker-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r1.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dts
-new file mode 100644
-index 0000000000000..3af9224a7492e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dts
-@@ -0,0 +1,14 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Evoker board device tree source
-+ *
-+ * Copyright 2022 Google LLC.
-+ */
-+
-+#include "sc7280-herobrine-evoker.dts"
-+#include "sc7280-herobrine-lte-sku.dtsi"
-+
-+/ {
-+	model = "Google Evoker with LTE";
-+	compatible = "google,evoker-sku512", "qcom,sc7280";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
-new file mode 100644
-index 0000000000000..f490b2bb26df8
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Evoker board device tree source
-+ *
-+ * Copyright 2022 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7280-herobrine-evoker.dtsi"
-+
-+/ {
-+	model = "Google Evoker";
-+	compatible = "google,evoker", "qcom,sc7280";
-+};
-+
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-similarity index 93%
-rename from arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
-rename to arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-index ccbe50b6249ab..561bb1ee77eee 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-@@ -5,15 +5,8 @@
-  * Copyright 2022 Google LLC.
-  */
- 
--/dts-v1/;
--
- #include "sc7280-herobrine.dtsi"
- 
--/ {
--	model = "Google Evoker";
--	compatible = "google,evoker", "qcom,sc7280";
--};
--
- /*
-  * ADDITIONS TO FIXED REGULATORS DEFINED IN PARENT DEVICE TREE FILES
-  *
-@@ -30,16 +23,15 @@ ap_tp_i2c: &i2c0 {
- 	status = "okay";
- 	clock-frequency = <400000>;
- 
--	trackpad: trackpad@2c {
--		compatible = "hid-over-i2c";
--		reg = <0x2c>;
-+	trackpad: trackpad@15 {
-+		compatible = "elan,ekth3000";
-+		reg = <0x15>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&tp_int_odl>;
- 
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
- 
--		hid-descr-addr = <0x20>;
- 		vcc-supply = <&pp3300_z1>;
- 
- 		wakeup-source;
-@@ -50,18 +42,15 @@ ts_i2c: &i2c13 {
- 	status = "okay";
- 	clock-frequency = <400000>;
- 
--	ap_ts: touchscreen@10 {
--		compatible = "elan,ekth6915";
--		reg = <0x10>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&ts_int_conn>, <&ts_rst_conn>;
-+	touchscreen: touchscreen@5d {
-+		compatible = "goodix,gt7375p";
-+		reg = <0x5d>;
- 
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <55 IRQ_TYPE_LEVEL_LOW>;
- 
- 		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
--
--		vcc33-supply = <&ts_avdd>;
-+		vdd-supply = <&ts_avdd>;
- 	};
- };
- 
-@@ -90,7 +79,6 @@ &pcie1 {
- 	status = "okay";
- };
- 
--/* For nvme */
- &pcie1_phy {
- 	status = "okay";
- };
--- 
-2.34.1
+> Den 20.09.2022 kl. 16.34 skrev Nicolas Frattaroli:
+> > This enables the GPU and HDMI output (including HDMI audio) on
+> > the PINE64 Quartz64 Model B single board computer.
+> >
+> > Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> > ---
+> >   .../boot/dts/rockchip/rk3566-quartz64-b.dts   | 60 +++++++++++++++++++
+> >   1 file changed, 60 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> > index 0f623198970f..77b179cd20e7 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> > @@ -4,6 +4,7 @@
+> >   
+> >   #include <dt-bindings/gpio/gpio.h>
+> >   #include <dt-bindings/pinctrl/rockchip.h>
+> > +#include <dt-bindings/soc/rockchip,vop2.h>
+> >   #include "rk3566.dtsi"
+> >   
+> >   / {
+> > @@ -28,6 +29,17 @@ gmac1_clkin: external-gmac1-clock {
+> >   		#clock-cells = <0>;
+> >   	};
+> >   
+> > +	hdmi-con {
+> > +		compatible = "hdmi-connector";
+> > +		type = "a";
+> > +
+> > +		port {
+> > +			hdmi_con_in: endpoint {
+> > +				remote-endpoint = <&hdmi_out_con>;
+> > +			};
+> > +		};
+> > +	};
+> > +
+> >   	leds {
+> >   		compatible = "gpio-leds";
+> >   
+> > @@ -183,6 +195,33 @@ &gmac1m1_clkinout
+> >   	status = "okay";
+> >   };
+> >   
+> > +&gpu {
+> > +	mali-supply = <&vdd_gpu>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&hdmi {
+> > +	avdd-0v9-supply = <&vdda0v9_image>;
+> > +	avdd-1v8-supply = <&vcca1v8_image>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&hdmi_in {
+> > +	hdmi_in_vp0: endpoint {
+> > +		remote-endpoint = <&vp0_out_hdmi>;
+> > +	};
+> > +};
+> > +
+> > +&hdmi_out {
+> > +	hdmi_out_con: endpoint {
+> > +		remote-endpoint = <&hdmi_con_in>;
+> > +	};
+> > +};
+> > +
+> > +&hdmi_sound {
+> > +	status = "okay";
+> > +};
+> > +
+> >   &i2c0 {
+> >   	status = "okay";
+> >   
+> > @@ -456,6 +495,10 @@ &i2c5 {
+> >   	status = "disabled";
+> >   };
+> >   
+> > +&i2s0_8ch {
+> > +	status = "okay";
+> > +};
+> > +
+> >   &i2s1_8ch {
+> >   	pinctrl-names = "default";
+> >   	pinctrl-0 = <&i2s1m0_sclktx
+> The above part does not seem to exist in the current mainline (rc6) git 
+> repo.
+
+which is of course already in linux-next, so this
+patch just applied nicely.
+
+
+Heiko
+
+> > @@ -677,3 +720,20 @@ &usb_host0_ehci {
+> >   &usb_host0_ohci {
+> >   	status = "okay";
+> >   };
+> > +
+> > +&vop {
+> > +	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
+> > +	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&vop_mmu {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&vp0 {
+> > +	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+> > +		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
+> > +		remote-endpoint = <&hdmi_in_vp0>;
+> > +	};
+> > +};
+> 
+
+
+
 
