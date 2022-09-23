@@ -2,158 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E8CD5E8376
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 22:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1D45E83AF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 22:30:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233008AbiIWUTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 16:19:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40110 "EHLO
+        id S232929AbiIWUa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 16:30:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232723AbiIWURv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 16:17:51 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A229C7D1FA;
-        Fri, 23 Sep 2022 13:14:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663964099; x=1695500099;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Z4Ap7/60tpjYs9kb1z44MtzSE1l13TDa4jGX5dZVwRg=;
-  b=kU3WeIa1UdfDlb4cc9Hs5UE5ILJbpjWMtfRCg4L9GF6B0xh/mC6bHfhY
-   n9RmSKR7Es7j4X48ovtokLrSD4PnL8TnuQZrZp/Hh0DiAoPNT0Jv8z14S
-   2amO+xMQhjnTAvdWK0p/jME0LfSWNgYfQIOIm28ICBj2jBDuptfi1/DPO
-   3gpk8qpZ2AVjlw87K3pQwIXTCYnS6XRz0bokbkrQaiSoY54kS7rCI0/SB
-   oynIahcPu2WI5EPP2DFd35NHldiyI6l3ERCLOm1zkZcUVhRJ2PVQIWd5M
-   3chNIFfG870YZV4D7WTPDSJIcapNKpRw+jKFSS7b7hY4yxubk4bNMtNi6
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10479"; a="281051925"
-X-IronPort-AV: E=Sophos;i="5.93,340,1654585200"; 
-   d="scan'208";a="281051925"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Sep 2022 13:14:53 -0700
-X-IronPort-AV: E=Sophos;i="5.93,340,1654585200"; 
-   d="scan'208";a="724272569"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Sep 2022 13:14:50 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id CBA192030E;
-        Fri, 23 Sep 2022 23:14:47 +0300 (EEST)
-Date:   Fri, 23 Sep 2022 20:14:47 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 4/4] media: platform: Add Renesas RZ/G2L CRU driver
-Message-ID: <Yy4TtzPtSN9qiiQS@paasikivi.fi.intel.com>
-References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220905230406.30801-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S232949AbiIWUaB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 16:30:01 -0400
+Received: from mx08lb.world4you.com (mx08lb.world4you.com [81.19.149.118])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81FC61251B4;
+        Fri, 23 Sep 2022 13:25:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=engleder-embedded.com; s=dkim11; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=kLELtFLnMTdGs6Gk86hiiORDsWLg2YLw6Mt5EX6VkrY=; b=TJmblVxJaLM5LOf/m0bNX34cD4
+        LmRGZQIKyzjDqxrYjOlDVE/b4QctcJ3NWZ/Phujg1IJrA4um3UNZRHF/z+O16zmJSh38u3gefMw60
+        e0Rp9TKoGcShc5WlxjOwshDjKFAKDhXI6l7FZf5WDJtQSG0VtjbJ/44brTtEaZ6/YBoc=;
+Received: from [88.117.54.199] (helo=hornet.engleder.at)
+        by mx08lb.world4you.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <gerhard@engleder-embedded.com>)
+        id 1obpDZ-0002Jm-DQ; Fri, 23 Sep 2022 22:24:13 +0200
+From:   Gerhard Engleder <gerhard@engleder-embedded.com>
+To:     netdev@vger.kernel.org
+Cc:     davem@davemloft.net, kuba@kernel.org, edumazet@google.com,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        Gerhard Engleder <gerhard@engleder-embedded.com>
+Subject: [PATCH net-next v2 0/6] tsnep: multi queue support and some other improvements
+Date:   Fri, 23 Sep 2022 22:22:40 +0200
+Message-Id: <20220923202246.118926-1-gerhard@engleder-embedded.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220905230406.30801-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-AV-Do-Run: Yes
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Add support for additional TX/RX queues along with RX flow classification
+support.
 
-On Tue, Sep 06, 2022 at 12:04:06AM +0100, Lad Prabhakar wrote:
-...
+Binding is extended to allow additional interrupts for additional TX/RX
+queues. Also dma-coherent is allowed as minor improvement.
 
-> +#define to_buf_list(vb2_buffer) (&container_of(vb2_buffer, \
-> +						struct rzg2l_cru_buffer, \
-> +						vb)->list)
+RX path optimisation is done by using page pool as preparations for future
+XDP support.
 
-#define to_buf_list(vb2_buffer) \
-	(&container_of(vb2_buffer, struct rzg2l_cru_buffer, vb)->list)
+Gerhard Engleder (6):
+  dt-bindings: net: tsnep: Allow dma-coherent
+  dt-bindings: net: tsnep: Allow additional interrupts
+  tsnep: Move interrupt from device to queue
+  tsnep: Support multiple TX/RX queue pairs
+  tsnep: Add EtherType RX flow classification support
+  tsnep: Use page pool for RX
 
-
-...
-
-> +static int rzg2l_cru_open(struct file *file)
-> +{
-> +	struct rzg2l_cru_dev *cru = video_drvdata(file);
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(cru->pclk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = clk_prepare_enable(cru->vclk);
-> +	if (ret)
-> +		goto disable_pclk;
-> +
-> +	ret = clk_prepare_enable(cru->aclk);
-> +	if (ret)
-> +		goto disable_vclk;
-> +
-> +	ret = mutex_lock_interruptible(&cru->lock);
-> +	if (ret)
-> +		goto disable_aclk;
-> +
-> +	file->private_data = cru;
-> +	ret = v4l2_fh_open(file);
-> +	if (ret)
-> +		goto err_unlock;
-> +
-> +	ret = v4l2_pipeline_pm_get(&cru->vdev.entity);
-
-Please use runtime PM instead in sensor drivers, we're trying to get rid of
-this function.
-
-It'd be nice to have it in this one as well.
-
-> +	if (ret < 0)
-> +		goto err_open;
-> +
-> +	mutex_unlock(&cru->lock);
-> +
-> +	return 0;
-> +err_open:
-> +	v4l2_fh_release(file);
-> +err_unlock:
-> +	mutex_unlock(&cru->lock);
-> +disable_aclk:
-> +	clk_disable_unprepare(cru->aclk);
-> +disable_vclk:
-> +	clk_disable_unprepare(cru->vclk);
-> +disable_pclk:
-> +	clk_disable_unprepare(cru->pclk);
-> +
-> +	return ret;
-> +}
-
-...
-
-> +void rzg2l_cru_v4l2_unregister(struct rzg2l_cru_dev *cru)
-> +{
-> +	if (!video_is_registered(&cru->vdev))
-> +		return;
-> +
-> +	v4l2_info(&cru->v4l2_dev, "Removed %s\n",
-> +		  video_device_node_name(&cru->vdev));
-
-I'd just leave this out. Same for the similar message on registration.
+ .../bindings/net/engleder,tsnep.yaml          |  39 +-
+ drivers/net/ethernet/engleder/Kconfig         |   1 +
+ drivers/net/ethernet/engleder/Makefile        |   2 +-
+ drivers/net/ethernet/engleder/tsnep.h         |  47 ++-
+ drivers/net/ethernet/engleder/tsnep_ethtool.c |  38 ++
+ drivers/net/ethernet/engleder/tsnep_hw.h      |  13 +-
+ drivers/net/ethernet/engleder/tsnep_main.c    | 356 +++++++++++++-----
+ drivers/net/ethernet/engleder/tsnep_rxnfc.c   | 281 ++++++++++++++
+ 8 files changed, 662 insertions(+), 115 deletions(-)
+ create mode 100644 drivers/net/ethernet/engleder/tsnep_rxnfc.c
 
 -- 
-Kind regards,
+2.30.2
 
-Sakari Ailus
