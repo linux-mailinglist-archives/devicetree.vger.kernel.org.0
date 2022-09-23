@@ -2,134 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30DCF5E7B43
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 15:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D1295E7B54
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 15:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231578AbiIWNCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 09:02:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53144 "EHLO
+        id S231685AbiIWNGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 09:06:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231341AbiIWNCb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 09:02:31 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B799913A067
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 06:02:25 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id c7so14556253ljm.12
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 06:02:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=eSh9lQlxR1gFInxcwx9nPyD8UC9VTqVGCwfXX2VWpoE=;
-        b=UovPoYoZTR7j58R4ZiTzpBg6X75Fbh4OHuNXCuAKYGWsStit1G6qDwPyinFxKZA2CM
-         Ok/j44lXFa9jNi9/3htbd5kAY1WeBWtOWXXXxCX9f6/k78Mor5U+zq/ez/XpWWIxTiTW
-         gBgy1WgeFwegshL4yZhiQ+SwB/kveGJxscwhywriEQHzAhqDa3fb6BBK1w4ZOEZklf0S
-         zfb3crXHhigd9JIp+SSAHAZ66Kg1Y+hC6kpFZsq1mDjgNOneL5r/1GSrSPa+5LE3LsNg
-         Cq/FSHNiedH6MwKNQEqy0TXjSFWZgTchQOiWXva5l9+gj7IRJoT9edwGmmCzhTTkqagm
-         l5uA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=eSh9lQlxR1gFInxcwx9nPyD8UC9VTqVGCwfXX2VWpoE=;
-        b=ghfOaweilVsOGLdHZDvuJko061kV4N/diM8lWxj+mU9u037x+gGyZrs4m5rL73hWdC
-         clkCrLamHZtW5zTEqH+e7f2JP9/f9ootJeGkwOxdNngBqewGcsR6gZfUIfsaJEswV6U+
-         pdFC/qlVKPVmPg/8iL559XsXGr2+1bittnAl0iR9B8sp1DpxSRNcLqZ1r7J4/wImTW8e
-         u39SWjGdCyFyKRKsGVAGkCa3LpPNqFwziCAgVbK/741xWmo9DDyPobsQJBQZJP/rds9x
-         51Lm/Zw3SQ4jPoN2dHVZp/+dCY5+8sFC418AABjLqvg1ZBdxZbkxd8CaFyWtlFwf5gxK
-         xj5A==
-X-Gm-Message-State: ACrzQf3KYsWAatPKp5wNftpD2M2FYA/Wi97JBb8V/xhX1LRihkiC8qjV
-        LYtzrXAk+PU7OjZofk73Ai6wEQ==
-X-Google-Smtp-Source: AMsMyM7qVPPrkR+mwYzG7QUbaiI4bu86AdzgPZgHy75KHEJknXL0Rg1SXgR20+plVTkV408sVjI3LQ==
-X-Received: by 2002:a2e:984a:0:b0:26a:d00a:790f with SMTP id e10-20020a2e984a000000b0026ad00a790fmr2932714ljj.358.1663938142995;
-        Fri, 23 Sep 2022 06:02:22 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h6-20020a19ca46000000b0048b26d4bb64sm1450938lfj.40.2022.09.23.06.02.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 06:02:22 -0700 (PDT)
-Message-ID: <3022c139-d25c-4fcf-33d5-1baf8aa9e61e@linaro.org>
-Date:   Fri, 23 Sep 2022 15:02:21 +0200
+        with ESMTP id S229833AbiIWNGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 09:06:48 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AEA413A397;
+        Fri, 23 Sep 2022 06:06:47 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28NAM92I008871;
+        Fri, 23 Sep 2022 13:06:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=XBJx2C+f34IKeltlLUeH2UNUQtkB+UXQx3yq1YuUJH8=;
+ b=kBisovzr6rEzaG4z6Nl50kWIj6MMJF7ljjRNm2J7gd1bx9jIizlqpG4ecaO/mVXDU+Ew
+ VXuISMJexOXO7M0VFrDvFessmE0yR/cTL6dlMt382o+TbkguqUPwUrN+uKxpcRYNh9Sv
+ +XiArbDadL3o1/p5oz4Q0gG+5W3qBsSkRSgVF+4EBSBynLqZFtGyhpHKAevwvJXf/ocx
+ 6jLUE+8Ayi2+u0qI2Lm16asCJ9Fk1YfecFpgIgRMJbGOnieRAbPNHJ0IVzO6ymiYeeCj
+ 2Qv26Y9JOJo32LNa05YeMu16iKL+hNYfmyaNa8uQYwApBizm5N3mxbPXEgbBX1tVJZsG 0A== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3js9krrwsn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 23 Sep 2022 13:06:00 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28ND5xSk017773
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 23 Sep 2022 13:06:00 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Fri, 23 Sep 2022 06:05:54 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v8 0/7] Update ADSP pil loader for SC7280 platform
+Date:   Fri, 23 Sep 2022 18:35:33 +0530
+Message-ID: <1663938340-24345-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v4 net-next 00/10] dt-bindings and mt7621 devicetree
- changes
-Content-Language: en-US
-To:     patchwork-bot+netdevbpf@kernel.org,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, tsbogend@alpha.franken.de,
-        gregkh@linuxfoundation.org, sean.wang@mediatek.com,
-        Landen.Chao@mediatek.com, dqfext@gmail.com,
-        sergio.paracuellos@gmail.com, erkin.bozoglu@xeront.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20220920172556.16557-1-arinc.unal@arinc9.com>
- <166392781809.11802.14314301597128820257.git-patchwork-notify@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <166392781809.11802.14314301597128820257.git-patchwork-notify@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: HWkh1EpMkOoEQBbMF-TOOuBM61VbgC0M
+X-Proofpoint-ORIG-GUID: HWkh1EpMkOoEQBbMF-TOOuBM61VbgC0M
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-23_04,2022-09-22_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=966 bulkscore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
+ malwarescore=0 priorityscore=1501 clxscore=1011 adultscore=0 mlxscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209230085
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 12:10, patchwork-bot+netdevbpf@kernel.org wrote:
-> Hello:
-> 
-> This series was applied to netdev/net-next.git (master)
-> by David S. Miller <davem@davemloft.net>:
-> 
-> On Tue, 20 Sep 2022 20:25:46 +0300 you wrote:
->> Hello there!
->>
->> This patch series removes old MediaTek bindings, improves mediatek,mt7530
->> and mt7621 memory controller bindings and improves mt7621 DTs.
->>
->> v4:
->> - Keep memory-controller node name.
->> - Change syscon to memory-controller on mt7621.dtsi.
->>
->> [...]
-> 
-> Here is the summary with links:
->   - [v4,net-next,01/10] dt-bindings: net: drop old mediatek bindings
->     https://git.kernel.org/netdev/net-next/c/e8619b05870d
->   - [v4,net-next,02/10] dt-bindings: net: dsa: mediatek,mt7530: change mt7530 switch address
->     https://git.kernel.org/netdev/net-next/c/3737c6aaf22d
->   - [v4,net-next,03/10] dt-bindings: net: dsa: mediatek,mt7530: expand gpio-controller description
->     https://git.kernel.org/netdev/net-next/c/0fbca84eea37
->   - [v4,net-next,04/10] dt-bindings: memory: mt7621: add syscon as compatible string
->     https://git.kernel.org/netdev/net-next/c/862b19b7d4a1
->   - [v4,net-next,05/10] mips: dts: ralink: mt7621: fix some dtc warnings
->     https://git.kernel.org/netdev/net-next/c/5ae75a1ae5c9
->   - [v4,net-next,06/10] mips: dts: ralink: mt7621: remove interrupt-parent from switch node
->     https://git.kernel.org/netdev/net-next/c/08b9eaf454ee
->   - [v4,net-next,07/10] mips: dts: ralink: mt7621: change phy-mode of gmac1 to rgmii
->     https://git.kernel.org/netdev/net-next/c/97721e84f546
->   - [v4,net-next,08/10] mips: dts: ralink: mt7621: change mt7530 switch address
->     https://git.kernel.org/netdev/net-next/c/2b653a373b41
->   - [v4,net-next,09/10] mips: dts: ralink: mt7621: fix external phy on GB-PC2
->     https://git.kernel.org/netdev/net-next/c/247825f991b3
->   - [v4,net-next,10/10] mips: dts: ralink: mt7621: add GB-PC2 LEDs
->     https://git.kernel.org/netdev/net-next/c/394c3032fe0e
+Update ADSP pil loader driver for SC7280 platforms.
+Changes since V7:
+	-- Drop out of reset time out patch.
+	-- Remove redundant clocks in dt bindings.
+	-- Fix dt compilation error in dt bindings.
+Changes since V6:
+	-- Update dt-bindings with glink-edge
+	-- Add qcom,qmp property.
+	-- Update parse firmware callback.
+	-- Update commit message.
+	-- Update smmu map and unmap function names.
+	-- Revert adsp_ops const change.
+	-- Move iommu check to within smmu map/unmap functions.
+Changes since V5:
+	-- Remove adsp_rproc_unmap_smmu, adsp_of_unmap_smmu, adsp_of_map_smmu and 
+	   adsp_rproc_map_smmu functions.
+	-- Remove find_loaded_rsc_table call back initialization.
+	-- Rename adsp_sandbox_needed to has_iommu.
+	-- Update parse_fw callback in rproc ops.
+	-- Remove qcom,adsp-memory-regions property in dt-bindings.
+	-- Change adsp binary extension name.
+Changes since V4:
+	-- Update halt registers description in dt bindings.
+	-- Update Memory sandboxing with proper APIs for resource
+	   allocation and free.
+Changes since V3:
+	-- Rename is_adsp_sb_needed to adsp_sandbox_needed.
+	-- Update sc7280 compatible name entry in sorted order.
+	-- Add smmu unmapping in error case and in adsp stop.
+	-- Revert converting sdm845 dt bindings to generic and 
+	   create new dt bindings for sc7280.
+Changes since V2:
+	-- Generated patch with -M flag.
+	-- Add Clock property in dt bindings.
+	-- Add qcom,adsp-memory-regions property.
+	-- Add is_adsp_sb_needed flag instead of is_wpss.
+	-- Initialize is_adsp_sb_needed flag.
+	-- Remove empty proxy pds array.
+	-- Replace platform_bus_type with adsp->dev->bus.
+	-- Use API of_parse_phandle_with_args() instead of 
+	    of_parse_phandle_with_fixed_args().
+	-- Replace adsp->is_wpss with adsp->is_adsp.
+	-- Update error handling in adsp_start().
+Changes since V1:
+	-- Change reg property maxItems to minItems and update description.
+	-- Fix typo errors.
 
+Srinivasa Rao Mandadapu (7):
+  dt-bindings: remoteproc: qcom: Add SC7280 ADSP support
+  remoteproc: qcom: Add flag in adsp private data structure
+  remoteproc: qcom: Add compatible name for SC7280 ADSP
+  remoteproc: qcom: Update rproc parse firmware callback
+  remoteproc: qcom: Replace hard coded values with macros
+  remoteproc: qcom: Add efuse evb selection control
+  remoteproc: qcom: Add support for memory sandbox
 
-DTS patches should not go via network tree... We keep them separate on
-purpose - to split hardware description from OS-specific implementation.
+ .../bindings/remoteproc/qcom,sc7280-adsp-pil.yaml  | 207 +++++++++++++++++++++
+ drivers/remoteproc/qcom_q6v5_adsp.c                | 124 +++++++++++-
+ 2 files changed, 327 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
 
-Best regards,
-Krzysztof
+-- 
+2.7.4
 
