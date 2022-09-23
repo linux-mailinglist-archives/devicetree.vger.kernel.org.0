@@ -2,166 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF8D35E7AD4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 14:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 442845E7AE3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 14:36:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231431AbiIWMdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 08:33:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34926 "EHLO
+        id S230255AbiIWMgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 08:36:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230422AbiIWMcl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 08:32:41 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5871491DB0
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 05:32:30 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id z6so20285864wrq.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 05:32:30 -0700 (PDT)
+        with ESMTP id S229833AbiIWMgG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 08:36:06 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4F5127CB6;
+        Fri, 23 Sep 2022 05:36:04 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 30so34841edw.5;
+        Fri, 23 Sep 2022 05:36:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=A1LMoIfsTe6u029K1CPYtu/kaJlbv/4M38rW9dvy7HY=;
-        b=NHbiC/QqL7pTKM1IF3LOs4Z+fbWIgHLyuBeQPgKYqB3bQcp3/q+IMjkSXBKbsozqdY
-         Z1VVzcJmeZI50GAA6nBWhJAeWN3AUOJ3OSJRXzlEg9y1ns19t8CEnDtOEwfOfIh+FVij
-         y5oM/8RCBoA4Hc8QBxhmiaYdFmC4H8YwS2+k8Y9XHr10wGKPKcErWowZQewsqtmK4IBY
-         DY4Pm59H7a+eLTGmmgz7wLqg908E5AVhHjonsJaaFBa5UDqNZdhHNEKBfK+ewZoxf5pF
-         iaX+uFjMtQzzqdxGPhcrIL0vreo1uGL2xxjzkT+BkywU5mrZxZGyyVHx6d74Cd81Yh2H
-         6sRQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Wdk1JgkEf6+e3NqnmCSJjMireXUCrz29umVj4QoVxEQ=;
+        b=ChqPvxFq/AcMG/qDW+/Fw3x+ZudpgRYRus11vdPTwos+X10x7h2Ik5duzINe4rsYlb
+         TxyKjzVRrqSSOrBwFulI7K53Uec+V5Mi4j8axInmSYDETm+geTA2SmAebnxe+qD/5lsK
+         AdqSQLf3UxgCW3mLYN8RCHBAS7FphwsMSI1sOOIhnsc1+OSf6iN5rN5BlNXJazHclJ7H
+         XJaU1tiRq2cRGysHAD9sajjtM+0D0i/8kRDG2HpYuthYJzr6cwcZCgMd3U02iPADlGv+
+         pzYHVYWSHwOPWmgo/NRTPjXvFhcU5FP2xfJKQFN48Z3l4SWh8/2dKejsfIQHxFtR25Pr
+         B58w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=A1LMoIfsTe6u029K1CPYtu/kaJlbv/4M38rW9dvy7HY=;
-        b=SI8jkGHXYoxfvgkWZwbJIMRdEBJ7hR1UTcVoAipwL5gOlx3/D6bxp2XPBtpo0shGfE
-         7H/PB5IKSIzXFvbB2cJGoeWPOlERxnW5f+TuQxCNWRZF/zz+JNtxbh9Bc+cSBq6pbIbV
-         dVQcK5N18Ss91JcdG5M96PtKfRhk1U8TZ3qhGGvRrU7VU2HPlo0PbIatgWycgzHG2Sw6
-         K43CS0zerNvTE9hkuMj3N8At1MWzT4VZBL/BxArRj2qZST2P64p948j3DTYukggqree4
-         5WPNaUyL4cnZlLEzPfYp4PjY95xd8yozHn8zZ7mO1aaXWDOQd4QK83MZ0ea4sP/u4CSe
-         eAdg==
-X-Gm-Message-State: ACrzQf0F7DIuEbFqvrfyz88ZkOFuYGMIkeUaBvpHhSCkmOrywZzkX0bJ
-        OVd9vHu7ffGKhPNv8hsDSMpu0A==
-X-Google-Smtp-Source: AMsMyM6E8vC9t2uADbYYSK/mHlDsXZdsxKkElFLeNjosFG11bZI0H0Nq92OMKhLygh41xfh1Y4GJgw==
-X-Received: by 2002:a05:6000:1acf:b0:22b:ed0:71b1 with SMTP id i15-20020a0560001acf00b0022b0ed071b1mr5410058wry.51.1663936348653;
-        Fri, 23 Sep 2022 05:32:28 -0700 (PDT)
-Received: from [192.168.1.70] (32.31.102.84.rev.sfr.net. [84.102.31.32])
-        by smtp.gmail.com with ESMTPSA id h6-20020a05600c350600b003b491f99a25sm2673286wmq.22.2022.09.23.05.32.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 05:32:28 -0700 (PDT)
-Message-ID: <8a60b6a0-9289-0d89-c543-02386a721bca@baylibre.com>
-Date:   Fri, 23 Sep 2022 14:32:26 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Wdk1JgkEf6+e3NqnmCSJjMireXUCrz29umVj4QoVxEQ=;
+        b=1rzv8GASz5o3OCSGwdhbTduuf7rKrwPAtTt5Y+nNc7bh8CoIcdFqv+hQP4bOlX7wXB
+         yEGR1QRa0h9gocsdjjbWQDlOuLkmcswem/Dra1GwkNHHfMOnPusAbvZu3+GqRMCQ4XLf
+         9UgyyfCwpSRUflj/0wXCaENxWjQT/tarNyj5YqaQZWAFgEw7+xIUMRyIP4SEeAJlZ5pC
+         4v3hpPbsqb34GJZ2L+1CtLjEfNxoRHKf/9rFb1UTJyRi3GIlcA4O62UOn5AHjhjtdeXW
+         9FvLCLKRE8OY6QP+WMvIG1Ajta0BOzlIWvrtWeRvTOMJyqAu6EWT0wce0OJgzCZHnpya
+         Q/TQ==
+X-Gm-Message-State: ACrzQf3tj5Cs+P6noxa50C/z/GYd0qjgt7bbHqBxHjBRlEwlmpCA6tkP
+        hfUXdtWcT4f4/u3hP95Zkts=
+X-Google-Smtp-Source: AMsMyM59QO1OTdqYxp9OIcu2jWVMwK9ihTGFuFUIlSPywwi6lEZVHdKeKo8DaT/ITFgqglkRLY1VQg==
+X-Received: by 2002:a50:fa99:0:b0:44e:9e71:4899 with SMTP id w25-20020a50fa99000000b0044e9e714899mr8237380edr.197.1663936562857;
+        Fri, 23 Sep 2022 05:36:02 -0700 (PDT)
+Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id e2-20020a056402104200b00445f9faf13csm5459208edu.72.2022.09.23.05.36.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Sep 2022 05:36:01 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+Subject: [PATCH v9 0/5] iommu: Support mappings/reservations in reserved-memory regions
+Date:   Fri, 23 Sep 2022 14:35:52 +0200
+Message-Id: <20220923123557.866972-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v8 3/4] counter: ti-ecap-capture: capture driver support
- for ECAP
-Content-Language: en-US
-From:   Julien Panis <jpanis@baylibre.com>
-To:     William Breathitt Gray <william.gray@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mranostay@ti.com
-References: <20220922170402.403683-1-jpanis@baylibre.com>
- <20220922170402.403683-4-jpanis@baylibre.com> <Yy0G9a5S3OzwyEwW@fedora>
- <2f3e5036-caab-f892-a4ad-b852f72db331@baylibre.com> <Yy2aAMv5PRjsJ4s2@fedora>
- <923f5876-d692-7e0e-f351-f0e05869ccd8@baylibre.com>
-In-Reply-To: <923f5876-d692-7e0e-f351-f0e05869ccd8@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
+Hi,
 
-On 23/09/2022 14:17, Julien Panis wrote:
->
->
-> On 23/09/2022 13:35, William Breathitt Gray wrote:
->> On Fri, Sep 23, 2022 at 09:23:26AM +0200, Julien Panis wrote:
->>>
->>> On 23/09/2022 03:08, William Breathitt Gray wrote:
->>>> On Thu, Sep 22, 2022 at 07:04:01PM +0200, Julien Panis wrote:
->>>>> ECAP hardware on TI AM62x SoC supports capture feature. It can be 
->>>>> used
->>>>> to timestamp events (falling/rising edges) detected on input signal.
->>>>>
->>>>> This commit adds capture driver support for ECAP hardware on AM62x 
->>>>> SoC.
->>>>>
->>>>> In the ECAP hardware, capture pin can also be configured to be in
->>>>> PWM mode. Current implementation only supports capture operating 
->>>>> mode.
->>>>> Hardware also supports timebase sync between multiple instances, but
->>>>> this driver supports simple independent capture functionality.
->>>>>
->>>>> Signed-off-by: Julien Panis <jpanis@baylibre.com>
->>>> Hello Julien,
->>>>
->>>> Comments follow inline below.
->>>>
->>>>> +/**
->>>>> + * struct ecap_cnt_dev - device private data structure
->>>>> + * @enabled: device state
->>>>> + * @clk:     device clock
->>>>> + * @regmap:  device register map
->>>>> + * @nb_ovf:  number of overflows since capture start
->>>>> + * @pm_ctx:  device context for PM operations
->>>>> + */
->>>>> +struct ecap_cnt_dev {
->>>>> +    bool enabled;
->>>>> +    struct clk *clk;
->>>>> +    struct regmap *regmap;
->>>>> +    atomic_t nb_ovf;
->>>>> +    struct {
->>>>> +        u8 ev_mode;
->>>>> +        u32 time_cntr;
->>>>> +    } pm_ctx;
->>>>> +};
->>>> Provide documentation for the ev_mode and time_cntr members. You
->>>> probably need a lock as well to protect access to this structure or
->>>> you'll end up with race problems.
->>> Hi William,
->>>
->>> How can I end up with race problems ? pm_ctx members are only 
->>> accessed at
->>> suspend (after capture/IRQ are disabled) and resume (before 
->>> capture/IRQ are
->>> re-enabled).
->>> Is there any risk I did not identify ?
->>>
->>> Julien
->> I was thinking of the ecap_cnt_dev enabled member. The Counter callbacks
->> may execute in concurrent threads, so races can appear when you access
->> members of the ecap_cnt_dev structure in these callbacks.
->>
->> Take for example this section of ecap_cnt_enable_write():
->>
->>          if (enable == ecap_dev->enabled)
->>                  return 0;
->>          if (enable)
->>                  ecap_cnt_capture_enable(counter);
->>          else
->>                  ecap_cnt_capture_disable(counter);
->>          ecap_dev->enabled = enable
->>
->> Suppose two threads try to enable the count capture. A race condition is
->> present where the two threads could see ecap_dev->enabled as false and
->> both proceed to call ecap_cnt_capture_enable(). This results in
->> pm_runtime_get_sync() bumping the usage count twice and we're left with
->> a mismatch the next time ecap_cnt_capture_disable() is called.
->>
->> William Breathitt Gray
->
-> OK, If I understand well there's the same problem with IO access with 
-> regmap ?
-> Julien
+This version has several fixes over the previous v8, which can be found
+here:
 
-[ERRATUM] It seems that some spinlock is already used by regmap API.
-So, only the 'enabled' member needs a lock.
+  https://lore.kernel.org/all/20220905170833.396892-1-thierry.reding@gmail.com/
+
+An example is included in the DT bindings, but here is an extract of
+what I've used to test this:
+
+        reserved-memory {
+                #address-cells = <2>;
+                #size-cells = <2>;
+                ranges;
+
+                /*
+                 * Creates an identity mapping for the framebuffer that
+                 * the firmware has setup to scan out a bootsplash from.
+                 */
+                fb: framebuffer@92cb2000 {
+                        reg = <0x0 0x92cb2000 0x0 0x00800000>;
+                        iommu-addresses = <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
+                };
+
+                /*
+                 * Creates a reservation in the IOVA space to prevent
+                 * any buffers from being mapped to that region. Note
+                 * that on Tegra the range is actually quite different
+                 * from this, but it would conflict with the display
+                 * driver that I tested this against, so this is just
+                 * a dummy region for testing.
+                 */
+                adsp: reservation-adsp {
+                        iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00010000>;
+                };
+        };
+
+        host1x@50000000 {
+                dc@54200000 {
+                        memory-region = <&fb>, <&adsp>;
+                };
+        };
+
+This is abbreviated a little to focus on the essentials. Note also that
+the ADSP reservation is not actually used on this device and the driver
+for this doesn't exist yet, but I wanted to include this variant for
+testing, because we'll want to use these bindings for the reservation
+use-case as well at some point.
+
+I've also been able to make use of this binding and the IOMMU code in
+conjunction with the simple-framebuffer driver to hand over a display
+configuration set up by UEFI to the Linux kernel.
+
+Janne has confirmed[0] this to be suitable for indirect mappings as
+well, though these patches don't implement that feature yet. Potential
+extensions to this have been discussed but are not yet included at this
+time to not further complicate things.
+
+Thierry
+
+[0]: https://lore.kernel.org/all/20220909144504.GA4024@jannau.net/
+
+Navneet Kumar (1):
+  iommu/tegra-smmu: Support managed domains
+
+Thierry Reding (4):
+  dt-bindings: reserved-memory: Document iommu-addresses
+  iommu: Implement of_iommu_get_resv_regions()
+  iommu: dma: Use of_iommu_get_resv_regions()
+  iommu/tegra-smmu: Add support for reserved regions
+
+ .../reserved-memory/reserved-memory.yaml      |  70 ++++++++++++
+ drivers/iommu/dma-iommu.c                     |   3 +
+ drivers/iommu/of_iommu.c                      | 104 ++++++++++++++++++
+ drivers/iommu/tegra-smmu.c                    |  86 ++++++++++++---
+ include/linux/of_iommu.h                      |   8 ++
+ 5 files changed, 254 insertions(+), 17 deletions(-)
+
+-- 
+2.37.3
+
