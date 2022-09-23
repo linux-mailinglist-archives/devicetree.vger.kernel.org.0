@@ -2,96 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F70E5E7AA3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 14:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF8D35E7AD4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 14:33:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230325AbiIWMZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 08:25:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45924 "EHLO
+        id S231431AbiIWMdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 08:33:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231341AbiIWMWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 08:22:25 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9185139BD8
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 05:18:30 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id f9so1015lfr.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 05:18:30 -0700 (PDT)
+        with ESMTP id S230422AbiIWMcl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 08:32:41 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5871491DB0
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 05:32:30 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id z6so20285864wrq.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 05:32:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=/Tpr6P+g+Al9tWTkrQh1Kx8ODsLWgLjiAZNnWEU4SKM=;
-        b=vi/HPTEiMT64lQHb/l+LssK+oBUAx0mDf4Ombbrf/9W/UQPskRMpYHBVM1OYcGKFwd
-         7vvDm+z3BThFrzwnrY94NdHYRCc1vf2BUHvObfWNGleEAITF9UX8ic/SUOATP6gVQHMg
-         nlBOrQDRWGysJomXlfJvm6MrM8OL7Aw8J4+cC0GMkxcXrna3cXDLFYttnGf+UrjqOQtr
-         4VhrqeYx4g/0HeCcaCNAOrMYelY7/gxq1xMRDrYrWpW/cezNyXAf+HbVfPbVa8/3eWti
-         uAZAcy3gI9hn8RbNMkMzZ5oXjmEOgTS0RsPWIDLtH5586UUahdUD1ogbjx26wqcyb3+p
-         HDVA==
+        bh=A1LMoIfsTe6u029K1CPYtu/kaJlbv/4M38rW9dvy7HY=;
+        b=NHbiC/QqL7pTKM1IF3LOs4Z+fbWIgHLyuBeQPgKYqB3bQcp3/q+IMjkSXBKbsozqdY
+         Z1VVzcJmeZI50GAA6nBWhJAeWN3AUOJ3OSJRXzlEg9y1ns19t8CEnDtOEwfOfIh+FVij
+         y5oM/8RCBoA4Hc8QBxhmiaYdFmC4H8YwS2+k8Y9XHr10wGKPKcErWowZQewsqtmK4IBY
+         DY4Pm59H7a+eLTGmmgz7wLqg908E5AVhHjonsJaaFBa5UDqNZdhHNEKBfK+ewZoxf5pF
+         iaX+uFjMtQzzqdxGPhcrIL0vreo1uGL2xxjzkT+BkywU5mrZxZGyyVHx6d74Cd81Yh2H
+         6sRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=/Tpr6P+g+Al9tWTkrQh1Kx8ODsLWgLjiAZNnWEU4SKM=;
-        b=Iu3zglPV7aqYwCyMai1ZFbBa8MLy/QiFrLkRaATdOhXvjGEddg1Vs1wTLwfyrr2Yt3
-         WXC4OWr0f8KFsGUcOgK72/sZd3H3RZM+GLNUpb/w+H8SVqGAqcmvlGQsER+UhyNHbRA+
-         juONfv7TaANgRX0PwJk+WbdhWgUQJnUI1Jx7vcSFw5xaYk6cCsjEklA+zFTw9zz/jOgg
-         ywezOnHXEpFqLxwYmoJJt9NdU2m8mWiPkc6rxIOHcsh8+rh6GfETLC3KorskXfNAlDcX
-         NH0QWRsn1NdYNTSrnjAKvgumfsLICbFqNwEprQdojgMmMAqnsaUAZMKvXTGEqD39Gq7n
-         t20Q==
-X-Gm-Message-State: ACrzQf2hpbRNAp3WUecyv+9TLlfV0YFX4Ez3DKoKWg1+c0CJ+W8PmIjA
-        QfhZTigJVe9FjTLX4Jy9mMc1Vg==
-X-Google-Smtp-Source: AMsMyM5f7Oa8QOXzzSkrmPnHwFjLMxSM418zYjYW4kjBQiEhAaJrQR1KNtWsIcPXRViH535iDR3DzQ==
-X-Received: by 2002:a05:6512:1055:b0:49a:de51:5458 with SMTP id c21-20020a056512105500b0049ade515458mr3009874lfb.585.1663935509037;
-        Fri, 23 Sep 2022 05:18:29 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c1-20020ac25f61000000b00494a27500c1sm1424504lfc.163.2022.09.23.05.18.28
+        bh=A1LMoIfsTe6u029K1CPYtu/kaJlbv/4M38rW9dvy7HY=;
+        b=SI8jkGHXYoxfvgkWZwbJIMRdEBJ7hR1UTcVoAipwL5gOlx3/D6bxp2XPBtpo0shGfE
+         7H/PB5IKSIzXFvbB2cJGoeWPOlERxnW5f+TuQxCNWRZF/zz+JNtxbh9Bc+cSBq6pbIbV
+         dVQcK5N18Ss91JcdG5M96PtKfRhk1U8TZ3qhGGvRrU7VU2HPlo0PbIatgWycgzHG2Sw6
+         K43CS0zerNvTE9hkuMj3N8At1MWzT4VZBL/BxArRj2qZST2P64p948j3DTYukggqree4
+         5WPNaUyL4cnZlLEzPfYp4PjY95xd8yozHn8zZ7mO1aaXWDOQd4QK83MZ0ea4sP/u4CSe
+         eAdg==
+X-Gm-Message-State: ACrzQf0F7DIuEbFqvrfyz88ZkOFuYGMIkeUaBvpHhSCkmOrywZzkX0bJ
+        OVd9vHu7ffGKhPNv8hsDSMpu0A==
+X-Google-Smtp-Source: AMsMyM6E8vC9t2uADbYYSK/mHlDsXZdsxKkElFLeNjosFG11bZI0H0Nq92OMKhLygh41xfh1Y4GJgw==
+X-Received: by 2002:a05:6000:1acf:b0:22b:ed0:71b1 with SMTP id i15-20020a0560001acf00b0022b0ed071b1mr5410058wry.51.1663936348653;
+        Fri, 23 Sep 2022 05:32:28 -0700 (PDT)
+Received: from [192.168.1.70] (32.31.102.84.rev.sfr.net. [84.102.31.32])
+        by smtp.gmail.com with ESMTPSA id h6-20020a05600c350600b003b491f99a25sm2673286wmq.22.2022.09.23.05.32.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 05:18:28 -0700 (PDT)
-Message-ID: <ea97d5a5-e4c5-86c4-2d9e-5c01721823be@linaro.org>
-Date:   Fri, 23 Sep 2022 14:18:27 +0200
+        Fri, 23 Sep 2022 05:32:28 -0700 (PDT)
+Message-ID: <8a60b6a0-9289-0d89-c543-02386a721bca@baylibre.com>
+Date:   Fri, 23 Sep 2022 14:32:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v5 2/3] dt-bindings: input: touchscreen: elants_i2c: Add
- eth3915n touchscreen chip
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v8 3/4] counter: ti-ecap-capture: capture driver support
+ for ECAP
 Content-Language: en-US
-To:     Yunlong Jia <ecs.beijing2022@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Henry Sun <henrysun@google.com>,
-        Yunlong Jia <yunlong.jia@ecs.com.tw>,
-        Bob Moragues <moragues@chromium.org>,
-        David Heidelberg <david@ixit.cz>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-References: <20220923083657.v5.1.I3aa360986c0e7377ea5e96c116f014ff1ab8c968@changeid>
- <20220923083657.v5.2.Ic4e8f03868f88b8027a81bc3d414bae68978e6b7@changeid>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220923083657.v5.2.Ic4e8f03868f88b8027a81bc3d414bae68978e6b7@changeid>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Julien Panis <jpanis@baylibre.com>
+To:     William Breathitt Gray <william.gray@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mranostay@ti.com
+References: <20220922170402.403683-1-jpanis@baylibre.com>
+ <20220922170402.403683-4-jpanis@baylibre.com> <Yy0G9a5S3OzwyEwW@fedora>
+ <2f3e5036-caab-f892-a4ad-b852f72db331@baylibre.com> <Yy2aAMv5PRjsJ4s2@fedora>
+ <923f5876-d692-7e0e-f351-f0e05869ccd8@baylibre.com>
+In-Reply-To: <923f5876-d692-7e0e-f351-f0e05869ccd8@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 10:47, Yunlong Jia wrote:
-> Add an elan touch screen chip eth3915n.
-> 
-> Signed-off-by: Yunlong Jia <ecs.beijing2022@gmail.com>
-> Suggested-by: Douglas Anderson <dianders@chromium.org>
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 23/09/2022 14:17, Julien Panis wrote:
+>
+>
+> On 23/09/2022 13:35, William Breathitt Gray wrote:
+>> On Fri, Sep 23, 2022 at 09:23:26AM +0200, Julien Panis wrote:
+>>>
+>>> On 23/09/2022 03:08, William Breathitt Gray wrote:
+>>>> On Thu, Sep 22, 2022 at 07:04:01PM +0200, Julien Panis wrote:
+>>>>> ECAP hardware on TI AM62x SoC supports capture feature. It can be 
+>>>>> used
+>>>>> to timestamp events (falling/rising edges) detected on input signal.
+>>>>>
+>>>>> This commit adds capture driver support for ECAP hardware on AM62x 
+>>>>> SoC.
+>>>>>
+>>>>> In the ECAP hardware, capture pin can also be configured to be in
+>>>>> PWM mode. Current implementation only supports capture operating 
+>>>>> mode.
+>>>>> Hardware also supports timebase sync between multiple instances, but
+>>>>> this driver supports simple independent capture functionality.
+>>>>>
+>>>>> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+>>>> Hello Julien,
+>>>>
+>>>> Comments follow inline below.
+>>>>
+>>>>> +/**
+>>>>> + * struct ecap_cnt_dev - device private data structure
+>>>>> + * @enabled: device state
+>>>>> + * @clk:     device clock
+>>>>> + * @regmap:  device register map
+>>>>> + * @nb_ovf:  number of overflows since capture start
+>>>>> + * @pm_ctx:  device context for PM operations
+>>>>> + */
+>>>>> +struct ecap_cnt_dev {
+>>>>> +    bool enabled;
+>>>>> +    struct clk *clk;
+>>>>> +    struct regmap *regmap;
+>>>>> +    atomic_t nb_ovf;
+>>>>> +    struct {
+>>>>> +        u8 ev_mode;
+>>>>> +        u32 time_cntr;
+>>>>> +    } pm_ctx;
+>>>>> +};
+>>>> Provide documentation for the ev_mode and time_cntr members. You
+>>>> probably need a lock as well to protect access to this structure or
+>>>> you'll end up with race problems.
+>>> Hi William,
+>>>
+>>> How can I end up with race problems ? pm_ctx members are only 
+>>> accessed at
+>>> suspend (after capture/IRQ are disabled) and resume (before 
+>>> capture/IRQ are
+>>> re-enabled).
+>>> Is there any risk I did not identify ?
+>>>
+>>> Julien
+>> I was thinking of the ecap_cnt_dev enabled member. The Counter callbacks
+>> may execute in concurrent threads, so races can appear when you access
+>> members of the ecap_cnt_dev structure in these callbacks.
+>>
+>> Take for example this section of ecap_cnt_enable_write():
+>>
+>>          if (enable == ecap_dev->enabled)
+>>                  return 0;
+>>          if (enable)
+>>                  ecap_cnt_capture_enable(counter);
+>>          else
+>>                  ecap_cnt_capture_disable(counter);
+>>          ecap_dev->enabled = enable
+>>
+>> Suppose two threads try to enable the count capture. A race condition is
+>> present where the two threads could see ecap_dev->enabled as false and
+>> both proceed to call ecap_cnt_capture_enable(). This results in
+>> pm_runtime_get_sync() bumping the usage count twice and we're left with
+>> a mismatch the next time ecap_cnt_capture_disable() is called.
+>>
+>> William Breathitt Gray
+>
+> OK, If I understand well there's the same problem with IO access with 
+> regmap ?
+> Julien
 
-Best regards,
-Krzysztof
-
+[ERRATUM] It seems that some spinlock is already used by regmap API.
+So, only the 'enabled' member needs a lock.
