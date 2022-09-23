@@ -2,104 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 595695E7734
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:32:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D8735E773D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230005AbiIWJcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 05:32:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41958 "EHLO
+        id S230410AbiIWJdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 05:33:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231936AbiIWJbm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:31:42 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BC0F3A49A
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:31:35 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id a14so13968219ljj.8
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:31:35 -0700 (PDT)
+        with ESMTP id S231756AbiIWJdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:33:01 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41431ED5D8
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:32:59 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 10so959517lfy.5
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:32:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=loilT9KOrc8UgH6EVysVDR9IA3XxRhSds+VZ69dyocA=;
-        b=tKLpy2UwHDJcgXNYiAbhs5SI5sJHw23wtrZtVFWcXI8ADmftNYt9f9eqzGbmFjGO5B
-         NzXpwiN+FfIrULrse9QbxxKmF23tyTNCZVU7bhZ2CA4zzWuTJQC0DxQhlZaW9JGbrvI+
-         6+ZBM9zRYxIJKOZSk3gpYzQFjzFjgLf68rc6Ckzk2M2BgUdI/Ve1EGg4TiCJ1PKHYIVe
-         sLk7PPl8X9EuVw7x16TmD0VksSNJIhoHp/cYFZ8iRE/EZgkTC0a1JysQ2ux5EMnhL9Km
-         JWG2t0zq2ryD9zW5Pi9/w3dl+90iIKqT6FTAwSCe/G9MNlcA78cf6tRhQJmP79XdzrUb
-         LSGg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=HmRlc+Hs05+wWYAlUZbO8wKKqWbps5u2XXFVd5In1P4=;
+        b=k62JTALVIbxJxDPZBvTcfYIjMm9LvN78w/7pRi3AOa3ZfKNhxoyZtj+WVIaiMqxnCm
+         FbbI5PoHbHvM572eUlY24+DDUSMCyz5rxDmA/13DDALISeE+i0mIsTb+Ci6LNDdKNqFc
+         grq936CQefHpKiLerD8b0rV4GN9QGn40q7sp0w99JeWba1qQdgF6djE0+GmALUsVOM64
+         eOx5XV/d/7qcYxpMdCKA8Krc3lC/5KHuvTCRKt4UzVDCHbmlSGqhe6GqJDAe/PNFLRkD
+         JRo+27uG+A4gDcgMnhOXmToXRvCafB9hIZZ2KaHb8SMUfoQPIo7wu2Mib7ofB6Z0DpPQ
+         prZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=loilT9KOrc8UgH6EVysVDR9IA3XxRhSds+VZ69dyocA=;
-        b=vK4qgg6Jf3y9kASJs4mAenfo7HP74ToHzL1ZwfAJ+fKmCTQG+pc8mCK59M6mKa5ZAW
-         cwMujvwtcUBcCY5e6Raol+I8CMh1a+rV0iuUKDhasuF+klaksxWtRbzzLk5UB1hIrJZv
-         UxmkqUQrUjv76KpgNqXEo7C10sbz7M4sULnNI8JnpHuvJ7SGAYeD76K5utIbNVtSloFK
-         XCuwUGvcBkI9JC8Crt2gn/XjEWOBQIK8ZBJEabhzA7mmsBIsWn2sEbromzDLB9FviUAI
-         1IWr/vEK1NO14gnmjESLxVZ2cUh2yFxLk5mlNCeOUw4byAjOvJNpP+A5urISvBJr/8Ai
-         yWLg==
-X-Gm-Message-State: ACrzQf2+J6hz6SOWd6f3Et5js/FIEaQrpC9g92ISCZl/BhlMhZ4Nc3sR
-        /UWoHpkJvkVxhVuDymr97diGpg==
-X-Google-Smtp-Source: AMsMyM5pu4SglWelw1JOJblaAvHizdmtgcvDCNQ6UzszauiF6a9na7nIKBo2/ir/pFTyjxwg3tIZ3Q==
-X-Received: by 2002:a2e:a28e:0:b0:25e:734f:38fa with SMTP id k14-20020a2ea28e000000b0025e734f38famr2522446lja.446.1663925493539;
-        Fri, 23 Sep 2022 02:31:33 -0700 (PDT)
-Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id n5-20020ac24905000000b0048a934168c0sm1367297lfi.35.2022.09.23.02.31.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Sep 2022 02:31:33 -0700 (PDT)
-Date:   Fri, 23 Sep 2022 11:31:31 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 08/12] dt-bindings: pinctrl: qcom,sm8250-lpass-lpi: add
- bias-bus-hold and input-enable
-Message-ID: <20220923093131.5fb5co5i3f4eybcs@krzk-bin>
-References: <20220922195651.345369-1-krzysztof.kozlowski@linaro.org>
- <20220922195651.345369-9-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=HmRlc+Hs05+wWYAlUZbO8wKKqWbps5u2XXFVd5In1P4=;
+        b=APec43AKXwUbmunXbAxQb0aTxz/OaAH7h8VuDSZpy5ZL0ik0T45Azd71iZVn6+Llv3
+         u+eD4qmid+IwmFAEXeSK9ZijcCTGmN2ztn8mgbe+Nf14iZkHZfUe7gtKs40gDNp9M13z
+         ylg+FK4cbSB4Xd8Tji7iqTaTlqhVWvb+33EA06hdflaK5vuqtVUYXWubYTaHi51mCRQk
+         an2tk7POPLqZBtw8cLfBK1ZoVnuPcNc5NSL1A4xZcZ08wVCD9IByMtJB/5/mKUEcA84A
+         rj8RBAN/oALqA5FNCAhKUfgMd14R6JNCqWVq7NJ43OnzkxJb17qMpNfBypcIRWT4RrP5
+         lDSw==
+X-Gm-Message-State: ACrzQf0H9WsxD6jfJuIsmem34GUKe1thHJs5nu/B9oBOawcrgnS3QDuZ
+        CTOlq+s3to4kMJfAkl/7HSX6Pw==
+X-Google-Smtp-Source: AMsMyM41PF1DfX86gyr8+1V5cqnkGU7hwHacoJtPRCrhEh0T56pEuQ/5pXkVWm8izoaAmZbewxT9wA==
+X-Received: by 2002:a05:6512:318e:b0:497:564e:5953 with SMTP id i14-20020a056512318e00b00497564e5953mr2805645lfe.220.1663925577452;
+        Fri, 23 Sep 2022 02:32:57 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id o17-20020ac24e91000000b0049964f68457sm1358757lfr.262.2022.09.23.02.32.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Sep 2022 02:32:57 -0700 (PDT)
+Message-ID: <af938440-b34b-5e17-33f9-d8da3fbdde07@linaro.org>
+Date:   Fri, 23 Sep 2022 11:32:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220922195651.345369-9-krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH] dt-bindings: power: gpcv2: correct patternProperties
+Content-Language: en-US
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org
+Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, l.stach@pengutronix.de, ulf.hansson@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+References: <20220923075427.985504-1-peng.fan@oss.nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220923075427.985504-1-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Sep 2022 21:56:47 +0200, Krzysztof Kozlowski wrote:
-> The existing SC7280 LPASS pin controller nodes use bias-bus-hold and
-> input-enable, so allow them.  Squash also blank lines for readability.
+On 23/09/2022 09:54, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
-> 
-
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
-
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/1681325
+> i.MX8MQ has pgc 'power-domain@a', so correct patternProperties
 
 
-pinctrl@33c0000: 'dmic01-active-pins', 'dmic01-sleep-pins', 'rx_swr-active-pins', 'tx_swr-active-pins', 'tx_swr-sleep-pins', 'wsa-swr-active-pins', 'wsa-swr-sleep-pins' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/qrb5165-rb5.dtb
-	arch/arm64/boot/dts/qcom/sm8250-hdk.dtb
-	arch/arm64/boot/dts/qcom/sm8250-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dtb
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dtb
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
