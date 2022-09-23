@@ -2,101 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F00BE5E7CDD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 16:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D09045E7D0C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 16:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231282AbiIWOYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 10:24:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60844 "EHLO
+        id S229612AbiIWOan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 10:30:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232559AbiIWOYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 10:24:46 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE0AA2B1B9
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:24:44 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id t4so325922wmj.5
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:24:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=+gg8BqSr/XzLdS7L9X25eMkIxvQJQPxB4iU34G/4vAc=;
-        b=0o5HIGq6dar3v4a3HY80WpxudV3MLVv9VYOMg/P9uNfQmm3yLUc0AhyOSBPJMmhEhM
-         2pHPFQQTN5N662SIjzzucJaswE9h5Q34kfKGwHwt8VVCTG0NYzGnFvjot21Vk6McZRKw
-         vzs/gSWml2QOH3t+49f5hmMWetF9kc0ZfJNqdfq8y3sWR4+mcEOqWDhh4pxff4BK+EL7
-         wu7l3vzEaBKiuFNwXHrcN/OCNQQYlTFNpsZND/Om8a7KWNq0Z45pbn5C5DSyy1fc4+0T
-         Blq5XGU9UrSTxZ27ad8DbTEp7qxW8Qjc5knrqZlOprF6O8KXUZzlJvQlEV5dJnMqTCFb
-         PGOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=+gg8BqSr/XzLdS7L9X25eMkIxvQJQPxB4iU34G/4vAc=;
-        b=we+mp1svWmGBg7tKW19d4eQ3gNF8+583C4AOOeziiWfaMP40tqpNvLOfgzEt74TCkK
-         9/6UWplVBnDA0DGf2Xg/keQp0j/yitxgLCTXQmKwwKiMRMMmCKKBUrj4npzJ1bCpDtn0
-         mQ3QJEdTo1JzuElYog+BN1ERxN3aCAa6ylC/wdsuakppRhYzloZF1RYQ4E3dCUXnGy20
-         emIysAez0eQW91K0pQTvlctENSFCyKTVpfvgDddt2wbQ1IJ76i3PQLaqobDs+8Xy+1Rj
-         QAD4zgNHF9jVhPsJfj8LD/f5OcTWJJNgwHvCmF+6Cz1SSv3o3QKHaS4oQZ+Gr1Sj7mnl
-         zyPg==
-X-Gm-Message-State: ACrzQf107LvVKcSgl6+Ta30qbIIlZh5xC+t45kqQDURp5gZxYWdgOIiS
-        hDFPnYim/aTAitHJYb8A226SaA==
-X-Google-Smtp-Source: AMsMyM6fAayT1ZsV+SMonrVdKJ53U4/hjl7+ExfMxROz0nMYBnnFSyl3/Mqnz4L8GUMlT0dr0Kl0UA==
-X-Received: by 2002:a05:600c:3c8e:b0:3b4:d224:addf with SMTP id bg14-20020a05600c3c8e00b003b4d224addfmr13261549wmb.132.1663943083373;
-        Fri, 23 Sep 2022 07:24:43 -0700 (PDT)
-Received: from baylibre-ThinkPad-T14s-Gen-2i.. (32.31.102.84.rev.sfr.net. [84.102.31.32])
-        by smtp.gmail.com with ESMTPSA id m18-20020a5d56d2000000b0022878c0cc5esm7444627wrw.69.2022.09.23.07.24.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Sep 2022 07:24:43 -0700 (PDT)
-From:   Julien Panis <jpanis@baylibre.com>
-To:     william.gray@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mranostay@ti.com
-Subject: [PATCH v9 4/4] MAINTAINERS: add TI ECAP driver info
-Date:   Fri, 23 Sep 2022 16:24:37 +0200
-Message-Id: <20220923142437.271328-5-jpanis@baylibre.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220923142437.271328-1-jpanis@baylibre.com>
-References: <20220923142437.271328-1-jpanis@baylibre.com>
+        with ESMTP id S230227AbiIWOag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 10:30:36 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FBEE132FCD
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:30:34 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1objh1-0002rt-OC; Fri, 23 Sep 2022 16:30:15 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1objgz-00016D-Gx; Fri, 23 Sep 2022 16:30:13 +0200
+Date:   Fri, 23 Sep 2022 16:30:13 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
+        sakari.ailus@linux.intel.com, jacopo@jmondi.org,
+        hverkuil@xs4all.nl, linux-phy@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v3 4/4] media: tc358746: add Toshiba TC358746 Parallel to
+ CSI-2 bridge driver
+Message-ID: <20220923143013.vymstztawb3wb2nf@pengutronix.de>
+References: <20220922134843.3108267-1-m.felsch@pengutronix.de>
+ <20220922134843.3108267-5-m.felsch@pengutronix.de>
+ <Yyyq7CRB3Tg8508B@pendragon.ideasonboard.com>
+ <20220923092726.mrurgoylqdlw3ena@pengutronix.de>
+ <Yy24k5OQGcuZvcSo@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yy24k5OQGcuZvcSo@pendragon.ideasonboard.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds driver info for TI ECAP used in capture operating mode.
+On 22-09-23, Laurent Pinchart wrote:
+> Hi Marco,
+> 
+> On Fri, Sep 23, 2022 at 11:27:26AM +0200, Marco Felsch wrote:
 
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d4999f68bda8..c189117f58eb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20322,6 +20322,15 @@ T:	git git://linuxtv.org/mhadli/v4l-dvb-davinci_devices.git
- F:	drivers/media/platform/ti/davinci/
- F:	include/media/davinci/
- 
-+TI ENHANCED CAPTURE (eCAP) DRIVER
-+M:	Vignesh Raghavendra <vigneshr@ti.com>
-+R:	Julien Panis <jpanis@baylibre.com>
-+L:	linux-iio@vger.kernel.org
-+L:	linux-omap@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
-+F:	drivers/counter/ti-ecap-capture.c
-+
- TI ENHANCED QUADRATURE ENCODER PULSE (eQEP) DRIVER
- R:	David Lechner <david@lechnology.com>
- L:	linux-iio@vger.kernel.org
--- 
-2.37.3
+> > > > +static int tc358746_write(struct tc358746 *tc358746, u32 reg, u32 val)
+> > > > +{
+> > > > +	size_t count;
+> > > > +	int err;
+> > > > +
+> > > > +	/* 32-bit registers starting from CLW_DPHYCONTTX */
+> > > > +	count = reg < CLW_DPHYCONTTX_REG ? 1 : 2;
+> > > > +
+> > > > +	err = regmap_bulk_write(tc358746->regmap, reg, &val, count);
+> > > > +	if (err)
+> > > > +		dev_dbg(tc358746->sd.dev,
+> > > > +			"Failed to write reg:0x%04x val:0x%04x\n", reg, val);
+> > > 
+> > > I'm not sure if the value is relevant here, but I'd add the error, it's
+> > > useful to know what kind of I2C issue occurred. Same for read().
+> > 
+> > Yeah.. I'm not sure, since you told me to not flood the kernel log. If
+> > someone recognised error while probing or streaming the debug will be
+> > turned on anyways. However, I will make it a dev_err() since this
+> > shouldnt appear normally, you're right.
+> 
+> Sorry, I meant printing the value of the error code in the message, the
+> err variable. dev_err() is probably good too actually, as this isn't
+> meant to happen.
 
+Sorry that was my fault, I misread your comment.. Anyway since we agree
+with dev_err() and I added the err value into the message, everything is
+fine :)
+
+Regards,
+  Marco
