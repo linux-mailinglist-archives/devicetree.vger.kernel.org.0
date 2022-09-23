@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CFBF5E733E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 07:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C13255E7344
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 07:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbiIWFHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 01:07:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40448 "EHLO
+        id S229833AbiIWFKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 01:10:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbiIWFHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 01:07:12 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C4B126461
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 22:07:10 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id j16so18052363lfg.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 22:07:10 -0700 (PDT)
+        with ESMTP id S229636AbiIWFKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 01:10:50 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F547D588E
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 22:10:45 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id s10so13367859ljp.5
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 22:10:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=6SRopPv1VZUvrQ8nf2qs0INKVyUhQiNiZRamaiV44Kc=;
-        b=y2bx1FkhdrEL9PegBuK2kr8kg8dU6GdxgTleR8K4gD8didfEtmZM5fQg0OKcWaihPD
-         uGylENtXvfkvXdELuIslpbK21VvUbqYbkRYyN3RlIQuYVr+5xB29/4R2JlC4WxLwXNpw
-         8AVgjptIxf8Vkd8s4pZ4BPMePbGwfn0pj2wVyTIJfh+S01zReY3+V4X7Nz0QKjSaospp
-         al6YG+/Oe+fv7BwfFQNQ1zsluRAbJ7rSwyQBtQiuNexAQdNRFwhuYmsol9EHEZ6+EsNv
-         DSjQxPxZ72NEhVKoT/gPsbITRuwL2V+ypjMkgi/fSkbCQRdo2x3VRC4+bx9fBZ1EI0Rc
-         ZC2g==
+        bh=H2c0hv2ieCNxSdEWPXcGPXlDZHUdAO9roxe+nCV0M+o=;
+        b=ko4KXGf7o8DpC3HGaGgL8EZUrFhgruem/OTHR+zk5XP8Z9NzBjUwwhiTAPpeVc64Ks
+         bHnMcC6EQeiVV/0HLEIfxbqTFBFqv4EENzJNG1i4XKvYOb4dovp7tIvKYIjwxHMvyY+z
+         RVwkE/+hshgTmLCtJDhsJU/12p9JA2GNXrugHeJeG5BmW6OCtVuhrtYFx6QOxHGG/4WM
+         dfMaeCuZE26qBF2JLZk7yQM5gNYB0Av2YfqkbKLYJNIR+VP8jIKDSHc0tO4h8EOaO/CD
+         paVtkciaLEHG8aT5VSXB6MtTwHMluMQ/MFKZGqKv72tyE4wGtrKJhYULEg26v518hAum
+         4PBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=6SRopPv1VZUvrQ8nf2qs0INKVyUhQiNiZRamaiV44Kc=;
-        b=OReV0zkhfLirTnu1qR8hiaiIMP4R3/QAe9+24cN/s+uxOpxWKOjf0NVMYwHHzAXpcY
-         HtTxccFRnZ2tKBUYoObeJEaQyZObXuSJFL/GT4rcDCZ+ivP+k8lGbP0c6hbVIo4s2WXx
-         ocfm4wjyT7jSzFknLLs63YGvLLtg40g2k8waGgaeiLpLBzanCeMeADNDBGexheahX+Yv
-         lz9Y1eBX3bGRTK2xTnaDQzWX3FF1SGE7dI5bII7R7JHgUFBTKfRQnvobbPL1yPJL5Cov
-         KaVvJWhoeHRXfGk6L52Pfz8v6R4KG/ItlNJ8n+FpM1mLYjVQkGp72nLAJKHLHgtPSOjI
-         kJaA==
-X-Gm-Message-State: ACrzQf0v3nIYtMGmK+X1cKdTk9vfDoiRy+LPmFS1uAWcdcXkkQ3phAj5
-        AxP1uPdz3UDOCGfuTUNP+yxXL8P9Vo8Txot+qf8Bow==
-X-Google-Smtp-Source: AMsMyM7jhzaPESmCoeuAYSF4rA4Td92S4N4Zl0cAlLTH/fuwv6ofca88CLG5+LcoidVcs60EetMpwTZfk9KrPd66smg=
-X-Received: by 2002:a05:6512:a8f:b0:49f:4c33:4473 with SMTP id
- m15-20020a0565120a8f00b0049f4c334473mr2427418lfu.125.1663909628798; Thu, 22
- Sep 2022 22:07:08 -0700 (PDT)
+        bh=H2c0hv2ieCNxSdEWPXcGPXlDZHUdAO9roxe+nCV0M+o=;
+        b=baw+tbNI+jWeQ/IjfaE3PMuzzj4+frlSZnENgs44AjaCU57quyirQ4XVJTQFi6RjjR
+         29k4dYk7QUWcWfNDOkdzMRWQx90znutH62GjHpsPfVgqKvpl6y8E7v/W0kzjKVtGh4WU
+         RK08jY6N4qX0Tk4Zg0P2cOYhFzf+qzTqH1fPhojXH3Zbu5uSsu4ArNJ5OnI4IZDxO8Y3
+         UWywdpGXDEZxs1N8fP8EP67WsV09cUkugbx1EKe/ze2ZuGngdugAQtZz9tEDAggq7l+3
+         Xgo6WhkPrGs1sGBjn0DxEx8jfvR49/BFxcFTi5AZ8+MIYuRnFSyLnrMr337N6HgjSHF1
+         Mm3w==
+X-Gm-Message-State: ACrzQf1QHBbDH2ItfF8v5pXfa2pL7pA4TrbSznmWMnU6d02NAaP7UbnS
+        8frmNKbDkF93GDt2ryFNABNpuYtWflpnTKxJo2xuZw==
+X-Google-Smtp-Source: AMsMyM5NBbA1p/O8C5SwbGi0AcNeVinFyL/KvMFQATCH2yesGZ3o6N44PPDjykmrW36mq7lV/cjzxXT8f9+ADa/ddQo=
+X-Received: by 2002:a2e:9606:0:b0:26c:442a:40c2 with SMTP id
+ v6-20020a2e9606000000b0026c442a40c2mr2302429ljh.458.1663909843228; Thu, 22
+ Sep 2022 22:10:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220923014322.33620-1-mailingradian@gmail.com>
-In-Reply-To: <20220923014322.33620-1-mailingradian@gmail.com>
+References: <20220921030649.1436434-1-bhupesh.sharma@linaro.org>
+ <20220921030649.1436434-2-bhupesh.sharma@linaro.org> <YyvKlWgaPVV3su8f@matsya>
+In-Reply-To: <YyvKlWgaPVV3su8f@matsya>
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Fri, 23 Sep 2022 10:36:56 +0530
-Message-ID: <CAH=2NtzDpa6mySzitzWC+W_dkApeC=irHfM1OhFiFS70mWOZ_Q@mail.gmail.com>
-Subject: Re: [PATCH 0/2] SDM670 SDHCI support
-To:     Richard Acayan <mailingradian@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+Date:   Fri, 23 Sep 2022 10:40:31 +0530
+Message-ID: <CAH=2Ntzi=R9B5rMODfzvriDmxu+7PvRS9f0oT0EYbT8AQkJo0Q@mail.gmail.com>
+Subject: Re: [PATCH v7 1/1] dma: qcom: bam_dma: Add support to initialize
+ interconnect path
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     dmaengine@vger.kernel.org, agross@kernel.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, thara.gopinath@gmail.com,
+        devicetree@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -72,20 +70,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Sept 2022 at 07:13, Richard Acayan <mailingradian@gmail.com> wrote:
+On Thu, 22 Sept 2022 at 08:08, Vinod Koul <vkoul@kernel.org> wrote:
 >
-> This adds the compatible string for SDHCI on the Qualcomm Snapdragon 670.
-> As I noted before, I think it's fine to include something like this
-> before the initial device tree because it is trivial.
+> On 21-09-22, 08:36, Bhupesh Sharma wrote:
+> > From: Thara Gopinath <thara.gopinath@gmail.com>
+> >
+> > BAM dma engine associated with certain hardware blocks could require
+> > relevant interconnect pieces be initialized prior to the dma engine
+> > initialization. For e.g. crypto bam dma engine on sm8250. Such requirement
+> > is passed on to the bam dma driver from dt via the "interconnects"
+> > property. Add support in bam_dma driver to check whether the interconnect
+> > path is accessible/enabled prior to attempting driver intializations.
+> >
+> > If interconnects are not yet setup, defer the BAM DMA driver probe().
+> >
+> > Cc: Bjorn Andersson <andersson@kernel.org>
+> > Cc: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Thara Gopinath <thara.gopinath@gmail.com>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > [Bhupesh: Make header file inclusion alphabetical and use 'devm_of_icc_get()']
+> > ---
+> >  drivers/dma/qcom/bam_dma.c | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
+> > index 2ff787df513e..a5b0cf28ffb7 100644
+> > --- a/drivers/dma/qcom/bam_dma.c
+> > +++ b/drivers/dma/qcom/bam_dma.c
+> > @@ -26,6 +26,7 @@
+> >  #include <linux/kernel.h>
+> >  #include <linux/io.h>
+> >  #include <linux/init.h>
+> > +#include <linux/interconnect.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/module.h>
+> >  #include <linux/interrupt.h>
+> > @@ -394,6 +395,7 @@ struct bam_device {
+> >       const struct reg_offset_data *layout;
+> >
+> >       struct clk *bamclk;
+> > +     struct icc_path *mem_path;
+> >       int irq;
+> >
+> >       /* dma start transaction tasklet */
+> > @@ -1294,6 +1296,14 @@ static int bam_dma_probe(struct platform_device *pdev)
+> >       if (IS_ERR(bdev->bamclk))
+> >               return PTR_ERR(bdev->bamclk);
+> >
+> > +     /* Ensure that interconnects are initialized */
+> > +     bdev->mem_path = devm_of_icc_get(bdev->dev, "memory");
+> > +     if (IS_ERR(bdev->mem_path)) {
+> > +             ret = dev_err_probe(bdev->dev, PTR_ERR(bdev->mem_path),
+> > +                                 "failed to acquire icc path\n");
+> > +             return ret;
+> > +     }
 >
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
->  drivers/mmc/host/sdhci-msm.c                         | 1 +
->  2 files changed, 2 insertions(+)
+> So this makes us fail on older DT where icc path may not be present.
+> Should this not be an optional thing?
 
-With the assumption that the initial dts would be available for
-upstream review soon (as we need to see actual user before integrating
-such driver changes) - for the series:
+That's a good point. I am not sure if Thara tried this on platforms
+which don't have the icc path available.
 
-Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+I will fix this in v8.
 
-Thanks.
+Thanks,
+Bhupesh
+
+> > +
+> >       ret = clk_prepare_enable(bdev->bamclk);
+> >       if (ret) {
+> >               dev_err(bdev->dev, "failed to prepare/enable clock\n");
+> > --
+> > 2.37.1
+>
+> --
+> ~Vinod
