@@ -2,70 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D4E75E7A79
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 14:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40E95E7A7C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 14:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231487AbiIWMWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 08:22:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41354 "EHLO
+        id S231968AbiIWMWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 08:22:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229657AbiIWMVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 08:21:09 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB815138F2C;
-        Fri, 23 Sep 2022 05:12:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=EZzewaMVGiRd02VZeymub7raVNzBpkR8BQcX8OiR+3A=; b=lyTmEI9qBDy2YGViRRMgfYPDgZ
-        /9ibpcMqFa0m4m18gbxLdUzSb7QzqolL/CcczGdW9A0tA5KK96Y7lXfencBga4RXhTpa1wV/asiIA
-        y3k0ARYfQzy0f37nHv6UtG4ObuOVp9LfobiObYmOMc3Sr972jk40n0eDdHSG+FtQMosE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1obhXc-0001E9-Ik; Fri, 23 Sep 2022 14:12:24 +0200
-Date:   Fri, 23 Sep 2022 14:12:24 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     maukka@ext.kapsi.fi
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        arnd@arndb.de, olof@lixom.net, sebastian.hesselbarth@gmail.com,
-        gregory.clement@bootlin.com, linux@armlinux.org.uk,
-        pali@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] ARM: orion5x: Add D-Link DNS-323 based on Device
- Tree
-Message-ID: <Yy2iqE8XgXe8qYd9@lunn.ch>
-References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
- <20220922202458.7592-1-maukka@ext.kapsi.fi>
- <20220922202458.7592-4-maukka@ext.kapsi.fi>
- <YyzPVMrfcOkvngxl@lunn.ch>
- <6dc27862f8460f875c31ad2de56baa9f@ext.kapsi.fi>
+        with ESMTP id S231547AbiIWMVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 08:21:24 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E73BFD98D3
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 05:15:31 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id s6so19516302lfo.7
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 05:15:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=00x2rzyfDjFqp6AOEYckdOqeAntiwXSRCVcBfwZB0qo=;
+        b=lTtfB4tKxwdkAf34JSOO4o4ygB+Gd7/UQzag04ZAkF2AuaBKO7iWSIZvfNieCe2g8N
+         qnKo+8ixXO9lHmeDuE2nlBcGT2D0FOvR4C6xQee3cVkQdw9cbt8gGusWxyM3P2GNVLg5
+         MB3W5ce7av1jbHzN28qCCcdDmJ3O6MeNfSODva7MoefvjmOFZnT0cCu0eJj8aoNS2Lfj
+         ZuZ9y9pPCO6HGwiPPNRSjDoOVjaxYJ9mmVHe6BmanArB/N2aDX6aU/3cZ9wN5Atjiif3
+         UZk0qcV8VTRgHZoXjoutmYu3ZujNLXKvEQlZNmE2oqHLmGS++0mx4oIl/vBZGB0w79i6
+         rAOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=00x2rzyfDjFqp6AOEYckdOqeAntiwXSRCVcBfwZB0qo=;
+        b=odekX53oRzR8b4a9l5Q9HWfLa6lRJZEkYUghWWTAuUZhAn7TMaWhv+Vnqwks9X68k1
+         eQSmvhrP0NRtVCEQyg3ffR9UgZ5nfFPvgalGHFCXR+Yhs/EqDWuP3ZO2KVdJ/ZogkCxb
+         BjJ+IE/iyT4M4+85u9Ce2i8C7wJA5uSK68Ti5dQi3mf9F/czTrAMZtLudpJ4tQ4rfFL3
+         AxUjT+Fgz7vU6fL9J5c5oAwddqAzontH36zXE+lUE9ZAu/otxMRN7k/7wWgincXdfbj4
+         AX/RVpbnrPhjjkXulc/J1iAulpkRRn/+ad68QoYZPh6FqA6skV9cjR2DD5WNeTKwpFf0
+         TmXw==
+X-Gm-Message-State: ACrzQf2NGhg2E192bPOHwSPYAZUFQD3kNPItpZ47GeKxjioGIXKY7Ln2
+        V4J58B6Fqxp26Xa6jpKTMtAzEw==
+X-Google-Smtp-Source: AMsMyM54CVaQVVsmlkpqenwfSmQ2advtXSWWAiuof7Vz8xa858plnq0otjny/HAlxCq4kkYhYcLfVw==
+X-Received: by 2002:a05:6512:e9a:b0:498:ff3b:4639 with SMTP id bi26-20020a0565120e9a00b00498ff3b4639mr2997635lfb.388.1663935330263;
+        Fri, 23 Sep 2022 05:15:30 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id v29-20020a056512049d00b004a05c425cb7sm31606lfq.184.2022.09.23.05.15.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Sep 2022 05:15:29 -0700 (PDT)
+Message-ID: <3cadff28-197a-5e6c-cbb8-eb9e816e5166@linaro.org>
+Date:   Fri, 23 Sep 2022 14:15:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6dc27862f8460f875c31ad2de56baa9f@ext.kapsi.fi>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: qcom: Separete LTE/WIFI SKU for
+ sc7280-evoker
+Content-Language: en-US
+To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220923094242.4361-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20220923174224.v3.1.Ide53082044aac56877c4ff5725777769e377476a@changeid>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220923174224.v3.1.Ide53082044aac56877c4ff5725777769e377476a@changeid>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +	if (of_machine_is_compatible("dlink,dns323a1")) {
-> > > +		writel(0, MPP_DEV_CTRL);		/* DEV_D[31:16] */
-> > 
-> > I spotted this in dns323-setup.c as well. Do you have any idea what it
-> > does?
-> > 
+On 23/09/2022 11:42, Sheng-Liang Pan wrote:
+> evoker will have WIFI/LTE SKU, separete it for each different setting.
 > 
-> No idea. I have tried to replicate what was in dns323-setup.c as exactly as
-> possible.
-> I can try to leave it out and see if anything changes.
+> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+> ---
+> 
+> Changes in v3:
+> - none
 
-It is best to keep what we don't understand. It will be there for a
-reason.
+Don't sent the same version. Either fix what I asked for or keep
+discussing the topic.
 
-	Andrew
+Ignoring comments will not get the patch merged.
+
+Best regards,
+Krzysztof
+
