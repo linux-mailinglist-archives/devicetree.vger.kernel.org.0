@@ -2,134 +2,389 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82CC35E7905
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 13:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A975E7911
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 13:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231968AbiIWLET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 07:04:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48318 "EHLO
+        id S231819AbiIWLGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 07:06:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231979AbiIWLEP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 07:04:15 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E91EEE676;
-        Fri, 23 Sep 2022 04:04:09 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 6857124000B;
-        Fri, 23 Sep 2022 11:04:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1663931048;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=1pl7m3BcKQFRdvwHdTlpfN1yQan5OWyAa1ah2yZ/5g4=;
-        b=aF99+PU+f9hssnGMAtIOpVOdvbkkk+MriT+6WCGnCs9rNHx7C6f66ZYdRA3eyNgZetWSSr
-        69u+8OHWDssSgv4PAjayBHT4v4Bjv64JGr+pDB3vpMmz3V1Rl+kxfNwrKwieMzbDN/Fvl4
-        Z2m5g1s8dwpuz6PVlcDlFvNwAKGesNkQazPCcl0osPcRfLt3jPKSVdRc4Ij4Y3Sm4lg/1f
-        vggsnHOWI0tiE2tCO3h3H2csqYiPNsReDobUnKnp721HMAokJ/ITDkg9nXcb08eywaeWH7
-        +RPI3PPUXXvMdddY0dcs8wIDRFj4V0K7MbC2i0rlz8G7O3GVLoTFux5xEm98nw==
-Date:   Fri, 23 Sep 2022 13:04:06 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jagath Jog J <jagathjog1996@gmail.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] rtc: maxim: Add Maxim max31329 real time clock
-Message-ID: <Yy2SpmCy1ZjC1pMz@mail.local>
-References: <20220912190753.10158-1-jagathjog1996@gmail.com>
- <20220912190753.10158-3-jagathjog1996@gmail.com>
- <YyHBKNC/YHbvIn40@mail.local>
- <CAM+2Eu+jCA9yJma2UtD736opw0=_uCz4Zbiem89ehexTEU7mQw@mail.gmail.com>
- <YydoGsEU/UPkXvXn@mail.local>
- <CAM+2EuJsz9NgEskhYapxFg7UrimB3Po97DZGHtBCHTc8+vx_1g@mail.gmail.com>
+        with ESMTP id S230046AbiIWLGq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 07:06:46 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4745118DFA
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 04:06:44 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id u132so12079922pfc.6
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 04:06:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=CivlmnyVEpJwxv4DfN3B0qY4C20BTHgcub0RDyyW0bM=;
+        b=EkZWmF2KFjEeC9eST5w3FG1iQSe8lysLjlSX4ewpXpPvQffX41YrJ9eQE+qHBoFxE4
+         96x/BQSHseSbZlpC0NodeqBWzzXltawzlJO+BF83TflXKKdCpoUjQ97rFddlnP00MHxq
+         9FjR8FNe0e4JoTbZID0ICO70hZOeoRiDO0NuoRb0uCTIuHiwhM0x3Ch0z5IN8wGDL8dp
+         Kk1WEpmD+dPkterwT6eXG/jG9bu2qXjgVbf7GcIH1iUUTP7nWXHKHpX+o/oH70iu7XX0
+         fmyGmt1W+EQevlfXDbt+pGZd6k8260RT5IMxM7gM/Ks+OmVFwD+JAyWmZ8PkI7/Ev133
+         Rggg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=CivlmnyVEpJwxv4DfN3B0qY4C20BTHgcub0RDyyW0bM=;
+        b=0z3MFyqdLwtnmdFRWTsnfgbduh08IXSAK7C++e0n1nBR2PmgKPzsJfTQmUPXTR15P6
+         FVd8I0eVhSpNklUfHQrGowYjmrXjaMmBeU8ivArVIpft9t2SeLHd/o/571qjbQpSLwpg
+         10gY+i/0QkTDx+3ygu5nVd41Jnwvc+qDovzpWkX7GgFrwk0O9CY4JCP3wSr6kND6/eWA
+         jo95t4bF1dPJt+BQnFWWO2TkyT1ucW1lzYBPWRbXjGJOKKpZBPjTUvl9Wz3ACXtpt5t6
+         oT+N93gjUe6MIOfZiwtyOhzYO3LXZC2oegv35q5YTVhreX2Vvxr2x21MfZx4rMMeBAet
+         8Pxg==
+X-Gm-Message-State: ACrzQf2ubMEFbOvkubhtxbumaNAQU/n2xFLiaVE4nPZhmWATqN+cBCyu
+        nO8ujo3lk6NEYIDTWTYITzLwVG65x0vRDaZ4af7Pmg==
+X-Google-Smtp-Source: AMsMyM5yjt4thE5+scbK0mFtX6Qki9qAhM+aBrZAdvG3AwgbQrDAjujCM9rFQSp2nJxxMKdOQ1bqv2d1CQtnz1OfIvw=
+X-Received: by 2002:a63:85c6:0:b0:43a:eb08:6ea7 with SMTP id
+ u189-20020a6385c6000000b0043aeb086ea7mr7216977pgd.336.1663931204200; Fri, 23
+ Sep 2022 04:06:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAM+2EuJsz9NgEskhYapxFg7UrimB3Po97DZGHtBCHTc8+vx_1g@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220922050718.1079651-1-Naresh.Solanki@9elements.com> <20220922050718.1079651-3-Naresh.Solanki@9elements.com>
+In-Reply-To: <20220922050718.1079651-3-Naresh.Solanki@9elements.com>
+From:   Patrick Rudolph <patrick.rudolph@9elements.com>
+Date:   Fri, 23 Sep 2022 13:06:52 +0200
+Message-ID: <CALNFmy0VGEYso1SDXQzmt8419RmG8CHEJUzZpFd0WvYeBzPDUw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] hwmon: (max6639) Change from pdata to dt configuration
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org,
+        Marcello Sylvester Bauer <sylv@sylv.io>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2022 01:09:37+0530, Jagath Jog J wrote:
->  Hi Alexandre,
-> 
-> Before sending v3 I have one comment,
-> Please see below.
-> 
-> On Mon, Sep 19, 2022 at 12:18 AM Alexandre Belloni
-> <alexandre.belloni@bootlin.com> wrote:
-> >
-> > On 17/09/2022 16:09:54+0530, Jagath Jog J wrote:
-> > > > This doesn't feel right, doesn't that break start-year?
-> > > >
-> > > > What is the actual time range supported by this RTC? Shouldn't you set
-> > > > the century?
-> > >
-> > > The time range supported by RTC is 2000 to 2199.
-> > > The alarm registers don't have a century bit.
-> > > I have tested the alarm for
-> > > 2122-09-17T01:22:00
-> > > 2142-09-17T01:22:00
-> > > 2160-02-29T00:00:00
-> > > 2196-02-29T00:00:00 etc
-> > >
-> > > I will add another condition such that if the century bit
-> > > from the time register is not set then configuring the
-> > > alarm for the next century is not allowed.
-> >
-> > The actual check should be for the alarm to not exceed 100 years in the
-> > future then. Else, this wouldn't work well with datetime offsetting.
-> 
-> Sure, I will add this check.
-> 
-> >
-> > > > > +static int max31329_set_time(struct device *dev, struct rtc_time *tm)
-> > > > > +{
-> > > > > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
-> > > > > +     u8 regs[7];
-> > > > > +     int ret;
-> > > > > +
-> > > > > +     ret = max31329_get_osc_status(dev);
-> > > > > +     if (ret)
-> > > > > +             return ret;
-> > > > > +
-> > > >
-> > > > Checking the oscillator is not needed here but resetting the status is.
-> > >
-> > > Resetting the device will resets the digital block,
-> > > I2C-programmable registers and oscillator also,
-> > > The oscillator is taking some time around 80 milli sec
-> > > to be back as usual.
-> > >
-> > > Is it required to reset every time during the time setting?
-> > >
-> >
-> > Not but resetting the osc status is.
-> 
-> Actually, the STATUS register which contains the Oscillator Stop
-> Flag (OSF) bit is a read-only register. If the OSF bit is set, then
-> reading the status register will not clear the OSF bit.
-> 
-> Based on the oscillator disable and enable testing, I observed
-> that the OSF bit is getting cleared automatically once the clock
-> settles, which is taking around 80msec. The manual resetting
-> option is not there for the OSC status bit.
-> 
-> Can I set the time without resetting the OSC status?
-> 
+On Thu, Sep 22, 2022 at 7:07 AM Naresh Solanki
+<naresh.solanki@9elements.com> wrote:
+>
+> From: Marcello Sylvester Bauer <sylv@sylv.io>
+>
+> max6639_platform_data is not used by any in-kernel driver and does not
+> address the MAX6639 channels separately. Move to device tree
+> configuration with explicit properties to configure each channel.
+>
+> Non-DT platform can still use this module with its default
+> configuration.
+>
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
+>  drivers/hwmon/max6639.c               | 162 +++++++++++++++++++-------
+>  include/linux/platform_data/max6639.h |  15 ---
+>  2 files changed, 119 insertions(+), 58 deletions(-)
+>  delete mode 100644 include/linux/platform_data/max6639.h
+>
+> diff --git a/drivers/hwmon/max6639.c b/drivers/hwmon/max6639.c
+> index 14bb7726f8d7..4e8c3d3ec4fd 100644
+> --- a/drivers/hwmon/max6639.c
+> +++ b/drivers/hwmon/max6639.c
+> @@ -19,7 +19,6 @@
+>  #include <linux/hwmon-sysfs.h>
+>  #include <linux/err.h>
+>  #include <linux/mutex.h>
+> -#include <linux/platform_data/max6639.h>
+>
+>  /* Addresses to scan */
+>  static const unsigned short normal_i2c[] = { 0x2c, 0x2e, 0x2f, I2C_CLIENT_END };
+> @@ -85,8 +84,9 @@ struct max6639_data {
+>         u8 temp_ot[2];          /* OT Temperature, 0..255 C (->_emergency) */
+>
+>         /* Register values initialized only once */
+> -       u8 ppr;                 /* Pulses per rotation 0..3 for 1..4 ppr */
+> -       u8 rpm_range;           /* Index in above rpm_ranges table */
+> +       u8 ppr[2];              /* Pulses per rotation 0..3 for 1..4 ppr */
+> +       u8 rpm_range[2];        /* Index in above rpm_ranges table */
+> +       u8 pwm_polarity[2];     /* Fans PWM polarity, 0..1 */
+>
+>         /* Optional regulator for FAN supply */
+>         struct regulator *reg;
+> @@ -319,7 +319,7 @@ static ssize_t fan_input_show(struct device *dev,
+>                 return PTR_ERR(data);
+>
+>         return sprintf(buf, "%d\n", FAN_FROM_REG(data->fan[attr->index],
+> -                      data->rpm_range));
+> +                      data->rpm_range[attr->index]));
+>  }
+>
+>  static ssize_t alarm_show(struct device *dev,
+> @@ -386,28 +386,26 @@ static struct attribute *max6639_attrs[] = {
+>  ATTRIBUTE_GROUPS(max6639);
+>
+>  /*
+> - *  returns respective index in rpm_ranges table
+> - *  1 by default on invalid range
+> + *  Get respective index in rpm_ranges table
+>   */
+> -static int rpm_range_to_reg(int range)
+> +static int rpm_range_to_index(u8 *index, int range)
+>  {
+>         int i;
+>
+>         for (i = 0; i < ARRAY_SIZE(rpm_ranges); i++) {
+> -               if (rpm_ranges[i] == range)
+> -                       return i;
+> +               if (rpm_ranges[i] == range) {
+> +                       *index = i;
+> +                       return 0;
+> +               }
+>         }
+>
+> -       return 1; /* default: 4000 RPM */
+> +       return -EINVAL;
+>  }
+>
+>  static int max6639_init_client(struct i2c_client *client,
+>                                struct max6639_data *data)
+>  {
+> -       struct max6639_platform_data *max6639_info =
+> -               dev_get_platdata(&client->dev);
+>         int i;
+> -       int rpm_range = 1; /* default: 4000 RPM */
+>         int err;
+>
+>         /* Reset chip to default values, see below for GCONFIG setup */
+> @@ -416,43 +414,25 @@ static int max6639_init_client(struct i2c_client *client,
+>         if (err)
+>                 goto exit;
+>
+> -       /* Fans pulse per revolution is 2 by default */
+> -       if (max6639_info && max6639_info->ppr > 0 &&
+> -                       max6639_info->ppr < 5)
+> -               data->ppr = max6639_info->ppr;
+> -       else
+> -               data->ppr = 2;
+> -       data->ppr -= 1;
+> -
+> -       if (max6639_info)
+> -               rpm_range = rpm_range_to_reg(max6639_info->rpm_range);
+> -       data->rpm_range = rpm_range;
+> -
+>         for (i = 0; i < 2; i++) {
+>
+>                 /* Set Fan pulse per revolution */
+>                 err = i2c_smbus_write_byte_data(client,
+>                                 MAX6639_REG_FAN_PPR(i),
+> -                               data->ppr << 6);
+> +                               data->ppr[i] << 6);
+>                 if (err)
+>                         goto exit;
+>
+>                 /* Fans config PWM, RPM */
+>                 err = i2c_smbus_write_byte_data(client,
+>                         MAX6639_REG_FAN_CONFIG1(i),
+> -                       MAX6639_FAN_CONFIG1_PWM | rpm_range);
+> +                       MAX6639_FAN_CONFIG1_PWM | data->rpm_range[i]);
+>                 if (err)
+>                         goto exit;
+>
+> -               /* Fans PWM polarity high by default */
+> -               if (max6639_info && max6639_info->pwm_polarity == 0)
+> -                       err = i2c_smbus_write_byte_data(client,
+> -                               MAX6639_REG_FAN_CONFIG2a(i), 0x00);
+> -               else
+> -                       err = i2c_smbus_write_byte_data(client,
+> -                               MAX6639_REG_FAN_CONFIG2a(i), 0x02);
+> -               if (err)
+> -                       goto exit;
+> +               /* Fans PWM polarity */
+> +               err = i2c_smbus_write_byte_data(client,
+> +                       MAX6639_REG_FAN_CONFIG2a(i), data->pwm_polarity[i] ? 0x00 : 0x02);
+>
+>                 /*
+>                  * /THERM full speed enable,
+> @@ -464,10 +444,6 @@ static int max6639_init_client(struct i2c_client *client,
+>                 if (err)
+>                         goto exit;
+>
+> -               /* Max. temp. 80C/90C/100C */
+> -               data->temp_therm[i] = 80;
+> -               data->temp_alert[i] = 90;
+> -               data->temp_ot[i] = 100;
+>                 err = i2c_smbus_write_byte_data(client,
+>                                 MAX6639_REG_THERM_LIMIT(i),
+>                                 data->temp_therm[i]);
+> @@ -483,8 +459,6 @@ static int max6639_init_client(struct i2c_client *client,
+>                 if (err)
+>                         goto exit;
+>
+> -               /* PWM 120/120 (i.e. 100%) */
+> -               data->pwm[i] = 120;
+>                 err = i2c_smbus_write_byte_data(client,
+>                                 MAX6639_REG_TARGTDUTY(i), data->pwm[i]);
+>                 if (err)
+> @@ -524,12 +498,87 @@ static void max6639_regulator_disable(void *data)
+>         regulator_disable(data);
+>  }
+>
+> +static int max6639_probe_child_from_dt(struct i2c_client *client,
+> +                                     struct device_node *child,
+> +                                     struct max6639_data *data)
+> +
+> +{
+> +       struct device *dev = &client->dev;
+> +       u32 i, val;
+> +       int err;
+> +
+> +       err = of_property_read_u32(child, "reg", &i);
+> +       if (err) {
+> +               dev_err(dev, "missing reg property of %pOFn\n", child);
+> +               return err;
+> +       }
+> +
+> +       if (i >= 2) {
+> +               dev_err(dev, "invalid reg %d of %pOFn\n", i, child);
+> +               return -EINVAL;
+> +       }
+> +
+> +       err = of_property_read_u32(child, "pulses-per-revolution", &val);
+> +       if (!err) {
+> +               if (val < 0 || val > 5) {
+> +                       dev_err(dev, "invalid pulses-per-revolution %d of %pOFn\n", val, child);
+> +                       return -EINVAL;
+> +               }
+> +               data->ppr[i] = val;
+> +       }
+> +
+> +       err = of_property_read_u32(child, "maxim,rpm-range", &val);
+> +       if (!err) {
+> +               err = rpm_range_to_index(&data->rpm_range[i], val);
+> +               if (err) {
+> +                       dev_err(dev, "invalid maxim,rpm-range %d of %pOFn\n", val, child);
+> +                       return err;
+> +               }
+> +       }
+> +
+> +       err = of_property_read_u32(child, "pwm-polarity", &val);
+> +       if (!err) {
+> +               if (val > 1) {
+> +                       dev_err(dev, "invalid pwm-polarity %d of %pOFn\n", val, child);
+> +                       return -EINVAL;
+> +               }
+> +               data->pwm_polarity[i] = val;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int max6639_probe_from_dt(struct i2c_client *client, struct max6639_data *data)
+> +{
+> +       struct device *dev = &client->dev;
+> +       const struct device_node *np = dev->of_node;
+> +       struct device_node *child;
+> +       int err;
+> +
+> +       /* Compatible with non-DT platforms */
+> +       if (!np)
+> +               return 0;
+> +
+> +       for_each_child_of_node(np, child) {
+> +               if (strcmp(child->name, "channel"))
 
-Sure but then it is not even useful to ever test OSF because we just
-don't care if it fails while we are running, the most important info is
-whether it fails when Linux is not running.
+According to the dt-binding this should be "fan" instead of "channel".
 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> +                       continue;
+> +
+> +               err = max6639_probe_child_from_dt(client, child, data);
+> +               if (err) {
+> +                       of_node_put(child);
+> +                       return err;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static int max6639_probe(struct i2c_client *client)
+>  {
+>         struct device *dev = &client->dev;
+>         struct max6639_data *data;
+>         struct device *hwmon_dev;
+> -       int err;
+> +       int err, i;
+>
+>         data = devm_kzalloc(dev, sizeof(struct max6639_data), GFP_KERNEL);
+>         if (!data)
+> @@ -560,6 +609,24 @@ static int max6639_probe(struct i2c_client *client)
+>
+>         mutex_init(&data->update_lock);
+>
+> +       /* default values */
+> +       for (i = 0; i < 2; i++) {
+> +               /* 4000 RPM */
+> +               data->rpm_range[i] = 1;
+> +               data->ppr[i] = 2;
+> +               data->pwm_polarity[i] = 1;
+> +               /* Max. temp. 80C/90C/100C */
+> +               data->temp_therm[i] = 80;
+> +               data->temp_alert[i] = 90;
+> +               data->temp_ot[i] = 100;
+> +               /* PWM 120/120 (i.e. 100%) */
+> +               data->pwm[i] = 120;
+> +       }
+> +
+> +       err = max6639_probe_from_dt(client, data);
+> +       if (err)
+> +               return err;
+> +
+>         /* Initialize the max6639 chip */
+>         err = max6639_init_client(client, data);
+>         if (err < 0)
+> @@ -618,6 +685,14 @@ static const struct i2c_device_id max6639_id[] = {
+>
+>  MODULE_DEVICE_TABLE(i2c, max6639_id);
+>
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id maxim_of_platform_match[] = {
+> +       {.compatible = "maxim,max6639"},
+> +       {},
+> +};
+> +MODULE_DEVICE_TABLE(of, maxim_of_platform_match);
+> +#endif
+> +
+>  static SIMPLE_DEV_PM_OPS(max6639_pm_ops, max6639_suspend, max6639_resume);
+>
+>  static struct i2c_driver max6639_driver = {
+> @@ -625,6 +700,7 @@ static struct i2c_driver max6639_driver = {
+>         .driver = {
+>                    .name = "max6639",
+>                    .pm = &max6639_pm_ops,
+> +                  .of_match_table = of_match_ptr(maxim_of_platform_match),
+>                    },
+>         .probe_new = max6639_probe,
+>         .id_table = max6639_id,
+> diff --git a/include/linux/platform_data/max6639.h b/include/linux/platform_data/max6639.h
+> deleted file mode 100644
+> index 65bfdb4fdc15..000000000000
+> --- a/include/linux/platform_data/max6639.h
+> +++ /dev/null
+> @@ -1,15 +0,0 @@
+> -/* SPDX-License-Identifier: GPL-2.0 */
+> -#ifndef _LINUX_MAX6639_H
+> -#define _LINUX_MAX6639_H
+> -
+> -#include <linux/types.h>
+> -
+> -/* platform data for the MAX6639 temperature sensor and fan control */
+> -
+> -struct max6639_platform_data {
+> -       bool pwm_polarity;      /* Polarity low (0) or high (1, default) */
+> -       int ppr;                /* Pulses per rotation 1..4 (default == 2) */
+> -       int rpm_range;          /* 2000, 4000 (default), 8000 or 16000 */
+> -};
+> -
+> -#endif /* _LINUX_MAX6639_H */
+> --
+> 2.35.3
+>
