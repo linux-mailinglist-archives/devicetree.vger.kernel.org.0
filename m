@@ -2,307 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 947D45E7F7C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 18:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 601655E7FB7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 18:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232902AbiIWQRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 12:17:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40576 "EHLO
+        id S232629AbiIWQ0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 12:26:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232873AbiIWQQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 12:16:30 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C58BA137910
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 09:16:18 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 10so1061987lfy.5
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 09:16:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=4+yEIMBBW+sp7EUda+OIoPJxOH+XX06wZfqcVRH9FdA=;
-        b=xRoO8b80OXx6cuDmP5Wu7FI0Lbj/UICs3XCrppvjj6fZpFd8yiZGn7Kmy49fT3aiQI
-         FKg2l0a6LTLdaw0VzBGqjVXCD+S7YWjGtNUVEC7jcd5QSNEn7OCOgugU0sadafFhff7+
-         y33JV+joL4Uw7qXkoJd5rfbE9KHJ14En6aha24fFYKYPu0UZUXjHFh12fl78iO00U95e
-         kLz0FodBFlSvp+mzV7t6TNJ06Do4rKfUmKzXC2YcJmrjiSQjTC2uiokelvaIqypr0AJd
-         UX1kJC9oWbKp8uDl8mPcAI+yn/NLgxD7YPbNaW+wWjRssS5KuBWRN2PHCjjsGrxLFse9
-         0YIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=4+yEIMBBW+sp7EUda+OIoPJxOH+XX06wZfqcVRH9FdA=;
-        b=Tx1GJcvfTEbCGOVFLAY1xaDI2RSsYSivXkQKL7RYiNqKwVtscL0AbaFN5s1RaSsb1b
-         v7jeUQU4daV0aLErqtisckCBwWxh6iD9SdqGNuz/ieXQ05Z+jJ/CPJL5f/9dAhwABTbO
-         JBK7Kt0/tkG8hAzJJXx9m5fVB5DU6lGXIgHlOqlHV9AFjqPJv0bGlSVLQoQuoCruNAPM
-         ievXDF/0O0AnqaaJS7BNQgwR4uDQtAD20fI2CwuamJuabDNI0WOxbUeUECmcW+QaXBR1
-         7tc0aHLm5kufIbxYYOrm5R1wlGIJcVUBG4oSXJLwhYRqLMPxfrdKYq9yOfLSNX96fri0
-         Z76w==
-X-Gm-Message-State: ACrzQf3rHscxMdEMZFiS8RgDg1lOXEh4ELQPUJLtiVzl8cT9UMddTdKv
-        Cr0VC9XReUZXs6OCkMwV6V6iUw==
-X-Google-Smtp-Source: AMsMyM5WoxHdQBsK4+PbEA4AE/UkMhoP3yCgIw0t+k7H5b40fVUVqx6EcEAqyBHLh0RQt9xLXhoD5Q==
-X-Received: by 2002:a05:6512:3502:b0:496:8e:9307 with SMTP id h2-20020a056512350200b00496008e9307mr3426369lfs.504.1663949778169;
-        Fri, 23 Sep 2022 09:16:18 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f9-20020ac25cc9000000b00492f45cbbfcsm1493491lfq.302.2022.09.23.09.16.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Sep 2022 09:16:17 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 11/11] dt-bindings: slimbus: qcom,slim-ngd: convert to DT schema
-Date:   Fri, 23 Sep 2022 18:14:53 +0200
-Message-Id: <20220923161453.469179-12-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220923161453.469179-1-krzysztof.kozlowski@linaro.org>
-References: <20220923161453.469179-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S232927AbiIWQ0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 12:26:18 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60067.outbound.protection.outlook.com [40.107.6.67])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E3DE13571C;
+        Fri, 23 Sep 2022 09:26:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=g9/JxGiMWFbnxiAPWdm9sXMsL6rXJJLdrLos93yFoEHpx3DAxoNoetyMOXTghANrDJtKcwCisYSjvhnRBiMOlTZAK0PakP9CPt+I73eTAorjFXdUBq+IOeOgOTmDtvxSLWwXh8qC6zxj8G4PCavFlsLS94TIXOWTI7OujUZoTja/sGPbH/L7pMg+6tksGiN7eEZpYzAQ97GNBNTbdC8XWwpkG9S6xAWKJbFCt4De9+bXG1Q7p/y1qh7vkb1gwWCBuxB3e+EYX35xrF2Mfs/EjEbMgQRd+0j4ro+1FP2HREWSIPTQVZVmvaj1+1amuXtUFuQLurLr91vIdexn5R6SxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iOPP8rEb+B6reTaXdVrtQcMTo0MEPd6QnGFstpMXOaA=;
+ b=E9FU4sQzt4eu1lgzac9q/CPtospC1AI+nT1O7/Df8GEsPctLps2llPh5fZdKAvyoOE+VeXg2Bju/NYraxYto+EjM9gy2fGErEvjlWpx3/4ITBSmMgsRGT3V2REqOFZAnLEHGc9wYlJjfkWxF1sMy+Psln9lVMxqdRIkYIulhNOGasIxnra/G+3NKAczvX/1imcl8wGQUC+DgNPHoIN0FKMyKInA+hojLytM+kh0/96Bg8fLft4jFXpa+txGGYDHWtdLTtIHst3i84Q+iQwMed8PS7KgS42JOmWRt5YzYJ8SopNOlpZIHPELJWpjQcgzDiyKhjI5RNRZqeOUN9B0+/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iOPP8rEb+B6reTaXdVrtQcMTo0MEPd6QnGFstpMXOaA=;
+ b=AiAbRhb1XdCfJ7QZuQQ3rdZteXDsb0NgJcuwUPdpVlzQSDuYcJG1JL1pl9RasxCm9fq+YweWplIrFNrDJuDpsHF930+pnsaHfcfkELbqnR1gOOHwXJEnPApo71ghmdLfz4zXhSYPhKczASZ3smj3OhMxoJvQXsQ0JkN0si4InUU=
+Received: from AM0PR04MB6289.eurprd04.prod.outlook.com (2603:10a6:208:145::23)
+ by AS8PR04MB7941.eurprd04.prod.outlook.com (2603:10a6:20b:2a6::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.20; Fri, 23 Sep
+ 2022 16:26:14 +0000
+Received: from AM0PR04MB6289.eurprd04.prod.outlook.com
+ ([fe80::7d0b:b02:69b9:a3b4]) by AM0PR04MB6289.eurprd04.prod.outlook.com
+ ([fe80::7d0b:b02:69b9:a3b4%4]) with mapi id 15.20.5654.016; Fri, 23 Sep 2022
+ 16:26:14 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Sean Anderson <sean.anderson@seco.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Laurentiu Tudor <laurentiu.tudor@nxp.com>
+Subject: RE: [PATCH v2 5/9] arm64: dts: ls1046a: make dma-coherent global to
+ the SoC
+Thread-Topic: [PATCH v2 5/9] arm64: dts: ls1046a: make dma-coherent global to
+ the SoC
+Thread-Index: AQHYyVu7ZWZ+5HaopEeXyly5/MaOXK3tO1AAgAABOrA=
+Date:   Fri, 23 Sep 2022 16:26:14 +0000
+Message-ID: <AM0PR04MB6289919428F12CD125357D4F8F519@AM0PR04MB6289.eurprd04.prod.outlook.com>
+References: <20220915233432.31660-1-leoyang.li@nxp.com>
+ <20220915233432.31660-6-leoyang.li@nxp.com>
+ <e27d295b-abbf-716c-5e0d-97dd63ce07df@seco.com>
+In-Reply-To: <e27d295b-abbf-716c-5e0d-97dd63ce07df@seco.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM0PR04MB6289:EE_|AS8PR04MB7941:EE_
+x-ms-office365-filtering-correlation-id: 3e2eb1c5-c368-43af-1311-08da9d805594
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: M3F45/TdhFYngT1LgCN0Y24VRnEhIn7zNKWFEYVpYbWRbCy0r1rCac0+pcOJ/DYrnV8qeJhddOGSZtY/AeR10sbQb0klAJLWlThVe36HHNYARqC1uCrhsyBUqdRwHw2DlFjScxjBNsGcVdlW8CSPmW7b3sEzfU0fi8cLCo0YJBdPEX3WzfkKO8836EgXkikBx8aRKD5O2Vyfkvh9EcIwyZUCYl8e+8HB4vr0xB9ct/vsHPndDTPBTyEWpuj4kMSUqPlFYNyaIDnUUb7p+kBn1G6eNasPyAyCp2r21UOVbzJeN9tttq0e45c3a2+xEn5Jb4hc++nAO58wK87gOuLcIDnoAMHr/FtVhx6HN+/RtLIVHG/cLhEyNtsUHzHwQNk4m0gb/AcTDGuFu1O93CWt9BQ68bFWLO18v+bNLumCtEL3/87QtwZUx60NbI24teS0nV26pjYUe0dofdt8mnZPDkpP+5d+AjK8gh7mZoiljtYiumcUsN+xJUKeBNo5OXAjrjFrjBKBjjEzP02dKX3PJwkMXz1vHjb5Fa8HAidEfyocv/UYGumsx58r4aMdrTMstFMiN1o1wqS1pE6J2UZluYm/nyVHCdUtH+fyhWp6ieBoMBhETRvn1t4ovhyOTYF63aRCHCB0kvc6GBEclzqODRySACYrrAQLmWhMk2sAOiYHhsTGftYbKJfWWvgD6D6FPEXLNSbV+3A8leyOsnkyomVryhspES197caiFbzJexItrloHZZHnRjuSKWbHLMeS7mCRl02yLfx7adVyjvTmrA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6289.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(366004)(346002)(39860400002)(396003)(136003)(451199015)(83380400001)(71200400001)(186003)(110136005)(2906002)(54906003)(6506007)(7696005)(316002)(33656002)(122000001)(38100700002)(55016003)(53546011)(478600001)(52536014)(9686003)(26005)(8936002)(5660300002)(38070700005)(55236004)(41300700001)(86362001)(66946007)(76116006)(8676002)(66556008)(66476007)(64756008)(4326008)(66446008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?cTo7bX9ZtbJbct9WPYDw+UetrFf9rV9ZEk+wyIxJebKEZLV55Nyl/ifv8OSK?=
+ =?us-ascii?Q?3eZuHUr2Aga811GmpbJOZY6PUsMphUBFLbHY2p/1fwtuptZopq2kQIO1YO5s?=
+ =?us-ascii?Q?6Mz1tneUVlMP6PRfJW/spmdB4aEj2RXtLAOZIWn+HoWI+FkiTIIvw8U2JJFc?=
+ =?us-ascii?Q?1NLJsmeas9u1cUUaHsoAPcxTwYTbP4BOWaliVYGOxLutaJ0ME2Jve7JQURbO?=
+ =?us-ascii?Q?4BboteDQStVu5rsKivGgcio74vM5xn/DE3UgVZgneMWD4BGrzSWljZf5a1NU?=
+ =?us-ascii?Q?hCV5v7WSl0YvWO298w+CWUexAVsdotNl088cWUhJpMr7kuM1hMLs9s38rDDw?=
+ =?us-ascii?Q?5Kj96vDSG0fMzsDcBUWRNSl24T4q8L+BWBpFuZ66bm+0vs+o/NMMU3fmuJyY?=
+ =?us-ascii?Q?UlB6OJ0b08u/7nUBp8e5DW039Zil//vQhM2p24tG9tZN1UBqkL4E4pKKr4F8?=
+ =?us-ascii?Q?FYU0CTEbTxlhplLCpP3uFQE3PMuBfqOQ+oam90RvNFXsB/N+Q4dmyrE+eG6U?=
+ =?us-ascii?Q?PIIvu23F7GhIzQfM2lcTay31EMlJa+dDtZXfLE2WQw0Kvz7zBK4XKyJzjoox?=
+ =?us-ascii?Q?VQLmLzsVl1QncCpi4Kk290/+ILxI9eIMXfVoMBJK8rZKNt8QWVuViXmkoMNL?=
+ =?us-ascii?Q?6jBjluhds/jNHN88V3oTFvwBlA5QFR+P6j79M047rqsv5ox4Tm7qX2igVfsp?=
+ =?us-ascii?Q?VoUuiHGjoM7hPxXT3TVVj83M4pGyF1PgYD2vOqJ5h+s8n/ahVHCzFRbrMtKc?=
+ =?us-ascii?Q?m9qYcSvSF6X7fs89NLw1z6Vb06F6dmeKiVqxh0OCApw53M82JkK6/paiFKyl?=
+ =?us-ascii?Q?5O6azptsYexWc7NRJdqmBmuxDDEHvP3oId/p6NAnQL+wacO9zcP07ikhfFKl?=
+ =?us-ascii?Q?Qp6AMimem9csTqzGRtpiViEwWsndCP2LUbtf0kN+1sCKdwULJ7bRnIM2uDAx?=
+ =?us-ascii?Q?WIQAoPzSYbAbAvgEG9hMBrVoNn5w1WfUrm74Ura5F6JLtEUf6oJLh73xOKaL?=
+ =?us-ascii?Q?S/C4jcOYot3eX30DDxAwLNwFbNaRfqTocoeN4Ec6706UOV9twejBDElWtJpV?=
+ =?us-ascii?Q?RiC9cRAwmBf8oaPlwWa7HExPFeCTzV6c1aUNptW7AQm/FiHmuO+xbEYMXshp?=
+ =?us-ascii?Q?jCgZPf6sZt/esFBGwH9sFcNtWk0SDEvGCLOMhSnYrWQfq6IFsKqUIqS+9TJI?=
+ =?us-ascii?Q?1x5CdRF+p9uMU0a5XVloEEegfMkMt8NjF2+e9YwIMO4OBNqtsISD4aAZPEsa?=
+ =?us-ascii?Q?Wh77xx8ni2BXIbByByxKotnJQROuOM0IlPOz2G1d2y16s99/PbhKUVU99unT?=
+ =?us-ascii?Q?PWNcx3yNQ9H4Yui7h93ubGl/aq7eiIMLBFjBM0vqtrsJ4LbjM0b1QuanZlot?=
+ =?us-ascii?Q?PEdvq9oGolEBIMT7Haagiq2TTDa/QNoFrcfm+xe0zqysEV7OP1s1LuH4wwGH?=
+ =?us-ascii?Q?rTiat4nj13Aa6zZpOCURzs+OaWy2+zR8LCyyDmPSMabLxhiQ0jlHeeJSnw2G?=
+ =?us-ascii?Q?MXhXJvfAyhJS/KfBd1p7Cl3ohuk/DecDQ+TWFcvGW0b9No4mPGLtzzwqDe93?=
+ =?us-ascii?Q?BTp7hMEkO531aCq3rJR8XGwMw6n3L2v0KiPdKMF4?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6289.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e2eb1c5-c368-43af-1311-08da9d805594
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2022 16:26:14.3020
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ND+a3F8YdSyRpkdk5YXqgnRUdYlm9CUPkt/NBH2ORRIHe5/Yvcd3iY3NnNzRxv3Mngk3u8dFMzj63eCpnevIeg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7941
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Qualcomm SoC SLIMBus Non Generic Device (NGD) controller
-bindings to DT Schema.
 
-During conversion add iommus already present in DTS and extend the
-example based on SDM845.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/slimbus/qcom,slim-ngd.yaml       | 120 ++++++++++++++++++
- .../bindings/slimbus/slim-ngd-qcom-ctrl.txt   |  82 ------------
- 2 files changed, 120 insertions(+), 82 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/slimbus/qcom,slim-ngd.yaml
- delete mode 100644 Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt
+> -----Original Message-----
+> From: Sean Anderson <sean.anderson@seco.com>
+> Sent: Friday, September 23, 2022 11:11 AM
+> To: Leo Li <leoyang.li@nxp.com>; shawnguo@kernel.org;
+> devicetree@vger.kernel.org
+> Cc: robh+dt@kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; Laurentiu Tudor <laurentiu.tudor@nxp.com>
+> Subject: Re: [PATCH v2 5/9] arm64: dts: ls1046a: make dma-coherent global
+> to the SoC
+>=20
+>=20
+> Hi All,
+>=20
+> On 9/15/22 7:34 PM, Li Yang wrote:
+> > These SoCs are really completely dma coherent in their entirety so add
+> > the dma-coherent property at the soc level in the device tree and drop
+> > the instances where it's specifically added to a few select devices.
+> >
+> > Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
+> > Signed-off-by: Li Yang <leoyang.li@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 5 +----
+> >  1 file changed, 1 insertion(+), 4 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> > b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> > index 27033c558e3e..e406499a26b4 100644
+> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> > @@ -273,6 +273,7 @@ soc: soc {
+> >  		#size-cells =3D <2>;
+> >  		ranges;
+> >  		dma-ranges =3D <0x0 0x0 0x0 0x0 0x10000 0x00000000>;
+> > +		dma-coherent;
+> >
+> >  		ddr: memory-controller@1080000 {
+> >  			compatible =3D "fsl,qoriq-memory-controller"; @@ -
+> 355,7 +356,6 @@
+> > crypto: crypto@1700000 {
+> >  			ranges =3D <0x0 0x00 0x1700000 0x100000>;
+> >  			reg =3D <0x00 0x1700000 0x0 0x100000>;
+> >  			interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+> > -			dma-coherent;
+> >
+> >  			sec_jr0: jr@10000 {
+> >  				compatible =3D "fsl,sec-v5.4-job-ring", @@ -
+> 794,7 +794,6 @@ pcie1:
+> > pcie@3400000 {
+> >  			#address-cells =3D <3>;
+> >  			#size-cells =3D <2>;
+> >  			device_type =3D "pci";
+> > -			dma-coherent;
+> >  			num-viewport =3D <8>;
+> >  			bus-range =3D <0x0 0xff>;
+> >  			ranges =3D <0x81000000 0x0 0x00000000 0x40
+> 0x00010000 0x0 0x00010000   /* downstream I/O */
+> > @@ -834,7 +833,6 @@ pcie2: pcie@3500000 {
+> >  			#address-cells =3D <3>;
+> >  			#size-cells =3D <2>;
+> >  			device_type =3D "pci";
+> > -			dma-coherent;
+> >  			num-viewport =3D <8>;
+> >  			bus-range =3D <0x0 0xff>;
+> >  			ranges =3D <0x81000000 0x0 0x00000000 0x48
+> 0x00010000 0x0 0x00010000   /* downstream I/O */
+> > @@ -874,7 +872,6 @@ pcie3: pcie@3600000 {
+> >  			#address-cells =3D <3>;
+> >  			#size-cells =3D <2>;
+> >  			device_type =3D "pci";
+> > -			dma-coherent;
+> >  			num-viewport =3D <8>;
+> >  			bus-range =3D <0x0 0xff>;
+> >  			ranges =3D <0x81000000 0x0 0x00000000 0x50
+> 0x00010000 0x0 0x00010000   /* downstream I/O */
+> >
+>=20
+> I'd like to summarize the conclusions of [1] below. This patch breaks I2C=
+0,
+> which is the only user of eDMA at the moment. eDMA is noncoherent
+> because snooping is not enabled for it. I have submitted a patch [2] to U=
+-
+> Boot to enable snooping for eDMA. For now, this patch must add dma-
+> noncoherent to the i2c0 node.
 
-diff --git a/Documentation/devicetree/bindings/slimbus/qcom,slim-ngd.yaml b/Documentation/devicetree/bindings/slimbus/qcom,slim-ngd.yaml
-new file mode 100644
-index 000000000000..abf61c15246e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/slimbus/qcom,slim-ngd.yaml
-@@ -0,0 +1,120 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SoC SLIMBus Non Generic Device (NGD) Controller
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-+
-+description:
-+  SLIMBus NGD controller is a light-weight driver responsible for communicating
-+  with SLIMBus slaves directly over the bus using messaging interface and
-+  communicating with master component residing on ADSP for bandwidth and
-+  data-channel management
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,slim-ngd-v1.5.0        # for MSM8996
-+      - qcom,slim-ngd-v2.1.0        # for SDM845
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+patternProperties:
-+  "^slim@[0-9a-f]+$":
-+    type: object
-+    $ref: slimbus.yaml#
-+    description:
-+      Each subnode represents an instance of NGD
-+
-+    properties:
-+      reg:
-+        maxItems: 1
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - dmas
-+  - dma-names
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    slim-ngd@171c0000 {
-+        compatible = "qcom,slim-ngd-v2.1.0";
-+        reg = <0x171c0000 0x2c000>;
-+        interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
-+
-+        dmas = <&slimbam 3>, <&slimbam 4>;
-+        dma-names = "rx", "tx";
-+        iommus = <&apps_smmu 0x1806 0x0>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        slim@1 {
-+            reg = <1>;
-+            #address-cells = <2>;
-+            #size-cells = <0>;
-+
-+            codec@1,0 {
-+                compatible = "slim217,250";
-+                reg = <1 0>;
-+                slim-ifc-dev = <&wcd9340_ifd>;
-+
-+                #sound-dai-cells = <1>;
-+
-+                interrupts-extended = <&tlmm 54 IRQ_TYPE_LEVEL_HIGH>;
-+                interrupt-controller;
-+                #interrupt-cells = <1>;
-+
-+                #clock-cells = <0>;
-+                clock-frequency = <9600000>;
-+                clock-output-names = "mclk";
-+                qcom,micbias1-microvolt = <1800000>;
-+                qcom,micbias2-microvolt = <1800000>;
-+                qcom,micbias3-microvolt = <1800000>;
-+                qcom,micbias4-microvolt = <1800000>;
-+
-+                #address-cells = <1>;
-+                #size-cells = <1>;
-+
-+                reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
-+
-+                /* Rest of the WCD9340 codec */
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt b/Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt
-deleted file mode 100644
-index 7c3d9eb6af5d..000000000000
---- a/Documentation/devicetree/bindings/slimbus/slim-ngd-qcom-ctrl.txt
-+++ /dev/null
-@@ -1,82 +0,0 @@
--Qualcomm SLIMBus Non Generic Device (NGD) Controller binding
--
--SLIMBus NGD controller is a light-weight driver responsible for communicating
--with SLIMBus slaves directly over the bus using messaging interface and
--communicating with master component residing on ADSP for bandwidth and
--data-channel management
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "qcom,slim-ngd-v<MAJOR>.<MINOR>.<STEP>"
--	must be one of the following.
--	"qcom,slim-ngd-v1.5.0" for MSM8996
--	"qcom,slim-ngd-v2.1.0" for SDM845
--
--- reg:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: must specify the base address and size of the controller
--		    register space.
--- dmas
--	Usage: required
--	Value type: <array of phandles>
--	Definition: List of rx and tx dma channels
--
--- dma-names
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "rx" and "tx".
--
--- interrupts:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: must list controller IRQ.
--
--#address-cells
--	Usage: required
--	Value type: <u32>
--	Definition: Should be 1, reflecting the instance id of ngd.
--
--#size-cells
--	Usage: required
--	Value type: <u32>
--	Definition: Should be 0
--
--= NGD Devices
--Each subnode represents an instance of NGD, must contain the following
--properties:
--
--- reg:
--	Usage: required
--	Value type: <u32>
--	Definition: Should be instance id of ngd.
--
--#address-cells
--	Usage: required
--	Refer to slimbus/bus.txt for details of the common SLIMBus bindings.
--
--#size-cells
--	Usage: required
--	Refer to slimbus/bus.txt for details of the common SLIMBus bindings.
--
--= EXAMPLE
--
--slim@91c0000 {
--	compatible = "qcom,slim-ngd-v1.5.0";
--	reg = <0x91c0000 0x2c000>;
--	interrupts = <0 163 0>;
--	dmas =	<&slimbam 3>, <&slimbam 4>;
--	dma-names = "rx", "tx";
--	#address-cells = <1>;
--	#size-cells = <0>;
--	ngd@1 {
--		reg = <1>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		codec@1 {
--			compatible = "slim217,1a0";
--			reg  = <1 0>;
--		};
--	};
--};
--- 
-2.34.1
+I have sent a V3 yesterday to set dma-noncoherent on edma node.  But are yo=
+u saying that the dma-noncoherent need to be added to the i2c node to make =
+it work?
 
+For the u-boot patch, I will check with the hardware team to see if it is s=
+afe to set the reserved bit for edma snooping.  There is a problem with thi=
+s is that it breaks the i2c for older u-boot.  Probably the best way is to =
+make the default to be non-coherent in dts and update it in u-boot when sno=
+oping is enabled?
+
+Regards,
+Leo
