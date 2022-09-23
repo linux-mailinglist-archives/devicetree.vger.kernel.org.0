@@ -2,130 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28F0E5E7FF5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 18:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AED805E802D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 18:54:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232177AbiIWQhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 12:37:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52236 "EHLO
+        id S229511AbiIWQyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 12:54:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbiIWQhg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 12:37:36 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70042.outbound.protection.outlook.com [40.107.7.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F231314C9F0;
-        Fri, 23 Sep 2022 09:35:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=md8Yxue+SO/L/5pmw9YmA4bkwoq6z/oZZoXXMrgjOZbtgbn/k5/jjjgkZbBFkP5M+tBO/SlzMfVEFbhf9aa2wOP2CAj7daGiciR5K3+2rHReSvnH97yfY9cr60vqSjtHpvlF7WhjVktiI2qBc2a0S8wZ5CLITcdedSB2OaXIY4NZr09ffJykwjCVSirjRziKJE1Tbmjx9+ZcPCRj9TYeIxCrKeXFuiVS3qzTGJzQM77qZplZrX7To42scQHMp/0/oaeM2HZ7E4vcYVJ3zki69CYOn+N1O1j2pLKzZCsMrac52rUDgfTXTMpEmLNzr6TqV722rZdbtPfa0ilHdTtrcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h8qvM2/fXIf3bkW58Qd44st1VcymDqprufHaShR5y0Y=;
- b=JprsVMf5ZmKojtEvFb+T2euTulf+WGAx/FgmPkiBeEAthMPNvUbTfchNTmbimBdiUdAMx1kfSJkbVTKdHv4fSJ3xnJIxD04/RM1hTw4eiUrBMNhONFIoIhLEIKG3TerGP9tlzcY2cyWgiL3sCgD8JTux3ScmnlX7aNtopZnLGcnJBbv20TWaEB7DMcDilpMZSeFH0d4viRQL+CJ3KqrhrEDvU4JqqNLsn6TpBfAYywXyfvIEZA9Xx3zu6bi81+aThaZBhpGiZ28qQcpCEsbbnBuLT1eYOgPMBVr83guvURMpAUDW4cXbk8gKjWoRygtr7ouje/+GV/ZqwkILJy8DXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h8qvM2/fXIf3bkW58Qd44st1VcymDqprufHaShR5y0Y=;
- b=0x8/29vCVAamWckrGYo07aHVyjHCT0kzpS0DZ9lQYIDW87+0XHuS+MyslS3QR3sEZ4LEoVrADmukwgU4tSz02Xhg0d2vjwPWkibhTkms2mQJUc52MFWWzlZXP5h86C3Se2cS17iBYbdz9CXJ+kj5HrfcZ2Radn6xiYTVryX3IQANf4v7MZng3b/35Mj0y/LMeCELrH/fv8NSOZk6vzRquf7oVJeZI0cob++Mzk0d0eCZaT0BmbuWOM0KAnVYqCGd8CYx5LVLNI8JjpKsIV1ArMPp6QtSMMDaYwd1gOjCSuBDZ0JOjC2bjfqi/XW7wxk08GKsj+ZL8RBS/jZ9UZ6+Rg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
- by DU2PR03MB8123.eurprd03.prod.outlook.com (2603:10a6:10:2f2::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.19; Fri, 23 Sep
- 2022 16:35:04 +0000
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::204a:de22:b651:f86d]) by DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::204a:de22:b651:f86d%6]) with mapi id 15.20.5654.014; Fri, 23 Sep 2022
- 16:35:04 +0000
-Subject: Re: [PATCH v2 5/9] arm64: dts: ls1046a: make dma-coherent global to
- the SoC
-To:     Leo Li <leoyang.li@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Laurentiu Tudor <laurentiu.tudor@nxp.com>
-References: <20220915233432.31660-1-leoyang.li@nxp.com>
- <20220915233432.31660-6-leoyang.li@nxp.com>
- <e27d295b-abbf-716c-5e0d-97dd63ce07df@seco.com>
- <AM0PR04MB6289919428F12CD125357D4F8F519@AM0PR04MB6289.eurprd04.prod.outlook.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <1db9ffaa-3c93-9e09-8966-73aba061f52e@seco.com>
-Date:   Fri, 23 Sep 2022 12:35:00 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <AM0PR04MB6289919428F12CD125357D4F8F519@AM0PR04MB6289.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BLAPR03CA0094.namprd03.prod.outlook.com
- (2603:10b6:208:32a::9) To DB7PR03MB4972.eurprd03.prod.outlook.com
- (2603:10a6:10:7d::22)
+        with ESMTP id S230089AbiIWQyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 12:54:44 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAF6920BC7;
+        Fri, 23 Sep 2022 09:54:40 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id b6so701950ljr.10;
+        Fri, 23 Sep 2022 09:54:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date;
+        bh=tiXj+Dz4ei5i2qCVY3Rkx+BmGOyqwmCCzdG7Jn+QGTk=;
+        b=F3WN56PKWbphT1JrQEqmg1ejVprtZa1yknl9wkWc1vAXa5BEkMNrNIfguAqsVDjjbL
+         XfSPNl7+PApmhhGHXLzo73U9wnFiuzW0cTr6Ft+k5VnVMMEjO3I+vhsbiRxPfmYrW4gJ
+         BVNK56RJZHIUFNPIXrus+kKdMXgadZACOWjmdgh1wnXy7kzwmoXzA6k5kwnrnqX4bfFb
+         ZnCrj6f4ucWMn9wzbCANTxsuqzVasx77AVkO/AQabBw1cbN8TsghXSMaHKaXvk1RsxeL
+         yuXtWZqUHiqJCc9T3s6k3665Cyi+YE9/Z5VYJPPOVEJlEVcclVdLDV0Sq6AEjU8LVHY4
+         aveg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date;
+        bh=tiXj+Dz4ei5i2qCVY3Rkx+BmGOyqwmCCzdG7Jn+QGTk=;
+        b=NFzDyRYnk+VaFzeH19SXvZbFgLH5oduZ27w/5Hog+Ub3p3/jchQilpLfjb/85ncLdw
+         OGTzUpZazfgvxx02MmohdzlRZl60tmSEshenxUOwZZpCPohxB0ImeSXlcnqo12agwfC0
+         SRi6iGm6GxKgWmlHcz/U4gcuVea265lLfdXatqepon/1himdHT3Rh7ACpz65S01TRlLS
+         M4iR8Tj2ohqOKMgPskeZUuDN4aLIGTusajfNNR2130wOSah9XGtR7Aj8GCpnyoR1+DA5
+         dcET7Lqm0uR6NBe+sqevZNJBZFtGI8lYbrpWowf+7D3XFT55rcHvhSTFtmE0wgxRTc5g
+         /m3Q==
+X-Gm-Message-State: ACrzQf18OCUqSCH2gy7sM7ETDAJ2EsV5/7J/QhDHNMpkHGJZxfIViyRt
+        HOWU7WzagznM5AhAHqTThmjN/n13Hl+H0w==
+X-Google-Smtp-Source: AMsMyM5HV1qCIpwo3CzmtrEeDU1GlAdxr2vws8CH3jh6cOQtK+2psMqirj8uVm+hFrG4i+Vr+MUhhw==
+X-Received: by 2002:a05:651c:199f:b0:26c:4a66:aa4e with SMTP id bx31-20020a05651c199f00b0026c4a66aa4emr3462192ljb.321.1663952078988;
+        Fri, 23 Sep 2022 09:54:38 -0700 (PDT)
+Received: from razdolb ([213.87.132.215])
+        by smtp.gmail.com with ESMTPSA id f12-20020a056512092c00b00498f0434efdsm1530694lft.19.2022.09.23.09.54.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Sep 2022 09:54:38 -0700 (PDT)
+References: <20220923152000.GA444697@tom-ThinkPad-T14s-Gen-2i>
+User-agent: mu4e 1.9.0; emacs 28.2
+From:   Mikhail Rudenko <mike.rudenko@gmail.com>
+To:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Cc:     heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: px30-evb crash on 6.0.0-rc6, u2phy_otg, otg-port issue
+Date:   Fri, 23 Sep 2022 19:48:34 +0300
+In-reply-to: <20220923152000.GA444697@tom-ThinkPad-T14s-Gen-2i>
+Message-ID: <8735cihvzn.fsf@gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR03MB4972:EE_|DU2PR03MB8123:EE_
-X-MS-Office365-Filtering-Correlation-Id: d397c17a-62d1-4a81-8863-08da9d819181
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eUo+jRIz7kY+lv0LpGBSzY4TUIP7QZejdtRqE8bh7aBbjpzG489IpCZqfqadpvMI28nxbogHMnZHz4NNJf9GJC74hlL/Ok1uAlUL/LqMIzMqXErV+FZ2Ibj1yrLUcRDDQrezxdNgBdSEcEMoqktVjg4+qDcbNI2I3F9rli4KIqd6GTYpACvFO5YOd3M7Q0sNDiCufpW8cbdotfB5aB9e3gKiPmmiEazPiy+fLBw8/fcpdYh4D26KG/5XgpQEkM+LuCn91/DEzVUky+XqTr6jLPL5btGE45kgIC2jFcV2hlhF+RltJ6UhwFpNmGhAyt+dlqiDLQybysoeGcSbMXXYtHvQUm9yvQTFkKS7pARKv9Itor2Q+jRzVlKPW+TOxwblFFei1pKzzKnlDesW/5suTfXPwUCbd+uy4GihUV7kh7P5SQcssie6Hio43ETcllfLw9gIQCfJbVgI96oVMCWPqJLGSBf30RMNIVJGofcVfH9QohsdJy6wx+CFUeEP+cTztD25OLOIwlDbyI01poTeHSejI9uAOmRzD48IfeMQ7D2H11Sx11oMz4sEP579pbKtOfwa7dWTEPh4C5qtVfylgmgJqh5o/x5lINA3Dd+EINIK1gjq3jejiNp8gjov+5gxuNfWLjtQkBPdOw+lQk9PBXrgSGFGmODwKpIp+f6DYWt9mBl52VicnniuIwzHxJ34yT9lAJtjGtH5kL0lssgSCCmScGk8PZxpC/TCv0JybUt1KQqvB9ea60TYyf32bnJIerAz0edpGPjMn4O7g1yZYwMHRp3Bj9M2R4M0uZuEsybNnmRx7f5miT8Pwxn/cfvCIupzv1XjFCrbDIRFrMjBEg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(396003)(39850400004)(136003)(366004)(346002)(376002)(451199015)(110136005)(316002)(54906003)(66946007)(6506007)(83380400001)(478600001)(6486002)(2616005)(36756003)(38350700002)(44832011)(6512007)(31696002)(2906002)(5660300002)(8936002)(52116002)(53546011)(26005)(186003)(38100700002)(4326008)(8676002)(66476007)(6666004)(66556008)(41300700001)(31686004)(86362001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M0Q0aTF4WmdodDVvT24rZjVQNjRzRlh1dGdsbkZmaDBSQkdPbGJBQjlJbzBZ?=
- =?utf-8?B?VmJlWS9Ud3U1K3FjVTBFTmZwMmU4SXhmOEllZTdWN3BxN1Bzajl3Sjc3Z1pu?=
- =?utf-8?B?L2UwKzc3SzhxZW9obUFMMlBkRndaVk53R0tBUE9EUjFCZnZTN1lpMXRVaC9D?=
- =?utf-8?B?Qlh1YVJoeWkvY3hxK0RQNWhxd2pjNTBxYUhYaTFUK3JETWxYME41aFFEU0ht?=
- =?utf-8?B?cUZIREpwa0EyTzdrSU8xemJ3dks0TS92TWFuWUM2TUZYNHJycVVxY0ZqMlZW?=
- =?utf-8?B?NlIydTVIdi9vdmluOGhnOGg4QjNwNU10ZnB5VmU0eGhvTmVkNzJMVGVIMWh2?=
- =?utf-8?B?dFptRml6N3lUVUw2VjdBMklwKzBpclRVb2czQnBIeUE2UEE3MjhNRWQ3TDhY?=
- =?utf-8?B?d3FCTGw2UmQ2eXFodEF6R211RERxeUwvMHJYSTd2WWorWHlmRGszMXF4WUhR?=
- =?utf-8?B?SGIwMmVYN1JjR1ZvY0hTbHFBWmgzZVczVjFPY1ovMlNXVHlvN0o2Q0JtY0V4?=
- =?utf-8?B?cjFRcWlSMXpBdmxOeXVkQ0hEbmluS2lDUkxlNGlua3M5NjkwSjZlK3hyUnhP?=
- =?utf-8?B?dVdobzhmTktCb0p2VTF2Q0cvM0RTczlvUXMzY3VCZVhrVk5jdWt5K1YwWHNK?=
- =?utf-8?B?R0JZMy9lclpOcmJNOVNMNk4vSFFiY3JDaVZCN01ndEtrTVJtRzhkaW1tV1Fp?=
- =?utf-8?B?V2ltdmplZ1BpUm04RjNRcXR2SU40YXlLMWVwQWZOaTNQMVFqWC9pUSt5YlVK?=
- =?utf-8?B?aEJTSnJVc2xJaHlIMURFUWlEMWZsRXhxVFFLWUpFVmxSZmtSeTdaR3NCcTcv?=
- =?utf-8?B?T2xuSjZodnJwWWtKbnN1TVBDOG5GbG9oNmxVaGtNTTJhNGFWaFZRclFZK3Fs?=
- =?utf-8?B?VS9HQTkvOFlLUDNwcHZoUHFQUXNVS2FnL29SOThSVTVvdjdzWkVXZXdwYXZJ?=
- =?utf-8?B?ZzVaMFJzV1RXM25obHhWaUg0eExGbUVHcWY0TVBTMU85Vyt2aTlNenFMdGp0?=
- =?utf-8?B?TEFKL2ZzZnFlQ2RjMmpSY25zUktoYjlndDdPWXZNVlhtRUlQbzAzNGpqcUlO?=
- =?utf-8?B?RzN2bE9YK0RNakMvcStIRno2Q3BYNC8vTjQvQjNuRkwrTzZoTEh2UVJvMVFr?=
- =?utf-8?B?cWNjMmRQUzJGSCswNEoxZHJTNDdsVVhFNkxOOWRHZTFzTnJic3J5WkN3S3Vv?=
- =?utf-8?B?WXBsZTZmbU8zbTIxWEsrejBERjBTMzNoTzNDK2NJT3I1RmJlMVlBbTVjV0Nk?=
- =?utf-8?B?VkgrNml6ZkVwbnBJU1VxaHl6RldreHpYa0xjV2VXcXFmTk0rRmFuT3gvZzVp?=
- =?utf-8?B?RmdvMWpuUjJBMFJxcFo3dWtsbnR6NWhCREF6MDBjYm1OZW9pbWlvUm12bFMw?=
- =?utf-8?B?UXdYNFhjelJIL2JvQ0d4bk9INkVnRHdocDdmeWFlR3M1eExxeVdkdnM2eU9Y?=
- =?utf-8?B?R3lYdFhQQWJDSEFscncyczMyOGZ6bVF3SDNxUVNFcEVObXlCRmJNVXBnWExr?=
- =?utf-8?B?THNmb0tsTEhhdDNIbEo2UXYzZVl2NFhQMzdZb3U5WXNxNnZuSmw1dWw4eGcx?=
- =?utf-8?B?cUVPRUJHNXVvL2g0eHZHWFozMnY3cmlCVXZiby92Vit2bDY0V044cXRsN1c1?=
- =?utf-8?B?Y0xYelpBclJzNDh4ODhNOGRQemFRQU4yODFOa3F1TzdMWEZGVlVySGhrV01B?=
- =?utf-8?B?M3NoUVZSaklkQm0xYzR4MkRIamo5OXBCbUlNQlg1NGl1N2w5R0ZFOVltT3pm?=
- =?utf-8?B?M3RBZGVrSktDMHZEMHhmTXUzaXNva25uRWZ5dkNGN3dldkdXR2VxeG5mUm1D?=
- =?utf-8?B?WWJGYWdhdjR3SzZuRmN0dUVBbFNFZFR0a2xTM3o4UjJGdXJQaVVndGZlQUMz?=
- =?utf-8?B?T3pGMGtPUXV2aG83K0YyWkN5M2IzYjNHb3dVTngzTklRUXdlSzh3YnBLNTBC?=
- =?utf-8?B?Qi9kSGRkV2RYZEtBckZ1UWtlMGRTL2E5bWdmNklzd3FPM016a2ovclU5NjQ2?=
- =?utf-8?B?d2NobFB0OXVHMDFuVGtsZVp2RnBjSk5hNkVEd2ExWGF5Ym1MZ0R6OUNVcWhr?=
- =?utf-8?B?b3lwY0dwTHdZYWlKV1BPQ0NzZHZEc3NHQXZ1QVBDOXJSTGEyRzNkeXVIUCtn?=
- =?utf-8?B?c3Y3dW1EN1JMTVFVUWVYVFNseGVLN0FaaUpJell6UkYvd2xNTmM4WEFhMU45?=
- =?utf-8?B?THc9PQ==?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d397c17a-62d1-4a81-8863-08da9d819181
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2022 16:35:04.4967
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fCffODS3kAaFCcpk/dbTTbiXc5DwM5GXf8CSQ9AVEoUTexRfLZJyIYl3PoDPTv557sCFdFX6zWGZ+zQ11VNBrQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR03MB8123
+Content-Type: text/plain
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -134,103 +70,175 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+Hi Tommaso,
 
-On 9/23/22 12:26 PM, Leo Li wrote:
-> 
-> 
->> -----Original Message-----
->> From: Sean Anderson <sean.anderson@seco.com>
->> Sent: Friday, September 23, 2022 11:11 AM
->> To: Leo Li <leoyang.li@nxp.com>; shawnguo@kernel.org;
->> devicetree@vger.kernel.org
->> Cc: robh+dt@kernel.org; linux-arm-kernel@lists.infradead.org; linux-
->> kernel@vger.kernel.org; Laurentiu Tudor <laurentiu.tudor@nxp.com>
->> Subject: Re: [PATCH v2 5/9] arm64: dts: ls1046a: make dma-coherent global
->> to the SoC
->> 
->> 
->> Hi All,
->> 
->> On 9/15/22 7:34 PM, Li Yang wrote:
->> > These SoCs are really completely dma coherent in their entirety so add
->> > the dma-coherent property at the soc level in the device tree and drop
->> > the instances where it's specifically added to a few select devices.
->> >
->> > Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
->> > Signed-off-by: Li Yang <leoyang.li@nxp.com>
->> > ---
->> >  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 5 +----
->> >  1 file changed, 1 insertion(+), 4 deletions(-)
->> >
->> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
->> > b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
->> > index 27033c558e3e..e406499a26b4 100644
->> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
->> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
->> > @@ -273,6 +273,7 @@ soc: soc {
->> >  		#size-cells = <2>;
->> >  		ranges;
->> >  		dma-ranges = <0x0 0x0 0x0 0x0 0x10000 0x00000000>;
->> > +		dma-coherent;
->> >
->> >  		ddr: memory-controller@1080000 {
->> >  			compatible = "fsl,qoriq-memory-controller"; @@ -
->> 355,7 +356,6 @@
->> > crypto: crypto@1700000 {
->> >  			ranges = <0x0 0x00 0x1700000 0x100000>;
->> >  			reg = <0x00 0x1700000 0x0 0x100000>;
->> >  			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
->> > -			dma-coherent;
->> >
->> >  			sec_jr0: jr@10000 {
->> >  				compatible = "fsl,sec-v5.4-job-ring", @@ -
->> 794,7 +794,6 @@ pcie1:
->> > pcie@3400000 {
->> >  			#address-cells = <3>;
->> >  			#size-cells = <2>;
->> >  			device_type = "pci";
->> > -			dma-coherent;
->> >  			num-viewport = <8>;
->> >  			bus-range = <0x0 0xff>;
->> >  			ranges = <0x81000000 0x0 0x00000000 0x40
->> 0x00010000 0x0 0x00010000   /* downstream I/O */
->> > @@ -834,7 +833,6 @@ pcie2: pcie@3500000 {
->> >  			#address-cells = <3>;
->> >  			#size-cells = <2>;
->> >  			device_type = "pci";
->> > -			dma-coherent;
->> >  			num-viewport = <8>;
->> >  			bus-range = <0x0 0xff>;
->> >  			ranges = <0x81000000 0x0 0x00000000 0x48
->> 0x00010000 0x0 0x00010000   /* downstream I/O */
->> > @@ -874,7 +872,6 @@ pcie3: pcie@3600000 {
->> >  			#address-cells = <3>;
->> >  			#size-cells = <2>;
->> >  			device_type = "pci";
->> > -			dma-coherent;
->> >  			num-viewport = <8>;
->> >  			bus-range = <0x0 0xff>;
->> >  			ranges = <0x81000000 0x0 0x00000000 0x50
->> 0x00010000 0x0 0x00010000   /* downstream I/O */
->> >
->> 
->> I'd like to summarize the conclusions of [1] below. This patch breaks I2C0,
->> which is the only user of eDMA at the moment. eDMA is noncoherent
->> because snooping is not enabled for it. I have submitted a patch [2] to U-
->> Boot to enable snooping for eDMA. For now, this patch must add dma-
->> noncoherent to the i2c0 node.
-> 
-> I have sent a V3 yesterday to set dma-noncoherent on edma node.  But are you saying that the dma-noncoherent need to be added to the i2c node to make it work?
+On 2022-09-23 at 17:20 +02, Tommaso Merciai <tommaso.merciai@amarulasolutions.com> wrote:
 
-I believe dma coherency is a property of the consumer, not the provider. See
-e.g. really_probe/platform_dma_configure/of_dma_configure/of_dma_is_coherent.
+> Hello Heiko,
+> I'm playing with px30_mini_evb_v11_20190507 board on linux 6.0.0-rc6.
+> We have some problems on "rockchip,px30-usb2phy" driver in particular in
+> u2phy_otg: otg-port node (px30-evb.dts). Disabling this I'm able to boot
+> the board:
+>
+> &u2phy {
+> 	status = "okay";
+>
+> 	u2phy_host: host-port {
+> 		status = "okay";
+> 	};
+>
+> 	u2phy_otg: otg-port {
+> 		status = "disabled";
+> 	};
+> };
+>
+> In particular we have some problems here:
+>
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index bd0b35cac83e3..42647cd660bbf 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -4084,7 +4084,9 @@ static int clk_nodrv_prepare_enable(struct clk_hw *hw)
+>
+> static void clk_nodrv_disable_unprepare(struct clk_hw *hw)
+> {
+>       WARN_ON_ONCE(1);
+> }
+>
+> logs:
+>
+> [    1.269466] rockchip-usb2phy: probe of ff2c0000.syscon:usb2phy@100 failed with error 1
+> [    1.279044] ------------[ cut here ]------------
+> [    1.284135] WARNING: CPU: 0 PID: 1 at drivers/clk/clk.c:4087 clk_nodrv_disable_unprepare+0x4/0x10
+> [    1.293913] Modules linked in:
+> [    1.297276] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 6.0.0-rc6-00220-gb82580766e4c #147
+> [    1.306172] Hardware name: Rockchip PX30 EVB (DT)
+> [    1.311338] pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> [    1.318993] pc : clk_nodrv_disable_unprepare+0x4/0x10
+> [    1.324549] lr : clk_core_disable+0x60/0xb8
+> [    1.329152] sp : ffff80000a5eba20
+> [    1.332793] x29: ffff80000a5eba20 x28: 0000000000000007 x27: ffff800009b96068
+> [    1.340657] x26: ffff800009ad0400 x25: ffff80000a52b000 x24: 0000000000000000
+> [    1.348516] x23: ffff0000038f5300 x22: 0000000000000000 x21: 0000000000000000
+> [    1.356376] x20: ffff0000038f5300 x19: ffff0000038f5300 x18: ffff000002c76610
+> [    1.364240] x17: 000000005a2f9018 x16: 000000008b35b0bc x15: ffff000003097740
+> [    1.372100] x14: 0000000000000000 x13: ffff000002c76610 x12: ffff0000030976c0
+> [    1.379961] x11: 000000ffffffffff x10: ffff000002c76618 x9 : ffff000002c76610
+> [    1.387822] x8 : ffff0000038f5300 x7 : ffff000002ce0000 x6 : 0000000000000000
+> [    1.395683] x5 : 0000000000000000 x4 : 0000000000000000 x3 : ffff80000a592748
+> [    1.403545] x2 : 0000000000000001 x1 : ffff8000086d7c88 x0 : ffff00000366f8a8
+> [    1.411407] Call trace:
+> [    1.414091]  clk_nodrv_disable_unprepare+0x4/0x10
+> [    1.419269]  clk_core_disable_lock+0x24/0x40
+> [    1.423967]  clk_core_disable_unprepare+0x18/0x38
+> [    1.429145]  __clk_set_parent_after+0x60/0x68
+> [    1.433940]  clk_core_set_parent_nolock+0x160/0x250
+> [    1.439311]  clk_unregister+0xe4/0x240
+> [    1.443443]  rockchip_usb2phy_clk480m_unregister+0x28/0x38
+> [    1.449482]  devm_action_release+0x14/0x20
+> [    1.453996]  release_nodes+0x40/0x70
+> [    1.457934]  devres_release_all+0x94/0xe0
+> [    1.462344]  device_unbind_cleanup+0x18/0x68
+> [    1.467043]  really_probe+0x1d0/0x2b8
+> [    1.471070]  __driver_probe_device+0x7c/0xe8
+> [    1.475771]  driver_probe_device+0x38/0x100
+> [    1.480373]  __driver_attach+0xa8/0x138
+> [    1.484595]  bus_for_each_dev+0x7c/0xd8
+> [    1.488816]  driver_attach+0x24/0x30
+> [    1.492750]  bus_add_driver+0x15c/0x210
+> [    1.496968]  driver_register+0x64/0x120
+> [    1.501190]  __platform_driver_register+0x28/0x38
+> [    1.506367]  rockchip_usb2phy_driver_init+0x1c/0x28
+> [    1.511733]  do_one_initcall+0x60/0x1f0
+> [    1.515957]  kernel_init_freeable+0x22c/0x2a0
+> [    1.520757]  kernel_init+0x24/0x130
+> [    1.524604]  ret_from_fork+0x10/0x20
+> [    1.528539] ---[ end trace 0000000000000000 ]---
+> [    1.562178] EINJ: ACPI disabled.
+>
+> and after a bit:
+>
+> [    3.280015] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+> [    3.280034] Mem abort info:
+> [    3.280037]   ESR = 0x0000000086000004
+> [    3.280041]   EC = 0x21: IABT (current EL), IL = 32 bits
+> [    3.280048]   SET = 0, FnV = 0
+> [    3.280052]   EA = 0, S1PTW = 0
+> [    3.280056]   FSC = 0x04: level 0 translation fault
+> [    3.280061] [0000000000000000] user address but active_mm is swapper
+> [    3.280069] Internal error: Oops: 86000004 [#1] PREEMPT SMP
+> [    3.280077] Modules linked in:
+> [    3.280092] CPU: 0 PID: 9 Comm: kworker/u8:0 Tainted: G        W          6.0.0-rc6-00220-gb82580766e4c #147
+> [    3.280103] Hardware name: Rockchip PX30 EVB (DT)
+> [    3.280111] Workqueue: events_unbound async_run_entry_fn
+> [    3.280140] pstate: 00000005 (nzcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> [    3.280150] pc : 0x0
+> [    3.280160] lr : call_timer_fn.isra.30+0x24/0x80
+> [    3.280171] sp : ffff80000a62b470
+> [    3.280175] x29: ffff80000a62b470 x28: 0000000000000010 x27: 0000000000000004
+> [    3.280190] x26: 0000000000000000 x25: 0000000000000000 x24: dead000000000122
+> [    3.280204] x23: ffff800009a03000 x22: ffff80000a1d7000 x21: 0000000000000000
+> [    3.280219] x20: 0000000000000101 x19: ffff000002d78000 x18: ffffffffffffffff
+> [    3.280234] x17: ffff800075f19000 x16: ffff800008004000 x15: 00009726b6a67ac4
+> [    3.280248] x14: 00000000000000c4 x13: 00000000000000c4 x12: ffff00007fb58d40
+> [    3.280262] x11: 4200000000000000 x10: ffff00007fb52070 x9 : 0000000000000001
+> [    3.280276] x8 : 0000000000000000 x7 : ffffffffffffffff x6 : 0000000000000000
+> [    3.280290] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 0000000000000200
+> [    3.280303] x2 : 000000003fffffff x1 : 0000000000000000 x0 : ffff00000366fb10
+> [    3.280318] Call trace:
+> [    3.280322]  0x0
+> [    3.280329]  run_timer_softirq+0x3c0/0x408
+> [    3.280339]  __do_softirq+0x11c/0x288
+> [    3.280348]  irq_exit_rcu+0xe8/0x108
+> [    3.280361]  el1_interrupt+0x3c/0x70
+> [    3.280374]  el1h_64_irq_handler+0x18/0x28
+> [    3.280384]  el1h_64_irq+0x64/0x68
+> [    3.280391]  console_emit_next_record.constprop.47+0x1a8/0x2c8
+> [    3.280404]  console_unlock+0x1a0/0x1e0
+> [    3.280414]  vprintk_emit+0x1c4/0x2d0
+> [    3.280423]  dev_vprintk_emit+0x148/0x178
+> [    3.280431]  dev_printk_emit+0x64/0x88
+> [    3.280439]  __dev_printk+0x5c/0x7c
+> [    3.280447]  _dev_info+0x6c/0x90
+> [    3.280455]  dw_mci_setup_bus+0x114/0x218
+> [    3.280467]  dw_mci_set_ios+0x12c/0x270
+> [    3.280475]  mmc_power_up.part.21+0xa4/0xf8
+> [    3.280486]  mmc_start_host+0xac/0xb8
+> [    3.280494]  mmc_add_host+0x7c/0xe8
+> [    3.280503]  dw_mci_probe+0x970/0xfc8
+> [    3.280511]  dw_mci_pltfm_register+0xa0/0xd8
+> [    3.280520]  dw_mci_rockchip_probe+0x84/0x148
+> [    3.280530]  platform_probe+0x68/0xe0
+> [    3.280544]  really_probe+0xc0/0x2b8
+> [    3.280552]  __driver_probe_device+0x7c/0xe8
+> [    3.280561]  driver_probe_device+0x38/0x100
+> [    3.280570]  __driver_attach_async_helper+0x30/0x58
+> [    3.280579]  async_run_entry_fn+0x30/0xd8
+> [    3.280590]  process_one_work+0x1fc/0x350
+> [    3.280601]  worker_thread+0x44/0x440
+> [    3.280609]  kthread+0x10c/0x118
+> [    3.280617]  ret_from_fork+0x10/0x20
+> [    3.280639] Code: bad PC value
+> [    3.280652] ---[ end trace 0000000000000000 ]---
+> [    3.280661] Kernel panic - not syncing: Oops: Fatal exception in interrupt
+> [    3.280667] SMP: stopping secondary CPUs
+> [    3.280747] Kernel Offset: disabled
+> [    3.280750] CPU features: 0x0000,00000020,00001086
+> [    3.280758] Memory Limit: none
+> [    3.696667] ---[ end Kernel panic - not syncing: Oops: Fatal exception in interrupt ]---
+>
+> I'm missing something? Let me know.
+> Thanks in advance.
 
-> For the u-boot patch, I will check with the hardware team to see if it is safe to set the reserved bit for edma snooping.
+I had a similar issue on Rockchip 3399 [1], maybe it is related to your case?
 
-Thanks. I'm curious as to whether this omission is intentional or not.
+[1] https://lore.kernel.org/linux-phy/6779635c-a162-0b7e-d124-d88d1ed9e162@sholland.org/
 
-> There is a problem with this is that it breaks the i2c for older u-boot.  Probably the best way is to make the default to be non-coherent in dts and update it in u-boot when snooping is enabled?
+>
+> Regards,
+> Tommaso
 
-Yes, that is what I propose.
 
---Sean
+--
+Best regards,
+Mikhail Rudenko
