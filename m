@@ -2,135 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC3835E7CA3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 16:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D715B5E7CD5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 16:24:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232437AbiIWOPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 10:15:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48322 "EHLO
+        id S232557AbiIWOYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 10:24:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232133AbiIWOPc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 10:15:32 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD134109638;
-        Fri, 23 Sep 2022 07:15:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 689A9B8360F;
-        Fri, 23 Sep 2022 14:15:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1778C433D6;
-        Fri, 23 Sep 2022 14:15:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1663942528;
-        bh=1AEcv2sMJqybL3a/melDfwWejdXEdqsvn6UZFqQXk0w=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=KO/FydUZ6XN6vBhLT7QRnwB5Xe/lkshw7359t/XGWUVY3nZ6Brhtd/b4mj51hk5Ya
-         teE0g2+L/r9SpFkcVnl9ISTxozo4Ew6R6BpfAd9LsOETTzQj/jZQKis2PH3fMjV266
-         QcJwIELCFD9UNnWUnlmMUWV7qNNk97IsP7CHEwppi2meC3pMzKQwOUx6KKV0IjcnOl
-         dms4TAusM5nqHJk8tPVe03Z0yfOUZMocomBgW1lNMyAT6jKUmzMsFKapsS4AXPKBmk
-         86g55mvkOHVPvxjNW79d8LFrtmT0T6fVf9Kq8y4BbVvr1sryoDbx43j8LXgutChbIB
-         We6XJ/zOy1iBw==
-Date:   Fri, 23 Sep 2022 09:15:26 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     l.stach@pengutronix.de, bhelgaas@google.com, robh+dt@kernel.org,
-        lorenzo.pieralisi@arm.com, shawnguo@kernel.org, kishon@ti.com,
-        kw@linux.com, frank.li@nxp.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: Re: [PATCH v3 04/14] PCI: dwc: Kconfig: Add iMX PCIe EP mode support
-Message-ID: <20220923141526.GA1388290@bhelgaas>
+        with ESMTP id S231592AbiIWOYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 10:24:43 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6056E192A8
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:24:40 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id n12so227027wrx.9
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:24:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=uvXNmgxQugKAaPoHg/fy7Oj8V6F9lJwQQFf+Kpi7X0k=;
+        b=lfDiDKmKIVsmlhM8Ttm8J2QxpmSVKKBuJNEz8jRmLyNggJwsQSG8Dooy6GtJ6NYjDN
+         ljcyjg/c46ZFYGQGbUW2DLZ4NIz4GZUKjo8J6ffUW8excUGWmsO5iVAvgqKLtAqGld4J
+         qm8FPJzdRFfdDeTJe1ZQ/SJ0i5IWLdInOzxlvk4T/dyxNNZ+4IBf4chlgCaY9tkdSMBY
+         u30BxLd+47JdI5Qt5imUJa6SNVpyus3qgeFWXk8PDC30JKvKL4AtMCOvCoTziDkVZ9kz
+         XFJb9tXIdU/zdG+q5q7eWBbAIk0yuxIFl1/NtY+v+YUWYWsTTtR6lkqHFUVT6VGR2S/6
+         /cGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=uvXNmgxQugKAaPoHg/fy7Oj8V6F9lJwQQFf+Kpi7X0k=;
+        b=Yq21YyR1wmlOtUFACI2KEUokiTEA+wUtuHSK2G7tEHFFF5Cd/6r9040lEEX2CB2yZ+
+         tPMbVHX+OixvkK0bwEdl5WDlaFphQpkD1Vw2dkHy75ie+plklZL+9LhKzgXZfZg5Gr1o
+         NFDyLu4pQJngOfDpcu6xY7Fv4SJC4ud0qvjOxMBPAu3Y3t1w+vpkX1S64BPdYphGd6sH
+         f6AkJUpUc4rqWscL7uR7SUhl1A5nVamqDWFiaOrtf4lfSlsFGC6HbWjW77xIpUhQnxRG
+         FNccOH3KKIoyrsZpgT2bL3+ICjgkmefb1CmssVf/siKOCyOsSSC5tdd22DEp2gLwT0Wt
+         2gWQ==
+X-Gm-Message-State: ACrzQf11Pl8qELHb3Y84l1HX2WBPslXVYw/UTVicizce7AIlwiI+gGHL
+        /7ULVpQY/tl35VDIgl1RJ8xO8x4WwCazNg==
+X-Google-Smtp-Source: AMsMyM63P8cmfnFpvAQgjydHupELO9Ure/jEkpXhGm80BMNZ3/s33pvMNL7Hg6lnVVicyvMqbw+KdQ==
+X-Received: by 2002:a05:6000:184:b0:22a:cb6f:bb52 with SMTP id p4-20020a056000018400b0022acb6fbb52mr5287755wrx.500.1663943078767;
+        Fri, 23 Sep 2022 07:24:38 -0700 (PDT)
+Received: from baylibre-ThinkPad-T14s-Gen-2i.. (32.31.102.84.rev.sfr.net. [84.102.31.32])
+        by smtp.gmail.com with ESMTPSA id m18-20020a5d56d2000000b0022878c0cc5esm7444627wrw.69.2022.09.23.07.24.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Sep 2022 07:24:38 -0700 (PDT)
+From:   Julien Panis <jpanis@baylibre.com>
+To:     william.gray@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mranostay@ti.com
+Subject: [PATCH v9 0/4] ECAP support on TI AM62x SoC
+Date:   Fri, 23 Sep 2022 16:24:33 +0200
+Message-Id: <20220923142437.271328-1-jpanis@baylibre.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1663913220-9523-5-git-send-email-hongxing.zhu@nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 23, 2022 at 02:06:50PM +0800, Richard Zhu wrote:
-> Since i.MX PCIe is one dual mode PCIe controller.
+The Enhanced Capture (ECAP) module can be used to timestamp events
+detected on signal input pin. It can be used for time measurements
+of pulse train signals.
 
-This is not a sentence.
+ECAP module includes 4 timestamp capture registers. For all 4 sequenced
+timestamp capture events (0->1->2->3->0->...), edge polarity (falling/rising
+edge) can be selected.
 
-> Add i.MX PCIe EP mode support, and split the PCIe modes to the Root
-> Complex mode and Endpoint mode.
+This driver leverages counter subsystem to :
+- select edge polarity for all 4 capture events (event mode)
+- log timestamps for each capture event
+Event polarity, and CAP0/1/2/3 timestamps give all the information
+about the input pulse train. Further information can easily be computed :
+period and/or duty cycle if frequency is constant, elapsed time between
+pulses, etc...
 
-Add blank lines between paragraphs or rewrap into a single paragraph
-that fills 75 columns.
+This patchset must be applied on top of the following counter subsystem patchset :
+https://lore.kernel.org/all/cover.1663693757.git.william.gray@linaro.org/
 
-I think you should split "[12/14] PCI: imx6: Add iMX8MM PCIe EP mode"
-into:
+Modifications since v8 :
+	- Add documentation to private driver structure
+	- Add mutex to prevent IO race conditions
+	- Stop counter before disabling interrupts in ecap_cnt_capture_disable() function
+	- Remove returning of status in ecap_cnt_count_get/set_val() functions
+	- Remove unnecessary 'return -EBUSY' in all callbacks
+	- Remove unnecessary '.id = 0' in ecap_cnt_counts[]
+	- Modify driver info in MAINTAINER file
 
-  - A patch that adds the generic endpoint infrastructure, e.g.,
-    imx6_pcie_ep_init(), imx6_pcie_ep_raise_irq(), imx6_add_pcie_ep().
+Userspace commands :
+	### CLOCK SIGNAL ###
+	cd /sys/bus/counter/devices/counter0/signal0
 
-  - A second patch that adds the i.MX8MM identifiers.
+	# Get frequency
+	cat frequency
 
-That way the i.MX8MM patch will be analogous to the i.MX8MQ and
-i.MX8MP patches.
+	### INPUT SIGNAL ###
+	cd /sys/bus/counter/devices/counter0/signal1
 
-Then you could squash this Kconfig patch into the generic endpoint
-infrastructure patch because this patch is what selects PCIE_DW_EP,
-which is what ensures that dw_pcie_ep_reset_bar(),
-dw_pcie_ep_raise_legacy_irq(), etc., are available.
+	# Get polarity for each capture event
+	cat polarity0
+	cat polarity1
+	cat polarity2
+	cat polarity3
 
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -92,10 +92,33 @@ config PCI_EXYNOS
->  	  functions to implement the driver.
->  
->  config PCI_IMX6
-> -	bool "Freescale i.MX6/7/8 PCIe controller"
-> +	bool
-> +
-> +config PCI_IMX6_HOST
-> +	bool "Freescale i.MX6/7/8 PCIe controller host mode"
->  	depends on ARCH_MXC || COMPILE_TEST
->  	depends on PCI_MSI_IRQ_DOMAIN
->  	select PCIE_DW_HOST
-> +	select PCI_IMX6
-> +	help
-> +	  Enables support for the PCIe controller Root Complex mode in the
-> +	  iMX6/7/8 SoCs.
+	# Set polarity for each capture event
+	echo positive > polarity0
+	echo negative > polarity1
+	echo positive > polarity2
+	echo negative > polarity3
 
-> +	  This controller can work either as EP or RC. In order to enable
-> +	  host-specific features PCIE_DW_HOST must be selected and in order
-> +	  to enable device-specific features PCIE_DW_EP must be selected.
+	### COUNT ###
+	cd /sys/bus/counter/devices/counter0/count0
 
-I don't think these three lines are useful to the user.  They only
-describe what Kconfig does when PCI_IMX6_HOST is enabled, which is
-really an internal implementation detail.
+	# Get ceiling (counter max value)
+	cat ceiling
 
-> +config PCI_IMX6_EP
-> +	bool "Freescale i.MX6/7/8 PCIe controller endpoint mode"
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	depends on PCI_ENDPOINT
-> +	select PCIE_DW_EP
-> +	select PCI_IMX6
-> +	help
-> +	  Enables support for the PCIe controller endpoint mode in the
-> +	  iMX6/7/8 SoCs.
-> +	  This controller can work either as EP or RC. In order to enable
-> +	  host-specific features PCIE_DW_HOST must be selected and in order
-> +	  to enable device-specific features PCIE_DW_EP must be selected.
+	# Reset number of overflows & current timebase counter value
+	echo 0 > num_overflows
+	echo 0 > count
 
-Ditto.
+	# Run ECAP
+	echo 1 > enable
 
->  config PCIE_SPEAR13XX
->  	bool "STMicroelectronics SPEAr PCIe controller"
-> -- 
-> 2.25.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+	# Get number of overflows & current timebase counter value
+	cat num_overflows
+	cat count
+
+	# Get captured timestamps
+	cat capture0
+	cat capture1
+	cat capture2
+	cat capture3
+
+	# Note that counter watches can also be used to get
+	# data from userspace application
+	# -> see tools/counter/counter_example.c
+
+	# Pause ECAP
+	echo 0 > enable
+
+Julien Panis (4):
+  dt-bindings: counter: add ti,am62-ecap-capture.yaml
+  Documentation: ABI: sysfs-bus-counter: add frequency & num_overflows
+    items
+  counter: ti-ecap-capture: capture driver support for ECAP
+  MAINTAINERS: add TI ECAP driver info
+
+ Documentation/ABI/testing/sysfs-bus-counter   |  14 +
+ .../counter/ti,am62-ecap-capture.yaml         |  61 ++
+ MAINTAINERS                                   |   9 +
+ drivers/counter/Kconfig                       |  15 +
+ drivers/counter/Makefile                      |   1 +
+ drivers/counter/ti-ecap-capture.c             | 614 ++++++++++++++++++
+ 6 files changed, 714 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
+ create mode 100644 drivers/counter/ti-ecap-capture.c
+
+-- 
+2.37.3
+
