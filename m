@@ -2,377 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F21B5E78AC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 12:50:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82CC35E7905
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 13:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbiIWKud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 06:50:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55502 "EHLO
+        id S231968AbiIWLET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 07:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231905AbiIWKuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 06:50:15 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0D3538C028
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 03:50:10 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1E79613D5
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 03:50:16 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 36F4A3F73D
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 03:50:09 -0700 (PDT)
-Date:   Fri, 23 Sep 2022 11:49:55 +0100
-From:   Liviu Dudau <liviu.dudau@arm.com>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Grant Likely <grant.likely@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Pawel Moll <Pawel.Moll@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: arm: unify DT license statements
-Message-ID: <Yy2PUx+mfi2/iVDl@e110455-lin.cambridge.arm.com>
-References: <20220922142010.1412640-1-andre.przywara@arm.com>
- <20220922142010.1412640-2-andre.przywara@arm.com>
+        with ESMTP id S231979AbiIWLEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 07:04:15 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E91EEE676;
+        Fri, 23 Sep 2022 04:04:09 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 6857124000B;
+        Fri, 23 Sep 2022 11:04:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1663931048;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=1pl7m3BcKQFRdvwHdTlpfN1yQan5OWyAa1ah2yZ/5g4=;
+        b=aF99+PU+f9hssnGMAtIOpVOdvbkkk+MriT+6WCGnCs9rNHx7C6f66ZYdRA3eyNgZetWSSr
+        69u+8OHWDssSgv4PAjayBHT4v4Bjv64JGr+pDB3vpMmz3V1Rl+kxfNwrKwieMzbDN/Fvl4
+        Z2m5g1s8dwpuz6PVlcDlFvNwAKGesNkQazPCcl0osPcRfLt3jPKSVdRc4Ij4Y3Sm4lg/1f
+        vggsnHOWI0tiE2tCO3h3H2csqYiPNsReDobUnKnp721HMAokJ/ITDkg9nXcb08eywaeWH7
+        +RPI3PPUXXvMdddY0dcs8wIDRFj4V0K7MbC2i0rlz8G7O3GVLoTFux5xEm98nw==
+Date:   Fri, 23 Sep 2022 13:04:06 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Jagath Jog J <jagathjog1996@gmail.com>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] rtc: maxim: Add Maxim max31329 real time clock
+Message-ID: <Yy2SpmCy1ZjC1pMz@mail.local>
+References: <20220912190753.10158-1-jagathjog1996@gmail.com>
+ <20220912190753.10158-3-jagathjog1996@gmail.com>
+ <YyHBKNC/YHbvIn40@mail.local>
+ <CAM+2Eu+jCA9yJma2UtD736opw0=_uCz4Zbiem89ehexTEU7mQw@mail.gmail.com>
+ <YydoGsEU/UPkXvXn@mail.local>
+ <CAM+2EuJsz9NgEskhYapxFg7UrimB3Po97DZGHtBCHTc8+vx_1g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220922142010.1412640-2-andre.przywara@arm.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAM+2EuJsz9NgEskhYapxFg7UrimB3Po97DZGHtBCHTc8+vx_1g@mail.gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 22, 2022 at 03:20:08PM +0100, Andre Przywara wrote:
-> Many devicetree files for Arm Ltd. arm64 boards did not contain a
-> license statement. Some just got a blanket GPL-2.0 tag by a script,
-> confirming the default license for files in the kernel tree.
+On 20/09/2022 01:09:37+0530, Jagath Jog J wrote:
+>  Hi Alexandre,
 > 
-> Add an explicit SPDX license tag for every file, at the beginning.
-> Also extend the license to include a BSD compatible license, as it's
-> customary and recommended for DT files.
-> For files without an explicit history license-wise, this is MIT,
-> otherwise we keep the BSD (2-clause) license that some files already
-> carried.
+> Before sending v3 I have one comment,
+> Please see below.
 > 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> On Mon, Sep 19, 2022 at 12:18 AM Alexandre Belloni
+> <alexandre.belloni@bootlin.com> wrote:
+> >
+> > On 17/09/2022 16:09:54+0530, Jagath Jog J wrote:
+> > > > This doesn't feel right, doesn't that break start-year?
+> > > >
+> > > > What is the actual time range supported by this RTC? Shouldn't you set
+> > > > the century?
+> > >
+> > > The time range supported by RTC is 2000 to 2199.
+> > > The alarm registers don't have a century bit.
+> > > I have tested the alarm for
+> > > 2122-09-17T01:22:00
+> > > 2142-09-17T01:22:00
+> > > 2160-02-29T00:00:00
+> > > 2196-02-29T00:00:00 etc
+> > >
+> > > I will add another condition such that if the century bit
+> > > from the time register is not set then configuring the
+> > > alarm for the next century is not allowed.
+> >
+> > The actual check should be for the alarm to not exceed 100 years in the
+> > future then. Else, this wouldn't work well with datetime offsetting.
+> 
+> Sure, I will add this check.
+> 
+> >
+> > > > > +static int max31329_set_time(struct device *dev, struct rtc_time *tm)
+> > > > > +{
+> > > > > +     struct max31329_data *max31329 = dev_get_drvdata(dev);
+> > > > > +     u8 regs[7];
+> > > > > +     int ret;
+> > > > > +
+> > > > > +     ret = max31329_get_osc_status(dev);
+> > > > > +     if (ret)
+> > > > > +             return ret;
+> > > > > +
+> > > >
+> > > > Checking the oscillator is not needed here but resetting the status is.
+> > >
+> > > Resetting the device will resets the digital block,
+> > > I2C-programmable registers and oscillator also,
+> > > The oscillator is taking some time around 80 milli sec
+> > > to be back as usual.
+> > >
+> > > Is it required to reset every time during the time setting?
+> > >
+> >
+> > Not but resetting the osc status is.
+> 
+> Actually, the STATUS register which contains the Oscillator Stop
+> Flag (OSF) bit is a read-only register. If the OSF bit is set, then
+> reading the status register will not clear the OSF bit.
+> 
+> Based on the oscillator disable and enable testing, I observed
+> that the OSF bit is getting cleared automatically once the clock
+> settles, which is taking around 80msec. The manual resetting
+> option is not there for the OSC status bit.
+> 
+> Can I set the time without resetting the OSC status?
+> 
 
-Acked-by: Liviu Dudau <liviu.dudau@arm.com>
+Sure but then it is not even useful to ever test OSF because we just
+don't care if it fails while we are running, the most important info is
+whether it fails when Linux is not running.
 
-Best regards,
-Liviu
-
-> ---
->  arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi      | 1 +
->  arch/arm64/boot/dts/arm/foundation-v8-gicv3-psci.dts  | 1 +
->  arch/arm64/boot/dts/arm/foundation-v8-gicv3.dts       | 2 +-
->  arch/arm64/boot/dts/arm/foundation-v8-gicv3.dtsi      | 1 +
->  arch/arm64/boot/dts/arm/foundation-v8-psci.dts        | 1 +
->  arch/arm64/boot/dts/arm/foundation-v8-psci.dtsi       | 1 +
->  arch/arm64/boot/dts/arm/foundation-v8-spin-table.dtsi | 1 +
->  arch/arm64/boot/dts/arm/foundation-v8.dts             | 2 +-
->  arch/arm64/boot/dts/arm/foundation-v8.dtsi            | 2 +-
->  arch/arm64/boot/dts/arm/fvp-base-revc.dts             | 2 +-
->  arch/arm64/boot/dts/arm/juno-base.dtsi                | 2 +-
->  arch/arm64/boot/dts/arm/juno-clocks.dtsi              | 3 +--
->  arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi             | 2 +-
->  arch/arm64/boot/dts/arm/juno-motherboard.dtsi         | 3 +--
->  arch/arm64/boot/dts/arm/juno-r1-scmi.dts              | 1 +
->  arch/arm64/boot/dts/arm/juno-r1.dts                   | 3 +--
->  arch/arm64/boot/dts/arm/juno-r2-scmi.dts              | 1 +
->  arch/arm64/boot/dts/arm/juno-r2.dts                   | 3 +--
->  arch/arm64/boot/dts/arm/juno-scmi.dts                 | 1 +
->  arch/arm64/boot/dts/arm/juno-scmi.dtsi                | 1 +
->  arch/arm64/boot/dts/arm/juno.dts                      | 3 +--
->  arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts            | 2 +-
->  arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi  | 2 +-
->  arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi      | 2 +-
->  arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts  | 2 +-
->  25 files changed, 25 insertions(+), 20 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi b/arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi
-> index 655fdcce15614..53fa6b9fd86fb 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8-gicv2.dtsi
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd.
->   *
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8-gicv3-psci.dts b/arch/arm64/boot/dts/arm/foundation-v8-gicv3-psci.dts
-> index e096e670bec3c..32c16d7f216ab 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8-gicv3-psci.dts
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8-gicv3-psci.dts
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd.
->   *
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8-gicv3.dts b/arch/arm64/boot/dts/arm/foundation-v8-gicv3.dts
-> index c87380e87f595..e1426de132560 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8-gicv3.dts
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8-gicv3.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd.
->   *
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8-gicv3.dtsi b/arch/arm64/boot/dts/arm/foundation-v8-gicv3.dtsi
-> index e4a3c7dbcc20c..dd2d305b53393 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8-gicv3.dtsi
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8-gicv3.dtsi
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd.
->   *
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8-psci.dts b/arch/arm64/boot/dts/arm/foundation-v8-psci.dts
-> index 723f23c7cd31a..1d6c6bcb08cdd 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8-psci.dts
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8-psci.dts
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd.
->   *
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8-psci.dtsi b/arch/arm64/boot/dts/arm/foundation-v8-psci.dtsi
-> index 16cdf395728bc..f9589905dc024 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8-psci.dtsi
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8-psci.dtsi
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd.
->   *
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8-spin-table.dtsi b/arch/arm64/boot/dts/arm/foundation-v8-spin-table.dtsi
-> index 4d4186ba0e8c1..6796bbb5eef05 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8-spin-table.dtsi
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8-spin-table.dtsi
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd.
->   *
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8.dts b/arch/arm64/boot/dts/arm/foundation-v8.dts
-> index b17347d75ec60..a73bf774c7603 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8.dts
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd.
->   *
-> diff --git a/arch/arm64/boot/dts/arm/foundation-v8.dtsi b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-> index 83e3e7e3984fc..152bc7f0f37cb 100644
-> --- a/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-> +++ b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd.
->   *
-> diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> index 5f6f30c801a7f..45cef48378d07 100644
-> --- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> +++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd. Fast Models
->   *
-> diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-> index 2f27619d8abd5..5f89d984b031e 100644
-> --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
-> +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  #include "juno-clocks.dtsi"
->  #include "juno-motherboard.dtsi"
->  
-> diff --git a/arch/arm64/boot/dts/arm/juno-clocks.dtsi b/arch/arm64/boot/dts/arm/juno-clocks.dtsi
-> index 2870b5eeb1984..27aec6425512b 100644
-> --- a/arch/arm64/boot/dts/arm/juno-clocks.dtsi
-> +++ b/arch/arm64/boot/dts/arm/juno-clocks.dtsi
-> @@ -1,10 +1,9 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  /*
->   * ARM Juno Platform clocks
->   *
->   * Copyright (c) 2013-2014 ARM Ltd
->   *
-> - * This file is licensed under a dual GPLv2 or BSD license.
-> - *
->   */
->  / {
->  	/* SoC fixed clocks */
-> diff --git a/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi b/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
-> index 09d2b692e9e1f..4299287e1e284 100644
-> --- a/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
-> +++ b/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  / {
->  	funnel@20130000 { /* cssys1 */
->  		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> diff --git a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
-> index be42932f7e21e..21f84a34f6ff0 100644
-> --- a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
-> +++ b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
-> @@ -1,10 +1,9 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  /*
->   * ARM Juno Platform motherboard peripherals
->   *
->   * Copyright (c) 2013-2014 ARM Ltd
->   *
-> - * This file is licensed under a dual GPLv2 or BSD license.
-> - *
->   */
->  
->  / {
-> diff --git a/arch/arm64/boot/dts/arm/juno-r1-scmi.dts b/arch/arm64/boot/dts/arm/juno-r1-scmi.dts
-> index dd9ea69f086f8..e63543c624f4a 100644
-> --- a/arch/arm64/boot/dts/arm/juno-r1-scmi.dts
-> +++ b/arch/arm64/boot/dts/arm/juno-r1-scmi.dts
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  #include "juno-r1.dts"
->  #include "juno-scmi.dtsi"
->  
-> diff --git a/arch/arm64/boot/dts/arm/juno-r1.dts b/arch/arm64/boot/dts/arm/juno-r1.dts
-> index 6451c62146fda..9253ca28e8fa5 100644
-> --- a/arch/arm64/boot/dts/arm/juno-r1.dts
-> +++ b/arch/arm64/boot/dts/arm/juno-r1.dts
-> @@ -1,9 +1,8 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  /*
->   * ARM Ltd. Juno Platform
->   *
->   * Copyright (c) 2015 ARM Ltd.
-> - *
-> - * This file is licensed under a dual GPLv2 or BSD license.
->   */
->  
->  /dts-v1/;
-> diff --git a/arch/arm64/boot/dts/arm/juno-r2-scmi.dts b/arch/arm64/boot/dts/arm/juno-r2-scmi.dts
-> index de2cbac1d1c3e..6c80f08b3ec2e 100644
-> --- a/arch/arm64/boot/dts/arm/juno-r2-scmi.dts
-> +++ b/arch/arm64/boot/dts/arm/juno-r2-scmi.dts
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  #include "juno-r2.dts"
->  #include "juno-scmi.dtsi"
->  
-> diff --git a/arch/arm64/boot/dts/arm/juno-r2.dts b/arch/arm64/boot/dts/arm/juno-r2.dts
-> index 438cd1ff4bd08..2545bc79158f1 100644
-> --- a/arch/arm64/boot/dts/arm/juno-r2.dts
-> +++ b/arch/arm64/boot/dts/arm/juno-r2.dts
-> @@ -1,9 +1,8 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  /*
->   * ARM Ltd. Juno Platform
->   *
->   * Copyright (c) 2015 ARM Ltd.
-> - *
-> - * This file is licensed under a dual GPLv2 or BSD license.
->   */
->  
->  /dts-v1/;
-> diff --git a/arch/arm64/boot/dts/arm/juno-scmi.dts b/arch/arm64/boot/dts/arm/juno-scmi.dts
-> index 41588fa46d317..51844a407a7dd 100644
-> --- a/arch/arm64/boot/dts/arm/juno-scmi.dts
-> +++ b/arch/arm64/boot/dts/arm/juno-scmi.dts
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  #include "juno.dts"
->  #include "juno-scmi.dtsi"
->  
-> diff --git a/arch/arm64/boot/dts/arm/juno-scmi.dtsi b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
-> index ec85cd2c733ce..c6f4b80d3dff0 100644
-> --- a/arch/arm64/boot/dts/arm/juno-scmi.dtsi
-> +++ b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  / {
->  	etf@20010000 {
->  		power-domains = <&scmi_devpd 8>;
-> diff --git a/arch/arm64/boot/dts/arm/juno.dts b/arch/arm64/boot/dts/arm/juno.dts
-> index cf4a582113999..270505339eecd 100644
-> --- a/arch/arm64/boot/dts/arm/juno.dts
-> +++ b/arch/arm64/boot/dts/arm/juno.dts
-> @@ -1,9 +1,8 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->  /*
->   * ARM Ltd. Juno Platform
->   *
->   * Copyright (c) 2013-2014 ARM Ltd.
-> - *
-> - * This file is licensed under a dual GPLv2 or BSD license.
->   */
->  
->  /dts-v1/;
-> diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-> index 258991ad7cc0a..5b514c865845d 100644
-> --- a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-> +++ b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd. Fast Models
->   *
-> diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
-> index ec2d5280a30b1..9dd155ef09ab3 100644
-> --- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
-> +++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd. Fast Models
->   *
-> diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
-> index ba8beef3fe99e..5f8f17d6c8e59 100644
-> --- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
-> +++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd. Fast Models
->   *
-> diff --git a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-> index 5b6d9d8e934db..8cb44b0577ca5 100644
-> --- a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-> +++ b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * ARM Ltd. Versatile Express
->   *
-> -- 
-> 2.25.1
-> 
 
 -- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
