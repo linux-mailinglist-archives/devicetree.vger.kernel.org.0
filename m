@@ -2,111 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5BA75E84D8
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 23:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24ADE5E84FB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 23:34:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232705AbiIWV0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 17:26:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50242 "EHLO
+        id S231623AbiIWVeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 17:34:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232814AbiIWV0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 17:26:18 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 137C4133CBE
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 14:26:16 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id a3so2150927lfk.9
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 14:26:15 -0700 (PDT)
+        with ESMTP id S232004AbiIWVeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 17:34:21 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F88274CC1;
+        Fri, 23 Sep 2022 14:34:20 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id y8so1830539edc.10;
+        Fri, 23 Sep 2022 14:34:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=/aQ24Egg9dbeaeZ6X/ZW0Y0MW1uqAO/UMRzdqkbDm8M=;
-        b=cPMsBi7pibMpOKx+mKfGFbF+9bDWsF6ODuWOeC+7aL6PiFUOCls6JRua524swQFmoo
-         ZeYewX/nW1Henr2JgEbNw8+MeJKoFh7TifkSV4/ATtiZAdh25NfkeyX3FLUouX7JzG2T
-         eXROk7YgbSCbX12DASaoEpNvyOrfqfpfeI3N6p4cFLfnKvmE6mOqaakruYmeqhfeH2uc
-         xxAz4IM1OSSY/4qg3mmpsZnMjR/W1ZV5XpQjUU2ShyzmmZ5outwmO0CAzuOjuFeNVPDz
-         CmR9WqINRX1OTEwci94H3ixz6X8qUEsTjSiVdYcdQhXTtr9q4CsudWzZRHRGqbfzrQKN
-         +y/w==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=2tSqnggIyDo6YUr0zNltSFoKVKbExYQv0L5PsQaqx/s=;
+        b=mC5OTEroAwnh1aV0/k1oPe+NXV0TA7Ze+A1xSqjAYtWFHQmQllTO2D5NFTgRNAaYmT
+         9ftX5WSLtzU2ypfDMT3O8sHcHAnbhOQyP3iw/qBmEo1MS7KrHK9T7qMSNgKzSJ+gKYID
+         /abixiX9djqlc0Y/J/wim5USaRy8aF+H2vHddS2/BtkRSL/9hE50+MF2PbOdi3Sk2Gl6
+         VosQoBRGmWXFe5bsDbIbt+mPWxWzs9fsS3VkuvMuKTsQce3IGe9Tc+oS/HXH/f+GD3ev
+         uHxxaisRU0SVBPc0aV+ppRW6J8ERcyNX4rsfpw6JIQ1m3AX4/2lvWnFKGIrpL0hEOzl5
+         cXlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=/aQ24Egg9dbeaeZ6X/ZW0Y0MW1uqAO/UMRzdqkbDm8M=;
-        b=RT9MFOMTvYlodi87vwGtBqydUgFI1Kb+SDlhVkLrYvpZkgHpyI0l0l/DfxwAPUaaHk
-         PUJTOKH29NyezI1qpv0Bd5PDJgHlF0ogf1oTB4/9Qis8IjcPwl9RTb+p6B8CvrttTy9a
-         hAGQrRE1+wadDQYA0xw+gJ89jnSF+z/g+86xJWkUuXTt0O5fXZKOvSLcushsi4pzT6uS
-         vnYrKHfvsl7uCtPUgdcsX72AXasWjSIoN0lwgBllhzbWOxATcnt37kiL2gFxAp66hxtl
-         pK08r6Wu/zqEFzrKujwnct7862phu/6g/5YnrjPSQl53haLLfSq8fcyhMmzYxB5P0z7N
-         rZ/A==
-X-Gm-Message-State: ACrzQf21FDZrsGWSf4iY7RGnrVG1GWlzG4C55vun40/uiZK4wqgfLrJL
-        3IPADXcA860Ju7IALu+zuQUTWw==
-X-Google-Smtp-Source: AMsMyM6mI34mz/fSmeVZC0rcmW2MHObqb4Ra4GsnD+kOqSbYGFLre2nBu0aZ9Jl9oPKAGq7uRpaRoQ==
-X-Received: by 2002:a05:6512:308f:b0:49a:5a59:aa25 with SMTP id z15-20020a056512308f00b0049a5a59aa25mr3796333lfd.44.1663968374350;
-        Fri, 23 Sep 2022 14:26:14 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f3-20020a2e3803000000b0026c04fbb08csm1547229lja.45.2022.09.23.14.26.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 14:26:13 -0700 (PDT)
-Message-ID: <7b066e11-6e5c-c6d9-c8ed-9feccaec4c0c@linaro.org>
-Date:   Fri, 23 Sep 2022 23:26:12 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=2tSqnggIyDo6YUr0zNltSFoKVKbExYQv0L5PsQaqx/s=;
+        b=dyMjkE7b/TvmkmZl4axMAolpsFsoiL3ibg5RNQzAARoTsZhPA6rX96M+GJtt+mYSgr
+         DGcuPNeaMApNymSNCXnB3AlXVz3f5u2zniamtO+NhxJwjdPK1sFj4TaE6FCvHAru5jiZ
+         +DE/vtUyCW9LDV1i8bUqn/sCK3d0W8cGLQ0btzsf5jUOSpHPE01n8ooRT8d/CDpX/Uro
+         P09eoV5ulAoNT+5SHngJzuOTdYuL2Y3ne22JboNk8m/YwEVVnGTzS2l2i7zTkdrlsr/z
+         /XcSGVO4hRPa6nmr29WdqptfgCVcYDtjJ/Eo2KdVUgrL8Thy5Eg7k7CFZGubhh89JTRz
+         rCLA==
+X-Gm-Message-State: ACrzQf3iabMzNgr3frTTu6vgCeoH6qEtYwHqqz/UCTrxkHr6Sp+m3I2k
+        dTFVpHipqawoSsYyndYwo67lmXKTPIRFH53uJOk=
+X-Google-Smtp-Source: AMsMyM5IZsfJ8dcFfC0J6aK5kWjLl/L84uf2axz39u9HVDC/sm5vNCQLHxNNHmrmfV4MxviVVR/a5HiZQAJ2yKDCUpw=
+X-Received: by 2002:a05:6402:1e8c:b0:44f:f70:e75e with SMTP id
+ f12-20020a0564021e8c00b0044f0f70e75emr10298957edf.405.1663968858816; Fri, 23
+ Sep 2022 14:34:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: dma: qcom: gpi: add fallback
- compatible
-Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20220830034042.9354-2-peterwu.pub@gmail.com> <20220830034042.9354-10-peterwu.pub@gmail.com>
+ <CAPOBaE7rz2F-sij-LbYau6TRxFoOfmoUc=R__Z7iUrFWmZPgrg@mail.gmail.com>
+ <CABtFH5+PuK4vptVNmpn4h2FCxNFp3wWvhUrOxgqArx4YxCY99w@mail.gmail.com> <CAHp75VeRgRdv54yO51nBwKx8O2pNLvOD2mrqn31zvx4ffSpCHw@mail.gmail.com>
+In-Reply-To: <CAHp75VeRgRdv54yO51nBwKx8O2pNLvOD2mrqn31zvx4ffSpCHw@mail.gmail.com>
+From:   Han Jingoo <jingoohan1@gmail.com>
+Date:   Fri, 23 Sep 2022 14:34:07 -0700
+Message-ID: <CAPOBaE7mcNqgQvsPpqewmq=Na9MC9RH5AW8CHn5ZJFAUsq6_eg@mail.gmail.com>
+Subject: Re: [PATCH v9 09/10] leds: flash: mt6370: Add MediaTek MT6370
+ flashlight support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        torvalds@linux-foundation.org,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Joe Perches <joe@perches.com>, Julia.Lawall@inria.fr,
+        krzysztof.kozlowski@linaro.org
+Cc:     ChiaEn Wu <peterwu.pub@gmail.com>, lee@kernel.org,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220923210934.280034-1-mailingradian@gmail.com>
- <20220923210934.280034-2-mailingradian@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220923210934.280034-2-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Helge Deller <deller@gmx.de>, Mark Brown <broonie@kernel.org>,
+        mazziesaccount@gmail.com, andriy.shevchenko@linux.intel.com,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Alice Chen <alice_chen@richtek.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        szuni chen <szunichen@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 23:09, Richard Acayan wrote:
-> The drivers are transitioning from matching against lists of specific
-> compatible strings to matching against smaller lists of more generic
-> compatible strings. Add a fallback compatible string in the schema to
-> support this change.
+On Wed, Sep 21, 2022 Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+>
+> On Wed, Sep 21, 2022 at 4:48 AM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+> > On Sun, Sep 18, 2022 at 3:22 AM Han Jingoo <jingoohan1@gmail.com> wrote:
+> > > On Mon, Aug 29, 2022 ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+>
+> > > > +#define MT6370_ITORCH_MIN_uA           25000
+> > > > +#define MT6370_ITORCH_STEP_uA          12500
+> > > > +#define MT6370_ITORCH_MAX_uA           400000
+> > > > +#define MT6370_ITORCH_DOUBLE_MAX_uA    800000
+> > > > +#define MT6370_ISTRB_MIN_uA            50000
+> > > > +#define MT6370_ISTRB_STEP_uA           12500
+> > > > +#define MT6370_ISTRB_MAX_uA            1500000
+> > > > +#define MT6370_ISTRB_DOUBLE_MAX_uA     3000000
+> > >
+> > > Use upper letters as below:
+>
+> For microseconds (and other -seconds) the common practice (I assume
+> historically) is to use upper letters, indeed. But for current it's
+> more natural to use small letters for unit multiplier as it's easier
+> to read and understand.
 
-Thanks for the patch. I wished we discussed it a bit more. :)
-qcom,gpi-dma does not look like specific enough to be correct fallback,
-at least not for all of the devices. I propose either a IP block version
-(which is tricky without access to documentation) or just one of the SoC
-IP blocks.
+(CC'ed Linus Torvalds, Andrew Morton, Joe Perches, Julia Lawall,
+Krzysztof Kozlowski,)
 
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  .../devicetree/bindings/dma/qcom,gpi.yaml       | 17 +++++++++--------
->  1 file changed, 9 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> index eabf8a76d3a0..25bc1a6de794 100644
-> --- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> +++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> @@ -18,14 +18,15 @@ allOf:
+Yep, it is common practice. Long time ago, I met the same problem on
+how to present micro-ampere:
+visibility vs coding practice. At that time, I followed the coding
+practice. So, was there anyone who
+rejected this decision to mix upper and lower letters when you gave
+your comment last July?
+If there is no objection, or most of maintainers and long-term
+contributors agree with that,
+I am ok with that.
 
+To Tovalds, Andrew, Joe, Julia, Krzysztof,
+
+I just need your feedback on coding styles. Are you ok with mixing
+upper and lower letters for visibility
+to present micro-seconds or micro-ampere? Andy (one of very-active
+contributors) gives his opinion that
+mixing upper and lower letters can be acceptable. I remain neutral on
+this coding style issue.
+
+e.g., #define MT6370_ITORCH_DOUBLE_MAX_uA    800000
+
+Thank you.
 
 Best regards,
-Krzysztof
+Jingoo Han
 
+>
+> > > #define MT6370_ITORCH_MIN_UA           25000
+> > > #define MT6370_ITORCH_STEP_UA          12500
+> > > #define MT6370_ITORCH_MAX_UA           400000
+> > > #define MT6370_ITORCH_DOUBLE_MAX_UA    800000
+> > > #define MT6370_ISTRB_MIN_UA            50000
+> > > #define MT6370_ISTRB_STEP_UA           12500
+> > > #define MT6370_ISTRB_MAX_UA            1500000
+> > > #define MT6370_ISTRB_DOUBLE_MAX_UA     3000000
+> > >
+> > > > +#define MT6370_STRBTO_MIN_US           64000
+> > > > +#define MT6370_STRBTO_STEP_US          32000
+> > > > +#define MT6370_STRBTO_MAX_US           2432000
+> >
+> > Hi Jingoo,
+> >
+> > This coding style is in accordance with Andy's opinion in this mail:
+> > https://lore.kernel.org/linux-arm-kernel/CAHp75Vciq4M4kVrabNV9vTLLcd1vR=bMe8JLEdAF9MkRTpcB5g@mail.gmail.com/
+>
+> True.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
