@@ -2,69 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6A275E8124
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 19:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DE595E8145
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 20:01:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231340AbiIWRwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 13:52:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50554 "EHLO
+        id S232659AbiIWSBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 14:01:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232284AbiIWRwx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 13:52:53 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3C7612C6A1
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 10:52:51 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id a3so1408464lfk.9
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 10:52:51 -0700 (PDT)
+        with ESMTP id S232676AbiIWSBB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 14:01:01 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB0C3FB305
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:00:58 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id b6so885194ljr.10
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:00:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=WLQdaK0gT7iFIkMGG2NMmKLaRu6A337CioiY0oTqO2E=;
-        b=dUkWHMuMmDgAf2vkZVtzFOS+JLlED/B066IP5RzSUvCf/2aFRmvtM05vuUDsDVXzlJ
-         APKFud9ZtMhWd0Lt/ChVvQPkV+5K+U1/elv6+PXCzEbBXow5JjQR6WvLeBAJ29A7ZsTA
-         m9SNpoDkcYwUcsb/r65zOSs8UfWWWpY6hyxx02uL8+/loZH2OvCr4h91vQ4z1tbvuOs7
-         s/nl7DxGezKkrsj4GdRq5A3t21wdRiQioiLtSPxSRru/gpKfwM6sDyQTfK+FeQay9S4B
-         6DKJII8QMc5UxXkCQy5Orkj4wlGQbOraDlPEgWcKk/v0w0u7x2JGqzKpvxNyUNVEitmX
-         ZN3w==
+        bh=ILXdSaYDLZMlHn4FuFqy8uNwcKIsquD1aQYWVF21dGY=;
+        b=U1crPJlIDMy7GNILAw1/VSFNkLGUTLJxeANVnkMJXfcyXRgeeP3qPbAoRp7QOLeXcM
+         29unYGwvTlZQBFKbeJpm6vK7yGy/0wQVVO+vZvh+fyrX7BYbDqu3BMELaHGMWYLVzZaw
+         wHDvmEW2q/ZhHirEaZT692UTQeEO8/lHn/aZhdZoK/ogrJTrigHO3hQM8bB6rx+qCLlp
+         6Wk6UpPsMP/hpLw+u6PWBUUB9e/NulVDi81mUMT2Kmgs/CuL8YjMjZiVZ4BGKEUw8jCg
+         c4SK8cZwkSB2QY3FBjEuZ14T15aVd1N/iczcZ7M8+sEoMlKncwJu2gkMTQbpS7KelAl9
+         ivKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=WLQdaK0gT7iFIkMGG2NMmKLaRu6A337CioiY0oTqO2E=;
-        b=mZRH4KFXyR2s58MJdME+9XqptWGzPV61LACGe1tyPZApzB4qg0m/tNm8wUizmXWQjj
-         3zBnXgwyR1VKqOmC7IRW3LfJi7xi4L6BHmZPUQN5IZJw0NK1C6dDUwr0xumBRxap4ZjP
-         KTCafyZugwu2DX8aWRPjSh9pv8UM8FTmAwun5OVpmfAVpnflmLR0+PHiXKi3pm/yPGHt
-         pWx9c7KTJ1RJ1PjQDg0bHA7eYLy7AMfiSh2fkPih9jsCq25el6AkCDDS2zMXH4Dsu6JN
-         1xbRRI5wQKy9zRiVgupzn+hayQbI4xWud9mDz/z+YK832Sgwgqkj3Shfu2P+cjYUt1uh
-         wF8Q==
-X-Gm-Message-State: ACrzQf3oJY7ZL7MdtVTf48rRhFiflqBiXKHnQ5dYpJ+qBqD7VGZ73/zX
-        K8OUZ0c16DUe8ZVHUls4yGG86Q==
-X-Google-Smtp-Source: AMsMyM59xNDc63uKxqgHdn3zrL6X9DlwBW8qQ1eHQUJLbaKFVW8Qca/GcAlOeB3NAoyilxmKWNYGZA==
-X-Received: by 2002:a05:6512:1114:b0:49f:d13e:25b6 with SMTP id l20-20020a056512111400b0049fd13e25b6mr3855353lfg.483.1663955570345;
-        Fri, 23 Sep 2022 10:52:50 -0700 (PDT)
+        bh=ILXdSaYDLZMlHn4FuFqy8uNwcKIsquD1aQYWVF21dGY=;
+        b=iPwT7HJZpvfRKppqiyqwCNBU9xjSuTr3XRE9LCubb8RdZ3w6QvpuUzk9JSQD/n/H+/
+         fuuaqDX0nsJ+fxuvdNpzDpoNZmJ5qzE/BOgIodvEVpJxKENmuaujMYXlzzymjkjvs6ZD
+         3IlaS/5Lq5O1nI7Fn/D0Ofx1oJuizh269s2WMtHhvjs5RORJkF13udE8gjU57pGwrD50
+         WxsowFtlljCQKhoUgQqloPHsbCRMBQLRWVtbuYGVknSeLhT1YCKbI3XgglGI2wpgjizC
+         Zq/tjjMpgXqq3AkHc9l+8+Jkd4gSw1xlpvqHpDvLN9y0ctdi5Z6WelKYbo5xEPlrMRfm
+         PcTQ==
+X-Gm-Message-State: ACrzQf04VmRCvLgbdp4+KBy3y2plf4qnkGZF1H6iNDG82ZoXDF/BPTiw
+        3llUcobI9vNlGVAkqk+WjozDDA==
+X-Google-Smtp-Source: AMsMyM6q600n3j/sMuH4WwryvM28QLYoDLYT2XtUqW4X2Sv7VsZ/QBXfN5aJ7etC2yJ/0Cnig3/9aA==
+X-Received: by 2002:a05:651c:114b:b0:25b:e13b:6900 with SMTP id h11-20020a05651c114b00b0025be13b6900mr3118049ljo.462.1663956056930;
+        Fri, 23 Sep 2022 11:00:56 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c8-20020a05651200c800b0049a0832ffc9sm1542596lfp.211.2022.09.23.10.52.49
+        by smtp.gmail.com with ESMTPSA id a27-20020ac25e7b000000b004a03d5c2140sm658072lfr.136.2022.09.23.11.00.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 10:52:49 -0700 (PDT)
-Message-ID: <c9c11931-7193-ebee-51f0-df863dd7377b@linaro.org>
-Date:   Fri, 23 Sep 2022 19:52:49 +0200
+        Fri, 23 Sep 2022 11:00:56 -0700 (PDT)
+Message-ID: <70ee4f8e-7529-307e-656c-2a65d0187af6@linaro.org>
+Date:   Fri, 23 Sep 2022 20:00:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCHv2 3/3] mmc: dw_mmc-pltfm: socfpga: add method to configure
- clk-phase
+Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
+ which controls
 Content-Language: en-US
-To:     Dinh Nguyen <dinguyen@kernel.org>, jh80.chung@samsung.com
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220922220308.609422-1-dinguyen@kernel.org>
- <20220922220308.609422-4-dinguyen@kernel.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Max Krummenacher <max.oss.09@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220609150851.23084-1-max.oss.09@gmail.com>
+ <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
+ <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
+ <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
+ <20220726160337.GA41736@francesco-nb.int.toradex.com>
+ <CAPDyKFqGFjywJ-Vmmn9=-NOzJX=24mH9A03H9djS=nJotKWK8A@mail.gmail.com>
+ <20220728112146.GA97654@francesco-nb.int.toradex.com>
+ <CAPDyKFqtCxrjALeCmhuqQ2VmmUHhi-DjXO30uHChTPFeDbp+JQ@mail.gmail.com>
+ <20220909142247.GA238001@francesco-nb.int.toradex.com>
+ <CAPDyKFrwpz=gi3iY5YsO6k4o33eLQRp-wXvBx3nQ0q=G9YrqHA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220922220308.609422-4-dinguyen@kernel.org>
+In-Reply-To: <CAPDyKFrwpz=gi3iY5YsO6k4o33eLQRp-wXvBx3nQ0q=G9YrqHA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,94 +110,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 00:03, Dinh Nguyen wrote:
-> The clock-phase settings for the SDMMC controller in the SoCFPGA
-> Strarix10/Agilex/N5X platforms reside in a register in the System
-> Manager. Add a method to access that register through the syscon
-> interface.
+On 22/09/2022 15:49, Ulf Hansson wrote:
+> On Fri, 9 Sept 2022 at 16:22, Francesco Dolcini
+> <francesco.dolcini@toradex.com> wrote:
+>>
+>> Hello Ulf,
+>>
+>> On Fri, Aug 26, 2022 at 03:50:46PM +0200, Ulf Hansson wrote:
+>>> On Thu, 28 Jul 2022 at 13:21, Francesco Dolcini
+>>> <francesco.dolcini@toradex.com> wrote:
+>>>>
+>>>> On Thu, Jul 28, 2022 at 11:37:07AM +0200, Ulf Hansson wrote:
+>>>>> On Tue, 26 Jul 2022 at 18:03, Francesco Dolcini
+>>>>> <francesco.dolcini@toradex.com> wrote:
+>>>>>>
+>>>>>> Hello Ulf and everybody,
+>>>>>>
+>>>>>> On Wed, Jul 13, 2022 at 01:43:28PM +0200, Ulf Hansson wrote:
+>>>>>>> On Thu, 23 Jun 2022 at 18:14, Max Krummenacher <max.oss.09@gmail.com> wrote:
+>>>>>>>> So our plan is to explicitly handle a (shared) regulator in every
+>>>>>>>> driver involved, adding that regulator capability for drivers not
+>>>>>>>> already having one.
+>>>>>>>
+>>>>>>> Please don't! I have recently rejected a similar approach for Tegra
+>>>>>>> platforms, which now have been converted into using the power domain
+>>>>>>> approach.
+>>>>>>
+>>>>>> Just to quickly re-iterate how our hardware design looks like, we do
+>>>>>> have a single gpio that control the power of a whole board area that is
+>>>>>> supposed to be powered-off in suspend mode, this area could contains
+>>>>>> devices that have a proper Linux driver and some passive driver-less
+>>>>>> components (e.g. level shifter) - the exact mix varies.
+>>>>>>
+>>>>>> Our proposal in this series was to model this as a power domain that
+>>>>>> could be controlled with a regulator. Krzysztof, Robin and others
+>>>>>> clearly argued against this idea.
+>>>>>
+>>>>> Well, historically we haven't modelled these kinds of power-rails
+>>>>> other than through power-domains. And this is exactly what genpd and
+>>>>> PM domains in Linux are there to help us with.
+>>>>>
+>>>>> Moreover, on another SoC/platform, maybe the power-rails are deployed
+>>>>> differently and maybe those have the ability to scale performance too.
+>>>>> Then it doesn't really fit well with the regulator model anymore.
+>>>>>
+>>>>> If we want to continue to keep drivers portable, I don't see any
+>>>>> better option than continuing to model these power-rails as
+>>>>> power-domains.
+>>>>>
+>>>>>>
+>>>>>> The other approach would be to have a single regulator shared with the
+>>>>>> multiple devices we have there (still not clear how that would work in
+>>>>>> case we have only driver-less passive components). This is just a
+>>>>>> device-tree matter, maybe we would need to add support for a supply to
+>>>>>> some device drivers.
+>>>>>>
+>>>>>> Honestly my conclusion from this discussion is that the only viable
+>>>>>> option is this second one, do I miss something?
+>>>>>
+>>>>> No thanks!
+>>>>>
+>>>>> Well, unless you can convince me there are benefits to this approach
+>>>>> over the power-domain approach.
+>>>>
+>>>> I'm fine with our current power-domain proposal here, I do not need to
+>>>> convince you, I have the other problem to convince someone to merge
+>>>> it :-)
+>>>>
+>>>> Maybe Krzysztof, Robin or Mark can comment again after you explained
+>>>> your view on this topic.
+>>>
+>>> To move things forward, I suggest you re-start with the power domain approach.
+>>>
+>>> Moreover, to avoid any churns, just implement it as another new SoC
+>>> specific genpd provider and let the provider deal with the regulator.
+>> I'm sorry, but I was not able to understand what you mean, can you
+>> provide some additional hint on the topic? Some reference driver we can
+>> look at?
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
-> v2: simplify clk-phase calculations
-> ---
->  drivers/mmc/host/dw_mmc-pltfm.c | 41 ++++++++++++++++++++++++++++++++-
->  1 file changed, 40 insertions(+), 1 deletion(-)
+> Typically, "git grep pm_genpd_init" will find genpd providers.
 > 
-> diff --git a/drivers/mmc/host/dw_mmc-pltfm.c b/drivers/mmc/host/dw_mmc-pltfm.c
-> index 9901208be797..5d64984d382f 100644
-> --- a/drivers/mmc/host/dw_mmc-pltfm.c
-> +++ b/drivers/mmc/host/dw_mmc-pltfm.c
-> @@ -17,10 +17,16 @@
->  #include <linux/mmc/host.h>
->  #include <linux/mmc/mmc.h>
->  #include <linux/of.h>
-> +#include <linux/mfd/altera-sysmgr.h>
-> +#include <linux/regmap.h>
->  
->  #include "dw_mmc.h"
->  #include "dw_mmc-pltfm.h"
->  
-> +#define SOCFPGA_DW_MMC_CLK_PHASE_STEP	45
-> +#define SYSMGR_SDMMC_CTRL_SET(smplsel, drvsel) \
-> +	((((smplsel) & 0x7) << 4) | (((drvsel) & 0x7) << 0))
-> +
->  int dw_mci_pltfm_register(struct platform_device *pdev,
->  			  const struct dw_mci_drv_data *drv_data)
->  {
-> @@ -62,9 +68,42 @@ const struct dev_pm_ops dw_mci_pltfm_pmops = {
->  };
->  EXPORT_SYMBOL_GPL(dw_mci_pltfm_pmops);
->  
-> +static int dw_mci_socfpga_priv_init(struct dw_mci *host)
-> +{
-> +	struct device_node *np = host->dev->of_node;
-> +	struct regmap *sys_mgr_base_addr;
-> +	u32 clk_phase[2] = {0}, reg_offset;
-> +	int i, rc, hs_timing;
-> +
-> +	rc = of_property_read_variable_u32_array(np, "clk-phase-sd-hs", &clk_phase[0], 2, 0);
-> +	if (rc) {
-> +		sys_mgr_base_addr =
-> +			altr_sysmgr_regmap_lookup_by_phandle(np, "altr,sysmgr-syscon");
+> There are a couple of examples where a regulator (among other things)
+> is being controlled from the genpd's ->power_on|off() callbacks, such
+> as:
+> 
+> drivers/soc/mediatek/mtk-pm-domains.c
+> drivers/soc/imx/gpc.c
+> 
+>>
+>> The driver we implemented and proposed with this patch is just
+>> connecting a power-domain to a regulator, it's something at the board
+>> level, not at the SoC one.
+>> We do not have a (existing) SoC driver were we could add the power
+>> domain provider as an additional functionality.
+> 
+> Right, so you need to add a new SoC/platform driver for this.
+> 
+>>
+>>> In this way, you don't need to invent any new types of DT bindings,
+>>> but can re-use existing ones.
+>> The only new binding would be a new "compatible" to have a place to
+>> tie the regulator instance used in the device tree, but I do not think
+>> that this is an issue at all.
+> 
+> Yes, I agree.
+> 
+>>
+>> The main concern that was raised on this topic was that we have to
+>> somehow link the power-domain to the specific peripherals (the power
+>> domain consumer) in the device tree.
+> 
+> Yes, that is needed. Although, I don't see how that is a concern?
+> 
+> We already have the valid bindings to use for this, see more below.
+> 
+>>
+>> Adding the power-domain property there will trigger validation errors
+>> unless we do explicitly add the power-domains to the schema for each
+>> peripheral we need this. To me this does not really work, but maybe I'm
+>> not understanding something.
+>>
+>> This is what Rob wrote on the topic [1]:
+>>   > No. For 'power-domains' bindings have to define how many there are and
+>>   > what each one is.
+>>
+>> Just as an example from patch [2]:
+>>
+>>   can1: can@0 {
+>>     compatible = "microchip,mcp251xfd";
+>>     power-domains = <&pd_sleep_moci>;
+>>   };
+>>
+>> leads to:
+>>
+>>   imx8mm-verdin-nonwifi-dahlia.dtb: can@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>           From schema: .../bindings/net/can/microchip,mcp251xfd.yaml
+> 
+> I think it should be fine to just add the below line to the DT
+> bindings, for each peripheral device to fix the above problem.
+> 
+> power-domains: true
 
-I don't see the reason why this is conditional. Just creates unnecessary
-indentation.
+Again, as Rob said, no, because it must be strictly defined. So for
+example: "maxItems: 1" for simple cases. But what if device is then part
+of two power domains?
 
-> +		if (IS_ERR(sys_mgr_base_addr)) {
-> +			pr_err("%s: failed to find altr,sys-mgr regmap!\n", __func__);
-> +			return 1;
-> +		}
-> +	} else
-> +		return 1;
+> 
+> That should be okay, right?
 
-Why not -ERRNO (or rc)?
+Adding it to each peripheral scales poorly. Especially that literally
+any device can be part of such power domain.
 
-> +
-> +	of_property_read_u32_index(np, "altr,sysmgr-syscon", 1, &reg_offset);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(clk_phase); i++)
-> +		clk_phase[i] /= SOCFPGA_DW_MMC_CLK_PHASE_STEP;
-> +
-> +	hs_timing = SYSMGR_SDMMC_CTRL_SET(clk_phase[0], clk_phase[1]);
-> +	regmap_write(sys_mgr_base_addr, reg_offset, hs_timing);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dw_mci_drv_data socfpga_drv_data = {
-> +	.init		= dw_mci_socfpga_priv_init,
-> +};
-> +
->  static const struct of_device_id dw_mci_pltfm_match[] = {
->  	{ .compatible = "snps,dw-mshc", },
-> -	{ .compatible = "altr,socfpga-dw-mshc", },
-> +	{ .compatible = "altr,socfpga-dw-mshc", .data =&socfpga_drv_data, },
+If we are going with power domain approach, then it should be applicable
+basically to every device or to every device of some class (e.g. I2C,
+SPI). This means it should be added to respective core schema in
+dtschema repo, in a way it does not interfere with other power-domains
+properties (existing ones).
 
-Missing space before &
-
->  	{ .compatible = "img,pistachio-dw-mshc", },
->  	{},
->  };
 
 Best regards,
 Krzysztof
