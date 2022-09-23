@@ -2,72 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E15CE5E70E6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 02:51:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2115E7143
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 03:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231382AbiIWAvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Sep 2022 20:51:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56994 "EHLO
+        id S232338AbiIWBNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Sep 2022 21:13:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231750AbiIWAum (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 20:50:42 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0932CF1D70;
-        Thu, 22 Sep 2022 17:50:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=srj8tG1KHLmSlDpKcGgtXzEQLTVB90Z7Sdq6M6tLsgk=; b=EYEsC2QD6loZyakBCAKYxPjw/W
-        F7yxSq+SgsNhJyYJxBirwip+QYk6Hc7RXC1YELD0cvM6otqSgA47rShXp+NVSOCXvzz8f7mmMhhRX
-        sIyR9VxO534KsjqMlJePcLM/mRAi6RChxoBFbqQl9nAmD28zyKbql8aF8Z2uEhurPAtg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1obWtN-00HaEh-9X; Fri, 23 Sep 2022 02:50:09 +0200
-Date:   Fri, 23 Sep 2022 02:50:09 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        David Jander <david@protonic.nl>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: Re: [PATCH net-next v6 7/7] net: pse-pd: add regulator based PSE
- driver
-Message-ID: <Yy0CwerZ2UvWqnhD@lunn.ch>
-References: <20220921124748.73495-1-o.rempel@pengutronix.de>
- <20220921124748.73495-8-o.rempel@pengutronix.de>
+        with ESMTP id S232295AbiIWBNo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Sep 2022 21:13:44 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA8D91166DF
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 18:13:33 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-11eab59db71so16322395fac.11
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 18:13:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=2BBAQBVpQ8fXKmes7SQw9/PDpetGobnws+Vor3/B+A0=;
+        b=V1yvgkxoyU/dThLL9TTrsz8DBaGhI/bZIBapBaw5bStsYTbBrSlbORj/zYoEKopoz8
+         cvRGXpv9D3hFZzdHPeKXQX+wUNOtINR1v7flrGgfyWcjXUkAi9vguzc6dybjHcXxASH2
+         qPi/DVTY2Sdp9+cnzaXsYASKeDi/vtfO5dSCCDPXlqjeedSXuCw0Q3ult302E/KOmZ4r
+         rQB8SPV8YM3NkRSM3R3YkUnnH88FrX5DhnHYxrzkNOIv/pjEKIBVlf1arCOTiyVETyN3
+         mu9CdaK13/N1cyb3D+GYjxGPj5s9/0M4sfkbfAT+tXiNxywf9Xc8UsuAB5fucbAbHQxL
+         PxgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=2BBAQBVpQ8fXKmes7SQw9/PDpetGobnws+Vor3/B+A0=;
+        b=hBOYngPsaHF+iAi3GDOi6kuPfrTq4TIAbC8AwsPgZ2swco2vQBNLK4v1qz0y296CZk
+         LQQzfyiS9OHByEL0H0qLmxQ/9TLr2TsB0uTjzKkDkHoJ0oGMJ6m8Nqmy0yNzhAeiR8uM
+         rwTAr/4Qx/pLat2m8Nx7+Jp+nNblUzghIIhi69f5zTpO7k4xKsNitRFcVVFDy66zGpnr
+         7zA33LjfVi6XFKJ7GVvS8+nhPWULj1DAxeMPEv8GyUr1DpE1KdweIWnJhFT72N6j1/rr
+         w9INmdAEZuOntPsZcislEEwDZRXt0ZDSlNYzFQZQFhKOX6EHJF7UbnI1R9O5GtEJe+1j
+         8Pyw==
+X-Gm-Message-State: ACrzQf2QGqwPAncdxx3yga/zmaSumR51R4AaAA5jf+3nEFj/Pb/ARJa4
+        +CgfgrynsSiBhNGDjnF4yWAXhw==
+X-Google-Smtp-Source: AMsMyM4y72P7l45Eoh9rVYWaDDqTIPviU+AVVtECUCPHTW7UrA53sCd5HY2mhu2iysRQXSICYV7aOQ==
+X-Received: by 2002:a05:6870:639e:b0:127:bbc2:223e with SMTP id t30-20020a056870639e00b00127bbc2223emr3665823oap.167.1663895612843;
+        Thu, 22 Sep 2022 18:13:32 -0700 (PDT)
+Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
+        by smtp.gmail.com with ESMTPSA id i21-20020a056820013500b00432ac97ad09sm2780618ood.26.2022.09.22.18.13.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Sep 2022 18:13:32 -0700 (PDT)
+Date:   Thu, 22 Sep 2022 21:08:05 -0400
+From:   William Breathitt Gray <william.gray@linaro.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mranostay@ti.com
+Subject: Re: [PATCH v8 3/4] counter: ti-ecap-capture: capture driver support
+ for ECAP
+Message-ID: <Yy0G9a5S3OzwyEwW@fedora>
+References: <20220922170402.403683-1-jpanis@baylibre.com>
+ <20220922170402.403683-4-jpanis@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8oIR1Oj1QlTXqeTr"
 Content-Disposition: inline
-In-Reply-To: <20220921124748.73495-8-o.rempel@pengutronix.de>
+In-Reply-To: <20220922170402.403683-4-jpanis@baylibre.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 21, 2022 at 02:47:47PM +0200, Oleksij Rempel wrote:
-> Add generic, regulator based PSE driver to support simple Power Sourcing
-> Equipment without automatic classification support.
-> 
-> This driver was tested on 10Bast-T1L switch with regulator based PoDL PSE.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+--8oIR1Oj1QlTXqeTr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-    Andrew
+On Thu, Sep 22, 2022 at 07:04:01PM +0200, Julien Panis wrote:
+> ECAP hardware on TI AM62x SoC supports capture feature. It can be used
+> to timestamp events (falling/rising edges) detected on input signal.
+>=20
+> This commit adds capture driver support for ECAP hardware on AM62x SoC.
+>=20
+> In the ECAP hardware, capture pin can also be configured to be in
+> PWM mode. Current implementation only supports capture operating mode.
+> Hardware also supports timebase sync between multiple instances, but
+> this driver supports simple independent capture functionality.
+>=20
+> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+
+Hello Julien,
+
+Comments follow inline below.
+
+> +/**
+> + * struct ecap_cnt_dev - device private data structure
+> + * @enabled: device state
+> + * @clk:     device clock
+> + * @regmap:  device register map
+> + * @nb_ovf:  number of overflows since capture start
+> + * @pm_ctx:  device context for PM operations
+> + */
+> +struct ecap_cnt_dev {
+> +	bool enabled;
+> +	struct clk *clk;
+> +	struct regmap *regmap;
+> +	atomic_t nb_ovf;
+> +	struct {
+> +		u8 ev_mode;
+> +		u32 time_cntr;
+> +	} pm_ctx;
+> +};
+
+Provide documentation for the ev_mode and time_cntr members. You
+probably need a lock as well to protect access to this structure or
+you'll end up with race problems.
+
+
+> +static void ecap_cnt_capture_enable(struct counter_device *counter)
+> +{
+> +	struct ecap_cnt_dev *ecap_dev =3D counter_priv(counter);
+> +
+> +	pm_runtime_get_sync(counter->parent);
+> +
+> +	/* Enable interrupts on events */
+> +	regmap_update_bits(ecap_dev->regmap, ECAP_ECINT_EN_FLG_REG,
+> +			   ECAP_EVT_EN_MASK, ECAP_EVT_EN_MASK);
+> +
+> +	/* Run counter */
+> +	regmap_update_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_ECCTL_CFG_MAS=
+K,
+> +			   ECAP_SYNCO_DIS_MASK | ECAP_STOPVALUE_MASK | ECAP_ECCTL_EN_MASK);
+> +}
+> +
+> +static void ecap_cnt_capture_disable(struct counter_device *counter)
+> +{
+> +	struct ecap_cnt_dev *ecap_dev =3D counter_priv(counter);
+> +
+> +	/* Disable interrupts on events */
+> +	regmap_update_bits(ecap_dev->regmap, ECAP_ECINT_EN_FLG_REG, ECAP_EVT_EN=
+_MASK, 0);
+> +
+> +	/* Stop counter */
+> +	regmap_update_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_ECCTL_EN_MASK=
+, 0);
+
+Shouldn't the counter be stopped before stopping the interrupts?
+
+> +static int ecap_cnt_count_get_val(struct counter_device *counter, unsign=
+ed int reg, u32 *val)
+> +{
+> +	struct ecap_cnt_dev *ecap_dev =3D counter_priv(counter);
+> +	unsigned int regval;
+> +
+> +	pm_runtime_get_sync(counter->parent);
+> +	regmap_read(ecap_dev->regmap, reg, &regval);
+> +	pm_runtime_put_sync(counter->parent);
+> +
+> +	*val =3D regval;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ecap_cnt_count_set_val(struct counter_device *counter, unsign=
+ed int reg, u32 val)
+> +{
+> +	struct ecap_cnt_dev *ecap_dev =3D counter_priv(counter);
+> +
+> +	pm_runtime_get_sync(counter->parent);
+> +	regmap_write(ecap_dev->regmap, reg, val);
+> +	pm_runtime_put_sync(counter->parent);
+> +
+> +	return 0;
+> +}
+
+The ecap_cnt_count_get_val() and ecap_cnt_count_set_val() functions only
+ever return 0. Redefine them as void functions and eliminate the
+unnecessary returns.
+
+> +static int ecap_cnt_count_write(struct counter_device *counter,
+> +				struct counter_count *count, u64 val)
+> +{
+> +	struct ecap_cnt_dev *ecap_dev =3D counter_priv(counter);
+> +
+> +	if (ecap_dev->enabled)
+> +		return -EBUSY;
+
+You should return -EBUSY when the requested operation cannot be
+completed because the device currently performing a task -- i.e. the
+requested operation would stall or otherwise fail if forced. In this
+case, the count value actually can be set while the device is enabled,
+if I'm not mistaken; the count just continues increasing from the new
+written value (i.e. no stall/failure). Therefore, there's not need to
+return -EBUSY here and this check can be eliminated.
+
+> +static int ecap_cnt_pol_write(struct counter_device *counter,
+> +			      struct counter_signal *signal,
+> +			      size_t idx, enum counter_signal_polarity pol)
+> +{
+> +	struct ecap_cnt_dev *ecap_dev =3D counter_priv(counter);
+> +
+> +	if (ecap_dev->enabled)
+> +		return -EBUSY;
+
+I suspect this check can go away for the same reason as above.
+
+> +static int ecap_cnt_cap_write(struct counter_device *counter,
+> +			      struct counter_count *count,
+> +			      size_t idx, u64 cap)
+> +{
+> +	struct ecap_cnt_dev *ecap_dev =3D counter_priv(counter);
+> +
+> +	if (ecap_dev->enabled)
+> +		return -EBUSY;
+
+Same comment as above.
+
+> +static int ecap_cnt_nb_ovf_write(struct counter_device *counter,
+> +				 struct counter_count *count, u64 val)
+> +{
+> +	struct ecap_cnt_dev *ecap_dev =3D counter_priv(counter);
+> +
+> +	if (ecap_dev->enabled)
+> +		return -EBUSY;
+
+Same comment as above.
+
+> +static struct counter_count ecap_cnt_counts[] =3D {
+> +	{
+> +		.id =3D 0,
+
+The id member is for differentiating between multiple Counts. You only
+have one Count in this driver so you don't need to set it because you
+never use it.
+
+William Breathitt Gray
+
+--8oIR1Oj1QlTXqeTr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYy0G9QAKCRC1SFbKvhIj
+KxouAQCf2abb4CAphtgGkhQHIiAbAAbJAjCL1/3/eLHnBeBuwgEAl3EJhEc2Xmrp
+jmOjd5jNtDVQnvB+NsoZnflvSxpU+gQ=
+=XTZc
+-----END PGP SIGNATURE-----
+
+--8oIR1Oj1QlTXqeTr--
