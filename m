@@ -2,145 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E269A5E7BBD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 15:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E6A5E7BD1
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 15:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231511AbiIWNZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 09:25:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59492 "EHLO
+        id S230362AbiIWN2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 09:28:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbiIWNZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 09:25:45 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2089.outbound.protection.outlook.com [40.107.101.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4047B109124;
-        Fri, 23 Sep 2022 06:25:43 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CHwRzMLXYtiro8FHA0vifnZL++rUIk8rW1hkUEzL06RR8Ug1361jykB0kw8k9oItEfQSlTLCZ19o4RCR9/+JTj1G/cZcrbe3DQv7GMnNYzWda2NevGnmpwagNIxoqfy+BtmSsATdEGUlTsT8bGZMRYxFmqdNFxaykPP5vPLLA6+9wvjkR3t9n8iywXygmsKuu2aO4e3zQ23d+RkILclDHqdaFPX1ZdL86NWbAlx8cMQfVOGbWYJSHIK93R1tt7a1uLoyUG6G7TVTIgq/Zng3ojhyr9OoiW6BphRImUVqhSkXIp9TfKUff01E7rwYr2SA/VH0CTZs6WXWabfC2K7X1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S31c+t19SRQ4xEMSLtXDmv4ANK1eezjvDbn/qZaF1Nc=;
- b=VW2BV5MDZu6SdSoObsYc+gXg9OeXEfeo0L9C/0X78sOY4edMYE4jWfr3mpjqNA2/gRrceFRoj8aIlr5hTts5AG/u2FxiXQtwmVFivRl7diW5rq49iqO/D2zozTxY3N0x5Z0yVnI/lEZZE1gme2zUE3yOrkDBsmMnHefEqK4IRJgn0Y6LtIg22F5bGZ1f18mbUsuJBiObVnODC5z3b/LQ1wNDvOgchzxKzdEIFpsFEr8H14Kc7ijn93Iv7Op9P4rIxv5V8hs+MEW65mjnhHr7nXsTnhKeOcqy2SYhWD9SUEWgxpbbucXsHlMnan0f5ec0uJHDM4m7M2gSYhnW3Gk/2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=balbi.sh smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S31c+t19SRQ4xEMSLtXDmv4ANK1eezjvDbn/qZaF1Nc=;
- b=lz/tY5I66fj0tvmaDsoGn4mWhVGBTbOjc34n+hs8xz4+mQ2PcWvIRIpvTztVhnfIH5whlOSNGxUPaHVlpUHgp+qETtC6TuFWT5XiKfTnpcDEqbmobhuo5weTXnBkct2BFDse/KoAE5ik+m1lE4LA2zN0xCKNQ1PqwSJ1tLf+6MQ=
-Received: from MW4PR03CA0202.namprd03.prod.outlook.com (2603:10b6:303:b8::27)
- by DS7PR12MB5886.namprd12.prod.outlook.com (2603:10b6:8:79::8) with Microsoft
+        with ESMTP id S230281AbiIWN2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 09:28:16 -0400
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1102713BCFA
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 06:28:13 -0700 (PDT)
+Received: from CHE01-GV0-obe.outbound.protection.outlook.com
+ (mail-gv0che01lp2044.outbound.protection.outlook.com [104.47.22.44]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-13-YMCO2ADXP9GiidHPiZMSWQ-1; Fri, 23 Sep 2022 15:28:08 +0200
+X-MC-Unique: YMCO2ADXP9GiidHPiZMSWQ-1
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:3b::9) by
+ GVAP278MB0780.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:56::9) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5654.17; Fri, 23 Sep 2022 13:25:40 +0000
-Received: from CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b8:cafe::25) by MW4PR03CA0202.outlook.office365.com
- (2603:10b6:303:b8::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.19 via Frontend
- Transport; Fri, 23 Sep 2022 13:25:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT068.mail.protection.outlook.com (10.13.175.142) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5654.14 via Frontend Transport; Fri, 23 Sep 2022 13:25:39 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 23 Sep
- 2022 08:25:35 -0500
-Message-ID: <e4dfbb55-c8ae-e98c-89c3-4bfb54311a30@amd.com>
-Date:   Fri, 23 Sep 2022 15:25:33 +0200
+ 15.20.5654.17; Fri, 23 Sep 2022 13:28:07 +0000
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::d10c:ccdc:19a2:a141]) by ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::d10c:ccdc:19a2:a141%3]) with mapi id 15.20.5654.020; Fri, 23 Sep 2022
+ 13:28:07 +0000
+From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
+To:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "abelvesa@kernel.org" <abelvesa@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v1 4/5] clk: imx6sll: add proper spdx license identifier
+Thread-Topic: [PATCH v1 4/5] clk: imx6sll: add proper spdx license identifier
+Thread-Index: AQHYuYFG/X8GA3dipkiuxx8Jiw9fT63tLZ4A
+Date:   Fri, 23 Sep 2022 13:28:07 +0000
+Message-ID: <0bd909c734a0dcc4f8f5af452fb0970d80b624a5.camel@toradex.com>
+References: <20220826192252.794651-1-marcel@ziswiler.com>
+         <20220826192252.794651-5-marcel@ziswiler.com>
+In-Reply-To: <20220826192252.794651-5-marcel@ziswiler.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZR0P278MB0683:EE_|GVAP278MB0780:EE_
+x-ms-office365-filtering-correlation-id: 427bfa56-4dae-4e21-66c0-08da9d677382
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: 8S0HyEsrYvc0fF/VlEbloWFi5HAoMtgU4N6bk4uAj3ITMrZg2hhsYBTOHfW7maMjgKDAOSFKpN//jY4Am+C6vWdaZ1xFU4jX4l0o+VM1pawQvHKTveUDrkS6pShFGoeKz6nht9lv0Qiu9W85xnB26/YCvjNUbGL/6nJq1aZ+SXWhQsh3Pwv+CT00Ki9WnpJ+FEY/vwQSy4Ic0wtF+q9QPWLC9na9OV7qIYOxcq278+pR8gVGkzHpK/deIl+/k8QmjMnvZqE+WB84G8d0SxFancGj2qi4tedr/pL5Aehs/GjMpR2MS+t9hTwXAsnPXlkW55YNv5lzCyaOR9zWyTI3sEUSRR7aPO/ZH5ca/klXHoALmDnvJJpJlbROcyaeCQBoSl503XPJ4AZuZmkxrjf5zL6/v5TZuIoLMTpZuEeCasofi7gCXT41Y/dWng771lVHUR3pvw3DZsEIW279gU16vZipjrQNXegUpFR9gI9CHwyxNFOJ6h4ETZt2nvcXonl7Nl/5uinOwDlrwfRXOZIFpmCOGNy6D5ka6eLKY5CF/JpPI/6wZMLYPmGOYN5+shyN8VYetOZStNAIGW6Otdc1cipftfFXcuo29/pm5kQcLA/ZYSPFbJQiGG/dgDGpMdnH6NMVhJHcBv+TVV3kT13z4VvvgY6ASJJNdZjOqu59S1tz823w4/wRZHDyEmPFYpgQeGaYgRF+wRVufvszHlpr736p8Ou1PQ6LPoWaacD7ciaYVF1oOUoT7Kw5O7lPsfNwgiJPgoYF/n6E75d6wXGUYw0xFar/+yLHT93JH7Lojb8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(376002)(366004)(396003)(39840400004)(451199015)(36756003)(2906002)(54906003)(8676002)(76116006)(4326008)(122000001)(38100700002)(83380400001)(8936002)(41300700001)(5660300002)(44832011)(6916009)(316002)(66556008)(86362001)(66476007)(2616005)(478600001)(186003)(7416002)(26005)(6512007)(66946007)(6486002)(64756008)(71200400001)(66446008)(38070700005)(6506007)(32563001);DIR:OUT;SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?by8rbG44ZStwd2ZzOUdQa1E3MlBzbmgxNmlwY0lCQjFkK2FuT01raXhZSTJE?=
+ =?utf-8?B?RnNMWXRGSnFVYXVrSThwTjdoL1U4bmJ0dkhmWDNoWWtZWUI0SG13VjFnd0NW?=
+ =?utf-8?B?SXUxYzlpT25GL3UvT2RvQTRCblQ4a1Q4WUsvdnpDUkQrUXhtaHYyTUtENjJO?=
+ =?utf-8?B?ZkcwN1dteTlnL3A4bFZZejJCaVBUNWpMbnM0czd6NHpEQkthclBSc2ZERmZZ?=
+ =?utf-8?B?bEp0MjZ0T3ZHQjFiTzFwdnlGQmVsbkZBUEUwSVYrcjBPT2lucUpkUGVYTzJT?=
+ =?utf-8?B?bVMzZnBNZVR1b0xqemFDdXpmZXpJVW5iLzZnTktQT0tLNVJ3dDFmTlZJT3dI?=
+ =?utf-8?B?SGcwYXBPaGh3dXhVeTYvVUlESzhwWlpQTTJ3NkdBNXZWejNUT0R3RmdLVHI5?=
+ =?utf-8?B?Q3ZJZStGOUZocnlMWWU1elIrRThqN1hFaysvVjBYSm5keGFraUdoRTc3MjBp?=
+ =?utf-8?B?bng5K2xLMDJncUc1TU5LZ21VVkp4U1B5NVlnYkxnMlpKTVphWWppMXY4MmNp?=
+ =?utf-8?B?RGdYQnB5ZHFSNU02enQ0N1RlVVdUOHRrNUJwZWcrWkZpZEVMNThEYXRqWk80?=
+ =?utf-8?B?VWo3WUV3TG9nSjlRS0NpQkh4T1lLT1JSejJDemVvU3oyM0VVUjdWVGloYTNJ?=
+ =?utf-8?B?V1VFM2VWL1FMVFg1QzhnY2dhY1NZTTVaVnlhWXZya1Ayb3RQWEVlYnVQWU9Z?=
+ =?utf-8?B?SE9Qek9rQXVOaXdlYWpkWnZoYzBzMmlwT2s5SHNKTUc0VEpRNkpvMHFvWW1Z?=
+ =?utf-8?B?U2piK2R1bkl6MC9QZ3k0OWVYSmlVejgzTDRiSU9LOStCRktZN1pXWnpTZkhi?=
+ =?utf-8?B?dTlGYThjZEtDODdjTzRWRzBralBiam9YZE5OditGNEhiTkJjN2IweExTUWQ2?=
+ =?utf-8?B?ZGkxaU0xdjBzKzUvaGdCWlFUemVXeURtclBwdW0wWko4Wm00Um9VUHgxVWdK?=
+ =?utf-8?B?UktvN1ZnSUYvWUlpR0hPT1JGMk1iZVdFWHZZcjhrUlE1Z0hTRzdEMHlOUkpF?=
+ =?utf-8?B?TjR1UkFXSGg3QzJBWDA3MEFBVUNTOGs1UkNDU201ZmdRUENXaHNtU0xadW9Z?=
+ =?utf-8?B?NTliYVJDaU1ySUc0cmZXNjk1a2lIakplZnNnQmxtMHNXbkxVNjBUdXVHTEJP?=
+ =?utf-8?B?c3RqdG8vUlpqcEtqYWtKcmdQYjRNc0lORkNsZGJOcHRLY0dsaFFnRTZoa09X?=
+ =?utf-8?B?c3p3RWFOeDgya09VdlAwSUtKTSt1M0lJSFFKSk96VkFBczlZWW5IclM2Y0hS?=
+ =?utf-8?B?cFFQRWdrbElFMm5RQWZWMmZLbm80YWdEc3pkY0NONlVnSnMyUjcybDl4RDJz?=
+ =?utf-8?B?RndybXVVVmpGTnA3dlRRbkpEZkQwbTVOaEV4R0RmaGpDU0pzOHZ1dWprdysr?=
+ =?utf-8?B?bW5vQk5xc1VoMXZKTGVkeUFSWE1rQnNxcDh2WlZRZjFObXc4bmtGSDQ1TERm?=
+ =?utf-8?B?NWFnUlVzYmlkYWs0ZjB4Szd2YTB1MVJxOEFVcXZKVW5mTHdudTFyU05zOXZV?=
+ =?utf-8?B?Q3dtUWN1c0ZJM215M09HTzUvNnZtaWpnWXppRGRpaW9MSUs2aUwxaDZ2eXJ4?=
+ =?utf-8?B?aEVtYjZHWWV6dld5am1KZ0xxWlhRa3pJSVA5ZUM1aGpUbFZGRDYrYU4yemt4?=
+ =?utf-8?B?S0V6YlZnYjNUVlVtSWZqa2pCWmdyTXRvUCtsbHhuVEdkTlhWL0J2VkZMZ1F4?=
+ =?utf-8?B?YmhHaDd2OHFVYzNhdUg0RitLQjZiSmx6alRCOTJjelBBRmR2cDhDUnI5R2Jl?=
+ =?utf-8?B?eFZXUVZoVGwvZ1dCVTRpS3BaaVpQakNDcTVTSm9wendTWlprdjI5c0hPVHIw?=
+ =?utf-8?B?dEVOdEdQeFlOOWhLTStkVkxReVV0QjRVd3MzdkpCRWNGQlI4dUk5bFZmLzBO?=
+ =?utf-8?B?akl4WTJreUVOb1dzSmdoYnpraDBad3d2YWxISUJYM1VOVEl2cVBPazl3Vm9y?=
+ =?utf-8?B?eFZ6TzVXMm9zY1Z0UWpxSS9KQ0k3MHdWNDBJQVBiUU9uM1R2MHJOcDluSFov?=
+ =?utf-8?B?MGV5V3p5ZDBXQ1BTaVV5NUdIckdUdHBLM2NtMDE5QUd2REdsck5UbWViZ1ls?=
+ =?utf-8?B?dWdQZXlRbXorcENtZ0FBZnBHQ1YrR1V6WUlRbld5VlZ3ZWk0YUFaQ1dwMVdz?=
+ =?utf-8?B?MEM2dCtYeTl3dGg1RktyV3pJcG9YVEJlekZ4cnRaVGhvU3hhNkhrSS94dDdo?=
+ =?utf-8?Q?Mvw59S6Hs5binBzExf8zTC4=3D?=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH] dt-bindings: usb: dwc3: Add interrupt-names to include
- hibernation interrupt
-Content-Language: en-US
-To:     Felipe Balbi <felipe@balbi.sh>, Piyush Mehta <piyush.mehta@amd.com>
-CC:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <siva.durga.prasad.paladugu@amd.com>,
-        Manish Narani <manish.narani@xilinx.com>
-References: <20220912085730.390555-1-piyush.mehta@amd.com>
- <87y1uab6re.fsf@balbi.sh>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <87y1uab6re.fsf@balbi.sh>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT068:EE_|DS7PR12MB5886:EE_
-X-MS-Office365-Filtering-Correlation-Id: e914c189-8685-4df3-5fba-08da9d671bdf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4guJfy9YdBLlKh58imynI2Cs+N4ZKPgjZ5sI2mu1+SJqJW6492o9XQbUulHi6COz9kkrcaCLS703rpfSWnSHAbayio4cXcvd+56mc2KfH3pbdOyAgphBVnCBS4NVwZNBwSd9Lt0m3hlc4JFpB3LUeSWUwb5lJiPnvd2HmYEA9HXaZ5A1IfTMh6TOQ1DYKdMcHq/95X2Hhv/qVmqpcz2nHDLnEKG414CGjRjoR1LnhMNnA9//W7WoGxb52wwcdHdrQKcOId4zBmnPUhC+doJUR1HGcLr9lwa+J+DuhhxUJRrghWERRhG8BMNAZsDYPR6yU3oQopLehRTaU84XA1wF4w8NNy9wavpfkHI4bs3odbCPbM3NBVnubbpupjDl124D9U9kYaEJLyXWUNlGFrgU8EeqtKlNSZjkBaJTa7KnZfnnMI/Af+f6esSQahegGOzMvTfoabzg/h6vpEqaMtmj+DEa560owB4m+6ucUGQUsTSQZL3V+4Lc6SzvIMHGzo6JhTS6TaO8gZHy0l5vhyjAYwDPYIghA+2VWIxYZd1qSwFC91V5u33XuRLG+Qjinl5yMzvc5duzdd+zCGWk9t3OhfuMwuG077iSGNUOTDsezE8XjjO20kj3hW2xQicSIX33MRzIO8EsjDZycc5fLYVJX0kmVz5shm7wajWM0Ssz+CyLVEiTF0x9HtHd/GA/xz8yCGV19jeQGVwrIDHw8w6dJ3UoPtGAfP6BI4AUkoiKTWLAtMDkASMBa9YwpMFpbcKXvGlkUtgpOLxgoY417HdujYjF/Fr23lRuE1scoDqqWRfvRAEgOs8fvaeBX6kKuG8UvaUMwt9DO5yWK1+WqyAKkA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(346002)(39860400002)(376002)(451199015)(46966006)(40470700004)(36840700001)(110136005)(316002)(31686004)(40480700001)(36860700001)(356005)(478600001)(31696002)(4326008)(6636002)(86362001)(107886003)(8676002)(54906003)(82740400003)(36756003)(426003)(47076005)(44832011)(70586007)(26005)(81166007)(41300700001)(5660300002)(2616005)(336012)(2906002)(82310400005)(70206006)(40460700003)(8936002)(186003)(16526019)(16576012)(53546011)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2022 13:25:39.9287
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 427bfa56-4dae-4e21-66c0-08da9d677382
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2022 13:28:07.1308
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e914c189-8685-4df3-5fba-08da9d671bdf
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5886
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: RJmed7C7Z2Ty6Kl2UDlwsis8IB0n528R6HMchk2rdwJrE8nleu9UrMAW+qf3urkyHzj6CVEXvKzP9srRo7ls12iZSikKaGdmIJWREiFvEkg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0780
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-ID: <CDCE015605FB944195DD1D52F2BA83D4@CHEP278.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felipe,
-
-On 9/23/22 14:43, Felipe Balbi wrote:
-> 
-> Hi,
-> 
-> Piyush Mehta <piyush.mehta@amd.com> writes:
->> From: Manish Narani <manish.narani@xilinx.com>
->>
->> The hibernation feature enabled for Xilinx ZynqMP SoC in DWC3 IP.
->> Added the below interrupt-names in the binding schema for the same.
->>
->> dwc_usb3: dwc3 core interrupt-names
->> otg: otg interrupt-names
->> hiber: hibernation interrupt-names
->>
->> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
->> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
->> ---
->>   Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> index 1779d08ba1c0..618fa7bd32be 100644
->> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> @@ -53,6 +53,8 @@ properties:
->>         - const: dwc_usb3
->>         - items:
->>             enum: [host, peripheral, otg]
->> +      - items:
->> +          enum: [dwc_usb3, otg, hiber]
-> 
-> I would spell it out; i.e. `hibernation' instead of `hiber'.
-
-that wouldn't be an issue. What about that wake-up line?
-
-Thanks,
-Michal
+T24gRnJpLCAyMDIyLTA4LTI2IGF0IDIxOjIyICswMjAwLCBNYXJjZWwgWmlzd2lsZXIgd3JvdGU6
+DQo+IEZyb206IE1hcmNlbCBaaXN3aWxlciA8bWFyY2VsLnppc3dpbGVyQHRvcmFkZXguY29tPg0K
+PiANCj4gVGhpcyBmaXhlcyB0aGUgZm9sbG93aW5nIGVycm9yOg0KPiANCj4gaW5jbHVkZS9kdC1i
+aW5kaW5ncy9jbG9jay9pbXg2c2xsLWNsb2NrLmg6MTogd2FybmluZzogSW1wcm9wZXIgU1BEWA0K
+PiDCoGNvbW1lbnQgc3R5bGUgZm9yICdpbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2lteDZzbGwt
+Y2xvY2suaCcsIHBsZWFzZQ0KPiDCoHVzZSAnLyonIGluc3RlYWQNCj4gaW5jbHVkZS9kdC1iaW5k
+aW5ncy9jbG9jay9pbXg2c2xsLWNsb2NrLmg6MTogd2FybmluZzogTWlzc2luZyBvcg0KPiDCoG1h
+bGZvcm1lZCBTUERYLUxpY2Vuc2UtSWRlbnRpZmllciB0YWcgaW4gbGluZSAxDQo+IA0KPiBTaWdu
+ZWQtb2ZmLWJ5OiBNYXJjZWwgWmlzd2lsZXIgPG1hcmNlbC56aXN3aWxlckB0b3JhZGV4LmNvbT4N
+Cj4gLS0tDQo+IA0KPiDCoGluY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svaW14NnNsbC1jbG9jay5o
+IHwgMiArLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigt
+KQ0KPiANCj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svaW14NnNsbC1j
+bG9jay5oIGIvaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9pbXg2c2xsLWNsb2NrLmgNCj4gaW5k
+ZXggZjQ0NjcxMGZlNjNkLi40OTRmZDBjMzdmYjUgMTAwNjQ0DQo+IC0tLSBhL2luY2x1ZGUvZHQt
+YmluZGluZ3MvY2xvY2svaW14NnNsbC1jbG9jay5oDQo+ICsrKyBiL2luY2x1ZGUvZHQtYmluZGlu
+Z3MvY2xvY2svaW14NnNsbC1jbG9jay5oDQo+IEBAIC0xLDQgKzEsNCBAQA0KPiAtLy8gU1BEWC1M
+aWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjANCj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVy
+OiBHUEwtMi4wICovDQo+IMKgLyoNCj4gwqAgKiBDb3B5cmlnaHQgKEMpIDIwMTYgRnJlZXNjYWxl
+IFNlbWljb25kdWN0b3IsIEluYy4NCj4gwqAgKiBDb3B5cmlnaHQgMjAxNy0yMDE4IE5YUC4NCg0K
+SSBub3RpY2VkIHRoYXQgdGhpcyBvbmUgaGFzIG5vdCBsYW5kZWQgeWV0IHdoaWxlIHBhdGNoZXMg
+MS0zIHdlcmUgcHVsbGVkIGJ5IFNoYXduLiBXaG8gd2lsbCB0YWtlIHRoaXMgb25lPw0K
 
