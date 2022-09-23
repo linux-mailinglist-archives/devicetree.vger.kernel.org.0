@@ -2,131 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFE495E768D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B239A5E76A6
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:18:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231367AbiIWJNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 05:13:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42116 "EHLO
+        id S229709AbiIWJSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 05:18:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230415AbiIWJNj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:13:39 -0400
-Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 606CC11DFF0;
-        Fri, 23 Sep 2022 02:13:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:Content-Type:
-        Message-ID:References:In-Reply-To:Cc:To:From:Date:MIME-Version:Sender:
-        Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-        :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Pyy6eEQGqm5x0ptRrX3qFJPlzABRUcd93BdxWTrxRAc=; b=tqZuE5xcs/KT9n15zbg5lQSuYP
-        6Y4ZugPX+vbHS6E5JQyJ7RZExVY1fjZCsX5gA5C2Br0voZuyv2uYsymAElmESaPnylEVbdNh45n8Q
-        sWhFUUcHhO0rOS6sz1VQawNnAs/yK6w5/+ML23GK/h9/xHLV6EJ97lRMXXTmB0v3nyA4OPE4GLkNV
-        tBPuYsANvbkyRsL4n8TDuheqBEFxgyUwf+eZRs2U7ilKTjzlZ6h003zrmTogWtFyTjNu1ESW6yTsi
-        HBGTrOkjNeBmCHvBExFDB13YLXpfW7rVyG1C2ptEOPCUj/8C6tf6d9NrgABPWoRnFyK78k+slojyt
-        +ge9Sfag==;
-Received: from [2001:67c:1be8::200] (port=34582 helo=roundcube.kapsi.fi)
-        by mailserv1.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maukka@ext.kapsi.fi>)
-        id 1obekO-009CI2-Mv; Fri, 23 Sep 2022 12:13:25 +0300
+        with ESMTP id S229963AbiIWJSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:18:16 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB03BFAC2
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:18:15 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id x29so13967243ljq.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:18:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=zCCsISQtcxyw8amZYwvhvc9T7nwDgM18FSAE5RNKrU0=;
+        b=fJFe03hW++93PPI4nR6ZbenufSqnk45BOJjvZqhzDXJPNVZMyddW2REwAstofnGK2I
+         5eL+ZKHoNl/e0gVftljb8TTjuGdqp5mqa1B3XEUxYRb7SX85Q6ReWYek9dxJwlvW/592
+         xGUsMXfXsS2F9VVNzaHkGIySst+vJ2BL/HQzxdIBZMThql3b7pyFI8p1VLu76oK2uU0t
+         cNHw9X6OlqUOUKho99NxLVxnJ19rhxuyzOB0CUshZF21NQfQjzHKmgTAUZ9/NYcJObhV
+         RgcB40fVrilt7NEaA+YWzxqNMsdgyHLysmokvtWOtUXzU9TP9oSPWdgHdiUDAqHykD1i
+         /0Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=zCCsISQtcxyw8amZYwvhvc9T7nwDgM18FSAE5RNKrU0=;
+        b=bovyRx8VUY4oBthahIGFA15U63+RtszPO/2ED69G1AgD1ocigX1Rpo1R8z7iRvNnJL
+         z94QY2ttzRjcyM77E9LaUzF/biKEhvO4Pq5V+mJTMuv1314T2XiMBtQ1DX7ENukJd0Xp
+         q9O/Jg/mTlSzQ09yqoDsuZbcjaCTGvtKWYSaO/SMsl4VYM/CnlDYzsfi+4bqVa46RcMV
+         pD48aZHaIUGiZyXoRlVkP6uJGpOL7RJ6dCFw9PD8uneXBPPcskg5nQ+B3vzMsQP7Fppn
+         pPSMsB3Hlrw7mKUES5xq9x+e7Vp5o1ZPt1gz3xdR1Kl0P6t7f8ta8fwY8wxxKLfLIhHr
+         JLsA==
+X-Gm-Message-State: ACrzQf1oGs82s/aKPCuTLaq4b6xaT/GGPsq+3iWw02A7BbaKdg6uR8e+
+        EYDOU0Phw28ytHQ5vzGvnSTSNii5zcQRlQ==
+X-Google-Smtp-Source: AMsMyM7OJaLDYJ/XIYVnRAr+Xn7Wgg1hfr3CsHHtM9owaNGBsLkxlBovLAJnN7S7NiVHfJ2XyE5tRQ==
+X-Received: by 2002:a2e:bc04:0:b0:26c:5e:c186 with SMTP id b4-20020a2ebc04000000b0026c005ec186mr2583939ljf.118.1663924694089;
+        Fri, 23 Sep 2022 02:18:14 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id i2-20020a056512340200b00497ab39bcd0sm1360523lfr.96.2022.09.23.02.18.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Sep 2022 02:18:13 -0700 (PDT)
+Message-ID: <b5e050bd-e200-b2a4-5967-8855e9f0395c@linaro.org>
+Date:   Fri, 23 Sep 2022 11:18:12 +0200
 MIME-Version: 1.0
-Date:   Fri, 23 Sep 2022 12:13:24 +0300
-From:   maukka@ext.kapsi.fi
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Olof Johansson <olof@lixom.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Russell King <linux@armlinux.org.uk>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <89f85393-c767-4c0c-90db-d78a2927d465@www.fastmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: add DT binding for D-Link
+ DNS-323
+To:     Mauri Sandberg <maukka@ext.kapsi.fi>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, arnd@arndb.de, olof@lixom.net,
+        andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
+        gregory.clement@bootlin.com, linux@armlinux.org.uk
+Cc:     pali@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
  <20220922202458.7592-1-maukka@ext.kapsi.fi>
- <20220922202458.7592-4-maukka@ext.kapsi.fi>
- <89f85393-c767-4c0c-90db-d78a2927d465@www.fastmail.com>
-Message-ID: <f6a27b077f8b595e9c74152f1fa3c780@ext.kapsi.fi>
-X-Sender: maukka@ext.kapsi.fi
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+ <20220922202458.7592-2-maukka@ext.kapsi.fi>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220922202458.7592-2-maukka@ext.kapsi.fi>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:1be8::200
-X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v2 3/3] ARM: orion5x: Add D-Link DNS-323 based on Device
- Tree
-X-SA-Exim-Version: 4.2.1 (built Sat, 13 Feb 2021 17:57:42 +0000)
-X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.9.2022 00:39, Arnd Bergmann wrote:
-> On Thu, Sep 22, 2022, at 10:24 PM, Mauri Sandberg wrote:
->> +
->> +/* dns323_parse_hex_*() taken from tsx09-common.c; should a common
->> copy of these
->> + * functions be kept somewhere?
->> + */
->> +static int __init dns323_parse_hex_nibble(char n)
->> +{
->> +	if (n >= '0' && n <= '9')
->> +		return n - '0';
->> +
->> +	if (n >= 'A' && n <= 'F')
->> +		return n - 'A' + 10;
->> +
->> +	if (n >= 'a' && n <= 'f')
->> +		return n - 'a' + 10;
->> +
->> +	return -1;
->> +}
->> +
->> +static int __init dns323_parse_hex_byte(const char *b)
->> +{
->> +	int hi;
->> +	int lo;
->> +
->> +	hi = dns323_parse_hex_nibble(b[0]);
->> +	lo = dns323_parse_hex_nibble(b[1]);
->> +
->> +	if (hi < 0 || lo < 0)
->> +		return -1;
->> +
->> +	return (hi << 4) | lo;
->> +}
->> +
+On 22/09/2022 22:24, Mauri Sandberg wrote:
+> Add bindings for D-Link DNS-323. It introduces altogether four new
+> compatibles: dlink,dns323, dlink,dns323a1, dlink,dns323b1 and
+> dlink,dns323c1. One is for the common parts between the devices and
+> then there is one for each three hardware variants.
 > 
-> Can you use simple_strntoull() to parse the address into a u64 instead?
-> 
-Nice idea. Its current replacement seems to be kstrtoull(). I'll have to 
-do
-it byte by byte, right? Or what do you have in mind with 64bit unsigned?
+> Signed-off-by: Mauri Sandberg <maukka@ext.kapsi.fi>
 
->> +static int __init dns323_read_mac_addr(u8 *addr)
->> +{
->> +	int i;
->> +	char *mac_page;
->> +
->> +	/* MAC address is stored as a regular ol' string in /dev/mtdblock4
->> +	 * (0x007d0000-0x00800000) starting at offset 196480 (0x2ff80).
->> +	 */
->> +	mac_page = ioremap(DNS323_NOR_BOOT_BASE + 0x7d0000 + 196480, 1024);
->> +	if (!mac_page)
->> +		return -ENOMEM;
-> 
-> It would be nicer to use of_iomap() on the nor device than a
-> hardcoded physical address here, at least if that doesn't add
-> too much extra complexity.
-> 
 
-I'll look into this.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
