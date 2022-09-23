@@ -2,103 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C81DC5E7749
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 664F15E7759
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbiIWJfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 05:35:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54216 "EHLO
+        id S230520AbiIWJi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 05:38:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231819AbiIWJfD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:35:03 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51768E4D3
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:34:55 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id p5so13928918ljc.13
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:34:55 -0700 (PDT)
+        with ESMTP id S231449AbiIWJgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:36:44 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 836BD40E2F
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:36:36 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id a3so18862878lfk.9
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:36:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=GWmHghJUdd8nlM9IdLaudhwp+t/jqWHBWVH9O9dLOKE=;
-        b=C2WjIgHYXxv18OFIKPy3lVch4PIjcXQlbxyW1jWOTtQe13IyFAS/RHH0RjM1kn6MP0
-         Rf/ZQSX+9ImZTq3Eh3f1yOynjCuxS1zzV1S7qicSB748mgnNXduvYuz5GZ153G8LeKWa
-         OoOHsoldHhDiaAf2DD1qJKTOdCIUkM5rvTX6KNCDuexlbXga0C1xFK6/nsJXYG++1Adh
-         f1qQ//toknSjifTsK5zVcOdpMy2aOwgBKgdbpIUc0R8GFcB8u5+AYdF8Qjif57UI00aE
-         wWMt0yCOqzBv0zv1t4itiERrOr1PyVxUd02/0523pvJcYh/uPm0r/b5q9YHvtZ2/mfgu
-         FItA==
+        bh=Xk/gVSD+vh+ZIMZ668aPcrLeqKvYBTNu+pH41Yvodbs=;
+        b=w6qsAtyDvzfYLjuytNvGRMRGffrsg1AzWw+qbxj38wsYfKQwJysXQs5hCLn2eHVIRk
+         foPRA9oaOImr85M33qb79Sc9SusuIezsM24OHXmX9x+1U2/nf8Bv1+JOxvqNv9+NtPHa
+         V1BnReibKMtYjt8bdpdR8s+M4ypCt+8F29clW7bWC57bOGgGJNL1sFA314cTD+hwGRLP
+         1G6CpGAtxkoDwkB3FMmaQbER87vUriJjJ5F7SthhqBfewvcV9CAV3tqEFK5dMRf7E6dC
+         PhPPr/2yTPvl0Cgg14CNaBZS6HtsUhDSk0LL4EF6CvDH//tjUGbGzvZPxK0LnAwge0mp
+         kfwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=GWmHghJUdd8nlM9IdLaudhwp+t/jqWHBWVH9O9dLOKE=;
-        b=alROGHQ0ZEdlg7N2fKrK24BlZmUevEt6h0e1ggEUVxuDkhLk4VTm7HwKaarZaDML7N
-         Axcp6X0WjKz4dol7c7gYMRWpn6PUCZgeVCXhbziiI2AFqPTBWDX95GQKOre2dOgCP9CH
-         gFCop3jV6oCj0P/p+Jd16R2frtRYRFl3BLh507tPaBtGH2yObWk/gCmwvk3BtPZ+4I8x
-         IQioMERz0TDj+H664ZZMfbspw/QDwHQvMgo3diITCjz0N4vuwYsJ7U560RL4Px6sFCZf
-         HCxyfpNZdyNYqBW9dCsuwS6+SIdYNPELvw4aqvdb4xazhYIPU0FzzWFaduK+KTn+GjY8
-         KI5g==
-X-Gm-Message-State: ACrzQf2ukSNHpq4Ug1Ho0E9SVvu4qCZ/fA6zD+aewIH79/gHK7QdUN/J
-        yB5Qxp+uag7VKN04F8TovJiczQ==
-X-Google-Smtp-Source: AMsMyM5lblJDJzn8tEfG+3848XjLbn/5TtxVBk4EfcFkRPwhzpbqD58iQ5BLW/wbN0JgLCcqWdn/6A==
-X-Received: by 2002:a2e:a594:0:b0:26c:53e1:a609 with SMTP id m20-20020a2ea594000000b0026c53e1a609mr2389562ljp.302.1663925693958;
-        Fri, 23 Sep 2022 02:34:53 -0700 (PDT)
+        bh=Xk/gVSD+vh+ZIMZ668aPcrLeqKvYBTNu+pH41Yvodbs=;
+        b=L5KG8pX3T32SnWeFHvIMbUFWvQaT+r/SNcY/ZNQizh+i9oNKFddRShNPyUusID0IBr
+         Xj0bxQr3DeUIeHS9+bwIucAz9nkpFWGYfOFdyDg6FIaOGaEyrOUbbC6yyvhBHooJLwdm
+         S6pVOoKxHFqEAbfytcDjdYo7sjs/q0gvAv1bOhWj4o7M/nP43LuEkw+ZsNQ0Df90/GDU
+         c1ypDrytmaMPZrzs7LkwKXeBBRWXpaCT6IMKfQ98oNwA5hzOkBd41UXHw/CVYz6D3hGu
+         UnS5/0k0bauKw0t0qQYSJ0IaRNXb02/V2266+E0riO5rSV6ArbmA7JpedDAvAmLgr4pw
+         l2TQ==
+X-Gm-Message-State: ACrzQf1Dv4yhBvao1pgqK5RPmnKgFCSWmt2zQlUVHum/jH2Siml0FthC
+        bBJahVDMtWC1TAcaR/nlXiBBSQ==
+X-Google-Smtp-Source: AMsMyM7DCwqOOF05tz5ECggjiBhUrW1d5GfU9JtCsxNXLRnRftZCPCfgd5hWlAyLwbU/NBRTD7XhJA==
+X-Received: by 2002:a05:6512:31e:b0:49f:9ee1:e5c8 with SMTP id t30-20020a056512031e00b0049f9ee1e5c8mr3066650lfp.299.1663925794937;
+        Fri, 23 Sep 2022 02:36:34 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t2-20020a05651c204200b00261e8e4e381sm1304329ljo.2.2022.09.23.02.34.53
+        by smtp.gmail.com with ESMTPSA id by40-20020a05651c1a2800b0026c446918acsm1281161ljb.134.2022.09.23.02.36.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 02:34:53 -0700 (PDT)
-Message-ID: <054773bb-8e5a-d8b9-16e3-50ccbbbc0a5e@linaro.org>
-Date:   Fri, 23 Sep 2022 11:34:52 +0200
+        Fri, 23 Sep 2022 02:36:34 -0700 (PDT)
+Message-ID: <ecc5ac31-5573-3d50-0186-0622bfeaceb0@linaro.org>
+Date:   Fri, 23 Sep 2022 11:36:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Separete LTE/WIFI SKU for
- sc7280-evoker
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: sdhci-msm: add sdm670 compatible
 Content-Language: en-US
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+To:     Richard Acayan <mailingradian@gmail.com>,
         linux-arm-msm@vger.kernel.org
-References: <20220923061756.2557403-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20220923141624.v2.1.Ide53082044aac56877c4ff5725777769e377476a@changeid>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220923014322.33620-1-mailingradian@gmail.com>
+ <20220923014322.33620-2-mailingradian@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220923141624.v2.1.Ide53082044aac56877c4ff5725777769e377476a@changeid>
+In-Reply-To: <20220923014322.33620-2-mailingradian@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 08:17, Sheng-Liang Pan wrote:
-> evoker will have WIFI/LTE SKU, separete it for each different setting.
-
-Typos in commit and here ("separate").
-
+On 23/09/2022 03:43, Richard Acayan wrote:
+> The Snapdragon 670 supports eMMC with an SDHCI controller. Add the
+> appropriate compatible to the documentation.
 > 
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-> ---
-> 
-> Changes in v2:
-> - change Cover-letter tittle
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 
-cover letter is not related to this patch, so this should be "none".
 
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
