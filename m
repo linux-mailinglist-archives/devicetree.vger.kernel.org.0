@@ -2,86 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0E465E81C8
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 20:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7BBB5E81CD
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 20:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232897AbiIWSb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 14:31:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55186 "EHLO
+        id S229821AbiIWSdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 14:33:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232915AbiIWSbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 14:31:50 -0400
+        with ESMTP id S232875AbiIWSdj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 14:33:39 -0400
 Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE9DB1280E2
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:31:40 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id a3so1551975lfk.9
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:31:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDFE81251A2
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:33:36 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 10so1589288lfy.5
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 11:33:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=Na3n3SprFDx9daDpLXiteUuNQB+TrmpJxeAgycVYyAI=;
-        b=CjCeDRwHaGYT1YuWQxXkM3FEWJXzp2iy14ZqpmfHok6hO6STyc0pQciAJ7d8zCYtlY
-         NwQ9eSGnCoB5C6U4VYWfHaEX52sCSdm6/idxArbiGQbs09la+f9lvy/S2uDaU21SSPXu
-         dLZ8rJalWzQJ0CqiC2wE8dMmlW+JUWl6Hia88EWhCTKXFR6LkF3hOm86v9oXW/+FKdeT
-         KeM2MDKEU0JMNuS/sMC9oycZXkcpWJCG2rVUERMqR1oEjQO5xNcdGDXHkMcwu2FcxEa6
-         qr75Rxfh2pJnXSesWh9eTdHRV+1zfAGtY07CzieyTcS9TDsU6vJCyJD39QmLHbAEV4YS
-         gL9w==
+        bh=FiSW1I+GEJuCXIUHNz2wmDxxaCfe5vMdELO2IRRAJ3I=;
+        b=cMDJcQ1lVnRuB1lsaVE6iFUDBndaW7olWZ36oe9s1FShL4+ZMJpKrBJaSf/dRhtaZK
+         m+OSu5KPcNtvqR5G+Ab2RrFXdB8eVxQN5mOAx1cQXukR38XZybeOxKpHKSXtK5PKT0Wh
+         0Y6lHIg+xZwB7Uetv677YKz4f+pU2+OpZ+pZ7uexgjbF3+MBLs0S3oO2KNdrOmRJ7Uud
+         Ear7Eqd5udi1PsC0eHKum7wXaMVbxcql/+zabSeicxcrBxmP2345XnNNosS2ZodiCzdG
+         kDV21zc8VA2y4V1xoUsvXJu/gRzyGa6R8fBNjlfvb1/kn1slaqSPJalZio5FPnpe8BER
+         du0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=Na3n3SprFDx9daDpLXiteUuNQB+TrmpJxeAgycVYyAI=;
-        b=k+4Qism+twFEbNCHoOjFH84yBd/xE3nrYltl/ITWSXFNiHd0a13vqxfYd5h0h69cIW
-         TfLimLO9qxiK1s+hQOLFoQdCZHn3bDQL+iTz+ryGXQs/JzKKAz71rgVv2nlZ7l65U+TT
-         yem0n1ckKwin8UymA8fJ3YgiNQQSuyftPNGZebyn83jTjXavV4GjBNjmAiuTDhsULUPi
-         AnKLTsuy6dNDhGEtlCIZT+KbkF8KU9E7Rzr94qIos7DiDKSHop1l1WCyb1IxJ7pyp6cy
-         omZB08UsngudEGWm0C82svN5biksGqMJ8T30KxiXK81sVXSWih309+ok1cX6+jg4QtiZ
-         EHyw==
-X-Gm-Message-State: ACrzQf1EK0U408XJitSobmK4ZC/KeFqAJ4xSJwCnOo6hu48mA4SpHF4j
-        4aiEr2G/IfmL5xaR61IVp26wyw==
-X-Google-Smtp-Source: AMsMyM7qcE1cRvo+guW4S55Xk58U7p8CtcbQzqo2RVUdpgm6bVh1yHZKICeYrhtWrRXIlDnjPtzN3w==
-X-Received: by 2002:a05:6512:1309:b0:492:e273:d800 with SMTP id x9-20020a056512130900b00492e273d800mr3672433lfu.93.1663957898710;
-        Fri, 23 Sep 2022 11:31:38 -0700 (PDT)
+        bh=FiSW1I+GEJuCXIUHNz2wmDxxaCfe5vMdELO2IRRAJ3I=;
+        b=2XGp+OBOy/cbWOE2ULCYGrWbi03QGMrPEouwy1jhT5w0umPwygTYmhMH5cdFI7yUiy
+         naVDY8tMJLQKclhLyJSyTkNjMwRtdkc/3TjEeKBg7bT4wooDzB7BbrIVwrJuf6x7Xgml
+         lsGxKqBom8ks1Ngya1BdXE879/0HOEMsEcTi4P+y7oCKEPQ2aJiK2w2w2vKjGnGBuDQV
+         tavtdN3fo/Mr/AR4+9ybq8RspkPLBDODtCKfzGJ6RPKnzhFjNsERp+viR5yVoFoNISby
+         kUDZD0u7Ts+FSfD5jOxh9h914lbJguZ/cZgf35+mG6RbjaC0JfjNKFGrS6YpuYWD3+TZ
+         1pzw==
+X-Gm-Message-State: ACrzQf3qUUx7/kHy8Dxex3ELf3vFB1fmsU+AzoO/vWvvNCvW4k6shonf
+        iCIsmJDyY3PNGBmvp4MYeYUvsA==
+X-Google-Smtp-Source: AMsMyM6tihMSw5uJwh8HNF2F0Nb/vBnx0C3F/8gVLKpFsziNvxSMc59CbjttGeEwka4wAu/G3d2crg==
+X-Received: by 2002:a05:6512:3184:b0:49d:6b29:201c with SMTP id i4-20020a056512318400b0049d6b29201cmr3694157lfe.363.1663958015117;
+        Fri, 23 Sep 2022 11:33:35 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r11-20020ac252ab000000b004946bec4e7fsm1566214lfm.41.2022.09.23.11.31.37
+        by smtp.gmail.com with ESMTPSA id m7-20020a056512114700b004948497e07esm1565501lfg.15.2022.09.23.11.33.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 11:31:38 -0700 (PDT)
-Message-ID: <8ebb5b7d-dcdb-5bf4-06f1-37e5910554ba@linaro.org>
-Date:   Fri, 23 Sep 2022 20:31:22 +0200
+        Fri, 23 Sep 2022 11:33:34 -0700 (PDT)
+Message-ID: <4f5824cd-f0be-13cd-b2ed-2c5ec30954ac@linaro.org>
+Date:   Fri, 23 Sep 2022 20:33:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2 net-next 12/14] dt-bindings: net: dsa: ocelot: add
- ocelot-ext documentation
+Subject: Re: [PATCH v6 2/3] dt-bindings: interrupt-controller:
+ realtek,rtl-intc: require parents
 Content-Language: en-US
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Sander Vanheule <sander@svanheule.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-References: <20220922040102.1554459-1-colin.foster@in-advantage.com>
- <20220922040102.1554459-13-colin.foster@in-advantage.com>
- <35ba126d-be10-2566-63df-3c474cdc8887@linaro.org>
- <Yy34edNkKopsETcg@colin-ia-desktop>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1663617425.git.sander@svanheule.net>
+ <ba3ae8e521ef82dd94f18a602ef53078f4a0d8d5.1663617425.git.sander@svanheule.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yy34edNkKopsETcg@colin-ia-desktop>
+In-Reply-To: <ba3ae8e521ef82dd94f18a602ef53078f4a0d8d5.1663617425.git.sander@svanheule.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,25 +78,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 20:18, Colin Foster wrote:
->> "Currently supported" by hardware or by some specific, chosen
->> implementation? If the latter, drop it. If the former, maybe this should
->> be constrained in allOf:if:then.
+On 19/09/2022 22:24, Sander Vanheule wrote:
+> The interrupt router has 32 inputs, and up to 15 outputs connected to
+> the MIPS CPU's interrupts. The way these are mapped to each other is
+> runtime configurable. This controller can also mask individual interrupt
+> sources, and has a status register to indicate pending interrupts. This
+> means the controller is not transparent, and the use of "interrupt-map"
+> inappropriate. Instead, a list of parent interrupts should be specified.
 > 
-> Hi Krzysztof,
+> Two-part compatibles are introduced to be able to require "interrupts"
+> for new devicetrees. For backward compatibility "interrupt-map" is still
+> allowed on these new compatibles, but deprecated. The old compatible,
+> with required "interrupt-map" and "#address-cells", is also deprecated.
+> The relevant descriptions are added or extended to more clearly describe
+> the functionality of this controller.
 > 
-> Currently supported by the software. This patch set explicitly adds
-> support for the four internal ports. There'll be another patch set right
-> around the corner that'll add QSGMII to ports 4-7.
-
-Then it is not related to the bindings.
-
+> To prevent spurious changes to the binding when more SoCs are added,
+> "allOf" is used with one "if", and the compatible enum only has one
+> item.
 > 
-> I see your point though. I'll drop "currently" and have it match the
-> wording of the other drivers.
+> The example is updated to provide a correct example for RTL8380 SoCs.
+> 
+> Signed-off-by: Sander Vanheule <sander@svanheule.net>
+> ---
+> Changes in v6:
+> - Allow interrupt-map for backwards compatibility, but mark as
+>   deprecated.
+> - Update commit message to explain forward/backward compatibility
+> - Drop Rob's Reviewed-by because of above changes
 
-Drop entirely that sentence. One, chosen implementation in a very
-specific moment should not be referred by bindings.
+Please, still wait a bit. I'll leave it to Rob (who should come online
+next week) for a review.
 
 Best regards,
 Krzysztof
