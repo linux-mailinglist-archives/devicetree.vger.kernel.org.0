@@ -2,48 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92FA85E7C86
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 16:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 403575E7C89
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 16:09:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231906AbiIWOJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 10:09:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36442 "EHLO
+        id S231903AbiIWOJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 10:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230025AbiIWOJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 10:09:35 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900F25F5D
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:09:34 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d82so240043pfd.10
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:09:34 -0700 (PDT)
+        with ESMTP id S232108AbiIWOJm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 10:09:42 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A544B275C1
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:09:41 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id s206so363720pgs.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 07:09:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=qqaXXPlV6Wdvn0q4C8VxTCjIDz9FmR2A+6qQXG2ZJns=;
-        b=ghw4AiGCTt3YoSIlpP2DRWx1sBDhNfElahpUohnHBMNG4OiJXDhCC1n3+VaOG0cpys
-         N93F94bXWG0BRtE4uHrnXRgEffM41CvTl/gi8qpzDXLUkpIkA3kJd2LVOPOxeZPGdz9r
-         XTok6fYQpdZBbyg09TXw4N+LpI4BjsF1LXO/c=
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=ZxqNeg9qYIg+s4/UlajiiC5HVdIkGrA2Kg81oKMQ+/o=;
+        b=HRlcPjXyrsRRp7E+Ji3FrSrhu8QZgSFr/20EIzcYeU1s8tw40rSwnAhl2ZggEBN8HQ
+         RqxPrFQeJmUhgEirBrfBLRCYNRO5/O6CnWQE62MY/PKPDcpPzQB21eFHhEuNHFPmux4b
+         nKOhips5OhtFiauSQt6/wdRH4Jab6MnW4mQpU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=qqaXXPlV6Wdvn0q4C8VxTCjIDz9FmR2A+6qQXG2ZJns=;
-        b=O29E0KsFSArxNxVf3T4N1oA4cIfKJL4jETTVYbV0fZXu8UaHsV386xA5kEBin6MXYt
-         U6QT7OugMsceBp0Zcn4aDIif8hlKDrK7M1tP8EZwEzsWH3TOxdrr9Dr+3mCFNGMwJoES
-         mCW7GdwiQjYrEwQ+UeJB5yDLOQe4gKHB7keEpDZwa1mVq1hzu9jtQjmU63Rbrjb7zD24
-         M90Eg9gnIUwHaWG5WSlqGv4y3OVo0hBdNN1XfeEt2jlWgSTNr8xdmPdhVcr85BOwqLha
-         7CAB9Fix5MlehOkFHi0ZwI5G33JUGFtBE15eGztyHWiPf3LtCylDRp9d4wtjS2yw3bEV
-         q/Cg==
-X-Gm-Message-State: ACrzQf2J8snbOOS2ob6rSfEFzBuYTK9zyxKcItfB3VmEOzym1+IpVI47
-        Rm4eJbOTmxN9GY5VVwOIObRwZg==
-X-Google-Smtp-Source: AMsMyM70d9rbvrriOHa2hHbf0JflFVgG8VK2nsmW71Hi/z6QuNpwGU7O+EE8DcamISOAJIlyf4LYAQ==
-X-Received: by 2002:a05:6a00:4c91:b0:543:646e:9 with SMTP id eb17-20020a056a004c9100b00543646e0009mr9484943pfb.40.1663942174119;
-        Fri, 23 Sep 2022 07:09:34 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=ZxqNeg9qYIg+s4/UlajiiC5HVdIkGrA2Kg81oKMQ+/o=;
+        b=rgXe3S9RvY17ZZrFkhwtFzC9Mr4pMPOLnKu1oXtwHKgDCVCxnxEIHonvuBimvM2jFb
+         46EiJu3ul9SPzFidQnvsZj3HJkN1/ejKSRGz9Mwetd7ivsJY5IOGKMmuCvWQHDnWGV2t
+         jwMoto2swfGOWcj2nG5Oanf/iaxVVXmDbw3aQQ0/dn7A0I5kO8t+EYff6xiFGVXO6YpA
+         q+QvSr5q1tOTS9HYUkf2TZDC2r5D7F+wJN8HAp34sGV0pwgnnfmjKg2Km5M9jvnvky1v
+         CQr0TKGQcGSTNo+oZdNj/p14fpfXsxwSARroGmMoglsgBxQPqvolZbzhyPrWVSn02Jpt
+         1WlA==
+X-Gm-Message-State: ACrzQf3ZB9FpO+fpJ5iZ+VMkef1NE5GhWJWK68jeQW9vNhq/671nEoi5
+        1T98iTsrvsCNpqQAn9hzqh3Hxg==
+X-Google-Smtp-Source: AMsMyM6BuICT3vYuiW/GXBg3BTs8KJsFzcwqP4R1JTAYjnxZeptbzyZPItHFDy71mKfr7uqrUEZQ5A==
+X-Received: by 2002:a63:5d48:0:b0:43a:390b:2183 with SMTP id o8-20020a635d48000000b0043a390b2183mr7748852pgm.29.1663942181159;
+        Fri, 23 Sep 2022 07:09:41 -0700 (PDT)
 Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
-        by smtp.gmail.com with ESMTPSA id l14-20020a17090a408e00b001fd8316db51sm1645318pjg.7.2022.09.23.07.09.31
+        by smtp.gmail.com with ESMTPSA id l14-20020a17090a408e00b001fd8316db51sm1645318pjg.7.2022.09.23.07.09.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Sep 2022 07:09:33 -0700 (PDT)
+        Fri, 23 Sep 2022 07:09:40 -0700 (PDT)
 From:   Judy Hsiao <judyhsiao@chromium.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -53,10 +54,12 @@ Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>
-Subject: [PATCH v5 0/3] Add dtsi for sc7280 boards that using rt5682
-Date:   Fri, 23 Sep 2022 14:09:15 +0000
-Message-Id: <20220923140918.2825043-1-judyhsiao@chromium.org>
+Subject: [PATCH v5 1/3] arm64: dts: qcom: sc7280: herobrine: Add pinconf settings for mi2s1
+Date:   Fri, 23 Sep 2022 14:09:16 +0000
+Message-Id: <20220923140918.2825043-2-judyhsiao@chromium.org>
 X-Mailer: git-send-email 2.37.3.998.g577e59143f-goog
+In-Reply-To: <20220923140918.2825043-1-judyhsiao@chromium.org>
+References: <20220923140918.2825043-1-judyhsiao@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -68,38 +71,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Put sound node and lpass_cpu node settings for boards that use rt5682
-codec in the sc7280-herobrine-audio-rt5682.dtsi as there are different
-choices of headset codec for herobrine projects. Common audio setting
-for the internal speaker is in sc7280-herobrine.dtsi.
+1. Add drive strength property for mi2s1 on sc7280 based platforms.
+2. Disable the pull-up for mi2s1 lines.
 
-Change Since V4
-- Rebase and include sc7280-herobrine-villager-r0.dts change.
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+---
+ .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-Changes Since V3:
-- Remove Change-Id in the commit message.
-- Add dependency in cover letter.
-
-Changes Since V2:
-- Fix sc7280-herobrine-audio-rt5682.dtsi syntax.
-
-Changes Since V1:
-- Not to include the herobrine-villager-r0.dts changes in this patch
-  series to avoid conflict.
-
-Judy Hsiao (3):
-  arm64: dts: qcom: sc7280: herobrine: Add pinconf settings for mi2s1
-  arm64: dts: qcom: sc7280: Add sc7280-herobrine-audio-rt5682.dtsi
-  arm64: dts: qcom: sc7280: Include sc7280-herobrine-audio-rt5682.dtsi
-    in herobrine-r1 and villager-r0
-
- .../qcom/sc7280-herobrine-audio-rt5682.dtsi   | 122 ++++++++++++++++++
- .../qcom/sc7280-herobrine-herobrine-r1.dts    |   1 +
- .../dts/qcom/sc7280-herobrine-villager-r0.dts |   1 +
- .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  30 +++++
- 4 files changed, 154 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+index c11e37160f34..83a42a77121c 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+@@ -639,6 +639,36 @@ &dp_hot_plug_det {
+ 	bias-disable;
+ };
+ 
++&mi2s1_data0 {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s1_sclk {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s1_ws {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s1_data0 {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s1_sclk {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s1_ws {
++	drive-strength = <6>;
++	bias-disable;
++};
++
+ &pcie1_clkreq_n {
+ 	bias-pull-up;
+ 	drive-strength = <2>;
 -- 
 2.37.3.998.g577e59143f-goog
 
