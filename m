@@ -2,85 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CFBA5E83FC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 22:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C38D5E8441
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 22:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232877AbiIWUi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 16:38:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32968 "EHLO
+        id S232776AbiIWUmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 16:42:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232818AbiIWUh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 16:37:59 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C905DAD9B0
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 13:32:53 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id s6so1993854lfo.7
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 13:32:53 -0700 (PDT)
+        with ESMTP id S232896AbiIWUmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 16:42:04 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CD415447F
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 13:36:38 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id l12so1281612ljg.9
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 13:36:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=nBM+qi7ZEJ79MaRiQNuFb4KCQxuABqaRCCx+mb2oxBg=;
-        b=o3OHHM/T+yReW4NfXa27nKO8K+4nryGOnb1wE+L9S/UfvloEESITwMAB1wcImMrHR2
-         I7UswL4qx/NwsvUNcVKNFu8Gjv9iLlBMjlyahuHAty143DTuh2GHlMR7LYWusM4zZDeX
-         gf8oqH68bp/44bZhX5aBiMU78uyltyU0U49t8zj7sbidsN5COcIdH0+NJfFH/nffMsmd
-         kJFc1FapVDm5MIh5e9j1ebQblIXWvxSranbYEp6z9ES/TJR8IeHTtU1QBlsTvsSKyfgw
-         d+FiHLZEFI59C+9cXso+ojwzhoV8Wti0G1bbjGJPkkL20w/N70pQsVp1SkkxoMc8nChO
-         PKlw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=KoW18gfscBQcQUXjtlxACzOxZxKFFsSFNG1iDxVv0fY=;
+        b=pS8XJfqzelQCdvzS1E9w49f9BAuXPH4IFj2tGe55LfT5QkwIpfe3WA1zjRs4j4/TEv
+         +gk9k+QIIaFgEvoyEnaIPxjcQfLKRJvHutADsOmimJRPX1X1a4l9BvorRl61gaa+mYuA
+         szisxwZ1PRBzjCUdf14nTpXrOGjIGhuCL4gBBld+i70nyL69CAoqlo+ZX+LIIjNw8o1+
+         xj8fyphG9FV+Bs6/3GZjqZcz+kHcFPvNyzWN3fqMsI9idPnB6yts+B4hp3R5CEyjhHzj
+         xHJ89wcRWePuQPb1NtGHHfY9aOFYCFmfky81CSHEW5Bve+hhwW1A0lqohA8al7tx8IMb
+         bbbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=nBM+qi7ZEJ79MaRiQNuFb4KCQxuABqaRCCx+mb2oxBg=;
-        b=Cf6Tb+0LG3CxYl2y1HTEVxf/RxYbCQmULxYQGIWLzi3FWAB6zqQtibXk3vYeLFKJ5P
-         kqJXnLdCa9PW28ku+DxFl9iKBBBfUYH1wKDs8i2UYdjmPDWPf4QuiqWxL/RO3/TpO4rv
-         dz/AhAtpqEV7Jn2qkul32WOuQmkf99Iu2HyzxDM1QVhQjYkUj1+awb3cQF2ziGWuDpAM
-         vl8guRH7oqbHBH4o3Yfv6H11rXLPuvz3o2zE3akQF79Y2idagNnOy+CD+X2/q2YmIeCh
-         UVL0DNEqkiyIMN/UAP+VONfHdS4lD1VlL7SLHuXA5S/Sur0OG57nSKFUK5OC8yJ9db8D
-         AEyg==
-X-Gm-Message-State: ACrzQf1ycLccmFEkcgVvH3sbHSPuqcnHl4LtM8uOQdQgprg6BSqCN4n8
-        w1e0OgVnb12m0k16wlz+fkXEhA==
-X-Google-Smtp-Source: AMsMyM7YTtVO77quMiW6KFmjaY2ziWHoZFQBBzaOp2QWJF5Pd4KQtydKOHQr1S++G+N5wTYhKpJHig==
-X-Received: by 2002:ac2:5623:0:b0:49a:d7b9:c06d with SMTP id b3-20020ac25623000000b0049ad7b9c06dmr4251708lff.511.1663965172046;
-        Fri, 23 Sep 2022 13:32:52 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id q2-20020a2e5c02000000b0025e4c49969fsm1520756ljb.98.2022.09.23.13.32.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 13:32:51 -0700 (PDT)
-Message-ID: <aeae567c-ccf7-de73-61eb-1f04772d3bba@linaro.org>
-Date:   Fri, 23 Sep 2022 23:32:50 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v7 05/12] dt-bindings: display/msm: move common MDSS
- properties to mdss-common.yaml
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=KoW18gfscBQcQUXjtlxACzOxZxKFFsSFNG1iDxVv0fY=;
+        b=Tg8lnOK3cnvZySBgzviSaFX7fHvaN+6DMnStGVmrIWKiURob4s23wxTGmglqguhe2z
+         a65r8gQf2VlQ3ZGON/fI8zSk/CGV8zzWKst0B1lUcz1R3weJD5RYUfrinwF6HfpMD13P
+         bAX8VBANNZBrSLQCs/LCyS/BsTBbCkS6Acp0R3nVs6EUSo6dFeRWwK1F6VVqFgtSm8/R
+         K0s2t0IeJzLmGapYHB8lT4p41+rkGn64LFkO5WrxiD3e8NY2/0FVc6kbxs1iiwV2r+dE
+         m/YWRa22YtWb0cWequF+aOnhac0FrNsPA2wsBLHsUajvEaD7jWoNeSHSay3nJNedmCCr
+         JJ8A==
+X-Gm-Message-State: ACrzQf3FS8LAuDAuF+NduLC+4IqIWasPwkgYBA0nFauKwIge/0zfE4Av
+        4hMhZwiPqUsd/wYsDBcPBlKyEw==
+X-Google-Smtp-Source: AMsMyM7GhWlynnQdutL3KMj7KJU7muxHjPCQgkEQscantEEdFOBqQQQul7FOp5bGs7CUT261VsbgMw==
+X-Received: by 2002:a05:651c:1548:b0:26c:61b3:7129 with SMTP id y8-20020a05651c154800b0026c61b37129mr3306128ljp.381.1663965365155;
+        Fri, 23 Sep 2022 13:36:05 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id f9-20020a05651201c900b0048af397c827sm1584099lfp.218.2022.09.23.13.36.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Sep 2022 13:36:04 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220915133742.115218-1-dmitry.baryshkov@linaro.org>
- <20220915133742.115218-6-dmitry.baryshkov@linaro.org>
- <02b60bf8-70ac-eb7b-33d7-1c9b7a6f0a54@linaro.org>
- <168a46c3-2c0e-cd5c-e6f1-1e072c67d162@linaro.org>
- <d2af0a8e-63fe-221f-1c53-9fe1c43fa04d@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <d2af0a8e-63fe-221f-1c53-9fe1c43fa04d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: power: reset: restart-handler: add common schema
+Date:   Fri, 23 Sep 2022 22:36:03 +0200
+Message-Id: <20220923203603.515714-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,49 +70,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 15:28, Krzysztof Kozlowski wrote:
-> On 22/09/2022 13:46, Dmitry Baryshkov wrote:
->>>> -  ranges: true
->>>> +    maxItems: 2
->>>>    
->>>>      interconnects:
->>>> -    items:
->>>> -      - description: Interconnect path from mdp0 port to the data bus
->>>> -      - description: Interconnect path from mdp1 port to the data bus
->>>> +    maxItems: 2
->>>
->>> I think this is not equivalent now, because you have in total minItems:1
->>> and maxItems:2, while in past minItems was 2.
->>
->> This means that I should have minItems:2, maxItems:2, which, if I got it
->> right, is frowned upon. Let me doublecheck though if it works as expected.
-> 
-> It is frowned upon only if it is alone, because for missing minItems,
-> maxItems implies minItems. Here you have minItems in other schema, so
-> there is no such case
+Add common schema for restart and shutdown handlers, so they all use
+same meaning of "priority" field.  The Linux drivers already have this
+property and some systems want to customize it per-board in DTS.
 
-Well, I just checked, the schema will throw an error if I put a single 
-interconnects or iommus entry. If I understand correctly these two 
-clauses are evaluated separately. So, the dpu-common's clause tells 
-minItems:1, maxItems:2. The platform schema file contains just 
-maxItems:2, which implicitly adds minItems:2 to _this_ clause.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thus I think I'll leave this part as is.
+---
 
-For the reference (with single-entry iommus and interconnects properties):
+Changes since v1:
+1. Use double ':'
 
-/home/lumag/Projects/Qcomm/build-64/Documentation/devicetree/bindings/display/msm/dpu-sdm845.example.dtb: 
-display-subsystem@ae00000: iommus: [[4294967295, 2176, 8]] is too short
-	From schema: 
-/home/lumag/Projects/Qcomm/kernel/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
-/home/lumag/Projects/Qcomm/build-64/Documentation/devicetree/bindings/display/msm/dpu-sdm845.example.dtb: 
-display-subsystem@ae00000: interconnects: [[4294967295, 1, 0, 
-4294967295, 1, 0]] is too short
-	From schema: 
-/home/lumag/Projects/Qcomm/kernel/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+v1 was marked as changes-requested in Rob's patchwork, but I think there
+was not actual consensus on any other changes to make.
 
+v1:
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220907123630.57383-1-krzysztof.kozlowski@linaro.org/
 
+See also:
+https://lore.kernel.org/all/8fe93da3-f768-16ae-7025-1cfa97a42b27@linaro.org/
+https://lore.kernel.org/all/20220831081715.14673-1-pali@kernel.org/
+---
+ .../bindings/power/reset/gpio-restart.yaml    | 13 ++------
+ .../bindings/power/reset/restart-handler.yaml | 30 +++++++++++++++++++
+ 2 files changed, 33 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/restart-handler.yaml
+
+diff --git a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+index a72d5c721516..d3d18e0f5db3 100644
+--- a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
++++ b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+@@ -25,6 +25,9 @@ description: >
+   inactive-delay, the GPIO is driven active again.  After a delay specified by wait-delay, the
+   restart handler completes allowing other restart handlers to be attempted.
+ 
++allOf:
++  - $ref: restart-handler.yaml#
++
+ properties:
+   compatible:
+     const: gpio-restart
+@@ -41,16 +44,6 @@ properties:
+       in its inactive state.
+ 
+   priority:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description: |
+-      A priority ranging from 0 to 255 (default 129) according to the following guidelines:
+-
+-        0:   Restart handler of last resort, with limited restart capabilities.
+-        128: Default restart handler; use if no other restart handler is expected to be available,
+-             and/or if restart functionality is sufficient to restart the entire system.
+-        255: Highest priority restart handler, will preempt all other restart handlers.
+-    minimum: 0
+-    maximum: 255
+     default: 129
+ 
+   active-delay:
+diff --git a/Documentation/devicetree/bindings/power/reset/restart-handler.yaml b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
+new file mode 100644
+index 000000000000..1f9a2aac53c0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
+@@ -0,0 +1,30 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/reset/restart-handler.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Restart and shutdown handler generic binding
++
++maintainers:
++  - Sebastian Reichel <sre@kernel.org>
++
++description:
++  Restart and shutdown handler device is responsible for powering off the
++  system, e.g. my cutting off the power.  System might have several restart
++  handlers, which usually are tried from most precise to last resort.
++
++properties:
++  priority:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      A priority ranging from 0 to 255 according to the following guidelines::
++        0::   Restart handler of last resort, with limited restart capabilities.
++        128:: Typical, default restart handler; use if no other restart handler
++              is expected to be available, and/or if restart functionality is
++              sufficient to restart the entire system.
++        255:: Highest priority restart handler, will preempt all other restart handlers.
++    minimum: 0
++    maximum: 255
++
++additionalProperties: true
 -- 
-With best wishes
-Dmitry
+2.34.1
 
