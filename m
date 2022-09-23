@@ -2,389 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78A975E7911
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 13:06:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50A475E7914
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 13:07:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231819AbiIWLGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 07:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54316 "EHLO
+        id S231213AbiIWLHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 07:07:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230046AbiIWLGq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 07:06:46 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4745118DFA
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 04:06:44 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id u132so12079922pfc.6
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 04:06:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=CivlmnyVEpJwxv4DfN3B0qY4C20BTHgcub0RDyyW0bM=;
-        b=EkZWmF2KFjEeC9eST5w3FG1iQSe8lysLjlSX4ewpXpPvQffX41YrJ9eQE+qHBoFxE4
-         96x/BQSHseSbZlpC0NodeqBWzzXltawzlJO+BF83TflXKKdCpoUjQ97rFddlnP00MHxq
-         9FjR8FNe0e4JoTbZID0ICO70hZOeoRiDO0NuoRb0uCTIuHiwhM0x3Ch0z5IN8wGDL8dp
-         Kk1WEpmD+dPkterwT6eXG/jG9bu2qXjgVbf7GcIH1iUUTP7nWXHKHpX+o/oH70iu7XX0
-         fmyGmt1W+EQevlfXDbt+pGZd6k8260RT5IMxM7gM/Ks+OmVFwD+JAyWmZ8PkI7/Ev133
-         Rggg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=CivlmnyVEpJwxv4DfN3B0qY4C20BTHgcub0RDyyW0bM=;
-        b=0z3MFyqdLwtnmdFRWTsnfgbduh08IXSAK7C++e0n1nBR2PmgKPzsJfTQmUPXTR15P6
-         FVd8I0eVhSpNklUfHQrGowYjmrXjaMmBeU8ivArVIpft9t2SeLHd/o/571qjbQpSLwpg
-         10gY+i/0QkTDx+3ygu5nVd41Jnwvc+qDovzpWkX7GgFrwk0O9CY4JCP3wSr6kND6/eWA
-         jo95t4bF1dPJt+BQnFWWO2TkyT1ucW1lzYBPWRbXjGJOKKpZBPjTUvl9Wz3ACXtpt5t6
-         oT+N93gjUe6MIOfZiwtyOhzYO3LXZC2oegv35q5YTVhreX2Vvxr2x21MfZx4rMMeBAet
-         8Pxg==
-X-Gm-Message-State: ACrzQf2ubMEFbOvkubhtxbumaNAQU/n2xFLiaVE4nPZhmWATqN+cBCyu
-        nO8ujo3lk6NEYIDTWTYITzLwVG65x0vRDaZ4af7Pmg==
-X-Google-Smtp-Source: AMsMyM5yjt4thE5+scbK0mFtX6Qki9qAhM+aBrZAdvG3AwgbQrDAjujCM9rFQSp2nJxxMKdOQ1bqv2d1CQtnz1OfIvw=
-X-Received: by 2002:a63:85c6:0:b0:43a:eb08:6ea7 with SMTP id
- u189-20020a6385c6000000b0043aeb086ea7mr7216977pgd.336.1663931204200; Fri, 23
- Sep 2022 04:06:44 -0700 (PDT)
+        with ESMTP id S231879AbiIWLHB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 07:07:01 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60052.outbound.protection.outlook.com [40.107.6.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC00F11A698
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 04:06:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=M7WYjHc5et8fdXFZvtlOOLeiV+v7YHb/fu0EUAPK6p7wFMhqeG0a5bVPiyVj8BOTmmTUn5SyXyZU7Sf8r9Z6DZXIG2sehupT8ZvN+Vfrp74t7b3nmznq29cHtZT/8f1j8dDvCh5IeJ3MfdE6+6JDEJXcX8+9p4Ost0V+7OpuRUQOTOLHk02//q6FVSBHaTJALx0NwOqCRUtN/rVPilBXnGSKjD+MxP8ISwHwfPrBpvN1YljHKhEw7ZsiKJohGLKYFHaKK5qfIi56MMzuXuDNunY6PTPlv0uH7eAAG7PS/XoUKChOsUJZsda4UHbZTC1XdA8sJf73ynkPPZZ2pAts2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uU4JLTmwu2wAWeWzfdHIIdKjeuV0NSmDWfAtKi7Ct0g=;
+ b=IwOqvbBDPz7SQizsbp/kVN7+mG7wQnkLFCW7ttHuOwQSKfRcgUMKu3k6omCTqcU+aTKfxe6DjTlnPnGCpE3/gN3gBCfOgqNOYwXvEi/b27TBzUhWH0U0fr+6hzZ54lhQvkRPJKMmhMn7qeVO7ie+shhpbTWXBl8SlZkeJhVwu3WXJ+mizM67/dKI97vIZLtA7ns3kInEx5Lm0Ych9aSxLVegdqPG5O8UxwJygZxR49BXQR6BIq7Al27Q6+ItK9X3Y5PUbdJeGlS0/tTDlbUleHo7TePSx/Cyxkc0invaXzKDHbQLyUuVcOGD/8qXzq2A5k2jySoy++SjKclVrWFM/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uU4JLTmwu2wAWeWzfdHIIdKjeuV0NSmDWfAtKi7Ct0g=;
+ b=bH3rzCMuYX6KjL11BQ0BCcDw9kgwx5/zn1vhH8iNEeuqtEY0oYt1JSQpQs0N4iaQWWJ/cUK4bSMz6FzYuevNII4XDGYKTZMiQTXfmVWLtRqp75s5YqJszeNMxk/KcOIOhmVcvrc2oD6u1HwHUBWjX21lDkAVwbMkDr1tm9Z3Veo=
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
+ by VI1PR04MB6784.eurprd04.prod.outlook.com (2603:10a6:803:13e::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.20; Fri, 23 Sep
+ 2022 11:06:54 +0000
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::4ceb:3c8:9764:6dea]) by PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::4ceb:3c8:9764:6dea%6]) with mapi id 15.20.5654.016; Fri, 23 Sep 2022
+ 11:06:54 +0000
+From:   Jun Li <jun.li@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Abel Vesa <abelvesa@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "laurent.pinchart@ideasonboard.com" 
+        <laurent.pinchart@ideasonboard.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "marex@denx.de" <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
+        "paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
+        "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
+        "aford173@gmail.com" <aford173@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v3] arm64: dts: imx8mp: correct usb clocks
+Thread-Topic: [PATCH v3] arm64: dts: imx8mp: correct usb clocks
+Thread-Index: AQHYy+sD6N32mj1zo0K9uVJCDkD/e63p8wSAgALtw4A=
+Date:   Fri, 23 Sep 2022 11:06:54 +0000
+Message-ID: <PA4PR04MB96407EED620563EAA3C70B1389519@PA4PR04MB9640.eurprd04.prod.outlook.com>
+References: <1663565197-3961-1-git-send-email-jun.li@nxp.com>
+ <20220921142123.GT1728671@dragon>
+In-Reply-To: <20220921142123.GT1728671@dragon>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PA4PR04MB9640:EE_|VI1PR04MB6784:EE_
+x-ms-office365-filtering-correlation-id: a566a7b6-d472-4200-0afe-08da9d53b948
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: h6KsQsvUY7hoDU3vslU8bWBztDuD9zjdZjALVo1KSkBAHvNmPAq3NfpOId5VmSlkaDF8aNxCLbIh+Tpu0Cz4ngM8MdUwj0jQHl4IZ7XQY08DyaEFAFC7dILagEzW4eN+DeiZHx2bEO8p1btp3/OMkE7SSOZvi88QYlq4UyGHRWU7BuIyPkwJWsms1tc4AbYSAGJZnQ0IaKzru9YutiodRy0QPJx60y+uomDjqIzaN9554/R06MLlv4L331odZuLW68aIopyg0rGQzrCL0mJiYmiNYc8NJJmMhX6AqW21oNUxOLms88l47AvwhAZDJXjJej4l4RQKZg9EDWsgyTgelE4/Yuxa2sgZAYeEc+Y6fmXL4z1xj4ba4k3ND/34+8ti546k1c3wrJt5+VCje6yyAsCbr1dOW0NJO0WMWsdjCm4/nuT4lNGV6DXoVP7nsyIXkPW/7dabtpw5i9erwbbIurvDMQDjK2yXY2Wmy4RrASzu15uhJzuBgNq8AdKdNz7BezFXb3n4q8S7BZoJDvddPdeDqTMrgtD5hcTi2RE181Kz5zdJJibmLQBeRn/cIh8zugzPfCD5ODQ/5Bza8QWOTS+UNhqOZwwXRHkQbiVlrz9Pp8sBktYyzt5NXUAGMWz3SwL4lLeWBuSTMiguORzD6YNCNbJAeeoDoxhR45wkUTK0+ODzLXaxQ+g2ivaMN+idxHSJtTo9//egH+xs+wYA2cr1I+0cWCJHY4/fnIw3gW0zc52p5ImJ2jelfxjYobs4v5SMw7wFG9j9kuJq2AKydaiPKrokxBfaM1gPvWrtRnA=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(396003)(376002)(366004)(39860400002)(451199015)(122000001)(2906002)(9686003)(4326008)(8676002)(83380400001)(26005)(38070700005)(54906003)(6506007)(110136005)(44832011)(71200400001)(186003)(478600001)(52536014)(33656002)(41300700001)(7416002)(8936002)(5660300002)(316002)(38100700002)(86362001)(55016003)(64756008)(76116006)(66946007)(53546011)(66556008)(66476007)(66446008)(7696005)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?UINzq1t+ZbAF2xM+uhtzRP36vJr3CmbRHFj5zG2DCA5nTo9L86sLro9JCJxo?=
+ =?us-ascii?Q?kN2G1jivQWJyKR0uOaleAbeC2Ogk6jYcFy3w2750S6Lrc6Mkz0nWW1ogJ08D?=
+ =?us-ascii?Q?vYP6eIarKN5lOPmzQumrOu8892A06Y+C/8owRqDSLfNSanIrgJhJcAoqysTQ?=
+ =?us-ascii?Q?KJDk3kEAI1+PKjFbsU8+gSoOUFNbwHZkWIe86783ZsQCK60iXNSagPQ0atrm?=
+ =?us-ascii?Q?t9hb/OdtpFNgxeNjOq8UqrmxwbJlCYkYAOw4T1hi+dFAPQRUuqABro71Sfia?=
+ =?us-ascii?Q?ONYdn6eOvxVSMOYFe6lV2lZROWI6LbCbll5KorQxrFYQ1zAMVtDMWX4uRs9e?=
+ =?us-ascii?Q?Dd4UfaRCo/Ua7ZKaNJzCNSwdq5MskwH27BY2n4taHz4c9WhMptXgMmAYDtBv?=
+ =?us-ascii?Q?MFw+6tVxcQDsGZA6r9qQ7tZLvgRLDyjvDrkph6eTmWlzE6o+fwvRZXIn3JQ9?=
+ =?us-ascii?Q?3QARX3RnL8jVTQ9Z9PObmAO04Kw/vPHMu0L8rqfBB+/5SYLrFQufCiXodSCY?=
+ =?us-ascii?Q?n/o/Im01WiXbcbMNLLREsL+QCCAcbaX1aOpK38tk77SRlbbjpx1TD0wO2BKa?=
+ =?us-ascii?Q?wd023u3QMdoUpXunlzL+pN+YLkOSoR6cSvFkk8WjVG2+peZ18qXqfxkbynCV?=
+ =?us-ascii?Q?6JuDAt0toIiB3X8UvLZOCurpvv9Su4ouT8SztzB28qi4JPH7g4wAifPlKYLg?=
+ =?us-ascii?Q?04eTzVqx+pyRSoWsGUmWvCXjIbFdS4xCAhR64GvSsDKGWxUUBjNXDWtJg41h?=
+ =?us-ascii?Q?UQkQd1V+LMtHiA1oB60hhZ5+ys0B77SEvIyVv4NOkT0C0bZIvb7t1xow+jDD?=
+ =?us-ascii?Q?dH6VP2eV7Ubkq8bge2ELCkrLY80B/N7Or3IW20C18R0eWpRjBBbYoJAmIitM?=
+ =?us-ascii?Q?1ucouFCyOh6494K/7jPj0MsebvDUB+uqU7x+W9Y4tLrMVK4/mASIstH3LAf9?=
+ =?us-ascii?Q?Bu3ccyu4+31U7IwPQT4XcEThDbdrIWOYWUi0Zrg6xVwKlWmjhfAMTMT5pXH/?=
+ =?us-ascii?Q?+e/JygX0xrIHp+8gBgs69Uj3DanG3ii7fnxVP+20/jM4drSqmsEAwLJp4scT?=
+ =?us-ascii?Q?9YKb9qC0hb9DPWEEAs5Ajd37uP5S+sT/xiTL/Ur+sl7cDMGn+4ysbSYIoIEM?=
+ =?us-ascii?Q?SKvs6ofurgC7ObtGfgmPsJC0dJ33gQJYDWaq3v/VSmZnIOMpAhAvCSMdLafB?=
+ =?us-ascii?Q?mHW/WwY4LlNwmTD9K7d/cWngJ87dvczwsf8+9ZTxStrdWvZwW3jiiuW8MS32?=
+ =?us-ascii?Q?DqEzM0k5DpiU8g1fjuh4ssf8fwWGuQk2MjYgucLI6qPKT44sSr9emRRmCYkW?=
+ =?us-ascii?Q?rGMKVDuaTnoBFbYmowTy7LDRpiRR0usWz6vxvejWzILDm0hhNeOAePyuxLfz?=
+ =?us-ascii?Q?KfWAzKgVyC+k1PoT6vglplg/X6Pp9cOVRothygCiNbTD7WWGT+f702zRAp4P?=
+ =?us-ascii?Q?ZRIHeBvRUiZu8LTTu7AiguT96ZKtZPmAYhdbpBIdtueYkAetq6580JLIecHX?=
+ =?us-ascii?Q?xG3jucWSXz2xJI5HgG6To3tFIIW/sQ4gvcS7brnh1itUS3NDIwWDlgp2JXl6?=
+ =?us-ascii?Q?WZXpF9hpd8ImlAh+Qjw=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20220922050718.1079651-1-Naresh.Solanki@9elements.com> <20220922050718.1079651-3-Naresh.Solanki@9elements.com>
-In-Reply-To: <20220922050718.1079651-3-Naresh.Solanki@9elements.com>
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-Date:   Fri, 23 Sep 2022 13:06:52 +0200
-Message-ID: <CALNFmy0VGEYso1SDXQzmt8419RmG8CHEJUzZpFd0WvYeBzPDUw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] hwmon: (max6639) Change from pdata to dt configuration
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org,
-        Marcello Sylvester Bauer <sylv@sylv.io>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a566a7b6-d472-4200-0afe-08da9d53b948
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2022 11:06:54.2543
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mQ6o9FBPYP0HRTiodW78y7pkdLMI6r4n1XgK7vWdWYfbkqMco6Vl214TY8dw3ixh
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6784
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 22, 2022 at 7:07 AM Naresh Solanki
-<naresh.solanki@9elements.com> wrote:
->
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
->
-> max6639_platform_data is not used by any in-kernel driver and does not
-> address the MAX6639 channels separately. Move to device tree
-> configuration with explicit properties to configure each channel.
->
-> Non-DT platform can still use this module with its default
-> configuration.
->
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  drivers/hwmon/max6639.c               | 162 +++++++++++++++++++-------
->  include/linux/platform_data/max6639.h |  15 ---
->  2 files changed, 119 insertions(+), 58 deletions(-)
->  delete mode 100644 include/linux/platform_data/max6639.h
->
-> diff --git a/drivers/hwmon/max6639.c b/drivers/hwmon/max6639.c
-> index 14bb7726f8d7..4e8c3d3ec4fd 100644
-> --- a/drivers/hwmon/max6639.c
-> +++ b/drivers/hwmon/max6639.c
-> @@ -19,7 +19,6 @@
->  #include <linux/hwmon-sysfs.h>
->  #include <linux/err.h>
->  #include <linux/mutex.h>
-> -#include <linux/platform_data/max6639.h>
->
->  /* Addresses to scan */
->  static const unsigned short normal_i2c[] = { 0x2c, 0x2e, 0x2f, I2C_CLIENT_END };
-> @@ -85,8 +84,9 @@ struct max6639_data {
->         u8 temp_ot[2];          /* OT Temperature, 0..255 C (->_emergency) */
->
->         /* Register values initialized only once */
-> -       u8 ppr;                 /* Pulses per rotation 0..3 for 1..4 ppr */
-> -       u8 rpm_range;           /* Index in above rpm_ranges table */
-> +       u8 ppr[2];              /* Pulses per rotation 0..3 for 1..4 ppr */
-> +       u8 rpm_range[2];        /* Index in above rpm_ranges table */
-> +       u8 pwm_polarity[2];     /* Fans PWM polarity, 0..1 */
->
->         /* Optional regulator for FAN supply */
->         struct regulator *reg;
-> @@ -319,7 +319,7 @@ static ssize_t fan_input_show(struct device *dev,
->                 return PTR_ERR(data);
->
->         return sprintf(buf, "%d\n", FAN_FROM_REG(data->fan[attr->index],
-> -                      data->rpm_range));
-> +                      data->rpm_range[attr->index]));
->  }
->
->  static ssize_t alarm_show(struct device *dev,
-> @@ -386,28 +386,26 @@ static struct attribute *max6639_attrs[] = {
->  ATTRIBUTE_GROUPS(max6639);
->
->  /*
-> - *  returns respective index in rpm_ranges table
-> - *  1 by default on invalid range
-> + *  Get respective index in rpm_ranges table
->   */
-> -static int rpm_range_to_reg(int range)
-> +static int rpm_range_to_index(u8 *index, int range)
->  {
->         int i;
->
->         for (i = 0; i < ARRAY_SIZE(rpm_ranges); i++) {
-> -               if (rpm_ranges[i] == range)
-> -                       return i;
-> +               if (rpm_ranges[i] == range) {
-> +                       *index = i;
-> +                       return 0;
-> +               }
->         }
->
-> -       return 1; /* default: 4000 RPM */
-> +       return -EINVAL;
->  }
->
->  static int max6639_init_client(struct i2c_client *client,
->                                struct max6639_data *data)
->  {
-> -       struct max6639_platform_data *max6639_info =
-> -               dev_get_platdata(&client->dev);
->         int i;
-> -       int rpm_range = 1; /* default: 4000 RPM */
->         int err;
->
->         /* Reset chip to default values, see below for GCONFIG setup */
-> @@ -416,43 +414,25 @@ static int max6639_init_client(struct i2c_client *client,
->         if (err)
->                 goto exit;
->
-> -       /* Fans pulse per revolution is 2 by default */
-> -       if (max6639_info && max6639_info->ppr > 0 &&
-> -                       max6639_info->ppr < 5)
-> -               data->ppr = max6639_info->ppr;
-> -       else
-> -               data->ppr = 2;
-> -       data->ppr -= 1;
-> -
-> -       if (max6639_info)
-> -               rpm_range = rpm_range_to_reg(max6639_info->rpm_range);
-> -       data->rpm_range = rpm_range;
-> -
->         for (i = 0; i < 2; i++) {
->
->                 /* Set Fan pulse per revolution */
->                 err = i2c_smbus_write_byte_data(client,
->                                 MAX6639_REG_FAN_PPR(i),
-> -                               data->ppr << 6);
-> +                               data->ppr[i] << 6);
->                 if (err)
->                         goto exit;
->
->                 /* Fans config PWM, RPM */
->                 err = i2c_smbus_write_byte_data(client,
->                         MAX6639_REG_FAN_CONFIG1(i),
-> -                       MAX6639_FAN_CONFIG1_PWM | rpm_range);
-> +                       MAX6639_FAN_CONFIG1_PWM | data->rpm_range[i]);
->                 if (err)
->                         goto exit;
->
-> -               /* Fans PWM polarity high by default */
-> -               if (max6639_info && max6639_info->pwm_polarity == 0)
-> -                       err = i2c_smbus_write_byte_data(client,
-> -                               MAX6639_REG_FAN_CONFIG2a(i), 0x00);
-> -               else
-> -                       err = i2c_smbus_write_byte_data(client,
-> -                               MAX6639_REG_FAN_CONFIG2a(i), 0x02);
-> -               if (err)
-> -                       goto exit;
-> +               /* Fans PWM polarity */
-> +               err = i2c_smbus_write_byte_data(client,
-> +                       MAX6639_REG_FAN_CONFIG2a(i), data->pwm_polarity[i] ? 0x00 : 0x02);
->
->                 /*
->                  * /THERM full speed enable,
-> @@ -464,10 +444,6 @@ static int max6639_init_client(struct i2c_client *client,
->                 if (err)
->                         goto exit;
->
-> -               /* Max. temp. 80C/90C/100C */
-> -               data->temp_therm[i] = 80;
-> -               data->temp_alert[i] = 90;
-> -               data->temp_ot[i] = 100;
->                 err = i2c_smbus_write_byte_data(client,
->                                 MAX6639_REG_THERM_LIMIT(i),
->                                 data->temp_therm[i]);
-> @@ -483,8 +459,6 @@ static int max6639_init_client(struct i2c_client *client,
->                 if (err)
->                         goto exit;
->
-> -               /* PWM 120/120 (i.e. 100%) */
-> -               data->pwm[i] = 120;
->                 err = i2c_smbus_write_byte_data(client,
->                                 MAX6639_REG_TARGTDUTY(i), data->pwm[i]);
->                 if (err)
-> @@ -524,12 +498,87 @@ static void max6639_regulator_disable(void *data)
->         regulator_disable(data);
->  }
->
-> +static int max6639_probe_child_from_dt(struct i2c_client *client,
-> +                                     struct device_node *child,
-> +                                     struct max6639_data *data)
-> +
-> +{
-> +       struct device *dev = &client->dev;
-> +       u32 i, val;
-> +       int err;
-> +
-> +       err = of_property_read_u32(child, "reg", &i);
-> +       if (err) {
-> +               dev_err(dev, "missing reg property of %pOFn\n", child);
-> +               return err;
-> +       }
-> +
-> +       if (i >= 2) {
-> +               dev_err(dev, "invalid reg %d of %pOFn\n", i, child);
-> +               return -EINVAL;
-> +       }
-> +
-> +       err = of_property_read_u32(child, "pulses-per-revolution", &val);
-> +       if (!err) {
-> +               if (val < 0 || val > 5) {
-> +                       dev_err(dev, "invalid pulses-per-revolution %d of %pOFn\n", val, child);
-> +                       return -EINVAL;
-> +               }
-> +               data->ppr[i] = val;
-> +       }
-> +
-> +       err = of_property_read_u32(child, "maxim,rpm-range", &val);
-> +       if (!err) {
-> +               err = rpm_range_to_index(&data->rpm_range[i], val);
-> +               if (err) {
-> +                       dev_err(dev, "invalid maxim,rpm-range %d of %pOFn\n", val, child);
-> +                       return err;
-> +               }
-> +       }
-> +
-> +       err = of_property_read_u32(child, "pwm-polarity", &val);
-> +       if (!err) {
-> +               if (val > 1) {
-> +                       dev_err(dev, "invalid pwm-polarity %d of %pOFn\n", val, child);
-> +                       return -EINVAL;
-> +               }
-> +               data->pwm_polarity[i] = val;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int max6639_probe_from_dt(struct i2c_client *client, struct max6639_data *data)
-> +{
-> +       struct device *dev = &client->dev;
-> +       const struct device_node *np = dev->of_node;
-> +       struct device_node *child;
-> +       int err;
-> +
-> +       /* Compatible with non-DT platforms */
-> +       if (!np)
-> +               return 0;
-> +
-> +       for_each_child_of_node(np, child) {
-> +               if (strcmp(child->name, "channel"))
 
-According to the dt-binding this should be "fan" instead of "channel".
 
-> +                       continue;
-> +
-> +               err = max6639_probe_child_from_dt(client, child, data);
-> +               if (err) {
-> +                       of_node_put(child);
-> +                       return err;
-> +               }
-> +       }
-> +
-> +       return 0;
-> +}
-> +
->  static int max6639_probe(struct i2c_client *client)
->  {
->         struct device *dev = &client->dev;
->         struct max6639_data *data;
->         struct device *hwmon_dev;
-> -       int err;
-> +       int err, i;
->
->         data = devm_kzalloc(dev, sizeof(struct max6639_data), GFP_KERNEL);
->         if (!data)
-> @@ -560,6 +609,24 @@ static int max6639_probe(struct i2c_client *client)
->
->         mutex_init(&data->update_lock);
->
-> +       /* default values */
-> +       for (i = 0; i < 2; i++) {
-> +               /* 4000 RPM */
-> +               data->rpm_range[i] = 1;
-> +               data->ppr[i] = 2;
-> +               data->pwm_polarity[i] = 1;
-> +               /* Max. temp. 80C/90C/100C */
-> +               data->temp_therm[i] = 80;
-> +               data->temp_alert[i] = 90;
-> +               data->temp_ot[i] = 100;
-> +               /* PWM 120/120 (i.e. 100%) */
-> +               data->pwm[i] = 120;
-> +       }
-> +
-> +       err = max6639_probe_from_dt(client, data);
-> +       if (err)
-> +               return err;
-> +
->         /* Initialize the max6639 chip */
->         err = max6639_init_client(client, data);
->         if (err < 0)
-> @@ -618,6 +685,14 @@ static const struct i2c_device_id max6639_id[] = {
->
->  MODULE_DEVICE_TABLE(i2c, max6639_id);
->
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id maxim_of_platform_match[] = {
-> +       {.compatible = "maxim,max6639"},
-> +       {},
-> +};
-> +MODULE_DEVICE_TABLE(of, maxim_of_platform_match);
-> +#endif
-> +
->  static SIMPLE_DEV_PM_OPS(max6639_pm_ops, max6639_suspend, max6639_resume);
->
->  static struct i2c_driver max6639_driver = {
-> @@ -625,6 +700,7 @@ static struct i2c_driver max6639_driver = {
->         .driver = {
->                    .name = "max6639",
->                    .pm = &max6639_pm_ops,
-> +                  .of_match_table = of_match_ptr(maxim_of_platform_match),
->                    },
->         .probe_new = max6639_probe,
->         .id_table = max6639_id,
-> diff --git a/include/linux/platform_data/max6639.h b/include/linux/platform_data/max6639.h
-> deleted file mode 100644
-> index 65bfdb4fdc15..000000000000
-> --- a/include/linux/platform_data/max6639.h
-> +++ /dev/null
-> @@ -1,15 +0,0 @@
-> -/* SPDX-License-Identifier: GPL-2.0 */
-> -#ifndef _LINUX_MAX6639_H
-> -#define _LINUX_MAX6639_H
-> -
-> -#include <linux/types.h>
-> -
-> -/* platform data for the MAX6639 temperature sensor and fan control */
-> -
-> -struct max6639_platform_data {
-> -       bool pwm_polarity;      /* Polarity low (0) or high (1, default) */
-> -       int ppr;                /* Pulses per rotation 1..4 (default == 2) */
-> -       int rpm_range;          /* 2000, 4000 (default), 8000 or 16000 */
-> -};
-> -
-> -#endif /* _LINUX_MAX6639_H */
-> --
-> 2.35.3
->
+> -----Original Message-----
+> From: Shawn Guo <shawnguo@kernel.org>
+> Sent: Wednesday, September 21, 2022 10:21 PM
+> To: Jun Li <jun.li@nxp.com>; Abel Vesa <abelvesa@kernel.org>
+> Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com;
+> dl-linux-imx <linux-imx@nxp.com>; laurent.pinchart@ideasonboard.com;
+> l.stach@pengutronix.de; marex@denx.de; Peng Fan <peng.fan@nxp.com>;
+> paul.elder@ideasonboard.com; Markus.Niebel@ew.tq-group.com;
+> aford173@gmail.com; devicetree@vger.kernel.org;
+> linux-arm-kernel@lists.infradead.org
+> Subject: Re: [PATCH v3] arm64: dts: imx8mp: correct usb clocks
+>=20
+> Added Abel.
+>=20
+> On Mon, Sep 19, 2022 at 01:26:37PM +0800, Li Jun wrote:
+> > After commit cf7f3f4fa9e5 ("clk: imx8mp: fix usb_root_clk parent"),
+> > usb_root_clk is no longer for suspend clock so update dts accordingly
+> > to use right bus clock and suspend clock.
+> >
+> > Fixes: fb8587a2c165 ("arm64: dtsi: imx8mp: add usb nodes")
+> > Cc: stable@vger.kernel.org # v5.19+
+> > Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Signed-off-by: Li Jun <jun.li@nxp.com>
+>=20
+> I just realized this patch has a hard/build dependency on define
+> IMX8MP_CLK_USB_SUSP.  So the patch needs to go upstream via the same tree
+> that the define is applied.  I guess that's Abel's i.MX clk tree?
+> In that case:
+>=20
+> Acked-by: Shawn Guo <shawnguo@kernel.org>
+
+Thanks,
+
+Hi Abel,
+
+I just resend the whole patch set(clk+dts).
+Will you or Stephen will take them?
+
+Li Jun
+>=20
+> Shawn
+>=20
+> > ---
+> > change for v3:
+> > -  Add fixes tag, Alexander's T-b and Peng's R-b tages.
+> >
+> > change for v2:
+> > - Add stable tag to apply v5.19+
+> >
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++++------
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > index fe178b7d063c..2f18778a057f 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -1169,7 +1169,7 @@ usb3_0: usb@32f10100 {
+> >  			reg =3D <0x32f10100 0x8>,
+> >  			      <0x381f0000 0x20>;
+> >  			clocks =3D <&clk IMX8MP_CLK_HSIO_ROOT>,
+> > -				 <&clk IMX8MP_CLK_USB_ROOT>;
+> > +				 <&clk IMX8MP_CLK_USB_SUSP>;
+> >  			clock-names =3D "hsio", "suspend";
+> >  			interrupts =3D <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+> >  			power-domains =3D <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>; @@
+> -1182,9
+> > +1182,9 @@ usb3_0: usb@32f10100 {
+> >  			usb_dwc3_0: usb@38100000 {
+> >  				compatible =3D "snps,dwc3";
+> >  				reg =3D <0x38100000 0x10000>;
+> > -				clocks =3D <&clk IMX8MP_CLK_HSIO_AXI>,
+> > +				clocks =3D <&clk IMX8MP_CLK_USB_ROOT>,
+> >  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+> > -					 <&clk IMX8MP_CLK_USB_ROOT>;
+> > +					 <&clk IMX8MP_CLK_USB_SUSP>;
+> >  				clock-names =3D "bus_early", "ref", "suspend";
+> >  				interrupts =3D <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> >  				phys =3D <&usb3_phy0>, <&usb3_phy0>; @@ -1211,7 +1211,7 @@
+> usb3_1:
+> > usb@32f10108 {
+> >  			reg =3D <0x32f10108 0x8>,
+> >  			      <0x382f0000 0x20>;
+> >  			clocks =3D <&clk IMX8MP_CLK_HSIO_ROOT>,
+> > -				 <&clk IMX8MP_CLK_USB_ROOT>;
+> > +				 <&clk IMX8MP_CLK_USB_SUSP>;
+> >  			clock-names =3D "hsio", "suspend";
+> >  			interrupts =3D <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
+> >  			power-domains =3D <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>; @@
+> -1224,9
+> > +1224,9 @@ usb3_1: usb@32f10108 {
+> >  			usb_dwc3_1: usb@38200000 {
+> >  				compatible =3D "snps,dwc3";
+> >  				reg =3D <0x38200000 0x10000>;
+> > -				clocks =3D <&clk IMX8MP_CLK_HSIO_AXI>,
+> > +				clocks =3D <&clk IMX8MP_CLK_USB_ROOT>,
+> >  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+> > -					 <&clk IMX8MP_CLK_USB_ROOT>;
+> > +					 <&clk IMX8MP_CLK_USB_SUSP>;
+> >  				clock-names =3D "bus_early", "ref", "suspend";
+> >  				interrupts =3D <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> >  				phys =3D <&usb3_phy1>, <&usb3_phy1>;
+> > --
+> > 2.34.1
+> >
