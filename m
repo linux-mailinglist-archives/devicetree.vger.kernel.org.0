@@ -2,171 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 670455E7419
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 08:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6B625E73D7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 08:18:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230322AbiIWG0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 02:26:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47092 "EHLO
+        id S230091AbiIWGSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 02:18:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbiIWG0Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 02:26:16 -0400
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8986128720;
-        Thu, 22 Sep 2022 23:26:10 -0700 (PDT)
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B82F01B67D1;
-        Fri, 23 Sep 2022 08:26:08 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2FAB51B67CC;
-        Fri, 23 Sep 2022 08:26:08 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 9CC841820F5A;
-        Fri, 23 Sep 2022 14:26:06 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     l.stach@pengutronix.de, bhelgaas@google.com, robh+dt@kernel.org,
-        lorenzo.pieralisi@arm.com, shawnguo@kernel.org, kishon@ti.com,
-        kw@linux.com, frank.li@nxp.com
-Cc:     hongxing.zhu@nxp.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: [PATCH v3 14/14] PCI: imx6: Add iMX8MP PCIe EP support
-Date:   Fri, 23 Sep 2022 14:07:00 +0800
-Message-Id: <1663913220-9523-15-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1663913220-9523-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1663913220-9523-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230083AbiIWGSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 02:18:15 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FF7F126B41
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 23:18:08 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id a80so11484507pfa.4
+        for <devicetree@vger.kernel.org>; Thu, 22 Sep 2022 23:18:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=f05ljLlUO9sOr4KvcyD5u6idMugfpqT7D62/tn0sbO8=;
+        b=pAvhqToInZNWXhG5z96xzXs+MzZS5uqkxvSry9ySyYz+8JEQ2tND181S0DlMybrFVF
+         w9mQcz4K1+mUBdiR7jMk1OgouLtp3SIbWTIdJAuInKMUMlC3zgcqfadD9bthLMIhcxJV
+         NlWa43k4iW9B685LT1MgSDhmG2HVZp50lFSWPmGj9tI8hYXuCiRtHIa6zpmH+mPXyeO3
+         GJX0ozoHvatgXFpit87GcEYn4y2HqDv++gZQKG3CgMwqShpYwfCHUrWCLAt0bPT0diZh
+         dZgixhDbnM3FuGLYxWY62s/n25z5NY1wYDP+6ZFzWhlGsgpB4WJf0D1iZKYaFOtQJsaU
+         WJmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=f05ljLlUO9sOr4KvcyD5u6idMugfpqT7D62/tn0sbO8=;
+        b=RmMwKkBnYK/lrlhWxxuCl98IzF7J4TWYq3t9pH4UL+zy2RnxHAVw0ZUattwje1bQN/
+         oL9PLfMJ9Ilkk0I9COTIurPYvENAlz84+dMBSSihLnykSpKZys/kWE4833VVo31PijMF
+         GKl/eAOixRYxinlhkD4NpFdvcQvspkvCR2MxYPWYTy1JhfnAgCVaMWGYiWnGIwVAADR8
+         7OifFH74Tx+diDK1jHmVdVX4NuncP9Q7ySzyA+Z/fav7s0Brdhmqryc/k2u1cHpkIQ7v
+         MvX6/FUax763Nzhj1PeGGCcG7rgY9RhiKpVnAY6j2Q6ZuE9sYMIxoInMVWjXwfryvWOh
+         ZIfg==
+X-Gm-Message-State: ACrzQf0y40YGq1hno3C0LyGyZaa55RIeYSwcp3GtO7G+o/xQI1pvZW4o
+        ZZhahBvtcprdyJT6d8zWTP0XuA==
+X-Google-Smtp-Source: AMsMyM7Yk+O5UM+vUUWL9QNeCbgNalG8zHkQHUtJtwzxGXbiqGa6c/4GNh20lsyAoFvR3tRsLjTxOw==
+X-Received: by 2002:a63:ff4f:0:b0:439:61d6:197 with SMTP id s15-20020a63ff4f000000b0043961d60197mr6165593pgk.67.1663913887935;
+        Thu, 22 Sep 2022 23:18:07 -0700 (PDT)
+Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
+        by smtp.gmail.com with ESMTPSA id c190-20020a624ec7000000b00540f3ac5fb8sm5515248pfb.69.2022.09.22.23.18.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Sep 2022 23:18:07 -0700 (PDT)
+From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org,
+        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2 0/2] Add LTE SKU for sc7280-evoker family
+Date:   Fri, 23 Sep 2022 14:17:54 +0800
+Message-Id: <20220923061756.2557403-1-sheng-liang.pan@quanta.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the iMX8MP PCIe EP support
+This patch add common dtsi and WIFI/LTE dts for evoker.
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- drivers/pci/controller/dwc/pci-imx6.c | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+Changes in v2:
+- change Cover-letter tittle
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index 931243e36252..e339e32d97f8 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -54,6 +54,7 @@ enum imx6_pcie_variants {
- 	IMX8MP,
- 	IMX8MM_EP,
- 	IMX8MQ_EP,
-+	IMX8MP_EP,
- };
- 
- #define IMX6_PCIE_FLAG_IMX6_PHY			BIT(0)
-@@ -158,7 +159,8 @@ static unsigned int imx6_pcie_grp_offset(const struct imx6_pcie *imx6_pcie)
- 		imx6_pcie->drvdata->variant != IMX8MQ_EP &&
- 		imx6_pcie->drvdata->variant != IMX8MM &&
- 		imx6_pcie->drvdata->variant != IMX8MM_EP &&
--		imx6_pcie->drvdata->variant != IMX8MP);
-+		imx6_pcie->drvdata->variant != IMX8MP &&
-+		imx6_pcie->drvdata->variant != IMX8MP_EP);
- 	return imx6_pcie->controller_id == 1 ? IOMUXC_GPR16 : IOMUXC_GPR14;
- }
- 
-@@ -323,6 +325,7 @@ static void imx6_pcie_init_phy(struct imx6_pcie *imx6_pcie)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		/*
- 		 * The PHY initialization had been done in the PHY
- 		 * driver, break here directly.
-@@ -584,6 +587,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		ret = clk_prepare_enable(imx6_pcie->pcie_aux);
- 		if (ret) {
- 			dev_err(dev, "unable to enable pcie_aux clock\n");
-@@ -631,6 +635,7 @@ static void imx6_pcie_disable_ref_clk(struct imx6_pcie *imx6_pcie)
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		clk_disable_unprepare(imx6_pcie->pcie_aux);
- 		break;
- 	default:
-@@ -701,6 +706,7 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		reset_control_assert(imx6_pcie->apps_reset);
- 		break;
- 	case IMX6SX:
-@@ -779,6 +785,7 @@ static int imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		break;
- 	}
- 
-@@ -831,6 +838,7 @@ static void imx6_pcie_ltssm_enable(struct device *dev)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		reset_control_deassert(imx6_pcie->apps_reset);
- 		break;
- 	}
-@@ -853,6 +861,7 @@ static void imx6_pcie_ltssm_disable(struct device *dev)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		reset_control_assert(imx6_pcie->apps_reset);
- 		break;
- 	}
-@@ -1104,6 +1113,7 @@ static int imx6_add_pcie_ep(struct imx6_pcie *imx6_pcie,
- 	switch (imx6_pcie->drvdata->variant) {
- 	case IMX8MM_EP:
- 	case IMX8MQ_EP:
-+	case IMX8MP_EP:
- 		pcie_dbi2_offset = SZ_1M;
- 		break;
- 	default:
-@@ -1318,6 +1328,7 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
- 		if (IS_ERR(imx6_pcie->pcie_aux))
- 			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
-@@ -1487,6 +1498,11 @@ static const struct imx6_pcie_drvdata drvdata[] = {
- 		.mode = DW_PCIE_EP_TYPE,
- 		.gpr = "fsl,imx8mq-iomuxc-gpr",
- 	},
-+	[IMX8MP_EP] = {
-+		.variant = IMX8MP_EP,
-+		.mode = DW_PCIE_EP_TYPE,
-+		.gpr = "fsl,imx8mp-iomuxc-gpr",
-+	},
- };
- 
- static const struct of_device_id imx6_pcie_of_match[] = {
-@@ -1499,6 +1515,7 @@ static const struct of_device_id imx6_pcie_of_match[] = {
- 	{ .compatible = "fsl,imx8mp-pcie", .data = &drvdata[IMX8MP], },
- 	{ .compatible = "fsl,imx8mm-pcie-ep", .data = &drvdata[IMX8MM_EP], },
- 	{ .compatible = "fsl,imx8mq-pcie-ep", .data = &drvdata[IMX8MQ_EP], },
-+	{ .compatible = "fsl,imx8mp-pcie-ep", .data = &drvdata[IMX8MP_EP], },
- 	{},
- };
- 
+Sheng-Liang Pan (2):
+  dt-bindings: arm: qcom: Separete LTE/WIFI SKU for sc7280-evoker
+  arm64: dts: qcom: Add LTE SKU for sc7280-evoker family
+
+ .../devicetree/bindings/arm/qcom.yaml         |  5 ++++
+ arch/arm64/boot/dts/qcom/Makefile             |  3 ++-
+ .../dts/qcom/sc7280-herobrine-evoker-lte.dts  | 14 ++++++++++
+ .../boot/dts/qcom/sc7280-herobrine-evoker.dts | 16 ++++++++++++
+ ...er-r0.dts => sc7280-herobrine-evoker.dtsi} | 26 +++++--------------
+ 5 files changed, 44 insertions(+), 20 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
+ rename arch/arm64/boot/dts/qcom/{sc7280-herobrine-evoker-r0.dts => sc7280-herobrine-evoker.dtsi} (93%)
+
 -- 
-2.25.1
+2.34.1
 
