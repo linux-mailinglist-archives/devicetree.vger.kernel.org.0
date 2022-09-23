@@ -2,353 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 063AF5E83BB
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 22:31:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A3005E83F3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 22:39:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232474AbiIWUbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 16:31:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47080 "EHLO
+        id S233226AbiIWUew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 16:34:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232748AbiIWUaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 16:30:22 -0400
-Received: from mx08lb.world4you.com (mx08lb.world4you.com [81.19.149.118])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E710913F2AF;
-        Fri, 23 Sep 2022 13:25:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=engleder-embedded.com; s=dkim11; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=n1s8hqyifdPC7N0Zubm2N8vcr8Qm5zqyKnmMfEsg5gg=; b=xAn17BaIiGIU2OldejkJ0kVx1d
-        54iHDIapOZbmNCsqJEitTGPQUHIfACHFF6eICocQVssdVMyHMvJsrnppLxTsxkP3ablk8TYKHNJMY
-        7xwIslYQ9UXyC4nSYnJ1FldR763HbokbjqEiGI21W7wnX2fuJXj090OuFSQESI7mBo0w=;
-Received: from 88-117-54-199.adsl.highway.telekom.at ([88.117.54.199] helo=hornet.engleder.at)
-        by mx08lb.world4you.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <gerhard@engleder-embedded.com>)
-        id 1obpDf-0002Jm-Mg; Fri, 23 Sep 2022 22:24:19 +0200
-From:   Gerhard Engleder <gerhard@engleder-embedded.com>
-To:     netdev@vger.kernel.org
-Cc:     davem@davemloft.net, kuba@kernel.org, edumazet@google.com,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        Gerhard Engleder <gerhard@engleder-embedded.com>
-Subject: [PATCH net-next v2 6/6] tsnep: Use page pool for RX
-Date:   Fri, 23 Sep 2022 22:22:46 +0200
-Message-Id: <20220923202246.118926-7-gerhard@engleder-embedded.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220923202246.118926-1-gerhard@engleder-embedded.com>
-References: <20220923202246.118926-1-gerhard@engleder-embedded.com>
+        with ESMTP id S232877AbiIWUcu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 16:32:50 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36CD614C044
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 13:28:33 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id j24so1295305lja.4
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 13:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:cc:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=dRBiNzhvL0fZ1btpeERnXtz/brYGVXxmj/uHgSA0610=;
+        b=JGNV/7ehKxkXA6HowZDNPyS3U+aex1as67ku86jF9uZoqlqh5CgFk3yDy2HwnzVgCE
+         5vLO2P612JYylDavD0MTm3myJNT7QmDHOfbtlhhVpJ+Q9VzF2ABHN/iNcjZvUrRCD48O
+         Z2EL0E1d3OofeGa1TMbqNmV2RE5jRpW7GniL2c3BfoDJIgD6ScTF4JKSX9HBBmR3Mbrz
+         1GtGmi5dXTXcVfSy1LpSwDnqv3euCGbJCHW5VPhjKsV3k+i8t0uOgIh7bwiN1tOqc48v
+         8dCnN/2Fd0riW4uxqmXWzHUF0vtHRsqpoVKhrKEUxVPZ6arbv1BhPTNe5HDGryeDDATq
+         E7bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:cc:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=dRBiNzhvL0fZ1btpeERnXtz/brYGVXxmj/uHgSA0610=;
+        b=YvZCEZPceTezNf5luZ0dp8Gp4Qmfrxh4Uz3yyz+xqe+uqbi03X6DXDtLgdZGcksM1F
+         /6iE3dFlbSSCXOXd7Hk5z9/7OXwYyWAxqR74S5e2713H6MUhz0RkrTfqu3KwNLBBgzMW
+         1tj7JQreQLAh176bItKbqUtBXC4d7A4copqmabM5xShTFGrHqaMCsRJeP3lKNodbDCwZ
+         rStpbxnjghKbIhrV08vLPr6ZPofKLmFnBcXL6+E9akxUfbSoZ6zjdeyOPgdL4jw8qPrn
+         5XMD/9MYYhXIHqi5o97rj64kN0xjVi/75FZf/viXnd8q4vFCDZTctcwja2cJlxE6hJrL
+         KFIw==
+X-Gm-Message-State: ACrzQf1q3VqFWFuHgXLrf/3JlTBteUvgmE3JX7Kp8ROSineCG/3a2uCf
+        5ImjiNhFv46XooDQP+20BX+Veg==
+X-Google-Smtp-Source: AMsMyM6Afp+Gmn1RVL7p08gPAY9RDWH10sbYGoj8p5xDl3eIWEfgDkusANv9wbw+j1GwRxnO305/JQ==
+X-Received: by 2002:a05:651c:1795:b0:261:af46:9d12 with SMTP id bn21-20020a05651c179500b00261af469d12mr3537893ljb.122.1663964911587;
+        Fri, 23 Sep 2022 13:28:31 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id i2-20020a056512340200b00497ab39bcd0sm1594791lfr.96.2022.09.23.13.28.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Sep 2022 13:28:31 -0700 (PDT)
+Message-ID: <e1576227-e9ee-a6bb-bcb4-f142f99300cc@linaro.org>
+Date:   Fri, 23 Sep 2022 22:28:30 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AV-Do-Run: Yes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v4 01/15] arm64: dts: qcom: sdm630: align APR services
+ node names with dtschema
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>
+References: <20220910091428.50418-1-krzysztof.kozlowski@linaro.org>
+ <20220910091428.50418-2-krzysztof.kozlowski@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220910091428.50418-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use page pool for RX buffer handling. Makes RX path more efficient and
-is required prework for future XDP support.
+On 10/09/2022 11:14, Krzysztof Kozlowski wrote:
+> DT schema expects APR services node names to be "service":
+> 
+>   qcom/sdm850-lenovo-yoga-c630.dtb: remoteproc-adsp: glink-edge:apr: 'apr-service@3', 'apr-service@4', 'apr-service@7', 'apr-service@8', 'qcom,glink-channels', 'qcom,intents' do not match any of the regexes: '^service@[1-9a-d]$', 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-Signed-off-by: Gerhard Engleder <gerhard@engleder-embedded.com>
----
- drivers/net/ethernet/engleder/Kconfig      |   1 +
- drivers/net/ethernet/engleder/tsnep.h      |   5 +-
- drivers/net/ethernet/engleder/tsnep_main.c | 162 ++++++++++++---------
- 3 files changed, 100 insertions(+), 68 deletions(-)
+Hi Bjorn,
 
-diff --git a/drivers/net/ethernet/engleder/Kconfig b/drivers/net/ethernet/engleder/Kconfig
-index f4e2b1102d8f..3df6bf476ae7 100644
---- a/drivers/net/ethernet/engleder/Kconfig
-+++ b/drivers/net/ethernet/engleder/Kconfig
-@@ -21,6 +21,7 @@ config TSNEP
- 	depends on HAS_IOMEM && HAS_DMA
- 	depends on PTP_1588_CLOCK_OPTIONAL
- 	select PHYLIB
-+	select PAGE_POOL
- 	help
- 	  Support for the Engleder TSN endpoint Ethernet MAC IP Core.
- 
-diff --git a/drivers/net/ethernet/engleder/tsnep.h b/drivers/net/ethernet/engleder/tsnep.h
-index 2ca34ae9b55a..09a723b827c7 100644
---- a/drivers/net/ethernet/engleder/tsnep.h
-+++ b/drivers/net/ethernet/engleder/tsnep.h
-@@ -96,9 +96,9 @@ struct tsnep_rx_entry {
- 
- 	u32 properties;
- 
--	struct sk_buff *skb;
-+	struct page *page;
- 	size_t len;
--	DEFINE_DMA_UNMAP_ADDR(dma);
-+	dma_addr_t dma;
- };
- 
- struct tsnep_rx {
-@@ -113,6 +113,7 @@ struct tsnep_rx {
- 	int read;
- 	u32 owner_counter;
- 	int increment_owner_counter;
-+	struct page_pool *page_pool;
- 
- 	u32 packets;
- 	u32 bytes;
-diff --git a/drivers/net/ethernet/engleder/tsnep_main.c b/drivers/net/ethernet/engleder/tsnep_main.c
-index a6b81f32d76b..8a93d0aa7faa 100644
---- a/drivers/net/ethernet/engleder/tsnep_main.c
-+++ b/drivers/net/ethernet/engleder/tsnep_main.c
-@@ -27,10 +27,10 @@
- #include <linux/phy.h>
- #include <linux/iopoll.h>
- 
--#define RX_SKB_LENGTH (round_up(TSNEP_RX_INLINE_METADATA_SIZE + ETH_HLEN + \
--				TSNEP_MAX_FRAME_SIZE + ETH_FCS_LEN, 4))
--#define RX_SKB_RESERVE ((16 - TSNEP_RX_INLINE_METADATA_SIZE) + NET_IP_ALIGN)
--#define RX_SKB_ALLOC_LENGTH (RX_SKB_RESERVE + RX_SKB_LENGTH)
-+#define TSNEP_SKB_PAD (NET_SKB_PAD + NET_IP_ALIGN)
-+#define TSNEP_HEADROOM ALIGN(TSNEP_SKB_PAD, 4)
-+#define TSNEP_MAX_RX_BUF_SIZE (PAGE_SIZE - TSNEP_HEADROOM - \
-+			       SKB_DATA_ALIGN(sizeof(struct skb_shared_info)))
- 
- #ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
- #define DMA_ADDR_HIGH(dma_addr) ((u32)(((dma_addr) >> 32) & 0xFFFFFFFF))
-@@ -587,14 +587,15 @@ static void tsnep_rx_ring_cleanup(struct tsnep_rx *rx)
- 
- 	for (i = 0; i < TSNEP_RING_SIZE; i++) {
- 		entry = &rx->entry[i];
--		if (dma_unmap_addr(entry, dma))
--			dma_unmap_single(dmadev, dma_unmap_addr(entry, dma),
--					 dma_unmap_len(entry, len),
--					 DMA_FROM_DEVICE);
--		if (entry->skb)
--			dev_kfree_skb(entry->skb);
-+		if (entry->page)
-+			page_pool_put_full_page(rx->page_pool, entry->page,
-+						false);
-+		entry->page = NULL;
- 	}
- 
-+	if (rx->page_pool)
-+		page_pool_destroy(rx->page_pool);
-+
- 	memset(rx->entry, 0, sizeof(rx->entry));
- 
- 	for (i = 0; i < TSNEP_RING_PAGE_COUNT; i++) {
-@@ -607,31 +608,19 @@ static void tsnep_rx_ring_cleanup(struct tsnep_rx *rx)
- 	}
- }
- 
--static int tsnep_rx_alloc_and_map_skb(struct tsnep_rx *rx,
--				      struct tsnep_rx_entry *entry)
-+static int tsnep_rx_alloc_buffer(struct tsnep_rx *rx,
-+				 struct tsnep_rx_entry *entry)
- {
--	struct device *dmadev = rx->adapter->dmadev;
--	struct sk_buff *skb;
--	dma_addr_t dma;
-+	struct page *page;
- 
--	skb = __netdev_alloc_skb(rx->adapter->netdev, RX_SKB_ALLOC_LENGTH,
--				 GFP_ATOMIC | GFP_DMA);
--	if (!skb)
-+	page = page_pool_dev_alloc_pages(rx->page_pool);
-+	if (unlikely(!page))
- 		return -ENOMEM;
- 
--	skb_reserve(skb, RX_SKB_RESERVE);
--
--	dma = dma_map_single(dmadev, skb->data, RX_SKB_LENGTH,
--			     DMA_FROM_DEVICE);
--	if (dma_mapping_error(dmadev, dma)) {
--		dev_kfree_skb(skb);
--		return -ENOMEM;
--	}
--
--	entry->skb = skb;
--	entry->len = RX_SKB_LENGTH;
--	dma_unmap_addr_set(entry, dma, dma);
--	entry->desc->rx = __cpu_to_le64(dma);
-+	entry->page = page;
-+	entry->len = TSNEP_MAX_RX_BUF_SIZE;
-+	entry->dma = page_pool_get_dma_addr(entry->page);
-+	entry->desc->rx = __cpu_to_le64(entry->dma + TSNEP_SKB_PAD);
- 
- 	return 0;
- }
-@@ -640,6 +629,7 @@ static int tsnep_rx_ring_init(struct tsnep_rx *rx)
- {
- 	struct device *dmadev = rx->adapter->dmadev;
- 	struct tsnep_rx_entry *entry;
-+	struct page_pool_params pp_params = { 0 };
- 	struct tsnep_rx_entry *next_entry;
- 	int i, j;
- 	int retval;
-@@ -661,12 +651,28 @@ static int tsnep_rx_ring_init(struct tsnep_rx *rx)
- 			entry->desc_dma = rx->page_dma[i] + TSNEP_DESC_SIZE * j;
- 		}
- 	}
-+
-+	pp_params.flags = PP_FLAG_DMA_MAP | PP_FLAG_DMA_SYNC_DEV;
-+	pp_params.order = 0;
-+	pp_params.pool_size = TSNEP_RING_SIZE;
-+	pp_params.nid = dev_to_node(dmadev);
-+	pp_params.dev = dmadev;
-+	pp_params.dma_dir = DMA_FROM_DEVICE;
-+	pp_params.max_len = TSNEP_MAX_RX_BUF_SIZE;
-+	pp_params.offset = TSNEP_SKB_PAD;
-+	rx->page_pool = page_pool_create(&pp_params);
-+	if (IS_ERR(rx->page_pool)) {
-+		retval = PTR_ERR(rx->page_pool);
-+		rx->page_pool = NULL;
-+		goto failed;
-+	}
-+
- 	for (i = 0; i < TSNEP_RING_SIZE; i++) {
- 		entry = &rx->entry[i];
- 		next_entry = &rx->entry[(i + 1) % TSNEP_RING_SIZE];
- 		entry->desc->next = __cpu_to_le64(next_entry->desc_dma);
- 
--		retval = tsnep_rx_alloc_and_map_skb(rx, entry);
-+		retval = tsnep_rx_alloc_buffer(rx, entry);
- 		if (retval)
- 			goto failed;
- 	}
-@@ -682,7 +688,7 @@ static void tsnep_rx_activate(struct tsnep_rx *rx, int index)
- {
- 	struct tsnep_rx_entry *entry = &rx->entry[index];
- 
--	/* RX_SKB_LENGTH is a multiple of 4 */
-+	/* TSNEP_MAX_RX_BUF_SIZE is a multiple of 4 */
- 	entry->properties = entry->len & TSNEP_DESC_LENGTH_MASK;
- 	entry->properties |= TSNEP_DESC_INTERRUPT_FLAG;
- 	if (index == rx->increment_owner_counter) {
-@@ -705,19 +711,52 @@ static void tsnep_rx_activate(struct tsnep_rx *rx, int index)
- 	entry->desc->properties = __cpu_to_le32(entry->properties);
- }
- 
-+static struct sk_buff *tsnep_build_skb(struct tsnep_rx *rx, struct page *page,
-+				       int length)
-+{
-+	struct sk_buff *skb;
-+
-+	skb = napi_build_skb(page_address(page), PAGE_SIZE);
-+	if (unlikely(!skb))
-+		return NULL;
-+
-+	/* update pointers within the skb to store the data */
-+	skb_reserve(skb, TSNEP_SKB_PAD + TSNEP_RX_INLINE_METADATA_SIZE);
-+	__skb_put(skb, length - TSNEP_RX_INLINE_METADATA_SIZE - ETH_FCS_LEN);
-+
-+	if (rx->adapter->hwtstamp_config.rx_filter == HWTSTAMP_FILTER_ALL) {
-+		struct skb_shared_hwtstamps *hwtstamps = skb_hwtstamps(skb);
-+		struct tsnep_rx_inline *rx_inline =
-+			(struct tsnep_rx_inline *)(page_address(page) +
-+						   TSNEP_SKB_PAD);
-+
-+		skb_shinfo(skb)->tx_flags |=
-+			SKBTX_HW_TSTAMP_NETDEV;
-+		memset(hwtstamps, 0, sizeof(*hwtstamps));
-+		hwtstamps->netdev_data = rx_inline;
-+	}
-+
-+	skb_record_rx_queue(skb, rx->queue_index);
-+	skb->protocol = eth_type_trans(skb, rx->adapter->netdev);
-+
-+	return skb;
-+}
-+
- static int tsnep_rx_poll(struct tsnep_rx *rx, struct napi_struct *napi,
- 			 int budget)
- {
- 	struct device *dmadev = rx->adapter->dmadev;
- 	int done = 0;
-+	enum dma_data_direction dma_dir;
- 	struct tsnep_rx_entry *entry;
-+	struct page *page;
- 	struct sk_buff *skb;
--	size_t len;
--	dma_addr_t dma;
- 	int length;
- 	bool enable = false;
- 	int retval;
- 
-+	dma_dir = page_pool_get_dma_dir(rx->page_pool);
-+
- 	while (likely(done < budget)) {
- 		entry = &rx->entry[rx->read];
- 		if ((__le32_to_cpu(entry->desc_wb->properties) &
-@@ -730,43 +769,34 @@ static int tsnep_rx_poll(struct tsnep_rx *rx, struct napi_struct *napi,
- 		 */
- 		dma_rmb();
- 
--		skb = entry->skb;
--		len = dma_unmap_len(entry, len);
--		dma = dma_unmap_addr(entry, dma);
-+		prefetch(page_address(entry->page) + TSNEP_SKB_PAD);
-+		length = __le32_to_cpu(entry->desc_wb->properties) &
-+			 TSNEP_DESC_LENGTH_MASK;
-+		dma_sync_single_range_for_cpu(dmadev, entry->dma, TSNEP_SKB_PAD,
-+					      length, dma_dir);
-+		page = entry->page;
- 
- 		/* forward skb only if allocation is successful, otherwise
--		 * skb is reused and frame dropped
-+		 * page is reused and frame dropped
- 		 */
--		retval = tsnep_rx_alloc_and_map_skb(rx, entry);
-+		retval = tsnep_rx_alloc_buffer(rx, entry);
- 		if (!retval) {
--			dma_unmap_single(dmadev, dma, len, DMA_FROM_DEVICE);
--
--			length = __le32_to_cpu(entry->desc_wb->properties) &
--				 TSNEP_DESC_LENGTH_MASK;
--			skb_put(skb, length - ETH_FCS_LEN);
--			if (rx->adapter->hwtstamp_config.rx_filter ==
--			    HWTSTAMP_FILTER_ALL) {
--				struct skb_shared_hwtstamps *hwtstamps =
--					skb_hwtstamps(skb);
--				struct tsnep_rx_inline *rx_inline =
--					(struct tsnep_rx_inline *)skb->data;
--
--				skb_shinfo(skb)->tx_flags |=
--					SKBTX_HW_TSTAMP_NETDEV;
--				memset(hwtstamps, 0, sizeof(*hwtstamps));
--				hwtstamps->netdev_data = rx_inline;
--			}
--			skb_pull(skb, TSNEP_RX_INLINE_METADATA_SIZE);
--			skb_record_rx_queue(skb, rx->queue_index);
--			skb->protocol = eth_type_trans(skb,
--						       rx->adapter->netdev);
-+			skb = tsnep_build_skb(rx, page, length);
-+			if (skb) {
-+				page_pool_release_page(rx->page_pool, page);
-+
-+				rx->packets++;
-+				rx->bytes += length -
-+					     TSNEP_RX_INLINE_METADATA_SIZE;
-+				if (skb->pkt_type == PACKET_MULTICAST)
-+					rx->multicast++;
- 
--			rx->packets++;
--			rx->bytes += length - TSNEP_RX_INLINE_METADATA_SIZE;
--			if (skb->pkt_type == PACKET_MULTICAST)
--				rx->multicast++;
-+				napi_gro_receive(napi, skb);
-+			} else {
-+				page_pool_recycle_direct(rx->page_pool, page);
- 
--			napi_gro_receive(napi, skb);
-+				rx->dropped++;
-+			}
- 			done++;
- 		} else {
- 			rx->dropped++;
--- 
-2.30.2
+The bindings parts were picked up. Any comments from your side on DTS?
+Do you plan to pick them up?
+
+Best regards,
+Krzysztof
 
