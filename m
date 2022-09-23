@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B239A5E76A6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:18:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 321285E76B0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 11:19:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbiIWJSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 05:18:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49840 "EHLO
+        id S230520AbiIWJT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 05:19:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229963AbiIWJSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:18:16 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB03BFAC2
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:18:15 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id x29so13967243ljq.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:18:15 -0700 (PDT)
+        with ESMTP id S230409AbiIWJT1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 05:19:27 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A1EEFAF8
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:19:25 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id a2so18832944lfb.6
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 02:19:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=zCCsISQtcxyw8amZYwvhvc9T7nwDgM18FSAE5RNKrU0=;
-        b=fJFe03hW++93PPI4nR6ZbenufSqnk45BOJjvZqhzDXJPNVZMyddW2REwAstofnGK2I
-         5eL+ZKHoNl/e0gVftljb8TTjuGdqp5mqa1B3XEUxYRb7SX85Q6ReWYek9dxJwlvW/592
-         xGUsMXfXsS2F9VVNzaHkGIySst+vJ2BL/HQzxdIBZMThql3b7pyFI8p1VLu76oK2uU0t
-         cNHw9X6OlqUOUKho99NxLVxnJ19rhxuyzOB0CUshZF21NQfQjzHKmgTAUZ9/NYcJObhV
-         RgcB40fVrilt7NEaA+YWzxqNMsdgyHLysmokvtWOtUXzU9TP9oSPWdgHdiUDAqHykD1i
-         /0Fg==
+        bh=Kn1SujOTRSyA2lpFvTg92J/mHIxi4T22q5/4Og5DL18=;
+        b=Eravv2cszM2onFllxNWqYfBkD2740qBYFMRrXIf/p9/edgz7MSfXRZdUAyJ2AaU3vC
+         Mdz+alj2diNP/8pOAzvz3iRVzsPgFAMP8pZuwVy4EMwG+p3JIHRHdwS8KvHzmWjm0WFD
+         YwHr1fiqKz1ijvu+1ezC7ufTqVnYqE8x6MoVAP3RX38AfAzYvVMxAd23G5CXD/L0Dk/Q
+         qy/UsJUcbonOM68PnejWezrVckk9dqriUPgTWZQCtA3LETESFBcDxT46EqDVm83rEcn9
+         VjMwMczMe9F7mc2DZZxDOIVxmpyG0qcWW6faK1eJ74cuApyVV2LsFfktYCX6kgQBTqS9
+         aW2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=zCCsISQtcxyw8amZYwvhvc9T7nwDgM18FSAE5RNKrU0=;
-        b=bovyRx8VUY4oBthahIGFA15U63+RtszPO/2ED69G1AgD1ocigX1Rpo1R8z7iRvNnJL
-         z94QY2ttzRjcyM77E9LaUzF/biKEhvO4Pq5V+mJTMuv1314T2XiMBtQ1DX7ENukJd0Xp
-         q9O/Jg/mTlSzQ09yqoDsuZbcjaCTGvtKWYSaO/SMsl4VYM/CnlDYzsfi+4bqVa46RcMV
-         pD48aZHaIUGiZyXoRlVkP6uJGpOL7RJ6dCFw9PD8uneXBPPcskg5nQ+B3vzMsQP7Fppn
-         pPSMsB3Hlrw7mKUES5xq9x+e7Vp5o1ZPt1gz3xdR1Kl0P6t7f8ta8fwY8wxxKLfLIhHr
-         JLsA==
-X-Gm-Message-State: ACrzQf1oGs82s/aKPCuTLaq4b6xaT/GGPsq+3iWw02A7BbaKdg6uR8e+
-        EYDOU0Phw28ytHQ5vzGvnSTSNii5zcQRlQ==
-X-Google-Smtp-Source: AMsMyM7OJaLDYJ/XIYVnRAr+Xn7Wgg1hfr3CsHHtM9owaNGBsLkxlBovLAJnN7S7NiVHfJ2XyE5tRQ==
-X-Received: by 2002:a2e:bc04:0:b0:26c:5e:c186 with SMTP id b4-20020a2ebc04000000b0026c005ec186mr2583939ljf.118.1663924694089;
-        Fri, 23 Sep 2022 02:18:14 -0700 (PDT)
+        bh=Kn1SujOTRSyA2lpFvTg92J/mHIxi4T22q5/4Og5DL18=;
+        b=S+goS4dH11bA4WB9/BnbBUWaKirRkK5Yucs7UySRK/h7K3aul/wQcMmngJ9Yng7/JN
+         DSrgeMg43yfXw7Vs267hf06Ai45UyhSgDV/LfX7JaapJJ891BehIDtoOLuqaLNsVja5F
+         Sc4w6y+SNymz7NBQisIedAlZt8zwNzfN7ZYEiihGyw1AJ0ofxZBDp1IbW5gkzCSU5DiF
+         6ojUAimWPqkJ2aLFAyAHWE4RH99hr0XW9sgSarsbF2D/YgGT7g/+kKWokg0NR9/b3RLD
+         xRQOL/y9D1uBEVXGRcmuICtTvM0yWXo1ipoT/SM/0qeOtt+5oUC2iCcStOoS9o7asnHV
+         /9Mw==
+X-Gm-Message-State: ACrzQf3Roop79VxCWui1j3Mes7SbH+ALFAVjv58HxrUOBB6JeOvujig5
+        ieYzKXltPBKaVTI3xxSMAChMNg==
+X-Google-Smtp-Source: AMsMyM7rAP554ffKv14+G5Z04osY2Lbv/LSvwWpONmenm703lxvFiMvD7gT95QU2MxQKWO3kXuJzyQ==
+X-Received: by 2002:a05:6512:10ce:b0:49e:ad1f:3d7 with SMTP id k14-20020a05651210ce00b0049ead1f03d7mr2653889lfg.609.1663924763678;
+        Fri, 23 Sep 2022 02:19:23 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id i2-20020a056512340200b00497ab39bcd0sm1360523lfr.96.2022.09.23.02.18.13
+        by smtp.gmail.com with ESMTPSA id g20-20020a2ea4b4000000b0026bddcf75d1sm1294971ljm.44.2022.09.23.02.19.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 02:18:13 -0700 (PDT)
-Message-ID: <b5e050bd-e200-b2a4-5967-8855e9f0395c@linaro.org>
-Date:   Fri, 23 Sep 2022 11:18:12 +0200
+        Fri, 23 Sep 2022 02:19:23 -0700 (PDT)
+Message-ID: <8a256c49-1a7a-42bb-2daf-cc0c66b9f7a6@linaro.org>
+Date:   Fri, 23 Sep 2022 11:19:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: add DT binding for D-Link
- DNS-323
+Subject: Re: [PATCH v2 2/3] ARM: dts: orion5x: Add D-Link DNS-323 Device Tree
+Content-Language: en-US
 To:     Mauri Sandberg <maukka@ext.kapsi.fi>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, arnd@arndb.de, olof@lixom.net,
         andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
@@ -64,10 +64,9 @@ Cc:     pali@kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20220427162123.110458-1-maukka@ext.kapsi.fi>
  <20220922202458.7592-1-maukka@ext.kapsi.fi>
- <20220922202458.7592-2-maukka@ext.kapsi.fi>
-Content-Language: en-US
+ <20220922202458.7592-3-maukka@ext.kapsi.fi>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220922202458.7592-2-maukka@ext.kapsi.fi>
+In-Reply-To: <20220922202458.7592-3-maukka@ext.kapsi.fi>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,15 +79,76 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/09/2022 22:24, Mauri Sandberg wrote:
-> Add bindings for D-Link DNS-323. It introduces altogether four new
-> compatibles: dlink,dns323, dlink,dns323a1, dlink,dns323b1 and
-> dlink,dns323c1. One is for the common parts between the devices and
-> then there is one for each three hardware variants.
-> 
-> Signed-off-by: Mauri Sandberg <maukka@ext.kapsi.fi>
+> Add a device tree for D-Link DNS-323. The device has three different
+> variants; A1, B1 and C1. Common parts are included in a .dtsi file
+> and each hardware variant has its own .dts file.
 
+Thank you for your patch. There is something to discuss/improve.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +/delete-node/ &sata;
+> +
+> +&gpio0 {
+> +	pinctrl-0 = <&pmx_gpio_misc>;
+> +	pinctrl-names = "default";
+> +
+> +	/* The DNS323 rev A1 power LED requires GPIO 4 to be low. */
+> +	pin_gpio0_4 {
+
+No underscores in node names.
+
+> +		gpio-hog;
+> +		gpios = <4 GPIO_ACTIVE_LOW>;
+> +		output-high;
+> +		line-name = "Power led enable";
+> +	};
+> +};
+> +
+> +&pmx_gpio_misc {
+> +	marvell,pins = "mpp4";
+> +};
+> +
+> +&pmx_ge {
+> +	marvell,pins = "mpp11", "mpp12", "mpp13", "mpp14", "mpp15",
+> +		       "mpp16", "mpp17", "mpp18", "mpp19";
+> +};
+> diff --git a/arch/arm/boot/dts/orion5x-dlink-dns323b1.dts b/arch/arm/boot/dts/orion5x-dlink-dns323b1.dts
+> new file mode 100644
+> index 000000000000..e01ba809ffca
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/orion5x-dlink-dns323b1.dts
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2022 Mauri Sandberg <maukka@ext.kapsi.fi>
+> + *
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include "orion5x-mv88f5182.dtsi"
+> +#include "orion5x-dlink-dns323.dtsi"
+> +
+> +/ {
+> +	model = "D-Link DNS-323 rev B1";
+> +	compatible = "dlink,dns323b1", "dlink,dns323", "marvell,orion5x-88f5182",
+> +		     "marvell,orion5x";
+> +};
+> +
+> +&gpio0 {
+> +	pinctrl-0 = <&pmx_gpio_misc>;
+> +	pinctrl-names = "default";
+> +
+> +	/* The rev B1 has a flag to indicate the system is up.
+> +	 * Without this flag set, power LED will flash and cannot be
+> +	 * controlled via gpio-leds.
+> +	 */
+> +	pin_gpio0_3 {
+
+No underscores in node names.
 
 Best regards,
 Krzysztof
