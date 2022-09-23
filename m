@@ -2,165 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13A525E7BDF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 15:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 250475E7BE1
+	for <lists+devicetree@lfdr.de>; Fri, 23 Sep 2022 15:30:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231921AbiIWNa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 09:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37842 "EHLO
+        id S230456AbiIWNaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Sep 2022 09:30:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231819AbiIWNaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 09:30:13 -0400
-Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E946FA33
-        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 06:30:05 -0700 (PDT)
-Received: from CHE01-GV0-obe.outbound.protection.outlook.com
- (mail-gv0che01lp2047.outbound.protection.outlook.com [104.47.22.47]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-5-53qp8h2yOhiy9nRzY5ZkUQ-1; Fri, 23 Sep 2022 15:29:59 +0200
-X-MC-Unique: 53qp8h2yOhiy9nRzY5ZkUQ-1
-Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:3b::9) by
- GVAP278MB0150.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:3b::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5654.17; Fri, 23 Sep 2022 13:29:58 +0000
-Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
- ([fe80::d10c:ccdc:19a2:a141]) by ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
- ([fe80::d10c:ccdc:19a2:a141%3]) with mapi id 15.20.5654.020; Fri, 23 Sep 2022
- 13:29:58 +0000
-From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
-To:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-CC:     "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "abelvesa@kernel.org" <abelvesa@kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 5/5] dt-bindings: imx8ulp: clock: no spaces before tabs
-Thread-Topic: [PATCH v1 5/5] dt-bindings: imx8ulp: clock: no spaces before
- tabs
-Thread-Index: AQHYuYFHTRK50w3yxke+oalV6tv16a3tLiMA
-Date:   Fri, 23 Sep 2022 13:29:58 +0000
-Message-ID: <6466b857c8ebcced88062fad7273a1ff1f2e62b2.camel@toradex.com>
-References: <20220826192252.794651-1-marcel@ziswiler.com>
-         <20220826192252.794651-6-marcel@ziswiler.com>
-In-Reply-To: <20220826192252.794651-6-marcel@ziswiler.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZR0P278MB0683:EE_|GVAP278MB0150:EE_
-x-ms-office365-filtering-correlation-id: 121af126-4e5f-4c80-f892-08da9d67b5d3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0
-x-microsoft-antispam-message-info: sxA7DEpJruk3zBeiKZZ5SOZwc+bKj5Rzk/F8I3E71Zn2OF07aEaN2IXna/PlkCaJQ4SdgK7oksO8NUxnS6Z+5yT5sTt0M3nkAwsupzdXe9znX4EmBNdcs8lN3+4K4BBErK4LCtojc1aR/Z7LwjAgh3nQm4Mg71zCkrRki6QuBJRYFeU4dNcMS7RBb/EFf/z6yoppuhArA3Xf+EfBiClb9xGvfsYwSu+LfWica57ro9St74bSxi9PwfVtIOJSAL/l98N/GVlhUY4hy/+STUYNAqhrkmSSXFD94VFKTp1a6GkkQSVercufq9EZnvCVwx5Lstgl65F9aKHkUrwdc9TrmBtjdYL8I2O12ZJTL+fSXmIJ2s2KolHCnShk9CMbRuijJprjKc+QSETuErP+cIUtauFHu63b+rT6U25jKRUT2HYJgNbCvZMJaXuarnpeFt52JQ4F0FPZI7SXAVV6n4aSYRXz9LT8VCbhdJZeyd7/2QMzG4FiRwFwGnaIJRX+QBnzE4GiJEDBHTznZAdCrAIn2Ap0xmgLhKQx9su3Q4QeMYX+s46npn0mqujRcDoQR10Hdzvi2z1YAXPl8C6wKddWMgGEaV7nahhjOJBdxBixcPXdw57uQoBN9S8Zpc8Y7aLMocrDyX3syjt4NbQrUDo4BJ8aMrMKG87gWJrztitGeOjLT4BY4kCCbSiOpzi8dbjRok2n7Xs/ZtqtEaaODiyMU+rckUlriQmjMUPhzjmuWJd/5rTTva3YilAqvvP6KPStyxv8xFWN8daYccWMZNcWfhTHVSZOvmXUOI1UuAOW5kA=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(376002)(39840400004)(346002)(396003)(451199015)(316002)(54906003)(6916009)(8936002)(122000001)(38070700005)(7416002)(186003)(5660300002)(44832011)(6512007)(71200400001)(2616005)(6506007)(2906002)(36756003)(6486002)(66556008)(83380400001)(478600001)(86362001)(38100700002)(66946007)(64756008)(76116006)(66476007)(66446008)(4326008)(8676002)(41300700001)(26005)(32563001);DIR:OUT;SFP:1102
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b0xwZkFpUHFmQ2hQeitLK2UzU2RWdTBoQ1MyRTZLVXZyRXVoVXZXUWZPc2kw?=
- =?utf-8?B?Y1VYWGJCUDZiSzRubEpJR09rZFZuMWh0V1hMVHlWK1BlYkdzcHZkRVNtWFZl?=
- =?utf-8?B?bzBtNktraHlKeUpzUVdyWnZBUUVLVTVWdUxDN0ErSmRzZTUreWNDblE0YkNK?=
- =?utf-8?B?aU1pTTNnMFJiVU5vYW5RWjRrRmw4RnNWeSs5cGtheHBaYVFySDhxSHE3Z1g4?=
- =?utf-8?B?c0JJaTIreFc4Ly9OekJrSmVrMnJYYlRxNjU4SlZYNTZJTThUSlVSS1FKNTIz?=
- =?utf-8?B?RXlTQnRWeDFnTDhuVEhXNjdaditvSmwwK3BpMjBmNVMxSXpqd2F2d0ljUHZ4?=
- =?utf-8?B?NVNjbjRJdlRES0hPRFc5RmpaZkJZVktrWng5NlFuWXU3YllJcFRwS1F0N0pv?=
- =?utf-8?B?dHpKMWRFZzcvQzUyU2orSzgxZVhZVnIxckJFY1c2RTRLQ3J6V24xRUVWSGxX?=
- =?utf-8?B?ak9yaisyOHhpZmozRFkvL3ZnQXhCcUlQVE9VMldxUHFSaC9pUDlMNmlDMTVr?=
- =?utf-8?B?VDRBdEx3QVRCaHhZbUxJczVpMG1FNTBkRDBqUkVCNXduSkI0UXFUY1REMDBp?=
- =?utf-8?B?dHhvWlJIRWJ3S3ByNDlwQllvUXBjVlhXS0M0WnJ4RUtadkwzNWxXanBPSnVS?=
- =?utf-8?B?RFhRZE9ONC95MDFPTDZ0aHc4VVlwcVVZL29UZmJGYVV0WlZVTDlhTFc1MlZ0?=
- =?utf-8?B?RW1ESzF5eStBalJmL0Erb3o4ZFNUb28yM29BMVJZREtEM2xBczkzMWZpTWdI?=
- =?utf-8?B?R0g3QjFOUGxVSDFxMm5pWStCV01IYmRtRDhDYTltb2pjR3p3d3RYUVdqWURK?=
- =?utf-8?B?MlVsREwwaUVQc1VtUTdsOUM4cGRvMjZJaThHTDVrWnpDQW9GSmJibWhyNmZ6?=
- =?utf-8?B?TWFTZEZORVE2ZEowSm1lU3RJSnlsd0x5V0ZjeSt6SWgrTE4xSUE0ejRWbm80?=
- =?utf-8?B?bkpvZUFIUVJ6WFBTM2IxY1drUUExQXNRdHZWSzFGNWMyVThTZXJoN2UvaExQ?=
- =?utf-8?B?VDJXTG8rUGlVLzRFTjBZbTd1bVJQSFkvKzhtOW52ZmxIYllJdTlwbFN3OVZ4?=
- =?utf-8?B?QXY4UnJmcEFsUnBkQUZTenRhcTNiVFEwSEFOSVpJendCcU9MUVd6NFhpekZ4?=
- =?utf-8?B?VXVsOFB1c1JweVp6cmg5VVBYM3R5RUsxYzB3eVR5Q1JMZHh2RTVzbmp1NVp5?=
- =?utf-8?B?UjNjUTROcnp0dnlJaEt3TDRLMlo3MjhDRTF6ZFNOeUswNXdQOE9wWmwzekwz?=
- =?utf-8?B?dUlaamtqaVVsclpSRjZJaFNDdmh2VGtPK1V5NnNoSGNmM1UyaVBzZmxDNDlD?=
- =?utf-8?B?UWVUOHJNcVdQYk5TUm5hNThhaG9ZWjJ4SkNXWUkySno3TEIzSjdveGk5aU5j?=
- =?utf-8?B?eFFZN3djQU9ZcWpvaDRGczZqSGFqTjg2SUJjRFFBQ2pvQnF4L0IzdUlFSGZi?=
- =?utf-8?B?SmxtSFJxV3lxamFyTmJVMW9XNTNJd0FWendvUGlxTkhCMXRKUE5LcE41S3Ev?=
- =?utf-8?B?VjNhYnhVS1RVa1lyWVBWREdWZTdwYjNNbzEzTURRN2U2dGxQU0ZBUGh5aFly?=
- =?utf-8?B?R0RweHVoVGNWL3lTRWs1b2xWWXc2OWd2eVVwbUFmWDd1QkNuNWdLYlZvZENY?=
- =?utf-8?B?K292WUtQaHY0bVArWnBZVUlvMCtuUVM0MmJpRnBzbzc2Q0tDd3JscVVCQlIv?=
- =?utf-8?B?enpmQWFZZmdPWnk3MjdJeTJpb01zSDhUNnNWeEdoWGJDellqL0xFMTRVcnVD?=
- =?utf-8?B?SVo1VlNhZmYvNjNQOW5VcVMxRitrY21TellCK1U0bjI2UmhhUWpPejFRREU5?=
- =?utf-8?B?bUEvR0lqa2VMYUN6MUFETDlXWnhEeFZ4WmpkTCtUb3hXbFd2SDdYOW1vYU9U?=
- =?utf-8?B?bmJGVmpXSDJ6dEppdWdxbHdWaGp6UjZEV2Nld25NaEVhc2p3cUlRLzAwVERk?=
- =?utf-8?B?dWxodSsySHg3UjBwS1pjbjZGb0ZNTWVEQ0hpTVlscmMvalp0ZjNUakU5cHZK?=
- =?utf-8?B?UlJkNVozbG5ORmpNeElxeFNjTFJnNlFYM2QvOWdibkVLN1Y0N1JxdnZON2xy?=
- =?utf-8?B?QlBXK3VTM3F3TnpQZ2NNOHFtcTJMQmQ5ZlgxUmp1V0VkMG1vQStSVmhnUENH?=
- =?utf-8?B?dFdONHdJc3RiV1FlNTZydmRJMzlTRk1aNlNOUkpWN3dyREVrU1dTODJ5c0dk?=
- =?utf-8?Q?bnzoJY1xRLTaBehLdeNO01s=3D?=
+        with ESMTP id S231234AbiIWNae (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 09:30:34 -0400
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFD3E11E6
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 06:30:32 -0700 (PDT)
+Received: by mail-vs1-xe2f.google.com with SMTP id m65so13707511vsc.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 06:30:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date;
+        bh=ddKdS4x8c4ZSI9PbKdla4xMHlbecpUYnHnf7KqPY/v4=;
+        b=d2X5TW/gdJvvSijHGgE8Q2bnJrePr1qO3+NT+QOOTtO7ENwyu/w+X3SoMSaH0AocjA
+         QW2s+GFTwgfupgoo8tNxqGEhZoS0kyOJxwemkNcT0J8pw7dae1qjSNdLndvegFu++oBQ
+         vUnn6Y/NJ3+DEvHOkJEngIOZIqTNQ+oeEHF2pwhZzvA5Yc14ZXiBKTatqYyPViNBt1c/
+         mBAv+LAtwH5DZdomtr35LG/D6gUCkymqSx0HWB/HCe+Sk5chJSgspzNiq1QrDxX6XDFT
+         qlTY1/i5eIywr3mqvkfT1CIkObfwec5C0cdV+G4bnCV45b/fCpVBI030XBLYAG1D7N1q
+         Trkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=ddKdS4x8c4ZSI9PbKdla4xMHlbecpUYnHnf7KqPY/v4=;
+        b=L7z0jxa/XbSKzr+Mm0csNUrSchScAi7rDf7MLricx3R9WdR0YkL4aJZgzkpNnqgbtU
+         kr/Ferfnc09JfnVe83Q+fzMwWN1uH72rjyTFEcskqTc1qQLzzEKKiGgYektZ/eqSMRMC
+         PFTB+JqYjps+7430NcyIuuA+eD+uLEsetayThS21rOyhkUmOBwW7AaAcT4Hn2o1tyLbX
+         5dqThe8LdqFixkY39T8du4xsYhEv3C8zihZTD8dB8ccaojlR16HAzogTiqZomj82WhEj
+         k7DpYHBaqKMgp5LBHlx3NBMFW+AKBYL3DcDHnax8eb2ofCYQrCInRUbW5DD9NCaKix5D
+         6t8g==
+X-Gm-Message-State: ACrzQf0cdhCVVoL4/SFH93BYWXHRhGbbIjOwVQKluuMhGxi9Kb9P00hq
+        WMy1dx9O3x47tzFcWYsamOUMcaN9JpfvpZfU21I=
+X-Google-Smtp-Source: AMsMyM7v24o81Pg7ZiY+px9aDzEAysagD4r9pnYz08k5Uy+LlroI3bO+AFm5SuuCcZr2m5GwKjtHnIg9TJXshbfrp+0=
+X-Received: by 2002:a67:b24a:0:b0:398:c6c7:b0d7 with SMTP id
+ s10-20020a67b24a000000b00398c6c7b0d7mr3133162vsh.80.1663939830765; Fri, 23
+ Sep 2022 06:30:30 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 121af126-4e5f-4c80-f892-08da9d67b5d3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2022 13:29:58.3794
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: r3N8qanZRJCfEbO1BmuvmvHPugpnM+qokpLyOS+P5BoOwSQKesxiZpFTiopCJ3npm1VLd6e9oygD7YAYsHkMW0klzdAGXpyMPlS1EgCDgu8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0150
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-ID: <56ACA68C9D85904DA211C7D470D4E1E8@CHEP278.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Received: by 2002:a05:612c:15a2:b0:2d3:aa6c:c9f7 with HTTP; Fri, 23 Sep 2022
+ 06:30:30 -0700 (PDT)
+Reply-To: sb9174937@gmail.com
+From:   Susan Bikram <sb8766198@gmail.com>
+Date:   Fri, 23 Sep 2022 06:30:30 -0700
+Message-ID: <CALhHHa=7mqgjOJ53x77So1YW6EfpZAUOmdQR=MdekrfpiFBefQ@mail.gmail.com>
+Subject: Waiting to hear from you
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:e2f listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [sb9174937[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [sb8766198[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [sb8766198[at]gmail.com]
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  3.1 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIyLTA4LTI2IGF0IDIxOjIyICswMjAwLCBNYXJjZWwgWmlzd2lsZXIgd3JvdGU6
-Cj4gRnJvbTogTWFyY2VsIFppc3dpbGVyIDxtYXJjZWwuemlzd2lsZXJAdG9yYWRleC5jb20+Cj4g
-Cj4gVGhpcyBmaXhlcyB0aGUgZm9sbG93aW5nIHdhcm5pbmdzOgo+IAo+IGluY2x1ZGUvZHQtYmlu
-ZGluZ3MvY2xvY2svaW14OHVscC1jbG9jay5oOjIwNDogd2FybmluZzogcGxlYXNlLCBubyBzcGFj
-ZQo+IMKgYmVmb3JlIHRhYnMKPiBpbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2lteDh1bHAtY2xv
-Y2suaDoyMTU6IHdhcm5pbmc6IHBsZWFzZSwgbm8gc3BhY2UKPiDCoGJlZm9yZSB0YWJzCj4gCj4g
-U2lnbmVkLW9mZi1ieTogTWFyY2VsIFppc3dpbGVyIDxtYXJjZWwuemlzd2lsZXJAdG9yYWRleC5j
-b20+Cj4gCj4gLS0tCj4gCj4gwqBpbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2lteDh1bHAtY2xv
-Y2suaCB8IDQgKystLQo+IMKgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxl
-dGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9pbXg4
-dWxwLWNsb2NrLmggYi9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2lteDh1bHAtY2xvY2suaAo+
-IGluZGV4IDk1M2VjZmU4ZWJjYy4uODI3NDA0ZmFkZjVjIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUv
-ZHQtYmluZGluZ3MvY2xvY2svaW14OHVscC1jbG9jay5oCj4gKysrIGIvaW5jbHVkZS9kdC1iaW5k
-aW5ncy9jbG9jay9pbXg4dWxwLWNsb2NrLmgKPiBAQCAtMjAxLDcgKzIwMSw3IEBACj4gwqAjZGVm
-aW5lIElNWDhVTFBfQ0xLX1NBSTfCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAyCj4gwqAj
-ZGVmaW5lIElNWDhVTFBfQ0xLX1NQRElGwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDMKPiDC
-oCNkZWZpbmUgSU1YOFVMUF9DTEtfSVNJwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgNAo+IC0jZGVmaW5lIElNWDhVTFBfQ0xLX0NTSV9SRUdTwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoDUKPiArI2RlZmluZSBJTVg4VUxQX0NMS19DU0lfUkVHU8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqA1Cj4gwqAjZGVmaW5lIElNWDhVTFBfQ0xLX1BDVExEwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoDYKPiDCoCNkZWZpbmUgSU1YOFVMUF9DTEtfQ1NJwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgNwo+IMKgI2RlZmluZSBJTVg4VUxQX0NM
-S19EU0nCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA4Cj4g
-QEAgLTIxMiw3ICsyMTIsNyBAQAo+IMKgI2RlZmluZSBJTVg4VUxQX0NMS19HUFUyRMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAxMwo+IMKgI2RlZmluZSBJTVg4VUxQX0NMS19HUFUzRMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAxNAo+IMKgI2RlZmluZSBJTVg4VUxQX0NMS19EQ19OQU5P
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMTUKPiAtI2RlZmluZSBJTVg4VUxQX0NMS19DU0lfQ0xL
-X1VJwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDE2Cj4gKyNkZWZpbmUgSU1YOFVM
-UF9DTEtfQ1NJX0NMS19VScKgwqDCoMKgwqDCoMKgwqDCoDE2Cj4gwqAjZGVmaW5lIElNWDhVTFBf
-Q0xLX0NTSV9DTEtfRVNDwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAxNwo+IMKgI2Rl
-ZmluZSBJTVg4VUxQX0NMS19SR1BJT0TCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDE4Cj4gwqAj
-ZGVmaW5lIElNWDhVTFBfQ0xLX0RNQTJfTVDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAxOQoKU2Ft
-ZSBhcHBsaWVzIHRvIHRoaXMgb25lLiBBbnkgdGFrZXJzPwo=
+Dear ,
 
+Please can I have your attention and possibly help me for humanity's
+sake please. I am writing this message with a heavy heart filled with
+sorrows and sadness.
+Please if you can respond, i have an issue that i will be most
+grateful if you could help me deal with it please.
+
+Susan
