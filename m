@@ -2,92 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35A255E8EA7
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 18:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D466F5E8EC6
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 19:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233894AbiIXQ4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 12:56:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35214 "EHLO
+        id S229837AbiIXRHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 13:07:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233791AbiIXQ4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 12:56:04 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A361183F26
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 09:56:02 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id a3so4747119lfk.9
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 09:56:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=qCvUzRzeULor4WnIiJD8wT2Pery0VW3IjzzZAt+uUKI=;
-        b=YrT3IgVkLxnd7lidhwQ5ASDEIJwxgK36UxOQkbdeRE7hB0B8wzZBtMF0jfsEL5rnMJ
-         TmhP2cc7k2DOZULm2xKxAQwR6NEaCgCknCft51BBR5i6G0ierThFmNjmt+AUuxyQduMy
-         t0eLTJ1C5ZZKjqwBCcmQjLPxu4HwHkEVQULR8JrXmZHTPgSyZv/yV9O+Ryxu/LElp6h2
-         i42ASsvHNuDzXVQjaMHifVay2O70bcey4kpW8Rsxila4FZUIg/5VsM5ZEeM79Qk1DCbD
-         T2Pq9JeMlZ19HLmQg+O+0Vq5X8cC2RKZqizzdRLL8sdmTKeRCWSRIeA2+Y8iTdNGzhK/
-         mxbA==
+        with ESMTP id S229683AbiIXRHs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 13:07:48 -0400
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 159ED12D05
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 10:07:46 -0700 (PDT)
+Received: by mail-oo1-f50.google.com with SMTP id c22-20020a4a4f16000000b00474a44441c8so506563oob.7
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 10:07:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=qCvUzRzeULor4WnIiJD8wT2Pery0VW3IjzzZAt+uUKI=;
-        b=mUve30Mz4oVJKkgZRiVfRJB24MSepwo7R1PHchshBYbQ3i0Cg/lC5sbDYbqz838Ttb
-         tYuK4zl8db7smx8day6iuqklHXsx4Cqo3X8L+GPzkGypLKDcDCRjlRH5o0QJdkRT/loG
-         XC0wLYV8I/QZJ5lr3hCvCbgCM6Um6jN+0OdPhwWqtdLQeujRbCeAe5i+oKgPbwoZt/dW
-         XWQZqUgKB+0VVBFPZrOoB27jJvsVuBZ6Qjw6bv+cWI1WnczHkyhN2kq65EUDiFLt5z3C
-         XQZv4glXT1LAgehxHplVhpfuSGbJ+2SZQ8+MCImuDHS+Xh6sLl4PGwX6qKArxu91sj1F
-         +aPA==
-X-Gm-Message-State: ACrzQf1G69WR3ipHAmJWamS1Q2VTC/XF8ZgVdbLNjb2ny6g3a5KOVDRh
-        K+khuZqFchcxyX3SiIsq65Y48g==
-X-Google-Smtp-Source: AMsMyM4cBGD1nJDClwlGskZMtBadV77/jXdaK8NpBV5chtC2K4VAqeN5up0Rn8Uz0Cyv6BPxMYK2PA==
-X-Received: by 2002:a05:6512:10d1:b0:49d:7dac:e2e3 with SMTP id k17-20020a05651210d100b0049d7dace2e3mr5464359lfg.224.1664038561051;
-        Sat, 24 Sep 2022 09:56:01 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id bf31-20020a2eaa1f000000b0026c2e0258bcsm1844780ljb.42.2022.09.24.09.56.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Sep 2022 09:56:00 -0700 (PDT)
-Message-ID: <ea2d5008-d250-cc5a-e608-cb35a6ad67b8@linaro.org>
-Date:   Sat, 24 Sep 2022 18:55:59 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=+aVWlf6unPZIMip47jgs/Fu16FdIOtjElNTUIzQmT8E=;
+        b=7H+4LbMGKK5Yi6F2jnRAINrIYkzyCSqpbk3GrkCJblYu75uj9W6gVpBMBcvEV746Gl
+         LcS61S5lEHv8ZsSuFjUsmmb5w2vyUN+axUKSSu5eyjeBwJljQmuxEsEw/bEGQe/ufEJ+
+         K0VP2ZnilTbDgv5ig9yj95epLDDmwwHxfjoLmp0FW1h4jBcU4SLEcoTURj+8YTp6xpz/
+         eWGG6NPFtl/u5XhF/znjzV7kkza4tiu8WP9gy0r+AUjzw+mdQo2AUhDSHK+QarkbCoJh
+         tEQgK6ccvlaamsILS+uBHr79LqsmUpF8O6Ld/Q/Y7v08p3uBm6AXWoBSUODO5tzl/QCY
+         pHXg==
+X-Gm-Message-State: ACrzQf10XM6MzgYKjKDJ7Z5c1qoNkN0zxWfOgAwWcq6h5hExX1JuH2PD
+        rwaGLFe2iTTYstOr+GkIEVnESfr3B7BE
+X-Google-Smtp-Source: AMsMyM6KWD4IthwY8oAOVKWKUXbxXXc2IO72af+iBQ+GgkE9q6WVvIcTRB0WqPmfyzvnIp6HBIUaIA==
+X-Received: by 2002:a4a:928e:0:b0:476:6c03:f0c5 with SMTP id i14-20020a4a928e000000b004766c03f0c5mr123173ooh.78.1664039265186;
+        Sat, 24 Sep 2022 10:07:45 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m32-20020a05687005a000b001226d2100f2sm6681709oap.33.2022.09.24.10.07.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Sep 2022 10:07:44 -0700 (PDT)
+Received: (nullmailer pid 968363 invoked by uid 1000);
+        Sat, 24 Sep 2022 17:07:44 -0000
+Date:   Sat, 24 Sep 2022 12:07:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel@ffwll.ch,
+        airlied@linux.ie, sam@ravnborg.org, thierry.reding@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V2 2/3] dt-bindings: display: panel: Add NewVision
+ NV3051D bindings
+Message-ID: <20220924170744.GA961091-robh@kernel.org>
+References: <20220920145905.20595-1-macroalpha82@gmail.com>
+ <20220920145905.20595-3-macroalpha82@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH] ARM: dts: qcom: add 'chassis-type' property
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220924154422.9896-1-luca@z3ntu.xyz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220924154422.9896-1-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220920145905.20595-3-macroalpha82@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/09/2022 17:44, Luca Weiss wrote:
-> Add the chassis-type property to arm32 Qualcomm watches, phones and
-> tablets.
+On Tue, Sep 20, 2022 at 09:59:04AM -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Add documentation for the NewVision NV3051D panel bindings.
+> Note that for the two expected consumers of this panel binding
+> the underlying LCD model is unknown. Name "anbernic,rg353p-panel"
+> is used because the hardware itself is known as "anbernic,rg353p".
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  .../display/panel/newvision,nv3051d.yaml      | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> new file mode 100644
+> index 000000000000..d90bca4171c2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/newvision,nv3051d.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NewVision NV3051D based LCD panel
+> +
+> +description: |
+> +  The NewVision NV3051D is a driver chip used to drive DSI panels. For now,
+> +  this driver only supports the 640x480 panels found in the Anbernic RG353
+> +  based devices.
+> +
+> +maintainers:
+> +  - Chris Morgan <macromorgan@hotmail.com>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - anbernic,rg353p-panel
+> +          - anbernic,rg353v-panel
 
+Is 'panel' redundant? IOW, could 'rg353v' identify something else other 
+than the panel?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Rob
