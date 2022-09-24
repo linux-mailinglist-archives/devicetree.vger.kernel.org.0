@@ -2,66 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59A8B5E8B82
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 12:34:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE1215E8BBA
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 13:16:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbiIXKes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 06:34:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47684 "EHLO
+        id S230255AbiIXLQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 07:16:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229934AbiIXKeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 06:34:46 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2041C18363;
-        Sat, 24 Sep 2022 03:34:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0A9F4B80185;
-        Sat, 24 Sep 2022 10:34:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95D15C433D6;
-        Sat, 24 Sep 2022 10:34:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664015680;
-        bh=oisNXHG20hbajKiTp7wbgvOV+P1rIP3yuHleqV2SUGo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IK0TEg1YwTI9ms7ZKiFlbOQt4D3uUDAMwVdNi1bg7uy/dJrbZ352sBasUwNI0IFKG
-         lz6x25YPz+qDvnWUvU4kefzAPuucREiEKHKlsPtZu4xpDQ9CLZXFWBbqk3hH3yjyqf
-         VRxP1wX0y61CjfSbBG0DQO6zhEP3snF1nWWzODVMvKGCoPWzN/SD4vthrSw+odq4Y0
-         xL796yT+neUWPb37yHs/Ox1QLCq2jT/MHqlD7eVVC1lDQkY7kCYHdvXWeH9W5TpmQa
-         sdwALYh3pjcCv5iVO1OXtLYmOARTOh86VD2+95zDQ+oFDmnaH+KR7pPKxVFXQFxOPs
-         bjMdd4t6Xu70Q==
-Received: by pali.im (Postfix)
-        id 0D45F8A2; Sat, 24 Sep 2022 12:34:37 +0200 (CEST)
-Date:   Sat, 24 Sep 2022 12:34:37 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc:     linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] gpio: mvebu: Fix check for pwm support on non-A8K
- platforms
-Message-ID: <20220924103437.ww4urmq6cnhzj373@pali>
-References: <20220714115515.5748-1-pali@kernel.org>
- <20220714183328.4137-1-pali@kernel.org>
+        with ESMTP id S230446AbiIXLQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 07:16:09 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1D5EF6F41;
+        Sat, 24 Sep 2022 04:16:08 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28OBFphv001358;
+        Sat, 24 Sep 2022 11:15:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Ys8zOk2h9kpRR719RCT9t13HbSNgmyp1IeIvR+aHRBk=;
+ b=WdmxaJ/XJRlPZH5OBI3o/dRkrhio1Gbkp6a0KQnGjmvoEawA21ho4d/QxbzcvrOmmFg+
+ Uem+H696NSZDFEnMVQaSaxMFno3X997oUpwuDdQZCNN7xsp2JDPFxxD32UlxjidNo1Kg
+ XnFhmsPQ+tmyE1dGNuXatafvI4hnwsEt2+kdEbYBxa5lXOqbQNvHT2m2yJEy/Ro8YNBc
+ dDjVKz9+qrbSmeTEgjGKDqvPNnA4rmFMOYWSWBCFKVo7pfk50LSTaEVTY55xvpQewUkk
+ TZdsnYzBG2yG/2k0qoFjcHUsMwyKB1DX3SXs6lE7LCWduprt6iJgesvQkwzU3vcGGyXl 2A== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jst018h4a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 24 Sep 2022 11:15:51 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28OBFoKu010815
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 24 Sep 2022 11:15:50 GMT
+Received: from [10.110.112.23] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Sat, 24 Sep
+ 2022 04:15:44 -0700
+Message-ID: <2f1a6f8f-009e-79ab-5f37-8549f50bbeb4@quicinc.com>
+Date:   Sat, 24 Sep 2022 16:45:26 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220714183328.4137-1-pali@kernel.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V13 1/7] dt-bindings: Added the yaml bindings for DCC
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Sai Prakash Ranjan" <quic_saipraka@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>, <vkoul@kernel.org>
+References: <cover.1663642051.git.quic_schowdhu@quicinc.com>
+ <c6b55a5b44a8add13ea9015542522b2562cf8f60.1663642052.git.quic_schowdhu@quicinc.com>
+ <f09fabec-f5a3-df21-f776-956732d60359@kernel.org>
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <f09fabec-f5a3-df21-f776-956732d60359@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: OQAQ1nD51ltXtl5cnpYI-RlJL73X2jLw
+X-Proofpoint-ORIG-GUID: OQAQ1nD51ltXtl5cnpYI-RlJL73X2jLw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-24_04,2022-09-22_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ mlxlogscore=740 clxscore=1011 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 phishscore=0 bulkscore=0 malwarescore=0 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209240084
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,56 +86,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PING?
 
-On Thursday 14 July 2022 20:33:25 Pali Rohár wrote:
-> pwm support incompatible with Armada 80x0/70x0 API is not only in
-> Armada 370, but also in Armada XP, 38x and 39x. So basically every non-A8K
-> platform. Fix check for pwm support appropriately.
-> 
-> Fixes: 85b7d8abfec7 ("gpio: mvebu: add pwm support for Armada 8K/7K")
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-> 
-> ---
-> Changes in v2:
-> * reverse the if/else order per Baruch request
-> ---
->  drivers/gpio/gpio-mvebu.c | 15 ++++++---------
->  1 file changed, 6 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpio/gpio-mvebu.c b/drivers/gpio/gpio-mvebu.c
-> index 2db19cd640a4..de1e7a1a76f2 100644
-> --- a/drivers/gpio/gpio-mvebu.c
-> +++ b/drivers/gpio/gpio-mvebu.c
-> @@ -793,8 +793,12 @@ static int mvebu_pwm_probe(struct platform_device *pdev,
->  	u32 offset;
->  	u32 set;
->  
-> -	if (of_device_is_compatible(mvchip->chip.of_node,
-> -				    "marvell,armada-370-gpio")) {
-> +	if (mvchip->soc_variant == MVEBU_GPIO_SOC_VARIANT_A8K) {
-> +		int ret = of_property_read_u32(dev->of_node,
-> +					       "marvell,pwm-offset", &offset);
-> +		if (ret < 0)
-> +			return 0;
-> +	} else {
->  		/*
->  		 * There are only two sets of PWM configuration registers for
->  		 * all the GPIO lines on those SoCs which this driver reserves
-> @@ -804,13 +808,6 @@ static int mvebu_pwm_probe(struct platform_device *pdev,
->  		if (!platform_get_resource_byname(pdev, IORESOURCE_MEM, "pwm"))
->  			return 0;
->  		offset = 0;
-> -	} else if (mvchip->soc_variant == MVEBU_GPIO_SOC_VARIANT_A8K) {
-> -		int ret = of_property_read_u32(dev->of_node,
-> -					       "marvell,pwm-offset", &offset);
-> -		if (ret < 0)
-> -			return 0;
-> -	} else {
-> -		return 0;
->  	}
->  
->  	if (IS_ERR(mvchip->clk))
-> -- 
-> 2.20.1
-> 
+On 9/24/2022 12:57 AM, Krzysztof Kozlowski wrote:
+> On 20/09/2022 05:56, Souradeep Chowdhury wrote:
+>> Documentation for Data Capture and Compare(DCC) device tree bindings
+>> in yaml format.
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/arm/msm/qcom,dcc.yaml      | 44 ++++++++++++++++++++++
+>>   1 file changed, 44 insertions(+)
+> Rebase your tree on some current Linux kernel (and use
+> scripts/get_maintainers.pl).
+Ack
+>
+> Best regards,
+> Krzysztof
+>
