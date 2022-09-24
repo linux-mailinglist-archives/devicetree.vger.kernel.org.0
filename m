@@ -2,165 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B0175E8F71
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 20:59:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54D675E8F73
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 21:06:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231300AbiIXS7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 14:59:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41410 "EHLO
+        id S233535AbiIXTGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 15:06:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbiIXS7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 14:59:01 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B6F84BD26
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 11:58:59 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id h3so3454059lja.1
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 11:58:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=YIW3vTRVXsuTcD11RiZoOeP6j7SOFSgAsNn7hMGMgbY=;
-        b=sSSFPkuXvSYtGG6t6dyEfy9byoHF+HB+rsJ+ZnT5aiRhvxC0DgaO5uOyM4pNnQOuDW
-         Ci52znBsyWrWFNMhRKisYK7h4URCV+IlzJUjWWSDxH2yvSrPILJqcIN7s76XUIaeXyGf
-         srw0yBGp/5w1HfuPVM72eRvMj8vDWeaFllHv3w4mOLsb5zKVkJejqFn26QLg+uA7DMM5
-         L7SRRCM+nU6QE3kyLu4tXKab4hfhyYqTakDihUFO8QSIJnEBII6+wTm4sa664L7467Cm
-         ynIsGAkxa1KTS+9KnyYhU0mNxTYgB+pEx9ccnitPujpXv9BvTY5tACj5X74flsXLx9/g
-         +gHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=YIW3vTRVXsuTcD11RiZoOeP6j7SOFSgAsNn7hMGMgbY=;
-        b=q/boLJTuIWCuWk+sS9vRqZaXYZ5+VA9znAPOaYg2W40C7+1ugHT44sVFw/mnVvIZDj
-         R/8FfRmn5IaxvvGFl+opKRglbvEzAXhATqLPait5D03S8i941Daov4AZ121ehWk5D/xW
-         Fys9gQzUCFNnsLTF0yGN2FwWW69/4MouJDZjMmey2JE4foDu5GClTP/vykQWAPHxW4V9
-         FN3068PfUCD+8UI57aB7KRtUeBqPgv5Ku2BGCrXJ+72OHjmUdVRjXKMmN81miuXoSe6o
-         2ViKdXI2U464dWRGu59dbbXSzDEQ5bsRJR9k38CoNnfsKbp0+YrsDSBwWPhHJ3FWJNR6
-         rYwA==
-X-Gm-Message-State: ACrzQf2NkTXt3VbhoSEHhhAYywDcJpGKGqCq/OiJICyS2SDJGcihoaWp
-        oXKfXlrZbFUNGdV6b/NBmeXqgg==
-X-Google-Smtp-Source: AMsMyM5RXdMxotovE2D7bZQJ6DTIQzxiMq2tSkXPLbItuXnX8MnAxMcaV5bzumt9nVjHNKuTXqaiug==
-X-Received: by 2002:a05:651c:499:b0:26c:677a:a531 with SMTP id s25-20020a05651c049900b0026c677aa531mr5209188ljc.319.1664045937527;
-        Sat, 24 Sep 2022 11:58:57 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id j21-20020a05651231d500b004946e72711bsm1965982lfe.76.2022.09.24.11.58.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Sep 2022 11:58:57 -0700 (PDT)
-Message-ID: <93a790fb-20dc-0f31-2eed-09f5b538bea9@linaro.org>
-Date:   Sat, 24 Sep 2022 21:58:56 +0300
+        with ESMTP id S233463AbiIXTGo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 15:06:44 -0400
+Received: from mx15lb.world4you.com (mx15lb.world4you.com [81.19.149.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C49C303F5;
+        Sat, 24 Sep 2022 12:06:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=engleder-embedded.com; s=dkim11; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=6LHWS+ODuzedUsjl08yIAOMNxYKvdZQqOuzZ/KojxC8=; b=NTHgtfkNQg59u1/4X3FtMy7s4Z
+        3Fwnp3uT7DDwTIfE6rn+c9PVN3w/tdfAmMcJdF5o58BPvgrLhtw0IA1MewcUMnQ9MplwppUGY1bEj
+        iJQ62JRSr/iKmHNJLQwbRpfFIKPKysQhedA0Rh/D4hsBQj/GJ/mP7wbFCzyYS0aYJKmc=;
+Received: from [88.117.54.199] (helo=[10.0.0.160])
+        by mx15lb.world4you.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <gerhard@engleder-embedded.com>)
+        id 1ocAU5-0008Jt-24; Sat, 24 Sep 2022 21:06:41 +0200
+Message-ID: <dfa31cab-1952-e48d-d05c-50d2d44b2f5c@engleder-embedded.com>
+Date:   Sat, 24 Sep 2022 21:06:40 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [RFC PATCH 00/10] thermal/drivers/tsens: specify nvmem cells in
- DT rather than parsing them manually
-Content-Language: en-GB
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org>
- <YyyaH1ZXF9IvLpwd@gerhold.net>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <YyyaH1ZXF9IvLpwd@gerhold.net>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH net-next v3 2/6] dt-bindings: net: tsnep: Allow additional
+ interrupts
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        netdev@vger.kernel.org
+Cc:     davem@davemloft.net, kuba@kernel.org, edumazet@google.com,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+References: <20220923202911.119729-1-gerhard@engleder-embedded.com>
+ <20220923202911.119729-3-gerhard@engleder-embedded.com>
+ <b7e44e61-4beb-7b94-01e5-d217c546114d@linaro.org>
+From:   Gerhard Engleder <gerhard@engleder-embedded.com>
+In-Reply-To: <b7e44e61-4beb-7b94-01e5-d217c546114d@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-AV-Do-Run: Yes
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 22/09/2022 20:23, Stephan Gerhold wrote:
-> Hi Dmitry,
-> 
-> On Sat, Sep 10, 2022 at 03:46:51PM +0300, Dmitry Baryshkov wrote:
->> Historically the tsens driver fetches the calibration data as a blob and
->> then parses the blob on its own. This results in semi-duplicated code
->> spreading over the platform-specific functions.
+On 24.09.22 11:17, Krzysztof Kozlowski wrote:
+> On 23/09/2022 22:29, Gerhard Engleder wrote:
+>> Additional TX/RX queue pairs require dedicated interrupts. Extend
+>> binding with additional interrupts.
 >>
->> This patch series changes tsens calibration code to use pre-parsed nvmem
->> cells rather than parsing the blob in the driver. For backwards
->> compatibility the old code is left in place for msm8916 and qcs404, two
->> platforms which have in-tree DT files. For msm8974 the original function
->> is left intact, since it differs significantly (and I can not test the
->> code on msm8974). For all other affected platforms the old parsing code
->> has been dropped as a part of this RFC.
+>> Signed-off-by: Gerhard Engleder <gerhard@engleder-embedded.com>
+>> ---
+>>   .../bindings/net/engleder,tsnep.yaml          | 37 ++++++++++++++++++-
+>>   1 file changed, 36 insertions(+), 1 deletion(-)
 >>
->> The code was tested on msm8916 and qcs404 only, thus it is being sent as
->> an RFC.
->>
+>> diff --git a/Documentation/devicetree/bindings/net/engleder,tsnep.yaml b/Documentation/devicetree/bindings/net/engleder,tsnep.yaml
+>> index 37e08ee744a8..ce1f1bd413c2 100644
+>> --- a/Documentation/devicetree/bindings/net/engleder,tsnep.yaml
+>> +++ b/Documentation/devicetree/bindings/net/engleder,tsnep.yaml
+>> @@ -20,7 +20,23 @@ properties:
+>>       maxItems: 1
+>>   
+>>     interrupts:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 8
+>> +
+>> +  interrupt-names:
+>> +    minItems: 1
+>> +    maxItems: 8
+>> +    items:
+>> +      pattern: '^mac|txrx-[1-7]$'
 > 
-> Thanks a lot for working on this!
-> 
-> After thinking about this for a while I wonder if we can go even a step
-> further: Can we drop SoC-specific code entirely for 8939 and 9607 and
-> match the generic compatible (qcom,tsens-v0_1)? This would allow most
-> v0.1 plaforms to use generic code like for qcom,tsens-v2.
+> No. The order of items must be fixed. Now you allow any combination,
+> which is exactly what we do not want.
 
-While this idea looks appealing, I think it's a bit against our custom 
-to put hardware details into the driver rather than putting them into 
-the DT. So, I think, the 8939 will have to stay as is, while for the 
-9607 and maybe several other devices it should be possible to create a 
-fallback entry.
+Ok. I will do it like in 
+https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml#L58
 
+>> +    description:
+>> +      If more than one interrupt is available, then interrupts are
+>> +      identified by their names.
 > 
-> AFAICT with your changes only the following remains SoC-specific:
+> Not really. Interrupts are fixed, unless explicitly mentioned otherwise.
 > 
->    - hw_ids (actually only needed for 8939 since 9607 has standard IDs)
+>> +      "mac" is the main interrupt for basic MAC features and the first
+>> +      TX/RX queue pair. If only a single interrupt is available, then
+>> +      it is assumed that this interrupt is the "mac" interrupt.
+>> +      "txrx-[1-7]" are the interrupts for additional TX/RX queue pairs.
+>> +      These interrupt names shall start with index 1 and increment the
+>> +      index by 1 with every further TX/RX queue pair.
+> 
+> Skip last three sentences - they will become redundant after
+> implementing proper items.
 
-As I wrote, I wouldn't put this into DT.
+I will rework description for fixed order.
 
+>>   
+>>     dma-coherent: true
+>>   
+>> @@ -78,4 +94,23 @@ examples:
+>>                   };
+>>               };
+>>           };
 > 
-> While two other things are already handled:
-> 
->    - num_sensors (the driver supports "#qcom,sensors" in DT already)
->    - tsens_calibrate_nvmem() shift (AFAICT in downstream msm-tsens.c
->      everything except 8916 uses shift = 2. 8916 needs special handling
->      anyway for the backwards compatibility)
-> 
-> Having the generic compatible would allow me to add MSM8909 without any
-> code changes at all (just DT schema addition).
-> 
-> For 8939 we could read the hw_ids from the DT with something like:
-> 
-> 	qcom,sensors = <0 1 2 3 5 6 7 8 9 10>;
-> 
-> And actually there are two revisions of 8939, the older one has one
-> sensor less (msm-3.10: msm8939-common.dtsi vs msm8939-v3.0.dtsi).
-> This could also be easily handled from the DT without any code changes:
-> 
-> 	qcom,sensors = <0 1 2 3 5 6 7 8 9>;
+> Missing line break.
 
-Usually we only care about the latest revision of the chip, earlier 
-revisions typically correspond to engineering samples, never hitting the 
-actual consumer devices.
+I will add it.
+> Best regards,
+> Krzysztof
 
-> 
-> The diff could be something like the following (I did not test it yet).
-> 
-> What do you think?
-I'd like to sort the calibration data for 8976 first. At this moment I'm 
-waiting for the 8976 data to be tested. Also it would be nice to be able 
-to cleanup the 8976 calibration code.
+Thanks!
 
--- 
-With best wishes
-Dmitry
-
+Gerhard
