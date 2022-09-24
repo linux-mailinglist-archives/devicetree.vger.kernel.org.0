@@ -2,70 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E73595E89FA
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 10:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4FBE5E8A15
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 10:20:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233943AbiIXIRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 04:17:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46386 "EHLO
+        id S233964AbiIXITk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 04:19:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233680AbiIXIQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 04:16:42 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 594FD21819
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:13:33 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id p5so2285121ljc.13
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:13:33 -0700 (PDT)
+        with ESMTP id S233922AbiIXITM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 04:19:12 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 449F521267
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:17:53 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id i26so3506186lfp.11
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:17:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=3E/vXC3blnuzzv4sR8DbmrJrzeGRRPWTozdNuvlljF0=;
-        b=KGdryZHcIklcs7LkCJlhLQNWugVPPlHvTyNd1jLtAKgkzeFJxj+TkGAmhYvSfV5Gqj
-         uzoh+Dgg9Gtsva/4nNYZmqWPW1OGUnr6c96Hy95J57ekrhueF7KynK2psX1qb9ALaz0a
-         rTLRCkQ+j/ri2lSPWDKENw1q5KT67t3pIz5PQWQO8WkLMzorhg8tnaOpmhOpMGIsNsg2
-         F7JRi8QN35AwsoJlTByZMeaEkNIbqJZBVpiS6Hqu0iVnD2VoXEFemqFi3KyjrsKB16uA
-         Mv6ffxhke9y3INwwQXDctjvT8l4/1dG+1gli+rxnqKYvWiQOuTNRC3EfBuBnEmDPpFTL
-         bBmw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=G0Cd545zoyt2uV3cv+LL+pRrlOK+J3gIEO+qMm/Z++s=;
+        b=kC3bdn2phshxXtaQAHXy/lPnY0H/Yvuxby1fDz8gJPQ7l8f9eDAqi8HbCugk5MZTEV
+         l54P9OIlhxg6X3ESDdCco0jkryOB8b1fZIhXIu36QfU3ZbfrEyRQtlkH9O+TDRF0ppoh
+         HpEKjvt71CSbhz7D75hJBUadpusqhbmIHLwPQt42an73vPZH2QqW2z8Qim8/V06YezvW
+         Q1eMs+miDpJMp1o0ylAVjq5j7Mz5kAg4IBqxBdjRG0PkqGtOOUUqS/OZ3MgHiuG97GIQ
+         ckaqaVysh95jmtToDu4fB/Fjd4Fi6Q9wdEbPb+vfkXnAnZg+NOgZJ3CoDK1Vx3pDLV7a
+         A3WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=3E/vXC3blnuzzv4sR8DbmrJrzeGRRPWTozdNuvlljF0=;
-        b=VhumTETgxoZPUYFCdd7x83//+53Qd0V/l3V1KCWvWR1mnxsz6MdhxGj3Tb23+C99Zk
-         QajPzDl4Iy7nyXWNZrtb5L30jc1bAk0+Fr38uxMkVQFC0R7Psa7SVgWduT57MphiH5QA
-         iW7BqzWyifF669oaGQbo9VnN2ypo2g5of9qlgKikm1hyU56gcCI/GOZQolVN6I0D/FFR
-         dPg+CyRsssXN849PFFwE3xsVnDPjVuvpNGicyvePJD0PwF4DuhRCtNvSKesYOsEE0byJ
-         DNEPOaO2HGcF9tZYF++o28gcFbbUmCVkY36k1/00uJiWBLtLw3pj5Vpe7/4siaTSH9RO
-         u3MA==
-X-Gm-Message-State: ACrzQf3k8uc7I/V99k76QNEoNKesUcxpSVgftDEWjcQSDgCP9VtC8wU1
-        Vg5tKr8T9F8ulr8i69CwAT7Hvw==
-X-Google-Smtp-Source: AMsMyM5CW28K2L03jHx6gXlzmObLHn0vVNxy9eIx+mhXQq56UFcJTMP3hZ7vIkOoBjNQQUfi5JTXZg==
-X-Received: by 2002:a2e:99c2:0:b0:26c:3fb1:4c5a with SMTP id l2-20020a2e99c2000000b0026c3fb14c5amr4028203ljj.460.1664007211746;
-        Sat, 24 Sep 2022 01:13:31 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u10-20020a05651220ca00b0049c86ca95bfsm1825818lfr.52.2022.09.24.01.13.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Sep 2022 01:13:31 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=G0Cd545zoyt2uV3cv+LL+pRrlOK+J3gIEO+qMm/Z++s=;
+        b=J4BochP5C/hMD8fnnX3znzhQ5gb7neB5B603kO3pMlycXDKhn8Vx6W0h+EgOS+PHH3
+         3NeJjeg886Qcvv412gTnj8qNUmDUnkDDyyhaA2yzaZvnJiGMdgDlREESmnQEORscPBfZ
+         vgL4xNUHzuoFuLsRSDCeSWPpeKiQCpOWnMh5/j0Fz1VQ2BVc6QRqhhU5Vq73YZ/G11jT
+         4ov/Xx2xGw/YV8O2DzrNtsdvCZysYXtRfnhOVo21ZzDFQ8S9IGx89SrCacaHdmCW9dKG
+         AQCfPwCAuzAfnLtD6z3EkCFllLfO5KarJvdpx0irLO+qOYiN35OOIuMrdS/fPUsFY9dD
+         oAhQ==
+X-Gm-Message-State: ACrzQf3me1/0VFw9jpujUjQYPOECNdFCVFI7EHhSt3kpMzlVr2DqCV5t
+        tZB0zEfUeoaDu1PpgTg+L0cZ+w==
+X-Google-Smtp-Source: AMsMyM4tghzIdOGBXILS6lHyrC72YsMTH8jxcA/ciXOtxo6om0KnDPDYhNJomsfKbkxtSdhZBEMzIQ==
+X-Received: by 2002:ac2:44ca:0:b0:499:b6ff:bc75 with SMTP id d10-20020ac244ca000000b00499b6ffbc75mr5124114lfm.233.1664007471670;
+        Sat, 24 Sep 2022 01:17:51 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s9-20020a056512202900b00494b2d8030fsm1813343lfs.177.2022.09.24.01.17.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Sep 2022 01:17:51 -0700 (PDT)
+Message-ID: <fcc5bc9f-6b6b-b9ca-45aa-ff2c880a4774@linaro.org>
+Date:   Sat, 24 Sep 2022 10:17:50 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM6375 SCM
+Content-Language: en-US
+To:     Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
         Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: clock: qcom,a53pll: replace maintainer
-Date:   Sat, 24 Sep 2022 10:13:29 +0200
-Message-Id: <20220924081329.15141-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Robert Marko <robimarko@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220921001020.55307-1-konrad.dybcio@somainline.org>
+ <95fb2bfb-6eb8-012d-88f8-c739d229ef70@linaro.org>
+ <8faecd72-0cfd-18eb-d07a-53b3a23ed05a@somainline.org>
+ <20220924000932.GA1450@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220924000932.GA1450@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,27 +86,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Emails to codeaurora.org bounce ("Recipient address rejected:
-undeliverable address: No such user here.").
+On 24/09/2022 02:09, Guru Das Srinagesh wrote:
+> On Sep 21 2022 20:43, Konrad Dybcio wrote:
+>> Does it? I did not define this compatible in the driver, so it does
+>> not consume any clocks.
+> 
+> The bindings should describe only those compatibles that the driver supports -
+> that is, both the driver and its bindings should be in sync.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/clock/qcom,a53pll.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That's not entirely true. Bindings describe the hardware in the most
+complete way we can. Not the driver. Whether driver supports something
+or not, is not relevant here, except that we don't want to document
+non-existing things or stuff out of tree.
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml b/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml
-index fbd758470b88..a479f24d95e2 100644
---- a/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,a53pll.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm A53 PLL Binding
- 
- maintainers:
--  - Sivaprakash Murugesan <sivaprak@codeaurora.org>
-+  - Bjorn Andersson <andersson@kernel.org>
- 
- description:
-   The A53 PLL on few Qualcomm platforms is the main CPU PLL used used for
--- 
-2.34.1
+> 
+> Could you please update the driver with this compatible as well? Let's not
+> merge this change without that first.
+
+This could be even merged without change in the driver. However it's not
+the case here as driver already supports it, so your request is fulfilled.
+
+
+Best regards,
+Krzysztof
 
