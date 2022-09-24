@@ -2,126 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04E255E8A99
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 11:15:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E421A5E8A9F
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 11:18:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229662AbiIXJPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 05:15:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37840 "EHLO
+        id S229573AbiIXJSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 05:18:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233133AbiIXJPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 05:15:40 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE6021E04
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:15:38 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id u18so3647925lfo.8
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:15:38 -0700 (PDT)
+        with ESMTP id S229662AbiIXJSB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 05:18:01 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BFA3127C8B
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:17:59 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id u18so3652946lfo.8
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:17:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=4mnI565TuxegE5VseMU3JwVMU12fPo+/PxgNA7jWQQQ=;
-        b=fMyRTbN35ZzvmScJd/LmTt95QI7QO4AXCRJmwLoR2MnUbAo+wvuY/jefsRbDNIgeyC
-         uO6CxSs4aTXOrM2QmYPqIADkDjPCJ/Fy81FBumUHABklu6fjko4uSkMMkUcEA5Po3wFB
-         hRwsxy4KB3gvqNdqjT4zHpIz5/1vsoanjrzswvFIz6IpX4XBOAPJ1gfVq8HJ7HnRvcbH
-         mu6pTVADJqdRGc7stWW0k7CtFLMUdlkaDeuE6N5N+exhYnWJOrrtrzfS6eplWpTnAWgF
-         ieQBuXDTBy8m6tuOVsxuTnFSScI63Vslcjmj+RRx15V/ut38iTT2bWcElgw1gBzZj1HM
-         TWvA==
+        bh=wlpLWUbxpkS6HjqbeTkxFY/XT4Y1rcPglg3C3aPLxwA=;
+        b=BQayDKxJsj/8gfjc7/7qatRpucdmxjXlv3P4pnLZds+eb2tF6M+S6rAk2Yjk1KBFtC
+         E+zN64MeDyFP0QjFWE5r3+taCm5h+taWwikGk2Hl8viZVpQtcRmjJM4aFitE9doUuMuT
+         gDODVwUUPhRr4XGpLzAJCVuwfp3yPDIo1jGBsYJT3/HJURJtt0URq8wepIal/J6btBIk
+         Ohihd/mL2wiJo7MRUoa+qJQaITPoGl9FhrXuB3WmemdWHCHGlUoaESbZ83PlMC03N0LG
+         v9/3qnaJjrR7wkWazJS5xVNUoL4irh0so2tggwi7vRfCP/PrzwMTZ2aws3AiSa2Fb5V1
+         WPsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=4mnI565TuxegE5VseMU3JwVMU12fPo+/PxgNA7jWQQQ=;
-        b=pos9V5STnqFx7sqps5c2bvdtR7R+fiBSuxAMR9YteCjVoWUmaIA2gYGIwXQ2OOohEF
-         Q9rxILlcPC/oWG9aClnUK7JA7QEhchoZfYS45+OscA3l9sr5PqZkEllMfSEVS5HMcmcf
-         P6qjADZbVIIint7vuHgUc39b2uABLs3MUO2k/qIKxS4+eCNWomDKC+Y4KlCcWhaBo7GD
-         9o3b9Ze8oB3Wc2nOCeN/0pN/gSz4CiQH96/v2pAECnXWpj/MnTOtKPZR36XkAnmTQ6fp
-         3LEjYe1iGfE8swTZNz0LQScis6d/qCSJWEJDZms2pRxF4/euPqJds93CWDAaIRGFcnsR
-         RnlQ==
-X-Gm-Message-State: ACrzQf18hOK4i+EiTU+a2DELjN3KIq9vcDNToUf3a7yT4LoPLFkIli+g
-        AeQ4ZnIZguFLY2JEqwBcZx1WWA==
-X-Google-Smtp-Source: AMsMyM5dfRAZ8UKZu8Bcv93uzMEtc9dO1/QxfUGmnIv5IMIYlUi7Y3m35WVUeNL/cv8CTbGBAAO2qg==
-X-Received: by 2002:a05:6512:11e9:b0:49d:7909:ff9b with SMTP id p9-20020a05651211e900b0049d7909ff9bmr4570042lfs.568.1664010936884;
-        Sat, 24 Sep 2022 02:15:36 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id w5-20020a05651234c500b0049f54c5f2a4sm1829258lfr.229.2022.09.24.02.15.35
+        bh=wlpLWUbxpkS6HjqbeTkxFY/XT4Y1rcPglg3C3aPLxwA=;
+        b=TxZZYPZTV14FPTvLg/JgF1QNZfGxY3rJjmjAgfIrLbzKPop2KYOInULjrEJelwNaTQ
+         M4weFJl1ZVEKacidW0c0tmAISiqRmUsHnWNwtCYIhBRCi1xerpOrXTipMKABHmYwQldo
+         FtAgptEXt2p3cy4zThSIUfZQ8+qdMZeelU5yiGNwcd5lltzkMx1Z59qqES/7MDEqvdGE
+         SnRRJyx7iOAjccEYXKr4l5XK0ZSOqkV1dw8lIdLH0MLuzdmm/Ct/P7lQVs6T0EpeKxdQ
+         j7adpzL63PZTqOVSnQSArsjj2mAacB3uJRF/F5w/xCcVEhV6i3ifEzMNjue0ShPEa1FM
+         t9Kg==
+X-Gm-Message-State: ACrzQf2ToL1vA3aBzv7vpbpeyEXdL+c2X5jDG/02ITe7kSQbBefuNqfd
+        rf0UsOhuL4YrP7GSWR2I5XK5R9RltIcxYg==
+X-Google-Smtp-Source: AMsMyM52LccXA0tTh4zrwmNzC5QOa9PjYhnPojkrlpr9vpQmojQNyoNUwY22aKBfkrautR6o9Y+wQg==
+X-Received: by 2002:a05:6512:a89:b0:49d:b866:6330 with SMTP id m9-20020a0565120a8900b0049db8666330mr4637064lfu.346.1664011077856;
+        Sat, 24 Sep 2022 02:17:57 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id cf30-20020a056512281e00b004a05622a852sm607358lfb.241.2022.09.24.02.17.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Sep 2022 02:15:36 -0700 (PDT)
-Message-ID: <3a14c5a3-e4f2-a89d-815b-8923d1d189c1@linaro.org>
-Date:   Sat, 24 Sep 2022 12:15:35 +0300
+        Sat, 24 Sep 2022 02:17:57 -0700 (PDT)
+Message-ID: <b7e44e61-4beb-7b94-01e5-d217c546114d@linaro.org>
+Date:   Sat, 24 Sep 2022 11:17:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: Add QCM2290 DSI phy
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Loic Poulain <loic.poulain@linaro.org>
-References: <20220924085129.161086-1-dmitry.baryshkov@linaro.org>
- <20220924085129.161086-2-dmitry.baryshkov@linaro.org>
- <f6ed6e44-ab28-9f13-4193-517eef0edea1@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <f6ed6e44-ab28-9f13-4193-517eef0edea1@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.3.0
+Subject: Re: [PATCH net-next v3 2/6] dt-bindings: net: tsnep: Allow additional
+ interrupts
+Content-Language: en-US
+To:     Gerhard Engleder <gerhard@engleder-embedded.com>,
+        netdev@vger.kernel.org
+Cc:     davem@davemloft.net, kuba@kernel.org, edumazet@google.com,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+References: <20220923202911.119729-1-gerhard@engleder-embedded.com>
+ <20220923202911.119729-3-gerhard@engleder-embedded.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220923202911.119729-3-gerhard@engleder-embedded.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/09/2022 12:12, Krzysztof Kozlowski wrote:
-> On 24/09/2022 10:51, Dmitry Baryshkov wrote:
->> From: Loic Poulain <loic.poulain@linaro.org>
->>
->> QCM2290 platform uses the 14nm DSI PHY driver.
->>
->> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
->> [DB: changed compat to follow the agreed scheme]
+On 23/09/2022 22:29, Gerhard Engleder wrote:
+> Additional TX/RX queue pairs require dedicated interrupts. Extend
+> binding with additional interrupts.
 > 
-> Bjorn asked to keep consistency in other case:
-> https://lore.kernel.org/all/20220829210408.gxbv6szxfwiiwrbv@builder.lan/
-
-Ack. Should I use qcom,dsi-phy-14nm-2290 or qcom,dsi-phy-14nm-qcm2290?
-
-Note we already have "qcom,sc7280-dsi-phy-10nm".
-
+> Signed-off-by: Gerhard Engleder <gerhard@engleder-embedded.com>
+> ---
+>  .../bindings/net/engleder,tsnep.yaml          | 37 ++++++++++++++++++-
+>  1 file changed, 36 insertions(+), 1 deletion(-)
 > 
->> ---
->>   Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
->> index bc3d0b4063c7..088a03ed5f80 100644
->> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
->> @@ -17,6 +17,7 @@ properties:
->>         - qcom,dsi-phy-14nm
->>         - qcom,dsi-phy-14nm-660
->>         - qcom,dsi-phy-14nm-8953
->> +      - qcom,qcm2290-dsi-phy-14nm
-> Best regards,
-> Krzysztof
-> 
+> diff --git a/Documentation/devicetree/bindings/net/engleder,tsnep.yaml b/Documentation/devicetree/bindings/net/engleder,tsnep.yaml
+> index 37e08ee744a8..ce1f1bd413c2 100644
+> --- a/Documentation/devicetree/bindings/net/engleder,tsnep.yaml
+> +++ b/Documentation/devicetree/bindings/net/engleder,tsnep.yaml
+> @@ -20,7 +20,23 @@ properties:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 8
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 8
+> +    items:
+> +      pattern: '^mac|txrx-[1-7]$'
 
--- 
-With best wishes
-Dmitry
+No. The order of items must be fixed. Now you allow any combination,
+which is exactly what we do not want.
+
+> +    description:
+> +      If more than one interrupt is available, then interrupts are
+> +      identified by their names.
+
+Not really. Interrupts are fixed, unless explicitly mentioned otherwise.
+
+> +      "mac" is the main interrupt for basic MAC features and the first
+> +      TX/RX queue pair. If only a single interrupt is available, then
+> +      it is assumed that this interrupt is the "mac" interrupt.
+> +      "txrx-[1-7]" are the interrupts for additional TX/RX queue pairs.
+> +      These interrupt names shall start with index 1 and increment the
+> +      index by 1 with every further TX/RX queue pair.
+
+Skip last three sentences - they will become redundant after
+implementing proper items.
+>  
+>    dma-coherent: true
+>  
+> @@ -78,4 +94,23 @@ examples:
+>                  };
+>              };
+>          };
+
+Missing line break.
+
+
+Best regards,
+Krzysztof
 
