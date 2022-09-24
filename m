@@ -2,322 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 921B55E892E
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 09:32:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 906F45E8963
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 10:05:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233410AbiIXHcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 03:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45294 "EHLO
+        id S233533AbiIXIFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 04:05:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233048AbiIXHcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 03:32:46 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9EC979D1;
-        Sat, 24 Sep 2022 00:32:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2F48AB80E4B;
-        Sat, 24 Sep 2022 07:32:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0A2BC433D6;
-        Sat, 24 Sep 2022 07:32:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664004761;
-        bh=MvW2nw9Tq37atkISD2sTXKHttXxXGzJoXD9oQlvvmM0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nb+O8uHfg69jJRTXdJmu12AgCkyAEm9hU9F3MQxF/azt+KNWw5Q8WcqoiLVZOEiCg
-         wWOoWO4z/zz2w+Qjhas7ybMkaldJ41GeYaIYibwA4Ds9yo9bZ+1yVWOyT/DHcWPoEQ
-         OtPBqb9Ma9wAqdGVYI8ipKuQHepilAuRIhKmqGKP/YP6siUCZ4PPZTMIdJzMjyTdH4
-         kRBhrSjDl0mjx1N0/mY/U8ndRnbLe3V5tj3qrjx5r1mhRWqQ8K3oLItVFni5qyypEv
-         c79sWPLm6XV2hQjP+R7STWG0DxT4MljjgQMy/KhLtWtwroKe1oZEv+eQ9I+2Ys0cUo
-         YUi3JhfiNW6TQ==
-Date:   Sat, 24 Sep 2022 13:02:37 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     p.zabel@pengutronix.de, l.stach@pengutronix.de,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
-        shawnguo@kernel.org, alexander.stein@ew.tq-group.com,
-        marex@denx.de, richard.leitner@linux.dev,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: Re: [PATCH v8 2/2] phy: freescale: imx8m-pcie: Add i.MX8MP PCIe PHY
- support
-Message-ID: <Yy6yld/zNWB9bJKF@matsya>
-References: <1663659498-5180-1-git-send-email-hongxing.zhu@nxp.com>
- <1663659498-5180-3-git-send-email-hongxing.zhu@nxp.com>
+        with ESMTP id S233537AbiIXIFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 04:05:11 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C72DF1869
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:05:09 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id i26so3480463lfp.11
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:05:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=ElHtmR9mOI/BrvJk0hvO/gtVtcCqjbq4VFU349Q7/Xc=;
+        b=v7PtnQCmKyh/NBt8ZxmuaSZFAUMxfghvTB9dBxx4NqogBYpliz1ua5RWA16zgB3am1
+         Dhhro6d0KeiKM0cHmsMSpv10RseFLe8OifR8ovxMmqtDAgkXF+SFfhsIU1oFdwqPMI7N
+         CclD9q5GlYoib0xU4rt+um9kF1wQSVssBj9ott2nbtyGBLy+iOlUKWh9YT2DiBITpXsF
+         JUxU49ZbPBqQw5frdjCcCOrr9IhqRYQHXehZHLaLHle2w61PXFpyPtYZUP9Vu//59j/i
+         XOcIJhD003EeXIChrRJDZjeyiNmXdWDVctxm2NSb10tb4wlnclyT5GIarU9CuM7i/E00
+         ZHgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=ElHtmR9mOI/BrvJk0hvO/gtVtcCqjbq4VFU349Q7/Xc=;
+        b=xHcuJ0pL9vIaq54E/MdBphnhRvQw0F4GoCyGdFBmkswSgwLRDDjGIts7Erq9EdO5Q7
+         +GdNj3DCz0GQiF9qZHi1S4g9UAh3fQP4/N5AuRP+wKttsqQC+B92C84isvUR4QKKv8Cy
+         0hloW1DKV4jQIKN/bNlVWmHZS8sz3Ruuqyc9UF0B6Qt0ApsK9YDvq/xglFyTuV+xtAvI
+         T3wn2xwn28UFf2Xb21rikBBBWcwbDf+2+lHRM8NdZNT4aXQYHa2kkYwktHMtuc82I54x
+         C2vnMK9bBxzVk2bRGoAxUR4xY4hi2xdZn01fQ9P4bB7jq/Jz2wAF4b3WsU0xt88yJN46
+         coBA==
+X-Gm-Message-State: ACrzQf3AELgEcTJC8hFk+iPTOh/2nXNgN0ZEvINfe0i//Hj8BRnfea+n
+        Z6DFQdHRa3UStuWxK11sQ2HpNA==
+X-Google-Smtp-Source: AMsMyM7HvtRyw3yb17oDRVHWizj4flnPGobu1t8j6Ga+AIEe2TPCNCL3lIS4aMYsJOzQ9fEuCAv6aw==
+X-Received: by 2002:a05:6512:261c:b0:49f:af36:d47 with SMTP id bt28-20020a056512261c00b0049faf360d47mr4641346lfb.284.1664006707317;
+        Sat, 24 Sep 2022 01:05:07 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id y2-20020a2e5442000000b0026c41574790sm1696668ljd.30.2022.09.24.01.05.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Sep 2022 01:05:06 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sricharan R <sricharan@codeaurora.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        krishna Lanka <quic_vamslank@quicinc.com>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 00/32] pinctrl/arm64: qcom: continued - fix Qualcomm TLMM pinctrl schema warnings
+Date:   Sat, 24 Sep 2022 10:04:27 +0200
+Message-Id: <20220924080459.13084-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1663659498-5180-3-git-send-email-hongxing.zhu@nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-09-22, 15:38, Richard Zhu wrote:
-> Add i.MX8MP PCIe PHY support.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Tested-by: Marek Vasut <marex@denx.de>
-> Tested-by: Richard Leitner <richard.leitner@skidata.com>
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
->  drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 144 ++++++++++++++-------
->  1 file changed, 97 insertions(+), 47 deletions(-)
-> 
-> diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> index ad7d2edfc414..bef0e9d64244 100644
-> --- a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> +++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> @@ -11,6 +11,9 @@
->  #include <linux/mfd/syscon.h>
->  #include <linux/mfd/syscon/imx7-iomuxc-gpr.h>
->  #include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_device.h>
+Hi,
 
-why do you need all these headers..?
+Overview
+========
+This is the third patchset around Qualcomm pinctrl in recent days:
+1. First round of TLMM fixes: merged
+2. LPASS fixes: https://lore.kernel.org/linux-devicetree/20220922195651.345369-1-krzysztof.kozlowski@linaro.org/T/#t
+3. Second round of TLMM fixes: THIS PATCHSET
 
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
-> @@ -31,12 +34,10 @@
->  #define IMX8MM_PCIE_PHY_CMN_REG065	0x194
->  #define  ANA_AUX_RX_TERM		(BIT(7) | BIT(4))
->  #define  ANA_AUX_TX_LVL			GENMASK(3, 0)
-> -#define IMX8MM_PCIE_PHY_CMN_REG75	0x1D4
-> -#define  PCIE_PHY_CMN_REG75_PLL_DONE	0x3
-> +#define IMX8MM_PCIE_PHY_CMN_REG075	0x1D4
+Dependencies
+============
+1. No dependencies.
+2. dt-bindings are independent of DTS patches.
 
-why this change? 
+Best regards,
+Krzysztof
 
-> +#define  ANA_PLL_DONE			0x3
->  #define PCIE_PHY_TRSV_REG5		0x414
-> -#define  PCIE_PHY_TRSV_REG5_GEN1_DEEMP	0x2D
->  #define PCIE_PHY_TRSV_REG6		0x418
-> -#define  PCIE_PHY_TRSV_REG6_GEN2_DEEMP	0xF
->  
->  #define IMX8MM_GPR_PCIE_REF_CLK_SEL	GENMASK(25, 24)
->  #define IMX8MM_GPR_PCIE_REF_CLK_PLL	FIELD_PREP(IMX8MM_GPR_PCIE_REF_CLK_SEL, 0x3)
-> @@ -47,16 +48,28 @@
->  #define IMX8MM_GPR_PCIE_SSC_EN		BIT(16)
->  #define IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE	BIT(9)
->  
-> +enum imx8_pcie_phy_type {
-> +	IMX8MM,
-> +	IMX8MP,
-> +};
-> +
-> +struct imx8_pcie_phy_drvdata {
-> +	enum		imx8_pcie_phy_type variant;
-> +	const char	*gpr;
-> +};
-> +
->  struct imx8_pcie_phy {
->  	void __iomem		*base;
->  	struct clk		*clk;
->  	struct phy		*phy;
->  	struct regmap		*iomuxc_gpr;
->  	struct reset_control	*reset;
-> +	struct reset_control	*perst;
->  	u32			refclk_pad_mode;
->  	u32			tx_deemph_gen1;
->  	u32			tx_deemph_gen2;
->  	bool			clkreq_unused;
-> +	const struct imx8_pcie_phy_drvdata	*drvdata;
->  };
->  
->  static int imx8_pcie_phy_init(struct phy *phy)
-> @@ -68,31 +81,20 @@ static int imx8_pcie_phy_init(struct phy *phy)
->  	reset_control_assert(imx8_phy->reset);
->  
->  	pad_mode = imx8_phy->refclk_pad_mode;
-> -	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
-> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> -			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
-> -			   imx8_phy->clkreq_unused ?
-> -			   0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
-> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> -			   IMX8MM_GPR_PCIE_AUX_EN,
-> -			   IMX8MM_GPR_PCIE_AUX_EN);
-> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> -			   IMX8MM_GPR_PCIE_POWER_OFF, 0);
-> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> -			   IMX8MM_GPR_PCIE_SSC_EN, 0);
-> -
-> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> -			   IMX8MM_GPR_PCIE_REF_CLK_SEL,
-> -			   pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ?
-> -			   IMX8MM_GPR_PCIE_REF_CLK_EXT :
-> -			   IMX8MM_GPR_PCIE_REF_CLK_PLL);
-> -	usleep_range(100, 200);
-> -
-> -	/* Do the PHY common block reset */
-> -	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> -			   IMX8MM_GPR_PCIE_CMN_RST,
-> -			   IMX8MM_GPR_PCIE_CMN_RST);
-> -	usleep_range(200, 500);
-> +	switch (imx8_phy->drvdata->variant) {
-> +	case IMX8MM:
-> +		/* Tune PHY de-emphasis setting to pass PCIe compliance. */
-> +		if (imx8_phy->tx_deemph_gen1)
-> +			writel(imx8_phy->tx_deemph_gen1,
-> +			       imx8_phy->base + PCIE_PHY_TRSV_REG5);
-> +		if (imx8_phy->tx_deemph_gen2)
-> +			writel(imx8_phy->tx_deemph_gen2,
-> +			       imx8_phy->base + PCIE_PHY_TRSV_REG6);
-> +		break;
-> +	case IMX8MP:
-> +		reset_control_assert(imx8_phy->perst);
-> +		break;
-> +	}
->  
->  	if (pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ||
->  	    pad_mode == IMX8_PCIE_REFCLK_PAD_UNUSED) {
-> @@ -120,20 +122,44 @@ static int imx8_pcie_phy_init(struct phy *phy)
->  		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG065);
->  	}
->  
-> -	/* Tune PHY de-emphasis setting to pass PCIe compliance. */
-> -	if (imx8_phy->tx_deemph_gen1)
-> -		writel(imx8_phy->tx_deemph_gen1,
-> -		       imx8_phy->base + PCIE_PHY_TRSV_REG5);
-> -	if (imx8_phy->tx_deemph_gen2)
-> -		writel(imx8_phy->tx_deemph_gen2,
-> -		       imx8_phy->base + PCIE_PHY_TRSV_REG6);
-> +	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
-> +			   imx8_phy->clkreq_unused ?
-> +			   0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_AUX_EN,
-> +			   IMX8MM_GPR_PCIE_AUX_EN);
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_POWER_OFF, 0);
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_SSC_EN, 0);
-> +
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_REF_CLK_SEL,
-> +			   pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ?
-> +			   IMX8MM_GPR_PCIE_REF_CLK_EXT :
-> +			   IMX8MM_GPR_PCIE_REF_CLK_PLL);
+Krzysztof Kozlowski (32):
+  arm64: dts: qcom: ipq6018-cp01-c1: correct blspi1 pins
+  arm64: dts: qcom: ipq6018: align TLMM pin configuration with DT schema
+  ARM: dts: qcom: sdx55: add gpio-ranges to TLMM pinctrl
+  ARM: dts: qcom: sdx55: align TLMM pin configuration with DT schema
+  ARM: dts: qcom: msm8226: align TLMM pin configuration with DT schema
+  ARM: dts: qcom: msm8974: align TLMM pin configuration with DT schema
+  dt-bindings: pinctrl: qcom,ipq6018: add qpic_pad function
+  dt-bindings: pinctrl: qcom,ipq6018: increase number of pins in pinmux
+  dt-bindings: pinctrl: qcom,ipq6018: fix matching pin config
+  dt-bindings: pinctrl: qcom,ipq6018: do not require function on
+    non-GPIOs
+  dt-bindings: pinctrl: qcom,ipq6018: fix indentation in example
+  dt-bindings: pinctrl: qcom,msm8226: fix matching pin config
+  dt-bindings: pinctrl: qcom,msm8226: do not require function on
+    non-GPIOs
+  dt-bindings: pinctrl: qcom,msm8226: add functions and input-enable
+  dt-bindings: pinctrl: qcom,msm8226: fix indentation in example
+  dt-bindings: pinctrl: qcom,msm8909-tlmm: fix matching pin config
+  dt-bindings: pinctrl: qcom,msm8909-tlmm: do not require function on
+    non-GPIOs
+  dt-bindings: pinctrl: qcom,msm8909-tlmm: fix indentation in example
+  dt-bindings: pinctrl: qcom,msm8953: fix matching pin config
+  dt-bindings: pinctrl: qcom,msm8953: do not require function on
+    non-GPIOs
+  dt-bindings: pinctrl: qcom,msm8953: fix indentation in example
+  dt-bindings: pinctrl: qcom,mdm9607: do not require function on
+    non-GPIOs
+  dt-bindings: pinctrl: qcom,mdm9607: fix indentation in example
+  dt-bindings: pinctrl: qcom,qcm2290: fix matching pin config
+  dt-bindings: pinctrl: qcom,qcm2290: do not require function on
+    non-GPIOs
+  dt-bindings: pinctrl: qcom,sdx55: fix matching pin config
+  dt-bindings: pinctrl: qcom,sdx55: do not require function on non-GPIOs
+  dt-bindings: pinctrl: qcom,sdx55: fix indentation in example
+  dt-bindings: pinctrl: qcom,sdx65: fix matching pin config
+  dt-bindings: pinctrl: qcom,sdx65: do not require function on non-GPIOs
+  dt-bindings: pinctrl: qcom,sc7280: fix matching pin config
+  dt-bindings: pinctrl: qcom,sc8280xp: fix indentation in example
+    (remaining piece)
 
-Lets do code reorg in a separate patch and then add support for new SOC,
-that is more reviewable that this big pile of changes
-
-> +	usleep_range(100, 200);
->  
-> -	reset_control_deassert(imx8_phy->reset);
-> +	/* Do the PHY common block reset */
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_CMN_RST,
-> +			   IMX8MM_GPR_PCIE_CMN_RST);
-> +
-> +	switch (imx8_phy->drvdata->variant) {
-> +	case IMX8MP:
-> +		reset_control_deassert(imx8_phy->perst);
-> +		fallthrough;
-> +	case IMX8MM:
-> +		reset_control_deassert(imx8_phy->reset);
-> +		usleep_range(200, 500);
-> +		break;
-> +	}
->  
->  	/* Polling to check the phy is ready or not. */
-> -	ret = readl_poll_timeout(imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG75,
-> -				 val, val == PCIE_PHY_CMN_REG75_PLL_DONE,
-> -				 10, 20000);
-> +	ret = readl_poll_timeout(imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG075,
-> +				 val, val == ANA_PLL_DONE, 10, 20000);
->  	return ret;
->  }
->  
-> @@ -160,6 +186,25 @@ static const struct phy_ops imx8_pcie_phy_ops = {
->  	.owner		= THIS_MODULE,
->  };
->  
-> +static const struct imx8_pcie_phy_drvdata drvdata[] = {
-> +	[IMX8MM] = {
-> +		.variant = IMX8MM,
-> +		.gpr = "fsl,imx8mm-iomuxc-gpr",
-> +	},
-> +
-> +	[IMX8MP] = {
-> +		.variant = IMX8MP,
-> +		.gpr = "fsl,imx8mp-iomuxc-gpr",
-> +	},
-> +};
-> +
-> +static const struct of_device_id imx8_pcie_phy_of_match[] = {
-> +	{.compatible = "fsl,imx8mm-pcie-phy", .data = &drvdata[IMX8MM], },
-> +	{.compatible = "fsl,imx8mp-pcie-phy", .data = &drvdata[IMX8MP], },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
-> +
->  static int imx8_pcie_phy_probe(struct platform_device *pdev)
->  {
->  	struct phy_provider *phy_provider;
-> @@ -172,6 +217,8 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
->  	if (!imx8_phy)
->  		return -ENOMEM;
->  
-> +	imx8_phy->drvdata = of_device_get_match_data(dev);
-> +
->  	/* get PHY refclk pad mode */
->  	of_property_read_u32(np, "fsl,refclk-pad-mode",
->  			     &imx8_phy->refclk_pad_mode);
-> @@ -197,7 +244,7 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
->  
->  	/* Grab GPR config register range */
->  	imx8_phy->iomuxc_gpr =
-> -		 syscon_regmap_lookup_by_compatible("fsl,imx6q-iomuxc-gpr");
-> +		 syscon_regmap_lookup_by_compatible(imx8_phy->drvdata->gpr);
->  	if (IS_ERR(imx8_phy->iomuxc_gpr)) {
->  		dev_err(dev, "unable to find iomuxc registers\n");
->  		return PTR_ERR(imx8_phy->iomuxc_gpr);
-> @@ -209,6 +256,15 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
->  		return PTR_ERR(imx8_phy->reset);
->  	}
->  
-> +	if (imx8_phy->drvdata->variant == IMX8MP) {
-> +		imx8_phy->perst =
-> +			devm_reset_control_get_exclusive(dev, "perst");
-> +		if (IS_ERR(imx8_phy->perst)) {
-> +			dev_err(dev, "Failed to get PCIE PHY PERST control\n");
-> +			return PTR_ERR(imx8_phy->perst);
-> +		}
-> +	}
-> +
->  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	imx8_phy->base = devm_ioremap_resource(dev, res);
->  	if (IS_ERR(imx8_phy->base))
-> @@ -225,12 +281,6 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
->  	return PTR_ERR_OR_ZERO(phy_provider);
->  }
->  
-> -static const struct of_device_id imx8_pcie_phy_of_match[] = {
-> -	{.compatible = "fsl,imx8mm-pcie-phy",},
-> -	{ },
-> -};
-> -MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
-> -
->  static struct platform_driver imx8_pcie_phy_driver = {
->  	.probe	= imx8_pcie_phy_probe,
->  	.driver = {
-> -- 
-> 2.25.1
+ .../pinctrl/qcom,ipq6018-pinctrl.yaml         | 67 ++++++++++-------
+ .../pinctrl/qcom,mdm9607-pinctrl.yaml         | 34 +++++----
+ .../pinctrl/qcom,msm8226-pinctrl.yaml         | 70 ++++++++++-------
+ .../bindings/pinctrl/qcom,msm8909-tlmm.yaml   | 75 +++++++++++--------
+ .../pinctrl/qcom,msm8953-pinctrl.yaml         | 58 ++++++++------
+ .../pinctrl/qcom,qcm2290-pinctrl.yaml         | 20 +++--
+ .../bindings/pinctrl/qcom,sc7280-pinctrl.yaml | 14 +++-
+ .../pinctrl/qcom,sc8280xp-pinctrl.yaml        |  4 +-
+ .../bindings/pinctrl/qcom,sdx55-pinctrl.yaml  | 58 ++++++++------
+ .../bindings/pinctrl/qcom,sdx65-pinctrl.yaml  | 20 +++--
+ arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts   |  6 +-
+ arch/arm/boot/dts/qcom-msm8226.dtsi           | 24 +++---
+ .../qcom-msm8974-lge-nexus5-hammerhead.dts    | 30 ++++----
+ .../boot/dts/qcom-sdx55-telit-fn980-tlb.dts   | 45 ++++-------
+ arch/arm/boot/dts/qcom-sdx55.dtsi             |  1 +
+ arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts  |  8 +-
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  4 +-
+ 17 files changed, 316 insertions(+), 222 deletions(-)
 
 -- 
-~Vinod
+2.34.1
+
