@@ -2,193 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C6995E8F07
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 19:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11E665E8F0C
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 19:51:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbiIXRpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 13:45:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55674 "EHLO
+        id S233865AbiIXRva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 13:51:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233632AbiIXRpj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 13:45:39 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32B1939121;
-        Sat, 24 Sep 2022 10:45:37 -0700 (PDT)
-Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 7B3A48495E;
-        Sat, 24 Sep 2022 19:45:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1664041534;
-        bh=qIFcIezrXrOHgIKdBiMre65MVCrmMAuokY8XP9IA3QY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=l2sntq8+avmTZwb2QfTd1HLnpjNAjdeE385kuI1i3e1oLezZvlZnGAXMockwLliad
-         WMH1YRm+zqUW3ZBsArSSIZBK/Bzyyt96/Oi44xmX7nUEWrDwXU7Q0bxdPcuTm9FqMc
-         ZqQbtIkRQrQMixS3LscMS1sqnRBh23JI+elCxdT9JioiK1YElR7vghy3Htd9v0tdZ5
-         I1ELhZDZE7iY/s1ZW3rrfkO7VUVjzAGXY1o06ahLmy6KyVmFjEmY73y6IVoU/W9q7a
-         e/iIadleVpjigeMs6ZfSRKl17kY/t8uxUU9m7Qzx+m3bPX67lZQ5hd6sIssr4dQe1M
-         LnCmoAq8xYHKw==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-clk@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v4] clk: Introduce 'always-on-clocks' property
-Date:   Sat, 24 Sep 2022 19:45:17 +0200
-Message-Id: <20220924174517.458657-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S229690AbiIXRv3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 13:51:29 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2013.outbound.protection.outlook.com [40.92.41.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3035BC2B
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 10:51:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oRj2Vo8PbP9GY09behg0OB2xrojPZ+vGUYuy99V9MWdMJsHV9HuIRY9MO0KMaQ+1D6ELqwlN2yKNTeFVFob4/3LVvB2Ov2vEnwVBIbgUfoSa38f0dlFR5HECsCP4GxTWde/QDqyzbvWVIWnYmGOyBZ6ULwgsTF6X0lgau4F9wguiIvrjKblIM/scTboKZGz0hU/uHm3AdSAs0cKLyi+0f1hAWSsj9mUlre4vdUhEdCmQQZ1T53d/r7hXSAPi/OnxGdc6QSj2IG2gy5q0ejVFxBj6YgB7zbcnIcc1nLU/EhhEgegLk5tKsT2oJ3ig4AzESKXvICQIh3OtHRufTBZ9iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MBSF2a6DVsM6OLnefJg+mFYzUBz3eXcPUUrqi7/PEpE=;
+ b=HUbyuy/mPqwq2cs6nqHxXYmn7j1Qcyijsd6E5mZllksanaXpx5rygTCMx8nhv+Xk2GTaXqdtLtQlvRQSdaiY/Vzc6ikUdFZDpforycVKzH+HhDaH3fuekO4+q57YqdemXQ6lqGwJ/Hu7wVQEpiYeXRkG6YeRmJtbBFhW9EPa1k35famJ2UdaJEv+rLCGwb9nJekQSTMIorQ2b/hWXk+lY8lsNgrXMi6g+V0UQlAUR7VKn9Je4I5LncKuWJcvU/PjDzewvk0bkkgKCVkuHmdrPz/jSJchadh/F/cP62QTKxH+3YtaAIDOUbiLCwy3nCb4n44+mXat+6VRXtksSMNWRA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MBSF2a6DVsM6OLnefJg+mFYzUBz3eXcPUUrqi7/PEpE=;
+ b=uqufOIFV5aRDf0Svsc7D9XxKlth0nkFQ1uxkQPgmP7Z9qSZX6cac38hwMduxwoY91VJs78uCbWN61c/NOq4wvVZWKlaRwwEjivSDs8z3iT7sm4irxe5aAAfuK1DLFGRbuJhZxkZG9tONUD3dyvXyA02IiB+jyqj1yusgbkEVdKOl4g1QegiJGKBU38OooyiRnsIVYnfyG23Zu5xq4QzYDyQRE0aLkO7RzPbkGpD8tS6+yKqxHr9sakjw15S9RbVxnDSA6syxYKEGa025//9SRr32RbDNpDys5lyeI76Tp9fCJdKnlrUJL6O216vGpY1MkhJG3mSExhXbJQ/6fTIh9A==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by CY4PR06MB3431.namprd06.prod.outlook.com (2603:10b6:910:50::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.18; Sat, 24 Sep
+ 2022 17:51:26 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::433a:1493:6a39:ee43]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::433a:1493:6a39:ee43%5]) with mapi id 15.20.5654.022; Sat, 24 Sep 2022
+ 17:51:26 +0000
+Date:   Sat, 24 Sep 2022 12:51:24 -0500
+From:   Chris Morgan <macromorgan@hotmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chris Morgan <macroalpha82@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel@ffwll.ch,
+        airlied@linux.ie, sam@ravnborg.org, thierry.reding@gmail.com
+Subject: Re: [PATCH V2 2/3] dt-bindings: display: panel: Add NewVision
+ NV3051D bindings
+Message-ID: <SN6PR06MB5342F2CB54D028B446D27BA0A5509@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20220920145905.20595-1-macroalpha82@gmail.com>
+ <20220920145905.20595-3-macroalpha82@gmail.com>
+ <20220924170744.GA961091-robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220924170744.GA961091-robh@kernel.org>
+X-TMN:  [wJSMGJ6RIWnPO8fJD+uEuu/ErYZ1mOBg]
+X-ClientProxiedBy: SA0PR11CA0123.namprd11.prod.outlook.com
+ (2603:10b6:806:131::8) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <20220924175124.GA17667@wintermute.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|CY4PR06MB3431:EE_
+X-MS-Office365-Filtering-Correlation-Id: e98436bc-4737-4d79-87ab-08da9e5566f3
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wd+tT6NtZ4jZmCRP87fZjv4o6Cad50pOvg51xJHwRwySnFDS9UX+6q6wNtgzXMR6CGHYyIXkZS5RN2rkTmeptyNdXvNexR6q6r3lorocQkBJzaq0U8QFW9RfT4kRmDGTMAdIi7Jc2jahmYhH9W8os/QLtwOQWB1B/NNu+9lejdRpM8XPOpMH1Td1UJN4Y5uFJkahVa5YT5UQZt0z4DP2QODrVaT7BgNwhxodyCFJiHsPAbpciqaJK+1GqUgQirP70/4PJVVfqlE0dVDrpTy4qW+0HDWCIfN5ldvkeTJB/C2JTrR0OPP0Aix0cTukVdEe18y6ojKbbPYu39fO87tYIyg9U+8XPklXb5XVmIRvByRoTuzMkZB8aK6R59ftnwPcbiB11+YjvbkmMrwediCqvacJb2dsMv8mg7ImgI0y+KSu67F1g9qZUCEE6MwQY3mHUfiCnmMv/2TIgtit4EbsCn5+bPTUFWPi33Fz+8wo2tM7gySQQS3PFI/0Qr64+n84751veXkt42dL8JiIyHWEdWS4RgOhADoHI/RboBDltMr4D2Df+exjm/Z+mmVL2Wp/PPIUbAgTyGpJr7opXMCHMw/MJ52Dp+IoPY1GKBlv5JrI21H2xQ6K8oG1DOd3l0RSNiuftUPH0z0sl6UqYwhimTFp5h1pq86z7C1Gr8o2OoGscEDKDTf9q32rsihcLuQc
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oC/x9sYhNF7DjF4c0S+paisM9VJgyPUXYmU1WthPdNaj3mItAYNWbmCRy4FC?=
+ =?us-ascii?Q?WSw3uEfcqfvxifT8YSrqM74kt34V6CFRHeTOaUUc+ExOTsI0GEmMe062SLBs?=
+ =?us-ascii?Q?kKvomnhXhqA4qRAQ+OvLx4J9uMJhtVB3tSQ/1x2HhP0VqIZTuchUbiLTHy/8?=
+ =?us-ascii?Q?s7d+Z6ABSP0A0PY6Yl8hM1KDTV9/1zcVhuoncXSm4TOG5mie8Vromh60k7jo?=
+ =?us-ascii?Q?WrS3gPVJl3iMG6v8pLYoCiFlb+Db6cUDlwRh5rZjc2ZJDH3Yle+ekxbdW+m8?=
+ =?us-ascii?Q?BrcotvXbzoosN3B4vt9vLvBpY7zqJOdgvxXm9Kn6WZbkNSxMwRo6bdJ7Os8y?=
+ =?us-ascii?Q?p4aFnWDSwg22B80PGjf1AySDSrnKyTmd1vwdF+vkcUCqSoFNn40Dsi/x4L/E?=
+ =?us-ascii?Q?uSRQI5ggHgflKXMf/G4huju+bd5siqRuCAoVGdIp50PLn7hN3ZPVvu2QXSSk?=
+ =?us-ascii?Q?aQ9UUdoZfU2yY3YpyYapc29OBX7JU2RxTphZJeplBjXtpSJmg6lGi4flS8Vx?=
+ =?us-ascii?Q?CdSXe4xj1NbIit9vmZ5wpvJu1Dz/Brv5cJzLU8nVvg6y8yJxyT04/xO4sLDf?=
+ =?us-ascii?Q?hp010XoNhK+ub65UFWs7Ip2f4w6aEJ3qo73iZdgIn15a8F+od0L53J61TPl8?=
+ =?us-ascii?Q?guH2x76jOM6Lbz6vM9GKCLa/0Ogf2RPxAx3dfnZUfdsnUYfVAvhuL3lJOlK8?=
+ =?us-ascii?Q?5mM1ciuY3Za6/1RsO9ZwJYLFLblaWg65TEWh6O4oW6K1Kx/y9LTSe+xoAek/?=
+ =?us-ascii?Q?3eytwGdbPfPMyqORFQWQCMyjYwXxj56qOc+9YF46GebsO/RXjpEhR/0BAPWE?=
+ =?us-ascii?Q?m4m2yzatE/gH5kAenia2hv5v3rbnJeAB0Hg8TddqmHNeJ8b/Ie/rBS7VnOVv?=
+ =?us-ascii?Q?vJzjUBH86QjKWnuMmaWA4rvnsyaCaU5y87XTUvP5ZIXmA+V0TfYSinxuNHpn?=
+ =?us-ascii?Q?AA2OBitLbyzxAa97dBBH58N/WjYywxN9DJWRiYotK8V1eRQu902Q+bv1XmIH?=
+ =?us-ascii?Q?x2uQCqsNLkDJLzp3S6g7w8DLJnd36ptAHPkaHbCd1rHXZNDOpRxhsRtKp0S7?=
+ =?us-ascii?Q?v1dAa2O8+MVZe9Zfiikr8X2SiYz8bnLeHt+FazpUo77O/ZbXP0BVlSFSwD0M?=
+ =?us-ascii?Q?I1sorlDQiK/lGTcNqxfCen1FRyn5rKZkCZw2HeuxV+QLth7hVtuv51+J7Br2?=
+ =?us-ascii?Q?uXLT4QHovKnPav2lEUyHO66OpDGN1WBMcbJY6YKkZaREemkQL+CQjtfEOXBR?=
+ =?us-ascii?Q?bUPjwEFk+fLAKJqMh0Eq77hXDFPxil31Gwkmm9OYGA=3D=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: e98436bc-4737-4d79-87ab-08da9e5566f3
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2022 17:51:26.7209
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR06MB3431
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some platforms require select clock to be always running, e.g. because
-those clock supply vital devices which are not otherwise attached to
-the system and thus do not have a matching DT node and clock consumer.
+On Sat, Sep 24, 2022 at 12:07:44PM -0500, Rob Herring wrote:
+> On Tue, Sep 20, 2022 at 09:59:04AM -0500, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Add documentation for the NewVision NV3051D panel bindings.
+> > Note that for the two expected consumers of this panel binding
+> > the underlying LCD model is unknown. Name "anbernic,rg353p-panel"
+> > is used because the hardware itself is known as "anbernic,rg353p".
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  .../display/panel/newvision,nv3051d.yaml      | 55 +++++++++++++++++++
+> >  1 file changed, 55 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> > new file mode 100644
+> > index 000000000000..d90bca4171c2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+> > @@ -0,0 +1,55 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: https://nam12.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fdisplay%2Fpanel%2Fnewvision%2Cnv3051d.yaml%23&amp;data=05%7C01%7C%7C4f204345128d4cb827ca08da9e4f4d06%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C637996360672620588%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=9%2B66S0t1p9EqWBdmaLBj8pKte2fjzsmL%2FSbmmD8eNi0%3D&amp;reserved=0
+> > +$schema: https://nam12.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7C%7C4f204345128d4cb827ca08da9e4f4d06%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C637996360672620588%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=r%2BzTHlte226t9fXktNC9k4NO%2FE2RomRIxuWBuRshIw0%3D&amp;reserved=0
+> > +
+> > +title: NewVision NV3051D based LCD panel
+> > +
+> > +description: |
+> > +  The NewVision NV3051D is a driver chip used to drive DSI panels. For now,
+> > +  this driver only supports the 640x480 panels found in the Anbernic RG353
+> > +  based devices.
+> > +
+> > +maintainers:
+> > +  - Chris Morgan <macromorgan@hotmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - anbernic,rg353p-panel
+> > +          - anbernic,rg353v-panel
+> 
+> Is 'panel' redundant? IOW, could 'rg353v' identify something else other 
+> than the panel?
 
-An example is a system where the SoC serves as a crystal oscillator
-replacement for a programmable logic device. The "always-on-clocks"
-property of a clock controller allows listing clock which must never
-be turned off.
+It is not redundant, the device itself is identified as "anbernic,rg353v".
+I don't have a part number for the LCD panel itself, only the controller IC.
 
-Clock listed in the "always-on-clocks" property may have other consumers
-in DT, listing the clock in "always-on-clocks" only assures those clock
-are never turned off, and none of these optional additional consumers
-can turn the clock off either. This is achieved by adding CLK_IS_CRITICAL
-flag to these critical clock.
+Thank you.
 
-This flag has thus far been added to select clock by hard-coding it in
-various clock drivers, this patch provides generic DT interface to add
-the flag to arbitrary clock that may be critical.
-
-The implementation is modeled after "protected-clocks", except the protected
-clock property is currently driver specific. This patch attempts to provide
-a generic implementation of "always-on-clocks" instead.
-
-Unlike "assigned-clocks", the "always-on-clocks" must be parsed much earlier
-in __clk_register() to assign CLK_IS_CRITICAL flag to clk_init_data .flags
-field.
-
-The new match_clkspec() callback is used to determine whether struct clk_hw
-that is currently being registered matches the clock specifier in the DT
-"always-on-clocks" property, and if so, then the CLK_IS_CRITICAL is added to
-these newly registered clock. This callback can only be driver specific.
-
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org
-To: linux-clk@vger.kernel.org
----
-V2: - Warn in case critical-clock field cannot be parsed and skip those clock
-    - Use match_clkspec() only for non-zero clock-cells controllers
-    - Pull the critical-clock code into __clk_register_critical_clock()
-    - Update commit message
-V3: - Pick np from clk_core->of_node
-V4: - Rename DT property critical-clocks to always-on-clocks
----
- drivers/clk/clk.c            | 44 ++++++++++++++++++++++++++++++++++++
- include/linux/clk-provider.h |  3 +++
- 2 files changed, 47 insertions(+)
-
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index b70769d0db99f..6b07f1a086277 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -3900,6 +3900,48 @@ static void clk_core_free_parent_map(struct clk_core *core)
- 	kfree(core->parents);
- }
- 
-+static void
-+__clk_register_critical_clock(struct clk_core *core, struct clk_hw *hw)
-+{
-+	struct device_node *np = core->of_node;
-+	struct of_phandle_args clkspec;
-+	u32 clksize, clktotal;
-+	int ret, i, index;
-+
-+	if (!np)
-+		return;
-+
-+	if (of_property_read_u32(np, "#clock-cells", &clksize))
-+		return;
-+
-+	/* Clock node with #clock-cells = <0> uses always-on-clocks; */
-+	if (clksize == 0) {
-+		if (of_property_read_bool(np, "always-on-clocks"))
-+			core->flags |= CLK_IS_CRITICAL;
-+		return;
-+	}
-+
-+	if (!core->ops->match_clkspec)
-+		return;
-+
-+	clkspec.np = np;
-+	clktotal = of_property_count_u32_elems(np, "always-on-clocks");
-+	clktotal /= clksize;
-+	for (index = 0; index < clktotal; index++) {
-+		for (i = 0; i < clksize; i++) {
-+			ret = of_property_read_u32_index(np, "always-on-clocks",
-+							 (index * clksize) + i,
-+							 &(clkspec.args[i]));
-+			if (ret) {
-+				pr_warn("Skipping always-on-clocks index %d (ret=%d)\n",
-+					i, ret);
-+			}
-+		}
-+		if (!core->ops->match_clkspec(hw, &clkspec))
-+			core->flags |= CLK_IS_CRITICAL;
-+	}
-+}
-+
- static struct clk *
- __clk_register(struct device *dev, struct device_node *np, struct clk_hw *hw)
- {
-@@ -3944,6 +3986,8 @@ __clk_register(struct device *dev, struct device_node *np, struct clk_hw *hw)
- 	core->min_rate = 0;
- 	core->max_rate = ULONG_MAX;
- 
-+	__clk_register_critical_clock(core, hw);
-+
- 	ret = clk_core_populate_parent_map(core, init);
- 	if (ret)
- 		goto fail_parents;
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index dec1bcae43790..e02a66dc482be 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -205,6 +205,8 @@ struct clk_duty {
-  *		directory is provided as an argument.  Called with
-  *		prepare_lock held.  Returns 0 on success, -EERROR otherwise.
-  *
-+ * @match_clkspec: Check whether clk_hw matches DT clock specifier.
-+ *		Returns 0 on success, -EERROR otherwise.
-  *
-  * The clk_enable/clk_disable and clk_prepare/clk_unprepare pairs allow
-  * implementations to split any work between atomic (enable) and sleepable
-@@ -252,6 +254,7 @@ struct clk_ops {
- 	int		(*init)(struct clk_hw *hw);
- 	void		(*terminate)(struct clk_hw *hw);
- 	void		(*debug_init)(struct clk_hw *hw, struct dentry *dentry);
-+	int		(*match_clkspec)(struct clk_hw *hw, struct of_phandle_args *clkspec);
- };
- 
- /**
--- 
-2.35.1
-
+> 
+> Rob
