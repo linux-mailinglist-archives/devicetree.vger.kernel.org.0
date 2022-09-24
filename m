@@ -2,119 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E099E5E8CA6
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 14:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7058E5E8D31
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 15:50:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229567AbiIXMi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 08:38:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47164 "EHLO
+        id S230293AbiIXNun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 09:50:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbiIXMiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 08:38:24 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96A37F5087
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 05:38:23 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id w8so4097190lft.12
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 05:38:23 -0700 (PDT)
+        with ESMTP id S232556AbiIXNum (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 09:50:42 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 101052DA82
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 06:50:41 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id w8so4274590lft.12
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 06:50:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=UOPfolxOIZ12CQXsf68Fo4WzsyOri0BWmpnt6BnO0Ow=;
-        b=cX7t//F3kSLyor1gvEfsfeHBhBowAS4uSSLVqTm6qEPoB5XWUliaOcRhIRFfO8aUz7
-         DdNoalQzEU0xu5QZ2rGZenhYadJDWtwBu28UPuw65635czBeAEBihIQvXpNSw7lxv4+3
-         lIM9B8mJhd1Zp5ZG8HiAprDuGYLzm2F5EL/B1H2e+I01M2TcWI/gPp3mVD0yNRYnLxPB
-         KxyYQVvtapmR80WiG6YnO2c9nA4zmYLPUnAKGkm2ikj57KRQb75Sw2xRSscpJ5cx8qK0
-         matFHjmnUrD8SDqBraMiIwnPIH0/incZ2QuYumeK9C20HhLieXry4iNGV7YlLg0R3JbU
-         atMw==
+        bh=S3I4jehrKuVyW8pAFRx9WObz1bmyrcoxfbdPnos7PB4=;
+        b=OpKNDzPvl4S2btSqGhXdjlbyeeB3PTcImuQimHgUc35VRtgf0dYfJlUy5WCglQnRg2
+         Dt8wgdspHycefZfC0v6fT9Ih6Q5yia4S2cUZUKv+Ro38GWJFoP68B2bSuEkk+HkI/NBU
+         q2ScbmSPYsPRJd/wRlh9tyf+HP+g2vPRNy6Lmb6jZ4Dfwxo36O2JRCIJLL/lhBb7r1dq
+         xVOqq8Je2N8ojBZpTApHFXOoEVnXFzwxjGKRfDm0pqlw5mfEJfBdY9YntLasuLEJT5N3
+         /82kaXQeZvi/KAsCSPB9uo8Q9D09hF6du0dZ1kzJO/CeY30QesZhVxDjRXdCsJmDwFe/
+         mlxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=UOPfolxOIZ12CQXsf68Fo4WzsyOri0BWmpnt6BnO0Ow=;
-        b=jYqmunDOzJh7o1/JE2FWJ6T4l3HDaq0TyI3zTjy5J+o9/qQezPFkfmpOoe/3pNYH7c
-         iFpn2QkA7SbZWtMIP1Ta217NfT6dMxEsAc+uBB86yFKT/YosFnoANnryKxAtG0oTtSzq
-         WZuYjGrEVhbheP5HPLv6mffHaD6WPj2YT78NXyownsmUJFTs+crTIpr/qrJbAUTems69
-         SOMBOgF5vVGUAx5GdjnkRzsCEWgmerRdDom2a4DrUtsAFY/+x2fL4RmOM6VlnkxQhFUo
-         AJEv7muLZ8NbATNoW4Jqh7tXZ08JA2YGNUg0G36Yjp3sA2hhL50StCxciP91pZ/PXgqZ
-         6mrw==
-X-Gm-Message-State: ACrzQf0jCoqdYVZCRjw95wTWtEQqyoblxWgPiCFv48HBMthpSETzG3gn
-        EqfWQKrfDRvF/aFIxojrmQoZrA==
-X-Google-Smtp-Source: AMsMyM5l1YVddhO3ezSgzoWafIh6OyvozrYGj4Ma6FMICHHIgqvDYN6Ft2bN3dHhYEQ7lhx435RL2w==
-X-Received: by 2002:ac2:4e07:0:b0:49c:6212:c459 with SMTP id e7-20020ac24e07000000b0049c6212c459mr5466448lfr.614.1664023101989;
-        Sat, 24 Sep 2022 05:38:21 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id u6-20020a05651220c600b0049771081b10sm1890477lfr.31.2022.09.24.05.38.21
+        bh=S3I4jehrKuVyW8pAFRx9WObz1bmyrcoxfbdPnos7PB4=;
+        b=j9VH0zp9ElfvFaR2ulpj3DuwjS6oRDGRlGwxvBDizCVRqxf7+2iGdz2/HFdTd12Yj8
+         7jrNzui9if2xDKHi591sHc7eOWbPouOShd/abXUguo5Y5n3L+5fjpgJA8mW93WcB7x5J
+         LB8X5TNWLtv8WI5U1xBv/lE8bzbE108rc2V+h9FNG/TgH/jJs0QXo6x6cA+l89DIZ5H+
+         dQh7DvtQeizMw8Z69fn+4mKI0KZzR4CCwtGbG2iKXUriyxC7h/oxZsuMybv/X7beLw0c
+         2HDEq94QrTsC/V7z2TZ3+4/vUkq9LaVhzxFHNN/7dPKy+gG33a6xExBNov5Hwyzkgo72
+         66IQ==
+X-Gm-Message-State: ACrzQf1Omd2383T1XGaf9k1kyXgQILOOvz+ZXQTJByH0hIP/kP6Xng3v
+        Eu8zO1KBcn+BR+r901duBBVIBw==
+X-Google-Smtp-Source: AMsMyM43hmejQrmJwvEipK0e0DFyYplLxvA7P+SrQoWQ/GkHUl0zF84jT34vRnrYCaj4WbkKe67JIw==
+X-Received: by 2002:ac2:4f03:0:b0:49b:bc01:35d3 with SMTP id k3-20020ac24f03000000b0049bbc0135d3mr5074956lfr.467.1664027439410;
+        Sat, 24 Sep 2022 06:50:39 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id p9-20020a2eba09000000b0026c037747bfsm1796935lja.3.2022.09.24.06.50.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Sep 2022 05:38:21 -0700 (PDT)
-Message-ID: <64f7c603-173a-93a3-8878-60dd2a8974f9@linaro.org>
-Date:   Sat, 24 Sep 2022 15:38:20 +0300
+        Sat, 24 Sep 2022 06:50:38 -0700 (PDT)
+Message-ID: <3b80983d-93e9-9663-f569-7dda5b738cf1@linaro.org>
+Date:   Sat, 24 Sep 2022 15:50:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 0/9] arm: dts: qcom: rename DSI PHY nodes
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220924090108.166934-1-dmitry.baryshkov@linaro.org>
- <fd91077b-e4ff-0187-8424-0b83b96588ef@linaro.org>
- <361ad59f-288f-beae-25c7-7acd42c2db94@linaro.org>
- <5ea1e309-6ea8-f6c1-dc53-471d858ff60d@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <5ea1e309-6ea8-f6c1-dc53-471d858ff60d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ Thunderbird/102.3.0
+Subject: Re: [PATCH] dt-bindings: marvell: Update Armada 37xx platform
+ bindings
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220713200123.22612-1-pali@kernel.org>
+ <20220808202352.iimhb2q6yawi35y6@pali>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220808202352.iimhb2q6yawi35y6@pali>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/09/2022 12:29, Krzysztof Kozlowski wrote:
-> On 24/09/2022 11:20, Dmitry Baryshkov wrote:
->> On 24/09/2022 12:11, Krzysztof Kozlowski wrote:
->>> On 24/09/2022 11:00, Dmitry Baryshkov wrote:
->>>> Historically DSI PHY device tree nodes used the dsi-phy@ names. Replace
->>>> them with generic phy@ names.
->>>>
->>>> Dmitry Baryshkov (9):
->>>>     ARM: dts: qcom-apq8064: change DSI PHY node name to generic one
->>>
->>> dsi-phy is similar to other generic names (usb-phy, ethernet-phy) [1] so
->>> it could stay. Is there particular need for this, like coming from DT
->>> schema?
->>
->> No, there is no requirement from the DT schema. However:
->> 1) The resent qcom DT files already use just phy@ for most of PHY nodes
->> 2) The recommended list mentions usb-phy/ethernet-phy, but not
->> <anything>-phy, so I'd think that those two are mostly for backwards
->> compatibility.
->> 3) I liked the example of sc7280 which switched all MDSS PHYs to just
->> phy@ (this includes DSI PHY, eDP PHY and, by extension, the HDMI PHY).
+On 08/08/2022 22:23, Pali Rohár wrote:
+> PING?
 > 
-> Good explanation. If there is going to be resent/submit, please add it
-> to cover letter. :)
 
-I hope, there will be no v2. For now I have included this explanation 
-into the HDMI PHY counterpart.
+You got the ack, what are you pinging us for?
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
