@@ -2,101 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B06855E8A18
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 10:20:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C435E8A1F
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 10:22:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233484AbiIXIUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 04:20:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54414 "EHLO
+        id S233549AbiIXIWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 04:22:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233121AbiIXIUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 04:20:12 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01D524F0F
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:19:07 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id x29so2357002ljq.2
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:19:07 -0700 (PDT)
+        with ESMTP id S233842AbiIXIW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 04:22:27 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E1ACD40
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:21:22 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id l12so2316291ljg.9
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:21:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=IUE/+MWwacfn51Izxt1vXbrhqVbso0tR1cYYPVZ3iMA=;
-        b=I3Ij5QEe3r5mA60sGtqRyppkSrwLfz3i2E8+rvxRR5+WPA6GUO4CehAImiHrraJFvV
-         A0HVQ4eaw8RjLUF+v3CHMXUd7F1J/nC+/1EYh7/myyoMm1wSkKdyN9QUNnmhzNGf2EXi
-         r6jrZpaTE8tYmK89Rdh15VLh18bGKZwXHJpWZdJ2Ix7gkPJrWxV+sUYyCRs+ZfCo6FSs
-         B4qbik/a0k48wsmUqgyE6wBjJYp+GacfCXa6GTJyKCRDi7Hwz3q0LPRfPg4mBUBZ1vLO
-         LwhgNvRChC97cvexZKso2Kjb6IFBbZB03vPO4dEcXCATgWXKHljXXucWKZigzwURVNVh
-         UBMA==
+        bh=nTxsfs2zXjNjdXC7XVmLXrkQUhLVp82wU25VhknIpH4=;
+        b=ynNb8KlX2ritczYckVbPo4eOPezJri68TZc/oUPtq/rwBes51UjQhgsQ8reD0tvAqN
+         YBrPW/KWDfLkRdb7RKjKPN2aOnkWBwSeykUfe4jWkryU360jbsafuglDEjgm7QD7S4Uv
+         2Fl/Isu2VnpH/ZfUkTYhqK0dF7BDUzXNtH+GbBKwDandbMolSiy7kIlOP/pk4os4U2j6
+         GUry62CYGAFmJ+wctaXWcc4ENrV26MdDUPovPICZ7rO81yjlOKELqQ2+kGze25HhwwGn
+         pUyS6IYLUuMRs1YCWk6qwhXK+zyK6NGzZ0qXwYo5Xo+Soqdo2akkVbvqp4Uyqz0hTGYt
+         FuCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=IUE/+MWwacfn51Izxt1vXbrhqVbso0tR1cYYPVZ3iMA=;
-        b=mmUZufUwVx1/XY1H5XASPJ8auEa5frDFyWLsk8VooKEhPOmKdSbtXDWENpZulSbMjQ
-         bAO8vIlW2KNt+1UUqyfc7Ww33crDFmxMKFBmlK3ZC6lUXgvaEgnd1LMCPuHlR9hjkrhL
-         rEeuJZpCNYY0kLEzvDJbg3nOMs8PF4zQgb8RmvzuaRunfGkh75TpEx7z6Caw0kFAm9ww
-         WbJEeJVtxO/eqWwMOKt8OravM7aFovh8SGcL6WHCcwL/J7wn+4DP6vHjv5+jWkJRTQ0l
-         u8zin11U01Gbkd5loDnfVdm+mIMxd6RqP+N2NYYKNcdcTpmxXn0/ULXkh5/e/Bbm6m0i
-         A6FQ==
-X-Gm-Message-State: ACrzQf1uooaFOtiWE6rTbDNeb5DF+PoXwZNjrcJBYypyDgxdXsdRI7NF
-        XnvM3Y+SU6oLmmVe78iqgI0GuQ==
-X-Google-Smtp-Source: AMsMyM7fjGjnK2ccg3RmkldGnW8jdo95AjKCJvG6bWcH9F5P6Vic+jXEG7u2dQjfMV7osqb+0nfuiA==
-X-Received: by 2002:a2e:958f:0:b0:26c:fd2:80b4 with SMTP id w15-20020a2e958f000000b0026c0fd280b4mr3901884ljh.147.1664007546068;
-        Sat, 24 Sep 2022 01:19:06 -0700 (PDT)
+        bh=nTxsfs2zXjNjdXC7XVmLXrkQUhLVp82wU25VhknIpH4=;
+        b=rGdqlEv8GS/RKIEfkjOm5QvIPvVhMc2mckfZ5l6Wlq7lA/U+CFd/hNjS+g4gxr88CB
+         ztDE6Ssv/yan5Xg+8YBlW9PjVqlcoJ1jQdNg8QeE7Jz18vWjAm+IZPFTMmeq1DAAuPf3
+         l3QJyTflPEkTAn6yhwVRUxtnFaeQ3UZ55+8ye/aS7j4Yuw04xbiFDMghm6HhOIwmXZpe
+         MH5UiSHDXoMhl3PJbOjboE7Yp9jP3w/A6xiw3ajXFUuXLSa+KZCGyWXjyKcR6weKnejT
+         Wsxy33dzMUEh5BQ2zF7qV9Davl9CEvXLYvVP9iCJJFtRcHc5ht8sWuHIvuMOoQv0pDhO
+         ZO5w==
+X-Gm-Message-State: ACrzQf1PMNi8ZYXjuc5PiwyjzRs92QRI7W8SBjb5/W7TvYzRzguDP+zs
+        Uf1Le8GhimVFAWzTC6i2NascGA==
+X-Google-Smtp-Source: AMsMyM78g/pGqRaUod7u8K2nn2DBlqXMJ91Nw15TnPerkAemk9J8gGtMYf5UQu/I/jU++W+/Gsz0DQ==
+X-Received: by 2002:a05:651c:a04:b0:26c:50df:75ad with SMTP id k4-20020a05651c0a0400b0026c50df75admr4100970ljq.416.1664007680598;
+        Sat, 24 Sep 2022 01:21:20 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 17-20020ac24851000000b0049496855494sm1823078lfy.104.2022.09.24.01.19.05
+        by smtp.gmail.com with ESMTPSA id e3-20020a05651236c300b004976809d6a7sm1810430lfs.283.2022.09.24.01.21.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Sep 2022 01:19:05 -0700 (PDT)
-Message-ID: <19bbb34d-0b6f-862b-3fb0-3b10821fa172@linaro.org>
-Date:   Sat, 24 Sep 2022 10:19:04 +0200
+        Sat, 24 Sep 2022 01:21:20 -0700 (PDT)
+Message-ID: <dc0ef30b-0c99-7086-7b49-755f51fe9668@linaro.org>
+Date:   Sat, 24 Sep 2022 10:21:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2 0/2] SDM670 USB 2.0 support
+Subject: Re: [PATCH] bindings: Update maintainer's email address
 Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Richard Acayan <mailingradian@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+To:     Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20220922024656.178529-1-mailingradian@gmail.com>
- <Yy6tHE8VZ2v347Q9@matsya>
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1663979817-1078-1-git-send-email-quic_gurus@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yy6tHE8VZ2v347Q9@matsya>
+In-Reply-To: <1663979817-1078-1-git-send-email-quic_gurus@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/09/2022 09:09, Vinod Koul wrote:
-> On 21-09-22, 22:46, Richard Acayan wrote:
->> Changes since v1:
->>  - drop driver patch (some maintainers might be excluded from v3
->>    recipients because of this)
->>  - add entries in usb clocks and interrupts
->>
->> This adds compatible strings for USB 2.0 on the Qualcomm Snapdragon 670. I
->> have no way to test USB 3.0 because my SDM670 device doesn't have USB 3.
+On 24/09/2022 02:36, Guru Das Srinagesh wrote:
+> Update Guru Das Srinagesh's email address.
 > 
-> No driver use for this?
+> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
+>  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml         | 2 +-
 
-Driver already supports it.
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
+Here it should be "dt-bindings". Also describe who's address you are
+updating:
+dt-bindings: Update Guru Das Srinagesh's email address
+
+With the subject fixed:
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
