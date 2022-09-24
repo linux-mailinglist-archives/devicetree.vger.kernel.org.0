@@ -2,64 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 061CE5E8D67
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 16:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEB0A5E8D73
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 16:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233324AbiIXOn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 10:43:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54148 "EHLO
+        id S233466AbiIXOpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 10:45:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiIXOn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 10:43:28 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D6B831DFE;
-        Sat, 24 Sep 2022 07:43:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=dcMcUBf4OIWPF4mKgudscB8EGRxWaKVsER5BDAGbvwI=; b=Ue
-        8E1vuaop/hrG9gx4QFopdIMm5wDf4NrCLirzCCCAZwT4rpYGDlSPKd5DxlLKr9mb2AFgB5qquqbKp
-        wkubPOyAQwRLArhA9nb9dc5gM3/GPvLDvc5T513AC0j0Q9cWvUdfO5Sm32N+eeEfUTpoqjQZDsuDN
-        RxaTVPfSV7ARtdM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oc6NH-0007Rq-9U; Sat, 24 Sep 2022 16:43:23 +0200
-Date:   Sat, 24 Sep 2022 16:43:23 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH] ARM: dts: turris-omnia: Add switch port 6 node
-Message-ID: <Yy8Xi5Py55AOjld0@lunn.ch>
-References: <20220825122102.18634-1-pali@kernel.org>
- <20220924121400.dhpybxi2u2nyhtlq@pali>
+        with ESMTP id S233463AbiIXOpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 10:45:04 -0400
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192261C105
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 07:44:55 -0700 (PDT)
+Received: from [192.168.1.101] (95.49.29.188.neoplus.adsl.tpnet.pl [95.49.29.188])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id F19C01F58D;
+        Sat, 24 Sep 2022 16:44:52 +0200 (CEST)
+Message-ID: <b904f96c-ad9d-cdcc-51b5-42ebacdbb162@somainline.org>
+Date:   Sat, 24 Sep 2022 16:44:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220924121400.dhpybxi2u2nyhtlq@pali>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v2 2/2] drm/msm/dsi: Add phy configuration for QCM2290
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        Loic Poulain <loic.poulain@linaro.org>
+References: <20220924085129.161086-1-dmitry.baryshkov@linaro.org>
+ <20220924085129.161086-3-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20220924085129.161086-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 24, 2022 at 02:14:00PM +0200, Pali Rohár wrote:
-> PING?
 
-You would do better reposting, adding my Reviewed-by:.
 
-My _guess_ would be, any patch which Gregory receives which already
-has a reviewed-by: on it, will get picked up immediately.
+On 24.09.2022 10:51, Dmitry Baryshkov wrote:
+> From: Loic Poulain <loic.poulain@linaro.org>
+> 
+> The QCM2290 SoC a the 14nm (V2.0) single DSI phy. The platform is not
+> fully compatible with the standard 14nm PHY, so it requires a separate
+> compatible and config entry.
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+> [DB: changed compat to follow the agreed scheme, rebased and updated commit msg]
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-    Andrew
+Konrad
+> ---
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c      |  2 ++
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h      |  1 +
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c | 17 +++++++++++++++++
+>  3 files changed, 20 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> index 7fc0975cb869..724d5fa0788a 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> @@ -553,6 +553,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
+>  	  .data = &dsi_phy_14nm_660_cfgs },
+>  	{ .compatible = "qcom,dsi-phy-14nm-8953",
+>  	  .data = &dsi_phy_14nm_8953_cfgs },
+> +	{ .compatible = "qcom,qcm2290-dsi-phy-14nm",
+> +	  .data = &dsi_phy_14nm_2290_cfgs },
+>  #endif
+>  #ifdef CONFIG_DRM_MSM_DSI_10NM_PHY
+>  	{ .compatible = "qcom,dsi-phy-10nm",
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> index 60a99c6525b2..1096afedd616 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> @@ -50,6 +50,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_20nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_28nm_8960_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs;
+> +extern const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs;
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> index 0f8f4ca46429..9f488adea7f5 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> @@ -1081,3 +1081,20 @@ const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs = {
+>  	.io_start = { 0x1a94400, 0x1a96400 },
+>  	.num_dsi_phy = 2,
+>  };
+> +
+> +const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs = {
+> +	.has_phy_lane = true,
+> +	.regulator_data = dsi_phy_14nm_17mA_regulators,
+> +	.num_regulators = ARRAY_SIZE(dsi_phy_14nm_17mA_regulators),
+> +	.ops = {
+> +		.enable = dsi_14nm_phy_enable,
+> +		.disable = dsi_14nm_phy_disable,
+> +		.pll_init = dsi_pll_14nm_init,
+> +		.save_pll_state = dsi_14nm_pll_save_state,
+> +		.restore_pll_state = dsi_14nm_pll_restore_state,
+> +	},
+> +	.min_pll_rate = VCO_MIN_RATE,
+> +	.max_pll_rate = VCO_MAX_RATE,
+> +	.io_start = { 0x5e94400 },
+> +	.num_dsi_phy = 1,
+> +};
