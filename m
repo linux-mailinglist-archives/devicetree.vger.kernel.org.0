@@ -2,93 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65EE95E8A97
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 11:15:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04E255E8A99
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 11:15:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233478AbiIXJPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 05:15:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36644 "EHLO
+        id S229662AbiIXJPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 05:15:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233207AbiIXJPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 05:15:13 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51C2BB14C7
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:15:11 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id p5so2381270ljc.13
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:15:10 -0700 (PDT)
+        with ESMTP id S233133AbiIXJPk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 05:15:40 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE6021E04
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:15:38 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id u18so3647925lfo.8
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:15:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=VRJ0A4EZs8uFdPv/hRiUuHIPL+Nkl2CX0MiU+WNKRJw=;
-        b=BqOArJxgMWNNkE8TR3wItfvXLiodm6CGj4Q2EqhGPb+6/mvNOp61eqHuE2BhCcTCSR
-         NtCffYxed5BkQusmQ8/A/Hz0mBt8fkZMTUKC0JaLx9jYVp3Ox3Z9/USneD8QC7Avt84t
-         S6Nrtyq2BwqQkw7gyoFTme/zAWAzYSRx3i22STnCo7B7IEik6kwGcMIG1GK31XHADiw2
-         jSKLLPdLbttKtw6LidJNKm+G0gTQ8uZsWCKLg1GLlKauS1OT1EvpXDQUSU7hauo2dun+
-         sasWR07Ypn1B2dOrWp699qX4gUPq4lshvNKFagv/COVA5YarrHauRC0VFtWjyvZOWTDg
-         Y92w==
+        bh=4mnI565TuxegE5VseMU3JwVMU12fPo+/PxgNA7jWQQQ=;
+        b=fMyRTbN35ZzvmScJd/LmTt95QI7QO4AXCRJmwLoR2MnUbAo+wvuY/jefsRbDNIgeyC
+         uO6CxSs4aTXOrM2QmYPqIADkDjPCJ/Fy81FBumUHABklu6fjko4uSkMMkUcEA5Po3wFB
+         hRwsxy4KB3gvqNdqjT4zHpIz5/1vsoanjrzswvFIz6IpX4XBOAPJ1gfVq8HJ7HnRvcbH
+         mu6pTVADJqdRGc7stWW0k7CtFLMUdlkaDeuE6N5N+exhYnWJOrrtrzfS6eplWpTnAWgF
+         ieQBuXDTBy8m6tuOVsxuTnFSScI63Vslcjmj+RRx15V/ut38iTT2bWcElgw1gBzZj1HM
+         TWvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=VRJ0A4EZs8uFdPv/hRiUuHIPL+Nkl2CX0MiU+WNKRJw=;
-        b=JgJU7kMMroSFYViXYhJXvLy+oWi+1UO5y9ONaRQ1AWRfzmU+XVpmapFylQ0XBRLRg8
-         qxJV9/t8JACYw9Gz+0GSA1ZFnpTS084pIgjKCBmQ6fnKGLFTFOabNOG+DDVsmqj0k+rk
-         aUzts28egBBmc8J24WMaGFdAAF2cEq/gq7a1J2SkF0t+ghoOEOfxXFhxGbGQZe4tCQlp
-         v0WHjEnD1oYSVbUmBiFdMdlK1ZuOBnMVytzhT2qA9AHBSpN8SYCTrpyLdmifCOY0BPRy
-         o3yCSHQ4kbpuvybfKNqX7qno0TO0Pfvcu680bt5EPVSSVGAo7sTDIlQ6Hfmi1/6pyIJb
-         0wPA==
-X-Gm-Message-State: ACrzQf0Z1dyGSN+2M2gEFgIg885L2cTj0paG2+vF3zEcC/yuNFntGlD4
-        MndERVEUX/y5pLRaKauDb3vPBw==
-X-Google-Smtp-Source: AMsMyM7Amd17M88m0YCniisZJGwSkAjdVOch9mxgJuS1Mobv/8LFlAnErO1Atbz2cVBheM3xlgIM+Q==
-X-Received: by 2002:a2e:7310:0:b0:26c:657e:57d4 with SMTP id o16-20020a2e7310000000b0026c657e57d4mr4078211ljc.422.1664010909350;
-        Sat, 24 Sep 2022 02:15:09 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d3-20020ac24c83000000b0049aa20af00fsm1835234lfl.21.2022.09.24.02.15.08
+        bh=4mnI565TuxegE5VseMU3JwVMU12fPo+/PxgNA7jWQQQ=;
+        b=pos9V5STnqFx7sqps5c2bvdtR7R+fiBSuxAMR9YteCjVoWUmaIA2gYGIwXQ2OOohEF
+         Q9rxILlcPC/oWG9aClnUK7JA7QEhchoZfYS45+OscA3l9sr5PqZkEllMfSEVS5HMcmcf
+         P6qjADZbVIIint7vuHgUc39b2uABLs3MUO2k/qIKxS4+eCNWomDKC+Y4KlCcWhaBo7GD
+         9o3b9Ze8oB3Wc2nOCeN/0pN/gSz4CiQH96/v2pAECnXWpj/MnTOtKPZR36XkAnmTQ6fp
+         3LEjYe1iGfE8swTZNz0LQScis6d/qCSJWEJDZms2pRxF4/euPqJds93CWDAaIRGFcnsR
+         RnlQ==
+X-Gm-Message-State: ACrzQf18hOK4i+EiTU+a2DELjN3KIq9vcDNToUf3a7yT4LoPLFkIli+g
+        AeQ4ZnIZguFLY2JEqwBcZx1WWA==
+X-Google-Smtp-Source: AMsMyM5dfRAZ8UKZu8Bcv93uzMEtc9dO1/QxfUGmnIv5IMIYlUi7Y3m35WVUeNL/cv8CTbGBAAO2qg==
+X-Received: by 2002:a05:6512:11e9:b0:49d:7909:ff9b with SMTP id p9-20020a05651211e900b0049d7909ff9bmr4570042lfs.568.1664010936884;
+        Sat, 24 Sep 2022 02:15:36 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id w5-20020a05651234c500b0049f54c5f2a4sm1829258lfr.229.2022.09.24.02.15.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Sep 2022 02:15:08 -0700 (PDT)
-Message-ID: <6e814bf8-7033-2f5d-9124-feaa6593a129@linaro.org>
-Date:   Sat, 24 Sep 2022 11:15:08 +0200
+        Sat, 24 Sep 2022 02:15:36 -0700 (PDT)
+Message-ID: <3a14c5a3-e4f2-a89d-815b-8923d1d189c1@linaro.org>
+Date:   Sat, 24 Sep 2022 12:15:35 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH net-next v3 1/6] dt-bindings: net: tsnep: Allow
- dma-coherent
-Content-Language: en-US
-To:     Gerhard Engleder <gerhard@engleder-embedded.com>,
-        netdev@vger.kernel.org
-Cc:     davem@davemloft.net, kuba@kernel.org, edumazet@google.com,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-References: <20220923202911.119729-1-gerhard@engleder-embedded.com>
- <20220923202911.119729-2-gerhard@engleder-embedded.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220923202911.119729-2-gerhard@engleder-embedded.com>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: Add QCM2290 DSI phy
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        Loic Poulain <loic.poulain@linaro.org>
+References: <20220924085129.161086-1-dmitry.baryshkov@linaro.org>
+ <20220924085129.161086-2-dmitry.baryshkov@linaro.org>
+ <f6ed6e44-ab28-9f13-4193-517eef0edea1@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <f6ed6e44-ab28-9f13-4193-517eef0edea1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2022 22:29, Gerhard Engleder wrote:
-> Fix the following dtbs_check error if dma-coherent is used:
+On 24/09/2022 12:12, Krzysztof Kozlowski wrote:
+> On 24/09/2022 10:51, Dmitry Baryshkov wrote:
+>> From: Loic Poulain <loic.poulain@linaro.org>
+>>
+>> QCM2290 platform uses the 14nm DSI PHY driver.
+>>
+>> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+>> [DB: changed compat to follow the agreed scheme]
 > 
-> ...: 'dma-coherent' does not match any of the regexes: 'pinctrl-[0-9]+'
-> From schema: .../Documentation/devicetree/bindings/net/engleder,tsnep.yaml
+> Bjorn asked to keep consistency in other case:
+> https://lore.kernel.org/all/20220829210408.gxbv6szxfwiiwrbv@builder.lan/
 
-Skip last line - it's obvious. What instead you miss here - the
-DTS/target which has this warning. I assume that some existing DTS uses
-this property?
+Ack. Should I use qcom,dsi-phy-14nm-2290 or qcom,dsi-phy-14nm-qcm2290?
+
+Note we already have "qcom,sc7280-dsi-phy-10nm".
 
 > 
-> Signed-off-by: Gerhard Engleder <gerhard@engleder-embedded.com>
-Best regards,
-Krzysztof
+>> ---
+>>   Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+>> index bc3d0b4063c7..088a03ed5f80 100644
+>> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+>> @@ -17,6 +17,7 @@ properties:
+>>         - qcom,dsi-phy-14nm
+>>         - qcom,dsi-phy-14nm-660
+>>         - qcom,dsi-phy-14nm-8953
+>> +      - qcom,qcm2290-dsi-phy-14nm
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+With best wishes
+Dmitry
 
