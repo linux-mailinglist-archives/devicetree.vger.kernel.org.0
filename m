@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0A375E8A59
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 11:01:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29A495E8A5A
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 11:01:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233605AbiIXJBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233622AbiIXJBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sat, 24 Sep 2022 05:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51804 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233543AbiIXJBM (ORCPT
+        with ESMTP id S233549AbiIXJBM (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 05:01:12 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D2F80F66
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0376814C0
         for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:01:11 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id bu25so1737980lfb.3
+Received: by mail-lj1-x22e.google.com with SMTP id c7so2357564ljm.12
         for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:01:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=rJGvdlYaB2D+2+O3pVejykwm9NtbzMAkAe36JQ3gsDc=;
-        b=PX1MNlMQDANKhuXedAA/leSqjqsqyJLACLFVcaRgFr2ABBbS7xwYHclwczX8OrZe5X
-         FgQWAr8lwyYzpSutXUQxmyJfTpQRlWqE8IwFjiVxN2J3B1eeP5Q3IgUPmp2H4QVFKvJn
-         Q13IGyfvu6jaWyjh6UoTtpOUtCtQkEmw96Ss5ohSJpTk6Lu/Ww6lL7IaI09/6EYs+lUh
-         CzIRUTgs4ZLQhWXH453NuqSnsgn/VBTli0cYoRLzJ5Tac73u3fZJuArzhChAhOyUaPWg
-         m+So9mnAH97vkomI8mC70W3t52PLCmtQb+zh8c2cnHAh4Uc8cKzpGaPrtCR/EL7hyawI
-         BqPQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=QP8oHGThdjIPJ6Bvh0wbUBRr02al19D0DbDwHW8eD1Q=;
+        b=LtiWl78tulO0DQf22boMhab7npcGDLc1zNzvhm+Q1bZY2YDwTfmByGUtvoacbRBhux
+         2Trj5EaQ/PUB+RHtIYKUOfJxh6CXfrvWbdTOPsaKpqn0R49dk2A1SJmVab0UUaGh++bg
+         3h0TbMWHSQxQmcR+ICwnjLY6FLLLe8J/qqrivd96x05/HIuRsxE7SvSRALvmgRc5l/4p
+         GQcNYQPLXkptEqFo9qelVlW/BSLNGaLbPRdx2idVGYXQuI9O9LCjmppMIwlIKfcuvhlb
+         PaETTdHxKUlCI1XSoE/s6e58eV/1OGydwtI2wZAZoWu1nzvV/09Ido6eYcOHj9OCqmJr
+         TjYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=rJGvdlYaB2D+2+O3pVejykwm9NtbzMAkAe36JQ3gsDc=;
-        b=6vhY8OqwuEBZxHgXcTiflYyyPTc///9avM9+KvyGSPnob2/AG+IqWzTiKi0ExPa7WX
-         6kAl9jamJhkxfFeAyNLrx8imro3N6pWMOdoog3t1wgVfOnmMktiOp/U2o73VwJ9SLGv/
-         OLr9+ETQVD7/WHoLD5x1cyQDjidZv5fQc8LDHY71TJVZztX3AlmScCSAsXecFLw1wtVR
-         n3PCLY0L0N9UMNz5/yDmgfYIypbVrxrT+eBBR6qqXOJiCSKG9FiW5xwcgWGM+I0YBuRh
-         pRGxYdW7q2hg520BTt/K9wF2kgayE4dQipWVtL8+xewmqT1yvY7+xuejw/i9JhQH1tqk
-         NATA==
-X-Gm-Message-State: ACrzQf0ni+k64L7wgPFm1YaSVbvSuylYhkIVSZO5P7wtc88E4XfSFgGe
-        GTeL93kIZB0p9CD6dpnz+Z60Nw==
-X-Google-Smtp-Source: AMsMyM6gsMUMwgKSsW9VF8rj0QX9mADjeZM3Zznl0SzcOKlH3Y5sJ4Q5sRc6f8ZYsPhB4zpGzNGocg==
-X-Received: by 2002:a05:6512:1153:b0:49d:1d20:ea47 with SMTP id m19-20020a056512115300b0049d1d20ea47mr4560994lfg.342.1664010069508;
-        Sat, 24 Sep 2022 02:01:09 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=QP8oHGThdjIPJ6Bvh0wbUBRr02al19D0DbDwHW8eD1Q=;
+        b=T1mX9VngMqE63a6BHx6ukfkPbPIe1gUZ3988WCmV0SFMLTF35lkhQ9Hipl+fCKeoBH
+         EXkYerg/S4XQAIzUa4JIn5QL0sniCM4MgYHj8TIVMIhxWn/nF8Zi0zapn+RUx2KglUn2
+         gMLuSD5OvNR0lJ4ob7K/Z6mV7EmdHLNw1CA9CkeCa+RB/+1WpCTqobV+aWJ51TR37mt6
+         I1eKjy0ERnWtGkylSiuet+wXb5038H/rGvoa2xHk3mqNs4UCTlTmVkLH7XGrKohC5cGE
+         8YIaTasmshre+jdiB35VhkZXGN3pBWzqmTq0csJnV2txrFq2AIDBo4slN02YgJExDuxX
+         OsrQ==
+X-Gm-Message-State: ACrzQf26H9uWEDmmITywOXhsLdvLVXhP1LBmFaP5q3+CIiSunARyuTIF
+        WnN0ZxvIX0d508Jtd/pdCdAcyA==
+X-Google-Smtp-Source: AMsMyM7rhEhnNp3jHlIaDTHQIMDh0oXWzm6sxtj0R7KWmfAFkk+tBThQyFwkdqryE9tZKqyU3agaxQ==
+X-Received: by 2002:a2e:bc28:0:b0:26b:d979:fc72 with SMTP id b40-20020a2ebc28000000b0026bd979fc72mr4450263ljf.292.1664010070260;
+        Sat, 24 Sep 2022 02:01:10 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id o4-20020a198c04000000b0049f54a976efsm1830024lfd.29.2022.09.24.02.01.08
+        by smtp.gmail.com with ESMTPSA id o4-20020a198c04000000b0049f54a976efsm1830024lfd.29.2022.09.24.02.01.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Sat, 24 Sep 2022 02:01:09 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -60,48 +61,57 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-Subject: [PATCH 0/9] arm: dts: qcom: rename DSI PHY nodes
-Date:   Sat, 24 Sep 2022 12:00:59 +0300
-Message-Id: <20220924090108.166934-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 1/9] ARM: dts: qcom-apq8064: change DSI PHY node name to generic one
+Date:   Sat, 24 Sep 2022 12:01:00 +0300
+Message-Id: <20220924090108.166934-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220924090108.166934-1-dmitry.baryshkov@linaro.org>
+References: <20220924090108.166934-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Historically DSI PHY device tree nodes used the dsi-phy@ names. Replace
-them with generic phy@ names.
+Change DSI PHY node names from custom 'dsi-phy' to the generic 'phy'.
 
-Dmitry Baryshkov (9):
-  ARM: dts: qcom-apq8064: change DSI PHY node name to generic one
-  ARM: dts: qcom-msm8974: change DSI PHY node name to generic one
-  arm64: dts: qcom: msm8916: change DSI PHY node name to generic one
-  arm64: dts: qcom: msm8996: change DSI PHY node name to generic one
-  arm64: dts: qcom: sc7180: change DSI PHY node name to generic one
-  arm64: dts: qcom: sdm630: change DSI PHY node name to generic one
-  arm64: dts: qcom: sdm660: change DSI PHY node name to generic one
-  arm64: dts: qcom: sdm845: change DSI PHY node name to generic one
-  arm64: dts: qcom: sm8250: change DSI PHY node name to generic one
-
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
  arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts | 2 +-
  arch/arm/boot/dts/qcom-apq8064.dtsi                | 2 +-
- arch/arm/boot/dts/qcom-msm8974.dtsi                | 2 +-
- arch/arm64/boot/dts/qcom/msm8916.dtsi              | 2 +-
- arch/arm64/boot/dts/qcom/msm8996.dtsi              | 4 ++--
- arch/arm64/boot/dts/qcom/sc7180.dtsi               | 2 +-
- arch/arm64/boot/dts/qcom/sdm630.dtsi               | 2 +-
- arch/arm64/boot/dts/qcom/sdm660.dtsi               | 2 +-
- arch/arm64/boot/dts/qcom/sdm845.dtsi               | 4 ++--
- arch/arm64/boot/dts/qcom/sm8250.dtsi               | 4 ++--
- 10 files changed, 13 insertions(+), 13 deletions(-)
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
+index fee278e32cb6..2c5ee2e98fe2 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
+@@ -252,7 +252,7 @@ dsi0_out: endpoint {
+ 			};
+ 		};
+ 
+-		dsi-phy@4700200 {
++		phy@4700200 {
+ 			status = "okay";
+ 			vddio-supply = <&pm8921_lvs7>;/*VDD_PLL2_1 to 7*/
+ 		};
+diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+index ada4c828bf2f..1b704c7ea890 100644
+--- a/arch/arm/boot/dts/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+@@ -1303,7 +1303,7 @@ dsi0_out: endpoint {
+ 		};
+ 
+ 
+-		dsi0_phy: dsi-phy@4700200 {
++		dsi0_phy: phy@4700200 {
+ 			compatible = "qcom,dsi-phy-28nm-8960";
+ 			#clock-cells = <1>;
+ 			#phy-cells = <0>;
 -- 
 2.35.1
 
