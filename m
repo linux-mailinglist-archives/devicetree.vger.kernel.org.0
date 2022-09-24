@@ -2,116 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAB905E86CA
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 02:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C3785E88D4
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 08:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231844AbiIXAhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Sep 2022 20:37:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44794 "EHLO
+        id S233444AbiIXGpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 02:45:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231701AbiIXAhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Sep 2022 20:37:16 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF75F3126;
-        Fri, 23 Sep 2022 17:37:14 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28NNNQWc009738;
-        Sat, 24 Sep 2022 00:37:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=dTyaY1rjGMwDiJdQPQAA5lbzlz5wBfBZoikRMNyQRyc=;
- b=WmL9Tbp9zSppk5P0MyYmi3cQqeD25nxZ/eVL35hlUMwXG7LxFIxV71T6BtwGhMCTFFYZ
- VvUmGmHpqAdLouJTEIRwOeoA6KoS5V7WZqSmTnwFXBJ4g1+5LWverNI8gDlwMqCKhJnv
- ojPl0aQeLWuAekd365l2jqlfRNtZ8fIKkcXAWqs9uF8l6uqOPrJKjCdQhdNbHJSBDxmu
- uneXknNmEAkOdM9rP3jR0WvEKfWrUlwJwC8VR68VlA79z1raTC61DvXCYwSiCPH3W+E3
- 2wDSIPhQAxH6yexjRAqs+grU767ua/ePXdQMHwgoIiLeiDOcvGoHor9BQ1zLUha4TJsh jQ== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3js67nketh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 24 Sep 2022 00:37:04 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28O0b3Wp019484
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 24 Sep 2022 00:37:03 GMT
-Received: from hu-gurus-sd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Fri, 23 Sep 2022 17:37:03 -0700
-From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Lee Jones <lee@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>
-Subject: [PATCH] bindings: Update maintainer's email address
-Date:   Fri, 23 Sep 2022 17:36:57 -0700
-Message-ID: <1663979817-1078-1-git-send-email-quic_gurus@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        with ESMTP id S233336AbiIXGom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 02:44:42 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9ED317E13
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 23:44:39 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id g130so2284433oia.13
+        for <devicetree@vger.kernel.org>; Fri, 23 Sep 2022 23:44:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=RCkEsVbeznfy3hGllYd4J9hMBx6L/Y7BiAwihKpP1pk=;
+        b=OUgcN9vb3eut5Guh4bfVyMwNyJ6f8mIzLeChl1dsz/iQWRw/SXnluaVQbuc8jBI6cj
+         uh13zPYuJE+w4tDMjaXolg7JTSGxl28rgglvKfKdcgwmimhPw2bC/9La5JBxYKFUfVyP
+         rqU4i6S7stsB5NUV7ffvBl0bzo2HBFioqEoFpdOTlc0Q8Mpgd7F3kAcxMIPlCF4/1dLj
+         cdrK/0CqeAQgPdLH/U0ubIEZB95qXnjrxnS4GavcYGk9Dyss4u9LAJKqLbjcxish13Qr
+         uy6CnMfZMm5chgwuAq0fAFig0p64EjCc3gLuBgLszCCPfGVCGTXvN5Wty5+pANXzHsIe
+         y/5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=RCkEsVbeznfy3hGllYd4J9hMBx6L/Y7BiAwihKpP1pk=;
+        b=721LZbSi3OdPhX4alSG0CeGPvn4yv9ANee58LF/fNeEP+34FkRBiyD7MmSJa+J87Sp
+         T/ySdSv0+5pq51kXYPKwixy1Yi2XjdzO7K7UglmQpPLZdCqw3riRj0vJdqC6Mzw9tcqi
+         R/Vrn0x9K7ps+yKQCwlLiUai8YTm/KlAOA7RvtyU+Zy5OSdcep60wwECWP1UPOqvQlOX
+         RfdZ7kWNxUgzIPs56X5HL/Jr85iOHlheeMp9LzPHM4yo4smqOP17sYslwo76BiyAFP0H
+         saGm/ibJzz4sP4Ij3lknM2uMGhNpaTdxXpP1fHVG8fSqLmvQYPkpQRzrueipT4EEgG4u
+         GG5g==
+X-Gm-Message-State: ACrzQf1gEzyriJ79igWNGyI+jXYdOi0kp9P34/drSvFDqFQqUNAFzyAZ
+        f1wUGE+TYCBjShT8i456VQMxRXl/IZPgaknv508D0oo1cOaCMQ==
+X-Google-Smtp-Source: AMsMyM6SohY0/noulPxN0RnC/n0u7h1UZCCdXoeObMuI4vV7W6pt1PB8Hci5zbZr4EPtbkjIlxU1/pVk1EyZFC+3So0=
+X-Received: by 2002:a05:6808:2012:b0:34f:c816:cdf5 with SMTP id
+ q18-20020a056808201200b0034fc816cdf5mr10546397oiw.45.1664001879213; Fri, 23
+ Sep 2022 23:44:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Uwn_ozhGbLW6Xf7XKm32DFj30eO09btj
-X-Proofpoint-GUID: Uwn_ozhGbLW6Xf7XKm32DFj30eO09btj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-23_10,2022-09-22_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 bulkscore=0
- suspectscore=0 mlxscore=0 mlxlogscore=598 adultscore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209240002
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220922211026.34462-1-mig@semihalf.com>
+In-Reply-To: <20220922211026.34462-1-mig@semihalf.com>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Sat, 24 Sep 2022 08:44:28 +0200
+Message-ID: <CAPv3WKeX0xNPS-+C8iMc8WU66735JuR0PiMkc9JeDdb0sR9ckg@mail.gmail.com>
+Subject: Re: [net-next PATCH] dt-bindings: net: marvell,pp2: convert to json-schema
+To:     =?UTF-8?Q?Micha=C5=82_Grzelak?= <mig@semihalf.com>
+Cc:     devicetree@vger.kernel.org, linux@armlinux.org.uk,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, upstream@semihalf.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update Guru Das Srinagesh's email address.
+Hi,
 
-Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
----
- Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
- Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml         | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Thank you for the patch.
 
-diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-index 6a9c96f..480e4fb 100644
---- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-+++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Technologies, Inc. PM8941 USB ID Extcon device
- 
- maintainers:
--  - Guru Das Srinagesh <gurus@codeaurora.org>
-+  - Guru Das Srinagesh <quic_gurus@quicinc.com>
- 
- description: |
-   Some Qualcomm PMICs have a "misc" module that can be used to detect when
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-index ec3138c..1f3ac59 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Technologies, Inc. PM8008 PMIC bindings
- 
- maintainers:
--  - Guru Das Srinagesh <gurus@codeaurora.org>
-+  - Guru Das Srinagesh <quic_gurus@quicinc.com>
- 
- description: |
-   Qualcomm Technologies, Inc. PM8008 is a dedicated camera PMIC that integrates
--- 
-2.7.4
 
+> +
+> +properties:
+> +
+> +  dma-coherent: true
+> +
+> +  compatible:
+> +    enum:
+> +      - marvell,armada-375-pp2
+> +      - marvell,armada-7k-pp2
+
+I double checked with armada-cp11x.dtsi and the driver. Please
+s/marvell,armada-7k-pp2/marvell,armada-7k-pp22/ in all occurrences.
+
+
+> +
+> +  reg:
+> +    minItems: 3
+> +    maxItems: 4
+> +
+> +examples:
+> +  - |
+> +    // For Armada 375 variant
+> +    #include <dt-bindings/interrupt-controller/mvebu-icu.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    ethernet@f0000 {
+> +      interrupt-controller;
+> +      #interrupt-cells = <3>;
+
+interrupt-controller and #interrupt-cells are not valid properties for
+this controller.
+
+> +      compatible = "marvell,armada-375-pp2";
+> +      reg = <0xf0000 0xa000>,
+> +            <0xc0000 0x3060>,
+> +            <0xc4000 0x100>,
+> +            <0xc5000 0x100>;
+> +      clocks = <&gateclk 3>, <&gateclk 19>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      clock-names = "pp_clk", "gop_clk";
+> +
+> +      eth0: eth0@c4000 {
+> +        reg = <0xc4000>;
+> +        interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+> +        port-id = <0>;
+> +        phy = <&phy0>;
+> +        phy-mode = "gmii";
+> +      };
+> +
+> +      eth1: eth1@c5000 {
+> +        reg = <0xc5000>;
+> +        interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> +        port-id = <1>;
+> +        phy = <&phy3>;
+> +        phy-mode = "gmii";
+> +      };
+> +    };
+> +
+> +  - |
+> +    // For Armada 7k/8k and Cn913x variants
+> +    #include <dt-bindings/interrupt-controller/mvebu-icu.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    cpm_ethernet: ethernet@0 {
+> +      interrupt-controller;
+> +      #interrupt-cells = <3>;
+
+interrupt-controller and #interrupt-cells are not valid properties for
+this controller.
+
+Best regards,
+Marcin
