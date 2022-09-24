@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A5BA5E8A4D
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 10:51:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0A375E8A59
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 11:01:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233617AbiIXIvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 04:51:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42604 "EHLO
+        id S233605AbiIXJBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 05:01:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233607AbiIXIve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 04:51:34 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D36BF313D
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:51:33 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id s6so3604981lfo.7
-        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 01:51:33 -0700 (PDT)
+        with ESMTP id S233543AbiIXJBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 05:01:12 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D2F80F66
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:01:11 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id bu25so1737980lfb.3
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 02:01:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=y804vYXnT9ULeC1CnYfjzy6Yc9O3b/jntIG9n83g1pg=;
-        b=hbOexKNwYVFPWR36i6dlMhDCJMHsaKUiL7kKWpFft9Mzvp61ZQPgK/5ZdRkLGRMywg
-         /U4GzquELJ6zOcLQbgFE6p8mtyJ61uciZ1NTcMFPbVC+Q5tQTeAs8HjQEtSlcAJgP9pz
-         gatsKBuzGx5hsN2Melhy01pSj4rfgdc4DAK8uyD5cSs5yaztTyCL556Umd2E8JYRnuL5
-         zDy4L/fBWtMcGK0d5KgRFXMqqhtbYEcCnsubziokHxQcbb7UEzFoLmqfG3A/+bQ5ixg0
-         bNEk8iSe04PfpwoYCOLai9O65AWwG/VUlL4Fpp9XY3aqC7IsBLokJTd6dCT+P5J5UYT/
-         jtew==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=rJGvdlYaB2D+2+O3pVejykwm9NtbzMAkAe36JQ3gsDc=;
+        b=PX1MNlMQDANKhuXedAA/leSqjqsqyJLACLFVcaRgFr2ABBbS7xwYHclwczX8OrZe5X
+         FgQWAr8lwyYzpSutXUQxmyJfTpQRlWqE8IwFjiVxN2J3B1eeP5Q3IgUPmp2H4QVFKvJn
+         Q13IGyfvu6jaWyjh6UoTtpOUtCtQkEmw96Ss5ohSJpTk6Lu/Ww6lL7IaI09/6EYs+lUh
+         CzIRUTgs4ZLQhWXH453NuqSnsgn/VBTli0cYoRLzJ5Tac73u3fZJuArzhChAhOyUaPWg
+         m+So9mnAH97vkomI8mC70W3t52PLCmtQb+zh8c2cnHAh4Uc8cKzpGaPrtCR/EL7hyawI
+         BqPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=y804vYXnT9ULeC1CnYfjzy6Yc9O3b/jntIG9n83g1pg=;
-        b=YJK6dlLM44xxtSYYq7niaLuZliTvmCiNRR1B9yN0of/toTkargZ67r8R12NOHA8hYB
-         wK5oNccDPdcJ0UC4t8RfaBhLlMzexyySKvmz3LZ5zaqZ6rMSr7N+WRM3BTBrnGnyLlWp
-         q3azvrByyyADHH00CIV9/q/ygtdmGWjkeWELFA9KwZ1/Bay/ctsOdpcQ7XgbR6LBvqU1
-         4EOnJ2a95ZV5/0eoAgDov5ZKAXZhKtCDy7aBWzPdQg/55eM9DNmIax1qwCEysZ51/z8G
-         /hJlmcii64UTY6Z/JeYRl4ALdbY0XzM5lpmKNJegHBUjrTXrn5kzEmts0+XMrXwAWapF
-         gvzw==
-X-Gm-Message-State: ACrzQf3LtJXjMNsdyiP5ZO8qiDLQ9GQ5H2Gbzeru2LPFf5wqP3U7CUcS
-        77G3hCHS3HAtIQBr2u6xk7QciQ==
-X-Google-Smtp-Source: AMsMyM6BIua/fMcQPIY9giKkgW9iHC/0YUTXF5zODgP30U6tAWOHB58Xo2k4IMbBn/hkKEDauYPcJw==
-X-Received: by 2002:ac2:53a1:0:b0:49f:6086:4868 with SMTP id j1-20020ac253a1000000b0049f60864868mr4940246lfh.518.1664009491826;
-        Sat, 24 Sep 2022 01:51:31 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=rJGvdlYaB2D+2+O3pVejykwm9NtbzMAkAe36JQ3gsDc=;
+        b=6vhY8OqwuEBZxHgXcTiflYyyPTc///9avM9+KvyGSPnob2/AG+IqWzTiKi0ExPa7WX
+         6kAl9jamJhkxfFeAyNLrx8imro3N6pWMOdoog3t1wgVfOnmMktiOp/U2o73VwJ9SLGv/
+         OLr9+ETQVD7/WHoLD5x1cyQDjidZv5fQc8LDHY71TJVZztX3AlmScCSAsXecFLw1wtVR
+         n3PCLY0L0N9UMNz5/yDmgfYIypbVrxrT+eBBR6qqXOJiCSKG9FiW5xwcgWGM+I0YBuRh
+         pRGxYdW7q2hg520BTt/K9wF2kgayE4dQipWVtL8+xewmqT1yvY7+xuejw/i9JhQH1tqk
+         NATA==
+X-Gm-Message-State: ACrzQf0ni+k64L7wgPFm1YaSVbvSuylYhkIVSZO5P7wtc88E4XfSFgGe
+        GTeL93kIZB0p9CD6dpnz+Z60Nw==
+X-Google-Smtp-Source: AMsMyM6gsMUMwgKSsW9VF8rj0QX9mADjeZM3Zznl0SzcOKlH3Y5sJ4Q5sRc6f8ZYsPhB4zpGzNGocg==
+X-Received: by 2002:a05:6512:1153:b0:49d:1d20:ea47 with SMTP id m19-20020a056512115300b0049d1d20ea47mr4560994lfg.342.1664010069508;
+        Sat, 24 Sep 2022 02:01:09 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 129-20020a2e0987000000b0026acfbbcb7esm1717607ljj.12.2022.09.24.01.51.31
+        by smtp.gmail.com with ESMTPSA id o4-20020a198c04000000b0049f54a976efsm1830024lfd.29.2022.09.24.02.01.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Sep 2022 01:51:31 -0700 (PDT)
+        Sat, 24 Sep 2022 02:01:09 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,14 +59,11 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Loic Poulain <loic.poulain@linaro.org>
-Subject: [PATCH v2 2/2] drm/msm/dsi: Add phy configuration for QCM2290
-Date:   Sat, 24 Sep 2022 11:51:29 +0300
-Message-Id: <20220924085129.161086-3-dmitry.baryshkov@linaro.org>
+        freedreno@lists.freedesktop.org
+Subject: [PATCH 0/9] arm: dts: qcom: rename DSI PHY nodes
+Date:   Sat, 24 Sep 2022 12:00:59 +0300
+Message-Id: <20220924090108.166934-1-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220924085129.161086-1-dmitry.baryshkov@linaro.org>
-References: <20220924085129.161086-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,71 +76,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Loic Poulain <loic.poulain@linaro.org>
+Historically DSI PHY device tree nodes used the dsi-phy@ names. Replace
+them with generic phy@ names.
 
-The QCM2290 SoC a the 14nm (V2.0) single DSI phy. The platform is not
-fully compatible with the standard 14nm PHY, so it requires a separate
-compatible and config entry.
+Dmitry Baryshkov (9):
+  ARM: dts: qcom-apq8064: change DSI PHY node name to generic one
+  ARM: dts: qcom-msm8974: change DSI PHY node name to generic one
+  arm64: dts: qcom: msm8916: change DSI PHY node name to generic one
+  arm64: dts: qcom: msm8996: change DSI PHY node name to generic one
+  arm64: dts: qcom: sc7180: change DSI PHY node name to generic one
+  arm64: dts: qcom: sdm630: change DSI PHY node name to generic one
+  arm64: dts: qcom: sdm660: change DSI PHY node name to generic one
+  arm64: dts: qcom: sdm845: change DSI PHY node name to generic one
+  arm64: dts: qcom: sm8250: change DSI PHY node name to generic one
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-[DB: changed compat to follow the agreed scheme, rebased and updated commit msg]
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.c      |  2 ++
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.h      |  1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c | 17 +++++++++++++++++
- 3 files changed, 20 insertions(+)
+ arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts | 2 +-
+ arch/arm/boot/dts/qcom-apq8064.dtsi                | 2 +-
+ arch/arm/boot/dts/qcom-msm8974.dtsi                | 2 +-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi              | 2 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi              | 4 ++--
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               | 2 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi               | 2 +-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi               | 2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               | 4 ++--
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 4 ++--
+ 10 files changed, 13 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-index 7fc0975cb869..724d5fa0788a 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-@@ -553,6 +553,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
- 	  .data = &dsi_phy_14nm_660_cfgs },
- 	{ .compatible = "qcom,dsi-phy-14nm-8953",
- 	  .data = &dsi_phy_14nm_8953_cfgs },
-+	{ .compatible = "qcom,qcm2290-dsi-phy-14nm",
-+	  .data = &dsi_phy_14nm_2290_cfgs },
- #endif
- #ifdef CONFIG_DRM_MSM_DSI_10NM_PHY
- 	{ .compatible = "qcom,dsi-phy-10nm",
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-index 60a99c6525b2..1096afedd616 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-@@ -50,6 +50,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_20nm_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_28nm_8960_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_14nm_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs;
-+extern const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs;
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-index 0f8f4ca46429..9f488adea7f5 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-@@ -1081,3 +1081,20 @@ const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs = {
- 	.io_start = { 0x1a94400, 0x1a96400 },
- 	.num_dsi_phy = 2,
- };
-+
-+const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs = {
-+	.has_phy_lane = true,
-+	.regulator_data = dsi_phy_14nm_17mA_regulators,
-+	.num_regulators = ARRAY_SIZE(dsi_phy_14nm_17mA_regulators),
-+	.ops = {
-+		.enable = dsi_14nm_phy_enable,
-+		.disable = dsi_14nm_phy_disable,
-+		.pll_init = dsi_pll_14nm_init,
-+		.save_pll_state = dsi_14nm_pll_save_state,
-+		.restore_pll_state = dsi_14nm_pll_restore_state,
-+	},
-+	.min_pll_rate = VCO_MIN_RATE,
-+	.max_pll_rate = VCO_MAX_RATE,
-+	.io_start = { 0x5e94400 },
-+	.num_dsi_phy = 1,
-+};
 -- 
 2.35.1
 
