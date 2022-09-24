@@ -2,58 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 206895E8C1D
-	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 14:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAE115E8C33
+	for <lists+devicetree@lfdr.de>; Sat, 24 Sep 2022 14:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230050AbiIXMOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Sep 2022 08:14:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44782 "EHLO
+        id S233825AbiIXMTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Sep 2022 08:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229897AbiIXMOG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 08:14:06 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D85E171C;
-        Sat, 24 Sep 2022 05:14:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E35E3B80D1B;
-        Sat, 24 Sep 2022 12:14:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84222C433C1;
-        Sat, 24 Sep 2022 12:14:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664021642;
-        bh=6LjcZLlfXDajYf+UxU5rviBR8j+wzEQGyunyc6QKoJ8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BrLRVunGElBOmBjPOJi/u8HwrCVMk3XLMhps9+hUd2oivlgXczbi1FAftsfRKYLR6
-         yc6IeQ+baKSEwTYTzgHoXYzdv7qatwOGGfI4DdwgKpZRgnnh3MhEsJ2hLhAz6sSSVk
-         PIyhY2yi/HYweVQXxTgf+NAEY9PVdAj8HPjklA7q62WpwdQkVVWaC4Yhse9dekO/7a
-         7Kvk+QH1V3FA3QqIG6cUZ1n6tCDixZnpp2c3e8mc/OeSDyXPhUkVPb/3JEq7Tk5EpT
-         Ky7NFFPLl+SCnx0fOfKjrV7zwB6QuFU5QO73JPESGfZcoPgTbkaDkpDjQKqJ84EjGG
-         wFw1JxBhL/dQA==
-Received: by pali.im (Postfix)
-        id 24E058A2; Sat, 24 Sep 2022 14:14:00 +0200 (CEST)
-Date:   Sat, 24 Sep 2022 14:14:00 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S231669AbiIXMTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Sep 2022 08:19:04 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29629CBAE1
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 05:19:03 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id j24so2744838lja.4
+        for <devicetree@vger.kernel.org>; Sat, 24 Sep 2022 05:19:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=MaDjvuC0T1gDpBZdhun71775TT8KE1KBiE1Ke5bcei0=;
+        b=puESy4K8V67FVny/TjrFn4LNCygurVqlx7Z88YOG3DcajlZ1Lszxvj7Uu6WFZGat75
+         gOugVJLQ3NBooviB0K6QVmabT7FiLHXvfoG+9h62FqhGY9GxRJsGDeBwn2mZ7x6sDxi1
+         MyOw7HdrZkWoRWVAOsM6EGDv+Xck5CrYtY3WByrl3PQ8M3ZSKd12f/ok+m1KT+WyAMHi
+         ObuFmIuwNIC8zDWN4LVCICN9omcE4Q0crG0AKI8ISX8qzPEwDaA8QI4Rojq3+XUNEMRJ
+         qcvmcP22Y+Tp/BrEsZ8GZ8MLmH2JqPy8O6kHjRBpjev0x61/l+ZmZ7HCvuvjFZVL4YfC
+         wlaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=MaDjvuC0T1gDpBZdhun71775TT8KE1KBiE1Ke5bcei0=;
+        b=yQR5E3qdFAzppv0MX2vrAlbhplGiN7b/mNT5X5qWQWiKf50F0jXlQHF24bXjVvMyPY
+         559eooLHxNvH6tkkDR9/66DojB6A2+eUVl8gckjzs3F/HOTS5J8TFQHUJHAoH7vwmwEH
+         5RX8e0juAcJJGVl4/TupGUX7V/mEfu2ubU4tTBt6fQGGFb3h5/ycEARqJNorqh26agH0
+         iHicTDvAf35+Yow/TCre54QVp57uOfrb7hRRBs+9nN8Bv0Ctax65vPt2GfeTuR+w+W6P
+         9dyn3d8pyTdh4ntIGvtGyM/KFzD+jkkgIjAKfnEbLGeJ2NKtIvpdJbfXgAmxryoDiytl
+         GOAg==
+X-Gm-Message-State: ACrzQf1nqgK2l5N/UVhmQcFUwWPowAhNsBivmr3EvrXGA1LC5d+WgbiA
+        qrISGfDcZcPmfEoJlo1y/4Lp3g==
+X-Google-Smtp-Source: AMsMyM5kIedc2vSNfpdV2AwJCTNLYPUIAuFCAPKvrxjxi1VJPZakDOpQOr8MJzT2q6U8UAD3So+Q+Q==
+X-Received: by 2002:a05:651c:198a:b0:26c:27a:c504 with SMTP id bx10-20020a05651c198a00b0026c027ac504mr4475685ljb.443.1664021941429;
+        Sat, 24 Sep 2022 05:19:01 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id v12-20020a19740c000000b00497a2815d8dsm1870113lfe.195.2022.09.24.05.19.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Sep 2022 05:19:00 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Subject: Re: [PATCH] ARM: dts: turris-omnia: Add switch port 6 node
-Message-ID: <20220924121400.dhpybxi2u2nyhtlq@pali>
-References: <20220825122102.18634-1-pali@kernel.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: [PATCH v3 0/2] drm/msm/dsi: Add support for DSI PHY on QCM2290
+Date:   Sat, 24 Sep 2022 15:18:58 +0300
+Message-Id: <20220924121900.222711-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220825122102.18634-1-pali@kernel.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,40 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PING?
+The QCM2290 platform uses 14nm DSI PHY. As the configuration is not
+fully compatible with the main qcom,dsi-phy-14nm, a separate compatible
+is added.
 
-On Thursday 25 August 2022 14:21:02 Pali Rohár wrote:
-> Switch port 6 is connected to eth0, so add appropriate device tree node for it.
-> 
-> Fixes: 26ca8b52d6e1 ("ARM: dts: add support for Turris Omnia")
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-> ---
->  arch/arm/boot/dts/armada-385-turris-omnia.dts | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> index f655e9229d68..8215ffb6a795 100644
-> --- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> +++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> @@ -463,7 +463,17 @@
->  				};
->  			};
->  
-> -			/* port 6 is connected to eth0 */
-> +			ports@6 {
-> +				reg = <6>;
-> +				label = "cpu";
-> +				ethernet = <&eth0>;
-> +				phy-mode = "rgmii-id";
-> +
-> +				fixed-link {
-> +					speed = <1000>;
-> +					full-duplex;
-> +				};
-> +			};
->  		};
->  	};
->  };
-> -- 
-> 2.20.1
-> 
+Changes since v2:
+ - Changed compatible back to qcom,dsi-phy-14nm-2290
+
+Changes since v1:
+ - Rebased on top of msm-next, fixed DSI PHY config to follow upstream
+   changes.
+ - Changed compatible to follow agreed scheme
+   ('qcom,qcm2290-dsi-phy-14nm').
+ - Updated commit messages.
+
+Loic Poulain (2):
+  dt-bindings: display/msm: Add QCM2290 DSI phy
+  drm/msm/dsi: Add phy configuration for QCM2290
+
+ .../bindings/display/msm/dsi-phy-14nm.yaml      |  1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c           |  2 ++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h           |  1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c      | 17 +++++++++++++++++
+ 4 files changed, 21 insertions(+)
+
+-- 
+2.35.1
+
