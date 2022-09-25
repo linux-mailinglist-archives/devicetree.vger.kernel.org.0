@@ -2,60 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB1FD5E946D
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 18:41:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E820F5E948E
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 19:01:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbiIYQlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 12:41:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33620 "EHLO
+        id S229592AbiIYRA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 13:00:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230439AbiIYQlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 12:41:24 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE491F2DA
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 09:41:22 -0700 (PDT)
-Received: from stefanw-SCHENKER ([37.4.248.18]) by mrelayeu.kundenserver.de
- (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MVubb-1omli62CHd-00RtY7; Sun, 25 Sep 2022 18:40:47 +0200
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Maxime Ripard <maxime@cerno.tech>
-Cc:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Alexander Dahl <ada@thorsis.com>
-Subject: [PATCH 2/2] ARM: dts: bcm283x: Move ACT LED into separate dtsi
-Date:   Sun, 25 Sep 2022 18:40:21 +0200
-Message-Id: <20220925164021.3600-3-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220925164021.3600-1-stefan.wahren@i2se.com>
-References: <20220925164021.3600-1-stefan.wahren@i2se.com>
+        with ESMTP id S229824AbiIYRA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 13:00:59 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83DF62B1A9;
+        Sun, 25 Sep 2022 10:00:57 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id v4so4608321pgi.10;
+        Sun, 25 Sep 2022 10:00:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date;
+        bh=mQCpHD3b/oNCevN1QdhnwOd9ghkLwiR4HAI/Op4UuAA=;
+        b=bf8hrf7c6j8YQs+sOdKjxNXSefn9xJG6UauB5PFVUdvSCMOO06soFxo6uSM5d7CdTu
+         Lq8zhjPSjKXyQq/x4t+UHwoeEZJP3A2o2wAP+1EwbE8PLnmcJ4/Uq0SHXE4kJN1LgZlh
+         KyusDiO+XksJkRFbDE1UtOHZ3THL9uS9I5h3pVP1TQzDoQ3oWYOV8uWe2wQ4DLhzO6xM
+         BTngVtZnw+6VKOH3hVXK/w5hifpw43RzmpqAiWxK5qJo07ryAthcV5UNgb9BTdV4L32l
+         gVB4YacWjbp3ZFKmy6/NDzbWf+7wMrwl+EfXYp2z5+DdT23dnJdvEhkiWRvN5Mimgnz3
+         AFpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=mQCpHD3b/oNCevN1QdhnwOd9ghkLwiR4HAI/Op4UuAA=;
+        b=cTYhVYlGh6lTFF8qKyfj+4IyL269BJozQsMLIt/UJD6UbdaQkc0w1Hqow2I/RS9JUm
+         mOVNaWLs+HA4JRhPiISsmXQiVOLoUeeYtpJTuvAczW+Pdh+QCHbVfWp1cPvZ+AVELz2w
+         ao6Tl8b5I25yhdHro6j+Ic9wZDDhNaZBhvNVEAdT2BnHf1vOAaZMp8I/QUUZZKTkO5ds
+         B5H4K1RA0qxVHCokyTmH29O6mbF6ua4aSfuoIp2ojwy8ALIbuFlScdXWX+LcCqIXLn9J
+         P+FqtG28eW+VbVxihDewwIt009JneQ2BhUZhZs4OgLP0RCLVx6PgM4CV8FHelso0b8eH
+         SX9g==
+X-Gm-Message-State: ACrzQf0mL/hssyz11uYMZJS6YjbREgAtoARd2qSjDv1vgGhR0XPeT6W3
+        n085Gf5c+YQxVp0kQtGN0mxnnp5u3Zrjjw==
+X-Google-Smtp-Source: AMsMyM6jgUS4ubKgESzfz+N9IM1J19XaOtd5m/aHe9WxopcH66fZ8/ZlVBJuzJsUTY/l33Io5pHCoQ==
+X-Received: by 2002:a63:86c8:0:b0:43b:63ae:dc8a with SMTP id x191-20020a6386c8000000b0043b63aedc8amr16647335pgd.578.1664125256819;
+        Sun, 25 Sep 2022 10:00:56 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id e2-20020a631e02000000b0042b5b036da4sm8998400pge.68.2022.09.25.10.00.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Sep 2022 10:00:55 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Sun, 25 Sep 2022 10:00:53 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+Subject: Re: [PATCH v4 2/6] watchdog: npcm: Enable clock if provided
+Message-ID: <20220925170053.GA1761191@roeck-us.net>
+References: <20220610072141.347795-1-j.neuschaefer@gmx.net>
+ <20220610072141.347795-3-j.neuschaefer@gmx.net>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:aY9Ve6DIepxdHCufY97TWHyP7UqPG3wQHmpjuA7HtBuUNMzeUh8
- 9pFfb+tUIcVdCrR3LB9a/fV8p98T3htdteEqx3QrV+UPIqh4ez5RgqRq9DHu4kYrvQ83EW+
- +Dz1FNPCGKqX2L8c6/ZSeZaXv+Ca8qQwwhsiU7uuTEXkeg7EgVtoMquZqX9oDrYZqb79Y4K
- 6TCs4EpMwuu2tYYcyPFmA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:W/e7eWElzPE=:JiqCJb41+XSSix3nJ0eIQv
- Ed5v8sWaYyobxcbk5QuQrkSRBjQfQTW4Nwz5KupCstIleFquPLWbrNGRNe+USQgBeeqK7dvE8
- JjOyb/k1bBaohySAs7clD5o8JQ6HPtCgZ28PZzDK/xxkfFb861Aq4PkPlK9O1EcSxtFjOjtjY
- JYwiqvftO+5nl36mr+mchz5q0QQFTIJf+2im7af0qtamUOjdwJy4e1W5TTlo7sHfcvWNYMd8D
- T0nW9ngObLjNN6alXbW0ygXRIieIIqyy0ois9sXXLwiXXrDDqecBKwY4mpJJPuKy/zdw8DGjQ
- SQD2ZQ9v6mUvsr79x0/yaj4JKtsWO4cE+3r88KNSieuiN5Ks1tvPXhtpWqYsnvO2zfT/j8ePr
- tEwA/1kFCeoS5zvJujdHU3Yt1n5IxbMH4jufH0gLvaLd4tYPaIQv5YAgH/zTsMEJyMcgkNif/
- r7vStQBPr0DImsW/V7Fucm4t5a2UbubpgMLaKaTC/e65tTTcjqF3LQs7LJTj4uoPHpst3gOC3
- 3Dkl8zzzKdTtn+XbFT9dYuFEY31WsOfpgnOmBcKctwSKGEbuEXujwHlrniw9siqYosVcYVfxK
- 8g6WicC56ISzkQRj8qBJjisXcHa9qRmgKC4R9w38raHkq1W6l3m53naDOoDaZx5Q9y9Ms7Uqr
- UfgsxOCtFa6svJjc5mXFTLMVvIeSE4qhT/oxg46d3+WoBu5MMEF571jT2ANhoFCME5JoG9Myd
- u6WVZkP6f7i09y+UM+S6TCmPtKoYEydet1dbloXzMvBTRK9y9GvMWj6IJy0ETgPQ+YHmN4Mmc
- v7y3SaDyDRv8xBSX7b04Yj74pce+g==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <20220610072141.347795-3-j.neuschaefer@gmx.net>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,783 +90,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The usage of the label property for gpio-leds has been deprecated
-a long time ago. In bcm2835-rpi.dtsi the ACT LED uses such a label
-and derive it to almost every Raspberry Pi board. Since we cannot break
-userspace interface this property must be kept. But we can move the
-ACT LED into a separate dtsi and include them from the board files.
+On Fri, Jun 10, 2022 at 09:21:37AM +0200, Jonathan Neuschäfer wrote:
+> On the Nuvoton WPCM450 SoC, with its upcoming clock driver, peripheral
+> clocks are individually gated and ungated. Therefore, the watchdog
+> driver must be able to ungate the watchdog clock.
+> 
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
 
-This change have two benefits:
-- with both new refs it's now clear the LED part is included from a dtsi
-- new boards do not include the deprecated stuff automatically
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Reported-by: Alexander Dahl <ada@thorsis.com>
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
- arch/arm/boot/dts/bcm2711-rpi-4-b.dts         | 27 ++++++++++---------
- arch/arm/boot/dts/bcm2711-rpi-400.dts         | 16 +++++------
- arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts      | 27 ++++++++++---------
- arch/arm/boot/dts/bcm2835-rpi-a-plus.dts      | 27 ++++++++++---------
- arch/arm/boot/dts/bcm2835-rpi-a.dts           | 11 ++++----
- arch/arm/boot/dts/bcm2835-rpi-b-plus.dts      | 27 ++++++++++---------
- arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts      | 11 ++++----
- arch/arm/boot/dts/bcm2835-rpi-b.dts           | 11 ++++----
- arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi        | 11 ++++----
- arch/arm/boot/dts/bcm2835-rpi-zero-w.dts      | 11 ++++----
- arch/arm/boot/dts/bcm2835-rpi-zero.dts        | 11 ++++----
- arch/arm/boot/dts/bcm2835-rpi.dtsi            | 10 -------
- arch/arm/boot/dts/bcm2836-rpi-2-b.dts         | 27 ++++++++++---------
- arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts    | 27 ++++++++++---------
- arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts    | 27 ++++++++++---------
- arch/arm/boot/dts/bcm2837-rpi-3-b.dts         | 11 ++++----
- arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi        |  8 ------
- arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts    | 11 ++++----
- .../boot/dts/bcm283x-rpi-led-deprecated.dtsi  | 18 +++++++++++++
- 19 files changed, 164 insertions(+), 165 deletions(-)
- create mode 100644 arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi
-
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-index aaad9b7ec630..d5f8823230db 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include "bcm2711.dtsi"
- #include "bcm2711-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-usb-peripheral.dtsi"
- #include "bcm283x-rpi-wifi-bt.dtsi"
- 
-@@ -14,19 +15,6 @@ chosen {
- 		stdout-path = "serial1:115200n8";
- 	};
- 
--	leds {
--		led-act {
--			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-pwr {
--			label = "PWR";
--			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
--			default-state = "keep";
--			linux,default-trigger = "default-on";
--		};
--	};
--
- 	sd_io_1v8_reg: regulator-sd-io-1v8 {
- 		compatible = "regulator-gpio";
- 		regulator-name = "vdd-sd-io";
-@@ -156,6 +144,19 @@ &hdmi1 {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&leds {
-+	led_pwr: led-pwr {
-+		label = "PWR";
-+		gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
-+		default-state = "keep";
-+		linux,default-trigger = "default-on";
-+	};
-+};
-+
- &pixelvalve0 {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-400.dts b/arch/arm/boot/dts/bcm2711-rpi-400.dts
-index c53d9eb0b802..1ab8184302db 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-400.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-400.dts
-@@ -11,14 +11,6 @@ chosen {
- 		stdout-path = "serial1:115200n8";
- 	};
- 
--	leds {
--		/delete-node/ led-act;
--
--		led-pwr {
--			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
--		};
--	};
--
- 	gpio-poweroff {
- 		compatible = "gpio-poweroff";
- 		gpios = <&expgpio 5 GPIO_ACTIVE_HIGH>;
-@@ -40,6 +32,14 @@ &genet_mdio {
- 	clock-frequency = <1950000>;
- };
- 
-+&led_pwr {
-+	gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&leds {
-+	/delete-node/ led_act;
-+};
-+
- &pm {
- 	/delete-property/ system-power-controller;
- };
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts b/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
-index 19600b629be5..d7ba02f586d3 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
-@@ -1,23 +1,11 @@
- // SPDX-License-Identifier: GPL-2.0
- /dts-v1/;
- #include "bcm2711-rpi-cm4.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- 
- / {
- 	model = "Raspberry Pi Compute Module 4 IO Board";
--
--	leds {
--		led-act {
--			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-pwr {
--			label = "PWR";
--			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
--			default-state = "keep";
--			linux,default-trigger = "default-on";
--		};
--	};
- };
- 
- &ddc0 {
-@@ -113,6 +101,19 @@ &genet {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&leds {
-+	led-pwr {
-+		label = "PWR";
-+		gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
-+		default-state = "keep";
-+		linux,default-trigger = "default-on";
-+	};
-+};
-+
- &pixelvalve0 {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts b/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts
-index 9b9a18bbb20a..50ba70d50313 100644
---- a/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts
-+++ b/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include "bcm2835.dtsi"
- #include "bcm2835-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- 
- / {
-@@ -12,19 +13,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x10000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-pwr {
--			label = "PWR";
--			gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
--			default-state = "keep";
--			linux,default-trigger = "default-on";
--		};
--	};
- };
- 
- &gpio {
-@@ -107,6 +95,19 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&leds {
-+	led-pwr {
-+		label = "PWR";
-+		gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
-+		default-state = "keep";
-+		linux,default-trigger = "default-on";
-+	};
-+};
-+
- &pwm {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-a.dts b/arch/arm/boot/dts/bcm2835-rpi-a.dts
-index f664e4fced93..2236fc547372 100644
---- a/arch/arm/boot/dts/bcm2835-rpi-a.dts
-+++ b/arch/arm/boot/dts/bcm2835-rpi-a.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include "bcm2835.dtsi"
- #include "bcm2835-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- 
- / {
-@@ -12,12 +13,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x10000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
--		};
--	};
- };
- 
- &gpio {
-@@ -102,6 +97,10 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
-+};
-+
- &pwm {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts b/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts
-index 248feb2ed23d..0fb2c9472a39 100644
---- a/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts
-+++ b/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include "bcm2835.dtsi"
- #include "bcm2835-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-smsc9514.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- 
-@@ -13,19 +14,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x20000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-pwr {
--			label = "PWR";
--			gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
--			default-state = "keep";
--			linux,default-trigger = "default-on";
--		};
--	};
- };
- 
- &gpio {
-@@ -109,6 +97,19 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&leds {
-+	led-pwr {
-+		label = "PWR";
-+		gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
-+		default-state = "keep";
-+		linux,default-trigger = "default-on";
-+	};
-+};
-+
- &pwm {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts b/arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts
-index f5b66d3f4ff3..7315e731891a 100644
---- a/arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts
-+++ b/arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include "bcm2835.dtsi"
- #include "bcm2835-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-smsc9512.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- 
-@@ -13,12 +14,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x10000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
--		};
--	};
- };
- 
- &gpio {
-@@ -102,6 +97,10 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
-+};
-+
- &pwm {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-b.dts b/arch/arm/boot/dts/bcm2835-rpi-b.dts
-index f589bede2b11..bf13290af2c9 100644
---- a/arch/arm/boot/dts/bcm2835-rpi-b.dts
-+++ b/arch/arm/boot/dts/bcm2835-rpi-b.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include "bcm2835.dtsi"
- #include "bcm2835-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-smsc9512.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- 
-@@ -13,12 +14,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x10000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
--		};
--	};
- };
- 
- &gpio {
-@@ -96,6 +91,10 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
-+};
-+
- &pwm {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi b/arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi
-index e4e6b6abbfc1..277c99a2f594 100644
---- a/arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi
-+++ b/arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi
-@@ -2,14 +2,9 @@
- /dts-v1/;
- #include "bcm2835.dtsi"
- #include "bcm2835-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- 
- / {
--	leds {
--		led-act {
--			gpios = <&gpio 47 GPIO_ACTIVE_LOW>;
--		};
--	};
--
- 	memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x20000000>;
-@@ -32,6 +27,10 @@ reg_1v8: fixed-regulator {
- 	};
- };
- 
-+&led_act {
-+	gpios = <&gpio 47 GPIO_ACTIVE_LOW>;
-+};
-+
- &sdhost {
- 	non-removable;
- 	vmmc-supply = <&reg_3v3>;
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts b/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts
-index 596bb1ef994e..12ab981a7bad 100644
---- a/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts
-+++ b/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- #include "bcm2835.dtsi"
- #include "bcm2835-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-usb-otg.dtsi"
- #include "bcm283x-rpi-wifi-bt.dtsi"
- 
-@@ -22,12 +23,6 @@ chosen {
- 		/* 8250 auxiliary UART instead of pl011 */
- 		stdout-path = "serial1:115200n8";
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 47 GPIO_ACTIVE_LOW>;
--		};
--	};
- };
- 
- &bt {
-@@ -110,6 +105,10 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 47 GPIO_ACTIVE_LOW>;
-+};
-+
- &sdhci {
- 	pinctrl-0 = <&emmc_gpio34 &gpclk2_gpio43>;
- };
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-zero.dts b/arch/arm/boot/dts/bcm2835-rpi-zero.dts
-index a65c2bca69ea..b0901cab4376 100644
---- a/arch/arm/boot/dts/bcm2835-rpi-zero.dts
-+++ b/arch/arm/boot/dts/bcm2835-rpi-zero.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- #include "bcm2835.dtsi"
- #include "bcm2835-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-usb-otg.dtsi"
- 
- / {
-@@ -16,12 +17,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x20000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
--		};
--	};
- };
- 
- &gpio {
-@@ -104,6 +99,10 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
-+};
-+
- &sdhost {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sdhost_gpio48>;
-diff --git a/arch/arm/boot/dts/bcm2835-rpi.dtsi b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-index 87ddcad76083..ee9ee9d1fe65 100644
---- a/arch/arm/boot/dts/bcm2835-rpi.dtsi
-+++ b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-@@ -1,16 +1,6 @@
- #include <dt-bindings/power/raspberrypi-power.h>
- 
- / {
--	leds {
--		compatible = "gpio-leds";
--
--		led-act {
--			label = "ACT";
--			default-state = "keep";
--			linux,default-trigger = "heartbeat";
--		};
--	};
--
- 	soc {
- 		firmware: firmware {
- 			compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
-diff --git a/arch/arm/boot/dts/bcm2836-rpi-2-b.dts b/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
-index 3635502b1e0a..6068ec390081 100644
---- a/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
-+++ b/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include "bcm2836.dtsi"
- #include "bcm2836-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-smsc9514.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- 
-@@ -13,19 +14,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x40000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-pwr {
--			label = "PWR";
--			gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
--			default-state = "keep";
--			linux,default-trigger = "default-on";
--		};
--	};
- };
- 
- &gpio {
-@@ -109,6 +97,19 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&leds {
-+	led-pwr {
-+		label = "PWR";
-+		gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
-+		default-state = "keep";
-+		linux,default-trigger = "default-on";
-+	};
-+};
-+
- &pwm {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
-diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts b/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts
-index f7222a28903e..3548306dfbcb 100644
---- a/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts
-+++ b/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include "bcm2837.dtsi"
- #include "bcm2836-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- #include "bcm283x-rpi-wifi-bt.dtsi"
- 
-@@ -18,19 +19,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x20000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 29 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-pwr {
--			label = "PWR";
--			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
--			default-state = "keep";
--			linux,default-trigger = "default-on";
--		};
--	};
- };
- 
- &firmware {
-@@ -124,6 +112,19 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 29 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&leds {
-+	led-pwr {
-+		label = "PWR";
-+		gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
-+		default-state = "keep";
-+		linux,default-trigger = "default-on";
-+	};
-+};
-+
- &pwm {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio41>;
-diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
-index ec721d323ac5..2f1800cbc522 100644
---- a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
-+++ b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
-@@ -3,6 +3,7 @@
- #include "bcm2837.dtsi"
- #include "bcm2836-rpi.dtsi"
- #include "bcm283x-rpi-lan7515.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- #include "bcm283x-rpi-wifi-bt.dtsi"
- 
-@@ -19,19 +20,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x40000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 29 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-pwr {
--			label = "PWR";
--			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
--			default-state = "keep";
--			linux,default-trigger = "default-on";
--		};
--	};
- };
- 
- &bt {
-@@ -130,6 +118,19 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 29 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&leds {
-+	led-pwr {
-+		label = "PWR";
-+		gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
-+		default-state = "keep";
-+		linux,default-trigger = "default-on";
-+	};
-+};
-+
- &pwm {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio41>;
-diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-b.dts b/arch/arm/boot/dts/bcm2837-rpi-3-b.dts
-index fb6a417d73e7..61270340075c 100644
---- a/arch/arm/boot/dts/bcm2837-rpi-3-b.dts
-+++ b/arch/arm/boot/dts/bcm2837-rpi-3-b.dts
-@@ -2,6 +2,7 @@
- /dts-v1/;
- #include "bcm2837.dtsi"
- #include "bcm2836-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-smsc9514.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
- #include "bcm283x-rpi-wifi-bt.dtsi"
-@@ -19,12 +20,6 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0 0x40000000>;
- 	};
--
--	leds {
--		led-act {
--			gpios = <&expgpio 2 GPIO_ACTIVE_HIGH>;
--		};
--	};
- };
- 
- &bt {
-@@ -129,6 +124,10 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&expgpio 2 GPIO_ACTIVE_HIGH>;
-+};
-+
- /* uart0 communicates with the BT module */
- &uart0 {
- 	pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi b/arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi
-index f57b4ca145dd..1e4e4946b6b6 100644
---- a/arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi
-+++ b/arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi
-@@ -9,14 +9,6 @@ memory@0 {
- 		reg = <0 0x40000000>;
- 	};
- 
--	leds {
--		/*
--		 * Since there is no upstream GPIO driver yet,
--		 * remove the incomplete node.
--		 */
--		/delete-node/ led-act;
--	};
--
- 	reg_3v3: fixed-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "3V3";
-diff --git a/arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts b/arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts
-index 4a768562985e..b9cc4594398b 100644
---- a/arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts
-+++ b/arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- #include "bcm2837.dtsi"
- #include "bcm2836-rpi.dtsi"
-+#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-usb-otg.dtsi"
- #include "bcm283x-rpi-wifi-bt.dtsi"
- 
-@@ -22,12 +23,6 @@ chosen {
- 		/* 8250 auxiliary UART instead of pl011 */
- 		stdout-path = "serial1:115200n8";
- 	};
--
--	leds {
--		led-act {
--			gpios = <&gpio 29 GPIO_ACTIVE_LOW>;
--		};
--	};
- };
- 
- &bt {
-@@ -109,6 +104,10 @@ &hdmi {
- 	status = "okay";
- };
- 
-+&led_act {
-+	gpios = <&gpio 29 GPIO_ACTIVE_LOW>;
-+};
-+
- &sdhci {
- 	pinctrl-0 = <&emmc_gpio34 &gpclk2_gpio43>;
- };
-diff --git a/arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi b/arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi
-new file mode 100644
-index 000000000000..880e43daac29
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/ {
-+	/*
-+	 * This file provides the now deprecated ACT LED to the
-+	 * Raspberry Pi boards. Please don't include this file
-+	 * for new boards!
-+	 */
-+	leds: leds {
-+		compatible = "gpio-leds";
-+
-+		led_act: led-act {
-+			label = "ACT";
-+			default-state = "keep";
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+};
--- 
-2.34.1
-
+> ---
+> 
+> v4:
+> - Don't disable clock in npcm_wdt_restart function
+> 
+> v3:
+> - https://lore.kernel.org/lkml/20220508194333.2170161-4-j.neuschaefer@gmx.net/
+> - Add enable/disable calls to npcm_wdt_restart handler
+> - Not applied due to the above change:  Acked-by: Guenter Roeck <linux@roeck-us.net>
+> 
+> v2:
+> - https://lore.kernel.org/lkml/20220429172030.398011-4-j.neuschaefer@gmx.net/
+> - Add clk_disable_unprepare call, suggested by Guenter Roeck
+> 
+> v1:
+> - https://lore.kernel.org/lkml/20220422183012.444674-4-j.neuschaefer@gmx.net/
+> ---
+>  drivers/watchdog/npcm_wdt.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> --
+> 2.35.1
+> 
+> diff --git a/drivers/watchdog/npcm_wdt.c b/drivers/watchdog/npcm_wdt.c
+> index 28a24caa2627c..a5dd1c2301374 100644
+> --- a/drivers/watchdog/npcm_wdt.c
+> +++ b/drivers/watchdog/npcm_wdt.c
+> @@ -3,6 +3,7 @@
+>  // Copyright (c) 2018 IBM Corp.
+> 
+>  #include <linux/bitops.h>
+> +#include <linux/clk.h>
+>  #include <linux/delay.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+> @@ -43,6 +44,7 @@
+>  struct npcm_wdt {
+>  	struct watchdog_device  wdd;
+>  	void __iomem		*reg;
+> +	struct clk		*clk;
+>  };
+> 
+>  static inline struct npcm_wdt *to_npcm_wdt(struct watchdog_device *wdd)
+> @@ -66,6 +68,9 @@ static int npcm_wdt_start(struct watchdog_device *wdd)
+>  	struct npcm_wdt *wdt = to_npcm_wdt(wdd);
+>  	u32 val;
+> 
+> +	if (wdt->clk)
+> +		clk_prepare_enable(wdt->clk);
+> +
+>  	if (wdd->timeout < 2)
+>  		val = 0x800;
+>  	else if (wdd->timeout < 3)
+> @@ -100,6 +105,9 @@ static int npcm_wdt_stop(struct watchdog_device *wdd)
+> 
+>  	writel(0, wdt->reg);
+> 
+> +	if (wdt->clk)
+> +		clk_disable_unprepare(wdt->clk);
+> +
+>  	return 0;
+>  }
+> 
+> @@ -147,6 +155,10 @@ static int npcm_wdt_restart(struct watchdog_device *wdd,
+>  {
+>  	struct npcm_wdt *wdt = to_npcm_wdt(wdd);
+> 
+> +	/* For reset, we start the WDT clock and leave it running. */
+> +	if (wdt->clk)
+> +		clk_prepare_enable(wdt->clk);
+> +
+>  	writel(NPCM_WTR | NPCM_WTRE | NPCM_WTE, wdt->reg);
+>  	udelay(1000);
+> 
+> @@ -191,6 +203,10 @@ static int npcm_wdt_probe(struct platform_device *pdev)
+>  	if (IS_ERR(wdt->reg))
+>  		return PTR_ERR(wdt->reg);
+> 
+> +	wdt->clk = devm_clk_get_optional(&pdev->dev, NULL);
+> +	if (IS_ERR(wdt->clk))
+> +		return PTR_ERR(wdt->clk);
+> +
+>  	irq = platform_get_irq(pdev, 0);
+>  	if (irq < 0)
+>  		return irq;
