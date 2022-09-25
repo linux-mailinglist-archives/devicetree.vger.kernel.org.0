@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E7745E93F8
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 17:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4FD45E93FE
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 17:36:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231389AbiIYPaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 11:30:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57140 "EHLO
+        id S232178AbiIYPgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 11:36:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbiIYPaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 11:30:08 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB35113EB0;
-        Sun, 25 Sep 2022 08:30:06 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id a10so5076021ljq.0;
-        Sun, 25 Sep 2022 08:30:06 -0700 (PDT)
+        with ESMTP id S231360AbiIYPgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 11:36:32 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE312B276;
+        Sun, 25 Sep 2022 08:36:31 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id d82so4463854pfd.10;
+        Sun, 25 Sep 2022 08:36:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=Pr4hdtR9ZMxFsotthP0GIPIDk3AwgpXePU9FjOtd4jM=;
-        b=NwbVc70pVdhpbbli3K0HiIBsCFJRRgvep4vrXRWBGawWjY9iIZm1wO0PD9S03RLNLE
-         hRD+Gm6UBiK+nh+B0fzuoJ253P7gFHyO0ciRtnjolaMeGXnZuV7xlIgbHTtb3a1SLyzO
-         oeSBcqcm8s3oLczejF7tKVDqxbF/tUt8+7k0NXCfEXc6Coz46VEa6an6Sc9IDB6mXEPa
-         7y9Lcm4/32US250n9h2CxpQwmXqac4xmY78sXS87AUtJ8ovrZvIFqYPqqiVM92DcXFf5
-         CGyRPUGpohyljQ3T42i36DixmOIoIUZ0gjD0aBNgyX44QBVIgeDDK9sF6UOSZKzY1YvD
-         XqZQ==
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
+        bh=Ry/ssh0vW8vuh7cvMGNAMpbJvtcRZH44TkCdLm7fbVE=;
+        b=dtFhKROgMI2edtiudR/oHv+J8M0vywZfu9jDgGoCiooXmUe0DX7MnkJjyHDO++K7ph
+         lLngI10RexF/WnfPWEosuafGlRGWmSbJ3c37xYKyPnGq44WGUNtJaolPyQ1hOxsW4sgJ
+         X/e+XREtPD5fq+6YsxPl8LIWfcGslBqym0Tf1kyJ3aRV7BmRxmQERK/etacQwpBXMUwN
+         dSEMDrwbkzUAFRD2S+KRbCnrX0bQ4EwbGfiigLldMw1GhbWTSVHhUMeUE/aQVTfMG1fe
+         I/dDRaa5Ktkx10hOG4LL9mTugBLDuz6iQJsB1u+wr1kzDH85EuSKf+zJS4W5GD42MmoA
+         lfKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Pr4hdtR9ZMxFsotthP0GIPIDk3AwgpXePU9FjOtd4jM=;
-        b=QWayc+FTw859D8iJrdZv2Vy2z3m4quAwdJvHkp7gLf/IxEzLZIDNDeCMkkg3lOmh+J
-         WXWXMPk8q9kL5LhZMtMCSMhmZdEkstpG/9gweV7gkTnA6CoAud25cGrvZjSOYbaiupxd
-         n+sFWSDdqXDSEy2xKel24anzeh5SPHGzoF+zLW8E1xxu4B5w+VYSnpfSxT5Hg+C0Y3cA
-         5J5oI99iNE6rloVy/lQVv8aDh/1PPIP66uR3OxsVDH4VvzZRtUx1eTaH1NsjXEXheu7m
-         ZYseA4f7lGaaWl63qCw0zAUZuhDWTQoY2bXNvllq6QYqK7yDA1uBQJ+b4w3OkSBvMEhQ
-         n38Q==
-X-Gm-Message-State: ACrzQf0oTl5YuGC5kIGiTu3Fs5N0W5fq2bh05Afry6eWc3Txor6XNUPu
-        xsTnwAjUKLSRycgYeI4+YqvctfMuW6U=
-X-Google-Smtp-Source: AMsMyM7plqoO5FQaZpTYc7Bq6EPlvM0QTDT9gTrfhDUkT5/JaJsq3hNrsGEHC8yyWY5ebuGGCiEeYg==
-X-Received: by 2002:a05:651c:482:b0:26b:e964:3f00 with SMTP id s2-20020a05651c048200b0026be9643f00mr5858740ljc.464.1664119805003;
-        Sun, 25 Sep 2022 08:30:05 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id m5-20020a056512358500b00499a6ef78a7sm2250391lfr.66.2022.09.25.08.30.03
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=Ry/ssh0vW8vuh7cvMGNAMpbJvtcRZH44TkCdLm7fbVE=;
+        b=rbP5f8F/anEqaD3cPrLqCX3hMRbdPV3hacamOqNp5m8pBoZwcm5HdpvRI6oJ2xKNKm
+         XfFcBGrwJHzjONB6l9wCFiPGN01MDsLlZTmN2WodOA2omKy1ogWixeHxbNHyNng1QNW+
+         pzU1Ro3aZ+aI2avoEHNJj0tdVa3UrEZH8QQC6OHW+D2Nbk29U5GCaMaRVnPch9MlxqWT
+         0PrejMNXM1hQ737zQkU3nBCxvcFT/9DfSmMak5B+9W1dbhZpTxF0BwPc2Iq4XpPCkRi5
+         53m8YL/s7xdIX0nlu0EHh7Ll5aBwacBqXgtXOeVMv0GJ1p1VUzs5jqWfTvfxb/3frM3d
+         HJrg==
+X-Gm-Message-State: ACrzQf0QodtrAcA+QkTOt0IrWUmjGw1Wd0s/N2UNZ0O+IIiz3l0q+Sjy
+        Iw9wRTYhELVlsRQaZMi6l94=
+X-Google-Smtp-Source: AMsMyM4V/fI2F3gnXbTtKKwx5U4LqgUI+DXOMJXT68QfhXO0cZKZyQD9QOX8wRT6v6J+ZB31zwl7tQ==
+X-Received: by 2002:a63:4e47:0:b0:43a:9d5:d1ef with SMTP id o7-20020a634e47000000b0043a09d5d1efmr16203110pgl.400.1664120190630;
+        Sun, 25 Sep 2022 08:36:30 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id h23-20020a631217000000b0043be67b6304sm8810857pgl.0.2022.09.25.08.36.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Sep 2022 08:30:04 -0700 (PDT)
-Date:   Sun, 25 Sep 2022 18:30:02 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v3 1/2] gpio: Add gpio latch driver
-Message-ID: <20220925153002.makz5eijmwzrgqqs@mobilestation>
-References: <20220914071306.3254881-1-s.hauer@pengutronix.de>
- <20220914071306.3254881-2-s.hauer@pengutronix.de>
- <20220914140310.5ffrnsy63piegdyr@mobilestation>
- <20220922133105.GN986@pengutronix.de>
+        Sun, 25 Sep 2022 08:36:29 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Sun, 25 Sep 2022 08:36:28 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Sergiu Moga <sergiu.moga@microchip.com>
+Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        eugen.hristev@microchip.com, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] watchdog: dt-bindings: atmel,at91sam9-wdt: convert to
+ json-schema
+Message-ID: <20220925153628.GA1758026@roeck-us.net>
+References: <20220714125122.144377-1-sergiu.moga@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220922133105.GN986@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <20220714125122.144377-1-sergiu.moga@microchip.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,72 +78,213 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To += @Rob, @Linus
-
-On Thu, Sep 22, 2022 at 03:31:05PM +0200, Sascha Hauer wrote:
-> On Wed, Sep 14, 2022 at 05:03:10PM +0300, Serge Semin wrote:
-> > > +				    unsigned int offset, bool val)
-> > > +{
-> > > +	int latch = offset / priv->n_latched_gpios;
-> > > +	int i;
-> > > +
-> > > +	assign_bit(offset, priv->shadow, val);
-> > > +
-> > 
-> > > +	for (i = 0; i < priv->n_latched_gpios; i++)
-> > > +		set(priv->latched_gpios->desc[i],
-> > > +		    test_bit(latch * priv->n_latched_gpios + i, priv->shadow));
-> > 
-> > -> duration?
-> > 
-> > > +
-> > > +	set(priv->clk_gpios->desc[latch], 1);
-> > 
-> > -> duration?
-> > 
-> > > +	set(priv->clk_gpios->desc[latch], 0);
-> > 
-> > I am pretty much sure there must be some duration between the actions
-> > above *. See for instance the tw and (tsu + th) timing requirements in
-> > the next edge-triggered flip-flops:
-> > https://www.ti.com/lit/ds/symlink/sn74lv74a.pdf?ts=1663163389954&ref_url=https%253A%252F%252Fwww.google.com%252F
-> > 
-> > The durations are normally small (ns or a bit smaller) but still need
-> > to be added anyway.
-> > 
-> > Note since the durations are device-specific an additional DT-property array
-> > with durations should be added too.
+On Thu, Jul 14, 2022 at 03:51:24PM +0300, Sergiu Moga wrote:
+> Convert at91sam9 WDT binding for Atmel/Microchip SoCs to json-schema
+> format.
 > 
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Do you think a fixed udelay(1) would be enough for now? Bigger delays
-> shouldn't be needed and smaller delays expand to udelay(1) anyway on
-> architectures not providing an architecture specific ndelay().
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-I am sure you shouldn't assume what the particular architecture
-provide and what it doesn't. When it comes to the GPIOs the switching
-timings can have a critical value in a lot of applications (like i2c
-bitbang, or real-time systems). There is no point in waiting for
-micro seconds in the fast-path like this when there is only a few
-nano seconds delay required.
-
-I couldn't find any generic ready-to-use DT-property for this case.
-So IMO instead the next properties would work:
-1. "setup-duration-ns" - data input timing after which the clock input
-can be asserted (Tsu in the hw-manual above).
-2. "clock-duration-ns" - clock input timing for which the CLK signal
-must be kept asserted so the device would perceive the input
-states, the outputs would be updated and the clock signal could be
-driven back to low (Tw including Th in the hw-manual above).
-
-@Rob, @Linus, any suggestion regarding the properties and their naming?
-
--Serge
-
+> ---
 > 
-> Sascha
+> v1 -> v2:
+> - move "allOf" under "required"
 > 
-> -- 
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+>  .../bindings/watchdog/atmel,at91sam9-wdt.yaml | 127 ++++++++++++++++++
+>  .../bindings/watchdog/atmel-wdt.txt           |  51 -------
+>  2 files changed, 127 insertions(+), 51 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91sam9-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-wdt.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/atmel,at91sam9-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,at91sam9-wdt.yaml
+> new file mode 100644
+> index 000000000000..ad27bc518670
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/atmel,at91sam9-wdt.yaml
+> @@ -0,0 +1,127 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/atmel,at91sam9-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel Watchdog Timers
+> +
+> +maintainers:
+> +  - Eugen Hristev <eugen.hristev@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,at91sam9260-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  atmel,max-heartbeat-sec:
+> +    description:
+> +      Should contain the maximum heartbeat value in seconds. This value
+> +      should be less or equal to 16. It is used to compute the WDV field.
+> +    maximum: 16
+> +
+> +  atmel,min-heartbeat-sec:
+> +    description:
+> +      Should contain the minimum heartbeat value in seconds. This value
+> +      must be smaller than the max-heartbeat-sec value. It is used to
+> +      compute the WDD field.
+> +    maximum: 16
+> +
+> +  atmel,watchdog-type:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: |
+> +      Should be hardware or software.
+> +    oneOf:
+> +      - description:
+> +          Hardware watchdog uses the at91 watchdog reset.
+> +        const: hardware
+> +      - description: |
+> +          Software watchdog uses the watchdog interrupt
+> +          to trigger a software reset.
+> +        const: software
+> +    default: hardware
+> +
+> +  atmel,reset-type:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: |
+> +      Should be proc or all. This is valid only when using hardware watchdog.
+> +    oneOf:
+> +      - description:
+> +          Assert peripherals and processor reset signals.
+> +        const: all
+> +      - description:
+> +          Assert the processor reset signal.
+> +        const: proc
+> +    default: all
+> +
+> +  atmel,disable:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Should be present if you want to stop the watchdog.
+> +
+> +  atmel,idle-halt:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      Should be present if you want to stop the watchdog when
+> +      entering idle state.
+> +      CAUTION: This property should be used with care, it actually makes the
+> +      watchdog not counting when the CPU is in idle state, therefore the
+> +      watchdog reset time depends on mean CPU usage and will not reset at all
+> +      if the CPU stops working while it is in idle state, which is probably
+> +      not what you want.
+> +
+> +  atmel,dbg-halt:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      Should be present if you want to stop the watchdog when
+> +      entering debug state.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +  - if:
+> +      properties:
+> +        atmel,reset-type:
+> +          enum:
+> +            - all
+> +            - proc
+> +    then:
+> +      properties:
+> +        atmel,watchdog-type:
+> +          const: hardware
+> +
+> +dependencies:
+> +  atmel,reset-type: ['atmel,watchdog-type']
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    watchdog@fffffd40 {
+> +        compatible = "atmel,at91sam9260-wdt";
+> +        reg = <0xfffffd40 0x10>;
+> +        interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
+> +        clocks = <&clk32k>;
+> +        timeout-sec = <15>;
+> +        atmel,watchdog-type = "hardware";
+> +        atmel,reset-type = "all";
+> +        atmel,dbg-halt;
+> +        atmel,idle-halt;
+> +        atmel,max-heartbeat-sec = <16>;
+> +        atmel,min-heartbeat-sec = <0>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/watchdog/atmel-wdt.txt b/Documentation/devicetree/bindings/watchdog/atmel-wdt.txt
+> deleted file mode 100644
+> index 711a880b3d3b..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/atmel-wdt.txt
+> +++ /dev/null
+> @@ -1,51 +0,0 @@
+> -* Atmel Watchdog Timers
+> -
+> -** at91sam9-wdt
+> -
+> -Required properties:
+> -- compatible: must be "atmel,at91sam9260-wdt".
+> -- reg: physical base address of the controller and length of memory mapped
+> -  region.
+> -- clocks: phandle to input clock.
+> -
+> -Optional properties:
+> -- timeout-sec: contains the watchdog timeout in seconds.
+> -- interrupts : Should contain WDT interrupt.
+> -- atmel,max-heartbeat-sec : Should contain the maximum heartbeat value in
+> -	seconds. This value should be less or equal to 16. It is used to
+> -	compute the WDV field.
+> -- atmel,min-heartbeat-sec : Should contain the minimum heartbeat value in
+> -	seconds. This value must be smaller than the max-heartbeat-sec value.
+> -	It is used to compute the WDD field.
+> -- atmel,watchdog-type : Should be "hardware" or "software". Hardware watchdog
+> -	use the at91 watchdog reset. Software watchdog use the watchdog
+> -	interrupt to trigger a software reset.
+> -- atmel,reset-type : Should be "proc" or "all".
+> -	"all" : assert peripherals and processor reset signals
+> -	"proc" : assert the processor reset signal
+> -	This is valid only when using "hardware" watchdog.
+> -- atmel,disable : Should be present if you want to disable the watchdog.
+> -- atmel,idle-halt : Should be present if you want to stop the watchdog when
+> -	entering idle state.
+> -	CAUTION: This property should be used with care, it actually makes the
+> -	watchdog not counting when the CPU is in idle state, therefore the
+> -	watchdog reset time depends on mean CPU usage and will not reset at all
+> -	if the CPU stop working while it is in idle state, which is probably
+> -	not what you want.
+> -- atmel,dbg-halt : Should be present if you want to stop the watchdog when
+> -	entering debug state.
+> -
+> -Example:
+> -	watchdog@fffffd40 {
+> -		compatible = "atmel,at91sam9260-wdt";
+> -		reg = <0xfffffd40 0x10>;
+> -		interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
+> -		clocks = <&clk32k>;
+> -		timeout-sec = <15>;
+> -		atmel,watchdog-type = "hardware";
+> -		atmel,reset-type = "all";
+> -		atmel,dbg-halt;
+> -		atmel,idle-halt;
+> -		atmel,max-heartbeat-sec = <16>;
+> -		atmel,min-heartbeat-sec = <0>;
+> -	};
