@@ -2,96 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B385E9626
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 23:18:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56CCD5E9695
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 00:10:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232901AbiIYVSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 17:18:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39958 "EHLO
+        id S230404AbiIYWK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 18:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229824AbiIYVSd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 17:18:33 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64012A96E;
-        Sun, 25 Sep 2022 14:18:32 -0700 (PDT)
-Received: from g550jk.. (2a02-8388-6582-fe80-0000-0000-0000-0006.cable.dynamic.v6.surfer.at [IPv6:2a02:8388:6582:fe80::6])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id ACD85C9C11;
-        Sun, 25 Sep 2022 21:18:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1664140681; bh=sTYvx6bH0IsQJZ4TUfqZvxdBUTU/q50uwQG9uFwSEcM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=lNBOxqeHJK3E0Wvhc7SSH6l45Wp0Wkb6YZdUuDRLXhiVx2M3F+ICLv381xcTOOTSX
-         +EQbgLaxjo9DJ4YBTXYbOe07QT5FmgRdPQXM9xW5rInRKef3GAjpPdsNfKmkf2PRqv
-         TFExrMvggQGLLKMrk5Y51M/M841CL64VTkKmC3uQ=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232675AbiIYWKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 18:10:52 -0400
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78C91140E9;
+        Sun, 25 Sep 2022 15:10:50 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (97-113-250-99.tukw.qwest.net [97.113.250.99])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id C6BA81AE;
+        Sun, 25 Sep 2022 15:04:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1664143472;
+        bh=55QOZ/Sosj9iz7tF65g2uHc/YtzXw/1I5tJ5UeOj3pc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=cSWhvHJldr4rpvt9/S6OgfH9CPdFlIJJHSLURXJwwyN49c6BreR4p3QHUWte2rDDK
+         uMYzBIUoTECVbMuNfgHPDnmTQtY9uy4/kNyJzL7/0BfJuBtrzYOqjNTZ+TcjLU+tWb
+         o8WmdMwUQLSljh9mDZ1WiodBhcdpDig+RPHZ6ZyQ=
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: mfd: qcom,spmi-pmic: support more types
-Date:   Sun, 25 Sep 2022 23:17:44 +0200
-Message-Id: <20220925211744.133947-2-luca@z3ntu.xyz>
+        devicetree@vger.kernel.org
+Cc:     Zev Weiss <zev@bewilderbeest.net>, linux-kernel@vger.kernel.org,
+        Naresh Solanki <naresh.solanki@9elements.com>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Mike Rapoport <rppt@kernel.org>, openbmc@lists.ozlabs.org
+Subject: [PATCH 0/3] regulator: Add DT support for regulator-output connectors
+Date:   Sun, 25 Sep 2022 15:03:16 -0700
+Message-Id: <20220925220319.12572-1-zev@bewilderbeest.net>
 X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220925211744.133947-1-luca@z3ntu.xyz>
-References: <20220925211744.133947-1-luca@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* 'adc@' is either spmi-iadc or spmi-vadc
-* 'charger@' is either pm8941-charger or pm8941-coincell
-* 'dcdc@' is usb-vbus-regulator
+Hello,
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+This series is another attempt at implementing support for
+userspace-controlled regulator-supplied power outputs.  This is an
+important feature for some kinds of BMC (baseboard management
+controller) systems where the BMC provides an operator with manual
+control of a set of DC power outputs.
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-index 16ade0fa2d33..e54fb5d64ef8 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-@@ -105,7 +105,9 @@ properties:
- patternProperties:
-   "^adc@[0-9a-f]+$":
-     type: object
--    $ref: /schemas/iio/adc/qcom,spmi-vadc.yaml#
-+    oneOf:
-+      - $ref: /schemas/iio/adc/qcom,spmi-iadc.yaml#
-+      - $ref: /schemas/iio/adc/qcom,spmi-vadc.yaml#
- 
-   "^adc-tm@[0-9a-f]+$":
-     type: object
-@@ -115,6 +117,16 @@ patternProperties:
-     type: object
-     additionalProperties: true # FIXME qcom,pm8916-wcd-analog-codec binding not converted yet
- 
-+  "charger@[0-9a-f]+$":
-+    type: object
-+    oneOf:
-+      - $ref: /schemas/power/supply/qcom,pm8941-charger.yaml#
-+      - $ref: /schemas/power/supply/qcom,pm8941-coincell.yaml#
-+
-+  "^dcdc@[0-9a-f]+$":
-+    type: object
-+    $ref: /schemas/regulator/qcom,usb-vbus-regulator.yaml#
-+
-   "extcon@[0-9a-f]+$":
-     type: object
-     $ref: /schemas/extcon/qcom,pm8941-misc.yaml#
+As in a broadly similar patchset that was recently almost merged [0],
+this takes the approach of providing support by extending the existing
+userspace-consumer regulator driver.  A couple questions about the
+userspace-consumer driver came up along the way, however.
+
+First, how (if at all) is it currently being used?  It appears the
+last in-tree use of it was removed a bit over two years ago in commit
+9d3239147d6d ("ARM: pxa: remove Compulab pxa2xx boards").  Aside from
+just adding DT support I've made a couple small tweaks to the driver
+in patch 3 that I hope are compatible with any current usage, but
+without any extant examples to look at it's kind of hard to say.
+
+Second, how critical is its support for controlling multiple
+regulators?  (i.e. its use of regulator_bulk_data and friends instead
+of a single struct regulator.)  As far as I can see every in-tree use
+of it that's ever existed has used num_supplies = 1.  If it's not
+important to retain, patch 1 of this series could be supplanted by one
+that instead simplifies the driver slightly by removing that
+functionality.
+
+The DT binding added in patch 2 is very similar to one I posted in a
+previous patchset that had an R-B from Rob [1], but has had some minor
+rewording and gained one new (optional) property.
+
+Laxman, Naresh, Patrick -- please let me know if there are any aspects
+of this implementation that would be incompatible with your needs.
+
+
+Thanks,
+Zev
+
+[0] https://lore.kernel.org/all/20220707081826.953449-4-Naresh.Solanki@9elements.com/
+[1] https://lore.kernel.org/linux-kernel/20220505232557.10936-2-zev@bewilderbeest.net/
+
+Zev Weiss (3):
+  regulator: devres: Add devm_regulator_bulk_get_exclusive()
+  dt-bindings: regulator: Add regulator-output binding
+  regulator: userspace-consumer: Handle regulator-output DT nodes
+
+ .../bindings/regulator/regulator-output.yaml  | 47 +++++++++++++
+ drivers/regulator/core.c                      | 42 +++++++-----
+ drivers/regulator/devres.c                    | 66 ++++++++++++++-----
+ drivers/regulator/internal.h                  |  2 +
+ drivers/regulator/userspace-consumer.c        | 43 ++++++++++--
+ include/linux/regulator/consumer.h            |  2 +
+ include/linux/regulator/userspace-consumer.h  |  1 +
+ 7 files changed, 162 insertions(+), 41 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/regulator-output.yaml
+
 -- 
 2.37.3
 
