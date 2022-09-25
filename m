@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2FEA5E958F
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 20:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A5ED5E9596
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 21:00:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229567AbiIYS6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 14:58:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50100 "EHLO
+        id S232925AbiIYTAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 15:00:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232860AbiIYS6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 14:58:45 -0400
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3FE125E94
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 11:58:43 -0700 (PDT)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-12b542cb1d3so6751919fac.13
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 11:58:43 -0700 (PDT)
+        with ESMTP id S230083AbiIYTAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 15:00:05 -0400
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADCD18E1E
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 12:00:02 -0700 (PDT)
+Received: by mail-ot1-x32f.google.com with SMTP id br15-20020a056830390f00b0061c9d73b8bdso3242001otb.6
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 12:00:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=kali.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=M3tmqKTq30hnagEOzKLlmynUjQTBZCoWj+kBx7NUQOc=;
-        b=KU9NTpKaj9sX6HbIO7VUMhid7Iu14PvSEZSCrkBPcJN7A0Z/b4jHSzehqFPFJ+q3hA
-         Y291vI139cdUevC+1kubb6EY4ozQ50v5OezE4h2R5XkF8GP7dYPIzBXwFr/FXbHuqIKd
-         u2u/LvvBDPulfI9fAyNFfxPt6J2lKH24R5mud3Yp3zk+QjqEGzO/GJiDmu9NW6kJ22kt
-         X2TKZjJ9vvvCTXnpg/WVrXp7Di8ce36ceyVkGJ1dK6u9Wtm654vMKBMPNkX6ulRQ3hHl
-         AbJSr5L6drEJ7Te17lbIGxVXo1iq5xmtCvkLAmOcyHVnKrqj/sM1TqaxFS5T2vKY4K3z
-         LlYA==
+        bh=mzMhROLxf+WaccHSzDfGVv0qOJyuzTRDH4FxujffiSw=;
+        b=buBXjaypg8d2m5kTlrDDnoXKhyG9WYxeRHGgN3/uAzcTwY01kYhPyRCy8a/K0HY+Pi
+         3PG5jH8dDHv36BV+kVAofFBb7RzmvkmG9Kz9E8Z7B5df7tkE9VoLpONa6V8lg15oepNc
+         aeusETyYgf0p06VAFC2c7QfxySLw0nt8LLT08+rKyPm2gA2z7EHveeRrnQWeNIdnPPjs
+         PirIUgHaHTXUFVPEdaYPr0kEOLfv2kPwFOjD+9ujt6Ea34KyFRiQB6NiKvbehEsehCDs
+         Fte53eMRT9r8Gaf4RiQU7neSJ+V2w8QuP7Nj+nvrA5iKEqr0qAXJ9JkTYkS2EGonUbKp
+         mwfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=M3tmqKTq30hnagEOzKLlmynUjQTBZCoWj+kBx7NUQOc=;
-        b=oUtmr/nuvRcTvRZ4tfsmcuwopAWe5TL4lbK4tQ9uYXIScb/QjywjFfB4LWsh6ls1Jq
-         sEEXeyWVugrtUPQhSZzfOK/F5WrD4QMOjy2q7j2Kh5JOug6W3mG+N33dUV0N56Sde+FM
-         zWH1iFSbpcaUhB9ul6pzpljz1TBtZ2eu2odRlHXicp8pJBuuGbFDXJJQYNdR5CRTimXz
-         f4L2TYDD5tUnN+BemTLtUS4sDs8KvHum0k6sVbrAPqq59rcN9ngcUd8QB/4UMGJk/S+v
-         sSgyWV92SvQCmJMg+XkzRW4wa4dnF9MFYQuuBQSdVA1MSe2crl+H7QmLwDcipa9pM26p
-         1muw==
-X-Gm-Message-State: ACrzQf2pnboQI5TOcZGOR+cfAWPT8IgtIYkf05SnW7G3Z6KUI8d7eXS9
-        6k6AuXlCXTinurUrLxCkmf1cZ7SgPrRgynnmCa0=
-X-Google-Smtp-Source: AMsMyM6dfh0CcbJflisdwaZ+hNfWoQV1N1y0eqrFuZDEIicfSlJbuuNrqKvXCOmWVQCqQN9VTUWAmQ==
-X-Received: by 2002:a05:6870:1694:b0:127:8d30:5afc with SMTP id j20-20020a056870169400b001278d305afcmr10882036oae.26.1664132322423;
-        Sun, 25 Sep 2022 11:58:42 -0700 (PDT)
+        bh=mzMhROLxf+WaccHSzDfGVv0qOJyuzTRDH4FxujffiSw=;
+        b=gx0rA+cNOEWZiMXyu5EcDhYNvdgBkRRYKPm3qa77uvwo/112fn4CnO9IN28yicd55K
+         m+K/ESeu3Cy0aBvLMJQPdjhgDesLur0PpK5gR1FXrnkkFwC6rLp3l96DyIQBj77Xk3mG
+         r2jTLRpsqojA62I+TYisT6jSzo7gX9PoghLb5lz4+B0Aa3tk8rK8g2wngzCicoP2zKOL
+         AvoMe4AXcFedkewsZDFMijZ10uYh6LuNk7YjF8bxovcUR2sgteFC9+gnU/ACoevHJWTZ
+         zopUIQnWPf2h6ytntHY05b9wa3g+JRLzGxdn7KR9n0fUiAsK8AQTynvDpmyyeiL6KAA5
+         NxPw==
+X-Gm-Message-State: ACrzQf3fJZSUHha+kHqHlXai7/zxQrLmQq9FCEs8fPqq4eEQ1TJlwKUr
+        ePIhxgliarcTeGK+aFzNSeja4Q==
+X-Google-Smtp-Source: AMsMyM7uavezll4kcgYxy0EtKqXPcx09063LOwTeKRkyZkDHv9oU5Y63E+3CJuQyu08noJJXhPPk4w==
+X-Received: by 2002:a9d:30d1:0:b0:654:1288:7cb2 with SMTP id r17-20020a9d30d1000000b0065412887cb2mr8515467otg.43.1664132401718;
+        Sun, 25 Sep 2022 12:00:01 -0700 (PDT)
 Received: from [192.168.11.16] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id u8-20020a0568301f4800b0065126423321sm6946171oth.76.2022.09.25.11.58.41
+        by smtp.gmail.com with ESMTPSA id e5-20020a056870c0c500b001275f056133sm7843619oad.51.2022.09.25.12.00.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Sep 2022 11:58:41 -0700 (PDT)
-Message-ID: <d3218018-45c4-4777-77a7-91947ad48666@kali.org>
-Date:   Sun, 25 Sep 2022 13:58:40 -0500
+        Sun, 25 Sep 2022 12:00:01 -0700 (PDT)
+Message-ID: <82da45fc-f673-a7a0-5c55-fe8a0a1a6142@kali.org>
+Date:   Sun, 25 Sep 2022 13:59:59 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
  Gecko/20100101 Thunderbird/91.13.0
-Subject: Re: [PATCH 07/11] arm64: dts: qcom: sdm8458: align node names with DT
- schema
+Subject: Re: [PATCH 8/9] arm64: dts: qcom: sdm845: change DSI PHY node name to
+ generic one
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20220923161453.469179-1-krzysztof.kozlowski@linaro.org>
- <20220923161453.469179-8-krzysztof.kozlowski@linaro.org>
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20220924090108.166934-1-dmitry.baryshkov@linaro.org>
+ <20220924090108.166934-9-dmitry.baryshkov@linaro.org>
 From:   Steev Klimaszewski <steev@kali.org>
-In-Reply-To: <20220923161453.469179-8-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220924090108.166934-9-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,42 +86,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krztof
 
-On 9/23/22 11:14 AM, Krzysztof Kozlowski wrote:
-> New slimbus DT schema expect only SLIMbus bus nodes to be named
-> "slimbus".  In case of Qualcomm SLIMbus NGD, the bus node is what was
-> called "ngd".
+On 9/24/22 4:01 AM, Dmitry Baryshkov wrote:
+> Change DSI PHY node names from custom 'dsi-phy' to the generic 'phy'.
 >
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
 >   arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 ++--
 >   1 file changed, 2 insertions(+), 2 deletions(-)
 >
 > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 1213f78a8b7a..7b62efb180d5 100644
+> index f0e286715d1b..df6427ba2284 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -3823,7 +3823,7 @@ qspi: spi@88df000 {
->   			status = "disabled";
->   		};
+> @@ -4537,7 +4537,7 @@ dsi0_out: endpoint {
+>   				};
+>   			};
 >   
-> -		slim: slim@171c0000 {
-> +		slim: slim-ngd@171c0000 {
->   			compatible = "qcom,slim-ngd-v2.1.0";
->   			reg = <0 0x171c0000 0 0x2c000>;
->   			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -3835,7 +3835,7 @@ slim: slim@171c0000 {
->   			#address-cells = <1>;
->   			#size-cells = <0>;
+> -			dsi0_phy: dsi-phy@ae94400 {
+> +			dsi0_phy: phy@ae94400 {
+>   				compatible = "qcom,dsi-phy-10nm";
+>   				reg = <0 0x0ae94400 0 0x200>,
+>   				      <0 0x0ae94600 0 0x280>,
+> @@ -4609,7 +4609,7 @@ dsi1_out: endpoint {
+>   				};
+>   			};
 >   
-> -			ngd@1 {
-> +			slim@1 {
->   				reg = <1>;
->   				#address-cells = <2>;
->   				#size-cells = <0>;
-
-Subject has a typo - sdm8458 -> sdm845
+> -			dsi1_phy: dsi-phy@ae96400 {
+> +			dsi1_phy: phy@ae96400 {
+>   				compatible = "qcom,dsi-phy-10nm";
+>   				reg = <0 0x0ae96400 0 0x200>,
+>   				      <0 0x0ae96600 0 0x280>,
 
 Tested on Lenovo Yoga C630
 
