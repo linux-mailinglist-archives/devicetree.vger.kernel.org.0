@@ -2,123 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A5ED5E9596
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 21:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE865E959C
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 21:03:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232925AbiIYTAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 15:00:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52340 "EHLO
+        id S229567AbiIYTDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 15:03:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230083AbiIYTAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 15:00:05 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADCD18E1E
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 12:00:02 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id br15-20020a056830390f00b0061c9d73b8bdso3242001otb.6
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 12:00:02 -0700 (PDT)
+        with ESMTP id S232504AbiIYTDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 15:03:51 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F062EF2F;
+        Sun, 25 Sep 2022 12:03:50 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id f193so4817665pgc.0;
+        Sun, 25 Sep 2022 12:03:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=mzMhROLxf+WaccHSzDfGVv0qOJyuzTRDH4FxujffiSw=;
-        b=buBXjaypg8d2m5kTlrDDnoXKhyG9WYxeRHGgN3/uAzcTwY01kYhPyRCy8a/K0HY+Pi
-         3PG5jH8dDHv36BV+kVAofFBb7RzmvkmG9Kz9E8Z7B5df7tkE9VoLpONa6V8lg15oepNc
-         aeusETyYgf0p06VAFC2c7QfxySLw0nt8LLT08+rKyPm2gA2z7EHveeRrnQWeNIdnPPjs
-         PirIUgHaHTXUFVPEdaYPr0kEOLfv2kPwFOjD+9ujt6Ea34KyFRiQB6NiKvbehEsehCDs
-         Fte53eMRT9r8Gaf4RiQU7neSJ+V2w8QuP7Nj+nvrA5iKEqr0qAXJ9JkTYkS2EGonUbKp
-         mwfQ==
+        bh=BMVLV56JZIvKvoJtjO/lGrfJO1JfVFGpaL7ayK5bP+E=;
+        b=VTRwFy9Fnd7HmEoMY3vLIyOQA0mhE5jQaGhQ04dnFfCcXGgjOL70dZGXXjOIRX4T/K
+         /lpxkl9rt8gbn70p0W5i9X52frI0mJzkRa+Vt9mf0R3X0RKP8nvZ875PpVTwyPmkdaRR
+         /LPzi2ENCmrs8GZU7KZsh8qGpWI966gef/Wi1/Xq7jTRaieEC4KOhUtgQiDzk2S52cKA
+         Shjq5/jAZaclo1C5A+Yo7W+v+KT4c69u+s7JCHGv2ag0+Z5B03OWWuGrcuT98vM7NVzw
+         u/VEtTM4r3gdIlqCKLq9hlHBm0GsVuqOjbrs5RV4KAUKR33/4pe0DPnb/FpXpcy5/RbL
+         jj+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=mzMhROLxf+WaccHSzDfGVv0qOJyuzTRDH4FxujffiSw=;
-        b=gx0rA+cNOEWZiMXyu5EcDhYNvdgBkRRYKPm3qa77uvwo/112fn4CnO9IN28yicd55K
-         m+K/ESeu3Cy0aBvLMJQPdjhgDesLur0PpK5gR1FXrnkkFwC6rLp3l96DyIQBj77Xk3mG
-         r2jTLRpsqojA62I+TYisT6jSzo7gX9PoghLb5lz4+B0Aa3tk8rK8g2wngzCicoP2zKOL
-         AvoMe4AXcFedkewsZDFMijZ10uYh6LuNk7YjF8bxovcUR2sgteFC9+gnU/ACoevHJWTZ
-         zopUIQnWPf2h6ytntHY05b9wa3g+JRLzGxdn7KR9n0fUiAsK8AQTynvDpmyyeiL6KAA5
-         NxPw==
-X-Gm-Message-State: ACrzQf3fJZSUHha+kHqHlXai7/zxQrLmQq9FCEs8fPqq4eEQ1TJlwKUr
-        ePIhxgliarcTeGK+aFzNSeja4Q==
-X-Google-Smtp-Source: AMsMyM7uavezll4kcgYxy0EtKqXPcx09063LOwTeKRkyZkDHv9oU5Y63E+3CJuQyu08noJJXhPPk4w==
-X-Received: by 2002:a9d:30d1:0:b0:654:1288:7cb2 with SMTP id r17-20020a9d30d1000000b0065412887cb2mr8515467otg.43.1664132401718;
-        Sun, 25 Sep 2022 12:00:01 -0700 (PDT)
-Received: from [192.168.11.16] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id e5-20020a056870c0c500b001275f056133sm7843619oad.51.2022.09.25.12.00.00
+        bh=BMVLV56JZIvKvoJtjO/lGrfJO1JfVFGpaL7ayK5bP+E=;
+        b=yYJ+4g9/+DgvVqzLNdur7v879NvI5DPyJzF34DkBRMvtffNfdjKBxT8+Bpka5Xricj
+         tGhwvhTzl/DedTQwTK7jWxSGbwD+A58VUjlX5Q8eSwFZiXRpyKcqMlhX2lLOISiY4ZAo
+         qJBYawhAizbtssVWjXO/Q8dKD89+O5zrr9ZXKOBt6/uWGxEz1pOFpBxF94fjarwxYhgC
+         9EDliZY4Pw9J6Auq/plvnUXg1rTYs+AtEJ5thDW51bUamzrGQWgUv3wJQkjBKsYagje9
+         paMlXkW837V+rOoHIvibi7sjhZDJX0oe5LOW5u4y+tTSYoQW4Qso924BK6YGIoXWqGAT
+         yr9Q==
+X-Gm-Message-State: ACrzQf2bn2giPHVVbXMnxG4DofJD/VCmIPmHL0N1EIkNg/5TuPXQec3I
+        srya8ZnupdACkbX/p2RLpmI=
+X-Google-Smtp-Source: AMsMyM6oe2Yx1uWCockAx9p9BX5ubEUkPeGll5ZfMfzrzpmNBzYylGVJyjcVzz43qL+liDknfsjT0A==
+X-Received: by 2002:a63:6c84:0:b0:43c:700f:6218 with SMTP id h126-20020a636c84000000b0043c700f6218mr8913952pgc.420.1664132629749;
+        Sun, 25 Sep 2022 12:03:49 -0700 (PDT)
+Received: from [172.30.1.63] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id w3-20020aa79543000000b0052e6c058bccsm10322234pfq.61.2022.09.25.12.03.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Sep 2022 12:00:01 -0700 (PDT)
-Message-ID: <82da45fc-f673-a7a0-5c55-fe8a0a1a6142@kali.org>
-Date:   Sun, 25 Sep 2022 13:59:59 -0500
+        Sun, 25 Sep 2022 12:03:49 -0700 (PDT)
+Message-ID: <78859fd2-330f-1687-7fa3-f0831402778c@gmail.com>
+Date:   Mon, 26 Sep 2022 04:03:45 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.13.0
-Subject: Re: [PATCH 8/9] arm64: dts: qcom: sdm845: change DSI PHY node name to
- generic one
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] bindings: Update maintainer's email address
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+To:     Guru Das Srinagesh <quic_gurus@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220924090108.166934-1-dmitry.baryshkov@linaro.org>
- <20220924090108.166934-9-dmitry.baryshkov@linaro.org>
-From:   Steev Klimaszewski <steev@kali.org>
-In-Reply-To: <20220924090108.166934-9-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1663979817-1078-1-git-send-email-quic_gurus@quicinc.com>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+In-Reply-To: <1663979817-1078-1-git-send-email-quic_gurus@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 9/24/22 4:01 AM, Dmitry Baryshkov wrote:
-> Change DSI PHY node names from custom 'dsi-phy' to the generic 'phy'.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On 22. 9. 24. 09:36, Guru Das Srinagesh wrote:
+> Update Guru Das Srinagesh's email address.
+> 
+> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
 > ---
->   arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index f0e286715d1b..df6427ba2284 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -4537,7 +4537,7 @@ dsi0_out: endpoint {
->   				};
->   			};
->   
-> -			dsi0_phy: dsi-phy@ae94400 {
-> +			dsi0_phy: phy@ae94400 {
->   				compatible = "qcom,dsi-phy-10nm";
->   				reg = <0 0x0ae94400 0 0x200>,
->   				      <0 0x0ae94600 0 0x280>,
-> @@ -4609,7 +4609,7 @@ dsi1_out: endpoint {
->   				};
->   			};
->   
-> -			dsi1_phy: dsi-phy@ae96400 {
-> +			dsi1_phy: phy@ae96400 {
->   				compatible = "qcom,dsi-phy-10nm";
->   				reg = <0 0x0ae96400 0 0x200>,
->   				      <0 0x0ae96600 0 0x280>,
+>  Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
+>  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml         | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> index 6a9c96f..480e4fb 100644
+> --- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> +++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Qualcomm Technologies, Inc. PM8941 USB ID Extcon device
+>  
+>  maintainers:
+> -  - Guru Das Srinagesh <gurus@codeaurora.org>
+> +  - Guru Das Srinagesh <quic_gurus@quicinc.com>
+>  
+>  description: |
+>    Some Qualcomm PMICs have a "misc" module that can be used to detect when
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> index ec3138c..1f3ac59 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Qualcomm Technologies, Inc. PM8008 PMIC bindings
+>  
+>  maintainers:
+> -  - Guru Das Srinagesh <gurus@codeaurora.org>
+> +  - Guru Das Srinagesh <quic_gurus@quicinc.com>
+>  
+>  description: |
+>    Qualcomm Technologies, Inc. PM8008 is a dedicated camera PMIC that integrates
 
-Tested on Lenovo Yoga C630
 
-Tested-by: Steev Klimaszewski <steev@kali.org>
+As Krzysztof comment, I changed the patch title and then applied it. Thanks.
+- dt-bindings: Update Guru Das Srinagesh's email address
 
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
