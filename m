@@ -2,210 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E2075E9323
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 14:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE9815E9328
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 14:40:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231837AbiIYMhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 08:37:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54324 "EHLO
+        id S230109AbiIYMkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 08:40:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231770AbiIYMhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 08:37:52 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E40E82EF13
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 05:37:50 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id a8so6905273lff.13
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 05:37:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=UJRF0CXygrWoxUVGL/DvpJUno6RbREkoO61yXQO1vz4=;
-        b=o5lnuTkpL38PwhVZixzlG4auslr48wrZtVYUKXVLZZvC7qblq4c4erO0o+q8TmrDRn
-         /oH//KRN/Hq+9nzM3UYChpFxXvXExms/qW6t50BJQJlXCoEoTGhJm1LBNSTArAFsnuqa
-         yWC09lIW8BsIsLwsV7eyYvW09rJFgpSPTUFcwGCiPDQLB0iLYfjUT14NP+yETRjkCUH9
-         FyWYAtwh9OiCT/sC2NJlTHAfi3GBl7QHlzTBVMp4tEfCCiG32jSa4cSQO3Oq63gk4eJQ
-         o23ap7y/lrFpDcQbLqq4A1oSYE8/+iKeB5RPLk/qmycXjKN5DImrDp3zz3HUAfbqaFfc
-         UbIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=UJRF0CXygrWoxUVGL/DvpJUno6RbREkoO61yXQO1vz4=;
-        b=yI1xFkRCqp4AcNxh+zXtDE711byJDt9wfL0E7fU4kYj1lQmDFk71RzE4WiIUwshwBV
-         cdBuRKOrsiEp3mbRb+egCirJTYckGaE368vDC7clOENF+ojBIMlJZPh0Voox9hccB0gY
-         AvnfgKzzoRBCmTSAnZlKHVkPq8OyLMT/qjMCjfvhAiYqbWkathrVmclZiEA0IQmcrv7w
-         x7RHeIjz1Oxj5ZGAqJ6us0esPCRZamCdwiGx17orxeR1M2zxbjKbSBRvPKmc8HEM92FT
-         aNj7Uh7742qZEr6bprTSWqwZ6SZaBP9Qjjcp7hgSRuDTn5ApkJ5SdK3y7CX9hD79WKg1
-         8Pag==
-X-Gm-Message-State: ACrzQf1zpFEvbygu1WweGqbe99G/aqbRbeMXaqTBLg7JaLaNsM0V9YLG
-        //PPoeZLiGvI6W0ZKUq8RCPtBrU6b89akw==
-X-Google-Smtp-Source: AMsMyM4gZboutge0FffYxBQgEmndGJF+dMo1dPahGFistabPzUC8I8jYGiG7uKgF4m7m8iOSb1ZnoA==
-X-Received: by 2002:a05:6512:3d1a:b0:499:c00f:d95f with SMTP id d26-20020a0565123d1a00b00499c00fd95fmr6957618lfv.575.1664109469191;
-        Sun, 25 Sep 2022 05:37:49 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id s12-20020ac25c4c000000b00498f23c249dsm2211151lfp.74.2022.09.25.05.37.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Sep 2022 05:37:48 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-usb@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>
-Subject: [PATCH] dt-bindings: usb: Convert FOTG210 to dt schema
-Date:   Sun, 25 Sep 2022 14:35:46 +0200
-Message-Id: <20220925123546.770843-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.37.3
+        with ESMTP id S229965AbiIYMkB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 08:40:01 -0400
+Received: from mail.manjaro.org (mail.manjaro.org [IPv6:2a01:4f8:c0c:51f3::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C76E20F79;
+        Sun, 25 Sep 2022 05:39:57 -0700 (PDT)
+Message-ID: <ce61fb9a-dcf4-27a2-ac03-62060a1512f9@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+        t=1664109595;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=OXUDIYwGS8VQVu3j8KhtahQQnFOQ52Ygtum7FlzQF2Q=;
+        b=eOF+RH4Gwk0Wt8HCyeyTDsQaH9OC+2fvvQtX/WG/mqdKDEO1c5HVQiAtdL1ahS+olMee36
+        Xt280jYvWK1ZDTUr13B0zYE2TVKgmgS9JH5ojzFrsUVupBzOoli90t+MZlUOX5BJcRKbfc
+        gqpOKDifPJO6HYTYe8QYMifHMdFkna8Zs1VyMY9CG3oKQCgtm2e9wy5pLKD7YIdXP5nk0V
+        1Ua4wKOlgHOP6FG/UyWp83qie5+8z0Y0HFKZzOQZVT3cUsQOV/CN4wa4hr9f9SSkCMwgZu
+        XbcFVY9x9wBaFNSigtTDjhf1tc+YEUt1dTBYTLwevb4C8Lzz1JPIcye5v7iwSA==
+Date:   Sun, 25 Sep 2022 14:39:54 +0200
 MIME-Version: 1.0
+Subject: Re: [PATCH] arm64: dts: rockchip: fix quartz64-a bluetooth
+ configuration
+To:     Lev Popov <leo@nabam.net>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220925123144.70639-1-leo@nabam.net>
+Content-Language: da-DK
+From:   Dan Johansen <strit@manjaro.org>
+Organization: Manjaro ARM
+In-Reply-To: <20220925123144.70639-1-leo@nabam.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+        auth=pass smtp.auth=strit@manjaro.org smtp.mailfrom=strit@manjaro.org
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the Faraday FOTG210 OTG USB controller to use
-a YAML schema. We add all the right includes for OTG controllers
-and make it possible to specify dr_mode and phy.
 
-Cc: devicetree@vger.kernel.org
-Cc: Hans Ulli Kroll <ulli.kroll@googlemail.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/usb/faraday,fotg210.txt          | 35 ---------
- .../bindings/usb/faraday,fotg210.yaml         | 77 +++++++++++++++++++
- 2 files changed, 77 insertions(+), 35 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/faraday,fotg210.txt
- create mode 100644 Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
-
-diff --git a/Documentation/devicetree/bindings/usb/faraday,fotg210.txt b/Documentation/devicetree/bindings/usb/faraday,fotg210.txt
-deleted file mode 100644
-index 06a2286e2054..000000000000
---- a/Documentation/devicetree/bindings/usb/faraday,fotg210.txt
-+++ /dev/null
-@@ -1,35 +0,0 @@
--Faraday FOTG Host controller
--
--This OTG-capable USB host controller is found in Cortina Systems
--Gemini and other SoC products.
--
--Required properties:
--- compatible: should be one of:
--  "faraday,fotg210"
--  "cortina,gemini-usb", "faraday,fotg210"
--- reg: should contain one register range i.e. start and length
--- interrupts: description of the interrupt line
--
--Optional properties:
--- clocks: should contain the IP block clock
--- clock-names: should be "PCLK" for the IP block clock
--
--Required properties for "cortina,gemini-usb" compatible:
--- syscon: a phandle to the system controller to access PHY registers
--
--Optional properties for "cortina,gemini-usb" compatible:
--- cortina,gemini-mini-b: boolean property that indicates that a Mini-B
--  OTG connector is in use
--- wakeup-source: see power/wakeup-source.txt
--
--Example for Gemini:
--
--usb@68000000 {
--	compatible = "cortina,gemini-usb", "faraday,fotg210";
--	reg = <0x68000000 0x1000>;
--	interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
--	clocks = <&cc 12>;
--	clock-names = "PCLK";
--	syscon = <&syscon>;
--	wakeup-source;
--};
-diff --git a/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml b/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
-new file mode 100644
-index 000000000000..c69bbfbcf733
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/faraday,fotg210.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2022 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/faraday,fotg210.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Faraday Technology FOTG210 HS OTG USB 2.0 controller Bindings
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+allOf:
-+  - $ref: usb-drd.yaml#
-+  - $ref: usb-hcd.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: faraday,fotg210
-+      - items:
-+          - const: cortina,gemini-usb
-+          - const: faraday,fotg210
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: PCLK
-+
-+  resets:
-+    maxItems: 1
-+
-+  syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: a phandle to the global Gemini system controller on
-+      Gemini systems
-+
-+  dr_mode: true
-+
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    const: usb2-phy
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/cortina,gemini-clock.h>
-+    #include <dt-bindings/reset/cortina,gemini-reset.h>
-+    usb0: usb@68000000 {
-+        compatible = "cortina,gemini-usb", "faraday,fotg210";
-+        reg = <0x68000000 0x1000>;
-+        interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
-+        resets = <&syscon GEMINI_RESET_USB0>;
-+        clocks = <&syscon GEMINI_CLK_GATE_USB0>;
-+        clock-names = "PCLK";
-+        syscon = <&syscon>;
-+        dr_mode = "host";
-+    };
+Den 25.09.2022 kl. 14.31 skrev Lev Popov:
+> For "Quartz64 Model A" add missing RTS line to the UART interface used by
+> bluetooth and swap bluetooth host-wakeup and device-wakeup gpio pins to
+> match the boards physical layout. This changes are necessary to make
+> bluetooth provided by the wireless module work.
+You should add
+Fixes:  cd414d5ac1fdeecf0617737e688a1af00858253a (arm64: dts: rockchip: 
+rename Quartz64-A bluetooth gpios)
+I think, as that was the last commit that touched the gpio lines.
+> Signed-off-by: Lev Popov <leo@nabam.net>
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> index a05460b92415..91908081c5ed 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> @@ -740,7 +740,7 @@ &uart0 {
+>   
+>   &uart1 {
+>   	pinctrl-names = "default";
+> -	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn>;
+> +	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn &uart1m0_rtsn>;
+>   	status = "okay";
+>   	uart-has-rtscts;
+>   
+> @@ -748,8 +748,8 @@ bluetooth {
+>   		compatible = "brcm,bcm43438-bt";
+>   		clocks = <&rk817 1>;
+>   		clock-names = "lpo";
+> -		device-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
+> -		host-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+> +		host-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
+> +		device-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+>   		shutdown-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
+>   		pinctrl-names = "default";
+>   		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
 -- 
-2.37.3
-
+Kind regards
+*Dan Johansen*
+Project lead of the *Manjaro ARM* project
+Manjaro-ARM <https://manjaro.org>
