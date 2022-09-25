@@ -2,86 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 184605E9140
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 08:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 672E95E917B
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 09:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbiIYG1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 02:27:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34026 "EHLO
+        id S230168AbiIYHjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 03:39:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiIYG1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 02:27:07 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00A953E770;
-        Sat, 24 Sep 2022 23:27:06 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id v186so3817348pfv.11;
-        Sat, 24 Sep 2022 23:27:06 -0700 (PDT)
+        with ESMTP id S229743AbiIYHi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 03:38:59 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A853BC50
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 00:38:58 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id a2so6412569lfb.6
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 00:38:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=figvH0TFF8KUninkiSzsZB9ZDnznmKVoOGYr8J4oiTw=;
-        b=EPQ46ZPafKCrXLBqT0pKN5ucNwF6hGnMi3WCJ9R5V1/B0KMsi+RsC6cIOREklJcrKe
-         UCh8pcyhZFFrTVhZMfptRyxFCg6onXVq/yiC0X4nf28LryL9hjyGjY8/nUeOG1fVLvjn
-         5ohmhouNB07lXF7NFUuRSxfSXe/s0BdzNsGf3CCzqAVNJQkj7214v/TKGwRAxpbyevoT
-         T1ZeVRYs6QGo1LCw4knop2UhXVI1boXzHmIuesdH32z1Aln3RlypRKs7pVZIHPF86CKE
-         sOLwl7WHgyyYoUsec4oxMMSS7Sx+xDSRbzOFQUbIvEZg2KkZxS/FYKpy0lTbT7PxLpPI
-         M05A==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=wZOBZH/TIKngJCM5Rt0iI3g20ZMzPnuCV+kB5fLCrP4=;
+        b=XqzM1UHljlU/NxPWRvQPmJ+2FjaalQ6BcYKOWc3lkJMXs6mYw8me8VvoJFPswm3M1V
+         9j2WNflf1qr22Q3TUJgqZ3YhDPR6tldUxwVYqND+dKxR0Ipf423viHpS+FOIFIbv9J3G
+         bZ9sglNsVKo40W/qkpHqMabAopPMhN9NW+sQA4aBCq7OdZpOpPYK+d810WMt/2HRvUWt
+         FJazov1m1N3ExG217kFEcvnUgdg92rPPEsGvndnDOQP7lyX6B69/yOAjdS/8qrGyttCl
+         kyBuiZtpVv9URGy+Gt5pM4VMsxiugKrJovHz9Qs/X2SYfn5RglAPS388CfjCO5ucVfLV
+         pmtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=figvH0TFF8KUninkiSzsZB9ZDnznmKVoOGYr8J4oiTw=;
-        b=1QApttYwJlyFhj4ukFywsQpMC4kwXFfTadqd9SoPpDXq2KUlIthdHBdhQ6a8Bwkbsw
-         dtq1Z+30h/BJpNPLPQktkEqFK9PNwmLbWk4vxkp57Sr3lt3gSNOq125RqiXMTFMJS1dg
-         FTPBTXmFCqNpUHRdGiV38Q+uSLWxv51ZQPwpIim0a38W6Ng1MDJnM44u1HR34S86oXKq
-         xCyW1t9qg+Q/vgufaUX/108VNRnHyxw1uktu8YuWxgPX6iILjwwKW96c+dLl1MhKO68z
-         tf03cEOowRBBBoWE0MArehv7De4BFmPjR6L4l42AZX/kKG/an0klbEnCt9QS62/zZi9b
-         TYww==
-X-Gm-Message-State: ACrzQf28MLkvmjokffZD3I5ArvCh10r7vato+czbtRwTnMoCfIazg1ht
-        LUaw4xSwIINIJrlUGACHUt0=
-X-Google-Smtp-Source: AMsMyM6dR0K6JP5HP/gIn1nFWPsx5ZuJL5pSPAUigvAlQE+1kTa+/BtAxVe3/tIvUkpfa9IfAUbVEQ==
-X-Received: by 2002:a05:6a00:e1b:b0:537:7c74:c405 with SMTP id bq27-20020a056a000e1b00b005377c74c405mr17188516pfb.43.1664087226221;
-        Sat, 24 Sep 2022 23:27:06 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:37c:3916:9a45:14cc])
-        by smtp.gmail.com with ESMTPSA id bb11-20020a170902bc8b00b0016c57657977sm8725482plb.41.2022.09.24.23.27.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Sep 2022 23:27:05 -0700 (PDT)
-Date:   Sat, 24 Sep 2022 23:27:02 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: qcom,pm8xxx-vib: convert to yaml
-Message-ID: <Yy/0tuXJs+c40akh@google.com>
-References: <20220917155705.2284-1-luca@z3ntu.xyz>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=wZOBZH/TIKngJCM5Rt0iI3g20ZMzPnuCV+kB5fLCrP4=;
+        b=yo7x6bm3PuoeZzcsyHBgUowT/UjQusLJemeariyhypL9hxYTehaQaIlUB/7OkHMeAw
+         9eSUPO3wbNhhKJflLji6FrWoIrj9zRHix33c29ZaYerZaLoDY9DlMkt5vaz2dxG512ZO
+         Yj3yJYHfyb+ScEgvxDcSwy14Ev5qphIhv51zkTPPLVvmATbRRyyhUTY++fJlaJpr2xla
+         93M7rzEmAwH/ISwHxQu6fNqqnRL8AXrRDtc46fje7m2/1BVxq0LFsiqO4Pjs+R0aaPpS
+         Eg8E8BMbMNZQo7MdsTIICeAvnbXxbLeuJOXHJFoG87DHkMvmTNFFnAGrFR+Al1/Gdf7v
+         ocZw==
+X-Gm-Message-State: ACrzQf3cplGZU30aO0Mu6t+jE6I/UfNCFYQ1zE2Z1qv8bHZ4T2lv3kTG
+        78sRo2rU+UiXvUy03U6O17iOgggNZesQvg==
+X-Google-Smtp-Source: AMsMyM5hyxv4Y9Z/mGjA96UQAqIpVRmoHSYYYvpXsKaIYICf/2MDQWM0TdEZa9uTYAMOLEhdwJwMAQ==
+X-Received: by 2002:a05:6512:1697:b0:4a0:d52d:af7 with SMTP id bu23-20020a056512169700b004a0d52d0af7mr2857338lfb.554.1664091536768;
+        Sun, 25 Sep 2022 00:38:56 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id 5-20020a2e1445000000b0026be23f24efsm1998480lju.18.2022.09.25.00.38.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Sep 2022 00:38:56 -0700 (PDT)
+Message-ID: <7edec96a-313d-f810-8ee7-9d79ffcbf758@linaro.org>
+Date:   Sun, 25 Sep 2022 09:38:55 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220917155705.2284-1-luca@z3ntu.xyz>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: ti,j721e-pci-host: add interrupt
+ controller definition
+To:     Matt Ranostay <mranostay@ti.com>
+Cc:     devicetree@vger.kernel.org, vigneshr@ti.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20220922204434.74764-1-mranostay@ti.com>
+ <20220922204434.74764-2-mranostay@ti.com>
+ <20220923093111.hutfiwvk6ky7yqwq@krzk-bin> <Yy9spckVoTl1pGmP@ubuntu>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Yy9spckVoTl1pGmP@ubuntu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 17, 2022 at 05:57:00PM +0200, Luca Weiss wrote:
-> Convert the PM8xxx PMIC Vibrator bindings to dt-schema.
+On 24/09/2022 22:46, Matt Ranostay wrote:
+> On Fri, Sep 23, 2022 at 11:31:11AM +0200, Krzysztof Kozlowski wrote:
+>> On Thu, 22 Sep 2022 13:44:33 -0700, Matt Ranostay wrote:
+>>> Add missing 'interrupt-controller' property and related subnodes to resolve
+>>> the following warning:
+>>
+>> You did not Cc respective maintainers on your patch. Use
+>> scripts/get_maintainers.pl.
+>>
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Yeah noticed I forgot to Cc Rob Herring :-/
 
-Applied, thank you.
+You did not Cc anyone... No one from PCI maintainers, no one from DT
+bindings.
 
--- 
-Dmitry
+
+Best regards,
+Krzysztof
+
