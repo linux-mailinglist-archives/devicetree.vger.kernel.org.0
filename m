@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFB495E924E
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 13:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EBE35E925D
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 13:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232187AbiIYLGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 07:06:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59826 "EHLO
+        id S230504AbiIYLGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 07:06:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231981AbiIYLGU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 07:06:20 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8822F31ECA
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 04:06:17 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id c7so4565824ljm.12
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 04:06:17 -0700 (PDT)
+        with ESMTP id S232228AbiIYLGW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 07:06:22 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAC5631ED7
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 04:06:18 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 10so6785048lfy.5
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 04:06:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=C/wNr99B2GiUlR8zUtFoudPrSaA10BysS6EdLdtxQpo=;
-        b=q5sjHjZH08xL8H1+KbHA+tjykZzFLfv4FLTpMC2SFwD+K/q7No8pq5kh0PQGV6wSXD
-         JIcWMob3qfC5yjs11E1rdgqssGmIbbbXrhIUqPAn6y+wvRd+lQjuhE7mWK5yEmnKPtpD
-         W7H1crRNCF28GhUhVpyTB8Dk5SX9fRu7UETafoLRKJUfS7gL0LfTlCZF2It2ENKl7N0Y
-         U3RCexl/uhJlGa5e9kfMIfZ97u7KxAUzPCUsyWAPvpG9ShZiCC39/jSnWIlxgUX0gmCm
-         7lysvzdQJzMGOgpHe+uS1Nzq+FGZ4TBN4s51x8Z8l3cyA4lBrBzxHpi0FsIOsWHO0Dcn
-         zBNQ==
+        bh=c3vr9ZcVCz9cz4XS0JEceE2ICtAEiQioi8Jl3QwESv4=;
+        b=jMdOMRCSdiINsgdxHOvy9wHBcF7bRjSjqJjTHA1FEq+LmhWXa54aYuTs3N7QSp8C+q
+         /161jGZdpnmlk1alg9Z/Io/u/ByDy3FYP6UxCbVBcnJJVnwseYggOC2j5pGvIdu9yoEL
+         7Iwpy1ECYXUEdezqJgUWTk7ftYS5ZUS/e/rM0vUZtLK6TpAn/5X/tXw13IXxhHZwL4kH
+         3w6lkegER3vLyqVGu6M37s5BvLVMb26xLpo0RZrMY0HVn9MezZ4QMthShoXU8ThzXTOE
+         1cJwgrl3zvM9FZHqD2zrOlnPTRgubLyQVxrQjSYS0bbzHaBiO2B9rtkQNaB/MuSd4r6k
+         qZug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=C/wNr99B2GiUlR8zUtFoudPrSaA10BysS6EdLdtxQpo=;
-        b=IasyCrVnNZTQcCrac9T6UwFRfemfONFRchP5t6eiMTuMLZ1n1TuuvlHmlDroTewy7a
-         CCjB6b/hGASCBz2qGbaZYGKO/GeOjCP/ctduvKGBr6r4pk4CQ4cyAHML07x4ciQCtMqW
-         S+HBuMqXGLKhg6ReV3kYpAuhDA2u1SXVt18rutrk+RJ8BUr1nXpI4W8oUGQVM2+7EzGD
-         DO/555PuYqV9TGWOvGqsvLY2A9h++vLx2Jf5KwP1oz3PU4gQ4AOqHact3fvAvf4k5JFC
-         91P3TvHYI/fLbnLbh6eLVWqZI04sn/xnycqXHztOenUhffDj9PszBJKd+snMryfSSsZx
-         Th7Q==
-X-Gm-Message-State: ACrzQf35asfZFta7UNwtt2tiK60Y96jIh3nnOmJJctgB7aqNRnRLYPoH
-        i55KUQlUDf1rXX8XnmQ6jkmLvhqGgRC5cQ==
-X-Google-Smtp-Source: AMsMyM72JdDAK3wnFMe5qxkdnn5tOrv4q3177detMxlGlkr85J4zXrick+TT4nzMdIn/AxhN30dx0A==
-X-Received: by 2002:a2e:b8d6:0:b0:26c:4776:ba2e with SMTP id s22-20020a2eb8d6000000b0026c4776ba2emr5562540ljp.143.1664103975877;
-        Sun, 25 Sep 2022 04:06:15 -0700 (PDT)
+        bh=c3vr9ZcVCz9cz4XS0JEceE2ICtAEiQioi8Jl3QwESv4=;
+        b=156f/xC4Kozk1JEUF12KgedZMfC0yUuGMPDG0qVE+edYmjGlE3zvT1CarEI9Y41t8e
+         2SvHF51fLHWawuV+ANrxo+aAfJFxwe4/D+2w0SlygcuAjD4LKXz65OPGou0aI/IjN7wm
+         11uJYJy1NBdsEj3obj3Ww0mNjaFo+70FAU895LwdOQrea17UhFJXh4rTXCrjLRUMuQ8h
+         4JVTSAc9lzENOm3l88Cz8uJIyCNotqry2NHsPCjklmDB6hEeh9m3/xPALaxkAFA+PMT4
+         8vSEXWdaddKzEyYu2P7U33R3am1s+EX9KsYEpcWhz8XfX1vbUoJXAKamOuNmxTv/QVMj
+         8rQw==
+X-Gm-Message-State: ACrzQf0gRFwmDoQNBZN9b64T1f6qn+7Ozvq5n0eK3efZM3sdqz6OJZ9b
+        OTmnNbVUhs1uBH6hGxy44djKvA==
+X-Google-Smtp-Source: AMsMyM4JC1lcNK87LMmGzqJjfEddk8jD/YrDbuIGylz78nIuBbuzfAIBJ5M9k/y3RUqvYddCxvXufg==
+X-Received: by 2002:a19:5505:0:b0:497:ad71:39f4 with SMTP id n5-20020a195505000000b00497ad7139f4mr6660486lfe.226.1664103976886;
+        Sun, 25 Sep 2022 04:06:16 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u19-20020ac258d3000000b00492dadd8143sm2177265lfo.168.2022.09.25.04.06.14
+        by smtp.gmail.com with ESMTPSA id u19-20020ac258d3000000b00492dadd8143sm2177265lfo.168.2022.09.25.04.06.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Sep 2022 04:06:15 -0700 (PDT)
+        Sun, 25 Sep 2022 04:06:16 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 02/15] arm64: dts: qcom: sm8250-sony-xperia-edo: fix touchscreen bias-disable
-Date:   Sun, 25 Sep 2022 13:05:55 +0200
-Message-Id: <20220925110608.145728-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 03/15] arm64: dts: qcom: sc8280xp: align TLMM pin configuration with DT schema
+Date:   Sun, 25 Sep 2022 13:05:56 +0200
+Message-Id: <20220925110608.145728-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220925110608.145728-1-krzysztof.kozlowski@linaro.org>
 References: <20220925110608.145728-1-krzysztof.kozlowski@linaro.org>
@@ -76,27 +76,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The property to disable bias is "bias-disable".
+DT schema expects TLMM pin configuration nodes to be named with
+'-state' suffix and their optional children with '-pins' suffix.
 
-Fixes: e76c7e1f15fe ("arm64: dts: qcom: sm8250-edo: Add Samsung touchscreen")
+  qcom/sc8280xp-crd.dtb: pinctrl@f100000: kybd-default-state: 'oneOf' conditional failed, one must be fixed:
+    'pins' is a required property
+    'function' is a required property
+    'disable', 'int-n', 'reset' do not match any of the regexes: 'pinctrl-[0-9]+'
+    'disable', 'int-n', 'reset' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts            | 12 ++++++------
+ .../boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts  | 12 ++++++------
+ 2 files changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-index 72162852fae7..601a21c381f8 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-@@ -613,7 +613,7 @@ ts_int_default: ts-int-default-state {
- 		pins = "gpio39";
- 		function = "gpio";
- 		drive-strength = <2>;
--		bias-disabled;
-+		bias-disable;
- 		input-enable;
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+index fea7d8273ccd..a2027f1d1d04 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+@@ -374,19 +374,19 @@ &tlmm {
+ 	gpio-reserved-ranges = <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
+ 
+ 	kybd_default: kybd-default-state {
+-		disable {
++		disable-pins {
+ 			pins = "gpio102";
+ 			function = "gpio";
+ 			output-low;
+ 		};
+ 
+-		int-n {
++		int-n-pins {
+ 			pins = "gpio104";
+ 			function = "gpio";
+ 			bias-disable;
+ 		};
+ 
+-		reset {
++		reset-pins {
+ 			pins = "gpio105";
+ 			function = "gpio";
+ 			bias-disable;
+@@ -410,7 +410,7 @@ qup2_i2c5_default: qup2-i2c5-default-state {
  	};
  
+ 	tpad_default: tpad-default-state {
+-		int-n {
++		int-n-pins {
+ 			pins = "gpio182";
+ 			function = "gpio";
+ 			bias-disable;
+@@ -418,13 +418,13 @@ int-n {
+ 	};
+ 
+ 	ts0_default: ts0-default-state {
+-		int-n {
++		int-n-pins {
+ 			pins = "gpio175";
+ 			function = "gpio";
+ 			bias-disable;
+ 		};
+ 
+-		reset-n {
++		reset-n-pins {
+ 			pins = "gpio99";
+ 			function = "gpio";
+ 			output-high;
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index b2b744bb8a53..68b61e8d03c0 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -350,19 +350,19 @@ &tlmm {
+ 	gpio-reserved-ranges = <70 2>, <74 6>, <83 4>, <125 2>, <128 2>, <154 7>;
+ 
+ 	kybd_default: kybd-default-state {
+-		disable {
++		disable-pins {
+ 			pins = "gpio102";
+ 			function = "gpio";
+ 			output-low;
+ 		};
+ 
+-		int-n {
++		int-n-pins {
+ 			pins = "gpio104";
+ 			function = "gpio";
+ 			bias-disable;
+ 		};
+ 
+-		reset {
++		reset-pins {
+ 			pins = "gpio105";
+ 			function = "gpio";
+ 			bias-disable;
+@@ -384,7 +384,7 @@ qup2_i2c5_default: qup2-i2c5-default-state {
+ 	};
+ 
+ 	tpad_default: tpad-default-state {
+-		int-n {
++		int-n-pins {
+ 			pins = "gpio182";
+ 			function = "gpio";
+ 			bias-disable;
+@@ -392,13 +392,13 @@ int-n {
+ 	};
+ 
+ 	ts0_default: ts0-default-state {
+-		int-n {
++		int-n-pins {
+ 			pins = "gpio175";
+ 			function = "gpio";
+ 			bias-disable;
+ 		};
+ 
+-		reset-n {
++		reset-n-pins {
+ 			pins = "gpio99";
+ 			function = "gpio";
+ 			output-high;
 -- 
 2.34.1
 
