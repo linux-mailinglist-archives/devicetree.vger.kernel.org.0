@@ -2,123 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34A4F5E9392
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 16:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76D3D5E939D
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 16:30:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbiIYOGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 10:06:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38534 "EHLO
+        id S232004AbiIYOaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 10:30:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230059AbiIYOGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 10:06:16 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34AD9286F7;
-        Sun, 25 Sep 2022 07:06:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1664114411;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=y4Fvb9tFgDidWGuwba+gD4vi++BPYzS+rjY1SrTWt8M=;
-    b=AEoxGvubdnYyLAIj4WH2a4LrXLrN95SyJ55FQXn2hx6lxdtg+qW/veoO6MyS6XVBKK
-    WFjt1YBpDE1JaFhdZbdjlvhG00HCGs51TvVxibl5B5yNLWZtRnt/AfROT5x0JjcIMlR4
-    tMMyJckPlJCoxKF3Nx7jPaWLM8kM8koslnUDOtY4n+YonlMG6LIRZIGIjreMmzs819Ym
-    vj90qO5/i4PMOY9b5FQCKkHunPQaSx71D0c+5RnFsHWC89NGhPEgde8mZ9pexKbBYJUs
-    +f4X1QCSOnq2910pycKvJcw3zovlYjMXEtp/y99muEt1Zd/tHTOdzE7D0RAw3FA7qZXK
-    co2A==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK85lg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 48.1.1 AUTH)
-    with ESMTPSA id dde14cy8PE0B5Wh
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Sun, 25 Sep 2022 16:00:11 +0200 (CEST)
-Date:   Sun, 25 Sep 2022 16:00:04 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sricharan R <sricharan@codeaurora.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        krishna Lanka <quic_vamslank@quicinc.com>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 17/32] dt-bindings: pinctrl: qcom,msm8909-tlmm: do not
- require function on non-GPIOs
-Message-ID: <YzBe5NdhGqR+2bxN@gerhold.net>
-References: <20220924080459.13084-1-krzysztof.kozlowski@linaro.org>
- <20220924080459.13084-18-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S230411AbiIYOaA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 10:30:00 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1C51263B;
+        Sun, 25 Sep 2022 07:29:58 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id c24so4142599plo.3;
+        Sun, 25 Sep 2022 07:29:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
+        bh=S+RG48s6FUDV6ht8+uEPounXKq0zz4a5qSA3BCzY9/s=;
+        b=Z8oM4e5yvwolyodjE+2ZaOJU4oCx5kRhyeK5mpQ1IRZJBOnl3Q9nvI/hIMHQutd9fK
+         JelLd1nqilb/oodLNB/BysY9917uylXLTjnpG8Qz+NcxwMUkLnH37P0GW3RgKNES2gsK
+         hCaeFjL6Z75c4QybcZDg0FWqddBhztKA8xY3eQ6Fb58etHejHyuSVkVaXvUYVR+JJ2X/
+         e+aJOCnTYBd0y5aSmzcIgADK6DW0bSBCLTFAIsQFc54FnYxQ9Yz9wc4Y03FSlTqGjuQ2
+         7UxiEZ/T1uzwqIFV04PUWYGPZZrZIPaEaPi/qeqfTmi8fcOJVY+lyt34CCYSUknPtIyu
+         yAcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=S+RG48s6FUDV6ht8+uEPounXKq0zz4a5qSA3BCzY9/s=;
+        b=sOnjC8gXgfN78aeRLHh9/jnUj2cjpOIZwcMdN1tOMq48b1Jb+W0Pl0nYOGY2gATG30
+         QqQDcY5ZM9sMPH/uyooSrx5+avJrrFz40GJ4KuP6Z1qDm9NCmKmpaNc7ah4itlv9tJFQ
+         qTqTF1CwL81rww3qs263EVO8v4iaj2VO9MimZQDLNPU+fl5vuTEs/qTUleU/Rn+liiL0
+         J/uUbHX7rwk+6hQHxjHpbS6Kz6SUP7nvyYsmm7HrcE/GsAw4iGfUf39tlE8wPDE5vin8
+         qpWzzSzg9mS15XOyvPNmFl8DszxJtA8cLt8Rfy0bmWVirMWXFbqUmOlb1WvW/VZYJoN9
+         noRw==
+X-Gm-Message-State: ACrzQf1bkozum+kvPnnNq+ViRWTHDaAN81hps/nBUkHracp6b/e9UyMn
+        hJNgfnY2C0aGon7k8jbE3LA=
+X-Google-Smtp-Source: AMsMyM4jnAWWNhRBQGingmImuc9rZoK/O2f6RUTBMEtjTKbkR7ytzXKfiOzEpFgwZLz0Z2TGrxXOPg==
+X-Received: by 2002:a17:902:d484:b0:178:1b69:1488 with SMTP id c4-20020a170902d48400b001781b691488mr17594111plg.156.1664116197924;
+        Sun, 25 Sep 2022 07:29:57 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id z10-20020a1709027e8a00b00176dee43e0dsm9300538pla.285.2022.09.25.07.29.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Sep 2022 07:29:56 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Sun, 25 Sep 2022 07:29:54 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-watchdog@vger.kernel.org, yuji2.ishikawa@toshiba.co.jp,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: watchdog: toshiba,visconti-wdt: Update
+ the common clock properties
+Message-ID: <20220925142954.GA1752068@roeck-us.net>
+References: <20220525004605.2128727-1-nobuhiro1.iwamatsu@toshiba.co.jp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220924080459.13084-18-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220525004605.2128727-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Sat, Sep 24, 2022 at 10:04:44AM +0200, Krzysztof Kozlowski wrote:
-> Certain pins, like SDcard related, do not have functions and such should
-> not be required.
+On Wed, May 25, 2022 at 09:46:05AM +0900, Nobuhiro Iwamatsu wrote:
+> The clock for this driver switched to the common clock controller driver.
+> Therefore, update common clock properties for watchdog in the binding document.
+> And this matched this example with the actual dts.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Thanks a lot for all your effort to clean this up!
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
 > ---
->  .../bindings/pinctrl/qcom,msm8909-tlmm.yaml          | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
-> index b1735918fa90..e4332e628698 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
-> @@ -53,7 +53,6 @@ $defs:
->      description:
->        Pinctrl node's client devices use subnodes for desired pin configuration.
->        Client device subnodes use below standard properties.
-> -    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
+>  v3: doesn't remove timeout-sec.
+>  v2: send to linux-watchdog.
+> 
+>  .../bindings/watchdog/toshiba,visconti-wdt.yaml      | 12 ++++--------
+>  1 file changed, 4 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml b/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
+> index 690e19ce4b87..eba083822d1f 100644
+> --- a/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
+> @@ -35,20 +35,16 @@ additionalProperties: false
 >  
->      properties:
->        pins:
-> @@ -113,7 +112,16 @@ $defs:
->  
->      required:
->        - pins
-> -      - function
+>  examples:
+>    - |
+> +    #include <dt-bindings/clock/toshiba,tmpv770x.h>
 > +
-> +    allOf:
-> +      - $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-> +      - if:
-> +          properties:
-> +            pins:
-> +              pattern: "^gpio([0-9]|[1-9][0-9]|10[0-9]|11[0-7])$"
-> +        then:
-> +          required:
-> +            - function
+>      soc {
+>          #address-cells = <2>;
+>          #size-cells = <2>;
 >  
-
-Is it possible to place this into qcom,tlmm-common.yaml? If the pattern
-is only used to make "function" required for GPIOs, then it should not
-matter if it matches just the prefix ("^gpio") or the exact set of
-allowed GPIO numbers. The definition of the "pins" property will already
-take care of validating those.
-
-Or are there some Qcom SoCs where a GPIO without "function" is valid?
-
-Thanks,
-Stephan
+> -        wdt_clk: wdt-clk {
+> -            compatible = "fixed-clock";
+> -            clock-frequency = <150000000>;
+> -            #clock-cells = <0>;
+> -        };
+> -
+> -        watchdog@28330000 {
+> +        wdt: watchdog@28330000 {
+>              compatible = "toshiba,visconti-wdt";
+>              reg = <0 0x28330000 0 0x1000>;
+> -            clocks = <&wdt_clk>;
+>              timeout-sec = <20>;
+> +            clocks = <&pismu TMPV770X_CLK_WDTCLK>;
+>          };
+>      };
