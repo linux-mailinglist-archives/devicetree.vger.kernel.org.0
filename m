@@ -2,119 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 498415E9286
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 13:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E55235E92AE
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 13:21:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232782AbiIYLHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 07:07:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60922 "EHLO
+        id S229548AbiIYLVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 07:21:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232789AbiIYLG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 07:06:56 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BF2D31DF0
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 04:06:30 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id w8so6727987lft.12
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 04:06:30 -0700 (PDT)
+        with ESMTP id S231841AbiIYLVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 07:21:21 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71B162E6BC
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 04:21:18 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 10so6813668lfy.5
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 04:21:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=6qiFysm9YOq22jr+04Jj1ATXUz8nTarw0VSyiTjbRuo=;
-        b=KQj4Lxpy7J5c5gtfdn2MCnns59x82sYbZgv+SsKYGc+KtkPtQbxD9V5MkvijEtFyop
-         jWaT/Pr8UzaITtZMpFladmxahteM8r9ioOmcbUY0Hjy0TLxqt3vdxo18/9pfQqOaaroh
-         uShMvSt9QU+U9eIGk3G3X/dyK+m1Hoktrh8qT9X+EGLy/4lKUikwo+BoogkZE91S0/Sv
-         JRTYnbzoRIy8bQWk4J0RsFOR8zOXWzX2rVVTnGsuO22Fm1uCqQnaR3LQl5utfJOJXDIQ
-         dw/HvaUkKjlP1KrQ2iXnlStpbSIBfQkX/zwXzD8vzO23hplm+UiLWIur5cWzWr8s2TTw
-         KcnQ==
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date;
+        bh=duVQyVLuGWggGu+8Z6F+GJlfNp5/JJucEkdX/LlC7QM=;
+        b=zy101Vl2fAM9C93MPqWcgwAgfCbKq4SO3IoJw1BgWY7dCpiJy7lK9bW/Q47xO2cC57
+         4Y/25g/946aYKqRXM/bJheQ/1CmSftoWlC0PscJe2jOH2v/NwYZdGGZECOE2gevle1v1
+         Huozl5KJVfOH6DiP9+18jnRUPtKIvmATS/t0russJVc4AsWWLDIXJ+g+IsjEyMpEQ/Tq
+         pDYuyazep16gdyvMoe5cQTEd8sMuztiUQDMylXO540GzCoYDmNezfRjKaBXi59LfqIrE
+         njaEaF+WHyJgpTahV9iFyFxpB5B7L9TH6HSL8rQIVxximN1j4vqmZqhdKmeTfDxmvFMs
+         gDsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=6qiFysm9YOq22jr+04Jj1ATXUz8nTarw0VSyiTjbRuo=;
-        b=3wIJtxltB+pFEhvq1oRxmiFNCGe2xV5APZe3dm3JT5ylkOt92DQbuBYAciBlJFnHgV
-         9c9v+efCD0EJ6uHopzNZWIOsPwsDuz32NpZkmpAx7FycxoAVLoo2QZIrPZvxPNZA5zwp
-         F4IHnJUhMtsA1SKnhXA0PO0g4vFiYwIk5DSp04fSrAIqWfEIoX86LT56C4okBkshjhac
-         UPzj4Cp82IiUVu+XkD/2SMuHKeJNZmvwE5qjistHTJ74ya42aWcsGSBV32DXsMa3Xws/
-         cTKhhrzkiA6UE/oPA/5GNZQtiTG3YHbC16MMyKEXSDZ+Ne7x8iPH4UOCK9fdZ+ABJNGm
-         LXVQ==
-X-Gm-Message-State: ACrzQf1OOBu4YtU9uRVGX1QKOaLKjmm5T4IDmraMy27VPx3/rCRSW8QT
-        upAQ7SURw5IR7jAqjgWML47NVQ==
-X-Google-Smtp-Source: AMsMyM7oWDuDuRm2HN3Eq/tJq4ODnuaLzn5fRVS06W0QrFg8y8fwIm4+jL3RjWbiYRuP+iBkrdqwjA==
-X-Received: by 2002:a05:6512:1289:b0:49f:1b3d:88c5 with SMTP id u9-20020a056512128900b0049f1b3d88c5mr6834604lfs.499.1664103989735;
-        Sun, 25 Sep 2022 04:06:29 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u19-20020ac258d3000000b00492dadd8143sm2177265lfo.168.2022.09.25.04.06.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Sep 2022 04:06:29 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=duVQyVLuGWggGu+8Z6F+GJlfNp5/JJucEkdX/LlC7QM=;
+        b=YOths5k7arUEoca18RAv56P/19i0UuOnHra1xvP/HVVhYR18UkSKhIadb6wORNyURX
+         00qcz/tWNPGRBsa8v0CzljXQoDLXCGhiSRKhdllwEPtAclvRrsYWmpTf20JI0rTmkt6i
+         58gdVaKlkhMDNO8E7B3Wojebn+GqQdpv6NaQPK2gTW3LTm6pOMbxMwZdz104QJv7VWDE
+         BjVo5uXqBq6Gl1yKfOIYXWyykoAQrCm3sYWwS5kgF7nQQP4yOZq7An4wtSnQuLQjNQvA
+         5XE7G2cb64rsbUfH87XP+SpZ+/OStHH6jhLn3r3U3AJ5S/tYsozcMeqkHGnTQ0MiVS+q
+         Y/EA==
+X-Gm-Message-State: ACrzQf26i4FQfKOS2UoxMMacgtIbvvtksFDg3Iko68Dj6ijwWCqcF5XR
+        SqFmFIPzrrYyUjqCvC6Vz1IbfQ==
+X-Google-Smtp-Source: AMsMyM5umAEhirxj9xxoewdxEYMdawpTbW9PVpngUd2UxEUhJPNXJQMwDYSM3hK6i2iFf9q2CgAHPA==
+X-Received: by 2002:a05:6512:a8c:b0:49e:359f:5563 with SMTP id m12-20020a0565120a8c00b0049e359f5563mr6478163lfu.563.1664104876758;
+        Sun, 25 Sep 2022 04:21:16 -0700 (PDT)
+Received: from [127.0.0.1] ([94.25.228.177])
+        by smtp.gmail.com with ESMTPSA id 11-20020a05651c128b00b0025fe7f33bc4sm2060371ljc.49.2022.09.25.04.21.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 25 Sep 2022 04:21:16 -0700 (PDT)
+Date:   Sun, 25 Sep 2022 14:21:11 +0300
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+CC:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 15/15] dt-bindings: pinctrl: qcom,sc7280: correct number of GPIOs
-Date:   Sun, 25 Sep 2022 13:06:08 +0200
-Message-Id: <20220925110608.145728-16-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220925110608.145728-1-krzysztof.kozlowski@linaro.org>
-References: <20220925110608.145728-1-krzysztof.kozlowski@linaro.org>
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BRFC_PATCH_00/10=5D_thermal/drivers/tsens=3A_specify?= =?US-ASCII?Q?_nvmem_cells_in_DT_rather_than_parsing_them_manually?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <YzArWZ1+OKvCNM7d@gerhold.net>
+References: <20220910124701.4060321-1-dmitry.baryshkov@linaro.org> <YyyaH1ZXF9IvLpwd@gerhold.net> <93a790fb-20dc-0f31-2eed-09f5b538bea9@linaro.org> <YzArWZ1+OKvCNM7d@gerhold.net>
+Message-ID: <722E6DEE-BD57-4573-A151-508917961D1B@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SC7280 has 175 GPIOs (gpio0-174), so correct size of gpio-line-names and
-narrow the pattern for matching pin names.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml    | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
-index 1db05c43d58c..2a6b5a719d18 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
-@@ -43,7 +43,7 @@ properties:
-     maxItems: 1
- 
-   gpio-line-names:
--    maxItems: 174
-+    maxItems: 175
- 
-   wakeup-parent: true
- 
-@@ -70,7 +70,7 @@ $defs:
-           subnode.
-         items:
-           oneOf:
--            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-9]|18[0-2])$"
-+            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-6][0-9]|17[0-4])$"
-             - enum: [ sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk,
-                       sdc2_cmd, sdc2_data, ufs_reset ]
-         minItems: 1
-@@ -132,7 +132,7 @@ $defs:
-       - if:
-           properties:
-             pins:
--              pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-9]|18[0-2])$"
-+              pattern: "^gpio([0-9]|[1-9][0-9]|1[0-6][0-9]|17[0-4])$"
-         then:
-           required:
-             - function
--- 
-2.34.1
+On 25 September 2022 13:20:09 GMT+03:00, Stephan Gerhold <stephan@gerhold=
+=2Enet> wrote:
+>On Sat, Sep 24, 2022 at 09:58:56PM +0300, Dmitry Baryshkov wrote:
+>> On 22/09/2022 20:23, Stephan Gerhold wrote:
+>> > On Sat, Sep 10, 2022 at 03:46:51PM +0300, Dmitry Baryshkov wrote:
+>> > > Historically the tsens driver fetches the calibration data as a blo=
+b and
+>> > > then parses the blob on its own=2E This results in semi-duplicated =
+code
+>> > > spreading over the platform-specific functions=2E
+>> > >=20
+>> > > This patch series changes tsens calibration code to use pre-parsed =
+nvmem
+>> > > cells rather than parsing the blob in the driver=2E For backwards
+>> > > compatibility the old code is left in place for msm8916 and qcs404,=
+ two
+>> > > platforms which have in-tree DT files=2E For msm8974 the original f=
+unction
+>> > > is left intact, since it differs significantly (and I can not test =
+the
+>> > > code on msm8974)=2E For all other affected platforms the old parsin=
+g code
+>> > > has been dropped as a part of this RFC=2E
+>> > >=20
+>> > > The code was tested on msm8916 and qcs404 only, thus it is being se=
+nt as
+>> > > an RFC=2E
+>> > >=20
+>> >=20
+>> > Thanks a lot for working on this!
+>> >=20
+>> > After thinking about this for a while I wonder if we can go even a st=
+ep
+>> > further: Can we drop SoC-specific code entirely for 8939 and 9607 and
+>> > match the generic compatible (qcom,tsens-v0_1)? This would allow most
+>> > v0=2E1 plaforms to use generic code like for qcom,tsens-v2=2E
+>>=20
+>> While this idea looks appealing, I think it's a bit against our custom =
+to
+>> put hardware details into the driver rather than putting them into the =
+DT=2E
+>> So, I think, the 8939 will have to stay as is, while for the 9607 and m=
+aybe
+>> several other devices it should be possible to create a fallback entry=
+=2E
+>>=20
+>
+>IMHO the existing tsens-v2 support is a good example that it's sometimes
+>better to have some minor hardware details in the DT so the driver does
+>not have to be changed for every single platform=2E Extending from
+>specifying the number of sensors in the DT to the exact set of sensors
+>is not a very big step=2E
 
+Fine, I will take a look=2E
+
+>
+>Also, aren't you also going against the custom here by moving the fuse
+>hardware details to the DT? :)
+
+Not quite=2E Fuses are completely software thing=2E=20
+
+>
+>> [=2E=2E=2E]
+>> > And actually there are two revisions of 8939, the older one has one
+>> > sensor less (msm-3=2E10: msm8939-common=2Edtsi vs msm8939-v3=2E0=2Edt=
+si)=2E
+>> > This could also be easily handled from the DT without any code change=
+s:
+>> >=20
+>> > 	qcom,sensors =3D <0 1 2 3 5 6 7 8 9>;
+>>=20
+>> Usually we only care about the latest revision of the chip, earlier
+>> revisions typically correspond to engineering samples, never hitting th=
+e
+>> actual consumer devices=2E
+>>=20
+>
+>I'm afraid we might have to care about both revisions here - I recently
+>checked a couple of MSM8939 devices in postmarketOS and there are
+>definitely two different revisions used in production - they are easily
+>identifiable since they have different CPU revisions in the "lscpu"
+>output (Cortex-A53 r0p1 vs r0p4)=2E
+
+Ugh=2E=20
+
+>
+>Thanks,
+>Stephan
+
+--=20
+With best wishes
+Dmitry
