@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABF3E5E958A
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 20:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2FEA5E958F
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 20:58:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233010AbiIYS5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 14:57:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49566 "EHLO
+        id S229567AbiIYS6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 14:58:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232925AbiIYS5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 14:57:53 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA7662EF08
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 11:57:51 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id n124so5981903oih.7
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 11:57:51 -0700 (PDT)
+        with ESMTP id S232860AbiIYS6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 14:58:45 -0400
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3FE125E94
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 11:58:43 -0700 (PDT)
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-12b542cb1d3so6751919fac.13
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 11:58:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=kali.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=Xkkurc7xmhFTAUmptTAIyBrQNuCw6O40NOONaEt5SY4=;
-        b=ODYOHUvchpeTI7kgg2hz3gdVa4Iql7GILhBLA5AMo4BkfIcIM9oUod7Ce3iLkQycID
-         1u6P0YqHGGfeY0UlyLTIOWbZGYzUSu9e+qQGztRmgt/92ptT+hZlATNlfdIDNVklRmgg
-         AbGE2XGF1oysM2ls2fvitmVio8TZTahF9dDEg1O/RbZu24YmMR1DT1WP1LStM/YZaDJw
-         zVbUBN6s1IltvVGe88QfJQcmv6gOfWBq1LFC2NIm9/4E6IjfidX66mrSl2wGod3UMQPD
-         l3X5TWf4Dsg9cUvnjTeJ2MVpUR7Pl2MRfLumQOIVOo3v/G6/qPqVl+SuoB/3e8G+iI6I
-         NbnQ==
+        bh=M3tmqKTq30hnagEOzKLlmynUjQTBZCoWj+kBx7NUQOc=;
+        b=KU9NTpKaj9sX6HbIO7VUMhid7Iu14PvSEZSCrkBPcJN7A0Z/b4jHSzehqFPFJ+q3hA
+         Y291vI139cdUevC+1kubb6EY4ozQ50v5OezE4h2R5XkF8GP7dYPIzBXwFr/FXbHuqIKd
+         u2u/LvvBDPulfI9fAyNFfxPt6J2lKH24R5mud3Yp3zk+QjqEGzO/GJiDmu9NW6kJ22kt
+         X2TKZjJ9vvvCTXnpg/WVrXp7Di8ce36ceyVkGJ1dK6u9Wtm654vMKBMPNkX6ulRQ3hHl
+         AbJSr5L6drEJ7Te17lbIGxVXo1iq5xmtCvkLAmOcyHVnKrqj/sM1TqaxFS5T2vKY4K3z
+         LlYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=Xkkurc7xmhFTAUmptTAIyBrQNuCw6O40NOONaEt5SY4=;
-        b=zUkdgHmIB+wloanGoDkAxeD+2ScwXtPGW4n5rx5yN15O9e3sO10fYUF4TJQTZaurRf
-         fuKKE/NF8QUA9KL++hNJ59LLdeJZuVrtvLgW/Kc6jNrhBwqagAA6PQB7ULVPy8AJKWkQ
-         ftITWBDlcAd0hg8VvKc6Co2ZN77119bazJO4SeRzWIt+8KmgEWiiUC7aeU822AqK2ejh
-         R7Jc8ZER6iHYPrtsfyH7UQpdAYl34RfIrgHlIUlf7lAnnzLCy2jF9MdhjJ66ZgzSfbzL
-         UCTYMjP896+XmcbtU7qBM0aTU8DST6zRXAOQNIMh+h/zdCL/aOMKIzMI/l7tfRxfcO+m
-         Bugw==
-X-Gm-Message-State: ACrzQf1GyNeRjYMmSQpvSuWb7ZOQXayYz+gpR32gDZCOukSSZ6kExt+9
-        XMwt0LtsA0RhrVi9H+i/jJEqBw==
-X-Google-Smtp-Source: AMsMyM5jPsdQ9cdIbbiQVtXHLiRsM8nEpBbYgdYcp0q8ndoeeUBtB5jMoDECVwj/c1rIncJJtzm2ZA==
-X-Received: by 2002:a05:6808:1892:b0:350:7c49:649f with SMTP id bi18-20020a056808189200b003507c49649fmr13224624oib.219.1664132271066;
-        Sun, 25 Sep 2022 11:57:51 -0700 (PDT)
+        bh=M3tmqKTq30hnagEOzKLlmynUjQTBZCoWj+kBx7NUQOc=;
+        b=oUtmr/nuvRcTvRZ4tfsmcuwopAWe5TL4lbK4tQ9uYXIScb/QjywjFfB4LWsh6ls1Jq
+         sEEXeyWVugrtUPQhSZzfOK/F5WrD4QMOjy2q7j2Kh5JOug6W3mG+N33dUV0N56Sde+FM
+         zWH1iFSbpcaUhB9ul6pzpljz1TBtZ2eu2odRlHXicp8pJBuuGbFDXJJQYNdR5CRTimXz
+         f4L2TYDD5tUnN+BemTLtUS4sDs8KvHum0k6sVbrAPqq59rcN9ngcUd8QB/4UMGJk/S+v
+         sSgyWV92SvQCmJMg+XkzRW4wa4dnF9MFYQuuBQSdVA1MSe2crl+H7QmLwDcipa9pM26p
+         1muw==
+X-Gm-Message-State: ACrzQf2pnboQI5TOcZGOR+cfAWPT8IgtIYkf05SnW7G3Z6KUI8d7eXS9
+        6k6AuXlCXTinurUrLxCkmf1cZ7SgPrRgynnmCa0=
+X-Google-Smtp-Source: AMsMyM6dfh0CcbJflisdwaZ+hNfWoQV1N1y0eqrFuZDEIicfSlJbuuNrqKvXCOmWVQCqQN9VTUWAmQ==
+X-Received: by 2002:a05:6870:1694:b0:127:8d30:5afc with SMTP id j20-20020a056870169400b001278d305afcmr10882036oae.26.1664132322423;
+        Sun, 25 Sep 2022 11:58:42 -0700 (PDT)
 Received: from [192.168.11.16] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id n124-20020acaef82000000b003502783c454sm6394656oih.0.2022.09.25.11.57.49
+        by smtp.gmail.com with ESMTPSA id u8-20020a0568301f4800b0065126423321sm6946171oth.76.2022.09.25.11.58.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Sep 2022 11:57:50 -0700 (PDT)
-Message-ID: <bff64b90-078b-5cb7-edff-4d5308bb7e0b@kali.org>
-Date:   Sun, 25 Sep 2022 13:57:49 -0500
+        Sun, 25 Sep 2022 11:58:41 -0700 (PDT)
+Message-ID: <d3218018-45c4-4777-77a7-91947ad48666@kali.org>
+Date:   Sun, 25 Sep 2022 13:58:40 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
  Gecko/20100101 Thunderbird/91.13.0
-Subject: Re: [PATCH 05/11] arm64: dts: qcom: sdm845: drop unused slimbus dmas
+Subject: Re: [PATCH 07/11] arm64: dts: qcom: sdm8458: align node names with DT
+ schema
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
@@ -66,9 +67,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 References: <20220923161453.469179-1-krzysztof.kozlowski@linaro.org>
- <20220923161453.469179-6-krzysztof.kozlowski@linaro.org>
+ <20220923161453.469179-8-krzysztof.kozlowski@linaro.org>
 From:   Steev Klimaszewski <steev@kali.org>
-In-Reply-To: <20220923161453.469179-6-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220923161453.469179-8-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,32 +82,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krztof
 
 On 9/23/22 11:14 AM, Krzysztof Kozlowski wrote:
-> Bindings document only two DMA channels.  Linux driver also does not use
-> remaining rx2/tx2.
+> New slimbus DT schema expect only SLIMbus bus nodes to be named
+> "slimbus".  In case of Qualcomm SLIMbus NGD, the bus node is what was
+> called "ngd".
 >
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sdm845.dtsi | 5 ++---
->   1 file changed, 2 insertions(+), 3 deletions(-)
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 >
 > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 2264bba69f84..1213f78a8b7a 100644
+> index 1213f78a8b7a..7b62efb180d5 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -3828,9 +3828,8 @@ slim: slim@171c0000 {
+> @@ -3823,7 +3823,7 @@ qspi: spi@88df000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		slim: slim@171c0000 {
+> +		slim: slim-ngd@171c0000 {
+>   			compatible = "qcom,slim-ngd-v2.1.0";
 >   			reg = <0 0x171c0000 0 0x2c000>;
 >   			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
->   
-> -			dmas = <&slimbam 3>, <&slimbam 4>,
-> -				<&slimbam 5>, <&slimbam 6>;
-> -			dma-names = "rx", "tx", "tx2", "rx2";
-> +			dmas = <&slimbam 3>, <&slimbam 4>;
-> +			dma-names = "rx", "tx";
->   
->   			iommus = <&apps_smmu 0x1806 0x0>;
+> @@ -3835,7 +3835,7 @@ slim: slim@171c0000 {
 >   			#address-cells = <1>;
+>   			#size-cells = <0>;
+>   
+> -			ngd@1 {
+> +			slim@1 {
+>   				reg = <1>;
+>   				#address-cells = <2>;
+>   				#size-cells = <0>;
+
+Subject has a typo - sdm8458 -> sdm845
 
 Tested on Lenovo Yoga C630
 
