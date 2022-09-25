@@ -2,157 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6BE25E9541
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 20:06:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B5325E954E
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 20:08:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229589AbiIYSGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 14:06:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36002 "EHLO
+        id S233001AbiIYSIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 14:08:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230439AbiIYSGg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 14:06:36 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B698B252B0;
-        Sun, 25 Sep 2022 11:06:34 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id fv3so4448008pjb.0;
-        Sun, 25 Sep 2022 11:06:34 -0700 (PDT)
+        with ESMTP id S232068AbiIYSIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 14:08:25 -0400
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2073.outbound.protection.outlook.com [40.107.102.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20BD12B26D;
+        Sun, 25 Sep 2022 11:08:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n3XpBfW2yad1ImKhikLU/PS71JS5LK/Q3noud1yBW/BEGEkrqrQ/Mmbl/p4uVEnhA8OYDBFddDdwww1Fink/GFo6GGNHOOvz96Yzk7/wn/YJjuqHx2qwRpaIHDLXrVe3xGWncdXDo87QFL/fchoeVYqMm0Pkjqhwe3ASpAJpWWS9WqZupy8oBPlun8jMPHpHuxy6Ft26dxP6XC7vdQ3Jx+HrdEEb+6sfyYz06Tk0E6yRGbqDr84DWmTkFFm/avvC4UiijlZUmSaqLIILqG9nR95JmwhLH6EPEWm1umKZFoh6AWFyhdwhPawHVjSIfudiS5/vmeG9vFekdFF8EeJtNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ic6HEQgRzR3W7kuVmXXFhdlCDdYBBKBaFNgokwZ5Nxw=;
+ b=meP9ktjhZnHiqDbZh5n539cAg34XcE75B3KqATivnZamlYN556sqNNaXxfYnMI7adwL3jzzBDJzRJdCVIleKpCwUiBfllM4d1qrY1c8O2/CzVe3WbTx+BI7pCJZ9JchypihtrFuNAwr01d0vpU6cLoeBOeMcV+T2h+QoEVXtRavR/lqotWTrmvoeayb5r5ucx150o+pwfnZsQC6GP7TMJMwKzUIG9okrn9YMJUihaELzLqg3LO9ADsUYBcW4mzQ/puIW+GBSwKn5O/Y4zsN7OysH7iPyhThxyzK+WN6B46OD1gv+av8GlDGS8gxRp9Q8s918lCjPo+gkrp8WOrXe7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
-        bh=5Xcc3MJJCcZWTzK1jPZ9K1qMqtCQR5hPQZvH2+q5UX4=;
-        b=X2MvfRndaV0RauigstwDwhfOZXbV6gZ3DJvvRugSLt3mrHfuNQ/OX7YRWPBesfyWzU
-         Pnj2+4NG1skf56jresn6Jv/eI/FHxnBRTkyG3LmmIl6dQNq+yn7mzARAg1qxJV0j2Asg
-         OTa8w+2S9SLMmFRNlxDVe/7y0+Gl/pp7K8w/fiw3Y2lVFMi6crhMypZIrmWQuUSnb3Gy
-         Q77i0FBU0fFR2ANPQKqR8rdvUXb4OQ4lHrAHtxcgRyPP2jKicwO7G7d9diiYNCdvAqjm
-         6TtMawJGgJkaIr+BEA1c1Tc8MpiIQ3yVLh6zQBVLbHzi5eKj6xPNBp+KCfx4rtfxONjk
-         4yhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=5Xcc3MJJCcZWTzK1jPZ9K1qMqtCQR5hPQZvH2+q5UX4=;
-        b=AGWS6PZR/Xlvujo8T/3e3QI5G8BOD0RMsbtc4d+LZY9qLSpfxUOmzum5esRvniuWkX
-         9+pCKuBWHFXRxYZ3zaMrx5d8QlCJxrMLRuHeTXZUwk2pmel/XKRoFEJORgwv/OCkNINE
-         4zmDdTwH4WQ8Oa13fXpQEHMUdbiX5c6xQi2LCxY0lozzPcXTX4eO/MGIUWM6b0LNR2NB
-         d4axpaXJHx9xUj7ENk/niPgmZDeX+CW9kLOh9UWsDOuiWg16zb9guLtbXf57kO6E9WZ7
-         USEHmRu9lRsSXT1qcPMAd/a4oeuBlrXXAO75tADMuwa56LK/VpDduTltv3yOcAjLmxsC
-         jbZg==
-X-Gm-Message-State: ACrzQf1oLtUTkElr07WiT/ndQ+IkHz09HwqcwoaIVVFR6cWS/L+IlCYy
-        3HdZNSK90n62l250bKsY27kxRb2fFSeY8Q==
-X-Google-Smtp-Source: AMsMyM6+xq7GdV5F+gAFVO4xOB9L7aiWhqgzWItIKLtcodE6L/JSsSF5y0v7Io5dfYp7flrKZKOsTg==
-X-Received: by 2002:a17:90b:3b81:b0:202:597a:c71d with SMTP id pc1-20020a17090b3b8100b00202597ac71dmr32052900pjb.105.1664129194154;
-        Sun, 25 Sep 2022 11:06:34 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id o1-20020a17090ad20100b00203c0a1d56bsm4992243pju.35.2022.09.25.11.06.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Sep 2022 11:06:33 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sun, 25 Sep 2022 11:06:32 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Eddie James <eajames@linux.ibm.com>
-Cc:     joel@jms.id.au, jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fsi@lists.ozlabs.org
-Subject: Re: [PATCH v2 3/3] hwmon: (occ) Check for device property for
- setting OCC active during probe
-Message-ID: <20220925180632.GA1766526@roeck-us.net>
-References: <20220809200701.218059-1-eajames@linux.ibm.com>
- <20220809200701.218059-4-eajames@linux.ibm.com>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ic6HEQgRzR3W7kuVmXXFhdlCDdYBBKBaFNgokwZ5Nxw=;
+ b=W6di/Wg8X0p04u4YRFTrLNLCHRh1UbBFZ71gUEHnoYGo6yEQ1/ZBoZpfWocpH2wbcgdDeKv2RpGwt5OHPlF+DWn3SWt2jSg2SFYHZag1gZOWeto3Gq2P/oWZzb1GTwn9deiDnqfnQZ1zy5zbMK7iRs7KCsraaopSk2bZJ/ZCMHU=
+Received: from SA0PR11CA0132.namprd11.prod.outlook.com (2603:10b6:806:131::17)
+ by CH0PR02MB8149.namprd02.prod.outlook.com (2603:10b6:610:10a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.24; Sun, 25 Sep
+ 2022 18:07:43 +0000
+Received: from SN1NAM02FT0006.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:131:cafe::da) by SA0PR11CA0132.outlook.office365.com
+ (2603:10b6:806:131::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25 via Frontend
+ Transport; Sun, 25 Sep 2022 18:07:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0006.mail.protection.outlook.com (10.97.5.193) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5654.14 via Frontend Transport; Sun, 25 Sep 2022 18:07:43 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Sun, 25 Sep 2022 11:07:43 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2507.9 via Frontend Transport; Sun, 25 Sep 2022 11:07:43 -0700
+Envelope-to: broonie@kernel.org,
+ robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,
+ akumarma@amd.com,
+ git@amd.com,
+ linux-spi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ amit.kumar-mahapatra@amd.com
+Received: from [10.140.6.18] (port=44788 helo=xhdlakshmis40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <amit.kumar-mahapatra@xilinx.com>)
+        id 1ocW2Y-0001TD-JG; Sun, 25 Sep 2022 11:07:43 -0700
+From:   Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <akumarma@amd.com>, <git@amd.com>, <michal.simek@xilinx.com>,
+        <linux-spi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <amit.kumar-mahapatra@amd.com>,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+Subject: [PATCH v3 0/7] spi: spi-zyqnmp-gqspi: Add tap delay and Versal platform support
+Date:   Sun, 25 Sep 2022 23:37:32 +0530
+Message-ID: <20220925180739.21612-1-amit.kumar-mahapatra@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220809200701.218059-4-eajames@linux.ibm.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1NAM02FT0006:EE_|CH0PR02MB8149:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4dd450ec-0700-4043-5ee7-08da9f20d7f3
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nzuxxcu5o2gccLaJL2EcS6OsEIffC+f3xuWXM/FjpW+phvqCScKybuRSzHETbt6FnH6jXOy4Qj4HTohYCRk0Ha+gMGMmZFubfHE3h8DWPZwuEgGcEap8tiz60JZU9kv6nlimFJ9mZo+CVS360fuX37QX9WjhAznOCsbsnF6qKJagdX/Fv60RWpc1cmprQBxUChCNK48Ojhw+h81KxoorFgOngwPCekkeOC7S6JlFsFvrAuP79LzA55duxBlTwaORSZv3ieVP8HOC1xTOjTxOHr9bSlmaGFkaYVvRQ8ccGr24nOBLexNHY0twTzSoJrkIHBEn9ehlwamx7lb14h8QH5lL88rEr7rMWoLtitkPlFgOMikCfgbrTEVjLEfESY9OvKG9fq+sn86GXamN5UuxSjljYDx6rsnQRAhmKIpUidvRXo9HxfRRxD5DuDJFSjOp4Foiy4cSgUcCbxLV0YpoAKyXAxHRowi7X244xxLBC53276Xyo4ipQvjfdwVj6AHstYrp3N1bN76VlszyPHv3qL072IVJt9idmXtxFXts84VfPvGQXv1cll7qis5fe234at6nStzdVBOT6XMAyPM5bikfd7H2ryCtFocGcQX0/eAYhAHQysC8qTudDzFi9enwrVgoiH1FOw0Cc8qguwfmE1X4UUikFeJ68cy7d+6cbloYvjQ2ZU61RXj6n0x1sYmj2HVxgXBTZCqzhl0s0HivrnwgWfpDcLxM7VRqXck+lq3xACXCIl48qoQXQV4gmh5vJbrL4vy2Yw7I2fUILsKvscB59K8IpvFs7+WDz2TLEc4=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(376002)(346002)(136003)(451199015)(40470700004)(46966006)(36840700001)(2906002)(2616005)(356005)(82310400005)(186003)(1076003)(7636003)(336012)(6666004)(107886003)(40460700003)(41300700001)(478600001)(36756003)(316002)(70586007)(70206006)(8676002)(4326008)(26005)(7416002)(5660300002)(40480700001)(110136005)(54906003)(8936002)(9786002)(7696005)(36860700001)(83380400001)(426003)(47076005)(82740400003)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2022 18:07:43.6229
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4dd450ec-0700-4043-5ee7-08da9f20d7f3
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0006.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR02MB8149
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 09, 2022 at 03:07:01PM -0500, Eddie James wrote:
-> A previous commit changed the existing behavior of the driver to skip
-> attempting to communicate with the OCC during probe. Return to the
-> previous default behavior of automatically communicating with the OCC
-> and make it optional with a new device-tree property.
-> 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+- Fix kernel-doc warnings in GQSPI driver.
+- Avoid setting CPOL, CPHA & baud rate multiple times.
+- Add Versal platform support in GQSPI driver.
+- Add tap delay support in GQSPI driver.
+---
+BRANCH: mtd/next
 
-Assuming this patch is applied as part of the series outside
-the hwmon subsystem.
+changes in v2:
+ - Used of_device_get_match_data( ) API to retrive match->data.
+ - Removed oneOf and used only enum.
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+changes in v3:
+ - Rearrange compatible strings in alphabetical order.
+--
+Amit Kumar Mahapatra (5):
+  spi: spi-zynqmp-gqspi: Fix kernel-doc warnings
+  spi: spi-zynqmp-gqspi: Set CPOL and CPHA during hardware init
+  spi: spi-zynqmp-gqspi: Avoid setting baud rate multiple times for same
+    SPI frequency
+  dt-bindings: spi: spi-zynqmp-qspi: Add support for Xilinx Versal QSPI
+  spi: spi-zynqmp-gqspi: Add tap delay support for GQSPI controller on
+    Versal platform
 
-Guenter
+Naga Sureshkumar Relli (1):
+  spi: spi-zynqmp-gqspi: Add tap delay support for ZynqMP GQSPI
+    Controller
 
-> ---
->  drivers/hwmon/occ/common.c | 11 ++++++++++-
->  drivers/hwmon/occ/p9_sbe.c |  9 +++++++++
->  2 files changed, 19 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/hwmon/occ/common.c b/drivers/hwmon/occ/common.c
-> index 45407b12db4b..dd690f700d49 100644
-> --- a/drivers/hwmon/occ/common.c
-> +++ b/drivers/hwmon/occ/common.c
-> @@ -10,6 +10,7 @@
->  #include <linux/math64.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> +#include <linux/property.h>
->  #include <linux/sysfs.h>
->  #include <asm/unaligned.h>
->  
-> @@ -1216,8 +1217,16 @@ int occ_setup(struct occ *occ)
->  	occ->groups[0] = &occ->group;
->  
->  	rc = occ_setup_sysfs(occ);
-> -	if (rc)
-> +	if (rc) {
->  		dev_err(occ->bus_dev, "failed to setup sysfs: %d\n", rc);
-> +		return rc;
-> +	}
-> +
-> +	if (!device_property_read_bool(occ->bus_dev, "ibm,no-poll-on-init")) {
-> +		rc = occ_active(occ, true);
-> +		if (rc)
-> +			occ_shutdown_sysfs(occ);
-> +	}
->  
->  	return rc;
->  }
-> diff --git a/drivers/hwmon/occ/p9_sbe.c b/drivers/hwmon/occ/p9_sbe.c
-> index 4a1fe4ee8e2c..3adcf8d0b4a6 100644
-> --- a/drivers/hwmon/occ/p9_sbe.c
-> +++ b/drivers/hwmon/occ/p9_sbe.c
-> @@ -7,6 +7,7 @@
->  #include <linux/fsi-occ.h>
->  #include <linux/mm.h>
->  #include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
->  #include <linux/mutex.h>
->  #include <linux/platform_device.h>
->  #include <linux/string.h>
-> @@ -179,9 +180,17 @@ static int p9_sbe_occ_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static const struct of_device_id p9_sbe_occ_of_match[] = {
-> +	{ .compatible = "ibm,p9-occ-hwmon" },
-> +	{ .compatible = "ibm,p10-occ-hwmon" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, p9_sbe_occ_of_match);
-> +
->  static struct platform_driver p9_sbe_occ_driver = {
->  	.driver = {
->  		.name = "occ-hwmon",
-> +		.of_match_table = p9_sbe_occ_of_match,
->  	},
->  	.probe	= p9_sbe_occ_probe,
->  	.remove = p9_sbe_occ_remove,
+Rajan Vaja (1):
+  firmware: xilinx: Add qspi firmware interface
+
+ .../bindings/spi/spi-zynqmp-qspi.yaml         |   4 +-
+ drivers/firmware/xilinx/zynqmp.c              |   7 +
+ drivers/spi/spi-zynqmp-gqspi.c                | 191 ++++++++++++++----
+ include/linux/firmware/xlnx-zynqmp.h          |  19 ++
+ 4 files changed, 184 insertions(+), 37 deletions(-)
+
+-- 
+2.17.1
+
