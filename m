@@ -2,143 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 226785E951C
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 19:52:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A06AB5E952A
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 19:57:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232731AbiIYRw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 13:52:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
+        id S231362AbiIYR5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 13:57:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232504AbiIYRwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 13:52:25 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A871EEFA
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 10:52:24 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id lh5so9819410ejb.10
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 10:52:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=jfErmyZAWFClEhl0ayKENaiIcOOkglWFws7K0nbLI8s=;
-        b=HnihT0YSNz6xIyoJu2aFjZSjBQ0FEbSxs59ATuv5Ra1/tL44+b8p5ztPFWXSqLXReZ
-         NE8XVJ6hsvCY5AP8ZJEl5/kOeAnitpitF0bAh63bDRpabZAzfutAiyYKnt3d0ZVj0vAh
-         jZO0QooNBqd11esq0FCm9sXbvEAuERve5hxcs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=jfErmyZAWFClEhl0ayKENaiIcOOkglWFws7K0nbLI8s=;
-        b=HPVK66KMTuNM/170mErDvmQ9iqQONaoKB2efnwhdrJz9hj1Xddk22liUuc4zjY5Zc6
-         +CfsybkJVnbOEyNeOOuPLOUgyxgfyT72LSTCbDEC66MwcbsL0/jGbkxATlSHPZBe0Ayy
-         bB/ZzfhLhQLoFPHDMyOUdabDAwd1CMEtUnsqLTDZo4KPBvnaYpfgNAVkiaUHOmCUjCxq
-         HKYMigq3i6O3jXeIF3rimDADBWQRyC3jM5ZklJQQSA0vKfXOjGPC+9PrXvmChYf+y8vm
-         7b8Cmyxc02bbKJtj7XAF/R0W/RPLR4q1oYc+XIjX3T9JOC2qUoCxIzABB9Y9NN0sWFfV
-         UHGw==
-X-Gm-Message-State: ACrzQf1oFOYBC7ALZm8kgf0jnj+Ab2+7YkgoHz8K7ugJdosFGPZy/gWk
-        TtY2EqOzSPlEQq3gRcjFqUrEpw==
-X-Google-Smtp-Source: AMsMyM5acRXX+ssw3njDDsVVdiOmCWOdz34aX9SwVevoL6aHYNwmlHMLUX4UDcyl1CRcECbsv/GM3w==
-X-Received: by 2002:a17:907:2d09:b0:781:d793:f51e with SMTP id gs9-20020a1709072d0900b00781d793f51emr15050921ejc.628.1664128342518;
-        Sun, 25 Sep 2022 10:52:22 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-232-92-192.retail.telecomitalia.it. [95.232.92.192])
-        by smtp.gmail.com with ESMTPSA id f23-20020a056402161700b0045703d699b9sm3252594edv.78.2022.09.25.10.52.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Sep 2022 10:52:22 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-        michael@amarulasolutions.com,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        with ESMTP id S230411AbiIYR5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 13:57:10 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6760E27CF1;
+        Sun, 25 Sep 2022 10:57:09 -0700 (PDT)
+Received: from g550jk.. (2a02-8388-6582-fe80-0000-0000-0000-0006.cable.dynamic.v6.surfer.at [IPv6:2a02:8388:6582:fe80::6])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 91113C6FA5;
+        Sun, 25 Sep 2022 17:56:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1664128597; bh=Kc0NJqkKtqH6tjfWTTCzXyBx6K9bYu22ZzH8VqMyDBw=;
+        h=From:To:Cc:Subject:Date;
+        b=e0/cmwa5Y9X0BrY9ODgSr1SGVIV9pVmqZC5/nuzWZOlCIJDBSFnMJmINKVwI7xk7p
+         9cBJ9kvVLYaXMrv2RzPiROKgBa+owaxnnSNGSw/2z4WQ9fw+1O8TkyzPD+6Z5JcBde
+         t5F4Whi3IphBoiiTuV9MLmo3v8K+HKbfxCpjjMd8=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [RFC PATCH v4 4/5] ARM: dts: stm32: add pin map for CAN controller on stm32f4
-Date:   Sun, 25 Sep 2022 19:52:08 +0200
-Message-Id: <20220925175209.1528960-5-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220925175209.1528960-1-dario.binacchi@amarulasolutions.com>
-References: <20220925175209.1528960-1-dario.binacchi@amarulasolutions.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: qcom: msm8974-sony-*: fix multi-led node name
+Date:   Sun, 25 Sep 2022 19:56:30 +0200
+Message-Id: <20220925175631.103535-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        FROM_SUSPICIOUS_NTLD_FP,SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pin configurations for using CAN controller on stm32f469-disco
-board. They are located on the Arduino compatible connector CN5 (CAN1)
-and on the extension connector CN12 (CAN2).
+The name rgb-led is not allowed, multi-led is supposed to be used.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+<snip>/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-amami.dtb: pm8941@1: pwm: 'rgb-led' does not match any of the regexes: '^led@[0-9a-f]$', 'pinctrl-[0-9]+'
+        From schema: <snip>/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
 
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 ---
+ arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi           | 2 +-
+ .../arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-(no changes since v3)
-
-Changes in v3:
-- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
-- Remove a blank line.
-
-Changes in v2:
-- Remove a blank line.
-
- arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 30 ++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-index 500bcc302d42..8a4d51f97248 100644
---- a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-@@ -448,6 +448,36 @@ pins2 {
- 					slew-rate = <2>;
- 				};
- 			};
-+
-+			can1_pins_a: can1-0 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 9, AF9)>; /* CAN1_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 8, AF9)>; /* CAN1_RX */
-+					bias-pull-up;
-+				};
-+			};
-+
-+			can2_pins_a: can2-0 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 5, AF9)>; /* CAN2_RX */
-+					bias-pull-up;
-+				};
-+			};
-+
-+			can2_pins_b: can2-1 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 12, AF9)>; /* CAN2_RX */
-+					bias-pull-up;
-+				};
-+			};
- 		};
- 	};
- };
+diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+index 5a70683d9103..c1d97190ea71 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+@@ -178,7 +178,7 @@ &pm8941_lpg {
+ 
+ 	qcom,power-source = <1>;
+ 
+-	rgb-led {
++	multi-led {
+ 		color = <LED_COLOR_ID_RGB>;
+ 		function = LED_FUNCTION_STATUS;
+ 
+diff --git a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+index 85348562e861..94daa1a3240a 100644
+--- a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
++++ b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+@@ -295,7 +295,7 @@ &pm8941_lpg {
+ 
+ 	qcom,power-source = <1>;
+ 
+-	rgb-led {
++	multi-led {
+ 		color = <LED_COLOR_ID_RGB>;
+ 		function = LED_FUNCTION_STATUS;
+ 
 -- 
-2.32.0
+2.37.3
 
