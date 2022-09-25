@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59C185E946C
-	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 18:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB1FD5E946D
+	for <lists+devicetree@lfdr.de>; Sun, 25 Sep 2022 18:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230219AbiIYQlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 12:41:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33574 "EHLO
+        id S229711AbiIYQlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 12:41:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbiIYQlR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 12:41:17 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82D96205C2
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 09:41:14 -0700 (PDT)
+        with ESMTP id S230439AbiIYQlY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 12:41:24 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE491F2DA
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 09:41:22 -0700 (PDT)
 Received: from stefanw-SCHENKER ([37.4.248.18]) by mrelayeu.kundenserver.de
  (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MCb2L-1oUYbU0Nz1-009gAr; Sun, 25 Sep 2022 18:40:47 +0200
+ 1MVubb-1omli62CHd-00RtY7; Sun, 25 Sep 2022 18:40:47 +0200
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -27,32 +27,33 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
         linux-rpi-kernel@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH 1/2] ARM: dts: bcm283x: Fix underscores in node names
-Date:   Sun, 25 Sep 2022 18:40:20 +0200
-Message-Id: <20220925164021.3600-2-stefan.wahren@i2se.com>
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Alexander Dahl <ada@thorsis.com>
+Subject: [PATCH 2/2] ARM: dts: bcm283x: Move ACT LED into separate dtsi
+Date:   Sun, 25 Sep 2022 18:40:21 +0200
+Message-Id: <20220925164021.3600-3-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220925164021.3600-1-stefan.wahren@i2se.com>
 References: <20220925164021.3600-1-stefan.wahren@i2se.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:3IH7mDpl9JYIERFnG2Cn4OJofNZBMiQ2MwG+O95JjoglsehSO8i
- E5Kpwa89zRykzxS7suiYIPYFLv98X2H2pltlOw/gL5gO+8+9JvYuP16CRuXhi0cPXpZvZn7
- +OFtAGIAiUXG247JBr0qVgqXnAXMqWXF9LhZIISYHju0cvmbp+Heu93NqEOq5Tx+70jjW8U
- Nn5ZNpJ1Z3yPe+/Ralhtg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:obvPzTLcUBw=:LeFrDs4nsqczlbG1oqo8ND
- ssP+qqvhwDjm9o+2AnbUbP+aXUbHiC1h2RdYHcuyu3WtwD6tUYeXVG9/fXMAI+R3eUjX+hgJY
- DD7wXr9rrPYu0/Xk7XFwDsZYuIW2c5tt+ikmGduzjheRpZyE3vdro3dGEO5IMhudGYMdfxUqF
- vj06LKGncyVTq4JhRTq0E/bhYMZhRf5Af1ezO1ipCZbChpkui7U++BaG+/6/cC9Atq+Y4KwJF
- 0Seu4dcEniTzx6kkOQuWjnUluRE0TuaQkfAvmBq+dVJVfm3J8dLDqiFNjuzoCP2cQOcJm8BQw
- M9VsQ1vQ2QwO0lVLyOxCuInypGI4EsSXCkoFk/I4t/MQQK2sTUZHCoMm6HKYmvkN6Or8JcFmj
- 9VcNIPGDkyCKhFez19m9wP0OJlgDqa1aHEK8JaakPrkkO6erW8YdgfurrMjDkVchRK5HIjDp8
- twF4DMbZ4OlkgqO4rINqaOBugi8vbIt3jTHqrNI7Q27FmPX4xt3/fU7XXf+ntI26yx+tQmxBy
- kZkQrpSFqFxxxM/qJyiaf/PPJhoHUUiwkl0MdOigpE2x+387RGcuJgLCZRQyZp9uQCeOkmImL
- ehS6QejxNgZp/rD9DG/xsn8GtyzjZdytebYS8xm+AozQ3jcqPeknee3k+aObEQRwbgH39XYAY
- P7bLEurZNSQtLnI28nPM97eK7OzxF2g7KXnMgW8KZK2dXkHHresUuptw3XpwZxDpkg7DX0GxW
- JZnU4fUJUVZY9mKCRFqKmmBE+/imDqbpvsUllan9GKoypVwm71/auwvNpYgJf56WeyZv/bv0d
- 3uRZs3xsuz3hlXmPHtZ/1pPUGyo7Q==
+X-Provags-ID: V03:K1:aY9Ve6DIepxdHCufY97TWHyP7UqPG3wQHmpjuA7HtBuUNMzeUh8
+ 9pFfb+tUIcVdCrR3LB9a/fV8p98T3htdteEqx3QrV+UPIqh4ez5RgqRq9DHu4kYrvQ83EW+
+ +Dz1FNPCGKqX2L8c6/ZSeZaXv+Ca8qQwwhsiU7uuTEXkeg7EgVtoMquZqX9oDrYZqb79Y4K
+ 6TCs4EpMwuu2tYYcyPFmA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:W/e7eWElzPE=:JiqCJb41+XSSix3nJ0eIQv
+ Ed5v8sWaYyobxcbk5QuQrkSRBjQfQTW4Nwz5KupCstIleFquPLWbrNGRNe+USQgBeeqK7dvE8
+ JjOyb/k1bBaohySAs7clD5o8JQ6HPtCgZ28PZzDK/xxkfFb861Aq4PkPlK9O1EcSxtFjOjtjY
+ JYwiqvftO+5nl36mr+mchz5q0QQFTIJf+2im7af0qtamUOjdwJy4e1W5TTlo7sHfcvWNYMd8D
+ T0nW9ngObLjNN6alXbW0ygXRIieIIqyy0ois9sXXLwiXXrDDqecBKwY4mpJJPuKy/zdw8DGjQ
+ SQD2ZQ9v6mUvsr79x0/yaj4JKtsWO4cE+3r88KNSieuiN5Ks1tvPXhtpWqYsnvO2zfT/j8ePr
+ tEwA/1kFCeoS5zvJujdHU3Yt1n5IxbMH4jufH0gLvaLd4tYPaIQv5YAgH/zTsMEJyMcgkNif/
+ r7vStQBPr0DImsW/V7Fucm4t5a2UbubpgMLaKaTC/e65tTTcjqF3LQs7LJTj4uoPHpst3gOC3
+ 3Dkl8zzzKdTtn+XbFT9dYuFEY31WsOfpgnOmBcKctwSKGEbuEXujwHlrniw9siqYosVcYVfxK
+ 8g6WicC56ISzkQRj8qBJjisXcHa9qRmgKC4R9w38raHkq1W6l3m53naDOoDaZx5Q9y9Ms7Uqr
+ UfgsxOCtFa6svJjc5mXFTLMVvIeSE4qhT/oxg46d3+WoBu5MMEF571jT2ANhoFCME5JoG9Myd
+ u6WVZkP6f7i09y+UM+S6TCmPtKoYEydet1dbloXzMvBTRK9y9GvMWj6IJy0ETgPQ+YHmN4Mmc
+ v7y3SaDyDRv8xBSX7b04Yj74pce+g==
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
@@ -62,748 +63,783 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A lot pinctrl node names, regulators and local_intc do not follow the
-node name convention to avoid underscore. So fix this by using hyphen
-or a proper node name.
+The usage of the label property for gpio-leds has been deprecated
+a long time ago. In bcm2835-rpi.dtsi the ACT LED uses such a label
+and derive it to almost every Raspberry Pi board. Since we cannot break
+userspace interface this property must be kept. But we can move the
+ACT LED into a separate dtsi and include them from the board files.
 
+This change have two benefits:
+- with both new refs it's now clear the LED part is included from a dtsi
+- new boards do not include the deprecated stuff automatically
+
+Reported-by: Alexander Dahl <ada@thorsis.com>
 Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 ---
- arch/arm/boot/dts/bcm2711-rpi-4-b.dts  |  4 +-
- arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi |  4 +-
- arch/arm/boot/dts/bcm2711.dtsi         | 94 +++++++++++++-------------
- arch/arm/boot/dts/bcm2835-common.dtsi  | 18 ++---
- arch/arm/boot/dts/bcm2836.dtsi         |  2 +-
- arch/arm/boot/dts/bcm283x.dtsi         | 70 +++++++++----------
- 6 files changed, 96 insertions(+), 96 deletions(-)
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts         | 27 ++++++++++---------
+ arch/arm/boot/dts/bcm2711-rpi-400.dts         | 16 +++++------
+ arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts      | 27 ++++++++++---------
+ arch/arm/boot/dts/bcm2835-rpi-a-plus.dts      | 27 ++++++++++---------
+ arch/arm/boot/dts/bcm2835-rpi-a.dts           | 11 ++++----
+ arch/arm/boot/dts/bcm2835-rpi-b-plus.dts      | 27 ++++++++++---------
+ arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts      | 11 ++++----
+ arch/arm/boot/dts/bcm2835-rpi-b.dts           | 11 ++++----
+ arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi        | 11 ++++----
+ arch/arm/boot/dts/bcm2835-rpi-zero-w.dts      | 11 ++++----
+ arch/arm/boot/dts/bcm2835-rpi-zero.dts        | 11 ++++----
+ arch/arm/boot/dts/bcm2835-rpi.dtsi            | 10 -------
+ arch/arm/boot/dts/bcm2836-rpi-2-b.dts         | 27 ++++++++++---------
+ arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts    | 27 ++++++++++---------
+ arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts    | 27 ++++++++++---------
+ arch/arm/boot/dts/bcm2837-rpi-3-b.dts         | 11 ++++----
+ arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi        |  8 ------
+ arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts    | 11 ++++----
+ .../boot/dts/bcm283x-rpi-led-deprecated.dtsi  | 18 +++++++++++++
+ 19 files changed, 164 insertions(+), 165 deletions(-)
+ create mode 100644 arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi
 
 diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-index 4432412044de..aaad9b7ec630 100644
+index aaad9b7ec630..d5f8823230db 100644
 --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
 +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-@@ -27,7 +27,7 @@ led-pwr {
- 		};
- 	};
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include "bcm2711.dtsi"
+ #include "bcm2711-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-peripheral.dtsi"
+ #include "bcm283x-rpi-wifi-bt.dtsi"
  
--	sd_io_1v8_reg: sd_io_1v8_reg {
-+	sd_io_1v8_reg: regulator-sd-io-1v8 {
- 		compatible = "regulator-gpio";
- 		regulator-name = "vdd-sd-io";
- 		regulator-min-microvolt = <1800000>;
-@@ -41,7 +41,7 @@ sd_io_1v8_reg: sd_io_1v8_reg {
- 		status = "okay";
- 	};
- 
--	sd_vcc_reg: sd_vcc_reg {
-+	sd_vcc_reg: regulator-sd-vcc {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc-sd";
- 		regulator-min-microvolt = <3300000>;
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi b/arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi
-index a2954d466a73..48e63ab7848c 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi
-+++ b/arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi
-@@ -12,7 +12,7 @@ chosen {
+@@ -14,19 +15,6 @@ chosen {
  		stdout-path = "serial1:115200n8";
  	};
  
--	sd_io_1v8_reg: sd_io_1v8_reg {
-+	sd_io_1v8_reg: regulator-sd-io-1v8 {
+-	leds {
+-		led-act {
+-			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
+-		};
+-
+-		led-pwr {
+-			label = "PWR";
+-			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
+-			default-state = "keep";
+-			linux,default-trigger = "default-on";
+-		};
+-	};
+-
+ 	sd_io_1v8_reg: regulator-sd-io-1v8 {
  		compatible = "regulator-gpio";
  		regulator-name = "vdd-sd-io";
- 		regulator-min-microvolt = <1800000>;
-@@ -26,7 +26,7 @@ sd_io_1v8_reg: sd_io_1v8_reg {
- 		status = "okay";
+@@ -156,6 +144,19 @@ &hdmi1 {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
++};
++
++&leds {
++	led_pwr: led-pwr {
++		label = "PWR";
++		gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
++		default-state = "keep";
++		linux,default-trigger = "default-on";
++	};
++};
++
+ &pixelvalve0 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/bcm2711-rpi-400.dts b/arch/arm/boot/dts/bcm2711-rpi-400.dts
+index c53d9eb0b802..1ab8184302db 100644
+--- a/arch/arm/boot/dts/bcm2711-rpi-400.dts
++++ b/arch/arm/boot/dts/bcm2711-rpi-400.dts
+@@ -11,14 +11,6 @@ chosen {
+ 		stdout-path = "serial1:115200n8";
  	};
  
--	sd_vcc_reg: sd_vcc_reg {
-+	sd_vcc_reg: regulator-sd-vcc {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc-sd";
- 		regulator-min-microvolt = <3300000>;
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index 89af57482bc8..1361dd2d5ce2 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -48,7 +48,7 @@ soc {
- 		 * This node is the provider for the enable-method for
- 		 * bringing up secondary cores.
- 		 */
--		local_intc: local_intc@40000000 {
-+		local_intc: interrupt-controller@40000000 {
- 			compatible = "brcm,bcm2836-l1-intc";
- 			reg = <0x40000000 0x100>;
- 		};
-@@ -635,21 +635,21 @@ &gpio {
+-	leds {
+-		/delete-node/ led-act;
+-
+-		led-pwr {
+-			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
+-		};
+-	};
+-
+ 	gpio-poweroff {
+ 		compatible = "gpio-poweroff";
+ 		gpios = <&expgpio 5 GPIO_ACTIVE_HIGH>;
+@@ -40,6 +32,14 @@ &genet_mdio {
+ 	clock-frequency = <1950000>;
+ };
  
- 	gpio-ranges = <&gpio 0 0 58>;
++&led_pwr {
++	gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
++};
++
++&leds {
++	/delete-node/ led_act;
++};
++
+ &pm {
+ 	/delete-property/ system-power-controller;
+ };
+diff --git a/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts b/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
+index 19600b629be5..d7ba02f586d3 100644
+--- a/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
++++ b/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
+@@ -1,23 +1,11 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /dts-v1/;
+ #include "bcm2711-rpi-cm4.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
  
--	gpclk0_gpio49: gpclk0_gpio49 {
-+	gpclk0_gpio49: gpclk0-gpio49 {
- 		pin-gpclk {
- 			pins = "gpio49";
- 			function = "alt1";
- 			bias-disable;
- 		};
- 	};
--	gpclk1_gpio50: gpclk1_gpio50 {
-+	gpclk1_gpio50: gpclk1-gpio50 {
- 		pin-gpclk {
- 			pins = "gpio50";
- 			function = "alt1";
- 			bias-disable;
- 		};
- 	};
--	gpclk2_gpio51: gpclk2_gpio51 {
-+	gpclk2_gpio51: gpclk2-gpio51 {
- 		pin-gpclk {
- 			pins = "gpio51";
- 			function = "alt1";
-@@ -657,7 +657,7 @@ pin-gpclk {
- 		};
- 	};
+ / {
+ 	model = "Raspberry Pi Compute Module 4 IO Board";
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
+-		};
+-
+-		led-pwr {
+-			label = "PWR";
+-			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
+-			default-state = "keep";
+-			linux,default-trigger = "default-on";
+-		};
+-	};
+ };
  
--	i2c0_gpio46: i2c0_gpio46 {
-+	i2c0_gpio46: i2c0-gpio46 {
- 		pin-sda {
- 			function = "alt0";
- 			pins = "gpio46";
-@@ -669,7 +669,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c1_gpio46: i2c1_gpio46 {
-+	i2c1_gpio46: i2c1-gpio46 {
- 		pin-sda {
- 			function = "alt1";
- 			pins = "gpio46";
-@@ -681,7 +681,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c3_gpio2: i2c3_gpio2 {
-+	i2c3_gpio2: i2c3-gpio2 {
- 		pin-sda {
- 			function = "alt5";
- 			pins = "gpio2";
-@@ -693,7 +693,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c3_gpio4: i2c3_gpio4 {
-+	i2c3_gpio4: i2c3-gpio4 {
- 		pin-sda {
- 			function = "alt5";
- 			pins = "gpio4";
-@@ -705,7 +705,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c4_gpio6: i2c4_gpio6 {
-+	i2c4_gpio6: i2c4-gpio6 {
- 		pin-sda {
- 			function = "alt5";
- 			pins = "gpio6";
-@@ -717,7 +717,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c4_gpio8: i2c4_gpio8 {
-+	i2c4_gpio8: i2c4-gpio8 {
- 		pin-sda {
- 			function = "alt5";
- 			pins = "gpio8";
-@@ -729,7 +729,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c5_gpio10: i2c5_gpio10 {
-+	i2c5_gpio10: i2c5-gpio10 {
- 		pin-sda {
- 			function = "alt5";
- 			pins = "gpio10";
-@@ -741,7 +741,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c5_gpio12: i2c5_gpio12 {
-+	i2c5_gpio12: i2c5-gpio12 {
- 		pin-sda {
- 			function = "alt5";
- 			pins = "gpio12";
-@@ -753,7 +753,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c6_gpio0: i2c6_gpio0 {
-+	i2c6_gpio0: i2c6-gpio0 {
- 		pin-sda {
- 			function = "alt5";
- 			pins = "gpio0";
-@@ -765,7 +765,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c6_gpio22: i2c6_gpio22 {
-+	i2c6_gpio22: i2c6-gpio22 {
- 		pin-sda {
- 			function = "alt5";
- 			pins = "gpio22";
-@@ -777,7 +777,7 @@ pin-scl {
- 			bias-disable;
- 		};
- 	};
--	i2c_slave_gpio8: i2c_slave_gpio8 {
-+	i2c_slave_gpio8: i2c-slave-gpio8 {
- 		pins-i2c-slave {
- 			pins = "gpio8",
- 			       "gpio9",
-@@ -787,7 +787,7 @@ pins-i2c-slave {
- 		};
- 	};
+ &ddc0 {
+@@ -113,6 +101,19 @@ &genet {
+ 	status = "okay";
+ };
  
--	jtag_gpio48: jtag_gpio48 {
-+	jtag_gpio48: jtag-gpio48 {
- 		pins-jtag {
- 			pins = "gpio48",
- 			       "gpio49",
-@@ -799,7 +799,7 @@ pins-jtag {
- 		};
- 	};
++&led_act {
++	gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
++};
++
++&leds {
++	led-pwr {
++		label = "PWR";
++		gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
++		default-state = "keep";
++		linux,default-trigger = "default-on";
++	};
++};
++
+ &pixelvalve0 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts b/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts
+index 9b9a18bbb20a..50ba70d50313 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts
++++ b/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include "bcm2835.dtsi"
+ #include "bcm2835-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
  
--	mii_gpio28: mii_gpio28 {
-+	mii_gpio28: mii-gpio28 {
- 		pins-mii {
- 			pins = "gpio28",
- 			       "gpio29",
-@@ -808,7 +808,7 @@ pins-mii {
- 			function = "alt4";
- 		};
+ / {
+@@ -12,19 +13,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x10000000>;
  	};
--	mii_gpio36: mii_gpio36 {
-+	mii_gpio36: mii-gpio36 {
- 		pins-mii {
- 			pins = "gpio36",
- 			       "gpio37",
-@@ -818,7 +818,7 @@ pins-mii {
- 		};
- 	};
- 
--	pcm_gpio50: pcm_gpio50 {
-+	pcm_gpio50: pcm-gpio50 {
- 		pins-pcm {
- 			pins = "gpio50",
- 			       "gpio51",
-@@ -828,63 +828,63 @@ pins-pcm {
- 		};
- 	};
- 
--	pwm0_0_gpio12: pwm0_0_gpio12 {
-+	pwm0_0_gpio12: pwm0-0-gpio12 {
- 		pin-pwm {
- 			pins = "gpio12";
- 			function = "alt0";
- 			bias-disable;
- 		};
- 	};
--	pwm0_0_gpio18: pwm0_0_gpio18 {
-+	pwm0_0_gpio18: pwm0-0-gpio18 {
- 		pin-pwm {
- 			pins = "gpio18";
- 			function = "alt5";
- 			bias-disable;
- 		};
- 	};
--	pwm1_0_gpio40: pwm1_0_gpio40 {
-+	pwm1_0_gpio40: pwm1-0-gpio40 {
- 		pin-pwm {
- 			pins = "gpio40";
- 			function = "alt0";
- 			bias-disable;
- 		};
- 	};
--	pwm0_1_gpio13: pwm0_1_gpio13 {
-+	pwm0_1_gpio13: pwm0-1-gpio13 {
- 		pin-pwm {
- 			pins = "gpio13";
- 			function = "alt0";
- 			bias-disable;
- 		};
- 	};
--	pwm0_1_gpio19: pwm0_1_gpio19 {
-+	pwm0_1_gpio19: pwm0-1-gpio19 {
- 		pin-pwm {
- 			pins = "gpio19";
- 			function = "alt5";
- 			bias-disable;
- 		};
- 	};
--	pwm1_1_gpio41: pwm1_1_gpio41 {
-+	pwm1_1_gpio41: pwm1-1-gpio41 {
- 		pin-pwm {
- 			pins = "gpio41";
- 			function = "alt0";
- 			bias-disable;
- 		};
- 	};
--	pwm0_1_gpio45: pwm0_1_gpio45 {
-+	pwm0_1_gpio45: pwm0-1-gpio45 {
- 		pin-pwm {
- 			pins = "gpio45";
- 			function = "alt0";
- 			bias-disable;
- 		};
- 	};
--	pwm0_0_gpio52: pwm0_0_gpio52 {
-+	pwm0_0_gpio52: pwm0-0-gpio52 {
- 		pin-pwm {
- 			pins = "gpio52";
- 			function = "alt1";
- 			bias-disable;
- 		};
- 	};
--	pwm0_1_gpio53: pwm0_1_gpio53 {
-+	pwm0_1_gpio53: pwm0-1-gpio53 {
- 		pin-pwm {
- 			pins = "gpio53";
- 			function = "alt1";
-@@ -892,7 +892,7 @@ pin-pwm {
- 		};
- 	};
- 
--	rgmii_gpio35: rgmii_gpio35 {
-+	rgmii_gpio35: rgmii-gpio35 {
- 		pin-start-stop {
- 			pins = "gpio35";
- 			function = "alt4";
-@@ -902,26 +902,26 @@ pin-rx-ok {
- 			function = "alt4";
- 		};
- 	};
--	rgmii_irq_gpio34: rgmii_irq_gpio34 {
-+	rgmii_irq_gpio34: rgmii-irq-gpio34 {
- 		pin-irq {
- 			pins = "gpio34";
- 			function = "alt5";
- 		};
- 	};
--	rgmii_irq_gpio39: rgmii_irq_gpio39 {
-+	rgmii_irq_gpio39: rgmii-irq-gpio39 {
- 		pin-irq {
- 			pins = "gpio39";
- 			function = "alt4";
- 		};
- 	};
--	rgmii_mdio_gpio28: rgmii_mdio_gpio28 {
-+	rgmii_mdio_gpio28: rgmii-mdio-gpio28 {
- 		pins-mdio {
- 			pins = "gpio28",
- 			       "gpio29";
- 			function = "alt5";
- 		};
- 	};
--	rgmii_mdio_gpio37: rgmii_mdio_gpio37 {
-+	rgmii_mdio_gpio37: rgmii-mdio-gpio37 {
- 		pins-mdio {
- 			pins = "gpio37",
- 			       "gpio38";
-@@ -929,7 +929,7 @@ pins-mdio {
- 		};
- 	};
- 
--	spi0_gpio46: spi0_gpio46 {
-+	spi0_gpio46: spi0-gpio46 {
- 		pins-spi {
- 			pins = "gpio46",
- 			       "gpio47",
-@@ -938,7 +938,7 @@ pins-spi {
- 			function = "alt2";
- 		};
- 	};
--	spi2_gpio46: spi2_gpio46 {
-+	spi2_gpio46: spi2-gpio46 {
- 		pins-spi {
- 			pins = "gpio46",
- 			       "gpio47",
-@@ -948,7 +948,7 @@ pins-spi {
- 			function = "alt5";
- 		};
- 	};
--	spi3_gpio0: spi3_gpio0 {
-+	spi3_gpio0: spi3-gpio0 {
- 		pins-spi {
- 			pins = "gpio0",
- 			       "gpio1",
-@@ -957,7 +957,7 @@ pins-spi {
- 			function = "alt3";
- 		};
- 	};
--	spi4_gpio4: spi4_gpio4 {
-+	spi4_gpio4: spi4-gpio4 {
- 		pins-spi {
- 			pins = "gpio4",
- 			       "gpio5",
-@@ -966,7 +966,7 @@ pins-spi {
- 			function = "alt3";
- 		};
- 	};
--	spi5_gpio12: spi5_gpio12 {
-+	spi5_gpio12: spi5-gpio12 {
- 		pins-spi {
- 			pins = "gpio12",
- 			       "gpio13",
-@@ -975,7 +975,7 @@ pins-spi {
- 			function = "alt3";
- 		};
- 	};
--	spi6_gpio18: spi6_gpio18 {
-+	spi6_gpio18: spi6-gpio18 {
- 		pins-spi {
- 			pins = "gpio18",
- 			       "gpio19",
-@@ -985,7 +985,7 @@ pins-spi {
- 		};
- 	};
- 
--	uart2_gpio0: uart2_gpio0 {
-+	uart2_gpio0: uart2-gpio0 {
- 		pin-tx {
- 			pins = "gpio0";
- 			function = "alt4";
-@@ -997,7 +997,7 @@ pin-rx {
- 			bias-pull-up;
- 		};
- 	};
--	uart2_ctsrts_gpio2: uart2_ctsrts_gpio2 {
-+	uart2_ctsrts_gpio2: uart2-ctsrts-gpio2 {
- 		pin-cts {
- 			pins = "gpio2";
- 			function = "alt4";
-@@ -1009,7 +1009,7 @@ pin-rts {
- 			bias-disable;
- 		};
- 	};
--	uart3_gpio4: uart3_gpio4 {
-+	uart3_gpio4: uart3-gpio4 {
- 		pin-tx {
- 			pins = "gpio4";
- 			function = "alt4";
-@@ -1021,7 +1021,7 @@ pin-rx {
- 			bias-pull-up;
- 		};
- 	};
--	uart3_ctsrts_gpio6: uart3_ctsrts_gpio6 {
-+	uart3_ctsrts_gpio6: uart3-ctsrts-gpio6 {
- 		pin-cts {
- 			pins = "gpio6";
- 			function = "alt4";
-@@ -1033,7 +1033,7 @@ pin-rts {
- 			bias-disable;
- 		};
- 	};
--	uart4_gpio8: uart4_gpio8 {
-+	uart4_gpio8: uart4-gpio8 {
- 		pin-tx {
- 			pins = "gpio8";
- 			function = "alt4";
-@@ -1045,7 +1045,7 @@ pin-rx {
- 			bias-pull-up;
- 		};
- 	};
--	uart4_ctsrts_gpio10: uart4_ctsrts_gpio10 {
-+	uart4_ctsrts_gpio10: uart4-ctsrts-gpio10 {
- 		pin-cts {
- 			pins = "gpio10";
- 			function = "alt4";
-@@ -1057,7 +1057,7 @@ pin-rts {
- 			bias-disable;
- 		};
- 	};
--	uart5_gpio12: uart5_gpio12 {
-+	uart5_gpio12: uart5-gpio12 {
- 		pin-tx {
- 			pins = "gpio12";
- 			function = "alt4";
-@@ -1069,7 +1069,7 @@ pin-rx {
- 			bias-pull-up;
- 		};
- 	};
--	uart5_ctsrts_gpio14: uart5_ctsrts_gpio14 {
-+	uart5_ctsrts_gpio14: uart5-ctsrts-gpio14 {
- 		pin-cts {
- 			pins = "gpio14";
- 			function = "alt4";
-diff --git a/arch/arm/boot/dts/bcm2835-common.dtsi b/arch/arm/boot/dts/bcm2835-common.dtsi
-index c25e797b9060..4aea9d684746 100644
---- a/arch/arm/boot/dts/bcm2835-common.dtsi
-+++ b/arch/arm/boot/dts/bcm2835-common.dtsi
-@@ -151,41 +151,41 @@ &cpu_thermal {
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
+-		};
+-
+-		led-pwr {
+-			label = "PWR";
+-			gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
+-			default-state = "keep";
+-			linux,default-trigger = "default-on";
+-		};
+-	};
  };
  
  &gpio {
--	i2c_slave_gpio18: i2c_slave_gpio18 {
-+	i2c_slave_gpio18: i2c-slave-gpio18 {
- 		brcm,pins = <18 19 20 21>;
- 		brcm,function = <BCM2835_FSEL_ALT3>;
+@@ -107,6 +95,19 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
++};
++
++&leds {
++	led-pwr {
++		label = "PWR";
++		gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
++		default-state = "keep";
++		linux,default-trigger = "default-on";
++	};
++};
++
+ &pwm {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
+diff --git a/arch/arm/boot/dts/bcm2835-rpi-a.dts b/arch/arm/boot/dts/bcm2835-rpi-a.dts
+index f664e4fced93..2236fc547372 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi-a.dts
++++ b/arch/arm/boot/dts/bcm2835-rpi-a.dts
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include "bcm2835.dtsi"
+ #include "bcm2835-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
+ 
+ / {
+@@ -12,12 +13,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x10000000>;
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
+-		};
+-	};
+ };
+ 
+ &gpio {
+@@ -102,6 +97,10 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
++};
++
+ &pwm {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
+diff --git a/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts b/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts
+index 248feb2ed23d..0fb2c9472a39 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts
++++ b/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include "bcm2835.dtsi"
+ #include "bcm2835-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-smsc9514.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
+ 
+@@ -13,19 +14,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x20000000>;
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
+-		};
+-
+-		led-pwr {
+-			label = "PWR";
+-			gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
+-			default-state = "keep";
+-			linux,default-trigger = "default-on";
+-		};
+-	};
+ };
+ 
+ &gpio {
+@@ -109,6 +97,19 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
++};
++
++&leds {
++	led-pwr {
++		label = "PWR";
++		gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
++		default-state = "keep";
++		linux,default-trigger = "default-on";
++	};
++};
++
+ &pwm {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
+diff --git a/arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts b/arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts
+index f5b66d3f4ff3..7315e731891a 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts
++++ b/arch/arm/boot/dts/bcm2835-rpi-b-rev2.dts
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include "bcm2835.dtsi"
+ #include "bcm2835-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-smsc9512.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
+ 
+@@ -13,12 +14,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x10000000>;
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
+-		};
+-	};
+ };
+ 
+ &gpio {
+@@ -102,6 +97,10 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
++};
++
+ &pwm {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
+diff --git a/arch/arm/boot/dts/bcm2835-rpi-b.dts b/arch/arm/boot/dts/bcm2835-rpi-b.dts
+index f589bede2b11..bf13290af2c9 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi-b.dts
++++ b/arch/arm/boot/dts/bcm2835-rpi-b.dts
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include "bcm2835.dtsi"
+ #include "bcm2835-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-smsc9512.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
+ 
+@@ -13,12 +14,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x10000000>;
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
+-		};
+-	};
+ };
+ 
+ &gpio {
+@@ -96,6 +91,10 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
++};
++
+ &pwm {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
+diff --git a/arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi b/arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi
+index e4e6b6abbfc1..277c99a2f594 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi
++++ b/arch/arm/boot/dts/bcm2835-rpi-cm1.dtsi
+@@ -2,14 +2,9 @@
+ /dts-v1/;
+ #include "bcm2835.dtsi"
+ #include "bcm2835-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ 
+ / {
+-	leds {
+-		led-act {
+-			gpios = <&gpio 47 GPIO_ACTIVE_LOW>;
+-		};
+-	};
+-
+ 	memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x20000000>;
+@@ -32,6 +27,10 @@ reg_1v8: fixed-regulator {
+ 	};
+ };
+ 
++&led_act {
++	gpios = <&gpio 47 GPIO_ACTIVE_LOW>;
++};
++
+ &sdhost {
+ 	non-removable;
+ 	vmmc-supply = <&reg_3v3>;
+diff --git a/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts b/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts
+index 596bb1ef994e..12ab981a7bad 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts
++++ b/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts
+@@ -6,6 +6,7 @@
+ /dts-v1/;
+ #include "bcm2835.dtsi"
+ #include "bcm2835-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-otg.dtsi"
+ #include "bcm283x-rpi-wifi-bt.dtsi"
+ 
+@@ -22,12 +23,6 @@ chosen {
+ 		/* 8250 auxiliary UART instead of pl011 */
+ 		stdout-path = "serial1:115200n8";
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 47 GPIO_ACTIVE_LOW>;
+-		};
+-	};
+ };
+ 
+ &bt {
+@@ -110,6 +105,10 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 47 GPIO_ACTIVE_LOW>;
++};
++
+ &sdhci {
+ 	pinctrl-0 = <&emmc_gpio34 &gpclk2_gpio43>;
+ };
+diff --git a/arch/arm/boot/dts/bcm2835-rpi-zero.dts b/arch/arm/boot/dts/bcm2835-rpi-zero.dts
+index a65c2bca69ea..b0901cab4376 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi-zero.dts
++++ b/arch/arm/boot/dts/bcm2835-rpi-zero.dts
+@@ -6,6 +6,7 @@
+ /dts-v1/;
+ #include "bcm2835.dtsi"
+ #include "bcm2835-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-otg.dtsi"
+ 
+ / {
+@@ -16,12 +17,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x20000000>;
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
+-		};
+-	};
+ };
+ 
+ &gpio {
+@@ -104,6 +99,10 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
++};
++
+ &sdhost {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sdhost_gpio48>;
+diff --git a/arch/arm/boot/dts/bcm2835-rpi.dtsi b/arch/arm/boot/dts/bcm2835-rpi.dtsi
+index 87ddcad76083..ee9ee9d1fe65 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi.dtsi
++++ b/arch/arm/boot/dts/bcm2835-rpi.dtsi
+@@ -1,16 +1,6 @@
+ #include <dt-bindings/power/raspberrypi-power.h>
+ 
+ / {
+-	leds {
+-		compatible = "gpio-leds";
+-
+-		led-act {
+-			label = "ACT";
+-			default-state = "keep";
+-			linux,default-trigger = "heartbeat";
+-		};
+-	};
+-
+ 	soc {
+ 		firmware: firmware {
+ 			compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
+diff --git a/arch/arm/boot/dts/bcm2836-rpi-2-b.dts b/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
+index 3635502b1e0a..6068ec390081 100644
+--- a/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
++++ b/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include "bcm2836.dtsi"
+ #include "bcm2836-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-smsc9514.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
+ 
+@@ -13,19 +14,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x40000000>;
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
+-		};
+-
+-		led-pwr {
+-			label = "PWR";
+-			gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
+-			default-state = "keep";
+-			linux,default-trigger = "default-on";
+-		};
+-	};
+ };
+ 
+ &gpio {
+@@ -109,6 +97,19 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 47 GPIO_ACTIVE_HIGH>;
++};
++
++&leds {
++	led-pwr {
++		label = "PWR";
++		gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
++		default-state = "keep";
++		linux,default-trigger = "default-on";
++	};
++};
++
+ &pwm {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio45>;
+diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts b/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts
+index f7222a28903e..3548306dfbcb 100644
+--- a/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts
++++ b/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include "bcm2837.dtsi"
+ #include "bcm2836-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
+ #include "bcm283x-rpi-wifi-bt.dtsi"
+ 
+@@ -18,19 +19,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x20000000>;
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 29 GPIO_ACTIVE_HIGH>;
+-		};
+-
+-		led-pwr {
+-			label = "PWR";
+-			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
+-			default-state = "keep";
+-			linux,default-trigger = "default-on";
+-		};
+-	};
+ };
+ 
+ &firmware {
+@@ -124,6 +112,19 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 29 GPIO_ACTIVE_HIGH>;
++};
++
++&leds {
++	led-pwr {
++		label = "PWR";
++		gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
++		default-state = "keep";
++		linux,default-trigger = "default-on";
++	};
++};
++
+ &pwm {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio41>;
+diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
+index ec721d323ac5..2f1800cbc522 100644
+--- a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
++++ b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
+@@ -3,6 +3,7 @@
+ #include "bcm2837.dtsi"
+ #include "bcm2836-rpi.dtsi"
+ #include "bcm283x-rpi-lan7515.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
+ #include "bcm283x-rpi-wifi-bt.dtsi"
+ 
+@@ -19,19 +20,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x40000000>;
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 29 GPIO_ACTIVE_HIGH>;
+-		};
+-
+-		led-pwr {
+-			label = "PWR";
+-			gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
+-			default-state = "keep";
+-			linux,default-trigger = "default-on";
+-		};
+-	};
+ };
+ 
+ &bt {
+@@ -130,6 +118,19 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&gpio 29 GPIO_ACTIVE_HIGH>;
++};
++
++&leds {
++	led-pwr {
++		label = "PWR";
++		gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
++		default-state = "keep";
++		linux,default-trigger = "default-on";
++	};
++};
++
+ &pwm {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pwm0_gpio40 &pwm1_gpio41>;
+diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-b.dts b/arch/arm/boot/dts/bcm2837-rpi-3-b.dts
+index fb6a417d73e7..61270340075c 100644
+--- a/arch/arm/boot/dts/bcm2837-rpi-3-b.dts
++++ b/arch/arm/boot/dts/bcm2837-rpi-3-b.dts
+@@ -2,6 +2,7 @@
+ /dts-v1/;
+ #include "bcm2837.dtsi"
+ #include "bcm2836-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-smsc9514.dtsi"
+ #include "bcm283x-rpi-usb-host.dtsi"
+ #include "bcm283x-rpi-wifi-bt.dtsi"
+@@ -19,12 +20,6 @@ memory@0 {
+ 		device_type = "memory";
+ 		reg = <0 0x40000000>;
+ 	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&expgpio 2 GPIO_ACTIVE_HIGH>;
+-		};
+-	};
+ };
+ 
+ &bt {
+@@ -129,6 +124,10 @@ &hdmi {
+ 	status = "okay";
+ };
+ 
++&led_act {
++	gpios = <&expgpio 2 GPIO_ACTIVE_HIGH>;
++};
++
+ /* uart0 communicates with the BT module */
+ &uart0 {
+ 	pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi b/arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi
+index f57b4ca145dd..1e4e4946b6b6 100644
+--- a/arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi
++++ b/arch/arm/boot/dts/bcm2837-rpi-cm3.dtsi
+@@ -9,14 +9,6 @@ memory@0 {
+ 		reg = <0 0x40000000>;
  	};
  
--	jtag_gpio4: jtag_gpio4 {
-+	jtag_gpio4: jtag-gpio4 {
- 		brcm,pins = <4 5 6 12 13>;
- 		brcm,function = <BCM2835_FSEL_ALT5>;
+-	leds {
+-		/*
+-		 * Since there is no upstream GPIO driver yet,
+-		 * remove the incomplete node.
+-		 */
+-		/delete-node/ led-act;
+-	};
+-
+ 	reg_3v3: fixed-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "3V3";
+diff --git a/arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts b/arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts
+index 4a768562985e..b9cc4594398b 100644
+--- a/arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts
++++ b/arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts
+@@ -6,6 +6,7 @@
+ /dts-v1/;
+ #include "bcm2837.dtsi"
+ #include "bcm2836-rpi.dtsi"
++#include "bcm283x-rpi-led-deprecated.dtsi"
+ #include "bcm283x-rpi-usb-otg.dtsi"
+ #include "bcm283x-rpi-wifi-bt.dtsi"
+ 
+@@ -22,12 +23,6 @@ chosen {
+ 		/* 8250 auxiliary UART instead of pl011 */
+ 		stdout-path = "serial1:115200n8";
  	};
+-
+-	leds {
+-		led-act {
+-			gpios = <&gpio 29 GPIO_ACTIVE_LOW>;
+-		};
+-	};
+ };
  
--	pwm0_gpio12: pwm0_gpio12 {
-+	pwm0_gpio12: pwm0-gpio12 {
- 		brcm,pins = <12>;
- 		brcm,function = <BCM2835_FSEL_ALT0>;
- 	};
--	pwm0_gpio18: pwm0_gpio18 {
-+	pwm0_gpio18: pwm0-gpio18 {
- 		brcm,pins = <18>;
- 		brcm,function = <BCM2835_FSEL_ALT5>;
- 	};
--	pwm0_gpio40: pwm0_gpio40 {
-+	pwm0_gpio40: pwm0-gpio40 {
- 		brcm,pins = <40>;
- 		brcm,function = <BCM2835_FSEL_ALT0>;
- 	};
--	pwm1_gpio13: pwm1_gpio13 {
-+	pwm1_gpio13: pwm1-gpio13 {
- 		brcm,pins = <13>;
- 		brcm,function = <BCM2835_FSEL_ALT0>;
- 	};
--	pwm1_gpio19: pwm1_gpio19 {
-+	pwm1_gpio19: pwm1-gpio19 {
- 		brcm,pins = <19>;
- 		brcm,function = <BCM2835_FSEL_ALT5>;
- 	};
--	pwm1_gpio41: pwm1_gpio41 {
-+	pwm1_gpio41: pwm1-gpio41 {
- 		brcm,pins = <41>;
- 		brcm,function = <BCM2835_FSEL_ALT0>;
- 	};
--	pwm1_gpio45: pwm1_gpio45 {
-+	pwm1_gpio45: pwm1-gpio45 {
- 		brcm,pins = <45>;
- 		brcm,function = <BCM2835_FSEL_ALT0>;
- 	};
-diff --git a/arch/arm/boot/dts/bcm2836.dtsi b/arch/arm/boot/dts/bcm2836.dtsi
-index 534dacfc4dd5..726984105bd0 100644
---- a/arch/arm/boot/dts/bcm2836.dtsi
-+++ b/arch/arm/boot/dts/bcm2836.dtsi
-@@ -11,7 +11,7 @@ soc {
- 			 <0x40000000 0x40000000 0x00001000>;
- 		dma-ranges = <0xc0000000 0x00000000 0x3f000000>;
+ &bt {
+@@ -109,6 +104,10 @@ &hdmi {
+ 	status = "okay";
+ };
  
--		local_intc: local_intc@40000000 {
-+		local_intc: interrupt-controller@40000000 {
- 			compatible = "brcm,bcm2836-l1-intc";
- 			reg = <0x40000000 0x100>;
- 			interrupt-controller;
-diff --git a/arch/arm/boot/dts/bcm283x.dtsi b/arch/arm/boot/dts/bcm283x.dtsi
-index c113661a6668..ee170edef4d0 100644
---- a/arch/arm/boot/dts/bcm283x.dtsi
-+++ b/arch/arm/boot/dts/bcm283x.dtsi
-@@ -135,17 +135,17 @@ gpio: gpio@7e200000 {
- 			 * groups only make sense to switch to a
- 			 * particular function together.
- 			 */
--			dpi_gpio0: dpi_gpio0 {
-+			dpi_gpio0: dpi-gpio0 {
- 				brcm,pins = <0 1 2 3 4 5 6 7 8 9 10 11
- 					     12 13 14 15 16 17 18 19
- 					     20 21 22 23 24 25 26 27>;
- 				brcm,function = <BCM2835_FSEL_ALT2>;
- 			};
--			emmc_gpio22: emmc_gpio22 {
-+			emmc_gpio22: emmc-gpio22 {
- 				brcm,pins = <22 23 24 25 26 27>;
- 				brcm,function = <BCM2835_FSEL_ALT3>;
- 			};
--			emmc_gpio34: emmc_gpio34 {
-+			emmc_gpio34: emmc-gpio34 {
- 				brcm,pins = <34 35 36 37 38 39>;
- 				brcm,function = <BCM2835_FSEL_ALT3>;
- 				brcm,pull = <BCM2835_PUD_OFF
-@@ -155,95 +155,95 @@ BCM2835_PUD_UP
- 					     BCM2835_PUD_UP
- 					     BCM2835_PUD_UP>;
- 			};
--			emmc_gpio48: emmc_gpio48 {
-+			emmc_gpio48: emmc-gpio48 {
- 				brcm,pins = <48 49 50 51 52 53>;
- 				brcm,function = <BCM2835_FSEL_ALT3>;
- 			};
- 
--			gpclk0_gpio4: gpclk0_gpio4 {
-+			gpclk0_gpio4: gpclk0-gpio4 {
- 				brcm,pins = <4>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			gpclk1_gpio5: gpclk1_gpio5 {
-+			gpclk1_gpio5: gpclk1-gpio5 {
- 				brcm,pins = <5>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			gpclk1_gpio42: gpclk1_gpio42 {
-+			gpclk1_gpio42: gpclk1-gpio42 {
- 				brcm,pins = <42>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			gpclk1_gpio44: gpclk1_gpio44 {
-+			gpclk1_gpio44: gpclk1-gpio44 {
- 				brcm,pins = <44>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			gpclk2_gpio6: gpclk2_gpio6 {
-+			gpclk2_gpio6: gpclk2-gpio6 {
- 				brcm,pins = <6>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			gpclk2_gpio43: gpclk2_gpio43 {
-+			gpclk2_gpio43: gpclk2-gpio43 {
- 				brcm,pins = <43>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 				brcm,pull = <BCM2835_PUD_OFF>;
- 			};
- 
--			i2c0_gpio0: i2c0_gpio0 {
-+			i2c0_gpio0: i2c0-gpio0 {
- 				brcm,pins = <0 1>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			i2c0_gpio28: i2c0_gpio28 {
-+			i2c0_gpio28: i2c0-gpio28 {
- 				brcm,pins = <28 29>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			i2c0_gpio44: i2c0_gpio44 {
-+			i2c0_gpio44: i2c0-gpio44 {
- 				brcm,pins = <44 45>;
- 				brcm,function = <BCM2835_FSEL_ALT1>;
- 			};
--			i2c1_gpio2: i2c1_gpio2 {
-+			i2c1_gpio2: i2c1-gpio2 {
- 				brcm,pins = <2 3>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			i2c1_gpio44: i2c1_gpio44 {
-+			i2c1_gpio44: i2c1-gpio44 {
- 				brcm,pins = <44 45>;
- 				brcm,function = <BCM2835_FSEL_ALT2>;
- 			};
- 
--			jtag_gpio22: jtag_gpio22 {
-+			jtag_gpio22: jtag-gpio22 {
- 				brcm,pins = <22 23 24 25 26 27>;
- 				brcm,function = <BCM2835_FSEL_ALT4>;
- 			};
- 
--			pcm_gpio18: pcm_gpio18 {
-+			pcm_gpio18: pcm-gpio18 {
- 				brcm,pins = <18 19 20 21>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			pcm_gpio28: pcm_gpio28 {
-+			pcm_gpio28: pcm-gpio28 {
- 				brcm,pins = <28 29 30 31>;
- 				brcm,function = <BCM2835_FSEL_ALT2>;
- 			};
- 
--			sdhost_gpio48: sdhost_gpio48 {
-+			sdhost_gpio48: sdhost-gpio48 {
- 				brcm,pins = <48 49 50 51 52 53>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
- 
--			spi0_gpio7: spi0_gpio7 {
-+			spi0_gpio7: spi0-gpio7 {
- 				brcm,pins = <7 8 9 10 11>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			spi0_gpio35: spi0_gpio35 {
-+			spi0_gpio35: spi0-gpio35 {
- 				brcm,pins = <35 36 37 38 39>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
--			spi1_gpio16: spi1_gpio16 {
-+			spi1_gpio16: spi1-gpio16 {
- 				brcm,pins = <16 17 18 19 20 21>;
- 				brcm,function = <BCM2835_FSEL_ALT4>;
- 			};
--			spi2_gpio40: spi2_gpio40 {
-+			spi2_gpio40: spi2-gpio40 {
- 				brcm,pins = <40 41 42 43 44 45>;
- 				brcm,function = <BCM2835_FSEL_ALT4>;
- 			};
- 
--			uart0_gpio14: uart0_gpio14 {
-+			uart0_gpio14: uart0-gpio14 {
- 				brcm,pins = <14 15>;
- 				brcm,function = <BCM2835_FSEL_ALT0>;
- 			};
-@@ -252,50 +252,50 @@ uart0_gpio14: uart0_gpio14 {
- 			 * people often run uart0 on the two pins
- 			 * without flow control.
- 			 */
--			uart0_ctsrts_gpio16: uart0_ctsrts_gpio16 {
-+			uart0_ctsrts_gpio16: uart0-ctsrts-gpio16 {
- 				brcm,pins = <16 17>;
- 				brcm,function = <BCM2835_FSEL_ALT3>;
- 			};
--			uart0_ctsrts_gpio30: uart0_ctsrts_gpio30 {
-+			uart0_ctsrts_gpio30: uart0-ctsrts-gpio30 {
- 				brcm,pins = <30 31>;
- 				brcm,function = <BCM2835_FSEL_ALT3>;
- 				brcm,pull = <BCM2835_PUD_UP BCM2835_PUD_OFF>;
- 			};
--			uart0_gpio32: uart0_gpio32 {
-+			uart0_gpio32: uart0-gpio32 {
- 				brcm,pins = <32 33>;
- 				brcm,function = <BCM2835_FSEL_ALT3>;
- 				brcm,pull = <BCM2835_PUD_OFF BCM2835_PUD_UP>;
- 			};
--			uart0_gpio36: uart0_gpio36 {
-+			uart0_gpio36: uart0-gpio36 {
- 				brcm,pins = <36 37>;
- 				brcm,function = <BCM2835_FSEL_ALT2>;
- 			};
--			uart0_ctsrts_gpio38: uart0_ctsrts_gpio38 {
-+			uart0_ctsrts_gpio38: uart0-ctsrts-gpio38 {
- 				brcm,pins = <38 39>;
- 				brcm,function = <BCM2835_FSEL_ALT2>;
- 			};
- 
--			uart1_gpio14: uart1_gpio14 {
-+			uart1_gpio14: uart1-gpio14 {
- 				brcm,pins = <14 15>;
- 				brcm,function = <BCM2835_FSEL_ALT5>;
- 			};
--			uart1_ctsrts_gpio16: uart1_ctsrts_gpio16 {
-+			uart1_ctsrts_gpio16: uart1-ctsrts-gpio16 {
- 				brcm,pins = <16 17>;
- 				brcm,function = <BCM2835_FSEL_ALT5>;
- 			};
--			uart1_gpio32: uart1_gpio32 {
-+			uart1_gpio32: uart1-gpio32 {
- 				brcm,pins = <32 33>;
- 				brcm,function = <BCM2835_FSEL_ALT5>;
- 			};
--			uart1_ctsrts_gpio30: uart1_ctsrts_gpio30 {
-+			uart1_ctsrts_gpio30: uart1-ctsrts-gpio30 {
- 				brcm,pins = <30 31>;
- 				brcm,function = <BCM2835_FSEL_ALT5>;
- 			};
--			uart1_gpio40: uart1_gpio40 {
-+			uart1_gpio40: uart1-gpio40 {
- 				brcm,pins = <40 41>;
- 				brcm,function = <BCM2835_FSEL_ALT5>;
- 			};
--			uart1_ctsrts_gpio42: uart1_ctsrts_gpio42 {
-+			uart1_ctsrts_gpio42: uart1-ctsrts-gpio42 {
- 				brcm,pins = <42 43>;
- 				brcm,function = <BCM2835_FSEL_ALT5>;
- 			};
++&led_act {
++	gpios = <&gpio 29 GPIO_ACTIVE_LOW>;
++};
++
+ &sdhci {
+ 	pinctrl-0 = <&emmc_gpio34 &gpclk2_gpio43>;
+ };
+diff --git a/arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi b/arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi
+new file mode 100644
+index 000000000000..880e43daac29
+--- /dev/null
++++ b/arch/arm/boot/dts/bcm283x-rpi-led-deprecated.dtsi
+@@ -0,0 +1,18 @@
++// SPDX-License-Identifier: GPL-2.0
++
++/ {
++	/*
++	 * This file provides the now deprecated ACT LED to the
++	 * Raspberry Pi boards. Please don't include this file
++	 * for new boards!
++	 */
++	leds: leds {
++		compatible = "gpio-leds";
++
++		led_act: led-act {
++			label = "ACT";
++			default-state = "keep";
++			linux,default-trigger = "heartbeat";
++		};
++	};
++};
 -- 
 2.34.1
 
