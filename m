@@ -2,136 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB9A95E9CBE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46D875E9CC0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:01:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234675AbiIZJA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 05:00:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56788 "EHLO
+        id S234689AbiIZJBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 05:01:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234678AbiIZJAb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:00:31 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0024A3ED70
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:00:25 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id q17so6615153lji.11
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:00:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=H/+p8mEjTwGAnb/er9H9+Y9nICJTLPjXS5T+tZ95rMU=;
-        b=yWk5mtILlu3UvcdbLmm79SFegmsJXf79HETgiwCQ49OfGUVYLDRDxJgp6KNj6ZWq6I
-         wl1QKuo2YW6aAu2vuWbTFaNy+rnl0GETB92Xl5HLwDYj2xWQRxbUNa6AYKaFbGlKSOJP
-         fRPtWx2sWdT9uRSvCxOJTa8LXNPAsE+vD+G+5Q/v2fHpZrv6q28Na6Bl59LFNZ4H0/fx
-         jHSimE65fahojWlVaKqh/w6U8OvKwa28aX9dLyhGOgoxHI900egLGVmUgoXGb9ClVUfx
-         hFBPm44nbfoD5datkprKhBq7CPWD/ZoVtFw1D07pD4Ya0nN17+kxo0DaKcyJUFRfhie7
-         2qoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=H/+p8mEjTwGAnb/er9H9+Y9nICJTLPjXS5T+tZ95rMU=;
-        b=Btfsie0XUyYy+jgqQrEMYLY/eW5Yn5zha3SVWsJgzYQCgKEOxK9ARKEiInxRIXHcnm
-         2I5iCAer6tTQOI1FgikGml4dWtEswMTaTpdnCOZk7GFefx+Vb8kTnebQx5My9MarI9oY
-         ILgJnU1X1tKAwB3qkKkjzRpayAhLaAgDbCJfol0l0c2MHVE/raYOnw4pEStXU5D2Clmb
-         3UN0XL/L6vuY9XDgzCuGQ/Aw7WwOj4EEr2OB6iWWqeEoM4OEzeXgXLH0q5+19v4bhO1e
-         4Awzlw0a9pp3Sm0ecyjIxHHFvmkxlY8DEfvkI2z5+O0zXxa4SqsJNmWPBy9oB2SnEXDi
-         SBhQ==
-X-Gm-Message-State: ACrzQf0Hdt5gDoSm6mMJXdZtLj71o8uAqqyS0udfprOIGXhnycAhy27X
-        zMQ5hY8Z4PNOKEaF4riaB1Samg==
-X-Google-Smtp-Source: AMsMyM4hKXV+6qWzL83RKzUGTSpmbkXzzGWkD9OMFsddwepE9ZoNPCkOgJjaueWAjP7n5XAsGppkGA==
-X-Received: by 2002:a2e:b74f:0:b0:26c:426c:60fc with SMTP id k15-20020a2eb74f000000b0026c426c60fcmr7372576ljo.432.1664182823526;
-        Mon, 26 Sep 2022 02:00:23 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t12-20020a056512068c00b00498fe38ea0fsm2466878lfe.174.2022.09.26.02.00.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 02:00:23 -0700 (PDT)
-Message-ID: <f1057c78-39a2-6b26-f3c9-51cd99450dd2@linaro.org>
-Date:   Mon, 26 Sep 2022 11:00:22 +0200
+        with ESMTP id S234647AbiIZJAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:00:48 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7743F30C;
+        Mon, 26 Sep 2022 02:00:32 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 93EC36602251;
+        Mon, 26 Sep 2022 10:00:29 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664182830;
+        bh=bMVcDk3X6u99bKLgfXI+FhEYfAxSZHzyzbIzr8PhH+w=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=l25gcGT4sPUU+J8zbwhVbwirwzez7PHsi3P4gxW3KwtGF1mMJkW4dBmSD4qjCz7ua
+         wU5pgayAES4HYWLf8iCCLOgo29HgDZxiNTHnqiRffoQbwfacTb36tCiS7A6OoqZck3
+         UQL6af+Ofj/hPOC7FBOTWvURAro/QTmfudjpDkvEKHL6/nya2UMgBVU5rvDqDflK6t
+         fVTcFN7bgUEDzZXukDpIbBd3NHIjFnRKLckvELd32R/iD4rnMM+//pU41oHVNA8aff
+         55zL52eA3UGkZ2dWLtLbRt/rs+MQyKm609NY23D9E08ORXHmQqHdzNcRrYdhE3FoIk
+         YfaxnlPTsxeAQ==
+Message-ID: <cff7aa75-4448-dc08-3b6f-488fcf78cb87@collabora.com>
+Date:   Mon, 26 Sep 2022 11:00:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add nodes to support WoW on
- WCN6750
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 05/10] clk: mediatek: clk-mt8195-mfg: Reparent mfg_bg3d
+ and propagate rate changes
 Content-Language: en-US
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     matthias.bgg@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+        miles.chen@mediatek.com, rex-bc.chen@mediatek.com,
+        nfraprado@collabora.com, chun-jie.chen@mediatek.com,
+        jose.exposito89@gmail.com, drinkcat@chromium.org,
+        weiyi.lu@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220926045735.719-1-quic_mpubbise@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220926045735.719-1-quic_mpubbise@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20220915072458.18232-1-angelogioacchino.delregno@collabora.com>
+ <20220915072458.18232-6-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5HxEWPmLLi0zRrJ+T7bVcpoQoFt81+_ciXNDXRrGmfU6w@mail.gmail.com>
+ <9f7d1eda-cdf3-5108-7e9d-a10937fe224e@collabora.com>
+ <CAGXv+5HYKjDJALa6MAAE4XzRTMfE_vdEWg6XaWekUq7w8ko3BQ@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5HYKjDJALa6MAAE4XzRTMfE_vdEWg6XaWekUq7w8ko3BQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 06:57, Manikanta Pubbisetty wrote:
-> Add DT nodes to support WoW (Wake on Wireless) feature on WCN6750
-> WiFi hardware on SC7280 SoC.
+Il 26/09/22 10:57, Chen-Yu Tsai ha scritto:
+> On Mon, Sep 26, 2022 at 4:36 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Il 26/09/22 05:27, Chen-Yu Tsai ha scritto:
+>>> On Thu, Sep 15, 2022 at 3:25 PM AngeloGioacchino Del Regno
+>>> <angelogioacchino.delregno@collabora.com> wrote:
+>>>>
+>>>> The MFG_BG3D is a gate to enable/disable clock output to the GPU,
+>>>> but the actual output is decided by multiple muxes; in particular:
+>>>> mfg_ck_fast_ref muxes between "slow" (top_mfg_core_tmp) and
+>>>> "fast" (MFGPLL) clock, while top_mfg_core_tmp muxes between the
+>>>> 26MHz clock and various system PLLs.
+>>>>
+>>>> This also implies that "top_mfg_core_tmp" is a parent of the
+>>>> "mfg_ck_fast_ref" mux (and not vice-versa), so reparent the
+>>>
+>>> I don't see where this was the case though? I think what you meant
+>>> was that the direct parent for "mfg_bg3d" is "mfg_ck_fast_ref, not
+>>> "top_mfg_core_tmp"?
+>>>
+>>
+>> MFG_BG3D's direct parent is mfg_ck_fast_ref - yes - but in the commit message
+>> I am explaining how the clock tree for MFG_BG3D really is and, in particular,
+>> I'm then explaining that:
+>> * parenting MFG_BG3D to "top_mfg_core_tmp" is wrong; because
+>> * "top_mfg_core_tmp" is a parent of "mfg_ck_fast_ref" (not the other way around).
+>>
+>> So, the question in your comment is addressed just a little later....
+>>
+>>>> MFG_BG3D gate to the latter and add the CLK_SET_RATE_PARENT
+>>
+>> ...here, where I say "reparent MFG_BG3D to the latter", where "the latter" is,
+>> exactly "mfg_ck_fast_ref".
+>>
+>> I hope you now understand what I am trying to communicate :-)
+>>
+>> However, if even after that you still think that the commit description should
+>> be rewritten in some less tangled and/or more understandable way, I definitely
+>> can do that.
+>>
+>> Please confirm :-)
 > 
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-
-Thank you for your patch. There is something to discuss/improve.
-
-
-> ---
-> Changes from V1:
-> - Rebased on ToT
+> I think
 > 
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>      This also implies that "top_mfg_core_tmp" is a parent of the
+>      "mfg_ck_fast_ref" mux (and not vice-versa)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 212580316d3e..3f6a3f575339 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -752,6 +752,17 @@ wpss_smp2p_in: slave-kernel {
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
->  		};
-> +
-> +		wlan_smp2p_out: wlan-ap-to-wpss {
+> actually confused me.
+> 
+> Maybe just say
+> 
+>      The clock gate comes after all the muxes, so its parent is
+>      mfg_ck_fast_ref, not top_mfg_core_tmp. Reparent mfg_bg3d to
+>      the latter to match the hardware ...
+> 
+> Since you are fixing the topology, could you also add a fixes tag?
+> 
+> 
 
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
+Yeah, sure! I'll send a new version most probably today.
+Thanks for the review(s)!
 
-> +			qcom,entry-name = "wlan";
-> +			#qcom,smem-state-cells = <1>;
-> +		};
-> +
-> +		wlan_smp2p_in: wlan-wpss-to-ap {
-> +			qcom,entry-name = "wlan";
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
->  	};
->  
->  	pmu {
-> @@ -2004,6 +2015,8 @@ wifi: wifi@17a10040 {
->  			qcom,rproc = <&remoteproc_wpss>;
->  			memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
->  			status = "disabled";
+Cheers,
+Angelo
 
-status is the last.
+> Thanks
+> ChenYu
+> 
+> 
+>>>> flag to it: this way we ensure propagating rate changes that
+>>>> are requested on MFG_BG3D along its entire clock tree.
+>>>>
+>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>
+>>> Otherwise,
+>>>
+>>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+>>>
+>>>
+>>>> ---
+>>>>    drivers/clk/mediatek/clk-mt8195-mfg.c | 6 ++++--
+>>>>    1 file changed, 4 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/clk/mediatek/clk-mt8195-mfg.c b/drivers/clk/mediatek/clk-mt8195-mfg.c
+>>>> index 9411c556a5a9..c94cb71bd9b9 100644
+>>>> --- a/drivers/clk/mediatek/clk-mt8195-mfg.c
+>>>> +++ b/drivers/clk/mediatek/clk-mt8195-mfg.c
+>>>> @@ -17,10 +17,12 @@ static const struct mtk_gate_regs mfg_cg_regs = {
+>>>>    };
+>>>>
+>>>>    #define GATE_MFG(_id, _name, _parent, _shift)                  \
+>>>> -       GATE_MTK(_id, _name, _parent, &mfg_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+>>>> +       GATE_MTK_FLAGS(_id, _name, _parent, &mfg_cg_regs,       \
+>>>> +                      _shift, &mtk_clk_gate_ops_setclr,        \
+>>>> +                      CLK_SET_RATE_PARENT)
+>>>>
+>>>>    static const struct mtk_gate mfg_clks[] = {
+>>>> -       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "top_mfg_core_tmp", 0),
+>>>> +       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "mfg_ck_fast_ref", 0),
+>>>>    };
+>>>>
+>>>>    static const struct mtk_clk_desc mfg_desc = {
+>>>> --
+>>>> 2.37.2
+>>>>
+>>
+>>
 
-> +			qcom,smem-states = <&wlan_smp2p_out 0>;
-> +			qcom,smem-state-names = "wlan-smp2p-out";
 
-Are these valid properties for this node? Did you check with bindings?
-
-Best regards,
-Krzysztof
 
