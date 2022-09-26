@@ -2,197 +2,447 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F9655EB418
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 00:03:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D82D55EB46F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 00:17:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbiIZWDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 18:03:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55304 "EHLO
+        id S231469AbiIZWRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 18:17:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230454AbiIZWCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 18:02:41 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2059.outbound.protection.outlook.com [40.107.244.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5BA3E21EF;
-        Mon, 26 Sep 2022 15:02:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g2UEM4IjTwxxX/y+zESTGR+I/OnCG1CrkHS8tDWkvMk2OiDYd13ftoq4hTYz5o3NCTfT5Gv2VGlz8DFvnWlFgDZc0wSYqFRs5wmwgqrGQgm1G7J3xiR3ZUJoNT5rugPDLIAKLSVOvBh31WXGoJ7F6418fqk0NAxrRTqJa6EwmqpYlCp0nVpWvoumaPZObLF0DpMlGatzpPSyfUINCnCbAEWVISYCtuO7yFe9elr42Lw4q/rcdLYcKjALJj6r3ryhYHBFT7jlYV1LkINJna19mau2pwbuw/C4kz5FWGvybMOyW22Qrp1y/qPOdec0xZdJijnfXfh49bJWJLynQNFbXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SH/9E9GWTUBKGS8MomMIuXtApQI+S2WQ8HKoIZHTcVQ=;
- b=YNKLxn9gSDQDdKpZsdBrqDQmOK18CPiz42CVPZAiGSGDvX/3fkdxTm9o4QQcmW38b0fPsD7DW7wpfaOjRPj5TUA+iZ/BBgVQIAyDzu4uOboK3XzWpFYEwOz6eHcIXj+dza23vlMjNxDp5UYEHAlIpccdT9GPAAfW8JKMXoJSZQQiRwVf8/Ntwf5ZMNhHObB7m30UMd9TNtTtWegtZ+hHAZAEOO/nTfstYrQFLR/uBTJycpE/8MiOchXckqkkwLrwESvFyVZ4c5KkfT14SN7wkqnqekVFiqIohs/Sy4TwCfRyYc/XrN2hW+OyLRVCWt3vBaxDwEKHtguu37mYN67SWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SH/9E9GWTUBKGS8MomMIuXtApQI+S2WQ8HKoIZHTcVQ=;
- b=v5s8ywJqDQVBikftls2NdW5I0kHTY8I5pY/XxrVGFSfLHuUW1iKE2mg9Nwk/ltjiPZz9UCBwwnwc9zibCZI+1d++xMjw7r/q7NUdPgIyKNHPZiZb9mV3a5bnzUlQ1GU4LvorQYn69yPEcSbBw6qx20tv4TWYWAbwoUPFvwsyN+k=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BY5PR12MB3683.namprd12.prod.outlook.com (2603:10b6:a03:1a5::16)
- by DM4PR12MB6591.namprd12.prod.outlook.com (2603:10b6:8:8e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Mon, 26 Sep
- 2022 22:02:24 +0000
-Received: from BY5PR12MB3683.namprd12.prod.outlook.com
- ([fe80::3441:5a68:b4b7:e988]) by BY5PR12MB3683.namprd12.prod.outlook.com
- ([fe80::3441:5a68:b4b7:e988%6]) with mapi id 15.20.5654.026; Mon, 26 Sep 2022
- 22:02:24 +0000
-Message-ID: <d1cfa787-9f8e-fe8a-d816-0bd8c3a3244d@amd.com>
-Date:   Mon, 26 Sep 2022 15:02:22 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.3.0
-Subject: Re: [PATCH v9 6/6] drivers: remoteproc: Add Xilinx r5 remoteproc
- driver
-Content-Language: en-US
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>, andersson@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michal.simek@xilinx.com, ben.levinsky@xilinx.com,
-        tanmay.shah@xilinx.com, michal.simek@amd.com,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220708013955.2340449-1-tanmay.shah@amd.com>
- <20220708013955.2340449-7-tanmay.shah@amd.com> <20220901202517.GB626605@p14s>
-From:   Tanmay Shah <tanmays@amd.com>
-In-Reply-To: <20220901202517.GB626605@p14s>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0244.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::9) To BY5PR12MB3683.namprd12.prod.outlook.com
- (2603:10b6:a03:1a5::16)
+        with ESMTP id S231495AbiIZWRO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 18:17:14 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D4EF7171C
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 15:16:56 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id DE0D484BD1;
+        Tue, 27 Sep 2022 00:16:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1664230608;
+        bh=X6qp9T/BvglaOyfUDJtjW2VanJEDiASQK1Gprr4SctA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=DTPHvgNvwcwmmEK3APHARCisJ2MWpIxo4xq5rrry2hGMAeyR3IfPGka7NIuhKuvGh
+         5aPBlW9Rfs62yAFbJE8cq08j7P470EX5sv4jAg46CPlfGgxaQFtrbuhwW9l//6gGjl
+         E3mH6f1us2ksc5IvHQJbpG5RuARHx61qtSybc6dpDFK0zvlOIhxH4EGeyji0B7IPnI
+         n9jCnwLSN48DqospzsqtDK+YauZxS3GfAbQuaAKL0QgQAve2T6BFQ6xqVo+NRyyq39
+         qZW6lHSsdQG9I7S2R96LYuHaFTvt27D78XGL9w+a/Jb4mwuB1x571s9oyjytjUVT9k
+         t+MzeyCUYJ/kQ==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] dt-bindings: memory-controller: st,stm32: Split off MC properties
+Date:   Tue, 27 Sep 2022 00:16:35 +0200
+Message-Id: <20220926221635.526676-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR12MB3683:EE_|DM4PR12MB6591:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad101344-4192-430f-0172-08daa00acb3e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jJaSC23EVYs+rIUB3UeHaZlbgPLgZ7UN0zp66Wz7w3PdeWtlPSp3ZqYH2ntRv/AJCXMLAAnRGbXc+XOsXudHOeK2+ecPscsb62Uuxy9AyjX1UdERWN5CSFDYpfNlr/AhN4M3esi9tzW7A9It6OFDEh0mlVd80OVYigRCZgMEvEuS+28R1X9nz/JkpbDO8uQ0nPfxrTlly6abp4Unf/kt+wjUI6j4wERcww5k+AxpyEpP3AbyZCe+vBYgvL8uxuwP6dra/k5hUCZwF6xhpjY03YazTMqFxc7n3HQigcD12ldQFWg62MoE0ltQJZVakV0EmN3f/HNSREfu8dE75RmPAY/LkiawtKYKoDmA8dyj9wsP8T9i0nJiVahPQI7P7a9ZaL7iqpMPQwlL9ZJPKwxqTHv9scHywur2PRrgS7NwQSmM6XV/km1kJdnx5jUPmMdnBIg24KXtxyWPDgvpOABtiVWZHxpnHX+bSRHQOApok5Cz/dTp954CdwIUIwZGsFviruBjC/f9zqDmunJceyo8wVmcjHMU3O3DoQSnC6c45OSX/yC6cvaEbTxSJ1EgPiuYeKh5l8fcw6csSclZQPCc6jm/zh6FSJ6mgX05uX+VD5/L8zyuA63haz7FyqlK4ECNsI9aS4Ro5jJHVsuis/jjelwZb78t9xQNQXOi8yZWtKlgO/zKxtUFe7EFxMJtGolJCqNlTSN7eHJvner0QEw+YI2CZrKsnU07L3NsNxIcWBLKeYUsc5ZM+2mVC5ixykKK+V07gDhvkc8339L5iHZq67Obk2W2aeQJSoSf4YbEbU4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB3683.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(396003)(39860400002)(136003)(366004)(376002)(451199015)(31686004)(6486002)(316002)(478600001)(8936002)(53546011)(41300700001)(6506007)(5660300002)(36756003)(66556008)(66946007)(66476007)(8676002)(4326008)(2906002)(186003)(6512007)(26005)(2616005)(83380400001)(31696002)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aGRhNVN3RDFoTWhlTzgxWGdrS21vZkllWnZTV00xTDhydE9GZ0c2OGFGSEF5?=
- =?utf-8?B?V2pzSnZzQWl6NVMza0Jtc1IwWGViN08vMGZlc2EwNTN4bkZURWwwNGZsWnhS?=
- =?utf-8?B?SWhOUXVRbnk0Q1NPZ005aTIvQ3ZFcHhRekpmVFJ1NFF1NC9IWUQzRlFwWXJr?=
- =?utf-8?B?RWk4blEwaFRVdEpUTEwyQXZ4b3VzUGF6TjZSU0c1Y2RDUERocU9mRUpKaGRK?=
- =?utf-8?B?bzAyL3d3WnRjUVRpb1doVkQxOG1RbEZVV1AwN0Z2d1I3RzNHeFZ3bnlFN3c5?=
- =?utf-8?B?Q1RWeC9SYkhPUllMYXdCcWpCaGNReXY1ZXlJQWlDL1ozakFZSU4zR3hXOFBP?=
- =?utf-8?B?MWFra05MZkxkS1hmbFErQlN3cmliNjAzc3JJVGdSQmtvcTQvaHdMVlVUSmpz?=
- =?utf-8?B?d0NoRStmR3ZURTBmVUlSYnY2M3Z3NHJoeUVBckxpZzhQdFkwMXVWa2ZFQ0lY?=
- =?utf-8?B?ek1VcUZ4TUU0ZURIRnVJZjBDekYyRFdmTUxTclpORGlld1ExOEdxSm1NWEtL?=
- =?utf-8?B?N2tsY293WFFxSVJxd0t3ZU1VemNDODlBVFhRb0JIZ2lBeTNhWFJ3ZTRyVmx5?=
- =?utf-8?B?VXFkOHNsWk5QTXlnallDMCtRNEdiemdYZ1NSY09sSWpVVWduWFRiRVc1a01q?=
- =?utf-8?B?MmVqa09hRG9hWmtRb0ZjcXIvakM2TVF1MXlNRkJjN3VvazVRTG1JZmpWeW5z?=
- =?utf-8?B?SnJnMnRhK0xBUnpOZzFrdm1rU3REMG1YcmV0VFE0ajJ3eHlDRWduaDVSaEM0?=
- =?utf-8?B?enZhRGZuSldNUjBXQzlPOFUrT1pYSmRuejd5TmJHelVWRlkremlqUzVEOE8x?=
- =?utf-8?B?RzN2c2tTVnY2YkNRMzN2RTF5QkFHYnZDN2hTYm9WMUlhOCtXb2dhUmxlV2Zr?=
- =?utf-8?B?cnVHK0tLaEViVWpwQUV3NHE1RWVNc1ptbVd2L2NBbUVnSzlNdGZ4T0FTZUJ3?=
- =?utf-8?B?a3M3YjlqeUZWb05lM1pOa3hLUEFJcU1PbmV3empSb2sxRXZxU2N5SEUwYktE?=
- =?utf-8?B?QkV4Zi9vRE9XSGlsV01JcmVZYXBBYlZ1S21zRFdpZFRyZXdSZE5KbkJUL0sy?=
- =?utf-8?B?R2FRcThxekw5MWV6MXg5ZkdhYWVRUnlZVS9TR2V2UWpoYTM5WFVBTzJaN3Yx?=
- =?utf-8?B?T29rcDJGTGt2R1FXYmgzVGg0WVh2elVvZVFHWk5EdVkrWkN3bng0OUVuaTRY?=
- =?utf-8?B?a3lNbW5zSzVxRGxadmczTUZKd1FhYVBXVmVSalNuWGVmOGlXTFB4U1AzVzhN?=
- =?utf-8?B?dWRvRjNRVzJBYnE5YzE1K29FTUVjZk1jVmMrNXUwdmo2RUxhVWJiaWVyZHow?=
- =?utf-8?B?NERzclNxRVdYbWdZR1EwdDU4RmdtTXdUc1dZSUNERnFrTkJhWk9LUjhNdGZz?=
- =?utf-8?B?bWJ3SC9wN21iWG5wYWFrb3lZdWtQMmV1MWZ6ZlA1dkJIeURCUmRxSDN3eGE3?=
- =?utf-8?B?cEYyTWxlWXJLS05KNGhyYlJRREp6Umt1dks0SjhFMzRUYzMxRWY1a0k3TjAy?=
- =?utf-8?B?MWhnQ29JdmM3a05lS0dsWDdQQno4RHA5czJraGtCaDhGTEhGQm92amYva0Nj?=
- =?utf-8?B?c080cC9rSCtZc3hIcHpQZ2dWYjhGcEYwQmt2aGVJL2dZSjR4OTErcmFBRWhJ?=
- =?utf-8?B?MkZLNC9PMWV4a2FScGF1ck1MS1FUVWpYSm1MNlpkMEJIeHlvMHZuZk9ZTm44?=
- =?utf-8?B?YVdVa0lENjFieCtkT1UwQnJ6dnVVWHNWL2ZTMG9XTjRydUFwaGs4aWR0SUNQ?=
- =?utf-8?B?b3NpVVZORFp6a00yQk1RY1R6c1A4QllKWjlNR2tvTEcvbjl6S0Exd1ZtRTVF?=
- =?utf-8?B?YXp5ZU0yMGQwaTRPck45UEVlcjI0OUI4SUtxbUhEcURDc3ZVZFp5eGpDTlMv?=
- =?utf-8?B?WUpWUTl2bTQrKzk0YlI0Q3BLVW1LVzVHZks2ekVrUXlNVWJsaWhUc0J5a3lI?=
- =?utf-8?B?ZnBkSFI2WDFHR0R2NGRiSWxsV3AxUVk5VHNuMUpMS2lmOTlJTG5DOExpUXUv?=
- =?utf-8?B?NGhNK1VaNndsRGNvcnFLaUoxaFNXdW95SkF1WHI4dysxVGZDR01ZbndXTytR?=
- =?utf-8?B?UXRPQmNiSlJrMDJOUzBGbzVwZGNpTDRjeWdySi91WUpYQmd1QlpiZERQMzFB?=
- =?utf-8?Q?W5kOtagqTNQpa49nTCTGhus1i?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad101344-4192-430f-0172-08daa00acb3e
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3683.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2022 22:02:24.7864
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: D/ZHKBM7otmlOGUUtOxfzn3YQJddLD7WIZVBxZAGZ5DgXYx4K2Q71XGMgyuZWIA/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6591
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Split st,stm32-fmc2-ebi.yaml specific properties into st,stm32-fmc2-ebi-props.yaml ,
+split memory-controller bus peripheral properties into mc-peripheral-props.yaml ,
+reference the st,stm32-fmc2-ebi-props.yaml in mc-peripheral-props.yaml and
+reference the mc-peripheral-props.yaml in micrel,ks8851.yaml .
 
-On 9/1/22 1:25 PM, Mathieu Poirier wrote:
-> On Thu, Jul 07, 2022 at 06:39:55PM -0700, Tanmay Shah wrote:
-[ ... ]
->> --- /dev/null
->> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
->> @@ -0,0 +1,1055 @@
->> +// SPDX-License-Identifier: GPL-2.0
+This way, the FMC2 controller properties in Micrel KSZ8851MLL ethernet
+controller node can be properly validated.
 
-Hi Mathieu,
+Fixes the following warning:
 
-I tried to fix SPDX-License-Identifier to GPL (same as MODULE_LICENSE 
-below), However checkpatch.pl reports this as following warning:
+"
+arch/arm/boot/dts/stm32mp153c-dhcor-drc-compact.dtb: ethernet@1,0: Unevaluated properties are not allowed ('bank-width', 'st,fmc2-ebi-cs-mux-enable', 'st,fmc2-ebi-cs-transaction-type', 'st,fmc2-ebi-cs-buswidth', 'st,fmc2-ebi-cs-address-setup-ns', 'st,fmc2-ebi-cs-address-hold-ns', 'st,fmc2-ebi-cs-bus-turnaround-ns', 'st,fmc2-ebi-cs-data-setup-ns', 'st,fmc2-ebi-cs-data-hold-ns', 'st,fmc2-ebi-cs-write-address-setup-ns', 'st,fmc2-ebi-cs-write-address-hold-ns', 'st,fmc2-ebi-cs-write-bus-turnaround-ns', 'st,fmc2-ebi-cs-write-data-setup-ns', 'st,fmc2-ebi-cs-write-data-hold-ns' were unexpected)
+"
 
-"WARNING: 'SPDX-License-Identifier: GPL' is not supported in LICENSES/..."
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Christophe Kerello <christophe.kerello@foss.st.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+To: linux-arm-kernel@lists.infradead.org
+---
+ .../mc-peripheral-props.yaml                  |  36 +++++
+ .../st,stm32-fmc2-ebi-props.yaml              | 144 ++++++++++++++++++
+ .../memory-controllers/st,stm32-fmc2-ebi.yaml | 137 -----------------
+ .../bindings/net/micrel,ks8851.yaml           |   1 +
+ 4 files changed, 181 insertions(+), 137 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/mc-peripheral-props.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi-props.yaml
 
-I see that GPL-1.0 is under LICENSE/deprecated directory.
+diff --git a/Documentation/devicetree/bindings/memory-controllers/mc-peripheral-props.yaml b/Documentation/devicetree/bindings/memory-controllers/mc-peripheral-props.yaml
+new file mode 100644
+index 0000000000000..442744a9b711d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/mc-peripheral-props.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/mc-peripheral-props.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Peripheral-specific properties for a Memory Controller bus.
++
++description:
++  Many MC controllers need to add properties to peripheral devices.
++  They could be common properties like reg or they could be controller
++  specific like delay in clock or data lines, etc. These properties need
++  to be defined in the peripheral node because they are per-peripheral
++  and there can be multiple peripherals attached to a controller. All
++  those properties are listed here. The controller specific properties
++  should go in their own separate schema that should be referenced
++  from here.
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++properties:
++  reg:
++    description: Bank number, base address and size of the device.
++
++  bank-width:
++    description: Bank width of the device, in bytes.
++
++required:
++  - reg
++
++# The controller specific properties go here.
++allOf:
++  - $ref: st,stm32-fmc2-ebi-props.yaml#
++
++additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi-props.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi-props.yaml
+new file mode 100644
+index 0000000000000..475e4095068c2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi-props.yaml
+@@ -0,0 +1,144 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/st,stm32-fmc2-ebi-props.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Peripheral properties for ST FMC2 Controller
++
++maintainers:
++  - Christophe Kerello <christophe.kerello@foss.st.com>
++  - Marek Vasut <marex@denx.de>
++
++properties:
++  st,fmc2-ebi-cs-transaction-type:
++    description: |
++      Select one of the transactions type supported
++      0: Asynchronous mode 1 SRAM/FRAM.
++      1: Asynchronous mode 1 PSRAM.
++      2: Asynchronous mode A SRAM/FRAM.
++      3: Asynchronous mode A PSRAM.
++      4: Asynchronous mode 2 NOR.
++      5: Asynchronous mode B NOR.
++      6: Asynchronous mode C NOR.
++      7: Asynchronous mode D NOR.
++      8: Synchronous read synchronous write PSRAM.
++      9: Synchronous read asynchronous write PSRAM.
++      10: Synchronous read synchronous write NOR.
++      11: Synchronous read asynchronous write NOR.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 11
++
++  st,fmc2-ebi-cs-cclk-enable:
++    description: Continuous clock enable (first bank must be configured
++      in synchronous mode). The FMC_CLK is generated continuously
++      during asynchronous and synchronous access. By default, the
++      FMC_CLK is only generated during synchronous access.
++    $ref: /schemas/types.yaml#/definitions/flag
++
++  st,fmc2-ebi-cs-mux-enable:
++    description: Address/Data multiplexed on databus (valid only with
++      NOR and PSRAM transactions type). By default, Address/Data
++      are not multiplexed.
++    $ref: /schemas/types.yaml#/definitions/flag
++
++  st,fmc2-ebi-cs-buswidth:
++    description: Data bus width
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 8, 16 ]
++    default: 16
++
++  st,fmc2-ebi-cs-waitpol-high:
++    description: Wait signal polarity (NWAIT signal active high).
++      By default, NWAIT is active low.
++    $ref: /schemas/types.yaml#/definitions/flag
++
++  st,fmc2-ebi-cs-waitcfg-enable:
++    description: The NWAIT signal indicates wheither the data from the
++      device are valid or if a wait state must be inserted when accessing
++      the device in synchronous mode. By default, the NWAIT signal is
++      active one data cycle before wait state.
++    $ref: /schemas/types.yaml#/definitions/flag
++
++  st,fmc2-ebi-cs-wait-enable:
++    description: The NWAIT signal is enabled (its level is taken into
++      account after the programmed latency period to insert wait states
++      if asserted). By default, the NWAIT signal is disabled.
++    $ref: /schemas/types.yaml#/definitions/flag
++
++  st,fmc2-ebi-cs-asyncwait-enable:
++    description: The NWAIT signal is taken into account during asynchronous
++      transactions. By default, the NWAIT signal is not taken into account
++      during asynchronous transactions.
++    $ref: /schemas/types.yaml#/definitions/flag
++
++  st,fmc2-ebi-cs-cpsize:
++    description: CRAM page size. The controller splits the burst access
++      when the memory page is reached. By default, no burst split when
++      crossing page boundary.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 0, 128, 256, 512, 1024 ]
++    default: 0
++
++  st,fmc2-ebi-cs-byte-lane-setup-ns:
++    description: This property configures the byte lane setup timing
++      defined in nanoseconds from NBLx low to Chip Select NEx low.
++
++  st,fmc2-ebi-cs-address-setup-ns:
++    description: This property defines the duration of the address setup
++      phase in nanoseconds used for asynchronous read/write transactions.
++
++  st,fmc2-ebi-cs-address-hold-ns:
++    description: This property defines the duration of the address hold
++      phase in nanoseconds used for asynchronous multiplexed read/write
++      transactions.
++
++  st,fmc2-ebi-cs-data-setup-ns:
++    description: This property defines the duration of the data setup phase
++      in nanoseconds used for asynchronous read/write transactions.
++
++  st,fmc2-ebi-cs-bus-turnaround-ns:
++    description: This property defines the delay in nanoseconds between the
++      end of current read/write transaction and the next transaction.
++
++  st,fmc2-ebi-cs-data-hold-ns:
++    description: This property defines the duration of the data hold phase
++      in nanoseconds used for asynchronous read/write transactions.
++
++  st,fmc2-ebi-cs-clk-period-ns:
++    description: This property defines the FMC_CLK output signal period in
++      nanoseconds.
++
++  st,fmc2-ebi-cs-data-latency-ns:
++    description: This property defines the data latency before reading or
++      writing the first data in nanoseconds.
++
++  st,fmc2-ebi-cs-write-address-setup-ns:
++    description: This property defines the duration of the address setup
++      phase in nanoseconds used for asynchronous write transactions.
++
++  st,fmc2-ebi-cs-write-address-hold-ns:
++    description: This property defines the duration of the address hold
++      phase in nanoseconds used for asynchronous multiplexed write
++      transactions.
++
++  st,fmc2-ebi-cs-write-data-setup-ns:
++    description: This property defines the duration of the data setup
++      phase in nanoseconds used for asynchronous write transactions.
++
++  st,fmc2-ebi-cs-write-bus-turnaround-ns:
++    description: This property defines the delay between the end of current
++      write transaction and the next transaction in nanoseconds.
++
++  st,fmc2-ebi-cs-write-data-hold-ns:
++    description: This property defines the duration of the data hold phase
++      in nanoseconds used for asynchronous write transactions.
++
++  st,fmc2-ebi-cs-max-low-pulse-ns:
++    description: This property defines the maximum chip select low pulse
++      duration in nanoseconds for synchronous transactions. When this timing
++      reaches 0, the controller splits the current access, toggles NE to
++      allow device refresh and restarts a new access.
++
++additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+index 6b516d3895af2..49243f447eb90 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.yaml
+@@ -49,143 +49,6 @@ patternProperties:
+   "^.*@[0-4],[a-f0-9]+$":
+     type: object
+ 
+-    properties:
+-      reg:
+-        description: Bank number, base address and size of the device.
+-
+-      st,fmc2-ebi-cs-transaction-type:
+-        description: |
+-          Select one of the transactions type supported
+-          0: Asynchronous mode 1 SRAM/FRAM.
+-          1: Asynchronous mode 1 PSRAM.
+-          2: Asynchronous mode A SRAM/FRAM.
+-          3: Asynchronous mode A PSRAM.
+-          4: Asynchronous mode 2 NOR.
+-          5: Asynchronous mode B NOR.
+-          6: Asynchronous mode C NOR.
+-          7: Asynchronous mode D NOR.
+-          8: Synchronous read synchronous write PSRAM.
+-          9: Synchronous read asynchronous write PSRAM.
+-          10: Synchronous read synchronous write NOR.
+-          11: Synchronous read asynchronous write NOR.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+-        minimum: 0
+-        maximum: 11
+-
+-      st,fmc2-ebi-cs-cclk-enable:
+-        description: Continuous clock enable (first bank must be configured
+-          in synchronous mode). The FMC_CLK is generated continuously
+-          during asynchronous and synchronous access. By default, the
+-          FMC_CLK is only generated during synchronous access.
+-        $ref: /schemas/types.yaml#/definitions/flag
+-
+-      st,fmc2-ebi-cs-mux-enable:
+-        description: Address/Data multiplexed on databus (valid only with
+-          NOR and PSRAM transactions type). By default, Address/Data
+-          are not multiplexed.
+-        $ref: /schemas/types.yaml#/definitions/flag
+-
+-      st,fmc2-ebi-cs-buswidth:
+-        description: Data bus width
+-        $ref: /schemas/types.yaml#/definitions/uint32
+-        enum: [ 8, 16 ]
+-        default: 16
+-
+-      st,fmc2-ebi-cs-waitpol-high:
+-        description: Wait signal polarity (NWAIT signal active high).
+-          By default, NWAIT is active low.
+-        $ref: /schemas/types.yaml#/definitions/flag
+-
+-      st,fmc2-ebi-cs-waitcfg-enable:
+-        description: The NWAIT signal indicates wheither the data from the
+-          device are valid or if a wait state must be inserted when accessing
+-          the device in synchronous mode. By default, the NWAIT signal is
+-          active one data cycle before wait state.
+-        $ref: /schemas/types.yaml#/definitions/flag
+-
+-      st,fmc2-ebi-cs-wait-enable:
+-        description: The NWAIT signal is enabled (its level is taken into
+-          account after the programmed latency period to insert wait states
+-          if asserted). By default, the NWAIT signal is disabled.
+-        $ref: /schemas/types.yaml#/definitions/flag
+-
+-      st,fmc2-ebi-cs-asyncwait-enable:
+-        description: The NWAIT signal is taken into account during asynchronous
+-          transactions. By default, the NWAIT signal is not taken into account
+-          during asynchronous transactions.
+-        $ref: /schemas/types.yaml#/definitions/flag
+-
+-      st,fmc2-ebi-cs-cpsize:
+-        description: CRAM page size. The controller splits the burst access
+-          when the memory page is reached. By default, no burst split when
+-          crossing page boundary.
+-        $ref: /schemas/types.yaml#/definitions/uint32
+-        enum: [ 0, 128, 256, 512, 1024 ]
+-        default: 0
+-
+-      st,fmc2-ebi-cs-byte-lane-setup-ns:
+-        description: This property configures the byte lane setup timing
+-          defined in nanoseconds from NBLx low to Chip Select NEx low.
+-
+-      st,fmc2-ebi-cs-address-setup-ns:
+-        description: This property defines the duration of the address setup
+-          phase in nanoseconds used for asynchronous read/write transactions.
+-
+-      st,fmc2-ebi-cs-address-hold-ns:
+-        description: This property defines the duration of the address hold
+-          phase in nanoseconds used for asynchronous multiplexed read/write
+-          transactions.
+-
+-      st,fmc2-ebi-cs-data-setup-ns:
+-        description: This property defines the duration of the data setup phase
+-          in nanoseconds used for asynchronous read/write transactions.
+-
+-      st,fmc2-ebi-cs-bus-turnaround-ns:
+-        description: This property defines the delay in nanoseconds between the
+-          end of current read/write transaction and the next transaction.
+-
+-      st,fmc2-ebi-cs-data-hold-ns:
+-        description: This property defines the duration of the data hold phase
+-          in nanoseconds used for asynchronous read/write transactions.
+-
+-      st,fmc2-ebi-cs-clk-period-ns:
+-        description: This property defines the FMC_CLK output signal period in
+-          nanoseconds.
+-
+-      st,fmc2-ebi-cs-data-latency-ns:
+-        description: This property defines the data latency before reading or
+-          writing the first data in nanoseconds.
+-
+-      st,fmc2_ebi-cs-write-address-setup-ns:
+-        description: This property defines the duration of the address setup
+-          phase in nanoseconds used for asynchronous write transactions.
+-
+-      st,fmc2-ebi-cs-write-address-hold-ns:
+-        description: This property defines the duration of the address hold
+-          phase in nanoseconds used for asynchronous multiplexed write
+-          transactions.
+-
+-      st,fmc2-ebi-cs-write-data-setup-ns:
+-        description: This property defines the duration of the data setup
+-          phase in nanoseconds used for asynchronous write transactions.
+-
+-      st,fmc2-ebi-cs-write-bus-turnaround-ns:
+-        description: This property defines the delay between the end of current
+-          write transaction and the next transaction in nanoseconds.
+-
+-      st,fmc2-ebi-cs-write-data-hold-ns:
+-        description: This property defines the duration of the data hold phase
+-          in nanoseconds used for asynchronous write transactions.
+-
+-      st,fmc2-ebi-cs-max-low-pulse-ns:
+-        description: This property defines the maximum chip select low pulse
+-          duration in nanoseconds for synchronous transactions. When this timing
+-          reaches 0, the controller splits the current access, toggles NE to
+-          allow device refresh and restarts a new access.
+-
+-    required:
+-      - reg
+-
+ required:
+   - "#address-cells"
+   - "#size-cells"
+diff --git a/Documentation/devicetree/bindings/net/micrel,ks8851.yaml b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+index 5aa7cf2eacb1a..b44d83554ef57 100644
+--- a/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
++++ b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+@@ -44,6 +44,7 @@ required:
+ 
+ allOf:
+   - $ref: ethernet-controller.yaml#
++  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
+   - if:
+       properties:
+         compatible:
+-- 
+2.35.1
 
->> +/*
->> + * ZynqMP R5 Remote Processor driver
->> + *
->> + */
->> +
->> +#include <dt-bindings/power/xlnx-zynqmp-power.h>
-
-[ ... ]
-
->> +MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
->> +
->> +static struct platform_driver zynqmp_r5_remoteproc_driver = {
->> +	.probe = zynqmp_r5_remoteproc_probe,
->> +	.driver = {
->> +		.name = "zynqmp_r5_remoteproc",
->> +		.of_match_table = zynqmp_r5_remoteproc_match,
->> +	},
->> +};
->> +module_platform_driver(zynqmp_r5_remoteproc_driver);
->> +
->> +MODULE_DESCRIPTION("Xilinx R5F remote processor driver");
->> +MODULE_AUTHOR("Xilinx Inc.");
->> +MODULE_LICENSE("GPL");
-> There is a discrepency between the GPL-2.0 in the SPDS identifier and the above.
-
-Also, changing to MODULE_LICENSE("GPL v2") gives following warning:
-
-WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: 
-Cure the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
-#1115: FILE: drivers/remoteproc/xlnx_r5_remoteproc.c:1034:
-+MODULE_LICENSE("GPL v2");
-
-So, It looks like SPDX-License-Identifier should be GPL-2.0-only and 
-MODULE_LICENSE should be change to "GPL".
-
-It this ok? Any other suggestions ?
-
-Thanks,
-
-Tanmay
-
->
-> More comments tomorrow or Tuesday.
->
-> Thanks,
-> Mathieu
->
->> -- 
->> 2.25.1
->>
