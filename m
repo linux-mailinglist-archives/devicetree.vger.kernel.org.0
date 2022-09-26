@@ -2,86 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF0F05EB178
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 21:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 065145EB18A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 21:48:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbiIZTpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 15:45:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41396 "EHLO
+        id S230164AbiIZTss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 15:48:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbiIZTpq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 15:45:46 -0400
-Received: from mellanox.co.il (mail-il-dmz.mellanox.com [193.47.165.129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 53074167D8
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 12:45:25 -0700 (PDT)
-Received: from Internal Mail-Server by MTLPINE1 (envelope-from asmaa@mellanox.com)
-        with SMTP; 26 Sep 2022 22:45:19 +0300
-Received: from bu-vnc02.mtbu.labs.mlnx (bu-vnc02.mtbu.labs.mlnx [10.15.2.65])
-        by mtbu-labmailer.labs.mlnx (8.14.4/8.14.4) with ESMTP id 28QJjEAK029219;
-        Mon, 26 Sep 2022 15:45:14 -0400
-Received: (from asmaa@localhost)
-        by bu-vnc02.mtbu.labs.mlnx (8.14.7/8.13.8/Submit) id 28QJjEX8024841;
-        Mon, 26 Sep 2022 15:45:14 -0400
-From:   Asmaa Mnebhi <asmaa@nvidia.com>
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>, robh@kernel.org,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Asmaa Mnebhi <asmaa@nvidia.com>
-Subject: [PATCH v6 0/5] i2c: i2c-mlxbf.c: bug fixes and new feature support
-Date:   Mon, 26 Sep 2022 15:45:02 -0400
-Message-Id: <20220926194507.24786-1-asmaa@nvidia.com>
-X-Mailer: git-send-email 2.30.1
+        with ESMTP id S230099AbiIZTsn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 15:48:43 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B2AC6593;
+        Mon, 26 Sep 2022 12:48:35 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-1274ec87ad5so10714811fac.0;
+        Mon, 26 Sep 2022 12:48:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=M50FI7LNj1aukpmOfyVHjUDvsfAXsOHY9FPlj/V6CBo=;
+        b=vj+1cQeYdfHmG4O+2QWYIO/LBFMZ9IY4qVVruWvjPS/UqWen7zw4SrH6henjrrvB2a
+         g/BgONi6HRA/RMZUwsu6Idfc8VIi66aIrwxMC/3MWyNYcNRVKoXM/tmr5yuS5sIAy1Em
+         mTDd8reVmjOcOIH0Ltvi7fzzcpWOVDw3F7WIijiIA+kGbscp/vlTm+lfWcHYCfgTlP1U
+         X3vYDlpDzlUDT9kqo3BRqtSh/+RU6zAe1zA7omBCuwd1vYGSgKyD33GVQnn+IAkPxwrA
+         h4/oOaK3sn6G5YlCPTQ2zFCxslKi/48eAm4oTvXT0sf+D8egZquPWfA15yvYOFyjSGQL
+         Q57A==
+X-Gm-Message-State: ACrzQf3WTHUlXiyLeY9vdk5kjPn0rfydW7Uu+ad3HjskvEuaK68lWtWe
+        o8dcJmJoCtaeNuuYLLGpYc5MnuLz6g==
+X-Google-Smtp-Source: AMsMyM6Br1/MAg6GDzGavnanJLMgJ/Uf+HWn8UkUSSrF2UjAIQWyzkfE3qsANrovvBLiJVEF2w+YjA==
+X-Received: by 2002:a05:6871:b26:b0:127:7d57:9e28 with SMTP id fq38-20020a0568710b2600b001277d579e28mr188586oab.141.1664221713866;
+        Mon, 26 Sep 2022 12:48:33 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k23-20020a056870959700b000f5e89a9c60sm10413556oao.3.2022.09.26.12.48.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Sep 2022 12:48:33 -0700 (PDT)
+Received: (nullmailer pid 2677686 invoked by uid 1000);
+        Mon, 26 Sep 2022 19:48:32 -0000
+Date:   Mon, 26 Sep 2022 14:48:32 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Marcin Wojtas <mw@semihalf.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/5] ASoC: kirkwood: enable Kirkwood driver for Armada
+ 38x platforms
+Message-ID: <20220926194832.GA2668987-robh@kernel.org>
+References: <20220920132648.2008-1-pali@kernel.org>
+ <20220920132648.2008-2-pali@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220920132648.2008-2-pali@kernel.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a series of patches fixing several bugs and implementing
-new features.
+On Tue, Sep 20, 2022 at 03:26:44PM +0200, Pali Rohár wrote:
+> From: Marcin Wojtas <mw@semihalf.com>
+> 
+> The audio unit of Marvell Armada38x SoC is similar to the ones comprised by
+> other Marvell SoCs (Kirkwood, Dove and Armada 370). Therefore KW audio
+> driver can be used to support it and this commit adds new compatible string
+> to identify Armada 38x variant.
+> 
+> Two new memory regions are added: first one for PLL configuration and
+> the second one for choosing one of audio I/O modes (I2S or S/PDIF).
+> For the latter purpose a new optional DT property is added ('spdif-mode').
+> 
+> kirkwood-i2s driver is extended by adding a new init function for Armada
+> 38x flavor and also a routine that enables PLL output (i.e. MCLK)
+> configuration.
+> 
+> Signed-off-by: Marcin Wojtas <mw@semihalf.com>
+> Tested-by: Star_Automation <star@marvell.com>
+> Reviewed-by: Nadav Haklai <nadavh@marvell.com>
+> Reviewed-by: Lior Amsalem <alior@marvell.com>
+> Tested-by: Lior Amsalem <alior@marvell.com>
+> Signed-off-by: Hezi Shahmoon <hezi@marvell.com>
+> Reviewed-by: Neta Zur Hershkovits <neta@marvell.com>
+> [pali: Fix support for pre-38x SoCs]
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> ---
+>  .../devicetree/bindings/sound/mvebu-audio.txt |  14 +-
+>  sound/soc/kirkwood/kirkwood-i2s.c             | 136 +++++++++++++++++-
+>  sound/soc/kirkwood/kirkwood.h                 |   2 +
+>  3 files changed, 149 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mvebu-audio.txt b/Documentation/devicetree/bindings/sound/mvebu-audio.txt
+> index cb8c07c81ce4..4f5dec5cb3c2 100644
+> --- a/Documentation/devicetree/bindings/sound/mvebu-audio.txt
+> +++ b/Documentation/devicetree/bindings/sound/mvebu-audio.txt
+> @@ -6,9 +6,14 @@ Required properties:
+>    "marvell,kirkwood-audio" for Kirkwood platforms
+>    "marvell,dove-audio" for Dove platforms
+>    "marvell,armada370-audio" for Armada 370 platforms
+> +  "marvell,armada-380-audio" for Armada 38x platforms
 
-Bug fixes:
-1) Support lock mechanism to avoid race condition between entities
-   using the i2c bus
+Perhaps be consistent with the 370 string above it.
 
-Cleanup:
-2) remove IRQF_ONESHOT flag as it is no longer needed.
-3) Remove device tree support
+>  
+>  - reg: physical base address of the controller and length of memory mapped
+> -  region.
+> +  region (named "i2s_regs").
 
-Features:
-3) Support multi slave functionality
-4) Support BlueField-3 SoC
+So you are adding 'reg-names'? The values belong under 'reg-names' then. 
+'_regs' is also redundant.
 
-What has changed from v5->v6:
-- the following patches were part of previous patches but they 
-  have been pushed to the latest branch since:
-  1) Fix the frequency calculation
-  2) Fix incorrect base address passed during io write
-  3) prevent stack overflow in mlxbf_i2c_smbus_start_transaction()
-  So I rebased to master and removed them from this series.
-- BlueField customers need to use NVIDIA custom firmware which uses
-  ACPI, so there is no need to support device trees. Remove device
-  tree support from the driver as well as from the binding doc.
-  
 
-Asmaa Mnebhi (5):
-  i2c: i2c-mlxbf.c: remove IRQF_ONESHOT
-  i2c: i2c-mlxbf.c: support lock mechanism
-  i2c: i2c-mlxbf: add multi slave functionality
-  i2c: i2c-mlxbf.c: support BlueField-3 SoC
-  i2c: i2c-mlxbf.c: remove device tree support
+> +  With "marvell,armada-380-audio" two other regions are required:
+> +  first of those is dedicated for Audio PLL Configuration registers
+> +  (named "pll_regs") and the second one ("soc_ctrl") - for register
+> +  where one of exceptive I/O types (I2S or S/PDIF) is set.
+>  
+>  - interrupts:
+>    with "marvell,kirkwood-audio", the audio interrupt
+> @@ -23,6 +28,13 @@ Required properties:
+>  	"internal" for the internal clock
+>  	"extclk" for the external clock
+>  
+> +Optional properties:
+> +
+> +- spdif-mode:
+> +  Enable S/PDIF mode on Armada 38x SoC. Using this property
+> +  disables standard I2S I/O. Valid only with "marvell,armada-380-audio"
+> +  compatible string.
 
- .../bindings/i2c/mellanox,i2c-mlxbf.yaml      |  77 --
- MAINTAINERS                                   |   1 +
- drivers/i2c/busses/i2c-mlxbf.c                | 841 ++++++++++--------
- 3 files changed, 458 insertions(+), 461 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
+So boolean?
 
--- 
-2.30.1
+> +
+>  Example:
+>  
+>  i2s1: audio-controller@b4000 {
 
+DT changes should be separate patch. It would also be nice to see this 
+converted to schema first.
+
+Rob
