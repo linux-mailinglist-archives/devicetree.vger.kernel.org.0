@@ -2,78 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 358E15E995E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 08:18:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 798185E9963
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 08:22:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233473AbiIZGSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 02:18:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58746 "EHLO
+        id S233507AbiIZGWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 02:22:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233469AbiIZGSv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 02:18:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00AAD1F2E3;
-        Sun, 25 Sep 2022 23:18:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AEC79B80934;
-        Mon, 26 Sep 2022 06:18:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8B86C433C1;
-        Mon, 26 Sep 2022 06:18:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664173128;
-        bh=GD15bIqqX3lg06+lb7uwwgkRLmW7v4DHVqfIHvOWdog=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=KlNALZwGaePzeesgbmvNCNlYV20s7J7HWubJjyCvSHNwPhJiUcn0akn+uONHZHy4M
-         aVGQO+T/jaFKBqLKiQ4pkK3KCcvB+NMuPtPmFgG1M+NhLVyjUUd182pBDXsGEQTLGN
-         iRj52wDoP2IEvku4Ysd8C9A8T8iNq/Akrkn1o6p62meg3RlW+CvhXYoZrBYshjLrsg
-         0FPJJ20DogbAULqh9Mqr6MdfOtCqChwgIYQWREAPcbnmPSn0zmLnLKqTFwP06SC/cg
-         trtR9C2nBnioQdwAdECsHOJnDWq2Ny2ikAOwZMrr3qtlKHRHHJgnbksWu523f6bqu/
-         iRu4mzJfSaKGg==
-Message-ID: <d36585af-1706-2499-3ccc-c61a2cd49be4@kernel.org>
-Date:   Mon, 26 Sep 2022 08:18:43 +0200
+        with ESMTP id S233469AbiIZGV5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 02:21:57 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE5327FE7
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:21:45 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id t16so2241576ljh.3
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:21:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=QgZtE+HAhOfAZ/Q5/MPPrGpgpaNuAG0IuIzDtviaY9E=;
+        b=s+ioEfKOaPLsp9qIiOpg5Jb4Qu5Jfy8AxzBkB7zQKgIVAYU7k04SGWcA2lJ4/oTvkc
+         TTxHVXsnIgUG2FXLs/wFlg58OkJ8qAVoswG96ehUTFSQeICDfK8fKU0CaOLZ/espPC81
+         YpgkM1HH1CIJ2OBA7A5EZzHXwTcOSljUYm8lAsZb7/nbjI4Er6W51QGFOBLa/ev/N0XE
+         zt3SZXXjaF1KYU4UvBpIW6hn1rnsPRBB6YEiQ/AOdoSFUy2NS5pGWITRCMX58VQto64+
+         iiPlFJSswGpqCl7nQWrLOz9B3TytSNi8lIjIOscYyvnm4j3o/jFVa5rkS9q4HzhHmSaZ
+         4pQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=QgZtE+HAhOfAZ/Q5/MPPrGpgpaNuAG0IuIzDtviaY9E=;
+        b=mOmC7tC8N0PcaxF+ZhqWJts11Bjm9y0L3qKHsVLKVHxOcBzcDwKhB8kKyfPj4NV00K
+         WFmBBgVrWcCVIiWNHCpEudBOliStE73sSThbVZUVvHRmGLk/aSIbUSSBle3qU1rCZcPY
+         6aM2mAxtAkKWSf5ZRc7Lt/8IW4lK3O18RrqPXGP4hw+ShGCY3KcMOsB7a9KYHuvs9anR
+         mqhi8g9W8RnVdfs0mnbCjvdxRv46ZKG0elzKy5lNXvb+F1AAAG2Adml7Qy/99Mh3Fam6
+         fbYzrAKLIcPO3Jnd0Fd2FtrIWdMNGh1BVYanxhnVFwStseIgcoAO0vix1AYwfgVoWXoo
+         Hs7Q==
+X-Gm-Message-State: ACrzQf2az1pkEix6FKll6jxpjmcBUFX231M0HM/qEFjMzr757TLphhFo
+        XP2vE7PAHQz1md3O5jz+qU2dUQ==
+X-Google-Smtp-Source: AMsMyM4TAUtnG57my52vrguMzTQwJZ8hPZlV7iwa5zgLd1yuBL0mHQ1J88ikw8AnLlV/ac5XOf3OkA==
+X-Received: by 2002:a2e:7310:0:b0:26c:657e:57d4 with SMTP id o16-20020a2e7310000000b0026c657e57d4mr6761543ljc.422.1664173303698;
+        Sun, 25 Sep 2022 23:21:43 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id 8-20020a2eb948000000b00261e7244887sm2196312ljs.60.2022.09.25.23.21.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Sep 2022 23:21:42 -0700 (PDT)
+Message-ID: <1f3e153b-da8a-43fa-162f-9bea2ed3ef78@linaro.org>
+Date:   Mon, 26 Sep 2022 08:21:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2 0/2] dt-bindings: PCI: ti,j721e-pci-*: resolve
- unexpected property warnings
-To:     Matt Ranostay <mranostay@ti.com>
-Cc:     bhelgaas@google.com, robh+dt@kernel.org, kishon@ti.com,
-        vigneshr@ti.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220924223517.123343-1-mranostay@ti.com>
- <b820b84b-609f-6b1a-fb9f-fde05ce88f7f@kernel.org> <YzEXN88AAa7tZvyE@ubuntu>
+Subject: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to
+ json-schema
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <YzEXN88AAa7tZvyE@ubuntu>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Rob Herring <robh@kernel.org>
+Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        =?UTF-8?B?5YiY5L2p5a6d?= <liupeibao@loongson.cn>
+References: <20220921015605.17078-1-zhuyinbo@loongson.cn>
+ <20220921015605.17078-2-zhuyinbo@loongson.cn>
+ <fb901889-d769-ba56-d4cb-2d9d8b50f74f@linaro.org>
+ <28a78a10.a7dd.1835f5aaf90.Coremail.zhuyinbo@loongson.cn>
+ <a44244f2-fb96-0483-b529-d0f2b0b7e5d8@linaro.org>
+ <4febe7e4.a96c.18362d997e3.Coremail.zhuyinbo@loongson.cn>
+ <20220924174258.GA1011284-robh@kernel.org>
+ <4ce14e3c.bf79.18377f44118.Coremail.zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4ce14e3c.bf79.18377f44118.Coremail.zhuyinbo@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-10.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 05:06, Matt Ranostay wrote:
-> On Sun, Sep 25, 2022 at 11:21:02AM +0200, Krzysztof Kozlowski wrote:
->> On 25/09/2022 00:35, Matt Ranostay wrote:
->>> Resolve unexpected property warnings related to interrupts in both J721E PCI EP and host
->>> yaml files.
->>>
->>
->> Thanks for cc-ing. On what tree do you base your patch? Looks like
->> something old. If so, you need to rebase to some recent kernel.
->>
+On 26/09/2022 06:00, Yinbo Zhu wrote:
 > 
-> It was on linux-next from Sep 23rd. So would seem odd if the rebasing seems
-> from an older tree. 
-That's good, but then why you did not use scripts/get_maintainers.pl as
-I asked...
+> 
+> 
+>> -----原始邮件-----
+>> 发件人: "Rob Herring" <robh@kernel.org>
+>> 发送时间:2022-09-25 01:42:58 (星期日)
+>> 收件人: "朱银波" <zhuyinbo@loongson.cn>
+>> 抄送: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, zhanghongchen <zhanghongchen@loongson.cn>
+>> 主题: Re: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
+>>
+>> On Thu, Sep 22, 2022 at 09:39:30AM +0800, 朱银波 wrote:
+>>>
+>>>
+>>>
+>>>> -----原始邮件-----
+>>>> 发件人: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+>>>> 发送时间:2022-09-21 17:31:11 (星期三)
+>>>> 收件人: "朱银波" <zhuyinbo@loongson.cn>
+>>>> 抄送: "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, zhanghongchen <zhanghongchen@loongson.cn>
+>>>> 主题: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
+>>>>
+>>>> On 21/09/2022 11:22, 朱银波 wrote:
+>>>>>> -----原始邮件-----
+>>>>>> 发件人: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+>>>>>> 发送时间:2022-09-21 15:05:00 (星期三)
+>>>>>> 收件人: "Yinbo Zhu" <zhuyinbo@loongson.cn>, "Rafael J . Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Amit Kucheria" <amitk@kernel.org>, "Zhang Rui" <rui.zhang@intel.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+>>>>>> 抄送: zhanghongchen <zhanghongchen@loongson.cn>
+>>>>>> 主题: Re: [PATCH v2 2/3] dt-bindings: thermal: Convert loongson2 to json-schema
+>>>>>>
+>>>>>> On 21/09/2022 03:56, Yinbo Zhu wrote:
+>>>>>>> Convert the loongson2 thermal binding to DT schema format using
+>>>>>>> json-schema.
+>>>>>>
+>>>>>> Incorrect subject and incorrect commit msg. There is no conversion here.
+>>>>> Our soc architecture is the loongson2 series, so we will modify it accordingly.
+>>>>
+>>>> How the soc architecture is related to my comment that you do not
+>>>> perform conversion?
+>>> I got it, and I will aad a conversion.
+>>>>
+>>>>>
+>>>>>>
+>>>>>>>
+>>>>>>> Signed-off-by: Yinbo Zhu <c>
+>>>>>>> ---
+>>>>>>> Change in v2:
+>>>>>>> 		1. Add description and type about the "id".	
+>>>>>>> 		2. Make the filename was based on compatible.
+>>>>>>>
+>>>>>>>  .../bindings/thermal/loongson2-thermal.yaml   | 52 +++++++++++++++++++
+>>>>>>>  1 file changed, 52 insertions(+)
+>>>>>>>  create mode 100644 Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+>>>>>>> new file mode 100644
+>>>>>>> index 000000000000..2994ae3a56aa
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/Documentation/devicetree/bindings/thermal/loongson2-thermal.yaml
+>>>>>>
+>>>>>>
+>>>>>> No improvements here. You ignore my comments, so I am going to NAK it.
+>>>>> I don't get your point, that dts compatible is "loongson,loongson2-thermal", so this driver file name is named
+>>>>> loongson2-thermal that according what you said about "Filename based on compatible."
+>>>>> If what I understand is not what you expect, please tell me how to modify it.
+>>>>
+>>>>
+>>>> Filename must match the compatible, so: loongson,loongson2-thermal.yaml
+>>> I got it, and I will add a conversion.
+>>>>
+>>>>>>
+>>>>>>
+>>>>>>> @@ -0,0 +1,52 @@
+>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>>> +%YAML 1.2
+>>>>>>> +---
+>>>>>>> +$id: http://devicetree.org/schemas/thermal/loongson2-thermal.yaml#
+>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>> +
+>>>>>>> +title: Thermal sensors on loongson2 SoCs
+>>>>>>> +
+>>>>>>> +maintainers:
+>>>>>>> +  - zhanghongchen <zhanghongchen@loongson.cn>
+>>>>>>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+>>>>>>> +
+>>>>>>> +properties:
+>>>>>>> +  compatible:
+>>>>>>> +    const: loongson,loongson2-thermal
+>>>>>>> +
+>>>>>>> +  reg:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  id:
+>>>>>>> +    $ref: '//schemas/types.yaml#/definitions/uint32'
+>>>>>>
+>>>>>> No improvements here, so let me be specific - you need to really justify
+>>>>>> such property or it cannot go to schema.
+>>>>> The loongson2_thermal.c driver need parse this "id" property.
+>>>>
+>>>> This is not reason to add properties to DT. DT describes the hardware,
+>>>> not driver behavior.
+>>>>
+>>>> Why hardware needs arbitrary, additional addressing number instead of
+>>>> standard unit address?
+>>> The loongson2 series soc supports up to four sensors, but the 2K1000 has only one sensor, so the ID must be 0. 
+>>> For the 2K1000, in order to distinguish the differences between different hardware in the Loongson2 SoC series,
+>>> the ID is added to the dts
+>>
+>> Differences in SoCs is what 'compatible' is for. If 'loongson2' is not a 
+>> specific SoC, then your compatible string is not specific enough.
+> If other loongson2 platforms are different from the thermal sensor, I will add compatible
+> "loongson,loongson2-thermal-xxx", please you note.
+
+No, this compatible looks wrong then. What is your SoC model number? You
+called loongson2 a "series", so that's not appropriate. Compatible
+should be specific.
+
+> 
+>>
+>>>>
+>>>>>>
+>>>>>>> +    description: |
+>>>>>>> +      Specify the thermal sensor id.
+>>>>>>> +    minimum: 0
+>>>>>>> +    maximum: 3
+>>>>>>> +
+>>>>>>> +  interrupts:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  "#thermal-sensor-cells":
+>>>>>>> +    const: 1
+>>
+>> If one SoC only has 1 sensor, then this could be 0. However, you don't 
+>> have to do that, but it's another way to distinguish differences.
+> okay ,I got it.
+>>
+>>>>>>> +
+>>>>>>> +required:
+>>>>>>> +  - compatible
+>>>>>>> +  - reg
+>>>>>>> +  - id
+>>>>>>> +  - interrupt-parent
+>>>>>>
+>>>>>> Why?
+>>>>> The interrupts of our dts do not specify an interrupt parent,
+>>>>> eg. interrupts = <7 IRQ_TYPE_LEVEL_LOW>
+>>>>> so we need to add an interrupt parent property.
+>>>>
+>>>> You can add but I am asking why is it required?
+>>> Since there is more than one interrupt controller in the Loongson2 series soc, that need to specify the interrupt 
+>>> controller in the dts, that is, the interrupt parent.   If different interrupt parents are used in dts, the interrupt 
+>>> numbers are different.
+>>
+>> It is perfectly valid for the 'interrupt-parent' to be in *any* parent 
+>> node. So it is never required by any binding.
+> I don't get your meaning, You mean I can add it in the dts, but I don't need to add it in the binding file, right?
+
+You should not add it to the binding because it is not related to the
+device itself.
+
+>>
+>> Rob
+> 
+> 
+> 本邮件及其附件含有龙芯中科的商业秘密信息，仅限于发送给上面地址中列出的个人或群组。禁止任何其他人以任何形式使用（包括但不限于全部或部分地泄露、复制或散发）本邮件及其附件中的信息。如果您错收本邮件，请您立即电话或邮件通知发件人并删除本邮件。 
+> This email and its attachments contain confidential information from Loongson Technology , which is intended only for the person or entity whose address is listed above. Any use of the information contained herein in any way (including, but not limited to, total or partial disclosure, reproduction or dissemination) by persons other than the intended recipient(s) is prohibited. If you receive this email in error, please notify the sender by phone or email immediately and delete it. 
+
+Don't include such footers. We cannot talk over confidential emails and
+you clearly state that here.
 
 Best regards,
 Krzysztof
