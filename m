@@ -2,89 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF2985E99E3
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 08:50:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A91E75E99F4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 08:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233279AbiIZGuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 02:50:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40146 "EHLO
+        id S233406AbiIZG7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 02:59:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233137AbiIZGuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 02:50:11 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2DD41F639
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:50:07 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id a8so9266327lff.13
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:50:07 -0700 (PDT)
+        with ESMTP id S232569AbiIZG7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 02:59:15 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DB8D2B189
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:59:14 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id bq9so8678542wrb.4
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:59:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=rMv/6RaQNfPOzLYbEjVzggzY8CZ+X96gFNKrqQ2B2Ow=;
-        b=xg1FMouFc39uYJfpo1TMTLh6Tz1Vheo3Fw4i4l3fcognD2CeckgksJP71bZytbEUqU
-         K76jhbCWLj5KC4OqfPlcmMAaQjeje9tY380R0SpZm61Xs6slylUAciPBo1eHhac4y65U
-         u1fs3iY+n+FxT7C71rYQiInoZ8ZJZaWkfVp0EqdB7cL3aUd5tKaXSr95zdQEdxFCHLMZ
-         Ya3PB+ZHoo4kNnxmt3VfbUS631IaaXvHlmSS1u1FpS3bkEgyvOUdtrC2rKGWwgykomML
-         /8ZVhBn4XTzSQ80KUB9HPUPOkIWbu5/o/HSW5Lp9IEn4tAtkwVPjeag/XW8vQFvQDSXP
-         INtQ==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=AsWHnMe9jhg1La/KfPcn1a5vs8e9lFnP8YYGHKY0Bl8=;
+        b=wH4UGjvNQT5EjpZsfHk2g9ZNyAi9B2zL+bhqh9L3cv4B5zX5dw42USyRhOeJRJqZlA
+         5yNTnAoSiwN0uU6yK3uiN5eP2ITJ9L5HqQrYNjq0Wqd2Mru94t31Sn9hsKBp+aleIbY/
+         L98rHyIxie0YpCNKZe8ldFEsMnhDcagrAu8D/NGLPzMOuS5t1hzgWl0kFsvZUrcBSNLu
+         CcR8euMHxlFlr1Swn9ZoMOzpZzd1NTxtLze08h4mGFQv2j6COKnqeqcEoqt3HRU9htX+
+         fX3AxavZLTAr+sGImgA55mnRDxa2fWThl/8bt3NWT0RspDSuRhlXbQRuO9l5QtRxGdaG
+         5foA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=rMv/6RaQNfPOzLYbEjVzggzY8CZ+X96gFNKrqQ2B2Ow=;
-        b=b11awLhsACcD9Spgy8TMWbYeLRF3Na6hcIWPRIa940FRkUlSdl517Y5eZM8X7D06Ol
-         9gNZoed7DuAt44I7BaBwfbD19m4U/Ycgl3Ps3ZC3gGW/FMYOwvoCzPbkKUh5stYK5Crv
-         KjyNJHYMZ8NUNVZcsqKcN3uW8QVlzLuKbcx7QtZFencJjTGz+RIAOBcKzoNkvfPzeqJJ
-         w0/RFvGHk3gKcT+6CC/h8BZgqY6LkeAFOdmJbIYeji2k2udFnjT06AIgmvWoAyyWhj7a
-         dHuMp0H+6vkKY/lwv6NGjPM83/xD1nQxc2guX9dIPOBycGqVtt4qbNKeMBZ3Sggo0MFL
-         5/Ag==
-X-Gm-Message-State: ACrzQf1Ly+/xM+4Ne+mR3tuajNJ4iETIzD8R0qMhJ8laso3AMSeiEtDs
-        v6s/pCLyGGdc55odnpl/dsQT7A==
-X-Google-Smtp-Source: AMsMyM4A2p2dVHbr2MrZbNkvzA+TDXrYrHq10zKyOpuUy8eKdgqnmSqsTMBymCWb70/WbocMjsZ6jw==
-X-Received: by 2002:a19:e01e:0:b0:497:81a9:c2c4 with SMTP id x30-20020a19e01e000000b0049781a9c2c4mr8259528lfg.74.1664175005928;
-        Sun, 25 Sep 2022 23:50:05 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id e12-20020a05651236cc00b00499b19f23e8sm2440271lfs.279.2022.09.25.23.50.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Sep 2022 23:50:05 -0700 (PDT)
-Message-ID: <d31dc406-3ef2-0625-8f5e-ff6731457427@linaro.org>
-Date:   Mon, 26 Sep 2022 08:50:04 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=AsWHnMe9jhg1La/KfPcn1a5vs8e9lFnP8YYGHKY0Bl8=;
+        b=0Kyu+RLwpAdBBzNOcGN/WG/6JJXRuQicqTL4qLK6K5nD0/lRQLG6fpe6fQSA1DrAX0
+         ltTqg1wpzZ5AXmHddLpNbNTHtHScFWjL6HaRZkboKOMjuoHGA/F/Crj2MdwLEjxYe3NT
+         7axtYdh7vTvEAgyeBN6O6X7KTsn/n9g6wVhyt19b7AASm+q3TH9oI+CR/amHizcoc9N7
+         khxZnO1/sjzJzZFc5CwQsEdDXaaeZgJvYTXoSV9HGR/ZOkQNapmf0WCrJ0URll9mAzq+
+         h22xQ3Y1rt313zyISvF+RcHCQ7sIPfCd3pz8xBL1bXmwx83MwSwWa27Kd471UupdPo5j
+         NB2w==
+X-Gm-Message-State: ACrzQf1pszqQsk4T541Cp/fBaMx1tgiUembD5l8bX+nY3PgpXWjpi9wW
+        KJCqH6RBC+lb1+NDo4PO4GHjOg==
+X-Google-Smtp-Source: AMsMyM4Af2+g8T7GtLQLiDbIHhO3sVKNRIw65E8JMYvjCsWbm6FvNFM/F2QV1jFodQ4IQcxLqmwqDQ==
+X-Received: by 2002:a05:6000:1849:b0:228:c87d:2578 with SMTP id c9-20020a056000184900b00228c87d2578mr12384711wri.274.1664175552984;
+        Sun, 25 Sep 2022 23:59:12 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id bv3-20020a0560001f0300b0022b014fb0b7sm13869912wrb.110.2022.09.25.23.59.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Sep 2022 23:59:12 -0700 (PDT)
+Date:   Mon, 26 Sep 2022 07:59:08 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Chunyan Zhang <zhang.lyra@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>, Lee Jones <lee@kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: regulator: Add bindings for Unisoc's
+ SC2730 regulator
+Message-ID: <YzFNvByGG7ADWfmd@google.com>
+References: <20211008031953.339461-1-zhang.lyra@gmail.com>
+ <20211008031953.339461-3-zhang.lyra@gmail.com>
+ <YY5wPh0rwRvFjSRG@sirena.org.uk>
+ <CAAfSe-uA3iowafC25zRqoTSaub1PbOzUvQgukLm=szEge_abvw@mail.gmail.com>
+ <Yyw2nAAjN6NxmS09@google.com>
+ <YyxKSjMPlGPfegpJ@sirena.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2 4/8] dt-bindings: net: renesas: Document Renesas
- Ethernet Switch
-Content-Language: en-US
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "richardcochran@gmail.com" <richardcochran@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>
-Cc:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20220921084745.3355107-1-yoshihiro.shimoda.uh@renesas.com>
- <20220921084745.3355107-5-yoshihiro.shimoda.uh@renesas.com>
- <1aebd827-3ff4-8d13-ca85-acf4d3a82592@linaro.org>
- <TYBPR01MB5341514CD57AB080454749F2D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYBPR01MB5341514CD57AB080454749F2D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YyxKSjMPlGPfegpJ@sirena.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,97 +79,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 08:10, Yoshihiro Shimoda wrote:
+On Thu, 22 Sep 2022, Mark Brown wrote:
 
-> I'll add a blank line here.
+> On Thu, Sep 22, 2022 at 11:19:08AM +0100, Lee Jones wrote:
+> > On Thu, 22 Sep 2022, Chunyan Zhang wrote:
 > 
->>> +      '#size-cells':
->>> +        const: 0
->>> +
->>> +    additionalProperties: false
->>
->> Don't put it between properties. For nested object usually this is
->> before properties:
+> > > I understand your point. But like I described previously [1], if we
+> > > still use the current solution (i.e. use devm_of_platform_populate()
+> > > to register MFD subdevices), a compatible string is required. I'm open
+> > > to switching to other solutions, do you have some suggestions?
+> > 
+> > Many IPs encompassing multiple functions are described that way in
+> > DT.  I don't have the details for *this* device to hand, so my
+> > comments here aren't specific to this use-case, but describing each
+> > function individually does describe the H/W accurately, which is all
+> > DT calls for.
 > 
-> I'll drop it.
+> If people want to describe the individual regulators that'd be
+> less of an issue, it's mainly when you're nesting what's
+> effectively another MFD within a parent MFD that it's just noise
+> that's being added to the DT.
 
-Don't drop, but instead put it before "properties" for this nested object.
+As I say, I haven't studied this use-case.
 
-> 
->>> +
->>> +    patternProperties:
->>> +      "^port@[0-9a-f]+$":
->>> +        type: object
->>> +
->>
->> Skip blank line.
-> 
-> I got it.
-> 
->>> +        $ref: "/schemas/net/ethernet-controller.yaml#"
->>
->> No need for quotes.
-> 
-> I'll drop the quotes.
-> 
->>> +        unevaluatedProperties: false
->>> +
->>> +        properties:
->>> +          reg:
->>> +            description:
->>> +              Port number of ETHA (TSNA).
->>> +
->>> +          phy-handle:
->>> +            description:
->>> +              Phandle of an Ethernet PHY.
->>
->> Why do you need to mention this property? Isn't it coming from
->> ethernet-controller.yaml?
-> 
-> Indeed. I'll drop the description.
-> 
->>> +
->>> +          phy-mode:
->>> +            description:
->>> +              This specifies the interface used by the Ethernet PHY.
->>> +            enum:
->>> +              - mii
->>> +              - sgmii
->>> +              - usxgmii
->>> +
->>> +          phys:
->>> +            maxItems: 1
->>> +            description:
->>> +              Phandle of an Ethernet SERDES.
->>
->> This is getting confusing. You have now:
->> - phy-handle
->> - phy
->> - phy-device
->> - phys
->> in one schema... although lan966x serdes seems to do the same. :/
-> 
-> Yes... I found the following documents have "phy" and "phy-handle" by using
-> git grep -l -w "phys" `git grep -l phy-handle Documentation/devicetree/bindings/`:
-> Documentation/devicetree/bindings/net/cdns,macb.yaml
-> Documentation/devicetree/bindings/net/cpsw.txt
-> Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-> Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-> Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml
-> Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> Documentation/devicetree/bindings/phy/phy-bindings.txt
-> 
-> And I'm interesting that the phy-bindings.txt said the following:
-> -----
-> phys : the phandle for the PHY device (used by the PHY subsystem; not to be
->        confused with the Ethernet specific 'phy' and 'phy-handle' properties,
->        see Documentation/devicetree/bindings/net/ethernet.txt for these)
-> -----
+These comments were designed to be more generic.
 
-Indeed, seems ok.
+What do you mean by nested MFDs?
 
+> > Can you imagine describing an SoC, which can be considered as a huge
+> > MFD, with only a single node?
 > 
+> Honestly we should be arranging things so they're more like that,
+> at least using overlays for the internals of the SoC so you don't
+> have to rebuild the whole DT for updates to the SoC internals.
 
-Best regards,
-Krzysztof
+Right, there would be one device root node.  However each function;
+clock providers, regulator controllers, PWMs, GPIOs, networking
+(various), reset, watchdog, etc would have their own nodes.  Rather
+than attempting to describe everything in the parent's node.
 
+-- 
+DEPRECATED: Please use lee@kernel.org
