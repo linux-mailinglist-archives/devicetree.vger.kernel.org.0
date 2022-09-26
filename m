@@ -2,460 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6368F5E9F7E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 12:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC19B5EA02B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 12:35:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235414AbiIZK00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 06:26:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37050 "EHLO
+        id S235669AbiIZKfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 06:35:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235750AbiIZKY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 06:24:57 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2B34DB73;
-        Mon, 26 Sep 2022 03:18:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DF8E5B8091E;
-        Mon, 26 Sep 2022 10:17:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25F88C433C1;
-        Mon, 26 Sep 2022 10:17:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664187455;
-        bh=yMdGohL4VQQZhr3aqzGYPr2MLNtwK1doId5qrWddw1E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jUFhyOOh5UvzKagcWSBB/h4/rTmVdf+YTh+Sgsk69vWPAKRByiNTOrC0Utb+cymea
-         2+iS22Lid83z3lFGdWexMEA5YH9CorQXm+EB+8Gm5HrRFLPfL+zGGOM08ntg5Ogfse
-         R40+5BJnVMr548Cp3e0U2qF4ODSVMfDMl5rRmieFKCDk0Nu3BXd32uRyWvqwbpUifV
-         Ob31314UcAecwAe47vmiX/GEOqJnyZshGaV8/AjxoquTnwGgVs7fQg/eraJuYqaiJy
-         9cAQrj0gkmxxVNxPMwu7qpNOYcDF6ZvcKTdZFYifLeUOCz4Gdg54xycNGW6CoUP8uG
-         0R0EvmdHfNxCw==
-Date:   Mon, 26 Sep 2022 12:17:27 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robin.murphy@arm.com,
-        willmcvicker@google.com
-Subject: Re: [PATCH v5 20/20] PCI: dwc: Add Baikal-T1 PCIe controller support
-Message-ID: <YzF8N/jzkWsjcgdD@lpieralisi>
-References: <20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru>
- <20220822184701.25246-21-Sergey.Semin@baikalelectronics.ru>
- <YwzbARMkb/69+l2d@lpieralisi>
- <20220912000211.ct6asuhhmnatje5e@mobilestation>
+        with ESMTP id S235937AbiIZKdj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 06:33:39 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2096.outbound.protection.outlook.com [40.107.114.96])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081CA4F650;
+        Mon, 26 Sep 2022 03:20:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=elzycLd0Xf0fRbro/FQnftzzgebeKpQPdA9Wct7E8Rc9bXUMmXukwJW8WulqmYrkrv3Ool5mPGia0yEyCxzBkNQW61NJUfU1S8fzAyzY587JFG92qVi5U/zLF8m/85+A19L823qhyUsxzK0FUcjuRJrjg1eIGXf1ytWw7SWIuLOnSrMQEWAoLXOrKpqu0kCji/zCbrmMXySng8qNb7CtmxMKt2Gsor+pPi8J5LU2KXExHa3T/tKPTANxpvhsEGAYTfkdf19FJ/7UvgUCSELRv1mn9xAqwZnBrVN8oNtaP6tHgAH/NdLAB7Z9KboEz4XsLMvCc5V9nkBNOg4RRme4LA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5KdK54OflPSocKBmsIGy+NSSOIMkdrjOQ7ys8XUqMxM=;
+ b=QjwrX/lppqYp9vNEa7X1QmGkF9LmVXnSQrfesYwGfnWMFZSrf5U+P2wy/yUr0KpKf+LaFK5yD9KnCHbHW55CufgYSAm9Jgr9Lb1OlLi98qtwlZZo1qr8ljM8fxut+OVzkQRDeQB3xIZOK63fWOfcBx7bt9w7lYPZUFx5vzLhQsdLqXQNMSTPTGVLJRXexR/BE4lbKirmtDdBdQoYoeh1wLCLJj2CywAHt4eNyIx3CYQWgpsCSIGyulwlIXeKodQ28V3avUSyulXNFT3zFn8n9ULfv44Q5aclBEiIlMjo0sx5aly1m3m0tJjzxi4Gxwey5c5H6H1rZJNNhIFRU0QjdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5KdK54OflPSocKBmsIGy+NSSOIMkdrjOQ7ys8XUqMxM=;
+ b=kvHyke/5l0siCvbWnCkoPS1CHG2k17YK+yKnVKsmqWLwtQ+nXFeKtdIaXsdiQ7jVVnF3PN+jpy4eNf7DUQe0hgggWkL1X/1dqygi0ZotOekrgB0X3pBwNlJvBa1JiokNejRW4QdnYeQCuuQ9VaYRuIav3Hg7c3P3Jtq0WXnYn78=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by OS3PR01MB5909.jpnprd01.prod.outlook.com
+ (2603:1096:604:c5::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Mon, 26 Sep
+ 2022 10:20:24 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::2991:1e2d:e62c:37d0]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::2991:1e2d:e62c:37d0%3]) with mapi id 15.20.5654.025; Mon, 26 Sep 2022
+ 10:20:24 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "richardcochran@gmail.com" <richardcochran@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>
+CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v2 4/8] dt-bindings: net: renesas: Document Renesas
+ Ethernet Switch
+Thread-Topic: [PATCH v2 4/8] dt-bindings: net: renesas: Document Renesas
+ Ethernet Switch
+Thread-Index: AQHYzZbyqNqCKbNV30+Ykc0QZw/71q3rESYAgAYuSTCAAA3MAIAAJx+ggAAEMACAAA9B4A==
+Date:   Mon, 26 Sep 2022 10:20:23 +0000
+Message-ID: <TYBPR01MB53412E709A8F8B1C061FB26AD8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20220921084745.3355107-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220921084745.3355107-5-yoshihiro.shimoda.uh@renesas.com>
+ <1aebd827-3ff4-8d13-ca85-acf4d3a82592@linaro.org>
+ <TYBPR01MB5341514CD57AB080454749F2D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <d31dc406-3ef2-0625-8f5e-ff6731457427@linaro.org>
+ <TYBPR01MB5341B5F49362BCCF3C168D11D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <7dbdb43a-0ffe-58db-5f8a-f3bd62a4feea@linaro.org>
+In-Reply-To: <7dbdb43a-0ffe-58db-5f8a-f3bd62a4feea@linaro.org>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS3PR01MB5909:EE_
+x-ms-office365-filtering-correlation-id: 1baa9e3d-c44d-41c6-2ae9-08da9fa8b967
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Fowdpx8s2W00qirQgAqpxHZR+ZZGpCkVvSKkJXlGh516Tj4ksDXS2XBcf/si6kUSjc8WguUYO1Kz9BvBmbASCZk2isVosnicebI0nor37+Lyn+fJHcT7BGBOiaQLPQU4+pWZBk2yBZY4Mv7jBFjodhCAzHYKwXBQG37o2G2xWSsN/2LgFAMOTWtkVlqj2UoQimTjwSG+FfPB2s+JHjQPtWMkJ5Hz/i2KpVq+Y58Ii60kPPZHS7CDZcHrDtrrrwDj691u7mfSIsB2g121Q2AylugklDeI8MB+HQ5chK6isplpCWPTgkc6cEFt/FLJLMnXfInOj/TXcUR3F2Sdk+XsdENvI8bZlN2XPzzRimgmahEoxA1+qYLCu0jTqiYFGVqoimlILr3SSBGTbTaruoi5esWb+qALXC/ZXn27urAgqZoYsgeBwu/uOHcdzlr4lU+0CoxbefeuxdGRtjdxnNBHNjDPUnnWC0A1OK5kzu9lidF5iSVsjhfKPFwhy628qXJ7b/um2azTLvrfFeb2UjpxL6RKvOQwWOdhASu2sqth4hkEJb1OIaGj0I+lNHqpmSnXFeZ3J81G6K2mFjRuMfkw6QxFEy6GyjZuWq0lIy0ILZCrPPh+rZGD62B+5ni0Sr5EqaEuFLKlVJ3Bi9zJdvBjhrhEbX2ZmXKCRg2NHgn5aolId5O8fKaqWlju3TKi4qQ6kNRxx/BhXjGHcWLACybqU9lX8sUHaj75sORfESg84djurBEbg4X9fbxBObpPDK1bq17FCIb5FrRIGDP8CzaMfwvZaus1DIJytsGzEFDxuuc=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(366004)(346002)(376002)(136003)(451199015)(186003)(921005)(86362001)(38100700002)(38070700005)(122000001)(5660300002)(7416002)(52536014)(8936002)(4744005)(76116006)(66946007)(66476007)(66556008)(66446008)(4326008)(64756008)(8676002)(2906002)(41300700001)(6506007)(71200400001)(7696005)(54906003)(53546011)(9686003)(110136005)(316002)(55016003)(478600001)(33656002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?R1pUY0h6bFFmRnF6WktqVUZMZzd0RmlibjlhN2cyTnRuMlV1NXJ2L1pEVU5Y?=
+ =?utf-8?B?YU15WnNDSHZHRWsxM3VreTJEMmpKdThQdi9CeklKbFBpZGdsekRlTTdrYXdY?=
+ =?utf-8?B?MUpXSmpkazZCeksvN24ya0lUa0dQTzdid2MzTlEyL3dFTFB4RW9MdjZSekNq?=
+ =?utf-8?B?dldWVkIvL2FyandWdXdGZUpGcmNIMlVJbi9iWFJuc0ZOU3JJR05KdlZpMjJ3?=
+ =?utf-8?B?YXcyVmdpa0Q1VnM5QzhIWVU1c3p1NUt0TFZ5RW5jakV6a1FHeU4rTWZhTmZT?=
+ =?utf-8?B?cTNTT2dIZUU5WTdETWxDYllGeS9yTWsyL2ZNSm5HU25ySFpEQ2prTEVnMDAx?=
+ =?utf-8?B?aE1tOUVWL0p0SzhzRVRWVmRyQjRuWkhPQzdOclRqRXUyUFdZRTloTC95TWFE?=
+ =?utf-8?B?ZXcrMmtmQnlRNVNLY0MvUU9YT2VzMGtTNTJ5V2VTYzFvVW5RYjJNby9saFU0?=
+ =?utf-8?B?TG5xV2dycVpvQmNvYmc3V1c3WGoydkFzUG5mejNyRC9xcTN2RjlHdDA5Yyty?=
+ =?utf-8?B?MGpVakpLM1JubFovWVY5dXR1c2tOb3ExNzdyWEFNWHJscC9yeFFuclQyUG14?=
+ =?utf-8?B?S0lRUHIyclN4SS8yMmgxL3N3cTUvRzR2UUNYSVN0UkRnR3Z4aGsveitKaEtB?=
+ =?utf-8?B?U1JsQk1oeVBKdXVmOFl0UkVGU2NYNjI4ak5DMkNuc0ZzQ2FRR1Zia1hySDlJ?=
+ =?utf-8?B?SWdqajdvRG5tNktHdG5NVnNxRjNZSkVKNjJtVTBhUVdVS1NndmFHd05Vblhj?=
+ =?utf-8?B?SDhxMDE5enNyNW1YMGYzRUgwVkFENjNPc08wNmVWaHVRZml3VXVGOXhwKzBm?=
+ =?utf-8?B?aXZxUGNtRUI1Wk55MStmb0ZlQ1JiRjJyVGRNNmpSTFMwZWl1NVZlYWR1VkpN?=
+ =?utf-8?B?Mm5uOUtFZXF5dWI4VVkvMlNOSllkRkc5cm5yUzFCSWZ4S04zTGN0dlVRbTd4?=
+ =?utf-8?B?aHBWb3Rac2xoODk1YUc0SHNobFJuRVNmU0xaQkJFcGdPSHRxVkJGNy9VbFZT?=
+ =?utf-8?B?SzFZUldiYWxpc0hXaXFwazIxUFpyMEpuSFBRbUNYQnUrYjZlTzVZVFMwc3lx?=
+ =?utf-8?B?MWtydkV3YW1CZ2t6dHQyNDJDanlOTk9iWmdUcVJyVkRMOWQ1ZkRHOExJY0lE?=
+ =?utf-8?B?M3RLQ1ppWU1IVjZvek5qOE5JLzg2Q3hZcnRPOUE1aXVsWkIwaDB3NlkrMG9D?=
+ =?utf-8?B?RG9GbHpld2VkcFh5S2NLc2NKSnkyV28vbksybFBtVVZTYUZqS1BMRWVHVjdN?=
+ =?utf-8?B?aG9NWWljdDQvTUdwTzBBbUFQbEVmeWR3RTViV2xFNXpVenlwQk1WVTBwc0pP?=
+ =?utf-8?B?UXA5TDJkV1dFTEdRYy9oczc4MGdwdExnRVIvSzR1Tmw1QTZXenEzRHdaR3Qx?=
+ =?utf-8?B?R1NuVURiK2FYbWFrV1RiY2N3R2ptZ3BnMVdjanVBaE9abWVoL2luRkFaa1FV?=
+ =?utf-8?B?RnBkZmE5N0V3N0pERzZmWXAwZTIyazExZmhkRHNEaGdhOTYzMmNqN2N2YUFB?=
+ =?utf-8?B?YWpKZXFUNVEvMnhsVWo0OVlZODNaMDVHV0tJSitIdTdGNHZ4SjBWZVBqK3l5?=
+ =?utf-8?B?Y2hRVEJ0YlY3UTRTYVFPSmN5SXVld2JWS1BvSWFJTXhqeVBFUDZ3dmxFQTN6?=
+ =?utf-8?B?dzdEdmNLZkdldjdFQ1JMK01wdlhqTFhTKzA4aUk3TEswekQ4Z3FZKzJXbGdL?=
+ =?utf-8?B?L2VVQkZkaDlkZEg3b0VKOFV1QVBNOXplS2lZeFVpRUlkdGk1QjNibG52UWlR?=
+ =?utf-8?B?VWYxV2o4QjhPaVlMM2dZeU9EQXUxQjhWR3MvMDNnN2t5YjJ1UGRHRXB6bXZM?=
+ =?utf-8?B?SFBPd2luREVTUFd6SUhBQiswNGx6THFNc2ZVZDkwb3Zmby9vU3ZQcFY2aWp4?=
+ =?utf-8?B?ZUVVTTJVRmdhRnJSMy9ndGx1cm02KzQxU1M5SVFXQ2t4QllvMk92LzJ5bVd1?=
+ =?utf-8?B?Q1ZEekRLcUV0UkpnR2pUOUJXZThRcVFaam1Bb01hY1U3dElNTU8rSUxJa04z?=
+ =?utf-8?B?MmtNRWZKa3d0eGZIV0RCeGc5RmZ0VXQyQU9PMTBwTWxCOUU0Wjk4T1R4cDJq?=
+ =?utf-8?B?Mk41QzFDYkRNVnYwWFVaSnMvbGVKdHYrMnFkSUFaYUYwVkl5d0FFVStXZnl2?=
+ =?utf-8?B?S0NaOWR4OWV6SlV4dVJ1ekp5UUxZYWU4dmt4cWxYbSszSzJJdnh3TmxqejlH?=
+ =?utf-8?B?NmNYMkNYZzNaTkZWZlBFekhBQlpYR3FrcnljKzA3b1hEZlpSeGdQWTBhZTBk?=
+ =?utf-8?B?TzZVUzFhZjY1dUZJOWllNjBudnZBPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220912000211.ct6asuhhmnatje5e@mobilestation>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1baa9e3d-c44d-41c6-2ae9-08da9fa8b967
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2022 10:20:23.9902
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: iTO8gSXQfK1NAWpbEUiu1nIKWsh4sm6in4h4vB7R9M8QV4Cf90QJBTj6sz2ew2Qt06zf2ZgKN/cC99g0hg5OYDlGIU4kjy67ztWGNMM73fQIUqD58o8MzJ9FiZ5fwyh9
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5909
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 03:02:11AM +0300, Serge Semin wrote:
-
-[...]
-
-> > > +/*
-> > > + * Baikal-T1 MMIO space must be read/written by the dword-aligned
-> > > + * instructions. Note the methods are optimized to have the dword operations
-> > > + * performed with minimum overhead as the most frequently used ones.
-> > > + */
-> > > +static int bt1_pcie_read_mmio(void __iomem *addr, int size, u32 *val)
-> > > +{
-> > > +	unsigned int ofs = (uintptr_t)addr & 0x3;
-> > > +
-> > > +	if (!IS_ALIGNED((uintptr_t)addr, size))
-> > > +		return -EINVAL;
-> > > +
-> > > +	*val = readl(addr - ofs) >> ofs * BITS_PER_BYTE;
-> > 
-> 
-> > Is it always safe to read more than requested ?
-> 
-> This question is kind of contradicting. No matter whether it's safe or
-> not we just can't perform the IOs with size other than of the dword
-> size. Doing otherwise will cause the bus access error.
-
-It is not contradicting. You are reading more than the requested
-size, which can have side effects.
-
-I understand there is no other way around it - still it would be good
-to understand whether that can compromise the driver functionality.
-
-> > > +	if (size == 4) {
-> > > +		return 0;
-> > > +	} else if (size == 2) {
-> > > +		*val &= 0xffff;
-> > > +		return 0;
-> > > +	} else if (size == 1) {
-> > > +		*val &= 0xff;
-> > > +		return 0;
-> > > +	}
-> > > +
-> > > +	return -EINVAL;
-> > > +}
-> > > +
-> > > +static int bt1_pcie_write_mmio(void __iomem *addr, int size, u32 val)
-> > > +{
-> > > +	unsigned int ofs = (uintptr_t)addr & 0x3;
-> > > +	u32 tmp, mask;
-> > > +
-> > > +	if (!IS_ALIGNED((uintptr_t)addr, size))
-> > > +		return -EINVAL;
-> > > +
-> > > +	if (size == 4) {
-> > > +		writel(val, addr);
-> > > +		return 0;
-> > > +	} else if (size == 2 || size == 1) {
-> > > +		mask = GENMASK(size * BITS_PER_BYTE - 1, 0);
-> > > +		tmp = readl(addr - ofs) & ~(mask << ofs * BITS_PER_BYTE);
-> > > +		tmp |= (val & mask) << ofs * BITS_PER_BYTE;
-> > > +		writel(tmp, addr - ofs);
-> > > +		return 0;
-> > > +	}
-> > 
-> 
-> > Same question read/modify/write, is it always safe to do it
-> > regardless of size ?
-> 
-> ditto
-
-See above.
-
-> > 
-> > > +
-> > > +	return -EINVAL;
-> > > +}
-> > > +
-> > > +static u32 bt1_pcie_read_dbi(struct dw_pcie *pci, void __iomem *base, u32 reg,
-> > > +			     size_t size)
-> > > +{
-> > > +	int ret;
-> > > +	u32 val;
-> > > +
-> > > +	ret = bt1_pcie_read_mmio(base + reg, size, &val);
-> > > +	if (ret) {
-> > > +		dev_err(pci->dev, "Read DBI address failed\n");
-> > > +		return ~0U;
-> > 
-> 
-> > Is this a special magic value the DWC core is expecting ?
-> > 
-> > Does it clash with a _valid_ return value ?
-> 
-> It's a normal return value if the PCIe IO wasn't successful.
-
-I don't understand what you mean sorry. I understand you want to log
-the error - what I don't get is why you change val to ~0U - why ~0U
-and to what use, the function reading dbi can't use that value to
-detect an error anyway, it would read whatever value is returned by
-this function - regardless of the error condition.
-
-> In this particular case there is no actual PCIe-bus IO though, but
-> there are conditions which can cause the errors. So the error status
-> is still sanity checked. This part was already commented by Rob here:
-> https://lore.kernel.org/linux-pci/20220615171045.GD1413880-robh@kernel.org/
-> my response was:
-> https://lore.kernel.org/linux-pci/20220619203904.h7q2eb7e4ctsujsk@mobilestation/
-> 
-> > 
-> > > +	}
-> > > +
-> > > +	return val;
-> > > +}
-> > > +
-> > > +static void bt1_pcie_write_dbi(struct dw_pcie *pci, void __iomem *base, u32 reg,
-> > > +			       size_t size, u32 val)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	ret = bt1_pcie_write_mmio(base + reg, size, val);
-> > > +	if (ret)
-> > > +		dev_err(pci->dev, "Write DBI address failed\n");
-> > > +}
-> > > +
-> > > +static void bt1_pcie_write_dbi2(struct dw_pcie *pci, void __iomem *base, u32 reg,
-> > > +				size_t size, u32 val)
-> > > +{
-> > > +	struct bt1_pcie *btpci = to_bt1_pcie(pci);
-> > > +	int ret;
-> > > +
-> > > +	regmap_update_bits(btpci->sys_regs, BT1_CCU_PCIE_GENC,
-> > > +			   BT1_CCU_PCIE_DBI2_MODE, BT1_CCU_PCIE_DBI2_MODE);
-> > > +
-> > > +	ret = bt1_pcie_write_mmio(base + reg, size, val);
-> > > +	if (ret)
-> > > +		dev_err(pci->dev, "Write DBI2 address failed\n");
-> > > +
-> > > +	regmap_update_bits(btpci->sys_regs, BT1_CCU_PCIE_GENC,
-> > > +			   BT1_CCU_PCIE_DBI2_MODE, 0);
-> > 
-> 
-> > IIUC the regmap_update_bits() set up decoding for DBI2.
-> 
-> Right and then switches it back off.
-> 
-> > Hopefully the
-> > DBI/DBI2 writes are sequentialized, this is a question valid also
-> > for other DWC controllers.
-> 
-> In general you are right, but not in particular case of the DW PCIe
-> Root Ports. So the concurrent access to DBI and DBI2 won't cause any
-> problem.
-> 
-> > 
-> > What I want to say is, the regmap update in this function sets the
-> > DWC HW in a way that can decode DBI2 (please correct me if I am wrong),
-> 
-> Right.
-> 
-> > between the two _update_bits() no DBI access should happen because
-> > it just would not work.
-> 
-> No. Because in case of the DW PCIe Root Ports, DBI and DBI2 are almost
-> identical. The difference is only in two CSR fields which turn to be
-> R/W in DBI2 instead of being RO in DBI. Other than that the DBI and
-> DBI2 spaces are identical. That's why we don't need any software-based
-> synchronization between the DBI/DBI2 accesses.
-> 
-> Moreover we won't need to worry about the synchronisation at all if
-> DBI2 is mapped via a separate reg-space (see dw_pcie.dbi_base2 field)
-> because any concurrency is resolved behind the scene by means of the
-> DBI bus HW implementation.
-> 
-> > 
-> > It is a question.
-> 
-> The situation gets to be more complex in case of DW PCIe End-points
-> because some of the DBI CSRs change semantics in DBI2. At the very
-> least it concerns the TYPE0_HDR.{BAR0-BAR5} registers, which determine
-> the corresponding BARx size and whether it is enabled in DBI2 (see the
-> reset_bar() and set_bar() methods implementation in
-> drivers/pci/controller/dwc/pcie-designware-ep.c). But my controller is
-> the Root Port controller, so the denoted peculiarity doesn't concern
-> it.
-> 
-> > 
-> > > +static int bt1_pcie_host_init(struct dw_pcie_rp *pp)
-> > > +{
-> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +	struct bt1_pcie *btpci = to_bt1_pcie(pci);
-> > > +	int ret;
-> > > +
-> > > +	ret = bt1_pcie_get_resources(btpci);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	bt1_pcie_full_stop_bus(btpci, true);
-> > > +
-> > > +	return bt1_pcie_cold_start_bus(btpci);
-> > > +}
-> > > +
-> > > +static void bt1_pcie_host_deinit(struct dw_pcie_rp *pp)
-> > > +{
-> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +	struct bt1_pcie *btpci = to_bt1_pcie(pci);
-> > > +
-> > > +	bt1_pcie_full_stop_bus(btpci, false);
-> > > +}
-> > > +
-> > > +static const struct dw_pcie_host_ops bt1_pcie_host_ops = {
-> > > +	.host_init = bt1_pcie_host_init,
-> > > +	.host_deinit = bt1_pcie_host_deinit,
-> > > +};
-> > > +
-> > > +static struct bt1_pcie *bt1_pcie_create_data(struct platform_device *pdev)
-> > > +{
-> > > +	struct bt1_pcie *btpci;
-> > > +
-> > > +	btpci = devm_kzalloc(&pdev->dev, sizeof(*btpci), GFP_KERNEL);
-> > > +	if (!btpci)
-> > > +		return ERR_PTR(-ENOMEM);
-> > > +
-> > > +	btpci->pdev = pdev;
-> > > +
-> > > +	platform_set_drvdata(pdev, btpci);
-> > > +
-> > > +	return btpci;
-> > > +}
-> > > +
-> > > +static int bt1_pcie_add_port(struct bt1_pcie *btpci)
-> > > +{
-> > > +	struct device *dev = &btpci->pdev->dev;
-> > > +	int ret;
-> > > +
-> > > +	/*
-> > > +	 * DW PCIe Root Port controller is equipped with eDMA capable of
-> > > +	 * working with the 64-bit memory addresses.
-> > > +	 */
-> > > +	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-> > > +	if (ret)
-> > > +		return ret;
-> > 
-> 
-> > Is this the right place to set the DMA mask for the host controller
-> > embedded DMA controller (actually, the dev pointer is the _host_
-> > controller device) ?
-> 
-> Yes it's. The DMA controller is embedded into the PCIe Root Port
-> controller. It CSRs are accessed via either the same CSR space or via
-> a separate space but synchronously clocked by the same clock source
-> (it's called unrolled iATU/eDMA mode). The memory range the
-> controller is capable to reach is platform specific. So the glue
-> driver is the best place to set the device DMA-mask. (For instance the
-> DW PCIe master AXI-bus width is selected by means of the
-> MASTER_BUS_ADDR_WIDTH parameter of the DW PCIe IP-core.)
-
-I need to defer this question to Robin - I think the DMA mask for the
-DMA controller device should be set in the respective device driver
-(which isn't the host controller driver).
-
-> > How this is going to play when combined with:
-> > 
-> > https://lore.kernel.org/linux-pci/1e63a581-14ae-b4b5-a5bf-ca8f09c33af6@arm.com
-> > 
-> > It is getting a bit confusing. I believe the code in the link
-> > above sets the mask so that through the DMA API we are capable
-> > of getting an MSI doorbell virtual address whose physical address
-> > can be addressed by the endpoint; this through the DMA API.
-> 
-> I don't really understand why the code in the link above tries to
-> analyze the MSI capability of the DW PCIe Root Port in the framework
-> of the dw_pcie_msi_host_init() method. The method utilizes the iMSI-RX
-> engine which is specific to the DW PCIe AXI-bus controller
-> implementation. It has nothing to do with the PCIe MSI capability
-> normally available over the standard PCIe config space.
-> 
-> As Rob correctly noted here
-> https://lore.kernel.org/all/CAL_JsqJh=d-B51b6yPBRq0tOwbChN=AFPr-a19U1QdQZAE7c1A@mail.gmail.com
-> MSI TLPs never reaches the system memory. (But I would add that this
-> only concerns the iMSI-RX engine.) So no matter which memory
-> allocated and where, the only thing that matters is the PCIe-bus
-> address specified to the PCIE_MSI_ADDR_LO and PCIE_MSI_ADDR_HI CSRs,
-> which are the DW PCIe-specific and both are always available thus
-> supporting the 64-bit messages in any case. So if we had a way to just
-> reserve a PCIe-bus address range which at the same time wouldn't have
-> a system memory behind, we could have used the reserved range to
-> initialize the iMSI-RX MSI-address without need to allocate any
-> DMA-able memory at all. That's why the commit 07940c369a6b ("PCI: dwc:
-> Fix MSI page leakage in suspend/resume") was absolutely correct.
-
-Again - I would appreciate if Will/Robin can comment on this given
-that it is down to DWC controller internals and their relation
-with the DMA core layer.
-
-Thanks,
-Lorenzo
-
-> > This patch is setting the DMA mask for a different reason, namely
-> > setting the host controller embedded DMA controller addressing
-> > capabilities.
-> 
-> AFAIU what is done in that patch is incorrect.
-> 
-> > 
-> > AFAICS - both approaches set the mask for the same device - now
-> > the question is about which one is legitimate and how to handle
-> > the other.
-> 
-> That's simple. Mine is legitimate for sure. Another one isn't.
-> 
-> > 
-> > > +
-> > > +	btpci->dw.version = DW_PCIE_VER_460A;
-> > > +	btpci->dw.dev = dev;
-> > > +	btpci->dw.ops = &bt1_pcie_ops;
-> > > +
-> > > +	btpci->dw.pp.num_vectors = MAX_MSI_IRQS;
-> > > +	btpci->dw.pp.ops = &bt1_pcie_host_ops;
-> > > +
-> > > +	dw_pcie_cap_set(&btpci->dw, REQ_RES);
-> > > +
-> > > +	ret = dw_pcie_host_init(&btpci->dw.pp);
-> > > +	if (ret)
-> > > +		dev_err_probe(dev, ret, "Failed to initialize DWC PCIe host\n");
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static void bt1_pcie_del_port(struct bt1_pcie *btpci)
-> > > +{
-> > > +	dw_pcie_host_deinit(&btpci->dw.pp);
-> > > +}
-> > > +
-> > > +static int bt1_pcie_probe(struct platform_device *pdev)
-> > > +{
-> > > +	struct bt1_pcie *btpci;
-> > > +
-> > > +	btpci = bt1_pcie_create_data(pdev);
-> > 
-> 
-> > Do we really need a function for that ? I am not too
-> > bothered but I think it is overkill.
-> 
-> I prefer splitting the probe method up into a set of small and
-> coherent methods. It IMO improves the code readability for just no
-> price since the compiler will embed the single-time used static
-> methods anyway.
-> 
-> -Sergey
-> 
-> > 
-> > Thanks,
-> > Lorenzo
-> > 
-> > > +	if (IS_ERR(btpci))
-> > > +		return PTR_ERR(btpci);
-> > > +
-> > > +	return bt1_pcie_add_port(btpci);
-> > > +}
-> > > +
-> > > +static int bt1_pcie_remove(struct platform_device *pdev)
-> > > +{
-> > > +	struct bt1_pcie *btpci = platform_get_drvdata(pdev);
-> > > +
-> > > +	bt1_pcie_del_port(btpci);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct of_device_id bt1_pcie_of_match[] = {
-> > > +	{ .compatible = "baikal,bt1-pcie" },
-> > > +	{},
-> > > +};
-> > > +MODULE_DEVICE_TABLE(of, bt1_pcie_of_match);
-> > > +
-> > > +static struct platform_driver bt1_pcie_driver = {
-> > > +	.probe = bt1_pcie_probe,
-> > > +	.remove = bt1_pcie_remove,
-> > > +	.driver = {
-> > > +		.name	= "bt1-pcie",
-> > > +		.of_match_table = bt1_pcie_of_match,
-> > > +	},
-> > > +};
-> > > +module_platform_driver(bt1_pcie_driver);
-> > > +
-> > > +MODULE_AUTHOR("Serge Semin <Sergey.Semin@baikalelectronics.ru>");
-> > > +MODULE_DESCRIPTION("Baikal-T1 PCIe driver");
-> > > +MODULE_LICENSE("GPL");
-> > > -- 
-> > > 2.35.1
-> > > 
+PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpLCBTZW50OiBNb25kYXksIFNlcHRlbWJlciAyNiwg
+MjAyMiA2OjI1IFBNDQo+IA0KPiBPbiAyNi8wOS8yMDIyIDExOjE0LCBZb3NoaWhpcm8gU2hpbW9k
+YSB3cm90ZToNCj4gDQo+ID4+DQo+ID4+IERvbid0IGRyb3AsIGJ1dCBpbnN0ZWFkIHB1dCBpdCBi
+ZWZvcmUgInByb3BlcnRpZXMiIGZvciB0aGlzIG5lc3RlZCBvYmplY3QuDQo+ID4NCj4gPiBPaCwg
+SSBnb3QgaXQuIFRoYW5rcyENCj4gPiBJJ2xsIHB1dCB0aGlzIGJlZm9yZSAicHJvcGVydGllczoi
+IGxpa2UgYmVsb3c6DQo+ID4gLS0tLS0NCj4gPiAgIGV0aGVybmV0LXBvcnRzOg0KPiA+ICAgICB0
+eXBlOiBvYmplY3QNCj4gPg0KPiANCj4gV2l0aG91dCBibGFuayBsaW5lIGhlcmUuDQoNCkkgZ290
+IGl0LiBUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB5b3VyIHN1cHBvcnQhDQoNCkJlc3QgcmVnYXJk
+cywNCllvc2hpaGlybyBTaGltb2RhDQoNCj4gPiAgICAgYWRkaXRpb25hbFByb3BlcnRpZXM6IGZh
+bHNlDQo+ID4+ICAgICBwcm9wZXJ0aWVzOg0KPiANCj4gVGhpcyBpcyBvay4NCj4gDQo+ID4gICAg
+ICAgJyNhZGRyZXNzLWNlbGxzJzoNCj4gPiAgICAgICAgIGRlc2NyaXB0aW9uOiBQb3J0IG51bWJl
+ciBvZiBFVEhBIChUU05BKS4NCj4gPiAgICAgICAgIGNvbnN0OiAxDQo+ID4NCj4gPiAgICAgICAn
+I3NpemUtY2VsbHMnOg0KPiA+ICAgICAgICAgY29uc3Q6IDANCj4gPiAtLS0tLQ0KPiANCj4gQmVz
+dCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0K
