@@ -2,188 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5BCC5EACE5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:46:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B12385EACF2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:46:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbiIZQqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 12:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46994 "EHLO
+        id S229880AbiIZQqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 12:46:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229609AbiIZQp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:45:29 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D5C290823
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:34:03 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id z25so11505289lfr.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:34:03 -0700 (PDT)
+        with ESMTP id S229611AbiIZQq3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:46:29 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D885CDCF8
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:36:42 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id i26so11450331lfp.11
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:36:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=F5npTjbMuhkZGTbiPdd9I0BH4rth5Gn8Gik7w91MPEQ=;
-        b=COyNBYSScAS0o8DDp+/0tPXmTexBHDJ8u+KWYzRSdPHkoRQmBZUmJXS8LLbSozyY+q
-         NCFkzGM/3t/i5zCm5VLW5RWigE0uzDey/6LVZ7DD2zOqyCpZCVzJtr5CYAD5fJvCljUV
-         KZU1RDSjJ2aZmOnMJqiE6QvMP222ve4kgfy28zHelpSvWzaqO4mk33NMM5HIuyG6Z830
-         yN8qmT5CuxbULXrSdjoiyPJYmtvFZq8+zQqJdYD9+vxevjD+2JWTA7aIHjKLbX4RkSIe
-         RUivF14k9gDk5Ff9QrCG8zoewQg13qrlpoxYzt5tYxV4LsXHy0qwjiuAW9iGZjm91vAX
-         Ni1w==
+        bh=NdD3ysadw1mQdYPOU4EwS3yTmvQUO98WTNXkaJ5Je4A=;
+        b=c6ewr/mFasF3rWZKnZcQ6r5Wj1beFg430Y29bpXQLlUVzZmwo/mCCb6xzvhPGpKhNX
+         rlxIsIHnxXLhucskcWJfiPFrI6msIqn3q2EhcU87WUf+joLGBjIL8ORqM9H+nQKERrCk
+         QEWY8ca89GkyLWUBog+h1053UjtWqHdijjx3cInf0kLzLO/+j0HzH8IsZiyyCK9QbTqM
+         2/1iywv415/Scs3Gni2K09TtMyRNNO6ivc1u7f5KV0WSCxPIVoGkT5igNSUw0c+0uYBd
+         45QOn6wGIMKiJkY5JkiPVegrf16OQdSXn2o7u499YffGfzH3i9d+020vRGeZziI34Ro+
+         iDUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=F5npTjbMuhkZGTbiPdd9I0BH4rth5Gn8Gik7w91MPEQ=;
-        b=mLyIFXvC9rCZr9Ie1NAUfRjU17yI0+4x0Gmd6qp9k7lazT4AG7vp4nzZLPRVzSS6IJ
-         h9S1ucz6FDVaWy7aUsNuphXBtDt2LNPstiT7s72UpHvNYyXkS2900j73r96N425V8EGk
-         Iy8KbexgF08JCQ3Intyn/hdF0RO/nDx2vZBcBd3rho9iD2EgsDj6TUTmbJnTtmlYhUUo
-         xxEAoxXj+DXGpQPUKQBcVIy8GnNY3/8qDXF5cYtgTUEIgCGVr3nPZ+wokjiPgdXbfUCZ
-         gIXHs+csng0Y4hoPXmy5z8b5KArwHJ44cF9VlVnLGIhO55yD3jYmsuV9yNn5KAiFMUzV
-         60xQ==
-X-Gm-Message-State: ACrzQf1EsJid+2IePsk5p6IvYO93jTQNcjgevVqEubD06bhPuaFDNwUm
-        UmO8qcourhUnZx1gDbolib/nSg==
-X-Google-Smtp-Source: AMsMyM6tMFemy+xGBNnt6gYp5DB31dPiL5kIfOf1LKc4vRAi/zdjV4hXeir/ybWPBzYvF++N0Z3T9A==
-X-Received: by 2002:a05:6512:3f08:b0:4a1:af5e:5643 with SMTP id y8-20020a0565123f0800b004a1af5e5643mr4484835lfa.86.1664206441267;
-        Mon, 26 Sep 2022 08:34:01 -0700 (PDT)
+        bh=NdD3ysadw1mQdYPOU4EwS3yTmvQUO98WTNXkaJ5Je4A=;
+        b=PnpQSHABzb0gjmKTdtpyowj2DUfWos8fY/2giuk3RO4JJHjlDQespoo0d8epLRDmSF
+         6L6XypslHxBRkIsdfIutMDBH2OZ3M58bbkxgUKj0v/f/elvpg5BPDnsBOWIDifQPPYJV
+         2FxIzpCyKC9e6nIXjBIvD3doaARbouhmHAlVWS2viCcqvtSZoIqr59w4HXBy5ejZiw0o
+         WudRil2FhbgxF/seATMAoZECxTxIufAl39WeIhJDpcYX/kn/N9rKjJj9RtGmR0OvcOEA
+         HwYSsPLvR7fjSBOpTlDVZCpPYAsCB5GKcgg2iwcaruoCmlxJKXctSpTo6fAfSI2CiiqW
+         sUmg==
+X-Gm-Message-State: ACrzQf3+xTQkPcly8BZV2DUtcXYpsfWr+Q8TE6EfWMOZlLaLCQMA+tvI
+        3RNzUqcFrX04pHhdGiMsFOzIy5Tfo4xc7g==
+X-Google-Smtp-Source: AMsMyM7MjonJ6cIFHspxIEl28Vcd7kw6kwThRCncxLU3jHqMpzHJDsiwIViy/i3AEWg0xCW4sRJ5lA==
+X-Received: by 2002:a05:6512:3159:b0:492:d660:4dd7 with SMTP id s25-20020a056512315900b00492d6604dd7mr8317604lfi.204.1664206601036;
+        Mon, 26 Sep 2022 08:36:41 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f3-20020a056512092300b0049486c66140sm2573546lft.119.2022.09.26.08.32.56
+        by smtp.gmail.com with ESMTPSA id d8-20020a056512368800b004a0526b11ffsm1425030lfs.133.2022.09.26.08.35.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 08:32:57 -0700 (PDT)
-Message-ID: <15611981-19b3-5124-83da-7f9a699ef62f@linaro.org>
-Date:   Mon, 26 Sep 2022 17:32:54 +0200
+        Mon, 26 Sep 2022 08:35:18 -0700 (PDT)
+Message-ID: <f4d29a38-c195-43f7-4837-43a6176a0a58@linaro.org>
+Date:   Mon, 26 Sep 2022 17:35:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH] ARM: dts: qcom-pma8084: fix vadc channel node names
+Subject: Re: [PATCHv3 1/3] dt-bindings: mmc: synopsys-dw-mshc: document
+ "altr,sysmgr-syscon"
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        neil.armstrong@linaro.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220925202143.123208-1-luca@z3ntu.xyz>
- <98960452-9f48-7b4d-9aa6-55c0002ad1b4@linaro.org> <2647127.mvXUDI8C0e@g550jk>
+To:     Dinh Nguyen <dinguyen@kernel.org>, jh80.chung@samsung.com
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220926140932.820050-1-dinguyen@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2647127.mvXUDI8C0e@g550jk>
+In-Reply-To: <20220926140932.820050-1-dinguyen@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 16:57, Luca Weiss wrote:
-> Hi Neil,
-> 
-> On Montag, 26. September 2022 10:27:54 CEST Neil Armstrong wrote:
->> On 25/09/2022 22:21, Luca Weiss wrote:
->>> Node names for the channel are supposed to be adc-chan@REG.
->>>
->>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->>> ---
->>>
->>>   arch/arm/boot/dts/qcom-pma8084.dtsi | 17 +++++++++++------
->>>   1 file changed, 11 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/arch/arm/boot/dts/qcom-pma8084.dtsi
->>> b/arch/arm/boot/dts/qcom-pma8084.dtsi index e77602e9f95c..7ad573c7b4ac
->>> 100644
->>> --- a/arch/arm/boot/dts/qcom-pma8084.dtsi
->>> +++ b/arch/arm/boot/dts/qcom-pma8084.dtsi
->>> @@ -64,22 +64,27 @@ pma8084_vadc: adc@3100 {
->>>
->>>   			#size-cells = <0>;
->>>   			#io-channel-cells = <1>;
->>>
->>> -			die_temp {
->>> +			adc-chan@8 {
->>>
->>>   				reg = <VADC_DIE_TEMP>;
->>>   			
->>>   			};
->>>
->>> -			ref_625mv {
->>> +
->>> +			adc-chan@9 {
->>>
->>>   				reg = <VADC_REF_625MV>;
->>>   			
->>>   			};
->>>
->>> -			ref_1250v {
->>> +
->>> +			adc-chan@10 {
->>>
->>>   				reg = <VADC_REF_1250MV>;
->>>   			
->>>   			};
->>>
->>> -			ref_buf_625mv {
->>> +
->>> +			adc-chan@12 {
->>>
->>>   				reg = <VADC_SPARE1>;
->>>   			
->>>   			};
->>>
->>> -			ref_gnd {
->>> +
->>> +			adc-chan@14 {
->>>
->>>   				reg = <VADC_GND_REF>;
->>>   			
->>>   			};
->>>
->>> -			ref_vdd {
->>> +
->>> +			adc-chan@15 {
->>>
->>>   				reg = <VADC_VDD_VADC>;
->>>   			
->>>   			};
->>>   		
->>>   		};
->>
->> I don't see where this is required, bindings doesn't mandate this naming:
->>
->> patternProperties:
->>
->>     "^.*@[0-9a-f]+$":
-> 
-> They don't require the "adc-chan" part (although dt nodes are supposed to have 
-> common names and adc-chan is used for adc for that; and dt node names are not 
-> supposed to have underscores), but this validation error happens without this 
-> commit:
-> 
-> <snip>/arch/arm/boot/dts/qcom-apq8084-ifc6540.dtb: pma8084@0: adc@3100: 
-> 'oneOf' conditional failed, one must be fixed:
->         '#address-cells', '#size-cells', 'die_temp', 'ref_1250v', 'ref_625mv', 
-> 'ref_buf_625mv', 'ref_gnd', 'ref_vdd' do not match any of the regexes: 
-> 'pinctrl-[0-9]+'
->         'die_temp', 'ref_1250v', 'ref_625mv', 'ref_buf_625mv', 'ref_gnd', 
-> 'ref_vdd' do not match any of the regexes: '^.*@[0-9a-f]+$', 'pinctrl-[0-9]+'
->         'qcom,spmi-iadc' was expected
->         From schema: <snip>/Documentation/devicetree/bindings/mfd/qcom,spmi-
-> pmic.yaml
-> 
-> So while e.g. ref-vdd@15 would also work, adc-chan@15 is more correct.
+On 26/09/2022 16:09, Dinh Nguyen wrote:
+> +allOf:
+> +  - $ref: "synopsys-dw-mshc-common.yaml#"
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const:
+> +              - altr,socfpga-dw-mshc
+> +    then:
+> +      required:
+> +        - altr,sysmgr-syscon
 
-The commit msg is not precise here. What the nodes are missing is unit
-address (required by VADC bindings) and replace of underscore (coding
-style). I think bindings do not require the adc-chan and we could apply
-here rule from DT spec that node name should reflect it's
-purpose/function, so die-temp@xxxx could be fine. Other places use
-already adc-chan, so consistency could be an argument. But anyway commit
-msg is not really describing why you are doing this.
+else:
+  properties:
+    altr,sysmgr-syscon: false
+and then you will probably see the warnings leading to error in syntax
+(const is not an array)...
 
 Best regards,
 Krzysztof
