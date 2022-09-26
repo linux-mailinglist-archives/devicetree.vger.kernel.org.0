@@ -2,71 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C785B5EAC37
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:15:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 238FE5EAC47
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:17:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235458AbiIZQPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 12:15:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43618 "EHLO
+        id S236517AbiIZQRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 12:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235574AbiIZQOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:14:47 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 250DAD576C
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:03:32 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:d95b:5c9b:4085:7c0d])
-        by baptiste.telenet-ops.be with bizsmtp
-        id Qf3W280083Qogd101f3Wjh; Mon, 26 Sep 2022 17:03:30 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ocpdp-006Jda-Rm; Mon, 26 Sep 2022 17:03:29 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ocpdp-00DO6A-Ct; Mon, 26 Sep 2022 17:03:29 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230270AbiIZQQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:16:55 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9847956AB;
+        Mon, 26 Sep 2022 08:05:54 -0700 (PDT)
+Received: from g550jk.localnet (2a02-8388-6582-fe80-0000-0000-0000-0006.cable.dynamic.v6.surfer.at [IPv6:2a02:8388:6582:fe80::6])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id B9370C78D3;
+        Mon, 26 Sep 2022 15:05:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1664204723; bh=C+tqJ4n0S2ecHmWkQN6j74ywMYCFWy0zDJJ0uK+9sWU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=lW/hBz8qeRaX5zYRiWHV+puDQ5cZ75Qdqsw9V8u6C1jYkzvbxgIIFPFTHz+WvoVKL
+         6c9HdTUO+bR5cVDAyFVjlW3djw3UJOeUh7Bo5zdJGrXrwdLWLEZRv2pm40QcxSsgHo
+         Uqs7+fkhXPvFjLsosty3KgwGLhKIg8YC+PmL0OdU=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: renesas,rcar-dmac: Add r8a779g0 support
-Date:   Mon, 26 Sep 2022 17:03:24 +0200
-Message-Id: <0a4d40092a51345003742725aea512a815d27e89.1664204526.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: pm8941: fix iadc node
+Date:   Mon, 26 Sep 2022 17:05:22 +0200
+Message-ID: <1828122.tdWV9SEqCh@g550jk>
+In-Reply-To: <74ef3de8-5be0-70ec-e34b-717ba93d3d77@linaro.org>
+References: <20220925161821.78030-1-luca@z3ntu.xyz> <20220925161821.78030-2-luca@z3ntu.xyz> <74ef3de8-5be0-70ec-e34b-717ba93d3d77@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for the Direct Memory Access Controllers (DMAC) in the
-Renesas R-Car V4H (R8A779G0) SoC.
+Hi Krzysztof,
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On Montag, 26. September 2022 10:54:23 CEST Krzysztof Kozlowski wrote:
+> On 25/09/2022 18:18, Luca Weiss wrote:
+> > The iadc node name is supposed to be just 'adc' and the compatible is
+> > only supposed to be qcom,spmi-iadc according to the bindings.
+> > 
+> > Adjust the node to match that.
+> > 
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+> > 
+> >  arch/arm/boot/dts/qcom-pm8941.dtsi | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi
+> > b/arch/arm/boot/dts/qcom-pm8941.dtsi index 3c15eecf2f21..33517cccee01
+> > 100644
+> > --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
+> > +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
+> > @@ -131,8 +131,8 @@ adc-chan@48 {
+> > 
+> >  			};
+> >  		
+> >  		};
+> > 
+> > -		pm8941_iadc: iadc@3600 {
+> > -			compatible = "qcom,pm8941-iadc", 
+"qcom,spmi-iadc";
+> > +		pm8941_iadc: adc@3600 {
+> > +			compatible = "qcom,spmi-iadc";
+> 
+> I am not sure this is correct. Usually specific compatibles are encouraged.
 
-diff --git a/Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml b/Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml
-index 7202cd68e7597dc2..89b591a05bce5fe5 100644
---- a/Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml
-@@ -45,6 +45,7 @@ properties:
-           - enum:
-               - renesas,dmac-r8a779a0     # R-Car V3U
-               - renesas,dmac-r8a779f0     # R-Car S4-8
-+              - renesas,dmac-r8a779g0     # R-Car V4H
-           - const: renesas,rcar-gen4-dmac # R-Car Gen4
- 
-   reg: true
--- 
-2.25.1
+I'm happy to change it the other way also.
+
+But the sibling of this compatible, qcom,spmi-vadc also only has that single 
+compatible so it'd align it with that.
+
+Let me know what you think.
+
+Regards
+Luca
+
+> 
+> Best regards,
+> Krzysztof
+
+
+
 
