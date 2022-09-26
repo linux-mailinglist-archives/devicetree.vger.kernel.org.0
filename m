@@ -2,105 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CBAF5E9C9E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 673795E9CA1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:57:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234489AbiIZI4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 04:56:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48616 "EHLO
+        id S233830AbiIZI5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:57:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234540AbiIZI41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:56:27 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E723DBD8
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:26 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id iv17so3988127wmb.4
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:26 -0700 (PDT)
+        with ESMTP id S233756AbiIZI5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:57:00 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ABA9399E6
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:59 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id k10so9761763lfm.4
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date;
-        bh=LivMufJfxLpe4WS1qV8qZqQ4CFkVL3CKwRAqAJHi1Es=;
-        b=MRgp3u3JMORAFJM1sdZCZ+fpbuvN/7UVQgKaoUDWgnopUmx0KzboYH4qBgaa586Mde
-         xjhaIqpQuYs6QeA3esTVl9PVqvdZ5WWnp8gzolizgYe/R3mJfJYbDVEzq/HN5SIGHWqs
-         ZWrlxyCysl9mkx+q0cGFTdlKtPWJE7gXl4F/u/rVlQ5MSmjOpkRdxoMG6UfV7cUXScjJ
-         /RpTRHqNag6vzFDFWtUM/WPB6ahMzKhSB9FOD52qmzoHJY74vIWpvcExI3Xn9t+YH4t5
-         61KB3VEE0zuIzig4eUNlE1jHmWXdiVHefncrl5Qm9cTQ/jUJbWpkEbgbVXKJ7a3afli9
-         lPFQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=FfRXbycGxNZly9cwE+LM7FubtNN0XTW4t5Mi6CAwVS0=;
+        b=KkeBwEik4EGGkaT4cBdiznevl7Yfm0Q2xYSsysMn4fWh7aAZG9K7Y/hhwUrMhmnwru
+         VuH9iTvmNHUXFRtMRjZUNM++72+8zVrL6PP4pGjC8OnbwFaElP7gbLrvmNNFAZdopVMY
+         ZBpmTM8g+YgV6ReSWO6oHZT2tZ1lL8YZfdijHu8IJ8A2p50OefY11vWrckPeF4h9GNS3
+         xdE/SR1YXLEJrPec8g019gH0k9CKwMk2crlRZ8bCdqq1c4heILf02AYQ00zTEU6LYMPl
+         Pj7qAEkttYWAU0HCW/SPZYJ2SpspeQ6e/wChIrvfW5mOIz3wf+mCCyMycPkV3iOzw5se
+         yOyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=LivMufJfxLpe4WS1qV8qZqQ4CFkVL3CKwRAqAJHi1Es=;
-        b=rwDArug1IHaH3x1IlmOIbiNPqM9ZFxvk/NrazgUKDgaEvPeWQd5C1xs2LYOTrEUHXS
-         SVTTdgfM6JZsjReCXN/YXfBetf5LlOxS0vclccsXZE31e4TTL6j+JuFx6CrYBoTfEBAl
-         IlSLxP+qrqAoh/ozhV3ClkUi8u/+l8ussiO+vgvrvp/GNg6ufydtmwC6HYqjsCy2YJIw
-         AYkLZwfU0oqCeVYAXuIdCODyXChePoOF4J4/qXi3YQJqA8wgtmjStZNy9e6ZGZklNd9K
-         QX2g2gspc3IXbE4zxHq294jPt5mkBxXi3mQ8YuGVYN4pXfDbn0/6keVCLSm9N4xgzuuN
-         2PUg==
-X-Gm-Message-State: ACrzQf3uFTrKZK1d6pufTXJn7YViYP2ee+SueBlGEPp+XogYFqng/lhg
-        EhXjCi6tp1tWFT7zr+Qgelq3Vg==
-X-Google-Smtp-Source: AMsMyM4Y59b0CEMYEx8UROytR1dUIY3XCcqskebtJQmrX/B7U6CuFkbooGLEL9GFVFs90Z58A0aXLQ==
-X-Received: by 2002:a05:600c:310b:b0:3b4:c709:4322 with SMTP id g11-20020a05600c310b00b003b4c7094322mr20567216wmo.141.1664182584628;
-        Mon, 26 Sep 2022 01:56:24 -0700 (PDT)
-Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id r14-20020a0560001b8e00b0022afcc11f65sm13731379wru.47.2022.09.26.01.56.20
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=FfRXbycGxNZly9cwE+LM7FubtNN0XTW4t5Mi6CAwVS0=;
+        b=pXtcQA4Lt1yJ+IDfw8f6BC4wNT+538GyLi/NHG05kxXOpHaggOf7eBZML0jKahHFB0
+         gb8G5raGvP8Z7yTUn9lITFaC646msoeBzNSZy9TBHdZxAyDvkUnrS+GpdIRmcXBV/z3d
+         Dl2ZdvkVgZVZWZUWsJBJHR6bDzILzKcSex6rj0vRCnnjzgnqigE76IiJQja8/cXBoFX5
+         kyiAcXwn1PeQd3WkkLAmJ0pjmtES7IZOQuJn6z8Y4LpokbkRc0AXWeZuX4yBfQ7QEMf1
+         rQjKtdwz2v+cjG/u/gj8lac5qt2hK47G0NVe3/xfc4nfwiOm80ekiKzRLL5mKuTpx+hP
+         ErZA==
+X-Gm-Message-State: ACrzQf1UHIMMAW/j4ui7HkahwmPRlUmctMfvZw9rDT2kfha+klLZDjoF
+        BF4CLYduk4WfxO4W2cJWWji5gQ==
+X-Google-Smtp-Source: AMsMyM7Pkh9gGS89n4kETCtIDk55eEmyCItCa3/dL6QTkEfr82yejjqfug0DWtsC8l/nOi1S3TNiVw==
+X-Received: by 2002:a05:6512:a93:b0:49f:d52f:5d14 with SMTP id m19-20020a0565120a9300b0049fd52f5d14mr9229502lfu.359.1664182617762;
+        Mon, 26 Sep 2022 01:56:57 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s12-20020ac25c4c000000b00498f23c249dsm2480175lfp.74.2022.09.26.01.56.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 01:56:24 -0700 (PDT)
-Message-ID: <199190a8-611a-7940-0109-a5a509b3dc87@linaro.org>
-Date:   Mon, 26 Sep 2022 10:56:19 +0200
+        Mon, 26 Sep 2022 01:56:57 -0700 (PDT)
+Message-ID: <a2e13e6b-7636-e97d-780c-2c7302400fdf@linaro.org>
+Date:   Mon, 26 Sep 2022 10:56:55 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/3] ARM: dts: qcom: pm8226: fix regulators node name
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH 1/2] ARM: dts: bcm283x: Fix underscores in node names
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220925210229.128462-1-luca@z3ntu.xyz>
-Reply-To: neil.armstrong@linaro.org
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20220925210229.128462-1-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20220925164021.3600-1-stefan.wahren@i2se.com>
+ <20220925164021.3600-2-stefan.wahren@i2se.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220925164021.3600-2-stefan.wahren@i2se.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2022 23:02, Luca Weiss wrote:
-> Adjust the node name to match bindings and fix the validation warning.
+On 25/09/2022 18:40, Stefan Wahren wrote:
+> A lot pinctrl node names, regulators and local_intc do not follow the
+> node name convention to avoid underscore. So fix this by using hyphen
+> or a proper node name.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->   arch/arm/boot/dts/qcom-pm8226.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi b/arch/arm/boot/dts/qcom-pm8226.dtsi
-> index 9b7d9d04ded6..be8c8032a3b1 100644
-> --- a/arch/arm/boot/dts/qcom-pm8226.dtsi
-> +++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
-> @@ -98,7 +98,7 @@ pm8226_1: pm8226@1 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   
-> -		pm8226_spmi_regulators: pm8226-regulators {
-> +		pm8226_spmi_regulators: regulators {
->   			compatible = "qcom,pm8226-regulators";
->   		};
->   
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
