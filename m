@@ -2,57 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C2B75EB4BD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 00:45:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92BF35EB4CE
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 00:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbiIZWpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 18:45:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37548 "EHLO
+        id S229570AbiIZWwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 18:52:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiIZWpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 18:45:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F7D63FE;
-        Mon, 26 Sep 2022 15:45:06 -0700 (PDT)
+        with ESMTP id S229457AbiIZWwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 18:52:34 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7487F134;
+        Mon, 26 Sep 2022 15:52:33 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9B68F612E7;
-        Mon, 26 Sep 2022 22:45:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5F9CC433D7;
-        Mon, 26 Sep 2022 22:45:04 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E97CAB815D7;
+        Mon, 26 Sep 2022 22:52:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9030BC433B5;
+        Mon, 26 Sep 2022 22:52:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664232304;
-        bh=cUtzvwGQvd2Ow1SY0ZECPOrLqVJpgTMsKtMEKiLNw0s=;
+        s=k20201202; t=1664232750;
+        bh=X+i9bYu7/jWxfKAIE3i62yvVnxdBvG/IiRya+AP0Akw=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DM33jnOUDfmg9yiXQybCFQ5+OdLzcz5NuxH/wopER/MPRfZbVz9QVcExNtUUQv8KI
-         sZLCMJjcNAZKWMLAOeRk7x81U1UdUhTzwTxTskuJMovavfPi7S6qbUIJxpCbfAV+Vv
-         9Zxcb/9N6G6TYlhmN8OfOMN1nMz5CHfsZKJRuQQRpZNouZr/0ddX3ZNZfX86qU/u+W
-         p7/0sxOrusyxPRmbgrQlngL/BL00+vfR7VqEaI7Cq6O+MkRlv4dTF0gQ0n4jXRFnjo
-         frwLMsv05AWrgVxSFiekA/P4Qg203GlFxDWWL+btH/cmERXN0qOQw+6RF2HvnqLQne
-         8/hsMtz4qElPw==
-Received: by mail-vk1-f181.google.com with SMTP id k14so4160078vkk.0;
-        Mon, 26 Sep 2022 15:45:04 -0700 (PDT)
-X-Gm-Message-State: ACrzQf2TyFdp6h/MJeEGTKL9otlz7rXtDiOH8+q01iLy9XUnZxCkLnfE
-        FiD7kO6CKi8vli1GSY1i3nGKDSujrN4On/f4yA==
-X-Google-Smtp-Source: AMsMyM7wC4yByxpxIaR8Svkq6Cx2zw5rjKAa9XCbrWV+4wDC6BoRsEsVbez5bQF6lzXc83bU4uKmMtUsDlUABID3vVA=
-X-Received: by 2002:a1f:240f:0:b0:3a3:7b48:81cd with SMTP id
- k15-20020a1f240f000000b003a37b4881cdmr9868743vkk.19.1664232303792; Mon, 26
- Sep 2022 15:45:03 -0700 (PDT)
+        b=k+WJCcJepmSQ14q6DF5jb4UgCKZYbXeY7nACK6WAMaM/uPrYsQ+x8Qku3yU28PjFn
+         PBeq/7jXzTW5J7/I1aqFgjDWN6Qv9cXBfLIQh5FAgNZfj+dcU2GHS9dh5S7NTNVbP6
+         OsuUnzF7FrpO3kLanOffFkQtonPMofZ/ELbU56XCKeHwvPoSLxg+bV/2f7ehoFgFJl
+         FKdtkqoi+DknB7qodCR5V55GUwjO6qJ3LfnKEwE5FJhXqV8k/JlVDRy2jzgrI1B4JE
+         2KQ4vLyOR6v+Ll4oUKdjtWIV0Q+QHJHHuHkzMqbZFkJTnaS6fPFr9x02dCBwO2e9Nb
+         ora+TTneLbDhg==
+Received: by mail-ua1-f44.google.com with SMTP id p89so2961343uap.12;
+        Mon, 26 Sep 2022 15:52:30 -0700 (PDT)
+X-Gm-Message-State: ACrzQf3UgtrfHDvTiB1MppHlZEiA8+Ofmk1wyQQ74kYZ8h1tM28qy/zP
+        KYOJkx3l7yOalzXNOecd+Ivx9qdBeEZ9YQPXSg==
+X-Google-Smtp-Source: AMsMyM43QjpEBGgBdeXDtHcyhT0+TUAlXLvP8qGgbv5J2u9gIos+nqDadyw2zzx9fWZeWcsqwCL4JDInZkzVBkDATYI=
+X-Received: by 2002:ab0:2715:0:b0:3c9:90c2:1aea with SMTP id
+ s21-20020ab02715000000b003c990c21aeamr7366736uao.77.1664232749469; Mon, 26
+ Sep 2022 15:52:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <1661809417-11370-1-git-send-email-lizhi.hou@amd.com> <f831f62b-004b-4f73-2a66-de9d675c44b6@gmail.com>
-In-Reply-To: <f831f62b-004b-4f73-2a66-de9d675c44b6@gmail.com>
+References: <20210416040924.2882771-1-danielwa@cisco.com> <b517fac5-2fdc-a8c9-75d0-174c67f5a2de@seco.com>
+ <20220922205334.GV4320@zorba> <dcff9b0f-82c8-5aa7-0fff-b749a05fcb20@seco.com>
+ <20220922211026.GW4320@zorba> <1663881344.25129.23.camel@chimera>
+In-Reply-To: <1663881344.25129.23.camel@chimera>
 From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 26 Sep 2022 17:44:52 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJn=i=TT9NArHK25g1NkZN_G1GjN3EGEeTAvyW_PUhgcw@mail.gmail.com>
-Message-ID: <CAL_JsqJn=i=TT9NArHK25g1NkZN_G1GjN3EGEeTAvyW_PUhgcw@mail.gmail.com>
-Subject: Re: [PATCH RFC 0/2] Generate device tree node for pci devices
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        helgaas@kernel.org, clement.leger@bootlin.com, max.zhen@amd.com,
-        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
-        stefano.stabellini@xilinx.com, trix@redhat.com
+Date:   Mon, 26 Sep 2022 17:52:18 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLibRSi2n389Q7cf+1gQSidvfiZHjHCcGirgi0hgJ53-A@mail.gmail.com>
+Message-ID: <CAL_JsqLibRSi2n389Q7cf+1gQSidvfiZHjHCcGirgi0hgJ53-A@mail.gmail.com>
+Subject: Re: [PATCH 0/8] generic command line v4
+To:     Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        Daniel Walker <danielwa@cisco.com>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        Will Deacon <will@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Andrew Morton <akpm@linux-foundation.org>, x86@kernel.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-efi@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -63,67 +70,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 16, 2022 at 6:15 PM Frank Rowand <frowand.list@gmail.com> wrote:
+On Thu, Sep 22, 2022 at 4:15 PM Daniel Gimpelevich
+<daniel@gimpelevich.san-francisco.ca.us> wrote:
 >
-> On 8/29/22 16:43, Lizhi Hou wrote:
-> > This patch series introduces OF overlay support for PCI devices which
-> > primarily addresses two use cases. First, it provides a data driven method
-> > to describe hardware peripherals that are present in a PCI endpoint and
-> > hence can be accessed by the PCI host. An example device is Xilinx/AMD
-> > Alveo PCIe accelerators. Second, it allows reuse of a OF compatible
-> > driver -- often used in SoC platforms -- in a PCI host based system. An
-> > example device is Microchip LAN9662 Ethernet Controller.
+> On Thu, 2022-09-22 at 14:10 -0700, Daniel Walker wrote:
+> > On Thu, Sep 22, 2022 at 05:03:46PM -0400, Sean Anderson wrote:
+> [snip]
+> > > As recently as last month, someone's patch to add such support was
+> > > rejected for this reason [1].
+> > >
+> > > --Sean
+> > >
+> > > [1] https://lore.kernel.org/linux-arm-kernel/20220812084613.GA3107@willie-the-truck/
 > >
-> > This patch series consolidates previous efforts to define such an
-> > infrastructure:
-> > https://lore.kernel.org/lkml/20220305052304.726050-1-lizhi.hou@xilinx.com/
-> > https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
 > >
-> > Normally, the PCI core discovers PCI devices and their BARs using the
-> > PCI enumeration process. However, the process does not provide a way to
-> > discover the hardware peripherals that are present in a PCI device, and
-> > which can be accessed through the PCI BARs. Also, the enumeration process
-> > does not provide a way to associate MSI-X vectors of a PCI device with the
-> > hardware peripherals that are present in the device. PCI device drivers
-> > often use header files to describe the hardware peripherals and their
-> > resources as there is no standard data driven way to do so. This patch> series proposes to use flattened device tree blob to describe the
-> > peripherals in a data driven way.
+> > I had no idea.. Thanks for pointing that out. I guess I will re-submit in that
+> > case.
+> >
+> > Daniel
 >
-> > Based on previous discussion, using
-> > device tree overlay is the best way to unflatten the blob and populate
-> > platform devices.
->
-> I still do not agree with this statement.  The device tree overlay
-> implementation is very incomplete and should not be used until it
-> becomes more complete.  No need to debate this right now, but I don't want
-> to let this go unchallenged.
+> This has been happening repeatedly since circa 2014, on multiple
+> architectures. It's quite frustrating, really.
 
-Then we should remove overlay support. The only way it becomes more
-complete is having actual users.
+It must not be that important. From the last time, IMO Christophe's
+version was much closer to being merged than this series. This is not
+how you get things upstream:
 
-But really, whether this is the right solution to the problem is
-independent of the state of kernel overlay support.
-
-> If there is no base system device tree on an ACPI based system, then I
-> am not convinced that a mixed ACPI / device tree implementation is
-> good architecture.
-
-Most/all of this series is needed for a DT system in which the PCI
-devices are not populated in the DT.
-
->  I might be more supportive of using a device tree
-> description of a PCI device in a detached device tree (not linked to
-> the system device tree, but instead freestanding).  Unfortunately the
-> device tree functions assume a single system devicetree, with no concept
-> of a freestanding tree (eg, if a NULL device tree node is provided to
-> a function or macro, it often defaults to the root of the system device
-> tree).  I need to go look at whether the flag OF_DETACHED handles this,
-> or if it could be leveraged to do so.
-
-Instead of worrying about a theoretical problem, we should see if
-there is an actual problem for a user.
-
-I'm not so worried about DT functions themselves, but places which
-have 'if ACPI ... else (DT) ...' paths.
+> * Dropped powerpc changes
+>   Christophe Leroy has reservations about the features for powerpc. I
+>   don't think his reservations are founded, and these changes should
+>   fully work on powerpc. However, I dropped these changes so Christophe
+>   can have more time to get comfortable with the changes.
 
 Rob
