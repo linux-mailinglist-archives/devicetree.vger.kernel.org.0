@@ -2,153 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 334195EA645
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 14:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 236BD5EA6CE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 15:04:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235718AbiIZMhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 08:37:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34876 "EHLO
+        id S235034AbiIZNEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 09:04:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235749AbiIZMhL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 08:37:11 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94610766F;
-        Mon, 26 Sep 2022 04:14:34 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id s6so10256890lfo.7;
-        Mon, 26 Sep 2022 04:14:33 -0700 (PDT)
+        with ESMTP id S235103AbiIZNEJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 09:04:09 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AB101B869A
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 04:36:07 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id z18-20020a9d65d2000000b0065c3705f7beso5313oth.9
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 04:36:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=Jl6cjv+drkaJXciTp9WRqX81dzsBqWQTjT/Pmz2Ud+k=;
-        b=BzAkBsi7CtYIjezHbmpZx5ZGxpGRZyB9yGeQMV6lVe9HR2svwaxddtPLmOelpPor8G
-         V9Gt2sV7WJYTNEA95h0/cpXwsH9RmVrgtO11FoXn4RiEwSfof9xyrbaYbDf/j9OsU7+d
-         XP0E8SSOuSFSyXBKiUAt/FcFHBku1KEA+iWzUTagsE8o0yUBR8PQll90FWQHeuNUZQLo
-         AD8qZpt4GITl1bT/HX4++H8SVgN6qRlMYCtf/bt5RtMaz8GU2oA4CCekd3Ccd7YDH+xp
-         EHU9+aApQrPakiDLVjGV+8uo7Do92pUUN5PlLXainiGbWu5/EVkCuL1sMl+5MxXg38LS
-         Qlvg==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=WvDse09bmVqe1v4bAMTxO1zF42M4yNVVMYmxZQhWitQ=;
+        b=xdf57XKzjdyAQ9JfIDTR4dZFijfC7ZSxuluOmfABDC/fyCasGGVkK0noDxxxMT1bYs
+         eNd6miXruXqog21Vm8KOZGauYAKx1TCMmnvIBVFNx+tLH9svmLyr6KOc20Sy0H2vAy02
+         Mx0zddjMpJBKfG7Z/0yWkrMMgb0fngqUytR6U8Wa5SXKt268V8Ntd28P/BpIRClN+lD7
+         ya2jDOizOmDkWhU9Q38TO+O1P/3pyY4MKUdAEgNNbbZAz0ypEykROEhdjSGa11AxUhpZ
+         6i/0mWtyMzvrS9QcZs0bSYJ1DQnhNyZppq0yfCXExyPnUxedti+OfULym6lLY2NHipky
+         60KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Jl6cjv+drkaJXciTp9WRqX81dzsBqWQTjT/Pmz2Ud+k=;
-        b=pthB71/JOtJttEo9dUd8Qewe9tyDuLi/f9z13ilkbbG+44cFqXtTBbdzxC2eBE9IFD
-         N1vGK0nP0V9pTZCd69pJdjz4qTToJcZe8Nu81s94ffIhmhIzlb2Gv586LEUKAh7ZJgDg
-         AGr4ksmW3znx4xUIjBf+wb701qonMx/S3Z5c3TieUI64nLcyZ7Am6IzdA+BVtBz8QvLz
-         bsbqIuGCjbwobluuEU4d4EtF0/BKhYq65f53QPb8pl17Z0OeG8aqefdfPp+W+bUICH7H
-         8GEZ73xBTyWwMLNl7Y6+iEkpzFd2+BJj/tqUeYh5MFlI4WJmGrdb02ONRLg/cpnMuC5s
-         n/mg==
-X-Gm-Message-State: ACrzQf06Yox+/smVqICE7bjMZKAy8ULryKDvL2oW6efGuQGTevvU54uo
-        J2/ICvS9s5ahpS4Fe98QczBtnZ+r0Lssag==
-X-Google-Smtp-Source: AMsMyM7FUus+1W/kisiRcKm/uEjq7jN214VSWYzTOL/eGPntWFSEYsMYvV9p54z041a08kyfsUw7Sg==
-X-Received: by 2002:a05:651c:1591:b0:261:c388:aa58 with SMTP id h17-20020a05651c159100b00261c388aa58mr7587463ljq.277.1664189775575;
-        Mon, 26 Sep 2022 03:56:15 -0700 (PDT)
-Received: from mobilestation (ip1.ibrae.ac.ru. [91.238.191.1])
-        by smtp.gmail.com with ESMTPSA id p26-20020a056512313a00b00490b5f09973sm2505226lfd.92.2022.09.26.03.56.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 03:56:15 -0700 (PDT)
-Date:   Mon, 26 Sep 2022 13:56:11 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v2 03/15] dt-bindings: memory: snps: Convert the schema
- to being generic
-Message-ID: <20220926105611.32od2rjlvybmzmut@mobilestation>
-References: <20220910195659.11843-1-Sergey.Semin@baikalelectronics.ru>
- <20220910195659.11843-4-Sergey.Semin@baikalelectronics.ru>
- <20220912143219.GC1170702-robh@kernel.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=WvDse09bmVqe1v4bAMTxO1zF42M4yNVVMYmxZQhWitQ=;
+        b=khUacb0UPeIr10E5i/ulxgPDLS0nY5ojWDymXAQlfLfhFRp9W+31q+UYaBW7YtvPnI
+         WVq/oB5Y17uCiIAioZfX5tjsr9/dNxh7A0CrFxH3lzkNdYpwwaCsEnXv/sKbpC9GiI5D
+         N6NVF/qyeKtjBzMniqTyZvo8qy3P5vlcIeQ/BebDGAvJ4zhSxp5vfjXNfls6E255tAVj
+         UP6ZjmppLbhseiTMtexUCulw+kNYWbHqjR1PhzFos3iB7uwE8In25OA4v/siGJ1k8KY/
+         nHAHTaFOnGojzVD+bCl3OT1zKGKmth7zaAmOZK0ZUl7vWLXnuUskjuWvrbJhGBSn03rx
+         lqKg==
+X-Gm-Message-State: ACrzQf2RMPmBsE1Ql2nzozJtxL70+6EBHjdU3Gr6uFLM+MtHl/eL3NtJ
+        4AubJCHND4JHJFKGVywmTdbNbtW7PF3tTQVNstIDT8G2wfk=
+X-Google-Smtp-Source: AMsMyM5Tz7DUFDW33OpYyhT8+unBKHG5TNYkQGqQQnVd2QORmiiOiYZshfL+0/MqqJBQPrposOqCWQOY4K7zjY7ltNg=
+X-Received: by 2002:a0d:d68a:0:b0:350:a7f0:7b69 with SMTP id
+ y132-20020a0dd68a000000b00350a7f07b69mr8231573ywd.132.1664190989438; Mon, 26
+ Sep 2022 04:16:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220912143219.GC1170702-robh@kernel.org>
+References: <20220720073326.19591-1-krzysztof.kozlowski@linaro.org> <7fdcff6a-9db9-a9d0-4013-7d3ff5fd5d8c@linaro.org>
+In-Reply-To: <7fdcff6a-9db9-a9d0-4013-7d3ff5fd5d8c@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 26 Sep 2022 14:16:18 +0300
+Message-ID: <CAA8EJprom=CfxPQke5JjZi0CSSvvB=cw1RxOO8StLThpASG3ew@mail.gmail.com>
+Subject: Re: [PATCH v5] dt-bindings: qcom: document preferred compatible naming
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 12, 2022 at 09:32:19AM -0500, Rob Herring wrote:
-> On Sat, Sep 10, 2022 at 10:56:47PM +0300, Serge Semin wrote:
-> > At the current state the DW uMCTL2 DDRC DT-schema can't be used as the
-> > common one for all the IP-core-based devices due to the compatible string
-> > property constraining the list of the supported device names. In order to
-> > fix that we suggest to update the compatible property constraints so one
-> > would permit having any value aside with the generic device names. At the
-> > same time the generic DT-schema selection must be restricted to the
-> > denoted generic devices only so not to permit the generic fallback
-> > compatibles. Finally since the generic schema will be referenced from the
-> > vendor-specific DT-bindings with possibly non-standard properties defined
-> > it must permit having additional properties specified.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
-> > 
-> > Note alternatively we could drop the "additionalProperties" keyword
-> > modification since currently there is no actual device available with the
-> > properties not listed in the generic DT-schema.
-> 
+On Mon, 26 Sept 2022 at 12:30, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/07/2022 09:33, Krzysztof Kozlowski wrote:
+> > Compatibles can come in two formats.  Either "vendor,ip-soc" or
+> > "vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
+> > DT schema file documenting preferred policy and enforcing it for all new
+> > compatibles, except few existing patterns.
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> >
+>
+> Guys,
+>
+> This is waiting for two months. If you do not like it, please respond
+> with some comments.
 
-> Normally, this has required 2 schema files. However, I think you can 
-> do something like this:
-> 
-> if:
->   compatible:
->     enum:
->       - snps,ddrc-3.80a
->       - snps,dw-umctl2-ddrc
->       - xlnx,zynqmp-ddrc-2.40a
-> then:
->   unevaluatedProperties: false
-> 
-> 
-> But please make sure that actually catches undocumented properties 
-> because unevaluateProperties under 'then' is not something I've tried.
+I'd say, this is good, it documents what was agreed before.
 
-Oh, I wish this would work! Alas it doesn't. AFAIU the schemas under
-the "then" and "else" keywords are considered as separate schemas
-and are independently applied to the DT node. As soon as I added the
-construction suggested by you the schema evaluation started failing
-with error as none of the DT-node properties in the examples are valid:
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-< ... /snps,dw-umctl2-ddrc.example.dtb: memory-controller@fd070000:
-<     Unevaluated properties are not allowed ('compatible', 'reg', interrupts', 'interrupt-names', '$nodename' were unexpected)
-
-< ... /snps,dw-umctl2-ddrc.example.dtb: memory-controller@3d400000:
-<     Unevaluated properties are not allowed ('compatible', 'reg', 'interrupts', 'interrupt-names', 'clocks', 'clock-names', '$nodename' were unexpected)
-
-Any suggestion of how this could be fixed? Perhaps updating the
-dtschema tool anyhow? (I failed to find a quick-fix for it) Creating
-an additional separate schema with the common properties seems a bit
-overkill in this case. On the other hand is there a decent
-alternative?
-
-What about accepting what I suggested in this patch? It does permit
-additional properties, but we won't need to have a separate schema
-with just several common properties.
-
--Sergey
-
-> 
-> Rob
+-- 
+With best wishes
+Dmitry
