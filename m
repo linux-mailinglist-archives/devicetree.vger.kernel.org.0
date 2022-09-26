@@ -2,61 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99B0C5EA60B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 14:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 334195EA645
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 14:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239427AbiIZM2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 08:28:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33218 "EHLO
+        id S235718AbiIZMhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 08:37:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239474AbiIZM1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 08:27:42 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 040A7AF494;
-        Mon, 26 Sep 2022 04:07:43 -0700 (PDT)
-X-UUID: 1122c0af8e2441ea94d473dca0d3535f-20220926
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Uc937o+PUPpR2eYFf4FQdE4K2mZlZn0L98x5Q0tIZGk=;
-        b=fVAA0+esw7uxIDKMQaMCpt1ty47U2GdY9Wgt+1u2Aj3a+1yohmPsFBgnAd8QQUAs7RyrYDhW6aEuYZ0eMAVdbTfShU0wvFNOvw3SdSTFWrGfknfq5F6ULjGL2zL5rOEPZjZJC89YckhJmF+wRP4Ib49EHVZJLBLeheC4FrDjV6A=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:6dfb35e5-2e29-49e7-b566-1183613c4409,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:-25
-X-CID-META: VersionHash:39a5ff1,CLOUDID:ac4d3fe4-87f9-4bb0-97b6-34957dc0fbbe,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 1122c0af8e2441ea94d473dca0d3535f-20220926
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1736620658; Mon, 26 Sep 2022 18:50:51 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 26 Sep 2022 18:50:50 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Mon, 26 Sep 2022 18:50:50 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH v2] arm64: dts: mt8192: Add vcodec lat and core nodes
-Date:   Mon, 26 Sep 2022 18:50:47 +0800
-Message-ID: <20220926105047.19419-1-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        with ESMTP id S235749AbiIZMhL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 08:37:11 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94610766F;
+        Mon, 26 Sep 2022 04:14:34 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id s6so10256890lfo.7;
+        Mon, 26 Sep 2022 04:14:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=Jl6cjv+drkaJXciTp9WRqX81dzsBqWQTjT/Pmz2Ud+k=;
+        b=BzAkBsi7CtYIjezHbmpZx5ZGxpGRZyB9yGeQMV6lVe9HR2svwaxddtPLmOelpPor8G
+         V9Gt2sV7WJYTNEA95h0/cpXwsH9RmVrgtO11FoXn4RiEwSfof9xyrbaYbDf/j9OsU7+d
+         XP0E8SSOuSFSyXBKiUAt/FcFHBku1KEA+iWzUTagsE8o0yUBR8PQll90FWQHeuNUZQLo
+         AD8qZpt4GITl1bT/HX4++H8SVgN6qRlMYCtf/bt5RtMaz8GU2oA4CCekd3Ccd7YDH+xp
+         EHU9+aApQrPakiDLVjGV+8uo7Do92pUUN5PlLXainiGbWu5/EVkCuL1sMl+5MxXg38LS
+         Qlvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=Jl6cjv+drkaJXciTp9WRqX81dzsBqWQTjT/Pmz2Ud+k=;
+        b=pthB71/JOtJttEo9dUd8Qewe9tyDuLi/f9z13ilkbbG+44cFqXtTBbdzxC2eBE9IFD
+         N1vGK0nP0V9pTZCd69pJdjz4qTToJcZe8Nu81s94ffIhmhIzlb2Gv586LEUKAh7ZJgDg
+         AGr4ksmW3znx4xUIjBf+wb701qonMx/S3Z5c3TieUI64nLcyZ7Am6IzdA+BVtBz8QvLz
+         bsbqIuGCjbwobluuEU4d4EtF0/BKhYq65f53QPb8pl17Z0OeG8aqefdfPp+W+bUICH7H
+         8GEZ73xBTyWwMLNl7Y6+iEkpzFd2+BJj/tqUeYh5MFlI4WJmGrdb02ONRLg/cpnMuC5s
+         n/mg==
+X-Gm-Message-State: ACrzQf06Yox+/smVqICE7bjMZKAy8ULryKDvL2oW6efGuQGTevvU54uo
+        J2/ICvS9s5ahpS4Fe98QczBtnZ+r0Lssag==
+X-Google-Smtp-Source: AMsMyM7FUus+1W/kisiRcKm/uEjq7jN214VSWYzTOL/eGPntWFSEYsMYvV9p54z041a08kyfsUw7Sg==
+X-Received: by 2002:a05:651c:1591:b0:261:c388:aa58 with SMTP id h17-20020a05651c159100b00261c388aa58mr7587463ljq.277.1664189775575;
+        Mon, 26 Sep 2022 03:56:15 -0700 (PDT)
+Received: from mobilestation (ip1.ibrae.ac.ru. [91.238.191.1])
+        by smtp.gmail.com with ESMTPSA id p26-20020a056512313a00b00490b5f09973sm2505226lfd.92.2022.09.26.03.56.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Sep 2022 03:56:15 -0700 (PDT)
+Date:   Mon, 26 Sep 2022 13:56:11 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 03/15] dt-bindings: memory: snps: Convert the schema
+ to being generic
+Message-ID: <20220926105611.32od2rjlvybmzmut@mobilestation>
+References: <20220910195659.11843-1-Sergey.Semin@baikalelectronics.ru>
+ <20220910195659.11843-4-Sergey.Semin@baikalelectronics.ru>
+ <20220912143219.GC1170702-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220912143219.GC1170702-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,90 +88,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add vcodec lat and core nodes for mt8192 SoC.
+On Mon, Sep 12, 2022 at 09:32:19AM -0500, Rob Herring wrote:
+> On Sat, Sep 10, 2022 at 10:56:47PM +0300, Serge Semin wrote:
+> > At the current state the DW uMCTL2 DDRC DT-schema can't be used as the
+> > common one for all the IP-core-based devices due to the compatible string
+> > property constraining the list of the supported device names. In order to
+> > fix that we suggest to update the compatible property constraints so one
+> > would permit having any value aside with the generic device names. At the
+> > same time the generic DT-schema selection must be restricted to the
+> > denoted generic devices only so not to permit the generic fallback
+> > compatibles. Finally since the generic schema will be referenced from the
+> > vendor-specific DT-bindings with possibly non-standard properties defined
+> > it must permit having additional properties specified.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > 
+> > ---
+> > 
+> > Note alternatively we could drop the "additionalProperties" keyword
+> > modification since currently there is no actual device available with the
+> > properties not listed in the generic DT-schema.
+> 
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
----
-Change in v1:
-  * Replace node names with video-codec
-    [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
----
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 60 ++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+> Normally, this has required 2 schema files. However, I think you can 
+> do something like this:
+> 
+> if:
+>   compatible:
+>     enum:
+>       - snps,ddrc-3.80a
+>       - snps,dw-umctl2-ddrc
+>       - xlnx,zynqmp-ddrc-2.40a
+> then:
+>   unevaluatedProperties: false
+> 
+> 
+> But please make sure that actually catches undocumented properties 
+> because unevaluateProperties under 'then' is not something I've tried.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 6b20376191a7..214dfc6b0ed1 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -1449,6 +1449,66 @@
- 			power-domains = <&spm MT8192_POWER_DOMAIN_ISP2>;
- 		};
- 
-+		vcodec_dec: video-codec@16000000 {
-+			compatible = "mediatek,mt8192-vcodec-dec";
-+			reg = <0 0x16000000 0 0x1000>;
-+			mediatek,scp = <&scp>;
-+			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-+			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0 0 0 0x16000000 0 0x26000>;
-+
-+			vcodec_lat: video-codec@10000 {
-+				compatible = "mediatek,mtk-vcodec-lat";
-+				reg = <0x0 0x10000 0 0x800>;
-+				interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
-+				iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
-+					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
-+					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
-+					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
-+					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
-+					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
-+					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
-+					 <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
-+				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-+					 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
-+					 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
-+					 <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
-+					 <&topckgen CLK_TOP_MAINPLL_D4>;
-+				clock-names = "sel", "soc-vdec", "soc-lat", "vdec", "top";
-+				assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
-+				assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
-+				power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
-+			};
-+
-+			vcodec_core: video-codec@25000 {
-+				compatible = "mediatek,mtk-vcodec-core";
-+				reg = <0 0x25000 0 0x1000>;
-+				interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
-+				iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
-+					 <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
-+				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-+					 <&vdecsys CLK_VDEC_VDEC>,
-+					 <&vdecsys CLK_VDEC_LAT>,
-+					 <&vdecsys CLK_VDEC_LARB1>,
-+					 <&topckgen CLK_TOP_MAINPLL_D4>;
-+				clock-names = "sel", "soc-vdec", "soc-lat", "vdec", "top";
-+				assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
-+				assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
-+				power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
-+			};
-+		};
-+
- 		larb5: larb@1600d000 {
- 			compatible = "mediatek,mt8192-smi-larb";
- 			reg = <0 0x1600d000 0 0x1000>;
--- 
-2.18.0
+Oh, I wish this would work! Alas it doesn't. AFAIU the schemas under
+the "then" and "else" keywords are considered as separate schemas
+and are independently applied to the DT node. As soon as I added the
+construction suggested by you the schema evaluation started failing
+with error as none of the DT-node properties in the examples are valid:
 
+< ... /snps,dw-umctl2-ddrc.example.dtb: memory-controller@fd070000:
+<     Unevaluated properties are not allowed ('compatible', 'reg', interrupts', 'interrupt-names', '$nodename' were unexpected)
+
+< ... /snps,dw-umctl2-ddrc.example.dtb: memory-controller@3d400000:
+<     Unevaluated properties are not allowed ('compatible', 'reg', 'interrupts', 'interrupt-names', 'clocks', 'clock-names', '$nodename' were unexpected)
+
+Any suggestion of how this could be fixed? Perhaps updating the
+dtschema tool anyhow? (I failed to find a quick-fix for it) Creating
+an additional separate schema with the common properties seems a bit
+overkill in this case. On the other hand is there a decent
+alternative?
+
+What about accepting what I suggested in this patch? It does permit
+additional properties, but we won't need to have a separate schema
+with just several common properties.
+
+-Sergey
+
+> 
+> Rob
