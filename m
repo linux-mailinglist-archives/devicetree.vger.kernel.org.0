@@ -2,65 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 105205E9A5C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 09:23:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E6F5E9A67
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 09:27:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233598AbiIZHXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 03:23:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49470 "EHLO
+        id S234014AbiIZH10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 03:27:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233689AbiIZHXP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 03:23:15 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205F827B22;
-        Mon, 26 Sep 2022 00:23:12 -0700 (PDT)
-X-UUID: f424b5f4f30a4eb8b06251011b6e3f5d-20220926
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=IqWG+Rd5bDpvf8CcN3vOek+fmkXK/Li6MsYuujgzbAE=;
-        b=HEXQ9B4+4SSU5ndOdu+CPN1+JU7Za8penC6q75Vfg7nBrKZYbig9e98l5uHNX3VdnECEX9Z1m30ddxDBA3/UokQIuUL5jbtbTCX6xmbSOhXyzSa2rsdJ1NV20Yihf7QW+/ddvw2MRAW3sNsN1E+CVo6H0aoTuF9bZynsJRGT9TI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.11,REQID:258a6b4a-062a-420e-b115-1e85eb617d77,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:-5
-X-CID-META: VersionHash:39a5ff1,CLOUDID:aa9737e4-87f9-4bb0-97b6-34957dc0fbbe,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: f424b5f4f30a4eb8b06251011b6e3f5d-20220926
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1196096851; Mon, 26 Sep 2022 15:23:08 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 26 Sep 2022 15:23:06 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 26 Sep 2022 15:23:02 +0800
-Message-ID: <63c1962b-26a5-0415-9035-580c2842e67b@mediatek.com>
-Date:   Mon, 26 Sep 2022 15:23:01 +0800
+        with ESMTP id S233382AbiIZH1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 03:27:25 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A96AB1FCDE
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 00:27:23 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id ay7-20020a05600c1e0700b003b49861bf48so7721079wmb.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 00:27:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=zubJIXmuUlfj8y+X7ZsbYv3JeG6JFdVK1Q2FbkUA5ug=;
+        b=fMhbNZElR89NcaN0To6NsBjZw2zKAJW1D4IFBz6JctZLE4IPHnEtqPyITGMKE+fHfC
+         hUJyVrtJyptyuclW+3C8wZ31QCIt14OAoPWb2Dybv63ogqvTQ+Bi95ImiwpvG51SugEy
+         wvtptqUu+E8n4RQ5370r6otruOfIf9o5EvX2+K/e9xeFuj9KczGq8sAlFqfLHKj/KqQw
+         V0/OzPo5unR81j5bc8bL6ksQ01n5C2oqFurr8hRPkzo3XneYRwAVmYIq8I9bo/Q5gt7R
+         6BJf+ZM0Cqxop/gi7LmddY/3gXWZwdqA06icFsdgbUVk9yo/DytwE4RpmCQmiLpa7Qa9
+         xcxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=zubJIXmuUlfj8y+X7ZsbYv3JeG6JFdVK1Q2FbkUA5ug=;
+        b=uZ/A+MmXHzrhgw5e4543gYoQI1jKYRw9r3W6DzyYBX7Y6ePAG+ALmLLbafmMmGKxGB
+         iGOHXiaQLKTyxyO5TDkqO90uo9qwzqc8tgjxbsvCKNMMMQUUJbRyfisB7ydZ/wg1sB4I
+         bC01tAxMGQU1pKcYxVhXuxKUbC47kYniO8EFdFetR+z5lytxdd4R25/EgiYoUR2MaNYB
+         hf5C1kOj/bJ2QKUQWs94MSL3zLKGgc9snzdobGa7Z8gCFjujwpsR9WJu9CxvXpURxrQV
+         pcOYGHI1rDZEXqOJiZ9f6TD1tEbAFWHtIBhDDcvj2AcuyTWZ3wH4GVS40d9ziUyS2Mrm
+         k37g==
+X-Gm-Message-State: ACrzQf0HJ4YcOpTmSn6SlBMHy9EwCnwJApfGRFUhpfx8BpQfWybW/cma
+        FNBob0+GjfmMuhKh2IwIVshP2BwZjE9enEeOyzziug==
+X-Google-Smtp-Source: AMsMyM7xMGIVVToA5AN1/jgoODmhEbMuhmoVnDP+T87PXH7Sic5DMpZNydXJKIs2uiuhhS32DOJGBv3vfei3TdeY0AA=
+X-Received: by 2002:a05:600c:4f8d:b0:3b4:9f2f:4311 with SMTP id
+ n13-20020a05600c4f8d00b003b49f2f4311mr13504647wmq.17.1664177242176; Mon, 26
+ Sep 2022 00:27:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] media: mediatek: venc: Add h264 extended profile support
-Content-Language: en-US
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
-        kyrie wu <kyrie.wu@mediatek.com>
-References: <20220915115135.7271-1-allen-kh.cheng@mediatek.com>
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-In-Reply-To: <20220915115135.7271-1-allen-kh.cheng@mediatek.com>
+References: <20220905145555.674800-1-etienne.carriere@linaro.org>
+ <CAMRc=Mcq3u+1JjvXJ2X774vknq-LOeCfE7hLj2As7Q5A13tx0w@mail.gmail.com> <20220924175721.GA1051922-robh@kernel.org>
+In-Reply-To: <20220924175721.GA1051922-robh@kernel.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 26 Sep 2022 09:27:11 +0200
+Message-ID: <CAMRc=Mf=U4PVQJVoxdub+BUUrZQyHGs7wF8DxRwxdw=izcb6Zg@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-binding: gpio: publish binding IDs under dual license
+To:     Rob Herring <robh@kernel.org>
+Cc:     Etienne Carriere <etienne.carriere@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Stephen Warren <swarren@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,36 +74,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hello, maintainers
+On Sat, Sep 24, 2022 at 7:57 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Sep 22, 2022 at 10:37:03AM +0200, Bartosz Golaszewski wrote:
+> > On Mon, Sep 5, 2022 at 4:57 PM Etienne Carriere
+> > <etienne.carriere@linaro.org> wrote:
+> > >
+> > > Changes gpio.h DT binding header file to be published under GPLv2 or
+> > > BSD-2-Clause license terms. This change allows this GPIO generic
+> > > bindings header file to be used in software components as bootloaders
+> > > and OSes that are not published under GPLv2 terms.
+> > >
+> > > All contributors to gpio.h file in copy.
+> > >
+> > > Cc: Stephen Warren <swarren@nvidia.com>
+> > > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > > Cc: Laxman Dewangan <ldewangan@nvidia.com>
+> > > Cc: Andrew Jeffery <andrew@aj.id.au>
+> > > Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+> > > Cc: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > >
+> > > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+> > > ---
+> >
+> > Applied, thanks!
+>
+> I don't think anyone is really going to care, but you first need acks
+> from the Cc list to re-license or a lawyer to tell you it's not
+> copyrightable anyways and doesn't matter. Your choice. ;)
+>
+> Rob
 
-kindly disregard this patch.
+Eek, you're right. Will back it out for now.
 
-The MTK HW encoder does not yet support this. (only sw)
-
-Thanks,
-Allen
-
-On 9/15/22 19:51, Allen-KH Cheng wrote:
-> Add h264 extended profile support
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Co-developed-by: kyrie wu <kyrie.wu@mediatek.com>
-> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
-> ---
->  drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c b/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
-> index 13c4f860fa69..ac2ef6275d78 100644
-> --- a/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
-> +++ b/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
-> @@ -243,8 +243,7 @@ static unsigned int h264_get_profile(struct venc_h264_inst *inst,
->  		mtk_vcodec_err(inst, "unsupported CONSTRAINED_BASELINE");
->  		return 0;
->  	case V4L2_MPEG_VIDEO_H264_PROFILE_EXTENDED:
-> -		mtk_vcodec_err(inst, "unsupported EXTENDED");
-> -		return 0;
-> +		return 88;
->  	default:
->  		mtk_vcodec_debug(inst, "unsupported profile %d", profile);
->  		return 100;
+Thanks
+Bartosz
