@@ -2,83 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD00C5E9826
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 05:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C72325E9834
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 05:21:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231396AbiIZDG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 23:06:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54580 "EHLO
+        id S231176AbiIZDVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 23:21:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232748AbiIZDGz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 23:06:55 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E4872A708;
-        Sun, 25 Sep 2022 20:06:54 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28Q36dGj043721;
-        Sun, 25 Sep 2022 22:06:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1664161599;
-        bh=h3OvXzV0yd/AeovBKdhGD6ntYjKNXz8xxfV6ZK4mVOY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=ESpHA26jJrhXeRgroEBY3QKLX2ZGY6XfWAFQTtUJ9hSOefnnQ6FU9k7YOor1+Hv88
-         lmHckuAihrXoWJ5Rc+eWBbACDYRKOcP6PrEkcsp+LHN42VAVy9HTJL4wCdt4l96i9K
-         oXZD18mPPeT23ObrstVvytDbLYfTFV51e6Yq33iM=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28Q36dux078452
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 25 Sep 2022 22:06:39 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Sun, 25
- Sep 2022 22:06:38 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Sun, 25 Sep 2022 22:06:38 -0500
-Received: from ubuntu (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with SMTP id 28Q36WOV050609;
-        Sun, 25 Sep 2022 22:06:33 -0500
-Date:   Sun, 25 Sep 2022 20:06:31 -0700
-From:   Matt Ranostay <mranostay@ti.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-CC:     <bhelgaas@google.com>, <robh+dt@kernel.org>, <kishon@ti.com>,
-        <vigneshr@ti.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] dt-bindings: PCI: ti,j721e-pci-*: resolve
- unexpected property warnings
-Message-ID: <YzEXN88AAa7tZvyE@ubuntu>
-References: <20220924223517.123343-1-mranostay@ti.com>
- <b820b84b-609f-6b1a-fb9f-fde05ce88f7f@kernel.org>
+        with ESMTP id S233029AbiIZDVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 23:21:19 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225EA25D1
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 20:21:14 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 30so7242570edw.5
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 20:21:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=hFRauekI8mX749A11zabMJwKnZcHcXKuDmO4So8v3vo=;
+        b=AixRZnVWOzLnBwZfBtg6on2IFpinSMdiKGTGGn5iUYGSUPE1m3ciQrWBgacohOfZq9
+         U71cXJlHnfjd7reOEUfvcUHl9kBuYXKnPwxe4kznA3T3bWB4rtqHA94ugxHWSNSTMvhJ
+         pul2qPnhFvHhbaRs4NfMYx2PTEa67sX1Frz+8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=hFRauekI8mX749A11zabMJwKnZcHcXKuDmO4So8v3vo=;
+        b=cX8WXbUTLb3lBh7QIIPuAViWwo/FQWsmJMGMuvIXT2DUq+X7KrvUCobkQHlno1eftD
+         S1+6+ezpcCQzyQrZe/CXvLP83vNKL+532yQpqxYsAP+i/QDAuGSXlh56kJvuhbotm1Ou
+         ZN7EPaa4ac3SuOR/drHqDpYewn2SrZuT0p43KqLgqmuNFXaj2o97rrHAKJbAHo6kt4Pd
+         mvJzTrhg4yRUB99/N/yhki5LcjMP1qp2WR19Yb3gBlNeNUYnBHCz9jgHFVvO7qIqR12Z
+         b5sPOpXrfqZOhIXC8yK2ETRUJQxujWLjy2HTTY8aGUMxey+3P/zES2HG6yX1RwEEmVj9
+         xcXQ==
+X-Gm-Message-State: ACrzQf1Y2zOdp0HLtDGWccXURAv4uX26BxB0KSykTavEGXh/GVGGI2uW
+        F9YwNOluo4BT/65mHFYJ1NqwMEsKR59htUgPHm606Q==
+X-Google-Smtp-Source: AMsMyM68ZDwrrQBoFqZZC3KRonbtxs8Nb2DYXYPzyNANDUSJ7C79zpcMAPR6pS/a5apEOFxLB3kTcuzXbEP655raLi4=
+X-Received: by 2002:a05:6402:3904:b0:451:f01c:9217 with SMTP id
+ fe4-20020a056402390400b00451f01c9217mr19718052edb.78.1664162473029; Sun, 25
+ Sep 2022 20:21:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <b820b84b-609f-6b1a-fb9f-fde05ce88f7f@kernel.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220915072458.18232-1-angelogioacchino.delregno@collabora.com> <20220915072458.18232-7-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220915072458.18232-7-angelogioacchino.delregno@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 26 Sep 2022 11:21:01 +0800
+Message-ID: <CAGXv+5FePqwjXW3A=7qZEayHEKc3JQOm_AFDXNZEJaapHqbxGQ@mail.gmail.com>
+Subject: Re: [PATCH v2 06/10] clk: mediatek: clk-mt8195-topckgen: Register
+ mfg_ck_fast_ref as generic mux
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+        miles.chen@mediatek.com, rex-bc.chen@mediatek.com,
+        nfraprado@collabora.com, chun-jie.chen@mediatek.com,
+        jose.exposito89@gmail.com, drinkcat@chromium.org,
+        weiyi.lu@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 25, 2022 at 11:21:02AM +0200, Krzysztof Kozlowski wrote:
-> On 25/09/2022 00:35, Matt Ranostay wrote:
-> > Resolve unexpected property warnings related to interrupts in both J721E PCI EP and host
-> > yaml files.
-> > 
-> 
-> Thanks for cc-ing. On what tree do you base your patch? Looks like
-> something old. If so, you need to rebase to some recent kernel.
+On Thu, Sep 15, 2022 at 3:25 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
+> This clock was being registered as clk-composite through the helpers
+> for the same in the MediaTek clock APIs but, in reality, this isn't
+> a composite clock.
+>
+> Appropriately register this clock with devm_clk_hw_register_mux().
+> No functional changes.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-It was on linux-next from Sep 23rd. So would seem odd if the rebasing seems
-from an older tree. 
-
-- Matt
-
-> Best regards,
-> Krzysztof
-> 
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
