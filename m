@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 473675E9C9A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CBAF5E9C9E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:56:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234241AbiIZI4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 04:56:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48262 "EHLO
+        id S234489AbiIZI4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:56:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231727AbiIZI4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:56:18 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C9C3CBC6
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:15 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id e18so3987171wmq.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:15 -0700 (PDT)
+        with ESMTP id S234540AbiIZI41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:56:27 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E723DBD8
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:26 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id iv17so3988127wmb.4
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:from:reply-to
          :references:cc:to:content-language:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date;
-        bh=cMdvVG6gsVrl67bRH/yjYyvxFVJ/s7FYCJ8TDUHq/e8=;
-        b=oYcg6maKBAwLkrJtTzjJDgfU2YwyJZ4y3fiJoiClwcf/BM+Hw9KLQn4IhVUfFCSuar
-         6/wAvvVn6yftGiR1m/DDzR2zzHDpdKvETW4hJMvJ82LIWqKOCPPmqmTEZH6iyhMnCBVB
-         6R7IXRkcgOCIKo+Ota7tWwK+wH3X2pFqfHsGpQN8zkIHfn0RDTyM4+DfEqskaZd9erDO
-         nKW+zfPuyry/nDiXxPL4+ll5MP9SXNz5XRvxCggsi63u2tZ3RKF0+NdvBUVNinYkBFxT
-         Tfx9SjzqUbbT+SqywinllpMgAFp3c3DD+XRlguLKS1w7aXeX8CH5CwmGZ9tbMY8kpiKw
-         Ecmw==
+        bh=LivMufJfxLpe4WS1qV8qZqQ4CFkVL3CKwRAqAJHi1Es=;
+        b=MRgp3u3JMORAFJM1sdZCZ+fpbuvN/7UVQgKaoUDWgnopUmx0KzboYH4qBgaa586Mde
+         xjhaIqpQuYs6QeA3esTVl9PVqvdZ5WWnp8gzolizgYe/R3mJfJYbDVEzq/HN5SIGHWqs
+         ZWrlxyCysl9mkx+q0cGFTdlKtPWJE7gXl4F/u/rVlQ5MSmjOpkRdxoMG6UfV7cUXScjJ
+         /RpTRHqNag6vzFDFWtUM/WPB6ahMzKhSB9FOD52qmzoHJY74vIWpvcExI3Xn9t+YH4t5
+         61KB3VEE0zuIzig4eUNlE1jHmWXdiVHefncrl5Qm9cTQ/jUJbWpkEbgbVXKJ7a3afli9
+         lPFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:from:reply-to
          :references:cc:to:content-language:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=cMdvVG6gsVrl67bRH/yjYyvxFVJ/s7FYCJ8TDUHq/e8=;
-        b=AgZRVSKcX/QDTyHeE7ju6jwpxsI8DjbYxPA0q2004GVqcRKJYIX6GRM+xczLQpGC92
-         3aNZp85ua264BkfdkfURQT67VZmsTPPZkQ8QlmqU40koFReqSrvy0VuxEr4uazEMHR/0
-         O/JFYSqengia5xpov/XY0R9pARx/td7dKq+1d5Go3hbGY2TiHltScPwIpICKedJEUhFw
-         Q5LxlC+AXcCX0v1yN7leRNd5ze+hXbC527N9b9qTUinhQL5JB9VnAsuQ0N7B1J3W9zoX
-         r96IOKnt1WdFTp019P0TsCmRYM4lqE955rBWJDUyC/ZeApTHIAtPNtoBPO/fDnE4kOMC
-         rxgw==
-X-Gm-Message-State: ACrzQf0eHiMkGAVitmbp4YDRJfULIjNMkrQgjDKXVnJWdOfdGkSVE3tj
-        q2xQNhs8FqS+mOOM9Y23nfIg6Q==
-X-Google-Smtp-Source: AMsMyM7pAEtgR9SQVfgG1QhJMXvMDKkf8XyniYQR7ul4iT246LQLXLILmqxGPic89ZHI2yzTTionMA==
-X-Received: by 2002:a05:600c:1990:b0:3b4:c326:d099 with SMTP id t16-20020a05600c199000b003b4c326d099mr13751533wmq.19.1664182573985;
-        Mon, 26 Sep 2022 01:56:13 -0700 (PDT)
+        bh=LivMufJfxLpe4WS1qV8qZqQ4CFkVL3CKwRAqAJHi1Es=;
+        b=rwDArug1IHaH3x1IlmOIbiNPqM9ZFxvk/NrazgUKDgaEvPeWQd5C1xs2LYOTrEUHXS
+         SVTTdgfM6JZsjReCXN/YXfBetf5LlOxS0vclccsXZE31e4TTL6j+JuFx6CrYBoTfEBAl
+         IlSLxP+qrqAoh/ozhV3ClkUi8u/+l8ussiO+vgvrvp/GNg6ufydtmwC6HYqjsCy2YJIw
+         AYkLZwfU0oqCeVYAXuIdCODyXChePoOF4J4/qXi3YQJqA8wgtmjStZNy9e6ZGZklNd9K
+         QX2g2gspc3IXbE4zxHq294jPt5mkBxXi3mQ8YuGVYN4pXfDbn0/6keVCLSm9N4xgzuuN
+         2PUg==
+X-Gm-Message-State: ACrzQf3uFTrKZK1d6pufTXJn7YViYP2ee+SueBlGEPp+XogYFqng/lhg
+        EhXjCi6tp1tWFT7zr+Qgelq3Vg==
+X-Google-Smtp-Source: AMsMyM4Y59b0CEMYEx8UROytR1dUIY3XCcqskebtJQmrX/B7U6CuFkbooGLEL9GFVFs90Z58A0aXLQ==
+X-Received: by 2002:a05:600c:310b:b0:3b4:c709:4322 with SMTP id g11-20020a05600c310b00b003b4c7094322mr20567216wmo.141.1664182584628;
+        Mon, 26 Sep 2022 01:56:24 -0700 (PDT)
 Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id l2-20020a05600c1d0200b003a62052053csm13123493wms.18.2022.09.26.01.56.10
+        by smtp.gmail.com with ESMTPSA id r14-20020a0560001b8e00b0022afcc11f65sm13731379wru.47.2022.09.26.01.56.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 01:56:13 -0700 (PDT)
-Message-ID: <2b57b492-8765-8629-1c94-ea04c0188792@linaro.org>
-Date:   Mon, 26 Sep 2022 10:56:08 +0200
+        Mon, 26 Sep 2022 01:56:24 -0700 (PDT)
+Message-ID: <199190a8-611a-7940-0109-a5a509b3dc87@linaro.org>
+Date:   Mon, 26 Sep 2022 10:56:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/3] ARM: dts: qcom: pm8941: adjust node names to bindings
+Subject: Re: [PATCH 1/3] ARM: dts: qcom: pm8226: fix regulators node name
 Content-Language: en-US
 To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -65,11 +65,10 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20220925210229.128462-1-luca@z3ntu.xyz>
- <20220925210229.128462-2-luca@z3ntu.xyz>
 Reply-To: neil.armstrong@linaro.org
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Organization: Linaro Developer Services
-In-Reply-To: <20220925210229.128462-2-luca@z3ntu.xyz>
+In-Reply-To: <20220925210229.128462-1-luca@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,39 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
 On 25/09/2022 23:02, Luca Weiss wrote:
-> pm8941-misc should be called 'extcon' and pm8941-coincell 'charger'.
+> Adjust the node name to match bindings and fix the validation warning.
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->   arch/arm/boot/dts/qcom-pm8941.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   arch/arm/boot/dts/qcom-pm8226.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi b/arch/arm/boot/dts/qcom-pm8941.dtsi
-> index 33517cccee01..01f14d5f314d 100644
-> --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
-> +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
-> @@ -27,7 +27,7 @@ pwrkey@800 {
->   			bias-pull-up;
+> diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi b/arch/arm/boot/dts/qcom-pm8226.dtsi
+> index 9b7d9d04ded6..be8c8032a3b1 100644
+> --- a/arch/arm/boot/dts/qcom-pm8226.dtsi
+> +++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
+> @@ -98,7 +98,7 @@ pm8226_1: pm8226@1 {
+>   		#address-cells = <1>;
+>   		#size-cells = <0>;
+>   
+> -		pm8226_spmi_regulators: pm8226-regulators {
+> +		pm8226_spmi_regulators: regulators {
+>   			compatible = "qcom,pm8226-regulators";
 >   		};
 >   
-> -		usb_id: misc@900 {
-> +		usb_id: extcon@900 {
->   			compatible = "qcom,pm8941-misc";
->   			reg = <0x900>;
->   			interrupts = <0x0 0x9 0 IRQ_TYPE_EDGE_BOTH>;
-> @@ -138,7 +138,7 @@ pm8941_iadc: adc@3600 {
->   			qcom,external-resistor-micro-ohms = <10000>;
->   		};
->   
-> -		pm8941_coincell: coincell@2800 {
-> +		pm8941_coincell: charger@2800 {
->   			compatible = "qcom,pm8941-coincell";
->   			reg = <0x2800>;
->   			status = "disabled";
 
-I think those changes are unrelated and should be split into 2 patches.
-
-Neil
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
