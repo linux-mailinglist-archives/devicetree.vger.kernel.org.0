@@ -2,104 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECB655E987C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 06:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EB605E988F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 06:58:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbiIZEpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 00:45:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39414 "EHLO
+        id S229684AbiIZE6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 00:58:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231396AbiIZEpw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 00:45:52 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D44724BF5
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 21:45:44 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id l14so11512354eja.7
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 21:45:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=inQx/B+myoBQVAF3vsFN8D/0R7rZQjwNrUieRpG8clU=;
-        b=j/uFU1KOCRqduTJlrlEoIn6ttforECuEoaRHf2Jkb1/p00FI72BhA+ja0+iw0yrlSt
-         PyWtg1GZTi4rAHzt4bV8b93gt95RdcPppHsOHk7Sj0JJB63rSc1AZSvmj5mmHrUTV55b
-         9Srf43HDAj1z8qqOrmCkboDh9b2nghcIx73IA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=inQx/B+myoBQVAF3vsFN8D/0R7rZQjwNrUieRpG8clU=;
-        b=nVFTjCxue6Wsw8MvPYHEonkBL2HwKSsxKoXDTsjMP/GBlW0pQI/Ftpin8ePmImQeZ0
-         CNEcTLRVHL7+uyimdCibBLgtiwxuX8bPb7FbBKd5Lo/IQk3kzXszDbG2nXgWE5xIp8Xm
-         HbB6fPuS3yGVHH1FIyHevU8AB38Pk+6SXfoJWd49NMM+v9Gt/OkDzKoU1Ii4y4f3P31/
-         cLnh85ke/aDiO6oDQkse+Zr7ODXgKgpjs5sdOPDv52ATQ8vLWQunGdHTZ0gH/xKk/Y/3
-         WRl500L6agO1B66XfFn9R1xoO1JDebGfvQqiVMvfioG6fMGOjDsqljjGj4izO+VgCqxT
-         af6w==
-X-Gm-Message-State: ACrzQf3KypErTOFrPdovB3mdKZhuIaYsbGZBISYEd0ApHWry/vgkvcmz
-        qk7a8Uu25hGZN/inO5qyMdR8j/hdUQ3J3B92CfvAdw==
-X-Google-Smtp-Source: AMsMyM50baM0xEgY1j/hLICZS6Ro1n/Ox33rLV2Rl1Yb22kNPgKw8xFU3i402SgQ5Dfectw+su70alxJjafTx80ETlM=
-X-Received: by 2002:a17:906:8455:b0:773:c45b:d970 with SMTP id
- e21-20020a170906845500b00773c45bd970mr16452870ejy.46.1664167542843; Sun, 25
- Sep 2022 21:45:42 -0700 (PDT)
+        with ESMTP id S229477AbiIZE6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 00:58:11 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07832275EC;
+        Sun, 25 Sep 2022 21:58:10 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28Q4efGM013425;
+        Mon, 26 Sep 2022 04:58:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=RtwR3z5UZ9Suonp0o4kOiRdR+7hLaNuiVFpZxZOdQuw=;
+ b=VcGrljgtZLrLuqX8WO5o8YethlqUufCv08VStNIOdkOKzPdtmuT2Wz9Nd2vH7Uh31fbh
+ ZFgjr+jAc28YRL1IymrpKcFe1553C508KJ6FpA8tV0xFRxgxJxrOScqs2sA5b85shy0o
+ uJC67Vi24YVcq9O9qN85Mom22VyOeNv4SZ0St36EXmhY4Nyk+slTrm2HOMyMkBJ0C99R
+ eWM1iG7C7ZD1f6nNqnr2mODbbsfmkrGZ9bND6s45aIOM+vl/2/B0leLaKK9cLFZM8o9b
+ w0NjxaCoA7jPjflD1czr3LLQjo7RH0omv0HD7wFowd8PKFhEt5LL5RvNEQ73UODZqq+a lA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jsqkmb9df-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Sep 2022 04:58:03 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28Q4w28d011408
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Sep 2022 04:58:02 GMT
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Sun, 25 Sep 2022 21:57:59 -0700
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@somainline.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>
+Subject: [PATCH v2] arm64: dts: qcom: sc7280: Add nodes to support WoW on WCN6750
+Date:   Mon, 26 Sep 2022 10:27:35 +0530
+Message-ID: <20220926045735.719-1-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-References: <20220921091455.41327-1-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220921091455.41327-1-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 26 Sep 2022 12:45:31 +0800
-Message-ID: <CAGXv+5HayW7XFcPJyV4xWvndmLau5T068nc_XYEbyiFX=pMzVQ@mail.gmail.com>
-Subject: Re: [RESEND PATCH v6 0/8] MediaTek Helio X10 MT6795 - Clock drivers
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        p.zabel@pengutronix.de, y.oudjana@protonmail.com,
-        jason-jh.lin@mediatek.com, ck.hu@mediatek.com,
-        fparent@baylibre.com, rex-bc.chen@mediatek.com,
-        tinghan.shen@mediatek.com, ikjn@chromium.org,
-        miles.chen@mediatek.com, sam.shih@mediatek.com,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: q6bON9M2bUHOAh2Ts-B9neDGO6GxKCNL
+X-Proofpoint-GUID: q6bON9M2bUHOAh2Ts-B9neDGO6GxKCNL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-26_03,2022-09-22_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ bulkscore=0 priorityscore=1501 mlxlogscore=608 lowpriorityscore=0
+ suspectscore=0 adultscore=2 impostorscore=0 mlxscore=0 phishscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209260030
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 21, 2022 at 5:15 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> In an effort to give some love to the apparently forgotten MT6795 SoC,
-> I am upstreaming more components that are necessary to support platforms
-> powered by this one apart from a simple boot to serial console.
->
-> This (very big) series introduces system clock, multimedia clock drivers
-> (including resets) for this SoC.
->
-> Tested on a MT6795 Sony Xperia M5 (codename "Holly") smartphone.
->
-> AngeloGioacchino Del Regno (8):
->   dt-bindings: mediatek: Document MT6795 system controllers bindings
->   dt-bindings: clock: Add MediaTek Helio X10 MT6795 clock bindings
->   dt-bindings: reset: Add bindings for MT6795 Helio X10 reset
->     controllers
->   dt-bindings: clock: mediatek: Add clock driver bindings for MT6795
->   clk: mediatek: clk-apmixed: Remove unneeded __init annotation
->   clk: mediatek: Export required symbols to compile clk drivers as
->     module
->   clk: mediatek: clk-apmixed: Add helper function to unregister
->     ref2usb_tx
->   clk: mediatek: Add MediaTek Helio X10 MT6795 clock drivers
+Add DT nodes to support WoW (Wake on Wireless) feature on WCN6750
+WiFi hardware on SC7280 SoC.
 
-I've queued this series up here [1] and will send a pull request to
-the clock maintainer later this week.
+Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+---
+Changes from V1:
+- Rebased on ToT
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/wens/linux.git/log/?h=clk-mtk-for-6.1
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 212580316d3e..3f6a3f575339 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -752,6 +752,17 @@ wpss_smp2p_in: slave-kernel {
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+ 		};
++
++		wlan_smp2p_out: wlan-ap-to-wpss {
++			qcom,entry-name = "wlan";
++			#qcom,smem-state-cells = <1>;
++		};
++
++		wlan_smp2p_in: wlan-wpss-to-ap {
++			qcom,entry-name = "wlan";
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
+ 	};
+ 
+ 	pmu {
+@@ -2004,6 +2015,8 @@ wifi: wifi@17a10040 {
+ 			qcom,rproc = <&remoteproc_wpss>;
+ 			memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
+ 			status = "disabled";
++			qcom,smem-states = <&wlan_smp2p_out 0>;
++			qcom,smem-state-names = "wlan-smp2p-out";
+ 		};
+ 
+ 		pcie1: pci@1c08000 {
+
+base-commit: aaa11ce2ffc84166d11c4d2ac88c3fcf75425fbd
+-- 
+2.37.1
+
