@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE185E9E90
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 12:04:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A6F95E9EB1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 12:10:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233807AbiIZKET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 06:04:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54878 "EHLO
+        id S235071AbiIZKKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 06:10:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234164AbiIZKER (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 06:04:17 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4458529801
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:04:16 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id s14so9471880wro.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:04:16 -0700 (PDT)
+        with ESMTP id S235030AbiIZKJ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 06:09:28 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 634E33B954
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:09:26 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id s6so10014682lfo.7
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:09:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date;
-        bh=sTAPIVJNbp4iICt5sfzGH6YEb6tzSO6KPzd55XSaBdY=;
-        b=c4mAGGxhECtHjTjrRnn3HOx1EiKljfJ1NXJYEaKtgI2W3TMnIj5nbJDrkv0lDfDQTe
-         9FPk9F+P8sNDeHu7vqmwLL3jQwsv5ZDk5FjYHS0YQj6EJuBex7Zafz18ORwWbqt8dZtx
-         g/mScToh/dwCUDkcSGfsetgo1+AEjH2d/OjqBI6jUbGNBPCkeFa7eUDDGFmTf9Aiy0fb
-         XGFVmJh9BxNerYm+4FeOdDGQEDGh9llgwwRoAjWOhjd9A2DUifpkVz3LkKBj7sgNBv9q
-         pySYMYrvA7yM7PVrMv5sLTYK41F8G1u5tjR1jNWBm4a5fLWapJL9DXs2AJi5m2nwMUkv
-         yG2A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=NiDFW7j0aeL8AhvqVkURIdFDpKhhYD3BHp+Ep7uI1Mo=;
+        b=algVzKxCsaBbYi1rNqmaIxikqU8hTcFyl1WhknMAGmvlZ6VEQvu6ryDp+TZim52fef
+         Mx/Q+jIeIxBBvDHYpahmL4/JQNC8BQ54jT3bfnsoAz7/7pX8Aggr7Q15Sz86/gBxOoEQ
+         F9fqfrO2yTQn+0RrfLzx2JhMrOHhdpkMYwUPnm1G4Q4AXfMtqMU3+7N+OEHkRgJW6d/5
+         D+0Qk2BWETD6WwKclB4/XUqx+6O1oXCG+/M38BFmbihssY0tTRkKNia14IxscgxkNsXE
+         zaZ9Ap2hxfbCqH3T2DxaRo/+N9x2V8BH8caTwy+RyeRwniia2w/hYK26yrkwTi+2Y8Qv
+         DySw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
-         :references:cc:to:content-language:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=sTAPIVJNbp4iICt5sfzGH6YEb6tzSO6KPzd55XSaBdY=;
-        b=sMLLkAx3ThnBoU1sPwCErJ3ww3e3IRyd4xgmzGYBXHzcISosQ0O1RDlSvs1rIhvihy
-         sjbFoIRV/mrIuRQYiIcOArzVJEyW3V1YU+W2bKUsHVpmz80i/WsDaRTqGoWOsnDXxf9F
-         3kFwCdJ5ZLE130vsECYAC1bkA9oOQGSCrJChZEi7rohay7DKr6+Wi4lpCezGTVCgGeUl
-         OxYGuGsgf57IMpcJlL85eYs/z9bUDy7NPF+CYfsgLs3N2Jfqs2asLLyzeh+BwcCeiQFy
-         FUyNzncwyhXkqOY6Tx8OdjXqnefEgHygN6sckkZ62SjBXQl1qaXopSll/rE4QZiuHi5U
-         UaCA==
-X-Gm-Message-State: ACrzQf24ze7o7M/AfUZpfF/W/9OqXYsGsQc0frDNnt4YxyqHDO37LAz0
-        QbwQqtWtmMWIwbC3BCaALtw72g==
-X-Google-Smtp-Source: AMsMyM4ES3y+zy1qMG1o3vbqYnbjhuFHSDXFP/iGUf6v7wgMwvvhoB8/maq1VdkF1IcTpccGNUCYyg==
-X-Received: by 2002:a5d:6d07:0:b0:22a:3f21:3b56 with SMTP id e7-20020a5d6d07000000b0022a3f213b56mr12562644wrq.679.1664186654836;
-        Mon, 26 Sep 2022 03:04:14 -0700 (PDT)
-Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id h9-20020a05600c350900b003b492338f45sm12043677wmq.39.2022.09.26.03.04.09
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=NiDFW7j0aeL8AhvqVkURIdFDpKhhYD3BHp+Ep7uI1Mo=;
+        b=JO4S8U+O1+ifL7C6bm3jOnj1+6Y/7NodwbthFX8A9Xern6C2fkEDK+ij+8/yTALPIf
+         Cp5aB07I2YSzj4rghj/mVbU2L7Dlwixa0kJqOnKFxq3EJmeknGvcjO/UfeDIaUw9i2TL
+         NlWSn9rOkpK9pjEvCUxNLAwBDfvNqezXxuH+AZolTmoo9ZETAOJKyXDJKFA/v1G+6XSo
+         NxPV3qK9XIwbHEJQNmowe+f1dI3CfBnv739eNLw+O+s4MmDXDGaqDqgIVAqvZDQ5N3ma
+         COL/VY90hmNYyk3lplE82zHjLKarejkdL8k2axiZfJASIkfYtYUW/70C07jOMA8UObVN
+         W0tw==
+X-Gm-Message-State: ACrzQf01anM5MPYwA+8HLDX+wPmgDIioe61T0F8Wf4248rbaKThV5gPg
+        ZWs3pdVV/ga6OB0eqol3A3IFZA==
+X-Google-Smtp-Source: AMsMyM6HCOqYbhXlG+PayyewllNWiljEgCvTUTi58rKNFUbrf/36OjEHb9PJnwENTJDUq5/1bbIjCg==
+X-Received: by 2002:ac2:4c4d:0:b0:49f:99f0:308f with SMTP id o13-20020ac24c4d000000b0049f99f0308fmr8690149lfk.160.1664186964761;
+        Mon, 26 Sep 2022 03:09:24 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id r22-20020ac24d16000000b00499aefcf68esm2477468lfi.292.2022.09.26.03.09.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 03:04:14 -0700 (PDT)
-Message-ID: <3070538e-fa8d-4506-bbf8-c2770d092eb5@linaro.org>
-Date:   Mon, 26 Sep 2022 12:04:07 +0200
+        Mon, 26 Sep 2022 03:09:24 -0700 (PDT)
+Message-ID: <642f9bca-5e9a-4971-3cec-32963bfd88ad@linaro.org>
+Date:   Mon, 26 Sep 2022 13:09:23 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/3] ARM: dts: qcom: pm8941: adjust node names to bindings
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: msm8974: Align dsi phy-names with
+ schema
+Content-Language: en-GB
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -65,13 +65,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220925210229.128462-1-luca@z3ntu.xyz>
- <20220925210229.128462-2-luca@z3ntu.xyz>
- <ec8cc121-9814-cd52-fb49-c33ab1376f89@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <ec8cc121-9814-cd52-fb49-c33ab1376f89@linaro.org>
+References: <20220925172443.92900-1-luca@z3ntu.xyz>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220925172443.92900-1-luca@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,45 +79,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 11:22, Krzysztof Kozlowski wrote:
-> On 25/09/2022 23:02, Luca Weiss wrote:
->> pm8941-misc should be called 'extcon' and pm8941-coincell 'charger'.
->>
->> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->> ---
->>   arch/arm/boot/dts/qcom-pm8941.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi b/arch/arm/boot/dts/qcom-pm8941.dtsi
->> index 33517cccee01..01f14d5f314d 100644
->> --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
->> +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
->> @@ -27,7 +27,7 @@ pwrkey@800 {
->>   			bias-pull-up;
->>   		};
->>   
->> -		usb_id: misc@900 {
->> +		usb_id: extcon@900 {
+On 25/09/2022 20:24, Luca Weiss wrote:
+> Use dsi instead of dsi-phy as required by the binding.
 > 
-> Why? extcon is Linux specific name and should not be added to DTS.
-> Anything requires it?
-
-It matches the current dt bindings:
-
-Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml:
-<snip>
-    "extcon@[0-9a-f]+$":
-
-      type: object
-
-      $ref: /schemas/extcon/qcom,pm8941-misc.yaml#
-<snip>
-
-Neil
-
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>   arch/arm/boot/dts/qcom-msm8974.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> 
-> Best regards,
-> Krzysztof
-> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> index 620900e5ffd5..da247d799492 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> @@ -1571,7 +1571,7 @@ dsi0: dsi@fd922800 {
+>   					      "core_mmss";
+>   
+>   				phys = <&dsi0_phy>;
+> -				phy-names = "dsi-phy";
+> +				phy-names = "dsi";
+
+I'd prefer to merge [1] instead
+
+[1] 
+https://lore.kernel.org/linux-arm-msm/20220907000105.786265-1-bryan.odonoghue@linaro.org/
+
+>   
+>   				status = "disabled";
+>   
+
+-- 
+With best wishes
+Dmitry
 
