@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D7625E9839
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 05:22:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 265F65E983E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 05:23:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231396AbiIZDWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 23:22:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38678 "EHLO
+        id S233413AbiIZDXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 23:23:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233416AbiIZDWL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 23:22:11 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55FCF1148
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 20:22:06 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id e18so7260035edj.3
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 20:22:06 -0700 (PDT)
+        with ESMTP id S233243AbiIZDXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 23:23:45 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2108ADFF5
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 20:23:44 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id lh5so11276572ejb.10
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 20:23:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=yQsxXFVnnycu0Ai4HAskpMNXUco0LHrZ9qALshiE0Kk=;
-        b=TVddU5EuFj2t8KIz7T3zCcDHTC4WeulJBoHq9EOsixQxw9p+2NBuF8VMquNFeDbozy
-         G0mxNI+BTMiiYOluXsqZBzifT5mNk4PwqWXe9qc/RUX++dzObFco3u6ohP87bJ2o7kt3
-         tA7AC7/8JQ0rMS6oFMZfwH6xivu21fXZrzUxI=
+        bh=lxvp+T0nmPNAS5r7Bc6SkAzZFGyMPUN1eLVnGVUBPPc=;
+        b=a4B7p662s2cugcXrV/HHOV8DNtByQMTkUBkwzRLjrJ400RI9k5DhbSdm+Y8nvVNGe1
+         2GrIMo7f5EMtHnZ8zJ+VxBHnLbFRWe2U8xgptKsM1MnEkOKvXjRwenRDLAezNavD35TP
+         4qQawu698yOuRu+1TQMjkGvKS70t8zxTM3a3w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=yQsxXFVnnycu0Ai4HAskpMNXUco0LHrZ9qALshiE0Kk=;
-        b=dpG+DZZznind9kcWm8fdIe0ckhAcASyrKsGCThmr6nMrIedQgvMfHQUOU1HWXWGeSC
-         SLdcJzB5LYOyv1BsiYg09pTG65ZcbbZM1xwvybJiUSYnE+cu5OvzLpZGMS2p+exo+hSi
-         n7k6CLEE3cja6DH2jzH5AH/oHk1H8/dbxz1Z5N8FRVqiWfRI8I31pPAjrdkTQavA7Xmq
-         iNiNLIwfFpOmQSCLtZHJViYXsBNY0nwm0M8/H33mlgrWgRBoWzqo6vd3+gRbOLTP5R9R
-         +0sgvmuurYbG+yU8GBLGRVt+2lnTBcrwe2rF8Sf3cT3NGMMxhqW444jrZECb2KqCKi4Z
-         19yg==
-X-Gm-Message-State: ACrzQf1q4OAGf6VR+gWfO33kjZbWGaUHUm5aCmPeN4dRZ6wKuEjJtnI2
-        5vCN49ROKO+V3kdHkeVFEn28HfsQAc9J3szA5Le3Cw==
-X-Google-Smtp-Source: AMsMyM4D/ZSyLsYSyu8xNz2kCJSqJ/H1GIkKLJy/AFRCNUaeLI2dpgccDtbydmm91X48YfUGORxcS3U01CQX45V/rng=
-X-Received: by 2002:aa7:cc02:0:b0:453:b0f3:9927 with SMTP id
- q2-20020aa7cc02000000b00453b0f39927mr20858524edt.66.1664162524995; Sun, 25
- Sep 2022 20:22:04 -0700 (PDT)
+        bh=lxvp+T0nmPNAS5r7Bc6SkAzZFGyMPUN1eLVnGVUBPPc=;
+        b=H05s0CC7OtvPEecSxgyQb0xYR/HQuKQG/G0kCwR1u5VGkU2xLU1r5JZcJpze/45ZZn
+         uvtc+Z83zu/XhO89QkkCvu0fAPcP9Y4qoqH1COyOqRSX5jQmLmyANZ4xBTFVm07Xq0IH
+         sV8z0cyEPhAMuSZ4Dzf2k9Uuh79C4qF20aIjSfBZU4w7mx3z3vEDcmXzPFC1xCiP9+Wc
+         yQeEjVgw+maQWzC5sS8sv/ql2xTtb0oBmwRFFWVv9J/Siwv/mM1RxJjn2Irki/B6QZPb
+         kGKBUz3UVN6bOdad0fx1wajlbTuhOrgDf1vF7DjjCCTLGQaEVjD7xiHrQFH70hECWQpn
+         1Mdw==
+X-Gm-Message-State: ACrzQf3fC3voHw3saXcKv6TwosywBA4wY5FYiKb2y8rjN9qw9asPf8b7
+        M5hcC8hUYuKuObbsVzKVuC6y4bHVEptUE9sO8x/ZoQ==
+X-Google-Smtp-Source: AMsMyM7614BUgahOMwJWu9MHtouT3NLfNy27XW7Lv6OZVc+xsfxGx4XppqGFaREEVBKwAdnU1WmvNJCHo+/NFhY0zHg=
+X-Received: by 2002:a17:907:7f93:b0:781:dbee:dece with SMTP id
+ qk19-20020a1709077f9300b00781dbeedecemr16502807ejc.323.1664162622513; Sun, 25
+ Sep 2022 20:23:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220915072458.18232-1-angelogioacchino.delregno@collabora.com> <20220915072458.18232-10-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220915072458.18232-10-angelogioacchino.delregno@collabora.com>
+References: <20220915072458.18232-1-angelogioacchino.delregno@collabora.com> <20220915072458.18232-11-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220915072458.18232-11-angelogioacchino.delregno@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 26 Sep 2022 11:21:53 +0800
-Message-ID: <CAGXv+5GwYEv2O70_3rjDmY=RHZ900x3RKSaFYqzb_nTumT+YoA@mail.gmail.com>
-Subject: Re: [PATCH v2 09/10] clk: mediatek: clk-mt8192-mfg: Propagate rate
- changes to parent
+Date:   Mon, 26 Sep 2022 11:23:31 +0800
+Message-ID: <CAGXv+5EtRTux22ERqCXTDL-Ooo5qa6u=KWO5=m_s4U3sPoLp3g@mail.gmail.com>
+Subject: Re: [PATCH v2 10/10] clk: mediatek: clk-mt8192: Add clock mux
+ notifier for mfg_pll_sel
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     matthias.bgg@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
@@ -73,8 +73,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Thu, Sep 15, 2022 at 3:25 PM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
 >
-> Following what was done on MT8183 and MT8195, also propagate the rate
-> changes to MFG_BG3D's parent on MT8192 to allow for proper GPU DVFS.
+> Following the changes that were done for mt8183, add a clock notifier
+> for the GPU PLL selector mux: this allows safe clock rate changes by
+> temporarily reparenting the GPU to a safe clock (clk26m) while the
+> MFGPLL is reprogrammed and stabilizes.
 >
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
