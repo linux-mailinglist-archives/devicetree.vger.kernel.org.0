@@ -2,283 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D294F5E9EC1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 12:13:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F24C5E9ED6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 12:15:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232918AbiIZKNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 06:13:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36558 "EHLO
+        id S234883AbiIZKPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 06:15:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234397AbiIZKNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 06:13:16 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0719F15832
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:13:09 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id t4so4125357wmj.5
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:13:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=c75IJjH1CrJS+myQdTNCPn6AgQdPVtKjK2m4jf3uRQQ=;
-        b=x4QVltof955ehiK0Tb73irEljR5GIH8xobO9k49n6RW5np5nhA3yXUx+ukEqb+o0MI
-         ucn4lZiTNmIZqh9gGj1WuoGPoIImZyeCfVWO6uO5+uMWHelUgDs1pHGHzfLrbvBQ5pX3
-         qOkovvokaAI28iQBFs+DZPlpszFoo7lvl4ILfr4D2vBa9/zJ4NY45K8+XeauBQJnwXUJ
-         RfnKNp9wiVh+QzQQvhL3MkjsKl0d95WydBTB3/Pkf46vXz7ALC3k2+SybFZiChsrnD8H
-         EPcgsq+9zMqU4AHhqJkuUvRqPVQfyN/uko3zYvflVfFveD7QFoBNNKXUU+ZfVFkMBmiH
-         v+Tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=c75IJjH1CrJS+myQdTNCPn6AgQdPVtKjK2m4jf3uRQQ=;
-        b=hHN//egrWuufy7J72JAuTrN0LLCjPbUW0HI1QfJF2eBESKRLGedBBJpCEZMhaGKYjF
-         CSCaL49HC7La6gY6kZuXcm+KW/ZRSMlGvc/F+x85H2c435zepqWPtGkwHyVgsVEltxUo
-         NbHVDeSCRFVpvaSzJs2nf8TGsZ7EjbMfwDdtKyw77kaYGELnTe701oBUKYl6VEyps/PZ
-         /VezRT19AGrJPECRrPNBtTVKHIACIu9oxrF5cV7GMpB/sP2u6lg+yhmWAO5lmqmnlqqr
-         JkVuQIWnpSpc9uFrlV7CtyUX7PLi2CeIjEUZaJatFmDZWRU33e5b5p8xV5+VsjgAzxmz
-         tWjQ==
-X-Gm-Message-State: ACrzQf33RZMLLxHFRduputnlL0WIr0cU7e9UZsqPb9qj8EWLu+c2e+Ly
-        z1kvhSEU6WFG9eV+Zdq28cz4ItjB5XiUU+gSsA25zw==
-X-Google-Smtp-Source: AMsMyM5na9tbYibsd2uN/l+P7vFgiPLBtnj2BeKxOtVaGAy/pNqv1ViPHhCWp8TiDK0vMuAI7UqGbxD2cFCknhhefVg=
-X-Received: by 2002:a05:600c:524d:b0:3b4:91ee:933c with SMTP id
- fc13-20020a05600c524d00b003b491ee933cmr20492361wmb.100.1664187187464; Mon, 26
- Sep 2022 03:13:07 -0700 (PDT)
+        with ESMTP id S235021AbiIZKOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 06:14:37 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2067.outbound.protection.outlook.com [40.107.244.67])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A133ECDE;
+        Mon, 26 Sep 2022 03:14:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VfUq/usdTDntj/VOvgYILpvEzLwhS3nCX6e3AnfhzfwknVU3/oLOUiCz6uktnCHSowETI5PBQgRqfcIY3s8uLEwYuYaQfZBStK2bIYPYPIfIvd00hsAh0XNlY15X/lsg/4UDUHJCumbNlxe5i9FQJPvc1S8ImbP/JInYj+6S2s0Ihck3cJ+1HEjYddyHR4+prZEGHfE10wUkYzHdALsKOvo53G0CBYNezWP3OSKS3/H+OYp9dwpXylswdlsHkW4MQbMhJTUrD8pmDnImHWCjbhcPwvcXXB4fNTjsrEu/XajPYoH+c4bJg5vmm/hf+rkLdGW8H7skC5NqRAPq99h/7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dnytHtO2V0sD8tJjpy85yxDon+eA/q1O2557yPIdYT0=;
+ b=ga3woah0N5mZ+XOHmoY2KYR38O9kyoN3esggOCfkd9f/7PW5AoAUHy4fJLzhti/RKMU/KL31P9f/LJCM7no1eA6k+HFscpcS5rPmgThvWIVzKMMavKCuD4WXCs6lInFairvNkOI2sGJAbizVpS0pZwqLNeemue1RGrvquQ/ZytawrtQa7BLkP6yRkA7FFBIhPqnjdTpsPzETk2tIKtHx9e3XtZ5AgaW27qI4/06i5wl6+/nzFvI3okoLhjN7hefCVPQFQSJNlw8O6W7CZSLLIowHHYQQoxwg0c5HGiU5YrHYsqZjbpbNtTz3FAbW6GUDoeBtEsRN1PcNNx5+O4sWdw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dnytHtO2V0sD8tJjpy85yxDon+eA/q1O2557yPIdYT0=;
+ b=sytxAU1TFMQw1w1vWmmk61WSpO92FOIPwo6xJ47sFjLXNA396oggTEMmaZBp+cCpV445yoOg2Qon+nnKD+gxLXDIIOulpNUO8UwLCv5wfdbvS2bSZaVaKQKnFOXmlDAH9WEPCJwQw0cckHUxB8s1E5/cc4lYQxg2mce8piFjKwo=
+Received: from MW4PR04CA0216.namprd04.prod.outlook.com (2603:10b6:303:87::11)
+ by PH8PR12MB7374.namprd12.prod.outlook.com (2603:10b6:510:216::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Mon, 26 Sep
+ 2022 10:14:01 +0000
+Received: from CO1NAM11FT089.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:87:cafe::c3) by MW4PR04CA0216.outlook.office365.com
+ (2603:10b6:303:87::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.26 via Frontend
+ Transport; Mon, 26 Sep 2022 10:14:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT089.mail.protection.outlook.com (10.13.175.179) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5654.14 via Frontend Transport; Mon, 26 Sep 2022 10:14:00 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 26 Sep
+ 2022 05:13:57 -0500
+From:   Appana Durga Kedareswara rao 
+        <appana.durga.kedareswara.rao@amd.com>
+To:     <appanad@amd.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <appana.durga.rao@xilinx.com>,
+        <michal.simek@xilinx.com>, <derek.kiernan@xilinx.com>,
+        <dragan.cvetic@xilinx.com>, <arnd@arndb.de>,
+        <gregkh@linuxfoundation.org>
+CC:     <linux-arm-kernel@lists.infradead.org>, <git@amd.com>
+Subject: [PATCH v5 0/4] drivers: misc: Add support for TMR Manager and Inject IPs
+Date:   Mon, 26 Sep 2022 15:43:42 +0530
+Message-ID: <20220926101346.272720-1-appana.durga.kedareswara.rao@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220609150851.23084-1-max.oss.09@gmail.com> <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
- <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
- <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
- <20220726160337.GA41736@francesco-nb.int.toradex.com> <CAPDyKFqGFjywJ-Vmmn9=-NOzJX=24mH9A03H9djS=nJotKWK8A@mail.gmail.com>
- <20220728112146.GA97654@francesco-nb.int.toradex.com> <CAPDyKFqtCxrjALeCmhuqQ2VmmUHhi-DjXO30uHChTPFeDbp+JQ@mail.gmail.com>
- <20220909142247.GA238001@francesco-nb.int.toradex.com> <CAPDyKFrwpz=gi3iY5YsO6k4o33eLQRp-wXvBx3nQ0q=G9YrqHA@mail.gmail.com>
- <70ee4f8e-7529-307e-656c-2a65d0187af6@linaro.org>
-In-Reply-To: <70ee4f8e-7529-307e-656c-2a65d0187af6@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 26 Sep 2022 12:12:30 +0200
-Message-ID: <CAPDyKFoyNWZvT+QPdX4sQuS3DL8mepfnLraHLusMi9K8MOfLgg@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
- which controls
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT089:EE_|PH8PR12MB7374:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef900372-ddb6-418a-76f7-08da9fa7d527
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: W1+FNN1Z8mH7XwaiHhaCZIdjZvIbgNLdC/k7RWJ2tg60Hwt+eVYdUPtarPZKy7HP8HEOA5+T6+vrQE5y6GYSpwJ+Q6ekX6XqDw6zUWmnXzkYHuvLgO2kwue4aPmtJQygtoGArADfcoE8CCHPmLIQitsTivnoPRxp0h1r0UJesexIvYtdd3EqnDrPMCYrvHJ54yxCZvlFTJiVxr2Y0fjIiyaLWNkDpRsvaw+lvnUQhXOnOtnmtULV3/hHVJkhGIRsaMbQ8segLLUXpZBTZrsbxx5wmvDlPaEXKcTEZYJziT/sB18H+hQsm++9h3L20q6WutEP48UpEi1kdARhTRWTlwsFRTWjm6sfdlkWs/jqxKgzrUc5SpYrw8Jywkcy02yuXCaHFJ+YsjDDQcN/VvIDJroUWNOO2gKtchuxTsCwfdZSOe7K0WtEjzVigoYx6yw2SxALhCAZpAWcJKSi82dPsqLE/i5/uANvyRFUf6mscgzHRpm29w+oEG+EkRC+xofOZcGimrnrqtfGp2X2xVTQENL2+aOyPLXPRfRpV4wbLev5ba5SKoPWD/77u6TNzKRZn3qroUmcurL8+epg81aiDfXDBG+Vhr1yTCXsCpiXhAofPpO0Y7gpJo02HU1p79lX8c0aAtYETch15++5JSyCySocktf7G8ApdD0g8okMzCxv9RPH43qJfhSKoALb0alSwyCxYD65xi0nfrWHGldjenNCxQD/9Af5wRFRY4t7aWMsRp13NZe85C4O0khabE9wwxgumPfy4065h72vVnmH73OPxJhZoCVz2vxlwHs+FdHbKaNW21awp+oEyGIbVQLFrpPoFHBSCd8WMo/aSozP5SYk1kobv6DLAyHBsoShAoQ=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(346002)(136003)(376002)(396003)(451199015)(36840700001)(40470700004)(46966006)(26005)(36756003)(5660300002)(2616005)(8936002)(2906002)(70206006)(70586007)(4326008)(8676002)(6666004)(41300700001)(40480700001)(86362001)(82740400003)(47076005)(36860700001)(103116003)(336012)(1076003)(186003)(16526019)(82310400005)(81166007)(40460700003)(356005)(921005)(966005)(316002)(110136005)(426003)(54906003)(83380400001)(478600001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2022 10:14:00.8491
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef900372-ddb6-418a-76f7-08da9fa7d527
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT089.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7374
+X-Spam-Status: No, score=0.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Sept 2022 at 20:00, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/09/2022 15:49, Ulf Hansson wrote:
-> > On Fri, 9 Sept 2022 at 16:22, Francesco Dolcini
-> > <francesco.dolcini@toradex.com> wrote:
-> >>
-> >> Hello Ulf,
-> >>
-> >> On Fri, Aug 26, 2022 at 03:50:46PM +0200, Ulf Hansson wrote:
-> >>> On Thu, 28 Jul 2022 at 13:21, Francesco Dolcini
-> >>> <francesco.dolcini@toradex.com> wrote:
-> >>>>
-> >>>> On Thu, Jul 28, 2022 at 11:37:07AM +0200, Ulf Hansson wrote:
-> >>>>> On Tue, 26 Jul 2022 at 18:03, Francesco Dolcini
-> >>>>> <francesco.dolcini@toradex.com> wrote:
-> >>>>>>
-> >>>>>> Hello Ulf and everybody,
-> >>>>>>
-> >>>>>> On Wed, Jul 13, 2022 at 01:43:28PM +0200, Ulf Hansson wrote:
-> >>>>>>> On Thu, 23 Jun 2022 at 18:14, Max Krummenacher <max.oss.09@gmail.com> wrote:
-> >>>>>>>> So our plan is to explicitly handle a (shared) regulator in every
-> >>>>>>>> driver involved, adding that regulator capability for drivers not
-> >>>>>>>> already having one.
-> >>>>>>>
-> >>>>>>> Please don't! I have recently rejected a similar approach for Tegra
-> >>>>>>> platforms, which now have been converted into using the power domain
-> >>>>>>> approach.
-> >>>>>>
-> >>>>>> Just to quickly re-iterate how our hardware design looks like, we do
-> >>>>>> have a single gpio that control the power of a whole board area that is
-> >>>>>> supposed to be powered-off in suspend mode, this area could contains
-> >>>>>> devices that have a proper Linux driver and some passive driver-less
-> >>>>>> components (e.g. level shifter) - the exact mix varies.
-> >>>>>>
-> >>>>>> Our proposal in this series was to model this as a power domain that
-> >>>>>> could be controlled with a regulator. Krzysztof, Robin and others
-> >>>>>> clearly argued against this idea.
-> >>>>>
-> >>>>> Well, historically we haven't modelled these kinds of power-rails
-> >>>>> other than through power-domains. And this is exactly what genpd and
-> >>>>> PM domains in Linux are there to help us with.
-> >>>>>
-> >>>>> Moreover, on another SoC/platform, maybe the power-rails are deployed
-> >>>>> differently and maybe those have the ability to scale performance too.
-> >>>>> Then it doesn't really fit well with the regulator model anymore.
-> >>>>>
-> >>>>> If we want to continue to keep drivers portable, I don't see any
-> >>>>> better option than continuing to model these power-rails as
-> >>>>> power-domains.
-> >>>>>
-> >>>>>>
-> >>>>>> The other approach would be to have a single regulator shared with the
-> >>>>>> multiple devices we have there (still not clear how that would work in
-> >>>>>> case we have only driver-less passive components). This is just a
-> >>>>>> device-tree matter, maybe we would need to add support for a supply to
-> >>>>>> some device drivers.
-> >>>>>>
-> >>>>>> Honestly my conclusion from this discussion is that the only viable
-> >>>>>> option is this second one, do I miss something?
-> >>>>>
-> >>>>> No thanks!
-> >>>>>
-> >>>>> Well, unless you can convince me there are benefits to this approach
-> >>>>> over the power-domain approach.
-> >>>>
-> >>>> I'm fine with our current power-domain proposal here, I do not need to
-> >>>> convince you, I have the other problem to convince someone to merge
-> >>>> it :-)
-> >>>>
-> >>>> Maybe Krzysztof, Robin or Mark can comment again after you explained
-> >>>> your view on this topic.
-> >>>
-> >>> To move things forward, I suggest you re-start with the power domain approach.
-> >>>
-> >>> Moreover, to avoid any churns, just implement it as another new SoC
-> >>> specific genpd provider and let the provider deal with the regulator.
-> >> I'm sorry, but I was not able to understand what you mean, can you
-> >> provide some additional hint on the topic? Some reference driver we can
-> >> look at?
-> >
-> > Typically, "git grep pm_genpd_init" will find genpd providers.
-> >
-> > There are a couple of examples where a regulator (among other things)
-> > is being controlled from the genpd's ->power_on|off() callbacks, such
-> > as:
-> >
-> > drivers/soc/mediatek/mtk-pm-domains.c
-> > drivers/soc/imx/gpc.c
-> >
-> >>
-> >> The driver we implemented and proposed with this patch is just
-> >> connecting a power-domain to a regulator, it's something at the board
-> >> level, not at the SoC one.
-> >> We do not have a (existing) SoC driver were we could add the power
-> >> domain provider as an additional functionality.
-> >
-> > Right, so you need to add a new SoC/platform driver for this.
-> >
-> >>
-> >>> In this way, you don't need to invent any new types of DT bindings,
-> >>> but can re-use existing ones.
-> >> The only new binding would be a new "compatible" to have a place to
-> >> tie the regulator instance used in the device tree, but I do not think
-> >> that this is an issue at all.
-> >
-> > Yes, I agree.
-> >
-> >>
-> >> The main concern that was raised on this topic was that we have to
-> >> somehow link the power-domain to the specific peripherals (the power
-> >> domain consumer) in the device tree.
-> >
-> > Yes, that is needed. Although, I don't see how that is a concern?
-> >
-> > We already have the valid bindings to use for this, see more below.
-> >
-> >>
-> >> Adding the power-domain property there will trigger validation errors
-> >> unless we do explicitly add the power-domains to the schema for each
-> >> peripheral we need this. To me this does not really work, but maybe I'm
-> >> not understanding something.
-> >>
-> >> This is what Rob wrote on the topic [1]:
-> >>   > No. For 'power-domains' bindings have to define how many there are and
-> >>   > what each one is.
-> >>
-> >> Just as an example from patch [2]:
-> >>
-> >>   can1: can@0 {
-> >>     compatible = "microchip,mcp251xfd";
-> >>     power-domains = <&pd_sleep_moci>;
-> >>   };
-> >>
-> >> leads to:
-> >>
-> >>   imx8mm-verdin-nonwifi-dahlia.dtb: can@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-> >>           From schema: .../bindings/net/can/microchip,mcp251xfd.yaml
-> >
-> > I think it should be fine to just add the below line to the DT
-> > bindings, for each peripheral device to fix the above problem.
-> >
-> > power-domains: true
->
-> Again, as Rob said, no, because it must be strictly defined. So for
-> example: "maxItems: 1" for simple cases. But what if device is then part
-> of two power domains?
->
-> >
-> > That should be okay, right?
->
-> Adding it to each peripheral scales poorly. Especially that literally
-> any device can be part of such power domain.
+This patch series adds support for TMR Manager and TMR Inject IPs.
+The TMR Manager is responsible for handling the TMR subsystem state,
+including fault detection and error recovery. The core is triplicated
+in each of the sub-blocks in the TMR subsystem, and provides majority
+voting of its internal state.
+The TMR Inject core provides functional fault injection by changing
+selected MicroBlaze instructions, which provides the possibility to
+verify that the TMR subsystem error detection and fault recovery logic
+is working properly.
 
-Right.
+For more details about TMR Manager and Inject IPs please refer PG268[1].
 
->
-> If we are going with power domain approach, then it should be applicable
-> basically to every device or to every device of some class (e.g. I2C,
-> SPI). This means it should be added to respective core schema in
-> dtschema repo, in a way it does not interfere with other power-domains
-> properties (existing ones).
+[1]: https://docs.xilinx.com/r/en-US/pg268-tmr/Triple-Modular-Redundancy-TMR-v1.0-LogiCORE-IP-Product-Guide-PG268
 
-Isn't that already taken care of [1]?
 
-If there is more than one power domain per device, perhaps we may need
-to extend it with a more strict binding? But, that doesn't seem to be
-the case here - and if it turns out to be needed later on, we can
-always extend the bindings, no?
+Appana Durga Kedareswara rao (4):
+  dt-bindings: misc: tmr-manager: Add device-tree binding for TMR
+    Manager
+  drivers: misc: Add Support for TMR Manager
+  dt-bindings: misc: tmr-inject: Add device-tree binding for TMR Inject
+  drivers: misc: Add Support for TMR Inject IP
 
-Note also that we already have DT bindings specifying "power-domains:
-true" to deal with the above. Isn't that what we want?
+ .../testing/sysfs-driver-xilinx-tmr-manager   |  16 ++
+ .../bindings/misc/xlnx,tmr-inject.yaml        |  47 ++++
+ .../bindings/misc/xlnx,tmr-manager.yaml       |  47 ++++
+ MAINTAINERS                                   |  13 ++
+ drivers/misc/Kconfig                          |  20 ++
+ drivers/misc/Makefile                         |   4 +-
+ drivers/misc/xilinx_tmr_inject.c              | 171 ++++++++++++++
+ drivers/misc/xilinx_tmr_manager.c             | 220 ++++++++++++++++++
+ 8 files changed, 537 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
+ create mode 100644 Documentation/devicetree/bindings/misc/xlnx,tmr-inject.yaml
+ create mode 100644 Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
+ create mode 100644 drivers/misc/xilinx_tmr_inject.c
+ create mode 100644 drivers/misc/xilinx_tmr_manager.c
 
->
->
-> Best regards,
-> Krzysztof
->
+-- 
+2.25.1
 
-Kind regards
-Uffe
-
-[1]
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/power-domain/power-domain-consumer.yaml
