@@ -2,122 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD8BC5EB492
-	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 00:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1CCD5EB498
+	for <lists+devicetree@lfdr.de>; Tue, 27 Sep 2022 00:34:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229457AbiIZWaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 18:30:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38410 "EHLO
+        id S229521AbiIZWeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 18:34:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiIZWaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 18:30:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBD293B4;
-        Mon, 26 Sep 2022 15:30:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CCEBF61474;
-        Mon, 26 Sep 2022 22:30:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38709C433C1;
-        Mon, 26 Sep 2022 22:30:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664231402;
-        bh=daJUsJdpezSteh4PXZTQzO/Wj8zE/TGbRLm95dLUJTM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DHO/eYpw22NjkkzgLcbAIgXyvcbjYSZJ8Gj3T05jFCFyi0aO7GG8UKoBFxcxuvhqP
-         o95RRqSvAA7W3zfxKvp3vPZhfHADu07j1dDXhUo6VWv433BqZqsqZtHL8Qqvf1J/+Z
-         5pbO2KtQBgPPNlOAgZuVToOxwUcoOrU0N98hB+6uGkEqr2lCVTHQ7Fce9t4s13holb
-         StpwMxy/maF6OCUGNtfIMUX+wFRWRoECXX3l0xwiQTTa8PfrcLlc2zOMvPVKpVBo4R
-         JHaxrrZucjkoygTeLBERXzdneJho4ubHZKqqNv/X042I3VbRDmvmznMXD/j4RwRRSB
-         UcahDe+qKfMKQ==
-Received: by mail-vk1-f171.google.com with SMTP id r193so1354072vke.13;
-        Mon, 26 Sep 2022 15:30:02 -0700 (PDT)
-X-Gm-Message-State: ACrzQf1ZB+TV6xKU9z3ZEDAyi+kFg+yURrL5xVOlbzmG5r6jX7CO41H3
-        pJsl+vbvTFoMudS/92iF6Vx0m+Qpnc13GvHQVw==
-X-Google-Smtp-Source: AMsMyM5KqIX5xQrSAflubc/OxKMjhvK4ygSQNRjUCGNoqKizrhSfwSJv1m6fk3LqrOdrMBCWPGUO0DHobIE+SXEwLq8=
-X-Received: by 2002:a1f:9fc5:0:b0:3a3:44f1:be23 with SMTP id
- i188-20020a1f9fc5000000b003a344f1be23mr10054334vke.35.1664231401156; Mon, 26
- Sep 2022 15:30:01 -0700 (PDT)
+        with ESMTP id S229453AbiIZWeS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 18:34:18 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11D5C84E4F;
+        Mon, 26 Sep 2022 15:34:17 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id r7so12368858wrm.2;
+        Mon, 26 Sep 2022 15:34:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date;
+        bh=ou+iI7nruCTffmoQ0U6U8nomGAjNAmhtpnYz9x5oSao=;
+        b=QXEWKgL8iUtWbESsUcXxxNkl37oMTDz1H1HwLk3F7eKAW20/0KhPVUnUGnZ5a2rhfk
+         yWvAAyvWxQoKlr5TLr1RtMP1zJ1J9h+wWAWLinW5GP6S1kM+sgyJNiJCCpw+4RZ515v+
+         BG4152d11tOZPtF3QQ5Aqt2x2QUxHlAJKvpslustUVZkJoYpDZNi4PzbGX3OTaL7C04J
+         WGW9MkvxQRSz/R4wT+u9DsVDFdVBCxMyUvy0aldlh9INhnsKFjH7ZeUPp4o1ivGtlpma
+         XKiC8ud5UDsPYBrdi+trW3T2CMZSDmDWQB1ROgNNwZ5kooftP8r3VlKyK9fJQWoO6lLD
+         MBUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=ou+iI7nruCTffmoQ0U6U8nomGAjNAmhtpnYz9x5oSao=;
+        b=U198XFOdT39KbM2Fh8yqb02mUW2Upf1YgIDaZD2xOy43VngX+ajDgGJESnyF4D4D9x
+         VrmWHMtSm0gcdn9TASFq+CKDXkyr4SuExzP9E11s9DGA7HP5GXL5Sr9zSnrddvmOFsHJ
+         z0nksMplx6ruWFPAtvE6tTAmxLpU+NrzkD5/sqbFrjzOCHc/rMPDa2vAwY32lTWo4g7C
+         Zsk13+VzOQzePapqnd0nOMPHFbXVI/bvXTySnJX2Hd8ZWL0zfmghk7cWBeEXrnKV2q3m
+         QFh5c0Hrm9/mdgrMpspNsuW6Ww8uWQ3y0nMTVQCyshiLaeKfa+pzlfQNU+1DSKi93MWn
+         x1Ag==
+X-Gm-Message-State: ACrzQf3w9JKMdQoEoV04S0i5Lx8XIg3dzlvdeOQT4dvcr4xbG+B7D6BW
+        vf9QUTWe7B+AZ2TpVJkycxaLfh35FeOM3oflFwVt2L3b
+X-Google-Smtp-Source: AMsMyM72PThTWxmcyD8joR1b4vRD4oieuwRNO84jzrY9ayZzbzmEbjGd0JXOlSCwcf6zMYJH1mM8yRExqELbDayJiqs=
+X-Received: by 2002:a05:6000:1882:b0:22a:f7a2:736a with SMTP id
+ a2-20020a056000188200b0022af7a2736amr14777317wri.691.1664231655426; Mon, 26
+ Sep 2022 15:34:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <973f7127-8165-45f6-071f-04360046b7d7@gmail.com>
- <20220908003510.GE4320@zorba> <c0c66918-f55e-83e4-edea-b2d32fdb27a7@gmail.com>
- <3fcea82c-f5cf-f066-67b9-08669c44a9c6@gmail.com> <20220912170524.GX4320@zorba>
- <75e803f8-2b25-22c8-0831-e90d0c889da1@gmail.com> <20220913005153.GZ4320@zorba>
- <00850627-7ada-3a02-158c-30f3b8334d51@gmail.com> <20220916225646.GK4320@zorba>
- <b6a43df4-e5d8-06d2-a6b9-3626f2677161@gmail.com> <20220917032610.GM4320@zorba>
-In-Reply-To: <20220917032610.GM4320@zorba>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 26 Sep 2022 17:29:49 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+MmkOP=LWi7GwpsWBVUepfHMRh1hvegCoGOTM+ZsvZjw@mail.gmail.com>
-Message-ID: <CAL_Jsq+MmkOP=LWi7GwpsWBVUepfHMRh1hvegCoGOTM+ZsvZjw@mail.gmail.com>
-Subject: Re: [PATCH] driver: of: overlay: demote message to warning
-To:     Daniel Walker <danielwa@cisco.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        xe-linux-external@cisco.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+References: <20220926183533.1893371-1-aurelien@aurel32.net>
+ <CAMdYzYoR2caD2ecN5vGTiHejoE5AhbyKxSgSeU1+SzU7nNVTwg@mail.gmail.com> <YzINPR0htauYppWQ@aurel32.net>
+In-Reply-To: <YzINPR0htauYppWQ@aurel32.net>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Mon, 26 Sep 2022 18:34:04 -0400
+Message-ID: <CAMdYzYqo9+DjvWTQMrZ=cDceG3KJOwBvSva0aRs_7rooko5f2Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add missing rockchip,pipe-grf to
+ rk3568 PCIe v3 PHY
+To:     Peter Geis <pgwipeout@gmail.com>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 16, 2022 at 10:26 PM Daniel Walker <danielwa@cisco.com> wrote:
+On Mon, Sep 26, 2022 at 4:36 PM Aurelien Jarno <aurelien@aurel32.net> wrote:
 >
-> On Fri, Sep 16, 2022 at 09:47:19PM -0500, Frank Rowand wrote:
-> > On 9/16/22 17:56, Daniel Walker wrote:
-> > > On Fri, Sep 16, 2022 at 05:47:54PM -0500, Frank Rowand wrote:
-> > >>>
-> > >>> Maybe you could add a flag or other indicator which would indicate the overlay will never be
-> > >>> removed. Then your code could rely on this property to inform on if the author
-> > >>> has consider the removal issues related to overlays.
-> > >>
-> > >> No.  I guess I wasn't clear enough above, where I said:
-> > >>
-> > >>    "And I will not accept a
-> > >>     change that suppresses the message if there is no expectation to remove the
-> > >>     overlay."
-> > >>
-> > >> There are multiple reasons for this, but the most fundamental is that if a
-> > >> new overlay is not removable, then any overlay already applied can not be
-> > >> removed (because overlays must be removed in the reverse order that they
-> > >> are applied).  It would be incredibly bad architecture to allow an overlay
-> > >> to block another overlay from being removed.
+> On 2022-09-26 14:58, Peter Geis wrote:
+> > On Mon, Sep 26, 2022 at 2:35 PM Aurelien Jarno <aurelien@aurel32.net> wrote:
 > > >
-> > > So how about an option to turn off removable overlays entirely? As far as I can
-> > > tell it's not used currently by the tiny number of implementation I've seen.
+> > > This commit fixes the error message
 > > >
-> > > Cisco doesn't need it, and we could have a smaller kernel without it.
-> > >
-> > > The issue is that the error log on blast is log level abuse in my opinion. If
-> > > there's no way to fix it, it should not be an error.
+> > >   rockchip-snps-pcie3-phy fe8c0000.phy: failed to find rockchip,pipe_grf regmap
 > >
-> > The way to fix it is to not have a construct in the overlay that triggers the
-> > message.  In other words, do not add a property to a pre-existing node.  (At
-> > least I think that is what is the underlying cause, if I recall correctly.)
-> >
-> > -Frank
+> > The pipe grf only is used on the rk3588 device for this phy.
 >
-> Here's the check,
->
->  if (!of_node_check_flag(target->np, OF_OVERLAY))
->
-> If the print shows when the modifications is made to a non-overlay, I'm not
-> sure how you could construct a device tree where you only modify other overlays.
->
-> It seems like this should print on the vast majority of overlays.
+> Ok, looking at the code in details, I confirm that. Does it mean the
+> change should be done at the phy driver level, to only look for
+> rockchip,pipe-grf on the rk3588 device?
 
-There is essentially zero support in the kernel for nodes to change
-once they are in use (typ. bound to a driver), and I don't see us ever
-supporting that use case. Unless shown otherwise, I don't think that
-is a good split between a base DT and overlay either.
+That would be reasonable, yes.
 
-What I've said multiple times for supporting runtime overlays, is that
-it needs to be restricted to adding/removing whole nodes/subtrees.
-
-Rob
+>
+> --
+> Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+> aurelien@aurel32.net                 http://www.aurel32.net
