@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 237955E9BD1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2DA05E9C06
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233731AbiIZITq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 04:19:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47042 "EHLO
+        id S233554AbiIZI2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:28:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233442AbiIZITn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:19:43 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BABA476
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:19:41 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id n40-20020a05600c3ba800b003b49aefc35fso3260913wms.5
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:19:41 -0700 (PDT)
+        with ESMTP id S234446AbiIZI2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:28:23 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 923623BC78
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:28:02 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id c11so8939779wrp.11
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:28:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
          :references:cc:to:content-language:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date;
-        bh=jKQIIfv2SW4ou+kZFFsY1IMYg5mAOYRQt6YkKfTElQc=;
-        b=hzu6+mpr5ZSXCUGWDhOrCiA/RBD+DXSpHdsd8IElxDjzrXFdb3sr8oFx8ARIvmEnU8
-         9Yinz7wN9grihuTOp1JZ/qKreV/y5zG20wh6Qkmo8ZLwHJm1RJQkRz00VZ6cVA+uod6S
-         LtRMwurY8TVYUc9KSZUs+NosyBOK/1uf8kYSmx7cN90vCWQ6UoByAwWRw6ZISYyfE0KG
-         t4/AYgL5Bd1KBtAcOn4wylwUPsTlE5yYpUK6vgERQ0D52zyNb7Kx6HtEaGjpmWiT4O+S
-         4skgGauyUl9wAKzx3oCjkfNONXIltgHLrn9T8pzkgAI+cQh2kDaBSHy5nAqW+tMimkCv
-         CKuA==
+        bh=zhUmxxCNn9dNH6cu3VHXkeKR3APeosgo+5Vt8unxLsk=;
+        b=bCA9csVPUe/ROE8AxHKEe0+vZgzqqNmM20DeBrOaP+Q955RuQ/4Lnw82FVuoqB5b5B
+         RU0zt5wMM6zAa95xaXcrxVyazwvpd27iV4vsT1HHuL5p5PBuZJur7uqRCd/ettol6Nev
+         R1hr5ooP03Uxs+5YaKO6T5bWD3I/fX0W8mmrdjLb8LVjpfD/jPzGa4beUEb2BSGwwnD0
+         6fGCAckFiep/r7EHcd3yZzZ/IuKqqJFevQ8fQsPKGn9cSswKMGVavTEDoM0zbwKduP9l
+         7E7j6c0B4nf0GHOFJQ/GMK1h1ZNuPbK+gZNHFOViZE+00EUzwerJTD0um6tu0aJ5obJ/
+         GyjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+        h=content-transfer-encoding:in-reply-to:organization:reply-to:from
          :references:cc:to:content-language:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date;
-        bh=jKQIIfv2SW4ou+kZFFsY1IMYg5mAOYRQt6YkKfTElQc=;
-        b=RBg4YTU+Vz69ShsDRWyPIM8AZSjP/HIURTBz7TooORWBBh8olNGt2TbM3qHFu5peku
-         GcT3zv8upDTchiRRzu5QHSy2+zH34x2X0qBWs7UiqfH85WvFtRM/7w3igIKviPD+qmhu
-         DotjfPtPJFzO1AXef54J+8VaBA7QMUiaRl878flMX+E/y1ixoaWTcwqaLATAWM2ifdPE
-         K/lCy/lgmKaegaxt0WLU1hH2iSFuJp92TiG78Oy7ASbIcjuz5xsMaLxOeyvXtELMiZPX
-         X6pzNpHtD4E+3ZwKsKjBQ5YzLZ/JBUHZCPO16CM5+pHJ8TYsxil+dlqpbGTmulsFGZJz
-         7+Fw==
-X-Gm-Message-State: ACrzQf3UMkPejr+7PecmrjLMZjlpjayXJRsai0rKiEkmm7ZgY+UD7iIq
-        2Vb0CdGCNS36o9nb+g7APCVVrA==
-X-Google-Smtp-Source: AMsMyM5a2SkwBGXm2LWW0e7JAvd4yKtan0bGn2F204UAj1PUgOIhbzsX8e7mgfY9oj1t+aeGqTbWdw==
-X-Received: by 2002:a7b:c056:0:b0:3b4:e007:2050 with SMTP id u22-20020a7bc056000000b003b4e0072050mr21229837wmc.38.1664180380142;
-        Mon, 26 Sep 2022 01:19:40 -0700 (PDT)
+        bh=zhUmxxCNn9dNH6cu3VHXkeKR3APeosgo+5Vt8unxLsk=;
+        b=LjT7bEUb+qLqwYH3GHRk38XD583cJzojP0RBV+zD5bt4nPP+YU09cgHvcVbmUEB6Z9
+         6mHgT8qWxuguEnWpXjSRz4l8fadG6BwJb7oQu718ucITmS3cGQNSu1gctWvfSeO8HxRm
+         3pEC9VEKHFHNiRNhQC2wnUMnARdKgv1eRmHwXC5l09RdlC8KfJo7uPTa6o7qA1YZvOQC
+         E1qajiMFb4LxsnJxvsJ5ur4MMrCYbfBuXr69r+CS1vjnqba2kclqTvE+66gsUQhSLRbe
+         ZJztS9TetlF4iRT5whF3luoi/xpFWFkNDM1N2oxOMR5CvawxSBPq9Rv0efZokB2+sUlR
+         +PeQ==
+X-Gm-Message-State: ACrzQf03SjSFrg7LJvpyiMDeKGV9hTjMCZ4pFQw58NG2Kk104Yn5PJiZ
+        uF72O3UyLOTPTHHeNqFKoQ24JQ==
+X-Google-Smtp-Source: AMsMyM4eRLX7uRiq6moxRCqfFPr5ERdQFCN2GveAkhiCUJTJTSb0eTBuCzE+Q1tWxpJccahPDU3dzA==
+X-Received: by 2002:a5d:5a14:0:b0:22a:25be:7f69 with SMTP id bq20-20020a5d5a14000000b0022a25be7f69mr12383381wrb.662.1664180880244;
+        Mon, 26 Sep 2022 01:28:00 -0700 (PDT)
 Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id v9-20020a5d4a49000000b0022a3a887ceasm8776476wrs.49.2022.09.26.01.19.36
+        by smtp.gmail.com with ESMTPSA id k22-20020a05600c0b5600b003b49bd61b19sm10243687wmr.15.2022.09.26.01.27.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 01:19:39 -0700 (PDT)
-Message-ID: <07e63329-b3b7-736e-1de3-625af5c4541f@linaro.org>
-Date:   Mon, 26 Sep 2022 10:19:32 +0200
+        Mon, 26 Sep 2022 01:27:59 -0700 (PDT)
+Message-ID: <98960452-9f48-7b4d-9aa6-55c0002ad1b4@linaro.org>
+Date:   Mon, 26 Sep 2022 10:27:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH] ARM: dts: qcom: pmx65: use node name "gpio" for spmi-gpio
+Subject: Re: [PATCH] ARM: dts: qcom-pma8084: fix vadc channel node names
 Content-Language: en-US
 To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -64,43 +64,73 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220925190622.111505-1-luca@z3ntu.xyz>
-Reply-To: neil.armstrong@linaro.org
+References: <20220925202143.123208-1-luca@z3ntu.xyz>
 From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
 Organization: Linaro Developer Services
-In-Reply-To: <20220925190622.111505-1-luca@z3ntu.xyz>
+In-Reply-To: <20220925202143.123208-1-luca@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2022 21:06, Luca Weiss wrote:
-> All other usages of qcom,spmi-gpio use the gpio@ node name, and this is
-> also validated by the dt binding check. Fix it.
+On 25/09/2022 22:21, Luca Weiss wrote:
+> Node names for the channel are supposed to be adc-chan@REG.
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->   arch/arm/boot/dts/qcom-pmx65.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   arch/arm/boot/dts/qcom-pma8084.dtsi | 17 +++++++++++------
+>   1 file changed, 11 insertions(+), 6 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-pmx65.dtsi b/arch/arm/boot/dts/qcom-pmx65.dtsi
-> index abf229a8b75a..1c7fdf59c1f5 100644
-> --- a/arch/arm/boot/dts/qcom-pmx65.dtsi
-> +++ b/arch/arm/boot/dts/qcom-pmx65.dtsi
-> @@ -20,7 +20,7 @@ pmx65_temp: temp-alarm@a00 {
->   			#thermal-sensor-cells = <0>;
->   		};
+> diff --git a/arch/arm/boot/dts/qcom-pma8084.dtsi b/arch/arm/boot/dts/qcom-pma8084.dtsi
+> index e77602e9f95c..7ad573c7b4ac 100644
+> --- a/arch/arm/boot/dts/qcom-pma8084.dtsi
+> +++ b/arch/arm/boot/dts/qcom-pma8084.dtsi
+> @@ -64,22 +64,27 @@ pma8084_vadc: adc@3100 {
+>   			#size-cells = <0>;
+>   			#io-channel-cells = <1>;
 >   
-> -		pmx65_gpios: pinctrl@8800 {
-> +		pmx65_gpios: gpio@8800 {
->   			compatible = "qcom,pmx65-gpio", "qcom,spmi-gpio";
->   			reg = <0x8800>;
->   			gpio-controller;
+> -			die_temp {
+> +			adc-chan@8 {
+>   				reg = <VADC_DIE_TEMP>;
+>   			};
+> -			ref_625mv {
+> +
+> +			adc-chan@9 {
+>   				reg = <VADC_REF_625MV>;
+>   			};
+> -			ref_1250v {
+> +
+> +			adc-chan@10 {
+>   				reg = <VADC_REF_1250MV>;
+>   			};
+> -			ref_buf_625mv {
+> +
+> +			adc-chan@12 {
+>   				reg = <VADC_SPARE1>;
+>   			};
+> -			ref_gnd {
+> +
+> +			adc-chan@14 {
+>   				reg = <VADC_GND_REF>;
+>   			};
+> -			ref_vdd {
+> +
+> +			adc-chan@15 {
+>   				reg = <VADC_VDD_VADC>;
+>   			};
+>   		};
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+I don't see where this is required, bindings doesn't mandate this naming:
+
+patternProperties:
+
+    "^.*@[0-9a-f]+$":
+Neil
