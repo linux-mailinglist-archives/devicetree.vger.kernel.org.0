@@ -2,118 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0BC65E99D4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 08:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF2985E99E3
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 08:50:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233274AbiIZGsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 02:48:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37178 "EHLO
+        id S233279AbiIZGuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 02:50:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233441AbiIZGsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 02:48:13 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F68A24BEB
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:48:12 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id a3so9279372lfk.9
-        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:48:12 -0700 (PDT)
+        with ESMTP id S233137AbiIZGuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 02:50:11 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2DD41F639
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:50:07 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id a8so9266327lff.13
+        for <devicetree@vger.kernel.org>; Sun, 25 Sep 2022 23:50:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=xnB45KVy0Jgmqvqqa4iP23q7Nu/qWxhqmCJpHgjco6w=;
-        b=tvjHBcsJmL2XPud8Uer4bOC9txkaora6eR8nrP5h+Vok2cqX4r5azTbIZDe8tapJ4n
-         8/aWk5uQJw2LMAN5WuRUNdYkwb+u9BWfYbVHjgedq6hZM0ff4cIBnawp4Y6+1bojlGJS
-         84ov4d8ycMORsBMKRzAwuBv2GeAXpbCANhIrbbns6YEx8w7SbCzCP2X1j6yVw3zwTmnL
-         LivK70YNqTbW0ZCdxY16ouQIDhpNdblenFrXTQcvtzNoqXUmEl8CMFCysAWCBwP1Mctb
-         uDEn3uoi7UMjI181R4AWhgzvE9jkuF+7C63B6556EHDmrx5Gtm/PWUJO4eJC1Sm3ivr1
-         uXiA==
+        bh=rMv/6RaQNfPOzLYbEjVzggzY8CZ+X96gFNKrqQ2B2Ow=;
+        b=xg1FMouFc39uYJfpo1TMTLh6Tz1Vheo3Fw4i4l3fcognD2CeckgksJP71bZytbEUqU
+         K76jhbCWLj5KC4OqfPlcmMAaQjeje9tY380R0SpZm61Xs6slylUAciPBo1eHhac4y65U
+         u1fs3iY+n+FxT7C71rYQiInoZ8ZJZaWkfVp0EqdB7cL3aUd5tKaXSr95zdQEdxFCHLMZ
+         Ya3PB+ZHoo4kNnxmt3VfbUS631IaaXvHlmSS1u1FpS3bkEgyvOUdtrC2rKGWwgykomML
+         /8ZVhBn4XTzSQ80KUB9HPUPOkIWbu5/o/HSW5Lp9IEn4tAtkwVPjeag/XW8vQFvQDSXP
+         INtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=xnB45KVy0Jgmqvqqa4iP23q7Nu/qWxhqmCJpHgjco6w=;
-        b=nv2a6XP4LPFzfZqU/V5U9Q+BAeoRztR2T6rz70NuErfR7nysyGixQqiR4qWQoCV7Yz
-         H2YysQPR/uXZSJoU0FLZUuZP/L4R8DGFnqXUeaAHV704/Q74IyLmP4/go0ddAZEYwL55
-         URtVjORMlPO79r//64W3rwpHDk5M6vjEG+lYbuSYWVCy22+mboXQLvTjyXE6UeGN3VxW
-         y4cOvCN9qSiKKSZqDxVmJf8S0Up3xwrW9Wuqs3R55Lfei9j7Z9zBh0gpE0GTucIsbMhD
-         i3E0065fJrDyLTNuy9039RqkMBPIipV7hHIMrfMXmlbufiiMtykjkR7LGJ16PZd9/cKW
-         9f3Q==
-X-Gm-Message-State: ACrzQf3J6DAjy9DjXkrmRJ3nt7l12/3i/4E3rDUe0zPla4p7iw2PcXfZ
-        oeQrhwtH0EoUMRYW4uyCqogMYA==
-X-Google-Smtp-Source: AMsMyM5xQLsMt+mT+gwGq0IiKT0zS1FucufeCIblvlZU2Da5RRo5Ahailez9kxVVrHpY5PaOe+tZ0Q==
-X-Received: by 2002:a05:6512:1092:b0:4a1:de5f:1cc9 with SMTP id j18-20020a056512109200b004a1de5f1cc9mr258895lfg.219.1664174890794;
-        Sun, 25 Sep 2022 23:48:10 -0700 (PDT)
+        bh=rMv/6RaQNfPOzLYbEjVzggzY8CZ+X96gFNKrqQ2B2Ow=;
+        b=b11awLhsACcD9Spgy8TMWbYeLRF3Na6hcIWPRIa940FRkUlSdl517Y5eZM8X7D06Ol
+         9gNZoed7DuAt44I7BaBwfbD19m4U/Ycgl3Ps3ZC3gGW/FMYOwvoCzPbkKUh5stYK5Crv
+         KjyNJHYMZ8NUNVZcsqKcN3uW8QVlzLuKbcx7QtZFencJjTGz+RIAOBcKzoNkvfPzeqJJ
+         w0/RFvGHk3gKcT+6CC/h8BZgqY6LkeAFOdmJbIYeji2k2udFnjT06AIgmvWoAyyWhj7a
+         dHuMp0H+6vkKY/lwv6NGjPM83/xD1nQxc2guX9dIPOBycGqVtt4qbNKeMBZ3Sggo0MFL
+         5/Ag==
+X-Gm-Message-State: ACrzQf1Ly+/xM+4Ne+mR3tuajNJ4iETIzD8R0qMhJ8laso3AMSeiEtDs
+        v6s/pCLyGGdc55odnpl/dsQT7A==
+X-Google-Smtp-Source: AMsMyM4A2p2dVHbr2MrZbNkvzA+TDXrYrHq10zKyOpuUy8eKdgqnmSqsTMBymCWb70/WbocMjsZ6jw==
+X-Received: by 2002:a19:e01e:0:b0:497:81a9:c2c4 with SMTP id x30-20020a19e01e000000b0049781a9c2c4mr8259528lfg.74.1664175005928;
+        Sun, 25 Sep 2022 23:50:05 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w6-20020a05651234c600b0049f6484694bsm2440444lfr.161.2022.09.25.23.48.09
+        by smtp.gmail.com with ESMTPSA id e12-20020a05651236cc00b00499b19f23e8sm2440271lfs.279.2022.09.25.23.50.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Sep 2022 23:48:10 -0700 (PDT)
-Message-ID: <cdfe6f83-266a-de8b-d518-cc8b7fd45732@linaro.org>
-Date:   Mon, 26 Sep 2022 08:48:09 +0200
+        Sun, 25 Sep 2022 23:50:05 -0700 (PDT)
+Message-ID: <d31dc406-3ef2-0625-8f5e-ff6731457427@linaro.org>
+Date:   Mon, 26 Sep 2022 08:50:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH 17/32] dt-bindings: pinctrl: qcom,msm8909-tlmm: do not
- require function on non-GPIOs
+Subject: Re: [PATCH v2 4/8] dt-bindings: net: renesas: Document Renesas
+ Ethernet Switch
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sricharan R <sricharan@codeaurora.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        krishna Lanka <quic_vamslank@quicinc.com>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220924080459.13084-1-krzysztof.kozlowski@linaro.org>
- <20220924080459.13084-18-krzysztof.kozlowski@linaro.org>
- <YzBe5NdhGqR+2bxN@gerhold.net>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "richardcochran@gmail.com" <richardcochran@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>
+Cc:     "andrew@lunn.ch" <andrew@lunn.ch>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20220921084745.3355107-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220921084745.3355107-5-yoshihiro.shimoda.uh@renesas.com>
+ <1aebd827-3ff4-8d13-ca85-acf4d3a82592@linaro.org>
+ <TYBPR01MB5341514CD57AB080454749F2D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YzBe5NdhGqR+2bxN@gerhold.net>
+In-Reply-To: <TYBPR01MB5341514CD57AB080454749F2D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2022 16:00, Stephan Gerhold wrote:
->> +    allOf:
->> +      - $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
->> +      - if:
->> +          properties:
->> +            pins:
->> +              pattern: "^gpio([0-9]|[1-9][0-9]|10[0-9]|11[0-7])$"
->> +        then:
->> +          required:
->> +            - function
->>  
-> 
-> Is it possible to place this into qcom,tlmm-common.yaml? If the pattern
-> is only used to make "function" required for GPIOs, then it should not
-> matter if it matches just the prefix ("^gpio") or the exact set of
-> allowed GPIO numbers. The definition of the "pins" property will already
-> take care of validating those.
+On 26/09/2022 08:10, Yoshihiro Shimoda wrote:
 
-Hm, very good idea.
+> I'll add a blank line here.
+> 
+>>> +      '#size-cells':
+>>> +        const: 0
+>>> +
+>>> +    additionalProperties: false
+>>
+>> Don't put it between properties. For nested object usually this is
+>> before properties:
+> 
+> I'll drop it.
+
+Don't drop, but instead put it before "properties" for this nested object.
 
 > 
-> Or are there some Qcom SoCs where a GPIO without "function" is valid?
+>>> +
+>>> +    patternProperties:
+>>> +      "^port@[0-9a-f]+$":
+>>> +        type: object
+>>> +
+>>
+>> Skip blank line.
+> 
+> I got it.
+> 
+>>> +        $ref: "/schemas/net/ethernet-controller.yaml#"
+>>
+>> No need for quotes.
+> 
+> I'll drop the quotes.
+> 
+>>> +        unevaluatedProperties: false
+>>> +
+>>> +        properties:
+>>> +          reg:
+>>> +            description:
+>>> +              Port number of ETHA (TSNA).
+>>> +
+>>> +          phy-handle:
+>>> +            description:
+>>> +              Phandle of an Ethernet PHY.
+>>
+>> Why do you need to mention this property? Isn't it coming from
+>> ethernet-controller.yaml?
+> 
+> Indeed. I'll drop the description.
+> 
+>>> +
+>>> +          phy-mode:
+>>> +            description:
+>>> +              This specifies the interface used by the Ethernet PHY.
+>>> +            enum:
+>>> +              - mii
+>>> +              - sgmii
+>>> +              - usxgmii
+>>> +
+>>> +          phys:
+>>> +            maxItems: 1
+>>> +            description:
+>>> +              Phandle of an Ethernet SERDES.
+>>
+>> This is getting confusing. You have now:
+>> - phy-handle
+>> - phy
+>> - phy-device
+>> - phys
+>> in one schema... although lan966x serdes seems to do the same. :/
+> 
+> Yes... I found the following documents have "phy" and "phy-handle" by using
+> git grep -l -w "phys" `git grep -l phy-handle Documentation/devicetree/bindings/`:
+> Documentation/devicetree/bindings/net/cdns,macb.yaml
+> Documentation/devicetree/bindings/net/cpsw.txt
+> Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+> Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml
+> Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> Documentation/devicetree/bindings/phy/phy-bindings.txt
+> 
+> And I'm interesting that the phy-bindings.txt said the following:
+> -----
+> phys : the phandle for the PHY device (used by the PHY subsystem; not to be
+>        confused with the Ethernet specific 'phy' and 'phy-handle' properties,
+>        see Documentation/devicetree/bindings/net/ethernet.txt for these)
+> -----
 
-Quick look at drivers says there is no such case. I can try adding it to
-common schema and look for errors.
+Indeed, seems ok.
 
+> 
 
 Best regards,
 Krzysztof
