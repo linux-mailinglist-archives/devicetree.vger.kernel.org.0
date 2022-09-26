@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 363D25E9C98
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 473675E9C9A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:56:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233151AbiIZI4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 04:56:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47758 "EHLO
+        id S234241AbiIZI4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:56:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231241AbiIZI4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:56:04 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6ABB36DC6
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:02 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id x29so6662107ljq.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:02 -0700 (PDT)
+        with ESMTP id S231727AbiIZI4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:56:18 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C9C3CBC6
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:15 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id e18so3987171wmq.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=LygWxMPYiiK3qZH2BOr8vVIkBAjDPXCSKFsPmYOYNp4=;
-        b=YZg/aIRbC0PHB9nhtnEszdhN+jwLatJdmHoRaxhB+SGlCd5dmDboTAF2GVP9SBWIYb
-         QybMQpCFM5x9sLv2YKOHXNZvF21YLysRqGGEwQItaJsbYWve+5nrFkmBNqUOHQ9tBGk2
-         ZyreflIF4/lnqqflZJEbN2MGmmWy9kdmGdk1tBbjGpuDEQBQxcdb61FK76YE41F2Fpyz
-         B0yR2mymcIYpofTmEpEHZB8xw9fLf8y9ytQUlCzaXuaqeGpmQkcuPOlL3ZwNOURTdD/w
-         IWWs+BSSNjyahkZvoRtWs/xkXXSGEUILF09RkJQIyp6bx9LNOayLBIsgwYscOD6KBxSL
-         WlTA==
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date;
+        bh=cMdvVG6gsVrl67bRH/yjYyvxFVJ/s7FYCJ8TDUHq/e8=;
+        b=oYcg6maKBAwLkrJtTzjJDgfU2YwyJZ4y3fiJoiClwcf/BM+Hw9KLQn4IhVUfFCSuar
+         6/wAvvVn6yftGiR1m/DDzR2zzHDpdKvETW4hJMvJ82LIWqKOCPPmqmTEZH6iyhMnCBVB
+         6R7IXRkcgOCIKo+Ota7tWwK+wH3X2pFqfHsGpQN8zkIHfn0RDTyM4+DfEqskaZd9erDO
+         nKW+zfPuyry/nDiXxPL4+ll5MP9SXNz5XRvxCggsi63u2tZ3RKF0+NdvBUVNinYkBFxT
+         Tfx9SjzqUbbT+SqywinllpMgAFp3c3DD+XRlguLKS1w7aXeX8CH5CwmGZ9tbMY8kpiKw
+         Ecmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=LygWxMPYiiK3qZH2BOr8vVIkBAjDPXCSKFsPmYOYNp4=;
-        b=t3JWx3GrryCZAVp5CT2aHQmtGwPQlnfP0RgJTHaiWtzZKiiFtslffne6SvqHvBr3p/
-         pYkrzzNJ3d9PkT7Z6O0oJMsve1X2POQvQcLQKO2V1x4Ip3q9mROAdTfGdd3f6jBvK6F9
-         mP5dT1krUzubbZZk0SDLm023KYcXwtzPBeDBtW6BUShq5sdeDHdBOJuXJh7tD77v2OgB
-         Ni7osCjui5O2ouIblOu9o0lenRqoVRKJJuykxW6rtczDGe4YdSwpcYXz+3uhUPNzrRlh
-         IirqFdH5GdrGHW71i2rQHa9a88HHgN2GDWbQLD6+V+psxVAmV6iRBIPswnUMvA6XEA5x
-         Oj5w==
-X-Gm-Message-State: ACrzQf3+PuL1UWen+9HsT2miGVpy/MlOeV+rCJJmrn7iUWWjo/vrD0s1
-        phkoMqYGXOJ8UFrPYNfc5EoJRQ==
-X-Google-Smtp-Source: AMsMyM5A6TYCbX/hg5uRQ698K2J10sgO4nLPjMSO7EHPQ1s5wRt/HXI9m7i2VCM+76dMMIPYm9tfig==
-X-Received: by 2002:a2e:bba2:0:b0:26b:e2d6:fe44 with SMTP id y34-20020a2ebba2000000b0026be2d6fe44mr7080053lje.286.1664182561232;
-        Mon, 26 Sep 2022 01:56:01 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u15-20020a2e9f0f000000b0026c4c1a0b4dsm2308051ljk.126.2022.09.26.01.55.59
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=cMdvVG6gsVrl67bRH/yjYyvxFVJ/s7FYCJ8TDUHq/e8=;
+        b=AgZRVSKcX/QDTyHeE7ju6jwpxsI8DjbYxPA0q2004GVqcRKJYIX6GRM+xczLQpGC92
+         3aNZp85ua264BkfdkfURQT67VZmsTPPZkQ8QlmqU40koFReqSrvy0VuxEr4uazEMHR/0
+         O/JFYSqengia5xpov/XY0R9pARx/td7dKq+1d5Go3hbGY2TiHltScPwIpICKedJEUhFw
+         Q5LxlC+AXcCX0v1yN7leRNd5ze+hXbC527N9b9qTUinhQL5JB9VnAsuQ0N7B1J3W9zoX
+         r96IOKnt1WdFTp019P0TsCmRYM4lqE955rBWJDUyC/ZeApTHIAtPNtoBPO/fDnE4kOMC
+         rxgw==
+X-Gm-Message-State: ACrzQf0eHiMkGAVitmbp4YDRJfULIjNMkrQgjDKXVnJWdOfdGkSVE3tj
+        q2xQNhs8FqS+mOOM9Y23nfIg6Q==
+X-Google-Smtp-Source: AMsMyM7pAEtgR9SQVfgG1QhJMXvMDKkf8XyniYQR7ul4iT246LQLXLILmqxGPic89ZHI2yzTTionMA==
+X-Received: by 2002:a05:600c:1990:b0:3b4:c326:d099 with SMTP id t16-20020a05600c199000b003b4c326d099mr13751533wmq.19.1664182573985;
+        Mon, 26 Sep 2022 01:56:13 -0700 (PDT)
+Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
+        by smtp.gmail.com with ESMTPSA id l2-20020a05600c1d0200b003a62052053csm13123493wms.18.2022.09.26.01.56.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 01:56:00 -0700 (PDT)
-Message-ID: <6e43fd39-3452-c36d-d9ff-fd508ac337c9@linaro.org>
-Date:   Mon, 26 Sep 2022 10:55:59 +0200
+        Mon, 26 Sep 2022 01:56:13 -0700 (PDT)
+Message-ID: <2b57b492-8765-8629-1c94-ea04c0188792@linaro.org>
+Date:   Mon, 26 Sep 2022 10:56:08 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH net-next v3 1/6] dt-bindings: net: tsnep: Allow
- dma-coherent
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/3] ARM: dts: qcom: pm8941: adjust node names to bindings
 Content-Language: en-US
-To:     Gerhard Engleder <gerhard@engleder-embedded.com>,
-        netdev@vger.kernel.org
-Cc:     davem@davemloft.net, kuba@kernel.org, edumazet@google.com,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-References: <20220923202911.119729-1-gerhard@engleder-embedded.com>
- <20220923202911.119729-2-gerhard@engleder-embedded.com>
- <6e814bf8-7033-2f5d-9124-feaa6593a129@linaro.org>
- <773e8425-58ff-1f17-f0eb-2041f3114105@engleder-embedded.com>
- <7c7f67d3-d42e-a053-256d-706cc9dfb947@linaro.org>
- <7782924b-9664-6946-f8f6-c70cec618df9@engleder-embedded.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7782924b-9664-6946-f8f6-c70cec618df9@engleder-embedded.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220925210229.128462-1-luca@z3ntu.xyz>
+ <20220925210229.128462-2-luca@z3ntu.xyz>
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20220925210229.128462-2-luca@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -82,36 +82,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2022 10:14, Gerhard Engleder wrote:
-> On 25.09.22 09:41, Krzysztof Kozlowski wrote:
->> On 24/09/2022 20:11, Gerhard Engleder wrote:
->>> On 24.09.22 11:15, Krzysztof Kozlowski wrote:
->>>> On 23/09/2022 22:29, Gerhard Engleder wrote:
->>>>> Fix the following dtbs_check error if dma-coherent is used:
->>>>>
->>>>> ...: 'dma-coherent' does not match any of the regexes: 'pinctrl-[0-9]+'
->>>>>   From schema: .../Documentation/devicetree/bindings/net/engleder,tsnep.yaml
->>>>
->>>> Skip last line - it's obvious. What instead you miss here - the
->>>> DTS/target which has this warning. I assume that some existing DTS uses
->>>> this property?
->>>
->>> I will skip that line.
->>>
->>> The binding is for an FPGA based Ethernet MAC. I'm working with
->>> an evaluation platform currently. The DTS for the evaluation platform
->>> is mainline, but my derived DTS was not accepted mainline. So there is
->>> no DTS. This is similar for other FPGA based devices.
->>
->> If this is not coming from mainline, then there is no warning...  we are
->> not interested in warnings in out-of-tree code, because we are not
->> fixing them.
+Hi,
+
+On 25/09/2022 23:02, Luca Weiss wrote:
+> pm8941-misc should be called 'extcon' and pm8941-coincell 'charger'.
 > 
-> Ok. So I would rewrite the description that it just allows dma-coherent
-> and remove the fix/warning stuff. Is that ok?
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>   arch/arm/boot/dts/qcom-pm8941.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi b/arch/arm/boot/dts/qcom-pm8941.dtsi
+> index 33517cccee01..01f14d5f314d 100644
+> --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
+> +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
+> @@ -27,7 +27,7 @@ pwrkey@800 {
+>   			bias-pull-up;
+>   		};
+>   
+> -		usb_id: misc@900 {
+> +		usb_id: extcon@900 {
+>   			compatible = "qcom,pm8941-misc";
+>   			reg = <0x900>;
+>   			interrupts = <0x0 0x9 0 IRQ_TYPE_EDGE_BOTH>;
+> @@ -138,7 +138,7 @@ pm8941_iadc: adc@3600 {
+>   			qcom,external-resistor-micro-ohms = <10000>;
+>   		};
+>   
+> -		pm8941_coincell: coincell@2800 {
+> +		pm8941_coincell: charger@2800 {
+>   			compatible = "qcom,pm8941-coincell";
+>   			reg = <0x2800>;
+>   			status = "disabled";
 
-That would be okay, but please add answer to why you are making this change.
+I think those changes are unrelated and should be split into 2 patches.
 
-Best regards,
-Krzysztof
-
+Neil
