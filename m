@@ -2,96 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BD1C5EB09C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 20:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F25205EB0B2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 21:02:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbiIZS6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 14:58:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41838 "EHLO
+        id S230215AbiIZTCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 15:02:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbiIZS6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 14:58:54 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB58F6A49B;
-        Mon, 26 Sep 2022 11:58:53 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-1274ec87ad5so10539255fac.0;
-        Mon, 26 Sep 2022 11:58:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=zbSxAYa+S4SLhqXdiuG1/pxj5W4n/PshmvFvMJ6FuOs=;
-        b=RhKSooat29vnWGGJ1MRcY/MTV0j7h3L01pJvhsesaqoBTuOJuQa4NWx8DoETqPqfKg
-         /xa9x2vz+4aZJJ0KX7wbqqUsR2GO3FuwM+zbIDVAFbsVos1+KbhwJdCIX9TyFJAuQ15D
-         r2zLSK62fQFC2qvmb/n1MbPNilxr8aJ3MAEjeWwv1NjTWVohYK7ErI5pkC09VOzgdWOs
-         TgLp+oKJOd4q68j2ymoW6el+/YnBKX94fr9k5DAboRbw9GslqOufUbpriip1kWObZqL/
-         wW5Fe7SdrEMc30vobKJubbHxKv+YlwXAJ7w4486WFqIUW1G2Eqe01KVqGlBhqW2os/cR
-         /4sg==
-X-Gm-Message-State: ACrzQf3auVdeERUtsooV5PhPaQw7PH/taEHsa1EpLGZqnegUAwqredot
-        v9xogchemJh6RoNJQILxZQ==
-X-Google-Smtp-Source: AMsMyM5KiiawLpglYP+YjV/EAoSeJPfC4zMVaKJ4G/SHGqccGTTbNtD8rDELy4Vywwc9vRuGW2z+Nw==
-X-Received: by 2002:a05:6870:507:b0:130:ae8d:db0e with SMTP id j7-20020a056870050700b00130ae8ddb0emr113319oao.82.1664218733041;
-        Mon, 26 Sep 2022 11:58:53 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k9-20020a056870570900b00130d060ce80sm4531663oap.31.2022.09.26.11.58.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 11:58:52 -0700 (PDT)
-Received: (nullmailer pid 2586379 invoked by uid 1000);
-        Mon, 26 Sep 2022 18:58:52 -0000
-Date:   Mon, 26 Sep 2022 13:58:52 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jilin Yuan <yuanjilin@cdjrlc.com>
-Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: device: fix repeated words in comments
-Message-ID: <20220926185852.GA2581083-robh@kernel.org>
-References: <20220918094915.19567-1-yuanjilin@cdjrlc.com>
+        with ESMTP id S229780AbiIZTCG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 15:02:06 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B015B85FB6;
+        Mon, 26 Sep 2022 12:02:03 -0700 (PDT)
+Received: from localhost.localdomain (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 3B9EA3F434;
+        Mon, 26 Sep 2022 21:02:00 +0200 (CEST)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/5] Add Qcom PM6125 PMIC and use in Sony Xperia Seine PDX201
+Date:   Mon, 26 Sep 2022 21:01:43 +0200
+Message-Id: <20220926190148.283805-1-marijn.suijten@somainline.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220918094915.19567-1-yuanjilin@cdjrlc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 18, 2022 at 05:49:15PM +0800, Jilin Yuan wrote:
-> Delete the redundant word 'of'.
+This series adds initial support for the PM6125 PMIC, and its power key
+handling and thermal monitoring capabilities are configured for Sony's
+PDX201 (Xperia 10II).
 
-Again? Sigh.
+One patch for pm660 is included to fix a node address mismatch with its
+reg field.
 
-Please read:
+Changes since v3:
+- Rebased on next-20220923 to fix (diff-context) conflicts with:
+  - https://lore.kernel.org/all/20220902111055.106814-1-luca.weiss@fairphone.com/
+  - https://lore.kernel.org/all/20220912061746.6311-35-krzysztof.kozlowski@linaro.org/
 
-https://lore.kernel.org/all/CAL_JsqL4GvgFYzGUfhW5pvm4wYGrFaj6gHOYZjnOMuk2zCz67w@mail.gmail.com/
+v3: https://lore.kernel.org/linux-arm-msm/20220919204826.215845-1-marijn.suijten@somainline.org/T/#t
 
-> 
-> Signed-off-by: Jilin Yuan <yuanjilin@cdjrlc.com>
+Changes since v2:
+- Rebased on v6.0-rc6 to drop dependent DT patches;
+- Dropped iio patch which has already been picked into Jonathan's tree;
+- Added qcom,pm6125 compatible in new yaml-ified SPMI-PMIC dt-bindings.
 
-Are you sure you are the author?
+v2: https://lore.kernel.org/linux-arm-msm/20220805135729.1037079-1-marijn.suijten@somainline.org/T/#u
 
-> ---
->  drivers/of/device.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/of/device.c b/drivers/of/device.c
-> index 75b6cbffa755..6158173b92ad 100644
-> --- a/drivers/of/device.c
-> +++ b/drivers/of/device.c
-> @@ -19,7 +19,7 @@
->  
->  /**
->   * of_match_device - Tell if a struct device matches an of_device_id list
-> - * @matches: array of of device match structures to search in
-> + * @matches: array of device match structures to search in
->   * @dev: the of device structure to match against
->   *
->   * Used by a driver to check whether an platform_device present in the
-> -- 
-> 2.36.1
-> 
-> 
+Changes since v1:
+- Dropped both pinctrl patches that have already been applied;
+- Add -us suffix to qcom,hw-settle-time properties on ADC TM5 nodes
+  (this suffix is not present on regular ADC5/VADC nodes);
+- Add -state suffix to pm6125_gpio pinctrl nodes;
+- Use PMIC_GPIO_FUNC_NORMAL instead of the string-literal "normal";
+- Removed #address-cells and #size-cells from empty pmic@1 node;
+- Removed ADC5_AMUX_THM3 / ADC5_GPIO2_100K_PU channels from the ADC5
+  patch, these are unused on my board and hence untested.
+
+v1: https://lore.kernel.org/phone-devel/20220511220613.1015472-1-marijn.suijten@somainline.org/T/#u
+
+Marijn Suijten (5):
+  dt-bindings: mfd: qcom-spmi-pmic: Add pm6125 compatible
+  arm64: dts: qcom: pm660: Use unique ADC5_VCOIN address in node name
+  arm64: dts: qcom: Add PM6125 PMIC
+  arm64: dts: qcom: sm6125-seine: Include PM6125 and configure PON
+  arm64: dts: qcom: sm6125-seine: Configure additional trinket
+    thermistors
+
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   1 +
+ arch/arm64/boot/dts/qcom/pm6125.dtsi          | 154 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm660.dtsi           |   2 +-
+ .../qcom/sm6125-sony-xperia-seine-pdx201.dts  | 162 +++++++++++++++++-
+ 4 files changed, 317 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm6125.dtsi
+
+--
+2.37.3
+
