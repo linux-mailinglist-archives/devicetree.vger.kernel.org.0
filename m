@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D34D25E9AEB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 09:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F8F25E9AF9
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 09:47:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234185AbiIZHq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 03:46:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42328 "EHLO
+        id S233803AbiIZHrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 03:47:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234263AbiIZHqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 03:46:11 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2186E205D9
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 00:44:53 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id l12so6422486ljg.9
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 00:44:53 -0700 (PDT)
+        with ESMTP id S234286AbiIZHqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 03:46:48 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3451132BB0
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 00:45:05 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id x29so6475672ljq.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 00:45:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=WEk43uqJcxXRamS6VCcaS3s1vK1XqF/9se3cKycCS1M=;
-        b=yOQeePVnusINYAtij7nbFEw7gSBC/z5kdUxD9I05eysAfCXX/S44K6L0zMvnIl8JmH
-         TrpAQfgIYynRivmFQcLvoJSvdujV7lzG7i4G1Q868azClsMTDmFEevF9GxuKIpvuB74W
-         X5CS4XveK6hEcWhkPuPeqBiSp5gZkte33Q2kmRleaCyjplm8Xe93YTzfxmicRYjJjfLg
-         cx4wbS3dMxfi2c3jbKB1/GxVcvLKTZ0P17tHsfFckCVT2ZBhJ9YCKk2ZmHLmoAGs9Rwk
-         Lq9x0M/ebsTk4lqVK10uOuENreepFuz+CmLSpxVQPZmU2GJlL59lPULViZiB4AzJ+27Z
-         LCPA==
+        bh=hZoihGN9LuXNpIDqL0PGpHJiu0KXNyNZnYTwNgQ/WZc=;
+        b=cx/UCT70z6xOXrjxd93Rtp13G4cH6/nJXPIV/FexBtOxXenC/tPlYJdxi1u6Cvogid
+         1T8OK9efopfAAdarmdFQVoW56yNsX1EzegDb5C+M07k5ltSBjfANDTr3BIb0RxdhMPRg
+         TNs55ZM3w8sLN/F4GmJjt30fHnCLXe3vjdKtSYxreZaecxD90bRoER7OXDxcOEf08eB8
+         MQaFVZXa2gEWVYrhRoNWRMTIL5z/RPq5XoZH/oojHnZL7h2WlTa9MZwqinLsVkYsy7+r
+         7Zg9o9AtJfaiNQlMajfExgmegFkFloFQL/l4Q9yTfg+QT22TPH3+5rLjsXIp9nGagdUN
+         D3IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=WEk43uqJcxXRamS6VCcaS3s1vK1XqF/9se3cKycCS1M=;
-        b=aXsAFUngK2ZqwZ4u+G6ApyayQWB/ewXs0kBm0iq4m2qoWgj1pQ1KmGpV02VPkiliJb
-         26axQv56aJ0g7ihp56UnhfEXi8fNoRFOd3zQOivscJUreC1NBc/s596gpgfdmYEES5mP
-         eeeYtPcUu/q2xi4TVHVhK6fTSSDafnXO0MgeJfJCbNNnixLD6p0O0nn6wUMCIFG12VO7
-         3Sa7UKNQNgS3AbwxnVM7ecdJ0OoNOTmQyqa43eTgr+uSgJVs8gN6chr9KrSJmB9+la3f
-         J3mr7yjcWDsd2qtncFETCGVlYGt9VqpSTH8i52HzqFe7WGFjzRugT50gaAl9qPqj0eTX
-         m+6w==
-X-Gm-Message-State: ACrzQf2D5AxxiEcxbVn5c0Uf2Zn2GJVL2A2msR+Yh8EZpME20utiCKHY
-        b7n/thtSN1timgFbYnTLdLNM0g==
-X-Google-Smtp-Source: AMsMyM5x1cdiQ6nBtUBKDuJ2EYjNW9ZqNEVxUHdCE2sJuEYhvSs+xkFgpyhjqwKDPjucufbqmB9cPQ==
-X-Received: by 2002:a2e:a4cd:0:b0:26d:8a9c:9c02 with SMTP id p13-20020a2ea4cd000000b0026d8a9c9c02mr3225218ljm.210.1664178293171;
-        Mon, 26 Sep 2022 00:44:53 -0700 (PDT)
+        bh=hZoihGN9LuXNpIDqL0PGpHJiu0KXNyNZnYTwNgQ/WZc=;
+        b=f1DwQu8eFMDgaw2UZUF4YhgcppdWn2qCFVCsSGBooevpjKoAEON85GBvTn0jRkfkiP
+         BlOyLNXAxsxh0Ztr8qL71n2NQTvlSIimqwPONV7g/fWN7naeSaBBWk8yON67x6i21dly
+         LBndgSekksLOFqQa2dKnkDSTpqVI9jmXFMhiMmL4ZGSlV5GJ7Ka54U8lScrA0eqvjVwY
+         X1bQJa78l1bXQmO4VMJqnHPsRu4jOwfEmeKreBeZdH++9KRYp0+bdqw5Vblpwk6d0WVr
+         I0qlAS0V7+j7QgG7kKA8AwDgLGAlG9/rsJZ3Whg/EUHudmxmYBHcsnqW/dMT1I6f4iFA
+         T3mQ==
+X-Gm-Message-State: ACrzQf2rlpoOwWTBTdzLwYofU0eKx9ETZuYq1tPo//LhpsQ63vN/Yr2F
+        3y7KIBdtm5pQPkXPb2z5qjPzJw==
+X-Google-Smtp-Source: AMsMyM6jF7+qumxyG9NzmJTakUXhNSEVe1cBsUWmkuLdU9rjfd2evPzc4kf+2Tpdm1650AfZijaVKw==
+X-Received: by 2002:a2e:a7cc:0:b0:26c:ea51:1448 with SMTP id x12-20020a2ea7cc000000b0026cea511448mr3832951ljp.47.1664178294683;
+        Mon, 26 Sep 2022 00:44:54 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id g6-20020a19e046000000b004978e51b691sm2453298lfj.266.2022.09.26.00.44.50
+        by smtp.gmail.com with ESMTPSA id g6-20020a19e046000000b004978e51b691sm2453298lfj.266.2022.09.26.00.44.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 00:44:52 -0700 (PDT)
+        Mon, 26 Sep 2022 00:44:53 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -63,9 +63,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 15/33] dt-bindings: pinctrl: qcom,msm8226: add functions and input-enable
-Date:   Mon, 26 Sep 2022 09:43:57 +0200
-Message-Id: <20220926074415.53100-16-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 16/33] dt-bindings: pinctrl: qcom,msm8226: fix indentation in example
+Date:   Mon, 26 Sep 2022 09:43:58 +0200
+Message-Id: <20220926074415.53100-17-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220926074415.53100-1-krzysztof.kozlowski@linaro.org>
 References: <20220926074415.53100-1-krzysztof.kozlowski@linaro.org>
@@ -81,50 +81,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MSM8226 pinctrl driver supports input-enable, blsp_i2c4, blsp_uart4
-and sdc3 functions and DTS already uses it:
-
-  qcom-msm8226-samsung-s3ve3g.dtb: pinctrl@fd510000: 'blsp1-i2c1', 'blsp1-i2c2', 'blsp1-i2c3', 'blsp1-i2c4', 'blsp1-i2c5' ...
-  qcom-apq8026-lg-lenok.dtb: pinctrl@fd510000: touch-state: 'oneOf' conditional failed, one must be fixed:
-    'input-enable' does not match any of the regexes: 'pinctrl-[0-9]+'
+Bindings example should be indented with 4-spaces.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/pinctrl/qcom,msm8226-pinctrl.yaml         | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+ .../pinctrl/qcom,msm8226-pinctrl.yaml         | 36 +++++++++----------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-index 4420bb23c9dc..8c5c85807882 100644
+index 8c5c85807882..b466d2ffc437 100644
 --- a/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
 +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8226-pinctrl.yaml
-@@ -79,9 +79,10 @@ $defs:
-           Specify the alternative function to be configured for the specified
-           pins. Functions are only valid for gpio pins.
-         enum: [ gpio, cci_i2c0, blsp_uim1, blsp_uim2, blsp_uim3, blsp_uim5,
--                blsp_i2c1, blsp_i2c2, blsp_i2c3, blsp_i2c5, blsp_spi1,
-+                blsp_i2c1, blsp_i2c2, blsp_i2c3, blsp_i2c4, blsp_i2c5, blsp_spi1,
-                 blsp_spi2, blsp_spi3, blsp_spi5, blsp_uart1, blsp_uart2,
--                blsp_uart3, blsp_uart5, cam_mclk0, cam_mclk1, wlan ]
-+                blsp_uart3, blsp_uart4, blsp_uart5, cam_mclk0, cam_mclk1, sdc3,
-+                wlan ]
+@@ -119,22 +119,22 @@ additionalProperties: false
  
-       drive-strength:
-         enum: [2, 4, 6, 8, 10, 12, 14, 16]
-@@ -90,13 +91,10 @@ $defs:
-           Selects the drive strength for the specified pins, in mA.
- 
-       bias-pull-down: true
+ examples:
+   - |
+-        #include <dt-bindings/interrupt-controller/arm-gic.h>
+-        msmgpio: pinctrl@fd510000 {
+-                compatible = "qcom,msm8226-pinctrl";
+-                reg = <0xfd510000 0x4000>;
 -
-       bias-pull-up: true
+-                gpio-controller;
+-                #gpio-cells = <2>;
+-                gpio-ranges = <&msmgpio 0 0 117>;
+-                interrupt-controller;
+-                #interrupt-cells = <2>;
+-                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
 -
-       bias-disable: true
--
-+      input-enable: true
-       output-high: true
--
-       output-low: true
- 
-     required:
+-                serial-state {
+-                        pins = "gpio8", "gpio9";
+-                        function = "blsp_uart3";
+-                        drive-strength = <8>;
+-                        bias-disable;
+-                };
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    msmgpio: pinctrl@fd510000 {
++        compatible = "qcom,msm8226-pinctrl";
++        reg = <0xfd510000 0x4000>;
++
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&msmgpio 0 0 117>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++
++        serial-state {
++            pins = "gpio8", "gpio9";
++            function = "blsp_uart3";
++            drive-strength = <8>;
++            bias-disable;
+         };
++    };
 -- 
 2.34.1
 
