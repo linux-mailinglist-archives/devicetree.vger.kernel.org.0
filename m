@@ -2,47 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A86DA5EB292
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E88B45EB295
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:47:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbiIZUrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 16:47:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55450 "EHLO
+        id S229458AbiIZUra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 16:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbiIZUrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:47:13 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD930A6C6A;
-        Mon, 26 Sep 2022 13:47:12 -0700 (PDT)
+        with ESMTP id S229775AbiIZUr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:47:29 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F999A6C6A;
+        Mon, 26 Sep 2022 13:47:29 -0700 (PDT)
 Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 53BDD84DD8;
-        Mon, 26 Sep 2022 22:47:11 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 7E14B84DD8;
+        Mon, 26 Sep 2022 22:47:27 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1664225231;
-        bh=Gh2QjyUkmiO32DGRxcQU3CNv4FWYd0POTeXHUuz2q9g=;
+        s=phobos-20191101; t=1664225247;
+        bh=+aytgYURmKohkGaw4wNae2zIHP0OECVWKGhZVInqCOM=;
         h=From:To:Cc:Subject:Date:From;
-        b=t5KJDNYcctXGFOFHbpTuM+U+VjLWiHWXWoyN7rSklPOp/oZhg9XNl4WW86i7vBxOo
-         +PYNC7NxHUDictsAAFIaqmIXRf/OLl9SkorzokomPaHbThlUZ3J0QZAY00A6IORpge
-         FxqEPSRWIXaat87zD2ri3KDzuIGXKb1jxwl8kqno52zGN+IM2yxbBT5i89uudGJGA1
-         q3vdzrZwHdiTnAq6Pps4yi6zWpg2TuIkNukUym6+l2K4o0hTN8AB/oexO5TQi/9i/U
-         a1ffqmrzmIFRmfa4RpT0w0ryZ12ral5ZR/+7JW8eYm1vDK1eBWgSACNw5kLiEK6KZF
-         us2/mFAU3C+AQ==
+        b=xLboXzSuJMybbqeJ7ShVuW90PY0CZ8set/UznOCXr/yZcyekLWop37poV46QlxGDX
+         FczkrJrrGqJw8f6hAB8v4YbXH1jeBAnuQ1iILJQ7hAMh2TKbK/bIN9liKaw0PChXB2
+         Faztq9/vN4ft/5sukr2xeuS7HS6kbDRTrLkLjqiX0tQwxuihsLrEmExZkEgD6j73C+
+         4ezmzdPNRojAZmdvamRWSeo55A62EXb7olAoaxhCUz+gX6dGxjDN8eD28QaK8bLuOe
+         YM8G0Nfuckk3NMKc5cANcThBg9WEQhJor0NOVKdbNniLT7ebfPqSE4uog63jfNk/ok
+         vIptcGrGhGzgw==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Yann Gautier <yann.gautier@foss.st.com>,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] dt-bindings: mmc: arm,pl18x: Document interrupt-names property
-Date:   Mon, 26 Sep 2022 22:47:08 +0200
-Message-Id: <20220926204708.381741-1-marex@denx.de>
+Subject: [PATCH] dt-bindings: pinctrl: st,stm32: Document gpio-line-names
+Date:   Mon, 26 Sep 2022 22:47:24 +0200
+Message-Id: <20220926204724.381760-1-marex@denx.de>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -57,42 +56,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document interrupt-names property with "event" and "error" interrupt names.
+Document gpio-line-names property as valid property.
 This fixes dtbs_check warnings when building current Linux DTs:
 
 "
-arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dtb: mmc@58007000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dtb: pinctrl@50002000: gpio@50009000: 'gpio-line-names' does not match any of the regexes: 'pinctrl-[0-9]+'
 "
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
 Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
 Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Yann Gautier <yann.gautier@foss.st.com>
 Cc: devicetree@vger.kernel.org
-Cc: linux-mmc@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
 Cc: linux-stm32@st-md-mailman.stormreply.com
 To: linux-arm-kernel@lists.infradead.org
 ---
- Documentation/devicetree/bindings/mmc/arm,pl18x.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-index 1e69a5a42439b..5f7eae8d57ab9 100644
---- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-+++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-@@ -99,6 +99,9 @@ properties:
-     minItems: 1
-     maxItems: 2
- 
-+  interrupt-names:
-+    const: cmd_irq
-+
-   st,sig-dir-dat0:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description: ST Micro-specific property, bus signal direction pins used for
+diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+index 53c952d93ea28..06229d93c24cf 100644
+--- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+@@ -71,6 +71,7 @@ patternProperties:
+         maxItems: 1
+       resets:
+         maxItems: 1
++      gpio-line-names: true
+       gpio-ranges:
+         minItems: 1
+         maxItems: 16
 -- 
 2.35.1
 
