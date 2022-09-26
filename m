@@ -2,95 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5934B5E9CEB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A0535E9DC4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234734AbiIZJGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 05:06:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35516 "EHLO
+        id S233151AbiIZJgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 05:36:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234731AbiIZJGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:06:10 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B5973845D
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:05:14 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id a3so9760871lfk.9
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:05:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=k2TIN9QxFT3reJpkn/BptgOACbbdJV9YpVLPQhFkBEk=;
-        b=Rqwtb9f91+sTbwE7y+DU+10wvNuX/H0SrRA/Y3+t5nc97jejXNzzXnCRnR9Ze1n2JS
-         I3zql/DMTN+muJ3R7MWGlr6cdM8Eq92R69dKADTamP633yQxpTyec231IakhrR5uUUAe
-         qJFOGGjdAUlULyZBt9FWMQZGgpP/lhFS9yNdokfDGz9sImBQHY4TSrzYzb2H9PzzcZwc
-         q/sUxQ2XV99cBKupF/sVFh2Q0AEHTYasNsr6iK+rEBxdE/lKzFUaeXwRh9/IRUPg4WPU
-         huNXUVK3Wty3USw0qjgcZw1OeHU5RR23FMwOeojwV9/1U6RwI85x5rGSSpE85OU623pW
-         cHgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=k2TIN9QxFT3reJpkn/BptgOACbbdJV9YpVLPQhFkBEk=;
-        b=cjfLdeZjkoWMmWE44n6HargP9SlRpb2Ix0zlKecyEssToYt9TGKJVCekJ87BtfYFZy
-         2Gd5/zAbAtWCtBmhagWkMJaZiFotCNk4chZCcA7nD2+2pYvAtlJKPtbfkjCQFgiKo633
-         Sm7OvWesXt443vd06d1AET6TIaeB5nGVcE96xlrDjWq2GTRNeNCNrqmRVoXb35ZiR8hW
-         YnD/4lVxvei0s99nnQnmIyNQtLB1HzjYtYi3CH1/SuaESqAR4lK2aVwRvVcdnBHglinN
-         AqFAhu+JgILcwAQ1n51AfGV3QYDPKtANlSltfnFam4GOJ6+vZDlzSrg+SAk9+n7xnGKP
-         tYmg==
-X-Gm-Message-State: ACrzQf2ykdVVwCSqXEqLXNTvuksgtK0jiRK1WVjrz70k1vV9HcAjDCRH
-        qVgxqBK2jwc9N3XHJedW+IrRwg==
-X-Google-Smtp-Source: AMsMyM5lapFZLPdc0wTu312cgor/Rqb7iADV+fqgl8mvKQaVtWaTz+qEw8bSCiiZUT+y4yW4Id3IyA==
-X-Received: by 2002:a05:6512:10d3:b0:499:cce2:37a8 with SMTP id k19-20020a05651210d300b00499cce237a8mr8187766lfg.169.1664183111555;
-        Mon, 26 Sep 2022 02:05:11 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u10-20020a05651220ca00b0049c86ca95bfsm2484075lfr.52.2022.09.26.02.05.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 02:05:11 -0700 (PDT)
-Message-ID: <bc5983fd-7d5d-427e-e9d2-a800dee0dc3c@linaro.org>
-Date:   Mon, 26 Sep 2022 11:05:09 +0200
+        with ESMTP id S233444AbiIZJgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:36:13 -0400
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B7394222A9;
+        Mon, 26 Sep 2022 02:36:11 -0700 (PDT)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1ockX4-0007UJ-00; Mon, 26 Sep 2022 11:36:10 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 85C44C0643; Mon, 26 Sep 2022 11:08:40 +0200 (CEST)
+Date:   Mon, 26 Sep 2022 11:08:40 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] MIPS: dts: lantiq: rename dts files with soc name being
+ the prefix
+Message-ID: <20220926090840.GA6352@alpha.franken.de>
+References: <20220829183717.4394-1-olek2@wp.pl>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 1/3] ARM: dts: qcom: pm8226: fix regulators node name
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220925210229.128462-1-luca@z3ntu.xyz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220925210229.128462-1-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220829183717.4394-1-olek2@wp.pl>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2022 23:02, Luca Weiss wrote:
-> Adjust the node name to match bindings and fix the validation warning.
+On Mon, Aug 29, 2022 at 08:37:17PM +0200, Aleksander Jan Bajkowski wrote:
+> Rename lantiq dts files with soc name being the prefix, so that the
+> board dts file can be located easily by soc name, and we also gain
+> the consistency of naming.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> This patch is a preparation for the addition of dts for newer SoCs
+> (Lantiq ARX100, VRX200 and xRX330).
+> 
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
 > ---
->  arch/arm/boot/dts/qcom-pm8226.dtsi | 2 +-
+>  arch/mips/boot/dts/lantiq/Makefile                              | 2 +-
+>  .../boot/dts/lantiq/{easy50712.dts => danube_easy50712.dts}     | 0
+>  2 files changed, 1 insertion(+), 1 deletion(-)
+>  rename arch/mips/boot/dts/lantiq/{easy50712.dts => danube_easy50712.dts} (100%)
+> 
+> diff --git a/arch/mips/boot/dts/lantiq/Makefile b/arch/mips/boot/dts/lantiq/Makefile
+> index f5dfc06242b9..ae6e3e21ebeb 100644
+> --- a/arch/mips/boot/dts/lantiq/Makefile
+> +++ b/arch/mips/boot/dts/lantiq/Makefile
+> @@ -1,4 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> -dtb-$(CONFIG_DT_EASY50712)	+= easy50712.dtb
+> +dtb-$(CONFIG_DT_EASY50712)	+= danube_easy50712.dtb
+>  
+>  obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+> diff --git a/arch/mips/boot/dts/lantiq/easy50712.dts b/arch/mips/boot/dts/lantiq/danube_easy50712.dts
+> similarity index 100%
+> rename from arch/mips/boot/dts/lantiq/easy50712.dts
+> rename to arch/mips/boot/dts/lantiq/danube_easy50712.dts
+> -- 
+> 2.30.2
 
-Thanks, I missed it in my last cleanups.
+applied to mips-next.
 
+Thomas.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
