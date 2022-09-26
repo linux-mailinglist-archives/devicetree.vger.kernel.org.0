@@ -2,124 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8103D5EA8E6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 16:46:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AC85EA90F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 16:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235094AbiIZOql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 10:46:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48198 "EHLO
+        id S235038AbiIZOwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 10:52:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234625AbiIZOqS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 10:46:18 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 401DA51405;
-        Mon, 26 Sep 2022 06:10:07 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 837E31042;
-        Mon, 26 Sep 2022 06:10:13 -0700 (PDT)
-Received: from [10.57.65.170] (unknown [10.57.65.170])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 232453F66F;
-        Mon, 26 Sep 2022 06:10:04 -0700 (PDT)
-Message-ID: <e8a4d4b0-f8ee-2aa7-de23-9afe21cc9915@arm.com>
-Date:   Mon, 26 Sep 2022 14:09:59 +0100
+        with ESMTP id S235108AbiIZOvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 10:51:54 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2054.outbound.protection.outlook.com [40.107.244.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEED1C124;
+        Mon, 26 Sep 2022 06:18:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YQZor1BeclLxLxgcTcBBGBS5175L6WSKWBcp3r9GswE9zOpCtyGLBiDblo1CuUOaUOXOMmLzac5hT0LXkAN/bUJXsrIOi6bpdAY8k5OqDnJTh9vg/BAHC1XTH9eWuDpybABSztnwDT5j/CKh10G36Rv3GwQWL+JVHGLFvKI9aXxaZ08KBLS+iFW7ShHsO9rHel+WSm6ovnKfBpj3dtwa+Qv57TI0LAH4bdSdBszHgieCIqxtegrE4Fy5migh50a0ww+xmSHWgBvCQ/IJvVhZg26/DfkOrP3jZkJ24MQDiaCx9UI9yW8bffHjUz3Ps9opByErprfO/zr5j+H5PrySmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AINkQC6xoeIVAh8iJ6tfgHEL4uaPI+hLzxcrka6E/VA=;
+ b=GHl5ByN0ff73omMgixOYvF6KQhTBUkJ63SLwybTCdzo6Gqv9B0BIP3sUfn4TRBk/OZ6ZEULSSBnTL3IIenZx+ksqeMn1XbNfH6WrPnhyym7QFFOS8hf/CrxD6wmuxG2i/S6hIa7KWzdfckXJJeiHVhyCRi0vm8JD2TCEXmtW7vz+J3Sh4+tf2k42W00wif7pUx6IjNzwj24klqfYOxOSmtz6ZSF2nEXSNsa69YH622xAIkJVi1uvcvZPw0iQBjOghqlDQ0boHqzn0nE/AiUAcXGh322fHvufP1FHnp88a32XNBZvrC6tKu69xS7Su/zHMSBOS1+fFJRLKl4BWdR+bw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AINkQC6xoeIVAh8iJ6tfgHEL4uaPI+hLzxcrka6E/VA=;
+ b=spxokJ+W5G28JGo+oB4CqbFu0oO37CBONu7QUWuvHFUhTn1ytXWoAt05XIiC+eu4YFrn/8RtL3W6N+TIJi1jtKaOMPVL2fUAmy3qAkRoIA4KFKNKmYdEgF8dVoOBS0pwu6ylCBKgZPVkGGLxeN22hUtw/pPyKYOWFyVo97LuW23m1IUUKMqT91RXR6znhp6X7MjSwrLcYWM5+pWWTitRvr215wUAi0ottk7YmXkCW6gHrL8deBlyoZPfzL7mmYLcm5HRKq1mPXknbAko1H1GqIsZwAcu+SOEbeSf57xBaEAtCwqm/OxAIuWJUHhsDCsZFkObYcWVFLaV+Gw3DQ7zAw==
+Received: from CH2PR12MB3895.namprd12.prod.outlook.com (2603:10b6:610:2a::13)
+ by DM4PR12MB5392.namprd12.prod.outlook.com (2603:10b6:5:39f::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Mon, 26 Sep
+ 2022 13:18:54 +0000
+Received: from CH2PR12MB3895.namprd12.prod.outlook.com
+ ([fe80::7129:e05:131a:b109]) by CH2PR12MB3895.namprd12.prod.outlook.com
+ ([fe80::7129:e05:131a:b109%5]) with mapi id 15.20.5654.025; Mon, 26 Sep 2022
+ 13:18:54 +0000
+From:   Asmaa Mnebhi <asmaa@nvidia.com>
+To:     Rob Herring <robh@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        Khalil Blaiech <kblaiech@nvidia.com>
+Subject: RE: How to remove DT support from a driver? (was Re: [PATCH v5 8/8]
+ i2c: i2c-mlxbf.c: Update binding devicetree)
+Thread-Topic: How to remove DT support from a driver? (was Re: [PATCH v5 8/8]
+ i2c: i2c-mlxbf.c: Update binding devicetree)
+Thread-Index: AQHYzfUF4sHTA+d1NEqXr8XeY0T7cq3u2waAgALP8dA=
+Date:   Mon, 26 Sep 2022 13:18:54 +0000
+Message-ID: <CH2PR12MB3895753865DC9318CE61A131D7529@CH2PR12MB3895.namprd12.prod.outlook.com>
+References: <20220920174736.9766-1-asmaa@nvidia.com>
+ <20220920174736.9766-9-asmaa@nvidia.com>
+ <20220921065506.6cu6p2cpu3zfhtie@krzk-bin>
+ <CH2PR12MB3895572575B5BED5DAFFAA29D74F9@CH2PR12MB3895.namprd12.prod.outlook.com>
+ <Yyttt3DiQpMZYejA@shikoro> <20220924173125.GA989070-robh@kernel.org>
+In-Reply-To: <20220924173125.GA989070-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH2PR12MB3895:EE_|DM4PR12MB5392:EE_
+x-ms-office365-filtering-correlation-id: 2cb08bd8-d844-4fe5-370b-08da9fc1a93d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wjl41cD9sxFF4hoNJGC9TheA2sshUmMI+i1RaX0awGS5yaI02CDng4bBs6gzXi3Upp87ieeH5KOjAkd+GP9BVq69gTN57OA2UKnnxb9UbFgoPWeVpmCR3/GEEAAX3gJ/tv1q9hNkecmKczK3SbWh5kCtFnuykrkQqcTTwVmRhdIojWqHF6S/eCVSf4ixKdMGOCxEt/KVYg2kZn6QAxjJ9CPgDi//GPReZgQdYczFA0Jo+ml3QpLVDGPoSi8nARqyprE5eHHHVFJORjScsBib7quSV58PERJAT8bxpJwPGnB0UXCmXAEUYJbTBOeUbBaygBqwsd2b3qqx9MXrpzC5npp1lG3wZ4rGinxSqLnRLOnvqrq2N9SP57kkOPSFwWVRbwmBi0qncUXW5gcs589DF0UobEQC+ZiipfQEWC3Mr1ZnxCmpd55BnUkXEXwJ7zoUYl+8uxv61JiIrJPa6p5z0noFcx1e9TDzgGKI6SQclg1jAFLJ8L+764woZr0X7YK5pvI112C0IWPDbJrrC6fYsdTqajOcvyfB1NM1l5Fe3c8fpYZtLqYsHg+tfuAmTx22AyfrQJUccLXZe1Czvv9W/GdusRwezLednWuYhh7dbkiXV8WmZMVS2TLrY/oN+p8nBHVu7V8yXEwDWPwOQ2yRDloB3LxB0+yazlivV5rPibuST2X0CgsXmhmv0UKONivVV7ERa+6ZvLb38OZOjk0w6n+8g4sbgb/M9tNi7HHBkKjwch5dOo52+wwUEgqCMRGmtnLplfR3EBsHO2jY0jGyKA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3895.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(366004)(39860400002)(396003)(136003)(451199015)(6636002)(110136005)(33656002)(86362001)(38070700005)(5660300002)(38100700002)(122000001)(83380400001)(186003)(6506007)(9686003)(26005)(41300700001)(76116006)(478600001)(66946007)(71200400001)(66476007)(316002)(66556008)(7696005)(8676002)(66446008)(64756008)(8936002)(55016003)(2906002)(52536014)(4744005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RW5TeEo3U0RZZGx5Wm9GdXcramU5bFBFT1BsOCtkblB0ZXBJdmdsNGFZdXlQ?=
+ =?utf-8?B?NENrRGIwU00yTmpZSnQxRjF1cEVWY29McE9TOHdOOVNPQnJVaFFrdnk5RXlU?=
+ =?utf-8?B?bTA0QUdTS0NML0hOZE90ZVZGUXJNRW5DU2RDdDVkdjV3eVBhT3A2emdKOFNs?=
+ =?utf-8?B?SExmYVZydUswQTJFd2E1YXZqL0MvZ09DVmxZdm1Fa3hZblpTQlJIc2U3cEgw?=
+ =?utf-8?B?dmJHTklaYlFnaGRCVVc4ODVnV1AwWXRQRFE5QW4vZnRmM0tDTCt0am5YNmcz?=
+ =?utf-8?B?b1lWZWV1VERhUHByOFByUmkwWUt6a2ZqY28xUFRXeDVGd3RkYzREdDVuUVJk?=
+ =?utf-8?B?ak0xaE50RmxNbDN4eGdYdkprWE1jWWZGdXFIb3BYbHFMTDNGbFNaWWtQYUFV?=
+ =?utf-8?B?SkE1aGpEQmlFL3NHOVVzRkd6aGROVjBKUXEzZ0Y5Z0syRWYyelJGN0x3ZHFZ?=
+ =?utf-8?B?aG5Ub1Y4UUg1VHF4MXc0K3kwUUZMRFdzOG12RG1PU2l4YjlCL0t0K1R0dEtp?=
+ =?utf-8?B?ZzJkRVNmUjViajNrNTEvWmFKa09TNGM3MW5sUzVUYURTbTR5UFQ0Vm9RQXZZ?=
+ =?utf-8?B?MlB0ZXZsc2ZoVnRmQVc3UmZ1MUl6Q0NFaXhGRmFpQWtMZGRnU1p2dFE4OEFr?=
+ =?utf-8?B?OVlWL2ZTb05iMGg4SDFSK3Q1RzdMdGQyRFg4Zk9idnd2a1lJRFdlVTl4NTVR?=
+ =?utf-8?B?dC9Kb3RlTC9NS0FIWjlNYmFnZ1lodkxJbSt4MTh1RllmTVVJeEVoSUg3eUxN?=
+ =?utf-8?B?bXd6VHNNYVphN3I4cHY2eEJSNy9pSXNuVG5TcVVwSHYrc2U0c2loNzdQWC9O?=
+ =?utf-8?B?N0xBMHlhR1hDblFXclJia2Z0eGRXVHllOTBXZ0tTVnF0VmtjbFBCRGhzRVBK?=
+ =?utf-8?B?RG5qam95eXFqMms3SHJYWWVnVGNnVlJ4TjhqbHUvNi8yMVFQcWN2UEZoYWVH?=
+ =?utf-8?B?WnJQMDlKdlhpWFJHK1VJWjlzWUxCRnJzVElsc3UxRlhVSHJhUFNxd1pUTVE0?=
+ =?utf-8?B?SUR3bzJVTlhIUmVydURyY0JJOUQxRE91SGRhUE0zcWtCRUFVYWVJaXNmK2dE?=
+ =?utf-8?B?QnpEMkNtRWhwY0NPMnpsNDh4UnYzL2N4aDNHM0J1MEFBQlg4aXF2UjVFclRK?=
+ =?utf-8?B?ZHFuL09IZUJ0SmFLUXpISi8zdUI0aStLdjEwa21jNzBIZ202cnljR0tnelk4?=
+ =?utf-8?B?YW8wL0E1VHJ6ajAraFZ2cmxCWUVtckRrY1pzbjdKVEExbjBPNHJSd3g4U0Qy?=
+ =?utf-8?B?Z012VnI1U0xjUitJbDVyOGlWR1k0UnhMVTZJWG94bVF4cHNNMysxZjFhQ2pP?=
+ =?utf-8?B?K3ZLZVIvY2h3YXNjcVFncWk4Yi90WllrTUhnUkxXR3RRQmhSb3JHZmRYM1lr?=
+ =?utf-8?B?L1BsbnBSdm44SFc4TGVva0QzUThvT2VOTGxjaWJpNEZyQmRXRWtYSyswazZj?=
+ =?utf-8?B?S3g1akVmTW9mTlVzZVNHNllUaFkxVFRnWFhsTjFicHJaK0t6WTl2Q1RSUHdP?=
+ =?utf-8?B?NFROM0tSVkRMWTFSRU1NZWtkYkJuQTdsdDZnNFVkQXQzbHBJRW5xMzkxaG52?=
+ =?utf-8?B?OTFFVnpxb3J4cTJMTzZJdW1QNlF3dXoyMTljQ0R2MjJsVlVCUjc2OGNjU0RJ?=
+ =?utf-8?B?UWk4cjN3VG5HdlZVcXBWK0pIQWpCRStkc0g3c3dPZ09wcklTTDJoSlB2Mk5z?=
+ =?utf-8?B?NEtFbnF4TFdTVlFwMUxNMVJDMzV2SGJXa1ZKVjE0eEg4UHRKRi9aaU1CQVhO?=
+ =?utf-8?B?dkpFaVI4cngvZGxWczNNbG5LOFZaOTRMTGhtSXBQY28rc28vTzgwK25WaU5q?=
+ =?utf-8?B?N2VVa1VxblhJR0dZMVZMM3hzOTlkajdmS25rVkFRKzgzaWh5a1prWW44Y0RQ?=
+ =?utf-8?B?UjVHcEdLMmR5TGNJTzB1NkFOWWJ1VXJxNDRjNXozUWJva0lpYURzMzg5bEpM?=
+ =?utf-8?B?S05EMlZZUUx5d2pkNk5iRFdBYmsyQmRaclBBVFlUMjh2VzhwOWpZSVZJd0ZV?=
+ =?utf-8?B?TDZpbmhqZWFnOUxxMVVPOVJucERpaU1Wc3I1ZTdNUmtWOWhkckZPd1RiRC9T?=
+ =?utf-8?B?ZUpQVCtkay84TG5Gc1NXWU5kOU1YWXp3RHcvR1ZKUXVkemErRHpMUHhLc3Vl?=
+ =?utf-8?Q?FKBc=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v5 20/20] PCI: dwc: Add Baikal-T1 PCIe controller support
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, willmcvicker@google.com
-References: <20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru>
- <20220822184701.25246-21-Sergey.Semin@baikalelectronics.ru>
- <YwzbARMkb/69+l2d@lpieralisi> <63a54a1b-66ba-9739-8217-13f75e602cd5@arm.com>
- <98179709-1ece-61ab-d43a-fc38a4fd3f67@arm.com>
- <20220912002522.arx4vypiv363qcni@mobilestation>
-Content-Language: en-GB
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220912002522.arx4vypiv363qcni@mobilestation>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3895.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2cb08bd8-d844-4fe5-370b-08da9fc1a93d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2022 13:18:54.2587
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Hu9urCmaZWaU9s7xq5gvhWmOmFXxCTZxYdGD9oXgFGJEDUa3r/Z4Vs3avPwirzk5LC/gLK9B6KnObxu5Pkcgaw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5392
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-09-12 01:25, Serge Semin wrote:
-> On Wed, Aug 31, 2022 at 09:54:14AM +0100, Robin Murphy wrote:
->> On 2022-08-31 09:36, Robin Murphy wrote:
->>> On 2022-08-29 16:28, Lorenzo Pieralisi wrote:
->>> [...]
->>>>> +static int bt1_pcie_add_port(struct bt1_pcie *btpci)
->>>>> +{
->>>>> +ï¿½ï¿½ï¿½ struct device *dev = &btpci->pdev->dev;
->>>>> +ï¿½ï¿½ï¿½ int ret;
->>>>> +
->>>>> +ï¿½ï¿½ï¿½ /*
->>>>> +ï¿½ï¿½ï¿½ï¿½ * DW PCIe Root Port controller is equipped with eDMA capable of
->>>>> +ï¿½ï¿½ï¿½ï¿½ * working with the 64-bit memory addresses.
->>>>> +ï¿½ï¿½ï¿½ï¿½ */
->>>>> +ï¿½ï¿½ï¿½ ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
->>>>> +ï¿½ï¿½ï¿½ if (ret)
->>>>> +ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ return ret;
->>>>
->>>> Is this the right place to set the DMA mask for the host controller
->>>> embedded DMA controller (actually, the dev pointer is the _host_
->>>> controller device) ?
->>>>
->>>> How this is going to play when combined with:
->>>>
->>>> https://lore.kernel.org/linux-pci/1e63a581-14ae-b4b5-a5bf-ca8f09c33af6@arm.com
->>>>
->>>> It is getting a bit confusing. I believe the code in the link
->>>> above sets the mask so that through the DMA API we are capable
->>>> of getting an MSI doorbell virtual address whose physical address
->>>> can be addressed by the endpoint; this through the DMA API.
->>>>
->>>> This patch is setting the DMA mask for a different reason, namely
->>>> setting the host controller embedded DMA controller addressing
->>>> capabilities.
->>>>
->>>> AFAICS - both approaches set the mask for the same device - now
->>>> the question is about which one is legitimate and how to handle
->>>> the other.
->>>
->>> Assuming the dw-edma-pcie driver is the relevant one, that already sets
->>> its own masks on its own device, so I also don't see why this is here.
->>
-> 
->> Ah, I just found the patch at [1], which further implies that this is indeed
->> completely bogus.
-> 
-> Really? Elaborate please. What you said in the comment to that patch
-> has nothing to do with the change you comment here.
-
-It has everything to do with it; if the other driver did the right 
-thing, this change wouldn't even be here. Everything you've said has 
-implied that the DMA engine driver cares about the AXI side of the 
-bridge, which is represented by the platform device. Thus it should set 
-the platform device's DMA mask, and use the platform device for DMA API 
-calls, and thus there should be no conflict with the host controller 
-driver's use of the PCI device's DMA mask to reserve a DMA address in 
-PCI memory space on the other side of the bridge, nor any translation 
-across the bridge itself.
-
-Thanks,
-Robin.
+VGhlcmUncyB0aGUgd2hvbGUgdXNpbmcgRFQgYmluZGluZ3MgaW4gQUNQSSBiaW5kaW5ncyB0aGlu
+ZywgYnV0IEkgaGF2ZSBsaXR0bGUgaW50ZXJlc3QgKG9yIHRpbWUpIGluIHN1cHBvcnRpbmcgdGhh
+dC4gTWF5YmUgdGhhdCdzIHdoYXQncyBoYXBwZW5pbmcgaGVyZT8gSSBoYXZlbid0IGxvb2tlZC4g
+VGhlIHdob2xlIGNvbmNlcHQgaXMgZmxhd2VkIElNTy4gSXQgbWF5IHdvcmsgZm9yIHNpbXBsZSBj
+YXNlcyBvZiBrZXkvdmFsdWUgZGV2aWNlIHByb3BlcnRpZXMsIGJ1dCB0aGUgQUNQSSBtb2RlbCBp
+cyBxdWl0ZSBkaWZmZXJlbnQgaW4gaG93IHJlc291cmNlcyBhcmUgZGVzY3JpYmVkIGFuZCBtYW5h
+Z2VkLg0KDQpIaSBSb2IsDQpJIGNoYXR0ZWQgd2l0aCBLaGFsaWwgYW5kIGhlIGNvbmZpcm1lZCB0
+aGF0IHRoZSByZWFzb24gaGUgYWRkZWQgdGhlIGRldmljZSB0cmVlIHN1cHBvcnQgd2FzIHRvIGZv
+bGxvdyB0aGUgZXhhbXBsZSBvZiBleGlzdGluZyB1cHN0cmVhbWVkIGkyYyBkcml2ZXJzIChldmVu
+IGlmIHdlIGhhdmUgbm8gc3VwcG9ydCBmb3IgaXQgYW5kIGFsbCBvdXIgY3VzdG9tZXJzIGhhdmUg
+dG8gdXNlIG91ciBmaXJtd2FyZSBpbmNsdWRpbmcgVUVGSSBBQ1BJIHRhYmxlcykuIFNvIGl0IGlz
+IHVucmVsYXRlZCB0byBEVCBiaW5kaW5ncyBpbiBBQ1BJIGJpbmRpbmdzLiBIZSBhZ3JlZXMgdGhh
+dCBpdCBpcyBiZXR0ZXIgdG8ganVzdCByZW1vdmUgdGhlIGRldmljZSB0cmVlIHN1cHBvcnQgKGZy
+b20gdGhlIGRyaXZlciBpdHNlbGYgYW5kIGZyb20gdGhlIGRvY3VtZW50YXRpb24pLiBTbyBpZiB5
+b3UgZG9uJ3QgaGF2ZSBhbnkgb2JqZWN0aW9ucywgSSB3aWxsIHJlbW92ZSBpdC4NCg==
