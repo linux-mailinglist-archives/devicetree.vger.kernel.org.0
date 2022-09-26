@@ -2,112 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A6F95E9EB1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 12:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D294F5E9EC1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 12:13:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235071AbiIZKKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 06:10:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35978 "EHLO
+        id S232918AbiIZKNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 06:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235030AbiIZKJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 06:09:28 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 634E33B954
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:09:26 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id s6so10014682lfo.7
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:09:26 -0700 (PDT)
+        with ESMTP id S234397AbiIZKNQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 06:13:16 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0719F15832
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:13:09 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id t4so4125357wmj.5
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 03:13:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=NiDFW7j0aeL8AhvqVkURIdFDpKhhYD3BHp+Ep7uI1Mo=;
-        b=algVzKxCsaBbYi1rNqmaIxikqU8hTcFyl1WhknMAGmvlZ6VEQvu6ryDp+TZim52fef
-         Mx/Q+jIeIxBBvDHYpahmL4/JQNC8BQ54jT3bfnsoAz7/7pX8Aggr7Q15Sz86/gBxOoEQ
-         F9fqfrO2yTQn+0RrfLzx2JhMrOHhdpkMYwUPnm1G4Q4AXfMtqMU3+7N+OEHkRgJW6d/5
-         D+0Qk2BWETD6WwKclB4/XUqx+6O1oXCG+/M38BFmbihssY0tTRkKNia14IxscgxkNsXE
-         zaZ9Ap2hxfbCqH3T2DxaRo/+N9x2V8BH8caTwy+RyeRwniia2w/hYK26yrkwTi+2Y8Qv
-         DySw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=c75IJjH1CrJS+myQdTNCPn6AgQdPVtKjK2m4jf3uRQQ=;
+        b=x4QVltof955ehiK0Tb73irEljR5GIH8xobO9k49n6RW5np5nhA3yXUx+ukEqb+o0MI
+         ucn4lZiTNmIZqh9gGj1WuoGPoIImZyeCfVWO6uO5+uMWHelUgDs1pHGHzfLrbvBQ5pX3
+         qOkovvokaAI28iQBFs+DZPlpszFoo7lvl4ILfr4D2vBa9/zJ4NY45K8+XeauBQJnwXUJ
+         RfnKNp9wiVh+QzQQvhL3MkjsKl0d95WydBTB3/Pkf46vXz7ALC3k2+SybFZiChsrnD8H
+         EPcgsq+9zMqU4AHhqJkuUvRqPVQfyN/uko3zYvflVfFveD7QFoBNNKXUU+ZfVFkMBmiH
+         v+Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=NiDFW7j0aeL8AhvqVkURIdFDpKhhYD3BHp+Ep7uI1Mo=;
-        b=JO4S8U+O1+ifL7C6bm3jOnj1+6Y/7NodwbthFX8A9Xern6C2fkEDK+ij+8/yTALPIf
-         Cp5aB07I2YSzj4rghj/mVbU2L7Dlwixa0kJqOnKFxq3EJmeknGvcjO/UfeDIaUw9i2TL
-         NlWSn9rOkpK9pjEvCUxNLAwBDfvNqezXxuH+AZolTmoo9ZETAOJKyXDJKFA/v1G+6XSo
-         NxPV3qK9XIwbHEJQNmowe+f1dI3CfBnv739eNLw+O+s4MmDXDGaqDqgIVAqvZDQ5N3ma
-         COL/VY90hmNYyk3lplE82zHjLKarejkdL8k2axiZfJASIkfYtYUW/70C07jOMA8UObVN
-         W0tw==
-X-Gm-Message-State: ACrzQf01anM5MPYwA+8HLDX+wPmgDIioe61T0F8Wf4248rbaKThV5gPg
-        ZWs3pdVV/ga6OB0eqol3A3IFZA==
-X-Google-Smtp-Source: AMsMyM6HCOqYbhXlG+PayyewllNWiljEgCvTUTi58rKNFUbrf/36OjEHb9PJnwENTJDUq5/1bbIjCg==
-X-Received: by 2002:ac2:4c4d:0:b0:49f:99f0:308f with SMTP id o13-20020ac24c4d000000b0049f99f0308fmr8690149lfk.160.1664186964761;
-        Mon, 26 Sep 2022 03:09:24 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id r22-20020ac24d16000000b00499aefcf68esm2477468lfi.292.2022.09.26.03.09.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 03:09:24 -0700 (PDT)
-Message-ID: <642f9bca-5e9a-4971-3cec-32963bfd88ad@linaro.org>
-Date:   Mon, 26 Sep 2022 13:09:23 +0300
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=c75IJjH1CrJS+myQdTNCPn6AgQdPVtKjK2m4jf3uRQQ=;
+        b=hHN//egrWuufy7J72JAuTrN0LLCjPbUW0HI1QfJF2eBESKRLGedBBJpCEZMhaGKYjF
+         CSCaL49HC7La6gY6kZuXcm+KW/ZRSMlGvc/F+x85H2c435zepqWPtGkwHyVgsVEltxUo
+         NbHVDeSCRFVpvaSzJs2nf8TGsZ7EjbMfwDdtKyw77kaYGELnTe701oBUKYl6VEyps/PZ
+         /VezRT19AGrJPECRrPNBtTVKHIACIu9oxrF5cV7GMpB/sP2u6lg+yhmWAO5lmqmnlqqr
+         JkVuQIWnpSpc9uFrlV7CtyUX7PLi2CeIjEUZaJatFmDZWRU33e5b5p8xV5+VsjgAzxmz
+         tWjQ==
+X-Gm-Message-State: ACrzQf33RZMLLxHFRduputnlL0WIr0cU7e9UZsqPb9qj8EWLu+c2e+Ly
+        z1kvhSEU6WFG9eV+Zdq28cz4ItjB5XiUU+gSsA25zw==
+X-Google-Smtp-Source: AMsMyM5na9tbYibsd2uN/l+P7vFgiPLBtnj2BeKxOtVaGAy/pNqv1ViPHhCWp8TiDK0vMuAI7UqGbxD2cFCknhhefVg=
+X-Received: by 2002:a05:600c:524d:b0:3b4:91ee:933c with SMTP id
+ fc13-20020a05600c524d00b003b491ee933cmr20492361wmb.100.1664187187464; Mon, 26
+ Sep 2022 03:13:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: msm8974: Align dsi phy-names with
- schema
-Content-Language: en-GB
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20220609150851.23084-1-max.oss.09@gmail.com> <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
+ <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
+ <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
+ <20220726160337.GA41736@francesco-nb.int.toradex.com> <CAPDyKFqGFjywJ-Vmmn9=-NOzJX=24mH9A03H9djS=nJotKWK8A@mail.gmail.com>
+ <20220728112146.GA97654@francesco-nb.int.toradex.com> <CAPDyKFqtCxrjALeCmhuqQ2VmmUHhi-DjXO30uHChTPFeDbp+JQ@mail.gmail.com>
+ <20220909142247.GA238001@francesco-nb.int.toradex.com> <CAPDyKFrwpz=gi3iY5YsO6k4o33eLQRp-wXvBx3nQ0q=G9YrqHA@mail.gmail.com>
+ <70ee4f8e-7529-307e-656c-2a65d0187af6@linaro.org>
+In-Reply-To: <70ee4f8e-7529-307e-656c-2a65d0187af6@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 26 Sep 2022 12:12:30 +0200
+Message-ID: <CAPDyKFoyNWZvT+QPdX4sQuS3DL8mepfnLraHLusMi9K8MOfLgg@mail.gmail.com>
+Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
+ which controls
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220925172443.92900-1-luca@z3ntu.xyz>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220925172443.92900-1-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Robin Murphy <robin.murphy@arm.com>,
+        Max Krummenacher <max.oss.09@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2022 20:24, Luca Weiss wrote:
-> Use dsi instead of dsi-phy as required by the binding.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->   arch/arm/boot/dts/qcom-msm8974.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> index 620900e5ffd5..da247d799492 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> @@ -1571,7 +1571,7 @@ dsi0: dsi@fd922800 {
->   					      "core_mmss";
->   
->   				phys = <&dsi0_phy>;
-> -				phy-names = "dsi-phy";
-> +				phy-names = "dsi";
+On Fri, 23 Sept 2022 at 20:00, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 22/09/2022 15:49, Ulf Hansson wrote:
+> > On Fri, 9 Sept 2022 at 16:22, Francesco Dolcini
+> > <francesco.dolcini@toradex.com> wrote:
+> >>
+> >> Hello Ulf,
+> >>
+> >> On Fri, Aug 26, 2022 at 03:50:46PM +0200, Ulf Hansson wrote:
+> >>> On Thu, 28 Jul 2022 at 13:21, Francesco Dolcini
+> >>> <francesco.dolcini@toradex.com> wrote:
+> >>>>
+> >>>> On Thu, Jul 28, 2022 at 11:37:07AM +0200, Ulf Hansson wrote:
+> >>>>> On Tue, 26 Jul 2022 at 18:03, Francesco Dolcini
+> >>>>> <francesco.dolcini@toradex.com> wrote:
+> >>>>>>
+> >>>>>> Hello Ulf and everybody,
+> >>>>>>
+> >>>>>> On Wed, Jul 13, 2022 at 01:43:28PM +0200, Ulf Hansson wrote:
+> >>>>>>> On Thu, 23 Jun 2022 at 18:14, Max Krummenacher <max.oss.09@gmail.com> wrote:
+> >>>>>>>> So our plan is to explicitly handle a (shared) regulator in every
+> >>>>>>>> driver involved, adding that regulator capability for drivers not
+> >>>>>>>> already having one.
+> >>>>>>>
+> >>>>>>> Please don't! I have recently rejected a similar approach for Tegra
+> >>>>>>> platforms, which now have been converted into using the power domain
+> >>>>>>> approach.
+> >>>>>>
+> >>>>>> Just to quickly re-iterate how our hardware design looks like, we do
+> >>>>>> have a single gpio that control the power of a whole board area that is
+> >>>>>> supposed to be powered-off in suspend mode, this area could contains
+> >>>>>> devices that have a proper Linux driver and some passive driver-less
+> >>>>>> components (e.g. level shifter) - the exact mix varies.
+> >>>>>>
+> >>>>>> Our proposal in this series was to model this as a power domain that
+> >>>>>> could be controlled with a regulator. Krzysztof, Robin and others
+> >>>>>> clearly argued against this idea.
+> >>>>>
+> >>>>> Well, historically we haven't modelled these kinds of power-rails
+> >>>>> other than through power-domains. And this is exactly what genpd and
+> >>>>> PM domains in Linux are there to help us with.
+> >>>>>
+> >>>>> Moreover, on another SoC/platform, maybe the power-rails are deployed
+> >>>>> differently and maybe those have the ability to scale performance too.
+> >>>>> Then it doesn't really fit well with the regulator model anymore.
+> >>>>>
+> >>>>> If we want to continue to keep drivers portable, I don't see any
+> >>>>> better option than continuing to model these power-rails as
+> >>>>> power-domains.
+> >>>>>
+> >>>>>>
+> >>>>>> The other approach would be to have a single regulator shared with the
+> >>>>>> multiple devices we have there (still not clear how that would work in
+> >>>>>> case we have only driver-less passive components). This is just a
+> >>>>>> device-tree matter, maybe we would need to add support for a supply to
+> >>>>>> some device drivers.
+> >>>>>>
+> >>>>>> Honestly my conclusion from this discussion is that the only viable
+> >>>>>> option is this second one, do I miss something?
+> >>>>>
+> >>>>> No thanks!
+> >>>>>
+> >>>>> Well, unless you can convince me there are benefits to this approach
+> >>>>> over the power-domain approach.
+> >>>>
+> >>>> I'm fine with our current power-domain proposal here, I do not need to
+> >>>> convince you, I have the other problem to convince someone to merge
+> >>>> it :-)
+> >>>>
+> >>>> Maybe Krzysztof, Robin or Mark can comment again after you explained
+> >>>> your view on this topic.
+> >>>
+> >>> To move things forward, I suggest you re-start with the power domain approach.
+> >>>
+> >>> Moreover, to avoid any churns, just implement it as another new SoC
+> >>> specific genpd provider and let the provider deal with the regulator.
+> >> I'm sorry, but I was not able to understand what you mean, can you
+> >> provide some additional hint on the topic? Some reference driver we can
+> >> look at?
+> >
+> > Typically, "git grep pm_genpd_init" will find genpd providers.
+> >
+> > There are a couple of examples where a regulator (among other things)
+> > is being controlled from the genpd's ->power_on|off() callbacks, such
+> > as:
+> >
+> > drivers/soc/mediatek/mtk-pm-domains.c
+> > drivers/soc/imx/gpc.c
+> >
+> >>
+> >> The driver we implemented and proposed with this patch is just
+> >> connecting a power-domain to a regulator, it's something at the board
+> >> level, not at the SoC one.
+> >> We do not have a (existing) SoC driver were we could add the power
+> >> domain provider as an additional functionality.
+> >
+> > Right, so you need to add a new SoC/platform driver for this.
+> >
+> >>
+> >>> In this way, you don't need to invent any new types of DT bindings,
+> >>> but can re-use existing ones.
+> >> The only new binding would be a new "compatible" to have a place to
+> >> tie the regulator instance used in the device tree, but I do not think
+> >> that this is an issue at all.
+> >
+> > Yes, I agree.
+> >
+> >>
+> >> The main concern that was raised on this topic was that we have to
+> >> somehow link the power-domain to the specific peripherals (the power
+> >> domain consumer) in the device tree.
+> >
+> > Yes, that is needed. Although, I don't see how that is a concern?
+> >
+> > We already have the valid bindings to use for this, see more below.
+> >
+> >>
+> >> Adding the power-domain property there will trigger validation errors
+> >> unless we do explicitly add the power-domains to the schema for each
+> >> peripheral we need this. To me this does not really work, but maybe I'm
+> >> not understanding something.
+> >>
+> >> This is what Rob wrote on the topic [1]:
+> >>   > No. For 'power-domains' bindings have to define how many there are and
+> >>   > what each one is.
+> >>
+> >> Just as an example from patch [2]:
+> >>
+> >>   can1: can@0 {
+> >>     compatible = "microchip,mcp251xfd";
+> >>     power-domains = <&pd_sleep_moci>;
+> >>   };
+> >>
+> >> leads to:
+> >>
+> >>   imx8mm-verdin-nonwifi-dahlia.dtb: can@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+> >>           From schema: .../bindings/net/can/microchip,mcp251xfd.yaml
+> >
+> > I think it should be fine to just add the below line to the DT
+> > bindings, for each peripheral device to fix the above problem.
+> >
+> > power-domains: true
+>
+> Again, as Rob said, no, because it must be strictly defined. So for
+> example: "maxItems: 1" for simple cases. But what if device is then part
+> of two power domains?
+>
+> >
+> > That should be okay, right?
+>
+> Adding it to each peripheral scales poorly. Especially that literally
+> any device can be part of such power domain.
 
-I'd prefer to merge [1] instead
+Right.
 
-[1] 
-https://lore.kernel.org/linux-arm-msm/20220907000105.786265-1-bryan.odonoghue@linaro.org/
+>
+> If we are going with power domain approach, then it should be applicable
+> basically to every device or to every device of some class (e.g. I2C,
+> SPI). This means it should be added to respective core schema in
+> dtschema repo, in a way it does not interfere with other power-domains
+> properties (existing ones).
 
->   
->   				status = "disabled";
->   
+Isn't that already taken care of [1]?
 
--- 
-With best wishes
-Dmitry
+If there is more than one power domain per device, perhaps we may need
+to extend it with a more strict binding? But, that doesn't seem to be
+the case here - and if it turns out to be needed later on, we can
+always extend the bindings, no?
 
+Note also that we already have DT bindings specifying "power-domains:
+true" to deal with the above. Isn't that what we want?
+
+>
+>
+> Best regards,
+> Krzysztof
+>
+
+Kind regards
+Uffe
+
+[1]
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/power-domain/power-domain-consumer.yaml
