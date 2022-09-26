@@ -2,107 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 037695EB1F6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:17:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 926B85EB1FD
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:19:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230426AbiIZURs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 16:17:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60462 "EHLO
+        id S230167AbiIZUTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 16:19:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230444AbiIZURp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:17:45 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370A3A3D01;
-        Mon, 26 Sep 2022 13:17:42 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id m130so9643819oif.6;
-        Mon, 26 Sep 2022 13:17:42 -0700 (PDT)
+        with ESMTP id S229781AbiIZUTB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:19:01 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7D7AA3467;
+        Mon, 26 Sep 2022 13:18:58 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id 102-20020a9d0bef000000b0065a08449ab3so5200873oth.2;
+        Mon, 26 Sep 2022 13:18:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=k0AQrlIxbwy7Ubn2EjodtbFUv1BS5TcuY8f1vFpcfW0=;
-        b=wg4ch64kxy4+euNu3MZQAOj2BG23+Pi6/rhja9pajNlsQ0bMk0K0CMEFkvzb/+0/Jb
-         9WEBQSiN5zp/owZNC2+D4EMx3CjO0+tH8cYz6yCUnH7As+xJvZDH1hEjPR2MAW2D9XGF
-         ZMJnDLk43O43nej32VfrpdojpDgrI6ec+0eq1CHOV5mOPd8QFoa3yz+AZNtcr+WeAX2w
-         AVl1BkgoZTUX4B9UsgSYYyf1gMGkcX3G52trvf7vP3yfIXJxlgsXDZ3F2oZjGA6o3yMG
-         Us96sVYPx9EW7mdZr++mY4FSfGWCzOgVGValihBrQPwM7KhtWWwFi5zKeVKaroYM1AyF
-         nygg==
-X-Gm-Message-State: ACrzQf19su+Ys6XK2CbAHeVxIpNH7N7NCMNSpHyDYrzucImdiqaiAeNK
-        c2nM5y+Z9+POSTZHtshhwD3ALvXG3w==
-X-Google-Smtp-Source: AMsMyM5pA5L+VHMfeMDYk+ZJcAO9IUEAmM1zFB24SDJbCswpwoD8hydbwaxwQ0eIbjpjKu9khowpKw==
-X-Received: by 2002:a05:6808:120e:b0:345:aeaf:c064 with SMTP id a14-20020a056808120e00b00345aeafc064mr248896oil.70.1664223461410;
-        Mon, 26 Sep 2022 13:17:41 -0700 (PDT)
+        bh=KJlsgimTd3mObvKcs7p4DgFRQTNtaor80jMAncbSWLo=;
+        b=3b6z+Apm/6+31RRkavJGVMqVOCodqOk2KSrYs7U2Tv3klzeZqiUz71cKRsFLdqxbbt
+         UFeLbeXTqjuugS8ke9i8PT/QwfBC2aizMFnrEk9iwn1T3MslEllYx5n1hnHChhsdYUaH
+         gab7jje+9klY0yNb+Zhb0mnbpcGst+qSn0mcgw/Ff2S1/VjPKkC7adjUNEaaUbqUPPi3
+         WnbFFwTaM92l99+dG4EygajJCVgl8uSqz5qD0XSSkZ57ATACPZ3+NdcAwxwi0Np1ApLk
+         q9MXjeOGgodDFc9QMKHOMdjsQyVm0Shtk+1Vfq50LdAuDakxpwC6ezPNEPX/szwmz+8g
+         L7YA==
+X-Gm-Message-State: ACrzQf0+bXkNXlvsB0OETMk0wkmBtHBxYd2EsQLqrerNuKDy8RgKUaCc
+        qUmSy1+AqVWahgAQ9gEb3A==
+X-Google-Smtp-Source: AMsMyM6E/0hljdxLtyM/sOO0YA16vj1XmMdEQbXNAmJVVre7Y09XmtG1e/3e8RSRGm3MHxuS/orTSA==
+X-Received: by 2002:a05:6830:34a3:b0:659:7542:6cd4 with SMTP id c35-20020a05683034a300b0065975426cd4mr11088913otu.87.1664223538122;
+        Mon, 26 Sep 2022 13:18:58 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p3-20020a056830318300b00654625c0c4dsm8227545ots.17.2022.09.26.13.17.40
+        by smtp.gmail.com with ESMTPSA id f11-20020a056870548b00b001278611f0f6sm9312863oan.32.2022.09.26.13.18.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 13:17:41 -0700 (PDT)
-Received: (nullmailer pid 2732492 invoked by uid 1000);
-        Mon, 26 Sep 2022 20:17:40 -0000
-Date:   Mon, 26 Sep 2022 15:17:40 -0500
+        Mon, 26 Sep 2022 13:18:57 -0700 (PDT)
+Received: (nullmailer pid 2734688 invoked by uid 1000);
+        Mon, 26 Sep 2022 20:18:57 -0000
+Date:   Mon, 26 Sep 2022 15:18:57 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Guru Das Srinagesh <quic_gurus@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM6375 SCM
-Message-ID: <20220926201740.GA2726270-robh@kernel.org>
-References: <20220921001020.55307-1-konrad.dybcio@somainline.org>
- <95fb2bfb-6eb8-012d-88f8-c739d229ef70@linaro.org>
- <8faecd72-0cfd-18eb-d07a-53b3a23ed05a@somainline.org>
- <20220924000932.GA1450@quicinc.com>
- <fcc5bc9f-6b6b-b9ca-45aa-ff2c880a4774@linaro.org>
- <20220926165904.GA17938@quicinc.com>
+To:     Robert Nelson <robertcnelson@gmail.com>
+Cc:     Drew Fustini <drew@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: ti: Add bindings for BeagleBone
+ AI-64
+Message-ID: <20220926201857.GA2734653-robh@kernel.org>
+References: <20220921021300.4111283-1-robertcnelson@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220926165904.GA17938@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220921021300.4111283-1-robertcnelson@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 09:59:04AM -0700, Guru Das Srinagesh wrote:
-> On Sep 24 2022 10:17, Krzysztof Kozlowski wrote:
-> > On 24/09/2022 02:09, Guru Das Srinagesh wrote:
-> > > On Sep 21 2022 20:43, Konrad Dybcio wrote:
-> > >> Does it? I did not define this compatible in the driver, so it does
-> > >> not consume any clocks.
-> > > 
-> > > The bindings should describe only those compatibles that the driver supports -
-> > > that is, both the driver and its bindings should be in sync.
-> > 
-> > That's not entirely true. Bindings describe the hardware in the most
-> > complete way we can. Not the driver. Whether driver supports something
-> > or not, is not relevant here, except that we don't want to document
-> > non-existing things or stuff out of tree.
+On Tue, 20 Sep 2022 21:12:59 -0500, Robert Nelson wrote:
+> This board is based on the ti,j721e
 > 
-> Is this only applicable to compatibles or device tree properties in general?
+> https://beagleboard.org/ai-64
+> https://git.beagleboard.org/beagleboard/beaglebone-ai-64
 > 
-> > > 
-> > > Could you please update the driver with this compatible as well? Let's not
-> > > merge this change without that first.
-> > 
-> > This could be even merged without change in the driver. However it's not
-> > the case here as driver already supports it, so your request is fulfilled.
+> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+> CC: Rob Herring <robh@kernel.org>
+> CC: Nishanth Menon <nm@ti.com>
+> CC: Jason Kridner <jkridner@beagleboard.org>
+> CC: Drew Fustini <drew@beagleboard.org>
+> ---
+> Changes since v2:
+>  - rebased on next after k3.yaml alphabetical sort
+> Changes since v1:
+>  - added documenation links
+>  - add board in alphabetical order
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> My concern is that if somebody specifies a compatible/device tree property that
-> the driver doesn't support, their expectations from adding that change will not
-> be met. In addition to having the bindings describe HW in full, I think the
-> driver should also be in sync with it for this reason.
 
-Which driver? From u-boot, *BSD, Linux, TF-A, ...?
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
