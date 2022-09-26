@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 673795E9CA1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:57:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BA8E5E9CA2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:57:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233830AbiIZI5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 04:57:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49726 "EHLO
+        id S234104AbiIZI5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:57:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233756AbiIZI5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:57:00 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ABA9399E6
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:59 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id k10so9761763lfm.4
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:56:59 -0700 (PDT)
+        with ESMTP id S233361AbiIZI5c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:57:32 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9B283CBEB
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:57:30 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id x21so8004082edd.11
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:57:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=FfRXbycGxNZly9cwE+LM7FubtNN0XTW4t5Mi6CAwVS0=;
-        b=KkeBwEik4EGGkaT4cBdiznevl7Yfm0Q2xYSsysMn4fWh7aAZG9K7Y/hhwUrMhmnwru
-         VuH9iTvmNHUXFRtMRjZUNM++72+8zVrL6PP4pGjC8OnbwFaElP7gbLrvmNNFAZdopVMY
-         ZBpmTM8g+YgV6ReSWO6oHZT2tZ1lL8YZfdijHu8IJ8A2p50OefY11vWrckPeF4h9GNS3
-         xdE/SR1YXLEJrPec8g019gH0k9CKwMk2crlRZ8bCdqq1c4heILf02AYQ00zTEU6LYMPl
-         Pj7qAEkttYWAU0HCW/SPZYJ2SpspeQ6e/wChIrvfW5mOIz3wf+mCCyMycPkV3iOzw5se
-         yOyQ==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=q89NyQ9b1PpoKXEkGp2ns+Ib3Shkz3cUPYaSufAXKUc=;
+        b=n/ZXnZb952U5lWurVM94tkGD6ar7Ax0UfVipCAlGLuHtleFEQEIN8GHQ1RxzVtONhj
+         In6/yRm/tdgCGv8hilqP8gcd7Oqi2ZwL3QVpyvlv8kYKqjGjKzLXsy+X0BGAE38HpLbD
+         H/LXzx8uHjOrCBpNJnaINnVOmlDy+OhaZAJgY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=FfRXbycGxNZly9cwE+LM7FubtNN0XTW4t5Mi6CAwVS0=;
-        b=pXtcQA4Lt1yJ+IDfw8f6BC4wNT+538GyLi/NHG05kxXOpHaggOf7eBZML0jKahHFB0
-         gb8G5raGvP8Z7yTUn9lITFaC646msoeBzNSZy9TBHdZxAyDvkUnrS+GpdIRmcXBV/z3d
-         Dl2ZdvkVgZVZWZUWsJBJHR6bDzILzKcSex6rj0vRCnnjzgnqigE76IiJQja8/cXBoFX5
-         kyiAcXwn1PeQd3WkkLAmJ0pjmtES7IZOQuJn6z8Y4LpokbkRc0AXWeZuX4yBfQ7QEMf1
-         rQjKtdwz2v+cjG/u/gj8lac5qt2hK47G0NVe3/xfc4nfwiOm80ekiKzRLL5mKuTpx+hP
-         ErZA==
-X-Gm-Message-State: ACrzQf1UHIMMAW/j4ui7HkahwmPRlUmctMfvZw9rDT2kfha+klLZDjoF
-        BF4CLYduk4WfxO4W2cJWWji5gQ==
-X-Google-Smtp-Source: AMsMyM7Pkh9gGS89n4kETCtIDk55eEmyCItCa3/dL6QTkEfr82yejjqfug0DWtsC8l/nOi1S3TNiVw==
-X-Received: by 2002:a05:6512:a93:b0:49f:d52f:5d14 with SMTP id m19-20020a0565120a9300b0049fd52f5d14mr9229502lfu.359.1664182617762;
-        Mon, 26 Sep 2022 01:56:57 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s12-20020ac25c4c000000b00498f23c249dsm2480175lfp.74.2022.09.26.01.56.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 01:56:57 -0700 (PDT)
-Message-ID: <a2e13e6b-7636-e97d-780c-2c7302400fdf@linaro.org>
-Date:   Mon, 26 Sep 2022 10:56:55 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=q89NyQ9b1PpoKXEkGp2ns+Ib3Shkz3cUPYaSufAXKUc=;
+        b=3BF2yOovBX7gH749fINQ0RmxKR+mu+xswuVV2RuEaJTH0wWzTt8oIKFVlmW5nO/YBf
+         9Xe73r0+erp1RRKFXzG4cXsqHgalXoW7E7ZLB0vkehS8zQQHMdj7bq4WeHApH351veBQ
+         aWssit7AWVz2qOCSGNIU/zQnA4kD/Klgg0G9AvL5kydOP/li9PzQQL/f6rSp04RaO3ax
+         V9QKc/HoVoVgepQGt9vtgytoG68W6Cb8kikfoQP5MjWFAYRxK/ctRs99XoZJ7H8OYjpa
+         OOSiAmTNW5puCTcIIiKv8Qk3zgjJfUQlnOwIKZezUbQsFOGN5T+FT8r6o8ix7s6AMl3M
+         XSNQ==
+X-Gm-Message-State: ACrzQf0W7IjdbyNa1ZGVFXW+qWH453emFSzPcVEQQjiFSxT/+s58lbWS
+        XaIYHvJP7bvkACwnSCRe5lmKzZwfHlN2JkOD0ZMMmg==
+X-Google-Smtp-Source: AMsMyM7HZwvp/a4tFxiTN7T+gF7HA3kkCdtKrxuJAFXrT6ZiR+YlsGYzpYjFqob4runlnShPtvtGPHUPzlbsMnmQ86Y=
+X-Received: by 2002:a05:6402:90e:b0:443:ec4b:2b03 with SMTP id
+ g14-20020a056402090e00b00443ec4b2b03mr20918608edz.71.1664182648982; Mon, 26
+ Sep 2022 01:57:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 1/2] ARM: dts: bcm283x: Fix underscores in node names
-Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Maxime Ripard <maxime@cerno.tech>
-Cc:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220925164021.3600-1-stefan.wahren@i2se.com>
- <20220925164021.3600-2-stefan.wahren@i2se.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220925164021.3600-2-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20220915072458.18232-1-angelogioacchino.delregno@collabora.com>
+ <20220915072458.18232-6-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5HxEWPmLLi0zRrJ+T7bVcpoQoFt81+_ciXNDXRrGmfU6w@mail.gmail.com> <9f7d1eda-cdf3-5108-7e9d-a10937fe224e@collabora.com>
+In-Reply-To: <9f7d1eda-cdf3-5108-7e9d-a10937fe224e@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 26 Sep 2022 16:57:17 +0800
+Message-ID: <CAGXv+5HYKjDJALa6MAAE4XzRTMfE_vdEWg6XaWekUq7w8ko3BQ@mail.gmail.com>
+Subject: Re: [PATCH v2 05/10] clk: mediatek: clk-mt8195-mfg: Reparent mfg_bg3d
+ and propagate rate changes
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     matthias.bgg@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+        miles.chen@mediatek.com, rex-bc.chen@mediatek.com,
+        nfraprado@collabora.com, chun-jie.chen@mediatek.com,
+        jose.exposito89@gmail.com, drinkcat@chromium.org,
+        weiyi.lu@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,16 +72,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2022 18:40, Stefan Wahren wrote:
-> A lot pinctrl node names, regulators and local_intc do not follow the
-> node name convention to avoid underscore. So fix this by using hyphen
-> or a proper node name.
-> 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+On Mon, Sep 26, 2022 at 4:36 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 26/09/22 05:27, Chen-Yu Tsai ha scritto:
+> > On Thu, Sep 15, 2022 at 3:25 PM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
+> >>
+> >> The MFG_BG3D is a gate to enable/disable clock output to the GPU,
+> >> but the actual output is decided by multiple muxes; in particular:
+> >> mfg_ck_fast_ref muxes between "slow" (top_mfg_core_tmp) and
+> >> "fast" (MFGPLL) clock, while top_mfg_core_tmp muxes between the
+> >> 26MHz clock and various system PLLs.
+> >>
+> >> This also implies that "top_mfg_core_tmp" is a parent of the
+> >> "mfg_ck_fast_ref" mux (and not vice-versa), so reparent the
+> >
+> > I don't see where this was the case though? I think what you meant
+> > was that the direct parent for "mfg_bg3d" is "mfg_ck_fast_ref, not
+> > "top_mfg_core_tmp"?
+> >
+>
+> MFG_BG3D's direct parent is mfg_ck_fast_ref - yes - but in the commit message
+> I am explaining how the clock tree for MFG_BG3D really is and, in particular,
+> I'm then explaining that:
+> * parenting MFG_BG3D to "top_mfg_core_tmp" is wrong; because
+> * "top_mfg_core_tmp" is a parent of "mfg_ck_fast_ref" (not the other way around).
+>
+> So, the question in your comment is addressed just a little later....
+>
+> >> MFG_BG3D gate to the latter and add the CLK_SET_RATE_PARENT
+>
+> ...here, where I say "reparent MFG_BG3D to the latter", where "the latter" is,
+> exactly "mfg_ck_fast_ref".
+>
+> I hope you now understand what I am trying to communicate :-)
+>
+> However, if even after that you still think that the commit description should
+> be rewritten in some less tangled and/or more understandable way, I definitely
+> can do that.
+>
+> Please confirm :-)
+
+I think
+
+    This also implies that "top_mfg_core_tmp" is a parent of the
+    "mfg_ck_fast_ref" mux (and not vice-versa)
+
+actually confused me.
+
+Maybe just say
+
+    The clock gate comes after all the muxes, so its parent is
+    mfg_ck_fast_ref, not top_mfg_core_tmp. Reparent mfg_bg3d to
+    the latter to match the hardware ...
+
+Since you are fixing the topology, could you also add a fixes tag?
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks
+ChenYu
 
-Best regards,
-Krzysztof
 
+> >> flag to it: this way we ensure propagating rate changes that
+> >> are requested on MFG_BG3D along its entire clock tree.
+> >>
+> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> >
+> > Otherwise,
+> >
+> > Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> >
+> >
+> >> ---
+> >>   drivers/clk/mediatek/clk-mt8195-mfg.c | 6 ++++--
+> >>   1 file changed, 4 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/drivers/clk/mediatek/clk-mt8195-mfg.c b/drivers/clk/mediatek/clk-mt8195-mfg.c
+> >> index 9411c556a5a9..c94cb71bd9b9 100644
+> >> --- a/drivers/clk/mediatek/clk-mt8195-mfg.c
+> >> +++ b/drivers/clk/mediatek/clk-mt8195-mfg.c
+> >> @@ -17,10 +17,12 @@ static const struct mtk_gate_regs mfg_cg_regs = {
+> >>   };
+> >>
+> >>   #define GATE_MFG(_id, _name, _parent, _shift)                  \
+> >> -       GATE_MTK(_id, _name, _parent, &mfg_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+> >> +       GATE_MTK_FLAGS(_id, _name, _parent, &mfg_cg_regs,       \
+> >> +                      _shift, &mtk_clk_gate_ops_setclr,        \
+> >> +                      CLK_SET_RATE_PARENT)
+> >>
+> >>   static const struct mtk_gate mfg_clks[] = {
+> >> -       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "top_mfg_core_tmp", 0),
+> >> +       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "mfg_ck_fast_ref", 0),
+> >>   };
+> >>
+> >>   static const struct mtk_clk_desc mfg_desc = {
+> >> --
+> >> 2.37.2
+> >>
+>
+>
