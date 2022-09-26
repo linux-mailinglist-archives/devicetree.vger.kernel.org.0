@@ -2,106 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 877CE5EACCA
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:42:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5BCC5EACE5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 18:46:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbiIZQl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 12:41:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44904 "EHLO
+        id S229585AbiIZQqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 12:46:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbiIZQlV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:41:21 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AF46149D38;
-        Mon, 26 Sep 2022 08:29:05 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3555B660225B;
-        Mon, 26 Sep 2022 16:29:03 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664206143;
-        bh=nlq4IdmFkNAjJjqacvnPjUw6nzph3yIh2k8BmqgKtv0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=apBByvvEKv5QOCPxB2lfg8MkEDZjihxHUfLC8RJf72npPocYyK+Jg+xC9lbGVV90i
-         TT4l9p1jTX1Q4CnTRBdynjjwsUv+RpC/gza0Ai56MKWcTajHghhpmKyxHE8GKl2kjV
-         UPIRUDRshDBbDgKgBC8Qp+Ga8MkPNe7APt5KQsyTSiYuXHb2tR0q4RjpgLjNBpOR3c
-         RD0DaDBT9FdvNbvb8tgsj5TRGIrgb+Fw7iIYi3DF0xvM1kZOkHlz3RvPljkrEadXrQ
-         ZxwbKze82h03odNQQ/u6gihNO6TSolPSxi6lMkH8qc2LIswVn/jdR8yoW6cHZjNN9A
-         yOGP4m/PuB/oA==
-Message-ID: <4d1e8600-f73d-8d2b-2e7a-1b75be7624bd@collabora.com>
-Date:   Mon, 26 Sep 2022 17:29:00 +0200
+        with ESMTP id S229609AbiIZQp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 12:45:29 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D5C290823
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:34:03 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id z25so11505289lfr.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 08:34:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=F5npTjbMuhkZGTbiPdd9I0BH4rth5Gn8Gik7w91MPEQ=;
+        b=COyNBYSScAS0o8DDp+/0tPXmTexBHDJ8u+KWYzRSdPHkoRQmBZUmJXS8LLbSozyY+q
+         NCFkzGM/3t/i5zCm5VLW5RWigE0uzDey/6LVZ7DD2zOqyCpZCVzJtr5CYAD5fJvCljUV
+         KZU1RDSjJ2aZmOnMJqiE6QvMP222ve4kgfy28zHelpSvWzaqO4mk33NMM5HIuyG6Z830
+         yN8qmT5CuxbULXrSdjoiyPJYmtvFZq8+zQqJdYD9+vxevjD+2JWTA7aIHjKLbX4RkSIe
+         RUivF14k9gDk5Ff9QrCG8zoewQg13qrlpoxYzt5tYxV4LsXHy0qwjiuAW9iGZjm91vAX
+         Ni1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=F5npTjbMuhkZGTbiPdd9I0BH4rth5Gn8Gik7w91MPEQ=;
+        b=mLyIFXvC9rCZr9Ie1NAUfRjU17yI0+4x0Gmd6qp9k7lazT4AG7vp4nzZLPRVzSS6IJ
+         h9S1ucz6FDVaWy7aUsNuphXBtDt2LNPstiT7s72UpHvNYyXkS2900j73r96N425V8EGk
+         Iy8KbexgF08JCQ3Intyn/hdF0RO/nDx2vZBcBd3rho9iD2EgsDj6TUTmbJnTtmlYhUUo
+         xxEAoxXj+DXGpQPUKQBcVIy8GnNY3/8qDXF5cYtgTUEIgCGVr3nPZ+wokjiPgdXbfUCZ
+         gIXHs+csng0Y4hoPXmy5z8b5KArwHJ44cF9VlVnLGIhO55yD3jYmsuV9yNn5KAiFMUzV
+         60xQ==
+X-Gm-Message-State: ACrzQf1EsJid+2IePsk5p6IvYO93jTQNcjgevVqEubD06bhPuaFDNwUm
+        UmO8qcourhUnZx1gDbolib/nSg==
+X-Google-Smtp-Source: AMsMyM6tMFemy+xGBNnt6gYp5DB31dPiL5kIfOf1LKc4vRAi/zdjV4hXeir/ybWPBzYvF++N0Z3T9A==
+X-Received: by 2002:a05:6512:3f08:b0:4a1:af5e:5643 with SMTP id y8-20020a0565123f0800b004a1af5e5643mr4484835lfa.86.1664206441267;
+        Mon, 26 Sep 2022 08:34:01 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id f3-20020a056512092300b0049486c66140sm2573546lft.119.2022.09.26.08.32.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Sep 2022 08:32:57 -0700 (PDT)
+Message-ID: <15611981-19b3-5124-83da-7f9a699ef62f@linaro.org>
+Date:   Mon, 26 Sep 2022 17:32:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v2] arm64: dts: mt8192: Add vcodec lat and core nodes
+ Thunderbird/102.3.0
+Subject: Re: [PATCH] ARM: dts: qcom-pma8084: fix vadc channel node names
 Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        neil.armstrong@linaro.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20220926105047.19419-1-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220926105047.19419-1-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220925202143.123208-1-luca@z3ntu.xyz>
+ <98960452-9f48-7b4d-9aa6-55c0002ad1b4@linaro.org> <2647127.mvXUDI8C0e@g550jk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2647127.mvXUDI8C0e@g550jk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 26/09/22 12:50, Allen-KH Cheng ha scritto:
-> Add vcodec lat and core nodes for mt8192 SoC.
+On 26/09/2022 16:57, Luca Weiss wrote:
+> Hi Neil,
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
-> Change in v1:
->    * Replace node names with video-codec
->      [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
-> ---
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 60 ++++++++++++++++++++++++
->   1 file changed, 60 insertions(+)
+> On Montag, 26. September 2022 10:27:54 CEST Neil Armstrong wrote:
+>> On 25/09/2022 22:21, Luca Weiss wrote:
+>>> Node names for the channel are supposed to be adc-chan@REG.
+>>>
+>>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+>>> ---
+>>>
+>>>   arch/arm/boot/dts/qcom-pma8084.dtsi | 17 +++++++++++------
+>>>   1 file changed, 11 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/qcom-pma8084.dtsi
+>>> b/arch/arm/boot/dts/qcom-pma8084.dtsi index e77602e9f95c..7ad573c7b4ac
+>>> 100644
+>>> --- a/arch/arm/boot/dts/qcom-pma8084.dtsi
+>>> +++ b/arch/arm/boot/dts/qcom-pma8084.dtsi
+>>> @@ -64,22 +64,27 @@ pma8084_vadc: adc@3100 {
+>>>
+>>>   			#size-cells = <0>;
+>>>   			#io-channel-cells = <1>;
+>>>
+>>> -			die_temp {
+>>> +			adc-chan@8 {
+>>>
+>>>   				reg = <VADC_DIE_TEMP>;
+>>>   			
+>>>   			};
+>>>
+>>> -			ref_625mv {
+>>> +
+>>> +			adc-chan@9 {
+>>>
+>>>   				reg = <VADC_REF_625MV>;
+>>>   			
+>>>   			};
+>>>
+>>> -			ref_1250v {
+>>> +
+>>> +			adc-chan@10 {
+>>>
+>>>   				reg = <VADC_REF_1250MV>;
+>>>   			
+>>>   			};
+>>>
+>>> -			ref_buf_625mv {
+>>> +
+>>> +			adc-chan@12 {
+>>>
+>>>   				reg = <VADC_SPARE1>;
+>>>   			
+>>>   			};
+>>>
+>>> -			ref_gnd {
+>>> +
+>>> +			adc-chan@14 {
+>>>
+>>>   				reg = <VADC_GND_REF>;
+>>>   			
+>>>   			};
+>>>
+>>> -			ref_vdd {
+>>> +
+>>> +			adc-chan@15 {
+>>>
+>>>   				reg = <VADC_VDD_VADC>;
+>>>   			
+>>>   			};
+>>>   		
+>>>   		};
+>>
+>> I don't see where this is required, bindings doesn't mandate this naming:
+>>
+>> patternProperties:
+>>
+>>     "^.*@[0-9a-f]+$":
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 6b20376191a7..214dfc6b0ed1 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1449,6 +1449,66 @@
->   			power-domains = <&spm MT8192_POWER_DOMAIN_ISP2>;
->   		};
->   
-> +		vcodec_dec: video-codec@16000000 {
-> +			compatible = "mediatek,mt8192-vcodec-dec";
-> +			reg = <0 0x16000000 0 0x1000>;
-> +			mediatek,scp = <&scp>;
-> +			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-> +			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges = <0 0 0 0x16000000 0 0x26000>;
-> +
-> +			vcodec_lat: video-codec@10000 {
+> They don't require the "adc-chan" part (although dt nodes are supposed to have 
+> common names and adc-chan is used for adc for that; and dt node names are not 
+> supposed to have underscores), but this validation error happens without this 
+> commit:
+> 
+> <snip>/arch/arm/boot/dts/qcom-apq8084-ifc6540.dtb: pma8084@0: adc@3100: 
+> 'oneOf' conditional failed, one must be fixed:
+>         '#address-cells', '#size-cells', 'die_temp', 'ref_1250v', 'ref_625mv', 
+> 'ref_buf_625mv', 'ref_gnd', 'ref_vdd' do not match any of the regexes: 
+> 'pinctrl-[0-9]+'
+>         'die_temp', 'ref_1250v', 'ref_625mv', 'ref_buf_625mv', 'ref_gnd', 
+> 'ref_vdd' do not match any of the regexes: '^.*@[0-9a-f]+$', 'pinctrl-[0-9]+'
+>         'qcom,spmi-iadc' was expected
+>         From schema: <snip>/Documentation/devicetree/bindings/mfd/qcom,spmi-
+> pmic.yaml
+> 
+> So while e.g. ref-vdd@15 would also work, adc-chan@15 is more correct.
 
-Allen, this won't work :-(
-Check Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-...the schema requires vcodec-lat@[0-9a-f] and vcodec-core@[0-9a-f].
+The commit msg is not precise here. What the nodes are missing is unit
+address (required by VADC bindings) and replace of underscore (coding
+style). I think bindings do not require the adc-chan and we could apply
+here rule from DT spec that node name should reflect it's
+purpose/function, so die-temp@xxxx could be fine. Other places use
+already adc-chan, so consistency could be an argument. But anyway commit
+msg is not really describing why you are doing this.
 
-If you want to call them all video-codec@addr, you have to also fix the schema.
-
-P.S.: Did you try to run `make dtbs_check`?
-
-Regards,
-Angelo
+Best regards,
+Krzysztof
 
