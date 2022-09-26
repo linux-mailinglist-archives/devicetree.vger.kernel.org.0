@@ -2,139 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 697BF5EA7F0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 16:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B24C05EA98C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 17:05:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234335AbiIZOIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 10:08:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43554 "EHLO
+        id S235633AbiIZPFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 11:05:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbiIZOHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 10:07:49 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC6342028AC;
-        Mon, 26 Sep 2022 05:18:54 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28Q6n3rW004276;
-        Mon, 26 Sep 2022 12:32:05 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=2YNk7rnU4FZ13+o3uecNedyFsARFhIeA+ezdGLGCGk4=;
- b=N/E+FthewNCLizrMRhhzGDsnNtzC5gNVHOgrchi7o+xablsWgHH+JEMTQiXZhSvOMoZF
- kzTVL/7paUPj9gIK5AjIdHwHUp7zTtr0ZmML/F5lH58fLbqaEzl1/JMe+pdtzO3+Q8Wv
- CpBDc0wdI3ZADsJ/CjInzicNOln/2ljjhh0sXV1kE4pHVox8SAaqpK7MvnEV11EBxYCV
- bVSyfx7fdin1+6kiOhGPclP/i9t9BNg6jqBDp10SKp6K4Hi4N4/6ZHgFc4FvJLcX115F
- YpdWo1trqKRP9h5ipHecJh8EJQHY+YYq8KPJ3a2K8UZTqiw7STbaldSlTTyBx3hBs9MH Pw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3jsrsjau3x-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 26 Sep 2022 12:32:05 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 02E3B100034;
-        Mon, 26 Sep 2022 12:32:03 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7CD6D21FEA8;
-        Mon, 26 Sep 2022 12:32:03 +0200 (CEST)
-Received: from [10.201.21.93] (10.75.127.51) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.31; Mon, 26 Sep
- 2022 12:32:03 +0200
-Message-ID: <a8d9aee9-a1e3-5d9a-b9f3-4e92f79a99ef@foss.st.com>
-Date:   Mon, 26 Sep 2022 12:32:02 +0200
+        with ESMTP id S235117AbiIZPEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 11:04:47 -0400
+X-Greylist: delayed 3600 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 26 Sep 2022 06:37:18 PDT
+Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C706AAED84;
+        Mon, 26 Sep 2022 06:37:17 -0700 (PDT)
+Received: from 8bytes.org (p549ad5ad.dip0.t-ipconnect.de [84.154.213.173])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.8bytes.org (Postfix) with ESMTPSA id 31E9E222642;
+        Mon, 26 Sep 2022 13:38:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+        s=default; t=1664192335;
+        bh=u0B6XPViiyWAnRZXSeK3V+bLPIyGlSA8ECSz5x8D8I8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZEqsYVedeZ/S22GY2PmZZFTx5QoCi/yyLT0EvXbZ/Y0/R5kCT0OMvho5Z7ZZKuEm+
+         695rmfuM1KAIoA2A8lOOzCZADpZEhtQOeT7XGFt6We3XPi6BV+ZEiHlQOHDIgMkUuv
+         VCjt5TZenOeF+Gax2SE0JLbG8KYjMXEpvmQlQ5iRFy2VyAE7pr8o8aefkc60UwsvFw
+         /Mdls73oTev7ahdys3cyZDqkAtluDq2VEGZ7LMe/TY0NGVx1XwcQTyD5qUgIesrvA1
+         gXPycW1mcGN5Mmmq4zzoAd/vPLo4jfFHfiAOQY6ViRn10oi0Wa/lsJz6Pnq/R4D/Ar
+         cd0mqIWkN6wRw==
+Date:   Mon, 26 Sep 2022 13:38:53 +0200
+From:   Joerg Roedel <joro@8bytes.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     yong.wu@mediatek.com, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org
+Subject: Re: [PATCH v6 0/3] MediaTek Helio X10 MT6795 - M4U/IOMMU Support
+Message-ID: <YzGPTbRhT1d/EIs9@8bytes.org>
+References: <20220913151148.412312-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: pinctrl: stm32: add missing entries for gpio
- subnodes
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Fabien Dessenne <fabien.dessenne@foss.st.com>
-References: <20220913074639.31932-1-alexandre.torgue@foss.st.com>
- <9b711a9e-9e63-b69e-fabf-e05c11f145a6@linaro.org>
- <c21b9c95-ae35-fd7e-9e8e-6926703725b4@foss.st.com>
- <5145d4db-65bf-971d-84cd-73c222311cd3@linaro.org>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <5145d4db-65bf-971d-84cd-73c222311cd3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-26_08,2022-09-22_02,2022-06-22_01
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220913151148.412312-1-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/23/22 11:21, Krzysztof Kozlowski wrote:
-> On 23/09/2022 10:29, Alexandre TORGUE wrote:
->> Hi Krzysztof
->>
->> On 9/19/22 13:32, Krzysztof Kozlowski wrote:
->>> On 13/09/2022 09:46, Alexandre Torgue wrote:
->>>> Add "interrupt-controller" and gpio-line-names to gpio subnodes in order to
->>>> fix dtb validation.
->>>
->>> Rebase your patch on recent Linux kernel and use get_maintainers.pl.
->>
->> I did it on 6.0-rc5 but yes I used your kernel.org address instead of
->> linaro ones. Sorry.
->>
->>>
->>>>
->>>> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
->>>> index d35dcc4f0242..92582cccbb1b 100644
->>>> --- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
->>>> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
->>>> @@ -65,6 +65,10 @@ patternProperties:
->>>>          '#gpio-cells':
->>>>            const: 2
->>>>    
->>>> +      interrupt-controller: true
->>>> +      '#interrupt-cells':
->>>> +        const: 2
->>>> +
->>>>          reg:
->>>>            maxItems: 1
->>>>          clocks:
->>>> @@ -80,6 +84,8 @@ patternProperties:
->>>>            minimum: 1
->>>>            maximum: 16
->>>>    
->>>> +      gpio-line-names: true
->>>
->>> maxItems?
->>
->> Generic question, Is it mandatory to add maxItems information for all
->> entries ?
+On Tue, Sep 13, 2022 at 05:11:45PM +0200, AngeloGioacchino Del Regno wrote:
+> AngeloGioacchino Del Regno (3):
+>   dt-bindings: mediatek: Add bindings for MT6795 M4U
+>   iommu/mediatek: Introduce new flag TF_PORT_TO_ADDR_MT8173
+>   iommu/mediatek: Add support for MT6795 Helio X10 M4Us
 > 
-> It's not mandatory for all. For some it is recommended, for some it does
-> not make sense. Here it's quite easy to add and it will validate the
-> entry. Any reason not to add it?
+>  .../bindings/iommu/mediatek,iommu.yaml        |  4 +
+>  drivers/iommu/mtk_iommu.c                     | 21 +++-
+>  include/dt-bindings/memory/mt6795-larb-port.h | 95 +++++++++++++++++++
+>  3 files changed, 118 insertions(+), 2 deletions(-)
+>  create mode 100644 include/dt-bindings/memory/mt6795-larb-port.h
 
-Ok understood. To be honest, no reasons to not add it.
-
-cheers
-alex
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
+Applied, thanks.
