@@ -2,94 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 308365E9C13
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A192A5E9C29
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:36:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234397AbiIZIa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 04:30:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36778 "EHLO
+        id S234442AbiIZIgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:36:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234356AbiIZIaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:30:23 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9D31D32A
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:30:20 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id bu25so7756489lfb.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:30:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=yc8eh2ppDZZcDWiITniWISunAPkC/g7sS7I8UZwuluQ=;
-        b=zpbdWAHHJu56K2xc8KOgyLKSj8qOfxEsKQI+kac9U7+4w9tMwjeWo4o35q4Vk0jxWu
-         FbJYxVRWgJkVtwq7T9/9mqc1ibZvXSE1BL9vhvk5ihjtffFKmoXmuIqq/DlEBoAdq/39
-         +zsmubOMQvjhn0p6cN8frRKED8F5R883zIGZwHlfXZXzppVxgvS/L6PP1kj9bdCb53Nh
-         l39isR4HHmGCNScNZfJM62TvFV1TD4e3sbDCUruQ8nZWFIfbLRM+7U4L40mrwtkPAl6b
-         7qOuFZALtHXONa4Sa7O3R2cd/FPqeYwrv3nkNli9Y+F264fTFvWPpN+uGQ0xdh8ilANV
-         Bn6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=yc8eh2ppDZZcDWiITniWISunAPkC/g7sS7I8UZwuluQ=;
-        b=VlrWz34KbHeszVvOCVWi5/fpeczOijhyyKPy/TXowjaD5RR5mibMZQW+k3ibFwFGQa
-         RWHudbXvojszqkYbfdUZuFOsAu8tSIJGNqwTYvTlW7BcsRG5TEf/v7afZe4NJX2mcDK3
-         Hllkomre6ZqjalPsIT/dPOaXjMxBX+MlbjtyynWo0IKT+qxFrAqf8+y0UXzV2J7ip04V
-         l9yAUQrh1QPb399dRci1beM68iPPRxsznnUnjFToAo1vmrSTwkR6G8Mfe7xc3e1od2NT
-         xJ0339+z5X28s+qRFMwPiMagejHTBGR41f1BZ8bcNgViLuIILVnGEuttqLZTOrDVwpt3
-         DGDw==
-X-Gm-Message-State: ACrzQf1XgmiZE2aRb4VH60D+FTuz4sv1Bl7PA8Hu5vLMXns/SGoi7FLc
-        n0i23cnOKxv4vhwXEItOZfQOtQ==
-X-Google-Smtp-Source: AMsMyM4Lzz4cmKCm4wv5NBgqln7unwSID9Ng2e832jbMYlUh2kXSCavmOuKZy9aDB1F8rZiWx8s8sg==
-X-Received: by 2002:a05:6512:1315:b0:492:cbc8:e10d with SMTP id x21-20020a056512131500b00492cbc8e10dmr7972243lfu.41.1664181019045;
-        Mon, 26 Sep 2022 01:30:19 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y2-20020a2e5442000000b0026c41574790sm2292842ljd.30.2022.09.26.01.30.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 01:30:18 -0700 (PDT)
-Message-ID: <263a2ca5-089e-3ca5-7eea-f09c542d0e7b@linaro.org>
-Date:   Mon, 26 Sep 2022 10:30:17 +0200
+        with ESMTP id S234458AbiIZIge (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:36:34 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2612C3AB38;
+        Mon, 26 Sep 2022 01:36:34 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1A1736600367;
+        Mon, 26 Sep 2022 09:36:32 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1664181392;
+        bh=iEoRw3EBXEXCxH+5KZlOyq/CLV8b3I2xCDSEHHW8R3E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=a3/TGAL0UiIflez2BxYVWJJvXIuLzzeGkYrbkx77l7TxrAwo5YTX75GpsV2OEIdIV
+         5NL+vRX/pe6eZE6OFDa58XxcPp8MUStn77QMZqh7GtHntprUtyGLulgRW2DiiEHgIT
+         l7f/DfnvCD1qwiXRMTKIuV74YbpFTsym0f6dwCNE8vb2JVPUR12tFJAKPis74rE8cG
+         ImDf4cQaMaoCRysEEgVS4l1J6jmXYdeVU4XGb4a4Zn+O0ZZLsUWy65z+RdIOAZKRaZ
+         wS1BFIhiSewUR5goCMZcSnf16U5b03Zw68k1SlrNNeeEjBQlvaJn2f+VK9wrczoUZz
+         zqb2zFwqooZsQ==
+Message-ID: <9f7d1eda-cdf3-5108-7e9d-a10937fe224e@collabora.com>
+Date:   Mon, 26 Sep 2022 10:36:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH] dt-bindings: phy: Add compatible for Mediatek MT8188
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 05/10] clk: mediatek: clk-mt8195-mfg: Reparent mfg_bg3d
+ and propagate rate changes
 Content-Language: en-US
-To:     xinlei.lee@mediatek.com, chunfeng.yun@mediatek.com, kishon@ti.com,
-        vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        chunkuang.hu@kernel.org, p.zabel@pengutronix.de
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <1664180045-19095-1-git-send-email-xinlei.lee@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1664180045-19095-1-git-send-email-xinlei.lee@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     matthias.bgg@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+        miles.chen@mediatek.com, rex-bc.chen@mediatek.com,
+        nfraprado@collabora.com, chun-jie.chen@mediatek.com,
+        jose.exposito89@gmail.com, drinkcat@chromium.org,
+        weiyi.lu@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20220915072458.18232-1-angelogioacchino.delregno@collabora.com>
+ <20220915072458.18232-6-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5HxEWPmLLi0zRrJ+T7bVcpoQoFt81+_ciXNDXRrGmfU6w@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5HxEWPmLLi0zRrJ+T7bVcpoQoFt81+_ciXNDXRrGmfU6w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 10:14, xinlei.lee@mediatek.com wrote:
-> From: xinlei lee <xinlei.lee@mediatek.com>
+Il 26/09/22 05:27, Chen-Yu Tsai ha scritto:
+> On Thu, Sep 15, 2022 at 3:25 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> The MFG_BG3D is a gate to enable/disable clock output to the GPU,
+>> but the actual output is decided by multiple muxes; in particular:
+>> mfg_ck_fast_ref muxes between "slow" (top_mfg_core_tmp) and
+>> "fast" (MFGPLL) clock, while top_mfg_core_tmp muxes between the
+>> 26MHz clock and various system PLLs.
+>>
+>> This also implies that "top_mfg_core_tmp" is a parent of the
+>> "mfg_ck_fast_ref" mux (and not vice-versa), so reparent the
 > 
-> Add dt-binding documentation of dsi-phy for MediaTek MT8188 SoC.
+> I don't see where this was the case though? I think what you meant
+> was that the direct parent for "mfg_bg3d" is "mfg_ck_fast_ref, not
+> "top_mfg_core_tmp"?
 > 
-> Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml | 1 +
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+MFG_BG3D's direct parent is mfg_ck_fast_ref - yes - but in the commit message
+I am explaining how the clock tree for MFG_BG3D really is and, in particular,
+I'm then explaining that:
+* parenting MFG_BG3D to "top_mfg_core_tmp" is wrong; because
+* "top_mfg_core_tmp" is a parent of "mfg_ck_fast_ref" (not the other way around).
 
-Best regards,
-Krzysztof
+So, the question in your comment is addressed just a little later....
+
+>> MFG_BG3D gate to the latter and add the CLK_SET_RATE_PARENT
+
+...here, where I say "reparent MFG_BG3D to the latter", where "the latter" is,
+exactly "mfg_ck_fast_ref".
+
+I hope you now understand what I am trying to communicate :-)
+
+However, if even after that you still think that the commit description should
+be rewritten in some less tangled and/or more understandable way, I definitely
+can do that.
+
+Please confirm :-)
+
+>> flag to it: this way we ensure propagating rate changes that
+>> are requested on MFG_BG3D along its entire clock tree.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> Otherwise,
+> 
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> 
+> 
+>> ---
+>>   drivers/clk/mediatek/clk-mt8195-mfg.c | 6 ++++--
+>>   1 file changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/clk/mediatek/clk-mt8195-mfg.c b/drivers/clk/mediatek/clk-mt8195-mfg.c
+>> index 9411c556a5a9..c94cb71bd9b9 100644
+>> --- a/drivers/clk/mediatek/clk-mt8195-mfg.c
+>> +++ b/drivers/clk/mediatek/clk-mt8195-mfg.c
+>> @@ -17,10 +17,12 @@ static const struct mtk_gate_regs mfg_cg_regs = {
+>>   };
+>>
+>>   #define GATE_MFG(_id, _name, _parent, _shift)                  \
+>> -       GATE_MTK(_id, _name, _parent, &mfg_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+>> +       GATE_MTK_FLAGS(_id, _name, _parent, &mfg_cg_regs,       \
+>> +                      _shift, &mtk_clk_gate_ops_setclr,        \
+>> +                      CLK_SET_RATE_PARENT)
+>>
+>>   static const struct mtk_gate mfg_clks[] = {
+>> -       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "top_mfg_core_tmp", 0),
+>> +       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "mfg_ck_fast_ref", 0),
+>>   };
+>>
+>>   static const struct mtk_clk_desc mfg_desc = {
+>> --
+>> 2.37.2
+>>
+
 
