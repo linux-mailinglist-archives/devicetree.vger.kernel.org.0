@@ -2,135 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5BEB5EAAEC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 17:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D15B75EAB66
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 17:43:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236628AbiIZP0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 11:26:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33114 "EHLO
+        id S235943AbiIZPnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 11:43:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236740AbiIZPYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 11:24:07 -0400
+        with ESMTP id S236237AbiIZPmL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 11:42:11 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9DC823BE4;
-        Mon, 26 Sep 2022 07:09:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 004DF71BC7;
+        Mon, 26 Sep 2022 07:25:37 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1369960DEB;
-        Mon, 26 Sep 2022 14:09:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85D7BC433C1;
-        Mon, 26 Sep 2022 14:09:46 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 883E060DCC;
+        Mon, 26 Sep 2022 14:25:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 287B2C433C1;
+        Mon, 26 Sep 2022 14:25:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664201389;
-        bh=xmfDomMmA5mbkVx6QwsO/cs2/cK7sihTs3ETEIjfd5k=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=eLFZEcsgJZ6sE3lq6+tpF6gOP5MTK3jI6eirsxl6FN3powtRfo/Yn5JWtm8wjIMsL
-         i3a4eRUM9gqnyKXXL55JCLV6BLLIvxvQdO99l2ohyqsNmGleuQU3qbzpMUj40MEPm9
-         0PpeZZm0wEV/JgT8L+yBEIoKdgsGQQP+WwaqFMYWYk6aOsL//JgYXHrbnDGPJUQAxV
-         74FEHPUQ6lcqeogATzMIqQyQ2RuPbIwomkrOgzBuhmdeRcYaZMyepwfd28AX+fZPPU
-         rYYQ35y8koHCTAJO28XLZ7SbzwJCknxhhe4Hl52L9zBgamwhifKl1WcBb9NU5bKidy
-         7hStDrfELmghA==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     jh80.chung@samsung.com
-Cc:     dinguyen@kernel.org, ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCHv3 3/3] mmc: dw_mmc-pltfm: socfpga: add method to configure clk-phase
-Date:   Mon, 26 Sep 2022 09:09:32 -0500
-Message-Id: <20220926140932.820050-3-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220926140932.820050-1-dinguyen@kernel.org>
-References: <20220926140932.820050-1-dinguyen@kernel.org>
+        s=k20201202; t=1664202337;
+        bh=i0QpRzGRA2rDR7NbBJ5UC/fP24jdvmEaI0H/Ga7DsD4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YwuAYueMhTweZzn89xe2NbJV5TaqM+xvx6K+4UCMjbs+SqI7HTjuv5/RVWoBHsWFT
+         IGzBHEWI2hAWzxvLoVzdVC24G/GCINxYdlGORrcoCTBxrUspXJcCh7z+TyAfZOHwyt
+         0orykjGrk4Z34LhKVFZSuEzpcM1Zs0cgAcQxsQtm2LuPkQF9AB5lYAcF+jXPVVVF4T
+         1cQnGpmWfXLlTvj4TjDoLgDXmt6nKOy7BqH5XVnIs37EdrgtsdxkSRz/wb2uoKp0cR
+         b0w3iphYsHy3l6hGzyrNk1+z6tIhpQyPCTeblODvauRog2MZHZJSPLm3Ss/7DTn3yf
+         N/YGFXujiEk9Q==
+Message-ID: <59c1196d-7b0e-9f50-03e8-a741adc6d91c@kernel.org>
+Date:   Mon, 26 Sep 2022 09:25:28 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] ARM: dts: socfpga: arria10: Increase NAND boot partition
+ size
+Content-Language: en-US
+To:     ji.sheng.teoh@intel.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220921024519.92827-1-ji.sheng.teoh@intel.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20220921024519.92827-1-ji.sheng.teoh@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clock-phase settings for the SDMMC controller in the SoCFPGA
-Strarix10/Agilex/N5X platforms reside in a register in the System
-Manager. Add a method to access that register through the syscon
-interface.
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v3: add space before &socfpga_drv_data
-v2: simplify clk-phase calculations
----
- drivers/mmc/host/dw_mmc-pltfm.c | 41 ++++++++++++++++++++++++++++++++-
- 1 file changed, 40 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/mmc/host/dw_mmc-pltfm.c b/drivers/mmc/host/dw_mmc-pltfm.c
-index 9901208be797..0f07fa6d0150 100644
---- a/drivers/mmc/host/dw_mmc-pltfm.c
-+++ b/drivers/mmc/host/dw_mmc-pltfm.c
-@@ -17,10 +17,16 @@
- #include <linux/mmc/host.h>
- #include <linux/mmc/mmc.h>
- #include <linux/of.h>
-+#include <linux/mfd/altera-sysmgr.h>
-+#include <linux/regmap.h>
- 
- #include "dw_mmc.h"
- #include "dw_mmc-pltfm.h"
- 
-+#define SOCFPGA_DW_MMC_CLK_PHASE_STEP	45
-+#define SYSMGR_SDMMC_CTRL_SET(smplsel, drvsel) \
-+	((((smplsel) & 0x7) << 4) | (((drvsel) & 0x7) << 0))
-+
- int dw_mci_pltfm_register(struct platform_device *pdev,
- 			  const struct dw_mci_drv_data *drv_data)
- {
-@@ -62,9 +68,42 @@ const struct dev_pm_ops dw_mci_pltfm_pmops = {
- };
- EXPORT_SYMBOL_GPL(dw_mci_pltfm_pmops);
- 
-+static int dw_mci_socfpga_priv_init(struct dw_mci *host)
-+{
-+	struct device_node *np = host->dev->of_node;
-+	struct regmap *sys_mgr_base_addr;
-+	u32 clk_phase[2] = {0}, reg_offset;
-+	int i, rc, hs_timing;
-+
-+	rc = of_property_read_variable_u32_array(np, "clk-phase-sd-hs", &clk_phase[0], 2, 0);
-+	if (rc) {
-+		sys_mgr_base_addr =
-+			altr_sysmgr_regmap_lookup_by_phandle(np, "altr,sysmgr-syscon");
-+		if (IS_ERR(sys_mgr_base_addr)) {
-+			pr_err("%s: failed to find altr,sys-mgr regmap!\n", __func__);
-+			return 1;
-+		}
-+	} else
-+		return 1;
-+
-+	of_property_read_u32_index(np, "altr,sysmgr-syscon", 1, &reg_offset);
-+
-+	for (i = 0; i < ARRAY_SIZE(clk_phase); i++)
-+		clk_phase[i] /= SOCFPGA_DW_MMC_CLK_PHASE_STEP;
-+
-+	hs_timing = SYSMGR_SDMMC_CTRL_SET(clk_phase[0], clk_phase[1]);
-+	regmap_write(sys_mgr_base_addr, reg_offset, hs_timing);
-+
-+	return 0;
-+}
-+
-+static const struct dw_mci_drv_data socfpga_drv_data = {
-+	.init		= dw_mci_socfpga_priv_init,
-+};
-+
- static const struct of_device_id dw_mci_pltfm_match[] = {
- 	{ .compatible = "snps,dw-mshc", },
--	{ .compatible = "altr,socfpga-dw-mshc", },
-+	{ .compatible = "altr,socfpga-dw-mshc", .data = &socfpga_drv_data, },
- 	{ .compatible = "img,pistachio-dw-mshc", },
- 	{},
- };
--- 
-2.25.1
+On 9/20/22 21:45, ji.sheng.teoh@intel.com wrote:
+> From: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
+> 
+> Content in NAND boot partition have exceeded 32MB defined in device
+> tree node.
+> Increase boot partition size to 37MB to support larger kernel Image
+> and FPGA bitstream.
+> 
+> Signed-off-by: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
+> ---
+>   arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts b/arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts
+> index 9aa897b79544..a662df319a84 100644
+> --- a/arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts
+> +++ b/arch/arm/boot/dts/socfpga_arria10_socdk_nand.dts
+> @@ -16,11 +16,11 @@
+>   
+>   		partition@0 {
+>   			label = "Boot and fpga data";
+> -			reg = <0x0 0x02000000>;
+> +			reg = <0x0 0x02500000>;
+>   		};
+>   		partition@1c00000 {
+>   			label = "Root Filesystem - JFFS2";
+> -			reg = <0x02000000 0x06000000>;
+> +			reg = <0x02500000 0x05500000>;
+>   		};
+>   	};
+>   };
 
+
+Applied!
+
+Thanks,
+Dinh
