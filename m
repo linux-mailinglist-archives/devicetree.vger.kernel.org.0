@@ -2,89 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25E355EB2B9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:54:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E5B5EB2EC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 23:16:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231240AbiIZUyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 16:54:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36368 "EHLO
+        id S231363AbiIZVQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 17:16:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231251AbiIZUxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:53:47 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B68EAED84;
-        Mon, 26 Sep 2022 13:53:39 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id h3so8864342lja.1;
-        Mon, 26 Sep 2022 13:53:39 -0700 (PDT)
+        with ESMTP id S231339AbiIZVQN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 17:16:13 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE9511453;
+        Mon, 26 Sep 2022 14:16:12 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id u59-20020a17090a51c100b00205d3c44162so578843pjh.2;
+        Mon, 26 Sep 2022 14:16:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=FMc3Y59a61qmemE+Mlyalv3Fdm9mXvRwbGeyg5kaP7c=;
-        b=KmSsCwg5KieOLEo2miTUWW9SMvZ1Sx/ppKWul6CbqePRoR1Z8Ts6yW1ov733+j7fIT
-         pLz8CO3qRoHNAGUNYLz6b+PONfr95Bct4QXktrWc0Z3J7hLBfAAQ7THi0snn7r2bBiiv
-         Yfn9HvC7srMWUA318yf4iFbIjr6y6Cv+zPOPALg1XKuIEUnh2RlPXfm8WWCd55Se6oVs
-         7vqE2KAV321o1XZB9zGRV2CfTHOqx/zVTW67+038palJoC2NLO6pMLTN/SnkiQaekhKJ
-         t7tl/OqaijOvOQmgTepNAQ4jNfBg3OhaapcOYmw/Litr+vkPconmJ35fSAWtsNfVIaeR
-         wk1Q==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date;
+        bh=PSWyEqrLpjvJMT11H3kIdDppGDVWa/GJ7SLb23VdZCI=;
+        b=fD1C+rSNYGvvR93L5HWufdJ9zt1U0kSdl5m2WoCR68x+9eJ/GRUEHTU/QcyX1A5Sw6
+         o4OL4Wdhxy5qxXVni6MySMCaSNLn64y0aMyXznL3ThOUnJCeF+MZ2/ZhDtJt4YLLhqWs
+         v6l7rV8rNtylKAg8wEk+ORcpRJDf9dGCKChB52laHB4ZDHpwUZEtkfmT5vS4syFCd8e5
+         yStxxo9nlPaoZZVVHqp1ZHX27vFrBbYZptqNBZwyCeDtPWydrTvclJGXpx/Wx9Ws0ja+
+         IdClX81JfQQsWsXTpTmjVhw+lY9eFo2Z7/pCaErqkTktoeJLs+TxoOIIGnln4EG9VCly
+         RWqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=FMc3Y59a61qmemE+Mlyalv3Fdm9mXvRwbGeyg5kaP7c=;
-        b=kcUkbrEwrlF06lvXyAF6qKJnPTNXIzpH6hNmjG/o41qxblrT2RU5PZHzXr2ZzPQftM
-         BOMTTZ7WjOp4u2tY58pQsFG8MKXuExnYPhOZMVwIGxEhWbfztdhqb7JbBp+/CclfI+J8
-         4Z8d8rbe2xrj6/VyK7Yq7XnOgbDkh780TnEmC07DZGNNdylfJXyN0aQ1Fnb5Ier7BM4Y
-         Jnx3BrAgJYoW6ZOKCkE8bU/vJh0s0ZiX3ZW8ZTxnCSVd31c+y6yLerKncA5P6fwCkcWD
-         3u2u08wvjiQAEvL1EjSlZK79+NKD3+jyL3uIGPBLi9FZbTRCzj6Mnv0uO/zLsp+7Ff4z
-         +rCg==
-X-Gm-Message-State: ACrzQf35w61yipY6+gflf+yz1i2mjZ5N3M/nUxyh0GLhl8htdoeNz6pU
-        cNVPWn0VjH3PI2PvcLUpTl9Z7b9o2v+SLQ==
-X-Google-Smtp-Source: AMsMyM4FVIUDLVx8IWM9Oyck9CF7/Duaa7FQJ4SWOK+lo7Sn/FcizNivqN3IySBjESwOPcAnvS204w==
-X-Received: by 2002:a2e:b893:0:b0:26c:22e0:716d with SMTP id r19-20020a2eb893000000b0026c22e0716dmr8851725ljp.48.1664225617750;
-        Mon, 26 Sep 2022 13:53:37 -0700 (PDT)
-Received: from mobilestation (ip1.ibrae.ac.ru. [91.238.191.1])
-        by smtp.gmail.com with ESMTPSA id p7-20020a056512138700b0049482adb3basm2627627lfa.63.2022.09.26.13.53.35
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=PSWyEqrLpjvJMT11H3kIdDppGDVWa/GJ7SLb23VdZCI=;
+        b=v34L5Xr1CbvAVHely+u4VRovKUkH8QsBg/W+VOESx45JIUqMo5HBsatRNxQj1wJDk5
+         Lck2UoillkyXIOW5kPQurz5gVZow/S7kHkruJYVC+YWIDSrAjtnhwoGIAkjZtA8AXoIS
+         IHaUI6+8ASDMwFujKjy5C/n2QZsdUIeLNMtIeMOMAl4awKhrXnY7PUfFLxP3izI+uRQf
+         EX0OKX9lXJaaU1UzNnGx/6QZPcN9SayALR3K1c4f4jmIWaZLJQ2AT/gYAwqUsVlhA724
+         TPOZdA5I5RcStM4pTPmxrpTdlmLm7WsPZy7m2jxmkYecWCiBQQER2DNSotKCxs0v79vf
+         As1w==
+X-Gm-Message-State: ACrzQf0mmEogfd6mFwFiGncowzGXUpvxr1MS/VLKBpEPA8GsIbUR/SuP
+        i7HgqOor5onhq9XxjY/YI5rZIM5Qpn/lGg==
+X-Google-Smtp-Source: AMsMyM7bg56APRC1DTJLcg2XfPIQ9QUnMOiRUOJPJNZVmhYhDz4DhXYASepap7tg/1JuxVyQQMPkKQ==
+X-Received: by 2002:a17:902:b70a:b0:178:9491:3ab4 with SMTP id d10-20020a170902b70a00b0017894913ab4mr24033759pls.55.1664226971529;
+        Mon, 26 Sep 2022 14:16:11 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id z13-20020a170903018d00b001768452d4d7sm11720728plg.14.2022.09.26.14.16.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 13:53:36 -0700 (PDT)
-Date:   Mon, 26 Sep 2022 23:53:33 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        William McVicker <willmcvicker@google.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 20/20] PCI: dwc: Add Baikal-T1 PCIe controller support
-Message-ID: <20220926205333.qlhb5ojmx4sktzt5@mobilestation>
-References: <20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru>
- <20220822184701.25246-21-Sergey.Semin@baikalelectronics.ru>
- <YwzbARMkb/69+l2d@lpieralisi>
- <20220912000211.ct6asuhhmnatje5e@mobilestation>
- <YzF8N/jzkWsjcgdD@lpieralisi>
- <20220926124924.4vodhncnuaorrlwj@mobilestation>
- <20220926143127.GB19031@lst.de>
+        Mon, 26 Sep 2022 14:16:10 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 26 Sep 2022 14:16:09 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wim@linux-watchdog.org, matthias.bgg@gmail.com,
+        arinc.unal@arinc9.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RESEND v2] dt-bindings: watchdog: migrate mt7621 text
+ bindings to YAML
+Message-ID: <20220926211508.GA682626@roeck-us.net>
+References: <20220926162549.805108-1-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220926143127.GB19031@lst.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220926162549.805108-1-sergio.paracuellos@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,79 +78,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 04:31:28PM +0200, Christoph Hellwig wrote:
-> On Mon, Sep 26, 2022 at 03:49:24PM +0300, Serge Semin wrote:
-> > @Christoph, @Marek, @Bjorn, @Rob could you please join to the
-> > DMA-mask related discussion. @Lorenzo can't decide which driver should
-> > initialize the device DMA-mask.
+On Mon, Sep 26, 2022 at 06:25:49PM +0200, Sergio Paracuellos wrote:
+> Soc Mt7621 Watchdog bindings used text format, so migrate them to YAML.
 > 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-> The driver that does the actual DMA mapping or allocation functions
-> need to set it.  But even with your comments on the questions I'm
-> still confused what struct device you are even talking about.  Can
-> you explain this a bit better?
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-We are talking about the DW PCIe Root Port controller with DW eDMA engine
-embedded. It' simplified structure can be represented as follows:
-
-         +---------------+     +--------+
-         | System memory |     | CPU(s) |
-         +---------------+     +--------+
-                ^  |              |  ^
-                | ... System bus ... |
-               ... |              | ...
-                |  v              v  |
- +------------+------+--------+----------+------+
- | DW PCIe RP | AXI-m|        | AXI-s/DBI|      |
- |            +------+        +----------+      |
- |                ^              ^     |        |
- |         +------+----+         |    CSRs      |
- |         v           v         v              |
- |     +-------+  +---------+ +----------+      |
- |     | eDMA  |  | in-iATU | | out-iATU |      |
- |     +-------+  +---------+ +----------+      |
- |         ^           ^           ^            |
- |         +--------+--+---+-------+            |
- +------------------| PIPE |--------------------+
-                    +------+
-                      | ^
-                      v |
-                   PCIe bus
-
-The DW PCIe controller device is instantiated as a platform device
-defined in the system DT source file. The device is probed by the
-DW PCIe low-level driver, which after the platform-specific setups
-initiates the generic DW PCIe host-controller registration. On the way
-of that procedure the DW PCIe core tries to auto-detect the DW eDMA
-engine availability. If the engine is found, the DW eDMA probe method
-is called in order to register the DMA-engine device. After that the
-PCIe host bridge is registered. Both the PCIe host-bridge and
-DMA-engine devices will have the DW PCIe platform device as parent.
-
-Getting back to the sketch above. Here is a short description of the
-content:
-1. DW eDMA is capable of performing the data transfers from/to System
-memory to/from PCIe bus memory.
-2. in-iATU is the Inbound Address Translation Unit, which is
-responsible for the PCIe bus peripheral devices to access the system
-memory. The "dma-ranges" DT-property is used to initialize the
-PCIe<->Sys memory mapping. (@William note the In-iATU setup doesn't
-affect the eDMA transfers.)
-3. out-iATU is responsible for the CPU(s) to access the PCIe bus
-peripheral devices memory/cfg-space.
-
-So eDMA and in-iATU are using the same AXI-master interface to access
-the system memory. Thus the DMAable memory capability is the same for
-both of them (Though in-iATU may have some specific mapping based on
-the "dma-ranges" DT-property setup). Neither DW eDMA nor DW PCIe Root
-Port CSRs region have any register to auto-detect the AXI-m interface
-address bus width. It's selected during the IP-core synthesize and is
-platform-specific. The question is: "What driver/code is supposed to
-set the DMA-mask of the DW PCIe platform device?" Seeing the parental
-platform device is used to perform the memory-mapping for both DW eDMA
-clients and PCIe-bus peripheral device drivers, and seeing the AXI-m
-interface parameters aren't auto-detectable and are platform-specific,
-the only place it should be done in is the DW PCIe low-level device
-driver. I don't really see any alternative... What is your opinion?
-
--Sergey
+> ---
+> Changes in v2 RESEND:
+> - Resent sending also to watchdog maintainers.
+> 
+> Changes in v2:
+>  - Rebase onto last kernel version.
+>  - Add Krzysztof Reviewed-by tag.º
+> 
+>  .../watchdog/mediatek,mt7621-wdt.yaml         | 33 +++++++++++++++++++
+>  .../bindings/watchdog/mt7621-wdt.txt          | 12 -------
+>  2 files changed, 33 insertions(+), 12 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml
+> new file mode 100644
+> index 000000000000..b2b17fdf4e39
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml
+> @@ -0,0 +1,33 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/mediatek,mt7621-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Ralink Watchdog Timers
+> +
+> +maintainers:
+> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt7621-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    watchdog@100 {
+> +      compatible = "mediatek,mt7621-wdt";
+> +      reg = <0x100 0x100>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt b/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
+> deleted file mode 100644
+> index c15ef0ef609f..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
+> +++ /dev/null
+> @@ -1,12 +0,0 @@
+> -Ralink Watchdog Timers
+> -
+> -Required properties:
+> -- compatible: must be "mediatek,mt7621-wdt"
+> -- reg: physical base address of the controller and length of the register range
+> -
+> -Example:
+> -
+> -	watchdog@100 {
+> -		compatible = "mediatek,mt7621-wdt";
+> -		reg = <0x100 0x10>;
+> -	};
