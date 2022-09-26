@@ -2,99 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 737955EA841
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 16:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E98E5EA86B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 16:31:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbiIZOUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 10:20:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41918 "EHLO
+        id S234573AbiIZObK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 10:31:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234396AbiIZOUb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 10:20:31 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8AE8B4EB9;
-        Mon, 26 Sep 2022 05:29:18 -0700 (PDT)
-Received: by mail-qk1-f172.google.com with SMTP id s9so3940732qkg.4;
-        Mon, 26 Sep 2022 05:29:18 -0700 (PDT)
+        with ESMTP id S234561AbiIZOaq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 10:30:46 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEAEB10BB30;
+        Mon, 26 Sep 2022 05:43:19 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id j6-20020a17090a694600b00200bba67dadso6603992pjm.5;
+        Mon, 26 Sep 2022 05:43:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:content-disposition:mime-version:message-id:subject:to
+         :from:date:from:to:cc:subject:date;
+        bh=2AabGUL0Br5YICw1JFuVvftFuTUQ/EAqwxrV1oNwEpg=;
+        b=gV0TgiLvVN18Z7oqqL+K30h6ukAQLF3fLgo6VpUwIXswPgKS/dC1zLTpG4w+1dybyP
+         5g+EUy4DNPdTupoLPMba/dadlLg6qHQ3JF0WQ0725/3miUrdENZxx8PKQJbMCauPYJHb
+         KIyon3s24MK0fciq3al2cC10UM0OcRAEJ3U6Xlzq20V4vQdwOSXzQEd2LEB4dknmScs1
+         WPjEZ2PBucah670hSc2FDMcnMWw5/FuZgi6FrBBL+FANhXsegYJO0XrAMsfpWMJNZEYD
+         SsiaBhPDC22FGXxc8d2Bcs3GrLfLlEERPVMDfdadu4hOavk0zWe7S/+zZQAEd0z0SJL6
+         TwoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=yQYUi9rtHxzjnq1LUMbIkH4itTobdLfxS8nJcmd6jKA=;
-        b=qY56S/x13w8hk8Jw8nrQomBdY78ZVUboxWvgMsuMX4qw8XZ9pcVlXc/ucz3VoluReW
-         yQJnt7ISl/Lex0mJl5EpMBwkMFHKA+Blbz7Mepe6ZscQU7pDzjwUFI/bBzBGtTbAV7gy
-         Dh2rQTTQ8l6uecXKlYcnWt2/tHpm2Zd7+VYoYDJg64D9lvnUWcDiGnl108KC0VGe0Dj1
-         68SUOI44kcHJXkbZY9pSLpx2ehIYXxp/ZKpsnHKJVzyrKdLvIJ9H/MOJAuE8jmav2dkU
-         Wz5m2L+ahpu4OrVruTsMO8005B4+c0XseS5qnSil37NNxeTv6czN4fIpRobCxeqHe+rJ
-         KPGQ==
-X-Gm-Message-State: ACrzQf2xxNY3NNEGWXMNo403Di0zqwiWhIHKx+e2jL54w7qmJy+3CYJe
-        PhpM9bP77uNrRE3z89lQbo3zzg0DZHa/IA==
-X-Google-Smtp-Source: AMsMyM5qP0Y3VA1L+xgbv2dgT8aK1Zwx1aKIeu0QLWlNXL1LC3cZA5tOjX2sEYr+lfVIEZNCF1Ml4Q==
-X-Received: by 2002:a05:620a:31a1:b0:6ce:d7be:496b with SMTP id bi33-20020a05620a31a100b006ced7be496bmr13996526qkb.192.1664195347395;
-        Mon, 26 Sep 2022 05:29:07 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id f19-20020a05620a409300b006ce3e4fb328sm11977818qko.42.2022.09.26.05.29.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 05:29:07 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id e81so8088508ybb.13;
-        Mon, 26 Sep 2022 05:29:07 -0700 (PDT)
-X-Received: by 2002:a25:8e84:0:b0:696:466c:baa with SMTP id
- q4-20020a258e84000000b00696466c0baamr19598860ybl.604.1664195346868; Mon, 26
- Sep 2022 05:29:06 -0700 (PDT)
+        h=user-agent:content-disposition:mime-version:message-id:subject:to
+         :from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=2AabGUL0Br5YICw1JFuVvftFuTUQ/EAqwxrV1oNwEpg=;
+        b=TCwXgyMegx3xcM7RE6COJ8oPmTu99UIQudCiYG8bytC8LSNtWC+C79F2jVaeynd91b
+         uzFSuDbv65HfW9VSZx2SmNc2ahbvPa21wtALlu4LnPz7f4W0lOaSBZK4nVSpT4TZ8uTc
+         QpbHc78BHxZAgiAIVjBFrjxhfjhVOheTLImrbnpFlEO1PJplPOsc3CZ8s0qFNvSz2jQG
+         5CXD8QgCtnedZJnKHCOke1z+dBejgFLTSO/8wuFw9fs3to0fyNvIgBwrdvCRfs36cnGg
+         jhH4zzUzFh5l5wyoF+dMFjnZf6zn4WvWaXLGu/ZOhYGW+5JSPHV+TaSD3AjmWiKrasvW
+         QJmw==
+X-Gm-Message-State: ACrzQf2c+RgU+s8TQsj7xU8ePWfhb+iqYPnhDG6YrfTOTVnRDHlfhPtS
+        w9AB4qLVWjUHkw6rhlNwZXk=
+X-Google-Smtp-Source: AMsMyM5RdeRGaIsVQucKXp8iHx60CYMSRbrZ3Y8OAN1jkEZLfeiKEvivTVNUW4YV7JdtqiHMDZMggg==
+X-Received: by 2002:a17:903:240b:b0:178:a475:6644 with SMTP id e11-20020a170903240b00b00178a4756644mr22150458plo.96.1664196198668;
+        Mon, 26 Sep 2022 05:43:18 -0700 (PDT)
+Received: from hcl-ThinkPad-T495 ([2401:4900:1ce2:8789:cdbd:fcea:ad98:effa])
+        by smtp.gmail.com with ESMTPSA id g8-20020a170902934800b00177f8f234cesm11021877plp.258.2022.09.26.05.43.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 26 Sep 2022 05:43:17 -0700 (PDT)
+Date:   Mon, 26 Sep 2022 18:13:13 +0530
+From:   Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: [PATCH v5] ARM: dts: aspeed: Yosemite V2: Enable OCP debug card
+Message-ID: <20220926124313.GA8400@hcl-ThinkPad-T495>
 MIME-Version: 1.0
-References: <20220919092130.93074-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220919092130.93074-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 26 Sep 2022 14:28:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWEdY5AdjbH-1FvtPQS+5H3LSAF_281k06Y0Bi9mfxQZw@mail.gmail.com>
-Message-ID: <CAMuHMdWEdY5AdjbH-1FvtPQS+5H3LSAF_281k06Y0Bi9mfxQZw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg2lc-smarc: Include SoM DTSI into
- board DTS
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 19, 2022 at 11:22 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Move including the rzg2lc-smarc-som.dtsi from the carrier board
-> rzg2lc-smarc.dtsi to the actual RZ/G2LC SMARC EVK board dts
-> r9a07g044c2-smarc.dts. Also move the SW1 related macros along with
-> PMOD1_SER0 to board dts so that we have all the configuration options
-> in the same file.
->
-> This patch is to keep consistency with other SMARC EVKs (RZ/G2L, RZ/G2UL)
-> and it makes sense not include the SoM into the carrier board as we might
-> in future have a different carrier board with the same SoM.
->
-> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Added IPMB-13 channel for Debug Card communication.
+which improves the readability of the machine and makes
+it easier to debug the server and it will display some
+pieces of information about the server like "system info",
+"Critical sensors" and "critical sel".
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.2.
+---
+--- v5- Updated commit message
+--- v4- Resolved syntax error
+--- v3- Updated the title and commit
+--- v2- Updated the title
+--- v1- Initial draft
+---
 
-Gr{oetje,eeting}s,
+Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+---
+ arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-                        Geert
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+index 8864e9c312a8..84236df522dc 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+@@ -215,6 +215,17 @@
+ 	};
+ };
+ 
++&i2c13 {
++	status = "okay";
++	// Debug Card
++	multi-master;
++	ipmb13@10 {
++		compatible = "ipmb-dev";
++		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++		i2c-protocol;
++	};
++};
++
+ &pwm_tacho {
+ 	status = "okay";
+ 	//FSC
+-- 
+2.17.1
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
