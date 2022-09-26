@@ -2,180 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46D875E9CC0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 817785E9CC4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:01:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234689AbiIZJBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 05:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56488 "EHLO
+        id S234644AbiIZJBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 05:01:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234647AbiIZJAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:00:48 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7743F30C;
-        Mon, 26 Sep 2022 02:00:32 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 93EC36602251;
-        Mon, 26 Sep 2022 10:00:29 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1664182830;
-        bh=bMVcDk3X6u99bKLgfXI+FhEYfAxSZHzyzbIzr8PhH+w=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=l25gcGT4sPUU+J8zbwhVbwirwzez7PHsi3P4gxW3KwtGF1mMJkW4dBmSD4qjCz7ua
-         wU5pgayAES4HYWLf8iCCLOgo29HgDZxiNTHnqiRffoQbwfacTb36tCiS7A6OoqZck3
-         UQL6af+Ofj/hPOC7FBOTWvURAro/QTmfudjpDkvEKHL6/nya2UMgBVU5rvDqDflK6t
-         fVTcFN7bgUEDzZXukDpIbBd3NHIjFnRKLckvELd32R/iD4rnMM+//pU41oHVNA8aff
-         55zL52eA3UGkZ2dWLtLbRt/rs+MQyKm609NY23D9E08ORXHmQqHdzNcRrYdhE3FoIk
-         YfaxnlPTsxeAQ==
-Message-ID: <cff7aa75-4448-dc08-3b6f-488fcf78cb87@collabora.com>
-Date:   Mon, 26 Sep 2022 11:00:26 +0200
+        with ESMTP id S234657AbiIZJBV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:01:21 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7CD73ED54;
+        Mon, 26 Sep 2022 02:01:18 -0700 (PDT)
+Received: from canpemm500009.china.huawei.com (unknown [172.30.72.56])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Mbc9W0x43zpVbs;
+        Mon, 26 Sep 2022 16:58:23 +0800 (CST)
+Received: from [10.67.102.169] (10.67.102.169) by
+ canpemm500009.china.huawei.com (7.192.105.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Mon, 26 Sep 2022 17:01:16 +0800
+CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <yangyicong@hisilicon.com>
+Subject: Re: [PATCH next v5 2/2] dt-bindings: i2c: add entry for
+ hisilicon,hisi-i2c
+To:     Weilong Chen <chenweilong@huawei.com>, <xuwei5@huawei.com>,
+        <wsa@kernel.org>, <robh+dt@kernel.org>, <robh@kernel.org>
+References: <20220920072215.161331-1-chenweilong@huawei.com>
+ <20220920072215.161331-2-chenweilong@huawei.com>
+From:   Yicong Yang <yangyicong@huawei.com>
+Message-ID: <24de8f45-8d3e-2e9b-231b-f891e1829a0e@huawei.com>
+Date:   Mon, 26 Sep 2022 17:01:16 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v2 05/10] clk: mediatek: clk-mt8195-mfg: Reparent mfg_bg3d
- and propagate rate changes
-Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     matthias.bgg@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
-        miles.chen@mediatek.com, rex-bc.chen@mediatek.com,
-        nfraprado@collabora.com, chun-jie.chen@mediatek.com,
-        jose.exposito89@gmail.com, drinkcat@chromium.org,
-        weiyi.lu@mediatek.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20220915072458.18232-1-angelogioacchino.delregno@collabora.com>
- <20220915072458.18232-6-angelogioacchino.delregno@collabora.com>
- <CAGXv+5HxEWPmLLi0zRrJ+T7bVcpoQoFt81+_ciXNDXRrGmfU6w@mail.gmail.com>
- <9f7d1eda-cdf3-5108-7e9d-a10937fe224e@collabora.com>
- <CAGXv+5HYKjDJALa6MAAE4XzRTMfE_vdEWg6XaWekUq7w8ko3BQ@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5HYKjDJALa6MAAE4XzRTMfE_vdEWg6XaWekUq7w8ko3BQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20220920072215.161331-2-chenweilong@huawei.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.67.102.169]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ canpemm500009.china.huawei.com (7.192.105.203)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-6.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 26/09/22 10:57, Chen-Yu Tsai ha scritto:
-> On Mon, Sep 26, 2022 at 4:36 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 26/09/22 05:27, Chen-Yu Tsai ha scritto:
->>> On Thu, Sep 15, 2022 at 3:25 PM AngeloGioacchino Del Regno
->>> <angelogioacchino.delregno@collabora.com> wrote:
->>>>
->>>> The MFG_BG3D is a gate to enable/disable clock output to the GPU,
->>>> but the actual output is decided by multiple muxes; in particular:
->>>> mfg_ck_fast_ref muxes between "slow" (top_mfg_core_tmp) and
->>>> "fast" (MFGPLL) clock, while top_mfg_core_tmp muxes between the
->>>> 26MHz clock and various system PLLs.
->>>>
->>>> This also implies that "top_mfg_core_tmp" is a parent of the
->>>> "mfg_ck_fast_ref" mux (and not vice-versa), so reparent the
->>>
->>> I don't see where this was the case though? I think what you meant
->>> was that the direct parent for "mfg_bg3d" is "mfg_ck_fast_ref, not
->>> "top_mfg_core_tmp"?
->>>
->>
->> MFG_BG3D's direct parent is mfg_ck_fast_ref - yes - but in the commit message
->> I am explaining how the clock tree for MFG_BG3D really is and, in particular,
->> I'm then explaining that:
->> * parenting MFG_BG3D to "top_mfg_core_tmp" is wrong; because
->> * "top_mfg_core_tmp" is a parent of "mfg_ck_fast_ref" (not the other way around).
->>
->> So, the question in your comment is addressed just a little later....
->>
->>>> MFG_BG3D gate to the latter and add the CLK_SET_RATE_PARENT
->>
->> ...here, where I say "reparent MFG_BG3D to the latter", where "the latter" is,
->> exactly "mfg_ck_fast_ref".
->>
->> I hope you now understand what I am trying to communicate :-)
->>
->> However, if even after that you still think that the commit description should
->> be rewritten in some less tangled and/or more understandable way, I definitely
->> can do that.
->>
->> Please confirm :-)
+On 2022/9/20 15:22, Weilong Chen wrote:
+> Add the new compatible for HiSilicon common i2c.
 > 
-> I think
-> 
->      This also implies that "top_mfg_core_tmp" is a parent of the
->      "mfg_ck_fast_ref" mux (and not vice-versa)
-> 
-> actually confused me.
-> 
-> Maybe just say
-> 
->      The clock gate comes after all the muxes, so its parent is
->      mfg_ck_fast_ref, not top_mfg_core_tmp. Reparent mfg_bg3d to
->      the latter to match the hardware ...
-> 
-> Since you are fixing the topology, could you also add a fixes tag?
-> 
-> 
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
 
-Yeah, sure! I'll send a new version most probably today.
-Thanks for the review(s)!
+Reviewed-by: Yicong Yang <yangyicong@hisilicon.com>
 
-Cheers,
-Angelo
-
-> Thanks
-> ChenYu
+> ---
+> Change since v4:
+> - Add description for SoC specific compatibles.
+> - Use the clock binding.
+> - Fix decimal, space, case, unused labels.
+> Link: https://lore.kernel.org/lkml/20220909074842.281232-1-chenweilong@huawei.com/T/#m4e1c915ead04f4e2e48d69131053a966801625db
 > 
+>  .../bindings/i2c/hisilicon,hisi-i2c.yaml      | 72 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
 > 
->>>> flag to it: this way we ensure propagating rate changes that
->>>> are requested on MFG_BG3D along its entire clock tree.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>
->>> Otherwise,
->>>
->>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
->>>
->>>
->>>> ---
->>>>    drivers/clk/mediatek/clk-mt8195-mfg.c | 6 ++++--
->>>>    1 file changed, 4 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/clk/mediatek/clk-mt8195-mfg.c b/drivers/clk/mediatek/clk-mt8195-mfg.c
->>>> index 9411c556a5a9..c94cb71bd9b9 100644
->>>> --- a/drivers/clk/mediatek/clk-mt8195-mfg.c
->>>> +++ b/drivers/clk/mediatek/clk-mt8195-mfg.c
->>>> @@ -17,10 +17,12 @@ static const struct mtk_gate_regs mfg_cg_regs = {
->>>>    };
->>>>
->>>>    #define GATE_MFG(_id, _name, _parent, _shift)                  \
->>>> -       GATE_MTK(_id, _name, _parent, &mfg_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
->>>> +       GATE_MTK_FLAGS(_id, _name, _parent, &mfg_cg_regs,       \
->>>> +                      _shift, &mtk_clk_gate_ops_setclr,        \
->>>> +                      CLK_SET_RATE_PARENT)
->>>>
->>>>    static const struct mtk_gate mfg_clks[] = {
->>>> -       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "top_mfg_core_tmp", 0),
->>>> +       GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "mfg_ck_fast_ref", 0),
->>>>    };
->>>>
->>>>    static const struct mtk_clk_desc mfg_desc = {
->>>> --
->>>> 2.37.2
->>>>
->>
->>
-
-
-
+> diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+> new file mode 100644
+> index 000000000000..b06eb8cb88bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/i2c/hisilicon,hisi-i2c.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: HiSilicon common IIC controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - yangyicong@huawei.com
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: hisilicon,hisi-i2c
+> +    description:
+> +      The HiSilicon common IIC controller can be used for many different
+> +      types of SoC such as Huawei Ascend AI series chips. We use the common
+> +      string (hisi) for specific compatibles to avoid confusion caused by a
+> +      lot of different names.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-frequency:
+> +    default: 400000
+> +
+> +  i2c-sda-falling-time-ns:
+> +    default: 343
+> +
+> +  i2c-scl-falling-time-ns:
+> +    default: 203
+> +
+> +  i2c-sda-hold-time-ns:
+> +    default: 830
+> +
+> +  i2c-scl-rising-time-ns:
+> +    default: 365
+> +
+> +  i2c-digital-filter-width-ns:
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c@5038b0000 {
+> +      compatible = "hisilicon,hisi-i2c";
+> +      reg = <0x38b0000 0x10000>;
+> +      interrupts = <0x0 120 0x4>;
+> +      i2c-sda-falling-time-ns = <56>;
+> +      i2c-scl-falling-time-ns = <56>;
+> +      i2c-sda-hold-time-ns = <56>;
+> +      i2c-scl-rising-time-ns = <56>;
+> +      i2c-digital-filter;
+> +      i2c-digital-filter-width-ns = <0x0>;
+> +      clocks = <&alg_clk>;
+> +      clock-frequency = <400000>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d213a831133f..4c928a444e4b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9155,6 +9155,7 @@ L:	linux-i2c@vger.kernel.org
+>  S:	Maintained
+>  W:	https://www.hisilicon.com
+>  F:	drivers/i2c/busses/i2c-hisi.c
+> +F:	Documentation/devicetree/bindings/i2c/hisilicon,hisi-i2c.yaml
+>  
+>  HISILICON LPC BUS DRIVER
+>  M:	john.garry@huawei.com
+> 
