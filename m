@@ -2,78 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C34F15EB061
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 20:43:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 112865EB098
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 20:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbiIZSm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 14:42:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47828 "EHLO
+        id S231235AbiIZS5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 14:57:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230031AbiIZSmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 14:42:04 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF83F62;
-        Mon, 26 Sep 2022 11:41:16 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id cm7-20020a056830650700b006587fe87d1aso5006270otb.10;
-        Mon, 26 Sep 2022 11:41:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=NQTujgk0bsMYEmOwwwiGoFnr2ZfITkyj1lKMg8vNYRA=;
-        b=VcG4xD6xTkvN4OZo77FfqRaAf1hW6M5xF8oZM1pd1l6n2fjzN/oRN0EtajapMo2GR7
-         roHrThzzsodQuNL3BidAbqeqYZEUy7ms4IptcAcePx8+jKVc4Cj41zTGYX9gOfkMU51O
-         oXXYA7qEpNXpCyl7mDUiuIO5KO3G1JGnX4/9Hl6J8rxCuFVBaUnOw92uK0bz0E4AsdTa
-         wGb3CVPq5JYJv5tTGXiz1EX0tOUJljHjSB2FupjtVbXW13ANob/AT+C+Lv66kr3Fb7OJ
-         bZXpDM35N4+CrbPnL8t0kGzN+mBysM0cb/WW/LxbtLdFGkHW1z9YDCfBE4VOOpz2rdge
-         UJyg==
-X-Gm-Message-State: ACrzQf1RxINY52Uz0hmCbczQWdu4Esd0WP75WcrQJzLizl9u+8dN+yZh
-        3UjNI/UmWL9w0riZ1A+iXA==
-X-Google-Smtp-Source: AMsMyM7EmvpGiar0USof2quKxi3nPNn2k+LZWqyN4+LnEMnDftJdZm+WxA4p0gAltLrFbpTcT7k+nA==
-X-Received: by 2002:a05:6830:442a:b0:65a:f06:68da with SMTP id q42-20020a056830442a00b0065a0f0668damr10494182otv.336.1664217675296;
-        Mon, 26 Sep 2022 11:41:15 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id cj26-20020a056830641a00b0065689e13f52sm8096577otb.71.2022.09.26.11.41.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 11:41:15 -0700 (PDT)
-Received: (nullmailer pid 2550335 invoked by uid 1000);
-        Mon, 26 Sep 2022 18:41:14 -0000
-Date:   Mon, 26 Sep 2022 13:41:14 -0500
-From:   robh@kernel.org
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        shawnguo@kernel.org, l.stach@pengutronix.de, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
-        Peng Fan <peng.fan@nxp.com>, kernel@pengutronix.de
-Subject: Re: [PATCH] dt-bindings: power: gpcv2: correct patternProperties
-Message-ID: <20220926184114.GA2550274-robh@kernel.org>
-References: <20220923075427.985504-1-peng.fan@oss.nxp.com>
+        with ESMTP id S231193AbiIZS5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 14:57:19 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F4B696F8
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 11:57:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=2FR425MnpFbRcS4Wkg44QJv+M5yF
+        ttiCMas2rQtol/c=; b=uEAAYXYt+DPZy/t4lkxwXOzciGjnDSFQ7KJkgwwRLxNi
+        KJBj5ZAzZP78uaZwVxwWqTr7b0O2Ga6XdtT4lLAEJpVYKghM+9KNCzuKnaSIlP9k
+        qBxU5eh+WDkXlsXQCtOEmpaCub0veh6WQhGisrNeLXgwwF4QD0xJLZxVHQTvkMM=
+Received: (qmail 3230396 invoked from network); 26 Sep 2022 20:57:13 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Sep 2022 20:57:13 +0200
+X-UD-Smtp-Session: l3s3148p1@9ChGGJnpSqQgAwDtxwncAPgJb5TsabMI
+Date:   Mon, 26 Sep 2022 20:57:09 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Asmaa Mnebhi <asmaa@nvidia.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        Khalil Blaiech <kblaiech@nvidia.com>
+Subject: Re: How to remove DT support from a driver? (was Re: [PATCH v5 8/8]
+ i2c: i2c-mlxbf.c: Update binding devicetree)
+Message-ID: <YzH2BQkbqBfOEk7O@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Asmaa Mnebhi <asmaa@nvidia.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        Khalil Blaiech <kblaiech@nvidia.com>
+References: <20220920174736.9766-1-asmaa@nvidia.com>
+ <20220920174736.9766-9-asmaa@nvidia.com>
+ <20220921065506.6cu6p2cpu3zfhtie@krzk-bin>
+ <CH2PR12MB3895572575B5BED5DAFFAA29D74F9@CH2PR12MB3895.namprd12.prod.outlook.com>
+ <Yyttt3DiQpMZYejA@shikoro>
+ <20220924173125.GA989070-robh@kernel.org>
+ <CH2PR12MB3895753865DC9318CE61A131D7529@CH2PR12MB3895.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="0euI4NmuGxy/13VU"
 Content-Disposition: inline
-In-Reply-To: <20220923075427.985504-1-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CH2PR12MB3895753865DC9318CE61A131D7529@CH2PR12MB3895.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Sep 2022 15:54:27 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> i.MX8MQ has pgc 'power-domain@a', so correct patternProperties
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
 
-Applied, thanks!
+--0euI4NmuGxy/13VU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+
+> i2c drivers (even if we have no support for it and all our customers
+> have to use our firmware including UEFI ACPI tables). So it is
+
+Because of the "custom firmware is needed and it is only ACPI" fact, I
+think this is one of the rare cases where we can actually remove DT
+support.
+
+
+--0euI4NmuGxy/13VU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMx9gEACgkQFA3kzBSg
+Kbasrw//e8SOujrbaKHOJRSmvN2FSCzkmKrYNL7CY0N8XlS/gVpEKTJmkBYBx6rU
+ErxwNe/64nAF3bZ1hwCApfd+2p7T4dLLc+AjGqRiDv6H8XnZ4y0qCoXw+dGu4cPw
+t5YZmm2SIntvqIiIEbFjcGkw39mbdQfYrNS+3pT1SplhEJFkwyI75cZ63f9GIXC0
+dEK6CXcXbVQ22p76MhAN762T5Jp5i0H/HDxDqLhfJLnNomaIfB22X2rBf/VTDEr6
+5t1JwmCmjy2NatH4NuwywzSt2mE74zi0/iWA3QyKhDaTWK525syKZgXaJKdOIGXT
+y8nH6qg8e5Nxpsy8DunNCfciCqtB0Uwe2sh1AgqGDDIbpdXc4tW/2SxC6XbIvUD0
+DX+bwb+rqtTD27DYpfSdqt0kDcrkGGgSx4fUtw7GRzQT4XwryCAZKi/C1WQKIc4M
+AaukjNjQuemW/29e96wzBqXpLqJkW6z3BW8ghdsrPlPiYo1HvOSBLE1HLVolOpE5
+7kg7XrgAM4rW8FoZLPP0KZkzJT5PWQ++fkPdsK/pdzgHqp8gw7YNbovseOlOnlzB
+ez1MDo44Xdo+fXBqLhhuHDPl+9+tWxJbRyWvOQtmkVeuPWVedBcWLBVS6JgIsf7G
+HxB2g+fIbm0/ePYVoYc4O+VgPzAICLx525vecwymoqsXUHeA9JM=
+=+KGh
+-----END PGP SIGNATURE-----
+
+--0euI4NmuGxy/13VU--
