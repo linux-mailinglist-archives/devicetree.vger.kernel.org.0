@@ -2,126 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 138075E9DB9
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:32:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB2605E9DA1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234169AbiIZJcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 05:32:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58022 "EHLO
+        id S234988AbiIZJaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 05:30:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234995AbiIZJcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:32:07 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A70617A8A
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:31:09 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id bu25so7986792lfb.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:31:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=uaiDp3kvgnG0ypPaVSIUeFXmDz7x/JwiryUmZAc4dU0=;
-        b=PyO4KmrNHFYEQ2ZSdZDB9CJMxLJPpUpBGMGKh9bgd9hRACeXmb9UggP1Ckt0tYZz9/
-         uCV0ecW3jGWwuoWqrExby2NFlaUorzLvbzRUfup6GCd57qnaK43AI/qIIp+Ia2F32yzb
-         eML2C9ZIpA5DUZ2ertJVHvfrfQO+2TN9FmLJyTkdSLS0GdQxsjTXwAqh1tpb8UZLdzW3
-         bFlbnuauudKC8IZGW6d/n8mpCLavtYa/XbXfkOBkSi5RFjOiazQvPQ5OOToaWb/Pew35
-         AM6foqUUGXko3iGqd5K0xt2gDPcxx3nb0ctV252Wj+GkrB0Ai2GP7+mPLgQsE4ekG1we
-         /fDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=uaiDp3kvgnG0ypPaVSIUeFXmDz7x/JwiryUmZAc4dU0=;
-        b=5KnIX4cGSXR6XzyWQBw+x2UJ0zJoxggVjwlbTyXDILA1SUx+9TnUE24LRmxLy+MMgE
-         ZThqjxrN6dUSHy28lL/djmlUFp8OtEu+TVgqawGAHpCsdUFlKss2Ro1wursVoUW1bdL8
-         saAJgPYfL/phvcj/D8G/S3+C9b7MuO4U4a8aDJwypAtWricIKrkzKHmYMAWvvQf8TtuB
-         Smk6z+5AjaLgFSeU1tQGynUg/BrRRKo2tMmhm2jINB2Olsgqw1FI++wHgRHF8ZkjrXnB
-         yTlYgYc2dbGW9pISPylRwzSEgCirdNSllgLWK+9TKsn1ThXApEGbEEwArzRRcK1v1y1H
-         dVBQ==
-X-Gm-Message-State: ACrzQf3HNNKoq9mu2HQHusthgiwDzCvkcqZqykWfkhy7OOYGB1SEgJdW
-        96TnRdWZMq9+0ChBtIxvnWXGLawe8SFLfQ==
-X-Google-Smtp-Source: AMsMyM4+r8FKGhQFjLKSZbEOMsnV8nGHobCDs01XOaZyixiXEKtNbP3l8DQcAeEF5kNVLcEbUGz+2g==
-X-Received: by 2002:a05:6512:3409:b0:499:faa6:edb0 with SMTP id i9-20020a056512340900b00499faa6edb0mr7944823lfr.682.1664184305962;
-        Mon, 26 Sep 2022 02:25:05 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id be25-20020a05651c171900b0025fdf1af42asm2308859ljb.78.2022.09.26.02.25.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 02:25:05 -0700 (PDT)
-Message-ID: <7dbdb43a-0ffe-58db-5f8a-f3bd62a4feea@linaro.org>
-Date:   Mon, 26 Sep 2022 11:25:04 +0200
+        with ESMTP id S234951AbiIZJ3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:29:18 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F9217669;
+        Mon, 26 Sep 2022 02:28:22 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C714B1BF208;
+        Mon, 26 Sep 2022 09:28:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1664184500;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=i4eAWY2bCZloQbtUvwHPDqDRZ7KYya4jLR9cP3JLjAs=;
+        b=li4fsrvQKROc8CKyC+R4/UqgUDDRf5Pyf3nmR8WsGj2LsPjSm2DXYnriOdYqBtWaBzIEfJ
+        aPpFUw0GNfdcsQFrEo2FekF7QUX2HElU4qThZXF49qqomyXti/u962WhJO4BGj0RLdne+D
+        UifQsQSI4/je59Fszumgs/JjVROG/4mPjrv1Wt0PdcinEsgEkulCHooWwaZGyX6d8fel63
+        snUGu35xFnH8vlZHAn/RB08j7h1oGS9cD8aGwaqOpgArhUbtcut/tNBAWpIvfE15XJ2aPA
+        pDj1a+u2YgoAV1bopgP/rpdWwxHwdxvqiA6WhqIQx0tJc6X1RWcTL5KG8SX5sQ==
+Date:   Mon, 26 Sep 2022 11:28:18 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 1/8] dt-bindings: sun6i-a31-mipi-dphy: Add the interrupts
+ property
+Message-ID: <YzFwst0GpdRBx/9l@aptenodytes>
+References: <20220812075603.59375-1-samuel@sholland.org>
+ <20220812075603.59375-2-samuel@sholland.org>
+ <c85ec3a3-fa6e-aa71-a847-22062b9683e9@linaro.org>
+ <0d2bf232-8aa6-2dc1-121d-f0439bfd7b54@sholland.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v2 4/8] dt-bindings: net: renesas: Document Renesas
- Ethernet Switch
-Content-Language: en-US
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "richardcochran@gmail.com" <richardcochran@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>
-Cc:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20220921084745.3355107-1-yoshihiro.shimoda.uh@renesas.com>
- <20220921084745.3355107-5-yoshihiro.shimoda.uh@renesas.com>
- <1aebd827-3ff4-8d13-ca85-acf4d3a82592@linaro.org>
- <TYBPR01MB5341514CD57AB080454749F2D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <d31dc406-3ef2-0625-8f5e-ff6731457427@linaro.org>
- <TYBPR01MB5341B5F49362BCCF3C168D11D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYBPR01MB5341B5F49362BCCF3C168D11D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="RtKXtsMKKEGalrQn"
+Content-Disposition: inline
+In-Reply-To: <0d2bf232-8aa6-2dc1-121d-f0439bfd7b54@sholland.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 11:14, Yoshihiro Shimoda wrote:
 
->>
->> Don't drop, but instead put it before "properties" for this nested object.
-> 
-> Oh, I got it. Thanks!
-> I'll put this before "properties:" like below:
-> -----
->   ethernet-ports:
->     type: object
-> 
+--RtKXtsMKKEGalrQn
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Without blank line here.
+Hi Samuel,
 
->     additionalProperties: false
->>     properties:
+On Fri 12 Aug 22, 17:19, Samuel Holland wrote:
+> On 8/12/22 5:45 AM, Krzysztof Kozlowski wrote:
+> > On 12/08/2022 10:55, Samuel Holland wrote:
+> >> The sun6i DPHY can generate several interrupts, mostly for reporting
+> >> error conditions, but also for detecting BTA and UPLS sequences.
+> >> Document this capability in order to accurately describe the hardware.
+> >>
+> >> The DPHY has no interrupt number provided in the vendor documentation
+> >> because its interrupt line is shared with the DSI controller.
+> >>
+> >> Fixes: c25b84c00826 ("dt-bindings: display: Convert Allwinner DSI to a=
+ schema")
+> >=20
+> > I don't understand what is being fixed in that commit. That commit did
+> > not have interrupts in D-PHY, so what was broken by it?
+> >=20
+> > The Fixes tag annotates the commit which introduced a bug.
+>=20
+> The binding had a bug because it did not accurately describe the hardware.
 
-This is ok.
+[...]
 
->       '#address-cells':
->         description: Port number of ETHA (TSNA).
->         const: 1
-> 
->       '#size-cells':
->         const: 0
-> -----
+Coming back to this series, I don't really get the point of introducing the
+interrupt in the bindings and the device-tree sources if the interrupt is n=
+ot
+required for normal operation. I would just drop it.
 
-Best regards,
-Krzysztof
+I recall I was in the same situation for the MIPI CSI-2 controllers, which =
+also
+have a dedicated interrupt but only useful for debugging/error reporting.
+I was asked not to introduce it back then, so I suppose the same should app=
+ly.
 
+What do you think?
+
+Cheers,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--RtKXtsMKKEGalrQn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmMxcLIACgkQ3cLmz3+f
+v9F45QgAgRfNk3+SZO+L1kab89gYMzHlxi/cF34heKSAUZslSgtSK1TAlLPy3L5W
+d6tKc1hk1xLdzi+lxA+Z+mR8giHn+7zbVRSCzsiRttdT8rBCZueqwHJrUSSXpwEp
+MLN/2J5kNEM0lQeZSXOXUmB9FhjD+KFlHP3k7vTkTS/TaeuqjRZWtyn1339W6lU0
+bN6cjE4c2caEqJE3u6lLMdSVMAZm4OVMXf8YWuwo+7IaTbKkyo30UFCXXubk0aRo
+/L6SedS/uAl6xmYaCrOQvS1ooSFFKsy8hHvpt5JliG5xtblYw4P67FbEcdRlNsCI
+Wgu0Ky5ajXx1ApZjDWfuVSOeITQwFQ==
+=LwNy
+-----END PGP SIGNATURE-----
+
+--RtKXtsMKKEGalrQn--
