@@ -2,115 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E98E5EA86B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 16:31:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFDC45EA875
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 16:33:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234573AbiIZObK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 10:31:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49224 "EHLO
+        id S234854AbiIZOdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 10:33:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234561AbiIZOaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 10:30:46 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEAEB10BB30;
-        Mon, 26 Sep 2022 05:43:19 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id j6-20020a17090a694600b00200bba67dadso6603992pjm.5;
-        Mon, 26 Sep 2022 05:43:19 -0700 (PDT)
+        with ESMTP id S234757AbiIZOcs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 10:32:48 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98B85F5A
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 05:48:09 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id a3so10628530lfk.9
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 05:48:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:content-disposition:mime-version:message-id:subject:to
-         :from:date:from:to:cc:subject:date;
-        bh=2AabGUL0Br5YICw1JFuVvftFuTUQ/EAqwxrV1oNwEpg=;
-        b=gV0TgiLvVN18Z7oqqL+K30h6ukAQLF3fLgo6VpUwIXswPgKS/dC1zLTpG4w+1dybyP
-         5g+EUy4DNPdTupoLPMba/dadlLg6qHQ3JF0WQ0725/3miUrdENZxx8PKQJbMCauPYJHb
-         KIyon3s24MK0fciq3al2cC10UM0OcRAEJ3U6Xlzq20V4vQdwOSXzQEd2LEB4dknmScs1
-         WPjEZ2PBucah670hSc2FDMcnMWw5/FuZgi6FrBBL+FANhXsegYJO0XrAMsfpWMJNZEYD
-         SsiaBhPDC22FGXxc8d2Bcs3GrLfLlEERPVMDfdadu4hOavk0zWe7S/+zZQAEd0z0SJL6
-         TwoA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date;
+        bh=TaqQlRA9wMfkARh78jCqln27UUwKbuylUFjHkD67rpg=;
+        b=Yk0Iq9iDQsVLdnYNYspsrcCL0hhDqAFV0SatmPDdDKQJS3hw9qyUVO+CdKiMiVPtca
+         lAtGsNeo8Rt932S6YTaMzUPdvTj+d8mPt6t3Wg/pS3rBCaeSj36im/JkCzfql8JH8Pw0
+         XcDxh90O0TeATsXti4FyniKh9leXabX0jD5GdJUjKcP1BgGjUQCDpr4cnj6/mwqajI3v
+         8btWRDCCttGHE8TIsvdEZ5Qez74AMZptqdBBZ15X/5o8hC5IpSRTY28+4BvuvbGDtT/Q
+         qkgOxmK+aeoZTxLTjOIRSYjJhJL+Tak7B5VCnz3Y4R4wB1iD/+VZ3znY/pHKVo/qYxdc
+         GFRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:content-disposition:mime-version:message-id:subject:to
-         :from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=2AabGUL0Br5YICw1JFuVvftFuTUQ/EAqwxrV1oNwEpg=;
-        b=TCwXgyMegx3xcM7RE6COJ8oPmTu99UIQudCiYG8bytC8LSNtWC+C79F2jVaeynd91b
-         uzFSuDbv65HfW9VSZx2SmNc2ahbvPa21wtALlu4LnPz7f4W0lOaSBZK4nVSpT4TZ8uTc
-         QpbHc78BHxZAgiAIVjBFrjxhfjhVOheTLImrbnpFlEO1PJplPOsc3CZ8s0qFNvSz2jQG
-         5CXD8QgCtnedZJnKHCOke1z+dBejgFLTSO/8wuFw9fs3to0fyNvIgBwrdvCRfs36cnGg
-         jhH4zzUzFh5l5wyoF+dMFjnZf6zn4WvWaXLGu/ZOhYGW+5JSPHV+TaSD3AjmWiKrasvW
-         QJmw==
-X-Gm-Message-State: ACrzQf2c+RgU+s8TQsj7xU8ePWfhb+iqYPnhDG6YrfTOTVnRDHlfhPtS
-        w9AB4qLVWjUHkw6rhlNwZXk=
-X-Google-Smtp-Source: AMsMyM5RdeRGaIsVQucKXp8iHx60CYMSRbrZ3Y8OAN1jkEZLfeiKEvivTVNUW4YV7JdtqiHMDZMggg==
-X-Received: by 2002:a17:903:240b:b0:178:a475:6644 with SMTP id e11-20020a170903240b00b00178a4756644mr22150458plo.96.1664196198668;
-        Mon, 26 Sep 2022 05:43:18 -0700 (PDT)
-Received: from hcl-ThinkPad-T495 ([2401:4900:1ce2:8789:cdbd:fcea:ad98:effa])
-        by smtp.gmail.com with ESMTPSA id g8-20020a170902934800b00177f8f234cesm11021877plp.258.2022.09.26.05.43.15
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 26 Sep 2022 05:43:17 -0700 (PDT)
-Date:   Mon, 26 Sep 2022 18:13:13 +0530
-From:   Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date;
+        bh=TaqQlRA9wMfkARh78jCqln27UUwKbuylUFjHkD67rpg=;
+        b=uIoaq+hU5f/lVfG3WikNL5OocOrojQ8TKF7EI61e8OZ8+GjZyc50odjvEYuXmnNWMq
+         jgMcihQj7HLdHY1rvoMq48UjunXWYv4mpe33QXppe7i6FqzzfWV+MVVCGFywLqMVnxSv
+         lkQBwhPFeSUKXSdxHUpzWpfszBDlsESnDYVLJKR59pDqfWFHgeqHagXvqmET7qVR0fLM
+         xvfXi4brC+zC1OH/mb6jqHTrxj3r+vYTK8H2iG2B1BNFRoa2mIKlpKT3sRf04y+lIkFV
+         FBfs6XIlbOk3Gz1dEuctabAep3Wwt438IhNcWAheqFPQnSwoqTvjUaSJb23H5p9b40CO
+         wuQg==
+X-Gm-Message-State: ACrzQf2xEaexQQKB2h7qEmu7N5L1TnLmbzvoHa22uCIQYOqA9+8gavI7
+        MzioqbO6Kt7g2/I+BvPeZ16KFA==
+X-Google-Smtp-Source: AMsMyM7X2TuiHZ6rTF+imwhIm5sZ7t0irrXCWlBYENBZ1CAfDlt6e9yjEcF6RXeHBf2x71MSDaOsSQ==
+X-Received: by 2002:a05:6512:22c9:b0:499:cb5d:c138 with SMTP id g9-20020a05651222c900b00499cb5dc138mr8654673lfu.490.1664196487970;
+        Mon, 26 Sep 2022 05:48:07 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id 17-20020ac24851000000b0049496855494sm2532457lfy.104.2022.09.26.05.48.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Sep 2022 05:48:04 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: [PATCH v5] ARM: dts: aspeed: Yosemite V2: Enable OCP debug card
-Message-ID: <20220926124313.GA8400@hcl-ThinkPad-T495>
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: samsung: soc: match preferred naming in entire compatible
+Date:   Mon, 26 Sep 2022 14:47:57 +0200
+Message-Id: <20220926124757.475471-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added IPMB-13 channel for Debug Card communication.
-which improves the readability of the machine and makes
-it easier to debug the server and it will display some
-pieces of information about the server like "system info",
-"Critical sensors" and "critical sel".
+Compatible is a string-array, therefore the "select" should look for
+anything containing Samsung SoC part.  This allows to validate cases
+like:
+ - "samsung,exynos5250-gsc", "samsung,exynos5-gsc"
+ - "samsung,exynos5250-pmu", "syscon"
+ - "tesla,fsd-mct", "samsung,exynos4210-mct"
 
----
---- v5- Updated commit message
---- v4- Resolved syntax error
---- v3- Updated the title and commit
---- v2- Updated the title
---- v1- Initial draft
----
+Since Tesla FSD builts on top of Exynos blocks, add an adidtional
+pattern for it.
 
-Signed-off-by: Karthikeyan Pasupathi <pkarthikeyan1509@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ .../bindings/arm/samsung/samsung-soc.yaml     | 26 +++++++++++++++----
+ 1 file changed, 21 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-index 8864e9c312a8..84236df522dc 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
-@@ -215,6 +215,17 @@
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-soc.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-soc.yaml
+index 653f85997643..bb1fdc205b44 100644
+--- a/Documentation/devicetree/bindings/arm/samsung/samsung-soc.yaml
++++ b/Documentation/devicetree/bindings/arm/samsung/samsung-soc.yaml
+@@ -18,17 +18,33 @@ description: |
+     samsung,exynos5433-cmu-isp
  
-+&i2c13 {
-+	status = "okay";
-+	// Debug Card
-+	multi-master;
-+	ipmb13@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+};
+ select:
+-  properties:
+-    compatible:
+-      pattern: "^samsung,.*(s3c|s5pv|exynos)[0-9a-z]+.*$"
++  allOf:
++    - properties:
++        $nodename:
++          pattern: '^[a-z]'
++    - properties:
++        compatible:
++          contains:
++            pattern: "^samsung,.*(s3c|s5pv|exynos)[0-9a-z]+.*$"
+   required:
+     - compatible
+ 
+ properties:
+   compatible:
+     oneOf:
+-      - description: Preferred naming style for compatibles of SoC components
+-        pattern: "^samsung,(s3c|s5pv|exynos|exynosautov)[0-9]+-.*$"
++      - description: Preferred naming style for compatibles of S3C/S5P/Exynos SoC components
++        minItems: 1
++        items:
++          - pattern: "^samsung,(s3c|s5pv|exynos|exynosautov)[0-9]+-.*$"
++          - {}
++          - {}
 +
- &pwm_tacho {
- 	status = "okay";
- 	//FSC
++      - description: Preferred naming style for compatibles of Tesla FSD SoC components
++        minItems: 1
++        items:
++          - pattern: "^tesla,fsd-.*$"
++          - {}
++          - {}
+ 
+       # Legacy compatibles with wild-cards - list cannot grow with new bindings:
+       - enum:
 -- 
-2.17.1
+2.34.1
 
