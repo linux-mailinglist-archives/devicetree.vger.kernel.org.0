@@ -2,120 +2,358 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CE4B5EAE49
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 19:37:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01CC55EAEAF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 19:53:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230374AbiIZRhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 13:37:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50250 "EHLO
+        id S230455AbiIZRxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 13:53:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230408AbiIZRhG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 13:37:06 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD1EABC0E;
-        Mon, 26 Sep 2022 09:59:15 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28QF0AF5025993;
-        Mon, 26 Sep 2022 16:59:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=+PHttfptqZAAP87O1z2h3TnIUx513ASyRdQuwlYwMHA=;
- b=Ux8pYaEgZDXjhNg75OM3feddd8HqkSAHV0qJ4D3FmHBEGHr3iPxhGmyjf/HHEIJb7Pl6
- FxxQPuWrWSlB5Ydz/3IsxchZ8yg0MM4axPKoVrxKtJ4a/ZNaev6A3E1cv5/02MIrnFhG
- 32j1SNxqKU0cuswr/KfEaVllCDrHHJJ6TUQOVo3o0s8rvlFMQFovjHhBTZZEO4ncQ/SL
- XcMtU622xTY3uS81lNtDm6L53GUj01v07HiI4bpbpz7p53MiqkG1g5yoCIb2FuNf2HEh
- hTFKxudpPOn3TGCuock/P4nGRK5wRwaF3xamwI7IYf0Mg2pm9Xmv9xTdMSiWRfeRlDUd mw== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jue008dts-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 26 Sep 2022 16:59:06 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28QGx6UO010843
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 26 Sep 2022 16:59:06 GMT
-Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 26 Sep
- 2022 09:59:05 -0700
-Date:   Mon, 26 Sep 2022 09:59:04 -0700
-From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <martin.botka@somainline.org>,
-        <angelogioacchino.delregno@somainline.org>,
-        <marijn.suijten@somainline.org>, <jamipkettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229596AbiIZRxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 13:53:12 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C77ACF4B4;
+        Mon, 26 Sep 2022 10:28:09 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id hy2so15586153ejc.8;
+        Mon, 26 Sep 2022 10:28:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=xExxZjnmGcaw3QGraBtNgEvwSjAuoTSZutYwNZ79r+4=;
+        b=n7ivu5RiIj/cKKHmq6cyhWsFISUYZ5anCY8z5apwuftmN7cjxJ1l9wUEOiOUp2eI47
+         cUWmPYp4pwEwZOYK+NLl1u+y49n/pvbNlkK4wlf7KUc2YLqt5LDtrqrz/2Jo+RusyPkK
+         vv9NtO0ih1Bmj5+DUFTuJBaPT8zxWaT49jx1sCy6898S4FTjBA8n/1nt6GvIgl0xYh2q
+         KS8GDRFgpe3yiIvezDRkwUVoYHXZsSOhWWw8c0p3/0O9JDPn43pRZxcXuTxIv8UP/4Sz
+         3ildImah1o+HI91Rn+lz+owAC5wIgxedK4A5nVNEFS/XgxGNJ0BdRyVrAZWMuysy/7AA
+         skPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=xExxZjnmGcaw3QGraBtNgEvwSjAuoTSZutYwNZ79r+4=;
+        b=DNqaK/1TbZhccVf8N30LwIgaTjyR1cZ+akyNsYsLrdPsSIidGuPWaEoXsw4XVs2ZSm
+         8Z/GoUzQJYaoamfmkio4wwwANmHw7FC3eIETwkswh5bYIoUETQvKfz9X25FBfJKwhmnr
+         2HwpH0WoRStK6YOXpAsBgCXY1SHSzxgeDrRbQwc22Hro2Yyyg0Pq0K0W77AgTbRtgCzx
+         LPBv5g/8YqnD0qoe3mLShG2e3nzGQNGkYCeEuVbSSJpot2GECYBVSL4BhmTqXHFtddqn
+         DEUoqBsztOvfXad7d47IwfTsRuUVhHVrwgc3AehEDAPk9MhvxPnhw+SdLq9tP02p4Ck/
+         Mvmg==
+X-Gm-Message-State: ACrzQf3KDKnpDIFT6+VHfE1xFJ00cpoA2KlNpzyq5neMBLa5Tl9Lml3l
+        Wkt+D3cyVEYOm23LhewC2C+fdacoX+Gzx+cfFps=
+X-Google-Smtp-Source: AMsMyM7ykhGwupiGVH5KR3XhZAtm66N440j3DJvQ+Fgg6IQoFyZrHjHIvVBnX7VC5416XVDKsOR868iWGVlzEEGIYh0=
+X-Received: by 2002:a17:907:75d4:b0:77a:fcb7:a2cc with SMTP id
+ jl20-20020a17090775d400b0077afcb7a2ccmr19263536ejc.480.1664213287674; Mon, 26
+ Sep 2022 10:28:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220905230406.30801-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Yyx/NI8sew4hpFAc@pendragon.ideasonboard.com> <CA+V-a8u9DqzN_dDxU74F1wCZpJeODQet-aF7sd6j2=jk545x7Q@mail.gmail.com>
+ <YzFp8x78/HJ/Yf2Y@pendragon.ideasonboard.com> <CA+V-a8tcj1iun1-9qcCP5649S___JfD_rL46v0_1HCcnEXnNVg@mail.gmail.com>
+ <YzHTcuThQgNTo/HS@pendragon.ideasonboard.com>
+In-Reply-To: <YzHTcuThQgNTo/HS@pendragon.ideasonboard.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 26 Sep 2022 18:27:40 +0100
+Message-ID: <CA+V-a8sGzAC1M8hxgbizKFnCbAGXzr0FXFzmsfnfEgMz_H_hxg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] media: platform: Add Renesas RZ/G2L CRU driver
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM6375 SCM
-Message-ID: <20220926165904.GA17938@quicinc.com>
-References: <20220921001020.55307-1-konrad.dybcio@somainline.org>
- <95fb2bfb-6eb8-012d-88f8-c739d229ef70@linaro.org>
- <8faecd72-0cfd-18eb-d07a-53b3a23ed05a@somainline.org>
- <20220924000932.GA1450@quicinc.com>
- <fcc5bc9f-6b6b-b9ca-45aa-ff2c880a4774@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <fcc5bc9f-6b6b-b9ca-45aa-ff2c880a4774@linaro.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8opTOlmVR14iX-kUQiFXEJInD6HMrkME
-X-Proofpoint-ORIG-GUID: 8opTOlmVR14iX-kUQiFXEJInD6HMrkME
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-26_09,2022-09-22_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=872 suspectscore=0 spamscore=0 bulkscore=0
- adultscore=0 impostorscore=0 malwarescore=0 priorityscore=1501
- clxscore=1015 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209260108
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sep 24 2022 10:17, Krzysztof Kozlowski wrote:
-> On 24/09/2022 02:09, Guru Das Srinagesh wrote:
-> > On Sep 21 2022 20:43, Konrad Dybcio wrote:
-> >> Does it? I did not define this compatible in the driver, so it does
-> >> not consume any clocks.
-> > 
-> > The bindings should describe only those compatibles that the driver supports -
-> > that is, both the driver and its bindings should be in sync.
-> 
-> That's not entirely true. Bindings describe the hardware in the most
-> complete way we can. Not the driver. Whether driver supports something
-> or not, is not relevant here, except that we don't want to document
-> non-existing things or stuff out of tree.
+Hi Laurent,
 
-Is this only applicable to compatibles or device tree properties in general?
+On Mon, Sep 26, 2022 at 5:29 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Prabhakar,
+>
+> On Mon, Sep 26, 2022 at 05:24:47PM +0100, Lad, Prabhakar wrote:
+> > On Mon, Sep 26, 2022 at 9:59 AM Laurent Pinchart wrote:
+> > > On Fri, Sep 23, 2022 at 08:02:12PM +0100, Lad, Prabhakar wrote:
+> > > > On Thu, Sep 22, 2022 at 4:29 PM Laurent Pinchart wrote:
+> > > > > On Tue, Sep 06, 2022 at 12:04:06AM +0100, Lad Prabhakar wrote:
+> > > > > > Add v4l driver for Renesas RZ/G2L Camera data Receiving Unit.
+> > > > > >
+> > > > > > Based on a patch in the BSP by Hien Huynh
+> > > > > > <hien.huynh.px@renesas.com>
+> > > > > >
+> > > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > > ---
+> > > > > > v1 -> v2
+> > > > > > * No change
+> > > > > >
+> > > > > > RFC v2 -> v1
+> > > > > > * Moved the driver to renesas folder
+> > > > > > * Fixed review comments pointed by Jacopo
+> > > > > >
+> > > > > > RFC v1 -> RFC v2
+> > > > > > * Dropped group
+> > > > > > * Dropped CSI subdev and implemented as new driver
+> > > > > > * Dropped "mc_" from function names
+> > > > > > * Moved the driver to renesas folder
+> > > > > > ---
+> > > > > >  .../media/platform/renesas/rzg2l-cru/Kconfig  |  17 +
+> > > > > >  .../media/platform/renesas/rzg2l-cru/Makefile |   3 +
+> > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-core.c   | 395 ++++++++++
+> > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-cru.h    | 152 ++++
+> > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-dma.c    | 734 ++++++++++++++++++
+> > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-v4l2.c   | 368 +++++++++
+> > > > >
+> > > > > I'd merge those two files together, they both handle the video node.
+> > > > > There's a comment below that recommends adding a subdev, that should
+> > > > > then go to a separate file.
+> > > >
+> > > > OK, I'll merge these files into rzg2l-video.c.
+> > > >
+> > > > > >  6 files changed, 1669 insertions(+)
+> > > > > >  create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> > > > > >  create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h
+> > > > > >  create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-dma.c
+> > > > > >  create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-v4l2.c
+> > > > > >
+> > > > > > diff --git a/drivers/media/platform/renesas/rzg2l-cru/Kconfig b/drivers/media/platform/renesas/rzg2l-cru/Kconfig
+> > > > > > index 57c40bb499df..08ff0e96b3f5 100644
+> > > > > > --- a/drivers/media/platform/renesas/rzg2l-cru/Kconfig
+> > > > > > +++ b/drivers/media/platform/renesas/rzg2l-cru/Kconfig
+> > > > > > @@ -15,3 +15,20 @@ config VIDEO_RZG2L_CSI2
+> > > > > >
+> > > > > >         To compile this driver as a module, choose M here: the
+> > > > > >         module will be called rzg2l-csi2.
+> > > > > > +
+> > > > > > +config VIDEO_RZG2L_CRU
+> > > > > > +     tristate "RZ/G2L Camera Receiving Unit (CRU) Driver"
+> > > > > > +     depends on ARCH_RENESAS || COMPILE_TEST
+> > > > > > +     depends on V4L_PLATFORM_DRIVERS
+> > > > > > +     depends on VIDEO_DEV && OF
+> > > > > > +     select MEDIA_CONTROLLER
+> > > > > > +     select V4L2_FWNODE
+> > > > > > +     select VIDEOBUF2_DMA_CONTIG
+> > > > > > +     select VIDEO_RZG2L_CSI2
+> > > > >
+> > > > > Is this required, can't the CRU be used with a parallel sensor without
+> > > > > the CSI-2 receiver ?
+> > > >
+> > > > Yes the CRU can be used with parallel sensors, I'll drop the above select.
+> > > >
+> > > > > > +     select VIDEO_V4L2_SUBDEV_API
+> > > > > > +     help
+> > > > > > +       Support for Renesas RZ/G2L (and alike SoC's) Camera Receiving
+> > > > > > +       Unit (CRU) driver.
+> > > > > > +
+> > > > > > +       To compile this driver as a module, choose M here: the
+> > > > > > +       module will be called rzg2l-cru.
+> > > > > > diff --git a/drivers/media/platform/renesas/rzg2l-cru/Makefile b/drivers/media/platform/renesas/rzg2l-cru/Makefile
+> > > > > > index 91ea97a944e6..7628809e953f 100644
+> > > > > > --- a/drivers/media/platform/renesas/rzg2l-cru/Makefile
+> > > > > > +++ b/drivers/media/platform/renesas/rzg2l-cru/Makefile
+> > > > > > @@ -1,3 +1,6 @@
+> > > > > >  # SPDX-License-Identifier: GPL-2.0
+> > > > > >
+> > > > > >  obj-$(CONFIG_VIDEO_RZG2L_CSI2) += rzg2l-csi2.o
+> > > > > > +
+> > > > > > +rzg2l-cru-objs = rzg2l-core.o rzg2l-dma.o rzg2l-v4l2.o
+> > > > > > +obj-$(CONFIG_VIDEO_RZG2L_CRU) += rzg2l-cru.o
+> > > > > > diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..b5d4110b1913
+> > > > > > --- /dev/null
+> > > > > > +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> > > > > > @@ -0,0 +1,395 @@
+> > > > > > +// SPDX-License-Identifier: GPL-2.0+
+> > > > > > +/*
+> > > > > > + * Driver for Renesas RZ/G2L CRU
+> > > > > > + *
+> > > > > > + * Copyright (C) 2022 Renesas Electronics Corp.
+> > > > > > + *
+> > > > > > + * Based on Renesas R-Car VIN
+> > > > > > + * Copyright (C) 2011-2013 Renesas Solutions Corp.
+> > > > > > + * Copyright (C) 2013 Cogent Embedded, Inc., <source@cogentembedded.com>
+> > > > > > + * Copyright (C) 2008 Magnus Damm
+> > > > > > + */
+> > > > > > +
+> > > > > > +#include <linux/clk.h>
+> > > > > > +#include <linux/module.h>
+> > > > > > +#include <linux/mod_devicetable.h>
+> > > > > > +#include <linux/of.h>
+> > > > > > +#include <linux/of_device.h>
+> > > > > > +#include <linux/of_graph.h>
+> > > > > > +#include <linux/platform_device.h>
+> > > > > > +#include <linux/pm_runtime.h>
+> > > > > > +
+> > > > > > +#include <media/v4l2-fwnode.h>
+> > > > > > +#include <media/v4l2-mc.h>
+> > > > > > +
+> > > > > > +#include "rzg2l-cru.h"
+> > > > > > +
+> > > > > > +#define v4l2_dev_to_cru(d)   container_of(d, struct rzg2l_cru_dev, v4l2_dev)
+> > > > >
+> > > > > As this macro is only used to get the rzg2l_cru_dev pointer from the
+> > > > > v4l2_async_notifier pointer, you can replace it with
+> > > > >
+> > > > > #define notifier_to_cru(n)      container_of(n, struct rzg2l_cru_dev, notifier)
+> > > > >
+> > > > > I would also turn it into a static inline function for additional
+> > > > > compile-time type safety.
+> > > >
+> > > > OK, I will do it as mentioned above.
+> > > >
+> > > > > > +
+> > > > > > +static int rzg2l_cru_csi2_link_notify(struct media_link *link, u32 flags,
+> > > > > > +                                   unsigned int notification)
+> > > > > > +{
+> > > > > > +     struct media_entity *entity;
+> > > > > > +     struct rzg2l_cru_dev *cru;
+> > > > > > +     struct media_pad *csi_pad;
+> > > > > > +     struct v4l2_subdev *sd;
+> > > > > > +     int ret;
+> > > > > > +
+> > > > > > +     ret = v4l2_pipeline_link_notify(link, flags, notification);
+> > > > > > +     if (ret)
+> > > > > > +             return ret;
+> > > > > > +
+> > > > > > +     /* Only care about link enablement for CRU nodes. */
+> > > > > > +     if (!(flags & MEDIA_LNK_FL_ENABLED))
+> > > > > > +             return 0;
+> > > > > > +
+> > > > > > +     cru = container_of(link->graph_obj.mdev, struct rzg2l_cru_dev, mdev);
+> > > > > > +     /*
+> > > > > > +      * Don't allow link changes if any entity in the graph is
+> > > > > > +      * streaming, modifying the CHSEL register fields can disrupt
+> > > > > > +      * running streams.
+> > > > > > +      */
+> > > > > > +     media_device_for_each_entity(entity, &cru->mdev)
+> > > > > > +             if (media_entity_is_streaming(entity))
+> > > > > > +                     return -EBUSY;
+> > > > > > +
+> > > > > > +     mutex_lock(&cru->mdev_lock);
+> > > > > > +
+> > > > > > +     csi_pad = media_pad_remote_pad_first(&cru->vdev.entity.pads[0]);
+> > > > > > +     if (csi_pad) {
+> > > > > > +             ret = -EMLINK;
+> > > > > > +             goto out;
+> > > > > > +     }
+> > > > > > +
+> > > > > > +     sd = media_entity_to_v4l2_subdev(link->source->entity);
+> > > > > > +     if (cru->csi.subdev == sd) {
+> > > > > > +             cru->csi.channel = link->source->index - 1;
+> > > > > > +             cru->is_csi = true;
+> > > > > > +     } else {
+> > > > > > +             ret = -ENODEV;
+> > > > > > +     }
+> > > > > > +
+> > > > > > +out:
+> > > > > > +     mutex_unlock(&cru->mdev_lock);
+> > > > > > +
+> > > > > > +     return ret;
+> > > > > > +}
+> > > > > > +
+> > > > > > +static const struct media_device_ops rzg2l_cru_media_ops = {
+> > > > > > +     .link_notify = rzg2l_cru_csi2_link_notify,
+> > > > > > +};
+> > > > > > +
+> > > > > > +/* -----------------------------------------------------------------------------
+> > > > > > + * Group async notifier
+> > > > > > + */
+> > > > > > +
+> > > > > > +static int rzg2l_cru_group_notify_complete(struct v4l2_async_notifier *notifier)
+> > > > > > +{
+> > > > > > +     struct rzg2l_cru_dev *cru = v4l2_dev_to_cru(notifier->v4l2_dev);
+> > > > > > +     unsigned int i;
+> > > > > > +     int ret;
+> > > > > > +
+> > > > > > +     ret = media_device_register(&cru->mdev);
+> > > > > > +     if (ret)
+> > > > > > +             return ret;
+> > > > >
+> > > > > I'd move the v4l2_device_register() call here, as it's the V4L2
+> > > > > counterpart of the media device, and handling them together would be
+> > > > > best.
+> > > >
+> > > > OK.
+> > > >
+> > > > > > +
+> > > > > > +     ret = v4l2_device_register_subdev_nodes(&cru->v4l2_dev);
+> > > > > > +     if (ret) {
+> > > > > > +             dev_err(cru->dev, "Failed to register subdev nodes\n");
+> > > > > > +             return ret;
+> > > > > > +     }
+> > > > > > +
+> > > > > > +     if (!video_is_registered(&cru->vdev)) {
+> > > > >
+> > > > > Can this happen ?
+> > > >
+> > > > No, I'll drop this check.
+> > > >
+> > > > > > +             ret = rzg2l_cru_v4l2_register(cru);
+> > > > > > +             if (ret)
+> > > > > > +                     return ret;
+> > > > > > +     }
+> > > > > > +
+> > > > > > +     /* Create all media device links between CRU and CSI-2's. */
+> > > > > > +     /*
+> > > > > > +      * TODO: RZ/G2L supports 4 VC0, as support for virtual channels
+> > > > > > +      * should be implemented by streams API which is under development
+> > > > > > +      * so for now just link it to VC0
+> > > > > > +      */
+> > > > >
+> > > > > The streams API won't require more links, so I'd drop the comment and
+> > > > > the loop and create a single link.
+> > > >
+> > > > OK.
+> > > >
+> > > > > > +     for (i = 1; i <= 1; i++) {
+> > > > > > +             struct media_entity *source, *sink;
+> > > > > > +
+> > > > > > +             source = &cru->csi.subdev->entity;
+> > > > > > +             sink = &cru->vdev.entity;
+> > > > >
+> > > > > Hmmm... I'd recommend adding a subdev to model the image processing
+> > > > > pipeline of the CRU, between the CSI-2 receiver and the video node. That
+> > > > > will help when you'll add support for parallel sensors, and it will also
+> > > > > be needed by the streams API to select which virtual channel to capture.
+> > > >/
+> > > > just model as a dummy subdev for now (MEDIA_ENT_F_VID_MUX)?
+> > >
+> > > I think MEDIA_ENT_F_PROC_VIDEO_PIXEL_FORMATTER would be more
+> > > appropriate.
+> >
+> > OK I will use MEDIA_ENT_F_PROC_VIDEO_PIXEL_FORMATTER. As this will be
+> > just like a switch should I be implementing the get_fmt/set_fmt
+> > callbacks?
+>
+> Yes, subdev operations need to be implemented, especially given that the
+> CRU implements color space conversion, so the input and output formats
+> of the subdev can be different.
+>
+OK, the reason I asked as, for the sink pad the format of IP subdev
+will be the same as remote source pad (i.e. either from CSI/parallel
+subdev) and for the source pad this will be the same as format on the
+video node (ie CRU output).
 
-> > 
-> > Could you please update the driver with this compatible as well? Let's not
-> > merge this change without that first.
-> 
-> This could be even merged without change in the driver. However it's not
-> the case here as driver already supports it, so your request is fulfilled.
+get_fmt -> we get the subdev pad fmt of the remote source and return it.
+set_fmt -> we just pass through, as the fmt is set on the video dev node.
 
-My concern is that if somebody specifies a compatible/device tree property that
-the driver doesn't support, their expectations from adding that change will not
-be met. In addition to having the bindings describe HW in full, I think the
-driver should also be in sync with it for this reason.
+Does the above sound good?
 
-Thank you.
-
-Guru Das.
+Cheers,
+Prabhakar
