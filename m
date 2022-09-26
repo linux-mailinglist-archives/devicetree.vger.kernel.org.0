@@ -2,71 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE99A5E9D7B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:24:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 138075E9DB9
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 11:32:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234305AbiIZJYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 05:24:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39534 "EHLO
+        id S234169AbiIZJcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 05:32:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235041AbiIZJYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:24:15 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD01117AB1
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:23:17 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id t16so2688780ljh.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:23:17 -0700 (PDT)
+        with ESMTP id S234995AbiIZJcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 05:32:07 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A70617A8A
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:31:09 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id bu25so7986792lfb.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 02:31:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=goc6PkT5m1P9sof9+UJf/eV/J47j0G84vgW/lekQxV8=;
-        b=GIC2DbN3y87NHYbRBWxz9PgdwQ6FEZkjUI12TMcgFoqNw0Ha2n1EpIyNUGv7y2vGUA
-         qrkRBp7t4ZaeBJm8yVs+4q2t2xI/IXzCG4IWGsLXAl/862w0Hn2L2oHIRaOmsur7NsU8
-         RScuWt7PM8ant0LNXv4DjG8D7INyhVqLzTcyow5FbksX1oOuGQYjeVHyYFzDxpl1CRa7
-         WPK3nT7A4jl2vSmYgHwCoXgUmQXUjSoLD0GMbaWusCyhhyWR2zkVejzgkZ8ec3G/SL9c
-         QAiKVfNZ2amFSUqADSlrgNyU8xG41rtNnNVSunT9nXqXvGtIKKMoHldljhjviEgO1XLD
-         N4SQ==
+        bh=uaiDp3kvgnG0ypPaVSIUeFXmDz7x/JwiryUmZAc4dU0=;
+        b=PyO4KmrNHFYEQ2ZSdZDB9CJMxLJPpUpBGMGKh9bgd9hRACeXmb9UggP1Ckt0tYZz9/
+         uCV0ecW3jGWwuoWqrExby2NFlaUorzLvbzRUfup6GCd57qnaK43AI/qIIp+Ia2F32yzb
+         eML2C9ZIpA5DUZ2ertJVHvfrfQO+2TN9FmLJyTkdSLS0GdQxsjTXwAqh1tpb8UZLdzW3
+         bFlbnuauudKC8IZGW6d/n8mpCLavtYa/XbXfkOBkSi5RFjOiazQvPQ5OOToaWb/Pew35
+         AM6foqUUGXko3iGqd5K0xt2gDPcxx3nb0ctV252Wj+GkrB0Ai2GP7+mPLgQsE4ekG1we
+         /fDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=goc6PkT5m1P9sof9+UJf/eV/J47j0G84vgW/lekQxV8=;
-        b=f2GcK/1XS9UjBEZHEI4Ha33j+hd0fyDSOZIZdpTOU1hgTSi7AOdxKBD+i4i99Yy0k/
-         1c1+fc4qBmcL+sn5JRcJK0Ea7wIKitF5MGMDkoDh1ld7DE8HR+ncEXWaRop1qufCqbjm
-         M6DJWCwbsl5vBbzRINbh38rjMJPS3LRj5YKPZH9bye8m+mnpOp9OQ4uuwot1/EZCHt7y
-         pbNrjyc0mViwLCdFBuc4u/C8NhjiRh+j3N2O2+BthnbdAthRJGqw816U+OIKLuyXxKlo
-         nnMxlaP91JDHBufNIzYS1noyvMvcIBUaYH6R0HaSAwETLAbkD9ugWF02MSAWoutx7tyr
-         vw3A==
-X-Gm-Message-State: ACrzQf3PCpRwZd7iAiGuUVm/cwDJXFQI5o4tuIpXCZ7v4hHNMHesrTM1
-        b5DxWri4XiiICC7haORl4vt/xA==
-X-Google-Smtp-Source: AMsMyM7G0RdidG+n9hog4aSXdwdlwpRd2hv5uqsZGByfjwBD4Msi4qq0KH2y8EthPGxEXM2x7H0xhw==
-X-Received: by 2002:a05:651c:221a:b0:26c:6fe2:c146 with SMTP id y26-20020a05651c221a00b0026c6fe2c146mr7198207ljq.284.1664184195964;
-        Mon, 26 Sep 2022 02:23:15 -0700 (PDT)
+        bh=uaiDp3kvgnG0ypPaVSIUeFXmDz7x/JwiryUmZAc4dU0=;
+        b=5KnIX4cGSXR6XzyWQBw+x2UJ0zJoxggVjwlbTyXDILA1SUx+9TnUE24LRmxLy+MMgE
+         ZThqjxrN6dUSHy28lL/djmlUFp8OtEu+TVgqawGAHpCsdUFlKss2Ro1wursVoUW1bdL8
+         saAJgPYfL/phvcj/D8G/S3+C9b7MuO4U4a8aDJwypAtWricIKrkzKHmYMAWvvQf8TtuB
+         Smk6z+5AjaLgFSeU1tQGynUg/BrRRKo2tMmhm2jINB2Olsgqw1FI++wHgRHF8ZkjrXnB
+         yTlYgYc2dbGW9pISPylRwzSEgCirdNSllgLWK+9TKsn1ThXApEGbEEwArzRRcK1v1y1H
+         dVBQ==
+X-Gm-Message-State: ACrzQf3HNNKoq9mu2HQHusthgiwDzCvkcqZqykWfkhy7OOYGB1SEgJdW
+        96TnRdWZMq9+0ChBtIxvnWXGLawe8SFLfQ==
+X-Google-Smtp-Source: AMsMyM4+r8FKGhQFjLKSZbEOMsnV8nGHobCDs01XOaZyixiXEKtNbP3l8DQcAeEF5kNVLcEbUGz+2g==
+X-Received: by 2002:a05:6512:3409:b0:499:faa6:edb0 with SMTP id i9-20020a056512340900b00499faa6edb0mr7944823lfr.682.1664184305962;
+        Mon, 26 Sep 2022 02:25:05 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q14-20020a056512210e00b004972b0bb426sm2481294lfr.257.2022.09.26.02.23.14
+        by smtp.gmail.com with ESMTPSA id be25-20020a05651c171900b0025fdf1af42asm2308859ljb.78.2022.09.26.02.25.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 02:23:15 -0700 (PDT)
-Message-ID: <c5ee2888-dabf-e3a6-acca-517ede984002@linaro.org>
-Date:   Mon, 26 Sep 2022 11:23:14 +0200
+        Mon, 26 Sep 2022 02:25:05 -0700 (PDT)
+Message-ID: <7dbdb43a-0ffe-58db-5f8a-f3bd62a4feea@linaro.org>
+Date:   Mon, 26 Sep 2022 11:25:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.0
-Subject: Re: [PATCH v2] dt-bindings: phy: Add compatible for Mediatek MT8188
+Subject: Re: [PATCH v2 4/8] dt-bindings: net: renesas: Document Renesas
+ Ethernet Switch
 Content-Language: en-US
-To:     xinlei.lee@mediatek.com, chunfeng.yun@mediatek.com, kishon@ti.com,
-        vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        chunkuang.hu@kernel.org, p.zabel@pengutronix.de
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <1664183509-29473-1-git-send-email-xinlei.lee@mediatek.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "richardcochran@gmail.com" <richardcochran@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>
+Cc:     "andrew@lunn.ch" <andrew@lunn.ch>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20220921084745.3355107-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220921084745.3355107-5-yoshihiro.shimoda.uh@renesas.com>
+ <1aebd827-3ff4-8d13-ca85-acf4d3a82592@linaro.org>
+ <TYBPR01MB5341514CD57AB080454749F2D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <d31dc406-3ef2-0625-8f5e-ff6731457427@linaro.org>
+ <TYBPR01MB5341B5F49362BCCF3C168D11D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1664183509-29473-1-git-send-email-xinlei.lee@mediatek.com>
+In-Reply-To: <TYBPR01MB5341B5F49362BCCF3C168D11D8529@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,23 +95,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/09/2022 11:11, xinlei.lee@mediatek.com wrote:
-> From: xinlei lee <xinlei.lee@mediatek.com>
+On 26/09/2022 11:14, Yoshihiro Shimoda wrote:
+
+>>
+>> Don't drop, but instead put it before "properties" for this nested object.
 > 
-> Add dt-binding documentation of dsi-phy for MediaTek MT8188 SoC.
+> Oh, I got it. Thanks!
+> I'll put this before "properties:" like below:
+> -----
+>   ethernet-ports:
+>     type: object
 > 
-> Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Without blank line here.
 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+>     additionalProperties: false
+>>     properties:
 
-If a tag was not added on purpose, please state why and what changed.
+This is ok.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>       '#address-cells':
+>         description: Port number of ETHA (TSNA).
+>         const: 1
+> 
+>       '#size-cells':
+>         const: 0
+> -----
 
 Best regards,
 Krzysztof
