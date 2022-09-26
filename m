@@ -2,45 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEE955EB28F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A86DA5EB292
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:47:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbiIZUq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 16:46:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55362 "EHLO
+        id S229607AbiIZUrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 16:47:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbiIZUq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:46:58 -0400
+        with ESMTP id S229458AbiIZUrN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:47:13 -0400
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 962939FA9E;
-        Mon, 26 Sep 2022 13:46:57 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD930A6C6A;
+        Mon, 26 Sep 2022 13:47:12 -0700 (PDT)
 Received: from tr.lan (ip-86-49-12-201.bb.vodafone.cz [86.49.12.201])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id CF13784DD8;
-        Mon, 26 Sep 2022 22:46:55 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 53BDD84DD8;
+        Mon, 26 Sep 2022 22:47:11 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1664225216;
-        bh=bytvNaBMLeIzSt7wgun++4S3YDzieYxFdobxwsXK7UA=;
+        s=phobos-20191101; t=1664225231;
+        bh=Gh2QjyUkmiO32DGRxcQU3CNv4FWYd0POTeXHUuz2q9g=;
         h=From:To:Cc:Subject:Date:From;
-        b=lltB2zsLDvZ5w3z0GFJ0DhaORd4kefYqzwq8tiXhgFeGUlXFV35V07RvcpQEbywGx
-         O2zePGTI555z8EN8M5ifHe42hhfD6PDTN/nIevopIIk+v1OJdqxQFV+yBajEVKcQ9r
-         WxPUmpCj9w+eB1QlytsxVCQZXs/olhPiedUth6rJGhdqoD+nvabFwgeJGwxJaK7zgY
-         iSI6K2bfiiu6oUBiqX02+XVaodiMz2MB8A14te9E/pNAU8gCeY14PjP7n/Wz60ISvI
-         b9VjBIBnBh5xs8VqVJi8WclQWX5nU9D1jxR1EfHuHIe5AAkzvkGE/62L35xFD9H64I
-         rZjpMEPmF1Ndw==
+        b=t5KJDNYcctXGFOFHbpTuM+U+VjLWiHWXWoyN7rSklPOp/oZhg9XNl4WW86i7vBxOo
+         +PYNC7NxHUDictsAAFIaqmIXRf/OLl9SkorzokomPaHbThlUZ3J0QZAY00A6IORpge
+         FxqEPSRWIXaat87zD2ri3KDzuIGXKb1jxwl8kqno52zGN+IM2yxbBT5i89uudGJGA1
+         q3vdzrZwHdiTnAq6Pps4yi6zWpg2TuIkNukUym6+l2K4o0hTN8AB/oexO5TQi/9i/U
+         a1ffqmrzmIFRmfa4RpT0w0ryZ12ral5ZR/+7JW8eYm1vDK1eBWgSACNw5kLiEK6KZF
+         us2/mFAU3C+AQ==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] dt-bindings: i2c: st,stm32-i2c: Document wakeup-source property
-Date:   Mon, 26 Sep 2022 22:46:53 +0200
-Message-Id: <20220926204653.381722-1-marex@denx.de>
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Yann Gautier <yann.gautier@foss.st.com>,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] dt-bindings: mmc: arm,pl18x: Document interrupt-names property
+Date:   Mon, 26 Sep 2022 22:47:08 +0200
+Message-Id: <20220926204708.381741-1-marex@denx.de>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -55,40 +57,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document wakeup-source property. This fixes dtbs_check warnings
-when building current Linux DTs:
+Document interrupt-names property with "event" and "error" interrupt names.
+This fixes dtbs_check warnings when building current Linux DTs:
 
 "
-arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dtb: i2c@40015000: Unevaluated properties are not allowed ('wakeup-source' was unexpected)
+arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dtb: mmc@58007000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
 "
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
 Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
 Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Wolfram Sang <wsa@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Yann Gautier <yann.gautier@foss.st.com>
 Cc: devicetree@vger.kernel.org
-Cc: linux-i2c@vger.kernel.org
+Cc: linux-mmc@vger.kernel.org
 Cc: linux-stm32@st-md-mailman.stormreply.com
 To: linux-arm-kernel@lists.infradead.org
 ---
- Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/mmc/arm,pl18x.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
-index 63958cac339b7..bf396e9466aaf 100644
---- a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
-@@ -97,6 +97,8 @@ properties:
-           - description: register offset within syscfg
-           - description: register bitmask for FMP bit
+diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+index 1e69a5a42439b..5f7eae8d57ab9 100644
+--- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
++++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+@@ -99,6 +99,9 @@ properties:
+     minItems: 1
+     maxItems: 2
  
-+  wakeup-source: true
++  interrupt-names:
++    const: cmd_irq
 +
- required:
-   - compatible
-   - reg
+   st,sig-dir-dat0:
+     $ref: /schemas/types.yaml#/definitions/flag
+     description: ST Micro-specific property, bus signal direction pins used for
 -- 
 2.35.1
 
