@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22DC45E9C46
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CDEB5E9C49
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234480AbiIZIo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 04:44:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53410 "EHLO
+        id S233545AbiIZIpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:45:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233189AbiIZIo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:44:56 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 582C065DA
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:44:54 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id w8so9668469lft.12
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:44:54 -0700 (PDT)
+        with ESMTP id S234360AbiIZIpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:45:00 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BD7965C5
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:44:58 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id s14so9138330wro.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:44:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=AjNBpQiXKyCIczkdcFeT8Sqv3YnomJydcomPufWvUsM=;
-        b=FW+lutjF1v1p2CfZpdzEe2gUivlAVRcG9V+bDcNXM6wregXlfJ0uunhsiCMhWEymq3
-         XaUFJZ2KvZEPpb/1gFFrDapqGRyqKDoDH1hYU4Rc5oLfIHGYVDnroTUUxZ8wjgFw7WZ0
-         9ofT4TvGzVgzXxwXnYpUWLPjvbPiF+udFj9QaQVPnn6PKVI9buT/czh0JmLRS5bgGjL5
-         wPmSls5HSMvt6S48zkbrW8Lkc1jGkkt6wyBlczICxBbewhvAuu3VkHysY7DhsZ/pHekx
-         WS9ErSZWKld1JhnSU4AMrNb12DCfFfd4s1ActmDEykEL4T+51RTZQ/aNTmO5GgKfWpnN
-         15zA==
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date;
+        bh=Q2VHep0+S40i1p+8tHTWFQVTsADjWZtNk4KlaS/+6IU=;
+        b=B8wU22HEQEXAoRs+kdf3JbXUeTaSc0ydIHClfeu61HSRqXlKiO8URjQP6ty6JInOBt
+         Pd0eXvz1Blg1WTYNtiUJ1NFcEzg+5tpRi7VNdCULHguXlxxFbumUm+oA2YjDh96nGLQf
+         vO1PwqMjzefS9TEIpW4j9k7nPUewthEUaOvHxku+wmvIsyXze8g7XVy1nZxKEmiIwoop
+         2CN5fQK0OA4psjRdAx4AintQNC7X3WDmMPbHBgVmqmByn8FGx2/LYYxS1TU2LqHxNzSQ
+         PKQI2wAjxOBptEccG+I0XibmnO8TblKFc1oEuSo6CTm8+MiEg/QxAoButs3/06SXg3IS
+         9Bbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=AjNBpQiXKyCIczkdcFeT8Sqv3YnomJydcomPufWvUsM=;
-        b=fzXeEliK8K5W1FVtnzHBBaioVkxGFORTOhW05uzNDZI8nZ5BaKxFGHCBPGKuLWWgrR
-         jZe0vSXedkP4N0aGBWPe+V2HpLlYQF+XSX7exBHZQfW7MZFKN9x9Af1YyDzmFpdCdNHe
-         gVs6Sp/lTCnAYOGmLPBmy4HsLpfx9V+nIZOpC6uIlEHaAAk9PSlw//5tZNA9NYVqBarS
-         3PlIklGN6d1hhYsDg/EZ0sIl9/sctVyXRdPR1MpRdrQinYUOFNCkO3iMb5tnZ1JWugcA
-         H5YuDXXLJ8I2gLWbdB1KtLtBg5J7dJavk7hKuTfMBYHUBWH1oxIT7+m5xzdO23WKl3ml
-         RrDw==
-X-Gm-Message-State: ACrzQf22geVhAKRb3wPafBRBEXl+gnGg06ZNxAfdyNKa4OosBESyQ83E
-        ro36z38rldRJ/Bbho3ijKKWmcA==
-X-Google-Smtp-Source: AMsMyM7vnFmTj1/BWZJHATJUtK7+0ejBaLnVdRCjRJXJnfy8aE4xn8hlK4C30pX7XiAo9yADNmzWmQ==
-X-Received: by 2002:a05:6512:3f90:b0:497:ab3d:5f12 with SMTP id x16-20020a0565123f9000b00497ab3d5f12mr7944923lfa.421.1664181892742;
-        Mon, 26 Sep 2022 01:44:52 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o9-20020a05651205c900b004979ec19387sm2457048lfo.305.2022.09.26.01.44.06
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=Q2VHep0+S40i1p+8tHTWFQVTsADjWZtNk4KlaS/+6IU=;
+        b=HL9RwISTF4iQfGafUHsg1PUe4IYxYK1kruV+hHtIagBCjlihj3krFP9OfHPZU0JZ7W
+         fufZnVpvTnvYdPJdwIanIX88zPk2Emc73zrg9puCuKNbyu2d8CiQn51psJ3mtkI0VtDx
+         t6OnD8kn+eadOejWbOddS9XGtzz3dtOqyJf0w5RX9Heu8a2pAunpMPRjEpLfR+SQAIoe
+         jHarWsTupCO+s8YUpemAh5EdyT64qlQFMs9Av9iKbKF2Pxbea8wAi93DFyhCZJjGe8CG
+         IIV+3T6uPhHBuQDsHkyQ+9VVuT5gWDglfOYfzHltHz2JXhiZ9b9ynsrOunlLkEE8qvkH
+         vn7Q==
+X-Gm-Message-State: ACrzQf3zPh+StKQ41vJtN0Fi/0i9qgTbVUVnwWYTLeR1vY744E0fYB74
+        /tNTDQV9U0ovRvDGW1oZU3vHhA==
+X-Google-Smtp-Source: AMsMyM6QE5gySzzoBXOvadp7NTp1YMUx5JraXDuA/09ie0hE1RG7ZEgUl3WI1WJ8+id0uyygQ7DlKw==
+X-Received: by 2002:a05:6000:14c:b0:22a:c14a:29f8 with SMTP id r12-20020a056000014c00b0022ac14a29f8mr12623103wrx.588.1664181897129;
+        Mon, 26 Sep 2022 01:44:57 -0700 (PDT)
+Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
+        by smtp.gmail.com with ESMTPSA id ba30-20020a0560001c1e00b00228655a5c8fsm13767785wrb.28.2022.09.26.01.44.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 01:44:18 -0700 (PDT)
-Message-ID: <f9caffad-b1b4-539e-9ccf-6b827f34be32@linaro.org>
-Date:   Mon, 26 Sep 2022 10:44:05 +0200
+        Mon, 26 Sep 2022 01:44:56 -0700 (PDT)
+Message-ID: <638ca37e-2d2f-0247-8584-01002dea7e06@linaro.org>
+Date:   Mon, 26 Sep 2022 10:44:51 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH] ARM: dts: qcom: pmx65: use node name "gpio" for spmi-gpio
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: pm8941: fix vadc channel node names
 Content-Language: en-US
 To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -64,10 +64,12 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220925190622.111505-1-luca@z3ntu.xyz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220925190622.111505-1-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
+References: <20220925161821.78030-1-luca@z3ntu.xyz>
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20220925161821.78030-1-luca@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -79,15 +81,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2022 21:06, Luca Weiss wrote:
-> All other usages of qcom,spmi-gpio use the gpio@ node name, and this is
-> also validated by the dt binding check. Fix it.
+On 25/09/2022 18:18, Luca Weiss wrote:
+> Node names for the channel are supposed to be adc-chan@REG.
+> 
+> Use this format and at the same time sort the nodes by reg value.
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>   arch/arm/boot/dts/qcom-pm8941.dtsi | 25 ++++++++++++++++---------
+>   1 file changed, 16 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi b/arch/arm/boot/dts/qcom-pm8941.dtsi
+> index 9cd49deb9fa7..3c15eecf2f21 100644
+> --- a/arch/arm/boot/dts/qcom-pm8941.dtsi
+> +++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
+> @@ -101,26 +101,33 @@ pm8941_vadc: adc@3100 {
+>   			#size-cells = <0>;
+>   			#io-channel-cells = <1>;
+>   
+> -			bat_temp {
+> -				reg = <VADC_LR_MUX1_BAT_THERM>;
+> +
+> +			adc-chan@6 {
+> +				reg = <VADC_VBAT_SNS>;
+>   			};
+> -			die_temp {
+> +
+> +			adc-chan@8 {
+>   				reg = <VADC_DIE_TEMP>;
+>   			};
+> -			ref_625mv {
+> +
+> +			adc-chan@9 {
+>   				reg = <VADC_REF_625MV>;
+>   			};
+> -			ref_1250v {
+> +
+> +			adc-chan@10 {
+>   				reg = <VADC_REF_1250MV>;
+>   			};
+> -			ref_gnd {
+> +
+> +			adc-chan@14 {
+>   				reg = <VADC_GND_REF>;
+>   			};
+> -			ref_vdd {
+> +
+> +			adc-chan@15 {
+>   				reg = <VADC_VDD_VADC>;
+>   			};
+> -			vbat_sns {
+> -				reg = <VADC_VBAT_SNS>;
+> +
+> +			adc-chan@48 {
+> +				reg = <VADC_LR_MUX1_BAT_THERM>;
+>   			};
+>   		};
+>   
 
+Here aswell, I don't see where this is required, bindings doesn't mandate this naming:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+patternProperties:
 
-Best regards,
-Krzysztof
-
+    "^.*@[0-9a-f]+$":
+Neil
