@@ -2,89 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EF4B5EAE39
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 19:32:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65E725EAE41
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 19:34:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230492AbiIZRcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 13:32:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36168 "EHLO
+        id S230432AbiIZRez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 13:34:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbiIZRc3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 13:32:29 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE9A81822CC;
-        Mon, 26 Sep 2022 09:50:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5D388B80B72;
-        Mon, 26 Sep 2022 16:49:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24C7AC433C1;
-        Mon, 26 Sep 2022 16:49:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664210989;
-        bh=1c5Fiy+fkune816aVwNMAtlbMdamxliwtVQD1QR541I=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Q9wmOkOry7vvnnNujle0YG1Rqjsp4YNyE5klrWU5Uzak/F3L3zILU7QNdYPI5EiY3
-         gS+HAvGjMbhz5pQKwdFl++v9tXzRLsRKQuwP6RovFqGd0y1CVb42nyWNkunNKzYun9
-         LVemAzvPiRsOHkTIVdxjO8FA2Q5vLru3UoQCzEMpHElgVxkj9ZbNjIcjpWxRJ4Rirw
-         8r7q4HWU18SR9IvFK1RiZ2t8G4hQzumviTEvH+ZnmjR603YGfG6J2oW/N2ijrBEQV0
-         i4VXf92cX08/fEYowYiOa6YwgjosypWGkDF7zKTu7U5Z5y3z9iQZZQM8YACmlSYMGo
-         Bof2Vd1ICeeng==
-Message-ID: <d8706eb0-6e1c-22ae-a88b-ea183e6bcede@kernel.org>
-Date:   Mon, 26 Sep 2022 11:49:43 -0500
+        with ESMTP id S230450AbiIZReg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 13:34:36 -0400
+X-Greylist: delayed 122 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 26 Sep 2022 09:53:15 PDT
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48CA57674
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 09:53:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1664211195; x=1695747195;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3VMcO93PozK+g8jLLMrs6D7u1SFekdD0LmnHxmEpbPI=;
+  b=rfLOYdV6WzqgRnZffjvsdbqVhMMKgehiriDt2chH7eu1z1atccq3k3mw
+   sf1m2WoxN/nL2EZMQHBt1AdNpOUt2BrCTx6nclPB/O12eVamZyRXcxtVE
+   +MfJnqHfmQjf0qPxtkzPFbsRkk5gOuzSJ8PwQEA4oo5f6EDZdPdt/mV7v
+   8=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 26 Sep 2022 09:51:12 -0700
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2022 09:51:12 -0700
+Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 26 Sep
+ 2022 09:51:11 -0700
+Date:   Mon, 26 Sep 2022 09:51:10 -0700
+From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Lee Jones <lee@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] bindings: Update maintainer's email address
+Message-ID: <20220926165110.GA1297@quicinc.com>
+References: <1663979817-1078-1-git-send-email-quic_gurus@quicinc.com>
+ <dc0ef30b-0c99-7086-7b49-755f51fe9668@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCHv3 1/3] dt-bindings: mmc: synopsys-dw-mshc: document
- "altr,sysmgr-syscon"
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        jh80.chung@samsung.com
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220926140932.820050-1-dinguyen@kernel.org>
- <f4d29a38-c195-43f7-4837-43a6176a0a58@linaro.org>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <f4d29a38-c195-43f7-4837-43a6176a0a58@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <dc0ef30b-0c99-7086-7b49-755f51fe9668@linaro.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9/26/22 10:35, Krzysztof Kozlowski wrote:
-> On 26/09/2022 16:09, Dinh Nguyen wrote:
->> +allOf:
->> +  - $ref: "synopsys-dw-mshc-common.yaml#"
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const:
->> +              - altr,socfpga-dw-mshc
->> +    then:
->> +      required:
->> +        - altr,sysmgr-syscon
+On Sep 24 2022 10:21, Krzysztof Kozlowski wrote:
+> On 24/09/2022 02:36, Guru Das Srinagesh wrote:
+> > Update Guru Das Srinagesh's email address.
+> > 
+> > Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
+> > ---
+> >  Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
+> >  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml         | 2 +-
 > 
-> else:
->    properties:
->      altr,sysmgr-syscon: false
-> and then you will probably see the warnings leading to error in syntax
-> (const is not an array)...
+> Use subject prefixes matching the subsystem (git log --oneline -- ...).
+> Here it should be "dt-bindings". Also describe who's address you are
+> updating:
+> dt-bindings: Update Guru Das Srinagesh's email address
 > 
+> With the subject fixed:
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Hmm, okay. I ran dt_binding_check and did not see the warning. I'll 
-check it again.
+Sorry, I'm aware of these rules and had made these fixes locally but
+accidentally sent out this wrong patchset.
 
-Dinh
+Thank you.
+
+Guru Das.
