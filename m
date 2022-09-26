@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62BB35E9C70
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:49:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FEC45E9C77
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 10:51:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234529AbiIZIts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 04:49:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33418 "EHLO
+        id S234000AbiIZIvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 04:51:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234535AbiIZItS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:49:18 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2489F3DBC2
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:49:15 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id a2so9728116lfb.6
-        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:49:14 -0700 (PDT)
+        with ESMTP id S234226AbiIZIvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 04:51:07 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD6C029C8C
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:51:04 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id n12so9057826wrx.9
+        for <devicetree@vger.kernel.org>; Mon, 26 Sep 2022 01:51:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=MW04zFbYiz7tW78FOCuEC7QbJfqoqdmSRXNLnpBucog=;
-        b=XA0TuMNFuN+TfZQGGrr7npbEEY4hCAqo6Jz6K4A4rTxF7CgS3bXBxFaM7l2+WM6TMd
-         GD7Rn5Untjl2hvQRmyG1jW+duqKBGH1dhYqbm5dVvZoD48FTGosdP4p0J8DThcpvTTOo
-         Od5/wq3xdydD3pD2G/mTWy4rq3pj1GrpLZNdHqQtb3ApJvF7F8sZeiSkeh4E0WxUFnuI
-         J5OCEFe9/vf5v/WDlqKEaxHhvl0HW36PYeSr/53FPiUXmKZ5/ani4CJlAR0LrbJlVe8M
-         cqR22DRFt6vO66GZD1aIrGTvJAXMl9uWBN54NuPvjokCTJQDx+2UOUYDerMI5QQ+0QYN
-         n7FQ==
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date;
+        bh=23K9mktk1PipGt+2cteektluJX33ahCAvQ1DGF6APT4=;
+        b=JmssjflPqoPY9anMurCZuqhieS6y3ia/3PGdGODIDzU05ComsQHirsz6xrCPfNV7zx
+         wtx3/hpTVAIoaf6w/0QCt824bChE8DApjkS+ughVXtMNqa+/betw0/t5r5oR5uhGtA70
+         9WwbTcOyi0rs8EmJlrsL6YerHYyJnGN2nluKPDvta1S7Nb+4dDYq80UTGFHpc0Yl27p7
+         UloD8hS8ZSN1Xa2MBIA1iU3pHp437ZUug7bz8wxg7O9uDuMigCZjp7VX0zNqPIhb8BOy
+         d4jISGb3wDMfsqEGmCKF6yw4IjO9DFtyjhiXnJT5Wc2NmLxoWaV1GYW/QTcZNnfqfF+l
+         VV6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=MW04zFbYiz7tW78FOCuEC7QbJfqoqdmSRXNLnpBucog=;
-        b=63aWouDt7vCjXSMrYVq5cBbpHd5VIrWYaP2fso2PzbP1LQ0NB26ZU81PXO0t+4ZpYd
-         UrD5Fpjhpy9yXuQ4Qar1iHhE81k2Dz8I/o+7up0s+LezVANEvBuy2P8DjmrpbfaOc0si
-         VGzQVogfvHJV/yTlmImaQLTKLqplZ1NtnG8D/e2/OKsRGaX32PW+qnNHlREywXtJd9xI
-         CXve5s0OopgBtqCdpnEkxxUeNBE73SnIs0TMoxTphv8Yla0x5m0iQLC37hQNoncUp1yn
-         IVF2KQGeVY7ltJrEhgBnXsdPYwbbA07it6dLeiJFNLMeIYxcOp9/w2ju41KxC2mfKcz5
-         DLmQ==
-X-Gm-Message-State: ACrzQf2GWEi1n7hwCde5DmKy8J7uZ8BhdRlBnFLFNhT0d6dfIScyuAkX
-        JDzNtuE5GFbWWbb2zb1je9kAQg==
-X-Google-Smtp-Source: AMsMyM65BSGZfk37fWVfoZ822v2YVm3uoBhCISkf8YnrW3SkUAOlq2/hfHHyw4bTOyvbhMcwNQtqZQ==
-X-Received: by 2002:a05:6512:2304:b0:49b:24a:f0cf with SMTP id o4-20020a056512230400b0049b024af0cfmr8807596lfu.373.1664182152986;
-        Mon, 26 Sep 2022 01:49:12 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a30-20020a194f5e000000b0049d3614463dsm2472453lfk.77.2022.09.26.01.49.11
+        h=content-transfer-encoding:in-reply-to:organization:from:reply-to
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=23K9mktk1PipGt+2cteektluJX33ahCAvQ1DGF6APT4=;
+        b=oV3XBV3m0Z9mzUDI2fW8oHd1RWFsnNdTHVs5EgWnAQX02AxSyJeAE3uMDWz1hbHpv5
+         QSJJm8bBY6REVlPcyYq9TS1zyhiL0TVMJ9LIPIEMSwojP7UEQm/X+HpkgYLel5mq7cQ1
+         aDpW3qSENf0J4jfr0DwT5tcYUt+7CmxhPjkTpfDaEwEsHro7catMz6b/U8fp924DTnH4
+         QMntVAzQT3MiH4eEmLMjXDrIV76qmoBQe4FLLmbRWbfDT6uD7kO15ZugX/9XNBCSB26t
+         TYPDtqpxQdc+93A9pEZuA2T+Lo1Q8kcXXajcH8O6clhgf1v6fBL0uGGxpMbGM6S9sTKj
+         Zw8Q==
+X-Gm-Message-State: ACrzQf1+SINdezlZ9FFJ+48Pwgc6YOxhnpzOp72EEgDT+rZ/sZodUtga
+        ehIVQXPGqBVOnyxdcl/quHj9Og==
+X-Google-Smtp-Source: AMsMyM50EBUEmT0EBoFm8XVGuuN4X5dJUr4H1dnP3Kz+Hi9L3OwRFxsgT9Sn8oqcDVZvLh+FH/p1WA==
+X-Received: by 2002:a05:6000:1cc:b0:22a:e8c6:9f57 with SMTP id t12-20020a05600001cc00b0022ae8c69f57mr12101861wrx.527.1664182263030;
+        Mon, 26 Sep 2022 01:51:03 -0700 (PDT)
+Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
+        by smtp.gmail.com with ESMTPSA id f13-20020a05600c4e8d00b003b33de17577sm11880036wmq.13.2022.09.26.01.50.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Sep 2022 01:49:12 -0700 (PDT)
-Message-ID: <6454e34b-f9b7-257d-4717-4a880998d08f@linaro.org>
-Date:   Mon, 26 Sep 2022 10:49:11 +0200
+        Mon, 26 Sep 2022 01:51:02 -0700 (PDT)
+Message-ID: <b0f42da0-c302-dd95-8fd7-95f125a9d4f2@linaro.org>
+Date:   Mon, 26 Sep 2022 10:50:57 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: qcom,spmi-pmic: adjust pwm node
- validation
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] ARM: dts: qcom: msm8974-sony-*: fix multi-led node name
 Content-Language: en-US
 To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220925211744.133947-1-luca@z3ntu.xyz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220925211744.133947-1-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220925175631.103535-1-luca@z3ntu.xyz>
+Reply-To: neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20220925175631.103535-1-luca@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -81,17 +81,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2022 23:17, Luca Weiss wrote:
-> The LPG node doesn't use reg, so adjust the documentation to match that.
+On 25/09/2022 19:56, Luca Weiss wrote:
+> The name rgb-led is not allowed, multi-led is supposed to be used.
+> 
+> <snip>/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-amami.dtb: pm8941@1: pwm: 'rgb-led' does not match any of the regexes: '^led@[0-9a-f]$', 'pinctrl-[0-9]+'
+>          From schema: <snip>/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 8 ++++----
+>   arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi           | 2 +-
+>   .../arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+> index 5a70683d9103..c1d97190ea71 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+> @@ -178,7 +178,7 @@ &pm8941_lpg {
+>   
+>   	qcom,power-source = <1>;
+>   
+> -	rgb-led {
+> +	multi-led {
+>   		color = <LED_COLOR_ID_RGB>;
+>   		function = LED_FUNCTION_STATUS;
+>   
+> diff --git a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> index 85348562e861..94daa1a3240a 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> @@ -295,7 +295,7 @@ &pm8941_lpg {
+>   
+>   	qcom,power-source = <1>;
+>   
+> -	rgb-led {
+> +	multi-led {
+>   		color = <LED_COLOR_ID_RGB>;
+>   		function = LED_FUNCTION_STATUS;
+>   
 
-Already sent:
-
-https://lore.kernel.org/all/20220828132648.3624126-2-bryan.odonoghue@linaro.org/
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
