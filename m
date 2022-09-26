@@ -2,109 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BCF05EB1C5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 037695EB1F6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 22:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbiIZUEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 16:04:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57706 "EHLO
+        id S230426AbiIZURs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 16:17:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbiIZUEb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:04:31 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A66D97B16;
-        Mon, 26 Sep 2022 13:04:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=BO41jb632AO2Bc9BLgoCYD5efImi2YwyYT9pGgQE7og=; b=P8
-        8uiuSD2+ubN4vwqv6s1SPc9Rxq53k4mdI4L3mMk6z78YdQVeiwmkVixTzfuDkJsbnNfd5DQudJiF6
-        TF5XCRN/T1P63gzgMhkJAnCjshmQEvssaPnVBRe3I7e6Rt0N/nyyuSAUXlrd0CkA4Aj40A0XZmzkP
-        4+eGFSHxDsICwtc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ocuKz-000L1E-80; Mon, 26 Sep 2022 22:04:21 +0200
-Date:   Mon, 26 Sep 2022 22:04:21 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Marcin Wojtas <mw@semihalf.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/5] ASoC: kirkwood: enable Kirkwood driver for Armada
- 38x platforms
-Message-ID: <YzIFxWq7Kt0SudLz@lunn.ch>
-References: <20220920132648.2008-1-pali@kernel.org>
- <20220920132648.2008-2-pali@kernel.org>
- <20220926194832.GA2668987-robh@kernel.org>
+        with ESMTP id S230444AbiIZURp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 16:17:45 -0400
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370A3A3D01;
+        Mon, 26 Sep 2022 13:17:42 -0700 (PDT)
+Received: by mail-oi1-f178.google.com with SMTP id m130so9643819oif.6;
+        Mon, 26 Sep 2022 13:17:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=k0AQrlIxbwy7Ubn2EjodtbFUv1BS5TcuY8f1vFpcfW0=;
+        b=wg4ch64kxy4+euNu3MZQAOj2BG23+Pi6/rhja9pajNlsQ0bMk0K0CMEFkvzb/+0/Jb
+         9WEBQSiN5zp/owZNC2+D4EMx3CjO0+tH8cYz6yCUnH7As+xJvZDH1hEjPR2MAW2D9XGF
+         ZMJnDLk43O43nej32VfrpdojpDgrI6ec+0eq1CHOV5mOPd8QFoa3yz+AZNtcr+WeAX2w
+         AVl1BkgoZTUX4B9UsgSYYyf1gMGkcX3G52trvf7vP3yfIXJxlgsXDZ3F2oZjGA6o3yMG
+         Us96sVYPx9EW7mdZr++mY4FSfGWCzOgVGValihBrQPwM7KhtWWwFi5zKeVKaroYM1AyF
+         nygg==
+X-Gm-Message-State: ACrzQf19su+Ys6XK2CbAHeVxIpNH7N7NCMNSpHyDYrzucImdiqaiAeNK
+        c2nM5y+Z9+POSTZHtshhwD3ALvXG3w==
+X-Google-Smtp-Source: AMsMyM5pA5L+VHMfeMDYk+ZJcAO9IUEAmM1zFB24SDJbCswpwoD8hydbwaxwQ0eIbjpjKu9khowpKw==
+X-Received: by 2002:a05:6808:120e:b0:345:aeaf:c064 with SMTP id a14-20020a056808120e00b00345aeafc064mr248896oil.70.1664223461410;
+        Mon, 26 Sep 2022 13:17:41 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p3-20020a056830318300b00654625c0c4dsm8227545ots.17.2022.09.26.13.17.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Sep 2022 13:17:41 -0700 (PDT)
+Received: (nullmailer pid 2732492 invoked by uid 1000);
+        Mon, 26 Sep 2022 20:17:40 -0000
+Date:   Mon, 26 Sep 2022 15:17:40 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Guru Das Srinagesh <quic_gurus@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: firmware: document Qualcomm SM6375 SCM
+Message-ID: <20220926201740.GA2726270-robh@kernel.org>
+References: <20220921001020.55307-1-konrad.dybcio@somainline.org>
+ <95fb2bfb-6eb8-012d-88f8-c739d229ef70@linaro.org>
+ <8faecd72-0cfd-18eb-d07a-53b3a23ed05a@somainline.org>
+ <20220924000932.GA1450@quicinc.com>
+ <fcc5bc9f-6b6b-b9ca-45aa-ff2c880a4774@linaro.org>
+ <20220926165904.GA17938@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220926194832.GA2668987-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220926165904.GA17938@quicinc.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 26, 2022 at 02:48:32PM -0500, Rob Herring wrote:
-> On Tue, Sep 20, 2022 at 03:26:44PM +0200, Pali Rohár wrote:
-> > From: Marcin Wojtas <mw@semihalf.com>
+On Mon, Sep 26, 2022 at 09:59:04AM -0700, Guru Das Srinagesh wrote:
+> On Sep 24 2022 10:17, Krzysztof Kozlowski wrote:
+> > On 24/09/2022 02:09, Guru Das Srinagesh wrote:
+> > > On Sep 21 2022 20:43, Konrad Dybcio wrote:
+> > >> Does it? I did not define this compatible in the driver, so it does
+> > >> not consume any clocks.
+> > > 
+> > > The bindings should describe only those compatibles that the driver supports -
+> > > that is, both the driver and its bindings should be in sync.
 > > 
-> > The audio unit of Marvell Armada38x SoC is similar to the ones comprised by
-> > other Marvell SoCs (Kirkwood, Dove and Armada 370). Therefore KW audio
-> > driver can be used to support it and this commit adds new compatible string
-> > to identify Armada 38x variant.
-> > 
-> > Two new memory regions are added: first one for PLL configuration and
-> > the second one for choosing one of audio I/O modes (I2S or S/PDIF).
-> > For the latter purpose a new optional DT property is added ('spdif-mode').
-> > 
-> > kirkwood-i2s driver is extended by adding a new init function for Armada
-> > 38x flavor and also a routine that enables PLL output (i.e. MCLK)
-> > configuration.
-> > 
-> > Signed-off-by: Marcin Wojtas <mw@semihalf.com>
-> > Tested-by: Star_Automation <star@marvell.com>
-> > Reviewed-by: Nadav Haklai <nadavh@marvell.com>
-> > Reviewed-by: Lior Amsalem <alior@marvell.com>
-> > Tested-by: Lior Amsalem <alior@marvell.com>
-> > Signed-off-by: Hezi Shahmoon <hezi@marvell.com>
-> > Reviewed-by: Neta Zur Hershkovits <neta@marvell.com>
-> > [pali: Fix support for pre-38x SoCs]
-> > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > ---
-> >  .../devicetree/bindings/sound/mvebu-audio.txt |  14 +-
-> >  sound/soc/kirkwood/kirkwood-i2s.c             | 136 +++++++++++++++++-
-> >  sound/soc/kirkwood/kirkwood.h                 |   2 +
-> >  3 files changed, 149 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/mvebu-audio.txt b/Documentation/devicetree/bindings/sound/mvebu-audio.txt
-> > index cb8c07c81ce4..4f5dec5cb3c2 100644
-> > --- a/Documentation/devicetree/bindings/sound/mvebu-audio.txt
-> > +++ b/Documentation/devicetree/bindings/sound/mvebu-audio.txt
-> > @@ -6,9 +6,14 @@ Required properties:
-> >    "marvell,kirkwood-audio" for Kirkwood platforms
-> >    "marvell,dove-audio" for Dove platforms
-> >    "marvell,armada370-audio" for Armada 370 platforms
-> > +  "marvell,armada-380-audio" for Armada 38x platforms
+> > That's not entirely true. Bindings describe the hardware in the most
+> > complete way we can. Not the driver. Whether driver supports something
+> > or not, is not relevant here, except that we don't want to document
+> > non-existing things or stuff out of tree.
 > 
-> Perhaps be consistent with the 370 string above it.
+> Is this only applicable to compatibles or device tree properties in general?
+> 
+> > > 
+> > > Could you please update the driver with this compatible as well? Let's not
+> > > merge this change without that first.
+> > 
+> > This could be even merged without change in the driver. However it's not
+> > the case here as driver already supports it, so your request is fulfilled.
+> 
+> My concern is that if somebody specifies a compatible/device tree property that
+> the driver doesn't support, their expectations from adding that change will not
+> be met. In addition to having the bindings describe HW in full, I think the
+> driver should also be in sync with it for this reason.
 
-Hi Rob
+Which driver? From u-boot, *BSD, Linux, TF-A, ...?
 
-That was something i also considered. But actually, all 380
-compatibles use armada-380-FOOBAR. So this is inconsistent with
-armada370-audio, but consistent with armada-380 in general.
-
-	 Andrew
+Rob
