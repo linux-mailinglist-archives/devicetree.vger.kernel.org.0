@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E37A5E97C7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 03:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 720C55E97FB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 04:39:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232887AbiIZBrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Sep 2022 21:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46202 "EHLO
+        id S233088AbiIZCjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Sep 2022 22:39:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232377AbiIZBrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 21:47:02 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A039A2A72A;
-        Sun, 25 Sep 2022 18:47:01 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id t14so7982527wrx.8;
-        Sun, 25 Sep 2022 18:47:01 -0700 (PDT)
+        with ESMTP id S233071AbiIZCjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Sep 2022 22:39:49 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6467C1055E;
+        Sun, 25 Sep 2022 19:39:43 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id c24so4983921plo.3;
+        Sun, 25 Sep 2022 19:39:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=NFlUObOfmCqD6lJ8Qd3bAP3UmGiZcM4xx6wMJp41J5o=;
-        b=Ow9S5prFYWmPvtPiKpPe0bfqYYKLrAlTlMASu5wBK5xmZIfU9TUzNle9zSSgolbeZI
-         IL7U6CufgfIZINiu8eSv6RJOpG0KwXho4peAP4jsByWxJTz95KFvuvyLdfAUQnNOLkD2
-         1R6PDNQS1+j1GrLd/PuTVMtwSkQbSuIJNYfcVLdk8wYr5ciiz9PlKjr8L4+OerxSQXQU
-         bANqVqM3jGFCdp0pEoCCH5rrdzxjbUS44KD0NRt17ufml395GqZ8Xovk1JQMFfFvheBR
-         1/61MrBAjQduYc91XoR44lLVPU35GxLESNISBHvIxD3AbSTTOV44b6b9RLMn1m4403Vp
-         c9pA==
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=Y/2qP9EuvSyDRcxGMj6/oFp0YDhUw2RdOArQ87n1wDE=;
+        b=NWa6IgDa3LrRqtJpTgkEvUUyKEM2xVQP801nGzuJO+2KW8JP+Ycf85voa2jwjHw/nX
+         VeRWroBfMWJgMG9oUKT6i26W/d4Qy4WrobW1QGWnpbw4mybdabEnBMh/H8Rgro/WQTGS
+         HNn69lHgXiPswF2IL+kh6IBCjwU3nd2VtnUoiET6ZrlQmoucKB16ETve7v3UPn+RCYCu
+         BY34Dx4Fg2wG2TRERXbY8STVPpVE1A0/pu6cvIJAqjHh/BwrnHpISnO0gGSjk0o4NpDE
+         uu/Vg5osSu8lJTTXpTcY6ouHn43myV1BND4HW9oqDlHu7aGXiT5w5r+HJ/Gx9tEQvJPj
+         bCcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=NFlUObOfmCqD6lJ8Qd3bAP3UmGiZcM4xx6wMJp41J5o=;
-        b=xn42ima4d1wM+23FGdvYOlUO/3tDSOq2XyLorsBxKDw3tGorjteewqKzACyRbF1HG9
-         o4RQHBG9OstxLu+KQix7Vb3R1hZJ2UfLobR3qk3lnJ9B6DNY/WBCzuFh2CO8mhwaDMOv
-         UXFZEacXXqPyz98/pq6veHXns8wck6wAeqmY4Inr2zGiFrw30cQYPvJttrZ3PNrMNcvk
-         R45R7WPby5wEcGXmk47qsvE+qJU+X+7TuwBRI5jY2kc8s/Oo6DxlA2UOEJzQil/6tTqu
-         Dkrsa86byKajXsrV+IYOn6ntRgOmI+VPHs9nBcq9Tqm62Oab/pxZ3sYQzJ5XWdLtwUsR
-         odeQ==
-X-Gm-Message-State: ACrzQf0n8ngvicomWcGgSuZ95vpxIIY1fGTqvGZpWsMJ9OjCqrcA6cV4
-        xQqlloweh5xzTME3uUDIzLffynTXayUK7I6vOkw=
-X-Google-Smtp-Source: AMsMyM6f9ZiPqjhD4Ybc4bqIH6+zzZy7lakyFrC5SdA3CUJhZw6ijSwE078FUZGOhv5nLeNCyPEz3gquCHSkmYFOLUY=
-X-Received: by 2002:a5d:6388:0:b0:228:c792:aabe with SMTP id
- p8-20020a5d6388000000b00228c792aabemr11741732wru.689.1664156820093; Sun, 25
- Sep 2022 18:47:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <ce61fb9a-dcf4-27a2-ac03-62060a1512f9@manjaro.org> <20220925124825.71786-1-leo@nabam.net>
-In-Reply-To: <20220925124825.71786-1-leo@nabam.net>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Sun, 25 Sep 2022 21:46:47 -0400
-Message-ID: <CAMdYzYpdhJ-wWN9UAppQvaNqK8Y_RadYv2v67gD5S_u=1ZXw0Q@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: fix quartz64-a bluetooth configuration
-To:     Lev Popov <leo@nabam.net>
-Cc:     Dan Johansen <strit@manjaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=Y/2qP9EuvSyDRcxGMj6/oFp0YDhUw2RdOArQ87n1wDE=;
+        b=ufAngpTvW7y+1enpEAxVSz81X0u69gbyh9XbGuHstnwdbg5W9nwcg5R2uV/GVUrsUO
+         qN+EkiHo8Pu3spguMprOu3QL1tcVNzjaLBGNa8s6RfkLZWf4D2uTIzI4gdscpLVHNACF
+         Wrn7QST8v0tejfbD2GeYT4KZmh8NS35BqPojy7trz0ay7ThlB58ED2zeNRZxidIcdFol
+         7OBYXu+Z82mrvPKYs6WJo0jNvHwL3lpSy3UN8FEKqnjB9ZbezWNgCEjfZN5QHp0BsRqp
+         O06rEPlf2YHBWTkR0ySMc1+RIzrwXEY0RuMoBRlNZJvRnQH0jzAuhNcqpD8Mxpkgaoet
+         n9rA==
+X-Gm-Message-State: ACrzQf24PwFqX+cuXCVWQg2NauS3x9XyFeTV91EiHUZdxK8QrZ4M3Lvs
+        Plt1NY9LqkZUGF0nQH7H8O4lhCwWBTQ=
+X-Google-Smtp-Source: AMsMyM5RyuGfmuMCEBOfXEYXZ60o49Y448+xU6Jr9byu3iqD1Wfi5HocMRUfJoHTOmfFYdoGOTZzgA==
+X-Received: by 2002:a17:90b:33c9:b0:200:9ec2:f2eb with SMTP id lk9-20020a17090b33c900b002009ec2f2ebmr22908638pjb.29.1664159981943;
+        Sun, 25 Sep 2022 19:39:41 -0700 (PDT)
+Received: from localhost.localdomain ([49.216.30.246])
+        by smtp.gmail.com with ESMTPSA id y3-20020aa793c3000000b005383988ec0fsm10667584pff.162.2022.09.25.19.39.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 25 Sep 2022 19:39:40 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        sre@kernel.org
+Cc:     mazziesaccount@gmail.com, alina_yu@richtek.com,
+        cy_huang@richtek.com, alinayu829@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/3] Add Richtek RT9471 3A battery charger support
+Date:   Mon, 26 Sep 2022 10:39:29 +0800
+Message-Id: <1664159972-4391-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,55 +67,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 25, 2022 at 8:48 AM Lev Popov <leo@nabam.net> wrote:
->
-> For "Quartz64 Model A" add missing RTS line to the UART interface used by
-> bluetooth and swap bluetooth host-wakeup and device-wakeup gpio pins to
-> match the boards physical layout. This changes are necessary to make
-> bluetooth provided by the wireless module work.
->
-> Fixes:  cd414d5ac1fdeecf0617737e688a1af00858253a (arm64: dts: rockchip: rename Quartz64-A bluetooth gpios)
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-Good Evening,
+This patch set is to add Richtek RT9471 charger support.
 
-That patch only renamed the lines to comply with the dt-bindings, the
-correct patch is the one that introduced the original line layout:
-Fixes: b33a22a1e7c4 ("arm64: dts: rockchip: add basic dts for Pine64
-Quartz64-A")
+The RT9471/D is a highly-integrated 3A switch mode battery charge management
+and system power path management device for single cell Li-Ion and Li-polymer
+battery. The low impedance power path optimizes switch-mode operation
+efficiency, reduces battery charging time and extends battery life during
+discharging phase.
 
-Very Respectfully,
-Peter
+Since v6:
+- Use 'ATTRIBUTE_GROUPS' macro to simplify the attribute coding.
+- Explain more details for sysoff_enable attribute.
 
->
-> Signed-off-by: Lev Popov <leo@nabam.net>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> index a05460b92415..91908081c5ed 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> @@ -740,7 +740,7 @@ &uart0 {
->
->  &uart1 {
->         pinctrl-names = "default";
-> -       pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn>;
-> +       pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn &uart1m0_rtsn>;
->         status = "okay";
->         uart-has-rtscts;
->
-> @@ -748,8 +748,8 @@ bluetooth {
->                 compatible = "brcm,bcm43438-bt";
->                 clocks = <&rk817 1>;
->                 clock-names = "lpo";
-> -               device-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
-> -               host-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
-> +               host-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
-> +               device-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
->                 shutdown-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-> --
-> 2.37.3
->
+Since v5:
+- Remove one line wrapper.
+- Merge header content into source file, remove header file.
+- Remove 'charge_term_enable' sysfs entry and merge it into
+  'charge_term_current' property control.
+- Change MODULE_LICENSE from 'GPL v2' to 'GPL'.
+  Following by the below discussion
+  https://lore.kernel.org/all/YxAVAt2eWB3NFlrk@google.com/
+- Recover all the change in sysfs-class-power.
+- New a sysfs-class-power-rt9471 file.
+- Remove 'charge_term_enable' sysfs entry, directly integrate it in
+  'charge_term_current' power supply property control.
+
+Since v4:
+- Remove the line for the owner field in driver.
+- Add the documentation for sysfs entries.
+
+Since v3:
+- Move unevaluatedProperties line after $ref for binding patch.
+- Add Reviewed-by tag for binding patch.
+
+Since v2:
+- Remove the properties for interrupt controller things in the binding documentation.
+- Fix dtc error for typo, it's 'regulator-name', not 'regulator-compatible'.
+- Add regulator min/max microamp to allow otg vbus current adjustable in example.
+- Specify the active-level for charge-enable-gpios in binding example.
+- Fix checkpatch error about 'foo * bar' to 'foo *bar' in psy_device_to_chip function.
+- Specify the member name directly for the use of linear range.
+
+ChiYuan Huang (3):
+  dt-bindings: power: supply: Add Richtek RT9471 battery charger
+  power: supply: rt9471: Add Richtek RT9471 charger driver
+  Documentation: power: rt9471: Document exported sysfs entries
+
+ Documentation/ABI/testing/sysfs-class-power-rt9471 |  32 +
+ .../bindings/power/supply/richtek,rt9471.yaml      |  73 ++
+ drivers/power/supply/Kconfig                       |  16 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/rt9471.c                      | 930 +++++++++++++++++++++
+ 5 files changed, 1052 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9471
+ create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9471.yaml
+ create mode 100644 drivers/power/supply/rt9471.c
+
+-- 
+2.7.4
+
