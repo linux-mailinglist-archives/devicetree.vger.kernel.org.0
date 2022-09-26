@@ -2,90 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01F145EB041
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 20:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C34F15EB061
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 20:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230367AbiIZSlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 14:41:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49552 "EHLO
+        id S229644AbiIZSm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 14:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230092AbiIZSl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 14:41:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFBA357F6;
-        Mon, 26 Sep 2022 11:40:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B05CA61236;
-        Mon, 26 Sep 2022 18:40:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1C0CCC43142;
-        Mon, 26 Sep 2022 18:40:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1664217616;
-        bh=HcPJFpL/M1ZGby70MyF+4H1pa7B2wwargZhXC5X3umc=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=satmSBg/pzKe1bqzGKCUnd7A30Px5JXNcKhbFVC7wZZ357zcUKFRM3y5eCJSlDvi4
-         KWJuiCQxkigSa5XN5DpvAfHqDMQ6K9/mUwLrhQFlyQVoi28oo0M65A3N+nEBmpQX6I
-         gJvb6i9uyVlfSTVlFQ1TK4FjJGbGI241zA6yLFFgM4ZbHyn9JzxVvj46AqBmN7+Z/6
-         ufM7pSzkpnzgkLcX85oRnzDoiWsAIiI56OTIAbyeOh7gLcLJDKJVsBzn/RhCn5b9Su
-         UFsoFBz+grOnSiVGSZCEYt4WfF2LLYxOkw4dJamKsPdPyhMGPTen8EaKty9PRpvb6L
-         UMgjJGCOIo/cw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id F2573C070C8;
-        Mon, 26 Sep 2022 18:40:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230031AbiIZSmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 14:42:04 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF83F62;
+        Mon, 26 Sep 2022 11:41:16 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id cm7-20020a056830650700b006587fe87d1aso5006270otb.10;
+        Mon, 26 Sep 2022 11:41:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=NQTujgk0bsMYEmOwwwiGoFnr2ZfITkyj1lKMg8vNYRA=;
+        b=VcG4xD6xTkvN4OZo77FfqRaAf1hW6M5xF8oZM1pd1l6n2fjzN/oRN0EtajapMo2GR7
+         roHrThzzsodQuNL3BidAbqeqYZEUy7ms4IptcAcePx8+jKVc4Cj41zTGYX9gOfkMU51O
+         oXXYA7qEpNXpCyl7mDUiuIO5KO3G1JGnX4/9Hl6J8rxCuFVBaUnOw92uK0bz0E4AsdTa
+         wGb3CVPq5JYJv5tTGXiz1EX0tOUJljHjSB2FupjtVbXW13ANob/AT+C+Lv66kr3Fb7OJ
+         bZXpDM35N4+CrbPnL8t0kGzN+mBysM0cb/WW/LxbtLdFGkHW1z9YDCfBE4VOOpz2rdge
+         UJyg==
+X-Gm-Message-State: ACrzQf1RxINY52Uz0hmCbczQWdu4Esd0WP75WcrQJzLizl9u+8dN+yZh
+        3UjNI/UmWL9w0riZ1A+iXA==
+X-Google-Smtp-Source: AMsMyM7EmvpGiar0USof2quKxi3nPNn2k+LZWqyN4+LnEMnDftJdZm+WxA4p0gAltLrFbpTcT7k+nA==
+X-Received: by 2002:a05:6830:442a:b0:65a:f06:68da with SMTP id q42-20020a056830442a00b0065a0f0668damr10494182otv.336.1664217675296;
+        Mon, 26 Sep 2022 11:41:15 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id cj26-20020a056830641a00b0065689e13f52sm8096577otb.71.2022.09.26.11.41.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Sep 2022 11:41:15 -0700 (PDT)
+Received: (nullmailer pid 2550335 invoked by uid 1000);
+        Mon, 26 Sep 2022 18:41:14 -0000
+Date:   Mon, 26 Sep 2022 13:41:14 -0500
+From:   robh@kernel.org
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
+        shawnguo@kernel.org, l.stach@pengutronix.de, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
+        Peng Fan <peng.fan@nxp.com>, kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: power: gpcv2: correct patternProperties
+Message-ID: <20220926184114.GA2550274-robh@kernel.org>
+References: <20220923075427.985504-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 1/2] dt-bindings: net: rockchip-dwmac: add rv1126
- compatible
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166421761598.17810.9168180824427436208.git-patchwork-notify@kernel.org>
-Date:   Mon, 26 Sep 2022 18:40:15 +0000
-References: <20220920140944.2535-1-anand@edgeble.ai>
-In-Reply-To: <20220920140944.2535-1-anand@edgeble.ai>
-To:     Anand Moon <anand@edgeble.ai>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        david.wu@rock-chips.com, linux-rockchip@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org, jagan@edgeble.ai,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220923075427.985504-1-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Tue, 20 Sep 2022 14:09:40 +0000 you wrote:
-> Add compatible string for RV1126 gmac, and constrain it to
-> be compatible with Synopsys dwmac 4.20a.
+On Fri, 23 Sep 2022 15:54:27 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> Signed-off-by: Anand Moon <anand@edgeble.ai>
+> i.MX8MQ has pgc 'power-domain@a', so correct patternProperties
 > 
-> [...]
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Here is the summary with links:
-  - [net-next,v3,1/2] dt-bindings: net: rockchip-dwmac: add rv1126 compatible
-    https://git.kernel.org/netdev/net-next/c/b36fe2f43662
-  - [net-next,v3,2/2] net: ethernet: stmicro: stmmac: dwmac-rk: Add rv1126 support
-    https://git.kernel.org/netdev/net-next/c/c931b060f093
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Applied, thanks!
