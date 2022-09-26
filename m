@@ -2,149 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1D855EADD3
-	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 19:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B63FD5EADDD
+	for <lists+devicetree@lfdr.de>; Mon, 26 Sep 2022 19:16:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbiIZROj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Sep 2022 13:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49682 "EHLO
+        id S229680AbiIZRQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Sep 2022 13:16:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230223AbiIZRN5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 13:13:57 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9B872EF3;
-        Mon, 26 Sep 2022 09:25:53 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id r3-20020a05600c35c300b003b4b5f6c6bdso4014231wmq.2;
-        Mon, 26 Sep 2022 09:25:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=uWxIDWo6d6ulV7u+9oTtUmVeA5PW8v4AGU7/1jgCws0=;
-        b=elMkguhmGNDT1kZRFOSErvKdPaU+bXjz8+ahPxiocT7Wabt2J/Jj9PoN/xYN/vu5TT
-         7owQ0AHiapjiS3YcFVZ75aG34FO2dJmHC/CigM+6xF8V2YGyp5qDDXpY3jiv2gsFbo8A
-         Y+IEpTDkg1nCmYpZslbIpqGFZoBTHbU+iWO9GfO7KM7a4b/LZ9WFf6yOsUAJOPdHgoQe
-         ofj+n7FhVEj9jVY5sEDpgMSEMMb5L3CnpT00KItuF27n6i0XNGFfSt0AhlmK74Z09PWf
-         9worzrnfhIQyemjWX7JOPnVSLm5XPLFH4WnFKR33iCnnSgib/YhlRjkZL+uH51qYhy5A
-         IwAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=uWxIDWo6d6ulV7u+9oTtUmVeA5PW8v4AGU7/1jgCws0=;
-        b=5gifwDYyOdtmKfu15NA9BxSCKshQbG5U4h8jZ5WSd3vEv5kR7syt+/PdexCT10LFEU
-         4deo4Z1TfHvZk+ZpA/7QKzyKAHcY1sLYbH2CCtelzRYeF7+vHeY8MfDnHPTQau8RkSZH
-         Ygqp4JWZhwllJcpegXPgeH9nbgk3E00hw0k8i5xyPQ36tfuVgqEnT/pn2bmlbaT+RrBx
-         NKs1tzjoKPxXIhw3DkTxKJ7n3Z3kmqocN+4+l4sOXlqvAFyQpPmlY0qeEVb5sCNHDwnc
-         FXYEFcyEp0iuWiLF/dOaT4yCUHQINMtY8glY8+0ujO/ng8JQGVhlQ8mVpGVQnSI75XCz
-         IyUQ==
-X-Gm-Message-State: ACrzQf3DdyV8tnJdJFWDpLiatDh5AhB0lc9loNiVEqS6Kf/gXwwoD3B1
-        LWmhao0xQi6+9HE9ROIf0Fu10xrZJ1+gFw==
-X-Google-Smtp-Source: AMsMyM6tLzVjQR4YOogCHp2eaBc7im1wIuOS+nPZmZHWjVHJNbwtKtg3/zgLp6qjtQuaG2GLqEAYrA==
-X-Received: by 2002:a05:600c:4f06:b0:3b4:b67c:68bb with SMTP id l6-20020a05600c4f0600b003b4b67c68bbmr23052757wmq.36.1664209551982;
-        Mon, 26 Sep 2022 09:25:51 -0700 (PDT)
-Received: from localhost.localdomain (188.red-88-10-59.dynamicip.rima-tde.net. [88.10.59.188])
-        by smtp.gmail.com with ESMTPSA id r18-20020a05600c35d200b003a5ffec0b91sm12346155wmq.30.2022.09.26.09.25.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Sep 2022 09:25:51 -0700 (PDT)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     linux-watchdog@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wim@linux-watchdog.org,
-        linux@roeck-us.net, matthias.bgg@gmail.com, arinc.unal@arinc9.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH RESEND v2] dt-bindings: watchdog: migrate mt7621 text bindings to YAML
-Date:   Mon, 26 Sep 2022 18:25:49 +0200
-Message-Id: <20220926162549.805108-1-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229550AbiIZRQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Sep 2022 13:16:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCFE098CA4;
+        Mon, 26 Sep 2022 09:29:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C275560FE2;
+        Mon, 26 Sep 2022 16:29:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53C5EC433D6;
+        Mon, 26 Sep 2022 16:29:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1664209760;
+        bh=okahiuUC4WIQTaXvFWMrYyam+eRvHV8V6ybc8vpnj2s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ry3nWeS5qG4sI7wp68MsqMBzGTUYCPEF+yLxiVbyyvWpBC+ZMi7/ohUug7poRWVL5
+         ulXJGtrnqk9jKsme782/27ZhvBdaoysEDur1LbygkoKZVOm7fCe18VJZcSTiGVfcth
+         NDCmPqT7k1sRQjP6mTaE80rwmwevVXiiZ1+VqXYJTt9O6N32BR5pp5rkH/A3NaTGoZ
+         dpCm03a8F+QlhIscN3qb82P8ZaNc3JfMa3bcEseEnWOyx4Yxyi7zIzsHJoAOeWCv1C
+         LWoGA1731KzWFfD10BI/Xh4LcDmFFs88LWNKL0s+SgORVJfTkb88ZumXYTZ4lD33fg
+         1kqldJe0WcGug==
+Date:   Mon, 26 Sep 2022 11:29:17 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Jun Nie <jun.nie@linaro.org>
+Cc:     abel.vesa@linaro.org, bjorn.andersson@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, agross@kernel.org,
+        shawn.guo@linaro.org, bryan.odonoghue@linaro.org,
+        linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] soc: qcom: rpmpd: Add corner power-domains states
+Message-ID: <20220926162917.yte3kooilqenufrp@builder.lan>
+References: <20220805074935.1158098-1-jun.nie@linaro.org>
+ <20220805074935.1158098-3-jun.nie@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220805074935.1158098-3-jun.nie@linaro.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Soc Mt7621 Watchdog bindings used text format, so migrate them to YAML.
+On Fri, Aug 05, 2022 at 03:49:33PM +0800, Jun Nie wrote:
+> Some SoCs use corner instead of level in rpm regulator, such as
+> MSM8916 and MSM8939. Add these power-domains states value so that
+> devices can vote them.
+> 
+> Note that there is a shift with 1 when converting the value from
+> regulator usage in Qualcomm Linux 3.18 to power domain usage here.
+> Because corner is not well hacked in regulator framework in 3.18.
+> For example, RPM_REGULATOR_CORNER_RETENTION is 2 in 3.18 while
+> RPM_SMD_CORNER_RETENTION is 1.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
-Changes in v2 RESEND:
-- Resent sending also to watchdog maintainers.
+How about we just stick with the numbers in the rpmpd node in DT, as
+that would be the only place these constants are used and all the actual
+users can use the label associated there?
 
-Changes in v2:
- - Rebase onto last kernel version.
- - Add Krzysztof Reviewed-by tag.º
+Regards,
+Bjorn
 
- .../watchdog/mediatek,mt7621-wdt.yaml         | 33 +++++++++++++++++++
- .../bindings/watchdog/mt7621-wdt.txt          | 12 -------
- 2 files changed, 33 insertions(+), 12 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
-
-diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml
-new file mode 100644
-index 000000000000..b2b17fdf4e39
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/mediatek,mt7621-wdt.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/mediatek,mt7621-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ralink Watchdog Timers
-+
-+maintainers:
-+  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt7621-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    watchdog@100 {
-+      compatible = "mediatek,mt7621-wdt";
-+      reg = <0x100 0x100>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt b/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
-deleted file mode 100644
-index c15ef0ef609f..000000000000
---- a/Documentation/devicetree/bindings/watchdog/mt7621-wdt.txt
-+++ /dev/null
-@@ -1,12 +0,0 @@
--Ralink Watchdog Timers
--
--Required properties:
--- compatible: must be "mediatek,mt7621-wdt"
--- reg: physical base address of the controller and length of the register range
--
--Example:
--
--	watchdog@100 {
--		compatible = "mediatek,mt7621-wdt";
--		reg = <0x100 0x10>;
--	};
--- 
-2.25.1
-
+> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+> ---
+>  include/dt-bindings/power/qcom-rpmpd.h | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+> index 6cce5b7aa940..f778dbbf083d 100644
+> --- a/include/dt-bindings/power/qcom-rpmpd.h
+> +++ b/include/dt-bindings/power/qcom-rpmpd.h
+> @@ -297,4 +297,12 @@
+>  #define RPM_SMD_LEVEL_TURBO_HIGH      448
+>  #define RPM_SMD_LEVEL_BINNING         512
+>  
+> +/* RPM SMD Power Domain performance levels in regulator corner method */
+> +#define RPM_SMD_CORNER_RETENTION	1
+> +#define RPM_SMD_CORNER_SVS_KRAIT	2
+> +#define RPM_SMD_CORNER_SVS_SOC		3
+> +#define RPM_SMD_CORNER_NORMAL		4
+> +#define RPM_SMD_CORNER_TURBO		5
+> +#define RPM_SMD_CORNER_SUPER_TURBO	6
+> +
+>  #endif
+> -- 
+> 2.25.1
+> 
